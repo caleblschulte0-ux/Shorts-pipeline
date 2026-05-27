@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Generated artifacts and large media
+output/
+gameplay/*.mp4
+gameplay/*.mkv
+gameplay/*.webm
+gameplay/*.mov
+gameplay/*.m4v
+gameplay/*.avi
+
+# Whisper model cache
+.cache/
