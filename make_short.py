@@ -294,6 +294,7 @@ def main() -> int:
         help="gameplay tag substring (e.g. subway, minecraft) or 'random'",
     )
     ap.add_argument("--start", type=float, default=0.0, help="seek N seconds into the source before clipping (skip intros)")
+    ap.add_argument("--duration", type=float, default=60.0, help="output length cap in seconds (default 60, Shorts max)")
     ap.add_argument("--keep-temp", action="store_true", help="don't delete the work dir")
     args = ap.parse_args()
 
@@ -317,8 +318,8 @@ def main() -> int:
             source = trimmed
             src_dur = ffprobe_duration(source)
             print(f"      seeked to {args.start:.2f}s, remaining {src_dur:.2f}s")
-        # YouTube Shorts max 60s; cap.
-        target = min(src_dur, 60.0)
+        # Cap to --duration (default 60, YouTube Shorts max).
+        target = min(src_dur, args.duration)
         print(f"      duration: {src_dur:.2f}s (using {target:.2f}s)")
 
         print(f"[2/6] picking gameplay: {args.gameplay}")
