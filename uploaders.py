@@ -83,7 +83,14 @@ def _env(key: str) -> str:
 
 class YouTubeUploader(Uploader):
     name = "youtube"
-    SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+    # Accept either the narrow upload scope (Desktop OAuth flow) or the
+    # broader youtube scope (device-flow flow on TV/Limited Input clients,
+    # which Google does not permit youtube.upload for). Both authorize
+    # videos.insert.
+    SCOPES = [
+        "https://www.googleapis.com/auth/youtube.upload",
+        "https://www.googleapis.com/auth/youtube",
+    ]
 
     def _service(self):
         try:
