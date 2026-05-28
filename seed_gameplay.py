@@ -16,20 +16,25 @@ ROOT = Path(__file__).resolve().parent
 GAMEPLAY_DIR = ROOT / "gameplay"
 
 SEEDS = [
-    # (tag, source URL — direct A/V on archive.org). The .mov originals are
-    # the full-resolution iPhone captures; archive.org's auto-derived .mp4
-    # versions are heavily downscaled (222x480) and look bad once stacked.
-    ("subway", "https://archive.org/download/rpreplay-final-1704729538/RPReplay_Final1704729538.mov"),
-    # Minecraft parkour through the Nether (lava + nether brick) — actual
-    # parkour movement, not Skywars PvP. The full clip is 160s; we trim
-    # 15-145 to drop the YouTuber's intro / outro title cards before saving.
+    # All horizontal (16:9) gameplay — portrait Subway Surfers required a
+    # bias-low crop that still couldn't keep the player visible reliably,
+    # so we now stick to landscape sources that fill the bottom half
+    # edge-to-edge with minimal cropping.
+    #
+    # (tag, source URL — direct A/V on archive.org)
+    # Minecraft parkour through the Nether — "Gone in Sixty Seconds"
     ("minecraft", "https://archive.org/download/youtube-N6sPzFUrLqI/N6sPzFUrLqI.mp4"),
+    # Geometry Dash hard-level run (Sonic Wave) — neon obstacles, very
+    # high contrast, reads great as background. Gameplay is the first
+    # ~145 seconds before the level-complete screen.
+    ("geometry", "https://archive.org/download/youtube-15WkXLsg6OQ/Sonic_Wave_Update_by_Cyclic_gameplay_resubido_reuploaded-15WkXLsg6OQ.mkv"),
 ]
 
 # After download, trim these tags to skip leading intro / trailing outro
 # frames so the random gameplay picker stays in the actual gameplay window.
 TRIMS: dict[str, tuple[float, float]] = {
-    "minecraft": (15.0, 145.0),  # keep t=15s..t=145s
+    "minecraft": (15.0, 145.0),
+    "geometry":  (3.0, 145.0),
 }
 
 
