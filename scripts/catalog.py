@@ -6,95 +6,29 @@ to least-recently-posted. Add more entries to expand the rotation.
 
 To add an entry:
 1. Confirm the source URL is reachable (curl -I should 200)
-2. Pick a strong hook (first 1.5s must grab — see writing_notes below)
-3. Set --start to skip any intro card
+2. WATCH the source at --start to verify the action actually shows up
+3. Write a hook that lands in the first 7-9 words. No "this is X", no
+   "you are about to watch". Lead with stakes, contradiction, or a
+   visceral number.
 4. Pick gameplay tag ('subway' or 'minecraft') for variety
 
-writing_notes:
-  - First sentence must NOT be "hey what's up" — start with stakes,
-    specificity, contradiction, or impossibility.
-  - 50-70 words total. ~25s of TTS at edge-tts default speed.
-  - Lean into present tense and second person where possible.
-  - Tags help YouTube classify; keep ≤8, all lowercase.
+Hook templates that have worked:
+  - Mortal stakes:   "He is one twitch from being killed by a mountain."
+  - Specific stat:   "318 mph. The most violent wind ever measured."
+  - Contradiction:   "These drivers do not believe in brakes."
+  - Public failure:  "Kobe just dunked on a 7-foot man, then found a microphone."
+
+Hook templates that do NOT work and should not appear in this file:
+  - "This is <name>..."        # biographical filler
+  - "Today we are going to..."  # tutorial energy
+  - "You won't believe..."      # clickbait without payoff
+  - "What you are about to..."  # delay; tell us what it IS, not when
 """
 
 CATALOG: list[dict] = [
-    {
-        "id": "nba_dunks_v1",
-        "topic": "basketball",
-        "source_url": "https://archive.org/download/youtube-k7VifslDIv0/k7VifslDIv0.mp4",
-        "start": 8, "duration": 22, "gameplay": "subway",
-        "title": "Every Dunk Here Deleted Somebody's Confidence #shorts",
-        "script": (
-            "Every dunk you are about to watch ended a defender's confidence on live "
-            "television. These men weigh two hundred pounds and they treat gravity "
-            "like a polite suggestion. The cameras zoom in just to catch the dignity "
-            "leaving their bodies. Pure unfiltered physical violence. Set to a rim."
-        ),
-        "tags": ["shorts","nba","basketball","dunks","highlights","sports","athleticism"],
-    },
-    {
-        "id": "ufc_kos_v1",
-        "topic": "combat",
-        "source_url": "https://archive.org/download/youtube-rrxamKa5mpk/rrxamKa5mpk.webm",
-        "start": 45, "duration": 22, "gameplay": "minecraft",
-        "title": "Knocked Out In Three Seconds Flat #shorts",
-        "script": (
-            "Imagine training your entire adult life and getting put to sleep in three "
-            "seconds. Every knockout in here ended faster than the walkout song. The "
-            "hands move faster than the brain can compute danger. The referee barely "
-            "has time to wave it off. This is the highest level of legal violence on the "
-            "planet and it is over before it starts."
-        ),
-        "tags": ["shorts","ufc","mma","knockout","highlights","combat"],
-    },
-    {
-        "id": "lioness_hunt_v2",
-        "topic": "wildlife",
-        "source_url": "https://archive.org/download/youtube-mVyteSLfdgY/mVyteSLfdgY.webm",
-        # Verified: actual pounce + kill is at t=35-65. The first 30s is
-        # the antelope sleeping which lands flat against any hunt script.
-        "start": 35, "duration": 22, "gameplay": "subway",
-        "title": "She Disappeared. Then She Was On Top Of It. #shorts",
-        "script": (
-            "This lioness has not eaten in six days. The topi antelope to her left has "
-            "approximately eight seconds. She is going to disappear into the tall grass "
-            "and reappear on the other side, and that antelope will not see her until it "
-            "is far too late."
-        ),
-        "tags": ["shorts","wildlife","lion","nature","predator","africa","hunt"],
-    },
-    {
-        "id": "wingsuit_cave_v2",
-        "topic": "stunts",
-        "source_url": "https://archive.org/download/UnbelievableWingsuitCaveFlightBatmanCaveAlexanderPolli/Unbelievable_Wingsuit_Cave_Flight__Batman_Cave__Alexander_Polli.mp4",
-        # Verified: source has 75s of intro + "First Test Jump" / "Second
-        # Test Jump" / "Final Jump" title cards before the actual helmet-POV
-        # flight footage. Start at 80 to drop in on the real flight.
-        "start": 80, "duration": 22, "gameplay": "minecraft",
-        "title": "He Flew Through A Hole In A Mountain At 150 mph #shorts",
-        "script": (
-            "This is Alexander Polli. He is wearing a helmet camera. He is about to fly "
-            "through a six foot wide hole in the side of a solid mountain at one hundred "
-            "and fifty miles per hour. One twitch is death. Watch his hands stay perfectly "
-            "still."
-        ),
-        "tags": ["shorts","wingsuit","extreme sports","flying","stunts","basejump"],
-    },
-    {
-        "id": "rally_v1",
-        "topic": "motorsport",
-        "source_url": "https://archive.org/download/youtube-Ni2zSq5maY4/Ni2zSq5maY4.webm",
-        "start": 15, "duration": 22, "gameplay": "minecraft",
-        "title": "Braking Is For Cowards — Rally Driving #shorts",
-        "script": (
-            "This is rallying. There is no track. The walls are made of actual trees. The "
-            "trees are real. Every driver in here has accepted death as a reasonable "
-            "Tuesday outcome of doing their job. They are not braking, because braking is "
-            "for cowards. The car is sideways because forward is too slow."
-        ),
-        "tags": ["shorts","rally","wrc","cars","motorsport","driving","extreme"],
-    },
+    # -------- already posted on the channel (kept for reference and
+    # in case the rotation has to fall back to them) ----------------
+
     {
         "id": "f4_tornado_vanwert_v1",
         "topic": "weather",
@@ -102,128 +36,203 @@ CATALOG: list[dict] = [
         "start": 0, "duration": 21, "gameplay": "minecraft",
         "title": "F4 Dashcam — He Drove Toward The Tornado #shorts",
         "script": (
-            "This is a real dashcam from October two thousand two. A driver near Van Wert "
-            "Ohio is filming straight into an F-four tornado crossing the highway. Three "
-            "minutes later this same storm hit a movie theater. Fifty people inside "
-            "survived by diving behind their seats. The roof landed two miles away."
+            "This dashcam is pointed at a real F4 tornado. October 24th, 2002. Six "
+            "minutes after this footage ends, that storm hit a movie theater in Van "
+            "Wert Ohio. Fifty people inside survived by diving behind their seats. "
+            "The roof landed two miles away."
         ),
         "tags": ["shorts","tornado","dashcam","weather","storm","ohio"],
     },
     {
-        "id": "f5_tornado_bridgecreek_v1",
+        "id": "nba_dunks_v1",
+        "topic": "basketball",
+        "source_url": "https://archive.org/download/youtube-k7VifslDIv0/k7VifslDIv0.mp4",
+        "start": 8, "duration": 22, "gameplay": "subway",
+        "title": "These Men Treat Gravity Like A Suggestion #shorts",
+        "script": (
+            "These men treat gravity like a polite suggestion. Every dunk you are "
+            "about to see ended a defender's career on live television. The cameras "
+            "zoom in just to catch the dignity leaving their bodies. Two hundred "
+            "pounds of pure physical violence, set to a rim."
+        ),
+        "tags": ["shorts","nba","basketball","dunks","highlights","sports"],
+    },
+    {
+        "id": "ufc_kos_v1",
+        "topic": "combat",
+        "source_url": "https://archive.org/download/youtube-rrxamKa5mpk/rrxamKa5mpk.webm",
+        "start": 45, "duration": 22, "gameplay": "minecraft",
+        "title": "Three Seconds. Career Over. #shorts",
+        "script": (
+            "Three seconds. That is how long it took to end his career on Saturday. "
+            "Every knockout in here landed faster than the brain can compute danger. "
+            "The referee barely has time to wave it off. This is the highest level "
+            "of legal violence on the planet and it is over before it starts."
+        ),
+        "tags": ["shorts","ufc","mma","knockout","highlights","combat"],
+    },
+
+    # -------- v2 entries (timing + hook fixes from day 1 feedback) -----
+
+    {
+        "id": "wingsuit_cave_v2",
+        "topic": "stunts",
+        "source_url": "https://archive.org/download/UnbelievableWingsuitCaveFlightBatmanCaveAlexanderPolli/Unbelievable_Wingsuit_Cave_Flight__Batman_Cave__Alexander_Polli.mp4",
+        # Verified frame-by-frame: 0-75s is intro + "First Test Jump" /
+        # "Second Test Jump" / "Final Jump" title cards. Real helmet-POV
+        # flight footage starts at ~78s.
+        "start": 80, "duration": 22, "gameplay": "minecraft",
+        "title": "One Twitch From Being Killed By A Mountain #shorts",
+        "script": (
+            "This man is one shoulder twitch from being killed by a mountain. He is "
+            "wearing a helmet camera. He is flying at one hundred and fifty miles per "
+            "hour through a six foot wide hole in solid rock. Watch his hands. They "
+            "do not move."
+        ),
+        "tags": ["shorts","wingsuit","extreme sports","flying","stunts","basejump"],
+    },
+    {
+        "id": "lioness_hunt_v2",
+        "topic": "wildlife",
+        "source_url": "https://archive.org/download/youtube-mVyteSLfdgY/mVyteSLfdgY.webm",
+        # Verified: actual pounce + kill is at t=35-65. First 30s is
+        # the antelope sleeping which kills any hunt script.
+        "start": 35, "duration": 22, "gameplay": "subway",
+        "title": "That Antelope Has Twelve Seconds To Live #shorts",
+        "script": (
+            "This lioness has not eaten in six days. That antelope has approximately "
+            "twelve seconds to live. Watch how she disappears into the grass. Watch "
+            "how she reappears on the other side. The antelope will not see her "
+            "until the teeth are already in its neck."
+        ),
+        "tags": ["shorts","wildlife","lion","nature","predator","africa","hunt"],
+    },
+
+    # -------- unposted (ready to fire when PAUSED is removed) ----------
+
+    {
+        "id": "f5_tornado_bridgecreek_v2",
         "topic": "weather",
         "source_url": "https://archive.org/download/youtube-l6LCUCzoeUU/l6LCUCzoeUU.mp4",
         "start": 25, "duration": 22, "gameplay": "subway",
-        "title": "Strongest Tornado Ever Recorded — 318 MPH #shorts",
+        "title": "318 MPH — The Most Violent Wind Ever Measured #shorts",
         "script": (
-            "This is the most powerful tornado ever measured on planet Earth. Wind speeds "
-            "inside the funnel hit three hundred and eighteen miles per hour. That is fast "
-            "enough to strip asphalt from the road and erase entire neighborhoods in "
-            "seconds. Watching this footage feels like watching the atmosphere itself go "
-            "completely insane."
+            "Three hundred and eighteen miles per hour. That is the wind speed inside "
+            "the most violent tornado ever measured. Fast enough to peel asphalt off "
+            "the road like wet paper. It killed thirty six people. Entire neighborhoods "
+            "stopped existing in under sixty seconds."
         ),
-        "tags": ["shorts","tornado","weather","oklahoma","f5","storm","extreme weather"],
+        "tags": ["shorts","tornado","weather","oklahoma","f5","extreme weather"],
     },
     {
-        "id": "parkour_pov_rennes_v1",
+        "id": "parkour_pov_rennes_v2",
         "topic": "stunts",
         "source_url": "https://archive.org/download/youtube-S6YVK7BMiEU/S6YVK7BMiEU.mp4",
         "start": 30, "duration": 22, "gameplay": "subway",
-        "title": "He Treats The Entire City As A Playground #shorts",
+        "title": "Thirty Feet Of Falling Between Him And A Closed Casket #shorts",
         "script": (
-            "Bro just rewrote the laws of physics. Watch his feet barely touch the rooftops "
-            "as he flies between buildings. Most people couldn't even climb a fence. This "
-            "guy treats the whole city like a playground. Pure athleticism. Zero hesitation. "
-            "Reads gaps and commits before his brain catches up."
+            "He has thirty feet of falling between him and a sidewalk. He does not "
+            "look down. He does not slow down. He treats every rooftop in this city "
+            "like it is made of foam. One missed step is a closed casket."
         ),
         "tags": ["shorts","parkour","freerunning","stunts","rooftop","pov"],
     },
     {
-        "id": "power_slap_v1",
+        "id": "power_slap_v2",
         "topic": "combat",
         "source_url": "https://archive.org/download/youtube-DDQaq0_cqAg/DDQaq0_cqAg.webm",
         "start": 4, "duration": 22, "gameplay": "minecraft",
-        "title": "One Open Hand. Lights Out. #shorts",
+        "title": "He Is About To Slap His Soul Out Of His Body #shorts",
         "script": (
-            "There are no gloves. There is no defense. Two grown men take turns slapping "
-            "each other in the face as hard as humanly possible until one of them shuts off "
-            "like a lamp. Every slap in here registered higher than a car crash. The brain "
-            "rattles inside the skull. Then the body just folds."
+            "He is about to slap his soul out of his body. There are no gloves. There "
+            "is no defense. Two grown men take turns hitting each other in the face "
+            "as hard as humanly possible until one of them shuts off like a lamp."
         ),
         "tags": ["shorts","power slap","slap","knockout","combat","viral"],
     },
     {
-        "id": "f1_champions_v1",
-        "topic": "motorsport",
-        "source_url": "https://archive.org/download/youtube-KjFJ__q2vgE/KjFJ__q2vgE.webm",
-        "start": 8, "duration": 22, "gameplay": "subway",
-        "title": "Every F1 World Champion Since 1950 #shorts",
-        "script": (
-            "These are every single Formula One world champion since nineteen fifty. "
-            "Seventy years of the most expensive sport on Earth. Each one of them was the "
-            "fastest human alive in their year. Some died chasing it. Some retired billionaires. "
-            "All of them drove cars that wanted to kill them."
-        ),
-        "tags": ["shorts","formula1","f1","motorsport","racing","cars","history"],
-    },
-    {
-        "id": "f1_safety_car_v1",
+        "id": "f1_safety_car_v2",
         "topic": "motorsport",
         "source_url": "https://archive.org/download/youtube-3SHJIZ2-REU/3SHJIZ2-REU.webm",
         "start": 5, "duration": 22, "gameplay": "minecraft",
-        "title": "What Happens When The Safety Car Stays Out #shorts",
+        "title": "Twenty F1 Cars Just Went Feral On Live TV #shorts",
         "script": (
-            "In Formula One, the safety car is the only thing slowing twenty cars worth two "
-            "hundred million dollars from racing at full speed. When it does not come in, "
-            "the drivers go feral. The pit wall starts screaming. Strategists rewrite races "
-            "in twenty seconds. This is what controlled chaos at three hundred kilometers an "
-            "hour looks like."
+            "Twenty Formula One cars worth two hundred million dollars are about to "
+            "go feral on live television. The safety car stayed out. The strategists "
+            "are screaming into headsets. Every driver is doing math at three hundred "
+            "kilometers per hour. One mistake here and somebody dies."
         ),
         "tags": ["shorts","formula1","f1","motorsport","racing","safety car"],
     },
     {
-        "id": "iceland_volcano_2023_v1",
+        "id": "f1_champions_v2",
+        "topic": "motorsport",
+        "source_url": "https://archive.org/download/youtube-KjFJ__q2vgE/KjFJ__q2vgE.webm",
+        "start": 8, "duration": 22, "gameplay": "subway",
+        "title": "Every F1 Champion Since 1950 — Some Died Chasing It #shorts",
+        "script": (
+            "Every Formula One world champion since nineteen fifty. Some retired "
+            "billionaires. Some died chasing it. All of them drove cars that wanted "
+            "to kill them, on tracks designed for cars half as fast. The fastest "
+            "humans alive in their year, every year, for seventy years."
+        ),
+        "tags": ["shorts","formula1","f1","motorsport","racing","history"],
+    },
+    {
+        "id": "iceland_volcano_2023_v2",
         "topic": "weather",
         "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/007_Volcano_eruption_of_Litli-Hr%C3%BAtur_in_Iceland_in_2023_Video_by_Giles_Laurent.webm",
         "start": 6, "duration": 22, "gameplay": "minecraft",
-        "title": "Watching New Earth Get Born In Real Time #shorts",
+        "title": "The Earth Is Literally Bleeding In Real Time #shorts",
         "script": (
-            "What you are watching is fresh planet Earth being born in real time. This is "
-            "the Litli-Hrutur eruption in Iceland from twenty twenty three. That orange is "
-            "rock so hot it forgot it was solid, flowing at over two thousand degrees "
-            "Fahrenheit. Iceland sits on top of two plates pulling apart. Every few years, "
-            "the country tears open and bleeds lava."
+            "The Earth is literally bleeding in real time. That orange is rock heated "
+            "to two thousand degrees Fahrenheit, flowing across Iceland because two "
+            "tectonic plates are pulling apart underneath it. The locals stopped "
+            "evacuating years ago. They just bring hot dogs to grill."
         ),
         "tags": ["shorts","volcano","iceland","lava","eruption","nature","2023"],
     },
     {
-        "id": "kobe_dwight_v1",
+        "id": "kobe_dwight_v2",
         "topic": "basketball",
         "source_url": "https://archive.org/download/youtube-szmYKrZtwW4/szmYKrZtwW4.webm",
         "start": 0, "duration": 22, "gameplay": "subway",
-        "title": "\"I Baptized Dwight\" — Kobe On Killing Souls #shorts",
+        "title": "Kobe Just Dunked On A 7-Foot Man Then Found A Microphone #shorts",
         "script": (
-            "Kobe Bryant just dunked on Dwight Howard, who is seven feet tall and weighs "
-            "two hundred sixty five pounds of muscle. Then he found a microphone. Then he "
-            "said something so disrespectful the entire NBA paused. This is what Mamba "
-            "Mentality sounds like out loud. Pure surgical confidence with the receipts to "
-            "back it up."
+            "Kobe Bryant just dunked on a seven foot man. Then he found a microphone. "
+            "Then he said something so disrespectful the entire NBA paused for a "
+            "second. This is what Mamba Mentality sounds like out loud, with the "
+            "receipts to back it up."
         ),
         "tags": ["shorts","kobe","nba","basketball","dwight howard","mamba","dunk"],
     },
     {
-        "id": "hawaii_bigwave_v1",
+        "id": "hawaii_bigwave_v2",
         "topic": "extreme",
         "source_url": "https://archive.org/download/XcorpsSpecialHawaiiBigWavesWithFilter/XcorpsHawaiiSpecialFilterWEB.mp4",
         "start": 180, "duration": 22, "gameplay": "subway",
-        "title": "This Wave Has Killed World Champions #shorts",
+        "title": "That Wave Has Killed World Champions #shorts",
         "script": (
-            "That wave has the energy of a four story building falling on you. The riders "
-            "you are watching paddle into water that has killed world champions. One mistake "
-            "and the ocean drags you to the bottom and pins you there. They are smiling "
-            "while doing it. Pure madness in a wetsuit."
+            "That wave has the energy of a four story building falling on you. World "
+            "champions have died paddling into water exactly like this. One mistake "
+            "and the ocean takes you to the bottom and pins you there until you "
+            "drown. They smile while doing it. Pure madness in a wetsuit."
         ),
         "tags": ["shorts","surfing","big wave","hawaii","extreme sports","ocean"],
+    },
+    {
+        "id": "rally_v2",
+        "topic": "motorsport",
+        "source_url": "https://archive.org/download/youtube-Ni2zSq5maY4/Ni2zSq5maY4.webm",
+        "start": 15, "duration": 22, "gameplay": "minecraft",
+        "title": "These Drivers Do Not Believe In Brakes #shorts",
+        "script": (
+            "These drivers do not believe in brakes. There is no track. The walls are "
+            "made of actual trees. The trees do not move. Every driver in here has "
+            "fully accepted death as a reasonable Tuesday outcome. The car is sideways "
+            "because forward is too slow."
+        ),
+        "tags": ["shorts","rally","wrc","cars","motorsport","driving","extreme"],
     },
 ]
 
