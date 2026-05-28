@@ -109,12 +109,17 @@ class YouTubeUploader(Uploader):
         token_path = Path(_env("YOUTUBE_TOKEN"))
         creds = None
         if token_path.exists():
-            creds = Credentials.from_authorized_user_file(str(token_path), self.SCOPES)
+            # scopes=None makes the loader read the scopes the token was
+            # actually minted with — passing self.SCOPES would force a
+            # refresh that asks for whichever scope is missing and Google
+            # rejects with invalid_scope.
+            creds = Credentials.from_authorized_user_file(str(token_path))
         if not creds or not creds.valid:
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
             else:
-                # Headless flows print a URL; user pastes the code back.
+                # First-run path: needs a local browser. The setup_youtube.py
+                # script handles the headless / phone case via device flow.
                 flow = InstalledAppFlow.from_client_secrets_file(client_secrets, self.SCOPES)
                 creds = flow.run_local_server(port=0, open_browser=False)
             token_path.write_text(creds.to_json())
