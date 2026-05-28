@@ -49,30 +49,35 @@ CATALOG: list[dict] = [
         "tags": ["shorts","ufc","mma","knockout","highlights","combat"],
     },
     {
-        "id": "lioness_hunt_v1",
+        "id": "lioness_hunt_v2",
         "topic": "wildlife",
         "source_url": "https://archive.org/download/youtube-mVyteSLfdgY/mVyteSLfdgY.webm",
-        "start": 5, "duration": 22, "gameplay": "minecraft",
-        "title": "She Has 90 Seconds Before She Starves #shorts",
+        # Verified: actual pounce + kill is at t=35-65. The first 30s is
+        # the antelope sleeping which lands flat against any hunt script.
+        "start": 35, "duration": 22, "gameplay": "subway",
+        "title": "She Disappeared. Then She Was On Top Of It. #shorts",
         "script": (
-            "This lioness has not eaten in nine days. She has about ninety seconds to "
-            "fix that. The antelope sleeping at the bottom of your screen does not yet "
-            "know it is the solution to her problem. Every step she takes is a math "
-            "equation. One loud snap and she starves."
+            "This lioness has not eaten in six days. The topi antelope to her left has "
+            "approximately eight seconds. She is going to disappear into the tall grass "
+            "and reappear on the other side, and that antelope will not see her until it "
+            "is far too late."
         ),
         "tags": ["shorts","wildlife","lion","nature","predator","africa","hunt"],
     },
     {
-        "id": "wingsuit_cave_v1",
+        "id": "wingsuit_cave_v2",
         "topic": "stunts",
         "source_url": "https://archive.org/download/UnbelievableWingsuitCaveFlightBatmanCaveAlexanderPolli/Unbelievable_Wingsuit_Cave_Flight__Batman_Cave__Alexander_Polli.mp4",
-        "start": 8, "duration": 22, "gameplay": "subway",
-        "title": "He Flew Through A Hole In A Mountain #shorts",
+        # Verified: source has 75s of intro + "First Test Jump" / "Second
+        # Test Jump" / "Final Jump" title cards before the actual helmet-POV
+        # flight footage. Start at 80 to drop in on the real flight.
+        "start": 80, "duration": 22, "gameplay": "minecraft",
+        "title": "He Flew Through A Hole In A Mountain At 150 mph #shorts",
         "script": (
-            "This man is about to fly through a hole in a solid mountain. At one hundred "
-            "and fifty miles per hour. With about three feet of clearance on each side. "
-            "One twitch from his shoulder and he becomes a stain on the rock. He did it "
-            "on purpose. He did it twice for the camera. Then he kept going."
+            "This is Alexander Polli. He is wearing a helmet camera. He is about to fly "
+            "through a six foot wide hole in the side of a solid mountain at one hundred "
+            "and fifty miles per hour. One twitch is death. Watch his hands stay perfectly "
+            "still."
         ),
         "tags": ["shorts","wingsuit","extreme sports","flying","stunts","basejump"],
     },
