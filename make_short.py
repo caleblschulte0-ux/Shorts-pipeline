@@ -246,26 +246,25 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 # ---------- compose ----------
 
 def compose(source: Path, gameplay: Path, audio: Path, subs: Path, out: Path, duration: float) -> None:
-    # Each half: scale-to-fit so the whole frame stays visible (no crop), with a
-    # blurred zoomed copy filling the background — preserves portrait Subway
-    # Surfers gameplay end-to-end and keeps landscape source clips intact too.
+    # Top half (source): scale-to-fit with a blurred zoomed copy filling any
+    # leftover space — source aspect varies and we don't want to crop news /
+    # sports / talking-head content.
+    # Bottom half (gameplay): scale-to-fill with center crop, no blur. With
+    # landscape gameplay (e.g. Minecraft 16:9) the world is uniform so the
+    # side crop is invisible; the bottom now fills cleanly edge-to-edge.
     subs_path = str(subs).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
 
-    def half(idx: int, bg_tag: str, fg_tag: str, out_tag: str) -> str:
-        return (
-            f"[{idx}:v]split=2[s{idx}a][s{idx}b];"
-            f"[s{idx}a]scale={W}:{HALF_H}:force_original_aspect_ratio=increase,"
-            f"crop={W}:{HALF_H},boxblur=24:2,setsar=1[{bg_tag}];"
-            f"[s{idx}b]scale={W}:{HALF_H}:force_original_aspect_ratio=decrease,"
-            f"setsar=1[{fg_tag}];"
-            f"[{bg_tag}][{fg_tag}]overlay=(W-w)/2:(H-h)/2[{out_tag}];"
-        )
-
     vf = (
-        half(0, "topbg", "topfg", "top")
-        + half(1, "botbg", "botfg", "bot")
-        + "[top][bot]vstack=inputs=2[stacked];"
-        + f"[stacked]ass='{subs_path}'[v]"
+        f"[0:v]split=2[s0a][s0b];"
+        f"[s0a]scale={W}:{HALF_H}:force_original_aspect_ratio=increase,"
+        f"crop={W}:{HALF_H},boxblur=24:2,setsar=1[topbg];"
+        f"[s0b]scale={W}:{HALF_H}:force_original_aspect_ratio=decrease,"
+        f"setsar=1[topfg];"
+        f"[topbg][topfg]overlay=(W-w)/2:(H-h)/2[top];"
+        f"[1:v]scale={W}:{HALF_H}:force_original_aspect_ratio=increase,"
+        f"crop={W}:{HALF_H},setsar=1[bot];"
+        f"[top][bot]vstack=inputs=2[stacked];"
+        f"[stacked]ass='{subs_path}'[v]"
     )
     run([
         "ffmpeg", "-y", "-loglevel", "error",
