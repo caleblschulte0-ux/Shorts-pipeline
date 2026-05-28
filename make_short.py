@@ -225,7 +225,7 @@ def write_ass(words: list[Word], path: Path) -> None:
 ScriptType: v4.00+
 PlayResX: {W}
 PlayResY: {H}
-WrapStyle: 2
+WrapStyle: 0
 ScaledBorderAndShadow: yes
 
 [V4+ Styles]
