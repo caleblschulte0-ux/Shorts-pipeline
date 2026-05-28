@@ -1,0 +1,73 @@
+name: Scout Sources
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Sunday 10:00 UTC — gives Claude something fresh to pull from on
+    # the Monday morning weekly-refresh chat.
+    - cron: '0 10 * * 0'
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: scout-sources
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run scout
+        run: python scripts/scout_sources.py
+
+      - name: Commit results
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/scouted_sources.json
+          if git diff --staged --quiet; then
+            echo "Nothing to commit."
+          else
+            count=$(python3 -c "import json; print(json.load(open('state/scouted_sources.json'))['total'])")
+            git commit -m "scout: $(date -u +%Y-%m-%d) — $count posts"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
+
+      - name: Comment on tracking issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ ! -f state/scouted_sources.json ]; then
+            echo "no output file"; exit 0
+          fi
+          {
+            echo "## Scout results — $(date -u +%Y-%m-%d)"
+            echo ""
+            python3 <<'PY'
+import json
+d = json.load(open('state/scouted_sources.json'))
+print(f"Found **{d['total']}** trending video posts across {len(d['subreddits'])} subreddits.\n")
+print("Top 15 by score:\n")
+for p in d['posts'][:15]:
+    print(f"- **{p['score']:,}** r/{p['subreddit']} — [{p['title'][:80]}]({p['permalink']})")
+print(f"\nFull list committed to `state/scouted_sources.json`.")
+PY
+          } > /tmp/scout_comment.md
+          gh issue comment 1 \
+            --repo "${{ github.repository }}" \
+            --body-file /tmp/scout_comment.md
