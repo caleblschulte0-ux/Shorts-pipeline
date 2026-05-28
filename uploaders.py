@@ -7,12 +7,15 @@ the --upload flag.
 Required environment variables per platform:
 
   youtube:
-    YOUTUBE_CLIENT_SECRETS  path to OAuth2 client_secret.json (Google
-                            Cloud project with YouTube Data API v3
-                            enabled, OAuth2 "Desktop app" client).
-    YOUTUBE_TOKEN           path to writable token.json. Created on
-                            first run via an OAuth flow; subsequent
-                            runs refresh in place.
+    Either inline JSON in env (best for Claude Code on the web — values
+    persist across container recycles) or file paths (best for laptop /
+    server). Inline wins if both are set.
+
+    YOUTUBE_CLIENT_SECRETS_JSON  full client_secret.json contents
+    YOUTUBE_TOKEN_JSON           full token.json contents
+    -- or --
+    YOUTUBE_CLIENT_SECRETS       path to client_secret.json
+    YOUTUBE_TOKEN                path to writable token.json
 
   tiktok:
     TIKTOK_ACCESS_TOKEN     user access token with video.publish scope.
@@ -79,6 +82,25 @@ def _env(key: str) -> str:
     return v
 
 
+def _resolve_secret(path_env: str, json_env: str, target_name: str) -> Path:
+    """Return a Path to a JSON file containing the secret.
+
+    Prefers the inline content env var (_JSON suffix) so credentials can
+    live in the Claude Code environment settings and survive container
+    recycles. Falls back to a literal file path env var for laptop /
+    server use.
+    """
+    content = os.environ.get(json_env)
+    if content:
+        path = Path("/tmp") / target_name
+        path.write_text(content)
+        return path
+    path = os.environ.get(path_env)
+    if path:
+        return Path(path)
+    raise UploadError(f"missing env var: {json_env} or {path_env}")
+
+
 # ---------- YouTube Shorts ----------
 
 class YouTubeUploader(Uploader):
@@ -105,8 +127,14 @@ class YouTubeUploader(Uploader):
                 "google-api-python-client google-auth google-auth-oauthlib"
             )
 
-        client_secrets = _env("YOUTUBE_CLIENT_SECRETS")
-        token_path = Path(_env("YOUTUBE_TOKEN"))
+        client_secrets = str(_resolve_secret(
+            "YOUTUBE_CLIENT_SECRETS", "YOUTUBE_CLIENT_SECRETS_JSON",
+            "yt_client_secret.json",
+        ))
+        token_path = _resolve_secret(
+            "YOUTUBE_TOKEN", "YOUTUBE_TOKEN_JSON",
+            "yt_token.json",
+        )
         creds = None
         if token_path.exists():
             # scopes=None makes the loader read the scopes the token was
