@@ -96,6 +96,10 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Seed gameplay clips
+        run: |
+          python seed_gameplay.py
+
       - name: Verify required secrets are set
         env:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}

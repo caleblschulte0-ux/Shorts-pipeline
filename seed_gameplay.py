@@ -20,8 +20,17 @@ SEEDS = [
     # the full-resolution iPhone captures; archive.org's auto-derived .mp4
     # versions are heavily downscaled (222x480) and look bad once stacked.
     ("subway", "https://archive.org/download/rpreplay-final-1704729538/RPReplay_Final1704729538.mov"),
-    ("minecraft", "https://archive.org/download/UsingParkourToWinSkywars/using%20parkour%20to%20win%20skywars.mp4"),
+    # Minecraft parkour through the Nether (lava + nether brick) — actual
+    # parkour movement, not Skywars PvP. The full clip is 160s; we trim
+    # 15-145 to drop the YouTuber's intro / outro title cards before saving.
+    ("minecraft", "https://archive.org/download/youtube-N6sPzFUrLqI/N6sPzFUrLqI.mp4"),
 ]
+
+# After download, trim these tags to skip leading intro / trailing outro
+# frames so the random gameplay picker stays in the actual gameplay window.
+TRIMS: dict[str, tuple[float, float]] = {
+    "minecraft": (15.0, 145.0),  # keep t=15s..t=145s
+}
 
 
 def fetch(tag: str, url: str) -> int:
@@ -38,6 +47,25 @@ def fetch(tag: str, url: str) -> int:
     return subprocess.call(cmd)
 
 
+def trim(tag: str, span: tuple[float, float]) -> None:
+    """Trim downloaded clip in-place to the [start, end] second range."""
+    start, end = span
+    files = [p for p in GAMEPLAY_DIR.iterdir() if p.stem.startswith(f"{tag}_")]
+    if not files:
+        return
+    src = files[0]
+    tmp = src.with_name(src.stem + "_trim" + src.suffix)
+    subprocess.check_call([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-ss", f"{start:.3f}", "-i", str(src),
+        "-t", f"{end - start:.3f}",
+        "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-an",
+        str(tmp),
+    ])
+    src.unlink()
+    tmp.rename(src.with_suffix(".mp4"))
+
+
 def main() -> int:
     GAMEPLAY_DIR.mkdir(parents=True, exist_ok=True)
     failed = 0
@@ -47,6 +75,10 @@ def main() -> int:
             continue
         if fetch(tag, q) != 0:
             failed += 1
+            continue
+        if tag in TRIMS:
+            print(f"   {tag}: trimming to {TRIMS[tag]}")
+            trim(tag, TRIMS[tag])
     print(f"\ngameplay/ now contains: {[p.name for p in GAMEPLAY_DIR.iterdir()]}")
     return 1 if failed else 0
 
