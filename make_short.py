@@ -294,6 +294,10 @@ def main() -> int:
     )
     ap.add_argument("--start", type=float, default=0.0, help="seek N seconds into the source before clipping (skip intros)")
     ap.add_argument("--duration", type=float, default=60.0, help="output length cap in seconds (default 60, Shorts max)")
+    ap.add_argument("--upload", help="comma-separated upload targets (youtube,tiktok,instagram,facebook,rumble). Requires per-platform env vars; see uploaders.py.")
+    ap.add_argument("--title", help="title for uploaded post (defaults to first 80 chars of --script)")
+    ap.add_argument("--description", help="description for uploaded post (defaults to --script)")
+    ap.add_argument("--tags", help="comma-separated tags for uploaded post")
     ap.add_argument("--keep-temp", action="store_true", help="don't delete the work dir")
     args = ap.parse_args()
 
@@ -347,6 +351,14 @@ def main() -> int:
         compose(source, gameplay, audio, subs, out, target)
 
         print(f"\ndone: {out}")
+
+        if args.upload:
+            from uploaders import upload_to
+            title = args.title or (args.script or "").strip()[:80] or out.stem
+            description = args.description or (args.script or "")
+            tags = [t.strip() for t in (args.tags or "").split(",") if t.strip()]
+            upload_to(args.upload.split(","), out, title=title, description=description, tags=tags)
+
         return 0
     finally:
         if args.keep_temp:

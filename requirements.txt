@@ -2,3 +2,8 @@ yt-dlp>=2024.1.0
 edge-tts>=6.1.10
 openai-whisper>=20231117
 ffmpeg-python>=0.2.0
+requests>=2.31
+# Upload destinations (optional, only needed for --upload youtube)
+google-api-python-client>=2.0
+google-auth>=2.0
+google-auth-oauthlib>=1.0
