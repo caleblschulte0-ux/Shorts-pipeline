@@ -1,0 +1,192 @@
+name: Daily Shorts
+
+on:
+  schedule:
+    # 12:00 UTC = 8am EDT / 7am EST. First publish slot is 13:00 UTC (9am EDT).
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'How many shorts to publish'
+        required: false
+        default: '6'
+
+permissions:
+  contents: write   # commit posted_log + failure_count + reports
+  issues: write     # post the daily report comment
+
+env:
+  PYTHON_VERSION: '3.11'
+  # Number of the tracking issue the action comments on. Created once;
+  # update via repo variable REPORT_ISSUE_NUMBER if needed.
+  REPORT_ISSUE_NUMBER: ${{ vars.REPORT_ISSUE_NUMBER || '1' }}
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: daily-shorts
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Pre-flight — kill switch + failure counter
+        id: preflight
+        run: |
+          set -e
+          if [ -f PAUSED ]; then
+            echo "skip=manual" >> $GITHUB_OUTPUT
+            echo "Pipeline paused: PAUSED file exists in repo root."
+            exit 0
+          fi
+          fc=$(cat state/failure_count.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
+          echo "Failure count: $fc"
+          if [ "$fc" -ge 2 ]; then
+            echo "skip=auto" >> $GITHUB_OUTPUT
+            echo "Pipeline auto-paused: 2+ failures in a row. Reset state/failure_count.txt to resume."
+          else
+            echo "skip=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notify (skipped run)
+        if: steps.preflight.outputs.skip != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          SKIP_REASON: ${{ steps.preflight.outputs.skip }}
+        run: |
+          if [ "$SKIP_REASON" = "manual" ]; then
+            REASON="manual pause (PAUSED file present in repo root)"
+          else
+            REASON="auto-pause (state/failure_count.txt >= 2 — 2 days in a row failed)"
+          fi
+          MSG="Daily shorts run SKIPPED — $REASON. Resume by removing the file (manual) or resetting the counter to 0 (auto)."
+          gh issue comment "$REPORT_ISSUE_NUMBER" \
+            --repo "${{ github.repository }}" \
+            --body "$MSG"
+          if [ -n "$NTFY_TOPIC" ]; then
+            curl -fsS -d "$MSG" "https://ntfy.sh/$NTFY_TOPIC" \
+                 -H "Title: Daily Shorts Paused" \
+                 -H "Tags: pause_button"
+          fi
+
+      - name: Stop here if skipped
+        if: steps.preflight.outputs.skip != ''
+        run: exit 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -q ffmpeg
+
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify required secrets are set
+        env:
+          YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+        run: |
+          missing=0
+          [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
+          [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON"; missing=1; }
+          [ $missing -ne 0 ] && exit 1
+          echo "Secrets present."
+
+      - name: Run daily orchestrator
+        id: run
+        continue-on-error: true
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          COUNT: ${{ github.event.inputs.count || '6' }}
+        run: |
+          python scripts/run_daily.py --count "$COUNT"
+
+      - name: Update failure counter
+        if: always() && steps.preflight.outputs.skip == ''
+        run: |
+          mkdir -p state
+          if [ "${{ steps.run.outcome }}" = "success" ]; then
+            echo "0" > state/failure_count.txt
+            echo "Run OK — counter reset."
+          else
+            fc=$(cat state/failure_count.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
+            new=$((fc + 1))
+            echo "$new" > state/failure_count.txt
+            echo "::warning::Run failed — failure counter now $new (auto-pause at 2)."
+          fi
+
+      - name: Commit log + counter + report
+        if: always() && steps.preflight.outputs.skip == ''
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/ daily_report.md daily_report.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "daily: $(date -u +%Y-%m-%d) report + state"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
+
+      - name: Post report to tracking issue
+        if: always() && steps.preflight.outputs.skip == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f daily_report.md ]; then
+            gh issue comment "$REPORT_ISSUE_NUMBER" \
+              --repo "${{ github.repository }}" \
+              --body-file daily_report.md
+          else
+            gh issue comment "$REPORT_ISSUE_NUMBER" \
+              --repo "${{ github.repository }}" \
+              --body "Daily run did not produce a report. Check the action logs."
+          fi
+
+      - name: Push notification via ntfy
+        if: always() && steps.preflight.outputs.skip == ''
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          RUN_OUTCOME: ${{ steps.run.outcome }}
+        run: |
+          if [ -z "$NTFY_TOPIC" ]; then
+            echo "NTFY_TOPIC not set — skipping ntfy push."
+            exit 0
+          fi
+          if [ "$RUN_OUTCOME" = "success" ]; then
+            TITLE="Daily shorts posted"
+            TAG="white_check_mark"
+          else
+            TITLE="Daily shorts FAILED"
+            TAG="rotating_light"
+          fi
+          # First ~12 lines of the report = headline + per-post lines
+          MSG=$(head -20 daily_report.md 2>/dev/null || echo "no report")
+          curl -fsS -d "$MSG" "https://ntfy.sh/$NTFY_TOPIC" \
+               -H "Title: $TITLE" \
+               -H "Tags: $TAG" \
+               -H "Click: https://github.com/${{ github.repository }}/issues/$REPORT_ISSUE_NUMBER"
+
+      - name: Reflect orchestrator result
+        if: steps.preflight.outputs.skip == ''
+        run: |
+          if [ "${{ steps.run.outcome }}" != "success" ]; then
+            exit 1
+          fi

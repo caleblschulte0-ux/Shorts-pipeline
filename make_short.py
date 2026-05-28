@@ -298,6 +298,7 @@ def main() -> int:
     ap.add_argument("--title", help="title for uploaded post (defaults to first 80 chars of --script)")
     ap.add_argument("--description", help="description for uploaded post (defaults to --script)")
     ap.add_argument("--tags", help="comma-separated tags for uploaded post")
+    ap.add_argument("--publish-at", help="RFC3339 timestamp (2026-05-29T13:00:00Z); uploads as private, auto-publishes at that time. YouTube only for now.")
     ap.add_argument("--keep-temp", action="store_true", help="don't delete the work dir")
     args = ap.parse_args()
 
@@ -357,7 +358,11 @@ def main() -> int:
             title = args.title or (args.script or "").strip()[:80] or out.stem
             description = args.description or (args.script or "")
             tags = [t.strip() for t in (args.tags or "").split(",") if t.strip()]
-            upload_to(args.upload.split(","), out, title=title, description=description, tags=tags)
+            upload_to(
+                args.upload.split(","), out,
+                title=title, description=description, tags=tags,
+                publish_at=args.publish_at,
+            )
 
         return 0
     finally:

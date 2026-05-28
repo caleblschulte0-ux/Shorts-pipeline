@@ -71,7 +71,11 @@ class Uploader:
         title: str,
         description: str,
         tags: list[str] | None = None,
+        publish_at: str | None = None,
     ) -> UploadResult:
+        """Push a file. publish_at, if set, is an RFC3339 timestamp
+        ("2026-05-29T13:00:00Z") at which the post should go public —
+        platforms that support scheduling honor it; others ignore it."""
         raise NotImplementedError
 
 
@@ -153,7 +157,7 @@ class YouTubeUploader(Uploader):
             token_path.write_text(creds.to_json())
         return build("youtube", "v3", credentials=creds)
 
-    def upload(self, file_path, *, title, description, tags=None):
+    def upload(self, file_path, *, title, description, tags=None, publish_at=None):
         try:
             from googleapiclient.http import MediaFileUpload
         except ImportError as e:
@@ -164,6 +168,14 @@ class YouTubeUploader(Uploader):
             )
 
         svc = self._service()
+        # YouTube requires privacyStatus=private when publishAt is set; the
+        # video flips to public automatically at that timestamp.
+        status = {
+            "privacyStatus": "private" if publish_at else "public",
+            "selfDeclaredMadeForKids": False,
+        }
+        if publish_at:
+            status["publishAt"] = publish_at
         body = {
             "snippet": {
                 "title": title[:100],
@@ -171,10 +183,7 @@ class YouTubeUploader(Uploader):
                 "tags": list(tags or [])[:30],
                 "categoryId": "22",  # People & Blogs
             },
-            "status": {
-                "privacyStatus": "public",
-                "selfDeclaredMadeForKids": False,
-            },
+            "status": status,
         }
         media = MediaFileUpload(
             str(file_path),
@@ -196,9 +205,11 @@ class TikTokUploader(Uploader):
     name = "tiktok"
     INIT_URL = "https://open.tiktokapis.com/v2/post/publish/video/init/"
 
-    def upload(self, file_path, *, title, description, tags=None):
+    def upload(self, file_path, *, title, description, tags=None, publish_at=None):
         import requests
 
+        # TikTok's Content Posting API doesn't expose scheduled publish via
+        # the Direct Post endpoint yet; publish_at is ignored.
         token = _env("TIKTOK_ACCESS_TOKEN")
         size = file_path.stat().st_size
         chunk_size = min(size, 64 * 1024 * 1024)
@@ -274,9 +285,12 @@ class _MetaReelsUploader(Uploader):
     def _post_url(self, post_id: str) -> str:
         raise NotImplementedError
 
-    def upload(self, file_path, *, title, description, tags=None):
+    def upload(self, file_path, *, title, description, tags=None, publish_at=None):
         import requests
 
+        # Meta Reels supports scheduled posting via "published=false" +
+        # scheduled_publish_time on Pages, but only on FB Pages, not
+        # Instagram. For now publish_at is ignored on both.
         token = _env("META_ACCESS_TOKEN")
         target = self._target_id()
         host = _env("REELS_PUBLIC_HOST")
@@ -359,10 +373,11 @@ class RumbleUploader(Uploader):
     name = "rumble"
     UPLOAD_URL = "https://rumble.com/api/Upload.php"
 
-    def upload(self, file_path, *, title, description, tags=None):
+    def upload(self, file_path, *, title, description, tags=None, publish_at=None):
         import requests
 
         api_key = _env("RUMBLE_API_KEY")
+        # Rumble's API doesn't accept a scheduled publish time; ignored.
         with open(file_path, "rb") as fh:
             files = {"Filedata": (file_path.name, fh, "video/mp4")}
             data = {
@@ -401,6 +416,7 @@ def upload_to(
     title: str,
     description: str,
     tags: list[str] | None = None,
+    publish_at: str | None = None,
 ) -> list[UploadResult]:
     """Run uploaders sequentially. Per-target failures are reported and
     do not abort the rest of the batch."""
@@ -414,7 +430,13 @@ def upload_to(
             print(f"[upload] unknown target: {name!r} (have {sorted(REGISTRY)})")
             continue
         try:
-            res = cls().upload(file_path, title=title, description=description, tags=tags)
+            res = cls().upload(
+                file_path,
+                title=title,
+                description=description,
+                tags=tags,
+                publish_at=publish_at,
+            )
             print(f"[upload] {res.platform}: {res.url}")
             results.append(res)
         except UploadError as e:
