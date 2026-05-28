@@ -15,3 +15,7 @@ gameplay/*.avi
 
 # Whisper model cache
 .cache/
+
+# OAuth secrets — never commit
+client_secret.json
+token.json
