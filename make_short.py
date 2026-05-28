@@ -246,16 +246,26 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 # ---------- compose ----------
 
 def compose(source: Path, gameplay: Path, audio: Path, subs: Path, out: Path, duration: float) -> None:
-    # Top: source scaled+cropped to 1080x960. Bottom: gameplay same. Stacked vertically.
-    # Subtitles burned from ASS file (absolute path, escaped for filter syntax).
+    # Each half: scale-to-fit so the whole frame stays visible (no crop), with a
+    # blurred zoomed copy filling the background — preserves portrait Subway
+    # Surfers gameplay end-to-end and keeps landscape source clips intact too.
     subs_path = str(subs).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
+
+    def half(idx: int, bg_tag: str, fg_tag: str, out_tag: str) -> str:
+        return (
+            f"[{idx}:v]split=2[s{idx}a][s{idx}b];"
+            f"[s{idx}a]scale={W}:{HALF_H}:force_original_aspect_ratio=increase,"
+            f"crop={W}:{HALF_H},boxblur=24:2,setsar=1[{bg_tag}];"
+            f"[s{idx}b]scale={W}:{HALF_H}:force_original_aspect_ratio=decrease,"
+            f"setsar=1[{fg_tag}];"
+            f"[{bg_tag}][{fg_tag}]overlay=(W-w)/2:(H-h)/2[{out_tag}];"
+        )
+
     vf = (
-        f"[0:v]scale={W}:{HALF_H}:force_original_aspect_ratio=increase,"
-        f"crop={W}:{HALF_H},setsar=1[top];"
-        f"[1:v]scale={W}:{HALF_H}:force_original_aspect_ratio=increase,"
-        f"crop={W}:{HALF_H},setsar=1[bot];"
-        f"[top][bot]vstack=inputs=2[stacked];"
-        f"[stacked]ass='{subs_path}'[v]"
+        half(0, "topbg", "topfg", "top")
+        + half(1, "botbg", "botfg", "bot")
+        + "[top][bot]vstack=inputs=2[stacked];"
+        + f"[stacked]ass='{subs_path}'[v]"
     )
     run([
         "ffmpeg", "-y", "-loglevel", "error",
@@ -283,6 +293,7 @@ def main() -> int:
         "--gameplay", default="random",
         help="gameplay tag substring (e.g. subway, minecraft) or 'random'",
     )
+    ap.add_argument("--start", type=float, default=0.0, help="seek N seconds into the source before clipping (skip intros)")
     ap.add_argument("--keep-temp", action="store_true", help="don't delete the work dir")
     args = ap.parse_args()
 
@@ -294,6 +305,18 @@ def main() -> int:
         print(f"[1/6] fetching source: {args.input}")
         source = download_source(args.input, workdir)
         src_dur = ffprobe_duration(source)
+        if args.start > 0:
+            if args.start >= src_dur - 1:
+                sys.exit(f"--start {args.start}s exceeds source duration {src_dur:.2f}s")
+            trimmed = workdir / f"source_trim{source.suffix}"
+            run([
+                "ffmpeg", "-y", "-loglevel", "error",
+                "-ss", f"{args.start:.3f}", "-i", str(source),
+                "-c", "copy", str(trimmed),
+            ])
+            source = trimmed
+            src_dur = ffprobe_duration(source)
+            print(f"      seeked to {args.start:.2f}s, remaining {src_dur:.2f}s")
         # YouTube Shorts max 60s; cap.
         target = min(src_dur, 60.0)
         print(f"      duration: {src_dur:.2f}s (using {target:.2f}s)")

@@ -16,8 +16,10 @@ ROOT = Path(__file__).resolve().parent
 GAMEPLAY_DIR = ROOT / "gameplay"
 
 SEEDS = [
-    # (tag, source URL — direct MP4 on archive.org)
-    ("subway", "https://archive.org/download/vcompress_340/vcompress_340.mp4"),
+    # (tag, source URL — direct A/V on archive.org). The .mov originals are
+    # the full-resolution iPhone captures; archive.org's auto-derived .mp4
+    # versions are heavily downscaled (222x480) and look bad once stacked.
+    ("subway", "https://archive.org/download/rpreplay-final-1704729538/RPReplay_Final1704729538.mov"),
     ("minecraft", "https://archive.org/download/UsingParkourToWinSkywars/using%20parkour%20to%20win%20skywars.mp4"),
 ]
 
