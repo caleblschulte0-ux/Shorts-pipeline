@@ -249,9 +249,13 @@ def compose(source: Path, gameplay: Path, audio: Path, subs: Path, out: Path, du
     # Top half (source): scale-to-fit with a blurred zoomed copy filling any
     # leftover space — source aspect varies and we don't want to crop news /
     # sports / talking-head content.
-    # Bottom half (gameplay): scale-to-fill with center crop, no blur. With
-    # landscape gameplay (e.g. Minecraft 16:9) the world is uniform so the
-    # side crop is invisible; the bottom now fills cleanly edge-to-edge.
+    # Bottom half (gameplay): scale-to-fill + bias-low crop, no blur. For
+    # landscape gameplay (e.g. Minecraft 16:9) the scaled height equals the
+    # slot height so the y bias is a no-op and we get a clean fill. For
+    # portrait gameplay (e.g. Subway Surfers 9:16) the player character
+    # lives at ~75% from the top of the original frame, so a default center
+    # crop chops it out — biasing y to 0.7 of the available range keeps the
+    # character in frame and matches the standard brain-rot Shorts layout.
     subs_path = str(subs).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
 
     vf = (
@@ -262,7 +266,7 @@ def compose(source: Path, gameplay: Path, audio: Path, subs: Path, out: Path, du
         f"setsar=1[topfg];"
         f"[topbg][topfg]overlay=(W-w)/2:(H-h)/2[top];"
         f"[1:v]scale={W}:{HALF_H}:force_original_aspect_ratio=increase,"
-        f"crop={W}:{HALF_H},setsar=1[bot];"
+        f"crop={W}:{HALF_H}:0:'(ih-{HALF_H})*0.7',setsar=1[bot];"
         f"[top][bot]vstack=inputs=2[stacked];"
         f"[stacked]ass='{subs_path}'[v]"
     )
