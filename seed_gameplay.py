@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Seed the gameplay/ folder with a couple of long no-copyright clips.
 
-Run once per machine. Default fetches one Subway Surfers and one Minecraft
-parkour compilation from YouTube via yt-dlp. Edit SEEDS to taste.
+Run once per machine. Pulls a Subway Surfers clip and a Minecraft parkour
+clip from Internet Archive (works in restricted-egress environments where
+YouTube's signed CDN URLs IP-bind and break across rotating egress IPs).
+Sources are public archive.org items. Edit SEEDS to taste.
 """
 from __future__ import annotations
 
@@ -14,23 +16,23 @@ ROOT = Path(__file__).resolve().parent
 GAMEPLAY_DIR = ROOT / "gameplay"
 
 SEEDS = [
-    # (tag, youtube search query)
-    ("subway", "ytsearch1:subway surfers gameplay no copyright 10 minutes"),
-    ("minecraft", "ytsearch1:minecraft parkour gameplay no copyright 10 minutes"),
+    # (tag, source URL — direct MP4 on archive.org)
+    ("subway", "https://archive.org/download/vcompress_340/vcompress_340.mp4"),
+    ("minecraft", "https://archive.org/download/UsingParkourToWinSkywars/using%20parkour%20to%20win%20skywars.mp4"),
 ]
 
 
-def fetch(tag: str, query: str) -> int:
+def fetch(tag: str, url: str) -> int:
     out_tmpl = str(GAMEPLAY_DIR / f"{tag}_%(id)s.%(ext)s")
     cmd = [
         "yt-dlp",
         "--no-playlist",
-        "-f", "bv*[height<=1080]+ba/b[height<=1080]",
+        "-f", "b",
         "--merge-output-format", "mp4",
         "-o", out_tmpl,
-        query,
+        url,
     ]
-    print(f"-> {tag}: {query}")
+    print(f"-> {tag}: {url}")
     return subprocess.call(cmd)
 
 
