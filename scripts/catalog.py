@@ -10,7 +10,10 @@ To add an entry:
 3. Write a hook that lands in the first 7-9 words. No "this is X", no
    "you are about to watch". Lead with stakes, contradiction, or a
    visceral number.
-4. Pick gameplay tag ('subway' or 'minecraft') for variety
+4. Pick gameplay tag ('minecraft', 'geometry', or 'random' for either).
+   All horizontal/16:9 gameplay only — Subway Surfers (portrait) is
+   dropped because the player character couldn't be reliably kept in
+   frame.
 
 Hook templates that have worked:
   - Mortal stakes:   "He is one twitch from being killed by a mountain."
@@ -33,7 +36,7 @@ CATALOG: list[dict] = [
         "id": "f4_tornado_vanwert_v1",
         "topic": "weather",
         "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/2002_Van_Wert_Tornado_Dashcam.webm",
-        "start": 0, "duration": 21, "gameplay": "minecraft",
+        "start": 0, "duration": 21, "gameplay": "random",
         "title": "F4 Dashcam — He Drove Toward The Tornado #shorts",
         "script": (
             "This dashcam is pointed at a real F4 tornado. October 24th, 2002. Six "
@@ -47,7 +50,7 @@ CATALOG: list[dict] = [
         "id": "nba_dunks_v1",
         "topic": "basketball",
         "source_url": "https://archive.org/download/youtube-k7VifslDIv0/k7VifslDIv0.mp4",
-        "start": 8, "duration": 22, "gameplay": "subway",
+        "start": 8, "duration": 22, "gameplay": "random",
         "title": "These Men Treat Gravity Like A Suggestion #shorts",
         "script": (
             "These men treat gravity like a polite suggestion. Every dunk you are "
@@ -61,7 +64,7 @@ CATALOG: list[dict] = [
         "id": "ufc_kos_v1",
         "topic": "combat",
         "source_url": "https://archive.org/download/youtube-rrxamKa5mpk/rrxamKa5mpk.webm",
-        "start": 45, "duration": 22, "gameplay": "minecraft",
+        "start": 45, "duration": 22, "gameplay": "random",
         "title": "Three Seconds. Career Over. #shorts",
         "script": (
             "Three seconds. That is how long it took to end his career on Saturday. "
@@ -81,7 +84,7 @@ CATALOG: list[dict] = [
         # Verified frame-by-frame: 0-75s is intro + "First Test Jump" /
         # "Second Test Jump" / "Final Jump" title cards. Real helmet-POV
         # flight footage starts at ~78s.
-        "start": 80, "duration": 22, "gameplay": "minecraft",
+        "start": 80, "duration": 22, "gameplay": "random",
         "title": "One Twitch From Being Killed By A Mountain #shorts",
         "script": (
             "This man is one shoulder twitch from being killed by a mountain. He is "
@@ -97,7 +100,7 @@ CATALOG: list[dict] = [
         "source_url": "https://archive.org/download/youtube-mVyteSLfdgY/mVyteSLfdgY.webm",
         # Verified: actual pounce + kill is at t=35-65. First 30s is
         # the antelope sleeping which kills any hunt script.
-        "start": 35, "duration": 22, "gameplay": "subway",
+        "start": 35, "duration": 22, "gameplay": "random",
         "title": "That Antelope Has Twelve Seconds To Live #shorts",
         "script": (
             "This lioness has not eaten in six days. That antelope has approximately "
@@ -114,7 +117,7 @@ CATALOG: list[dict] = [
         "id": "f5_tornado_bridgecreek_v2",
         "topic": "weather",
         "source_url": "https://archive.org/download/youtube-l6LCUCzoeUU/l6LCUCzoeUU.mp4",
-        "start": 25, "duration": 22, "gameplay": "subway",
+        "start": 25, "duration": 22, "gameplay": "random",
         "title": "318 MPH — The Most Violent Wind Ever Measured #shorts",
         "script": (
             "Three hundred and eighteen miles per hour. That is the wind speed inside "
@@ -128,7 +131,7 @@ CATALOG: list[dict] = [
         "id": "parkour_pov_rennes_v2",
         "topic": "stunts",
         "source_url": "https://archive.org/download/youtube-S6YVK7BMiEU/S6YVK7BMiEU.mp4",
-        "start": 30, "duration": 22, "gameplay": "subway",
+        "start": 30, "duration": 22, "gameplay": "random",
         "title": "Thirty Feet Of Falling Between Him And A Closed Casket #shorts",
         "script": (
             "He has thirty feet of falling between him and a sidewalk. He does not "
@@ -141,7 +144,7 @@ CATALOG: list[dict] = [
         "id": "power_slap_v2",
         "topic": "combat",
         "source_url": "https://archive.org/download/youtube-DDQaq0_cqAg/DDQaq0_cqAg.webm",
-        "start": 4, "duration": 22, "gameplay": "minecraft",
+        "start": 4, "duration": 22, "gameplay": "random",
         "title": "He Is About To Slap His Soul Out Of His Body #shorts",
         "script": (
             "He is about to slap his soul out of his body. There are no gloves. There "
@@ -154,7 +157,7 @@ CATALOG: list[dict] = [
         "id": "f1_safety_car_v2",
         "topic": "motorsport",
         "source_url": "https://archive.org/download/youtube-3SHJIZ2-REU/3SHJIZ2-REU.webm",
-        "start": 5, "duration": 22, "gameplay": "minecraft",
+        "start": 5, "duration": 22, "gameplay": "random",
         "title": "Twenty F1 Cars Just Went Feral On Live TV #shorts",
         "script": (
             "Twenty Formula One cars worth two hundred million dollars are about to "
@@ -168,7 +171,7 @@ CATALOG: list[dict] = [
         "id": "f1_champions_v2",
         "topic": "motorsport",
         "source_url": "https://archive.org/download/youtube-KjFJ__q2vgE/KjFJ__q2vgE.webm",
-        "start": 8, "duration": 22, "gameplay": "subway",
+        "start": 8, "duration": 22, "gameplay": "random",
         "title": "Every F1 Champion Since 1950 — Some Died Chasing It #shorts",
         "script": (
             "Every Formula One world champion since nineteen fifty. Some retired "
@@ -182,7 +185,7 @@ CATALOG: list[dict] = [
         "id": "iceland_volcano_2023_v2",
         "topic": "weather",
         "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/007_Volcano_eruption_of_Litli-Hr%C3%BAtur_in_Iceland_in_2023_Video_by_Giles_Laurent.webm",
-        "start": 6, "duration": 22, "gameplay": "minecraft",
+        "start": 6, "duration": 22, "gameplay": "random",
         "title": "The Earth Is Literally Bleeding In Real Time #shorts",
         "script": (
             "The Earth is literally bleeding in real time. That orange is rock heated "
@@ -196,7 +199,7 @@ CATALOG: list[dict] = [
         "id": "kobe_dwight_v2",
         "topic": "basketball",
         "source_url": "https://archive.org/download/youtube-szmYKrZtwW4/szmYKrZtwW4.webm",
-        "start": 0, "duration": 22, "gameplay": "subway",
+        "start": 0, "duration": 22, "gameplay": "random",
         "title": "Kobe Just Dunked On A 7-Foot Man Then Found A Microphone #shorts",
         "script": (
             "Kobe Bryant just dunked on a seven foot man. Then he found a microphone. "
@@ -210,7 +213,7 @@ CATALOG: list[dict] = [
         "id": "hawaii_bigwave_v2",
         "topic": "extreme",
         "source_url": "https://archive.org/download/XcorpsSpecialHawaiiBigWavesWithFilter/XcorpsHawaiiSpecialFilterWEB.mp4",
-        "start": 180, "duration": 22, "gameplay": "subway",
+        "start": 180, "duration": 22, "gameplay": "random",
         "title": "That Wave Has Killed World Champions #shorts",
         "script": (
             "That wave has the energy of a four story building falling on you. World "
@@ -224,7 +227,7 @@ CATALOG: list[dict] = [
         "id": "rally_v2",
         "topic": "motorsport",
         "source_url": "https://archive.org/download/youtube-Ni2zSq5maY4/Ni2zSq5maY4.webm",
-        "start": 15, "duration": 22, "gameplay": "minecraft",
+        "start": 15, "duration": 22, "gameplay": "random",
         "title": "These Drivers Do Not Believe In Brakes #shorts",
         "script": (
             "These drivers do not believe in brakes. There is no track. The walls are "
