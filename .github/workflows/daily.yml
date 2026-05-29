@@ -152,10 +152,24 @@ jobs:
           git add state/ daily_report.md daily_report.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "Nothing to commit."
-          else
-            git commit -m "daily: $(date -u +%Y-%m-%d) report + state"
-            git push origin HEAD:${{ github.ref_name }}
+            exit 0
           fi
+          git commit -m "daily: $(date -u +%Y-%m-%d) report + state"
+          # Scout runs concurrently and also pushes to state/ — rebase + retry
+          # so a non-fast-forward race doesn't drop our posted_log.json update.
+          # If we lose this update, tomorrow's run thinks today's posts didn't
+          # happen and reposts them all.
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:${{ github.ref_name }}; then
+              echo "Pushed on attempt $i"
+              exit 0
+            fi
+            echo "Push failed on attempt $i, rebasing..."
+            git pull --rebase origin ${{ github.ref_name }}
+            sleep 2
+          done
+          echo "::error::Failed to push state after 5 attempts"
+          exit 1
 
       - name: Post report to tracking issue
         if: always() && steps.preflight.outputs.skip == ''
