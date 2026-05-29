@@ -2,11 +2,16 @@
 """Scout trending video posts from places the Claude container's egress
 proxy blocks. Runs from a GitHub Actions runner (which has open egress).
 
-Output: state/scouted_sources.json — a list of candidate Reddit posts
-with video URLs, sorted by score. The chat-side workflow reads that file
-to populate scripts/catalog.py with fresh entries.
+Output: state/scouted_sources.json — candidate video posts and history
+events, the chat-side workflow reads it to populate scripts/catalog.py.
 
-Run weekly (or on demand via workflow_dispatch).
+Source mix (any failed source returns []; the rest still write a result):
+  - Reddit         — usually 0 from Azure runners, kept for if it ever works
+  - Wikipedia OTD  — 100+ historical events per day, never IP-blocks
+  - Wikimedia      — recent video uploads in extreme-weather / wildlife etc.
+  - YouTube Trending — real most-viewed today, via Data API + existing creds
+  - Lemmy          — federated Reddit alternative, open API
+  - Hacker News    — top stories that link to video sites
 """
 from __future__ import annotations
 
@@ -152,6 +157,141 @@ def fetch_wikipedia_on_this_day() -> list[dict]:
     return out
 
 
+def fetch_youtube_trending() -> list[dict]:
+    """YouTube trending via Data API. Reuses YOUTUBE_TOKEN_JSON for auth.
+    Returns most-popular videos in the US right now."""
+    import os
+    token_json = os.environ.get("YOUTUBE_TOKEN_JSON", "")
+    if not token_json:
+        print("[youtube/trending] YOUTUBE_TOKEN_JSON env not set", file=sys.stderr)
+        return []
+    try:
+        tok = json.loads(token_json)
+        access_token = tok.get("token") or ""
+    except Exception as e:  # noqa: BLE001
+        print(f"[youtube/trending] bad token json: {e}", file=sys.stderr)
+        return []
+    if not access_token:
+        return []
+
+    params = (
+        "chart=mostPopular&maxResults=50&regionCode=US"
+        "&part=snippet,statistics,contentDetails"
+    )
+    url = f"https://www.googleapis.com/youtube/v3/videos?{params}"
+    req = urllib.request.Request(url, headers={"Authorization": f"Bearer {access_token}"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        body = (e.read() or b"")[:300].decode("utf-8", "replace")
+        print(f"[youtube/trending] HTTP {e.code}: {body}", file=sys.stderr)
+        return []
+    except Exception as e:  # noqa: BLE001
+        print(f"[youtube/trending] {type(e).__name__}: {e}", file=sys.stderr)
+        return []
+
+    out: list[dict] = []
+    for item in data.get("items", []):
+        s = item.get("snippet", {}) or {}
+        st = item.get("statistics", {}) or {}
+        cd = item.get("contentDetails", {}) or {}
+        vid = item.get("id") or ""
+        out.append({
+            "source_type": "youtube_trending",
+            "video_id": vid,
+            "title": s.get("title"),
+            "channel": s.get("channelTitle"),
+            "published_at": s.get("publishedAt"),
+            "iso_duration": cd.get("duration"),
+            "views": int(st.get("viewCount", 0) or 0),
+            "likes": int(st.get("likeCount", 0) or 0),
+            "url": f"https://www.youtube.com/watch?v={vid}",
+            "thumbnail": ((s.get("thumbnails") or {}).get("high") or {}).get("url"),
+        })
+    return out
+
+
+VIDEO_HOSTS = (
+    "youtube.com", "youtu.be", "vimeo.com", "v.redd.it",
+    "streamable.com", "twitch.tv", "dailymotion.com",
+)
+
+
+def fetch_lemmy_top() -> list[dict]:
+    """Top posts of the week from popular Lemmy instances that link to
+    videos. Lemmy's API is open and doesn't IP-block."""
+    instances = ["lemmy.world", "sh.itjust.works", "lemmy.ml"]
+    out: list[dict] = []
+    for inst in instances:
+        api = f"https://{inst}/api/v3/post/list?sort=TopWeek&type_=All&limit=50"
+        try:
+            req = urllib.request.Request(api, headers=_headers())
+            with urllib.request.urlopen(req, timeout=20) as r:
+                data = json.loads(r.read())
+        except Exception as e:  # noqa: BLE001
+            print(f"[lemmy/{inst}] {type(e).__name__}: {e}", file=sys.stderr)
+            continue
+        for entry in (data.get("posts") or []):
+            post = entry.get("post") or {}
+            url = post.get("url") or ""
+            if not any(h in url for h in VIDEO_HOSTS):
+                continue
+            counts = entry.get("counts") or {}
+            community = entry.get("community") or {}
+            out.append({
+                "source_type": "lemmy_top",
+                "instance": inst,
+                "community": community.get("name"),
+                "title": post.get("name"),
+                "url": url,
+                "score": int(counts.get("score", 0) or 0),
+                "comments": int(counts.get("comments", 0) or 0),
+            })
+        time.sleep(1)
+    out.sort(key=lambda p: p.get("score", 0), reverse=True)
+    return out[:100]
+
+
+def fetch_hackernews_video_links() -> list[dict]:
+    """HN top stories that link to a video site."""
+    try:
+        with urllib.request.urlopen(
+            urllib.request.Request(
+                "https://hacker-news.firebaseio.com/v0/topstories.json",
+                headers=_headers(),
+            ),
+            timeout=20,
+        ) as r:
+            ids = json.loads(r.read())[:80]
+    except Exception as e:  # noqa: BLE001
+        print(f"[hn/top] {type(e).__name__}: {e}", file=sys.stderr)
+        return []
+
+    out: list[dict] = []
+    for hid in ids:
+        try:
+            with urllib.request.urlopen(
+                f"https://hacker-news.firebaseio.com/v0/item/{hid}.json",
+                timeout=10,
+            ) as r:
+                item = json.loads(r.read())
+        except Exception:
+            continue
+        url = item.get("url") or ""
+        if not any(h in url for h in VIDEO_HOSTS):
+            continue
+        out.append({
+            "source_type": "hackernews_video",
+            "title": item.get("title"),
+            "url": url,
+            "score": int(item.get("score", 0) or 0),
+            "permalink": f"https://news.ycombinator.com/item?id={hid}",
+        })
+    out.sort(key=lambda p: p.get("score", 0), reverse=True)
+    return out
+
+
 def fetch_wikimedia_recent_videos(limit: int = 50) -> list[dict]:
     """Hit the Wikimedia Commons search API for recently uploaded videos
     in interesting categories. Doesn't give us viral, but gives us *real*
@@ -192,25 +332,37 @@ def fetch_wikimedia_recent_videos(limit: int = 50) -> list[dict]:
 
 
 def main() -> int:
+    print("scouting Reddit (likely blocked from Azure)...")
     all_reddit: list[dict] = []
     for sub in SUBREDDITS:
-        print(f"scouting r/{sub}...")
         posts = fetch_subreddit_top(sub, t="week", limit=25)
-        print(f"  +{len(posts)} video posts")
         all_reddit.extend(posts)
         time.sleep(2)
     all_reddit.sort(key=lambda p: p.get("score", 0), reverse=True)
     all_reddit = all_reddit[:200]
+    print(f"  reddit: {len(all_reddit)}")
 
     print("\nscouting Wikipedia On This Day...")
     wikipedia = fetch_wikipedia_on_this_day()
-    print(f"  +{len(wikipedia)} historical events")
+    print(f"  wikipedia: {len(wikipedia)}")
 
-    print("\nscouting Wikimedia Commons newest videos...")
+    print("\nscouting Wikimedia Commons recent videos...")
     wikimedia = fetch_wikimedia_recent_videos()
-    print(f"  +{len(wikimedia)} recent video files")
+    print(f"  wikimedia: {len(wikimedia)}")
 
-    total = len(all_reddit) + len(wikipedia) + len(wikimedia)
+    print("\nscouting YouTube trending...")
+    youtube = fetch_youtube_trending()
+    print(f"  youtube: {len(youtube)}")
+
+    print("\nscouting Lemmy top week...")
+    lemmy = fetch_lemmy_top()
+    print(f"  lemmy: {len(lemmy)}")
+
+    print("\nscouting Hacker News video links...")
+    hn = fetch_hackernews_video_links()
+    print(f"  hn: {len(hn)}")
+
+    total = len(all_reddit) + len(wikipedia) + len(wikimedia) + len(youtube) + len(lemmy) + len(hn)
     OUT_PATH.parent.mkdir(exist_ok=True)
     OUT_PATH.write_text(json.dumps({
         "scouted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -219,11 +371,17 @@ def main() -> int:
             "reddit_count": len(all_reddit),
             "wikipedia_on_this_day_count": len(wikipedia),
             "wikimedia_commons_count": len(wikimedia),
+            "youtube_trending_count": len(youtube),
+            "lemmy_count": len(lemmy),
+            "hackernews_count": len(hn),
         },
         "total": total,
         "reddit_posts": all_reddit,
         "wikipedia_events": wikipedia,
         "wikimedia_videos": wikimedia,
+        "youtube_trending": youtube,
+        "lemmy_posts": lemmy,
+        "hackernews_posts": hn,
     }, indent=2) + "\n")
     print(f"\nwrote {total} candidates -> {OUT_PATH}")
     return 0
