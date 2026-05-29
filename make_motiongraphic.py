@@ -175,10 +175,15 @@ def build_video(
         # heavily blurred + dimmed so it reads as abstract motion under the
         # text and doesn't fight the foreground.
         if bg_video and bg_video.exists():
-            # Loop the bg video if it's shorter than the narration.
+            # Loop the bg video if it's shorter than the narration. Seek
+            # 30s in to skip whatever intro / title-card / branded frames
+            # are at the start of the source clip — these leak through
+            # even heavy blur and read as "video game" instead of
+            # "abstract motion."
             bg_dur = ffprobe_duration(bg_video)
             loop = max(0, int(dur // bg_dur))
             bg_input = [
+                "-ss", "30",
                 "-stream_loop", str(loop),
                 "-i", str(bg_video),
             ]
@@ -277,33 +282,37 @@ def build_video(
 
 
 def main() -> int:
-    # Citibank $900M typo script + shot list
+    # Tightened per 2026 Shorts research: result-first hook, payoff
+    # foreshadowed by second 3, ~33 seconds, no dead tail, hard stop on
+    # the punchline.
     script = (
-        "In August 2020, an employee at Citibank made a typo. The kind of typo that "
-        "happens to everyone. They were processing an eight million dollar interest "
-        "payment to Revlon's lenders. They accidentally sent the full nine hundred "
-        "million dollar principal. Eight months early. By morning Citibank realized "
-        "the mistake and demanded the money back. Some lenders returned it. Others "
-        "said no. Citibank sued in court. And in 2021, a federal court ruled. "
-        "Sorry Citibank. You sent it. They get to keep it. Nine hundred million "
-        "dollars. Lost in one accidental wire transfer. All because of one extra zero."
+        "Nine hundred million dollars. Lost. Because of one extra zero. "
+        "In August 2020 a Citibank employee was processing an eight million "
+        "dollar interest payment to Revlon's lenders. They added one digit. "
+        "They wired nine hundred million instead. The full loan principal. "
+        "Citibank realized within hours and demanded the money back. Some "
+        "lenders returned it. Others kept it. Citibank sued. The judge ruled. "
+        "You sent it. They keep it. Most expensive typo in banking history."
     )
 
-    # Hardcoded punches. Tuned to roughly match what edge-tts en-US-GuyNeural
-    # speaks at ~178 wpm. We'll iterate after watching.
+    # Punches start at 0.0 so the very first frame of the video shows the
+    # dollar amount — that's the "visual hook before sound" principle from
+    # the research. Foreshadow "ONE TYPO" by second 3. Hard stop on
+    # MOST EXPENSIVE TYPO so there's no dead tail.
     punches = [
-        PunchText("AUGUST 2020", 0.2, 2.4, color="#cccccc", size=140, y_pct=0.42),
-        PunchText("ONE TYPO", 2.6, 5.6, color="#ff5050", size=220, y_pct=0.42),
-        PunchText("$8 MILLION", 9.0, 12.0, color="#ffe24a", size=180, y_pct=0.42),
-        PunchText("$900 MILLION", 13.5, 17.5, color="#ffffff", size=170, y_pct=0.42,
+        PunchText("$900,000,000", 0.0, 2.3, color="#ff3030", size=180, y_pct=0.40,
+                  flash_bg="#220404"),
+        PunchText("LOST", 2.4, 4.2, color="#ffffff", size=240, y_pct=0.40),
+        PunchText("ONE TYPO", 4.4, 7.5, color="#ff5050", size=220, y_pct=0.40),
+        PunchText("AUGUST 2020", 7.8, 10.5, color="#cccccc", size=140, y_pct=0.40),
+        PunchText("$8 MILLION", 11.5, 14.0, color="#ffe24a", size=180, y_pct=0.40),
+        PunchText("$900 MILLION", 16.5, 20.0, color="#ffffff", size=170, y_pct=0.40,
                   flash_bg="#a01010"),
-        PunchText("8 MONTHS EARLY", 18.5, 21.5, color="#ffaa50", size=140, y_pct=0.42),
-        PunchText("CITIBANK SUED", 26.5, 29.0, color="#ffffff", size=160, y_pct=0.42),
-        PunchText("COURT: KEEP IT", 33.0, 36.5, color="#50ff80", size=160, y_pct=0.42,
+        PunchText("CITIBANK SUED", 23.5, 26.0, color="#ffffff", size=160, y_pct=0.40),
+        PunchText("COURT: KEEP IT", 27.5, 30.5, color="#50ff80", size=170, y_pct=0.40,
                   flash_bg="#0d2818"),
-        PunchText("$900M LOST", 38.5, 42.0, color="#ffffff", size=200, y_pct=0.42,
-                  flash_bg="#a01010"),
-        PunchText("ONE EXTRA ZERO", 43.5, 47.0, color="#ffffff", size=170, y_pct=0.42),
+        PunchText("MOST EXPENSIVE TYPO", 31.0, 34.5, color="#ffffff", size=140, y_pct=0.40),
+        PunchText("IN BANKING HISTORY", 31.0, 34.5, color="#ff3030", size=140, y_pct=0.50),
     ]
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
