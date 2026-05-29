@@ -37,6 +37,10 @@ jobs:
           python-version: '3.11'
 
       - name: Run scout
+        env:
+          # YouTube trending source uses this OAuth token to call the
+          # Data API. Other sources don't need any auth.
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
         run: python scripts/scout_sources.py
 
       - name: Commit results
