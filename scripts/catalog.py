@@ -114,6 +114,41 @@ CATALOG: list[dict] = [
     # -------- unposted (ready to fire when PAUSED is removed) ----------
 
     {
+        "id": "hindenburg_v1",
+        "topic": "disasters",
+        "source_url": "https://archive.org/download/HindenburgDisasterRealFootage1937hd/HindenburgDisasterRealFootage1937hd.mp4",
+        # Verified: zeppelin approach + explosion at t=200. --start 180
+        # gives 2s of the airship still flying before the iconic frame
+        # collapse and people running.
+        "start": 180, "duration": 22, "gameplay": "random",
+        "title": "36 People Died In 32 Seconds — Hindenburg, 1937 #shorts",
+        "script": (
+            "Thirty six people died in thirty two seconds. The Hindenburg was the "
+            "largest object ever to fly. It was filled with seven million cubic feet "
+            "of hydrogen. The fire reached two thousand degrees before the frame even "
+            "touched the ground. The radio reporter on scene started crying live on "
+            "air. This footage is from May sixth, nineteen thirty seven."
+        ),
+        "tags": ["shorts","hindenburg","disaster","1937","history","zeppelin","explosion"],
+    },
+    {
+        "id": "maradona_hand_of_god_v1",
+        "topic": "sports_history",
+        "source_url": "https://archive.org/download/2358076-wk-1986-de-hand-van-god-van-maradona-tegen-engeland/2358076-wk-1986-de-hand-van-god-van-maradona-tegen-engeland.mp4",
+        # Verified: 58s clip of real 1986 World Cup England vs Argentina
+        # footage. The "Hand of God" goal happens early; --start 5 catches
+        # the buildup and the punch.
+        "start": 5, "duration": 22, "gameplay": "random",
+        "title": "The Most Famous Cheat In Sports History — Maradona 1986 #shorts",
+        "script": (
+            "Diego Maradona just punched a soccer ball into the net with his fist. "
+            "The referee did not see it. England did not see it. The world saw it on "
+            "replay and Argentina won the World Cup anyway. Maradona called it the "
+            "Hand of God. England has never forgiven him."
+        ),
+        "tags": ["shorts","maradona","soccer","football","world cup","1986","argentina"],
+    },
+    {
         "id": "f5_tornado_bridgecreek_v2",
         "topic": "weather",
         "source_url": "https://archive.org/download/youtube-l6LCUCzoeUU/l6LCUCzoeUU.mp4",
