@@ -191,6 +191,13 @@ def _refresh_youtube_access_token() -> str | None:
             f"refresh_token={bool(refresh_token)}"
         )
         return None
+    # Log key sizes / prefixes so we can diagnose escaped or truncated
+    # secret values without leaking the secret itself.
+    _err(
+        f"[youtube/refresh] using client_id={client_id[:24]}... "
+        f"secret_len={len(client_secret)} "
+        f"refresh_prefix={refresh_token[:10]}... refresh_len={len(refresh_token)}"
+    )
     try:
         body = urllib.parse.urlencode({
             "client_id": client_id,
