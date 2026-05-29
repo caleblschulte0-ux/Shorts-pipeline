@@ -2,7 +2,8 @@ name: Daily Shorts
 
 on:
   schedule:
-    # 12:00 UTC = 8am EDT / 7am EST. First publish slot is 13:00 UTC (9am EDT).
+    # 12:00 UTC = 8am EDT / 7am EST. GitHub crons are best-effort and
+    # often run 5-30 min late — that's expected.
     - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
@@ -10,6 +11,13 @@ on:
         description: 'How many shorts to publish'
         required: false
         default: '6'
+  # Manual fire from chat: push or modify the trigger file and the
+  # workflow runs immediately. The path filter keeps it from running
+  # on every random commit.
+  push:
+    branches: [main]
+    paths:
+      - '.github/triggers/daily'
 
 permissions:
   contents: write   # commit posted_log + failure_count + reports

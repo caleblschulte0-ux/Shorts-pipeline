@@ -181,9 +181,16 @@ def _refresh_youtube_access_token() -> str | None:
     except Exception as e:  # noqa: BLE001
         _err(f"[youtube/refresh] cannot parse token json: {e}")
         return None
-    client_id = tok.get("client_id")
-    client_secret = tok.get("client_secret")
-    refresh_token = tok.get("refresh_token")
+    # Defensive: phone-keyboard paste sometimes adds stray characters
+    # (<, >, whitespace) at the start/end of a value. Strip anything
+    # that isn't part of a valid OAuth field.
+    def _clean(v):
+        if not isinstance(v, str): return v
+        return v.strip(" \t\r\n<>\"'")
+
+    client_id = _clean(tok.get("client_id"))
+    client_secret = _clean(tok.get("client_secret"))
+    refresh_token = _clean(tok.get("refresh_token"))
     if not (client_id and client_secret and refresh_token):
         _err(
             "[youtube/refresh] token missing field(s): "

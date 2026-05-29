@@ -86,6 +86,19 @@ def _env(key: str) -> str:
     return v
 
 
+def _clean_secret_strings(obj):
+    """Defensive cleanup for values that came through a phone keyboard
+    paste — strip stray whitespace and brackets that sometimes get
+    prepended/appended."""
+    if isinstance(obj, dict):
+        return {k: _clean_secret_strings(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_clean_secret_strings(v) for v in obj]
+    if isinstance(obj, str):
+        return obj.strip(" \t\r\n<>\"'")
+    return obj
+
+
 def _resolve_secret(path_env: str, json_env: str, target_name: str) -> Path:
     """Return a Path to a JSON file containing the secret.
 
@@ -93,11 +106,20 @@ def _resolve_secret(path_env: str, json_env: str, target_name: str) -> Path:
     live in the Claude Code environment settings and survive container
     recycles. Falls back to a literal file path env var for laptop /
     server use.
+
+    Defensive: strips stray whitespace and angle brackets from every
+    string value in the JSON before writing it to disk, so a phone-paste
+    typo doesn't break the entire upload chain.
     """
+    import json as _json
     content = os.environ.get(json_env)
     if content:
+        try:
+            cleaned = _json.dumps(_clean_secret_strings(_json.loads(content)))
+        except Exception:
+            cleaned = content
         path = Path("/tmp") / target_name
-        path.write_text(content)
+        path.write_text(cleaned)
         return path
     path = os.environ.get(path_env)
     if path:
