@@ -19,6 +19,7 @@ import json
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -157,21 +158,42 @@ def fetch_wikipedia_on_this_day() -> list[dict]:
     return out
 
 
-def fetch_youtube_trending() -> list[dict]:
-    """YouTube trending via Data API. Reuses YOUTUBE_TOKEN_JSON for auth.
-    Returns most-popular videos in the US right now."""
+def _refresh_youtube_access_token() -> str | None:
+    """OAuth access tokens last ~1h, the saved one in the secret is stale.
+    Do a manual refresh using the refresh_token + client credentials."""
     import os
     token_json = os.environ.get("YOUTUBE_TOKEN_JSON", "")
-    if not token_json:
-        print("[youtube/trending] YOUTUBE_TOKEN_JSON env not set", file=sys.stderr)
-        return []
+    client_json = os.environ.get("YOUTUBE_CLIENT_SECRETS_JSON", "")
+    if not (token_json and client_json):
+        return None
     try:
         tok = json.loads(token_json)
-        access_token = tok.get("token") or ""
+        cfg = json.loads(client_json)
+        cfg = cfg.get("installed") or cfg.get("web") or cfg
+        body = urllib.parse.urlencode({
+            "client_id": cfg["client_id"],
+            "client_secret": cfg["client_secret"],
+            "refresh_token": tok["refresh_token"],
+            "grant_type": "refresh_token",
+        }).encode()
+        req = urllib.request.Request(
+            "https://oauth2.googleapis.com/token",
+            data=body,
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+        )
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.loads(r.read())
+        return data.get("access_token")
     except Exception as e:  # noqa: BLE001
-        print(f"[youtube/trending] bad token json: {e}", file=sys.stderr)
-        return []
+        print(f"[youtube/refresh] {type(e).__name__}: {e}", file=sys.stderr)
+        return None
+
+
+def fetch_youtube_trending() -> list[dict]:
+    """YouTube trending via Data API. Reuses YOUTUBE_TOKEN_JSON for auth."""
+    access_token = _refresh_youtube_access_token()
     if not access_token:
+        print("[youtube/trending] no access token (refresh failed)", file=sys.stderr)
         return []
 
     params = (
@@ -292,41 +314,47 @@ def fetch_hackernews_video_links() -> list[dict]:
     return out
 
 
-def fetch_wikimedia_recent_videos(limit: int = 50) -> list[dict]:
-    """Hit the Wikimedia Commons search API for recently uploaded videos
-    in interesting categories. Doesn't give us viral, but gives us *real*
-    fresh footage we can hook a story to."""
+VIDEO_EXTS_W = (".webm", ".ogv", ".mp4", ".mov", ".mkv")
+
+
+def fetch_wikimedia_recent_videos(limit: int = 100) -> list[dict]:
+    """Pull recent file uploads on Wikimedia Commons via logevents and
+    filter to video file extensions. Gives a stream of real fresh
+    footage uploaded in the last day or two."""
     out: list[dict] = []
-    queries = [
-        "tornado", "lightning", "volcano", "eruption", "avalanche",
-        "earthquake", "tsunami", "hurricane", "wildfire",
-        "wildlife", "predator", "hunt",
-        "explosion", "rocket launch",
-    ]
-    for q in queries:
+    cont = None
+    for _ in range(4):  # up to 4 pages × 100 = 400 recent uploads
         url = (
             "https://commons.wikimedia.org/w/api.php"
-            f"?action=query&list=search&srsearch={q}+filetype:video"
-            f"&srsort=create_timestamp_desc&srlimit=5&format=json"
+            "?action=query&list=logevents&letype=upload"
+            "&lelimit=100&leprop=title|timestamp|user&format=json"
         )
+        if cont:
+            url += f"&lecontinue={urllib.parse.quote(cont)}"
         req = urllib.request.Request(url, headers=_headers())
         try:
             with urllib.request.urlopen(req, timeout=20) as r:
                 data = json.loads(r.read())
         except Exception as e:  # noqa: BLE001
-            print(f"[wikimedia/{q}] {type(e).__name__}: {e}", file=sys.stderr)
-            continue
-        for item in (data.get("query", {}).get("search") or [])[:limit]:
-            title = item.get("title") or ""
-            if not title.lower().startswith("file:"):
+            print(f"[wikimedia/logevents] {type(e).__name__}: {e}", file=sys.stderr)
+            break
+        for ev in data.get("query", {}).get("logevents", []):
+            title = ev.get("title") or ""
+            tlow = title.lower()
+            if not any(tlow.endswith(ext) for ext in VIDEO_EXTS_W):
                 continue
             out.append({
-                "source_type": "wikimedia_commons_video",
-                "query": q,
+                "source_type": "wikimedia_commons_recent",
                 "title": title,
                 "page_url": f"https://commons.wikimedia.org/wiki/{title.replace(' ', '_')}",
-                "timestamp": item.get("timestamp"),
+                "uploaded_at": ev.get("timestamp"),
+                "uploader": ev.get("user"),
             })
+            if len(out) >= limit:
+                return out
+        cont = (data.get("continue") or {}).get("lecontinue")
+        if not cont:
+            break
         time.sleep(0.5)
     return out
 
