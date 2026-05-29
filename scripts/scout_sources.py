@@ -169,20 +169,33 @@ def fetch_wikipedia_on_this_day() -> list[dict]:
 
 def _refresh_youtube_access_token() -> str | None:
     """OAuth access tokens last ~1h, the saved one in the secret is stale.
-    Do a manual refresh using the refresh_token + client credentials."""
+    The token.json itself already contains client_id, client_secret, and
+    refresh_token, so we don't need a second env var."""
     import os
     token_json = os.environ.get("YOUTUBE_TOKEN_JSON", "")
-    client_json = os.environ.get("YOUTUBE_CLIENT_SECRETS_JSON", "")
-    if not (token_json and client_json):
+    if not token_json:
+        _err("[youtube/refresh] YOUTUBE_TOKEN_JSON env not set")
         return None
     try:
         tok = json.loads(token_json)
-        cfg = json.loads(client_json)
-        cfg = cfg.get("installed") or cfg.get("web") or cfg
+    except Exception as e:  # noqa: BLE001
+        _err(f"[youtube/refresh] cannot parse token json: {e}")
+        return None
+    client_id = tok.get("client_id")
+    client_secret = tok.get("client_secret")
+    refresh_token = tok.get("refresh_token")
+    if not (client_id and client_secret and refresh_token):
+        _err(
+            "[youtube/refresh] token missing field(s): "
+            f"client_id={bool(client_id)} client_secret={bool(client_secret)} "
+            f"refresh_token={bool(refresh_token)}"
+        )
+        return None
+    try:
         body = urllib.parse.urlencode({
-            "client_id": cfg["client_id"],
-            "client_secret": cfg["client_secret"],
-            "refresh_token": tok["refresh_token"],
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "refresh_token": refresh_token,
             "grant_type": "refresh_token",
         }).encode()
         req = urllib.request.Request(
@@ -193,6 +206,10 @@ def _refresh_youtube_access_token() -> str | None:
         with urllib.request.urlopen(req, timeout=20) as r:
             data = json.loads(r.read())
         return data.get("access_token")
+    except urllib.error.HTTPError as e:
+        body_text = (e.read() or b"")[:400].decode("utf-8", "replace")
+        _err(f"[youtube/refresh] HTTP {e.code}: {body_text}")
+        return None
     except Exception as e:  # noqa: BLE001
         _err(f"[youtube/refresh] {type(e).__name__}: {e}")
         return None
