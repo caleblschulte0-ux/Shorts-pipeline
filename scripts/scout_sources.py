@@ -26,6 +26,15 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 OUT_PATH = REPO / "state" / "scouted_sources.json"
+ERR_PATH = REPO / "state" / "scout_errors.log"
+
+_ERROR_BUFFER: list[str] = []
+
+
+def _err(line: str) -> None:
+    """Capture error lines so they get committed back with the JSON."""
+    print(line, file=sys.stderr)
+    _ERROR_BUFFER.append(line)
 
 # Brain-rot Shorts vibe — strong reaction footage, fast hooks, viral
 # potential. Tune the mix here.
@@ -83,7 +92,7 @@ def fetch_subreddit_top(sub: str, t: str = "week", limit: int = 25) -> list[dict
             last_err = f"{type(e).__name__}: {e}"
             continue
     else:
-        print(f"[{sub}] all hosts failed: {last_err}", file=sys.stderr)
+        _err(f"[{sub}] all hosts failed: {last_err}")
         return []
 
     out: list[dict] = []
@@ -132,7 +141,7 @@ def fetch_wikipedia_on_this_day() -> list[dict]:
         with urllib.request.urlopen(req, timeout=30) as r:
             data = json.loads(r.read())
     except Exception as e:  # noqa: BLE001
-        print(f"[wikipedia/onthisday] {type(e).__name__}: {e}", file=sys.stderr)
+        _err(f"[wikipedia/onthisday] {type(e).__name__}: {e}")
         return []
 
     out: list[dict] = []
@@ -185,7 +194,7 @@ def _refresh_youtube_access_token() -> str | None:
             data = json.loads(r.read())
         return data.get("access_token")
     except Exception as e:  # noqa: BLE001
-        print(f"[youtube/refresh] {type(e).__name__}: {e}", file=sys.stderr)
+        _err(f"[youtube/refresh] {type(e).__name__}: {e}")
         return None
 
 
@@ -193,7 +202,7 @@ def fetch_youtube_trending() -> list[dict]:
     """YouTube trending via Data API. Reuses YOUTUBE_TOKEN_JSON for auth."""
     access_token = _refresh_youtube_access_token()
     if not access_token:
-        print("[youtube/trending] no access token (refresh failed)", file=sys.stderr)
+        _err("[youtube/trending] no access token (refresh failed)")
         return []
 
     params = (
@@ -207,10 +216,10 @@ def fetch_youtube_trending() -> list[dict]:
             data = json.loads(r.read())
     except urllib.error.HTTPError as e:
         body = (e.read() or b"")[:300].decode("utf-8", "replace")
-        print(f"[youtube/trending] HTTP {e.code}: {body}", file=sys.stderr)
+        _err(f"[youtube/trending] HTTP {e.code}: {body}")
         return []
     except Exception as e:  # noqa: BLE001
-        print(f"[youtube/trending] {type(e).__name__}: {e}", file=sys.stderr)
+        _err(f"[youtube/trending] {type(e).__name__}: {e}")
         return []
 
     out: list[dict] = []
@@ -252,7 +261,7 @@ def fetch_lemmy_top() -> list[dict]:
             with urllib.request.urlopen(req, timeout=20) as r:
                 data = json.loads(r.read())
         except Exception as e:  # noqa: BLE001
-            print(f"[lemmy/{inst}] {type(e).__name__}: {e}", file=sys.stderr)
+            _err(f"[lemmy/{inst}] {type(e).__name__}: {e}")
             continue
         for entry in (data.get("posts") or []):
             post = entry.get("post") or {}
@@ -287,7 +296,7 @@ def fetch_hackernews_video_links() -> list[dict]:
         ) as r:
             ids = json.loads(r.read())[:80]
     except Exception as e:  # noqa: BLE001
-        print(f"[hn/top] {type(e).__name__}: {e}", file=sys.stderr)
+        _err(f"[hn/top] {type(e).__name__}: {e}")
         return []
 
     out: list[dict] = []
@@ -336,7 +345,7 @@ def fetch_wikimedia_recent_videos(limit: int = 100) -> list[dict]:
             with urllib.request.urlopen(req, timeout=20) as r:
                 data = json.loads(r.read())
         except Exception as e:  # noqa: BLE001
-            print(f"[wikimedia/logevents] {type(e).__name__}: {e}", file=sys.stderr)
+            _err(f"[wikimedia/logevents] {type(e).__name__}: {e}")
             break
         for ev in data.get("query", {}).get("logevents", []):
             title = ev.get("title") or ""
@@ -412,6 +421,10 @@ def main() -> int:
         "hackernews_posts": hn,
     }, indent=2) + "\n")
     print(f"\nwrote {total} candidates -> {OUT_PATH}")
+
+    # Always write the error log (empty if no errors) so we can read it
+    # from the chat side via git pull after the bot commits.
+    ERR_PATH.write_text("\n".join(_ERROR_BUFFER) + ("\n" if _ERROR_BUFFER else ""))
     return 0
 
 
