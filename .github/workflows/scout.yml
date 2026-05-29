@@ -63,15 +63,7 @@ jobs:
           {
             echo "## Scout results — $(date -u +%Y-%m-%d)"
             echo ""
-            python3 <<'PY'
-import json
-d = json.load(open('state/scouted_sources.json'))
-print(f"Found **{d['total']}** trending video posts across {len(d['subreddits'])} subreddits.\n")
-print("Top 15 by score:\n")
-for p in d['posts'][:15]:
-    print(f"- **{p['score']:,}** r/{p['subreddit']} — [{p['title'][:80]}]({p['permalink']})")
-print(f"\nFull list committed to `state/scouted_sources.json`.")
-PY
+            python3 scripts/scout_report.py
           } > /tmp/scout_comment.md
           gh issue comment 1 \
             --repo "${{ github.repository }}" \
