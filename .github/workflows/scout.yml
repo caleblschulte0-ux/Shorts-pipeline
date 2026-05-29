@@ -8,11 +8,9 @@ on:
     - cron: '0 10 * * 0'
   push:
     branches: [main]
-    # Re-run automatically whenever the scout itself is touched — useful
-    # for triggering a refresh from chat without needing a manual click.
-    paths:
-      - 'scripts/scout_sources.py'
-      - '.github/workflows/scout.yml'
+    # No path filter while we're debugging — every push to main fires
+    # the scout. Once we confirm Actions is on, we'll narrow it back
+    # down so the scout doesn't run on every code change.
 
 permissions:
   contents: write
