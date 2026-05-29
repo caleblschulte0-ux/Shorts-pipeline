@@ -13,5 +13,8 @@
 [HumansBeingBros] all hosts failed: HTTP 403 from https://www.reddit.com
 [facepalm] all hosts failed: HTTP 403 from https://www.reddit.com
 [WTF] all hosts failed: HTTP 403 from https://www.reddit.com
-[youtube/refresh] HTTPError: HTTP Error 401: Unauthorized
+[youtube/refresh] HTTP 401: {
+  "error": "invalid_client",
+  "error_description": "The OAuth client was not found."
+}
 [youtube/trending] no access token (refresh failed)
