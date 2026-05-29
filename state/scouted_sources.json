@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-05-29T11:41:34Z",
+  "scouted_at": "2026-05-29T12:19:21Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,9 +20,12 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 110,
-    "wikimedia_commons_count": 0
+    "wikimedia_commons_count": 0,
+    "youtube_trending_count": 0,
+    "lemmy_count": 3,
+    "hackernews_count": 0
   },
-  "total": 110,
+  "total": 113,
   "reddit_posts": [],
   "wikipedia_events": [
     {
@@ -1126,5 +1129,36 @@
       "extract": "Kaneto Shind\u014d  was a Japanese film director, screenwriter, film producer, and writer, who directed 48 films and wrote scripts for 238. His best known films as a director include Children of Hiroshima, The Naked Island, Onibaba, Kuroneko and A Last Note. His screenplays were filmed by directors such as Kenji Mizoguchi, K\u014dzabur\u014d Yoshimura, Kon Ichikawa, Keisuke Kinoshita, Seijun Suzuki, and Tadashi Imai."
     }
   ],
-  "wikimedia_videos": []
+  "wikimedia_videos": [],
+  "youtube_trending": [],
+  "lemmy_posts": [
+    {
+      "source_type": "lemmy_top",
+      "instance": "lemmy.world",
+      "community": "upliftingnews",
+      "title": "Hawaii just entirely removed corporations' power to spend money in politics. This could be a game changer for US democracy.",
+      "url": "https://www.youtube.com/watch?v=oBGpEcPrbso",
+      "score": 1336,
+      "comments": 170
+    },
+    {
+      "source_type": "lemmy_top",
+      "instance": "sh.itjust.works",
+      "community": "upliftingnews",
+      "title": "Hawaii just entirely removed corporations' power to spend money in politics. This could be a game changer for US democracy.",
+      "url": "https://www.youtube.com/watch?v=oBGpEcPrbso",
+      "score": 1329,
+      "comments": 169
+    },
+    {
+      "source_type": "lemmy_top",
+      "instance": "lemmy.ml",
+      "community": "upliftingnews",
+      "title": "Hawaii just entirely removed corporations' power to spend money in politics. This could be a game changer for US democracy.",
+      "url": "https://www.youtube.com/watch?v=oBGpEcPrbso",
+      "score": 1217,
+      "comments": 169
+    }
+  ],
+  "hackernews_posts": []
 }
