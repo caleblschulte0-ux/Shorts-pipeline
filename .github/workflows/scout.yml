@@ -6,6 +6,13 @@ on:
     # Sunday 10:00 UTC — gives Claude something fresh to pull from on
     # the Monday morning weekly-refresh chat.
     - cron: '0 10 * * 0'
+  push:
+    branches: [main]
+    # Re-run automatically whenever the scout itself is touched — useful
+    # for triggering a refresh from chat without needing a manual click.
+    paths:
+      - 'scripts/scout_sources.py'
+      - '.github/workflows/scout.yml'
 
 permissions:
   contents: write
