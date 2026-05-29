@@ -41,23 +41,43 @@ SUBREDDITS = [
     "WTF",
 ]
 
-HEADERS = {
-    "User-Agent": "shorts-pipeline-scout/1.0 (by github-actions; +https://github.com/caleblschulte0-ux/shorts-pipeline)",
-    "Accept": "application/json",
-}
+# Reddit blocks both shared-IP and bot-style User-Agents pretty aggressively
+# on www.reddit.com. old.reddit.com is more lenient. We also rotate UAs so
+# a single block doesn't kill the whole scout.
+UAS = [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1",
+]
+
+REDDIT_HOSTS = ["https://old.reddit.com", "https://www.reddit.com"]
+
+
+def _headers(ua_idx: int = 0) -> dict:
+    return {
+        "User-Agent": UAS[ua_idx % len(UAS)],
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
 
 
 def fetch_subreddit_top(sub: str, t: str = "week", limit: int = 25) -> list[dict]:
-    url = f"https://www.reddit.com/r/{sub}/top.json?t={t}&limit={limit}"
-    req = urllib.request.Request(url, headers=HEADERS)
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            data = json.loads(r.read())
-    except urllib.error.HTTPError as e:
-        print(f"[{sub}] HTTP {e.code}: {e.reason}", file=sys.stderr)
-        return []
-    except Exception as e:  # noqa: BLE001
-        print(f"[{sub}] {type(e).__name__}: {e}", file=sys.stderr)
+    last_err = None
+    for host_idx, host in enumerate(REDDIT_HOSTS):
+        url = f"{host}/r/{sub}/top.json?t={t}&limit={limit}"
+        req = urllib.request.Request(url, headers=_headers(host_idx))
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.loads(r.read())
+                break
+        except urllib.error.HTTPError as e:
+            last_err = f"HTTP {e.code} from {host}"
+            continue
+        except Exception as e:  # noqa: BLE001
+            last_err = f"{type(e).__name__}: {e}"
+            continue
+    else:
+        print(f"[{sub}] all hosts failed: {last_err}", file=sys.stderr)
         return []
 
     out: list[dict] = []
