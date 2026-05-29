@@ -158,6 +158,9 @@ def build_video(
     out_path: Path,
     bg_color: str = "#0a0e1a",
     accent_hue_rate: float = 0.0,
+    bg_video: Path | None = None,
+    bg_blur: int = 40,
+    bg_dim: float = 0.45,
 ) -> None:
     workdir = Path(tempfile.mkdtemp(prefix="mg_"))
     print(f"workdir: {workdir}")
@@ -168,16 +171,43 @@ def build_video(
         dur = ffprobe_duration(voice)
         print(f"      duration {dur:.2f}s, {len(punches)} punches")
 
-        # Background: base color + per-punch red/whatever flashes overlaid
-        # via drawbox so the screen pulses on impact lines.
-        bg_filter = f"color=c={bg_color}:s={W}x{H}:d={dur:.3f}:r={FPS},format=yuv420p"
+        # Background: either a solid color, or a video file scaled to 9:16,
+        # heavily blurred + dimmed so it reads as abstract motion under the
+        # text and doesn't fight the foreground.
+        if bg_video and bg_video.exists():
+            # Loop the bg video if it's shorter than the narration.
+            bg_dur = ffprobe_duration(bg_video)
+            loop = max(0, int(dur // bg_dur))
+            bg_input = [
+                "-stream_loop", str(loop),
+                "-i", str(bg_video),
+            ]
+            # Brighten and saturate so the motion shows through clearly
+            # underneath the text + semi-transparent flashes.
+            bg_filter = (
+                f"[0:v]scale={W}:{H}:force_original_aspect_ratio=increase,"
+                f"crop={W}:{H},"
+                f"boxblur={bg_blur}:2,"
+                f"eq=brightness=0.05:saturation=1.4:contrast=1.1,"
+                f"format=yuv420p,"
+                f"setpts=PTS-STARTPTS"
+            )
+            audio_input_idx = "2:a"  # voice is 3rd input
+            audio_inputs = ["-f", "lavfi", "-i", "anullsrc=cl=stereo:r=44100",
+                            "-i", str(voice)]
+        else:
+            bg_input = []
+            bg_filter = f"color=c={bg_color}:s={W}x{H}:d={dur:.3f}:r={FPS},format=yuv420p"
+            audio_input_idx = "1:a"
+            audio_inputs = ["-i", str(voice)]
 
         # Build the filter graph: base bg -> N drawbox flashes -> N drawtext
         # punches -> ASS subs.
         chain_parts: list[str] = []
         prev_label = "bg"
 
-        # Flashes first (rendered behind text)
+        # Semi-transparent flashes so the moving bg shows through.
+        # Alpha 0.55 = strong color cast without covering motion underneath.
         flash_idx = 0
         for p in punches:
             if not p.flash_bg:
@@ -185,7 +215,7 @@ def build_video(
             out_label = f"flash{flash_idx}"
             chain_parts.append(
                 f"[{prev_label}]drawbox=x=0:y=0:w={W}:h={H}:"
-                f"color={p.flash_bg}@1:t=fill:"
+                f"color={p.flash_bg}@0.55:t=fill:"
                 f"enable='between(t,{p.start:.3f},{p.end:.3f})'[{out_label}]"
             )
             prev_label = out_label
@@ -229,10 +259,10 @@ def build_video(
         print("[3/4] render")
         cmd = [
             "ffmpeg", "-y", "-loglevel", "error",
-            "-f", "lavfi", "-i", "anullsrc=cl=stereo:r=44100",
-            "-i", str(voice),
+            *bg_input,
+            *audio_inputs,
             "-filter_complex", graph,
-            "-map", "[v]", "-map", "1:a",
+            "-map", "[v]", "-map", audio_input_idx,
             "-t", f"{dur:.3f}",
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
             "-pix_fmt", "yuv420p", "-r", str(FPS),
@@ -279,7 +309,12 @@ def main() -> int:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     ts_str = time.strftime("%Y%m%d-%H%M%S")
     out = OUTPUT_DIR / f"motiongraphic_{ts_str}.mp4"
-    build_video(script, punches, out, bg_color="#0a0e1a")
+    # Use heavily blurred Minecraft Nether (consistent orange/red lava
+    # glow) as abstract money/danger motion background. Real Pexels
+    # stock B-roll requires an API key — once you give me that key we
+    # swap this for real city/finance footage.
+    bg = ROOT / "gameplay" / "minecraft_nether_parkour.mp4"
+    build_video(script, punches, out, bg_video=bg, bg_blur=35, bg_dim=0.25)
     return 0
 
 
