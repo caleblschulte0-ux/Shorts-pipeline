@@ -112,31 +112,120 @@ def fetch_subreddit_top(sub: str, t: str = "week", limit: int = 25) -> list[dict
     return out
 
 
+def fetch_wikipedia_on_this_day() -> list[dict]:
+    """Wikipedia's "On This Day" feed — events that happened on this date
+    in history, each with a linked article and (often) a thumbnail. Open
+    API, no auth, never IP-blocks."""
+    now = datetime.now(timezone.utc)
+    url = (
+        "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/"
+        f"{now.month:02d}/{now.day:02d}"
+    )
+    req = urllib.request.Request(url, headers=_headers())
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read())
+    except Exception as e:  # noqa: BLE001
+        print(f"[wikipedia/onthisday] {type(e).__name__}: {e}", file=sys.stderr)
+        return []
+
+    out: list[dict] = []
+    for kind in ("selected", "events", "births", "deaths"):
+        for item in data.get(kind, [])[:30]:
+            year = item.get("year")
+            text = (item.get("text") or "").strip()
+            pages = item.get("pages") or []
+            if not text or not pages:
+                continue
+            page = pages[0]
+            thumb = (page.get("thumbnail") or {}).get("source")
+            out.append({
+                "source_type": "wikipedia_on_this_day",
+                "kind": kind,
+                "year": year,
+                "text": text,
+                "page_title": page.get("titles", {}).get("normalized") or page.get("title"),
+                "page_url": page.get("content_urls", {}).get("desktop", {}).get("page"),
+                "thumbnail": thumb,
+                "extract": (page.get("extract") or "").strip()[:500],
+            })
+    return out
+
+
+def fetch_wikimedia_recent_videos(limit: int = 50) -> list[dict]:
+    """Hit the Wikimedia Commons search API for recently uploaded videos
+    in interesting categories. Doesn't give us viral, but gives us *real*
+    fresh footage we can hook a story to."""
+    out: list[dict] = []
+    queries = [
+        "tornado", "lightning", "volcano", "eruption", "avalanche",
+        "earthquake", "tsunami", "hurricane", "wildfire",
+        "wildlife", "predator", "hunt",
+        "explosion", "rocket launch",
+    ]
+    for q in queries:
+        url = (
+            "https://commons.wikimedia.org/w/api.php"
+            f"?action=query&list=search&srsearch={q}+filetype:video"
+            f"&srsort=create_timestamp_desc&srlimit=5&format=json"
+        )
+        req = urllib.request.Request(url, headers=_headers())
+        try:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                data = json.loads(r.read())
+        except Exception as e:  # noqa: BLE001
+            print(f"[wikimedia/{q}] {type(e).__name__}: {e}", file=sys.stderr)
+            continue
+        for item in (data.get("query", {}).get("search") or [])[:limit]:
+            title = item.get("title") or ""
+            if not title.lower().startswith("file:"):
+                continue
+            out.append({
+                "source_type": "wikimedia_commons_video",
+                "query": q,
+                "title": title,
+                "page_url": f"https://commons.wikimedia.org/wiki/{title.replace(' ', '_')}",
+                "timestamp": item.get("timestamp"),
+            })
+        time.sleep(0.5)
+    return out
+
+
 def main() -> int:
-    all_posts: list[dict] = []
+    all_reddit: list[dict] = []
     for sub in SUBREDDITS:
         print(f"scouting r/{sub}...")
         posts = fetch_subreddit_top(sub, t="week", limit=25)
         print(f"  +{len(posts)} video posts")
-        all_posts.extend(posts)
-        time.sleep(2)  # polite rate-limit
+        all_reddit.extend(posts)
+        time.sleep(2)
+    all_reddit.sort(key=lambda p: p.get("score", 0), reverse=True)
+    all_reddit = all_reddit[:200]
 
-    # Sort by upvotes; keep the top 200 to bound file size.
-    all_posts.sort(key=lambda p: p.get("score", 0), reverse=True)
-    all_posts = all_posts[:200]
+    print("\nscouting Wikipedia On This Day...")
+    wikipedia = fetch_wikipedia_on_this_day()
+    print(f"  +{len(wikipedia)} historical events")
 
+    print("\nscouting Wikimedia Commons newest videos...")
+    wikimedia = fetch_wikimedia_recent_videos()
+    print(f"  +{len(wikimedia)} recent video files")
+
+    total = len(all_reddit) + len(wikipedia) + len(wikimedia)
     OUT_PATH.parent.mkdir(exist_ok=True)
     OUT_PATH.write_text(json.dumps({
         "scouted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "subreddits": SUBREDDITS,
-        "total": len(all_posts),
-        "posts": all_posts,
+        "sources": {
+            "reddit_subs": SUBREDDITS,
+            "reddit_count": len(all_reddit),
+            "wikipedia_on_this_day_count": len(wikipedia),
+            "wikimedia_commons_count": len(wikimedia),
+        },
+        "total": total,
+        "reddit_posts": all_reddit,
+        "wikipedia_events": wikipedia,
+        "wikimedia_videos": wikimedia,
     }, indent=2) + "\n")
-    print(f"\nwrote {len(all_posts)} posts -> {OUT_PATH}")
-    if all_posts:
-        print("\ntop 10 by score:")
-        for p in all_posts[:10]:
-            print(f"  {p['score']:>7,} r/{p['subreddit']:24s} | {p['title'][:70]}")
+    print(f"\nwrote {total} candidates -> {OUT_PATH}")
     return 0
 
 
