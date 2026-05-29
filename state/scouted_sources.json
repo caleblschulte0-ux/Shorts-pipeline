@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-05-29T12:31:04Z",
+  "scouted_at": "2026-05-29T12:32:41Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,12 +20,12 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 110,
-    "wikimedia_commons_count": 0,
+    "wikimedia_commons_count": 2,
     "youtube_trending_count": 0,
     "lemmy_count": 3,
     "hackernews_count": 0
   },
-  "total": 113,
+  "total": 115,
   "reddit_posts": [],
   "wikipedia_events": [
     {
@@ -1129,7 +1129,22 @@
       "extract": "Kaneto Shind\u014d  was a Japanese film director, screenwriter, film producer, and writer, who directed 48 films and wrote scripts for 238. His best known films as a director include Children of Hiroshima, The Naked Island, Onibaba, Kuroneko and A Last Note. His screenplays were filmed by directors such as Kenji Mizoguchi, K\u014dzabur\u014d Yoshimura, Kon Ichikawa, Keisuke Kinoshita, Seijun Suzuki, and Tadashi Imai."
     }
   ],
-  "wikimedia_videos": [],
+  "wikimedia_videos": [
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:The Trail Of The Lonesome Pine (1916).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:The_Trail_Of_The_Lonesome_Pine_(1916).webm",
+      "uploaded_at": "2026-05-29T12:30:59Z",
+      "uploader": "The Smart Star"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:In The Days Of The Thundering Herd (1914).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:In_The_Days_Of_The_Thundering_Herd_(1914).webm",
+      "uploaded_at": "2026-05-29T12:30:51Z",
+      "uploader": "The Smart Star"
+    }
+  ],
   "youtube_trending": [],
   "lemmy_posts": [
     {
