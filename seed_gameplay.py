@@ -42,17 +42,33 @@ TRIMS: dict[str, tuple[float, float]] = {
 
 
 def fetch(tag: str, url: str) -> int:
-    out_tmpl = str(GAMEPLAY_DIR / f"{tag}_%(id)s.%(ext)s")
-    cmd = [
-        "yt-dlp",
-        "--no-playlist",
-        "-f", "b",
-        "--merge-output-format", "mp4",
-        "-o", out_tmpl,
-        url,
-    ]
-    print(f"-> {tag}: {url}")
-    return subprocess.call(cmd)
+    """Download a direct media URL with curl. yt-dlp was unreliable on
+    archive.org direct .mp4 URLs — it'd try to parse them as web pages
+    and silently produce a 0-byte file. curl just streams the bytes."""
+    # Pick extension from the URL so the filename keeps the suffix
+    # pick_gameplay_clip filters by (.mp4 / .mkv / .webm / .mov).
+    ext = url.rsplit(".", 1)[-1].split("?")[0].lower()
+    if ext not in ("mp4", "mkv", "webm", "mov", "m4v", "avi"):
+        ext = "mp4"
+    out = GAMEPLAY_DIR / f"{tag}_{Path(url).stem}.{ext}"
+    print(f"-> {tag}: {url}", flush=True)
+    rc = subprocess.call([
+        "curl", "-fL", "--retry", "3", "--retry-delay", "5",
+        "-o", str(out), url,
+    ])
+    if rc != 0:
+        print(f"   curl exit {rc} — removing partial file", flush=True)
+        out.unlink(missing_ok=True)
+        return rc
+    size = out.stat().st_size
+    print(f"   {tag}: downloaded {size/1_000_000:.1f} MB -> {out.name}",
+          flush=True)
+    if size < 1_000_000:
+        print(f"   {tag}: file is suspiciously small, treating as failure",
+              flush=True)
+        out.unlink(missing_ok=True)
+        return 1
+    return 0
 
 
 def trim(tag: str, span: tuple[float, float]) -> None:

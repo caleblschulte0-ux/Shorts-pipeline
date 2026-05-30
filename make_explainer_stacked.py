@@ -546,7 +546,16 @@ def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
             if p.suffix.lower() in (".mp4", ".mov", ".mkv", ".webm")
             and tag.lower() in p.stem.lower()]
     if not pool:
-        sys.exit(f"no gameplay clips matching {tag!r} in {GAMEPLAY_DIR}")
+        # Don't sys.exit here — it skips the caller's exception handler
+        # and the orchestrator never logs which package failed or why.
+        # Listing what IS in the dir makes the error self-diagnosing
+        # ("ah, the cache restored only the sidecar json").
+        existing = [p.name for p in GAMEPLAY_DIR.iterdir()] if GAMEPLAY_DIR.exists() else []
+        raise RuntimeError(
+            f"no gameplay clips matching {tag!r} in {GAMEPLAY_DIR}. "
+            f"Existing files: {existing}. "
+            f"Run seed_gameplay.py to download fresh."
+        )
     src = random.choice(pool)
     dur = ffprobe_duration(src)
 
