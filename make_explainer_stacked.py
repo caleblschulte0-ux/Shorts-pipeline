@@ -26,6 +26,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -273,13 +274,18 @@ class Shot:
     when the phrase starts until the next shot's phrase starts.
 
     Source modes (checked in order):
-      1. `queries`: a list of stock-search queries; the shot subdivides
+      1. `image`: a URL or local path to a still image — rendered with
+         a slow Ken Burns zoom so it doesn't feel static. Use this for
+         topic-specific imagery (Wikipedia, news article og:images,
+         logos, screenshots) where stock footage would be too generic.
+      2. `queries`: a list of stock-search queries; the shot subdivides
          its time window into one sub-cut per query.
-      2. `pexels_query`: a single query — the shot fetches the top 2-3
+      3. `pexels_query`: a single query — the shot fetches the top 2-3
          candidates and cycles between them as sub-cuts.
-      3. `clip` + `clip_start`: a hardcoded local file.
+      4. `clip` + `clip_start`: a hardcoded local file.
     """
     phrase: str
+    image: str | None = None
     queries: list[str] | None = None
     pexels_query: str | None = None
     clip: Path | None = None
@@ -288,11 +294,51 @@ class Shot:
 
 # ---------- B-roll assembly (multi-cut) ----------
 
+def _fetch_image(url_or_path: str, cache: Path) -> Path:
+    """Resolve a shot.image value (URL or local path) to a cached file
+    on disk. Local paths pass through; URLs are downloaded once and
+    keyed by hash so subsequent renders re-use the same file."""
+    if url_or_path.startswith(("http://", "https://")):
+        import hashlib
+        cache.mkdir(parents=True, exist_ok=True)
+        ext = (Path(url_or_path.split("?")[0]).suffix or ".jpg").lower()
+        if ext not in (".jpg", ".jpeg", ".png", ".webp"):
+            ext = ".jpg"
+        name = hashlib.sha1(url_or_path.encode()).hexdigest()[:16] + ext
+        dest = cache / name
+        if not dest.exists():
+            req = urllib.request.Request(
+                url_or_path,
+                # Wikimedia rejects the default urllib UA outright and
+                # also requires a referer that looks like it came from a
+                # Wikipedia page. Most news CDNs are happy with any
+                # browser-shaped UA. This pair gets us through both.
+                headers={
+                    "User-Agent": ("Mozilla/5.0 (X11; Linux x86_64) "
+                                   "AppleWebKit/537.36 (KHTML, like Gecko)"),
+                    "Referer": "https://en.wikipedia.org/",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=30) as r:
+                dest.write_bytes(r.read())
+        return dest
+    p = Path(url_or_path)
+    if not p.exists():
+        raise FileNotFoundError(f"shot image path does not exist: {p}")
+    return p
+
+
 def _resolve_clips(shot: Shot, cache: Path, n_target: int) -> list[dict]:
     """Return up to n_target downloaded clip metadata dicts for this
     shot. Always returns at least one (or raises)."""
     import stock_search
     clips: list[dict] = []
+
+    if shot.image:
+        img_path = _fetch_image(shot.image, Path("/tmp/shot_images"))
+        print(f"      [image] {shot.image[:80]} -> {img_path.name}")
+        return [{"path": str(img_path), "is_image": True,
+                 "width": W, "height": HALF_H, "source": "image"}]
 
     if shot.queries:
         for q in shot.queries:
@@ -360,23 +406,52 @@ def build_timed_top(
 
         for j in range(n_cuts):
             clip = clips[j % len(clips)]
-            clip_dur = float(clip.get("duration") or 10)
-            # If we're reusing a clip for a second cut, seek further in.
-            repeat = j // len(clips)
-            seek_start = 0.3
-            seek_step = max(1.5, (clip_dur - cut_dur - 1.0) / max(1, n_cuts))
-            seek = min(seek_start + repeat * seek_step, max(0.0, clip_dur - cut_dur - 0.3))
-
             sub = workdir / f"top_{i:02d}_{j:02d}.mp4"
-            run([
-                "ffmpeg", "-y", "-loglevel", "error",
-                "-ss", f"{seek:.3f}", "-i", clip["path"],
-                "-t", f"{cut_dur:.3f}",
-                "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
-                       f"crop={W}:{top_h},setsar=1,fps={FPS}",
-                "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                str(sub),
-            ])
+
+            if clip.get("is_image"):
+                # Still image — Ken Burns it. Alternate zoom-in vs
+                # slow-pan based on cut index so successive image shots
+                # don't all do the same move. We work at 2x then scale
+                # down inside the zoompan filter so the zoom doesn't
+                # quantize to ugly stair-stepped frames.
+                frames = max(2, int(cut_dur * FPS))
+                move = "zoom_in" if (i + j) % 2 == 0 else "zoom_out"
+                if move == "zoom_in":
+                    z_expr = f"min(zoom+0.0006,1.18)"
+                else:
+                    z_expr = f"if(eq(on,0),1.18,max(zoom-0.0006,1.0))"
+                vf = (
+                    f"scale={W*2}:{top_h*2}:force_original_aspect_ratio=increase,"
+                    f"crop={W*2}:{top_h*2},"
+                    f"zoompan=z='{z_expr}'"
+                    f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+                    f":d={frames}:s={W}x{top_h}:fps={FPS},"
+                    f"setsar=1"
+                )
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-loop", "1", "-i", clip["path"],
+                    "-t", f"{cut_dur:.3f}",
+                    "-vf", vf,
+                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                    str(sub),
+                ])
+            else:
+                clip_dur = float(clip.get("duration") or 10)
+                # If we're reusing a clip for a second cut, seek further in.
+                repeat = j // len(clips)
+                seek_start = 0.3
+                seek_step = max(1.5, (clip_dur - cut_dur - 1.0) / max(1, n_cuts))
+                seek = min(seek_start + repeat * seek_step, max(0.0, clip_dur - cut_dur - 0.3))
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-ss", f"{seek:.3f}", "-i", clip["path"],
+                    "-t", f"{cut_dur:.3f}",
+                    "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
+                           f"crop={W}:{top_h},setsar=1,fps={FPS}",
+                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                    str(sub),
+                ])
             all_segments.append(sub)
             cut_times.append(start_t + j * cut_dur)
 
@@ -707,10 +782,16 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
         "music_vibe": "dark" | "cinematic" | "hiphop",
       }
     """
-    shots = [
-        Shot(phrase=s["phrase"], pexels_query=s["query"])
-        for s in pkg["shots"]
-    ]
+    shots = []
+    for s in pkg["shots"]:
+        # Each shot is one of: image-anchored, stock-query, or local clip.
+        # The package can also pass a list of queries for sub-cut variety.
+        shots.append(Shot(
+            phrase=s["phrase"],
+            image=s.get("image"),
+            queries=s.get("queries"),
+            pexels_query=s.get("query"),
+        ))
     punches = [
         Punch(
             phrase=p["phrase"],
