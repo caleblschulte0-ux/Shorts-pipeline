@@ -229,15 +229,14 @@ def build_timed_top(
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
         seg_dur = max(0.5, end_t - start_t)
 
-        # Resolve source: prefer Pexels query if provided.
+        # Resolve source: prefer stock query (multi-provider) if provided.
         if shot.pexels_query:
-            import pexels_search
-            meta = pexels_search.fetch_top(shot.pexels_query, pexels_cache)
-            print(f"      pexels {shot.pexels_query!r} -> {meta['url']} "
-                  f"({meta['width']}x{meta['height']}, {meta['duration']}s)")
+            import stock_search
+            meta = stock_search.fetch_top(shot.pexels_query, pexels_cache)
+            print(f"      [{meta.get('source','?')}] {shot.pexels_query!r} -> "
+                  f"{meta.get('url','?')} ({meta['width']}x{meta['height']}, "
+                  f"{meta['duration']}s)")
             clip_path = Path(meta["path"])
-            # Most Pexels clips are 4-30s — start a hair past 0 to skip
-            # any opening cross-fade some uploaders include.
             clip_start = 0.5 if meta["duration"] > seg_dur + 1 else 0
         else:
             clip_path = shot.clip
