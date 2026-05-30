@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "bees-crash-i94",
+  "title": "2 Million Bees Escaped on an Interstate. The Driver Ran for the River.",
+  "tags": ["bees", "truck crash", "North Dakota", "Interstate 94", "viral", "weird news"],
+  "script": "A semi carrying 2 million bees rolled over on Interstate 94 in North Dakota. The driver climbed out and was immediately swarmed. He ran to the Sheyenne River to wash them off. Still got stung hundreds of times. The highway closed for 8 hours while crews dealt with 600 scattered beehives. The local bees had no comment. The driver is expected to recover.",
+  "shots": [
+    {
+      "phrase": "2 million bees rolled over",
+      "query": "overturned semi truck highway rollover"
+    },
+    {
+      "phrase": "immediately swarmed",
+      "query": "bee swarm cloud insects attack"
+    },
+    {
+      "phrase": "Sheyenne River",
+      "query": "river bank north dakota plains"
+    },
+    {
+      "phrase": "stung hundreds of times",
+      "query": "beekeeper suit removing bees hive"
+    },
+    {
+      "phrase": "600 scattered beehives",
+      "query": "beehive boxes stacked highway roadside"
+    },
+    {
+      "phrase": "driver is expected to recover",
+      "query": "highway cleanup crews emergency vehicles"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "2 million bees",
+      "text": "2 MILLION BEES",
+      "color": "#ffe24a",
+      "flash_bg": "#1a1400",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "immediately swarmed",
+      "text": "SWARMED",
+      "color": "#ffe24a",
+      "size": 220,
+      "duration": 1.8
+    },
+    {
+      "phrase": "stung hundreds of times",
+      "text": "HUNDREDS OF STINGS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 155,
+      "duration": 2.2
+    },
+    {
+      "phrase": "600 scattered beehives",
+      "text": "600 HIVES LOOSE",
+      "color": "#ffe24a",
+      "flash_bg": "#1a1400",
+      "size": 160,
+      "duration": 2.0
+    },
+    {
+      "phrase": "driver is expected to recover",
+      "text": "HE'S OK",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}

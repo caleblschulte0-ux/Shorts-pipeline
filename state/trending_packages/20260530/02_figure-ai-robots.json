@@ -1,0 +1,75 @@
+{
+  "version": 8,
+  "slug": "figure-ai-robots",
+  "title": "Robots Worked 200 Hours Straight. Then a Human Beat Them.",
+  "tags": ["robots", "AI", "Figure AI", "humanoid robot", "automation", "jobs", "viral"],
+  "script": "A robot just worked 200 hours straight without a single failure. Figure AI's humanoid robots sorted 250,000 packages on a live stream — no breaks, no complaints, no quit. Then viewers challenged one to race a human intern. The intern won: 12,924 packages to 12,732. But the machines are getting faster every day. And unlike any intern, they never need to go home.",
+  "shots": [
+    {
+      "phrase": "straight without a single failure",
+      "query": "humanoid robot warehouse sorting packages"
+    },
+    {
+      "phrase": "packages on a live stream",
+      "query": "warehouse conveyor belt packages automated"
+    },
+    {
+      "phrase": "no breaks, no complaints",
+      "query": "robot arm factory assembly line"
+    },
+    {
+      "phrase": "race a human intern",
+      "query": "worker sorting packages warehouse job"
+    },
+    {
+      "phrase": "The intern won",
+      "query": "person celebrating winning race competition"
+    },
+    {
+      "phrase": "never need to go home",
+      "query": "dark empty factory floor night automation"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "straight without a single failure",
+      "text": "200 HRS STRAIGHT",
+      "color": "#ffe24a",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "no breaks, no complaints",
+      "text": "ZERO FAILURES",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "The intern won",
+      "text": "HUMAN WINS... BARELY",
+      "color": "#ffffff",
+      "size": 160,
+      "duration": 2.6
+    },
+    {
+      "phrase": "getting faster every day",
+      "text": "GETTING FASTER",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 2.0
+    },
+    {
+      "phrase": "never need to go home",
+      "text": "GAME OVER",
+      "color": "#ffffff",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 3.0
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}
