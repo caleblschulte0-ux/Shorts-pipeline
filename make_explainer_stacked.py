@@ -158,11 +158,18 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 class Shot:
     """Anchor a B-roll segment to a script phrase. The segment plays from
     when the phrase starts being spoken until the next shot's phrase
-    starts (or end of audio)."""
-    phrase: str                # trigger phrase to find in the script
-    clip: Path                 # source video file
-    clip_start: float          # seek into the source
-    fallback_extend: float = 0.0  # if next phrase is far away, extend with this much extra source
+    starts (or end of audio).
+
+    Source modes:
+      - `clip` + `clip_start`: hardcoded file + seek (legacy)
+      - `pexels_query`: search Pexels for B-roll matching the query and
+        download the top match
+    """
+    phrase: str
+    clip: Path | None = None
+    clip_start: float = 0.0
+    pexels_query: str | None = None
+    fallback_extend: float = 0.0
 
 @dataclass
 class Punch:
@@ -185,17 +192,36 @@ def build_timed_top(
     workdir: Path,
 ) -> Path:
     """Cut each B-roll segment to exactly fill from one shot's trigger
-    time to the next's. Output a 1080x(top_h) concat."""
+    time to the next's. Resolves Pexels queries on demand. Output a
+    1080x(top_h) concat."""
+    pexels_cache = Path("/tmp/pexels")
+    pexels_cache.mkdir(exist_ok=True)
+
     segments: list[Path] = []
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
         seg_dur = max(0.5, end_t - start_t)
+
+        # Resolve source: prefer Pexels query if provided.
+        if shot.pexels_query:
+            import pexels_search
+            meta = pexels_search.fetch_top(shot.pexels_query, pexels_cache)
+            print(f"      pexels {shot.pexels_query!r} -> {meta['url']} "
+                  f"({meta['width']}x{meta['height']}, {meta['duration']}s)")
+            clip_path = Path(meta["path"])
+            # Most Pexels clips are 4-30s — start a hair past 0 to skip
+            # any opening cross-fade some uploaders include.
+            clip_start = 0.5 if meta["duration"] > seg_dur + 1 else 0
+        else:
+            clip_path = shot.clip
+            clip_start = shot.clip_start
+
         out = workdir / f"top_{i:02d}.mp4"
         # Scale-to-fill the top half, crop, no blur — we want the
         # footage to read clearly.
         run([
             "ffmpeg", "-y", "-loglevel", "error",
-            "-ss", f"{shot.clip_start:.3f}", "-i", str(shot.clip),
+            "-ss", f"{clip_start:.3f}", "-i", str(clip_path),
             "-t", f"{seg_dur:.3f}",
             "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
                    f"crop={W}:{top_h},setsar=1,fps={FPS}",
@@ -375,14 +401,15 @@ def main() -> int:
         "replace it."
     )
 
-    GARBAGE = Path("/tmp/garbage.mp4")
-    FACTORY = Path("/tmp/factory.mp4")
-
+    # Modern Pexels B-roll matched to each script beat. The pipeline
+    # searches, downloads the top match, and uses it. No more 1937 film
+    # grain.
     shots = [
-        Shot(phrase="Americans throw out",  clip=GARBAGE, clip_start=580.0),
-        Shot(phrase="In 1950",              clip=FACTORY, clip_start=340.0),
-        Shot(phrase="Today",                clip=GARBAGE, clip_start=380.0),
-        Shot(phrase="Millennials are now",  clip=GARBAGE, clip_start=600.0),
+        Shot(phrase="Americans throw out",  pexels_query="landfill aerial"),
+        Shot(phrase="In 1950",              pexels_query="vintage furniture workshop"),
+        Shot(phrase="Today",                pexels_query="warehouse boxes"),
+        Shot(phrase="particle",             pexels_query="cheap furniture assembly"),
+        Shot(phrase="Millennials are now",  pexels_query="dumpster furniture"),
     ]
     # Trigger phrases use 1-2 distinctive words that whisper reliably
     # tokenizes; "twelve million" can transcribe as "12 million" and
