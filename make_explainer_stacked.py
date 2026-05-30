@@ -408,10 +408,11 @@ def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
     if dur > 180:
         try:
             import gameplay_scanner
-            # Ask for a window that comfortably covers `target` plus a
-            # small head/tail buffer; that way the random offset within
-            # the window can't run off the end.
-            scan_window = max(30.0, target + 6.0)
+            # Fixed scan window of 35s — wide enough to cover any short
+            # we'd render. Using a constant window keeps the sidecar
+            # cache stable across renders with slightly different audio
+            # lengths (otherwise every length change forces a rescan).
+            scan_window = 35.0
             starts = gameplay_scanner.juicy_starts(
                 src, window=scan_window, step=5.0, top_n=25,
             )
@@ -695,7 +696,57 @@ def build_video(
 
 # ---------- main ----------
 
+def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecraft") -> None:
+    """Run the renderer from a JSON package (as produced by
+    script_generator.py). Schema:
+
+      {
+        "script": "...",
+        "shots":  [{"phrase": "...", "query": "..."}, ...],
+        "punches":[{"phrase": "...", "text": "...", "color": "#..."}, ...],
+        "music_vibe": "dark" | "cinematic" | "hiphop",
+      }
+    """
+    shots = [
+        Shot(phrase=s["phrase"], pexels_query=s["query"])
+        for s in pkg["shots"]
+    ]
+    punches = [
+        Punch(
+            phrase=p["phrase"],
+            text=p["text"],
+            color=p.get("color", "#ffffff"),
+            size=p.get("size", 240),
+            duration=p.get("duration", 2.0),
+        )
+        for p in pkg["punches"]
+    ]
+    build_video(
+        pkg["script"], shots, punches,
+        gameplay_tag=gameplay_tag, out_path=out_path,
+        music_vibe=pkg.get("music_vibe", "dark"),
+    )
+
+
 def main() -> int:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--package", type=Path,
+                    help="JSON package from script_generator.py "
+                         "(if omitted, runs the hardcoded fast-furniture demo)")
+    ap.add_argument("--out", type=Path, help="output mp4 path")
+    args = ap.parse_args()
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    ts_str = time.strftime("%Y%m%d-%H%M%S")
+    out = args.out or (OUTPUT_DIR / f"stacked_{ts_str}.mp4")
+
+    if args.package:
+        pkg = json.loads(args.package.read_text())
+        build_from_package(pkg, out)
+        return 0
+
+    # --- Hardcoded demo: fast furniture ---
     # Script notes:
     #   * Whisper rewrites numbers as digits, so triggers below use "12"
     #     and "25", not "twelve" and "twenty five".
@@ -739,9 +790,6 @@ def main() -> int:
         Punch(phrase="pay twice",    text="PAY TWICE",        color="#ff3030", size=280, duration=2.2),
     ]
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    ts_str = time.strftime("%Y%m%d-%H%M%S")
-    out = OUTPUT_DIR / f"stacked_{ts_str}.mp4"
     build_video(script, shots, punches, gameplay_tag="minecraft",
                 out_path=out, music_vibe=os.environ.get("MUSIC_VIBE", "dark"))
     return 0
