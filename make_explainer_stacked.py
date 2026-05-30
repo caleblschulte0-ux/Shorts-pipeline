@@ -126,10 +126,24 @@ def find_phrase_start(words: list[Word], phrase: str, hint_after: float = 0.0) -
     for i in range(len(transcript) - n + 1):
         if words[i].start < hint_after:
             continue
-        if all(transcript[i + j].startswith(target[j]) or target[j] in transcript[i + j]
-               for j in range(n)):
+        if all(_token_match(transcript[i + j], target[j]) for j in range(n)):
             return words[i].start
     return None
+
+
+def _token_match(transcript_tok: str, target_tok: str) -> bool:
+    """Decide if a single transcript token matches a target token.
+
+    Numbers must match exactly — otherwise trigger '3 billion' grabs
+    the first '3' digit of '350 billion', which is what caused two
+    punches to fire on the same word in the Anthropic short. Words
+    fall back to startswith / substring so verb tenses and similar
+    morphology forgive transcription drift."""
+    if not target_tok:
+        return False
+    if target_tok.isdigit() or transcript_tok.isdigit():
+        return transcript_tok == target_tok
+    return transcript_tok.startswith(target_tok) or target_tok in transcript_tok
 
 
 def _norm(s: str) -> str:
@@ -457,26 +471,34 @@ def build_timed_top(
                     z_expr = f"min(zoom+0.0006,1.18)"
                 else:
                     z_expr = f"if(eq(on,0),1.18,max(zoom-0.0006,1.0))"
-                # Two non-obvious choices: (1) aspect-fit-DECREASE +
-                # pad on a dark color, so logos and narrow images
-                # aren't clipped on the sides AND transparent PNGs
-                # don't bleed black through to the H.264 frame; (2)
-                # explicit yuv420p pixel format because zoompan can
-                # otherwise output a format the downstream concat
-                # demuxer refuses.
-                vf = (
-                    f"scale={W*2}:{top_h*2}:force_original_aspect_ratio=decrease,"
-                    f"pad={W*2}:{top_h*2}:(ow-iw)/2:(oh-ih)/2:color=0x0c0c10,"
-                    f"zoompan=z='{z_expr}'"
+                # Build the frame in two layers. First input is the
+                # image (may have alpha → must NOT become the
+                # background); second is a solid colored canvas of the
+                # correct size we generate on the fly with `color=`.
+                # We overlay the fitted image onto the canvas, then
+                # zoompan that. This guarantees the encoded H.264
+                # frame has no transparent regions even when the
+                # source PNG is a logo with a transparent margin —
+                # the alpha gets composited against the non-black
+                # canvas instead of the H.264 void.
+                bg_color = "0x1f2a3a"  # medium-dark slate blue, clearly NOT black
+                filt = (
+                    f"[1:v]scale={W*2}:{top_h*2}[canvas];"
+                    f"[0:v]scale={W*2}:{top_h*2}:force_original_aspect_ratio=decrease[fg];"
+                    f"[canvas][fg]overlay=(W-w)/2:(H-h)/2:format=auto[stage];"
+                    f"[stage]zoompan=z='{z_expr}'"
                     f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
                     f":d={frames}:s={W}x{top_h}:fps={FPS},"
-                    f"setsar=1"
+                    f"setsar=1[out]"
                 )
                 run([
                     "ffmpeg", "-y", "-loglevel", "error",
                     "-loop", "1", "-i", clip["path"],
+                    "-f", "lavfi", "-i",
+                    f"color=c={bg_color}:s={W*2}x{top_h*2}:r={FPS}",
                     "-t", f"{dur:.3f}",
-                    "-vf", vf,
+                    "-filter_complex", filt,
+                    "-map", "[out]",
                     "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
                     "-pix_fmt", "yuv420p",
                     str(sub),
@@ -771,6 +793,23 @@ def build_video(
                 continue
             punches_resolved.append((p, t, t + p.duration))
             punch_times.append(t)
+
+        # Prevent overlapping punches. All punches render at the same
+        # screen position (top-third, centered), so two firing within
+        # ~2.4s of each other would literally stack on top of each other
+        # — looked like overlapping captions to the user. Truncate each
+        # punch at (next_start - 0.15s) so there's a tiny breathing gap,
+        # but never below 0.8s on screen so a punch always has time to
+        # land.
+        punches_resolved.sort(key=lambda x: x[1])
+        adjusted: list[tuple[Punch, float, float]] = []
+        for i, (p, t, end) in enumerate(punches_resolved):
+            if i + 1 < len(punches_resolved):
+                next_start = punches_resolved[i + 1][1]
+                end = min(end, max(t + 0.8, next_start - 0.15))
+            adjusted.append((p, t, end))
+        punches_resolved = adjusted
+
         punches_path = workdir / "punches.ass"
         write_punches_ass(punches_resolved, punches_path)
 
