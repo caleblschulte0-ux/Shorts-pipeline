@@ -1,22 +1,21 @@
 name: Daily Shorts
 
 on:
-  schedule:
-    # 12:00 UTC = 8am EDT / 7am EST. GitHub crons are best-effort and
-    # often run 5-30 min late — that's expected.
-    - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
       count:
         description: 'How many shorts to publish'
         required: false
         default: '6'
-  # Manual fire from chat: push or modify the trigger file and the
-  # workflow runs immediately. The path filter keeps it from running
-  # on every random commit.
+  # Fires when the scheduled Claude routine's PR auto-merges its day's
+  # packages onto main. Path filter keeps it from running on every
+  # random commit (code/docs/etc.). The auto-merge workflow gates
+  # what lands here, so this is effectively "render and ship once
+  # the day's scripts are ready."
   push:
     branches: [main]
     paths:
+      - 'state/trending_packages/**'
       - '.github/triggers/daily'
 
 permissions:
