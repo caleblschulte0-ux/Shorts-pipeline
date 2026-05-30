@@ -335,10 +335,19 @@ def _resolve_clips(shot: Shot, cache: Path, n_target: int) -> list[dict]:
     clips: list[dict] = []
 
     if shot.image:
-        img_path = _fetch_image(shot.image, Path("/tmp/shot_images"))
-        print(f"      [image] {shot.image[:80]} -> {img_path.name}")
-        return [{"path": str(img_path), "is_image": True,
-                 "width": W, "height": HALF_H, "source": "image"}]
+        try:
+            img_path = _fetch_image(shot.image, Path("/tmp/shot_images"))
+            print(f"      [image] {shot.image[:80]} -> {img_path.name}")
+            return [{"path": str(img_path), "is_image": True,
+                     "width": W, "height": HALF_H, "source": "image"}]
+        except Exception as e:  # noqa: BLE001
+            # Don't crash the render if one Wikipedia/news URL 404s —
+            # fall through to whatever fallback the shot also provided
+            # (queries / pexels_query / clip), or re-raise if there's
+            # nothing to fall back to.
+            print(f"      [image FAILED] {shot.image[:60]}: {e} — trying fallback")
+            if not (shot.queries or shot.pexels_query or shot.clip):
+                raise
 
     if shot.queries:
         for q in shot.queries:
