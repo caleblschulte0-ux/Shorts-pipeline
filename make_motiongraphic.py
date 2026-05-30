@@ -161,6 +161,7 @@ def build_video(
     bg_video: Path | None = None,
     bg_blur: int = 40,
     bg_dim: float = 0.45,
+    bg_seek: float = 30.0,
 ) -> None:
     workdir = Path(tempfile.mkdtemp(prefix="mg_"))
     print(f"workdir: {workdir}")
@@ -183,7 +184,7 @@ def build_video(
             bg_dur = ffprobe_duration(bg_video)
             loop = max(0, int(dur // bg_dur))
             bg_input = [
-                "-ss", "30",
+                "-ss", str(bg_seek),
                 "-stream_loop", str(loop),
                 "-i", str(bg_video),
             ]
@@ -324,12 +325,15 @@ def main() -> int:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     ts_str = time.strftime("%Y%m%d-%H%M%S")
     out = OUTPUT_DIR / f"motiongraphic_{ts_str}.mp4"
-    # Use heavily blurred Minecraft Nether (consistent orange/red lava
-    # glow) as abstract money/danger motion background. Real Pexels
-    # stock B-roll requires an API key — once you give me that key we
-    # swap this for real city/finance footage.
-    bg = ROOT / "gameplay" / "minecraft_nether_parkour.mp4"
-    build_video(script, punches, out, bg_video=bg, bg_blur=35, bg_dim=0.25)
+    # Real B-roll override. If /tmp/newsreel.mp4 exists, use it with
+    # minimal blur so the footage actually reads. Otherwise fall back to
+    # the abstract Minecraft Nether wallpaper.
+    newsreel = Path("/tmp/newsreel.mp4")
+    if newsreel.exists():
+        build_video(script, punches, out, bg_video=newsreel, bg_blur=4, bg_dim=0.15, bg_seek=0)
+    else:
+        bg = ROOT / "gameplay" / "minecraft_nether_parkour.mp4"
+        build_video(script, punches, out, bg_video=bg, bg_blur=35, bg_dim=0.25)
     return 0
 
 

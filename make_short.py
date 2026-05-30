@@ -125,6 +125,12 @@ def pick_gameplay(tag: str, target_seconds: float, workdir: Path) -> Path:
 # ---------- voiceover ----------
 
 async def _tts(text: str, out: Path) -> None:
+    # Force edge_tts to use the system CA bundle so the egress proxy's
+    # self-signed cert in the chain is trusted (certifi alone doesn't
+    # include the egress gateway CA).
+    import ssl
+    import edge_tts.communicate as _ec
+    _ec._SSL_CTX = ssl.create_default_context(cafile="/etc/ssl/certs/ca-certificates.crt")
     import edge_tts
     await edge_tts.Communicate(text, TTS_VOICE).save(str(out))
 
