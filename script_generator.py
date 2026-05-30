@@ -16,13 +16,17 @@ renders):
     script (the runtime looks them up word-for-word in the whisper
     transcript).
 
-Backend: tries Gemini first (free tier — 1500 requests/day on
-gemini-2.5-flash, plenty for daily video gen), then falls back to
-Anthropic if GEMINI_API_KEY isn't set but ANTHROPIC_API_KEY is.
+Backend preference: Groq → Gemini → Anthropic. Groq's free tier is
+the friendliest signup (just an email, no card, no age-gate, no
+regional restriction) and serves Llama 3.3 70B fast enough for daily
+generation. Gemini works too but requires age-verifying your Google
+account. Anthropic is paid and stays as an opt-in.
 
-Env:
+Env (set whichever one you have):
+  GROQ_API_KEY      — free at https://console.groq.com/keys (recommended)
   GEMINI_API_KEY    — free at https://aistudio.google.com/apikey
-  ANTHROPIC_API_KEY — optional fallback / preference
+                       (needs age-verified Google account)
+  ANTHROPIC_API_KEY — paid
 """
 from __future__ import annotations
 
@@ -37,8 +41,10 @@ from pathlib import Path
 
 ANTHROPIC_API = "https://api.anthropic.com/v1/messages"
 GEMINI_API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+GROQ_API = "https://api.groq.com/openai/v1/chat/completions"
 
 # Default model per backend.
+DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
@@ -104,6 +110,36 @@ def _build_context(headlines: list[str], snippets: list[str]) -> str:
     return "\n".join(lines) if lines else "(no additional context)"
 
 
+def _call_groq(system: str, user: str, model: str = DEFAULT_GROQ_MODEL) -> str:
+    """Hit Groq's OpenAI-compatible chat completions endpoint. Free
+    tier on Llama 3.3 70B: 30 RPM / 14400 requests per day, no card."""
+    api_key = os.environ.get("GROQ_API_KEY")
+    if not api_key:
+        raise RuntimeError("GROQ_API_KEY env var not set")
+    body = json.dumps({
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        "temperature": 0.7,
+        "max_tokens": 2000,
+        # Forces a valid JSON object back — no fence stripping needed.
+        "response_format": {"type": "json_object"},
+    }).encode()
+    req = urllib.request.Request(
+        GROQ_API,
+        data=body,
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "content-type": "application/json",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=120) as r:
+        resp = json.loads(r.read())
+    return resp["choices"][0]["message"]["content"]
+
+
 def _call_gemini(system: str, user: str, model: str = DEFAULT_GEMINI_MODEL) -> str:
     """Hit Google's Generative Language API. Free tier on
     gemini-2.5-flash: 15 RPM / 1500 requests per day, no card required."""
@@ -155,14 +191,18 @@ def _call_anthropic(system: str, user: str, model: str = DEFAULT_ANTHROPIC_MODEL
 
 def _call_llm(system: str, user: str, *, backend: str | None = None, model: str | None = None) -> str:
     """Dispatch to whichever backend the caller asked for, or fall back
-    to whichever has a configured key. Gemini wins ties since it's free."""
+    to whichever has a configured key. Free backends win over paid."""
+    if backend == "groq" or (backend is None and os.environ.get("GROQ_API_KEY")):
+        return _call_groq(system, user, model=model or DEFAULT_GROQ_MODEL)
     if backend == "gemini" or (backend is None and os.environ.get("GEMINI_API_KEY")):
         return _call_gemini(system, user, model=model or DEFAULT_GEMINI_MODEL)
     if backend == "anthropic" or (backend is None and os.environ.get("ANTHROPIC_API_KEY")):
         return _call_anthropic(system, user, model=model or DEFAULT_ANTHROPIC_MODEL)
     raise RuntimeError(
-        "no LLM backend configured. Set GEMINI_API_KEY (free at "
-        "https://aistudio.google.com/apikey) or ANTHROPIC_API_KEY."
+        "no LLM backend configured. Set one of:\n"
+        "  GROQ_API_KEY    (free, recommended — https://console.groq.com/keys)\n"
+        "  GEMINI_API_KEY  (free — https://aistudio.google.com/apikey)\n"
+        "  ANTHROPIC_API_KEY (paid)"
     )
 
 
@@ -211,7 +251,7 @@ def main() -> int:
     ap.add_argument("--topic", help="topic query (otherwise read JSON from stdin)")
     ap.add_argument("--headlines", action="append", default=[],
                     help="news headline context; repeat for multiple")
-    ap.add_argument("--backend", choices=("gemini", "anthropic"),
+    ap.add_argument("--backend", choices=("groq", "gemini", "anthropic"),
                     help="force a specific LLM backend (default: auto)")
     ap.add_argument("--model", help="override the model name for the chosen backend")
     ap.add_argument("--out", type=Path, help="write package JSON to this file (default stdout)")

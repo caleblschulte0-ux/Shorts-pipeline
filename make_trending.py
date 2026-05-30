@@ -45,7 +45,7 @@ def main() -> int:
                     help="generate the script package but don't render the video")
     ap.add_argument("--package", type=Path,
                     help="skip discovery + generation, render this saved package")
-    ap.add_argument("--backend", choices=("gemini", "anthropic"),
+    ap.add_argument("--backend", choices=("groq", "gemini", "anthropic"),
                     help="force a specific LLM backend (default: auto)")
     ap.add_argument("--model", help="override the model name for the chosen backend")
     args = ap.parse_args()
@@ -82,9 +82,10 @@ def main() -> int:
 
         # 2. LLM → JSON package.
         backend_label = args.backend or (
+            "groq" if os.environ.get("GROQ_API_KEY") else
             "gemini" if os.environ.get("GEMINI_API_KEY") else
             "anthropic" if os.environ.get("ANTHROPIC_API_KEY") else
-            "(none — set GEMINI_API_KEY or ANTHROPIC_API_KEY)"
+            "(none — set GROQ_API_KEY, GEMINI_API_KEY, or ANTHROPIC_API_KEY)"
         )
         print(f"[trending] generating script via {backend_label}...")
         pkg = script_generator.generate(topic_query, headlines, snippets,
