@@ -427,9 +427,10 @@ def build_timed_top(
     cut_times: list[float] = []
 
     # How long a still image is allowed to stay on screen before it
-    # has to hand off to stock or another image. Users find longer
-    # holds boring even with Ken Burns motion.
-    IMAGE_MAX_DUR = 2.5
+    # has to hand off to stock. Users find longer holds boring even
+    # with Ken Burns motion — keep it short and let multiple specific
+    # images carry the visual story instead of one long hold.
+    IMAGE_MAX_DUR = 1.8
 
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
