@@ -104,6 +104,23 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Cache Kokoro TTS models (~350MB)
+        id: cache-kokoro
+        uses: actions/cache@v4
+        with:
+          path: kokoro_models/
+          key: kokoro-onnx-v1.0
+
+      - name: Download Kokoro TTS models if cache miss
+        if: steps.cache-kokoro.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p kokoro_models
+          curl -fsSL -o kokoro_models/kokoro-v1.0.onnx \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx"
+          curl -fsSL -o kokoro_models/voices-v1.0.bin \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
+          ls -lh kokoro_models/
+
       - name: Seed gameplay clips
         run: |
           python seed_gameplay.py
@@ -112,10 +129,16 @@ jobs:
         env:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          GROQ: ${{ secrets.GROQ_API_KEY }}
+          PEXELS: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY: ${{ secrets.PIXABAY_API_KEY }}
         run: |
           missing=0
           [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
           [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON"; missing=1; }
+          [ -z "$GROQ" ] && { echo "::error::missing secret GROQ_API_KEY (free key at https://console.groq.com/keys)"; missing=1; }
+          [ -z "$PEXELS" ] && { echo "::error::missing secret PEXELS_API_KEY"; missing=1; }
+          [ -z "$PIXABAY" ] && { echo "::error::missing secret PIXABAY_API_KEY"; missing=1; }
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
@@ -125,9 +148,13 @@ jobs:
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           COUNT: ${{ github.event.inputs.count || '6' }}
         run: |
-          python scripts/run_daily.py --count "$COUNT"
+          python scripts/run_trending_daily.py --count "$COUNT"
 
       - name: Update failure counter
         if: always() && steps.preflight.outputs.skip == ''

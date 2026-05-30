@@ -3,6 +3,11 @@ edge-tts>=6.1.10
 openai-whisper>=20231117
 ffmpeg-python>=0.2.0
 requests>=2.31
+# Local TTS for make_explainer_stacked.py. Falls back to edge-tts when
+# model files aren't present, but Kokoro is what the daily renders have
+# been QA'd against — keep it in CI so production voice doesn't drift.
+kokoro-onnx>=0.5.0
+soundfile>=0.12
 # Upload destinations (optional, only needed for --upload youtube)
 google-api-python-client>=2.0
 google-auth>=2.0
