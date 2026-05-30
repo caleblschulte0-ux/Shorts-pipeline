@@ -511,21 +511,31 @@ def mix_audio(
     total_dur: float,
     out: Path,
 ) -> None:
-    """Mix voice (primary), music bed (-13dB), and SFX hits at the given
-    cue times. Uses adelay to schedule each SFX instance, then amix."""
+    """Mix voice (primary), music bed (-15dB), and SFX hits at the given
+    cue times. Two important details:
+
+      * normalize=0 on amix — the default normalize=1 divides every
+        input by the total input count, so with 20+ SFX cues the voice
+        would land at ~1/20 of its nominal level (and feel "quiet at
+        the start, loud at the end" as SFX-density shifts the per-input
+        gain). We want each input to play at its own gain, period.
+
+      * dynaudnorm on the voice — Kokoro's loudness drifts across long
+        scripts; the run-end sentences land hotter than the opener.
+        dynaudnorm levels that out before we mix.
+    """
     inputs: list[str] = ["-i", str(voice), "-i", str(music)]
-    # Each SFX cue becomes an additional input + adelay'd label.
     sfx_chains: list[str] = []
     sfx_labels: list[str] = []
     idx = 2  # next input index
 
     for t in whoosh_times:
         if t < 0.05 or t > total_dur - 0.05:
-            continue  # skip cues outside the speech window
+            continue
         inputs += ["-i", str(whoosh)]
         ms = int(t * 1000)
         lab = f"w{idx}"
-        sfx_chains.append(f"[{idx}]adelay={ms}|{ms},volume=0.45[{lab}]")
+        sfx_chains.append(f"[{idx}]adelay={ms}|{ms},volume=0.35[{lab}]")
         sfx_labels.append(f"[{lab}]")
         idx += 1
     for t in impact_times:
@@ -534,20 +544,27 @@ def mix_audio(
         inputs += ["-i", str(impact)]
         ms = int(t * 1000)
         lab = f"i{idx}"
-        sfx_chains.append(f"[{idx}]adelay={ms}|{ms},volume=0.7[{lab}]")
+        sfx_chains.append(f"[{idx}]adelay={ms}|{ms},volume=0.55[{lab}]")
         sfx_labels.append(f"[{lab}]")
         idx += 1
 
-    # Voice is primary; music ducked under it.
     chain_parts = [
-        "[0]volume=1.0,aformat=channel_layouts=stereo[v]",
-        "[1]volume=0.18,aformat=channel_layouts=stereo[m]",
+        # Voice: stereo + dynaudnorm so TTS loudness drift is gone before
+        # it ever hits amix. Modest gain after — dynaudnorm pulls down
+        # peaks more than it pushes up quiet parts.
+        "[0]aformat=channel_layouts=stereo,dynaudnorm=f=200:g=15:p=0.95,volume=1.1[v]",
+        # Music sits ~15dB under the voice.
+        "[1]aformat=channel_layouts=stereo,volume=0.18[m]",
         *sfx_chains,
     ]
     mix_inputs = "[v][m]" + "".join(sfx_labels)
     n = 2 + len(sfx_labels)
-    chain_parts.append(f"{mix_inputs}amix=inputs={n}:duration=first:dropout_transition=0,"
-                       f"alimiter=limit=0.95[mix]")
+    # normalize=0: each input plays at its own gain, ignore input count.
+    # alimiter at the end stops anything from clipping.
+    chain_parts.append(
+        f"{mix_inputs}amix=inputs={n}:duration=first:dropout_transition=0:normalize=0,"
+        f"alimiter=limit=0.95:attack=5:release=50[mix]"
+    )
     filter_complex = ";".join(chain_parts)
 
     run([
