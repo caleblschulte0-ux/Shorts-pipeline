@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -44,7 +45,9 @@ def main() -> int:
                     help="generate the script package but don't render the video")
     ap.add_argument("--package", type=Path,
                     help="skip discovery + generation, render this saved package")
-    ap.add_argument("--model", default=script_generator.DEFAULT_MODEL)
+    ap.add_argument("--backend", choices=("gemini", "anthropic"),
+                    help="force a specific LLM backend (default: auto)")
+    ap.add_argument("--model", help="override the model name for the chosen backend")
     args = ap.parse_args()
 
     PACKAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -77,9 +80,15 @@ def main() -> int:
             snippets = pick.snippets
             print(f"[trending] selected #{args.rank}: {topic_query!r}")
 
-        # 2. Claude → JSON package.
-        print(f"[trending] generating script via {args.model}...")
-        pkg = script_generator.generate(topic_query, headlines, snippets, model=args.model)
+        # 2. LLM → JSON package.
+        backend_label = args.backend or (
+            "gemini" if os.environ.get("GEMINI_API_KEY") else
+            "anthropic" if os.environ.get("ANTHROPIC_API_KEY") else
+            "(none — set GEMINI_API_KEY or ANTHROPIC_API_KEY)"
+        )
+        print(f"[trending] generating script via {backend_label}...")
+        pkg = script_generator.generate(topic_query, headlines, snippets,
+                                        backend=args.backend, model=args.model)
         ts = time.strftime("%Y%m%d-%H%M%S")
         slug = "".join(c if c.isalnum() else "_" for c in topic_query.lower())[:40]
         pkg_path = PACKAGE_DIR / f"{ts}_{slug}.json"
