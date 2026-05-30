@@ -16,14 +16,16 @@ ROOT = Path(__file__).resolve().parent
 GAMEPLAY_DIR = ROOT / "gameplay"
 
 SEEDS = [
-    # All horizontal (16:9) gameplay — portrait Subway Surfers required a
-    # bias-low crop that still couldn't keep the player visible reliably,
-    # so we now stick to landscape sources that fill the bottom half
-    # edge-to-edge with minimal cropping.
+    # All horizontal (16:9) gameplay — portrait sources required bias-low
+    # crops that couldn't keep the action centred, so we stick to
+    # landscape clips that fill the bottom half edge-to-edge.
     #
     # (tag, source URL — direct A/V on archive.org)
-    # Minecraft parkour through the Nether — "Gone in Sixty Seconds"
-    ("minecraft", "https://archive.org/download/youtube-N6sPzFUrLqI/N6sPzFUrLqI.mp4"),
+    # Long-form Minecraft parkour gameplay (~30 min, 480p) — explicitly
+    # uploaded as "video background for videos", no copyright. We pair
+    # this with gameplay_scanner so the composer seeks into the busiest
+    # ~30s windows instead of landing on slow walks or menu screens.
+    ("minecraft", "https://archive.org/download/minecraft-parkour-gameplay-no-copyright-480p/Minecraft%20Parkour%20Gameplay%20No%20Copyright_480p.ia.mp4"),
     # Geometry Dash hard-level run (Sonic Wave) — neon obstacles, very
     # high contrast, reads great as background. Gameplay is the first
     # ~145 seconds before the level-complete screen.
@@ -32,8 +34,9 @@ SEEDS = [
 
 # After download, trim these tags to skip leading intro / trailing outro
 # frames so the random gameplay picker stays in the actual gameplay window.
+# The Minecraft long-form clip is pure gameplay edge-to-edge, no trim
+# needed; the scanner handles dead-air avoidance.
 TRIMS: dict[str, tuple[float, float]] = {
-    "minecraft": (15.0, 145.0),
     "geometry":  (3.0, 145.0),
 }
 

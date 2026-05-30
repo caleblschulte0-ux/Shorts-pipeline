@@ -399,8 +399,38 @@ def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
         sys.exit(f"no gameplay clips matching {tag!r} in {GAMEPLAY_DIR}")
     src = random.choice(pool)
     dur = ffprobe_duration(src)
-    max_seek = max(0, dur - target - 25)
-    seek = random.uniform(5, max(5, max_seek))
+
+    # Prefer to seek into a pre-scanned high-motion window. The scanner
+    # caches its result in a sidecar JSON so this only pays the scan
+    # cost once per video. For short clips (< 3 min) the overhead isn't
+    # worth it — fall back to random seek.
+    seek = None
+    if dur > 180:
+        try:
+            import gameplay_scanner
+            # Ask for a window that comfortably covers `target` plus a
+            # small head/tail buffer; that way the random offset within
+            # the window can't run off the end.
+            scan_window = max(30.0, target + 6.0)
+            starts = gameplay_scanner.juicy_starts(
+                src, window=scan_window, step=5.0, top_n=25,
+            )
+            if starts:
+                # Pick a juicy window, then jitter inside it so two
+                # renders that hit the same window don't show the same
+                # framing.
+                base = random.choice(starts)
+                seek = base + random.uniform(0, max(0.1, scan_window - target - 2.0))
+                print(f"      juicy seek {seek:.1f}s (from {len(starts)} candidates)")
+        except Exception as e:  # noqa: BLE001
+            print(f"      gameplay_scanner failed, falling back: {e}")
+
+    if seek is None:
+        # Stay away from the tail of the clip — that's where the
+        # YouTuber's world-select menu / outro screens tend to sit.
+        max_seek = max(0, dur - target - 25)
+        seek = random.uniform(5, max(5, max_seek))
+
     out = workdir / "bottom_raw.mp4"
     run([
         "ffmpeg", "-y", "-loglevel", "error",
