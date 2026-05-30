@@ -51,15 +51,42 @@ def ffprobe_duration(path: Path) -> float:
 
 # ---------- TTS ----------
 
-async def _tts(text: str, out: Path) -> None:
+KOKORO_MODEL = ROOT / "kokoro_models" / "kokoro-v1.0.onnx"
+KOKORO_VOICES = ROOT / "kokoro_models" / "voices-v1.0.bin"
+KOKORO_VOICE = os.environ.get("KOKORO_VOICE", "am_michael")
+
+
+def tts(text: str, out: Path) -> None:
+    """Synthesize narration. Prefers local Kokoro TTS (free, unlimited,
+    significantly more natural than edge-tts) if model files are
+    present. Falls back to edge-tts otherwise."""
+    if KOKORO_MODEL.exists() and KOKORO_VOICES.exists():
+        _tts_kokoro(text, out)
+    else:
+        asyncio.run(_tts_edge(text, out))
+
+
+def _tts_kokoro(text: str, out: Path) -> None:
+    import soundfile as sf
+    from kokoro_onnx import Kokoro
+    k = Kokoro(str(KOKORO_MODEL), str(KOKORO_VOICES))
+    samples, sr = k.create(text, voice=KOKORO_VOICE, speed=1.05, lang="en-us")
+    wav_path = out.with_suffix(".wav")
+    sf.write(str(wav_path), samples, sr)
+    # Convert to mp3 so downstream ffmpeg paths don't choke on the wav.
+    subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-i", str(wav_path), "-codec:a", "libmp3lame", "-qscale:a", "2",
+        str(out),
+    ], check=True)
+    wav_path.unlink(missing_ok=True)
+
+
+async def _tts_edge(text: str, out: Path) -> None:
     import edge_tts.communicate as _ec
     _ec._SSL_CTX = ssl.create_default_context(cafile="/etc/ssl/certs/ca-certificates.crt")
     import edge_tts
     await edge_tts.Communicate(text, TTS_VOICE).save(str(out))
-
-
-def tts(text: str, out: Path) -> None:
-    asyncio.run(_tts(text, out))
 
 
 # ---------- whisper ----------

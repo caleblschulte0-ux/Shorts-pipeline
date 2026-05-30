@@ -19,3 +19,4 @@ gameplay/*.avi
 # OAuth secrets — never commit
 client_secret.json
 token.json
+kokoro_models/
