@@ -628,34 +628,96 @@ def synth_music(duration: float, out: Path, vibe: str = "dark") -> None:
     ])
 
 
-def synth_sfx(workdir: Path) -> tuple[Path, Path]:
-    """Make whoosh and impact SFX files. Returns (whoosh_path, impact_path)."""
-    whoosh = workdir / "whoosh.wav"
-    impact = workdir / "impact.wav"
-    # Whoosh: filtered brown noise, 0.22s.
+def synth_sfx(workdir: Path) -> dict[str, Path]:
+    """Make a small SFX library. Returns a dict of named one-shots.
+
+    The whoosh fires on every visual cut. The four impact variants are
+    keyed off punch color — each color implies a tone, so the SFX
+    matches: red = shock/bad → deep thump, green = positive → bright
+    bell, orange = warning → mid bell, white = neutral → classic
+    impact. Multiple punches in a single video stop feeling repetitive
+    when each one sounds slightly different."""
+    sfx: dict[str, Path] = {}
+
+    # Whoosh: filtered brown noise, 0.22s. Fires on every B-roll cut.
+    sfx["whoosh"] = workdir / "whoosh.wav"
     run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i", "anoisesrc=duration=0.22:color=brown:amplitude=0.6",
         "-af", "highpass=f=400,lowpass=f=6000,volume=0.6",
-        str(whoosh),
+        str(sfx["whoosh"]),
     ])
-    # Impact: low sine with sharp decay, 0.30s.
+
+    # Neutral impact: low sine with sharp decay, 0.30s. Classic.
+    sfx["impact_neutral"] = workdir / "impact_neutral.wav"
     run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i",
         "aevalsrc='0.9*sin(2*PI*70*t)*exp(-10*t)+0.4*sin(2*PI*45*t)*exp(-6*t)':d=0.30:s=44100",
-        str(impact),
+        str(sfx["impact_neutral"]),
     ])
-    return whoosh, impact
+
+    # Shock (red): sub-bass dominant, longer decay, scarier.
+    sfx["impact_shock"] = workdir / "impact_shock.wav"
+    run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "lavfi", "-i",
+        "aevalsrc='1.0*sin(2*PI*40*t)*exp(-5*t)+0.55*sin(2*PI*55*t)*exp(-8*t)+"
+        "0.3*sin(2*PI*82*t)*exp(-12*t)':d=0.45:s=44100",
+        "-af", "highpass=f=25,lowpass=f=2200",
+        str(sfx["impact_shock"]),
+    ])
+
+    # Positive (green): bright tonal bell, two harmonics.
+    sfx["impact_positive"] = workdir / "impact_positive.wav"
+    run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "lavfi", "-i",
+        "aevalsrc='0.55*sin(2*PI*880*t)*exp(-7*t)+0.30*sin(2*PI*1320*t)*exp(-9*t)+"
+        "0.20*sin(2*PI*1760*t)*exp(-11*t)':d=0.40:s=44100",
+        "-af", "highpass=f=400,lowpass=f=8000",
+        str(sfx["impact_positive"]),
+    ])
+
+    # Warning (orange): mid-frequency bell with a quick metallic edge.
+    sfx["impact_warning"] = workdir / "impact_warning.wav"
+    run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "lavfi", "-i",
+        "aevalsrc='0.6*sin(2*PI*420*t)*exp(-6*t)+0.35*sin(2*PI*660*t)*exp(-9*t)+"
+        "0.18*sin(2*PI*1100*t)*exp(-14*t)':d=0.38:s=44100",
+        "-af", "highpass=f=200,lowpass=f=5000",
+        str(sfx["impact_warning"]),
+    ])
+
+    return sfx
+
+
+# Map punch color hex -> SFX variant. Anything not in the map falls
+# through to the neutral variant.
+_PUNCH_COLOR_TO_SFX = {
+    "#ff3030": "impact_shock",
+    "#ff5050": "impact_shock",
+    "#ff9000": "impact_warning",
+    "#ff9900": "impact_warning",
+    "#ffaa30": "impact_warning",
+    "#50ff80": "impact_positive",
+    "#30ff60": "impact_positive",
+    "#80ffaa": "impact_positive",
+    "#ffffff": "impact_neutral",
+}
+
+
+def sfx_for_punch(p: "Punch") -> str:
+    return _PUNCH_COLOR_TO_SFX.get((p.color or "").lower(), "impact_neutral")
 
 
 def mix_audio(
     voice: Path,
     music: Path,
-    whoosh: Path,
-    impact: Path,
+    sfx: dict[str, Path],
     whoosh_times: list[float],
-    impact_times: list[float],
+    punch_cues: list[tuple[float, str]],
     total_dur: float,
     out: Path,
 ) -> None:
@@ -680,16 +742,17 @@ def mix_audio(
     for t in whoosh_times:
         if t < 0.05 or t > total_dur - 0.05:
             continue
-        inputs += ["-i", str(whoosh)]
+        inputs += ["-i", str(sfx["whoosh"])]
         ms = int(t * 1000)
         lab = f"w{idx}"
         sfx_chains.append(f"[{idx}]adelay={ms}|{ms},volume=0.35[{lab}]")
         sfx_labels.append(f"[{lab}]")
         idx += 1
-    for t in impact_times:
+    for t, variant in punch_cues:
         if t < 0.05 or t > total_dur - 0.05:
             continue
-        inputs += ["-i", str(impact)]
+        path = sfx.get(variant) or sfx["impact_neutral"]
+        inputs += ["-i", str(path)]
         ms = int(t * 1000)
         lab = f"i{idx}"
         sfx_chains.append(f"[{idx}]adelay={ms}|{ms},volume=0.55[{lab}]")
@@ -785,14 +848,16 @@ def build_video(
         write_captions_ass(chunks, caps_path, margin_v=380)
 
         punches_resolved: list[tuple[Punch, float, float]] = []
-        punch_times: list[float] = []
+        # (time, sfx_variant_name) — variant picked from the punch's
+        # color so the audio matches the visual tone.
+        punch_cues: list[tuple[float, str]] = []
         for p in punches:
             t = find_phrase_start(words, p.phrase, hint_after=0)
             if t is None:
                 print(f"      !! punch phrase not found: {p.phrase!r}")
                 continue
             punches_resolved.append((p, t, t + p.duration))
-            punch_times.append(t)
+            punch_cues.append((t, sfx_for_punch(p)))
 
         # Prevent overlapping punches. All punches render at the same
         # screen position (top-third, centered), so two firing within
@@ -827,12 +892,12 @@ def build_video(
             synth_music(total_dur, music, vibe=music_vibe)
             print(f"      synthesized {music_vibe} music bed")
 
-        whoosh, impact = synth_sfx(workdir)
+        sfx = synth_sfx(workdir)
         # Whoosh on every cut EXCEPT the first (the very start doesn't
         # need a swoosh — it's already an attention grab from silence).
         whoosh_cues = [t for t in cut_times if t > 0.3]
         mixed_audio = workdir / "audio.aac"
-        mix_audio(voice, music, whoosh, impact, whoosh_cues, punch_times, total_dur, mixed_audio)
+        mix_audio(voice, music, sfx, whoosh_cues, punch_cues, total_dur, mixed_audio)
 
         # 8. Stack top + bottom, burn in captions + punches.
         print("[8/9] compose video")
