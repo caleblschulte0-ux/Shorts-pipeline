@@ -328,27 +328,29 @@ def _fetch_image(url_or_path: str, cache: Path) -> Path:
     return p
 
 
-def _resolve_clips(shot: Shot, cache: Path, n_target: int) -> list[dict]:
-    """Return up to n_target downloaded clip metadata dicts for this
-    shot. Always returns at least one (or raises)."""
+def _resolve_image(shot: Shot) -> dict | None:
+    """Fetch the shot's image (URL or local path). Returns None on any
+    failure so the caller can fall back to stock; raises only when the
+    shot has nothing else to fall back to."""
+    if not shot.image:
+        return None
+    try:
+        img_path = _fetch_image(shot.image, Path("/tmp/shot_images"))
+        print(f"      [image] {shot.image[:80]} -> {img_path.name}")
+        return {"path": str(img_path), "is_image": True,
+                "width": W, "height": HALF_H, "source": "image"}
+    except Exception as e:  # noqa: BLE001
+        print(f"      [image FAILED] {shot.image[:60]}: {e} — trying fallback")
+        if not (shot.queries or shot.pexels_query or shot.clip):
+            raise
+        return None
+
+
+def _resolve_stock(shot: Shot, cache: Path, n_target: int) -> list[dict]:
+    """Just the stock-video resolution path (no image branch). Returns
+    the downloaded clip metadata; always at least one, or raises."""
     import stock_search
     clips: list[dict] = []
-
-    if shot.image:
-        try:
-            img_path = _fetch_image(shot.image, Path("/tmp/shot_images"))
-            print(f"      [image] {shot.image[:80]} -> {img_path.name}")
-            return [{"path": str(img_path), "is_image": True,
-                     "width": W, "height": HALF_H, "source": "image"}]
-        except Exception as e:  # noqa: BLE001
-            # Don't crash the render if one Wikipedia/news URL 404s —
-            # fall through to whatever fallback the shot also provided
-            # (queries / pexels_query / clip), or re-raise if there's
-            # nothing to fall back to.
-            print(f"      [image FAILED] {shot.image[:60]}: {e} — trying fallback")
-            if not (shot.queries or shot.pexels_query or shot.clip):
-                raise
-
     if shot.queries:
         for q in shot.queries:
             try:
@@ -403,35 +405,68 @@ def build_timed_top(
     all_segments: list[Path] = []
     cut_times: list[float] = []
 
+    # How long a still image is allowed to stay on screen before it
+    # has to hand off to stock or another image. Users find longer
+    # holds boring even with Ken Burns motion.
+    IMAGE_MAX_DUR = 2.5
+
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
         seg_dur = max(0.5, end_t - start_t)
 
-        # Decide how many sub-cuts fit in this window.
-        n_cuts = max(1, round(seg_dur / SUB_CUT_TARGET))
-        cut_dur = seg_dur / n_cuts
+        # Plan this shot's sub-cuts as a list of (clip, duration) pairs.
+        # The plan handles three cases:
+        #   1. Image + stock fallback   -> image (capped) then stock cuts
+        #   2. Image only               -> image extended to full window
+        #   3. Stock only               -> existing multi-cut behavior
+        plan: list[tuple[dict, float]] = []
+        image_clip = _resolve_image(shot)
+        has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
 
-        clips = _resolve_clips(shot, cache, n_target=n_cuts)
+        if image_clip and has_stock:
+            image_dur = min(IMAGE_MAX_DUR, seg_dur)
+            plan.append((image_clip, image_dur))
+            remaining = seg_dur - image_dur
+        elif image_clip:
+            plan.append((image_clip, seg_dur))
+            remaining = 0.0
+        else:
+            remaining = seg_dur
 
-        for j in range(n_cuts):
-            clip = clips[j % len(clips)]
+        if remaining > 0.3:
+            n_cuts = max(1, round(remaining / SUB_CUT_TARGET))
+            cut_dur = remaining / n_cuts
+            stock_clips = _resolve_stock(shot, cache, n_target=n_cuts)
+            for j in range(n_cuts):
+                plan.append((stock_clips[j % len(stock_clips)], cut_dur))
+
+        # Render each planned sub-cut.
+        sub_t = start_t
+        for j, (clip, dur) in enumerate(plan):
             sub = workdir / f"top_{i:02d}_{j:02d}.mp4"
 
             if clip.get("is_image"):
                 # Still image — Ken Burns it. Alternate zoom-in vs
-                # slow-pan based on cut index so successive image shots
+                # zoom-out based on cut index so successive image shots
                 # don't all do the same move. We work at 2x then scale
                 # down inside the zoompan filter so the zoom doesn't
                 # quantize to ugly stair-stepped frames.
-                frames = max(2, int(cut_dur * FPS))
+                frames = max(2, int(dur * FPS))
                 move = "zoom_in" if (i + j) % 2 == 0 else "zoom_out"
                 if move == "zoom_in":
                     z_expr = f"min(zoom+0.0006,1.18)"
                 else:
                     z_expr = f"if(eq(on,0),1.18,max(zoom-0.0006,1.0))"
+                # Two non-obvious choices: (1) aspect-fit-DECREASE +
+                # pad on a dark color, so logos and narrow images
+                # aren't clipped on the sides AND transparent PNGs
+                # don't bleed black through to the H.264 frame; (2)
+                # explicit yuv420p pixel format because zoompan can
+                # otherwise output a format the downstream concat
+                # demuxer refuses.
                 vf = (
-                    f"scale={W*2}:{top_h*2}:force_original_aspect_ratio=increase,"
-                    f"crop={W*2}:{top_h*2},"
+                    f"scale={W*2}:{top_h*2}:force_original_aspect_ratio=decrease,"
+                    f"pad={W*2}:{top_h*2}:(ow-iw)/2:(oh-ih)/2:color=0x0c0c10,"
                     f"zoompan=z='{z_expr}'"
                     f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
                     f":d={frames}:s={W}x{top_h}:fps={FPS},"
@@ -440,29 +475,30 @@ def build_timed_top(
                 run([
                     "ffmpeg", "-y", "-loglevel", "error",
                     "-loop", "1", "-i", clip["path"],
-                    "-t", f"{cut_dur:.3f}",
+                    "-t", f"{dur:.3f}",
                     "-vf", vf,
                     "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                    "-pix_fmt", "yuv420p",
                     str(sub),
                 ])
             else:
                 clip_dur = float(clip.get("duration") or 10)
-                # If we're reusing a clip for a second cut, seek further in.
-                repeat = j // len(clips)
+                # Vary the seek so repeat cuts don't show the same frames.
                 seek_start = 0.3
-                seek_step = max(1.5, (clip_dur - cut_dur - 1.0) / max(1, n_cuts))
-                seek = min(seek_start + repeat * seek_step, max(0.0, clip_dur - cut_dur - 0.3))
+                seek = min(seek_start + j * 1.5,
+                           max(0.0, clip_dur - dur - 0.3))
                 run([
                     "ffmpeg", "-y", "-loglevel", "error",
                     "-ss", f"{seek:.3f}", "-i", clip["path"],
-                    "-t", f"{cut_dur:.3f}",
+                    "-t", f"{dur:.3f}",
                     "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
                            f"crop={W}:{top_h},setsar=1,fps={FPS}",
                     "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
                     str(sub),
                 ])
             all_segments.append(sub)
-            cut_times.append(start_t + j * cut_dur)
+            cut_times.append(sub_t)
+            sub_t += dur
 
     list_file = workdir / "top_list.txt"
     list_file.write_text("\n".join(f"file '{s}'" for s in all_segments))
@@ -521,8 +557,13 @@ def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
         "ffmpeg", "-y", "-loglevel", "error",
         "-ss", f"{seek:.3f}", "-i", str(src),
         "-t", f"{target:.3f}",
+        # Center crop on both axes. The previous formula offset y by 70%
+        # of the excess height (showing the bottom third) which was
+        # cutting the player's head off on landscape sources and cutting
+        # everything off on portrait sources. Centered is the safer
+        # default for arbitrary parkour gameplay clips.
         "-vf", f"scale={W}:{HALF_H}:force_original_aspect_ratio=increase,"
-               f"crop={W}:{HALF_H}:0:'(ih-{HALF_H})*0.7',setsar=1,fps={FPS}",
+               f"crop={W}:{HALF_H},setsar=1,fps={FPS}",
         "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
         str(out),
     ])
@@ -696,7 +737,12 @@ def build_video(
             t = find_phrase_start(words, shot.phrase, hint_after=hint)
             if t is None:
                 print(f"      !! trigger phrase not found: {shot.phrase!r}")
-                t = hint
+                # Don't collapse the shot to nothing — give it at least
+                # 2.5s after the prior shot so the B-roll has a fighting
+                # chance of showing on screen. If a trigger fails right
+                # at the start (no prior), use that as the floor too.
+                prev_t = shot_times[-1] if shot_times else 0.0
+                t = max(hint, prev_t + 2.5)
             shot_times.append(t)
             hint = t + 0.1
             print(f"      shot {shot.phrase[:30]:30s} -> t={t:.2f}s")
