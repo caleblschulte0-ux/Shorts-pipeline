@@ -148,6 +148,12 @@ def _token_match(transcript_tok: str, target_tok: str) -> bool:
 
 
 def _norm(s: str) -> str:
+    # Equivalence shims for Whisper-vs-author drift. "%" comes through as
+    # its own token so "95 percent" in the script becomes ["95", "%"] in
+    # the transcript and would never match the author's ["95", "percent"]
+    # trigger. Normalize the symbol forms to their spelled-out forms in
+    # both directions so triggers Just Work either way.
+    s = s.replace("%", "percent")
     return "".join(ch.lower() for ch in s if ch.isalnum())
 
 
