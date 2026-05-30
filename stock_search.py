@@ -18,12 +18,15 @@ def fetch_top(query: str, dest: Path, **kwargs) -> dict:
     errors: list[str] = []
     providers: list[tuple[str, callable]] = []
 
-    if os.environ.get("PEXELS_API_KEY"):
-        import pexels_search
-        providers.append(("pexels", pexels_search.fetch_top))
+    # Provider priority: Pixabay first because its top results tend to
+    # be 4K vs Pexels' 720-1080p. If Pixabay returns nothing usable for
+    # a query (e.g. duration too short), Pexels picks up the slack.
     if os.environ.get("PIXABAY_API_KEY"):
         import pixabay_search
         providers.append(("pixabay", pixabay_search.fetch_top))
+    if os.environ.get("PEXELS_API_KEY"):
+        import pexels_search
+        providers.append(("pexels", pexels_search.fetch_top))
 
     if not providers:
         raise RuntimeError("no stock providers configured (set PEXELS_API_KEY and/or PIXABAY_API_KEY)")
