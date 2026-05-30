@@ -6,6 +6,7 @@ venv/
 
 # Generated artifacts and large media
 output/
+livestream/outbox/
 gameplay/*.mp4
 gameplay/*.mkv
 gameplay/*.webm

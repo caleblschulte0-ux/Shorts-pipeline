@@ -9,8 +9,9 @@ gameplay pick+trim, audio mix, ASS authoring, and the final compose. This
 harness drives those stages through BOTH code paths on identical, pinned
 inputs and byte-compares the resulting MP4:
 
-  * "before" = make_short.py as committed at git HEAD (fetched fresh, imported
-               as a throwaway module).
+  * "before" = the pre-refactor make_short.py at a pinned git ref (BASELINE_REF,
+               overridable with --baseline-ref), fetched fresh and imported as
+               a throwaway module.
   * "after"  = the new shared/ core.
 
 Determinism controls:
@@ -39,6 +40,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
+
+# The last commit where make_short.py was self-contained (before the shared/
+# extraction). The proof renders through THIS exact file and through the
+# current shared/ core. Override with --baseline-ref <git-ref> if needed.
+BASELINE_REF = "509d4a9"
 
 SEED = 1234
 SRC_DUR = 6.0
@@ -86,11 +92,11 @@ def make_synthetic_voice(out: Path) -> None:
     ])
 
 
-def import_old_make_short(tmp: Path):
-    """Fetch make_short.py from git HEAD and import it as a throwaway module
-    with its gameplay dir pointed at our synthetic clip."""
+def import_old_make_short(tmp: Path, baseline_ref: str = BASELINE_REF):
+    """Fetch the pre-refactor make_short.py from a pinned git ref and import it
+    as a throwaway module with its gameplay dir pointed at our synthetic clip."""
     old_src = subprocess.run(
-        ["git", "show", "HEAD:make_short.py"],
+        ["git", "show", f"{baseline_ref}:make_short.py"],
         cwd=ROOT, check=True, capture_output=True, text=True,
     ).stdout
     old_path = tmp / "make_short_old.py"
@@ -129,8 +135,14 @@ def render_new(source: Path, gameplay_dir: Path, voice: Path, out: Path, wd: Pat
 
 
 def main() -> int:
+    import argparse
+    ap = argparse.ArgumentParser(description="Prove shared/ render is byte-identical to pre-refactor make_short.py.")
+    ap.add_argument("--baseline-ref", default=BASELINE_REF,
+                    help=f"git ref of the pre-refactor make_short.py (default {BASELINE_REF})")
+    args = ap.parse_args()
+
     tmp = Path(tempfile.mkdtemp(prefix="verify_"))
-    print(f"workdir: {tmp}")
+    print(f"workdir: {tmp}  baseline-ref: {args.baseline_ref}")
 
     source = tmp / "source.mp4"
     voice = tmp / "voice.mp3"
@@ -143,7 +155,7 @@ def main() -> int:
 
     # ASS-content equivalence (separate from the render, a direct check)
     import shared
-    old = import_old_make_short(tmp)
+    old = import_old_make_short(tmp, args.baseline_ref)
     words_old = [old.Word(0, 0.4, "alpha"), old.Word(0.4, 0.8, "beta"), old.Word(0.8, 1.2, "gamma")]
     words_new = [shared.Word(0, 0.4, "alpha"), shared.Word(0.4, 0.8, "beta"), shared.Word(0.8, 1.2, "gamma")]
     p_old = tmp / "old.ass"
@@ -158,7 +170,7 @@ def main() -> int:
     out_old = tmp / "out_old.mp4"
     out_new = tmp / "out_new.mp4"
 
-    print("rendering BEFORE (git HEAD make_short.py) ...")
+    print(f"rendering BEFORE (make_short.py @ {args.baseline_ref}) ...")
     render_old(old, source, gp_dir, voice, out_old, wd_old)
     print("rendering AFTER (shared/) ...")
     render_new(source, gp_dir, voice, out_new, wd_new)

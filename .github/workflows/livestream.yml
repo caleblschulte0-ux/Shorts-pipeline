@@ -1,0 +1,72 @@
+name: Livestream Loop
+
+# ISOLATED from the daily money-maker: separate schedule, separate concurrency
+# group, no path overlap, no writes to state/ or the catalog. This job only
+# builds the themed loop asset and uploads it as an artifact. It does NOT
+# stream (GitHub runners are ephemeral and can't hold RTMP open) and does NOT
+# read or honor the PAUSED switch — that switch is for the daily pipeline only.
+
+on:
+  schedule:
+    # Mondays 06:00 UTC — weekly, low-frequency. Independent of the daily cron.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: 'Theme override (blank = seasonal: winter/spring/summer/autumn/holiday)'
+        required: false
+        default: ''
+      base_seconds:
+        description: 'Base clip length; seamless loop is 2x this'
+        required: false
+        default: '30'
+
+permissions:
+  contents: read
+
+jobs:
+  build-loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: livestream-loop
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -q ffmpeg
+
+      - name: Build themed seamless loop
+        env:
+          # Keep the asset in the outbox; pushing to a live encoder is wired
+          # later (see livestream/handoff.py). outbox = no live push.
+          LIVESTREAM_HANDOFF: outbox
+        run: |
+          THEME="${{ github.event.inputs.theme }}"
+          BASE="${{ github.event.inputs.base_seconds }}"
+          ARGS=""
+          [ -n "$THEME" ] && ARGS="$ARGS --theme $THEME"
+          [ -n "$BASE" ] && ARGS="$ARGS --base-seconds $BASE"
+          python livestream/build_loop.py $ARGS
+
+      - name: Upload loop asset
+        uses: actions/upload-artifact@v4
+        with:
+          name: livestream-loop
+          path: |
+            livestream/outbox/loop_*.mp4
+            livestream/outbox/loop_*.manifest.json
+          if-no-files-found: error
+          retention-days: 14

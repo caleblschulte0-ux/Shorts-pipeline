@@ -44,6 +44,7 @@ from .render import (
 from .shell import ffprobe_duration, run
 from .sourcing import download_source, is_url
 from .tts import synthesize_voiceover
+from .visualgen import generate_abstract_clip, make_seamless_loop
 
 __all__ = [
     "mix_audio",
@@ -73,4 +74,6 @@ __all__ = [
     "download_source",
     "is_url",
     "synthesize_voiceover",
+    "generate_abstract_clip",
+    "make_seamless_loop",
 ]
