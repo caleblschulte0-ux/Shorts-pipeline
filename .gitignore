@@ -16,6 +16,11 @@ gameplay/*.avi
 # Whisper model cache
 .cache/
 
+# Loose trending-package JSONs are local QA artifacts. The daily routine
+# writes its packages into a date-stamped subdir (state/trending_packages/
+# YYYYMMDD/) which is what we want to track.
+state/trending_packages/*.json
+
 # OAuth secrets — never commit
 client_secret.json
 token.json
