@@ -20,6 +20,7 @@ import asyncio
 import json
 import os
 import random
+import re
 import shutil
 import ssl
 import subprocess
@@ -690,11 +691,33 @@ def synth_sfx(workdir: Path) -> dict[str, Path]:
         str(sfx["impact_warning"]),
     ])
 
+    # Money (cash register): two quick metallic ka-chings. Plays
+    # whenever the punch text contains a dollar sign, regardless of
+    # color, because "$350B" lighting up with a flat blip felt wrong.
+    sfx["impact_money"] = workdir / "impact_money.wav"
+    run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "lavfi", "-i",
+        "aevalsrc='"
+        # First hit at t=0
+        "0.5*sin(2*PI*1480*t)*exp(-12*t)+"
+        "0.35*sin(2*PI*2100*t)*exp(-14*t)+"
+        # Second hit ~95ms later
+        "0.45*sin(2*PI*1760*max(0,t-0.095))*exp(-12*max(0,t-0.095))+"
+        "0.30*sin(2*PI*2640*max(0,t-0.095))*exp(-14*max(0,t-0.095))"
+        "':d=0.42:s=44100",
+        "-af", "highpass=f=500,lowpass=f=8000",
+        str(sfx["impact_money"]),
+    ])
+
     return sfx
 
 
 # Map punch color hex -> SFX variant. Anything not in the map falls
-# through to the neutral variant.
+# through to the neutral variant. Text-pattern rules in sfx_for_punch()
+# take priority over color when the text itself implies a specific tone
+# (a punch with "$350B" plays the cash-register ching regardless of
+# what color the author chose for it).
 _PUNCH_COLOR_TO_SFX = {
     "#ff3030": "impact_shock",
     "#ff5050": "impact_shock",
@@ -708,7 +731,28 @@ _PUNCH_COLOR_TO_SFX = {
 }
 
 
+# Text-pattern overrides. (regex, sfx_name) — the first match wins. The
+# author shouldn't need to hand-pick SFX; the pipeline should anticipate
+# obvious cases from the punch text itself.
+_PUNCH_TEXT_RULES: list[tuple[re.Pattern, str]] = [
+    # Anything with a dollar sign is money — ching.
+    (re.compile(r"\$"), "impact_money"),
+    # Catastrophic / shock vocabulary.
+    (re.compile(r"\b(RIP|DEAD|CRASH|DIES?|KILLED|GAME OVER|BANNED)\b", re.I),
+     "impact_shock"),
+    # Time-pressure / countdown.
+    (re.compile(r"\b\d+\s*(DAYS?|HOURS?|MIN(UTES?)?|SEC(ONDS?)?)\b", re.I),
+     "impact_warning"),
+]
+
+
 def sfx_for_punch(p: "Punch") -> str:
+    # Text rules first — they catch cases the author's color choice
+    # might not (e.g. "$1.2B" on a green-positive punch should still
+    # ching like money).
+    for pat, name in _PUNCH_TEXT_RULES:
+        if pat.search(p.text or ""):
+            return name
     return _PUNCH_COLOR_TO_SFX.get((p.color or "").lower(), "impact_neutral")
 
 
