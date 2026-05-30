@@ -282,37 +282,43 @@ def build_video(
 
 
 def main() -> int:
-    # Tightened per 2026 Shorts research: result-first hook, payoff
-    # foreshadowed by second 3, ~33 seconds, no dead tail, hard stop on
-    # the punchline.
+    # Fast furniture topic. Hook: lead with the shock stat (12M tons of
+    # furniture trashed every year in the US), foreshadow the "fast
+    # furniture" framing by second 3, end on the millennial pay-twice
+    # punchline. Stats sourced from EPA Sustainable Materials Management
+    # report (~12M tons of furniture + bedding waste annually) and
+    # post-NAFTA furniture import data.
     script = (
-        "Nine hundred million dollars. Lost. Because of one extra zero. "
-        "In August 2020 a Citibank employee was processing an eight million "
-        "dollar interest payment to Revlon's lenders. They added one digit. "
-        "They wired nine hundred million instead. The full loan principal. "
-        "Citibank realized within hours and demanded the money back. Some "
-        "lenders returned it. Others kept it. Citibank sued. The judge ruled. "
-        "You sent it. They keep it. Most expensive typo in banking history."
+        "Americans throw out twelve million tons of furniture. Every year. "
+        "This is fast furniture, and it makes fast fashion look efficient. "
+        "In 1950, your couch was solid wood, real upholstery, built in High "
+        "Point North Carolina. It lasted twenty five years. Today, most "
+        "American furniture is imported, glued together from particle board, "
+        "and wrapped in vinyl. Designed to fall apart after one move. IKEA, "
+        "Wayfair, and Amazon trained a generation to treat furniture like "
+        "clothes. Millennials are now paying twice. Once to buy it. Once to "
+        "replace it."
     )
 
-    # Punches start at 0.0 so the very first frame of the video shows the
-    # dollar amount — that's the "visual hook before sound" principle from
-    # the research. Foreshadow "ONE TYPO" by second 3. Hard stop on
-    # MOST EXPENSIVE TYPO so there's no dead tail.
     punches = [
-        PunchText("$900,000,000", 0.0, 2.3, color="#ff3030", size=180, y_pct=0.40,
+        # Frame-1 visual hook — number visible at t=0 so it lands without
+        # sound on the swipe-past decision.
+        PunchText("12 MILLION TONS", 0.0, 2.4, color="#ff3030", size=170, y_pct=0.40,
                   flash_bg="#220404"),
-        PunchText("LOST", 2.4, 4.2, color="#ffffff", size=240, y_pct=0.40),
-        PunchText("ONE TYPO", 4.4, 7.5, color="#ff5050", size=220, y_pct=0.40),
-        PunchText("AUGUST 2020", 7.8, 10.5, color="#cccccc", size=140, y_pct=0.40),
-        PunchText("$8 MILLION", 11.5, 14.0, color="#ffe24a", size=180, y_pct=0.40),
-        PunchText("$900 MILLION", 16.5, 20.0, color="#ffffff", size=170, y_pct=0.40,
-                  flash_bg="#a01010"),
-        PunchText("CITIBANK SUED", 23.5, 26.0, color="#ffffff", size=160, y_pct=0.40),
-        PunchText("COURT: KEEP IT", 27.5, 30.5, color="#50ff80", size=170, y_pct=0.40,
+        PunchText("EVERY YEAR", 2.6, 4.8, color="#ffffff", size=200, y_pct=0.40),
+        # Foreshadow by second 5 — the "fast furniture" frame
+        PunchText("FAST FURNITURE", 5.5, 8.5, color="#ff5050", size=200, y_pct=0.40,
+                  flash_bg="#220404"),
+        # The contrast — what used to be
+        PunchText("1950: 25 YEARS", 12.5, 15.0, color="#50ff80", size=170, y_pct=0.40,
                   flash_bg="#0d2818"),
-        PunchText("MOST EXPENSIVE TYPO", 31.0, 34.5, color="#ffffff", size=140, y_pct=0.40),
-        PunchText("IN BANKING HISTORY", 31.0, 34.5, color="#ff3030", size=140, y_pct=0.50),
+        PunchText("HIGH POINT, NC", 16.0, 18.5, color="#ffe24a", size=160, y_pct=0.40),
+        # The shift
+        PunchText("MOST IMPORTED", 20.0, 22.5, color="#ffaa50", size=170, y_pct=0.40),
+        PunchText("PARTICLE BOARD", 24.0, 27.0, color="#cccccc", size=180, y_pct=0.40),
+        # Hard-stop closing punch
+        PunchText("PAY TWICE", 30.0, 33.5, color="#ffffff", size=240, y_pct=0.40,
+                  flash_bg="#a01010"),
     ]
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
