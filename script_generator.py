@@ -133,6 +133,9 @@ def _call_groq(system: str, user: str, model: str = DEFAULT_GROQ_MODEL) -> str:
         headers={
             "Authorization": f"Bearer {api_key}",
             "content-type": "application/json",
+            # Groq sits behind Cloudflare, which 1010-blocks the default
+            # "Python-urllib/X" user agent. Any non-default UA works.
+            "User-Agent": "shorts-pipeline/1.0",
         },
     )
     with urllib.request.urlopen(req, timeout=120) as r:
