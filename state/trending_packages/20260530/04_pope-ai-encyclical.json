@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "pope-ai-encyclical",
+  "title": "The Pope Just Issued a 40,000-Word Warning to Silicon Valley",
+  "tags": ["Pope Leo XIV", "AI", "Vatican", "encyclical", "Magnifica Humanitas", "regulation", "tech"],
+  "script": "The Pope just issued a 40,000-word document about artificial intelligence. Magnifica Humanitas — the first papal encyclical ever written on AI — warns that the technology must be disarmed and stripped from military and corporate hands. Pope Leo the Fourteenth says AI is the new industrial revolution and could concentrate dangerous power in the wrong hands. He is calling for strict global regulation. Silicon Valley was not consulted.",
+  "shots": [
+    {
+      "phrase": "40,000-word document",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pope_Leo_XIV_2.jpg",
+      "query": "pope vatican ceremony audience"
+    },
+    {
+      "phrase": "Magnifica Humanitas",
+      "query": "saint peter basilica rome vatican exterior"
+    },
+    {
+      "phrase": "technology must be disarmed",
+      "query": "ai data center servers glowing dark"
+    },
+    {
+      "phrase": "new industrial revolution",
+      "query": "robot arm factory industrial production"
+    },
+    {
+      "phrase": "strict global regulation",
+      "query": "united nations meeting summit hall"
+    },
+    {
+      "phrase": "Silicon Valley was not",
+      "query": "silicon valley tech campus aerial california"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "40,000-word document",
+      "text": "40,000 WORDS",
+      "color": "#ffffff",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "technology must be disarmed",
+      "text": "DISARM AI",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.6
+    },
+    {
+      "phrase": "new industrial revolution",
+      "text": "NEW REVOLUTION",
+      "color": "#ffe24a",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "concentrate dangerous power",
+      "text": "DANGEROUS POWER",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 160,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Silicon Valley was not consulted",
+      "text": "SILICON VALLEY: RIP",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 150,
+      "duration": 3.0
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}

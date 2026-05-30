@@ -1,0 +1,71 @@
+{
+  "version": 8,
+  "slug": "gemini-spark",
+  "title": "Google's New AI Agent Works 24/7 — Even When Your Phone Is Off",
+  "tags": ["Google", "Gemini Spark", "AI agent", "Google IO", "artificial intelligence", "tech"],
+  "script": "Google just announced an AI agent that never stops working — even when your phone is off. Gemini Spark runs on Google Cloud around the clock, handles your emails, books appointments, and can authorize purchases on your behalf. The AI Ultra plan that used to cost $250 a month just dropped to $100. The AI agent that does everything you ask just got affordable. And it never sleeps.",
+  "shots": [
+    {
+      "phrase": "never stops working",
+      "query": "ai digital assistant smartphone glowing interface"
+    },
+    {
+      "phrase": "Gemini Spark runs on Google Cloud",
+      "query": "google data center servers cloud computing"
+    },
+    {
+      "phrase": "authorize purchases on your behalf",
+      "query": "digital payment credit card phone tap"
+    },
+    {
+      "phrase": "cost $250 a month",
+      "query": "subscription price expensive monthly payment"
+    },
+    {
+      "phrase": "just got affordable",
+      "query": "google io keynote stage presentation audience"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "never stops working",
+      "text": "24/7 AI AGENT",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "authorize purchases",
+      "text": "SPENDS YOUR $$$",
+      "color": "#ffe24a",
+      "size": 170,
+      "duration": 2.0
+    },
+    {
+      "phrase": "cost $250 a month",
+      "text": "$250/MO BEFORE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 160,
+      "duration": 2.0
+    },
+    {
+      "phrase": "just dropped to $100",
+      "text": "NOW $100",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.6
+    },
+    {
+      "phrase": "it never sleeps",
+      "text": "NEVER SLEEPS",
+      "color": "#ffffff",
+      "size": 190,
+      "duration": 2.8
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}
