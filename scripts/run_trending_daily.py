@@ -1,31 +1,37 @@
 #!/usr/bin/env python3
 """Daily orchestrator for the trending-shorts pipeline.
 
-Replaces the catalog-based brain-rot run_daily.py. Each daily run:
+Two source-of-truth modes, checked in order:
 
-  1. discover_all() pulls ~100 raw trending items from Google Trends
-     (US/GB/AU/CA) + BBC + NPR + HN + Reddit
-  2. rank_topics.rank() asks Groq to dedupe and pick the top N
-     video-able stories with a one-line angle for each
-  3. For each pick: script_generator.generate() (Groq + retry loop)
-     produces a JSON package; make_explainer_stacked.build_from_package
-     renders the 1080x1920 short with hand-curated stock/image mix
-  4. uploaders.YouTubeUploader uploads with scheduled publish_at so
-     posts are spaced across the day
+  PRE-WRITTEN PACKAGES (preferred — hand-authored quality)
+    If state/trending_packages/YYYYMMDD/ contains JSON packages, use
+    those directly. This is the path when a scheduled Claude Code
+    session has written the day's scripts in advance (recommended
+    setup — much better script quality than the LLM fallback).
+
+  GROQ FALLBACK (safety net)
+    If no pre-written packages for today, run discovery + Groq ranker
+    + Groq script generation. Lower quality but the day still ships.
+
+Common path for each package:
+  make_explainer_stacked.build_from_package() renders the 1080x1920
+  short. uploaders.YouTubeUploader.upload() schedules each post at a
+  different hour-slot so the day's 6 spread across 9am-7pm EDT.
 
 Outputs daily_report.md (committed by the GH Action), daily_report.json
-(machine-readable summary), and updates state/posted_log.json.
+(machine-readable summary), updates state/posted_log.json.
 
 Env:
-  GROQ_API_KEY  (required, for ranking + script generation)
   PEXELS_API_KEY + PIXABAY_API_KEY  (required, for stock B-roll)
   YOUTUBE_CLIENT_SECRETS_JSON + YOUTUBE_TOKEN_JSON  (required for upload)
+  GROQ_API_KEY  (only required for the fallback path)
   KOKORO_VOICE  (optional voice override)
 
 Flags:
-  --count N      number of shorts to produce (default 6)
-  --dry-run      render but don't upload — useful for testing
-  --no-schedule  upload public immediately instead of scheduling slots
+  --count N        number of shorts to produce (default 6)
+  --dry-run        render but don't upload — useful for testing
+  --no-schedule    upload public immediately instead of scheduling slots
+  --force-llm      ignore pre-written packages, use Groq fallback
 """
 from __future__ import annotations
 
@@ -109,6 +115,78 @@ def _tags(pkg: dict) -> list[str]:
     topic = (pkg.get("topic") or "").lower()
     base = [w for w in topic.split() if len(w) > 2][:5]
     return base + ["shorts", "news", "explainer", "trending"]
+
+
+def todays_package_dir() -> Path:
+    """Where a scheduled Claude Code session is expected to drop the
+    day's hand-written packages. Format: state/trending_packages/YYYYMMDD/."""
+    return PACKAGE_DIR / datetime.now(timezone.utc).strftime("%Y%m%d")
+
+
+def load_prewritten_packages() -> list[dict]:
+    """Read all *.json files under today's package dir, sorted by name
+    so the operator controls ordering by filename prefix (01_, 02_, ...)."""
+    d = todays_package_dir()
+    if not d.exists():
+        return []
+    pkgs: list[dict] = []
+    for p in sorted(d.glob("*.json")):
+        try:
+            pkg = json.loads(p.read_text())
+            pkg.setdefault("_path", str(p.relative_to(REPO)))
+            pkgs.append(pkg)
+        except json.JSONDecodeError as e:
+            print(f"[run_trending_daily] skipping malformed {p.name}: {e}",
+                  file=sys.stderr)
+    return pkgs
+
+
+def run_one_from_package(pkg: dict, publish_at: str | None, *,
+                         dry_run: bool, no_schedule: bool) -> dict:
+    """Render + upload a pre-written package. No script generation."""
+    result: dict = {
+        "topic": pkg.get("topic", pkg.get("title", "untitled")),
+        "title": pkg.get("title"),
+        "publish_at": publish_at,
+        "ok": False,
+        "video_url": None,
+        "error": None,
+        "elapsed_seconds": 0.0,
+        "package_path": pkg.get("_path"),
+    }
+    t_start = time.time()
+    try:
+        ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+        slug = _slug(result["topic"])
+        out_path = OUTPUT_DIR / f"daily_{ts}_{slug}.mp4"
+        print(f"[{result['topic']!r}] rendering -> {out_path}", flush=True)
+        make_explainer_stacked.build_from_package(pkg, out_path)
+        result["video_path"] = str(out_path.relative_to(REPO))
+
+        if dry_run:
+            result["ok"] = True
+            result["video_url"] = "(dry-run)"
+        else:
+            from uploaders import YouTubeUploader
+            print(f"[{result['topic']!r}] uploading...", flush=True)
+            uploader = YouTubeUploader()
+            upload_result = uploader.upload(
+                file_path=out_path,
+                title=(result["title"] or result["topic"])[:100],
+                description=_description(pkg),
+                tags=_tags(pkg),
+                publish_at=None if no_schedule else publish_at,
+            )
+            result["video_url"] = (
+                getattr(upload_result, "url", None) or str(upload_result)
+            )
+            result["ok"] = True
+    except Exception as e:  # noqa: BLE001
+        result["error"] = f"{type(e).__name__}: {e}"
+        print(f"[{result['topic']!r}] FAILED: {result['error']}", flush=True)
+    finally:
+        result["elapsed_seconds"] = round(time.time() - t_start, 1)
+    return result
 
 
 def run_one(topic, publish_at: str | None, *, dry_run: bool,
@@ -221,46 +299,66 @@ def main() -> int:
                     help="upload immediately instead of scheduling slots")
     ap.add_argument("--top-k-buffer", type=int, default=3,
                     help="ask the ranker for N+buffer picks so failures "
-                         "don't drop us below count")
+                         "don't drop us below count (LLM fallback only)")
+    ap.add_argument("--force-llm", action="store_true",
+                    help="ignore pre-written packages, force Groq fallback")
     args = ap.parse_args()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     STATE_DIR.mkdir(parents=True, exist_ok=True)
 
-    if not os.environ.get("GROQ_API_KEY"):
-        print("[run_trending_daily] GROQ_API_KEY required", file=sys.stderr)
-        return 2
-
-    # 1. Discover + rank.
-    print("=== discovery ===", flush=True)
-    raw = discover_all()
-    print(f"=== ranking {len(raw)} raw candidates ===", flush=True)
-    picks = rank_topics.rank(raw, top_k=args.count + args.top_k_buffer)
-    print(f"=== Groq picked {len(picks)} candidates ===", flush=True)
-    for i, t in enumerate(picks, 1):
-        print(f"  {i}. [{t.score:>4.1f}] {t.query[:90]}", flush=True)
-        if t.angle:
-            print(f"      angle: {t.angle}", flush=True)
-
-    # 2. Schedule publish times for the first `count` picks.
     now = datetime.now(timezone.utc)
     sched = schedule_times(now, args.count, DEFAULT_PUBLISH_HOURS_UTC)
 
-    # 3. Render + upload each. We try args.count + buffer in case some
-    # generation/render/upload steps fail.
-    results: list[dict] = []
-    sched_idx = 0
-    for topic in picks:
-        if len([r for r in results if r["ok"]]) >= args.count:
-            break
-        publish_at = sched[sched_idx] if sched_idx < len(sched) else None
-        result = run_one(
-            topic, publish_at,
-            dry_run=args.dry_run, no_schedule=args.no_schedule,
-        )
-        results.append(result)
-        if result["ok"]:
-            sched_idx += 1
+    # Path A: pre-written packages dropped by a scheduled Claude Code
+    # session. Render + upload directly, no LLM script generation.
+    prewritten = [] if args.force_llm else load_prewritten_packages()
+    if prewritten:
+        print(f"=== using {len(prewritten)} pre-written packages from "
+              f"{todays_package_dir().relative_to(REPO)} ===", flush=True)
+        results: list[dict] = []
+        sched_idx = 0
+        for pkg in prewritten[:args.count]:
+            publish_at = sched[sched_idx] if sched_idx < len(sched) else None
+            result = run_one_from_package(
+                pkg, publish_at,
+                dry_run=args.dry_run, no_schedule=args.no_schedule,
+            )
+            results.append(result)
+            if result["ok"]:
+                sched_idx += 1
+    else:
+        # Path B (fallback): no pre-written packages, run Groq end-to-end.
+        if not os.environ.get("GROQ_API_KEY"):
+            print("[run_trending_daily] no pre-written packages for today "
+                  f"({todays_package_dir().relative_to(REPO)}) and no "
+                  "GROQ_API_KEY for fallback", file=sys.stderr)
+            return 2
+
+        print("=== no pre-written packages — Groq fallback ===", flush=True)
+        print("=== discovery ===", flush=True)
+        raw = discover_all()
+        print(f"=== ranking {len(raw)} raw candidates ===", flush=True)
+        picks = rank_topics.rank(raw, top_k=args.count + args.top_k_buffer)
+        print(f"=== Groq picked {len(picks)} candidates ===", flush=True)
+        for i, t in enumerate(picks, 1):
+            print(f"  {i}. [{t.score:>4.1f}] {t.query[:90]}", flush=True)
+            if t.angle:
+                print(f"      angle: {t.angle}", flush=True)
+
+        results = []
+        sched_idx = 0
+        for topic in picks:
+            if len([r for r in results if r["ok"]]) >= args.count:
+                break
+            publish_at = sched[sched_idx] if sched_idx < len(sched) else None
+            result = run_one(
+                topic, publish_at,
+                dry_run=args.dry_run, no_schedule=args.no_schedule,
+            )
+            results.append(result)
+            if result["ok"]:
+                sched_idx += 1
 
     # 4. Update posted log with successful uploads.
     log = load_log()
