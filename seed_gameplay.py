@@ -74,11 +74,24 @@ def trim(tag: str, span: tuple[float, float]) -> None:
     tmp.rename(src.with_suffix(".mp4"))
 
 
+VIDEO_SUFFIXES = (".mp4", ".mkv", ".webm", ".mov", ".m4v", ".avi")
+
+
 def main() -> int:
     GAMEPLAY_DIR.mkdir(parents=True, exist_ok=True)
     failed = 0
     for tag, q in SEEDS:
-        if any(p.stem.startswith(f"{tag}_") for p in GAMEPLAY_DIR.iterdir()):
+        # The "already present" check needs to actually look for a
+        # video file, not just any filename starting with the tag —
+        # the gameplay_scanner sidecar (`{tag}_*.juicy.json`) is
+        # committed to git and would otherwise trick seed into
+        # thinking the mp4 was already downloaded.
+        already = any(
+            p.stem.startswith(f"{tag}_")
+            and p.suffix.lower() in VIDEO_SUFFIXES
+            for p in GAMEPLAY_DIR.iterdir()
+        )
+        if already:
             print(f"   {tag}: already present, skipping")
             continue
         if fetch(tag, q) != 0:

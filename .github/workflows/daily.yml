@@ -120,6 +120,18 @@ jobs:
             "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
           ls -lh kokoro_models/
 
+      # Gameplay clips are large (50MB+) and totally static — cache
+      # them so the daily run doesn't re-download from archive.org
+      # every morning. The cache key matches whatever the current
+      # seed_gameplay.py SEEDS list hashes to, so swapping a clip
+      # invalidates automatically.
+      - name: Cache gameplay clips
+        id: cache-gameplay
+        uses: actions/cache@v4
+        with:
+          path: gameplay/
+          key: gameplay-${{ hashFiles('seed_gameplay.py') }}
+
       - name: Seed gameplay clips
         run: |
           python seed_gameplay.py
