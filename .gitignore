@@ -16,9 +16,6 @@ gameplay/*.avi
 # Whisper model cache
 .cache/
 
-# Saved trending script packages — regenerated each run, no need to track
-state/trending_packages/
-
 # OAuth secrets — never commit
 client_secret.json
 token.json

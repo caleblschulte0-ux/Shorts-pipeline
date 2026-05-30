@@ -1,0 +1,81 @@
+{
+  "version": 8,
+  "slug": "spacex-ipo",
+  "title": "SpaceX Just Filed the Biggest IPO in History",
+  "tags": ["SpaceX", "IPO", "Elon Musk", "Starlink", "stocks", "SPCX", "Nasdaq"],
+  "script": "SpaceX just filed for an IPO — the biggest in history. Ticker SPCX on Nasdaq, listing in June. In 2025 the company made $18.7 billion in revenue but lost $2.6 billion doing it. Starlink alone pulled in $11 billion. Target valuation: $1.75 trillion. Goldman Sachs is leading the deal. Retail investors get 3 times the normal allocation. This is the moment everyone has been waiting for.",
+  "shots": [
+    {
+      "phrase": "biggest in history",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_%28crop2%29.jpg",
+      "query": "elon musk speaking conference"
+    },
+    {
+      "phrase": "listing in June",
+      "query": "nasdaq stock exchange trading floor"
+    },
+    {
+      "phrase": "revenue but lost",
+      "query": "financial chart red losses decline"
+    },
+    {
+      "phrase": "Starlink alone pulled",
+      "query": "starlink satellite dish rural field"
+    },
+    {
+      "phrase": "Target valuation",
+      "query": "rocket launch cape canaveral night"
+    },
+    {
+      "phrase": "Goldman Sachs is leading",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Goldman_Sachs_Tower_%28NYC%29.jpg",
+      "query": "wall street investment bank skyscraper"
+    },
+    {
+      "phrase": "everyone has been waiting",
+      "query": "crowd cheering celebration launch watch"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "biggest in history",
+      "text": "BIGGEST IPO EVER",
+      "color": "#ffffff",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "revenue but lost",
+      "text": "$2.6B LOSSES",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Starlink alone pulled",
+      "text": "$11B STARLINK",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Target valuation",
+      "text": "$1.75 TRILLION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 160,
+      "duration": 2.6
+    },
+    {
+      "phrase": "times the normal allocation",
+      "text": "3× RETAIL FLOAT",
+      "color": "#ffe24a",
+      "size": 160,
+      "duration": 2.0
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}

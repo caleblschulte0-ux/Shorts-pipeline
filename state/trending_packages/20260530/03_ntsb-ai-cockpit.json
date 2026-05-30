@@ -1,0 +1,64 @@
+{
+  "version": 8,
+  "slug": "ntsb-ai-cockpit",
+  "title": "AI Unlocked a Crash Recording the Government Was Banned From Releasing",
+  "tags": ["NTSB", "AI", "aviation", "crash", "cockpit recording", "UPS", "privacy"],
+  "script": "The government accidentally let AI unlock a crash recording they were legally forbidden to release. The NTSB published spectrogram images from UPS flight 2976 — a crash that killed 15 people. Researchers found those images could reconstruct the actual cockpit audio. The NTSB pulled tens of thousands of case files offline. The rule protecting cockpit recordings for 50 years just met its match.",
+  "shots": [
+    {
+      "phrase": "legally forbidden to release",
+      "query": "airplane cockpit pilot instrument panel"
+    },
+    {
+      "phrase": "UPS flight 2976",
+      "query": "cargo airplane ups aircraft tarmac"
+    },
+    {
+      "phrase": "killed 15 people",
+      "query": "airplane crash wreckage investigation scene"
+    },
+    {
+      "phrase": "reconstruct the actual cockpit",
+      "query": "audio spectrogram waveform visualization screen"
+    },
+    {
+      "phrase": "protecting cockpit recordings",
+      "query": "federal investigators aviation documents report"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "legally forbidden to release",
+      "text": "FORBIDDEN BY LAW",
+      "color": "#ffffff",
+      "size": 170,
+      "duration": 2.4
+    },
+    {
+      "phrase": "killed 15 people",
+      "text": "15 DEAD",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.2
+    },
+    {
+      "phrase": "pulled tens of thousands",
+      "text": "WIPED OFFLINE",
+      "color": "#ffe24a",
+      "flash_bg": "#220404",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "just met its match",
+      "text": "GAME OVER",
+      "color": "#ffffff",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 3.0
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}
