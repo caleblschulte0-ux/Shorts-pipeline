@@ -33,7 +33,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
-from scripts.discover_topic import discover, as_dict  # noqa: E402
+from scripts.discover_topic import discover, discover_all, as_dict  # noqa: E402
+from scripts import rank_topics  # noqa: E402
 import script_generator  # noqa: E402
 import make_explainer_stacked  # noqa: E402
 
@@ -83,26 +84,59 @@ def main() -> int:
         headlines: list[str] = []
         snippets: list[str] = []
         print(f"[trending] manual topic: {topic_query!r}")
+    elif not args.auto:
+        # Discover-only mode: multi-source fetch + Groq ranking, then
+        # print picks and exit so the operator can hand-author a script
+        # package for whichever one they want.
+        print("[trending] fetching from all sources...")
+        raw = discover_all()
+        print(f"[trending] {len(raw)} raw candidates from {len(set().union(*(set(t.sources) for t in raw if t.sources)))} sources",
+              file=sys.stderr)
+        if not raw:
+            print("[trending] no candidates from any source — check network", file=sys.stderr)
+            return 1
+
+        if os.environ.get("GROQ_API_KEY") or os.environ.get("GEMINI_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"):
+            print("[trending] asking Groq to rank...")
+            picks = rank_topics.rank(raw, top_k=args.limit, backend=args.backend, model=args.model)
+            print(f"\n[trending] top {len(picks)} picks:\n")
+            for i, t in enumerate(picks, 1):
+                print(f"  {i}. [{t.score:>4.1f}/10] {t.query[:90]}")
+                if t.angle:
+                    print(f"      angle:  {t.angle}")
+                print(f"      source: {','.join(t.sources[:3])}")
+                if t.urls:
+                    print(f"      url:    {t.urls[0]}")
+                print()
+        else:
+            # No LLM key — fall back to keyword heuristic on Trends-only
+            # subset (the only source with proper traffic + context).
+            print("[trending] no LLM key set — falling back to keyword heuristic",
+                  file=sys.stderr)
+            trends_only = [t for t in raw if any("google_trends" in s for s in t.sources)]
+            from scripts.discover_topic import _score
+            for t in trends_only:
+                t.score = _score(t)
+            trends_only.sort(key=lambda x: -x.score)
+            for i, t in enumerate(trends_only[:args.limit], 1):
+                print(f"  {i:2d}. [{t.score:>5.1f}] {t.query!r}  traffic={t.traffic}")
+                for hl in t.headlines[:2]:
+                    print(f"        - {hl[:110]}")
+
+        print("Pick one, hand-write a script package JSON, then render:")
+        print("  python3 make_explainer_stacked.py --package <file>.json")
+        return 0
     else:
-        print("[trending] discovering trending topics...")
+        # --auto path: discovery only on Trends US (the single-geo
+        # rank-by-heuristic path), then LLM-write the script. Same as
+        # before — quality is lower than hand-written but useful for
+        # quick smoke tests.
+        print("[trending] discovering trending topics (Trends US only)...")
         topics = discover(min_score=args.min_score)
         if not topics:
             print("[trending] no video-able trending topics right now "
                   "(lower --min-score, or set --topic manually)", file=sys.stderr)
             return 1
-
-        if not args.auto:
-            # Discover-only mode: print and exit, expect the caller to
-            # hand-author the script package.
-            print(f"[trending] {len(topics)} candidates (showing top {args.limit}):")
-            for i, t in enumerate(topics[:args.limit], 1):
-                print(f"  {i:2d}. [{t.score:>5.1f}] {t.query!r}  traffic={t.traffic}")
-                for hl in t.headlines[:2]:
-                    print(f"        - {hl[:110]}")
-            print("\nWrite a script package JSON, then render with:")
-            print("  python3 make_explainer_stacked.py --package <file>.json")
-            return 0
-
         pick = topics[args.rank - 1]
         topic_query = pick.query
         headlines = pick.headlines

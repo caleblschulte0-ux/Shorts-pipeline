@@ -86,6 +86,9 @@ class Topic:
     snippets: list[str] = field(default_factory=list)
     sources: list[str] = field(default_factory=list)
     urls: list[str] = field(default_factory=list)
+    # Populated by the Groq ranker — a one-line hook suggestion for the
+    # short explainer. Not set by raw discovery.
+    angle: str | None = None
 
 
 def _parse_traffic(s: str | None) -> int:
@@ -106,13 +109,21 @@ def _parse_traffic(s: str | None) -> int:
         return 0
 
 
-def _fetch_trends() -> bytes:
+def _http_get(url: str, *, ua: str | None = None, timeout: int = 15) -> bytes:
     req = urllib.request.Request(
-        TRENDS_RSS,
-        headers={"User-Agent": "shorts-pipeline/1.0", "Accept": "application/rss+xml"},
+        url,
+        headers={
+            "User-Agent": ua or "Mozilla/5.0 (shorts-pipeline)",
+            "Accept": "application/rss+xml, application/xml, application/json, */*",
+        },
     )
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
+
+
+def _fetch_trends(geo: str = "US") -> bytes:
+    return _http_get(f"https://trends.google.com/trending/rss?geo={geo}&hours=24",
+                     ua="shorts-pipeline/1.0")
 
 
 def _score(topic: Topic) -> float:
@@ -144,8 +155,12 @@ def _score(topic: Topic) -> float:
     return kw_score + traffic_score
 
 
-def discover(rss_bytes: bytes | None = None, min_score: float = 4.0) -> list[Topic]:
-    raw = rss_bytes if rss_bytes is not None else _fetch_trends()
+def discover(rss_bytes: bytes | None = None, min_score: float = 4.0,
+             geo: str = "US") -> list[Topic]:
+    """Single-source legacy discovery: Google Trends Daily for one geo,
+    keyword-heuristic filtered. Kept for backward compat / dry runs
+    when no LLM key is available."""
+    raw = rss_bytes if rss_bytes is not None else _fetch_trends(geo)
     root = ET.fromstring(raw)
     items = root.findall("./channel/item")
 
@@ -153,6 +168,7 @@ def discover(rss_bytes: bytes | None = None, min_score: float = 4.0) -> list[Top
     for it in items:
         t = Topic(query=(it.findtext("title") or "").strip())
         t.traffic = _parse_traffic(it.findtext("ht:approx_traffic", namespaces=NS))
+        t.sources.append(f"google_trends_{geo}")
         for ni in it.findall("ht:news_item", NS):
             hl = (ni.findtext("ht:news_item_title", namespaces=NS) or "").strip()
             sn = (ni.findtext("ht:news_item_snippet", namespaces=NS) or "").strip()
@@ -160,13 +176,133 @@ def discover(rss_bytes: bytes | None = None, min_score: float = 4.0) -> list[Top
             url = (ni.findtext("ht:news_item_url", namespaces=NS) or "").strip()
             if hl: t.headlines.append(hl)
             if sn: t.snippets.append(sn)
-            if src: t.sources.append(src)
+            if src and src not in t.sources: t.sources.append(src)
             if url: t.urls.append(url)
         t.score = _score(t)
         topics.append(t)
 
     topics.sort(key=lambda x: -x.score)
     return [t for t in topics if t.score >= min_score]
+
+
+# ----------------------------------------------------------------------
+# Multi-source discovery — feeds Groq the broadest catch we can get.
+# Each fetch_* returns a list[Topic]; failures are caught at the
+# discover_all() level so one dead source doesn't kill the run.
+# ----------------------------------------------------------------------
+
+def _parse_generic_rss(raw: bytes, source: str, *, max_items: int = 50) -> list[Topic]:
+    """RSS feeds where each <item> is one story (BBC, NPR, HN, etc.).
+    Not the Google Trends format — that one bundles multiple news items
+    per <item>."""
+    root = ET.fromstring(raw)
+    out: list[Topic] = []
+    for it in root.findall(".//item")[:max_items]:
+        title = (it.findtext("title") or "").strip()
+        if not title:
+            continue
+        desc = (it.findtext("description") or "").strip()
+        link = (it.findtext("link") or "").strip()
+        # Strip the trailing source attribution BBC tacks on (" - BBC News").
+        title = re.sub(r"\s+[-|]\s+(BBC News|NPR|NPR\.org).*$", "", title)
+        headlines = [title]
+        if desc and desc != title and len(desc) > 10:
+            # Strip HTML tags from descriptions (BBC includes CDATA HTML).
+            desc_clean = re.sub(r"<[^>]+>", "", desc).strip()
+            if desc_clean and desc_clean != title:
+                headlines.append(desc_clean[:300])
+        out.append(Topic(
+            query=title,
+            headlines=headlines,
+            urls=[link] if link else [],
+            sources=[source],
+        ))
+    return out
+
+
+def fetch_google_trends(geo: str = "US") -> list[Topic]:
+    """Daily search trends RSS — gives us raw search spikes with the
+    news article context that drove each one. Unique per geo."""
+    return discover(rss_bytes=_fetch_trends(geo), min_score=-1000, geo=geo)
+
+
+def fetch_bbc_world() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.bbci.co.uk/news/world/rss.xml"),
+                              "bbc_world")
+
+
+def fetch_npr_top() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.npr.org/1001/rss.xml"),
+                              "npr_top")
+
+
+def fetch_hackernews() -> list[Topic]:
+    """HN frontpage via hnrss.org (no auth, RSS-formatted)."""
+    return _parse_generic_rss(_http_get("https://hnrss.org/frontpage"),
+                              "hackernews", max_items=25)
+
+
+def fetch_reddit(subreddit: str) -> list[Topic]:
+    """Reddit JSON API. Some networks (CI sandboxes, corporate egress
+    policies) block reddit.com — we swallow the error and the source
+    contributes zero topics instead of breaking the run."""
+    raw = _http_get(
+        f"https://www.reddit.com/r/{subreddit}/top.json?t=day&limit=25",
+        ua="shorts-pipeline by /u/anon",
+    )
+    data = json.loads(raw)
+    out: list[Topic] = []
+    for c in data.get("data", {}).get("children", [])[:25]:
+        p = c.get("data") or {}
+        title = (p.get("title") or "").strip()
+        if not title:
+            continue
+        link_url = p.get("url_overridden_by_dest") or p.get("url") or ""
+        permalink = p.get("permalink") or ""
+        out.append(Topic(
+            query=title,
+            traffic=int(p.get("score") or 0),
+            headlines=[title] + ([(p.get("selftext") or "")[:300]]
+                                 if p.get("selftext") else []),
+            urls=([link_url] if link_url else []) +
+                 ([f"https://reddit.com{permalink}"] if permalink else []),
+            sources=[f"reddit_{subreddit}"],
+        ))
+    return out
+
+
+# Sources to fan out to. Each entry is (label, callable). Order matters
+# only for log readability — discover_all aggregates everything.
+DEFAULT_SOURCES: list[tuple[str, callable]] = [
+    ("google_trends_US", lambda: fetch_google_trends("US")),
+    ("google_trends_GB", lambda: fetch_google_trends("GB")),
+    ("google_trends_AU", lambda: fetch_google_trends("AU")),
+    ("google_trends_CA", lambda: fetch_google_trends("CA")),
+    ("bbc_world",        fetch_bbc_world),
+    ("npr_top",          fetch_npr_top),
+    ("hackernews",       fetch_hackernews),
+    ("reddit_popular",   lambda: fetch_reddit("popular")),
+    ("reddit_news",      lambda: fetch_reddit("news")),
+    ("reddit_worldnews", lambda: fetch_reddit("worldnews")),
+]
+
+
+def discover_all(*, verbose: bool = True) -> list[Topic]:
+    """Fan out to every source, return the combined raw list. Failures
+    are caught per-source and logged to stderr; the run continues."""
+    all_topics: list[Topic] = []
+    for label, fn in DEFAULT_SOURCES:
+        try:
+            items = fn()
+            if verbose:
+                print(f"[discover] {label:20s}  {len(items):3d} items",
+                      file=sys.stderr)
+            all_topics.extend(items)
+        except Exception as e:  # noqa: BLE001
+            if verbose:
+                print(f"[discover] {label:20s}  failed: {type(e).__name__}: {e}",
+                      file=sys.stderr)
+    return all_topics
 
 
 def as_dict(t: Topic) -> dict:
