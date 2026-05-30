@@ -145,13 +145,23 @@ def _ass_escape(text: str) -> str:
     return text.replace("\\", "\\\\").replace("{", "(").replace("}", ")")
 
 
-def group_words(words: list[Word], per_chunk: int = 3) -> list[Word]:
+def group_words(words: list[Word], max_chars: int = 22, max_words: int = 5) -> list[Word]:
+    """Group whisper words into caption chunks that break on punctuation
+    when possible. The previous fixed-N-per-chunk approach cut phrases
+    like "POINT NORTH / CAROLINA" mid-thought; this version flushes the
+    bucket at any clause/sentence boundary so chunks read as natural
+    sub-phrases."""
     chunks: list[Word] = []
     bucket: list[Word] = []
     for w in words:
         bucket.append(w)
-        if len(bucket) >= per_chunk:
-            chunks.append(Word(bucket[0].start, bucket[-1].end, " ".join(b.text for b in bucket)))
+        joined = " ".join(b.text for b in bucket)
+        tail = w.text.rstrip()
+        boundary = tail.endswith((".", ",", "!", "?", ":", ";"))
+        too_long = len(joined) >= max_chars
+        too_many = len(bucket) >= max_words
+        if boundary or too_long or too_many:
+            chunks.append(Word(bucket[0].start, bucket[-1].end, joined))
             bucket = []
     if bucket:
         chunks.append(Word(bucket[0].start, bucket[-1].end, " ".join(b.text for b in bucket)))
@@ -159,6 +169,11 @@ def group_words(words: list[Word], per_chunk: int = 3) -> list[Word]:
 
 
 def write_ass(chunks: list[Word], path: Path, margin_v: int) -> None:
+    # Style notes:
+    #   Fontsize 110 (was 80) — bigger TikTok pop.
+    #   Outline 10 (was 5) + shadow 4 — survives over busy Minecraft bg.
+    #   Alignment 2 (bottom-center); margin_v positions the text block's
+    #   bottom edge `margin_v` px above the frame bottom.
     header = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -168,7 +183,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Pop,Impact,80,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,5,2,2,80,80,{margin_v},1
+Style: Pop,Impact,110,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,10,4,2,80,80,{margin_v},1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -340,11 +355,12 @@ def build_video(
 
         # 6. Stack + captions + punches in one big filter
         print("[6/7] compose")
-        chunks = group_words(words, per_chunk=3)
+        chunks = group_words(words)
         subs = workdir / "captions.ass"
-        # Captions sit at the seam (anchor 2 = bottom-middle, MarginV from
-        # the bottom). HALF_H - 100 puts them ~50px above the seam.
-        write_ass(chunks, subs, margin_v=HALF_H - 100)
+        # Captions live in the bottom-half lower-middle, well clear of
+        # the seam (so the top B-roll's bottom edge doesn't crop into
+        # them) and clear of the Minecraft hotbar.
+        write_ass(chunks, subs, margin_v=380)
         subs_path = str(subs).replace("\\", "\\\\").replace(":", r"\:").replace("'", r"\\'")
 
         # Resolve punch times
