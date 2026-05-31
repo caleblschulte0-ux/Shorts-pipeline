@@ -23,9 +23,33 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
 3. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
    one per pick.
 
-4. **Commit and push to main**:
-   `git add -A && git commit -m "daily packages $(date -u +%Y-%m-%d)" && git push`
-   The auto-merge workflow will land it; daily.yml will render + upload.
+4. **Commit, push, AND open a PR**. You're probably running on an
+   isolated worktree branch, not directly on main, so a plain
+   `git push` puts your work on a feature branch that nobody renders
+   from. You MUST also open a pull request — that's what the auto-
+   merge workflow watches:
+
+   ```bash
+   git add state/trending_packages/$(date -u +%Y%m%d)/
+   git commit -m "daily packages $(date -u +%Y-%m-%d)"
+   git push -u origin HEAD
+   ```
+
+   Then create the PR. Prefer the GitHub MCP tool if available
+   (`mcp__github__create_pull_request` with `base: main`, `head:`
+   your current branch name). Otherwise use `gh`:
+
+   ```bash
+   gh pr create \
+     --base main \
+     --title "daily packages $(date -u +%Y-%m-%d)" \
+     --body "Today's batch from the morning routine."
+   ```
+
+   Auto-merge.yml watches every `claude/*` PR and lands it within
+   ~30 seconds. The merge to main fires daily.yml via workflow_run,
+   which renders + uploads everything you wrote. **If you skip the
+   PR step, NOTHING ships.**
 
 ## Script package format
 
