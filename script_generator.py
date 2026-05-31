@@ -35,6 +35,7 @@ import json
 import os
 import re
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -145,7 +146,12 @@ def _build_context(headlines: list[str], snippets: list[str]) -> str:
 
 def _call_groq(system: str, user: str, model: str = DEFAULT_GROQ_MODEL) -> str:
     """Hit Groq's OpenAI-compatible chat completions endpoint. Free
-    tier on Llama 3.3 70B: 30 RPM / 14400 requests per day, no card."""
+    tier on Llama 3.3 70B: 30 RPM, 14,400 RPD, AND 6,000 TPM. The TPM
+    limit is what bites — a single ranker call + 6 script gens is
+    ~25K tokens spread over 30s of looping, well over the cap. We
+    retry on 429 with exponential backoff so the orchestrator doesn't
+    cascade-fail when we get throttled."""
+    import time as _time
     api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
         raise RuntimeError("GROQ_API_KEY env var not set")
@@ -160,20 +166,41 @@ def _call_groq(system: str, user: str, model: str = DEFAULT_GROQ_MODEL) -> str:
         # Forces a valid JSON object back — no fence stripping needed.
         "response_format": {"type": "json_object"},
     }).encode()
-    req = urllib.request.Request(
-        GROQ_API,
-        data=body,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "content-type": "application/json",
-            # Groq sits behind Cloudflare, which 1010-blocks the default
-            # "Python-urllib/X" user agent. Any non-default UA works.
-            "User-Agent": "shorts-pipeline/1.0",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=120) as r:
-        resp = json.loads(r.read())
-    return resp["choices"][0]["message"]["content"]
+
+    last_err: Exception | None = None
+    # Backoff schedule: respect Retry-After when present, otherwise
+    # exponential with jitter. 5 attempts ~= up to ~60s of waiting,
+    # enough for TPM windows to roll over.
+    for attempt in range(5):
+        req = urllib.request.Request(
+            GROQ_API,
+            data=body,
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "content-type": "application/json",
+                # Groq sits behind Cloudflare, which 1010-blocks the
+                # default "Python-urllib/X" user agent.
+                "User-Agent": "shorts-pipeline/1.0",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                resp = json.loads(r.read())
+            return resp["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as e:
+            last_err = e
+            if e.code != 429:
+                raise
+            retry_after = e.headers.get("Retry-After") if e.headers else None
+            try:
+                wait = float(retry_after) if retry_after else (2 ** attempt) * 4
+            except ValueError:
+                wait = (2 ** attempt) * 4
+            wait = min(wait, 30)
+            print(f"[groq] 429 rate-limited, sleeping {wait:.1f}s (attempt {attempt+1}/5)",
+                  file=sys.stderr)
+            _time.sleep(wait)
+    raise last_err if last_err else RuntimeError("groq retry exhausted")
 
 
 def _call_gemini(system: str, user: str, model: str = DEFAULT_GEMINI_MODEL) -> str:

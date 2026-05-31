@@ -123,22 +123,46 @@ def todays_package_dir() -> Path:
     return PACKAGE_DIR / datetime.now(timezone.utc).strftime("%Y%m%d")
 
 
-def load_prewritten_packages() -> list[dict]:
-    """Read all *.json files under today's package dir, sorted by name
-    so the operator controls ordering by filename prefix (01_, 02_, ...)."""
-    d = todays_package_dir()
-    if not d.exists():
-        return []
-    pkgs: list[dict] = []
-    for p in sorted(d.glob("*.json")):
-        try:
-            pkg = json.loads(p.read_text())
-            pkg.setdefault("_path", str(p.relative_to(REPO)))
-            pkgs.append(pkg)
-        except json.JSONDecodeError as e:
-            print(f"[run_trending_daily] skipping malformed {p.name}: {e}",
-                  file=sys.stderr)
-    return pkgs
+def most_recent_package_dir() -> Path | None:
+    """Find the most-recent YYYYMMDD/ directory. The routine fires
+    daily but the orchestrator might run before or after midnight UTC
+    relative to when packages were written — and if a routine misses a
+    day, using yesterday's packages is much better than falling back
+    to Groq (which rate-limits at 6K TPM on the free tier and blows
+    up trying to write 6+ scripts back-to-back)."""
+    if not PACKAGE_DIR.exists():
+        return None
+    candidates = [
+        p for p in PACKAGE_DIR.iterdir()
+        if p.is_dir() and len(p.name) == 8 and p.name.isdigit()
+    ]
+    if not candidates:
+        return None
+    return max(candidates, key=lambda p: p.name)
+
+
+def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
+    """Return (source_dir, packages). Prefers today's dir; falls back
+    to the most-recent YYYYMMDD/ on disk so a missing routine run
+    doesn't force the expensive Groq fallback path."""
+    candidates = [todays_package_dir(), most_recent_package_dir()]
+    seen: set[Path] = set()
+    for d in candidates:
+        if d is None or d in seen or not d.exists():
+            continue
+        seen.add(d)
+        pkgs: list[dict] = []
+        for p in sorted(d.glob("*.json")):
+            try:
+                pkg = json.loads(p.read_text())
+                pkg.setdefault("_path", str(p.relative_to(REPO)))
+                pkgs.append(pkg)
+            except json.JSONDecodeError as e:
+                print(f"[run_trending_daily] skipping malformed {p.name}: {e}",
+                      file=sys.stderr)
+        if pkgs:
+            return d, pkgs
+    return None, []
 
 
 def run_one_from_package(pkg: dict, publish_at: str | None, *,
@@ -336,11 +360,15 @@ def main() -> int:
     sched = schedule_times(now, args.count, DEFAULT_PUBLISH_HOURS_UTC)
 
     # Path A: pre-written packages dropped by a scheduled Claude Code
-    # session. Render + upload directly, no LLM script generation.
-    prewritten = [] if args.force_llm else load_prewritten_packages()
+    # session. Render + upload directly, no LLM script generation. If
+    # today's dir is missing (routine hasn't fired yet) we fall back
+    # to the most recent day's packages — far better than burning
+    # through Groq's free tier on emergency script generation.
+    src_dir, prewritten = (None, []) if args.force_llm else load_prewritten_packages()
     if prewritten:
+        rel = src_dir.relative_to(REPO) if src_dir else "(unknown)"
         print(f"=== using {len(prewritten)} pre-written packages from "
-              f"{todays_package_dir().relative_to(REPO)} ===", flush=True)
+              f"{rel} ===", flush=True)
         results: list[dict] = []
         sched_idx = 0
         for pkg in prewritten[:args.count]:
