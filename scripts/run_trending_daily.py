@@ -373,29 +373,38 @@ def main() -> int:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     STATE_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Skip if we already posted today. Multiple triggers can fire
-    # daily.yml in quick succession (workflow_run from auto-merge AND
-    # push-paths AND manual dispatch) — without this guard we'd
-    # double-post the same packages. We DON'T skip for dry runs since
-    # those don't get logged.
+    # Skip if we already posted in the last 6 hours. Multiple triggers
+    # can fire daily.yml in quick succession (workflow_run from auto-
+    # merge AND push-paths AND manual dispatch) — without this guard
+    # we'd double-post the same packages. Using a 6-hour rolling window
+    # instead of "today" handles the edge case where yesterday's batch
+    # logged itself just after midnight UTC and today's intended run
+    # would get blocked all day.
     if not args.dry_run:
         log = load_log()
-        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        already = [e for e in log.get("posted", [])
-                   if (e.get("posted_at") or "").startswith(today)]
-        if already and not args.force_llm:
-            print(f"[run_trending_daily] already posted {len(already)} short(s) "
-                  f"today ({today}); skipping. Use --force-llm to override.",
+        now_dt = datetime.now(timezone.utc)
+        cutoff = now_dt - timedelta(hours=6)
+        recent = []
+        for e in log.get("posted", []):
+            ts = e.get("posted_at") or ""
+            try:
+                posted_dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+            except ValueError:
+                continue
+            if posted_dt > cutoff:
+                recent.append(e)
+        if recent and not args.force_llm:
+            print(f"[run_trending_daily] {len(recent)} short(s) posted in the "
+                  f"last 6 hours; skipping. Use --force-llm to override.",
                   flush=True)
-            # Still write an "empty" report so the commit step doesn't
-            # confuse old + new state.
+            today_str = now_dt.strftime("%Y-%m-%d")
             REPORT_PATH.write_text(
-                f"# Daily Trending Shorts — {today}\n\n"
-                f"Already posted {len(already)} short(s) earlier today; "
+                f"# Daily Trending Shorts — {today_str}\n\n"
+                f"Already posted {len(recent)} short(s) in the last 6 hours; "
                 f"skipped duplicate trigger.\n"
             )
             REPORT_JSON.write_text(json.dumps({"skipped": True,
-                                                "already_posted": len(already)},
+                                                "recent_posts": len(recent)},
                                                indent=2))
             return 0
 
