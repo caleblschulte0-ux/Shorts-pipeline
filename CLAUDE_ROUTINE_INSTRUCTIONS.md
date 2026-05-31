@@ -1,0 +1,120 @@
+# Daily Routine Instructions
+
+You are running the daily script-writing routine for the Shorts-pipeline channel.
+
+## Pipeline overview
+
+- Faceless YouTube Shorts channel publishing 25-second doomscroll-style explainers
+- The daily GitHub Action renders + uploads whatever packages you push
+- Your only job is writing the day's 6 script packages and pushing them to the repo
+
+## Steps
+
+1. **Discover**:
+   `GROQ_API_KEY=$GROQ_API_KEY python3 scripts/rank_topics.py --top-k 10`
+
+2. **Pick 6** from the ranker's output. Reject:
+   - Live sports or sports-player news (time-locked, narrow audience)
+   - Celebrity deaths / obituaries
+   - Political horserace stories (elections, primaries, partisan combat)
+   - Anything you can't tell in 60 words
+   - Topics with no concrete visual story
+
+3. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
+   one per pick.
+
+4. **Commit and push to main**:
+   `git add -A && git commit -m "daily packages $(date -u +%Y-%m-%d)" && git push`
+   The auto-merge workflow will land it; daily.yml will render + upload.
+
+## Script package format
+
+Reference: `state/trending_packages/20260531/*.json`.
+
+Schema:
+```json
+{
+  "title": "Punchy 6-10 word YouTube title",
+  "script": "60-80 word script, hook + facts + kicker",
+  "shots": [
+    {"phrase": "verbatim substring of script", "image": "https://...", "query": "stock fallback"}
+  ],
+  "punches": [
+    {"phrase": "verbatim substring", "text": "1-3 ALL CAPS", "color": "#hex"}
+  ],
+  "music_vibe": "dark | cinematic | hiphop"
+}
+```
+
+## CRITICAL: Specific imagery for every proper noun
+
+**The renderer pulls stock from Pexels/Pixabay by default. Stock libraries DO NOT
+have photos of specific companies, products, people, or events.** If a script
+mentions "Figure AI's humanoid robots" and the shot only has `query`, the video
+will show generic robot footage — never an actual Figure robot. That's the
+single biggest quality failure the channel has hit.
+
+For EVERY proper noun in the script (company, product, person, place, named
+event), do this in order:
+
+1. **WebFetch the Wikipedia article**:
+   `https://en.wikipedia.org/wiki/<EntityName>`
+2. From the response, grab a real photograph URL on `upload.wikimedia.org`.
+   Prefer photos of the entity itself (the product, the founder, the building),
+   NOT wordmark logos with just the company name in text.
+3. Verify size — Wikimedia only serves thumb sizes it has generated. `500px` is
+   almost always safe; `1024px` only exists for very large originals.
+4. Attach to the shot whose phrase mentions that entity:
+   ```json
+   {"phrase": "Figure AI's humanoid",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/.../500px-...",
+    "query": "humanoid robot warehouse"}
+   ```
+5. Always include a `query` fallback alongside `image`. The renderer caps each
+   image at 1.8s and fills the rest of the shot with stock from `query`.
+
+### What "specific" means in practice
+
+| Topic                       | Bad query only          | Good image + query                                  |
+|-----------------------------|-------------------------|----------------------------------------------------|
+| Figure AI robots            | "humanoid robot"        | Wikipedia photo of Figure 02 + warehouse stock     |
+| Pope's AI encyclical        | "pope vatican"          | Wikipedia photo of Pope Leo XIV + cathedral stock  |
+| SpaceX IPO                  | "rocket launch"         | Wikipedia Starship photo + stock-ticker stock      |
+| OpenRouter $113M            | "ai startup"            | OpenRouter founder photo + datacenter stock        |
+| Ernst & Young audit fraud   | "corporate office"      | EY LA building photo + audit-document stock        |
+
+If the entity has no Wikipedia article (rare), try:
+- The news article's `og:image` (WebFetch the article, grep for `og:image`)
+- Wikimedia Commons direct search: `https://commons.wikimedia.org/wiki/Special:Search?search=<entity>`
+
+### What NOT to do
+
+- ✗ Don't use wordmark-only logos as images (e.g., the Anthropic text logo). They
+  composite as floating text on a dark backdrop and look like a PowerPoint slide.
+- ✗ Don't write `image` URLs you haven't verified return HTTP 200 with
+  `Content-Type: image/*`. Wikimedia 404s break the render gracefully (falls back
+  to query) but waste a shot's specificity.
+- ✗ Don't use `image` without a `query` fallback. If the URL ever 404s, the
+  whole shot becomes blank.
+
+## Other script rules
+
+- **60-80 words.** Open with a punchy hook (declarative, no warmup), close with a
+  kicker. Whisper transcribes the audio, so write naturally and use digits for
+  numbers ("12 million", "25%", "1980") — every trigger phrase must match what
+  Whisper outputs.
+- **5-7 shots, 4-7 punches.** Every `shot.phrase` and `punch.phrase` must be a
+  verbatim substring of the script (case-insensitive).
+- **Punch SFX is automatic** based on text content + color:
+  - Any `$` in punch text → ka-ching cash register
+  - "RIP / DEAD / CRASH / KILLED / GAME OVER / BANNED" → shock thump
+  - `#ff3030` red → shock, `#50ff80` green → bright bell, `#ffaa30` orange →
+    warning bell, `#ffffff` white → neutral
+- **Avoid these words**: "Wayfair" (Whisper hears "wafer"), "Once" as a
+  sentence opener (heard as "wants"). Use "First", "Back in", "Once you" etc.
+
+## Don't do
+
+- Don't render videos. The daily.yml workflow does that after your push.
+- Don't upload to YouTube. Same — workflow handles it.
+- Don't run the orchestrator (`run_trending_daily.py`). You only write packages.
