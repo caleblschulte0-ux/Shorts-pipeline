@@ -42,9 +42,29 @@ Schema:
   "punches": [
     {"phrase": "verbatim substring", "text": "1-3 ALL CAPS", "color": "#hex"}
   ],
+  "hashtags": ["topical", "tags", "specific", "to", "this", "story"],
   "music_vibe": "dark | cinematic | hiphop"
 }
 ```
+
+## Hashtags
+
+Write **10-15 topical hashtags per package** in the `hashtags` field.
+The orchestrator dedupes and merges with a baseline set (`#shorts #news
+#explainer #trending #viral #fyp` etc.) before uploading. Algos weight
+the first 3-5 hashtags hardest, so put the most specific topical ones
+at the front:
+
+| Topic                  | Good topical hashtags                                         |
+|------------------------|---------------------------------------------------------------|
+| Figure AI robots       | figureai, humanoidrobots, ai, automation, robotjobs, techai   |
+| SpaceX IPO             | spacex, elon, ipo, stocks, finance, wallstreet, investing     |
+| Pope's AI encyclical   | pope, vatican, popeleo, aiethics, religion, technews          |
+| Ernst & Young scandal  | ey, ernstandyoung, audit, scandal, accounting, businessnews   |
+
+Format: bare words, no `#`. Avoid spaces (use `aiethics` not `ai ethics`).
+The orchestrator adds the `#` in the final description.
+
 
 ## CRITICAL: Specific imagery for every proper noun
 

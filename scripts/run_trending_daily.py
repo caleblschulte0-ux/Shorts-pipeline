@@ -101,20 +101,53 @@ def _slug(s: str, n: int = 40) -> str:
     return "".join(c if c.isalnum() else "_" for c in s.lower())[:n]
 
 
+# Baseline reach hashtags appended to every short. Package-specific
+# topical hashtags come from the routine (pkg['hashtags']) and rank
+# higher in the final list — these are the always-on reach tags that
+# fill out the description.
+BASELINE_HASHTAGS = [
+    "shorts", "news", "explainer", "trending", "viral", "fyp",
+    "didyouknow", "breakingnews", "factsdaily", "shortsfeed",
+]
+
+
+def _hashtag_list(pkg: dict, max_total: int = 25) -> list[str]:
+    """Merge package hashtags (topical, written by the routine) with
+    the baseline reach set. Dedupes case-insensitively and keeps the
+    topical ones in front — algos weight the first few hardest."""
+    out: list[str] = []
+    seen: set[str] = set()
+    pkg_tags = pkg.get("hashtags") or []
+    # Routine writes hashtags as bare words OR with leading '#' — accept both.
+    for t in list(pkg_tags) + BASELINE_HASHTAGS:
+        clean = (t or "").strip().lstrip("#").replace(" ", "")
+        if not clean:
+            continue
+        k = clean.lower()
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(clean)
+        if len(out) >= max_total:
+            break
+    return out
+
+
 def _description(pkg: dict, angle: str | None = None) -> str:
     parts = [pkg.get("script", "").strip()]
     if angle:
         parts.append("")
         parts.append(angle)
+    tags = _hashtag_list(pkg)
     parts.append("")
-    parts.append("#shorts #news #explainer")
+    parts.append(" ".join(f"#{t}" for t in tags))
     return "\n".join(parts)[:5000]
 
 
 def _tags(pkg: dict) -> list[str]:
-    topic = (pkg.get("topic") or "").lower()
-    base = [w for w in topic.split() if len(w) > 2][:5]
-    return base + ["shorts", "news", "explainer", "trending"]
+    """YouTube tags field (15 max in practice). Topical first, baseline
+    fills the rest."""
+    return _hashtag_list(pkg, max_total=15)
 
 
 def todays_package_dir() -> Path:
