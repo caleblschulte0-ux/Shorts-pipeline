@@ -340,6 +340,32 @@ def main() -> int:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     STATE_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Skip if we already posted today. Multiple triggers can fire
+    # daily.yml in quick succession (workflow_run from auto-merge AND
+    # push-paths AND manual dispatch) — without this guard we'd
+    # double-post the same packages. We DON'T skip for dry runs since
+    # those don't get logged.
+    if not args.dry_run:
+        log = load_log()
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        already = [e for e in log.get("posted", [])
+                   if (e.get("posted_at") or "").startswith(today)]
+        if already and not args.force_llm:
+            print(f"[run_trending_daily] already posted {len(already)} short(s) "
+                  f"today ({today}); skipping. Use --force-llm to override.",
+                  flush=True)
+            # Still write an "empty" report so the commit step doesn't
+            # confuse old + new state.
+            REPORT_PATH.write_text(
+                f"# Daily Trending Shorts — {today}\n\n"
+                f"Already posted {len(already)} short(s) earlier today; "
+                f"skipped duplicate trigger.\n"
+            )
+            REPORT_JSON.write_text(json.dumps({"skipped": True,
+                                                "already_posted": len(already)},
+                                               indent=2))
+            return 0
+
     # Preflight log. If any of these are unexpected (no gameplay clips
     # at all, missing kokoro models, no packages today), they show up
     # at the top of the orchestrator log instead of being inferred from
