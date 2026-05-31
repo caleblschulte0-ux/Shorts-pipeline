@@ -1,0 +1,80 @@
+{
+  "version": 8,
+  "slug": "laos-cave-rescue",
+  "title": "Miners Trapped 10 Days Swam Out of the Cave Themselves",
+  "hashtags": ["laos", "caverescue", "minersrescued", "survival", "breakingnews", "rescue", "flood", "caving", "miningaccident", "thamluang", "rescuediver", "survival2026", "heroic"],
+  "script": "7 gold miners were trapped in a flooded Laos cave for 10 days. The entrance had caved in. The tunnels filled with water. An international rescue team that helped save the Thai soccer team in 2018 raced to Laos. 4 miners didn't wait. They pushed through 1,000 feet of pitch-black flooded tunnels on their own and walked out alive. 2 others are still missing. They swam to freedom through the dark.",
+  "shots": [
+    {
+      "phrase": "trapped in a flooded Laos cave for 10 days",
+      "query": "cave flooded dark tunnel underground water"
+    },
+    {
+      "phrase": "The tunnels filled with water",
+      "query": "flooded cave tunnel rising water dark"
+    },
+    {
+      "phrase": "international rescue team that helped save the Thai soccer team",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/4547292_Cave_rescue_divers_prepare_dive_equipment_at_Tham_Luang_cave.jpg",
+      "query": "cave rescue diver equipment dark underground"
+    },
+    {
+      "phrase": "pushed through 1,000 feet of pitch-black flooded tunnels",
+      "query": "cave diver flooded tunnel headlamp dark"
+    },
+    {
+      "phrase": "walked out alive",
+      "query": "survivor rescued celebration alive muddy"
+    },
+    {
+      "phrase": "2 others are still missing",
+      "query": "search rescue team empty cave entrance"
+    },
+    {
+      "phrase": "swam to freedom through the dark",
+      "query": "dark flooded cave underwater torch light"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "trapped in a flooded Laos cave for 10 days",
+      "text": "10 DAYS TRAPPED",
+      "color": "#ffe24a",
+      "size": 190,
+      "duration": 2.4
+    },
+    {
+      "phrase": "pushed through 1,000 feet",
+      "text": "1,000 FEET OF DARK",
+      "color": "#ffffff",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "walked out alive",
+      "text": "WALKED OUT ALIVE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.6
+    },
+    {
+      "phrase": "2 others are still missing",
+      "text": "2 STILL MISSING",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "swam to freedom through the dark",
+      "text": "SWAM TO FREEDOM",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 3.0
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}

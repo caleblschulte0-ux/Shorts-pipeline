@@ -1,0 +1,79 @@
+{
+  "version": 8,
+  "slug": "hormuz-deal",
+  "title": "The World's Most Important Oil Lane Has Been Closed for 3 Months",
+  "hashtags": ["straitofhormuz", "iran", "oil", "oilprice", "hormuz", "geopolitics", "energycrisis", "oilmarket", "middleeast", "usnews", "energyprice", "oilsupply", "globalnews"],
+  "script": "For 3 months, the world's most important oil shipping lane has been locked shut by war. The Strait of Hormuz — gateway to 20 percent of the world's oil — has been mined by Iran, blockaded by the US, and closed to tanker traffic. Now a deal is days away. The US would lift sanctions. Iran would clear the mines. Shipping reopens for 60 days while nuclear talks begin. Oil markets are watching. So is every country on earth.",
+  "shots": [
+    {
+      "phrase": "most important oil shipping lane",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_Hormuz_%28MODIS_2020-12-04%29.jpg",
+      "query": "oil tanker ship persian gulf sea"
+    },
+    {
+      "phrase": "mined by Iran, blockaded by the US",
+      "query": "naval warship destroyer missile persian gulf"
+    },
+    {
+      "phrase": "closed to tanker traffic",
+      "query": "oil tanker cargo ship at sea"
+    },
+    {
+      "phrase": "The US would lift sanctions",
+      "query": "diplomats negotiation agreement signing"
+    },
+    {
+      "phrase": "Iran would clear the mines",
+      "query": "naval mine underwater sea danger"
+    },
+    {
+      "phrase": "60 days while nuclear talks begin",
+      "query": "iran nuclear facility uranium diplomats"
+    },
+    {
+      "phrase": "every country on earth",
+      "query": "world map earth satellite view global"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "locked shut by war",
+      "text": "LOCKED SHUT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 210,
+      "duration": 2.4
+    },
+    {
+      "phrase": "20 percent of the world's oil",
+      "text": "20% WORLD OIL",
+      "color": "#ffe24a",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "closed to tanker traffic",
+      "text": "LANE CLOSED",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "60 days while nuclear talks begin",
+      "text": "60-DAY DEAL",
+      "color": "#ffaa30",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "every country on earth",
+      "text": "EVERY NATION WATCHING",
+      "color": "#ffffff",
+      "size": 160,
+      "duration": 3.0
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

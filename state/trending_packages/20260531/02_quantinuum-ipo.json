@@ -1,0 +1,68 @@
+{
+  "version": 8,
+  "slug": "quantinuum-ipo",
+  "title": "Quantum Computing's Biggest IPO Ever Just Filed",
+  "hashtags": ["quantinuum", "quantumcomputing", "ipo", "quantumipo", "honeywell", "nasdaq", "trappedion", "qubits", "quantumtech", "techinvesting", "wallstreet", "science", "investing"],
+  "script": "Quantum computing just filed for the biggest IPO in the history of the technology. Quantinuum — spun out of Honeywell — is seeking $1.05 billion at a $12.7 billion valuation under ticker QNT on Nasdaq. The company uses trapped ions to build quantum computers that no one else can replicate. Revenue was just $30.9 million in 2025. Net loss: $136.6 million in just the first quarter of 2026. Wall Street is betting the breakthrough is worth the burn.",
+  "shots": [
+    {
+      "phrase": "biggest IPO in the history of the technology",
+      "query": "nasdaq trading floor stock market exchange opening"
+    },
+    {
+      "phrase": "spun out of Honeywell",
+      "query": "honeywell industrial corporation headquarters building"
+    },
+    {
+      "phrase": "trapped ions to build quantum computers",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/IBM_Q_system_%2827274387309%29.jpg",
+      "query": "quantum computer cryogenic sphere gold science"
+    },
+    {
+      "phrase": "no one else can replicate",
+      "query": "laboratory scientist quantum physics research"
+    },
+    {
+      "phrase": "30.9 million in 2025",
+      "query": "small revenue financial statement startup loss"
+    },
+    {
+      "phrase": "worth the burn",
+      "query": "stock market investor risk bet chart"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "biggest IPO in the history",
+      "text": "BIGGEST QUANTUM IPO EVER",
+      "color": "#ffffff",
+      "size": 160,
+      "duration": 2.6
+    },
+    {
+      "phrase": "12.7 billion valuation",
+      "text": "$12.7B VALUATION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "136.6 million in just the first quarter",
+      "text": "$136.6M BURN",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "worth the burn",
+      "text": "WORTH THE BURN?",
+      "color": "#ffaa30",
+      "size": 190,
+      "duration": 2.8
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}

@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "tesla-fsd-delay",
+  "title": "Elon Promised Full Self-Driving by 2018. It's 2026.",
+  "hashtags": ["tesla", "elonmusk", "fsd", "fullselfdrive", "autonomous", "teslafsd", "robotaxi", "cybercab", "tesladelay", "autonomousvehicle", "selfdriving", "ev", "teslaowners"],
+  "script": "Elon Musk has promised fully self-driving Teslas since 2018. Last week he delayed it again — now Q4 2026 for unsupervised Full Self-Driving. Hardware 3 owners who paid up to $15,000 for Full Self-Driving are being left behind. Their cars have just one-eighth the memory bandwidth needed to go driverless. Musk promised full autonomy by 2018. Then 2020. Then 2022. Then 2025. The car that never crashes just keeps missing its own deadlines.",
+  "shots": [
+    {
+      "phrase": "promised fully self-driving Teslas since 2018",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_crop.jpg",
+      "query": "elon musk speaking presentation stage"
+    },
+    {
+      "phrase": "now Q4 2026 for unsupervised Full Self-Driving",
+      "query": "tesla car interior touchscreen autopilot dashboard"
+    },
+    {
+      "phrase": "paid up to $15,000 for Full Self-Driving",
+      "query": "tesla owner car key disappointed"
+    },
+    {
+      "phrase": "one-eighth the memory bandwidth",
+      "query": "computer chip circuit board hardware processor"
+    },
+    {
+      "phrase": "Musk promised full autonomy by 2018",
+      "query": "broken promise deadline calendar missed"
+    },
+    {
+      "phrase": "never crashes just keeps missing",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Cybercab_July_2025_%2854693064262%29.jpg",
+      "query": "tesla electric car road autonomous driving"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "delayed it again",
+      "text": "DELAYED AGAIN",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "being left behind",
+      "text": "HW3: LEFT BEHIND",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "one-eighth the memory bandwidth",
+      "text": "1/8 THE POWER",
+      "color": "#ffe24a",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Then 2020",
+      "text": "2018. 2020. 2022. 2025.",
+      "color": "#ffffff",
+      "size": 160,
+      "duration": 2.6
+    },
+    {
+      "phrase": "never crashes just keeps missing",
+      "text": "GAME OVER",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 3.0
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}
