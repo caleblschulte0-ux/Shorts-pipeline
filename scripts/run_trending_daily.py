@@ -155,6 +155,10 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         "package_path": pkg.get("_path"),
     }
     t_start = time.time()
+    # BaseException not Exception — catches SystemExit too, so a
+    # rogue sys.exit() in any downstream module can't kill the whole
+    # batch silently. KeyboardInterrupt still propagates (Ctrl-C in
+    # local dev).
     try:
         ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
         slug = _slug(result["topic"])
@@ -181,9 +185,14 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
                 getattr(upload_result, "url", None) or str(upload_result)
             )
             result["ok"] = True
-    except Exception as e:  # noqa: BLE001
+    except KeyboardInterrupt:
+        raise
+    except BaseException as e:  # noqa: BLE001
+        import traceback
         result["error"] = f"{type(e).__name__}: {e}"
         print(f"[{result['topic']!r}] FAILED: {result['error']}", flush=True)
+        traceback.print_exc()
+        sys.stdout.flush(); sys.stderr.flush()
     finally:
         result["elapsed_seconds"] = round(time.time() - t_start, 1)
     return result
@@ -306,6 +315,22 @@ def main() -> int:
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     STATE_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Preflight log. If any of these are unexpected (no gameplay clips
+    # at all, missing kokoro models, no packages today), they show up
+    # at the top of the orchestrator log instead of being inferred from
+    # a cryptic mid-render exit later.
+    gameplay_dir = REPO / "gameplay"
+    gameplay_files = (
+        sorted(p.name for p in gameplay_dir.iterdir())
+        if gameplay_dir.exists() else []
+    )
+    print(f"[preflight] gameplay/ contains: {gameplay_files}", flush=True)
+    print(f"[preflight] today's package dir: "
+          f"{todays_package_dir().relative_to(REPO)}", flush=True)
+    if todays_package_dir().exists():
+        pkg_files = sorted(p.name for p in todays_package_dir().iterdir())
+        print(f"[preflight] today's packages: {pkg_files}", flush=True)
 
     now = datetime.now(timezone.utc)
     sched = schedule_times(now, args.count, DEFAULT_PUBLISH_HOURS_UTC)
