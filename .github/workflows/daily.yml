@@ -7,11 +7,19 @@ on:
         description: 'How many shorts to publish'
         required: false
         default: '6'
-  # Fires when the scheduled Claude routine's PR auto-merges its day's
-  # packages onto main. Path filter keeps it from running on every
-  # random commit (code/docs/etc.). The auto-merge workflow gates
-  # what lands here, so this is effectively "render and ship once
-  # the day's scripts are ready."
+  # Auto-fire when the auto-merge workflow finishes a claude/* PR.
+  # GitHub blocks GITHUB_TOKEN-attributed pushes from firing other
+  # workflows (anti-recursion), so the push-paths trigger below never
+  # fired after auto-merge. workflow_run on the merge workflow side-
+  # steps that — daily.yml runs when auto-merge.yml completes
+  # successfully, regardless of who attributed the resulting push.
+  workflow_run:
+    workflows: ["Auto-merge claude PRs"]
+    types: [completed]
+    branches: [main]
+  # Belt-and-suspenders. If someone pushes packages directly to main
+  # (bypassing the PR/auto-merge path), this picks it up. No-ops when
+  # the orchestrator's "already posted today" check sees a fresh run.
   push:
     branches: [main]
     paths:
