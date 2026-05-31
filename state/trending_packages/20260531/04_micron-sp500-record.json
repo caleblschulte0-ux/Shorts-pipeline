@@ -1,0 +1,78 @@
+{
+  "version": 8,
+  "slug": "micron-sp500-record",
+  "title": "S&P 500 Hits Nine Straight Weeks Up. Micron Joins $1 Trillion Club.",
+  "tags": ["S&P 500", "Micron Technology", "stock market", "Wall Street", "all-time high", "trillion", "investing"],
+  "script": "The S&P 500 just logged its ninth straight week of gains — its longest win streak since 2004. The index closed at a new all-time high of 7,580. Powering the rally: Micron Technology just crossed $1 trillion in market cap for the first time in its history. From RAM chips in Boise, Idaho to a trillion-dollar giant. May 2026 is the best month on Wall Street since 2020.",
+  "shots": [
+    {
+      "phrase": "ninth straight week of gains",
+      "query": "stock market chart green rising gains wall street"
+    },
+    {
+      "phrase": "new all-time high of 7,580",
+      "query": "nasdaq stock exchange trading floor ticker"
+    },
+    {
+      "phrase": "Micron Technology just crossed $1 trillion",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Micron_Engineering_Center_Boise_State.JPG",
+      "query": "micron boise semiconductor memory chip campus"
+    },
+    {
+      "phrase": "RAM chips in Boise, Idaho",
+      "query": "ram memory chip circuit board semiconductor"
+    },
+    {
+      "phrase": "trillion-dollar giant",
+      "query": "one trillion dollar market cap celebration finance"
+    },
+    {
+      "phrase": "best month on Wall Street since 2020",
+      "query": "wall street new york stock exchange crowd celebration"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "ninth straight week of gains",
+      "text": "9 WEEKS STRAIGHT",
+      "color": "#ffe24a",
+      "flash_bg": "#1a1400",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "new all-time high of 7,580",
+      "text": "NEW ALL-TIME HIGH",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 170,
+      "duration": 2.4
+    },
+    {
+      "phrase": "Micron Technology just crossed $1 trillion",
+      "text": "MICRON: $1 TRILLION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 160,
+      "duration": 2.6
+    },
+    {
+      "phrase": "trillion-dollar giant",
+      "text": "$1 TRILLION CLUB",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "best month on Wall Street since 2020",
+      "text": "BEST MAY SINCE 2020",
+      "color": "#ffffff",
+      "size": 155,
+      "duration": 2.4
+    }
+  ],
+  "hashtags": ["sp500", "stockmarket", "alltimehigh", "micron", "wallstreet", "investing", "stocks", "marketrally", "nasdaq", "semiconductor", "finance", "bullmarket", "trillionclub", "investingnews"],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}

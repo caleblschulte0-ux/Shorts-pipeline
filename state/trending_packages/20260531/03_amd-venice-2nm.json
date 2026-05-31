@@ -1,0 +1,82 @@
+{
+  "version": 8,
+  "slug": "amd-venice-2nm",
+  "title": "AMD Just Built the World's Most Advanced Chip",
+  "tags": ["AMD", "Venice", "EPYC", "TSMC", "2nm", "Nvidia", "semiconductor", "AI compute"],
+  "script": "AMD just kicked off production of the world's first 2-nanometer processor. Codenamed Venice, the 6th generation EPYC chip is built on TSMC's newest process — smaller than any chip that has ever shipped. Smaller means more power, less heat, and a direct shot at Nvidia's grip on AI compute. AMD stock jumped 8%. The chip wars just entered a new era.",
+  "shots": [
+    {
+      "phrase": "world's first 2-nanometer processor",
+      "query": "semiconductor chip processor closeup nanometer advanced"
+    },
+    {
+      "phrase": "Codenamed Venice, the 6th generation EPYC chip",
+      "query": "cpu chip epyc server processor data center"
+    },
+    {
+      "phrase": "built on TSMC's newest process",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/TSMC_Fab5.JPG",
+      "query": "tsmc semiconductor fab cleanroom taiwan"
+    },
+    {
+      "phrase": "smaller than any chip that has ever shipped",
+      "query": "microscope transistor nanometer chip extreme closeup"
+    },
+    {
+      "phrase": "direct shot at Nvidia's grip on AI compute",
+      "query": "nvidia gpu server rack data center ai"
+    },
+    {
+      "phrase": "AMD stock jumped 8%",
+      "query": "stock market chart green spike jump gains"
+    },
+    {
+      "phrase": "The chip wars just entered a new era",
+      "query": "semiconductor global competition chips market battle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "world's first 2-nanometer processor",
+      "text": "WORLD'S FIRST 2nm",
+      "color": "#ffffff",
+      "size": 170,
+      "duration": 2.4
+    },
+    {
+      "phrase": "Codenamed Venice, the 6th generation EPYC",
+      "text": "6TH GEN EPYC",
+      "color": "#ffe24a",
+      "flash_bg": "#1a1400",
+      "size": 170,
+      "duration": 2.0
+    },
+    {
+      "phrase": "TSMC's newest process",
+      "text": "TSMC 2nm",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "direct shot at Nvidia's grip",
+      "text": "VS. NVIDIA",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.2
+    },
+    {
+      "phrase": "AMD stock jumped 8%",
+      "text": "+8% AMD",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.0
+    }
+  ],
+  "hashtags": ["amd", "venice", "epyc", "tsmc", "2nm", "semiconductors", "nvidia", "aicompute", "chipmakers", "technews", "stockmarket", "aitech", "computerhardware", "chipwars"],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

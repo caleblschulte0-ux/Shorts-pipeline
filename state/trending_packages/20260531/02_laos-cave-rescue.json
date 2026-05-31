@@ -1,0 +1,71 @@
+{
+  "version": 8,
+  "slug": "laos-cave-rescue",
+  "title": "7 Gold Miners Vanished in a Flooded Cave in Laos",
+  "tags": ["Laos", "cave rescue", "gold miners", "flooding", "rescue", "survival", "Thai cave rescue"],
+  "script": "7 gold miners crawled into a cave in Laos and disappeared underground. Flash flooding sealed the entrance while they were inside, trapping them with no way out. For 10 days, an international rescue team — including divers from the famous 2018 Thai cave rescue — raced to reach them. When the water dropped, 5 walked out alive. 2 are still missing.",
+  "shots": [
+    {
+      "phrase": "7 gold miners crawled into a cave in Laos",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pha_That_Luang.jpg",
+      "query": "laos jungle tropical landscape southeast asia"
+    },
+    {
+      "phrase": "Flash flooding sealed the entrance",
+      "query": "flash flood water rushing cave entrance dark"
+    },
+    {
+      "phrase": "trapping them with no way out",
+      "query": "cave dark underground narrow passage trapped"
+    },
+    {
+      "phrase": "divers from the famous 2018 Thai cave rescue",
+      "query": "cave rescue diver equipment narrow tunnel"
+    },
+    {
+      "phrase": "When the water dropped, 5 walked out alive",
+      "query": "survivors emerge rescue exit light tunnel"
+    },
+    {
+      "phrase": "2 are still missing",
+      "query": "search rescue dark cave flashlight missing"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Flash flooding sealed the entrance",
+      "text": "ENTRANCE SEALED",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "trapping them with no way out",
+      "text": "NO WAY OUT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "5 walked out alive",
+      "text": "5 ALIVE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 220,
+      "duration": 2.6
+    },
+    {
+      "phrase": "2 are still missing",
+      "text": "2 STILL MISSING",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 2.8
+    }
+  ],
+  "hashtags": ["laos", "caverescue", "goldminers", "flashflood", "rescue2026", "survival", "thaicaverescue", "missingpersons", "breakingnews", "worldnews", "rescuediver", "caverescue2026", "hope"],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

@@ -1,0 +1,78 @@
+{
+  "version": 8,
+  "slug": "monkeys-escape-witten",
+  "title": "6 Monkeys Escaped a German Sanctuary by Scraping Through a Brick Wall",
+  "tags": ["rhesus macaque", "Germany", "Witten", "escaped animals", "animal sanctuary", "viral", "primates"],
+  "script": "6 rhesus macaques just escaped an animal sanctuary in Witten, Germany. The monkeys scraped mortar from a brick wall, brick by brick, until they could push through. Police spotted them across the city and set food traps. 3 were caught within 24 hours. 3 are still on the loose. Authorities say the animals pose no danger — but they haven't caught them yet. Residents have been warned.",
+  "shots": [
+    {
+      "phrase": "6 rhesus macaques just escaped an animal sanctuary in Witten",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rhesus_macaque_0001_01.png",
+      "query": "rhesus monkey macaque primate face close"
+    },
+    {
+      "phrase": "scraped mortar from a brick wall, brick by brick",
+      "query": "brick wall mortar damage crumbling cracks"
+    },
+    {
+      "phrase": "Police spotted them across the city and set food traps",
+      "query": "police car germany city street patrol"
+    },
+    {
+      "phrase": "3 were caught within 24 hours",
+      "query": "animal trap cage bait food capture"
+    },
+    {
+      "phrase": "3 are still on the loose",
+      "query": "monkey wild urban city escaped rooftop"
+    },
+    {
+      "phrase": "Residents have been warned",
+      "query": "warning sign city street residents alert caution"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "6 rhesus macaques just escaped",
+      "text": "6 MONKEYS LOOSE",
+      "color": "#ffe24a",
+      "flash_bg": "#1a1400",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "brick by brick",
+      "text": "BRICK BY BRICK",
+      "color": "#ffaa30",
+      "flash_bg": "#1a0e00",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "3 were caught within 24 hours",
+      "text": "3 DOWN",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 210,
+      "duration": 1.8
+    },
+    {
+      "phrase": "3 are still on the loose",
+      "text": "3 STILL OUT THERE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 165,
+      "duration": 2.4
+    },
+    {
+      "phrase": "Authorities say the animals pose no danger",
+      "text": "TOTALLY SAFE (SURE)",
+      "color": "#ffffff",
+      "size": 155,
+      "duration": 2.6
+    }
+  ],
+  "hashtags": ["monkeys", "germany", "witten", "rhesusmacaque", "escapedanimals", "viral", "funnyanimals", "primates", "weirdnews", "animalescape", "germanynews", "wildanimals", "animalrescue"],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}

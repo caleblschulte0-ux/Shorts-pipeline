@@ -1,0 +1,82 @@
+{
+  "version": 8,
+  "slug": "anthropic-965b-mythos",
+  "title": "Anthropic Is Now Worth Almost a Trillion Dollars",
+  "tags": ["Anthropic", "Mythos", "Dario Amodei", "Claude", "AI", "valuation", "cybersecurity"],
+  "script": "Anthropic just raised $65 billion in a new funding round, pushing its valuation to $965 billion — making it the most valuable AI startup on the planet. CEO Dario Amodei says the company's next model, Mythos, arrives in weeks. Mythos can find vulnerabilities in live software and chain them into cyber attacks. Anthropic also shipped Claude Opus 4.8, its safest model yet. The AI race has a new leader.",
+  "shots": [
+    {
+      "phrase": "just raised $65 billion in a new funding round",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dario_Amodei_at_TechCrunch_Disrupt_2023_04.jpg",
+      "query": "tech CEO investor conference stage"
+    },
+    {
+      "phrase": "$965 billion — making it the most valuable",
+      "query": "money stacks wealth billion finance vault"
+    },
+    {
+      "phrase": "most valuable AI startup on the planet",
+      "query": "ai startup tech office data center servers"
+    },
+    {
+      "phrase": "Mythos, arrives in weeks",
+      "query": "ai model neural network glowing interface"
+    },
+    {
+      "phrase": "chain them into cyber attacks",
+      "query": "cybersecurity hacking code terminal dark screen"
+    },
+    {
+      "phrase": "Claude Opus 4.8, its safest model yet",
+      "query": "ai safety ethics lab scientist computer"
+    },
+    {
+      "phrase": "The AI race has a new leader",
+      "query": "silicon valley tech campus aerial california"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "just raised $65 billion",
+      "text": "$65 BILLION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "$965 billion — making it",
+      "text": "$965 BILLION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "most valuable AI startup on the planet",
+      "text": "MOST VALUABLE AI",
+      "color": "#ffffff",
+      "size": 160,
+      "duration": 2.2
+    },
+    {
+      "phrase": "chain them into cyber attacks",
+      "text": "CYBER ATTACKS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "The AI race has a new leader",
+      "text": "NEW KING",
+      "color": "#ffe24a",
+      "flash_bg": "#1a1400",
+      "size": 220,
+      "duration": 2.6
+    }
+  ],
+  "hashtags": ["anthropic", "mythos", "claude", "darioamodei", "aistartup", "aimodel", "artificialintelligence", "techai", "airace", "cybersecurity", "aiinvesting", "ainews", "opusai", "machinelearning"],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}
