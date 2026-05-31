@@ -898,7 +898,7 @@ def build_video(
         print(f"      {len(cut_times)} sub-cuts")
 
         # 5. Pick gameplay for bottom
-        print(f"[5/9] bottom: {gameplay_tag} gameplay")
+        print(f"[5/9] bottom: {gameplay_tag} gameplay", flush=True)
         bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
 
         # 6. Captions + punches (both ASS, one filter pass)
