@@ -5,34 +5,34 @@
 - failed: **0**
 
 ## Posted
-- **SpaceX Just Filed the Biggest IPO in History**
-  - topic: SpaceX Just Filed the Biggest IPO in History
-  - publishes: `2026-05-31T13:00:00Z`
-  - https://youtube.com/shorts/xQ0-_xsEE-I
-  - took: 195.7s
-- **Robots Worked 200 Hours Straight. Then a Human Beat Them.**
-  - topic: Robots Worked 200 Hours Straight. Then a Human Beat Them.
-  - publishes: `2026-05-31T15:00:00Z`
-  - https://youtube.com/shorts/xAuFURyXZho
-  - took: 116.2s
-- **AI Unlocked a Crash Recording the Government Was Banned From Releasing**
-  - topic: AI Unlocked a Crash Recording the Government Was Banned From Releasing
+- **Anthropic Just Became the First AI Lab to Turn a Profit**
+  - topic: Anthropic Just Became the First AI Lab to Turn a Profit
   - publishes: `2026-05-31T17:00:00Z`
-  - https://youtube.com/shorts/VaMBH8WUJUA
-  - took: 110.1s
-- **The Pope Just Issued a 40,000-Word Warning to Silicon Valley**
-  - topic: The Pope Just Issued a 40,000-Word Warning to Silicon Valley
+  - https://youtube.com/shorts/JaMSDmqyLpI
+  - took: 184.1s
+- **Quantum Computing's Biggest IPO Ever Just Filed**
+  - topic: Quantum Computing's Biggest IPO Ever Just Filed
   - publishes: `2026-05-31T19:00:00Z`
-  - https://youtube.com/shorts/NVW5eQplII4
-  - took: 114.5s
-- **Google's New AI Agent Works 24/7 — Even When Your Phone Is Off**
-  - topic: Google's New AI Agent Works 24/7 — Even When Your Phone Is Off
+  - https://youtube.com/shorts/JmHMUtMsWeA
+  - took: 208.3s
+- **Miners Trapped 10 Days Swam Out of the Cave Themselves**
+  - topic: Miners Trapped 10 Days Swam Out of the Cave Themselves
   - publishes: `2026-05-31T21:00:00Z`
-  - https://youtube.com/shorts/H4d_Lup7whU
-  - took: 102.7s
-- **2 Million Bees Escaped on an Interstate. The Driver Ran for the River.**
-  - topic: 2 Million Bees Escaped on an Interstate. The Driver Ran for the River.
+  - https://youtube.com/shorts/Tu2EC5QaSUs
+  - took: 201.9s
+- **Elon Promised Full Self-Driving by 2018. It's 2026.**
+  - topic: Elon Promised Full Self-Driving by 2018. It's 2026.
   - publishes: `2026-05-31T23:00:00Z`
-  - https://youtube.com/shorts/uLVdK0ukGUY
-  - took: 102.5s
+  - https://youtube.com/shorts/TQGEqJvvcgM
+  - took: 172.3s
+- **Big Tech Is Spending $900 Billion on AI This Year**
+  - topic: Big Tech Is Spending $900 Billion on AI This Year
+  - publishes: `2026-06-01T13:00:00Z`
+  - https://youtube.com/shorts/Nl3vsJyLQ6M
+  - took: 292.5s
+- **The World's Most Important Oil Lane Has Been Closed for 3 Months**
+  - topic: The World's Most Important Oil Lane Has Been Closed for 3 Months
+  - publishes: `2026-06-01T15:00:00Z`
+  - https://youtube.com/shorts/VBytLV1oMk0
+  - took: 244.6s
 
