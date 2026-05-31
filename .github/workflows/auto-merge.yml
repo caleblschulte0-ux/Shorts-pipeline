@@ -12,6 +12,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write   # needed for `gh workflow run` to dispatch daily.yml
 
 jobs:
   automerge:
@@ -19,9 +20,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Squash-merge
+        id: merge
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh pr merge "${{ github.event.pull_request.number }}" \
             --repo "${{ github.repository }}" \
             --squash --delete-branch
+
+      # If the PR touched today's package directory, manually kick off
+      # daily.yml. We can't rely on the workflow_run cascade or the
+      # push-paths trigger — both are dead-ended by GitHub's "workflows
+      # can't trigger other workflows from GITHUB_TOKEN" anti-recursion
+      # rule. workflow_dispatch is the explicitly-allowed exception:
+      # it's the one event GITHUB_TOKEN CAN fire.
+      - name: Trigger daily.yml if the PR added today's packages
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # List files the PR changed.
+          files=$(gh pr view "${{ github.event.pull_request.number }}" \
+            --repo "${{ github.repository }}" \
+            --json files --jq '.files[].path')
+          echo "Changed files:"
+          printf '  %s\n' $files
+          today=$(date -u +%Y%m%d)
+          if echo "$files" | grep -q "^state/trending_packages/${today}/"; then
+            echo "Today's packages were touched — firing daily.yml."
+            gh workflow run daily.yml \
+              --repo "${{ github.repository }}" \
+              --ref main
+          else
+            echo "No package changes for today (${today}); skipping daily dispatch."
+          fi
