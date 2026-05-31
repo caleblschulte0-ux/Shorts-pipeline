@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "bigtech-ai-capex",
+  "title": "Big Tech Is Spending $900 Billion on AI This Year",
+  "hashtags": ["aicapex", "datacenter", "bigtech", "amazon", "microsoft", "meta", "nvidia", "aiinfrastructure", "techspending", "aiboom", "aiinvesting", "cloudcomputing", "ai"],
+  "script": "In 2026, America's 5 biggest tech companies will spend between $650 billion and $900 billion building AI infrastructure. Amazon alone: $200 billion. Google: up to $185 billion. Microsoft, Meta, and Oracle together: another $285 billion. That's more money than the entire GDP of 175 countries — spent in a single year on servers, chips, and power plants to run artificial intelligence. By 2027, they expect to cross $1 trillion. The arms race just went physical.",
+  "shots": [
+    {
+      "phrase": "5 biggest tech companies",
+      "query": "data center construction aerial cranes building"
+    },
+    {
+      "phrase": "Amazon alone",
+      "query": "amazon aws server farm data center interior"
+    },
+    {
+      "phrase": "Microsoft, Meta, and Oracle together",
+      "query": "silicon valley tech company campus headquarters"
+    },
+    {
+      "phrase": "entire GDP of 175 countries",
+      "query": "world map economy global trade satellite"
+    },
+    {
+      "phrase": "servers, chips, and power plants",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nvidia_HQ.jpg",
+      "query": "nvidia semiconductor gpu chip factory"
+    },
+    {
+      "phrase": "arms race just went physical",
+      "query": "construction crane building data center night"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Amazon alone",
+      "text": "$200B AMAZON ALONE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 170,
+      "duration": 2.0
+    },
+    {
+      "phrase": "entire GDP of 175 countries",
+      "text": "175 COUNTRIES' GDP",
+      "color": "#ffffff",
+      "size": 170,
+      "duration": 2.4
+    },
+    {
+      "phrase": "servers, chips, and power plants",
+      "text": "SERVERS. CHIPS. POWER.",
+      "color": "#ffe24a",
+      "size": 160,
+      "duration": 2.2
+    },
+    {
+      "phrase": "cross $1 trillion",
+      "text": "CROSSING $1 TRILLION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 170,
+      "duration": 2.6
+    },
+    {
+      "phrase": "arms race just went physical",
+      "text": "ARMS RACE: PHYSICAL",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 3.0
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

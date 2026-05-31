@@ -1,0 +1,80 @@
+{
+  "version": 8,
+  "slug": "anthropic-first-profit",
+  "title": "Anthropic Just Became the First AI Lab to Turn a Profit",
+  "hashtags": ["anthropic", "claude", "ai", "aiprofits", "claudecode", "techinvesting", "aiearnings", "ailab", "openai", "airevenue", "machinelearning", "frontier", "aiindustry"],
+  "script": "For 5 years Anthropic burned billions racing OpenAI. This quarter, the race changed. Anthropic is projecting its first-ever operating profit — $559 million — on $10.9 billion in Q2 revenue. That's 130 percent growth in a single quarter. Claude Code alone crossed 1 billion in annualized revenue just 6 months after launch. If the numbers land, Anthropic becomes the first frontier AI lab ever to turn a quarterly profit. The startup that trained Claude just became a real business.",
+  "shots": [
+    {
+      "phrase": "burned billions racing OpenAI",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dario_Amodei_in_2023.jpg",
+      "query": "ai lab researchers computers servers"
+    },
+    {
+      "phrase": "first-ever operating profit",
+      "query": "profit chart green bar financial milestone"
+    },
+    {
+      "phrase": "10.9 billion in Q2 revenue",
+      "query": "quarterly earnings revenue bar chart growth"
+    },
+    {
+      "phrase": "130 percent growth in a single quarter",
+      "query": "stock price surge upward chart"
+    },
+    {
+      "phrase": "Claude Code alone crossed",
+      "query": "developer coding laptop software terminal dark"
+    },
+    {
+      "phrase": "first frontier AI lab ever",
+      "query": "ai supercomputer data center servers dark"
+    },
+    {
+      "phrase": "trained Claude just became",
+      "query": "tech startup office city skyline modern"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "the race changed",
+      "text": "RACE CHANGED",
+      "color": "#ffe24a",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "first-ever operating profit",
+      "text": "$559M PROFIT",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "130 percent growth",
+      "text": "130% GROWTH",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "first frontier AI lab ever",
+      "text": "FIRST IN HISTORY",
+      "color": "#ffffff",
+      "size": 170,
+      "duration": 2.4
+    },
+    {
+      "phrase": "trained Claude just became",
+      "text": "GAME OVER",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 3.0
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}
