@@ -1,0 +1,7 @@
+# Jekyll config for GitHub Pages — serves the legal pages required by
+# TikTok/Meta API approval. Plain Cayman theme is enough; we just need
+# the URLs to resolve to readable HTML.
+theme: jekyll-theme-cayman
+title: Shorts Pipeline
+description: Automated short-form news explainer pipeline
+permalink: /:basename:output_ext
