@@ -32,7 +32,9 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # --- 3. Client key + secret ----------------------------------------
-$env:TIKTOK_CLIENT_KEY = "aw9hmk3x2xmhv4mv"
+# Using the SANDBOX credentials. Production credentials are different
+# and only work once the app passes review.
+$env:TIKTOK_CLIENT_KEY = "sbawka38idenrphvmb"
 $secretFile = Join-Path $PSScriptRoot ".tiktok_secret"
 if (Test-Path $secretFile) {
     $env:TIKTOK_CLIENT_SECRET = (Get-Content $secretFile).Trim()
