@@ -179,6 +179,17 @@ def render_building(b, smoke_color: str, w: int, h: int, out: Path) -> None:
 
     # ---------- windows + door on the front face ----------
     def opening(wx, wy, hw, hh, style):
+        if style == "round":                           # little attic porthole
+            d.ellipse([P(wx - hw, wy - hh)[0], P(wx - hw, wy - hh)[1],
+                       P(wx + hw, wy + hh)[0], P(wx + hw, wy + hh)[1]], fill=(*frame, 255))
+            ins = max(SS * 1.6, hw * SS * 0.22)
+            d.ellipse([P(wx - hw, wy - hh)[0] + ins, P(wx - hw, wy - hh)[1] + ins,
+                       P(wx + hw, wy + hh)[0] - ins, P(wx + hw, wy + hh)[1] - ins], fill=(255, 208, 128, 255))
+            d.line([P(wx, wy - hh)[0], P(wx, wy - hh)[1] + ins,
+                    P(wx, wy + hh)[0], P(wx, wy + hh)[1] - ins], fill=(*frame, 255), width=lw)
+            d.line([P(wx - hw, wy)[0] + ins, P(wx - hw, wy)[1],
+                    P(wx + hw, wy)[0] - ins, P(wx + hw, wy)[1]], fill=(*frame, 255), width=lw)
+            return
         d.rectangle([P(wx - hw, wy - hh)[0], P(wx - hw, wy - hh)[1],
                      P(wx + hw, wy + hh)[0], P(wx + hw, wy + hh)[1]], fill=(*frame, 255))
         ins = max(SS * 2.0, hw * SS * 0.16)
@@ -252,6 +263,57 @@ def render_building(b, smoke_color: str, w: int, h: int, out: Path) -> None:
         canvas = Image.alpha_composite(canvas, sm)
 
     canvas.save(out)
+
+
+def render_pond(out: Path, w: int, h: int, cxf: float, cyf: float,
+                pw: int, ph: int, moon_xf: float = 0.7) -> None:
+    """A frozen pond: icy ellipse with a snowy rim and a soft moonlight reflection."""
+    cx, cy = cxf * w, cyf * h
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    # soft snowy rim (subtle, not a hoop)
+    d.ellipse([cx - pw / 2 - 8, cy - ph / 2 - 6, cx + pw / 2 + 8, cy + ph / 2 + 6], fill=(196, 210, 232, 170))
+    # ice surface — a distinct, lit frozen plane (lighter toward the centre)
+    d.ellipse([cx - pw / 2, cy - ph / 2, cx + pw / 2, cy + ph / 2], fill=(86, 106, 140, 255))
+    d.ellipse([cx - pw * 0.42, cy - ph * 0.40, cx + pw * 0.42, cy + ph * 0.40], fill=(112, 132, 166, 255))
+    # a darker pool toward the far edge for depth
+    d.ellipse([cx - pw * 0.30, cy - ph * 0.42, cx + pw * 0.30, cy - ph * 0.05], fill=(70, 88, 120, 120))
+    img = img.filter(ImageFilter.GaussianBlur(2))
+    # moonlight reflection streak across the ice
+    refl = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    rd = ImageDraw.Draw(refl)
+    mx = cx + (moon_xf - 0.5) * pw * 0.6
+    rd.ellipse([mx - pw * 0.05, cy - ph * 0.40, mx + pw * 0.05, cy + ph * 0.44], fill=(228, 238, 252, 150))
+    refl = refl.filter(ImageFilter.GaussianBlur(7))
+    img = Image.alpha_composite(img, refl)
+    img.save(out)
+
+
+def render_skater(out: Path, size: int, color: str) -> None:
+    """A small skater silhouette (head, leaning body, gliding stride, balancing arms)."""
+    S = 4
+    c = (*_rgb(color), 255)
+    tw = size
+    img = Image.new("RGBA", (tw * S, size * S), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    cxp = tw * S * 0.5
+    lwid = max(2, int(size * S * 0.085))
+
+    def L(x0, y0, x1, y1):
+        d.line([x0, y0, x1, y1], fill=c, width=lwid)
+
+    head_r = size * S * 0.12
+    head_c = (cxp + size * S * 0.05, size * S * 0.16)
+    d.ellipse([head_c[0] - head_r, head_c[1] - head_r, head_c[0] + head_r, head_c[1] + head_r], fill=c)
+    hip = (cxp - size * S * 0.04, size * S * 0.56)
+    sho = (head_c[0], head_c[1] + head_r)
+    L(sho[0], sho[1], hip[0], hip[1])                       # torso, leaning forward
+    L(sho[0], sho[1], cxp + size * S * 0.34, size * S * 0.34)   # leading arm out
+    L(sho[0], sho[1], cxp - size * S * 0.30, size * S * 0.46)   # trailing arm
+    L(hip[0], hip[1], cxp + size * S * 0.22, size * S * 0.94)   # glide leg (front)
+    L(hip[0], hip[1], cxp - size * S * 0.34, size * S * 0.80)   # push leg (back)
+    img = img.resize((tw, size), Image.LANCZOS)
+    img.save(out)
 
 
 def _band(a, bk, eb, ef, top, bottom):

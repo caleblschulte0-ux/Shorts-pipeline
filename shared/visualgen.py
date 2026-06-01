@@ -16,6 +16,7 @@ Two generators:
 """
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -85,8 +86,8 @@ class Building:
     win_color: str = "ffcf6b"         # warm light
     # each window: (dx as frac of width, dy as frac of body height from wall-top,
     #               width frac, height frac, muntin style: 'cross'|'vert'|'none')
-    # cabin default: a window on the right, a door on the left, a lit gable window up top.
-    windows: tuple = ((0.24, 0.40, 0.18, 0.24, "cross"), (0.0, -0.42, 0.13, 0.17, "cross"))
+    # cabin default: a window on the right, a door on the left, a round attic porthole.
+    windows: tuple = ((0.24, 0.40, 0.18, 0.24, "cross"), (0.0, -0.46, 0.085, 0.11, "round"))
     door: tuple | None = (-0.24, 0.76, 0.15, 0.46)   # (dx, dy, wfrac, hfrac)
     chimney: bool = True
     smoke: bool = True
@@ -131,6 +132,13 @@ class SceneSpec:
     snow_ground: bool = False         # snowy foreground bank the buildings nestle into
     snow_ground_y: float = 0.90       # top of the snow bank as fraction of height
     snow_ground_color: str = "eef3fb"
+    pond: bool = False                # frozen pond in the midground
+    pond_x: float = 0.5
+    pond_y: float = 0.66
+    pond_w: int = 430
+    pond_h: int = 120
+    skaters: int = 0                  # silhouettes skating a (seamless) figure-8 on the pond
+    skater_color: str = "0b1120"
     buildings: tuple = ()             # foreground structures (cabin, barn ...)
     smoke_color: str = "9aa3b0"       # chimney smoke tint
     shooting_star: bool = False       # an occasional meteor streaks across the sky
@@ -343,6 +351,11 @@ def generate_scene_clip(
     if spec.fog and not fog_drift:                        # static mist sits within the hills
         fog = wd / "_fog.png"; _make_fog(fog, spec, w, h); tmps.append(fog)
         hills.append(fog)
+    if spec.pond:                                         # frozen pond (skaters glide on it)
+        from .buildingart import render_pond
+        pond = wd / "_pond.png"
+        render_pond(pond, w, h, spec.pond_x, spec.pond_y, spec.pond_w, spec.pond_h, spec.glow_x)
+        tmps.append(pond); hills.append(pond)
     if spec.snow_ground:                                  # snowy bank the buildings rest on
         sg = wd / "_snowground.png"; _make_snowground(sg, spec, w, h); tmps.append(sg)
         hills.append(sg)
@@ -377,6 +390,22 @@ def generate_scene_clip(
         fstrip = wd / "_fogstrip.png"; _make_fog_strip(fstrip, spec, w, h); tmps.append(fstrip)
         fvx = spec.fog_speed * rw / duration
         plan.append(("move", fstrip, dict(x_expr=f"'mod(t*{fvx:.5f},{rw})-{rw}'", tw=2 * rw, th=rh)))
+    if spec.pond and spec.skaters > 0:
+        # silhouettes tracing a figure-8 (lemniscate of Gerono) — one full lap per loop,
+        # so the motion is seamless. Each skater is phase-shifted along the same path.
+        from .buildingart import render_skater
+        ssz = max(14, int(spec.pond_h * 0.55))
+        sk = wd / "_skater.png"; render_skater(sk, ssz, spec.skater_color); tmps.append(sk)
+        sw = max(2, round(ssz * s))
+        pcx, pcy = spec.pond_x * rw, spec.pond_y * rh
+        A, B = spec.pond_w * 0.32 * s, spec.pond_h * 0.30 * s
+        for i in range(spec.skaters):
+            ph = 2 * math.pi * i / spec.skaters
+            u = f"(2*PI*t/{duration:.3f}+{ph:.4f})"
+            plan.append(("move", sk, dict(
+                x_expr=f"'{pcx:.1f}+{A:.1f}*cos({u})-{sw / 2:.1f}'",
+                y_expr=f"'{pcy:.1f}+{B:.1f}*sin({u})*cos({u})-{sw * 0.92:.1f}'",
+                tw=sw, th=sw)))
     if cabin_layers:
         plan.append(("plate", cabin_layers))
     if spec.particles != "none":
