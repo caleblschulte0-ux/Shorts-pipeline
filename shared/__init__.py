@@ -45,6 +45,7 @@ from .shell import ffprobe_duration, run
 from .sourcing import download_source, is_url
 from .tts import synthesize_voiceover
 from .visualgen import (
+    Building,
     SceneSpec,
     generate_abstract_clip,
     generate_scene_clip,
@@ -85,4 +86,5 @@ __all__ = [
     "make_seamless_loop",
     "overlay_logo",
     "SceneSpec",
+    "Building",
 ]
