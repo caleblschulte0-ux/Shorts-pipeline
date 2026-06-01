@@ -1,0 +1,85 @@
+{
+  "version": 8,
+  "slug": "microsoft-ai-automation",
+  "title": "Microsoft's AI Boss Says White-Collar Jobs Are Gone in 18 Months",
+  "hashtags": ["mustafasuleyman", "microsoft", "whitecollar", "aiautomation", "futureofwork", "ailayoffs", "technews", "automation", "artificialintelligence", "aijobs", "microsoftai", "whitecollarjobs", "jobsai", "techgiant"],
+  "script": "Microsoft's CEO of AI just drew an 18-month deadline for white-collar work. Mustafa Suleyman told the Financial Times that virtually all professional tasks — accounting, legal work, marketing, project management — will be done by AI within 12 to 18 months. He called it 'human-level performance on most professional tasks.' Microsoft is betting $190 billion on this being true. Over 100,000 tech workers have already been laid off in 2026. The clock is ticking.",
+  "shots": [
+    {
+      "phrase": "an 18-month deadline for white-collar work",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mustafa_Suleyman_photo_(cropped).jpg",
+      "query": "executive technology ai ceo interview keynote conference stage"
+    },
+    {
+      "phrase": "accounting, legal work, marketing, project management",
+      "query": "office workers white collar professional laptop desk corporate"
+    },
+    {
+      "phrase": "done by AI within 12 to 18 months",
+      "query": "ai robot computer automation office task software"
+    },
+    {
+      "phrase": "$190 billion",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Microsoft_campus_(5536187533).jpg",
+      "query": "microsoft headquarters building campus redmond office tower"
+    },
+    {
+      "phrase": "Over 100,000 tech workers have already been laid off",
+      "query": "tech layoff workers unemployed office closed desk empty"
+    },
+    {
+      "phrase": "The clock is ticking",
+      "query": "countdown clock timer digital red urgent pressure deadline"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "an 18-month deadline",
+      "text": "18 MONTHS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 2.6
+    },
+    {
+      "phrase": "accounting, legal work, marketing",
+      "text": "ACCOUNTING. LEGAL. MARKETING.",
+      "color": "#ffaa30",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "human-level performance on most professional tasks",
+      "text": "HUMAN-LEVEL AI",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "$190 billion",
+      "text": "$190B BET",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "100,000 tech workers have already been laid off in 2026",
+      "text": "100K GONE IN 2026",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 190,
+      "duration": 2.4
+    },
+    {
+      "phrase": "The clock is ticking",
+      "text": "TICK TOCK",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

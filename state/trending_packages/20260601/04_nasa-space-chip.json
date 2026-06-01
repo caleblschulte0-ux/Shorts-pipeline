@@ -1,0 +1,75 @@
+{
+  "version": 8,
+  "slug": "nasa-space-chip",
+  "title": "NASA's New Space Chip Is 500 Times More Powerful Than Any Before",
+  "hashtags": ["nasa", "space", "hpsc", "deepspace", "spacetechnology", "jpl", "spacecraft", "marsrover", "spacecomputer", "aitechnology", "sciencenews", "nasanews", "spaceexploration", "microchiptech"],
+  "script": "The computers guiding spacecraft today were designed in the 1990s. NASA just changed that. Its new High Performance Spaceflight Computing chip — built by Microchip Technology — is 500 times more powerful than current space computers, fits in your palm, and survives deep space radiation. It passed testing at JPL last month. Future rovers, lunar habitats, and deep space probes will run it. For the first time, spacecraft will be able to think for themselves.",
+  "shots": [
+    {
+      "phrase": "computers guiding spacecraft today were designed in the 1990s",
+      "query": "old vintage spacecraft computer control panel 1990s retro"
+    },
+    {
+      "phrase": "High Performance Spaceflight Computing chip",
+      "query": "computer chip space technology radiation hardened processor palm"
+    },
+    {
+      "phrase": "fits in your palm",
+      "query": "tiny microchip held in human palm hand small technology"
+    },
+    {
+      "phrase": "testing at JPL last month",
+      "query": "nasa jpl jet propulsion laboratory campus scientists engineers"
+    },
+    {
+      "phrase": "Future rovers, lunar habitats",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA_Mars_Rover.jpg",
+      "query": "mars rover nasa space exploration planet surface"
+    },
+    {
+      "phrase": "spacecraft will be able to think for themselves",
+      "query": "autonomous spacecraft deep space stars galaxy dark ai"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "designed in the 1990s",
+      "text": "BUILT IN THE 90s",
+      "color": "#ffffff",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "500 times more powerful",
+      "text": "500X MORE POWERFUL",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "fits in your palm",
+      "text": "FITS IN YOUR PALM",
+      "color": "#ffffff",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Future rovers, lunar habitats, and deep space probes",
+      "text": "ROVERS. HABITATS. PROBES.",
+      "color": "#ffe24a",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "spacecraft will be able to think for themselves",
+      "text": "AI IN DEEP SPACE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}

@@ -1,0 +1,80 @@
+{
+  "version": 8,
+  "slug": "oracle-ai-layoffs",
+  "title": "Oracle Fired 30,000 People at 6 A.M. to Fund AI Data Centers",
+  "hashtags": ["oracle", "layoffs", "techlayoffs", "openai", "stargate", "aiinvestment", "cloudinfrastructure", "aiinfrastructure", "techjobs", "workforcereduction", "oraclecloud", "aiinvesting", "orcl", "datacenters"],
+  "script": "Oracle just completed the largest layoff in its history. On March 31st, 2026, 30,000 employees — 18 percent of the global workforce — received termination emails at 6 a.m. with no warning from HR. The cuts free up $8 billion in cash. The money goes directly to a $156 billion AI infrastructure buildout tied to OpenAI's Stargate contract. Many workers forfeited unvested stock worth hundreds of thousands. Jobs were traded for compute.",
+  "shots": [
+    {
+      "phrase": "largest layoff in its history",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oracle_HQ_3.JPG",
+      "query": "oracle corporation headquarters building campus"
+    },
+    {
+      "phrase": "30,000 employees — 18 percent of the global workforce",
+      "query": "mass layoff fired workers empty office desks terminated"
+    },
+    {
+      "phrase": "termination emails at 6 a.m. with no warning",
+      "query": "email notification phone dark morning shock bad news inbox"
+    },
+    {
+      "phrase": "$156 billion AI infrastructure buildout",
+      "query": "data center server racks AI compute infrastructure dark rows"
+    },
+    {
+      "phrase": "OpenAI's Stargate contract",
+      "query": "openai artificial intelligence computing facility servers"
+    },
+    {
+      "phrase": "forfeited unvested stock worth hundreds of thousands",
+      "query": "stock options vest RSU financial loss chart falling"
+    },
+    {
+      "phrase": "Jobs were traded for compute",
+      "query": "gpu chips AI hardware technology powerful server racks"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "largest layoff in its history",
+      "text": "BIGGEST IN ORACLE HISTORY",
+      "color": "#ffffff",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "30,000 employees",
+      "text": "30,000 FIRED",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 210,
+      "duration": 2.6
+    },
+    {
+      "phrase": "$8 billion in cash",
+      "text": "$8B FREED UP",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "$156 billion AI infrastructure",
+      "text": "$156B AI BUILDOUT",
+      "color": "#ffaa30",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "forfeited unvested stock",
+      "text": "LOST THEIR STOCK",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}

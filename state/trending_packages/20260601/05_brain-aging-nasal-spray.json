@@ -1,0 +1,72 @@
+{
+  "version": 8,
+  "slug": "brain-aging-nasal-spray",
+  "title": "Scientists Reversed Brain Aging With a Nasal Spray. Alzheimer's Is Next.",
+  "hashtags": ["brainaging", "alzheimers", "dementia", "nasalspray", "neuroscience", "texasam", "stemcells", "brainhealth", "aging", "memorycare", "sciencebreakthrough", "parkinsonsdisease", "neurology", "medicine"],
+  "script": "Texas A&M University just reversed brain aging — in mice — with a simple nasal spray. Researchers developed a spray using microscopic particles from neural stem cells. When given to 18-month-old mice — equivalent to 60-year-old humans — it reduced brain inflammation, restored memory, and produced benefits lasting months from just 2 doses. The team is now filing a patent. A human version is the next step. Alzheimer's may have met its match.",
+  "shots": [
+    {
+      "phrase": "reversed brain aging — in mice — with a simple nasal spray",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_A%26M_University_Chemistry_Building.jpg",
+      "query": "university research lab science building campus quadrangle"
+    },
+    {
+      "phrase": "microscopic particles from neural stem cells",
+      "query": "brain neuron microscope cells neural science research lab"
+    },
+    {
+      "phrase": "18-month-old mice",
+      "query": "lab mice research aging neuroscience study laboratory white"
+    },
+    {
+      "phrase": "reduced brain inflammation, restored memory",
+      "query": "brain scan mri memory alzheimer neuroscience cognitive"
+    },
+    {
+      "phrase": "Alzheimer's may have met its match",
+      "query": "alzheimer disease treatment hope brain scan senior cognitive"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "reversed brain aging",
+      "text": "BRAIN AGING REVERSED",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.4
+    },
+    {
+      "phrase": "microscopic particles from neural stem cells",
+      "text": "NEURAL STEM CELLS",
+      "color": "#ffffff",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "60-year-old humans",
+      "text": "EQUIV. TO AGE 60",
+      "color": "#ffaa30",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "benefits lasting months from just 2 doses",
+      "text": "2 DOSES. MONTHS OF BENEFIT.",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "Alzheimer's may have met its match",
+      "text": "ALZHEIMER'S MET ITS MATCH",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}
