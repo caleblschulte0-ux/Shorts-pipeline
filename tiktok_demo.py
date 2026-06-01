@@ -43,11 +43,13 @@ from pathlib import Path
 
 CLIENT_KEY = os.environ.get("TIKTOK_CLIENT_KEY")
 CLIENT_SECRET = os.environ.get("TIKTOK_CLIENT_SECRET")
-REDIRECT_URI = "http://localhost:8000/callback"
-# Only the Content Posting API scopes — we don't need Login Kit's
-# user.info.basic. Dropping it lets us skip enabling Login Kit as a
-# product (which has stricter callback rules than Content Posting).
-SCOPES = "video.upload,video.publish"
+# Login Kit requires HTTPS callbacks. Default to localhost for the few
+# TikTok products that accept it; override via TIKTOK_REDIRECT_URI when
+# you have an ngrok or other HTTPS tunnel pointing at :8000.
+REDIRECT_URI = os.environ.get("TIKTOK_REDIRECT_URI", "http://localhost:8000/callback")
+# Login Kit is required because Content Posting depends on it. Request
+# only the scopes we actually use.
+SCOPES = "user.info.basic,video.upload,video.publish"
 
 # Where the local server stashes the auth code so the main thread can
 # grab it. Set by the request handler, read by main().

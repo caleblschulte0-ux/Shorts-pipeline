@@ -31,7 +31,7 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-# --- 3. Client key + secret ----------------------------------------
+# --- 3. Client key + secret + redirect URI -------------------------
 # Using the SANDBOX credentials. Production credentials are different
 # and only work once the app passes review.
 $env:TIKTOK_CLIENT_KEY = "sbawka38idenrphvmb"
@@ -40,12 +40,29 @@ if (Test-Path $secretFile) {
     $env:TIKTOK_CLIENT_SECRET = (Get-Content $secretFile).Trim()
 } else {
     Write-Host ""
-    Write-Host "Paste your TikTok Client Secret from the dev dashboard:" -ForegroundColor Cyan
+    Write-Host "Paste your TikTok Client Secret from the sandbox dashboard:" -ForegroundColor Cyan
     $sec = Read-Host -AsSecureString
     $env:TIKTOK_CLIENT_SECRET = [System.Net.NetworkCredential]::new("", $sec).Password
     Set-Content -Path $secretFile -Value $env:TIKTOK_CLIENT_SECRET -NoNewline
     Write-Host "[+] secret saved to .tiktok_secret (gitignored)"
 }
+
+# Redirect URI. Login Kit blocks localhost so we use an ngrok HTTPS
+# tunnel pointing at port 8000. Prompted once, then cached.
+$redirectFile = Join-Path $PSScriptRoot ".tiktok_redirect_uri"
+if (Test-Path $redirectFile) {
+    $env:TIKTOK_REDIRECT_URI = (Get-Content $redirectFile).Trim()
+} else {
+    Write-Host ""
+    Write-Host "Paste your ngrok HTTPS URL ending in /callback. Example:" -ForegroundColor Cyan
+    Write-Host "  https://abc123.ngrok-free.app/callback" -ForegroundColor DarkGray
+    $uri = Read-Host "ngrok callback URL"
+    $env:TIKTOK_REDIRECT_URI = $uri.Trim()
+    Set-Content -Path $redirectFile -Value $env:TIKTOK_REDIRECT_URI -NoNewline
+    Write-Host "[+] redirect URI saved to .tiktok_redirect_uri"
+    Write-Host "    Make sure this exact URL is also in the TikTok app's Redirect URIs list" -ForegroundColor Yellow
+}
+Write-Host ("[+] redirect URI: " + $env:TIKTOK_REDIRECT_URI)
 
 # --- 4. Find a video to upload -------------------------------------
 $videoPath = $null
