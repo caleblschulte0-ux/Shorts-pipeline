@@ -103,16 +103,20 @@ class SceneSpec:
     fog_y: float = 0.66               # band center as fraction of height
     fog_strength: int = 70            # peak alpha
     fog_color: str = "dce4f0"
-    cabin: bool = False               # cozy cabin with a warm lit window
+    fog_speed: float = 0.0            # screen-widths per loop; >0 drifts the mist
+    cabin: bool = False               # cozy cabin: snow-capped roof, lit windows + door
     cabin_x: float = 0.30             # cabin center as fraction of width
     cabin_base: float = 0.86          # ground line as fraction of height
-    cabin_w: int = 150
-    cabin_h: int = 120
-    roof_h: int = 78
+    cabin_w: int = 210
+    cabin_h: int = 150
+    roof_h: int = 95
     window_color: str = "ffcf6b"
+    cabin_spill: bool = True          # warm light pooling on the snow in front
     smoke: bool = True                # soft chimney plume (only drawn with cabin)
     smoke_color: str = "9aa3b0"
     smoke_strength: int = 60
+    shooting_star: bool = False       # an occasional meteor streaks across the sky
+    meteor_color: str = "eaf0ff"
     particles: str = "snow"           # "snow" | "leaves" | "none"
     particle_color: str = "ffffff"
     particle_density: int = 8         # dots per-mille (higher = denser)
@@ -182,34 +186,95 @@ def _make_fog(out: Path, spec: SceneSpec, w: int, h: int) -> None:
     _still(out, r, g, b, f"clip({spec.fog_strength}*exp(-((Y-{spec.fog_y * h:.1f})^2)/(2*70^2)),0,255)", w, h)
 
 
-def _make_cabin(out: Path, spec: SceneSpec, w: int, h: int) -> None:
+def _make_fog_strip(out: Path, spec: SceneSpec, w: int, h: int) -> None:
+    # 2W-wide drifting mist; identical halves so a one-screen scroll wraps seamlessly.
+    r, g, b = _rgb(spec.fog_color)
+    wave = f"(0.7+0.3*sin(6.28319*X/{w}+0.8*sin(6.28319*2*X/{w})))"
+    band = f"exp(-((Y-{spec.fog_y * h:.1f})^2)/(2*70^2))"
+    _still(out, r, g, b, f"clip({spec.fog_strength}*{wave}*{band},0,255)", 2 * w, h)
+
+
+def _cabin_geo(spec: SceneSpec, w: int, h: int) -> dict:
     cx = spec.cabin_x * w
     by = spec.cabin_base * h
     half = spec.cabin_w / 2
-    roof_half = half + 22
-    top_y = by - spec.cabin_h - spec.roof_h
-    mid_y = by - spec.cabin_h
-    body = f"(lt(abs(X-{cx:.1f})\\,{half:.1f})*gt(Y\\,{mid_y:.1f})*lt(Y\\,{by:.1f}))"
-    roof = (f"(gt(Y\\,{top_y:.1f})*lt(Y\\,{mid_y:.1f})*"
-            f"lt(abs(X-{cx:.1f})\\,{roof_half:.1f}*((Y-{top_y:.1f})/{spec.roof_h})))")
-    _still(out, 12, 10, 14, f"if(gt({body}+{roof},0),255,0)", w, h)
+    return dict(
+        cx=cx, by=by, half=half,
+        roof_half=half + spec.cabin_w * 0.13,
+        top_y=by - spec.cabin_h - spec.roof_h,     # roof apex
+        mid_y=by - spec.cabin_h,                   # roof base / wall top
+        ch=spec.cabin_h, rh=spec.roof_h,
+        chcx=cx + half * 0.45,                      # chimney center x
+        chw=spec.cabin_w * 0.13,
+        chy_top=by - spec.cabin_h - spec.roof_h * 1.15,
+        chy_bot=by - spec.cabin_h - spec.roof_h * 0.45,
+    )
 
 
-def _make_window_glow(out: Path, spec: SceneSpec, w: int, h: int) -> None:
-    cx = spec.cabin_x * w
-    wy = spec.cabin_base * h - spec.cabin_h * 0.42
-    _make_glow(out, int(cx), int(wy), 24, spec.window_color, w, h)
+def _make_cabin(out: Path, spec: SceneSpec, w: int, h: int) -> None:
+    g = _cabin_geo(spec, w, h)
+    body = (f"(lt(abs(X-{g['cx']:.1f})\\,{g['half']:.1f})"
+            f"*gt(Y\\,{g['mid_y']:.1f})*lt(Y\\,{g['by']:.1f}))")
+    roof = (f"(gt(Y\\,{g['top_y']:.1f})*lt(Y\\,{g['mid_y']:.1f})*"
+            f"lt(abs(X-{g['cx']:.1f})\\,{g['roof_half']:.1f}*((Y-{g['top_y']:.1f})/{g['rh']})))")
+    chim = (f"(lt(abs(X-{g['chcx']:.1f})\\,{g['chw'] / 2:.1f})"
+            f"*gt(Y\\,{g['chy_top']:.1f})*lt(Y\\,{g['chy_bot']:.1f}))")
+    _still(out, 14, 12, 17, f"if(gt({body}+{roof}+{chim},0),255,0)", w, h)
+
+
+def _make_roof_snow(out: Path, spec: SceneSpec, w: int, h: int) -> None:
+    """A white snow cap on the roof peak, a snowy eave line, and a dab on the chimney."""
+    g = _cabin_geo(spec, w, h)
+    cap = (f"(gt(Y\\,{g['top_y']:.1f})*lt(Y\\,{g['top_y'] + 0.42 * g['rh']:.1f})*"
+           f"lt(abs(X-{g['cx']:.1f})\\,{g['roof_half']:.1f}*((Y-{g['top_y']:.1f})/{g['rh']})))")
+    eave = (f"(lt(abs(Y-{g['mid_y'] - 4:.1f})\\,5)*lt(abs(X-{g['cx']:.1f})\\,{g['roof_half']:.1f}))")
+    chimcap = (f"(lt(abs(X-{g['chcx']:.1f})\\,{g['chw'] / 2 + 2:.1f})"
+               f"*lt(abs(Y-{g['chy_top']:.1f})\\,5))")
+    _still(out, 240, 244, 252, f"if(gt({cap}+{eave}+{chimcap},0),235,0)", w, h)
+
+
+def _make_cabin_glow(out: Path, spec: SceneSpec, w: int, h: int) -> None:
+    """Warm light: two windows, a doorway, and (optionally) a pool of light on the snow."""
+    r, g, b = _rgb(spec.window_color)
+    geo = _cabin_geo(spec, w, h)
+    cx, by, half, ch, mid_y = geo["cx"], geo["by"], geo["half"], geo["ch"], geo["mid_y"]
+    rwin = ch * 0.15
+    wy = mid_y + ch * 0.34
+    winL = f"exp(-((X-{cx - half * 0.42:.1f})^2+(Y-{wy:.1f})^2)/(2*{rwin:.1f}^2))"
+    winR = f"exp(-((X-{cx + half * 0.42:.1f})^2+(Y-{wy:.1f})^2)/(2*{rwin:.1f}^2))"
+    door = (f"exp(-((X-{cx:.1f})^2/(2*{half * 0.16:.1f}^2)"
+            f"+(Y-{by - ch * 0.24:.1f})^2/(2*{ch * 0.24:.1f}^2)))")
+    a = f"255*{winL}+255*{winR}+220*{door}"
+    if spec.cabin_spill:
+        spill = (f"exp(-((X-{cx:.1f})^2/(2*{spec.cabin_w * 0.85:.1f}^2)"
+                 f"+(Y-{by + ch * 0.05:.1f})^2/(2*{ch * 0.18:.1f}^2)))")
+        a += f"+150*{spill}"
+    _still(out, r, g, b, f"clip({a},0,255)", w, h)
 
 
 def _make_smoke(out: Path, spec: SceneSpec, w: int, h: int) -> None:
     r, g, b = _rgb(spec.smoke_color)
-    sx = spec.cabin_x * w + spec.cabin_w * 0.22          # chimney sits off-center
-    apex = spec.cabin_base * h - spec.cabin_h - spec.roof_h
-    yy = f"({apex:.1f}-Y)"                                # height above the roof apex
+    geo = _cabin_geo(spec, w, h)
+    sx = geo["chcx"]                                     # rises from the chimney
+    apex = geo["chy_top"]
+    yy = f"({apex:.1f}-Y)"                                # height above the chimney
     sig = f"(8+0.16*{yy})"                                # plume widens as it rises
     a = (f"{spec.smoke_strength}*gt({yy},0)*exp(-({yy})/150)"
          f"*exp(-((X-{sx:.1f})^2)/(2*{sig}^2))")
     _still(out, r, g, b, f"clip({a},0,255)", w, h)
+
+
+def _make_meteor(out: Path, spec: SceneSpec, size: int) -> None:
+    """A small comet: bright head (lower-left) with a tail trailing to the upper-right.
+    Rendered on its own transparent tile; the scene moves it across the sky."""
+    r, g, b = _rgb(spec.meteor_color)
+    # head near (0.18,0.82) of the tile, tail toward (0.9,0.1); 'along' grows up the tail.
+    hx, hy = 0.18 * size, 0.82 * size
+    along = f"(((X-{hx:.1f})-(-(Y-{hy:.1f})))/1.41421)"   # distance along tail axis
+    perp = f"(((X-{hx:.1f})+(-(Y-{hy:.1f})))/1.41421)"    # signed distance across axis
+    a = (f"255*exp(-({perp})^2/(2*2.6^2))*"
+         f"(gt({along},0)*exp(-({along})/{size * 0.22:.1f})+exp(-({along})^2/(2*5^2)))")
+    _still(out, r, g, b, f"clip({a},0,255)", size, size)
 
 
 def _make_particle_strip(out: Path, color: str, density: int, w: int, h: int, dot_scale: int = 1) -> None:
@@ -288,14 +353,12 @@ def generate_scene_clip(
     horizon_y = int(min(r.base for r in spec.ridges) * h)
 
     tmps: list[Path] = []
+    s = rw / out_w                                        # tile-size factor for movers
 
-    # --- Build the still layers, split by z-order around the drifting clouds. ---
-    # Everything except clouds and particles is static, so we flatten it into one or
-    # two pre-composited plates. The expensive per-frame pass then only has to overlay
-    # the moving layers (clouds + particles) instead of ~12 static ones.
-    back: list[Path] = []     # behind the clouds (deep sky)
-    front: list[Path] = []    # in front of the clouds (haze, hills, cabin)
-
+    # --- Build static layer groups in z-order. Moving layers (clouds, meteor, mist,
+    # snow) are interleaved between them. Each run of static layers is flattened into
+    # one pre-baked plate so the per-frame pass only overlays the few moving layers. ---
+    back: list[Path] = []     # deep sky, behind the clouds
     sky = wd / "_sky.png"; _make_sky(sky, spec.sky_top, spec.sky_bottom, w, h); tmps.append(sky)
     back.append(sky)
     if spec.stars:
@@ -309,35 +372,81 @@ def generate_scene_clip(
         _make_glow(glow, int(spec.glow_x * w), int(spec.glow_y * h), spec.glow_radius, spec.glow_color, w, h)
         tmps.append(glow); back.append(glow)
 
+    hills: list[Path] = []    # haze + ridges, in front of the clouds
     if spec.haze:
         haze = wd / "_haze.png"; _make_haze(haze, horizon_y, spec.haze_strength, spec.glow_color, w, h); tmps.append(haze)
-        front.append(haze)
+        hills.append(haze)
     for i, layer in enumerate(spec.ridges):
         rp = wd / f"_ridge{i}.png"; _make_ridge(rp, layer, w, h); tmps.append(rp)
-        front.append(rp)
-    if spec.fog:
+        hills.append(rp)
+    fog_drift = spec.fog and spec.fog_speed > 0
+    if spec.fog and not fog_drift:                        # static mist sits within the hills
         fog = wd / "_fog.png"; _make_fog(fog, spec, w, h); tmps.append(fog)
-        front.append(fog)
-    if spec.cabin:
-        cab = wd / "_cabin.png"; _make_cabin(cab, spec, w, h); tmps.append(cab)
-        front.append(cab)
-        win = wd / "_window.png"; _make_window_glow(win, spec, w, h); tmps.append(win)
-        front.append(win)
-        if spec.smoke:
-            smk = wd / "_smoke.png"; _make_smoke(smk, spec, w, h); tmps.append(smk)
-            front.append(smk)
+        hills.append(fog)
 
-    # --- Compose the temporal graph over the flattened plates. ---
+    cabin_layers: list[Path] = []
+    if spec.cabin:
+        cab = wd / "_cabin.png"; _make_cabin(cab, spec, w, h); tmps.append(cab); cabin_layers.append(cab)
+        snow = wd / "_roofsnow.png"; _make_roof_snow(snow, spec, w, h); tmps.append(snow); cabin_layers.append(snow)
+        cglow = wd / "_cabinglow.png"; _make_cabin_glow(cglow, spec, w, h); tmps.append(cglow); cabin_layers.append(cglow)
+        if spec.smoke:
+            smk = wd / "_smoke.png"; _make_smoke(smk, spec, w, h); tmps.append(smk); cabin_layers.append(smk)
+
+    # --- Assemble the z-ordered plan: static plates and moving layers interleaved. ---
+    plan: list[tuple] = [("plate", back)]
+    if spec.clouds:
+        clouds = wd / "_clouds.png"; _make_clouds_strip(clouds, spec, w, h); tmps.append(clouds)
+        cvx = spec.cloud_speed * rw / duration
+        plan.append(("move", clouds, dict(x_expr=f"'mod(t*{cvx:.5f},{rw})-{rw}'", tw=2 * rw, th=rh)))
+    if spec.shooting_star:
+        msz = round(0.34 * out_w)
+        met = wd / "_meteor.png"; _make_meteor(met, spec, msz); tmps.append(met)
+        mr = max(2, round(msz * s))
+        t0 = 0.30 * duration; t1 = t0 + 1.5               # one quick streak per loop
+        frac = f"((t-{t0:.3f})/{(t1 - t0):.3f})"
+        x0, x1 = rw * 0.72, -mr * 0.2
+        y0, y1 = -mr * 0.5, rh * 0.30
+        plan.append(("move", met, dict(
+            x_expr=f"'{x0:.1f}+({x1 - x0:.1f})*{frac}'",
+            y_expr=f"'{y0:.1f}+({y1 - y0:.1f})*{frac}'",
+            tw=mr, th=mr, enable=f"between(t,{t0:.3f},{t1:.3f})")))
+    plan.append(("plate", hills))
+    if fog_drift:
+        fstrip = wd / "_fogstrip.png"; _make_fog_strip(fstrip, spec, w, h); tmps.append(fstrip)
+        fvx = spec.fog_speed * rw / duration
+        plan.append(("move", fstrip, dict(x_expr=f"'mod(t*{fvx:.5f},{rw})-{rw}'", tw=2 * rw, th=rh)))
+    if cabin_layers:
+        plan.append(("plate", cabin_layers))
+    if spec.particles != "none":
+        far = wd / "_pfar.png"
+        _make_particle_strip(far, spec.particle_color, spec.particle_density, w, h); tmps.append(far)
+        fall = rh / duration
+        plan.append(("move", far, dict(y_expr=f"'mod(t*{fall:.5f},{rh})-{rh}'", tw=rw, th=2 * rh)))
+        if spec.particles_near:
+            near = wd / "_pnear.png"
+            _make_particle_strip(near, spec.particle_color, max(1, spec.particle_density // 2), w, h, dot_scale=3)
+            tmps.append(near)
+            fall2 = 2 * rh / duration  # 2 spans/loop -> still seamless
+            plan.append(("move", near, dict(y_expr=f"'mod(t*{fall2:.5f},{rh})-{rh}'", tw=rw, th=2 * rh)))
+
+    # merge adjacent static plates (no mover between them -> one bake)
+    merged: list[tuple] = []
+    for e in plan:
+        if e[0] == "plate" and merged and merged[-1][0] == "plate":
+            merged[-1] = ("plate", merged[-1][1] + e[1])
+        else:
+            merged.append(e)
+
+    # --- Compose the temporal graph. ---
     inputs: list[str] = []
     graph: list[str] = []
     idx = 0
     cur = None
 
     def add(path: Path, *, x_expr: str = "0", y_expr: str = "0",
-            tw: int | None = None, th: int | None = None):
-        """Overlay a (possibly moving) layer onto the running composite.
-        tw/th are the layer's composite size in render pixels (defaults to a full
-        frame; motion strips pass their 2x dimension)."""
+            tw: int | None = None, th: int | None = None, enable: str | None = None):
+        """Overlay a (possibly moving) layer. tw/th are its composite size in render
+        pixels (full frame by default; strips/tiles pass their own size)."""
         nonlocal idx, cur
         tw = rw if tw is None else tw
         th = rh if th is None else th
@@ -350,38 +459,28 @@ def generate_scene_clip(
         if cur is None:
             cur = src
         else:
-            graph.append(f"[{cur}][{src}]overlay={x_expr}:{y_expr}[l{idx}]")
+            ov = f"overlay={x_expr}:{y_expr}"
+            if enable:
+                ov += f":enable='{enable}'"
+            graph.append(f"[{cur}][{src}]{ov}[l{idx}]")
             cur = f"l{idx}"
         idx += 1
 
-    if spec.clouds:
-        # clouds drift between the deep sky and the hills, so bake the two plates
-        # separately and sandwich the moving cloud strip in between.
-        base_back = wd / "_base_back.png"; _bake(base_back, back, w, h, transparent=False)
-        tmps.append(base_back); add(base_back)
-        clouds = wd / "_clouds.png"; _make_clouds_strip(clouds, spec, w, h); tmps.append(clouds)
-        cvx = spec.cloud_speed * rw / duration
-        add(clouds, x_expr=f"'mod(t*{cvx:.5f},{rw})-{rw}'", tw=2 * rw, th=rh)
-        if front:
-            base_front = wd / "_base_front.png"; _bake(base_front, front, w, h, transparent=True)
-            tmps.append(base_front); add(base_front)
-    else:
-        base = wd / "_base.png"; _bake(base, back + front, w, h, transparent=False)
-        tmps.append(base); add(base)
-
-    # particles: far layer, then a chunkier/faster near layer
-    if spec.particles != "none":
-        far = wd / "_pfar.png"
-        _make_particle_strip(far, spec.particle_color, spec.particle_density, w, h)
-        tmps.append(far)
-        fall = rh / duration
-        add(far, y_expr=f"'mod(t*{fall:.5f},{rh})-{rh}'", tw=rw, th=2 * rh)
-        if spec.particles_near:
-            near = wd / "_pnear.png"
-            _make_particle_strip(near, spec.particle_color, max(1, spec.particle_density // 2), w, h, dot_scale=3)
-            tmps.append(near)
-            fall2 = 2 * rh / duration  # 2 spans/loop -> still seamless
-            add(near, y_expr=f"'mod(t*{fall2:.5f},{rh})-{rh}'", tw=rw, th=2 * rh)
+    first_plate = True
+    pc = 0
+    for e in merged:
+        if e[0] == "plate":
+            paths = e[1]
+            if not paths:
+                continue
+            basep = wd / f"_plate{pc}.png"; pc += 1
+            _bake(basep, paths, w, h, transparent=not first_plate)
+            tmps.append(basep)
+            add(basep)
+            first_plate = False
+        else:
+            _, path, kw = e
+            add(path, **kw)
 
     tail = ""
     if scaled:

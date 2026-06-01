@@ -35,8 +35,9 @@ THEMES: dict[str, Theme] = {
         haze=True, haze_strength=120, stars=True, star_density=5,
         aurora=True, aurora_color="5cffb0", aurora_y=0.17, aurora_amp=90, aurora_strength=70,
         clouds=True, cloud_color="aeb9d6", cloud_y=0.30, cloud_strength=80, cloud_speed=1.0,
-        fog=True, fog_y=0.66, fog_strength=70, fog_color="cfd8ea",
+        fog=True, fog_y=0.66, fog_strength=70, fog_color="cfd8ea", fog_speed=0.4,
         cabin=True, cabin_x=0.30, window_color="ffcf6b",
+        shooting_star=True,
         particles="snow", particle_color="ffffff", particle_density=10,
     )),
     # Pastel dawn: warm low sun, cloud, dawn mist, blossom, green hills + trees.
@@ -78,8 +79,9 @@ THEMES: dict[str, Theme] = {
         glow=True, glow_x=0.66, glow_y=0.40, glow_radius=140, glow_color="ffcaa0",
         haze=True, haze_strength=140, stars=True, star_density=3,
         clouds=True, cloud_color="ffc59a", cloud_y=0.22, cloud_strength=110, cloud_speed=1.0,
-        fog=True, fog_y=0.66, fog_strength=80, fog_color="f0d2b0",
+        fog=True, fog_y=0.66, fog_strength=80, fog_color="f0d2b0", fog_speed=0.3,
         cabin=True, cabin_x=0.70, window_color="ffd27f",
+        shooting_star=True,
         particles="leaves", particle_color="ffae5a", particle_density=8,
     )),
     # Festive night: gold glow, aurora, cloud, mist, cabin, dense snow, green hills.
@@ -94,8 +96,9 @@ THEMES: dict[str, Theme] = {
         haze=True, haze_strength=120, stars=True, star_density=5,
         aurora=True, aurora_color="8affc8", aurora_y=0.14, aurora_amp=80, aurora_strength=60,
         clouds=True, cloud_color="9fb8c8", cloud_y=0.30, cloud_strength=70, cloud_speed=1.0,
-        fog=True, fog_y=0.66, fog_strength=75, fog_color="cfe0d8",
+        fog=True, fog_y=0.66, fog_strength=75, fog_color="cfe0d8", fog_speed=0.4,
         cabin=True, cabin_x=0.30, window_color="ffd27f",
+        shooting_star=True,
         particles="snow", particle_color="ffffff", particle_density=13,
     )),
 }
