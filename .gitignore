@@ -25,3 +25,4 @@ state/trending_packages/*.json
 client_secret.json
 token.json
 kokoro_models/
+.tiktok_secret
