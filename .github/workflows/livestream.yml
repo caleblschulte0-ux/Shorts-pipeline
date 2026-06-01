@@ -16,10 +16,10 @@ on:
         description: 'Theme override (blank = seasonal: winter/spring/summer/autumn/holiday)'
         required: false
         default: ''
-      base_seconds:
-        description: 'Base clip length; seamless loop is 2x this'
+      loop_seconds:
+        description: 'Loop length in seconds (longer = slower, calmer particle fall)'
         required: false
-        default: '30'
+        default: '60'
 
 permissions:
   contents: read
@@ -55,10 +55,10 @@ jobs:
           LIVESTREAM_HANDOFF: outbox
         run: |
           THEME="${{ github.event.inputs.theme }}"
-          BASE="${{ github.event.inputs.base_seconds }}"
+          LOOP="${{ github.event.inputs.loop_seconds }}"
           ARGS=""
           [ -n "$THEME" ] && ARGS="$ARGS --theme $THEME"
-          [ -n "$BASE" ] && ARGS="$ARGS --base-seconds $BASE"
+          [ -n "$LOOP" ] && ARGS="$ARGS --loop-seconds $LOOP"
           python livestream/build_loop.py $ARGS
 
       - name: Upload loop asset
