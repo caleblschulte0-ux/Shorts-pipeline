@@ -44,7 +44,10 @@ from pathlib import Path
 CLIENT_KEY = os.environ.get("TIKTOK_CLIENT_KEY")
 CLIENT_SECRET = os.environ.get("TIKTOK_CLIENT_SECRET")
 REDIRECT_URI = "http://localhost:8000/callback"
-SCOPES = "user.info.basic,video.upload,video.publish"
+# Only the Content Posting API scopes — we don't need Login Kit's
+# user.info.basic. Dropping it lets us skip enabling Login Kit as a
+# product (which has stricter callback rules than Content Posting).
+SCOPES = "video.upload,video.publish"
 
 # Where the local server stashes the auth code so the main thread can
 # grab it. Set by the request handler, read by main().
