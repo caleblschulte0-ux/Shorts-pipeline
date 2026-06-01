@@ -85,12 +85,13 @@ class Building:
     win_color: str = "ffcf6b"         # warm light
     # each window: (dx as frac of width, dy as frac of body height from wall-top,
     #               width frac, height frac, muntin style: 'cross'|'vert'|'none')
-    windows: tuple = ((-0.26, 0.40, 0.20, 0.26, "cross"), (0.26, 0.40, 0.20, 0.26, "cross"))
-    door: tuple | None = (0.0, 0.78, 0.16, 0.42)   # (dx, dy, wfrac, hfrac)
+    # cabin default: a window on the right, a door on the left, a lit gable window up top.
+    windows: tuple = ((0.24, 0.40, 0.18, 0.24, "cross"), (0.0, -0.42, 0.13, 0.17, "cross"))
+    door: tuple | None = (-0.24, 0.76, 0.15, 0.46)   # (dx, dy, wfrac, hfrac)
     chimney: bool = True
     smoke: bool = True
     spill: bool = True                # warm light pooled on the snow in front
-    eaves: float = 0.13
+    eaves: float = 0.22               # roof overhang past the walls
 
 
 @dataclass
@@ -145,11 +146,14 @@ def _rgb(hex_str: str) -> tuple[int, int, int]:
     return int(c[0:2], 16), int(c[2:4], 16), int(c[4:6], 16)
 
 
-def _still(out: Path, expr_r, expr_g, expr_b, expr_a, w: int, h: int) -> None:
+def _still(out: Path, expr_r, expr_g, expr_b, expr_a, w: int, h: int, blur: float = 0.0) -> None:
+    vf = f"format=rgba,geq=r='{expr_r}':g='{expr_g}':b='{expr_b}':a='{expr_a}'"
+    if blur > 0:
+        vf += f",gblur=sigma={blur}"          # soften hard geq edges (anti-alias)
     run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i", f"color=c=black:s={w}x{h}:d=1",
-        "-vf", f"format=rgba,geq=r='{expr_r}':g='{expr_g}':b='{expr_b}':a='{expr_a}'",
+        "-vf", vf,
         "-frames:v", "1", str(out),
     ])
 
@@ -230,46 +234,67 @@ def _rect(cx: float, cy: float, hw: float, hh: float) -> str:
 
 
 def _make_building_body(out: Path, b: "Building", w: int, h: int) -> None:
-    """Wall + gable roof (+ chimney), two-tone wood/roof colors."""
+    """Walls + overhanging gable roof (+ chimney), with plank/gradient shading."""
     g = _b_geo(b, w, h)
+    cx, half, by, mid_y, top_y, rh, bh = (
+        g["cx"], g["half"], g["by"], g["mid_y"], g["top_y"], g["rh"], g["bh"])
     wr, wg, wb = _rgb(b.wood)
     rr, rg, rb = _rgb(b.roof)
-    body = f"(lt(abs(X-{g['cx']:.1f}),{g['half']:.1f})*gt(Y,{g['mid_y']:.1f})*lt(Y,{g['by']:.1f}))"
-    roof = (f"(gt(Y,{g['top_y']:.1f})*lt(Y,{g['mid_y']:.1f})*"
-            f"lt(abs(X-{g['cx']:.1f}),{g['roof_half']:.1f}*((Y-{g['top_y']:.1f})/{g['rh']})))")
+    wall = f"(lt(abs(X-{cx:.1f}),{half:.1f})*gt(Y,{mid_y:.1f})*lt(Y,{by:.1f}))"
+    roof = (f"(gt(Y,{top_y:.1f})*lt(Y,{mid_y:.1f})*"
+            f"lt(abs(X-{cx:.1f}),{g['roof_half']:.1f}*((Y-{top_y:.1f})/{rh})))")
     chim = "0"
     if b.chimney:
         chim = (f"(lt(abs(X-{g['chcx']:.1f}),{g['chw'] / 2:.1f})*"
                 f"gt(Y,{g['chy_top']:.1f})*lt(Y,{g['chy_bot']:.1f}))")
-    solid = f"{body}+{roof}+{chim}"
+    # shading: walls brighten toward the top (window light) with subtle vertical planks;
+    # roof brightens toward the ridge; a soft shadow sits just under the eave.
+    plankw = b.w * 0.11
+    wallfac = (f"(0.70+0.42*(({by:.1f}-Y)/{bh}))*(0.92+0.08*cos(6.2832*(X-{cx:.1f})/{plankw:.1f}))"
+               f"*(1-0.35*lt(abs(Y-{mid_y + 4:.1f}),4))")
+    rooffac = f"(0.80+0.34*(1-((Y-{top_y:.1f})/{rh})))"
+
+    def chan(wc, rc):
+        return (f"clip(if(gt({roof},0),{rc}*{rooffac},"
+                f"if(gt({chim},0),{wc}*0.7,{wc}*{wallfac})),0,255)")
+
     _still(
         out,
-        f"if(gt({roof},0),{rr},{wr})",
-        f"if(gt({roof},0),{rg},{wg})",
-        f"if(gt({roof},0),{rb},{wb})",
-        f"if(gt({solid},0),255,0)",
-        w, h,
+        chan(wr, rr), chan(wg, rg), chan(wb, rb),
+        f"if(gt({wall}+{roof}+{chim},0),255,0)",
+        w, h, blur=0.8,
     )
 
 
 def _make_building_snow(out: Path, b: "Building", w: int, h: int) -> None:
-    """Snow capping the roof peak, a snowy eave line, and a dab on the chimney."""
+    """Snow blanketing the roof (wavy droop at the eave), piled at the base, on sills."""
     g = _b_geo(b, w, h)
-    cap = (f"(gt(Y,{g['top_y']:.1f})*lt(Y,{g['top_y'] + 0.4 * g['rh']:.1f})*"
-           f"lt(abs(X-{g['cx']:.1f}),{g['roof_half']:.1f}*((Y-{g['top_y']:.1f})/{g['rh']})))")
-    eave = f"(lt(abs(Y-{g['mid_y'] - 4:.1f}),5)*lt(abs(X-{g['cx']:.1f}),{g['roof_half']:.1f}))"
-    chimcap = "0"
+    cx, half, by, mid_y, top_y, rh, bh = (
+        g["cx"], g["half"], g["by"], g["mid_y"], g["top_y"], g["rh"], g["bh"])
+    roof = (f"(gt(Y,{top_y:.1f})*lt(Y,{mid_y:.1f})*"
+            f"lt(abs(X-{cx:.1f}),{g['roof_half']:.1f}*((Y-{top_y:.1f})/{rh})))")
+    snowline = f"({mid_y - 0.16 * rh:.1f}+6*sin(0.045*(X-{cx:.1f})))"
+    snow_roof = f"{roof}*lt(Y,{snowline})"
+    mound = (f"lt(abs(X-{cx:.1f}),{half * 1.18:.1f})"
+             f"*exp(-((Y-{by - 3:.1f})^2)/(2*{0.13 * bh:.1f}^2))")
+    terms = [f"255*{snow_roof}", f"215*{mound}"]
+    for dx, dy, wf, hf, _ in b.windows:
+        if dy < 0:
+            continue                                   # gable window has no sill
+        wx = cx + dx * b.w
+        wy = mid_y + dy * bh + hf * bh / 2
+        terms.append(f"235*{_rect(wx, wy + 4, wf * b.w / 2 * 1.15, 3)}")
     if b.chimney:
-        chimcap = f"(lt(abs(X-{g['chcx']:.1f}),{g['chw'] / 2 + 2:.1f})*lt(abs(Y-{g['chy_top']:.1f}),5))"
-    _still(out, 240, 244, 252, f"if(gt({cap}+{eave}+{chimcap},0),235,0)", w, h)
+        terms.append(f"235*{_rect(g['chcx'], g['chy_top'], g['chw'] / 2 + 2, 4)}")
+    _still(out, 240, 244, 252, f"clip({'+'.join(terms)},0,255)", w, h, blur=0.9)
 
 
 def _make_building_lights(out: Path, b: "Building", w: int, h: int) -> None:
     """Crisp framed windows (with muntins) and a door — warm panes, dark frames."""
     g = _b_geo(b, w, h)
     wr, wg, wb = _rgb(b.win_color)
-    fr = max(3.0, b.w * 0.020)        # frame thickness
-    mu = max(2.0, b.w * 0.012)        # muntin thickness
+    fr = max(2.5, b.w * 0.016)        # frame thickness
+    mu = max(1.6, b.w * 0.009)        # muntin thickness
     warm, dark = [], []
 
     def pane(wx, wy, hw, hh, style):
@@ -299,7 +324,7 @@ def _make_building_lights(out: Path, b: "Building", w: int, h: int) -> None:
         f"if(gt({dark_t},0),{fr_g},{wg})",
         f"if(gt({dark_t},0),{fr_b},{wb})",
         f"if(gt(({warm_t})+({dark_t}),0),255,0)",
-        w, h,
+        w, h, blur=0.6,
     )
 
 
