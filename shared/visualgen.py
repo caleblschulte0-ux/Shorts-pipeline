@@ -128,6 +128,9 @@ class SceneSpec:
     fog_strength: int = 70            # peak alpha
     fog_color: str = "dce4f0"
     fog_speed: float = 0.0            # screen-widths per loop; >0 drifts the mist
+    snow_ground: bool = False         # snowy foreground bank the buildings nestle into
+    snow_ground_y: float = 0.90       # top of the snow bank as fraction of height
+    snow_ground_color: str = "eef3fb"
     buildings: tuple = ()             # foreground structures (cabin, barn ...)
     smoke_color: str = "9aa3b0"       # chimney smoke tint
     shooting_star: bool = False       # an occasional meteor streaks across the sky
@@ -202,6 +205,15 @@ def _make_clouds_strip(out: Path, spec: SceneSpec, w: int, h: int) -> None:
 def _make_fog(out: Path, spec: SceneSpec, w: int, h: int) -> None:
     r, g, b = _rgb(spec.fog_color)
     _still(out, r, g, b, f"clip({spec.fog_strength}*exp(-((Y-{spec.fog_y * h:.1f})^2)/(2*70^2)),0,255)", w, h)
+
+
+def _make_snowground(out: Path, spec: SceneSpec, w: int, h: int) -> None:
+    r, g, b = _rgb(spec.snow_ground_color)
+    gy = spec.snow_ground_y * h
+    line = f"({gy:.1f}-22*sin(6.2832*X/{w}*1.5)-10*sin(6.2832*X/{w}*4+1))"
+    # snow brightens toward the front (bottom) for a soft rolling bank
+    fac = f"(0.86+0.14*clip((Y-{line})/{0.12 * h:.1f},0,1))"
+    _still(out, f"{r}*{fac}", f"{g}*{fac}", f"{b}*{fac}", f"if(gt(Y,{line}),255,0)", w, h, blur=2.0)
 
 
 def _make_fog_strip(out: Path, spec: SceneSpec, w: int, h: int) -> None:
@@ -331,6 +343,9 @@ def generate_scene_clip(
     if spec.fog and not fog_drift:                        # static mist sits within the hills
         fog = wd / "_fog.png"; _make_fog(fog, spec, w, h); tmps.append(fog)
         hills.append(fog)
+    if spec.snow_ground:                                  # snowy bank the buildings rest on
+        sg = wd / "_snowground.png"; _make_snowground(sg, spec, w, h); tmps.append(sg)
+        hills.append(sg)
 
     cabin_layers: list[Path] = []
     if spec.buildings:

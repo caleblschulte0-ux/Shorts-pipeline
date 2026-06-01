@@ -71,12 +71,14 @@ def render_building(b, smoke_color: str, w: int, h: int, out: Path) -> None:
         gd.ellipse([px - rx, py - ry, px + rx, py + ry], fill=(*warm, a))
 
     for dx, dy, wf, hf, _ in b.windows:
-        blob(cx + dx * W, (by - H) + dy * H, wf * W * 1.8, hf * H * 1.8, 110)
+        blob(cx + dx * W, (by - H) + dy * H, wf * W * 2.0, hf * H * 2.0, 150)
     if b.door:
         dx, dy, wf, hf = b.door
-        blob(cx + dx * W, (by - H) + dy * H, wf * W * 1.8, hf * H * 1.3, 120)
+        dxw, dyw = cx + dx * W, (by - H) + dy * H
+        blob(dxw, dyw, wf * W * 2.0, hf * H * 1.4, 160)
+        blob(dxw - wf * W * 1.4, dyw - hf * H * 0.3, W * 0.16, W * 0.16, 150)   # lantern halo
     if b.spill:
-        blob(cx + dvx * 0.3, by + H * 0.06, W * 1.2, H * 0.30, 105)
+        blob(cx + dvx * 0.3, by + H * 0.05, W * 1.25, H * 0.32, 150)            # warm light on snow
     glow = glow.filter(ImageFilter.GaussianBlur(W * 0.08))
     canvas = Image.alpha_composite(canvas, glow)
 
@@ -180,12 +182,12 @@ def render_building(b, smoke_color: str, w: int, h: int, out: Path) -> None:
         d.rectangle([P(wx - hw, wy - hh)[0], P(wx - hw, wy - hh)[1],
                      P(wx + hw, wy + hh)[0], P(wx + hw, wy + hh)[1]], fill=(*frame, 255))
         ins = max(SS * 2.0, hw * SS * 0.16)
-        pane = (255, 214, 138)
+        pane = (255, 201, 120)                         # warm amber glass
         d.rectangle([P(wx - hw, wy - hh)[0] + ins, P(wx - hw, wy - hh)[1] + ins,
                      P(wx + hw, wy + hh)[0] - ins, P(wx + hw, wy + hh)[1] - ins], fill=(*pane, 255))
-        d.ellipse([P(wx, wy)[0] - hw * SS * 0.6, P(wx, wy)[1] - hh * SS * 0.6,
-                   P(wx, wy)[0] + hw * SS * 0.6, P(wx, wy)[1] + hh * SS * 0.6],
-                  fill=(255, 240, 200, 150))
+        d.ellipse([P(wx, wy)[0] - hw * SS * 0.66, P(wx, wy)[1] - hh * SS * 0.66,
+                   P(wx, wy)[0] + hw * SS * 0.66, P(wx, wy)[1] + hh * SS * 0.66],
+                  fill=(255, 242, 205, 180))           # bright lit-from-inside centre
         if style in ("cross", "vert"):
             d.line([P(wx, wy - hh)[0], P(wx, wy - hh)[1] + ins,
                     P(wx, wy + hh)[0], P(wx, wy + hh)[1] - ins], fill=(*frame, 255), width=lw)
@@ -214,6 +216,14 @@ def render_building(b, smoke_color: str, w: int, h: int, out: Path) -> None:
         d.ellipse([P(wx + hw * 0.5, wy + hh * 0.1)[0] - SS * 2, P(wx + hw * 0.5, wy + hh * 0.1)[1] - SS * 2,
                    P(wx + hw * 0.5, wy + hh * 0.1)[0] + SS * 2, P(wx + hw * 0.5, wy + hh * 0.1)[1] + SS * 2],
                   fill=(245, 220, 150, 255))
+        # a little lantern glowing beside the door
+        lx, ly = wx - hw * 1.4, wy - hh * 0.3
+        lr = W * 0.022
+        d.rectangle([P(lx - lr, ly - lr)[0], P(lx - lr, ly - lr)[1],
+                     P(lx + lr, ly + lr)[0], P(lx + lr, ly + lr)[1]], fill=(*frame, 255))
+        d.rectangle([P(lx - lr * 0.6, ly - lr * 0.6)[0], P(lx - lr * 0.6, ly - lr * 0.6)[1],
+                     P(lx + lr * 0.6, ly + lr * 0.6)[0], P(lx + lr * 0.6, ly + lr * 0.6)[1]],
+                    fill=(255, 226, 158, 255))
 
     tile = tile.resize((tw, th), Image.LANCZOS)
     canvas.alpha_composite(tile, (int(minx), int(miny)))
@@ -221,9 +231,9 @@ def render_building(b, smoke_color: str, w: int, h: int, out: Path) -> None:
     # ---------- snow drifted against the base of the walls ----------
     base = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     ImageDraw.Draw(base).ellipse(
-        [cx - half * 1.15, by - H * 0.02, cx + half * 1.15 + dvx * 0.5, by + H * 0.11],
-        fill=(*snow, 200))
-    base = base.filter(ImageFilter.GaussianBlur(6))
+        [cx - half * 1.2, by - H * 0.03, cx + half * 1.2 + dvx * 0.5, by + H * 0.10],
+        fill=(*snow, 165))
+    base = base.filter(ImageFilter.GaussianBlur(8))
     canvas = Image.alpha_composite(canvas, base)
 
     # ---------- chimney smoke ----------
