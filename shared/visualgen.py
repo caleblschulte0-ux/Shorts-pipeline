@@ -129,8 +129,7 @@ class SceneSpec:
     fog_color: str = "dce4f0"
     fog_speed: float = 0.0            # screen-widths per loop; >0 drifts the mist
     buildings: tuple = ()             # foreground structures (cabin, barn ...)
-    smoke_color: str = "9aa3b0"
-    smoke_strength: int = 60
+    smoke_color: str = "9aa3b0"       # chimney smoke tint
     shooting_star: bool = False       # an occasional meteor streaks across the sky
     meteor_color: str = "eaf0ff"
     particles: str = "snow"           # "snow" | "leaves" | "none"
@@ -211,156 +210,6 @@ def _make_fog_strip(out: Path, spec: SceneSpec, w: int, h: int) -> None:
     wave = f"(0.7+0.3*sin(6.28319*X/{w}+0.8*sin(6.28319*2*X/{w})))"
     band = f"exp(-((Y-{spec.fog_y * h:.1f})^2)/(2*70^2))"
     _still(out, r, g, b, f"clip({spec.fog_strength}*{wave}*{band},0,255)", 2 * w, h)
-
-
-def _b_geo(b: "Building", w: int, h: int) -> dict:
-    cx = b.x * w
-    by = b.base * h
-    half = b.w / 2
-    return dict(
-        cx=cx, by=by, half=half, bw=b.w, bh=b.bh, rh=b.rh,
-        roof_half=half + b.w * b.eaves,
-        top_y=by - b.bh - b.rh,                    # roof apex
-        mid_y=by - b.bh,                           # wall top / roof base
-        chcx=cx + half * 0.5,                      # chimney center x
-        chw=b.w * 0.12,
-        chy_top=by - b.bh - b.rh * 1.18,
-        chy_bot=by - b.bh - b.rh * 0.5,
-    )
-
-
-def _rect(cx: float, cy: float, hw: float, hh: float) -> str:
-    return f"(lt(abs(X-{cx:.1f}),{hw:.1f})*lt(abs(Y-{cy:.1f}),{hh:.1f}))"
-
-
-def _make_building_body(out: Path, b: "Building", w: int, h: int) -> None:
-    """Walls + overhanging gable roof (+ chimney), with plank/gradient shading."""
-    g = _b_geo(b, w, h)
-    cx, half, by, mid_y, top_y, rh, bh = (
-        g["cx"], g["half"], g["by"], g["mid_y"], g["top_y"], g["rh"], g["bh"])
-    wr, wg, wb = _rgb(b.wood)
-    rr, rg, rb = _rgb(b.roof)
-    wall = f"(lt(abs(X-{cx:.1f}),{half:.1f})*gt(Y,{mid_y:.1f})*lt(Y,{by:.1f}))"
-    roof = (f"(gt(Y,{top_y:.1f})*lt(Y,{mid_y:.1f})*"
-            f"lt(abs(X-{cx:.1f}),{g['roof_half']:.1f}*((Y-{top_y:.1f})/{rh})))")
-    chim = "0"
-    if b.chimney:
-        chim = (f"(lt(abs(X-{g['chcx']:.1f}),{g['chw'] / 2:.1f})*"
-                f"gt(Y,{g['chy_top']:.1f})*lt(Y,{g['chy_bot']:.1f}))")
-    # shading: walls brighten toward the top (window light) with subtle vertical planks;
-    # roof brightens toward the ridge; a soft shadow sits just under the eave.
-    plankw = b.w * 0.11
-    wallfac = (f"(0.70+0.42*(({by:.1f}-Y)/{bh}))*(0.92+0.08*cos(6.2832*(X-{cx:.1f})/{plankw:.1f}))"
-               f"*(1-0.35*lt(abs(Y-{mid_y + 4:.1f}),4))")
-    rooffac = f"(0.80+0.34*(1-((Y-{top_y:.1f})/{rh})))"
-
-    def chan(wc, rc):
-        return (f"clip(if(gt({roof},0),{rc}*{rooffac},"
-                f"if(gt({chim},0),{wc}*0.7,{wc}*{wallfac})),0,255)")
-
-    _still(
-        out,
-        chan(wr, rr), chan(wg, rg), chan(wb, rb),
-        f"if(gt({wall}+{roof}+{chim},0),255,0)",
-        w, h, blur=0.8,
-    )
-
-
-def _make_building_snow(out: Path, b: "Building", w: int, h: int) -> None:
-    """Snow blanketing the roof (wavy droop at the eave), piled at the base, on sills."""
-    g = _b_geo(b, w, h)
-    cx, half, by, mid_y, top_y, rh, bh = (
-        g["cx"], g["half"], g["by"], g["mid_y"], g["top_y"], g["rh"], g["bh"])
-    roof = (f"(gt(Y,{top_y:.1f})*lt(Y,{mid_y:.1f})*"
-            f"lt(abs(X-{cx:.1f}),{g['roof_half']:.1f}*((Y-{top_y:.1f})/{rh})))")
-    snowline = f"({mid_y - 0.16 * rh:.1f}+6*sin(0.045*(X-{cx:.1f})))"
-    snow_roof = f"{roof}*lt(Y,{snowline})"
-    mound = (f"lt(abs(X-{cx:.1f}),{half * 1.18:.1f})"
-             f"*exp(-((Y-{by - 3:.1f})^2)/(2*{0.13 * bh:.1f}^2))")
-    terms = [f"255*{snow_roof}", f"215*{mound}"]
-    for dx, dy, wf, hf, _ in b.windows:
-        if dy < 0:
-            continue                                   # gable window has no sill
-        wx = cx + dx * b.w
-        wy = mid_y + dy * bh + hf * bh / 2
-        terms.append(f"235*{_rect(wx, wy + 4, wf * b.w / 2 * 1.15, 3)}")
-    if b.chimney:
-        terms.append(f"235*{_rect(g['chcx'], g['chy_top'], g['chw'] / 2 + 2, 4)}")
-    _still(out, 240, 244, 252, f"clip({'+'.join(terms)},0,255)", w, h, blur=0.9)
-
-
-def _make_building_lights(out: Path, b: "Building", w: int, h: int) -> None:
-    """Crisp framed windows (with muntins) and a door — warm panes, dark frames."""
-    g = _b_geo(b, w, h)
-    wr, wg, wb = _rgb(b.win_color)
-    fr = max(2.5, b.w * 0.016)        # frame thickness
-    mu = max(1.6, b.w * 0.009)        # muntin thickness
-    warm, dark = [], []
-
-    def pane(wx, wy, hw, hh, style):
-        outer = _rect(wx, wy, hw, hh)
-        inner = _rect(wx, wy, hw - fr, hh - fr)
-        if style == "cross":
-            cross = f"(lt(abs(X-{wx:.1f}),{mu}) + lt(abs(Y-{wy:.1f}),{mu}))"
-        elif style == "vert":
-            cross = f"lt(abs(X-{wx:.1f}),{mu})"
-        else:
-            cross = "0"
-        warm.append(f"{inner}*(1-clip({cross},0,1))")
-        dark.append(f"({outer}-{inner}+{inner}*clip({cross},0,1))")
-
-    for dx, dy, wf, hf, style in b.windows:
-        pane(g["cx"] + dx * b.w, g["mid_y"] + dy * b.bh, wf * b.w / 2, hf * b.bh / 2, style)
-    if b.door:
-        dx, dy, wf, hf = b.door
-        pane(g["cx"] + dx * b.w, g["mid_y"] + dy * b.bh, wf * b.w / 2, hf * b.bh / 2, "vert")
-
-    warm_t = "+".join(warm) or "0"
-    dark_t = "+".join(dark) or "0"
-    fr_r, fr_g, fr_b = 26, 18, 11      # dark window frame
-    _still(
-        out,
-        f"if(gt({dark_t},0),{fr_r},{wr})",
-        f"if(gt({dark_t},0),{fr_g},{wg})",
-        f"if(gt({dark_t},0),{fr_b},{wb})",
-        f"if(gt(({warm_t})+({dark_t}),0),255,0)",
-        w, h, blur=0.6,
-    )
-
-
-def _make_building_halo(out: Path, b: "Building", w: int, h: int) -> None:
-    """Soft warm glow around the lit openings plus a pool of light on the snow."""
-    g = _b_geo(b, w, h)
-    r, gg, bb = _rgb(b.win_color)
-    terms = []
-    for dx, dy, wf, hf, _ in b.windows:
-        wx = g["cx"] + dx * b.w
-        wy = g["mid_y"] + dy * b.bh
-        rad = max(wf * b.w, hf * b.bh) * 0.9
-        terms.append(f"170*exp(-((X-{wx:.1f})^2+(Y-{wy:.1f})^2)/(2*{rad:.1f}^2))")
-    if b.door:
-        dx, dy, wf, hf = b.door
-        wx = g["cx"] + dx * b.w
-        wy = g["mid_y"] + dy * b.bh
-        terms.append(f"180*exp(-((X-{wx:.1f})^2/(2*{wf * b.w * 0.7:.1f}^2)"
-                     f"+(Y-{wy:.1f})^2/(2*{hf * b.bh * 0.7:.1f}^2)))")
-    if b.spill:
-        terms.append(f"140*exp(-((X-{g['cx']:.1f})^2/(2*{b.w * 0.8:.1f}^2)"
-                     f"+(Y-{g['by'] + b.bh * 0.05:.1f})^2/(2*{b.bh * 0.16:.1f}^2)))")
-    a = "+".join(terms) or "0"
-    _still(out, r, gg, bb, f"clip({a},0,255)", w, h)
-
-
-def _make_building_smoke(out: Path, b: "Building", spec: SceneSpec, w: int, h: int) -> None:
-    r, g, bl = _rgb(spec.smoke_color)
-    geo = _b_geo(b, w, h)
-    sx = geo["chcx"]
-    apex = geo["chy_top"]
-    yy = f"({apex:.1f}-Y)"
-    sig = f"(8+0.16*{yy})"
-    a = (f"{spec.smoke_strength}*gt({yy},0)*exp(-({yy})/150)"
-         f"*exp(-((X-{sx:.1f})^2)/(2*{sig}^2))")
-    _still(out, r, g, bl, f"clip({a},0,255)", w, h)
 
 
 def _make_meteor(out: Path, spec: SceneSpec, size: int) -> None:
@@ -484,13 +333,11 @@ def generate_scene_clip(
         hills.append(fog)
 
     cabin_layers: list[Path] = []
-    for bi, b in enumerate(spec.buildings):
-        body = wd / f"_b{bi}_body.png"; _make_building_body(body, b, w, h); tmps.append(body); cabin_layers.append(body)
-        snow = wd / f"_b{bi}_snow.png"; _make_building_snow(snow, b, w, h); tmps.append(snow); cabin_layers.append(snow)
-        halo = wd / f"_b{bi}_halo.png"; _make_building_halo(halo, b, w, h); tmps.append(halo); cabin_layers.append(halo)
-        lits = wd / f"_b{bi}_lights.png"; _make_building_lights(lits, b, w, h); tmps.append(lits); cabin_layers.append(lits)
-        if b.smoke and b.chimney:
-            smk = wd / f"_b{bi}_smoke.png"; _make_building_smoke(smk, b, spec, w, h); tmps.append(smk); cabin_layers.append(smk)
+    if spec.buildings:
+        from .buildingart import render_building     # lazy: keeps Pillow optional
+        for bi, b in enumerate(spec.buildings):
+            bp = wd / f"_b{bi}.png"; render_building(b, spec.smoke_color, w, h, bp)
+            tmps.append(bp); cabin_layers.append(bp)
 
     # --- Assemble the z-ordered plan: static plates and moving layers interleaved. ---
     plan: list[tuple] = [("plate", back)]
