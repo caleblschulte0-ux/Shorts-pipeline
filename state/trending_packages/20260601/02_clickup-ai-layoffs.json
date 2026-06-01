@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "clickup-ai-layoffs",
+  "title": "ClickUp Fired 290 Workers and Replaced Them With AI Agents",
+  "hashtags": ["clickup", "ailayoffs", "aiagents", "futureofwork", "techlayoffs", "automation", "100xorg", "zebevans", "aiworkplace", "projectmanagement", "aitools", "workforceautomation", "airevolution", "techjobs"],
+  "script": "ClickUp just rewrote the company playbook. The project management software startup laid off 22 percent of its team — 290 people — and replaced them with 3,000 AI agents. That's a 10-to-1 ratio of bots to humans. CEO Zeb Evans calls it the 100x org. Surviving employees can now earn $1 million per year in cash. The message: master AI or become obsolete. Every company is watching.",
+  "shots": [
+    {
+      "phrase": "rewrote the company playbook",
+      "query": "startup office tech company modern open space"
+    },
+    {
+      "phrase": "laid off 22 percent of its team",
+      "query": "office workers layoff fired empty desks terminated"
+    },
+    {
+      "phrase": "3,000 AI agents",
+      "query": "ai agent chatbot digital robot automation interface dark"
+    },
+    {
+      "phrase": "10-to-1 ratio of bots to humans",
+      "query": "robots replacing workers automation factory manufacturing"
+    },
+    {
+      "phrase": "earn $1 million per year in cash",
+      "query": "million dollar salary cash wealth finance success"
+    },
+    {
+      "phrase": "master AI or become obsolete",
+      "query": "human versus machine competition workplace technology future"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "22 percent of its team",
+      "text": "22% FIRED",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "3,000 AI agents",
+      "text": "3,000 AI AGENTS",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "10-to-1 ratio",
+      "text": "10:1 BOTS TO HUMANS",
+      "color": "#ffaa30",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "$1 million per year in cash",
+      "text": "$1M SALARY",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "master AI or become obsolete",
+      "text": "MASTER AI OR OBSOLETE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

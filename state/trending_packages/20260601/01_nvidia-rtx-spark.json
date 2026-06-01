@@ -1,0 +1,75 @@
+{
+  "version": 8,
+  "slug": "nvidia-rtx-spark",
+  "title": "Nvidia Just Built Its Own PC Chip — Intel and Qualcomm Are Rattled",
+  "hashtags": ["nvidia", "jensenhuang", "rtxspark", "blackwell", "computex2026", "armchip", "windows", "laptoptech", "techinnovation", "aipc", "pclaptop", "nvda", "techinvesting", "computex"],
+  "script": "For 30 years Nvidia has made the GPU. Never a full chip. Until now. At Computex, CEO Jensen Huang announced the RTX Spark — Nvidia's first processor in decades. It combines a Blackwell GPU with an Arm CPU, 128 gigabytes of unified memory, and runs Windows natively. Dell, ASUS, Lenovo, and Microsoft are all building laptops around it. Ships this fall. Intel and Qualcomm just lost their biggest moat.",
+  "shots": [
+    {
+      "phrase": "For 30 years Nvidia has made the GPU",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jensen_Huang_20231109.jpg",
+      "query": "nvidia ceo keynote stage technology announcement"
+    },
+    {
+      "phrase": "first processor in decades",
+      "query": "cpu processor silicon chip circuit board close up"
+    },
+    {
+      "phrase": "Blackwell GPU with an Arm CPU",
+      "query": "system on chip SoC processor architecture diagram"
+    },
+    {
+      "phrase": "128 gigabytes of unified memory",
+      "query": "laptop gaming performance benchmark power dark"
+    },
+    {
+      "phrase": "Dell, ASUS, Lenovo, and Microsoft are all building",
+      "query": "laptops computers display manufacturers modern store"
+    },
+    {
+      "phrase": "Intel and Qualcomm just lost",
+      "query": "tech stocks falling competition market share rival"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Never a full chip",
+      "text": "NEVER A FULL CHIP",
+      "color": "#ffffff",
+      "size": 170,
+      "duration": 2.0
+    },
+    {
+      "phrase": "first processor in decades",
+      "text": "FIRST PC CHIP IN DECADES",
+      "color": "#ffe24a",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "128 gigabytes of unified memory",
+      "text": "128GB UNIFIED",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Ships this fall",
+      "text": "SHIPS FALL 2026",
+      "color": "#ffaa30",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Intel and Qualcomm just lost",
+      "text": "INTEL. QUALCOMM. RATTLED.",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 190,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}
