@@ -351,14 +351,14 @@ def generate_scene_clip(
     if spec.fog and not fog_drift:                        # static mist sits within the hills
         fog = wd / "_fog.png"; _make_fog(fog, spec, w, h); tmps.append(fog)
         hills.append(fog)
-    if spec.pond:                                         # frozen pond (skaters glide on it)
+    if spec.snow_ground:                                  # snowy ground the scene sits on
+        sg = wd / "_snowground.png"; _make_snowground(sg, spec, w, h); tmps.append(sg)
+        hills.append(sg)
+    if spec.pond:                                         # frozen lake on top of the snow
         from .buildingart import render_pond
         pond = wd / "_pond.png"
         render_pond(pond, w, h, spec.pond_x, spec.pond_y, spec.pond_w, spec.pond_h, spec.glow_x)
         tmps.append(pond); hills.append(pond)
-    if spec.snow_ground:                                  # snowy bank the buildings rest on
-        sg = wd / "_snowground.png"; _make_snowground(sg, spec, w, h); tmps.append(sg)
-        hills.append(sg)
 
     cabin_layers: list[Path] = []
     if spec.buildings:
@@ -396,10 +396,11 @@ def generate_scene_clip(
         from .buildingart import render_skater
         ssz = max(14, int(spec.pond_h * 0.55))
         sk = wd / "_skater.png"; render_skater(sk, ssz, spec.skater_color); tmps.append(sk)
-        sw = max(2, round(ssz * s))
         pcx, pcy = spec.pond_x * rw, spec.pond_y * rh
-        A, B = spec.pond_w * 0.32 * s, spec.pond_h * 0.30 * s
+        A, B = spec.pond_w * 0.34 * s, spec.pond_h * 0.32 * s
+        sizes = (1.0, 0.82, 1.12, 0.9)                    # a little size variety per skater
         for i in range(spec.skaters):
+            sw = max(2, round(ssz * s * sizes[i % len(sizes)]))
             ph = 2 * math.pi * i / spec.skaters
             u = f"(2*PI*t/{duration:.3f}+{ph:.4f})"
             plan.append(("move", sk, dict(

@@ -15,14 +15,18 @@ from datetime import date
 from shared.visualgen import Building, RidgeLayer, SceneSpec
 
 
-def _homestead(cabin_x: float, barn_x: float, win: str) -> tuple:
-    """A cabin plus a small barn, for a cozy little homestead — close and snug."""
+def _homestead(cabin_x: float, barn_x: float, win: str,
+               base: float = 0.885, scale: float = 1.0) -> tuple:
+    """A cabin plus a small barn, for a cozy little homestead. `scale`<1 and a higher
+    `base` push it back to the far shore behind the lake."""
+    def px(v):
+        return max(8, int(v * scale))
     cabin = Building(
-        x=cabin_x, base=0.885, w=264, bh=178, rh=120, win_color=win,
+        x=cabin_x, base=base, w=px(264), bh=px(178), rh=px(120), win_color=win,
         wood="3a2418", roof="33333c",
     )
     barn = Building(
-        x=barn_x, base=0.895, w=210, bh=128, rh=82, win_color=win,
+        x=barn_x, base=base + 0.01, w=px(210), bh=px(128), rh=px(82), win_color=win,
         wood="3a201a", roof="262026", eaves=0.16,
         windows=((0.0, 0.24, 0.26, 0.22, "cross"),),       # hayloft window
         door=(0.0, 0.74, 0.36, 0.48),                       # big barn door
@@ -52,9 +56,9 @@ THEMES: dict[str, Theme] = {
         aurora=True, aurora_color="5cffb0", aurora_y=0.17, aurora_amp=90, aurora_strength=70,
         clouds=True, cloud_color="aeb9d6", cloud_y=0.30, cloud_strength=80, cloud_speed=1.0,
         fog=True, fog_y=0.66, fog_strength=70, fog_color="cfd8ea", fog_speed=0.4,
-        snow_ground=True, snow_ground_y=0.90,
-        pond=True, pond_x=0.74, pond_y=0.71, pond_w=300, pond_h=92, skaters=3,
-        buildings=_homestead(cabin_x=0.28, barn_x=0.50, win="ffc664"),
+        snow_ground=True, snow_ground_y=0.78,
+        pond=True, pond_x=0.54, pond_y=0.88, pond_w=660, pond_h=180, skaters=4,
+        buildings=_homestead(cabin_x=0.24, barn_x=0.40, win="ffc664", base=0.775, scale=0.72),
         shooting_star=True,
         particles="snow", particle_color="ffffff", particle_density=10,
     )),
@@ -115,9 +119,9 @@ THEMES: dict[str, Theme] = {
         aurora=True, aurora_color="8affc8", aurora_y=0.14, aurora_amp=80, aurora_strength=60,
         clouds=True, cloud_color="9fb8c8", cloud_y=0.30, cloud_strength=70, cloud_speed=1.0,
         fog=True, fog_y=0.66, fog_strength=75, fog_color="cfe0d8", fog_speed=0.4,
-        snow_ground=True, snow_ground_y=0.90,
-        pond=True, pond_x=0.74, pond_y=0.71, pond_w=300, pond_h=92, skaters=3,
-        buildings=_homestead(cabin_x=0.28, barn_x=0.50, win="ffce73"),
+        snow_ground=True, snow_ground_y=0.78,
+        pond=True, pond_x=0.54, pond_y=0.88, pond_w=660, pond_h=180, skaters=4,
+        buildings=_homestead(cabin_x=0.24, barn_x=0.40, win="ffce73", base=0.775, scale=0.72),
         shooting_star=True,
         particles="snow", particle_color="ffffff", particle_density=13,
     )),
