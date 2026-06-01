@@ -27,6 +27,8 @@ Before first run, in the TikTok developer dashboard:
 """
 from __future__ import annotations
 
+import base64
+import hashlib
 import os
 import sys
 import time
@@ -75,25 +77,39 @@ def _start_local_server() -> HTTPServer:
     return srv
 
 
-def _build_auth_url(state: str) -> str:
+def _pkce_pair() -> tuple[str, str]:
+    """Generate a PKCE verifier+challenge pair. TikTok requires this
+    on every authorization request — without it the auth page returns
+    'Something went wrong / code_challenge'."""
+    verifier = secrets.token_urlsafe(64)
+    digest = hashlib.sha256(verifier.encode()).digest()
+    challenge = base64.urlsafe_b64encode(digest).rstrip(b"=").decode()
+    return verifier, challenge
+
+
+def _build_auth_url(state: str, code_challenge: str) -> str:
     qs = urllib.parse.urlencode({
         "client_key": CLIENT_KEY,
         "response_type": "code",
         "scope": SCOPES,
         "redirect_uri": REDIRECT_URI,
         "state": state,
+        "code_challenge": code_challenge,
+        "code_challenge_method": "S256",
     })
     return f"https://www.tiktok.com/v2/auth/authorize/?{qs}"
 
 
-def _exchange_code(code: str) -> dict:
-    """Auth code -> access token."""
+def _exchange_code(code: str, code_verifier: str) -> dict:
+    """Auth code -> access token. Includes the PKCE code_verifier so
+    TikTok can confirm it matches the challenge sent at auth time."""
     body = urllib.parse.urlencode({
         "client_key": CLIENT_KEY,
         "client_secret": CLIENT_SECRET,
         "code": code,
         "grant_type": "authorization_code",
         "redirect_uri": REDIRECT_URI,
+        "code_verifier": code_verifier,
     }).encode()
     req = urllib.request.Request(
         "https://open.tiktokapis.com/v2/oauth/token/",
@@ -182,9 +198,10 @@ def main() -> int:
     print("[1/5] starting local OAuth callback server on :8000...")
     srv = _start_local_server()
 
-    # 2. Open browser to TikTok auth.
+    # 2. Open browser to TikTok auth (with PKCE).
     state = secrets.token_urlsafe(16)
-    auth_url = _build_auth_url(state)
+    code_verifier, code_challenge = _pkce_pair()
+    auth_url = _build_auth_url(state, code_challenge)
     print(f"[2/5] opening browser to TikTok auth...\n      {auth_url}\n")
     webbrowser.open(auth_url)
 
@@ -200,7 +217,7 @@ def main() -> int:
 
     # 4. Exchange for access token.
     print("\n[4/5] exchanging code for access token...")
-    tok = _exchange_code(code)
+    tok = _exchange_code(code, code_verifier)
     access_token = tok.get("access_token")
     if not access_token:
         print(json.dumps(tok, indent=2))
