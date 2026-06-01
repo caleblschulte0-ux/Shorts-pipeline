@@ -26,3 +26,4 @@ client_secret.json
 token.json
 kokoro_models/
 .tiktok_secret
+.tiktok_redirect_uri
