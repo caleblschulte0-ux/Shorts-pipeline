@@ -17,7 +17,7 @@ from pathlib import Path
 # Soft tiebreak: when two candidates tie on rank, prefer the provider
 # with historically tighter curation. Pexels' curation is stricter than
 # Pixabay's, but Pixabay still wins when it's strictly better-ranked.
-_PROVIDER_TIEBREAK = {"pexels": 0, "pixabay": 1}
+_PROVIDER_TIEBREAK = {"pexels": 0, "pixabay": 1, "mixkit": 2}
 
 
 def _collect(query: str, **kwargs) -> tuple[list[dict], list[str]]:
@@ -34,9 +34,14 @@ def _collect(query: str, **kwargs) -> tuple[list[dict], list[str]]:
     if os.environ.get("PIXABAY_API_KEY"):
         import pixabay_search
         providers.append(("pixabay", pixabay_search))
+    # Mixkit is always available — no API key, no rate limit. Acts as
+    # the safety net for local renders and as a third source in prod.
+    if os.environ.get("DISABLE_MIXKIT") != "1":
+        import mixkit_search
+        providers.append(("mixkit", mixkit_search))
 
     if not providers:
-        raise RuntimeError("no stock providers configured (set PEXELS_API_KEY and/or PIXABAY_API_KEY)")
+        raise RuntimeError("no stock providers configured")
 
     for name, mod in providers:
         try:
@@ -82,6 +87,9 @@ def _download(c: dict, dest: Path) -> Path:
         if not path.exists():
             pixabay_search.download(c, path)
         return path
+    if c["provider"] == "mixkit":
+        import mixkit_search
+        return mixkit_search.download(c, dest)
     raise RuntimeError(f"unknown provider: {c.get('provider')!r}")
 
 
