@@ -547,16 +547,47 @@ def build_timed_top(
         if remaining > 0.3:
             n_cuts = max(1, round(remaining / SUB_CUT_TARGET))
             cut_dur = remaining / n_cuts
-            stock_clips = _resolve_stock(shot, cache, n_target=n_cuts)
-            for j in range(n_cuts):
-                plan.append((stock_clips[j % len(stock_clips)], cut_dur))
+            stock_clips: list[dict] = []
+            try:
+                stock_clips = _resolve_stock(shot, cache, n_target=n_cuts)
+            except Exception as e:  # noqa: BLE001
+                print(f"      [stock failed] {shot.phrase[:40]!r}: {e}")
+            if stock_clips:
+                for j in range(n_cuts):
+                    plan.append((stock_clips[j % len(stock_clips)], cut_dur))
+            elif image_clip:
+                # Stock missing — stretch the topic image over the whole
+                # window rather than leaving a gap or crashing the render.
+                if plan:
+                    plan[0] = (plan[0][0], plan[0][1] + remaining)
+                else:
+                    plan.append((image_clip, seg_dur))
+            else:
+                # Neither image nor stock — drop a slate-blue placeholder
+                # so the timeline stays the right length.
+                placeholder = {"is_image": True, "is_placeholder": True,
+                               "path": "", "width": W, "height": HALF_H,
+                               "source": "placeholder"}
+                plan.append((placeholder, remaining))
 
         # Render each planned sub-cut.
         sub_t = start_t
         for j, (clip, dur) in enumerate(plan):
             sub = workdir / f"top_{i:02d}_{j:02d}.mp4"
 
-            if clip.get("is_image"):
+            if clip.get("is_placeholder"):
+                # No image, no stock — just paint a slate background for
+                # this segment so the timeline doesn't drift.
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-f", "lavfi", "-i",
+                    f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
+                    "-t", f"{dur:.3f}",
+                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+                    "-pix_fmt", "yuv420p",
+                    str(sub),
+                ])
+            elif clip.get("is_image"):
                 # Still image — Ken Burns it. Alternate zoom-in vs
                 # zoom-out based on cut index so successive image shots
                 # don't all do the same move. We work at 2x then scale
