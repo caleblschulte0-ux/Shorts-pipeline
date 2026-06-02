@@ -13,12 +13,21 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
 1. **Discover**:
    `GROQ_API_KEY=$GROQ_API_KEY python3 scripts/rank_topics.py --top-k 10`
 
-2. **Pick 6** from the ranker's output. Reject:
+2. **Pick 6** from the ranker's output. **Freshness is the #1 filter.**
+   This is a "today's news" channel — every package should be something
+   that happened in the last 24-48 hours. Each ranker line shows an age
+   marker like `[2h ago]`; strongly prefer those. Anything that reads
+   evergreen, retrospective, or "X has been quietly happening for years"
+   gets cut even when interesting. If you can't anchor the package to
+   "this happened today / this morning / just announced", skip it.
+
+   Also reject:
    - Live sports or sports-player news (time-locked, narrow audience)
    - Celebrity deaths / obituaries
    - Political horserace stories (elections, primaries, partisan combat)
    - Anything you can't tell in 60 words
    - Topics with no concrete visual story
+   - Evergreen explainers ("how X works", "the history of Y")
 
 3. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
    one per pick.
