@@ -301,39 +301,83 @@ def render_pond(out: Path, w: int, h: int, cxf: float, cyf: float,
                                  fill=(232, 240, 252, 140))
     refl = refl.filter(ImageFilter.GaussianBlur(int(ph * 0.06) + 4))
     img = Image.alpha_composite(img, refl)
+
+    # ---- festive string lights on little posts around the back rim ----
+    glow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    gdraw = ImageDraw.Draw(glow)
+    crisp = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    cdraw = ImageDraw.Draw(crisp)
+    bulbs = [(255, 196, 96), (244, 102, 88), (130, 214, 132), (255, 196, 96), (122, 176, 255)]
+    rx, ry = pw / 2 + 6, ph / 2 + 4
+    pole_h = ph * 0.62
+    tops = []
+    nposts = 6
+    for i in range(nposts):
+        ang = math.radians(206 + (334 - 206) * i / (nposts - 1))      # along the back rim
+        bx, byy = cx + rx * math.cos(ang), cy + ry * math.sin(ang)
+        cdraw.line([bx, byy, bx, byy - pole_h], fill=(48, 46, 56, 255), width=3)
+        tops.append((bx, byy - pole_h))
+    tops.sort(key=lambda p: p[0])
+    bi = 0
+    for j in range(len(tops) - 1):
+        (x0, y0), (x1, y1) = tops[j], tops[j + 1]
+        sag = ph * 0.16
+        prev = None
+        for k in range(13):
+            t = k / 12
+            x = x0 + (x1 - x0) * t
+            y = y0 + (y1 - y0) * t + sag * 4 * t * (1 - t)
+            if prev:
+                cdraw.line([prev, (x, y)], fill=(42, 40, 50, 255), width=2)
+            prev = (x, y)
+            if k % 3 == 1:
+                col = bulbs[bi % len(bulbs)]; bi += 1
+                gdraw.ellipse([x - 10, y - 10, x + 10, y + 10], fill=(*col, 150))
+                cdraw.ellipse([x - 3.5, y - 1, x + 3.5, y + 6], fill=(*col, 255))
+    glow = glow.filter(ImageFilter.GaussianBlur(5))
+    img = Image.alpha_composite(img, glow)
+    img = Image.alpha_composite(img, crisp)
     img.save(out)
 
 
 def render_skater(out: Path, size: int, color: str, scarf: str = "b8443c") -> None:
-    """A solid skater silhouette — leaning into a glide, one leg trailing, a flying scarf."""
+    """A chunky bundled-up skater silhouette — puffy coat, bobble hat, mittens, scarf."""
     S = 4
     c = (*_rgb(color), 255)
     sc = (*_rgb(scarf), 255)
+    u = size * S
     img = Image.new("RGBA", (size * S, size * S), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
 
-    def pt(fx, fy):
-        return (fx * size * S, fy * size * S)
+    def P(fx, fy):
+        return (fx * u, fy * u)
 
-    def limb(p0, p1, wf):
-        d.line([pt(*p0), pt(*p1)], fill=c, width=max(2, int(wf * size * S)))
-        d.ellipse([pt(*p1)[0] - wf * size * S / 2, pt(*p1)[1] - wf * size * S / 2,
-                   pt(*p1)[0] + wf * size * S / 2, pt(*p1)[1] + wf * size * S / 2], fill=c)
+    def E(fx, fy, rx, ry, fill):
+        d.ellipse([fx * u - rx * u, fy * u - ry * u, fx * u + rx * u, fy * u + ry * u], fill=fill)
 
-    # back (push) leg and front (glide) leg, with little blades
-    limb((0.50, 0.60), (0.30, 0.84), 0.085)
-    limb((0.52, 0.60), (0.70, 0.90), 0.085)
-    d.line([pt(0.24, 0.86), pt(0.36, 0.86)], fill=c, width=max(2, int(0.03 * size * S)))
-    d.line([pt(0.64, 0.92), pt(0.78, 0.92)], fill=c, width=max(2, int(0.03 * size * S)))
-    # coat/torso (filled, leaning forward)
-    d.polygon([pt(0.42, 0.30), pt(0.60, 0.33), pt(0.56, 0.64), pt(0.44, 0.62)], fill=c)
-    # arms (one reaching forward, one back)
-    limb((0.54, 0.40), (0.74, 0.45), 0.06)
-    limb((0.48, 0.40), (0.30, 0.50), 0.06)
-    # head + hat
-    d.ellipse([pt(0.44, 0.12)[0], pt(0.44, 0.12)[1], pt(0.60, 0.28)[0], pt(0.60, 0.28)[1]], fill=c)
-    # flying scarf
-    d.polygon([pt(0.46, 0.32), pt(0.30, 0.30), pt(0.26, 0.37), pt(0.44, 0.39)], fill=sc)
+    def L(a, b, wf):
+        d.line([P(*a), P(*b)], fill=c, width=max(2, int(wf * u)))
+
+    # legs (thick) + skate blades
+    L((0.50, 0.60), (0.37, 0.85), 0.12)
+    L((0.52, 0.60), (0.66, 0.89), 0.12)
+    L((0.31, 0.87), (0.43, 0.87), 0.035)
+    L((0.60, 0.91), (0.75, 0.91), 0.035)
+    # puffy coat (filled, widening at the hem)
+    E(0.50, 0.50, 0.17, 0.20, c)
+    E(0.49, 0.60, 0.15, 0.11, c)
+    # arms + mittens
+    L((0.50, 0.44), (0.69, 0.52), 0.10)
+    L((0.50, 0.44), (0.33, 0.53), 0.10)
+    E(0.69, 0.52, 0.055, 0.055, c)
+    E(0.33, 0.53, 0.055, 0.055, c)
+    # head, bobble hat
+    E(0.52, 0.24, 0.10, 0.10, c)
+    E(0.52, 0.17, 0.12, 0.055, c)
+    E(0.52, 0.105, 0.034, 0.034, c)
+    # scarf (a flash of colour, trailing back)
+    d.polygon([P(0.47, 0.32), P(0.30, 0.31), P(0.27, 0.38), P(0.46, 0.38)], fill=sc)
+    E(0.51, 0.33, 0.085, 0.045, sc)
     img = img.resize((size, size), Image.LANCZOS)
     img.save(out)
 
