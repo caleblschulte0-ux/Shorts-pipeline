@@ -10,6 +10,17 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
 
 ## Steps
 
+0. **Read yesterday's analytics** (only if it exists):
+   ```bash
+   cat state/analytics/latest.json 2>/dev/null
+   ```
+   This file has every uploaded video's views, likes, comments, and
+   `views_per_hour` (the only fair comparison across ages). Use the
+   `summary.top_5_by_vph` and `bottom_5_by_vph` lists to bias today's
+   picks: lean toward topic clusters / hook styles that scored high;
+   skip topics resembling the bottom five. If the file is missing
+   (first run after this loop ships), skip and proceed.
+
 1. **Discover**:
    `GROQ_API_KEY=$GROQ_API_KEY python3 scripts/rank_topics.py --top-k 10`
 
