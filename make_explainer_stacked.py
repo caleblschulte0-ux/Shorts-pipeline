@@ -65,10 +65,57 @@ KOKORO_VOICES = ROOT / "kokoro_models" / "voices-v1.0.bin"
 KOKORO_VOICE = os.environ.get("KOKORO_VOICE", "am_michael")
 
 
+def normalize_for_tts(text: str) -> str:
+    """Rewrite numeric shorthand so Kokoro/edge-tts pronounce it the way
+    a human would read it aloud.
+
+    Kokoro reads "$3B" as "dollar three bee" and "25%" as "twenty five
+    percent sign". Fix by expanding the symbols before the engine sees
+    them. Phrase-matching (find_phrase_start) runs the same normaliser
+    so triggers stay aligned with the spoken transcript.
+
+      $3B / $1.5B / $650-900B  -> N billion dollars (preserves "to" in ranges)
+      $559M / $30.9M           -> N million dollars
+      $1T / $1.05T             -> N trillion dollars
+      $15,000 / $559           -> N dollars
+      350M (no $)              -> 350 million
+      25% / 130 percent        -> N percent (already-spelled passthrough)
+    """
+    s = text
+    # Dollar ranges with B/M/T suffix: "$650-900B" -> "650 to 900 billion dollars"
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*-\s*([\d,]+(?:\.\d+)?)\s*[Bb]\b",
+               r"\1 to \2 billion dollars", s)
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*-\s*([\d,]+(?:\.\d+)?)\s*[Mm]\b",
+               r"\1 to \2 million dollars", s)
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*-\s*([\d,]+(?:\.\d+)?)\s*[Tt]\b",
+               r"\1 to \2 trillion dollars", s)
+    # Single-value dollar amounts with B/M/K/T suffix.
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*[Bb]\b", r"\1 billion dollars", s)
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*[Mm]\b", r"\1 million dollars", s)
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*[Tt]\b", r"\1 trillion dollars", s)
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*[Kk]\b", r"\1 thousand dollars", s)
+    # Dollar with WRITTEN-OUT unit: "$10.9 billion" -> "10.9 billion dollars".
+    # Must run BEFORE bare "$NUM" so the unit stays inside the substitution.
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s+(billion|million|trillion|thousand|hundred)\b",
+               r"\1 \2 dollars", s, flags=re.I)
+    # Plain "$NUM" -> "NUM dollars" (after the suffixed forms have run).
+    s = re.sub(r"\$([\d,]+(?:\.\d+)?)", r"\1 dollars", s)
+    # Percent symbol.
+    s = re.sub(r"(\d+(?:\.\d+)?)\s*%", r"\1 percent", s)
+    # Bare abbreviations after a number (no $). Lookahead avoids breaking
+    # acronyms like "AMD" or words starting with B/M/K/T.
+    s = re.sub(r"\b(\d+(?:\.\d+)?)\s*B\b(?![A-Za-z])", r"\1 billion", s)
+    s = re.sub(r"\b(\d+(?:\.\d+)?)\s*M\b(?![A-Za-z])", r"\1 million", s)
+    s = re.sub(r"\b(\d+(?:\.\d+)?)\s*T\b(?![A-Za-z])", r"\1 trillion", s)
+    s = re.sub(r"\b(\d+(?:\.\d+)?)\s*K\b(?![A-Za-z])", r"\1 thousand", s)
+    return s
+
+
 def tts(text: str, out: Path) -> None:
     """Synthesize narration. Prefers local Kokoro TTS (free, unlimited,
     significantly more natural than edge-tts) if model files are
     present. Falls back to edge-tts otherwise."""
+    text = normalize_for_tts(text)
     if KOKORO_MODEL.exists() and KOKORO_VOICES.exists():
         _tts_kokoro(text, out)
     else:
@@ -121,7 +168,10 @@ def transcribe(audio: Path) -> list[Word]:
 
 
 def find_phrase_start(words: list[Word], phrase: str, hint_after: float = 0.0) -> float | None:
-    target = [_norm(w) for w in phrase.split()]
+    # Phrase has to be normalised the same way the script was before TTS,
+    # otherwise a trigger like "$3B in funding" won't match the spoken
+    # "three billion dollars in funding" that Whisper transcribes.
+    target = [_norm(w) for w in normalize_for_tts(phrase).split()]
     n = len(target)
     transcript = [_norm(w.text) for w in words]
     for i in range(len(transcript) - n + 1):
@@ -199,7 +249,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Pop,Impact,110,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,10,4,2,80,80,{margin_v},1
+Style: Pop,Impact,92,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,8,4,2,80,80,{margin_v},1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -311,6 +361,9 @@ class Shot:
     pexels_query: str | None = None
     clip: Path | None = None
     clip_start: float = 0.0
+    # Package title used as extra context when topic_media has to
+    # synthesise a topic-specific image from a generic shot query.
+    topic_context: str = ""
 
 
 # ---------- B-roll assembly (multi-cut) ----------
@@ -365,6 +418,36 @@ def _resolve_image(shot: Shot) -> dict | None:
         if not (shot.queries or shot.pexels_query or shot.clip):
             raise
         return None
+
+
+def _resolve_topic_media(shot: Shot, cache: Path) -> dict | None:
+    """Try to pull a topic-specific image from free sources (Wikipedia,
+    Commons, GDELT news). Used only when the package didn't supply
+    `image_url` for this shot. Returns the same dict shape as
+    `_resolve_image` or None on miss so the caller falls back to stock.
+    """
+    primary = shot.pexels_query or (shot.queries[0] if shot.queries else "")
+    if not primary and not shot.topic_context:
+        return None
+    try:
+        import topic_media
+    except ImportError:
+        return None
+    try:
+        urls = topic_media.search(primary, shot.topic_context)
+    except Exception as e:  # noqa: BLE001
+        print(f"      [topic_media error] {e}")
+        return None
+    for url in urls:
+        try:
+            img_path = _fetch_image(url, cache)
+            print(f"      [topic_media] {primary[:30]!r} -> {url[:80]}")
+            return {"path": str(img_path), "is_image": True,
+                    "width": W, "height": HALF_H, "source": "topic_media"}
+        except Exception as e:  # noqa: BLE001
+            print(f"      [topic_media FAIL] {url[:60]}: {e}")
+            continue
+    return None
 
 
 def _resolve_stock(shot: Shot, cache: Path, n_target: int) -> list[dict]:
@@ -443,6 +526,12 @@ def build_timed_top(
         #   3. Stock only               -> existing multi-cut behavior
         plan: list[tuple[dict, float]] = []
         image_clip = _resolve_image(shot)
+        # If the package didn't hand us a topic-specific image, ask the
+        # free no-key sources (Wikipedia / Commons / GDELT news) before
+        # we settle for generic stock. This is what turns "stock laptop
+        # B-roll for an Anthropic story" into "actual photo of Dario."
+        if image_clip is None:
+            image_clip = _resolve_topic_media(shot, Path("/tmp/shot_images"))
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
 
         if image_clip and has_stock:
@@ -905,7 +994,11 @@ def build_video(
         print("[6/9] captions + animated punches")
         chunks = group_words(words)
         caps_path = workdir / "captions.ass"
-        write_captions_ass(chunks, caps_path, margin_v=380)
+        # Captions sit just below the top/bottom split so gameplay's
+        # bottom is unobstructed. ASS MarginV is bottom margin in pixels
+        # with Alignment=2 (bottom-center): text bottom at y = H - margin_v.
+        # For text bottom around y~1110 (~150px below the split): 1920-1110 = 810.
+        write_captions_ass(chunks, caps_path, margin_v=810)
 
         punches_resolved: list[tuple[Punch, float, float]] = []
         # (time, sfx_variant_name) — variant picked from the punch's
@@ -1007,9 +1100,13 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
         # The package can also pass a list of queries for sub-cut variety.
         shots.append(Shot(
             phrase=s["phrase"],
-            image=s.get("image"),
+            # Packages emit `image_url`; older code wrote `image`. Accept
+            # both so we don't silently drop the routine's hand-picked
+            # Wikipedia/news images.
+            image=s.get("image_url") or s.get("image"),
             queries=s.get("queries"),
             pexels_query=s.get("query"),
+            topic_context=pkg.get("title", ""),
         ))
     punches = [
         Punch(
