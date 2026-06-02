@@ -1,7 +1,9 @@
-# livestream/ — weekly themed background-loop generator
+# livestream/ — Cabin Hours background-loop generator
 
-Builds a **themed, seamless background loop** for a 24/7 YouTube livestream and
-hands it off to an always-on encoder. Runs **weekly**, low-frequency.
+The visual engine for **Cabin Hours**, a cozy lo-fi channel (*cozy lofi to
+study, work & sleep*). Builds a **seamless, branded background loop** for a 24/7
+YouTube livestream and hands it off to an always-on encoder. Runs **weekly**,
+low-frequency. See **[BRAND.md](BRAND.md)** for the full brand playbook.
 
 Fully isolated from the daily money-maker:
 - own entry point (`build_loop.py`), own trigger (`.github/workflows/livestream.yml`),
@@ -11,19 +13,22 @@ Fully isolated from the daily money-maker:
 
 ## What it does
 
-1. Picks a **theme** by date (`themes.py`; override with `--theme`). December
-   rotates to a holiday palette; other months map to their season.
-2. Calls the shared visual-gen (`shared.visualgen.generate_abstract_clip`) to
-   render a themed abstract animated gradient — **no external media, no APIs.**
-3. Assembles a **seamless loop** (`shared.visualgen.make_seamless_loop`,
-   boomerang: forward + reverse, so the wrap returns to exactly the first frame).
-4. Writes `loop_<theme>_<date>.mp4` + a `.manifest.json` to `outbox/` and calls
-   the handoff.
+1. Picks a **visual world** by date (`themes.py`; override with `--theme`). Each
+   world shares the brand's cabin-by-a-frozen-pond anchor and carries
+   context-first packaging (`title`/`task`/`palette`/`playlists`). December
+   rotates to *Cabin Holidays*; other months map to their season's world.
+2. Calls `shared.visualgen.generate_scene_clip` to render the world — a detailed
+   stylized scene (sky, aurora, mist, the cabin homestead, skating pond with
+   string lights, particles) **seamless by construction, no external media, no APIs.**
+3. Pins the channel logo (`branding.py`) on every frame.
+4. Writes `loop_<theme>_<date>.mp4` + a `.manifest.json` (with the ready-to-use
+   upload title and playlist tags) to `outbox/` and calls the handoff.
 
 ```bash
-python livestream/build_loop.py                    # seasonal theme, 30s base -> 60s loop
-python livestream/build_loop.py --theme holiday
-python livestream/build_loop.py --base-seconds 60  # -> 120s seamless loop
+python livestream/build_loop.py                    # world by date, 60s loop
+python livestream/build_loop.py --theme holiday    # force a world
+python livestream/build_loop.py --loop-seconds 90  # slower, calmer drift
+python livestream/build_loop.py --render-scale 0.5 # faster render, slightly softer
 ```
 
 ## The encoder handoff (deliberately a STUB, not faked)

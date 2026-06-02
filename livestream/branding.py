@@ -19,9 +19,11 @@ LOGO_PATH = ASSETS / "logo.png"
 
 @dataclass(frozen=True)
 class Channel:
-    name: str = "My Channel"
-    initials: str = "MC"        # used only for the placeholder badge
-    accent: str = "1e3a6e"      # placeholder badge background (hex)
+    name: str = "Cabin Hours"
+    handle: str = "@cabinhours"
+    tagline: str = "cozy lofi to study, work & sleep"
+    initials: str = "CH"        # used only for the placeholder badge
+    accent: str = "b9772f"      # warm cabin-amber placeholder badge (hex)
     logo_corner: str = "tr"     # tl|tr|bl|br
     logo_scale_w: int = 200     # logo width in px on the 1080-wide frame
     logo_opacity: float = 0.85

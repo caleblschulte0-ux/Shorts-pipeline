@@ -1,11 +1,16 @@
-"""Seasonal scene config for the livestream loop.
+"""Cabin Hours — the lo-fi channel's visual worlds.
 
-One channel, themed by season. Each theme is a detailed stylized SceneSpec
-(sky, stars, aurora, horizon haze, sun/moon glow, drifting clouds, layered
-ridges for depth, a tree-line foreground, low mist, a cozy cabin with a lit
-window, near/far particles, grain) handed to the shared scene generator —
-generated, stylized scenes, not stock footage and not photoreal. Retune a
-season or add one here without touching render code.
+The brand's visual anchor is a warm-lit log cabin by a frozen pond. Each "world"
+is a detailed stylized SceneSpec (sky, stars, aurora, haze, moon glow, drifting
+clouds, mist, the cabin homestead, a skating pond, near/far particles, grain)
+rendered entirely by the shared scene generator — generated stylized scenes, not
+stock footage and not photoreal (a human-made / no-stock-footage signal).
+
+Each world also carries the packaging metadata Cabin Hours publishes with:
+a context-first `title` ([scene] + [listener task] + [palette]), the primary
+`task`, the sonic `palette`, and the context `playlists` it feeds. The calendar
+maps months to a world (see theme_for_date); see BRAND.md for the full playbook.
+Retune or add a world here without touching render code.
 """
 from __future__ import annotations
 
@@ -37,14 +42,25 @@ def _homestead(cabin_x: float, barn_x: float, win: str,
 
 @dataclass(frozen=True)
 class Theme:
-    name: str
-    label: str
+    name: str                 # calendar key
+    world: str                # the lo-fi "world" (visual identity)
+    title: str                # context-first upload title: [scene] + [task] + [palette]
+    task: str                 # primary listener task this world serves
+    palette: str              # sonic palette tag
+    playlists: tuple          # context playlists this world feeds
     scene: SceneSpec
 
 
 THEMES: dict[str, Theme] = {
-    # Cool moonlit night: stars, aurora, cloud, mist, cabin, snowfall, blue hills.
-    "winter": Theme("winter", "Winter — moonlit snowfall", SceneSpec(
+    # Snowfall Cabin — moonlit night: stars, aurora, mist, homestead, skating pond.
+    "winter": Theme(
+        "winter",
+        world="Snowfall Cabin",
+        title="Snowfall Study — lofi beats to focus & relax",
+        task="study / focus",
+        palette="warm lofi, no lyrics",
+        playlists=("Focus", "Sleep", "Rainy Café"),
+        scene=SceneSpec(
         sky_top="071028", sky_bottom="2b4d8c",
         ridges=(
             RidgeLayer(0.60, "1a2e57", ((70, 280, 0.0), (26, 90, 0.6))),
@@ -62,8 +78,15 @@ THEMES: dict[str, Theme] = {
         shooting_star=True,
         particles="snow", particle_color="ffffff", particle_density=10,
     )),
-    # Pastel dawn: warm low sun, cloud, dawn mist, blossom, green hills + trees.
-    "spring": Theme("spring", "Spring — blossom at dawn", SceneSpec(
+    # Dawn Blossom — pastel sunrise: warm low sun, cloud, dawn mist, blossom drift.
+    "spring": Theme(
+        "spring",
+        world="Dawn Blossom",
+        title="Spring Morning — lofi to ease into the day",
+        task="morning focus / calm",
+        palette="bright, mellow lofi",
+        playlists=("Focus", "Work", "Morning"),
+        scene=SceneSpec(
         sky_top="ffd9e6", sky_bottom="9ad7e8",
         ridges=(
             RidgeLayer(0.62, "5a7d4a", ((70, 300, 0.3), (24, 80, 0.0))),
@@ -76,8 +99,15 @@ THEMES: dict[str, Theme] = {
         fog=True, fog_y=0.62, fog_strength=80, fog_color="fbe8f0",
         particles="leaves", particle_color="ffc6e0", particle_density=5,
     )),
-    # Sunset coast: warm sun low, cloud, sea haze, dark headlands (no particles).
-    "summer": Theme("summer", "Summer — sunset coast", SceneSpec(
+    # Sunset Coast — warm sun low, cloud, sea haze, dark headlands (no particles).
+    "summer": Theme(
+        "summer",
+        world="Sunset Coast",
+        title="Sunset Coast — chill lofi to unwind",
+        task="relax / unwind",
+        palette="warm chillhop",
+        playlists=("Chill", "Work", "Golden Hour"),
+        scene=SceneSpec(
         sky_top="3a2a78", sky_bottom="ff8a5b",
         ridges=(
             RidgeLayer(0.66, "5a2f52", ((50, 340, 0.0), (18, 100, 1.2))),
@@ -90,8 +120,15 @@ THEMES: dict[str, Theme] = {
         fog=True, fog_y=0.72, fog_strength=70, fog_color="ffd0b0",
         particles="none",
     )),
-    # Amber dusk: low sun, stars, cloud, mist, cabin, falling leaves, rust hills.
-    "autumn": Theme("autumn", "Autumn — falling leaves", SceneSpec(
+    # Autumn Leaves — amber dusk: low sun, stars, mist, cabin, falling leaves.
+    "autumn": Theme(
+        "autumn",
+        world="Autumn Leaves",
+        title="Autumn Work Session — cozy jazzy lofi",
+        task="work / study",
+        palette="jazzy lofi",
+        playlists=("Work", "Focus", "Rainy Café"),
+        scene=SceneSpec(
         sky_top="3a2150", sky_bottom="e0883c",
         ridges=(
             RidgeLayer(0.62, "7a4a2a", ((80, 260, 0.4), (24, 80, 0.6))),
@@ -106,8 +143,15 @@ THEMES: dict[str, Theme] = {
         shooting_star=True,
         particles="leaves", particle_color="ffae5a", particle_density=8,
     )),
-    # Festive night: gold glow, aurora, cloud, mist, cabin, dense snow, green hills.
-    "holiday": Theme("holiday", "Holiday — festive snowfall", SceneSpec(
+    # Cabin Holidays — festive night: gold glow, aurora, mist, cabin, dense snow.
+    "holiday": Theme(
+        "holiday",
+        world="Cabin Holidays",
+        title="Cabin Holidays — festive lofi to cozy up",
+        task="relax / festive",
+        palette="warm festive lofi",
+        playlists=("Sleep", "Chill", "Holiday"),
+        scene=SceneSpec(
         sky_top="14071a", sky_bottom="123a26",
         ridges=(
             RidgeLayer(0.60, "13402a", ((70, 280, 0.1), (26, 88, 0.5))),

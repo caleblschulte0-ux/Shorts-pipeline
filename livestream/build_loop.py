@@ -43,7 +43,7 @@ def build(theme: Theme, loop_seconds: float, fps: int, now: datetime,
     scene = OUTBOX / f".scene_{theme.name}_{stamp}.mp4"
     loop_path = OUTBOX / f"loop_{theme.name}_{stamp}.mp4"
 
-    print(f"[1/4] generating scene: {theme.name} — {theme.label} (render_scale={render_scale})")
+    print(f"[1/4] generating world: {theme.world} — \"{theme.title}\" (render_scale={render_scale})")
     generate_scene_clip(scene, loop_seconds, theme.scene, fps=fps, workdir=OUTBOX,
                         render_scale=render_scale)
 
@@ -61,8 +61,14 @@ def build(theme: Theme, loop_seconds: float, fps: int, now: datetime,
     manifest = {
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "channel": CHANNEL.name,
+        "handle": CHANNEL.handle,
+        "tagline": CHANNEL.tagline,
         "theme": theme.name,
-        "label": theme.label,
+        "world": theme.world,
+        "title": theme.title,            # ready-to-use upload title
+        "task": theme.task,
+        "palette": theme.palette,
+        "playlists": list(theme.playlists),
         "scene": {
             "sky": [theme.scene.sky_top, theme.scene.sky_bottom],
             "glow_color": theme.scene.glow_color if theme.scene.glow else None,
