@@ -20,6 +20,8 @@ import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 
@@ -89,6 +91,10 @@ class Topic:
     # Populated by the Groq ranker — a one-line hook suggestion for the
     # short explainer. Not set by raw discovery.
     angle: str | None = None
+    # ISO-8601 UTC publish time when the source exposed one (RSS <pubDate>,
+    # Reddit created_utc). None when the feed didn't carry one. Used to
+    # filter stale items and bias the ranker toward fresh stories.
+    published_at: str | None = None
 
 
 def _parse_traffic(s: str | None) -> int:
@@ -191,6 +197,22 @@ def discover(rss_bytes: bytes | None = None, min_score: float = 4.0,
 # discover_all() level so one dead source doesn't kill the run.
 # ----------------------------------------------------------------------
 
+def _parse_rfc822_date(s: str | None) -> str | None:
+    """RSS pubDate is RFC-822 ("Sun, 01 Jun 2026 14:32:00 GMT"). Return
+    an ISO-8601 UTC string, or None if missing/unparseable."""
+    if not s:
+        return None
+    try:
+        dt = parsedate_to_datetime(s.strip())
+    except (TypeError, ValueError):
+        return None
+    if dt is None:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc).isoformat()
+
+
 def _parse_generic_rss(raw: bytes, source: str, *, max_items: int = 50) -> list[Topic]:
     """RSS feeds where each <item> is one story (BBC, NPR, HN, etc.).
     Not the Google Trends format — that one bundles multiple news items
@@ -216,6 +238,7 @@ def _parse_generic_rss(raw: bytes, source: str, *, max_items: int = 50) -> list[
             headlines=headlines,
             urls=[link] if link else [],
             sources=[source],
+            published_at=_parse_rfc822_date(it.findtext("pubDate")),
         ))
     return out
 
@@ -259,6 +282,13 @@ def fetch_reddit(subreddit: str) -> list[Topic]:
             continue
         link_url = p.get("url_overridden_by_dest") or p.get("url") or ""
         permalink = p.get("permalink") or ""
+        created = p.get("created_utc")
+        pub = None
+        if created:
+            try:
+                pub = datetime.fromtimestamp(float(created), tz=timezone.utc).isoformat()
+            except (TypeError, ValueError):
+                pub = None
         out.append(Topic(
             query=title,
             traffic=int(p.get("score") or 0),
@@ -267,6 +297,7 @@ def fetch_reddit(subreddit: str) -> list[Topic]:
             urls=([link_url] if link_url else []) +
                  ([f"https://reddit.com{permalink}"] if permalink else []),
             sources=[f"reddit_{subreddit}"],
+            published_at=pub,
         ))
     return out
 
@@ -287,17 +318,40 @@ DEFAULT_SOURCES: list[tuple[str, callable]] = [
 ]
 
 
-def discover_all(*, verbose: bool = True) -> list[Topic]:
+def _is_fresh(t: Topic, *, max_age_hours: int) -> bool:
+    """Keep items dated within `max_age_hours`. Items without a pubDate
+    pass through — we filter against dates that explicitly say 'old'."""
+    if not t.published_at:
+        return True
+    try:
+        dt = datetime.fromisoformat(t.published_at.replace("Z", "+00:00"))
+    except ValueError:
+        return True
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    age_hours = (datetime.now(timezone.utc) - dt).total_seconds() / 3600.0
+    return age_hours <= max_age_hours
+
+
+def discover_all(*, verbose: bool = True, max_age_hours: int = 48) -> list[Topic]:
     """Fan out to every source, return the combined raw list. Failures
-    are caught per-source and logged to stderr; the run continues."""
+    are caught per-source and logged to stderr; the run continues.
+
+    `max_age_hours` (default 48) drops items the source dated as older
+    than that window. Items without a pubDate are kept (we can't tell).
+    This is the difference between picking 'today's news' and picking
+    'evergreen topic the feed surfaced again'."""
     all_topics: list[Topic] = []
     for label, fn in DEFAULT_SOURCES:
         try:
             items = fn()
+            fresh = [t for t in items if _is_fresh(t, max_age_hours=max_age_hours)]
             if verbose:
-                print(f"[discover] {label:20s}  {len(items):3d} items",
+                dropped = len(items) - len(fresh)
+                note = f" ({dropped} stale dropped)" if dropped else ""
+                print(f"[discover] {label:20s}  {len(fresh):3d} items{note}",
                       file=sys.stderr)
-            all_topics.extend(items)
+            all_topics.extend(fresh)
         except Exception as e:  # noqa: BLE001
             if verbose:
                 print(f"[discover] {label:20s}  failed: {type(e).__name__}: {e}",
@@ -310,6 +364,7 @@ def as_dict(t: Topic) -> dict:
         "query": t.query, "traffic": t.traffic, "score": round(t.score, 2),
         "headlines": t.headlines, "snippets": t.snippets,
         "sources": t.sources, "urls": t.urls,
+        "published_at": t.published_at,
     }
 
 
