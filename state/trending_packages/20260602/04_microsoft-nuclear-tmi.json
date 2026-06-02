@@ -1,0 +1,87 @@
+{
+  "version": 8,
+  "slug": "microsoft-nuclear-tmi",
+  "title": "Microsoft Is Reopening America's Most Infamous Nuclear Plant for AI",
+  "hashtags": ["microsoft", "threemileisland", "nuclear", "nuclearenergy", "constellationenergy", "aipower", "cleanenergy", "datacenter", "nuclearrevival", "msft", "energynews", "aiinfrastructure", "nuclearpower", "greentech"],
+  "script": "Three Mile Island — site of America's worst nuclear accident — is coming back online. Microsoft signed a 20-year power deal with Constellation Energy to restart Unit 1, shut since 2019. The plant will be renamed the Crane Clean Energy Center and generate 835 megawatts — enough for 800,000 homes. Microsoft needs the power for AI data centers. America's most infamous nuclear site is now feeding artificial intelligence.",
+  "shots": [
+    {
+      "phrase": "Three Mile Island",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Three_Mile_Island_Nuclear_Generating_Station_(color).jpg",
+      "query": "three mile island nuclear plant cooling towers pennsylvania aerial"
+    },
+    {
+      "phrase": "America's worst nuclear accident",
+      "query": "nuclear accident steam cooling tower old 1979 power plant danger"
+    },
+    {
+      "phrase": "Microsoft signed a 20-year power deal",
+      "query": "microsoft headquarters corporate building tech giant contract signing"
+    },
+    {
+      "phrase": "Constellation Energy to restart Unit 1",
+      "query": "nuclear reactor control room restart power plant operator"
+    },
+    {
+      "phrase": "generate 835 megawatts",
+      "query": "nuclear power plant electricity generation energy megawatts output"
+    },
+    {
+      "phrase": "Microsoft needs the power for AI data centers",
+      "query": "data center server farm rows rack electricity power cooling ai"
+    },
+    {
+      "phrase": "America's most infamous nuclear site is now feeding artificial intelligence",
+      "query": "ai artificial intelligence nuclear power future data center glowing"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "America's worst nuclear accident",
+      "text": "WORST NUCLEAR ACCIDENT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "coming back online",
+      "text": "COMING BACK ONLINE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "20-year power deal",
+      "text": "20-YEAR DEAL",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "generate 835 megawatts",
+      "text": "835 MEGAWATTS",
+      "color": "#ffe24a",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "enough for 800,000 homes",
+      "text": "800K HOMES",
+      "color": "#ffaa30",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "now feeding artificial intelligence",
+      "text": "FEEDING AI",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 210,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}

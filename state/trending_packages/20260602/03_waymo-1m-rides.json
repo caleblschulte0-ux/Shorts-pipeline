@@ -1,0 +1,79 @@
+{
+  "version": 8,
+  "slug": "waymo-1m-rides",
+  "title": "Waymo Just Crossed 1 Million Driverless Rides — No Human Inside",
+  "hashtags": ["waymo", "robotaxi", "selfdrivingcar", "autonomousvehicle", "waymoone", "driverless", "jaguar", "alphabet", "google", "futuretransport", "avtech", "techinnovation", "rideshare", "nodrivingneeded"],
+  "script": "There are robotaxis on US streets right now with no steering wheel, no pedals, and no human inside. Waymo's fully autonomous fleet crossed 1 million paid rides in May 2024 — all without a human driver. The Jaguar I-PACE robotaxi picks you up, navigates construction, pedestrians, and rain, and drops you off. No tips. No small talk. The era of human-driven taxis just quietly started ending.",
+  "shots": [
+    {
+      "phrase": "robotaxis on US streets right now",
+      "query": "empty driverless car city street urban night autonomous vehicle"
+    },
+    {
+      "phrase": "no steering wheel, no pedals, and no human inside",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waymo_self-driving_car_trimmed.jpg",
+      "query": "waymo robotaxi no steering wheel interior autonomous empty seat"
+    },
+    {
+      "phrase": "crossed 1 million paid rides in May 2024",
+      "query": "milestone one million rides celebration chart victory achievement"
+    },
+    {
+      "phrase": "Jaguar I-PACE robotaxi picks you up",
+      "query": "jaguar ipace electric car robotaxi black city pickup passenger"
+    },
+    {
+      "phrase": "navigates construction, pedestrians, and rain",
+      "query": "autonomous car rain night city lights sensors lidar cameras"
+    },
+    {
+      "phrase": "No tips. No small talk.",
+      "query": "taxi cab yellow driver traditional human compare ride"
+    },
+    {
+      "phrase": "human-driven taxis just quietly started ending",
+      "query": "taxi driver occupation automation future ending last ride"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no steering wheel, no pedals, and no human inside",
+      "text": "NO STEERING WHEEL",
+      "color": "#ffffff",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "1 million paid rides",
+      "text": "1 MILLION RIDES",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "all without a human driver",
+      "text": "ZERO HUMAN DRIVERS",
+      "color": "#ffe24a",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "No tips. No small talk.",
+      "text": "NO TIPS. NO TALK.",
+      "color": "#ffffff",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "human-driven taxis just quietly started ending",
+      "text": "END OF TAXI DRIVERS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.8
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}
