@@ -41,10 +41,17 @@ punchy "X is happening and here's why it matters" content with real stakes and \
 real numbers. Output strict JSON only."""
 
 
-RANKER_USER_TEMPLATE = """Here are {n} topics surfaced today from Google Trends, BBC, NPR, \
-Hacker News, and Reddit. Many are duplicates (same story across feeds) and many \
-are not video-able. Pick the top {top_k} that would make the best 25-second \
-explainer shorts.
+RANKER_USER_TEMPLATE = """Here are {n} topics surfaced TODAY from Google Trends, BBC, NPR, \
+Hacker News, and Reddit. Each line shows an age marker like [2h ago] when the \
+source dated it. Many are duplicates (same story across feeds) and many are not \
+video-able. Pick the top {top_k} that would make the best 25-second explainer shorts.
+
+FRESHNESS IS THE #1 CRITERION. The channel publishes daily-news shorts — viewers \
+expect "this just happened today." Strongly prefer items dated within the last 24 \
+hours. Anything older than 48 hours should only be picked if it has a breaking \
+update angle ("X is escalating today" / "new development in Y"). Reject anything \
+that reads as evergreen, retrospective, or "X has been quietly happening for years" — \
+those feel old even when the publish date is fresh.
 
 Reject (do not pick):
 - Live sports games or sports player news (time-locked, narrow audience)
@@ -53,13 +60,14 @@ Reject (do not pick):
 - Political horserace stories (who's leading the primary, etc.)
 - Stories with no concrete visual angle or stakes
 - Pure entertainment gossip ("X is dating Y")
+- Evergreen "explainer" topics that don't have a news hook today
 
 Prefer:
-- Business / finance with real numbers (a stock move, a layoff count, a price)
-- Tech announcements that affect consumers (a product launch, a ban, a leak)
-- Counterintuitive facts that hook curiosity ("X has been quietly Y for 3 years")
-- "Why is X happening" stories where a 60-word script can explain it
-- Cultural / viral phenomena that have a visual story
+- TODAY'S breaking news with a clear "just happened" angle
+- Business / finance with real numbers from today (a stock move, a layoff count, an earnings beat)
+- Tech announcements made today (a product launch, a ban, a leak, an earnings call)
+- "Why is X happening RIGHT NOW" stories where a 60-word script can explain a current event
+- Cultural / viral phenomena currently trending (something that broke this week)
 
 If two indices clearly cover the same news event, pick only the one with the \
 best context, and mention the dupe in the angle ("BBC + Reddit both flagged").
@@ -80,15 +88,39 @@ Topics:
 """
 
 
+def _age_hint(published_at: str | None) -> str:
+    """Return a short '[2h ago]' / '[1d ago]' marker for the prompt so
+    the ranker can see freshness at a glance."""
+    if not published_at:
+        return ""
+    try:
+        from datetime import datetime, timezone
+        dt = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        delta = datetime.now(timezone.utc) - dt
+        hours = delta.total_seconds() / 3600.0
+        if hours < 1:
+            return f"[{int(delta.total_seconds() / 60)}m ago]"
+        if hours < 24:
+            return f"[{int(hours)}h ago]"
+        return f"[{int(hours / 24)}d ago]"
+    except (ValueError, TypeError):
+        return ""
+
+
 def _format_topics(topics: list[Topic], *, max_headline_chars: int = 140) -> str:
     """Render the candidate list as a numbered block for the prompt.
     We include source labels because the LLM uses them to dedupe and
-    to weight (an HN-only story is different from a BBC-only story)."""
+    to weight (an HN-only story is different from a BBC-only story).
+    Age markers like [2h ago] flag freshness for the ranker."""
     lines: list[str] = []
     for i, t in enumerate(topics, 1):
         srcs = ",".join(t.sources) if t.sources else "?"
+        age = _age_hint(t.published_at)
+        age_part = f" {age}" if age else ""
         headline = (t.headlines[0] if t.headlines else t.query)[:max_headline_chars]
-        lines.append(f"{i}. [{srcs}] {t.query[:80]}")
+        lines.append(f"{i}. [{srcs}]{age_part} {t.query[:80]}")
         if headline and headline != t.query:
             lines.append(f"     → {headline}")
         # Include second headline if it adds context (often it does for
