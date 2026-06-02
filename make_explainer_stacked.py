@@ -62,7 +62,7 @@ def ffprobe_duration(path: Path) -> float:
 
 KOKORO_MODEL = ROOT / "kokoro_models" / "kokoro-v1.0.onnx"
 KOKORO_VOICES = ROOT / "kokoro_models" / "voices-v1.0.bin"
-KOKORO_VOICE = os.environ.get("KOKORO_VOICE", "am_michael")
+KOKORO_VOICE = os.environ.get("KOKORO_VOICE", "am_adam")
 
 
 def normalize_for_tts(text: str) -> str:
@@ -555,16 +555,12 @@ def build_timed_top(
             if stock_clips:
                 for j in range(n_cuts):
                     plan.append((stock_clips[j % len(stock_clips)], cut_dur))
-            elif image_clip:
-                # Stock missing — stretch the topic image over the whole
-                # window rather than leaving a gap or crashing the render.
-                if plan:
-                    plan[0] = (plan[0][0], plan[0][1] + remaining)
-                else:
-                    plan.append((image_clip, seg_dur))
             else:
-                # Neither image nor stock — drop a slate-blue placeholder
-                # so the timeline stays the right length.
+                # Stock provider unreachable. Never stretch the image
+                # past its cap — long static holds feel dead. Use a
+                # slate-blue placeholder for the remainder so the
+                # timeline length is preserved. In real CI this path
+                # never fires because stock keys are configured.
                 placeholder = {"is_image": True, "is_placeholder": True,
                                "path": "", "width": W, "height": HALF_H,
                                "source": "placeholder"}
