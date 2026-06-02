@@ -1,0 +1,88 @@
+{
+  "version": 8,
+  "slug": "figure-ai-bmw-factory",
+  "title": "A Humanoid Robot Is Now Working Alone on a Real Factory Floor",
+  "hashtags": ["figureai", "figure02", "humanoidrobot", "bmw", "robotics", "automation", "robotjobs", "spartanburg", "manufacturingrobot", "futureofwork", "airobots", "industrialai", "figurerobots", "robotfactory"],
+  "script": "A humanoid robot is now working alone on a real factory floor. Figure AI's Figure 02 robot is deployed in BMW's Spartanburg, South Carolina plant — picking up sheet metal parts, inspecting them, and transferring them between stations without human help. The robot completes each task in under 60 seconds. BMW employs 11,000 people at that plant. Humanoid robots just clocked in for their first real shift.",
+  "shots": [
+    {
+      "phrase": "humanoid robot is now working alone on a real factory floor",
+      "query": "humanoid robot working factory floor automation industrial arm white"
+    },
+    {
+      "phrase": "Figure AI's Figure 02 robot",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Figure-01_humanoid_robot.jpg",
+      "query": "figure ai humanoid robot white bipedal factory warehouse"
+    },
+    {
+      "phrase": "BMW's Spartanburg, South Carolina plant",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/BMW_Welt.jpg",
+      "query": "bmw factory plant south carolina assembly line car manufacturing"
+    },
+    {
+      "phrase": "picking up sheet metal parts",
+      "query": "robot arm picking sheet metal parts assembly line car manufacturing"
+    },
+    {
+      "phrase": "completes each task in under 60 seconds",
+      "query": "robot task fast speed efficiency factory precision timer"
+    },
+    {
+      "phrase": "BMW employs 11,000 people at that plant",
+      "query": "factory workers thousands assembly line automobile human labor workforce"
+    },
+    {
+      "phrase": "Humanoid robots just clocked in for their first real shift",
+      "query": "robot entering factory futuristic future work automation era"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "working alone on a real factory floor",
+      "text": "WORKING. ALONE.",
+      "color": "#ffffff",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Figure AI's Figure 02 robot",
+      "text": "FIGURE 02",
+      "color": "#ffe24a",
+      "size": 210,
+      "duration": 2.2
+    },
+    {
+      "phrase": "without human help",
+      "text": "ZERO HUMAN HELP",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "under 60 seconds",
+      "text": "UNDER 60 SECONDS",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "BMW employs 11,000 people",
+      "text": "11,000 HUMANS.",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "first real shift",
+      "text": "FIRST SHIFT. EVER.",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.8
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}
