@@ -1,0 +1,80 @@
+{
+  "version": 8,
+  "slug": "neuralink-first-patient",
+  "title": "A Paralyzed Man Is Playing Chess By Thinking — Thanks to a Brain Chip",
+  "hashtags": ["neuralink", "bci", "brainchip", "nolandarbaugh", "elonmusk", "neurotechnology", "brainsignals", "paralysis", "n1implant", "braincomputerinterface", "medtech", "sciencenews", "futuremed", "neurosciencenews"],
+  "script": "In January 2024, Noland Arbaugh became the first human to receive Neuralink's brain chip. He is paralyzed from the shoulders down. 8 weeks later, he was playing chess, browsing the web, and gaming — all by thinking. The N1 chip reads his brain signals, and a computer translates them to cursor movements. Zero physical movement required. Brain-computer interfaces just crossed from science fiction into everyday reality.",
+  "shots": [
+    {
+      "phrase": "first human to receive Neuralink's brain chip",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_2015.jpg",
+      "query": "neuralink brain implant chip neural interface technology medical"
+    },
+    {
+      "phrase": "paralyzed from the shoulders down",
+      "query": "spinal cord injury paralyzed wheelchair disability medical patient"
+    },
+    {
+      "phrase": "playing chess, browsing the web, and gaming",
+      "query": "chess game computer screen cursor moving brain control autonomous"
+    },
+    {
+      "phrase": "N1 chip reads his brain signals",
+      "query": "brain signal electrode neural eeg scan computer interface waves"
+    },
+    {
+      "phrase": "computer translates them to cursor movements",
+      "query": "computer cursor movement screen pointer autonomous control thought"
+    },
+    {
+      "phrase": "Zero physical movement required",
+      "query": "still hands person using computer thought control mind alone"
+    },
+    {
+      "phrase": "Brain-computer interfaces just crossed from science fiction",
+      "query": "futuristic brain computer neural cyberpunk sci fi interface tech"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "first human to receive Neuralink's brain chip",
+      "text": "FIRST BRAIN CHIP EVER",
+      "color": "#ffffff",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "paralyzed from the shoulders down",
+      "text": "PARALYZED. SHOULDERS DOWN.",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "all by thinking",
+      "text": "BY THINKING ALONE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Zero physical movement required",
+      "text": "ZERO MOVEMENT",
+      "color": "#ffe24a",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Brain-computer interfaces just crossed from science fiction",
+      "text": "SCI-FI IS REAL",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}
