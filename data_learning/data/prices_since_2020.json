@@ -1,0 +1,22 @@
+{
+  "key": "prices_since_2020",
+  "title": "price rise since 2020",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "cumulative change, 2020 to 2026",
+  "source": {
+    "name": "BLS CPI, author calculations",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov/cpi/",
+    "officiality": "official",
+    "access_date": "2026-06-02"
+  },
+  "notes": "Illustrative cumulative CPI category increases since 2020 for relatable everyday costs.",
+  "points": [
+    {"label": "Eggs", "value": 44.0},
+    {"label": "Gasoline", "value": 33.0},
+    {"label": "Rent", "value": 29.0},
+    {"label": "Electricity", "value": 28.0},
+    {"label": "Groceries", "value": 25.0}
+  ]
+}
