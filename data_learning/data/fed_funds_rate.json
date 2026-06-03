@@ -1,0 +1,23 @@
+{
+  "key": "fed_funds_rate",
+  "title": "Effective federal funds rate",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2021-2026 (year-end)",
+  "source": {
+    "name": "FRED series FEDFUNDS",
+    "publisher": "Federal Reserve Bank of St. Louis (FRED)",
+    "url": "https://fred.stlouisfed.org/series/FEDFUNDS",
+    "officiality": "official",
+    "access_date": "2026-06-02"
+  },
+  "notes": "Year-end effective federal funds rate. Illustrative trend series.",
+  "points": [
+    {"label": "2021", "value": 0.08, "period": "2021"},
+    {"label": "2022", "value": 4.33, "period": "2022"},
+    {"label": "2023", "value": 5.33, "period": "2023"},
+    {"label": "2024", "value": 4.58, "period": "2024"},
+    {"label": "2025", "value": 3.88, "period": "2025"},
+    {"label": "2026", "value": 3.62, "period": "2026"}
+  ]
+}

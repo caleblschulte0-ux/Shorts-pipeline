@@ -1,0 +1,51 @@
+{
+  "niche": "us-economy",
+  "channel_name": "Data Minute",
+  "music_vibe": "cinematic",
+  "query_theme": "data chart graph statistics economy finance",
+  "source_allowlist": [
+    "Bureau of Labor Statistics",
+    "Federal Reserve",
+    "FRED",
+    "Census",
+    "BEA"
+  ],
+  "videos": [
+    {
+      "slug": "lowest-unemployment-states",
+      "source": "offline",
+      "key": "state_unemployment",
+      "topic": "unemployment rate",
+      "params": {"file": "state_unemployment_2026_04.json"},
+      "insight_type": "rank",
+      "ascending": true,
+      "use_baseline": true,
+      "hashtags": ["unemployment", "jobs", "economy", "bls", "labormarket",
+                   "data", "statistics", "usa", "joblessrate", "economics"]
+    },
+    {
+      "slug": "inflation-pain-points",
+      "source": "offline",
+      "key": "cpi_components",
+      "topic": "inflation by category",
+      "params": {"file": "cpi_components_2026_04.json"},
+      "insight_type": "comparison",
+      "ascending": false,
+      "use_baseline": true,
+      "hashtags": ["inflation", "cpi", "gasprices", "economy", "costofliving",
+                   "bls", "prices", "data", "economics", "usa"]
+    },
+    {
+      "slug": "fed-funds-rate-trend",
+      "source": "offline",
+      "key": "fed_funds_rate",
+      "topic": "interest rates",
+      "params": {"file": "fed_funds_rate.json"},
+      "insight_type": "trend",
+      "ascending": false,
+      "use_baseline": false,
+      "hashtags": ["interestrates", "fed", "federalreserve", "rates", "economy",
+                   "fredeconomics", "macro", "finance", "data", "economics"]
+    }
+  ]
+}

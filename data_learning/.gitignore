@@ -1,0 +1,6 @@
+# Generated artifacts — reproducible by running `python -m data_learning.generate`.
+# Review packages are a local human-approval scratch space.
+review/
+# Charts are regenerated per run. When using --publish, commit the chart
+# alongside its package with `git add -f` so CI can resolve the local path.
+charts/
