@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "microsoft-scout-autopilot",
+  "title": "Microsoft Built an AI Agent That Works While You Sleep",
+  "hashtags": ["microsoftscout", "autopilot", "aiagent", "agenticai", "microsoftai", "build2026", "windows11", "microsoft", "aicoworker", "agentic", "entraid", "workplaceai", "futureofwork", "microsoftbuild2026", "autonomousai"],
+  "script": "AI chatbots wait for you to ask. Microsoft Scout doesn't. Scout is Microsoft's first Autopilot agent — it runs continuously on your Windows 11 PC or Mac with its own Microsoft work identity through Entra ID. It reads your files, joins your calendar, tracks your tasks, and acts autonomously. No prompts needed. Microsoft says this is what AI was always supposed to become: not a tool, but a coworker.",
+  "shots": [
+    {
+      "phrase": "AI chatbots wait for you to ask",
+      "query": "chatbot AI interface waiting prompt user conversation screen"
+    },
+    {
+      "phrase": "Microsoft Scout doesn't",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satya_Nadella.jpg",
+      "query": "Microsoft CEO product launch Build conference stage keynote"
+    },
+    {
+      "phrase": "its own Microsoft work identity through Entra ID",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Microsoft_sign_closeup.jpg",
+      "query": "Microsoft office corporate identity badge employee Redmond campus"
+    },
+    {
+      "phrase": "reads your files, joins your calendar, tracks your tasks",
+      "query": "calendar files tasks workflow office schedule productivity AI"
+    },
+    {
+      "phrase": "acts autonomously",
+      "query": "AI automation autonomous agent robot digital workflow background"
+    },
+    {
+      "phrase": "not a tool, but a coworker",
+      "query": "AI coworker collaboration digital office future work partner"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "AI chatbots wait for you to ask",
+      "text": "CHATBOTS WAIT FOR YOU",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Microsoft Scout doesn't",
+      "text": "SCOUT DOESN'T WAIT",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "its own Microsoft work identity",
+      "text": "ITS OWN WORK ID",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "acts autonomously",
+      "text": "FULLY AUTONOMOUS",
+      "color": "#ffffff",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "not a tool, but a coworker",
+      "text": "NOT A TOOL. A COWORKER.",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 175,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}
