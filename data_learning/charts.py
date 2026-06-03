@@ -115,3 +115,138 @@ def _draw_trend(ax, insight: Insight):
             fontsize=24, color=TEXT, fontweight="bold")
     ax.grid(axis="y", color="#1b2540", linewidth=1, zorder=0)
     _title(ax, insight)
+
+
+# ---------------------------------------------------------------------------
+# Chart SERIES — progressive reveal for the studio renderer.
+#
+# Instead of one chart, build several "states" that reveal the data step by
+# step, so the narration tells a story across 3-4 graphs. Each state is
+# drawn on a rounded dark card with a transparent margin, so it reads
+# cleanly over the ambient background.
+# ---------------------------------------------------------------------------
+
+CARD = "#0B1020"
+CARD_EDGE = "#1f2a44"
+SERIES_W, SERIES_H, SERIES_DPI = 10.0, 9.2, 100   # -> 1000x920 px
+
+
+def _ordered_items(insight: Insight) -> list:
+    """The reveal order for an insight, baseline last when present."""
+    items = list(insight.items)
+    if insight.kind == "trend":
+        return items                       # revealed point-by-point
+    if insight.baseline:
+        items = items + [insight.baseline]
+    return items
+
+
+def series_length(insight: Insight) -> int:
+    items = _ordered_items(insight)
+    if insight.kind == "trend":
+        return max(1, len(items) - 1)      # states: 2 points .. all points
+    return len(items)
+
+
+def _new_card():
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch
+
+    fig = plt.figure(figsize=(SERIES_W, SERIES_H), dpi=SERIES_DPI)
+    fig.patch.set_alpha(0.0)               # transparent outside the card
+    # Background axes holds the rounded card so it draws *under* the data
+    # axes (figure-level patches would paint over everything).
+    bg = fig.add_axes([0, 0, 1, 1])
+    bg.set_axis_off()
+    bg.set_zorder(0)
+    card = FancyBboxPatch(
+        (0.02, 0.02), 0.96, 0.96,
+        boxstyle="round,pad=0.0,rounding_size=0.04",
+        transform=fig.transFigure, facecolor=CARD, edgecolor=CARD_EDGE,
+        linewidth=2, alpha=0.93)
+    bg.add_patch(card)
+    ax = fig.add_axes([0.30, 0.12, 0.62, 0.66])
+    ax.set_facecolor("none")
+    ax.set_zorder(1)
+    return fig, ax, plt
+
+
+def _color_for(p, insight: Insight, revealed: bool):
+    if not revealed:
+        return "#16203a"                   # ghosted (not yet revealed)
+    if insight.baseline and p.label == insight.baseline.label:
+        return WARN
+    if p.label == insight.highlight_label:
+        return HIGHLIGHT
+    return ACCENT
+
+
+def _draw_bars_state(ax, insight: Insight, k: int):
+    """Reveal the first ``k`` items of a bar chart; rest are ghosted."""
+    items = _ordered_items(insight)
+    labels = [p.label for p in items]
+    values = [p.value for p in items]
+    y = list(range(len(items)))
+    vmax = max(values) if values else 1
+    for i, (yi, p, v) in enumerate(zip(y, items, values)):
+        revealed = i < k
+        shown = v if revealed else 0.0
+        ax.barh(yi, shown, color=_color_for(p, insight, revealed),
+                height=0.62, zorder=3)
+        if revealed:
+            ax.text(v + vmax * 0.015, yi, f"{v:.1f}", va="center",
+                    fontsize=24, color=TEXT, fontweight="bold")
+    ax.set_yticks(y)
+    ax.set_yticklabels(labels, fontsize=24, color=TEXT)
+    ax.invert_yaxis()
+    ax.set_xticks([])
+    ax.set_xlim(0, vmax * 1.18)
+
+
+def _draw_trend_state(ax, insight: Insight, k: int):
+    """Draw the line up to point index ``k`` (k>=1)."""
+    pts = insight.items
+    x = list(range(len(pts)))
+    values = [p.value for p in pts]
+    kk = min(len(pts), k + 1)
+    ax.plot(x[:kk], values[:kk], color=HIGHLIGHT, linewidth=5, marker="o",
+            markersize=10, zorder=3)
+    ax.set_xticks(x)
+    ax.set_xticklabels([p.label for p in pts], fontsize=20, color=SUBTLE)
+    ax.tick_params(axis="y", labelsize=20, colors=SUBTLE)
+    ax.set_xlim(-0.3, (len(pts) - 1) + 0.7)
+    ax.set_ylim(min(values) - (max(values) - min(values)) * 0.12 - 0.2,
+                max(values) * 1.12 + 0.2)
+    if kk >= 1:
+        ax.text(x[kk - 1], values[kk - 1], f"  {values[kk - 1]:.1f}",
+                va="center", fontsize=26, color=TEXT, fontweight="bold")
+    ax.grid(axis="y", color="#1b2540", linewidth=1, zorder=0)
+
+
+def render_series(insight: Insight, out_dir: Path, slug: str) -> list[Path]:
+    """Render the full progressive series; returns ordered PNG paths."""
+    if not _have_mpl():
+        return []
+    out_dir.mkdir(parents=True, exist_ok=True)
+    n = series_length(insight)
+    paths: list[Path] = []
+    for s in range(1, n + 1):
+        fig, ax, plt = _new_card()
+        ax.set_title(insight.topic, color=TEXT, fontsize=34, fontweight="bold",
+                     pad=22, loc="left")
+        if insight.kind == "trend":
+            _draw_trend_state(ax, insight, s)
+        else:
+            _draw_bars_state(ax, insight, s)
+        for spine in ax.spines.values():
+            spine.set_visible(False)
+        ax.tick_params(colors=SUBTLE, length=0)
+        fig.text(0.5, 0.05, insight.source.footer(), ha="center",
+                 fontsize=12, color=SUBTLE)
+        p = out_dir / f"{slug}_state{s:02d}.png"
+        fig.savefig(p, transparent=True)
+        plt.close(fig)
+        paths.append(p)
+    return paths
