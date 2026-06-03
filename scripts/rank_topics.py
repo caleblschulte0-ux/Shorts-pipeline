@@ -86,7 +86,12 @@ Prefer within each category:
 - Cultural / viral phenomena currently trending (something that broke this week)
 
 If two indices clearly cover the same news event, pick only the one with the \
-best context, and mention the dupe in the angle ("BBC + Reddit both flagged").
+best context, and **list every source that flagged it in the angle** (e.g. \
+"BBC + Reuters + Politico all covering this"). Multi-sourced stories are \
+strongly preferred over single-source picks — they're load-bearing news, not \
+one outlet's pet take. When listing dupes in the angle, name every source so \
+the script writer downstream can pull from all of them rather than getting \
+locked into one outlet's framing.
 
 For each pick output:
   - index: the 1-based index from the list below

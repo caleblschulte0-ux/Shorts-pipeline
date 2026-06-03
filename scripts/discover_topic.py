@@ -254,9 +254,124 @@ def fetch_bbc_world() -> list[Topic]:
                               "bbc_world")
 
 
+def fetch_bbc_us() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml"),
+        "bbc_us")
+
+
+def fetch_bbc_business() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.bbci.co.uk/news/business/rss.xml"),
+                              "bbc_business")
+
+
+def fetch_bbc_science() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://feeds.bbci.co.uk/news/science_and_environment/rss.xml"),
+        "bbc_science")
+
+
 def fetch_npr_top() -> list[Topic]:
     return _parse_generic_rss(_http_get("https://feeds.npr.org/1001/rss.xml"),
                               "npr_top")
+
+
+def fetch_npr_news() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.npr.org/1003/rss.xml"),
+                              "npr_news")
+
+
+def fetch_npr_politics() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.npr.org/1014/rss.xml"),
+                              "npr_politics")
+
+
+def fetch_pbs_newshour() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://www.pbs.org/newshour/feeds/rss/headlines"),
+        "pbs_newshour")
+
+
+def fetch_guardian_world() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.theguardian.com/world/rss"),
+                              "guardian_world")
+
+
+def fetch_guardian_us() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.theguardian.com/us-news/rss"),
+                              "guardian_us")
+
+
+def fetch_aljazeera() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.aljazeera.com/xml/rss/all.xml"),
+                              "aljazeera")
+
+
+def fetch_apnews_top() -> list[Topic]:
+    # AP's "top news" feed via their public RSS — wire copy, neutral.
+    return _parse_generic_rss(_http_get("https://feeds.apnews.com/rss/apf-topnews"),
+                              "apnews_top")
+
+
+def fetch_reuters_world() -> list[Topic]:
+    # Reuters cut their owned RSS so we use a public mirror that
+    # rebroadcasts their feed unchanged. Falls through silently if it's
+    # offline (the source list is fault-tolerant).
+    return _parse_generic_rss(
+        _http_get("https://feeds.feedburner.com/reuters/topNews"),
+        "reuters")
+
+
+def fetch_cnbc_top() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://www.cnbc.com/id/100003114/device/rss/rss.html"),
+        "cnbc_top")
+
+
+def fetch_marketwatch_top() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://feeds.content.dowjones.io/public/rss/mw_topstories"),
+        "marketwatch")
+
+
+def fetch_politico() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.politico.com/rss/politicopicks.xml"),
+                              "politico")
+
+
+def fetch_thehill() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://thehill.com/feed"),
+                              "thehill")
+
+
+def fetch_propublica() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.propublica.org/feeds/propublica/main"),
+                              "propublica")
+
+
+def fetch_arstechnica() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.arstechnica.com/arstechnica/index"),
+                              "arstechnica")
+
+
+def fetch_theverge() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.theverge.com/rss/index.xml"),
+                              "theverge")
+
+
+def fetch_techcrunch() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://techcrunch.com/feed/"),
+                              "techcrunch")
+
+
+def fetch_sciencedaily() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.sciencedaily.com/rss/all.xml"),
+                              "sciencedaily")
+
+
+def fetch_variety() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://variety.com/feed/"),
+                              "variety")
 
 
 def fetch_hackernews() -> list[Topic]:
@@ -305,13 +420,43 @@ def fetch_reddit(subreddit: str) -> list[Topic]:
 # Sources to fan out to. Each entry is (label, callable). Order matters
 # only for log readability — discover_all aggregates everything.
 DEFAULT_SOURCES: list[tuple[str, callable]] = [
+    # Search-trend signal (what people are Googling right now).
     ("google_trends_US", lambda: fetch_google_trends("US")),
     ("google_trends_GB", lambda: fetch_google_trends("GB")),
     ("google_trends_AU", lambda: fetch_google_trends("AU")),
     ("google_trends_CA", lambda: fetch_google_trends("CA")),
+    # Wire services — neutral copy, hard to argue political slant on.
+    ("apnews_top",       fetch_apnews_top),
+    ("reuters",          fetch_reuters_world),
+    # Public broadcasters (center-leaning).
     ("bbc_world",        fetch_bbc_world),
+    ("bbc_us",           fetch_bbc_us),
+    ("bbc_business",     fetch_bbc_business),
+    ("bbc_science",      fetch_bbc_science),
     ("npr_top",          fetch_npr_top),
+    ("npr_news",         fetch_npr_news),
+    ("npr_politics",     fetch_npr_politics),
+    ("pbs_newshour",     fetch_pbs_newshour),
+    # International perspective.
+    ("guardian_world",   fetch_guardian_world),
+    ("guardian_us",      fetch_guardian_us),
+    ("aljazeera",        fetch_aljazeera),
+    # US politics / DC desk.
+    ("politico",         fetch_politico),
+    ("thehill",          fetch_thehill),
+    ("propublica",       fetch_propublica),
+    # Business / markets.
+    ("cnbc_top",         fetch_cnbc_top),
+    ("marketwatch",      fetch_marketwatch_top),
+    # Tech (intentionally diversified beyond HN's tilt).
     ("hackernews",       fetch_hackernews),
+    ("arstechnica",      fetch_arstechnica),
+    ("theverge",         fetch_theverge),
+    ("techcrunch",       fetch_techcrunch),
+    # Science / culture.
+    ("sciencedaily",     fetch_sciencedaily),
+    ("variety",          fetch_variety),
+    # Social aggregators.
     ("reddit_popular",   lambda: fetch_reddit("popular")),
     ("reddit_news",      lambda: fetch_reddit("news")),
     ("reddit_worldnews", lambda: fetch_reddit("worldnews")),
