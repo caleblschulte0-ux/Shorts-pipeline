@@ -24,13 +24,26 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
 1. **Discover**:
    `GROQ_API_KEY=$GROQ_API_KEY python3 scripts/rank_topics.py --top-k 10`
 
-2. **Pick 6** from the ranker's output. **Freshness is the #1 filter.**
-   This is a "today's news" channel — every package should be something
-   that happened in the last 24-48 hours. Each ranker line shows an age
-   marker like `[2h ago]`; strongly prefer those. Anything that reads
-   evergreen, retrospective, or "X has been quietly happening for years"
-   gets cut even when interesting. If you can't anchor the package to
-   "this happened today / this morning / just announced", skip it.
+2. **Pick 6** from the ranker's output. **Two hard rules.**
+
+   **Rule 1 — Freshness.** This is a "today's news" channel. Every
+   package should be something that happened in the last 24-48 hours.
+   Each ranker line shows an age marker like `[2h ago]`; strongly
+   prefer those. Anything that reads evergreen, retrospective, or
+   "X has been quietly happening for years" gets cut even when
+   interesting. If you can't anchor the package to "this happened
+   today / this morning / just announced", skip it.
+
+   **Rule 2 — Category diversity.** This is a WIDE news channel, not
+   a tech/AI channel. **Maximum 2 picks from any single category.**
+   Aim for a balanced 6 across categories such as: Tech/AI,
+   Business/Finance, World affairs/Geopolitics, US domestic policy,
+   Crime/Justice, Science/Health, Climate/Environment,
+   Culture/Sports/Entertainment. The candidate list will skew tech-heavy
+   because Hacker News dominates it — resist that. If the ranker
+   already returned a tech-heavy top 10, drop down its list and pick
+   the highest-scoring item from each underrepresented category before
+   doubling up on tech.
 
    Also reject:
    - Live sports or sports-player news (time-locked, narrow audience)

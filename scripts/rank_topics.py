@@ -53,6 +53,23 @@ update angle ("X is escalating today" / "new development in Y"). Reject anything
 that reads as evergreen, retrospective, or "X has been quietly happening for years" — \
 those feel old even when the publish date is fresh.
 
+CATEGORY DIVERSITY IS THE #2 CRITERION. This is a WIDE news channel, not a \
+tech/AI channel. Hard rule: AT MOST 2 picks from any single category. The \
+candidate list will be heavily skewed toward tech/AI because Hacker News \
+dominates it — resist that. Aim for a balanced {top_k} across categories such as:
+
+  - Tech / AI (max 2)
+  - Business / Finance / Markets (earnings, M&A, stock moves)
+  - World affairs / Geopolitics (conflicts, deals, foreign policy)
+  - US news / Domestic policy (laws, regulations, federal actions — NOT election horserace)
+  - Crime / Justice (arrests, verdicts, major investigations)
+  - Science / Health / Medicine (breakthroughs, recalls, studies)
+  - Climate / Environment / Disasters (weather events, climate moves)
+  - Culture / Sports / Entertainment (one-off newsworthy moments, NOT live games or gossip)
+
+If the input list doesn't have enough diversity to fill all categories, that's \
+fine — just don't double up on whichever category is over-represented.
+
 Reject (do not pick):
 - Live sports games or sports player news (time-locked, narrow audience)
 - Celebrity deaths, obituaries, "tribute" stories
@@ -62,10 +79,9 @@ Reject (do not pick):
 - Pure entertainment gossip ("X is dating Y")
 - Evergreen "explainer" topics that don't have a news hook today
 
-Prefer:
+Prefer within each category:
 - TODAY'S breaking news with a clear "just happened" angle
-- Business / finance with real numbers from today (a stock move, a layoff count, an earnings beat)
-- Tech announcements made today (a product launch, a ban, a leak, an earnings call)
+- Stories with real numbers (death toll, dollar amount, percentage, vote count)
 - "Why is X happening RIGHT NOW" stories where a 60-word script can explain a current event
 - Cultural / viral phenomena currently trending (something that broke this week)
 
