@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "valleytronics-light-chip",
+  "title": "Scientists Built a Chip That Computes With Light, Not Electricity",
+  "hashtags": ["valleytronics", "photonicchip", "lightcomputing", "quantumchip", "siliconreplacement", "monashuniversity", "computerchip", "chipbreakthrough", "futuretech", "greencomputing", "atomicthin", "semiconductors", "sciencebreakthrough", "nextgencomputing", "energyefficiency"],
+  "script": "Every chip in your phone runs on electrons. Electrons generate heat, waste energy, and hit a speed wall. Scientists at Monash University just built a chip that computes using light instead. It exploits a property of atomically thin materials called the 'valley degree of freedom.' The field is called valleytronics. If it scales, it could slash computing energy use by 90 percent and replace silicon entirely.",
+  "shots": [
+    {
+      "phrase": "Every chip in your phone runs on electrons",
+      "query": "smartphone chip silicon processor circuit board closeup"
+    },
+    {
+      "phrase": "generate heat, waste energy, and hit a speed wall",
+      "query": "CPU heat thermal throttle temperature high processor overheating"
+    },
+    {
+      "phrase": "Scientists at Monash University just built a chip",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monash_University_Clayton_Campus.jpg",
+      "query": "university campus laboratory research science building Australia"
+    },
+    {
+      "phrase": "computes using light instead",
+      "query": "photonic laser light beam chip fiber optic computing"
+    },
+    {
+      "phrase": "valley degree of freedom",
+      "query": "atomically thin material graphene 2d electron microscope crystal"
+    },
+    {
+      "phrase": "slash computing energy use by 90 percent",
+      "query": "energy efficiency chip green computing semiconductor saving power"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Every chip in your phone runs on electrons",
+      "text": "ELECTRONS. EVERY CHIP.",
+      "color": "#ffaa30",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "generate heat, waste energy, and hit a speed wall",
+      "text": "HEAT. WASTE. WALL.",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "computes using light instead",
+      "text": "LIGHT, NOT ELECTRONS",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "valleytronics",
+      "text": "VALLEYTRONICS",
+      "color": "#ffffff",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "slash computing energy use by 90 percent",
+      "text": "90% LESS ENERGY",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "microsoft-majorana-2",
+  "title": "Microsoft's Quantum Chip Just Got 1,000x More Stable",
+  "hashtags": ["majorana2", "microsoftquantum", "quantumcomputing", "quantumchip", "qubitbreakthrough", "microsoftbuild", "build2026", "quantumtech", "quantumerror", "microsoftai", "quantumcomputer", "quantumhardware", "futuretech", "techai"],
+  "script": "For 30 years, quantum computers have been plagued by a single fatal flaw — their qubits last milliseconds before collapsing from noise. Microsoft just cracked it. The new Majorana 2 chip, unveiled at Build 2026, uses lead superconductors instead of aluminum to shield qubits from interference. Average qubit lifetime: 20 seconds — 1,000 times more reliable than Majorana 1. Microsoft now says a full-scale quantum computer is on track by 2029.",
+  "shots": [
+    {
+      "phrase": "For 30 years, quantum computers have been plagued",
+      "query": "quantum computer laboratory error cryogenic noise research"
+    },
+    {
+      "phrase": "Microsoft just cracked it",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satya_Nadella.jpg",
+      "query": "Microsoft CEO technology announcement conference stage"
+    },
+    {
+      "phrase": "Majorana 2 chip, unveiled at Build 2026",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/IBM_Q_System_Two_Ikerbasque_01.jpg",
+      "query": "quantum chip hardware cryogenic cooling laboratory closeup"
+    },
+    {
+      "phrase": "lead superconductors instead of aluminum",
+      "query": "superconductor metal material science laboratory physics"
+    },
+    {
+      "phrase": "1,000 times more reliable than Majorana 1",
+      "query": "reliability improvement exponential bar chart comparison technology"
+    },
+    {
+      "phrase": "full-scale quantum computer is on track by 2029",
+      "query": "quantum computing future roadmap technology timeline progress"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "milliseconds before collapsing from noise",
+      "text": "COLLAPSES IN MILLISECONDS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Microsoft just cracked it",
+      "text": "MICROSOFT CRACKED IT",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "lead superconductors instead of aluminum",
+      "text": "LEAD, NOT ALUMINUM",
+      "color": "#ffaa30",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "1,000 times more reliable",
+      "text": "1,000X MORE RELIABLE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.4
+    },
+    {
+      "phrase": "on track by 2029",
+      "text": "QUANTUM BY 2029",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.2
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

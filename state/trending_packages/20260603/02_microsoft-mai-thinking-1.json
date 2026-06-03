@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "microsoft-mai-thinking-1",
+  "title": "Microsoft Just Built Its Own AI — And It Beats OpenAI",
+  "hashtags": ["microsoftai", "maithinking1", "openai", "microsoftbuild", "build2026", "aimodel", "reasoningai", "llm", "aicompetition", "artificialintelligence", "satyanadella", "aibenchmark", "aibreakthrough", "techaiwar", "aiindependence"],
+  "script": "Microsoft has paid OpenAI more than $13 billion since 2019. Today it announced something different. MAI-Thinking-1 is Microsoft's first in-house reasoning model — trained from scratch using zero OpenAI data. 35 billion active parameters. It scores 97 percent on AIME math benchmarks. Independent raters prefer it to Claude Sonnet in blind tests. It matches Opus on coding. Microsoft is no longer dependent on OpenAI.",
+  "shots": [
+    {
+      "phrase": "Microsoft has paid OpenAI more than $13 billion",
+      "query": "Microsoft OpenAI partnership deal money billions contract signed"
+    },
+    {
+      "phrase": "MAI-Thinking-1 is Microsoft's first in-house reasoning model",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satya_Nadella.jpg",
+      "query": "Microsoft CEO stage keynote announcement AI product launch"
+    },
+    {
+      "phrase": "trained from scratch using zero OpenAI data",
+      "query": "AI training data center servers computing from scratch"
+    },
+    {
+      "phrase": "97 percent on AIME math benchmarks",
+      "query": "AI benchmark test score performance chart math reasoning"
+    },
+    {
+      "phrase": "prefer it to Claude Sonnet in blind tests",
+      "query": "AI model comparison blind evaluation human preference test"
+    },
+    {
+      "phrase": "Microsoft is no longer dependent on OpenAI",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Microsoft_sign_closeup.jpg",
+      "query": "Microsoft independence technology break free corporate split"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "paid OpenAI more than $13 billion",
+      "text": "$13B TO OPENAI",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "zero OpenAI data",
+      "text": "ZERO OPENAI DATA",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "97 percent on AIME",
+      "text": "97% AIME",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "prefer it to Claude Sonnet",
+      "text": "BEATS CLAUDE SONNET",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "no longer dependent on OpenAI",
+      "text": "MICROSOFT IS FREE",
+      "color": "#ffffff",
+      "size": 195,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}
