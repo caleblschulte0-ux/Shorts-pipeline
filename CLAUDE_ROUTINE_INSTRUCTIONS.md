@@ -53,10 +53,26 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
    - Topics with no concrete visual story
    - Evergreen explainers ("how X works", "the history of Y")
 
-3. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
+3. **Cross-reference before writing.** Before drafting any script,
+   pull the same story from **at least 2-3 different outlets** to
+   avoid baking one publisher's slant into the video. The ranker's
+   angle field will list which sources flagged each story
+   (e.g. "BBC + Reuters + Politico all covering this") — use those.
+   If the ranker only saw it in one source, WebFetch the story from
+   another outlet (search the topic on apnews.com, reuters.com,
+   bbc.com, or the relevant beat outlet) before writing.
+
+   Synthesize across the sources: what do they all agree on (= the
+   facts)? Where do they differ (= the framing)? Write the script
+   from the facts. Keep the framing neutral — no editorializing,
+   no left/right loaded vocabulary, no "X is bad because..." or
+   "Y is finally..." phrasing. The audience should feel informed,
+   not convinced.
+
+4. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
    one per pick.
 
-4. **Commit, push, AND open a PR**. You're probably running on an
+5. **Commit, push, AND open a PR**. You're probably running on an
    isolated worktree branch, not directly on main, so a plain
    `git push` puts your work on a feature branch that nobody renders
    from. You MUST also open a pull request — that's what the auto-
