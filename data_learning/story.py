@@ -1,0 +1,163 @@
+"""Story builder — multiple data pulls -> multiple charts -> one narrative.
+
+A *story* chains several data segments. Each segment pulls its own data
+(possibly from a different source), builds an insight, renders its OWN chart,
+and contributes one spoken line + a punch. The story opens with a punchy,
+attention-grabbing HOOK and ends with a closing takeaway, so a longer video
+tells a real arc across 3-4 distinct charts.
+
+Segment lines are auto-generated from the insight (so the spoken numbers are
+always source-backed and the punch phrases are guaranteed verbatim). The hook
+and closing are hand-written in the config for maximum catchiness.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from pathlib import Path
+
+from . import charts, insights
+from .insights import Insight
+from .sources import get_source
+from .sources.offline import OfflineSource
+
+# Connectors give the sequence a story rhythm instead of a list feel.
+CONNECTORS = ["", "Now look at this.", "But here's the twist.",
+              "And it gets sharper.", "Then this."]
+GREEN, RED, ORANGE, WHITE = "#50ff80", "#ff3030", "#ffaa30", "#ffffff"
+FLASH = {GREEN: "#0d2818", RED: "#220404", ORANGE: "#2a1d05", WHITE: None}
+
+
+@dataclass
+class Segment:
+    sentence: str
+    chart_path: str | None
+    punches: list[dict]
+    source_footer: str
+    topic: str
+
+
+@dataclass
+class Story:
+    slug: str
+    title: str
+    hook: str
+    closing: str
+    segments: list[Segment]
+    hashtags: list[str]
+    sources: list[str] = field(default_factory=list)
+
+    def sentences(self) -> list[str]:
+        return [self.hook] + [s.sentence for s in self.segments] + [self.closing]
+
+
+def _num(value: float, unit: str) -> str:
+    if unit in ("percent", "%", "rate"):
+        whole = f"{value:.0f}" if float(value).is_integer() else f"{value:.1f}"
+        return f"{whole} percent"
+    if abs(value) >= 1000:
+        return f"{value:,.0f}"
+    if float(value).is_integer():
+        return f"{value:.0f}"
+    return f"{value:.1f}"
+
+
+def _cap(s: str) -> str:
+    return s[:1].upper() + s[1:] if s else s
+
+
+def _join(connector: str, clause: str) -> str:
+    clause = _cap(clause)
+    return f"{connector} {clause}" if connector else clause
+
+
+def _find(script: str, needle: str) -> str | None:
+    i = script.lower().find(needle.lower())
+    return script[i:i + len(needle)] if i >= 0 else None
+
+
+def _punch(sentence: str, num_str: str, color: str) -> dict | None:
+    phrase = _find(sentence, num_str)
+    if not phrase:
+        return None
+    p = {"phrase": phrase, "text": num_str.replace(" percent", "%").upper(),
+         "color": color, "duration": 1.8}
+    if FLASH.get(color):
+        p["flash_bg"] = FLASH[color]
+    return p
+
+
+def _segment_text(ins: Insight, connector: str) -> tuple[str, list[tuple[str, str]]]:
+    """Return (sentence, [(num_str, color)]) for one segment."""
+    u = ins.unit
+    items = ins.items
+    if ins.kind in ("rank", "outlier"):
+        star = items[0]
+        sup = "lowest" if "lowest" in ins.main_insight.lower() else "highest"
+        clause = f"{star.label} has the {sup} {ins.topic}, at {_num(star.value, u)}."
+        return _join(connector, clause), [(_num(star.value, u), GREEN)]
+    if ins.kind == "comparison":
+        hi, lo = items[0], items[1]
+        clause = (f"{hi.label} is up {_num(hi.value, u)}, while {lo.label} "
+                  f"is only {_num(lo.value, u)}.")
+        return _join(connector, clause), [(_num(hi.value, u), GREEN),
+                                          (_num(lo.value, u), ORANGE)]
+    # trend — mention the peak so the spoken story matches the line shape.
+    first, last = items[0], items[-1]
+    peak = max(items, key=lambda p: p.value)
+    if peak.value > last.value * 1.1 and peak.label not in (first.label, last.label):
+        clause = (f"{ins.topic} spiked from {_num(first.value, u)} to "
+                  f"{_num(peak.value, u)} in {peak.label}, then eased to "
+                  f"{_num(last.value, u)}.")
+        return _join(connector, clause), [(_num(peak.value, u), RED),
+                                          (_num(last.value, u), GREEN)]
+    direction = "climbed" if last.value > first.value else "fell"
+    clause = (f"{ins.topic} {direction} from {_num(first.value, u)} in "
+              f"{first.label} to {_num(last.value, u)} in {last.label}.")
+    return _join(connector, clause), [(_num(last.value, u), GREEN)]
+
+
+def _build_insight(seg_cfg: dict):
+    src = get_source(seg_cfg["source"])
+    ds = src.fetch(seg_cfg["key"], seg_cfg.get("params"))
+    baseline = None
+    if seg_cfg.get("use_baseline"):
+        baseline = (src.baseline(seg_cfg["key"], seg_cfg.get("params"))
+                    if isinstance(src, OfflineSource)
+                    else (seg_cfg.get("params") or {}).get("baseline"))
+    ins = insights.build(ds, insight_type=seg_cfg.get("insight_type", "auto"),
+                         baseline=baseline,
+                         ascending=bool(seg_cfg.get("ascending", False)))
+    if seg_cfg.get("topic"):
+        ins.topic = seg_cfg["topic"]
+    return ins
+
+
+def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
+    """Construct a Story: fetch each segment's data, render its chart, and
+    assemble the narration + punches."""
+    chart_dir = workdir / "charts"
+    segments: list[Segment] = []
+    sources: list[str] = []
+    for i, seg_cfg in enumerate(story_cfg["segments"]):
+        ins = _build_insight(seg_cfg)
+        connector = seg_cfg.get("connector",
+                                CONNECTORS[min(i, len(CONNECTORS) - 1)])
+        sentence, nums = _segment_text(ins, connector)
+        punches = [pp for pp in (_punch(sentence, n, c) for n, c in nums) if pp]
+        cpath = charts.render_story_chart(
+            ins, chart_dir / f"{story_cfg['slug']}_seg{i:02d}.png")
+        footer = ins.source.footer()
+        if footer not in sources:
+            sources.append(footer)
+        segments.append(Segment(sentence, str(cpath) if cpath else None,
+                                punches, footer, ins.topic))
+
+    return Story(
+        slug=story_cfg["slug"],
+        title=story_cfg.get("title", story_cfg["slug"]),
+        hook=story_cfg["hook"],
+        closing=story_cfg.get("closing", "That's the story in the data."),
+        segments=segments,
+        hashtags=story_cfg.get("hashtags", []),
+        sources=sources,
+    )

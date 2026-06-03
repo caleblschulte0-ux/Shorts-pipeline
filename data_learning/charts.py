@@ -93,7 +93,7 @@ def _draw_bars(ax, insight: Insight):
     ax.set_xticks([])
     vmax = max(values) if values else 1
     for yi, v in zip(y, values):
-        ax.text(v + vmax * 0.015, yi, f"{v:.1f}", va="center",
+        ax.text(v + vmax * 0.015, yi, _vfmt(v), va="center",
                 fontsize=22, color=TEXT, fontweight="bold")
     ax.set_xlim(0, vmax * 1.18)
     _title(ax, insight)
@@ -129,6 +129,11 @@ def _draw_trend(ax, insight: Insight):
 CARD = "#0B1020"
 CARD_EDGE = "#1f2a44"
 SERIES_W, SERIES_H, SERIES_DPI = 10.0, 9.2, 100   # -> 1000x920 px
+
+
+def _vfmt(v: float) -> str:
+    """Value label: drop the .0 on whole numbers, else one decimal."""
+    return f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}"
 
 
 def _ordered_items(insight: Insight) -> list:
@@ -196,7 +201,7 @@ def _draw_bars_state(ax, insight: Insight, k: int):
         ax.barh(yi, shown, color=_color_for(p, insight, revealed),
                 height=0.62, zorder=3)
         if revealed:
-            ax.text(v + vmax * 0.015, yi, f"{v:.1f}", va="center",
+            ax.text(v + vmax * 0.015, yi, _vfmt(v), va="center",
                     fontsize=24, color=TEXT, fontweight="bold")
     ax.set_yticks(y)
     ax.set_yticklabels(labels, fontsize=24, color=TEXT)
@@ -220,9 +225,49 @@ def _draw_trend_state(ax, insight: Insight, k: int):
     ax.set_ylim(min(values) - (max(values) - min(values)) * 0.12 - 0.2,
                 max(values) * 1.12 + 0.2)
     if kk >= 1:
-        ax.text(x[kk - 1], values[kk - 1], f"  {values[kk - 1]:.1f}",
+        ax.text(x[kk - 1], values[kk - 1], "  " + _vfmt(values[kk - 1]),
                 va="center", fontsize=26, color=TEXT, fontweight="bold")
     ax.grid(axis="y", color="#1b2540", linewidth=1, zorder=0)
+
+
+def _arrow_to_bar(ax, insight: Insight, items, values):
+    """Draw a bright pointer at the highlighted bar so viewers know where to
+    look (the mascot gestures; this is the precise pointer)."""
+    try:
+        i = next(k for k, p in enumerate(items)
+                 if p.label == insight.highlight_label)
+    except StopIteration:
+        return
+    v = values[i]
+    # Bright emphasis ring around the star bar — the precise "look here" cue
+    # (the mascot gestures toward it).
+    ax.barh(i, v, color="none", edgecolor=TEXT, linewidth=4, height=0.62,
+            zorder=5)
+
+
+def render_story_chart(insight: Insight, out_path: Path) -> Path | None:
+    """One *full* chart for a story segment (its own data), on a card, with a
+    pointer at the key datum. Returns the path or None if matplotlib absent."""
+    if not _have_mpl():
+        return None
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    fig, ax, plt = _new_card()
+    ax.set_title(insight.topic, color=TEXT, fontsize=36, fontweight="bold",
+                 pad=22, loc="left")
+    if insight.kind == "trend":
+        _draw_trend_state(ax, insight, len(insight.items) - 1)
+    else:
+        items = _ordered_items(insight)
+        _draw_bars_state(ax, insight, len(items))
+        _arrow_to_bar(ax, insight, items, [p.value for p in items])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.tick_params(colors=SUBTLE, length=0)
+    fig.text(0.5, 0.05, insight.source.footer(), ha="center",
+             fontsize=12, color=SUBTLE)
+    fig.savefig(out_path, transparent=True)
+    plt.close(fig)
+    return out_path
 
 
 def render_series(insight: Insight, out_dir: Path, slug: str) -> list[Path]:

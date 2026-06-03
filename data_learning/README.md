@@ -111,6 +111,33 @@ FRED FEDFUNDS) so the demo output is accurate, not placeholder.
 - honest title length, script length, and caption density;
 - optional **source allowlist** (pin approved publishers per niche).
 
+## Studio renderer (story format)
+
+`studio_render.py` is the data channel's own production renderer (separate
+from the base gameplay-stacked renderer). It renders a **story**: a punchy
+hook, then several *distinct* charts — each from its own data pull — that
+build a narrative, then a sources card. Over the top:
+
+- a calming flowing-**bokeh ambient background** (`ambient.py`) you can zone
+  out to; the lower third stays mostly background by design;
+- a deterministic **humanoid mascot host** (`mascot.py`) that points at the
+  data (its raised arm + an in-chart highlight ring tell viewers where to
+  look);
+- narration via the pipeline's **Kokoro voice** (am_adam);
+- burned kinetic captions + colored punch stingers.
+
+```bash
+# Needs the base pipeline's Kokoro model files in kokoro_models/ and ffmpeg.
+python -m data_learning.studio_render --slug us-economy-squeeze \
+    --out output/economy_story.mp4
+```
+
+Stories are defined in `niche.config.json` under `stories[]`. Each story has
+a hand-written `hook` + `closing` (for catchiness) and an ordered list of
+`segments`, where **each segment is its own data pull → its own chart**. Add
+a segment = add a chart; pull from a different `source`/`key` to combine
+multiple datasets into one narrative.
+
 ## Module map
 
 ```
