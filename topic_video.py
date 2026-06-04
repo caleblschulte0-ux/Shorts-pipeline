@@ -154,7 +154,11 @@ def _archive_videos(topic: str, limit: int = 3) -> list[str]:
         mp4s = [f for f in files if f.get("name", "").lower().endswith(".mp4")]
         mp4s.sort(key=lambda f: int(f.get("size") or 1 << 30))
         for f in mp4s[:1]:
-            out.append(f"https://archive.org/download/{ident}/{f['name']}")
+            # Archive filenames often contain spaces and unicode; the
+            # download endpoint needs them URL-encoded or urllib raises
+            # "URL can't contain control characters".
+            fname = urllib.parse.quote(f["name"])
+            out.append(f"https://archive.org/download/{ident}/{fname}")
     return out
 
 
