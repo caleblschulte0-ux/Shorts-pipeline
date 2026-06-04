@@ -34,16 +34,33 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
    interesting. If you can't anchor the package to "this happened
    today / this morning / just announced", skip it.
 
-   **Rule 2 — Category diversity.** This is a WIDE news channel, not
-   a tech/AI channel. **Exactly 1 pick per category — 6 distinct
-   categories total.** Two shorts from the same bucket read as
-   "I just heard that one already" even when the stories differ.
+   **Rule 2 — Half the slate must be quirky.** Channel analytics show
+   "semi truck full of bees rolled over on the interstate" / "town
+   renames itself" / "raccoon shuts down airport" type stories
+   outperform every serious-news category (tech, AI, war, stocks) on
+   views and likes. **At least 3 of the 6 picks must come from the
+   Quirky / Offbeat bucket.**
 
-   **Treat Tech/AI + Business/Finance/Markets as a single combined
-   "Tech + Markets" bucket** for this cap. An AI startup story and a
-   tech-stock story feel visually identical to viewers — pick at most
-   1 from the combined bucket, not 1 from each. Draw the 6 from:
+   What counts as Quirky / Offbeat:
+   - Real news with an absurdist hook (escape, heist, world record,
+     animal incident, court-case-gone-wild, town vs. tax, "X-thousand
+     bees escape from truck")
+   - Local news that went viral nationally
+   - Wire-service "Oddly Enough" / UPI Odd News fare
+   - "Florida Man" / "Only in [region]" energy
+   - Animal news with stakes (escape, attack, rescue, world record)
 
+   What does NOT count:
+   - Politics with a quirky frame ("congressman tweets cat picture")
+   - Pure heartwarming fluff ("service dog graduates")
+   - Celebrity gossip ("X is dating Y")
+   - Anything where you can't find a wire-service (AP / UPI / Reuters
+     / BBC) confirming the story is real. r/nottheonion and
+     r/FloridaMan posts get reposted from satire sites all the time;
+     verify before writing.
+
+   **Other 3 picks** are the serious-news slate, with the existing
+   "1 per category" rule:
    - Tech + Markets (combined: AI, startups, big tech, earnings, stocks)
    - World affairs / Geopolitics
    - US domestic policy
@@ -53,11 +70,13 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
    - Culture / Entertainment
    - Sports (one-off moments only)
 
-   The candidate list will skew tech-heavy because Hacker News
-   dominates it — resist that. If the ranker returned a tech-heavy
-   top 10, drop down its list and pick the highest-scoring item from
-   each underrepresented category. If you genuinely can't fill 6
-   distinct buckets, ship 5 — better than two same-category dupes.
+   Treat Tech/AI + Business/Finance/Markets as a single combined
+   "Tech + Markets" bucket for this cap.
+
+   If you can't find 3 usable quirky stories in the ranker output,
+   top up the serious half — quirky-or-bust beats stale-news-from-
+   yesterday. If you can't fill 3 distinct serious categories, top
+   up with extra quirky picks instead. Better quirky than dupes.
 
    Also reject:
    - Live sports or sports-player news (time-locked, narrow audience)

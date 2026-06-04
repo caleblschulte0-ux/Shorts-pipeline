@@ -53,16 +53,39 @@ update angle ("X is escalating today" / "new development in Y"). Reject anything
 that reads as evergreen, retrospective, or "X has been quietly happening for years" — \
 those feel old even when the publish date is fresh.
 
-CATEGORY DIVERSITY IS THE #2 CRITERION. This is a WIDE news channel, not a \
-tech/AI channel. Hard rule: **EXACTLY 1 pick per category — {top_k} distinct \
-categories total.** Viewers feel "I just heard that one already" when two \
-shorts come from the same bucket, even if the underlying stories differ.
+QUIRKY-NEWS MIX IS THE #2 CRITERION. **At least HALF the picks ({half_k} of \
+{top_k}) must come from the "Quirky / Offbeat" bucket.** Channel analytics \
+show these wildly outperform serious-news content — a 30-second video about \
+a semi truck full of bees rolling over on the interstate gets more views and \
+likes than the same channel's SpaceX, AI, or war coverage. Lean into that.
 
-Treat **Tech/AI and Business/Finance/Markets as a single combined "Tech + \
-Markets" bucket** for this cap. An AI startup story and a tech stock story \
-read as the same visual genre to viewers — pick at most 1 from the combined \
-bucket, not 1 from each. Categories to draw from:
+What counts as "Quirky / Offbeat":
+  - Real news with an absurdist hook ("man arrested for X" / "town renames \
+itself" / "world record Y broken" / "X-thousand bees escape from truck" / \
+"raccoon shuts down airport" / "lottery winner returns ticket")
+  - Local news that went viral nationally
+  - Strange-but-true wire-service "Oddly Enough" / UPI Odd News fare
+  - "Florida Man" / "Only in [region]" energy
+  - Heist / scam / scheme stories with a comic twist
+  - Animal news with stakes (escape, attack, rescue, world record)
+  - Court cases or government decisions that read as ridiculous
+  - **MUST be real, ideally wire-sourced (AP / UPI / Reuters / BBC).** \
+A r/nottheonion or r/FloridaMan post that turns out to be satire or fake \
+is worse than no pick. If you can't find at least one outlet confirming \
+the story is real, skip it.
+  - **NOT politics with a quirky frame, NOT pure heartwarming fluff, NOT \
+celebrity gossip.** "Fluff adjacent" means the story is genuinely odd, not \
+emotionally manipulative. A "feel-good" story about a service dog graduating \
+doesn't qualify; a story about a service dog escaping during graduation to \
+chase a squirrel through the auditorium does.
 
+The OTHER half ({other_k} picks) covers serious news — Tech+Markets, World, \
+US policy, Crime/Justice, Science/Health, Climate, Culture/Sports. SAME RULE \
+as before for those: **at most 1 pick per category** in the serious half, \
+treating Tech+Markets as a single combined bucket. So the final {top_k} \
+breaks down as roughly: {half_k}× quirky + {other_k}× distinct-category serious.
+
+Categories for the serious half:
   - Tech + Markets (combined: AI, startups, big tech, earnings, M&A, stock moves)
   - World affairs / Geopolitics (conflicts, deals, foreign policy)
   - US news / Domestic policy (laws, regulations, federal actions — NOT election horserace)
@@ -72,8 +95,10 @@ bucket, not 1 from each. Categories to draw from:
   - Culture / Entertainment (one-off newsworthy moments, NOT live games or gossip)
   - Sports (only one-off newsworthy moments, NOT live games)
 
-If the input list doesn't have enough diversity to fill {top_k} distinct \
-categories, return fewer picks rather than doubling up.
+If the input list doesn't have {half_k} usable quirky stories, top up from \
+the serious categories rather than dropping below {top_k}. If it doesn't \
+have enough serious diversity to fill {other_k} distinct categories, top up \
+with extra quirky picks instead.
 
 Reject (do not pick):
 - Live sports games or sports player news (time-locked, narrow audience)
@@ -173,8 +198,14 @@ def rank(topics: list[Topic], *, top_k: int = 5, backend: str | None = None,
     # Lazy import — keeps discovery usable without the LLM dep installed.
     from script_generator import _call_llm
 
+    # half_k = required minimum quirky picks (the channel's high-engagement
+    # bucket); other_k = max serious picks across distinct categories.
+    half_k = max(1, top_k // 2)
+    other_k = top_k - half_k
     user = RANKER_USER_TEMPLATE.format(
-        n=len(topics), top_k=top_k, topics_block=_format_topics(topics),
+        n=len(topics), top_k=top_k,
+        half_k=half_k, other_k=other_k,
+        topics_block=_format_topics(topics),
     )
     raw = _call_llm(RANKER_SYSTEM, user, backend=backend, model=model)
     # _call_llm returns the raw string content. Strip fences just in

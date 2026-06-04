@@ -374,6 +374,35 @@ def fetch_variety() -> list[Topic]:
                               "variety")
 
 
+def fetch_googlenews_odd() -> list[Topic]:
+    """Google News RSS search for "odd news" / "weird news" — semi-
+    truck-full-of-bees, world-record pumpkins, Florida Man, lottery
+    weirdness. Aggregates from many outlets that label content with
+    those tags (AP "Oddities", local TV, BBC Magazine, etc.), so we
+    get higher recall than any single feed.
+
+    UPI used to host an /Odd_News/rss.xml feed but killed it. Google
+    News is more reliable as an aggregator anyway since it indexes
+    whichever outlet covered each weird story instead of waiting
+    for one specific desk to pick it up.
+    """
+    url = ("https://news.google.com/rss/search?"
+           "q=%22odd+news%22+OR+%22weird+news%22+OR+%22oddly+enough%22"
+           "&hl=en-US&gl=US&ceid=US:en")
+    return _parse_generic_rss(_http_get(url), "googlenews_odd")
+
+
+def fetch_googlenews_floridaman() -> list[Topic]:
+    """Google News RSS for Florida Man / Only In Florida stories.
+    Separate from the generic "odd news" query so the ranker sees
+    them on their own line and can pick one explicitly when the
+    quirky-half quota needs filling."""
+    url = ("https://news.google.com/rss/search?"
+           "q=%22Florida+Man%22+OR+%22caught+on+camera%22"
+           "&hl=en-US&gl=US&ceid=US:en")
+    return _parse_generic_rss(_http_get(url), "googlenews_floridaman")
+
+
 def fetch_hackernews() -> list[Topic]:
     """HN frontpage via hnrss.org (no auth, RSS-formatted)."""
     return _parse_generic_rss(_http_get("https://hnrss.org/frontpage"),
@@ -460,6 +489,16 @@ DEFAULT_SOURCES: list[tuple[str, callable]] = [
     ("reddit_popular",   lambda: fetch_reddit("popular")),
     ("reddit_news",      lambda: fetch_reddit("news")),
     ("reddit_worldnews", lambda: fetch_reddit("worldnews")),
+    # Quirky / offbeat news — the "semi truck full of bees" bucket.
+    # Channel data showed these stories outperform serious news on
+    # views and likes; rank_topics is configured to require >=3 picks
+    # from this bucket per day.
+    ("googlenews_odd",          fetch_googlenews_odd),
+    ("googlenews_floridaman",   fetch_googlenews_floridaman),
+    ("reddit_nottheonion",      lambda: fetch_reddit("nottheonion")),
+    ("reddit_upliftingnews",    lambda: fetch_reddit("UpliftingNews")),
+    ("reddit_offbeat",          lambda: fetch_reddit("offbeat")),
+    ("reddit_floridaman",       lambda: fetch_reddit("FloridaMan")),
 ]
 
 
