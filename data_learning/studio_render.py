@@ -51,9 +51,9 @@ MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 470)   # hook / closing rest spot
 PUNCH_X, PUNCH_Y = 540, 1500
 CAP_MARGINV = 120
 
-# Voice: a warm *male* "dude monster" Kokoro voice, pitched DOWN slightly
-# (never up) so it reads as the monster, not a chirpy narrator.
-VOICE_PITCH = 0.95
+# Voice: a warm *male* "dude monster" Kokoro voice at natural pitch — gruff
+# but friendly, not super deep (no down-pitch).
+VOICE_PITCH = 1.0
 
 
 # --------------------------------------------------------------------------
@@ -132,11 +132,13 @@ def synth_narration(sentences, workdir: Path, voice: str):
           "-i", str(listf), "-af", "apad=pad_dur=0.18", "-c:a", "pcm_s16le",
           str(raw)])
     narration = workdir / "narration.wav"
-    # Pitch the voice up slightly (asetrate shifts pitch+tempo; atempo undoes
-    # the tempo) so it sounds like the cute mascot, then loudness-normalize.
+    # Optional gentle pitch shift (asetrate shifts pitch+tempo; atempo undoes
+    # the tempo), then loudness-normalize. Skip the shift at natural pitch.
     sr0 = 24000
-    af = (f"asetrate={int(sr0 * VOICE_PITCH)},aresample={sr0},"
-          f"atempo={1 / VOICE_PITCH:.4f},loudnorm=I=-16:LRA=11:TP=-1.5")
+    af = "loudnorm=I=-16:LRA=11:TP=-1.5"
+    if abs(VOICE_PITCH - 1.0) > 0.005:
+        af = (f"asetrate={int(sr0 * VOICE_PITCH)},aresample={sr0},"
+              f"atempo={1 / VOICE_PITCH:.4f}," + af)
     _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(raw),
           "-af", af, str(narration)])
     return narration, windows
@@ -158,14 +160,16 @@ def _wrap(text: str, width: int = 22) -> str:
     return "\\N".join(out)
 
 
-def _ellipse_path(rx: float, ry: float) -> str:
-    """ASS vector path for an ellipse outline (4 cubic beziers)."""
+def _ellipse_path_abs(cx: float, cy: float, rx: float, ry: float) -> str:
+    """ASS vector path for an ellipse outline centred at absolute (cx,cy).
+    Using absolute coords (with \\pos(0,0)) avoids libass \\an/\\pos quirks
+    that were offsetting the ring from the number."""
     kx, ky = 0.5523 * rx, 0.5523 * ry
-    return (f"m {-rx:.0f} 0 "
-            f"b {-rx:.0f} {-ky:.0f} {-kx:.0f} {-ry:.0f} 0 {-ry:.0f} "
-            f"b {kx:.0f} {-ry:.0f} {rx:.0f} {-ky:.0f} {rx:.0f} 0 "
-            f"b {rx:.0f} {ky:.0f} {kx:.0f} {ry:.0f} 0 {ry:.0f} "
-            f"b {-kx:.0f} {ry:.0f} {-rx:.0f} {ky:.0f} {-rx:.0f} 0")
+    return (f"m {cx - rx:.0f} {cy:.0f} "
+            f"b {cx - rx:.0f} {cy - ky:.0f} {cx - kx:.0f} {cy - ry:.0f} {cx:.0f} {cy - ry:.0f} "
+            f"b {cx + kx:.0f} {cy - ry:.0f} {cx + rx:.0f} {cy - ky:.0f} {cx + rx:.0f} {cy:.0f} "
+            f"b {cx + rx:.0f} {cy + ky:.0f} {cx + kx:.0f} {cy + ry:.0f} {cx:.0f} {cy + ry:.0f} "
+            f"b {cx - kx:.0f} {cy + ry:.0f} {cx - rx:.0f} {cy + ky:.0f} {cx - rx:.0f} {cy:.0f}")
 
 
 def build_story_ass(st: story.Story, windows, events, out: Path) -> None:
@@ -222,10 +226,10 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             mx, my = int(e["xy"][0]), int(e["xy"][1])
             rx = e["box"][0] / 2 + 24      # encase the WHOLE number + padding
             ry = e["box"][1] / 2 + 14
-            ring = ("{\\an5\\pos(" + f"{mx},{my}" + ")\\1a&HFF&\\3c&HF0E14F&"
-                    "\\bord5\\shad0\\fad(120,150)"
-                    "\\t(0,200,\\fscx107\\fscy107)\\t(200,420,\\fscx100\\fscy100)"
-                    "\\p1}" + _ellipse_path(rx, ry) + "{\\p0}")
+            ring = ("{\\an7\\pos(0,0)\\org(" + f"{mx},{my}" + ")\\1a&HFF&"
+                    "\\3c&HF0E14F&\\bord5\\shad0\\fad(120,150)"
+                    "\\t(0,200,\\fscx106\\fscy106)\\t(200,420,\\fscx100\\fscy100)"
+                    "\\p1}" + _ellipse_path_abs(mx, my, rx, ry) + "{\\p0}")
             lines.append(f"Dialogue: 3,{_ass_time(max(0, ps - 0.15))},"
                          f"{_ass_time(pe)},Mark,,0,0,0,,{ring}")
         styled = ("{\\fad(120,120)\\pos(" + str(PUNCH_X) + "," + str(PUNCH_Y)
