@@ -52,6 +52,32 @@ MAX_BYTES = 80 * 1024 * 1024
 UA = ("shorts-pipeline/1.0 (https://github.com/caleblschulte0-ux/shorts-pipeline; "
       "caleblschulte0@gmail.com) urllib/python3")
 
+# Substrings that, when they appear in a source filename / identifier,
+# strongly suggest the file isn't B-roll: podcasts, interviews, tribute
+# videos, credits rolls, mission patches, etc. These survive the topic
+# keyword search because the source video MENTIONS the topic, but they
+# play as a talking head or a static frame rather than as event footage.
+# Match is case-insensitive substring on the URL filename + path.
+JUNK_PATTERNS = (
+    "podcast", "interview", "lex_fridman", "lex fridman",
+    "joe_rogan", "joe rogan", "episode", "ep_", "ep ",
+    "tribute", "memorial", "thanks", "credits", "credit_roll",
+    "commentary", "discussion", "debate", "panel",
+    "patch", "logo", "wordmark", "screenshot", "infographic",
+    "slideshow", "diagram", "schematic", "powerpoint",
+    "presentation", "lecture", "webinar", "qa_", "_qa.",
+    "narration", "voiceover", "voice_over",
+    "thumbnail", "promo", "trailer", "teaser",
+)
+
+
+def _looks_like_junk(url_or_name: str) -> bool:
+    """Cheap filter against non-B-roll content. Returns True if the
+    URL / filename matches any known junk pattern — the caller skips
+    the file before paying download cost."""
+    lower = url_or_name.lower()
+    return any(pat in lower for pat in JUNK_PATTERNS)
+
 
 def _cache_path(url: str, ext: str = ".mp4") -> Path:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -280,52 +306,76 @@ def _ytdlp_download(video_id: str, dest: Path) -> Path | None:
 
 # ---------- Public entry point ----------
 
-def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[Path]:
-    """Return cached local Paths of topic-specific videos, best first.
+def _title_from_url(url: str) -> str:
+    """Pull a readable title from a source URL. Used for shot-matching
+    scoring downstream — the renderer compares each shot's phrase
+    against this string to pick a relevant clip."""
+    name = url.split("?")[0].rstrip("/").rsplit("/", 1)[-1]
+    name = urllib.parse.unquote(name)
+    # Strip the file extension and turn underscores into spaces so
+    # individual tokens can match shot text cleanly.
+    if "." in name:
+        name = name.rsplit(".", 1)[0]
+    return name.replace("_", " ").replace("-", " ").strip()
+
+
+def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
+    """Return cached topic-specific videos, best first.
+
+    Each result is a dict `{path, title, source}`. The renderer uses
+    `title` to score clips against each shot's phrase/query so the
+    "moon" shot gets the moon clip rather than whichever clip the
+    round-robin counter landed on. Junk content (podcasts, interviews,
+    tribute / credits rolls) is filtered out before download.
 
     Pulls up to `max_clips` distinct clips across all sources, so the
-    renderer can build a per-render pool and round-robin different
-    angles across shots instead of showing the same launch clip six
-    times. Sources are tried in priority order and we stop as soon as
-    `max_clips` is reached.
+    renderer can build a per-render pool and distribute angles across
+    shots instead of showing the same launch clip six times.
     """
     combined = f"{topic} {context}".strip()
     seen: set[str] = set()
-    results: list[Path] = []
+    results: list[dict] = []
 
-    def _try(url: str, ext: str = ".mp4") -> bool:
+    def _try(url: str, *, source: str, ext: str = ".mp4") -> bool:
         """Returns True if `results` is now full."""
         if not url or url in seen:
             return len(results) >= max_clips
         seen.add(url)
+        title = _title_from_url(url)
+        if _looks_like_junk(url) or _looks_like_junk(title):
+            print(f"      [topic_video skip junk] {title[:60]}")
+            return len(results) >= max_clips
         dest = _cache_path(url, ext=ext)
         p = _download(url, dest)
         if p:
-            results.append(p)
+            results.append({"path": p, "title": title, "source": source})
         return len(results) >= max_clips
 
     # 1. Wikimedia Commons video. Take the title's hits first (best
     #    quality on named entities) then broaden to the combined query.
     if context:
-        for u in _commons_videos(context, limit=4):
-            if _try(u, ext=Path(u).suffix.lower() or ".webm"):
+        for u in _commons_videos(context, limit=5):
+            if _try(u, source="commons",
+                     ext=Path(u).suffix.lower() or ".webm"):
                 return results
-    for u in _commons_videos(combined, limit=4):
-        if _try(u, ext=Path(u).suffix.lower() or ".webm"):
+    for u in _commons_videos(combined, limit=5):
+        if _try(u, source="commons",
+                 ext=Path(u).suffix.lower() or ".webm"):
             return results
 
     # 2. Internet Archive — strong on historical / 30-day-old material.
-    for u in _archive_videos(combined, limit=3):
-        if _try(u, ext=".mp4"):
+    for u in _archive_videos(combined, limit=4):
+        if _try(u, source="archive", ext=".mp4"):
             return results
 
     # 3. og:video on today's news coverage of the same event.
     for u in _og_videos(combined):
-        if _try(u, ext=Path(u.split("?")[0]).suffix.lower() or ".mp4"):
+        if _try(u, source="og",
+                 ext=Path(u.split("?")[0]).suffix.lower() or ".mp4"):
             return results
 
     # 4. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
-    #    silently if no API key configured. Now downloads up to 3 so the
+    #    silently if no API key configured. Downloads up to 4 so the
     #    pool has variety instead of stopping at the first hit.
     if len(results) < max_clips:
         for vid in _youtube_search(combined, license_filter="creativeCommon",
@@ -333,7 +383,8 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[Path]:
             dest = _cache_path(f"yt:cc:{vid}", ext=".mp4")
             p = _ytdlp_download(vid, dest)
             if p:
-                results.append(p)
+                results.append({"path": p, "title": f"youtube cc {vid}",
+                                 "source": "youtube_cc"})
                 if len(results) >= max_clips:
                     return results
 
@@ -343,7 +394,8 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[Path]:
             dest = _cache_path(f"yt:any:{vid}", ext=".mp4")
             p = _ytdlp_download(vid, dest)
             if p:
-                results.append(p)
+                results.append({"path": p, "title": f"youtube {vid}",
+                                 "source": "youtube_any"})
                 if len(results) >= max_clips:
                     return results
 
@@ -354,8 +406,8 @@ if __name__ == "__main__":  # smoke test entry point
     import sys
     topic = sys.argv[1] if len(sys.argv) > 1 else "Tesla Cybertruck"
     context = sys.argv[2] if len(sys.argv) > 2 else ""
-    paths = search(topic, context)
-    for p in paths:
-        print(p)
-    if not paths:
+    items = search(topic, context)
+    for it in items:
+        print(f"{it['source']:10s}  {it['title'][:60]:60s}  {it['path']}")
+    if not items:
         print(f"(no topic videos found for {topic!r})")
