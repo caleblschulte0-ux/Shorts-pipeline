@@ -420,23 +420,31 @@ def _resolve_image(shot: Shot) -> dict | None:
         return None
 
 
-def _resolve_topic_video(shot: Shot) -> dict | None:
-    """Try to pull a topic-specific *video clip* — actual event footage
-    from Wikimedia Commons / Internet Archive / news og:video / YouTube
-    CC. Returns a stock-clip-shaped dict (so the renderer's stock branch
-    plays it as-is) or None to fall through to the image path."""
-    primary = shot.pexels_query or (shot.queries[0] if shot.queries else "")
-    if not primary and not shot.topic_context:
-        return None
+def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
+    """Pull a *pool* of topic-specific video clips once per render,
+    queried by the package title rather than per-shot keywords.
+
+    The per-shot version of this function (`_resolve_topic_video`) ran
+    `topic_video.search()` for every shot, and because Commons /
+    YouTube returned the same top-ranked clip for every closely-related
+    query, the renderer ended up showing the same launch clip six
+    times. Building the pool once with just the title gets us several
+    different angles of the same event, which we then round-robin
+    across the shots that don't have operator-supplied imagery.
+    """
+    context = next((s.topic_context for s in shots if s.topic_context), "")
+    if not context:
+        return []
     try:
         import topic_video
     except ImportError:
-        return None
+        return []
     try:
-        paths = topic_video.search(primary, shot.topic_context)
+        paths = topic_video.search(context, "", max_clips=6)
     except Exception as e:  # noqa: BLE001
-        print(f"      [topic_video error] {e}")
-        return None
+        print(f"      [topic_video pool error] {e}")
+        return []
+    pool: list[dict] = []
     for p in paths:
         try:
             dur = ffprobe_duration(p)
@@ -445,10 +453,11 @@ def _resolve_topic_video(shot: Shot) -> dict | None:
             continue
         if dur < 1.0:
             continue
-        print(f"      [topic_video] {primary[:30]!r} -> {p.name} ({dur:.1f}s)")
-        return {"path": str(p), "duration": dur,
-                "width": W, "height": HALF_H, "source": "topic_video"}
-    return None
+        pool.append({"path": str(p), "duration": dur,
+                     "width": W, "height": HALF_H, "source": "topic_video"})
+    if pool:
+        print(f"      [topic_video pool] {len(pool)} clips for {context[:60]!r}")
+    return pool
 
 
 def _resolve_topic_media(shot: Shot, cache: Path) -> dict | None:
@@ -546,6 +555,15 @@ def build_timed_top(
     # images carry the visual story instead of one long hold.
     IMAGE_MAX_DUR = 1.8
 
+    # One-shot per-render call to topic_video. Returns a pool of
+    # on-topic clips (different angles of the same event) that we
+    # round-robin across shots without operator-supplied imagery.
+    # Generic mixkit filler is worse than seeing the same launch from
+    # two angles, so whenever the pool has clips we'd rather repeat
+    # within it than reach for stock.
+    topic_video_pool = _build_topic_video_pool(shots)
+    pool_idx = 0
+
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
         seg_dur = max(0.5, end_t - start_t)
@@ -557,25 +575,38 @@ def build_timed_top(
         #   3. Stock only               -> existing multi-cut behavior
         plan: list[tuple[dict, float]] = []
         image_clip = _resolve_image(shot)
-        # If the operator-supplied image is missing, try actual event
-        # *video* before falling back to topic photos. A clip of the
-        # rescue, the launch, the CEO speaking wins over any still.
+        # If the operator hand-picked an image, that wins. Otherwise
+        # pull the next clip from the topic-video pool. Only if both
+        # are unavailable do we fall through to topic_media stills and
+        # then to generic stock — pool clip beats stock every time.
         topic_video_clip = None
-        if image_clip is None:
-            topic_video_clip = _resolve_topic_video(shot)
-        # If neither, ask the free no-key image sources (Wikipedia /
-        # Commons / GDELT news) before we settle for generic stock.
+        if image_clip is None and topic_video_pool:
+            topic_video_clip = topic_video_pool[pool_idx % len(topic_video_pool)]
+            pool_idx += 1
+            print(f"      [topic_video pool] shot {i+1} -> "
+                  f"{Path(topic_video_clip['path']).name}")
         if image_clip is None and topic_video_clip is None:
             image_clip = _resolve_topic_media(shot, Path("/tmp/shot_images"))
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
 
         if topic_video_clip:
-            # Play the topic video for as much of the shot as the clip
-            # actually contains, capped to the shot window. Whatever's
-            # left falls through to stock so the timeline stays full.
+            # Topic-video clips claim the full shot window. The clip is
+            # already on-topic; padding it with generic stock would only
+            # dilute the visual continuity.
             vid_dur = min(seg_dur, float(topic_video_clip.get("duration") or 0))
             plan.append((topic_video_clip, vid_dur))
             remaining = seg_dur - vid_dur
+            # If the pool clip was too short for the shot, repeat the
+            # pool round-robin to fill the rest rather than reaching
+            # for off-topic mixkit.
+            while remaining > 0.3 and topic_video_pool:
+                nxt = topic_video_pool[pool_idx % len(topic_video_pool)]
+                pool_idx += 1
+                fill = min(remaining, float(nxt.get("duration") or 0))
+                if fill <= 0.3:
+                    break
+                plan.append((nxt, fill))
+                remaining -= fill
         elif image_clip and has_stock:
             image_dur = min(IMAGE_MAX_DUR, seg_dur)
             plan.append((image_clip, image_dur))

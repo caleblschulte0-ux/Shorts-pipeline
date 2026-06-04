@@ -280,62 +280,72 @@ def _ytdlp_download(video_id: str, dest: Path) -> Path | None:
 
 # ---------- Public entry point ----------
 
-def search(topic: str, context: str = "") -> list[Path]:
+def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[Path]:
     """Return cached local Paths of topic-specific videos, best first.
 
-    Same call shape as `topic_media.search`, but returns Paths because
-    YouTube source needs local download via yt-dlp anyway — having all
-    sources hand back Paths keeps the renderer's branch logic uniform.
+    Pulls up to `max_clips` distinct clips across all sources, so the
+    renderer can build a per-render pool and round-robin different
+    angles across shots instead of showing the same launch clip six
+    times. Sources are tried in priority order and we stop as soon as
+    `max_clips` is reached.
     """
     combined = f"{topic} {context}".strip()
     seen: set[str] = set()
     results: list[Path] = []
 
-    def _try(url: str, ext: str = ".mp4") -> None:
+    def _try(url: str, ext: str = ".mp4") -> bool:
+        """Returns True if `results` is now full."""
         if not url or url in seen:
-            return
+            return len(results) >= max_clips
         seen.add(url)
         dest = _cache_path(url, ext=ext)
         p = _download(url, dest)
         if p:
             results.append(p)
+        return len(results) >= max_clips
 
-    # 1. Wikimedia Commons video. Use the package title for the named-
-    #    entity hit ("Tesla Cybertruck", "Strait of Hormuz") and the
-    #    raw topic for event keywords.
+    # 1. Wikimedia Commons video. Take the title's hits first (best
+    #    quality on named entities) then broaden to the combined query.
     if context:
-        for u in _commons_videos(context, limit=2):
-            _try(u, ext=Path(u).suffix.lower() or ".webm")
-    for u in _commons_videos(combined, limit=2):
-        _try(u, ext=Path(u).suffix.lower() or ".webm")
+        for u in _commons_videos(context, limit=4):
+            if _try(u, ext=Path(u).suffix.lower() or ".webm"):
+                return results
+    for u in _commons_videos(combined, limit=4):
+        if _try(u, ext=Path(u).suffix.lower() or ".webm"):
+            return results
 
     # 2. Internet Archive — strong on historical / 30-day-old material.
-    for u in _archive_videos(combined, limit=2):
-        _try(u, ext=".mp4")
+    for u in _archive_videos(combined, limit=3):
+        if _try(u, ext=".mp4"):
+            return results
 
     # 3. og:video on today's news coverage of the same event.
     for u in _og_videos(combined):
-        _try(u, ext=Path(u.split("?")[0]).suffix.lower() or ".mp4")
+        if _try(u, ext=Path(u.split("?")[0]).suffix.lower() or ".mp4"):
+            return results
 
     # 4. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
-    #    silently if no API key configured.
-    if not results:
+    #    silently if no API key configured. Now downloads up to 3 so the
+    #    pool has variety instead of stopping at the first hit.
+    if len(results) < max_clips:
         for vid in _youtube_search(combined, license_filter="creativeCommon",
-                                    limit=3):
+                                    limit=4):
             dest = _cache_path(f"yt:cc:{vid}", ext=".mp4")
             p = _ytdlp_download(vid, dest)
             if p:
                 results.append(p)
-                break  # one is enough — downloads are slow
+                if len(results) >= max_clips:
+                    return results
 
     # 5. Opt-in fair-use path. Off by default.
     if not results and os.environ.get("TOPIC_VIDEO_ALLOW_STRIKES") == "1":
-        for vid in _youtube_search(combined, license_filter=None, limit=3):
+        for vid in _youtube_search(combined, license_filter=None, limit=4):
             dest = _cache_path(f"yt:any:{vid}", ext=".mp4")
             p = _ytdlp_download(vid, dest)
             if p:
                 results.append(p)
-                break
+                if len(results) >= max_clips:
+                    return results
 
     return results
 
