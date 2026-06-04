@@ -45,15 +45,19 @@ KOKORO_VOICES = REPO / "kokoro_models" / "voices-v1.0.bin"
 CHART_SCALE = 0.92
 CHART_W, CHART_H = int(1000 * CHART_SCALE), int(920 * CHART_SCALE)   # 920x846
 CHART_X, CHART_Y = (W - CHART_W) // 2, 70
-MASCOT_SIZE = 150
-MASCOT_ANGLE = 90                # points straight up at the marker above it
+MASCOT_SIZE = 168                # slightly bigger
+SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
+UP_ANGLE = 90                    # points up (hook / closing / fallback)
 MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 560)   # hook / closing rest spot
 PUNCH_X, PUNCH_Y = 540, 1500
 CAP_MARGINV = 120
 
-# Voice: a warm *male* "dude monster" Kokoro voice at natural pitch — gruff
-# but friendly, not super deep (no down-pitch).
+# Voice: a friendly male Kokoro voice at natural pitch (not deep/scary).
 VOICE_PITCH = 1.0
+
+# Zone-out mandelbrot fills the lower half (behind the punch/captions).
+MANDEL_Y = 1010
+MANDEL_H = H - MANDEL_Y
 
 
 # --------------------------------------------------------------------------
@@ -158,6 +162,23 @@ def _wrap(text: str, width: int = 22) -> str:
     if line:
         out.append(line)
     return "\\N".join(out)
+
+
+def _make_mandel_mask(path: Path, w: int, h: int, feather: int = 180,
+                      bottom: int = 120) -> None:
+    """Vertical alpha gradient so the mandelbrot feathers in at the top and
+    out at the very bottom (blends into the ambient instead of a hard edge)."""
+    from PIL import Image
+    col = Image.new("L", (1, h), 0)
+    for y in range(h):
+        if y < feather:
+            a = 255 * y / feather
+        elif y > h - bottom:
+            a = 255 * (h - y) / bottom
+        else:
+            a = 255
+        col.putpixel((0, y), int(max(0, min(255, a))))
+    col.resize((w, h)).save(path)
 
 
 def _ellipse_path_abs(cx: float, cy: float, rx: float, ry: float) -> str:
@@ -280,12 +301,14 @@ def _phrase_frac(sentence: str, phrase: str) -> float:
 
 
 def _plan_events(st: story.Story, windows):
-    """One event per spoken number: when it's said (ps,pe) and where it is on
-    screen (xy). Timed to where the number falls in the sentence so the
-    marker/monster hit it exactly as the voice says it."""
+    """One event per spoken number: when it's said, which data point it is,
+    and (later) where the mascot should stand. Timed to where the number
+    falls in the sentence so marker/monster hit it as the voice says it. Each
+    event also gets a show-window so exactly one mascot is up at a time."""
     events = []
     for i, seg in enumerate(st.segments):
         s0, s1 = windows[1 + i]
+        seg_events = []
         for p in seg.punches:
             frac = _phrase_frac(seg.sentence, p.get("phrase", ""))
             ps = s0 + frac * (s1 - s0)
@@ -293,30 +316,60 @@ def _plan_events(st: story.Story, windows):
             a = _anchor_for_punch(seg, p)
             xy = _screen(a["cx"], a["cy"]) if a else None
             box = (a["w"] * CHART_SCALE, a["h"] * CHART_SCALE) if a else None
-            events.append({"ps": ps, "pe": ps + dur, "punch": p,
-                           "xy": xy, "box": box})
+            seg_events.append({"ps": ps, "pe": ps + dur, "punch": p, "xy": xy,
+                               "box": box, "anchor": a, "seg": i})
+        # Show-windows: split the segment among its numbers (mascot stays on
+        # number j until the next number is spoken).
+        seg_events.sort(key=lambda e: e["ps"])
+        bounds = [s0]
+        for k in range(len(seg_events) - 1):
+            bounds.append((seg_events[k]["ps"] + seg_events[k + 1]["ps"]) / 2)
+        bounds.append(s1)
+        for k, e in enumerate(seg_events):
+            e["w0"], e["w1"] = bounds[k], bounds[k + 1]
+        events.extend(seg_events)
     return events
 
 
-def _mascot_keyframes(windows, events):
-    """(t, x, y) path: rest at home for the hook, hit each number's point as
-    it's spoken, return home for the close."""
+def _screen_box(a):
+    cx, cy = _screen(a["cx"], a["cy"])
+    return cx, cy, a["w"] * CHART_SCALE, a["h"] * CHART_SCALE
+
+
+def _place_mascot(active, seg_anchors):
+    """Stand the mascot right beside the active number, inside the chart, in
+    empty space that doesn't cover ANY number. Returns (body_cx, body_cy,
+    variant) where variant is 'L' (left of number, points right), 'R' (right
+    of number, points left) or 'U' (fallback below the card, points up)."""
     S = MASCOT_SIZE
-    # The whole chart card is a keep-out zone — the mascot stays in the band
-    # just BELOW it so it never covers data, sliding under each number and
-    # pointing up (the ring does the precise marking on the chart).
-    below = CHART_Y + CHART_H + 6
-    kfs = [(windows[0][0], float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))]
-    for e in events:
-        if not e["xy"]:
+    bw, bh = 0.52 * S, 0.78 * S
+    acx, acy, aw, ah = _screen_box(active)
+    obox = []
+    for o in seg_anchors:
+        if o is active:
             continue
-        tx, _ty = e["xy"]
-        mx = min(max(tx - S / 2, 4), W - S - 4)
-        t = max(e["ps"] - 0.22, kfs[-1][0] + 0.05)
-        kfs.append((t, float(mx), float(below)))
-    kfs.append((max(windows[-1][0], kfs[-1][0] + 0.05),
-                float(MASCOT_HOME[0]), float(MASCOT_HOME[1])))
-    return kfs
+        cx, cy, w, h = _screen_box(o)
+        obox.append((cx - w / 2 - 6, cy - h / 2 - 6, cx + w / 2 + 6, cy + h / 2 + 6))
+    chart = (CHART_X + 6, CHART_Y + 44, CHART_X + CHART_W - 6,
+             CHART_Y + CHART_H - 28)
+
+    def fits(bcx, bcy):
+        b = (bcx - bw / 2, bcy - bh / 2, bcx + bw / 2, bcy + bh / 2)
+        if b[0] < chart[0] or b[2] > chart[2] or b[1] < chart[1] or b[3] > chart[3]:
+            return False
+        return all(b[2] <= o[0] or b[0] >= o[2] or b[3] <= o[1] or b[1] >= o[3]
+                   for o in obox)
+
+    gap = 12
+    room_right = (CHART_X + CHART_W) - (acx + aw / 2)
+    room_left = (acx - aw / 2) - CHART_X
+    order = [("R", 1), ("L", -1)] if room_right >= room_left else [("L", -1), ("R", 1)]
+    for variant, sgn in order:
+        bcx = acx + sgn * (aw / 2 + gap + bw / 2)
+        for dy in (0.0, bh * 0.35, -bh * 0.35, bh * 0.7):
+            if fits(bcx, acy + dy):
+                return bcx, acy + dy, variant
+    return acx, CHART_Y + CHART_H + bh * 0.55, "U"
 
 
 def _piecewise(kfs, axis: int) -> str:
@@ -336,7 +389,7 @@ def _piecewise(kfs, axis: int) -> str:
 # --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
-def render(slug: str, out_path: Path, voice: str = "am_michael") -> Path:
+def render(slug: str, out_path: Path, voice: str = "am_puck") -> Path:
     cfg = json.loads((PKG_DIR / "niche.config.json").read_text())
     story_cfg = next((s for s in cfg.get("stories", []) if s["slug"] == slug), None)
     if not story_cfg:
@@ -351,39 +404,69 @@ def render(slug: str, out_path: Path, voice: str = "am_michael") -> Path:
         total = _dur(narration) + 0.3
 
         bokeh = ambient.make_bokeh_strip(work / "bokeh.png")
+        mask = work / "mandel_mask.png"
+        _make_mandel_mask(mask, W, MANDEL_H)
         events = _plan_events(st, windows)
         ass = work / "cap.ass"
         build_story_ass(st, windows, events, ass)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
-        # One up-pointing mascot that walks to each number's point.
-        mascot_mov = mascot.build_mascot_loop(work / "mascot.mov",
-                                              size=MASCOT_SIZE, seconds=2.4,
-                                              point_angle=float(MASCOT_ANGLE))
-        kfs = _mascot_keyframes(windows, events)
-        x_expr = _piecewise(kfs, 1)
-        # gentle continuous sway so it's never perfectly still
-        y_expr = f"({_piecewise(kfs, 2)})+7*sin(2.2*t)"
+        # Ordered mascot sequence: hook (up, centred), one per number (tucked
+        # beside it, pointing at it, never covering a number), then closing.
+        S = MASCOT_SIZE
+        home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
+        seq = [(home[0], home[1], windows[0][0], windows[0][1], UP_ANGLE, False)]
+        for e in events:
+            if e["anchor"]:
+                bcx, bcy, variant = _place_mascot(
+                    e["anchor"], st.segments[e["seg"]].anchors)
+            else:
+                bcx, bcy, variant = home[0] + S / 2, home[1] + S / 2, "U"
+            tlx = min(max(bcx - S / 2, 2), W - S - 2)
+            tly = min(max(bcy - S / 2, 2), H - S - 2)
+            seq.append((tlx, tly, e["w0"], e["w1"],
+                        UP_ANGLE if variant == "U" else SIDE_ANGLE,
+                        variant == "R"))
+        seq.append((home[0], home[1], windows[-1][0], windows[-1][1], UP_ANGLE, False))
 
-        # Inputs: 0 gradient, 1 bokeh, charts, mascot, narration.
+        mascot_movs = []
+        for k, (_x, _y, _w0, _w1, angle, flip) in enumerate(seq):
+            mv = work / f"masc_{k}.mov"
+            mascot.build_mascot_loop(mv, size=S, seconds=2.2,
+                                     point_angle=float(angle), flip=flip)
+            mascot_movs.append(mv)
+
+        # Inputs: 0 gradient, 1 bokeh, 2 mandelbrot, 3 mask, charts, mascots, audio
         inputs = ["-f", "lavfi", "-i", ambient.gradient_lavfi(total)]
         inputs += ["-loop", "1", "-i", str(bokeh)]
+        inputs += ["-f", "lavfi", "-i",
+                   f"mandelbrot=size=540x{MANDEL_H // 2}:rate={FPS}"]
+        inputs += ["-loop", "1", "-i", str(mask)]
+        mand_idx, mask_idx = 2, 3
         seg_idx = {}
-        idx = 2
+        idx = 4
         for i, seg in enumerate(st.segments):
             if seg.chart_path:
                 inputs += ["-loop", "1", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
-        inputs += ["-stream_loop", "-1", "-i", str(mascot_mov)]
-        mascot_idx = idx
-        idx += 1
+        masc_input = []
+        for mv in mascot_movs:
+            inputs += ["-stream_loop", "-1", "-i", str(mv)]
+            masc_input.append(idx)
+            idx += 1
         inputs += ["-i", str(narration)]
         audio_idx = idx
 
         fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]
-        prev = "bg"
-        # Charts: each its own, scaled into the gutter layout, during its window.
+        # Zone-out mandelbrot in the lower half (soft, low opacity, feathered).
+        fc.append(f"[{mand_idx}:v]scale={W}:{MANDEL_H},"
+                  f"eq=saturation=0.4:brightness=-0.06,format=rgba[mtex]")
+        fc.append(f"[{mask_idx}:v]format=gray,scale={W}:{MANDEL_H}[mmask]")
+        fc.append("[mtex][mmask]alphamerge,colorchannelmixer=aa=0.5[mand]")
+        fc.append(f"[bg][mand]overlay=0:{MANDEL_Y}[bg2]")
+        prev = "bg2"
+        # Charts.
         for i, seg in enumerate(st.segments):
             if i not in seg_idx:
                 continue
@@ -398,11 +481,18 @@ def render(slug: str, out_path: Path, voice: str = "am_michael") -> Path:
                 f"[{prev}][g{i}]overlay=x={CHART_X}:y={CHART_Y}:"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
-        # Mascot glides continuously beside the active label, pointing right.
-        fc.append(f"[{mascot_idx}:v]format=rgba,scale={MASCOT_SIZE}:{MASCOT_SIZE}[masc]")
-        fc.append(f"[{prev}][masc]overlay=x='{x_expr}':y='{y_expr}':"
-                  f"eval=frame:shortest=0[withm]")
-        fc.append(f"[withm]ass='{ass_esc}'[v]")
+        # Mascots — each slides in from the previous spot (feels like it walks).
+        prev_tl = home
+        for k, (tlx, tly, w0, w1, _a, _f) in enumerate(seq):
+            gi = masc_input[k]
+            xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.3, tlx)], 1)
+            ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.3, tly)], 1)})+6*sin(2.2*t)"
+            fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
+            fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
+                      f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
+            prev = f"mb{k}"
+            prev_tl = (tlx, tly)
+        fc.append(f"[{prev}]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
                "-filter_complex", ";".join(fc),
@@ -424,8 +514,8 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--slug", required=True, help="story slug from niche.config.json")
     ap.add_argument("--out", type=Path, required=True)
-    ap.add_argument("--voice", default="am_michael",
-                    help="Kokoro voice id (default am_michael, the dude-monster voice)")
+    ap.add_argument("--voice", default="am_puck",
+                    help="Kokoro voice id (default am_puck, a friendly male voice)")
     args = ap.parse_args()
     render(args.slug, args.out, voice=args.voice)
     return 0
