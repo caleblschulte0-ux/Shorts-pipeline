@@ -389,7 +389,7 @@ def _piecewise(kfs, axis: int) -> str:
 # --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
-def render(slug: str, out_path: Path, voice: str = "am_puck") -> Path:
+def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
     cfg = json.loads((PKG_DIR / "niche.config.json").read_text())
     story_cfg = next((s for s in cfg.get("stories", []) if s["slug"] == slug), None)
     if not story_cfg:
@@ -514,8 +514,8 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--slug", required=True, help="story slug from niche.config.json")
     ap.add_argument("--out", type=Path, required=True)
-    ap.add_argument("--voice", default="am_puck",
-                    help="Kokoro voice id (default am_puck, a friendly male voice)")
+    ap.add_argument("--voice", default="am_fenrir",
+                    help="Kokoro voice id (default am_fenrir)")
     args = ap.parse_args()
     render(args.slug, args.out, voice=args.voice)
     return 0
