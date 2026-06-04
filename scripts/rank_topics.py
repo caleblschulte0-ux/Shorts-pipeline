@@ -41,106 +41,69 @@ punchy "X is happening and here's why it matters" content with real stakes and \
 real numbers. Output strict JSON only."""
 
 
-RANKER_USER_TEMPLATE = """Here are {n} topics surfaced TODAY from Google Trends, BBC, NPR, \
-Hacker News, and Reddit. Each line shows an age marker like [2h ago] when the \
-source dated it. Many are duplicates (same story across feeds) and many are not \
-video-able. Pick the top {top_k} that would make the best 25-second explainer shorts.
+RANKER_USER_TEMPLATE = """{n} topics surfaced TODAY from Google Trends, BBC, NPR, HN, Reddit, \
+Google News quirky feeds. Each line has an age marker like [2h ago]. Many are \
+duplicates across feeds and many aren't video-able. Pick the top {top_k} for \
+25-second explainer shorts.
 
-FRESHNESS IS THE #1 CRITERION. The channel publishes daily-news shorts — viewers \
-expect "this just happened today." Strongly prefer items dated within the last 24 \
-hours. Anything older than 48 hours should only be picked if it has a breaking \
-update angle ("X is escalating today" / "new development in Y"). Reject anything \
-that reads as evergreen, retrospective, or "X has been quietly happening for years" — \
-those feel old even when the publish date is fresh.
+RULE 1 — FRESHNESS. Strongly prefer items <24h old. Items >48h old need a \
+breaking-update angle to qualify. Reject anything evergreen / retrospective \
+("X has been quietly happening for years").
 
-QUIRKY-NEWS MIX IS THE #2 CRITERION. **At least HALF the picks ({half_k} of \
-{top_k}) must come from the "Quirky / Offbeat" bucket.** Channel analytics \
-show these wildly outperform serious-news content — a 30-second video about \
-a semi truck full of bees rolling over on the interstate gets more views and \
-likes than the same channel's SpaceX, AI, or war coverage. Lean into that.
+RULE 2 — QUIRKY MIX. **At least {half_k} of {top_k} picks must be Quirky / \
+Offbeat.** Channel analytics show these outperform serious news on views + \
+likes.
 
-What counts as "Quirky / Offbeat":
-  - Real news with an absurdist hook ("man arrested for X" / "town renames \
-itself" / "world record Y broken" / "X-thousand bees escape from truck" / \
-"raccoon shuts down airport" / "lottery winner returns ticket")
-  - Local news that went viral nationally
-  - Strange-but-true wire-service "Oddly Enough" / UPI Odd News fare
-  - "Florida Man" / "Only in [region]" energy
-  - Heist / scam / scheme stories with a comic twist
-  - Animal news with stakes (escape, attack, rescue, world record)
-  - Court cases or government decisions that read as ridiculous
-  - **MUST be real, ideally wire-sourced (AP / UPI / Reuters / BBC).** \
-A r/nottheonion or r/FloridaMan post that turns out to be satire or fake \
-is worse than no pick. If you can't find at least one outlet confirming \
-the story is real, skip it.
-  - **NOT politics with a quirky frame, NOT pure heartwarming fluff, NOT \
-celebrity gossip.** "Fluff adjacent" means the story is genuinely odd, not \
-emotionally manipulative. A "feel-good" story about a service dog graduating \
-doesn't qualify; a story about a service dog escaping during graduation to \
-chase a squirrel through the auditorium does.
+Quirky / Offbeat = real news with an absurdist hook. Examples: world records, \
+town-vs-tax fights, "X-thousand bees escape from truck", Florida Man, heists \
+with a comic twist, animal incidents, ridiculous court rulings, viral local \
+news. MUST be real — if no wire/news outlet confirms, skip it (r/nottheonion \
+gets satire reposts). NOT politics-with-quirky-frame, NOT heartwarming fluff \
+("service dog graduates" no; "service dog escapes graduation chasing squirrel" \
+yes), NOT celebrity gossip.
 
-The OTHER half ({other_k} picks) covers serious news — Tech+Markets, World, \
-US policy, Crime/Justice, Science/Health, Climate, Culture/Sports. SAME RULE \
-as before for those: **at most 1 pick per category** in the serious half, \
-treating Tech+Markets as a single combined bucket. So the final {top_k} \
-breaks down as roughly: {half_k}× quirky + {other_k}× distinct-category serious.
+The other {other_k} picks are serious news, **at most 1 per category** (treat \
+Tech + Markets as one combined bucket):
+  - Tech + Markets (AI, startups, big tech, earnings, M&A, stocks)
+  - World affairs / Geopolitics
+  - US news / Domestic policy (no election horserace)
+  - Crime / Justice
+  - Science / Health / Medicine
+  - Climate / Environment / Disasters
+  - Culture / Entertainment (no live games, no gossip)
+  - Sports (one-off newsworthy moments only)
 
-Categories for the serious half:
-  - Tech + Markets (combined: AI, startups, big tech, earnings, M&A, stock moves)
-  - World affairs / Geopolitics (conflicts, deals, foreign policy)
-  - US news / Domestic policy (laws, regulations, federal actions — NOT election horserace)
-  - Crime / Justice (arrests, verdicts, major investigations)
-  - Science / Health / Medicine (breakthroughs, recalls, studies)
-  - Climate / Environment / Disasters (weather events, climate moves)
-  - Culture / Entertainment (one-off newsworthy moments, NOT live games or gossip)
-  - Sports (only one-off newsworthy moments, NOT live games)
+If you can't find {half_k} usable quirky stories, top up from serious. Vice \
+versa if serious categories are thin. Never go below {top_k} just for purity.
 
-If the input list doesn't have {half_k} usable quirky stories, top up from \
-the serious categories rather than dropping below {top_k}. If it doesn't \
-have enough serious diversity to fill {other_k} distinct categories, top up \
-with extra quirky picks instead.
-
-Reject (do not pick):
-- Live sports games or sports player news (time-locked, narrow audience)
-- Celebrity deaths, obituaries, "tribute" stories
-- Stories about a specific person who isn't a household name in the US
-- Political horserace stories (who's leading the primary, etc.)
+REJECT:
+- Live sports games / sports-player news
+- Celebrity obituaries / tribute stories
+- Stories about people who aren't household names in the US
+- Political horserace ("X leads primary by 3 points")
 - Stories with no concrete visual angle or stakes
-- Pure entertainment gossip ("X is dating Y")
-- Evergreen "explainer" topics that don't have a news hook today
-- **Ongoing war / conflict coverage where today's update is incremental** \
-("day 47 of...", "fighting continues", "casualties rise to N"). Viewers \
-hit fatigue on repeat war coverage. Only include conflict stories if today \
-brought a major escalation, breakthrough, ceasefire, named-victim event, \
-or named-leader statement — something genuinely new in the arc, not the \
-next day of the same arc.
+- Pure gossip ("X is dating Y")
+- Evergreen explainers without today's news hook
+- **Ongoing war/conflict updates that are incremental** ("day 47 of...", \
+"fighting continues", "casualties rise"). Only include conflict if today \
+brought a major escalation, ceasefire, named-leader statement, or named-victim \
+event — something new in the arc, not the next day.
 
-Prefer within each category:
-- TODAY'S breaking news with a clear "just happened" angle
-- Stories with real numbers (death toll, dollar amount, percentage, vote count)
-- "Why is X happening RIGHT NOW" stories where a 60-word script can explain a current event
-- Cultural / viral phenomena currently trending (something that broke this week)
-
-If two indices clearly cover the same news event, pick only the one with the \
-best context, and **list every source that flagged it in the angle** (e.g. \
-"BBC + Reuters + Politico all covering this"). Multi-sourced stories are \
-strongly preferred over single-source picks — they're load-bearing news, not \
-one outlet's pet take. When listing dupes in the angle, name every source so \
-the script writer downstream can pull from all of them rather than getting \
-locked into one outlet's framing.
+DEDUP: If two indices cover the same event, pick the one with the best context \
+and list every source that flagged it in the angle (e.g. "BBC + Reuters + \
+Politico"). Multi-sourced stories are strongly preferred — load-bearing news, \
+not one outlet's pet take.
 
 For each pick output:
-  - index: the 1-based index from the list below
-  - topic: copy the topic text VERBATIM from the list (for alignment — must match)
-  - score: 1-10 for how video-able this topic is (10 = guaranteed banger)
-  - angle: ONE sentence describing the hook for the explainer that EXPLAINS THIS \
-SPECIFIC TOPIC (not a different one). Example: for "VIX at 16" the angle would be \
-"history shows calm markets always crash within months" — not commentary on unrelated stories.
+  - index: 1-based index from the list below
+  - topic: copy the topic text VERBATIM from the list (must match exactly)
+  - score: 1-10 (10 = guaranteed banger)
+  - angle: ONE sentence describing the hook for THIS specific topic (not a \
+different one). Example: for "VIX at 16" → "history shows calm markets always \
+crash within months".
 
-Output JSON of the exact form:
-{{"picks": [{{"index": N, "topic": "...", "score": N, "angle": "..."}}, ...]}}
+Output JSON only: {{"picks": [{{"index": N, "topic": "...", "score": N, "angle": "..."}}, ...]}}
 
-Topics:
 {topics_block}
 """
 
