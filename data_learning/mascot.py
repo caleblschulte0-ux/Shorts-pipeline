@@ -115,15 +115,14 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
     fy = int(hy - math.sin(ang) * limb_w * 2.2)
     _thick_line(d, (hx, hy), (fx, fy), max(2, int(limb_w * 0.65)), SKIN)
 
-    # Little monster horns (behind the head).
+    # Sharp little monster horns (behind the head).
     for sgn in (-1, 1):
-        bx = cx + sgn * int(head_r * 0.5)
-        by = head_cy - int(head_r * 0.60)
-        tx = cx + sgn * int(head_r * 0.98)
-        ty = head_cy - int(head_r * 1.52)
-        hw = int(head_r * 0.38)
+        bx = cx + sgn * int(head_r * 0.52)
+        by = head_cy - int(head_r * 0.58)
+        tx = cx + sgn * int(head_r * 1.08)
+        ty = head_cy - int(head_r * 1.78)        # taller + pointed (no tip)
+        hw = int(head_r * 0.40)
         d.polygon([(bx - hw // 2, by), (bx + hw // 2, by), (tx, ty)], fill=HORN)
-        _circle(d, tx, ty, max(2, int(hw * 0.30)), HORN)
 
     # Head.
     _circle(d, cx, head_cy, head_r, SKIN)
@@ -134,9 +133,9 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
 
     # Eyes — big and shiny for a friendly look.
     eye_dx = int(head_r * 0.42)
-    eye_y = head_cy - int(head_r * 0.06)
-    eye_r = int(head_r * 0.32)
-    pup_r = int(head_r * 0.16)
+    eye_y = head_cy - int(head_r * 0.04)
+    eye_r = int(head_r * 0.27)               # smaller = less baby-cute
+    pup_r = int(head_r * 0.15)
     for sgn in (-1, 1):
         ex2 = cx + sgn * eye_dx
         if blink > 0.6:
@@ -144,12 +143,16 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
                   start=200, end=340, fill=DARK, width=max(3, S // 110))
         else:
             _circle(d, ex2, eye_y, eye_r, WHITE)
-            _circle(d, ex2, eye_y + int(eye_r * 0.18), pup_r, DARK)
-            # two catchlights = sparkly, friendly eyes
+            _circle(d, ex2, eye_y + int(eye_r * 0.16), pup_r, DARK)
             _circle(d, ex2 - pup_r // 2, eye_y - pup_r // 3,
-                    max(2, int(pup_r * 0.42)), WHITE)
-            _circle(d, ex2 + pup_r // 2, eye_y + pup_r // 3,
-                    max(2, int(pup_r * 0.22)), WHITE)
+                    max(2, int(pup_r * 0.34)), WHITE)   # single catchlight
+    # Flat, slightly angled brows — drops the cuddly look a notch.
+    bw = int(eye_r * 1.05)
+    for sgn in (-1, 1):
+        ex2 = cx + sgn * eye_dx
+        by0 = eye_y - int(eye_r * 1.30)
+        d.line([(ex2 - bw // 2, by0 + int(eye_r * 0.16)),
+                (ex2 + bw // 2, by0)], fill=DARK, width=max(3, S // 120))
 
     # Professor glasses — round gold frames over the eyes.
     if blink <= 0.6:
@@ -165,16 +168,16 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
         d.line([(cx - eye_dx + gl_r, eye_y), (cx + eye_dx - gl_r, eye_y)],
                fill=GOLD, width=gw)
 
-    # Big rosy blush.
+    # Small, subtle blush.
     for sgn in (-1, 1):
-        bx = cx + sgn * int(head_r * 0.66)
-        d.ellipse([bx - int(head_r * 0.20), eye_y + int(head_r * 0.26),
-                   bx + int(head_r * 0.20), eye_y + int(head_r * 0.54)],
+        bx = cx + sgn * int(head_r * 0.70)
+        d.ellipse([bx - int(head_r * 0.12), eye_y + int(head_r * 0.30),
+                   bx + int(head_r * 0.12), eye_y + int(head_r * 0.48)],
                   fill=BLUSH)
 
-    # Open, happy smile (filled) with a little tongue.
-    mw = int(head_r * 0.46)
-    my = head_cy + int(head_r * 0.40)
+    # Smaller, cooler smile (filled) with a little tongue.
+    mw = int(head_r * 0.40)
+    my = head_cy + int(head_r * 0.44)
     d.pieslice([cx - mw, my - mw, cx + mw, my + mw], start=18, end=162,
                fill=DARK)
     tw = int(mw * 0.42)
