@@ -69,17 +69,32 @@ def _wikipedia_image(topic: str) -> str | None:
     return None
 
 
-def _commons_images(topic: str, limit: int = 3) -> list[str]:
+def _commons_files(topic: str, mime_prefix: str = "image/",
+                   limit: int = 3) -> list[str]:
     """Search Wikimedia Commons for files matching `topic`. Returns
-    thumbnail URLs (1280px) ordered by Commons' own relevance score."""
+    URLs filtered to MIME types starting with `mime_prefix` ("image/"
+    or "video/"), ordered by Commons' own relevance score.
+
+    `iiurlwidth` only applies to image thumbs; video files come back
+    with their raw `url` field which is fine because Commons serves
+    them as WebM/OGG/MP4 that ffmpeg can read directly.
+    """
     if not topic.strip():
         return []
+    # Commons ranks images higher than other media by default, so the
+    # raw search returns ~all JPEGs even when we want video. The
+    # `filetype:` token narrows the search at the index level.
+    search = topic
+    if mime_prefix == "video/":
+        search = f"{topic} filetype:video"
+    elif mime_prefix == "image/":
+        search = f"{topic} filetype:bitmap|drawing"
     qs = urllib.parse.urlencode({
         "action": "query",
         "format": "json",
         "generator": "search",
         "gsrnamespace": 6,        # File namespace
-        "gsrsearch": topic,
+        "gsrsearch": search,
         "gsrlimit": limit,
         "prop": "imageinfo",
         "iiprop": "url|mime",
@@ -97,13 +112,19 @@ def _commons_images(topic: str, limit: int = 3) -> list[str]:
     for p in ordered:
         for ii in p.get("imageinfo", []) or []:
             mime = ii.get("mime", "")
-            if not mime.startswith("image/"):
+            if not mime.startswith(mime_prefix):
                 continue
-            url = ii.get("thumburl") or ii.get("url")
+            # Thumbs only exist for images; videos return the raw url.
+            url = ii.get("thumburl") if mime_prefix == "image/" else None
+            url = url or ii.get("url")
             if url and url.startswith("http"):
                 out.append(url)
                 break
     return out
+
+
+def _commons_images(topic: str, limit: int = 3) -> list[str]:
+    return _commons_files(topic, mime_prefix="image/", limit=limit)
 
 
 def _gdelt_news_image(topic: str, max_hours: int = 24 * 30) -> str | None:

@@ -54,21 +54,26 @@ that reads as evergreen, retrospective, or "X has been quietly happening for yea
 those feel old even when the publish date is fresh.
 
 CATEGORY DIVERSITY IS THE #2 CRITERION. This is a WIDE news channel, not a \
-tech/AI channel. Hard rule: AT MOST 2 picks from any single category. The \
-candidate list will be heavily skewed toward tech/AI because Hacker News \
-dominates it — resist that. Aim for a balanced {top_k} across categories such as:
+tech/AI channel. Hard rule: **EXACTLY 1 pick per category — {top_k} distinct \
+categories total.** Viewers feel "I just heard that one already" when two \
+shorts come from the same bucket, even if the underlying stories differ.
 
-  - Tech / AI (max 2)
-  - Business / Finance / Markets (earnings, M&A, stock moves)
+Treat **Tech/AI and Business/Finance/Markets as a single combined "Tech + \
+Markets" bucket** for this cap. An AI startup story and a tech stock story \
+read as the same visual genre to viewers — pick at most 1 from the combined \
+bucket, not 1 from each. Categories to draw from:
+
+  - Tech + Markets (combined: AI, startups, big tech, earnings, M&A, stock moves)
   - World affairs / Geopolitics (conflicts, deals, foreign policy)
   - US news / Domestic policy (laws, regulations, federal actions — NOT election horserace)
   - Crime / Justice (arrests, verdicts, major investigations)
   - Science / Health / Medicine (breakthroughs, recalls, studies)
   - Climate / Environment / Disasters (weather events, climate moves)
-  - Culture / Sports / Entertainment (one-off newsworthy moments, NOT live games or gossip)
+  - Culture / Entertainment (one-off newsworthy moments, NOT live games or gossip)
+  - Sports (only one-off newsworthy moments, NOT live games)
 
-If the input list doesn't have enough diversity to fill all categories, that's \
-fine — just don't double up on whichever category is over-represented.
+If the input list doesn't have enough diversity to fill {top_k} distinct \
+categories, return fewer picks rather than doubling up.
 
 Reject (do not pick):
 - Live sports games or sports player news (time-locked, narrow audience)
@@ -78,6 +83,12 @@ Reject (do not pick):
 - Stories with no concrete visual angle or stakes
 - Pure entertainment gossip ("X is dating Y")
 - Evergreen "explainer" topics that don't have a news hook today
+- **Ongoing war / conflict coverage where today's update is incremental** \
+("day 47 of...", "fighting continues", "casualties rise to N"). Viewers \
+hit fatigue on repeat war coverage. Only include conflict stories if today \
+brought a major escalation, breakthrough, ceasefire, named-victim event, \
+or named-leader statement — something genuinely new in the arc, not the \
+next day of the same arc.
 
 Prefer within each category:
 - TODAY'S breaking news with a clear "just happened" angle
