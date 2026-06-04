@@ -316,7 +316,7 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str):
     ax.tick_params(length=0)
     hi = next((k for k, p in enumerate(items)
                if p.label == insight.highlight_label), 0)
-    return ax, values[hi], hi                         # point at the star bar
+    return ax, ("ylabel", hi)               # point at the row's label words
 
 
 def _story_versus(fig, plt, insight: Insight, subtitle: str):
@@ -353,7 +353,8 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str):
     ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
-    return ax, xs[0], hi.value                         # point at the hi column
+    # point at the winning column's label words (below the bar)
+    return ax, ("data", xs[0], -vmax * 0.30)
 
 
 def _story_trend(fig, plt, insight: Insight, subtitle: str):
@@ -391,7 +392,7 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str):
         s.set_visible(False)
     ax.tick_params(length=0)
     pk = max(range(len(values)), key=lambda i: values[i])
-    return ax, x[pk], values[pk]                       # point at the peak
+    return ax, ("data", x[pk], values[pk])             # point at the peak
 
 
 def render_story_chart(insight: Insight, out_path: Path):
@@ -410,23 +411,28 @@ def render_story_chart(insight: Insight, out_path: Path):
         lo = insight.items[1]
         subtitle, accent = f"{star.label} vs {lo.label}", HIGHLIGHT
         _heading(fig, insight.topic, subtitle, accent)
-        ax, dx, dy = _story_versus(fig, plt, insight, subtitle)
+        ax, target = _story_versus(fig, plt, insight, subtitle)
     elif insight.kind == "trend":
         subtitle = f"{insight.items[0].label} → {insight.items[-1].label}"
         _heading(fig, insight.topic, subtitle)
-        ax, dx, dy = _story_trend(fig, plt, insight, subtitle)
+        ax, target = _story_trend(fig, plt, insight, subtitle)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
         _heading(fig, insight.topic, subtitle)
-        ax, dx, dy = _story_bars(fig, plt, insight, subtitle)
+        ax, target = _story_bars(fig, plt, insight, subtitle)
 
     _footer(fig, insight)
-    # Pixel of the highlighted datum (top-left origin, matches the PNG).
+    # Resolve the point-at target to a pixel (top-left origin, matches PNG).
+    # 'ylabel' aims at the category *words*; 'data' aims at a data coord.
     fig.canvas.draw()
-    disp = ax.transData.transform((dx, dy))
+    if target[0] == "ylabel":
+        bb = ax.get_yticklabels()[target[1]].get_window_extent()
+        dx_disp, dy_disp = bb.x0 + bb.width * 0.5, bb.y0 + bb.height * 0.5
+    else:
+        dx_disp, dy_disp = ax.transData.transform((target[1], target[2]))
     h_px = SERIES_H * SERIES_DPI
-    highlight = (float(disp[0]), float(h_px - disp[1]))
+    highlight = (float(dx_disp), float(h_px - dy_disp))
     fig.savefig(out_path, transparent=True)
     plt.close(fig)
     return out_path, highlight
