@@ -37,21 +37,19 @@ W, H, FPS = 1080, 1920, 30
 KOKORO_MODEL = REPO / "kokoro_models" / "kokoro-v1.0.onnx"
 KOKORO_VOICES = REPO / "kokoro_models" / "voices-v1.0.bin"
 
-# Layout (1080x1920): chart up top, mascot roams the band below it (pointing
-# up at the chart), punch in the open band, captions at the bottom — the
-# lower third stays mostly ambient so there's something calming to rest on.
-# A left GUTTER is reserved for the mascot so it can stand right beside the
-# label words and point at them without covering the chart. The chart PNG
-# (1000x920) is scaled by CHART_SCALE into the area to the right of the
-# gutter; datum pixels map to screen via that scale.
-CHART_X, CHART_Y = 196, 70
-CHART_SCALE = 0.86
-CHART_W, CHART_H = int(1000 * CHART_SCALE), int(920 * CHART_SCALE)   # 860x791
-MASCOT_SIZE = 184
-MASCOT_ANGLE = 8                 # points RIGHT (slightly up) at the labels
-GUTTER_X = 12                    # mascot's resting x in the gutter
-PUNCH_X, PUNCH_Y = 540, 1380
-CAP_MARGINV = 170
+# Layout (1080x1920): a centered chart up top; a pulsing MARKER lands on the
+# exact data point being spoken, and the little mascot walks to that point
+# and points up at it — re-targeting for every number in the script. The
+# chart PNG (1000x920) is scaled by CHART_SCALE; data pixels map to screen
+# through it.
+CHART_SCALE = 0.92
+CHART_W, CHART_H = int(1000 * CHART_SCALE), int(920 * CHART_SCALE)   # 920x846
+CHART_X, CHART_Y = (W - CHART_W) // 2, 70
+MASCOT_SIZE = 150
+MASCOT_ANGLE = 90                # points straight up at the marker above it
+MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 470)   # hook / closing rest spot
+PUNCH_X, PUNCH_Y = 540, 1500
+CAP_MARGINV = 120
 
 # Voice: a warm *male* "dude monster" Kokoro voice, pitched DOWN slightly
 # (never up) so it reads as the monster, not a chirpy narrator.
@@ -160,7 +158,12 @@ def _wrap(text: str, width: int = 22) -> str:
     return "\\N".join(out)
 
 
-def build_story_ass(st: story.Story, windows, out: Path) -> None:
+# A filled disc (ASS vector drawing), radius ~16, used as the data marker.
+_DISC = ("{\\p1}m -16 0 b -16 -9 -9 -16 0 -16 b 9 -16 16 -9 16 0 "
+         "b 16 9 9 16 0 16 b -9 16 -16 9 -16 0{\\p0}")
+
+
+def build_story_ass(st: story.Story, windows, events, out: Path) -> None:
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -174,6 +177,7 @@ Style: Hook,DejaVu Sans,96,&H4FD1F5&,&H000000&,&H000000&,1,1,6,3,8,70,70,360,1
 Style: Punch,DejaVu Sans,150,&HFFFFFF&,&H000000&,&H000000&,1,1,6,3,5,40,40,0,1
 Style: Src,DejaVu Sans,40,&HA5B4C7&,&H000000&,&H000000&,0,1,3,1,5,120,120,0,1
 Style: Chip,DejaVu Sans,38,&HFFFFFF&,&H6A5C7C&,&H000000&,1,3,0,0,8,60,60,26,1
+Style: Mark,DejaVu Sans,40,&HC5D14F&,&HFFFFFF&,&H000000&,1,1,4,0,5,0,0,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -191,35 +195,37 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Cap,,0,0,0,,"
                          f"{ch.strip()}")
 
-    # 0: HOOK — big kinetic text up top (mascot points up at it).
+    # 0: HOOK — big kinetic text up top.
     h0, h1 = windows[0]
     hook_txt = "{\\fad(200,150)}" + _wrap(st.hook, 20)
     lines.append(f"Dialogue: 0,{_ass_time(h0)},{_ass_time(h1)},Hook,,0,0,0,,{hook_txt}")
 
-    # 1..N: each segment — bottom kinetic captions + its punches.
+    # Per segment: step chip + kinetic captions.
     for i, seg in enumerate(st.segments):
         s0, s1 = windows[1 + i]
-        # Step chip up top labels this chart's role in the argument.
         if seg.role:
             chip = "{\\fad(150,150)} " + seg.role + " "
             lines.append(f"Dialogue: 2,{_ass_time(s0)},{_ass_time(s1)},Chip,,0,0,0,,"
                          f"{chip}")
         kinetic(seg.sentence, s0, s1)
-        # Stagger multiple punches across the segment so they never stack.
-        np = len(seg.punches)
-        for j, p in enumerate(seg.punches):
-            slot0 = s0 + (s1 - s0) * (j / np)
-            slot1 = s0 + (s1 - s0) * ((j + 1) / np)
-            dur = min(float(p.get("duration", 1.8)), slot1 - slot0)
-            ps = slot0 + (slot1 - slot0 - dur) * 0.5
-            pe = ps + dur
-            color = _hex_to_ass(p.get("color", "#ffffff"))
-            styled = ("{\\fad(120,120)\\pos(" + str(PUNCH_X) + "," + str(PUNCH_Y)
-                      + ")\\fs104\\c" + color + "}" + p.get("text", ""))
-            lines.append(f"Dialogue: 1,{_ass_time(ps)},{_ass_time(pe)},Punch,,0,0,0,,"
-                         f"{styled}")
 
-    # Last: CLOSING — bottom caption + a sources card up top.
+    # Per spoken number: a pulsing marker ON the data point + the big punch.
+    for e in events:
+        ps, pe, p = e["ps"], e["pe"], e["punch"]
+        color = _hex_to_ass(p.get("color", "#ffffff"))
+        if e["xy"]:
+            mx, my = int(e["xy"][0]), int(e["xy"][1])
+            mk = ("{\\an5\\pos(" + f"{mx},{my}" + ")\\1c&HC5D14F&\\3c&HFFFFFF&"
+                  "\\bord4\\fad(100,120)\\t(0,260,\\fscx150\\fscy150)"
+                  "\\t(260,520,\\fscx100\\fscy100)}" + _DISC)
+            lines.append(f"Dialogue: 3,{_ass_time(max(0, ps - 0.15))},"
+                         f"{_ass_time(pe)},Mark,,0,0,0,,{mk}")
+        styled = ("{\\fad(120,120)\\pos(" + str(PUNCH_X) + "," + str(PUNCH_Y)
+                  + ")\\fs104\\c" + color + "}" + p.get("text", ""))
+        lines.append(f"Dialogue: 1,{_ass_time(ps)},{_ass_time(pe)},Punch,,0,0,0,,"
+                     f"{styled}")
+
+    # CLOSING — bottom caption + sources card.
     c0, c1 = windows[-1]
     kinetic(sentences[-1], c0, c1)
     src_lines = "\\N".join(["{\\b1}Sources{\\b0}"] + st.sources)
@@ -230,32 +236,59 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 
 # --------------------------------------------------------------------------
-# Mascot motion — it lives in the left gutter and GLIDES (never stops) so it
-# sits right beside whatever label/point the narration is on, pointing right
-# at it. A single right-pointing pose works because every target is to its
-# right; a continuous smoothstep path keeps it constantly moving.
+# Targeting — a "point" (marker) lands on the exact data value being spoken,
+# and the mascot walks to it, re-targeting for every number in the script.
 # --------------------------------------------------------------------------
-def _label_screen(hl):
-    """Chart-PNG pixel -> screen pixel (through the gutter + scale)."""
-    return (CHART_X + hl[0] * CHART_SCALE, CHART_Y + hl[1] * CHART_SCALE)
+def _screen(px, py):
+    """Chart-PNG pixel -> screen pixel (scale + centered offset)."""
+    return (CHART_X + px * CHART_SCALE, CHART_Y + py * CHART_SCALE)
 
 
-def _mascot_targets(st: story.Story, windows):
-    """Keyframes (t, x, y) for the gutter mascot — beside each beat's label."""
-    n = len(windows)
-    kfs = []
-    for i in range(n):
-        t0 = windows[i][0]
-        if i == 0 or i == n - 1:                  # hook / closing
-            x, y = GUTTER_X, 470.0
-        else:
-            seg = st.segments[i - 1]
-            hl = seg.highlight_px or (300, 460)
-            _sx, sy = _label_screen(hl)
-            x = GUTTER_X
-            # Align the pointing hand (~0.42 down the sprite) with the label.
-            y = max(40.0, min(1480.0, sy - 0.42 * MASCOT_SIZE))
-        kfs.append((t0, float(x), float(y)))
+def _anchor_for_punch(seg: story.Segment, punch: dict):
+    """The data point whose value matches this punch's number."""
+    txt = punch.get("text", "").replace("%", "").replace(",", "").strip()
+    try:
+        val = float(txt)
+    except ValueError:
+        return None
+    if not seg.anchors:
+        return None
+    return min(seg.anchors, key=lambda a: abs(a["value"] - val))
+
+
+def _plan_events(st: story.Story, windows):
+    """One event per spoken number: when it's said (ps,pe) and where it is on
+    screen (xy). Drives both the punch/marker captions and the mascot path."""
+    events = []
+    for i, seg in enumerate(st.segments):
+        s0, s1 = windows[1 + i]
+        n = max(1, len(seg.punches))
+        for j, p in enumerate(seg.punches):
+            slot0 = s0 + (s1 - s0) * (j / n)
+            slot1 = s0 + (s1 - s0) * ((j + 1) / n)
+            dur = min(float(p.get("duration", 1.8)), slot1 - slot0)
+            ps = slot0 + (slot1 - slot0 - dur) * 0.5
+            a = _anchor_for_punch(seg, p)
+            xy = _screen(a["px"], a["py"]) if a else None
+            events.append({"ps": ps, "pe": ps + dur, "punch": p, "xy": xy})
+    return events
+
+
+def _mascot_keyframes(windows, events):
+    """(t, x, y) path: rest at home for the hook, hit each number's point as
+    it's spoken, return home for the close."""
+    S = MASCOT_SIZE
+    kfs = [(windows[0][0], float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))]
+    for e in events:
+        if not e["xy"]:
+            continue
+        tx, ty = e["xy"]
+        mx = min(max(tx - S / 2, 4), W - S - 4)
+        my = min(max(ty + 14, 4), 1500)          # just below the point
+        t = max(e["ps"] - 0.22, kfs[-1][0] + 0.05)
+        kfs.append((t, float(mx), float(my)))
+    kfs.append((max(windows[-1][0], kfs[-1][0] + 0.05),
+                float(MASCOT_HOME[0]), float(MASCOT_HOME[1])))
     return kfs
 
 
@@ -291,18 +324,19 @@ def render(slug: str, out_path: Path, voice: str = "am_michael") -> Path:
         total = _dur(narration) + 0.3
 
         bokeh = ambient.make_bokeh_strip(work / "bokeh.png")
+        events = _plan_events(st, windows)
         ass = work / "cap.ass"
-        build_story_ass(st, windows, ass)
+        build_story_ass(st, windows, events, ass)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
-        # One gliding right-pointing mascot for the whole video.
+        # One up-pointing mascot that walks to each number's point.
         mascot_mov = mascot.build_mascot_loop(work / "mascot.mov",
                                               size=MASCOT_SIZE, seconds=2.4,
                                               point_angle=float(MASCOT_ANGLE))
-        kfs = _mascot_targets(st, windows)
+        kfs = _mascot_keyframes(windows, events)
         x_expr = _piecewise(kfs, 1)
         # gentle continuous sway so it's never perfectly still
-        y_expr = f"({_piecewise(kfs, 2)})+8*sin(2.2*t)"
+        y_expr = f"({_piecewise(kfs, 2)})+7*sin(2.2*t)"
 
         # Inputs: 0 gradient, 1 bokeh, charts, mascot, narration.
         inputs = ["-f", "lavfi", "-i", ambient.gradient_lavfi(total)]

@@ -314,9 +314,9 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str):
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
-    hi = next((k for k, p in enumerate(items)
-               if p.label == insight.highlight_label), 0)
-    return ax, ("ylabel", hi)               # point at the row's label words
+    # Anchor for every bar (value -> its end point), so the mascot/marker can
+    # go to whichever value is being spoken.
+    return ax, [(p.value, p.value, k) for k, p in enumerate(items)]
 
 
 def _story_versus(fig, plt, insight: Insight, subtitle: str):
@@ -353,8 +353,8 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str):
     ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
-    # point at the winning column's label words (below the bar)
-    return ax, ("data", xs[0], -vmax * 0.30)
+    # Anchor each column at the top of its bar.
+    return ax, [(hi.value, xs[0], hi.value), (lo.value, xs[1], lo.value)]
 
 
 def _story_trend(fig, plt, insight: Insight, subtitle: str):
@@ -391,18 +391,18 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str):
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
-    pk = max(range(len(values)), key=lambda i: values[i])
-    return ax, ("data", x[pk], values[pk])             # point at the peak
+    # Anchor every point on the line by its value.
+    return ax, [(values[k], x[k], values[k]) for k in range(len(values))]
 
 
 def render_story_chart(insight: Insight, out_path: Path):
-    """One *full*, visually distinct chart for a story segment. Each insight
-    kind gets its own look so successive charts feel different and each tells
-    its own story. Returns ``(path, (px, py))`` where (px, py) is the pixel
-    of the datum to point at within the PNG — or ``(None, None)`` if
-    matplotlib is absent."""
+    """One *full*, visually distinct chart for a story segment. Returns
+    ``(path, anchors)`` where ``anchors`` is a list of
+    ``{"value": v, "px": x, "py": y}`` — the pixel of *every* data point in
+    the PNG — so the renderer can send a marker + the mascot to whichever
+    value the narration is on. ``(None, [])`` if matplotlib is absent."""
     if not _have_mpl():
-        return None, None
+        return None, []
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fig, plt = _card_base()
 
@@ -411,31 +411,29 @@ def render_story_chart(insight: Insight, out_path: Path):
         lo = insight.items[1]
         subtitle, accent = f"{star.label} vs {lo.label}", HIGHLIGHT
         _heading(fig, insight.topic, subtitle, accent)
-        ax, target = _story_versus(fig, plt, insight, subtitle)
+        ax, anchors = _story_versus(fig, plt, insight, subtitle)
     elif insight.kind == "trend":
         subtitle = f"{insight.items[0].label} → {insight.items[-1].label}"
         _heading(fig, insight.topic, subtitle)
-        ax, target = _story_trend(fig, plt, insight, subtitle)
+        ax, anchors = _story_trend(fig, plt, insight, subtitle)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
         _heading(fig, insight.topic, subtitle)
-        ax, target = _story_bars(fig, plt, insight, subtitle)
+        ax, anchors = _story_bars(fig, plt, insight, subtitle)
 
     _footer(fig, insight)
-    # Resolve the point-at target to a pixel (top-left origin, matches PNG).
-    # 'ylabel' aims at the category *words*; 'data' aims at a data coord.
+    # Resolve every anchor's data coord to a PNG pixel (top-left origin).
     fig.canvas.draw()
-    if target[0] == "ylabel":
-        bb = ax.get_yticklabels()[target[1]].get_window_extent()
-        dx_disp, dy_disp = bb.x0 + bb.width * 0.5, bb.y0 + bb.height * 0.5
-    else:
-        dx_disp, dy_disp = ax.transData.transform((target[1], target[2]))
     h_px = SERIES_H * SERIES_DPI
-    highlight = (float(dx_disp), float(h_px - dy_disp))
+    resolved = []
+    for value, dx, dy in anchors:
+        disp = ax.transData.transform((dx, dy))
+        resolved.append({"value": float(value), "px": float(disp[0]),
+                         "py": float(h_px - disp[1])})
     fig.savefig(out_path, transparent=True)
     plt.close(fig)
-    return out_path, highlight
+    return out_path, resolved
 
 
 def render_series(insight: Insight, out_dir: Path, slug: str) -> list[Path]:
