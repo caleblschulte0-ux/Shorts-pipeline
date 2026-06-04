@@ -189,6 +189,21 @@ jobs:
             echo "::warning::Run failed — failure counter now $new (auto-pause at 2)."
           fi
 
+      - name: Fetch analytics snapshot
+        # Pulls views/likes/comments for every uploaded video in the last
+        # 30 days, writes state/analytics/<today>.json + latest.json.
+        # Tomorrow's routine reads latest.json to learn what's working.
+        # Costs ~5 quota units (vs 9.6K for uploads), safe against the
+        # 10K daily limit. Skipped on a failed orchestrator run since
+        # the new uploads wouldn't be queryable yet.
+        if: steps.preflight.outputs.skip == '' && steps.run.outcome == 'success'
+        continue-on-error: true
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+        run: |
+          python3 scripts/fetch_analytics.py --max-age-days 30
+
       - name: Commit log + counter + report
         if: always() && steps.preflight.outputs.skip == ''
         run: |

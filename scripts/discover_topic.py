@@ -20,6 +20,8 @@ import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 
@@ -89,6 +91,10 @@ class Topic:
     # Populated by the Groq ranker — a one-line hook suggestion for the
     # short explainer. Not set by raw discovery.
     angle: str | None = None
+    # ISO-8601 UTC publish time when the source exposed one (RSS <pubDate>,
+    # Reddit created_utc). None when the feed didn't carry one. Used to
+    # filter stale items and bias the ranker toward fresh stories.
+    published_at: str | None = None
 
 
 def _parse_traffic(s: str | None) -> int:
@@ -191,6 +197,22 @@ def discover(rss_bytes: bytes | None = None, min_score: float = 4.0,
 # discover_all() level so one dead source doesn't kill the run.
 # ----------------------------------------------------------------------
 
+def _parse_rfc822_date(s: str | None) -> str | None:
+    """RSS pubDate is RFC-822 ("Sun, 01 Jun 2026 14:32:00 GMT"). Return
+    an ISO-8601 UTC string, or None if missing/unparseable."""
+    if not s:
+        return None
+    try:
+        dt = parsedate_to_datetime(s.strip())
+    except (TypeError, ValueError):
+        return None
+    if dt is None:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc).isoformat()
+
+
 def _parse_generic_rss(raw: bytes, source: str, *, max_items: int = 50) -> list[Topic]:
     """RSS feeds where each <item> is one story (BBC, NPR, HN, etc.).
     Not the Google Trends format — that one bundles multiple news items
@@ -216,6 +238,7 @@ def _parse_generic_rss(raw: bytes, source: str, *, max_items: int = 50) -> list[
             headlines=headlines,
             urls=[link] if link else [],
             sources=[source],
+            published_at=_parse_rfc822_date(it.findtext("pubDate")),
         ))
     return out
 
@@ -231,9 +254,124 @@ def fetch_bbc_world() -> list[Topic]:
                               "bbc_world")
 
 
+def fetch_bbc_us() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml"),
+        "bbc_us")
+
+
+def fetch_bbc_business() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.bbci.co.uk/news/business/rss.xml"),
+                              "bbc_business")
+
+
+def fetch_bbc_science() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://feeds.bbci.co.uk/news/science_and_environment/rss.xml"),
+        "bbc_science")
+
+
 def fetch_npr_top() -> list[Topic]:
     return _parse_generic_rss(_http_get("https://feeds.npr.org/1001/rss.xml"),
                               "npr_top")
+
+
+def fetch_npr_news() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.npr.org/1003/rss.xml"),
+                              "npr_news")
+
+
+def fetch_npr_politics() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.npr.org/1014/rss.xml"),
+                              "npr_politics")
+
+
+def fetch_pbs_newshour() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://www.pbs.org/newshour/feeds/rss/headlines"),
+        "pbs_newshour")
+
+
+def fetch_guardian_world() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.theguardian.com/world/rss"),
+                              "guardian_world")
+
+
+def fetch_guardian_us() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.theguardian.com/us-news/rss"),
+                              "guardian_us")
+
+
+def fetch_aljazeera() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.aljazeera.com/xml/rss/all.xml"),
+                              "aljazeera")
+
+
+def fetch_apnews_top() -> list[Topic]:
+    # AP's "top news" feed via their public RSS — wire copy, neutral.
+    return _parse_generic_rss(_http_get("https://feeds.apnews.com/rss/apf-topnews"),
+                              "apnews_top")
+
+
+def fetch_reuters_world() -> list[Topic]:
+    # Reuters cut their owned RSS so we use a public mirror that
+    # rebroadcasts their feed unchanged. Falls through silently if it's
+    # offline (the source list is fault-tolerant).
+    return _parse_generic_rss(
+        _http_get("https://feeds.feedburner.com/reuters/topNews"),
+        "reuters")
+
+
+def fetch_cnbc_top() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://www.cnbc.com/id/100003114/device/rss/rss.html"),
+        "cnbc_top")
+
+
+def fetch_marketwatch_top() -> list[Topic]:
+    return _parse_generic_rss(
+        _http_get("https://feeds.content.dowjones.io/public/rss/mw_topstories"),
+        "marketwatch")
+
+
+def fetch_politico() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.politico.com/rss/politicopicks.xml"),
+                              "politico")
+
+
+def fetch_thehill() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://thehill.com/feed"),
+                              "thehill")
+
+
+def fetch_propublica() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.propublica.org/feeds/propublica/main"),
+                              "propublica")
+
+
+def fetch_arstechnica() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://feeds.arstechnica.com/arstechnica/index"),
+                              "arstechnica")
+
+
+def fetch_theverge() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.theverge.com/rss/index.xml"),
+                              "theverge")
+
+
+def fetch_techcrunch() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://techcrunch.com/feed/"),
+                              "techcrunch")
+
+
+def fetch_sciencedaily() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://www.sciencedaily.com/rss/all.xml"),
+                              "sciencedaily")
+
+
+def fetch_variety() -> list[Topic]:
+    return _parse_generic_rss(_http_get("https://variety.com/feed/"),
+                              "variety")
 
 
 def fetch_hackernews() -> list[Topic]:
@@ -259,6 +397,13 @@ def fetch_reddit(subreddit: str) -> list[Topic]:
             continue
         link_url = p.get("url_overridden_by_dest") or p.get("url") or ""
         permalink = p.get("permalink") or ""
+        created = p.get("created_utc")
+        pub = None
+        if created:
+            try:
+                pub = datetime.fromtimestamp(float(created), tz=timezone.utc).isoformat()
+            except (TypeError, ValueError):
+                pub = None
         out.append(Topic(
             query=title,
             traffic=int(p.get("score") or 0),
@@ -267,6 +412,7 @@ def fetch_reddit(subreddit: str) -> list[Topic]:
             urls=([link_url] if link_url else []) +
                  ([f"https://reddit.com{permalink}"] if permalink else []),
             sources=[f"reddit_{subreddit}"],
+            published_at=pub,
         ))
     return out
 
@@ -274,30 +420,83 @@ def fetch_reddit(subreddit: str) -> list[Topic]:
 # Sources to fan out to. Each entry is (label, callable). Order matters
 # only for log readability — discover_all aggregates everything.
 DEFAULT_SOURCES: list[tuple[str, callable]] = [
+    # Search-trend signal (what people are Googling right now).
     ("google_trends_US", lambda: fetch_google_trends("US")),
     ("google_trends_GB", lambda: fetch_google_trends("GB")),
     ("google_trends_AU", lambda: fetch_google_trends("AU")),
     ("google_trends_CA", lambda: fetch_google_trends("CA")),
+    # Wire services — neutral copy, hard to argue political slant on.
+    ("apnews_top",       fetch_apnews_top),
+    ("reuters",          fetch_reuters_world),
+    # Public broadcasters (center-leaning).
     ("bbc_world",        fetch_bbc_world),
+    ("bbc_us",           fetch_bbc_us),
+    ("bbc_business",     fetch_bbc_business),
+    ("bbc_science",      fetch_bbc_science),
     ("npr_top",          fetch_npr_top),
+    ("npr_news",         fetch_npr_news),
+    ("npr_politics",     fetch_npr_politics),
+    ("pbs_newshour",     fetch_pbs_newshour),
+    # International perspective.
+    ("guardian_world",   fetch_guardian_world),
+    ("guardian_us",      fetch_guardian_us),
+    ("aljazeera",        fetch_aljazeera),
+    # US politics / DC desk.
+    ("politico",         fetch_politico),
+    ("thehill",          fetch_thehill),
+    ("propublica",       fetch_propublica),
+    # Business / markets.
+    ("cnbc_top",         fetch_cnbc_top),
+    ("marketwatch",      fetch_marketwatch_top),
+    # Tech (intentionally diversified beyond HN's tilt).
     ("hackernews",       fetch_hackernews),
+    ("arstechnica",      fetch_arstechnica),
+    ("theverge",         fetch_theverge),
+    ("techcrunch",       fetch_techcrunch),
+    # Science / culture.
+    ("sciencedaily",     fetch_sciencedaily),
+    ("variety",          fetch_variety),
+    # Social aggregators.
     ("reddit_popular",   lambda: fetch_reddit("popular")),
     ("reddit_news",      lambda: fetch_reddit("news")),
     ("reddit_worldnews", lambda: fetch_reddit("worldnews")),
 ]
 
 
-def discover_all(*, verbose: bool = True) -> list[Topic]:
+def _is_fresh(t: Topic, *, max_age_hours: int) -> bool:
+    """Keep items dated within `max_age_hours`. Items without a pubDate
+    pass through — we filter against dates that explicitly say 'old'."""
+    if not t.published_at:
+        return True
+    try:
+        dt = datetime.fromisoformat(t.published_at.replace("Z", "+00:00"))
+    except ValueError:
+        return True
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    age_hours = (datetime.now(timezone.utc) - dt).total_seconds() / 3600.0
+    return age_hours <= max_age_hours
+
+
+def discover_all(*, verbose: bool = True, max_age_hours: int = 48) -> list[Topic]:
     """Fan out to every source, return the combined raw list. Failures
-    are caught per-source and logged to stderr; the run continues."""
+    are caught per-source and logged to stderr; the run continues.
+
+    `max_age_hours` (default 48) drops items the source dated as older
+    than that window. Items without a pubDate are kept (we can't tell).
+    This is the difference between picking 'today's news' and picking
+    'evergreen topic the feed surfaced again'."""
     all_topics: list[Topic] = []
     for label, fn in DEFAULT_SOURCES:
         try:
             items = fn()
+            fresh = [t for t in items if _is_fresh(t, max_age_hours=max_age_hours)]
             if verbose:
-                print(f"[discover] {label:20s}  {len(items):3d} items",
+                dropped = len(items) - len(fresh)
+                note = f" ({dropped} stale dropped)" if dropped else ""
+                print(f"[discover] {label:20s}  {len(fresh):3d} items{note}",
                       file=sys.stderr)
-            all_topics.extend(items)
+            all_topics.extend(fresh)
         except Exception as e:  # noqa: BLE001
             if verbose:
                 print(f"[discover] {label:20s}  failed: {type(e).__name__}: {e}",
@@ -310,6 +509,7 @@ def as_dict(t: Topic) -> dict:
         "query": t.query, "traffic": t.traffic, "score": round(t.score, 2),
         "headlines": t.headlines, "snippets": t.snippets,
         "sources": t.sources, "urls": t.urls,
+        "published_at": t.published_at,
     }
 
 
