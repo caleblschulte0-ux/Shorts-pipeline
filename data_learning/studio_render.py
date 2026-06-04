@@ -215,9 +215,11 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         color = _hex_to_ass(p.get("color", "#ffffff"))
         if e["xy"]:
             mx, my = int(e["xy"][0]), int(e["xy"][1])
-            mk = ("{\\an5\\pos(" + f"{mx},{my}" + ")\\1c&HC5D14F&\\3c&HFFFFFF&"
-                  "\\bord4\\fad(100,120)\\t(0,260,\\fscx150\\fscy150)"
-                  "\\t(260,520,\\fscx100\\fscy100)}" + _DISC)
+            # Bright hollow ring (transparent fill, thick border) so it reads
+            # over both the teal bars and the teal monster.
+            mk = ("{\\an5\\pos(" + f"{mx},{my}" + ")\\1a&HFF&\\3c&H4FE1FF&"
+                  "\\bord7\\fad(100,150)\\t(0,260,\\fscx155\\fscy155)"
+                  "\\t(260,520,\\fscx105\\fscy105)}" + _DISC)
             lines.append(f"Dialogue: 3,{_ass_time(max(0, ps - 0.15))},"
                          f"{_ass_time(pe)},Mark,,0,0,0,,{mk}")
         styled = ("{\\fad(120,120)\\pos(" + str(PUNCH_X) + "," + str(PUNCH_Y)
@@ -256,18 +258,28 @@ def _anchor_for_punch(seg: story.Segment, punch: dict):
     return min(seg.anchors, key=lambda a: abs(a["value"] - val))
 
 
+def _phrase_frac(sentence: str, phrase: str) -> float:
+    """Fraction through the sentence (by word) where ``phrase`` starts —
+    approximates *when* it's spoken, so markers/monster line up with the
+    narration instead of even slots."""
+    idx = sentence.lower().find(phrase.lower())
+    total = max(1, len(sentence.split()))
+    if idx < 0:
+        return 0.5
+    return len(sentence[:idx].split()) / total
+
+
 def _plan_events(st: story.Story, windows):
     """One event per spoken number: when it's said (ps,pe) and where it is on
-    screen (xy). Drives both the punch/marker captions and the mascot path."""
+    screen (xy). Timed to where the number falls in the sentence so the
+    marker/monster hit it exactly as the voice says it."""
     events = []
     for i, seg in enumerate(st.segments):
         s0, s1 = windows[1 + i]
-        n = max(1, len(seg.punches))
-        for j, p in enumerate(seg.punches):
-            slot0 = s0 + (s1 - s0) * (j / n)
-            slot1 = s0 + (s1 - s0) * ((j + 1) / n)
-            dur = min(float(p.get("duration", 1.8)), slot1 - slot0)
-            ps = slot0 + (slot1 - slot0 - dur) * 0.5
+        for p in seg.punches:
+            frac = _phrase_frac(seg.sentence, p.get("phrase", ""))
+            ps = s0 + frac * (s1 - s0)
+            dur = min(float(p.get("duration", 1.8)), max(0.6, s1 - ps))
             a = _anchor_for_punch(seg, p)
             xy = _screen(a["px"], a["py"]) if a else None
             events.append({"ps": ps, "pe": ps + dur, "punch": p, "xy": xy})
