@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "compass-antitrust-ny-ag",
+  "title": "NY AG Investigates Compass After It Became Too Big",
+  "hashtags": ["compass", "anywhererent", "letitiajames", "nyag", "antitrust", "realestate", "brokerage", "housingmarket", "merger", "stockdrop", "businessnews", "corporatelaw", "investigation"],
+  "script": "Compass just absorbed Anywhere Real Estate in a $1.6 billion deal, growing overnight from 40,000 agents to more than 200,000 — making it the largest residential brokerage in US history. Now the New York Attorney General is probing whether that deal was too good. Investigators from Letitia James' antitrust bureau have been calling rival brokerages asking for documents. Compass shares tanked more than 12 percent on the news. No charges filed yet.",
+  "shots": [
+    {
+      "phrase": "Compass just absorbed Anywhere Real Estate",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Compass_Real_Estate_Seattle_Hub.jpg",
+      "query": "Compass real estate brokerage office luxury modern sign"
+    },
+    {
+      "phrase": "40,000 agents to more than 200,000",
+      "query": "real estate agents large team office workspace professionals"
+    },
+    {
+      "phrase": "largest residential brokerage in US history",
+      "query": "US real estate housing market largest corporation nationwide"
+    },
+    {
+      "phrase": "New York Attorney General is probing",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Letitia_James_at_March_for_Our_Lives_NYC.jpg",
+      "query": "New York attorney general antitrust investigation office law"
+    },
+    {
+      "phrase": "antitrust bureau have been calling rival brokerages asking for documents",
+      "query": "antitrust investigation legal documents subpoena office lawyer"
+    },
+    {
+      "phrase": "Compass shares tanked more than 12 percent on the news",
+      "query": "stock price crash drop 12 percent red chart trading"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "40,000 agents to more than 200,000",
+      "text": "200,000 AGENTS",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "largest residential brokerage in US history",
+      "text": "BIGGEST IN US HISTORY",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 165,
+      "duration": 2.4
+    },
+    {
+      "phrase": "New York Attorney General is probing",
+      "text": "NY AG PROBE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 210,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Compass shares tanked more than 12 percent",
+      "text": "STOCK DOWN 12%",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "No charges filed yet",
+      "text": "NO CHARGES YET",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.2
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "minecraft"
+}
