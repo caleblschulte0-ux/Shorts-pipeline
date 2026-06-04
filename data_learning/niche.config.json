@@ -14,8 +14,8 @@
     {
       "slug": "us-economy-squeeze",
       "title": "The US Economy In 4 Charts (The Last One Hurts)",
-      "hook": "The economy is sending three signals that flat-out contradict each other. Watch.",
-      "closing": "Strong jobs, falling rates, but prices that never came back down. That's the squeeze.",
+      "hook": "Everyone says the economy is strong. Four charts say you're getting squeezed. Watch how they connect.",
+      "closing": "See it now? The cheery headlines, jobs and rate cuts, sit up top. The number that drains your wallet sits down here. Good news you hear, squeeze you feel.",
       "hashtags": ["economy", "inflation", "jobs", "interestrates", "costofliving",
                    "bls", "fed", "money", "finance", "economics", "usa", "data"],
       "segments": [
@@ -23,25 +23,32 @@
           "source": "offline", "key": "state_unemployment",
           "params": {"file": "state_unemployment_2026_04.json"},
           "insight_type": "rank", "ascending": true, "use_baseline": true,
-          "topic": "unemployment rate", "connector": ""
+          "topic": "unemployment rate",
+          "role": "1 · THE GOOD NEWS",
+          "connector": "First, jobs look strong."
         },
         {
           "source": "offline", "key": "fed_funds_rate",
           "params": {"file": "fed_funds_rate.json"},
           "insight_type": "trend", "topic": "interest rates",
-          "connector": "Now the Fed."
+          "role": "2 · EVEN BETTER",
+          "connector": "And the Fed is finally cutting rates again."
         },
         {
           "source": "offline", "key": "cpi_components",
           "params": {"file": "cpi_components_2026_04.json"},
           "insight_type": "comparison", "use_baseline": true,
-          "topic": "inflation by category", "connector": "But here's the catch."
+          "topic": "inflation by category",
+          "role": "3 · THE CATCH",
+          "connector": "But here's the catch. Prices never stopped climbing."
         },
         {
           "source": "offline", "key": "prices_since_2020",
           "params": {"file": "prices_since_2020.json"},
           "insight_type": "rank", "ascending": false,
-          "topic": "price rise since 2020", "connector": "And this is what you feel."
+          "topic": "price rise since 2020",
+          "role": "4 · WHAT YOU FEEL",
+          "connector": "And the damage adds up."
         }
       ]
     }

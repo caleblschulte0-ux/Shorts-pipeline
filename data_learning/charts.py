@@ -314,6 +314,9 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str):
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
+    hi = next((k for k, p in enumerate(items)
+               if p.label == insight.highlight_label), 0)
+    return ax, values[hi], hi                         # point at the star bar
 
 
 def _story_versus(fig, plt, insight: Insight, subtitle: str):
@@ -350,6 +353,7 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str):
     ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
+    return ax, xs[0], hi.value                         # point at the hi column
 
 
 def _story_trend(fig, plt, insight: Insight, subtitle: str):
@@ -386,14 +390,18 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str):
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
+    pk = max(range(len(values)), key=lambda i: values[i])
+    return ax, x[pk], values[pk]                       # point at the peak
 
 
-def render_story_chart(insight: Insight, out_path: Path) -> Path | None:
+def render_story_chart(insight: Insight, out_path: Path):
     """One *full*, visually distinct chart for a story segment. Each insight
     kind gets its own look so successive charts feel different and each tells
-    its own story. Returns the path or None if matplotlib is absent."""
+    its own story. Returns ``(path, (px, py))`` where (px, py) is the pixel
+    of the datum to point at within the PNG — or ``(None, None)`` if
+    matplotlib is absent."""
     if not _have_mpl():
-        return None
+        return None, None
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fig, plt = _card_base()
 
@@ -402,21 +410,26 @@ def render_story_chart(insight: Insight, out_path: Path) -> Path | None:
         lo = insight.items[1]
         subtitle, accent = f"{star.label} vs {lo.label}", HIGHLIGHT
         _heading(fig, insight.topic, subtitle, accent)
-        _story_versus(fig, plt, insight, subtitle)
+        ax, dx, dy = _story_versus(fig, plt, insight, subtitle)
     elif insight.kind == "trend":
         subtitle = f"{insight.items[0].label} → {insight.items[-1].label}"
         _heading(fig, insight.topic, subtitle)
-        _story_trend(fig, plt, insight, subtitle)
+        ax, dx, dy = _story_trend(fig, plt, insight, subtitle)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
         _heading(fig, insight.topic, subtitle)
-        _story_bars(fig, plt, insight, subtitle)
+        ax, dx, dy = _story_bars(fig, plt, insight, subtitle)
 
     _footer(fig, insight)
+    # Pixel of the highlighted datum (top-left origin, matches the PNG).
+    fig.canvas.draw()
+    disp = ax.transData.transform((dx, dy))
+    h_px = SERIES_H * SERIES_DPI
+    highlight = (float(disp[0]), float(h_px - disp[1]))
     fig.savefig(out_path, transparent=True)
     plt.close(fig)
-    return out_path
+    return out_path, highlight
 
 
 def render_series(insight: Insight, out_dir: Path, slug: str) -> list[Path]:

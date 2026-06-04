@@ -31,7 +31,9 @@ SKIN = BODY
 WHITE = (248, 250, 252, 255)
 DARK = (11, 16, 32, 255)          # #0B1020 pupils + hat
 BLUSH = (249, 168, 212, 220)
-GOLD = (245, 158, 11, 255)
+GOLD = (245, 158, 11, 255)        # glasses + tassel
+HORN = (124, 92, 196, 255)        # little monster horns (violet)
+FANG = (252, 252, 255, 255)
 SS = 3                            # supersample for smooth edges
 
 
@@ -113,6 +115,16 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
     fy = int(hy - math.sin(ang) * limb_w * 2.2)
     _thick_line(d, (hx, hy), (fx, fy), max(2, int(limb_w * 0.65)), SKIN)
 
+    # Little monster horns (behind the head).
+    for sgn in (-1, 1):
+        bx = cx + sgn * int(head_r * 0.5)
+        by = head_cy - int(head_r * 0.60)
+        tx = cx + sgn * int(head_r * 0.98)
+        ty = head_cy - int(head_r * 1.52)
+        hw = int(head_r * 0.38)
+        d.polygon([(bx - hw // 2, by), (bx + hw // 2, by), (tx, ty)], fill=HORN)
+        _circle(d, tx, ty, max(2, int(hw * 0.30)), HORN)
+
     # Head.
     _circle(d, cx, head_cy, head_r, SKIN)
     d.ellipse([cx - int(head_r * 0.7), head_cy + int(head_r * 0.1),
@@ -139,6 +151,20 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
             _circle(d, ex2 + pup_r // 2, eye_y + pup_r // 3,
                     max(2, int(pup_r * 0.22)), WHITE)
 
+    # Professor glasses — round gold frames over the eyes.
+    if blink <= 0.6:
+        gl_r = int(eye_r * 1.34)
+        gw = max(3, S // 120)
+        for sgn in (-1, 1):
+            ex2 = cx + sgn * eye_dx
+            d.ellipse([ex2 - gl_r, eye_y - gl_r, ex2 + gl_r, eye_y + gl_r],
+                      outline=GOLD, width=gw)
+            d.line([(ex2 + sgn * gl_r, eye_y),
+                    (ex2 + sgn * int(head_r * 0.95), eye_y - int(head_r * 0.06))],
+                   fill=GOLD, width=gw)
+        d.line([(cx - eye_dx + gl_r, eye_y), (cx + eye_dx - gl_r, eye_y)],
+               fill=GOLD, width=gw)
+
     # Big rosy blush.
     for sgn in (-1, 1):
         bx = cx + sgn * int(head_r * 0.66)
@@ -154,6 +180,12 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
     tw = int(mw * 0.42)
     d.chord([cx - tw, my + int(mw * 0.10), cx + tw, my + int(mw * 0.74)],
             start=0, end=180, fill=(255, 120, 140, 255))
+    # Two little monster fangs at the top of the smile.
+    for sgn in (-1, 1):
+        fxx = cx + sgn * int(mw * 0.5)
+        d.polygon([(fxx - int(mw * 0.13), my - int(mw * 0.04)),
+                   (fxx + int(mw * 0.13), my - int(mw * 0.04)),
+                   (fxx, my + int(mw * 0.40))], fill=FANG)
 
     # Graduation cap.
     cap_y = head_cy - head_r
