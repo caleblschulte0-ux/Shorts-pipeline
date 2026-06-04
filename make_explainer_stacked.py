@@ -420,17 +420,54 @@ def _resolve_image(shot: Shot) -> dict | None:
         return None
 
 
+_STOPWORDS = frozenset((
+    "a", "an", "the", "and", "or", "of", "to", "for", "in", "on", "at",
+    "is", "are", "was", "were", "be", "been", "by", "with", "as", "it",
+    "its", "this", "that", "from", "but", "not", "just", "more", "new",
+))
+
+
+def _shot_tokens(shot: "Shot") -> set[str]:
+    """Build a bag of meaningful tokens for a shot — drawn from its
+    spoken phrase + stock query so we can score each pool clip's
+    filename against it. Stopwords are dropped so the score reflects
+    content words ("moon", "rocket", "Mechazilla") not glue words.
+    """
+    bits: list[str] = [shot.phrase]
+    if shot.pexels_query:
+        bits.append(shot.pexels_query)
+    if shot.queries:
+        bits.extend(shot.queries)
+    text = " ".join(bits).lower()
+    text = re.sub(r"[^a-z0-9 ]+", " ", text)
+    return {w for w in text.split() if len(w) > 2 and w not in _STOPWORDS}
+
+
+def _score_clip(clip_title: str, shot_tokens: set[str]) -> int:
+    """How well does a pool clip's filename match a shot's tokens?
+    Plain token-overlap count — good enough for routing "moon" shots
+    to moon clips and "engine" shots to engine clips without needing
+    an LLM. Returns 0 when there's no overlap, which the caller treats
+    as "fall back to round-robin."""
+    title = re.sub(r"[^a-z0-9 ]+", " ", clip_title.lower())
+    title_tokens = {w for w in title.split() if len(w) > 2}
+    return len(shot_tokens & title_tokens)
+
+
 def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
     """Pull a *pool* of topic-specific video clips once per render,
     queried by the package title rather than per-shot keywords.
 
-    The per-shot version of this function (`_resolve_topic_video`) ran
-    `topic_video.search()` for every shot, and because Commons /
-    YouTube returned the same top-ranked clip for every closely-related
-    query, the renderer ended up showing the same launch clip six
-    times. Building the pool once with just the title gets us several
-    different angles of the same event, which we then round-robin
-    across the shots that don't have operator-supplied imagery.
+    Each entry carries the source filename as `title` so the caller
+    can score it against each shot's content words and pick the most
+    relevant clip rather than blindly cycling through the pool.
+
+    `seek` is the in-clip offset (seconds) the renderer should `-ss`
+    past before sampling — Commons / Archive videos very often open
+    with title cards, telemetry overlays, splash screens or several
+    seconds of dead air. Sampling from 15s in skips that. Each time
+    the pool entry is *reused* in a render, `seek` advances further
+    so a second shot using the same clip shows a different moment.
     """
     context = next((s.topic_context for s in shots if s.topic_context), "")
     if not context:
@@ -440,24 +477,74 @@ def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
     except ImportError:
         return []
     try:
-        paths = topic_video.search(context, "", max_clips=6)
+        items = topic_video.search(context, "", max_clips=6)
     except Exception as e:  # noqa: BLE001
         print(f"      [topic_video pool error] {e}")
         return []
     pool: list[dict] = []
-    for p in paths:
+    for it in items:
+        p = it["path"]
         try:
             dur = ffprobe_duration(p)
         except Exception as e:  # noqa: BLE001
             print(f"      [topic_video ffprobe fail] {p}: {e}")
             continue
-        if dur < 1.0:
+        # Reject suspiciously short clips (probably stubs) and
+        # extremely long ones (almost certainly long-form podcast,
+        # documentary, or full mission feed — not B-roll, and the
+        # interesting bits are scattered far from the start).
+        if dur < 2.0:
             continue
-        pool.append({"path": str(p), "duration": dur,
-                     "width": W, "height": HALF_H, "source": "topic_video"})
+        if dur > 1800:  # 30 minutes
+            print(f"      [topic_video skip long-form] {it['title'][:60]!r} ({dur:.0f}s)")
+            continue
+        pool.append({
+            "path": str(p),
+            "duration": dur,
+            "title": it.get("title", ""),
+            "source": "topic_video",
+            "uses": 0,
+            "width": W, "height": HALF_H,
+        })
     if pool:
         print(f"      [topic_video pool] {len(pool)} clips for {context[:60]!r}")
+        for c in pool:
+            print(f"         {c['title'][:70]} ({c['duration']:.0f}s)")
     return pool
+
+
+def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
+    """Return the pool clip best matching this shot, or fall back to
+    least-used round-robin when nothing scores. Mutates `clip['uses']`
+    and computes a per-shot `seek` offset so successive uses of the
+    same clip show different moments instead of the same opening
+    frames replayed."""
+    if not pool:
+        return None
+    tokens = _shot_tokens(shot)
+    if tokens:
+        # Score, then sort by (score desc, uses asc, original index asc).
+        # The index tiebreaker keeps the sort stable across dicts that
+        # Python can't compare directly.
+        scored = [(_score_clip(c["title"], tokens), -c["uses"], idx, c)
+                  for idx, c in enumerate(pool)]
+        scored.sort(reverse=True)
+        best_score, _, _, best = scored[0]
+        chosen = best if best_score > 0 else min(pool, key=lambda c: c["uses"])
+    else:
+        chosen = min(pool, key=lambda c: c["uses"])
+    # Seek policy: skip past the typical intro/title/telemetry window
+    # on first use; advance further on subsequent uses so two shots
+    # sharing one clip don't show the same frames. Cap at duration -
+    # 5s so ffmpeg always has something left to play.
+    base_offset = 15.0
+    step = 12.0
+    seek = min(base_offset + chosen["uses"] * step,
+               max(0.0, chosen["duration"] - 5.0))
+    chosen["uses"] += 1
+    out = dict(chosen)
+    out["seek"] = seek
+    return out
 
 
 def _resolve_topic_media(shot: Shot, cache: Path) -> dict | None:
@@ -556,13 +643,11 @@ def build_timed_top(
     IMAGE_MAX_DUR = 1.8
 
     # One-shot per-render call to topic_video. Returns a pool of
-    # on-topic clips (different angles of the same event) that we
-    # round-robin across shots without operator-supplied imagery.
-    # Generic mixkit filler is worse than seeing the same launch from
-    # two angles, so whenever the pool has clips we'd rather repeat
-    # within it than reach for stock.
+    # on-topic clips (different angles of the same event). Each shot
+    # picks the pool entry whose source filename best matches its own
+    # phrase / query — so "moon" shots get moon clips and "engine"
+    # shots get engine clips instead of round-robin chaos.
     topic_video_pool = _build_topic_video_pool(shots)
-    pool_idx = 0
 
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
@@ -575,16 +660,15 @@ def build_timed_top(
         #   3. Stock only               -> existing multi-cut behavior
         plan: list[tuple[dict, float]] = []
         image_clip = _resolve_image(shot)
-        # If the operator hand-picked an image, that wins. Otherwise
-        # pull the next clip from the topic-video pool. Only if both
-        # are unavailable do we fall through to topic_media stills and
-        # then to generic stock — pool clip beats stock every time.
+        # Operator-supplied image wins. Otherwise pull a pool clip
+        # scored against this shot's tokens. Fall through to topic_media
+        # stills and then stock only when the pool is empty.
         topic_video_clip = None
         if image_clip is None and topic_video_pool:
-            topic_video_clip = topic_video_pool[pool_idx % len(topic_video_pool)]
-            pool_idx += 1
-            print(f"      [topic_video pool] shot {i+1} -> "
-                  f"{Path(topic_video_clip['path']).name}")
+            topic_video_clip = _pick_pool_clip(topic_video_pool, shot)
+            if topic_video_clip:
+                print(f"      [topic_video] shot {i+1} '{shot.phrase[:30]}' -> "
+                      f"{topic_video_clip['title'][:50]!r} @ seek={topic_video_clip['seek']:.0f}s")
         if image_clip is None and topic_video_clip is None:
             image_clip = _resolve_topic_media(shot, Path("/tmp/shot_images"))
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
@@ -593,16 +677,21 @@ def build_timed_top(
             # Topic-video clips claim the full shot window. The clip is
             # already on-topic; padding it with generic stock would only
             # dilute the visual continuity.
-            vid_dur = min(seg_dur, float(topic_video_clip.get("duration") or 0))
+            available = max(0.0,
+                            float(topic_video_clip["duration"])
+                            - float(topic_video_clip.get("seek", 0.0)))
+            vid_dur = min(seg_dur, available)
             plan.append((topic_video_clip, vid_dur))
             remaining = seg_dur - vid_dur
-            # If the pool clip was too short for the shot, repeat the
-            # pool round-robin to fill the rest rather than reaching
-            # for off-topic mixkit.
+            # If the chosen clip didn't fill the window, pick *another*
+            # pool entry (scored or least-used) for the remainder rather
+            # than dropping back to off-topic mixkit.
             while remaining > 0.3 and topic_video_pool:
-                nxt = topic_video_pool[pool_idx % len(topic_video_pool)]
-                pool_idx += 1
-                fill = min(remaining, float(nxt.get("duration") or 0))
+                nxt = _pick_pool_clip(topic_video_pool, shot)
+                if not nxt:
+                    break
+                nxt_avail = max(0.0, float(nxt["duration"]) - float(nxt.get("seek", 0.0)))
+                fill = min(remaining, nxt_avail)
                 if fill <= 0.3:
                     break
                 plan.append((nxt, fill))
@@ -702,10 +791,19 @@ def build_timed_top(
                 ])
             else:
                 clip_dur = float(clip.get("duration") or 10)
-                # Vary the seek so repeat cuts don't show the same frames.
-                seek_start = 0.3
-                seek = min(seek_start + j * 1.5,
-                           max(0.0, clip_dur - dur - 0.3))
+                # Topic-video clips carry their own seek offset (set by
+                # _pick_pool_clip — skips past title cards, telemetry,
+                # and intro dead-air so successive uses of the same
+                # source clip show different moments). Stock clips just
+                # use the existing "vary seek by sub-cut index" logic
+                # to stop showing the same opening frames.
+                if "seek" in clip:
+                    seek = min(float(clip["seek"]),
+                               max(0.0, clip_dur - dur - 0.3))
+                else:
+                    seek_start = 0.3
+                    seek = min(seek_start + j * 1.5,
+                               max(0.0, clip_dur - dur - 0.3))
                 run([
                     "ffmpeg", "-y", "-loglevel", "error",
                     "-ss", f"{seek:.3f}", "-i", clip["path"],
