@@ -208,8 +208,11 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
 
 
 def build_mascot_loop(out_path: Path, *, size: int = 360, fps: int = 30,
-                      seconds: float = 3.0, point_angle: float = 70.0) -> Path:
-    """Render a seamless idle loop (.mov, alpha) — bob + blink + arm wiggle."""
+                      seconds: float = 3.0, point_angle: float = 70.0,
+                      flip: bool = False) -> Path:
+    """Render a seamless idle loop (.mov, alpha) — bob + blink + arm wiggle.
+    ``flip`` mirrors it horizontally so the pointing arm aims the other way
+    (used when the mascot stands to the right of what it points at)."""
     out_path.parent.mkdir(parents=True, exist_ok=True)
     n = int(fps * seconds)
     with tempfile.TemporaryDirectory() as td:
@@ -219,7 +222,10 @@ def build_mascot_loop(out_path: Path, *, size: int = 360, fps: int = 30,
             bob = math.sin(t * 2 * math.pi) * (size * 0.026)   # livelier bob
             wiggle = math.sin(t * 2 * math.pi * 2)             # 2x lively arm
             blink = 1.0 if 0.70 <= t <= 0.74 else 0.0
-            _draw(size, bob, blink, point_angle, wiggle).save(td / f"m{i:04d}.png")
+            im = _draw(size, bob, blink, point_angle, wiggle)
+            if flip:
+                im = im.transpose(Image.FLIP_LEFT_RIGHT)
+            im.save(td / f"m{i:04d}.png")
         subprocess.run(
             ["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(fps),
              "-i", str(td / "m%04d.png"),
