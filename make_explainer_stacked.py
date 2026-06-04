@@ -636,6 +636,32 @@ def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
     return pool
 
 
+# Commons / news CDN thumbnail filenames prefix a resolution onto the
+# real image name ("1280px-Starship_SN16.jpg", "800x600 launch.jpg",
+# "thumb_launch.jpg"). Stripping the prefix gives the underlying
+# stem so two thumbnails of the same source image dedup correctly.
+_IMG_PREFIX_RE = re.compile(
+    r"^(?:\d+px|\d+x\d+|thumb|small|medium|large)[\s_-]+",
+    re.I,
+)
+
+
+def _image_stem(title: str) -> str:
+    """Normalize a thumbnail filename for dedup. Repeatedly strips
+    resolution / size prefixes ('1280px', '800x600', 'thumb', etc.),
+    collapses whitespace, lowercases. Same source image at multiple
+    resolutions collapses to a single stem; genuinely different
+    images of the same event (different angles, different days) keep
+    their distinguishing tokens and stay separate."""
+    t = title.strip()
+    while True:
+        new = _IMG_PREFIX_RE.sub("", t).strip()
+        if new == t or not new:
+            break
+        t = new
+    return re.sub(r"\s+", " ", t).lower()
+
+
 def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
     """Pool of topic-specific *still images* (Wikipedia hero, Commons
     photos, news article og:images) built once per render. Images are
@@ -643,9 +669,12 @@ def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
     topic, so we mix them into the round-robin filler to fill gaps
     where topic_video misses and to add visual variety.
 
-    Entries are shaped to drop straight into the renderer's existing
-    `is_image` branch (Ken Burns zoompan). Each carries `title` from
-    the source filename for shot-matching scoring.
+    Entries are deduplicated by normalized filename stem so two
+    thumbnails of the same source image at different resolutions
+    can't both end up in the pool — and therefore can never get
+    picked back-to-back. Each entry drops straight into the
+    renderer's existing `is_image` branch (Ken Burns zoompan) and
+    carries `title` from the source filename for token scoring.
     """
     context = next((s.topic_context for s in shots if s.topic_context), "")
     if not context:
@@ -657,6 +686,7 @@ def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
         print(f"      [topic_image pool error] {e}")
         return []
     pool: list[dict] = []
+    seen_stems: set[str] = set()
     cache = Path("/tmp/shot_images")
     for url in (urls or [])[:8]:
         try:
@@ -674,9 +704,15 @@ def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
         if "." in name:
             name = name.rsplit(".", 1)[0]
         title = name.replace("_", " ").replace("-", " ").strip()
+        stem = _image_stem(title)
+        if stem in seen_stems:
+            print(f"      [topic_image dedup] {title[:60]!r}")
+            continue
+        seen_stems.add(stem)
         pool.append({
             "path": str(path),
             "title": title,
+            "stem": stem,
             "source": "topic_image",
             "is_image": True,
             "uses": 0,
@@ -689,24 +725,34 @@ def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
     return pool
 
 
-def _pick_pool_image(pool: list[dict], shot: "Shot") -> dict | None:
+def _pick_pool_image(pool: list[dict], shot: "Shot",
+                     exclude_paths: set[str] | None = None) -> dict | None:
     """Score-and-pick an image from the topic_image pool. Same shape
     as `_pick_pool_clip` but for stills — no seek offset, no juicy
-    windows. Mutates `uses` so successive picks within a shot prefer
-    images that haven't been shown yet."""
+    windows.
+
+    `exclude_paths` is a set of image paths the caller wants to avoid
+    (typically: images already used in this shot's plan, so we never
+    pick the same one back-to-back). If every pool entry is excluded
+    we still return a pick — better to repeat than to leave a gap.
+    Mutates `uses` so successive picks across shots prefer images
+    that haven't been shown yet.
+    """
     if not pool:
         return None
+    excl = exclude_paths or set()
+    candidates = [c for c in pool if c["path"] not in excl] or pool
     tokens = _shot_tokens(shot)
     chosen: dict | None = None
     if tokens:
         scored = [(_score_clip(c["title"], tokens), -c["uses"], idx, c)
-                  for idx, c in enumerate(pool)]
+                  for idx, c in enumerate(candidates)]
         scored.sort(reverse=True)
         best_score, _, _, best = scored[0]
         if best_score > 0:
             chosen = best
     if chosen is None:
-        chosen = min(pool, key=lambda c: c["uses"])
+        chosen = min(candidates, key=lambda c: c["uses"])
     chosen["uses"] += 1
     return dict(chosen)
 
@@ -933,12 +979,17 @@ def build_timed_top(
             # monotony of a single source streaming for 5+ seconds.
             # Image dur is capped at IMAGE_MAX_DUR (Ken Burns gets
             # boring past ~2s); video dur stays at SUB_CUT_TARGET.
+            # Track images already used in this shot so the picker
+            # never returns the same one back-to-back even if it
+            # happens to be the highest-scoring pool entry.
+            used_image_paths: set[str] = set()
             fill_idx = 1
             while remaining > 0.3:
                 want_image = (fill_idx % 2 == 1 and topic_image_pool)
                 placed = False
                 if want_image:
-                    img = _pick_pool_image(topic_image_pool, shot)
+                    img = _pick_pool_image(topic_image_pool, shot,
+                                            exclude_paths=used_image_paths)
                     if img:
                         fill = min(remaining, IMAGE_MAX_DUR)
                         if fill > 0.3:
@@ -946,6 +997,7 @@ def build_timed_top(
                             remaining -= fill
                             fill_idx += 1
                             placed = True
+                            used_image_paths.add(img["path"])
                             print(f"      [topic_image] shot {i+1} fill -> "
                                   f"{img['title'][:50]!r} ({fill:.1f}s)")
                 if not placed and topic_video_pool:
@@ -965,7 +1017,8 @@ def build_timed_top(
                 # just because the video pool ran out of clips that
                 # fit the remaining window.
                 if not placed and not want_image and topic_image_pool:
-                    img = _pick_pool_image(topic_image_pool, shot)
+                    img = _pick_pool_image(topic_image_pool, shot,
+                                            exclude_paths=used_image_paths)
                     if img:
                         fill = min(remaining, IMAGE_MAX_DUR)
                         if fill > 0.3:
@@ -973,6 +1026,7 @@ def build_timed_top(
                             remaining -= fill
                             fill_idx += 1
                             placed = True
+                            used_image_paths.add(img["path"])
                             print(f"      [topic_image] shot {i+1} fill -> "
                                   f"{img['title'][:50]!r} ({fill:.1f}s)")
                 if not placed:
