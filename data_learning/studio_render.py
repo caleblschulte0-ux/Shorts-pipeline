@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 import tempfile
 from pathlib import Path
@@ -38,22 +39,19 @@ KOKORO_VOICES = REPO / "kokoro_models" / "voices-v1.0.bin"
 # Layout (1080x1920): chart up top, mascot roams the band below it (pointing
 # up at the chart), punch in the open band, captions at the bottom — the
 # lower third stays mostly ambient so there's something calming to rest on.
-GRAPH_W, GRAPH_H = 980, 860
-GRAPH_X, GRAPH_Y = 50, 60
+# Chart is overlaid 1:1 (PNG is 1000x920) so datum pixels map straight to
+# screen, letting the mascot stand right at the point it's describing.
+GRAPH_W, GRAPH_H = 1000, 920
+GRAPH_X, GRAPH_Y = 40, 60
 MASCOT_SIZE = 300
-MASCOT_ANGLE = 85                # points up at the chart from any side
-PUNCH_X, PUNCH_Y = 540, 1370
-CAP_MARGINV = 190
-HOP_PX = 46                      # bounce height when the mascot moves
+MASCOT_SEG_Y = 985               # mascot stands in the band just below chart
+MASCOT_CENTER = ((1080 - 300) // 2, 1000)   # hook / closing anchor
+PUNCH_X, PUNCH_Y = 540, 1430
+CAP_MARGINV = 175
 
-# Mascot anchor positions (top-left of the 300px sprite).
-POS_HOOK = (390, 1010)
-POS_LEFT = (55, 940)
-POS_RIGHT = (725, 940)
-
-# Voice: a warm, friendly Kokoro voice + a slight pitch lift so it reads as
-# the little mascot rather than a news anchor.
-VOICE_PITCH = 1.06
+# Voice: a warm *male* "dude monster" Kokoro voice, pitched DOWN slightly
+# (never up) so it reads as the monster, not a chirpy narrator.
+VOICE_PITCH = 0.95
 
 
 # --------------------------------------------------------------------------
@@ -124,6 +122,7 @@ Style: Cap,DejaVu Sans,60,&HFFFFFF&,&H000000&,&H66000000&,1,1,4,1,2,90,90,{CAP_M
 Style: Hook,DejaVu Sans,96,&H4FD1F5&,&H000000&,&H000000&,1,1,6,3,8,70,70,360,1
 Style: Punch,DejaVu Sans,150,&HFFFFFF&,&H000000&,&H000000&,1,1,6,3,5,40,40,0,1
 Style: Src,DejaVu Sans,40,&HA5B4C7&,&H000000&,&H000000&,0,1,3,1,5,120,120,0,1
+Style: Chip,DejaVu Sans,38,&HFFFFFF&,&H6A5C7C&,&H000000&,1,3,0,0,8,60,60,26,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -149,6 +148,11 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # 1..N: each segment — bottom kinetic captions + its punches.
     for i, seg in enumerate(st.segments):
         s0, s1 = windows[1 + i]
+        # Step chip up top labels this chart's role in the argument.
+        if seg.role:
+            chip = "{\\fad(150,150)} " + seg.role + " "
+            lines.append(f"Dialogue: 2,{_ass_time(s0)},{_ass_time(s1)},Chip,,0,0,0,,"
+                         f"{chip}")
         kinetic(seg.sentence, s0, s1)
         # Stagger multiple punches across the segment so they never stack.
         np = len(seg.punches)
@@ -175,49 +179,35 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 
 # --------------------------------------------------------------------------
-# Mascot motion — it roams to a new spot each beat, with a little hop.
+# Mascot placement — it stands at the exact datum each beat is about and
+# points its arm right at it (angle computed from its shoulder to the point).
 # --------------------------------------------------------------------------
-def _piecewise(kfs, axis: int) -> str:
-    """Smoothstep-interpolated ffmpeg expression over keyframes for x/y."""
-    ts = [k[0] for k in kfs]
-    vs = [k[axis] for k in kfs]
-    expr = f"{vs[-1]:.1f}"
-    for i in range(len(kfs) - 2, -1, -1):
-        t0, t1, v0, v1 = ts[i], ts[i + 1], vs[i], vs[i + 1]
-        dt = max(0.001, t1 - t0)
-        u = f"clip((t-{t0:.3f})/{dt:.3f},0,1)"
-        s = f"({u})*({u})*(3-2*({u}))"
-        seg = f"({v0:.1f}+({v1:.1f}-{v0:.1f})*{s})"
-        expr = f"if(lt(t,{t1:.3f}),{seg},{expr})"
-    return f"if(lt(t,{ts[0]:.3f}),{vs[0]:.1f},{expr})"
-
-
-def _motion_exprs(windows):
-    """Return (x_expr, y_expr) ffmpeg overlay expressions: the mascot slides
-    between per-beat anchors and adds a hop at each move."""
+def _beat_mascots(st: story.Story, windows):
     n = len(windows)
-    kfs = []
+    beats = []
     for i in range(n):
-        if i == 0 or i == n - 1:
-            pos = POS_HOOK
+        s0, s1 = windows[i]
+        if i == 0 or i == n - 1:                  # hook / closing -> centered
+            mx, my = MASCOT_CENTER
+            ang = 90.0
         else:
-            pos = POS_LEFT if (i % 2 == 1) else POS_RIGHT
-        kfs.append((windows[i][0], float(pos[0]), float(pos[1])))
-    x_expr = _piecewise(kfs, 1)
-    y_base = _piecewise(kfs, 2)
-    hops = []
-    for (kt, _, _) in kfs[1:]:
-        a, b = kt - 0.08, kt + 0.42
-        hops.append(f"if(between(t,{a:.3f},{b:.3f}),"
-                    f"{HOP_PX}*sin(PI*(t-{a:.3f})/{(b - a):.3f}),0)")
-    hop_sum = "+".join(hops) if hops else "0"
-    return x_expr, f"({y_base})-({hop_sum})"
+            seg = st.segments[i - 1]
+            hl = seg.highlight_px or (GRAPH_W / 2, GRAPH_H / 2)
+            tx, ty = GRAPH_X + hl[0], GRAPH_Y + hl[1]
+            # Stand under the datum (pointing shoulder roughly beneath it).
+            mx = int(min(max(tx - 0.65 * MASCOT_SIZE, 12), W - MASCOT_SIZE - 12))
+            my = MASCOT_SEG_Y
+            sx, sy = mx + 0.65 * MASCOT_SIZE, my + 0.50 * MASCOT_SIZE
+            ang = max(35.0, min(145.0, math.degrees(math.atan2(sy - ty, tx - sx))))
+        beats.append({"x": int(mx), "y": int(my), "angle": ang,
+                      "s0": s0, "s1": s1})
+    return beats
 
 
 # --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
-def render(slug: str, out_path: Path, voice: str = "af_heart") -> Path:
+def render(slug: str, out_path: Path, voice: str = "am_michael") -> Path:
     cfg = json.loads((PKG_DIR / "niche.config.json").read_text())
     story_cfg = next((s for s in cfg.get("stories", []) if s["slug"] == slug), None)
     if not story_cfg:
@@ -232,14 +222,20 @@ def render(slug: str, out_path: Path, voice: str = "af_heart") -> Path:
         total = _dur(narration) + 0.3
 
         bokeh = ambient.make_bokeh_strip(work / "bokeh.png")
-        mascot_mov = mascot.build_mascot_loop(work / "mascot.mov",
-                                              size=MASCOT_SIZE,
-                                              point_angle=MASCOT_ANGLE)
         ass = work / "cap.ass"
         build_story_ass(st, windows, ass)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
-        # Inputs: 0 gradient, 1 bokeh, 2..(charts), mascot, narration.
+        # One mascot pose per beat, each pointing at that beat's datum.
+        beats = _beat_mascots(st, windows)
+        beat_movs = []
+        for bi, b in enumerate(beats):
+            p = work / f"mascot_b{bi}.mov"
+            mascot.build_mascot_loop(p, size=MASCOT_SIZE, seconds=2.0,
+                                     point_angle=float(b["angle"]))
+            beat_movs.append(p)
+
+        # Inputs: 0 gradient, 1 bokeh, charts, per-beat mascots, narration.
         inputs = ["-f", "lavfi", "-i", ambient.gradient_lavfi(total)]
         inputs += ["-loop", "1", "-i", str(bokeh)]
         seg_idx = {}
@@ -249,14 +245,17 @@ def render(slug: str, out_path: Path, voice: str = "af_heart") -> Path:
                 inputs += ["-loop", "1", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
-        inputs += ["-stream_loop", "-1", "-i", str(mascot_mov)]
-        mascot_idx = idx
-        idx += 1
+        beat_input = []
+        for p in beat_movs:
+            inputs += ["-stream_loop", "-1", "-i", str(p)]
+            beat_input.append(idx)
+            idx += 1
         inputs += ["-i", str(narration)]
         audio_idx = idx
 
         fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]
         prev = "bg"
+        # Charts: each its own, shown during its window.
         for i, seg in enumerate(st.segments):
             if i not in seg_idx:
                 continue
@@ -264,18 +263,24 @@ def render(slug: str, out_path: Path, voice: str = "af_heart") -> Path:
             s0, s1 = windows[1 + i]
             fd = 0.3
             fc.append(
-                f"[{gi}:v]scale={GRAPH_W}:{GRAPH_H}:force_original_aspect_ratio=decrease,"
-                f"format=rgba,fade=t=in:st={s0:.2f}:d={fd}:alpha=1,"
+                f"[{gi}:v]scale={GRAPH_W}:{GRAPH_H},format=rgba,"
+                f"fade=t=in:st={s0:.2f}:d={fd}:alpha=1,"
                 f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
             fc.append(
                 f"[{prev}][g{i}]overlay=x={GRAPH_X}:y={GRAPH_Y}:"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
-        fc.append(f"[{mascot_idx}:v]format=rgba,scale={MASCOT_SIZE}:{MASCOT_SIZE}[masc]")
-        xexpr, yexpr = _motion_exprs(windows)
-        fc.append(f"[{prev}][masc]overlay=x='{xexpr}':y='{yexpr}':"
-                  f"eval=frame:shortest=0[withm]")
-        fc.append(f"[withm]ass='{ass_esc}'[v]")
+        # Mascot: stands at each beat's datum with a small slide-up entrance.
+        for bi, b in enumerate(beats):
+            gi = beat_input[bi]
+            s0, s1 = b["s0"], b["s1"]
+            yexpr = f"{b['y']}+120*max(0\\,1-(t-{s0:.2f})/0.45)"
+            fc.append(f"[{gi}:v]format=rgba,scale={MASCOT_SIZE}:{MASCOT_SIZE}[m{bi}]")
+            fc.append(
+                f"[{prev}][m{bi}]overlay=x={b['x']}:y='{yexpr}':eval=frame:"
+                f"enable='between(t,{s0:.2f},{s1:.2f})'[mb{bi}]")
+            prev = f"mb{bi}"
+        fc.append(f"[{prev}]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
                "-filter_complex", ";".join(fc),
@@ -297,8 +302,8 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--slug", required=True, help="story slug from niche.config.json")
     ap.add_argument("--out", type=Path, required=True)
-    ap.add_argument("--voice", default="af_heart",
-                    help="Kokoro voice id (default af_heart, the mascot voice)")
+    ap.add_argument("--voice", default="am_michael",
+                    help="Kokoro voice id (default am_michael, the dude-monster voice)")
     args = ap.parse_args()
     render(args.slug, args.out, voice=args.voice)
     return 0

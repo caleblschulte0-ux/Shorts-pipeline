@@ -34,6 +34,9 @@ class Segment:
     punches: list[dict]
     source_footer: str
     topic: str
+    role: str = ""
+    # Pixel (x, y) of the datum to point at, within the chart PNG.
+    highlight_px: tuple[float, float] | None = None
 
 
 @dataclass
@@ -144,13 +147,14 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
                                 CONNECTORS[min(i, len(CONNECTORS) - 1)])
         sentence, nums = _segment_text(ins, connector)
         punches = [pp for pp in (_punch(sentence, n, c) for n, c in nums) if pp]
-        cpath = charts.render_story_chart(
+        cpath, hl = charts.render_story_chart(
             ins, chart_dir / f"{story_cfg['slug']}_seg{i:02d}.png")
         footer = ins.source.footer()
         if footer not in sources:
             sources.append(footer)
-        segments.append(Segment(sentence, str(cpath) if cpath else None,
-                                punches, footer, ins.topic))
+        segments.append(Segment(
+            sentence, str(cpath) if cpath else None, punches, footer,
+            ins.topic, role=seg_cfg.get("role", ""), highlight_px=hl))
 
     return Story(
         slug=story_cfg["slug"],
