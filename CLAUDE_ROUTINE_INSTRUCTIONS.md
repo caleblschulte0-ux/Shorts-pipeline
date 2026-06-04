@@ -1,121 +1,62 @@
 # Daily Routine Instructions
 
-You are running the daily script-writing routine for the Shorts-pipeline channel.
-
-## Pipeline overview
-
-- Faceless YouTube Shorts channel publishing 25-second doomscroll-style explainers
-- The daily GitHub Action renders + uploads whatever packages you push
-- Your only job is writing the day's 6 script packages and pushing them to the repo
+You're running the daily script-writing routine for the Shorts-pipeline channel
+(faceless YouTube Shorts, 25-second doomscroll explainers). Your job: write the
+day's 6 script packages and push them. The daily GitHub Action renders + uploads.
 
 ## Steps
 
-0. **Read yesterday's analytics** (only if it exists):
+0. **Read yesterday's analytics** (if present):
    ```bash
    cat state/analytics/latest.json 2>/dev/null
    ```
-   This file has every uploaded video's views, likes, comments, and
-   `views_per_hour` (the only fair comparison across ages). Use the
-   `summary.top_5_by_vph` and `bottom_5_by_vph` lists to bias today's
-   picks: lean toward topic clusters / hook styles that scored high;
-   skip topics resembling the bottom five. If the file is missing
-   (first run after this loop ships), skip and proceed.
+   Use `summary.top_5_by_vph` / `bottom_5_by_vph` to bias today's picks: favor
+   topic clusters and hook styles that scored high; skip anything resembling
+   the bottom five. Skip this step if the file is missing.
 
 1. **Discover**:
    `GROQ_API_KEY=$GROQ_API_KEY python3 scripts/rank_topics.py --top-k 10`
 
-2. **Pick 6** from the ranker's output. **Two hard rules.**
+2. **Pick 6** from the ranker output. Two hard rules:
 
-   **Rule 1 — Freshness.** This is a "today's news" channel. Every
-   package should be something that happened in the last 24-48 hours.
-   Each ranker line shows an age marker like `[2h ago]`; strongly
-   prefer those. Anything that reads evergreen, retrospective, or
-   "X has been quietly happening for years" gets cut even when
-   interesting. If you can't anchor the package to "this happened
-   today / this morning / just announced", skip it.
+   **Rule 1 — Freshness.** Every package should be from the last 24-48 hours.
+   Each ranker line shows an age marker like `[2h ago]`. Anchor the package
+   to "happened today / this morning / just announced" or skip it.
 
-   **Rule 2 — Half the slate must be quirky.** Channel analytics show
-   "semi truck full of bees rolled over on the interstate" / "town
-   renames itself" / "raccoon shuts down airport" type stories
-   outperform every serious-news category (tech, AI, war, stocks) on
-   views and likes. **At least 3 of the 6 picks must come from the
-   Quirky / Offbeat bucket.**
+   **Rule 2 — Half the slate is quirky.** Channel analytics show "semi truck
+   full of bees rolled over" / "town renames itself" / "raccoon shuts down
+   airport" stories outperform every serious-news category on views and likes.
+   **At least 3 of 6 picks from the Quirky / Offbeat bucket.**
 
-   What counts as Quirky / Offbeat:
-   - Real news with an absurdist hook (escape, heist, world record,
-     animal incident, court-case-gone-wild, town vs. tax, "X-thousand
-     bees escape from truck")
-   - Local news that went viral nationally
-   - Wire-service "Oddly Enough" / UPI Odd News fare
-   - "Florida Man" / "Only in [region]" energy
-   - Animal news with stakes (escape, attack, rescue, world record)
+   Quirky = real news with an absurdist hook: world records, escapes, heists
+   with a comic twist, animal incidents, ridiculous court rulings, viral local
+   news, "Florida Man" energy. MUST be real — if no wire outlet (AP / UPI /
+   Reuters / BBC) confirms, skip it (r/nottheonion gets satire reposts).
+   NOT politics-with-quirky-frame, NOT heartwarming fluff, NOT celebrity gossip.
 
-   What does NOT count:
-   - Politics with a quirky frame ("congressman tweets cat picture")
-   - Pure heartwarming fluff ("service dog graduates")
-   - Celebrity gossip ("X is dating Y")
-   - Anything where you can't find a wire-service (AP / UPI / Reuters
-     / BBC) confirming the story is real. r/nottheonion and
-     r/FloridaMan posts get reposted from satire sites all the time;
-     verify before writing.
+   **Other 3** are serious news, 1 per category (treat Tech + Markets as one
+   combined bucket): Tech+Markets, World, US policy, Crime/Justice,
+   Science/Health, Climate, Culture/Entertainment, Sports (one-off only).
 
-   **Other 3 picks** are the serious-news slate, with the existing
-   "1 per category" rule:
-   - Tech + Markets (combined: AI, startups, big tech, earnings, stocks)
-   - World affairs / Geopolitics
-   - US domestic policy
-   - Crime / Justice
-   - Science / Health / Medicine
-   - Climate / Environment / Disasters
-   - Culture / Entertainment
-   - Sports (one-off moments only)
+   If fewer than 3 usable quirky stories exist, top up serious. Vice versa
+   if serious categories are thin. Never ship fewer than 6.
 
-   Treat Tech/AI + Business/Finance/Markets as a single combined
-   "Tech + Markets" bucket for this cap.
+   Also reject: live sports, obituaries, political horserace, no-visual-stakes,
+   evergreen explainers, and **incremental war/conflict updates** ("day 47 of",
+   "casualties rise"). Conflict stories only qualify on a genuinely new
+   development — escalation, ceasefire, named-leader statement, named-victim.
 
-   If you can't find 3 usable quirky stories in the ranker output,
-   top up the serious half — quirky-or-bust beats stale-news-from-
-   yesterday. If you can't fill 3 distinct serious categories, top
-   up with extra quirky picks instead. Better quirky than dupes.
-
-   Also reject:
-   - Live sports or sports-player news (time-locked, narrow audience)
-   - Celebrity deaths / obituaries
-   - Political horserace stories (elections, primaries, partisan combat)
-   - Anything you can't tell in 60 words
-   - Topics with no concrete visual story
-   - Evergreen explainers ("how X works", "the history of Y")
-   - **Ongoing war / conflict coverage where today's update is
-     incremental** ("day 47 of...", "fighting continues",
-     "casualties rise"). Viewers hit fatigue on repeat war coverage.
-     Only include conflict stories if today brought a major escalation,
-     breakthrough, ceasefire, named-victim event, or named-leader
-     statement — something genuinely new in the arc.
-
-3. **Cross-reference before writing.** Before drafting any script,
-   pull the same story from **at least 2-3 different outlets** to
-   avoid baking one publisher's slant into the video. The ranker's
-   angle field will list which sources flagged each story
-   (e.g. "BBC + Reuters + Politico all covering this") — use those.
-   If the ranker only saw it in one source, WebFetch the story from
-   another outlet (search the topic on apnews.com, reuters.com,
-   bbc.com, or the relevant beat outlet) before writing.
-
-   Synthesize across the sources: what do they all agree on (= the
-   facts)? Where do they differ (= the framing)? Write the script
-   from the facts. Keep the framing neutral — no editorializing,
-   no left/right loaded vocabulary, no "X is bad because..." or
-   "Y is finally..." phrasing. The audience should feel informed,
-   not convinced.
+3. **Cross-reference before writing.** Pull the same story from 2-3 outlets to
+   avoid baking one publisher's slant. The ranker's `angle` field lists which
+   sources flagged it ("BBC + Reuters + Politico all covering this"); if it's
+   single-source, WebFetch one more outlet before writing. Write from the
+   facts all sources agree on. Neutral framing, no editorializing.
 
 4. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
    one per pick.
 
-5. **Commit, push, AND open a PR**. You're probably running on an
-   isolated worktree branch, not directly on main, so a plain
-   `git push` puts your work on a feature branch that nobody renders
-   from. You MUST also open a pull request — that's what the auto-
-   merge workflow watches:
+5. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
+   branch nothing renders from; the PR is what auto-merge.yml watches:
 
    ```bash
    git add state/trending_packages/$(date -u +%Y%m%d)/
@@ -123,27 +64,15 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
    git push -u origin HEAD
    ```
 
-   Then create the PR. Prefer the GitHub MCP tool if available
-   (`mcp__github__create_pull_request` with `base: main`, `head:`
-   your current branch name). Otherwise use `gh`:
+   Then open the PR via `mcp__github__create_pull_request` (base: main, head:
+   current branch) or `gh pr create --base main --title "daily packages
+   $(date -u +%Y-%m-%d)" --body "Today's batch."`. **If you skip the PR,
+   nothing ships.**
 
-   ```bash
-   gh pr create \
-     --base main \
-     --title "daily packages $(date -u +%Y-%m-%d)" \
-     --body "Today's batch from the morning routine."
-   ```
-
-   Auto-merge.yml watches every `claude/*` PR and lands it within
-   ~30 seconds. The merge to main fires daily.yml via workflow_run,
-   which renders + uploads everything you wrote. **If you skip the
-   PR step, NOTHING ships.**
-
-## Script package format
+## Script package schema
 
 Reference: `state/trending_packages/20260531/*.json`.
 
-Schema:
 ```json
 {
   "title": "Punchy 6-10 word YouTube title",
@@ -161,92 +90,50 @@ Schema:
 
 ## Hashtags
 
-Write **10-15 topical hashtags per package** in the `hashtags` field.
-The orchestrator dedupes and merges with a baseline set (`#shorts #news
-#explainer #trending #viral #fyp` etc.) before uploading. Algos weight
-the first 3-5 hashtags hardest, so put the most specific topical ones
-at the front:
+10-15 per package in the `hashtags` field. Orchestrator dedupes against a
+baseline set (`#shorts #news #explainer #trending #viral #fyp`) before
+uploading. Algos weight the first 3-5 hardest — put the most specific topical
+ones at the front. Bare words, no `#`, no spaces (`aiethics` not `ai ethics`).
 
-| Topic                  | Good topical hashtags                                         |
-|------------------------|---------------------------------------------------------------|
-| Figure AI robots       | figureai, humanoidrobots, ai, automation, robotjobs, techai   |
-| SpaceX IPO             | spacex, elon, ipo, stocks, finance, wallstreet, investing     |
-| Pope's AI encyclical   | pope, vatican, popeleo, aiethics, religion, technews          |
-| Ernst & Young scandal  | ey, ernstandyoung, audit, scandal, accounting, businessnews   |
+## Specific imagery for proper nouns
 
-Format: bare words, no `#`. Avoid spaces (use `aiethics` not `ai ethics`).
-The orchestrator adds the `#` in the final description.
+Stock libraries (Pexels/Pixabay) don't have photos of specific companies,
+products, people, or events. For every proper noun in the script, attach a
+real photo via the `image` field.
 
-
-## CRITICAL: Specific imagery for every proper noun
-
-**The renderer pulls stock from Pexels/Pixabay by default. Stock libraries DO NOT
-have photos of specific companies, products, people, or events.** If a script
-mentions "Figure AI's humanoid robots" and the shot only has `query`, the video
-will show generic robot footage — never an actual Figure robot. That's the
-single biggest quality failure the channel has hit.
-
-For EVERY proper noun in the script (company, product, person, place, named
-event), do this in order:
-
-1. **WebFetch the Wikipedia article**:
-   `https://en.wikipedia.org/wiki/<EntityName>`
-2. From the response, grab a real photograph URL on `upload.wikimedia.org`.
-   Prefer photos of the entity itself (the product, the founder, the building),
-   NOT wordmark logos with just the company name in text.
-3. Verify size — Wikimedia only serves thumb sizes it has generated. `500px` is
-   almost always safe; `1024px` only exists for very large originals.
-4. Attach to the shot whose phrase mentions that entity:
+1. WebFetch `https://en.wikipedia.org/wiki/<EntityName>`, grab a
+   `upload.wikimedia.org` URL. Prefer photos of the entity itself, NOT
+   wordmark logos.
+2. `500px` Wikimedia thumbs are almost always safe; `1024px` only for very
+   large originals.
+3. Attach to the shot whose phrase mentions that entity, AND keep `query`
+   as a fallback:
    ```json
    {"phrase": "Figure AI's humanoid",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/.../500px-...",
     "query": "humanoid robot warehouse"}
    ```
-5. Always include a `query` fallback alongside `image`. The renderer caps each
-   image at 1.8s and fills the rest of the shot with stock from `query`.
 
-### What "specific" means in practice
+If no Wikipedia article exists, try the news article's `og:image` or Commons
+search (`https://commons.wikimedia.org/wiki/Special:Search?search=<entity>`).
 
-| Topic                       | Bad query only          | Good image + query                                  |
-|-----------------------------|-------------------------|----------------------------------------------------|
-| Figure AI robots            | "humanoid robot"        | Wikipedia photo of Figure 02 + warehouse stock     |
-| Pope's AI encyclical        | "pope vatican"          | Wikipedia photo of Pope Leo XIV + cathedral stock  |
-| SpaceX IPO                  | "rocket launch"         | Wikipedia Starship photo + stock-ticker stock      |
-| OpenRouter $113M            | "ai startup"            | OpenRouter founder photo + datacenter stock        |
-| Ernst & Young audit fraud   | "corporate office"      | EY LA building photo + audit-document stock        |
-
-If the entity has no Wikipedia article (rare), try:
-- The news article's `og:image` (WebFetch the article, grep for `og:image`)
-- Wikimedia Commons direct search: `https://commons.wikimedia.org/wiki/Special:Search?search=<entity>`
-
-### What NOT to do
-
-- ✗ Don't use wordmark-only logos as images (e.g., the Anthropic text logo). They
-  composite as floating text on a dark backdrop and look like a PowerPoint slide.
-- ✗ Don't write `image` URLs you haven't verified return HTTP 200 with
-  `Content-Type: image/*`. Wikimedia 404s break the render gracefully (falls back
-  to query) but waste a shot's specificity.
-- ✗ Don't use `image` without a `query` fallback. If the URL ever 404s, the
-  whole shot becomes blank.
+Never use wordmark-only logos (composite as PowerPoint slides). Never use
+`image` without a `query` fallback (URL 404 → blank shot).
 
 ## Other script rules
 
-- **60-80 words.** Open with a punchy hook (declarative, no warmup), close with a
-  kicker. Whisper transcribes the audio, so write naturally and use digits for
-  numbers ("12 million", "25%", "1980") — every trigger phrase must match what
-  Whisper outputs.
-- **5-7 shots, 4-7 punches.** Every `shot.phrase` and `punch.phrase` must be a
+- **60-80 words.** Hook → 3-5 facts → kicker. Use digits ("12 million", "25%",
+  "1980") so Whisper transcription matches.
+- **5-7 shots, 4-7 punches.** Every `shot.phrase` / `punch.phrase` must be a
   verbatim substring of the script (case-insensitive).
-- **Punch SFX is automatic** based on text content + color:
-  - Any `$` in punch text → ka-ching cash register
-  - "RIP / DEAD / CRASH / KILLED / GAME OVER / BANNED" → shock thump
-  - `#ff3030` red → shock, `#50ff80` green → bright bell, `#ffaa30` orange →
-    warning bell, `#ffffff` white → neutral
-- **Avoid these words**: "Wayfair" (Whisper hears "wafer"), "Once" as a
-  sentence opener (heard as "wants"). Use "First", "Back in", "Once you" etc.
+- **Punch SFX auto-mapped**: `$` in punch text → ka-ching;
+  "RIP/DEAD/CRASH/KILLED/GAME OVER/BANNED" → shock thump; `#ff3030` red →
+  shock, `#50ff80` green → bright bell, `#ffaa30` orange → warning, `#ffffff`
+  white → neutral.
+- **Avoid**: "Wayfair" (heard as "wafer"); "Once" as a sentence opener (heard
+  as "wants" — use "First" / "Back in" / "Once you").
 
-## Don't do
+## Don't
 
-- Don't render videos. The daily.yml workflow does that after your push.
-- Don't upload to YouTube. Same — workflow handles it.
-- Don't run the orchestrator (`run_trending_daily.py`). You only write packages.
+- Don't render or upload — daily.yml handles both.
+- Don't run `run_trending_daily.py`. You only write packages.
