@@ -230,41 +230,190 @@ def _draw_trend_state(ax, insight: Insight, k: int):
     ax.grid(axis="y", color="#1b2540", linewidth=1, zorder=0)
 
 
-def _arrow_to_bar(ax, insight: Insight, items, values):
-    """Draw a bright pointer at the highlighted bar so viewers know where to
-    look (the mascot gestures; this is the precise pointer)."""
-    try:
-        i = next(k for k, p in enumerate(items)
-                 if p.label == insight.highlight_label)
-    except StopIteration:
-        return
-    v = values[i]
-    # Bright emphasis ring around the star bar — the precise "look here" cue
-    # (the mascot gestures toward it).
-    ax.barh(i, v, color="none", edgecolor=TEXT, linewidth=4, height=0.62,
-            zorder=5)
+def _card_base():
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch
+
+    fig = plt.figure(figsize=(SERIES_W, SERIES_H), dpi=SERIES_DPI)
+    fig.patch.set_alpha(0.0)
+    bg = fig.add_axes([0, 0, 1, 1])
+    bg.set_axis_off()
+    bg.set_zorder(0)
+    card = FancyBboxPatch(
+        (0.02, 0.02), 0.96, 0.96,
+        boxstyle="round,pad=0.0,rounding_size=0.045",
+        transform=fig.transFigure, facecolor=CARD, edgecolor=CARD_EDGE,
+        linewidth=2, alpha=0.95)
+    bg.add_patch(card)
+    return fig, plt
+
+
+def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
+    fig.text(0.085, 0.91, title, color=TEXT, fontsize=42, fontweight="bold",
+             ha="left", va="top")
+    if subtitle:
+        fig.text(0.085, 0.845, subtitle.upper(), color=accent, fontsize=22,
+                 fontweight="bold", ha="left", va="top")
+
+
+def _footer(fig, insight: Insight):
+    fig.text(0.5, 0.045, insight.source.footer(), ha="center", fontsize=12,
+             color=SUBTLE)
+
+
+def _round_barh(ax, y, value, lw, color, zorder=3):
+    ax.plot([0.0, value], [y, y], color=color, lw=lw, solid_capstyle="round",
+            zorder=zorder)
+
+
+def _round_barv(ax, x, value, lw, color, zorder=3):
+    ax.plot([x, x], [0.0, value], color=color, lw=lw, solid_capstyle="round",
+            zorder=zorder)
+
+
+def _bar_lw(n: int) -> float:
+    """Bar thickness (points) so rounded bars fill the axes nicely."""
+    return max(34.0, (560.0 / max(1, n)) * 0.46 * 0.72)
+
+
+def _story_bars(fig, plt, insight: Insight, subtitle: str):
+    """Rounded horizontal bars on a track — for rankings/outliers."""
+    items = _ordered_items(insight)
+    values = [p.value for p in items]
+    vmax = max(values) if values else 1.0
+    n = len(items)
+    lw = _bar_lw(n)
+    ax = fig.add_axes([0.32, 0.17, 0.60, 0.58])
+    ax.set_facecolor("none")
+    for i, (p, v) in enumerate(zip(items, values)):
+        if insight.baseline and p.label == insight.baseline.label:
+            color = WARN
+        elif p.label == insight.highlight_label:
+            color = HIGHLIGHT
+        else:
+            color = ACCENT
+        _round_barh(ax, i, vmax, lw, BAR_BASE, zorder=2)          # track
+        _round_barh(ax, i, max(v, vmax * 0.012), lw, color, zorder=3)
+        ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
+                color=TEXT, fontweight="bold", zorder=4)
+    ax.set_yticks(range(n))
+    ax.set_yticklabels([p.label for p in items], fontsize=27, color=TEXT)
+    # Tint the winner's (and baseline's) label so the eye lands on it.
+    for lbl, p in zip(ax.get_yticklabels(), items):
+        if insight.baseline and p.label == insight.baseline.label:
+            lbl.set_color(WARN)
+        elif p.label == insight.highlight_label:
+            lbl.set_color(HIGHLIGHT)
+            lbl.set_fontweight("bold")
+    ax.invert_yaxis()
+    ax.set_xticks([])
+    ax.set_xlim(0, vmax * 1.22)
+    ax.set_ylim(n - 0.5, -0.5)
+    for s in ax.spines.values():
+        s.set_visible(False)
+    ax.tick_params(length=0)
+
+
+def _story_versus(fig, plt, insight: Insight, subtitle: str):
+    """Two tall rounded columns with big numbers — for comparisons."""
+    hi, lo = insight.items[0], insight.items[1]
+    pair = [(hi, HIGHLIGHT), (lo, ACCENT)]
+    vmax = max(hi.value, lo.value)
+    ax = fig.add_axes([0.10, 0.22, 0.82, 0.50])
+    ax.set_facecolor("none")
+    lw = 100
+    xs = [0.30, 0.70]
+    colors = [HIGHLIGHT, ACCENT]
+    for (p, color), x in zip(pair, xs):
+        _round_barv(ax, x, vmax, lw, BAR_BASE, zorder=2)
+        _round_barv(ax, x, max(p.value, vmax * 0.02), lw, color, zorder=3)
+        ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%", ha="center",
+                fontsize=46, color=TEXT, fontweight="bold", zorder=4)
+        ax.text(x, -vmax * 0.30, p.label, ha="center", fontsize=28,
+                color=color, fontweight="bold", zorder=4)
+    ax.text(0.5, vmax * 0.5, "vs", ha="center", va="center", fontsize=34,
+            color=SUBTLE, fontstyle="italic", zorder=4)
+    # Baseline reference line if present (label kept inside the card).
+    if insight.baseline:
+        b = insight.baseline.value
+        ax.plot([0.10, 0.90], [b, b], color=WARN, lw=2.5, ls=(0, (4, 3)),
+                zorder=2)
+        ax.text(0.5, b + vmax * 0.04,
+                f"{insight.baseline.label} {_vfmt(b)}%", ha="center",
+                va="bottom", fontsize=19, color=WARN, fontweight="bold",
+                zorder=4)
+    ax.set_xlim(0, 1)
+    ax.set_ylim(-vmax * 0.44, vmax * 1.30)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for s in ax.spines.values():
+        s.set_visible(False)
+
+
+def _story_trend(fig, plt, insight: Insight, subtitle: str):
+    """Line with a soft area fill, a peak callout, and a glowing end."""
+    pts = insight.items
+    x = list(range(len(pts)))
+    values = [p.value for p in pts]
+    ax = fig.add_axes([0.13, 0.18, 0.80, 0.56])
+    ax.set_facecolor("none")
+    lo = min(values)
+    ax.fill_between(x, values, lo - (max(values) - lo) * 0.15,
+                    color=HIGHLIGHT, alpha=0.16, zorder=2)
+    ax.plot(x, values, color=HIGHLIGHT, lw=6, solid_capstyle="round",
+            zorder=3)
+    ax.plot(x, values, "o", color=HIGHLIGHT, markersize=9, zorder=4)
+    # Peak callout.
+    pk = max(range(len(values)), key=lambda i: values[i])
+    if 0 < pk < len(values) - 1:
+        ax.annotate(f"peak {_vfmt(values[pk])}%", xy=(x[pk], values[pk]),
+                    xytext=(x[pk], values[pk] + (max(values) - lo) * 0.16),
+                    ha="center", fontsize=20, color=TEXT, fontweight="bold",
+                    zorder=5)
+    # Glowing end value.
+    ax.plot(x[-1], values[-1], "o", color=TEXT, markersize=16, alpha=0.25,
+            zorder=4)
+    ax.text(x[-1], values[-1], "  " + _vfmt(values[-1]) + "%", va="center",
+            fontsize=30, color=TEXT, fontweight="bold", zorder=5)
+    ax.set_xticks(x)
+    ax.set_xticklabels([p.label for p in pts], fontsize=22, color=SUBTLE)
+    ax.set_yticks([])
+    ax.set_xlim(-0.35, (len(pts) - 1) + 0.85)
+    ax.set_ylim(lo - (max(values) - lo) * 0.18, max(values) * 1.20)
+    ax.grid(axis="y", color="#18223c", linewidth=1, zorder=0)
+    for s in ax.spines.values():
+        s.set_visible(False)
+    ax.tick_params(length=0)
 
 
 def render_story_chart(insight: Insight, out_path: Path) -> Path | None:
-    """One *full* chart for a story segment (its own data), on a card, with a
-    pointer at the key datum. Returns the path or None if matplotlib absent."""
+    """One *full*, visually distinct chart for a story segment. Each insight
+    kind gets its own look so successive charts feel different and each tells
+    its own story. Returns the path or None if matplotlib is absent."""
     if not _have_mpl():
         return None
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    fig, ax, plt = _new_card()
-    ax.set_title(insight.topic, color=TEXT, fontsize=36, fontweight="bold",
-                 pad=22, loc="left")
-    if insight.kind == "trend":
-        _draw_trend_state(ax, insight, len(insight.items) - 1)
-    else:
-        items = _ordered_items(insight)
-        _draw_bars_state(ax, insight, len(items))
-        _arrow_to_bar(ax, insight, items, [p.value for p in items])
-    for spine in ax.spines.values():
-        spine.set_visible(False)
-    ax.tick_params(colors=SUBTLE, length=0)
-    fig.text(0.5, 0.05, insight.source.footer(), ha="center",
-             fontsize=12, color=SUBTLE)
+    fig, plt = _card_base()
+
+    star = insight.items[0]
+    if insight.kind == "comparison":
+        lo = insight.items[1]
+        subtitle, accent = f"{star.label} vs {lo.label}", HIGHLIGHT
+        _heading(fig, insight.topic, subtitle, accent)
+        _story_versus(fig, plt, insight, subtitle)
+    elif insight.kind == "trend":
+        subtitle = f"{insight.items[0].label} → {insight.items[-1].label}"
+        _heading(fig, insight.topic, subtitle)
+        _story_trend(fig, plt, insight, subtitle)
+    else:  # rank / outlier
+        low = "lowest" in insight.main_insight.lower()
+        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
+        _heading(fig, insight.topic, subtitle)
+        _story_bars(fig, plt, insight, subtitle)
+
+    _footer(fig, insight)
     fig.savefig(out_path, transparent=True)
     plt.close(fig)
     return out_path

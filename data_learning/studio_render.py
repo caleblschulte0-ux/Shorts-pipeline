@@ -35,16 +35,25 @@ W, H, FPS = 1080, 1920, 30
 KOKORO_MODEL = REPO / "kokoro_models" / "kokoro-v1.0.onnx"
 KOKORO_VOICES = REPO / "kokoro_models" / "voices-v1.0.bin"
 
-# Layout (1080x1920): chart up top, mascot just below-left pointing up into
-# it, punch in the open band, captions at the bottom — the lower third stays
-# mostly ambient so there's something calming to rest your eyes on.
-GRAPH_W, GRAPH_H = 980, 850
-GRAPH_X, GRAPH_Y = 50, 70
+# Layout (1080x1920): chart up top, mascot roams the band below it (pointing
+# up at the chart), punch in the open band, captions at the bottom — the
+# lower third stays mostly ambient so there's something calming to rest on.
+GRAPH_W, GRAPH_H = 980, 860
+GRAPH_X, GRAPH_Y = 50, 60
 MASCOT_SIZE = 300
-MASCOT_X, MASCOT_Y = 24, 930
-MASCOT_ANGLE = 64                # up-right, toward the chart
-PUNCH_X, PUNCH_Y = 600, 1070
-CAP_MARGINV = 200
+MASCOT_ANGLE = 85                # points up at the chart from any side
+PUNCH_X, PUNCH_Y = 540, 1370
+CAP_MARGINV = 190
+HOP_PX = 46                      # bounce height when the mascot moves
+
+# Mascot anchor positions (top-left of the 300px sprite).
+POS_HOOK = (390, 1010)
+POS_LEFT = (55, 940)
+POS_RIGHT = (725, 940)
+
+# Voice: a warm, friendly Kokoro voice + a slight pitch lift so it reads as
+# the little mascot rather than a news anchor.
+VOICE_PITCH = 1.06
 
 
 # --------------------------------------------------------------------------
@@ -76,8 +85,13 @@ def synth_narration(sentences, workdir: Path, voice: str):
           "-i", str(listf), "-af", "apad=pad_dur=0.18", "-c:a", "pcm_s16le",
           str(raw)])
     narration = workdir / "narration.wav"
+    # Pitch the voice up slightly (asetrate shifts pitch+tempo; atempo undoes
+    # the tempo) so it sounds like the cute mascot, then loudness-normalize.
+    sr0 = 24000
+    af = (f"asetrate={int(sr0 * VOICE_PITCH)},aresample={sr0},"
+          f"atempo={1 / VOICE_PITCH:.4f},loudnorm=I=-16:LRA=11:TP=-1.5")
     _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(raw),
-          "-af", "loudnorm=I=-16:LRA=11:TP=-1.5", str(narration)])
+          "-af", af, str(narration)])
     return narration, windows
 
 
@@ -161,9 +175,49 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 
 # --------------------------------------------------------------------------
+# Mascot motion — it roams to a new spot each beat, with a little hop.
+# --------------------------------------------------------------------------
+def _piecewise(kfs, axis: int) -> str:
+    """Smoothstep-interpolated ffmpeg expression over keyframes for x/y."""
+    ts = [k[0] for k in kfs]
+    vs = [k[axis] for k in kfs]
+    expr = f"{vs[-1]:.1f}"
+    for i in range(len(kfs) - 2, -1, -1):
+        t0, t1, v0, v1 = ts[i], ts[i + 1], vs[i], vs[i + 1]
+        dt = max(0.001, t1 - t0)
+        u = f"clip((t-{t0:.3f})/{dt:.3f},0,1)"
+        s = f"({u})*({u})*(3-2*({u}))"
+        seg = f"({v0:.1f}+({v1:.1f}-{v0:.1f})*{s})"
+        expr = f"if(lt(t,{t1:.3f}),{seg},{expr})"
+    return f"if(lt(t,{ts[0]:.3f}),{vs[0]:.1f},{expr})"
+
+
+def _motion_exprs(windows):
+    """Return (x_expr, y_expr) ffmpeg overlay expressions: the mascot slides
+    between per-beat anchors and adds a hop at each move."""
+    n = len(windows)
+    kfs = []
+    for i in range(n):
+        if i == 0 or i == n - 1:
+            pos = POS_HOOK
+        else:
+            pos = POS_LEFT if (i % 2 == 1) else POS_RIGHT
+        kfs.append((windows[i][0], float(pos[0]), float(pos[1])))
+    x_expr = _piecewise(kfs, 1)
+    y_base = _piecewise(kfs, 2)
+    hops = []
+    for (kt, _, _) in kfs[1:]:
+        a, b = kt - 0.08, kt + 0.42
+        hops.append(f"if(between(t,{a:.3f},{b:.3f}),"
+                    f"{HOP_PX}*sin(PI*(t-{a:.3f})/{(b - a):.3f}),0)")
+    hop_sum = "+".join(hops) if hops else "0"
+    return x_expr, f"({y_base})-({hop_sum})"
+
+
+# --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
-def render(slug: str, out_path: Path, voice: str = "am_adam") -> Path:
+def render(slug: str, out_path: Path, voice: str = "af_heart") -> Path:
     cfg = json.loads((PKG_DIR / "niche.config.json").read_text())
     story_cfg = next((s for s in cfg.get("stories", []) if s["slug"] == slug), None)
     if not story_cfg:
@@ -218,7 +272,9 @@ def render(slug: str, out_path: Path, voice: str = "am_adam") -> Path:
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
         fc.append(f"[{mascot_idx}:v]format=rgba,scale={MASCOT_SIZE}:{MASCOT_SIZE}[masc]")
-        fc.append(f"[{prev}][masc]overlay=x={MASCOT_X}:y={MASCOT_Y}:shortest=0[withm]")
+        xexpr, yexpr = _motion_exprs(windows)
+        fc.append(f"[{prev}][masc]overlay=x='{xexpr}':y='{yexpr}':"
+                  f"eval=frame:shortest=0[withm]")
         fc.append(f"[withm]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
@@ -241,8 +297,8 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--slug", required=True, help="story slug from niche.config.json")
     ap.add_argument("--out", type=Path, required=True)
-    ap.add_argument("--voice", default="am_adam",
-                    help="Kokoro voice id (default am_adam, the pipeline voice)")
+    ap.add_argument("--voice", default="af_heart",
+                    help="Kokoro voice id (default af_heart, the mascot voice)")
     args = ap.parse_args()
     render(args.slug, args.out, voice=args.voice)
     return 0
