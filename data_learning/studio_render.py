@@ -158,9 +158,14 @@ def _wrap(text: str, width: int = 22) -> str:
     return "\\N".join(out)
 
 
-# A filled disc (ASS vector drawing), radius ~16, used as the data marker.
-_DISC = ("{\\p1}m -16 0 b -16 -9 -9 -16 0 -16 b 9 -16 16 -9 16 0 "
-         "b 16 9 9 16 0 16 b -9 16 -16 9 -16 0{\\p0}")
+def _ellipse_path(rx: float, ry: float) -> str:
+    """ASS vector path for an ellipse outline (4 cubic beziers)."""
+    kx, ky = 0.5523 * rx, 0.5523 * ry
+    return (f"m {-rx:.0f} 0 "
+            f"b {-rx:.0f} {-ky:.0f} {-kx:.0f} {-ry:.0f} 0 {-ry:.0f} "
+            f"b {kx:.0f} {-ry:.0f} {rx:.0f} {-ky:.0f} {rx:.0f} 0 "
+            f"b {rx:.0f} {ky:.0f} {kx:.0f} {ry:.0f} 0 {ry:.0f} "
+            f"b {-kx:.0f} {ry:.0f} {-rx:.0f} {ky:.0f} {-rx:.0f} 0")
 
 
 def build_story_ass(st: story.Story, windows, events, out: Path) -> None:
@@ -213,15 +218,16 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     for e in events:
         ps, pe, p = e["ps"], e["pe"], e["punch"]
         color = _hex_to_ass(p.get("color", "#ffffff"))
-        if e["xy"]:
+        if e["xy"] and e["box"]:
             mx, my = int(e["xy"][0]), int(e["xy"][1])
-            # Bright hollow ring (transparent fill, thick border) so it reads
-            # over both the teal bars and the teal monster.
-            mk = ("{\\an5\\pos(" + f"{mx},{my}" + ")\\1a&HFF&\\3c&H4FE1FF&"
-                  "\\bord7\\fad(100,150)\\t(0,260,\\fscx155\\fscy155)"
-                  "\\t(260,520,\\fscx105\\fscy105)}" + _DISC)
+            rx = e["box"][0] / 2 + 24      # encase the WHOLE number + padding
+            ry = e["box"][1] / 2 + 14
+            ring = ("{\\an5\\pos(" + f"{mx},{my}" + ")\\1a&HFF&\\3c&HF0E14F&"
+                    "\\bord5\\shad0\\fad(120,150)"
+                    "\\t(0,200,\\fscx107\\fscy107)\\t(200,420,\\fscx100\\fscy100)"
+                    "\\p1}" + _ellipse_path(rx, ry) + "{\\p0}")
             lines.append(f"Dialogue: 3,{_ass_time(max(0, ps - 0.15))},"
-                         f"{_ass_time(pe)},Mark,,0,0,0,,{mk}")
+                         f"{_ass_time(pe)},Mark,,0,0,0,,{ring}")
         styled = ("{\\fad(120,120)\\pos(" + str(PUNCH_X) + "," + str(PUNCH_Y)
                   + ")\\fs104\\c" + color + "}" + p.get("text", ""))
         lines.append(f"Dialogue: 1,{_ass_time(ps)},{_ass_time(pe)},Punch,,0,0,0,,"
@@ -281,8 +287,10 @@ def _plan_events(st: story.Story, windows):
             ps = s0 + frac * (s1 - s0)
             dur = min(float(p.get("duration", 1.8)), max(0.6, s1 - ps))
             a = _anchor_for_punch(seg, p)
-            xy = _screen(a["px"], a["py"]) if a else None
-            events.append({"ps": ps, "pe": ps + dur, "punch": p, "xy": xy})
+            xy = _screen(a["cx"], a["cy"]) if a else None
+            box = (a["w"] * CHART_SCALE, a["h"] * CHART_SCALE) if a else None
+            events.append({"ps": ps, "pe": ps + dur, "punch": p,
+                           "xy": xy, "box": box})
     return events
 
 

@@ -287,6 +287,7 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str):
     lw = _bar_lw(n)
     ax = fig.add_axes([0.32, 0.17, 0.60, 0.58])
     ax.set_facecolor("none")
+    arts = []
     for i, (p, v) in enumerate(zip(items, values)):
         if insight.baseline and p.label == insight.baseline.label:
             color = WARN
@@ -296,8 +297,9 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str):
             color = ACCENT
         _round_barh(ax, i, vmax, lw, BAR_BASE, zorder=2)          # track
         _round_barh(ax, i, max(v, vmax * 0.012), lw, color, zorder=3)
-        ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
-                color=TEXT, fontweight="bold", zorder=4)
+        t = ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
+                    color=TEXT, fontweight="bold", zorder=4)
+        arts.append((p.value, "art", t, None))
     ax.set_yticks(range(n))
     ax.set_yticklabels([p.label for p in items], fontsize=27, color=TEXT)
     # Tint the winner's (and baseline's) label so the eye lands on it.
@@ -314,9 +316,9 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str):
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
-    # Anchor for every bar (value -> its end point), so the mascot/marker can
-    # go to whichever value is being spoken.
-    return ax, [(p.value, p.value, k) for k, p in enumerate(items)]
+    # Anchor each value at its number label so the marker encircles the whole
+    # number (and the mascot walks to it).
+    return ax, arts
 
 
 def _story_versus(fig, plt, insight: Insight, subtitle: str):
@@ -329,11 +331,14 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str):
     lw = 100
     xs = [0.30, 0.70]
     colors = [HIGHLIGHT, ACCENT]
+    arts = []
     for (p, color), x in zip(pair, xs):
         _round_barv(ax, x, vmax, lw, BAR_BASE, zorder=2)
         _round_barv(ax, x, max(p.value, vmax * 0.02), lw, color, zorder=3)
-        ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%", ha="center",
-                fontsize=46, color=TEXT, fontweight="bold", zorder=4)
+        t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
+                    ha="center", fontsize=46, color=TEXT, fontweight="bold",
+                    zorder=4)
+        arts.append((p.value, "art", t, None))
         ax.text(x, -vmax * 0.30, p.label, ha="center", fontsize=28,
                 color=color, fontweight="bold", zorder=4)
     ax.text(0.5, vmax * 0.5, "vs", ha="center", va="center", fontsize=34,
@@ -353,8 +358,8 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str):
     ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
-    # Anchor each column at the top of its bar.
-    return ax, [(hi.value, xs[0], hi.value), (lo.value, xs[1], lo.value)]
+    # Anchor each column at its big number label.
+    return ax, arts
 
 
 def _story_trend(fig, plt, insight: Insight, subtitle: str):
@@ -370,37 +375,44 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str):
     ax.plot(x, values, color=HIGHLIGHT, lw=6, solid_capstyle="round",
             zorder=3)
     ax.plot(x, values, "o", color=HIGHLIGHT, markersize=9, zorder=4)
-    # Peak callout.
+    span = max(values) - lo
     pk = max(range(len(values)), key=lambda i: values[i])
-    if 0 < pk < len(values) - 1:
-        ax.annotate(f"peak {_vfmt(values[pk])}%", xy=(x[pk], values[pk]),
-                    xytext=(x[pk], values[pk] + (max(values) - lo) * 0.16),
-                    ha="center", fontsize=20, color=TEXT, fontweight="bold",
-                    zorder=5)
-    # Glowing end value.
-    ax.plot(x[-1], values[-1], "o", color=TEXT, markersize=16, alpha=0.25,
-            zorder=4)
-    ax.text(x[-1], values[-1], "  " + _vfmt(values[-1]) + "%", va="center",
-            fontsize=30, color=TEXT, fontweight="bold", zorder=5)
+    last = len(values) - 1
+    # Value labels at peak + end (the markers encircle these whole numbers).
+    arts = []
+    for k in range(len(values)):
+        if k == pk and 0 < pk < last:
+            t = ax.text(x[k], values[k] + span * 0.12, _vfmt(values[k]) + "%",
+                        ha="center", fontsize=26, color=TEXT,
+                        fontweight="bold", zorder=5)
+            arts.append((values[k], "art", t, None))
+        elif k == last:
+            ax.plot(x[k], values[k], "o", color=TEXT, markersize=16,
+                    alpha=0.25, zorder=4)
+            t = ax.text(x[k] + 0.12, values[k], _vfmt(values[k]) + "%",
+                        va="center", ha="left", fontsize=30, color=TEXT,
+                        fontweight="bold", zorder=5)
+            arts.append((values[k], "art", t, None))
+        else:
+            arts.append((values[k], "pt", x[k], values[k]))
     ax.set_xticks(x)
     ax.set_xticklabels([p.label for p in pts], fontsize=22, color=SUBTLE)
     ax.set_yticks([])
     ax.set_xlim(-0.35, (len(pts) - 1) + 0.85)
-    ax.set_ylim(lo - (max(values) - lo) * 0.18, max(values) * 1.20)
+    ax.set_ylim(lo - span * 0.18, max(values) * 1.22)
     ax.grid(axis="y", color="#18223c", linewidth=1, zorder=0)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
-    # Anchor every point on the line by its value.
-    return ax, [(values[k], x[k], values[k]) for k in range(len(values))]
+    return ax, arts
 
 
 def render_story_chart(insight: Insight, out_path: Path):
     """One *full*, visually distinct chart for a story segment. Returns
-    ``(path, anchors)`` where ``anchors`` is a list of
-    ``{"value": v, "px": x, "py": y}`` — the pixel of *every* data point in
-    the PNG — so the renderer can send a marker + the mascot to whichever
-    value the narration is on. ``(None, [])`` if matplotlib is absent."""
+    ``(path, anchors)`` where each anchor is
+    ``{"value", "cx", "cy", "w", "h"}`` — the centre and size (PNG px) of
+    that value's number label — so the renderer can encircle the *whole*
+    number and send the mascot to it. ``(None, [])`` if matplotlib absent."""
     if not _have_mpl():
         return None, []
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -411,29 +423,36 @@ def render_story_chart(insight: Insight, out_path: Path):
         lo = insight.items[1]
         subtitle, accent = f"{star.label} vs {lo.label}", HIGHLIGHT
         _heading(fig, insight.topic, subtitle, accent)
-        ax, anchors = _story_versus(fig, plt, insight, subtitle)
+        ax, specs = _story_versus(fig, plt, insight, subtitle)
     elif insight.kind == "trend":
         subtitle = f"{insight.items[0].label} → {insight.items[-1].label}"
         _heading(fig, insight.topic, subtitle)
-        ax, anchors = _story_trend(fig, plt, insight, subtitle)
+        ax, specs = _story_trend(fig, plt, insight, subtitle)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
         _heading(fig, insight.topic, subtitle)
-        ax, anchors = _story_bars(fig, plt, insight, subtitle)
+        ax, specs = _story_bars(fig, plt, insight, subtitle)
 
     _footer(fig, insight)
-    # Resolve every anchor's data coord to a PNG pixel (top-left origin).
+    # Resolve each spec to a label box (centre + size) in PNG px (top-left).
     fig.canvas.draw()
     h_px = SERIES_H * SERIES_DPI
-    resolved = []
-    for value, dx, dy in anchors:
-        disp = ax.transData.transform((dx, dy))
-        resolved.append({"value": float(value), "px": float(disp[0]),
-                         "py": float(h_px - disp[1])})
+    anchors = []
+    for value, kind, a, b in specs:
+        if kind == "art":
+            bb = a.get_window_extent()
+            cx, cy_disp = bb.x0 + bb.width / 2, bb.y0 + bb.height / 2
+            w, h = bb.width, bb.height
+        else:  # 'pt' — a bare data point with no label
+            cx, cy_disp = ax.transData.transform((a, b))
+            w = h = 40.0
+        anchors.append({"value": float(value), "cx": float(cx),
+                        "cy": float(h_px - cy_disp), "w": float(w),
+                        "h": float(h)})
     fig.savefig(out_path, transparent=True)
     plt.close(fig)
-    return out_path, resolved
+    return out_path, anchors
 
 
 def render_series(insight: Insight, out_dir: Path, slug: str) -> list[Path]:
