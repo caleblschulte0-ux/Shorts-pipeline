@@ -60,7 +60,7 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
 
     # Vertical anatomy (fractions of S).
     head_cy = int(S * 0.30) + oy
-    head_r = int(S * 0.150)
+    head_r = int(S * 0.168)             # bigger head = cuter/friendlier
     shoulder_y = int(S * 0.50) + oy
     torso_top = int(S * 0.46) + oy
     torso_bot = int(S * 0.74) + oy
@@ -120,32 +120,40 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
               fill=BODY_DK)
     _circle(d, cx, head_cy - int(head_r * 0.05), int(head_r * 0.96), SKIN)
 
-    # Eyes.
-    eye_dx = int(head_r * 0.40)
-    eye_y = head_cy - int(head_r * 0.05)
-    eye_r = int(head_r * 0.26)
-    pup_r = int(head_r * 0.12)
+    # Eyes — big and shiny for a friendly look.
+    eye_dx = int(head_r * 0.42)
+    eye_y = head_cy - int(head_r * 0.06)
+    eye_r = int(head_r * 0.32)
+    pup_r = int(head_r * 0.16)
     for sgn in (-1, 1):
         ex2 = cx + sgn * eye_dx
         if blink > 0.6:
             d.arc([ex2 - eye_r, eye_y - eye_r, ex2 + eye_r, eye_y + eye_r],
-                  start=200, end=340, fill=DARK, width=max(2, S // 130))
+                  start=200, end=340, fill=DARK, width=max(3, S // 110))
         else:
             _circle(d, ex2, eye_y, eye_r, WHITE)
-            _circle(d, ex2, eye_y + int(eye_r * 0.2), pup_r, DARK)
+            _circle(d, ex2, eye_y + int(eye_r * 0.18), pup_r, DARK)
+            # two catchlights = sparkly, friendly eyes
             _circle(d, ex2 - pup_r // 2, eye_y - pup_r // 3,
-                    max(2, pup_r // 3), WHITE)
+                    max(2, int(pup_r * 0.42)), WHITE)
+            _circle(d, ex2 + pup_r // 2, eye_y + pup_r // 3,
+                    max(2, int(pup_r * 0.22)), WHITE)
 
-    # Blush + smile.
+    # Big rosy blush.
     for sgn in (-1, 1):
-        bx = cx + sgn * int(head_r * 0.62)
-        d.ellipse([bx - int(head_r * 0.16), eye_y + int(head_r * 0.22),
-                   bx + int(head_r * 0.16), eye_y + int(head_r * 0.46)],
+        bx = cx + sgn * int(head_r * 0.66)
+        d.ellipse([bx - int(head_r * 0.20), eye_y + int(head_r * 0.26),
+                   bx + int(head_r * 0.20), eye_y + int(head_r * 0.54)],
                   fill=BLUSH)
-    mw = int(head_r * 0.34)
-    my = head_cy + int(head_r * 0.42)
-    d.arc([cx - mw, my - mw, cx + mw, my + mw], start=20, end=160,
-          fill=DARK, width=max(2, S // 130))
+
+    # Open, happy smile (filled) with a little tongue.
+    mw = int(head_r * 0.46)
+    my = head_cy + int(head_r * 0.40)
+    d.pieslice([cx - mw, my - mw, cx + mw, my + mw], start=18, end=162,
+               fill=DARK)
+    tw = int(mw * 0.42)
+    d.chord([cx - tw, my + int(mw * 0.10), cx + tw, my + int(mw * 0.74)],
+            start=0, end=180, fill=(255, 120, 140, 255))
 
     # Graduation cap.
     cap_y = head_cy - head_r
@@ -173,8 +181,8 @@ def build_mascot_loop(out_path: Path, *, size: int = 360, fps: int = 30,
         td = Path(td)
         for i in range(n):
             t = i / n
-            bob = math.sin(t * 2 * math.pi) * (size * 0.016)
-            wiggle = math.sin(t * 2 * math.pi * 2)         # 2x for a lively arm
+            bob = math.sin(t * 2 * math.pi) * (size * 0.026)   # livelier bob
+            wiggle = math.sin(t * 2 * math.pi * 2)             # 2x lively arm
             blink = 1.0 if 0.70 <= t <= 0.74 else 0.0
             _draw(size, bob, blink, point_angle, wiggle).save(td / f"m{i:04d}.png")
         subprocess.run(
