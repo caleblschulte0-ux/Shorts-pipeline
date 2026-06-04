@@ -457,9 +457,11 @@ def _score_clip(clip_title: str, shot_tokens: set[str]) -> int:
 def _scan_juicy(path: str | Path) -> list[float]:
     """Find high-motion seconds in a topic-video clip so the renderer
     can seek to one of them instead of the typical static intro /
-    telemetry / coast-phase frame. Reuses `gameplay_scanner` which
-    samples frame-to-frame difference at 2 Hz — black frames and
-    static holds score ~0 and never make the top-N.
+    telemetry / coast-phase frame. Reuses `gameplay_scanner` in
+    `scan_mode="center"` — center-crops to 50%x60% before the diff
+    filter and scores by peak motion + frame-content richness, so a
+    small rocket against a huge sky still registers as motion and
+    flat-color sky pans get rejected.
 
     Window is short (3s) because each shot is only 3-5s and we want
     the displayed window to be all motion, not motion-then-static.
@@ -470,11 +472,41 @@ def _scan_juicy(path: str | Path) -> list[float]:
     try:
         import gameplay_scanner
         starts = gameplay_scanner.juicy_starts(
-            Path(path), window=3.0, step=2.0, top_n=10)
+            Path(path), window=3.0, step=2.0, top_n=10,
+            scan_mode="center")
         return starts or []
     except Exception as e:  # noqa: BLE001
         print(f"      [juicy scan failed] {Path(path).name}: {e}")
         return []
+
+
+def _sub_cut_is_blank(sub_path: Path) -> bool:
+    """Quick post-render sanity check: ffprobe a sampled frame from
+    the rendered sub-cut. If it's mostly black (mean Y < 10) or
+    visually uniform (std-dev < 5), the seek probably landed past the
+    end of available frame data (common with Range-truncated webm
+    where the duration metadata lies). Caller retries with the next
+    juicy window or pool clip.
+
+    Cheap: one `ffmpeg signalstats` pass on a single frame at the
+    sub-cut's midpoint, ~30-50 ms.
+    """
+    try:
+        out = subprocess.run([
+            "ffprobe", "-v", "error",
+            "-f", "lavfi",
+            "-i", f"movie={sub_path},select=eq(n\\,15),signalstats",
+            "-show_entries", "frame_tags=lavfi.signalstats.YAVG,lavfi.signalstats.YSTD",
+            "-of", "default=noprint_wrappers=1",
+        ], capture_output=True, text=True, timeout=10)
+        text = out.stdout
+        m_avg = re.search(r"YAVG=([\d.]+)", text)
+        m_std = re.search(r"YSTD=([\d.]+)", text)
+        if not m_avg or not m_std:
+            return False  # couldn't measure → don't penalise
+        return float(m_avg.group(1)) < 10.0 or float(m_std.group(1)) < 5.0
+    except Exception:  # noqa: BLE001
+        return False
 
 
 def _supplementary_clip(shot: "Shot", existing_pool: list[dict]) -> dict | None:
@@ -907,22 +939,49 @@ def build_timed_top(
                 # source clip show different moments). Stock clips just
                 # use the existing "vary seek by sub-cut index" logic
                 # to stop showing the same opening frames.
+                # Topic-video pool clips also carry a list of
+                # alternative juicy windows; if the first seek lands
+                # on a black/uniform frame (Range-truncated webm
+                # reporting a longer duration than its actual data),
+                # we retry with the next window.
+                candidates_seek: list[float]
                 if "seek" in clip:
-                    seek = min(float(clip["seek"]),
-                               max(0.0, clip_dur - dur - 0.3))
+                    if clip.get("juicy"):
+                        # Sort juicy windows by distance from the
+                        # initially-chosen seek so the retry stays
+                        # close to the requested moment when possible.
+                        primary = float(clip["seek"])
+                        candidates_seek = sorted(
+                            clip["juicy"], key=lambda s: abs(s - primary))
+                    else:
+                        candidates_seek = [float(clip["seek"])]
                 else:
-                    seek_start = 0.3
-                    seek = min(seek_start + j * 1.5,
-                               max(0.0, clip_dur - dur - 0.3))
-                run([
-                    "ffmpeg", "-y", "-loglevel", "error",
-                    "-ss", f"{seek:.3f}", "-i", clip["path"],
-                    "-t", f"{dur:.3f}",
-                    "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
-                           f"crop={W}:{top_h},setsar=1,fps={FPS}",
-                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                    str(sub),
-                ])
+                    candidates_seek = [0.3 + j * 1.5]
+
+                rendered = False
+                for attempt, seek in enumerate(candidates_seek[:3]):
+                    seek = min(seek, max(0.0, clip_dur - dur - 0.3))
+                    run([
+                        "ffmpeg", "-y", "-loglevel", "error",
+                        "-ss", f"{seek:.3f}", "-i", clip["path"],
+                        "-t", f"{dur:.3f}",
+                        "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
+                               f"crop={W}:{top_h},setsar=1,fps={FPS}",
+                        "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                        str(sub),
+                    ])
+                    if _sub_cut_is_blank(sub):
+                        print(f"      [sub-cut blank @ seek={seek:.1f}s, "
+                              f"retry {attempt+1}/3] {Path(clip['path']).name}")
+                        continue
+                    rendered = True
+                    break
+                # If every juicy window on this clip rendered blank,
+                # we keep the last attempt rather than dropping the
+                # sub-cut — better a weak frame than a missing one in
+                # the timeline.
+                if not rendered:
+                    print(f"      [sub-cut all retries blank, keeping last attempt]")
             all_segments.append(sub)
             cut_times.append(sub_t)
             sub_t += dur
