@@ -53,8 +53,8 @@ def make_bokeh_strip(out_path: Path, *, n: int = 28, seed: int = 7) -> Path:
 def gradient_lavfi(total: float, fps: int = 30) -> str:
     """lavfi source string for the slow, flowing base gradient."""
     return (
-        f"gradients=s={W}x{H}:c0=0x090C18:c1=0x102a4e:c2=0x1a6360:c3=0x0b1026:"
-        f"x0=140:y0=240:x1=940:y1=1680:nb_colors=4:speed=0.005:"
+        f"gradients=s={W}x{H}:c0=0x080A14:c1=0x0e2444:c2=0x175852:c3=0x0a0e20:"
+        f"x0=140:y0=240:x1=940:y1=1680:nb_colors=4:speed=0.0035:"
         f"duration={total:.2f}:rate={fps}")
 
 
@@ -65,8 +65,8 @@ def bg_filter(bokeh_idx: int, *, fps: int = 30) -> list[str]:
     Two parallax orb layers drift up at different speeds (slow = dreamy), a
     soft blur melts them together, and a gentle vignette settles the eye.
     """
-    near = 20.0   # px/sec, foreground layer
-    far = 11.0    # px/sec, background layer (parallax depth)
+    near = 12.0   # px/sec, foreground layer (slow = dreamier)
+    far = 6.5     # px/sec, background layer (parallax depth)
     return [
         "[0:v]format=gbrp,eq=saturation=1.08:brightness=-0.02,format=rgba[grad]",
         f"[{bokeh_idx}:v]format=rgba,split[bkN][bkF]",
@@ -77,7 +77,7 @@ def bg_filter(bokeh_idx: int, *, fps: int = 30) -> list[str]:
         f"crop={W}:{H}:{int(W * 0.15)}:'mod(t*{far}\\,{H})'[oF]",
         "[grad][oF]overlay=0:0[d1]",
         "[d1][oN]overlay=0:0[lit]",
-        "[lit]gblur=sigma=3,vignette=PI/5[bg]",
+        "[lit]gblur=sigma=4,vignette=PI/5.5[bg]",
     ]
 
 

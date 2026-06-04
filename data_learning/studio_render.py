@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -39,15 +40,18 @@ KOKORO_VOICES = REPO / "kokoro_models" / "voices-v1.0.bin"
 # Layout (1080x1920): chart up top, mascot roams the band below it (pointing
 # up at the chart), punch in the open band, captions at the bottom — the
 # lower third stays mostly ambient so there's something calming to rest on.
-# Chart is overlaid 1:1 (PNG is 1000x920) so datum pixels map straight to
-# screen, letting the mascot stand right at the point it's describing.
-GRAPH_W, GRAPH_H = 1000, 920
-GRAPH_X, GRAPH_Y = 40, 60
-MASCOT_SIZE = 300
-MASCOT_SEG_Y = 985               # mascot stands in the band just below chart
-MASCOT_CENTER = ((1080 - 300) // 2, 1000)   # hook / closing anchor
-PUNCH_X, PUNCH_Y = 540, 1430
-CAP_MARGINV = 175
+# A left GUTTER is reserved for the mascot so it can stand right beside the
+# label words and point at them without covering the chart. The chart PNG
+# (1000x920) is scaled by CHART_SCALE into the area to the right of the
+# gutter; datum pixels map to screen via that scale.
+CHART_X, CHART_Y = 196, 70
+CHART_SCALE = 0.86
+CHART_W, CHART_H = int(1000 * CHART_SCALE), int(920 * CHART_SCALE)   # 860x791
+MASCOT_SIZE = 184
+MASCOT_ANGLE = 8                 # points RIGHT (slightly up) at the labels
+GUTTER_X = 12                    # mascot's resting x in the gutter
+PUNCH_X, PUNCH_Y = 540, 1380
+CAP_MARGINV = 170
 
 # Voice: a warm *male* "dude monster" Kokoro voice, pitched DOWN slightly
 # (never up) so it reads as the monster, not a chirpy narrator.
@@ -57,8 +61,55 @@ VOICE_PITCH = 0.95
 # --------------------------------------------------------------------------
 # Kokoro narration (the pipeline voice).
 # --------------------------------------------------------------------------
-def _normalize(text: str) -> str:
-    return text.replace("$", " dollars ").replace("%", " percent ")
+_ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
+         "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+         "sixteen", "seventeen", "eighteen", "nineteen"]
+_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+         "eighty", "ninety"]
+
+
+def _card(n: int) -> str:
+    if n < 20:
+        return _ONES[n]
+    if n < 100:
+        return _TENS[n // 10] + (" " + _ONES[n % 10] if n % 10 else "")
+    if n < 1000:
+        r = n % 100
+        return _ONES[n // 100] + " hundred" + (" " + _card(r) if r else "")
+    r = n % 1000
+    return _card(n // 1000) + " thousand" + (" " + _card(r) if r else "")
+
+
+def _year(n: int) -> str:
+    if 2000 <= n <= 2009:
+        return "two thousand" + (" " + _ONES[n % 10] if n % 10 else "")
+    hi, lo = n // 100, n % 100
+    if lo == 0:
+        return _card(hi) + " hundred"
+    if lo < 10:
+        return _card(hi) + " oh " + _ONES[lo]
+    return _card(hi) + " " + _card(lo)
+
+
+def _spell_numbers(text: str) -> str:
+    """Spell every number out in words so the TTS pronounces it correctly
+    (e.g. '5.3' -> 'five point three', '2023' -> 'twenty twenty three').
+    Applied to the spoken audio ONLY — captions keep the digits."""
+    def _dec(m):
+        whole, frac = m.group(0).split(".")
+        return (_card(int(whole)) + " point "
+                + " ".join(_ONES[int(d)] for d in frac))
+    text = re.sub(r"\d+\.\d+", _dec, text)
+
+    def _int(m):
+        n = int(m.group(0))
+        return _year(n) if 1900 <= n <= 2099 else _card(n)
+    return re.sub(r"\d+", _int, text)
+
+
+def _tts_text(text: str) -> str:
+    text = text.replace("$", " dollars ").replace("%", " percent ")
+    return _spell_numbers(text)
 
 
 def synth_narration(sentences, workdir: Path, voice: str):
@@ -68,7 +119,7 @@ def synth_narration(sentences, workdir: Path, voice: str):
     k = Kokoro(str(KOKORO_MODEL), str(KOKORO_VOICES))
     wavs, windows, t = [], [], 0.0
     for i, sent in enumerate(sentences):
-        samples, sr = k.create(_normalize(sent), voice=voice, speed=1.04,
+        samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.04,
                                lang="en-us")
         w = workdir / f"s{i}.wav"
         sf.write(str(w), samples, sr)
@@ -179,29 +230,47 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 
 # --------------------------------------------------------------------------
-# Mascot placement — it stands at the exact datum each beat is about and
-# points its arm right at it (angle computed from its shoulder to the point).
+# Mascot motion — it lives in the left gutter and GLIDES (never stops) so it
+# sits right beside whatever label/point the narration is on, pointing right
+# at it. A single right-pointing pose works because every target is to its
+# right; a continuous smoothstep path keeps it constantly moving.
 # --------------------------------------------------------------------------
-def _beat_mascots(st: story.Story, windows):
+def _label_screen(hl):
+    """Chart-PNG pixel -> screen pixel (through the gutter + scale)."""
+    return (CHART_X + hl[0] * CHART_SCALE, CHART_Y + hl[1] * CHART_SCALE)
+
+
+def _mascot_targets(st: story.Story, windows):
+    """Keyframes (t, x, y) for the gutter mascot — beside each beat's label."""
     n = len(windows)
-    beats = []
+    kfs = []
     for i in range(n):
-        s0, s1 = windows[i]
-        if i == 0 or i == n - 1:                  # hook / closing -> centered
-            mx, my = MASCOT_CENTER
-            ang = 90.0
+        t0 = windows[i][0]
+        if i == 0 or i == n - 1:                  # hook / closing
+            x, y = GUTTER_X, 470.0
         else:
             seg = st.segments[i - 1]
-            hl = seg.highlight_px or (GRAPH_W / 2, GRAPH_H / 2)
-            tx, ty = GRAPH_X + hl[0], GRAPH_Y + hl[1]
-            # Stand under the datum (pointing shoulder roughly beneath it).
-            mx = int(min(max(tx - 0.65 * MASCOT_SIZE, 12), W - MASCOT_SIZE - 12))
-            my = MASCOT_SEG_Y
-            sx, sy = mx + 0.65 * MASCOT_SIZE, my + 0.50 * MASCOT_SIZE
-            ang = max(35.0, min(145.0, math.degrees(math.atan2(sy - ty, tx - sx))))
-        beats.append({"x": int(mx), "y": int(my), "angle": ang,
-                      "s0": s0, "s1": s1})
-    return beats
+            hl = seg.highlight_px or (300, 460)
+            _sx, sy = _label_screen(hl)
+            x = GUTTER_X
+            # Align the pointing hand (~0.42 down the sprite) with the label.
+            y = max(40.0, min(1480.0, sy - 0.42 * MASCOT_SIZE))
+        kfs.append((t0, float(x), float(y)))
+    return kfs
+
+
+def _piecewise(kfs, axis: int) -> str:
+    """Smoothstep ffmpeg expression interpolating x/y across keyframes."""
+    ts = [k[0] for k in kfs]
+    vs = [k[axis] for k in kfs]
+    expr = f"{vs[-1]:.1f}"
+    for i in range(len(kfs) - 2, -1, -1):
+        t0, t1, v0, v1 = ts[i], ts[i + 1], vs[i], vs[i + 1]
+        dt = max(0.001, t1 - t0)
+        u = f"clip((t-{t0:.3f})/{dt:.3f},0,1)"
+        s = f"({u})*({u})*(3-2*({u}))"
+        expr = f"if(lt(t,{t1:.3f}),({v0:.1f}+({v1:.1f}-{v0:.1f})*{s}),{expr})"
+    return f"if(lt(t,{ts[0]:.3f}),{vs[0]:.1f},{expr})"
 
 
 # --------------------------------------------------------------------------
@@ -226,16 +295,16 @@ def render(slug: str, out_path: Path, voice: str = "am_michael") -> Path:
         build_story_ass(st, windows, ass)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
-        # One mascot pose per beat, each pointing at that beat's datum.
-        beats = _beat_mascots(st, windows)
-        beat_movs = []
-        for bi, b in enumerate(beats):
-            p = work / f"mascot_b{bi}.mov"
-            mascot.build_mascot_loop(p, size=MASCOT_SIZE, seconds=2.0,
-                                     point_angle=float(b["angle"]))
-            beat_movs.append(p)
+        # One gliding right-pointing mascot for the whole video.
+        mascot_mov = mascot.build_mascot_loop(work / "mascot.mov",
+                                              size=MASCOT_SIZE, seconds=2.4,
+                                              point_angle=float(MASCOT_ANGLE))
+        kfs = _mascot_targets(st, windows)
+        x_expr = _piecewise(kfs, 1)
+        # gentle continuous sway so it's never perfectly still
+        y_expr = f"({_piecewise(kfs, 2)})+8*sin(2.2*t)"
 
-        # Inputs: 0 gradient, 1 bokeh, charts, per-beat mascots, narration.
+        # Inputs: 0 gradient, 1 bokeh, charts, mascot, narration.
         inputs = ["-f", "lavfi", "-i", ambient.gradient_lavfi(total)]
         inputs += ["-loop", "1", "-i", str(bokeh)]
         seg_idx = {}
@@ -245,17 +314,15 @@ def render(slug: str, out_path: Path, voice: str = "am_michael") -> Path:
                 inputs += ["-loop", "1", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
-        beat_input = []
-        for p in beat_movs:
-            inputs += ["-stream_loop", "-1", "-i", str(p)]
-            beat_input.append(idx)
-            idx += 1
+        inputs += ["-stream_loop", "-1", "-i", str(mascot_mov)]
+        mascot_idx = idx
+        idx += 1
         inputs += ["-i", str(narration)]
         audio_idx = idx
 
         fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]
         prev = "bg"
-        # Charts: each its own, shown during its window.
+        # Charts: each its own, scaled into the gutter layout, during its window.
         for i, seg in enumerate(st.segments):
             if i not in seg_idx:
                 continue
@@ -263,24 +330,18 @@ def render(slug: str, out_path: Path, voice: str = "am_michael") -> Path:
             s0, s1 = windows[1 + i]
             fd = 0.3
             fc.append(
-                f"[{gi}:v]scale={GRAPH_W}:{GRAPH_H},format=rgba,"
+                f"[{gi}:v]scale={CHART_W}:{CHART_H},format=rgba,"
                 f"fade=t=in:st={s0:.2f}:d={fd}:alpha=1,"
                 f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
             fc.append(
-                f"[{prev}][g{i}]overlay=x={GRAPH_X}:y={GRAPH_Y}:"
+                f"[{prev}][g{i}]overlay=x={CHART_X}:y={CHART_Y}:"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
-        # Mascot: stands at each beat's datum with a small slide-up entrance.
-        for bi, b in enumerate(beats):
-            gi = beat_input[bi]
-            s0, s1 = b["s0"], b["s1"]
-            yexpr = f"{b['y']}+120*max(0\\,1-(t-{s0:.2f})/0.45)"
-            fc.append(f"[{gi}:v]format=rgba,scale={MASCOT_SIZE}:{MASCOT_SIZE}[m{bi}]")
-            fc.append(
-                f"[{prev}][m{bi}]overlay=x={b['x']}:y='{yexpr}':eval=frame:"
-                f"enable='between(t,{s0:.2f},{s1:.2f})'[mb{bi}]")
-            prev = f"mb{bi}"
-        fc.append(f"[{prev}]ass='{ass_esc}'[v]")
+        # Mascot glides continuously beside the active label, pointing right.
+        fc.append(f"[{mascot_idx}:v]format=rgba,scale={MASCOT_SIZE}:{MASCOT_SIZE}[masc]")
+        fc.append(f"[{prev}][masc]overlay=x='{x_expr}':y='{y_expr}':"
+                  f"eval=frame:shortest=0[withm]")
+        fc.append(f"[withm]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
                "-filter_complex", ";".join(fc),
