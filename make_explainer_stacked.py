@@ -420,6 +420,37 @@ def _resolve_image(shot: Shot) -> dict | None:
         return None
 
 
+def _resolve_topic_video(shot: Shot) -> dict | None:
+    """Try to pull a topic-specific *video clip* — actual event footage
+    from Wikimedia Commons / Internet Archive / news og:video / YouTube
+    CC. Returns a stock-clip-shaped dict (so the renderer's stock branch
+    plays it as-is) or None to fall through to the image path."""
+    primary = shot.pexels_query or (shot.queries[0] if shot.queries else "")
+    if not primary and not shot.topic_context:
+        return None
+    try:
+        import topic_video
+    except ImportError:
+        return None
+    try:
+        paths = topic_video.search(primary, shot.topic_context)
+    except Exception as e:  # noqa: BLE001
+        print(f"      [topic_video error] {e}")
+        return None
+    for p in paths:
+        try:
+            dur = ffprobe_duration(p)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [topic_video ffprobe fail] {p}: {e}")
+            continue
+        if dur < 1.0:
+            continue
+        print(f"      [topic_video] {primary[:30]!r} -> {p.name} ({dur:.1f}s)")
+        return {"path": str(p), "duration": dur,
+                "width": W, "height": HALF_H, "source": "topic_video"}
+    return None
+
+
 def _resolve_topic_media(shot: Shot, cache: Path) -> dict | None:
     """Try to pull a topic-specific image from free sources (Wikipedia,
     Commons, GDELT news). Used only when the package didn't supply
@@ -526,15 +557,26 @@ def build_timed_top(
         #   3. Stock only               -> existing multi-cut behavior
         plan: list[tuple[dict, float]] = []
         image_clip = _resolve_image(shot)
-        # If the package didn't hand us a topic-specific image, ask the
-        # free no-key sources (Wikipedia / Commons / GDELT news) before
-        # we settle for generic stock. This is what turns "stock laptop
-        # B-roll for an Anthropic story" into "actual photo of Dario."
+        # If the operator-supplied image is missing, try actual event
+        # *video* before falling back to topic photos. A clip of the
+        # rescue, the launch, the CEO speaking wins over any still.
+        topic_video_clip = None
         if image_clip is None:
+            topic_video_clip = _resolve_topic_video(shot)
+        # If neither, ask the free no-key image sources (Wikipedia /
+        # Commons / GDELT news) before we settle for generic stock.
+        if image_clip is None and topic_video_clip is None:
             image_clip = _resolve_topic_media(shot, Path("/tmp/shot_images"))
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
 
-        if image_clip and has_stock:
+        if topic_video_clip:
+            # Play the topic video for as much of the shot as the clip
+            # actually contains, capped to the shot window. Whatever's
+            # left falls through to stock so the timeline stays full.
+            vid_dur = min(seg_dur, float(topic_video_clip.get("duration") or 0))
+            plan.append((topic_video_clip, vid_dur))
+            remaining = seg_dur - vid_dur
+        elif image_clip and has_stock:
             image_dur = min(IMAGE_MAX_DUR, seg_dur)
             plan.append((image_clip, image_dur))
             remaining = seg_dur - image_dur

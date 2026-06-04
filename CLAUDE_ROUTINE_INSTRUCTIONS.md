@@ -35,15 +35,29 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
    today / this morning / just announced", skip it.
 
    **Rule 2 — Category diversity.** This is a WIDE news channel, not
-   a tech/AI channel. **Maximum 2 picks from any single category.**
-   Aim for a balanced 6 across categories such as: Tech/AI,
-   Business/Finance, World affairs/Geopolitics, US domestic policy,
-   Crime/Justice, Science/Health, Climate/Environment,
-   Culture/Sports/Entertainment. The candidate list will skew tech-heavy
-   because Hacker News dominates it — resist that. If the ranker
-   already returned a tech-heavy top 10, drop down its list and pick
-   the highest-scoring item from each underrepresented category before
-   doubling up on tech.
+   a tech/AI channel. **Exactly 1 pick per category — 6 distinct
+   categories total.** Two shorts from the same bucket read as
+   "I just heard that one already" even when the stories differ.
+
+   **Treat Tech/AI + Business/Finance/Markets as a single combined
+   "Tech + Markets" bucket** for this cap. An AI startup story and a
+   tech-stock story feel visually identical to viewers — pick at most
+   1 from the combined bucket, not 1 from each. Draw the 6 from:
+
+   - Tech + Markets (combined: AI, startups, big tech, earnings, stocks)
+   - World affairs / Geopolitics
+   - US domestic policy
+   - Crime / Justice
+   - Science / Health / Medicine
+   - Climate / Environment / Disasters
+   - Culture / Entertainment
+   - Sports (one-off moments only)
+
+   The candidate list will skew tech-heavy because Hacker News
+   dominates it — resist that. If the ranker returned a tech-heavy
+   top 10, drop down its list and pick the highest-scoring item from
+   each underrepresented category. If you genuinely can't fill 6
+   distinct buckets, ship 5 — better than two same-category dupes.
 
    Also reject:
    - Live sports or sports-player news (time-locked, narrow audience)
@@ -52,6 +66,12 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
    - Anything you can't tell in 60 words
    - Topics with no concrete visual story
    - Evergreen explainers ("how X works", "the history of Y")
+   - **Ongoing war / conflict coverage where today's update is
+     incremental** ("day 47 of...", "fighting continues",
+     "casualties rise"). Viewers hit fatigue on repeat war coverage.
+     Only include conflict stories if today brought a major escalation,
+     breakthrough, ceasefire, named-victim event, or named-leader
+     statement — something genuinely new in the arc.
 
 3. **Cross-reference before writing.** Before drafting any script,
    pull the same story from **at least 2-3 different outlets** to
