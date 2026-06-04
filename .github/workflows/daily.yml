@@ -170,6 +170,11 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # Optional: when set, topic_video pulls from Vimeo's CC pool
+          # alongside Commons / NASA / Archive / news embeds. Skips
+          # silently if unset, so this isn't in the required-secrets
+          # preflight check above.
+          VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           COUNT: ${{ github.event.inputs.count || '6' }}
         run: |
