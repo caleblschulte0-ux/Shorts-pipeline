@@ -45,9 +45,9 @@ KOKORO_VOICES = REPO / "kokoro_models" / "voices-v1.0.bin"
 CHART_SCALE = 0.92
 CHART_W, CHART_H = int(1000 * CHART_SCALE), int(920 * CHART_SCALE)   # 920x846
 CHART_X, CHART_Y = (W - CHART_W) // 2, 70
-MASCOT_SIZE = 132
+MASCOT_SIZE = 150
 MASCOT_ANGLE = 90                # points straight up at the marker above it
-MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 470)   # hook / closing rest spot
+MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 560)   # hook / closing rest spot
 PUNCH_X, PUNCH_Y = 540, 1500
 CAP_MARGINV = 120
 
@@ -302,18 +302,18 @@ def _mascot_keyframes(windows, events):
     """(t, x, y) path: rest at home for the hook, hit each number's point as
     it's spoken, return home for the close."""
     S = MASCOT_SIZE
+    # The whole chart card is a keep-out zone — the mascot stays in the band
+    # just BELOW it so it never covers data, sliding under each number and
+    # pointing up (the ring does the precise marking on the chart).
+    below = CHART_Y + CHART_H + 6
     kfs = [(windows[0][0], float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))]
     for e in events:
         if not e["xy"]:
             continue
-        tx, ty = e["xy"]
-        bh = e["box"][1] if e["box"] else 40
-        # Sit just BELOW the ring so the number stays fully visible; the
-        # raised arm points up into it.
+        tx, _ty = e["xy"]
         mx = min(max(tx - S / 2, 4), W - S - 4)
-        my = min(max(ty + bh / 2 + 22, 4), 1500)
         t = max(e["ps"] - 0.22, kfs[-1][0] + 0.05)
-        kfs.append((t, float(mx), float(my)))
+        kfs.append((t, float(mx), float(below)))
     kfs.append((max(windows[-1][0], kfs[-1][0] + 0.05),
                 float(MASCOT_HOME[0]), float(MASCOT_HOME[1])))
     return kfs
