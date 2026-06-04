@@ -1,0 +1,82 @@
+{
+  "version": 8,
+  "slug": "ukraine-st-petersburg-drones",
+  "title": "Ukraine Struck Russia's 'Davos' City With 1,000-Kilometer Drones",
+  "hashtags": ["ukraine", "russia", "stpetersburg", "drone", "zelenskyy", "putin", "ukrainewar", "kronstadt", "navalbase", "uavattack", "oilfire", "russiaukrainewar", "worldnews", "geopolitics"],
+  "script": "A day after Russia launched a mass missile strike on Kyiv, Ukraine hit back — deep inside Russia. Ukrainian drones flew more than 1,000 kilometers overnight, setting fire to a St. Petersburg oil terminal just 10 miles from where Putin was scheduled to speak at Russia's annual Economic Forum. A second wave hit a Russian warship at Kronstadt naval base and a weapons plant 600 kilometers inside Russian territory. Smoke was still rising over St. Petersburg as Putin took the stage.",
+  "shots": [
+    {
+      "phrase": "Russia launched a mass missile strike on Kyiv",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Volodymyr_Zelensky_2022_official_portrait.jpg",
+      "query": "drone missile attack Kyiv Ukraine explosion night fire"
+    },
+    {
+      "phrase": "Ukrainian drones flew more than 1,000 kilometers overnight",
+      "query": "long-range drone military dark sky surveillance Ukraine"
+    },
+    {
+      "phrase": "setting fire to a St. Petersburg oil terminal",
+      "query": "oil terminal fire explosion Russia black smoke industrial"
+    },
+    {
+      "phrase": "where Putin was scheduled to speak",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vladimir_Putin_official_portrait.jpg",
+      "query": "Putin economic forum stage Russia president podium"
+    },
+    {
+      "phrase": "hit a Russian warship at Kronstadt naval base",
+      "query": "Russian warship naval base military ship fire smoke"
+    },
+    {
+      "phrase": "weapons plant 600 kilometers inside Russian territory",
+      "query": "Russian military factory weapons plant explosion fire"
+    },
+    {
+      "phrase": "Smoke was still rising over St. Petersburg",
+      "query": "thick black smoke city industrial fire Russia aerial"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "deep inside Russia",
+      "text": "1,000 KM INSIDE RUSSIA",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 2.4
+    },
+    {
+      "phrase": "1,000 kilometers overnight",
+      "text": "1,000 KM STRIKE",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "setting fire to a St. Petersburg oil terminal",
+      "text": "OIL TERMINAL HIT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "hit a Russian warship",
+      "text": "WARSHIP HIT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Smoke was still rising over St. Petersburg",
+      "text": "RUSSIA BURNING",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 210,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}
