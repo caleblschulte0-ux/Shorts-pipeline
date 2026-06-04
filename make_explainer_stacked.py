@@ -454,20 +454,111 @@ def _score_clip(clip_title: str, shot_tokens: set[str]) -> int:
     return len(shot_tokens & title_tokens)
 
 
+def _scan_juicy(path: str | Path) -> list[float]:
+    """Find high-motion seconds in a topic-video clip so the renderer
+    can seek to one of them instead of the typical static intro /
+    telemetry / coast-phase frame. Reuses `gameplay_scanner` which
+    samples frame-to-frame difference at 2 Hz — black frames and
+    static holds score ~0 and never make the top-N.
+
+    Window is short (3s) because each shot is only 3-5s and we want
+    the displayed window to be all motion, not motion-then-static.
+    Returns ascending list of seek offsets; caller cycles through them
+    across shots so two shots that share a clip never seek to the
+    same window.
+    """
+    try:
+        import gameplay_scanner
+        starts = gameplay_scanner.juicy_starts(
+            Path(path), window=3.0, step=2.0, top_n=10)
+        return starts or []
+    except Exception as e:  # noqa: BLE001
+        print(f"      [juicy scan failed] {Path(path).name}: {e}")
+        return []
+
+
+def _supplementary_clip(shot: "Shot", existing_pool: list[dict]) -> dict | None:
+    """When a shot's tokens don't overlap with any pool clip's title
+    (e.g. "moon 2027" against a pure Starship pool), run a small
+    Commons-only search keyed on this shot's own phrase + query.
+    Cheap because it skips Archive / og:video / YouTube — Commons is
+    free and ~200ms per call. If a real clip lands, it's added to the
+    pool so subsequent shots can reuse it.
+    """
+    primary = shot.pexels_query or (shot.queries[0] if shot.queries else "")
+    if not primary:
+        return None
+    try:
+        import topic_video
+    except ImportError:
+        return None
+    # Critical: pass *empty* context. If we passed the package title
+    # here, Commons would just re-rank by overall topic and we'd get
+    # the same rocket clips back. The whole point of supplementary
+    # search is to find content the title-keyed pool missed — moon
+    # footage for a moon shot, courtroom footage for a courtroom shot.
+    seen_paths = {c["path"] for c in existing_pool}
+    try:
+        items = topic_video.search(primary, "", max_clips=3)
+    except Exception as e:  # noqa: BLE001
+        print(f"      [supplementary search error] {e}")
+        return None
+    # Disambiguation guard: the shot's keywords may be polysemous in
+    # isolation ("Raptor" → SpaceX engine OR fighter jet, "Apple" →
+    # company OR fruit). Require any supplementary clip to share at
+    # least one token with the package context, so the package topic
+    # constrains the result. F-22 Raptor Refuel for a SpaceX-Starship
+    # package fails this check and gets dropped.
+    context_tokens: set[str] = set()
+    if shot.topic_context:
+        ctx = re.sub(r"[^a-z0-9 ]+", " ", shot.topic_context.lower())
+        context_tokens = {w for w in ctx.split()
+                          if len(w) > 2 and w not in _STOPWORDS}
+    for it in items:
+        path_str = str(it["path"])
+        if path_str in seen_paths:
+            continue
+        try:
+            dur = ffprobe_duration(it["path"])
+        except Exception:  # noqa: BLE001
+            continue
+        if dur < 2.0 or dur > 1800:
+            continue
+        title = it.get("title", "")
+        if context_tokens:
+            title_tokens = {w for w in re.sub(r"[^a-z0-9 ]+", " ",
+                                                title.lower()).split()
+                            if len(w) > 2}
+            if not (context_tokens & title_tokens):
+                print(f"      [supplementary skip off-topic] {title[:50]!r}")
+                continue
+        entry = {
+            "path": path_str,
+            "duration": dur,
+            "title": title,
+            "source": "topic_video",
+            "uses": 0,
+            "juicy": _scan_juicy(path_str),
+            "width": W, "height": HALF_H,
+        }
+        existing_pool.append(entry)
+        print(f"      [supplementary] '{shot.phrase[:30]}' -> "
+              f"{entry['title'][:50]!r}")
+        return entry
+    return None
+
+
 def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
     """Pull a *pool* of topic-specific video clips once per render,
     queried by the package title rather than per-shot keywords.
 
-    Each entry carries the source filename as `title` so the caller
-    can score it against each shot's content words and pick the most
-    relevant clip rather than blindly cycling through the pool.
-
-    `seek` is the in-clip offset (seconds) the renderer should `-ss`
-    past before sampling — Commons / Archive videos very often open
-    with title cards, telemetry overlays, splash screens or several
-    seconds of dead air. Sampling from 15s in skips that. Each time
-    the pool entry is *reused* in a render, `seek` advances further
-    so a second shot using the same clip shows a different moment.
+    Each entry carries:
+      - `title`: source filename for shot-matching scoring
+      - `juicy`: list of high-motion seek offsets from
+         `gameplay_scanner` so seeks land on action rather than
+         intros / telemetry / coast phases
+      - `uses`: counter for distributing the same clip across multiple
+         shots with different seek targets
     """
     context = next((s.topic_context for s in shots if s.topic_context), "")
     if not context:
@@ -489,58 +580,77 @@ def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
         except Exception as e:  # noqa: BLE001
             print(f"      [topic_video ffprobe fail] {p}: {e}")
             continue
-        # Reject suspiciously short clips (probably stubs) and
-        # extremely long ones (almost certainly long-form podcast,
-        # documentary, or full mission feed — not B-roll, and the
-        # interesting bits are scattered far from the start).
         if dur < 2.0:
             continue
         if dur > 1800:  # 30 minutes
             print(f"      [topic_video skip long-form] {it['title'][:60]!r} ({dur:.0f}s)")
             continue
+        juicy = _scan_juicy(p)
         pool.append({
             "path": str(p),
             "duration": dur,
             "title": it.get("title", ""),
             "source": "topic_video",
             "uses": 0,
+            "juicy": juicy,
             "width": W, "height": HALF_H,
         })
     if pool:
         print(f"      [topic_video pool] {len(pool)} clips for {context[:60]!r}")
         for c in pool:
-            print(f"         {c['title'][:70]} ({c['duration']:.0f}s)")
+            j = c["juicy"]
+            j_str = f"{len(j)} juicy@{j[0]:.0f}s..{j[-1]:.0f}s" if j else "no motion scan"
+            print(f"         {c['title'][:60]} ({c['duration']:.0f}s, {j_str})")
     return pool
 
 
 def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
-    """Return the pool clip best matching this shot, or fall back to
-    least-used round-robin when nothing scores. Mutates `clip['uses']`
-    and computes a per-shot `seek` offset so successive uses of the
-    same clip show different moments instead of the same opening
-    frames replayed."""
+    """Return the clip best matching this shot, plus a per-shot `seek`
+    offset that lands on a high-motion window. Mutates `clip['uses']`
+    so successive shots get different juicy windows instead of the
+    same opening frames.
+
+    For every shot, runs a per-shot supplementary Commons search keyed
+    on that shot's own words. The results join the pool before
+    scoring, so even when the title-based pool already has a
+    "decent" match (e.g. "Starship landing" for a "moon landing"
+    shot), a more relevant per-shot result can still win. The
+    supplementary clip stays in the pool so later shots can reuse it.
+    """
     if not pool:
         return None
     tokens = _shot_tokens(shot)
+    # Always seed shot-specific content into the pool. Cheap (Commons
+    # only, ~200ms when nothing matches; the download is cached on
+    # reuse) and prevents the "moon shot got a rocket clip" failure
+    # mode where the pool's coincidental token overlap beats the
+    # supplementary clip's semantic fit.
+    sup = _supplementary_clip(shot, pool)
+
+    chosen: dict | None = None
     if tokens:
-        # Score, then sort by (score desc, uses asc, original index asc).
-        # The index tiebreaker keeps the sort stable across dicts that
-        # Python can't compare directly.
         scored = [(_score_clip(c["title"], tokens), -c["uses"], idx, c)
                   for idx, c in enumerate(pool)]
         scored.sort(reverse=True)
         best_score, _, _, best = scored[0]
-        chosen = best if best_score > 0 else min(pool, key=lambda c: c["uses"])
+        if best_score > 0:
+            chosen = best
+    if chosen is None:
+        # Nothing in the pool scored against the shot tokens. Prefer
+        # the just-found supplementary clip (queried specifically for
+        # this shot) over the least-used round-robin pick.
+        chosen = sup or min(pool, key=lambda c: c["uses"])
+
+    # Seek policy: prefer a juicy (high-motion) start. Successive uses
+    # of the same clip cycle through its juicy list so two shots never
+    # show the same window. Falls back to the +15s-per-use constant
+    # when the motion scan returned nothing (e.g. scan crashed).
+    if chosen.get("juicy"):
+        starts = chosen["juicy"]
+        seek = starts[chosen["uses"] % len(starts)]
     else:
-        chosen = min(pool, key=lambda c: c["uses"])
-    # Seek policy: skip past the typical intro/title/telemetry window
-    # on first use; advance further on subsequent uses so two shots
-    # sharing one clip don't show the same frames. Cap at duration -
-    # 5s so ffmpeg always has something left to play.
-    base_offset = 15.0
-    step = 12.0
-    seek = min(base_offset + chosen["uses"] * step,
-               max(0.0, chosen["duration"] - 5.0))
+        seek = min(15.0 + chosen["uses"] * 12.0,
+                   max(0.0, chosen["duration"] - 5.0))
     chosen["uses"] += 1
     out = dict(chosen)
     out["seek"] = seek
