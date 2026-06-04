@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "alphabet-80b-ai-raise",
+  "title": "Google Just Raised $85 Billion in One Week for AI",
+  "hashtags": ["alphabet", "google", "aiinfrastructure", "datacenter", "sunpichai", "berkshirehathaway", "aiinvestment", "aiarms", "googai", "technews", "airace", "wallstreet", "bigtech", "aibuildup", "alphabetstock"],
+  "script": "Google's parent company just pulled off one of the biggest fundraises in US history. Alphabet raised $84.75 billion this week — $10 billion directly from Berkshire Hathaway, the rest from banks and public markets. The purpose: AI data centers. The company plans to spend $180 billion on infrastructure this year alone. The AI race has become so expensive, even the most profitable company on Earth needs to raise money.",
+  "shots": [
+    {
+      "phrase": "Google's parent company just pulled off",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sundar_Pichai_-_2023_(cropped).jpg",
+      "query": "Google Alphabet CEO announcement stage technology"
+    },
+    {
+      "phrase": "Alphabet raised $84.75 billion this week",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Mountain_View_campus_B43.jpg",
+      "query": "Google headquarters campus Mountain View California building"
+    },
+    {
+      "phrase": "directly from Berkshire Hathaway",
+      "query": "Berkshire Hathaway Warren Buffett investor finance Omaha"
+    },
+    {
+      "phrase": "AI data centers",
+      "query": "AI data center server racks cooling computing infrastructure"
+    },
+    {
+      "phrase": "spend $180 billion on infrastructure this year alone",
+      "query": "data center construction massive AI computing infrastructure build"
+    },
+    {
+      "phrase": "most profitable company on Earth needs to raise money",
+      "query": "Wall Street stock market equity raise fundraise billions finance"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "biggest fundraises in US history",
+      "text": "BIGGEST RAISE IN US HISTORY",
+      "color": "#ffaa30",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "$84.75 billion this week",
+      "text": "$84.75 BILLION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "directly from Berkshire Hathaway",
+      "text": "$10B FROM BUFFETT",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "spend $180 billion on infrastructure",
+      "text": "$180B THIS YEAR",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "most profitable company on Earth",
+      "text": "MOST PROFITABLE. NOT ENOUGH.",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

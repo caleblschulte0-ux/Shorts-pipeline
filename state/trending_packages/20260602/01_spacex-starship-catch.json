@@ -1,0 +1,80 @@
+{
+  "version": 8,
+  "slug": "spacex-starship-catch",
+  "title": "SpaceX Just Caught a Falling Skyscraper With Giant Chopsticks",
+  "hashtags": ["spacex", "starship", "superheavy", "mechazilla", "elonmusk", "rocketreuse", "spacenews", "spacetech", "reusablerocket", "ift5", "boostercatch", "aerospace", "futurespace", "rocketscience"],
+  "script": "For 60 years, every rocket launched was burned up or lost forever. SpaceX just broke that rule. On October 13, 2024, the Super Heavy booster — 70 meters tall, 33 engines — launched, completed its burn, and flew back to its launch tower. Giant mechanical arms called Mechazilla caught it mid-air. No splash landing. No parachutes. Just a skyscraper snapped out of the sky. Rocket reuse just became real.",
+  "shots": [
+    {
+      "phrase": "For 60 years, every rocket launched was burned up",
+      "query": "historical rocket launch saturn v apollo smoke fire exhaust"
+    },
+    {
+      "phrase": "SpaceX just broke that rule",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/SpaceX_Starship_IFT-5.jpg",
+      "query": "spacex starship launch booster fire launchpad texas"
+    },
+    {
+      "phrase": "70 meters tall, 33 engines",
+      "query": "super heavy booster rocket engines raptor bottom view close up"
+    },
+    {
+      "phrase": "Mechazilla caught it mid-air",
+      "query": "mechanical arms tower rocket catch launchpad chopsticks space"
+    },
+    {
+      "phrase": "No splash landing. No parachutes.",
+      "query": "ocean rocket landing barge sea comparison splash"
+    },
+    {
+      "phrase": "skyscraper snapped out of the sky",
+      "query": "skyscraper building city tall height comparison steel"
+    },
+    {
+      "phrase": "Rocket reuse just became real",
+      "query": "reusable rocket launch future technology space era"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "every rocket launched was burned up",
+      "text": "BURNED. EVERY TIME.",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "SpaceX just broke that rule",
+      "text": "RULE BROKEN",
+      "color": "#ffffff",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "70 meters tall, 33 engines",
+      "text": "70M. 33 ENGINES.",
+      "color": "#ffe24a",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Mechazilla caught it mid-air",
+      "text": "MECHAZILLA CATCHES IT",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "Rocket reuse just became real",
+      "text": "REUSE IS REAL",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

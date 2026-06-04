@@ -1,0 +1,89 @@
+{
+  "version": 8,
+  "slug": "deepseek-r1-shock",
+  "title": "China's Free AI Just Wiped $600 Billion Off Nvidia in One Day",
+  "hashtags": ["deepseek", "deepseekr1", "nvidia", "nvda", "aistock", "chineseai", "openai", "wallstreet", "aishock", "technews", "aicompetition", "stockcrash", "llm", "artificialintelligence"],
+  "script": "A tiny Chinese AI lab no one had heard of just sent shockwaves through Wall Street. On January 27, 2025, DeepSeek released R1 — a reasoning AI that matched OpenAI's best model, cost 97 percent less to build, and is completely free. Nvidia lost 17 percent of its value in a single day — $600 billion gone. DeepSeek built what US labs spent billions on, for $6 million.",
+  "shots": [
+    {
+      "phrase": "no one had heard of just sent shockwaves",
+      "query": "shock explosion surprise wall street finance trading floor nyse"
+    },
+    {
+      "phrase": "DeepSeek released R1",
+      "query": "ai chatbot interface laptop screen dark china technology server"
+    },
+    {
+      "phrase": "matched OpenAI's best model",
+      "query": "ai benchmark comparison chart test results competitive performance"
+    },
+    {
+      "phrase": "97 percent less to build",
+      "query": "cost savings efficiency bar chart low budget comparison dollar"
+    },
+    {
+      "phrase": "Nvidia lost 17 percent of its value",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jensen_Huang_20231109.jpg",
+      "query": "nvidia stock price chart red crash decline falling billions"
+    },
+    {
+      "phrase": "$600 billion gone",
+      "query": "stock market crash red numbers falling hundreds billions loss"
+    },
+    {
+      "phrase": "for $6 million",
+      "query": "small budget startup computer server cheap efficient low cost"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "just sent shockwaves through Wall Street",
+      "text": "WALL STREET SHOCKED",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "DeepSeek released R1",
+      "text": "DEEPSEEK R1",
+      "color": "#ffffff",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "97 percent less to build",
+      "text": "97% CHEAPER",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Nvidia lost 17 percent",
+      "text": "NVIDIA: -17%",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "$600 billion gone",
+      "text": "$600B GONE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "for $6 million",
+      "text": "BUILT FOR $6M",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

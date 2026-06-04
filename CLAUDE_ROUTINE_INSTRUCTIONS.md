@@ -10,20 +10,69 @@ You are running the daily script-writing routine for the Shorts-pipeline channel
 
 ## Steps
 
+0. **Read yesterday's analytics** (only if it exists):
+   ```bash
+   cat state/analytics/latest.json 2>/dev/null
+   ```
+   This file has every uploaded video's views, likes, comments, and
+   `views_per_hour` (the only fair comparison across ages). Use the
+   `summary.top_5_by_vph` and `bottom_5_by_vph` lists to bias today's
+   picks: lean toward topic clusters / hook styles that scored high;
+   skip topics resembling the bottom five. If the file is missing
+   (first run after this loop ships), skip and proceed.
+
 1. **Discover**:
    `GROQ_API_KEY=$GROQ_API_KEY python3 scripts/rank_topics.py --top-k 10`
 
-2. **Pick 6** from the ranker's output. Reject:
+2. **Pick 6** from the ranker's output. **Two hard rules.**
+
+   **Rule 1 — Freshness.** This is a "today's news" channel. Every
+   package should be something that happened in the last 24-48 hours.
+   Each ranker line shows an age marker like `[2h ago]`; strongly
+   prefer those. Anything that reads evergreen, retrospective, or
+   "X has been quietly happening for years" gets cut even when
+   interesting. If you can't anchor the package to "this happened
+   today / this morning / just announced", skip it.
+
+   **Rule 2 — Category diversity.** This is a WIDE news channel, not
+   a tech/AI channel. **Maximum 2 picks from any single category.**
+   Aim for a balanced 6 across categories such as: Tech/AI,
+   Business/Finance, World affairs/Geopolitics, US domestic policy,
+   Crime/Justice, Science/Health, Climate/Environment,
+   Culture/Sports/Entertainment. The candidate list will skew tech-heavy
+   because Hacker News dominates it — resist that. If the ranker
+   already returned a tech-heavy top 10, drop down its list and pick
+   the highest-scoring item from each underrepresented category before
+   doubling up on tech.
+
+   Also reject:
    - Live sports or sports-player news (time-locked, narrow audience)
    - Celebrity deaths / obituaries
    - Political horserace stories (elections, primaries, partisan combat)
    - Anything you can't tell in 60 words
    - Topics with no concrete visual story
+   - Evergreen explainers ("how X works", "the history of Y")
 
-3. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
+3. **Cross-reference before writing.** Before drafting any script,
+   pull the same story from **at least 2-3 different outlets** to
+   avoid baking one publisher's slant into the video. The ranker's
+   angle field will list which sources flagged each story
+   (e.g. "BBC + Reuters + Politico all covering this") — use those.
+   If the ranker only saw it in one source, WebFetch the story from
+   another outlet (search the topic on apnews.com, reuters.com,
+   bbc.com, or the relevant beat outlet) before writing.
+
+   Synthesize across the sources: what do they all agree on (= the
+   facts)? Where do they differ (= the framing)? Write the script
+   from the facts. Keep the framing neutral — no editorializing,
+   no left/right loaded vocabulary, no "X is bad because..." or
+   "Y is finally..." phrasing. The audience should feel informed,
+   not convinced.
+
+4. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
    one per pick.
 
-4. **Commit, push, AND open a PR**. You're probably running on an
+5. **Commit, push, AND open a PR**. You're probably running on an
    isolated worktree branch, not directly on main, so a plain
    `git push` puts your work on a feature branch that nobody renders
    from. You MUST also open a pull request — that's what the auto-
