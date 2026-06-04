@@ -636,6 +636,81 @@ def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
     return pool
 
 
+def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
+    """Pool of topic-specific *still images* (Wikipedia hero, Commons
+    photos, news article og:images) built once per render. Images are
+    way cheaper to fetch than videos and almost always crisply on
+    topic, so we mix them into the round-robin filler to fill gaps
+    where topic_video misses and to add visual variety.
+
+    Entries are shaped to drop straight into the renderer's existing
+    `is_image` branch (Ken Burns zoompan). Each carries `title` from
+    the source filename for shot-matching scoring.
+    """
+    context = next((s.topic_context for s in shots if s.topic_context), "")
+    if not context:
+        return []
+    try:
+        import topic_media
+        urls = topic_media.search(context, "")
+    except Exception as e:  # noqa: BLE001
+        print(f"      [topic_image pool error] {e}")
+        return []
+    pool: list[dict] = []
+    cache = Path("/tmp/shot_images")
+    for url in (urls or [])[:8]:
+        try:
+            path = _fetch_image(url, cache)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [topic_image fetch fail] {url[:60]}: {e}")
+            continue
+        # Extract a readable title from the URL for token scoring.
+        name = url.split("?")[0].rstrip("/").rsplit("/", 1)[-1]
+        try:
+            from urllib.parse import unquote
+            name = unquote(name)
+        except Exception:  # noqa: BLE001
+            pass
+        if "." in name:
+            name = name.rsplit(".", 1)[0]
+        title = name.replace("_", " ").replace("-", " ").strip()
+        pool.append({
+            "path": str(path),
+            "title": title,
+            "source": "topic_image",
+            "is_image": True,
+            "uses": 0,
+            "width": W, "height": HALF_H,
+        })
+    if pool:
+        print(f"      [topic_image pool] {len(pool)} images for {context[:60]!r}")
+        for c in pool:
+            print(f"         {c['title'][:70]}")
+    return pool
+
+
+def _pick_pool_image(pool: list[dict], shot: "Shot") -> dict | None:
+    """Score-and-pick an image from the topic_image pool. Same shape
+    as `_pick_pool_clip` but for stills — no seek offset, no juicy
+    windows. Mutates `uses` so successive picks within a shot prefer
+    images that haven't been shown yet."""
+    if not pool:
+        return None
+    tokens = _shot_tokens(shot)
+    chosen: dict | None = None
+    if tokens:
+        scored = [(_score_clip(c["title"], tokens), -c["uses"], idx, c)
+                  for idx, c in enumerate(pool)]
+        scored.sort(reverse=True)
+        best_score, _, _, best = scored[0]
+        if best_score > 0:
+            chosen = best
+    if chosen is None:
+        chosen = min(pool, key=lambda c: c["uses"])
+    chosen["uses"] += 1
+    return dict(chosen)
+
+
 # Per-shot memo so _pick_pool_clip's repeated calls in the
 # sub-cut round-robin don't each re-run the supplementary Commons
 # search. Keyed by the shot's phrase string; emptied each render.
@@ -797,12 +872,16 @@ def build_timed_top(
     # images carry the visual story instead of one long hold.
     IMAGE_MAX_DUR = 1.8
 
-    # One-shot per-render call to topic_video. Returns a pool of
-    # on-topic clips (different angles of the same event). Each shot
-    # picks the pool entry whose source filename best matches its own
-    # phrase / query — so "moon" shots get moon clips and "engine"
-    # shots get engine clips instead of round-robin chaos.
+    # One-shot per-render calls to topic_video / topic_media. Returns
+    # pools of on-topic media. Each shot picks pool entries whose
+    # filenames best match its own phrase/query (semantic scoring) so
+    # "moon" shots get moon media and "engine" shots get engine media
+    # instead of round-robin chaos. The image pool is woven into the
+    # sub-cut filler alongside the video pool — images are cheaper to
+    # source and almost always crisply topical, so they fill gaps
+    # where topic_video is thin and add visual variety.
     topic_video_pool = _build_topic_video_pool(shots)
+    topic_image_pool = _build_topic_image_pool(shots)
     # Reset the per-shot supplementary memo so this render starts
     # fresh — across renders the cached video files are reused, but
     # the in-process "we already tried this shot" set must not leak.
@@ -848,19 +927,56 @@ def build_timed_top(
             vid_dur = min(seg_dur, available, SUB_CUT_TARGET)
             plan.append((topic_video_clip, vid_dur))
             remaining = seg_dur - vid_dur
-            # If the chosen clip didn't fill the window, pick *another*
-            # pool entry (scored or least-used) for the remainder rather
-            # than dropping back to off-topic mixkit.
-            while remaining > 0.3 and topic_video_pool:
-                nxt = _pick_pool_clip(topic_video_pool, shot)
-                if not nxt:
+            # Fill the rest of the shot by ALTERNATING video and image
+            # pool entries. Images are cheaper to source and almost
+            # always on-topic, and alternating breaks up the visual
+            # monotony of a single source streaming for 5+ seconds.
+            # Image dur is capped at IMAGE_MAX_DUR (Ken Burns gets
+            # boring past ~2s); video dur stays at SUB_CUT_TARGET.
+            fill_idx = 1
+            while remaining > 0.3:
+                want_image = (fill_idx % 2 == 1 and topic_image_pool)
+                placed = False
+                if want_image:
+                    img = _pick_pool_image(topic_image_pool, shot)
+                    if img:
+                        fill = min(remaining, IMAGE_MAX_DUR)
+                        if fill > 0.3:
+                            plan.append((img, fill))
+                            remaining -= fill
+                            fill_idx += 1
+                            placed = True
+                            print(f"      [topic_image] shot {i+1} fill -> "
+                                  f"{img['title'][:50]!r} ({fill:.1f}s)")
+                if not placed and topic_video_pool:
+                    nxt = _pick_pool_clip(topic_video_pool, shot)
+                    if nxt:
+                        nxt_avail = max(0.0,
+                                        float(nxt["duration"])
+                                        - float(nxt.get("seek", 0.0)))
+                        fill = min(remaining, nxt_avail, SUB_CUT_TARGET)
+                        if fill > 0.3:
+                            plan.append((nxt, fill))
+                            remaining -= fill
+                            fill_idx += 1
+                            placed = True
+                # Last-ditch: try the image pool even if it wasn't
+                # this slot's turn, so we don't bail on the round-robin
+                # just because the video pool ran out of clips that
+                # fit the remaining window.
+                if not placed and not want_image and topic_image_pool:
+                    img = _pick_pool_image(topic_image_pool, shot)
+                    if img:
+                        fill = min(remaining, IMAGE_MAX_DUR)
+                        if fill > 0.3:
+                            plan.append((img, fill))
+                            remaining -= fill
+                            fill_idx += 1
+                            placed = True
+                            print(f"      [topic_image] shot {i+1} fill -> "
+                                  f"{img['title'][:50]!r} ({fill:.1f}s)")
+                if not placed:
                     break
-                nxt_avail = max(0.0, float(nxt["duration"]) - float(nxt.get("seek", 0.0)))
-                fill = min(remaining, nxt_avail, SUB_CUT_TARGET)
-                if fill <= 0.3:
-                    break
-                plan.append((nxt, fill))
-                remaining -= fill
         elif image_clip and has_stock:
             image_dur = min(IMAGE_MAX_DUR, seg_dur)
             plan.append((image_clip, image_dur))
