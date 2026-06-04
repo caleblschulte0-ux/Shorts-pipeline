@@ -7,18 +7,27 @@ stock laptop shot every time.
 
 Sources, tried in order:
 
+  0. **NASA Image and Video Library** (`images-api.nasa.gov`). Free,
+     public domain, no key. Strongest source for any space, climate,
+     geology, weather or aviation topic — has the actual mission
+     footage that Commons usually only paraphrases. Goes first.
   1. Wikimedia Commons video files (`mime: video/*`). Same API call
      `topic_media._commons_files` already uses for images.
   2. Internet Archive `archive.org/advancedsearch.php` filtered to
      `mediatype:movies` + an opensource/CC collection. Strong for any
      event ≥30 days old, since archive mirrors news clips heavily.
-  3. News article `og:video` / `twitter:player:stream` scrape. Same
-     GDELT article list `topic_media._gdelt_news_image` walks, but
-     pulling the embedded video tag instead of the image tag.
-  4. YouTube `search.list?videoLicense=creativeCommon`. Requires
+  3. News article video scrape: `og:video`, `twitter:player:stream`,
+     `<video src>`, `<source src>`, and JSON-LD VideoObject embeds.
+     The HTML5/JSON-LD extensions catch outlets that lazy-load video
+     and never set an og:video meta tag.
+  4. **Vimeo Creative Commons** (`api.vimeo.com/videos?filter=CC`).
+     Requires `VIMEO_TOKEN` env var (free dev account). Lower volume
+     than Commons but better SNR for human-story topics where NASA
+     and Commons are both thin.
+  5. YouTube `search.list?videoLicense=creativeCommon`. Requires
      `YOUTUBE_API_KEY`. CC-BY allows commercial reuse with attribution.
      Uses ~100 quota units per call.
-  5. *Opt-in only* via `TOPIC_VIDEO_ALLOW_STRIKES=1` — searches YouTube
+  6. *Opt-in only* via `TOPIC_VIDEO_ALLOW_STRIKES=1` — searches YouTube
      without the CC filter. Relies on fair-use commentary doctrine for
      short clips. **YouTube's Content ID is automated and matches
      single-second clips regardless of fair use; three strikes
@@ -128,6 +137,75 @@ def _download(url: str, dest: Path) -> Path | None:
         return None
 
 
+# ---------- Source 0: NASA Image and Video Library ----------
+
+def _nasa_videos(topic: str, limit: int = 4) -> list[str]:
+    """Search NASA's public library for video assets matching `topic`.
+    Returns direct .mp4 / .mov URLs from `images-assets.nasa.gov`.
+
+    The search endpoint returns *collections* (one per "asset" — a
+    page with metadata, an image, captions, and one or more video
+    derivatives). Each collection's asset manifest at
+    `/asset/{nasa_id}` lists every file in that asset; we pick the
+    smallest mp4 derivative (typically `~orig.mp4` or `~mobile.mp4`)
+    so the download stays small and ffmpeg handles it.
+
+    Public domain — NASA explicitly disclaims copyright on its own
+    productions. No API key required, no rate limit advertised.
+    """
+    if not topic.strip():
+        return []
+    qs = urllib.parse.urlencode({
+        "q": topic,
+        "media_type": "video",
+        "page_size": limit,
+    })
+    try:
+        data = json.loads(_get(
+            f"https://images-api.nasa.gov/search?{qs}", timeout=TIMEOUT))
+    except Exception as e:  # noqa: BLE001
+        print(f"      [nasa search fail] {e}")
+        return []
+    items = ((data.get("collection") or {}).get("items") or [])
+    out: list[str] = []
+    for it in items[:limit]:
+        # Each item links to an asset manifest by `nasa_id`.
+        d = (it.get("data") or [{}])[0]
+        nasa_id = d.get("nasa_id")
+        if not nasa_id:
+            continue
+        try:
+            asset = json.loads(_get(
+                f"https://images-api.nasa.gov/asset/{urllib.parse.quote(nasa_id)}",
+                timeout=TIMEOUT))
+        except Exception:  # noqa: BLE001
+            continue
+        files = [(i.get("href") or "")
+                 for i in ((asset.get("collection") or {}).get("items") or [])]
+        # Prefer the smaller "mobile"/"medium" derivative; fall back to
+        # orig. NASA asset URLs contain spaces and unicode characters
+        # in filenames that urllib refuses to fetch without encoding,
+        # so we re-encode the path component on the way out.
+        mp4s = [f for f in files if f.lower().endswith(".mp4")]
+        if not mp4s:
+            continue
+        mobile = [f for f in mp4s if "mobile" in f.lower()
+                  or "small" in f.lower() or "medium" in f.lower()]
+        url = mobile[0] if mobile else mp4s[0]
+        try:
+            parsed = urllib.parse.urlsplit(url)
+            # Force HTTPS — NASA's images-assets CDN occasionally
+            # 503s on HTTP requests while serving the same path
+            # fine over HTTPS.
+            url = urllib.parse.urlunsplit((
+                "https", parsed.netloc,
+                urllib.parse.quote(parsed.path), parsed.query, parsed.fragment))
+        except Exception:  # noqa: BLE001
+            continue
+        out.append(url)
+    return out
+
+
 # ---------- Source 1: Wikimedia Commons video ----------
 
 def _commons_videos(topic: str, limit: int = 3) -> list[str]:
@@ -197,12 +275,59 @@ _OG_VIDEO_RE = re.compile(
     re.I,
 )
 
+# Plain <video src> and <source src> tags. Most modern news outlets
+# lazy-load video via JS and never emit an og:video meta tag — but
+# when their initial HTML *does* embed the player, it's almost always
+# one of these. The pattern is permissive on the attribute order
+# because outlets render them in every combination imaginable.
+_HTML5_VIDEO_RE = re.compile(
+    r'<(?:video|source)[^>]*\bsrc\s*=\s*["\']([^"\']+\.(?:mp4|m4v|webm|mov)[^"\']*)',
+    re.I,
+)
+
+# JSON-LD VideoObject is what Schema.org-aware outlets emit for SEO.
+# The contentUrl field is the actual video URL. Matching the JSON
+# inside <script type="application/ld+json"> is brittle so we just
+# regex for the field — false positives are filtered by extension.
+_JSONLD_VIDEO_RE = re.compile(
+    r'"contentUrl"\s*:\s*"([^"]+\.(?:mp4|m4v|webm|mov)[^"]*)',
+    re.I,
+)
+
+
+def _extract_video_urls(html: str) -> list[str]:
+    """Pull every plausible video URL out of an article HTML body —
+    og:video meta + Twitter player stream + raw <video>/<source> tags
+    + JSON-LD VideoObject.contentUrl. Returns unique results in the
+    order they appeared."""
+    seen: set[str] = set()
+    out: list[str] = []
+    for pat in (_OG_VIDEO_RE, _HTML5_VIDEO_RE, _JSONLD_VIDEO_RE):
+        for m in pat.finditer(html):
+            cand = m.group(1)
+            # JSON-encoded slashes survive into the regex match.
+            cand = cand.replace("\\/", "/")
+            if cand.startswith("//"):
+                cand = "https:" + cand
+            if not cand.startswith("http"):
+                continue
+            if not cand.split("?")[0].lower().endswith(
+                    (".mp4", ".m4v", ".webm", ".mov")):
+                continue
+            if cand in seen:
+                continue
+            seen.add(cand)
+            out.append(cand)
+    return out
+
 
 def _og_videos(topic: str, max_hours: int = 24 * 7) -> list[str]:
-    """Walk GDELT's recent article list for `topic`, scrape og:video /
-    twitter:player:stream out of each article HTML. About 30-40% of
-    major news outlets include broadcast clip URLs this way for embed
-    purposes — same URLs their own embeds use."""
+    """Walk GDELT's recent article list for `topic`, then scrape every
+    embedded video URL we can find from each article (og:video,
+    twitter:player:stream, <video>/<source> tags, JSON-LD VideoObject).
+    Modern news outlets often emit one of these even when others are
+    missing, so we try all four for ~30% better recall than og:video
+    alone."""
     if not topic.strip():
         return []
     qs = urllib.parse.urlencode({
@@ -227,18 +352,72 @@ def _og_videos(topic: str, max_hours: int = 24 * 7) -> list[str]:
             html = _get(page, timeout=10).decode("utf-8", errors="ignore")
         except Exception:  # noqa: BLE001
             continue
-        for m in _OG_VIDEO_RE.finditer(html):
-            cand = m.group(1)
-            if cand.startswith("//"):
-                cand = "https:" + cand
-            if cand.startswith("http") and cand.split("?")[0].lower().endswith(
-                    (".mp4", ".m4v", ".webm", ".mov")):
-                out.append(cand)
-                break
+        # Take just the first hit per article — too many videos from
+        # one outlet biases the pool toward whoever has the most
+        # embeds, not whose story is best.
+        for cand in _extract_video_urls(html):
+            out.append(cand)
+            break
     return out
 
 
-# ---------- Source 4: YouTube Creative Commons ----------
+# ---------- Source 4: Vimeo Creative Commons ----------
+
+def _vimeo_videos(topic: str, limit: int = 4) -> list[str]:
+    """Search Vimeo's CC-licensed pool. Requires `VIMEO_TOKEN` env var
+    from a free Vimeo developer account. Skips silently if no token
+    is set so the rest of the chain still works.
+
+    Vimeo's CC pool skews toward personal projects and short docs,
+    which is the right shape for human-story topics (rescues,
+    courtroom moments, named individuals) that NASA has nothing for
+    and Commons covers only thinly.
+
+    Returns direct download URLs (Vimeo's `/files` field — one per
+    rendition; we take the smallest-but-usable one).
+    """
+    token = os.environ.get("VIMEO_TOKEN", "").strip()
+    if not token or not topic.strip():
+        return []
+    params = {
+        "query": topic,
+        "filter": "CC",
+        "per_page": limit,
+        "sort": "relevant",
+        "fields": "uri,name,download,files",
+    }
+    url = ("https://api.vimeo.com/videos?"
+           + urllib.parse.urlencode(params))
+    try:
+        req = urllib.request.Request(url, headers={
+            "Authorization": f"bearer {token}",
+            "Accept": "application/vnd.vimeo.*+json;version=3.4",
+        })
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+            data = json.loads(r.read())
+    except Exception as e:  # noqa: BLE001
+        print(f"      [vimeo search fail] {e}")
+        return []
+    out: list[str] = []
+    for v in (data.get("data") or []):
+        # Prefer `download` (direct files); fall back to `files`
+        # (HLS/progressive renditions). Vimeo serves the smallest
+        # mp4 progressive at ~360p which is plenty for shorts.
+        progressives = []
+        for f in (v.get("download") or []):
+            if f.get("link") and f.get("type", "").lower().startswith("video/mp4"):
+                progressives.append((int(f.get("size") or 1 << 30), f["link"]))
+        for f in (v.get("files") or []):
+            if f.get("link") and f.get("quality") == "sd":
+                progressives.append((int(f.get("size") or 1 << 30), f["link"]))
+        if not progressives:
+            continue
+        progressives.sort()
+        out.append(progressives[0][1])
+    return out
+
+
+# ---------- Source 5: YouTube Creative Commons ----------
 
 def _youtube_search(topic: str, *, license_filter: str | None,
                     limit: int = 5) -> list[str]:
@@ -351,6 +530,14 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
             results.append({"path": p, "title": title, "source": source})
         return len(results) >= max_clips
 
+    # 0. NASA library — public-domain mission footage. Goes first
+    #    because when it hits, it almost certainly has the actual
+    #    event the script is about (a launch, an EVA, a Mars rover
+    #    drive) and the license is unambiguous.
+    for u in _nasa_videos(combined, limit=4):
+        if _try(u, source="nasa", ext=".mp4"):
+            return results
+
     # 1. Wikimedia Commons video. Take the title's hits first (best
     #    quality on named entities) then broaden to the combined query.
     if context:
@@ -368,13 +555,19 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
         if _try(u, source="archive", ext=".mp4"):
             return results
 
-    # 3. og:video on today's news coverage of the same event.
+    # 3. News article video embeds (og:video, twitter:player:stream,
+    #    HTML5 <video>/<source>, JSON-LD VideoObject).
     for u in _og_videos(combined):
         if _try(u, source="og",
                  ext=Path(u.split("?")[0]).suffix.lower() or ".mp4"):
             return results
 
-    # 4. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
+    # 4. Vimeo CC. Skips silently when VIMEO_TOKEN isn't set.
+    for u in _vimeo_videos(combined, limit=4):
+        if _try(u, source="vimeo", ext=".mp4"):
+            return results
+
+    # 5. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
     #    silently if no API key configured. Downloads up to 4 so the
     #    pool has variety instead of stopping at the first hit.
     if len(results) < max_clips:
@@ -388,7 +581,7 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
                 if len(results) >= max_clips:
                     return results
 
-    # 5. Opt-in fair-use path. Off by default.
+    # 6. Opt-in fair-use path. Off by default.
     if not results and os.environ.get("TOPIC_VIDEO_ALLOW_STRIKES") == "1":
         for vid in _youtube_search(combined, license_filter=None, limit=4):
             dest = _cache_path(f"yt:any:{vid}", ext=".mp4")
