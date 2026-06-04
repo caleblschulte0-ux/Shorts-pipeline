@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "spacex-75b-ipo",
+  "title": "SpaceX Files for $75 Billion IPO — Largest in History",
+  "hashtags": ["spacex", "spacexipo", "elonmusk", "ipo", "wallstreet", "stocks", "trillionaire", "nasdaq", "starship", "investing", "techinvesting", "finance", "spacetech", "biggestipo"],
+  "script": "SpaceX just filed for the largest IPO in history. The company is seeking $75 billion — more than double the previous record held by Saudi Aramco. At $135 per share and a $1.77 trillion valuation, SpaceX would be worth more than every company on Earth except Apple and Nvidia. Elon Musk retains 82 percent of voting power. If the deal closes, Musk becomes the world's first trillionaire. The roadshow starts this week.",
+  "shots": [
+    {
+      "phrase": "largest IPO in history",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Liftoff_of_SpaceX_IFT-5_%2854064037095%29.jpg",
+      "query": "SpaceX rocket launch fire liftoff starship pad"
+    },
+    {
+      "phrase": "$75 billion — more than double the previous record",
+      "query": "IPO stock offering wall street NYSE trading floor bell"
+    },
+    {
+      "phrase": "previous record held by Saudi Aramco",
+      "query": "Saudi Aramco oil company stock exchange IPO billions"
+    },
+    {
+      "phrase": "$1.77 trillion valuation",
+      "query": "trillion dollar valuation tech company stock chart massive"
+    },
+    {
+      "phrase": "Elon Musk retains 82 percent of voting power",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society.jpg",
+      "query": "Elon Musk SpaceX CEO shareholder voting control press"
+    },
+    {
+      "phrase": "Musk becomes the world's first trillionaire",
+      "query": "billionaire trillionaire wealth net worth money chart record"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "largest IPO in history",
+      "text": "BIGGEST IPO EVER",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.4
+    },
+    {
+      "phrase": "$75 billion",
+      "text": "$75B IPO",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "$1.77 trillion valuation",
+      "text": "$1.77T VALUATION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "82 percent of voting power",
+      "text": "82% CONTROL",
+      "color": "#ffaa30",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "first trillionaire",
+      "text": "FIRST TRILLIONAIRE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}
