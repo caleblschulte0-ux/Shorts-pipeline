@@ -636,6 +636,12 @@ def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
     return pool
 
 
+# Per-shot memo so _pick_pool_clip's repeated calls in the
+# sub-cut round-robin don't each re-run the supplementary Commons
+# search. Keyed by the shot's phrase string; emptied each render.
+_SUPPLEMENTARY_DONE: set[str] = set()
+
+
 def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
     """Return the clip best matching this shot, plus a per-shot `seek`
     offset that lands on a high-motion window. Mutates `clip['uses']`
@@ -656,8 +662,15 @@ def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
     # only, ~200ms when nothing matches; the download is cached on
     # reuse) and prevents the "moon shot got a rocket clip" failure
     # mode where the pool's coincidental token overlap beats the
-    # supplementary clip's semantic fit.
-    sup = _supplementary_clip(shot, pool)
+    # supplementary clip's semantic fit. Memoised by shot phrase
+    # because each long shot calls _pick_pool_clip several times in
+    # the SUB_CUT_TARGET round-robin and we don't want to repeat the
+    # search per sub-cut.
+    if shot.phrase not in _SUPPLEMENTARY_DONE:
+        sup = _supplementary_clip(shot, pool)
+        _SUPPLEMENTARY_DONE.add(shot.phrase)
+    else:
+        sup = None
 
     chosen: dict | None = None
     if tokens:
@@ -790,6 +803,10 @@ def build_timed_top(
     # phrase / query — so "moon" shots get moon clips and "engine"
     # shots get engine clips instead of round-robin chaos.
     topic_video_pool = _build_topic_video_pool(shots)
+    # Reset the per-shot supplementary memo so this render starts
+    # fresh — across renders the cached video files are reused, but
+    # the in-process "we already tried this shot" set must not leak.
+    _SUPPLEMENTARY_DONE.clear()
 
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
@@ -822,7 +839,13 @@ def build_timed_top(
             available = max(0.0,
                             float(topic_video_clip["duration"])
                             - float(topic_video_clip.get("seek", 0.0)))
-            vid_dur = min(seg_dur, available)
+            # Cap each topic-video sub-cut at SUB_CUT_TARGET. Without
+            # this, a 10s shot got 10 unbroken seconds from one source
+            # clip — even when there was motion, the lack of cuts read
+            # as a static frame. Capping forces the round-robin loop
+            # below to pull additional pool clips and produce the same
+            # rapid-cut feel the stock path already had.
+            vid_dur = min(seg_dur, available, SUB_CUT_TARGET)
             plan.append((topic_video_clip, vid_dur))
             remaining = seg_dur - vid_dur
             # If the chosen clip didn't fill the window, pick *another*
@@ -833,7 +856,7 @@ def build_timed_top(
                 if not nxt:
                     break
                 nxt_avail = max(0.0, float(nxt["duration"]) - float(nxt.get("seek", 0.0)))
-                fill = min(remaining, nxt_avail)
+                fill = min(remaining, nxt_avail, SUB_CUT_TARGET)
                 if fill <= 0.3:
                     break
                 plan.append((nxt, fill))
