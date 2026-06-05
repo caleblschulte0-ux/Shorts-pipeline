@@ -1,0 +1,24 @@
+{
+  "key": "cpi_components",
+  "title": "12-month CPI change by category",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "12 months through April 2026",
+  "source": {
+    "name": "BLS CPI Summary 2026 M04",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov/news.release/cpi.nr0.htm",
+    "officiality": "official",
+    "access_date": "2026-06-02"
+  },
+  "notes": "Year-over-year percent change by major CPI component. Headline All items is the comparison baseline.",
+  "baseline": {"label": "All items", "value": 3.8},
+  "points": [
+    {"label": "Gasoline", "value": 28.4},
+    {"label": "Energy", "value": 17.9},
+    {"label": "Food", "value": 4.1},
+    {"label": "All items", "value": 3.8},
+    {"label": "Shelter", "value": 3.6},
+    {"label": "Apparel", "value": 1.2}
+  ]
+}

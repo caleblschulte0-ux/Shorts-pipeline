@@ -1,0 +1,57 @@
+{
+  "key": "monthly_grocery_cost",
+  "title": "Average household grocery bill ($/month)",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "Consumer Expenditure food-at-home",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Illustrative average monthly grocery spend per household.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 720,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 742,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 790,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 880,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 915,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 945,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 985,
+      "period": "2025"
+    },
+    {
+      "label": "2026",
+      "value": 1030,
+      "period": "2026"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "key": "median_home_price",
+  "title": "Median home sale price (thousand $)",
+  "unit": "thousand dollars",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "Median Sales Price of Houses Sold",
+    "publisher": "Federal Reserve Bank of St. Louis (FRED)",
+    "url": "https://fred.stlouisfed.org",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Illustrative annual median sale price, U.S.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 270,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 300,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 360,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 410,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 418,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 428,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 440,
+      "period": "2025"
+    },
+    {
+      "label": "2026",
+      "value": 449,
+      "period": "2026"
+    }
+  ]
+}

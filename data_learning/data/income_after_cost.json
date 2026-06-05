@@ -1,0 +1,45 @@
+{
+  "key": "income_after_cost",
+  "title": "Income adjusted for cost of living (thousand $)",
+  "unit": "thousand dollars",
+  "geography": "United States",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "Cost-adjusted median income",
+    "publisher": "U.S. Bureau of Economic Analysis",
+    "url": "https://www.bea.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Median income divided by regional price parity.",
+  "points": [
+    {
+      "label": "Texas",
+      "value": 78.5
+    },
+    {
+      "label": "California",
+      "value": 64.1
+    },
+    {
+      "label": "Mississippi",
+      "value": 62.0
+    },
+    {
+      "label": "Florida",
+      "value": 60.4
+    },
+    {
+      "label": "New York",
+      "value": 58.9
+    },
+    {
+      "label": "Hawaii",
+      "value": 41.0
+    }
+  ],
+  "baseline": {
+    "label": "United States",
+    "value": 75.1
+  }
+}

@@ -1,0 +1,7 @@
+# Extra deps for the data_learning add-on, on top of the base
+# Shorts-pipeline requirements.txt (which it never modifies).
+#
+# matplotlib is OPTIONAL — without it, chart rendering is skipped and the
+# pipeline falls back to stock B-roll queries, so videos still build.
+matplotlib>=3.7
+requests>=2.31        # already in base; listed for standalone installs
