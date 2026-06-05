@@ -3,27 +3,25 @@
 studio renderer samples a rotating segment from (so the same footage is
 reused across many videos without obviously repeating).
 
-The default theme is **oddly-satisfying ASMR macro/pour footage** (slow-mo
-pours, honeycomb dripping, falling salt & spices, frothing milk, whipped
-cream, espresso) — not pressure washing.
+The theme is the **real pressure-washing / grime-reveal genre** (POV
+"dirty surface -> clean" footage), not generic satisfying stock.
 
 Sources, in priority order:
 
   1. LOCAL drop folder ``data_learning/broll/src/*.{mp4,mov,webm,mkv}``
-     — drop any long satisfying video(s) here. **Best option.**
+     — drop any long pressure-washing video(s) here. **Best option.**
   2. PEXELS video API   — set ``PEXELS_API_KEY`` (free). Pulls real
-     "<topic>" clips.
+     "pressure washing" clips.
   3. PIXABAY video API  — set ``PIXABAY_API_KEY`` (free).
-  4. COVERR (no key)    — fallback. For the default ``satisfying`` topic this
-     curates clean ASMR clips across several sub-queries; for any other topic
-     it does a plain Coverr search.
+  4. YOUTUBE (yt-dlp)   — set ``YT_COOKIES`` (path to a Netscape
+     cookies.txt). Pulls the actual pressure-washing-satisfying genre.
+     Required because YouTube bot-blocks datacenter IPs without cookies.
+     Third-party content — only reuse clips you have the rights to.
+  5. COVERR (no key)    — last-resort fallback; limited / loosely matched.
 
 Run:
-    python -m data_learning.build_broll                 # topic=satisfying
-    python -m data_learning.build_broll --topic "glass blowing"
-
-Note on YouTube: yt-dlp works but YouTube bot-blocks datacenter IPs without
-cookies. If you have a long clip, just drop it in broll/src/ (option 1).
+    python -m data_learning.build_broll                 # topic=pressure washing
+    python -m data_learning.build_broll --topic "carpet cleaning"
 """
 from __future__ import annotations
 
@@ -47,64 +45,40 @@ NW, NH, NFPS = 1080, 720, 30       # normalized strip size
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux) shorts-pipeline/1.0"}
 VIDEO_EXT = (".mp4", ".mov", ".webm", ".mkv", ".m4v")
 
-# Default theme. Coverr's no-key search is loosely tag-matched, so a single
-# term is unreliable — for this theme we aggregate several sub-queries and
-# keep only clips whose *title* reads like true ASMR macro/pour footage.
-SATISFYING = "satisfying"
-CURATED_QUERIES = (
-    "pouring", "slow motion food", "macro food", "honey", "honeycomb",
-    "cream", "milk pour", "chocolate", "coffee pour", "espresso",
-    "salt", "sugar", "dough", "sauce", "batter", "syrup",
-)
-# A clip is kept only if its title contains one of these (satisfying action /
-# material) terms...
-CURATED_GOOD = (
-    "pour", "drip", "honeycomb", "honey", "salt", "peppercorn", "spice",
-    "sprinkle", "syrup", "whipped cream", "melted", "melting", "espresso",
-    "crema", "froth", "foam", "batter", "dough", "swirl", "stir",
-    "splash", "basil", "pesto", "cereal", "truffle", "butter", "sugar",
-)
-# ...and none of these (people / lifestyle / place) terms.
-CURATED_BAD = (
-    "drinking", "drinks", "drink from", "girlfriend", "boyfriend", "office",
-    "bitcoin", "price", "reading", "working", "friends", "enjoying", "cafe",
-    "paris", "headset", "battery", "teamwork", "monastery", "workout",
-    "jogging", "couple", "smartphone", "field", "boat", "excursion", "flag",
-    "architecture", "view of", "hugging", "street", "buying", "pizza",
-    "woman", "girl", "man ", "guy", "people", " her ", " his ",
+# The theme is real pressure-washing / grime-reveal footage (the POV
+# "dirty surface -> clean" genre), NOT generic satisfying stock. When no
+# license-clean source is configured the YouTube path below pulls the actual
+# genre (requires cookies — YouTube bot-blocks datacenter IPs otherwise).
+PRESSURE_WASHING = "pressure washing"
+YT_QUERIES = (
+    "satisfying pressure washing pov shorts",
+    "satisfying pressure washing asmr",
+    "extreme driveway pressure washing transformation",
 )
 
 
-def from_coverr_curated(n: int = 40) -> list[str]:
-    """Aggregate clean satisfying clips across several Coverr sub-queries.
+def from_youtube(topic: str, dest: Path, n: int = 12,
+                 cookies: str | None = None) -> list[Path]:
+    """Download real pressure-washing clips from YouTube via yt-dlp.
 
-    No API key required. Returns de-duplicated direct mp4 URLs whose titles
-    pass the ASMR keyword filter, capped at ``n``.
+    YouTube bot-blocks datacenter IPs, so a cookies file is required: set
+    ``YT_COOKIES`` to a Netscape ``cookies.txt`` exported from a logged-in
+    browser. Returns the downloaded clip paths. Note: YouTube content is
+    third-party — only use clips you have the rights to reuse.
     """
-    seen: dict[str, None] = {}
-    for q in CURATED_QUERIES:
-        try:
-            url = ("https://coverr.co/api/videos?query=%s&page=1&urls=true"
-                   % urllib.parse.quote(q))
-            data = json.loads(_get(url, 15))
-        except Exception as e:  # noqa: BLE001
-            print(f"  coverr '{q}' fail: {e}", file=sys.stderr)
-            continue
-        for h in (data.get("hits") or []):
-            title = (h.get("title") or "").lower().strip()
-            if any(b in title for b in CURATED_BAD):
-                continue
-            if not any(g in title for g in CURATED_GOOD):
-                continue
-            link = (h.get("urls") or {}).get("mp4")
-            if not link:
-                bf = h.get("base_filename")
-                link = f"https://cdn.coverr.co/videos/{bf}/1080p.mp4" if bf else None
-            if link and link not in seen:
-                seen[link] = None
-        if len(seen) >= n:
-            break
-    return list(seen)[:n]
+    dest.mkdir(parents=True, exist_ok=True)
+    query = YT_QUERIES[0] if topic.strip().lower() == PRESSURE_WASHING else topic
+    out_tmpl = str(dest / "yt_%(autonumber)03d.%(ext)s")
+    cmd = ["yt-dlp", "--no-warnings", "--no-check-certificates",
+           "--no-playlist", "--ignore-errors",
+           "-f", "bv*[height<=1080][ext=mp4]/b[height<=1080]",
+           "--max-filesize", "80M", "--match-filter", "duration<300",
+           "-o", out_tmpl, f"ytsearch{n}:{query}"]
+    if cookies:
+        cmd += ["--cookies", cookies]
+    subprocess.run(cmd)
+    return [p for p in sorted(dest.glob("yt_*"))
+            if p.suffix.lower() in VIDEO_EXT and p.stat().st_size > 100_000]
 
 
 def _get(url: str, timeout: int = 20) -> bytes:
@@ -194,23 +168,23 @@ def build(topic: str) -> Path:
     if not clips:
         key = os.environ.get("PEXELS_API_KEY")
         pix = os.environ.get("PIXABAY_API_KEY")
-        is_default = topic.strip().lower() == SATISFYING
+        ytc = os.environ.get("YT_COOKIES")
         try:
             if key:
                 clips = download_urls(from_pexels(topic, key), DL_DIR); src_label = "Pexels"
             elif pix:
                 clips = download_urls(from_pixabay(topic, pix), DL_DIR); src_label = "Pixabay"
-            elif is_default:
-                clips = download_urls(from_coverr_curated(), DL_DIR)
-                src_label = "Coverr curated (no-key)"
+            elif ytc:
+                clips = from_youtube(topic, DL_DIR, cookies=ytc); src_label = "YouTube (yt-dlp)"
             else:
                 clips = download_urls(from_coverr(topic), DL_DIR); src_label = "Coverr (no-key fallback)"
         except Exception as e:  # noqa: BLE001
             print(f"[broll] source fetch failed: {e}", file=sys.stderr)
     if not clips:
         raise SystemExit(
-            "[broll] no footage. Drop a satisfying video into "
-            f"{SRC_DIR.relative_to(REPO)}/ or set PEXELS_API_KEY, then re-run.")
+            "[broll] no footage. Drop a pressure-washing video into "
+            f"{SRC_DIR.relative_to(REPO)}/, or set PEXELS_API_KEY / YT_COOKIES, "
+            "then re-run.")
     print(f"[broll] {len(clips)} clips from {src_label}")
 
     norm_dir = BROLL_DIR / "_norm"
@@ -236,7 +210,7 @@ def build(topic: str) -> Path:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--topic", default=SATISFYING)
+    ap.add_argument("--topic", default=PRESSURE_WASHING)
     build(ap.parse_args().topic)
     return 0
 

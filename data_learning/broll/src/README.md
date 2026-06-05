@@ -1,8 +1,7 @@
 # Drop bottom-strip footage here
 
-Put any long oddly-satisfying process video(s) (slow-mo pours, honeycomb,
-falling salt/spices, frothing milk, espresso, etc.) in this folder as
-.mp4/.mov/.webm, then run:
+Put any long **pressure-washing / grime-reveal** video(s) (POV dirty-surface
+-> clean) in this folder as .mp4/.mov/.webm, then run:
 
     python -m data_learning.build_broll
 
@@ -11,5 +10,5 @@ renderer samples a rotating segment from each render (so it never obviously
 repeats). One long video is ideal.
 
 No file here? build_broll falls back to PEXELS_API_KEY / PIXABAY_API_KEY
-(free keys — best quality), then a curated Coverr set (no key) for the
-default `satisfying` theme.
+(free keys — real "pressure washing" clips), then YouTube via yt-dlp if
+YT_COOKIES is set, then Coverr (no key, limited).
