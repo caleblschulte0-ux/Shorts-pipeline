@@ -256,12 +256,24 @@ jobs:
               exit 0
             fi
             echo "Push failed on attempt $i, rebasing (ours)..."
+            # Capture our fresh commit's SHA so we can cherry-pick its
+            # tree back after the hard reset in the recovery path
+            # below. Without this safeguard, `git reset --hard` silently
+            # wiped the orchestrator's fresh daily_report + posted_log
+            # — the re-stage step found no diff against origin/main, the
+            # commit became empty, the push became a no-op, and the
+            # YouTube uploads were stranded with no source-of-truth entry.
+            our_sha=$(git rev-parse HEAD)
             git pull --rebase -X ours origin ${{ github.ref_name }} || {
-              echo "Rebase still conflicted — aborting + resetting cleanly."
+              echo "Rebase still conflicted — aborting + cherry-picking ours."
               git rebase --abort || true
               git fetch origin ${{ github.ref_name }}
-              # Last resort: reset to remote, re-stage our files, recommit.
               git reset --hard origin/${{ github.ref_name }}
+              # Cherry-pick the original commit's tree state onto the
+              # remote-advanced base. -X theirs (the perspective flipped
+              # after the reset) keeps OUR file content on any conflict
+              # against the remote's drift.
+              git cherry-pick --no-commit -X theirs "$our_sha" || true
               git add state/ daily_report.md daily_report.json 2>/dev/null || true
               git commit -m "daily: $(date -u +%Y-%m-%d) report + state (retry $i)" || true
             }
