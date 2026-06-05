@@ -202,6 +202,41 @@ don't render, don't upload. The posted-log dedupes, so only NEW stories post.
   payoff (e.g. "the cheery numbers up top, the catch down here").
 - Don't reuse a `slug` already in `niche.config.json` (grep first).
 
+## Write it for dummies (this is the whole brand)
+The channel is **"the stuff nobody explained to you, broken down so anyone
+gets it."** We are NOT a middle-school slideshow that reads the numbers off
+the screen. The viewer can already SEE the number — narrating it adds nothing
+and is why people scroll away.
+
+**Reference a number, then explain what it MEANS / why it should scare or
+surprise them.** Translate every figure into something human: a paycheck, a
+year, a house, "double", "before you buy a coffee".
+
+- ❌ Listing (what we did wrong): *"San Jose has the highest cost in years of
+  pay, at 11.3 years."* — it's just reading the bar.
+- ✅ Explaining: *"In San Jose it takes 11.3 years of your ENTIRE salary —
+  not your savings, every dollar you earn — just for the keys."*
+
+Rules:
+- Each beat names **1–2 real on-chart numbers** (write them as the exact digits
+  shown, e.g. `6.6 percent`, `449`, `35.7 percent`) — those auto-circle on the
+  chart. Then immediately translate/explain them. ~20–35 spoken words/beat.
+- Conversational, blunt, second-person ("you", "your paycheck"). Contractions.
+  No jargon, no "as you can see", no "this chart shows".
+- The four beats must build ONE argument to a payoff in the closing.
+
+### Hooks — the single most important line
+A weak hook = nobody watches. The hook must open a curiosity gap or land a
+gut-punch in the first 3 seconds, and it must NOT just announce the topic.
+
+- ❌ Weak: *"Four charts show why you can't buy a house. Watch how they connect."*
+- ✅ Strong: *"Your parents bought a house on one salary. You can't get one on
+  two — and no, it's not the avocado toast. Here's the actual math."*
+
+Good hook shapes: a then-vs-now gut punch ("X cost $270k. Today? $449k."), a
+"you've been lied to" reframe, a personal-stakes question ("Why does your
+paycheck buy less every year?"), or a number so wild it demands the why.
+
 ## How to author one (mirror the existing six)
 Templates: `data_learning/data/*.json` and the `"stories"` array in
 `data_learning/niche.config.json` (copy the shape of e.g. `debt-trap`).
@@ -238,18 +273,21 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
      "hashtags": ["topic", "data", "..."],
      "segments": [
        {"source":"offline","key":"<key1>","params":{"file":"<key1>.json"},
-        "insight_type":"trend","topic":"clean noun phrase",
-        "role":"1 · LABEL","connector":"First, ...",
-        "explain":"Plain-language, so-an-idiot-gets-it kicker."}
+        "insight_type":"trend","topic":"clean noun phrase","role":"1 · LABEL",
+        "say":"Reference the exact number, then explain what it MEANS. ~20-35 words."}
      ]
    }
    ```
    - 4 segments. `insight_type`: `trend` | `rank` | `comparison`. For rank add
      `"ascending": false` + `"use_baseline": true` (if it has a baseline); for
      comparison add `"use_baseline": true`.
-   - `topic` = clean noun spoken in the line ("mortgage rates"). `explain` =
-     the plain-language meaning ("100 is average, so Hawaii is ~84% pricier").
-   - Keep each beat tight so the finished video stays roughly 45–60s.
+   - `topic` = clean noun used as the chart heading ("mortgage rates").
+   - **`say`** = the spoken line for that beat — the heart of the video. It MUST
+     contain the exact on-chart digits you want circled (e.g. `449`, `6.6
+     percent`) and then explain them (see "Write it for dummies" above). This
+     replaces the old auto-generated line; don't use `connector`/`explain`.
+   - Keep each beat ~20–35 words so the finished video lands ~45–60s.
+   - Look at the `housing-affordability-wall` story for a full worked example.
 
 3. **Sanity check** (optional — needs matplotlib/Pillow locally; CI validates
    on merge regardless). Confirms the story builds:

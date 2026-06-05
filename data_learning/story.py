@@ -114,6 +114,26 @@ def _punch(sentence: str, value: float, unit: str, color: str) -> dict | None:
     return p
 
 
+def _punches_from_anchors(say: str, anchors: list, unit: str) -> list[dict]:
+    """For a writer-authored line, circle whichever on-chart numbers it names.
+    Each anchor is {value, ...}; we punch the ones whose value appears in the
+    line (deduped, max 3) so the ring lands on the number as it's spoken."""
+    out: list[dict] = []
+    seen: set[str] = set()
+    for a in anchors:
+        v = a.get("value")
+        if v is None:
+            continue
+        tok, _ = _tok(v, unit)
+        if tok in seen:
+            continue
+        pp = _punch(say, v, unit, GREEN)
+        if pp:
+            out.append(pp)
+            seen.add(tok)
+    return out[:3]
+
+
 def _segment_text(ins: Insight, connector: str) -> tuple[str, list[tuple[str, str]]]:
     """Return (sentence, [(num_str, color)]) for one segment."""
     u = ins.unit
@@ -168,16 +188,23 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     sources: list[str] = []
     for i, seg_cfg in enumerate(story_cfg["segments"]):
         ins = _build_insight(seg_cfg)
-        connector = seg_cfg.get("connector",
-                                CONNECTORS[min(i, len(CONNECTORS) - 1)])
-        sentence, nums = _segment_text(ins, connector)
-        explain = seg_cfg.get("explain")
-        if explain:
-            sentence = sentence.rstrip() + " " + explain.strip()
-        punches = [pp for pp in (_punch(sentence, v, un, c) for v, un, c in nums)
-                   if pp]
         cpath, anchors = charts.render_story_chart(
             ins, chart_dir / f"{story_cfg['slug']}_seg{i:02d}.png")
+        say = seg_cfg.get("say")
+        if say:
+            # Writer-authored line: reference a number, then explain what it
+            # MEANS. We circle whichever on-chart numbers the line names.
+            sentence = say.strip()
+            punches = _punches_from_anchors(sentence, anchors, ins.unit)
+        else:
+            connector = seg_cfg.get("connector",
+                                    CONNECTORS[min(i, len(CONNECTORS) - 1)])
+            sentence, nums = _segment_text(ins, connector)
+            explain = seg_cfg.get("explain")
+            if explain:
+                sentence = sentence.rstrip() + " " + explain.strip()
+            punches = [pp for pp in
+                       (_punch(sentence, v, un, c) for v, un, c in nums) if pp]
         footer = ins.source.footer()
         if footer not in sources:
             sources.append(footer)
