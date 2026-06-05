@@ -7,6 +7,16 @@ on:
         description: 'How many shorts to publish'
         required: false
         default: '6'
+      force:
+        description: 'Bypass 6-hour duplicate-trigger guard (--force-llm)'
+        required: false
+        type: boolean
+        default: false
+      no_schedule:
+        description: 'Publish immediately, skip scheduling (--no-schedule)'
+        required: false
+        type: boolean
+        default: false
   # Auto-fire when the auto-merge workflow finishes a claude/* PR.
   # GitHub blocks GITHUB_TOKEN-attributed pushes from firing other
   # workflows (anti-recursion), so the push-paths trigger below never
@@ -184,8 +194,14 @@ jobs:
           VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           COUNT: ${{ github.event.inputs.count || '6' }}
+          FORCE: ${{ github.event.inputs.force }}
+          NO_SCHEDULE: ${{ github.event.inputs.no_schedule }}
         run: |
-          python scripts/run_trending_daily.py --count "$COUNT"
+          ARGS="--count $COUNT"
+          if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-llm"; fi
+          if [ "$NO_SCHEDULE" = "true" ]; then ARGS="$ARGS --no-schedule"; fi
+          echo "Running: python scripts/run_trending_daily.py $ARGS"
+          python scripts/run_trending_daily.py $ARGS
 
       - name: Update failure counter
         if: always() && steps.preflight.outputs.skip == ''
