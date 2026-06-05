@@ -46,34 +46,40 @@ UA = {"User-Agent": "Mozilla/5.0 (X11; Linux) shorts-pipeline/1.0"}
 VIDEO_EXT = (".mp4", ".mov", ".webm", ".mkv", ".m4v")
 
 # The theme is real pressure-washing / grime-reveal footage (the POV
-# "dirty surface -> clean" genre), NOT generic satisfying stock. When no
-# license-clean source is configured the YouTube path below pulls the actual
-# genre (requires cookies — YouTube bot-blocks datacenter IPs otherwise).
+# "dirty surface -> clean" genre), NOT generic satisfying stock. The YouTube
+# path pulls the actual genre but is restricted to **Creative Commons
+# Attribution** uploads (reuse allowed) so the footage is free, real (not
+# stock) and legally reusable. YouTube bot-blocks datacenter IPs, so a
+# cookies file is required to download from a server.
 PRESSURE_WASHING = "pressure washing"
-YT_QUERIES = (
-    "satisfying pressure washing pov shorts",
-    "satisfying pressure washing asmr",
-    "extreme driveway pressure washing transformation",
-)
+YT_SEARCH = "pressure washing satisfying"
+# YouTube search filter token for "Creative Commons" license (reuse allowed).
+YT_CC_FILTER = "EgIwAQ%3D%3D"
 
 
 def from_youtube(topic: str, dest: Path, n: int = 12,
                  cookies: str | None = None) -> list[Path]:
-    """Download real pressure-washing clips from YouTube via yt-dlp.
+    """Download Creative-Commons pressure-washing clips from YouTube via yt-dlp.
 
-    YouTube bot-blocks datacenter IPs, so a cookies file is required: set
-    ``YT_COOKIES`` to a Netscape ``cookies.txt`` exported from a logged-in
-    browser. Returns the downloaded clip paths. Note: YouTube content is
-    third-party — only use clips you have the rights to reuse.
+    Only CC-Attribution (reuse-allowed) uploads are fetched, so the footage is
+    free and legally reusable (attribute the creators). YouTube bot-blocks
+    datacenter IPs, so set ``YT_COOKIES`` to a Netscape ``cookies.txt`` from a
+    logged-in browser to download from a server. Returns the clip paths.
     """
     dest.mkdir(parents=True, exist_ok=True)
-    query = YT_QUERIES[0] if topic.strip().lower() == PRESSURE_WASHING else topic
+    q = YT_SEARCH if topic.strip().lower() == PRESSURE_WASHING else topic
+    # Search restricted to the Creative Commons license filter.
+    url = ("https://www.youtube.com/results?search_query=%s&sp=%s"
+           % (urllib.parse.quote(q), YT_CC_FILTER))
     out_tmpl = str(dest / "yt_%(autonumber)03d.%(ext)s")
     cmd = ["yt-dlp", "--no-warnings", "--no-check-certificates",
-           "--no-playlist", "--ignore-errors",
+           "--no-playlist", "--ignore-errors", "--playlist-end", str(n),
            "-f", "bv*[height<=1080][ext=mp4]/b[height<=1080]",
-           "--max-filesize", "80M", "--match-filter", "duration<300",
-           "-o", out_tmpl, f"ytsearch{n}:{query}"]
+           "--max-filesize", "80M",
+           # Belt-and-suspenders: skip anything not actually CC-licensed
+           # and anything longer than ~5 min.
+           "--match-filter", "license*='Creative Commons' & duration<300",
+           "-o", out_tmpl, url]
     if cookies:
         cmd += ["--cookies", cookies]
     subprocess.run(cmd)
