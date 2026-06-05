@@ -34,6 +34,10 @@ state/trending_packages/*.json
 # OAuth secrets — never commit
 client_secret.json
 token.json
+# Any other YouTube tokens we mint during channel setup (token_new.json,
+# per-channel files, etc.). Tokens carry refresh credentials so the
+# pattern is broad on purpose.
+token*.json
 kokoro_models/
 .tiktok_secret
 .tiktok_redirect_uri

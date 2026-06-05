@@ -1,0 +1,79 @@
+{
+  "version": 8,
+  "slug": "nyc-sewer-mystery",
+  "title": "NYC Has a Sewer Mystery: Strangers Keep Climbing Into the Manholes",
+  "hashtags": ["nyc", "newyork", "sewer", "manhole", "mystery", "urbanexploration", "caughtoncamera", "weirdnews", "nypd", "infrastructure", "underground", "secretclub", "shorts", "fyp"],
+  "script": "Security cameras across Manhattan have caught dozens of strangers lifting manhole covers and disappearing into New York City sewers. The footage spans 6 different boroughs and several months. NYPD says no group has claimed it. The Department of Environmental Protection found nothing missing, no damage, no graffiti. Some clips show people staying down there for over an hour. A few are wearing matching jackets. It might be a urban explorer club. It might be something stranger. Nobody knows yet.",
+  "shots": [
+    {
+      "phrase": "Security cameras across Manhattan have caught",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manhattan_at_night_skyline.jpg",
+      "query": "manhattan new york night street security camera surveillance"
+    },
+    {
+      "phrase": "lifting manhole covers and disappearing into New York City sewers",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manhole_cover_in_New_York_City.jpg",
+      "query": "manhole cover street city pavement urban underground"
+    },
+    {
+      "phrase": "footage spans 6 different boroughs",
+      "query": "new york city boroughs map street view brooklyn queens"
+    },
+    {
+      "phrase": "NYPD says no group has claimed it",
+      "query": "NYPD officers investigation precinct uniform new york"
+    },
+    {
+      "phrase": "Department of Environmental Protection found nothing missing",
+      "query": "city worker inspection tunnel underground flashlight worker"
+    },
+    {
+      "phrase": "few are wearing matching jackets",
+      "query": "group people street night urban hoodies same outfit"
+    },
+    {
+      "phrase": "Nobody knows yet",
+      "query": "dark tunnel underground mysterious shadow figure entrance"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "strangers lifting manhole covers",
+      "text": "INTO THE SEWERS",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.4
+    },
+    {
+      "phrase": "6 different boroughs",
+      "text": "6 BOROUGHS",
+      "color": "#ffffff",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "no group has claimed it",
+      "text": "NO ONE'S CLAIMING IT",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "staying down there for over an hour",
+      "text": "OVER AN HOUR",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Nobody knows yet",
+      "text": "NOBODY KNOWS",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

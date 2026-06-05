@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "quantinuum-ipo",
+  "title": "Quantum Computing Just Hit the Stock Market at $14 Billion",
+  "hashtags": ["quantinuum", "quantinuumipo", "qnt", "quantumcomputing", "ipo", "honeywell", "nasdaq", "stockmarket", "quantumstocks", "quantumtech", "investing", "wallstreet", "quantumfuture", "ipoday", "techinvesting"],
+  "script": "Quantum computing has been '10 years away' for 30 years. Today it's an IPO. Quantinuum — Honeywell's quantum spinoff — priced its Nasdaq debut this morning at $55 a share: a $14.3 billion valuation. The company lost $192 million last year on just $31 million in revenue. Investors don't care. Demand was oversubscribed by double digits. The quantum era just became a stock you can buy.",
+  "shots": [
+    {
+      "phrase": "Quantum computing has been '10 years away' for 30 years",
+      "query": "quantum computer laboratory scientist research timeline decade history"
+    },
+    {
+      "phrase": "Quantinuum — Honeywell's quantum spinoff — priced its Nasdaq debut",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/IBM_Q_System_Two_Ikerbasque_01.jpg",
+      "query": "quantum computer hardware cryogenic system gold cold laboratory"
+    },
+    {
+      "phrase": "at $55 a share: a $14.3 billion valuation",
+      "query": "Nasdaq stock market IPO bell ring trading floor ceremony"
+    },
+    {
+      "phrase": "$192 million last year on just $31 million in revenue",
+      "query": "financial loss chart red deficit startup burn rate losses"
+    },
+    {
+      "phrase": "Demand was oversubscribed by double digits",
+      "query": "IPO oversubscribed investor rush stocks demand buying frenzy"
+    },
+    {
+      "phrase": "quantum era just became a stock you can buy",
+      "query": "quantum technology future stock portfolio investment buy"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "'10 years away' for 30 years",
+      "text": "ALWAYS '10 YEARS AWAY'",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "a $14.3 billion valuation",
+      "text": "$14.3B IPO",
+      "color": "#ffaa30",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "lost $192 million last year",
+      "text": "$192M LOSS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Demand was oversubscribed by double digits",
+      "text": "10X+ OVERSUBSCRIBED",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "quantum era just became a stock",
+      "text": "QUANTUM GOES PUBLIC",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

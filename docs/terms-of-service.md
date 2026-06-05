@@ -4,11 +4,27 @@ title: Terms of Service
 
 # Terms of Service
 
-_Last updated: May 31, 2026_
+_Last updated: June 2, 2026_
 
 These Terms of Service ("Terms") govern the operation of the Shorts
 Pipeline ("the service") operated by Caleb Schulte. By using the
 service, you agree to these Terms.
+
+## YouTube API Services
+
+The Shorts Pipeline uses **YouTube API Services** to upload generated
+videos to the operator's own YouTube channel and to read back public
+statistics (view, like, and comment counts) for videos the operator
+has uploaded. By using this service the operator additionally agrees
+to be bound by the
+[YouTube Terms of Service](https://www.youtube.com/t/terms) and
+acknowledges the
+[Google Privacy Policy](https://policies.google.com/privacy).
+
+The pipeline's use of YouTube API Services complies with the
+[YouTube API Services Developer Policies](https://developers.google.com/youtube/terms/developer-policies)
+and the
+[YouTube API Services Terms of Service](https://developers.google.com/youtube/terms/api-services-terms-of-service).
 
 ## Description of Service
 

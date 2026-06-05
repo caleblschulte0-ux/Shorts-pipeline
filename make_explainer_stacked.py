@@ -420,6 +420,409 @@ def _resolve_image(shot: Shot) -> dict | None:
         return None
 
 
+_STOPWORDS = frozenset((
+    "a", "an", "the", "and", "or", "of", "to", "for", "in", "on", "at",
+    "is", "are", "was", "were", "be", "been", "by", "with", "as", "it",
+    "its", "this", "that", "from", "but", "not", "just", "more", "new",
+))
+
+
+def _shot_tokens(shot: "Shot") -> set[str]:
+    """Build a bag of meaningful tokens for a shot — drawn from its
+    spoken phrase + stock query so we can score each pool clip's
+    filename against it. Stopwords are dropped so the score reflects
+    content words ("moon", "rocket", "Mechazilla") not glue words.
+    """
+    bits: list[str] = [shot.phrase]
+    if shot.pexels_query:
+        bits.append(shot.pexels_query)
+    if shot.queries:
+        bits.extend(shot.queries)
+    text = " ".join(bits).lower()
+    text = re.sub(r"[^a-z0-9 ]+", " ", text)
+    return {w for w in text.split() if len(w) > 2 and w not in _STOPWORDS}
+
+
+def _score_clip(clip_title: str, shot_tokens: set[str]) -> int:
+    """How well does a pool clip's filename match a shot's tokens?
+    Plain token-overlap count — good enough for routing "moon" shots
+    to moon clips and "engine" shots to engine clips without needing
+    an LLM. Returns 0 when there's no overlap, which the caller treats
+    as "fall back to round-robin."""
+    title = re.sub(r"[^a-z0-9 ]+", " ", clip_title.lower())
+    title_tokens = {w for w in title.split() if len(w) > 2}
+    return len(shot_tokens & title_tokens)
+
+
+def _scan_juicy(path: str | Path) -> list[float]:
+    """Find high-motion seconds in a topic-video clip so the renderer
+    can seek to one of them instead of the typical static intro /
+    telemetry / coast-phase frame. Reuses `gameplay_scanner` in
+    `scan_mode="center"` — center-crops to 50%x60% before the diff
+    filter and scores by peak motion + frame-content richness, so a
+    small rocket against a huge sky still registers as motion and
+    flat-color sky pans get rejected.
+
+    Window is short (3s) because each shot is only 3-5s and we want
+    the displayed window to be all motion, not motion-then-static.
+    Returns ascending list of seek offsets; caller cycles through them
+    across shots so two shots that share a clip never seek to the
+    same window.
+    """
+    try:
+        import gameplay_scanner
+        starts = gameplay_scanner.juicy_starts(
+            Path(path), window=3.0, step=2.0, top_n=10,
+            scan_mode="center")
+        return starts or []
+    except Exception as e:  # noqa: BLE001
+        print(f"      [juicy scan failed] {Path(path).name}: {e}")
+        return []
+
+
+def _sub_cut_is_blank(sub_path: Path) -> bool:
+    """Quick post-render sanity check: ffprobe a sampled frame from
+    the rendered sub-cut. If it's mostly black (mean Y < 10) or
+    visually uniform (std-dev < 5), the seek probably landed past the
+    end of available frame data (common with Range-truncated webm
+    where the duration metadata lies). Caller retries with the next
+    juicy window or pool clip.
+
+    Cheap: one `ffmpeg signalstats` pass on a single frame at the
+    sub-cut's midpoint, ~30-50 ms.
+    """
+    try:
+        out = subprocess.run([
+            "ffprobe", "-v", "error",
+            "-f", "lavfi",
+            "-i", f"movie={sub_path},select=eq(n\\,15),signalstats",
+            "-show_entries", "frame_tags=lavfi.signalstats.YAVG,lavfi.signalstats.YSTD",
+            "-of", "default=noprint_wrappers=1",
+        ], capture_output=True, text=True, timeout=10)
+        text = out.stdout
+        m_avg = re.search(r"YAVG=([\d.]+)", text)
+        m_std = re.search(r"YSTD=([\d.]+)", text)
+        if not m_avg or not m_std:
+            return False  # couldn't measure → don't penalise
+        return float(m_avg.group(1)) < 10.0 or float(m_std.group(1)) < 5.0
+    except Exception:  # noqa: BLE001
+        return False
+
+
+def _supplementary_clip(shot: "Shot", existing_pool: list[dict]) -> dict | None:
+    """When a shot's tokens don't overlap with any pool clip's title
+    (e.g. "moon 2027" against a pure Starship pool), run a small
+    Commons-only search keyed on this shot's own phrase + query.
+    Cheap because it skips Archive / og:video / YouTube — Commons is
+    free and ~200ms per call. If a real clip lands, it's added to the
+    pool so subsequent shots can reuse it.
+    """
+    primary = shot.pexels_query or (shot.queries[0] if shot.queries else "")
+    if not primary:
+        return None
+    try:
+        import topic_video
+    except ImportError:
+        return None
+    # Critical: pass *empty* context. If we passed the package title
+    # here, Commons would just re-rank by overall topic and we'd get
+    # the same rocket clips back. The whole point of supplementary
+    # search is to find content the title-keyed pool missed — moon
+    # footage for a moon shot, courtroom footage for a courtroom shot.
+    seen_paths = {c["path"] for c in existing_pool}
+    try:
+        items = topic_video.search(primary, "", max_clips=3)
+    except Exception as e:  # noqa: BLE001
+        print(f"      [supplementary search error] {e}")
+        return None
+    # Disambiguation guard: the shot's keywords may be polysemous in
+    # isolation ("Raptor" → SpaceX engine OR fighter jet, "Apple" →
+    # company OR fruit). Require any supplementary clip to share at
+    # least one token with the package context, so the package topic
+    # constrains the result. F-22 Raptor Refuel for a SpaceX-Starship
+    # package fails this check and gets dropped.
+    context_tokens: set[str] = set()
+    if shot.topic_context:
+        ctx = re.sub(r"[^a-z0-9 ]+", " ", shot.topic_context.lower())
+        context_tokens = {w for w in ctx.split()
+                          if len(w) > 2 and w not in _STOPWORDS}
+    for it in items:
+        path_str = str(it["path"])
+        if path_str in seen_paths:
+            continue
+        try:
+            dur = ffprobe_duration(it["path"])
+        except Exception:  # noqa: BLE001
+            continue
+        if dur < 2.0 or dur > 1800:
+            continue
+        title = it.get("title", "")
+        if context_tokens:
+            title_tokens = {w for w in re.sub(r"[^a-z0-9 ]+", " ",
+                                                title.lower()).split()
+                            if len(w) > 2}
+            if not (context_tokens & title_tokens):
+                print(f"      [supplementary skip off-topic] {title[:50]!r}")
+                continue
+        entry = {
+            "path": path_str,
+            "duration": dur,
+            "title": title,
+            "source": "topic_video",
+            "uses": 0,
+            "juicy": _scan_juicy(path_str),
+            "width": W, "height": HALF_H,
+        }
+        existing_pool.append(entry)
+        print(f"      [supplementary] '{shot.phrase[:30]}' -> "
+              f"{entry['title'][:50]!r}")
+        return entry
+    return None
+
+
+def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
+    """Pull a *pool* of topic-specific video clips once per render,
+    queried by the package title rather than per-shot keywords.
+
+    Each entry carries:
+      - `title`: source filename for shot-matching scoring
+      - `juicy`: list of high-motion seek offsets from
+         `gameplay_scanner` so seeks land on action rather than
+         intros / telemetry / coast phases
+      - `uses`: counter for distributing the same clip across multiple
+         shots with different seek targets
+    """
+    context = next((s.topic_context for s in shots if s.topic_context), "")
+    if not context:
+        return []
+    try:
+        import topic_video
+    except ImportError:
+        return []
+    try:
+        items = topic_video.search(context, "", max_clips=6)
+    except Exception as e:  # noqa: BLE001
+        print(f"      [topic_video pool error] {e}")
+        return []
+    pool: list[dict] = []
+    for it in items:
+        p = it["path"]
+        try:
+            dur = ffprobe_duration(p)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [topic_video ffprobe fail] {p}: {e}")
+            continue
+        if dur < 2.0:
+            continue
+        if dur > 1800:  # 30 minutes
+            print(f"      [topic_video skip long-form] {it['title'][:60]!r} ({dur:.0f}s)")
+            continue
+        juicy = _scan_juicy(p)
+        pool.append({
+            "path": str(p),
+            "duration": dur,
+            "title": it.get("title", ""),
+            "source": "topic_video",
+            "uses": 0,
+            "juicy": juicy,
+            "width": W, "height": HALF_H,
+        })
+    if pool:
+        print(f"      [topic_video pool] {len(pool)} clips for {context[:60]!r}")
+        for c in pool:
+            j = c["juicy"]
+            j_str = f"{len(j)} juicy@{j[0]:.0f}s..{j[-1]:.0f}s" if j else "no motion scan"
+            print(f"         {c['title'][:60]} ({c['duration']:.0f}s, {j_str})")
+    return pool
+
+
+# Commons / news CDN thumbnail filenames prefix a resolution onto the
+# real image name ("1280px-Starship_SN16.jpg", "800x600 launch.jpg",
+# "thumb_launch.jpg"). Stripping the prefix gives the underlying
+# stem so two thumbnails of the same source image dedup correctly.
+_IMG_PREFIX_RE = re.compile(
+    r"^(?:\d+px|\d+x\d+|thumb|small|medium|large)[\s_-]+",
+    re.I,
+)
+
+
+def _image_stem(title: str) -> str:
+    """Normalize a thumbnail filename for dedup. Repeatedly strips
+    resolution / size prefixes ('1280px', '800x600', 'thumb', etc.),
+    collapses whitespace, lowercases. Same source image at multiple
+    resolutions collapses to a single stem; genuinely different
+    images of the same event (different angles, different days) keep
+    their distinguishing tokens and stay separate."""
+    t = title.strip()
+    while True:
+        new = _IMG_PREFIX_RE.sub("", t).strip()
+        if new == t or not new:
+            break
+        t = new
+    return re.sub(r"\s+", " ", t).lower()
+
+
+def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
+    """Pool of topic-specific *still images* (Wikipedia hero, Commons
+    photos, news article og:images) built once per render. Images are
+    way cheaper to fetch than videos and almost always crisply on
+    topic, so we mix them into the round-robin filler to fill gaps
+    where topic_video misses and to add visual variety.
+
+    Entries are deduplicated by normalized filename stem so two
+    thumbnails of the same source image at different resolutions
+    can't both end up in the pool — and therefore can never get
+    picked back-to-back. Each entry drops straight into the
+    renderer's existing `is_image` branch (Ken Burns zoompan) and
+    carries `title` from the source filename for token scoring.
+    """
+    context = next((s.topic_context for s in shots if s.topic_context), "")
+    if not context:
+        return []
+    try:
+        import topic_media
+        urls = topic_media.search(context, "")
+    except Exception as e:  # noqa: BLE001
+        print(f"      [topic_image pool error] {e}")
+        return []
+    pool: list[dict] = []
+    seen_stems: set[str] = set()
+    cache = Path("/tmp/shot_images")
+    for url in (urls or [])[:8]:
+        try:
+            path = _fetch_image(url, cache)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [topic_image fetch fail] {url[:60]}: {e}")
+            continue
+        # Extract a readable title from the URL for token scoring.
+        name = url.split("?")[0].rstrip("/").rsplit("/", 1)[-1]
+        try:
+            from urllib.parse import unquote
+            name = unquote(name)
+        except Exception:  # noqa: BLE001
+            pass
+        if "." in name:
+            name = name.rsplit(".", 1)[0]
+        title = name.replace("_", " ").replace("-", " ").strip()
+        stem = _image_stem(title)
+        if stem in seen_stems:
+            print(f"      [topic_image dedup] {title[:60]!r}")
+            continue
+        seen_stems.add(stem)
+        pool.append({
+            "path": str(path),
+            "title": title,
+            "stem": stem,
+            "source": "topic_image",
+            "is_image": True,
+            "uses": 0,
+            "width": W, "height": HALF_H,
+        })
+    if pool:
+        print(f"      [topic_image pool] {len(pool)} images for {context[:60]!r}")
+        for c in pool:
+            print(f"         {c['title'][:70]}")
+    return pool
+
+
+def _pick_pool_image(pool: list[dict], shot: "Shot",
+                     exclude_paths: set[str] | None = None) -> dict | None:
+    """Score-and-pick an image from the topic_image pool. Same shape
+    as `_pick_pool_clip` but for stills — no seek offset, no juicy
+    windows.
+
+    `exclude_paths` is a set of image paths the caller wants to avoid
+    (typically: images already used in this shot's plan, so we never
+    pick the same one back-to-back). If every pool entry is excluded
+    we still return a pick — better to repeat than to leave a gap.
+    Mutates `uses` so successive picks across shots prefer images
+    that haven't been shown yet.
+    """
+    if not pool:
+        return None
+    excl = exclude_paths or set()
+    candidates = [c for c in pool if c["path"] not in excl] or pool
+    tokens = _shot_tokens(shot)
+    chosen: dict | None = None
+    if tokens:
+        scored = [(_score_clip(c["title"], tokens), -c["uses"], idx, c)
+                  for idx, c in enumerate(candidates)]
+        scored.sort(reverse=True)
+        best_score, _, _, best = scored[0]
+        if best_score > 0:
+            chosen = best
+    if chosen is None:
+        chosen = min(candidates, key=lambda c: c["uses"])
+    chosen["uses"] += 1
+    return dict(chosen)
+
+
+# Per-shot memo so _pick_pool_clip's repeated calls in the
+# sub-cut round-robin don't each re-run the supplementary Commons
+# search. Keyed by the shot's phrase string; emptied each render.
+_SUPPLEMENTARY_DONE: set[str] = set()
+
+
+def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
+    """Return the clip best matching this shot, plus a per-shot `seek`
+    offset that lands on a high-motion window. Mutates `clip['uses']`
+    so successive shots get different juicy windows instead of the
+    same opening frames.
+
+    For every shot, runs a per-shot supplementary Commons search keyed
+    on that shot's own words. The results join the pool before
+    scoring, so even when the title-based pool already has a
+    "decent" match (e.g. "Starship landing" for a "moon landing"
+    shot), a more relevant per-shot result can still win. The
+    supplementary clip stays in the pool so later shots can reuse it.
+    """
+    if not pool:
+        return None
+    tokens = _shot_tokens(shot)
+    # Always seed shot-specific content into the pool. Cheap (Commons
+    # only, ~200ms when nothing matches; the download is cached on
+    # reuse) and prevents the "moon shot got a rocket clip" failure
+    # mode where the pool's coincidental token overlap beats the
+    # supplementary clip's semantic fit. Memoised by shot phrase
+    # because each long shot calls _pick_pool_clip several times in
+    # the SUB_CUT_TARGET round-robin and we don't want to repeat the
+    # search per sub-cut.
+    if shot.phrase not in _SUPPLEMENTARY_DONE:
+        sup = _supplementary_clip(shot, pool)
+        _SUPPLEMENTARY_DONE.add(shot.phrase)
+    else:
+        sup = None
+
+    chosen: dict | None = None
+    if tokens:
+        scored = [(_score_clip(c["title"], tokens), -c["uses"], idx, c)
+                  for idx, c in enumerate(pool)]
+        scored.sort(reverse=True)
+        best_score, _, _, best = scored[0]
+        if best_score > 0:
+            chosen = best
+    if chosen is None:
+        # Nothing in the pool scored against the shot tokens. Prefer
+        # the just-found supplementary clip (queried specifically for
+        # this shot) over the least-used round-robin pick.
+        chosen = sup or min(pool, key=lambda c: c["uses"])
+
+    # Seek policy: prefer a juicy (high-motion) start. Successive uses
+    # of the same clip cycle through its juicy list so two shots never
+    # show the same window. Falls back to the +15s-per-use constant
+    # when the motion scan returned nothing (e.g. scan crashed).
+    if chosen.get("juicy"):
+        starts = chosen["juicy"]
+        seek = starts[chosen["uses"] % len(starts)]
+    else:
+        seek = min(15.0 + chosen["uses"] * 12.0,
+                   max(0.0, chosen["duration"] - 5.0))
+    chosen["uses"] += 1
+    out = dict(chosen)
+    out["seek"] = seek
+    return out
+
+
 def _resolve_topic_media(shot: Shot, cache: Path) -> dict | None:
     """Try to pull a topic-specific image from free sources (Wikipedia,
     Commons, GDELT news). Used only when the package didn't supply
@@ -510,10 +913,24 @@ def build_timed_top(
     cut_times: list[float] = []
 
     # How long a still image is allowed to stay on screen before it
-    # has to hand off to stock. Users find longer holds boring even
-    # with Ken Burns motion — keep it short and let multiple specific
-    # images carry the visual story instead of one long hold.
-    IMAGE_MAX_DUR = 1.8
+    # has to hand off to stock. Matches SUB_CUT_TARGET so video and
+    # image sub-cuts run uniform 2.0s and the cadence stays steady.
+    IMAGE_MAX_DUR = 2.0
+
+    # One-shot per-render calls to topic_video / topic_media. Returns
+    # pools of on-topic media. Each shot picks pool entries whose
+    # filenames best match its own phrase/query (semantic scoring) so
+    # "moon" shots get moon media and "engine" shots get engine media
+    # instead of round-robin chaos. The image pool is woven into the
+    # sub-cut filler alongside the video pool — images are cheaper to
+    # source and almost always crisply topical, so they fill gaps
+    # where topic_video is thin and add visual variety.
+    topic_video_pool = _build_topic_video_pool(shots)
+    topic_image_pool = _build_topic_image_pool(shots)
+    # Reset the per-shot supplementary memo so this render starts
+    # fresh — across renders the cached video files are reused, but
+    # the in-process "we already tried this shot" set must not leak.
+    _SUPPLEMENTARY_DONE.clear()
 
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
@@ -526,15 +943,94 @@ def build_timed_top(
         #   3. Stock only               -> existing multi-cut behavior
         plan: list[tuple[dict, float]] = []
         image_clip = _resolve_image(shot)
-        # If the package didn't hand us a topic-specific image, ask the
-        # free no-key sources (Wikipedia / Commons / GDELT news) before
-        # we settle for generic stock. This is what turns "stock laptop
-        # B-roll for an Anthropic story" into "actual photo of Dario."
-        if image_clip is None:
+        # Operator-supplied image wins. Otherwise pull a pool clip
+        # scored against this shot's tokens. Fall through to topic_media
+        # stills and then stock only when the pool is empty.
+        topic_video_clip = None
+        if image_clip is None and topic_video_pool:
+            topic_video_clip = _pick_pool_clip(topic_video_pool, shot)
+            if topic_video_clip:
+                print(f"      [topic_video] shot {i+1} '{shot.phrase[:30]}' -> "
+                      f"{topic_video_clip['title'][:50]!r} @ seek={topic_video_clip['seek']:.0f}s")
+        if image_clip is None and topic_video_clip is None:
             image_clip = _resolve_topic_media(shot, Path("/tmp/shot_images"))
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
 
-        if image_clip and has_stock:
+        if topic_video_clip:
+            # Topic-video clips claim the full shot window. The clip is
+            # already on-topic; padding it with generic stock would only
+            # dilute the visual continuity.
+            available = max(0.0,
+                            float(topic_video_clip["duration"])
+                            - float(topic_video_clip.get("seek", 0.0)))
+            # Cap each topic-video sub-cut at SUB_CUT_TARGET. Without
+            # this, a 10s shot got 10 unbroken seconds from one source
+            # clip — even when there was motion, the lack of cuts read
+            # as a static frame. Capping forces the round-robin loop
+            # below to pull additional pool clips and produce the same
+            # rapid-cut feel the stock path already had.
+            vid_dur = min(seg_dur, available, SUB_CUT_TARGET)
+            plan.append((topic_video_clip, vid_dur))
+            remaining = seg_dur - vid_dur
+            # Fill the rest of the shot by ALTERNATING video and image
+            # pool entries. Images are cheaper to source and almost
+            # always on-topic, and alternating breaks up the visual
+            # monotony of a single source streaming for 5+ seconds.
+            # Image dur is capped at IMAGE_MAX_DUR (Ken Burns gets
+            # boring past ~2s); video dur stays at SUB_CUT_TARGET.
+            # Track images already used in this shot so the picker
+            # never returns the same one back-to-back even if it
+            # happens to be the highest-scoring pool entry.
+            used_image_paths: set[str] = set()
+            fill_idx = 1
+            while remaining > 0.3:
+                want_image = (fill_idx % 2 == 1 and topic_image_pool)
+                placed = False
+                if want_image:
+                    img = _pick_pool_image(topic_image_pool, shot,
+                                            exclude_paths=used_image_paths)
+                    if img:
+                        fill = min(remaining, IMAGE_MAX_DUR)
+                        if fill > 0.3:
+                            plan.append((img, fill))
+                            remaining -= fill
+                            fill_idx += 1
+                            placed = True
+                            used_image_paths.add(img["path"])
+                            print(f"      [topic_image] shot {i+1} fill -> "
+                                  f"{img['title'][:50]!r} ({fill:.1f}s)")
+                if not placed and topic_video_pool:
+                    nxt = _pick_pool_clip(topic_video_pool, shot)
+                    if nxt:
+                        nxt_avail = max(0.0,
+                                        float(nxt["duration"])
+                                        - float(nxt.get("seek", 0.0)))
+                        fill = min(remaining, nxt_avail, SUB_CUT_TARGET)
+                        if fill > 0.3:
+                            plan.append((nxt, fill))
+                            remaining -= fill
+                            fill_idx += 1
+                            placed = True
+                # Last-ditch: try the image pool even if it wasn't
+                # this slot's turn, so we don't bail on the round-robin
+                # just because the video pool ran out of clips that
+                # fit the remaining window.
+                if not placed and not want_image and topic_image_pool:
+                    img = _pick_pool_image(topic_image_pool, shot,
+                                            exclude_paths=used_image_paths)
+                    if img:
+                        fill = min(remaining, IMAGE_MAX_DUR)
+                        if fill > 0.3:
+                            plan.append((img, fill))
+                            remaining -= fill
+                            fill_idx += 1
+                            placed = True
+                            used_image_paths.add(img["path"])
+                            print(f"      [topic_image] shot {i+1} fill -> "
+                                  f"{img['title'][:50]!r} ({fill:.1f}s)")
+                if not placed:
+                    break
+        elif image_clip and has_stock:
             image_dur = min(IMAGE_MAX_DUR, seg_dur)
             plan.append((image_clip, image_dur))
             remaining = seg_dur - image_dur
@@ -629,19 +1125,55 @@ def build_timed_top(
                 ])
             else:
                 clip_dur = float(clip.get("duration") or 10)
-                # Vary the seek so repeat cuts don't show the same frames.
-                seek_start = 0.3
-                seek = min(seek_start + j * 1.5,
-                           max(0.0, clip_dur - dur - 0.3))
-                run([
-                    "ffmpeg", "-y", "-loglevel", "error",
-                    "-ss", f"{seek:.3f}", "-i", clip["path"],
-                    "-t", f"{dur:.3f}",
-                    "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
-                           f"crop={W}:{top_h},setsar=1,fps={FPS}",
-                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                    str(sub),
-                ])
+                # Topic-video clips carry their own seek offset (set by
+                # _pick_pool_clip — skips past title cards, telemetry,
+                # and intro dead-air so successive uses of the same
+                # source clip show different moments). Stock clips just
+                # use the existing "vary seek by sub-cut index" logic
+                # to stop showing the same opening frames.
+                # Topic-video pool clips also carry a list of
+                # alternative juicy windows; if the first seek lands
+                # on a black/uniform frame (Range-truncated webm
+                # reporting a longer duration than its actual data),
+                # we retry with the next window.
+                candidates_seek: list[float]
+                if "seek" in clip:
+                    if clip.get("juicy"):
+                        # Sort juicy windows by distance from the
+                        # initially-chosen seek so the retry stays
+                        # close to the requested moment when possible.
+                        primary = float(clip["seek"])
+                        candidates_seek = sorted(
+                            clip["juicy"], key=lambda s: abs(s - primary))
+                    else:
+                        candidates_seek = [float(clip["seek"])]
+                else:
+                    candidates_seek = [0.3 + j * 1.5]
+
+                rendered = False
+                for attempt, seek in enumerate(candidates_seek[:3]):
+                    seek = min(seek, max(0.0, clip_dur - dur - 0.3))
+                    run([
+                        "ffmpeg", "-y", "-loglevel", "error",
+                        "-ss", f"{seek:.3f}", "-i", clip["path"],
+                        "-t", f"{dur:.3f}",
+                        "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
+                               f"crop={W}:{top_h},setsar=1,fps={FPS}",
+                        "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                        str(sub),
+                    ])
+                    if _sub_cut_is_blank(sub):
+                        print(f"      [sub-cut blank @ seek={seek:.1f}s, "
+                              f"retry {attempt+1}/3] {Path(clip['path']).name}")
+                        continue
+                    rendered = True
+                    break
+                # If every juicy window on this clip rendered blank,
+                # we keep the last attempt rather than dropping the
+                # sub-cut — better a weak frame than a missing one in
+                # the timeline.
+                if not rendered:
+                    print(f"      [sub-cut all retries blank, keeping last attempt]")
             all_segments.append(sub)
             cut_times.append(sub_t)
             sub_t += dur

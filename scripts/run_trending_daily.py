@@ -229,8 +229,15 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
             result["video_url"] = "(dry-run)"
         else:
             from uploaders import YouTubeUploader
-            print(f"[{result['topic']!r}] uploading...", flush=True)
-            uploader = YouTubeUploader()
+            # `channel` selects which YOUTUBE_TOKEN_JSON_* secret the
+            # uploader reads. Empty/missing → baller_bro_2_0 (the
+            # original `YOUTUBE_TOKEN_JSON`). Set on the package by
+            # the morning routine to route to a different channel.
+            channel = (pkg.get("channel") or "").strip().lower()
+            result["channel"] = channel or "default"
+            print(f"[{result['topic']!r}] uploading to "
+                  f"{result['channel']}...", flush=True)
+            uploader = YouTubeUploader(channel=channel)
             upload_result = uploader.upload(
                 file_path=out_path,
                 title=(result["title"] or result["topic"])[:100],
@@ -368,6 +375,11 @@ def main() -> int:
                          "don't drop us below count (LLM fallback only)")
     ap.add_argument("--force-llm", action="store_true",
                     help="ignore pre-written packages, force Groq fallback")
+    ap.add_argument("--force-rerun", action="store_true",
+                    help="bypass the 6-hour duplicate-trigger guard. Use when "
+                         "you want to re-publish a fresh package slate the "
+                         "same day (e.g. the morning batch was bad and you "
+                         "just swapped in new packages).")
     args = ap.parse_args()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -393,9 +405,10 @@ def main() -> int:
                 continue
             if posted_dt > cutoff:
                 recent.append(e)
-        if recent and not args.force_llm:
+        if recent and not (args.force_llm or args.force_rerun):
             print(f"[run_trending_daily] {len(recent)} short(s) posted in the "
-                  f"last 6 hours; skipping. Use --force-llm to override.",
+                  f"last 6 hours; skipping. Use --force-rerun (or "
+                  f"--force-llm) to override.",
                   flush=True)
             today_str = now_dt.strftime("%Y-%m-%d")
             REPORT_PATH.write_text(

@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "nsa-anthropic-mythos",
+  "title": "The NSA Is Quietly Plugging Anthropic's AI Into Its Cyber Ops",
+  "hashtags": ["nsa", "anthropic", "claude", "ai", "cybersecurity", "cyberops", "intelligence", "techpolicy", "aimilitary", "national security", "spying", "techai", "ainews", "shorts", "fyp"],
+  "script": "The National Security Agency is integrating Anthropic's new Mythos AI into its cyber operations. Mythos is a hardened version of Claude. The deal value is classified but reported in the hundreds of millions. The NSA will use it to write offensive code, analyze foreign malware, and run intrusion simulations. Anthropic says strict guardrails are in place. Critics counter that the agency now has a frontier AI model with no public oversight.",
+  "shots": [
+    {
+      "phrase": "National Security Agency is integrating Anthropic's new Mythos AI",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/National_Security_Agency.svg",
+      "query": "NSA building national security agency headquarters dark government"
+    },
+    {
+      "phrase": "Mythos is a hardened version of Claude",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anthropic_logo.svg",
+      "query": "AI server data center computing dark technology neural"
+    },
+    {
+      "phrase": "deal value is classified but reported in the hundreds of millions",
+      "query": "stack of money cash bills hundred dollars classified document"
+    },
+    {
+      "phrase": "write offensive code, analyze foreign malware",
+      "query": "hacker code screen dark green terminal cyber attack malware"
+    },
+    {
+      "phrase": "run intrusion simulations",
+      "query": "network security cybersecurity simulation hacker testing"
+    },
+    {
+      "phrase": "frontier AI model with no public oversight",
+      "query": "secret classified document redacted black government surveillance"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Mythos AI into its cyber operations",
+      "text": "AI INTO CYBER OPS",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.4
+    },
+    {
+      "phrase": "hardened version of Claude",
+      "text": "CLEARED CLAUDE",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "hundreds of millions",
+      "text": "$100M+",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "write offensive code",
+      "text": "OFFENSIVE CODE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "no public oversight",
+      "text": "NO OVERSIGHT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

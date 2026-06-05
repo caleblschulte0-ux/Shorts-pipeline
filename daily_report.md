@@ -1,38 +1,38 @@
-# Daily Trending Shorts — 2026-06-02
+# Daily Trending Shorts — 2026-06-05
 
 - queued: **6**
 - succeeded: **6**
 - failed: **0**
 
 ## Posted
-- **SpaceX Just Caught a Falling Skyscraper With Giant Chopsticks**
-  - topic: SpaceX Just Caught a Falling Skyscraper With Giant Chopsticks
-  - publishes: `2026-06-02T13:00:00Z`
-  - https://youtube.com/shorts/bi3BXxiGqxU
-  - took: 124.4s
-- **China's Free AI Just Wiped $600 Billion Off Nvidia in One Day**
-  - topic: China's Free AI Just Wiped $600 Billion Off Nvidia in One Day
-  - publishes: `2026-06-02T15:00:00Z`
-  - https://youtube.com/shorts/O0EfSVZTkRw
-  - took: 102.6s
-- **Waymo Just Crossed 1 Million Driverless Rides — No Human Inside**
-  - topic: Waymo Just Crossed 1 Million Driverless Rides — No Human Inside
-  - publishes: `2026-06-02T17:00:00Z`
-  - https://youtube.com/shorts/JDIYvJrRfv8
-  - took: 145.8s
-- **Microsoft Is Reopening America's Most Infamous Nuclear Plant for AI**
-  - topic: Microsoft Is Reopening America's Most Infamous Nuclear Plant for AI
-  - publishes: `2026-06-02T19:00:00Z`
-  - https://youtube.com/shorts/kZUjrDySFDk
-  - took: 149.2s
-- **A Paralyzed Man Is Playing Chess By Thinking — Thanks to a Brain Chip**
-  - topic: A Paralyzed Man Is Playing Chess By Thinking — Thanks to a Brain Chip
-  - publishes: `2026-06-02T21:00:00Z`
-  - https://youtube.com/shorts/GBcLdmgRrwE
-  - took: 124.8s
-- **A Humanoid Robot Is Now Working Alone on a Real Factory Floor**
-  - topic: A Humanoid Robot Is Now Working Alone on a Real Factory Floor
-  - publishes: `2026-06-02T23:00:00Z`
-  - https://youtube.com/shorts/9VJZC9pDuUk
-  - took: 151.9s
+- **Kim Jong Un Just Revealed North Korea's 3rd Secret Nuke Plant**
+  - topic: Kim Jong Un Just Revealed North Korea's 3rd Secret Nuke Plant
+  - publishes: `2026-06-05T13:00:00Z`
+  - https://youtube.com/shorts/aQIFAiY3tys
+  - took: 118.3s
+- **UN Peacekeeper Killed As Lebanon's Last-Chance Ceasefire Collapses**
+  - topic: UN Peacekeeper Killed As Lebanon's Last-Chance Ceasefire Collapses
+  - publishes: `2026-06-05T15:00:00Z`
+  - https://youtube.com/shorts/u1A3pPviml0
+  - took: 101.7s
+- **Broadcom Erased $320 Billion Overnight — AI Chips Just Got Complicated**
+  - topic: Broadcom Erased $320 Billion Overnight — AI Chips Just Got Complicated
+  - publishes: `2026-06-05T17:00:00Z`
+  - https://youtube.com/shorts/Kny5IKR_YZU
+  - took: 114.3s
+- **A Flesh-Eating Parasite Just Crossed Into the US For the First Time in Decades**
+  - topic: A Flesh-Eating Parasite Just Crossed Into the US For the First Time in Decades
+  - publishes: `2026-06-05T19:00:00Z`
+  - https://youtube.com/shorts/w_JlkKAuVAQ
+  - took: 101.7s
+- **Foxconn and Intel Just Bet Everything on Building AI's Hardware Backbone**
+  - topic: Foxconn and Intel Just Bet Everything on Building AI's Hardware Backbone
+  - publishes: `2026-06-05T21:00:00Z`
+  - https://youtube.com/shorts/Ip2Hor8Zdow
+  - took: 96.6s
+- **Trump Says US-India Trade Deal Is Coming — But It's Not Done Yet**
+  - topic: Trump Says US-India Trade Deal Is Coming — But It's Not Done Yet
+  - publishes: `2026-06-05T23:00:00Z`
+  - https://youtube.com/shorts/znpAFTAy6S8
+  - took: 92.9s
 

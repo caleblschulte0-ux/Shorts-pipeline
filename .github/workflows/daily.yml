@@ -7,6 +7,16 @@ on:
         description: 'How many shorts to publish'
         required: false
         default: '6'
+      force:
+        description: 'Bypass 6-hour duplicate-trigger guard (--force-rerun, keeps pre-written packages)'
+        required: false
+        type: boolean
+        default: false
+      no_schedule:
+        description: 'Publish immediately, skip scheduling (--no-schedule)'
+        required: false
+        type: boolean
+        default: false
   # Auto-fire when the auto-merge workflow finishes a claude/* PR.
   # GitHub blocks GITHUB_TOKEN-attributed pushes from firing other
   # workflows (anti-recursion), so the push-paths trigger below never
@@ -167,13 +177,31 @@ jobs:
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          # Per-channel tokens. Each one corresponds to a channel slug
+          # that packages can set via the `channel` field. Empty/missing
+          # in the package routes to the default (YOUTUBE_TOKEN_JSON).
+          # Add a new line per new channel; secrets that aren't set in
+          # the repo just become empty strings and the orchestrator's
+          # error message tells you which one is missing.
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # Optional: when set, topic_video pulls from Vimeo's CC pool
+          # alongside Commons / NASA / Archive / news embeds. Skips
+          # silently if unset, so this isn't in the required-secrets
+          # preflight check above.
+          VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           COUNT: ${{ github.event.inputs.count || '6' }}
+          FORCE: ${{ github.event.inputs.force }}
+          NO_SCHEDULE: ${{ github.event.inputs.no_schedule }}
         run: |
-          python scripts/run_trending_daily.py --count "$COUNT"
+          ARGS="--count $COUNT"
+          if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-rerun"; fi
+          if [ "$NO_SCHEDULE" = "true" ]; then ARGS="$ARGS --no-schedule"; fi
+          echo "Running: python scripts/run_trending_daily.py $ARGS"
+          python scripts/run_trending_daily.py $ARGS
 
       - name: Update failure counter
         if: always() && steps.preflight.outputs.skip == ''

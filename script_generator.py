@@ -50,75 +50,58 @@ DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
 
-SYSTEM_PROMPT = """You write short, viral-style YouTube Shorts scripts about whatever's trending. \
-Output strict JSON only — no prose, no markdown fences.
-
-The video format is a 1080x1920 vertical Short, ~25 seconds:
-- Top half: 5-7 stock B-roll clips that cycle every ~2 seconds
-- Bottom half: Minecraft parkour gameplay (visual background only)
-- Burned captions auto-generated from the narration audio
-- 4-7 big "punch" text overlays that emphasize key stats or beats
-
-Your job is to produce a JSON package the renderer will consume verbatim. \
-Tone is doomscroll-explainer: a strong factual hook, dense delivery, no filler. \
-Think "X is happening and here's why" — not editorial opinion."""
+SYSTEM_PROMPT = """You write viral-style YouTube Shorts scripts as strict JSON. \
+1080x1920 vertical, ~25 seconds, doomscroll-explainer tone: factual hook, dense \
+delivery, no filler, no editorial opinion. Output JSON only — no prose, no fences."""
 
 
 USER_PROMPT_TEMPLATE = """Topic: {topic_query}
 
-Context (news headlines and snippets driving the trend):
+Context (headlines and snippets driving the trend):
 {context_block}
 
-Write a JSON package with this exact schema:
-
+Schema:
 {{
-  "title": "<short, punchy YouTube title, 6-10 words>",
-  "script": "<60-80 words, conversational tone, opens with a hook, ends with a complete sentence and a period>",
+  "title": "<6-10 word punchy YouTube title>",
+  "script": "<60-80 words, opens with a hook, ends with a complete sentence and a period>",
   "shots": [
-    {{"phrase": "<2-4 word phrase that appears VERBATIM in the script>",
-      "query": "<1-3 word stock-footage search query, visually concrete>"}}
+    {{"phrase": "<2-4 word VERBATIM substring of the script>",
+      "query": "<1-3 word stock-footage search, visually concrete>"}}
   ],
   "punches": [
-    {{"phrase": "<word/phrase that appears VERBATIM in the script>",
+    {{"phrase": "<VERBATIM substring of the script>",
       "text": "<1-3 word ALL CAPS overlay>",
       "color": "<#hex>"}}
   ],
-  "music_vibe": "<one of: dark, cinematic, hiphop>"
+  "music_vibe": "<dark|cinematic|hiphop>"
 }}
 
-Hard rules — read carefully, your output is validated against them:
+Hard rules (validated):
 
-1. SCRIPT LENGTH: Count your words. The script MUST be between 60 and 80 words. \
-Anything shorter than 60 words gets rejected and you'll be asked to expand. \
-A script that ends with "due to X and Y" without a period is also rejected.
+1. SCRIPT LENGTH: 60-80 words, must end with a period. Anything shorter is rejected.
 
-2. SCRIPT SHAPE: Opens with a punchy hook (declarative, attention-grabbing — \
-"X is dying.", "Your Y is a lie.", "Here's what nobody told you about Z."), \
-then 3-5 dense factual sentences, ends with a kicker. Mention {topic_query} \
-clearly enough that someone who has never heard of it understands what it is.
+2. SCRIPT SHAPE: Opens with a punchy declarative hook ("X is dying.", "Your Y is \
+a lie.", "Here's what nobody told you about Z."), then 3-5 dense factual sentences, \
+ends with a kicker. Mention {topic_query} clearly enough that a stranger understands.
 
-3. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Before you output, check each \
-shot.phrase and each punch.phrase — does that exact string appear in the script? \
-If you wrote "surge in gaming" in the script, the trigger phrase is "surge in \
-gaming", not "gaming surge". Word order matters. Mismatches break the renderer.
+3. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Each shot.phrase and punch.phrase \
+must appear in the script word-for-word, exact order. Mismatches break the renderer.
 
-4. NUMBERS: In the SCRIPT TEXT use digits ("12 million", "25%", "1980") so the \
-audio transcription matches. Every trigger phrase that references a number MUST \
-also use digits — "12 million" not "twelve million", "25" not "twenty five".
+4. NUMBERS in the script use digits ("12 million", "25%", "1980") so audio transcription \
+matches. Trigger phrases that contain numbers must also use digits.
 
-5. AVOID THESE WORDS: "Wayfair" (transcribes as "wafer"), "Once" as a sentence \
-opener (transcribes as "wants" — use "First" or "Back in" or "Once you" instead).
+5. AVOID: "Wayfair" (transcribes as "wafer"); "Once" as a sentence opener \
+(transcribes as "wants" — use "First" / "Back in" / "Once you").
 
-6. SHOTS: Exactly 5-7 shots. shot.query is what we pass to a stock-footage API \
-— must be a concrete visible noun. Bad queries: "economic anxiety", "frustration". \
-Good queries: "empty store shelves", "stock chart", "factory line".
+6. SHOTS: exactly 5-7. shot.query is a concrete visible noun ("empty store shelves", \
+"stock chart"), not an abstraction ("economic anxiety", "frustration").
 
-7. PUNCHES: Exactly 4-7 punches. Punch text is 1-3 ALL CAPS words. \
-Colors: #ff3030 (shock/bad), #50ff80 (positive), #ffaa30 (warning), #ffffff (neutral).
+7. PUNCHES: exactly 4-7. 1-3 ALL CAPS words. Colors: #ff3030 (shock/bad), \
+#50ff80 (positive), #ffaa30 (warning), #ffffff (neutral).
 
-8. music_vibe: "dark" (serious/exposé), "cinematic" (big-picture), "hiphop" (cultural/upbeat).
+8. music_vibe: dark (serious/exposé), cinematic (big-picture), hiphop (cultural/upbeat).
 
-Output ONLY the JSON object — no code fence, no preamble, no trailing commentary."""
+Output ONLY the JSON object."""
 
 
 # Sent to the model when validation fails on the first try. We list

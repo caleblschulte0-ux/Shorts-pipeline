@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "mrna-melanoma-vaccine",
+  "title": "mRNA Cancer Vaccine Just Doubled Melanoma Survival at 5 Years",
+  "hashtags": ["mrna", "cancer", "melanoma", "moderna", "keytruda", "merck", "cancervaccine", "immunotherapy", "oncology", "fda", "clinicaltrial", "medicalbreakthrough", "healthnews", "sciencenews"],
+  "script": "5-year trial results just confirmed: a personalized mRNA cancer vaccine nearly doubles melanoma survival rates. Moderna's experimental vaccine reads your tumor's unique mutations and builds a custom injection targeting up to 34 cancer fingerprints. In the trial, patients who got the vaccine plus Merck's Keytruda had a 92 percent 5-year survival rate. Those on Keytruda alone: 71 percent. A Phase 3 trial with 1,000 patients is underway. FDA approval is the next target.",
+  "shots": [
+    {
+      "phrase": "personalized mRNA cancer vaccine",
+      "query": "mRNA vaccine syringe cancer treatment medicine personalized lab"
+    },
+    {
+      "phrase": "Moderna's experimental vaccine reads your tumor's unique mutations",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Moderna_Headquarters,_December_2020.jpg",
+      "query": "Moderna pharmaceutical lab cancer research mRNA building"
+    },
+    {
+      "phrase": "custom injection targeting up to 34 cancer fingerprints",
+      "query": "cancer neoantigen mutation cells tumor microscope targeted therapy"
+    },
+    {
+      "phrase": "patients who got the vaccine plus Merck's Keytruda",
+      "query": "cancer patient treatment hospital immunotherapy clinical trial IV"
+    },
+    {
+      "phrase": "92 percent 5-year survival rate",
+      "query": "survival rate medical chart statistics cancer treatment improvement"
+    },
+    {
+      "phrase": "FDA approval is the next target",
+      "query": "FDA drug approval pharmaceutical regulatory medicine label"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "nearly doubles melanoma survival rates",
+      "text": "DOUBLE SURVIVAL RATE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "up to 34 cancer fingerprints",
+      "text": "34 CANCER TARGETS",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "92 percent 5-year survival rate",
+      "text": "92% SURVIVAL",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 205,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Keytruda alone: 71 percent",
+      "text": "71% WITHOUT IT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "FDA approval is the next target",
+      "text": "FDA APPROVAL NEXT",
+      "color": "#ffffff",
+      "size": 180,
+      "duration": 2.2
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}
