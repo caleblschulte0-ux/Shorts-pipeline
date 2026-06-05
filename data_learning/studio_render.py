@@ -49,7 +49,7 @@ SCALE_X = CHART_W / CHART_PNG_W
 SCALE_Y = CHART_H / CHART_PNG_H
 
 FOOT_Y = CHART_Y + CHART_H + 10
-FOOT_H = H - FOOT_Y
+FOOT_H = (H - FOOT_Y) & ~1       # keep even (yuv420p / filter sizing)
 
 MASCOT_SIZE = 176                # slightly bigger
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
