@@ -1,0 +1,45 @@
+{
+  "key": "rent_one_bed",
+  "title": "Average one-bedroom rent ($/month)",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "ACS median gross rent",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Illustrative average one-bedroom rent by state.",
+  "points": [
+    {
+      "label": "California",
+      "value": 2150
+    },
+    {
+      "label": "Hawaii",
+      "value": 2100
+    },
+    {
+      "label": "New York",
+      "value": 1980
+    },
+    {
+      "label": "Massachusetts",
+      "value": 1850
+    },
+    {
+      "label": "Texas",
+      "value": 1290
+    },
+    {
+      "label": "Mississippi",
+      "value": 950
+    }
+  ],
+  "baseline": {
+    "label": "United States",
+    "value": 1480
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "key": "hourly_wage",
+  "title": "Average hourly earnings ($/hr)",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "Average hourly earnings, total private",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Illustrative average hourly earnings, private workers.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 23.8,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 25.4,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 26.8,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 28.0,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 29.2,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 30.2,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 31.1,
+      "period": "2025"
+    },
+    {
+      "label": "2026",
+      "value": 31.9,
+      "period": "2026"
+    }
+  ]
+}

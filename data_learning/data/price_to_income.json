@@ -1,0 +1,45 @@
+{
+  "key": "price_to_income",
+  "title": "Years of income to buy a median home",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "Home-price-to-income ratio by metro",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Median home price divided by median income.",
+  "points": [
+    {
+      "label": "San Jose",
+      "value": 11.3
+    },
+    {
+      "label": "Los Angeles",
+      "value": 9.7
+    },
+    {
+      "label": "Miami",
+      "value": 8.2
+    },
+    {
+      "label": "Seattle",
+      "value": 6.8
+    },
+    {
+      "label": "Denver",
+      "value": 5.4
+    },
+    {
+      "label": "Chicago",
+      "value": 4.1
+    }
+  ],
+  "baseline": {
+    "label": "United States",
+    "value": 5.9
+  }
+}

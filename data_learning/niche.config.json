@@ -16,39 +16,481 @@
       "title": "The US Economy In 4 Charts (The Last One Hurts)",
       "hook": "Everyone says the economy is strong. Four charts say you're getting squeezed. Watch how they connect.",
       "closing": "See it now? The cheery headlines, jobs and rate cuts, sit up top. The number that drains your wallet sits down here. Good news you hear, squeeze you feel.",
-      "hashtags": ["economy", "inflation", "jobs", "interestrates", "costofliving",
-                   "bls", "fed", "money", "finance", "economics", "usa", "data"],
+      "hashtags": [
+        "economy",
+        "inflation",
+        "jobs",
+        "interestrates",
+        "costofliving",
+        "bls",
+        "fed",
+        "money",
+        "finance",
+        "economics",
+        "usa",
+        "data"
+      ],
       "segments": [
         {
-          "source": "offline", "key": "state_unemployment",
-          "params": {"file": "state_unemployment_2026_04.json"},
-          "insight_type": "rank", "ascending": true, "use_baseline": true,
+          "source": "offline",
+          "key": "state_unemployment",
+          "params": {
+            "file": "state_unemployment_2026_04.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "use_baseline": true,
           "topic": "unemployment rate",
-          "role": "1 · THE GOOD NEWS",
+          "role": "1 \u00b7 THE GOOD NEWS",
           "connector": "First, jobs look strong."
         },
         {
-          "source": "offline", "key": "fed_funds_rate",
-          "params": {"file": "fed_funds_rate.json"},
-          "insight_type": "trend", "topic": "interest rates",
-          "role": "2 · EVEN BETTER",
+          "source": "offline",
+          "key": "fed_funds_rate",
+          "params": {
+            "file": "fed_funds_rate.json"
+          },
+          "insight_type": "trend",
+          "topic": "interest rates",
+          "role": "2 \u00b7 EVEN BETTER",
           "connector": "And the Fed is finally cutting rates again."
         },
         {
-          "source": "offline", "key": "cpi_components",
-          "params": {"file": "cpi_components_2026_04.json"},
-          "insight_type": "comparison", "use_baseline": true,
+          "source": "offline",
+          "key": "cpi_components",
+          "params": {
+            "file": "cpi_components_2026_04.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
           "topic": "inflation by category",
-          "role": "3 · THE CATCH",
+          "role": "3 \u00b7 THE CATCH",
           "connector": "But here's the catch. Prices never stopped climbing."
         },
         {
-          "source": "offline", "key": "prices_since_2020",
-          "params": {"file": "prices_since_2020.json"},
-          "insight_type": "rank", "ascending": false,
+          "source": "offline",
+          "key": "prices_since_2020",
+          "params": {
+            "file": "prices_since_2020.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
           "topic": "price rise since 2020",
-          "role": "4 · WHAT YOU FEEL",
+          "role": "4 \u00b7 WHAT YOU FEEL",
           "connector": "And the damage adds up."
+        }
+      ]
+    },
+    {
+      "slug": "housing-affordability-wall",
+      "title": "Priced Out: The Home You Can't Afford (4 Charts)",
+      "hook": "They say just buy a house. Four charts show why you can't. Watch how they connect.",
+      "closing": "Prices up top, rates up top, rent down here. The home stays just out of reach.",
+      "hashtags": [
+        "housing",
+        "realestate",
+        "mortgage",
+        "rent",
+        "affordability",
+        "homebuying",
+        "economy",
+        "fred",
+        "census",
+        "data",
+        "usa",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "median_home_price",
+          "params": {
+            "file": "median_home_price.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 PRICES",
+          "connector": "First, home prices took off.",
+          "topic": "prices"
+        },
+        {
+          "source": "offline",
+          "key": "mortgage_rate_30yr",
+          "params": {
+            "file": "mortgage_rate_30yr.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 RATES",
+          "connector": "Then mortgage rates more than doubled.",
+          "topic": "rates"
+        },
+        {
+          "source": "offline",
+          "key": "rent_share_income",
+          "params": {
+            "file": "rent_share_income.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 RENT",
+          "connector": "Rent now eats a third of the paycheck.",
+          "topic": "rent",
+          "ascending": false,
+          "use_baseline": true
+        },
+        {
+          "source": "offline",
+          "key": "price_to_income",
+          "params": {
+            "file": "price_to_income.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 THE WALL",
+          "connector": "So a starter home costs years of pay.",
+          "topic": "the wall",
+          "ascending": false,
+          "use_baseline": true
+        }
+      ]
+    },
+    {
+      "slug": "grocery-squeeze",
+      "title": "Why Your Grocery Bill Hurts (4 Charts)",
+      "hook": "Same cart, bigger bill, less food. Four charts on the grocery squeeze.",
+      "closing": "Prices climbed up top, your budget stretched down here. The checkout keeps winning.",
+      "hashtags": [
+        "groceries",
+        "inflation",
+        "food",
+        "costofliving",
+        "bls",
+        "prices",
+        "budget",
+        "economy",
+        "money",
+        "data",
+        "usa",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "grocery_since_2020",
+          "params": {
+            "file": "grocery_since_2020.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SINCE 2020",
+          "connector": "First, see how far prices ran since 2020.",
+          "topic": "since 2020",
+          "ascending": false,
+          "use_baseline": true
+        },
+        {
+          "source": "offline",
+          "key": "food_yoy",
+          "params": {
+            "file": "food_yoy.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 THIS YEAR",
+          "connector": "And this year they're still climbing.",
+          "topic": "this year",
+          "use_baseline": true
+        },
+        {
+          "source": "offline",
+          "key": "food_share_income",
+          "params": {
+            "file": "food_share_income.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 YOUR BUDGET",
+          "connector": "So food takes more of every paycheck.",
+          "topic": "your budget"
+        },
+        {
+          "source": "offline",
+          "key": "monthly_grocery_cost",
+          "params": {
+            "file": "monthly_grocery_cost.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 WHAT YOU PAY",
+          "connector": "And the monthly bill keeps setting records.",
+          "topic": "what you pay"
+        }
+      ]
+    },
+    {
+      "slug": "debt-trap",
+      "title": "Americans Are Drowning In Debt (4 Charts)",
+      "hook": "Record balances, record rates, vanishing savings. The debt trap in four charts.",
+      "closing": "Balances up top, rates up top, savings down here. The math only runs one way.",
+      "hashtags": [
+        "debt",
+        "creditcard",
+        "savings",
+        "interestrates",
+        "personalfinance",
+        "economy",
+        "fred",
+        "money",
+        "data",
+        "usa",
+        "economics",
+        "finance"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "credit_card_debt",
+          "params": {
+            "file": "credit_card_debt.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 BALANCES",
+          "connector": "First, credit card balances hit records.",
+          "topic": "balances"
+        },
+        {
+          "source": "offline",
+          "key": "credit_card_apr",
+          "params": {
+            "file": "credit_card_apr.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE RATE",
+          "connector": "While the rate on that debt soared.",
+          "topic": "the rate"
+        },
+        {
+          "source": "offline",
+          "key": "cc_delinquency",
+          "params": {
+            "file": "cc_delinquency.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 FALLING BEHIND",
+          "connector": "More people are falling behind on payments.",
+          "topic": "falling behind"
+        },
+        {
+          "source": "offline",
+          "key": "savings_rate",
+          "params": {
+            "file": "savings_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 NO CUSHION",
+          "connector": "And the savings cushion is nearly gone.",
+          "topic": "no cushion"
+        }
+      ]
+    },
+    {
+      "slug": "wage-illusion",
+      "title": "You Got A Raise. You're Still Behind. (4 Charts)",
+      "hook": "Your raise was real. So was the inflation that ate it. Four charts.",
+      "closing": "Bigger paycheck up top, the same buying power down here. Running to stand still.",
+      "hashtags": [
+        "wages",
+        "inflation",
+        "realwages",
+        "paycheck",
+        "costofliving",
+        "bls",
+        "economy",
+        "money",
+        "data",
+        "usa",
+        "economics",
+        "labor"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "hourly_wage",
+          "params": {
+            "file": "hourly_wage.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 YOUR RAISE",
+          "connector": "First, paychecks really did go up.",
+          "topic": "your raise"
+        },
+        {
+          "source": "offline",
+          "key": "real_wage_index",
+          "params": {
+            "file": "real_wage_index.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 AFTER INFLATION",
+          "connector": "But after inflation, they barely moved.",
+          "topic": "after inflation"
+        },
+        {
+          "source": "offline",
+          "key": "cost_vs_wage",
+          "params": {
+            "file": "cost_vs_wage.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 WHAT OUTRAN YOU",
+          "connector": "Because the big bills outran your wages.",
+          "topic": "what outran you",
+          "ascending": false,
+          "use_baseline": true
+        },
+        {
+          "source": "offline",
+          "key": "hours_for_rent",
+          "params": {
+            "file": "hours_for_rent.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 THE TREADMILL",
+          "connector": "So you work more hours just to keep up.",
+          "topic": "the treadmill"
+        }
+      ]
+    },
+    {
+      "slug": "jobs-beneath-surface",
+      "title": "The Jobs Report Isn't What It Seems (4 Charts)",
+      "hook": "Low unemployment hides a messier story. Four charts under the headline.",
+      "closing": "Strong headline up top, the cracks down here. Look past the one number.",
+      "hashtags": [
+        "jobs",
+        "unemployment",
+        "labormarket",
+        "bls",
+        "employment",
+        "economy",
+        "workforce",
+        "data",
+        "usa",
+        "economics",
+        "money",
+        "gigwork"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "unemployment_rate_trend",
+          "params": {
+            "file": "unemployment_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE HEADLINE",
+          "connector": "First, the headline rate still looks low.",
+          "topic": "the headline"
+        },
+        {
+          "source": "offline",
+          "key": "part_time_economic",
+          "params": {
+            "file": "part_time_economic.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 PART-TIME",
+          "connector": "But part-time-for-economic-reasons is creeping up.",
+          "topic": "part-time"
+        },
+        {
+          "source": "offline",
+          "key": "labor_participation",
+          "params": {
+            "file": "labor_participation.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 WHO'S MISSING",
+          "connector": "And participation never fully bounced back.",
+          "topic": "who's missing"
+        },
+        {
+          "source": "offline",
+          "key": "multiple_jobholders",
+          "params": {
+            "file": "multiple_jobholders.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 WORKING DOUBLE",
+          "connector": "More people now juggle two jobs to get by.",
+          "topic": "working double"
+        }
+      ]
+    },
+    {
+      "slug": "two-americas-cost",
+      "title": "Two Americas: Where Your Dollar Dies (4 Charts)",
+      "hook": "Same country, different economy. Four charts on the two Americas.",
+      "closing": "Big paychecks up top, the costs that eat them down here. Where you live is the economy.",
+      "hashtags": [
+        "costofliving",
+        "income",
+        "states",
+        "rent",
+        "regional",
+        "census",
+        "bea",
+        "economy",
+        "money",
+        "data",
+        "usa",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "col_index_state",
+          "params": {
+            "file": "col_index_state.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 COST OF LIVING",
+          "connector": "First, the cost of living splits the country.",
+          "topic": "cost of living",
+          "ascending": false,
+          "use_baseline": true
+        },
+        {
+          "source": "offline",
+          "key": "median_income_state",
+          "params": {
+            "file": "median_income_state.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 WHAT YOU EARN",
+          "connector": "Incomes split too, but not the same way.",
+          "topic": "what you earn",
+          "ascending": false,
+          "use_baseline": true
+        },
+        {
+          "source": "offline",
+          "key": "income_after_cost",
+          "params": {
+            "file": "income_after_cost.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 AFTER COSTS",
+          "connector": "Adjust for costs and the map flips.",
+          "topic": "after costs",
+          "ascending": false,
+          "use_baseline": true
+        },
+        {
+          "source": "offline",
+          "key": "rent_one_bed",
+          "params": {
+            "file": "rent_one_bed.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 THE RENT",
+          "connector": "And rent is where it really bites.",
+          "topic": "the rent",
+          "ascending": false,
+          "use_baseline": true
         }
       ]
     }
@@ -59,36 +501,72 @@
       "source": "offline",
       "key": "state_unemployment",
       "topic": "unemployment rate",
-      "params": {"file": "state_unemployment_2026_04.json"},
+      "params": {
+        "file": "state_unemployment_2026_04.json"
+      },
       "insight_type": "rank",
       "ascending": true,
       "use_baseline": true,
-      "hashtags": ["unemployment", "jobs", "economy", "bls", "labormarket",
-                   "data", "statistics", "usa", "joblessrate", "economics"]
+      "hashtags": [
+        "unemployment",
+        "jobs",
+        "economy",
+        "bls",
+        "labormarket",
+        "data",
+        "statistics",
+        "usa",
+        "joblessrate",
+        "economics"
+      ]
     },
     {
       "slug": "inflation-pain-points",
       "source": "offline",
       "key": "cpi_components",
       "topic": "inflation by category",
-      "params": {"file": "cpi_components_2026_04.json"},
+      "params": {
+        "file": "cpi_components_2026_04.json"
+      },
       "insight_type": "comparison",
       "ascending": false,
       "use_baseline": true,
-      "hashtags": ["inflation", "cpi", "gasprices", "economy", "costofliving",
-                   "bls", "prices", "data", "economics", "usa"]
+      "hashtags": [
+        "inflation",
+        "cpi",
+        "gasprices",
+        "economy",
+        "costofliving",
+        "bls",
+        "prices",
+        "data",
+        "economics",
+        "usa"
+      ]
     },
     {
       "slug": "fed-funds-rate-trend",
       "source": "offline",
       "key": "fed_funds_rate",
       "topic": "interest rates",
-      "params": {"file": "fed_funds_rate.json"},
+      "params": {
+        "file": "fed_funds_rate.json"
+      },
       "insight_type": "trend",
       "ascending": false,
       "use_baseline": false,
-      "hashtags": ["interestrates", "fed", "federalreserve", "rates", "economy",
-                   "fredeconomics", "macro", "finance", "data", "economics"]
+      "hashtags": [
+        "interestrates",
+        "fed",
+        "federalreserve",
+        "rates",
+        "economy",
+        "fredeconomics",
+        "macro",
+        "finance",
+        "data",
+        "economics"
+      ]
     }
   ]
 }

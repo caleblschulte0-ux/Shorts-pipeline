@@ -1,0 +1,57 @@
+{
+  "key": "credit_card_debt",
+  "title": "Total credit card balances ($ billions)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (year-end)",
+  "source": {
+    "name": "Revolving consumer credit",
+    "publisher": "Federal Reserve Bank of St. Louis (FRED)",
+    "url": "https://fred.stlouisfed.org",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Illustrative total U.S. revolving (credit card) balances.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 930,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 1000,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 860,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 990,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 1130,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 1210,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 1290,
+      "period": "2025"
+    },
+    {
+      "label": "2026",
+      "value": 1370,
+      "period": "2026"
+    }
+  ]
+}
