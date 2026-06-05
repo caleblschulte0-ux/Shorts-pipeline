@@ -8,7 +8,7 @@ on:
         required: false
         default: '6'
       force:
-        description: 'Bypass 6-hour duplicate-trigger guard (--force-llm)'
+        description: 'Bypass 6-hour duplicate-trigger guard (--force-rerun, keeps pre-written packages)'
         required: false
         type: boolean
         default: false
@@ -198,7 +198,7 @@ jobs:
           NO_SCHEDULE: ${{ github.event.inputs.no_schedule }}
         run: |
           ARGS="--count $COUNT"
-          if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-llm"; fi
+          if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-rerun"; fi
           if [ "$NO_SCHEDULE" = "true" ]; then ARGS="$ARGS --no-schedule"; fi
           echo "Running: python scripts/run_trending_daily.py $ARGS"
           python scripts/run_trending_daily.py $ARGS
