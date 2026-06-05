@@ -6,6 +6,14 @@ venv/
 
 # Generated artifacts and large media
 output/
+# Built bottom-strip b-roll (downloaded/normalized clips + stitched output).
+# Keep the src/ drop folder + its README; ignore everything generated.
+data_learning/broll/clips/
+data_learning/broll/_norm/
+data_learning/broll/satisfying.mp4
+data_learning/broll/.offset
+data_learning/broll/src/*
+!data_learning/broll/src/README.md
 gameplay/*.mp4
 gameplay/*.mkv
 gameplay/*.webm

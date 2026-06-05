@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
-"""Build the bottom-strip b-roll (default: power washing) into one long
-``satisfying.mp4`` that the studio renderer samples a rotating segment from
-(so the same footage is reused across many videos without obviously
-repeating).
+"""Build the bottom-strip b-roll into one long ``satisfying.mp4`` that the
+studio renderer samples a rotating segment from (so the same footage is
+reused across many videos without obviously repeating).
+
+The default theme is **oddly-satisfying ASMR macro/pour footage** (slow-mo
+pours, honeycomb dripping, falling salt & spices, frothing milk, whipped
+cream, espresso) — not pressure washing.
 
 Sources, in priority order:
 
   1. LOCAL drop folder ``data_learning/broll/src/*.{mp4,mov,webm,mkv}``
-     — drop any long power-washing video(s) here. **Best option.**
+     — drop any long satisfying video(s) here. **Best option.**
   2. PEXELS video API   — set ``PEXELS_API_KEY`` (free). Pulls real
-     "<topic>" clips (e.g. pressure washing).
+     "<topic>" clips.
   3. PIXABAY video API  — set ``PIXABAY_API_KEY`` (free).
-  4. COVERR (no key)    — fallback; limited (water/washing, not true
-     pressure washing).
+  4. COVERR (no key)    — fallback. For the default ``satisfying`` topic this
+     curates clean ASMR clips across several sub-queries; for any other topic
+     it does a plain Coverr search.
 
 Run:
-    python -m data_learning.build_broll                 # topic=pressure washing
+    python -m data_learning.build_broll                 # topic=satisfying
     python -m data_learning.build_broll --topic "glass blowing"
 
 Note on YouTube: yt-dlp works but YouTube bot-blocks datacenter IPs without
@@ -42,6 +46,65 @@ OUT = BROLL_DIR / "satisfying.mp4"
 NW, NH, NFPS = 1080, 720, 30       # normalized strip size
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux) shorts-pipeline/1.0"}
 VIDEO_EXT = (".mp4", ".mov", ".webm", ".mkv", ".m4v")
+
+# Default theme. Coverr's no-key search is loosely tag-matched, so a single
+# term is unreliable — for this theme we aggregate several sub-queries and
+# keep only clips whose *title* reads like true ASMR macro/pour footage.
+SATISFYING = "satisfying"
+CURATED_QUERIES = (
+    "pouring", "slow motion food", "macro food", "honey", "honeycomb",
+    "cream", "milk pour", "chocolate", "coffee pour", "espresso",
+    "salt", "sugar", "dough", "sauce", "batter", "syrup",
+)
+# A clip is kept only if its title contains one of these (satisfying action /
+# material) terms...
+CURATED_GOOD = (
+    "pour", "drip", "honeycomb", "honey", "salt", "peppercorn", "spice",
+    "sprinkle", "syrup", "whipped cream", "melted", "melting", "espresso",
+    "crema", "froth", "foam", "batter", "dough", "swirl", "stir",
+    "splash", "basil", "pesto", "cereal", "truffle", "butter", "sugar",
+)
+# ...and none of these (people / lifestyle / place) terms.
+CURATED_BAD = (
+    "drinking", "drinks", "drink from", "girlfriend", "boyfriend", "office",
+    "bitcoin", "price", "reading", "working", "friends", "enjoying", "cafe",
+    "paris", "headset", "battery", "teamwork", "monastery", "workout",
+    "jogging", "couple", "smartphone", "field", "boat", "excursion", "flag",
+    "architecture", "view of", "hugging", "street", "buying", "pizza",
+    "woman", "girl", "man ", "guy", "people", " her ", " his ",
+)
+
+
+def from_coverr_curated(n: int = 40) -> list[str]:
+    """Aggregate clean satisfying clips across several Coverr sub-queries.
+
+    No API key required. Returns de-duplicated direct mp4 URLs whose titles
+    pass the ASMR keyword filter, capped at ``n``.
+    """
+    seen: dict[str, None] = {}
+    for q in CURATED_QUERIES:
+        try:
+            url = ("https://coverr.co/api/videos?query=%s&page=1&urls=true"
+                   % urllib.parse.quote(q))
+            data = json.loads(_get(url, 15))
+        except Exception as e:  # noqa: BLE001
+            print(f"  coverr '{q}' fail: {e}", file=sys.stderr)
+            continue
+        for h in (data.get("hits") or []):
+            title = (h.get("title") or "").lower().strip()
+            if any(b in title for b in CURATED_BAD):
+                continue
+            if not any(g in title for g in CURATED_GOOD):
+                continue
+            link = (h.get("urls") or {}).get("mp4")
+            if not link:
+                bf = h.get("base_filename")
+                link = f"https://cdn.coverr.co/videos/{bf}/1080p.mp4" if bf else None
+            if link and link not in seen:
+                seen[link] = None
+        if len(seen) >= n:
+            break
+    return list(seen)[:n]
 
 
 def _get(url: str, timeout: int = 20) -> bytes:
@@ -131,18 +194,22 @@ def build(topic: str) -> Path:
     if not clips:
         key = os.environ.get("PEXELS_API_KEY")
         pix = os.environ.get("PIXABAY_API_KEY")
+        is_default = topic.strip().lower() == SATISFYING
         try:
             if key:
                 clips = download_urls(from_pexels(topic, key), DL_DIR); src_label = "Pexels"
             elif pix:
                 clips = download_urls(from_pixabay(topic, pix), DL_DIR); src_label = "Pixabay"
+            elif is_default:
+                clips = download_urls(from_coverr_curated(), DL_DIR)
+                src_label = "Coverr curated (no-key)"
             else:
                 clips = download_urls(from_coverr(topic), DL_DIR); src_label = "Coverr (no-key fallback)"
         except Exception as e:  # noqa: BLE001
             print(f"[broll] source fetch failed: {e}", file=sys.stderr)
     if not clips:
         raise SystemExit(
-            "[broll] no footage. Drop a power-washing video into "
+            "[broll] no footage. Drop a satisfying video into "
             f"{SRC_DIR.relative_to(REPO)}/ or set PEXELS_API_KEY, then re-run.")
     print(f"[broll] {len(clips)} clips from {src_label}")
 
@@ -169,7 +236,7 @@ def build(topic: str) -> Path:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--topic", default="pressure washing")
+    ap.add_argument("--topic", default=SATISFYING)
     build(ap.parse_args().topic)
     return 0
 
