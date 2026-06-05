@@ -167,6 +167,13 @@ jobs:
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          # Per-channel tokens. Each one corresponds to a channel slug
+          # that packages can set via the `channel` field. Empty/missing
+          # in the package routes to the default (YOUTUBE_TOKEN_JSON).
+          # Add a new line per new channel; secrets that aren't set in
+          # the repo just become empty strings and the orchestrator's
+          # error message tells you which one is missing.
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}

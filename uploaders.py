@@ -140,6 +140,15 @@ class YouTubeUploader(Uploader):
         "https://www.googleapis.com/auth/youtube",
     ]
 
+    def __init__(self, channel: str = ""):
+        """`channel` is an optional slug for multi-channel routing.
+        Empty (the default) uses the original `YOUTUBE_TOKEN_JSON`
+        secret — the baller_bro_2_0 channel. A non-empty value like
+        "explainer" reads `YOUTUBE_TOKEN_JSON_EXPLAINER` instead so each
+        channel gets its own refresh token. The client_secret stays
+        shared across all channels (it's the same OAuth app)."""
+        self.channel = (channel or "").strip().lower()
+
     def _service(self):
         try:
             from google.oauth2.credentials import Credentials
@@ -157,9 +166,18 @@ class YouTubeUploader(Uploader):
             "YOUTUBE_CLIENT_SECRETS", "YOUTUBE_CLIENT_SECRETS_JSON",
             "yt_client_secret.json",
         ))
+        # Per-channel token env vars are suffixed with the upper-case
+        # channel slug so the routine + CI secrets stay aligned: an
+        # `"explainer"` package looks up `YOUTUBE_TOKEN_JSON_EXPLAINER`.
+        # The default (empty channel) hits the original
+        # `YOUTUBE_TOKEN_JSON` so the migration is backward-compatible.
+        suffix = f"_{self.channel.upper()}" if self.channel else ""
+        token_path_env = f"YOUTUBE_TOKEN{suffix}"
+        token_json_env = f"YOUTUBE_TOKEN_JSON{suffix}"
+        token_file_name = (f"yt_token_{self.channel}.json"
+                           if self.channel else "yt_token.json")
         token_path = _resolve_secret(
-            "YOUTUBE_TOKEN", "YOUTUBE_TOKEN_JSON",
-            "yt_token.json",
+            token_path_env, token_json_env, token_file_name,
         )
         creds = None
         if token_path.exists():
