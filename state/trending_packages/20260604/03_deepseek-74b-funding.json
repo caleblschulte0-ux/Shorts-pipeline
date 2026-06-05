@@ -1,0 +1,77 @@
+{
+  "version": 8,
+  "slug": "deepseek-74b-funding",
+  "title": "DeepSeek Takes Its First Outside Money: $7.4 Billion",
+  "hashtags": ["deepseek", "tencent", "catl", "liangwenfeng", "chineseai", "aifunding", "aiinvestment", "techvaluation", "chinatech", "aistartup", "venturecapital", "llm", "aimodel"],
+  "script": "The AI company that built a model matching GPT-4 for just $6 million is now worth $59 billion. DeepSeek — the Chinese lab that shocked Silicon Valley in January 2025 — is raising its first-ever outside funding: $7.4 billion. Tencent is investing $1.5 billion. Battery maker CATL is in. And founder Liang Wenfeng is personally investing $3 billion. The startup that needed no outside money just became one of the most valuable AI companies on Earth.",
+  "shots": [
+    {
+      "phrase": "model matching GPT-4 for just $6 million",
+      "query": "AI model benchmark performance chart GPT comparison dark"
+    },
+    {
+      "phrase": "the Chinese lab that shocked Silicon Valley",
+      "query": "Chinese AI lab research Hangzhou tech dark servers"
+    },
+    {
+      "phrase": "Tencent is investing $1.5 billion",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tencent_HQ.JPG",
+      "query": "Tencent headquarters Shenzhen China technology investment billion"
+    },
+    {
+      "phrase": "first-ever outside funding: $7.4 billion",
+      "query": "startup funding round billion dollar venture capital investment"
+    },
+    {
+      "phrase": "Liang Wenfeng is personally investing $3 billion",
+      "query": "Chinese tech founder billionaire personal investment capital"
+    },
+    {
+      "phrase": "most valuable AI companies on Earth",
+      "query": "AI company valuation ranking chart billion dollar tech"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "for just $6 million",
+      "text": "$6M MATCHED GPT-4",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 175,
+      "duration": 2.2
+    },
+    {
+      "phrase": "first-ever outside funding: $7.4 billion",
+      "text": "$7.4B ROUND",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "now worth $59 billion",
+      "text": "$59B VALUATION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "personally investing $3 billion",
+      "text": "$3B OWN MONEY",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "no outside money",
+      "text": "ZERO OUTSIDE MONEY... UNTIL NOW",
+      "color": "#ffaa30",
+      "size": 155,
+      "duration": 2.8
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}

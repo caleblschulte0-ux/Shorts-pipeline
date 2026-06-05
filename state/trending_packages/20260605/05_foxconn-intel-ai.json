@@ -1,0 +1,69 @@
+{
+  "version": 8,
+  "slug": "foxconn-intel-ai",
+  "title": "Foxconn and Intel Just Bet Everything on Building AI's Hardware Backbone",
+  "hashtags": ["foxconn", "intel", "aiinfrastructure", "aichips", "partnership", "semiconductors", "datacenters", "robotics", "edgecomputing", "techinvesting", "intc", "nasdaq", "airace", "silicon"],
+  "script": "The world's biggest contract manufacturer and one of its top chipmakers just agreed to build the future of AI together. Foxconn and Intel announced June 4 they will co-develop AI server racks, robotics platforms, and edge computing systems. Intel brings the chips; Foxconn brings the factories. Intel stock jumped 4.4% to $112 on the news. The real war in AI isn't just about models — it's about who controls the hardware.",
+  "shots": [
+    {
+      "phrase": "world's biggest contract manufacturer",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Foxconn_Technology_Malaysia.jpg",
+      "query": "Foxconn factory assembly line workers electronics manufacturing"
+    },
+    {
+      "phrase": "Foxconn and Intel announced June 4",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Intel_HQ_exterior_1.JPG",
+      "query": "Intel headquarters Silicon Valley Santa Clara tech campus"
+    },
+    {
+      "phrase": "AI server racks, robotics platforms, and edge computing systems",
+      "query": "AI server rack data center robots automation dark glow"
+    },
+    {
+      "phrase": "Intel brings the chips; Foxconn brings the factories",
+      "query": "semiconductor chip wafer processor manufacturing silicon fab"
+    },
+    {
+      "phrase": "Intel stock jumped 4.4% to $112 on the news",
+      "query": "stock price surge green chart market rally tech"
+    },
+    {
+      "phrase": "who controls the hardware",
+      "query": "global AI hardware war data center server racks dark dramatic"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "world's biggest contract manufacturer",
+      "text": "FOXCONN + INTEL",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "co-develop AI server racks, robotics platforms",
+      "text": "AI INFRASTRUCTURE",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Intel stock jumped 4.4% to $112 on the news",
+      "text": "+$112 INTEL UP",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 180,
+      "duration": 2.2
+    },
+    {
+      "phrase": "who controls the hardware",
+      "text": "HARDWARE WINS",
+      "color": "#ffffff",
+      "size": 210,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}

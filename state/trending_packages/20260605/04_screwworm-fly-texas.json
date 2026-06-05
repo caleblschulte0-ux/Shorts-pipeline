@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "screwworm-fly-texas",
+  "title": "A Flesh-Eating Parasite Just Crossed Into the US For the First Time in Decades",
+  "hashtags": ["screwworm", "newworldscrewworm", "usda", "texas", "parasites", "livestock", "cattle", "invasivespecies", "agriculture", "zavalacounty", "animals", "foodsafety", "bugs", "biosecurity"],
+  "script": "A flesh-eating parasite that devours animals alive just crossed into the U.S. for the first time in decades. The USDA confirmed a New World screwworm — a fly whose larvae burrow into living flesh — in a Texas calf last week. Screwworms were eradicated from the U.S. back in 1966. Now officials are racing to stop the comeback, releasing 4 million sterile flies per week near the border. The food supply is safe. Livestock is not.",
+  "shots": [
+    {
+      "phrase": "flesh-eating parasite that devours animals alive",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Screwworm_larva.jpg",
+      "query": "parasitic fly larvae insects macro close-up gross"
+    },
+    {
+      "phrase": "New World screwworm — a fly whose larvae burrow into living flesh",
+      "query": "livestock cattle infected wound veterinary treatment farm"
+    },
+    {
+      "phrase": "confirmed a New World screwworm",
+      "query": "USDA agricultural inspector laboratory testing livestock"
+    },
+    {
+      "phrase": "eradicated from the U.S. back in 1966",
+      "query": "vintage 1960s aerial crop dusting farm eradication historic"
+    },
+    {
+      "phrase": "releasing 4 million sterile flies per week near the border",
+      "query": "sterile insect technique fly release agriculture border Texas"
+    },
+    {
+      "phrase": "Livestock is not",
+      "query": "Texas cattle ranch livestock herd drought stressed animals"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "flesh-eating parasite that devours animals alive",
+      "text": "FLESH-EATING PARASITE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 175,
+      "duration": 2.4
+    },
+    {
+      "phrase": "larvae burrow into living flesh",
+      "text": "EATS ANIMALS ALIVE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.4
+    },
+    {
+      "phrase": "eradicated from the U.S. back in 1966",
+      "text": "GONE SINCE 1966",
+      "color": "#ffaa30",
+      "size": 180,
+      "duration": 2.0
+    },
+    {
+      "phrase": "4 million sterile flies per week",
+      "text": "4M FLIES/WEEK",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Livestock is not",
+      "text": "LIVESTOCK AT RISK",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}
