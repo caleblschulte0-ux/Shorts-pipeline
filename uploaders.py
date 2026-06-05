@@ -179,25 +179,35 @@ class YouTubeUploader(Uploader):
             token_path.write_text(creds.to_json())
         return build("youtube", "v3", credentials=creds)
 
-    def _guard_channel(self, svc):
-        """Safety: refuse to post unless the authenticated channel matches
-        YOUTUBE_EXPECTED_CHANNEL (a channel title or channel id). Prevents
-        this repo from ever posting to the wrong account if the wrong token
-        is present. No-op (but prints who it is) when the env var is unset."""
+    def whoami(self, svc=None) -> dict:
+        """Return {'id', 'title', 'handle'} for the channel this token maps to.
+        Read-only — used to confirm identity before any upload."""
+        svc = svc or self._service()
         try:
             resp = svc.channels().list(part="snippet", mine=True).execute()
             items = resp.get("items", [])
             if not items:
                 raise UploadError("youtube: token authorizes no channel")
-            cid = items[0]["id"]
-            ctitle = items[0]["snippet"]["title"]
+            sn = items[0]["snippet"]
+            return {"id": items[0]["id"], "title": sn.get("title", ""),
+                    "handle": sn.get("customUrl", "")}
         except UploadError:
             raise
         except Exception as e:  # noqa: BLE001
             raise UploadError(f"youtube: could not verify channel: {e}")
+
+    def _guard_channel(self, svc):
+        """Safety: refuse to post unless the authenticated channel matches
+        YOUTUBE_EXPECTED_CHANNEL (a channel title, id, or @handle). Prevents
+        this repo from ever posting to the wrong account if the wrong token
+        is present. No-op (but prints who it is) when the env var is unset."""
+        me = self.whoami(svc)
+        cid, ctitle, handle = me["id"], me["title"], me["handle"]
         expected = os.environ.get("YOUTUBE_EXPECTED_CHANNEL", "").strip()
-        print(f"[youtube] authenticated channel: {ctitle!r} ({cid})", flush=True)
-        if expected and expected.lower() not in (ctitle.lower(), cid.lower()):
+        print(f"[youtube] authenticated channel: {ctitle!r} "
+              f"handle={handle!r} ({cid})", flush=True)
+        known = {ctitle.lower(), cid.lower(), handle.lower().lstrip("@")}
+        if expected and expected.lower().lstrip("@") not in known:
             raise UploadError(
                 f"youtube: refusing to upload — authenticated channel "
                 f"{ctitle!r} ({cid}) does not match YOUTUBE_EXPECTED_CHANNEL="
