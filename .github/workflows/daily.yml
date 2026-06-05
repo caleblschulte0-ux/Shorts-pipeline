@@ -204,6 +204,14 @@ jobs:
           # the public catalog. Create at
           # https://console.cloud.google.com/apis/credentials.
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          # Optional: when set, topic_video pulls from DVIDS
+          # (Defense Visual Information Distribution Service) for
+          # federal-PD video footage — Coast Guard rescues, hurricane
+          # response, NATO exercises, White House press pool. All
+          # 17 U.S.C. § 105 public domain, zero copyright risk. Free
+          # registration at https://www.dvidshub.net/api/. Skips
+          # silently if unset.
+          DVIDS_API_KEY: ${{ secrets.DVIDS_API_KEY }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           COUNT: ${{ github.event.inputs.count || '6' }}
           FORCE: ${{ github.event.inputs.force }}
