@@ -76,7 +76,7 @@ def _writer(out: Path):
 
 
 def _splat(buf: np.ndarray, x: float, y: float, r: float, color, *,
-           glow: float = 0.6, additive: bool = False) -> None:
+           glow: float = 0.6, additive: bool = False, alpha: float = 1.0) -> None:
     """Draw an anti-aliased glowing ball into a float HxWx3 buffer."""
     pad = r * 2.2
     x0, x1 = int(max(0, math.floor(x - pad))), int(min(W, math.ceil(x + pad)))
@@ -86,7 +86,7 @@ def _splat(buf: np.ndarray, x: float, y: float, r: float, color, *,
     xs = np.arange(x0, x1)[None, :]
     ys = np.arange(y0, y1)[:, None]
     d = np.sqrt((xs - x) ** 2 + (ys - y) ** 2)
-    core = np.clip(r - d + 0.6, 0, 1)
+    core = np.clip(r - d + 0.6, 0, 1) * alpha
     col = np.array(color, float)
     reg = buf[y0:y1, x0:x1, :]
     if additive:
@@ -95,10 +95,10 @@ def _splat(buf: np.ndarray, x: float, y: float, r: float, color, *,
         reg[:] = reg * (1 - core[..., None]) + col[None, None, :] * core[..., None]
         # glossy highlight
         hl = np.clip(r * 0.5 - np.sqrt((xs - (x - r * 0.3)) ** 2 +
-                                       (ys - (y - r * 0.3)) ** 2), 0, 1) * 0.5
+                                       (ys - (y - r * 0.3)) ** 2), 0, 1) * 0.5 * alpha
         reg[:] = np.clip(reg + 255 * hl[..., None], 0, 255)
     if glow:
-        halo = np.exp(-(d / (r * 1.4)) ** 2) * glow
+        halo = np.exp(-(d / (r * 1.4)) ** 2) * glow * alpha
         reg[:] = np.clip(reg + col[None, None, :] * halo[..., None], 0, 255)
 
 
@@ -181,17 +181,17 @@ def render_ballpit(out: Path, seconds: float, seed: int = 2) -> None:
     rng = random.Random(seed)
     bg = _background()
     g = 0.55
-    balls = []
-    proc = _writer(out)
-    frames = int(seconds * FPS)
-    spawn_every = 4
     floor = H - 6
-    for f in range(frames):
-        if f % spawn_every == 0 and len(balls) < 80:
+    balls: list[dict] = []
+    max_active = 70
+
+    def step(f: int) -> None:
+        if f % 3 == 0:                      # spawn continuously, forever
             r = rng.uniform(16, 30)
             balls.append({"x": rng.uniform(r, W - r), "y": -r,
-                          "vx": rng.uniform(-1, 1), "vy": rng.uniform(0, 2),
-                          "r": r, "c": rng.choice(PALETTE)})
+                          "vx": rng.uniform(-1.2, 1.2), "vy": rng.uniform(0, 2),
+                          "r": r, "c": rng.choice(PALETTE), "rest": 0,
+                          "a": 1.0, "fade": False})
         for b in balls:
             b["vy"] += g; b["x"] += b["vx"]; b["y"] += b["vy"]
             if b["x"] < b["r"]:
@@ -201,6 +201,10 @@ def render_ballpit(out: Path, seconds: float, seed: int = 2) -> None:
             if b["y"] > floor - b["r"]:
                 b["y"] = floor - b["r"]; b["vy"] = -b["vy"] * 0.32
                 b["vx"] *= 0.8
+            if abs(b["vx"]) + abs(b["vy"]) < 0.7:
+                b["rest"] += 1
+            else:
+                b["rest"] = max(0, b["rest"] - 2)
         for i in range(len(balls)):
             for j in range(i + 1, len(balls)):
                 a, c = balls[i], balls[j]
@@ -216,9 +220,26 @@ def render_ballpit(out: Path, seconds: float, seed: int = 2) -> None:
                     if p > 0:
                         a["vx"] -= p * nx * 0.6; a["vy"] -= p * ny * 0.6
                         c["vx"] += p * nx * 0.6; c["vy"] += p * ny * 0.6
+        # recycle: once full, fade out the longest-settled ball so the pit
+        # keeps churning and new balls always have room to drop.
+        live = [b for b in balls if not b["fade"]]
+        if len(live) > max_active:
+            m = max(live, key=lambda b: b["rest"])
+            if m["rest"] > 15:
+                m["fade"] = True
+        for b in balls:
+            if b["fade"]:
+                b["a"] -= 0.05
+        balls[:] = [b for b in balls if b["a"] > 0.02 and b["y"] < H + 60]
+
+    for f in range(170):                    # warmup: start already populated
+        step(f)
+    proc = _writer(out)
+    for f in range(int(seconds * FPS)):
+        step(f + 170)
         frame = bg.copy()
         for b in sorted(balls, key=lambda b: b["y"]):
-            _splat(frame, b["x"], b["y"], b["r"], b["c"], glow=0.45)
+            _splat(frame, b["x"], b["y"], b["r"], b["c"], glow=0.45, alpha=b["a"])
         _emit(proc, frame)
     proc.stdin.close(); proc.wait()
 
@@ -227,17 +248,23 @@ def render_ballpit(out: Path, seconds: float, seed: int = 2) -> None:
 # Style 3: flow-style path fill (drawn with PIL for clean thick lines)
 # --------------------------------------------------------------------------
 def _flow_paths(rng, gw, gh):
+    """Fill ~85% of the grid with non-overlapping snake paths (cycling the
+    palette) so the animation covers the whole frame."""
     occ = set()
     paths = []
     dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-    for ci in range(len(PALETTE)):
+    ci = 0
+    cells = gw * gh
+    guard = 0
+    while len(occ) < cells * 0.85 and guard < 400:
+        guard += 1
         starts = [(x, y) for x in range(gw) for y in range(gh)
                   if (x, y) not in occ]
         if not starts:
             break
         cur = rng.choice(starts)
         path = [cur]; occ.add(cur)
-        target = rng.randint(6, 14)
+        target = rng.randint(5, 16)
         while len(path) < target:
             rng.shuffle(dirs)
             moved = False
@@ -249,53 +276,67 @@ def _flow_paths(rng, gw, gh):
                     break
             if not moved:
                 break
-        if len(path) >= 3:
-            paths.append((PALETTE[ci], path))
+        if len(path) >= 2:
+            paths.append((PALETTE[ci % len(PALETTE)], path)); ci += 1
     return paths
 
 
 def render_flow(out: Path, seconds: float, seed: int = 3) -> None:
-    rng = random.Random(seed)
-    bg_img = Image.fromarray(_background().astype(np.uint8), "RGB")
-    gw, gh = 14, 9
+    bg_arr = _background().astype(np.uint8)
+    bg_img = Image.fromarray(bg_arr, "RGB")
+    gw, gh = 13, 9
     cw, ch = W / gw, H / gh
-    paths = _flow_paths(rng, gw, gh)
+    lw = int(min(cw, ch) * 0.5)
 
     def cell_xy(c):
         return (c[0] * cw + cw / 2, c[1] * ch + ch / 2)
 
-    total = max(len(p) for _, p in paths)
-    proc = _writer(out)
-    frames = int(seconds * FPS)
-    lw = int(min(cw, ch) * 0.42)
-    for f in range(frames):
-        prog = min(1.0, (f / frames) * 1.25)   # finish growing ~80% in
+    def draw(paths, prog, alpha):
         img = bg_img.copy()
         d = ImageDraw.Draw(img, "RGBA")
         for color, path in paths:
             pts = [cell_xy(c) for c in path]
             grown = prog * (len(pts) - 1)
-            k = int(grown)
-            frac = grown - k
+            k = int(grown); frac = grown - k
             show = pts[:k + 1]
             if k < len(pts) - 1:
                 x0, y0 = pts[k]; x1, y1 = pts[k + 1]
                 show = show + [(x0 + (x1 - x0) * frac, y0 + (y1 - y0) * frac)]
-            # endpoints
             for ep in (pts[0], pts[-1]):
                 d.ellipse([ep[0] - lw * 0.7, ep[1] - lw * 0.7,
-                           ep[0] + lw * 0.7, ep[1] + lw * 0.7],
-                          fill=color + (70,))
+                           ep[0] + lw * 0.7, ep[1] + lw * 0.7], fill=color + (80,))
                 d.ellipse([ep[0] - lw * 0.5, ep[1] - lw * 0.5,
                            ep[0] + lw * 0.5, ep[1] + lw * 0.5], fill=color + (255,))
             if len(show) >= 2:
                 d.line(show, fill=color + (255,), width=lw, joint="curve")
-                for px, py in show:         # round the joints
+                for px, py in show:
                     d.ellipse([px - lw / 2, py - lw / 2,
                                px + lw / 2, py + lw / 2], fill=color + (255,))
         glow = img.filter(ImageFilter.GaussianBlur(7))
         img = Image.blend(img, glow, 0.35)
-        proc.stdin.write(np.asarray(img.convert("RGB")).tobytes())
+        if alpha < 1.0:                      # fade whole frame toward bg
+            img = Image.blend(bg_img, img, alpha)
+        return np.asarray(img.convert("RGB")).tobytes()
+
+    proc = _writer(out)
+    total = int(seconds * FPS)
+    grow, hold, fade = int(4.5 * FPS), int(1.5 * FPS), int(0.8 * FPS)
+    cycle = grow + hold + fade
+    f = 0
+    cseed = seed
+    while f < total:
+        paths = _flow_paths(random.Random(cseed), gw, gh); cseed += 1
+        for cf in range(cycle):
+            if f >= total:
+                break
+            if cf < grow:
+                prog, alpha = (cf / grow), 1.0
+            elif cf < grow + hold:
+                prog, alpha = 1.0, 1.0
+            else:
+                prog, alpha = 1.0, 1.0 - (cf - grow - hold) / fade
+            proc.stdin.write(draw(paths, prog, alpha))
+            f += 1
     proc.stdin.close(); proc.wait()
 
 
@@ -305,46 +346,54 @@ def render_flow(out: Path, seconds: float, seed: int = 3) -> None:
 def render_plinko(out: Path, seconds: float, seed: int = 4) -> None:
     rng = random.Random(seed)
     bg = _background()
+    # Proper staggered (triangular) peg grid spanning the full width.
+    cols, rows = 9, 10
+    top, bottom = 130, H - 80
+    sx = W / (cols + 1)
     pegs = []
-    rows, top, bottom = 9, 120, H - 90
     for row in range(rows):
-        y = top + row * (bottom - top) / rows
-        cols = 7 + (row % 2)
-        offset = (W / cols) / 2 if row % 2 else 0
-        for ccol in range(cols):
-            x = offset + ccol * (W / cols) + (W / cols) / 2 - (W / cols) / 2 + 30
-            x = (ccol + 0.5) * (W / cols) + (offset and -offset)
-            pegs.append((x, y))
-    pegs = [(x, y) for (x, y) in pegs if 20 < x < W - 20]
-    pegr = 7
-    g = 0.5
-    balls = []
+        y = top + row * (bottom - top) / (rows - 1)
+        off = sx / 2 if row % 2 else 0.0
+        for c in range(cols):
+            x = sx * (c + 1) + off - sx / 2
+            if 10 < x < W - 10:
+                pegs.append((x, y))
+    pegr, ballr, g, rest = 9, 14, 0.45, 0.7
+    balls: list[dict] = []
     accum = np.zeros((H, W, 3), float)
-    proc = _writer(out)
-    frames = int(seconds * FPS)
-    for f in range(frames):
-        if f % 10 == 0 and len(balls) < 14:
-            balls.append({"x": W / 2 + rng.uniform(-40, 40), "y": 30,
-                          "vx": rng.uniform(-1, 1), "vy": 1,
-                          "r": 15, "c": rng.choice(PALETTE)})
-        accum *= 0.80
+
+    def step(f: int) -> None:
+        if f % 7 == 0 and len(balls) < 20:
+            balls.append({"x": rng.uniform(W * 0.2, W * 0.8), "y": -10,
+                          "vx": rng.uniform(-1.5, 1.5), "vy": 1.5,
+                          "r": ballr, "c": rng.choice(PALETTE)})
         for b in balls:
             b["vy"] += g; b["x"] += b["vx"]; b["y"] += b["vy"]
+            b["vx"] = max(-9, min(9, b["vx"]))
             for (px, py) in pegs:
                 dx, dy = b["x"] - px, b["y"] - py
                 dist = math.hypot(dx, dy)
                 if dist < b["r"] + pegr:
-                    nx, ny = (dx / dist, dy / dist) if dist else (0, -1)
+                    nx, ny = (dx / dist, dy / dist) if dist else (
+                        rng.choice((-1, 1)), -1)
                     dot = b["vx"] * nx + b["vy"] * ny
-                    b["vx"] -= 1.6 * dot * nx; b["vy"] -= 1.6 * dot * ny
-                    b["vx"] += rng.uniform(-0.4, 0.4)
+                    b["vx"] -= (1 + rest) * dot * nx
+                    b["vy"] -= (1 + rest) * dot * ny
+                    b["vx"] += rng.uniform(-0.9, 0.9)   # scatter
                     over = b["r"] + pegr - dist
                     b["x"] += nx * over; b["y"] += ny * over
             if b["x"] < b["r"]:
                 b["x"] = b["r"]; b["vx"] = abs(b["vx"]) * 0.6
             if b["x"] > W - b["r"]:
                 b["x"] = W - b["r"]; b["vx"] = -abs(b["vx"]) * 0.6
-        balls = [b for b in balls if b["y"] < H + 40]
+        balls[:] = [b for b in balls if b["y"] < H + 40]
+
+    for f in range(120):                    # warmup so it starts mid-action
+        step(f)
+    proc = _writer(out)
+    for f in range(int(seconds * FPS)):
+        step(f + 120)
+        accum *= 0.80
         frame = bg.copy()
         for (px, py) in pegs:
             _splat(frame, px, py, pegr, (90, 120, 150), glow=0.2)
