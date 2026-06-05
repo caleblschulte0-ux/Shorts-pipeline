@@ -109,15 +109,15 @@ which YouTube channel the upload targets. Available slugs:
 
 | Slug         | Channel              | Use for                                                                 |
 |--------------|----------------------|-------------------------------------------------------------------------|
-| _(omit)_     | baller bro 2.0       | Default. News + quirky shorts.                                          |
-| `explainer`  | Short_explainer      | Micro-learning / explainer-style breakdowns of a concept or mechanic.   |
+| _(omit)_     | baller bro 2.0       | Default — ALL Part-1 packages. News + quirky shorts.                     |
 
-If you're unsure which channel a story belongs on, omit the field —
-it lands on baller bro 2.0. Set `"channel": "explainer"` only when the
-script is a teaching piece ("here's how X works", "here's why Y
-happens") rather than a news beat. Quirky stories almost always belong
-on baller bro 2.0; tech-explainer breakdowns of a single mechanism
-belong on Short_explainer.
+**Every Part-1 package goes to baller bro 2.0 — always omit `channel`.**
+Do NOT set `"channel": "explainer"` on a trending package. The
+Short_explainer channel is a consistent *data-graph* channel fed
+exclusively by the **Part 2** stories below (chart breakdowns, not the
+stacked/stock-image format). A teaching-style news beat still ships to
+baller bro 2.0; if a topic is better told with charts, write it as a
+Part 2 data-graph story instead.
 
 ## Hashtags
 
