@@ -1,0 +1,84 @@
+{
+  "version": 8,
+  "slug": "broadcom-stock-crash",
+  "title": "Broadcom Erased $320 Billion Overnight — AI Chips Just Got Complicated",
+  "hashtags": ["broadcom", "avgo", "stockcrash", "hocktan", "aichips", "semiconductors", "nasdaq", "stocks", "micron", "armholdings", "wallstreet", "techcrash", "investing", "earnings"],
+  "script": "Broadcom just erased $320 billion in market value in a single day — one of the biggest wipeouts in tech history. After Q2 earnings, CEO Hock Tan refused to raise the company's $100 billion AI chip target for the year. Q3 guidance came in at $16 billion, $1.2 billion short of Wall Street's estimate. The stock fell 15%, dragging Micron down 7% and ARM down 4%. Good enough is no longer good enough for AI chips.",
+  "shots": [
+    {
+      "phrase": "erased $320 billion in market value in a single day",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Broadcom_Inc.jpg",
+      "query": "Broadcom headquarters semiconductor tech company San Jose"
+    },
+    {
+      "phrase": "CEO Hock Tan refused to raise",
+      "query": "CEO earnings call press conference boardroom disappointed executives"
+    },
+    {
+      "phrase": "$100 billion AI chip target for the year",
+      "query": "AI chip semiconductor processor glow dark circuit board"
+    },
+    {
+      "phrase": "Q3 guidance came in at $16 billion",
+      "query": "stock chart plummeting red crash bear market"
+    },
+    {
+      "phrase": "stock fell 15%, dragging Micron down 7% and ARM down 4%",
+      "query": "semiconductor stocks falling red chart market sell-off"
+    },
+    {
+      "phrase": "no longer good enough for AI chips",
+      "query": "AI data center servers racks future tech competition"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "$320 billion in market value in a single day",
+      "text": "320B WIPED OUT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.4
+    },
+    {
+      "phrase": "refused to raise",
+      "text": "REFUSED TO RAISE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Q3 guidance came in at $16 billion",
+      "text": "16B MISS",
+      "color": "#ffaa30",
+      "size": 200,
+      "duration": 2.0
+    },
+    {
+      "phrase": "stock fell 15%",
+      "text": "DOWN 15%",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 210,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Micron down 7% and ARM down 4%",
+      "text": "SECTOR BLOODBATH",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.4
+    },
+    {
+      "phrase": "no longer good enough for AI chips",
+      "text": "NOT ENOUGH",
+      "color": "#ffffff",
+      "size": 210,
+      "duration": 2.2
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}
