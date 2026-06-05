@@ -1,0 +1,81 @@
+{
+  "version": 8,
+  "slug": "israel-lebanon-ceasefire-unifil",
+  "title": "Lebanon Ceasefire Collapsed in Hours — UN Peacekeeper Killed",
+  "hashtags": ["israel", "lebanon", "ceasefire", "unifil", "hezbollah", "southlebanon", "marjayoun", "unpeacekeepers", "middleeast", "israellebanon", "conflict", "worldnews", "geopolitics", "ceasefirefailed"],
+  "script": "Israel and Lebanon announced a ceasefire today. Within hours, Israeli forces launched fresh strikes across southern Lebanon. A UN peacekeeper from Serbia was killed — struck by a mortar at his post near Marjayoun. Two others were wounded. The deal requires Hezbollah to stop firing and withdraw all fighters from the border zone. Hezbollah has not agreed. The Israeli military says it is still targeting Hezbollah infrastructure in southern Lebanon. The ceasefire exists on paper only.",
+  "shots": [
+    {
+      "phrase": "Israel and Lebanon announced a ceasefire today",
+      "query": "Israel Lebanon ceasefire agreement flag diplomacy UN talks"
+    },
+    {
+      "phrase": "Israeli forces launched fresh strikes across southern Lebanon",
+      "query": "Israeli military airstrike Lebanon explosion smoke southern village"
+    },
+    {
+      "phrase": "A UN peacekeeper from Serbia was killed",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/UNIFIL_Deployment_February_2018_%28cropped%29.jpg",
+      "query": "UN peacekeepers UNIFIL Lebanon blue helmet patrol base"
+    },
+    {
+      "phrase": "struck by a mortar at his post near Marjayoun",
+      "query": "UN military outpost base attack mortar explosion Lebanon"
+    },
+    {
+      "phrase": "Hezbollah to stop firing and withdraw all fighters",
+      "query": "Hezbollah fighters Lebanon border armed militia south"
+    },
+    {
+      "phrase": "targeting Hezbollah infrastructure in southern Lebanon",
+      "query": "Israeli forces Lebanon village south military airstrike"
+    },
+    {
+      "phrase": "The ceasefire exists on paper only",
+      "query": "ceasefire violation broken agreement conflict ongoing fire"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Within hours",
+      "text": "BROKEN IN HOURS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "A UN peacekeeper from Serbia was killed",
+      "text": "UN SOLDIER KILLED",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.4
+    },
+    {
+      "phrase": "struck by a mortar",
+      "text": "KILLED BY MORTAR",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Hezbollah has not agreed",
+      "text": "HEZBOLLAH REFUSES",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "The ceasefire exists on paper only",
+      "text": "PAPER ONLY",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}
