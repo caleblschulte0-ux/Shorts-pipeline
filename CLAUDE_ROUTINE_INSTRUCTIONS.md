@@ -28,11 +28,22 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
    airport" stories outperform every serious-news category on views and likes.
    **At least 3 of 6 picks from the Quirky / Offbeat bucket.**
 
-   Quirky = real news with an absurdist hook: world records, escapes, heists
-   with a comic twist, animal incidents, ridiculous court rulings, viral local
-   news, "Florida Man" energy. MUST be real — if no wire outlet (AP / UPI /
-   Reuters / BBC) confirms, skip it (r/nottheonion gets satire reposts).
-   NOT politics-with-quirky-frame, NOT heartwarming fluff, NOT celebrity gossip.
+   Quirky = the SITUATION is weird, not the PERSON. Good shape: "1 million
+   bees escape from semi on Tennessee highway", "United Airlines flight turned
+   back over Bluetooth network name", "town renames itself", "Hell, Michigan
+   listed for sale at $666K", "world record pumpkin", "wrong-way driver caught
+   on camera", "raccoon shuts down airport".
+
+   **Hard cap: at most 1 "Florida Man" / "local-arrest" / personality-based
+   crime pick per slate.** Three Florida-Man-style stories in a row reads as
+   fluff. If multiple show up, take the single weirdest situation (e.g.
+   "selling stolen radioactive device on Facebook" qualifies; generic assault
+   doesn't) and skip the rest. The other quirky picks must be situation-driven.
+
+   MUST be real — wire-service (AP / UPI / Reuters / BBC) confirmation, or
+   skip it. r/nottheonion and r/FloridaMan get satire reposts, so verify
+   before writing. NOT politics-with-quirky-frame. NOT heartwarming fluff.
+   NOT celebrity gossip.
 
    **Other 3** are serious news, 1 per category (treat Tech + Markets as one
    combined bucket): Tech+Markets, World, US policy, Crime/Justice,
