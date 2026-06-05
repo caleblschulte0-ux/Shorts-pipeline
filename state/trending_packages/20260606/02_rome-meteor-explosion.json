@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "rome-meteor-explosion",
+  "title": "A Meteor Just Exploded Over Rome — and Cameras Caught It All",
+  "hashtags": ["meteor", "rome", "italy", "spacenews", "fireball", "bolide", "astronomy", "meteorite", "skywatch", "spaceweather", "weirdnews", "caughtoncamera", "viral", "shorts", "fyp"],
+  "script": "A meteor exploded in the sky over Rome and dozens of doorbell cams caught the flash. The fireball blew up 50 miles above the city around 9 PM local time. Astronomers say it was probably the size of a basketball. The sonic boom rattled windows across three regions. Nobody got hurt, and scientists are now combing fields outside Rome hoping to find a fragment. Earth gets hit by 17 of these every day.",
+  "shots": [
+    {
+      "phrase": "meteor exploded in the sky over Rome",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bolide_meteor_in_sky.jpg",
+      "query": "meteor fireball night sky bright explosion bolide"
+    },
+    {
+      "phrase": "dozens of doorbell cams caught the flash",
+      "query": "doorbell camera footage security cam night flash"
+    },
+    {
+      "phrase": "50 miles above the city",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Roman_Forum_aerial_view.jpg",
+      "query": "rome italy skyline aerial city night view colosseum"
+    },
+    {
+      "phrase": "sonic boom rattled windows",
+      "query": "shaking windows building tremor shockwave glass"
+    },
+    {
+      "phrase": "combing fields outside Rome hoping to find a fragment",
+      "query": "scientists field search night flashlight detective ground"
+    },
+    {
+      "phrase": "17 of these every day",
+      "query": "earth space meteors atmosphere shooting stars night sky"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "meteor exploded in the sky",
+      "text": "METEOR EXPLODED",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.4
+    },
+    {
+      "phrase": "50 miles above the city",
+      "text": "50 MILES UP",
+      "color": "#ffffff",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "size of a basketball",
+      "text": "BASKETBALL-SIZED",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "sonic boom rattled windows",
+      "text": "SONIC BOOM",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "17 of these every day",
+      "text": "17 PER DAY",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.2
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}

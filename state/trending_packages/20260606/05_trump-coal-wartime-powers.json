@@ -1,0 +1,80 @@
+{
+  "version": 8,
+  "slug": "trump-coal-wartime-powers",
+  "title": "Trump Just Used Wartime Powers to Pump $700 Million Into Coal",
+  "hashtags": ["trump", "coal", "energy", "defenseproductionact", "wartimepowers", "uspolicy", "fossilfuels", "energyindependence", "appalachia", "miningnews", "powerplants", "politics", "shorts", "fyp"],
+  "script": "President Trump invoked the Defense Production Act to send 700 million dollars to U.S. coal companies. The same law that built tanks in World War II is now keeping aging coal plants alive. The White House says coal-fired power is vital to AI data centers and grid stability. 4 coal mines that had announced shutdowns are now back online. Environmental groups are suing within hours. The plants that get this money emit 3 times more carbon than natural gas plants.",
+  "shots": [
+    {
+      "phrase": "President Trump invoked the Defense Production Act",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Donald_Trump_official_portrait_(cropped_2).jpg",
+      "query": "donald trump white house podium speech announcement"
+    },
+    {
+      "phrase": "send 700 million dollars to U.S. coal companies",
+      "query": "coal mine excavator industrial mining heavy machinery dirt"
+    },
+    {
+      "phrase": "law that built tanks in World War II",
+      "query": "world war 2 factory tank assembly line vintage 1940s"
+    },
+    {
+      "phrase": "coal-fired power is vital to AI data centers",
+      "query": "data center server racks rows lights humming computing"
+    },
+    {
+      "phrase": "4 coal mines that had announced shutdowns are now back online",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Coal_mine_open_pit.jpg",
+      "query": "coal mine workers helmets appalachia underground tunnel"
+    },
+    {
+      "phrase": "Environmental groups are suing within hours",
+      "query": "courthouse lawyers steps lawsuit gavel justice scales"
+    },
+    {
+      "phrase": "3 times more carbon than natural gas plants",
+      "query": "smokestack power plant emissions pollution sky industrial"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "700 million dollars",
+      "text": "$700 MILLION",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.4
+    },
+    {
+      "phrase": "built tanks in World War II",
+      "text": "WWII-ERA POWERS",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "AI data centers",
+      "text": "FOR AI DATA CENTERS",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "4 coal mines that had announced shutdowns",
+      "text": "4 MINES REOPEN",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "3 times more carbon",
+      "text": "3X MORE CARBON",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}
