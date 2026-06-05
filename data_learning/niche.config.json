@@ -110,7 +110,8 @@
           "insight_type": "trend",
           "role": "1 \u00b7 PRICES",
           "connector": "First, home prices took off.",
-          "topic": "prices"
+          "topic": "home prices",
+          "explain": "Up almost 180 thousand dollars in just seven years."
         },
         {
           "source": "offline",
@@ -121,7 +122,8 @@
           "insight_type": "trend",
           "role": "2 \u00b7 RATES",
           "connector": "Then mortgage rates more than doubled.",
-          "topic": "rates"
+          "topic": "mortgage rates",
+          "explain": "Double the rate means a much bigger monthly payment for the same house."
         },
         {
           "source": "offline",
@@ -132,9 +134,10 @@
           "insight_type": "rank",
           "role": "3 \u00b7 RENT",
           "connector": "Rent now eats a third of the paycheck.",
-          "topic": "rent",
+          "topic": "rent burden",
           "ascending": false,
-          "use_baseline": true
+          "use_baseline": true,
+          "explain": "A third of every paycheck gone before anything else."
         },
         {
           "source": "offline",
@@ -145,9 +148,10 @@
           "insight_type": "rank",
           "role": "4 \u00b7 THE WALL",
           "connector": "So a starter home costs years of pay.",
-          "topic": "the wall",
+          "topic": "cost in years of pay",
           "ascending": false,
-          "use_baseline": true
+          "use_baseline": true,
+          "explain": "Over a decade of your full salary, just for the house."
         }
       ]
     },
@@ -180,9 +184,10 @@
           "insight_type": "rank",
           "role": "1 \u00b7 SINCE 2020",
           "connector": "First, see how far prices ran since 2020.",
-          "topic": "since 2020",
+          "topic": "price jump since 2020",
           "ascending": false,
-          "use_baseline": true
+          "use_baseline": true,
+          "explain": "Eggs alone cost nearly double what they did in 2020."
         },
         {
           "source": "offline",
@@ -193,8 +198,9 @@
           "insight_type": "comparison",
           "role": "2 \u00b7 THIS YEAR",
           "connector": "And this year they're still climbing.",
-          "topic": "this year",
-          "use_baseline": true
+          "topic": "food prices this year",
+          "use_baseline": true,
+          "explain": "Still climbing, just a little slower than before."
         },
         {
           "source": "offline",
@@ -205,7 +211,8 @@
           "insight_type": "trend",
           "role": "3 \u00b7 YOUR BUDGET",
           "connector": "So food takes more of every paycheck.",
-          "topic": "your budget"
+          "topic": "the share of income spent on food",
+          "explain": "Food quietly eats a bigger slice of your budget every year."
         },
         {
           "source": "offline",
@@ -216,7 +223,8 @@
           "insight_type": "trend",
           "role": "4 \u00b7 WHAT YOU PAY",
           "connector": "And the monthly bill keeps setting records.",
-          "topic": "what you pay"
+          "topic": "the average grocery bill",
+          "explain": "That's about 300 dollars more every month than 2019."
         }
       ]
     },
@@ -249,7 +257,8 @@
           "insight_type": "trend",
           "role": "1 \u00b7 BALANCES",
           "connector": "First, credit card balances hit records.",
-          "topic": "balances"
+          "topic": "credit card debt",
+          "explain": "Americans now owe close to 1.4 trillion dollars on cards."
         },
         {
           "source": "offline",
@@ -260,7 +269,8 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE RATE",
           "connector": "While the rate on that debt soared.",
-          "topic": "the rate"
+          "topic": "the credit card interest rate",
+          "explain": "The balance grows even if you stop spending."
         },
         {
           "source": "offline",
@@ -271,7 +281,8 @@
           "insight_type": "trend",
           "role": "3 \u00b7 FALLING BEHIND",
           "connector": "More people are falling behind on payments.",
-          "topic": "falling behind"
+          "topic": "the share falling behind",
+          "explain": "More households simply can't make the minimum payment."
         },
         {
           "source": "offline",
@@ -282,7 +293,8 @@
           "insight_type": "trend",
           "role": "4 \u00b7 NO CUSHION",
           "connector": "And the savings cushion is nearly gone.",
-          "topic": "no cushion"
+          "topic": "the savings rate",
+          "explain": "People save less than half what they did in 2020."
         }
       ]
     },
@@ -315,7 +327,8 @@
           "insight_type": "trend",
           "role": "1 \u00b7 YOUR RAISE",
           "connector": "First, paychecks really did go up.",
-          "topic": "your raise"
+          "topic": "the average wage",
+          "explain": "On paper, that looks like a solid raise."
         },
         {
           "source": "offline",
@@ -326,7 +339,8 @@
           "insight_type": "trend",
           "role": "2 \u00b7 AFTER INFLATION",
           "connector": "But after inflation, they barely moved.",
-          "topic": "after inflation"
+          "topic": "real, inflation-adjusted pay",
+          "explain": "After prices, your buying power actually slipped."
         },
         {
           "source": "offline",
@@ -337,9 +351,10 @@
           "insight_type": "rank",
           "role": "3 \u00b7 WHAT OUTRAN YOU",
           "connector": "Because the big bills outran your wages.",
-          "topic": "what outran you",
+          "topic": "price jump since 2020",
           "ascending": false,
-          "use_baseline": true
+          "use_baseline": true,
+          "explain": "Wages rose 22 percent, but the big bills rose more."
         },
         {
           "source": "offline",
@@ -350,7 +365,8 @@
           "insight_type": "trend",
           "role": "4 \u00b7 THE TREADMILL",
           "connector": "So you work more hours just to keep up.",
-          "topic": "the treadmill"
+          "topic": "hours of work to cover rent",
+          "explain": "Seventeen more hours a month, just to make rent."
         }
       ]
     },
@@ -383,7 +399,8 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE HEADLINE",
           "connector": "First, the headline rate still looks low.",
-          "topic": "the headline"
+          "topic": "the unemployment rate",
+          "explain": "Low joblessness is the one number everyone quotes."
         },
         {
           "source": "offline",
@@ -394,7 +411,8 @@
           "insight_type": "trend",
           "role": "2 \u00b7 PART-TIME",
           "connector": "But part-time-for-economic-reasons is creeping up.",
-          "topic": "part-time"
+          "topic": "people stuck in part-time work",
+          "explain": "Millions want full-time hours but can't get them."
         },
         {
           "source": "offline",
@@ -405,7 +423,8 @@
           "insight_type": "trend",
           "role": "3 \u00b7 WHO'S MISSING",
           "connector": "And participation never fully bounced back.",
-          "topic": "who's missing"
+          "topic": "the share of adults working",
+          "explain": "Many people simply stopped looking for work."
         },
         {
           "source": "offline",
@@ -416,7 +435,8 @@
           "insight_type": "trend",
           "role": "4 \u00b7 WORKING DOUBLE",
           "connector": "More people now juggle two jobs to get by.",
-          "topic": "working double"
+          "topic": "people working two or more jobs",
+          "explain": "Nine million people now juggle multiple jobs."
         }
       ]
     },
@@ -451,7 +471,8 @@
           "connector": "First, the cost of living splits the country.",
           "topic": "cost of living",
           "ascending": false,
-          "use_baseline": true
+          "use_baseline": true,
+          "explain": "100 is average, so Hawaii is about 84 percent pricier."
         },
         {
           "source": "offline",
@@ -462,9 +483,10 @@
           "insight_type": "rank",
           "role": "2 \u00b7 WHAT YOU EARN",
           "connector": "Incomes split too, but not the same way.",
-          "topic": "what you earn",
+          "topic": "household income",
           "ascending": false,
-          "use_baseline": true
+          "use_baseline": true,
+          "explain": "Top states earn nearly double the poorest."
         },
         {
           "source": "offline",
@@ -475,9 +497,10 @@
           "insight_type": "rank",
           "role": "3 \u00b7 AFTER COSTS",
           "connector": "Adjust for costs and the map flips.",
-          "topic": "after costs",
+          "topic": "income after living costs",
           "ascending": false,
-          "use_baseline": true
+          "use_baseline": true,
+          "explain": "Adjust for prices and the big-paycheck states fall behind."
         },
         {
           "source": "offline",
@@ -488,9 +511,10 @@
           "insight_type": "rank",
           "role": "4 \u00b7 THE RENT",
           "connector": "And rent is where it really bites.",
-          "topic": "the rent",
+          "topic": "one-bedroom rent",
           "ascending": false,
-          "use_baseline": true
+          "use_baseline": true,
+          "explain": "More than double what the cheapest states pay."
         }
       ]
     }
