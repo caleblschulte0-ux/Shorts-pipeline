@@ -61,9 +61,56 @@ CAP_MARGINV = 70
 # Voice: a friendly male Kokoro voice at natural pitch (not deep/scary).
 VOICE_PITCH = 1.0
 
-# Oddly-satisfying b-roll for the bottom strip (built by build_broll.py).
+# Oddly-satisfying b-roll for the bottom strip. If broll/styles/*.mp4 exist
+# (built by broll_gen.py --styles) the renderer round-robins through them so
+# each video gets a different style; otherwise it falls back to the single
+# broll/satisfying.mp4, then to a soft mandelbrot.
 BROLL = PKG_DIR / "broll" / "satisfying.mp4"
+BROLL_STYLES = PKG_DIR / "broll" / "styles"
 BROLL_OFFSET = PKG_DIR / "broll" / ".offset"
+BROLL_ROTATION = PKG_DIR / "broll" / ".rotation"
+
+
+def _pick_broll(total: float):
+    """Round-robin style selection. Returns (path, start_offset) or
+    (None, 0.0) if no b-roll is available. A persisted counter advances each
+    render: every video steps to the next style, and each full lap shifts the
+    start offset so a repeated style never shows the exact same footage."""
+    clips = sorted(BROLL_STYLES.glob("*.mp4")) if BROLL_STYLES.is_dir() else []
+    if clips:
+        try:
+            n = int(BROLL_ROTATION.read_text().strip())
+        except Exception:  # noqa: BLE001
+            n = 0
+        chosen = clips[n % len(clips)]
+        dur = max(1.0, _dur(chosen))
+        off = ((n // len(clips)) * max(total, 11.0)) % dur
+        return chosen, off
+    if BROLL.exists():
+        dur = max(1.0, _dur(BROLL))
+        try:
+            off = float(BROLL_OFFSET.read_text().strip()) % dur
+        except Exception:  # noqa: BLE001
+            off = 0.0
+        return BROLL, off
+    return None, 0.0
+
+
+def _advance_broll(total: float) -> None:
+    """Step the rotation counter / offset for the next render."""
+    if BROLL_STYLES.is_dir() and any(BROLL_STYLES.glob("*.mp4")):
+        try:
+            n = int(BROLL_ROTATION.read_text().strip())
+        except Exception:  # noqa: BLE001
+            n = 0
+        BROLL_ROTATION.write_text(f"{n + 1}\n")
+    elif BROLL.exists():
+        dur = max(1.0, _dur(BROLL))
+        try:
+            off = float(BROLL_OFFSET.read_text().strip())
+        except Exception:  # noqa: BLE001
+            off = 0.0
+        BROLL_OFFSET.write_text(f"{(off + total) % dur:.2f}\n")
 
 
 # --------------------------------------------------------------------------
@@ -442,23 +489,17 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
                                      point_angle=float(angle), flip=flip)
             mascot_movs.append(mv)
 
-        # Bottom footage: a rotating segment of the long satisfying b-roll so
-        # it never obviously repeats across renders (falls back to a soft
-        # mandelbrot if the b-roll hasn't been built).
-        use_broll = BROLL.exists()
-        off = 0.0
-        if use_broll:
-            broll_dur = max(1.0, _dur(BROLL))
-            try:
-                off = float(BROLL_OFFSET.read_text().strip()) % broll_dur
-            except Exception:  # noqa: BLE001
-                off = 0.0
+        # Bottom footage: round-robin through the per-style b-roll clips so
+        # each video gets a different vibe and never obviously repeats (falls
+        # back to a soft mandelbrot if no b-roll has been built).
+        broll_path, off = _pick_broll(total)
+        use_broll = broll_path is not None
 
         # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, charts, mascots, audio
         inputs = ["-f", "lavfi", "-i", ambient.gradient_lavfi(total)]
         inputs += ["-loop", "1", "-i", str(bokeh)]
         if use_broll:
-            inputs += ["-stream_loop", "-1", "-i", str(BROLL)]
+            inputs += ["-stream_loop", "-1", "-i", str(broll_path)]
         else:
             inputs += ["-f", "lavfi", "-i",
                        f"mandelbrot=size=540x{FOOT_H // 2}:rate={FPS}"]
@@ -530,9 +571,9 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
                "-crf", "20", "-c:a", "aac", "-b:a", "192k",
                "-movflags", "+faststart", str(out_path)]
         _run(cmd)
-        # Advance the b-roll offset so the next render uses fresh footage.
+        # Advance the rotation so the next render uses the next style.
         if use_broll:
-            BROLL_OFFSET.write_text(f"{(off + total) % broll_dur:.2f}\n")
+            _advance_broll(total)
 
     print(f"[studio] story '{slug}': {len(st.segments)} charts, "
           f"{len(sentences)} beats, {total:.1f}s -> {out_path}")

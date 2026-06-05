@@ -33,6 +33,7 @@ from PIL import Image, ImageDraw, ImageFilter
 PKG = Path(__file__).resolve().parent
 BROLL_DIR = PKG / "broll"
 OUT = BROLL_DIR / "satisfying.mp4"
+STYLES_DIR = BROLL_DIR / "styles"
 
 W, H, FPS = 1080, 720, 30
 
@@ -434,7 +435,20 @@ def main() -> int:
                     help="render a short sample of every style to output/")
     ap.add_argument("--build", action="store_true",
                     help="render all styles long and concat into satisfying.mp4")
+    ap.add_argument("--styles", action="store_true",
+                    help="render one long clip per style into broll/styles/ "
+                         "for the renderer's round-robin rotation")
+    ap.add_argument("--clip-seconds", type=float, default=70.0,
+                    help="length of each per-style rotation clip")
     args = ap.parse_args()
+
+    if args.styles:
+        for i, (name, fn) in enumerate(STYLES.items()):
+            dst = STYLES_DIR / f"{i}_{name}.mp4"
+            print(f"[gen] style clip {name} ({args.clip_seconds:.0f}s) -> {dst}")
+            fn(dst, args.clip_seconds, seed=i + 1)
+        print(f"[gen] wrote {len(STYLES)} rotation clips to {STYLES_DIR}")
+        return 0
 
     if args.demo:
         outdir = PKG.parent / "output"
