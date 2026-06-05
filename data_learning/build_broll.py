@@ -14,9 +14,12 @@ Sources, in priority order:
      "pressure washing" clips.
   3. PIXABAY video API  — set ``PIXABAY_API_KEY`` (free).
   4. YOUTUBE (yt-dlp)   — set ``YT_COOKIES`` (path to a Netscape
-     cookies.txt). Pulls the actual pressure-washing-satisfying genre.
-     Required because YouTube bot-blocks datacenter IPs without cookies.
-     Third-party content — only reuse clips you have the rights to.
+     cookies.txt). Pulls the actual pressure-washing-satisfying genre,
+     restricted to **Creative Commons** (reuse-allowed) uploads. On a
+     server this needs: (a) the cookies file (YouTube bot-blocks datacenter
+     IPs), and (b) a JS runtime (``deno`` recommended) for yt-dlp's EJS
+     solver to crack YouTube's ``n`` challenge — install deno with
+     ``curl -fsSL https://deno.land/install.sh | DENO_INSTALL=/usr/local sh``.
   5. COVERR (no key)    — last-resort fallback; limited / loosely matched.
 
 Run:
@@ -62,9 +65,17 @@ def from_youtube(topic: str, dest: Path, n: int = 12,
     """Download Creative-Commons pressure-washing clips from YouTube via yt-dlp.
 
     Only CC-Attribution (reuse-allowed) uploads are fetched, so the footage is
-    free and legally reusable (attribute the creators). YouTube bot-blocks
-    datacenter IPs, so set ``YT_COOKIES`` to a Netscape ``cookies.txt`` from a
-    logged-in browser to download from a server. Returns the clip paths.
+    free and legally reusable (attribute the creators). Requirements on a
+    server:
+
+      * ``YT_COOKIES`` -> a Netscape ``cookies.txt`` (YouTube bot-blocks
+        datacenter IPs without it), and
+      * a JS runtime (deno/node/bun) so yt-dlp's EJS solver can crack
+        YouTube's ``n`` challenge — without it YouTube returns no media
+        formats. We pass ``--remote-components ejs:github`` to fetch the
+        solver script automatically.
+
+    Returns the downloaded clip paths.
     """
     dest.mkdir(parents=True, exist_ok=True)
     q = YT_SEARCH if topic.strip().lower() == PRESSURE_WASHING else topic
@@ -74,8 +85,9 @@ def from_youtube(topic: str, dest: Path, n: int = 12,
     out_tmpl = str(dest / "yt_%(autonumber)03d.%(ext)s")
     cmd = ["yt-dlp", "--no-warnings", "--no-check-certificates",
            "--no-playlist", "--ignore-errors", "--playlist-end", str(n),
-           "-f", "bv*[height<=1080][ext=mp4]/b[height<=1080]",
-           "--max-filesize", "80M",
+           "--remote-components", "ejs:github",
+           "-f", "bv*[height<=1080]+ba/b[height<=1080]/b",
+           "--merge-output-format", "mp4", "--max-filesize", "90M",
            # Belt-and-suspenders: skip anything not actually CC-licensed
            # and anything longer than ~5 min.
            "--match-filter", "license*='Creative Commons' & duration<300",
