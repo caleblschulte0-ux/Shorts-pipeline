@@ -53,15 +53,39 @@ class Story:
         return [self.hook] + [s.sentence for s in self.segments] + [self.closing]
 
 
-def _num(value: float, unit: str) -> str:
-    if unit in ("percent", "%", "rate"):
-        whole = f"{value:.0f}" if float(value).is_integer() else f"{value:.1f}"
-        return f"{whole} percent"
+def _fmtnum(value: float) -> str:
     if abs(value) >= 1000:
         return f"{value:,.0f}"
     if float(value).is_integer():
         return f"{value:.0f}"
     return f"{value:.1f}"
+
+
+def _num(value: float, unit: str) -> str:
+    """Spoken form, WITH the unit in plain words so it's clear out loud."""
+    u = (unit or "").lower()
+    n = _fmtnum(value)
+    if u in ("percent", "%", "rate"):
+        return f"{n} percent"
+    if u == "thousand dollars":
+        return f"{n} thousand dollars"
+    if u == "billion dollars":
+        return f"{n} billion dollars"
+    if u in ("dollars", "dollar", "usd"):
+        return f"{n} dollars"
+    if u == "million":
+        return f"{n} million"
+    if u == "years":
+        return f"{n} years"
+    if u == "hours":
+        return f"{n} hours"
+    return n          # index / ratio / bare count — meaning comes via explain
+
+
+def _tok(value: float, unit: str) -> tuple[str, bool]:
+    """The bare numeric token that appears in the sentence and on the chart
+    (used to time the caption and match the ring)."""
+    return _fmtnum(value), (unit or "").lower() in ("percent", "%", "rate")
 
 
 def _cap(s: str) -> str:
@@ -78,11 +102,12 @@ def _find(script: str, needle: str) -> str | None:
     return script[i:i + len(needle)] if i >= 0 else None
 
 
-def _punch(sentence: str, num_str: str, color: str) -> dict | None:
-    phrase = _find(sentence, num_str)
+def _punch(sentence: str, value: float, unit: str, color: str) -> dict | None:
+    token, pct = _tok(value, unit)
+    phrase = _find(sentence, token)
     if not phrase:
         return None
-    p = {"phrase": phrase, "text": num_str.replace(" percent", "%").upper(),
+    p = {"phrase": phrase, "text": token + ("%" if pct else ""),
          "color": color, "duration": 1.8}
     if FLASH.get(color):
         p["flash_bg"] = FLASH[color]
@@ -97,26 +122,26 @@ def _segment_text(ins: Insight, connector: str) -> tuple[str, list[tuple[str, st
         star = items[0]
         sup = "lowest" if "lowest" in ins.main_insight.lower() else "highest"
         clause = f"{star.label} has the {sup} {ins.topic}, at {_num(star.value, u)}."
-        return _join(connector, clause), [(_num(star.value, u), GREEN)]
+        return _join(connector, clause), [(star.value, u, GREEN)]
     if ins.kind == "comparison":
         hi, lo = items[0], items[1]
         clause = (f"{hi.label} is up {_num(hi.value, u)}, while {lo.label} "
                   f"is only {_num(lo.value, u)}.")
-        return _join(connector, clause), [(_num(hi.value, u), GREEN),
-                                          (_num(lo.value, u), ORANGE)]
+        return _join(connector, clause), [(hi.value, u, GREEN),
+                                          (lo.value, u, ORANGE)]
     # trend — mention the peak so the spoken story matches the line shape.
     first, last = items[0], items[-1]
     peak = max(items, key=lambda p: p.value)
     if peak.value > last.value * 1.1 and peak.label not in (first.label, last.label):
-        clause = (f"{ins.topic} spiked from {_num(first.value, u)} to "
-                  f"{_num(peak.value, u)} in {peak.label}, then eased to "
+        clause = (f"{_cap(ins.topic)} spiked from {_num(first.value, u)} to "
+                  f"{_num(peak.value, u)} in {peak.label}, then fell to "
                   f"{_num(last.value, u)}.")
-        return _join(connector, clause), [(_num(peak.value, u), RED),
-                                          (_num(last.value, u), GREEN)]
+        return _join(connector, clause), [(peak.value, u, RED),
+                                          (last.value, u, GREEN)]
     direction = "climbed" if last.value > first.value else "fell"
-    clause = (f"{ins.topic} {direction} from {_num(first.value, u)} in "
+    clause = (f"{_cap(ins.topic)} {direction} from {_num(first.value, u)} in "
               f"{first.label} to {_num(last.value, u)} in {last.label}.")
-    return _join(connector, clause), [(_num(last.value, u), GREEN)]
+    return _join(connector, clause), [(last.value, u, GREEN)]
 
 
 def _build_insight(seg_cfg: dict):
@@ -146,7 +171,11 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
         connector = seg_cfg.get("connector",
                                 CONNECTORS[min(i, len(CONNECTORS) - 1)])
         sentence, nums = _segment_text(ins, connector)
-        punches = [pp for pp in (_punch(sentence, n, c) for n, c in nums) if pp]
+        explain = seg_cfg.get("explain")
+        if explain:
+            sentence = sentence.rstrip() + " " + explain.strip()
+        punches = [pp for pp in (_punch(sentence, v, un, c) for v, un, c in nums)
+                   if pp]
         cpath, anchors = charts.render_story_chart(
             ins, chart_dir / f"{story_cfg['slug']}_seg{i:02d}.png")
         footer = ins.source.footer()
