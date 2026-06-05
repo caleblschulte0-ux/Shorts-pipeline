@@ -375,6 +375,11 @@ def main() -> int:
                          "don't drop us below count (LLM fallback only)")
     ap.add_argument("--force-llm", action="store_true",
                     help="ignore pre-written packages, force Groq fallback")
+    ap.add_argument("--force-rerun", action="store_true",
+                    help="bypass the 6-hour duplicate-trigger guard. Use when "
+                         "you want to re-publish a fresh package slate the "
+                         "same day (e.g. the morning batch was bad and you "
+                         "just swapped in new packages).")
     args = ap.parse_args()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -400,9 +405,10 @@ def main() -> int:
                 continue
             if posted_dt > cutoff:
                 recent.append(e)
-        if recent and not args.force_llm:
+        if recent and not (args.force_llm or args.force_rerun):
             print(f"[run_trending_daily] {len(recent)} short(s) posted in the "
-                  f"last 6 hours; skipping. Use --force-llm to override.",
+                  f"last 6 hours; skipping. Use --force-rerun (or "
+                  f"--force-llm) to override.",
                   flush=True)
             today_str = now_dt.strftime("%Y-%m-%d")
             REPORT_PATH.write_text(
