@@ -535,11 +535,9 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
         fc.append("[ftex][fmask]alphamerge[foot]")
         fc.append(f"[bg][foot]overlay=0:{FOOT_Y}[bg2]")
         prev = "bg2"
-        # Charts. Each one "draws on" with a left-to-right wipe (trend lines
-        # sketch in, bars sweep out) so the chart is never a static 12s hold —
-        # the wipe finishes (~0.6s) well before any number is spoken, so the
-        # rings/mascot still land on their fixed anchors.
-        rev = 0.6
+        # Charts slide up + fade in on entry (a snappy "cut" each beat instead
+        # of a flat 12s hold). The slide settles in ~0.4s — before any number is
+        # spoken — so the rings/mascot still land on their fixed anchors.
         for i, seg in enumerate(st.segments):
             if i not in seg_idx:
                 continue
@@ -548,12 +546,11 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
             fd = 0.3
             fc.append(
                 f"[{gi}:v]scale={CHART_W}:{CHART_H},format=rgba,"
-                f"fade=t=in:st={s0:.2f}:d=0.16:alpha=1,"
-                f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1,"
-                f"crop=w='max(2,min({CHART_W},{CHART_W}*(t-{s0:.2f})/{rev}))'"
-                f":h={CHART_H}:x=0:y=0:eval=frame[g{i}]")
+                f"fade=t=in:st={s0:.2f}:d={fd}:alpha=1,"
+                f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
+            yexpr = f"{CHART_Y}+70*(1-clip((t-{s0:.2f})/0.4,0,1))"
             fc.append(
-                f"[{prev}][g{i}]overlay=x={CHART_X}:y={CHART_Y}:"
+                f"[{prev}][g{i}]overlay=x={CHART_X}:y='{yexpr}':eval=frame:"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
         # Mascots — each slides in from the previous spot (feels like it walks).
