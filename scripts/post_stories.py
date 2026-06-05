@@ -29,7 +29,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
-from data_learning import studio_render            # noqa: E402
+# studio_render (and its Pillow/matplotlib/numpy deps) is imported lazily
+# inside the render loop so --check-channel works with only the google libs.
 
 CONFIG = REPO / "data_learning" / "niche.config.json"
 OUTPUT_DIR = REPO / "output"
@@ -114,6 +115,7 @@ def main() -> int:
             continue
         out = OUTPUT_DIR / f"story_{slug}.mp4"
         print(f"[{slug}] rendering -> {out}", flush=True)
+        from data_learning import studio_render       # lazy: needs Pillow etc.
         studio_render.render(slug, out)
 
         if args.dry_run:

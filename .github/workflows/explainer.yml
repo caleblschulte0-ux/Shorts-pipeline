@@ -69,8 +69,7 @@ jobs:
       - name: Install Python deps
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install google-api-python-client google-auth google-auth-oauthlib
+          pip install -r requirements.txt -r data_learning/requirements.txt
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro

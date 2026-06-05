@@ -4,4 +4,7 @@
 # matplotlib is OPTIONAL — without it, chart rendering is skipped and the
 # pipeline falls back to stock B-roll queries, so videos still build.
 matplotlib>=3.7
+# studio_render + broll_gen draw frames with Pillow and run physics in numpy.
+Pillow>=10.0
+numpy>=1.24
 requests>=2.31        # already in base; listed for standalone installs
