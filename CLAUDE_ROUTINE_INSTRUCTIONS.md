@@ -97,9 +97,27 @@ Reference: `state/trending_packages/20260531/*.json`.
     {"phrase": "verbatim substring", "text": "1-3 ALL CAPS", "color": "#hex"}
   ],
   "hashtags": ["topical", "tags", "specific", "to", "this", "story"],
-  "music_vibe": "dark | cinematic | hiphop"
+  "music_vibe": "dark | cinematic | hiphop",
+  "channel": "explainer"
 }
 ```
+
+## Channel routing
+
+Each package can include an optional `"channel"` field that picks
+which YouTube channel the upload targets. Available slugs:
+
+| Slug         | Channel              | Use for                                                                 |
+|--------------|----------------------|-------------------------------------------------------------------------|
+| _(omit)_     | baller bro 2.0       | Default. News + quirky shorts.                                          |
+| `explainer`  | Short_explainer      | Micro-learning / explainer-style breakdowns of a concept or mechanic.   |
+
+If you're unsure which channel a story belongs on, omit the field —
+it lands on baller bro 2.0. Set `"channel": "explainer"` only when the
+script is a teaching piece ("here's how X works", "here's why Y
+happens") rather than a news beat. Quirky stories almost always belong
+on baller bro 2.0; tech-explainer breakdowns of a single mechanism
+belong on Short_explainer.
 
 ## Hashtags
 

@@ -229,8 +229,15 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
             result["video_url"] = "(dry-run)"
         else:
             from uploaders import YouTubeUploader
-            print(f"[{result['topic']!r}] uploading...", flush=True)
-            uploader = YouTubeUploader()
+            # `channel` selects which YOUTUBE_TOKEN_JSON_* secret the
+            # uploader reads. Empty/missing → baller_bro_2_0 (the
+            # original `YOUTUBE_TOKEN_JSON`). Set on the package by
+            # the morning routine to route to a different channel.
+            channel = (pkg.get("channel") or "").strip().lower()
+            result["channel"] = channel or "default"
+            print(f"[{result['topic']!r}] uploading to "
+                  f"{result['channel']}...", flush=True)
+            uploader = YouTubeUploader(channel=channel)
             upload_result = uploader.upload(
                 file_path=out_path,
                 title=(result["title"] or result["topic"])[:100],
