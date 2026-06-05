@@ -128,7 +128,8 @@ def _draw_trend(ax, insight: Insight):
 
 CARD = "#0B1020"
 CARD_EDGE = "#1f2a44"
-SERIES_W, SERIES_H, SERIES_DPI = 10.0, 9.2, 100   # -> 1000x920 px
+# Taller card so the chart can dominate the frame (data is the focus).
+SERIES_W, SERIES_H, SERIES_DPI = 10.0, 11.2, 110   # -> 1100x1232 px
 
 
 def _vfmt(v: float) -> str:
@@ -274,8 +275,10 @@ def _round_barv(ax, x, value, lw, color, zorder=3):
 
 
 def _bar_lw(n: int) -> float:
-    """Bar thickness (points) so rounded bars fill the axes nicely."""
-    return max(34.0, (560.0 / max(1, n)) * 0.46 * 0.72)
+    """Bar thickness (points) so rounded bars fill the (now taller) axes."""
+    plot_px = SERIES_H * 0.58 * SERIES_DPI       # bars axes is ~58% tall
+    row_px = plot_px / max(1, n)
+    return max(40.0, row_px * 0.5 * 72.0 / SERIES_DPI)
 
 
 def _story_bars(fig, plt, insight: Insight, subtitle: str):

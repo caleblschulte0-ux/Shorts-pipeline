@@ -29,7 +29,7 @@ REPO = PKG_DIR.parent
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
-from data_learning import ambient, mascot, story                  # noqa: E402
+from data_learning import ambient, charts, mascot, story           # noqa: E402
 from data_learning.demo_render import (                            # noqa: E402
     _ass_time, _chunks, _dur, _hex_to_ass, _run)
 
@@ -37,27 +37,33 @@ W, H, FPS = 1080, 1920, 30
 KOKORO_MODEL = REPO / "kokoro_models" / "kokoro-v1.0.onnx"
 KOKORO_VOICES = REPO / "kokoro_models" / "voices-v1.0.bin"
 
-# Layout (1080x1920): a centered chart up top; a pulsing MARKER lands on the
-# exact data point being spoken, and the little mascot walks to that point
-# and points up at it — re-targeting for every number in the script. The
-# chart PNG (1000x920) is scaled by CHART_SCALE; data pixels map to screen
-# through it.
-CHART_SCALE = 0.92
-CHART_W, CHART_H = int(1000 * CHART_SCALE), int(920 * CHART_SCALE)   # 920x846
-CHART_X, CHART_Y = (W - CHART_W) // 2, 70
-MASCOT_SIZE = 168                # slightly bigger
+# Layout (1080x1920): the chart is BIG (data is the focus) across the top
+# ~60%; a strip of oddly-satisfying process footage fills the bottom. A
+# pulsing marker lands on each spoken number and the mascot tucks beside it.
+CHART_PNG_W = int(charts.SERIES_W * charts.SERIES_DPI)   # 1100
+CHART_PNG_H = int(charts.SERIES_H * charts.SERIES_DPI)   # 1232
+CHART_X, CHART_Y = 12, 26
+CHART_W = 1056
+CHART_H = round(CHART_W * CHART_PNG_H / CHART_PNG_W)      # keep aspect
+SCALE_X = CHART_W / CHART_PNG_W
+SCALE_Y = CHART_H / CHART_PNG_H
+
+FOOT_Y = CHART_Y + CHART_H + 10
+FOOT_H = H - FOOT_Y
+
+MASCOT_SIZE = 176                # slightly bigger
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
 UP_ANGLE = 90                    # points up (hook / closing / fallback)
-MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 560)   # hook / closing rest spot
-PUNCH_X, PUNCH_Y = 540, 1500
-CAP_MARGINV = 120
+MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 520)   # hook / closing rest spot
+PUNCH_X, PUNCH_Y = 540, FOOT_Y + FOOT_H // 2
+CAP_MARGINV = 70
 
 # Voice: a friendly male Kokoro voice at natural pitch (not deep/scary).
 VOICE_PITCH = 1.0
 
-# Zone-out mandelbrot fills the lower half (behind the punch/captions).
-MANDEL_Y = 1010
-MANDEL_H = H - MANDEL_Y
+# Oddly-satisfying b-roll for the bottom strip (built by build_broll.py).
+BROLL = PKG_DIR / "broll" / "satisfying.mp4"
+BROLL_OFFSET = PKG_DIR / "broll" / ".offset"
 
 
 # --------------------------------------------------------------------------
@@ -273,8 +279,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 # and the mascot walks to it, re-targeting for every number in the script.
 # --------------------------------------------------------------------------
 def _screen(px, py):
-    """Chart-PNG pixel -> screen pixel (scale + centered offset)."""
-    return (CHART_X + px * CHART_SCALE, CHART_Y + py * CHART_SCALE)
+    """Chart-PNG pixel -> screen pixel (independent x/y scale + offset)."""
+    return (CHART_X + px * SCALE_X, CHART_Y + py * SCALE_Y)
 
 
 def _anchor_for_punch(seg: story.Segment, punch: dict):
@@ -315,7 +321,7 @@ def _plan_events(st: story.Story, windows):
             dur = min(float(p.get("duration", 1.8)), max(0.6, s1 - ps))
             a = _anchor_for_punch(seg, p)
             xy = _screen(a["cx"], a["cy"]) if a else None
-            box = (a["w"] * CHART_SCALE, a["h"] * CHART_SCALE) if a else None
+            box = (a["w"] * SCALE_X, a["h"] * SCALE_Y) if a else None
             seg_events.append({"ps": ps, "pe": ps + dur, "punch": p, "xy": xy,
                                "box": box, "anchor": a, "seg": i})
         # Show-windows: split the segment among its numbers (mascot stays on
@@ -333,7 +339,7 @@ def _plan_events(st: story.Story, windows):
 
 def _screen_box(a):
     cx, cy = _screen(a["cx"], a["cy"])
-    return cx, cy, a["w"] * CHART_SCALE, a["h"] * CHART_SCALE
+    return cx, cy, a["w"] * SCALE_X, a["h"] * SCALE_Y
 
 
 def _place_mascot(active, seg_anchors):
@@ -404,8 +410,8 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
         total = _dur(narration) + 0.3
 
         bokeh = ambient.make_bokeh_strip(work / "bokeh.png")
-        mask = work / "mandel_mask.png"
-        _make_mandel_mask(mask, W, MANDEL_H)
+        footmask = work / "foot_mask.png"
+        _make_mandel_mask(footmask, W, FOOT_H, feather=130, bottom=70)
         events = _plan_events(st, windows)
         ass = work / "cap.ass"
         build_story_ass(st, windows, events, ass)
@@ -436,13 +442,28 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
                                      point_angle=float(angle), flip=flip)
             mascot_movs.append(mv)
 
-        # Inputs: 0 gradient, 1 bokeh, 2 mandelbrot, 3 mask, charts, mascots, audio
+        # Bottom footage: a rotating segment of the long satisfying b-roll so
+        # it never obviously repeats across renders (falls back to a soft
+        # mandelbrot if the b-roll hasn't been built).
+        use_broll = BROLL.exists()
+        off = 0.0
+        if use_broll:
+            broll_dur = max(1.0, _dur(BROLL))
+            try:
+                off = float(BROLL_OFFSET.read_text().strip()) % broll_dur
+            except Exception:  # noqa: BLE001
+                off = 0.0
+
+        # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, charts, mascots, audio
         inputs = ["-f", "lavfi", "-i", ambient.gradient_lavfi(total)]
         inputs += ["-loop", "1", "-i", str(bokeh)]
-        inputs += ["-f", "lavfi", "-i",
-                   f"mandelbrot=size=540x{MANDEL_H // 2}:rate={FPS}"]
-        inputs += ["-loop", "1", "-i", str(mask)]
-        mand_idx, mask_idx = 2, 3
+        if use_broll:
+            inputs += ["-stream_loop", "-1", "-i", str(BROLL)]
+        else:
+            inputs += ["-f", "lavfi", "-i",
+                       f"mandelbrot=size=540x{FOOT_H // 2}:rate={FPS}"]
+        inputs += ["-loop", "1", "-i", str(footmask)]
+        foot_idx, mask_idx = 2, 3
         seg_idx = {}
         idx = 4
         for i, seg in enumerate(st.segments):
@@ -459,12 +480,19 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
         audio_idx = idx
 
         fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]
-        # Zone-out mandelbrot in the lower half (soft, low opacity, feathered).
-        fc.append(f"[{mand_idx}:v]scale={W}:{MANDEL_H},"
-                  f"eq=saturation=0.4:brightness=-0.06,format=rgba[mtex]")
-        fc.append(f"[{mask_idx}:v]format=gray,scale={W}:{MANDEL_H}[mmask]")
-        fc.append("[mtex][mmask]alphamerge,colorchannelmixer=aa=0.5[mand]")
-        fc.append(f"[bg][mand]overlay=0:{MANDEL_Y}[bg2]")
+        # Footage strip in the bottom (feathered into the ambient).
+        if use_broll:
+            fc.append(
+                f"[{foot_idx}:v]trim=start={off:.2f},setpts=PTS-STARTPTS,"
+                f"scale={W}:{FOOT_H}:force_original_aspect_ratio=increase,"
+                f"crop={W}:{FOOT_H},eq=saturation=0.96:brightness=-0.04,"
+                f"format=rgba[ftex]")
+        else:
+            fc.append(f"[{foot_idx}:v]scale={W}:{FOOT_H},"
+                      f"eq=saturation=0.4:brightness=-0.06,format=rgba[ftex]")
+        fc.append(f"[{mask_idx}:v]format=gray,scale={W}:{FOOT_H}[fmask]")
+        fc.append("[ftex][fmask]alphamerge[foot]")
+        fc.append(f"[bg][foot]overlay=0:{FOOT_Y}[bg2]")
         prev = "bg2"
         # Charts.
         for i, seg in enumerate(st.segments):
@@ -502,6 +530,9 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
                "-crf", "20", "-c:a", "aac", "-b:a", "192k",
                "-movflags", "+faststart", str(out_path)]
         _run(cmd)
+        # Advance the b-roll offset so the next render uses fresh footage.
+        if use_broll:
+            BROLL_OFFSET.write_text(f"{(off + total) % broll_dur:.2f}\n")
 
     print(f"[studio] story '{slug}': {len(st.segments)} charts, "
           f"{len(sentences)} beats, {total:.1f}s -> {out_path}")
