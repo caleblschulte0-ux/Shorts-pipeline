@@ -41,70 +41,80 @@ punchy "X is happening and here's why it matters" content with real stakes and \
 real numbers. Output strict JSON only."""
 
 
-RANKER_USER_TEMPLATE = """Here are {n} topics surfaced TODAY from Google Trends, BBC, NPR, \
-Hacker News, and Reddit. Each line shows an age marker like [2h ago] when the \
-source dated it. Many are duplicates (same story across feeds) and many are not \
-video-able. Pick the top {top_k} that would make the best 25-second explainer shorts.
+RANKER_USER_TEMPLATE = """{n} topics surfaced TODAY from Google Trends, BBC, NPR, HN, Reddit, \
+Google News quirky feeds. Each line has an age marker like [2h ago]. Many are \
+duplicates across feeds and many aren't video-able. Pick the top {top_k} for \
+25-second explainer shorts.
 
-FRESHNESS IS THE #1 CRITERION. The channel publishes daily-news shorts — viewers \
-expect "this just happened today." Strongly prefer items dated within the last 24 \
-hours. Anything older than 48 hours should only be picked if it has a breaking \
-update angle ("X is escalating today" / "new development in Y"). Reject anything \
-that reads as evergreen, retrospective, or "X has been quietly happening for years" — \
-those feel old even when the publish date is fresh.
+RULE 1 — FRESHNESS. Strongly prefer items <24h old. Items >48h old need a \
+breaking-update angle to qualify. Reject anything evergreen / retrospective \
+("X has been quietly happening for years").
 
-CATEGORY DIVERSITY IS THE #2 CRITERION. This is a WIDE news channel, not a \
-tech/AI channel. Hard rule: AT MOST 2 picks from any single category. The \
-candidate list will be heavily skewed toward tech/AI because Hacker News \
-dominates it — resist that. Aim for a balanced {top_k} across categories such as:
+RULE 2 — QUIRKY MIX. **At least {half_k} of {top_k} picks must be Quirky / \
+Offbeat.** Channel analytics show these outperform serious news on views + \
+likes.
 
-  - Tech / AI (max 2)
-  - Business / Finance / Markets (earnings, M&A, stock moves)
-  - World affairs / Geopolitics (conflicts, deals, foreign policy)
-  - US news / Domestic policy (laws, regulations, federal actions — NOT election horserace)
-  - Crime / Justice (arrests, verdicts, major investigations)
-  - Science / Health / Medicine (breakthroughs, recalls, studies)
-  - Climate / Environment / Disasters (weather events, climate moves)
-  - Culture / Sports / Entertainment (one-off newsworthy moments, NOT live games or gossip)
+Quirky = the SITUATION is weird, not the PERSON. Good examples: "1 million \
+bees escape from semi on Tennessee highway", "United Airlines flight turned \
+back over Bluetooth network name", "town renames itself to protest tax law", \
+"Hell, Michigan listed for sale at $666K", "world record pumpkin grown by \
+amateur", "wrong-way driver caught on camera on I-295", "raccoon shuts down \
+airport".
 
-If the input list doesn't have enough diversity to fill all categories, that's \
-fine — just don't double up on whichever category is over-represented.
+**Hard cap: at most 1 "Florida Man" / "local-arrest" / personality-based \
+crime story per slate.** Three "Florida man does X" picks in a row reads as \
+fluff and predictable — viewers tune out. If multiple Florida-Man-framed \
+stories surface, pick the single weirdest situation (radioactive device on \
+Facebook > stolen garden gnomes > generic assault) and skip the rest. The \
+other quirky picks must be situation-driven, not person-driven.
 
-Reject (do not pick):
-- Live sports games or sports player news (time-locked, narrow audience)
-- Celebrity deaths, obituaries, "tribute" stories
-- Stories about a specific person who isn't a household name in the US
-- Political horserace stories (who's leading the primary, etc.)
+MUST be real — if no wire/news outlet confirms, skip it (r/nottheonion gets \
+satire reposts). NOT politics-with-quirky-frame, NOT heartwarming fluff \
+("service dog graduates" no; "service dog escapes graduation chasing squirrel" \
+yes), NOT celebrity gossip.
+
+The other {other_k} picks are serious news, **at most 1 per category** (treat \
+Tech + Markets as one combined bucket):
+  - Tech + Markets (AI, startups, big tech, earnings, M&A, stocks)
+  - World affairs / Geopolitics
+  - US news / Domestic policy (no election horserace)
+  - Crime / Justice
+  - Science / Health / Medicine
+  - Climate / Environment / Disasters
+  - Culture / Entertainment (no live games, no gossip)
+  - Sports (one-off newsworthy moments only)
+
+If you can't find {half_k} usable quirky stories, top up from serious. Vice \
+versa if serious categories are thin. Never go below {top_k} just for purity.
+
+REJECT:
+- Live sports games / sports-player news
+- Celebrity obituaries / tribute stories
+- Stories about people who aren't household names in the US
+- Political horserace ("X leads primary by 3 points")
 - Stories with no concrete visual angle or stakes
-- Pure entertainment gossip ("X is dating Y")
-- Evergreen "explainer" topics that don't have a news hook today
+- Pure gossip ("X is dating Y")
+- Evergreen explainers without today's news hook
+- **Ongoing war/conflict updates that are incremental** ("day 47 of...", \
+"fighting continues", "casualties rise"). Only include conflict if today \
+brought a major escalation, ceasefire, named-leader statement, or named-victim \
+event — something new in the arc, not the next day.
 
-Prefer within each category:
-- TODAY'S breaking news with a clear "just happened" angle
-- Stories with real numbers (death toll, dollar amount, percentage, vote count)
-- "Why is X happening RIGHT NOW" stories where a 60-word script can explain a current event
-- Cultural / viral phenomena currently trending (something that broke this week)
-
-If two indices clearly cover the same news event, pick only the one with the \
-best context, and **list every source that flagged it in the angle** (e.g. \
-"BBC + Reuters + Politico all covering this"). Multi-sourced stories are \
-strongly preferred over single-source picks — they're load-bearing news, not \
-one outlet's pet take. When listing dupes in the angle, name every source so \
-the script writer downstream can pull from all of them rather than getting \
-locked into one outlet's framing.
+DEDUP: If two indices cover the same event, pick the one with the best context \
+and list every source that flagged it in the angle (e.g. "BBC + Reuters + \
+Politico"). Multi-sourced stories are strongly preferred — load-bearing news, \
+not one outlet's pet take.
 
 For each pick output:
-  - index: the 1-based index from the list below
-  - topic: copy the topic text VERBATIM from the list (for alignment — must match)
-  - score: 1-10 for how video-able this topic is (10 = guaranteed banger)
-  - angle: ONE sentence describing the hook for the explainer that EXPLAINS THIS \
-SPECIFIC TOPIC (not a different one). Example: for "VIX at 16" the angle would be \
-"history shows calm markets always crash within months" — not commentary on unrelated stories.
+  - index: 1-based index from the list below
+  - topic: copy the topic text VERBATIM from the list (must match exactly)
+  - score: 1-10 (10 = guaranteed banger)
+  - angle: ONE sentence describing the hook for THIS specific topic (not a \
+different one). Example: for "VIX at 16" → "history shows calm markets always \
+crash within months".
 
-Output JSON of the exact form:
-{{"picks": [{{"index": N, "topic": "...", "score": N, "angle": "..."}}, ...]}}
+Output JSON only: {{"picks": [{{"index": N, "topic": "...", "score": N, "angle": "..."}}, ...]}}
 
-Topics:
 {topics_block}
 """
 
@@ -162,8 +172,14 @@ def rank(topics: list[Topic], *, top_k: int = 5, backend: str | None = None,
     # Lazy import — keeps discovery usable without the LLM dep installed.
     from script_generator import _call_llm
 
+    # half_k = required minimum quirky picks (the channel's high-engagement
+    # bucket); other_k = max serious picks across distinct categories.
+    half_k = max(1, top_k // 2)
+    other_k = top_k - half_k
     user = RANKER_USER_TEMPLATE.format(
-        n=len(topics), top_k=top_k, topics_block=_format_topics(topics),
+        n=len(topics), top_k=top_k,
+        half_k=half_k, other_k=other_k,
+        topics_block=_format_topics(topics),
     )
     raw = _call_llm(RANKER_SYSTEM, user, backend=backend, model=model)
     # _call_llm returns the raw string content. Strip fences just in
