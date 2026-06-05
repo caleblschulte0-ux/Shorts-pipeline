@@ -73,12 +73,14 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
    git add state/trending_packages/$(date -u +%Y%m%d)/
    git commit -m "daily packages $(date -u +%Y-%m-%d)"
    git push -u origin HEAD
+   gh pr create --base main \
+     --title "daily packages $(date -u +%Y-%m-%d)" \
+     --body "Today's batch."
    ```
 
-   Then open the PR via `mcp__github__create_pull_request` (base: main, head:
-   current branch) or `gh pr create --base main --title "daily packages
-   $(date -u +%Y-%m-%d)" --body "Today's batch."`. **If you skip the PR,
-   nothing ships.**
+   If your runtime exposes a native GitHub tool (e.g. Claude's
+   `mcp__github__create_pull_request`), prefer that — same effect.
+   **If you skip the PR step, nothing ships.**
 
 ## Script package schema
 
