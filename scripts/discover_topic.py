@@ -502,6 +502,24 @@ DEFAULT_SOURCES: list[tuple[str, callable]] = [
 ]
 
 
+# Quirky / offbeat sources get a longer freshness window. Wire-service
+# "Oddly Enough" digests and r/nottheonion bangers aren't time-locked
+# the way breaking news is — a story about a flight turned back over a
+# Bluetooth network name reads fresh whether it broke yesterday or last
+# Tuesday. Without this, Google News's weekly "Weird News" digests get
+# filtered out by the default 48h freshness rule before they reach the
+# ranker.
+QUIRKY_SOURCE_LABELS = frozenset((
+    "googlenews_odd",
+    "googlenews_floridaman",
+    "reddit_nottheonion",
+    "reddit_upliftingnews",
+    "reddit_offbeat",
+    "reddit_floridaman",
+))
+QUIRKY_MAX_AGE_HOURS = 24 * 7  # 7 days
+
+
 def _is_fresh(t: Topic, *, max_age_hours: int) -> bool:
     """Keep items dated within `max_age_hours`. Items without a pubDate
     pass through — we filter against dates that explicitly say 'old'."""
@@ -523,13 +541,17 @@ def discover_all(*, verbose: bool = True, max_age_hours: int = 48) -> list[Topic
 
     `max_age_hours` (default 48) drops items the source dated as older
     than that window. Items without a pubDate are kept (we can't tell).
-    This is the difference between picking 'today's news' and picking
-    'evergreen topic the feed surfaced again'."""
+    Quirky sources get `QUIRKY_MAX_AGE_HOURS` (7 days) instead — see
+    that constant's comment. This is the difference between picking
+    'today's news' and picking 'evergreen topic the feed surfaced again'."""
     all_topics: list[Topic] = []
     for label, fn in DEFAULT_SOURCES:
+        per_source_age = (QUIRKY_MAX_AGE_HOURS
+                          if label in QUIRKY_SOURCE_LABELS
+                          else max_age_hours)
         try:
             items = fn()
-            fresh = [t for t in items if _is_fresh(t, max_age_hours=max_age_hours)]
+            fresh = [t for t in items if _is_fresh(t, max_age_hours=per_source_age)]
             if verbose:
                 dropped = len(items) - len(fresh)
                 note = f" ({dropped} stale dropped)" if dropped else ""

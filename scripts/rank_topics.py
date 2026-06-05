@@ -54,11 +54,22 @@ RULE 2 — QUIRKY MIX. **At least {half_k} of {top_k} picks must be Quirky / \
 Offbeat.** Channel analytics show these outperform serious news on views + \
 likes.
 
-Quirky / Offbeat = real news with an absurdist hook. Examples: world records, \
-town-vs-tax fights, "X-thousand bees escape from truck", Florida Man, heists \
-with a comic twist, animal incidents, ridiculous court rulings, viral local \
-news. MUST be real — if no wire/news outlet confirms, skip it (r/nottheonion \
-gets satire reposts). NOT politics-with-quirky-frame, NOT heartwarming fluff \
+Quirky = the SITUATION is weird, not the PERSON. Good examples: "1 million \
+bees escape from semi on Tennessee highway", "United Airlines flight turned \
+back over Bluetooth network name", "town renames itself to protest tax law", \
+"Hell, Michigan listed for sale at $666K", "world record pumpkin grown by \
+amateur", "wrong-way driver caught on camera on I-295", "raccoon shuts down \
+airport".
+
+**Hard cap: at most 1 "Florida Man" / "local-arrest" / personality-based \
+crime story per slate.** Three "Florida man does X" picks in a row reads as \
+fluff and predictable — viewers tune out. If multiple Florida-Man-framed \
+stories surface, pick the single weirdest situation (radioactive device on \
+Facebook > stolen garden gnomes > generic assault) and skip the rest. The \
+other quirky picks must be situation-driven, not person-driven.
+
+MUST be real — if no wire/news outlet confirms, skip it (r/nottheonion gets \
+satire reposts). NOT politics-with-quirky-frame, NOT heartwarming fluff \
 ("service dog graduates" no; "service dog escapes graduation chasing squirrel" \
 yes), NOT celebrity gossip.
 
