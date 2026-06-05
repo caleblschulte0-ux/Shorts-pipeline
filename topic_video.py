@@ -20,14 +20,20 @@ Sources, tried in order:
      `<video src>`, `<source src>`, and JSON-LD VideoObject embeds.
      The HTML5/JSON-LD extensions catch outlets that lazy-load video
      and never set an og:video meta tag.
-  4. **Vimeo Creative Commons** (`api.vimeo.com/videos?filter=CC`).
+  4. **Reddit `v.redd.it`** — where viral bystander footage actually
+     lives. Doorbell-cam meteor flashes, dashcam pileups, witness
+     phone clips, town-vs-tax local-news shorts. None of these land
+     in CC libraries; they get uploaded to Reddit first. Free, no
+     auth needed for the public JSON API. The "we can't show the
+     actual footage we're talking about" gap closes here.
+  5. **Vimeo Creative Commons** (`api.vimeo.com/videos?filter=CC`).
      Requires `VIMEO_TOKEN` env var (free dev account). Lower volume
      than Commons but better SNR for human-story topics where NASA
      and Commons are both thin.
-  5. YouTube `search.list?videoLicense=creativeCommon`. Requires
+  6. YouTube `search.list?videoLicense=creativeCommon`. Requires
      `YOUTUBE_API_KEY`. CC-BY allows commercial reuse with attribution.
      Uses ~100 quota units per call.
-  6. *Opt-in only* via `TOPIC_VIDEO_ALLOW_STRIKES=1` — searches YouTube
+  7. *Opt-in only* via `TOPIC_VIDEO_ALLOW_STRIKES=1` — searches YouTube
      without the CC filter. Relies on fair-use commentary doctrine for
      short clips. **YouTube's Content ID is automated and matches
      single-second clips regardless of fair use; three strikes
@@ -44,6 +50,7 @@ import json
 import os
 import re
 import subprocess
+import time
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -361,7 +368,88 @@ def _og_videos(topic: str, max_hours: int = 24 * 7) -> list[str]:
     return out
 
 
-# ---------- Source 4: Vimeo Creative Commons ----------
+# ---------- Source 4: Reddit v.redd.it ----------
+
+# Reddit's `created_utc` is in seconds since epoch. We skip posts newer
+# than this window as a soft DMCA-risk mitigation: stolen-content
+# takedowns are heavily front-loaded in the first day after a viral
+# repost, so age >= 24h means most fakes have already been pulled.
+REDDIT_MIN_AGE_HOURS = 24
+# Lower bound: skip posts older than 30 days — for our "this just
+# happened" channel the footage stops being topical even if it would
+# still be legally fine.
+REDDIT_MAX_AGE_HOURS = 24 * 30
+
+
+def _reddit_videos(topic: str, limit: int = 4) -> list[str]:
+    """Search Reddit for posts matching `topic`, return v.redd.it MP4
+    URLs from video posts. This is where viral bystander footage
+    actually lives — homeowner doorbell cams, dashcam pileups, witness
+    phone clips — that never make it into CC libraries because the OP
+    posted them to Reddit first and never re-licensed.
+
+    Returns video-only MP4 URLs (Reddit stores audio in a separate
+    DASH stream that we drop — fine since the renderer strips B-roll
+    audio anyway).
+
+    Skips posts < 24h old as a soft DMCA-risk mitigation: most
+    stolen-content takedowns happen within the first 24 hours after
+    a viral repost. Skips posts > 30 days old as a topicality filter.
+
+    Reddit's JSON API 403s from some CI / corporate egress; we catch
+    and return [] so the rest of the source chain continues to run.
+    """
+    if not topic.strip():
+        return []
+    qs = urllib.parse.urlencode({
+        "q": topic,
+        "type": "link",
+        "sort": "relevance",
+        "limit": 25,
+        # Filter to last month server-side too so we don't waste a 25-row
+        # page on stuff that's about to be aged out by the loop below.
+        "t": "month",
+    })
+    try:
+        raw = _get(
+            f"https://www.reddit.com/search.json?{qs}", timeout=TIMEOUT)
+        data = json.loads(raw)
+    except Exception as e:  # noqa: BLE001
+        # Sandboxed CI / corporate proxies commonly 403 reddit.com;
+        # production runners usually don't. Either way fall through
+        # silently so the rest of the source chain still runs.
+        print(f"      [reddit search skip] {e}")
+        return []
+
+    now = time.time()
+    out: list[str] = []
+    for child in (data.get("data") or {}).get("children") or []:
+        p = (child.get("data") or {})
+        if not p.get("is_video"):
+            continue
+        created = float(p.get("created_utc") or 0)
+        if created <= 0:
+            continue
+        age_h = (now - created) / 3600.0
+        if age_h < REDDIT_MIN_AGE_HOURS or age_h > REDDIT_MAX_AGE_HOURS:
+            continue
+        media = (p.get("secure_media") or p.get("media") or {})
+        rv = (media.get("reddit_video") or {})
+        url = rv.get("fallback_url") or ""
+        if not url:
+            continue
+        # Strip cache-bust query params; Reddit appends a `source=fallback`
+        # which still works but trimming keeps the cache key cleaner.
+        url = url.split("?")[0]
+        if not (url.startswith("https://v.redd.it/") and ".mp4" in url):
+            continue
+        out.append(url)
+        if len(out) >= limit:
+            break
+    return out
+
+
+# ---------- Source 5: Vimeo Creative Commons ----------
 
 def _vimeo_videos(topic: str, limit: int = 4) -> list[str]:
     """Search Vimeo's CC-licensed pool. Requires `VIMEO_TOKEN` env var
@@ -417,7 +505,7 @@ def _vimeo_videos(topic: str, limit: int = 4) -> list[str]:
     return out
 
 
-# ---------- Source 5: YouTube Creative Commons ----------
+# ---------- Source 6: YouTube Creative Commons ----------
 
 def _youtube_search(topic: str, *, license_filter: str | None,
                     limit: int = 5) -> list[str]:
@@ -562,12 +650,21 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
                  ext=Path(u.split("?")[0]).suffix.lower() or ".mp4"):
             return results
 
-    # 4. Vimeo CC. Skips silently when VIMEO_TOKEN isn't set.
+    # 4. Reddit v.redd.it — viral bystander footage (doorbell cams,
+    #    dashcams, witness phone clips). This is the source that
+    #    actually has the clips we narrate ("dozens of doorbell cams
+    #    caught the flash"). Skips silently if Reddit's blocked at
+    #    the network layer (some CI runners 403).
+    for u in _reddit_videos(combined, limit=4):
+        if _try(u, source="reddit", ext=".mp4"):
+            return results
+
+    # 5. Vimeo CC. Skips silently when VIMEO_TOKEN isn't set.
     for u in _vimeo_videos(combined, limit=4):
         if _try(u, source="vimeo", ext=".mp4"):
             return results
 
-    # 5. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
+    # 6. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
     #    silently if no API key configured. Downloads up to 4 so the
     #    pool has variety instead of stopping at the first hit.
     if len(results) < max_clips:
@@ -581,7 +678,7 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
                 if len(results) >= max_clips:
                     return results
 
-    # 6. Opt-in fair-use path. Off by default.
+    # 7. Opt-in fair-use path. Off by default.
     if not results and os.environ.get("TOPIC_VIDEO_ALLOW_STRIKES") == "1":
         for vid in _youtube_search(combined, license_filter=None, limit=4):
             dest = _cache_path(f"yt:any:{vid}", ext=".mp4")
