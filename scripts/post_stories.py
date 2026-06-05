@@ -67,6 +67,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slugs", nargs="*",
                     help="story slugs to post (default: every story in config)")
+    ap.add_argument("--check-channel", action="store_true",
+                    help="print which channel the token maps to and exit "
+                         "(read-only, posts nothing)")
     ap.add_argument("--dry-run", action="store_true",
                     help="render but do not upload")
     ap.add_argument("--force", action="store_true",
@@ -77,6 +80,13 @@ def main() -> int:
     ap.add_argument("--start-in-hours", type=float, default=1.0,
                     help="when scheduling, how long from now the first one posts")
     args = ap.parse_args()
+
+    if args.check_channel:
+        from uploaders import YouTubeUploader
+        me = YouTubeUploader().whoami()
+        print(f"token maps to channel: title={me['title']!r} "
+              f"handle={me['handle']!r} id={me['id']}")
+        return 0
 
     cfg = json.loads(CONFIG.read_text())
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
