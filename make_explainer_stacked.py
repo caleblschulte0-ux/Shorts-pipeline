@@ -913,10 +913,9 @@ def build_timed_top(
     cut_times: list[float] = []
 
     # How long a still image is allowed to stay on screen before it
-    # has to hand off to stock. Users find longer holds boring even
-    # with Ken Burns motion — keep it short and let multiple specific
-    # images carry the visual story instead of one long hold.
-    IMAGE_MAX_DUR = 1.8
+    # has to hand off to stock. Matches SUB_CUT_TARGET so video and
+    # image sub-cuts run uniform 2.0s and the cadence stays steady.
+    IMAGE_MAX_DUR = 2.0
 
     # One-shot per-render calls to topic_video / topic_media. Returns
     # pools of on-topic media. Each shot picks pool entries whose
