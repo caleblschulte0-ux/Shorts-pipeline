@@ -168,3 +168,100 @@ Never use wordmark-only logos (composite as PowerPoint slides). Never use
 
 - Don't render or upload — daily.yml handles both.
 - Don't run `run_trending_daily.py`. You only write packages.
+
+---
+
+# Part 2 — Data-graph explainer stories (Short_explainer channel)
+
+After the trending batch above, ALSO author **1–2 brand-new data-graph
+explainer stories** for the **Short_explainer** channel.
+
+These are a DIFFERENT format from the packages in Part 1: chart-driven
+"X in 4 Charts" breakdowns rendered by `data_learning/studio_render.py`
+(four connected charts + a mascot + the round-robin "satisfying" bottom
+strip) — NOT the stacked/stock-image format, and NOT the
+`"channel":"explainer"` package route above. For this channel's identity,
+prefer THESE data-graph stories over routing a Part-1 package to explainer.
+
+You only AUTHOR them (data + config). They post themselves: when this PR
+auto-merges, the **Explainer Stories** workflow renders the new stories and
+schedules them to the channel hourly, automatically. Don't trigger anything,
+don't render, don't upload. The posted-log dedupes, so only NEW stories post.
+
+## Topic rules
+- Anything genuinely interesting that's best understood through DATA / graphs:
+  economy, tech & the internet, business, demographics, science, health,
+  housing, energy, transport, media, money, culture. Evergreen-ish — not tied
+  to a single breaking headline.
+- **No sports stats / scores / standings.** Data about the *business* of sports
+  is fine (team valuations, ticket prices, stadium costs, TV deals) — the chart
+  is about money/trends, not box scores.
+- Each story = ONE clear narrative arc across **4 connected charts** with a
+  payoff (e.g. "the cheery numbers up top, the catch down here").
+- Don't reuse a `slug` already in `niche.config.json` (grep first).
+
+## How to author one (mirror the existing six)
+Templates: `data_learning/data/*.json` and the `"stories"` array in
+`data_learning/niche.config.json` (copy the shape of e.g. `debt-trap`).
+
+1. **Data files** — one JSON per chart at `data_learning/data/<key>.json`:
+   ```json
+   {
+     "key": "<key>", "title": "Human title (unit)", "unit": "percent",
+     "geography": "United States", "time_coverage": "2019-2026 (annual)",
+     "source": {"name": "series name", "publisher": "U.S. Bureau of Labor Statistics",
+                "url": "https://www.bls.gov", "officiality": "official",
+                "access_date": "<today>"},
+     "notes": "Illustrative ...",
+     "points": [{"label": "2019", "value": 3.7, "period": "2019"}]
+   }
+   ```
+   - Numbers realistic and attributed to a real publisher (BLS / FRED / Census /
+     BEA / OECD / World Bank / company filings…). Mark `notes` "Illustrative".
+   - `unit`: `percent`, `dollars`, `thousand dollars`, `billion dollars`,
+     `million`, `index`, `years`, `hours`…
+   - **trend** → points carry `"period"` (years); use a `percent`, `dollars`,
+     or `index` unit (value labels are unit-aware).
+   - **rank** → category points + optional `"baseline": {"label","value"}`.
+   - **comparison** → percent points incl. the baseline value, plus a
+     `"baseline"` block (renders high-vs-low + a baseline line).
+
+2. **Story block** — append to `"stories"` in `niche.config.json`:
+   ```json
+   {
+     "slug": "kebab-case-unique",
+     "title": "Hooky Title (4 Charts)",
+     "hook": "One-line scroll-stopper. Watch how they connect.",
+     "closing": "The payoff line tying the four charts together.",
+     "hashtags": ["topic", "data", "..."],
+     "segments": [
+       {"source":"offline","key":"<key1>","params":{"file":"<key1>.json"},
+        "insight_type":"trend","topic":"clean noun phrase",
+        "role":"1 · LABEL","connector":"First, ...",
+        "explain":"Plain-language, so-an-idiot-gets-it kicker."}
+     ]
+   }
+   ```
+   - 4 segments. `insight_type`: `trend` | `rank` | `comparison`. For rank add
+     `"ascending": false` + `"use_baseline": true` (if it has a baseline); for
+     comparison add `"use_baseline": true`.
+   - `topic` = clean noun spoken in the line ("mortgage rates"). `explain` =
+     the plain-language meaning ("100 is average, so Hawaii is ~84% pricier").
+   - Keep each beat tight so the finished video stays roughly 45–60s.
+
+3. **Sanity check** (optional — needs matplotlib/Pillow locally; CI validates
+   on merge regardless). Confirms the story builds:
+   ```bash
+   python3 - <<'PY'
+   import json, tempfile; from pathlib import Path
+   from data_learning import story
+   cfg = json.loads(Path('data_learning/niche.config.json').read_text())
+   sc = next(s for s in cfg['stories'] if s['slug'] == '<your-slug>')
+   with tempfile.TemporaryDirectory() as td:
+       st = story.build(sc, cfg, Path(td), Path('.'))
+       print('OK', len(st.segments), 'charts,', len(st.sentences()), 'beats')
+   PY
+   ```
+
+4. Commit the new `data_learning/data/*.json` + the `niche.config.json` change
+   in the **same daily PR** as the trending packages. Done — they post on merge.
