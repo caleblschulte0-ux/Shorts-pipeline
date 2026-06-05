@@ -67,6 +67,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slugs", nargs="*",
                     help="story slugs to post (default: every story in config)")
+    ap.add_argument("--channel", default="explainer",
+                    help="channel slug for token routing: 'explainer' reads "
+                         "YOUTUBE_TOKEN_JSON_EXPLAINER (default); '' uses the "
+                         "original YOUTUBE_TOKEN_JSON")
     ap.add_argument("--check-channel", action="store_true",
                     help="print which channel the token maps to and exit "
                          "(read-only, posts nothing)")
@@ -83,7 +87,7 @@ def main() -> int:
 
     if args.check_channel:
         from uploaders import YouTubeUploader
-        me = YouTubeUploader().whoami()
+        me = YouTubeUploader(channel=args.channel).whoami()
         print(f"token maps to channel: title={me['title']!r} "
               f"handle={me['handle']!r} id={me['id']}")
         return 0
@@ -125,7 +129,7 @@ def main() -> int:
 
         if uploader is None:                 # lazy import → clear error if deps
             from uploaders import YouTubeUploader
-            uploader = YouTubeUploader()
+            uploader = YouTubeUploader(channel=args.channel)
         print(f"[{slug}] uploading"
               + (f" (scheduled {publish_at})" if publish_at else " (public now)"),
               flush=True)
