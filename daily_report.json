@@ -5,10 +5,10 @@
     "publish_at": "2026-06-05T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "elapsed_seconds": 123.1,
+    "error": "JSONDecodeError: Extra data: line 1 column 8 (char 7)",
+    "elapsed_seconds": 118.7,
     "package_path": "state/trending_packages/20260605/01_north-korea-nuclear-plant.json",
-    "video_path": "output/daily_20260605-112019_kim_jong_un_just_revealed_north_korea_s_.mp4"
+    "video_path": "output/daily_20260605-115722_kim_jong_un_just_revealed_north_korea_s_.mp4"
   },
   {
     "topic": "UN Peacekeeper Killed As Lebanon's Last-Chance Ceasefire Collapses",
@@ -16,10 +16,10 @@
     "publish_at": "2026-06-05T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "elapsed_seconds": 105.6,
+    "error": "JSONDecodeError: Extra data: line 1 column 8 (char 7)",
+    "elapsed_seconds": 128.4,
     "package_path": "state/trending_packages/20260605/02_lebanon-unifil-ceasefire.json",
-    "video_path": "output/daily_20260605-112223_un_peacekeeper_killed_as_lebanon_s_last_.mp4"
+    "video_path": "output/daily_20260605-115920_un_peacekeeper_killed_as_lebanon_s_last_.mp4"
   },
   {
     "topic": "Broadcom Erased $320 Billion Overnight \u2014 AI Chips Just Got Complicated",
@@ -27,10 +27,10 @@
     "publish_at": "2026-06-05T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "elapsed_seconds": 122.5,
+    "error": "JSONDecodeError: Extra data: line 1 column 8 (char 7)",
+    "elapsed_seconds": 146.6,
     "package_path": "state/trending_packages/20260605/03_broadcom-stock-crash.json",
-    "video_path": "output/daily_20260605-112408_broadcom_erased__320_billion_overnight__.mp4"
+    "video_path": "output/daily_20260605-120129_broadcom_erased__320_billion_overnight__.mp4"
   },
   {
     "topic": "A Flesh-Eating Parasite Just Crossed Into the US For the First Time in Decades",
@@ -38,10 +38,10 @@
     "publish_at": "2026-06-05T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "elapsed_seconds": 105.8,
+    "error": "JSONDecodeError: Extra data: line 1 column 8 (char 7)",
+    "elapsed_seconds": 118.6,
     "package_path": "state/trending_packages/20260605/04_screwworm-fly-texas.json",
-    "video_path": "output/daily_20260605-112611_a_flesh_eating_parasite_just_crossed_int.mp4"
+    "video_path": "output/daily_20260605-120355_a_flesh_eating_parasite_just_crossed_int.mp4"
   },
   {
     "topic": "Foxconn and Intel Just Bet Everything on Building AI's Hardware Backbone",
@@ -49,10 +49,10 @@
     "publish_at": "2026-06-05T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "elapsed_seconds": 105.2,
+    "error": "JSONDecodeError: Extra data: line 1 column 8 (char 7)",
+    "elapsed_seconds": 120.9,
     "package_path": "state/trending_packages/20260605/05_foxconn-intel-ai.json",
-    "video_path": "output/daily_20260605-112756_foxconn_and_intel_just_bet_everything_on.mp4"
+    "video_path": "output/daily_20260605-120554_foxconn_and_intel_just_bet_everything_on.mp4"
   },
   {
     "topic": "Trump Says US-India Trade Deal Is Coming \u2014 But It's Not Done Yet",
@@ -60,9 +60,9 @@
     "publish_at": "2026-06-05T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "elapsed_seconds": 146.5,
+    "error": "JSONDecodeError: Extra data: line 1 column 8 (char 7)",
+    "elapsed_seconds": 140.0,
     "package_path": "state/trending_packages/20260605/06_trump-india-trade.json",
-    "video_path": "output/daily_20260605-112942_trump_says_us_india_trade_deal_is_coming.mp4"
+    "video_path": "output/daily_20260605-120755_trump_says_us_india_trade_deal_is_coming.mp4"
   }
 ]
