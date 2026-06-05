@@ -141,12 +141,14 @@ jobs:
       - name: Persist posted log
         if: always() && inputs.mode != 'verify'
         run: |
-          if ! git diff --quiet -- state/explainer_posted_log.json 2>/dev/null; then
+          git add state/explainer_posted_log.json 2>/dev/null || true
+          # --cached so a brand-new (untracked) log is detected too.
+          if git diff --cached --quiet -- state/explainer_posted_log.json; then
+            echo "no posted-log changes to commit"
+          else
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add state/explainer_posted_log.json
             git commit -m "explainer: update posted log [skip ci]"
-            git push
-          else
-            echo "no posted-log changes to commit"
+            git push origin HEAD:main \
+              || (git pull --rebase origin main && git push origin HEAD:main)
           fi
