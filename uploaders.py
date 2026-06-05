@@ -179,6 +179,31 @@ class YouTubeUploader(Uploader):
             token_path.write_text(creds.to_json())
         return build("youtube", "v3", credentials=creds)
 
+    def _guard_channel(self, svc):
+        """Safety: refuse to post unless the authenticated channel matches
+        YOUTUBE_EXPECTED_CHANNEL (a channel title or channel id). Prevents
+        this repo from ever posting to the wrong account if the wrong token
+        is present. No-op (but prints who it is) when the env var is unset."""
+        try:
+            resp = svc.channels().list(part="snippet", mine=True).execute()
+            items = resp.get("items", [])
+            if not items:
+                raise UploadError("youtube: token authorizes no channel")
+            cid = items[0]["id"]
+            ctitle = items[0]["snippet"]["title"]
+        except UploadError:
+            raise
+        except Exception as e:  # noqa: BLE001
+            raise UploadError(f"youtube: could not verify channel: {e}")
+        expected = os.environ.get("YOUTUBE_EXPECTED_CHANNEL", "").strip()
+        print(f"[youtube] authenticated channel: {ctitle!r} ({cid})", flush=True)
+        if expected and expected.lower() not in (ctitle.lower(), cid.lower()):
+            raise UploadError(
+                f"youtube: refusing to upload — authenticated channel "
+                f"{ctitle!r} ({cid}) does not match YOUTUBE_EXPECTED_CHANNEL="
+                f"{expected!r}. (Guard against posting to the wrong account.)"
+            )
+
     def upload(self, file_path, *, title, description, tags=None, publish_at=None):
         try:
             from googleapiclient.http import MediaFileUpload
@@ -190,6 +215,7 @@ class YouTubeUploader(Uploader):
             )
 
         svc = self._service()
+        self._guard_channel(svc)
         # YouTube requires privacyStatus=private when publishAt is set; the
         # video flips to public automatically at that timestamp.
         status = {
