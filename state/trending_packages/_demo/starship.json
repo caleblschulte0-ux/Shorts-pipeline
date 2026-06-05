@@ -1,0 +1,42 @@
+{
+  "version": 8,
+  "slug": "starship-demo",
+  "title": "SpaceX Starship",
+  "hashtags": ["spacex", "starship", "elonmusk", "rocket", "mars", "spaceflight", "boostercatch", "nasa", "spacetech", "shorts"],
+  "script": "SpaceX just caught Starship again. The 400-foot rocket lifted off from Boca Chica, ignited 33 Raptor engines, and the booster flew itself back to the launch pad. Mechazilla's giant chopsticks grabbed it in midair. Total flight time: 7 minutes. Cost per launch: roughly 90 million dollars. NASA now plans to use Starship to land humans on the moon in 2027.",
+  "shots": [
+    {
+      "phrase": "SpaceX just caught Starship again",
+      "query": "SpaceX Starship rocket launch"
+    },
+    {
+      "phrase": "400-foot rocket lifted off",
+      "query": "Starship Super Heavy booster liftoff"
+    },
+    {
+      "phrase": "33 Raptor engines",
+      "query": "Raptor engine SpaceX rocket"
+    },
+    {
+      "phrase": "booster flew itself back",
+      "query": "Starship booster landing Boca Chica"
+    },
+    {
+      "phrase": "Mechazilla's giant chopsticks",
+      "query": "Mechazilla tower catch arms"
+    },
+    {
+      "phrase": "land humans on the moon in 2027",
+      "query": "Artemis moon landing NASA Starship"
+    }
+  ],
+  "punches": [
+    {"phrase": "caught Starship again", "text": "CAUGHT AGAIN", "color": "#50ff80", "flash_bg": "#0d2818", "size": 195, "duration": 2.2},
+    {"phrase": "400-foot rocket", "text": "400 FEET TALL", "color": "#ffaa30", "size": 180, "duration": 2.0},
+    {"phrase": "33 Raptor engines", "text": "33 ENGINES", "color": "#ffaa30", "size": 185, "duration": 2.0},
+    {"phrase": "90 million dollars", "text": "$90 MILLION", "color": "#50ff80", "flash_bg": "#0d2818", "size": 195, "duration": 2.2},
+    {"phrase": "moon in 2027", "text": "MOON 2027", "color": "#ffffff", "size": 185, "duration": 2.2}
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}
