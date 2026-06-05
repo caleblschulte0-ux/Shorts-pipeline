@@ -192,6 +192,18 @@ jobs:
           # silently if unset, so this isn't in the required-secrets
           # preflight check above.
           VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
+          # Optional: enables topic_video Source 5 — YouTube Data API
+          # search.list?videoLicense=creativeCommon. CC-BY clips are
+          # explicitly licensed for commercial reuse; Content ID does
+          # not strike on creator-opted-in CC matches. ~100 quota units
+          # per call, well within the 10K daily limit. Skips silently
+          # if unset.
+          #
+          # Separate from YOUTUBE_TOKEN_JSON above: that's the OAuth
+          # token for uploading. This is a server API key for reading
+          # the public catalog. Create at
+          # https://console.cloud.google.com/apis/credentials.
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           COUNT: ${{ github.event.inputs.count || '6' }}
           FORCE: ${{ github.event.inputs.force }}
