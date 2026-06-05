@@ -12,6 +12,7 @@ and closing are hand-written in the config for maximum catchiness.
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -104,10 +105,14 @@ def _find(script: str, needle: str) -> str | None:
 
 def _punch(sentence: str, value: float, unit: str, color: str) -> dict | None:
     token, pct = _tok(value, unit)
-    phrase = _find(sentence, token)
-    if not phrase:
+    # Whole-number match only: reject when the token is part of a larger
+    # number ("4" inside "4.3"/"4.8", "1" inside "1,030") but still allow a
+    # trailing sentence period ("...449."). So: not preceded by a digit/.,;
+    # not followed by a digit, nor by a . or , that itself precedes a digit.
+    if not re.search(r"(?<![\d.,])" + re.escape(token) + r"(?!\d)(?![.,]\d)",
+                     sentence):
         return None
-    p = {"phrase": phrase, "text": token + ("%" if pct else ""),
+    p = {"phrase": token, "text": token + ("%" if pct else ""),
          "color": color, "duration": 1.8}
     if FLASH.get(color):
         p["flash_bg"] = FLASH[color]

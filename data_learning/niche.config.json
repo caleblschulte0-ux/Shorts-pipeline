@@ -84,8 +84,8 @@
     {
       "slug": "housing-affordability-wall",
       "title": "Priced Out: How A House Quietly Doubled In Cost",
-      "hook": "Your parents bought a house on one salary. You can't get one on two, and no, it's not the avocado toast. Here's the actual math.",
-      "closing": "Prices up, rates up, rent up, paychecks flat. You're not bad with money. The game changed, and nobody handed you the new rules.",
+      "hook": "Your parents bought a house on one income. You can't on two. Here's why.",
+      "closing": "Prices up, rates up, rent up, pay flat. It's not you. The rules changed.",
       "hashtags": [
         "housing",
         "realestate",
@@ -110,7 +110,7 @@
           "insight_type": "trend",
           "role": "1 \u00b7 PRICES",
           "topic": "home prices",
-          "say": "Back in 2019 a normal house cost about 270 grand. That same house today? 449. Nothing about it got better. They just strapped an extra 180 thousand dollars onto the price."
+          "say": "In 2019 a house cost about 270 grand. Today, 449. Same house, an extra 180 thousand bolted on."
         },
         {
           "source": "offline",
@@ -121,7 +121,7 @@
           "insight_type": "trend",
           "role": "2 \u00b7 RATES",
           "topic": "mortgage rates",
-          "say": "Then borrowing got brutal. Mortgage rates jumped from 3.9 percent to 6.6. Sounds tiny, but on a 30-year loan that nearly doubles what you pay back. Same house, way more money handed to the bank."
+          "say": "Then rates jumped from 3.9 percent to 6.6. That nearly doubles what you pay back over thirty years, same house."
         },
         {
           "source": "offline",
@@ -134,7 +134,7 @@
           "topic": "rent burden",
           "ascending": false,
           "use_baseline": true,
-          "say": "And forget saving up while you rent. In cities like Miami, rent eats 35.7 percent of your income. A third of every check gone before food, gas, or a single dollar toward a down payment."
+          "say": "And renting drains you. In Miami, rent eats 35.7 percent of your income, gone before food or gas."
         },
         {
           "source": "offline",
@@ -147,15 +147,15 @@
           "topic": "cost in years of pay",
           "ascending": false,
           "use_baseline": true,
-          "say": "So how long to actually buy? In San Jose, 11.3 years of your entire salary. Not your savings, every dollar you earn, for over a decade, just for the keys."
+          "say": "How long to actually buy? In San Jose, 11.3 years of your entire salary. Every dollar you earn, for over a decade."
         }
       ]
     },
     {
       "slug": "grocery-squeeze",
-      "title": "Why Your Grocery Bill Hurts (4 Charts)",
-      "hook": "Same cart, bigger bill, less food. Four charts on the grocery squeeze.",
-      "closing": "Prices climbed up top, your budget stretched down here. The checkout keeps winning.",
+      "title": "Why Your Grocery Bill Keeps Winning",
+      "hook": "Same cart, same food, but your receipt keeps growing. Here's where the money went.",
+      "closing": "Prices ran, paychecks crawled, the checkout wins. You're not overspending, everything just costs more.",
       "hashtags": [
         "groceries",
         "inflation",
@@ -179,11 +179,10 @@
           },
           "insight_type": "rank",
           "role": "1 \u00b7 SINCE 2020",
-          "connector": "First, see how far prices ran since 2020.",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
-          "explain": "Eggs alone cost nearly double what they did in 2020."
+          "say": "Since 2020, eggs are up 86 percent. Not 86 cents, 86 percent, while your paycheck barely moved."
         },
         {
           "source": "offline",
@@ -193,10 +192,9 @@
           },
           "insight_type": "comparison",
           "role": "2 \u00b7 THIS YEAR",
-          "connector": "And this year they're still climbing.",
           "topic": "food prices this year",
           "use_baseline": true,
-          "explain": "Still climbing, just a little slower than before."
+          "say": "And it's still climbing. Beef jumped another 9.2 percent this year, while dairy barely moved at 1.6."
         },
         {
           "source": "offline",
@@ -206,9 +204,8 @@
           },
           "insight_type": "trend",
           "role": "3 \u00b7 YOUR BUDGET",
-          "connector": "So food takes more of every paycheck.",
           "topic": "the share of income spent on food",
-          "explain": "Food quietly eats a bigger slice of your budget every year."
+          "say": "Add it up, and food now eats 11.8 percent of your income, the most in decades."
         },
         {
           "source": "offline",
@@ -218,17 +215,16 @@
           },
           "insight_type": "trend",
           "role": "4 \u00b7 WHAT YOU PAY",
-          "connector": "And the monthly bill keeps setting records.",
           "topic": "the average grocery bill",
-          "explain": "That's about 300 dollars more every month than 2019."
+          "say": "The average bill hit 1,030 dollars a month, about 300 more than 2019. An extra car payment, same fridge."
         }
       ]
     },
     {
       "slug": "debt-trap",
-      "title": "Americans Are Drowning In Debt (4 Charts)",
-      "hook": "Record balances, record rates, vanishing savings. The debt trap in four charts.",
-      "closing": "Balances up top, rates up top, savings down here. The math only runs one way.",
+      "title": "Americans Owe $1.4 Trillion On Plastic",
+      "hook": "Americans owe more on credit cards than ever. And it grows even when people stop spending.",
+      "closing": "Record debt, record rates, empty savings. The math turned against you.",
       "hashtags": [
         "debt",
         "creditcard",
@@ -252,9 +248,8 @@
           },
           "insight_type": "trend",
           "role": "1 \u00b7 BALANCES",
-          "connector": "First, credit card balances hit records.",
           "topic": "credit card debt",
-          "explain": "Americans now owe close to 1.4 trillion dollars on cards."
+          "say": "Card debt just passed 1,370 billion dollars, nearly 1.4 trillion on plastic, climbing every month."
         },
         {
           "source": "offline",
@@ -264,9 +259,8 @@
           },
           "insight_type": "trend",
           "role": "2 \u00b7 THE RATE",
-          "connector": "While the rate on that debt soared.",
           "topic": "the credit card interest rate",
-          "explain": "The balance grows even if you stop spending."
+          "say": "And interest hit 22.9 percent. At that rate your balance grows even if you never swipe again. That's the trap."
         },
         {
           "source": "offline",
@@ -276,9 +270,8 @@
           },
           "insight_type": "trend",
           "role": "3 \u00b7 FALLING BEHIND",
-          "connector": "More people are falling behind on payments.",
           "topic": "the share falling behind",
-          "explain": "More households simply can't make the minimum payment."
+          "say": "So people fall behind. The share missing payments climbed to 3.9 percent, the most since the last crisis."
         },
         {
           "source": "offline",
@@ -288,17 +281,16 @@
           },
           "insight_type": "trend",
           "role": "4 \u00b7 NO CUSHION",
-          "connector": "And the savings cushion is nearly gone.",
           "topic": "the savings rate",
-          "explain": "People save less than half what they did in 2020."
+          "say": "Meanwhile savings cratered. In 2020 people saved 16.8 percent of income. Now? 3.6. The cushion is gone."
         }
       ]
     },
     {
       "slug": "wage-illusion",
-      "title": "You Got A Raise. You're Still Behind. (4 Charts)",
-      "hook": "Your raise was real. So was the inflation that ate it. Four charts.",
-      "closing": "Bigger paycheck up top, the same buying power down here. Running to stand still.",
+      "title": "Your Raise Was Fake (Here's The Math)",
+      "hook": "You got a raise this year. So why does your money vanish faster than before?",
+      "closing": "Bigger check, smaller life. You're running faster just to stay in place.",
       "hashtags": [
         "wages",
         "inflation",
@@ -322,9 +314,8 @@
           },
           "insight_type": "trend",
           "role": "1 \u00b7 YOUR RAISE",
-          "connector": "First, paychecks really did go up.",
           "topic": "the average wage",
-          "explain": "On paper, that looks like a solid raise."
+          "say": "On paper, a win. The average wage climbed to 31.9 dollars an hour. Your paycheck genuinely got bigger."
         },
         {
           "source": "offline",
@@ -334,9 +325,8 @@
           },
           "insight_type": "trend",
           "role": "2 \u00b7 AFTER INFLATION",
-          "connector": "But after inflation, they barely moved.",
           "topic": "real, inflation-adjusted pay",
-          "explain": "After prices, your buying power actually slipped."
+          "say": "But adjust for prices, and the wage index sits at 99, below 2019. After inflation, you earn less than before."
         },
         {
           "source": "offline",
@@ -346,11 +336,10 @@
           },
           "insight_type": "rank",
           "role": "3 \u00b7 WHAT OUTRAN YOU",
-          "connector": "Because the big bills outran your wages.",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
-          "explain": "Wages rose 22 percent, but the big bills rose more."
+          "say": "Because the unskippable stuff ran ahead. Childcare is up 31 percent since 2020, while wages rose just 22."
         },
         {
           "source": "offline",
@@ -360,17 +349,16 @@
           },
           "insight_type": "trend",
           "role": "4 \u00b7 THE TREADMILL",
-          "connector": "So you work more hours just to keep up.",
           "topic": "hours of work to cover rent",
-          "explain": "Seventeen more hours a month, just to make rent."
+          "say": "Now it takes 69 hours of work to cover one month's rent, up from 52. Two extra days a month, gone."
         }
       ]
     },
     {
       "slug": "jobs-beneath-surface",
-      "title": "The Jobs Report Isn't What It Seems (4 Charts)",
-      "hook": "Low unemployment hides a messier story. Four charts under the headline.",
-      "closing": "Strong headline up top, the cracks down here. Look past the one number.",
+      "title": "The Jobs Report Hides 3 Ugly Truths",
+      "hook": "Headlines say the job market's never been better. So why does everyone feel broke and burnt out?",
+      "closing": "One cheery number on top, a messier story underneath. Strong for who?",
       "hashtags": [
         "jobs",
         "unemployment",
@@ -394,9 +382,8 @@
           },
           "insight_type": "trend",
           "role": "1 \u00b7 THE HEADLINE",
-          "connector": "First, the headline rate still looks low.",
           "topic": "the unemployment rate",
-          "explain": "Low joblessness is the one number everyone quotes."
+          "say": "Unemployment sits at just 4.3 percent, historically low. That's the headline. But it hides three things."
         },
         {
           "source": "offline",
@@ -406,9 +393,8 @@
           },
           "insight_type": "trend",
           "role": "2 \u00b7 PART-TIME",
-          "connector": "But part-time-for-economic-reasons is creeping up.",
           "topic": "people stuck in part-time work",
-          "explain": "Millions want full-time hours but can't get them."
+          "say": "First, 4.8 million people are stuck part-time who want full-time. Employed on paper, but not by choice."
         },
         {
           "source": "offline",
@@ -418,9 +404,8 @@
           },
           "insight_type": "trend",
           "role": "3 \u00b7 WHO'S MISSING",
-          "connector": "And participation never fully bounced back.",
           "topic": "the share of adults working",
-          "explain": "Many people simply stopped looking for work."
+          "say": "Second, participation slid to 62.4 percent. Millions stopped looking entirely, so they vanish from the good number."
         },
         {
           "source": "offline",
@@ -430,17 +415,16 @@
           },
           "insight_type": "trend",
           "role": "4 \u00b7 WORKING DOUBLE",
-          "connector": "More people now juggle two jobs to get by.",
           "topic": "people working two or more jobs",
-          "explain": "Nine million people now juggle multiple jobs."
+          "say": "Third, 9 million people now work two or more jobs, a record. Why does surviving take two paychecks?"
         }
       ]
     },
     {
       "slug": "two-americas-cost",
-      "title": "Two Americas: Where Your Dollar Dies (4 Charts)",
-      "hook": "Same country, different economy. Four charts on the two Americas.",
-      "closing": "Big paychecks up top, the costs that eat them down here. Where you live is the economy.",
+      "title": "Same Salary, Different State, Opposite Life",
+      "hook": "Two people earn the same salary. One's comfortable, one's drowning. The only difference is the state line.",
+      "closing": "Same salary, different reality. Where you live decides how rich you actually are.",
       "hashtags": [
         "costofliving",
         "income",
@@ -464,11 +448,10 @@
           },
           "insight_type": "rank",
           "role": "1 \u00b7 COST OF LIVING",
-          "connector": "First, the cost of living splits the country.",
           "topic": "cost of living",
           "ascending": false,
           "use_baseline": true,
-          "explain": "100 is average, so Hawaii is about 84 percent pricier."
+          "say": "Cost of living swings wildly. At 184 on the index, Hawaii is about 84 percent pricier than average."
         },
         {
           "source": "offline",
@@ -478,11 +461,10 @@
           },
           "insight_type": "rank",
           "role": "2 \u00b7 WHAT YOU EARN",
-          "connector": "Incomes split too, but not the same way.",
           "topic": "household income",
           "ascending": false,
           "use_baseline": true,
-          "explain": "Top states earn nearly double the poorest."
+          "say": "Incomes split too. Massachusetts tops near 96.5 thousand a household, almost double the poorest states."
         },
         {
           "source": "offline",
@@ -492,11 +474,10 @@
           },
           "insight_type": "rank",
           "role": "3 \u00b7 AFTER COSTS",
-          "connector": "Adjust for costs and the map flips.",
           "topic": "income after living costs",
           "ascending": false,
           "use_baseline": true,
-          "explain": "Adjust for prices and the big-paycheck states fall behind."
+          "say": "But adjust for what life costs, and the map flips. A Texas paycheck is worth 78.5 thousand, beating high-cost states."
         },
         {
           "source": "offline",
@@ -506,11 +487,10 @@
           },
           "insight_type": "rank",
           "role": "4 \u00b7 THE RENT",
-          "connector": "And rent is where it really bites.",
           "topic": "one-bedroom rent",
           "ascending": false,
           "use_baseline": true,
-          "explain": "More than double what the cheapest states pay."
+          "say": "And rent is the knockout. A one-bedroom in California averages 2,150 dollars, more than double the cheapest states."
         }
       ]
     }
