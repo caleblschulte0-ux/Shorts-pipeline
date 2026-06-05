@@ -1,15 +1,21 @@
 name: Explainer Stories
 
 # Posts the curated data-explainer STORY shorts to the second channel
-# (short_explainer67). Completely separate from daily.yml (which posts the
-# trending shorts to the other channel) — different script, different token
-# secret, different posted-log. Manual only.
+# (short_explainer67). Fully separate from daily.yml (which posts the trending
+# shorts to the other channel): different script, different token secret,
+# different posted-log, channel guard.
+#
+# Two ways to run:
+#   * manual (workflow_dispatch): verify / canary / schedule / all
+#   * automatic (workflow_run): after "Auto-merge claude PRs" merges the daily
+#     PR, this fires and posts any NEW (un-posted) stories the daily routine
+#     authored — scheduled hourly. The posted-log dedupes, so it's idempotent.
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'verify (just check channel) | canary (post one) | schedule (rest, spaced) | all (post all now)'
+        description: 'verify | canary | schedule | all (auto when fired by workflow_run)'
         required: true
         default: 'verify'
         type: choice
@@ -19,21 +25,25 @@ on:
         required: false
         default: 'debt-trap'
       slugs:
-        description: 'space-separated slugs (blank = the 6 stories)'
+        description: 'space-separated slugs (blank = every story in config)'
         required: false
         default: ''
       expected_channel:
-        description: 'guard: refuse to post unless the token maps to this title/@handle/id (blank = no guard, just prints). Set after a verify run.'
+        description: 'channel guard (blank defaults to short_explainer67)'
         required: false
         default: ''
       every_hours:
-        description: 'schedule mode: hours between uploads'
-        required: false
-        default: '3'
-      start_in_hours:
-        description: 'schedule mode: hours from now until the first upload'
+        description: 'schedule/auto: hours between uploads'
         required: false
         default: '1'
+      start_in_hours:
+        description: 'schedule/auto: hours from now until the first upload'
+        required: false
+        default: '1'
+  workflow_run:
+    workflows: ["Auto-merge claude PRs"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: write          # persist state/explainer_posted_log.json
@@ -42,7 +52,41 @@ env:
   PYTHON_VERSION: '3.11'
 
 jobs:
+  # Cheap gate: on an automatic (workflow_run) fire, only spin up the heavy
+  # render job if the daily routine actually added new stories.
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      new_count: ${{ steps.count.outputs.new_count }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Count un-posted stories
+        id: count
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          cfg = json.load(open('data_learning/niche.config.json'))
+          posted = set()
+          p = 'state/explainer_posted_log.json'
+          if os.path.exists(p):
+              posted = set(json.load(open(p)).get('posted', {}))
+          new = [s['slug'] for s in cfg.get('stories', []) if s['slug'] not in posted]
+          print('new_count=' + str(len(new)))
+          PY
+          echo "::notice::un-posted explainer stories: $(grep new_count "$GITHUB_OUTPUT" | tail -1)"
+
   explainer:
+    needs: plan
+    # Manual dispatch always runs. Automatic fire only when the merge
+    # succeeded AND there is at least one new story to post.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && needs.plan.outputs.new_count != '0')
     runs-on: ubuntu-latest
     timeout-minutes: 60
     concurrency:
@@ -120,22 +164,29 @@ jobs:
           # YOUTUBE_TOKEN_JSON (other channel) is never referenced here.
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
-          YOUTUBE_EXPECTED_CHANNEL: ${{ inputs.expected_channel }}
         run: |
           set -e
+          MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
+          EXPECTED="${{ inputs.expected_channel }}"; [ -z "$EXPECTED" ] && EXPECTED="short_explainer67"
+          EVERY="${{ inputs.every_hours }}";         [ -z "$EVERY" ] && EVERY="1"
+          START="${{ inputs.start_in_hours }}";      [ -z "$START" ] && START="1"
           SLUGS="${{ inputs.slugs }}"
-          [ -z "$SLUGS" ] && SLUGS="housing-affordability-wall grocery-squeeze debt-trap wage-illusion jobs-beneath-surface two-americas-cost"
-          case "${{ inputs.mode }}" in
+          DEFAULT6="housing-affordability-wall grocery-squeeze debt-trap wage-illusion jobs-beneath-surface two-americas-cost"
+          export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
+          echo "mode=$MODE expected=$EXPECTED every=$EVERY start=$START"
+          case "$MODE" in
             verify)
               python scripts/post_stories.py --check-channel ;;
             canary)
               python scripts/post_stories.py --slugs "${{ inputs.canary_slug }}" ;;
             schedule)
-              python scripts/post_stories.py --slugs $SLUGS \
-                --every-hours "${{ inputs.every_hours }}" \
-                --start-in-hours "${{ inputs.start_in_hours }}" ;;
+              python scripts/post_stories.py --slugs ${SLUGS:-$DEFAULT6} \
+                --every-hours "$EVERY" --start-in-hours "$START" ;;
             all)
-              python scripts/post_stories.py --slugs $SLUGS ;;
+              python scripts/post_stories.py --slugs ${SLUGS:-$DEFAULT6} ;;
+            auto)
+              # post every un-posted story (no --slugs => all, deduped), hourly
+              python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" ;;
           esac
 
       - name: Persist posted log
