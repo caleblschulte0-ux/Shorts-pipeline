@@ -1,0 +1,41 @@
+{
+  "key": "food_yoy",
+  "title": "Food prices, change this year",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "12 months through April 2026",
+  "source": {
+    "name": "CPI food, 12-month change",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Year-over-year change; All food is the comparison baseline.",
+  "points": [
+    {
+      "label": "Beef",
+      "value": 9.2
+    },
+    {
+      "label": "Coffee",
+      "value": 8.5
+    },
+    {
+      "label": "All food",
+      "value": 3.1
+    },
+    {
+      "label": "Cereals",
+      "value": 1.9
+    },
+    {
+      "label": "Dairy",
+      "value": 1.6
+    }
+  ],
+  "baseline": {
+    "label": "All food",
+    "value": 3.1
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "key": "cost_vs_wage",
+  "title": "Price rise since 2020 vs wages",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2020-2026",
+  "source": {
+    "name": "CPI categories vs average earnings",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Category price growth since 2020; wage growth is the baseline.",
+  "points": [
+    {
+      "label": "Childcare",
+      "value": 31
+    },
+    {
+      "label": "Electricity",
+      "value": 29
+    },
+    {
+      "label": "Rent",
+      "value": 27
+    },
+    {
+      "label": "Groceries",
+      "value": 24
+    },
+    {
+      "label": "Gasoline",
+      "value": 18
+    }
+  ],
+  "baseline": {
+    "label": "Wages",
+    "value": 22.0
+  }
+}

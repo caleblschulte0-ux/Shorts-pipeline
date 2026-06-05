@@ -1,0 +1,26 @@
+{
+  "key": "state_unemployment",
+  "title": "State unemployment rate",
+  "unit": "percent",
+  "geography": "United States by state",
+  "time_coverage": "April 2026 (seasonally adjusted)",
+  "source": {
+    "name": "BLS State Unemployment Rates",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov/web/laus/laumstrk.htm",
+    "officiality": "official",
+    "access_date": "2026-06-02"
+  },
+  "notes": "Seasonally adjusted state rates. National baseline 4.3% for context.",
+  "baseline": {"label": "United States", "value": 4.3},
+  "points": [
+    {"label": "South Dakota", "value": 2.2},
+    {"label": "North Dakota", "value": 2.4},
+    {"label": "Hawaii", "value": 2.5},
+    {"label": "Vermont", "value": 2.6},
+    {"label": "Nebraska", "value": 2.7},
+    {"label": "New Hampshire", "value": 2.8},
+    {"label": "Montana", "value": 2.9},
+    {"label": "Alabama", "value": 3.0}
+  ]
+}

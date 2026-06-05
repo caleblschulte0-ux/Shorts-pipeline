@@ -1,0 +1,45 @@
+{
+  "key": "rent_share_income",
+  "title": "Share of income spent on rent",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "ACS rent burden by metro",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Median renter share of income, select metros.",
+  "points": [
+    {
+      "label": "Miami",
+      "value": 35.7
+    },
+    {
+      "label": "Los Angeles",
+      "value": 34.6
+    },
+    {
+      "label": "New York",
+      "value": 33.9
+    },
+    {
+      "label": "San Diego",
+      "value": 32.4
+    },
+    {
+      "label": "Boston",
+      "value": 30.8
+    },
+    {
+      "label": "Chicago",
+      "value": 28.5
+    }
+  ],
+  "baseline": {
+    "label": "United States",
+    "value": 30.2
+  }
+}

@@ -1,0 +1,150 @@
+name: Explainer Stories
+
+# Posts the curated data-explainer STORY shorts to the second channel
+# (short_explainer67). Completely separate from daily.yml (which posts the
+# trending shorts to the other channel) — different script, different token
+# secret, different posted-log. Manual only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'verify (just check channel) | canary (post one) | schedule (rest, spaced) | all (post all now)'
+        required: true
+        default: 'verify'
+        type: choice
+        options: [verify, canary, schedule, all]
+      canary_slug:
+        description: 'slug to post in canary mode'
+        required: false
+        default: 'debt-trap'
+      slugs:
+        description: 'space-separated slugs (blank = the 6 stories)'
+        required: false
+        default: ''
+      expected_channel:
+        description: 'guard: refuse to post unless the token maps to this title/@handle/id (blank = no guard, just prints). Set after a verify run.'
+        required: false
+        default: ''
+      every_hours:
+        description: 'schedule mode: hours between uploads'
+        required: false
+        default: '3'
+      start_in_hours:
+        description: 'schedule mode: hours from now until the first upload'
+        required: false
+        default: '1'
+
+permissions:
+  contents: write          # persist state/explainer_posted_log.json
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  explainer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: explainer-stories
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -q ffmpeg
+
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install google-api-python-client google-auth google-auth-oauthlib
+
+      - name: Cache Kokoro TTS models (~350MB)
+        id: cache-kokoro
+        uses: actions/cache@v4
+        with:
+          path: kokoro_models/
+          key: kokoro-onnx-v1.0
+
+      - name: Download Kokoro TTS models if cache miss
+        if: steps.cache-kokoro.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p kokoro_models
+          curl -fsSL -o kokoro_models/kokoro-v1.0.onnx \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx"
+          curl -fsSL -o kokoro_models/voices-v1.0.bin \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
+
+      # The round-robin bottom-strip clips are gitignored (large). Cache them
+      # keyed on the generator so they only rebuild when broll_gen.py changes.
+      - name: Cache b-roll strip clips
+        if: inputs.mode != 'verify'
+        id: cache-broll
+        uses: actions/cache@v4
+        with:
+          path: data_learning/broll/styles/
+          key: broll-styles-${{ hashFiles('data_learning/broll_gen.py') }}
+
+      - name: Build b-roll strip clips if missing
+        if: inputs.mode != 'verify' && steps.cache-broll.outputs.cache-hit != 'true'
+        run: |
+          python -m data_learning.broll_gen --styles --clip-seconds 45
+
+      - name: Verify required secrets are set
+        env:
+          YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+        run: |
+          missing=0
+          [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
+          [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON_EXPLAINER"; missing=1; }
+          [ $missing -ne 0 ] && exit 1
+          echo "Secrets present."
+
+      - name: Run
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          YOUTUBE_EXPECTED_CHANNEL: ${{ inputs.expected_channel }}
+        run: |
+          set -e
+          SLUGS="${{ inputs.slugs }}"
+          [ -z "$SLUGS" ] && SLUGS="housing-affordability-wall grocery-squeeze debt-trap wage-illusion jobs-beneath-surface two-americas-cost"
+          case "${{ inputs.mode }}" in
+            verify)
+              python scripts/post_stories.py --check-channel ;;
+            canary)
+              python scripts/post_stories.py --slugs "${{ inputs.canary_slug }}" ;;
+            schedule)
+              python scripts/post_stories.py --slugs $SLUGS \
+                --every-hours "${{ inputs.every_hours }}" \
+                --start-in-hours "${{ inputs.start_in_hours }}" ;;
+            all)
+              python scripts/post_stories.py --slugs $SLUGS ;;
+          esac
+
+      - name: Persist posted log
+        if: always() && inputs.mode != 'verify'
+        run: |
+          if ! git diff --quiet -- state/explainer_posted_log.json 2>/dev/null; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add state/explainer_posted_log.json
+            git commit -m "explainer: update posted log [skip ci]"
+            git push
+          else
+            echo "no posted-log changes to commit"
+          fi
