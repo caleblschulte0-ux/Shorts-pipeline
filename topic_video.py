@@ -11,29 +11,37 @@ Sources, tried in order:
      public domain, no key. Strongest source for any space, climate,
      geology, weather or aviation topic — has the actual mission
      footage that Commons usually only paraphrases. Goes first.
-  1. Wikimedia Commons video files (`mime: video/*`). Same API call
+  1. **DVIDS** (`api.dvidshub.net`). Defense Visual Information
+     Distribution Service — the Pentagon's media library. All assets
+     are US federal government works (17 U.S.C. § 105 → public domain,
+     zero copyright risk). Strong on Coast Guard rescues, hurricane
+     response, NATO exercises, military deployments, White House press
+     pool video. Requires free `DVIDS_API_KEY` env var; skips silently
+     if unset. Sibling-tier to NASA — both federal PD media libraries
+     with current-events footage.
+  2. Wikimedia Commons video files (`mime: video/*`). Same API call
      `topic_media._commons_files` already uses for images.
-  2. Internet Archive `archive.org/advancedsearch.php` filtered to
+  3. Internet Archive `archive.org/advancedsearch.php` filtered to
      `mediatype:movies` + an opensource/CC collection. Strong for any
      event ≥30 days old, since archive mirrors news clips heavily.
-  3. News article video scrape: `og:video`, `twitter:player:stream`,
+  4. News article video scrape: `og:video`, `twitter:player:stream`,
      `<video src>`, `<source src>`, and JSON-LD VideoObject embeds.
      The HTML5/JSON-LD extensions catch outlets that lazy-load video
      and never set an og:video meta tag.
-  4. **Reddit `v.redd.it`** — where viral bystander footage actually
+  5. **Reddit `v.redd.it`** — where viral bystander footage actually
      lives. Doorbell-cam meteor flashes, dashcam pileups, witness
      phone clips, town-vs-tax local-news shorts. None of these land
      in CC libraries; they get uploaded to Reddit first. Free, no
      auth needed for the public JSON API. The "we can't show the
      actual footage we're talking about" gap closes here.
-  5. **Vimeo Creative Commons** (`api.vimeo.com/videos?filter=CC`).
+  6. **Vimeo Creative Commons** (`api.vimeo.com/videos?filter=CC`).
      Requires `VIMEO_TOKEN` env var (free dev account). Lower volume
      than Commons but better SNR for human-story topics where NASA
      and Commons are both thin.
-  6. YouTube `search.list?videoLicense=creativeCommon`. Requires
+  7. YouTube `search.list?videoLicense=creativeCommon`. Requires
      `YOUTUBE_API_KEY`. CC-BY allows commercial reuse with attribution.
      Uses ~100 quota units per call.
-  7. *Opt-in only* via `TOPIC_VIDEO_ALLOW_STRIKES=1` — searches YouTube
+  8. *Opt-in only* via `TOPIC_VIDEO_ALLOW_STRIKES=1` — searches YouTube
      without the CC filter. Relies on fair-use commentary doctrine for
      short clips. **YouTube's Content ID is automated and matches
      single-second clips regardless of fair use; three strikes
@@ -213,7 +221,86 @@ def _nasa_videos(topic: str, limit: int = 4) -> list[str]:
     return out
 
 
-# ---------- Source 1: Wikimedia Commons video ----------
+# ---------- Source 1: DVIDS (Defense Visual Information Distribution Service) ----------
+
+def _dvids_videos(topic: str, limit: int = 4) -> list[str]:
+    """Search DVIDS for video assets matching `topic`. Returns direct
+    MP4 URLs from the Pentagon's public media library.
+
+    All DVIDS content is US federal government work — automatically
+    public domain per 17 U.S.C. § 105. No copyright risk, no fair-use
+    defense needed, no DMCA exposure. Free attribution as a courtesy
+    only.
+
+    Strong content categories: Coast Guard helicopter rescues,
+    hurricane response / FEMA evacuation footage, NATO exercises,
+    military deployments, White House press pool video, NTSB / FBI
+    raid footage (when released), wildfire response (DoD assisting
+    CalFire), disaster recovery during federal declarations.
+
+    Requires free `DVIDS_API_KEY` env var. Registration:
+    https://www.dvidshub.net/api/. Skips silently when unset.
+
+    Two-step protocol because the search endpoint returns asset
+    summaries; direct download URLs live on the per-asset detail
+    endpoint. We over-fetch search results and bail out of the detail
+    loop early once we have `limit` valid MP4 URLs.
+    """
+    api_key = os.environ.get("DVIDS_API_KEY", "").strip()
+    if not api_key or not topic.strip():
+        return []
+    qs = urllib.parse.urlencode({
+        "q": topic,
+        "type": "video",
+        "max_results": limit * 3,
+        "sort": "publishdate",
+        "api_key": api_key,
+    })
+    try:
+        data = json.loads(_get(
+            f"https://api.dvidshub.net/search?{qs}", timeout=TIMEOUT))
+    except Exception as e:  # noqa: BLE001
+        print(f"      [dvids search skip] {e}")
+        return []
+
+    out: list[str] = []
+    for r in (data.get("results") or [])[:limit * 3]:
+        # Some search-result payloads carry a direct video URL. Try
+        # the common field names before falling back to the per-asset
+        # detail endpoint.
+        url = (
+            r.get("video_url_mp4") or
+            r.get("download_video_url") or
+            r.get("video_url") or
+            ""
+        )
+        if not (url and url.startswith("http") and ".mp4" in url.lower()):
+            asset_id = r.get("id") or r.get("asset_id")
+            if not asset_id:
+                continue
+            try:
+                detail = json.loads(_get(
+                    f"https://api.dvidshub.net/asset/{urllib.parse.quote(str(asset_id))}"
+                    f"?api_key={urllib.parse.quote(api_key)}",
+                    timeout=TIMEOUT,
+                ))
+            except Exception:  # noqa: BLE001
+                continue
+            asset = (detail.get("results") or detail) or {}
+            url = (
+                asset.get("download_video_url") or
+                asset.get("video_url_mp4") or
+                asset.get("video_url") or
+                ""
+            )
+        if url and url.startswith("http") and ".mp4" in url.lower():
+            out.append(url)
+        if len(out) >= limit:
+            break
+    return out
+
+
+# ---------- Source 2: Wikimedia Commons video ----------
 
 def _commons_videos(topic: str, limit: int = 3) -> list[str]:
     """Same Commons search topic_media uses for images, filtered to
@@ -225,7 +312,7 @@ def _commons_videos(topic: str, limit: int = 3) -> list[str]:
         return []
 
 
-# ---------- Source 2: Internet Archive ----------
+# ---------- Source 3: Internet Archive ----------
 
 def _archive_videos(topic: str, limit: int = 3) -> list[str]:
     """Search Internet Archive for opensource movies matching the topic.
@@ -273,7 +360,7 @@ def _archive_videos(topic: str, limit: int = 3) -> list[str]:
     return out
 
 
-# ---------- Source 3: og:video on news articles ----------
+# ---------- Source 4: og:video on news articles ----------
 
 _OG_VIDEO_RE = re.compile(
     r'<meta[^>]+(?:property|name)\s*=\s*["\']'
@@ -368,7 +455,7 @@ def _og_videos(topic: str, max_hours: int = 24 * 7) -> list[str]:
     return out
 
 
-# ---------- Source 4: Reddit v.redd.it ----------
+# ---------- Source 5: Reddit v.redd.it ----------
 
 # Reddit's `created_utc` is in seconds since epoch. We skip posts newer
 # than this window as a soft DMCA-risk mitigation: stolen-content
@@ -449,7 +536,7 @@ def _reddit_videos(topic: str, limit: int = 4) -> list[str]:
     return out
 
 
-# ---------- Source 5: Vimeo Creative Commons ----------
+# ---------- Source 6: Vimeo Creative Commons ----------
 
 def _vimeo_videos(topic: str, limit: int = 4) -> list[str]:
     """Search Vimeo's CC-licensed pool. Requires `VIMEO_TOKEN` env var
@@ -505,7 +592,7 @@ def _vimeo_videos(topic: str, limit: int = 4) -> list[str]:
     return out
 
 
-# ---------- Source 6: YouTube Creative Commons ----------
+# ---------- Source 7: YouTube Creative Commons ----------
 
 def _youtube_search(topic: str, *, license_filter: str | None,
                     limit: int = 5) -> list[str]:
@@ -626,7 +713,16 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
         if _try(u, source="nasa", ext=".mp4"):
             return results
 
-    # 1. Wikimedia Commons video. Take the title's hits first (best
+    # 1. DVIDS — Pentagon's public media library. All US federal
+    #    government works → automatically PD per 17 U.S.C. § 105.
+    #    Strong on Coast Guard rescues, hurricane response, NATO
+    #    exercises, military deployments, White House press pool.
+    #    Skips silently when DVIDS_API_KEY isn't set.
+    for u in _dvids_videos(combined, limit=4):
+        if _try(u, source="dvids", ext=".mp4"):
+            return results
+
+    # 2. Wikimedia Commons video. Take the title's hits first (best
     #    quality on named entities) then broaden to the combined query.
     if context:
         for u in _commons_videos(context, limit=5):
@@ -638,19 +734,19 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
                  ext=Path(u).suffix.lower() or ".webm"):
             return results
 
-    # 2. Internet Archive — strong on historical / 30-day-old material.
+    # 3. Internet Archive — strong on historical / 30-day-old material.
     for u in _archive_videos(combined, limit=4):
         if _try(u, source="archive", ext=".mp4"):
             return results
 
-    # 3. News article video embeds (og:video, twitter:player:stream,
+    # 4. News article video embeds (og:video, twitter:player:stream,
     #    HTML5 <video>/<source>, JSON-LD VideoObject).
     for u in _og_videos(combined):
         if _try(u, source="og",
                  ext=Path(u.split("?")[0]).suffix.lower() or ".mp4"):
             return results
 
-    # 4. Reddit v.redd.it — viral bystander footage (doorbell cams,
+    # 5. Reddit v.redd.it — viral bystander footage (doorbell cams,
     #    dashcams, witness phone clips). This is the source that
     #    actually has the clips we narrate ("dozens of doorbell cams
     #    caught the flash"). Skips silently if Reddit's blocked at
@@ -659,12 +755,12 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
         if _try(u, source="reddit", ext=".mp4"):
             return results
 
-    # 5. Vimeo CC. Skips silently when VIMEO_TOKEN isn't set.
+    # 6. Vimeo CC. Skips silently when VIMEO_TOKEN isn't set.
     for u in _vimeo_videos(combined, limit=4):
         if _try(u, source="vimeo", ext=".mp4"):
             return results
 
-    # 6. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
+    # 7. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
     #    silently if no API key configured. Downloads up to 4 so the
     #    pool has variety instead of stopping at the first hit.
     if len(results) < max_clips:
@@ -678,7 +774,7 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
                 if len(results) >= max_clips:
                     return results
 
-    # 7. Opt-in fair-use path. Off by default.
+    # 8. Opt-in fair-use path. Off by default.
     if not results and os.environ.get("TOPIC_VIDEO_ALLOW_STRIKES") == "1":
         for vid in _youtube_search(combined, license_filter=None, limit=4):
             dest = _cache_path(f"yt:any:{vid}", ext=".mp4")
