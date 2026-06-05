@@ -137,6 +137,19 @@ def _vfmt(v: float) -> str:
     return f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}"
 
 
+def _ulabel(v: float, unit: str) -> str:
+    """Value label with a unit cue: percent -> trailing %, plain dollars ->
+    leading $, anything else (index, ratio, $-thousands, counts) -> bare
+    number (the chart subtitle carries the unit)."""
+    n = _vfmt(v)
+    u = (unit or "").strip().lower()
+    if u in ("percent", "%", "rate", "pct"):
+        return n + "%"
+    if u in ("dollars", "dollar", "usd", "$"):
+        return "$" + n
+    return n
+
+
 def _ordered_items(insight: Insight) -> list:
     """The reveal order for an insight, baseline last when present."""
     items = list(insight.items)
@@ -385,14 +398,15 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str):
     arts = []
     for k in range(len(values)):
         if k == pk and 0 < pk < last:
-            t = ax.text(x[k], values[k] + span * 0.12, _vfmt(values[k]) + "%",
+            t = ax.text(x[k], values[k] + span * 0.12,
+                        _ulabel(values[k], insight.unit),
                         ha="center", fontsize=26, color=TEXT,
                         fontweight="bold", zorder=5)
             arts.append((values[k], "art", t, None))
         elif k == last:
             ax.plot(x[k], values[k], "o", color=TEXT, markersize=16,
                     alpha=0.25, zorder=4)
-            t = ax.text(x[k] + 0.12, values[k], _vfmt(values[k]) + "%",
+            t = ax.text(x[k] + 0.12, values[k], _ulabel(values[k], insight.unit),
                         va="center", ha="left", fontsize=30, color=TEXT,
                         fontweight="bold", zorder=5)
             arts.append((values[k], "art", t, None))

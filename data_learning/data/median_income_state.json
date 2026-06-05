@@ -1,0 +1,45 @@
+{
+  "key": "median_income_state",
+  "title": "Median household income (thousand $)",
+  "unit": "thousand dollars",
+  "geography": "United States",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "ACS median household income",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Median household income by state.",
+  "points": [
+    {
+      "label": "Massachusetts",
+      "value": 96.5
+    },
+    {
+      "label": "New Jersey",
+      "value": 92.3
+    },
+    {
+      "label": "California",
+      "value": 91.0
+    },
+    {
+      "label": "Texas",
+      "value": 73.0
+    },
+    {
+      "label": "Florida",
+      "value": 67.9
+    },
+    {
+      "label": "Mississippi",
+      "value": 52.7
+    }
+  ],
+  "baseline": {
+    "label": "United States",
+    "value": 75.1
+  }
+}

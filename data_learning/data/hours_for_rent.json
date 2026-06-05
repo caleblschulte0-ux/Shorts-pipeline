@@ -1,0 +1,57 @@
+{
+  "key": "hours_for_rent",
+  "title": "Work hours to cover monthly rent",
+  "unit": "hours",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "Rent vs average wage",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Illustrative hours at average wage to pay median monthly rent.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 52,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 54,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 58,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 64,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 66,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 67,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 68,
+      "period": "2025"
+    },
+    {
+      "label": "2026",
+      "value": 69,
+      "period": "2026"
+    }
+  ]
+}

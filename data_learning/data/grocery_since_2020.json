@@ -1,0 +1,45 @@
+{
+  "key": "grocery_since_2020",
+  "title": "Grocery price rise since 2020",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2020-2026",
+  "source": {
+    "name": "CPI food-at-home components",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Cumulative price change since 2020, select grocery items.",
+  "points": [
+    {
+      "label": "Eggs",
+      "value": 86
+    },
+    {
+      "label": "Coffee",
+      "value": 48
+    },
+    {
+      "label": "Beef",
+      "value": 41
+    },
+    {
+      "label": "Bread",
+      "value": 32
+    },
+    {
+      "label": "Milk",
+      "value": 25
+    },
+    {
+      "label": "Bananas",
+      "value": 14
+    }
+  ],
+  "baseline": {
+    "label": "All groceries",
+    "value": 24.1
+  }
+}

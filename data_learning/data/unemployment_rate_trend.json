@@ -1,0 +1,57 @@
+{
+  "key": "unemployment_rate_trend",
+  "title": "U.S. unemployment rate",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual avg)",
+  "source": {
+    "name": "Unemployment rate (U-3)",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Illustrative annual average unemployment rate.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 3.7,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 8.1,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 5.4,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 3.6,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 3.7,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 4.0,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 4.2,
+      "period": "2025"
+    },
+    {
+      "label": "2026",
+      "value": 4.3,
+      "period": "2026"
+    }
+  ]
+}

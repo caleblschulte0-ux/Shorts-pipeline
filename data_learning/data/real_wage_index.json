@@ -1,0 +1,57 @@
+{
+  "key": "real_wage_index",
+  "title": "Real wage index (2019 = 100)",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "Real average hourly earnings",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Inflation-adjusted wage index; 100 = 2019 buying power.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 100,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 101,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 99,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 97,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 98,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 99,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 99,
+      "period": "2025"
+    },
+    {
+      "label": "2026",
+      "value": 100,
+      "period": "2026"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "key": "col_index_state",
+  "title": "Cost-of-living index (U.S. = 100)",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "Regional price parities",
+    "publisher": "U.S. Bureau of Economic Analysis",
+    "url": "https://www.bea.gov",
+    "officiality": "official",
+    "access_date": "2026-06-04"
+  },
+  "notes": "Regional price level relative to U.S. average.",
+  "points": [
+    {
+      "label": "Hawaii",
+      "value": 184
+    },
+    {
+      "label": "California",
+      "value": 142
+    },
+    {
+      "label": "New York",
+      "value": 125
+    },
+    {
+      "label": "Massachusetts",
+      "value": 123
+    },
+    {
+      "label": "Texas",
+      "value": 93
+    },
+    {
+      "label": "Mississippi",
+      "value": 85
+    }
+  ],
+  "baseline": {
+    "label": "United States",
+    "value": 100
+  }
+}
