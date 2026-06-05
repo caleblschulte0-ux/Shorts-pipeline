@@ -83,9 +83,9 @@
     },
     {
       "slug": "housing-affordability-wall",
-      "title": "Priced Out: The Home You Can't Afford (4 Charts)",
-      "hook": "They say just buy a house. Four charts show why you can't. Watch how they connect.",
-      "closing": "Prices up top, rates up top, rent down here. The home stays just out of reach.",
+      "title": "Priced Out: How A House Quietly Doubled In Cost",
+      "hook": "Your parents bought a house on one salary. You can't get one on two, and no, it's not the avocado toast. Here's the actual math.",
+      "closing": "Prices up, rates up, rent up, paychecks flat. You're not bad with money. The game changed, and nobody handed you the new rules.",
       "hashtags": [
         "housing",
         "realestate",
@@ -109,9 +109,8 @@
           },
           "insight_type": "trend",
           "role": "1 \u00b7 PRICES",
-          "connector": "First, home prices took off.",
           "topic": "home prices",
-          "explain": "Up almost 180 thousand dollars in just seven years."
+          "say": "Back in 2019 a normal house cost about 270 grand. That same house today? 449. Nothing about it got better. They just strapped an extra 180 thousand dollars onto the price."
         },
         {
           "source": "offline",
@@ -121,9 +120,8 @@
           },
           "insight_type": "trend",
           "role": "2 \u00b7 RATES",
-          "connector": "Then mortgage rates more than doubled.",
           "topic": "mortgage rates",
-          "explain": "Double the rate means a much bigger monthly payment for the same house."
+          "say": "Then borrowing got brutal. Mortgage rates jumped from 3.9 percent to 6.6. Sounds tiny, but on a 30-year loan that nearly doubles what you pay back. Same house, way more money handed to the bank."
         },
         {
           "source": "offline",
@@ -133,11 +131,10 @@
           },
           "insight_type": "rank",
           "role": "3 \u00b7 RENT",
-          "connector": "Rent now eats a third of the paycheck.",
           "topic": "rent burden",
           "ascending": false,
           "use_baseline": true,
-          "explain": "A third of every paycheck gone before anything else."
+          "say": "And forget saving up while you rent. In cities like Miami, rent eats 35.7 percent of your income. A third of every check gone before food, gas, or a single dollar toward a down payment."
         },
         {
           "source": "offline",
@@ -147,11 +144,10 @@
           },
           "insight_type": "rank",
           "role": "4 \u00b7 THE WALL",
-          "connector": "So a starter home costs years of pay.",
           "topic": "cost in years of pay",
           "ascending": false,
           "use_baseline": true,
-          "explain": "Over a decade of your full salary, just for the house."
+          "say": "So how long to actually buy? In San Jose, 11.3 years of your entire salary. Not your savings, every dollar you earn, for over a decade, just for the keys."
         }
       ]
     },
