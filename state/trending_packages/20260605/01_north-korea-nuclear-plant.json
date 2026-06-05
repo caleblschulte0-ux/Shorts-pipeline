@@ -1,0 +1,70 @@
+{
+  "version": 8,
+  "slug": "north-korea-nuclear-plant",
+  "title": "Kim Jong Un Just Revealed North Korea's 3rd Secret Nuke Plant",
+  "hashtags": ["northkorea", "nuclear", "kimjongun", "dprk", "uranium", "yongbyon", "nukeplant", "northkoreanuclear", "centrifuge", "koreantensions", "worldnews", "geopolitics", "nukewar", "wmd"],
+  "script": "North Korea just unveiled its 3rd uranium enrichment site — and Kim Jong Un says he's only getting started. State media showed Kim walking through rows of centrifuges at a secret facility, claiming nuclear materials production has more than doubled in 5 years. He pledged an exponential buildup. South Korea confirmed this is likely a new uranium plant at Yongbyon. Pyongyang has no intention of putting its bomb program on any negotiating table.",
+  "shots": [
+    {
+      "phrase": "unveiled its 3rd uranium enrichment site",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kim_Jong-un_2019.png",
+      "query": "Kim Jong Un North Korea military nuclear dark"
+    },
+    {
+      "phrase": "Kim walking through rows of centrifuges at a secret facility",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yongbyon_5MWe_Magnox_reactor.jpg",
+      "query": "centrifuge hall uranium enrichment nuclear plant silver tubes"
+    },
+    {
+      "phrase": "nuclear materials production has more than doubled in 5 years",
+      "query": "nuclear weapons stockpile military arsenal dark dramatic"
+    },
+    {
+      "phrase": "pledged an exponential buildup",
+      "query": "North Korea missile launch Hwasong ballistic rocket night"
+    },
+    {
+      "phrase": "new uranium plant at Yongbyon",
+      "query": "satellite image nuclear facility aerial overhead North Korea"
+    },
+    {
+      "phrase": "no intention of putting its bomb program on any negotiating table",
+      "query": "nuclear bomb explosion mushroom cloud dark dramatic"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "3rd uranium enrichment site",
+      "text": "3RD NUKE PLANT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.4
+    },
+    {
+      "phrase": "more than doubled in 5 years",
+      "text": "DOUBLED IN 5 YRS",
+      "color": "#ffaa30",
+      "size": 175,
+      "duration": 2.0
+    },
+    {
+      "phrase": "exponential buildup",
+      "text": "EXPONENTIAL GROWTH",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 170,
+      "duration": 2.2
+    },
+    {
+      "phrase": "no intention of putting its bomb program on any negotiating table",
+      "text": "NOT NEGOTIATING",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.6
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}
