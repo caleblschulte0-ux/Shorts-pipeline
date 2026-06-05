@@ -116,8 +116,11 @@ jobs:
 
       - name: Run
         env:
+          # Native multi-channel routing: post_stories uses channel "explainer",
+          # so the uploader reads YOUTUBE_TOKEN_JSON_EXPLAINER. The original
+          # YOUTUBE_TOKEN_JSON (other channel) is never referenced here.
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
-          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           YOUTUBE_EXPECTED_CHANNEL: ${{ inputs.expected_channel }}
         run: |
           set -e
