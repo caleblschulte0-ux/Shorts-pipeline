@@ -1,0 +1,82 @@
+{
+  "version": 8,
+  "slug": "us-journalist-china-agent",
+  "title": "A US Journalist Just Pleaded Guilty to Being a Spy for China",
+  "hashtags": ["espionage", "china", "fbi", "doj", "spying", "journalism", "nationalsecurity", "uschina", "guilty", "federalcourt", "intelligence", "spycase", "shorts", "fyp"],
+  "script": "An American journalist just pleaded guilty in federal court to secretly working as an agent for China for over 6 years. Prosecutors say he passed insider U.S. policy briefings, names of officials, and the texts of unpublished editorials directly to a Beijing intelligence handler. He was paid 89,000 dollars in cash and travel. The FBI caught him after a 3-year surveillance operation. He faces up to 10 years. The outlet he wrote for had no idea.",
+  "shots": [
+    {
+      "phrase": "American journalist just pleaded guilty in federal court",
+      "query": "federal courthouse steps washington dc justice columns marble"
+    },
+    {
+      "phrase": "working as an agent for China for over 6 years",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_People%27s_Republic_of_China.svg",
+      "query": "china flag beijing tiananmen square red banner government"
+    },
+    {
+      "phrase": "passed insider U.S. policy briefings",
+      "query": "classified document stack folders confidential papers desk"
+    },
+    {
+      "phrase": "directly to a Beijing intelligence handler",
+      "query": "shadowy meeting cafe street covert exchange envelope"
+    },
+    {
+      "phrase": "paid 89,000 dollars in cash and travel",
+      "query": "cash bundles hundred dollar bills stacks money briefcase"
+    },
+    {
+      "phrase": "FBI caught him after a 3-year surveillance operation",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/US-FBI-ShadedSeal.svg",
+      "query": "FBI agents surveillance van street covert investigation"
+    },
+    {
+      "phrase": "outlet he wrote for had no idea",
+      "query": "newspaper newsroom journalists writing computers reporters"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "pleaded guilty",
+      "text": "PLEADED GUILTY",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.4
+    },
+    {
+      "phrase": "agent for China for over 6 years",
+      "text": "6 YEARS AS A SPY",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.4
+    },
+    {
+      "phrase": "89,000 dollars in cash",
+      "text": "$89,000 IN CASH",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "3-year surveillance operation",
+      "text": "3-YEAR STING",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "up to 10 years",
+      "text": "10 YEARS PRISON",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

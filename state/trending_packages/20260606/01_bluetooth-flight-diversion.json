@@ -1,0 +1,69 @@
+{
+  "version": 8,
+  "slug": "bluetooth-flight-diversion",
+  "title": "A United Flight Turned Around Mid-Atlantic Over a Bluetooth Name",
+  "hashtags": ["united", "unitedairlines", "flightdiversion", "bluetooth", "aviationsafety", "wifiname", "newjersey", "spain", "flightnews", "aviation", "weirdnews", "oddly", "stupidlaws", "shorts", "fyp"],
+  "script": "A United Airlines flight bound for Spain turned around mid-Atlantic and flew back to New Jersey. The reason: a passenger's phone Bluetooth network was named something that scared the crew. The plane had already been airborne for hours when the captain made the call. 264 passengers got grounded. United said the threat wasn't real, just a name. The FAA is now looking at whether new rules are needed. One Wi-Fi nickname cost an airline tens of thousands of dollars.",
+  "shots": [
+    {
+      "phrase": "United Airlines flight bound for Spain turned around",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/United_Airlines_Boeing_767-322-ER_N676UA_(28527655062).jpg",
+      "query": "united airlines plane takeoff runway commercial jet"
+    },
+    {
+      "phrase": "passenger's phone Bluetooth network was named",
+      "query": "airplane passengers seated phones smartphones cabin interior"
+    },
+    {
+      "phrase": "airborne for hours when the captain made the call",
+      "query": "airline cockpit pilot captain controls flight deck"
+    },
+    {
+      "phrase": "264 passengers got grounded",
+      "query": "airport terminal crowd waiting delayed passengers gate"
+    },
+    {
+      "phrase": "FAA is now looking at whether new rules",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Seal_of_the_United_States_Federal_Aviation_Administration.svg",
+      "query": "federal aviation administration FAA building government regulation"
+    },
+    {
+      "phrase": "One Wi-Fi nickname cost an airline tens of thousands",
+      "query": "money dollars cash burning expensive losses calculator"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "turned around mid-Atlantic",
+      "text": "TURNED AROUND",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "Bluetooth network was named something that scared the crew",
+      "text": "A BLUETOOTH NAME",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.4
+    },
+    {
+      "phrase": "264 passengers got grounded",
+      "text": "264 GROUNDED",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "tens of thousands of dollars",
+      "text": "TENS OF THOUSANDS",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.2
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}
