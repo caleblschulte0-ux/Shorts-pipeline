@@ -1,0 +1,23 @@
+{
+  "key": "social_security_replacement",
+  "title": "Social Security income replacement rate (median earner)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2000-2026 (selected years)",
+  "source": {
+    "name": "Social Security Replacement Rate Statistics",
+    "publisher": "Social Security Administration",
+    "url": "https://www.ssa.gov/policy/docs/ssb/",
+    "officiality": "official",
+    "access_date": "2026-06-06"
+  },
+  "notes": "Illustrative. Social Security benefit as a share of pre-retirement income for median earner retiring at full retirement age.",
+  "points": [
+    {"label": "2000", "value": 41, "period": "2000"},
+    {"label": "2005", "value": 39, "period": "2005"},
+    {"label": "2010", "value": 37, "period": "2010"},
+    {"label": "2015", "value": 35, "period": "2015"},
+    {"label": "2020", "value": 33, "period": "2020"},
+    {"label": "2026", "value": 31, "period": "2026"}
+  ]
+}

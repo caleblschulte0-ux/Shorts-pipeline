@@ -1,0 +1,26 @@
+{
+  "key": "median_401k_by_age",
+  "title": "Median retirement savings balance by age group",
+  "unit": "thousand dollars",
+  "geography": "United States",
+  "time_coverage": "2026 (cross-section)",
+  "source": {
+    "name": "How America Saves",
+    "publisher": "Vanguard",
+    "url": "https://institutional.vanguard.com/content/dam/inst/vanguard-has/insights-pdfs/23_TL_HAS23_HAS_FSreport.pdf",
+    "officiality": "official",
+    "access_date": "2026-06-06"
+  },
+  "notes": "Illustrative. Median 401(k) and IRA balance by age group; recommended balance uses Fidelity 1x/3x/6x/8x salary guideline at $60k median salary.",
+  "points": [
+    {"label": "20s", "value": 8.4},
+    {"label": "30s", "value": 28},
+    {"label": "40s", "value": 76},
+    {"label": "50s", "value": 130},
+    {"label": "60s", "value": 185}
+  ],
+  "baseline": {
+    "label": "Recommended (50s)",
+    "value": 360
+  }
+}

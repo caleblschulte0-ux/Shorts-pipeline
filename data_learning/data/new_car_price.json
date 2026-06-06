@@ -1,0 +1,25 @@
+{
+  "key": "new_car_price",
+  "title": "Average new car transaction price",
+  "unit": "thousand dollars",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "New Vehicle Transaction Prices",
+    "publisher": "Edmunds",
+    "url": "https://www.edmunds.com/industry/press/",
+    "officiality": "official",
+    "access_date": "2026-06-06"
+  },
+  "notes": "Illustrative. Average transaction price (ATP) for new vehicles sold in the US.",
+  "points": [
+    {"label": "2019", "value": 38.0, "period": "2019"},
+    {"label": "2020", "value": 38.5, "period": "2020"},
+    {"label": "2021", "value": 44.0, "period": "2021"},
+    {"label": "2022", "value": 49.0, "period": "2022"},
+    {"label": "2023", "value": 48.1, "period": "2023"},
+    {"label": "2024", "value": 47.8, "period": "2024"},
+    {"label": "2025", "value": 49.2, "period": "2025"},
+    {"label": "2026", "value": 50.4, "period": "2026"}
+  ]
+}

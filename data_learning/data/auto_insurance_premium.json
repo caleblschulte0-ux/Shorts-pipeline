@@ -1,0 +1,25 @@
+{
+  "key": "auto_insurance_premium",
+  "title": "Average annual auto insurance premium",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "State of the Auto Insurance Market",
+    "publisher": "National Association of Insurance Commissioners (NAIC)",
+    "url": "https://www.naic.org/store/free/MDL-800.pdf",
+    "officiality": "official",
+    "access_date": "2026-06-06"
+  },
+  "notes": "Illustrative. Average annual expenditure for auto insurance per insured vehicle, all coverage types.",
+  "points": [
+    {"label": "2019", "value": 1190, "period": "2019"},
+    {"label": "2020", "value": 1170, "period": "2020"},
+    {"label": "2021", "value": 1330, "period": "2021"},
+    {"label": "2022", "value": 1520, "period": "2022"},
+    {"label": "2023", "value": 1890, "period": "2023"},
+    {"label": "2024", "value": 2150, "period": "2024"},
+    {"label": "2025", "value": 2390, "period": "2025"},
+    {"label": "2026", "value": 2460, "period": "2026"}
+  ]
+}

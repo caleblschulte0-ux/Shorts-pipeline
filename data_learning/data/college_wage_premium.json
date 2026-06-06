@@ -1,0 +1,26 @@
+{
+  "key": "college_wage_premium",
+  "title": "College wage premium (bachelor's vs. high school diploma)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2010-2026 (biennial)",
+  "source": {
+    "name": "Earnings and Unemployment Rates by Educational Attainment",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov/emp/tables/unemployment-earnings-education.htm",
+    "officiality": "official",
+    "access_date": "2026-06-06"
+  },
+  "notes": "Illustrative. Percent premium in median weekly earnings for bachelor's degree holders over high school diploma holders.",
+  "points": [
+    {"label": "2010", "value": 64, "period": "2010"},
+    {"label": "2012", "value": 65, "period": "2012"},
+    {"label": "2014", "value": 66, "period": "2014"},
+    {"label": "2016", "value": 65, "period": "2016"},
+    {"label": "2018", "value": 65, "period": "2018"},
+    {"label": "2020", "value": 62, "period": "2020"},
+    {"label": "2022", "value": 60, "period": "2022"},
+    {"label": "2024", "value": 57, "period": "2024"},
+    {"label": "2026", "value": 54, "period": "2026"}
+  ]
+}

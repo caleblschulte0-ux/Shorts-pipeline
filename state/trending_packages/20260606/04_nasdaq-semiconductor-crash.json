@@ -1,0 +1,64 @@
+{
+  "version": 8,
+  "slug": "nasdaq-semiconductor-crash",
+  "title": "Semiconductor Stocks Just Wiped $1 Trillion in a Single Day",
+  "hashtags": ["nasdaq", "semiconductor", "broadcom", "nvidia", "amd", "micron", "stockmarket", "aichips", "techinvesting", "marketcrash", "investing", "stocks", "wallstreet", "fyp", "shorts"],
+  "script": "The Nasdaq dropped 4 percent Thursday in one of the worst AI chip selloffs of the year. The trigger: Broadcom held its annual AI chip forecast flat. Investors expected bigger. Micron fell 6 percent. Marvell fell 8. AMD fell 6. Nvidia slid. In one trading session, roughly $1 trillion in market value evaporated from semiconductor stocks. The AI trade isn't broken. But it just got a lot more fragile.",
+  "shots": [
+    {
+      "phrase": "Nasdaq dropped 4 percent Thursday",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASDAQ.JPG",
+      "query": "nasdaq stock market display times square new york trading"
+    },
+    {
+      "phrase": "Broadcom held its annual AI chip forecast flat",
+      "query": "semiconductor chip processor ai technology circuit close-up microscopic"
+    },
+    {
+      "phrase": "Micron fell 6 percent. Marvell fell 8",
+      "query": "stock market red down arrow selloff losses chart falling screen"
+    },
+    {
+      "phrase": "$1 trillion in market value evaporated from semiconductor stocks",
+      "query": "trillion dollars market crash losses stock chart falling red"
+    },
+    {
+      "phrase": "AI trade isn't broken",
+      "query": "artificial intelligence technology data center server racks dark"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Nasdaq dropped 4 percent",
+      "text": "NASDAQ -4%",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "Broadcom held its annual AI chip forecast flat",
+      "text": "FLAT GUIDANCE",
+      "color": "#ffaa30",
+      "size": 190,
+      "duration": 2.2
+    },
+    {
+      "phrase": "$1 trillion in market value evaporated",
+      "text": "$1 TRILLION GONE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.6
+    },
+    {
+      "phrase": "a lot more fragile",
+      "text": "FRAGILE",
+      "color": "#ffaa30",
+      "size": 220,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}
