@@ -208,22 +208,38 @@ gets it."** We are NOT a middle-school slideshow that reads the numbers off
 the screen. The viewer can already SEE the number — narrating it adds nothing
 and is why people scroll away.
 
-**Reference a number, then explain what it MEANS / why it should scare or
-surprise them.** Translate every figure into something human: a paycheck, a
-year, a house, "double", "before you buy a coffee".
+**The job is not to FRAME numbers for dummies — it's to DECODE them.** Assume
+the viewer doesn't know what the number means and doesn't care until you make
+it hit. For every figure: say it, then actually spell out *what it does to a
+real person* — in dollars in their pocket, time, "double", a thing they buy,
+or a consequence they'll feel. If a smart-but-busy 15-year-old wouldn't go
+"ohhh, that's messed up" after your line, you haven't decoded it yet.
 
-- ❌ Listing (what we did wrong): *"San Jose has the highest cost in years of
-  pay, at 11.3 years."* — it's just reading the bar.
-- ✅ Explaining: *"In San Jose it takes 11.3 years of your ENTIRE salary —
-  not your savings, every dollar you earn — just for the keys."*
+The pattern per beat: **number → so what → why that's wild.** Don't stop at
+restating; land the gut-punch of what it means.
+
+- ❌ Listing: *"San Jose has the highest cost in years of pay, at 11.3 years."*
+  (reads the bar)
+- 🟡 Framing only: *"In San Jose it takes 11.3 years of pay to buy a home."*
+  (better, but they still don't FEEL it)
+- ✅ Decoding: *"In San Jose, a house costs 11.3 years of your ENTIRE salary.
+  Not what you save — every single dollar you earn, for over a decade, going
+  to nothing but the house. That's why it feels impossible. It basically is."*
+
+Another: a `6.6%` mortgage rate isn't "rates went up" — it's *"on a 30-year
+loan that's almost double the interest you hand the bank, for the exact same
+house."* An `84` cost-of-living index isn't "Hawaii is expensive" — it's
+*"the same 100 dollar grocery run costs 184 there; your money just evaporates."*
 
 Rules:
-- Each beat names **1–2 real on-chart numbers** (write them as the exact digits
-  shown, e.g. `6.6 percent`, `449`, `35.7 percent`) — those auto-circle on the
-  chart. Then immediately translate/explain them. ~20–35 spoken words/beat.
+- Each beat names **1–2 real on-chart numbers** (exact digits shown, e.g.
+  `6.6 percent`, `449`, `35.7 percent`) — those auto-circle on the chart —
+  then DECODES them as above. Spend the words on the meaning, ~30–45/beat.
 - Conversational, blunt, second-person ("you", "your paycheck"). Contractions.
   No jargon, no "as you can see", no "this chart shows".
-- The four beats must build ONE argument to a payoff in the closing.
+- The four beats build ONE argument to a payoff in the closing.
+- Total ~55–75s is fine if the words are doing real explaining — depth beats
+  brevity here. Cut filler, never the decode.
 
 ### Hooks — the single most important line
 A weak hook = nobody watches. The hook must open a curiosity gap or land a

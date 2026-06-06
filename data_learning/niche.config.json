@@ -84,8 +84,8 @@
     {
       "slug": "housing-affordability-wall",
       "title": "Priced Out: How A House Quietly Doubled In Cost",
-      "hook": "Your parents bought a house on one income. You can't on two. Here's why.",
-      "closing": "Prices up, rates up, rent up, pay flat. It's not you. The rules changed.",
+      "hook": "Your parents bought a house on one income. You can't on two, and it's not your fault. Here's what actually changed.",
+      "closing": "Prices up, rates up, rent up, pay flat. You're not bad with money, the rules changed and nobody told you.",
       "hashtags": [
         "housing",
         "realestate",
@@ -110,7 +110,7 @@
           "insight_type": "trend",
           "role": "1 \u00b7 PRICES",
           "topic": "home prices",
-          "say": "In 2019 a house cost about 270 grand. Today, 449. Same house, an extra 180 thousand bolted on."
+          "say": "A house cost 270 grand in 2019. Today, 449. That extra 180 thousand isn't a nicer place, it's the same house, a whole extra down payment for nothing."
         },
         {
           "source": "offline",
@@ -121,7 +121,7 @@
           "insight_type": "trend",
           "role": "2 \u00b7 RATES",
           "topic": "mortgage rates",
-          "say": "Then rates jumped from 3.9 percent to 6.6. That nearly doubles what you pay back over thirty years, same house."
+          "say": "Then rates jumped from 3.9 percent to 6.6. On a 30-year loan that's almost double the interest to the bank, tens of thousands more for the same house."
         },
         {
           "source": "offline",
@@ -134,7 +134,7 @@
           "topic": "rent burden",
           "ascending": false,
           "use_baseline": true,
-          "say": "And renting drains you. In Miami, rent eats 35.7 percent of your income, gone before food or gas."
+          "say": "And renting traps you. In Miami, rent eats 35.7 percent of your income, a third of every check gone before you save a dollar toward buying."
         },
         {
           "source": "offline",
@@ -147,7 +147,7 @@
           "topic": "cost in years of pay",
           "ascending": false,
           "use_baseline": true,
-          "say": "How long to actually buy? In San Jose, 11.3 years of your entire salary. Every dollar you earn, for over a decade."
+          "say": "So how long to buy? In San Jose, 11.3 years of your entire salary, every dollar you earn for a decade, just for the house. It feels impossible because it is."
         }
       ]
     },
