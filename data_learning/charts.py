@@ -294,7 +294,13 @@ def _bar_lw(n: int) -> float:
     return max(40.0, row_px * 0.5 * 72.0 / SERIES_DPI)
 
 
-def _story_bars(fig, plt, insight: Insight, subtitle: str):
+def _lblalpha(reveal: float) -> float:
+    """Number labels fade in over the last 20% of the build so they 'land'
+    as the bar/line reaches them."""
+    return max(0.0, min(1.0, (reveal - 0.8) / 0.2))
+
+
+def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """Rounded horizontal bars on a track — for rankings/outliers."""
     items = _ordered_items(insight)
     values = [p.value for p in items]
@@ -312,9 +318,10 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str):
         else:
             color = ACCENT
         _round_barh(ax, i, vmax, lw, BAR_BASE, zorder=2)          # track
-        _round_barh(ax, i, max(v, vmax * 0.012), lw, color, zorder=3)
+        _round_barh(ax, i, max(v * reveal, vmax * 0.012), lw, color, zorder=3)
         t = ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
-                    color=TEXT, fontweight="bold", zorder=4)
+                    color=TEXT, fontweight="bold", zorder=4,
+                    alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
     ax.set_yticks(range(n))
     ax.set_yticklabels([p.label for p in items], fontsize=27, color=TEXT)
@@ -337,7 +344,7 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str):
     return ax, arts
 
 
-def _story_versus(fig, plt, insight: Insight, subtitle: str):
+def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """Two tall rounded columns with big numbers — for comparisons."""
     hi, lo = insight.items[0], insight.items[1]
     pair = [(hi, HIGHLIGHT), (lo, ACCENT)]
@@ -350,10 +357,10 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str):
     arts = []
     for (p, color), x in zip(pair, xs):
         _round_barv(ax, x, vmax, lw, BAR_BASE, zorder=2)
-        _round_barv(ax, x, max(p.value, vmax * 0.02), lw, color, zorder=3)
+        _round_barv(ax, x, max(p.value * reveal, vmax * 0.02), lw, color, zorder=3)
         t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
                     ha="center", fontsize=46, color=TEXT, fontweight="bold",
-                    zorder=4)
+                    zorder=4, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
         ax.text(x, -vmax * 0.30, p.label, ha="center", fontsize=28,
                 color=color, fontweight="bold", zorder=4)
@@ -378,7 +385,7 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str):
     return ax, arts
 
 
-def _story_trend(fig, plt, insight: Insight, subtitle: str):
+def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """Line with a soft area fill, a peak callout, and a glowing end."""
     pts = insight.items
     x = list(range(len(pts)))
@@ -386,12 +393,22 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str):
     ax = fig.add_axes([0.13, 0.18, 0.80, 0.56])
     ax.set_facecolor("none")
     lo = min(values)
-    ax.fill_between(x, values, lo - (max(values) - lo) * 0.15,
-                    color=HIGHLIGHT, alpha=0.16, zorder=2)
-    ax.plot(x, values, color=HIGHLIGHT, lw=6, solid_capstyle="round",
-            zorder=3)
-    ax.plot(x, values, "o", color=HIGHLIGHT, markersize=9, zorder=4)
     span = max(values) - lo
+    # Draw the line/fill only up to the revealed fraction (it "sketches in").
+    n = len(values)
+    grown = reveal * (n - 1)
+    kf = int(grown)
+    frac = grown - kf
+    xd, yd = x[:kf + 1][:], values[:kf + 1][:]
+    if kf < n - 1 and frac > 0:
+        xd = xd + [x[kf] + frac]
+        yd = yd + [values[kf] + (values[kf + 1] - values[kf]) * frac]
+    ax.fill_between(xd, yd, lo - span * 0.15,
+                    color=HIGHLIGHT, alpha=0.16, zorder=2)
+    ax.plot(xd, yd, color=HIGHLIGHT, lw=6, solid_capstyle="round", zorder=3)
+    ax.plot(x[:kf + 1], values[:kf + 1], "o", color=HIGHLIGHT,
+            markersize=9, zorder=4)
+    la = _lblalpha(reveal)
     pk = max(range(len(values)), key=lambda i: values[i])
     last = len(values) - 1
     # Value labels at peak + end (the markers encircle these whole numbers).
@@ -401,14 +418,14 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str):
             t = ax.text(x[k], values[k] + span * 0.12,
                         _ulabel(values[k], insight.unit),
                         ha="center", fontsize=26, color=TEXT,
-                        fontweight="bold", zorder=5)
+                        fontweight="bold", zorder=5, alpha=la)
             arts.append((values[k], "art", t, None))
         elif k == last:
             ax.plot(x[k], values[k], "o", color=TEXT, markersize=16,
-                    alpha=0.25, zorder=4)
+                    alpha=0.25 * la, zorder=4)
             t = ax.text(x[k] + 0.12, values[k], _ulabel(values[k], insight.unit),
                         va="center", ha="left", fontsize=30, color=TEXT,
-                        fontweight="bold", zorder=5)
+                        fontweight="bold", zorder=5, alpha=la)
             arts.append((values[k], "art", t, None))
         else:
             arts.append((values[k], "pt", x[k], values[k]))
@@ -424,35 +441,30 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str):
     return ax, arts
 
 
-def render_story_chart(insight: Insight, out_path: Path):
-    """One *full*, visually distinct chart for a story segment. Returns
-    ``(path, anchors)`` where each anchor is
-    ``{"value", "cx", "cy", "w", "h"}`` — the centre and size (PNG px) of
-    that value's number label — so the renderer can encircle the *whole*
-    number and send the mascot to it. ``(None, [])`` if matplotlib absent."""
-    if not _have_mpl():
-        return None, []
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    fig, plt = _card_base()
-
+def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
+    """Draw the heading + the right chart kind (at the given build fraction)
+    + footer. reveal=1.0 is the final, static chart."""
     star = insight.items[0]
     if insight.kind == "comparison":
         lo = insight.items[1]
         subtitle, accent = f"{star.label} vs {lo.label}", HIGHLIGHT
         _heading(fig, insight.topic, subtitle, accent)
-        ax, specs = _story_versus(fig, plt, insight, subtitle)
+        ax, specs = _story_versus(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "trend":
         subtitle = f"{insight.items[0].label} → {insight.items[-1].label}"
         _heading(fig, insight.topic, subtitle)
-        ax, specs = _story_trend(fig, plt, insight, subtitle)
+        ax, specs = _story_trend(fig, plt, insight, subtitle, reveal)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
         _heading(fig, insight.topic, subtitle)
-        ax, specs = _story_bars(fig, plt, insight, subtitle)
-
+        ax, specs = _story_bars(fig, plt, insight, subtitle, reveal)
     _footer(fig, insight)
-    # Resolve each spec to a label box (centre + size) in PNG px (top-left).
+    return ax, specs
+
+
+def _anchors_from(fig, ax, specs) -> list:
+    """Resolve each spec to a label box (centre + size) in PNG px (top-left)."""
     fig.canvas.draw()
     h_px = SERIES_H * SERIES_DPI
     anchors = []
@@ -467,9 +479,47 @@ def render_story_chart(insight: Insight, out_path: Path):
         anchors.append({"value": float(value), "cx": float(cx),
                         "cy": float(h_px - cy_disp), "w": float(w),
                         "h": float(h)})
+    return anchors
+
+
+def render_story_chart(insight: Insight, out_path: Path):
+    """One *full*, visually distinct chart for a story segment. Returns
+    ``(path, anchors)`` where each anchor is ``{"value","cx","cy","w","h"}``
+    — the centre/size (PNG px) of that value's number label. ``(None, [])``
+    if matplotlib absent."""
+    if not _have_mpl():
+        return None, []
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    fig, plt = _card_base()
+    ax, specs = _compose_story(fig, plt, insight, 1.0)
+    anchors = _anchors_from(fig, ax, specs)
     fig.savefig(out_path, transparent=True)
     plt.close(fig)
     return out_path, anchors
+
+
+def render_story_build(insight: Insight, out_dir: Path, slug: str,
+                       frames: int = 16):
+    """Render a short 'build' frame sequence (bars grow / line draws in) that
+    ends on the EXACT static chart, so the rings still anchor. Returns
+    ``(printf_pattern, anchors)`` with anchors from the final frame, or
+    ``(None, [])`` if matplotlib is absent."""
+    if not _have_mpl():
+        return None, []
+    out_dir.mkdir(parents=True, exist_ok=True)
+    anchors: list = []
+    for f in range(1, frames + 1):
+        r = f / frames
+        r = 1.0 - (1.0 - r) ** 2            # ease-out
+        if f == frames:
+            r = 1.0                         # final frame == static chart
+        fig, plt = _card_base()
+        ax, specs = _compose_story(fig, plt, insight, r)
+        if f == frames:
+            anchors = _anchors_from(fig, ax, specs)
+        fig.savefig(out_dir / f"{slug}_build{f:02d}.png", transparent=True)
+        plt.close(fig)
+    return str(out_dir / f"{slug}_build%02d.png"), anchors
 
 
 def render_series(insight: Insight, out_dir: Path, slug: str) -> list[Path]:
