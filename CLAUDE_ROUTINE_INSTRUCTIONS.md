@@ -294,7 +294,7 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
      "slug": "kebab-case-unique",
      "title": "Hooky Title (4 Charts)",
      "hook": "One-line scroll-stopper. Watch how they connect.",
-     "closing": "The payoff line tying the four charts together.",
+     "closing": "SHORT quirky one-liner (<=12 words) — the mascot says it in a speech bubble at the end. Make it land.",
      "hashtags": ["topic", "data", "..."],
      "segments": [
        {"source":"offline","key":"<key1>","params":{"file":"<key1>.json"},
