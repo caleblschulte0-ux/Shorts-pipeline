@@ -40,8 +40,13 @@ on:
         description: 'schedule/auto: hours from now until the first upload'
         required: false
         default: '1'
+  # Chain off "Daily Shorts": it runs on main (dispatched/push), so the
+  # branches:[main] filter actually matches. The old trigger named
+  # "Auto-merge claude PRs", which runs on the PR's claude/* branch, so the
+  # filter never matched and explainer never auto-fired. The plan job below
+  # no-ops when there are no new stories, so chaining every daily run is cheap.
   workflow_run:
-    workflows: ["Auto-merge claude PRs"]
+    workflows: ["Daily Shorts"]
     types: [completed]
     branches: [main]
 
