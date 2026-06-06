@@ -246,6 +246,24 @@ def _ellipse_path_abs(cx: float, cy: float, rx: float, ry: float) -> str:
             f"b {cx - kx:.0f} {cy + ry:.0f} {cx - rx:.0f} {cy + ky:.0f} {cx - rx:.0f} {cy:.0f}")
 
 
+def _round_rect_tail(x0, y0, x1, y1, r=30, tail_x=540, tip=(540, 520)) -> str:
+    """ASS \\p1 path: a rounded rectangle (a speech bubble) with a downward
+    tail at tail_x pointing to `tip`. Used \\pos(0,0) + absolute coords."""
+    tlx, tly = tip
+    p = [
+        f"m {x0 + r} {y0}", f"l {x1 - r} {y0}",
+        f"b {x1} {y0} {x1} {y0} {x1} {y0 + r}",   # TR
+        f"l {x1} {y1 - r}",
+        f"b {x1} {y1} {x1} {y1} {x1 - r} {y1}",   # BR
+        f"l {tail_x + 34} {y1}", f"l {tlx} {tly}", f"l {tail_x - 34} {y1}",
+        f"l {x0 + r} {y1}",
+        f"b {x0} {y1} {x0} {y1} {x0} {y1 - r}",   # BL
+        f"l {x0} {y0 + r}",
+        f"b {x0} {y0} {x0} {y0} {x0 + r} {y0}",   # TL
+    ]
+    return " ".join(p)
+
+
 def build_story_ass(st: story.Story, windows, events, out: Path) -> None:
     head = f"""[Script Info]
 ScriptType: v4.00+
@@ -311,11 +329,20 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         lines.append(f"Dialogue: 1,{_ass_time(ps)},{_ass_time(pe)},Punch,,0,0,0,,"
                      f"{styled}")
 
-    # CLOSING — bottom caption + sources card.
+    # CLOSING — the mascot delivers its quip in a speech bubble (the focus),
+    # with the sources shrunk to tiny text at the very bottom.
     c0, c1 = windows[-1]
-    kinetic(sentences[-1], c0, c1)
-    src_lines = "\\N".join(["{\\b1}Sources{\\b0}"] + st.sources)
-    src_txt = "{\\fad(200,0)\\pos(540,520)}" + src_lines
+    bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&HC5D14F&\\bord4\\shad0"
+              "\\fad(250,0)\\p1}"
+              + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 524))
+              + "{\\p0}")
+    lines.append(f"Dialogue: 4,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{bubble}")
+    quip = ("{\\an5\\pos(540,308)\\fs54\\c&HFFFFFF&\\b1\\bord0\\shad2"
+            "\\fad(300,0)}" + _wrap(st.closing, 20))
+    lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{quip}")
+    src = " · ".join(st.sources)
+    src_txt = ("{\\an2\\pos(540,1898)\\fs15\\c&HA5B4C7&\\b0\\bord1\\shad0"
+               "\\fad(200,0)}Sources: " + src)
     lines.append(f"Dialogue: 0,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{src_txt}")
 
     out.write_text(head + "\n".join(lines) + "\n")
@@ -562,8 +589,9 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
         prev_tl = home
         for k, (tlx, tly, w0, w1, _a, _f) in enumerate(seq):
             gi = masc_input[k]
-            xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.3, tlx)], 1)
-            ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.3, tly)], 1)})+6*sin(2.2*t)"
+            # Calmer: a slower glide (0.55s) and a gentle bob, not a frantic one.
+            xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.55, tlx)], 1)
+            ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.55, tly)], 1)})+3*sin(1.3*t)"
             fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
             fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
                       f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
