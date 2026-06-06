@@ -1,0 +1,111 @@
+name: Explainer Long-form
+
+# Weekly: compile the recent explainer stories into ONE long-form video and
+# upload it to the explainer channel (the Shorts + long-form hybrid play).
+# Reuses the studio renderer + the channel-routed uploader + channel guard.
+
+on:
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: 'space-separated slugs (blank = most-recent published)'
+        required: false
+        default: ''
+      title:
+        description: 'long-form title (blank = auto "Your Money, Explained — <month>")'
+        required: false
+        default: ''
+      dry_run:
+        description: 'build but do not upload'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+  schedule:
+    - cron: '0 17 * * 0'        # Sundays 17:00 UTC
+
+permissions:
+  contents: write
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  longform:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    concurrency:
+      group: explainer-longform
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      - name: Install system deps
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -q ffmpeg
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt -r data_learning/requirements.txt
+      - name: Cache Kokoro TTS models (~350MB)
+        id: cache-kokoro
+        uses: actions/cache@v4
+        with:
+          path: kokoro_models/
+          key: kokoro-onnx-v1.0
+      - name: Download Kokoro TTS models if cache miss
+        if: steps.cache-kokoro.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p kokoro_models
+          curl -fsSL -o kokoro_models/kokoro-v1.0.onnx \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx"
+          curl -fsSL -o kokoro_models/voices-v1.0.bin \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
+      - name: Cache b-roll strip clips
+        id: cache-broll
+        uses: actions/cache@v4
+        with:
+          path: data_learning/broll/styles/
+          key: broll-styles-${{ hashFiles('data_learning/broll_gen.py') }}
+      - name: Build b-roll strip clips if missing
+        if: steps.cache-broll.outputs.cache-hit != 'true'
+        run: python -m data_learning.broll_gen --styles --clip-seconds 45
+      - name: Verify required secrets
+        env:
+          YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+        run: |
+          [ -z "$YT_CLIENT" ] && { echo "::error::missing YOUTUBE_CLIENT_SECRETS_JSON"; exit 1; }
+          [ -z "$YT_TOKEN" ] && { echo "::error::missing YOUTUBE_TOKEN_JSON_EXPLAINER"; exit 1; }
+          echo "Secrets present."
+      - name: Build + upload long-form
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          YOUTUBE_EXPECTED_CHANNEL: short_explainer67
+        run: |
+          ARGS=""
+          [ -n "${{ inputs.slugs }}" ] && ARGS="$ARGS --slugs ${{ inputs.slugs }}"
+          [ -n "${{ inputs.title }}" ] && ARGS="$ARGS --title '${{ inputs.title }}'"
+          [ "${{ inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
+          eval python scripts/build_longform.py $ARGS
+      - name: Persist long-form log
+        if: always()
+        run: |
+          git add state/longform_log.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "explainer: long-form log [skip ci]"
+            git push origin HEAD:main \
+              || (git pull --rebase origin main && git push origin HEAD:main)
+          fi
