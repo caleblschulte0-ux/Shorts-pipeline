@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-06-06T13:36:13.175572+00:00",
+  "fetched_at": "2026-06-06T15:15:31.259144+00:00",
   "videos": [
     {
       "video_id": "7p8hT8_NwJ8",
@@ -7,11 +7,11 @@
       "catalog_id": "jobs-beneath-surface",
       "title": "The Jobs Report Hides 3 Ugly Truths",
       "published_at": "2026-06-06T01:12:00Z",
-      "age_hours": 12.4,
-      "views": 29,
+      "age_hours": 14.1,
+      "views": 37,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 2.34
+      "views_per_hour": 2.63
     },
     {
       "video_id": "t5yKDlLmFJw",
@@ -19,11 +19,11 @@
       "catalog_id": "wage-illusion",
       "title": "Your Raise Was Fake (Here's The Math)",
       "published_at": "2026-06-06T00:11:56Z",
-      "age_hours": 13.4,
-      "views": 9,
+      "age_hours": 15.1,
+      "views": 20,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.67
+      "views_per_hour": 1.33
     },
     {
       "video_id": "CIreoASuieU",
@@ -31,11 +31,11 @@
       "catalog_id": "housing-affordability-wall",
       "title": "Priced Out: The Home You Can't Afford (4 Charts)",
       "published_at": "2026-06-05T17:01:59Z",
-      "age_hours": 20.6,
+      "age_hours": 22.2,
       "views": 6,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.29
+      "views_per_hour": 0.27
     },
     {
       "video_id": "UUzz1chQmuE",
@@ -43,11 +43,11 @@
       "catalog_id": "grocery-squeeze",
       "title": "Why Your Grocery Bill Keeps Winning",
       "published_at": "2026-06-05T22:12:06Z",
-      "age_hours": 15.4,
+      "age_hours": 17.1,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.26
+      "views_per_hour": 0.23
     },
     {
       "video_id": "jTVmjMw2Qo8",
@@ -55,11 +55,11 @@
       "catalog_id": "debt-trap",
       "title": "Americans Owe $1.4 Trillion On Plastic",
       "published_at": "2026-06-05T23:12:06Z",
-      "age_hours": 14.4,
+      "age_hours": 16.1,
       "views": 2,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.14
+      "views_per_hour": 0.12
     },
     {
       "video_id": "kHx6zjWPDsI",
@@ -67,7 +67,43 @@
       "catalog_id": "two-americas-cost",
       "title": "Same Salary, Different State, Opposite Life",
       "published_at": "2026-06-06T02:12:05Z",
-      "age_hours": 11.4,
+      "age_hours": 13.1,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "IeooShO-bjs",
+      "url": "https://youtube.com/shorts/IeooShO-bjs",
+      "catalog_id": "healthcare-cost-spiral",
+      "title": "You Pay More for Health Insurance and Get Less Every Year",
+      "published_at": "2026-06-06T15:02:00Z",
+      "age_hours": 0.2,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "nXHtOsGXG6U",
+      "url": "https://youtube.com/shorts/nXHtOsGXG6U",
+      "catalog_id": "student-loan-wall",
+      "title": "The Degree That Tripled in Cost But Pays Half as Much",
+      "published_at": "2026-06-06T15:06:22Z",
+      "age_hours": 0.2,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "UhDcpI9RZ2A",
+      "url": "https://youtube.com/shorts/UhDcpI9RZ2A",
+      "catalog_id": "retirement-savings-gap",
+      "title": "Most Americans Are Behind on Retirement. Here's How Far.",
+      "published_at": "2026-06-06T15:11:10Z",
+      "age_hours": 0.1,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -75,82 +111,82 @@
     }
   ],
   "summary": {
-    "total_videos": 6,
-    "total_views": 50,
-    "avg_views_per_video": 8.3,
-    "median_views_per_hour": 0.29,
+    "total_videos": 9,
+    "total_views": 69,
+    "avg_views_per_video": 7.7,
+    "median_views_per_hour": 0.12,
     "top_5_by_vph": [
       {
         "title": "The Jobs Report Hides 3 Ugly Truths",
-        "views_per_hour": 2.34,
-        "views": 29,
-        "age_hours": 12.4,
+        "views_per_hour": 2.63,
+        "views": 37,
+        "age_hours": 14.1,
         "url": "https://youtube.com/shorts/7p8hT8_NwJ8"
       },
       {
         "title": "Your Raise Was Fake (Here's The Math)",
-        "views_per_hour": 0.67,
-        "views": 9,
-        "age_hours": 13.4,
+        "views_per_hour": 1.33,
+        "views": 20,
+        "age_hours": 15.1,
         "url": "https://youtube.com/shorts/t5yKDlLmFJw"
       },
       {
         "title": "Priced Out: The Home You Can't Afford (4 Charts)",
-        "views_per_hour": 0.29,
+        "views_per_hour": 0.27,
         "views": 6,
-        "age_hours": 20.6,
+        "age_hours": 22.2,
         "url": "https://youtube.com/shorts/CIreoASuieU"
       },
       {
         "title": "Why Your Grocery Bill Keeps Winning",
-        "views_per_hour": 0.26,
+        "views_per_hour": 0.23,
         "views": 4,
-        "age_hours": 15.4,
+        "age_hours": 17.1,
         "url": "https://youtube.com/shorts/UUzz1chQmuE"
       },
       {
         "title": "Americans Owe $1.4 Trillion On Plastic",
-        "views_per_hour": 0.14,
+        "views_per_hour": 0.12,
         "views": 2,
-        "age_hours": 14.4,
+        "age_hours": 16.1,
         "url": "https://youtube.com/shorts/jTVmjMw2Qo8"
       }
     ],
     "bottom_5_by_vph": [
       {
+        "title": "Most Americans Are Behind on Retirement. Here's How Far.",
+        "views_per_hour": 0.0,
+        "views": 0,
+        "age_hours": 0.1,
+        "url": "https://youtube.com/shorts/UhDcpI9RZ2A"
+      },
+      {
+        "title": "The Degree That Tripled in Cost But Pays Half as Much",
+        "views_per_hour": 0.0,
+        "views": 0,
+        "age_hours": 0.2,
+        "url": "https://youtube.com/shorts/nXHtOsGXG6U"
+      },
+      {
+        "title": "You Pay More for Health Insurance and Get Less Every Year",
+        "views_per_hour": 0.0,
+        "views": 0,
+        "age_hours": 0.2,
+        "url": "https://youtube.com/shorts/IeooShO-bjs"
+      },
+      {
         "title": "Same Salary, Different State, Opposite Life",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 11.4,
+        "age_hours": 13.1,
         "url": "https://youtube.com/shorts/kHx6zjWPDsI"
       },
       {
         "title": "Americans Owe $1.4 Trillion On Plastic",
-        "views_per_hour": 0.14,
+        "views_per_hour": 0.12,
         "views": 2,
-        "age_hours": 14.4,
+        "age_hours": 16.1,
         "url": "https://youtube.com/shorts/jTVmjMw2Qo8"
-      },
-      {
-        "title": "Why Your Grocery Bill Keeps Winning",
-        "views_per_hour": 0.26,
-        "views": 4,
-        "age_hours": 15.4,
-        "url": "https://youtube.com/shorts/UUzz1chQmuE"
-      },
-      {
-        "title": "Priced Out: The Home You Can't Afford (4 Charts)",
-        "views_per_hour": 0.29,
-        "views": 6,
-        "age_hours": 20.6,
-        "url": "https://youtube.com/shorts/CIreoASuieU"
-      },
-      {
-        "title": "Your Raise Was Fake (Here's The Math)",
-        "views_per_hour": 0.67,
-        "views": 9,
-        "age_hours": 13.4,
-        "url": "https://youtube.com/shorts/t5yKDlLmFJw"
       }
     ]
   }
