@@ -193,8 +193,11 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     sources: list[str] = []
     for i, seg_cfg in enumerate(story_cfg["segments"]):
         ins = _build_insight(seg_cfg)
-        cpath, anchors = charts.render_story_chart(
-            ins, chart_dir / f"{story_cfg['slug']}_seg{i:02d}.png")
+        # A short "build" frame sequence (bars grow / line draws on) ending on
+        # the exact static chart — the renderer plays it then holds the last
+        # frame. Anchors come from the final frame so the rings still land.
+        cpath, anchors = charts.render_story_build(
+            ins, chart_dir, f"{story_cfg['slug']}_seg{i:02d}")
         say = seg_cfg.get("say")
         if say:
             # Writer-authored line: reference a number, then explain what it

@@ -509,7 +509,9 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
         idx = 4
         for i, seg in enumerate(st.segments):
             if seg.chart_path:
-                inputs += ["-loop", "1", "-i", seg.chart_path]
+                # chart_path is a printf build sequence (..._build%02d.png);
+                # read it at 24fps so the bars/line draw on.
+                inputs += ["-framerate", "24", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
         masc_input = []
@@ -535,22 +537,25 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
         fc.append("[ftex][fmask]alphamerge[foot]")
         fc.append(f"[bg][foot]overlay=0:{FOOT_Y}[bg2]")
         prev = "bg2"
-        # Charts slide up + fade in on entry (a snappy "cut" each beat instead
-        # of a flat 12s hold). The slide settles in ~0.4s — before any number is
-        # spoken — so the rings/mascot still land on their fixed anchors.
+        # Charts DRAW ON: the build sequence plays (~0.7s) then tpad holds the
+        # final frame for the rest of the beat. setpts shifts the clip so its
+        # frame 0 lands at s0; the final frame is the exact static chart, so the
+        # rings/mascot still anchor. No static 12s hold any more.
         for i, seg in enumerate(st.segments):
             if i not in seg_idx:
                 continue
             gi = seg_idx[i]
             s0, s1 = windows[1 + i]
             fd = 0.3
+            hold = max(0.5, (s1 - s0)) + 1.0
             fc.append(
-                f"[{gi}:v]scale={CHART_W}:{CHART_H},format=rgba,"
-                f"fade=t=in:st={s0:.2f}:d={fd}:alpha=1,"
+                f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
+                f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
+                f"scale={CHART_W}:{CHART_H},format=rgba,"
+                f"fade=t=in:st={s0:.2f}:d=0.18:alpha=1,"
                 f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
-            yexpr = f"{CHART_Y}+70*(1-clip((t-{s0:.2f})/0.4,0,1))"
             fc.append(
-                f"[{prev}][g{i}]overlay=x={CHART_X}:y='{yexpr}':eval=frame:"
+                f"[{prev}][g{i}]overlay=x={CHART_X}:y={CHART_Y}:"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
         # Mascots — each slides in from the previous spot (feels like it walks).
