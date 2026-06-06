@@ -189,17 +189,29 @@ jobs:
               python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" ;;
           esac
 
-      - name: Persist posted log
+      # Pull view/like counts for the channel's published videos so the daily
+      # routine learns which hooks/topics land (feedback loop, channel #3).
+      - name: Fetch explainer analytics
+        if: always() && inputs.mode != 'verify'
+        continue-on-error: true
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+        run: |
+          python3 scripts/fetch_analytics.py --channel explainer --max-age-days 60 \
+            || { echo "analytics fetch skipped"; exit 0; }
+
+      - name: Persist posted log + analytics
         if: always() && inputs.mode != 'verify'
         run: |
-          git add state/explainer_posted_log.json 2>/dev/null || true
-          # --cached so a brand-new (untracked) log is detected too.
-          if git diff --cached --quiet -- state/explainer_posted_log.json; then
-            echo "no posted-log changes to commit"
+          git add state/explainer_posted_log.json state/analytics_explainer 2>/dev/null || true
+          # --cached so brand-new (untracked) files are detected too.
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
           else
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git commit -m "explainer: update posted log [skip ci]"
+            git commit -m "explainer: update posted log + analytics [skip ci]"
             git push origin HEAD:main \
               || (git pull --rebase origin main && git push origin HEAD:main)
           fi

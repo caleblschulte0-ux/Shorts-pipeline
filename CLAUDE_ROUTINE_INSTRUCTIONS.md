@@ -190,6 +190,15 @@ auto-merges, the **Explainer Stories** workflow renders the new stories and
 schedules them to the channel hourly, automatically. Don't trigger anything,
 don't render, don't upload. The posted-log dedupes, so only NEW stories post.
 
+## Learn from what's working first
+Before picking topics, read the explainer channel's own performance:
+```bash
+cat state/analytics_explainer/latest.json 2>/dev/null
+```
+Use `summary.top_5_by_vph` / `bottom_5_by_vph` (views-per-hour) to bias the
+slate: lean into the subjects and hook styles that scored high, avoid what
+flopped. Skip if the file is missing (early days, no data yet).
+
 ## Topic rules
 - Anything genuinely interesting that's best understood through DATA / graphs:
   economy, tech & the internet, business, demographics, science, health,
