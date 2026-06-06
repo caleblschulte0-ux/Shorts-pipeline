@@ -1,0 +1,68 @@
+{
+  "version": 8,
+  "slug": "las-vegas-blanket-fort",
+  "title": "High Schoolers Just Built a Blanket Fort So Big It Beat a World Record",
+  "hashtags": ["worldrecord", "guinnessrecord", "lasvegas", "nevada", "blanketfort", "fostercare", "highschool", "clarkcounty", "students", "weirdnews", "achievement", "viral", "guinness", "fyp", "shorts"],
+  "script": "High school students in Las Vegas just built a blanket fort so massive it officially broke a Guinness World Record. The fort stretched across 14,103 square feet at a local community center — larger than most houses. Students from West Career and Technical Academy designed it all, using donated sheets and scaffolding. Guinness rules: no gaps bigger than 1 inch, sheets must touch the floor, and people must be able to sit inside. Previous record: 12,291 square feet. Gone.",
+  "shots": [
+    {
+      "phrase": "broke a Guinness World Record",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Welcome_to_fabulous_las_vegas_sign.jpg",
+      "query": "las vegas neon lights sign city nevada landmark"
+    },
+    {
+      "phrase": "14,103 square feet at a local community center",
+      "query": "huge blanket fort indoor massive ceiling sheets draped"
+    },
+    {
+      "phrase": "Students from West Career and Technical Academy",
+      "query": "high school students teamwork building project construction scaffolding"
+    },
+    {
+      "phrase": "no gaps bigger than 1 inch",
+      "query": "measuring tape ruler official measurement careful inspection close-up"
+    },
+    {
+      "phrase": "sheets must touch the floor",
+      "query": "colorful blankets sheets draped floor large indoor space community"
+    },
+    {
+      "phrase": "Previous record: 12,291 square feet",
+      "query": "guinness world records book official certificate achievement gold"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "broke a Guinness World Record",
+      "text": "WORLD RECORD",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "14,103 square feet",
+      "text": "14,103 SQ FT",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.2
+    },
+    {
+      "phrase": "no gaps bigger than 1 inch",
+      "text": "NOT 1 INCH",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Previous record: 12,291 square feet",
+      "text": "OLD RECORD: GONE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "minecraft"
+}

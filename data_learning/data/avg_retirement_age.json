@@ -1,0 +1,24 @@
+{
+  "key": "avg_retirement_age",
+  "title": "Average age Americans actually retire",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "2000-2026 (selected years)",
+  "source": {
+    "name": "Retirement Age Statistics",
+    "publisher": "Gallup / Social Security Administration",
+    "url": "https://news.gallup.com/poll/391920/americans-project-will-retire-later.aspx",
+    "officiality": "official",
+    "access_date": "2026-06-06"
+  },
+  "notes": "Illustrative. Average actual retirement age for non-retired adults who have retired in each reference year.",
+  "points": [
+    {"label": "2000", "value": 60, "period": "2000"},
+    {"label": "2005", "value": 61, "period": "2005"},
+    {"label": "2010", "value": 62, "period": "2010"},
+    {"label": "2015", "value": 63, "period": "2015"},
+    {"label": "2020", "value": 64, "period": "2020"},
+    {"label": "2023", "value": 65, "period": "2023"},
+    {"label": "2026", "value": 66, "period": "2026"}
+  ]
+}

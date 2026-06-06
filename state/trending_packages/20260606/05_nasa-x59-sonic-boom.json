@@ -1,0 +1,76 @@
+{
+  "version": 8,
+  "slug": "nasa-x59-sonic-boom",
+  "title": "NASA's Sonic Boom Killer Just Broke the Sound Barrier for the First Time",
+  "hashtags": ["nasa", "x59", "supersonicflight", "sonicboom", "quesst", "aerospace", "aviation", "lockheedmartin", "concorde", "spacenews", "science", "technology", "airforce", "fyp", "shorts"],
+  "script": "NASA's experimental X-59 jet crossed Mach 1 for the first time on June 5, 2026. The plane hit Mach 1.1 at 43,000 feet above the California desert. The X-59 is NASA's answer to the Concorde problem: it flies supersonic but generates a quiet thump instead of a boom. If regulators approve, overland supersonic flights could return for the first time in 50 years. Concorde retired in 2003 because the sonic boom was too loud. That excuse just ran out.",
+  "shots": [
+    {
+      "phrase": "NASA's experimental X-59 jet crossed Mach 1",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA%E2%80%99s_X-59_Sits_on_Ramp_(Test).jpg",
+      "query": "nasa experimental supersonic jet aircraft palmdale california ramp"
+    },
+    {
+      "phrase": "Mach 1.1 at 43,000 feet above the California desert",
+      "query": "jet aircraft contrail high altitude blue sky supersonic california desert"
+    },
+    {
+      "phrase": "Concorde problem",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Concorde_F-BVFF.jpg",
+      "query": "concorde supersonic passenger aircraft retired museum aviation history"
+    },
+    {
+      "phrase": "quiet thump instead of a boom",
+      "query": "sound wave shockwave visualization sonic boom cone aircraft"
+    },
+    {
+      "phrase": "overland supersonic flights could return",
+      "query": "supersonic passenger aircraft future travel speed next generation"
+    },
+    {
+      "phrase": "Concorde retired in 2003 because the sonic boom was too loud",
+      "query": "concorde last flight retired 2003 aircraft history aviation museum"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "crossed Mach 1 for the first time",
+      "text": "MACH 1 DONE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 200,
+      "duration": 2.4
+    },
+    {
+      "phrase": "Mach 1.1 at 43,000 feet",
+      "text": "MACH 1.1",
+      "color": "#ffffff",
+      "size": 220,
+      "duration": 2.0
+    },
+    {
+      "phrase": "quiet thump instead of a boom",
+      "text": "A THUMP, NOT BOOM",
+      "color": "#ffaa30",
+      "size": 185,
+      "duration": 2.2
+    },
+    {
+      "phrase": "first time in 50 years",
+      "text": "50 YEARS LATER",
+      "color": "#ffffff",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "That excuse just ran out",
+      "text": "EXCUSE: GONE",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818",
+      "size": 195,
+      "duration": 2.4
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}
