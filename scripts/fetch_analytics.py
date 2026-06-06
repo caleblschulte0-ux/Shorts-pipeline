@@ -83,31 +83,35 @@ def _resolve_secret(env_path_var: str, env_inline_var: str, fallback: str) -> Pa
     return Path(p) if p else (ROOT / fallback)
 
 
-def _youtube_service():
-    """Build a YouTube Data API client using the upload token. Same
-    refresh path uploaders.py:140-180 uses — no new auth required."""
-    from google.oauth2.credentials import Credentials
-    from google.auth.transport.requests import Request
-    from googleapiclient.discovery import build
+def _youtube_service(channel: str = ""):
+    """Build a YouTube Data API client. Reuses the uploader's channel-routed
+    auth so `channel="explainer"` reads YOUTUBE_TOKEN_JSON_EXPLAINER (the
+    second channel) and "" reads the original YOUTUBE_TOKEN_JSON — no auth
+    logic duplicated."""
+    from uploaders import YouTubeUploader
+    return YouTubeUploader(channel=channel)._service()
 
-    client_secrets = _resolve_secret(
-        "YOUTUBE_CLIENT_SECRETS", "YOUTUBE_CLIENT_SECRETS_JSON",
-        "yt_client_secret.json",
-    )
-    token_path = _resolve_secret(
-        "YOUTUBE_TOKEN", "YOUTUBE_TOKEN_JSON",
-        "yt_token.json",
-    )
-    if not token_path.exists():
-        sys.exit(f"missing token at {token_path} — run setup_youtube.py first")
-    creds = Credentials.from_authorized_user_file(str(token_path))
-    if not creds.valid:
-        if creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-            token_path.write_text(creds.to_json())
-        else:
-            sys.exit("token expired and no refresh_token — re-auth required")
-    return build("youtube", "v3", credentials=creds)
+
+def _entries(log: dict) -> list[dict]:
+    """Normalize either posted-log shape to {url, posted_at, ident, title}.
+    The trending log is a list of {video_url, posted_at, catalog_id}; the
+    explainer log is a dict {slug: {url, at, publish_at, title}}."""
+    posted = log.get("posted", [])
+    out: list[dict] = []
+    if isinstance(posted, dict):                 # explainer channel
+        for slug, e in posted.items():
+            if not e or e.get("skipped"):
+                continue
+            out.append({"url": e.get("url"), "ident": slug,
+                        "posted_at": e.get("publish_at") or e.get("at"),
+                        "title": e.get("title")})
+    else:                                         # trending channel
+        for e in posted:
+            out.append({"url": e.get("video_url"),
+                        "ident": e.get("catalog_id"),
+                        "posted_at": e.get("posted_at"),
+                        "title": e.get("title")})
+    return out
 
 
 def _chunked(seq, n):
@@ -150,22 +154,22 @@ def _hours_since(iso_ts: str | None) -> float | None:
     return max(0.01, (datetime.now(timezone.utc) - dt).total_seconds() / 3600.0)
 
 
-def build_snapshot(max_age_days: int = 30) -> dict:
+def build_snapshot(posted_log: Path, channel: str = "",
+                   max_age_days: int = 30) -> dict:
     """Pull stats for every uploaded video the posted_log knows about
     that's within max_age_days, and return a snapshot dict. New videos
     (no views yet) are included so the routine sees they exist; their
     views_per_hour is 0 not undefined."""
-    if not POSTED_LOG.exists():
-        sys.exit(f"missing {POSTED_LOG} — nothing to analyse")
-    log = json.loads(POSTED_LOG.read_text())
-    entries = log.get("posted", [])
+    if not posted_log.exists():
+        sys.exit(f"missing {posted_log} — nothing to analyse")
+    entries = _entries(json.loads(posted_log.read_text()))
 
     # Pair each log entry with its video ID + age. Drop entries older
     # than max_age_days so we don't waste quota on dead history.
     cutoff_hours = max_age_days * 24
     candidates: list[tuple[str, dict]] = []
     for entry in entries:
-        vid = _extract_id(entry.get("video_url"))
+        vid = _extract_id(entry.get("url"))
         if not vid:
             continue
         age = _hours_since(entry.get("posted_at"))
@@ -178,7 +182,7 @@ def build_snapshot(max_age_days: int = 30) -> dict:
         return {"fetched_at": datetime.now(timezone.utc).isoformat(),
                 "videos": [], "summary": {"total_videos": 0}}
 
-    service = _youtube_service()
+    service = _youtube_service(channel)
     stats = _fetch_stats(service, ids)
 
     videos: list[dict] = []
@@ -192,8 +196,8 @@ def build_snapshot(max_age_days: int = 30) -> dict:
         age = _hours_since(s.get("published_at")) or _hours_since(entry.get("posted_at")) or 0.01
         videos.append({
             "video_id": vid,
-            "url": entry.get("video_url"),
-            "catalog_id": entry.get("catalog_id"),
+            "url": entry.get("url"),
+            "catalog_id": entry.get("ident"),
             "title": s["title"],
             "published_at": s["published_at"],
             "age_hours": round(age, 1),
@@ -240,20 +244,30 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-age-days", type=int, default=30,
                     help="Skip uploads older than this (default 30)")
+    ap.add_argument("--channel", default="",
+                    help="'' = trending channel (default); 'explainer' reads "
+                         "the explainer posted-log + token")
     ap.add_argument("--dry-run", action="store_true",
                     help="Print to stdout, don't write to disk")
     args = ap.parse_args()
 
-    snap = build_snapshot(max_age_days=args.max_age_days)
+    if args.channel:
+        posted_log = ROOT / "state" / f"{args.channel}_posted_log.json"
+        out_dir = ROOT / "state" / f"analytics_{args.channel}"
+    else:
+        posted_log, out_dir = POSTED_LOG, ANALYTICS_DIR
+
+    snap = build_snapshot(posted_log, channel=args.channel,
+                          max_age_days=args.max_age_days)
 
     if args.dry_run:
         print(json.dumps(snap, indent=2))
         return 0
 
-    ANALYTICS_DIR.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
     today = datetime.now(timezone.utc).strftime("%Y%m%d")
-    snap_path = ANALYTICS_DIR / f"{today}.json"
-    latest_path = ANALYTICS_DIR / "latest.json"
+    snap_path = out_dir / f"{today}.json"
+    latest_path = out_dir / "latest.json"
     snap_path.write_text(json.dumps(snap, indent=2))
     latest_path.write_text(json.dumps(snap, indent=2))
 
