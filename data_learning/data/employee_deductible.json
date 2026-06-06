@@ -1,0 +1,25 @@
+{
+  "key": "employee_deductible",
+  "title": "Average annual deductible for single coverage",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "Employer Health Benefits Survey",
+    "publisher": "KFF (Kaiser Family Foundation)",
+    "url": "https://www.kff.org/health-costs/report/2025-employer-health-benefits-survey/",
+    "officiality": "official",
+    "access_date": "2026-06-06"
+  },
+  "notes": "Illustrative. Average deductible among covered workers with a general annual deductible for single coverage.",
+  "points": [
+    {"label": "2019", "value": 1655, "period": "2019"},
+    {"label": "2020", "value": 1644, "period": "2020"},
+    {"label": "2021", "value": 1669, "period": "2021"},
+    {"label": "2022", "value": 1763, "period": "2022"},
+    {"label": "2023", "value": 1921, "period": "2023"},
+    {"label": "2024", "value": 2044, "period": "2024"},
+    {"label": "2025", "value": 2218, "period": "2025"},
+    {"label": "2026", "value": 2340, "period": "2026"}
+  ]
+}

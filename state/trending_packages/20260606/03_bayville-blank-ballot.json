@@ -1,0 +1,67 @@
+{
+  "version": 8,
+  "slug": "bayville-blank-ballot",
+  "title": "A Town of 7,000 Is Voting for Mayor — With a Blank Ballot",
+  "hashtags": ["bayville", "longisland", "newyork", "election", "mayor", "blankvote", "writein", "localelection", "weirdnews", "politics", "oddly", "viral", "voting", "fyp", "shorts"],
+  "script": "The village of Bayville on Long Island has 7,000 residents and a mayoral election on June 16. There is just one problem: nobody ran. The sitting mayor stepped down. No one else filed by the deadline. Officials say this has never happened before in Bayville's history. On election day, residents will show up to a completely blank ballot. The next mayor will be decided entirely by write-in votes. The job pays $5,000 a year.",
+  "shots": [
+    {
+      "phrase": "village of Bayville on Long Island",
+      "query": "long island new york village suburban town main street neighborhood"
+    },
+    {
+      "phrase": "mayoral election on June 16",
+      "query": "election ballot box voting booth polling station official"
+    },
+    {
+      "phrase": "nobody ran",
+      "query": "empty form blank paper no candidates running office election"
+    },
+    {
+      "phrase": "completely blank ballot",
+      "query": "blank voting ballot empty form paper pen election day"
+    },
+    {
+      "phrase": "write-in votes",
+      "query": "hand writing name on ballot pen election write in candidate"
+    },
+    {
+      "phrase": "job pays $5,000 a year",
+      "query": "small town mayor office government building town hall"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "nobody ran",
+      "text": "NOBODY RAN",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 2.6
+    },
+    {
+      "phrase": "completely blank ballot",
+      "text": "BLANK BALLOT",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.2
+    },
+    {
+      "phrase": "write-in votes",
+      "text": "WRITE IT IN",
+      "color": "#ffffff",
+      "size": 195,
+      "duration": 2.0
+    },
+    {
+      "phrase": "job pays $5,000 a year",
+      "text": "$5K A YEAR",
+      "color": "#ffaa30",
+      "size": 190,
+      "duration": 2.0
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "minecraft"
+}

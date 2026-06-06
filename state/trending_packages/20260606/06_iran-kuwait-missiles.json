@@ -1,0 +1,78 @@
+{
+  "version": 8,
+  "slug": "iran-kuwait-missiles",
+  "title": "Iran Fired 7 Missiles at Kuwait's Airport. Flights Were Suspended.",
+  "hashtags": ["iran", "kuwait", "middleeast", "missile", "airportstrike", "nucleardeal", "persiangulf", "worldnews", "geopolitics", "breakingnews", "usiran", "war", "diplomacy", "fyp", "shorts"],
+  "script": "Iran launched 7 ballistic missiles and drones at Kuwait International Airport on Thursday, forcing the suspension of all flights. Terminal 1 took direct hits. Kuwait declared a national emergency. Iran said it was responding to US strikes on its military positions. Tehran is now demanding $24 billion in frozen assets before nuclear talks resume. Iranian officials called the negotiations a complete deadlock. The Persian Gulf just became the most dangerous airspace on Earth.",
+  "shots": [
+    {
+      "phrase": "Kuwait International Airport",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kuwait_International_Airport.jpg",
+      "query": "kuwait international airport terminal middle east aviation hub"
+    },
+    {
+      "phrase": "7 ballistic missiles and drones",
+      "query": "ballistic missile launch military explosion fire sky attack"
+    },
+    {
+      "phrase": "Terminal 1 took direct hits",
+      "query": "airport explosion fire damage destruction aerial military strike"
+    },
+    {
+      "phrase": "$24 billion in frozen assets",
+      "query": "frozen assets sanctions financial embargo international finance money"
+    },
+    {
+      "phrase": "Persian Gulf",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_Hormuz_(MODIS_2020-12-04).jpg",
+      "query": "persian gulf strait hormuz aerial satellite view middle east waters"
+    },
+    {
+      "phrase": "most dangerous airspace on Earth",
+      "query": "military jets aircraft warzone danger red sky hostile airspace"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "7 ballistic missiles and drones",
+      "text": "7 MISSILES",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 2.6
+    },
+    {
+      "phrase": "suspension of all flights",
+      "text": "ALL FLIGHTS GROUNDED",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 180,
+      "duration": 2.4
+    },
+    {
+      "phrase": "$24 billion in frozen assets",
+      "text": "$24 BILLION",
+      "color": "#ffaa30",
+      "size": 200,
+      "duration": 2.2
+    },
+    {
+      "phrase": "complete deadlock",
+      "text": "DEADLOCK",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 220,
+      "duration": 2.4
+    },
+    {
+      "phrase": "most dangerous airspace on Earth",
+      "text": "MOST DANGEROUS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 195,
+      "duration": 2.2
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "minecraft"
+}

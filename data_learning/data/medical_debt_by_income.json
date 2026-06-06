@@ -1,0 +1,26 @@
+{
+  "key": "medical_debt_by_income",
+  "title": "Share of adults with medical debt, by income",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025-2026 (cross-section)",
+  "source": {
+    "name": "Health Care Debt Survey",
+    "publisher": "KFF (Kaiser Family Foundation) / Consumer Financial Protection Bureau",
+    "url": "https://www.kff.org/health-costs/poll-finding/kff-health-care-debt-survey/",
+    "officiality": "official",
+    "access_date": "2026-06-06"
+  },
+  "notes": "Illustrative. Share of adults in each income bracket reporting current medical or dental debt.",
+  "points": [
+    {"label": "Under $25k", "value": 36},
+    {"label": "$25k-$50k", "value": 26},
+    {"label": "$50k-$75k", "value": 18},
+    {"label": "$75k-$100k", "value": 12},
+    {"label": "Over $100k", "value": 7}
+  ],
+  "baseline": {
+    "label": "US Average",
+    "value": 20
+  }
+}

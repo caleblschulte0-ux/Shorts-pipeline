@@ -493,6 +493,274 @@
           "say": "And rent is the knockout. A one-bedroom in California averages 2,150 dollars, more than double the cheapest states."
         }
       ]
+    },
+    {
+      "slug": "healthcare-cost-spiral",
+      "title": "You Pay More for Health Insurance and Get Less Every Year",
+      "hook": "Your insurance plan didn't change. Your employer's plan didn't change. But every year you pay more and your deductible is bigger. Here's what the numbers actually show.",
+      "closing": "More money in, less protection. That's the deal.",
+      "hashtags": [
+        "healthcare",
+        "healthinsurance",
+        "medicaldebt",
+        "deductible",
+        "costofliving",
+        "kff",
+        "health",
+        "money",
+        "finance",
+        "data",
+        "usa",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "employer_premium",
+          "params": {
+            "file": "employer_premium.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE PREMIUM",
+          "topic": "employer health insurance premium",
+          "say": "Your employer paid 8,120 dollars per worker for health insurance in 2026, up from 6,015 in 2019. That's 35 percent more money for the same coverage window — and that cost shapes what's left over for your raise."
+        },
+        {
+          "source": "offline",
+          "key": "employee_deductible",
+          "params": {
+            "file": "employee_deductible.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · YOUR DEDUCTIBLE",
+          "topic": "average annual deductible",
+          "say": "The deductible — what you pay before insurance kicks in — hit 2,340 dollars in 2026. In 2019 it was 1,655. That's 685 extra dollars out of your pocket every year before you're even covered. You're paying more to wait longer."
+        },
+        {
+          "source": "offline",
+          "key": "medical_debt_by_income",
+          "params": {
+            "file": "medical_debt_by_income.json"
+          },
+          "insight_type": "rank",
+          "role": "3 · WHO GETS BURIED",
+          "topic": "share with medical debt by income",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "36 percent of Americans earning under 25 thousand carry medical debt. But even at 50 to 75 thousand, still 18 percent. Medical debt isn't just a poverty problem — it's a system that doesn't protect anyone."
+        },
+        {
+          "source": "offline",
+          "key": "out_of_pocket_max",
+          "params": {
+            "file": "out_of_pocket_max.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · THE WORST CASE",
+          "topic": "out-of-pocket maximum",
+          "say": "When things go really wrong, you're on the hook for up to 5,620 dollars before insurance pays everything. In 2019, that cap was 3,970. The safety net just got a 1,650 dollar hole in it."
+        }
+      ]
+    },
+    {
+      "slug": "student-loan-wall",
+      "title": "The Degree That Tripled in Cost But Pays Half as Much",
+      "hook": "A college degree used to guarantee the middle class. The price tripled. The payoff shrank. Nobody told you. Here's what the data shows.",
+      "closing": "Most expensive ever. Worth less than before.",
+      "hashtags": [
+        "studentloans",
+        "college",
+        "education",
+        "debt",
+        "tuition",
+        "bls",
+        "money",
+        "finance",
+        "data",
+        "usa",
+        "economics",
+        "studentdebt"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "student_debt_total",
+          "params": {
+            "file": "student_debt_total.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE PILE",
+          "topic": "total student loan debt",
+          "say": "Total student debt hit 1.74 trillion dollars. In 2010 it was 870 billion. The pile doubled in 16 years and keeps growing as a new class graduates every May owing more than the last."
+        },
+        {
+          "source": "offline",
+          "key": "student_loan_monthly",
+          "params": {
+            "file": "student_loan_monthly.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · YOUR PAYMENT",
+          "topic": "average monthly student loan payment",
+          "say": "The average monthly student loan payment is 352 dollars. That's higher than most car payments — and it goes to a degree you already have, every single month, for years."
+        },
+        {
+          "source": "offline",
+          "key": "college_wage_premium",
+          "params": {
+            "file": "college_wage_premium.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE PAYOFF",
+          "topic": "college wage premium",
+          "say": "The wage premium for a bachelor's degree fell from 66 percent in 2014 to 54 percent today. The gap between what college grads and high school grads earn is closing. The price went up while the advantage shrank."
+        },
+        {
+          "source": "offline",
+          "key": "student_loan_default",
+          "params": {
+            "file": "student_loan_default.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · FALLING BEHIND",
+          "topic": "student loan default rate",
+          "say": "And 10.2 percent of federal borrowers are in default. After COVID payment pauses ended, defaults jumped 5 points in one year. The debt is real, and for a lot of people, the math doesn't work."
+        }
+      ]
+    },
+    {
+      "slug": "retirement-savings-gap",
+      "title": "Most Americans Are Behind on Retirement. Here's How Far.",
+      "hook": "The average 50-year-old has 130 thousand dollars saved for retirement. They need 360 thousand. That gap isn't closing — it's growing. Here's why.",
+      "closing": "Save more or work forever. Those are basically the options.",
+      "hashtags": [
+        "retirement",
+        "savings",
+        "401k",
+        "socialsecurity",
+        "personalfinance",
+        "vanguard",
+        "ssa",
+        "money",
+        "finance",
+        "data",
+        "usa",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "median_401k_by_age",
+          "params": {
+            "file": "median_401k_by_age.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · WHAT PEOPLE HAVE",
+          "topic": "median retirement savings by age",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "The median 50-something has 130 thousand saved for retirement. Fidelity says you should have 6 times your salary at 50 — around 360 thousand at median wages. That's a 230,000 dollar hole in the middle of your working life."
+        },
+        {
+          "source": "offline",
+          "key": "social_security_replacement",
+          "params": {
+            "file": "social_security_replacement.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · SOCIAL SECURITY",
+          "topic": "Social Security replacement rate",
+          "say": "Social Security used to replace 41 percent of your pre-retirement income. By 2026, it's down to 31 percent. The gap your savings need to fill just got 10 points wider. But people aren't saving more — they're saving less."
+        },
+        {
+          "source": "offline",
+          "key": "retirement_savings_rate",
+          "params": {
+            "file": "retirement_savings_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE SAVINGS RATE",
+          "topic": "personal savings rate",
+          "say": "The US personal savings rate hit 3.5 percent in 2026, near a historic low. You can't close a 230,000 dollar gap saving 3 cents on every dollar. The math requires something to change — income, costs, or both."
+        },
+        {
+          "source": "offline",
+          "key": "avg_retirement_age",
+          "params": {
+            "file": "avg_retirement_age.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · THE RESULT",
+          "topic": "average retirement age",
+          "say": "So what do people do? They work longer. The average retirement age climbed from 60 in 2000 to 66 in 2026. Six extra years of your life because the math didn't work. That's not a choice, that's a system forcing your hand."
+        }
+      ]
+    },
+    {
+      "slug": "car-cost-explosion",
+      "title": "A New Car Costs What a House Used To. Here's the Receipt.",
+      "hook": "The average new car is 50 thousand dollars. Loan rates are near 8 percent. Insurance alone costs 2,460 a year. Add it up and a car costs what rent used to. Here's how it got this way.",
+      "closing": "It's not the avocado toast. It's the car payment.",
+      "hashtags": [
+        "car",
+        "autocosts",
+        "carloan",
+        "autoinsurance",
+        "carprices",
+        "edmunds",
+        "federalreserve",
+        "money",
+        "finance",
+        "data",
+        "usa",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "new_car_price",
+          "params": {
+            "file": "new_car_price.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE STICKER",
+          "topic": "average new car transaction price",
+          "say": "The average new car transaction hit 50,400 dollars in 2026, up from 38,000 in 2019. That extra 12,400 isn't better technology — it's the same truck, just inflated. And it's the number you're financing."
+        },
+        {
+          "source": "offline",
+          "key": "auto_loan_rate",
+          "params": {
+            "file": "auto_loan_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE RATE",
+          "topic": "auto loan interest rate",
+          "say": "Auto loan rates peaked at 8.1 percent in 2024 — the highest since 2007. On a 50 thousand dollar car over 60 months, that's roughly 10,700 dollars in interest alone. You're buying almost a second car just in interest."
+        },
+        {
+          "source": "offline",
+          "key": "auto_insurance_premium",
+          "params": {
+            "file": "auto_insurance_premium.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE INSURANCE",
+          "topic": "average auto insurance premium",
+          "say": "Insurance now costs 2,460 dollars a year on average, more than double the 1,190 it cost in 2019. That's 205 dollars a month just to own the car — before you start it."
+        },
+        {
+          "source": "offline",
+          "key": "monthly_car_ownership",
+          "params": {
+            "file": "monthly_car_ownership.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · THE TOTAL BILL",
+          "topic": "total monthly car ownership cost",
+          "say": "Add the payment, insurance, fuel, and maintenance. Total monthly car ownership hit 1,920 dollars in 2026. That's what a 2-bedroom apartment rented for in much of the Midwest not long ago. The car loses value. The lease doesn't."
+        }
+      ]
     }
   ],
   "videos": [

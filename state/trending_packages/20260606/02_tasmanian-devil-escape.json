@@ -1,0 +1,75 @@
+{
+  "version": 8,
+  "slug": "tasmanian-devil-escape",
+  "title": "An Endangered Tasmanian Devil Escaped a Wildlife Park. Nobody Can Find Her.",
+  "hashtags": ["tasmaniandevil", "australia", "queensland", "wildlifepark", "endangered", "animalnews", "missinganimal", "drone", "wildlifesearch", "weirdnews", "animals", "oddly", "naturenews", "fyp", "shorts"],
+  "script": "A 2-year-old Tasmanian devil named Mary escaped from a wildlife park in Queensland, Australia — and has been on the run for 4 days. She's endangered, nocturnal, and can roam 10 miles in a single night. Twelve wildlife experts, thermal imaging drones, and a sniffer dog have searched around the clock. CCTV shows Mary sprinting into the dark just hours before anyone noticed. Tasmanian devils have been extinct on the Australian mainland for 3,000 years. Nobody's found her yet.",
+  "shots": [
+    {
+      "phrase": "Tasmanian devil named Mary escaped",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+      "query": "tasmanian devil marsupial animal endangered australia wildlife"
+    },
+    {
+      "phrase": "wildlife park in Queensland, Australia",
+      "query": "australia wildlife park animal enclosure zoo queensland subtropical"
+    },
+    {
+      "phrase": "thermal imaging drones",
+      "query": "thermal infrared drone aerial night search wildlife heat signature"
+    },
+    {
+      "phrase": "CCTV shows Mary sprinting into the dark",
+      "query": "security camera night footage dark wildlife park cctv escape"
+    },
+    {
+      "phrase": "extinct on the Australian mainland for 3,000 years",
+      "query": "australia outback wild landscape endangered species nocturnal forest"
+    },
+    {
+      "phrase": "Nobody's found her yet",
+      "query": "missing animal search wildlife tracking sniffer dog rescue team"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "on the run for 4 days",
+      "text": "4 DAYS GONE",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 200,
+      "duration": 2.2
+    },
+    {
+      "phrase": "10 miles in a single night",
+      "text": "10 MILES A NIGHT",
+      "color": "#ffaa30",
+      "size": 190,
+      "duration": 2.0
+    },
+    {
+      "phrase": "Twelve wildlife experts",
+      "text": "12 EXPERTS",
+      "color": "#ffffff",
+      "size": 185,
+      "duration": 2.0
+    },
+    {
+      "phrase": "extinct on the Australian mainland for 3,000 years",
+      "text": "EXTINCT 3,000 YRS",
+      "color": "#ff3030",
+      "flash_bg": "#220404",
+      "size": 185,
+      "duration": 2.4
+    },
+    {
+      "phrase": "Nobody's found her yet",
+      "text": "STILL MISSING",
+      "color": "#ffaa30",
+      "size": 195,
+      "duration": 2.2
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}
