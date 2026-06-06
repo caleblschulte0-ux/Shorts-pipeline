@@ -1,38 +1,38 @@
-# Daily Trending Shorts — 2026-06-05
+# Daily Trending Shorts — 2026-06-06
 
 - queued: **6**
 - succeeded: **6**
 - failed: **0**
 
 ## Posted
-- **Kim Jong Un Just Revealed North Korea's 3rd Secret Nuke Plant**
-  - topic: Kim Jong Un Just Revealed North Korea's 3rd Secret Nuke Plant
-  - publishes: `2026-06-05T13:00:00Z`
-  - https://youtube.com/shorts/aQIFAiY3tys
-  - took: 118.3s
-- **UN Peacekeeper Killed As Lebanon's Last-Chance Ceasefire Collapses**
-  - topic: UN Peacekeeper Killed As Lebanon's Last-Chance Ceasefire Collapses
-  - publishes: `2026-06-05T15:00:00Z`
-  - https://youtube.com/shorts/u1A3pPviml0
-  - took: 101.7s
-- **Broadcom Erased $320 Billion Overnight — AI Chips Just Got Complicated**
-  - topic: Broadcom Erased $320 Billion Overnight — AI Chips Just Got Complicated
-  - publishes: `2026-06-05T17:00:00Z`
-  - https://youtube.com/shorts/Kny5IKR_YZU
-  - took: 114.3s
-- **A Flesh-Eating Parasite Just Crossed Into the US For the First Time in Decades**
-  - topic: A Flesh-Eating Parasite Just Crossed Into the US For the First Time in Decades
-  - publishes: `2026-06-05T19:00:00Z`
-  - https://youtube.com/shorts/w_JlkKAuVAQ
-  - took: 101.7s
-- **Foxconn and Intel Just Bet Everything on Building AI's Hardware Backbone**
-  - topic: Foxconn and Intel Just Bet Everything on Building AI's Hardware Backbone
-  - publishes: `2026-06-05T21:00:00Z`
-  - https://youtube.com/shorts/Ip2Hor8Zdow
-  - took: 96.6s
-- **Trump Says US-India Trade Deal Is Coming — But It's Not Done Yet**
-  - topic: Trump Says US-India Trade Deal Is Coming — But It's Not Done Yet
-  - publishes: `2026-06-05T23:00:00Z`
-  - https://youtube.com/shorts/znpAFTAy6S8
-  - took: 92.9s
+- **High Schoolers Just Built a Blanket Fort So Big It Beat a World Record**
+  - topic: High Schoolers Just Built a Blanket Fort So Big It Beat a World Record
+  - publishes: `2026-06-06T13:00:00Z`
+  - https://youtube.com/shorts/CIFGn60B2b4
+  - took: 185.9s
+- **An Endangered Tasmanian Devil Escaped a Wildlife Park. Nobody Can Find Her.**
+  - topic: An Endangered Tasmanian Devil Escaped a Wildlife Park. Nobody Can Find Her.
+  - publishes: `2026-06-06T15:00:00Z`
+  - https://youtube.com/shorts/wWtWXK0Zi2Y
+  - took: 183.4s
+- **A Town of 7,000 Is Voting for Mayor — With a Blank Ballot**
+  - topic: A Town of 7,000 Is Voting for Mayor — With a Blank Ballot
+  - publishes: `2026-06-06T17:00:00Z`
+  - https://youtube.com/shorts/QH7puELADuo
+  - took: 136.0s
+- **Semiconductor Stocks Just Wiped $1 Trillion in a Single Day**
+  - topic: Semiconductor Stocks Just Wiped $1 Trillion in a Single Day
+  - publishes: `2026-06-06T19:00:00Z`
+  - https://youtube.com/shorts/CjcI0C3Y604
+  - took: 121.3s
+- **NASA's Sonic Boom Killer Just Broke the Sound Barrier for the First Time**
+  - topic: NASA's Sonic Boom Killer Just Broke the Sound Barrier for the First Time
+  - publishes: `2026-06-06T21:00:00Z`
+  - https://youtube.com/shorts/4OP8CwtXWJE
+  - took: 146.5s
+- **Iran Fired 7 Missiles at Kuwait's Airport. Flights Were Suspended.**
+  - topic: Iran Fired 7 Missiles at Kuwait's Airport. Flights Were Suspended.
+  - publishes: `2026-06-06T23:00:00Z`
+  - https://youtube.com/shorts/absrI6em474
+  - took: 125.7s
 
