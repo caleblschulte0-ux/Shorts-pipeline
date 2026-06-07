@@ -1,0 +1,33 @@
+{
+  "key": "preventable_deaths",
+  "title": "Preventable causes of death, United States (thousands per year)",
+  "unit": "thousand",
+  "geography": "United States",
+  "time_coverage": "annual",
+  "source": {
+    "name": "National Vital Statistics",
+    "publisher": "CDC / NCHS",
+    "url": "https://www.cdc.gov/nchs/",
+    "officiality": "official",
+    "access_date": "2026-06-07"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Smoking",
+      "value": 480
+    },
+    {
+      "label": "Poor diet",
+      "value": 300
+    },
+    {
+      "label": "Alcohol",
+      "value": 178
+    },
+    {
+      "label": "Inactivity",
+      "value": 110
+    }
+  ]
+}

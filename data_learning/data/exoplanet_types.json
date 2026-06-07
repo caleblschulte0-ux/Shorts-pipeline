@@ -1,0 +1,33 @@
+{
+  "key": "exoplanet_types",
+  "title": "Confirmed exoplanets by type",
+  "unit": "",
+  "geography": "Milky Way",
+  "time_coverage": "through 2024",
+  "source": {
+    "name": "NASA Exoplanet Archive",
+    "publisher": "NASA/Caltech",
+    "url": "https://exoplanetarchive.ipac.caltech.edu/",
+    "officiality": "official",
+    "access_date": "2026-06-07"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Neptune-like",
+      "value": 2000
+    },
+    {
+      "label": "Gas giant",
+      "value": 1700
+    },
+    {
+      "label": "Super-Earth",
+      "value": 1680
+    },
+    {
+      "label": "Terrestrial",
+      "value": 210
+    }
+  ]
+}

@@ -12,76 +12,6 @@
   ],
   "stories": [
     {
-      "slug": "us-economy-squeeze",
-      "title": "The US Economy In 4 Charts (The Last One Hurts)",
-      "hook": "They say the economy's booming. You're not.",
-      "closing": "Good news up top, your wallet down here.",
-      "hashtags": [
-        "economy",
-        "inflation",
-        "jobs",
-        "interestrates",
-        "costofliving",
-        "bls",
-        "fed",
-        "money",
-        "finance",
-        "economics",
-        "usa",
-        "data"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "state_unemployment",
-          "params": {
-            "file": "state_unemployment_2026_04.json"
-          },
-          "insight_type": "rank",
-          "ascending": true,
-          "use_baseline": true,
-          "topic": "unemployment rate",
-          "role": "1 \u00b7 THE GOOD NEWS",
-          "connector": "First, jobs look strong."
-        },
-        {
-          "source": "offline",
-          "key": "fed_funds_rate",
-          "params": {
-            "file": "fed_funds_rate.json"
-          },
-          "insight_type": "trend",
-          "topic": "interest rates",
-          "role": "2 \u00b7 EVEN BETTER",
-          "connector": "And the Fed is finally cutting rates again."
-        },
-        {
-          "source": "offline",
-          "key": "cpi_components",
-          "params": {
-            "file": "cpi_components_2026_04.json"
-          },
-          "insight_type": "comparison",
-          "use_baseline": true,
-          "topic": "inflation by category",
-          "role": "3 \u00b7 THE CATCH",
-          "connector": "But here's the catch. Prices never stopped climbing."
-        },
-        {
-          "source": "offline",
-          "key": "prices_since_2020",
-          "params": {
-            "file": "prices_since_2020.json"
-          },
-          "insight_type": "rank",
-          "ascending": false,
-          "topic": "price rise since 2020",
-          "role": "4 \u00b7 WHAT YOU FEEL",
-          "connector": "And the damage adds up."
-        }
-      ]
-    },
-    {
       "slug": "housing-affordability-wall",
       "title": "Priced Out: How A House Quietly Doubled In Cost",
       "hook": "One income bought your parents a house. Not anymore.",
@@ -763,270 +693,202 @@
       ]
     },
     {
-      "slug": "rent-burden-crisis",
-      "title": "Renting Was the Safe Choice. Then This Happened.",
-      "hook": "Rent just ate two weeks of your paycheck.",
-      "closing": "Two weeks of work. One month of rent. Zero savings.",
+      "slug": "exoplanet-explosion",
+      "title": "We've Found 5,600 Worlds Beyond Our Own",
+      "hook": "We've found thousands of worlds beyond our own.",
+      "closing": "Turns out we're not the only address out here.",
       "hashtags": [
-        "rent",
-        "housing",
-        "renters",
-        "costofliving",
-        "affordability",
-        "census",
-        "bea",
-        "money",
-        "finance",
+        "space",
+        "astronomy",
+        "exoplanets",
+        "nasa",
+        "kepler",
+        "science",
+        "universe",
+        "planets",
+        "stars",
+        "cosmos",
         "data",
-        "usa",
-        "economics"
+        "telescope"
       ],
       "segments": [
         {
           "source": "offline",
-          "key": "hours_for_rent",
+          "key": "confirmed_exoplanets_by_year",
           "params": {
-            "file": "hours_for_rent.json"
+            "file": "confirmed_exoplanets_by_year.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 WORK HOURS",
-          "topic": "hours of work to cover rent",
-          "say": "In 2019, covering one month's rent took 52 hours of work \u2014 about a week and a half. Now it takes 69 hours. That's 17 extra hours of your life gone before groceries, the car, or anything else."
+          "role": "1 \u00b7 THE EXPLOSION",
+          "topic": "planets found around other stars",
+          "say": "Thirty years ago we knew of zero planets outside our solar system. Today, 5,600 confirmed worlds. Almost all found after 2009, when NASA's Kepler telescope started staring at one patch of sky. One generation, from nothing to thousands."
         },
         {
           "source": "offline",
-          "key": "rent_share_income",
+          "key": "exoplanet_detection_methods",
           "params": {
-            "file": "rent_share_income.json"
+            "file": "exoplanet_detection_methods.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 THE TAKE",
-          "topic": "rent burden by city",
-          "ascending": false,
-          "use_baseline": true,
-          "say": "In Miami, rent swallows 35.7 percent of income \u2014 more than a third of every paycheck, gone before you buy food or gas. The national average is 30.2. There's no city where it feels easy."
+          "role": "2 \u00b7 HOW WE FIND THEM",
+          "topic": "exoplanets found by method",
+          "say": "Most weren't seen, they were inferred. 4,300 were found by the transit method: catching a star dim by a fraction of a percent as a planet crosses it. We never see the planet. We see its shadow."
         },
         {
           "source": "offline",
-          "key": "food_share_income",
+          "key": "exoplanet_types",
           "params": {
-            "file": "food_share_income.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 ADD FOOD",
-          "topic": "food share of income",
-          "say": "Now add food: 11.8 percent of income, up from 9.8 in 2019. Rent and food combined eat nearly half your paycheck in most American cities. That leaves almost nothing for anything unexpected."
-        },
-        {
-          "source": "offline",
-          "key": "savings_rate",
-          "params": {
-            "file": "savings_rate.json"
-          },
-          "insight_type": "trend",
-          "role": "4 \u00b7 NOTHING LEFT",
-          "topic": "the personal savings rate",
-          "say": "The savings rate crashed to 3.6 percent in 2026, down from 8.8 in 2019. Renters aren't building a down payment. They're running paycheck to paycheck, falling further behind buying a home every single year."
-        }
-      ]
-    },
-    {
-      "slug": "prices-vs-paychecks",
-      "title": "Your Raise Came. Everything Else Came Faster.",
-      "hook": "Your raise was real. It vanished anyway. Here's why.",
-      "closing": "Your raise came. Your bills came first.",
-      "hashtags": [
-        "wages",
-        "inflation",
-        "costofliving",
-        "prices",
-        "childcare",
-        "bls",
-        "economy",
-        "money",
-        "finance",
-        "data",
-        "usa",
-        "economics"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "cost_vs_wage",
-          "params": {
-            "file": "cost_vs_wage.json"
-          },
-          "insight_type": "comparison",
-          "role": "1 \u00b7 THE RACE",
-          "topic": "price rise since 2020 vs wages",
-          "use_baseline": true,
-          "say": "Since 2020, wages rose 22 percent. Sounds like a win \u2014 until you see what outran them. Childcare jumped 31 percent, electricity 29, rent 27, groceries 24. Every essential cost you can't skip beat the money coming in."
-        },
-        {
-          "source": "offline",
-          "key": "prices_since_2020",
-          "params": {
-            "file": "prices_since_2020.json"
+            "file": "exoplanet_types.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 IN REAL NUMBERS",
-          "topic": "what actually costs more since 2020",
-          "ascending": false,
-          "say": "The raw numbers are worse. Eggs up 44 percent since 2020. Gas up 33. Rent up 29. Groceries up 25. The things you buy every week cost a third more than 6 years ago, on money that grew 22."
+          "role": "3 \u00b7 WHAT'S OUT THERE",
+          "topic": "exoplanets by type",
+          "say": "Most are nothing like home. 2,000 are Neptune-like ice giants and 1,700 are blazing gas giants. Only about 210 are small rocky worlds like Earth. The galaxy is full of planets, just not many you'd want to land on."
         },
         {
           "source": "offline",
-          "key": "cc_delinquency",
+          "key": "exoplanet_nearest_distance",
           "params": {
-            "file": "cc_delinquency.json"
+            "file": "exoplanet_nearest_distance.json"
           },
-          "insight_type": "trend",
-          "role": "3 \u00b7 THE RESULT",
-          "topic": "the share falling behind on credit cards",
-          "say": "People made up the difference on credit cards. Now 3.9 percent of card balances are delinquent \u2014 the highest since the last recession. The margin is gone. The debt is real. The balance grows at 22.9 percent interest."
-        },
-        {
-          "source": "offline",
-          "key": "multiple_jobholders",
-          "params": {
-            "file": "multiple_jobholders.json"
-          },
-          "insight_type": "trend",
-          "role": "4 \u00b7 THE RESPONSE",
-          "topic": "Americans working two or more jobs",
-          "say": "The other response: 9 million Americans now work two or more jobs. Not for vacation money \u2014 for the electricity bill. Childcare alone ate the raise before it showed up. That's not a spending problem. That's a math problem."
+          "insight_type": "rank",
+          "role": "4 \u00b7 THE NEIGHBORS",
+          "topic": "distance to the nearest exoplanets",
+          "say": "And a few are close. Proxima b orbits the nearest star to the Sun, just 4.2 light years away. Close, in cosmic terms. At today's fastest spacecraft, only about 75,000 years to get there.",
+          "ascending": true
         }
       ]
     },
     {
-      "slug": "the-hidden-bills",
-      "title": "It's Not the Lattes. Here's What Actually Doubled.",
-      "hook": "It's not the lattes. It's these hidden bills.",
-      "closing": "Not the lattes. The bills you can't cut.",
+      "slug": "what-actually-kills-you",
+      "title": "You're Scared of the Wrong Things. Here's What Kills You.",
+      "hook": "You're scared of the wrong things. Here's proof.",
+      "closing": "Sharks are fine. Watch out for the couch.",
       "hashtags": [
-        "autoinsurance",
-        "insurance",
-        "deductible",
-        "carloan",
-        "healthcare",
-        "costofliving",
-        "naic",
-        "kff",
-        "aaa",
-        "money",
-        "finance",
-        "economics"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "auto_insurance_premium",
-          "params": {
-            "file": "auto_insurance_premium.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 THE INSURANCE",
-          "topic": "average auto insurance premium",
-          "say": "Auto insurance hit 2,460 dollars a year in 2026 \u2014 more than double the 1,190 it cost in 2019. That's 205 dollars a month just to park the car in the driveway. Before you've driven an inch."
-        },
-        {
-          "source": "offline",
-          "key": "employee_deductible",
-          "params": {
-            "file": "employee_deductible.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 THE DEDUCTIBLE",
-          "topic": "average health insurance deductible",
-          "say": "Your health deductible hit 2,340 dollars in 2026 \u2014 up from 1,655 in 2019. That's 685 more out of pocket every year before insurance covers a cent. You pay more in premiums, then pay again to actually use it."
-        },
-        {
-          "source": "offline",
-          "key": "monthly_car_ownership",
-          "params": {
-            "file": "monthly_car_ownership.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 THE CAR BILL",
-          "topic": "total monthly car ownership cost",
-          "say": "Total monthly car ownership \u2014 payment, insurance, gas, maintenance \u2014 hit 1,920 dollars in 2026. In 2019 it was 1,080. That's 840 more every month for the same car. More than most people's rent was in 2015."
-        },
-        {
-          "source": "offline",
-          "key": "out_of_pocket_max",
-          "params": {
-            "file": "out_of_pocket_max.json"
-          },
-          "insight_type": "trend",
-          "role": "4 \u00b7 THE WORST CASE",
-          "topic": "health insurance out-of-pocket maximum",
-          "say": "And if you get seriously sick, the out-of-pocket maximum is 5,620 dollars in 2026, up from 3,970 in 2019. Insurance covers the rest \u2014 after you've already paid what used to be a month's take-home. This is before streaming."
-        }
-      ]
-    },
-    {
-      "slug": "savings-safety-net",
-      "title": "Most Americans Have No Emergency Fund. Here's the Proof.",
-      "hook": "Most Americans are one surprise bill from disaster.",
-      "closing": "No savings. Two jobs. Still falling behind.",
-      "hashtags": [
-        "savings",
-        "emergencyfund",
-        "personalfinance",
-        "creditcards",
-        "debt",
-        "bea",
-        "fed",
-        "bls",
-        "money",
-        "finance",
+        "health",
         "data",
-        "economics"
+        "mortality",
+        "cdc",
+        "statistics",
+        "psychology",
+        "fear",
+        "safety",
+        "science",
+        "facts",
+        "usa",
+        "wellness"
       ],
       "segments": [
         {
           "source": "offline",
-          "key": "savings_rate",
+          "key": "leading_causes_of_death",
           "params": {
-            "file": "savings_rate.json"
+            "file": "leading_causes_of_death.json"
           },
-          "insight_type": "trend",
-          "role": "1 \u00b7 THE CUSHION",
-          "topic": "the personal savings rate",
-          "say": "The personal savings rate crashed from 8.8 percent in 2019 to 3.6 percent today. Of every 100 dollars you bring home, 96 dollars and 40 cents is already gone. Emergency fund? What emergency fund?"
+          "insight_type": "rank",
+          "role": "1 \u00b7 WHAT ACTUALLY KILLS US",
+          "topic": "annual US deaths (thousands)",
+          "say": "Here's what actually kills Americans. Heart disease takes 695 thousand lives a year. Cancer, 605 thousand. Together, nearly half of all deaths, quiet and slow and almost never breaking news."
         },
         {
           "source": "offline",
-          "key": "multiple_jobholders",
+          "key": "feared_deaths",
           "params": {
-            "file": "multiple_jobholders.json"
+            "file": "feared_deaths.json"
           },
-          "insight_type": "trend",
-          "role": "2 \u00b7 THE WORKAROUND",
-          "topic": "Americans working two or more jobs",
-          "say": "9 million Americans now hold two or more jobs. For millions of them, the second job IS the emergency fund \u2014 deployed in real time, month to month. It's not ambition. It's survival."
+          "insight_type": "rank",
+          "role": "2 \u00b7 WHAT WE FEAR",
+          "topic": "annual US deaths from things we fear",
+          "say": "Now the things that terrify us. Sharks kill about 1 American a year. Lightning, 20. The stuff in your nightmares is a rounding error next to the stuff in your kitchen.",
+          "ascending": true
         },
         {
           "source": "offline",
-          "key": "cc_delinquency",
+          "key": "preventable_deaths",
           "params": {
-            "file": "cc_delinquency.json"
+            "file": "preventable_deaths.json"
           },
-          "insight_type": "trend",
-          "role": "3 \u00b7 THE FALLOUT",
-          "topic": "the credit card delinquency rate",
-          "say": "When the math breaks down, people fall behind. Card delinquencies hit 3.9 percent \u2014 the highest since the financial crisis. Millions of households are missing payments on debt they took out just to cover the basics."
+          "insight_type": "rank",
+          "role": "3 \u00b7 THE REAL KILLERS",
+          "topic": "preventable US deaths (thousands)",
+          "say": "And the real killers are habits. Smoking still takes 480 thousand Americans a year. Bad diet, around 300 thousand. Not accidents or bad luck, slow daily choices that quietly stack the deck."
         },
         {
           "source": "offline",
-          "key": "part_time_economic",
+          "key": "us_life_expectancy",
           "params": {
-            "file": "part_time_economic.json"
+            "file": "us_life_expectancy.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 STILL STUCK",
-          "topic": "people stuck in part-time work against their will",
-          "say": "4.8 million people are stuck in part-time work who want full-time hours. They'd earn more if they could. Instead they're caught between a job that doesn't pay enough and no savings to bridge the gap."
+          "role": "4 \u00b7 THE RESULT",
+          "topic": "US life expectancy",
+          "say": "Add it up and something rare happened. American life expectancy fell, from 78.8 years to 76.4 in just two years. The steepest drop since World War Two."
+        }
+      ]
+    },
+    {
+      "slug": "wildlife-collapse",
+      "title": "Earth Lost Most of Its Wildlife in 50 Years",
+      "hook": "Earth lost most of its wildlife in one lifetime.",
+      "closing": "The world went quiet and nobody noticed.",
+      "hashtags": [
+        "nature",
+        "wildlife",
+        "conservation",
+        "climate",
+        "wwf",
+        "animals",
+        "biodiversity",
+        "science",
+        "earth",
+        "environment",
+        "extinction",
+        "data"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "living_planet_index",
+          "params": {
+            "file": "living_planet_index.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE COLLAPSE",
+          "topic": "average wildlife population (1970 = 100)",
+          "say": "Since 1970, the average wildlife population shrank by nearly three-quarters. Scientists track thousands of species in one index, and it fell from 100 to just 27. In a single lifetime, two of every three wild animals, gone."
+        },
+        {
+          "source": "offline",
+          "key": "wildlife_decline_region",
+          "params": {
+            "file": "wildlife_decline_region.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 WHERE IT'S WORST",
+          "topic": "wildlife decline by region",
+          "say": "It's worst in the tropics. Latin America and the Caribbean lost 95 percent of their wildlife. Africa, 76 percent. The richest ecosystems on Earth are emptying the fastest."
+        },
+        {
+          "source": "offline",
+          "key": "wildlife_decline_habitat",
+          "params": {
+            "file": "wildlife_decline_habitat.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 UNDER THE SURFACE",
+          "topic": "wildlife decline by habitat",
+          "say": "Freshwater life is vanishing fastest, down 85 percent. The rivers and lakes you grew up near now hold a fraction of the fish, frogs, and birds they once did."
+        },
+        {
+          "source": "offline",
+          "key": "extinction_drivers",
+          "params": {
+            "file": "extinction_drivers.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 WHO DID IT",
+          "topic": "what's driving the collapse",
+          "say": "And it's mostly us. Habitat loss, farms, roads, and cities, threatens 80 percent of at-risk species. Not one villain, just our footprint spreading into everywhere else's home."
         }
       ]
     }

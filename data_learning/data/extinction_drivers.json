@@ -1,0 +1,37 @@
+{
+  "key": "extinction_drivers",
+  "title": "Share of threatened species affected, by driver",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "IUCN Red List",
+    "publisher": "IUCN",
+    "url": "https://www.iucnredlist.org/",
+    "officiality": "official",
+    "access_date": "2026-06-07"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Habitat loss",
+      "value": 80
+    },
+    {
+      "label": "Overuse",
+      "value": 65
+    },
+    {
+      "label": "Invasive species",
+      "value": 35
+    },
+    {
+      "label": "Pollution",
+      "value": 30
+    },
+    {
+      "label": "Climate change",
+      "value": 25
+    }
+  ]
+}

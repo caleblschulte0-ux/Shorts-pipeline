@@ -1,0 +1,37 @@
+{
+  "key": "feared_deaths",
+  "title": "Deaths per year from things we fear, United States",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "annual avg",
+  "source": {
+    "name": "Injury Facts",
+    "publisher": "National Safety Council",
+    "url": "https://injuryfacts.nsc.org/",
+    "officiality": "official",
+    "access_date": "2026-06-07"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Sharks",
+      "value": 1
+    },
+    {
+      "label": "Bee stings",
+      "value": 7
+    },
+    {
+      "label": "Lightning",
+      "value": 20
+    },
+    {
+      "label": "Hurricanes",
+      "value": 50
+    },
+    {
+      "label": "Tornadoes",
+      "value": 70
+    }
+  ]
+}
