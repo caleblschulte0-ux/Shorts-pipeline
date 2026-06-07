@@ -296,10 +296,18 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Cap,,0,0,0,,"
                          f"{ch.strip()}")
 
-    # 0: HOOK — big kinetic text up top.
+    # 0: HOOK — punchy KINETIC reveal. Show a few big words at a time, synced
+    # to the voice, so the open is a moving hook instead of one static wall of
+    # text (the instant-swipe killer). Each chunk pops in and replaces the last.
     h0, h1 = windows[0]
-    hook_txt = "{\\fad(200,150)}" + _wrap(st.hook, 20)
-    lines.append(f"Dialogue: 0,{_ass_time(h0)},{_ass_time(h1)},Hook,,0,0,0,,{hook_txt}")
+    hchunks = _chunks(st.hook, 3)
+    if hchunks:
+        hstep = (h1 - h0) / len(hchunks)
+        for j, ch in enumerate(hchunks):
+            cs, ce = h0 + j * hstep, h0 + (j + 1) * hstep
+            pop = ("{\\fad(110,80)\\fscx84\\fscy84\\t(0,130,\\fscx100\\fscy100)}")
+            lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Hook,,0,0,0,,"
+                         f"{pop}{ch.strip()}")
 
     # Per segment: step chip + kinetic captions.
     for i, seg in enumerate(st.segments):
