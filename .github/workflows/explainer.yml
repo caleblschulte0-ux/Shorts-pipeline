@@ -40,13 +40,13 @@ on:
         description: 'schedule/auto: hours from now until the first upload'
         required: false
         default: '1'
-  # PAUSED (2026-06-07, user request): auto-posting is held while content is
-  # being adjusted. The chain off "Daily Shorts" is disabled so NOTHING posts
-  # automatically. Re-enable by uncommenting the workflow_run block below.
-  # workflow_run:
-  #   workflows: ["Daily Shorts"]
-  #   types: [completed]
-  #   branches: [main]
+  # Chain off "Daily Shorts" (runs on main, so branches:[main] matches): after
+  # each daily batch, render + post any un-posted explainer stories. The plan
+  # job no-ops when there's nothing new, so chaining every daily run is cheap.
+  workflow_run:
+    workflows: ["Daily Shorts"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: write          # persist state/explainer_posted_log.json
