@@ -388,15 +388,32 @@ _JSONLD_VIDEO_RE = re.compile(
     re.I,
 )
 
+# Direct MP4 URLs hidden in JavaScript player config blobs. Covers:
+#   - JWPlayer (`"file":"...mp4"`) — used by local TV affiliates
+#   - Video.js / `"src":"...mp4"` inside a sources array
+#   - Generic "mp4_url":"...", "download_video_url":"...", "videoUrl":"..."
+# These catch the player config that gets server-rendered as a JS
+# variable / JSON blob inline in the article HTML. We don't need to
+# parse the JS structure — just regex the field. Extension filter on
+# the URL keeps false positives down. Strips JSON-escaped slashes.
+_PLAYER_CONFIG_RE = re.compile(
+    r'(?:"file"|"src"|"mp4_url"|"download_video_url"|"videoUrl"|"hlsUrl"|"playbackUrl")'
+    r'\s*:\s*"([^"]+\.(?:mp4|m4v|webm|mov)[^"]*)"',
+    re.I,
+)
+
 
 def _extract_video_urls(html: str) -> list[str]:
     """Pull every plausible video URL out of an article HTML body —
     og:video meta + Twitter player stream + raw <video>/<source> tags
-    + JSON-LD VideoObject.contentUrl. Returns unique results in the
-    order they appeared."""
+    + JSON-LD VideoObject.contentUrl + direct MP4 URLs hidden in
+    JavaScript player config blobs (JWPlayer/Video.js/Brightcove
+    payloads inlined as JSON). Returns unique results in the order
+    they appeared."""
     seen: set[str] = set()
     out: list[str] = []
-    for pat in (_OG_VIDEO_RE, _HTML5_VIDEO_RE, _JSONLD_VIDEO_RE):
+    for pat in (_OG_VIDEO_RE, _HTML5_VIDEO_RE, _JSONLD_VIDEO_RE,
+                _PLAYER_CONFIG_RE):
         for m in pat.finditer(html):
             cand = m.group(1)
             # JSON-encoded slashes survive into the regex match.

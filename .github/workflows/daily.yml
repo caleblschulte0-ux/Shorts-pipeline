@@ -212,6 +212,17 @@ jobs:
           # registration at https://www.dvidshub.net/api/. Skips
           # silently if unset.
           DVIDS_API_KEY: ${{ secrets.DVIDS_API_KEY }}
+          # Opt-in: when set to "1", topic_video Source 8 pulls trending
+          # video from YouTube WITHOUT the CC license filter — relying on
+          # fair-use commentary doctrine. Read as a repo Variable (not a
+          # Secret) since it's just an on/off flag. Set at:
+          # https://github.com/caleblschulte0-ux/Shorts-pipeline/settings/variables/actions
+          # Off = empty string; the topic_video code checks for == "1".
+          # YouTube Content ID is automated and can demonetize / strike
+          # broadcaster clips; our pipeline's transformation (TTS voice
+          # over, stacked layout, captions, 2-second sub-cuts) is the
+          # fair-use defense.
+          TOPIC_VIDEO_ALLOW_STRIKES: ${{ vars.TOPIC_VIDEO_ALLOW_STRIKES }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           COUNT: ${{ github.event.inputs.count || '6' }}
           FORCE: ${{ github.event.inputs.force }}
