@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-06-07T14:08:41Z",
+  "scouted_at": "2026-06-07T14:22:44Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,12 +20,12 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 109,
-    "wikimedia_commons_count": 0,
+    "wikimedia_commons_count": 1,
     "youtube_trending_count": 50,
     "lemmy_count": 0,
     "hackernews_count": 2
   },
-  "total": 161,
+  "total": 162,
   "reddit_posts": [],
   "wikipedia_events": [
     {
@@ -1119,7 +1119,15 @@
       "extract": "Jean Harlow was an American actress. Known for her portrayal of \"bad girl\" characters, she was the leading sex symbol of the early 1930s and one of the defining figures of the pre-Code era of American cinema. Often nicknamed the \"Blonde Bombshell\" and the \"Platinum Blonde,\u201d Harlow was popular for her \"Laughing Vamp\" screen persona. Harlow was in the film industry for only nine years, but she became one of Hollywood's biggest movie stars, whose image has endured in the public eye. In 1999, the Am"
     }
   ],
-  "wikimedia_videos": [],
+  "wikimedia_videos": [
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:The life of a Army recruiter.webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:The_life_of_a_Army_recruiter.webm",
+      "uploaded_at": "2026-06-07T14:17:40Z",
+      "uploader": "Illegitimate Barrister"
+    }
+  ],
   "youtube_trending": [
     {
       "source_type": "youtube_trending",
@@ -1128,8 +1136,8 @@
       "channel": "elcarteldesantatv",
       "published_at": "2026-06-07T05:32:14Z",
       "iso_duration": "PT3M52S",
-      "views": 182607,
-      "likes": 40085,
+      "views": 186699,
+      "likes": 41861,
       "url": "https://www.youtube.com/watch?v=mSlpFhEPkgc",
       "thumbnail": "https://i.ytimg.com/vi/mSlpFhEPkgc/hqdefault.jpg"
     },
@@ -1140,8 +1148,8 @@
       "channel": "IGN",
       "published_at": "2026-06-06T19:32:32Z",
       "iso_duration": "PT50S",
-      "views": 378663,
-      "likes": 23700,
+      "views": 378266,
+      "likes": 23750,
       "url": "https://www.youtube.com/watch?v=8N9QN4X1pIk",
       "thumbnail": "https://i.ytimg.com/vi/8N9QN4X1pIk/hqdefault.jpg"
     },
@@ -1152,8 +1160,8 @@
       "channel": "thegameawards",
       "published_at": "2026-06-06T00:27:34Z",
       "iso_duration": "PT3H7M39S",
-      "views": 10885703,
-      "likes": 148304,
+      "views": 10895906,
+      "likes": 148357,
       "url": "https://www.youtube.com/watch?v=QdNmVWXuYec",
       "thumbnail": "https://i.ytimg.com/vi/QdNmVWXuYec/hqdefault.jpg"
     },
@@ -1164,8 +1172,8 @@
       "channel": "VT1S",
       "published_at": "2026-06-05T06:59:57Z",
       "iso_duration": "PT3M56S",
-      "views": 22526,
-      "likes": 1802,
+      "views": 22609,
+      "likes": 1803,
       "url": "https://www.youtube.com/watch?v=mTN5DTJEFEs",
       "thumbnail": "https://i.ytimg.com/vi/mTN5DTJEFEs/hqdefault.jpg"
     },
@@ -1176,8 +1184,8 @@
       "channel": "Resident Evil",
       "published_at": "2026-06-05T23:31:56Z",
       "iso_duration": "PT4M",
-      "views": 1300418,
-      "likes": 111476,
+      "views": 1304049,
+      "likes": 111655,
       "url": "https://www.youtube.com/watch?v=uxUMXniTfjM",
       "thumbnail": "https://i.ytimg.com/vi/uxUMXniTfjM/hqdefault.jpg"
     },
@@ -1188,8 +1196,8 @@
       "channel": "MrBeast Gaming",
       "published_at": "2026-06-06T16:00:01Z",
       "iso_duration": "PT26M49S",
-      "views": 14377607,
-      "likes": 404792,
+      "views": 14526247,
+      "likes": 407074,
       "url": "https://www.youtube.com/watch?v=5F5MKI_jXJw",
       "thumbnail": "https://i.ytimg.com/vi/5F5MKI_jXJw/hqdefault.jpg"
     },
@@ -1200,8 +1208,8 @@
       "channel": "Taylor Swift - Topic",
       "published_at": "2026-06-05T04:00:37Z",
       "iso_duration": "PT2M59S",
-      "views": 3260383,
-      "likes": 154506,
+      "views": 3264069,
+      "likes": 154705,
       "url": "https://www.youtube.com/watch?v=SzJXikN_4wA",
       "thumbnail": "https://i.ytimg.com/vi/SzJXikN_4wA/hqdefault.jpg"
     },
@@ -1212,8 +1220,8 @@
       "channel": "FINAL FANTASY",
       "published_at": "2026-06-05T23:06:05Z",
       "iso_duration": "PT2M23S",
-      "views": 557778,
-      "likes": 36693,
+      "views": 558491,
+      "likes": 36721,
       "url": "https://www.youtube.com/watch?v=PH3ox5krci8",
       "thumbnail": "https://i.ytimg.com/vi/PH3ox5krci8/hqdefault.jpg"
     },
@@ -1224,8 +1232,8 @@
       "channel": "Wemmbu",
       "published_at": "2026-06-06T23:10:50Z",
       "iso_duration": "PT1H57M41S",
-      "views": 2329627,
-      "likes": 160408,
+      "views": 2368646,
+      "likes": 161512,
       "url": "https://www.youtube.com/watch?v=4v_jk0w7wR0",
       "thumbnail": "https://i.ytimg.com/vi/4v_jk0w7wR0/hqdefault.jpg"
     },
@@ -1236,8 +1244,8 @@
       "channel": "KittenSneeze",
       "published_at": "2026-06-06T20:00:06Z",
       "iso_duration": "PT4M7S",
-      "views": 299079,
-      "likes": 35832,
+      "views": 303355,
+      "likes": 36152,
       "url": "https://www.youtube.com/watch?v=u61fUWCKAG4",
       "thumbnail": "https://i.ytimg.com/vi/u61fUWCKAG4/hqdefault.jpg"
     },
@@ -1249,7 +1257,7 @@
       "published_at": "2026-06-05T21:49:08Z",
       "iso_duration": "PT1M44S",
       "views": 735939,
-      "likes": 36963,
+      "likes": 37020,
       "url": "https://www.youtube.com/watch?v=ITPzxITngqA",
       "thumbnail": "https://i.ytimg.com/vi/ITPzxITngqA/hqdefault.jpg"
     },
@@ -1260,7 +1268,7 @@
       "channel": "StanRP",
       "published_at": "2026-06-07T03:59:13Z",
       "iso_duration": "PT10S",
-      "views": 278735,
+      "views": 278740,
       "likes": 2427,
       "url": "https://www.youtube.com/watch?v=J1tpJyqUYk0",
       "thumbnail": "https://i.ytimg.com/vi/J1tpJyqUYk0/hqdefault.jpg"
@@ -1272,8 +1280,8 @@
       "channel": "4 Shooters Only\u2122",
       "published_at": "2026-06-05T16:02:07Z",
       "iso_duration": "PT3M",
-      "views": 399917,
-      "likes": 24346,
+      "views": 401269,
+      "likes": 24423,
       "url": "https://www.youtube.com/watch?v=PH9_dmcGM3E",
       "thumbnail": "https://i.ytimg.com/vi/PH9_dmcGM3E/hqdefault.jpg"
     },
@@ -1284,8 +1292,8 @@
       "channel": "GameSpot",
       "published_at": "2026-06-05T23:41:08Z",
       "iso_duration": "PT48M4S",
-      "views": 447378,
-      "likes": 10286,
+      "views": 448060,
+      "likes": 10299,
       "url": "https://www.youtube.com/watch?v=F26g5SSslCU",
       "thumbnail": "https://i.ytimg.com/vi/F26g5SSslCU/hqdefault.jpg"
     },
@@ -1296,8 +1304,8 @@
       "channel": "SMii7Yplus",
       "published_at": "2026-06-06T19:13:39Z",
       "iso_duration": "PT34M3S",
-      "views": 773902,
-      "likes": 42180,
+      "views": 780101,
+      "likes": 42419,
       "url": "https://www.youtube.com/watch?v=wHfY1TjmRnc",
       "thumbnail": "https://i.ytimg.com/vi/wHfY1TjmRnc/hqdefault.jpg"
     },
@@ -1308,8 +1316,8 @@
       "channel": "NoCap",
       "published_at": "2026-06-05T21:00:02Z",
       "iso_duration": "PT2M54S",
-      "views": 210331,
-      "likes": 15679,
+      "views": 210639,
+      "likes": 15714,
       "url": "https://www.youtube.com/watch?v=C_OiWCF4zE0",
       "thumbnail": "https://i.ytimg.com/vi/C_OiWCF4zE0/hqdefault.jpg"
     },
@@ -1320,8 +1328,8 @@
       "channel": "Monster Hunter",
       "published_at": "2026-06-05T23:17:02Z",
       "iso_duration": "PT2M2S",
-      "views": 658936,
-      "likes": 49710,
+      "views": 660028,
+      "likes": 49768,
       "url": "https://www.youtube.com/watch?v=URrMx-2l_ek",
       "thumbnail": "https://i.ytimg.com/vi/URrMx-2l_ek/hqdefault.jpg"
     },
@@ -1332,8 +1340,8 @@
       "channel": "TheBurntPeanut",
       "published_at": "2026-06-07T09:20:11Z",
       "iso_duration": "PT8H18M22S",
-      "views": 454913,
-      "likes": 8420,
+      "views": 455722,
+      "likes": 8439,
       "url": "https://www.youtube.com/watch?v=FUDyxFg_aWE",
       "thumbnail": "https://i.ytimg.com/vi/FUDyxFg_aWE/hqdefault.jpg"
     },
@@ -1344,8 +1352,8 @@
       "channel": "Sabor Amor",
       "published_at": "2026-06-06T11:32:37Z",
       "iso_duration": "PT3M55S",
-      "views": 225670,
-      "likes": 406,
+      "views": 227070,
+      "likes": 416,
       "url": "https://www.youtube.com/watch?v=-JjYVQ4kcHk",
       "thumbnail": "https://i.ytimg.com/vi/-JjYVQ4kcHk/hqdefault.jpg"
     },
@@ -1357,7 +1365,7 @@
       "published_at": "2026-06-05T22:07:33Z",
       "iso_duration": "PT3M9S",
       "views": 746342,
-      "likes": 29765,
+      "likes": 29807,
       "url": "https://www.youtube.com/watch?v=WxLUZ1omFA8",
       "thumbnail": "https://i.ytimg.com/vi/WxLUZ1omFA8/hqdefault.jpg"
     },
@@ -1368,8 +1376,8 @@
       "channel": "CaseOh",
       "published_at": "2026-06-06T22:00:27Z",
       "iso_duration": "PT1H51M27S",
-      "views": 278675,
-      "likes": 9940,
+      "views": 280263,
+      "likes": 10003,
       "url": "https://www.youtube.com/watch?v=5cnIkR8f5tE",
       "thumbnail": "https://i.ytimg.com/vi/5cnIkR8f5tE/hqdefault.jpg"
     },
@@ -1380,8 +1388,8 @@
       "channel": "Top Worship Music",
       "published_at": "2026-06-06T09:45:43Z",
       "iso_duration": "PT1H27M9S",
-      "views": 224546,
-      "likes": 2155,
+      "views": 225845,
+      "likes": 2178,
       "url": "https://www.youtube.com/watch?v=-BXQA-r2eCA",
       "thumbnail": "https://i.ytimg.com/vi/-BXQA-r2eCA/hqdefault.jpg"
     },
@@ -1392,8 +1400,8 @@
       "channel": "SUPERLOU GAMES ",
       "published_at": "2026-06-06T21:15:38Z",
       "iso_duration": "PT1M12S",
-      "views": 284758,
-      "likes": 17760,
+      "views": 287417,
+      "likes": 17865,
       "url": "https://www.youtube.com/watch?v=KXVHlwXUxAI",
       "thumbnail": "https://i.ytimg.com/vi/KXVHlwXUxAI/hqdefault.jpg"
     },
@@ -1404,8 +1412,8 @@
       "channel": "Jynxzi",
       "published_at": "2026-06-07T06:44:15Z",
       "iso_duration": "PT11H55M",
-      "views": 965215,
-      "likes": 12547,
+      "views": 965934,
+      "likes": 12554,
       "url": "https://www.youtube.com/watch?v=FtMS8as4n3I",
       "thumbnail": "https://i.ytimg.com/vi/FtMS8as4n3I/hqdefault.jpg"
     },
@@ -1416,8 +1424,8 @@
       "channel": "RyloRodriguezVEVO",
       "published_at": "2026-06-05T04:00:13Z",
       "iso_duration": "PT3M3S",
-      "views": 370714,
-      "likes": 22468,
+      "views": 371038,
+      "likes": 22520,
       "url": "https://www.youtube.com/watch?v=pPy4qcgjdmY",
       "thumbnail": "https://i.ytimg.com/vi/pPy4qcgjdmY/hqdefault.jpg"
     },
@@ -1428,8 +1436,8 @@
       "channel": "Street Fighter",
       "published_at": "2026-06-05T22:46:58Z",
       "iso_duration": "PT1M16S",
-      "views": 290967,
-      "likes": 18506,
+      "views": 293479,
+      "likes": 18513,
       "url": "https://www.youtube.com/watch?v=9dxDjF_dOXc",
       "thumbnail": "https://i.ytimg.com/vi/9dxDjF_dOXc/hqdefault.jpg"
     },
@@ -1440,8 +1448,8 @@
       "channel": "CaylusBlox",
       "published_at": "2026-06-06T20:45:21Z",
       "iso_duration": "PT3H3M47S",
-      "views": 1685663,
-      "likes": 54958,
+      "views": 1687022,
+      "likes": 54978,
       "url": "https://www.youtube.com/watch?v=bx9Jijm5bjA",
       "thumbnail": "https://i.ytimg.com/vi/bx9Jijm5bjA/hqdefault.jpg"
     },
@@ -1452,8 +1460,8 @@
       "channel": "Fenix Flexin",
       "published_at": "2026-06-05T04:00:29Z",
       "iso_duration": "PT2M9S",
-      "views": 255500,
-      "likes": 13998,
+      "views": 256095,
+      "likes": 14032,
       "url": "https://www.youtube.com/watch?v=W1sS0AjQai4",
       "thumbnail": "https://i.ytimg.com/vi/W1sS0AjQai4/hqdefault.jpg"
     },
@@ -1464,8 +1472,8 @@
       "channel": "Emergency Awesome",
       "published_at": "2026-06-06T23:54:17Z",
       "iso_duration": "PT11M59S",
-      "views": 106329,
-      "likes": 3379,
+      "views": 107764,
+      "likes": 3405,
       "url": "https://www.youtube.com/watch?v=u4npZvN1YG0",
       "thumbnail": "https://i.ytimg.com/vi/u4npZvN1YG0/hqdefault.jpg"
     },
@@ -1476,8 +1484,8 @@
       "channel": "Tyler & Snowi",
       "published_at": "2026-06-06T20:42:37Z",
       "iso_duration": "PT2H53M42S",
-      "views": 637666,
-      "likes": 39415,
+      "views": 644639,
+      "likes": 39710,
       "url": "https://www.youtube.com/watch?v=4i3GHno_CGI",
       "thumbnail": "https://i.ytimg.com/vi/4i3GHno_CGI/hqdefault.jpg"
     },
@@ -1488,7 +1496,7 @@
       "channel": "Sonalux",
       "published_at": "2026-05-30T23:49:36Z",
       "iso_duration": "PT3M59S",
-      "views": 220675,
+      "views": 220835,
       "likes": 568,
       "url": "https://www.youtube.com/watch?v=dM_KqDZU4Ck",
       "thumbnail": "https://i.ytimg.com/vi/dM_KqDZU4Ck/hqdefault.jpg"
@@ -1500,8 +1508,8 @@
       "channel": "Gun",
       "published_at": "2026-06-06T19:21:54Z",
       "iso_duration": "PT1M11S",
-      "views": 67176,
-      "likes": 4538,
+      "views": 67371,
+      "likes": 4562,
       "url": "https://www.youtube.com/watch?v=VcoT-VeH4Lc",
       "thumbnail": "https://i.ytimg.com/vi/VcoT-VeH4Lc/hqdefault.jpg"
     },
@@ -1512,7 +1520,7 @@
       "channel": "Rangist",
       "published_at": "2026-06-07T01:18:14Z",
       "iso_duration": "PT15S",
-      "views": 758009,
+      "views": 758034,
       "likes": 2481,
       "url": "https://www.youtube.com/watch?v=KuruPuIO_8g",
       "thumbnail": "https://i.ytimg.com/vi/KuruPuIO_8g/hqdefault.jpg"
@@ -1524,8 +1532,8 @@
       "channel": "Shaboozey - Topic",
       "published_at": "2026-06-05T04:07:05Z",
       "iso_duration": "PT2M57S",
-      "views": 98499,
-      "likes": 2042,
+      "views": 98980,
+      "likes": 2056,
       "url": "https://www.youtube.com/watch?v=c4QuZZbg-Ms",
       "thumbnail": "https://i.ytimg.com/vi/c4QuZZbg-Ms/hqdefault.jpg"
     },
@@ -1536,8 +1544,8 @@
       "channel": "Pocketpair Palworld",
       "published_at": "2026-06-05T22:36:36Z",
       "iso_duration": "PT1M48S",
-      "views": 477419,
-      "likes": 35219,
+      "views": 478274,
+      "likes": 35314,
       "url": "https://www.youtube.com/watch?v=gKum7LqFi1s",
       "thumbnail": "https://i.ytimg.com/vi/gKum7LqFi1s/hqdefault.jpg"
     },
@@ -1548,8 +1556,8 @@
       "channel": "Asmongold TV  ",
       "published_at": "2026-06-07T02:40:38Z",
       "iso_duration": "PT1H54M32S",
-      "views": 379464,
-      "likes": 11116,
+      "views": 384667,
+      "likes": 11217,
       "url": "https://www.youtube.com/watch?v=YJl-Qi_w1OU",
       "thumbnail": "https://i.ytimg.com/vi/YJl-Qi_w1OU/hqdefault.jpg"
     },
@@ -1560,8 +1568,8 @@
       "channel": "Release - Topic",
       "published_at": "2026-06-04T10:04:22Z",
       "iso_duration": "PT2M54S",
-      "views": 191615,
-      "likes": 10446,
+      "views": 191915,
+      "likes": 10470,
       "url": "https://www.youtube.com/watch?v=qsKSfCCxrnk",
       "thumbnail": "https://i.ytimg.com/vi/qsKSfCCxrnk/hqdefault.jpg"
     },
@@ -1572,8 +1580,8 @@
       "channel": "Bandai Namco Entertainment America",
       "published_at": "2026-06-05T21:40:53Z",
       "iso_duration": "PT2M6S",
-      "views": 463743,
-      "likes": 28344,
+      "views": 464518,
+      "likes": 28389,
       "url": "https://www.youtube.com/watch?v=-J0_2eMtFQM",
       "thumbnail": "https://i.ytimg.com/vi/-J0_2eMtFQM/hqdefault.jpg"
     },
@@ -1584,8 +1592,8 @@
       "channel": "PrestonPlayz",
       "published_at": "2026-06-06T14:15:04Z",
       "iso_duration": "PT21M47S",
-      "views": 544913,
-      "likes": 11102,
+      "views": 548859,
+      "likes": 11182,
       "url": "https://www.youtube.com/watch?v=WmXbKZijDyg",
       "thumbnail": "https://i.ytimg.com/vi/WmXbKZijDyg/hqdefault.jpg"
     },
@@ -1596,8 +1604,8 @@
       "channel": "LosTemerariosVEVO",
       "published_at": "2026-06-05T04:00:27Z",
       "iso_duration": "PT3M26S",
-      "views": 102632,
-      "likes": 549,
+      "views": 102950,
+      "likes": 550,
       "url": "https://www.youtube.com/watch?v=u7KInooWQJQ",
       "thumbnail": "https://i.ytimg.com/vi/u7KInooWQJQ/hqdefault.jpg"
     },
@@ -1608,8 +1616,8 @@
       "channel": "EA SPORTS College",
       "published_at": "2026-06-05T00:13:04Z",
       "iso_duration": "PT1M59S",
-      "views": 392303,
-      "likes": 13467,
+      "views": 392449,
+      "likes": 13472,
       "url": "https://www.youtube.com/watch?v=a-JpwwMa5aM",
       "thumbnail": "https://i.ytimg.com/vi/a-JpwwMa5aM/hqdefault.jpg"
     },
@@ -1620,7 +1628,7 @@
       "channel": "Typical Gamer",
       "published_at": "2026-06-06T13:59:22Z",
       "iso_duration": "PT11H54M59S",
-      "views": 1926505,
+      "views": 1925271,
       "likes": 32704,
       "url": "https://www.youtube.com/watch?v=AYmNWyF9lOY",
       "thumbnail": "https://i.ytimg.com/vi/AYmNWyF9lOY/hqdefault.jpg"
@@ -1632,8 +1640,8 @@
       "channel": "Romeo Santos",
       "published_at": "2026-06-05T13:59:10Z",
       "iso_duration": "PT5M48S",
-      "views": 982129,
-      "likes": 42744,
+      "views": 985305,
+      "likes": 42827,
       "url": "https://www.youtube.com/watch?v=-uvNvVtUidc",
       "thumbnail": "https://i.ytimg.com/vi/-uvNvVtUidc/hqdefault.jpg"
     },
@@ -1645,7 +1653,7 @@
       "published_at": "2026-06-05T22:22:54Z",
       "iso_duration": "PT1M42S",
       "views": 186900,
-      "likes": 6203,
+      "likes": 6204,
       "url": "https://www.youtube.com/watch?v=HXGa-6K4_SY",
       "thumbnail": "https://i.ytimg.com/vi/HXGa-6K4_SY/hqdefault.jpg"
     },
@@ -1656,8 +1664,8 @@
       "channel": "WolfeyVGC",
       "published_at": "2026-06-06T15:00:22Z",
       "iso_duration": "PT30M8S",
-      "views": 485591,
-      "likes": 24271,
+      "views": 487093,
+      "likes": 24350,
       "url": "https://www.youtube.com/watch?v=VlrcX3aXpgY",
       "thumbnail": "https://i.ytimg.com/vi/VlrcX3aXpgY/hqdefault.jpg"
     },
@@ -1668,8 +1676,8 @@
       "channel": "Moda Mexico",
       "published_at": "2026-06-01T20:41:04Z",
       "iso_duration": "PT2M33S",
-      "views": 445345,
-      "likes": 323,
+      "views": 445924,
+      "likes": 326,
       "url": "https://www.youtube.com/watch?v=941jXJfmAnk",
       "thumbnail": "https://i.ytimg.com/vi/941jXJfmAnk/hqdefault.jpg"
     },
@@ -1680,8 +1688,8 @@
       "channel": "Wuthering Waves",
       "published_at": "2026-06-07T04:00:07Z",
       "iso_duration": "PT2M28S",
-      "views": 164220,
-      "likes": 21649,
+      "views": 166183,
+      "likes": 21795,
       "url": "https://www.youtube.com/watch?v=0bpXFeEkAoM",
       "thumbnail": "https://i.ytimg.com/vi/0bpXFeEkAoM/hqdefault.jpg"
     },
@@ -1692,8 +1700,8 @@
       "channel": "Doggie",
       "published_at": "2026-06-07T06:06:21Z",
       "iso_duration": "PT3H56M38S",
-      "views": 362299,
-      "likes": 9090,
+      "views": 363010,
+      "likes": 9107,
       "url": "https://www.youtube.com/watch?v=5dgWZb0gJoo",
       "thumbnail": "https://i.ytimg.com/vi/5dgWZb0gJoo/hqdefault.jpg"
     },
@@ -1704,8 +1712,8 @@
       "channel": "Scrim",
       "published_at": "2026-06-06T18:59:58Z",
       "iso_duration": "PT3M36S",
-      "views": 53625,
-      "likes": 7352,
+      "views": 53944,
+      "likes": 7385,
       "url": "https://www.youtube.com/watch?v=762q-G_lQFM",
       "thumbnail": "https://i.ytimg.com/vi/762q-G_lQFM/hqdefault.jpg"
     },
@@ -1716,8 +1724,8 @@
       "channel": "Star Wars",
       "published_at": "2026-06-05T21:55:29Z",
       "iso_duration": "PT1M31S",
-      "views": 289779,
-      "likes": 12489,
+      "views": 290575,
+      "likes": 12513,
       "url": "https://www.youtube.com/watch?v=Je9SLyqRtc0",
       "thumbnail": "https://i.ytimg.com/vi/Je9SLyqRtc0/hqdefault.jpg"
     }
@@ -1735,7 +1743,7 @@
       "source_type": "hackernews_video",
       "title": "Firefox confirms working on own adblocker [video]",
       "url": "https://www.youtube.com/watch?v=Qd5_5hXa8Zc",
-      "score": 9,
+      "score": 10,
       "permalink": "https://news.ycombinator.com/item?id=48433929"
     }
   ]
