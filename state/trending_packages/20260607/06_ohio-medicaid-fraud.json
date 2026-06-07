@@ -1,0 +1,68 @@
+{
+  "version": 8,
+  "slug": "ohio-medicaid-fraud",
+  "title": "They Billed $30M for Fake Kids' Therapy. The FBI Found Bentleys.",
+  "hashtags": ["medicaidfraud", "fbi", "ohio", "fraud", "crimenews", "bentley", "mclaren", "luxury", "crimejustice", "doj", "cbsnews", "fyp", "shorts"],
+  "script": "A $30 million Medicaid fraud ring was dismantled in Ohio this week. The suspects — including 2 Ohio state employees — allegedly billed for fake mental health therapy at children's summer camps and church groups that never happened. When federal agents moved in, they seized 14 luxury vehicles: Bentleys, McLarens, Maseratis, and 6 Mercedes. The FBI director flew to Ohio personally to announce the charges. The children never got therapy.",
+  "shots": [
+    {
+      "phrase": "$30 million Medicaid fraud ring was dismantled in Ohio",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J._Edgar_Hoover_Building.jpg",
+      "query": "FBI federal bureau investigation law enforcement building"
+    },
+    {
+      "phrase": "2 Ohio state employees",
+      "query": "government employee office building state official"
+    },
+    {
+      "phrase": "fake mental health therapy at children's summer camps",
+      "query": "children summer camp outdoor activity group"
+    },
+    {
+      "phrase": "seized 14 luxury vehicles",
+      "query": "luxury cars seized law enforcement vehicles confiscated"
+    },
+    {
+      "phrase": "Bentleys, McLarens, Maseratis, and 6 Mercedes",
+      "query": "bentley mclaren maserati luxury expensive sports car"
+    },
+    {
+      "phrase": "FBI director flew to Ohio personally",
+      "query": "FBI director press conference federal law enforcement announcement"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "$30 million",
+      "text": "$30 MILLION",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "2 Ohio state employees",
+      "text": "STATE WORKERS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "seized 14 luxury vehicles",
+      "text": "14 CARS SEIZED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Bentleys, McLarens, Maseratis",
+      "text": "BENTLEYS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "FBI director flew to Ohio personally",
+      "text": "FBI DIRECTOR",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "children never got therapy",
+      "text": "KIDS SCAMMED",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}

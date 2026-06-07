@@ -1,0 +1,63 @@
+{
+  "version": 8,
+  "slug": "coyote-long-island-mud",
+  "title": "A Coyote Sank Into 4-Foot Mud on Long Island. A Rescuer Waded In.",
+  "hashtags": ["coyote", "longisland", "animalrescue", "wildlife", "stjames", "strongisland", "wildliferescue", "weirdnews", "animalnews", "newyork", "upi", "fyp", "shorts"],
+  "script": "Animal rescuers in St. James, New York, got an urgent call Thursday — a coyote had wandered into a Long Island marsh and sunk into 4-foot-deep mud, barely keeping its nose above the surface. Rescuer Frankie Floridia waded into the mud, caught the coyote with a catch pole, and a neighbor used a rope to pull them both to shore. The coyote had a broken leg. It is now in recovery.",
+  "shots": [
+    {
+      "phrase": "coyote had wandered into a Long Island marsh",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Coyote_Canis_latrans_mearnsi.jpg",
+      "query": "coyote wild animal north america woodland"
+    },
+    {
+      "phrase": "sunk into 4-foot-deep mud",
+      "query": "deep mud marsh wetland swamp thick"
+    },
+    {
+      "phrase": "Frankie Floridia waded into the mud",
+      "query": "rescuer wading muddy wetland wildlife rescue helper"
+    },
+    {
+      "phrase": "neighbor used a rope to pull them both to shore",
+      "query": "rope rescue shore wildlife animal mud rescue team"
+    },
+    {
+      "phrase": "broken leg",
+      "query": "wildlife rehabilitation injured animal veterinary care"
+    },
+    {
+      "phrase": "now in recovery",
+      "query": "animal rehabilitation center wildlife care healing"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "4-foot-deep mud",
+      "text": "4 FEET OF MUD",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "barely keeping its nose above the surface",
+      "text": "BARELY ALIVE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "waded into the mud",
+      "text": "WADED IN",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "broken leg",
+      "text": "BROKEN LEG",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "now in recovery",
+      "text": "RECOVERING",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "minecraft"
+}

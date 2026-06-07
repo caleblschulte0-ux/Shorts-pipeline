@@ -1,0 +1,63 @@
+{
+  "version": 8,
+  "slug": "ontario-human-foosball",
+  "title": "Ontario Set the World's Largest Human Foosball Record Before the World Cup",
+  "hashtags": ["worldrecord", "foosball", "humanfoosball", "ontario", "canada", "fifaworldcup", "canada2026", "guinness", "weirdnews", "guinnessrecord", "olg", "fyp", "shorts"],
+  "script": "Ontario set a Guinness World Record this weekend — the largest human foosball game ever played. Dozens of players were attached to poles on a field-sized pitch, limited to sliding only sideways, exactly like the table version. The Ontario Lottery and Gaming Corp organized the event to celebrate the upcoming 2026 FIFA World Cup, which Canada co-hosts starting June 11. The previous record didn't survive the weekend.",
+  "shots": [
+    {
+      "phrase": "Guinness World Record this weekend",
+      "query": "guinness world record certificate crowd celebration achievement"
+    },
+    {
+      "phrase": "largest human foosball game ever played",
+      "query": "foosball table game players human sport"
+    },
+    {
+      "phrase": "players were attached to poles on a field-sized pitch",
+      "query": "human foosball outdoor giant field poles sport players"
+    },
+    {
+      "phrase": "Ontario Lottery and Gaming Corp",
+      "query": "ontario canada lottery gaming corporation building"
+    },
+    {
+      "phrase": "2026 FIFA World Cup",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/FIFA_World_Cup_Trophy_2010.jpg",
+      "query": "FIFA World Cup 2026 trophy soccer football"
+    },
+    {
+      "phrase": "Canada co-hosts starting June 11",
+      "query": "canada stadium soccer world cup 2026 football"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Guinness World Record this weekend",
+      "text": "WORLD RECORD",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "largest human foosball game ever played",
+      "text": "LARGEST EVER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "2026 FIFA World Cup",
+      "text": "FIFA 2026",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Canada co-hosts starting June 11",
+      "text": "JUNE 11",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "previous record didn't survive the weekend",
+      "text": "RECORD GONE",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "minecraft"
+}
