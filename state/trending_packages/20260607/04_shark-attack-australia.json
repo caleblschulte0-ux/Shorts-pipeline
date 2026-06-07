@@ -1,0 +1,63 @@
+{
+  "version": 8,
+  "slug": "shark-attack-australia",
+  "title": "Australia Just Had Its 3rd Fatal Shark Attack in 4 Weeks",
+  "hashtags": ["sharkattack", "australia", "westernaustralia", "greatwhiteshark", "ocean", "spearfishing", "sharkattacks", "albany", "worldnews", "wildlife", "cbsnews", "fyp", "shorts"],
+  "script": "Western Australia just recorded its 3rd fatal shark attack in less than 4 weeks. A 35-year-old spearfisher was killed Saturday near Albany after a suspected 15-foot white shark attacked him while he dove with family. He was rushed to shore but could not be revived. Australia averages 3 shark deaths per year — all 3 have now happened before July. Local fishermen say shark activity near the coast is unusually high.",
+  "shots": [
+    {
+      "phrase": "3rd fatal shark attack in less than 4 weeks",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/White_shark.jpg",
+      "query": "great white shark ocean underwater"
+    },
+    {
+      "phrase": "35-year-old spearfisher was killed Saturday near Albany",
+      "query": "spearfishing western australia ocean diving coast"
+    },
+    {
+      "phrase": "suspected 15-foot white shark attacked him",
+      "query": "great white shark massive size underwater attack"
+    },
+    {
+      "phrase": "rushed to shore but could not be revived",
+      "query": "emergency rescue boat coast australia ocean"
+    },
+    {
+      "phrase": "Australia averages 3 shark deaths per year",
+      "query": "australia ocean coast beach shark warning sign"
+    },
+    {
+      "phrase": "shark activity near the coast is unusually high",
+      "query": "shark fin ocean surface sea coast warning"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "3rd fatal shark attack",
+      "text": "3RD DEATH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "less than 4 weeks",
+      "text": "4 WEEKS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "15-foot white shark",
+      "text": "15 FEET",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "all 3 have now happened before July",
+      "text": "ALL 3. DONE.",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "unusually high",
+      "text": "UNUSUALLY HIGH",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

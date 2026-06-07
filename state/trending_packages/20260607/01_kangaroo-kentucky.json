@@ -1,0 +1,63 @@
+{
+  "version": 8,
+  "slug": "kangaroo-kentucky",
+  "title": "A Kangaroo Named Hunter Escaped in Kentucky. It Took 3 Agencies.",
+  "hashtags": ["kangaroo", "kentucky", "animals", "animalescape", "richmondky", "wildliferescue", "weirdnews", "marsupial", "oddnews", "animalcontrol", "upi", "fyp", "shorts"],
+  "script": "A red kangaroo named Hunter escaped his owner's property in Richmond, Kentucky — and it took 3 agencies to find him. Police, Kentucky Fish and Wildlife, and Animal Control all scrambled after Hunter was spotted hopping through a residential neighborhood. The Australian marsupial was eventually cornered and returned to his owner Thursday. It's unclear how Hunter escaped. Kentucky is now on the short list of states that have lost a kangaroo.",
+  "shots": [
+    {
+      "phrase": "red kangaroo named Hunter escaped",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kangaroo_Australia_01_11_2008_-_retouch.JPG",
+      "query": "red kangaroo wild australia hopping marsupial"
+    },
+    {
+      "phrase": "Richmond, Kentucky",
+      "query": "kentucky suburban residential neighborhood street"
+    },
+    {
+      "phrase": "3 agencies to find him",
+      "query": "police officers animal control search team rescue"
+    },
+    {
+      "phrase": "hopping through a residential neighborhood",
+      "query": "kangaroo street suburban neighborhood unexpected animal"
+    },
+    {
+      "phrase": "returned to his owner Thursday",
+      "query": "animal owner reunion safe rescue happy"
+    },
+    {
+      "phrase": "short list of states that have lost a kangaroo",
+      "query": "us map states america unusual event"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "3 agencies to find him",
+      "text": "3 AGENCIES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Kentucky Fish and Wildlife",
+      "text": "KENTUCKY",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Australian marsupial",
+      "text": "FROM AUSTRALIA",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "It's unclear how Hunter escaped",
+      "text": "STILL UNKNOWN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "short list of states that have lost a kangaroo",
+      "text": "RARE LIST",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "minecraft"
+}
