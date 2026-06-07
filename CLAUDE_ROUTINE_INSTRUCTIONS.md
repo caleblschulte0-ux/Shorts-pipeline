@@ -204,6 +204,24 @@ flopped. Skip if the file is missing (early days, no data yet).
   economy, tech & the internet, business, demographics, science, health,
   housing, energy, transport, media, money, culture. Evergreen-ish — not tied
   to a single breaking headline.
+- **VARIETY RULE — at least 1 in 3 stories must NOT be money/economics.** The
+  channel drifts hard toward personal finance (prices, wages, debt, housing).
+  Resist it. Every batch needs a non-money data story, and ideally the daily
+  slate spans different worlds. Tons of great stats stories have nothing to do
+  with your wallet — tell those too. Non-money buckets to pull from:
+  - **Science/space:** exoplanets found per year, rocket launch cadence,
+    telescope discoveries, asteroid near-misses, depth/size comparisons.
+  - **Health/body:** sleep trends, life expectancy, screen time, steps, vision
+    loss, caffeine, what actually kills people vs what we fear.
+  - **Nature/climate:** species decline, ocean temps, wildfire acreage, ice,
+    animal speeds/lifespans, migration.
+  - **Tech/behavior:** AI adoption curves, app/attention time, dating &
+    marriage age, commute times, what languages/names are dying or surging.
+  - **Demographics/society:** population shifts, urbanization, loneliness,
+    where people move, how we spend our 24 hours.
+  - **Quirky-but-true:** a wild record, a counterintuitive ranking, a "you'd
+    never guess the #1" — the offbeat angle that does numbers on Part 1 works
+    with charts too.
 - **No sports stats / scores / standings.** Data about the *business* of sports
   is fine (team valuations, ticket prices, stadium costs, TV deals) — the chart
   is about money/trends, not box scores.
