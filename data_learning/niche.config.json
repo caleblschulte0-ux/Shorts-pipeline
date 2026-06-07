@@ -41,7 +41,7 @@
           "ascending": true,
           "use_baseline": true,
           "topic": "unemployment rate",
-          "role": "1 \u00b7 THE GOOD NEWS",
+          "role": "1 · THE GOOD NEWS",
           "connector": "First, jobs look strong."
         },
         {
@@ -52,7 +52,7 @@
           },
           "insight_type": "trend",
           "topic": "interest rates",
-          "role": "2 \u00b7 EVEN BETTER",
+          "role": "2 · EVEN BETTER",
           "connector": "And the Fed is finally cutting rates again."
         },
         {
@@ -64,7 +64,7 @@
           "insight_type": "comparison",
           "use_baseline": true,
           "topic": "inflation by category",
-          "role": "3 \u00b7 THE CATCH",
+          "role": "3 · THE CATCH",
           "connector": "But here's the catch. Prices never stopped climbing."
         },
         {
@@ -76,7 +76,7 @@
           "insight_type": "rank",
           "ascending": false,
           "topic": "price rise since 2020",
-          "role": "4 \u00b7 WHAT YOU FEEL",
+          "role": "4 · WHAT YOU FEEL",
           "connector": "And the damage adds up."
         }
       ]
@@ -108,7 +108,7 @@
             "file": "median_home_price.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 PRICES",
+          "role": "1 · PRICES",
           "topic": "home prices",
           "say": "A house cost 270 grand in 2019. Today, 449. That extra 180 thousand isn't a nicer place, it's the same house, a whole extra down payment for nothing."
         },
@@ -119,7 +119,7 @@
             "file": "mortgage_rate_30yr.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 RATES",
+          "role": "2 · RATES",
           "topic": "mortgage rates",
           "say": "Then rates jumped from 3.9 percent to 6.6. On a 30-year loan that's almost double the interest to the bank, tens of thousands more for the same house."
         },
@@ -130,7 +130,7 @@
             "file": "rent_share_income.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 RENT",
+          "role": "3 · RENT",
           "topic": "rent burden",
           "ascending": false,
           "use_baseline": true,
@@ -143,7 +143,7 @@
             "file": "price_to_income.json"
           },
           "insight_type": "rank",
-          "role": "4 \u00b7 THE WALL",
+          "role": "4 · THE WALL",
           "topic": "cost in years of pay",
           "ascending": false,
           "use_baseline": true,
@@ -155,7 +155,7 @@
       "slug": "grocery-squeeze",
       "title": "Why Your Grocery Bill Keeps Winning",
       "hook": "Same cart, same food, but your receipt keeps growing. Here's where the money went.",
-      "closing": "Same cart, fatter receipt. Bon app\u00e9tit.",
+      "closing": "Same cart, fatter receipt. Bon appétit.",
       "hashtags": [
         "groceries",
         "inflation",
@@ -178,7 +178,7 @@
             "file": "grocery_since_2020.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 SINCE 2020",
+          "role": "1 · SINCE 2020",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
@@ -191,7 +191,7 @@
             "file": "food_yoy.json"
           },
           "insight_type": "comparison",
-          "role": "2 \u00b7 THIS YEAR",
+          "role": "2 · THIS YEAR",
           "topic": "food prices this year",
           "use_baseline": true,
           "say": "And it's still climbing. Beef jumped another 9.2 percent this year, while dairy barely moved at 1.6."
@@ -203,7 +203,7 @@
             "file": "food_share_income.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 YOUR BUDGET",
+          "role": "3 · YOUR BUDGET",
           "topic": "the share of income spent on food",
           "say": "Add it up, and food now eats 11.8 percent of your income, the most in decades."
         },
@@ -214,7 +214,7 @@
             "file": "monthly_grocery_cost.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 WHAT YOU PAY",
+          "role": "4 · WHAT YOU PAY",
           "topic": "the average grocery bill",
           "say": "The average bill hit 1,030 dollars a month, about 300 more than 2019. An extra car payment, same fridge."
         }
@@ -247,7 +247,7 @@
             "file": "credit_card_debt.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 BALANCES",
+          "role": "1 · BALANCES",
           "topic": "credit card debt",
           "say": "Card debt just passed 1,370 billion dollars, nearly 1.4 trillion on plastic, climbing every month."
         },
@@ -258,7 +258,7 @@
             "file": "credit_card_apr.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 THE RATE",
+          "role": "2 · THE RATE",
           "topic": "the credit card interest rate",
           "say": "And interest hit 22.9 percent. At that rate your balance grows even if you never swipe again. That's the trap."
         },
@@ -269,7 +269,7 @@
             "file": "cc_delinquency.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 FALLING BEHIND",
+          "role": "3 · FALLING BEHIND",
           "topic": "the share falling behind",
           "say": "So people fall behind. The share missing payments climbed to 3.9 percent, the most since the last crisis."
         },
@@ -280,7 +280,7 @@
             "file": "savings_rate.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 NO CUSHION",
+          "role": "4 · NO CUSHION",
           "topic": "the savings rate",
           "say": "Meanwhile savings cratered. In 2020 people saved 16.8 percent of income. Now? 3.6. The cushion is gone."
         }
@@ -313,7 +313,7 @@
             "file": "hourly_wage.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 YOUR RAISE",
+          "role": "1 · YOUR RAISE",
           "topic": "the average wage",
           "say": "On paper, a win. The average wage climbed to 31.9 dollars an hour. Your paycheck genuinely got bigger."
         },
@@ -324,7 +324,7 @@
             "file": "real_wage_index.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 AFTER INFLATION",
+          "role": "2 · AFTER INFLATION",
           "topic": "real, inflation-adjusted pay",
           "say": "But adjust for prices, and the wage index sits at 99, below 2019. After inflation, you earn less than before."
         },
@@ -335,7 +335,7 @@
             "file": "cost_vs_wage.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 WHAT OUTRAN YOU",
+          "role": "3 · WHAT OUTRAN YOU",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
@@ -348,7 +348,7 @@
             "file": "hours_for_rent.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 THE TREADMILL",
+          "role": "4 · THE TREADMILL",
           "topic": "hours of work to cover rent",
           "say": "Now it takes 69 hours of work to cover one month's rent, up from 52. Two extra days a month, gone."
         }
@@ -381,7 +381,7 @@
             "file": "unemployment_rate_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 THE HEADLINE",
+          "role": "1 · THE HEADLINE",
           "topic": "the unemployment rate",
           "say": "Unemployment sits at just 4.3 percent, historically low. That's the headline. But it hides three things."
         },
@@ -392,7 +392,7 @@
             "file": "part_time_economic.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 PART-TIME",
+          "role": "2 · PART-TIME",
           "topic": "people stuck in part-time work",
           "say": "First, 4.8 million people are stuck part-time who want full-time. Employed on paper, but not by choice."
         },
@@ -403,7 +403,7 @@
             "file": "labor_participation.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 WHO'S MISSING",
+          "role": "3 · WHO'S MISSING",
           "topic": "the share of adults working",
           "say": "Second, participation slid to 62.4 percent. Millions stopped looking entirely, so they vanish from the good number."
         },
@@ -414,7 +414,7 @@
             "file": "multiple_jobholders.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 WORKING DOUBLE",
+          "role": "4 · WORKING DOUBLE",
           "topic": "people working two or more jobs",
           "say": "Third, 9 million people now work two or more jobs, a record. Why does surviving take two paychecks?"
         }
@@ -447,7 +447,7 @@
             "file": "col_index_state.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 COST OF LIVING",
+          "role": "1 · COST OF LIVING",
           "topic": "cost of living",
           "ascending": false,
           "use_baseline": true,
@@ -460,7 +460,7 @@
             "file": "median_income_state.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 WHAT YOU EARN",
+          "role": "2 · WHAT YOU EARN",
           "topic": "household income",
           "ascending": false,
           "use_baseline": true,
@@ -473,7 +473,7 @@
             "file": "income_after_cost.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 AFTER COSTS",
+          "role": "3 · AFTER COSTS",
           "topic": "income after living costs",
           "ascending": false,
           "use_baseline": true,
@@ -486,7 +486,7 @@
             "file": "rent_one_bed.json"
           },
           "insight_type": "rank",
-          "role": "4 \u00b7 THE RENT",
+          "role": "4 · THE RENT",
           "topic": "one-bedroom rent",
           "ascending": false,
           "use_baseline": true,
@@ -759,6 +759,274 @@
           "role": "4 · THE TOTAL BILL",
           "topic": "total monthly car ownership cost",
           "say": "Add the payment, insurance, fuel, and maintenance. Total monthly car ownership hit 1,920 dollars in 2026. That's what a 2-bedroom apartment rented for in much of the Midwest not long ago. The car loses value. The lease doesn't."
+        }
+      ]
+    },
+    {
+      "slug": "rent-burden-crisis",
+      "title": "Renting Was the Safe Choice. Then This Happened.",
+      "hook": "Can't afford to buy? So you rent. Except rent just swallowed two weeks of your paycheck — every month. Here's the math nobody puts together.",
+      "closing": "Two weeks of work. One month of rent. Zero savings.",
+      "hashtags": [
+        "rent",
+        "housing",
+        "renters",
+        "costofliving",
+        "affordability",
+        "census",
+        "bea",
+        "money",
+        "finance",
+        "data",
+        "usa",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "hours_for_rent",
+          "params": {
+            "file": "hours_for_rent.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · WORK HOURS",
+          "topic": "hours of work to cover rent",
+          "say": "In 2019, covering one month's rent took 52 hours of work — about a week and a half. Now it takes 69 hours. That's 17 extra hours of your life gone before groceries, the car, or anything else."
+        },
+        {
+          "source": "offline",
+          "key": "rent_share_income",
+          "params": {
+            "file": "rent_share_income.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE TAKE",
+          "topic": "rent burden by city",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "In Miami, rent swallows 35.7 percent of income — more than a third of every paycheck, gone before you buy food or gas. The national average is 30.2. There's no city where it feels easy."
+        },
+        {
+          "source": "offline",
+          "key": "food_share_income",
+          "params": {
+            "file": "food_share_income.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · ADD FOOD",
+          "topic": "food share of income",
+          "say": "Now add food: 11.8 percent of income, up from 9.8 in 2019. Rent and food combined eat nearly half your paycheck in most American cities. That leaves almost nothing for anything unexpected."
+        },
+        {
+          "source": "offline",
+          "key": "savings_rate",
+          "params": {
+            "file": "savings_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · NOTHING LEFT",
+          "topic": "the personal savings rate",
+          "say": "The savings rate crashed to 3.6 percent in 2026, down from 8.8 in 2019. Renters aren't building a down payment. They're running paycheck to paycheck, falling further behind buying a home every single year."
+        }
+      ]
+    },
+    {
+      "slug": "prices-vs-paychecks",
+      "title": "Your Raise Came. Everything Else Came Faster.",
+      "hook": "Wages rose 22 percent since 2020. Childcare rose 31. Electricity 29. Rent 27. Your raise happened — it just didn't show up in your life.",
+      "closing": "Your raise came. Your bills came first.",
+      "hashtags": [
+        "wages",
+        "inflation",
+        "costofliving",
+        "prices",
+        "childcare",
+        "bls",
+        "economy",
+        "money",
+        "finance",
+        "data",
+        "usa",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "cost_vs_wage",
+          "params": {
+            "file": "cost_vs_wage.json"
+          },
+          "insight_type": "comparison",
+          "role": "1 · THE RACE",
+          "topic": "price rise since 2020 vs wages",
+          "use_baseline": true,
+          "say": "Since 2020, wages rose 22 percent. Sounds like a win — until you see what outran them. Childcare jumped 31 percent, electricity 29, rent 27, groceries 24. Every essential cost you can't skip beat the money coming in."
+        },
+        {
+          "source": "offline",
+          "key": "prices_since_2020",
+          "params": {
+            "file": "prices_since_2020.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · IN REAL NUMBERS",
+          "topic": "what actually costs more since 2020",
+          "ascending": false,
+          "say": "The raw numbers are worse. Eggs up 44 percent since 2020. Gas up 33. Rent up 29. Groceries up 25. The things you buy every week cost a third more than 6 years ago, on money that grew 22."
+        },
+        {
+          "source": "offline",
+          "key": "cc_delinquency",
+          "params": {
+            "file": "cc_delinquency.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE RESULT",
+          "topic": "the share falling behind on credit cards",
+          "say": "People made up the difference on credit cards. Now 3.9 percent of card balances are delinquent — the highest since the last recession. The margin is gone. The debt is real. The balance grows at 22.9 percent interest."
+        },
+        {
+          "source": "offline",
+          "key": "multiple_jobholders",
+          "params": {
+            "file": "multiple_jobholders.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · THE RESPONSE",
+          "topic": "Americans working two or more jobs",
+          "say": "The other response: 9 million Americans now work two or more jobs. Not for vacation money — for the electricity bill. Childcare alone ate the raise before it showed up. That's not a spending problem. That's a math problem."
+        }
+      ]
+    },
+    {
+      "slug": "the-hidden-bills",
+      "title": "It's Not the Lattes. Here's What Actually Doubled.",
+      "hook": "Financial advice says cut streaming and takeout. But car insurance just doubled, your deductible jumped 700 dollars, and total car ownership hits 1,920 a month. Here's the math they don't show you.",
+      "closing": "Not the lattes. The bills you can't cut.",
+      "hashtags": [
+        "autoinsurance",
+        "insurance",
+        "deductible",
+        "carloan",
+        "healthcare",
+        "costofliving",
+        "naic",
+        "kff",
+        "aaa",
+        "money",
+        "finance",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "auto_insurance_premium",
+          "params": {
+            "file": "auto_insurance_premium.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE INSURANCE",
+          "topic": "average auto insurance premium",
+          "say": "Auto insurance hit 2,460 dollars a year in 2026 — more than double the 1,190 it cost in 2019. That's 205 dollars a month just to park the car in the driveway. Before you've driven an inch."
+        },
+        {
+          "source": "offline",
+          "key": "employee_deductible",
+          "params": {
+            "file": "employee_deductible.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE DEDUCTIBLE",
+          "topic": "average health insurance deductible",
+          "say": "Your health deductible hit 2,340 dollars in 2026 — up from 1,655 in 2019. That's 685 more out of pocket every year before insurance covers a cent. You pay more in premiums, then pay again to actually use it."
+        },
+        {
+          "source": "offline",
+          "key": "monthly_car_ownership",
+          "params": {
+            "file": "monthly_car_ownership.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE CAR BILL",
+          "topic": "total monthly car ownership cost",
+          "say": "Total monthly car ownership — payment, insurance, gas, maintenance — hit 1,920 dollars in 2026. In 2019 it was 1,080. That's 840 more every month for the same car. More than most people's rent was in 2015."
+        },
+        {
+          "source": "offline",
+          "key": "out_of_pocket_max",
+          "params": {
+            "file": "out_of_pocket_max.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · THE WORST CASE",
+          "topic": "health insurance out-of-pocket maximum",
+          "say": "And if you get seriously sick, the out-of-pocket maximum is 5,620 dollars in 2026, up from 3,970 in 2019. Insurance covers the rest — after you've already paid what used to be a month's take-home. This is before streaming."
+        }
+      ]
+    },
+    {
+      "slug": "savings-safety-net",
+      "title": "Most Americans Have No Emergency Fund. Here's the Proof.",
+      "hook": "Financial planners say keep 3 to 6 months of expenses saved. The average American saves 3.6 percent of income. One unexpected bill from disaster. Here's who's left without a cushion.",
+      "closing": "No savings. Two jobs. Still falling behind.",
+      "hashtags": [
+        "savings",
+        "emergencyfund",
+        "personalfinance",
+        "creditcards",
+        "debt",
+        "bea",
+        "fed",
+        "bls",
+        "money",
+        "finance",
+        "data",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "savings_rate",
+          "params": {
+            "file": "savings_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CUSHION",
+          "topic": "the personal savings rate",
+          "say": "The personal savings rate crashed from 8.8 percent in 2019 to 3.6 percent today. Of every 100 dollars you bring home, 96 dollars and 40 cents is already gone. Emergency fund? What emergency fund?"
+        },
+        {
+          "source": "offline",
+          "key": "multiple_jobholders",
+          "params": {
+            "file": "multiple_jobholders.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE WORKAROUND",
+          "topic": "Americans working two or more jobs",
+          "say": "9 million Americans now hold two or more jobs. For millions of them, the second job IS the emergency fund — deployed in real time, month to month. It's not ambition. It's survival."
+        },
+        {
+          "source": "offline",
+          "key": "cc_delinquency",
+          "params": {
+            "file": "cc_delinquency.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE FALLOUT",
+          "topic": "the credit card delinquency rate",
+          "say": "When the math breaks down, people fall behind. Card delinquencies hit 3.9 percent — the highest since the financial crisis. Millions of households are missing payments on debt they took out just to cover the basics."
+        },
+        {
+          "source": "offline",
+          "key": "part_time_economic",
+          "params": {
+            "file": "part_time_economic.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · STILL STUCK",
+          "topic": "people stuck in part-time work against their will",
+          "say": "4.8 million people are stuck in part-time work who want full-time hours. They'd earn more if they could. Instead they're caught between a job that doesn't pay enough and no savings to bridge the gap."
         }
       ]
     }

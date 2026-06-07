@@ -1,0 +1,63 @@
+{
+  "version": 8,
+  "slug": "ai-coronavirus-vaccine",
+  "title": "Scientists Just Tested the First AI-Designed Vaccine on Humans",
+  "hashtags": ["vaccine", "ai", "coronavirus", "covid19", "universalvaccine", "science", "medicalbreakthrough", "clinicaltrial", "artificialintelligence", "health", "sciencedaily", "fyp", "shorts"],
+  "script": "Scientists have hit a new milestone: an AI-designed coronavirus vaccine just passed its first human trial. The vaccine was engineered entirely by artificial intelligence using genetic data from every known Sarbeco coronavirus — SARS, COVID-19, and related bat viruses. It was tested on 39 volunteers, found to be safe, and triggered immune responses against multiple strains. It's the first vaccine ever built by AI to reach humans. Phase 2 is next.",
+  "shots": [
+    {
+      "phrase": "AI-designed coronavirus vaccine just passed its first human trial",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/SARS-CoV-2_(CDC-23312).png",
+      "query": "coronavirus COVID-19 virus microscope electron SARS"
+    },
+    {
+      "phrase": "engineered entirely by artificial intelligence",
+      "query": "artificial intelligence computer neural network data laboratory"
+    },
+    {
+      "phrase": "genetic data from every known Sarbeco coronavirus",
+      "query": "DNA genetic sequence virus data research computer"
+    },
+    {
+      "phrase": "tested on 39 volunteers",
+      "query": "clinical trial vaccine human volunteers medical research"
+    },
+    {
+      "phrase": "triggered immune responses against multiple strains",
+      "query": "immune system antibodies cells vaccine response protection"
+    },
+    {
+      "phrase": "first vaccine ever built by AI to reach humans",
+      "query": "medical AI breakthrough laboratory research vaccine science"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "first human trial",
+      "text": "FIRST IN HISTORY",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "39 volunteers",
+      "text": "39 HUMANS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "every known Sarbeco coronavirus",
+      "text": "EVERY STRAIN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "found to be safe",
+      "text": "SAFE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "first vaccine ever built by AI",
+      "text": "AI BUILT IT",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}
