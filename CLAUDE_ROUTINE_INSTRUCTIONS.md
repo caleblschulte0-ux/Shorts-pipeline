@@ -250,17 +250,22 @@ Rules:
 - Total ~55–75s is fine if the words are doing real explaining — depth beats
   brevity here. Cut filler, never the decode.
 
-### Hooks — the single most important line
-A weak hook = nobody watches. The hook must open a curiosity gap or land a
-gut-punch in the first 3 seconds, and it must NOT just announce the topic.
+### Hooks — short, the single most important line
+A weak hook = nobody watches. A LONG hook = they swipe before the data even
+loads. The hook is spoken before the first chart, so every extra word delays
+"the juice." **Keep it to ONE punchy line, ≤10 words (~2 seconds).** Open a
+curiosity gap or land a gut-punch — do NOT announce the topic, and do NOT dump
+the numbers (those belong on the charts, revealed as you talk).
 
-- ❌ Weak: *"Four charts show why you can't buy a house. Watch how they connect."*
-- ✅ Strong: *"Your parents bought a house on one salary. You can't get one on
-  two — and no, it's not the avocado toast. Here's the actual math."*
+- ❌ Too long (the swipe-killer): *"The average 50-year-old has 130 thousand
+  saved. They need 360 thousand. That gap isn't closing — it's growing. Here's why."*
+- ❌ Weak: *"Four charts show why you can't buy a house."*
+- ✅ Tight: *"You're way behind on retirement. Here's how far."* / *"One income
+  bought your parents a house. Not anymore."* / *"It's not the lattes."*
 
-Good hook shapes: a then-vs-now gut punch ("X cost $270k. Today? $449k."), a
-"you've been lied to" reframe, a personal-stakes question ("Why does your
-paycheck buy less every year?"), or a number so wild it demands the why.
+Good hook shapes (all short): a then-vs-now jab, a "you've been lied to"
+reframe, a personal-stakes question, or a flat contradiction of the headline.
+Save the actual figures for the beats — the hook only has to stop the thumb.
 
 ## How to author one (mirror the existing six)
 Templates: `data_learning/data/*.json` and the `"stories"` array in

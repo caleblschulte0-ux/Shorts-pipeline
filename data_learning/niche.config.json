@@ -14,7 +14,7 @@
     {
       "slug": "us-economy-squeeze",
       "title": "The US Economy In 4 Charts (The Last One Hurts)",
-      "hook": "Everyone says the economy is strong. Four charts say you're getting squeezed. Watch how they connect.",
+      "hook": "They say the economy's booming. You're not.",
       "closing": "Good news up top, your wallet down here.",
       "hashtags": [
         "economy",
@@ -41,7 +41,7 @@
           "ascending": true,
           "use_baseline": true,
           "topic": "unemployment rate",
-          "role": "1 · THE GOOD NEWS",
+          "role": "1 \u00b7 THE GOOD NEWS",
           "connector": "First, jobs look strong."
         },
         {
@@ -52,7 +52,7 @@
           },
           "insight_type": "trend",
           "topic": "interest rates",
-          "role": "2 · EVEN BETTER",
+          "role": "2 \u00b7 EVEN BETTER",
           "connector": "And the Fed is finally cutting rates again."
         },
         {
@@ -64,7 +64,7 @@
           "insight_type": "comparison",
           "use_baseline": true,
           "topic": "inflation by category",
-          "role": "3 · THE CATCH",
+          "role": "3 \u00b7 THE CATCH",
           "connector": "But here's the catch. Prices never stopped climbing."
         },
         {
@@ -76,7 +76,7 @@
           "insight_type": "rank",
           "ascending": false,
           "topic": "price rise since 2020",
-          "role": "4 · WHAT YOU FEEL",
+          "role": "4 \u00b7 WHAT YOU FEEL",
           "connector": "And the damage adds up."
         }
       ]
@@ -84,7 +84,7 @@
     {
       "slug": "housing-affordability-wall",
       "title": "Priced Out: How A House Quietly Doubled In Cost",
-      "hook": "Your parents bought a house on one income. You can't on two, and it's not your fault. Here's what actually changed.",
+      "hook": "One income bought your parents a house. Not anymore.",
       "closing": "Same house, way more money. Welcome to the new rules.",
       "hashtags": [
         "housing",
@@ -108,7 +108,7 @@
             "file": "median_home_price.json"
           },
           "insight_type": "trend",
-          "role": "1 · PRICES",
+          "role": "1 \u00b7 PRICES",
           "topic": "home prices",
           "say": "A house cost 270 grand in 2019. Today, 449. That extra 180 thousand isn't a nicer place, it's the same house, a whole extra down payment for nothing."
         },
@@ -119,7 +119,7 @@
             "file": "mortgage_rate_30yr.json"
           },
           "insight_type": "trend",
-          "role": "2 · RATES",
+          "role": "2 \u00b7 RATES",
           "topic": "mortgage rates",
           "say": "Then rates jumped from 3.9 percent to 6.6. On a 30-year loan that's almost double the interest to the bank, tens of thousands more for the same house."
         },
@@ -130,7 +130,7 @@
             "file": "rent_share_income.json"
           },
           "insight_type": "rank",
-          "role": "3 · RENT",
+          "role": "3 \u00b7 RENT",
           "topic": "rent burden",
           "ascending": false,
           "use_baseline": true,
@@ -143,7 +143,7 @@
             "file": "price_to_income.json"
           },
           "insight_type": "rank",
-          "role": "4 · THE WALL",
+          "role": "4 \u00b7 THE WALL",
           "topic": "cost in years of pay",
           "ascending": false,
           "use_baseline": true,
@@ -154,8 +154,8 @@
     {
       "slug": "grocery-squeeze",
       "title": "Why Your Grocery Bill Keeps Winning",
-      "hook": "Same cart, same food, but your receipt keeps growing. Here's where the money went.",
-      "closing": "Same cart, fatter receipt. Bon appétit.",
+      "hook": "Same groceries. Way bigger receipt. Where'd it go?",
+      "closing": "Same cart, fatter receipt. Bon app\u00e9tit.",
       "hashtags": [
         "groceries",
         "inflation",
@@ -178,7 +178,7 @@
             "file": "grocery_since_2020.json"
           },
           "insight_type": "rank",
-          "role": "1 · SINCE 2020",
+          "role": "1 \u00b7 SINCE 2020",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
@@ -191,7 +191,7 @@
             "file": "food_yoy.json"
           },
           "insight_type": "comparison",
-          "role": "2 · THIS YEAR",
+          "role": "2 \u00b7 THIS YEAR",
           "topic": "food prices this year",
           "use_baseline": true,
           "say": "And it's still climbing. Beef jumped another 9.2 percent this year, while dairy barely moved at 1.6."
@@ -203,7 +203,7 @@
             "file": "food_share_income.json"
           },
           "insight_type": "trend",
-          "role": "3 · YOUR BUDGET",
+          "role": "3 \u00b7 YOUR BUDGET",
           "topic": "the share of income spent on food",
           "say": "Add it up, and food now eats 11.8 percent of your income, the most in decades."
         },
@@ -214,7 +214,7 @@
             "file": "monthly_grocery_cost.json"
           },
           "insight_type": "trend",
-          "role": "4 · WHAT YOU PAY",
+          "role": "4 \u00b7 WHAT YOU PAY",
           "topic": "the average grocery bill",
           "say": "The average bill hit 1,030 dollars a month, about 300 more than 2019. An extra car payment, same fridge."
         }
@@ -223,7 +223,7 @@
     {
       "slug": "debt-trap",
       "title": "Americans Owe $1.4 Trillion On Plastic",
-      "hook": "Americans owe more on credit cards than ever. And it grows even when people stop spending.",
+      "hook": "Americans owe more than ever. It's a trap.",
       "closing": "Owe more, save less. The math always wins.",
       "hashtags": [
         "debt",
@@ -247,7 +247,7 @@
             "file": "credit_card_debt.json"
           },
           "insight_type": "trend",
-          "role": "1 · BALANCES",
+          "role": "1 \u00b7 BALANCES",
           "topic": "credit card debt",
           "say": "Card debt just passed 1,370 billion dollars, nearly 1.4 trillion on plastic, climbing every month."
         },
@@ -258,7 +258,7 @@
             "file": "credit_card_apr.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE RATE",
+          "role": "2 \u00b7 THE RATE",
           "topic": "the credit card interest rate",
           "say": "And interest hit 22.9 percent. At that rate your balance grows even if you never swipe again. That's the trap."
         },
@@ -269,7 +269,7 @@
             "file": "cc_delinquency.json"
           },
           "insight_type": "trend",
-          "role": "3 · FALLING BEHIND",
+          "role": "3 \u00b7 FALLING BEHIND",
           "topic": "the share falling behind",
           "say": "So people fall behind. The share missing payments climbed to 3.9 percent, the most since the last crisis."
         },
@@ -280,7 +280,7 @@
             "file": "savings_rate.json"
           },
           "insight_type": "trend",
-          "role": "4 · NO CUSHION",
+          "role": "4 \u00b7 NO CUSHION",
           "topic": "the savings rate",
           "say": "Meanwhile savings cratered. In 2020 people saved 16.8 percent of income. Now? 3.6. The cushion is gone."
         }
@@ -289,7 +289,7 @@
     {
       "slug": "wage-illusion",
       "title": "Your Raise Was Fake (Here's The Math)",
-      "hook": "You got a raise this year. So why does your money vanish faster than before?",
+      "hook": "You got a raise. So why are you broker?",
       "closing": "Bigger paycheck, smaller life. Cool.",
       "hashtags": [
         "wages",
@@ -313,7 +313,7 @@
             "file": "hourly_wage.json"
           },
           "insight_type": "trend",
-          "role": "1 · YOUR RAISE",
+          "role": "1 \u00b7 YOUR RAISE",
           "topic": "the average wage",
           "say": "On paper, a win. The average wage climbed to 31.9 dollars an hour. Your paycheck genuinely got bigger."
         },
@@ -324,7 +324,7 @@
             "file": "real_wage_index.json"
           },
           "insight_type": "trend",
-          "role": "2 · AFTER INFLATION",
+          "role": "2 \u00b7 AFTER INFLATION",
           "topic": "real, inflation-adjusted pay",
           "say": "But adjust for prices, and the wage index sits at 99, below 2019. After inflation, you earn less than before."
         },
@@ -335,7 +335,7 @@
             "file": "cost_vs_wage.json"
           },
           "insight_type": "rank",
-          "role": "3 · WHAT OUTRAN YOU",
+          "role": "3 \u00b7 WHAT OUTRAN YOU",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
@@ -348,7 +348,7 @@
             "file": "hours_for_rent.json"
           },
           "insight_type": "trend",
-          "role": "4 · THE TREADMILL",
+          "role": "4 \u00b7 THE TREADMILL",
           "topic": "hours of work to cover rent",
           "say": "Now it takes 69 hours of work to cover one month's rent, up from 52. Two extra days a month, gone."
         }
@@ -357,7 +357,7 @@
     {
       "slug": "jobs-beneath-surface",
       "title": "The Jobs Report Hides 3 Ugly Truths",
-      "hook": "Headlines say the job market's never been better. So why does everyone feel broke and burnt out?",
+      "hook": "Best job market ever? Then why's everyone broke?",
       "closing": "Booming economy. For someone, somewhere.",
       "hashtags": [
         "jobs",
@@ -381,7 +381,7 @@
             "file": "unemployment_rate_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE HEADLINE",
+          "role": "1 \u00b7 THE HEADLINE",
           "topic": "the unemployment rate",
           "say": "Unemployment sits at just 4.3 percent, historically low. That's the headline. But it hides three things."
         },
@@ -392,7 +392,7 @@
             "file": "part_time_economic.json"
           },
           "insight_type": "trend",
-          "role": "2 · PART-TIME",
+          "role": "2 \u00b7 PART-TIME",
           "topic": "people stuck in part-time work",
           "say": "First, 4.8 million people are stuck part-time who want full-time. Employed on paper, but not by choice."
         },
@@ -403,7 +403,7 @@
             "file": "labor_participation.json"
           },
           "insight_type": "trend",
-          "role": "3 · WHO'S MISSING",
+          "role": "3 \u00b7 WHO'S MISSING",
           "topic": "the share of adults working",
           "say": "Second, participation slid to 62.4 percent. Millions stopped looking entirely, so they vanish from the good number."
         },
@@ -414,7 +414,7 @@
             "file": "multiple_jobholders.json"
           },
           "insight_type": "trend",
-          "role": "4 · WORKING DOUBLE",
+          "role": "4 \u00b7 WORKING DOUBLE",
           "topic": "people working two or more jobs",
           "say": "Third, 9 million people now work two or more jobs, a record. Why does surviving take two paychecks?"
         }
@@ -423,7 +423,7 @@
     {
       "slug": "two-americas-cost",
       "title": "Same Salary, Different State, Opposite Life",
-      "hook": "Two people earn the same salary. One's comfortable, one's drowning. The only difference is the state line.",
+      "hook": "Same salary. One thrives, one drowns. Why?",
       "closing": "Same salary, totally different planet.",
       "hashtags": [
         "costofliving",
@@ -447,7 +447,7 @@
             "file": "col_index_state.json"
           },
           "insight_type": "rank",
-          "role": "1 · COST OF LIVING",
+          "role": "1 \u00b7 COST OF LIVING",
           "topic": "cost of living",
           "ascending": false,
           "use_baseline": true,
@@ -460,7 +460,7 @@
             "file": "median_income_state.json"
           },
           "insight_type": "rank",
-          "role": "2 · WHAT YOU EARN",
+          "role": "2 \u00b7 WHAT YOU EARN",
           "topic": "household income",
           "ascending": false,
           "use_baseline": true,
@@ -473,7 +473,7 @@
             "file": "income_after_cost.json"
           },
           "insight_type": "rank",
-          "role": "3 · AFTER COSTS",
+          "role": "3 \u00b7 AFTER COSTS",
           "topic": "income after living costs",
           "ascending": false,
           "use_baseline": true,
@@ -486,7 +486,7 @@
             "file": "rent_one_bed.json"
           },
           "insight_type": "rank",
-          "role": "4 · THE RENT",
+          "role": "4 \u00b7 THE RENT",
           "topic": "one-bedroom rent",
           "ascending": false,
           "use_baseline": true,
@@ -497,7 +497,7 @@
     {
       "slug": "healthcare-cost-spiral",
       "title": "You Pay More for Health Insurance and Get Less Every Year",
-      "hook": "Your insurance plan didn't change. Your employer's plan didn't change. But every year you pay more and your deductible is bigger. Here's what the numbers actually show.",
+      "hook": "Your plan didn't change. Your bill exploded. Why?",
       "closing": "More money in, less protection. That's the deal.",
       "hashtags": [
         "healthcare",
@@ -521,9 +521,9 @@
             "file": "employer_premium.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE PREMIUM",
+          "role": "1 \u00b7 THE PREMIUM",
           "topic": "employer health insurance premium",
-          "say": "Your employer paid 8,120 dollars per worker for health insurance in 2026, up from 6,015 in 2019. That's 35 percent more money for the same coverage window — and that cost shapes what's left over for your raise."
+          "say": "Your employer paid 8,120 dollars per worker for health insurance in 2026, up from 6,015 in 2019. That's 35 percent more money for the same coverage window \u2014 and that cost shapes what's left over for your raise."
         },
         {
           "source": "offline",
@@ -532,9 +532,9 @@
             "file": "employee_deductible.json"
           },
           "insight_type": "trend",
-          "role": "2 · YOUR DEDUCTIBLE",
+          "role": "2 \u00b7 YOUR DEDUCTIBLE",
           "topic": "average annual deductible",
-          "say": "The deductible — what you pay before insurance kicks in — hit 2,340 dollars in 2026. In 2019 it was 1,655. That's 685 extra dollars out of your pocket every year before you're even covered. You're paying more to wait longer."
+          "say": "The deductible \u2014 what you pay before insurance kicks in \u2014 hit 2,340 dollars in 2026. In 2019 it was 1,655. That's 685 extra dollars out of your pocket every year before you're even covered. You're paying more to wait longer."
         },
         {
           "source": "offline",
@@ -543,11 +543,11 @@
             "file": "medical_debt_by_income.json"
           },
           "insight_type": "rank",
-          "role": "3 · WHO GETS BURIED",
+          "role": "3 \u00b7 WHO GETS BURIED",
           "topic": "share with medical debt by income",
           "ascending": false,
           "use_baseline": true,
-          "say": "36 percent of Americans earning under 25 thousand carry medical debt. But even at 50 to 75 thousand, still 18 percent. Medical debt isn't just a poverty problem — it's a system that doesn't protect anyone."
+          "say": "36 percent of Americans earning under 25 thousand carry medical debt. But even at 50 to 75 thousand, still 18 percent. Medical debt isn't just a poverty problem \u2014 it's a system that doesn't protect anyone."
         },
         {
           "source": "offline",
@@ -556,7 +556,7 @@
             "file": "out_of_pocket_max.json"
           },
           "insight_type": "trend",
-          "role": "4 · THE WORST CASE",
+          "role": "4 \u00b7 THE WORST CASE",
           "topic": "out-of-pocket maximum",
           "say": "When things go really wrong, you're on the hook for up to 5,620 dollars before insurance pays everything. In 2019, that cap was 3,970. The safety net just got a 1,650 dollar hole in it."
         }
@@ -565,7 +565,7 @@
     {
       "slug": "student-loan-wall",
       "title": "The Degree That Tripled in Cost But Pays Half as Much",
-      "hook": "A college degree used to guarantee the middle class. The price tripled. The payoff shrank. Nobody told you. Here's what the data shows.",
+      "hook": "A degree costs triple. It pays half.",
       "closing": "Most expensive ever. Worth less than before.",
       "hashtags": [
         "studentloans",
@@ -589,7 +589,7 @@
             "file": "student_debt_total.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE PILE",
+          "role": "1 \u00b7 THE PILE",
           "topic": "total student loan debt",
           "say": "Total student debt hit 1.74 trillion dollars. In 2010 it was 870 billion. The pile doubled in 16 years and keeps growing as a new class graduates every May owing more than the last."
         },
@@ -600,9 +600,9 @@
             "file": "student_loan_monthly.json"
           },
           "insight_type": "trend",
-          "role": "2 · YOUR PAYMENT",
+          "role": "2 \u00b7 YOUR PAYMENT",
           "topic": "average monthly student loan payment",
-          "say": "The average monthly student loan payment is 352 dollars. That's higher than most car payments — and it goes to a degree you already have, every single month, for years."
+          "say": "The average monthly student loan payment is 352 dollars. That's higher than most car payments \u2014 and it goes to a degree you already have, every single month, for years."
         },
         {
           "source": "offline",
@@ -611,7 +611,7 @@
             "file": "college_wage_premium.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE PAYOFF",
+          "role": "3 \u00b7 THE PAYOFF",
           "topic": "college wage premium",
           "say": "The wage premium for a bachelor's degree fell from 66 percent in 2014 to 54 percent today. The gap between what college grads and high school grads earn is closing. The price went up while the advantage shrank."
         },
@@ -622,7 +622,7 @@
             "file": "student_loan_default.json"
           },
           "insight_type": "trend",
-          "role": "4 · FALLING BEHIND",
+          "role": "4 \u00b7 FALLING BEHIND",
           "topic": "student loan default rate",
           "say": "And 10.2 percent of federal borrowers are in default. After COVID payment pauses ended, defaults jumped 5 points in one year. The debt is real, and for a lot of people, the math doesn't work."
         }
@@ -631,7 +631,7 @@
     {
       "slug": "retirement-savings-gap",
       "title": "Most Americans Are Behind on Retirement. Here's How Far.",
-      "hook": "The average 50-year-old has 130 thousand dollars saved for retirement. They need 360 thousand. That gap isn't closing — it's growing. Here's why.",
+      "hook": "You're way behind on retirement. Here's how far.",
       "closing": "Save more or work forever. Those are basically the options.",
       "hashtags": [
         "retirement",
@@ -655,11 +655,11 @@
             "file": "median_401k_by_age.json"
           },
           "insight_type": "rank",
-          "role": "1 · WHAT PEOPLE HAVE",
+          "role": "1 \u00b7 WHAT PEOPLE HAVE",
           "topic": "median retirement savings by age",
           "ascending": false,
           "use_baseline": true,
-          "say": "The median 50-something has 130 thousand saved for retirement. Fidelity says you should have 6 times your salary at 50 — around 360 thousand at median wages. That's a 230,000 dollar hole in the middle of your working life."
+          "say": "The median 50-something has 130 thousand saved for retirement. Fidelity says you should have 6 times your salary at 50 \u2014 around 360 thousand at median wages. That's a 230,000 dollar hole in the middle of your working life."
         },
         {
           "source": "offline",
@@ -668,9 +668,9 @@
             "file": "social_security_replacement.json"
           },
           "insight_type": "trend",
-          "role": "2 · SOCIAL SECURITY",
+          "role": "2 \u00b7 SOCIAL SECURITY",
           "topic": "Social Security replacement rate",
-          "say": "Social Security used to replace 41 percent of your pre-retirement income. By 2026, it's down to 31 percent. The gap your savings need to fill just got 10 points wider. But people aren't saving more — they're saving less."
+          "say": "Social Security used to replace 41 percent of your pre-retirement income. By 2026, it's down to 31 percent. The gap your savings need to fill just got 10 points wider. But people aren't saving more \u2014 they're saving less."
         },
         {
           "source": "offline",
@@ -679,9 +679,9 @@
             "file": "retirement_savings_rate.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE SAVINGS RATE",
+          "role": "3 \u00b7 THE SAVINGS RATE",
           "topic": "personal savings rate",
-          "say": "The US personal savings rate hit 3.5 percent in 2026, near a historic low. You can't close a 230,000 dollar gap saving 3 cents on every dollar. The math requires something to change — income, costs, or both."
+          "say": "The US personal savings rate hit 3.5 percent in 2026, near a historic low. You can't close a 230,000 dollar gap saving 3 cents on every dollar. The math requires something to change \u2014 income, costs, or both."
         },
         {
           "source": "offline",
@@ -690,7 +690,7 @@
             "file": "avg_retirement_age.json"
           },
           "insight_type": "trend",
-          "role": "4 · THE RESULT",
+          "role": "4 \u00b7 THE RESULT",
           "topic": "average retirement age",
           "say": "So what do people do? They work longer. The average retirement age climbed from 60 in 2000 to 66 in 2026. Six extra years of your life because the math didn't work. That's not a choice, that's a system forcing your hand."
         }
@@ -699,7 +699,7 @@
     {
       "slug": "car-cost-explosion",
       "title": "A New Car Costs What a House Used To. Here's the Receipt.",
-      "hook": "The average new car is 50 thousand dollars. Loan rates are near 8 percent. Insurance alone costs 2,460 a year. Add it up and a car costs what rent used to. Here's how it got this way.",
+      "hook": "A new car now costs what a house used to.",
       "closing": "It's not the avocado toast. It's the car payment.",
       "hashtags": [
         "car",
@@ -723,9 +723,9 @@
             "file": "new_car_price.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE STICKER",
+          "role": "1 \u00b7 THE STICKER",
           "topic": "average new car transaction price",
-          "say": "The average new car transaction hit 50,400 dollars in 2026, up from 38,000 in 2019. That extra 12,400 isn't better technology — it's the same truck, just inflated. And it's the number you're financing."
+          "say": "The average new car transaction hit 50,400 dollars in 2026, up from 38,000 in 2019. That extra 12,400 isn't better technology \u2014 it's the same truck, just inflated. And it's the number you're financing."
         },
         {
           "source": "offline",
@@ -734,9 +734,9 @@
             "file": "auto_loan_rate.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE RATE",
+          "role": "2 \u00b7 THE RATE",
           "topic": "auto loan interest rate",
-          "say": "Auto loan rates peaked at 8.1 percent in 2024 — the highest since 2007. On a 50 thousand dollar car over 60 months, that's roughly 10,700 dollars in interest alone. You're buying almost a second car just in interest."
+          "say": "Auto loan rates peaked at 8.1 percent in 2024 \u2014 the highest since 2007. On a 50 thousand dollar car over 60 months, that's roughly 10,700 dollars in interest alone. You're buying almost a second car just in interest."
         },
         {
           "source": "offline",
@@ -745,9 +745,9 @@
             "file": "auto_insurance_premium.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE INSURANCE",
+          "role": "3 \u00b7 THE INSURANCE",
           "topic": "average auto insurance premium",
-          "say": "Insurance now costs 2,460 dollars a year on average, more than double the 1,190 it cost in 2019. That's 205 dollars a month just to own the car — before you start it."
+          "say": "Insurance now costs 2,460 dollars a year on average, more than double the 1,190 it cost in 2019. That's 205 dollars a month just to own the car \u2014 before you start it."
         },
         {
           "source": "offline",
@@ -756,7 +756,7 @@
             "file": "monthly_car_ownership.json"
           },
           "insight_type": "trend",
-          "role": "4 · THE TOTAL BILL",
+          "role": "4 \u00b7 THE TOTAL BILL",
           "topic": "total monthly car ownership cost",
           "say": "Add the payment, insurance, fuel, and maintenance. Total monthly car ownership hit 1,920 dollars in 2026. That's what a 2-bedroom apartment rented for in much of the Midwest not long ago. The car loses value. The lease doesn't."
         }
@@ -765,7 +765,7 @@
     {
       "slug": "rent-burden-crisis",
       "title": "Renting Was the Safe Choice. Then This Happened.",
-      "hook": "Can't afford to buy? So you rent. Except rent just swallowed two weeks of your paycheck — every month. Here's the math nobody puts together.",
+      "hook": "Rent just ate two weeks of your paycheck.",
       "closing": "Two weeks of work. One month of rent. Zero savings.",
       "hashtags": [
         "rent",
@@ -789,9 +789,9 @@
             "file": "hours_for_rent.json"
           },
           "insight_type": "trend",
-          "role": "1 · WORK HOURS",
+          "role": "1 \u00b7 WORK HOURS",
           "topic": "hours of work to cover rent",
-          "say": "In 2019, covering one month's rent took 52 hours of work — about a week and a half. Now it takes 69 hours. That's 17 extra hours of your life gone before groceries, the car, or anything else."
+          "say": "In 2019, covering one month's rent took 52 hours of work \u2014 about a week and a half. Now it takes 69 hours. That's 17 extra hours of your life gone before groceries, the car, or anything else."
         },
         {
           "source": "offline",
@@ -800,11 +800,11 @@
             "file": "rent_share_income.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE TAKE",
+          "role": "2 \u00b7 THE TAKE",
           "topic": "rent burden by city",
           "ascending": false,
           "use_baseline": true,
-          "say": "In Miami, rent swallows 35.7 percent of income — more than a third of every paycheck, gone before you buy food or gas. The national average is 30.2. There's no city where it feels easy."
+          "say": "In Miami, rent swallows 35.7 percent of income \u2014 more than a third of every paycheck, gone before you buy food or gas. The national average is 30.2. There's no city where it feels easy."
         },
         {
           "source": "offline",
@@ -813,7 +813,7 @@
             "file": "food_share_income.json"
           },
           "insight_type": "trend",
-          "role": "3 · ADD FOOD",
+          "role": "3 \u00b7 ADD FOOD",
           "topic": "food share of income",
           "say": "Now add food: 11.8 percent of income, up from 9.8 in 2019. Rent and food combined eat nearly half your paycheck in most American cities. That leaves almost nothing for anything unexpected."
         },
@@ -824,7 +824,7 @@
             "file": "savings_rate.json"
           },
           "insight_type": "trend",
-          "role": "4 · NOTHING LEFT",
+          "role": "4 \u00b7 NOTHING LEFT",
           "topic": "the personal savings rate",
           "say": "The savings rate crashed to 3.6 percent in 2026, down from 8.8 in 2019. Renters aren't building a down payment. They're running paycheck to paycheck, falling further behind buying a home every single year."
         }
@@ -833,7 +833,7 @@
     {
       "slug": "prices-vs-paychecks",
       "title": "Your Raise Came. Everything Else Came Faster.",
-      "hook": "Wages rose 22 percent since 2020. Childcare rose 31. Electricity 29. Rent 27. Your raise happened — it just didn't show up in your life.",
+      "hook": "Your raise was real. It vanished anyway. Here's why.",
       "closing": "Your raise came. Your bills came first.",
       "hashtags": [
         "wages",
@@ -857,10 +857,10 @@
             "file": "cost_vs_wage.json"
           },
           "insight_type": "comparison",
-          "role": "1 · THE RACE",
+          "role": "1 \u00b7 THE RACE",
           "topic": "price rise since 2020 vs wages",
           "use_baseline": true,
-          "say": "Since 2020, wages rose 22 percent. Sounds like a win — until you see what outran them. Childcare jumped 31 percent, electricity 29, rent 27, groceries 24. Every essential cost you can't skip beat the money coming in."
+          "say": "Since 2020, wages rose 22 percent. Sounds like a win \u2014 until you see what outran them. Childcare jumped 31 percent, electricity 29, rent 27, groceries 24. Every essential cost you can't skip beat the money coming in."
         },
         {
           "source": "offline",
@@ -869,7 +869,7 @@
             "file": "prices_since_2020.json"
           },
           "insight_type": "rank",
-          "role": "2 · IN REAL NUMBERS",
+          "role": "2 \u00b7 IN REAL NUMBERS",
           "topic": "what actually costs more since 2020",
           "ascending": false,
           "say": "The raw numbers are worse. Eggs up 44 percent since 2020. Gas up 33. Rent up 29. Groceries up 25. The things you buy every week cost a third more than 6 years ago, on money that grew 22."
@@ -881,9 +881,9 @@
             "file": "cc_delinquency.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE RESULT",
+          "role": "3 \u00b7 THE RESULT",
           "topic": "the share falling behind on credit cards",
-          "say": "People made up the difference on credit cards. Now 3.9 percent of card balances are delinquent — the highest since the last recession. The margin is gone. The debt is real. The balance grows at 22.9 percent interest."
+          "say": "People made up the difference on credit cards. Now 3.9 percent of card balances are delinquent \u2014 the highest since the last recession. The margin is gone. The debt is real. The balance grows at 22.9 percent interest."
         },
         {
           "source": "offline",
@@ -892,16 +892,16 @@
             "file": "multiple_jobholders.json"
           },
           "insight_type": "trend",
-          "role": "4 · THE RESPONSE",
+          "role": "4 \u00b7 THE RESPONSE",
           "topic": "Americans working two or more jobs",
-          "say": "The other response: 9 million Americans now work two or more jobs. Not for vacation money — for the electricity bill. Childcare alone ate the raise before it showed up. That's not a spending problem. That's a math problem."
+          "say": "The other response: 9 million Americans now work two or more jobs. Not for vacation money \u2014 for the electricity bill. Childcare alone ate the raise before it showed up. That's not a spending problem. That's a math problem."
         }
       ]
     },
     {
       "slug": "the-hidden-bills",
       "title": "It's Not the Lattes. Here's What Actually Doubled.",
-      "hook": "Financial advice says cut streaming and takeout. But car insurance just doubled, your deductible jumped 700 dollars, and total car ownership hits 1,920 a month. Here's the math they don't show you.",
+      "hook": "It's not the lattes. It's these hidden bills.",
       "closing": "Not the lattes. The bills you can't cut.",
       "hashtags": [
         "autoinsurance",
@@ -925,9 +925,9 @@
             "file": "auto_insurance_premium.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE INSURANCE",
+          "role": "1 \u00b7 THE INSURANCE",
           "topic": "average auto insurance premium",
-          "say": "Auto insurance hit 2,460 dollars a year in 2026 — more than double the 1,190 it cost in 2019. That's 205 dollars a month just to park the car in the driveway. Before you've driven an inch."
+          "say": "Auto insurance hit 2,460 dollars a year in 2026 \u2014 more than double the 1,190 it cost in 2019. That's 205 dollars a month just to park the car in the driveway. Before you've driven an inch."
         },
         {
           "source": "offline",
@@ -936,9 +936,9 @@
             "file": "employee_deductible.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE DEDUCTIBLE",
+          "role": "2 \u00b7 THE DEDUCTIBLE",
           "topic": "average health insurance deductible",
-          "say": "Your health deductible hit 2,340 dollars in 2026 — up from 1,655 in 2019. That's 685 more out of pocket every year before insurance covers a cent. You pay more in premiums, then pay again to actually use it."
+          "say": "Your health deductible hit 2,340 dollars in 2026 \u2014 up from 1,655 in 2019. That's 685 more out of pocket every year before insurance covers a cent. You pay more in premiums, then pay again to actually use it."
         },
         {
           "source": "offline",
@@ -947,9 +947,9 @@
             "file": "monthly_car_ownership.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE CAR BILL",
+          "role": "3 \u00b7 THE CAR BILL",
           "topic": "total monthly car ownership cost",
-          "say": "Total monthly car ownership — payment, insurance, gas, maintenance — hit 1,920 dollars in 2026. In 2019 it was 1,080. That's 840 more every month for the same car. More than most people's rent was in 2015."
+          "say": "Total monthly car ownership \u2014 payment, insurance, gas, maintenance \u2014 hit 1,920 dollars in 2026. In 2019 it was 1,080. That's 840 more every month for the same car. More than most people's rent was in 2015."
         },
         {
           "source": "offline",
@@ -958,16 +958,16 @@
             "file": "out_of_pocket_max.json"
           },
           "insight_type": "trend",
-          "role": "4 · THE WORST CASE",
+          "role": "4 \u00b7 THE WORST CASE",
           "topic": "health insurance out-of-pocket maximum",
-          "say": "And if you get seriously sick, the out-of-pocket maximum is 5,620 dollars in 2026, up from 3,970 in 2019. Insurance covers the rest — after you've already paid what used to be a month's take-home. This is before streaming."
+          "say": "And if you get seriously sick, the out-of-pocket maximum is 5,620 dollars in 2026, up from 3,970 in 2019. Insurance covers the rest \u2014 after you've already paid what used to be a month's take-home. This is before streaming."
         }
       ]
     },
     {
       "slug": "savings-safety-net",
       "title": "Most Americans Have No Emergency Fund. Here's the Proof.",
-      "hook": "Financial planners say keep 3 to 6 months of expenses saved. The average American saves 3.6 percent of income. One unexpected bill from disaster. Here's who's left without a cushion.",
+      "hook": "Most Americans are one surprise bill from disaster.",
       "closing": "No savings. Two jobs. Still falling behind.",
       "hashtags": [
         "savings",
@@ -991,7 +991,7 @@
             "file": "savings_rate.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CUSHION",
+          "role": "1 \u00b7 THE CUSHION",
           "topic": "the personal savings rate",
           "say": "The personal savings rate crashed from 8.8 percent in 2019 to 3.6 percent today. Of every 100 dollars you bring home, 96 dollars and 40 cents is already gone. Emergency fund? What emergency fund?"
         },
@@ -1002,9 +1002,9 @@
             "file": "multiple_jobholders.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE WORKAROUND",
+          "role": "2 \u00b7 THE WORKAROUND",
           "topic": "Americans working two or more jobs",
-          "say": "9 million Americans now hold two or more jobs. For millions of them, the second job IS the emergency fund — deployed in real time, month to month. It's not ambition. It's survival."
+          "say": "9 million Americans now hold two or more jobs. For millions of them, the second job IS the emergency fund \u2014 deployed in real time, month to month. It's not ambition. It's survival."
         },
         {
           "source": "offline",
@@ -1013,9 +1013,9 @@
             "file": "cc_delinquency.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE FALLOUT",
+          "role": "3 \u00b7 THE FALLOUT",
           "topic": "the credit card delinquency rate",
-          "say": "When the math breaks down, people fall behind. Card delinquencies hit 3.9 percent — the highest since the financial crisis. Millions of households are missing payments on debt they took out just to cover the basics."
+          "say": "When the math breaks down, people fall behind. Card delinquencies hit 3.9 percent \u2014 the highest since the financial crisis. Millions of households are missing payments on debt they took out just to cover the basics."
         },
         {
           "source": "offline",
@@ -1024,7 +1024,7 @@
             "file": "part_time_economic.json"
           },
           "insight_type": "trend",
-          "role": "4 · STILL STUCK",
+          "role": "4 \u00b7 STILL STUCK",
           "topic": "people stuck in part-time work against their will",
           "say": "4.8 million people are stuck in part-time work who want full-time hours. They'd earn more if they could. Instead they're caught between a job that doesn't pay enough and no savings to bridge the gap."
         }
