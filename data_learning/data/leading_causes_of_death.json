@@ -1,0 +1,37 @@
+{
+  "key": "leading_causes_of_death",
+  "title": "Leading causes of death, United States (thousands per year)",
+  "unit": "thousand",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "National Vital Statistics",
+    "publisher": "CDC / NCHS",
+    "url": "https://www.cdc.gov/nchs/",
+    "officiality": "official",
+    "access_date": "2026-06-07"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Heart disease",
+      "value": 695
+    },
+    {
+      "label": "Cancer",
+      "value": 605
+    },
+    {
+      "label": "Accidents",
+      "value": 224
+    },
+    {
+      "label": "Stroke",
+      "value": 165
+    },
+    {
+      "label": "Alzheimer's",
+      "value": 120
+    }
+  ]
+}

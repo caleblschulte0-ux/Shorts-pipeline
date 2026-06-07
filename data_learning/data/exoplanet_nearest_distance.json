@@ -1,0 +1,37 @@
+{
+  "key": "exoplanet_nearest_distance",
+  "title": "Distance to the nearest known exoplanets",
+  "unit": "light years",
+  "geography": "Solar neighborhood",
+  "time_coverage": "2024",
+  "source": {
+    "name": "NASA Exoplanet Archive",
+    "publisher": "NASA/Caltech",
+    "url": "https://exoplanetarchive.ipac.caltech.edu/",
+    "officiality": "official",
+    "access_date": "2026-06-07"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Proxima b",
+      "value": 4.2
+    },
+    {
+      "label": "Barnard b",
+      "value": 6.0
+    },
+    {
+      "label": "Teegarden b",
+      "value": 12.5
+    },
+    {
+      "label": "Gliese 667Cc",
+      "value": 23.6
+    },
+    {
+      "label": "TRAPPIST-1e",
+      "value": 40.7
+    }
+  ]
+}

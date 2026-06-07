@@ -1,0 +1,37 @@
+{
+  "key": "wildlife_decline_region",
+  "title": "Wildlife population decline since 1970, by region",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "1970-2020",
+  "source": {
+    "name": "Living Planet Report 2024",
+    "publisher": "WWF / ZSL",
+    "url": "https://www.worldwildlife.org/publications/living-planet-report-2024",
+    "officiality": "official",
+    "access_date": "2026-06-07"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Latin America",
+      "value": 95
+    },
+    {
+      "label": "Africa",
+      "value": 76
+    },
+    {
+      "label": "Asia-Pacific",
+      "value": 60
+    },
+    {
+      "label": "North America",
+      "value": 39
+    },
+    {
+      "label": "Europe",
+      "value": 35
+    }
+  ]
+}

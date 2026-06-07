@@ -1,0 +1,33 @@
+{
+  "key": "exoplanet_detection_methods",
+  "title": "How confirmed exoplanets were found, by method",
+  "unit": "",
+  "geography": "Milky Way",
+  "time_coverage": "through 2024",
+  "source": {
+    "name": "NASA Exoplanet Archive",
+    "publisher": "NASA/Caltech",
+    "url": "https://exoplanetarchive.ipac.caltech.edu/",
+    "officiality": "official",
+    "access_date": "2026-06-07"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Transit",
+      "value": 4300
+    },
+    {
+      "label": "Radial velocity",
+      "value": 1100
+    },
+    {
+      "label": "Microlensing",
+      "value": 240
+    },
+    {
+      "label": "Direct imaging",
+      "value": 85
+    }
+  ]
+}
