@@ -40,15 +40,13 @@ on:
         description: 'schedule/auto: hours from now until the first upload'
         required: false
         default: '1'
-  # Chain off "Daily Shorts": it runs on main (dispatched/push), so the
-  # branches:[main] filter actually matches. The old trigger named
-  # "Auto-merge claude PRs", which runs on the PR's claude/* branch, so the
-  # filter never matched and explainer never auto-fired. The plan job below
-  # no-ops when there are no new stories, so chaining every daily run is cheap.
-  workflow_run:
-    workflows: ["Daily Shorts"]
-    types: [completed]
-    branches: [main]
+  # PAUSED (2026-06-07, user request): auto-posting is held while content is
+  # being adjusted. The chain off "Daily Shorts" is disabled so NOTHING posts
+  # automatically. Re-enable by uncommenting the workflow_run block below.
+  # workflow_run:
+  #   workflows: ["Daily Shorts"]
+  #   types: [completed]
+  #   branches: [main]
 
 permissions:
   contents: write          # persist state/explainer_posted_log.json
