@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-06-07T14:51:21Z",
+  "scouted_at": "2026-06-07T15:15:14Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,10 +20,10 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 109,
-    "wikimedia_commons_count": 1,
+    "wikimedia_commons_count": 2,
     "youtube_trending_count": 50,
     "lemmy_count": 0,
-    "hackernews_count": 2
+    "hackernews_count": 1
   },
   "total": 162,
   "reddit_posts": [],
@@ -56,7 +56,7 @@
       "page_title": "Surinam Airways Flight 764",
       "page_url": "https://en.wikipedia.org/wiki/Surinam_Airways_Flight_764",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Surinam_Airways_Douglas_DC-8_Wallner.jpg/330px-Surinam_Airways_Douglas_DC-8_Wallner.jpg",
-      "extract": "Surinam Airways Flight 764 was an international scheduled passenger flight from Amsterdam Airport Schiphol in the Netherlands to Paramaribo-Zanderij International Airport in Suriname on a Surinam Airways DC-8-62. On 7 June 1989, the flight crashed during approach to Paramaribo-Zanderij, killing 178 of the 187 on board. It is the deadliest aviation disaster in Suriname's history."
+      "extract": "Surinam Airways Flight 764 was an international scheduled passenger flight of Surinam Airways from Amsterdam Airport Schiphol in the Netherlands to Paramaribo-Zanderij International Airport in Suriname. On 7 June 1989, the DC-8-62 serving the flight crashed during approach to Paramaribo-Zanderij, killing 178 of the 187 on board. It is the deadliest aviation disaster in Suriname's history."
     },
     {
       "source_type": "wikipedia_on_this_day",
@@ -256,7 +256,7 @@
       "page_title": "Surinam Airways Flight 764",
       "page_url": "https://en.wikipedia.org/wiki/Surinam_Airways_Flight_764",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Surinam_Airways_Douglas_DC-8_Wallner.jpg/330px-Surinam_Airways_Douglas_DC-8_Wallner.jpg",
-      "extract": "Surinam Airways Flight 764 was an international scheduled passenger flight from Amsterdam Airport Schiphol in the Netherlands to Paramaribo-Zanderij International Airport in Suriname on a Surinam Airways DC-8-62. On 7 June 1989, the flight crashed during approach to Paramaribo-Zanderij, killing 178 of the 187 on board. It is the deadliest aviation disaster in Suriname's history."
+      "extract": "Surinam Airways Flight 764 was an international scheduled passenger flight of Surinam Airways from Amsterdam Airport Schiphol in the Netherlands to Paramaribo-Zanderij International Airport in Suriname. On 7 June 1989, the DC-8-62 serving the flight crashed during approach to Paramaribo-Zanderij, killing 178 of the 187 on board. It is the deadliest aviation disaster in Suriname's history."
     },
     {
       "source_type": "wikipedia_on_this_day",
@@ -1122,10 +1122,17 @@
   "wikimedia_videos": [
     {
       "source_type": "wikimedia_commons_recent",
-      "title": "File:G-AIDL De Havilland DH89A Dragon Rapide over Greenwich.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:G-AIDL_De_Havilland_DH89A_Dragon_Rapide_over_Greenwich.webm",
-      "uploaded_at": "2026-06-07T14:43:41Z",
-      "uploader": "JoBrodie"
+      "title": "File:Dr. Jekyll And Mr. Hyde (1913).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Dr._Jekyll_And_Mr._Hyde_(1913).webm",
+      "uploaded_at": "2026-06-07T15:13:10Z",
+      "uploader": "The Smart Star"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:Mesa Redonda- Estados Unidos y su pol\u00edtica agresiva contra Cuba y el mundo.webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Mesa_Redonda-_Estados_Unidos_y_su_pol\u00edtica_agresiva_contra_Cuba_y_el_mundo.webm",
+      "uploaded_at": "2026-06-07T15:06:12Z",
+      "uploader": "TaronjaSatsuma"
     }
   ],
   "youtube_trending": [
@@ -1136,8 +1143,8 @@
       "channel": "elcarteldesantatv",
       "published_at": "2026-06-07T05:32:14Z",
       "iso_duration": "PT3M52S",
-      "views": 203621,
-      "likes": 45808,
+      "views": 215908,
+      "likes": 49201,
       "url": "https://www.youtube.com/watch?v=mSlpFhEPkgc",
       "thumbnail": "https://i.ytimg.com/vi/mSlpFhEPkgc/hqdefault.jpg"
     },
@@ -1148,8 +1155,8 @@
       "channel": "IGN",
       "published_at": "2026-06-06T19:32:32Z",
       "iso_duration": "PT50S",
-      "views": 380812,
-      "likes": 23862,
+      "views": 382258,
+      "likes": 23936,
       "url": "https://www.youtube.com/watch?v=8N9QN4X1pIk",
       "thumbnail": "https://i.ytimg.com/vi/8N9QN4X1pIk/hqdefault.jpg"
     },
@@ -1160,8 +1167,8 @@
       "channel": "thegameawards",
       "published_at": "2026-06-06T00:27:34Z",
       "iso_duration": "PT3H7M39S",
-      "views": 10913033,
-      "likes": 148457,
+      "views": 10924579,
+      "likes": 148556,
       "url": "https://www.youtube.com/watch?v=QdNmVWXuYec",
       "thumbnail": "https://i.ytimg.com/vi/QdNmVWXuYec/hqdefault.jpg"
     },
@@ -1172,8 +1179,8 @@
       "channel": "VT1S",
       "published_at": "2026-06-05T06:59:57Z",
       "iso_duration": "PT3M56S",
-      "views": 22707,
-      "likes": 1810,
+      "views": 22762,
+      "likes": 1814,
       "url": "https://www.youtube.com/watch?v=mTN5DTJEFEs",
       "thumbnail": "https://i.ytimg.com/vi/mTN5DTJEFEs/hqdefault.jpg"
     },
@@ -1184,8 +1191,8 @@
       "channel": "Resident Evil",
       "published_at": "2026-06-05T23:31:56Z",
       "iso_duration": "PT4M",
-      "views": 1311701,
-      "likes": 112057,
+      "views": 1316173,
+      "likes": 112393,
       "url": "https://www.youtube.com/watch?v=uxUMXniTfjM",
       "thumbnail": "https://i.ytimg.com/vi/uxUMXniTfjM/hqdefault.jpg"
     },
@@ -1196,8 +1203,8 @@
       "channel": "MrBeast Gaming",
       "published_at": "2026-06-06T16:00:01Z",
       "iso_duration": "PT26M49S",
-      "views": 14779915,
-      "likes": 411895,
+      "views": 14908482,
+      "likes": 415900,
       "url": "https://www.youtube.com/watch?v=5F5MKI_jXJw",
       "thumbnail": "https://i.ytimg.com/vi/5F5MKI_jXJw/hqdefault.jpg"
     },
@@ -1208,8 +1215,8 @@
       "channel": "Taylor Swift - Topic",
       "published_at": "2026-06-05T04:00:37Z",
       "iso_duration": "PT2M59S",
-      "views": 3280090,
-      "likes": 155100,
+      "views": 3287785,
+      "likes": 155447,
       "url": "https://www.youtube.com/watch?v=SzJXikN_4wA",
       "thumbnail": "https://i.ytimg.com/vi/SzJXikN_4wA/hqdefault.jpg"
     },
@@ -1220,8 +1227,8 @@
       "channel": "FINAL FANTASY",
       "published_at": "2026-06-05T23:06:05Z",
       "iso_duration": "PT2M23S",
-      "views": 559954,
-      "likes": 36801,
+      "views": 566186,
+      "likes": 36864,
       "url": "https://www.youtube.com/watch?v=PH3ox5krci8",
       "thumbnail": "https://i.ytimg.com/vi/PH3ox5krci8/hqdefault.jpg"
     },
@@ -1232,8 +1239,8 @@
       "channel": "Wemmbu",
       "published_at": "2026-06-06T23:10:50Z",
       "iso_duration": "PT1H57M41S",
-      "views": 2424703,
-      "likes": 163610,
+      "views": 2473942,
+      "likes": 165261,
       "url": "https://www.youtube.com/watch?v=4v_jk0w7wR0",
       "thumbnail": "https://i.ytimg.com/vi/4v_jk0w7wR0/hqdefault.jpg"
     },
@@ -1244,8 +1251,8 @@
       "channel": "KittenSneeze",
       "published_at": "2026-06-06T20:00:06Z",
       "iso_duration": "PT4M7S",
-      "views": 310037,
-      "likes": 36798,
+      "views": 315713,
+      "likes": 37389,
       "url": "https://www.youtube.com/watch?v=u61fUWCKAG4",
       "thumbnail": "https://i.ytimg.com/vi/u61fUWCKAG4/hqdefault.jpg"
     },
@@ -1256,8 +1263,8 @@
       "channel": "Guild Wars 2",
       "published_at": "2026-06-05T21:49:08Z",
       "iso_duration": "PT1M44S",
-      "views": 741277,
-      "likes": 37139,
+      "views": 743407,
+      "likes": 37228,
       "url": "https://www.youtube.com/watch?v=ITPzxITngqA",
       "thumbnail": "https://i.ytimg.com/vi/ITPzxITngqA/hqdefault.jpg"
     },
@@ -1268,8 +1275,8 @@
       "channel": "SMii7Yplus",
       "published_at": "2026-06-06T19:13:39Z",
       "iso_duration": "PT34M3S",
-      "views": 788804,
-      "likes": 42845,
+      "views": 795712,
+      "likes": 43256,
       "url": "https://www.youtube.com/watch?v=wHfY1TjmRnc",
       "thumbnail": "https://i.ytimg.com/vi/wHfY1TjmRnc/hqdefault.jpg"
     },
@@ -1280,8 +1287,8 @@
       "channel": "4 Shooters Only\u2122",
       "published_at": "2026-06-05T16:02:07Z",
       "iso_duration": "PT3M",
-      "views": 405048,
-      "likes": 24590,
+      "views": 406142,
+      "likes": 24737,
       "url": "https://www.youtube.com/watch?v=PH9_dmcGM3E",
       "thumbnail": "https://i.ytimg.com/vi/PH9_dmcGM3E/hqdefault.jpg"
     },
@@ -1292,8 +1299,8 @@
       "channel": "GameSpot",
       "published_at": "2026-06-05T23:41:08Z",
       "iso_duration": "PT48M4S",
-      "views": 448656,
-      "likes": 10321,
+      "views": 449459,
+      "likes": 10345,
       "url": "https://www.youtube.com/watch?v=F26g5SSslCU",
       "thumbnail": "https://i.ytimg.com/vi/F26g5SSslCU/hqdefault.jpg"
     },
@@ -1304,7 +1311,7 @@
       "channel": "StanRP",
       "published_at": "2026-06-07T03:59:13Z",
       "iso_duration": "PT10S",
-      "views": 277797,
+      "views": 277821,
       "likes": 2427,
       "url": "https://www.youtube.com/watch?v=J1tpJyqUYk0",
       "thumbnail": "https://i.ytimg.com/vi/J1tpJyqUYk0/hqdefault.jpg"
@@ -1316,8 +1323,8 @@
       "channel": "NoCap",
       "published_at": "2026-06-05T21:00:02Z",
       "iso_duration": "PT2M54S",
-      "views": 211592,
-      "likes": 15794,
+      "views": 212558,
+      "likes": 15880,
       "url": "https://www.youtube.com/watch?v=C_OiWCF4zE0",
       "thumbnail": "https://i.ytimg.com/vi/C_OiWCF4zE0/hqdefault.jpg"
     },
@@ -1328,8 +1335,8 @@
       "channel": "Monster Hunter",
       "published_at": "2026-06-05T23:17:02Z",
       "iso_duration": "PT2M2S",
-      "views": 662013,
-      "likes": 49874,
+      "views": 662681,
+      "likes": 49960,
       "url": "https://www.youtube.com/watch?v=URrMx-2l_ek",
       "thumbnail": "https://i.ytimg.com/vi/URrMx-2l_ek/hqdefault.jpg"
     },
@@ -1340,8 +1347,8 @@
       "channel": "TheBurntPeanut",
       "published_at": "2026-06-07T09:20:11Z",
       "iso_duration": "PT8H18M22S",
-      "views": 453855,
-      "likes": 8471,
+      "views": 455837,
+      "likes": 8494,
       "url": "https://www.youtube.com/watch?v=FUDyxFg_aWE",
       "thumbnail": "https://i.ytimg.com/vi/FUDyxFg_aWE/hqdefault.jpg"
     },
@@ -1352,8 +1359,8 @@
       "channel": "Sabor Amor",
       "published_at": "2026-06-06T11:32:37Z",
       "iso_duration": "PT3M55S",
-      "views": 231215,
-      "likes": 424,
+      "views": 234287,
+      "likes": 439,
       "url": "https://www.youtube.com/watch?v=-JjYVQ4kcHk",
       "thumbnail": "https://i.ytimg.com/vi/-JjYVQ4kcHk/hqdefault.jpg"
     },
@@ -1364,8 +1371,8 @@
       "channel": "EA Star Wars",
       "published_at": "2026-06-05T22:07:33Z",
       "iso_duration": "PT3M9S",
-      "views": 748365,
-      "likes": 29915,
+      "views": 749948,
+      "likes": 30027,
       "url": "https://www.youtube.com/watch?v=WxLUZ1omFA8",
       "thumbnail": "https://i.ytimg.com/vi/WxLUZ1omFA8/hqdefault.jpg"
     },
@@ -1376,8 +1383,8 @@
       "channel": "CaseOh",
       "published_at": "2026-06-06T22:00:27Z",
       "iso_duration": "PT1H51M27S",
-      "views": 285944,
-      "likes": 10135,
+      "views": 290005,
+      "likes": 10238,
       "url": "https://www.youtube.com/watch?v=5cnIkR8f5tE",
       "thumbnail": "https://i.ytimg.com/vi/5cnIkR8f5tE/hqdefault.jpg"
     },
@@ -1388,8 +1395,8 @@
       "channel": "Top Worship Music",
       "published_at": "2026-06-06T09:45:43Z",
       "iso_duration": "PT1H27M9S",
-      "views": 230676,
-      "likes": 2209,
+      "views": 233578,
+      "likes": 2244,
       "url": "https://www.youtube.com/watch?v=-BXQA-r2eCA",
       "thumbnail": "https://i.ytimg.com/vi/-BXQA-r2eCA/hqdefault.jpg"
     },
@@ -1400,8 +1407,8 @@
       "channel": "SUPERLOU GAMES ",
       "published_at": "2026-06-06T21:15:38Z",
       "iso_duration": "PT1M12S",
-      "views": 292576,
-      "likes": 18048,
+      "views": 296251,
+      "likes": 18235,
       "url": "https://www.youtube.com/watch?v=KXVHlwXUxAI",
       "thumbnail": "https://i.ytimg.com/vi/KXVHlwXUxAI/hqdefault.jpg"
     },
@@ -1412,8 +1419,8 @@
       "channel": "Jynxzi",
       "published_at": "2026-06-07T06:44:15Z",
       "iso_duration": "PT11H55M",
-      "views": 964997,
-      "likes": 12578,
+      "views": 967063,
+      "likes": 12592,
       "url": "https://www.youtube.com/watch?v=FtMS8as4n3I",
       "thumbnail": "https://i.ytimg.com/vi/FtMS8as4n3I/hqdefault.jpg"
     },
@@ -1424,8 +1431,8 @@
       "channel": "RyloRodriguezVEVO",
       "published_at": "2026-06-05T04:00:13Z",
       "iso_duration": "PT3M3S",
-      "views": 372808,
-      "likes": 22604,
+      "views": 373976,
+      "likes": 22671,
       "url": "https://www.youtube.com/watch?v=pPy4qcgjdmY",
       "thumbnail": "https://i.ytimg.com/vi/pPy4qcgjdmY/hqdefault.jpg"
     },
@@ -1436,8 +1443,8 @@
       "channel": "Emergency Awesome",
       "published_at": "2026-06-06T23:54:17Z",
       "iso_duration": "PT11M59S",
-      "views": 110204,
-      "likes": 3463,
+      "views": 111694,
+      "likes": 3517,
       "url": "https://www.youtube.com/watch?v=u4npZvN1YG0",
       "thumbnail": "https://i.ytimg.com/vi/u4npZvN1YG0/hqdefault.jpg"
     },
@@ -1448,8 +1455,8 @@
       "channel": "Tyler & Snowi",
       "published_at": "2026-06-06T20:42:37Z",
       "iso_duration": "PT2H53M42S",
-      "views": 657253,
-      "likes": 40296,
+      "views": 664814,
+      "likes": 40804,
       "url": "https://www.youtube.com/watch?v=4i3GHno_CGI",
       "thumbnail": "https://i.ytimg.com/vi/4i3GHno_CGI/hqdefault.jpg"
     },
@@ -1460,8 +1467,8 @@
       "channel": "Fenix Flexin",
       "published_at": "2026-06-05T04:00:29Z",
       "iso_duration": "PT2M9S",
-      "views": 257107,
-      "likes": 14119,
+      "views": 257609,
+      "likes": 14188,
       "url": "https://www.youtube.com/watch?v=W1sS0AjQai4",
       "thumbnail": "https://i.ytimg.com/vi/W1sS0AjQai4/hqdefault.jpg"
     },
@@ -1472,8 +1479,8 @@
       "channel": "Street Fighter",
       "published_at": "2026-06-05T22:46:58Z",
       "iso_duration": "PT1M16S",
-      "views": 294136,
-      "likes": 18534,
+      "views": 294535,
+      "likes": 18553,
       "url": "https://www.youtube.com/watch?v=9dxDjF_dOXc",
       "thumbnail": "https://i.ytimg.com/vi/9dxDjF_dOXc/hqdefault.jpg"
     },
@@ -1484,8 +1491,8 @@
       "channel": "CaylusBlox",
       "published_at": "2026-06-06T20:45:21Z",
       "iso_duration": "PT3H3M47S",
-      "views": 1690113,
-      "likes": 55006,
+      "views": 1691970,
+      "likes": 55031,
       "url": "https://www.youtube.com/watch?v=bx9Jijm5bjA",
       "thumbnail": "https://i.ytimg.com/vi/bx9Jijm5bjA/hqdefault.jpg"
     },
@@ -1496,7 +1503,7 @@
       "channel": "Sonalux",
       "published_at": "2026-05-30T23:49:36Z",
       "iso_duration": "PT3M59S",
-      "views": 221231,
+      "views": 221496,
       "likes": 568,
       "url": "https://www.youtube.com/watch?v=dM_KqDZU4Ck",
       "thumbnail": "https://i.ytimg.com/vi/dM_KqDZU4Ck/hqdefault.jpg"
@@ -1508,8 +1515,8 @@
       "channel": "Gun",
       "published_at": "2026-06-06T19:21:54Z",
       "iso_duration": "PT1M11S",
-      "views": 68287,
-      "likes": 4593,
+      "views": 68656,
+      "likes": 4624,
       "url": "https://www.youtube.com/watch?v=VcoT-VeH4Lc",
       "thumbnail": "https://i.ytimg.com/vi/VcoT-VeH4Lc/hqdefault.jpg"
     },
@@ -1520,8 +1527,8 @@
       "channel": "Asmongold TV  ",
       "published_at": "2026-06-07T02:40:38Z",
       "iso_duration": "PT1H54M32S",
-      "views": 394545,
-      "likes": 11410,
+      "views": 401842,
+      "likes": 11599,
       "url": "https://www.youtube.com/watch?v=YJl-Qi_w1OU",
       "thumbnail": "https://i.ytimg.com/vi/YJl-Qi_w1OU/hqdefault.jpg"
     },
@@ -1532,8 +1539,8 @@
       "channel": "Shaboozey - Topic",
       "published_at": "2026-06-05T04:07:05Z",
       "iso_duration": "PT2M57S",
-      "views": 100167,
-      "likes": 2087,
+      "views": 100804,
+      "likes": 2108,
       "url": "https://www.youtube.com/watch?v=c4QuZZbg-Ms",
       "thumbnail": "https://i.ytimg.com/vi/c4QuZZbg-Ms/hqdefault.jpg"
     },
@@ -1544,8 +1551,8 @@
       "channel": "Pocketpair Palworld",
       "published_at": "2026-06-05T22:36:36Z",
       "iso_duration": "PT1M48S",
-      "views": 483054,
-      "likes": 35521,
+      "views": 486192,
+      "likes": 35661,
       "url": "https://www.youtube.com/watch?v=gKum7LqFi1s",
       "thumbnail": "https://i.ytimg.com/vi/gKum7LqFi1s/hqdefault.jpg"
     },
@@ -1556,7 +1563,7 @@
       "channel": "Rangist",
       "published_at": "2026-06-07T01:18:14Z",
       "iso_duration": "PT15S",
-      "views": 756244,
+      "views": 756276,
       "likes": 2481,
       "url": "https://www.youtube.com/watch?v=KuruPuIO_8g",
       "thumbnail": "https://i.ytimg.com/vi/KuruPuIO_8g/hqdefault.jpg"
@@ -1568,8 +1575,8 @@
       "channel": "Release - Topic",
       "published_at": "2026-06-04T10:04:22Z",
       "iso_duration": "PT2M54S",
-      "views": 192767,
-      "likes": 10519,
+      "views": 193347,
+      "likes": 10575,
       "url": "https://www.youtube.com/watch?v=qsKSfCCxrnk",
       "thumbnail": "https://i.ytimg.com/vi/qsKSfCCxrnk/hqdefault.jpg"
     },
@@ -1580,8 +1587,8 @@
       "channel": "Bandai Namco Entertainment America",
       "published_at": "2026-06-05T21:40:53Z",
       "iso_duration": "PT2M6S",
-      "views": 466064,
-      "likes": 28464,
+      "views": 467199,
+      "likes": 28531,
       "url": "https://www.youtube.com/watch?v=-J0_2eMtFQM",
       "thumbnail": "https://i.ytimg.com/vi/-J0_2eMtFQM/hqdefault.jpg"
     },
@@ -1592,8 +1599,8 @@
       "channel": "PrestonPlayz",
       "published_at": "2026-06-06T14:15:04Z",
       "iso_duration": "PT21M47S",
-      "views": 555493,
-      "likes": 11313,
+      "views": 559930,
+      "likes": 11398,
       "url": "https://www.youtube.com/watch?v=WmXbKZijDyg",
       "thumbnail": "https://i.ytimg.com/vi/WmXbKZijDyg/hqdefault.jpg"
     },
@@ -1604,8 +1611,8 @@
       "channel": "LosTemerariosVEVO",
       "published_at": "2026-06-05T04:00:27Z",
       "iso_duration": "PT3M26S",
-      "views": 103596,
-      "likes": 556,
+      "views": 104095,
+      "likes": 565,
       "url": "https://www.youtube.com/watch?v=u7KInooWQJQ",
       "thumbnail": "https://i.ytimg.com/vi/u7KInooWQJQ/hqdefault.jpg"
     },
@@ -1616,8 +1623,8 @@
       "channel": "Wuthering Waves",
       "published_at": "2026-06-07T04:00:07Z",
       "iso_duration": "PT2M28S",
-      "views": 170336,
-      "likes": 22127,
+      "views": 172869,
+      "likes": 22359,
       "url": "https://www.youtube.com/watch?v=0bpXFeEkAoM",
       "thumbnail": "https://i.ytimg.com/vi/0bpXFeEkAoM/hqdefault.jpg"
     },
@@ -1628,8 +1635,8 @@
       "channel": "Typical Gamer",
       "published_at": "2026-06-06T13:59:22Z",
       "iso_duration": "PT11H54M59S",
-      "views": 1925459,
-      "likes": 32705,
+      "views": 1925596,
+      "likes": 32709,
       "url": "https://www.youtube.com/watch?v=AYmNWyF9lOY",
       "thumbnail": "https://i.ytimg.com/vi/AYmNWyF9lOY/hqdefault.jpg"
     },
@@ -1640,8 +1647,8 @@
       "channel": "Romeo Santos",
       "published_at": "2026-06-05T13:59:10Z",
       "iso_duration": "PT5M48S",
-      "views": 991598,
-      "likes": 42995,
+      "views": 998428,
+      "likes": 43140,
       "url": "https://www.youtube.com/watch?v=-uvNvVtUidc",
       "thumbnail": "https://i.ytimg.com/vi/-uvNvVtUidc/hqdefault.jpg"
     },
@@ -1652,8 +1659,8 @@
       "channel": "EA SPORTS College",
       "published_at": "2026-06-05T00:13:04Z",
       "iso_duration": "PT1M59S",
-      "views": 393097,
-      "likes": 13483,
+      "views": 393497,
+      "likes": 13499,
       "url": "https://www.youtube.com/watch?v=a-JpwwMa5aM",
       "thumbnail": "https://i.ytimg.com/vi/a-JpwwMa5aM/hqdefault.jpg"
     },
@@ -1664,8 +1671,8 @@
       "channel": "WolfeyVGC",
       "published_at": "2026-06-06T15:00:22Z",
       "iso_duration": "PT30M8S",
-      "views": 492405,
-      "likes": 24529,
+      "views": 495322,
+      "likes": 24686,
       "url": "https://www.youtube.com/watch?v=VlrcX3aXpgY",
       "thumbnail": "https://i.ytimg.com/vi/VlrcX3aXpgY/hqdefault.jpg"
     },
@@ -1676,8 +1683,8 @@
       "channel": "Moda Mexico",
       "published_at": "2026-06-01T20:41:04Z",
       "iso_duration": "PT2M33S",
-      "views": 447971,
-      "likes": 333,
+      "views": 449384,
+      "likes": 338,
       "url": "https://www.youtube.com/watch?v=941jXJfmAnk",
       "thumbnail": "https://i.ytimg.com/vi/941jXJfmAnk/hqdefault.jpg"
     },
@@ -1688,8 +1695,8 @@
       "channel": "GamersPrey",
       "published_at": "2026-06-05T22:22:54Z",
       "iso_duration": "PT1M42S",
-      "views": 187218,
-      "likes": 6205,
+      "views": 187252,
+      "likes": 6206,
       "url": "https://www.youtube.com/watch?v=HXGa-6K4_SY",
       "thumbnail": "https://i.ytimg.com/vi/HXGa-6K4_SY/hqdefault.jpg"
     },
@@ -1700,8 +1707,8 @@
       "channel": "ManePear",
       "published_at": "2026-06-06T23:07:21Z",
       "iso_duration": "PT36M58S",
-      "views": 328187,
-      "likes": 22656,
+      "views": 336679,
+      "likes": 23129,
       "url": "https://www.youtube.com/watch?v=64x_vGzLQZo",
       "thumbnail": "https://i.ytimg.com/vi/64x_vGzLQZo/hqdefault.jpg"
     },
@@ -1712,8 +1719,8 @@
       "channel": "Scrim",
       "published_at": "2026-06-06T18:59:58Z",
       "iso_duration": "PT3M36S",
-      "views": 54488,
-      "likes": 7449,
+      "views": 54947,
+      "likes": 7512,
       "url": "https://www.youtube.com/watch?v=762q-G_lQFM",
       "thumbnail": "https://i.ytimg.com/vi/762q-G_lQFM/hqdefault.jpg"
     },
@@ -1724,8 +1731,8 @@
       "channel": "Star Wars",
       "published_at": "2026-06-05T21:55:29Z",
       "iso_duration": "PT1M31S",
-      "views": 292899,
-      "likes": 12562,
+      "views": 294119,
+      "likes": 12612,
       "url": "https://www.youtube.com/watch?v=Je9SLyqRtc0",
       "thumbnail": "https://i.ytimg.com/vi/Je9SLyqRtc0/hqdefault.jpg"
     }
@@ -1734,16 +1741,9 @@
   "hackernews_posts": [
     {
       "source_type": "hackernews_video",
-      "title": "Tribute to Jiro Yamada, Automotive Artist (1960-2025) [video]",
-      "url": "https://www.youtube.com/watch?v=rJ2gQ5Md60U",
-      "score": 46,
-      "permalink": "https://news.ycombinator.com/item?id=48418125"
-    },
-    {
-      "source_type": "hackernews_video",
       "title": "Firefox confirms working on own adblocker [video]",
       "url": "https://www.youtube.com/watch?v=Qd5_5hXa8Zc",
-      "score": 13,
+      "score": 15,
       "permalink": "https://news.ycombinator.com/item?id=48433929"
     }
   ]
