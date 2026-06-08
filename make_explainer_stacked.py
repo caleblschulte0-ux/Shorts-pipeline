@@ -1653,6 +1653,16 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
         "music_vibe": "dark" | "cinematic" | "hiphop",
       }
     """
+    # Auto-attach real entity photos for any proper noun the routine
+    # forgot. Mutates pkg["shots"] in place; existing image_urls win.
+    # See entity_media.py for the contract — it's an enforcement layer
+    # on top of the routine's "specific imagery for proper nouns" rule.
+    try:
+        import entity_media
+        entity_media.enrich_package(pkg)
+    except Exception as e:  # noqa: BLE001 — enrichment is best-effort
+        print(f"  [entity_media skip] {type(e).__name__}: {e}")
+
     shots = []
     for s in pkg["shots"]:
         # Each shot is one of: image-anchored, stock-query, or local clip.
