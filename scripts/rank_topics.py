@@ -50,42 +50,48 @@ RULE 1 — FRESHNESS. Strongly prefer items <24h old. Items >48h old need a \
 breaking-update angle to qualify. Reject anything evergreen / retrospective \
 ("X has been quietly happening for years").
 
-RULE 2 — QUIRKY MIX. **At least {half_k} of {top_k} picks must be Quirky / \
-Offbeat.** Channel analytics show these outperform serious news on views + \
-likes.
+RULE 2 — QUIRKY-HEAVY MIX. **At least {half_k} of {top_k} picks must be from \
+the Quirky / Animal / Disaster bucket.** Channel analytics show these crush \
+serious news — shark attack got 21 views vs. 0 for Nvidia earnings. The \
+{half_k} quirky slots must cover at least TWO of these three sub-buckets:
+  - **Animals / Wildlife** (escaped kangaroo named Hunter, shark attack, \
+raccoon shuts down airport, world's biggest pumpkin)
+  - **Weather / Natural disaster / Freak event** (meteor over Rome, F4 \
+tornado, dust devil flips truck, sinkhole swallows house)
+  - **Weird local / Quirky news** (NYC sewer mystery, town renames itself, \
+Hell Michigan listed at $666K, blanket fort, 1M bees escape semi)
 
-Quirky = the SITUATION is weird, not the PERSON. Good examples: "1 million \
+**Named-entity preference**: a story with a specific NAMED subject \
+("Hunter the kangaroo", "Quantinuum IPO", "Twistex dashcam") strongly beats \
+the generic version ("kangaroo escapes", "quantum stock IPOs", "tornado \
+chaser video"). Named entities drive search demand that compounds for weeks.
+
+Quirky = the SITUATION is weird, not the PERSON. Good shape: "1 million \
 bees escape from semi on Tennessee highway", "United Airlines flight turned \
 back over Bluetooth network name", "town renames itself to protest tax law", \
-"Hell, Michigan listed for sale at $666K", "world record pumpkin grown by \
-amateur", "wrong-way driver caught on camera on I-295", "raccoon shuts down \
-airport".
+"world record pumpkin grown by amateur", "raccoon shuts down airport".
 
 **Hard cap: at most 1 "Florida Man" / "local-arrest" / personality-based \
-crime story per slate.** Three "Florida man does X" picks in a row reads as \
-fluff and predictable — viewers tune out. If multiple Florida-Man-framed \
-stories surface, pick the single weirdest situation (radioactive device on \
-Facebook > stolen garden gnomes > generic assault) and skip the rest. The \
-other quirky picks must be situation-driven, not person-driven.
+crime story per slate.** Three "Florida man does X" picks reads as fluff. \
+If multiple surface, pick the single weirdest situation (radioactive device \
+on Facebook > stolen garden gnomes > generic assault) and skip the rest.
 
 MUST be real — if no wire/news outlet confirms, skip it (r/nottheonion gets \
-satire reposts). NOT politics-with-quirky-frame, NOT heartwarming fluff \
-("service dog graduates" no; "service dog escapes graduation chasing squirrel" \
-yes), NOT celebrity gossip.
+satire reposts). NOT politics-with-quirky-frame, NOT heartwarming fluff, \
+NOT celebrity gossip.
 
-The other {other_k} picks are serious news, **at most 1 per category** (treat \
-Tech + Markets as one combined bucket):
-  - Tech + Markets (AI, startups, big tech, earnings, M&A, stocks)
-  - World affairs / Geopolitics
-  - US news / Domestic policy (no election horserace)
-  - Crime / Justice
-  - Science / Health / Medicine
-  - Climate / Environment / Disasters
-  - Culture / Entertainment (no live games, no gossip)
-  - Sports (one-off newsworthy moments only)
+The other {other_k} picks fill these slots in order:
+  - **1 hard-news slot** (one of: World affairs, US policy, Crime/Justice, \
+Science/Health, Climate, Culture — rotate so the same category doesn't \
+appear two days in a row)
+  - **1 Tech/Markets slot — OPTIONAL, max 1.** Only include when the story \
+has a NICHE named-entity angle that drives search demand (e.g. "Quantinuum \
+IPO at $14B", "SpaceX Starship 11 launch"). SKIP generic earnings/AI hype \
+("Apple revenue beat", "Nvidia ships new chip", "OpenAI raises funding") — \
+those got 0 views on this channel. If nothing niche surfaces today, leave \
+this slot empty and add another quirky pick instead.
 
-If you can't find {half_k} usable quirky stories, top up from serious. Vice \
-versa if serious categories are thin. Never go below {top_k} just for purity.
+If quirky is thin, top up serious. Never go below {top_k} just for purity.
 
 REJECT:
 - Live sports games / sports-player news
@@ -95,6 +101,8 @@ REJECT:
 - Stories with no concrete visual angle or stakes
 - Pure gossip ("X is dating Y")
 - Evergreen explainers without today's news hook
+- Generic tech earnings / chip launches / funding rounds (zero views on \
+this channel; only include tech when it has a named-entity search hook)
 - **Ongoing war/conflict updates that are incremental** ("day 47 of...", \
 "fighting continues", "casualties rise"). Only include conflict if today \
 brought a major escalation, ceasefire, named-leader statement, or named-victim \
@@ -110,8 +118,8 @@ For each pick output:
   - topic: copy the topic text VERBATIM from the list (must match exactly)
   - score: 1-10 (10 = guaranteed banger)
   - angle: ONE sentence describing the hook for THIS specific topic (not a \
-different one). Example: for "VIX at 16" → "history shows calm markets always \
-crash within months".
+different one). Example: for "Quantinuum IPO" → "history's first $14B \
+quantum-computing IPO drops in a market that just lost $1T".
 
 Output JSON only: {{"picks": [{{"index": N, "topic": "...", "score": N, "angle": "..."}}, ...]}}
 
@@ -172,9 +180,11 @@ def rank(topics: list[Topic], *, top_k: int = 5, backend: str | None = None,
     # Lazy import — keeps discovery usable without the LLM dep installed.
     from script_generator import _call_llm
 
-    # half_k = required minimum quirky picks (the channel's high-engagement
-    # bucket); other_k = max serious picks across distinct categories.
-    half_k = max(1, top_k // 2)
+    # half_k = required minimum quirky/animal/disaster picks (the channel's
+    # high-engagement bucket); other_k = max serious picks. Ratio shifted to
+    # 2/3 quirky after channel analytics showed animal/quirky beats serious
+    # news on every metric — see the rebrand doc.
+    half_k = max(2, (top_k * 2) // 3)
     other_k = top_k - half_k
     user = RANKER_USER_TEMPLATE.format(
         n=len(topics), top_k=top_k,
