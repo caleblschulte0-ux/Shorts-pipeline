@@ -61,6 +61,37 @@ CAP_MARGINV = 70
 # Voice: a friendly male Kokoro voice at natural pitch (not deep/scary).
 VOICE_PITCH = 1.0
 
+# Per-video THEME. Every story gets a different palette, background gradient,
+# bokeh layout, and narrator voice (picked deterministically from the slug), so
+# uploads don't look/sound like the same template stamped out over and over —
+# which is what trips TikTok's "unoriginal / spam" filter on faceless channels.
+THEMES = [
+    dict(highlight="#4FD1C5", accent="#60A5FA", warn="#F59E0B",
+         grad=("0x080A14", "0x0e2444", "0x175852", "0x0a0e20"),
+         seed=7, voice="am_fenrir"),
+    dict(highlight="#A78BFA", accent="#F472B6", warn="#FBBF24",
+         grad=("0x0c0814", "0x241040", "0x3a1763", "0x120a20"),
+         seed=13, voice="am_michael"),
+    dict(highlight="#FBBF24", accent="#FB7185", warn="#34D399",
+         grad=("0x141005", "0x3a2410", "0x4e3417", "0x1a1408"),
+         seed=21, voice="bm_george"),
+    dict(highlight="#34D399", accent="#22D3EE", warn="#FBBF24",
+         grad=("0x07140e", "0x0e3a2a", "0x175852", "0x0a201a"),
+         seed=29, voice="am_adam"),
+    dict(highlight="#FB7185", accent="#A78BFA", warn="#FBBF24",
+         grad=("0x140810", "0x40102a", "0x5a1740", "0x200a18"),
+         seed=37, voice="bm_lewis"),
+    dict(highlight="#60A5FA", accent="#34D399", warn="#FBBF24",
+         grad=("0x06101e", "0x102044", "0x174a72", "0x0a1428"),
+         seed=43, voice="am_onyx"),
+]
+
+
+def _theme_for(slug: str) -> dict:
+    import hashlib
+    h = int(hashlib.md5(slug.encode()).hexdigest(), 16)
+    return THEMES[h % len(THEMES)]
+
 # Oddly-satisfying b-roll for the bottom strip. If broll/styles/*.mp4 exist
 # (built by broll_gen.py --styles) the renderer round-robins through them so
 # each video gets a different style; otherwise it falls back to the single
@@ -172,6 +203,12 @@ def synth_narration(sentences, workdir: Path, voice: str):
     from kokoro_onnx import Kokoro
 
     k = Kokoro(str(KOKORO_MODEL), str(KOKORO_VOICES))
+    # Validate the themed voice once; fall back to the house voice if the id
+    # isn't in this Kokoro build, so a theme can never break a render.
+    try:
+        k.create("test", voice=voice, lang="en-us")
+    except Exception:  # noqa: BLE001
+        voice = "am_fenrir"
     wavs, windows, t = [], [], 0.0
     for i, sent in enumerate(sentences):
         samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.04,
@@ -264,7 +301,9 @@ def _round_rect_tail(x0, y0, x1, y1, r=30, tail_x=540, tip=(540, 520)) -> str:
     return " ".join(p)
 
 
-def build_story_ass(st: story.Story, windows, events, out: Path) -> None:
+def build_story_ass(st: story.Story, windows, events, out: Path,
+                    accent: str = "&H4FD1F5&") -> None:
+    acc = accent.strip("&H").rstrip("&")          # bare BBGGRR for inline tags
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -274,7 +313,7 @@ WrapStyle: 0
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Cap,DejaVu Sans,60,&HFFFFFF&,&H000000&,&H66000000&,1,1,4,1,2,90,90,{CAP_MARGINV},1
-Style: Hook,DejaVu Sans,96,&H4FD1F5&,&H000000&,&H000000&,1,1,6,3,8,70,70,360,1
+Style: Hook,DejaVu Sans,96,{accent},&H000000&,&H000000&,1,1,6,3,8,70,70,360,1
 Style: Punch,DejaVu Sans,150,&HFFFFFF&,&H000000&,&H000000&,1,1,6,3,5,40,40,0,1
 Style: Src,DejaVu Sans,40,&HA5B4C7&,&H000000&,&H000000&,0,1,3,1,5,120,120,0,1
 Style: Chip,DejaVu Sans,38,&HFFFFFF&,&H6A5C7C&,&H000000&,1,3,0,0,8,60,60,26,1
@@ -340,7 +379,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # CLOSING — the mascot delivers its quip in a speech bubble (the focus),
     # with the sources shrunk to tiny text at the very bottom.
     c0, c1 = windows[-1]
-    bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&HC5D14F&\\bord4\\shad0"
+    bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&H" + acc + "&\\bord4\\shad0"
               "\\fad(250,0)\\p1}"
               + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 524))
               + "{\\p0}")
@@ -354,7 +393,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         q = ("{\\an5\\pos(540,842)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
              "\\shad0\\fad(450,0)}" + _wrap(question, 24))
         lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
-        cta = ("{\\an5\\pos(540,952)\\fs54\\c&HC5D14F&\\b1\\bord5\\3c&H000000&"
+        cta = ("{\\an5\\pos(540,952)\\fs54\\c&H" + acc + "&\\b1\\bord5\\3c&H000000&"
                "\\shad0\\fad(450,0)\\fscx82\\fscy82\\t(450,780,\\fscx100\\fscy100)}"
                "COMMENT BELOW ▼")
         lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
@@ -487,12 +526,21 @@ def _piecewise(kfs, axis: int) -> str:
 # --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
-def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
+def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
     cfg = json.loads((PKG_DIR / "niche.config.json").read_text())
     story_cfg = next((s for s in cfg.get("stories", []) if s["slug"] == slug), None)
     if not story_cfg:
         raise KeyError(f"no story with slug {slug!r} in niche.config.json")
     out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Per-video theme: chart palette, background gradient, bokeh, voice — so no
+    # two uploads look or sound like the same stamped-out template.
+    theme = _theme_for(slug)
+    charts.HIGHLIGHT, charts.ACCENT, charts.WARN = (
+        theme["highlight"], theme["accent"], theme["warn"])
+    accent_ass = _hex_to_ass(theme["highlight"])
+    if voice is None:
+        voice = theme["voice"]
 
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
@@ -501,12 +549,12 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
         narration, windows = synth_narration(sentences, work, voice)
         total = _dur(narration) + 0.3
 
-        bokeh = ambient.make_bokeh_strip(work / "bokeh.png")
+        bokeh = ambient.make_bokeh_strip(work / "bokeh.png", seed=theme["seed"])
         footmask = work / "foot_mask.png"
         _make_mandel_mask(footmask, W, FOOT_H, feather=130, bottom=70)
         events = _plan_events(st, windows)
         ass = work / "cap.ass"
-        build_story_ass(st, windows, events, ass)
+        build_story_ass(st, windows, events, ass, accent=accent_ass)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
         # Ordered mascot sequence: hook (up, centred), one per number (tucked
@@ -541,7 +589,8 @@ def render(slug: str, out_path: Path, voice: str = "am_fenrir") -> Path:
         use_broll = broll_path is not None
 
         # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, charts, mascots, audio
-        inputs = ["-f", "lavfi", "-i", ambient.gradient_lavfi(total)]
+        inputs = ["-f", "lavfi", "-i",
+                  ambient.gradient_lavfi(total, colors=theme["grad"])]
         inputs += ["-loop", "1", "-i", str(bokeh)]
         if use_broll:
             inputs += ["-stream_loop", "-1", "-i", str(broll_path)]
@@ -640,7 +689,7 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--slug", required=True, help="story slug from niche.config.json")
     ap.add_argument("--out", type=Path, required=True)
-    ap.add_argument("--voice", default="am_fenrir",
+    ap.add_argument("--voice", default=None,
                     help="Kokoro voice id (default am_fenrir)")
     args = ap.parse_args()
     render(args.slug, args.out, voice=args.voice)
