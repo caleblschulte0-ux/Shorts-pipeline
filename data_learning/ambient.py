@@ -50,10 +50,14 @@ def make_bokeh_strip(out_path: Path, *, n: int = 28, seed: int = 7) -> Path:
     return out_path
 
 
-def gradient_lavfi(total: float, fps: int = 30) -> str:
-    """lavfi source string for the slow, flowing base gradient."""
+def gradient_lavfi(total: float, fps: int = 30,
+                   colors: tuple = ("0x080A14", "0x0e2444",
+                                    "0x175852", "0x0a0e20")) -> str:
+    """lavfi source string for the slow, flowing base gradient. ``colors`` is
+    four 0xRRGGBB stops so each video can wear a different palette."""
+    c0, c1, c2, c3 = colors
     return (
-        f"gradients=s={W}x{H}:c0=0x080A14:c1=0x0e2444:c2=0x175852:c3=0x0a0e20:"
+        f"gradients=s={W}x{H}:c0={c0}:c1={c1}:c2={c2}:c3={c3}:"
         f"x0=140:y0=240:x1=940:y1=1680:nb_colors=4:speed=0.0035:"
         f"duration={total:.2f}:rate={fps}")
 
