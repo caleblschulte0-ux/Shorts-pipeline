@@ -227,6 +227,15 @@ flopped. Skip if the file is missing (early days, no data yet).
   is about money/trends, not box scores.
 - Each story = ONE clear narrative arc across **4 connected charts** with a
   payoff (e.g. "the cheery numbers up top, the catch down here").
+- **Vary the chart types** — don't make every segment a bar list. Pick the
+  `insight_type` that fits the data:
+  - `trend` → line (a value over time; data points need a `period`/year).
+  - `rank` → horizontal bars (compare items; the biggest/smallest is the point).
+  - `comparison` → two big columns (A vs B, percentages).
+  - `share` → **pie/donut** (parts of a whole that's MUTUALLY EXCLUSIVE and
+    roughly sums to the total — e.g. types making up a population, where the
+    spending goes). Don't use a pie for overlapping or non-exhaustive lists.
+  Aim for at least two different chart types per story.
 - Don't reuse a `slug` already in `niche.config.json` (grep first).
 
 ## Write it for dummies (this is the whole brand)
