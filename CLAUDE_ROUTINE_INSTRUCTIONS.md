@@ -225,10 +225,12 @@ Never use wordmark-only logos (composite as PowerPoint slides). Never use
 
 # Part 2 — Data-graph explainer stories (Short_explainer channel)
 
-After the trending batch above, ALSO author **at least 4 brand-new data-graph
-explainer stories** for the **Short_explainer** channel (more is fine — 4 is
-the floor, never fewer). Vary the topics across the slate so it's not four
-flavors of the same subject.
+After the trending batch above, ALSO author **exactly 3 brand-new data-graph
+explainer stories** for the **Short_explainer** channel. Three a day, posted
+spaced ~6 hours apart — a steady, un-spammy cadence (a young channel that
+firehoses uploads gets throttled). Of the 3, **at most 1 may be finance/money**
+— the other 2 come from the non-money buckets below. Vary the topics so it's
+not three flavors of the same subject.
 
 These are a DIFFERENT format from the packages in Part 1: chart-driven
 "X in 4 Charts" breakdowns rendered by `data_learning/studio_render.py`

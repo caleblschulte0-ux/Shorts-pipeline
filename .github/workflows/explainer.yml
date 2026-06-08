@@ -33,9 +33,9 @@ on:
         required: false
         default: ''
       every_hours:
-        description: 'schedule/auto: hours between uploads'
+        description: 'schedule/auto: hours between uploads (spaced out)'
         required: false
-        default: '1'
+        default: '6'
       start_in_hours:
         description: 'schedule/auto: hours from now until the first upload'
         required: false
@@ -180,7 +180,7 @@ jobs:
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
           EXPECTED="${{ inputs.expected_channel }}"; [ -z "$EXPECTED" ] && EXPECTED="short_explainer67"
-          EVERY="${{ inputs.every_hours }}";         [ -z "$EVERY" ] && EVERY="1"
+          EVERY="${{ inputs.every_hours }}";         [ -z "$EVERY" ] && EVERY="6"
           START="${{ inputs.start_in_hours }}";      [ -z "$START" ] && START="1"
           SLUGS="${{ inputs.slugs }}"
           # Blank slugs => omit --slugs entirely, so post_stories targets EVERY
