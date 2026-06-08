@@ -1,0 +1,64 @@
+{
+  "version": 8,
+  "slug": "south-korea-first-female-pm",
+  "title": "South Korea Just Nominated Its First Female Prime Minister in 20 Years",
+  "hashtags": ["southkorea", "korea", "primeminister", "politics", "women", "history", "naver", "hanseongsu", "asia", "government", "worldnews", "leadership"],
+  "script": "South Korean President Lee Jae-myung nominated Han Seong-sook as prime minister this week — if Parliament confirms her, she becomes South Korea's first female prime minister in 20 years. Han, 69, spent years as CEO of Naver, South Korea's largest internet company, before entering politics. The last woman to hold the post was Han Myeong-sook in 2006. Parliament still needs to vote. The nomination itself is already historic.",
+  "shots": [
+    {
+      "phrase": "South Korean President Lee Jae-myung",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Republic_of_Korea_capitol.jpg",
+      "query": "South Korea government building Seoul official National Assembly"
+    },
+    {
+      "phrase": "Han Seong-sook as prime minister",
+      "query": "South Korea female politician official government formal ceremony"
+    },
+    {
+      "phrase": "CEO of Naver",
+      "query": "Naver South Korea technology company internet Seoul office"
+    },
+    {
+      "phrase": "first female prime minister in 20 years",
+      "query": "South Korea parliament government historic first women leadership"
+    },
+    {
+      "phrase": "Han Myeong-sook in 2006",
+      "query": "South Korea 2006 prime minister historic government ceremony"
+    },
+    {
+      "phrase": "nomination itself is already historic",
+      "query": "South Korea Seoul city skyline modern capital government"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "first female prime minister in 20 years",
+      "text": "FIRST IN 20 YEARS",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818"
+    },
+    {
+      "phrase": "Parliament confirms her",
+      "text": "PARLIAMENT DECIDES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "CEO of Naver",
+      "text": "NAVER CEO",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Han Myeong-sook in 2006",
+      "text": "SINCE 2006",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "nomination itself is already historic",
+      "text": "HISTORIC",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

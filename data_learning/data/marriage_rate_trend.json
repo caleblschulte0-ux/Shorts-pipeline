@@ -1,0 +1,24 @@
+{
+  "key": "marriage_rate_trend",
+  "title": "US marriage rate per 1,000 people",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "1980-2024 (selected years)",
+  "source": {
+    "name": "National Vital Statistics Reports",
+    "publisher": "CDC National Center for Health Statistics",
+    "url": "https://www.cdc.gov/nchs/nvss/marriage-divorce.htm",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Marriages per 1,000 total US population per year.",
+  "points": [
+    {"label": "1980", "value": 10.6, "period": "1980"},
+    {"label": "1990", "value": 9.8, "period": "1990"},
+    {"label": "2000", "value": 8.5, "period": "2000"},
+    {"label": "2010", "value": 6.8, "period": "2010"},
+    {"label": "2015", "value": 6.9, "period": "2015"},
+    {"label": "2020", "value": 5.1, "period": "2020"},
+    {"label": "2024", "value": 5.8, "period": "2024"}
+  ]
+}

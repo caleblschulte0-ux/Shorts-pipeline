@@ -1,0 +1,25 @@
+{
+  "key": "sleep_hours_by_age",
+  "title": "Average nightly sleep hours by age group",
+  "unit": "hours",
+  "geography": "United States",
+  "time_coverage": "2023-2024",
+  "source": {
+    "name": "American Time Use Survey / National Sleep Foundation poll",
+    "publisher": "U.S. Bureau of Labor Statistics / National Sleep Foundation",
+    "url": "https://www.bls.gov/tus/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Average self-reported nightly sleep duration; recommended range 7-9 hours for adults, 8-10 for teens.",
+  "baseline": {"label": "Recommended minimum (adults)", "value": 7.0},
+  "points": [
+    {"label": "Teens (13-17)", "value": 6.9},
+    {"label": "18-24", "value": 6.8},
+    {"label": "25-34", "value": 6.7},
+    {"label": "35-44", "value": 6.8},
+    {"label": "45-54", "value": 6.9},
+    {"label": "55-64", "value": 7.1},
+    {"label": "65+", "value": 7.5}
+  ]
+}

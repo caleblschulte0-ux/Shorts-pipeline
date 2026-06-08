@@ -1,0 +1,26 @@
+{
+  "key": "obesity_vs_nations",
+  "title": "Obesity rate by country",
+  "unit": "percent",
+  "geography": "Selected OECD nations",
+  "time_coverage": "2022-2023",
+  "source": {
+    "name": "OECD Health Statistics / WHO Global Health Observatory",
+    "publisher": "Organisation for Economic Co-operation and Development",
+    "url": "https://www.oecd.org/en/data/indicators/overweight-and-obesity-in-adults.html",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Self-reported or measured obesity prevalence (BMI ≥30) among adults. United States is the baseline comparator.",
+  "baseline": {"label": "United States", "value": 41.9},
+  "points": [
+    {"label": "United States", "value": 41.9},
+    {"label": "Mexico", "value": 28.9},
+    {"label": "Australia", "value": 29.7},
+    {"label": "UK", "value": 27.8},
+    {"label": "Canada", "value": 25.8},
+    {"label": "Germany", "value": 22.3},
+    {"label": "France", "value": 17.0},
+    {"label": "Japan", "value": 4.3}
+  ]
+}

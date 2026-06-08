@@ -1,0 +1,60 @@
+{
+  "version": 8,
+  "slug": "alabama-nitrogen-execution",
+  "title": "A Judge Said Nitrogen Execution Is Legal. The Man Dies June 11.",
+  "hashtags": ["alabama", "execution", "deathrow", "nitrogen", "capitalpunishment", "crimejustice", "supremecourt", "jefferylee", "constitution", "8thamendment", "law", "criminallaw"],
+  "script": "A federal judge ruled last week that Alabama's nitrogen gas execution method is constitutional — even though the court found it causes the most severe form of breathing discomfort for 1 to 3 minutes. The ruling came after the first-ever bench trial to examine the method's legality. Death row inmate Jeffery Lee, scheduled for execution June 11, will appeal. 8 men have now been executed by nitrogen in Alabama and Louisiana.",
+  "shots": [
+    {
+      "phrase": "Alabama's nitrogen gas execution method",
+      "query": "Alabama state prison death row execution chamber interior"
+    },
+    {
+      "phrase": "most severe form of breathing discomfort",
+      "query": "medical equipment oxygen mask nitrogen gas breathing lab"
+    },
+    {
+      "phrase": "first-ever bench trial to examine the method's legality",
+      "query": "federal courthouse judge gavel ruling legal trial courtroom"
+    },
+    {
+      "phrase": "Jeffery Lee, scheduled for execution June 11",
+      "query": "prison cell bars death row inmate incarcerated jail"
+    },
+    {
+      "phrase": "8 men have now been executed by nitrogen",
+      "query": "Alabama prison execution site correctional facility exterior"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "nitrogen gas execution method is constitutional",
+      "text": "RULED CONSTITUTIONAL",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "most severe form of breathing discomfort",
+      "text": "SEVERE DISCOMFORT",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "1 to 3 minutes",
+      "text": "1-3 MINUTES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "scheduled for execution June 11",
+      "text": "JUNE 11",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "8 men have now been executed by nitrogen",
+      "text": "8 EXECUTED",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}

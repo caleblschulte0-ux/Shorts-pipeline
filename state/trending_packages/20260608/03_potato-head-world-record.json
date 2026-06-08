@@ -1,0 +1,64 @@
+{
+  "version": 8,
+  "slug": "potato-head-world-record",
+  "title": "A Singapore Teen Just Shattered the Mr. Potato Head World Record",
+  "hashtags": ["worldrecord", "guinness", "mrpotatohead", "singapore", "hasbro", "toy", "speedrunning", "competition", "rubikscube", "guinnessworldrecords", "weird", "funfact"],
+  "script": "A teenager in Singapore just broke the world record for fastest assembly of a Mr. Potato Head, completing the classic toy in 4.63 seconds. The official Guinness time smashes the previous record and was caught entirely on video. The teen, a competitive Rubik's cube solver, said the fine motor skills transferred directly. Guinness certified it this week. Nobody asked for a Mr. Potato Head world record. Someone made one anyway.",
+  "shots": [
+    {
+      "phrase": "teenager in Singapore",
+      "query": "Singapore teen youth city modern skyline competitive"
+    },
+    {
+      "phrase": "Mr. Potato Head",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mr_Potato_Head_1952.jpg",
+      "query": "Mr Potato Head toy colorful classic Hasbro vintage"
+    },
+    {
+      "phrase": "4.63 seconds",
+      "query": "stopwatch timer competition countdown close hands fast"
+    },
+    {
+      "phrase": "Guinness certified it this week",
+      "query": "Guinness World Records certificate book official award"
+    },
+    {
+      "phrase": "competitive Rubik's cube solver",
+      "query": "rubiks cube speedcubing hands competition solve fast"
+    },
+    {
+      "phrase": "Nobody asked for a Mr. Potato Head world record",
+      "query": "vintage toy collection retro hasbro action figure display"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "fastest assembly of a Mr. Potato Head",
+      "text": "FASTEST EVER",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "4.63 seconds",
+      "text": "4.63 SECONDS",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818"
+    },
+    {
+      "phrase": "Guinness certified it this week",
+      "text": "GUINNESS OFFICIAL",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Nobody asked for a Mr. Potato Head world record",
+      "text": "NOBODY ASKED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Someone made one anyway",
+      "text": "WORLD RECORD",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}

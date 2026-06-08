@@ -38,7 +38,7 @@
             "file": "median_home_price.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 PRICES",
+          "role": "1 · PRICES",
           "topic": "home prices",
           "say": "A house cost 270 grand in 2019. Today, 449. That extra 180 thousand isn't a nicer place, it's the same house, a whole extra down payment for nothing."
         },
@@ -49,7 +49,7 @@
             "file": "mortgage_rate_30yr.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 RATES",
+          "role": "2 · RATES",
           "topic": "mortgage rates",
           "say": "Then rates jumped from 3.9 percent to 6.6. On a 30-year loan that's almost double the interest to the bank, tens of thousands more for the same house."
         },
@@ -60,7 +60,7 @@
             "file": "rent_share_income.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 RENT",
+          "role": "3 · RENT",
           "topic": "rent burden",
           "ascending": false,
           "use_baseline": true,
@@ -73,7 +73,7 @@
             "file": "price_to_income.json"
           },
           "insight_type": "rank",
-          "role": "4 \u00b7 THE WALL",
+          "role": "4 · THE WALL",
           "topic": "cost in years of pay",
           "ascending": false,
           "use_baseline": true,
@@ -85,7 +85,7 @@
       "slug": "grocery-squeeze",
       "title": "Why Your Grocery Bill Keeps Winning",
       "hook": "Same groceries. Way bigger receipt. Where'd it go?",
-      "closing": "Same cart, fatter receipt. Bon app\u00e9tit.",
+      "closing": "Same cart, fatter receipt. Bon appétit.",
       "hashtags": [
         "groceries",
         "inflation",
@@ -108,7 +108,7 @@
             "file": "grocery_since_2020.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 SINCE 2020",
+          "role": "1 · SINCE 2020",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
@@ -121,7 +121,7 @@
             "file": "food_yoy.json"
           },
           "insight_type": "comparison",
-          "role": "2 \u00b7 THIS YEAR",
+          "role": "2 · THIS YEAR",
           "topic": "food prices this year",
           "use_baseline": true,
           "say": "And it's still climbing. Beef jumped another 9.2 percent this year, while dairy barely moved at 1.6."
@@ -133,7 +133,7 @@
             "file": "food_share_income.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 YOUR BUDGET",
+          "role": "3 · YOUR BUDGET",
           "topic": "the share of income spent on food",
           "say": "Add it up, and food now eats 11.8 percent of your income, the most in decades."
         },
@@ -144,7 +144,7 @@
             "file": "monthly_grocery_cost.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 WHAT YOU PAY",
+          "role": "4 · WHAT YOU PAY",
           "topic": "the average grocery bill",
           "say": "The average bill hit 1,030 dollars a month, about 300 more than 2019. An extra car payment, same fridge."
         }
@@ -177,7 +177,7 @@
             "file": "credit_card_debt.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 BALANCES",
+          "role": "1 · BALANCES",
           "topic": "credit card debt",
           "say": "Card debt just passed 1,370 billion dollars, nearly 1.4 trillion on plastic, climbing every month."
         },
@@ -188,7 +188,7 @@
             "file": "credit_card_apr.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 THE RATE",
+          "role": "2 · THE RATE",
           "topic": "the credit card interest rate",
           "say": "And interest hit 22.9 percent. At that rate your balance grows even if you never swipe again. That's the trap."
         },
@@ -199,7 +199,7 @@
             "file": "cc_delinquency.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 FALLING BEHIND",
+          "role": "3 · FALLING BEHIND",
           "topic": "the share falling behind",
           "say": "So people fall behind. The share missing payments climbed to 3.9 percent, the most since the last crisis."
         },
@@ -210,7 +210,7 @@
             "file": "savings_rate.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 NO CUSHION",
+          "role": "4 · NO CUSHION",
           "topic": "the savings rate",
           "say": "Meanwhile savings cratered. In 2020 people saved 16.8 percent of income. Now? 3.6. The cushion is gone."
         }
@@ -243,7 +243,7 @@
             "file": "hourly_wage.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 YOUR RAISE",
+          "role": "1 · YOUR RAISE",
           "topic": "the average wage",
           "say": "On paper, a win. The average wage climbed to 31.9 dollars an hour. Your paycheck genuinely got bigger."
         },
@@ -254,7 +254,7 @@
             "file": "real_wage_index.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 AFTER INFLATION",
+          "role": "2 · AFTER INFLATION",
           "topic": "real, inflation-adjusted pay",
           "say": "But adjust for prices, and the wage index sits at 99, below 2019. After inflation, you earn less than before."
         },
@@ -265,7 +265,7 @@
             "file": "cost_vs_wage.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 WHAT OUTRAN YOU",
+          "role": "3 · WHAT OUTRAN YOU",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
@@ -278,7 +278,7 @@
             "file": "hours_for_rent.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 THE TREADMILL",
+          "role": "4 · THE TREADMILL",
           "topic": "hours of work to cover rent",
           "say": "Now it takes 69 hours of work to cover one month's rent, up from 52. Two extra days a month, gone."
         }
@@ -311,7 +311,7 @@
             "file": "unemployment_rate_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 THE HEADLINE",
+          "role": "1 · THE HEADLINE",
           "topic": "the unemployment rate",
           "say": "Unemployment sits at just 4.3 percent, historically low. That's the headline. But it hides three things."
         },
@@ -322,7 +322,7 @@
             "file": "part_time_economic.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 PART-TIME",
+          "role": "2 · PART-TIME",
           "topic": "people stuck in part-time work",
           "say": "First, 4.8 million people are stuck part-time who want full-time. Employed on paper, but not by choice."
         },
@@ -333,7 +333,7 @@
             "file": "labor_participation.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 WHO'S MISSING",
+          "role": "3 · WHO'S MISSING",
           "topic": "the share of adults working",
           "say": "Second, participation slid to 62.4 percent. Millions stopped looking entirely, so they vanish from the good number."
         },
@@ -344,7 +344,7 @@
             "file": "multiple_jobholders.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 WORKING DOUBLE",
+          "role": "4 · WORKING DOUBLE",
           "topic": "people working two or more jobs",
           "say": "Third, 9 million people now work two or more jobs, a record. Why does surviving take two paychecks?"
         }
@@ -377,7 +377,7 @@
             "file": "col_index_state.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 COST OF LIVING",
+          "role": "1 · COST OF LIVING",
           "topic": "cost of living",
           "ascending": false,
           "use_baseline": true,
@@ -390,7 +390,7 @@
             "file": "median_income_state.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 WHAT YOU EARN",
+          "role": "2 · WHAT YOU EARN",
           "topic": "household income",
           "ascending": false,
           "use_baseline": true,
@@ -403,7 +403,7 @@
             "file": "income_after_cost.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 AFTER COSTS",
+          "role": "3 · AFTER COSTS",
           "topic": "income after living costs",
           "ascending": false,
           "use_baseline": true,
@@ -416,7 +416,7 @@
             "file": "rent_one_bed.json"
           },
           "insight_type": "rank",
-          "role": "4 \u00b7 THE RENT",
+          "role": "4 · THE RENT",
           "topic": "one-bedroom rent",
           "ascending": false,
           "use_baseline": true,
@@ -451,9 +451,9 @@
             "file": "employer_premium.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 THE PREMIUM",
+          "role": "1 · THE PREMIUM",
           "topic": "employer health insurance premium",
-          "say": "Your employer paid 8,120 dollars per worker for health insurance in 2026, up from 6,015 in 2019. That's 35 percent more money for the same coverage window \u2014 and that cost shapes what's left over for your raise."
+          "say": "Your employer paid 8,120 dollars per worker for health insurance in 2026, up from 6,015 in 2019. That's 35 percent more money for the same coverage window — and that cost shapes what's left over for your raise."
         },
         {
           "source": "offline",
@@ -462,9 +462,9 @@
             "file": "employee_deductible.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 YOUR DEDUCTIBLE",
+          "role": "2 · YOUR DEDUCTIBLE",
           "topic": "average annual deductible",
-          "say": "The deductible \u2014 what you pay before insurance kicks in \u2014 hit 2,340 dollars in 2026. In 2019 it was 1,655. That's 685 extra dollars out of your pocket every year before you're even covered. You're paying more to wait longer."
+          "say": "The deductible — what you pay before insurance kicks in — hit 2,340 dollars in 2026. In 2019 it was 1,655. That's 685 extra dollars out of your pocket every year before you're even covered. You're paying more to wait longer."
         },
         {
           "source": "offline",
@@ -473,11 +473,11 @@
             "file": "medical_debt_by_income.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 WHO GETS BURIED",
+          "role": "3 · WHO GETS BURIED",
           "topic": "share with medical debt by income",
           "ascending": false,
           "use_baseline": true,
-          "say": "36 percent of Americans earning under 25 thousand carry medical debt. But even at 50 to 75 thousand, still 18 percent. Medical debt isn't just a poverty problem \u2014 it's a system that doesn't protect anyone."
+          "say": "36 percent of Americans earning under 25 thousand carry medical debt. But even at 50 to 75 thousand, still 18 percent. Medical debt isn't just a poverty problem — it's a system that doesn't protect anyone."
         },
         {
           "source": "offline",
@@ -486,7 +486,7 @@
             "file": "out_of_pocket_max.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 THE WORST CASE",
+          "role": "4 · THE WORST CASE",
           "topic": "out-of-pocket maximum",
           "say": "When things go really wrong, you're on the hook for up to 5,620 dollars before insurance pays everything. In 2019, that cap was 3,970. The safety net just got a 1,650 dollar hole in it."
         }
@@ -519,7 +519,7 @@
             "file": "student_debt_total.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 THE PILE",
+          "role": "1 · THE PILE",
           "topic": "total student loan debt",
           "say": "Total student debt hit 1.74 trillion dollars. In 2010 it was 870 billion. The pile doubled in 16 years and keeps growing as a new class graduates every May owing more than the last."
         },
@@ -530,9 +530,9 @@
             "file": "student_loan_monthly.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 YOUR PAYMENT",
+          "role": "2 · YOUR PAYMENT",
           "topic": "average monthly student loan payment",
-          "say": "The average monthly student loan payment is 352 dollars. That's higher than most car payments \u2014 and it goes to a degree you already have, every single month, for years."
+          "say": "The average monthly student loan payment is 352 dollars. That's higher than most car payments — and it goes to a degree you already have, every single month, for years."
         },
         {
           "source": "offline",
@@ -541,7 +541,7 @@
             "file": "college_wage_premium.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 THE PAYOFF",
+          "role": "3 · THE PAYOFF",
           "topic": "college wage premium",
           "say": "The wage premium for a bachelor's degree fell from 66 percent in 2014 to 54 percent today. The gap between what college grads and high school grads earn is closing. The price went up while the advantage shrank."
         },
@@ -552,7 +552,7 @@
             "file": "student_loan_default.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 FALLING BEHIND",
+          "role": "4 · FALLING BEHIND",
           "topic": "student loan default rate",
           "say": "And 10.2 percent of federal borrowers are in default. After COVID payment pauses ended, defaults jumped 5 points in one year. The debt is real, and for a lot of people, the math doesn't work."
         }
@@ -585,11 +585,11 @@
             "file": "median_401k_by_age.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 WHAT PEOPLE HAVE",
+          "role": "1 · WHAT PEOPLE HAVE",
           "topic": "median retirement savings by age",
           "ascending": false,
           "use_baseline": true,
-          "say": "The median 50-something has 130 thousand saved for retirement. Fidelity says you should have 6 times your salary at 50 \u2014 around 360 thousand at median wages. That's a 230,000 dollar hole in the middle of your working life."
+          "say": "The median 50-something has 130 thousand saved for retirement. Fidelity says you should have 6 times your salary at 50 — around 360 thousand at median wages. That's a 230,000 dollar hole in the middle of your working life."
         },
         {
           "source": "offline",
@@ -598,9 +598,9 @@
             "file": "social_security_replacement.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 SOCIAL SECURITY",
+          "role": "2 · SOCIAL SECURITY",
           "topic": "Social Security replacement rate",
-          "say": "Social Security used to replace 41 percent of your pre-retirement income. By 2026, it's down to 31 percent. The gap your savings need to fill just got 10 points wider. But people aren't saving more \u2014 they're saving less."
+          "say": "Social Security used to replace 41 percent of your pre-retirement income. By 2026, it's down to 31 percent. The gap your savings need to fill just got 10 points wider. But people aren't saving more — they're saving less."
         },
         {
           "source": "offline",
@@ -609,9 +609,9 @@
             "file": "retirement_savings_rate.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 THE SAVINGS RATE",
+          "role": "3 · THE SAVINGS RATE",
           "topic": "personal savings rate",
-          "say": "The US personal savings rate hit 3.5 percent in 2026, near a historic low. You can't close a 230,000 dollar gap saving 3 cents on every dollar. The math requires something to change \u2014 income, costs, or both."
+          "say": "The US personal savings rate hit 3.5 percent in 2026, near a historic low. You can't close a 230,000 dollar gap saving 3 cents on every dollar. The math requires something to change — income, costs, or both."
         },
         {
           "source": "offline",
@@ -620,7 +620,7 @@
             "file": "avg_retirement_age.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 THE RESULT",
+          "role": "4 · THE RESULT",
           "topic": "average retirement age",
           "say": "So what do people do? They work longer. The average retirement age climbed from 60 in 2000 to 66 in 2026. Six extra years of your life because the math didn't work. That's not a choice, that's a system forcing your hand."
         }
@@ -653,9 +653,9 @@
             "file": "new_car_price.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 THE STICKER",
+          "role": "1 · THE STICKER",
           "topic": "average new car transaction price",
-          "say": "The average new car transaction hit 50,400 dollars in 2026, up from 38,000 in 2019. That extra 12,400 isn't better technology \u2014 it's the same truck, just inflated. And it's the number you're financing."
+          "say": "The average new car transaction hit 50,400 dollars in 2026, up from 38,000 in 2019. That extra 12,400 isn't better technology — it's the same truck, just inflated. And it's the number you're financing."
         },
         {
           "source": "offline",
@@ -664,9 +664,9 @@
             "file": "auto_loan_rate.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 THE RATE",
+          "role": "2 · THE RATE",
           "topic": "auto loan interest rate",
-          "say": "Auto loan rates peaked at 8.1 percent in 2024 \u2014 the highest since 2007. On a 50 thousand dollar car over 60 months, that's roughly 10,700 dollars in interest alone. You're buying almost a second car just in interest."
+          "say": "Auto loan rates peaked at 8.1 percent in 2024 — the highest since 2007. On a 50 thousand dollar car over 60 months, that's roughly 10,700 dollars in interest alone. You're buying almost a second car just in interest."
         },
         {
           "source": "offline",
@@ -675,9 +675,9 @@
             "file": "auto_insurance_premium.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 THE INSURANCE",
+          "role": "3 · THE INSURANCE",
           "topic": "average auto insurance premium",
-          "say": "Insurance now costs 2,460 dollars a year on average, more than double the 1,190 it cost in 2019. That's 205 dollars a month just to own the car \u2014 before you start it."
+          "say": "Insurance now costs 2,460 dollars a year on average, more than double the 1,190 it cost in 2019. That's 205 dollars a month just to own the car — before you start it."
         },
         {
           "source": "offline",
@@ -686,7 +686,7 @@
             "file": "monthly_car_ownership.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 THE TOTAL BILL",
+          "role": "4 · THE TOTAL BILL",
           "topic": "total monthly car ownership cost",
           "say": "Add the payment, insurance, fuel, and maintenance. Total monthly car ownership hit 1,920 dollars in 2026. That's what a 2-bedroom apartment rented for in much of the Midwest not long ago. The car loses value. The lease doesn't."
         }
@@ -719,7 +719,7 @@
             "file": "confirmed_exoplanets_by_year.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 THE EXPLOSION",
+          "role": "1 · THE EXPLOSION",
           "topic": "planets found around other stars",
           "say": "Thirty years ago we knew of zero planets outside our solar system. Today, 5,600 confirmed worlds. Almost all found after 2009, when NASA's Kepler telescope started staring at one patch of sky. One generation, from nothing to thousands."
         },
@@ -730,7 +730,7 @@
             "file": "exoplanet_detection_methods.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 HOW WE FIND THEM",
+          "role": "2 · HOW WE FIND THEM",
           "topic": "exoplanets found by method",
           "say": "Most weren't seen, they were inferred. 4,300 were found by the transit method: catching a star dim by a fraction of a percent as a planet crosses it. We never see the planet. We see its shadow."
         },
@@ -741,7 +741,7 @@
             "file": "exoplanet_types.json"
           },
           "insight_type": "share",
-          "role": "3 \u00b7 WHAT'S OUT THERE",
+          "role": "3 · WHAT'S OUT THERE",
           "topic": "exoplanets by type",
           "say": "Most are nothing like home. 2,000 are Neptune-like ice giants and 1,700 are blazing gas giants. Only about 210 are small rocky worlds like Earth. The galaxy is full of planets, just not many you'd want to land on."
         },
@@ -752,7 +752,7 @@
             "file": "exoplanet_nearest_distance.json"
           },
           "insight_type": "rank",
-          "role": "4 \u00b7 THE NEIGHBORS",
+          "role": "4 · THE NEIGHBORS",
           "topic": "distance to the nearest exoplanets",
           "say": "And a few are close. Proxima b orbits the nearest star to the Sun, just 4.2 light years away. Close, in cosmic terms. At today's fastest spacecraft, only about 75,000 years to get there.",
           "ascending": true
@@ -786,7 +786,7 @@
             "file": "leading_causes_of_death.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 WHAT ACTUALLY KILLS US",
+          "role": "1 · WHAT ACTUALLY KILLS US",
           "topic": "annual US deaths (thousands)",
           "say": "Here's what actually kills Americans. Heart disease takes 695 thousand lives a year. Cancer, 605 thousand. Together, nearly half of all deaths, quiet and slow and almost never breaking news."
         },
@@ -797,7 +797,7 @@
             "file": "feared_deaths.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 WHAT WE FEAR",
+          "role": "2 · WHAT WE FEAR",
           "topic": "annual US deaths from things we fear",
           "say": "Now the things that terrify us. Sharks kill about 1 American a year. Lightning, 20. The stuff in your nightmares is a rounding error next to the stuff in your kitchen.",
           "ascending": true
@@ -809,7 +809,7 @@
             "file": "preventable_deaths.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 THE REAL KILLERS",
+          "role": "3 · THE REAL KILLERS",
           "topic": "preventable US deaths (thousands)",
           "say": "And the real killers are habits. Smoking still takes 480 thousand Americans a year. Bad diet, around 300 thousand. Not accidents or bad luck, slow daily choices that quietly stack the deck."
         },
@@ -820,7 +820,7 @@
             "file": "us_life_expectancy.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 THE RESULT",
+          "role": "4 · THE RESULT",
           "topic": "US life expectancy",
           "say": "Add it up and something rare happened. American life expectancy fell, from 78.8 years to 76.4 in just two years. The steepest drop since World War Two."
         }
@@ -853,7 +853,7 @@
             "file": "living_planet_index.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 THE COLLAPSE",
+          "role": "1 · THE COLLAPSE",
           "topic": "average wildlife population (1970 = 100)",
           "say": "Since 1970, the average wildlife population shrank by nearly three-quarters. Scientists track thousands of species in one index, and it fell from 100 to just 27. In a single lifetime, two of every three wild animals, gone."
         },
@@ -864,7 +864,7 @@
             "file": "wildlife_decline_region.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 WHERE IT'S WORST",
+          "role": "2 · WHERE IT'S WORST",
           "topic": "wildlife decline by region",
           "say": "It's worst in the tropics. Latin America and the Caribbean lost 95 percent of their wildlife. Africa, 76 percent. The richest ecosystems on Earth are emptying the fastest."
         },
@@ -875,7 +875,7 @@
             "file": "wildlife_decline_habitat.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 UNDER THE SURFACE",
+          "role": "3 · UNDER THE SURFACE",
           "topic": "wildlife decline by habitat",
           "say": "Freshwater life is vanishing fastest, down 85 percent. The rivers and lakes you grew up near now hold a fraction of the fish, frogs, and birds they once did."
         },
@@ -886,9 +886,286 @@
             "file": "extinction_drivers.json"
           },
           "insight_type": "rank",
-          "role": "4 \u00b7 WHO DID IT",
+          "role": "4 · WHO DID IT",
           "topic": "what's driving the collapse",
           "say": "And it's mostly us. Habitat loss, farms, roads, and cities, threatens 80 percent of at-risk species. Not one villain, just our footprint spreading into everywhere else's home."
+        }
+      ]
+    },
+    {
+      "slug": "rate-hike-squeeze",
+      "title": "You Paid for Inflation Twice — Once at the Store, Once at the Bank",
+      "hook": "They hiked rates to fix prices. It fixed nothing.",
+      "closing": "The bill came due. You just didn't know it was yours.",
+      "hashtags": [
+        "inflation",
+        "federalreserve",
+        "interestrates",
+        "cpi",
+        "economy",
+        "prices",
+        "gasoline",
+        "mortgage",
+        "unemployment",
+        "recession",
+        "data",
+        "fred"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "prices_since_2020",
+          "params": {
+            "file": "prices_since_2020.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · THE DAMAGE",
+          "topic": "cumulative price rise since 2020",
+          "say": "Eggs up 44 percent since 2020. Not this year — since 2020. Gasoline up 33, rent up 29, groceries up 25. That's not temporary inflation. That's a new price floor you're living on."
+        },
+        {
+          "source": "offline",
+          "key": "fed_funds_rate",
+          "params": {
+            "file": "fed_funds_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE FIX",
+          "topic": "Federal Reserve rate hike cycle",
+          "say": "So the Fed hiked. From 0.08 percent in 2021 all the way to 5.33 in 2023. The most aggressive rate cycle since the 1980s. Mortgages, car loans, credit cards — everything got more expensive overnight."
+        },
+        {
+          "source": "offline",
+          "key": "cpi_components",
+          "params": {
+            "file": "cpi_components_2026_04.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "3 · STILL BURNING",
+          "topic": "year-over-year inflation by category (April 2026)",
+          "say": "Did it work? Gasoline is still up 28.4 percent year over year. Energy up 17.9. The overall rate is 3.8 — still above target. The stuff you can't avoid is still the most expensive."
+        },
+        {
+          "source": "offline",
+          "key": "state_unemployment",
+          "params": {
+            "file": "state_unemployment_2026_04.json"
+          },
+          "insight_type": "rank",
+          "use_baseline": true,
+          "role": "4 · THE TRADE-OFF",
+          "topic": "state unemployment rates (April 2026)",
+          "say": "And the rate hikes had a cost. The national unemployment rate is 4.3 percent. States that borrowed cheap during the boom are now paying for it. South Dakota stayed at 2.2. Not everyone did."
+        }
+      ]
+    },
+    {
+      "slug": "american-obesity",
+      "title": "America Got 3 Times Fatter in 30 Years. Here's the Bill.",
+      "hook": "In 1990, 1 in 8 Americans was obese. Now it's almost 1 in 2.",
+      "closing": "Bigger country, bigger problem, bigger bill.",
+      "hashtags": [
+        "obesity",
+        "health",
+        "cdc",
+        "weightloss",
+        "publichealth",
+        "diabetes",
+        "america",
+        "food",
+        "exercise",
+        "data",
+        "healthcare",
+        "oecd"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_obesity_trend",
+          "params": {
+            "file": "us_obesity_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CLIMB",
+          "topic": "US adult obesity rate",
+          "say": "In 1990, 12 percent of American adults were obese. By 2022, it's 41.9. That's not a gradual drift — it's a generation getting steadily heavier with no sign of stopping."
+        },
+        {
+          "source": "offline",
+          "key": "obesity_vs_nations",
+          "params": {
+            "file": "obesity_vs_nations.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 · THE GAP",
+          "topic": "obesity rate by country",
+          "say": "The US at 41.9 percent isn't just high — it's in another league. Japan is at 4.3. France at 17. Even Mexico and Australia are 12 points lower. We are the global outlier."
+        },
+        {
+          "source": "offline",
+          "key": "obesity_by_state",
+          "params": {
+            "file": "obesity_by_state.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "3 · WHERE IT HITS HARDEST",
+          "topic": "obesity rate by state (highest)",
+          "say": "Inside the US, it's not even. West Virginia hits 45.3 percent — nearly half the adult population. Mississippi at 44. These states carry the full weight, and their healthcare systems feel every pound."
+        },
+        {
+          "source": "offline",
+          "key": "obesity_annual_cost",
+          "params": {
+            "file": "obesity_annual_cost.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · THE BILL",
+          "topic": "annual US medical cost of obesity",
+          "say": "The medical bill? $215 billion a year in 2022 — up from $61 billion in 2000. That's more than the entire defense budget of most countries, every single year, just treating a disease we keep making worse."
+        }
+      ]
+    },
+    {
+      "slug": "sleep-deprivation",
+      "title": "A Third of America Is Running on Too Little Sleep. Here's What It Costs.",
+      "hook": "You're awake 16 hours. Your body needed 8 of them to recover.",
+      "closing": "Half a trillion dollars of tired. And counting.",
+      "hashtags": [
+        "sleep",
+        "health",
+        "cdc",
+        "insomnia",
+        "sleepscience",
+        "productivity",
+        "mentalhealth",
+        "stress",
+        "data",
+        "brainhealth",
+        "wellness",
+        "science"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sleep_insufficient_trend",
+          "params": {
+            "file": "sleep_insufficient_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE TREND",
+          "topic": "adults sleeping less than 7 hours",
+          "say": "In 1985, 22 percent of adults slept less than 7 hours. By 2024 it's 37 percent. More than 1 in 3 Americans are chronically under-slept, and it's been getting worse every single decade."
+        },
+        {
+          "source": "offline",
+          "key": "sleep_hours_by_age",
+          "params": {
+            "file": "sleep_hours_by_age.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 · WHO'S WORST",
+          "topic": "average nightly sleep hours by age group",
+          "say": "Young adults 25-34 average just 6.7 hours — below the CDC's 7-hour minimum. Teenagers get 6.9. Only people 65 and up are actually sleeping enough. The people working hardest sleep the least."
+        },
+        {
+          "source": "offline",
+          "key": "sleep_health_risks",
+          "params": {
+            "file": "sleep_health_risks.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE DAMAGE",
+          "topic": "increased health risk from chronic sleep deprivation",
+          "say": "Sleep under 7 hours raises your obesity risk by 55 percent. Heart disease by 48. Type 2 diabetes by 40. Depression by 55. You're not just tired — you're physically breaking down while you scroll."
+        },
+        {
+          "source": "offline",
+          "key": "sleep_economy_cost",
+          "params": {
+            "file": "sleep_economy_cost.json"
+          },
+          "insight_type": "trend",
+          "role": "4 · THE BILL",
+          "topic": "annual economic cost of sleep deprivation",
+          "say": "The RAND Corporation put a dollar on it: $527 billion a year in 2024 in lost productivity and health costs. Sleep-deprived workers miss 11 more workdays a year. You're not just tired — you're expensive."
+        }
+      ]
+    },
+    {
+      "slug": "marriage-later",
+      "title": "Nobody's Getting Married Anymore. Here's Where It Went.",
+      "hook": "Your grandparents married at 22. You might not marry at all.",
+      "closing": "Marriage didn't die. It just got priced out.",
+      "hashtags": [
+        "marriage",
+        "dating",
+        "demographics",
+        "census",
+        "relationship",
+        "society",
+        "millennials",
+        "genz",
+        "culture",
+        "data",
+        "family",
+        "economics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "median_marriage_age",
+          "params": {
+            "file": "median_marriage_age.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE DELAY",
+          "topic": "median age at first marriage (men)",
+          "say": "In 1980, men married at 24.7. Today it's 30.5. Women went from 22 to 28.6. That's not just waiting longer — that's a full decade of your life where you used to be building a family, now you're paying rent alone."
+        },
+        {
+          "source": "offline",
+          "key": "marriage_rate_trend",
+          "params": {
+            "file": "marriage_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE DECLINE",
+          "topic": "US marriage rate per 1,000 people",
+          "say": "And fewer people are doing it at all. The marriage rate was 10.6 per thousand in 1980. Now it's 5.8 — nearly cut in half. The institution isn't broken, it's becoming a choice fewer people make."
+        },
+        {
+          "source": "offline",
+          "key": "never_married_25_34",
+          "params": {
+            "file": "never_married_25_34.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE SINGLES",
+          "topic": "share of 25-34 year-olds never married",
+          "say": "In 1980, 26 percent of 25-to-34-year-olds had never married. Today it's 57 percent. More than half of prime-working-age adults are single. That's not a trend — that's a structural shift."
+        },
+        {
+          "source": "offline",
+          "key": "marriage_by_income",
+          "params": {
+            "file": "marriage_by_income.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "4 · THE DIVIDE",
+          "topic": "share of adults married by income quartile",
+          "say": "And here's the uncomfortable truth: the top income quartile still marries at 58 percent. The bottom quartile? 31. Marriage became a luxury that stability buys. If you can't afford a house, you probably can't afford a wedding either."
         }
       ]
     }

@@ -1,0 +1,65 @@
+{
+  "version": 8,
+  "slug": "ufc-whitehouse-fight",
+  "title": "UFC Is Fighting on the White House Lawn. A Lawsuit Just Tried to Stop It.",
+  "hashtags": ["ufc", "whitehouse", "ufcfreedom250", "mma", "trump", "lawsuit", "flagday", "nationalparkservice", "danawhite", "fightnight", "sports", "weirdnews", "politics"],
+  "script": "A pro MMA fight card just got booked on the White House South Lawn. UFC Freedom 250 — scheduled for Flag Day, June 14 — was approved for the grounds to mark Trump's 80th birthday and America's 250th anniversary. Then a federal lawsuit dropped, arguing it violates National Park Service rules and never had an environmental review. The White House called it 'obstructionist.' The fighters are still warming up.",
+  "shots": [
+    {
+      "phrase": "pro MMA fight card just got booked",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PLMMA_Cage-Octagon_MMA.JPG",
+      "query": "UFC MMA octagon fight cage arena empty"
+    },
+    {
+      "phrase": "White House South Lawn",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/White_House_Washington.JPG",
+      "query": "White House Washington DC south lawn exterior"
+    },
+    {
+      "phrase": "Trump's 80th birthday",
+      "query": "birthday celebration event outdoor stage white house"
+    },
+    {
+      "phrase": "federal lawsuit dropped",
+      "query": "federal court filing lawsuit legal documents judge"
+    },
+    {
+      "phrase": "National Park Service rules",
+      "query": "national park service federal land regulation sign"
+    },
+    {
+      "phrase": "fighters are still warming up",
+      "query": "UFC MMA fighters training warmup sparring gym"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "pro MMA fight card just got booked",
+      "text": "UFC ON WHITE HOUSE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Flag Day, June 14",
+      "text": "JUNE 14",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Trump's 80th birthday",
+      "text": "TRUMP'S 80TH",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "federal lawsuit dropped",
+      "text": "LAWSUIT FILED",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "obstructionist",
+      "text": "OBSTRUCTIONIST?",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}

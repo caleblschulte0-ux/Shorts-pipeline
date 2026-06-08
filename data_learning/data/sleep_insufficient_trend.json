@@ -1,0 +1,24 @@
+{
+  "key": "sleep_insufficient_trend",
+  "title": "US adults getting less than 7 hours sleep",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1985-2024 (selected years)",
+  "source": {
+    "name": "BRFSS Sleep Health Survey",
+    "publisher": "Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/sleep/data-and-statistics/adults.html",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Share of US adults reporting fewer than 7 hours of sleep per night.",
+  "points": [
+    {"label": "1985", "value": 22.0, "period": "1985"},
+    {"label": "1993", "value": 24.5, "period": "1993"},
+    {"label": "2000", "value": 27.1, "period": "2000"},
+    {"label": "2008", "value": 29.9, "period": "2008"},
+    {"label": "2016", "value": 32.4, "period": "2016"},
+    {"label": "2020", "value": 35.2, "period": "2020"},
+    {"label": "2024", "value": 37.0, "period": "2024"}
+  ]
+}

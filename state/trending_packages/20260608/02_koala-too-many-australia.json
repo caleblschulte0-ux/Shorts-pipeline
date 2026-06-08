@@ -1,0 +1,64 @@
+{
+  "version": 8,
+  "slug": "koala-too-many-australia",
+  "title": "South Australia Has Too Many Koalas. Scientists Want to Sterilize 22%.",
+  "hashtags": ["koala", "australia", "southaustralia", "wildlife", "conservation", "overpopulation", "ecology", "marsupial", "mountloftyranges", "science", "nature", "animals"],
+  "script": "While koalas are endangered across most of Australia, one patch in South Australia has the opposite problem — too many. The Mount Lofty Ranges now hold 10 percent of the entire national koala population, and they're eating through the forest faster than it can regrow. Scientists are now calling for mass sterilization of 22 percent of adult females every year. At $34 million over 25 years, it's cheaper than letting them eat themselves to extinction.",
+  "shots": [
+    {
+      "phrase": "koalas are endangered across most of Australia",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Friendly_Female_Koala.JPG",
+      "query": "koala climbing eucalyptus tree Australia wild"
+    },
+    {
+      "phrase": "Mount Lofty Ranges",
+      "query": "South Australia Mount Lofty Ranges forest bushland green hills"
+    },
+    {
+      "phrase": "10 percent of the entire national koala population",
+      "query": "koalas in trees dense population eucalyptus forest"
+    },
+    {
+      "phrase": "eating through the forest faster than it can regrow",
+      "query": "deforestation bare trees eaten stripped bark Australia"
+    },
+    {
+      "phrase": "mass sterilization of 22 percent",
+      "query": "wildlife biologist scientist koala conservation research field"
+    },
+    {
+      "phrase": "eat themselves to extinction",
+      "query": "ecological collapse deforestation barren landscape environmental damage"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "too many",
+      "text": "TOO MANY KOALAS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "10 percent of the entire national koala population",
+      "text": "10% OF ALL KOALAS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "mass sterilization of 22 percent",
+      "text": "MASS STERILIZATION",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "$34 million over 25 years",
+      "text": "$34M FIX",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "eat themselves to extinction",
+      "text": "EXTINCTION RISK",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "minecraft"
+}
