@@ -74,17 +74,49 @@ POSES = {
                "over the chest in a 'really?' gesture.",
 }
 
-MODEL = "gemini-2.5-flash-image-preview"
+# Tried in order. Model names for Gemini image generation have churned
+# rapidly through 2024-2026 (-preview suffixes, version-dated variants,
+# the imagen family renames). Falling through this list means a model
+# rename doesn't break the pipeline — we just bump the list.
+MODEL_CANDIDATES = (
+    "gemini-2.5-flash-image",
+    "gemini-2.5-flash-image-preview",
+    "gemini-2.0-flash-preview-image-generation",
+    "gemini-2.0-flash-exp-image-generation",
+    "imagen-3.0-generate-002",
+    "imagen-4.0-generate-001",
+)
 
 
-def generate_pose(client, pose: str, description: str) -> bytes:
+def discover_image_model(client) -> str:
+    """Hit the ListModels endpoint, return the first candidate that the
+    account can actually call. Cheaper than racing 404s on every pose."""
+    available: set[str] = set()
+    for m in client.models.list():
+        name = getattr(m, "name", "") or ""
+        # API returns names like 'models/gemini-2.5-flash-image'; strip
+        # the prefix to compare against our candidate list.
+        short = name.split("/", 1)[-1]
+        available.add(short)
+    for cand in MODEL_CANDIDATES:
+        if cand in available:
+            print(f"  using image model: {cand}")
+            return cand
+    raise RuntimeError(
+        f"no known image-gen model available to this key. "
+        f"Tried {MODEL_CANDIDATES!r}. Available models seen: "
+        f"{sorted(available)[:20]}..."
+    )
+
+
+def generate_pose(client, model: str, pose: str, description: str) -> bytes:
     """One Gemini call per pose. Returns PNG bytes of the generated
     image. Raises if no image part comes back in the response."""
     from google.genai import types
     prompt = f"{CHARACTER}\n\n{description}\n\nGenerate the image now."
     print(f"  [{pose}] generating...", flush=True)
     response = client.models.generate_content(
-        model=MODEL,
+        model=model,
         contents=prompt,
         config=types.GenerateContentConfig(
             response_modalities=["TEXT", "IMAGE"],
@@ -130,10 +162,12 @@ def main() -> int:
     client = genai.Client(api_key=api_key)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    model = discover_image_model(client)
+
     for pose, description in POSES.items():
         # Tiny pause to stay polite to the free-tier RPM.
         time.sleep(2)
-        raw = generate_pose(client, pose, description)
+        raw = generate_pose(client, model, pose, description)
         transparent = remove_bg_to_alpha(raw)
         sized = resize_to_520(transparent)
         path = OUT_DIR / f"{pose}.png"
