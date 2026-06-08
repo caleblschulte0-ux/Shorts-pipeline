@@ -671,7 +671,8 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
                "-map", "[v]", "-map", f"{audio_idx}:a",
                "-t", f"{total:.2f}", "-r", str(FPS),
                "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium",
-               "-crf", "20", "-c:a", "aac", "-b:a", "192k",
+               "-crf", "22", "-maxrate", "4M", "-bufsize", "8M",
+               "-c:a", "aac", "-b:a", "160k",
                "-movflags", "+faststart", str(out_path)]
         _run(cmd)
         # Advance the rotation so the next render uses the next style.
