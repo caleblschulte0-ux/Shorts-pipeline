@@ -69,6 +69,8 @@ def build(dataset: Dataset, insight_type: str = "auto",
 
     if insight_type == "trend":
         return _trend(dataset, pts)
+    if insight_type == "share":
+        return _share(dataset, pts)
     if insight_type == "comparison":
         return _comparison(dataset, pts, base_pt)
     if insight_type == "outlier":
@@ -109,6 +111,21 @@ def _rank(ds: Dataset, pts: list[DataPoint], base: DataPoint | None,
                           calculation=f"difference_from_baseline({star.value}, {base.value})={diff:.1f}"))
     return Insight("rank", ds.title, main, top, ds.source, ds.unit,
                    facts, base, star.label)
+
+
+def _share(ds: Dataset, pts: list[DataPoint]) -> Insight:
+    """Composition: parts of a whole, rendered as a donut/pie."""
+    ordered = T.sort_desc(pts)
+    star = ordered[0]
+    facts = [
+        Fact(f"F{i+1}", f"{p.label} {_fmt(p.value, ds.unit)} {ds.unit}",
+             p.value, ds.unit)
+        for i, p in enumerate(ordered[:4])
+    ]
+    main = (f"{star.label} is the largest share of {ds.title.lower()} at "
+            f"{_fmt(star.value, ds.unit)} {ds.unit}.")
+    return Insight("share", ds.title, main, ordered, ds.source, ds.unit,
+                   facts, None, star.label)
 
 
 def _comparison(ds: Dataset, pts: list[DataPoint], base: DataPoint | None) -> Insight:
