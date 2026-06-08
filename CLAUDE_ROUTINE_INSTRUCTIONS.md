@@ -17,40 +17,52 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
 1. **Discover**:
    `GROQ_API_KEY=$GROQ_API_KEY python3 scripts/rank_topics.py --top-k 10`
 
-2. **Pick 6** from the ranker output. Two hard rules:
+2. **Pick 6** from the ranker output. Hard rules:
 
    **Rule 1 — Freshness.** Every package should be from the last 24-48 hours.
    Each ranker line shows an age marker like `[2h ago]`. Anchor the package
    to "happened today / this morning / just announced" or skip it.
 
-   **Rule 2 — Half the slate is quirky.** Channel analytics show "semi truck
-   full of bees rolled over" / "town renames itself" / "raccoon shuts down
-   airport" stories outperform every serious-news category on views and likes.
-   **At least 3 of 6 picks from the Quirky / Offbeat bucket.**
+   **Rule 2 — Quirky-heavy slate (4 of 6 minimum).** Real channel analytics:
+   shark attack got 21 views, kangaroo named Hunter got 12, meteor over Rome
+   got 10 — Nvidia / Apple / Foxconn / Broadcom earnings got 0. Serious tech
+   news doesn't earn a slot here unless it has a niche named-entity angle.
 
-   Quirky = the SITUATION is weird, not the PERSON. Good shape: "1 million
-   bees escape from semi on Tennessee highway", "United Airlines flight turned
-   back over Bluetooth network name", "town renames itself", "Hell, Michigan
-   listed for sale at $666K", "world record pumpkin", "wrong-way driver caught
-   on camera", "raccoon shuts down airport".
+   **At least 4 of 6 picks from the Quirky / Animal / Disaster bucket**, and
+   those 4 must cover at least TWO of these three sub-buckets:
+   - **Animals / Wildlife** — Hunter the kangaroo, shark attack, raccoon
+     shuts down airport, world's biggest pumpkin
+   - **Weather / Natural disaster / Freak event** — meteor over Rome, F4
+     tornado, dust devil flips truck, sinkhole swallows house
+   - **Weird local / Quirky news** — NYC sewer mystery, town renames itself,
+     Hell Michigan listed at $666K, blanket fort, 1M bees escape semi
 
-   **Hard cap: at most 1 "Florida Man" / "local-arrest" / personality-based
-   crime pick per slate.** Three Florida-Man-style stories in a row reads as
-   fluff. If multiple show up, take the single weirdest situation (e.g.
-   "selling stolen radioactive device on Facebook" qualifies; generic assault
-   doesn't) and skip the rest. The other quirky picks must be situation-driven.
+   **Named-entity rule**: "Hunter the kangaroo escapes Kentucky" >
+   "kangaroo escapes in US". Specific names compound on YouTube search
+   ("quantinuum ipo" + "qnt ipo" + "twistex dashcam" are the only search
+   terms currently driving meaningful traffic). Pick the version with the
+   specific name whenever both exist.
+
+   Quirky = the SITUATION is weird, not the PERSON. **Hard cap: at most 1
+   "Florida Man" / "local-arrest" / personality-based crime pick per slate.**
+   If multiple show up, take the single weirdest situation and skip the rest.
 
    MUST be real — wire-service (AP / UPI / Reuters / BBC) confirmation, or
    skip it. r/nottheonion and r/FloridaMan get satire reposts, so verify
    before writing. NOT politics-with-quirky-frame. NOT heartwarming fluff.
    NOT celebrity gossip.
 
-   **Other 3** are serious news, 1 per category (treat Tech + Markets as one
-   combined bucket): Tech+Markets, World, US policy, Crime/Justice,
-   Science/Health, Climate, Culture/Entertainment, Sports (one-off only).
+   **The other 2 slots:**
+   - **1 hard-news slot** — one of: World affairs, US policy, Crime/Justice,
+     Science/Health, Climate, Culture/Entertainment. Rotate so the same
+     category doesn't repeat two days in a row.
+   - **1 Tech/Markets slot — OPTIONAL, max 1.** Include ONLY if a story has
+     a niche named-entity search hook (Quantinuum IPO, SpaceX Starship 11
+     launch). SKIP generic earnings / chip launches / funding rounds —
+     they got literal 0 views. If nothing niche today, swap this slot for
+     a 5th quirky pick.
 
-   If fewer than 3 usable quirky stories exist, top up serious. Vice versa
-   if serious categories are thin. Never ship fewer than 6.
+   If quirky is thin, top up with another hard-news pick. Never ship < 6.
 
    Also reject: live sports, obituaries, political horserace, no-visual-stakes,
    evergreen explainers, and **incremental war/conflict updates** ("day 47 of",
@@ -104,9 +116,10 @@ Reference: `state/trending_packages/20260531/*.json`.
 ```json
 {
   "title": "Punchy 6-10 word YouTube title",
-  "script": "110-140 word script, hook + facts + kicker",
+  "script": "110-140 word script. Hook is <=5 words and ends with ? or !. Kicker is a story-specific question answerable in one word.",
   "shots": [
-    {"phrase": "verbatim substring of script", "image": "https://...", "query": "stock fallback"}
+    {"phrase": "verbatim substring of script", "image": "https://...",
+     "query": "stock fallback", "mascot_pose": "idle"}
   ],
   "punches": [
     {"phrase": "verbatim substring", "text": "1-3 ALL CAPS", "color": "#hex"}
@@ -116,6 +129,30 @@ Reference: `state/trending_packages/20260531/*.json`.
   "channel": "explainer"
 }
 ```
+
+**`mascot_pose` per shot** — one of `idle | shock | point | laugh | think |
+dismiss`. Drives the news-anchor mascot's reaction in the corner overlay.
+Default is `idle`; pick a non-idle pose only on the 2-3 emotional beats per
+script (max 3 non-idle shots per script). The renderer silently no-ops the
+overlay when `assets/mascot/anchor/<pose>.png` is missing, so omitting the
+field is always safe.
+
+| Pose | Use it on |
+|------|-----------|
+| `idle` | Default — most shots |
+| `shock` | Twist / surprising fact ("$320 BILLION lost") |
+| `point` | First mention of the central entity |
+| `laugh` | Absurd / quirky beat ("the driver ran for the river") |
+| `think` | Setup / mystery framing ("nobody knows why") |
+| `dismiss` | Skeptical kicker framing |
+
+**Hook + kicker rules** (validator rejects packages that miss these):
+- First sentence must be ≤5 words AND end with `?` or `!` ("A kangaroo did
+  WHAT?", "Why fire 30,000?"). Drives the 3-second hold.
+- Last sentence MUST end with `?` AND name something from the story (not
+  generic "what do you think?").
+- Banned phrases (algorithm-suppressed): "comment yes", "subscribe for part",
+  "tag a friend", "let me know in the comments", "like if you agree".
 
 ## Channel routing
 
