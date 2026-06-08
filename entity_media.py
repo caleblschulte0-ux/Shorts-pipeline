@@ -198,11 +198,17 @@ mention's phrase).
 Output JSON only."""
 
 
+# Process-wide flag so the LLM-skip message prints once instead of
+# once per package when the validator/enrich loops over a whole batch.
+_LLM_SKIP_LOGGED = False
+
+
 def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
     """Ask the LLM for {entity, context, phrase} triples. Returns None
     when the LLM path is unavailable (no API key, network failure,
     malformed response) so the caller can fall back to the regex
     extractor. Never raises."""
+    global _LLM_SKIP_LOGGED
     if not script.strip():
         return None
     try:
@@ -213,7 +219,10 @@ def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
     try:
         raw = _call_llm(_VISUAL_SYSTEM, user)
     except Exception as e:  # noqa: BLE001
-        print(f"  [entity_media LLM skip] {type(e).__name__}: {e}")
+        if not _LLM_SKIP_LOGGED:
+            print(f"  [entity_media LLM skip] {type(e).__name__}: "
+                  f"{str(e).splitlines()[0]}")
+            _LLM_SKIP_LOGGED = True
         return None
     raw = (raw or "").strip()
     if raw.startswith("```"):
@@ -379,6 +388,12 @@ def enrich_package(pkg: dict, *, verbose: bool = True) -> dict:
         if target is None:
             missed_shots.append(entity)
             continue
+        # Stash entity + context on the matched shot so the renderer can
+        # do a per-shot topic_video search with this same disambiguating
+        # context. Set even when an image_url already exists — videos
+        # are a separate channel and benefit from the same context.
+        target.setdefault("pin_query", entity)
+        target.setdefault("pin_context", context)
         if target.get("image_url") or target.get("image"):
             continue
         url = resolve_entity_media(entity, context=context)
@@ -400,6 +415,42 @@ def enrich_package(pkg: dict, *, verbose: bool = True) -> dict:
             print(f"  [entity_media] mentioned but no shot covers: "
                   f"{missed_shots}")
     return pkg
+
+
+def validate_package(pkg: dict) -> dict:
+    """Dry-run coverage analysis for a package. Returns a report dict
+    with counts and the lists of uncovered entities so a pre-flight
+    script can flag problem packages BEFORE render time, when the
+    routine author can still fix the package's shot list.
+
+    Does NOT call resolve_entity_media (no network). The shot-coverage
+    check is the cheap, deterministic half of enrichment; actual
+    image lookup is deferred to render time so the validator is fast
+    enough to run on every package in the daily batch.
+    """
+    script = pkg.get("script") or ""
+    shots = pkg.get("shots") or []
+    visuals = extract_visuals_llm(script, title=pkg.get("title", ""))
+    used_llm = visuals is not None
+    if not visuals:
+        nouns = extract_proper_nouns(script)
+        visuals = [{"entity": n, "context": pkg.get("title", ""),
+                    "phrase": n} for n in nouns]
+
+    matched: list[str] = []
+    uncovered: list[str] = []
+    for v in visuals:
+        if _match_shot(shots, v.get("phrase") or "", v["entity"]) is not None:
+            matched.append(v["entity"])
+        else:
+            uncovered.append(v["entity"])
+    return {
+        "source": "llm" if used_llm else "regex",
+        "total_visuals": len(visuals),
+        "matched": matched,
+        "uncovered": uncovered,
+        "coverage_pct": round(100.0 * len(matched) / max(1, len(visuals)), 1),
+    }
 
 
 if __name__ == "__main__":
