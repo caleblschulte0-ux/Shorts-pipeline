@@ -1189,7 +1189,7 @@
     {
       "slug": "subscription-creep",
       "title": "You're Paying for Way More Subscriptions Than You Think",
-      "hook": "You have way more subscriptions than you think.",
+      "hook": "Subscriptions are draining you on purpose. Here's how.",
       "closing": "Death by a thousand free trials.",
       "question": "How many subscriptions are you actually paying for? Comment.",
       "hashtags": [
@@ -1216,7 +1216,7 @@
           "insight_type": "rank",
           "role": "1 \u00b7 THE GUESS",
           "topic": "what people think vs really pay",
-          "say": "Ask people their monthly subscription bill and they guess 86 dollars. The real average is 219. People underestimate by more than half, because every charge is small, automatic, and basically invisible."
+          "say": "It starts because each one is tiny. Your brain ignores a 12 dollar charge, too small to bother cancelling. So you FEEL like you spend 86 dollars a month. You actually spend 219. The gap is everything you stopped noticing."
         },
         {
           "source": "offline",
@@ -1227,7 +1227,7 @@
           "insight_type": "share",
           "role": "2 \u00b7 WHERE IT GOES",
           "topic": "monthly subscription spend",
-          "say": "Where does 219 dollars go? Video streaming is the biggest slice at 70 dollars a month, then news, cloud storage, gaming, music. No single one feels big. Stacked together, they're a car payment."
+          "say": "And they're small on PURPOSE, spread across services so none feels big enough to cut. 70 bucks on video, then news, cloud, gaming, music. Five painless charges quietly add up to one car payment."
         },
         {
           "source": "offline",
@@ -1238,7 +1238,7 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE PILE-UP",
           "topic": "subscriptions per household",
-          "say": "And the count keeps climbing. The average household went from 3 subscriptions to 12 in six years. Every app, every service, every free month you forgot to cancel just quietly stacks up."
+          "say": "Then they pile up, because nothing ever stops one. You decide yes once and it renews forever. The average home went from 3 subscriptions to 12 in six years, not because you chose 12, but because you never un-chose any."
         },
         {
           "source": "offline",
@@ -1249,7 +1249,7 @@
           "insight_type": "rank",
           "role": "4 \u00b7 THE TRAP",
           "topic": "subscriber regrets",
-          "say": "Here's the business model. 48 percent of people pay for something they don't use. 42 percent forgot they ever signed up. They're not selling you a service anymore. They're selling you forgetting to cancel."
+          "say": "And the companies know exactly what they're doing. 48 percent of people pay for something they never use. 42 percent forgot they signed up at all. The forgetting isn't a bug, it's the entire business model."
         }
       ],
       "caption": "You think you spend about $86 a month on subscriptions. The real average is $219 \u2014 and it climbs every single year. Here's exactly where the money leaks, in 4 charts. How many subscriptions are you actually paying for? \ud83d\udc47"
@@ -1257,7 +1257,7 @@
     {
       "slug": "ocean-unexplored",
       "title": "We've Mapped Mars Better Than Our Own Ocean",
-      "hook": "We've mapped Mars better than our own ocean.",
+      "hook": "Why do we know Mars better than our own ocean?",
       "closing": "The final frontier is under the boat.",
       "question": "Would you ride to the bottom of the ocean? Comment below.",
       "hashtags": [
@@ -1284,7 +1284,7 @@
           "insight_type": "rank",
           "role": "1 \u00b7 THE BLIND SPOT",
           "topic": "surface mapped in detail",
-          "say": "We have full high-resolution maps of the Moon and Mars. Our own ocean floor? About 25 percent. The least-explored place humans can physically reach is right here on Earth.",
+          "say": "Here's the thing nobody tells you: space is easy to LOOK at. A telescope sees the whole Moon and Mars at once. But you can't see through water, so only 25 percent of our own seafloor is mapped. The rest is a black box.",
           "ascending": true
         },
         {
@@ -1296,7 +1296,7 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE RACE",
           "topic": "seafloor mapped over time",
-          "say": "We're scrambling to fix it. In 2017 just 6 percent of the seafloor was mapped in detail. By 2023, 25 percent. At this pace the whole ocean floor won't be done until the 2030s."
+          "say": "And mapping it is slow, because you have to physically sail a ship over every spot with sonar. In 2017 we'd done 6 percent. By 2023, 25. Inch by inch, since there's no shortcut from orbit."
         },
         {
           "source": "offline",
@@ -1307,7 +1307,7 @@
           "insight_type": "rank",
           "role": "3 \u00b7 HOW DEEP",
           "topic": "ocean depth by point (meters)",
-          "say": "And it goes deep. A scuba diver tops out near 40 meters. The Titanic rests at 3,800. The Mariana Trench bottoms out near 11,000 meters, deeper than Everest is tall."
+          "say": "Why so hard? Because it's absurdly deep and dark. Sunlight quits a few hundred meters down. The Titanic sits at 3,800. The deepest trench hits 11,000, where the pressure would crush a submarine like a soda can."
         },
         {
           "source": "offline",
@@ -1318,7 +1318,7 @@
           "insight_type": "share",
           "role": "4 \u00b7 THE UNKNOWN",
           "topic": "marine species (thousands)",
-          "say": "It's also full of life we've never named. Scientists have catalogued about 240 thousand marine species and estimate up to 2 million exist. Roughly 9 in 10 ocean species are still a mystery."
+          "say": "So most of it stays a mystery, including who lives there. We've named about 240 thousand ocean species and think there are 2 million. Nine in ten are still down there in the dark, completely unseen."
         }
       ],
       "caption": "We have better maps of Mars and the Moon than our own ocean floor \u2014 only about 25% of it is mapped, and 9 in 10 ocean species are still unknown to science. The real final frontier is right under the boat. Would you ride to the bottom? \ud83d\udc47"
@@ -1326,7 +1326,7 @@
     {
       "slug": "loneliness-epidemic",
       "title": "The Loneliness Epidemic, in Four Charts",
-      "hook": "More people have zero close friends than ever.",
+      "hook": "Why is everyone lonely when we're this connected?",
       "closing": "Never more connected. Never more alone.",
       "question": "How many close friends do you actually have? Comment.",
       "hashtags": [
@@ -1352,7 +1352,7 @@
           "insight_type": "trend",
           "role": "1 \u00b7 NO ONE TO CALL",
           "topic": "Americans with no close friends",
-          "say": "In 1990, 3 percent of Americans said they had no close friends. By 2021 that quadrupled to 12 percent. A growing share of people have literally no one to call when things go wrong."
+          "say": "Here's what quietly changed. Having a best friend used to be the default. In 1990, only 3 percent of Americans had zero close friends. Today it's 12, quadrupled. More and more people have literally no one to call."
         },
         {
           "source": "offline",
@@ -1363,7 +1363,7 @@
           "insight_type": "trend",
           "role": "2 \u00b7 LESS TOGETHER",
           "topic": "in-person time with friends",
-          "say": "And we see each other less. In-person time with friends fell from 6.5 hours a week to 2.5. We swapped hangouts for screens, and the screens don't fill the hole."
+          "say": "And here's WHY: we just stopped hanging out. In-person time with friends fell from 6.5 hours a week to 2.5. We swapped it for screens, and a screen gives you the feeling of contact without the real thing your brain needs."
         },
         {
           "source": "offline",
@@ -1374,7 +1374,7 @@
           "insight_type": "rank",
           "role": "3 \u00b7 THE TWIST",
           "topic": "feel lonely often, by age",
-          "say": "Here's the gut punch. 30 percent of young adults, 18 to 29, feel lonely often, the highest of any age group. The most digitally connected generation is also the loneliest."
+          "say": "The twist? It hit the youngest hardest. 30 percent of people under 30 feel lonely often, more than their grandparents do. The generation that never logs off feels the most alone, because online friends don't fill the tank."
         },
         {
           "source": "offline",
@@ -1385,7 +1385,7 @@
           "insight_type": "rank",
           "role": "4 \u00b7 IT'S DEADLY",
           "topic": "early-death risk by factor",
-          "say": "And it's not just sad. Chronic loneliness raises your risk of early death by 26 percent, on par with obesity. Your body treats disconnection like a physical wound."
+          "say": "And this is why it's not just sad, it's dangerous. Being chronically lonely raises your risk of dying early by 26 percent, about the same as obesity. Your body is built for a tribe and treats being alone like an injury."
         }
       ],
       "caption": "In 1990, 3% of Americans said they had no close friends. Today it's 12% \u2014 and chronic loneliness raises your risk of early death by 26%, about the same as obesity. We've never been more connected, or more alone. How many close friends do you actually have? \ud83d\udc47"
@@ -1393,7 +1393,7 @@
     {
       "slug": "attention-span-collapse",
       "title": "Your Attention Span Collapsed. Here's the Data.",
-      "hook": "We can't focus for even one minute anymore.",
+      "hook": "Why can't you focus anymore? It's not your fault.",
       "closing": "Anyway, you probably already swiped away.",
       "question": "Did you make it to the end? Be honest below.",
       "hashtags": [
@@ -1420,7 +1420,7 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE COLLAPSE",
           "topic": "seconds of focus before switching",
-          "say": "A researcher tracked how long people focus on a screen before switching. In 2004 it was 150 seconds. Today, 47. Our default attention span shrank by two-thirds in under 20 years."
+          "say": "Your attention didn't break on its own, it was trained. In 2004 people focused on a screen for 150 seconds before switching. Now it's 47. Something taught your brain to bail every 47 seconds."
         },
         {
           "source": "offline",
@@ -1431,7 +1431,7 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE FUEL",
           "topic": "daily short-form video (minutes)",
-          "say": "Meanwhile we pour fuel on it. Daily short-video time jumped from 20 minutes to 95 in five years. The faster the cuts, the more we crave, the less patience we have left."
+          "say": "That something is short video. Apps learned that fast cuts and endless scroll hit the same reward chemical as a slot machine. Daily short-video time went from 20 minutes to 95, and every swipe trains you to want the next hit sooner."
         },
         {
           "source": "offline",
@@ -1442,7 +1442,7 @@
           "insight_type": "rank",
           "role": "3 \u00b7 CAN'T SIT STILL",
           "topic": "phone pickups per day",
-          "say": "We can't sit still either. Gen Z picks up their phone 79 times a day, about once every 12 waking minutes. Every pickup is a reset button on whatever you were doing."
+          "say": "So now you can't sit still. The average Gen Z phone gets picked up 79 times a day, once every 12 waking minutes. It's not weakness, it's a craving the apps deliberately built and keep feeding."
         },
         {
           "source": "offline",
@@ -1453,7 +1453,7 @@
           "insight_type": "share",
           "role": "4 \u00b7 THE REAL HOUR",
           "topic": "where a work hour goes (minutes)",
-          "say": "And recovery is brutal. After one interruption it takes 23 minutes to refocus. Stack enough pings and a full hour leaves maybe 40 minutes of real attention. The rest is just getting back on track."
+          "say": "And here's the real cost. Every interruption takes 23 minutes to recover from. Stack enough pings and a full hour of work leaves maybe 40 real minutes of focus. The rest is just climbing back to where you were."
         }
       ],
       "caption": "In 2004 the average person focused on a screen for 150 seconds before switching. Today? 47 seconds. Meanwhile daily short-video time nearly 5x'd. Your attention span didn't break by accident. Did you make it to the end? Be honest \ud83d\udc47"
