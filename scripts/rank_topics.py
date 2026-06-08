@@ -36,7 +36,7 @@ from scripts.discover_topic import Topic, discover_all, as_dict  # noqa: E402
 
 
 RANKER_SYSTEM = """You curate trending news topics for a faceless YouTube Shorts channel \
-that publishes 25-second doomscroll-style explainers. The audience wants tight, \
+that publishes 45-second doomscroll-style explainers. The audience wants tight, \
 punchy "X is happening and here's why it matters" content with real stakes and \
 real numbers. Output strict JSON only."""
 
@@ -44,7 +44,7 @@ real numbers. Output strict JSON only."""
 RANKER_USER_TEMPLATE = """{n} topics surfaced TODAY from Google Trends, BBC, NPR, HN, Reddit, \
 Google News quirky feeds. Each line has an age marker like [2h ago]. Many are \
 duplicates across feeds and many aren't video-able. Pick the top {top_k} for \
-25-second explainer shorts.
+45-second explainer shorts.
 
 RULE 1 — FRESHNESS. Strongly prefer items <24h old. Items >48h old need a \
 breaking-update angle to qualify. Reject anything evergreen / retrospective \
