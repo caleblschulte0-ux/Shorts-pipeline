@@ -49,9 +49,13 @@ class Story:
     segments: list[Segment]
     hashtags: list[str]
     sources: list[str] = field(default_factory=list)
+    question: str = ""               # engagement CTA spoken + shown at the end
 
     def sentences(self) -> list[str]:
-        return [self.hook] + [s.sentence for s in self.segments] + [self.closing]
+        # The closing line also SPEAKS the engagement question so the CTA is
+        # heard, not just shown.
+        close = self.closing + (" " + self.question if self.question else "")
+        return [self.hook] + [s.sentence for s in self.segments] + [close]
 
 
 def _fmtnum(value: float) -> str:
@@ -228,4 +232,6 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
         segments=segments,
         hashtags=story_cfg.get("hashtags", []),
         sources=sources,
+        question=(story_cfg.get("question")
+                  or "Which number hit you hardest? Drop it in the comments."),
     )

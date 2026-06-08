@@ -348,6 +348,16 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     quip = ("{\\an5\\pos(540,308)\\fs54\\c&HFFFFFF&\\b1\\bord0\\shad2"
             "\\fad(300,0)}" + _wrap(st.closing, 20))
     lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{quip}")
+    # Engagement CTA — ask the question + nudge a comment (drives the algorithm).
+    question = getattr(st, "question", "")
+    if question:
+        q = ("{\\an5\\pos(540,842)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
+             "\\shad0\\fad(450,0)}" + _wrap(question, 24))
+        lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
+        cta = ("{\\an5\\pos(540,952)\\fs54\\c&HC5D14F&\\b1\\bord5\\3c&H000000&"
+               "\\shad0\\fad(450,0)\\fscx82\\fscy82\\t(450,780,\\fscx100\\fscy100)}"
+               "COMMENT BELOW ▼")
+        lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
     src = " · ".join(st.sources)
     src_txt = ("{\\an2\\pos(540,1898)\\fs15\\c&HA5B4C7&\\b0\\bord1\\shad0"
                "\\fad(200,0)}Sources: " + src)
