@@ -296,8 +296,9 @@ flopped. Skip if the file is missing (early days, no data yet).
 - **No sports stats / scores / standings.** Data about the *business* of sports
   is fine (team valuations, ticket prices, stadium costs, TV deals) — the chart
   is about money/trends, not box scores.
-- Each story = ONE clear narrative arc across **4 connected charts** with a
-  payoff (e.g. "the cheery numbers up top, the catch down here").
+- Each story EXPLAINS one thing in **4 charts that are 4 STEPS of a single
+  explanation** (setup → mechanism → twist → consequence), not 4 separate
+  stats. See "EXPLAIN one thing" below — this is the whole brand.
 - **Vary the chart types** — don't make every segment a bar list. Pick the
   `insight_type` that fits the data:
   - `trend` → line (a value over time; data points need a `period`/year).
@@ -309,44 +310,51 @@ flopped. Skip if the file is missing (early days, no data yet).
   Aim for at least two different chart types per story.
 - Don't reuse a `slug` already in `niche.config.json` (grep first).
 
-## Write it for dummies (this is the whole brand)
-The channel is **"the stuff nobody explained to you, broken down so anyone
-gets it."** We are NOT a middle-school slideshow that reads the numbers off
-the screen. The viewer can already SEE the number — narrating it adds nothing
-and is why people scroll away.
+## EXPLAIN one thing (this is the whole brand)
+The channel **teaches one idea to someone who knows nothing and isn't trying
+hard** — a mechanism, a *why*, a how-it-actually-works. The viewer should leave
+able to explain it to a friend. We are NOT a stat tour. "Here's number A, here's
+number B, here's a one-liner, next graph" is the exact thing we are killing.
 
-**The job is not to FRAME numbers for dummies — it's to DECODE them.** Assume
-the viewer doesn't know what the number means and doesn't care until you make
-it hit. For every figure: say it, then actually spell out *what it does to a
-real person* — in dollars in their pocket, time, "double", a thing they buy,
-or a consequence they'll feel. If a smart-but-busy 15-year-old wouldn't go
-"ohhh, that's messed up" after your line, you haven't decoded it yet.
+**Pick ONE thing to EXPLAIN, then build the whole video around teaching it.**
+Not "4 facts about subscriptions" — but *"why subscriptions quietly drain you,"*
+explained in four steps. The hook poses the question; the four charts are the
+four steps of the answer; the closing is the lightbulb going on.
 
-The pattern per beat: **number → so what → why that's wild.** Don't stop at
-restating; land the gut-punch of what it means.
+**The four beats are ONE explanation, chained — not four separate facts.** Each
+beat picks up where the last left off ("so…", "but here's the catch…", "which is
+exactly why…"). Test: if you could shuffle the four beats and it still made
+sense, you wrote a LIST, not an explanation. Beat 2 should not stand without
+beat 1.
 
-- ❌ Listing: *"San Jose has the highest cost in years of pay, at 11.3 years."*
-  (reads the bar)
-- 🟡 Framing only: *"In San Jose it takes 11.3 years of pay to buy a home."*
-  (better, but they still don't FEEL it)
-- ✅ Decoding: *"In San Jose, a house costs 11.3 years of your ENTIRE salary.
-  Not what you save — every single dollar you earn, for over a decade, going
-  to nothing but the house. That's why it feels impossible. It basically is."*
+**Data is the EVIDENCE, not the subject.** Lead with the idea in plain words;
+drop the number as proof. The viewer came to understand something, not to read a
+chart. *"Your brain literally ignores a $12 charge — too small to bother
+cancelling"* (the idea) → *"which is why people guess $86 when they really pay
+$219"* (the proof). The number still lands and auto-circles — but it's serving
+the sentence, not the other way around. If you fell back on raw data, fine, but
+only as backup for the point you're making.
 
-Another: a `6.6%` mortgage rate isn't "rates went up" — it's *"on a 30-year
-loan that's almost double the interest you hand the bank, for the exact same
-house."* An `84` cost-of-living index isn't "Hawaii is expensive" — it's
-*"the same 100 dollar grocery run costs 184 there; your money just evaporates."*
+**Talk to a curious 12-year-old.** Short words. Analogies ("it's like a gym
+membership you forgot you had"). Cause-and-effect ("so what happens is…"). No
+jargon, no "as you can see", no "this chart shows". Contractions, second person,
+blunt. Still decode any number you use (number → so what → why it's wild) — but
+now the decode serves the explanation.
 
-Rules:
-- Each beat names **1–2 real on-chart numbers** (exact digits shown, e.g.
-  `6.6 percent`, `449`, `35.7 percent`) — those auto-circle on the chart —
-  then DECODES them as above. Spend the words on the meaning, ~30–45/beat.
-- Conversational, blunt, second-person ("you", "your paycheck"). Contractions.
-  No jargon, no "as you can see", no "this chart shows".
-- The four beats build ONE argument to a payoff in the closing.
-- Total ~55–75s is fine if the words are doing real explaining — depth beats
-  brevity here. Cut filler, never the decode.
+The shift, on the subscription video:
+- ❌ TOUR (what we're killing): *"People pay $219 a month. // It's split across
+  video, music, gaming. // The count grew from 3 to 12. // 48% pay for unused
+  stuff."* — four disconnected facts.
+- ✅ EXPLAINER: *"Here's WHY subscriptions drain you without you noticing. →
+  It starts because each one is tiny — your brain ignores a $12 charge, so you
+  guess you spend $86 when it's really $219. → Then they go automatic: you
+  decided once, and now 12 of them renew forever with no decision. → Companies
+  design it that way — 48% of people pay for something they never use, because
+  forgetting IS the business model. → Stack it up and it's a $219 car payment
+  you never agreed to."* — same data, but it TEACHES a mechanism.
+
+Length: ~55–75s is fine if every second is teaching. Cut filler, never the
+explanation.
 
 ### Hooks — short, the single most important line
 A weak hook = nobody watches. A LONG hook = they swipe before the data even
