@@ -47,6 +47,13 @@ on:
     workflows: ["Daily Shorts"]
     types: [completed]
     branches: [main]
+  # RELIABLE fallback: a daily cron. GitHub does NOT reliably cascade
+  # workflow_run -> workflow_run (when Daily Shorts is itself workflow_run-
+  # triggered, the chain above silently never fires), so this cron is the real
+  # guarantee. Runs after the morning daily batch; MODE defaults to "auto",
+  # which posts every un-posted story (deduped). 13:00 UTC daily.
+  schedule:
+    - cron: '0 13 * * *'
 
 permissions:
   contents: write          # persist state/explainer_posted_log.json
@@ -85,11 +92,13 @@ jobs:
 
   explainer:
     needs: plan
-    # Manual dispatch always runs. Automatic fire only when the merge
-    # succeeded AND there is at least one new story to post.
+    # Manual dispatch always runs. Automatic fire (cron or the Daily Shorts
+    # chain) runs only when there is at least one new story to post.
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.conclusion == 'success' && needs.plan.outputs.new_count != '0')
+      (needs.plan.outputs.new_count != '0' &&
+       (github.event_name == 'schedule' ||
+        github.event.workflow_run.conclusion == 'success'))
     runs-on: ubuntu-latest
     timeout-minutes: 60
     concurrency:
