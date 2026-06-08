@@ -66,7 +66,22 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
 4. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
    one per pick.
 
-5. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
+5. **Pre-flight validation.** Cheapest gate to catch "I forgot to write a
+   shot about Putin" before render. Runs the LLM entity extractor against
+   every package and checks that each named entity has a shot whose
+   phrase covers it:
+
+   ```bash
+   GROQ_API_KEY=$GROQ_API_KEY python3 scripts/validate_packages.py \
+     state/trending_packages/$(date -u +%Y%m%d) --min-coverage 70
+   ```
+
+   Per-package coverage report. Exits non-zero when any package has
+   uncovered entities — fix by adding a shot whose `phrase` mentions
+   the uncovered entity (or by tightening the script if the entity
+   doesn't need its own visual), then re-run.
+
+6. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
    branch nothing renders from; the PR is what auto-merge.yml watches:
 
    ```bash
