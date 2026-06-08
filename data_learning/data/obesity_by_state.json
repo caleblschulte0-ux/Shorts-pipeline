@@ -1,0 +1,26 @@
+{
+  "key": "obesity_by_state",
+  "title": "Adult obesity rate by state (highest)",
+  "unit": "percent",
+  "geography": "United States by state",
+  "time_coverage": "2022",
+  "source": {
+    "name": "BRFSS State Obesity Data",
+    "publisher": "Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/obesity/data/prevalence-maps.html",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Self-reported obesity prevalence among adults; states with highest rates shown. National baseline for comparison.",
+  "baseline": {"label": "United States", "value": 41.9},
+  "points": [
+    {"label": "West Virginia", "value": 45.3},
+    {"label": "Mississippi", "value": 44.0},
+    {"label": "Oklahoma", "value": 40.3},
+    {"label": "Iowa", "value": 39.8},
+    {"label": "Alabama", "value": 39.5},
+    {"label": "Kentucky", "value": 39.2},
+    {"label": "Arkansas", "value": 38.9},
+    {"label": "Louisiana", "value": 38.7}
+  ]
+}

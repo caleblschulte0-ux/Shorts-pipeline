@@ -1,0 +1,23 @@
+{
+  "key": "obesity_annual_cost",
+  "title": "US annual medical cost of obesity ($ billion)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2000-2022 (selected years)",
+  "source": {
+    "name": "Annual Direct Medical Costs of Obesity",
+    "publisher": "Centers for Disease Control and Prevention / Milken Institute",
+    "url": "https://www.cdc.gov/obesity/data/adult.html",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Estimated annual direct medical costs attributable to adult obesity. Adjusted to 2022 dollars.",
+  "points": [
+    {"label": "2000", "value": 61, "period": "2000"},
+    {"label": "2005", "value": 99, "period": "2005"},
+    {"label": "2010", "value": 147, "period": "2010"},
+    {"label": "2015", "value": 161, "period": "2015"},
+    {"label": "2019", "value": 173, "period": "2019"},
+    {"label": "2022", "value": 215, "period": "2022"}
+  ]
+}

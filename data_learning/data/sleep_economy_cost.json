@@ -1,0 +1,22 @@
+{
+  "key": "sleep_economy_cost",
+  "title": "Annual economic cost of sleep deprivation ($ billion)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2016-2024 (selected years)",
+  "source": {
+    "name": "Why Sleep Matters: Quantifying Its Economic Value",
+    "publisher": "RAND Corporation",
+    "url": "https://www.rand.org/pubs/research_reports/RR1621.html",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Estimated annual economic losses from productivity and health costs attributable to insufficient sleep.",
+  "points": [
+    {"label": "2016", "value": 411, "period": "2016"},
+    {"label": "2018", "value": 433, "period": "2018"},
+    {"label": "2020", "value": 460, "period": "2020"},
+    {"label": "2022", "value": 494, "period": "2022"},
+    {"label": "2024", "value": 527, "period": "2024"}
+  ]
+}

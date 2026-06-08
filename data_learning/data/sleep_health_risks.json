@@ -1,0 +1,23 @@
+{
+  "key": "sleep_health_risks",
+  "title": "Increased health risk from chronic sleep deprivation",
+  "unit": "percent",
+  "geography": "United States / Global meta-analysis",
+  "time_coverage": "meta-analysis through 2023",
+  "source": {
+    "name": "Sleep deprivation health outcomes meta-analysis",
+    "publisher": "CDC / American Academy of Sleep Medicine",
+    "url": "https://www.cdc.gov/sleep/data-and-statistics/adults.html",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Increased relative risk for each condition among adults regularly sleeping under 7 hours vs 7-9 hours.",
+  "points": [
+    {"label": "Obesity", "value": 55},
+    {"label": "Heart disease", "value": 48},
+    {"label": "Type 2 diabetes", "value": 40},
+    {"label": "Depression", "value": 55},
+    {"label": "Stroke risk", "value": 15},
+    {"label": "Early death", "value": 13}
+  ]
+}
