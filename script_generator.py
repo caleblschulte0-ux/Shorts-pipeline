@@ -51,7 +51,7 @@ DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
 
 SYSTEM_PROMPT = """You write viral-style YouTube Shorts scripts as strict JSON. \
-1080x1920 vertical, ~25 seconds, doomscroll-explainer tone: factual hook, dense \
+1080x1920 vertical, ~45 seconds, doomscroll-explainer tone: factual hook, dense \
 delivery, no filler, no editorial opinion. Output JSON only — no prose, no fences."""
 
 
@@ -63,7 +63,7 @@ Context (headlines and snippets driving the trend):
 Schema:
 {{
   "title": "<6-10 word punchy YouTube title>",
-  "script": "<60-80 words, opens with a hook, ends with a complete sentence and a period>",
+  "script": "<110-140 words, opens with a hook, ends with a complete sentence and a period>",
   "shots": [
     {{"phrase": "<2-4 word VERBATIM substring of the script>",
       "query": "<1-3 word stock-footage search, visually concrete>"}}
@@ -78,10 +78,10 @@ Schema:
 
 Hard rules (validated):
 
-1. SCRIPT LENGTH: 60-80 words, must end with a period. Anything shorter is rejected.
+1. SCRIPT LENGTH: 110-140 words, must end with a period. Anything shorter is rejected.
 
 2. SCRIPT SHAPE: Opens with a punchy declarative hook ("X is dying.", "Your Y is \
-a lie.", "Here's what nobody told you about Z."), then 3-5 dense factual sentences, \
+a lie.", "Here's what nobody told you about Z."), then 6-9 dense factual sentences, \
 ends with a kicker. Mention {topic_query} clearly enough that a stranger understands.
 
 3. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Each shot.phrase and punch.phrase \
@@ -93,10 +93,10 @@ matches. Trigger phrases that contain numbers must also use digits.
 5. AVOID: "Wayfair" (transcribes as "wafer"); "Once" as a sentence opener \
 (transcribes as "wants" — use "First" / "Back in" / "Once you").
 
-6. SHOTS: exactly 5-7. shot.query is a concrete visible noun ("empty store shelves", \
+6. SHOTS: exactly 10-14. shot.query is a concrete visible noun ("empty store shelves", \
 "stock chart"), not an abstraction ("economic anxiety", "frustration").
 
-7. PUNCHES: exactly 4-7. 1-3 ALL CAPS words. Colors: #ff3030 (shock/bad), \
+7. PUNCHES: exactly 6-10. 1-3 ALL CAPS words. Colors: #ff3030 (shock/bad), \
 #50ff80 (positive), #ffaa30 (warning), #ffffff (neutral).
 
 8. music_vibe: dark (serious/exposé), cinematic (big-picture), hiphop (cultural/upbeat).
@@ -269,14 +269,14 @@ def _validate_package(pkg: dict) -> list[str]:
     script_lower = script.lower()
 
     word_count = len(script.split())
-    if word_count < 55:
+    if word_count < 100:
         issues.append(
-            f"script is only {word_count} words — must be 60-80 words. "
+            f"script is only {word_count} words — must be 110-140 words. "
             "Add more factual content."
         )
-    elif word_count > 90:
+    elif word_count > 150:
         issues.append(
-            f"script is {word_count} words — must be 60-80 words. Tighten it."
+            f"script is {word_count} words — must be 110-140 words. Tighten it."
         )
     if not script.rstrip().endswith((".", "!", "?")):
         issues.append("script must end with a period, exclamation, or question mark.")

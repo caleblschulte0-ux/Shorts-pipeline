@@ -136,6 +136,115 @@ def extract_proper_nouns(script: str) -> list[str]:
     return out
 
 
+# ---------- LLM-based visual extraction ----------
+#
+# Regex catches proper nouns but doesn't know which ones MATTER to the
+# story, doesn't disambiguate ("Apple" the company vs "apple" the fruit),
+# and can't suggest the disambiguating context that makes Commons /
+# Wikipedia / GDELT searches actually return the right photo. An LLM
+# trip costs one call per package and fixes all three problems.
+#
+# The LLM is asked for {entity, context, phrase} triples:
+#   - entity: the searchable thing ("Tim Cook", "WWDC 2026 keynote")
+#   - context: extra disambiguating keywords to bias image search
+#     ("Apple CEO", "Apple developer conference San Jose")
+#   - phrase: verbatim substring of the script to pin against a shot
+#
+# If the LLM dispatch isn't wired (no API keys, network out), this
+# returns None and the regex path takes over.
+
+_VISUAL_SYSTEM = """You annotate YouTube Shorts scripts with the specific real-world \
+visuals an editor needs to find. For each concrete thing mentioned in the \
+script — a person, company, product, place, event, named object — output ONE \
+{entity, context, phrase} triple. Output strict JSON only, no prose."""
+
+
+_VISUAL_USER = """Title: {title}
+
+Script:
+{script}
+
+For every concrete, photographable thing in the script — every person, \
+company, product line, named place, named event, named object — output one \
+triple in this exact JSON shape:
+
+{{"visuals": [
+  {{"entity": "Tim Cook",
+    "context": "Apple CEO keynote",
+    "phrase": "Tim Cook"}},
+  {{"entity": "WWDC 2026",
+    "context": "Apple worldwide developers conference",
+    "phrase": "at WWDC"}}
+]}}
+
+Rules:
+- entity = the SEARCHABLE thing. Real proper nouns, not generic descriptors. \
+"Tim Cook" yes, "the CEO" no. "Siri" yes, "the assistant" no.
+- context = 2-6 extra keywords that DISAMBIGUATE for image search. For \
+"Apple" the company, context is "Apple Inc tech logo headquarters" — NOT \
+"red fruit". For "Mercury" the planet, context is "planet space NASA" — NOT \
+"Roman god".
+- phrase = VERBATIM substring of the script (case-sensitive copy-paste) so \
+the renderer can pin this visual to the right shot. Pick the shortest \
+substring that uniquely identifies the mention.
+- Skip generic things ("the country", "the company", "the weather") — only \
+named, photographable things.
+- Skip abstract nouns ("freedom", "the economy", "growth") — same reason.
+- Cap at 12 entries. If the script has more, pick the most STORY-CRITICAL \
+ones (subject + main actions, not throwaway references).
+- If two mentions point to the same entity, output it once (use the first \
+mention's phrase).
+
+Output JSON only."""
+
+
+def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
+    """Ask the LLM for {entity, context, phrase} triples. Returns None
+    when the LLM path is unavailable (no API key, network failure,
+    malformed response) so the caller can fall back to the regex
+    extractor. Never raises."""
+    if not script.strip():
+        return None
+    try:
+        from script_generator import _call_llm
+    except Exception:
+        return None
+    user = _VISUAL_USER.format(script=script, title=title or "(none)")
+    try:
+        raw = _call_llm(_VISUAL_SYSTEM, user)
+    except Exception as e:  # noqa: BLE001
+        print(f"  [entity_media LLM skip] {type(e).__name__}: {e}")
+        return None
+    raw = (raw or "").strip()
+    if raw.startswith("```"):
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw)
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as e:
+        print(f"  [entity_media LLM json parse fail] {e}")
+        return None
+    items = data.get("visuals") if isinstance(data, dict) else None
+    if not isinstance(items, list):
+        return None
+    out: list[dict] = []
+    seen: set[str] = set()
+    for it in items:
+        if not isinstance(it, dict):
+            continue
+        entity = (it.get("entity") or "").strip()
+        context = (it.get("context") or "").strip()
+        phrase = (it.get("phrase") or "").strip()
+        if not entity or not phrase:
+            continue
+        key = entity.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"entity": entity, "context": context, "phrase": phrase})
+    return out or None
+
+
 # ---------- Cache ----------
 
 _CACHE_PATH = (Path(__file__).resolve().parent / "state"
@@ -166,11 +275,15 @@ def resolve_entity_media(entity: str, context: str = "") -> str | None:
     has it. Wraps `topic_media.search()` which already hits Wikipedia
     -> Commons -> GDELT news og:image in that order.
 
-    Cached on disk keyed by entity (case-folded). Empty-string
-    cache value means "tried, no media available" — we don't retry
-    those on the next render unless the cache file is wiped.
+    Cached on disk keyed by entity+context (case-folded). Including the
+    context disambiguates collisions across packages — "Apple" the
+    company on a WWDC story shouldn't be cached against "apple" the
+    fruit on a farming story. Empty-string cache value means "tried,
+    no media available" — we don't retry those on the next render
+    unless the cache file is wiped.
     """
-    key = entity.lower()
+    ctx_norm = " ".join((context or "").lower().split())[:80]
+    key = f"{entity.lower()}|{ctx_norm}" if ctx_norm else entity.lower()
     cache = _load_cache()
     if key in cache:
         return cache[key] or None
@@ -189,61 +302,94 @@ def resolve_entity_media(entity: str, context: str = "") -> str | None:
 
 # ---------- Enrichment ----------
 
+def _match_shot(shots: list[dict], phrase: str, entity: str) -> dict | None:
+    """Find the best shot for a (phrase, entity) pair. Prefers an exact
+    substring match on the LLM-supplied phrase (case-insensitive); falls
+    back to the entity name. The first matching shot wins so order in
+    `shots` controls placement when there are multiple candidates."""
+    p_lower = phrase.lower()
+    if p_lower:
+        for s in shots:
+            sp = (s.get("phrase") or "").lower()
+            if not sp:
+                continue
+            if sp in p_lower or p_lower in sp:
+                return s
+    e_lower = entity.lower()
+    if e_lower:
+        for s in shots:
+            sp = (s.get("phrase") or "").lower()
+            if e_lower in sp:
+                return s
+    return None
+
+
 def enrich_package(pkg: dict, *, verbose: bool = True) -> dict:
     """Auto-attach `image_url` to every shot whose phrase mentions a
-    proper noun that doesn't already have media. Mutates `pkg` in
-    place and returns it.
+    real-world entity that doesn't already have media. Mutates `pkg`
+    in place and returns it.
+
+    Strategy:
+      1. Ask the LLM for {entity, context, phrase} triples — this
+         picks story-critical entities, disambiguates them ("Apple
+         Inc" vs "apple fruit"), and supplies extra search context.
+      2. If the LLM dispatch fails (no key, network out, bad JSON),
+         fall back to the regex proper-noun extractor with title as
+         context.
 
     Decision rules:
       * Shots with an existing `image_url` (or legacy `image`) are
         never overwritten — the routine's manual picks always win.
-      * Entities found in the script but not present in any shot's
-        phrase are logged as "uncoverable" so the package author can
-        see which shots they should have built.
-      * Multiple entities in the same shot phrase: the first one
-        wins. (Future work: pick the most distinctive entity.)
+      * Entities the LLM names but no shot matches are logged as
+        "uncoverable" so the package author can see what they missed.
+      * Multiple entities in the same shot: first one to attach wins.
     """
     script = pkg.get("script") or ""
     if not script:
         return pkg
 
-    nouns = extract_proper_nouns(script)
-    if verbose:
-        print(f"  [entity_media] {len(nouns)} proper nouns: "
-              f"{nouns if len(nouns) <= 10 else nouns[:10] + ['...']}")
-    if not nouns:
-        return pkg
-
     title = pkg.get("title") or ""
     shots = pkg.get("shots") or []
+
+    visuals = extract_visuals_llm(script, title=title)
+    used_llm = visuals is not None
+    if not visuals:
+        # Fallback: regex extractor, with title as context.
+        nouns = extract_proper_nouns(script)
+        visuals = [{"entity": n, "context": title, "phrase": n} for n in nouns]
+
+    if verbose:
+        src = "LLM" if used_llm else "regex"
+        names = [v["entity"] for v in visuals]
+        preview = names if len(names) <= 10 else names[:10] + ["..."]
+        print(f"  [entity_media] {len(visuals)} visuals via {src}: {preview}")
+    if not visuals:
+        return pkg
 
     attached = 0
     missed_shots: list[str] = []   # entities with no matching shot
     missed_media: list[str] = []   # entities matched but no media found
 
-    for entity in nouns:
-        e_lower = entity.lower()
-        # Find the first shot whose phrase contains this entity.
-        target = None
-        for s in shots:
-            phrase = (s.get("phrase") or "").lower()
-            if e_lower in phrase:
-                target = s
-                break
+    for v in visuals:
+        entity = v["entity"]
+        context = v.get("context") or title
+        phrase = v.get("phrase") or entity
+
+        target = _match_shot(shots, phrase, entity)
         if target is None:
             missed_shots.append(entity)
             continue
-        # Respect routine's existing work.
         if target.get("image_url") or target.get("image"):
             continue
-        url = resolve_entity_media(entity, context=title)
+        url = resolve_entity_media(entity, context=context)
         if not url:
             missed_media.append(entity)
             continue
         target["image_url"] = url
         attached += 1
         if verbose:
-            print(f"  [entity_media] {entity!r} -> {url[:90]}")
+            print(f"  [entity_media] {entity!r} (ctx: {context[:40]!r}) "
+                  f"-> {url[:80]}")
 
     if verbose:
         if attached:

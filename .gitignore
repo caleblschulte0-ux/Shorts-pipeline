@@ -31,6 +31,9 @@ gameplay/*.avi
 # YYYYMMDD/) which is what we want to track.
 state/trending_packages/*.json
 
+# Per-machine entity media resolution cache. Regenerated on demand.
+state/entity_media_cache.json
+
 # OAuth secrets — never commit
 client_secret.json
 token.json
