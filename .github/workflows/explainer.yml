@@ -183,19 +183,22 @@ jobs:
           EVERY="${{ inputs.every_hours }}";         [ -z "$EVERY" ] && EVERY="1"
           START="${{ inputs.start_in_hours }}";      [ -z "$START" ] && START="1"
           SLUGS="${{ inputs.slugs }}"
-          DEFAULT6="housing-affordability-wall grocery-squeeze debt-trap wage-illusion jobs-beneath-surface two-americas-cost"
+          # Blank slugs => omit --slugs entirely, so post_stories targets EVERY
+          # story in config and dedupes against the posted-log (i.e. posts all
+          # un-posted). No hardcoded slate to fall stale.
+          SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
           export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
-          echo "mode=$MODE expected=$EXPECTED every=$EVERY start=$START"
+          echo "mode=$MODE expected=$EXPECTED every=$EVERY start=$START slugs='${SLUGS:-<all un-posted>}'"
           case "$MODE" in
             verify)
               python scripts/post_stories.py --check-channel ;;
             canary)
               python scripts/post_stories.py --slugs "${{ inputs.canary_slug }}" ;;
             schedule)
-              python scripts/post_stories.py --slugs ${SLUGS:-$DEFAULT6} \
+              python scripts/post_stories.py $SLUGFLAG \
                 --every-hours "$EVERY" --start-in-hours "$START" ;;
             all)
-              python scripts/post_stories.py --slugs ${SLUGS:-$DEFAULT6} ;;
+              python scripts/post_stories.py $SLUGFLAG ;;
             auto)
               # post every un-posted story (no --slugs => all, deduped), hourly
               python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" ;;

@@ -185,10 +185,27 @@ strip) — NOT the stacked/stock-image format, and NOT the
 `"channel":"explainer"` package route above. For this channel's identity,
 prefer THESE data-graph stories over routing a Part-1 package to explainer.
 
-You only AUTHOR them (data + config). They post themselves: when this PR
-auto-merges, the **Explainer Stories** workflow renders the new stories and
-schedules them to the channel hourly, automatically. Don't trigger anything,
-don't render, don't upload. The posted-log dedupes, so only NEW stories post.
+You AUTHOR them (data + config) **and then you trigger the posting yourself.**
+Do BOTH, every day — don't assume an automatic chain ran. After your story
+config is pushed to `main` (via the daily PR / merge), kick the posting:
+
+```bash
+# Native tool preferred (Claude): mcp__github__actions_run_trigger
+#   workflow_id: explainer.yml   inputs: { "mode": "schedule" }
+# CLI equivalent:
+gh workflow run explainer.yml -f mode=schedule
+```
+
+`mode=schedule` with no slugs renders + schedules **every un-posted story**
+(the posted-log dedupes, so already-live stories are skipped and nothing
+double-posts). You don't render or upload locally — the workflow does that —
+but YOU are responsible for firing it. Treat "wrote the stories" and "fired
+the posting" as two separate must-do steps; finishing one without the other
+means nothing new ships.
+
+(There is also a daily cron + a Daily-Shorts chain as backups, but do not rely
+on them — GitHub event chains silently no-op. The explicit trigger above is the
+guarantee.)
 
 ## Learn from what's working first
 Before picking topics, read the explainer channel's own performance:
