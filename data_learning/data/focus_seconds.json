@@ -1,0 +1,37 @@
+{
+  "key": "focus_seconds",
+  "title": "Average focus on a screen before switching (seconds)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2004-2021",
+  "source": {
+    "name": "Attention Span (research)",
+    "publisher": "Gloria Mark, UC Irvine",
+    "url": "https://gloriamark.com/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "2004",
+      "value": 150,
+      "period": "2004"
+    },
+    {
+      "label": "2012",
+      "value": 75,
+      "period": "2012"
+    },
+    {
+      "label": "2016",
+      "value": 47,
+      "period": "2016"
+    },
+    {
+      "label": "2021",
+      "value": 47,
+      "period": "2021"
+    }
+  ]
+}

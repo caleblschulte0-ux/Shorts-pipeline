@@ -1,0 +1,33 @@
+{
+  "key": "loneliness_mortality",
+  "title": "Increase in early-death risk, by factor",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "meta-analysis",
+  "source": {
+    "name": "Our Epidemic of Loneliness and Isolation",
+    "publisher": "US Surgeon General",
+    "url": "https://www.hhs.gov/surgeongeneral/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Social isolation",
+      "value": 29
+    },
+    {
+      "label": "Loneliness",
+      "value": 26
+    },
+    {
+      "label": "Obesity",
+      "value": 20
+    },
+    {
+      "label": "Heavy drinking",
+      "value": 14
+    }
+  ]
+}

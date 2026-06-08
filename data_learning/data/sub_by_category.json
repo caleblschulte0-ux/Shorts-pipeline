@@ -1,0 +1,37 @@
+{
+  "key": "sub_by_category",
+  "title": "Monthly subscription spend by category",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Subscription spending survey",
+    "publisher": "West Monroe / C+R Research",
+    "url": "https://www.westmonroe.com/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Video",
+      "value": 70
+    },
+    {
+      "label": "News & other",
+      "value": 54
+    },
+    {
+      "label": "Cloud & apps",
+      "value": 40
+    },
+    {
+      "label": "Gaming",
+      "value": 30
+    },
+    {
+      "label": "Music",
+      "value": 25
+    }
+  ]
+}

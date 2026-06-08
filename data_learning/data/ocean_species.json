@@ -1,0 +1,25 @@
+{
+  "key": "ocean_species",
+  "title": "Marine species, discovered vs estimated (thousands)",
+  "unit": "thousand",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "World Register of Marine Species",
+    "publisher": "WoRMS / Census of Marine Life",
+    "url": "https://www.marinespecies.org/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Discovered",
+      "value": 240
+    },
+    {
+      "label": "Undiscovered",
+      "value": 1760
+    }
+  ]
+}

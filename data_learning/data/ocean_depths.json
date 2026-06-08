@@ -1,0 +1,33 @@
+{
+  "key": "ocean_depths",
+  "title": "Ocean depth, by point (meters)",
+  "unit": "",
+  "geography": "Global",
+  "time_coverage": "reference",
+  "source": {
+    "name": "Seabed 2030 / ocean mapping",
+    "publisher": "GEBCO / NOAA",
+    "url": "https://seabed2030.org/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Scuba limit",
+      "value": 40
+    },
+    {
+      "label": "Avg depth",
+      "value": 3700
+    },
+    {
+      "label": "Titanic",
+      "value": 3800
+    },
+    {
+      "label": "Mariana Trench",
+      "value": 11000
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "key": "sub_regrets",
+  "title": "Subscriber regrets (share who say each)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Subscription spending survey",
+    "publisher": "West Monroe / C+R Research",
+    "url": "https://www.westmonroe.com/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Pay for unused",
+      "value": 48
+    },
+    {
+      "label": "Forgot signing up",
+      "value": 42
+    },
+    {
+      "label": "Hard to cancel",
+      "value": 39
+    },
+    {
+      "label": "Hit by price hike",
+      "value": 35
+    }
+  ]
+}
