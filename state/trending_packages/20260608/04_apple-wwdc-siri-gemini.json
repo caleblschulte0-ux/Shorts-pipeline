@@ -1,0 +1,65 @@
+{
+  "version": 8,
+  "slug": "apple-wwdc-siri-gemini",
+  "title": "Apple Rebuilt Siri With Google's AI. Tim Cook Called It Goodbye.",
+  "hashtags": ["apple", "wwdc", "wwdc2026", "siri", "googlegemini", "timcook", "ios27", "google", "ai", "applepark", "machinelearning", "tech", "bigtech"],
+  "script": "Tim Cook took the stage at Apple Park Monday for the last time as CEO — and he brought Google with him. Apple announced Siri will now be powered by a custom 1.2-trillion-parameter Google Gemini model, licensed at $1 billion per year. iOS 27 shipped in beta the same afternoon. Cook retires September 1. The man who built Apple into a $3 trillion company just handed Siri to a competitor to finish the job.",
+  "shots": [
+    {
+      "phrase": "Tim Cook took the stage at Apple Park",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tim_Cook_(2017).jpg",
+      "query": "Tim Cook Apple CEO keynote stage presentation"
+    },
+    {
+      "phrase": "last time as CEO",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_Apple_Park_dllu_(cropped).jpg",
+      "query": "Apple Park Cupertino headquarters aerial ring building"
+    },
+    {
+      "phrase": "1.2-trillion-parameter Google Gemini model",
+      "query": "Google Gemini AI chatbot interface tech logo artificial intelligence"
+    },
+    {
+      "phrase": "$1 billion per year",
+      "query": "billion dollar deal tech contract signing handshake business"
+    },
+    {
+      "phrase": "iOS 27 shipped in beta",
+      "query": "iPhone iOS software update beta developer phone screen"
+    },
+    {
+      "phrase": "handed Siri to a competitor",
+      "query": "Apple Siri voice assistant AI interface iPhone listening"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "last time as CEO",
+      "text": "FINAL KEYNOTE",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "$1 billion per year",
+      "text": "$1B/YEAR",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "1.2-trillion-parameter",
+      "text": "1.2 TRILLION",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Cook retires September 1",
+      "text": "SEPT 1 GOODBYE",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "handed Siri to a competitor",
+      "text": "SIRI = GOOGLE",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

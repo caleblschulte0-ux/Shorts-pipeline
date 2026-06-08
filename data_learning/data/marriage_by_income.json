@@ -1,0 +1,22 @@
+{
+  "key": "marriage_by_income",
+  "title": "Share of adults married by income quartile",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Marriage and Divorce: Patterns by Gender, Race, and Educational Attainment",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/social-trends/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Share of adults ages 25-54 currently married, by household income quartile.",
+  "points": [
+    {"label": "Top 25%", "value": 58},
+    {"label": "Second 25%", "value": 51},
+    {"label": "Third 25%", "value": 42},
+    {"label": "Bottom 25%", "value": 31}
+  ],
+  "baseline": {"label": "All adults", "value": 46}
+}

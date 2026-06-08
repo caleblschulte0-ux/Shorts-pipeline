@@ -1,0 +1,23 @@
+{
+  "key": "median_marriage_age",
+  "title": "Median age at first marriage (men)",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "1980-2024 (selected years)",
+  "source": {
+    "name": "Current Population Survey / Families and Living Arrangements",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov/topics/families/marital-status.html",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative. Median age at first marriage for men. Women's median age rose from 22.0 in 1980 to 28.6 in 2024.",
+  "points": [
+    {"label": "1980", "value": 24.7, "period": "1980"},
+    {"label": "1990", "value": 26.1, "period": "1990"},
+    {"label": "2000", "value": 26.8, "period": "2000"},
+    {"label": "2010", "value": 28.2, "period": "2010"},
+    {"label": "2020", "value": 30.0, "period": "2020"},
+    {"label": "2024", "value": 30.5, "period": "2024"}
+  ]
+}
