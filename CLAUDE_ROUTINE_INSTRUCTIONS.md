@@ -1,7 +1,7 @@
 # Daily Routine Instructions
 
 You're running the daily script-writing routine for the Shorts-pipeline channel
-(faceless YouTube Shorts, 25-second doomscroll explainers). Your job: write the
+(faceless YouTube Shorts, 45-second doomscroll explainers). Your job: write the
 day's 6 script packages and push them. The daily GitHub Action renders + uploads.
 
 ## Steps
@@ -89,7 +89,7 @@ Reference: `state/trending_packages/20260531/*.json`.
 ```json
 {
   "title": "Punchy 6-10 word YouTube title",
-  "script": "60-80 word script, hook + facts + kicker",
+  "script": "110-140 word script, hook + facts + kicker",
   "shots": [
     {"phrase": "verbatim substring of script", "image": "https://...", "query": "stock fallback"}
   ],
@@ -153,9 +153,9 @@ Never use wordmark-only logos (composite as PowerPoint slides). Never use
 
 ## Other script rules
 
-- **60-80 words.** Hook → 3-5 facts → kicker. Use digits ("12 million", "25%",
+- **110-140 words.** Hook → 6-9 facts → kicker. Use digits ("12 million", "25%",
   "1980") so Whisper transcription matches.
-- **5-7 shots, 4-7 punches.** Every `shot.phrase` / `punch.phrase` must be a
+- **10-14 shots, 6-10 punches.** Every `shot.phrase` / `punch.phrase` must be a
   verbatim substring of the script (case-insensitive).
 - **Punch SFX auto-mapped**: `$` in punch text → ka-ching;
   "RIP/DEAD/CRASH/KILLED/GAME OVER/BANNED" → shock thump; `#ff3030` red →
