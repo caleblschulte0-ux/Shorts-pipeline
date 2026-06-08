@@ -10,6 +10,7 @@ pipeline still produces a video.
 """
 from __future__ import annotations
 
+import math
 from pathlib import Path
 
 from .insights import Insight
@@ -441,6 +442,55 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     return ax, arts
 
 
+def _story_pie(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
+    """Donut chart for a composition (kind='share'). Wedges sweep in as the
+    reveal grows; each slice's value label fades in once its wedge is drawn and
+    is ring-anchored. At reveal=1 it's the full static donut."""
+    from matplotlib.patches import Wedge
+    items = list(insight.items)
+    vals = [max(0.0, p.value) for p in items]
+    total = sum(vals) or 1.0
+    ax = fig.add_axes([0.02, 0.10, 0.66, 0.66])
+    ax.set_aspect("equal")
+    ax.set_axis_off()
+    ax.set_xlim(-1.35, 2.05)
+    ax.set_ylim(-1.3, 1.3)
+    R, w = 1.0, 0.42
+    palette = [ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399", "#FBBF24"]
+    sweep = reveal * 360.0
+    start = 90.0
+    ang = start
+    arts = []
+    pi = 0
+    for p, v in zip(items, vals):
+        span = (v / total) * 360.0
+        a0 = ang
+        a1 = ang - span                        # clockwise
+        draw_end = max(a1, start - sweep)       # clip to the swept arc
+        color = HIGHLIGHT if p.label == insight.highlight_label \
+            else palette[pi % len(palette)]
+        pi += 1
+        if draw_end < a0 - 0.01:
+            ax.add_patch(Wedge((0, 0), R, draw_end, a0, width=w,
+                               facecolor=color, edgecolor=CARD, linewidth=3,
+                               zorder=3))
+        mid = math.radians(a0 - span / 2.0)
+        lr = R + 0.20
+        lx, ly = lr * math.cos(mid), lr * math.sin(mid)
+        ha = "left" if math.cos(mid) >= 0 else "right"
+        fully = (start - a1) <= sweep + 0.01
+        t = ax.text(lx, ly, f"{p.label}  {_ulabel(v, insight.unit)}",
+                    ha=ha, va="center", fontsize=22, color=TEXT,
+                    fontweight="bold", zorder=5, alpha=(1.0 if fully else 0.0))
+        arts.append((v, "art", t, None))
+        ang = a1
+    # The whole, in the hole.
+    ax.text(0, 0, _ulabel(total, insight.unit), ha="center", va="center",
+            fontsize=30, color=SUBTLE, fontweight="bold", zorder=4,
+            alpha=_lblalpha(reveal))
+    return ax, arts
+
+
 def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     """Draw the heading + the right chart kind (at the given build fraction)
     + footer. reveal=1.0 is the final, static chart."""
@@ -454,6 +504,10 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{insight.items[0].label} → {insight.items[-1].label}"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_trend(fig, plt, insight, subtitle, reveal)
+    elif insight.kind == "share":
+        subtitle = f"{star.label} is the biggest slice"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_pie(fig, plt, insight, subtitle, reveal)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
