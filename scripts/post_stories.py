@@ -55,9 +55,14 @@ def _save_log(log: dict) -> None:
 
 
 def _description(cfg: dict) -> str:
-    parts = [cfg.get("hook", "").strip()]
-    if cfg.get("closing"):
-        parts += ["", cfg["closing"].strip()]
+    # A hand-written caption wins; otherwise fall back to hook + closing.
+    cap = (cfg.get("caption") or "").strip()
+    if cap:
+        parts = [cap]
+    else:
+        parts = [cfg.get("hook", "").strip()]
+        if cfg.get("closing"):
+            parts += ["", cfg["closing"].strip()]
     tags = cfg.get("hashtags", [])
     if tags:
         parts += ["", " ".join(f"#{t}" for t in tags)]

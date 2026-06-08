@@ -397,7 +397,8 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
      "hook": "One-line scroll-stopper. Watch how they connect.",
      "closing": "SHORT quirky one-liner (<=12 words) — the mascot says it in a speech bubble at the end. Make it land.",
      "question": "Engagement CTA spoken + shown at the very end. A PERSONAL, easy-to-answer question that begs a reply, then 'comment/tell me/drop it below'. e.g. 'How many hours do you actually sleep? Drop it below.' Keep it one short sentence, no emojis (it's spoken).",
-     "hashtags": ["topic", "data", "..."],
+     "caption": "The YouTube/Shorts DESCRIPTION (not spoken). 2-4 sentences: lead with the most shocking number to hook the scroll, tease the payoff, end with the engagement question + a 👇. Front-load search keywords. e.g. 'You think you spend $86/mo on subscriptions. It's really $219...'. Falls back to hook+closing if omitted.",
+     "hashtags": ["10-15 tags, most specific/topical FIRST (algos weight the first 3-5), bare words no #"],
      "segments": [
        {"source":"offline","key":"<key1>","params":{"file":"<key1>.json"},
         "insight_type":"trend","topic":"clean noun phrase","role":"1 · LABEL",
