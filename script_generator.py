@@ -52,7 +52,8 @@ DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
 SYSTEM_PROMPT = """You write viral-style YouTube Shorts scripts as strict JSON. \
 1080x1920 vertical, ~45 seconds, doomscroll-explainer tone: factual hook, dense \
-delivery, no filler, no editorial opinion. Output JSON only — no prose, no fences."""
+delivery, no filler, no editorial opinion. Each shot can carry a `mascot_pose` \
+hint for the on-screen anchor character. Output JSON only — no prose, no fences."""
 
 
 USER_PROMPT_TEMPLATE = """Topic: {topic_query}
@@ -63,10 +64,11 @@ Context (headlines and snippets driving the trend):
 Schema:
 {{
   "title": "<6-10 word punchy YouTube title>",
-  "script": "<110-140 words, opens with a hook, ends with a complete sentence and a period>",
+  "script": "<110-140 words, opens with a SHORT hook (<=5 words ending in ? or !), ends with a one-word-answer question>",
   "shots": [
     {{"phrase": "<2-4 word VERBATIM substring of the script>",
-      "query": "<1-3 word stock-footage search, visually concrete>"}}
+      "query": "<1-3 word stock-footage search, visually concrete>",
+      "mascot_pose": "<idle|shock|point|laugh|think|dismiss>"}}
   ],
   "punches": [
     {{"phrase": "<VERBATIM substring of the script>",
@@ -78,28 +80,51 @@ Schema:
 
 Hard rules (validated):
 
-1. SCRIPT LENGTH: 110-140 words, must end with a period. Anything shorter is rejected.
+1. SCRIPT LENGTH: 110-140 words, must end with a period or question mark. Shorter is rejected.
 
-2. SCRIPT SHAPE: Opens with a punchy declarative hook ("X is dying.", "Your Y is \
-a lie.", "Here's what nobody told you about Z."), then 6-9 dense factual sentences, \
-ends with a kicker. Mention {topic_query} clearly enough that a stranger understands.
+2. HOOK: The first sentence MUST be a punchy question or 1-word exclamation, \
+5 words or fewer. Good: "A kangaroo did WHAT?", "Why fire 30,000 people?", \
+"This shouldn't be legal.". Bad: "Apple just unveiled a new...", "X is dying." \
+(too long, declarative). The hook is what stops the swipe.
 
-3. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Each shot.phrase and punch.phrase \
+3. KICKER: The final sentence MUST be a question the viewer can answer in ONE \
+WORD or comma-pick (yes/no, A/B, single noun). Specific to the story, not \
+generic. Good: "Would you have eaten that kangaroo?", "Was the captain right?", \
+"Could YOU survive a 9.0 quake?". Bad: "What do you think?", "Let us know!" \
+(generic = no comments).
+
+4. BANNED phrases — algorithm-suppressed engagement-bait: "comment YES", \
+"subscribe for part 2", "tag a friend", "let me know in the comments", \
+"like if you agree", "drop a like".
+
+5. SCRIPT SHAPE: Question hook (5 words max) → 6-9 dense factual sentences → \
+one-word-answer question kicker. Mention {topic_query} clearly enough that a \
+stranger understands.
+
+6. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Each shot.phrase and punch.phrase \
 must appear in the script word-for-word, exact order. Mismatches break the renderer.
 
-4. NUMBERS in the script use digits ("12 million", "25%", "1980") so audio transcription \
+7. NUMBERS in the script use digits ("12 million", "25%", "1980") so audio transcription \
 matches. Trigger phrases that contain numbers must also use digits.
 
-5. AVOID: "Wayfair" (transcribes as "wafer"); "Once" as a sentence opener \
+8. AVOID: "Wayfair" (transcribes as "wafer"); "Once" as a sentence opener \
 (transcribes as "wants" — use "First" / "Back in" / "Once you").
 
-6. SHOTS: exactly 10-14. shot.query is a concrete visible noun ("empty store shelves", \
+9. SHOTS: exactly 10-14. shot.query is a concrete visible noun ("empty store shelves", \
 "stock chart"), not an abstraction ("economic anxiety", "frustration").
 
-7. PUNCHES: exactly 6-10. 1-3 ALL CAPS words. Colors: #ff3030 (shock/bad), \
-#50ff80 (positive), #ffaa30 (warning), #ffffff (neutral).
+10. MASCOT POSE per shot — one of: idle (default, neutral at desk), shock \
+(twist / surprising fact), point (first mention of the central entity), laugh \
+(absurd/quirky beat), think (setup / mystery framing), dismiss (skeptical \
+kicker). Default to "idle" for most shots. **At most 3 non-idle poses per \
+script** — over-reacting defeats the watermark feel.
 
-8. music_vibe: dark (serious/exposé), cinematic (big-picture), hiphop (cultural/upbeat).
+11. PUNCHES: exactly 6-10. 1-3 ALL CAPS words. Colors: #ff3030 (shock/bad), \
+#50ff80 (positive), #ffaa30 (warning), #ffffff (neutral). The FIRST punch \
+fires at video start (frame 0) so the shock-number is on screen before the \
+TTS even speaks.
+
+12. music_vibe: dark (serious/exposé), cinematic (big-picture), hiphop (cultural/upbeat).
 
 Output ONLY the JSON object."""
 
@@ -262,6 +287,31 @@ def _strip_fence(text: str) -> str:
     return text
 
 
+# Allowed mascot poses. Unknown / missing pose falls back to "idle" in
+# the renderer; we DO surface a soft warning so the model learns to fill
+# the field on retry.
+_VALID_POSES = frozenset({"idle", "shock", "point", "laugh", "think", "dismiss"})
+
+# Suppression-bait phrases the algorithm flags. We reject scripts that
+# contain any of these — see 1kReach 2026 research.
+_BANNED_PHRASES = (
+    "comment yes",
+    "subscribe for part",
+    "tag a friend",
+    "let me know in the comments",
+    "like if you agree",
+    "drop a like",
+)
+
+
+def _hook_word_count(script: str) -> int:
+    """Word count of the first sentence (the hook). Splits on the first
+    ., ?, or ! — whichever comes first. Used by the validator to enforce
+    the ≤5-word hook rule that drives 3-second hold."""
+    first = re.split(r"[.!?]", script.strip(), maxsplit=1)[0]
+    return len([w for w in first.split() if w])
+
+
 def _validate_package(pkg: dict) -> list[str]:
     """Return a list of validation issues. Empty list = clean."""
     issues: list[str] = []
@@ -281,6 +331,41 @@ def _validate_package(pkg: dict) -> list[str]:
     if not script.rstrip().endswith((".", "!", "?")):
         issues.append("script must end with a period, exclamation, or question mark.")
 
+    # Hook: first sentence must be ≤5 words AND end with ? or !.
+    hook_wc = _hook_word_count(script)
+    if hook_wc > 5:
+        issues.append(
+            f"hook (first sentence) is {hook_wc} words — must be 5 or fewer. "
+            "Rewrite as a short question or exclamation that stops the swipe."
+        )
+    first_punct = next((c for c in script if c in ".!?"), "")
+    if first_punct == ".":
+        issues.append(
+            "hook ends with a period — must end with ? or ! to drive 3-second "
+            "hold. Make it a question or exclamation."
+        )
+
+    # Kicker: last non-empty sentence must be a question.
+    last = re.split(r"[.!?]", script.rstrip(".!?").strip())
+    last_sentence = next((s for s in reversed(last) if s.strip()), "")
+    # The final character of the whole script tells us if it ended with ?.
+    if not script.rstrip().endswith("?"):
+        issues.append(
+            "kicker (final sentence) must end with a question mark — a story-"
+            "specific question answerable in one word ('yes/no' or 'A/B'). "
+            "Generic 'what do you think?' is also rejected; the question must "
+            "name a thing from the story."
+        )
+
+    # Suppression-bait phrases.
+    for bad in _BANNED_PHRASES:
+        if bad in script_lower:
+            issues.append(
+                f"banned phrase {bad!r} appears in script — algorithm-suppressed "
+                "engagement-bait. Remove it; the kicker question already drives "
+                "comments."
+            )
+
     for s in pkg.get("shots", []):
         phrase = (s.get("phrase") or "").lower().strip()
         if not phrase:
@@ -291,6 +376,25 @@ def _validate_package(pkg: dict) -> list[str]:
                 f"of the script. Either change the script to include it, or pick "
                 f"a different trigger phrase that IS in the script."
             )
+        pose = (s.get("mascot_pose") or "").strip().lower()
+        if pose and pose not in _VALID_POSES:
+            issues.append(
+                f"shot has unknown mascot_pose {pose!r} — must be one of: "
+                f"{sorted(_VALID_POSES)}. Omit the field for 'idle'."
+            )
+
+    # Cap non-idle poses at 3 per script so the mascot stays watermark-feel.
+    non_idle = sum(
+        1 for s in pkg.get("shots", [])
+        if (s.get("mascot_pose") or "idle").strip().lower() not in ("", "idle")
+    )
+    if non_idle > 3:
+        issues.append(
+            f"{non_idle} shots have non-idle mascot_pose — max 3 per script. "
+            "Reactive poses are for the 2-3 emotional beats only; the rest "
+            "stay idle."
+        )
+
     for p in pkg.get("punches", []):
         phrase = (p.get("phrase") or "").lower().strip()
         if not phrase:
@@ -303,11 +407,11 @@ def _validate_package(pkg: dict) -> list[str]:
             )
 
     n_shots = len(pkg.get("shots", []))
-    if not (4 <= n_shots <= 8):
-        issues.append(f"have {n_shots} shots — must be 5-7.")
+    if not (10 <= n_shots <= 14):
+        issues.append(f"have {n_shots} shots — must be 10-14.")
     n_punches = len(pkg.get("punches", []))
-    if not (3 <= n_punches <= 8):
-        issues.append(f"have {n_punches} punches — must be 4-7.")
+    if not (6 <= n_punches <= 10):
+        issues.append(f"have {n_punches} punches — must be 6-10.")
 
     return issues
 

@@ -34,11 +34,20 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 OUTPUT_DIR = ROOT / "output"
 GAMEPLAY_DIR = ROOT / "gameplay"
+MASCOT_DIR = ROOT / "assets" / "mascot" / "anchor"
 
 W, H = 1080, 1920
 HALF_H = H // 2
 FPS = 30
 TTS_VOICE = "en-US-GuyNeural"
+
+# Mascot overlay size (square) on the 1080x1920 canvas. Small enough to
+# read as a watermark; the asset PNGs are 520x520 native and scaled here.
+MASCOT_SIZE = 260
+# Pixels of right-edge margin; vertically the mascot sits centered on the
+# seam between top half (B-roll) and bottom half (gameplay) so it doesn't
+# block either layer's content. Margin from the right edge of canvas.
+MASCOT_MARGIN = 30
 
 # Target seconds per sub-cut. ~2s feels fast without being epileptic.
 SUB_CUT_TARGET = 2.0
@@ -370,6 +379,12 @@ class Shot:
     # the whole-package pool. Empty -> no per-shot search for this shot.
     pin_query: str = ""
     pin_context: str = ""
+    # Mascot reaction pose for this shot. See _MASCOT_POSES for the
+    # valid set; unknown / empty defaults to "idle". The renderer
+    # silently skips the entire mascot system when assets are missing
+    # from assets/mascot/anchor/, so a package without this field
+    # still renders cleanly.
+    mascot_pose: str = "idle"
 
 
 # ---------- B-roll assembly (multi-cut) ----------
@@ -1580,6 +1595,99 @@ def mix_audio(
 
 # ---------- compose ----------
 
+# Allowed mascot poses. Must match script_generator._VALID_POSES.
+_MASCOT_POSES = ("idle", "shock", "point", "laugh", "think", "dismiss")
+
+
+def _resolve_mascot_pose(pose: str) -> Path | None:
+    """Map a pose key to its PNG path. Falls back to `idle` if the
+    requested pose is missing on disk (typical when only a partial set
+    of assets has been produced). Returns None when even `idle` is
+    missing — caller skips the entire mascot system."""
+    if pose not in _MASCOT_POSES:
+        pose = "idle"
+    candidate = MASCOT_DIR / f"{pose}.png"
+    if candidate.exists():
+        return candidate
+    # Pose-specific asset missing — degrade to idle.
+    fallback = MASCOT_DIR / "idle.png"
+    return fallback if fallback.exists() else None
+
+
+def _build_mascot_plan(shots: list["Shot"], shot_times: list[float],
+                      total_dur: float) -> list[tuple[Path, float, float]] | None:
+    """Return a per-shot timeline of `(png_path, start, end)` ranges for
+    the mascot overlay, or None when assets are missing entirely. The
+    timeline always covers the full video — any gap before the first
+    shot is filled with the idle pose so the watermark is on screen
+    from frame 0."""
+    idle = _resolve_mascot_pose("idle")
+    if idle is None:
+        return None
+    plan: list[tuple[Path, float, float]] = []
+    # Fill any gap before the first shot with idle so the mascot is
+    # on screen from t=0 (matters mostly when shot 1 starts after the
+    # first punch fires).
+    if shot_times and shot_times[0] > 0.01:
+        plan.append((idle, 0.0, shot_times[0]))
+    for i, (shot, start) in enumerate(zip(shots, shot_times)):
+        end = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
+        pose = (getattr(shot, "mascot_pose", "") or "idle").strip().lower()
+        png = _resolve_mascot_pose(pose) or idle
+        plan.append((png, start, end))
+    return plan
+
+
+def _mascot_filter_chain(plan: list[tuple[Path, float, float]],
+                         input_label: str,
+                         output_label: str,
+                         input_base_idx: int) -> tuple[str, list[str]]:
+    """Build an ffmpeg filter-complex fragment that overlays the mascot
+    plan onto `input_label` and emits `output_label`. Inputs are added
+    starting at ffmpeg input-index `input_base_idx` (one per UNIQUE
+    pose PNG, deduped).
+
+    Returns (filter_fragment, extra_inputs) where extra_inputs is the
+    list of `-i <path>` args the caller must append to the ffmpeg cmd.
+
+    Implementation: each unique pose PNG becomes one scaled stream,
+    and each (start, end) window gets one overlay filter gated by
+    `enable=between(t,start,end)`. The overlay is anchored bottom-right
+    of the top half so it half-sits on the seam between B-roll and
+    gameplay — a dead zone in both layers."""
+    # Dedup poses so we don't pay for repeat decodes.
+    unique: dict[Path, int] = {}
+    for png, _, _ in plan:
+        if png not in unique:
+            unique[png] = input_base_idx + len(unique)
+    extra_inputs: list[str] = []
+    for png, _ in sorted(unique.items(), key=lambda kv: kv[1]):
+        extra_inputs.extend(["-i", str(png)])
+    # Scale each unique pose once.
+    scale_parts: list[str] = []
+    for png, idx in unique.items():
+        scale_parts.append(
+            f"[{idx}:v]scale={MASCOT_SIZE}:{MASCOT_SIZE}:flags=lanczos,"
+            f"format=rgba[m{idx}]"
+        )
+    # Chain overlays. Each shot window picks its own pose stream by
+    # the dedup'd input index.
+    cur = input_label
+    overlay_parts: list[str] = []
+    overlay_x = f"{W - MASCOT_SIZE - MASCOT_MARGIN}"
+    overlay_y = f"{HALF_H - MASCOT_SIZE // 2}"
+    for n, (png, start, end) in enumerate(plan):
+        next_label = output_label if n == len(plan) - 1 else f"mov{n}"
+        idx = unique[png]
+        overlay_parts.append(
+            f"[{cur}][m{idx}]overlay=x={overlay_x}:y={overlay_y}:"
+            f"enable='between(t,{start:.3f},{end:.3f})'[{next_label}]"
+        )
+        cur = next_label
+    fragment = ";".join(scale_parts + overlay_parts)
+    return fragment, extra_inputs
+
+
 def build_video(
     script: str,
     shots: list[Shot],
@@ -1646,11 +1754,19 @@ def build_video(
         # (time, sfx_variant_name) — variant picked from the punch's
         # color so the audio matches the visual tone.
         punch_cues: list[tuple[float, str]] = []
-        for p in punches:
+        for idx, p in enumerate(punches):
             t = find_phrase_start(words, p.phrase, hint_after=0)
             if t is None:
                 print(f"      !! punch phrase not found: {p.phrase!r}")
                 continue
+            # First punch fires at t=0 (frame 1) instead of at its phrase
+            # start. That's a deliberate hook-engineering choice: the
+            # shock number ($320B, 30,000 PEOPLE, A KANGAROO?) is on
+            # screen before the TTS has even spoken the hook, so swipe-
+            # away rate drops in the first 1-2 seconds where the algo
+            # decides whether to expand distribution.
+            if idx == 0:
+                t = 0.0
             punches_resolved.append((p, t, t + p.duration))
             punch_cues.append((t, sfx_for_punch(p)))
 
@@ -1696,11 +1812,37 @@ def build_video(
 
         # 8. Stack top + bottom, burn in captions + punches.
         print("[8/9] compose video")
+        # Mascot overlay slots in between the stack and the ASS burns so
+        # captions/punches still float on top if they ever collide. The
+        # plan returns None when assets are missing — keeps the renderer
+        # backward-compatible with the asset-free state of the repo until
+        # the PNGs are committed under assets/mascot/anchor/.
+        mascot_plan = _build_mascot_plan(shots, shot_times, total_dur)
+        mascot_inputs: list[str] = []
+        if mascot_plan:
+            mascot_frag, mascot_inputs = _mascot_filter_chain(
+                mascot_plan,
+                input_label="stacked",
+                output_label="staged",
+                input_base_idx=3,  # 0=top, 1=bot, 2=audio
+            )
+            stage_in = "staged"
+            mascot_stage = f"{mascot_frag};"
+            print(f"      [mascot] overlay enabled across "
+                  f"{len(mascot_plan)} windows, "
+                  f"{len(mascot_inputs)//2} unique pose assets")
+        else:
+            stage_in = "stacked"
+            mascot_stage = ""
+            if MASCOT_DIR.exists():
+                print(f"      [mascot] no idle.png in {MASCOT_DIR} — skipped")
+
         graph = (
             f"[0:v]format=yuv420p[topf];"
             f"[1:v]format=yuv420p[botf];"
             f"[topf][botf]vstack=inputs=2[stacked];"
-            f"[stacked]ass='{_esc(punches_path)}'[withpunch];"
+            f"{mascot_stage}"
+            f"[{stage_in}]ass='{_esc(punches_path)}'[withpunch];"
             f"[withpunch]ass='{_esc(caps_path)}'[v]"
         )
 
@@ -1709,6 +1851,7 @@ def build_video(
             "-i", str(top),
             "-i", str(bottom),
             "-i", str(mixed_audio),
+            *mascot_inputs,
             "-filter_complex", graph,
             "-map", "[v]", "-map", "2:a",
             "-t", f"{total_dur:.3f}",
@@ -1779,6 +1922,7 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
             topic_context=pkg.get("title", ""),
             pin_query=s.get("pin_query", ""),
             pin_context=s.get("pin_context", ""),
+            mascot_pose=(s.get("mascot_pose") or "idle").strip().lower(),
         ))
     punches = [
         Punch(
