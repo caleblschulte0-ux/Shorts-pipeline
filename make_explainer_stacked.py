@@ -364,6 +364,12 @@ class Shot:
     # Package title used as extra context when topic_media has to
     # synthesise a topic-specific image from a generic shot query.
     topic_context: str = ""
+    # entity_media's LLM extractor stamps the per-shot entity + its
+    # disambiguating context onto the package; the renderer reads these
+    # to do a per-shot topic_video search instead of relying entirely on
+    # the whole-package pool. Empty -> no per-shot search for this shot.
+    pin_query: str = ""
+    pin_context: str = ""
 
 
 # ---------- B-roll assembly (multi-cut) ----------
@@ -633,6 +639,48 @@ def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
             j = c["juicy"]
             j_str = f"{len(j)} juicy@{j[0]:.0f}s..{j[-1]:.0f}s" if j else "no motion scan"
             print(f"         {c['title'][:60]} ({c['duration']:.0f}s, {j_str})")
+
+    # Per-shot pinned search. For each shot with a pin_query from
+    # entity_media's LLM extraction, do a focused topic_video search
+    # using the LLM-provided context — this is the only way to get the
+    # "Tim Cook keynote" clip onto the Tim Cook shot when the whole-
+    # package context returns "Apple iPhone launch" clips. Capped at
+    # max_clips=1 per shot to keep CI budget bounded; the clip is
+    # tagged with pin_phrase so _pick_pool_clip can route it back.
+    seen_paths = {c["path"] for c in pool}
+    for shot in shots:
+        if not shot.pin_query:
+            continue
+        try:
+            items = topic_video.search(shot.pin_query, shot.pin_context,
+                                       max_clips=1)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [topic_video pinned {shot.pin_query!r} error] {e}")
+            continue
+        for it in items:
+            p = str(it["path"])
+            if p in seen_paths:
+                continue
+            seen_paths.add(p)
+            try:
+                dur = ffprobe_duration(it["path"])
+            except Exception:  # noqa: BLE001
+                continue
+            if dur < 2.0 or dur > 1800:
+                continue
+            pool.append({
+                "path": p,
+                "duration": dur,
+                "title": it.get("title", ""),
+                "source": "topic_video",
+                "uses": 0,
+                "juicy": _scan_juicy(p),
+                "width": W, "height": HALF_H,
+                "pin_phrase": shot.phrase,
+                "pin_query": shot.pin_query,
+            })
+            print(f"      [topic_video pinned] '{shot.phrase[:30]}' "
+                  f"({shot.pin_query!r}) -> {it.get('title', '')[:50]!r}")
     return pool
 
 
@@ -793,8 +841,18 @@ def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
     else:
         sup = None
 
+    # Pinned clips bypass scoring: if entity_media planted a clip
+    # specifically for this shot (clip["pin_phrase"] matches shot.phrase),
+    # it's by definition the highest-confidence match and short-circuits
+    # the round-robin. Multi-use shots cycle through pinned clips first,
+    # then fall back to general scoring.
     chosen: dict | None = None
-    if tokens:
+    pinned = [c for c in pool
+              if c.get("pin_phrase") and c["pin_phrase"] == shot.phrase
+              and c["uses"] == 0]
+    if pinned:
+        chosen = pinned[0]
+    if chosen is None and tokens:
         scored = [(_score_clip(c["title"], tokens), -c["uses"], idx, c)
                   for idx, c in enumerate(pool)]
         scored.sort(reverse=True)
@@ -902,10 +960,16 @@ def build_timed_top(
     total_dur: float,
     top_h: int,
     workdir: Path,
+    audit: list[dict] | None = None,
 ) -> tuple[Path, list[float]]:
     """Build the top-half video with multiple sub-cuts inside each shot's
     time window. Returns (path, cut_times) where cut_times is every
-    sub-cut's start time in seconds (used for SFX placement)."""
+    sub-cut's start time in seconds (used for SFX placement).
+
+    If `audit` is provided, appends a per-shot record describing which
+    media source(s) won that shot. Caller writes it as a sidecar JSON
+    next to the rendered mp4 so post-render review can spot shots that
+    still fell through to generic stock."""
     cache = Path("/tmp/pexels")
     cache.mkdir(exist_ok=True)
 
@@ -1061,6 +1125,23 @@ def build_timed_top(
                                "path": "", "width": W, "height": HALF_H,
                                "source": "placeholder"}
                 plan.append((placeholder, remaining))
+
+        if audit is not None:
+            # Summarise this shot's media decisions. Sources are tagged
+            # at pool-construction time (topic_video / topic_image /
+            # entity image / pexels / placeholder) so the audit JSON is
+            # a straight read of the plan. Detects fall-through to
+            # generic stock at a glance.
+            audit.append({
+                "shot_idx": i,
+                "phrase": shot.phrase,
+                "pin_query": shot.pin_query or None,
+                "pin_context": shot.pin_context or None,
+                "had_image_url": bool(shot.image),
+                "sources": [c.get("source", "?") for c, _ in plan],
+                "titles": [c.get("title", "")[:80] for c, _ in plan],
+                "sub_cut_count": len(plan),
+            })
 
         # Render each planned sub-cut.
         sub_t = start_t
@@ -1542,7 +1623,9 @@ def build_video(
 
         # 4. Build timed top half (multi-cut B-roll)
         print("[4/9] top: assembling multi-cut B-roll")
-        top, cut_times = build_timed_top(shots, shot_times, total_dur, HALF_H, workdir)
+        audit: list[dict] = []
+        top, cut_times = build_timed_top(shots, shot_times, total_dur, HALF_H,
+                                          workdir, audit=audit)
         print(f"      {len(cut_times)} sub-cuts")
 
         # 5. Pick gameplay for bottom
@@ -1636,6 +1719,24 @@ def build_video(
             str(out_path),
         ])
         print(f"[9/9] done -> {out_path}")
+
+        # Post-render audit. Sidecar JSON next to the mp4 listing each
+        # shot's chosen media source(s). Quickest signal when triaging
+        # a bad render: any shot whose `sources` list contains only
+        # "pexels" or "placeholder" missed every on-topic path.
+        try:
+            audit_path = out_path.with_suffix(out_path.suffix + ".audit.json")
+            audit_path.write_text(json.dumps({
+                "out": str(out_path),
+                "shots": audit,
+            }, indent=2) + "\n")
+            on_topic = sum(1 for r in audit
+                           if any(s not in {"pexels", "pixabay", "placeholder"}
+                                  for s in r.get("sources", [])))
+            print(f"      [audit] {on_topic}/{len(audit)} shots had on-topic "
+                  f"media -> {audit_path.name}")
+        except Exception as e:  # noqa: BLE001
+            print(f"      [audit write fail] {e}")
     finally:
         shutil.rmtree(workdir, ignore_errors=True)
 
@@ -1676,6 +1777,8 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
             queries=s.get("queries"),
             pexels_query=s.get("query"),
             topic_context=pkg.get("title", ""),
+            pin_query=s.get("pin_query", ""),
+            pin_context=s.get("pin_context", ""),
         ))
     punches = [
         Punch(
