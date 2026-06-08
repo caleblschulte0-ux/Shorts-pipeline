@@ -344,6 +344,7 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
      "title": "Hooky Title (4 Charts)",
      "hook": "One-line scroll-stopper. Watch how they connect.",
      "closing": "SHORT quirky one-liner (<=12 words) — the mascot says it in a speech bubble at the end. Make it land.",
+     "question": "Engagement CTA spoken + shown at the very end. A PERSONAL, easy-to-answer question that begs a reply, then 'comment/tell me/drop it below'. e.g. 'How many hours do you actually sleep? Drop it below.' Keep it one short sentence, no emojis (it's spoken).",
      "hashtags": ["topic", "data", "..."],
      "segments": [
        {"source":"offline","key":"<key1>","params":{"file":"<key1>.json"},
