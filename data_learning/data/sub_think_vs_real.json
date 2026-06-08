@@ -1,0 +1,25 @@
+{
+  "key": "sub_think_vs_real",
+  "title": "What people think vs actually spend on subscriptions monthly",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Subscription spending survey",
+    "publisher": "West Monroe / C+R Research",
+    "url": "https://www.westmonroe.com/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "You guess",
+      "value": 86
+    },
+    {
+      "label": "Reality",
+      "value": 219
+    }
+  ]
+}

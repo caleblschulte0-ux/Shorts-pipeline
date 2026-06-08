@@ -1,0 +1,29 @@
+{
+  "key": "focus_hour",
+  "title": "Where an hour of 'work' actually goes (minutes)",
+  "unit": "",
+  "geography": "reference",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Attention Span (research)",
+    "publisher": "Gloria Mark, UC Irvine",
+    "url": "https://gloriamark.com/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Real focus",
+      "value": 40
+    },
+    {
+      "label": "Distractions",
+      "value": 12
+    },
+    {
+      "label": "Refocusing",
+      "value": 8
+    }
+  ]
+}

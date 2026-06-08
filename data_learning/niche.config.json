@@ -1185,6 +1185,275 @@
         }
       ],
       "question": "Married, single, or never? Drop it in the comments."
+    },
+    {
+      "slug": "subscription-creep",
+      "title": "You're Paying for Way More Subscriptions Than You Think",
+      "hook": "You have way more subscriptions than you think.",
+      "closing": "Death by a thousand free trials.",
+      "question": "How many subscriptions are you actually paying for? Comment.",
+      "hashtags": [
+        "subscriptions",
+        "money",
+        "budgeting",
+        "personalfinance",
+        "streaming",
+        "saving",
+        "spending",
+        "data",
+        "frugal",
+        "fintech",
+        "economy",
+        "habits"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sub_think_vs_real",
+          "params": {
+            "file": "sub_think_vs_real.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 THE GUESS",
+          "topic": "what people think vs really pay",
+          "say": "Ask people their monthly subscription bill and they guess 86 dollars. The real average is 219. People underestimate by more than half, because every charge is small, automatic, and basically invisible."
+        },
+        {
+          "source": "offline",
+          "key": "sub_by_category",
+          "params": {
+            "file": "sub_by_category.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 WHERE IT GOES",
+          "topic": "monthly subscription spend",
+          "say": "Where does 219 dollars go? Video streaming is the biggest slice at 70 dollars a month, then news, cloud storage, gaming, music. No single one feels big. Stacked together, they're a car payment."
+        },
+        {
+          "source": "offline",
+          "key": "sub_count_growth",
+          "params": {
+            "file": "sub_count_growth.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 THE PILE-UP",
+          "topic": "subscriptions per household",
+          "say": "And the count keeps climbing. The average household went from 3 subscriptions to 12 in six years. Every app, every service, every free month you forgot to cancel just quietly stacks up."
+        },
+        {
+          "source": "offline",
+          "key": "sub_regrets",
+          "params": {
+            "file": "sub_regrets.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 THE TRAP",
+          "topic": "subscriber regrets",
+          "say": "Here's the business model. 48 percent of people pay for something they don't use. 42 percent forgot they ever signed up. They're not selling you a service anymore. They're selling you forgetting to cancel."
+        }
+      ]
+    },
+    {
+      "slug": "ocean-unexplored",
+      "title": "We've Mapped Mars Better Than Our Own Ocean",
+      "hook": "We've mapped Mars better than our own ocean.",
+      "closing": "The final frontier is under the boat.",
+      "question": "Would you ride to the bottom of the ocean? Comment below.",
+      "hashtags": [
+        "ocean",
+        "science",
+        "deepsea",
+        "exploration",
+        "nasa",
+        "noaa",
+        "marinebiology",
+        "earth",
+        "data",
+        "mariana",
+        "seafloor",
+        "discovery"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "surface_mapped",
+          "params": {
+            "file": "surface_mapped.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 THE BLIND SPOT",
+          "topic": "surface mapped in detail",
+          "say": "We have full high-resolution maps of the Moon and Mars. Our own ocean floor? About 25 percent. The least-explored place humans can physically reach is right here on Earth.",
+          "ascending": true
+        },
+        {
+          "source": "offline",
+          "key": "seafloor_mapped_time",
+          "params": {
+            "file": "seafloor_mapped_time.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE RACE",
+          "topic": "seafloor mapped over time",
+          "say": "We're scrambling to fix it. In 2017 just 6 percent of the seafloor was mapped in detail. By 2023, 25 percent. At this pace the whole ocean floor won't be done until the 2030s."
+        },
+        {
+          "source": "offline",
+          "key": "ocean_depths",
+          "params": {
+            "file": "ocean_depths.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 HOW DEEP",
+          "topic": "ocean depth by point (meters)",
+          "say": "And it goes deep. A scuba diver tops out near 40 meters. The Titanic rests at 3,800. The Mariana Trench bottoms out near 11,000 meters, deeper than Everest is tall."
+        },
+        {
+          "source": "offline",
+          "key": "ocean_species",
+          "params": {
+            "file": "ocean_species.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 THE UNKNOWN",
+          "topic": "marine species (thousands)",
+          "say": "It's also full of life we've never named. Scientists have catalogued about 240 thousand marine species and estimate up to 2 million exist. Roughly 9 in 10 ocean species are still a mystery."
+        }
+      ]
+    },
+    {
+      "slug": "loneliness-epidemic",
+      "title": "The Loneliness Epidemic, in Four Charts",
+      "hook": "More people have zero close friends than ever.",
+      "closing": "Never more connected. Never more alone.",
+      "question": "How many close friends do you actually have? Comment.",
+      "hashtags": [
+        "loneliness",
+        "mentalhealth",
+        "friendship",
+        "society",
+        "data",
+        "wellness",
+        "community",
+        "psychology",
+        "health",
+        "connection",
+        "isolation",
+        "usa"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "no_close_friends",
+          "params": {
+            "file": "no_close_friends.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 NO ONE TO CALL",
+          "topic": "Americans with no close friends",
+          "say": "In 1990, 3 percent of Americans said they had no close friends. By 2021 that quadrupled to 12 percent. A growing share of people have literally no one to call when things go wrong."
+        },
+        {
+          "source": "offline",
+          "key": "time_with_friends",
+          "params": {
+            "file": "time_with_friends.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 LESS TOGETHER",
+          "topic": "in-person time with friends",
+          "say": "And we see each other less. In-person time with friends fell from 6.5 hours a week to 2.5. We swapped hangouts for screens, and the screens don't fill the hole."
+        },
+        {
+          "source": "offline",
+          "key": "lonely_by_age",
+          "params": {
+            "file": "lonely_by_age.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 THE TWIST",
+          "topic": "feel lonely often, by age",
+          "say": "Here's the gut punch. 30 percent of young adults, 18 to 29, feel lonely often, the highest of any age group. The most digitally connected generation is also the loneliest."
+        },
+        {
+          "source": "offline",
+          "key": "loneliness_mortality",
+          "params": {
+            "file": "loneliness_mortality.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 IT'S DEADLY",
+          "topic": "early-death risk by factor",
+          "say": "And it's not just sad. Chronic loneliness raises your risk of early death by 26 percent, on par with obesity. Your body treats disconnection like a physical wound."
+        }
+      ]
+    },
+    {
+      "slug": "attention-span-collapse",
+      "title": "Your Attention Span Collapsed. Here's the Data.",
+      "hook": "We can't focus for even one minute anymore.",
+      "closing": "Anyway, you probably already swiped away.",
+      "question": "Did you make it to the end? Be honest below.",
+      "hashtags": [
+        "attention",
+        "focus",
+        "psychology",
+        "technology",
+        "data",
+        "productivity",
+        "screentime",
+        "dopamine",
+        "habits",
+        "brain",
+        "socialmedia",
+        "science"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "focus_seconds",
+          "params": {
+            "file": "focus_seconds.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE COLLAPSE",
+          "topic": "seconds of focus before switching",
+          "say": "A researcher tracked how long people focus on a screen before switching. In 2004 it was 150 seconds. Today, 47. Our default attention span shrank by two-thirds in under 20 years."
+        },
+        {
+          "source": "offline",
+          "key": "shortform_minutes",
+          "params": {
+            "file": "shortform_minutes.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE FUEL",
+          "topic": "daily short-form video (minutes)",
+          "say": "Meanwhile we pour fuel on it. Daily short-video time jumped from 20 minutes to 95 in five years. The faster the cuts, the more we crave, the less patience we have left."
+        },
+        {
+          "source": "offline",
+          "key": "phone_pickups",
+          "params": {
+            "file": "phone_pickups.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 CAN'T SIT STILL",
+          "topic": "phone pickups per day",
+          "say": "We can't sit still either. Gen Z picks up their phone 79 times a day, about once every 12 waking minutes. Every pickup is a reset button on whatever you were doing."
+        },
+        {
+          "source": "offline",
+          "key": "focus_hour",
+          "params": {
+            "file": "focus_hour.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 THE REAL HOUR",
+          "topic": "where a work hour goes (minutes)",
+          "say": "And recovery is brutal. After one interruption it takes 23 minutes to refocus. Stack enough pings and a full hour leaves maybe 40 minutes of real attention. The rest is just getting back on track."
+        }
+      ]
     }
   ],
   "videos": [

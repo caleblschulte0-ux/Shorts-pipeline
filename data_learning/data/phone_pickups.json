@@ -1,0 +1,33 @@
+{
+  "key": "phone_pickups",
+  "title": "Average phone pickups per day, by generation",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Tech usage survey",
+    "publisher": "Asurion",
+    "url": "https://www.asurion.com/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Gen Z",
+      "value": 79
+    },
+    {
+      "label": "Millennials",
+      "value": 58
+    },
+    {
+      "label": "Gen X",
+      "value": 45
+    },
+    {
+      "label": "Boomers",
+      "value": 30
+    }
+  ]
+}

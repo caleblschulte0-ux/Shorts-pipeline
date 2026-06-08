@@ -1,0 +1,29 @@
+{
+  "key": "surface_mapped",
+  "title": "Share of surface mapped in high resolution",
+  "unit": "percent",
+  "geography": "Solar System",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Seabed 2030 / ocean mapping",
+    "publisher": "GEBCO / NOAA",
+    "url": "https://seabed2030.org/",
+    "officiality": "official",
+    "access_date": "2026-06-08"
+  },
+  "notes": "Illustrative; figures rounded from the cited source.",
+  "points": [
+    {
+      "label": "Moon",
+      "value": 100
+    },
+    {
+      "label": "Mars",
+      "value": 100
+    },
+    {
+      "label": "Ocean floor",
+      "value": 25
+    }
+  ]
+}
