@@ -1197,14 +1197,14 @@
         "money",
         "budgeting",
         "personalfinance",
+        "savingmoney",
         "streaming",
-        "saving",
-        "spending",
-        "data",
         "frugal",
+        "spending",
+        "financetips",
         "fintech",
-        "economy",
-        "habits"
+        "sidehustle",
+        "data"
       ],
       "segments": [
         {
@@ -1251,7 +1251,8 @@
           "topic": "subscriber regrets",
           "say": "Here's the business model. 48 percent of people pay for something they don't use. 42 percent forgot they ever signed up. They're not selling you a service anymore. They're selling you forgetting to cancel."
         }
-      ]
+      ],
+      "caption": "You think you spend about $86 a month on subscriptions. The real average is $219 \u2014 and it climbs every single year. Here's exactly where the money leaks, in 4 charts. How many subscriptions are you actually paying for? \ud83d\udc47"
     },
     {
       "slug": "ocean-unexplored",
@@ -1261,17 +1262,17 @@
       "question": "Would you ride to the bottom of the ocean? Comment below.",
       "hashtags": [
         "ocean",
-        "science",
         "deepsea",
+        "science",
         "exploration",
-        "nasa",
-        "noaa",
         "marinebiology",
-        "earth",
-        "data",
         "mariana",
-        "seafloor",
-        "discovery"
+        "noaa",
+        "nasa",
+        "earth",
+        "didyouknow",
+        "spacevsocean",
+        "data"
       ],
       "segments": [
         {
@@ -1319,7 +1320,8 @@
           "topic": "marine species (thousands)",
           "say": "It's also full of life we've never named. Scientists have catalogued about 240 thousand marine species and estimate up to 2 million exist. Roughly 9 in 10 ocean species are still a mystery."
         }
-      ]
+      ],
+      "caption": "We have better maps of Mars and the Moon than our own ocean floor \u2014 only about 25% of it is mapped, and 9 in 10 ocean species are still unknown to science. The real final frontier is right under the boat. Would you ride to the bottom? \ud83d\udc47"
     },
     {
       "slug": "loneliness-epidemic",
@@ -1331,15 +1333,15 @@
         "loneliness",
         "mentalhealth",
         "friendship",
-        "society",
-        "data",
-        "wellness",
-        "community",
-        "psychology",
-        "health",
+        "mentalhealthawareness",
         "connection",
+        "society",
+        "wellness",
+        "psychology",
+        "community",
         "isolation",
-        "usa"
+        "health",
+        "data"
       ],
       "segments": [
         {
@@ -1386,7 +1388,8 @@
           "topic": "early-death risk by factor",
           "say": "And it's not just sad. Chronic loneliness raises your risk of early death by 26 percent, on par with obesity. Your body treats disconnection like a physical wound."
         }
-      ]
+      ],
+      "caption": "In 1990, 3% of Americans said they had no close friends. Today it's 12% \u2014 and chronic loneliness raises your risk of early death by 26%, about the same as obesity. We've never been more connected, or more alone. How many close friends do you actually have? \ud83d\udc47"
     },
     {
       "slug": "attention-span-collapse",
@@ -1395,18 +1398,18 @@
       "closing": "Anyway, you probably already swiped away.",
       "question": "Did you make it to the end? Be honest below.",
       "hashtags": [
-        "attention",
+        "attentionspan",
         "focus",
+        "dopamine",
         "psychology",
-        "technology",
-        "data",
         "productivity",
         "screentime",
-        "dopamine",
-        "habits",
-        "brain",
         "socialmedia",
-        "science"
+        "brainrot",
+        "deepwork",
+        "habits",
+        "technology",
+        "data"
       ],
       "segments": [
         {
@@ -1453,7 +1456,8 @@
           "topic": "where a work hour goes (minutes)",
           "say": "And recovery is brutal. After one interruption it takes 23 minutes to refocus. Stack enough pings and a full hour leaves maybe 40 minutes of real attention. The rest is just getting back on track."
         }
-      ]
+      ],
+      "caption": "In 2004 the average person focused on a screen for 150 seconds before switching. Today? 47 seconds. Meanwhile daily short-video time nearly 5x'd. Your attention span didn't break by accident. Did you make it to the end? Be honest \ud83d\udc47"
     }
   ],
   "videos": [
