@@ -1595,6 +1595,14 @@ def mix_audio(
 
 # ---------- compose ----------
 
+# Mascot kill-switch. PARKED for now — the Bigfoot anchor overlay
+# wasn't pulling its weight in the render. Code + assets stay in the
+# repo so we can flip this back to True (or shell-override via env
+# MASCOT_ENABLED=1) when we want to revisit. Default off.
+_MASCOT_ENABLED = os.environ.get("MASCOT_ENABLED", "0").lower() in (
+    "1", "true", "yes", "on"
+)
+
 # Allowed mascot poses. Must match script_generator._VALID_POSES.
 _MASCOT_POSES = ("idle", "shock", "point", "laugh", "think", "dismiss")
 
@@ -1645,10 +1653,12 @@ def _resolve_mascot_pose(pose: str) -> Path | None:
 def _build_mascot_plan(shots: list["Shot"], shot_times: list[float],
                       total_dur: float) -> list[tuple[Path, float, float]] | None:
     """Return a per-shot timeline of `(png_path, start, end)` ranges for
-    the mascot overlay, or None when assets are missing entirely. The
-    timeline always covers the full video — any gap before the first
-    shot is filled with the idle pose so the watermark is on screen
-    from frame 0."""
+    the mascot overlay, or None when the mascot is disabled (kill-
+    switch off) or assets are missing entirely. The timeline always
+    covers the full video — any gap before the first shot is filled
+    with the idle pose so the watermark is on screen from frame 0."""
+    if not _MASCOT_ENABLED:
+        return None
     idle = _resolve_mascot_pose("idle")
     if idle is None:
         return None
