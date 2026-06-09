@@ -21,20 +21,19 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-# Palette — port from data_learning/mascot.py, brown-shifted.
-BODY = (138, 96, 62, 255)         # warm brown fur (was #4FD1C5 teal)
-BODY_DK = (96, 62, 36, 255)       # shading (was darker teal)
-LIMB = (118, 80, 52, 255)         # arms / legs (slightly darker than body)
+# Palette — muted/desaturated. Saturday-morning brown shifted toward
+# grounded teen-show brown (less candy, more cocoa).
+BODY = (108, 78, 58, 255)         # darker, more muted brown
+BODY_DK = (72, 50, 34, 255)
+LIMB = (90, 64, 46, 255)
 SKIN = BODY
-WHITE = (248, 250, 252, 255)
-DARK = (11, 16, 32, 255)          # pupils + cap
-BLUSH = (220, 150, 110, 220)      # warm tone on brown fur
-GOLD = (245, 158, 11, 255)        # glasses + cap tassel
-HORN = (72, 48, 28, 255)          # darker brown fur tufts (was violet)
-FANG = (252, 252, 255, 255)
-TIE = (188, 38, 32, 255)          # NEW — red anchor tie
-TIE_DK = (138, 22, 18, 255)
-TIE_LT = (220, 64, 54, 255)
+WHITE = (236, 236, 230, 255)      # slightly off-white (not eye-catching glossy)
+DARK = (12, 10, 8, 255)
+GOLD = (212, 158, 60, 255)        # muted gold for glasses
+HORN = (52, 36, 24, 255)          # dark fur tufts
+TIE = (158, 32, 28, 255)          # darker red — less candy
+TIE_DK = (112, 20, 16, 255)
+TIE_LT = (192, 48, 42, 255)
 SS = 3                            # supersample for smooth edges
 
 CAP = False                       # flip True to draw the graduation cap
@@ -160,11 +159,11 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
               fill=BODY_DK)
     _circle(d, cx, head_cy - int(head_r * 0.05), int(head_r * 0.96), SKIN)
 
-    # ---------- Eyes ----------
+    # ---------- Eyes — smaller + focused, no cute catchlight sparkle ----------
     eye_dx = int(head_r * 0.42)
     eye_y = head_cy - int(head_r * 0.04)
-    eye_r = int(head_r * 0.27)
-    pup_r = int(head_r * 0.15)
+    eye_r = int(head_r * 0.21)            # smaller (was 0.27)
+    pup_r = int(head_r * 0.13)
     for sgn in (-1, 1):
         ex2 = cx + sgn * eye_dx
         if blink > 0.6:
@@ -172,16 +171,26 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
                   start=200, end=340, fill=DARK, width=max(3, S // 110))
         else:
             _circle(d, ex2, eye_y, eye_r, WHITE)
-            _circle(d, ex2, eye_y + int(eye_r * 0.16), pup_r, DARK)
-            _circle(d, ex2 - pup_r // 2, eye_y - pup_r // 3,
-                    max(2, int(pup_r * 0.34)), WHITE)
-    # Flat slightly-angled brows
-    bw = int(eye_r * 1.05)
+            # Pupils sit centered (not downward-cute) and fill more of
+            # the eye so he reads as focused, not doe-eyed.
+            _circle(d, ex2, eye_y, pup_r, DARK)
+            # NO catchlight — sparkle pupils are the #1 kids-show tell.
+
+    # ---------- Heavy angled brows — the serious anchor look ----------
+    bw = int(eye_r * 1.40)
     for sgn in (-1, 1):
         ex2 = cx + sgn * eye_dx
-        by0 = eye_y - int(eye_r * 1.30)
-        d.line([(ex2 - bw // 2, by0 + int(eye_r * 0.16)),
-                (ex2 + bw // 2, by0)], fill=DARK, width=max(3, S // 120))
+        by0 = eye_y - int(eye_r * 1.55)
+        # Inner edge lower than outer = serious / focused
+        inner_y = by0 + int(eye_r * 0.55)
+        outer_y = by0
+        if sgn < 0:
+            p_inner = (ex2 + bw // 2, inner_y)
+            p_outer = (ex2 - bw // 2, outer_y)
+        else:
+            p_inner = (ex2 - bw // 2, inner_y)
+            p_outer = (ex2 + bw // 2, outer_y)
+        d.line([p_outer, p_inner], fill=DARK, width=max(5, S // 80))
 
     # ---------- Professor glasses (keep — reads "news anchor smart") ----------
     if blink <= 0.6:
@@ -197,24 +206,18 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
         d.line([(cx - eye_dx + gl_r, eye_y), (cx + eye_dx - gl_r, eye_y)],
                fill=GOLD, width=gw)
 
-    # Blush
-    for sgn in (-1, 1):
-        bx = cx + sgn * int(head_r * 0.70)
-        d.ellipse([bx - int(head_r * 0.12), eye_y + int(head_r * 0.30),
-                   bx + int(head_r * 0.12), eye_y + int(head_r * 0.48)],
-                  fill=BLUSH)
+    # No blush (kids-show tell) and no fangs (cute-monster tell).
 
-    # ---------- Mouth — slightly smaller, no tongue (anchor serious) ----------
-    mw = int(head_r * 0.34)
-    my = head_cy + int(head_r * 0.46)
-    d.pieslice([cx - mw, my - mw, cx + mw, my + mw], start=20, end=160,
-               fill=DARK)
-    # tiny fangs at the corners
-    for sgn in (-1, 1):
-        fxx = cx + sgn * int(mw * 0.55)
-        d.polygon([(fxx - int(mw * 0.12), my - int(mw * 0.04)),
-                   (fxx + int(mw * 0.12), my - int(mw * 0.04)),
-                   (fxx, my + int(mw * 0.32))], fill=FANG)
+    # ---------- Mouth — neutral flat line with the faintest smile curl ----------
+    mw = int(head_r * 0.30)
+    my = head_cy + int(head_r * 0.48)
+    d.line([(cx - mw, my), (cx + mw, my)], fill=DARK, width=max(4, S // 100))
+    # Tiny upward tick at each corner — barely-there smile, more "amused
+    # but composed" than "grinning".
+    d.line([(cx - mw, my), (cx - int(mw * 0.80), my - int(mw * 0.10))],
+           fill=DARK, width=max(4, S // 100))
+    d.line([(cx + mw, my), (cx + int(mw * 0.80), my - int(mw * 0.10))],
+           fill=DARK, width=max(4, S // 100))
 
     # ---------- Optional graduation cap ----------
     if CAP:
