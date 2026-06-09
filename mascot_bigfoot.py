@@ -201,13 +201,24 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
             _circle(d, ex2 - pup_r // 2, eye_y - pup_r // 3,
                     max(2, int(pup_r * 0.38)), WHITE)
 
-    # Small black eyebrows on top of the brow ridge (extra expression)
-    bw = int(eye_r * 1.05)
+    # Small black eyebrows on top of the brow ridge. Inner ends sit
+    # slightly lower than outer ends — the classic "focused anchor"
+    # angle that telegraphs serious without going full-frown.
+    bw = int(eye_r * 1.10)
     for sgn in (-1, 1):
         ex2 = cx + sgn * eye_dx
         by0 = eye_y - int(eye_r * 1.40)
-        d.line([(ex2 - bw // 2, by0 + int(eye_r * 0.20)),
-                (ex2 + bw // 2, by0)], fill=DARK, width=max(3, S // 120))
+        inner_y = by0 + int(eye_r * 0.34)   # inner end lower
+        outer_y = by0                       # outer end higher
+        # sgn=-1 -> left brow (inner is on the right);
+        # sgn=+1 -> right brow (inner is on the left).
+        if sgn < 0:
+            p_inner = (ex2 + bw // 2, inner_y)
+            p_outer = (ex2 - bw // 2, outer_y)
+        else:
+            p_inner = (ex2 - bw // 2, inner_y)
+            p_outer = (ex2 + bw // 2, outer_y)
+        d.line([p_outer, p_inner], fill=DARK, width=max(4, S // 100))
 
     # ---------- Nose — small dark triangle ----------
     d.polygon([
@@ -216,27 +227,13 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
         (cx, head_cy + int(head_r * 0.50)),
     ], fill=NOSE)
 
-    # ---------- Mouth — open smile w/ tongue + one tiny fang ----------
-    mw = int(head_r * 0.44)
+    # ---------- Mouth — closed, slight smile ----------
+    # Just a curved line, no fill / tongue / fang. Reads as "composed
+    # anchor" instead of goofy cartoon.
+    mw = int(head_r * 0.36)
     my = head_cy + int(head_r * 0.66)
-    d.pieslice([cx - mw, my - mw, cx + mw, my + mw], start=20, end=160,
-               fill=DARK)
-    tw_ = int(mw * 0.42)
-    d.chord([cx - tw_, my + int(mw * 0.10), cx + tw_, my + int(mw * 0.74)],
-            start=0, end=180, fill=TONGUE)
-    # One small fang on the left so he reads as Bigfoot-not-bear
-    d.polygon([
-        (cx - int(mw * 0.55), my - int(mw * 0.03)),
-        (cx - int(mw * 0.30), my - int(mw * 0.03)),
-        (cx - int(mw * 0.42), my + int(mw * 0.32)),
-    ], fill=WHITE)
-
-    # ---------- Cheek blush ----------
-    for sgn in (-1, 1):
-        bx = cx + sgn * int(head_r * 0.62)
-        d.ellipse([bx - int(head_r * 0.14), my - int(head_r * 0.20),
-                   bx + int(head_r * 0.14), my - int(head_r * 0.04)],
-                  fill=BLUSH)
+    d.arc([cx - mw, my - int(mw * 0.55), cx + mw, my + int(mw * 0.45)],
+          start=20, end=160, fill=DARK, width=max(4, S // 95))
 
     return img.resize((size, size), Image.LANCZOS)
 
