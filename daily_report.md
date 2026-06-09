@@ -1,38 +1,37 @@
 # Daily Trending Shorts — 2026-06-09
 
 - queued: **6**
-- succeeded: **6**
-- failed: **0**
+- succeeded: **5**
+- failed: **1**
 
 ## Posted
-- **UFC Is Fighting on the White House Lawn. A Lawsuit Just Tried to Stop It.**
-  - topic: UFC Is Fighting on the White House Lawn. A Lawsuit Just Tried to Stop It.
+- **A 7.8 Quake Killed 37 in Mindanao. Tsunami Waves Followed.**
+  - topic: A 7.8 Quake Killed 37 in Mindanao. Tsunami Waves Followed.
   - publishes: `2026-06-09T13:00:00Z`
-  - https://youtube.com/shorts/VbeoiY-zRGc
-  - took: 235.2s
-- **South Australia Has Too Many Koalas. Scientists Want to Sterilize 22%.**
-  - topic: South Australia Has Too Many Koalas. Scientists Want to Sterilize 22%.
+  - https://youtube.com/shorts/Sul8RE9xhKU
+  - took: 306.1s
+- **Japan's Volcano Buried a City of 600,000 in Grey Rain**
+  - topic: Japan's Volcano Buried a City of 600,000 in Grey Rain
   - publishes: `2026-06-09T15:00:00Z`
-  - https://youtube.com/shorts/nvq-yf08E14
-  - took: 185.8s
-- **A Singapore Teen Just Shattered the Mr. Potato Head World Record**
-  - topic: A Singapore Teen Just Shattered the Mr. Potato Head World Record
+  - https://youtube.com/shorts/HfY-i77y97A
+  - took: 278.1s
+- **A Tasmanian Devil Named Mary Escaped. 6 Days Later, She's Still Out There.**
+  - topic: A Tasmanian Devil Named Mary Escaped. 6 Days Later, She's Still Out There.
   - publishes: `2026-06-09T17:00:00Z`
-  - https://youtube.com/shorts/UF-EqjScFvk
-  - took: 165.1s
-- **Apple Rebuilt Siri With Google's AI. Tim Cook Called It Goodbye.**
-  - topic: Apple Rebuilt Siri With Google's AI. Tim Cook Called It Goodbye.
+  - https://youtube.com/shorts/MhMlwLZ3gIc
+  - took: 251.6s
+- **An AI Company Wants to Build Next to Nashville's Zoo. The Leopards Said No.**
+  - topic: An AI Company Wants to Build Next to Nashville's Zoo. The Leopards Said No.
   - publishes: `2026-06-09T19:00:00Z`
-  - https://youtube.com/shorts/_DUMFxYCeig
-  - took: 180.2s
-- **South Korea Just Nominated Its First Female Prime Minister in 20 Years**
-  - topic: South Korea Just Nominated Its First Female Prime Minister in 20 Years
+  - https://youtube.com/shorts/psICUz75yH0
+  - took: 302.1s
+- **A Federal Judge Just Killed Trump's $100,000 H-1B Visa Tax**
+  - topic: A Federal Judge Just Killed Trump's $100,000 H-1B Visa Tax
   - publishes: `2026-06-09T21:00:00Z`
-  - https://youtube.com/shorts/wljrdvdlhbs
-  - took: 199.5s
-- **A Judge Said Nitrogen Execution Is Legal. The Man Dies June 11.**
-  - topic: A Judge Said Nitrogen Execution Is Legal. The Man Dies June 11.
-  - publishes: `2026-06-09T23:00:00Z`
-  - https://youtube.com/shorts/eWCuqwBzbEM
-  - took: 186.8s
+  - https://youtube.com/shorts/ak0kMm8gJOE
+  - took: 348.0s
+
+## Failed
+- **Xi Jinping Just Landed in North Korea. First Time in 7 Years.**
+  - error: `ResumableUploadError: <HttpError 400 when requesting None returned "The user has exceeded the number of videos they may upload.". Details: "[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]">`
 
