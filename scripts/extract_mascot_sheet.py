@@ -75,14 +75,40 @@ def _key_out_sentinel(rgb: Image.Image) -> Image.Image:
     return rgba
 
 
-def _square_pad_resize(img: Image.Image, target: int = 520,
-                       margin: int = 16) -> Image.Image:
-    """Crop to the character's bounding box, pad to a square with a
-    small transparent margin, then resize to target x target."""
-    bbox = img.getbbox()
-    if bbox is None:
-        return img.resize((target, target), Image.LANCZOS)
-    cropped = img.crop(bbox)
+def _character_bbox(rgb: Image.Image) -> tuple[int, int, int, int]:
+    """Find the bounding box of the CHARACTER, not the cell artifacts.
+
+    After flood-fill the background should be SENTINEL, but ChatGPT
+    sheets tend to have faint near-white halos / gradient noise at the
+    cell boundaries that the flood-fill thresh doesn't catch. Using
+    bbox of "non-sentinel pixels" then catches that halo and inflates
+    the bbox to the full cell.
+
+    The fix: bbox of pixels whose max(R,G,B) is clearly below white —
+    i.e. the cartoon's BLACK OUTLINES and shading. That gives the real
+    character extent because every pose has dark outline strokes
+    around the silhouette. The white shirt + eye-whites sit INSIDE
+    that outline-defined bbox, so they're included automatically once
+    we crop the original image to it."""
+    import numpy as np
+    arr = np.array(rgb)               # H x W x 3
+    # "darkish" = at least one channel < 200, i.e. clearly not white
+    dark = arr.max(axis=2) < 200      # H x W bool
+    if not dark.any():
+        return (0, 0, rgb.size[0], rgb.size[1])
+    ys, xs = np.where(dark)
+    return (int(xs.min()), int(ys.min()),
+            int(xs.max()) + 1, int(ys.max()) + 1)
+
+
+def _square_pad_resize(rgba: Image.Image, bbox: tuple[int, int, int, int],
+                       target: int = 520, margin: int = 40) -> Image.Image:
+    """Crop the keyed image to ``bbox``, pad to a square with margin,
+    then resize to target x target. Margin is generous (40px on the
+    pre-resize square) so the character has breathing room — viewers
+    notice clipping at the edges more than they notice extra
+    transparent space."""
+    cropped = rgba.crop(bbox)
     w, h = cropped.size
     side = max(w, h) + margin * 2
     canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
@@ -95,8 +121,9 @@ def extract_one(src: Image.Image, col: int, row: int, pose: str,
     cell = src.crop((col * cell_w, row * cell_h,
                      (col + 1) * cell_w, (row + 1) * cell_h))
     flooded = _flood_corners(cell)
+    bbox = _character_bbox(flooded)
     keyed = _key_out_sentinel(flooded)
-    final = _square_pad_resize(keyed)
+    final = _square_pad_resize(keyed, bbox)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     out_path = OUT_DIR / f"{pose}.png"
     final.save(out_path, "PNG")
