@@ -1599,6 +1599,34 @@ def mix_audio(
 _MASCOT_POSES = ("idle", "shock", "point", "laugh", "think", "dismiss")
 
 
+# Per-pose animation profile. Each pose has its own SIZE (bigger when
+# he reacts), ANCHOR position on the canvas (he moves around instead
+# of sitting in one corner), and per-pose BOB / SWAY amplitude so he
+# actually moves WITHIN the shot window — the difference between
+# "character on screen" and "PNG slapped in the corner".
+#
+# Anchor coordinates are top-left of the overlay on the 1080x1920
+# canvas. The "top half" (B-roll area) is y=0..960 (HALF_H), and the
+# poses position the character at varying corners and at varying
+# sizes inside that half so each shot reads differently.
+#
+# bob / sway are sin-wave amplitudes in px; freq is cycles/sec. Set
+# both to 0 for "still" poses (think, dismiss).
+# Per-pose anchor uses (HALF_H - size - 20) so the character's feet
+# sit 20px above the seam between top half (B-roll) and bottom half
+# (gameplay) — keeps him fully on the B-roll layer instead of clipping
+# into the gameplay region. Shock is the exception: he pops higher
+# and vertically more centered for emphasis.
+_MASCOT_PROFILES = {
+    "idle":    {"size": 320, "ax": W - 320 - 30, "ay": HALF_H - 320 - 20, "bob": 14, "sway": 0, "freq": 0.7},
+    "shock":   {"size": 420, "ax": (W - 420) // 2, "ay": (HALF_H - 420) // 2 + 60, "bob": 0, "sway": 0, "freq": 0.0},
+    "point":   {"size": 360, "ax": 30,            "ay": HALF_H - 360 - 20, "bob": 8,  "sway": 0, "freq": 1.0},
+    "laugh":   {"size": 380, "ax": W - 380 - 30, "ay": HALF_H - 380 - 20, "bob": 28, "sway": 8, "freq": 1.3},
+    "think":   {"size": 300, "ax": 30,            "ay": 30,                "bob": 0,  "sway": 0, "freq": 0.0},
+    "dismiss": {"size": 320, "ax": W - 320 - 30, "ay": HALF_H - 320 - 20, "bob": 0,  "sway": 0, "freq": 0.0},
+}
+
+
 def _resolve_mascot_pose(pose: str) -> Path | None:
     """Map a pose key to its PNG path. Falls back to `idle` if the
     requested pose is missing on disk (typical when only a partial set
@@ -1669,37 +1697,55 @@ def _mascot_filter_chain(plan: list[tuple[Path, float, float]],
     extra_inputs: list[str] = []
     for png, _ in sorted(unique.items(), key=lambda kv: kv[1]):
         extra_inputs.extend(["-i", str(png)])
-    # Scale each unique pose once, then split=N into N labeled copies
-    # (one per overlay that uses this pose). The labels look like
-    # m{idx}_0, m{idx}_1, ... which keeps them unique across the graph.
+    # Scale each unique pose to its POSE-SPECIFIC size, then split=N
+    # into N labeled copies (one per overlay that uses this pose).
+    # Different poses get different sizes so shock looks bigger than
+    # idle, point looks taller as he reaches, etc.
     scale_parts: list[str] = []
     pool: dict[Path, list[str]] = {}
     for png, idx in unique.items():
+        pose = png.stem
+        profile = _MASCOT_PROFILES.get(pose, _MASCOT_PROFILES["idle"])
+        size = profile["size"]
         n = usage_count[png]
         labels = [f"m{idx}_{k}" for k in range(n)]
         if n == 1:
             scale_parts.append(
-                f"[{idx}:v]scale={MASCOT_SIZE}:{MASCOT_SIZE}:flags=lanczos,"
+                f"[{idx}:v]scale={size}:{size}:flags=lanczos,"
                 f"format=rgba[{labels[0]}]"
             )
         else:
             label_chain = "".join(f"[{lbl}]" for lbl in labels)
             scale_parts.append(
-                f"[{idx}:v]scale={MASCOT_SIZE}:{MASCOT_SIZE}:flags=lanczos,"
+                f"[{idx}:v]scale={size}:{size}:flags=lanczos,"
                 f"format=rgba,split={n}{label_chain}"
             )
         pool[png] = list(labels)
-    # Chain overlays. Each shot window pops a fresh labeled copy off
-    # the pool for its pose.
+    # Chain overlays. Each shot window pops a fresh labeled copy and
+    # positions it via the pose's ANCHOR + time-varying BOB/SWAY so
+    # the mascot moves WITHIN the window — bob on idle/laugh, still
+    # for think/dismiss, etc. Position also varies by pose so he
+    # moves around the canvas instead of locked in one corner.
     cur = input_label
     overlay_parts: list[str] = []
-    overlay_x = f"{W - MASCOT_SIZE - MASCOT_MARGIN}"
-    overlay_y = f"{HALF_H - MASCOT_SIZE // 2}"
     for n, (png, start, end) in enumerate(plan):
         next_label = output_label if n == len(plan) - 1 else f"mov{n}"
         copy_label = pool[png].pop(0)
+        pose = png.stem
+        profile = _MASCOT_PROFILES.get(pose, _MASCOT_PROFILES["idle"])
+        ax, ay = profile["ax"], profile["ay"]
+        bob, sway, freq = profile["bob"], profile["sway"], profile["freq"]
+        # ffmpeg overlay supports time-varying x/y expressions; `t`
+        # is current video time. Use shot start as phase offset so
+        # motion restarts cleanly when the pose changes.
+        if bob > 0 or sway > 0:
+            x_expr = f"'{ax}+{sway}*sin(2*PI*(t-{start:.3f})*{freq})'"
+            y_expr = f"'{ay}+{bob}*sin(2*PI*(t-{start:.3f})*{freq})'"
+        else:
+            x_expr = str(ax)
+            y_expr = str(ay)
         overlay_parts.append(
-            f"[{cur}][{copy_label}]overlay=x={overlay_x}:y={overlay_y}:"
+            f"[{cur}][{copy_label}]overlay=x={x_expr}:y={y_expr}:"
             f"enable='between(t,{start:.3f},{end:.3f})'[{next_label}]"
         )
         cur = next_label
