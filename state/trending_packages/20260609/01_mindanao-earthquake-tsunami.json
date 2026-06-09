@@ -1,0 +1,87 @@
+{
+  "version": 8,
+  "slug": "mindanao-earthquake-tsunami",
+  "title": "A 7.8 Quake Killed 37 in Mindanao. Tsunami Waves Followed.",
+  "hashtags": ["earthquake", "philippines", "mindanao", "tsunami", "sarangani", "generalsantos", "naturaldisaster", "breakingnews", "seismic", "asia", "disaster", "catastrophe", "pacificring"],
+  "script": "Massive quake! On June 8, a 7.8 magnitude earthquake struck off the coast of Sarangani Province in southern Mindanao, Philippines. At least 37 people were killed, 482 were injured, and 4 are still missing. The shock is the strongest to hit the Philippines in 35 years. General Santos City, home to 722,000 people, took serious structural damage. Buildings collapsed in Digos and Kidapawan. Tsunami waves swept coastal towns for hours. Warnings were issued for Indonesia, Malaysia, Japan, Taiwan, and Papua New Guinea. Hundreds of aftershocks have continued since. Officials are now assessing whether seawall and building infrastructure — built decades ago — can handle the next big one. Is Mindanao's coastal infrastructure ready to survive what comes next?",
+  "shots": [
+    {
+      "phrase": "Massive quake",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ph_mindanao.png",
+      "query": "Philippines Mindanao region map locator earthquake epicenter"
+    },
+    {
+      "phrase": "7.8 magnitude earthquake struck off the coast of Sarangani Province",
+      "query": "earthquake seismograph seismic waves Mindanao Philippines disaster"
+    },
+    {
+      "phrase": "37 people were killed, 482 were injured",
+      "query": "earthquake victims injured rescue workers rubble Philippines"
+    },
+    {
+      "phrase": "strongest to hit the Philippines in 35 years",
+      "query": "earthquake collapsed buildings damaged rubble Philippines city"
+    },
+    {
+      "phrase": "General Santos City, home to 722,000 people",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/General_Santos_City_Hall.jpg",
+      "query": "General Santos City Philippines urban downtown aerial view"
+    },
+    {
+      "phrase": "Buildings collapsed in Digos and Kidapawan",
+      "query": "building collapse earthquake rubble debris Philippines city street"
+    },
+    {
+      "phrase": "Tsunami waves swept coastal towns for hours",
+      "query": "tsunami waves flooding coastal town ocean rushing water Philippines"
+    },
+    {
+      "phrase": "Warnings were issued for Indonesia, Malaysia, Japan, Taiwan, and Papua New Guinea",
+      "query": "tsunami warning map Pacific Asia countries alert coastal nations"
+    },
+    {
+      "phrase": "Hundreds of aftershocks have continued since",
+      "query": "seismograph earthquake aftershocks readings monitor seismic activity"
+    },
+    {
+      "phrase": "Mindanao's coastal infrastructure ready to survive what comes next",
+      "query": "coastal seawall infrastructure Philippines ocean protection breakwater construction"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "7.8 magnitude earthquake",
+      "text": "7.8 MAGNITUDE",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "37 people were killed",
+      "text": "37 DEAD",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "482 were injured",
+      "text": "482 HURT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "strongest to hit the Philippines in 35 years",
+      "text": "WORST IN 35 YRS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "General Santos City, home to 722,000 people",
+      "text": "722K AFFECTED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Hundreds of aftershocks",
+      "text": "STILL SHAKING",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

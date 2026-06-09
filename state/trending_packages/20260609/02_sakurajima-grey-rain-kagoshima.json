@@ -1,0 +1,90 @@
+{
+  "version": 8,
+  "slug": "sakurajima-grey-rain-kagoshima",
+  "title": "Japan's Volcano Buried a City of 600,000 in Grey Rain",
+  "hashtags": ["sakurajima", "kagoshima", "volcano", "japan", "eruption", "ashfall", "greymud", "volcanoeruption", "naturaldisaster", "kyushu", "jma", "geology", "volcanowatch"],
+  "script": "Grey rain? Sakurajima, Japan's most active volcano, erupted on June 7 and blanketed Kagoshima City in thick volcanic ash. When the ash mixed with light rainfall, it turned into grey mud that coated streets, cars, and rooftops across a city of 600,000 people. The eruption column reached 1,300 meters above the crater. Kagoshima Airport cancelled flights. Rail services halted. Residents were ordered to wear masks. The Japan Meteorological Agency maintained Volcanic Alert Level 3, restricting access near the summit. Sakurajima has erupted more than 15,000 times since 1955 and sits 5 kilometers from the city center. Locals live with regular ashfall as just a fact of life. Why would anyone choose to live next to the world's most active volcano?",
+  "shots": [
+    {
+      "phrase": "Sakurajima, Japan's most active volcano",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sakurajima_2009.jpg",
+      "query": "Sakurajima volcano Japan eruption smoke plume ash"
+    },
+    {
+      "phrase": "erupted on June 7 and blanketed Kagoshima City in thick volcanic ash",
+      "query": "volcanic ash cloud grey city covered Japan ashfall"
+    },
+    {
+      "phrase": "grey mud that coated streets, cars, and rooftops",
+      "query": "volcanic ash grey mud covered cars streets buildings rooftops"
+    },
+    {
+      "phrase": "city of 600,000 people",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kagoshima_city_from_Shiroyama.jpg",
+      "query": "Kagoshima Japan city skyline harbor bay panorama aerial"
+    },
+    {
+      "phrase": "eruption column reached 1,300 meters above the crater",
+      "query": "volcanic eruption column tall smoke plume Japan crater summit"
+    },
+    {
+      "phrase": "Kagoshima Airport cancelled flights",
+      "query": "Kagoshima airport ash fog disrupted cancelled flights terminal"
+    },
+    {
+      "phrase": "Japan Meteorological Agency maintained Volcanic Alert Level 3",
+      "query": "Japan volcanic alert warning Level 3 official sign announcement"
+    },
+    {
+      "phrase": "15,000 times since 1955",
+      "query": "volcano eruption count historical data active chart records"
+    },
+    {
+      "phrase": "5 kilometers from the city center",
+      "query": "Sakurajima peninsula Kagoshima Bay city proximity aerial map close"
+    },
+    {
+      "phrase": "world's most active volcano",
+      "query": "active volcano erupting lava ash dramatic eruption fire sky"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Sakurajima, Japan's most active volcano",
+      "text": "MOST ACTIVE VOLCANO",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "blanketed Kagoshima City in thick volcanic ash",
+      "text": "ASH BURIED THE CITY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "city of 600,000 people",
+      "text": "600K COVERED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "eruption column reached 1,300 meters above the crater",
+      "text": "1,300M PLUME",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Kagoshima Airport cancelled flights",
+      "text": "FLIGHTS GROUNDED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "15,000 times since 1955",
+      "text": "15,000 ERUPTIONS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "5 kilometers from the city center",
+      "text": "5KM FROM CITY",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}

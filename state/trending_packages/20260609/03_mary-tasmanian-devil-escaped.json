@@ -1,0 +1,86 @@
+{
+  "version": 8,
+  "slug": "mary-tasmanian-devil-escaped",
+  "title": "A Tasmanian Devil Named Mary Escaped. 6 Days Later, She's Still Out There.",
+  "hashtags": ["tasmaniandevil", "mary", "queensland", "goldcoast", "wildlifepark", "paradisecountry", "escaped", "australia", "wildlifeescape", "marsupial", "endangered", "animalnews", "weirdnews"],
+  "script": "She's loose! Mary, a 2-year-old Tasmanian devil, broke out of her enclosure at Paradise Country wildlife park on Queensland's Gold Coast on June 3. Zookeepers say it's a mystery — they think one abnormally large leap sent her over the fence after midnight. Tracker dogs, thermal drones, and wildlife experts searched for days. On June 8, a resident's home security camera caught Mary alive and roaming nearby bush. Tasmanian devils are critically endangered on Australia's mainland — fewer than 30 are believed to live in Queensland. Mary is described as shy, but the park warns she can be reactive if cornered or if anyone tries to catch her. Has Australia's most famous fugitive marsupial finally met her match in the Gold Coast suburbs?",
+  "shots": [
+    {
+      "phrase": "Mary, a 2-year-old Tasmanian devil",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil_resting.jpg",
+      "query": "Tasmanian devil black fur marsupial wildlife Australia resting"
+    },
+    {
+      "phrase": "Paradise Country wildlife park on Queensland's Gold Coast",
+      "query": "Paradise Country wildlife park Gold Coast Queensland entrance aerial"
+    },
+    {
+      "phrase": "abnormally large leap sent her over the fence after midnight",
+      "query": "wildlife enclosure fence escape night dark security camera"
+    },
+    {
+      "phrase": "Tracker dogs, thermal drones, and wildlife experts searched for days",
+      "query": "tracker dog search drone thermal wildlife team Australia bushland"
+    },
+    {
+      "phrase": "resident's home security camera caught Mary alive",
+      "query": "home security camera night vision suburban neighborhood backyard footage"
+    },
+    {
+      "phrase": "roaming nearby bush",
+      "query": "Australian bushland suburban backyard Queensland wildlife nature scrub"
+    },
+    {
+      "phrase": "critically endangered on Australia's mainland",
+      "query": "Tasmanian devil endangered species conservation awareness Australia wildlife"
+    },
+    {
+      "phrase": "fewer than 30 are believed to live in Queensland",
+      "query": "Tasmanian devil small number count rare Queensland wild mainland"
+    },
+    {
+      "phrase": "reactive if cornered or if anyone tries to catch her",
+      "query": "Tasmanian devil defensive open mouth snarling teeth wildlife"
+    },
+    {
+      "phrase": "Gold Coast suburbs",
+      "query": "Gold Coast Queensland suburb street houses residential neighborhood Australia"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Mary, a 2-year-old Tasmanian devil",
+      "text": "MARY'S STILL OUT!",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "abnormally large leap",
+      "text": "ONE HUGE JUMP",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "home security camera caught Mary alive",
+      "text": "SPOTTED JUNE 8",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818"
+    },
+    {
+      "phrase": "critically endangered",
+      "text": "CRITICALLY ENDANGERED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "fewer than 30 are believed to live in Queensland",
+      "text": "FEWER THAN 30 LEFT",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "Gold Coast suburbs",
+      "text": "STILL ON THE RUN",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}
