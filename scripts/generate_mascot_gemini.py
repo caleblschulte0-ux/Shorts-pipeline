@@ -74,39 +74,29 @@ POSES = {
                "over the chest in a 'really?' gesture.",
 }
 
-# Tried in order. Model names for Gemini image generation have churned
-# rapidly through 2024-2026 (-preview suffixes, version-dated variants,
-# the imagen family renames). Falling through this list means a model
-# rename doesn't break the pipeline — we just bump the list.
+# Tried in order, picking the first one with FREE-TIER quota. Order
+# matters: the experimental `2.0-flash-exp` model historically had
+# free-tier image gen; the `2.5-flash-image` series is paid-only as of
+# 2026 (free-tier quota = 0). We probe each candidate; if it 404s
+# (model removed) or 429s on quota, fall through to the next.
 MODEL_CANDIDATES = (
+    "gemini-2.0-flash-exp-image-generation",
+    "gemini-2.0-flash-preview-image-generation",
     "gemini-2.5-flash-image",
     "gemini-2.5-flash-image-preview",
-    "gemini-2.0-flash-preview-image-generation",
-    "gemini-2.0-flash-exp-image-generation",
+    "gemini-2.5-flash-preview-image",
     "imagen-3.0-generate-002",
     "imagen-4.0-generate-001",
 )
 
 
-def discover_image_model(client) -> str:
-    """Hit the ListModels endpoint, return the first candidate that the
-    account can actually call. Cheaper than racing 404s on every pose."""
+def list_available_models(client) -> set[str]:
     available: set[str] = set()
     for m in client.models.list():
         name = getattr(m, "name", "") or ""
-        # API returns names like 'models/gemini-2.5-flash-image'; strip
-        # the prefix to compare against our candidate list.
-        short = name.split("/", 1)[-1]
-        available.add(short)
-    for cand in MODEL_CANDIDATES:
-        if cand in available:
-            print(f"  using image model: {cand}")
-            return cand
-    raise RuntimeError(
-        f"no known image-gen model available to this key. "
-        f"Tried {MODEL_CANDIDATES!r}. Available models seen: "
-        f"{sorted(available)[:20]}..."
-    )
+        # API returns 'models/<id>' — strip the prefix.
+        available.add(name.split("/", 1)[-1])
+    return available
 
 
 def generate_pose(client, model: str, pose: str, description: str) -> bytes:
@@ -159,13 +149,62 @@ def main() -> int:
         return 1
 
     from google import genai
+    from google.genai import errors as genai_errors
     client = genai.Client(api_key=api_key)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    model = discover_image_model(client)
+    available = list_available_models(client)
+    candidates = [m for m in MODEL_CANDIDATES if m in available]
+    if not candidates:
+        raise RuntimeError(
+            f"no known image-gen model available to this key. "
+            f"Tried {MODEL_CANDIDATES!r}. Available models: "
+            f"{sorted(available)[:20]}..."
+        )
+    print(f"  trying candidate models in order: {candidates}")
+
+    # Pick a working model by attempting the first pose with each
+    # candidate until one succeeds. Surfaces 429 (quota) and other
+    # billing errors clearly so the user knows whether they need to
+    # enable billing or whether the candidate list is just stale.
+    first_pose, first_desc = next(iter(POSES.items()))
+    model: str | None = None
+    last_err: Exception | None = None
+    first_image: bytes | None = None
+    for cand in candidates:
+        try:
+            print(f"  probing {cand}...")
+            first_image = generate_pose(client, cand, first_pose, first_desc)
+            model = cand
+            print(f"  using image model: {model}")
+            break
+        except genai_errors.ClientError as e:
+            last_err = e
+            code = getattr(e, "code", None) or getattr(e, "status_code", None)
+            print(f"    {cand} -> {code}: {str(e)[:140]}")
+            continue
+        except Exception as e:  # noqa: BLE001
+            last_err = e
+            print(f"    {cand} -> {type(e).__name__}: {str(e)[:140]}")
+            continue
+    if model is None or first_image is None:
+        raise RuntimeError(
+            f"every candidate image-gen model rejected the call. "
+            f"Last error: {last_err}. The Gemini free tier no longer "
+            f"includes image generation; enable billing on the API key "
+            f"at https://aistudio.google.com/apikey and re-run."
+        )
+
+    # Save the first pose immediately since we already generated it
+    # during probing.
+    transparent = remove_bg_to_alpha(first_image)
+    sized = resize_to_520(transparent)
+    (OUT_DIR / f"{first_pose}.png").write_bytes(sized)
+    print(f"  [{first_pose}] saved")
 
     for pose, description in POSES.items():
-        # Tiny pause to stay polite to the free-tier RPM.
+        if pose == first_pose:
+            continue
         time.sleep(2)
         raw = generate_pose(client, model, pose, description)
         transparent = remove_bg_to_alpha(raw)
