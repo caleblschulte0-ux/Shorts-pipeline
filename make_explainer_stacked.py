@@ -1660,27 +1660,46 @@ def _mascot_filter_chain(plan: list[tuple[Path, float, float]],
     for png, _, _ in plan:
         if png not in unique:
             unique[png] = input_base_idx + len(unique)
+    # How many overlay slots each pose is used in. Each ffmpeg labeled
+    # stream can only be consumed ONCE, so for a pose used N times we
+    # have to scale-then-split=N into N fresh labels.
+    usage_count: dict[Path, int] = {}
+    for png, _, _ in plan:
+        usage_count[png] = usage_count.get(png, 0) + 1
     extra_inputs: list[str] = []
     for png, _ in sorted(unique.items(), key=lambda kv: kv[1]):
         extra_inputs.extend(["-i", str(png)])
-    # Scale each unique pose once.
+    # Scale each unique pose once, then split=N into N labeled copies
+    # (one per overlay that uses this pose). The labels look like
+    # m{idx}_0, m{idx}_1, ... which keeps them unique across the graph.
     scale_parts: list[str] = []
+    pool: dict[Path, list[str]] = {}
     for png, idx in unique.items():
-        scale_parts.append(
-            f"[{idx}:v]scale={MASCOT_SIZE}:{MASCOT_SIZE}:flags=lanczos,"
-            f"format=rgba[m{idx}]"
-        )
-    # Chain overlays. Each shot window picks its own pose stream by
-    # the dedup'd input index.
+        n = usage_count[png]
+        labels = [f"m{idx}_{k}" for k in range(n)]
+        if n == 1:
+            scale_parts.append(
+                f"[{idx}:v]scale={MASCOT_SIZE}:{MASCOT_SIZE}:flags=lanczos,"
+                f"format=rgba[{labels[0]}]"
+            )
+        else:
+            label_chain = "".join(f"[{lbl}]" for lbl in labels)
+            scale_parts.append(
+                f"[{idx}:v]scale={MASCOT_SIZE}:{MASCOT_SIZE}:flags=lanczos,"
+                f"format=rgba,split={n}{label_chain}"
+            )
+        pool[png] = list(labels)
+    # Chain overlays. Each shot window pops a fresh labeled copy off
+    # the pool for its pose.
     cur = input_label
     overlay_parts: list[str] = []
     overlay_x = f"{W - MASCOT_SIZE - MASCOT_MARGIN}"
     overlay_y = f"{HALF_H - MASCOT_SIZE // 2}"
     for n, (png, start, end) in enumerate(plan):
         next_label = output_label if n == len(plan) - 1 else f"mov{n}"
-        idx = unique[png]
+        copy_label = pool[png].pop(0)
         overlay_parts.append(
-            f"[{cur}][m{idx}]overlay=x={overlay_x}:y={overlay_y}:"
+            f"[{cur}][{copy_label}]overlay=x={overlay_x}:y={overlay_y}:"
             f"enable='between(t,{start:.3f},{end:.3f})'[{next_label}]"
         )
         cur = next_label
