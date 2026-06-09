@@ -1,0 +1,91 @@
+{
+  "version": 8,
+  "slug": "h1b-fee-struck-down",
+  "title": "A Federal Judge Just Killed Trump's $100,000 H-1B Visa Tax",
+  "hashtags": ["h1b", "visa", "immigration", "tech", "unconstitutional", "federalcourt", "leosorokin", "trump", "techworkers", "skilledworkers", "uscourts", "executivepower", "uslaw"],
+  "script": "Unconstitutional! On June 8, U.S. District Judge Leo Sorokin in Boston struck down President Trump's $100,000 supplementary fee on new H-1B visas for skilled workers. Sorokin ruled the charge violated the Administrative Procedure Act — the Constitution gives only Congress the power to tax, not the executive branch. A coalition of 20 state attorneys general had sued to block it. Employers applying for H-1B workers had been forced to pay the $100,000 surcharge on top of standard filing fees of $2,000 to $5,000. The ruling takes effect immediately. The tech industry, which relies heavily on H-1B visas to hire engineers, breathed a collective sigh of relief. Should Congress get to decide who pays what to bring in a foreign worker?",
+  "shots": [
+    {
+      "phrase": "U.S. District Judge Leo Sorokin in Boston",
+      "query": "federal courthouse Boston Massachusetts United States District Court building"
+    },
+    {
+      "phrase": "struck down President Trump's $100,000 supplementary fee on new H-1B visas",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/H-1B_Stamps.jpg",
+      "query": "H-1B visa stamp passport immigration skilled worker document"
+    },
+    {
+      "phrase": "violated the Administrative Procedure Act",
+      "query": "federal court legal documents APA administrative procedure law books"
+    },
+    {
+      "phrase": "Constitution gives only Congress the power to tax",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Capitol_-_west_front.jpg",
+      "query": "US Capitol Congress building Washington DC dome exterior"
+    },
+    {
+      "phrase": "20 state attorneys general had sued to block it",
+      "query": "state attorneys general coalition press conference legal brief signing"
+    },
+    {
+      "phrase": "$100,000 surcharge on top of standard filing fees of $2,000 to $5,000",
+      "query": "large dollar amount fee payment visa application money cost"
+    },
+    {
+      "phrase": "ruling takes effect immediately",
+      "query": "judge gavel courtroom ruling decision legal victory federal"
+    },
+    {
+      "phrase": "tech industry, which relies heavily on H-1B visas to hire engineers",
+      "query": "tech workers engineers Silicon Valley software company office diverse"
+    },
+    {
+      "phrase": "breathed a collective sigh of relief",
+      "query": "tech employees office celebration relief happy workers visa approved"
+    },
+    {
+      "phrase": "Congress get to decide who pays what to bring in a foreign worker",
+      "query": "Congress lawmakers immigration debate vote policy Capitol floor"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "struck down",
+      "text": "STRUCK DOWN",
+      "color": "#50ff80",
+      "flash_bg": "#0d2818"
+    },
+    {
+      "phrase": "$100,000 supplementary fee",
+      "text": "$100K FEE DEAD",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Constitution gives only Congress the power to tax",
+      "text": "UNCONSTITUTIONAL TAX",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "20 state attorneys general",
+      "text": "20 STATE AGs WON",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "$100,000 surcharge on top of standard filing fees of $2,000 to $5,000",
+      "text": "$2K → $102K STOPPED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "ruling takes effect immediately",
+      "text": "EFFECTIVE NOW",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "tech industry",
+      "text": "TECH EXHALES",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}

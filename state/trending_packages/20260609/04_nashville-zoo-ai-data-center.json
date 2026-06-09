@@ -1,0 +1,92 @@
+{
+  "version": 8,
+  "slug": "nashville-zoo-ai-data-center",
+  "title": "An AI Company Wants to Build Next to Nashville's Zoo. The Leopards Said No.",
+  "hashtags": ["nashvillezoo", "dcblox", "clouded leopard", "cloudedleopard", "datcenter", "aiexpansion", "nashville", "bradpaisley", "freddieconnell", "zoo", "animalnews", "techvsanimals", "weirdnews"],
+  "script": "Leopards vs. servers! DC Blox, an AI data center company, proposed a 69,000-square-foot facility next to the Nashville Zoo. The problem: the construction would sit about 50 yards from the zoo's critically endangered clouded leopards, which are notoriously sensitive to mechanical noise — disrupting the sound levels could end the zoo's breeding program. Over 300,000 people have signed a petition against the project. Country star Brad Paisley called it a nightmare scenario. Nashville Mayor Freddie O'Connell said the application was unusual and asked the city's legal team to investigate. The zoo says stormwater from the data center site already drains onto its grounds. Are clouded leopards really a match for artificial intelligence?",
+  "shots": [
+    {
+      "phrase": "DC Blox, an AI data center company",
+      "query": "AI data center server room cooling racks technology interior"
+    },
+    {
+      "phrase": "69,000-square-foot facility next to the Nashville Zoo",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nashville_Zoo_at_Grassmere.jpg",
+      "query": "Nashville Zoo Grassmere entrance Tennessee sign gate"
+    },
+    {
+      "phrase": "critically endangered clouded leopards",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Clouded_Leopard.jpg",
+      "query": "clouded leopard spotted cat resting endangered species zoo"
+    },
+    {
+      "phrase": "sensitive to mechanical noise — disrupting the sound levels could end the zoo's breeding program",
+      "query": "clouded leopard baby cub breeding program zoo conservation enclosure"
+    },
+    {
+      "phrase": "300,000 people have signed a petition against the project",
+      "query": "online petition signing protest community opposition demonstration"
+    },
+    {
+      "phrase": "Country star Brad Paisley called it a nightmare scenario",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Brad_Paisley_(2023).jpg",
+      "query": "Brad Paisley country music singer performer Nashville Tennessee"
+    },
+    {
+      "phrase": "Nashville Mayor Freddie O'Connell said the application was unusual",
+      "query": "Nashville Tennessee city hall mayor government building downtown"
+    },
+    {
+      "phrase": "stormwater from the data center site already drains onto its grounds",
+      "query": "stormwater drainage flooding construction site pipes runoff urban"
+    },
+    {
+      "phrase": "breeding program",
+      "query": "zoo breeding program endangered species enclosure conservation success"
+    },
+    {
+      "phrase": "clouded leopards really a match for artificial intelligence",
+      "query": "server rack data center AI technology infrastructure construction"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Leopards vs. servers",
+      "text": "LEOPARDS VS AI",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "69,000-square-foot facility",
+      "text": "69K SQFT NEXT DOOR",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "50 yards",
+      "text": "50 YARDS AWAY",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "300,000 people have signed a petition",
+      "text": "300K PETITION",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Brad Paisley called it a nightmare scenario",
+      "text": "NIGHTMARE!",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "breeding program",
+      "text": "EXTINCTION RISK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "application was unusual",
+      "text": "MAYOR CALLS FOUL",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "minecraft"
+}
