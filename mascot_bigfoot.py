@@ -1,16 +1,17 @@
-"""Bigfoot mascot — procedural cartoon news anchor for baller_bro_2.0.
+"""Bigfoot mascot — minimal iconic cartoon anchor for baller_bro_2.0.
 
-Chest-up bust framing (no limbs) so the character reads as a polished
-on-screen anchor instead of a stick-figure wobbling in the corner. Big
-expressive head with real facial detail, navy suit collar + red tie
-visible. Drawn purely from code (PIL), deterministic — looks identical
-every render, no image-model drift.
+Style is deliberately Bluey/Pocoyo/Pingu-minimal: ONE solid silhouette,
+two oversized eyes, one small mouth, a tiny red tie tab. No separate
+brow ridge / muzzle / nose / cheeks — stacking detail on top of
+procedural shapes only makes it look like assembled clipart. The
+character lives in the silhouette + eyes.
 
-Animation: subtle head bob + slow head-tilt sway + periodic blink +
-occasional ear twitch. No flailing arms (there are none to flail).
+Drawn purely from code (PIL), deterministic — looks identical every
+render. Animation: subtle vertical bob + periodic blink. No flailing
+limbs to look stiff.
 
-:func:`build_bigfoot_loop` renders the loop to a .mov with an alpha
-channel (qtrle) the explainer renderer overlays via ``-stream_loop``.
+:func:`build_bigfoot_loop` renders a seamless idle loop to a .mov with
+alpha (qtrle) the explainer overlays via ``-stream_loop``.
 """
 from __future__ import annotations
 
@@ -19,284 +20,162 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
-# Palette — warm browns for fur, navy/red for the anchor outfit.
-# Solid fills only so the silhouette holds up when scaled down over
-# busy B-roll.
-FUR = (138, 96, 62, 255)
-FUR_DK = (88, 58, 36, 255)
-FUR_LT = (174, 128, 88, 255)
-FUR_LL = (208, 162, 118, 255)
-SUIT = (28, 48, 92, 255)
-SUIT_DK = (18, 32, 64, 255)
-SHIRT = (248, 245, 236, 255)
-SHIRT_DK = (210, 208, 198, 255)
-TIE = (182, 38, 32, 255)
-TIE_LT = (220, 64, 54, 255)
-TIE_DK = (132, 22, 18, 255)
-WHITE = (250, 252, 252, 255)
+# Palette — three brown tones for body depth, one red for the tie tab,
+# white + black for eyes. That's it. Fewer colors = stronger silhouette.
+FUR = (148, 102, 64, 255)         # main body
+FUR_DK = (96, 62, 38, 255)        # silhouette + soft shadow
+FUR_LT = (188, 142, 100, 255)     # tiny highlight on top of head
+TIE = (188, 38, 32, 255)          # red tie tab
+TIE_DK = (138, 22, 18, 255)
+WHITE = (252, 252, 252, 255)
 DARK = (16, 14, 12, 255)
-NOSE = (38, 24, 16, 255)
-SS = 3                            # supersample for smooth edges
+SS = 3                             # supersample for smooth edges
 
 
 def _circle(d, cx, cy, r, fill):
     d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=fill)
 
 
-def _draw(size: int, bob: float, blink: float, head_tilt: float,
-          ear_twitch: float) -> Image.Image:
-    """One chest-up Bigfoot anchor frame.
+def _draw(size: int, bob: float, blink: float) -> Image.Image:
+    """One Bigfoot frame. Single silhouette + huge eyes + minimal mouth.
 
-    bob: px (head + body translate together).
+    bob: vertical px (whole character translates).
     blink: 0..1, >0.6 = closed.
-    head_tilt: degrees, small sway around the neck.
-    ear_twitch: 0..1, scales ears briefly.
     """
     S = size * SS
-    base = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-
-    # Body + suit first, on the base canvas (not tilted with the head).
-    bd = ImageDraw.Draw(base)
+    img = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
     cx = S // 2
     oy = int(bob * SS)
 
-    # ---------- Shoulders + suit jacket ----------
-    shoulder_y = int(S * 0.70) + oy
-    shoulder_w = int(S * 0.88)
-    jacket_pts = [
-        (cx - shoulder_w // 2, shoulder_y),       # left shoulder
-        (cx - int(shoulder_w * 0.58), S),         # left side off-canvas
-        (cx + int(shoulder_w * 0.58), S),         # right side off-canvas
-        (cx + shoulder_w // 2, shoulder_y),       # right shoulder
-        (cx + int(shoulder_w * 0.10), shoulder_y + int(S * 0.06)),  # collar pt R
-        (cx, shoulder_y + int(S * 0.22)),         # tie point at top
-        (cx - int(shoulder_w * 0.10), shoulder_y + int(S * 0.06)),  # collar pt L
-    ]
-    bd.polygon(jacket_pts, fill=SUIT)
+    # ---------- Soft drop shadow under the silhouette ----------
+    # A blurred dark blob slightly offset down — gives the character
+    # weight on screen instead of floating like a sticker.
+    shadow_layer = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shadow_layer)
+    s_cx = cx + int(S * 0.01)
+    s_cy = int(S * 0.55) + oy + int(S * 0.025)
+    sw = int(S * 0.40)
+    sh = int(S * 0.46)
+    sd.ellipse([s_cx - sw, s_cy - sh, s_cx + sw, s_cy + sh],
+               fill=(0, 0, 0, 110))
+    shadow_layer = shadow_layer.filter(
+        ImageFilter.GaussianBlur(radius=int(S * 0.020)))
+    img.alpha_composite(shadow_layer)
 
-    # Lapel inner edges — slightly darker shadow line
-    bd.line([(cx - int(shoulder_w * 0.10), shoulder_y + int(S * 0.06)),
-             (cx - int(shoulder_w * 0.30), S - int(S * 0.02))],
-            fill=SUIT_DK, width=max(3, S // 200))
-    bd.line([(cx + int(shoulder_w * 0.10), shoulder_y + int(S * 0.06)),
-             (cx + int(shoulder_w * 0.30), S - int(S * 0.02))],
-            fill=SUIT_DK, width=max(3, S // 200))
-
-    # White shirt V-collar
-    bd.polygon([
-        (cx - int(shoulder_w * 0.10), shoulder_y + int(S * 0.06)),
-        (cx + int(shoulder_w * 0.10), shoulder_y + int(S * 0.06)),
-        (cx, shoulder_y + int(S * 0.22)),
-    ], fill=SHIRT)
-
-    # Red tie (knot + body w/ highlight + shadow)
-    knot_w = int(S * 0.055)
-    knot_y0 = shoulder_y + int(S * 0.16)
-    bd.polygon([
-        (cx - knot_w, knot_y0),
-        (cx + knot_w, knot_y0),
-        (cx + int(knot_w * 0.6), knot_y0 + int(S * 0.06)),
-        (cx - int(knot_w * 0.6), knot_y0 + int(S * 0.06)),
-    ], fill=TIE)
-    # tie body
-    tie_top_w = int(S * 0.038)
+    # ---------- Tiny red tie tab peeking out the bottom ----------
+    # Drawn BEFORE the body so the silhouette overlaps it — only the
+    # bottom of the tie is visible, which is the iconic "anchor" hint
+    # without needing a separate suit shape.
+    tie_top_y = int(S * 0.78) + oy
+    tie_bot_y = int(S * 0.95) + oy
+    tie_top_w = int(S * 0.04)
     tie_bot_w = int(S * 0.075)
-    tie_top_y = knot_y0 + int(S * 0.06)
-    bd.polygon([
+    d.polygon([
         (cx - tie_top_w, tie_top_y),
         (cx + tie_top_w, tie_top_y),
-        (cx + tie_bot_w, S),
-        (cx - tie_bot_w, S),
+        (cx + tie_bot_w, tie_bot_y),
+        (cx - tie_bot_w, tie_bot_y),
     ], fill=TIE)
-    # highlight + shadow stripes on the tie
-    bd.line([(cx - int(tie_top_w * 0.4), tie_top_y + int(S * 0.01)),
-             (cx - int(tie_bot_w * 0.35), S)],
-            fill=TIE_LT, width=max(2, S // 360))
-    bd.line([(cx + int(tie_top_w * 0.5), tie_top_y + int(S * 0.01)),
-             (cx + int(tie_bot_w * 0.45), S)],
-            fill=TIE_DK, width=max(2, S // 360))
+    # tie shadow stripe (depth)
+    d.line([(cx + int(tie_top_w * 0.2), tie_top_y + int(S * 0.005)),
+            (cx + int(tie_bot_w * 0.3), tie_bot_y - int(S * 0.005))],
+           fill=TIE_DK, width=max(2, S // 280))
 
-    # Neck (a stub of fur between collar and head)
-    neck_y0 = shoulder_y - int(S * 0.04)
-    neck_w = int(S * 0.16)
-    bd.rounded_rectangle(
-        [cx - neck_w // 2, neck_y0 - int(S * 0.05),
-         cx + neck_w // 2, shoulder_y + int(S * 0.03)],
-        radius=int(neck_w * 0.3), fill=FUR_DK)
+    # ---------- The silhouette — ONE big merged head+body blob ----------
+    # An ellipse for the body + an ellipse for the head, both in the
+    # same color, blended into one shape. The whole point is that the
+    # character reads as a single creature, not assembled pieces.
 
-    # ---------- Head — drawn into its own layer so we can rotate it ----------
-    head_layer = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-    hd = ImageDraw.Draw(head_layer)
+    # Body ellipse (wider, lower)
+    body_cy = int(S * 0.66) + oy
+    body_w = int(S * 0.38)
+    body_h = int(S * 0.32)
+    d.ellipse([cx - body_w, body_cy - body_h,
+               cx + body_w, body_cy + body_h], fill=FUR)
 
-    head_cx = cx
+    # Head ellipse (slightly narrower, sits on top, overlaps body so
+    # the two merge into one rounded silhouette)
     head_cy = int(S * 0.40) + oy
-    head_r = int(S * 0.28)            # big head fills most of the canvas
+    head_w = int(S * 0.34)
+    head_h = int(S * 0.32)
+    d.ellipse([cx - head_w, head_cy - head_h,
+               cx + head_w, head_cy + head_h], fill=FUR)
 
-    # Fur tufts sticking up (5 little peaks for a wilder Bigfoot mane)
-    tuft_y_base = head_cy - int(head_r * 0.90)
-    for i, offset in enumerate((-0.85, -0.45, 0.0, 0.45, 0.85)):
-        bx = head_cx + int(head_r * offset)
-        ty = head_cy - int(head_r * (1.20 + 0.18 * (1 - abs(offset))))
-        tw_ = int(head_r * 0.22)
-        hd.polygon([
-            (bx - tw_ // 2, tuft_y_base),
-            (bx + tw_ // 2, tuft_y_base),
-            (bx + int(tw_ * 0.15 * (1 if i % 2 else -1)), ty),
+    # Three small fur peaks on the top of the head (Bigfoot mane hint).
+    # Same FUR color so they merge into the silhouette, with the dark
+    # peak tips that just barely poke above.
+    for i, offset in enumerate((-0.50, 0.0, 0.50)):
+        bx = cx + int(head_w * offset)
+        by = head_cy - head_h + int(S * 0.01)
+        tip_x = bx + int(S * 0.005 * (-1 if i % 2 else 1))
+        tip_y = head_cy - head_h - int(S * 0.06)
+        tw = int(S * 0.045)
+        d.polygon([
+            (bx - tw // 2, by),
+            (bx + tw // 2, by),
+            (tip_x, tip_y),
         ], fill=FUR_DK)
 
-    # Head silhouette — slightly egg-shaped (wider at top of crown)
-    crown_top = head_cy - int(head_r * 1.05)
-    jaw_bot = head_cy + int(head_r * 1.15)
-    crown_w = int(head_r * 2.20)
-    jaw_w = int(head_r * 1.85)
-    head_pts = [
-        (head_cx - crown_w // 2, head_cy - int(head_r * 0.35)),
-        (head_cx - int(crown_w * 0.42), crown_top),
-        (head_cx + int(crown_w * 0.42), crown_top),
-        (head_cx + crown_w // 2, head_cy - int(head_r * 0.35)),
-        (head_cx + int(crown_w * 0.48), head_cy + int(head_r * 0.55)),
-        (head_cx + jaw_w // 2, jaw_bot - int(head_r * 0.25)),
-        (head_cx + int(jaw_w * 0.30), jaw_bot),
-        (head_cx - int(jaw_w * 0.30), jaw_bot),
-        (head_cx - jaw_w // 2, jaw_bot - int(head_r * 0.25)),
-        (head_cx - int(crown_w * 0.48), head_cy + int(head_r * 0.55)),
-    ]
-    hd.polygon(head_pts, fill=FUR)
+    # Subtle lighter top-of-head highlight (gives volume)
+    hl_layer = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    hd = ImageDraw.Draw(hl_layer)
+    hd.ellipse([cx - int(head_w * 0.65), head_cy - int(head_h * 0.85),
+                cx + int(head_w * 0.65), head_cy - int(head_h * 0.05)],
+               fill=(FUR_LT[0], FUR_LT[1], FUR_LT[2], 90))
+    hl_layer = hl_layer.filter(ImageFilter.GaussianBlur(radius=int(S * 0.012)))
+    img.alpha_composite(hl_layer)
 
-    # Side fur fringe (slightly darker patches near the cheeks)
-    for sgn in (-1, 1):
-        cheek_x = head_cx + sgn * int(head_r * 0.95)
-        cheek_y = head_cy + int(head_r * 0.30)
-        hd.ellipse([cheek_x - int(head_r * 0.35),
-                    cheek_y - int(head_r * 0.30),
-                    cheek_x + int(head_r * 0.35),
-                    cheek_y + int(head_r * 0.45)], fill=FUR_DK)
+    # ---------- Eyes — oversized, the focal point of the whole design ----------
+    # Big white circles, big black pupils, small white catchlight.
+    # The catchlight is what makes them feel "alive" vs. dead dots.
+    eye_dx = int(S * 0.08)
+    eye_y = head_cy + int(S * 0.01)
+    eye_r = int(S * 0.062)              # OVERSIZED — these are the character
+    pup_r = int(eye_r * 0.55)
 
-    # Re-paint main face oval on top of the cheek shadow patches
-    # so the front of the face is the lighter fur tone.
-    face_oval = [
-        head_cx - int(head_r * 0.78), head_cy - int(head_r * 0.10),
-        head_cx + int(head_r * 0.78), head_cy + int(head_r * 1.00),
-    ]
-    hd.ellipse(face_oval, fill=FUR_LT)
+    if blink > 0.6:
+        # Closed-eye arcs ^_^
+        for sgn in (-1, 1):
+            ex = cx + sgn * eye_dx
+            d.arc([ex - eye_r, eye_y - eye_r, ex + eye_r, eye_y + eye_r],
+                  start=200, end=340, fill=DARK, width=max(5, S // 90))
+    else:
+        for sgn in (-1, 1):
+            ex = cx + sgn * eye_dx
+            _circle(d, ex, eye_y, eye_r, WHITE)
+            # pupil sits slightly low for friendly downward gaze
+            _circle(d, ex, eye_y + int(eye_r * 0.12), pup_r, DARK)
+            # catchlight (small white highlight in upper-left of pupil)
+            _circle(d, ex - int(pup_r * 0.40), eye_y - int(pup_r * 0.20),
+                    max(2, int(pup_r * 0.42)), WHITE)
 
-    # Muzzle — a lighter raised area around mouth + nose
-    muzzle_pts = [
-        head_cx - int(head_r * 0.42), head_cy + int(head_r * 0.18),
-        head_cx + int(head_r * 0.42), head_cy + int(head_r * 0.18),
-        head_cx + int(head_r * 0.50), head_cy + int(head_r * 0.92),
-        head_cx - int(head_r * 0.50), head_cy + int(head_r * 0.92),
-    ]
-    hd.polygon([(muzzle_pts[i], muzzle_pts[i+1])
-                for i in range(0, len(muzzle_pts), 2)], fill=FUR_LL)
+    # ---------- Mouth — ONE tiny dark curve ----------
+    # No tongue, no fang, no lips. Just a curved line.
+    mw = int(S * 0.035)
+    my = head_cy + int(S * 0.12)
+    d.arc([cx - mw, my - int(mw * 0.4),
+           cx + mw, my + int(mw * 0.7)],
+          start=20, end=160, fill=DARK, width=max(4, S // 110))
 
-    # Ears — pop out from behind the head (twitch scale)
-    ear_scale = 1.0 + ear_twitch * 0.10
-    for sgn in (-1, 1):
-        ex = head_cx + sgn * int(head_r * 1.05)
-        ey = head_cy - int(head_r * 0.05)
-        er = int(head_r * 0.22 * ear_scale)
-        hd.ellipse([ex - er, ey - er, ex + er, ey + er], fill=FUR_DK)
-        hd.ellipse([ex - int(er * 0.55), ey - int(er * 0.55),
-                    ex + int(er * 0.55), ey + int(er * 0.55)],
-                   fill=NOSE)
-
-    # ---------- Heavy brow ridge — defines the Bigfoot silhouette ----------
-    brow_y = head_cy - int(head_r * 0.18)
-    brow_w = int(head_r * 1.55)
-    brow_h = int(head_r * 0.26)
-    hd.rounded_rectangle(
-        [head_cx - brow_w // 2, brow_y - brow_h // 2,
-         head_cx + brow_w // 2, brow_y + brow_h // 2],
-        radius=int(brow_h * 0.5), fill=FUR_DK)
-
-    # ---------- Eyes ----------
-    eye_dx = int(head_r * 0.42)
-    eye_y = head_cy + int(head_r * 0.08)
-    eye_r = int(head_r * 0.22)
-    pup_r = int(head_r * 0.12)
-    for sgn in (-1, 1):
-        ex2 = head_cx + sgn * eye_dx
-        if blink > 0.6:
-            hd.arc([ex2 - eye_r, eye_y - eye_r, ex2 + eye_r, eye_y + eye_r],
-                   start=200, end=340, fill=DARK, width=max(3, S // 110))
-        else:
-            _circle(hd, ex2, eye_y, eye_r, WHITE)
-            _circle(hd, ex2, eye_y + int(eye_r * 0.10), pup_r, DARK)
-            # catchlight
-            _circle(hd, ex2 - pup_r // 2, eye_y - pup_r // 3,
-                    max(2, int(pup_r * 0.38)), WHITE)
-
-    # Eyebrows — focused anchor angle (inner lower than outer)
-    bw = int(eye_r * 1.20)
-    for sgn in (-1, 1):
-        ex2 = head_cx + sgn * eye_dx
-        by0 = eye_y - int(eye_r * 1.55)
-        inner_y = by0 + int(eye_r * 0.38)
-        outer_y = by0
-        if sgn < 0:
-            p_inner = (ex2 + bw // 2, inner_y)
-            p_outer = (ex2 - bw // 2, outer_y)
-        else:
-            p_inner = (ex2 - bw // 2, inner_y)
-            p_outer = (ex2 + bw // 2, outer_y)
-        hd.line([p_outer, p_inner], fill=DARK, width=max(5, S // 90))
-
-    # ---------- Nose ----------
-    nose_top_y = head_cy + int(head_r * 0.45)
-    nose_w = int(head_r * 0.16)
-    hd.polygon([
-        (head_cx - nose_w, nose_top_y),
-        (head_cx + nose_w, nose_top_y),
-        (head_cx + int(nose_w * 0.65), nose_top_y + int(head_r * 0.20)),
-        (head_cx - int(nose_w * 0.65), nose_top_y + int(head_r * 0.20)),
-    ], fill=NOSE)
-    # nose highlight
-    hd.line([(head_cx - int(nose_w * 0.4), nose_top_y + int(head_r * 0.04)),
-             (head_cx + int(nose_w * 0.4), nose_top_y + int(head_r * 0.04))],
-            fill=FUR_LL, width=max(2, S // 280))
-
-    # ---------- Mouth — closed, slight smile, just a curved line ----------
-    mw = int(head_r * 0.30)
-    my = head_cy + int(head_r * 0.82)
-    hd.arc([head_cx - mw, my - int(mw * 0.55),
-            head_cx + mw, my + int(mw * 0.45)],
-           start=18, end=162, fill=DARK, width=max(5, S // 85))
-
-    # ---------- Rotate the head layer by head_tilt and composite ----------
-    if abs(head_tilt) > 0.05:
-        # Rotate around the head center, not the canvas center
-        head_layer = head_layer.rotate(
-            head_tilt, resample=Image.BICUBIC,
-            center=(head_cx, head_cy))
-    base.alpha_composite(head_layer)
-
-    return base.resize((size, size), Image.LANCZOS)
+    # Downsample with high-quality filter for clean antialiased edges.
+    return img.resize((size, size), Image.LANCZOS)
 
 
 def build_bigfoot_loop(out_path: Path, *, size: int = 540, fps: int = 30,
-                       seconds: float = 4.0, flip: bool = False) -> Path:
-    """Render a seamless idle loop (.mov, alpha) — bob + blink + head
-    tilt + ear twitch. ``flip`` mirrors the whole frame so he can stand
-    on either side of the canvas."""
+                       seconds: float = 3.0, flip: bool = False) -> Path:
+    """Render a seamless idle loop (.mov, alpha) — bob + blink."""
     out_path.parent.mkdir(parents=True, exist_ok=True)
     n = int(fps * seconds)
     with tempfile.TemporaryDirectory() as td:
         td = Path(td)
         for i in range(n):
             t = i / n
-            # gentle vertical bob (1 cycle per loop)
-            bob = math.sin(t * 2 * math.pi) * (size * 0.018)
-            # slow side-to-side head tilt (1 cycle per loop, ±2°)
-            head_tilt = math.sin(t * 2 * math.pi) * 2.0
-            # brief blink window
+            bob = math.sin(t * 2 * math.pi) * (size * 0.022)
             blink = 1.0 if 0.78 <= t <= 0.82 else 0.0
-            # ear twitch (sharp pulse twice per loop)
-            tw = math.sin(t * 2 * math.pi * 4)
-            ear_twitch = max(0.0, tw) ** 6
-            im = _draw(size, bob, blink, head_tilt, ear_twitch)
+            im = _draw(size, bob, blink)
             if flip:
                 im = im.transpose(Image.FLIP_LEFT_RIGHT)
             im.save(td / f"m{i:04d}.png")
@@ -310,7 +189,7 @@ def build_bigfoot_loop(out_path: Path, *, size: int = 540, fps: int = 30,
 
 def save_static(out_path: Path, size: int = 540) -> Path:
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    _draw(size, 0.0, 0.0, 0.0, 0.0).save(out_path)
+    _draw(size, 0.0, 0.0).save(out_path)
     return out_path
 
 
