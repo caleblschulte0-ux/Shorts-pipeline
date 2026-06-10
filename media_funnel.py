@@ -204,11 +204,24 @@ def _quota_check(provider: str, *, daily: int = 0,
 
 # ---------- HTTP helpers ----------
 
+_DEBUG = os.environ.get("MEDIA_FUNNEL_DEBUG", "").lower() in {"1", "true"}
+
+
+def _dbg(tag: str, msg: str) -> None:
+    if _DEBUG:
+        # tag goes through provider context; strip URL secrets first
+        scrubbed = re.sub(r"(apiKey|api_key|token|key)=[^&\s]+",
+                          r"\1=***", msg)
+        print(f"  [funnel:{tag}] {scrubbed}", flush=True)
+
+
 def _get(url: str, *, headers: Optional[dict] = None,
-         timeout: float = _TIMEOUT) -> Optional[dict]:
+         timeout: float = _TIMEOUT,
+         tag: str = "?") -> Optional[dict]:
     """JSON GET helper. Returns parsed dict/list or None on any
     error (timeout, 4xx/5xx, bad JSON). Single shared style across
-    every provider."""
+    every provider. When MEDIA_FUNNEL_DEBUG=1, logs HTTP status and
+    error reasons so silent zero-result providers become diagnosable."""
     h = {"User-Agent": _UA_GENERIC, "Accept": "application/json"}
     if headers:
         h.update(headers)
@@ -218,9 +231,20 @@ def _get(url: str, *, headers: Optional[dict] = None,
             data = r.read()
             ct = r.headers.get("Content-Type", "")
             if "json" not in ct and not data.lstrip().startswith((b"{", b"[")):
+                _dbg(tag, f"non-JSON ({ct[:40]}, {len(data)}B) {url[:120]}")
                 return None
+            _dbg(tag, f"200 ({len(data)}B) {url[:120]}")
             return json.loads(data.decode("utf-8", errors="ignore"))
-    except Exception:  # noqa: BLE001 — every provider may flake
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read()[:400].decode("utf-8", errors="ignore")
+        except Exception:  # noqa: BLE001
+            pass
+        _dbg(tag, f"HTTP {e.code} {url[:120]} | body: {body[:200]}")
+        return None
+    except Exception as e:  # noqa: BLE001 — every provider may flake
+        _dbg(tag, f"err {type(e).__name__}: {str(e)[:160]} | {url[:120]}")
         return None
 
 
@@ -254,8 +278,11 @@ def p_newsapi(entity: str, angle: str) -> list[Candidate]:
     q = urllib.parse.quote(_build_query(entity, angle))
     url = (f"https://newsapi.org/v2/everything?q={q}"
            f"&pageSize=10&sortBy=relevancy&language=en&apiKey={key}")
-    data = _get(url)
-    if not data or data.get("status") != "ok":
+    data = _get(url, tag="newsapi")
+    if not data:
+        return []
+    if data.get("status") != "ok":
+        _dbg("newsapi", f"non-ok status: {str(data)[:200]}")
         return []
     out = []
     for a in (data.get("articles") or [])[:10]:
@@ -277,7 +304,7 @@ def p_gnews(entity: str, angle: str) -> list[Candidate]:
     q = urllib.parse.quote(_build_query(entity, angle))
     url = (f"https://gnews.io/api/v4/search?q={q}"
            f"&max=10&lang=en&apikey={key}")
-    data = _get(url)
+    data = _get(url, tag="gnews")
     if not data:
         return []
     out = []
@@ -303,7 +330,7 @@ def p_brave(entity: str, angle: str) -> list[Candidate]:
     data = _get(url, headers={
         "X-Subscription-Token": key,
         "Accept": "application/json",
-    })
+    }, tag="brave")
     if not data:
         return []
     out = []
@@ -341,7 +368,18 @@ def p_tavily(entity: str, angle: str) -> list[Candidate]:
             method="POST")
         with urllib.request.urlopen(req, timeout=_TIMEOUT) as r:
             data = json.load(r)
-    except Exception:  # noqa: BLE001
+            _dbg("tavily", f"200 ({len(data.get('images') or [])} imgs, "
+                 f"{len(data.get('results') or [])} results)")
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read()[:400].decode("utf-8", errors="ignore")
+        except Exception:  # noqa: BLE001
+            pass
+        _dbg("tavily", f"HTTP {e.code} | body: {body[:200]}")
+        return []
+    except Exception as e:  # noqa: BLE001
+        _dbg("tavily", f"err {type(e).__name__}: {str(e)[:200]}")
         return []
     out = []
     # Tavily returns both `images` (a flat list) and `results` (with
@@ -370,7 +408,7 @@ def p_newsdata(entity: str, angle: str) -> list[Candidate]:
     q = urllib.parse.quote(_build_query(entity, angle))
     url = (f"https://newsdata.io/api/1/news?apikey={key}&q={q}"
            f"&language=en")
-    data = _get(url)
+    data = _get(url, tag="newsdata")
     if not data:
         return []
     out = []
@@ -411,7 +449,7 @@ def p_reddit(entity: str, angle: str) -> list[Candidate]:
             f"https://www.reddit.com/r/{sub}/search.json"
             f"?q={q}&restrict_sr=1&limit=5&sort=relevance")
     for url in targets:
-        data = _get(url, headers={"User-Agent": _UA_REDDIT})
+        data = _get(url, headers={"User-Agent": _UA_REDDIT}, tag="reddit")
         if not data:
             continue
         for child in (data.get("data") or {}).get("children") or []:
@@ -452,7 +490,7 @@ def p_mastodon(entity: str, angle: str) -> list[Candidate]:
     q = urllib.parse.quote(_build_query(entity, angle))
     url = (f"https://mastodon.social/api/v2/search"
            f"?type=statuses&q={q}&limit=15")
-    data = _get(url, headers={"User-Agent": _UA_MASTODON})
+    data = _get(url, headers={"User-Agent": _UA_MASTODON}, tag="mastodon")
     if not data:
         return []
     out = []
@@ -473,7 +511,7 @@ def p_bluesky(entity: str, angle: str) -> list[Candidate]:
     q = urllib.parse.quote(_build_query(entity, angle))
     url = (f"https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts"
            f"?q={q}&limit=25")
-    data = _get(url, headers={"User-Agent": _UA_BLUESKY})
+    data = _get(url, headers={"User-Agent": _UA_BLUESKY}, tag="bluesky")
     if not data:
         return []
     out = []
@@ -508,7 +546,7 @@ def p_imgur(entity: str, angle: str) -> list[Candidate]:
         return []
     q = urllib.parse.quote(_build_query(entity, angle))
     url = f"https://api.imgur.com/3/gallery/search?q={q}"
-    data = _get(url, headers={"Authorization": f"Client-ID {cid}"})
+    data = _get(url, headers={"Authorization": f"Client-ID {cid}"}, tag="imgur")
     if not data:
         return []
     out = []
@@ -547,6 +585,7 @@ def p_ddg(entity: str, angle: str) -> list[Candidate]:
             html = r.read().decode("utf-8", errors="ignore")
         m = re.search(r"vqd=['\"]?(\d-\d+-\d+)", html)
         if not m:
+            _dbg("ddg", f"no vqd token in HTML ({len(html)}B)")
             return []
         vqd = m.group(1)
         api = (f"https://duckduckgo.com/i.js?l=us-en&o=json"
@@ -556,7 +595,12 @@ def p_ddg(entity: str, angle: str) -> list[Candidate]:
             "Referer": "https://duckduckgo.com/"})
         with urllib.request.urlopen(req, timeout=_TIMEOUT) as r:
             data = json.load(r)
-    except Exception:  # noqa: BLE001
+            _dbg("ddg", f"200 ({len(data.get('results') or [])} results)")
+    except urllib.error.HTTPError as e:
+        _dbg("ddg", f"HTTP {e.code}")
+        return []
+    except Exception as e:  # noqa: BLE001
+        _dbg("ddg", f"err {type(e).__name__}: {str(e)[:200]}")
         return []
     out = []
     for it in (data.get("results") or [])[:15]:
@@ -585,7 +629,7 @@ def p_vimeo(entity: str, angle: str) -> list[Candidate]:
     data = _get(url, headers={
         "Authorization": f"bearer {token}",
         "Accept": "application/vnd.vimeo.*+json;version=3.4",
-    })
+    }, tag="vimeo")
     if not data:
         return []
     out = []
@@ -616,7 +660,7 @@ def p_youtube(entity: str, angle: str) -> list[Candidate]:
     url = ("https://www.googleapis.com/youtube/v3/search"
            f"?part=snippet&type=video&maxResults=10&order=relevance"
            f"&q={q}&key={key}")
-    data = _get(url)
+    data = _get(url, tag="youtube")
     if not data:
         return []
     out = []
@@ -914,7 +958,9 @@ def _cli() -> int:
         print(f"  {c.score:.2f}  {c.source:18s}  {c.url[:80]}")
         if c.article_title:
             print(f"          \"{c.article_title[:80]}\"  [{boosts}]")
-    return 0 if results else 1
+    # Diagnostic probe: exit 0 even on zero results so multi-probe
+    # workflows continue and surface the per-provider debug log.
+    return 0
 
 
 if __name__ == "__main__":
