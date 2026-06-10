@@ -2,21 +2,68 @@
 for Minecraft gameplay.
 
 Instead of random parkour under a SpaceX story, the bottom half gets a
-generated "satisfying loop" themed to the story: a rocket arcing from
-star to star, rain with lightning for storm coverage, rising embers
-for a volcano, a plinko ball-drop as the universal default. Everything
-is drawn procedurally (numpy + PIL piped raw into ffmpeg) so renders
-are deterministic-ish, need zero API keys, and can't be flagged as
-reused third-party content.
+generated "satisfying game" themed to the story. Everything is drawn
+procedurally (numpy + PIL piped raw into ffmpeg): zero API keys, zero
+reused-content flags, deterministic per seed.
 
-Design rules learned from the satisfying-video genre:
-  * Smooth easing everywhere — nothing teleports, nothing jitters.
-  * Trails: a decaying float buffer accumulates motion history, which
-    reads as glow + afterimage and makes even simple dots feel lush.
-  * One hero object (rocket / ball / bolt), many ambient objects
-    (stars / pegs / streaks). The eye follows the hero, the ambience
-    fills the frame.
-  * Loop-friendly: motion is continuous for arbitrary durations.
+=====================================================================
+DESIGN CHARTER — the bar every theme must clear before it ships.
+Extracted from operator feedback across five revision rounds; these
+are requirements, not suggestions. When adding or editing a theme,
+audit it against ALL of them:
+
+ 1. TOPIC-MATCHED. The scene is a visual metaphor for the story
+    (rocket for a launch, fireball rain for a volcano, a sprinting
+    critter for an animal escape). If no theme fits, route to plinko
+    — a wrong theme is worse than a neutral one.
+
+ 2. ESCALATE OR DIE. Nothing idles at one speed. A compounding
+    sim-clock multiplier (GROWTH) makes the scene start calm and
+    continuously accelerate. Flat ambient loops are rejected.
+
+ 3. THE BREAK MUST BE REAL. Never schedule a glitch effect. The sim
+    clock feeds the ACTUAL physics step (sim_dt = dt * scale); the
+    breakdown must emerge from the math failing: explicit-Euler
+    energy gain, tunneling, constraint non-convergence, temporal
+    aliasing past the Nyquist limit of a cadence, vertex-budget
+    collapse. The theme watches its own state (velocity bounds,
+    per-frame motion vs. cycle length) and calls declare_fail() when
+    the numbers leave reality.
+
+ 4. EMERGENT RESET. After failure: hang the last coherent frame like
+    a not-responding process (handle_fail), then reboot into a
+    REGENERATED world — new layout every cycle so the loop never
+    visibly repeats. Cycle length varies per seed; that's a feature.
+
+ 5. PLINKO MENTALITY. Objects are physical and they INTERACT — with
+    the terrain (surface-normal reflection), with set pieces
+    (boulders, platforms), and with EACH OTHER (pairwise collision).
+    Impacts have consequences: sparks, fragments, knockback. Nothing
+    drifts through anything else while the sim is healthy.
+
+ 6. NOTHING FLOATS. Every element is planted in the composition:
+    silhouettes overlap their background layers, bases extend below
+    occluding ridges, set pieces cast contact shadows. If a viewer
+    can ask "what is that standing on?", it's a bug.
+
+ 7. FOREGROUND IS THE SHOW. The story element can sit in the
+    distance (the volcano on the horizon) but the ACTION plays out
+    close to camera (its fireballs bouncing in front of you).
+
+ 8. VARIETY INSIDE THE LOOP. The repeated beat must not repeat
+    exactly: vary obstacle types, ball sizes, spawn angles, layouts.
+    One identical-looking event per second reads as a screensaver.
+
+ 9. FLAVOR PASS. Living details are mandatory, not optional polish:
+    blinks, ear twitches, birds flushing, smoke wisps, paw scuffs,
+    catchlights, constellation threads, confetti. One hero object
+    carries the eye; ambient details make the world feel inhabited.
+
+10. SMOOTH. Cadence is driven by distance travelled (no foot-slide),
+    squash & stretch follows real velocity, easing on every
+    transition, smoothed cameras. Jitter that isn't emergent
+    overload is a defect.
+=====================================================================
 
 Output contract (matches pick_gameplay_clip): W x HALF_H (1080x960),
 30fps, h264, no audio.
@@ -40,7 +87,7 @@ W, H = 1080, 960
 FPS = 30
 
 THEMES = ("space", "rain", "ember", "ocean", "plinko", "coins",
-          "quake", "volcano", "runner")
+          "quake", "volcano", "runner", "stacker", "fight")
 
 # Keyword → theme. Checked in order; first hit wins. Scanned against
 # title + script + hashtags lowercased.
@@ -59,6 +106,12 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
                 "bear", "koala", "leopard", "animal")),
     ("ocean", ("shark", "whale", "ocean", "sea ", "marine", "coral",
                "fish", "beach")),
+    ("fight", ("ufc", "mma", "boxing", "boxer", "knockout",
+               "octagon", "wrestl", "fight card", "title bout",
+               "heavyweight")),
+    ("stacker", ("world record", "record-breaking", "tallest",
+                 "largest", "biggest", "assembl", "built the",
+                 "stacked", "lego", "potato head", "guinness")),
     ("coins", ("stock", "ipo", "market", "billion", "economy", "tax",
                "fee", "salary", "fine", "tariff", "bank", "crypto",
                "price", "invest", "visa")),
@@ -1800,6 +1853,555 @@ class _Runner(_Renderer):
 
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
+# ---------- STACKER: world-record tower assembly ----------
+# (Mr.-Potato-Head-speed-record-class stories: records, builds,
+# assemblies, "world's biggest X".)
+
+class _Stacker(_Renderer):
+    """Toy blocks rain onto a table and snap into a growing tower
+    while a ruler tracks the record line. Drop cadence and fall speed
+    ride the compounding sim clock; at high clock a falling block
+    covers more than a block-height per frame, tunnels straight
+    through the stack top (genuine missed collision), wedges into the
+    tower and knocks it loose — the whole stack converts to scatter
+    bodies whose floor bounces gain energy from the oversized
+    timestep until velocities leave reality. Fail, hang, fresh table.
+
+    Charter audit: topic-matched (record assembly) / escalates /
+    real break (tunneling + Euler energy gain) / emergent reset /
+    plinko interaction (block-block + floor) / table has legs +
+    shadow (nothing floats) / foreground show / variety (block
+    widths, colors, landing offsets) / flavor (confetti every 5th,
+    ruler ticks, dust motes, wobble lean, landing squash) / smooth
+    (eased conveyor shift, squash on land)."""
+
+    GROWTH = 1.18
+    GRAV = 1500.0
+    BLOWUP_V = 6000.0
+    PALETTES = [
+        [(235, 90, 80), (250, 180, 60), (90, 180, 220), (130, 200, 120)],
+        [(250, 140, 160), (160, 130, 230), (90, 200, 210), (250, 210, 90)],
+        [(230, 120, 70), (110, 160, 230), (240, 200, 80), (170, 210, 110)],
+    ]
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self.reset_t = 0.0
+        self.failed_at = None
+        self._regen()
+
+    def _regen(self):
+        rng = self.rng
+        self.trail[:] = 0
+        self.palette = rng.choice(self.PALETTES)
+        self.table_y = H * 0.86
+        self.table_cx = W / 2 + rng.uniform(-60, 60)
+        self.table_w = rng.uniform(360, 440)
+        self.stack: list[dict] = []      # settled blocks, bottom->top
+        self.falling: dict | None = None
+        self.scatter: list[dict] = []    # collapse bodies
+        self.confetti: list[dict] = []
+        self.motes = [{"x": rng.uniform(0, W), "y": rng.uniform(0, H),
+                       "ph": rng.uniform(0, math.tau)} for _ in range(14)]
+        self.best_h = 0.0               # record line (px above table)
+        self.shift = 0.0                # eased conveyor offset
+        self.shift_target = 0.0
+        self.lean = 0.0                 # accumulated wobble
+        self.placed = 0
+        self.collapsing = False
+
+    def _top_y(self) -> float:
+        y = self.table_y + self.shift
+        for b in self.stack:
+            y -= b["h"]
+        return y
+
+    def _spawn_block(self):
+        rng = self.rng
+        top_x = (self.stack[-1]["x"] if self.stack else self.table_cx)
+        return {"x": top_x + rng.uniform(-70, 70),
+                "y": -40.0, "vy": 0.0,
+                "vx": rng.uniform(-14, 14),
+                "w": rng.uniform(90, 150), "h": rng.uniform(44, 62),
+                "color": rng.choice(self.palette),
+                "settle": 0.0}
+
+    def _collapse(self):
+        """Tower comes apart: every settled block becomes a body."""
+        rng = self.rng
+        self.collapsing = True
+        y = self.table_y + self.shift
+        for b in self.stack:
+            y -= b["h"]
+            self.scatter.append({
+                "x": b["x"], "y": y + b["h"] / 2,
+                "vx": rng.uniform(-420, 420),
+                "vy": rng.uniform(-520, -60),
+                "w": b["w"], "h": b["h"], "color": b["color"],
+                "rot": 0.0, "vrot": rng.uniform(-7, 7)})
+        self.stack = []
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        held = self.handle_fail(self._last_frame
+                                if self._last_frame is not None
+                                else np.zeros((H, W, 3), np.uint8), t)
+        if held is not None:
+            return held
+
+        ts = self.sim_scale(t)
+        k = self.kk(ts)
+        dt = 1 / FPS
+        sim_dt = dt * ts
+
+        # Eased conveyor shift (tower sinks as it grows so the top
+        # stays in frame).
+        self.shift += (self.shift_target - self.shift) * min(1, 6 * dt)
+
+        if self.falling is None and not self.collapsing:
+            self.falling = self._spawn_block()
+
+        if self.falling is not None:
+            f = self.falling
+            f["vy"] += self.GRAV * sim_dt
+            step = f["vy"] * sim_dt
+            f["x"] += f["vx"] * sim_dt
+            top_y = self._top_y()
+            # REAL tunneling check: if this frame's travel exceeds the
+            # block's own height, the collision test below can be
+            # skipped over — that's the failure seed.
+            tunneled = step > f["h"] and f["y"] + step > top_y + f["h"]
+            f["y"] += step
+            if f["y"] + f["h"] / 2 >= top_y and not tunneled:
+                # Clean landing?
+                base_x = (self.stack[-1]["x"] if self.stack
+                          else self.table_cx)
+                base_w = (self.stack[-1]["w"] if self.stack
+                          else self.table_w)
+                off = f["x"] - base_x
+                if abs(off) < (f["w"] + base_w) / 2 * 0.55:
+                    self.stack.append({"x": f["x"], "w": f["w"],
+                                       "h": f["h"], "color": f["color"],
+                                       "settle": t})
+                    self.placed += 1
+                    self.lean += off * 0.04
+                    height = sum(b["h"] for b in self.stack)
+                    self.best_h = max(self.best_h, height)
+                    if height > H * 0.5:
+                        self.shift_target += f["h"] * 1.6
+                    if self.placed % 5 == 0:
+                        for _ in range(26):
+                            a = rng.uniform(0, math.tau)
+                            v = rng.uniform(120, 420)
+                            self.confetti.append({
+                                "x": f["x"], "y": self._top_y(),
+                                "vx": math.cos(a) * v,
+                                "vy": math.sin(a) * v - 180,
+                                "col": rng.choice(self.palette),
+                                "life": rng.uniform(0.6, 1.2)})
+                else:
+                    # Missed the stack — block tumbles off as a body.
+                    self.scatter.append({
+                        "x": f["x"], "y": f["y"], "vx": f["vx"] * 6,
+                        "vy": -120.0, "w": f["w"], "h": f["h"],
+                        "color": f["color"], "rot": 0.0,
+                        "vrot": rng.uniform(-6, 6)})
+                self.falling = None
+            elif tunneled and self.stack:
+                # Wedged INTO the tower between frames: knock it all
+                # down. The break the clock was building toward.
+                self._collapse()
+                self.falling = None
+
+        # Scatter bodies: floor bounce with timestep energy gain.
+        for s in self.scatter:
+            s["vy"] += self.GRAV * sim_dt
+            s["x"] += s["vx"] * sim_dt
+            s["y"] += s["vy"] * sim_dt
+            s["rot"] += s["vrot"] * sim_dt
+            floor = self.table_y + self.shift
+            if s["y"] + s["h"] / 2 > floor and s["vy"] > 0:
+                pen = s["y"] + s["h"] / 2 - floor
+                s["y"] = floor - s["h"] / 2
+                rest = 0.6 * (1.0 + min(2.0, pen / 200.0))
+                s["vy"] = -s["vy"] * rest
+                s["vx"] += rng.uniform(-40, 40)
+            if (abs(s["vx"]) > self.BLOWUP_V
+                    or abs(s["vy"]) > self.BLOWUP_V):
+                self.declare_fail(t)
+        self.scatter = [s for s in self.scatter
+                        if -400 < s["x"] < W + 400 and s["y"] < H + 400]
+        if self.collapsing and not self.scatter:
+            # Everything flew out before velocities blew up — still a
+            # dead sim; reboot.
+            self.declare_fail(t)
+
+        # ---- paint ----
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        frame = np.zeros((H, W, 3), dtype=np.float32)
+        frame[..., 0] = 38 + 26 * g
+        frame[..., 1] = 32 + 20 * g
+        frame[..., 2] = 44 + 18 * g
+        frame += self.trail
+        img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+
+        # Dust motes in the room light.
+        for m in self.motes:
+            mx = (m["x"] + 12 * math.sin(t * 0.4 + m["ph"])) % W
+            my = (m["y"] + 8 * math.sin(t * 0.3 + m["ph"] * 2)) % H
+            a = int(40 + 30 * math.sin(t + m["ph"]))
+            d.ellipse([mx - 2, my - 2, mx + 2, my + 2],
+                      fill=(255, 245, 220, max(20, a)))
+
+        # Ruler on the right: ticks + the record line.
+        rx = W - 70
+        d.line([rx, 60, rx, self.table_y + self.shift],
+               fill=(180, 170, 150, 200), width=3)
+        for yy in range(int(self.table_y + self.shift), 60, -60):
+            d.line([rx - 12, yy, rx, yy], fill=(180, 170, 150, 200),
+                   width=2)
+        if self.best_h > 0:
+            ry = self.table_y + self.shift - self.best_h
+            for xx in range(int(rx) - 50, int(rx), 12):
+                d.line([xx, ry, xx + 6, ry],
+                       fill=(250, 200, 90, 230), width=3)
+
+        # Table: top + legs + soft contact shadow (nothing floats).
+        ty = self.table_y + self.shift
+        d.ellipse([self.table_cx - self.table_w * 0.7, ty + 26,
+                   self.table_cx + self.table_w * 0.7, ty + 48],
+                  fill=(14, 12, 16, 120))
+        d.rectangle([self.table_cx - self.table_w / 2, ty,
+                     self.table_cx + self.table_w / 2, ty + 18],
+                    fill=(120, 86, 56, 255))
+        for sgn in (-1, 1):
+            lx = self.table_cx + sgn * self.table_w * 0.4
+            d.rectangle([lx - 9, ty + 18, lx + 9, min(H, ty + 120)],
+                        fill=(96, 68, 44, 255))
+
+        # The tower (with its accumulated lean wobble).
+        y = ty
+        wob = self.lean * math.sin(t * 1.1) * 0.4
+        for n_, b in enumerate(self.stack):
+            y -= b["h"]
+            bx = b["x"] + wob * (n_ + 1)
+            squash = 1.0
+            if t - b["settle"] < 0.25:
+                u = (t - b["settle"]) / 0.25
+                squash = 1.0 - 0.18 * (1 - u) * math.cos(u * 9)
+            bw_, bh_ = b["w"], b["h"] * squash
+            d.rounded_rectangle(
+                [bx - bw_ / 2, y + b["h"] - bh_,
+                 bx + bw_ / 2, y + b["h"]],
+                radius=10, fill=(*b["color"], 255),
+                outline=(20, 18, 24, 255), width=3)
+            d.line([bx - bw_ / 2 + 8, y + b["h"] - bh_ + 8,
+                    bx + bw_ / 2 - 8, y + b["h"] - bh_ + 8],
+                   fill=(255, 255, 255, 70), width=3)
+
+        # Falling block + drop shadow on the landing zone.
+        if self.falling is not None:
+            f = self.falling
+            top_y = self._top_y()
+            sh_w = f["w"] * (0.4 + 0.6 * min(1, (top_y - f["y"]) / 600))
+            d.ellipse([f["x"] - sh_w / 2, top_y - 6,
+                       f["x"] + sh_w / 2, top_y + 6],
+                      fill=(10, 10, 14, 90))
+            d.rounded_rectangle(
+                [f["x"] - f["w"] / 2, f["y"] - f["h"] / 2,
+                 f["x"] + f["w"] / 2, f["y"] + f["h"] / 2],
+                radius=10, fill=(*f["color"], 255),
+                outline=(20, 18, 24, 255), width=3)
+
+        # Scatter bodies (rotated rects via polygon).
+        for s in self.scatter:
+            c, sn = math.cos(s["rot"]), math.sin(s["rot"])
+            hw, hh = s["w"] / 2, s["h"] / 2
+            pts = [(s["x"] + dx_ * c - dy_ * sn,
+                    s["y"] + dx_ * sn + dy_ * c)
+                   for dx_, dy_ in ((-hw, -hh), (hw, -hh),
+                                    (hw, hh), (-hw, hh))]
+            d.polygon(pts, fill=(*s["color"], 255),
+                      outline=(20, 18, 24, 255))
+
+        # Confetti.
+        for cf in self.confetti:
+            cf["vy"] += 500 * dt
+            cf["x"] += cf["vx"] * dt
+            cf["y"] += cf["vy"] * dt
+            cf["life"] -= dt
+            if cf["life"] > 0:
+                a = int(255 * min(1, cf["life"] * 2))
+                d.rectangle([cf["x"] - 4, cf["y"] - 2,
+                             cf["x"] + 4, cf["y"] + 2],
+                            fill=(*cf["col"], a))
+        self.confetti = [cf for cf in self.confetti if cf["life"] > 0]
+
+        out = np.asarray(img, dtype=np.uint8)
+        return self.lag(out, ts)
+
+
+# ---------- FIGHT: speed bag on real rope physics ----------
+# (UFC-on-the-White-House-lawn-class stories: fights, bouts, combat
+# sports.)
+
+class _Fight(_Renderer):
+    """A gym speed bag hangs from a platform on a verlet rope chain.
+    Gloves jab in from alternating sides on a metronome that rides
+    the sim clock. The rope solver has a fixed iteration budget — as
+    the timestep grows, the constraints stop converging, the chain
+    stretches like taffy, and the bag whips into orbit around its
+    mount. Stretch past 2.6x rest length or bag velocity past
+    plausibility = the solver has lost; hang; fresh gym.
+
+    Charter audit: topic-matched (combat) / escalates / real break
+    (constraint non-convergence is THE textbook soft-body failure) /
+    emergent reset / interaction (glove->bag impulse, rope->board) /
+    board bracket-mounted to the ceiling, lamp hangs, mat on floor
+    (nothing floats) / foreground show / variety (alternating sides,
+    jab heights, regen palettes) / flavor (impact flash, speed
+    lines, dust in the lamp cone, chalk tally, bag squash) /
+    smooth (eased glove throws, verlet motion)."""
+
+    GROWTH = 1.17
+    GRAV = 1900.0
+    SOLVER_ITERS = 6          # the fixed budget that eventually loses
+    BLOWUP_V = 7000.0
+    REST_LINK = 26.0
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self.reset_t = 0.0
+        self.failed_at = None
+        self._regen()
+
+    def _regen(self):
+        rng = self.rng
+        self.trail[:] = 0
+        self.cx = W / 2 + rng.uniform(-80, 80)
+        self.board_y = 150.0
+        n_links = 5
+        self.pts = [{"x": self.cx,
+                     "y": self.board_y + 12 + i_ * self.REST_LINK,
+                     "px": self.cx,
+                     "py": self.board_y + 12 + i_ * self.REST_LINK}
+                    for i_ in range(n_links + 1)]
+        self.bag_r = rng.uniform(40, 50)
+        self.bag_col = rng.choice([(165, 42, 48), (40, 60, 130),
+                                   (30, 30, 34)])
+        self.next_punch = 0.8
+        self.glove_side = 1
+        self.glove_anim = None      # (t0, side, target_y)
+        self.hits = 0
+        self.flashes: list[dict] = []
+        self.motes = [{"x": rng.uniform(self.cx - 240, self.cx + 240),
+                       "y": rng.uniform(60, 700),
+                       "ph": rng.uniform(0, math.tau)} for _ in range(12)]
+        self.squash_t = -9.0
+        self.poster_x = rng.choice([90, W - 230])
+
+    def _bag_xy(self):
+        return self.pts[-1]["x"], self.pts[-1]["y"] + self.bag_r * 0.7
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        held = self.handle_fail(self._last_frame
+                                if self._last_frame is not None
+                                else np.zeros((H, W, 3), np.uint8), t)
+        if held is not None:
+            return held
+
+        ts = self.sim_scale(t)
+        k = self.kk(ts)
+        dt = 1 / FPS
+        sim_dt = dt * ts
+
+        # Metronome: jab period shrinks as the clock compounds.
+        period = 0.85 / max(1.0, ts * 0.8)
+        if t >= self.next_punch:
+            self.next_punch = t + period
+            self.glove_side *= -1
+            self.glove_anim = (t, self.glove_side,
+                               rng.uniform(-14, 14))
+
+        # Glove animation + impulse at the strike frame.
+        glove = None
+        if self.glove_anim is not None:
+            g0, side, jab_off = self.glove_anim
+            u = (t - g0) / 0.22
+            if u >= 1.2:
+                self.glove_anim = None
+            else:
+                bx, by = self.pts[-1]["x"], self.pts[-1]["y"]
+                reach = _ease(min(1.0, u if u <= 0.5 else 1 - (u - 0.5)))
+                gx = bx + side * (150 - 130 * reach)
+                gy = by + jab_off
+                glove = (gx, gy, side)
+                if 0.45 < u < 0.62 and abs(gx - bx) < 60:
+                    p = self.pts[-1]
+                    p["px"] = p["x"] + side * 26 * min(ts, 5)
+                    p["py"] = p["y"] + rng.uniform(-4, 4)
+                    self.hits += 1
+                    self.flashes.append({"x": bx, "y": gy,
+                                         "side": side, "life": 0.12})
+                    self.squash_t = t
+
+        # ---- verlet rope on the accelerated clock ----
+        for p in self.pts[1:]:
+            vx = (p["x"] - p["px"])
+            vy = (p["y"] - p["py"]) + self.GRAV * sim_dt * sim_dt
+            p["px"], p["py"] = p["x"], p["y"]
+            p["x"] += vx
+            p["y"] += vy
+        # Fixed-budget constraint relaxation: converges at small dt,
+        # falls behind as displacements grow — the honest failure.
+        for _ in range(self.SOLVER_ITERS):
+            self.pts[0]["x"], self.pts[0]["y"] = self.cx, self.board_y + 12
+            for a, b in zip(self.pts, self.pts[1:]):
+                dx = b["x"] - a["x"]
+                dy = b["y"] - a["y"]
+                dist = math.hypot(dx, dy) or 1e-6
+                diff = (dist - self.REST_LINK) / dist
+                if a is self.pts[0]:
+                    b["x"] -= dx * diff
+                    b["y"] -= dy * diff
+                else:
+                    a["x"] += dx * diff * 0.5
+                    a["y"] += dy * diff * 0.5
+                    b["x"] -= dx * diff * 0.5
+                    b["y"] -= dy * diff * 0.5
+
+        # Solver health check: total stretch + bag speed.
+        total = sum(math.hypot(b["x"] - a["x"], b["y"] - a["y"])
+                    for a, b in zip(self.pts, self.pts[1:]))
+        rest_total = self.REST_LINK * (len(self.pts) - 1)
+        bag = self.pts[-1]
+        bag_v = math.hypot(bag["x"] - bag["px"],
+                           bag["y"] - bag["py"]) / max(sim_dt, 1e-6)
+        if total > rest_total * 2.6 or bag_v > self.BLOWUP_V:
+            self.declare_fail(t)
+
+        bx, by = self._bag_xy()
+        self.trail *= 0.90
+        _stamp_glow(self.trail, bx, by, 30 + 14 * k,
+                    (120 + 100 * k, 60, 50), 0.4 + 0.7 * k)
+
+        # ---- paint ----
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        frame = np.zeros((H, W, 3), dtype=np.float32)
+        frame[..., 0] = 30 + 14 * g
+        frame[..., 1] = 24 + 10 * g
+        frame[..., 2] = 26 + 10 * g
+        frame += self.trail
+        img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+
+        # Hanging lamp + light cone + dust (planted to the ceiling).
+        lamp_x = self.cx + 14 * math.sin(t * (0.3 + k))
+        d.line([self.cx, 0, lamp_x, 54], fill=(60, 56, 52, 255), width=4)
+        d.polygon([(lamp_x - 26, 54), (lamp_x + 26, 54), (lamp_x, 78)],
+                  fill=(70, 64, 58, 255))
+        d.polygon([(lamp_x - 20, 70), (lamp_x + 20, 70),
+                   (lamp_x + 190, H), (lamp_x - 190, H)],
+                  fill=(255, 240, 200, 16))
+        for m in self.motes:
+            mx = m["x"] + 10 * math.sin(t * 0.5 + m["ph"])
+            my = (m["y"] + t * 12) % (H - 80) + 80
+            d.ellipse([mx - 2, my - 2, mx + 2, my + 2],
+                      fill=(255, 246, 220, 50))
+
+        # Wall poster + chalk hit-tally (variety + flavor).
+        px_ = self.poster_x
+        d.rectangle([px_, 200, px_ + 140, 380],
+                    fill=(52, 44, 46, 255), outline=(90, 80, 76, 255),
+                    width=3)
+        d.polygon([(px_ + 70, 240), (px_ + 86, 290), (px_ + 54, 290)],
+                  fill=(200, 170, 90, 255))
+        d.ellipse([px_ + 46, 290, px_ + 94, 338],
+                  outline=(200, 170, 90, 255), width=4)
+        tally = min(self.hits, 40)
+        for n_ in range(tally):
+            gx0 = 70 + (n_ % 20) * 12
+            gy0 = 760 + (n_ // 20) * 26
+            d.line([gx0, gy0, gx0 + (4 if n_ % 5 == 4 else 0) - 2,
+                    gy0 + 18], fill=(220, 215, 205, 160), width=3)
+
+        # Floor mat.
+        d.rectangle([0, H - 56, W, H], fill=(36, 32, 38, 255))
+        d.line([0, H - 56, W, H - 56], fill=(70, 62, 70, 255), width=3)
+
+        # Mounting board with bracket to the ceiling (nothing floats).
+        d.rectangle([self.cx - 130, self.board_y - 26,
+                     self.cx + 130, self.board_y + 12],
+                    fill=(110, 78, 50, 255),
+                    outline=(70, 50, 34, 255), width=3)
+        d.line([self.cx - 90, 0, self.cx - 90, self.board_y - 26],
+               fill=(80, 74, 70, 255), width=8)
+        d.line([self.cx + 90, 0, self.cx + 90, self.board_y - 26],
+               fill=(80, 74, 70, 255), width=8)
+        d.ellipse([self.cx - 10, self.board_y + 2,
+                   self.cx + 10, self.board_y + 22],
+                  fill=(150, 150, 158, 255))
+
+        # The rope chain (links drawn as small rings).
+        for a, b in zip(self.pts, self.pts[1:]):
+            d.line([a["x"], a["y"], b["x"], b["y"]],
+                   fill=(140, 140, 148, 255), width=4)
+        for p in self.pts[1:-1]:
+            d.ellipse([p["x"] - 4, p["y"] - 4, p["x"] + 4, p["y"] + 4],
+                      outline=(170, 170, 180, 255), width=2)
+
+        # The bag: teardrop with seam + highlight; squash on hit.
+        sq = 1.0
+        if t - self.squash_t < 0.16:
+            u = (t - self.squash_t) / 0.16
+            sq = 1.0 - 0.22 * (1 - u)
+        br_w = self.bag_r * (2 - sq)
+        br_h = self.bag_r * 1.35 * sq
+        top = self.pts[-1]
+        d.polygon([(top["x"], top["y"] - 6),
+                   (bx - br_w * 0.45, by - br_h * 0.4),
+                   (bx + br_w * 0.45, by - br_h * 0.4)],
+                  fill=(*self.bag_col, 255))
+        d.ellipse([bx - br_w, by - br_h, bx + br_w, by + br_h],
+                  fill=(*self.bag_col, 255))
+        d.line([bx, by - br_h + 6, bx, by + br_h - 6],
+               fill=tuple(int(c * 0.7) for c in self.bag_col) + (255,),
+               width=3)
+        d.ellipse([bx - br_w * 0.55, by - br_h * 0.6,
+                   bx - br_w * 0.15, by - br_h * 0.2],
+                  fill=(255, 255, 255, 60))
+
+        # The glove (rounded fist + cuff) + impact flash/speed lines.
+        if glove is not None:
+            gx, gy, side = glove
+            d.ellipse([gx - 34, gy - 30, gx + 34, gy + 30],
+                      fill=(190, 40, 40, 255),
+                      outline=(120, 22, 22, 255), width=3)
+            cuff_a = gx + side * 20
+            cuff_b = gx + side * 74
+            d.rectangle([min(cuff_a, cuff_b), gy - 20,
+                         max(cuff_a, cuff_b), gy + 20],
+                        fill=(160, 30, 30, 255))
+            d.ellipse([gx - 18, gy - 14, gx + 6, gy + 8],
+                      fill=(225, 80, 70, 255))
+        for fl in self.flashes:
+            fl["life"] -= dt
+            if fl["life"] > 0:
+                a = int(230 * fl["life"] / 0.12)
+                d.ellipse([fl["x"] - 26, fl["y"] - 26,
+                           fl["x"] + 26, fl["y"] + 26],
+                          outline=(255, 240, 180, a), width=5)
+                for n_ in range(3):
+                    ly = fl["y"] - 14 + n_ * 14
+                    d.line([fl["x"] - fl["side"] * 30, ly,
+                            fl["x"] - fl["side"] * (60 + 16 * n_), ly],
+                           fill=(255, 245, 210, a), width=3)
+        self.flashes = [fl for fl in self.flashes if fl["life"] > 0]
+
+        out = np.asarray(img, dtype=np.uint8)
+        return self.lag(out, ts)
 
 _THEME_CLASSES = {
     "space": _Space,
@@ -1811,6 +2413,8 @@ _THEME_CLASSES = {
     "quake": _Quake,
     "volcano": _Volcano,
     "runner": _Runner,
+    "stacker": _Stacker,
+    "fight": _Fight,
 }
 
 
