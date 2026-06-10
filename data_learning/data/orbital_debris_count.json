@@ -1,0 +1,24 @@
+{
+  "key": "orbital_debris_count",
+  "title": "Tracked objects in Earth orbit (debris + active)",
+  "unit": "index",
+  "geography": "Low Earth Orbit",
+  "time_coverage": "2000-2025 (selected years)",
+  "source": {
+    "name": "Space Surveillance Network debris catalog",
+    "publisher": "NASA Orbital Debris Program Office",
+    "url": "https://www.nasa.gov/headquarters/library/find/databases/space-debris/",
+    "officiality": "official",
+    "access_date": "2026-06-10"
+  },
+  "notes": "Illustrative; includes objects larger than 10 cm. Actual debris field including sub-10 cm fragments is estimated >1 million.",
+  "points": [
+    {"label": "2000", "value": 9000, "period": "2000"},
+    {"label": "2005", "value": 11000, "period": "2005"},
+    {"label": "2010", "value": 16000, "period": "2010"},
+    {"label": "2015", "value": 18000, "period": "2015"},
+    {"label": "2020", "value": 22000, "period": "2020"},
+    {"label": "2023", "value": 35000, "period": "2023"},
+    {"label": "2025", "value": 44000, "period": "2025"}
+  ]
+}

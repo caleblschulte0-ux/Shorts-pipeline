@@ -1,0 +1,105 @@
+{
+  "version": 8,
+  "slug": "fireworks-truck-i75-tennessee",
+  "title": "A Fireworks Truck Exploded on Tennessee's I-75. No One Was Hurt.",
+  "hashtags": ["fireworks", "tennessee", "i75", "hamilton", "ooltewah", "fireworksexplosion", "roadfire", "freakevent", "weirdnews", "viral", "trucksafety", "hazmat", "highwayfire", "accidentvideo"],
+  "script": "Fireworks on the highway! On June 7, a pickup truck hauling a trailer full of fireworks caught fire on Interstate 75 North in Hamilton County, Tennessee, near the Ooltewah exit. Within minutes, the entire load detonated. Fireworks shot hundreds of feet into the air directly over the highway as cars backed up for miles. Both northbound and southbound lanes of I-75 shut down for hours. Miraculously, no one was injured. The Tennessee Highway Patrol cited the driver for failing to have a required hazardous materials endorsement, missing hazmat placards, and lacking proper documentation. Federal rules require special licensing to haul that kind of cargo. Video captured by drivers went viral, showing a full Fourth-of-July-style show over the freeway at rush hour. Could Tennessee's hazmat enforcement prevent the next one?",
+  "shots": [
+    {
+      "phrase": "Fireworks on the highway",
+      "query": "fireworks explosion highway road sky night colorful burst"
+    },
+    {
+      "phrase": "pickup truck hauling a trailer full of fireworks",
+      "query": "pickup truck trailer hauling cargo highway rural road"
+    },
+    {
+      "phrase": "Interstate 75 North in Hamilton County, Tennessee",
+      "query": "Interstate 75 highway sign Tennessee south green roadway"
+    },
+    {
+      "phrase": "near the Ooltewah exit",
+      "query": "Tennessee highway rural exit ramp roadway sign overpass"
+    },
+    {
+      "phrase": "Within minutes, the entire load detonated",
+      "query": "fireworks exploding detonation fire highway road burning"
+    },
+    {
+      "phrase": "Fireworks shot hundreds of feet into the air",
+      "query": "fireworks shooting sky exploding air hundreds feet above road"
+    },
+    {
+      "phrase": "cars backed up for miles",
+      "query": "traffic jam highway standstill cars backed up miles aerial view"
+    },
+    {
+      "phrase": "Both northbound and southbound lanes of I-75 shut down for hours",
+      "query": "highway closed shutdown police cones blocked interstate accident scene"
+    },
+    {
+      "phrase": "Miraculously, no one was injured",
+      "query": "empty road aftermath no casualties emergency aftermath cleared"
+    },
+    {
+      "phrase": "Tennessee Highway Patrol cited the driver",
+      "query": "Tennessee Highway Patrol officer citation ticket stop violation"
+    },
+    {
+      "phrase": "Federal rules require special licensing to haul that kind of cargo",
+      "query": "federal hazardous materials DOT regulations truck driver licensing"
+    },
+    {
+      "phrase": "Video captured by drivers went viral",
+      "query": "dashcam video capture highway fireworks explosion viral phone screen"
+    },
+    {
+      "phrase": "Fourth-of-July-style show over the freeway at rush hour",
+      "query": "colorful fireworks sky exploding above road vehicles dashcam angle"
+    },
+    {
+      "phrase": "Could Tennessee's hazmat enforcement prevent the next one",
+      "query": "hazmat inspection enforcement safety sign truck regulation highway"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Fireworks on the highway",
+      "text": "FIREWORKS ON I-75!",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "the entire load detonated",
+      "text": "ENTIRE LOAD BLEW!",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "hundreds of feet into the air",
+      "text": "HUNDREDS OF FEET HIGH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "I-75 shut down for hours",
+      "text": "HIGHWAY CLOSED HOURS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "no one was injured",
+      "text": "NOBODY HURT",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "hazardous materials endorsement, missing hazmat placards",
+      "text": "NO HAZMAT LICENSE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Fourth-of-July-style show",
+      "text": "4TH OF JULY ON I-75",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto",
+  "gameplay": "subway"
+}
