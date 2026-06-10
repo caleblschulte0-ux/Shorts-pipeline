@@ -359,27 +359,37 @@ def p_tavily(entity: str, angle: str) -> list[Candidate]:
         "max_results": 10,
         "search_depth": "basic",
     }).encode()
-    try:
-        req = urllib.request.Request(
-            "https://api.tavily.com/search",
-            data=body,
-            headers={"Content-Type": "application/json",
-                     "User-Agent": _UA_GENERIC},
-            method="POST")
-        with urllib.request.urlopen(req, timeout=_TIMEOUT) as r:
-            data = json.load(r)
-            _dbg("tavily", f"200 ({len(data.get('images') or [])} imgs, "
-                 f"{len(data.get('results') or [])} results)")
-    except urllib.error.HTTPError as e:
-        body = ""
+    # Tavily's free tier read latency is bursty — first call sometimes
+    # takes ~25 s. Generous timeout + one retry, since Tavily is our
+    # main og:image surface and silent here means stale YouTube wins.
+    data = None
+    last_err = ""
+    for attempt in range(2):
         try:
-            body = e.read()[:400].decode("utf-8", errors="ignore")
-        except Exception:  # noqa: BLE001
-            pass
-        _dbg("tavily", f"HTTP {e.code} | body: {body[:200]}")
-        return []
-    except Exception as e:  # noqa: BLE001
-        _dbg("tavily", f"err {type(e).__name__}: {str(e)[:200]}")
+            req = urllib.request.Request(
+                "https://api.tavily.com/search",
+                data=body,
+                headers={"Content-Type": "application/json",
+                         "User-Agent": _UA_GENERIC},
+                method="POST")
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.load(r)
+                _dbg("tavily", f"200 ({len(data.get('images') or [])} "
+                     f"imgs, {len(data.get('results') or [])} results) "
+                     f"attempt={attempt + 1}")
+                break
+        except urllib.error.HTTPError as e:
+            body_txt = ""
+            try:
+                body_txt = e.read()[:400].decode("utf-8", errors="ignore")
+            except Exception:  # noqa: BLE001
+                pass
+            _dbg("tavily", f"HTTP {e.code} | body: {body_txt[:200]}")
+            return []  # auth/quota issues won't fix with retry
+        except Exception as e:  # noqa: BLE001
+            last_err = f"{type(e).__name__}: {str(e)[:160]}"
+            _dbg("tavily", f"attempt {attempt + 1} err {last_err}")
+    if data is None:
         return []
     out = []
     # Tavily returns both `images` (a flat list) and `results` (with
@@ -652,9 +662,14 @@ def p_vimeo(entity: str, angle: str) -> list[Candidate]:
 
 def p_youtube(entity: str, angle: str) -> list[Candidate]:
     """YouTube search thumbnails — frequently the news event hero for
-    contemporary stories. Uses the existing YOUTUBE_API_KEY."""
+    contemporary stories. Uses the existing YOUTUBE_API_KEY.
+
+    YouTube's free tier is 10k quota units/day but EACH search costs
+    100 units, so we get ~100 searches/day TOTAL — and topic_video
+    burns most of that. Reserve ~5 searches/day for the funnel so we
+    don't 429 the rest of the pipeline."""
     key = os.environ.get("YOUTUBE_API_KEY")
-    if not key or not _quota_check("youtube", daily=8000):
+    if not key or not _quota_check("youtube", daily=5):
         return []
     q = urllib.parse.quote(_build_query(entity, angle))
     url = ("https://www.googleapis.com/youtube/v3/search"
@@ -683,20 +698,33 @@ def p_youtube(entity: str, angle: str) -> list[Candidate]:
 
 
 # Provider registry — order is only for display; fan-out is parallel.
+# Reddit / Bluesky / DDG / Mastodon all reject GitHub Actions IP
+# ranges: Reddit + Bluesky return 403 anti-bot pages, DDG returns a
+# Cloudflare challenge instead of the JSON token, Mastodon's
+# unauth search returns empty for everything. Including them in the
+# fan-out just burns ~3 s/run on dead requests. They are gated behind
+# MEDIA_FUNNEL_SOCIAL=1 so a future authed integration can flip them
+# back on without code changes.
+_SOCIAL_ENABLED = os.environ.get("MEDIA_FUNNEL_SOCIAL", "").lower() in {
+    "1", "true"}
+
 _PROVIDERS: list[tuple[str, Callable[[str, str], list[Candidate]]]] = [
     ("newsapi", p_newsapi),
     ("gnews", p_gnews),
     ("brave", p_brave),
     ("tavily", p_tavily),
     ("newsdata", p_newsdata),
-    ("reddit", p_reddit),
-    ("mastodon", p_mastodon),
-    ("bluesky", p_bluesky),
     ("imgur", p_imgur),
-    ("ddg", p_ddg),
     ("vimeo", p_vimeo),
     ("youtube", p_youtube),
 ]
+if _SOCIAL_ENABLED:
+    _PROVIDERS.extend([
+        ("reddit", p_reddit),
+        ("mastodon", p_mastodon),
+        ("bluesky", p_bluesky),
+        ("ddg", p_ddg),
+    ])
 
 
 # ---------- orchestrator ----------
@@ -770,17 +798,23 @@ def _prefilter(candidates: list[Candidate],
     Paisley" query). Candidates with no article_title metadata are
     kept since there's nothing to test against."""
     ent_norm = entity.lower().strip()
-    # Multi-word entities: require all words present (handles middle
-    # names / "Hunter the kangaroo" → "hunter" + "kangaroo").
-    ent_words = [w for w in re.findall(r"[a-z']+", ent_norm)
-                 if w not in {"the", "a", "an", "of"}]
+    # For multi-word entities we only require the LAST distinctive word
+    # (typically a surname) to appear in the article title. Demanding
+    # every token misses real headlines that say "Musk announces..." or
+    # "Swift drops album" — surname-only catches Brad Pitt vs Brad
+    # Paisley disambiguation while keeping recall high.
+    _stop = {"the", "a", "an", "of", "to", "and", "or", "in", "for",
+             "on", "with", "is", "as", "by", "at"}
+    ent_tokens = [w for w in re.findall(r"[a-z']+", ent_norm)
+                  if w not in _stop]
+    required_word = ent_tokens[-1] if ent_tokens else ""
     out: list[Candidate] = []
     for c in candidates:
         if _JUNK_URL.search(c.url):
             continue
-        if ent_words and c.article_title:
+        if required_word and c.article_title:
             title_l = c.article_title.lower()
-            if not all(w in title_l for w in ent_words):
+            if required_word not in title_l:
                 continue
         # Base score per source — trusts news-search APIs more than
         # social, social more than image hosts, image hosts more than
