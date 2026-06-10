@@ -208,9 +208,11 @@ def _build_soundtrack(narration: Path, windows, events, total: float,
     inputs = ["-i", str(narration), "-i", str(music)]
     fc = [
         # Music sits low and ducks further whenever the voice speaks.
-        f"[1:a]volume=0.45,atrim=0:{total:.2f}[mraw]",
-        "[mraw][0:a]sidechaincompress=threshold=0.02:ratio=8:"
-        "attack=60:release=500[duck]",
+        # Louder, more present bed; the gentler duck keeps it audible under
+        # the voice instead of crushing it to nothing.
+        f"[1:a]volume=0.85,atrim=0:{total:.2f}[mraw]",
+        "[mraw][0:a]sidechaincompress=threshold=0.06:ratio=4:"
+        "attack=80:release=400[duck]",
     ]
     labels = []
     for k, (t, f, vol) in enumerate(plays):
