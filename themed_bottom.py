@@ -103,54 +103,30 @@ def _stamp_glow(buf: np.ndarray, x: float, y: float, radius: float,
         buf[y0c:y1c, x0c:x1c, c] += falloff * color[c]
 
 
-def _glitch(frame: np.ndarray, rng: random.Random,
-            severity: float) -> np.ndarray:
-    """Datamosh-style break: horizontal band displacement + RGB channel
-    split + noise blocks. severity 0..1 scales everything. Operates on
-    a copy — callers keep their clean frame for the post-reset cut."""
-    out = frame.copy()
-    # Horizontal slice displacement.
-    n_bands = int(4 + 14 * severity)
-    for _ in range(n_bands):
-        y0 = rng.randrange(0, H - 8)
-        bh = rng.randrange(6, 70)
-        shift = rng.randrange(-int(180 * severity) - 8,
-                              int(180 * severity) + 8)
-        out[y0:y0 + bh] = np.roll(out[y0:y0 + bh], shift, axis=1)
-    # Chromatic split: red left, blue right.
-    px = int(3 + 14 * severity)
-    out[..., 0] = np.roll(out[..., 0], -px, axis=1)
-    out[..., 2] = np.roll(out[..., 2], px, axis=1)
-    # Noise blocks.
-    for _ in range(int(2 + 8 * severity)):
-        y0 = rng.randrange(0, H - 40)
-        x0 = rng.randrange(0, W - 120)
-        bh, bw = rng.randrange(8, 36), rng.randrange(60, 320)
-        out[y0:y0 + bh, x0:x0 + bw] = rng.randrange(0, 255)
-    return out
-
-
 class _Renderer:
     """Pipes raw RGB frames into ffmpeg. Subclass per theme and
     implement draw(t, frame_idx) -> np.ndarray (H, W, 3) uint8.
 
-    Escalation cycle (the retention arc): themes that set
-    ``CYCLE`` > 0 get a sawtooth intensity ramp. Within each cycle the
-    scene starts calm, accelerates smoothly toward chaos, "breaks"
-    in a ~0.5s glitch burst at the peak, then hard-cuts back to calm
-    and starts over. Subclasses read ``self.intensity(t)`` (0..1
-    eased ramp) and call ``self.maybe_glitch(frame, t)`` as the last
-    step of draw(); both no-op when CYCLE == 0. ``cycle_index(t)``
-    changes after every glitch so themes can regenerate their world
-    (fresh constellation / skyline / terrain) on each reset."""
+    Escalation cycle (the retention arc): themes that set ``CYCLE`` > 0
+    get a sawtooth intensity ramp. The scene starts calm and
+    accelerates until the "engine" visibly can't keep up — NOT a
+    scheduled VFX glitch, but emergent overload symptoms that scale
+    with load: dropped/held frames (lag stutter), then a hard hang on
+    the final overwhelmed frame, then a clean reboot into a freshly
+    regenerated world. Subclasses read ``self.intensity(t)`` and call
+    ``self.overload(frame, t)`` as the last step of draw().
+    ``cycle_index(t)`` changes after every reboot so themes regenerate
+    their world (fresh constellation / skyline / terrain)."""
 
     CYCLE = 0.0           # seconds per escalation cycle; 0 = steady
-    GLITCH_LEN = 0.55     # seconds of break at the peak
+    HANG_LEN = 0.45       # seconds the engine freezes before reboot
 
     def __init__(self, seed: int | None = None):
         self.rng = random.Random(seed)
         # Decaying additive trail layer shared by most themes.
         self.trail = np.zeros((H, W, 3), dtype=np.float32)
+        self._last_frame: np.ndarray | None = None
+        self._hang_frame: np.ndarray | None = None
 
     # -- escalation helpers -------------------------------------------
     def _phase(self, t: float) -> float:
@@ -160,26 +136,59 @@ class _Renderer:
         return int(t // self.CYCLE) if self.CYCLE else 0
 
     def intensity(self, t: float) -> float:
-        """0..1 eased ramp across the cycle's pre-glitch span. Quadratic
+        """0..1 eased ramp across the cycle's pre-hang span. Quadratic
         on top of smoothstep so the last seconds feel like a runaway."""
         if not self.CYCLE:
             return 0.0
-        ramp_span = self.CYCLE - self.GLITCH_LEN
+        ramp_span = self.CYCLE - self.HANG_LEN
         u = min(1.0, self._phase(t) / ramp_span)
         e = _ease(u)
         return e * e * 0.4 + e * 0.6  # gentle start, steep finish
 
-    def in_glitch(self, t: float) -> bool:
-        return bool(self.CYCLE) and self._phase(t) >= self.CYCLE - self.GLITCH_LEN
+    def in_hang(self, t: float) -> bool:
+        return bool(self.CYCLE) and self._phase(t) >= self.CYCLE - self.HANG_LEN
 
-    def maybe_glitch(self, frame: np.ndarray, t: float) -> np.ndarray:
-        if not self.in_glitch(t):
+    def overload(self, frame: np.ndarray, t: float) -> np.ndarray:
+        """Simulation-overload symptoms, proportional to load.
+
+        k < 0.82      — clean.
+        0.82..1       — lag: rising chance a frame simply repeats (the
+                        sim 'missed' a frame), with the occasional thin
+                        scanline tear where the repeat composited
+                        against the new frame mid-write.
+        final HANG    — the engine locks: the last frame freezes and
+                        dims slightly, like a process that stopped
+                        responding, then the cycle reboot cuts in.
+        """
+        if not self.CYCLE:
             return frame
-        # Severity ramps WITHIN the glitch window too — it starts as a
-        # stutter and tears itself apart right before the reset cut.
-        g0 = self.CYCLE - self.GLITCH_LEN
-        sev = (self._phase(t) - g0) / self.GLITCH_LEN
-        return _glitch(frame, self.rng, 0.35 + 0.65 * sev)
+        if self.in_hang(t):
+            if self._hang_frame is None:
+                self._hang_frame = frame.copy()
+            # Dim slowly while hung — "not responding".
+            hung_for = self._phase(t) - (self.CYCLE - self.HANG_LEN)
+            fade = 1.0 - 0.25 * (hung_for / self.HANG_LEN)
+            return (self._hang_frame * fade).astype(np.uint8)
+        self._hang_frame = None
+
+        k = self.intensity(t)
+        out = frame
+        if k > 0.82 and self._last_frame is not None:
+            # Frame-drop probability ramps with load.
+            if self.rng.random() < (k - 0.82) * 3.5:
+                out = self._last_frame
+                # Mid-write tear: 1-2 thin bands of the NEW frame poke
+                # through the held frame, slightly offset.
+                if self.rng.random() < 0.6:
+                    out = out.copy()
+                    for _ in range(self.rng.randint(1, 2)):
+                        y0 = self.rng.randrange(0, H - 24)
+                        bh = self.rng.randrange(6, 24)
+                        shift = self.rng.randrange(-30, 30)
+                        out[y0:y0 + bh] = np.roll(frame[y0:y0 + bh],
+                                                  shift, axis=1)
+        self._last_frame = frame
+        return out
 
     def draw(self, t: float, i: int) -> np.ndarray:  # pragma: no cover
         raise NotImplementedError
@@ -408,12 +417,12 @@ class _Space(_Renderer):
 
         out = np.asarray(img, dtype=np.uint8)
         # Screen shake creeps in near the top of the ramp.
-        if k > 0.6 and not self.in_glitch(t):
+        if k > 0.6 and not self.in_hang(t):
             amp = int(6 * (k - 0.6) / 0.4)
             if amp:
                 out = np.roll(out, rng.randint(-amp, amp), axis=0)
                 out = np.roll(out, rng.randint(-amp, amp), axis=1)
-        return self.maybe_glitch(out, t)
+        return self.overload(out, t)
 
 
 # ---------- PLINKO: the universal satisfying default ----------
@@ -847,44 +856,82 @@ class _Quake(_Renderer):
                     outline=(200, 210, 200, 180), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        if shake_px > 2 and not self.in_glitch(t):
+        if shake_px > 2 and not self.in_hang(t):
             out = np.roll(out, rng.randint(-int(shake_px / 2),
                                            int(shake_px / 2)), axis=0)
-        return self.maybe_glitch(out, t)
+        return self.overload(out, t)
 
-
-# ---------- VOLCANO: smolder to full eruption ----------
+# ---------- VOLCANO: distant eruption raining fireballs ----------
 # (Sakurajima grey-rain-class stories.)
 
 class _Volcano(_Renderer):
-    """A volcano smolders, then builds: lava bombs arc higher and
-    faster, the crater glow swells, ash thickens — full eruption tears
-    the frame, then it resets to a quiet smoking cone."""
+    """A volcano erupts on the horizon while its fireballs rain down
+    HERE, in the foreground — big molten balls that arc in from above,
+    slam into the rocky ground, and BOUNCE, throwing sparks on every
+    impact, cooling from white-hot to dead rock as they tumble off
+    screen. Plinko physics wearing a disaster-movie skin. The eruption
+    ramps until fireballs saturate the frame and the sim gives out."""
 
     CYCLE = 14.0
+    GRAV = 1300.0
 
     def __init__(self, seed=None):
         super().__init__(seed)
         self._cycle_seen = -1
-        self.peak = (W * 0.5, H * 0.42)
-        self.bombs: list[dict] = []
-        self.ash: list[dict] = []
         self._regen()
 
     def _regen(self):
-        self.bombs.clear()
-        self.ash.clear()
+        rng = self.rng
         self.trail[:] = 0
-        rng = self.rng
-        self.peak = (W * rng.uniform(0.4, 0.6), H * rng.uniform(0.38, 0.48))
+        self.balls: list[dict] = []
+        self.sparks: list[dict] = []
+        self.plume: list[dict] = []
+        # Distant volcano position on the horizon.
+        self.vx = W * rng.uniform(0.25, 0.75)
+        self.horizon = H * rng.uniform(0.52, 0.60)
+        self.vh = rng.uniform(150, 210)          # cone height
+        # Rocky foreground terrain: bumpy ground line across the bottom.
+        self.ground_phase = rng.uniform(0, math.tau)
+        # One big foreground boulder the balls can ricochet off.
+        self.boulder = (W * rng.uniform(0.25, 0.75),
+                        rng.uniform(60, 95))      # (x, radius)
 
-    def _spawn_bomb(self, k: float):
+    def _ground_y(self, x: float) -> float:
+        return (H * 0.86
+                + 26 * math.sin(x * 0.006 + self.ground_phase)
+                + 12 * math.sin(x * 0.017 + self.ground_phase * 2))
+
+    def _ground_normal(self, x: float) -> tuple[float, float]:
+        """Unit normal of the terrain at x (points up-ish)."""
+        slope = (26 * 0.006 * math.cos(x * 0.006 + self.ground_phase)
+                 + 12 * 0.017 * math.cos(x * 0.017 + self.ground_phase * 2))
+        nx, ny = -slope, -1.0
+        n = math.hypot(nx, ny)
+        return nx / n, ny / n
+
+    def _spawn_ball(self, k: float):
+        """A fireball lobbed from the distant volcano toward the
+        foreground. Spawn above the frame with inward drift so they
+        feel like incoming artillery, not screen-savers."""
         rng = self.rng
-        px, py = self.peak
-        return {"x": px + rng.uniform(-18, 18), "y": py,
-                "vx": rng.uniform(-260, 260) * (0.5 + k),
-                "vy": -rng.uniform(280, 620) * (0.5 + 0.9 * k),
-                "r": rng.uniform(4, 11), "heat": 1.0}
+        x = rng.uniform(-60, W + 60)
+        r = rng.uniform(12, 26) * (1 + 0.9 * k * rng.random())
+        return {"x": x, "y": -r - rng.uniform(0, 200),
+                "vx": (self.vx - x) * rng.uniform(-0.25, 0.05)
+                      + rng.uniform(-90, 90),
+                "vy": rng.uniform(120, 320) * (1 + 0.8 * k),
+                "r": r, "heat": 1.0, "bounces": 0,
+                "spin": rng.uniform(-7, 7)}
+
+    def _burst(self, x: float, y: float, power: float):
+        rng = self.rng
+        for _ in range(int(7 + 13 * power)):
+            a = rng.uniform(math.pi, math.tau)      # upward half
+            v = rng.uniform(120, 460) * power
+            self.sparks.append({
+                "x": x, "y": y,
+                "vx": math.cos(a) * v, "vy": math.sin(a) * v,
+                "life": rng.uniform(0.3, 0.8)})
 
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
@@ -894,85 +941,169 @@ class _Volcano(_Renderer):
                 self._regen()
         k = self.intensity(t)
         dt = 1 / FPS
-        px, py = self.peak
 
-        # Spawn rates scale hard with intensity.
-        for _ in range(int(1 + 14 * k * k)):
-            if rng.random() < 0.5 + 0.5 * k:
-                self.bombs.append(self._spawn_bomb(k))
-        if rng.random() < 0.3 + 0.6 * k:
-            self.ash.append({"x": px + rng.uniform(-26, 26), "y": py,
-                             "vy": -rng.uniform(35, 90),
-                             "vx": rng.uniform(-20, 50),
-                             "r": rng.uniform(14, 44), "life": 1.0})
+        # Spawn rate ramps from a lone fireball every couple seconds
+        # to a constant barrage.
+        if rng.random() < (0.018 + 0.5 * k * k):
+            self.balls.append(self._spawn_ball(k))
 
-        self.trail *= 0.95
-        # Crater glow breathes with intensity.
-        _stamp_glow(self.trail, px, py + 8, 60 + 90 * k,
-                    (255 * (0.4 + 0.6 * k), 90 * k + 40, 20), 0.5 + 0.9 * k)
+        # Eruption plume puffs at the distant crater.
+        if rng.random() < 0.25 + 0.55 * k:
+            self.plume.append({
+                "x": self.vx + rng.uniform(-12, 12),
+                "y": self.horizon - self.vh,
+                "vy": -rng.uniform(30, 80) * (1 + k),
+                "vx": rng.uniform(-12, 26),
+                "r": rng.uniform(8, 20), "life": 1.0})
 
-        g_ = 900.0
-        for b in self.bombs:
-            b["vy"] += g_ * dt
+        # ---- physics ----
+        self.trail *= 0.92
+        for b in self.balls:
+            b["vy"] += self.GRAV * dt
             b["x"] += b["vx"] * dt
             b["y"] += b["vy"] * dt
-            b["heat"] -= dt * 0.55
-            heat = max(0.0, b["heat"])
-            _stamp_glow(self.trail, b["x"], b["y"], b["r"] * 2.0,
-                        (255 * heat, 140 * heat * heat, 20 * heat ** 3),
-                        0.8)
-        self.bombs = [b for b in self.bombs
-                      if b["y"] < H + 40 and b["heat"] > 0]
+            b["heat"] = max(0.0, b["heat"] - dt * 0.10)
 
-        # Sky: dusk purple, dimming + reddening with k.
+            # Boulder ricochet (circle-circle).
+            bx, br = self.boulder
+            by = self._ground_y(bx) - br * 0.55
+            dx, dy = b["x"] - bx, b["y"] - by
+            dist = math.hypot(dx, dy)
+            min_d = b["r"] + br
+            if 0 < dist < min_d:
+                nx, ny = dx / dist, dy / dist
+                dot = b["vx"] * nx + b["vy"] * ny
+                if dot < 0:
+                    b["vx"] -= 2 * dot * nx
+                    b["vy"] -= 2 * dot * ny
+                    b["vx"] *= 0.65
+                    b["vy"] *= 0.65
+                    b["bounces"] += 1
+                    b["heat"] = max(0.0, b["heat"] - 0.18)
+                    self._burst(b["x"], b["y"], min(1.0, b["r"] / 22))
+                b["x"] = bx + nx * min_d
+                b["y"] = by + ny * min_d
+
+            # Terrain bounce: reflect about the local ground normal.
+            gy = self._ground_y(b["x"])
+            if b["y"] + b["r"] > gy:
+                b["y"] = gy - b["r"]
+                nx, ny = self._ground_normal(b["x"])
+                dot = b["vx"] * nx + b["vy"] * ny
+                if dot < 0:
+                    b["vx"] -= 2 * dot * nx
+                    b["vy"] -= 2 * dot * ny
+                    rest = 0.62 - 0.07 * b["bounces"]
+                    b["vx"] *= rest
+                    b["vy"] *= rest
+                    b["vx"] += rng.uniform(-30, 30)
+                    b["bounces"] += 1
+                    b["heat"] = max(0.0, b["heat"] - 0.22)
+                    self._burst(b["x"], gy, min(1.0, b["r"] / 20)
+                                * (1.2 - 0.25 * b["bounces"]))
+            # Molten glow trail while still hot.
+            if b["heat"] > 0.25:
+                _stamp_glow(self.trail, b["x"], b["y"], b["r"] * 1.9,
+                            (255 * b["heat"], 130 * b["heat"] ** 2, 18),
+                            0.65)
+        # Retire dead rocks that have rolled off / settled cold.
+        self.balls = [b for b in self.balls
+                      if b["x"] > -120 and b["x"] < W + 120
+                      and not (b["heat"] <= 0.05 and abs(b["vy"]) < 30
+                               and b["bounces"] >= 2)]
+
+        for s in self.sparks:
+            s["vy"] += self.GRAV * 0.6 * dt
+            s["x"] += s["vx"] * dt
+            s["y"] += s["vy"] * dt
+            s["life"] -= dt
+        self.sparks = [s for s in self.sparks if s["life"] > 0]
+
+        # ---- paint ----
+        # Dusk sky; horizon glow warms with intensity.
         g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
         frame = np.zeros((H, W, 3), dtype=np.float32)
-        frame[..., 0] = 30 + 26 * g + 50 * k * (1 - g)
-        frame[..., 1] = 18 + 18 * g
-        frame[..., 2] = 40 + 28 * g - 16 * k * g
+        frame[..., 0] = 26 + 46 * g + 60 * k * g
+        frame[..., 1] = 20 + 26 * g + 8 * k * g
+        frame[..., 2] = 44 + 30 * g - 10 * k * g
         frame += self.trail
 
         img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        # Ash puffs (behind the cone).
-        for a in self.ash:
-            a["y"] += a["vy"] * dt
-            a["x"] += a["vx"] * dt
-            a["r"] += 14 * dt
-            a["life"] -= dt * 0.28
-            if a["life"] > 0:
-                shade = int(46 + 30 * a["life"])
-                d.ellipse([a["x"] - a["r"], a["y"] - a["r"],
-                           a["x"] + a["r"], a["y"] + a["r"]],
-                          fill=(shade, shade - 4, shade - 6,
-                                int(150 * a["life"])))
-        self.ash = [a for a in self.ash if a["life"] > 0]
+        # Plume smoke (behind the cone, drifting up).
+        for p in self.plume:
+            p["y"] += p["vy"] * dt
+            p["x"] += p["vx"] * dt
+            p["r"] += 16 * dt
+            p["life"] -= dt * 0.30
+            if p["life"] > 0:
+                sh = int(40 + 26 * p["life"])
+                d.ellipse([p["x"] - p["r"], p["y"] - p["r"],
+                           p["x"] + p["r"], p["y"] + p["r"]],
+                          fill=(sh, sh - 5, sh - 6, int(160 * p["life"])))
+        self.plume = [p for p in self.plume if p["life"] > 0]
 
-        # The cone.
-        d.polygon([(px, py - 6), (px - W * 0.42, H + 10),
-                   (px + W * 0.42, H + 10)], fill=(24, 18, 22, 255))
-        d.polygon([(px - 26, py), (px + 26, py),
-                   (px + 14, py + 26), (px - 14, py + 26)],
-                  fill=(60, 24, 18, 255))
-        # Lava streaks down the flanks once it's going.
-        if k > 0.3:
-            for sgn in (-1, 1):
-                lx = px + sgn * 10
-                pts = [(lx, py + 10)]
-                for step in range(5):
-                    lx += sgn * (18 + 26 * step * k)
-                    pts.append((lx, py + 40 + step * (34 + 60 * k)))
-                a_ = int(120 + 130 * k)
-                d.line(pts, fill=(255, 120 + int(80 * k), 30, a_),
-                       width=int(4 + 6 * k))
+        # Distant volcano silhouette + crater glow + tiny lava arcs.
+        vx, hz, vh = self.vx, self.horizon, self.vh
+        d.polygon([(vx, hz - vh), (vx - vh * 1.5, hz), (vx + vh * 1.5, hz)],
+                  fill=(30, 22, 30, 255))
+        glow_r = 16 + 26 * k + 5 * math.sin(t * 6)
+        d.ellipse([vx - glow_r, hz - vh - glow_r * 0.6,
+                   vx + glow_r, hz - vh + glow_r * 0.5],
+                  fill=(255, int(120 + 80 * k), 30, int(140 + 90 * k)))
+        # Distant ridge in front of the volcano.
+        ridge = [(x, hz + 14 * math.sin(x * 0.01 + 2) + 8)
+                 for x in range(0, W + 40, 40)]
+        d.polygon([(0, H), *ridge, (W, H)], fill=(22, 17, 24, 255))
+
+        # Foreground terrain.
+        ground = [(x, self._ground_y(x)) for x in range(0, W + 20, 20)]
+        d.polygon([(0, H), *ground, (W, H)], fill=(16, 12, 14, 255))
+        d.line(ground, fill=(60, 40, 38, 255), width=3)
+
+        # The boulder.
+        bx, br = self.boulder
+        by = self._ground_y(bx) - br * 0.55
+        d.ellipse([bx - br, by - br * 0.8, bx + br, by + br * 0.8],
+                  fill=(34, 28, 30, 255), outline=(64, 50, 48, 255),
+                  width=3)
+
+        # Fireballs: molten core + dark crust forming as they cool,
+        # crackle highlight while hot.
+        for b in self.balls:
+            r, heat = b["r"], b["heat"]
+            core = (int(255 * min(1, heat * 1.4)),
+                    int(200 * heat), int(60 * heat ** 2))
+            crust = (38, 30, 30)
+            mix = tuple(int(crust[c] + (core[c] - crust[c]) * heat)
+                        for c in range(3))
+            d.ellipse([b["x"] - r, b["y"] - r, b["x"] + r, b["y"] + r],
+                      fill=(*mix, 255))
+            if heat > 0.3:
+                # Hot cracks: short bright arcs rotating with spin.
+                a0 = t * b["spin"]
+                for j in range(3):
+                    aa = a0 + j * 2.1
+                    d.arc([b["x"] - r * 0.7, b["y"] - r * 0.7,
+                           b["x"] + r * 0.7, b["y"] + r * 0.7],
+                          math.degrees(aa), math.degrees(aa) + 50,
+                          fill=(255, 230, 140, int(255 * heat)), width=3)
+
+        # Impact sparks.
+        for s in self.sparks:
+            a = int(255 * min(1, s["life"] * 2.2))
+            d.line([s["x"], s["y"],
+                    s["x"] - s["vx"] * 0.03, s["y"] - s["vy"] * 0.03],
+                   fill=(255, 210, 110, a), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        if k > 0.55 and not self.in_glitch(t):
-            amp = int(8 * (k - 0.55) / 0.45)
+        # Heavy impacts rattle the camera a touch at high intensity.
+        if k > 0.55 and not self.in_hang(t):
+            amp = int(7 * (k - 0.55) / 0.45)
             if amp:
                 out = np.roll(out, rng.randint(-amp, amp), axis=0)
-        return self.maybe_glitch(out, t)
+        return self.overload(out, t)
 
 
 # ---------- RUNNER: critter on the loose ----------
@@ -980,38 +1111,53 @@ class _Volcano(_Renderer):
 
 class _Runner(_Renderer):
     """A little black critter bounds across rolling moonlit hills,
-    hopping fences as the world scrolls faster and faster — full
-    blur-sprint, glitch, reset. Endless-runner energy with no game
-    over, because she always gets away."""
+    vaulting fences as the world scrolls faster and faster until the
+    sim can't keep up. She always gets away.
+
+    v2 polish: bound cadence is driven by DISTANCE TRAVELLED (no
+    foot-sliding at speed), squash-and-stretch follows the actual
+    vertical velocity, legs and tail animate with the bound phase,
+    Tasmanian-devil white chest blaze, dawn-gradient sky, drifting
+    clouds, firefly motes, and a smoothed camera that breathes with
+    the terrain instead of locking the critter to a fixed row."""
 
     CYCLE = 14.0
-    BASE_SPEED = 260.0     # px/s ground scroll at k=0
-    MAX_SPEED = 1500.0
+    BASE_SPEED = 240.0
+    MAX_SPEED = 1450.0
+    BOUND_LEN = 190.0     # px of ground per bound
 
     def __init__(self, seed=None):
         super().__init__(seed)
         self._cycle_seen = -1
+        self._cam_y = H * 0.5
         self._regen()
 
     def _regen(self):
         rng = self.rng
         self.scroll = 0.0
-        self.obstacles = [rng.uniform(600, 1400)]   # world-x of fences
-        while self.obstacles[-1] < 30000:
+        self.obstacles = [rng.uniform(700, 1500)]
+        while self.obstacles[-1] < 60000:
             self.obstacles.append(self.obstacles[-1]
-                                  + rng.uniform(420, 980))
-        self.stars = [(rng.uniform(0, W), rng.uniform(0, H * 0.5),
-                       rng.uniform(0.5, 1.5)) for _ in range(60)]
-        self.moon = (rng.uniform(W * 0.15, W * 0.85), rng.uniform(80, 200))
+                                  + rng.uniform(480, 1100))
+        self.stars = [(rng.uniform(0, W), rng.uniform(0, H * 0.45),
+                       rng.uniform(0.5, 1.5)) for _ in range(70)]
+        self.clouds = [{"x": rng.uniform(0, W), "y": rng.uniform(40, 240),
+                        "w": rng.uniform(120, 260), "s": rng.uniform(6, 18)}
+                       for _ in range(4)]
+        self.moon = (rng.uniform(W * 0.15, W * 0.85),
+                     rng.uniform(90, 200))
+        self.fireflies = [{"x": rng.uniform(0, W),
+                           "y": rng.uniform(H * 0.55, H * 0.8),
+                           "ph": rng.uniform(0, math.tau)}
+                          for _ in range(10)]
         self.ph = rng.uniform(0, math.tau)
         self.trail[:] = 0
 
     def _ground_y(self, world_x: float, layer: float = 1.0) -> float:
-        """Rolling hills via layered sines; layer scales parallax."""
         x = world_x * layer
-        return (H * 0.78
-                + 36 * math.sin(x * 0.0021 + self.ph)
-                + 18 * math.sin(x * 0.0057 + self.ph * 2))
+        return (H * 0.80
+                + 34 * math.sin(x * 0.0019 + self.ph)
+                + 16 * math.sin(x * 0.0053 + self.ph * 2))
 
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
@@ -1024,119 +1170,187 @@ class _Runner(_Renderer):
         speed = self.BASE_SPEED + (self.MAX_SPEED - self.BASE_SPEED) * k * k
         self.scroll += speed * dt
 
-        critter_wx = self.scroll + W * 0.30   # world-x under the critter
+        critter_wx = self.scroll + W * 0.30
 
-        # Hop: bound cadence scales with speed; extra-high vault when a
-        # fence is near so she always clears it.
-        bound_freq = 2.2 + 5.5 * k
-        bounce = abs(math.sin(t * bound_freq * math.pi))
+        # Bound phase from distance, so strides lengthen naturally
+        # with speed instead of feet sliding under a fixed sine.
+        phase = (self.scroll / self.BOUND_LEN) % 1.0
+        hop = math.sin(phase * math.pi)            # 0 at touchdown
+        hop_v = math.cos(phase * math.pi)          # +rising / -falling
+
+        # Fence vault: blend extra height in/out around the fence.
         next_fence = next((o for o in self.obstacles
-                           if o > critter_wx - 40), None)
+                           if o > critter_wx - 60), None)
         vault = 0.0
         if next_fence is not None:
             gap = next_fence - critter_wx
-            if -60 < gap < 220:
-                vault = _ease(1 - abs(gap - 80) / 140) * 90
-        cy = self._ground_y(critter_wx) - 34 - bounce * 38 - vault
+            if -80 < gap < 240:
+                vault = _ease(1 - abs(gap - 80) / 160) * 86
+        gy_here = self._ground_y(critter_wx)
+        cy = gy_here - 34 - hop * (34 + 18 * k) - vault
 
-        # Night sky.
+        # Smoothed camera: track terrain so hills feel like motion,
+        # not noise.
+        target_cam = gy_here - H * 0.62
+        self._cam_y += (target_cam - self._cam_y) * min(1.0, 4.0 * dt)
+        cam = self._cam_y
+
+        # ---- sky ----
         g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
         frame = np.zeros((H, W, 3), dtype=np.float32)
-        frame[..., 0] = 10 + 16 * g
-        frame[..., 1] = 12 + 22 * g
-        frame[..., 2] = 28 + 38 * g
+        frame[..., 0] = 12 + 30 * g
+        frame[..., 1] = 14 + 24 * g
+        frame[..., 2] = 30 + 44 * g
+        # Horizon warmth (pre-dawn band).
+        band = np.exp(-((np.linspace(0, 1, H) - 0.62) ** 2) / 0.012)
+        frame[..., 0] += band[:, None] * 26
+        frame[..., 1] += band[:, None] * 12
 
-        # Faint motion trail behind the critter.
+        # Motion glow behind the critter.
         self.trail *= 0.88
-        _stamp_glow(self.trail, W * 0.30, cy, 22 + 26 * k,
-                    (120 + 100 * k, 140, 200), 0.5 + 0.8 * k)
+        _stamp_glow(self.trail, W * 0.30 - 14, cy - cam, 20 + 26 * k,
+                    (110 + 110 * k, 130, 190), 0.4 + 0.9 * k)
         frame += self.trail
 
         img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        # Moon + stars (fixed = infinite parallax).
+        # Moon + halo, stars, clouds.
         mx, my = self.moon
-        d.ellipse([mx - 46, my - 46, mx + 46, my + 46],
-                  fill=(235, 235, 215, 255))
-        d.ellipse([mx - 30, my - 40, mx + 26, my + 16],
-                  fill=(215, 215, 198, 255))
+        for hr, ha in ((66, 26), (56, 46)):
+            d.ellipse([mx - hr, my - hr, mx + hr, my + hr],
+                      fill=(235, 235, 215, ha))
+        d.ellipse([mx - 44, my - 44, mx + 44, my + 44],
+                  fill=(236, 236, 218, 255))
+        d.ellipse([mx - 14, my - 20, mx + 2, my - 6],
+                  fill=(214, 214, 198, 255))
+        d.ellipse([mx + 8, my + 6, mx + 24, my + 20],
+                  fill=(218, 218, 200, 255))
         for sx, sy, sr in self.stars:
+            tw = 130 + 70 * math.sin(t * 2 + sx)
             d.ellipse([sx - sr, sy - sr, sx + sr, sy + sr],
-                      fill=(220, 225, 255, 160))
+                      fill=(220, 225, 255, int(max(60, tw))))
+        for c in self.clouds:
+            c["x"] = (c["x"] - c["s"] * dt) % (W + 300) - 150
+            d.ellipse([c["x"], c["y"], c["x"] + c["w"], c["y"] + 36],
+                      fill=(40, 46, 66, 120))
 
-        # Far hill silhouette (slow parallax).
-        far = [(x, self._ground_y(self.scroll * 0.35 + x * 1.0, 0.7) - 110)
-               for x in range(0, W + 40, 40)]
-        d.polygon([(0, H), *far, (W, H)], fill=(16, 22, 34, 255))
+        # Parallax hills: far (slow) and mid.
+        far = [(x, self._ground_y(self.scroll * 0.30 + x, 0.65)
+                - 150 - cam * 0.4) for x in range(0, W + 40, 40)]
+        d.polygon([(0, H), *far, (W, H)], fill=(17, 23, 36, 255))
+        mid = [(x, self._ground_y(self.scroll * 0.60 + x, 0.85)
+                - 70 - cam * 0.7) for x in range(0, W + 30, 30)]
+        d.polygon([(0, H), *mid, (W, H)], fill=(19, 28, 32, 255))
 
-        # Near ground.
-        near = [(x, self._ground_y(self.scroll + x))
+        # Near ground with a lit top edge.
+        near = [(x, self._ground_y(self.scroll + x) - cam)
                 for x in range(0, W + 20, 20)]
-        d.polygon([(0, H), *near, (W, H)], fill=(22, 32, 30, 255))
-        # Grass tufts whip by.
-        for x in range(0, W, 30):
+        d.polygon([(0, H), *near, (W, H)], fill=(24, 34, 31, 255))
+        d.line(near, fill=(52, 74, 58, 255), width=3)
+        # Grass tufts lean harder with speed.
+        for x in range(0, W, 26):
             wx2 = self.scroll + x
-            if int(wx2 / 30) % 3 == 0:
-                gy = self._ground_y(wx2)
-                lean = 6 + 18 * k
-                d.line([x, gy, x - lean, gy - 14],
-                       fill=(40, 70, 50, 255), width=2)
+            if int(wx2 / 26) % 3 == 0:
+                gy = self._ground_y(wx2) - cam
+                lean = 5 + 22 * k
+                d.line([x, gy, x - lean, gy - 13],
+                       fill=(44, 78, 54, 255), width=2)
 
-        # Fences (the obstacles she vaults).
+        # Fireflies.
+        for f in self.fireflies:
+            fy = f["y"] + 10 * math.sin(t * 1.3 + f["ph"]) - cam * 0.9
+            fx = (f["x"] - speed * 0.08 * t) % W
+            a = int(110 + 110 * math.sin(t * 3 + f["ph"]))
+            d.ellipse([fx - 3, fy - 3, fx + 3, fy + 3],
+                      fill=(220, 255, 140, max(40, a)))
+
+        # Fences.
         for o in self.obstacles:
             sx2 = o - self.scroll
-            if -60 < sx2 < W + 60:
-                gy = self._ground_y(o)
-                d.rectangle([sx2 - 4, gy - 64, sx2 + 4, gy],
-                            fill=(70, 52, 36, 255))
-                d.rectangle([sx2 - 30, gy - 58, sx2 + 30, gy - 46],
-                            fill=(70, 52, 36, 255))
-                d.rectangle([sx2 - 30, gy - 32, sx2 + 30, gy - 20],
-                            fill=(70, 52, 36, 255))
+            if -70 < sx2 < W + 70:
+                gy = self._ground_y(o) - cam
+                wood = (76, 56, 38, 255)
+                d.rectangle([sx2 - 5, gy - 66, sx2 + 5, gy], fill=wood)
+                d.rectangle([sx2 - 34, gy - 60, sx2 + 34, gy - 47],
+                            fill=wood)
+                d.rectangle([sx2 - 34, gy - 34, sx2 + 34, gy - 21],
+                            fill=wood)
 
-        # The critter: black blob body + ears + tail, squash/stretch
-        # with the bounce; speed lines at high k.
+        # ---- the critter ----
         x0 = W * 0.30
-        squash = 1 - 0.22 * bounce
-        bw, bh = 56 * (2 - squash), 40 * squash
-        d.ellipse([x0 - bw / 2, cy - bh / 2, x0 + bw / 2, cy + bh / 2],
-                  fill=(18, 16, 16, 255))
-        # head
-        hx = x0 + bw * 0.42
-        d.ellipse([hx - 18, cy - bh * 0.5 - 16, hx + 18, cy - bh * 0.5 + 16],
-                  fill=(18, 16, 16, 255))
-        # ears
-        d.polygon([(hx - 12, cy - bh * 0.5 - 12), (hx - 4, cy - bh * 0.5 - 30),
-                   (hx + 2, cy - bh * 0.5 - 10)], fill=(18, 16, 16, 255))
-        d.polygon([(hx + 4, cy - bh * 0.5 - 12), (hx + 12, cy - bh * 0.5 - 28),
-                   (hx + 16, cy - bh * 0.5 - 8)], fill=(18, 16, 16, 255))
-        # eye
-        d.ellipse([hx + 4, cy - bh * 0.5 - 4, hx + 10, cy - bh * 0.5 + 2],
+        cyv = cy - cam
+        # Squash & stretch from vertical motion: stretch rising/falling,
+        # squash on touchdown.
+        airborne = hop > 0.08 or vault > 4
+        stretch = 1.0 + 0.18 * abs(hop_v) * (1 if airborne else 0)
+        squash = 1.0 / stretch
+        bw, bh = 58 * squash * 1.15, 42 * stretch * 0.95
+        body_col = (20, 17, 17, 255)
+        # tail (whips with phase)
+        tail_y = cyv - 6 + 10 * math.sin(phase * math.tau + 1.4)
+        d.line([x0 - bw / 2, cyv, x0 - bw / 2 - 30, tail_y],
+               fill=body_col, width=9)
+        # haunch + body
+        d.ellipse([x0 - bw / 2, cyv - bh / 2, x0 + bw / 2, cyv + bh / 2],
+                  fill=body_col)
+        d.ellipse([x0 - bw * 0.55, cyv - bh * 0.30,
+                   x0 - bw * 0.05, cyv + bh * 0.55], fill=body_col)
+        # white chest blaze (the Tasmanian devil signature)
+        d.arc([x0 - bw * 0.05, cyv - bh * 0.25,
+               x0 + bw * 0.5, cyv + bh * 0.55],
+              40, 150, fill=(235, 235, 230, 255), width=5)
+        # legs: two arcs scissoring with phase when grounded, tucked
+        # when airborne
+        if airborne:
+            d.line([x0 - bw * 0.2, cyv + bh * 0.4,
+                    x0 - bw * 0.05, cyv + bh * 0.62], fill=body_col, width=7)
+            d.line([x0 + bw * 0.25, cyv + bh * 0.4,
+                    x0 + bw * 0.4, cyv + bh * 0.58], fill=body_col, width=7)
+        else:
+            swing = math.sin(phase * math.tau * 2) * 14
+            d.line([x0 - bw * 0.2, cyv + bh * 0.35,
+                    x0 - bw * 0.2 - swing, cyv + bh * 0.75],
+                   fill=body_col, width=7)
+            d.line([x0 + bw * 0.25, cyv + bh * 0.35,
+                    x0 + bw * 0.25 + swing, cyv + bh * 0.75],
+                   fill=body_col, width=7)
+        # head + snout + ears + eye
+        hx = x0 + bw * 0.46
+        hy = cyv - bh * 0.52
+        d.ellipse([hx - 19, hy - 17, hx + 19, hy + 17], fill=body_col)
+        d.ellipse([hx + 8, hy - 4, hx + 30, hy + 10], fill=body_col)
+        d.ellipse([hx + 22, hy + 1, hx + 27, hy + 6],
+                  fill=(60, 45, 45, 255))               # nose
+        d.polygon([(hx - 13, hy - 13), (hx - 6, hy - 30), (hx, hy - 11)],
+                  fill=body_col)
+        d.polygon([(hx - 10, hy - 14), (hx - 6, hy - 25), (hx - 2, hy - 12)],
+                  fill=(200, 120, 130, 255))            # inner ear
+        d.polygon([(hx + 2, hy - 12), (hx + 9, hy - 27), (hx + 14, hy - 9)],
+                  fill=body_col)
+        d.ellipse([hx + 4, hy - 6, hx + 11, hy + 1],
                   fill=(255, 255, 255, 255))
-        # tail
-        d.line([x0 - bw / 2, cy, x0 - bw / 2 - 26,
-                cy - 12 + 8 * math.sin(t * 12)],
-               fill=(18, 16, 16, 255), width=8)
-        # dust puffs on touchdown
-        if bounce < 0.15:
+        d.ellipse([hx + 7, hy - 4, hx + 10, hy - 1],
+                  fill=(0, 0, 0, 255))
+
+        # touchdown dust
+        if not airborne and hop < 0.05:
             for _ in range(3):
-                dx_ = rng.uniform(-24, 4)
-                d.ellipse([x0 + dx_ - 5, cy + bh / 2 - 3,
-                           x0 + dx_ + 5, cy + bh / 2 + 7],
-                          fill=(90, 90, 80, 110))
-        # speed lines
-        if k > 0.45:
-            for _ in range(int(10 * k)):
-                ly = rng.uniform(H * 0.2, H * 0.9)
-                ll = rng.uniform(40, 160) * k
+                dx_ = rng.uniform(-30, 0)
+                d.ellipse([x0 + dx_ - 5, cyv + bh / 2 - 2,
+                           x0 + dx_ + 5, cyv + bh / 2 + 8],
+                          fill=(96, 96, 84, 100))
+        # speed lines once she's flying
+        if k > 0.5:
+            for _ in range(int(12 * k)):
+                ly = rng.uniform(H * 0.25, H * 0.9)
+                ll = rng.uniform(40, 170) * k
                 lx = rng.uniform(0, W)
                 d.line([lx, ly, lx + ll, ly],
-                       fill=(220, 225, 255, int(70 * k)), width=2)
+                       fill=(220, 225, 255, int(60 * k)), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        return self.maybe_glitch(out, t)
-
+        return self.overload(out, t)
 
 _THEME_CLASSES = {
     "space": _Space,
