@@ -1,0 +1,24 @@
+{
+  "key": "tipping_economy_total",
+  "title": "Total U.S. tipping economy ($ billions)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2010-2025 (selected years)",
+  "source": {
+    "name": "U.S. Consumer Expenditure Survey / industry estimates",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov/cex/",
+    "officiality": "official",
+    "access_date": "2026-06-10"
+  },
+  "notes": "Illustrative; includes tips across all service categories (restaurants, hotels, delivery, personal care). 2020 reflects COVID-driven drop.",
+  "points": [
+    {"label": "2010", "value": 66, "period": "2010"},
+    {"label": "2013", "value": 76, "period": "2013"},
+    {"label": "2016", "value": 88, "period": "2016"},
+    {"label": "2019", "value": 98, "period": "2019"},
+    {"label": "2020", "value": 79, "period": "2020"},
+    {"label": "2022", "value": 108, "period": "2022"},
+    {"label": "2025", "value": 120, "period": "2025"}
+  ]
+}

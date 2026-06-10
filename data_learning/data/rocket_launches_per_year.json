@@ -1,0 +1,26 @@
+{
+  "key": "rocket_launches_per_year",
+  "title": "Global orbital rocket launches per year",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "2000-2025 (annual)",
+  "source": {
+    "name": "Orbital launch report — annual launch log",
+    "publisher": "BryceTech / Space Policy Institute",
+    "url": "https://brycetech.com/reports",
+    "officiality": "industry",
+    "access_date": "2026-06-10"
+  },
+  "notes": "Illustrative; figures rounded from cited source. Counts orbital (not sub-orbital) launch attempts reaching orbit.",
+  "points": [
+    {"label": "2000", "value": 80, "period": "2000"},
+    {"label": "2005", "value": 55, "period": "2005"},
+    {"label": "2010", "value": 74, "period": "2010"},
+    {"label": "2015", "value": 86, "period": "2015"},
+    {"label": "2018", "value": 114, "period": "2018"},
+    {"label": "2020", "value": 114, "period": "2020"},
+    {"label": "2022", "value": 186, "period": "2022"},
+    {"label": "2024", "value": 246, "period": "2024"},
+    {"label": "2025", "value": 272, "period": "2025"}
+  ]
+}

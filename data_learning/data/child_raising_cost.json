@@ -1,0 +1,19 @@
+{
+  "key": "child_raising_cost",
+  "title": "Estimated cost to raise a child to age 18 (2025 dollars)",
+  "unit": "thousand dollars",
+  "geography": "United States",
+  "time_coverage": "1990 vs. 2025",
+  "source": {
+    "name": "Expenditures on Children by Families",
+    "publisher": "USDA Economic Research Service",
+    "url": "https://www.ers.usda.gov/topics/food-nutrition-assistance/food-and-nutrition-programs/expenditures-on-children-by-families/",
+    "officiality": "official",
+    "access_date": "2026-06-10"
+  },
+  "notes": "Illustrative; 1990 figure inflation-adjusted to 2025 dollars. Includes housing, food, childcare, healthcare, clothing, education, and transportation. Excludes college.",
+  "baseline": {"label": "1990 (in 2025 dollars)", "value": 198},
+  "points": [
+    {"label": "2025", "value": 310}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "key": "satellite_type_share",
+  "title": "Active satellites in orbit by mission type (2025)",
+  "unit": "percent",
+  "geography": "Low Earth Orbit",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Index of Objects Launched into Outer Space",
+    "publisher": "Union of Concerned Scientists / United Nations OOSA",
+    "url": "https://www.ucsusa.org/resources/satellite-database",
+    "officiality": "research",
+    "access_date": "2026-06-10"
+  },
+  "notes": "Illustrative; Starlink and OneWeb dominate the communications category. Science includes weather and Earth observation.",
+  "baseline": {"label": "Total active satellites ~8,400", "value": 100},
+  "points": [
+    {"label": "Communications / broadband (Starlink etc.)", "value": 62},
+    {"label": "Earth observation / weather", "value": 18},
+    {"label": "Technology demonstration", "value": 10},
+    {"label": "Science / research", "value": 7},
+    {"label": "Navigation (GPS/Galileo)", "value": 3}
+  ]
+}
