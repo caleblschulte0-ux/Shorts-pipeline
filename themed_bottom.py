@@ -63,6 +63,20 @@ audit it against ALL of them:
     squash & stretch follows real velocity, easing on every
     transition, smoothed cameras. Jitter that isn't emergent
     overload is a defect.
+
+11. LEAN INTO THE MEDIUM. This renderer is geometry + physics +
+    glow: balls, particles, vehicles, silhouettes, parallax. If a
+    concept needs representational drawing to be understood —
+    people, hands, branded props, complex equipment — it is the
+    WRONG CONCEPT for this engine; find the physics metaphor that
+    says the same thing (a fight = two orbs clashing in an octagon,
+    not a drawn glove hitting a drawn bag). Screenshot test: pause
+    on any random frame and a stranger must name the scene in three
+    words. Fail that, redesign the concept — don't polish it.
+
+POLISH IS THE DEFAULT. Every rule above ships in the FIRST version
+of a theme. "Make it polished" is never a follow-up request; an
+unpolished theme is an unfinished theme.
 =====================================================================
 
 Output contract (matches pick_gameplay_clip): W x HALF_H (1080x960),
@@ -87,7 +101,7 @@ W, H = 1080, 960
 FPS = 30
 
 THEMES = ("space", "rain", "ember", "ocean", "plinko", "coins",
-          "quake", "volcano", "runner", "stacker", "fight")
+          "quake", "volcano", "runner", "stacker", "fight", "train")
 
 # Keyword → theme. Checked in order; first hit wins. Scanned against
 # title + script + hashtags lowercased.
@@ -109,6 +123,9 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("fight", ("ufc", "mma", "boxing", "boxer", "knockout",
                "octagon", "wrestl", "fight card", "title bout",
                "heavyweight")),
+    ("train", ("train", "railway", "locomotive", "railroad", "kim jong",
+               "north korea", "summit", "metro", "subway", "amtrak",
+               "derail")),
     ("stacker", ("world record", "record-breaking", "tallest",
                  "largest", "biggest", "assembl", "built the",
                  "stacked", "lego", "potato head", "guinness")),
@@ -2141,34 +2158,26 @@ class _Stacker(_Renderer):
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
 
-
-# ---------- FIGHT: speed bag on real rope physics ----------
-# (UFC-on-the-White-House-lawn-class stories: fights, bouts, combat
-# sports.)
+# ---------- FIGHT: red vs blue clash in the octagon ----------
+# (UFC-fight-card-class stories.)
 
 class _Fight(_Renderer):
-    """A gym speed bag hangs from a platform on a verlet rope chain.
-    Gloves jab in from alternating sides on a metronome that rides
-    the sim clock. The rope solver has a fixed iteration budget — as
-    the timestep grows, the constraints stop converging, the chain
-    stretches like taffy, and the bag whips into orbit around its
-    mount. Stretch past 2.6x rest length or bag velocity past
-    plausibility = the solver has lost; hang; fresh gym.
+    """Two glowing orbs — red corner, blue corner — circle each other
+    inside an octagon and CLASH, throwing sparks and knocking each
+    other back, over and over, harder and faster. Camera flashes pop
+    in the dark crowd. Screenshot test: octagon + red vs blue = a
+    fight, readable in under a second.
 
-    Charter audit: topic-matched (combat) / escalates / real break
-    (constraint non-convergence is THE textbook soft-body failure) /
-    emergent reset / interaction (glove->bag impulse, rope->board) /
-    board bracket-mounted to the ceiling, lamp hangs, mat on floor
-    (nothing floats) / foreground show / variety (alternating sides,
-    jab heights, regen palettes) / flavor (impact flash, speed
-    lines, dust in the lamp cone, chalk tally, bag squash) /
-    smooth (eased glove throws, verlet motion)."""
+    The break is real: each orb steers toward its opponent with an
+    acceleration integrated at sim_dt. Explicit-Euler steering at a
+    growing timestep is the textbook divergent oscillator — the
+    correction overshoots harder every step until both orbs slingshot
+    past each other at impossible speeds. Velocity watchdog fails the
+    sim; hang; fresh arena."""
 
     GROWTH = 1.17
-    GRAV = 1900.0
-    SOLVER_ITERS = 6          # the fixed budget that eventually loses
-    BLOWUP_V = 7000.0
-    REST_LINK = 26.0
+    BLOWUP_V = 6800.0
+    R_BALL = 36.0
 
     def __init__(self, seed=None):
         super().__init__(seed)
@@ -2179,30 +2188,35 @@ class _Fight(_Renderer):
     def _regen(self):
         rng = self.rng
         self.trail[:] = 0
-        self.cx = W / 2 + rng.uniform(-80, 80)
-        self.board_y = 150.0
-        n_links = 5
-        self.pts = [{"x": self.cx,
-                     "y": self.board_y + 12 + i_ * self.REST_LINK,
-                     "px": self.cx,
-                     "py": self.board_y + 12 + i_ * self.REST_LINK}
-                    for i_ in range(n_links + 1)]
-        self.bag_r = rng.uniform(40, 50)
-        self.bag_col = rng.choice([(165, 42, 48), (40, 60, 130),
-                                   (30, 30, 34)])
-        self.next_punch = 0.8
-        self.glove_side = 1
-        self.glove_anim = None      # (t0, side, target_y)
-        self.hits = 0
-        self.flashes: list[dict] = []
-        self.motes = [{"x": rng.uniform(self.cx - 240, self.cx + 240),
-                       "y": rng.uniform(60, 700),
-                       "ph": rng.uniform(0, math.tau)} for _ in range(12)]
-        self.squash_t = -9.0
-        self.poster_x = rng.choice([90, W - 230])
+        self.cx = W / 2 + rng.uniform(-40, 40)
+        self.cy = H * 0.52
+        self.R = rng.uniform(300, 350)
+        # Octagon edges (inward normals precomputed).
+        self.verts = []
+        rot0 = rng.uniform(0, math.pi / 4)
+        for n_ in range(8):
+            a = rot0 + n_ * math.tau / 8
+            self.verts.append((self.cx + math.cos(a) * self.R,
+                               self.cy + math.sin(a) * self.R))
+        self.balls = []
+        for sgn, col, glow in ((-1, (235, 60, 55), (200, 50, 40)),
+                               (1, (70, 130, 240), (50, 90, 220))):
+            self.balls.append({
+                "x": self.cx + sgn * self.R * 0.55,
+                "y": self.cy + rng.uniform(-40, 40),
+                "vx": 0.0, "vy": 0.0,
+                "col": col, "glow": glow,
+                "clash_t": -9.0, "clash_ax": 1.0, "clash_ay": 0.0,
+                "ph": rng.uniform(0, math.tau)})
+        self.sparks: list[dict] = []
+        self.flashes: list[dict] = []     # crowd camera flashes
+        self.ring_pulse = -9.0
 
-    def _bag_xy(self):
-        return self.pts[-1]["x"], self.pts[-1]["y"] + self.bag_r * 0.7
+    def _edges(self):
+        for n_ in range(8):
+            a = self.verts[n_]
+            b = self.verts[(n_ + 1) % 8]
+            yield a, b
 
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
@@ -2217,188 +2231,473 @@ class _Fight(_Renderer):
         dt = 1 / FPS
         sim_dt = dt * ts
 
-        # Metronome: jab period shrinks as the clock compounds.
-        period = 0.85 / max(1.0, ts * 0.8)
-        if t >= self.next_punch:
-            self.next_punch = t + period
-            self.glove_side *= -1
-            self.glove_anim = (t, self.glove_side,
-                               rng.uniform(-14, 14))
+        # ---- physics ----
+        a_, b_ = self.balls
+        for me, foe in ((a_, b_), (b_, a_)):
+            dx, dy = foe["x"] - me["x"], foe["y"] - me["y"]
+            dist = math.hypot(dx, dy) or 1e-6
+            ux, uy = dx / dist, dy / dist
+            # Charge at the opponent + a tangential circling bias that
+            # breathes, so they orbit, line up, and slam.
+            charge = 900.0
+            circ = 520.0 * math.sin(t * 0.9 + me["ph"])
+            ax = ux * charge - uy * circ - me["vx"] * 1.4
+            ay = uy * charge + ux * circ - me["vy"] * 1.4
+            me["vx"] += ax * sim_dt
+            me["vy"] += ay * sim_dt
+            me["x"] += me["vx"] * sim_dt
+            me["y"] += me["vy"] * sim_dt
+            if (abs(me["vx"]) > self.BLOWUP_V
+                    or abs(me["vy"]) > self.BLOWUP_V):
+                self.declare_fail(t)
 
-        # Glove animation + impulse at the strike frame.
-        glove = None
-        if self.glove_anim is not None:
-            g0, side, jab_off = self.glove_anim
-            u = (t - g0) / 0.22
-            if u >= 1.2:
-                self.glove_anim = None
-            else:
-                bx, by = self.pts[-1]["x"], self.pts[-1]["y"]
-                reach = _ease(min(1.0, u if u <= 0.5 else 1 - (u - 0.5)))
-                gx = bx + side * (150 - 130 * reach)
-                gy = by + jab_off
-                glove = (gx, gy, side)
-                if 0.45 < u < 0.62 and abs(gx - bx) < 60:
-                    p = self.pts[-1]
-                    p["px"] = p["x"] + side * 26 * min(ts, 5)
-                    p["py"] = p["y"] + rng.uniform(-4, 4)
-                    self.hits += 1
-                    self.flashes.append({"x": bx, "y": gy,
-                                         "side": side, "life": 0.12})
-                    self.squash_t = t
+        # Ball-ball clash.
+        dx, dy = b_["x"] - a_["x"], b_["y"] - a_["y"]
+        dist = math.hypot(dx, dy)
+        min_d = self.R_BALL * 2
+        if 0 < dist < min_d:
+            nx, ny = dx / dist, dy / dist
+            overlap = (min_d - dist) / 2
+            a_["x"] -= nx * overlap
+            a_["y"] -= ny * overlap
+            b_["x"] += nx * overlap
+            b_["y"] += ny * overlap
+            van = a_["vx"] * nx + a_["vy"] * ny
+            vbn = b_["vx"] * nx + b_["vy"] * ny
+            rel = van - vbn
+            if rel > 0:
+                e = 1.05          # clash knockback: slightly springy
+                a_["vx"] -= (1 + e) / 2 * rel * nx
+                a_["vy"] -= (1 + e) / 2 * rel * ny
+                b_["vx"] += (1 + e) / 2 * rel * nx
+                b_["vy"] += (1 + e) / 2 * rel * ny
+                mx_, my_ = (a_["x"] + b_["x"]) / 2, (a_["y"] + b_["y"]) / 2
+                power = min(1.0, rel / 1400)
+                for _ in range(int(10 + 22 * power)):
+                    sa = rng.uniform(0, math.tau)
+                    sv = rng.uniform(150, 700) * (0.4 + power)
+                    self.sparks.append({
+                        "x": mx_, "y": my_,
+                        "vx": math.cos(sa) * sv, "vy": math.sin(sa) * sv,
+                        "col": rng.choice([a_["col"], b_["col"],
+                                           (255, 240, 200)]),
+                        "life": rng.uniform(0.25, 0.6)})
+                for me in (a_, b_):
+                    me["clash_t"] = t
+                    me["clash_ax"], me["clash_ay"] = nx, ny
+                self.ring_pulse = t
+                # Crowd reacts: a burst of camera flashes.
+                for _ in range(rng.randint(2, 5)):
+                    fa = rng.uniform(0, math.tau)
+                    fr = self.R * rng.uniform(1.15, 1.55)
+                    self.flashes.append({
+                        "x": self.cx + math.cos(fa) * fr,
+                        "y": self.cy + math.sin(fa) * fr * 0.8,
+                        "life": rng.uniform(0.08, 0.2)})
 
-        # ---- verlet rope on the accelerated clock ----
-        for p in self.pts[1:]:
-            vx = (p["x"] - p["px"])
-            vy = (p["y"] - p["py"]) + self.GRAV * sim_dt * sim_dt
-            p["px"], p["py"] = p["x"], p["y"]
-            p["x"] += vx
-            p["y"] += vy
-        # Fixed-budget constraint relaxation: converges at small dt,
-        # falls behind as displacements grow — the honest failure.
-        for _ in range(self.SOLVER_ITERS):
-            self.pts[0]["x"], self.pts[0]["y"] = self.cx, self.board_y + 12
-            for a, b in zip(self.pts, self.pts[1:]):
-                dx = b["x"] - a["x"]
-                dy = b["y"] - a["y"]
-                dist = math.hypot(dx, dy) or 1e-6
-                diff = (dist - self.REST_LINK) / dist
-                if a is self.pts[0]:
-                    b["x"] -= dx * diff
-                    b["y"] -= dy * diff
-                else:
-                    a["x"] += dx * diff * 0.5
-                    a["y"] += dy * diff * 0.5
-                    b["x"] -= dx * diff * 0.5
-                    b["y"] -= dy * diff * 0.5
+        # Octagon wall reflection (inward normals).
+        for ball in self.balls:
+            for ea, eb in self._edges():
+                ex, ey = eb[0] - ea[0], eb[1] - ea[1]
+                el = math.hypot(ex, ey)
+                nx, ny = -ey / el, ex / el     # normal
+                # Ensure normal points inward (toward center).
+                if (self.cx - ea[0]) * nx + (self.cy - ea[1]) * ny < 0:
+                    nx, ny = -nx, -ny
+                d_ = (ball["x"] - ea[0]) * nx + (ball["y"] - ea[1]) * ny
+                if d_ < self.R_BALL:
+                    push = self.R_BALL - d_
+                    ball["x"] += nx * push
+                    ball["y"] += ny * push
+                    vn = ball["vx"] * nx + ball["vy"] * ny
+                    if vn < 0:
+                        ball["vx"] -= 1.85 * vn * nx
+                        ball["vy"] -= 1.85 * vn * ny
 
-        # Solver health check: total stretch + bag speed.
-        total = sum(math.hypot(b["x"] - a["x"], b["y"] - a["y"])
-                    for a, b in zip(self.pts, self.pts[1:]))
-        rest_total = self.REST_LINK * (len(self.pts) - 1)
-        bag = self.pts[-1]
-        bag_v = math.hypot(bag["x"] - bag["px"],
-                           bag["y"] - bag["py"]) / max(sim_dt, 1e-6)
-        if total > rest_total * 2.6 or bag_v > self.BLOWUP_V:
-            self.declare_fail(t)
-
-        bx, by = self._bag_xy()
+        # Trails.
         self.trail *= 0.90
-        _stamp_glow(self.trail, bx, by, 30 + 14 * k,
-                    (120 + 100 * k, 60, 50), 0.4 + 0.7 * k)
+        for ball in self.balls:
+            _stamp_glow(self.trail, ball["x"], ball["y"],
+                        self.R_BALL * (1.3 + 0.5 * k),
+                        tuple(c * (0.45 + 0.4 * k) for c in ball["glow"]),
+                        0.8)
+
+        # Idle crowd flashes (sparse) — bursts come from clashes.
+        if rng.random() < 0.06 + 0.10 * k:
+            fa = rng.uniform(0, math.tau)
+            fr = self.R * rng.uniform(1.15, 1.6)
+            self.flashes.append({"x": self.cx + math.cos(fa) * fr,
+                                 "y": self.cy + math.sin(fa) * fr * 0.8,
+                                 "life": rng.uniform(0.06, 0.16)})
 
         # ---- paint ----
         g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
         frame = np.zeros((H, W, 3), dtype=np.float32)
-        frame[..., 0] = 30 + 14 * g
-        frame[..., 1] = 24 + 10 * g
-        frame[..., 2] = 26 + 10 * g
+        frame[..., 0] = 16 + 10 * g
+        frame[..., 1] = 13 + 8 * g
+        frame[..., 2] = 18 + 10 * g
         frame += self.trail
         img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        # Hanging lamp + light cone + dust (planted to the ceiling).
-        lamp_x = self.cx + 14 * math.sin(t * (0.3 + k))
-        d.line([self.cx, 0, lamp_x, 54], fill=(60, 56, 52, 255), width=4)
-        d.polygon([(lamp_x - 26, 54), (lamp_x + 26, 54), (lamp_x, 78)],
-                  fill=(70, 64, 58, 255))
-        d.polygon([(lamp_x - 20, 70), (lamp_x + 20, 70),
-                   (lamp_x + 190, H), (lamp_x - 190, H)],
-                  fill=(255, 240, 200, 16))
-        for m in self.motes:
-            mx = m["x"] + 10 * math.sin(t * 0.5 + m["ph"])
-            my = (m["y"] + t * 12) % (H - 80) + 80
-            d.ellipse([mx - 2, my - 2, mx + 2, my + 2],
-                      fill=(255, 246, 220, 50))
-
-        # Wall poster + chalk hit-tally (variety + flavor).
-        px_ = self.poster_x
-        d.rectangle([px_, 200, px_ + 140, 380],
-                    fill=(52, 44, 46, 255), outline=(90, 80, 76, 255),
-                    width=3)
-        d.polygon([(px_ + 70, 240), (px_ + 86, 290), (px_ + 54, 290)],
-                  fill=(200, 170, 90, 255))
-        d.ellipse([px_ + 46, 290, px_ + 94, 338],
-                  outline=(200, 170, 90, 255), width=4)
-        tally = min(self.hits, 40)
-        for n_ in range(tally):
-            gx0 = 70 + (n_ % 20) * 12
-            gy0 = 760 + (n_ // 20) * 26
-            d.line([gx0, gy0, gx0 + (4 if n_ % 5 == 4 else 0) - 2,
-                    gy0 + 18], fill=(220, 215, 205, 160), width=3)
-
-        # Floor mat.
-        d.rectangle([0, H - 56, W, H], fill=(36, 32, 38, 255))
-        d.line([0, H - 56, W, H - 56], fill=(70, 62, 70, 255), width=3)
-
-        # Mounting board with bracket to the ceiling (nothing floats).
-        d.rectangle([self.cx - 130, self.board_y - 26,
-                     self.cx + 130, self.board_y + 12],
-                    fill=(110, 78, 50, 255),
-                    outline=(70, 50, 34, 255), width=3)
-        d.line([self.cx - 90, 0, self.cx - 90, self.board_y - 26],
-               fill=(80, 74, 70, 255), width=8)
-        d.line([self.cx + 90, 0, self.cx + 90, self.board_y - 26],
-               fill=(80, 74, 70, 255), width=8)
-        d.ellipse([self.cx - 10, self.board_y + 2,
-                   self.cx + 10, self.board_y + 22],
-                  fill=(150, 150, 158, 255))
-
-        # The rope chain (links drawn as small rings).
-        for a, b in zip(self.pts, self.pts[1:]):
-            d.line([a["x"], a["y"], b["x"], b["y"]],
-                   fill=(140, 140, 148, 255), width=4)
-        for p in self.pts[1:-1]:
-            d.ellipse([p["x"] - 4, p["y"] - 4, p["x"] + 4, p["y"] + 4],
-                      outline=(170, 170, 180, 255), width=2)
-
-        # The bag: teardrop with seam + highlight; squash on hit.
-        sq = 1.0
-        if t - self.squash_t < 0.16:
-            u = (t - self.squash_t) / 0.16
-            sq = 1.0 - 0.22 * (1 - u)
-        br_w = self.bag_r * (2 - sq)
-        br_h = self.bag_r * 1.35 * sq
-        top = self.pts[-1]
-        d.polygon([(top["x"], top["y"] - 6),
-                   (bx - br_w * 0.45, by - br_h * 0.4),
-                   (bx + br_w * 0.45, by - br_h * 0.4)],
-                  fill=(*self.bag_col, 255))
-        d.ellipse([bx - br_w, by - br_h, bx + br_w, by + br_h],
-                  fill=(*self.bag_col, 255))
-        d.line([bx, by - br_h + 6, bx, by + br_h - 6],
-               fill=tuple(int(c * 0.7) for c in self.bag_col) + (255,),
-               width=3)
-        d.ellipse([bx - br_w * 0.55, by - br_h * 0.6,
-                   bx - br_w * 0.15, by - br_h * 0.2],
-                  fill=(255, 255, 255, 60))
-
-        # The glove (rounded fist + cuff) + impact flash/speed lines.
-        if glove is not None:
-            gx, gy, side = glove
-            d.ellipse([gx - 34, gy - 30, gx + 34, gy + 30],
-                      fill=(190, 40, 40, 255),
-                      outline=(120, 22, 22, 255), width=3)
-            cuff_a = gx + side * 20
-            cuff_b = gx + side * 74
-            d.rectangle([min(cuff_a, cuff_b), gy - 20,
-                         max(cuff_a, cuff_b), gy + 20],
-                        fill=(160, 30, 30, 255))
-            d.ellipse([gx - 18, gy - 14, gx + 6, gy + 8],
-                      fill=(225, 80, 70, 255))
+        # Crowd camera flashes (outside the cage, in the dark).
         for fl in self.flashes:
             fl["life"] -= dt
             if fl["life"] > 0:
-                a = int(230 * fl["life"] / 0.12)
-                d.ellipse([fl["x"] - 26, fl["y"] - 26,
-                           fl["x"] + 26, fl["y"] + 26],
-                          outline=(255, 240, 180, a), width=5)
-                for n_ in range(3):
-                    ly = fl["y"] - 14 + n_ * 14
-                    d.line([fl["x"] - fl["side"] * 30, ly,
-                            fl["x"] - fl["side"] * (60 + 16 * n_), ly],
-                           fill=(255, 245, 210, a), width=3)
+                a = int(255 * min(1, fl["life"] * 8))
+                r_ = 3 + 5 * fl["life"] * 8
+                d.ellipse([fl["x"] - r_, fl["y"] - r_,
+                           fl["x"] + r_, fl["y"] + r_],
+                          fill=(255, 250, 235, a))
         self.flashes = [fl for fl in self.flashes if fl["life"] > 0]
+
+        # Octagon floor: slightly lit canvas + center emblem.
+        d.polygon(self.verts, fill=(34, 30, 34, 255))
+        d.ellipse([self.cx - 70, self.cy - 70,
+                   self.cx + 70, self.cy + 70],
+                  outline=(70, 62, 60, 255), width=4)
+        d.ellipse([self.cx - 44, self.cy - 44,
+                   self.cx + 44, self.cy + 44],
+                  outline=(58, 52, 52, 255), width=3)
+
+        # Cage edge: a ring pulse flashes on every clash.
+        pulse = max(0.0, 1 - (t - self.ring_pulse) / 0.35)
+        edge_col = (160 + int(70 * pulse), 150 + int(60 * pulse),
+                    140 + int(60 * pulse), 255)
+        d.polygon(self.verts, outline=edge_col)
+        d.line(self.verts + [self.verts[0]], fill=edge_col, width=6)
+        # Corner posts with little glow caps.
+        for vx_, vy_ in self.verts:
+            d.ellipse([vx_ - 9, vy_ - 9, vx_ + 9, vy_ + 9],
+                      fill=(120, 112, 104, 255))
+            d.ellipse([vx_ - 4, vy_ - 4, vx_ + 4, vy_ + 4],
+                      fill=(255, 235, 180, 200))
+
+        # The fighters: glow halo + ball + squash on clash + face-off
+        # eye dot so they read as combatants, not particles.
+        for ball in self.balls:
+            foe = self.balls[1] if ball is self.balls[0] else self.balls[0]
+            r_ = self.R_BALL
+            # Contact shadow on the canvas.
+            d.ellipse([ball["x"] - r_ * 0.9, self.cy + self.R * 0.78,
+                       ball["x"] + r_ * 0.9, self.cy + self.R * 0.78 + 14],
+                      fill=(10, 9, 11, 70))
+            # Squash along the clash axis right after impact.
+            sq = 1.0
+            if t - ball["clash_t"] < 0.14:
+                sq = 1.0 - 0.28 * (1 - (t - ball["clash_t"]) / 0.14)
+            ang = math.atan2(ball["clash_ay"], ball["clash_ax"])
+            wr, hr = r_ * sq, r_ * (2 - sq) * 0.5 + r_ * 0.5
+            # Approximate squashed circle with an ellipse aligned by
+            # drawing in unrotated frame (cheap, reads fine at speed).
+            d.ellipse([ball["x"] - wr, ball["y"] - hr,
+                       ball["x"] + wr, ball["y"] + hr],
+                      fill=(*ball["col"], 255))
+            d.ellipse([ball["x"] - wr, ball["y"] - hr,
+                       ball["x"] + wr, ball["y"] + hr],
+                      outline=tuple(int(c * 0.6) for c in ball["col"])
+                      + (255,), width=4)
+            # Specular + an "eye" facing the opponent.
+            d.ellipse([ball["x"] - wr * 0.5, ball["y"] - hr * 0.55,
+                       ball["x"] - wr * 0.1, ball["y"] - hr * 0.15],
+                      fill=(255, 255, 255, 130))
+            fx, fy = foe["x"] - ball["x"], foe["y"] - ball["y"]
+            fl_ = math.hypot(fx, fy) or 1
+            ex_ = ball["x"] + fx / fl_ * wr * 0.45
+            ey_ = ball["y"] + fy / fl_ * hr * 0.45
+            d.ellipse([ex_ - 7, ey_ - 7, ex_ + 7, ey_ + 7],
+                      fill=(252, 252, 252, 255))
+            d.ellipse([ex_ - 3, ey_ - 3, ex_ + 3, ey_ + 3],
+                      fill=(15, 15, 18, 255))
+
+        # Clash sparks.
+        for s in self.sparks:
+            s["x"] += s["vx"] * dt
+            s["y"] += s["vy"] * dt
+            s["vy"] += 900 * dt
+            s["life"] -= dt
+            if s["life"] > 0:
+                a = int(255 * min(1, s["life"] * 3))
+                d.line([s["x"], s["y"],
+                        s["x"] - s["vx"] * 0.02, s["y"] - s["vy"] * 0.02],
+                       fill=(*s["col"], a), width=3)
+        self.sparks = [s for s in self.sparks if s["life"] > 0]
+
+        out = np.asarray(img, dtype=np.uint8)
+        return self.lag(out, ts)
+
+
+# ---------- TRAIN: armored express through the night ----------
+# (Xi-Kim-summit-class stories — Kim's famous armored train — plus
+# any rail/transit story.)
+
+class _Train(_Renderer):
+    """A dark-green armored train with a gold stripe barrels through
+    a moonlit landscape, coupling rods churning, smoke streaming,
+    telegraph poles whipping past. Rectangles + spoked wheels +
+    parallax: reads as 'train at night' from any frame.
+
+    The break is the wagon-wheel effect made load-bearing: wheel
+    rotation is derived from distance travelled, so as the sim clock
+    compounds, rotation-per-frame climbs toward (and past) the
+    sampling limit — spokes genuinely stutter, freeze, then spin
+    backwards on screen. When a single frame advances the wheels more
+    than half a turn (Nyquist) the motion is unresolvable: fail,
+    hang, fresh night."""
+
+    GROWTH = 1.16
+    BASE_SPEED = 330.0
+    WHEEL_R = 30.0
+    N_SPOKES = 4
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self.reset_t = 0.0
+        self.failed_at = None
+        self._regen()
+
+    def _regen(self):
+        rng = self.rng
+        self.trail[:] = 0
+        self.scroll = 0.0
+        self.track_y = H * 0.74
+        self.moon = (rng.uniform(W * 0.6, W * 0.9),
+                     rng.uniform(90, 180))
+        self.stars = [(rng.uniform(0, W), rng.uniform(0, H * 0.5),
+                       rng.uniform(0.5, 1.5)) for _ in range(60)]
+        self.ridge_ph = rng.uniform(0, math.tau)
+        self.poles_gap = rng.uniform(420, 520)
+        self.smoke: list[dict] = []
+        self.n_cars = rng.randint(3, 4)
+        self.window_ph = rng.uniform(0, 10)
+        # Signal lights appear at world positions.
+        self.signals = []
+        sx = rng.uniform(1500, 2500)
+        while sx < 200000:
+            self.signals.append(sx)
+            sx += rng.uniform(2600, 5200)
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        held = self.handle_fail(self._last_frame
+                                if self._last_frame is not None
+                                else np.zeros((H, W, 3), np.uint8), t)
+        if held is not None:
+            return held
+
+        ts = self.sim_scale(t)
+        k = self.kk(ts)
+        dt = 1 / FPS
+        speed = self.BASE_SPEED * ts
+        step = speed * dt
+        self.scroll += step
+
+        # The honest Nyquist failure: wheel turn per frame.
+        turn_per_frame = step / self.WHEEL_R          # radians
+        spoke_period = math.tau / self.N_SPOKES
+        if turn_per_frame > spoke_period * 2:
+            self.declare_fail(t)
+        wheel_rot = self.scroll / self.WHEEL_R
+
+        # Track clack: tiny bounce as ties pass under the wheels,
+        # amplitude grows with speed.
+        tie_gap = 64.0
+        clack_ph = (self.scroll % tie_gap) / tie_gap
+        bounce = math.sin(clack_ph * math.pi) * min(5.0, 1.2 + 2.4 * k)
+
+        # Smoke from the funnel.
+        loco_x = W * 0.30
+        body_y = self.track_y - 64 + bounce
+        if rng.random() < 0.5 + 0.4 * k:
+            self.smoke.append({
+                "x": loco_x + 58, "y": body_y - 36,
+                "vx": -speed * 0.12 - rng.uniform(10, 50),
+                "vy": -rng.uniform(36, 80),
+                "r": rng.uniform(7, 14), "life": 1.0})
+
+        # ---- paint ----
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        frame = np.zeros((H, W, 3), dtype=np.float32)
+        frame[..., 0] = 10 + 16 * g
+        frame[..., 1] = 12 + 18 * g
+        frame[..., 2] = 26 + 30 * g
+        frame += self.trail
+        img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+
+        # Moon + stars.
+        mx, my = self.moon
+        for hr_, ha in ((60, 26), (50, 44)):
+            d.ellipse([mx - hr_, my - hr_, mx + hr_, my + hr_],
+                      fill=(230, 230, 212, ha))
+        d.ellipse([mx - 40, my - 40, mx + 40, my + 40],
+                  fill=(233, 233, 216, 255))
+        d.ellipse([mx - 12, my - 16, mx + 2, my - 4],
+                  fill=(212, 212, 196, 255))
+        for sx, sy, sr in self.stars:
+            tw = 130 + 70 * math.sin(t * 2 + sx)
+            d.ellipse([sx - sr, sy - sr, sx + sr, sy + sr],
+                      fill=(220, 225, 255, int(max(60, tw))))
+
+        # Far ridge (slow parallax).
+        ridge = [(x, H * 0.58
+                  + 40 * math.sin((self.scroll * 0.12 + x) * 0.004
+                                  + self.ridge_ph)
+                  + 18 * math.sin((self.scroll * 0.12 + x) * 0.011))
+                 for x in range(0, W + 40, 40)]
+        d.polygon([(0, H), *ridge, (W, H)], fill=(15, 19, 30, 255))
+
+        # Telegraph poles + sagging wire (mid parallax).
+        pole_scroll = self.scroll * 0.55
+        first = -(pole_scroll % self.poles_gap)
+        px_list = []
+        x_ = first
+        while x_ < W + self.poles_gap:
+            px_list.append(x_)
+            x_ += self.poles_gap
+        pole_top = H * 0.40
+        for px_ in px_list:
+            d.line([px_, self.track_y - 6, px_, pole_top],
+                   fill=(20, 24, 32, 255), width=7)
+            d.line([px_ - 22, pole_top + 12, px_ + 22, pole_top + 12],
+                   fill=(20, 24, 32, 255), width=5)
+        for pa, pb in zip(px_list, px_list[1:]):
+            mid = (pa + pb) / 2
+            d.line([pa, pole_top + 12, mid, pole_top + 44],
+                   fill=(26, 30, 40, 255), width=2)
+            d.line([mid, pole_top + 44, pb, pole_top + 12],
+                   fill=(26, 30, 40, 255), width=2)
+
+        # Passing signal lights (red blinker on a post).
+        for swx in self.signals:
+            sx2 = swx - self.scroll
+            if -60 < sx2 < W + 60:
+                d.line([sx2, self.track_y, sx2, self.track_y - 110],
+                       fill=(30, 32, 40, 255), width=6)
+                on = math.sin(t * 9) > 0
+                d.ellipse([sx2 - 10, self.track_y - 132,
+                           sx2 + 10, self.track_y - 112],
+                          fill=(255, 60, 50, 255) if on
+                          else (90, 28, 26, 255))
+
+        # Track bed: ballast strip, rail, ties scrolling at full speed.
+        d.rectangle([0, self.track_y + 10, W, H],
+                    fill=(16, 17, 22, 255))
+        d.line([0, self.track_y + 10, W, self.track_y + 10],
+               fill=(70, 72, 84, 255), width=4)
+        tie_first = -(self.scroll % tie_gap)
+        x_ = tie_first
+        while x_ < W + tie_gap:
+            d.line([x_, self.track_y + 12, x_ - 10, self.track_y + 30],
+                   fill=(36, 32, 30, 255), width=8)
+            x_ += tie_gap
+
+        # Smoke trail (drawn behind the train).
+        for sm in self.smoke:
+            sm["x"] += sm["vx"] * dt
+            sm["y"] += sm["vy"] * dt
+            sm["r"] += 14 * dt
+            sm["life"] -= dt * 0.5
+            if sm["life"] > 0:
+                sh = int(54 + 30 * sm["life"])
+                d.ellipse([sm["x"] - sm["r"], sm["y"] - sm["r"],
+                           sm["x"] + sm["r"], sm["y"] + sm["r"]],
+                          fill=(sh, sh, sh + 4, int(140 * sm["life"])))
+        self.smoke = [sm for sm in self.smoke if sm["life"] > 0]
+
+        # ---- the train (fixed on screen; the world moves) ----
+        GREEN = (26, 56, 40, 255)
+        GREEN_D = (18, 40, 30, 255)
+        GOLD = (212, 174, 78, 255)
+        car_w, car_h, gap2 = 218, 64, 14
+        # Ground shadow.
+        total_w = 90 + (car_w + gap2) * self.n_cars + car_w
+        d.ellipse([loco_x - 60, self.track_y + 6,
+                   loco_x + total_w * 0.9, self.track_y + 22],
+                  fill=(6, 7, 10, 110))
+
+        def wheels(x0, x1, y0):
+            xs = [x0 + 36, (x0 + x1) / 2, x1 - 36]
+            cranks = []
+            for wx_ in xs:
+                d.ellipse([wx_ - self.WHEEL_R, y0 - self.WHEEL_R,
+                           wx_ + self.WHEEL_R, y0 + self.WHEEL_R],
+                          fill=(24, 24, 28, 255),
+                          outline=(90, 92, 102, 255), width=4)
+                # Spokes — THE aliasing showcase.
+                for s_ in range(self.N_SPOKES):
+                    a = wheel_rot + s_ * math.tau / self.N_SPOKES
+                    d.line([wx_, y0,
+                            wx_ + math.cos(a) * (self.WHEEL_R - 5),
+                            y0 + math.sin(a) * (self.WHEEL_R - 5)],
+                           fill=(120, 122, 132, 255), width=4)
+                d.ellipse([wx_ - 6, y0 - 6, wx_ + 6, y0 + 6],
+                          fill=(140, 142, 150, 255))
+                cranks.append((wx_ + math.cos(wheel_rot) * 16,
+                               y0 + math.sin(wheel_rot) * 16))
+            # Coupling rod linking the cranks (classic loco motion).
+            d.line(cranks, fill=(150, 152, 160, 255), width=6)
+            for cx_, cy_ in cranks:
+                d.ellipse([cx_ - 4, cy_ - 4, cx_ + 4, cy_ + 4],
+                          fill=(190, 192, 200, 255))
+
+        wheel_y = self.track_y - 4
+
+        # Locomotive: armored nose + cab + funnel + headlight beam.
+        lx0, lx1 = loco_x - 40, loco_x + 150
+        d.polygon([(lx1, body_y + 50), (lx1 + 54, body_y + 50),
+                   (lx1 + 54, body_y + 26), (lx1 + 20, body_y - 2),
+                   (lx1, body_y - 2)], fill=GREEN_D)          # nose
+        d.rounded_rectangle([lx0, body_y - 26, lx1, body_y + 50],
+                            radius=10, fill=GREEN,
+                            outline=GREEN_D, width=3)
+        d.rectangle([lx0 + 12, body_y - 48, lx0 + 74, body_y - 22],
+                    fill=GREEN, outline=GREEN_D, width=3)      # cab
+        d.rectangle([lx0 + 22, body_y - 42, lx0 + 50, body_y - 28],
+                    fill=(255, 224, 150, 230))                # cab window
+        d.rectangle([lx1 - 36, body_y - 44, lx1 - 18, body_y - 24],
+                    fill=GREEN_D)                              # funnel
+        d.line([lx0, body_y + 20, lx1 + 40, body_y + 20],
+               fill=GOLD, width=5)                             # gold stripe
+        # Headlight + beam.
+        d.ellipse([lx1 + 40, body_y + 6, lx1 + 56, body_y + 22],
+                  fill=(255, 240, 190, 255))
+        d.polygon([(lx1 + 52, body_y + 8), (lx1 + 52, body_y + 20),
+                   (W + 80, body_y + 70), (W + 80, body_y - 60)],
+                  fill=(255, 240, 190, 26))
+        wheels(lx0, lx1, wheel_y)
+
+        # Cars.
+        for c_ in range(self.n_cars):
+            cx0 = lx0 - (c_ + 1) * (car_w + gap2)
+            cx1 = cx0 + car_w
+            d.rounded_rectangle([cx0, body_y - 22, cx1, body_y + 50],
+                                radius=10, fill=GREEN,
+                                outline=GREEN_D, width=3)
+            d.line([cx0, body_y + 20, cx1, body_y + 20],
+                   fill=GOLD, width=5)
+            # Lit windows with a slow flicker.
+            for wn in range(4):
+                wx_ = cx0 + 26 + wn * 46
+                lit = math.sin(self.window_ph + c_ * 3 + wn
+                               + t * 0.6) > -0.5
+                d.rounded_rectangle(
+                    [wx_, body_y - 12, wx_ + 26, body_y + 8], radius=4,
+                    fill=(255, 224, 150, 230) if lit
+                    else (40, 52, 48, 255))
+            # Coupling to the next car.
+            d.line([cx1, body_y + 30, cx1 + gap2, body_y + 30],
+                   fill=(80, 82, 90, 255), width=6)
+            wheels(cx0, cx1, wheel_y)
+
+        # Speed lines once it's flying.
+        if k > 0.45:
+            for _ in range(int(10 * k)):
+                ly = rng.uniform(H * 0.3, H * 0.85)
+                ll = rng.uniform(50, 200) * k
+                lx = rng.uniform(0, W)
+                d.line([lx, ly, lx + ll, ly],
+                       fill=(220, 225, 255, int(55 * k)), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
@@ -2415,6 +2714,7 @@ _THEME_CLASSES = {
     "runner": _Runner,
     "stacker": _Stacker,
     "fight": _Fight,
+    "train": _Train,
 }
 
 
