@@ -775,6 +775,23 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
                         variant == "R"))
         seq.append((home[0], home[1], windows[-1][0], windows[-1][1], UP_ANGLE, False))
 
+        # Guarantee the host is on-screen for EVERY frame. Any beat whose line
+        # names no on-chart number produces no events, which left a hole in the
+        # tiling above and made the mascot briefly vanish. Sort by start time
+        # and patch every gap (and the head/tail) with the home/up mascot so
+        # coverage runs unbroken from 0 to the end of the video.
+        seq.sort(key=lambda s: s[2])
+        filled, cursor = [], 0.0
+        for entry in seq:
+            w0, w1 = entry[2], entry[3]
+            if w0 - cursor > 0.05:
+                filled.append((home[0], home[1], cursor, w0, UP_ANGLE, False))
+            filled.append(entry)
+            cursor = max(cursor, w1)
+        if total - cursor > 0.05:
+            filled.append((home[0], home[1], cursor, total, UP_ANGLE, False))
+        seq = filled
+
         mascot_movs = []
         for k, (_x, _y, _w0, _w1, angle, flip) in enumerate(seq):
             mv = work / f"masc_{k}.mov"
