@@ -1,0 +1,25 @@
+{
+  "key": "tipping_by_category",
+  "title": "Expected tip rate by service type (2025)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Consumer tipping behavior survey",
+    "publisher": "Bankrate / NORC at the University of Chicago",
+    "url": "https://www.bankrate.com/personal-finance/tipping-survey/",
+    "officiality": "research",
+    "access_date": "2026-06-10"
+  },
+  "notes": "Illustrative; represents the social norm/expected tip range most consumers report. Many of these categories had no tipping norm before 2012.",
+  "baseline": {"label": "Pre-2012 restaurant standard", "value": 15},
+  "points": [
+    {"label": "Upscale restaurant", "value": 22},
+    {"label": "Casual restaurant", "value": 20},
+    {"label": "Hotel concierge", "value": 18},
+    {"label": "Coffee shop / cafe", "value": 15},
+    {"label": "Takeout / counter service", "value": 14},
+    {"label": "Food delivery app", "value": 13},
+    {"label": "Hotel housekeeping", "value": 10}
+  ]
+}

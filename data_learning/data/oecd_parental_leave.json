@@ -1,0 +1,28 @@
+{
+  "key": "oecd_parental_leave",
+  "title": "Paid parental leave entitlement (weeks)",
+  "unit": "index",
+  "geography": "OECD countries",
+  "time_coverage": "2024",
+  "source": {
+    "name": "OECD Family Database — PF2.1: Parental leave",
+    "publisher": "OECD",
+    "url": "https://www.oecd.org/els/family/PF2_1_Parental_leave_systems.pdf",
+    "officiality": "official",
+    "access_date": "2026-06-10"
+  },
+  "notes": "Illustrative; combined mother + father paid leave weeks at full or near-full pay. U.S. has 0 federally mandated paid parental leave.",
+  "baseline": {"label": "OECD average", "value": 51},
+  "points": [
+    {"label": "Hungary", "value": 180},
+    {"label": "Estonia", "value": 154},
+    {"label": "Sweden", "value": 68},
+    {"label": "Germany", "value": 60},
+    {"label": "Japan", "value": 52},
+    {"label": "Canada", "value": 50},
+    {"label": "UK", "value": 39},
+    {"label": "Australia", "value": 22},
+    {"label": "Mexico", "value": 12},
+    {"label": "United States", "value": 0}
+  ]
+}

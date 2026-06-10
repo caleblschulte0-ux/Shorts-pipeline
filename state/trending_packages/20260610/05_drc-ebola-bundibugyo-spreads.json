@@ -1,0 +1,94 @@
+{
+  "version": 8,
+  "slug": "drc-ebola-bundibugyo-spreads",
+  "title": "Congo's Ebola Outbreak Is Spreading Faster Than the 2014 Epidemic",
+  "hashtags": ["ebola", "drc", "congo", "bundibugyo", "ituri", "africacdc", "who", "outbreak", "healthcrisis", "epidemic", "uganda", "publichealth", "africa", "emergencyresponse"],
+  "script": "Ebola's breaking records! The Democratic Republic of Congo is fighting an Ebola outbreak caused by the Bundibugyo virus — a species with no vaccine or proven treatment. As of June 8, the Africa CDC reported 550 confirmed cases and 101 confirmed deaths. The pace is historic: the outbreak is spreading faster than the catastrophic 2014 West Africa epidemic in its first weeks. The World Health Organization says eastern Congo's Ituri Province is nearly impossible to contain because armed conflict prevents health workers from reaching patients. Uganda has now reported 19 confirmed cases and 2 deaths. The U.S. CDC projects a 65% chance of cases exceeding 20,000 within 3 months if only 20% of patients are isolated. There is no approved vaccine for Bundibugyo Ebola. Is this the outbreak that finally breaks containment?",
+  "shots": [
+    {
+      "phrase": "Ebola's breaking records",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ebola_virus_em.jpg",
+      "query": "Ebola virus electron microscope CDC scientific image"
+    },
+    {
+      "phrase": "Democratic Republic of Congo",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Congo_Democratic_Republic_Map.jpg",
+      "query": "Democratic Republic Congo Africa map country"
+    },
+    {
+      "phrase": "Bundibugyo virus",
+      "query": "Ebola Bundibugyo virus microscope medical health laboratory"
+    },
+    {
+      "phrase": "Africa CDC reported 550 confirmed cases and 101 confirmed deaths",
+      "query": "Africa CDC health report outbreak statistics confirmed cases graph"
+    },
+    {
+      "phrase": "spreading faster than the catastrophic 2014 West Africa epidemic",
+      "query": "2014 Ebola West Africa epidemic historical crisis healthcare response"
+    },
+    {
+      "phrase": "World Health Organization says eastern Congo's Ituri Province",
+      "query": "Ituri Province Congo eastern DRC forest conflict zone area map"
+    },
+    {
+      "phrase": "armed conflict prevents health workers from reaching patients",
+      "query": "conflict zone eastern Congo health workers danger armed group displacement"
+    },
+    {
+      "phrase": "Uganda has now reported 19 confirmed cases and 2 deaths",
+      "query": "Uganda Africa neighboring country map border DRC east"
+    },
+    {
+      "phrase": "65% chance of cases exceeding 20,000 within 3 months",
+      "query": "disease outbreak spread projection exponential growth graph curve"
+    },
+    {
+      "phrase": "20% of patients are isolated",
+      "query": "Ebola isolation unit hospital treatment center healthcare protective suit"
+    },
+    {
+      "phrase": "Is this the outbreak that finally breaks containment",
+      "query": "Ebola outbreak spread containment failure quarantine global health threat"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Ebola's breaking records",
+      "text": "FASTEST EVER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Bundibugyo virus",
+      "text": "NO VACCINE EXISTS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "550 confirmed cases and 101 confirmed deaths",
+      "text": "550 CASES 101 DEAD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "spreading faster than the catastrophic 2014 West Africa epidemic",
+      "text": "WORSE THAN 2014",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "armed conflict prevents health workers",
+      "text": "UNREACHABLE ZONE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Uganda has now reported 19 confirmed cases",
+      "text": "SPREADING TO UGANDA",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "65% chance of cases exceeding 20,000",
+      "text": "20K IN 3 MONTHS?",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}

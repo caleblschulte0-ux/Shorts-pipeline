@@ -1,0 +1,24 @@
+{
+  "key": "rocket_launches_by_operator",
+  "title": "Orbital launches by operator (2025)",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Annual Space Activity Report",
+    "publisher": "BryceTech / Space Policy Institute",
+    "url": "https://brycetech.com/reports",
+    "officiality": "industry",
+    "access_date": "2026-06-10"
+  },
+  "notes": "Illustrative; rounded from industry tracking sources. SpaceX figure includes Starlink batch missions.",
+  "baseline": {"label": "All others combined", "value": 71},
+  "points": [
+    {"label": "SpaceX (USA)", "value": 134},
+    {"label": "CASC / CALT (China)", "value": 67},
+    {"label": "Roscosmos (Russia)", "value": 18},
+    {"label": "ULA / RocketLab (USA)", "value": 14},
+    {"label": "ISRO (India)", "value": 12},
+    {"label": "Arianespace (Europe)", "value": 8}
+  ]
+}

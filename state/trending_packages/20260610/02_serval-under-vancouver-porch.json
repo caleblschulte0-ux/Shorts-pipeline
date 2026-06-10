@@ -1,0 +1,86 @@
+{
+  "version": 8,
+  "slug": "serval-under-vancouver-porch",
+  "title": "An Escaped African Serval Turned Up Under a Vancouver Porch",
+  "hashtags": ["serval", "africanserval", "vancouver", "britishcolumbia", "exoticcat", "wildcat", "escapedcat", "animalnews", "weirdnews", "canada", "bcwildlife", "exoticpet", "catrescue", "wildlife"],
+  "script": "Wild cat under the porch! On June 9, a Vancouver homeowner near Prince Albert Street and East 30th Avenue called police after discovering a large spotted wildcat had taken shelter beneath their house. Officers arrived to find a full-grown African serval — a wild cat native to sub-Saharan Africa that stands over 2 feet tall and weighs up to 40 pounds. Conservation officers worked with police to safely catch the animal and return it to its owners. British Columbia only banned new exotic cat ownership in May, under the Controlled Alien Species Regulation. Any serval already in the province before that date can be kept under a free permit. Neighbors had no idea a serval lived nearby. How many undeclared exotic cats are hiding in Vancouver right now?",
+  "shots": [
+    {
+      "phrase": "Wild cat under the porch",
+      "query": "porch foundation under house shelter dark crawlspace animal hiding"
+    },
+    {
+      "phrase": "Vancouver homeowner near Prince Albert Street",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_of_Vancouver,_Canada.jpg",
+      "query": "Vancouver British Columbia city residential neighborhood street"
+    },
+    {
+      "phrase": "full-grown African serval",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Serval_crop.jpg",
+      "query": "African serval wild spotted cat large standing"
+    },
+    {
+      "phrase": "wild cat native to sub-Saharan Africa",
+      "query": "savanna Africa grassland wildlife sub-Saharan landscape"
+    },
+    {
+      "phrase": "stands over 2 feet tall and weighs up to 40 pounds",
+      "query": "serval cat tall spotted wild cat standing grass"
+    },
+    {
+      "phrase": "Conservation officers worked with police to safely catch the animal",
+      "query": "wildlife conservation officers police team catching animal rope net"
+    },
+    {
+      "phrase": "British Columbia only banned new exotic cat ownership in May",
+      "query": "British Columbia government law regulation exotic pets sign"
+    },
+    {
+      "phrase": "Controlled Alien Species Regulation",
+      "query": "government regulation document permit sign wildlife exotic animal law"
+    },
+    {
+      "phrase": "free permit",
+      "query": "government permit document form wildlife exotic registration"
+    },
+    {
+      "phrase": "Neighbors had no idea a serval lived nearby",
+      "query": "surprised neighbors suburban residential street community reaction"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Wild cat under the porch",
+      "text": "WILD CAT?!",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "full-grown African serval",
+      "text": "AFRICAN SERVAL",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "stands over 2 feet tall and weighs up to 40 pounds",
+      "text": "40 POUNDS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "British Columbia only banned new exotic cat ownership in May",
+      "text": "BAN: 1 MONTH OLD",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Controlled Alien Species Regulation",
+      "text": "NEW BC LAW",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Neighbors had no idea a serval lived nearby",
+      "text": "NOBODY KNEW",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "gameplay": "subway"
+}
