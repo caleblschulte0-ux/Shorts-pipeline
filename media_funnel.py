@@ -359,37 +359,30 @@ def p_tavily(entity: str, angle: str) -> list[Candidate]:
         "max_results": 10,
         "search_depth": "basic",
     }).encode()
-    # Tavily's free tier read latency is bursty — first call sometimes
-    # takes ~25 s. Generous timeout + one retry, since Tavily is our
-    # main og:image surface and silent here means stale YouTube wins.
-    data = None
-    last_err = ""
-    for attempt in range(2):
+    # 12s ceiling so we stay under the 15s orchestrator window —
+    # retrying once on timeout used to push us past 30s and stall the
+    # whole fan-out. One shot, fast or silent.
+    try:
+        req = urllib.request.Request(
+            "https://api.tavily.com/search",
+            data=body,
+            headers={"Content-Type": "application/json",
+                     "User-Agent": _UA_GENERIC},
+            method="POST")
+        with urllib.request.urlopen(req, timeout=12) as r:
+            data = json.load(r)
+            _dbg("tavily", f"200 ({len(data.get('images') or [])} "
+                 f"imgs, {len(data.get('results') or [])} results)")
+    except urllib.error.HTTPError as e:
+        body_txt = ""
         try:
-            req = urllib.request.Request(
-                "https://api.tavily.com/search",
-                data=body,
-                headers={"Content-Type": "application/json",
-                         "User-Agent": _UA_GENERIC},
-                method="POST")
-            with urllib.request.urlopen(req, timeout=30) as r:
-                data = json.load(r)
-                _dbg("tavily", f"200 ({len(data.get('images') or [])} "
-                     f"imgs, {len(data.get('results') or [])} results) "
-                     f"attempt={attempt + 1}")
-                break
-        except urllib.error.HTTPError as e:
-            body_txt = ""
-            try:
-                body_txt = e.read()[:400].decode("utf-8", errors="ignore")
-            except Exception:  # noqa: BLE001
-                pass
-            _dbg("tavily", f"HTTP {e.code} | body: {body_txt[:200]}")
-            return []  # auth/quota issues won't fix with retry
-        except Exception as e:  # noqa: BLE001
-            last_err = f"{type(e).__name__}: {str(e)[:160]}"
-            _dbg("tavily", f"attempt {attempt + 1} err {last_err}")
-    if data is None:
+            body_txt = e.read()[:400].decode("utf-8", errors="ignore")
+        except Exception:  # noqa: BLE001
+            pass
+        _dbg("tavily", f"HTTP {e.code} | body: {body_txt[:200]}")
+        return []
+    except Exception as e:  # noqa: BLE001
+        _dbg("tavily", f"err {type(e).__name__}: {str(e)[:200]}")
         return []
     out = []
     # Tavily returns both `images` (a flat list) and `results` (with
@@ -949,22 +942,37 @@ def search(story_angle: str, entities: list[str],
     # (we don't pay for separate searches per entity to stay inside
     # daily free tiers).
     all_candidates: list[Candidate] = []
-    with concurrent.futures.ThreadPoolExecutor(
-            max_workers=len(_PROVIDERS)) as ex:
+    # Don't use the `with` context manager — its __exit__ waits for
+    # every submitted future to finish, so one slow provider (Tavily,
+    # 30s+ on a bad day) blocks the orchestrator long after we've
+    # given up on it. Manually shutdown with cancel_futures=True so
+    # stragglers get abandoned instead of stalling the pipeline.
+    ex = concurrent.futures.ThreadPoolExecutor(
+        max_workers=len(_PROVIDERS))
+    try:
         futures = {ex.submit(fn, primary, story_angle): name
                    for name, fn in _PROVIDERS}
-        for fut in concurrent.futures.as_completed(futures, timeout=15):
-            name = futures[fut]
-            try:
-                cs = fut.result() or []
-            except Exception as e:  # noqa: BLE001
-                if verbose:
-                    print(f"  [media_funnel] {name} failed: "
-                          f"{type(e).__name__}: {str(e)[:80]}")
-                cs = []
-            all_candidates.extend(cs)
-            if verbose and cs:
-                print(f"  [media_funnel] {name}: {len(cs)} raw")
+        try:
+            for fut in concurrent.futures.as_completed(
+                    futures, timeout=15):
+                name = futures[fut]
+                try:
+                    cs = fut.result() or []
+                except Exception as e:  # noqa: BLE001
+                    if verbose:
+                        print(f"  [media_funnel] {name} failed: "
+                              f"{type(e).__name__}: {str(e)[:80]}")
+                    cs = []
+                all_candidates.extend(cs)
+                if verbose and cs:
+                    print(f"  [media_funnel] {name}: {len(cs)} raw")
+        except concurrent.futures.TimeoutError:
+            pending = [futures[f] for f in futures if not f.done()]
+            if verbose and pending:
+                print(f"  [media_funnel] 15s window expired, "
+                      f"abandoning slow providers: {', '.join(pending)}")
+    finally:
+        ex.shutdown(wait=False, cancel_futures=True)
 
     # 2. og:image expansion on every article URL (Wayback fallback
     # baked into og_scrape).
