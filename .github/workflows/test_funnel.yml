@@ -27,6 +27,11 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The funnel code (media_funnel.py, og_scrape.py) lives on
+          # claude/news-media-funnel and is not yet on main. Pull from
+          # the feature branch so the probe has files to run.
+          ref: claude/news-media-funnel
 
       - name: Set up Python
         uses: actions/setup-python@v5
