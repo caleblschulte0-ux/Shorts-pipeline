@@ -758,13 +758,30 @@ def _verify(candidates: list[Candidate]) -> list[Candidate]:
     return keep
 
 
-def _prefilter(candidates: list[Candidate]) -> list[Candidate]:
+def _prefilter(candidates: list[Candidate],
+               entity: str = "") -> list[Candidate]:
     """Apply junk-URL rejection + numeric boosts that don't need an
-    LLM. Sorts the survivors by current score, highest first."""
+    LLM. Sorts the survivors by current score, highest first.
+
+    When `entity` is non-empty, candidates whose article_title is
+    populated but does NOT contain the entity name (case-insensitive)
+    are dropped — Tavily/Brave occasionally surface results that
+    matched on individual tokens (e.g. "Brad Pitt's son" for a "Brad
+    Paisley" query). Candidates with no article_title metadata are
+    kept since there's nothing to test against."""
+    ent_norm = entity.lower().strip()
+    # Multi-word entities: require all words present (handles middle
+    # names / "Hunter the kangaroo" → "hunter" + "kangaroo").
+    ent_words = [w for w in re.findall(r"[a-z']+", ent_norm)
+                 if w not in {"the", "a", "an", "of"}]
     out: list[Candidate] = []
     for c in candidates:
         if _JUNK_URL.search(c.url):
             continue
+        if ent_words and c.article_title:
+            title_l = c.article_title.lower()
+            if not all(w in title_l for w in ent_words):
+                continue
         # Base score per source — trusts news-search APIs more than
         # social, social more than image hosts, image hosts more than
         # generic DDG.
@@ -926,7 +943,7 @@ def search(story_angle: str, entities: list[str],
               f"{len(all_candidates)} URLs as actually images")
 
     # 4. Heuristic prefilter + scoring.
-    filtered = _prefilter(verified)
+    filtered = _prefilter(verified, entity=primary)
 
     # 5. LLM rerank.
     final = _llm_rerank(filtered, story_angle, primary)
