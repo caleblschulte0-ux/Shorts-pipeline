@@ -1770,6 +1770,7 @@ def build_video(
     gameplay_tag: str,
     out_path: Path,
     music_vibe: str = "dark",
+    bottom_theme: str | None = None,
 ) -> None:
     workdir = Path(tempfile.mkdtemp(prefix="exps_"))
     print(f"workdir: {workdir}")
@@ -1811,9 +1812,25 @@ def build_video(
                                           workdir, audit=audit)
         print(f"      {len(cut_times)} sub-cuts")
 
-        # 5. Pick gameplay for bottom
-        print(f"[5/9] bottom: {gameplay_tag} gameplay", flush=True)
-        bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
+        # 5. Bottom half: themed procedural loop OR stock gameplay.
+        # A bottom_theme means we GENERATE the bottom — a topic-matched
+        # satisfying loop (rocket between stars for space stories, rain
+        # + lightning for storms, plinko as the neutral default) —
+        # instead of seeking into random Minecraft parkour. Falls back
+        # to gameplay if generation blows up, so a bad theme never
+        # kills a render.
+        if bottom_theme:
+            print(f"[5/9] bottom: themed '{bottom_theme}'", flush=True)
+            try:
+                import themed_bottom
+                bottom = themed_bottom.render(
+                    bottom_theme, total_dur, workdir / "bottom_themed.mp4")
+            except Exception as e:  # noqa: BLE001
+                print(f"      [themed_bottom failed: {e}] -> gameplay")
+                bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
+        else:
+            print(f"[5/9] bottom: {gameplay_tag} gameplay", flush=True)
+            bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
 
         # 6. Captions + punches (both ASS, one filter pass)
         print("[6/9] captions + animated punches")
@@ -2009,10 +2026,22 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
         )
         for p in pkg["punches"]
     ]
+    # Bottom-half routing. "auto" lets the keyword router match the
+    # story to a theme; an explicit theme name is used as-is; absent /
+    # null keeps the classic Minecraft-gameplay bottom.
+    bottom_theme = pkg.get("bottom_theme")
+    if bottom_theme == "auto":
+        import themed_bottom
+        bottom_theme = themed_bottom.pick_theme(
+            pkg.get("title", ""), pkg.get("script", ""),
+            pkg.get("hashtags"))
+        print(f"  [themed_bottom] auto-picked theme: {bottom_theme!r}")
+
     build_video(
         pkg["script"], shots, punches,
         gameplay_tag=gameplay_tag, out_path=out_path,
         music_vibe=pkg.get("music_vibe", "dark"),
+        bottom_theme=bottom_theme,
     )
 
 

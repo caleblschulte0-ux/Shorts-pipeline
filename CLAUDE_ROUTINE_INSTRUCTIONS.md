@@ -126,9 +126,30 @@ Reference: `state/trending_packages/20260531/*.json`.
   ],
   "hashtags": ["topical", "tags", "specific", "to", "this", "story"],
   "music_vibe": "dark | cinematic | hiphop",
+  "bottom_theme": "auto",
   "channel": "explainer"
 }
 ```
+
+**`bottom_theme`** — what plays in the BOTTOM half of the stacked video.
+
+| Value | Bottom half |
+|-------|-------------|
+| _(omit)_ | Classic Minecraft parkour gameplay |
+| `"auto"` | Keyword-routed procedural satisfying loop themed to the story |
+| `"space"` | Rocket arcing star-to-star with glow trail + arrival pulses |
+| `"rain"` | Storm streaks + lightning bolts (weather / disaster stories) |
+| `"ember"` | Rising fire sparks (volcano / wildfire / explosion) |
+| `"ocean"` | Fish + bubbles + god rays (marine / animal stories) |
+| `"coins"` | Gold plinko cascade (markets / money stories) |
+| `"plinko"` | Neutral color plinko — the universal satisfying default |
+
+**Slate rule: set `"bottom_theme": "auto"` on 3 of the 6 daily packages**
+(prefer the ones with the strongest theme match — space launch, storm,
+volcano, animal). The other 3 omit the field and keep Minecraft. This is
+a deliberate A/B: same channel, half themed bottoms, half gameplay, so
+analytics can tell us within ~2 weeks which retains better. Don't set it
+on all 6 — we lose the comparison.
 
 **`mascot_pose` per shot** — one of `idle | shock | point | laugh | think |
 dismiss`. Drives the news-anchor mascot's reaction in the corner overlay.
