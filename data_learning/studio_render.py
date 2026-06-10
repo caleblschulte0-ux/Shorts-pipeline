@@ -210,7 +210,7 @@ def _build_soundtrack(narration: Path, windows, events, total: float,
         # Music sits low and ducks further whenever the voice speaks.
         # Louder, more present bed; the gentler duck keeps it audible under
         # the voice instead of crushing it to nothing.
-        f"[1:a]volume=0.85,atrim=0:{total:.2f}[mraw]",
+        f"[1:a]volume=1.15,atrim=0:{total:.2f}[mraw]",
         "[mraw][0:a]sidechaincompress=threshold=0.06:ratio=4:"
         "attack=80:release=400[duck]",
     ]
