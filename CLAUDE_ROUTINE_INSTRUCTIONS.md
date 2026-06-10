@@ -348,6 +348,19 @@ The channel **teaches one idea to someone who knows nothing and isn't trying
 hard** — a mechanism, a *why*, a how-it-actually-works. The viewer should leave
 able to explain it to a friend. We are NOT a stat tour. "Here's number A, here's
 number B, here's a one-liner, next graph" is the exact thing we are killing.
+**Tell the STORY; fall back on the data only as evidence for the point.**
+
+### TENANT #1 — every number must SPEAK cleanly
+This is a number-heavy channel, so the narrator mispronouncing figures is the
+single most annoying thing it can do. In every `say` line, write each number as
+**digits plus its unit, the way it should be heard**:
+- money → `$300` (spoken "three hundred dollars"), `$1,920`, `$50.4k` → write
+  `$50.4 thousand`
+- percent → `200%` (spoken "two hundred percent")
+- plain/units → `5,600`, `11.3 years`, `240 thousand`, `1 in 8`
+The renderer guarantees correct speech (dollars/percent, commas, decimals all
+handled) AND keeps the digits on-screen so the ring still lands. So: never write
+a number a way you wouldn't want read aloud — and always pair it with its unit.
 
 **Pick ONE thing to EXPLAIN, then build the whole video around teaching it.**
 Not "4 facts about subscriptions" — but *"why subscriptions quietly drain you,"*
