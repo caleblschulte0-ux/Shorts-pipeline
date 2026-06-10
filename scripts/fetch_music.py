@@ -21,12 +21,15 @@ ROOT = Path(__file__).resolve().parent.parent
 MUSIC = ROOT / "data_learning" / "music"
 BASE = "https://incompetech.com/music/royalty-free/mp3-royaltyfree"
 
-# vibe -> [track titles]. Each vibe gets a few so videos vary.
+# vibe -> [track titles]. Deliberately NEUTRAL / UPBEAT-adjacent ~85% of the
+# time (this is a teaching channel, not a thriller). Only the "cinematic" pool
+# keeps one atmospheric track (Lightless Dawn) for space/nature awe. Each vibe
+# has a few so videos still vary.
 LIBRARY = {
-    "calm":      ["Wholesome", "Sincerely", "Carefree"],
-    "dark":      ["Darkest Child", "Hitman", "Static Motion"],
-    "cinematic": ["Lightless Dawn", "The Descent", "Echoes of Time v2"],
-    "pulse":     ["Sneaky Snitch", "Hot Pursuit", "Local Forecast - Elevator"],
+    "calm":      ["Wholesome", "Carefree", "Almost New"],
+    "dark":      ["Inspired", "Cool Vibes", "Almost New"],
+    "cinematic": ["Cool Vibes", "Inspired", "Lightless Dawn"],
+    "pulse":     ["Cool Vibes", "Bossa Antigua", "Inspired"],
 }
 
 
