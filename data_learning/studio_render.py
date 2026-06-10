@@ -68,22 +68,22 @@ VOICE_PITCH = 1.0
 THEMES = [
     dict(highlight="#4FD1C5", accent="#60A5FA", warn="#F59E0B",
          grad=("0x080A14", "0x0e2444", "0x175852", "0x0a0e20"),
-         seed=7, voice="am_fenrir"),
+         seed=7, voice="am_fenrir", vibe="calm"),
     dict(highlight="#A78BFA", accent="#F472B6", warn="#FBBF24",
          grad=("0x0c0814", "0x241040", "0x3a1763", "0x120a20"),
-         seed=13, voice="am_michael"),
+         seed=13, voice="am_michael", vibe="dark"),
     dict(highlight="#FBBF24", accent="#FB7185", warn="#34D399",
          grad=("0x141005", "0x3a2410", "0x4e3417", "0x1a1408"),
-         seed=21, voice="bm_george"),
+         seed=21, voice="bm_george", vibe="cinematic"),
     dict(highlight="#34D399", accent="#22D3EE", warn="#FBBF24",
          grad=("0x07140e", "0x0e3a2a", "0x175852", "0x0a201a"),
-         seed=29, voice="am_adam"),
+         seed=29, voice="am_adam", vibe="pulse"),
     dict(highlight="#FB7185", accent="#A78BFA", warn="#FBBF24",
          grad=("0x140810", "0x40102a", "0x5a1740", "0x200a18"),
-         seed=37, voice="bm_lewis"),
+         seed=37, voice="bm_lewis", vibe="dark"),
     dict(highlight="#60A5FA", accent="#34D399", warn="#FBBF24",
          grad=("0x06101e", "0x102044", "0x174a72", "0x0a1428"),
-         seed=43, voice="am_onyx"),
+         seed=43, voice="am_onyx", vibe="cinematic"),
 ]
 
 
@@ -91,6 +91,147 @@ def _theme_for(slug: str) -> dict:
     import hashlib
     h = int(hashlib.md5(slug.encode()).hexdigest(), 16)
     return THEMES[h % len(THEMES)]
+
+
+# --------------------------------------------------------------------------
+# Soundtrack — the thing that separates "slideshow" from "produced video".
+# A subtle per-theme music bed ducked under the voice, plus SFX synced to
+# the visuals: a whoosh when each chart sweeps in, a color-keyed tick when
+# the ring lands on a number, a pop when the closing bubble appears.
+# --------------------------------------------------------------------------
+_VIBES = {
+    # Gentle pad + slow heartbeat kick — the default teaching vibe.
+    "calm": dict(
+        drone="0.22*sin(2*PI*98*t)+0.10*sin(2*PI*196*t)",
+        kick="0.30*sin(2*PI*55*t)*exp(-5*mod(t,1.0))",
+        pad="0.12*sin(2*PI*294*t)*sin(2*PI*0.1*t)"),
+    # Sub drone + 90bpm pulse — for the doom-ier money topics.
+    "dark": dict(
+        drone="0.26*sin(2*PI*55*t)+0.14*sin(2*PI*110*t)",
+        kick="0.40*sin(2*PI*58*t)*exp(-7*mod(t,0.667))",
+        pad="0.10*sin(2*PI*220*t)*sin(2*PI*0.125*t)"),
+    # Low swell, sparse 60bpm pulse — space/nature awe.
+    "cinematic": dict(
+        drone="0.26*sin(2*PI*49*t)+0.10*sin(2*PI*98*t)",
+        kick="0.34*sin(2*PI*55*t)*exp(-5*mod(t,1.0))",
+        pad="0.10*sin(2*PI*196*t)*sin(2*PI*0.0625*t)"),
+    # Brighter 120bpm tick — tech/behavior energy.
+    "pulse": dict(
+        drone="0.18*sin(2*PI*82*t)",
+        kick="0.38*sin(2*PI*65*t)*exp(-9*mod(t,0.5))",
+        pad="0.09*sin(2*PI*330*t)*sin(2*PI*0.2*t)"),
+}
+
+
+def _synth_music(total: float, out: Path, vibe: str) -> None:
+    v = _VIBES.get(vibe, _VIBES["calm"])
+    d = max(8.0, total + 1.0)
+    _run(["ffmpeg", "-y", "-loglevel", "error",
+          "-f", "lavfi", "-i", f"aevalsrc='{v['drone']}':d={d}:s=44100",
+          "-f", "lavfi", "-i", f"aevalsrc='{v['kick']}':d={d}:s=44100",
+          "-f", "lavfi", "-i", f"aevalsrc='{v['pad']}':d={d}:s=44100",
+          "-filter_complex",
+          "[0][1][2]amix=inputs=3:duration=longest:weights=1 1.3 0.6,"
+          "highpass=f=30,lowpass=f=3500,"
+          "acompressor=threshold=0.4:ratio=4[m]",
+          "-map", "[m]", "-ac", "2", "-ar", "44100",
+          "-c:a", "pcm_s16le", str(out)])
+
+
+def _synth_sfx(work: Path) -> dict[str, Path]:
+    """Small synthesized one-shot library (no asset files needed)."""
+    recipes = {
+        # Chart sweep-in: short filtered noise whoosh.
+        "whoosh": ("anoisesrc=duration=0.22:color=brown:amplitude=0.6",
+                   "highpass=f=400,lowpass=f=6000,volume=0.6"),
+        # Ring lands on a number — tone keyed to the punch color.
+        "pos": ("aevalsrc='0.45*sin(2*PI*880*t)*exp(-8*t)+"
+                "0.25*sin(2*PI*1320*t)*exp(-10*t)':d=0.35:s=44100",
+                "highpass=f=400,lowpass=f=8000"),
+        "warn": ("aevalsrc='0.5*sin(2*PI*420*t)*exp(-7*t)+"
+                 "0.3*sin(2*PI*660*t)*exp(-10*t)':d=0.33:s=44100",
+                 "highpass=f=200,lowpass=f=5000"),
+        "shock": ("aevalsrc='0.8*sin(2*PI*40*t)*exp(-5*t)+"
+                  "0.45*sin(2*PI*55*t)*exp(-8*t)':d=0.40:s=44100",
+                  "highpass=f=25,lowpass=f=2200"),
+        "money": ("aevalsrc='0.4*sin(2*PI*1480*t)*exp(-12*t)+"
+                  "0.28*sin(2*PI*2100*t)*exp(-14*t)+"
+                  "0.4*sin(2*PI*1480*(t-0.095))*exp(-12*(t-0.095))*gt(t,0.095)':"
+                  "d=0.4:s=44100",
+                  "highpass=f=600"),
+        "neutral": ("aevalsrc='0.6*sin(2*PI*70*t)*exp(-10*t)+"
+                    "0.3*sin(2*PI*45*t)*exp(-6*t)':d=0.30:s=44100", None),
+        # Closing bubble pops in.
+        "pop": ("aevalsrc='0.5*sin(2*PI*620*t)*exp(-9*t)+"
+                "0.3*sin(2*PI*930*t)*exp(-12*t)':d=0.30:s=44100",
+                "highpass=f=300"),
+    }
+    sfx: dict[str, Path] = {}
+    for name, (src, af) in recipes.items():
+        p = work / f"sfx_{name}.wav"
+        cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", src]
+        if af:
+            cmd += ["-af", af]
+        _run(cmd + [str(p)])
+        sfx[name] = p
+    return sfx
+
+
+def _build_soundtrack(narration: Path, windows, events, total: float,
+                      vibe: str, work: Path) -> Path:
+    """Mix narration + ducked music bed + visual-synced SFX into one track."""
+    music = work / "music.wav"
+    _synth_music(total, music, vibe)
+    sfx = _synth_sfx(work)
+
+    # (time, file, volume) placements.
+    plays: list[tuple[float, Path, float]] = []
+    for i in range(1, len(windows) - 1):              # each chart sweeps in
+        plays.append((windows[i][0], sfx["whoosh"], 0.7))
+    for e in events:                                  # ring lands on a number
+        p = e["punch"]
+        c = (p.get("color") or "").lower()
+        if "$" in p.get("text", ""):
+            f = sfx["money"]
+        elif c == "#ff3030":
+            f = sfx["shock"]
+        elif c == "#ffaa30":
+            f = sfx["warn"]
+        elif c == "#50ff80":
+            f = sfx["pos"]
+        else:
+            f = sfx["neutral"]
+        plays.append((e["ps"], f, 0.45))
+    plays.append((windows[-1][0], sfx["pop"], 0.8))   # closing bubble
+
+    out = work / "soundtrack.wav"
+    inputs = ["-i", str(narration), "-i", str(music)]
+    fc = [
+        # Music sits low and ducks further whenever the voice speaks.
+        f"[1:a]volume=0.45,atrim=0:{total:.2f}[mraw]",
+        "[mraw][0:a]sidechaincompress=threshold=0.02:ratio=8:"
+        "attack=60:release=500[duck]",
+    ]
+    labels = []
+    for k, (t, f, vol) in enumerate(plays):
+        inputs += ["-i", str(f)]
+        ms = max(0, int(t * 1000))
+        fc.append(f"[{2 + k}:a]adelay={ms}|{ms},volume={vol:.2f}[s{k}]")
+        labels.append(f"[s{k}]")
+    if labels:
+        fc.append("".join(labels) +
+                  f"amix=inputs={len(labels)}:duration=longest:normalize=0,"
+                  f"apad=whole_dur={total:.2f}[sfx]")
+        fc.append("[0:a][duck][sfx]amix=inputs=3:duration=first:normalize=0,"
+                  "alimiter=limit=0.95[a]")
+    else:
+        fc.append("[0:a][duck]amix=inputs=2:duration=first:normalize=0,"
+                  "alimiter=limit=0.95[a]")
+    _run(["ffmpeg", "-y", "-loglevel", "error", *inputs,
+          "-filter_complex", ";".join(fc),
+          "-map", "[a]", "-ar", "44100", "-ac", "2",
+          "-c:a", "pcm_s16le", str(out)])
+    return out
 
 # Oddly-satisfying b-roll for the bottom strip. If broll/styles/*.mp4 exist
 # (built by broll_gen.py --styles) the renderer round-robins through them so
@@ -553,6 +694,9 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
         footmask = work / "foot_mask.png"
         _make_mandel_mask(footmask, W, FOOT_H, feather=130, bottom=70)
         events = _plan_events(st, windows)
+        # Full soundtrack: narration + ducked theme music + visual-synced SFX.
+        soundtrack = _build_soundtrack(narration, windows, events, total,
+                                       theme.get("vibe", "calm"), work)
         ass = work / "cap.ass"
         build_story_ass(st, windows, events, ass, accent=accent_ass)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
@@ -613,7 +757,7 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
             inputs += ["-stream_loop", "-1", "-i", str(mv)]
             masc_input.append(idx)
             idx += 1
-        inputs += ["-i", str(narration)]
+        inputs += ["-i", str(soundtrack)]
         audio_idx = idx
 
         fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]
