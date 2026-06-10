@@ -772,10 +772,14 @@ def search(topic: str, context: str = "", *, max_clips: int = 6) -> list[dict]:
         if _try(u, source="reddit", ext=".mp4"):
             return results
 
-    # 6. Vimeo CC. Skips silently when VIMEO_TOKEN isn't set.
-    for u in _vimeo_videos(combined, limit=4):
-        if _try(u, source="vimeo", ext=".mp4"):
-            return results
+    # 6. Vimeo CC video path REMOVED. The CC pool was essentially
+    # empty for current-event topics and the API's `download` field
+    # requires a paid token scope, so this branch returned ~0 results
+    # in practice. VIMEO_TOKEN now feeds the news-image funnel
+    # (`media_funnel.p_vimeo`) as a THUMBNAIL source — the news event
+    # hero photos that ride on Vimeo's video previews. Keep the
+    # `_vimeo_videos` helper around for callers that still want the
+    # video path; the renderer no longer hits it from this cascade.
 
     # 7. YouTube CC-licensed clips. Quota cost ~100 units/call; bail
     #    silently if no API key configured. Downloads up to 4 so the

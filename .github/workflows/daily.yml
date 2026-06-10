@@ -212,6 +212,25 @@ jobs:
           # registration at https://www.dvidshub.net/api/. Skips
           # silently if unset.
           DVIDS_API_KEY: ${{ secrets.DVIDS_API_KEY }}
+          # News-image funnel keys (media_funnel.py). All free tiers,
+          # all no-credit-card required. Each provider skips silently
+          # if its secret is unset, so the render still works without
+          # them — but the relevance gate will start failing renders
+          # whose imagery falls through to generic stock, so the
+          # daily output stays gated by the funnel's coverage.
+          # Sign up:
+          #   https://newsapi.org/register
+          #   https://gnews.io/  (free dev tier)
+          #   https://brave.com/search/api/  (free 2k/mo)
+          #   https://tavily.com/  (free 1k/mo)
+          #   https://newsdata.io/register
+          #   https://api.imgur.com/oauth2/addclient  (anonymous app)
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
+          TAVILY_KEY: ${{ secrets.TAVILY_KEY }}
+          NEWSDATA_KEY: ${{ secrets.NEWSDATA_KEY }}
+          IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
           # Opt-in: when set to "1", topic_video Source 8 pulls trending
           # video from YouTube WITHOUT the CC license filter — relying on
           # fair-use commentary doctrine. Read as a repo Variable (not a

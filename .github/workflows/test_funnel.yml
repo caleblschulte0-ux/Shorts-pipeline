@@ -16,7 +16,7 @@ on:
       angle:
         description: 'Story angle sentence'
         required: false
-        default: 'country music star Brad Paisley publicly opposes proposed AI data center near Nashville Zoo'
+        default: 'country music singer Brad Paisley performs at a concert'
 
 env:
   PYTHON_VERSION: '3.11'
@@ -27,11 +27,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-        with:
-          # The funnel code (media_funnel.py, og_scrape.py) lives on
-          # claude/news-media-funnel and is not yet on main. Pull from
-          # the feature branch so the probe has files to run.
-          ref: claude/news-media-funnel
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -79,13 +74,14 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          MEDIA_FUNNEL_DEBUG: '1'
         run: |
           python media_funnel.py \
             --probe "${{ github.event.inputs.entity }}" \
             --angle "${{ github.event.inputs.angle }}" \
             --no-cache
 
-      - name: Probe — Hunter the kangaroo (animal beat)
+      - name: Probe — Taylor Swift (broad-coverage celebrity)
         env:
           NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
           GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
@@ -96,10 +92,11 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          MEDIA_FUNNEL_DEBUG: '1'
         run: |
           python media_funnel.py \
-            --probe "Hunter the kangaroo" \
-            --angle "Hunter the kangaroo escapes Kentucky enclosure and is recaptured" \
+            --probe "Taylor Swift" \
+            --angle "pop singer Taylor Swift on tour" \
             --no-cache
 
       - name: Probe — Elon Musk (control case)
@@ -113,6 +110,7 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          MEDIA_FUNNEL_DEBUG: '1'
         run: |
           python media_funnel.py \
             --probe "Elon Musk" \

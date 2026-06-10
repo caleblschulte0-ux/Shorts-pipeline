@@ -379,6 +379,15 @@ class Shot:
     # the whole-package pool. Empty -> no per-shot search for this shot.
     pin_query: str = ""
     pin_context: str = ""
+    # News-image funnel fields (entity_media also stamps these). The
+    # funnel does ONE fan-out per unique news_query across all shots;
+    # the resolved hero photo is reused on every shot that mentions
+    # this entity. story_angle is the per-entity natural-language
+    # angle ("Brad Paisley publicly opposing the Nashville Zoo data
+    # center") — gives the news search enough specificity to find
+    # today's photo of today's story.
+    news_query: str = ""
+    news_angle: str = ""
     # Mascot reaction pose for this shot. See _MASCOT_POSES for the
     # valid set; unknown / empty defaults to "idle". The renderer
     # silently skips the entire mascot system when assets are missing
@@ -969,6 +978,83 @@ def _resolve_stock(shot: Shot, cache: Path, n_target: int) -> list[dict]:
     raise RuntimeError(f"shot {shot.phrase!r} has no source")
 
 
+class RelevanceGateError(RuntimeError):
+    """Raised by the pre-flight gate when too many shots fell through
+    to generic stock photos. Forces upstream fixes (more entity
+    coverage in the package, a working news-funnel provider, etc.)
+    instead of shipping a video where the imagery doesn't match the
+    narration. Callers can override with --allow-stock-fallthrough."""
+
+
+def _classify_tier(sources: list[str]) -> str:
+    """Roll up the raw `sources` list for a shot into one of:
+
+      operator   — operator-supplied image_url
+      news       — news-image funnel hit (current-event hero photo)
+      entity     — Wikipedia / Commons / GDELT (encyclopedic but on-topic)
+      topic      — topic_video pool / topic_media still
+      stock      — Pexels / Pixabay / Mixkit (generic, off-topic risk)
+      placeholder— slate fallback when everything failed
+
+    A shot is "good" iff ANY of its sub-cuts is at tier
+    operator/news/entity/topic — even one on-topic frame anchors the
+    shot's identity. We only fail it when EVERY sub-cut is stock or
+    placeholder."""
+    if not sources:
+        return "placeholder"
+    best = "placeholder"
+    rank = ["placeholder", "stock", "topic", "entity", "news", "operator"]
+    for src in sources:
+        if src == "image":
+            tier = "operator"
+        elif src == "news_funnel":
+            tier = "news"
+        elif src in {"topic_image"}:
+            tier = "entity"
+        elif src in {"topic_video", "topic_media"}:
+            tier = "topic"
+        elif src in {"pexels", "pixabay", "mixkit"}:
+            tier = "stock"
+        elif src == "placeholder":
+            tier = "placeholder"
+        else:
+            tier = "topic"
+        if rank.index(tier) > rank.index(best):
+            best = tier
+    return best
+
+
+def _check_relevance_gate(audit: list[dict], *,
+                          max_stock_ratio: float = 0.40) -> None:
+    """Refuse to ship if too many shots fell to generic stock.
+
+    Reads the per-shot audit dicts (already classified by
+    `_classify_tier`), counts how many landed in `stock` or
+    `placeholder`, and raises `RelevanceGateError` if the ratio
+    crosses `max_stock_ratio` (default 40%). Dumps the failing
+    audit to `state/last_failed_audit.json` so the operator can
+    see exactly which shots blew the gate.
+
+    Disable for one-off emergencies via the
+    --allow-stock-fallthrough CLI flag on this module."""
+    if not audit:
+        return
+    bad = sum(1 for r in audit
+              if r.get("source_tier") in {"stock", "placeholder"})
+    ratio = bad / len(audit)
+    if ratio <= max_stock_ratio:
+        return
+    fail_path = Path("state/last_failed_audit.json")
+    fail_path.parent.mkdir(parents=True, exist_ok=True)
+    fail_path.write_text(json.dumps(audit, indent=2))
+    raise RelevanceGateError(
+        f"{ratio:.0%} of shots ({bad}/{len(audit)}) fell to generic "
+        f"stock / placeholder — refusing to ship a video where the "
+        f"on-screen imagery doesn't match the narration. "
+        f"Inspect {fail_path} for the per-shot breakdown."
+    )
+
+
 def build_timed_top(
     shots: list[Shot],
     shot_times: list[float],
@@ -1006,6 +1092,42 @@ def build_timed_top(
     # where topic_video is thin and add visual variety.
     topic_video_pool = _build_topic_video_pool(shots)
     topic_image_pool = _build_topic_image_pool(shots)
+    # News-image funnel: ONE search per unique news_query across all
+    # shots. Returns a {news_query: top-image-URL} map. Each shot that
+    # mentions a known entity reuses the resolved hero photo, so a
+    # 12-shot script with 4 named entities pays for 4 fan-outs total,
+    # not 12. Verified images only — `media_funnel.search()` runs
+    # every URL through entity_media.url_is_image() before returning.
+    news_image_map: dict[str, str] = {}
+    try:
+        import media_funnel
+        unique_queries: dict[str, str] = {}    # news_query -> news_angle
+        for s in shots:
+            if s.news_query and s.news_query not in unique_queries:
+                unique_queries[s.news_query] = s.news_angle
+        if unique_queries:
+            print(f"      [media_funnel] fanning out for "
+                  f"{len(unique_queries)} unique entities")
+        for nq, angle in unique_queries.items():
+            slug = (workdir.name.split("_", 1)[-1]
+                    if workdir.name else nq.lower())
+            try:
+                cands = media_funnel.search(angle, [nq],
+                                             story_slug=slug,
+                                             verbose=False)
+            except Exception as e:  # noqa: BLE001
+                print(f"      [media_funnel] {nq!r} fanout failed: "
+                      f"{type(e).__name__}: {str(e)[:80]}")
+                cands = []
+            if cands and cands[0].score >= 0.4:
+                news_image_map[nq] = cands[0].url
+                print(f"      [media_funnel] {nq!r} -> "
+                      f"{cands[0].source} score={cands[0].score:.2f}")
+            elif cands:
+                print(f"      [media_funnel] {nq!r}: best score "
+                      f"{cands[0].score:.2f} below 0.4 threshold; skip")
+    except ImportError:
+        print("      [media_funnel] module not available, skipping")
     # Reset the per-shot supplementary memo so this render starts
     # fresh — across renders the cached video files are reused, but
     # the in-process "we already tried this shot" set must not leak.
@@ -1022,6 +1144,24 @@ def build_timed_top(
         #   3. Stock only               -> existing multi-cut behavior
         plan: list[tuple[dict, float]] = []
         image_clip = _resolve_image(shot)
+        # News-image funnel result: if the entity_media LLM tagged
+        # this shot with a news_query AND the funnel found a verified
+        # photo for that entity, use it now — ahead of the
+        # topic_video pool. This is the path that catches the
+        # "Brad Paisley" / "Hunter the kangaroo" / "Mark Kohlhorst"
+        # current-news cases that Wikipedia + Commons + Pexels miss.
+        if image_clip is None and shot.news_query \
+                and shot.news_query in news_image_map:
+            news_url = news_image_map[shot.news_query]
+            try:
+                p = _fetch_image(news_url, Path("/tmp/shot_images"))
+                image_clip = {"path": str(p), "duration": 999.0,
+                              "width": W, "height": HALF_H,
+                              "source": "news_funnel",
+                              "title": shot.news_query[:80]}
+            except Exception as e:  # noqa: BLE001
+                print(f"      [news_funnel] download failed for "
+                      f"{shot.news_query!r}: {e}")
         # Operator-supplied image wins. Otherwise pull a pool clip
         # scored against this shot's tokens. Fall through to topic_media
         # stills and then stock only when the pool is empty.
@@ -1143,17 +1283,22 @@ def build_timed_top(
 
         if audit is not None:
             # Summarise this shot's media decisions. Sources are tagged
-            # at pool-construction time (topic_video / topic_image /
-            # entity image / pexels / placeholder) so the audit JSON is
-            # a straight read of the plan. Detects fall-through to
-            # generic stock at a glance.
+            # at pool-construction time (news_funnel / topic_video /
+            # topic_image / entity image / pexels / placeholder) so the
+            # audit JSON is a straight read of the plan. `source_tier`
+            # collapses raw provider names into the four buckets the
+            # relevance gate cares about so >40% generic-stock is
+            # legible at a glance.
+            shot_sources = [c.get("source", "?") for c, _ in plan]
             audit.append({
                 "shot_idx": i,
                 "phrase": shot.phrase,
                 "pin_query": shot.pin_query or None,
                 "pin_context": shot.pin_context or None,
+                "news_query": shot.news_query or None,
                 "had_image_url": bool(shot.image),
-                "sources": [c.get("source", "?") for c, _ in plan],
+                "sources": shot_sources,
+                "source_tier": _classify_tier(shot_sources),
                 "titles": [c.get("title", "")[:80] for c, _ in plan],
                 "sub_cut_count": len(plan),
             })
@@ -1812,6 +1957,19 @@ def build_video(
                                           workdir, audit=audit)
         print(f"      {len(cut_times)} sub-cuts")
 
+        # Pre-flight relevance gate: hard-fail if >40% of shots fell
+        # through to generic stock / placeholder. The point isn't to
+        # punish failure — it's to make failure VISIBLE upstream so
+        # the daily routine sees the gap and finds better entities,
+        # rather than silently shipping a video where the photos
+        # don't match the script. Override via the
+        # ALLOW_STOCK_FALLTHROUGH env var when something downstream
+        # is broken and you need to ship the imperfect version
+        # anyway.
+        if os.environ.get("ALLOW_STOCK_FALLTHROUGH", "").lower() not in (
+                "1", "true", "yes"):
+            _check_relevance_gate(audit)
+
         # 5. Bottom half: themed procedural loop OR stock gameplay.
         # A bottom_theme means we GENERATE the bottom — a topic-matched
         # satisfying loop (rocket between stars for space stories, rain
@@ -2014,6 +2172,8 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
             topic_context=pkg.get("title", ""),
             pin_query=s.get("pin_query", ""),
             pin_context=s.get("pin_context", ""),
+            news_query=s.get("news_query", "") or s.get("pin_query", ""),
+            news_angle=s.get("news_angle", "") or pkg.get("title", ""),
             mascot_pose=(s.get("mascot_pose") or "idle").strip().lower(),
         ))
     punches = [
