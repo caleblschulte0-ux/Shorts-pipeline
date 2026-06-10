@@ -158,6 +158,20 @@ jobs:
         run: |
           python -m data_learning.broll_gen --styles --clip-seconds 45
 
+      # Royalty-free music library (Kevin MacLeod, CC-BY), cached on the track
+      # list so it only re-downloads when fetch_music.py changes.
+      - name: Cache music library (~110MB)
+        if: inputs.mode != 'verify'
+        id: cache-music
+        uses: actions/cache@v4
+        with:
+          path: data_learning/music/
+          key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
+
+      - name: Fetch music if missing
+        if: inputs.mode != 'verify' && steps.cache-music.outputs.cache-hit != 'true'
+        run: python3 scripts/fetch_music.py
+
       - name: Verify required secrets are set
         env:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
