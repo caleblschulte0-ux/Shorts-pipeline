@@ -243,7 +243,7 @@ def _build_soundtrack(narration: Path, windows, events, total: float,
         # the voice instead of crushing it to nothing.
         # Bed is loudness-normalized to -16 LUFS (same as the voice), so it's
         # loud and present; it sits just under and ducks while the voice talks.
-        f"[1:a]volume=0.45,atrim=0:{total:.2f}[mraw]",
+        f"[1:a]volume=0.44,atrim=0:{total:.2f}[mraw]",
         "[mraw][0:a]sidechaincompress=threshold=0.06:ratio=4:"
         "attack=80:release=400[duck]",
     ]
