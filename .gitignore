@@ -45,3 +45,10 @@ kokoro_models/
 .tiktok_secret
 .tiktok_redirect_uri
 data_learning/music/
+
+# media_funnel runtime state — quota counters reset daily, cache is
+# regenerated on demand. Tracking these would create churn-y commits
+# without operational value.
+state/news_image_cache.json
+state/news_image_quota.json
+state/last_failed_audit.json

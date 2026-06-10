@@ -158,7 +158,7 @@ def extract_proper_nouns(script: str) -> list[str]:
 _VISUAL_SYSTEM = """You annotate YouTube Shorts scripts with the specific real-world \
 visuals an editor needs to find. For each concrete thing mentioned in the \
 script — a person, company, product, place, event, named object — output ONE \
-{entity, context, phrase} triple. Output strict JSON only, no prose."""
+{entity, context, phrase, story_angle} record. Output strict JSON only, no prose."""
 
 
 _VISUAL_USER = """Title: {title}
@@ -168,15 +168,17 @@ Script:
 
 For every concrete, photographable thing in the script — every person, \
 company, product line, named place, named event, named object — output one \
-triple in this exact JSON shape:
+record in this exact JSON shape:
 
 {{"visuals": [
   {{"entity": "Tim Cook",
     "context": "Apple CEO keynote",
-    "phrase": "Tim Cook"}},
+    "phrase": "Tim Cook",
+    "story_angle": "Tim Cook unveiling the rebuilt Siri at WWDC 2026"}},
   {{"entity": "WWDC 2026",
     "context": "Apple worldwide developers conference",
-    "phrase": "at WWDC"}}
+    "phrase": "at WWDC",
+    "story_angle": "Apple's WWDC 2026 keynote where Siri got a Google-AI rebuild"}}
 ]}}
 
 Rules:
@@ -186,6 +188,12 @@ Rules:
 "Apple" the company, context is "Apple Inc tech logo headquarters" — NOT \
 "red fruit". For "Mercury" the planet, context is "planet space NASA" — NOT \
 "Roman god".
+- **story_angle = ONE full sentence describing what this entity is doing in \
+THIS SPECIFIC story.** Not background, not biography — the news beat itself. \
+Bad: "Brad Paisley, country singer". Good: "Brad Paisley publicly opposing \
+the AI data center next to Nashville Zoo." This drives the news-image \
+search: we want today's photo of the entity in today's story, not a stock \
+biography photo.
 - phrase = VERBATIM substring of the script (case-sensitive copy-paste) so \
 the renderer can pin this visual to the right shot. Pick the shortest \
 substring that uniquely identifies the mention.
@@ -246,13 +254,17 @@ def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
         entity = (it.get("entity") or "").strip()
         context = (it.get("context") or "").strip()
         phrase = (it.get("phrase") or "").strip()
+        story_angle = (it.get("story_angle") or "").strip()
         if not entity or not phrase:
             continue
         key = entity.lower()
         if key in seen:
             continue
         seen.add(key)
-        out.append({"entity": entity, "context": context, "phrase": phrase})
+        out.append({
+            "entity": entity, "context": context, "phrase": phrase,
+            "story_angle": story_angle,
+        })
     return out or None
 
 
@@ -466,17 +478,27 @@ def enrich_package(pkg: dict, *, verbose: bool = True) -> dict:
         entity = v["entity"]
         context = v.get("context") or title
         phrase = v.get("phrase") or entity
+        # story_angle is the per-entity description of what this
+        # entity is doing in THIS SPECIFIC story. The news-image
+        # funnel uses it to disambiguate (the Brad Paisley speaking
+        # about Nashville Zoo today, not the 2014 concert photo).
+        # Falls back to the package title when the LLM didn't supply
+        # one, then to the regex path's bare-context default.
+        story_angle = v.get("story_angle") or title or context
 
         target = _match_shot(shots, phrase, entity)
         if target is None:
             missed_shots.append(entity)
             continue
-        # Stash entity + context on the matched shot so the renderer can
-        # do a per-shot topic_video search with this same disambiguating
-        # context. Set even when an image_url already exists — videos
-        # are a separate channel and benefit from the same context.
+        # Stash entity + context + story_angle on the matched shot.
+        # `pin_query`/`pin_context` still drive topic_video (videos);
+        # `news_query` is the new field the news-image funnel reads
+        # for current-news still images. Set even when an image_url
+        # already exists so downstream caches stay coherent.
         target.setdefault("pin_query", entity)
         target.setdefault("pin_context", context)
+        target.setdefault("news_query", entity)
+        target.setdefault("news_angle", story_angle)
         if target.get("image_url") or target.get("image"):
             continue
         url = resolve_entity_media(entity, context=context)
