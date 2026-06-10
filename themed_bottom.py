@@ -108,7 +108,8 @@ W, H = 1080, 960
 FPS = 30
 
 THEMES = ("space", "rain", "ember", "ocean", "plinko", "coins",
-          "quake", "volcano", "runner", "stacker", "fight", "moto")
+          "quake", "volcano", "runner", "stacker", "fight", "moto",
+          "train")
 
 # Keyword → theme. Checked in order; first hit wins. Scanned against
 # title + script + hashtags lowercased.
@@ -120,8 +121,11 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
                  "burn", "explosion", "ash")),
     ("quake", ("earthquake", "quake", "tsunami", "seismic",
                "aftershock", "richter", "magnitude", "sinkhole")),
-    ("rain",  ("storm", "tornado", "hurricane", "rain", "flood",
-               "lightning", "blizzard", "cyclone", "weather")),
+    ("train", ("train", "railway", "locomotive", "railroad", "kim jong",
+               "north korea", "summit", "metro", "subway", "amtrak",
+               "derail")),
+    ("rain",  ("storm", "tornado", "hurricane", " rain", "rainfall",
+               "flood", "lightning", "blizzard", "cyclone", "weather")),
     ("runner", ("escape", "escaped", "on the run", "chase", "loose",
                 "kangaroo", "devil", "raccoon", "zoo", "wildlife",
                 "bear", "koala", "leopard", "animal")),
@@ -133,6 +137,7 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("moto", ("motocross", "motorcycle", "bike", "race", "racing",
               "driver", "highway", "car chase", "rally", "stunt",
               "speeding", "nascar", "grand prix", "road trip")),
+
     ("stacker", ("world record", "record-breaking", "tallest",
                  "largest", "biggest", "assembl", "built the",
                  "stacked", "lego", "potato head", "guinness")),
@@ -2798,6 +2803,393 @@ class _Moto(_Renderer):
 
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
+# ---------- TRAIN: runaway express on an impossible track ----------
+# (Xi-Kim-summit / rail-class stories.)
+
+class _Train(_Renderer):
+    """The armored express as a GAME: a dark-green train with a gold
+    stripe barrels along a rollercoaster track — climbs, sheer
+    plunges, FULL VERTICAL LOOPS — cars articulating through every
+    curve, hoovering coin arcs off the crests, smoke streaming. Reads
+    as 'runaway train' from any frame, plays like a mobile game.
+
+    The break is a genuine level-of-detail failure: the train's
+    position lookup walks the track polyline with a stride that grows
+    with the sim clock (the 'engine' can't afford fine track samples
+    at speed). On straights nobody notices; on a LOOP the coarse
+    chords cut through the circle — cars visibly take shortcuts
+    through the middle, couplings stretch past their physical length,
+    and when the measured coupling exceeds ~2x nominal the sim knows
+    its own geometry has failed. Hang; fresh track."""
+
+    GROWTH = 1.15
+    BASE_SPEED = 380.0
+    WHEEL_R = 17.0
+    CAR_GAP = 150.0          # arc-length between car centers
+    PT_STEP = 14.0           # track polyline resolution (arc px)
+
+    GREEN = (28, 60, 42, 255)
+    GREEN_D = (18, 42, 30, 255)
+    GOLD = (214, 176, 80, 255)
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self.reset_t = 0.0
+        self.failed_at = None
+        self._regen()
+
+    # -- track generation ---------------------------------------------
+    def _regen(self):
+        rng = self.rng
+        self.trail[:] = 0
+        self.pts: list[tuple[float, float]] = [(0.0, H * 0.62)]
+        self.cum: list[float] = [0.0]
+        self.head_s = self.CAR_GAP * 4
+        self.heading = 0.0       # generator pen direction (radians)
+        self.feature_cd = 2
+        self.coins: list[dict] = []
+        self.sparkles: list[dict] = []
+        self.smoke: list[dict] = []
+        self.collected = 0
+        self.n_cars = 3
+        self.stars = [(rng.uniform(0, W), rng.uniform(0, H * 0.5),
+                       rng.uniform(0.5, 1.5)) for _ in range(60)]
+        self.moon = (rng.uniform(W * 0.55, W * 0.9),
+                     rng.uniform(80, 170))
+        self.ridge_ph = rng.uniform(0, math.tau)
+        self._gen_to(self.head_s + W * 2)
+
+    def _pen(self) -> tuple[float, float]:
+        return self.pts[-1]
+
+    def _emit(self, x: float, y: float):
+        px, py = self.pts[-1]
+        self.cum.append(self.cum[-1] + math.hypot(x - px, y - py))
+        self.pts.append((x, y))
+
+    def _gen_run(self, length: float, d_heading: float):
+        """Advance the pen with a smooth heading change."""
+        n = max(2, int(length / self.PT_STEP))
+        for i_ in range(n):
+            self.heading += d_heading / n
+            # Track stays in a sane vertical band outside loops.
+            x, y = self._pen()
+            if y < H * 0.30:
+                self.heading = min(self.heading + 0.04, 0.5)
+            elif y > H * 0.74:
+                self.heading = max(self.heading - 0.04, -0.5)
+            self._emit(x + math.cos(self.heading) * self.PT_STEP,
+                       y + math.sin(self.heading) * self.PT_STEP)
+
+    def _gen_loop(self):
+        """A full vertical loop tangent to the current heading."""
+        rng = self.rng
+        R = rng.uniform(105, 145)
+        x0, y0 = self._pen()
+        # Center is left-normal of travel (so the loop goes UP).
+        nx, ny = -math.sin(self.heading), math.cos(self.heading)
+        cx_, cy_ = x0 - nx * R, y0 - ny * R
+        a0 = math.atan2(y0 - cy_, x0 - cx_)
+        steps = max(16, int(math.tau * R / self.PT_STEP))
+        for i_ in range(1, steps + 1):
+            a = a0 - math.tau * i_ / steps      # counterclockwise climb
+            self._emit(cx_ + math.cos(a) * R, cy_ + math.sin(a) * R)
+        # Coin ring inside the loop.
+        for c_ in range(6):
+            ca = c_ / 6 * math.tau
+            self.coins.append({"x": cx_ + math.cos(ca) * R * 0.55,
+                               "y": cy_ + math.sin(ca) * R * 0.55,
+                               "alive": True,
+                               "ph": rng.uniform(0, 6)})
+
+    def _gen_to(self, s_target: float):
+        rng = self.rng
+        while self.cum[-1] < s_target:
+            self.feature_cd -= 1
+            if self.feature_cd <= 0:
+                kind = rng.choice(["loop", "plunge", "crest", "loop"])
+                if kind == "loop":
+                    # Level out, then loop.
+                    self._gen_run(120, -self.heading)
+                    self._gen_loop()
+                elif kind == "plunge":
+                    self._gen_run(100, 0.9 - self.heading)
+                    self._gen_run(220, 0)
+                    self._gen_run(120, -self.heading)
+                else:   # crest: climb then drop, coins over the top
+                    x_at = self._pen()[0]
+                    self._gen_run(160, -0.8 - self.heading)
+                    top = self._pen()
+                    for c_ in range(5):
+                        self.coins.append({
+                            "x": top[0] + 40 + c_ * 44,
+                            "y": top[1] - 70
+                            - 40 * math.sin(c_ / 4 * math.pi),
+                            "alive": True, "ph": rng.uniform(0, 6)})
+                    self._gen_run(180, 1.6)
+                    self._gen_run(100, -self.heading)
+                self.feature_cd = rng.randint(2, 4)
+            else:
+                self._gen_run(rng.uniform(160, 280),
+                              rng.uniform(-0.5, 0.5) - self.heading * 0.5)
+
+    def _lookup(self, s: float, stride: int) -> tuple[float, float, float]:
+        """Position + tangent at arc length s, sampled at `stride`
+        polyline points. stride 1 = exact; large strides chord across
+        curvature — the genuine LOD failure on loops."""
+        import bisect
+        s = max(0.0, s)
+        i = bisect.bisect_right(self.cum, s) - 1
+        i = max(0, min(i, len(self.pts) - 2))
+        i0 = (i // stride) * stride
+        i1 = min(i0 + stride, len(self.pts) - 1)
+        s0, s1 = self.cum[i0], self.cum[i1]
+        u = 0.0 if s1 <= s0 else min(1.0, max(0.0, (s - s0) / (s1 - s0)))
+        x0, y0 = self.pts[i0]
+        x1, y1 = self.pts[i1]
+        return (x0 + (x1 - x0) * u, y0 + (y1 - y0) * u,
+                math.atan2(y1 - y0, x1 - x0))
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        held = self.handle_fail(self._last_frame
+                                if self._last_frame is not None
+                                else np.zeros((H, W, 3), np.uint8), t)
+        if held is not None:
+            return held
+
+        ts = self.sim_scale(t)
+        k = self.kk(ts)
+        dt = 1 / FPS
+        speed = self.BASE_SPEED * ts
+        self.head_s += speed * dt * ts / ts  # = speed * dt; clock is in speed
+        self.head_s += speed * dt * (ts - 1) / ts if False else 0.0
+        self.head_s += 0.0
+        # (head advances at speed*dt; speed itself carries the clock)
+        self._gen_to(self.head_s + W * 1.5)
+
+        # The LOD stride grows with the clock — the honest budget cut.
+        stride = max(1, int(ts * 1.1))
+
+        # Position every car (loco at head, cars trailing by arc gap).
+        cars = []
+        for n_ in range(self.n_cars + 1):
+            s_n = self.head_s - n_ * self.CAR_GAP
+            cars.append(self._lookup(s_n, stride))
+
+        # Coupling integrity check: chord distance between adjacent
+        # cars vs nominal gap. Coarse strides on a loop stretch it.
+        for a_c, b_c in zip(cars, cars[1:]):
+            d_ = math.hypot(a_c[0] - b_c[0], a_c[1] - b_c[1])
+            if d_ > self.CAR_GAP * 2.0 or d_ < self.CAR_GAP * 0.25:
+                self.declare_fail(t)
+
+        hx, hy, hang = cars[0]
+        # Camera: head fixed at screen x, smoothed y.
+        cam_x = hx - W * 0.42
+        if not hasattr(self, "_cam_y2"):
+            self._cam_y2 = hy - H * 0.5
+        self._cam_y2 += ((hy - H * 0.5) - self._cam_y2) * min(1, 5 * dt)
+        cam_y = self._cam_y2
+
+        def scr(p):
+            return (p[0] - cam_x, p[1] - cam_y)
+
+        # Smoke from the funnel (world-anchored).
+        if rng.random() < 0.6:
+            fx = hx - math.cos(hang) * 8
+            fy = hy + math.sin(hang) * 8
+            self.smoke.append({"x": fx, "y": fy - 34,
+                               "vx": -speed * 0.10 + rng.uniform(-20, 20),
+                               "vy": -rng.uniform(30, 70),
+                               "r": rng.uniform(6, 12), "life": 1.0})
+
+        # Coin pickups (loco proximity).
+        for c in self.coins:
+            if c["alive"] and math.hypot(c["x"] - hx, c["y"] - hy) < 64:
+                c["alive"] = False
+                self.collected += 1
+                for _ in range(7):
+                    a = rng.uniform(0, math.tau)
+                    v = rng.uniform(60, 240)
+                    self.sparkles.append({
+                        "x": c["x"], "y": c["y"],
+                        "vx": math.cos(a) * v, "vy": math.sin(a) * v,
+                        "life": rng.uniform(0.25, 0.5)})
+        self.coins = [c for c in self.coins
+                      if c["x"] > cam_x - 300]
+
+        # Glow trail behind the loco.
+        self.trail *= 0.90
+        sx_, sy_ = scr((hx, hy))
+        _stamp_glow(self.trail, sx_, sy_, 22 + 22 * k,
+                    (90 + 140 * k, 110, 70), 0.3 + 0.7 * k)
+
+        # ---- paint ----
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        frame = np.zeros((H, W, 3), dtype=np.float32)
+        frame[..., 0] = 10 + 16 * g
+        frame[..., 1] = 12 + 18 * g
+        frame[..., 2] = 26 + 30 * g
+        frame += self.trail
+        img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+
+        # Moon + stars + slow ridge.
+        mx, my = self.moon
+        for hr_, ha in ((58, 26), (48, 44)):
+            d.ellipse([mx - hr_, my - hr_, mx + hr_, my + hr_],
+                      fill=(230, 230, 212, ha))
+        d.ellipse([mx - 38, my - 38, mx + 38, my + 38],
+                  fill=(233, 233, 216, 255))
+        for sx0, sy0, sr in self.stars:
+            tw = 130 + 70 * math.sin(t * 2 + sx0)
+            d.ellipse([sx0 - sr, sy0 - sr, sx0 + sr, sy0 + sr],
+                      fill=(220, 225, 255, int(max(60, tw))))
+        ridge = [(x, H * 0.66 + 40 * math.sin((cam_x * 0.2 + x) * 0.004
+                                              + self.ridge_ph)
+                  - cam_y * 0.1)
+                 for x in range(0, W + 40, 40)]
+        d.polygon([(0, H), *ridge, (W, H)], fill=(14, 18, 28, 255))
+
+        # The track: ties + twin rails along the polyline (drawn at
+        # full resolution — only the TRAIN'S lookup degrades, which is
+        # what makes the corner-cutting visible against a clean track).
+        import bisect
+        i0 = max(0, bisect.bisect_right(self.cum, self.head_s
+                                        - self.CAR_GAP * 5) - 4)
+        i1 = min(len(self.pts) - 1,
+                 bisect.bisect_right(self.cum, self.head_s + W * 1.3))
+        path = [scr(self.pts[j]) for j in range(i0, i1, 2)]
+        if len(path) > 2:
+            # Ties.
+            for j in range(i0, i1, 4):
+                px_, py_ = self.pts[j]
+                jn = min(j + 1, len(self.pts) - 1)
+                tx_, ty_ = (self.pts[jn][0] - px_, self.pts[jn][1] - py_)
+                tl = math.hypot(tx_, ty_) or 1
+                nx_, ny_ = -ty_ / tl, tx_ / tl
+                a_ = scr((px_ + nx_ * 12, py_ + ny_ * 12))
+                b_ = scr((px_ - nx_ * 12, py_ - ny_ * 12))
+                d.line([a_, b_], fill=(52, 44, 38, 255), width=4)
+            d.line(path, fill=(120, 122, 132, 255), width=4)
+            inner = [scr((self.pts[j][0], self.pts[j][1] - 7))
+                     for j in range(i0, i1, 2)]
+            d.line(inner, fill=(90, 92, 102, 255), width=3)
+
+        # Coins.
+        for c in self.coins:
+            if not c["alive"]:
+                continue
+            cx_, cy_ = scr((c["x"], c["y"]))
+            if -30 < cx_ < W + 30 and -30 < cy_ < H + 30:
+                wob = abs(math.sin(t * 5 + c["ph"]))
+                cw = 12 * (0.25 + 0.75 * wob)
+                d.ellipse([cx_ - cw, cy_ - 13, cx_ + cw, cy_ + 13],
+                          fill=(250, 200, 70, 255),
+                          outline=(170, 120, 30, 255), width=3)
+
+        # Smoke (world-anchored, drawn behind train).
+        for sm in self.smoke:
+            sm["x"] += sm["vx"] * dt
+            sm["y"] += sm["vy"] * dt
+            sm["r"] += 13 * dt
+            sm["life"] -= dt * 0.55
+            if sm["life"] > 0:
+                px_, py_ = scr((sm["x"], sm["y"]))
+                sh = int(54 + 30 * sm["life"])
+                d.ellipse([px_ - sm["r"], py_ - sm["r"],
+                           px_ + sm["r"], py_ + sm["r"]],
+                          fill=(sh, sh, sh + 4, int(130 * sm["life"])))
+        self.smoke = [sm for sm in self.smoke if sm["life"] > 0]
+
+        # ---- the train: loco + cars, each rotated to its tangent ----
+        wheel_rot = self.head_s / self.WHEEL_R
+        for n_, (cx_, cy_, ang) in enumerate(cars):
+            px_, py_ = scr((cx_, cy_))
+            ca, sa = math.cos(ang), math.sin(ang)
+
+            def rot(dx_, dy_, _px=px_, _py=py_, _ca=ca, _sa=sa):
+                return (_px + dx_ * _ca - dy_ * _sa,
+                        _py + dx_ * _sa + dy_ * _ca)
+
+            is_loco = (n_ == 0)
+            half = 64 if is_loco else 56
+            # Wheels (under the body, on the rail).
+            for wsgn in (-1, 1):
+                wx_, wy_ = rot(wsgn * half * 0.55, 12)
+                d.ellipse([wx_ - self.WHEEL_R, wy_ - self.WHEEL_R,
+                           wx_ + self.WHEEL_R, wy_ + self.WHEEL_R],
+                          fill=(22, 22, 26, 255),
+                          outline=(110, 112, 122, 255), width=3)
+                for s_ in range(4):
+                    a = wheel_rot + s_ * math.tau / 4
+                    d.line([wx_, wy_,
+                            wx_ + math.cos(a) * (self.WHEEL_R - 4),
+                            wy_ + math.sin(a) * (self.WHEEL_R - 4)],
+                           fill=(150, 152, 162, 255), width=3)
+            # Body.
+            body = [rot(-half, -2), rot(half, -2),
+                    rot(half, -44), rot(-half, -44)]
+            d.polygon(body, fill=self.GREEN, outline=self.GREEN_D)
+            d.line([rot(-half, -12), rot(half, -12)],
+                   fill=self.GOLD, width=4)
+            if is_loco:
+                # Armored nose + funnel + headlight cone.
+                d.polygon([rot(half, -2), rot(half + 26, -2),
+                           rot(half + 26, -20), rot(half, -38)],
+                          fill=self.GREEN_D)
+                d.polygon([rot(-half * 0.2, -44), rot(half * 0.15, -44),
+                           rot(half * 0.12, -60), rot(-half * 0.15, -60)],
+                          fill=self.GREEN_D)
+                lx_, ly_ = rot(half + 22, -10)
+                d.ellipse([lx_ - 7, ly_ - 7, lx_ + 7, ly_ + 7],
+                          fill=(255, 240, 190, 255))
+                beam = [rot(half + 24, -4), rot(half + 24, -18),
+                        rot(half + 240, -54), rot(half + 240, 30)]
+                d.polygon(beam, fill=(255, 240, 190, 22))
+            else:
+                # Lit windows.
+                for wn in range(3):
+                    wx0 = -half + 18 + wn * 34
+                    lit = math.sin(n_ * 3 + wn + t * 0.6) > -0.5
+                    wpts = [rot(wx0, -32), rot(wx0 + 22, -32),
+                            rot(wx0 + 22, -16), rot(wx0, -16)]
+                    d.polygon(wpts,
+                              fill=(255, 224, 150, 235) if lit
+                              else (40, 52, 48, 255))
+            # Coupling to next car.
+            if n_ < len(cars) - 1:
+                nx_, ny_ = scr((cars[n_ + 1][0], cars[n_ + 1][1]))
+                d.line([rot(-half, -6), (nx_ + 40, ny_ - 6)],
+                       fill=(90, 92, 100, 255), width=5)
+
+        # Sparkles + coin tally.
+        for p_ in self.sparkles:
+            p_["x"] += p_["vx"] * dt
+            p_["y"] += p_["vy"] * dt
+            p_["life"] -= dt
+            if p_["life"] > 0:
+                px_, py_ = scr((p_["x"], p_["y"]))
+                a = int(255 * min(1, p_["life"] * 3))
+                d.line([px_, py_, px_ + 4, py_ + 4],
+                       fill=(255, 235, 140, a), width=3)
+        self.sparkles = [p_ for p_ in self.sparkles if p_["life"] > 0]
+        for n_ in range(min(self.collected, 18)):
+            d.ellipse([24 + n_ * 22, 26, 40 + n_ * 22, 42],
+                      fill=(250, 200, 70, 230))
+
+        # Speed lines.
+        if k > 0.45:
+            for _ in range(int(10 * k)):
+                ly = rng.uniform(H * 0.2, H * 0.9)
+                ll = rng.uniform(50, 200) * k
+                lx = rng.uniform(0, W)
+                d.line([lx, ly, lx + ll, ly],
+                       fill=(220, 225, 255, int(50 * k)), width=2)
+
+        out = np.asarray(img, dtype=np.uint8)
+        return self.lag(out, ts)
 
 _THEME_CLASSES = {
     "space": _Space,
@@ -2812,6 +3204,7 @@ _THEME_CLASSES = {
     "stacker": _Stacker,
     "fight": _Fight,
     "moto": _Moto,
+    "train": _Train,
 }
 
 

@@ -144,6 +144,7 @@ Reference: `state/trending_packages/20260531/*.json`.
 | `"stacker"` | Blocks snapping onto a record-chasing tower (world records, builds) |
 | `"fight"` | Red vs blue orbs clashing in an octagon (UFC/boxing/combat) |
 | `"moto"` | Hill-climb dirt bike: drop-offs, airtime, flips, coins (vehicles/races) |
+| `"train"` | Runaway express on a loop-the-loop track, coin rings (rail, summits) |
 | `"rain"` | Storm streaks + lightning bolts (generic weather) |
 | `"ocean"` | Fish + bubbles + god rays (marine stories) |
 | `"coins"` | Gold plinko cascade (markets / money stories) |
