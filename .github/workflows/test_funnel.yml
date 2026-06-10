@@ -1,0 +1,115 @@
+name: test_funnel
+
+# One-off diagnostic workflow for the news-image funnel.
+# Manual-trigger only. Runs media_funnel.py --probe against the
+# canonical "this used to fail" entity (Brad Paisley) plus a
+# second probe of your choice. Prints the scored ranking to the
+# Action log. NO videos published. Safe to delete after merge.
+
+on:
+  workflow_dispatch:
+    inputs:
+      entity:
+        description: 'Entity to search for (defaults to Brad Paisley)'
+        required: false
+        default: 'Brad Paisley'
+      angle:
+        description: 'Story angle sentence'
+        required: false
+        default: 'country music star Brad Paisley publicly opposes proposed AI data center near Nashville Zoo'
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install minimal deps
+        run: |
+          pip install --upgrade pip
+          pip install requests
+
+      - name: Show which keys are present
+        env:
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
+          TAVILY_KEY: ${{ secrets.TAVILY_KEY }}
+          NEWSDATA_KEY: ${{ secrets.NEWSDATA_KEY }}
+          IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          present=0
+          for v in NEWSAPI_KEY GNEWS_KEY BRAVE_KEY TAVILY_KEY NEWSDATA_KEY IMGUR_CLIENT_ID GROQ_API_KEY VIMEO_TOKEN YOUTUBE_API_KEY; do
+            if [ -n "${!v}" ]; then
+              echo "  ${v}: SET"
+              present=$((present + 1))
+            else
+              echo "  ${v}: missing"
+            fi
+          done
+          echo ""
+          echo "${present}/9 keys present (Imgur intentionally skipped)."
+
+      - name: Probe — ${{ github.event.inputs.entity }}
+        env:
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
+          TAVILY_KEY: ${{ secrets.TAVILY_KEY }}
+          NEWSDATA_KEY: ${{ secrets.NEWSDATA_KEY }}
+          IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          python media_funnel.py \
+            --probe "${{ github.event.inputs.entity }}" \
+            --angle "${{ github.event.inputs.angle }}" \
+            --no-cache
+
+      - name: Probe — Hunter the kangaroo (animal beat)
+        env:
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
+          TAVILY_KEY: ${{ secrets.TAVILY_KEY }}
+          NEWSDATA_KEY: ${{ secrets.NEWSDATA_KEY }}
+          IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          python media_funnel.py \
+            --probe "Hunter the kangaroo" \
+            --angle "Hunter the kangaroo escapes Kentucky enclosure and is recaptured" \
+            --no-cache
+
+      - name: Probe — Elon Musk (control case)
+        env:
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
+          TAVILY_KEY: ${{ secrets.TAVILY_KEY }}
+          NEWSDATA_KEY: ${{ secrets.NEWSDATA_KEY }}
+          IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          python media_funnel.py \
+            --probe "Elon Musk" \
+            --angle "Elon Musk SpaceX Starship test flight" \
+            --no-cache
