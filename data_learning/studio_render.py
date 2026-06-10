@@ -177,11 +177,42 @@ def _synth_sfx(work: Path) -> dict[str, Path]:
     return sfx
 
 
+MUSIC_DIR = PKG_DIR / "music"
+
+
+def _music_track(vibe: str, slug: str) -> Path | None:
+    """A real royalty-free track for this vibe (rotated by slug), or None to
+    fall back to the synthesized bed. Populated by scripts/fetch_music.py."""
+    import hashlib
+    d = MUSIC_DIR / vibe
+    files = sorted(d.glob("*.mp3")) if d.is_dir() else []
+    if not files:
+        # try any vibe so a partial library still gives real music
+        files = sorted(MUSIC_DIR.glob("*/*.mp3")) if MUSIC_DIR.is_dir() else []
+    if not files:
+        return None
+    h = int(hashlib.md5(slug.encode()).hexdigest(), 16)
+    return files[h % len(files)]
+
+
+def _build_music(total: float, out: Path, vibe: str, slug: str) -> None:
+    """Real looped track (loudness-normalized so it's consistently present),
+    else the synthesized fallback."""
+    trk = _music_track(vibe, slug)
+    if trk:
+        _run(["ffmpeg", "-y", "-loglevel", "error",
+              "-stream_loop", "-1", "-i", str(trk), "-t", f"{total + 1:.2f}",
+              "-af", "loudnorm=I=-16:TP=-1.5:LRA=11,highpass=f=30,lowpass=f=14000",
+              "-ac", "2", "-ar", "44100", "-c:a", "pcm_s16le", str(out)])
+        return
+    _synth_music(total, out, vibe)
+
+
 def _build_soundtrack(narration: Path, windows, events, total: float,
-                      vibe: str, work: Path) -> Path:
+                      vibe: str, work: Path, slug: str = "") -> Path:
     """Mix narration + ducked music bed + visual-synced SFX into one track."""
     music = work / "music.wav"
-    _synth_music(total, music, vibe)
+    _build_music(total, music, vibe, slug)
     sfx = _synth_sfx(work)
 
     # (time, file, volume) placements.
@@ -210,7 +241,9 @@ def _build_soundtrack(narration: Path, windows, events, total: float,
         # Music sits low and ducks further whenever the voice speaks.
         # Louder, more present bed; the gentler duck keeps it audible under
         # the voice instead of crushing it to nothing.
-        f"[1:a]volume=1.15,atrim=0:{total:.2f}[mraw]",
+        # Bed is loudness-normalized to -16 LUFS (same as the voice), so it's
+        # loud and present; it sits just under and ducks while the voice talks.
+        f"[1:a]volume=0.95,atrim=0:{total:.2f}[mraw]",
         "[mraw][0:a]sidechaincompress=threshold=0.06:ratio=4:"
         "attack=80:release=400[duck]",
     ]
@@ -698,7 +731,7 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
         events = _plan_events(st, windows)
         # Full soundtrack: narration + ducked theme music + visual-synced SFX.
         soundtrack = _build_soundtrack(narration, windows, events, total,
-                                       theme.get("vibe", "calm"), work)
+                                       theme.get("vibe", "calm"), work, slug)
         ass = work / "cap.ass"
         build_story_ass(st, windows, events, ass, accent=accent_ass)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
