@@ -243,7 +243,7 @@ def _build_soundtrack(narration: Path, windows, events, total: float,
         # the voice instead of crushing it to nothing.
         # Bed is loudness-normalized to -16 LUFS (same as the voice), so it's
         # loud and present; it sits just under and ducks while the voice talks.
-        f"[1:a]volume=0.44,atrim=0:{total:.2f}[mraw]",
+        f"[1:a]volume=0.45,atrim=0:{total:.2f}[mraw]",
         "[mraw][0:a]sidechaincompress=threshold=0.06:ratio=4:"
         "attack=80:release=400[duck]",
     ]
@@ -369,8 +369,29 @@ def _spell_numbers(text: str) -> str:
     return re.sub(r"\d+", _int, text)
 
 
+def _say_num(s: str) -> str:
+    """Spell a number string (commas/decimal ok) as cardinal words — never a
+    year. '1,920' -> 'one thousand nine hundred twenty', '50.4' -> 'fifty point
+    four'."""
+    s = s.replace(",", "")
+    if "." in s:
+        whole, frac = s.split(".")
+        return _card(int(whole)) + " point " + " ".join(_ONES[int(d)] for d in frac)
+    return _card(int(s))
+
+
 def _tts_text(text: str) -> str:
-    text = text.replace("$", " dollars ").replace("%", " percent ")
+    # CORE: spoken numbers must come out clean for a number-heavy channel.
+    #   "$1,920" -> "one thousand nine hundred twenty dollars" (cardinal + unit,
+    #   never a year), "5,600" -> "five thousand six hundred", "200%" -> "two
+    #   hundred percent". Dollar amounts and comma'd quantities are forced to
+    #   cardinals; only BARE 4-digit numbers (1990, 2020) read as years. The
+    #   captions keep the original digits; only the audio changes.
+    text = re.sub(r"\$\s?(\d[\d,]*(?:\.\d+)?)",
+                  lambda m: " " + _say_num(m.group(1)) + " dollars ", text)
+    text = re.sub(r"\b(\d{1,3}(?:,\d{3})+)\b",
+                  lambda m: " " + _say_num(m.group(1)) + " ", text)
+    text = text.replace("%", " percent ")
     return _spell_numbers(text)
 
 
