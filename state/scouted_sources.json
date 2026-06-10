@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-06-10T12:07:20Z",
+  "scouted_at": "2026-06-10T12:35:27Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,12 +20,12 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 112,
-    "wikimedia_commons_count": 4,
+    "wikimedia_commons_count": 0,
     "youtube_trending_count": 49,
     "lemmy_count": 0,
     "hackernews_count": 1
   },
-  "total": 166,
+  "total": 162,
   "reddit_posts": [],
   "wikipedia_events": [
     {
@@ -1149,36 +1149,7 @@
       "extract": "Sigmar Polke was a German painter and photographer. Polke experimented with a wide range of styles, subject matters and materials. In the 1970s, he concentrated on photography, returning to paint in the 1980s, when he produced abstract works created by chance through chemical reactions between paint and other products. In the last 20 years of his life, he produced paintings focused on his perception of historical events."
     }
   ],
-  "wikimedia_videos": [
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Deori Bihu dance.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Deori_Bihu_dance.webm",
-      "uploaded_at": "2026-06-10T12:03:05Z",
-      "uploader": "Jyoti Chiring"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Iran's missile attack against US bases.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Iran's_missile_attack_against_US_bases.webm",
-      "uploaded_at": "2026-06-10T12:01:17Z",
-      "uploader": "JaydenChao"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:\u5174\u5e73 \u96ea\u5929\u4e4b\u5f90\u5170\u9ad8\u94c1\u91d1\u9f99\u6751\u6bb5.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:\u5174\u5e73_\u96ea\u5929\u4e4b\u5f90\u5170\u9ad8\u94c1\u91d1\u9f99\u6751\u6bb5.webm",
-      "uploaded_at": "2026-06-10T11:54:11Z",
-      "uploader": "Liuxingy"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:\u5174\u5e73 \u534e\u6d6a\u751f\u6001\u9732\u8425\u57fa\u5730.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:\u5174\u5e73_\u534e\u6d6a\u751f\u6001\u9732\u8425\u57fa\u5730.webm",
-      "uploaded_at": "2026-06-10T11:54:11Z",
-      "uploader": "Liuxingy"
-    }
-  ],
+  "wikimedia_videos": [],
   "youtube_trending": [
     {
       "source_type": "youtube_trending",
@@ -1187,8 +1158,8 @@
       "channel": "ckan98",
       "published_at": "2026-06-09T01:00:06Z",
       "iso_duration": "PT7M27S",
-      "views": 1547852,
-      "likes": 120901,
+      "views": 1550196,
+      "likes": 120908,
       "url": "https://www.youtube.com/watch?v=N7JOI12o_NI",
       "thumbnail": "https://i.ytimg.com/vi/N7JOI12o_NI/hqdefault.jpg"
     },
@@ -1199,8 +1170,8 @@
       "channel": "Marvel Rivals",
       "published_at": "2026-06-09T16:00:09Z",
       "iso_duration": "PT1M1S",
-      "views": 1571302,
-      "likes": 74002,
+      "views": 1576009,
+      "likes": 73965,
       "url": "https://www.youtube.com/watch?v=Kf3c53eX7Lg",
       "thumbnail": "https://i.ytimg.com/vi/Kf3c53eX7Lg/hqdefault.jpg"
     },
@@ -1211,8 +1182,8 @@
       "channel": "Nintendo of America",
       "published_at": "2026-06-09T16:49:11Z",
       "iso_duration": "PT2H33M35S",
-      "views": 4486526,
-      "likes": 130084,
+      "views": 4489805,
+      "likes": 129741,
       "url": "https://www.youtube.com/watch?v=PvUPDSDZg1k",
       "thumbnail": "https://i.ytimg.com/vi/PvUPDSDZg1k/hqdefault.jpg"
     },
@@ -1223,8 +1194,8 @@
       "channel": "Santa Fe Klan Official",
       "published_at": "2026-06-10T03:30:06Z",
       "iso_duration": "PT5M47S",
-      "views": 303588,
-      "likes": 42147,
+      "views": 307858,
+      "likes": 42945,
       "url": "https://www.youtube.com/watch?v=UxA1nJEZRUs",
       "thumbnail": "https://i.ytimg.com/vi/UxA1nJEZRUs/hqdefault.jpg"
     },
@@ -1236,7 +1207,7 @@
       "published_at": "2026-06-09T14:59:12Z",
       "iso_duration": "PT1M27S",
       "views": 864407,
-      "likes": 62250,
+      "likes": 62126,
       "url": "https://www.youtube.com/watch?v=j151ek2rYs0",
       "thumbnail": "https://i.ytimg.com/vi/j151ek2rYs0/hqdefault.jpg"
     },
@@ -1247,8 +1218,8 @@
       "channel": "NintendoAU",
       "published_at": "2026-06-09T16:09:05Z",
       "iso_duration": "PT1H26M1S",
-      "views": 438785,
-      "likes": 9260,
+      "views": 440217,
+      "likes": 9245,
       "url": "https://www.youtube.com/watch?v=Ft9cQnxFoKc",
       "thumbnail": "https://i.ytimg.com/vi/Ft9cQnxFoKc/hqdefault.jpg"
     },
@@ -1259,8 +1230,8 @@
       "channel": "YFG Fatso",
       "published_at": "2026-06-09T23:38:25Z",
       "iso_duration": "PT2M56S",
-      "views": 69607,
-      "likes": 7783,
+      "views": 71099,
+      "likes": 7931,
       "url": "https://www.youtube.com/watch?v=W_0V2Vzh1hE",
       "thumbnail": "https://i.ytimg.com/vi/W_0V2Vzh1hE/hqdefault.jpg"
     },
@@ -1271,8 +1242,8 @@
       "channel": "PlayOverwatch",
       "published_at": "2026-06-09T16:00:06Z",
       "iso_duration": "PT4M1S",
-      "views": 936612,
-      "likes": 60424,
+      "views": 940400,
+      "likes": 60423,
       "url": "https://www.youtube.com/watch?v=UKJL7JfIvNg",
       "thumbnail": "https://i.ytimg.com/vi/UKJL7JfIvNg/hqdefault.jpg"
     },
@@ -1283,8 +1254,8 @@
       "channel": "Jynxzi",
       "published_at": "2026-06-10T06:04:42Z",
       "iso_duration": "PT11H55M",
-      "views": 1004741,
-      "likes": 13008,
+      "views": 1007037,
+      "likes": 13015,
       "url": "https://www.youtube.com/watch?v=mG0hRe9Hs8o",
       "thumbnail": "https://i.ytimg.com/vi/mG0hRe9Hs8o/hqdefault.jpg"
     },
@@ -1295,8 +1266,8 @@
       "channel": "VT1S",
       "published_at": "2026-06-05T06:59:57Z",
       "iso_duration": "PT3M56S",
-      "views": 47758,
-      "likes": 2555,
+      "views": 47866,
+      "likes": 2562,
       "url": "https://www.youtube.com/watch?v=mTN5DTJEFEs",
       "thumbnail": "https://i.ytimg.com/vi/mTN5DTJEFEs/hqdefault.jpg"
     },
@@ -1307,8 +1278,8 @@
       "channel": "20th Century Studios",
       "published_at": "2026-06-09T16:00:21Z",
       "iso_duration": "PT2M26S",
-      "views": 1934383,
-      "likes": 25030,
+      "views": 1967655,
+      "likes": 25278,
       "url": "https://www.youtube.com/watch?v=67ho3OxCmmM",
       "thumbnail": "https://i.ytimg.com/vi/67ho3OxCmmM/hqdefault.jpg"
     },
@@ -1319,8 +1290,8 @@
       "channel": "TheBurntPeanut",
       "published_at": "2026-06-10T07:55:28Z",
       "iso_duration": "PT6H56M47S",
-      "views": 429875,
-      "likes": 8410,
+      "views": 432681,
+      "likes": 8429,
       "url": "https://www.youtube.com/watch?v=NFRgvxsgLgA",
       "thumbnail": "https://i.ytimg.com/vi/NFRgvxsgLgA/hqdefault.jpg"
     },
@@ -1331,8 +1302,8 @@
       "channel": "HYBE LABELS",
       "published_at": "2026-06-08T15:00:00Z",
       "iso_duration": "PT27S",
-      "views": 2777495,
-      "likes": 229876,
+      "views": 2798764,
+      "likes": 230616,
       "url": "https://www.youtube.com/watch?v=L_VvwekYwp8",
       "thumbnail": "https://i.ytimg.com/vi/L_VvwekYwp8/hqdefault.jpg"
     },
@@ -1343,8 +1314,8 @@
       "channel": "Zeltik",
       "published_at": "2026-06-09T21:30:31Z",
       "iso_duration": "PT11M9S",
-      "views": 153516,
-      "likes": 9766,
+      "views": 155951,
+      "likes": 9888,
       "url": "https://www.youtube.com/watch?v=OgO9-cYv8yM",
       "thumbnail": "https://i.ytimg.com/vi/OgO9-cYv8yM/hqdefault.jpg"
     },
@@ -1355,8 +1326,8 @@
       "channel": "Soup",
       "published_at": "2026-06-09T21:09:23Z",
       "iso_duration": "PT1H21M42S",
-      "views": 216084,
-      "likes": 5968,
+      "views": 221609,
+      "likes": 6020,
       "url": "https://www.youtube.com/watch?v=UaSHU9-__hE",
       "thumbnail": "https://i.ytimg.com/vi/UaSHU9-__hE/hqdefault.jpg"
     },
@@ -1367,8 +1338,8 @@
       "channel": "Madonna",
       "published_at": "2026-06-08T15:00:06Z",
       "iso_duration": "PT13M55S",
-      "views": 1873626,
-      "likes": 131298,
+      "views": 1881231,
+      "likes": 131628,
       "url": "https://www.youtube.com/watch?v=yJtckcMHM2g",
       "thumbnail": "https://i.ytimg.com/vi/yJtckcMHM2g/hqdefault.jpg"
     },
@@ -1379,8 +1350,8 @@
       "channel": "TheGamersJoint",
       "published_at": "2026-06-09T15:22:42Z",
       "iso_duration": "PT3M58S",
-      "views": 139528,
-      "likes": 11566,
+      "views": 140004,
+      "likes": 11571,
       "url": "https://www.youtube.com/watch?v=MGsiJGZ2j7g",
       "thumbnail": "https://i.ytimg.com/vi/MGsiJGZ2j7g/hqdefault.jpg"
     },
@@ -1391,8 +1362,8 @@
       "channel": "FlameFrags",
       "published_at": "2026-06-09T10:11:46Z",
       "iso_duration": "PT52M56S",
-      "views": 2237749,
-      "likes": 126421,
+      "views": 2248961,
+      "likes": 126731,
       "url": "https://www.youtube.com/watch?v=Ym2wmd19S_c",
       "thumbnail": "https://i.ytimg.com/vi/Ym2wmd19S_c/hqdefault.jpg"
     },
@@ -1403,8 +1374,8 @@
       "channel": "daydream.",
       "published_at": "2026-06-04T16:30:29Z",
       "iso_duration": "PT1M38S",
-      "views": 454997,
-      "likes": 2135,
+      "views": 459729,
+      "likes": 2165,
       "url": "https://www.youtube.com/watch?v=cmMsu_jtcnE",
       "thumbnail": "https://i.ytimg.com/vi/cmMsu_jtcnE/hqdefault.jpg"
     },
@@ -1415,8 +1386,8 @@
       "channel": "Kai Cenat Live",
       "published_at": "2026-06-08T19:13:48Z",
       "iso_duration": "PT2M38S",
-      "views": 1314599,
-      "likes": 101365,
+      "views": 1317643,
+      "likes": 101529,
       "url": "https://www.youtube.com/watch?v=rN9viJlnir4",
       "thumbnail": "https://i.ytimg.com/vi/rN9viJlnir4/hqdefault.jpg"
     },
@@ -1427,8 +1398,8 @@
       "channel": "Cash",
       "published_at": "2026-06-09T16:00:13Z",
       "iso_duration": "PT21M45S",
-      "views": 502088,
-      "likes": 6647,
+      "views": 508630,
+      "likes": 6722,
       "url": "https://www.youtube.com/watch?v=ElUQcoMI1MA",
       "thumbnail": "https://i.ytimg.com/vi/ElUQcoMI1MA/hqdefault.jpg"
     },
@@ -1439,8 +1410,8 @@
       "channel": "Sabor Amor",
       "published_at": "2026-06-07T07:25:41Z",
       "iso_duration": "PT4M12S",
-      "views": 201813,
-      "likes": 228,
+      "views": 202674,
+      "likes": 227,
       "url": "https://www.youtube.com/watch?v=xbGUd7R2BSU",
       "thumbnail": "https://i.ytimg.com/vi/xbGUd7R2BSU/hqdefault.jpg"
     },
@@ -1451,8 +1422,8 @@
       "channel": "Screen Junkies",
       "published_at": "2026-06-09T17:00:34Z",
       "iso_duration": "PT8M26S",
-      "views": 191005,
-      "likes": 9093,
+      "views": 192551,
+      "likes": 9158,
       "url": "https://www.youtube.com/watch?v=Oovq_p-WFuQ",
       "thumbnail": "https://i.ytimg.com/vi/Oovq_p-WFuQ/hqdefault.jpg"
     },
@@ -1463,22 +1434,22 @@
       "channel": "On The Radar Radio",
       "published_at": "2026-06-08T23:00:06Z",
       "iso_duration": "PT2M56S",
-      "views": 62288,
-      "likes": 2861,
+      "views": 62676,
+      "likes": 2905,
       "url": "https://www.youtube.com/watch?v=msjS2zdObCs",
       "thumbnail": "https://i.ytimg.com/vi/msjS2zdObCs/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "HT5JAp5z0-o",
-      "title": "The Cat in the Hat | Official Trailer 3",
-      "channel": "Warner Bros.",
-      "published_at": "2026-06-09T13:30:12Z",
-      "iso_duration": "PT2M53S",
-      "views": 993550,
-      "likes": 14439,
-      "url": "https://www.youtube.com/watch?v=HT5JAp5z0-o",
-      "thumbnail": "https://i.ytimg.com/vi/HT5JAp5z0-o/hqdefault.jpg"
+      "video_id": "0d4nirTymmg",
+      "title": "ALPHA | Official Teaser | Alia, Sharvari, Anil, Bobby | Shiv Rawail | YRF Spy Universe | 3 July 2026",
+      "channel": "YRF",
+      "published_at": "2026-06-10T05:30:05Z",
+      "iso_duration": "PT1M55S",
+      "views": 3050928,
+      "likes": 74551,
+      "url": "https://www.youtube.com/watch?v=0d4nirTymmg",
+      "thumbnail": "https://i.ytimg.com/vi/0d4nirTymmg/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1487,8 +1458,8 @@
       "channel": "Nintendo UK",
       "published_at": "2026-06-09T15:03:14Z",
       "iso_duration": "PT55M7S",
-      "views": 384216,
-      "likes": 8902,
+      "views": 385282,
+      "likes": 8894,
       "url": "https://www.youtube.com/watch?v=vY6QT50zrf0",
       "thumbnail": "https://i.ytimg.com/vi/vY6QT50zrf0/hqdefault.jpg"
     },
@@ -1499,22 +1470,22 @@
       "channel": "Mundo Paralelo Musical",
       "published_at": "2026-06-04T23:07:35Z",
       "iso_duration": "PT2M58S",
-      "views": 155691,
-      "likes": 1643,
+      "views": 156173,
+      "likes": 1654,
       "url": "https://www.youtube.com/watch?v=C-SOpaL9wsg",
       "thumbnail": "https://i.ytimg.com/vi/C-SOpaL9wsg/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "BMK0Qe5-uEI",
-      "title": "The Deltarune CHAPTER 5 Trailer is INSANE! | Deltarune Chapter 5: Lore Discussion and Analysis",
-      "channel": "SpookyDood",
-      "published_at": "2026-06-09T19:00:17Z",
-      "iso_duration": "PT19M10S",
-      "views": 125285,
-      "likes": 9378,
-      "url": "https://www.youtube.com/watch?v=BMK0Qe5-uEI",
-      "thumbnail": "https://i.ytimg.com/vi/BMK0Qe5-uEI/hqdefault.jpg"
+      "video_id": "HT5JAp5z0-o",
+      "title": "The Cat in the Hat | Official Trailer 3",
+      "channel": "Warner Bros.",
+      "published_at": "2026-06-09T13:30:12Z",
+      "iso_duration": "PT2M53S",
+      "views": 1011319,
+      "likes": 14471,
+      "url": "https://www.youtube.com/watch?v=HT5JAp5z0-o",
+      "thumbnail": "https://i.ytimg.com/vi/HT5JAp5z0-o/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1523,8 +1494,8 @@
       "channel": "CaseOh",
       "published_at": "2026-06-09T22:00:13Z",
       "iso_duration": "PT37M27S",
-      "views": 270624,
-      "likes": 11953,
+      "views": 275476,
+      "likes": 12122,
       "url": "https://www.youtube.com/watch?v=2dqSV5Sk05U",
       "thumbnail": "https://i.ytimg.com/vi/2dqSV5Sk05U/hqdefault.jpg"
     },
@@ -1535,22 +1506,22 @@
       "channel": "MGKVEVO",
       "published_at": "2026-06-09T16:00:06Z",
       "iso_duration": "PT3M21S",
-      "views": 127353,
-      "likes": 12779,
+      "views": 129718,
+      "likes": 12917,
       "url": "https://www.youtube.com/watch?v=tf3lXvYEJv4",
       "thumbnail": "https://i.ytimg.com/vi/tf3lXvYEJv4/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "0d4nirTymmg",
-      "title": "ALPHA | Official Teaser | Alia, Sharvari, Anil, Bobby | Shiv Rawail | YRF Spy Universe | 3 July 2026",
-      "channel": "YRF",
-      "published_at": "2026-06-10T05:30:05Z",
-      "iso_duration": "PT1M55S",
-      "views": 2757662,
-      "likes": 71436,
-      "url": "https://www.youtube.com/watch?v=0d4nirTymmg",
-      "thumbnail": "https://i.ytimg.com/vi/0d4nirTymmg/hqdefault.jpg"
+      "video_id": "BMK0Qe5-uEI",
+      "title": "The Deltarune CHAPTER 5 Trailer is INSANE! | Deltarune Chapter 5: Lore Discussion and Analysis",
+      "channel": "SpookyDood",
+      "published_at": "2026-06-09T19:00:17Z",
+      "iso_duration": "PT19M10S",
+      "views": 126219,
+      "likes": 9394,
+      "url": "https://www.youtube.com/watch?v=BMK0Qe5-uEI",
+      "thumbnail": "https://i.ytimg.com/vi/BMK0Qe5-uEI/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1559,8 +1530,8 @@
       "channel": "Joe Bart Games",
       "published_at": "2026-06-09T16:03:47Z",
       "iso_duration": "PT45M40S",
-      "views": 244461,
-      "likes": 7232,
+      "views": 246446,
+      "likes": 7290,
       "url": "https://www.youtube.com/watch?v=aav5WX3fy0U",
       "thumbnail": "https://i.ytimg.com/vi/aav5WX3fy0U/hqdefault.jpg"
     },
@@ -1571,8 +1542,8 @@
       "channel": "Release - Topic",
       "published_at": "2026-06-06T17:32:33Z",
       "iso_duration": "PT3M56S",
-      "views": 9806,
-      "likes": 469,
+      "views": 9887,
+      "likes": 475,
       "url": "https://www.youtube.com/watch?v=NYT5zzex7yo",
       "thumbnail": "https://i.ytimg.com/vi/NYT5zzex7yo/hqdefault.jpg"
     },
@@ -1583,8 +1554,8 @@
       "channel": "KinoCheck.com",
       "published_at": "2026-06-09T16:10:35Z",
       "iso_duration": "PT2M44S",
-      "views": 173166,
-      "likes": 2274,
+      "views": 176897,
+      "likes": 2325,
       "url": "https://www.youtube.com/watch?v=K2Iz4vudW7I",
       "thumbnail": "https://i.ytimg.com/vi/K2Iz4vudW7I/hqdefault.jpg"
     },
@@ -1595,8 +1566,8 @@
       "channel": "videogamedunkey",
       "published_at": "2026-06-09T19:30:29Z",
       "iso_duration": "PT4M26S",
-      "views": 414987,
-      "likes": 26379,
+      "views": 418132,
+      "likes": 26477,
       "url": "https://www.youtube.com/watch?v=MeKAQoHfpD4",
       "thumbnail": "https://i.ytimg.com/vi/MeKAQoHfpD4/hqdefault.jpg"
     },
@@ -1607,8 +1578,8 @@
       "channel": "Taylor Swift",
       "published_at": "2026-06-07T19:00:36Z",
       "iso_duration": "PT3M4S",
-      "views": 2860933,
-      "likes": 152716,
+      "views": 2878414,
+      "likes": 153217,
       "url": "https://www.youtube.com/watch?v=hDU4GB1PTxc",
       "thumbnail": "https://i.ytimg.com/vi/hDU4GB1PTxc/hqdefault.jpg"
     },
@@ -1619,8 +1590,8 @@
       "channel": "Destiny 2",
       "published_at": "2026-06-09T18:31:41Z",
       "iso_duration": "PT1M45S",
-      "views": 228395,
-      "likes": 14352,
+      "views": 229672,
+      "likes": 14371,
       "url": "https://www.youtube.com/watch?v=qI-fxJM8rSM",
       "thumbnail": "https://i.ytimg.com/vi/qI-fxJM8rSM/hqdefault.jpg"
     },
@@ -1631,8 +1602,8 @@
       "channel": "Aztecross",
       "published_at": "2026-06-10T03:36:14Z",
       "iso_duration": "PT9H45M11S",
-      "views": 362022,
-      "likes": 7364,
+      "views": 362492,
+      "likes": 7363,
       "url": "https://www.youtube.com/watch?v=LyA6OOxx5sM",
       "thumbnail": "https://i.ytimg.com/vi/LyA6OOxx5sM/hqdefault.jpg"
     },
@@ -1643,8 +1614,8 @@
       "channel": "Lil Tony Official",
       "published_at": "2026-06-08T19:00:06Z",
       "iso_duration": "PT2M59S",
-      "views": 77823,
-      "likes": 7320,
+      "views": 78053,
+      "likes": 7343,
       "url": "https://www.youtube.com/watch?v=IWRH2Ve5Tz0",
       "thumbnail": "https://i.ytimg.com/vi/IWRH2Ve5Tz0/hqdefault.jpg"
     },
@@ -1655,8 +1626,8 @@
       "channel": "Netflix",
       "published_at": "2026-06-09T12:00:01Z",
       "iso_duration": "PT2M21S",
-      "views": 1037927,
-      "likes": 42485,
+      "views": 1053361,
+      "likes": 42743,
       "url": "https://www.youtube.com/watch?v=n_pEJjq-9xQ",
       "thumbnail": "https://i.ytimg.com/vi/n_pEJjq-9xQ/hqdefault.jpg"
     },
@@ -1667,8 +1638,8 @@
       "channel": "Tyler & Snowi",
       "published_at": "2026-06-10T00:34:28Z",
       "iso_duration": "PT16M26S",
-      "views": 332124,
-      "likes": 13252,
+      "views": 340647,
+      "likes": 13658,
       "url": "https://www.youtube.com/watch?v=2Nls1MySm10",
       "thumbnail": "https://i.ytimg.com/vi/2Nls1MySm10/hqdefault.jpg"
     },
@@ -1679,8 +1650,8 @@
       "channel": "Malaver Lyrics",
       "published_at": "2026-06-06T23:15:26Z",
       "iso_duration": "PT5M53S",
-      "views": 464390,
-      "likes": 606,
+      "views": 465604,
+      "likes": 608,
       "url": "https://www.youtube.com/watch?v=mNwsgRMEX6I",
       "thumbnail": "https://i.ytimg.com/vi/mNwsgRMEX6I/hqdefault.jpg"
     },
@@ -1691,8 +1662,8 @@
       "channel": "HALO",
       "published_at": "2026-06-08T15:00:06Z",
       "iso_duration": "PT3M17S",
-      "views": 632882,
-      "likes": 49089,
+      "views": 634158,
+      "likes": 49131,
       "url": "https://www.youtube.com/watch?v=0MxBFXH2a_U",
       "thumbnail": "https://i.ytimg.com/vi/0MxBFXH2a_U/hqdefault.jpg"
     },
@@ -1703,22 +1674,22 @@
       "channel": "Aphmau",
       "published_at": "2026-06-09T22:46:23Z",
       "iso_duration": "PT18M52S",
-      "views": 289930,
-      "likes": 8447,
+      "views": 297454,
+      "likes": 8632,
       "url": "https://www.youtube.com/watch?v=Tn6CPA6M32w",
       "thumbnail": "https://i.ytimg.com/vi/Tn6CPA6M32w/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "FvpPdqQduIg",
-      "title": "Air Supply - Making Love Out of Nothing at All (Lyrics) Letra en espa\u00f1ol",
-      "channel": "Cherry Lady",
-      "published_at": "2026-06-04T22:00:24Z",
-      "iso_duration": "PT5M42S",
-      "views": 1097867,
-      "likes": 1704,
-      "url": "https://www.youtube.com/watch?v=FvpPdqQduIg",
-      "thumbnail": "https://i.ytimg.com/vi/FvpPdqQduIg/hqdefault.jpg"
+      "video_id": "qf2RW7BH_o4",
+      "title": "Hit The Floor",
+      "channel": "EJ Rogers - Topic",
+      "published_at": "2026-06-03T16:52:29Z",
+      "iso_duration": "PT2M11S",
+      "views": 49417,
+      "likes": 1857,
+      "url": "https://www.youtube.com/watch?v=qf2RW7BH_o4",
+      "thumbnail": "https://i.ytimg.com/vi/qf2RW7BH_o4/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1727,8 +1698,8 @@
       "channel": "PlayStation",
       "published_at": "2026-06-09T20:30:28Z",
       "iso_duration": "PT1M53S",
-      "views": 206174,
-      "likes": 9827,
+      "views": 209302,
+      "likes": 9893,
       "url": "https://www.youtube.com/watch?v=JbLUoTT9wAM",
       "thumbnail": "https://i.ytimg.com/vi/JbLUoTT9wAM/hqdefault.jpg"
     },
@@ -1739,34 +1710,34 @@
       "channel": "League of Legends",
       "published_at": "2026-06-09T15:00:16Z",
       "iso_duration": "PT4M57S",
-      "views": 493932,
-      "likes": 20166,
+      "views": 497884,
+      "likes": 20171,
       "url": "https://www.youtube.com/watch?v=ynG4T9yLKFs",
       "thumbnail": "https://i.ytimg.com/vi/ynG4T9yLKFs/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "aMKM8E86OXs",
-      "title": "Larry June - The Machinist (Official Video)",
-      "channel": "Larry June",
-      "published_at": "2026-06-08T16:58:55Z",
-      "iso_duration": "PT3M34S",
-      "views": 194627,
-      "likes": 12475,
-      "url": "https://www.youtube.com/watch?v=aMKM8E86OXs",
-      "thumbnail": "https://i.ytimg.com/vi/aMKM8E86OXs/hqdefault.jpg"
+      "video_id": "FvpPdqQduIg",
+      "title": "Air Supply - Making Love Out of Nothing at All (Lyrics) Letra en espa\u00f1ol",
+      "channel": "Cherry Lady",
+      "published_at": "2026-06-04T22:00:24Z",
+      "iso_duration": "PT5M42S",
+      "views": 1106923,
+      "likes": 1727,
+      "url": "https://www.youtube.com/watch?v=FvpPdqQduIg",
+      "thumbnail": "https://i.ytimg.com/vi/FvpPdqQduIg/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "76Q5TWHslOE",
-      "title": "Hadestown: The Musical | Official Trailer | Bleecker Street",
-      "channel": "Bleecker Street",
-      "published_at": "2026-06-09T14:37:23Z",
-      "iso_duration": "PT2M7S",
-      "views": 230444,
-      "likes": 9738,
-      "url": "https://www.youtube.com/watch?v=76Q5TWHslOE",
-      "thumbnail": "https://i.ytimg.com/vi/76Q5TWHslOE/hqdefault.jpg"
+      "video_id": "t704cGN3tiA",
+      "title": "Avengers Doomsday Spider-Man Teaser Explained",
+      "channel": "Emergency Awesome",
+      "published_at": "2026-06-09T23:10:18Z",
+      "iso_duration": "PT11M25S",
+      "views": 84754,
+      "likes": 2552,
+      "url": "https://www.youtube.com/watch?v=t704cGN3tiA",
+      "thumbnail": "https://i.ytimg.com/vi/t704cGN3tiA/hqdefault.jpg"
     }
   ],
   "lemmy_posts": [],
@@ -1775,7 +1746,7 @@
       "source_type": "hackernews_video",
       "title": "I Thought I Knew How Electrolysis Worked [video]",
       "url": "https://www.youtube.com/watch?v=eq7fR9ISuCw",
-      "score": 50,
+      "score": 52,
       "permalink": "https://news.ycombinator.com/item?id=48411102"
     }
   ]
