@@ -136,13 +136,23 @@ Reference: `state/trending_packages/20260531/*.json`.
 | Value | Bottom half |
 |-------|-------------|
 | _(omit)_ | Classic Minecraft parkour gameplay |
-| `"auto"` | Keyword-routed procedural satisfying loop themed to the story |
-| `"space"` | Rocket arcing star-to-star with glow trail + arrival pulses |
-| `"rain"` | Storm streaks + lightning bolts (weather / disaster stories) |
-| `"ember"` | Rising fire sparks (volcano / wildfire / explosion) |
-| `"ocean"` | Fish + bubbles + god rays (marine / animal stories) |
+| `"auto"` | Keyword-routed procedural game themed to the story (PREFERRED) |
+| `"space"` | Rocket hopping star-to-star, drawing a constellation (launches, space) |
+| `"volcano"` | Distant eruption raining bouncing fireballs (volcano/wildfire) |
+| `"quake"` | City + live seismograph ramping to rupture (earthquake/tsunami) |
+| `"runner"` | Critter sprinting over fences/rocks/logs (animal escapes) |
+| `"stacker"` | Blocks snapping onto a record-chasing tower (world records, builds) |
+| `"fight"` | Speed bag on real rope physics (UFC/boxing/combat stories) |
+| `"rain"` | Storm streaks + lightning bolts (generic weather) |
+| `"ocean"` | Fish + bubbles + god rays (marine stories) |
 | `"coins"` | Gold plinko cascade (markets / money stories) |
-| `"plinko"` | Neutral color plinko — the universal satisfying default |
+| `"plinko"` | Neutral plinko — the universal fallback |
+
+All escalating themes follow the same arc: start calm, the sim clock
+compounds until the physics genuinely breaks (tunneling / solver
+divergence / temporal aliasing), the engine hangs, and the world
+regenerates. That arc is the retention hook — see the DESIGN CHARTER
+at the top of `themed_bottom.py` before adding or modifying themes.
 
 **Slate rule: set `"bottom_theme": "auto"` on 3 of the 6 daily packages**
 (prefer the ones with the strongest theme match — space launch, storm,
