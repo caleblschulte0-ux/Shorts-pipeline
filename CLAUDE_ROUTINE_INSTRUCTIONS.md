@@ -329,9 +329,15 @@ flopped. Skip if the file is missing (early days, no data yet).
 - **No sports stats / scores / standings.** Data about the *business* of sports
   is fine (team valuations, ticket prices, stadium costs, TV deals) — the chart
   is about money/trends, not box scores.
-- Each story EXPLAINS one thing in **4 charts that are 4 STEPS of a single
-  explanation** (setup → mechanism → twist → consequence), not 4 separate
-  stats. See "EXPLAIN one thing" below — this is the whole brand.
+- Each story EXPLAINS one thing in **3 charts that are 3 STEPS of a single
+  explanation** (setup → turn → consequence), not separate stats. See "EXPLAIN
+  one thing" below — this is the whole brand.
+- **RETENTION RULE — keep it SHORT and FAST (this is non-negotiable).** Videos
+  that run long get swiped. Target **~25–30s, max 35s**: exactly **3 segments**,
+  each `say` is **1–2 tight sentences** (not a paragraph). A 4th "and also…"
+  beat is a data tour — cut it. Pick the 3 strongest beats and drop the rest.
+  The renderer already slams the hook on frame 1 and runs the voice fast; your
+  job is to not overload it with words.
 - **Vary the chart types** — don't make every segment a bar list. Pick the
   `insight_type` that fits the data:
   - `trend` → line (a value over time; data points need a `period`/year).
@@ -363,9 +369,10 @@ handled) AND keeps the digits on-screen so the ring still lands. So: never write
 a number a way you wouldn't want read aloud — and always pair it with its unit.
 
 **Pick ONE thing to EXPLAIN, then build the whole video around teaching it.**
-Not "4 facts about subscriptions" — but *"why subscriptions quietly drain you,"*
-explained in four steps. The hook poses the question; the four charts are the
-four steps of the answer; the closing is the lightbulb going on.
+Not "facts about subscriptions" — but *"why subscriptions quietly drain you,"*
+explained in three steps. The hook poses the question; the three charts are the
+three steps of the answer; the closing is the lightbulb going on. Keep each
+step to one or two sentences — short holds the viewer, long loses them.
 
 **The four beats are ONE explanation, chained — not four separate facts.** Each
 beat picks up where the last left off ("so…", "but here's the catch…", "which is

@@ -408,11 +408,11 @@ def synth_narration(sentences, workdir: Path, voice: str):
         voice = "am_fenrir"
     wavs, windows, t = [], [], 0.0
     for i, sent in enumerate(sentences):
-        samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.04,
+        samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.10,
                                lang="en-us")
         w = workdir / f"s{i}.wav"
         sf.write(str(w), samples, sr)
-        d = _dur(w) + 0.18           # small breath between lines
+        d = _dur(w) + 0.12           # tight breath between lines (pace = retention)
         windows.append((t, t + d))
         t += d
         wavs.append(w)
@@ -510,7 +510,7 @@ WrapStyle: 0
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Cap,DejaVu Sans,60,&HFFFFFF&,&H000000&,&H66000000&,1,1,4,1,2,90,90,{CAP_MARGINV},1
-Style: Hook,DejaVu Sans,96,{accent},&H000000&,&H000000&,1,1,6,3,8,70,70,360,1
+Style: Hook,DejaVu Sans,118,&HFFFFFF&,&H000000&,&H000000&,1,1,8,2,8,50,50,300,1
 Style: Punch,DejaVu Sans,150,&HFFFFFF&,&H000000&,&H000000&,1,1,6,3,5,40,40,0,1
 Style: Src,DejaVu Sans,40,&HA5B4C7&,&H000000&,&H000000&,0,1,3,1,5,120,120,0,1
 Style: Chip,DejaVu Sans,38,&HFFFFFF&,&H6A5C7C&,&H000000&,1,3,0,0,8,60,60,26,1
@@ -536,12 +536,19 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # to the voice, so the open is a moving hook instead of one static wall of
     # text (the instant-swipe killer). Each chunk pops in and replaces the last.
     h0, h1 = windows[0]
-    hchunks = _chunks(st.hook, 3)
+    hchunks = _chunks(st.hook, 2)          # 2-word bursts = faster, bigger words
     if hchunks:
         hstep = (h1 - h0) / len(hchunks)
         for j, ch in enumerate(hchunks):
             cs, ce = h0 + j * hstep, h0 + (j + 1) * hstep
-            pop = ("{\\fad(110,80)\\fscx84\\fscy84\\t(0,130,\\fscx100\\fscy100)}")
+            # The FIRST burst slams in big on frame 1 with no fade-in lag — a
+            # hard pattern-interrupt that earns the next second. Later bursts
+            # pop in fast. Accent glow under white text for max contrast.
+            if j == 0:
+                pop = ("{\\fad(0,70)\\fscx128\\fscy128\\t(0,130,\\fscx100\\fscy100)"
+                       "\\3c" + accent + "\\bord10\\blur6}")
+            else:
+                pop = ("{\\fad(70,70)\\fscx112\\fscy112\\t(0,110,\\fscx100\\fscy100)}")
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Hook,,0,0,0,,"
                          f"{pop}{ch.strip()}")
 
