@@ -190,6 +190,76 @@ class _Renderer:
         self._last_frame = frame
         return out
 
+    # -- REAL overload: accelerating sim clock until physics breaks ----
+    #
+    # The honest version of the escalation arc. Instead of a scheduled
+    # glitch, the simulation's time multiplier compounds every second
+    # (GROWTH). Physics steps with dt * scale — an explicit-Euler
+    # integrator stepped with an ever-growing dt genuinely destabilizes:
+    # penetration depths blow up, restitution amplifies into energy
+    # gain, per-frame motion crosses the Nyquist limit of the bound /
+    # hop cadence and starts aliasing. Themes DETECT their own failure
+    # (velocity blowup, motion > 1 cycle/frame) and call declare_fail();
+    # the renderer hangs on the last coherent frame, then reboots.
+    # Cycle length is therefore emergent, not scripted.
+
+    GROWTH = 0.0          # sim clock multiplies by this factor each second
+
+    def sim_scale(self, t: float) -> float:
+        """Compounding time multiplier since the last reboot."""
+        if not self.GROWTH:
+            return 1.0
+        return self.GROWTH ** (t - getattr(self, "reset_t", 0.0))
+
+    def kk(self, ts: float) -> float:
+        """Visual-intensity proxy (0..1) derived from the sim scale —
+        drives flourishes like trail heat and star streaks so the look
+        escalates in lockstep with the actual physics load."""
+        return min(1.0, (ts - 1.0) / 6.0)
+
+    def declare_fail(self, t: float):
+        if getattr(self, "failed_at", None) is None:
+            self.failed_at = t
+
+    def handle_fail(self, frame: np.ndarray, t: float) -> np.ndarray | None:
+        """While failed: hold + dim the breakdown frame (engine 'not
+        responding'); after HANG_LEN, regen the world and restart the
+        clock. Returns the held frame, or None when running normally."""
+        failed_at = getattr(self, "failed_at", None)
+        if failed_at is None:
+            return None
+        if t - failed_at < self.HANG_LEN:
+            if self._hang_frame is None:
+                self._hang_frame = frame.copy()
+            fade = 1.0 - 0.25 * (t - failed_at) / self.HANG_LEN
+            return (self._hang_frame * fade).astype(np.uint8)
+        # Reboot.
+        self._regen()
+        self.reset_t = t
+        self.failed_at = None
+        self._hang_frame = None
+        return None
+
+    def lag(self, frame: np.ndarray, ts: float) -> np.ndarray:
+        """Load-proportional frame drops: once the sim clock is several
+        times real-time the 'machine' starts missing frames — a frame
+        repeats, occasionally with a thin mid-write tear."""
+        out = frame
+        p = max(0.0, (ts - 3.5) / 9.0)
+        if p > 0 and self._last_frame is not None \
+                and self.rng.random() < p:
+            out = self._last_frame
+            if self.rng.random() < 0.6:
+                out = out.copy()
+                for _ in range(self.rng.randint(1, 2)):
+                    y0 = self.rng.randrange(0, H - 24)
+                    bh = self.rng.randrange(6, 24)
+                    shift = self.rng.randrange(-30, 30)
+                    out[y0:y0 + bh] = np.roll(frame[y0:y0 + bh],
+                                              shift, axis=1)
+        self._last_frame = frame
+        return out
+
     def draw(self, t: float, i: int) -> np.ndarray:  # pragma: no cover
         raise NotImplementedError
 
@@ -215,20 +285,22 @@ class _Renderer:
         if proc.returncode != 0:
             raise RuntimeError(f"ffmpeg exited {proc.returncode} for {out_path}")
         return out_path
-
 # ---------- SPACE: rocket pinging from star to star ----------
 
 class _Space(_Renderer):
-    """A rocket arcs between glowing waypoint stars, drawing a
-    constellation as it goes — every visited star stays lit and a
-    faint gold thread connects the path. A ringed planet drifts in
-    the deep background. Each cycle the hops get faster, the trail
-    runs hotter, the starfield streaks toward warp — until the sim
-    can't keep up, hangs, and reboots into a fresh sky."""
+    """A rocket arcs between glowing waypoint stars, drawing a gold
+    constellation thread behind it. A ringed planet drifts in the deep
+    background.
 
-    CYCLE = 14.0
-    HOP_BASE = 2.6        # seconds per hop at intensity 0
-    HOP_MIN = 0.5         # seconds per hop at full intensity
+    Escalation is REAL: the sim clock compounds (GROWTH), so hops
+    genuinely get faster — not because the hop time shrinks, but
+    because time itself runs hotter. When per-frame progress along an
+    arc exceeds a full hop, the rocket's motion can no longer be
+    resolved at 30fps (true temporal aliasing — it teleports), the
+    sim declares failure, hangs, and reboots into a fresh sky."""
+
+    GROWTH = 1.20         # sim clock compounds 20%/s -> ~13x at 14s
+    HOP_SECONDS = 2.6
 
     STAR_TINTS = [(255, 255, 255), (190, 210, 255), (255, 240, 190),
                   (255, 200, 170)]
@@ -237,15 +309,14 @@ class _Space(_Renderer):
         super().__init__(seed)
         g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
         self.bg = np.zeros((H, W, 3), dtype=np.float32)
-        self.bg[..., 0] = 8 + 10 * (1 - g)     # faint navy at top
+        self.bg[..., 0] = 8 + 10 * (1 - g)
         self.bg[..., 1] = 8 + 14 * (1 - g)
         self.bg[..., 2] = 22 + 26 * (1 - g)
-        self._cycle_seen = -1
+        self.reset_t = 0.0
+        self.failed_at = None
         self._regen()
 
     def _regen(self):
-        """Fresh sky: new constellation, starfield, planet; rocket
-        parked on waypoint 0. Called at construction + every reboot."""
         rng = self.rng
         self.bg_stars = [(rng.uniform(0, W), rng.uniform(0, H),
                           rng.uniform(0.4, 1.7), rng.uniform(0, math.tau),
@@ -256,7 +327,6 @@ class _Space(_Renderer):
                          rng.choice([(40, 20, 70), (16, 40, 70),
                                      (60, 24, 50)]))
                         for _ in range(4)]
-        # Ringed planet, parked in a corner-ish spot away from center.
         px = rng.choice([rng.uniform(70, W * 0.25),
                          rng.uniform(W * 0.75, W - 70)])
         self.planet = {"x": px, "y": rng.uniform(90, H * 0.4),
@@ -264,8 +334,6 @@ class _Space(_Renderer):
                        "tilt": rng.uniform(-0.5, 0.5),
                        "col": rng.choice([(160, 120, 90), (110, 130, 160),
                                           (150, 110, 140)])}
-        # A richer constellation: 14 waypoints with minimum spacing so
-        # the path wanders the whole frame.
         self.waypoints = []
         tries = 0
         while len(self.waypoints) < 14 and tries < 400:
@@ -303,64 +371,76 @@ class _Space(_Renderer):
         return x, y, math.atan2(dyu, dxu)
 
     def _star4(self, d, x, y, r, col):
-        """4-point star sparkle."""
         d.polygon([(x, y - r * 2), (x + r * 0.5, y - r * 0.5),
                    (x + r * 2, y), (x + r * 0.5, y + r * 0.5),
                    (x, y + r * 2), (x - r * 0.5, y + r * 0.5),
                    (x - r * 2, y), (x - r * 0.5, y - r * 0.5)],
                   fill=col)
 
+    def _arrive(self, t: float):
+        rng = self.rng
+        ax, ay = self.waypoints[self.next]
+        self.pulses.append((ax, ay, t))
+        for _ in range(10):
+            a = rng.uniform(0, math.tau)
+            v = rng.uniform(80, 320)
+            self.bursts.append({"x": ax, "y": ay,
+                                "vx": math.cos(a) * v,
+                                "vy": math.sin(a) * v,
+                                "life": rng.uniform(0.3, 0.6)})
+        self.visit_order.append(self.next)
+        if len(set(self.visit_order)) == len(self.waypoints):
+            self.visit_order = [self.next]
+        self.current = self.next
+        unvisited = [j for j in range(len(self.waypoints))
+                     if j not in set(self.visit_order)]
+        self.next = rng.choice(unvisited or
+                               [j for j in range(len(self.waypoints))
+                                if j != self.current])
+        self.hop_u = 0.0
+        self._new_arc()
+
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
-        if self.cycle_index(t) != self._cycle_seen:
-            self._cycle_seen = self.cycle_index(t)
-            if self._cycle_seen > 0:
-                self._regen()
-        k = self.intensity(t)
+        held = self.handle_fail(self._last_frame
+                                if self._last_frame is not None
+                                else np.zeros((H, W, 3), np.uint8), t)
+        if held is not None:
+            return held
+
+        ts = self.sim_scale(t)
+        k = self.kk(ts)
         dt = 1 / FPS
+        sim_dt = dt * ts
 
-        # Hop progress; speed scales with intensity.
-        hop_secs = self.HOP_BASE + (self.HOP_MIN - self.HOP_BASE) * k
-        self.hop_u += dt / hop_secs
-        if self.hop_u >= 1.0:
-            ax, ay = self.waypoints[self.next]
-            self.pulses.append((ax, ay, t))
-            # Starburst particles on arrival.
-            for _ in range(10):
-                a = rng.uniform(0, math.tau)
-                v = rng.uniform(80, 320)
-                self.bursts.append({"x": ax, "y": ay,
-                                    "vx": math.cos(a) * v,
-                                    "vy": math.sin(a) * v,
-                                    "life": rng.uniform(0.3, 0.6)})
-            self.visit_order.append(self.next)
-            if len(set(self.visit_order)) == len(self.waypoints):
-                self.visit_order = [self.next]   # constellation complete
-            self.current = self.next
-            unvisited = [j for j in range(len(self.waypoints))
-                         if j not in set(self.visit_order)]
-            self.next = rng.choice(unvisited or
-                                   [j for j in range(len(self.waypoints))
-                                    if j != self.current])
-            self.hop_u = 0.0
-            self._new_arc()
-        x, y, heading = self._bezier(_ease(self.hop_u))
+        # Advance along the arc with the ACCELERATED clock. When the
+        # per-frame step exceeds a whole hop, the motion can't be
+        # resolved anymore — that's the genuine failure condition.
+        du = sim_dt / self.HOP_SECONDS
+        if du >= 1.0:
+            self.declare_fail(t)
+        self.hop_u += du
+        # At high ts the rocket may complete SEVERAL hops in one frame:
+        # resolve them all — visible as multi-arrival chaos right
+        # before it tips over.
+        guard = 0
+        while self.hop_u >= 1.0 and guard < 6:
+            self._arrive(t)
+            self.hop_u += 0.0   # _arrive zeroes hop_u; leftover dropped
+            guard += 1
+        x, y, heading = self._bezier(_ease(min(1.0, self.hop_u)))
 
-        # Exhaust puffs trail off the nozzle.
         if rng.random() < 0.5 + 0.5 * k:
             self.exhaust.append({
                 "x": x - math.cos(heading) * 22,
                 "y": y - math.sin(heading) * 22,
                 "r": rng.uniform(3, 7), "life": rng.uniform(0.35, 0.7)})
-
-        # Shooting stars; more frequent as speed builds.
         if rng.random() < (0.004 + 0.05 * k):
             self.shooting.append({
                 "x": rng.uniform(0, W), "y": rng.uniform(0, H * 0.5),
                 "vx": rng.uniform(500, 900) * rng.choice([-1, 1]),
                 "vy": rng.uniform(150, 360), "life": 1.0})
 
-        # Trail: longer + hotter with speed (teal -> white).
         self.trail *= 0.93 + 0.035 * k
         trail_col = (60 + 180 * k, 200 + 40 * k, 220 + 30 * k)
         _stamp_glow(self.trail, x, y, 26 + 10 * k, trail_col, 0.9 + 0.5 * k)
@@ -369,12 +449,10 @@ class _Space(_Renderer):
         img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        # Nebulae (dim, under everything).
         for nx, ny, nr, ncol in self.nebulae:
             d.ellipse([nx - nr, ny - nr * 0.6, nx + nr, ny + nr * 0.6],
                       fill=(*ncol, 26))
 
-        # Ringed planet drifting almost imperceptibly.
         p = self.planet
         ppx = p["x"] + 6 * math.sin(t * 0.05)
         ppy = p["y"] + 4 * math.sin(t * 0.04 + 2)
@@ -387,7 +465,6 @@ class _Space(_Renderer):
             ex_, ey_ = math.cos(ra) * ring_w, math.sin(ra) * ring_h
             ring_pts.append((ppx + ex_ * cs - ey_ * sn,
                              ppy + ex_ * sn + ey_ * cs))
-        # Back half of the ring first, planet, then front half.
         back = [pt for a_, pt in zip(range(0, 360, 12), ring_pts)
                 if a_ > 180]
         front = [pt for a_, pt in zip(range(0, 360, 12), ring_pts)
@@ -396,7 +473,6 @@ class _Space(_Renderer):
             d.line(back, fill=(200, 190, 160, 110), width=3)
         d.ellipse([ppx - pr, ppy - pr, ppx + pr, ppy + pr],
                   fill=(*p["col"], 255))
-        # Banding + day-side shade.
         d.arc([ppx - pr, ppy - pr * 0.5, ppx + pr, ppy + pr * 0.2],
               200, 340, fill=tuple(int(c * 0.75) for c in p["col"])
               + (255,), width=4)
@@ -405,7 +481,6 @@ class _Space(_Renderer):
         if len(front) > 1:
             d.line(front, fill=(220, 210, 180, 170), width=4)
 
-        # Starfield: twinkle at rest, radial streaks near warp.
         streak = 1 + 16 * k * k
         for sx, sy, sr, ph, tint in self.bg_stars:
             a = int(120 + 90 * math.sin(t * 1.7 + ph))
@@ -418,7 +493,6 @@ class _Space(_Renderer):
             else:
                 d.ellipse([sx - sr, sy - sr, sx + sr, sy + sr],
                           fill=(*tint, max(40, a)))
-                # Cross-flare on the bigger stars.
                 if sr > 1.3:
                     fa = max(30, a // 2)
                     d.line([sx - sr * 3, sy, sx + sr * 3, sy],
@@ -426,7 +500,6 @@ class _Space(_Renderer):
                     d.line([sx, sy - sr * 3, sx, sy + sr * 3],
                            fill=(*tint, fa), width=1)
 
-        # Shooting stars.
         for s in self.shooting:
             s["x"] += s["vx"] * dt
             s["y"] += s["vy"] * dt
@@ -438,8 +511,6 @@ class _Space(_Renderer):
                        fill=(255, 250, 230, a), width=3)
         self.shooting = [s for s in self.shooting if s["life"] > 0]
 
-        # Constellation threads: gold lines along the visited path,
-        # most recent segment brightest.
         if len(self.visit_order) > 1:
             n_seg = len(self.visit_order) - 1
             for si in range(n_seg):
@@ -449,7 +520,6 @@ class _Space(_Renderer):
                 alpha = max(40, 130 - age * 12)
                 d.line([a_pt, b_pt], fill=(255, 220, 150, alpha), width=2)
 
-        # Waypoint stars: visited stay lit warm; target pulses gold.
         visited = set(self.visit_order)
         for j, (wx, wy) in enumerate(self.waypoints):
             is_target = (j == self.next)
@@ -469,7 +539,6 @@ class _Space(_Renderer):
                            wx + base * 2.0, wy + base * 2.0],
                           outline=(255, 220, 170, 55), width=2)
 
-        # Arrival pulse rings + starburst particles.
         ring_life = max(0.45, 0.9 - 0.4 * k)
         self.pulses = [(px_, py_, t0) for px_, py_, t0 in self.pulses
                        if t - t0 < ring_life]
@@ -490,7 +559,6 @@ class _Space(_Renderer):
                        fill=(255, 235, 170, a), width=2)
         self.bursts = [b for b in self.bursts if b["life"] > 0]
 
-        # Exhaust puffs (fading smoke rings behind the flame).
         for e in self.exhaust:
             e["r"] += 9 * dt
             e["life"] -= dt
@@ -501,14 +569,12 @@ class _Space(_Renderer):
                           outline=(190, 200, 220, a), width=2)
         self.exhaust = [e for e in self.exhaust if e["life"] > 0]
 
-        # The rocket; flame stretches with speed.
         def rot(px_, py_):
             c, s = math.cos(heading), math.sin(heading)
             return (x + px_ * c - py_ * s, y + px_ * s + py_ * c)
 
         L = 34
         flame = L * (0.8 + 0.45 * rng.random()) * (1 + 1.4 * k)
-        # Outer flame + brighter inner tongue.
         d.polygon([rot(-L * 0.55, 0), rot(-L * 0.55 - flame, L * 0.16),
                    rot(-L * 0.55 - flame * 0.6, 0),
                    rot(-L * 0.55 - flame, -L * 0.16)],
@@ -524,7 +590,6 @@ class _Space(_Renderer):
         d.polygon([rot(L * 0.62, 0), rot(L * 0.2, L * 0.26),
                    rot(-L * 0.55, L * 0.26), rot(-L * 0.55, -L * 0.26),
                    rot(L * 0.2, -L * 0.26)], fill=(235, 238, 245, 255))
-        # Hull shading line + nose cone tint.
         d.line([rot(L * 0.5, -L * 0.1), rot(-L * 0.5, -L * 0.1)],
                fill=(205, 210, 222, 255), width=2)
         d.polygon([rot(L * 0.62, 0), rot(L * 0.34, L * 0.2),
@@ -538,13 +603,12 @@ class _Space(_Renderer):
                   outline=(160, 170, 190, 255), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        # Screen shake creeps in near the top of the ramp.
-        if k > 0.6 and not self.in_hang(t):
+        if k > 0.6:
             amp = int(6 * (k - 0.6) / 0.4)
             if amp:
                 out = np.roll(out, rng.randint(-amp, amp), axis=0)
                 out = np.roll(out, rng.randint(-amp, amp), axis=1)
-        return self.overload(out, t)
+        return self.lag(out, ts)
 
 # ---------- PLINKO: the universal satisfying default ----------
 
@@ -980,25 +1044,30 @@ class _Quake(_Renderer):
         if shake_px > 2 and not self.in_hang(t):
             out = np.roll(out, rng.randint(-int(shake_px / 2),
                                            int(shake_px / 2)), axis=0)
-        return self.overload(out, t)
-# ---------- VOLCANO: distant eruption raining fireballs ----------
+        return self.overload(out, t)# ---------- VOLCANO: distant eruption raining fireballs ----------
 # (Sakurajima grey-rain-class stories.)
 
 class _Volcano(_Renderer):
-    """A volcano erupts on the horizon while its fireballs rain down
-    HERE, in the foreground — molten balls that arc in from above,
-    bounce off the rocky terrain and a boulder, ricochet off EACH
-    OTHER, shatter into fragments on hard landings, and cool from
-    white-hot to dead rock. Volcanic lightning crackles in the plume
-    as the eruption peaks. Plinko physics in a disaster-movie skin."""
+    """A volcano erupts on the horizon while its fireballs rain into
+    the foreground — bouncing off terrain, a boulder, and EACH OTHER,
+    shattering into fragments, cooling from white-hot to rock.
 
-    CYCLE = 14.0
+    Escalation is REAL: the sim clock compounds, so the explicit-Euler
+    integrator steps with an ever-growing dt. That genuinely
+    destabilizes — bounces overshoot, restitution turns into energy
+    gain, balls start rocketing off at impossible speeds. The sim
+    watches its own velocities and declares failure when the math
+    blows past plausibility; hang; reboot."""
+
+    GROWTH = 1.18
     GRAV = 1300.0
     MAX_BALLS = 70
+    BLOWUP_V = 6500.0     # any ball faster than this = integrator lost
 
     def __init__(self, seed=None):
         super().__init__(seed)
-        self._cycle_seen = -1
+        self.reset_t = 0.0
+        self.failed_at = None
         self._regen()
 
     def _regen(self):
@@ -1015,14 +1084,12 @@ class _Volcano(_Renderer):
         self.ground_phase = rng.uniform(0, math.tau)
         self.boulder = (W * rng.uniform(0.25, 0.75),
                         rng.uniform(60, 95))
-        # Dead-tree silhouettes for foreground depth.
         self.trees = []
         for _ in range(rng.randint(2, 3)):
             tx = rng.uniform(40, W - 40)
             if abs(tx - self.boulder[0]) > 150:
                 self.trees.append((tx, rng.uniform(60, 110),
                                    rng.uniform(-0.25, 0.25)))
-        # Static flank lava channels (jagged paths down the cone).
         self.flank = []
         for sgn in (-1, 1):
             pts = [(0.0, 0.0)]
@@ -1072,9 +1139,6 @@ class _Volcano(_Renderer):
                 "life": rng.uniform(0.3, 0.8)})
 
     def _ball_collisions(self):
-        """Equal-mass circle-circle: separate overlaps and swap the
-        normal velocity components (with damping). Hot midair clinks
-        throw sparks — the detail that makes the rain feel physical."""
         n = len(self.balls)
         for i_ in range(n):
             a = self.balls[i_]
@@ -1086,19 +1150,16 @@ class _Volcano(_Renderer):
                 if not (0 < dist < min_d):
                     continue
                 nx, ny = dx / dist, dy / dist
-                # Push apart symmetrically.
                 overlap = (min_d - dist) / 2
                 a["x"] -= nx * overlap
                 a["y"] -= ny * overlap
                 b["x"] += nx * overlap
                 b["y"] += ny * overlap
-                # Relative normal speed.
                 van = a["vx"] * nx + a["vy"] * ny
                 vbn = b["vx"] * nx + b["vy"] * ny
                 rel = van - vbn
                 if rel <= 0:
                     continue
-                # Swap normal components, damped.
                 e = 0.78
                 a["vx"] -= (1 + e) / 2 * rel * nx
                 a["vy"] -= (1 + e) / 2 * rel * ny
@@ -1110,18 +1171,21 @@ class _Volcano(_Renderer):
 
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
-        if self.cycle_index(t) != self._cycle_seen:
-            self._cycle_seen = self.cycle_index(t)
-            if self._cycle_seen > 0:
-                self._regen()
-        k = self.intensity(t)
-        dt = 1 / FPS
+        held = self.handle_fail(self._last_frame
+                                if self._last_frame is not None
+                                else np.zeros((H, W, 3), np.uint8), t)
+        if held is not None:
+            return held
 
-        if (rng.random() < (0.018 + 0.5 * k * k)
+        ts = self.sim_scale(t)
+        k = self.kk(ts)
+        dt = 1 / FPS
+        sim_dt = dt * ts          # the genuinely growing timestep
+
+        if (rng.random() < (0.018 + 0.5 * k * k) * min(ts, 4)
                 and len(self.balls) < self.MAX_BALLS):
             self.balls.append(self._spawn_ball(k))
 
-        # Plume puffs; volcanic lightning once it's raging.
         if rng.random() < 0.25 + 0.55 * k:
             self.plume.append({
                 "x": self.vx + rng.uniform(-12, 12),
@@ -1138,22 +1202,27 @@ class _Volcano(_Renderer):
                             pts[-1][1] + rng.uniform(14, 42)))
             self.bolts.append({"pts": pts, "life": 0.12})
 
-        # ---- physics ----
+        # ---- physics on the accelerated clock ----
         self.trail *= 0.92
         for b in self.balls:
-            b["vy"] += self.GRAV * dt
-            b["x"] += b["vx"] * dt
-            b["y"] += b["vy"] * dt
-            b["heat"] = max(0.0, b["heat"] - dt * 0.10)
+            b["vy"] += self.GRAV * sim_dt
+            b["x"] += b["vx"] * sim_dt
+            b["y"] += b["vy"] * sim_dt
+            b["heat"] = max(0.0, b["heat"] - sim_dt * 0.10)
 
-            # Smoke wisps stream off hot airborne balls.
+            # The integrator watching itself: when explicit Euler at
+            # this dt has pumped a ball past any plausible speed, the
+            # sim is gone.
+            if (abs(b["vx"]) > self.BLOWUP_V
+                    or abs(b["vy"]) > self.BLOWUP_V):
+                self.declare_fail(t)
+
             if b["heat"] > 0.45 and rng.random() < 0.12:
                 self.wisps.append({"x": b["x"], "y": b["y"] - b["r"],
                                    "vy": -rng.uniform(20, 50),
                                    "vx": rng.uniform(-15, 15),
                                    "r": b["r"] * 0.4, "life": 0.8})
 
-            # Boulder ricochet.
             bx, br = self.boulder
             by = self._ground_y(bx) - br * 0.55
             dx, dy = b["x"] - bx, b["y"] - by
@@ -1173,10 +1242,16 @@ class _Volcano(_Renderer):
                 b["x"] = bx + nx * min_d
                 b["y"] = by + ny * min_d
 
-            # Terrain bounce; big first impacts shatter into fragments.
             gy = self._ground_y(b["x"])
             if b["y"] + b["r"] > gy:
                 impact_speed = b["vy"]
+                # NOTE: penetration correction + restitution applied to
+                # a velocity integrated at sim_dt — this is exactly the
+                # combination that goes unstable as ts grows. On a hot
+                # clock the ball is already deep underground, the
+                # push-out is violent, and the reflected velocity has a
+                # full overgrown gravity step baked in: energy GAIN.
+                pen = b["y"] + b["r"] - gy
                 b["y"] = gy - b["r"]
                 nx, ny = self._ground_normal(b["x"])
                 dot = b["vx"] * nx + b["vy"] * ny
@@ -1184,6 +1259,9 @@ class _Volcano(_Renderer):
                     b["vx"] -= 2 * dot * nx
                     b["vy"] -= 2 * dot * ny
                     rest = 0.62 - 0.07 * b["bounces"]
+                    # Deep tunneling converts to extra bounce speed —
+                    # physically wrong, numerically honest.
+                    rest *= 1.0 + min(2.0, pen / 200.0)
                     b["vx"] *= rest
                     b["vy"] *= rest
                     b["vx"] += rng.uniform(-30, 30)
@@ -1191,8 +1269,6 @@ class _Volcano(_Renderer):
                     b["heat"] = max(0.0, b["heat"] - 0.22)
                     self._burst(b["x"], gy, min(1.0, b["r"] / 20)
                                 * (1.2 - 0.25 * b["bounces"]))
-                    # Shatter: a heavy molten ball's first landing
-                    # splits off 2-3 small hot fragments.
                     if (b["bounces"] == 1 and b["r"] > 17
                             and impact_speed > 500
                             and len(self.balls) < self.MAX_BALLS - 3):
@@ -1214,7 +1290,7 @@ class _Volcano(_Renderer):
         self._ball_collisions()
 
         self.balls = [b for b in self.balls
-                      if -120 < b["x"] < W + 120
+                      if -400 < b["x"] < W + 400 and b["y"] > -2000
                       and not (b["heat"] <= 0.05 and abs(b["vy"]) < 30
                                and b["bounces"] >= 2)]
 
@@ -1231,14 +1307,12 @@ class _Volcano(_Renderer):
         frame[..., 0] = 26 + 46 * g + 60 * k * g
         frame[..., 1] = 20 + 26 * g + 8 * k * g
         frame[..., 2] = 44 + 30 * g - 10 * k * g
-        # Ash haze thickens with intensity (subtle dimming band).
         frame *= (1.0 - 0.12 * k)
         frame += self.trail
 
         img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        # Plume smoke.
         for p in self.plume:
             p["y"] += p["vy"] * dt
             p["x"] += p["vx"] * dt
@@ -1251,7 +1325,6 @@ class _Volcano(_Renderer):
                           fill=(sh, sh - 5, sh - 6, int(160 * p["life"])))
         self.plume = [p for p in self.plume if p["life"] > 0]
 
-        # Volcanic lightning inside the plume.
         for bolt in self.bolts:
             bolt["life"] -= dt
             if bolt["life"] > 0:
@@ -1259,9 +1332,13 @@ class _Volcano(_Renderer):
                 d.line(bolt["pts"], fill=(230, 220, 255, a), width=3)
         self.bolts = [b_ for b_ in self.bolts if b_["life"] > 0]
 
-        # Distant volcano: cone + crater glow + flank lava channels.
+        # Distant volcano — base extends WELL below the ridge line so
+        # the cone is planted in the landscape instead of floating on
+        # the horizon seam.
         vx, hz, vh = self.vx, self.horizon, self.vh
-        d.polygon([(vx, hz - vh), (vx - vh * 1.5, hz), (vx + vh * 1.5, hz)],
+        base_y = hz + 60
+        d.polygon([(vx, hz - vh),
+                   (vx - vh * 1.8, base_y), (vx + vh * 1.8, base_y)],
                   fill=(30, 22, 30, 255))
         for pts in self.flank:
             world = [(vx + dx_, hz - vh + dy_) for dx_, dy_ in pts]
@@ -1272,29 +1349,28 @@ class _Volcano(_Renderer):
         d.ellipse([vx - glow_r, hz - vh - glow_r * 0.6,
                    vx + glow_r, hz - vh + glow_r * 0.5],
                   fill=(255, int(120 + 80 * k), 30, int(140 + 90 * k)))
+        # Ridge sits IN FRONT of the cone's flanks (drawn after), so
+        # the base seam is always covered.
         ridge = [(x, hz + 14 * math.sin(x * 0.01 + 2) + 8)
                  for x in range(0, W + 40, 40)]
         d.polygon([(0, H), *ridge, (W, H)], fill=(22, 17, 24, 255))
 
-        # Dead trees on the near ridge for depth.
         for tx, th, lean in self.trees:
-            base_y = self._ground_y(tx)
-            top = (tx + lean * th, base_y - th)
-            d.line([tx, base_y, *top], fill=(14, 10, 12, 255), width=7)
+            base_ty = self._ground_y(tx)
+            top = (tx + lean * th, base_ty - th)
+            d.line([tx, base_ty, *top], fill=(14, 10, 12, 255), width=7)
             for fb, fl, fa in ((0.45, 0.45, -0.9), (0.65, 0.35, 0.8),
                                (0.82, 0.28, -0.6)):
                 bx_ = tx + lean * th * fb
-                by_ = base_y - th * fb
+                by_ = base_ty - th * fb
                 d.line([bx_, by_, bx_ + math.cos(fa) * th * fl,
                         by_ - abs(math.sin(fa)) * th * fl],
                        fill=(14, 10, 12, 255), width=4)
 
-        # Foreground terrain (warm rim light from the lava rain).
         ground = [(x, self._ground_y(x)) for x in range(0, W + 20, 20)]
         d.polygon([(0, H), *ground, (W, H)], fill=(16, 12, 14, 255))
         d.line(ground, fill=(70 + int(60 * k), 42, 34, 255), width=3)
 
-        # The boulder.
         bx, br = self.boulder
         by = self._ground_y(bx) - br * 0.55
         d.ellipse([bx - br, by - br * 0.8, bx + br, by + br * 0.8],
@@ -1303,7 +1379,6 @@ class _Volcano(_Renderer):
         d.arc([bx - br * 0.6, by - br * 0.6, bx + br * 0.3, by],
               180, 290, fill=(80, 64, 60, 255), width=3)
 
-        # Smoke wisps off hot balls.
         for w_ in self.wisps:
             w_["y"] += w_["vy"] * dt
             w_["x"] += w_["vx"] * dt
@@ -1316,7 +1391,6 @@ class _Volcano(_Renderer):
                           fill=(70, 64, 64, a))
         self.wisps = [w_ for w_ in self.wisps if w_["life"] > 0]
 
-        # Fireballs.
         for b in self.balls:
             r, heat = b["r"], b["heat"]
             core = (int(255 * min(1, heat * 1.4)),
@@ -1335,12 +1409,10 @@ class _Volcano(_Renderer):
                           math.degrees(aa), math.degrees(aa) + 50,
                           fill=(255, 230, 140, int(255 * heat)), width=3)
             else:
-                # Cooled rock: a couple of dark cracks.
                 d.arc([b["x"] - r * 0.6, b["y"] - r * 0.6,
                        b["x"] + r * 0.6, b["y"] + r * 0.6],
                       30, 80, fill=(18, 14, 14, 255), width=2)
 
-        # Impact sparks.
         for s in self.sparks:
             a = int(255 * min(1, s["life"] * 2.2))
             d.line([s["x"], s["y"],
@@ -1348,11 +1420,11 @@ class _Volcano(_Renderer):
                    fill=(255, 210, 110, a), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        if k > 0.55 and not self.in_hang(t):
+        if k > 0.55:
             amp = int(7 * (k - 0.55) / 0.45)
             if amp:
                 out = np.roll(out, rng.randint(-amp, amp), axis=0)
-        return self.overload(out, t)
+        return self.lag(out, ts)
 
 
 # ---------- RUNNER: critter on the loose ----------
@@ -1360,37 +1432,51 @@ class _Volcano(_Renderer):
 
 class _Runner(_Renderer):
     """A little black critter bounds across rolling moonlit hills,
-    vaulting fences as the world scrolls faster and faster until the
-    sim can't keep up. She always gets away.
+    clearing fences, rocks, logs and bushes as the world scrolls
+    faster and faster. She always gets away.
 
-    Flavor pass: eucalyptus silhouettes drift by in the mid layer,
-    birds flush off fence posts as she approaches, she blinks, leaves
-    fading paw scuffs at every touchdown, and the night sky gets the
-    occasional shooting star."""
+    Escalation is REAL: the sim clock compounds, so per-frame ground
+    travel grows until a single frame covers more than half a bound —
+    the stride crosses its Nyquist limit and the legs/bounce alias
+    (genuine temporal undersampling, the wagon-wheel effect). At the
+    same time the terrain tessellation budget drops so the hills go
+    visibly low-poly. When a frame eats a whole bound, the sim
+    declares failure, hangs, reboots."""
 
-    CYCLE = 14.0
+    GROWTH = 1.18
     BASE_SPEED = 240.0
-    MAX_SPEED = 1450.0
-    BOUND_LEN = 190.0     # px of ground per bound
+    BOUND_LEN = 190.0
+
+    # Obstacle types: vault height + ground footprint.
+    OBSTACLES = {
+        "fence": {"vault": 86},
+        "rock":  {"vault": 58},
+        "log":   {"vault": 48},
+        "bush":  {"vault": 66},
+    }
 
     def __init__(self, seed=None):
         super().__init__(seed)
-        self._cycle_seen = -1
         self._cam_y = H * 0.5
+        self.reset_t = 0.0
+        self.failed_at = None
         self._regen()
 
     def _regen(self):
         rng = self.rng
         self.scroll = 0.0
-        self.obstacles = [rng.uniform(700, 1500)]
-        while self.obstacles[-1] < 60000:
-            self.obstacles.append(self.obstacles[-1]
-                                  + rng.uniform(480, 1100))
-        self.flushed: set[int] = set()      # fences whose birds left
+        kinds = list(self.OBSTACLES)
+        self.obstacles = []
+        ox = rng.uniform(700, 1500)
+        while ox < 120000:
+            self.obstacles.append({"x": ox, "kind": rng.choice(kinds),
+                                   "seed": rng.random()})
+            ox += rng.uniform(480, 1100)
+        self.flushed: set[int] = set()
         self.birds: list[dict] = []
         self.trees = []
         tx = rng.uniform(400, 1200)
-        while tx < 60000:
+        while tx < 120000:
             self.trees.append((tx, rng.uniform(90, 150)))
             tx += rng.uniform(900, 2200)
         self.stars = [(rng.uniform(0, W), rng.uniform(0, H * 0.45),
@@ -1405,7 +1491,7 @@ class _Runner(_Renderer):
                            "ph": rng.uniform(0, math.tau)}
                           for _ in range(10)]
         self.shooting: list[dict] = []
-        self.scuffs: list[float] = []       # world-x of touchdown marks
+        self.scuffs: list[float] = []
         self._was_grounded = True
         self.ph = rng.uniform(0, math.tau)
         self.trail[:] = 0
@@ -1416,41 +1502,82 @@ class _Runner(_Renderer):
                 + 34 * math.sin(x * 0.0019 + self.ph)
                 + 16 * math.sin(x * 0.0053 + self.ph * 2))
 
+    def _draw_obstacle(self, d, kind: str, sx: float, gy: float,
+                       seed: float):
+        if kind == "fence":
+            wood = (76, 56, 38, 255)
+            d.rectangle([sx - 5, gy - 66, sx + 5, gy], fill=wood)
+            d.rectangle([sx - 34, gy - 60, sx + 34, gy - 47], fill=wood)
+            d.rectangle([sx - 34, gy - 34, sx + 34, gy - 21], fill=wood)
+            d.line([sx - 5, gy - 66, sx + 5, gy - 66],
+                   fill=(96, 74, 52, 255), width=3)
+        elif kind == "rock":
+            w_ = 30 + seed * 16
+            d.polygon([(sx - w_, gy), (sx - w_ * 0.5, gy - 40 - seed * 14),
+                       (sx + w_ * 0.4, gy - 34), (sx + w_, gy)],
+                      fill=(58, 58, 64, 255))
+            d.line([(sx - w_ * 0.5, gy - 40 - seed * 14),
+                    (sx - w_ * 0.1, gy - 12)],
+                   fill=(82, 82, 90, 255), width=2)
+        elif kind == "log":
+            d.rounded_rectangle([sx - 44, gy - 30, sx + 44, gy - 4],
+                                radius=13, fill=(82, 58, 38, 255))
+            d.ellipse([sx + 32, gy - 30, sx + 56, gy - 4],
+                      fill=(120, 92, 62, 255))
+            d.ellipse([sx + 39, gy - 23, sx + 49, gy - 11],
+                      fill=(82, 58, 38, 255))
+            d.line([sx - 36, gy - 22, sx + 20, gy - 22],
+                   fill=(60, 42, 28, 255), width=2)
+        elif kind == "bush":
+            for bx_, by_, br_ in ((-20, -22, 22), (12, -26, 24),
+                                  (0, -12, 26)):
+                d.ellipse([sx + bx_ - br_, gy + by_ - br_,
+                           sx + bx_ + br_, gy + by_ + br_],
+                          fill=(26, 46, 32, 255))
+            d.ellipse([sx - 4, gy - 38, sx + 4, gy - 30],
+                      fill=(150, 60, 80, 255))   # little berry
+
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
-        if self.cycle_index(t) != self._cycle_seen:
-            self._cycle_seen = self.cycle_index(t)
-            if self._cycle_seen > 0:
-                self._regen()
-        k = self.intensity(t)
+        held = self.handle_fail(self._last_frame
+                                if self._last_frame is not None
+                                else np.zeros((H, W, 3), np.uint8), t)
+        if held is not None:
+            return held
+
+        ts = self.sim_scale(t)
+        k = self.kk(ts)
         dt = 1 / FPS
-        speed = self.BASE_SPEED + (self.MAX_SPEED - self.BASE_SPEED) * k * k
-        self.scroll += speed * dt
+        speed = self.BASE_SPEED * ts
+        step = speed * dt
+        # Nyquist check on the bound cadence: more than a whole bound
+        # in one frame = motion no longer resolvable.
+        if step / self.BOUND_LEN >= 1.0:
+            self.declare_fail(t)
+        self.scroll += step
 
         critter_wx = self.scroll + W * 0.30
-
         phase = (self.scroll / self.BOUND_LEN) % 1.0
         hop = math.sin(phase * math.pi)
         hop_v = math.cos(phase * math.pi)
 
-        next_fence = next((o for o in self.obstacles
-                           if o > critter_wx - 60), None)
+        nxt = next((o for o in self.obstacles
+                    if o["x"] > critter_wx - 60), None)
         vault = 0.0
-        if next_fence is not None:
-            gap = next_fence - critter_wx
+        if nxt is not None:
+            gap = nxt["x"] - critter_wx
+            vh_ = self.OBSTACLES[nxt["kind"]]["vault"]
             if -80 < gap < 240:
-                vault = _ease(1 - abs(gap - 80) / 160) * 86
+                vault = _ease(1 - abs(gap - 80) / 160) * vh_
         gy_here = self._ground_y(critter_wx)
         cy = gy_here - 34 - hop * (34 + 18 * k) - vault
 
-        # Birds flush off the next fence as she closes in.
-        if next_fence is not None:
-            f_id = int(next_fence)
-            if (next_fence - critter_wx < 320
-                    and f_id not in self.flushed):
+        if nxt is not None and nxt["kind"] == "fence":
+            f_id = int(nxt["x"])
+            if nxt["x"] - critter_wx < 320 and f_id not in self.flushed:
                 self.flushed.add(f_id)
-                fx0 = next_fence - self.scroll
-                fy0 = self._ground_y(next_fence) - 70
+                fx0 = nxt["x"] - self.scroll
+                fy0 = self._ground_y(nxt["x"]) - 70
                 for _ in range(rng.randint(1, 3)):
                     self.birds.append({
                         "x": fx0 + rng.uniform(-12, 12), "y": fy0,
@@ -1458,14 +1585,12 @@ class _Runner(_Renderer):
                         "vy": -rng.uniform(110, 200),
                         "ph": rng.uniform(0, math.tau), "life": 2.0})
 
-        # Touchdown scuffs.
         grounded = hop < 0.08 and vault < 4
         if grounded and not self._was_grounded:
             self.scuffs.append(critter_wx)
             self.scuffs = self.scuffs[-24:]
         self._was_grounded = grounded
 
-        # Occasional shooting star.
         if rng.random() < 0.005:
             self.shooting.append({
                 "x": rng.uniform(0, W), "y": rng.uniform(0, H * 0.3),
@@ -1475,6 +1600,11 @@ class _Runner(_Renderer):
         gy_cam = gy_here - H * 0.62
         self._cam_y += (gy_cam - self._cam_y) * min(1.0, 4.0 * dt)
         cam = self._cam_y
+
+        # Terrain tessellation budget collapses under load: 20px steps
+        # at rest, growing to 120px — the hills genuinely go low-poly
+        # because the "engine" can't afford the vertices anymore.
+        tess = int(20 * max(1.0, ts / 2.5))
 
         # ---- sky ----
         g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
@@ -1494,7 +1624,6 @@ class _Runner(_Renderer):
         img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        # Moon + halo + craters; stars; clouds; shooting stars.
         mx, my = self.moon
         for hr, ha in ((66, 26), (56, 46)):
             d.ellipse([mx - hr, my - hr, mx + hr, my + hr],
@@ -1524,15 +1653,15 @@ class _Runner(_Renderer):
             d.ellipse([c["x"], c["y"], c["x"] + c["w"], c["y"] + 36],
                       fill=(40, 46, 66, 120))
 
-        # Parallax hills.
         far = [(x, self._ground_y(self.scroll * 0.30 + x, 0.65)
-                - 150 - cam * 0.4) for x in range(0, W + 40, 40)]
+                - 150 - cam * 0.4) for x in range(0, W + 40, max(40, tess))]
+        far.append((W, far[-1][1]))
         d.polygon([(0, H), *far, (W, H)], fill=(17, 23, 36, 255))
         mid = [(x, self._ground_y(self.scroll * 0.60 + x, 0.85)
-                - 70 - cam * 0.7) for x in range(0, W + 30, 30)]
+                - 70 - cam * 0.7) for x in range(0, W + 30, max(30, tess))]
+        mid.append((W, mid[-1][1]))
         d.polygon([(0, H), *mid, (W, H)], fill=(19, 28, 32, 255))
 
-        # Eucalyptus silhouettes ride the mid layer.
         for twx, th in self.trees:
             sx2 = (twx - self.scroll * 0.60)
             if -120 < sx2 < W + 120:
@@ -1548,9 +1677,9 @@ class _Runner(_Renderer):
                                cx_ + th * cr, cy_ + th * cr * 0.7],
                               fill=(16, 24, 27, 255))
 
-        # Near ground.
         near = [(x, self._ground_y(self.scroll + x) - cam)
-                for x in range(0, W + 20, 20)]
+                for x in range(0, W + 20, tess)]
+        near.append((W, near[-1][1]))
         d.polygon([(0, H), *near, (W, H)], fill=(24, 34, 31, 255))
         d.line(near, fill=(52, 74, 58, 255), width=3)
         for x in range(0, W, 26):
@@ -1561,7 +1690,6 @@ class _Runner(_Renderer):
                 d.line([x, gy, x - lean, gy - 13],
                        fill=(44, 78, 54, 255), width=2)
 
-        # Paw scuffs fading behind her.
         for swx in self.scuffs:
             sx2 = swx - self.scroll
             if -40 < sx2 < W:
@@ -1574,7 +1702,6 @@ class _Runner(_Renderer):
                     d.line([sx2 + 6, gy - 2, sx2 + 13, gy - 4],
                            fill=(14, 20, 18, a), width=3)
 
-        # Fireflies.
         for f in self.fireflies:
             fy = f["y"] + 10 * math.sin(t * 1.3 + f["ph"]) - cam * 0.9
             fx = (f["x"] - speed * 0.08 * t) % W
@@ -1582,25 +1709,16 @@ class _Runner(_Renderer):
             d.ellipse([fx - 3, fy - 3, fx + 3, fy + 3],
                       fill=(220, 255, 140, max(40, a)))
 
-        # Fences.
         for o in self.obstacles:
-            sx2 = o - self.scroll
-            if -70 < sx2 < W + 70:
-                gy = self._ground_y(o) - cam
-                wood = (76, 56, 38, 255)
-                d.rectangle([sx2 - 5, gy - 66, sx2 + 5, gy], fill=wood)
-                d.rectangle([sx2 - 34, gy - 60, sx2 + 34, gy - 47],
-                            fill=wood)
-                d.rectangle([sx2 - 34, gy - 34, sx2 + 34, gy - 21],
-                            fill=wood)
-                d.line([sx2 - 5, gy - 66, sx2 + 5, gy - 66],
-                       fill=(96, 74, 52, 255), width=3)
+            sx2 = o["x"] - self.scroll
+            if -80 < sx2 < W + 80:
+                gy = self._ground_y(o["x"]) - cam
+                self._draw_obstacle(d, o["kind"], sx2, gy, o["seed"])
 
-        # Flushed birds: flapping "M" silhouettes.
         for b in self.birds:
             b["x"] += b["vx"] * dt
             b["y"] += b["vy"] * dt
-            b["vy"] -= 20 * dt          # they keep climbing
+            b["vy"] -= 20 * dt
             b["life"] -= dt * 0.5
             if b["life"] > 0:
                 flap = math.sin(t * 16 + b["ph"]) * 7
@@ -1649,7 +1767,6 @@ class _Runner(_Renderer):
         d.ellipse([hx + 8, hy - 4, hx + 30, hy + 10], fill=body_col)
         d.ellipse([hx + 22, hy + 1, hx + 27, hy + 6],
                   fill=(60, 45, 45, 255))
-        # Ears: the leading ear twitches every few seconds.
         twitch = 4 if math.sin(t * 0.9) > 0.96 else 0
         d.polygon([(hx - 13, hy - 13), (hx - 6, hy - 30 - twitch),
                    (hx, hy - 11)], fill=body_col)
@@ -1657,7 +1774,6 @@ class _Runner(_Renderer):
                    (hx - 2, hy - 12)], fill=(200, 120, 130, 255))
         d.polygon([(hx + 2, hy - 12), (hx + 9, hy - 27), (hx + 14, hy - 9)],
                   fill=body_col)
-        # Eye with a periodic blink.
         blink = (t % 3.4) < 0.12
         if not blink:
             d.ellipse([hx + 4, hy - 6, hx + 11, hy + 1],
@@ -1683,7 +1799,7 @@ class _Runner(_Renderer):
                        fill=(220, 225, 255, int(60 * k)), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        return self.overload(out, t)
+        return self.lag(out, ts)
 
 _THEME_CLASSES = {
     "space": _Space,
