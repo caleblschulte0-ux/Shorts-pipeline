@@ -138,6 +138,9 @@ class YouTubeUploader(Uploader):
     SCOPES = [
         "https://www.googleapis.com/auth/youtube.upload",
         "https://www.googleapis.com/auth/youtube",
+        # Read-only deep metrics (avg view %, retention curves). A re-auth via
+        # setup_youtube.py grants it; existing tokens degrade gracefully.
+        "https://www.googleapis.com/auth/yt-analytics.readonly",
     ]
 
     def __init__(self, channel: str = ""):
@@ -149,12 +152,14 @@ class YouTubeUploader(Uploader):
         shared across all channels (it's the same OAuth app)."""
         self.channel = (channel or "").strip().lower()
 
-    def _service(self):
+    def _credentials(self):
+        """Load (and refresh) the OAuth credentials for this channel. Split
+        out of `_service` so other clients (e.g. the youtubeAnalytics service)
+        can reuse the exact same token without duplicating the auth dance."""
         try:
             from google.oauth2.credentials import Credentials
             from google_auth_oauthlib.flow import InstalledAppFlow
             from google.auth.transport.requests import Request
-            from googleapiclient.discovery import build
         except ImportError as e:
             raise UploadError(
                 "missing python deps for youtube upload: "
@@ -195,7 +200,26 @@ class YouTubeUploader(Uploader):
                 flow = InstalledAppFlow.from_client_secrets_file(client_secrets, self.SCOPES)
                 creds = flow.run_local_server(port=0, open_browser=False)
             token_path.write_text(creds.to_json())
-        return build("youtube", "v3", credentials=creds)
+        return creds
+
+    def _service(self):
+        from googleapiclient.discovery import build
+        return build("youtube", "v3", credentials=self._credentials())
+
+    def analytics_service(self):
+        """A youtubeAnalytics v2 client on the same token. Returns None if the
+        token wasn't minted with the analytics scope, so callers can degrade
+        gracefully to the public Data API (view counts only)."""
+        from googleapiclient.discovery import build
+        creds = self._credentials()
+        scopes = set(getattr(creds, "scopes", None) or [])
+        ANALYTICS = "https://www.googleapis.com/auth/yt-analytics.readonly"
+        # When the token lists no scopes we optimistically try anyway and let
+        # the first API call surface a 403; only skip when we KNOW it's absent.
+        if scopes and ANALYTICS not in scopes and \
+                "https://www.googleapis.com/auth/youtube" not in scopes:
+            return None
+        return build("youtubeAnalytics", "v2", credentials=creds)
 
     def whoami(self, svc=None) -> dict:
         """Return {'id', 'title', 'handle'} for the channel this token maps to.
@@ -232,7 +256,8 @@ class YouTubeUploader(Uploader):
                 f"{expected!r}. (Guard against posting to the wrong account.)"
             )
 
-    def upload(self, file_path, *, title, description, tags=None, publish_at=None):
+    def upload(self, file_path, *, title, description, tags=None, publish_at=None,
+               thumbnail=None):
         try:
             from googleapiclient.http import MediaFileUpload
         except ImportError as e:
@@ -272,6 +297,20 @@ class YouTubeUploader(Uploader):
         while response is None:
             _, response = req.next_chunk()
         vid = response["id"]
+
+        # Custom thumbnail (packaging) — best-effort: a thumbnail failure must
+        # never lose an already-uploaded video. Needs the channel to be
+        # thumbnail-eligible (verified phone), else YouTube 403s and we skip.
+        if thumbnail and Path(str(thumbnail)).exists():
+            try:
+                svc.thumbnails().set(
+                    videoId=vid,
+                    media_body=MediaFileUpload(str(thumbnail), mimetype="image/jpeg"),
+                ).execute()
+                print(f"[youtube] set custom thumbnail for {vid}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[youtube] thumbnail skipped for {vid}: {e}", flush=True)
+
         return UploadResult(self.name, f"https://youtube.com/shorts/{vid}", response)
 
 

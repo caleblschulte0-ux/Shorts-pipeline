@@ -266,8 +266,8 @@ firehoses uploads gets throttled). Of the 3, **at most 1 may be finance/money**
 not three flavors of the same subject.
 
 These are a DIFFERENT format from the packages in Part 1: chart-driven
-"X in 4 Charts" breakdowns rendered by `data_learning/studio_render.py`
-(four connected charts + a mascot + the round-robin "satisfying" bottom
+"X in 3 Charts" breakdowns rendered by `data_learning/studio_render.py`
+(three connected charts + a mascot + the round-robin "satisfying" bottom
 strip) — NOT the stacked/stock-image format, and NOT the
 `"channel":"explainer"` package route above. For this channel's identity,
 prefer THESE data-graph stories over routing a Part-1 package to explainer.
@@ -302,6 +302,42 @@ cat state/analytics_explainer/latest.json 2>/dev/null
 Use `summary.top_5_by_vph` / `bottom_5_by_vph` (views-per-hour) to bias the
 slate: lean into the subjects and hook styles that scored high, avoid what
 flopped. Skip if the file is missing (early days, no data yet).
+
+**Also read retention when present.** When the analytics token carries the
+`yt-analytics.readonly` scope, the snapshot adds `summary.top_5_by_retention`
+/ `bottom_5_by_retention` (average view %) and `summary.avg_view_percentage`.
+vph conflates topic + thumbnail + hook + retention into one number;
+*retention* is the thing the algorithm actually rewards, so when it's
+available it's the stronger signal for whether a hook/format change worked.
+If the retention block is absent, the token predates the scope — re-auth via
+`setup_youtube.py` to enable it.
+
+## Data integrity — numbers must be REAL, not "Illustrative"
+Accuracy IS this channel's brand. A fabricated figure attributed to a real
+agency (the bundled `data_learning/data/*.json` files marked
+`"notes": "Illustrative"` but credited to BLS/Fed/Census) is the fastest way
+to earn a "fake stats" reputation. Before leaning on a dataset for a new
+story, prefer a **live, source-backed** snapshot:
+
+```bash
+python3 scripts/refresh_data.py --check            # which files are still illustrative / mappable
+FRED_API_KEY=$FRED_API_KEY python3 scripts/refresh_data.py --key savings_rate   # dry-run: prints real numbers
+FRED_API_KEY=$FRED_API_KEY python3 scripts/refresh_data.py --key savings_rate --write   # persist after eyeballing
+```
+
+`refresh_data.py` defaults to **dry-run** — eyeball the printed values
+against the live series page before `--write`. To make a new key refreshable,
+add a verified entry to `data_learning/data_sources.map.json` (series id +
+frequency + unit). Files with no live equivalent yet stay illustrative; shrink
+that list over time, and never invent a number you can't trace to a source.
+
+## Custom thumbnails (automatic)
+`studio_render.render()` now writes a title-aligned 1280×720 thumbnail next to
+every mp4 (`<out>.jpg`): the spoken hook as the claim + the biggest on-chart
+number as the accent, in the video's theme palette. `post_stories.py` uploads
+it so YouTube stops auto-picking a mismatched mid-video chart frame. No action
+needed per story — it's emitted on render. (Thumbnail upload needs the channel
+to be verified for custom thumbnails; if not, it's skipped without failing.)
 
 ## Topic rules
 - Anything genuinely interesting that's best understood through DATA / graphs:
@@ -374,9 +410,9 @@ explained in three steps. The hook poses the question; the three charts are the
 three steps of the answer; the closing is the lightbulb going on. Keep each
 step to one or two sentences — short holds the viewer, long loses them.
 
-**The four beats are ONE explanation, chained — not four separate facts.** Each
+**The three beats are ONE explanation, chained — not three separate facts.** Each
 beat picks up where the last left off ("so…", "but here's the catch…", "which is
-exactly why…"). Test: if you could shuffle the four beats and it still made
+exactly why…"). Test: if you could shuffle the three beats and it still made
 sense, you wrote a LIST, not an explanation. Beat 2 should not stand without
 beat 1.
 
@@ -418,7 +454,7 @@ the numbers (those belong on the charts, revealed as you talk).
 
 - ❌ Too long (the swipe-killer): *"The average 50-year-old has 130 thousand
   saved. They need 360 thousand. That gap isn't closing — it's growing. Here's why."*
-- ❌ Weak: *"Four charts show why you can't buy a house."*
+- ❌ Weak: *"Three charts show why you can't buy a house."*
 - ✅ Tight: *"You're way behind on retirement. Here's how far."* / *"One income
   bought your parents a house. Not anymore."* / *"It's not the lattes."*
 
@@ -456,7 +492,7 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
    ```json
    {
      "slug": "kebab-case-unique",
-     "title": "Hooky Title (4 Charts)",
+     "title": "Hooky Title (3 Charts)",
      "hook": "One-line scroll-stopper. Watch how they connect.",
      "closing": "SHORT quirky one-liner (<=12 words) — the mascot says it in a speech bubble at the end. Make it land.",
      "question": "Engagement CTA spoken + shown at the very end. A PERSONAL, easy-to-answer question that begs a reply, then 'comment/tell me/drop it below'. e.g. 'How many hours do you actually sleep? Drop it below.' Keep it one short sentence, no emojis (it's spoken).",
@@ -469,7 +505,7 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
      ]
    }
    ```
-   - 4 segments. `insight_type`: `trend` | `rank` | `comparison`. For rank add
+   - 3 segments. `insight_type`: `trend` | `rank` | `comparison`. For rank add
      `"ascending": false` + `"use_baseline": true` (if it has a baseline); for
      comparison add `"use_baseline": true`.
    - `topic` = clean noun used as the chart heading ("mortgage rates").
