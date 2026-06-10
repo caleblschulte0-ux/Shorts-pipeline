@@ -118,7 +118,7 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
                "mars", "moon", "asteroid", "meteor", "astronaut",
                "orbit", "launch", "quantum", "telescope", "comet")),
     ("volcano", ("volcano", "erupt", "wildfire", "blaze", "lava",
-                 "burn", "explosion", "ash")),
+                 "burning", "burned", "explosion", " ash", "ashfall")),
     ("quake", ("earthquake", "quake", "tsunami", "seismic",
                "aftershock", "richter", "magnitude", "sinkhole")),
     ("train", ("train", "railway", "locomotive", "railroad", "kim jong",
