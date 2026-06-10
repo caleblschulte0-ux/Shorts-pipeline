@@ -74,6 +74,13 @@ audit it against ALL of them:
     on any random frame and a stranger must name the scene in three
     words. Fail that, redesign the concept — don't polish it.
 
+12. IT'S A GAME, NOT A SCENE. The loop must read as SPECTATED
+    GAMEPLAY: terrain that demands action, jumps, drop-offs,
+    near-misses, pickups, consequences. The hero PLAYS through the
+    world (runner vaulting fences, bike catching air off cliffs).
+    If the hero merely travels while scenery parallaxes past, it's
+    a screensaver — rejected, no matter how pretty.
+
 POLISH IS THE DEFAULT. Every rule above ships in the FIRST version
 of a theme. "Make it polished" is never a follow-up request; an
 unpolished theme is an unfinished theme.
@@ -101,7 +108,7 @@ W, H = 1080, 960
 FPS = 30
 
 THEMES = ("space", "rain", "ember", "ocean", "plinko", "coins",
-          "quake", "volcano", "runner", "stacker", "fight", "train")
+          "quake", "volcano", "runner", "stacker", "fight", "moto")
 
 # Keyword → theme. Checked in order; first hit wins. Scanned against
 # title + script + hashtags lowercased.
@@ -123,9 +130,9 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("fight", ("ufc", "mma", "boxing", "boxer", "knockout",
                "octagon", "wrestl", "fight card", "title bout",
                "heavyweight")),
-    ("train", ("train", "railway", "locomotive", "railroad", "kim jong",
-               "north korea", "summit", "metro", "subway", "amtrak",
-               "derail")),
+    ("moto", ("motocross", "motorcycle", "bike", "race", "racing",
+              "driver", "highway", "car chase", "rally", "stunt",
+              "speeding", "nascar", "grand prix", "road trip")),
     ("stacker", ("world record", "record-breaking", "tallest",
                  "largest", "biggest", "assembl", "built the",
                  "stacked", "lego", "potato head", "guinness")),
@@ -2426,29 +2433,32 @@ class _Fight(_Renderer):
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
 
+# ---------- MOTO: hill-climb side-scroller ----------
+# (Vehicle / race / road-trip / chase stories, and the channel's
+# general high-energy slot.)
 
-# ---------- TRAIN: armored express through the night ----------
-# (Xi-Kim-summit-class stories — Kim's famous armored train — plus
-# any rail/transit story.)
+class _Moto(_Renderer):
+    """Hill-climb mobile-game energy: a dirt bike rips across rolling
+    desert terrain with ramps and sheer DROP-OFFS, catching air,
+    backflipping at speed, landing in a burst of dust, roosting dirt
+    off the rear wheel, hoovering up coin arcs floating over the
+    gaps. Terrain is piecewise-linear control points so cliff edges
+    are crisp and every chunk is generated fresh — no two runs alike.
 
-class _Train(_Renderer):
-    """A dark-green armored train with a gold stripe barrels through
-    a moonlit landscape, coupling rods churning, smoke streaming,
-    telegraph poles whipping past. Rectangles + spoked wheels +
-    parallax: reads as 'train at night' from any frame.
+    The break is real: landing detection integrates at sim_dt. As the
+    clock compounds, a single frame drops the bike hundreds of px —
+    it tunnels DEEP below the terrain (missed contact), the
+    penetration-scaled bounce turns into energy gain, and airborne
+    rotation crosses a half-turn per frame (flip aliasing). The sim
+    watches penetration depth, vertical speed, and rotation rate, and
+    fails itself when any of them leaves reality."""
 
-    The break is the wagon-wheel effect made load-bearing: wheel
-    rotation is derived from distance travelled, so as the sim clock
-    compounds, rotation-per-frame climbs toward (and past) the
-    sampling limit — spokes genuinely stutter, freeze, then spin
-    backwards on screen. When a single frame advances the wheels more
-    than half a turn (Nyquist) the motion is unresolvable: fail,
-    hang, fresh night."""
-
-    GROWTH = 1.16
-    BASE_SPEED = 330.0
-    WHEEL_R = 30.0
-    N_SPOKES = 4
+    GROWTH = 1.17
+    GRAV = 2300.0
+    BASE_SPEED = 420.0
+    SEG = 90.0              # terrain control-point spacing (world px)
+    WHEEL_BASE = 76.0
+    BLOWUP_V = 6000.0
 
     def __init__(self, seed=None):
         super().__init__(seed)
@@ -2456,26 +2466,72 @@ class _Train(_Renderer):
         self.failed_at = None
         self._regen()
 
+    # -- terrain ------------------------------------------------------
     def _regen(self):
         rng = self.rng
         self.trail[:] = 0
         self.scroll = 0.0
-        self.track_y = H * 0.74
-        self.moon = (rng.uniform(W * 0.6, W * 0.9),
-                     rng.uniform(90, 180))
-        self.stars = [(rng.uniform(0, W), rng.uniform(0, H * 0.5),
-                       rng.uniform(0.5, 1.5)) for _ in range(60)]
-        self.ridge_ph = rng.uniform(0, math.tau)
-        self.poles_gap = rng.uniform(420, 520)
-        self.smoke: list[dict] = []
-        self.n_cars = rng.randint(3, 4)
-        self.window_ph = rng.uniform(0, 10)
-        # Signal lights appear at world positions.
-        self.signals = []
-        sx = rng.uniform(1500, 2500)
-        while sx < 200000:
-            self.signals.append(sx)
-            sx += rng.uniform(2600, 5200)
+        self.heights: list[float] = [H * 0.62]
+        self.feature_cd = 5
+        self.coins: list[dict] = []
+        self.sparkles: list[dict] = []
+        self.dust: list[dict] = []
+        self.roost: list[dict] = []
+        self.collected = 0
+        # Bike state.
+        self.by = H * 0.62 - 46.0
+        self.vy = 0.0
+        self.pitch = 0.0
+        self.vrot = 0.0
+        self.air = False
+        self.land_t = -9.0
+        # Backdrop.
+        self.buttes = [(rng.uniform(0, W * 2), rng.uniform(90, 200),
+                        rng.uniform(60, 130)) for _ in range(5)]
+        self.sun_x = rng.uniform(W * 0.55, W * 0.9)
+        self.clouds = [{"x": rng.uniform(0, W), "y": rng.uniform(50, 200),
+                        "w": rng.uniform(100, 220)} for _ in range(3)]
+
+    def _ensure_terrain(self, idx: int):
+        """Lazily extend the heightfield. Mostly a smooth random walk;
+        every few segments inject a FEATURE: a sheer cliff drop, or a
+        ramp (kicker rising into a drop) — the stuff airs are made of."""
+        rng = self.rng
+        while len(self.heights) <= idx + 4:
+            prev = self.heights[-1]
+            self.feature_cd -= 1
+            if self.feature_cd <= 0:
+                kind = rng.choice(["cliff", "ramp", "ramp"])
+                if kind == "cliff":
+                    drop = rng.uniform(150, 260)
+                    self.heights.append(
+                        min(H * 0.82, prev + drop))
+                else:
+                    # Kicker: sharp rise, then a big drop next point.
+                    rise = rng.uniform(90, 150)
+                    self.heights.append(max(H * 0.40, prev - rise))
+                    self.heights.append(
+                        min(H * 0.82, self.heights[-1]
+                            + rise + rng.uniform(140, 240)))
+                self.feature_cd = rng.randint(4, 8)
+                # Coin arc floating over the landing zone.
+                base_x = (len(self.heights) - 1) * self.SEG
+                top_y = min(self.heights[-2:]) - 90
+                for c_ in range(5):
+                    self.coins.append({
+                        "x": base_x + c_ * 46 - 40,
+                        "y": top_y - 50 * math.sin(c_ / 4 * math.pi),
+                        "alive": True, "ph": rng.uniform(0, 6)})
+            else:
+                step = rng.uniform(-46, 46)
+                self.heights.append(
+                    min(H * 0.82, max(H * 0.40, prev + step)))
+
+    def _ground(self, wx: float) -> float:
+        idx = int(wx // self.SEG)
+        self._ensure_terrain(idx + 1)
+        u = (wx - idx * self.SEG) / self.SEG
+        return self.heights[idx] * (1 - u) + self.heights[idx + 1] * u
 
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
@@ -2488,216 +2544,257 @@ class _Train(_Renderer):
         ts = self.sim_scale(t)
         k = self.kk(ts)
         dt = 1 / FPS
+        sim_dt = dt * ts
         speed = self.BASE_SPEED * ts
-        step = speed * dt
-        self.scroll += step
+        self.scroll += speed * sim_dt / ts          # world px this frame
+        self.scroll += speed * (sim_dt - sim_dt / ts)  # = speed*sim_dt total
 
-        # The honest Nyquist failure: wheel turn per frame.
-        turn_per_frame = step / self.WHEEL_R          # radians
-        spoke_period = math.tau / self.N_SPOKES
-        if turn_per_frame > spoke_period * 2:
-            self.declare_fail(t)
-        wheel_rot = self.scroll / self.WHEEL_R
+        bx_screen = W * 0.32
+        wx = self.scroll + bx_screen
+        g_rear = self._ground(wx - self.WHEEL_BASE / 2)
+        g_front = self._ground(wx + self.WHEEL_BASE / 2)
+        ground_here = (g_rear + g_front) / 2
+        ride = 44.0
+        slope_pitch = math.atan2(g_front - g_rear, self.WHEEL_BASE)
 
-        # Track clack: tiny bounce as ties pass under the wheels,
-        # amplitude grows with speed.
-        tie_gap = 64.0
-        clack_ph = (self.scroll % tie_gap) / tie_gap
-        bounce = math.sin(clack_ph * math.pi) * min(5.0, 1.2 + 2.4 * k)
+        if not self.air:
+            target = ground_here - ride
+            # Terrain fell away under the bike (cliff edge / kicker
+            # lip): launch with the vertical speed terrain-following
+            # implies — physics, not animation.
+            if target - self.by > 26:
+                self.air = True
+                self.vrot = -(1.6 + 4.5 * k)     # backflips with speed
+            else:
+                # Suspension spring toward terrain.
+                self.vy = (target - self.by) / max(sim_dt, 1e-6) * 0.4
+                self.by += (target - self.by) * min(1, 14 * sim_dt)
+                self.pitch += (slope_pitch - self.pitch) \
+                    * min(1, 12 * sim_dt)
+        if self.air:
+            self.vy += self.GRAV * sim_dt
+            self.by += self.vy * sim_dt
+            self.pitch += self.vrot * sim_dt
+            # Flip aliasing: more than a half-turn per frame cannot be
+            # resolved — genuine temporal failure.
+            if abs(self.vrot * sim_dt) > math.pi:
+                self.declare_fail(t)
+            target = ground_here - ride
+            if self.by >= target:
+                pen = self.by - target
+                # Tunneled deep past the ground in one step = missed
+                # contact; also the pen-scaled bounce is the honest
+                # energy-gain instability.
+                if pen > 350:
+                    self.declare_fail(t)
+                self.by = target
+                self.vy = -abs(self.vy) * 0.22 * (1 + min(2, pen / 180))
+                if abs(self.vy) > self.BLOWUP_V:
+                    self.declare_fail(t)
+                self.air = abs(self.vy) > 140
+                self.vrot = 0.0
+                self.land_t = t
+                power = min(1.0, pen / 140 + 0.3)
+                for _ in range(int(8 + 16 * power)):
+                    a = rng.uniform(math.pi, math.tau)
+                    v = rng.uniform(80, 380) * power
+                    self.dust.append({
+                        "x": bx_screen + rng.uniform(-30, 30),
+                        "y": ground_here,
+                        "vx": math.cos(a) * v - speed * 0.05,
+                        "vy": math.sin(a) * v * 0.5,
+                        "r": rng.uniform(5, 13),
+                        "life": rng.uniform(0.4, 0.9)})
 
-        # Smoke from the funnel.
-        loco_x = W * 0.30
-        body_y = self.track_y - 64 + bounce
-        if rng.random() < 0.5 + 0.4 * k:
-            self.smoke.append({
-                "x": loco_x + 58, "y": body_y - 36,
-                "vx": -speed * 0.12 - rng.uniform(10, 50),
-                "vy": -rng.uniform(36, 80),
-                "r": rng.uniform(7, 14), "life": 1.0})
+        # Roost: dirt arcs off the rear wheel while grounded.
+        if not self.air and rng.random() < 0.7:
+            for _ in range(1 + int(3 * k)):
+                self.roost.append({
+                    "x": bx_screen - self.WHEEL_BASE / 2 - 6,
+                    "y": g_rear - 6,
+                    "vx": -rng.uniform(220, 520) * (0.5 + k),
+                    "vy": -rng.uniform(120, 420),
+                    "life": rng.uniform(0.3, 0.7)})
+
+        # Coin pickups.
+        for c in self.coins:
+            if c["alive"]:
+                if (abs(c["x"] - wx) < 56
+                        and abs(c["y"] - self.by) < 70):
+                    c["alive"] = False
+                    self.collected += 1
+                    for _ in range(7):
+                        a = rng.uniform(0, math.tau)
+                        v = rng.uniform(60, 240)
+                        self.sparkles.append({
+                            "x": c["x"] - self.scroll, "y": c["y"],
+                            "vx": math.cos(a) * v,
+                            "vy": math.sin(a) * v,
+                            "life": rng.uniform(0.25, 0.5)})
+        self.coins = [c for c in self.coins
+                      if c["x"] > self.scroll - 200]
+
+        # Speed glow trail behind the bike.
+        self.trail *= 0.88
+        _stamp_glow(self.trail, bx_screen - 30, self.by, 22 + 26 * k,
+                    (220 * k + 60, 120, 60), 0.3 + 0.8 * k)
 
         # ---- paint ----
         g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
         frame = np.zeros((H, W, 3), dtype=np.float32)
-        frame[..., 0] = 10 + 16 * g
-        frame[..., 1] = 12 + 18 * g
-        frame[..., 2] = 26 + 30 * g
+        frame[..., 0] = 46 + 60 * g
+        frame[..., 1] = 30 + 34 * g
+        frame[..., 2] = 50 + 18 * g
         frame += self.trail
         img = Image.fromarray(np.clip(frame, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        # Moon + stars.
-        mx, my = self.moon
-        for hr_, ha in ((60, 26), (50, 44)):
-            d.ellipse([mx - hr_, my - hr_, mx + hr_, my + hr_],
-                      fill=(230, 230, 212, ha))
-        d.ellipse([mx - 40, my - 40, mx + 40, my + 40],
-                  fill=(233, 233, 216, 255))
-        d.ellipse([mx - 12, my - 16, mx + 2, my - 4],
-                  fill=(212, 212, 196, 255))
-        for sx, sy, sr in self.stars:
-            tw = 130 + 70 * math.sin(t * 2 + sx)
-            d.ellipse([sx - sr, sy - sr, sx + sr, sy + sr],
-                      fill=(220, 225, 255, int(max(60, tw))))
+        # Low desert sun + haze.
+        sx_ = self.sun_x
+        for hr_, ha in ((90, 30), (66, 60)):
+            d.ellipse([sx_ - hr_, 170 - hr_, sx_ + hr_, 170 + hr_],
+                      fill=(255, 190, 120, ha))
+        d.ellipse([sx_ - 46, 124, sx_ + 46, 216],
+                  fill=(255, 210, 140, 255))
+        for c in self.clouds:
+            c["x"] = (c["x"] - 8 * dt) % (W + 260) - 130
+            d.ellipse([c["x"], c["y"], c["x"] + c["w"], c["y"] + 30],
+                      fill=(120, 80, 90, 90))
 
-        # Far ridge (slow parallax).
-        ridge = [(x, H * 0.58
-                  + 40 * math.sin((self.scroll * 0.12 + x) * 0.004
-                                  + self.ridge_ph)
-                  + 18 * math.sin((self.scroll * 0.12 + x) * 0.011))
-                 for x in range(0, W + 40, 40)]
-        d.polygon([(0, H), *ridge, (W, H)], fill=(15, 19, 30, 255))
+        # Far buttes (slow parallax).
+        for bx0, bw_, bh_ in self.buttes:
+            sx2 = (bx0 - self.scroll * 0.18) % (W * 2) - W * 0.5
+            top = H * 0.52 - bh_
+            d.polygon([(sx2 - bw_, H * 0.56), (sx2 - bw_ * 0.6, top),
+                       (sx2 + bw_ * 0.6, top), (sx2 + bw_, H * 0.56)],
+                      fill=(60, 36, 52, 255))
 
-        # Telegraph poles + sagging wire (mid parallax).
-        pole_scroll = self.scroll * 0.55
-        first = -(pole_scroll % self.poles_gap)
-        px_list = []
-        x_ = first
-        while x_ < W + self.poles_gap:
-            px_list.append(x_)
-            x_ += self.poles_gap
-        pole_top = H * 0.40
-        for px_ in px_list:
-            d.line([px_, self.track_y - 6, px_, pole_top],
-                   fill=(20, 24, 32, 255), width=7)
-            d.line([px_ - 22, pole_top + 12, px_ + 22, pole_top + 12],
-                   fill=(20, 24, 32, 255), width=5)
-        for pa, pb in zip(px_list, px_list[1:]):
-            mid = (pa + pb) / 2
-            d.line([pa, pole_top + 12, mid, pole_top + 44],
-                   fill=(26, 30, 40, 255), width=2)
-            d.line([mid, pole_top + 44, pb, pole_top + 12],
-                   fill=(26, 30, 40, 255), width=2)
+        # Terrain: filled poly with a lit lip line + strata.
+        pts = []
+        x_ = 0
+        while x_ <= W + 20:
+            pts.append((x_, self._ground(self.scroll + x_)))
+            x_ += 20
+        d.polygon([(0, H), *pts, (W, H)], fill=(74, 46, 34, 255))
+        d.line(pts, fill=(150, 96, 60, 255), width=4)
+        # Strata bands inside the dirt.
+        for off in (40, 90, 150):
+            band = [(px_, py_ + off) for px_, py_ in pts[::3]]
+            d.line(band, fill=(60, 38, 28, 255), width=3)
 
-        # Passing signal lights (red blinker on a post).
-        for swx in self.signals:
-            sx2 = swx - self.scroll
-            if -60 < sx2 < W + 60:
-                d.line([sx2, self.track_y, sx2, self.track_y - 110],
-                       fill=(30, 32, 40, 255), width=6)
-                on = math.sin(t * 9) > 0
-                d.ellipse([sx2 - 10, self.track_y - 132,
-                           sx2 + 10, self.track_y - 112],
-                          fill=(255, 60, 50, 255) if on
-                          else (90, 28, 26, 255))
+        # Coins (spinning ellipse = cheap 3D).
+        for c in self.coins:
+            if not c["alive"]:
+                continue
+            sx2 = c["x"] - self.scroll
+            if -40 < sx2 < W + 40:
+                wob = abs(math.sin(t * 5 + c["ph"]))
+                cw = 13 * (0.25 + 0.75 * wob)
+                d.ellipse([sx2 - cw, c["y"] - 14, sx2 + cw, c["y"] + 14],
+                          fill=(250, 200, 70, 255),
+                          outline=(170, 120, 30, 255), width=3)
+                d.ellipse([sx2 - cw * 0.45, c["y"] - 7,
+                           sx2 + cw * 0.45, c["y"] + 7],
+                          outline=(255, 235, 150, 220), width=2)
 
-        # Track bed: ballast strip, rail, ties scrolling at full speed.
-        d.rectangle([0, self.track_y + 10, W, H],
-                    fill=(16, 17, 22, 255))
-        d.line([0, self.track_y + 10, W, self.track_y + 10],
-               fill=(70, 72, 84, 255), width=4)
-        tie_first = -(self.scroll % tie_gap)
-        x_ = tie_first
-        while x_ < W + tie_gap:
-            d.line([x_, self.track_y + 12, x_ - 10, self.track_y + 30],
-                   fill=(36, 32, 30, 255), width=8)
-            x_ += tie_gap
+        # Dust + roost + sparkles.
+        for p_ in self.dust:
+            p_["x"] += p_["vx"] * dt
+            p_["y"] += p_["vy"] * dt
+            p_["r"] += 16 * dt
+            p_["life"] -= dt
+            if p_["life"] > 0:
+                d.ellipse([p_["x"] - p_["r"], p_["y"] - p_["r"],
+                           p_["x"] + p_["r"], p_["y"] + p_["r"]],
+                          fill=(150, 110, 80, int(120 * p_["life"])))
+        self.dust = [p_ for p_ in self.dust if p_["life"] > 0]
+        for p_ in self.roost:
+            p_["vy"] += 1600 * dt
+            p_["x"] += p_["vx"] * dt
+            p_["y"] += p_["vy"] * dt
+            p_["life"] -= dt
+            if p_["life"] > 0:
+                d.ellipse([p_["x"] - 4, p_["y"] - 4,
+                           p_["x"] + 4, p_["y"] + 4],
+                          fill=(120, 84, 56, int(220 * p_["life"])))
+        self.roost = [p_ for p_ in self.roost if p_["life"] > 0]
+        for p_ in self.sparkles:
+            p_["x"] += p_["vx"] * dt
+            p_["y"] += p_["vy"] * dt
+            p_["life"] -= dt
+            if p_["life"] > 0:
+                a = int(255 * min(1, p_["life"] * 3))
+                d.line([p_["x"], p_["y"], p_["x"] + 4, p_["y"] + 4],
+                       fill=(255, 235, 140, a), width=3)
+        self.sparkles = [p_ for p_ in self.sparkles if p_["life"] > 0]
 
-        # Smoke trail (drawn behind the train).
-        for sm in self.smoke:
-            sm["x"] += sm["vx"] * dt
-            sm["y"] += sm["vy"] * dt
-            sm["r"] += 14 * dt
-            sm["life"] -= dt * 0.5
-            if sm["life"] > 0:
-                sh = int(54 + 30 * sm["life"])
-                d.ellipse([sm["x"] - sm["r"], sm["y"] - sm["r"],
-                           sm["x"] + sm["r"], sm["y"] + sm["r"]],
-                          fill=(sh, sh, sh + 4, int(140 * sm["life"])))
-        self.smoke = [sm for sm in self.smoke if sm["life"] > 0]
+        # Coin tally: little gold dots top-left.
+        for n_ in range(min(self.collected, 18)):
+            d.ellipse([24 + n_ * 22, 26, 40 + n_ * 22, 42],
+                      fill=(250, 200, 70, 230))
 
-        # ---- the train (fixed on screen; the world moves) ----
-        GREEN = (26, 56, 40, 255)
-        GREEN_D = (18, 40, 30, 255)
-        GOLD = (212, 174, 78, 255)
-        car_w, car_h, gap2 = 218, 64, 14
-        # Ground shadow.
-        total_w = 90 + (car_w + gap2) * self.n_cars + car_w
-        d.ellipse([loco_x - 60, self.track_y + 6,
-                   loco_x + total_w * 0.9, self.track_y + 22],
-                  fill=(6, 7, 10, 110))
+        # ---- the bike (geometry only: circles + capsules) ----
+        cx_, cy_ = bx_screen, self.by
+        pc, ps = math.cos(self.pitch), math.sin(self.pitch)
 
-        def wheels(x0, x1, y0):
-            xs = [x0 + 36, (x0 + x1) / 2, x1 - 36]
-            cranks = []
-            for wx_ in xs:
-                d.ellipse([wx_ - self.WHEEL_R, y0 - self.WHEEL_R,
-                           wx_ + self.WHEEL_R, y0 + self.WHEEL_R],
-                          fill=(24, 24, 28, 255),
-                          outline=(90, 92, 102, 255), width=4)
-                # Spokes — THE aliasing showcase.
-                for s_ in range(self.N_SPOKES):
-                    a = wheel_rot + s_ * math.tau / self.N_SPOKES
-                    d.line([wx_, y0,
-                            wx_ + math.cos(a) * (self.WHEEL_R - 5),
-                            y0 + math.sin(a) * (self.WHEEL_R - 5)],
-                           fill=(120, 122, 132, 255), width=4)
-                d.ellipse([wx_ - 6, y0 - 6, wx_ + 6, y0 + 6],
-                          fill=(140, 142, 150, 255))
-                cranks.append((wx_ + math.cos(wheel_rot) * 16,
-                               y0 + math.sin(wheel_rot) * 16))
-            # Coupling rod linking the cranks (classic loco motion).
-            d.line(cranks, fill=(150, 152, 160, 255), width=6)
-            for cx_, cy_ in cranks:
-                d.ellipse([cx_ - 4, cy_ - 4, cx_ + 4, cy_ + 4],
-                          fill=(190, 192, 200, 255))
+        def rot(px_, py_):
+            return (cx_ + px_ * pc - py_ * ps,
+                    cy_ + px_ * ps + py_ * pc)
 
-        wheel_y = self.track_y - 4
+        squash = 1.0
+        if t - self.land_t < 0.18:
+            squash = 1.0 - 0.22 * (1 - (t - self.land_t) / 0.18)
+        wb = self.WHEEL_BASE / 2
+        wr = 26.0 * squash
+        for sgn in (-1, 1):
+            wx_, wy_ = rot(sgn * wb, ride - 44 + 26)
+            d.ellipse([wx_ - wr, wy_ - wr, wx_ + wr, wy_ + wr],
+                      fill=(24, 22, 24, 255),
+                      outline=(150, 150, 160, 255), width=4)
+            # Knobby ticks (rotation aliasing visible here too).
+            rot_a = self.scroll / 26.0
+            for s_ in range(6):
+                a = rot_a + s_ * math.tau / 6
+                d.line([wx_ + math.cos(a) * (wr - 9),
+                        wy_ + math.sin(a) * (wr - 9),
+                        wx_ + math.cos(a) * (wr - 2),
+                        wy_ + math.sin(a) * (wr - 2)],
+                       fill=(200, 200, 210, 255), width=3)
+            d.ellipse([wx_ - 6, wy_ - 6, wx_ + 6, wy_ + 6],
+                      fill=(160, 160, 170, 255))
+        # Frame + body.
+        d.line([*rot(-wb, 8), *rot(-8, -16)], fill=(200, 60, 50, 255),
+               width=9)
+        d.line([*rot(wb, 8), *rot(14, -18)], fill=(200, 60, 50, 255),
+               width=9)
+        d.polygon([rot(-26, -12), rot(26, -20), rot(30, -34),
+                   rot(-18, -30)], fill=(225, 80, 60, 255))
+        d.line([*rot(14, -18), *rot(30, -44)], fill=(120, 120, 130, 255),
+               width=6)   # fork/bars
+        # Rider: leaning blob + helmet (leans back in the air).
+        lean = -14 if self.air else 0
+        hx_, hy_ = rot(-4 + lean * 0.4, -62)
+        d.line([*rot(-8 + lean, -30), *rot(-2 + lean * 0.5, -54)],
+               fill=(40, 44, 60, 255), width=13)
+        d.ellipse([hx_ - 13, hy_ - 13, hx_ + 13, hy_ + 13],
+                  fill=(240, 240, 245, 255),
+                  outline=(50, 54, 70, 255), width=3)
+        d.line([*rot(-2 + lean * 0.5, -50), *rot(26, -40)],
+               fill=(40, 44, 60, 255), width=7)    # arm to bars
+        # Exhaust pop at speed.
+        if k > 0.4 and rng.random() < 0.3:
+            ex_, ey_ = rot(-wb - 12, 6)
+            d.ellipse([ex_ - 7, ey_ - 7, ex_ + 7, ey_ + 7],
+                      fill=(255, 180, 90, 200))
 
-        # Locomotive: armored nose + cab + funnel + headlight beam.
-        lx0, lx1 = loco_x - 40, loco_x + 150
-        d.polygon([(lx1, body_y + 50), (lx1 + 54, body_y + 50),
-                   (lx1 + 54, body_y + 26), (lx1 + 20, body_y - 2),
-                   (lx1, body_y - 2)], fill=GREEN_D)          # nose
-        d.rounded_rectangle([lx0, body_y - 26, lx1, body_y + 50],
-                            radius=10, fill=GREEN,
-                            outline=GREEN_D, width=3)
-        d.rectangle([lx0 + 12, body_y - 48, lx0 + 74, body_y - 22],
-                    fill=GREEN, outline=GREEN_D, width=3)      # cab
-        d.rectangle([lx0 + 22, body_y - 42, lx0 + 50, body_y - 28],
-                    fill=(255, 224, 150, 230))                # cab window
-        d.rectangle([lx1 - 36, body_y - 44, lx1 - 18, body_y - 24],
-                    fill=GREEN_D)                              # funnel
-        d.line([lx0, body_y + 20, lx1 + 40, body_y + 20],
-               fill=GOLD, width=5)                             # gold stripe
-        # Headlight + beam.
-        d.ellipse([lx1 + 40, body_y + 6, lx1 + 56, body_y + 22],
-                  fill=(255, 240, 190, 255))
-        d.polygon([(lx1 + 52, body_y + 8), (lx1 + 52, body_y + 20),
-                   (W + 80, body_y + 70), (W + 80, body_y - 60)],
-                  fill=(255, 240, 190, 26))
-        wheels(lx0, lx1, wheel_y)
-
-        # Cars.
-        for c_ in range(self.n_cars):
-            cx0 = lx0 - (c_ + 1) * (car_w + gap2)
-            cx1 = cx0 + car_w
-            d.rounded_rectangle([cx0, body_y - 22, cx1, body_y + 50],
-                                radius=10, fill=GREEN,
-                                outline=GREEN_D, width=3)
-            d.line([cx0, body_y + 20, cx1, body_y + 20],
-                   fill=GOLD, width=5)
-            # Lit windows with a slow flicker.
-            for wn in range(4):
-                wx_ = cx0 + 26 + wn * 46
-                lit = math.sin(self.window_ph + c_ * 3 + wn
-                               + t * 0.6) > -0.5
-                d.rounded_rectangle(
-                    [wx_, body_y - 12, wx_ + 26, body_y + 8], radius=4,
-                    fill=(255, 224, 150, 230) if lit
-                    else (40, 52, 48, 255))
-            # Coupling to the next car.
-            d.line([cx1, body_y + 30, cx1 + gap2, body_y + 30],
-                   fill=(80, 82, 90, 255), width=6)
-            wheels(cx0, cx1, wheel_y)
-
-        # Speed lines once it's flying.
+        # Speed lines.
         if k > 0.45:
             for _ in range(int(10 * k)):
-                ly = rng.uniform(H * 0.3, H * 0.85)
+                ly = rng.uniform(H * 0.2, H * 0.85)
                 ll = rng.uniform(50, 200) * k
                 lx = rng.uniform(0, W)
                 d.line([lx, ly, lx + ll, ly],
-                       fill=(220, 225, 255, int(55 * k)), width=2)
+                       fill=(255, 240, 220, int(50 * k)), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
@@ -2714,7 +2811,7 @@ _THEME_CLASSES = {
     "runner": _Runner,
     "stacker": _Stacker,
     "fight": _Fight,
-    "train": _Train,
+    "moto": _Moto,
 }
 
 
