@@ -12,3 +12,9 @@ soundfile>=0.12
 google-api-python-client>=2.0
 google-auth>=2.0
 google-auth-oauthlib>=1.0
+# themed_bottom.py — procedural bottom-half generator draws frames
+# with PIL + numpy and pipes raw RGB into ffmpeg. numpy also rides in
+# with whisper/torch, but pin both explicitly so the themed bottoms
+# never silently fall back to gameplay on a missing import.
+pillow>=10.0
+numpy>=1.24
