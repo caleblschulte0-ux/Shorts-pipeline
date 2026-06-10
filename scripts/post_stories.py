@@ -66,6 +66,10 @@ def _description(cfg: dict) -> str:
     tags = cfg.get("hashtags", [])
     if tags:
         parts += ["", " ".join(f"#{t}" for t in tags)]
+    # Required attribution for the CC-BY music bed (Kevin MacLeod / incompetech).
+    parts += ["", "Music by Kevin MacLeod (incompetech.com), "
+              "licensed under Creative Commons: By Attribution 4.0 "
+              "(creativecommons.org/licenses/by/4.0/)"]
     return "\n".join(p for p in parts if p is not None)[:5000]
 
 
