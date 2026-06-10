@@ -126,9 +126,42 @@ Reference: `state/trending_packages/20260531/*.json`.
   ],
   "hashtags": ["topical", "tags", "specific", "to", "this", "story"],
   "music_vibe": "dark | cinematic | hiphop",
+  "bottom_theme": "auto",
   "channel": "explainer"
 }
 ```
+
+**`bottom_theme`** — what plays in the BOTTOM half of the stacked video.
+
+| Value | Bottom half |
+|-------|-------------|
+| _(omit)_ | Classic Minecraft parkour gameplay |
+| `"auto"` | Keyword-routed procedural game themed to the story (PREFERRED) |
+| `"space"` | Rocket hopping star-to-star, drawing a constellation (launches, space) |
+| `"volcano"` | Distant eruption raining bouncing fireballs (volcano/wildfire) |
+| `"quake"` | City + live seismograph ramping to rupture (earthquake/tsunami) |
+| `"runner"` | Critter sprinting over fences/rocks/logs (animal escapes) |
+| `"stacker"` | Blocks snapping onto a record-chasing tower (world records, builds) |
+| `"fight"` | Red vs blue orbs clashing in an octagon (UFC/boxing/combat) |
+| `"moto"` | Hill-climb dirt bike: drop-offs, airtime, flips, coins (vehicles/races) |
+| `"train"` | Runaway express on a loop-the-loop track, coin rings (rail, summits) |
+| `"rain"` | Storm streaks + lightning bolts (generic weather) |
+| `"ocean"` | Fish + bubbles + god rays (marine stories) |
+| `"coins"` | Gold plinko cascade (markets / money stories) |
+| `"plinko"` | Neutral plinko — the universal fallback |
+
+All escalating themes follow the same arc: start calm, the sim clock
+compounds until the physics genuinely breaks (tunneling / solver
+divergence / temporal aliasing), the engine hangs, and the world
+regenerates. That arc is the retention hook — see the DESIGN CHARTER
+at the top of `themed_bottom.py` before adding or modifying themes.
+
+**Slate rule: set `"bottom_theme": "auto"` on 3 of the 6 daily packages**
+(prefer the ones with the strongest theme match — space launch, storm,
+volcano, animal). The other 3 omit the field and keep Minecraft. This is
+a deliberate A/B: same channel, half themed bottoms, half gameplay, so
+analytics can tell us within ~2 weeks which retains better. Don't set it
+on all 6 — we lose the comparison.
 
 **`mascot_pose` per shot** — one of `idle | shock | point | laugh | think |
 dismiss`. Drives the news-anchor mascot's reaction in the corner overlay.

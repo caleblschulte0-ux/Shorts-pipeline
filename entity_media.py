@@ -28,6 +28,8 @@ from __future__ import annotations
 
 import json
 import re
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 
@@ -300,13 +302,88 @@ def resolve_entity_media(entity: str, context: str = "") -> str | None:
     try:
         import topic_media
         urls = topic_media.search(entity, context)
-        if urls:
-            chosen = urls[0]
+        # Take the first candidate that actually resolves to an image.
+        # Wikipedia API results are nearly always live, but GDELT
+        # og:image links rot within days — skip the dead ones instead
+        # of caching a 404 we'll render a blank shot from.
+        for u in urls or []:
+            if url_is_image(u):
+                chosen = u
+                break
     except Exception as e:  # noqa: BLE001
         print(f"  [entity_media resolve fail] {entity!r}: {e}")
     cache[key] = chosen
     _save_cache(cache)
     return chosen or None
+
+
+# ---------- URL verification ----------
+
+_VERIFY_UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/120 Safari/537.36")
+
+
+def url_is_image(url: str, timeout: float = 8.0) -> bool:
+    """True only when `url` resolves (following redirects) to a 200
+    with an image/* content-type.
+
+    This is the trust boundary for routine-supplied image URLs. The
+    morning routine writes Wikipedia filenames from memory and the
+    LLM hallucinates plausible-looking ones about half the time —
+    e.g. `Brad_Paisley_(2023).jpg` 302s to a Commons 404. Before this
+    check, a fabricated URL silently fell through to generic stock
+    and we'd caption "BRAD PAISLEY" over a random stock-photo guy.
+
+    HEAD first (cheap); some CDNs reject HEAD with 405, so fall back
+    to a Range-limited GET before giving up."""
+    for method in ("HEAD", "GET"):
+        try:
+            headers = {"User-Agent": _VERIFY_UA}
+            if method == "GET":
+                headers["Range"] = "bytes=0-0"
+            req = urllib.request.Request(url, method=method, headers=headers)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                ctype = (resp.headers.get("Content-Type") or "").lower()
+                if resp.status in (200, 206) and ctype.startswith("image/"):
+                    return True
+                if resp.status in (200, 206):
+                    # Resolved but not an image (e.g. an HTML error page
+                    # served with 200) — reject, don't retry.
+                    return False
+        except urllib.error.HTTPError as e:
+            if method == "HEAD" and e.code in (403, 405, 501):
+                continue          # server dislikes HEAD — retry as GET
+            return False
+        except Exception:  # noqa: BLE001 — timeouts, DNS, TLS: all unusable
+            return False
+    return False
+
+
+def verify_shot_urls(pkg: dict, *, verbose: bool = True) -> int:
+    """Drop every routine-supplied image URL that doesn't actually
+    resolve to an image. Returns the number of URLs dropped.
+
+    Runs BEFORE entity enrichment so a dropped URL leaves a hole that
+    `enrich_package` then re-fills through the Wikipedia-API path
+    (`resolve_entity_media`), which only returns URLs it got from the
+    API itself — real files, not guesses."""
+    dropped = 0
+    for s in pkg.get("shots") or []:
+        url = s.get("image_url") or s.get("image")
+        if not url:
+            continue
+        if url_is_image(url):
+            continue
+        if verbose:
+            print(f"  [entity_media] BROKEN url dropped "
+                  f"({(s.get('phrase') or '?')[:30]!r}): {url[:80]}")
+        s.pop("image_url", None)
+        s.pop("image", None)
+        dropped += 1
+    if verbose and dropped:
+        print(f"  [entity_media] dropped {dropped} unresolvable image "
+              f"url(s); entity resolution will re-fill from Wikipedia")
+    return dropped
 
 
 # ---------- Enrichment ----------
@@ -359,6 +436,12 @@ def enrich_package(pkg: dict, *, verbose: bool = True) -> dict:
 
     title = pkg.get("title") or ""
     shots = pkg.get("shots") or []
+
+    # 0. Trust boundary: verify every routine-supplied URL actually
+    # resolves to an image. Fabricated Wikipedia filenames get dropped
+    # here, leaving holes the entity-resolution pass below re-fills
+    # with REAL files from the Wikipedia API.
+    verify_shot_urls(pkg, verbose=verbose)
 
     visuals = extract_visuals_llm(script, title=title)
     used_llm = visuals is not None
