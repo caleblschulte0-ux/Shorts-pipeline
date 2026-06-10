@@ -142,7 +142,8 @@ Reference: `state/trending_packages/20260531/*.json`.
 | `"quake"` | City + live seismograph ramping to rupture (earthquake/tsunami) |
 | `"runner"` | Critter sprinting over fences/rocks/logs (animal escapes) |
 | `"stacker"` | Blocks snapping onto a record-chasing tower (world records, builds) |
-| `"fight"` | Speed bag on real rope physics (UFC/boxing/combat stories) |
+| `"fight"` | Red vs blue orbs clashing in an octagon (UFC/boxing/combat) |
+| `"train"` | Armored night train, churning rods + parallax (rail, summits) |
 | `"rain"` | Storm streaks + lightning bolts (generic weather) |
 | `"ocean"` | Fish + bubbles + god rays (marine stories) |
 | `"coins"` | Gold plinko cascade (markets / money stories) |
