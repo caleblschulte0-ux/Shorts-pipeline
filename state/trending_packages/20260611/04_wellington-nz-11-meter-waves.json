@@ -1,0 +1,113 @@
+{
+  "version": 8,
+  "slug": "wellington-nz-11-meter-waves",
+  "title": "Wellington Declared a State of Emergency as 11-Meter Waves Hit the Coast",
+  "hashtags": [
+    "wellington",
+    "newzealand",
+    "stateofemergency",
+    "bigwaves",
+    "naturaldisaster",
+    "evacuation",
+    "wellingtonstorm",
+    "islandbay",
+    "owhirobay",
+    "wellingtonweather",
+    "civildefence",
+    "coastalevacuation",
+    "wairarapa",
+    "extremeweather"
+  ],
+  "script": "Waves swamped a capital city? On June 8, New Zealand's capital Wellington declared a state of emergency after forecasts showed waves up to 10 meters — 33 feet — slamming the south coast. Hundreds of residents in Owhiro Bay, Island Bay, Houghton Bay, and Breaker Bay were told to evacuate immediately. Wind gusts hit 128 kilometers per hour at Wellington Airport, canceling dozens of flights. The largest recorded wave peaked at 10.9 meters — nearly 36 feet — off the Wairarapa coast. Coastlines flooded. Roads closed. A Civil Defence controller said the swells were far higher than anything Wellington had seen in years. By June 9, the state of emergency was lifted and residents began returning home. Was Wellington's south coast built to handle swells like this?",
+  "shots": [
+    {
+      "phrase": "Waves swamped a capital city",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Wellington,_New_Zealand.JPG",
+      "query": "Wellington New Zealand capital city harbor coast aerial view"
+    },
+    {
+      "phrase": "New Zealand's capital Wellington declared a state of emergency",
+      "query": "New Zealand Wellington city hall emergency declaration Civil Defence"
+    },
+    {
+      "phrase": "waves up to 10 meters — 33 feet — slamming the south coast",
+      "query": "enormous ocean waves crashing rocky coastline storm sea surge"
+    },
+    {
+      "phrase": "residents in Owhiro Bay, Island Bay, Houghton Bay, and Breaker Bay",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Island_Bay,_Wellington.jpg",
+      "query": "Wellington south coast bay residential homes ocean New Zealand"
+    },
+    {
+      "phrase": "were told to evacuate immediately",
+      "query": "evacuation order residents leaving homes emergency coastal storm"
+    },
+    {
+      "phrase": "Wind gusts hit 128 kilometers per hour at Wellington Airport",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wellington_International_Airport_aerial.jpg",
+      "query": "Wellington Airport flights cancelled wind storm runway New Zealand"
+    },
+    {
+      "phrase": "canceling dozens of flights",
+      "query": "airport cancellation board flights grounded storm wind closed"
+    },
+    {
+      "phrase": "largest recorded wave peaked at 10.9 meters",
+      "query": "ocean wave measurement buoy 10 meters tall storm extreme"
+    },
+    {
+      "phrase": "off the Wairarapa coast",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wairarapa_coast_New_Zealand.jpg",
+      "query": "Wairarapa coast New Zealand rugged southern sea cliffs waves"
+    },
+    {
+      "phrase": "Coastlines flooded. Roads closed",
+      "query": "flooded coastal road closed storm surge water street damage"
+    },
+    {
+      "phrase": "state of emergency was lifted and residents began returning home",
+      "query": "residents returning home after emergency lifted coastal suburb"
+    },
+    {
+      "phrase": "Was Wellington's south coast built to handle swells like this",
+      "query": "coastal infrastructure seawall Wellington rocky coast ocean protection"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Waves swamped a capital city",
+      "text": "CAPITAL EVACUATED",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "waves up to 10 meters — 33 feet",
+      "text": "33-FOOT WAVES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "128 kilometers per hour at Wellington Airport",
+      "text": "128 KPH GUSTS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "10.9 meters",
+      "text": "10.9M PEAK WAVE",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "state of emergency was lifted",
+      "text": "EMERGENCY LIFTED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Was Wellington's south coast built to handle swells like this",
+      "text": "BUILT FOR THIS?",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto",
+  "gameplay": "subway"
+}
