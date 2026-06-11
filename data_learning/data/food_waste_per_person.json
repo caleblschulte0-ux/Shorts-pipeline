@@ -1,0 +1,32 @@
+{
+  "key": "food_waste_per_person",
+  "title": "Food wasted per person per year (lbs)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2000-2024 (annual)",
+  "source": {
+    "name": "Per-capita food waste",
+    "publisher": "U.S. Department of Agriculture (USDA)",
+    "url": "https://www.usda.gov",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 240,
+      "period": "2000"
+    },
+    {
+      "label": "2010",
+      "value": 290,
+      "period": "2010"
+    },
+    {
+      "label": "2024",
+      "value": 325,
+      "period": "2024"
+    }
+  ]
+}

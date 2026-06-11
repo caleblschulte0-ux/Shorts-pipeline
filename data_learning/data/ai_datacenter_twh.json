@@ -1,0 +1,42 @@
+{
+  "key": "ai_datacenter_twh",
+  "title": "Global data-center electricity use (TWh/yr)",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "2018-2026 (annual)",
+  "source": {
+    "name": "Global data centre electricity demand",
+    "publisher": "International Energy Agency (IEA)",
+    "url": "https://www.iea.org",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 200,
+      "period": "2018"
+    },
+    {
+      "label": "2020",
+      "value": 240,
+      "period": "2020"
+    },
+    {
+      "label": "2022",
+      "value": 290,
+      "period": "2022"
+    },
+    {
+      "label": "2024",
+      "value": 415,
+      "period": "2024"
+    },
+    {
+      "label": "2026",
+      "value": 580,
+      "period": "2026"
+    }
+  ]
+}

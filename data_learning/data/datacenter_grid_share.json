@@ -1,0 +1,32 @@
+{
+  "key": "datacenter_grid_share",
+  "title": "Data centers' share of US electricity (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022-2030 (annual)",
+  "source": {
+    "name": "US data center load projections",
+    "publisher": "Electric Power Research Institute (EPRI)",
+    "url": "https://www.epri.com",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2022",
+      "value": 2.5,
+      "period": "2022"
+    },
+    {
+      "label": "2024",
+      "value": 4.4,
+      "period": "2024"
+    },
+    {
+      "label": "2030",
+      "value": 9.0,
+      "period": "2030"
+    }
+  ]
+}

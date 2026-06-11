@@ -1397,237 +1397,233 @@
       ]
     },
     {
-      "slug": "young-and-alone",
-      "title": "Young People Have Never Been This Alone",
-      "hook": "Young people have never been this alone.",
-      "closing": "More connected, lonelier than ever.",
-      "question": "How many times a day do you grab your phone? Drop it below.",
-      "caption": "57% of young adults have never married, Gen Z checks their phone 79 times a day, and 30% of under-30s feel lonely often. Here's how we got here 👇",
+      "slug": "ai-power-hunger",
+      "title": "AI Is Quietly Eating The Power Grid",
+      "hook": "AI is quietly eating the power grid.",
+      "closing": "The cloud has a smokestack.",
+      "question": "Would you give up AI to save power? Tell me below.",
+      "caption": "Data centers burned 200 terawatt-hours in 2018 — now it's 580, and one AI answer uses ~10x a Google search. Here's the hidden cost of the cloud 👇",
       "hashtags": [
-        "loneliness",
-        "genz",
-        "dating",
-        "mentalhealth",
-        "screentime",
-        "society",
+        "ai",
+        "datacenters",
+        "energy",
+        "electricity",
+        "chatgpt",
+        "technology",
+        "powergrid",
+        "climate",
         "data",
-        "trends",
-        "usa",
-        "relationships",
-        "phones",
-        "culture"
+        "iea",
+        "tech",
+        "futures"
       ],
       "segments": [
         {
           "source": "offline",
-          "key": "never_married_25_34",
+          "key": "ai_datacenter_twh",
           "params": {
-            "file": "never_married_25_34.json"
+            "file": "ai_datacenter_twh.json"
           },
           "insight_type": "trend",
-          "role": "1 · SINGLE",
-          "topic": "never-married young adults",
-          "say": "Back in 1980 just 26 percent of young adults had never married. By 2023 it's 57 percent, most are single."
+          "role": "1 · THE LOAD",
+          "topic": "data-center electricity",
+          "say": "Data centers used 200 terawatt hours in 2018. By 2026 it's 580, and AI is the reason."
         },
         {
           "source": "offline",
-          "key": "phone_pickups",
+          "key": "ai_query_energy",
           "params": {
-            "file": "phone_pickups.json"
+            "file": "ai_query_energy.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE SCREEN",
-          "topic": "daily phone pickups",
-          "say": "Gen Z now grabs their phone 79 times a day, so connection happens through a screen, not a person.",
+          "role": "2 · PER ANSWER",
+          "topic": "energy per request",
+          "say": "One AI answer burns about 2.9 watt hours, nearly ten times a Google search at 0.3.",
           "ascending": false
         },
         {
           "source": "offline",
-          "key": "lonely_by_age",
+          "key": "datacenter_grid_share",
           "params": {
-            "file": "lonely_by_age.json"
+            "file": "datacenter_grid_share.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE GRID",
+          "topic": "share of US power",
+          "say": "So their slice of US electricity jumps from 2.5 percent toward 9 percent by 2030."
+        }
+      ]
+    },
+    {
+      "slug": "ev-tipping-point",
+      "title": "Gas Cars Just Hit Their Peak",
+      "hook": "Gas cars just hit their peak.",
+      "closing": "The gas tank is on its way out.",
+      "question": "Would your next car be electric? Drop it below.",
+      "caption": "Battery prices crashed from $780 to ~$100 per kWh, electric hit 24% of new cars, and there are now 300+ models. The tipping point is here 👇",
+      "hashtags": [
+        "ev",
+        "electricvehicles",
+        "batteries",
+        "tesla",
+        "cars",
+        "technology",
+        "transport",
+        "energy",
+        "data",
+        "bnef",
+        "auto",
+        "future"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "battery_cost_kwh",
+          "params": {
+            "file": "battery_cost_kwh.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CRASH",
+          "topic": "battery cost",
+          "say": "Battery costs crashed from 780 dollars per kilowatt hour to about 100."
+        },
+        {
+          "source": "offline",
+          "key": "ev_share_sales",
+          "params": {
+            "file": "ev_share_sales.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE SHIFT",
+          "topic": "electric car share",
+          "say": "So electric jumped to 24 percent of new cars sold, up from just 2 percent."
+        },
+        {
+          "source": "offline",
+          "key": "ev_models_available",
+          "params": {
+            "file": "ev_models_available.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE CHOICE",
+          "topic": "EV models on sale",
+          "say": "And buyers now pick from over 300 models, six times more than a decade ago."
+        }
+      ]
+    },
+    {
+      "slug": "why-flights-are-late",
+      "title": "Flying Got Worse — The Data Proves It",
+      "hook": "Flying got worse. The data proves it.",
+      "closing": "More flyers, same old runways.",
+      "question": "What's your worst flight delay story? Tell me below.",
+      "caption": "Airlines now move 5.2 billion passengers a year, on-time arrivals fell to 74%, and the #1 cause of delays is simply too many planes. Here's why 👇",
+      "hashtags": [
+        "flights",
+        "airtravel",
+        "airlines",
+        "delays",
+        "airport",
+        "travel",
+        "aviation",
+        "data",
+        "bts",
+        "transport",
+        "planes",
+        "summer"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "air_passengers_billion",
+          "params": {
+            "file": "air_passengers_billion.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · MORE FLYERS",
+          "topic": "air passengers",
+          "say": "Airlines now carry 5.2 billion passengers a year, nearly double 2010."
+        },
+        {
+          "source": "offline",
+          "key": "ontime_rate",
+          "params": {
+            "file": "ontime_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · LESS ON TIME",
+          "topic": "on-time arrivals",
+          "say": "On-time arrivals slipped to 74 percent, down from 80."
+        },
+        {
+          "source": "offline",
+          "key": "delay_causes",
+          "params": {
+            "file": "delay_causes.json"
           },
           "insight_type": "rank",
-          "role": "3 · ALONE",
-          "topic": "who feels lonely",
-          "say": "And it shows. 30 percent of 18 to 29 year olds feel lonely often, the highest of any age.",
+          "role": "3 · THE REASON",
+          "topic": "causes of delay",
+          "say": "The biggest cause isn't weather, it's just too many planes, 35 percent of delays.",
           "ascending": false
         }
       ]
     },
     {
-      "slug": "dying-younger",
-      "title": "Americans Are Dying Younger",
-      "hook": "Americans are dying younger now.",
-      "closing": "The richest country, going backwards.",
-      "question": "How many hours do you actually sleep? Tell me below.",
-      "caption": "Obesity hit 45% in the worst state, adults sleep under 7 hours, and US life expectancy fell to 76.4. The richest country is going backwards 👇",
+      "slug": "food-we-throw-away",
+      "title": "A Third Of All Food Is Never Eaten",
+      "hook": "A third of all food is never eaten.",
+      "closing": "We farm it, then we trash it.",
+      "question": "What do you throw out most? Drop it below.",
+      "caption": "Most food waste isn't farms — 43% happens in our own homes. The average American trashes 325 lbs a year, worth $310 billion. Here's the breakdown 👇",
       "hashtags": [
-        "health",
-        "obesity",
-        "sleep",
-        "lifeexpectancy",
-        "wellness",
-        "america",
+        "foodwaste",
+        "food",
+        "sustainability",
+        "groceries",
+        "environment",
+        "kitchen",
+        "waste",
         "data",
-        "cdc",
-        "trends",
-        "usa",
-        "aging",
-        "publichealth"
+        "usda",
+        "climate",
+        "cooking",
+        "leftovers"
       ],
       "segments": [
         {
           "source": "offline",
-          "key": "obesity_by_state",
+          "key": "food_waste_where",
           "params": {
-            "file": "obesity_by_state.json"
+            "file": "food_waste_where.json"
           },
           "insight_type": "rank",
-          "role": "1 · HEAVIER",
-          "topic": "adult obesity rate",
-          "say": "In West Virginia 45.3 percent of adults are now obese, the worst in the nation.",
+          "role": "1 · WHERE",
+          "topic": "where waste happens",
+          "say": "Most waste isn't farms, it's us. 43 percent happens in our own homes.",
           "ascending": false
         },
         {
           "source": "offline",
-          "key": "sleep_hours_by_age",
+          "key": "food_waste_per_person",
           "params": {
-            "file": "sleep_hours_by_age.json"
-          },
-          "insight_type": "rank",
-          "role": "2 · NO REST",
-          "topic": "nightly sleep",
-          "say": "And nobody rests. 25 to 34 year olds get just 6.7 hours a night.",
-          "ascending": true
-        },
-        {
-          "source": "offline",
-          "key": "us_life_expectancy",
-          "params": {
-            "file": "us_life_expectancy.json"
+            "file": "food_waste_per_person.json"
           },
           "insight_type": "trend",
-          "role": "3 · SHORTER",
-          "topic": "US life expectancy",
-          "say": "So for the first time in decades life expectancy fell, from 78.8 years to 76.4."
-        }
-      ]
-    },
-    {
-      "slug": "everything-costs-more",
-      "title": "Your Money Buys Way Less Now",
-      "hook": "Your money buys way less now.",
-      "closing": "Wages didn't get the memo.",
-      "question": "What's gotten most expensive for you? Drop it below.",
-      "caption": "Childcare is up 31% since 2020, car insurance nearly doubled to $2,460, and credit card late payments hit a 14-year high. The squeeze is real 👇",
-      "hashtags": [
-        "inflation",
-        "costofliving",
-        "money",
-        "economy",
-        "prices",
-        "insurance",
-        "data",
-        "fred",
-        "usa",
-        "personalfinance",
-        "wages",
-        "budget"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "cost_vs_wage",
-          "params": {
-            "file": "cost_vs_wage.json"
-          },
-          "insight_type": "rank",
-          "role": "1 · PRICES",
-          "topic": "price rise since 2020",
-          "say": "Since 2020 childcare is up 31 percent and rent up 27 percent, all faster than paychecks.",
-          "ascending": false
+          "role": "2 · HOW MUCH",
+          "topic": "food wasted per person",
+          "say": "The average American now tosses 325 pounds of food a year."
         },
         {
           "source": "offline",
-          "key": "auto_insurance_premium",
+          "key": "food_waste_value",
           "params": {
-            "file": "auto_insurance_premium.json"
+            "file": "food_waste_value.json"
           },
           "insight_type": "trend",
-          "role": "2 · INSURANCE",
-          "topic": "car insurance",
-          "say": "Even car insurance nearly doubled, from 1,190 dollars a year to 2,460."
-        },
-        {
-          "source": "offline",
-          "key": "cc_delinquency",
-          "params": {
-            "file": "cc_delinquency.json"
-          },
-          "insight_type": "trend",
-          "role": "3 · BEHIND",
-          "topic": "credit card delinquency",
-          "say": "So people fall behind. Late payments hit 3.9 percent, the highest in over a decade."
-        }
-      ]
-    },
-    {
-      "slug": "ocean-vs-space",
-      "title": "We Know Space Better Than Our Oceans",
-      "hook": "We know space better than Earth's oceans.",
-      "closing": "The real final frontier is underwater.",
-      "question": "Ocean or space, which should we explore first? Tell me.",
-      "caption": "We've mapped just 25% of our own seafloor, crowded orbit with 8,400 satellites, and found 4,300 planets light-years away. We're looking the wrong way 👇",
-      "hashtags": [
-        "ocean",
-        "space",
-        "science",
-        "exoplanets",
-        "satellites",
-        "exploration",
-        "data",
-        "nasa",
-        "earth",
-        "starlink",
-        "astronomy",
-        "deepsea"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "seafloor_mapped_time",
-          "params": {
-            "file": "seafloor_mapped_time.json"
-          },
-          "insight_type": "trend",
-          "role": "1 · UNMAPPED",
-          "topic": "seafloor mapped",
-          "say": "We've mapped only 25 percent of our own ocean floor in detail. In 2017 it was just 6 percent."
-        },
-        {
-          "source": "offline",
-          "key": "satellite_type_share",
-          "params": {
-            "file": "satellite_type_share.json"
-          },
-          "insight_type": "rank",
-          "role": "2 · CROWDED ORBIT",
-          "topic": "satellites by type",
-          "say": "Meanwhile we crowded orbit. 62 percent of active satellites are just internet beamers like Starlink.",
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "exoplanet_detection_methods",
-          "params": {
-            "file": "exoplanet_detection_methods.json"
-          },
-          "insight_type": "rank",
-          "role": "3 · FAR AWAY",
-          "topic": "exoplanets by method",
-          "say": "And far out there one trick found almost everything, 4,300 planets by the transit method alone.",
-          "ascending": false
+          "role": "3 · THE COST",
+          "topic": "value wasted",
+          "say": "That adds up to about 310 billion dollars scraped straight into the trash."
         }
       ]
     }

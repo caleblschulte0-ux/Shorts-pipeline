@@ -1,0 +1,32 @@
+{
+  "key": "ev_models_available",
+  "title": "Electric vehicle models on sale",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "2016-2026 (annual)",
+  "source": {
+    "name": "Available EV model count",
+    "publisher": "International Energy Agency (IEA)",
+    "url": "https://www.iea.org",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2016",
+      "value": 50,
+      "period": "2016"
+    },
+    {
+      "label": "2020",
+      "value": 150,
+      "period": "2020"
+    },
+    {
+      "label": "2026",
+      "value": 300,
+      "period": "2026"
+    }
+  ]
+}

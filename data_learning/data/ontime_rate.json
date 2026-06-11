@@ -1,0 +1,32 @@
+{
+  "key": "ontime_rate",
+  "title": "On-time arrival rate (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2019-2024 (annual)",
+  "source": {
+    "name": "On-time performance",
+    "publisher": "U.S. Bureau of Transportation Statistics",
+    "url": "https://www.bts.gov",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 80,
+      "period": "2019"
+    },
+    {
+      "label": "2022",
+      "value": 76,
+      "period": "2022"
+    },
+    {
+      "label": "2024",
+      "value": 74,
+      "period": "2024"
+    }
+  ]
+}
