@@ -1255,6 +1255,18 @@ def build_timed_top(
                                   f"{img['title'][:50]!r} ({fill:.1f}s)")
                 if not placed:
                     break
+        elif image_clip and image_clip.get("source") in ("image", "news_funnel"):
+            # A TRUSTED, on-topic still: an operator-supplied image_url or
+            # the news-image funnel's verified photo. Hold it for the WHOLE
+            # shot with a slow Ken Burns pan and never cut away to generic
+            # stock. Capping it at 4s and filling the rest with a loosely
+            # keyword-matched stock clip was exactly the "irrelevant footage
+            # + random cut" the viewer complained about — a curated photo
+            # would flip to an unrelated fisherman/skyline clip mid-sentence.
+            # One steady, beat-long hold per shot reads as a clean news
+            # explainer instead of a stock montage.
+            plan.append((image_clip, seg_dur))
+            remaining = 0.0
         elif image_clip and has_stock:
             image_dur = min(IMAGE_MAX_DUR, seg_dur)
             plan.append((image_clip, image_dur))
