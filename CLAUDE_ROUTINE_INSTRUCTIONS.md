@@ -258,12 +258,12 @@ Never use wordmark-only logos (composite as PowerPoint slides). Never use
 
 # Part 2 — Data-graph explainer stories (Short_explainer channel)
 
-After the trending batch above, ALSO author **exactly 3 brand-new data-graph
-explainer stories** for the **Short_explainer** channel. Three a day, posted
+After the trending batch above, ALSO author **exactly 4 brand-new data-graph
+explainer stories** for the **Short_explainer** channel. Four a day, posted
 spaced ~6 hours apart — a steady, un-spammy cadence (a young channel that
-firehoses uploads gets throttled). Of the 3, **at most 1 may be finance/money**
-— the other 2 come from the non-money buckets below. Vary the topics so it's
-not three flavors of the same subject.
+firehoses uploads gets throttled). Of the 4, **at most 1 may be finance/money**
+— the other 3 come from the non-money buckets below. Vary the topics so it's
+not four flavors of the same subject.
 
 These are a DIFFERENT format from the packages in Part 1: chart-driven
 "X in 3 Charts" breakdowns rendered by `data_learning/studio_render.py`
@@ -344,7 +344,7 @@ to be verified for custom thumbnails; if not, it's skipped without failing.)
   economy, tech & the internet, business, demographics, science, health,
   housing, energy, transport, media, money, culture. Evergreen-ish — not tied
   to a single breaking headline.
-- **VARIETY RULE — at least 1 in 3 stories must NOT be money/economics.** The
+- **VARIETY RULE — at least 3 of the 4 stories must NOT be money/economics.** The
   channel drifts hard toward personal finance (prices, wages, debt, housing).
   Resist it. Every batch needs a non-money data story, and ideally the daily
   slate spans different worlds. Tons of great stats stories have nothing to do
