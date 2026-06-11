@@ -1,0 +1,120 @@
+{
+  "version": 8,
+  "slug": "us-iran-apache-helicopter-strikes",
+  "title": "Iran Shot Down a US Apache Near Hormuz. Now Both Sides Are Striking.",
+  "hashtags": [
+    "iran",
+    "usiran",
+    "apache",
+    "straitofhormuz",
+    "hormuz",
+    "military",
+    "centcom",
+    "bahrain",
+    "kuwait",
+    "jordan",
+    "middleeast",
+    "worldnews",
+    "breakingnews",
+    "usmilitary"
+  ],
+  "script": "Iran shot down who?! On June 9, an Iranian missile hit a US Army AH-64 Apache helicopter patrolling near the Strait of Hormuz. Both pilots were rescued by drone boat — they survived. But the US wasn't done. CENTCOM launched airstrikes on Iranian air defense systems, radar sites, and ground control stations along the southern coast of Iran. Iran then fired back — targeting US military bases in Bahrain, Kuwait, and Jordan with drones and missiles. Trump said the US will continue striking Iran. It's the most direct exchange of fire between the 2 nations in years. A ceasefire was officially in place but has now suffered multiple violations. All this because of 1 helicopter over the Strait of Hormuz — the world's most critical oil lane. Will Iran and the US find a way back to the ceasefire, or is this spiraling?",
+  "shots": [
+    {
+      "phrase": "Iran shot down who",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/AH-64_Apache_Iraqi_Freedom.JPG",
+      "query": "AH-64 Apache attack helicopter US Army flying military"
+    },
+    {
+      "phrase": "Iranian missile hit a US Army AH-64 Apache helicopter",
+      "query": "Iranian missile launch anti-aircraft military surface to air"
+    },
+    {
+      "phrase": "patrolling near the Strait of Hormuz",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz.jpg",
+      "query": "Strait of Hormuz satellite map aerial Middle East waterway oil tanker"
+    },
+    {
+      "phrase": "Both pilots were rescued by drone boat — they survived",
+      "query": "military rescue boat drone unmanned vessel ocean sea rescue"
+    },
+    {
+      "phrase": "CENTCOM launched airstrikes on Iranian air defense systems",
+      "query": "US military airstrike jets fighter aircraft Iran Middle East"
+    },
+    {
+      "phrase": "radar sites, and ground control stations along the southern coast of Iran",
+      "query": "military radar station installation air defense Iran southern coast"
+    },
+    {
+      "phrase": "Iran then fired back — targeting US military bases in Bahrain, Kuwait, and Jordan",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bahrain_skyline.jpg",
+      "query": "Bahrain Kuwait Jordan US military base attack drone missile"
+    },
+    {
+      "phrase": "drones and missiles",
+      "query": "military drone missile launch explosion Middle East military strike"
+    },
+    {
+      "phrase": "Trump said the US will continue striking Iran",
+      "query": "White House press briefing announcement military response Iran statement"
+    },
+    {
+      "phrase": "most direct exchange of fire between the 2 nations in years",
+      "query": "Iran US military conflict exchange fire Middle East escalation"
+    },
+    {
+      "phrase": "ceasefire was officially in place but has now suffered multiple violations",
+      "query": "ceasefire broken violated peace agreement collapse negotiations"
+    },
+    {
+      "phrase": "most critical oil lane",
+      "query": "oil tanker ships Strait Hormuz Persian Gulf passage energy supply"
+    },
+    {
+      "phrase": "Will Iran and the US find a way back to the ceasefire, or is this spiraling",
+      "query": "diplomatic talks ceasefire negotiations US Iran tensions escalate"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Iran shot down who",
+      "text": "APACHE SHOT DOWN",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "Both pilots were rescued by drone boat — they survived",
+      "text": "PILOTS SAFE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "CENTCOM launched airstrikes",
+      "text": "US STRIKES IRAN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Iran then fired back",
+      "text": "IRAN FIRES BACK",
+      "color": "#ff3030",
+      "flash_bg": "#220404"
+    },
+    {
+      "phrase": "targeting US military bases in Bahrain, Kuwait, and Jordan",
+      "text": "3 NATIONS HIT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "most direct exchange of fire between the 2 nations in years",
+      "text": "BIGGEST IN YEARS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "is this spiraling",
+      "text": "SPIRALING?",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "gameplay": "subway"
+}
