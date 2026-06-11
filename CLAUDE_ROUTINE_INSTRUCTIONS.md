@@ -383,6 +383,22 @@ to be verified for custom thumbnails; if not, it's skipped without failing.)
     roughly sums to the total — e.g. types making up a population, where the
     spending goes). Don't use a pie for overlapping or non-exhaustive lists.
   Aim for at least two different chart types per story.
+- **NO REPEAT TOPICS — not just slugs.** The channel has shipped near-dupes
+  (a second "ocean vs space", another "loneliness") because the old rule only
+  checked slugs. A new story must be a genuinely new SUBJECT, and it must use
+  NEW data — recombining leftover data files usually just re-tells a subject
+  that's already covered. Before writing each one, run the guard and avoid
+  anything it flags:
+  ```bash
+  python3 scripts/topic_guard.py --list                         # every subject already done
+  python3 scripts/topic_guard.py --check "<your title>" tag1 tag2 tag3   # exits 1 if too close
+  ```
+  Already covered (do NOT re-tell): housing/rent, groceries/food prices, credit
+  card debt, wages, jobs, cost-of-living, healthcare costs, student loans,
+  retirement, car costs, exoplanets, causes of death, wildlife, rate hikes,
+  obesity, sleep, marriage age, subscriptions, oceans, loneliness, attention
+  span, rocket launches, birth rate, tipping, AI/data-center power, EVs, flight
+  delays, food waste. Pull from a DIFFERENT world (see the non-money buckets).
 - Don't reuse a `slug` already in `niche.config.json` (grep first).
 
 ## EXPLAIN one thing (this is the whole brand)
