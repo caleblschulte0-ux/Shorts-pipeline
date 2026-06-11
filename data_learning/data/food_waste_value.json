@@ -1,0 +1,27 @@
+{
+  "key": "food_waste_value",
+  "title": "Value of US food wasted ($ billion/yr)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2010-2024 (annual)",
+  "source": {
+    "name": "Cost of food waste",
+    "publisher": "ReFED",
+    "url": "https://www.refed.org",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 160,
+      "period": "2010"
+    },
+    {
+      "label": "2024",
+      "value": 310,
+      "period": "2024"
+    }
+  ]
+}

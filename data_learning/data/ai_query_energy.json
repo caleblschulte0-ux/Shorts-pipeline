@@ -1,0 +1,25 @@
+{
+  "key": "ai_query_energy",
+  "title": "Energy per online request (watt-hours)",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Energy per query estimates",
+    "publisher": "International Energy Agency (IEA)",
+    "url": "https://www.iea.org",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "AI chatbot answer",
+      "value": 2.9
+    },
+    {
+      "label": "Google search",
+      "value": 0.3
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "key": "food_waste_where",
+  "title": "Where food waste happens (% of total)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Food waste by sector",
+    "publisher": "ReFED",
+    "url": "https://www.refed.org",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Homes",
+      "value": 43
+    },
+    {
+      "label": "Food service",
+      "value": 18
+    },
+    {
+      "label": "Farms",
+      "value": 16
+    },
+    {
+      "label": "Retail",
+      "value": 13
+    },
+    {
+      "label": "Manufacturing",
+      "value": 10
+    }
+  ]
+}

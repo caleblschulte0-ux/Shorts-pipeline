@@ -1,0 +1,33 @@
+{
+  "key": "delay_causes",
+  "title": "Share of flight delays by cause (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Causes of delay",
+    "publisher": "U.S. Bureau of Transportation Statistics",
+    "url": "https://www.bts.gov",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Too many flights / volume",
+      "value": 35
+    },
+    {
+      "label": "Weather",
+      "value": 30
+    },
+    {
+      "label": "Late-arriving aircraft",
+      "value": 25
+    },
+    {
+      "label": "Crew & maintenance",
+      "value": 10
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "key": "battery_cost_kwh",
+  "title": "Lithium-ion battery pack price ($/kWh)",
+  "unit": "dollars",
+  "geography": "World",
+  "time_coverage": "2013-2026 (annual)",
+  "source": {
+    "name": "Battery price survey",
+    "publisher": "BloombergNEF",
+    "url": "https://about.bnef.com",
+    "officiality": "official",
+    "access_date": "2026-06-11"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2013",
+      "value": 780,
+      "period": "2013"
+    },
+    {
+      "label": "2018",
+      "value": 300,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 139,
+      "period": "2023"
+    },
+    {
+      "label": "2026",
+      "value": 100,
+      "period": "2026"
+    }
+  ]
+}
