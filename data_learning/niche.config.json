@@ -1395,6 +1395,241 @@
           "say": "Stack it up. Americans tipped 66 billion dollars in 2010; by 2025 it's 120 billion, a 54 billion increase we never voted on."
         }
       ]
+    },
+    {
+      "slug": "young-and-alone",
+      "title": "Young People Have Never Been This Alone",
+      "hook": "Young people have never been this alone.",
+      "closing": "More connected, lonelier than ever.",
+      "question": "How many times a day do you grab your phone? Drop it below.",
+      "caption": "57% of young adults have never married, Gen Z checks their phone 79 times a day, and 30% of under-30s feel lonely often. Here's how we got here 👇",
+      "hashtags": [
+        "loneliness",
+        "genz",
+        "dating",
+        "mentalhealth",
+        "screentime",
+        "society",
+        "data",
+        "trends",
+        "usa",
+        "relationships",
+        "phones",
+        "culture"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "never_married_25_34",
+          "params": {
+            "file": "never_married_25_34.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SINGLE",
+          "topic": "never-married young adults",
+          "say": "Back in 1980 just 26 percent of young adults had never married. By 2023 it's 57 percent, most are single."
+        },
+        {
+          "source": "offline",
+          "key": "phone_pickups",
+          "params": {
+            "file": "phone_pickups.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE SCREEN",
+          "topic": "daily phone pickups",
+          "say": "Gen Z now grabs their phone 79 times a day, so connection happens through a screen, not a person.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "lonely_by_age",
+          "params": {
+            "file": "lonely_by_age.json"
+          },
+          "insight_type": "rank",
+          "role": "3 · ALONE",
+          "topic": "who feels lonely",
+          "say": "And it shows. 30 percent of 18 to 29 year olds feel lonely often, the highest of any age.",
+          "ascending": false
+        }
+      ]
+    },
+    {
+      "slug": "dying-younger",
+      "title": "Americans Are Dying Younger",
+      "hook": "Americans are dying younger now.",
+      "closing": "The richest country, going backwards.",
+      "question": "How many hours do you actually sleep? Tell me below.",
+      "caption": "Obesity hit 45% in the worst state, adults sleep under 7 hours, and US life expectancy fell to 76.4. The richest country is going backwards 👇",
+      "hashtags": [
+        "health",
+        "obesity",
+        "sleep",
+        "lifeexpectancy",
+        "wellness",
+        "america",
+        "data",
+        "cdc",
+        "trends",
+        "usa",
+        "aging",
+        "publichealth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "obesity_by_state",
+          "params": {
+            "file": "obesity_by_state.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · HEAVIER",
+          "topic": "adult obesity rate",
+          "say": "In West Virginia 45.3 percent of adults are now obese, the worst in the nation.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "sleep_hours_by_age",
+          "params": {
+            "file": "sleep_hours_by_age.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · NO REST",
+          "topic": "nightly sleep",
+          "say": "And nobody rests. 25 to 34 year olds get just 6.7 hours a night.",
+          "ascending": true
+        },
+        {
+          "source": "offline",
+          "key": "us_life_expectancy",
+          "params": {
+            "file": "us_life_expectancy.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · SHORTER",
+          "topic": "US life expectancy",
+          "say": "So for the first time in decades life expectancy fell, from 78.8 years to 76.4."
+        }
+      ]
+    },
+    {
+      "slug": "everything-costs-more",
+      "title": "Your Money Buys Way Less Now",
+      "hook": "Your money buys way less now.",
+      "closing": "Wages didn't get the memo.",
+      "question": "What's gotten most expensive for you? Drop it below.",
+      "caption": "Childcare is up 31% since 2020, car insurance nearly doubled to $2,460, and credit card late payments hit a 14-year high. The squeeze is real 👇",
+      "hashtags": [
+        "inflation",
+        "costofliving",
+        "money",
+        "economy",
+        "prices",
+        "insurance",
+        "data",
+        "fred",
+        "usa",
+        "personalfinance",
+        "wages",
+        "budget"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "cost_vs_wage",
+          "params": {
+            "file": "cost_vs_wage.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · PRICES",
+          "topic": "price rise since 2020",
+          "say": "Since 2020 childcare is up 31 percent and rent up 27 percent, all faster than paychecks.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "auto_insurance_premium",
+          "params": {
+            "file": "auto_insurance_premium.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · INSURANCE",
+          "topic": "car insurance",
+          "say": "Even car insurance nearly doubled, from 1,190 dollars a year to 2,460."
+        },
+        {
+          "source": "offline",
+          "key": "cc_delinquency",
+          "params": {
+            "file": "cc_delinquency.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · BEHIND",
+          "topic": "credit card delinquency",
+          "say": "So people fall behind. Late payments hit 3.9 percent, the highest in over a decade."
+        }
+      ]
+    },
+    {
+      "slug": "ocean-vs-space",
+      "title": "We Know Space Better Than Our Oceans",
+      "hook": "We know space better than Earth's oceans.",
+      "closing": "The real final frontier is underwater.",
+      "question": "Ocean or space, which should we explore first? Tell me.",
+      "caption": "We've mapped just 25% of our own seafloor, crowded orbit with 8,400 satellites, and found 4,300 planets light-years away. We're looking the wrong way 👇",
+      "hashtags": [
+        "ocean",
+        "space",
+        "science",
+        "exoplanets",
+        "satellites",
+        "exploration",
+        "data",
+        "nasa",
+        "earth",
+        "starlink",
+        "astronomy",
+        "deepsea"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "seafloor_mapped_time",
+          "params": {
+            "file": "seafloor_mapped_time.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · UNMAPPED",
+          "topic": "seafloor mapped",
+          "say": "We've mapped only 25 percent of our own ocean floor in detail. In 2017 it was just 6 percent."
+        },
+        {
+          "source": "offline",
+          "key": "satellite_type_share",
+          "params": {
+            "file": "satellite_type_share.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · CROWDED ORBIT",
+          "topic": "satellites by type",
+          "say": "Meanwhile we crowded orbit. 62 percent of active satellites are just internet beamers like Starlink.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "exoplanet_detection_methods",
+          "params": {
+            "file": "exoplanet_detection_methods.json"
+          },
+          "insight_type": "rank",
+          "role": "3 · FAR AWAY",
+          "topic": "exoplanets by method",
+          "say": "And far out there one trick found almost everything, 4,300 planets by the transit method alone.",
+          "ascending": false
+        }
+      ]
     }
   ],
   "videos": [
