@@ -30,7 +30,7 @@ on:
       - '.github/triggers/preview'
 
 permissions:
-  contents: read
+  contents: write   # push rendered mp4s to the preview-renders branch
 
 concurrency:
   # Separate from the daily publish lane so a preview never blocks a real
@@ -118,7 +118,10 @@ jobs:
           IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
           TOPIC_VIDEO_ALLOW_STRIKES: ${{ vars.TOPIC_VIDEO_ALLOW_STRIKES }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
-          COUNT: ${{ github.event.inputs.count || '6' }}
+          # On manual dispatch, honor the input (default 6). On a push
+          # trigger (the .github/triggers/preview bump), render just ONE
+          # video so a quick sample comes back in ~5 min instead of ~30.
+          COUNT: ${{ github.event.inputs.count || '1' }}
         run: |
           echo "Rendering $COUNT package(s) with --dry-run (no upload)"
           python scripts/run_trending_daily.py --count "$COUNT" --dry-run
@@ -128,6 +131,28 @@ jobs:
         run: |
           echo "=== output/ ==="
           ls -lh output/ 2>/dev/null || echo "(no output dir)"
+
+      - name: Publish renders to preview-renders branch
+        # Push the rendered mp4s to a dedicated orphan branch (single,
+        # force-replaced commit — keeps history from accumulating heavy
+        # binaries) so they can be fetched over plain git without the
+        # Actions artifact API / a token. This is what lets the rendered
+        # sample be pulled back and surfaced directly in chat.
+        if: always()
+        run: |
+          ls output/*.mp4 >/dev/null 2>&1 || { echo "no mp4s rendered — skipping"; exit 0; }
+          tmp=$(mktemp -d)
+          cp output/*.mp4 "$tmp"/ 2>/dev/null || true
+          cp output/*.mp4.audit.json "$tmp"/ 2>/dev/null || true
+          cp daily_report.md "$tmp"/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan preview-renders
+          git reset            # unstage everything the orphan inherited
+          cp "$tmp"/* .
+          git add -f *.mp4 *.audit.json daily_report.md 2>/dev/null || true
+          git commit -m "preview render $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
+          git push -f origin preview-renders
 
       - name: Upload rendered videos
         if: always()
