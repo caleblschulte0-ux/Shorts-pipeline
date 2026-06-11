@@ -1059,6 +1059,35 @@ def _check_relevance_gate(audit: list[dict], *,
     )
 
 
+def _coalesce_still_segments(
+        flat: list[tuple[dict, float]]) -> list[tuple[dict, float]]:
+    """Merge consecutive still-image sub-cuts that point at the SAME file
+    into one segment with their durations summed.
+
+    Today's packages reuse a handful of curated photos across many shots
+    (e.g. one scratch-off-ticket photo on six beats). Rendered naively,
+    each beat became its own segment: the Ken Burns pan jumped back to its
+    start and a whoosh fired on every shot boundary, so an unchanging photo
+    looked like a string of random cuts. Collapsing identical back-to-back
+    stills into a single continuous hold removes the resets and the spurious
+    cuts. Total timeline length is unchanged (durations are summed), so the
+    audio/caption sync downstream is unaffected."""
+    merged: list[tuple[dict, float]] = []
+    for clip, dur in flat:
+        if merged:
+            pclip, pdur = merged[-1]
+            same_still = bool(
+                clip.get("is_image") and pclip.get("is_image")
+                and not clip.get("is_placeholder")
+                and not pclip.get("is_placeholder")
+                and clip.get("path") and clip.get("path") == pclip.get("path"))
+            if same_still:
+                merged[-1] = (pclip, pdur + dur)
+                continue
+        merged.append((clip, dur))
+    return merged
+
+
 def build_timed_top(
     shots: list[Shot],
     shot_times: list[float],
@@ -1080,6 +1109,10 @@ def build_timed_top(
 
     all_segments: list[Path] = []
     cut_times: list[float] = []
+    # Sub-cuts are collected here across ALL shots first, then a coalescing
+    # pass merges identical back-to-back stills before rendering (see
+    # _coalesce_still_segments). Rendering deferred out of the shot loop.
+    flat_plan: list[tuple[dict, float]] = []
 
     # How long a still image is allowed to stay on screen before it
     # has to hand off to stock. Matches SUB_CUT_TARGET so video and
@@ -1321,121 +1354,129 @@ def build_timed_top(
                 "sub_cut_count": len(plan),
             })
 
-        # Render each planned sub-cut.
-        sub_t = start_t
-        for j, (clip, dur) in enumerate(plan):
-            sub = workdir / f"top_{i:02d}_{j:02d}.mp4"
+        # Defer rendering: stash this shot's sub-cuts in the global flat
+        # plan. A coalescing pass (after the shot loop) then merges any
+        # still image that repeats across consecutive shots into ONE
+        # continuous Ken Burns hold before rendering.
+        for clip, dur in plan:
+            flat_plan.append((clip, dur))
 
-            if clip.get("is_placeholder"):
-                # No image, no stock — just paint a slate background for
-                # this segment so the timeline doesn't drift.
-                run([
-                    "ffmpeg", "-y", "-loglevel", "error",
-                    "-f", "lavfi", "-i",
-                    f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
-                    "-t", f"{dur:.3f}",
-                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
-                    "-pix_fmt", "yuv420p",
-                    str(sub),
-                ])
-            elif clip.get("is_image"):
-                # Still image — Ken Burns it. Alternate zoom-in vs
-                # zoom-out based on cut index so successive image shots
-                # don't all do the same move. We work at 2x then scale
-                # down inside the zoompan filter so the zoom doesn't
-                # quantize to ugly stair-stepped frames.
-                frames = max(2, int(dur * FPS))
-                move = "zoom_in" if (i + j) % 2 == 0 else "zoom_out"
-                if move == "zoom_in":
-                    z_expr = f"min(zoom+0.0006,1.18)"
-                else:
-                    z_expr = f"if(eq(on,0),1.18,max(zoom-0.0006,1.0))"
-                # Build the frame in two layers. First input is the
-                # image (may have alpha → must NOT become the
-                # background); second is a solid colored canvas of the
-                # correct size we generate on the fly with `color=`.
-                # We overlay the fitted image onto the canvas, then
-                # zoompan that. This guarantees the encoded H.264
-                # frame has no transparent regions even when the
-                # source PNG is a logo with a transparent margin —
-                # the alpha gets composited against the non-black
-                # canvas instead of the H.264 void.
-                bg_color = "0x1f2a3a"  # medium-dark slate blue, clearly NOT black
-                filt = (
-                    f"[1:v]scale={W*2}:{top_h*2}[canvas];"
-                    f"[0:v]scale={W*2}:{top_h*2}:force_original_aspect_ratio=decrease[fg];"
-                    f"[canvas][fg]overlay=(W-w)/2:(H-h)/2:format=auto[stage];"
-                    f"[stage]zoompan=z='{z_expr}'"
-                    f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
-                    f":d={frames}:s={W}x{top_h}:fps={FPS},"
-                    f"setsar=1[out]"
-                )
-                run([
-                    "ffmpeg", "-y", "-loglevel", "error",
-                    "-loop", "1", "-i", clip["path"],
-                    "-f", "lavfi", "-i",
-                    f"color=c={bg_color}:s={W*2}x{top_h*2}:r={FPS}",
-                    "-t", f"{dur:.3f}",
-                    "-filter_complex", filt,
-                    "-map", "[out]",
-                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                    "-pix_fmt", "yuv420p",
-                    str(sub),
-                ])
+    # Merge identical back-to-back stills, then render the merged timeline.
+    merged_plan = _coalesce_still_segments(flat_plan)
+    sub_t = 0.0
+    for idx, (clip, dur) in enumerate(merged_plan):
+        sub = workdir / f"top_{idx:04d}.mp4"
+
+        if clip.get("is_placeholder"):
+            # No image, no stock — just paint a slate background for
+            # this segment so the timeline doesn't drift.
+            run([
+                "ffmpeg", "-y", "-loglevel", "error",
+                "-f", "lavfi", "-i",
+                f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
+                "-t", f"{dur:.3f}",
+                "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+                "-pix_fmt", "yuv420p",
+                str(sub),
+            ])
+        elif clip.get("is_image"):
+            # Still image — Ken Burns it. Alternate zoom-in vs zoom-out
+            # by segment index so successive image shots don't all do the
+            # same move. We work at 2x then scale down inside the zoompan
+            # filter so the zoom doesn't quantize to ugly stair-stepped
+            # frames.
+            frames = max(2, int(dur * FPS))
+            move = "zoom_in" if idx % 2 == 0 else "zoom_out"
+            if move == "zoom_in":
+                z_expr = f"min(zoom+0.0006,1.18)"
             else:
-                clip_dur = float(clip.get("duration") or 10)
-                # Topic-video clips carry their own seek offset (set by
-                # _pick_pool_clip — skips past title cards, telemetry,
-                # and intro dead-air so successive uses of the same
-                # source clip show different moments). Stock clips just
-                # use the existing "vary seek by sub-cut index" logic
-                # to stop showing the same opening frames.
-                # Topic-video pool clips also carry a list of
-                # alternative juicy windows; if the first seek lands
-                # on a black/uniform frame (Range-truncated webm
-                # reporting a longer duration than its actual data),
-                # we retry with the next window.
-                candidates_seek: list[float]
-                if "seek" in clip:
-                    if clip.get("juicy"):
-                        # Sort juicy windows by distance from the
-                        # initially-chosen seek so the retry stays
-                        # close to the requested moment when possible.
-                        primary = float(clip["seek"])
-                        candidates_seek = sorted(
-                            clip["juicy"], key=lambda s: abs(s - primary))
-                    else:
-                        candidates_seek = [float(clip["seek"])]
+                z_expr = f"if(eq(on,0),1.18,max(zoom-0.0006,1.0))"
+            # Build the frame in two layers. First input is the
+            # image (may have alpha → must NOT become the
+            # background); second is a solid colored canvas of the
+            # correct size we generate on the fly with `color=`.
+            # We overlay the fitted image onto the canvas, then
+            # zoompan that. This guarantees the encoded H.264
+            # frame has no transparent regions even when the
+            # source PNG is a logo with a transparent margin —
+            # the alpha gets composited against the non-black
+            # canvas instead of the H.264 void.
+            bg_color = "0x1f2a3a"  # medium-dark slate blue, clearly NOT black
+            filt = (
+                f"[1:v]scale={W*2}:{top_h*2}[canvas];"
+                f"[0:v]scale={W*2}:{top_h*2}:force_original_aspect_ratio=decrease[fg];"
+                f"[canvas][fg]overlay=(W-w)/2:(H-h)/2:format=auto[stage];"
+                f"[stage]zoompan=z='{z_expr}'"
+                f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+                f":d={frames}:s={W}x{top_h}:fps={FPS},"
+                f"setsar=1[out]"
+            )
+            run([
+                "ffmpeg", "-y", "-loglevel", "error",
+                "-loop", "1", "-i", clip["path"],
+                "-f", "lavfi", "-i",
+                f"color=c={bg_color}:s={W*2}x{top_h*2}:r={FPS}",
+                "-t", f"{dur:.3f}",
+                "-filter_complex", filt,
+                "-map", "[out]",
+                "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                "-pix_fmt", "yuv420p",
+                str(sub),
+            ])
+        else:
+            clip_dur = float(clip.get("duration") or 10)
+            # Topic-video clips carry their own seek offset (set by
+            # _pick_pool_clip — skips past title cards, telemetry,
+            # and intro dead-air so successive uses of the same
+            # source clip show different moments). Stock clips just
+            # use the existing "vary seek by sub-cut index" logic
+            # to stop showing the same opening frames.
+            # Topic-video pool clips also carry a list of
+            # alternative juicy windows; if the first seek lands
+            # on a black/uniform frame (Range-truncated webm
+            # reporting a longer duration than its actual data),
+            # we retry with the next window.
+            candidates_seek: list[float]
+            if "seek" in clip:
+                if clip.get("juicy"):
+                    # Sort juicy windows by distance from the
+                    # initially-chosen seek so the retry stays
+                    # close to the requested moment when possible.
+                    primary = float(clip["seek"])
+                    candidates_seek = sorted(
+                        clip["juicy"], key=lambda s: abs(s - primary))
                 else:
-                    candidates_seek = [0.3 + j * 1.5]
+                    candidates_seek = [float(clip["seek"])]
+            else:
+                candidates_seek = [0.3 + idx * 1.5]
 
-                rendered = False
-                for attempt, seek in enumerate(candidates_seek[:3]):
-                    seek = min(seek, max(0.0, clip_dur - dur - 0.3))
-                    run([
-                        "ffmpeg", "-y", "-loglevel", "error",
-                        "-ss", f"{seek:.3f}", "-i", clip["path"],
-                        "-t", f"{dur:.3f}",
-                        "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
-                               f"crop={W}:{top_h},setsar=1,fps={FPS}",
-                        "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                        str(sub),
-                    ])
-                    if _sub_cut_is_blank(sub):
-                        print(f"      [sub-cut blank @ seek={seek:.1f}s, "
-                              f"retry {attempt+1}/3] {Path(clip['path']).name}")
-                        continue
-                    rendered = True
-                    break
-                # If every juicy window on this clip rendered blank,
-                # we keep the last attempt rather than dropping the
-                # sub-cut — better a weak frame than a missing one in
-                # the timeline.
-                if not rendered:
-                    print(f"      [sub-cut all retries blank, keeping last attempt]")
-            all_segments.append(sub)
-            cut_times.append(sub_t)
-            sub_t += dur
+            rendered = False
+            for attempt, seek in enumerate(candidates_seek[:3]):
+                seek = min(seek, max(0.0, clip_dur - dur - 0.3))
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-ss", f"{seek:.3f}", "-i", clip["path"],
+                    "-t", f"{dur:.3f}",
+                    "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
+                           f"crop={W}:{top_h},setsar=1,fps={FPS}",
+                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                    str(sub),
+                ])
+                if _sub_cut_is_blank(sub):
+                    print(f"      [sub-cut blank @ seek={seek:.1f}s, "
+                          f"retry {attempt+1}/3] {Path(clip['path']).name}")
+                    continue
+                rendered = True
+                break
+            # If every juicy window on this clip rendered blank,
+            # we keep the last attempt rather than dropping the
+            # sub-cut — better a weak frame than a missing one in
+            # the timeline.
+            if not rendered:
+                print(f"      [sub-cut all retries blank, keeping last attempt]")
+        all_segments.append(sub)
+        cut_times.append(sub_t)
+        sub_t += dur
 
     list_file = workdir / "top_list.txt"
     list_file.write_text("\n".join(f"file '{s}'" for s in all_segments))
