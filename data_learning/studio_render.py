@@ -408,11 +408,11 @@ def synth_narration(sentences, workdir: Path, voice: str):
         voice = "am_fenrir"
     wavs, windows, t = [], [], 0.0
     for i, sent in enumerate(sentences):
-        samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.04,
+        samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.10,
                                lang="en-us")
         w = workdir / f"s{i}.wav"
         sf.write(str(w), samples, sr)
-        d = _dur(w) + 0.18           # small breath between lines
+        d = _dur(w) + 0.12           # tight breath between lines (pace = retention)
         windows.append((t, t + d))
         t += d
         wavs.append(w)
@@ -449,6 +449,134 @@ def _wrap(text: str, width: int = 22) -> str:
     if line:
         out.append(line)
     return "\\N".join(out)
+
+
+# --------------------------------------------------------------------------
+# Custom thumbnail — packaging. YouTube otherwise auto-picks a mid-video chart
+# frame that mismatches the title (a "fewer kids" video showing a "cost to
+# raise a child" chart). We render a purpose-built 1280x720 card from the same
+# per-video theme: the hook as the claim + the single biggest on-chart number
+# as a giant accent, so the channel grid reads as one coherent brand and the
+# thumbnail always matches the title.
+# --------------------------------------------------------------------------
+THUMB_W, THUMB_H = 1280, 720
+
+
+def _font(size: int, bold: bool = True):
+    """DejaVu Sans (Bold) — bundled with matplotlib, so it's guaranteed to
+    exist wherever the renderer runs (CI included) and matches the burned-in
+    caption font for a consistent look."""
+    import matplotlib
+    from PIL import ImageFont
+    name = "DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf"
+    path = Path(matplotlib.get_data_path()) / "fonts" / "ttf" / name
+    return ImageFont.truetype(str(path), size)
+
+
+def _num_magnitude(text: str) -> float:
+    """Parse the numeric magnitude out of a punch label like '1,920', '200%'
+    or '$50.4' so we can pick the most striking number for the thumbnail."""
+    m = re.search(r"-?[\d,]*\.?\d+", text.replace(",", ""))
+    return abs(float(m.group())) if m else -1.0
+
+
+def _headline_number(st: "story.Story") -> str | None:
+    """The single most eye-catching on-chart number across the story —
+    the biggest-magnitude punch label. None if the story has no punches."""
+    best, best_mag = None, -1.0
+    for seg in st.segments:
+        for p in seg.punches:
+            t = (p.get("text") or "").strip()
+            if not t:
+                continue
+            mag = _num_magnitude(t)
+            if mag > best_mag:
+                best, best_mag = t, mag
+    return best
+
+
+def _vgradient(top_hex: str, bot_hex: str):
+    """A vertical gradient Image from two '0xRRGGBB' / '#RRGGBB' colors."""
+    from PIL import Image
+    def rgb(h):
+        h = h.lstrip("#").replace("0x", "")
+        return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+    t, b = rgb(top_hex), rgb(bot_hex)
+    col = Image.new("RGB", (1, THUMB_H))
+    for y in range(THUMB_H):
+        f = y / (THUMB_H - 1)
+        col.putpixel((0, y), tuple(int(t[i] + (b[i] - t[i]) * f) for i in range(3)))
+    return col.resize((THUMB_W, THUMB_H))
+
+
+def make_thumbnail(st: "story.Story", theme: dict, out_path: Path) -> Path:
+    """Render a 1280x720 thumbnail card for a built story and return its path.
+    Title-aligned by construction: the claim text IS the spoken hook."""
+    from PIL import Image, ImageDraw
+
+    grad = theme.get("grad", ("0x0e2444", "0x080A14"))
+    img = _vgradient(grad[1], grad[0]).convert("RGB")
+    draw = ImageDraw.Draw(img)
+    M = 70
+
+    # Giant accent number, top-right — the gut-punch the title promises.
+    big = _headline_number(st)
+    if big:
+        nf = _font(300)
+        nb = draw.textbbox((0, 0), big, font=nf)
+        nw, nh = nb[2] - nb[0], nb[3] - nb[1]
+        # Shrink to fit the right ~62% of the card.
+        if nw > THUMB_W * 0.62:
+            nf = _font(int(300 * (THUMB_W * 0.62) / nw))
+            nb = draw.textbbox((0, 0), big, font=nf)
+            nw, nh = nb[2] - nb[0], nb[3] - nb[1]
+        nx = THUMB_W - M - nw - nb[0]
+        ny = M - nb[1]
+        draw.text((nx + 6, ny + 6), big, font=nf, fill=(0, 0, 0))           # shadow
+        draw.text((nx, ny), big, font=nf, fill=theme.get("highlight", "#4FD1C5"))
+
+    # Claim text (the hook), bottom-left, big and white. Manual wrap to width.
+    claim = (st.hook or st.title or "").strip().rstrip("?!.") or st.title
+    cf = _font(96)
+    words, lines, line = claim.split(), [], ""
+    maxw = THUMB_W - 2 * M
+    for w in words:
+        trial = f"{line} {w}".strip()
+        if draw.textlength(trial, font=cf) > maxw and line:
+            lines.append(line)
+            line = w
+        else:
+            line = trial
+    if line:
+        lines.append(line)
+    # Shrink the font if it would overflow more than 4 lines of the lower half.
+    while len(lines) > 4 and cf.size > 48:
+        cf = _font(cf.size - 8)
+        lines, line = [], ""
+        for w in words:
+            trial = f"{line} {w}".strip()
+            if draw.textlength(trial, font=cf) > maxw and line:
+                lines.append(line)
+                line = w
+            else:
+                line = trial
+        if line:
+            lines.append(line)
+
+    lh = int(cf.size * 1.12)
+    block_h = lh * len(lines)
+    y = THUMB_H - M - block_h
+    # Accent rule above the claim.
+    draw.rectangle([M, y - 26, M + 150, y - 14],
+                   fill=theme.get("accent", "#60A5FA"))
+    for ln in lines:
+        draw.text((M + 4, y + 4), ln, font=cf, fill=(0, 0, 0))              # shadow
+        draw.text((M, y), ln, font=cf, fill=(255, 255, 255))
+        y += lh
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out_path, quality=90)
+    return out_path
 
 
 def _make_mandel_mask(path: Path, w: int, h: int, feather: int = 180,
@@ -510,7 +638,7 @@ WrapStyle: 0
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Cap,DejaVu Sans,60,&HFFFFFF&,&H000000&,&H66000000&,1,1,4,1,2,90,90,{CAP_MARGINV},1
-Style: Hook,DejaVu Sans,96,{accent},&H000000&,&H000000&,1,1,6,3,8,70,70,360,1
+Style: Hook,DejaVu Sans,118,&HFFFFFF&,&H000000&,&H000000&,1,1,8,2,8,50,50,300,1
 Style: Punch,DejaVu Sans,150,&HFFFFFF&,&H000000&,&H000000&,1,1,6,3,5,40,40,0,1
 Style: Src,DejaVu Sans,40,&HA5B4C7&,&H000000&,&H000000&,0,1,3,1,5,120,120,0,1
 Style: Chip,DejaVu Sans,38,&HFFFFFF&,&H6A5C7C&,&H000000&,1,3,0,0,8,60,60,26,1
@@ -536,12 +664,19 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # to the voice, so the open is a moving hook instead of one static wall of
     # text (the instant-swipe killer). Each chunk pops in and replaces the last.
     h0, h1 = windows[0]
-    hchunks = _chunks(st.hook, 3)
+    hchunks = _chunks(st.hook, 2)          # 2-word bursts = faster, bigger words
     if hchunks:
         hstep = (h1 - h0) / len(hchunks)
         for j, ch in enumerate(hchunks):
             cs, ce = h0 + j * hstep, h0 + (j + 1) * hstep
-            pop = ("{\\fad(110,80)\\fscx84\\fscy84\\t(0,130,\\fscx100\\fscy100)}")
+            # The FIRST burst slams in big on frame 1 with no fade-in lag — a
+            # hard pattern-interrupt that earns the next second. Later bursts
+            # pop in fast. Accent glow under white text for max contrast.
+            if j == 0:
+                pop = ("{\\fad(0,70)\\fscx128\\fscy128\\t(0,130,\\fscx100\\fscy100)"
+                       "\\3c" + accent + "\\bord10\\blur6}")
+            else:
+                pop = ("{\\fad(70,70)\\fscx112\\fscy112\\t(0,110,\\fscx100\\fscy100)}")
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Hook,,0,0,0,,"
                          f"{pop}{ch.strip()}")
 
@@ -742,6 +877,12 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
         st = story.build(story_cfg, cfg, work, REPO)
+        # Custom thumbnail next to the video (title-aligned packaging). Cheap —
+        # reuses the already-built story; the uploader picks it up by path.
+        try:
+            make_thumbnail(st, theme, out_path.with_suffix(".jpg"))
+        except Exception as e:  # noqa: BLE001 — never fail a render over a thumb
+            print(f"[studio] thumbnail skipped: {e}", file=sys.stderr)
         sentences = st.sentences()
         narration, windows = synth_narration(sentences, work, voice)
         total = _dur(narration) + 0.3

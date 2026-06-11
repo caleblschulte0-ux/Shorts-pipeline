@@ -21,14 +21,15 @@ What it does
    * `<YYYYMMDD>.json` — frozen snapshot for that day.
    * `latest.json` — rolling pointer the routine reads tomorrow.
 
-What it does NOT do
--------------------
-Deep metrics (CTR, average view duration, retention curves) require
-the YouTube *Analytics* API with the `yt-analytics.readonly` scope.
-The current OAuth token only has the Data API scope. If/when we want
-those, a one-time re-auth via setup_youtube.py adds the scope and we
-extend this script — for now, views-per-hour is the signal that
-matters most.
+Deep retention metrics
+----------------------
+When the OAuth token carries the `yt-analytics.readonly` scope, this
+script ALSO pulls the metrics the algorithm actually rewards — average
+view percentage, average view duration, and estimated minutes watched —
+via the YouTube *Analytics* API, and ranks videos by retention as well as
+by views-per-hour. Tokens minted before that scope was added degrade
+gracefully: the analytics calls are skipped and you still get the
+view-count snapshot. Re-auth via setup_youtube.py to enable them.
 
 Auth: reuses YOUTUBE_TOKEN_JSON / YOUTUBE_CLIENT_SECRETS_JSON via the
 same loader pattern as uploaders.py.
@@ -90,6 +91,61 @@ def _youtube_service(channel: str = ""):
     logic duplicated."""
     from uploaders import YouTubeUploader
     return YouTubeUploader(channel=channel)._service()
+
+
+def _analytics_service(channel: str = ""):
+    """youtubeAnalytics client on the same token, or None if the token lacks
+    the analytics scope (older tokens) or anything goes wrong building it.
+    Never raises — retention is an enhancement, view counts are the baseline."""
+    try:
+        from uploaders import YouTubeUploader
+        return YouTubeUploader(channel=channel).analytics_service()
+    except Exception as e:  # noqa: BLE001
+        print(f"[analytics] retention service unavailable ({e})",
+              file=sys.stderr)
+        return None
+
+
+def _retention_metrics(analytics, video_ids: list[str],
+                       start_date: str) -> dict[str, dict]:
+    """Pull average view %, average view duration, and minutes watched for
+    each video via youtubeAnalytics. Returns {video_id: {...}}; empty on any
+    failure (missing scope, quota) so the caller degrades to view counts."""
+    if analytics is None or not video_ids:
+        return {}
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    out: dict[str, dict] = {}
+    for batch in _chunked(video_ids, 200):       # filter caps at 500 ids
+        try:
+            resp = analytics.reports().query(
+                ids="channel==MINE",
+                startDate=start_date,
+                endDate=today,
+                dimensions="video",
+                metrics="views,estimatedMinutesWatched,"
+                        "averageViewDuration,averageViewPercentage",
+                filters="video==" + ",".join(batch),
+                maxResults=len(batch),
+            ).execute()
+        except Exception as e:  # noqa: BLE001
+            print(f"[analytics] retention skipped ({e}); "
+                  f"view counts only", file=sys.stderr)
+            return out                          # one failure → give up cleanly
+        headers = [h["name"] for h in resp.get("columnHeaders", [])]
+        for row in resp.get("rows", []):
+            r = dict(zip(headers, row))
+            vid = r.get("video")
+            if not vid:
+                continue
+            out[vid] = {
+                "average_view_percentage": round(
+                    float(r.get("averageViewPercentage", 0)), 1),
+                "average_view_duration_s": round(
+                    float(r.get("averageViewDuration", 0)), 1),
+                "estimated_minutes_watched": round(
+                    float(r.get("estimatedMinutesWatched", 0)), 1),
+            }
+    return out
 
 
 def _entries(log: dict) -> list[dict]:
@@ -185,6 +241,14 @@ def build_snapshot(posted_log: Path, channel: str = "",
     service = _youtube_service(channel)
     stats = _fetch_stats(service, ids)
 
+    # Deep retention metrics (best-effort; skipped if the token lacks scope).
+    pub_dates = [s["published_at"][:10] for s in stats.values()
+                 if s.get("published_at")]
+    start_date = min(pub_dates) if pub_dates else \
+        datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    retention = _retention_metrics(_analytics_service(channel),
+                                   list(stats.keys()), start_date)
+
     videos: list[dict] = []
     for vid, entry in candidates:
         s = stats.get(vid)
@@ -194,7 +258,7 @@ def build_snapshot(posted_log: Path, channel: str = "",
             # than emit zeros that would skew the summary.
             continue
         age = _hours_since(s.get("published_at")) or _hours_since(entry.get("posted_at")) or 0.01
-        videos.append({
+        v = {
             "video_id": vid,
             "url": entry.get("url"),
             "catalog_id": entry.get("ident"),
@@ -208,15 +272,24 @@ def build_snapshot(posted_log: Path, channel: str = "",
             # by orders of magnitude. A 2-day-old video at 500 views and a
             # 1-hour-old video at 50 views are the SAME quality signal.
             "views_per_hour": round(s["views"] / age, 2),
-        })
+        }
+        v.update(retention.get(vid, {}))   # retention keys when available
+        videos.append(v)
 
     videos.sort(key=lambda v: v["views_per_hour"], reverse=True)
     by_vph = sorted(videos, key=lambda v: v["views_per_hour"], reverse=True)
+    # Retention leaderboard — only over videos that actually have the metric.
+    retained = [v for v in videos if "average_view_percentage" in v]
+    by_ret = sorted(retained, key=lambda v: v["average_view_percentage"],
+                    reverse=True)
 
-    return {
-        "fetched_at": datetime.now(timezone.utc).isoformat(),
-        "videos": videos,
-        "summary": {
+    def _ret_card(v):
+        return {"title": v["title"],
+                "average_view_percentage": v["average_view_percentage"],
+                "average_view_duration_s": v.get("average_view_duration_s"),
+                "views": v["views"], "url": v["url"]}
+
+    summary = {
             "total_videos": len(videos),
             "total_views": sum(v["views"] for v in videos),
             "avg_views_per_video": round(
@@ -236,7 +309,18 @@ def build_snapshot(posted_log: Path, channel: str = "",
                  "url": v["url"]}
                 for v in by_vph[-5:][::-1]
             ],
-        },
+    }
+    if by_ret:
+        summary["videos_with_retention"] = len(by_ret)
+        summary["avg_view_percentage"] = round(
+            sum(v["average_view_percentage"] for v in by_ret) / len(by_ret), 1)
+        summary["top_5_by_retention"] = [_ret_card(v) for v in by_ret[:5]]
+        summary["bottom_5_by_retention"] = [_ret_card(v) for v in by_ret[-5:][::-1]]
+
+    return {
+        "fetched_at": datetime.now(timezone.utc).isoformat(),
+        "videos": videos,
+        "summary": summary,
     }
 
 
@@ -280,6 +364,16 @@ def main() -> int:
     if summary.get("top_5_by_vph"):
         print(f"[analytics] top: {summary['top_5_by_vph'][0]['title']!r} "
               f"@ {summary['top_5_by_vph'][0]['views_per_hour']} vph",
+              file=sys.stderr)
+    if summary.get("top_5_by_retention"):
+        best = summary["top_5_by_retention"][0]
+        print(f"[analytics] avg retention {summary['avg_view_percentage']}% "
+              f"across {summary['videos_with_retention']} videos; best: "
+              f"{best['title']!r} @ {best['average_view_percentage']}%",
+              file=sys.stderr)
+    else:
+        print("[analytics] retention metrics unavailable "
+              "(token lacks yt-analytics scope — re-auth to enable)",
               file=sys.stderr)
     return 0
 
