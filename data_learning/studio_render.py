@@ -83,7 +83,7 @@ THEMES = [
          seed=37, voice="bm_lewis", vibe="dark"),
     dict(highlight="#60A5FA", accent="#34D399", warn="#FBBF24",
          grad=("0x06101e", "0x102044", "0x174a72", "0x0a1428"),
-         seed=43, voice="am_onyx", vibe="cinematic"),
+         seed=43, voice="am_fenrir", vibe="cinematic"),
 ]
 
 
