@@ -15,11 +15,11 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'verify | canary | schedule | all (auto when fired by workflow_run)'
+        description: 'verify | canary | schedule | all | unpublish'
         required: true
         default: 'verify'
         type: choice
-        options: [verify, canary, schedule, all]
+        options: [verify, canary, schedule, all, unpublish]
       canary_slug:
         description: 'slug to post in canary mode'
         required: false
@@ -213,6 +213,9 @@ jobs:
                 --every-hours "$EVERY" --start-in-hours "$START" ;;
             all)
               python scripts/post_stories.py $SLUGFLAG ;;
+            unpublish)
+              # Take down the given videos (public or scheduled) + prune the log.
+              python scripts/unpublish_stories.py --slugs $SLUGS ;;
             auto)
               # post every un-posted story (no --slugs => all, deduped), hourly
               python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" ;;
