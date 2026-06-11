@@ -144,12 +144,15 @@ def main() -> int:
         print(f"[{slug}] uploading"
               + (f" (scheduled {publish_at})" if publish_at else " (public now)"),
               flush=True)
+        # studio_render writes a title-aligned thumbnail next to the mp4.
+        thumb = out.with_suffix(".jpg")
         res = uploader.upload(
             file_path=out,
             title=sc.get("title", slug)[:100],
             description=_description(sc),
             tags=list(sc.get("hashtags", []))[:30],
             publish_at=publish_at,
+            thumbnail=thumb if thumb.exists() else None,
         )
         url = getattr(res, "url", None) or str(res)
         print(f"[{slug}] uploaded -> {url}", flush=True)

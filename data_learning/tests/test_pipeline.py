@@ -111,6 +111,66 @@ def test_offline_source_roundtrip():
     assert "Bureau of Labor Statistics" in ds.source.publisher
 
 
+def test_refresh_snapshot_roundtrip():
+    """A live pull, once normalised, must be valid offline-format that loads
+    back cleanly — this is the data-integrity path (real numbers replacing
+    'Illustrative' ones)."""
+    from data_learning.sources.base import Dataset, DataPoint, Source
+    from data_learning.sources.offline import dataset_from_dict
+    from scripts.refresh_data import snapshot_from_dataset
+
+    ds = Dataset(
+        key="savings_rate", title="x", unit="percent", geography="US",
+        time_coverage="",
+        points=[DataPoint("2020-01", 7.5, "percent", "2020-01-01"),
+                DataPoint("2024-01", 4.1, "percent", "2024-01-01")],
+        source=Source(name="FRED series PSAVERT",
+                      publisher="Federal Reserve Bank of St. Louis (FRED)",
+                      url="https://fred.stlouisfed.org/series/PSAVERT"))
+    existing = {"key": "savings_rate", "title": "Personal Saving Rate (%)",
+                "unit": "percent", "geography": "United States"}
+    m = {"adapter": "fred", "series": "PSAVERT", "frequency": "a",
+         "unit": "percent", "label": "year"}
+    snap = snapshot_from_dataset(ds, existing, m)
+    assert [p["label"] for p in snap["points"]] == ["2020", "2024"]  # year norm
+    assert not snap["notes"].lower().startswith("illustrative")      # honest
+    assert snap["title"] == "Personal Saving Rate (%)"              # framing kept
+    d2 = dataset_from_dict(snap)                                     # loads back
+    assert d2.by_label("2020").value == 7.5
+
+
+def test_refresh_rejects_thin_pull():
+    """A live pull with <2 usable points must refuse to overwrite, not ship
+    a degenerate chart."""
+    from data_learning.sources.base import Dataset, DataPoint, Source
+    from scripts.refresh_data import snapshot_from_dataset
+    ds = Dataset(key="x", title="x", unit="percent", geography="US",
+                 time_coverage="",
+                 points=[DataPoint("2024", 4.1, "percent", "2024-01-01")],
+                 source=Source(name="n", publisher="p", url="u"))
+    try:
+        snapshot_from_dataset(ds, {"key": "x"}, {"adapter": "fred", "series": "X"})
+        assert False, "expected ValueError on a thin pull"
+    except ValueError:
+        pass
+
+
+def test_thumbnail_headline_number():
+    """The thumbnail accent must be the biggest-magnitude on-chart number."""
+    from data_learning import studio_render as sr
+
+    class _Seg:
+        def __init__(self, punches):
+            self.punches = punches
+
+    class _St:
+        segments = [_Seg([{"text": "12%"}, {"text": "1,370"}]),
+                    _Seg([{"text": "449"}])]
+    assert sr._headline_number(_St()) == "1,370"
+    assert sr._num_magnitude("$1,920") == 1920.0
+    assert sr._num_magnitude("200%") == 200.0
+
+
 def _main() -> int:
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0

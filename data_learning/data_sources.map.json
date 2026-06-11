@@ -1,0 +1,30 @@
+{
+  "_README": [
+    "Maps an offline data key (data_learning/data/<key>.json) to a LIVE",
+    "series so scripts/refresh_data.py can replace the bundled 'Illustrative'",
+    "snapshot with real, source-backed numbers. For a data channel, accuracy",
+    "IS the brand: a fabricated figure attributed to a real agency is the",
+    "fastest way to earn a 'fake stats' reputation.",
+    "",
+    "Each entry: {adapter, series, frequency, observations, [unit], [scale],",
+    "[label]}. adapter='fred'|'bls'. frequency: a|m|q|w (FRED aggregation).",
+    "scale multiplies every value (e.g. billions->trillions = 0.001). label",
+    "='year' trims FRED date labels to a 4-digit year so the chart x-axis",
+    "matches the existing year-labelled trend files.",
+    "",
+    "SAFETY: refresh_data.py defaults to DRY-RUN. Eyeball the printed numbers",
+    "against the live series page (fred.stlouisfed.org/series/<SERIES>) before",
+    "re-running with --write. Series IDs below are high-confidence percent/year",
+    "matches; add more only after verifying the unit + frequency line up."
+  ],
+  "mappings": {
+    "fed_funds_rate":          {"adapter": "fred", "series": "FEDFUNDS",        "frequency": "a", "observations": 7, "unit": "percent", "label": "year"},
+    "mortgage_rate_30yr":      {"adapter": "fred", "series": "MORTGAGE30US",    "frequency": "a", "observations": 7, "unit": "percent", "label": "year"},
+    "unemployment_rate_trend": {"adapter": "fred", "series": "UNRATE",          "frequency": "a", "observations": 7, "unit": "percent", "label": "year"},
+    "labor_participation":     {"adapter": "fred", "series": "CIVPART",         "frequency": "a", "observations": 7, "unit": "percent", "label": "year"},
+    "savings_rate":            {"adapter": "fred", "series": "PSAVERT",         "frequency": "a", "observations": 7, "unit": "percent", "label": "year"},
+    "cc_delinquency":          {"adapter": "fred", "series": "DRCCLACBS",       "frequency": "a", "observations": 7, "unit": "percent", "label": "year"},
+    "credit_card_apr":         {"adapter": "fred", "series": "TERMCBCCALLNS",   "frequency": "a", "observations": 7, "unit": "percent", "label": "year"},
+    "auto_loan_rate":          {"adapter": "fred", "series": "RIFLPBCIANM60NM", "frequency": "a", "observations": 7, "unit": "percent", "label": "year"}
+  }
+}
