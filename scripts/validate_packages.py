@@ -39,6 +39,13 @@ def main() -> int:
                     help="fail if any package's shot-coverage % is below "
                          "this (default 70). 100 = every visual the LLM "
                          "names has a shot covering it.")
+    ap.add_argument("--min-illustration", type=float, default=0.0,
+                    help="fail if any package's ILLUSTRATION coverage %% is "
+                         "below this — the fraction of shots that show a real "
+                         "image_url or a fundable named entity rather than "
+                         "bare keyword stock. Default 0 (off). The daily "
+                         "render gate enforces this; set it here (e.g. 60) "
+                         "to catch off-topic-imagery slates before render.")
     args = ap.parse_args()
 
     if not args.dir.is_dir():
@@ -51,6 +58,7 @@ def main() -> int:
         return 0
 
     worst = 100.0
+    worst_illus = 100.0
     failures: list[str] = []
     for p in pkgs:
         try:
@@ -61,20 +69,30 @@ def main() -> int:
             continue
         report = entity_media.validate_package(pkg)
         cov = report["coverage_pct"]
+        illus = report.get("illustration_pct", 100.0)
         worst = min(worst, cov)
-        flag = "OK" if cov >= args.min_coverage else "LOW"
+        worst_illus = min(worst_illus, illus)
+        bad = cov < args.min_coverage or illus < args.min_illustration
+        flag = "LOW" if bad else "OK"
         title = (pkg.get("title") or "(no title)")[:50]
-        print(f"  [{flag}] {p.name}: {cov}% coverage "
+        print(f"  [{flag}] {p.name}: {cov}% entity-coverage, "
+              f"{illus}% illustration "
               f"({len(report['matched'])}/{report['total_visuals']} "
               f"via {report['source']}) — {title!r}")
         if report["uncovered"]:
             print(f"      uncovered entities: {report['uncovered']}")
-        if cov < args.min_coverage:
+        if report.get("keyword_only_shots"):
+            print(f"      keyword-stock-only shots (pin a real image): "
+                  f"{report['keyword_only_shots']}")
+        if bad:
             failures.append(p.name)
 
     print()
-    print(f"summary: {len(pkgs)} packages, worst coverage {worst}%, "
-          f"{len(failures)} below {args.min_coverage}%")
+    print(f"summary: {len(pkgs)} packages, worst entity-coverage {worst}%, "
+          f"worst illustration {worst_illus}%, "
+          f"{len(failures)} below threshold "
+          f"(coverage<{args.min_coverage}% or illustration<"
+          f"{args.min_illustration}%)")
     return 1 if failures else 0
 
 

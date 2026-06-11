@@ -7,7 +7,7 @@ actual TTS audio via whisper word-level timestamps.
 
 Energy upgrades vs the previous version:
   * Multi-cut shots: each beat fetches 2-3 different stock clips and
-    cuts between them every ~2s instead of holding one shot for 6s.
+    cuts between them every ~4s instead of holding one shot for 6s.
   * Animated punches: scale-bounce in via ASS animation tags (was a
     static drawtext fade).
   * Synthesized music bed: a dark, kick-driven loop generated with
@@ -49,8 +49,12 @@ MASCOT_SIZE = 260
 # block either layer's content. Margin from the right edge of canvas.
 MASCOT_MARGIN = 30
 
-# Target seconds per sub-cut. ~2s feels fast without being epileptic.
-SUB_CUT_TARGET = 2.0
+# Target seconds per sub-cut. Was 2.0, but viewers reported shots
+# flashing by before they could register what they were looking at —
+# especially when the imagery is only loosely on-topic. ~4s holds each
+# visual long enough to read while still cutting often enough to keep
+# the doomscroll pace.
+SUB_CUT_TARGET = 4.0
 
 
 # ---------- helpers ----------
@@ -1079,8 +1083,10 @@ def build_timed_top(
 
     # How long a still image is allowed to stay on screen before it
     # has to hand off to stock. Matches SUB_CUT_TARGET so video and
-    # image sub-cuts run uniform 2.0s and the cadence stays steady.
-    IMAGE_MAX_DUR = 2.0
+    # image sub-cuts run uniform ~4s and the cadence stays steady —
+    # a real on-topic photo held ~4s with a slow Ken Burns pan reads
+    # far better than the same photo flashed for 2s.
+    IMAGE_MAX_DUR = 4.0
 
     # One-shot per-render calls to topic_video / topic_media. Returns
     # pools of on-topic media. Each shot picks pool entries whose
@@ -1195,8 +1201,8 @@ def build_timed_top(
             # pool entries. Images are cheaper to source and almost
             # always on-topic, and alternating breaks up the visual
             # monotony of a single source streaming for 5+ seconds.
-            # Image dur is capped at IMAGE_MAX_DUR (Ken Burns gets
-            # boring past ~2s); video dur stays at SUB_CUT_TARGET.
+            # Image dur is capped at IMAGE_MAX_DUR (~4s with a slow
+            # Ken Burns pan); video dur stays at SUB_CUT_TARGET.
             # Track images already used in this shot so the picker
             # never returns the same one back-to-back even if it
             # happens to be the highest-scoring pool entry.

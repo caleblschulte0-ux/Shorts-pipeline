@@ -23,54 +23,62 @@
     {
       "phrase": "Waves swamped a capital city",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Wellington,_New_Zealand.JPG",
-      "query": "Wellington New Zealand capital city harbor coast aerial view"
+      "query": "Wellington harbour city"
     },
     {
       "phrase": "New Zealand's capital Wellington declared a state of emergency",
-      "query": "New Zealand Wellington city hall emergency declaration Civil Defence"
+      "query": "Wellington city harbour",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Wellington,_New_Zealand.JPG"
     },
     {
       "phrase": "waves up to 10 meters — 33 feet — slamming the south coast",
-      "query": "enormous ocean waves crashing rocky coastline storm sea surge"
+      "query": "ocean storm waves",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waves_crashing_up_through_the_boardwalk_in_Lysekil_during_Storm_Ciara_1.jpg"
     },
     {
       "phrase": "residents in Owhiro Bay, Island Bay, Houghton Bay, and Breaker Bay",
       "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Island_Bay,_Wellington.jpg",
-      "query": "Wellington south coast bay residential homes ocean New Zealand"
+      "query": "Wellington coastal bay"
     },
     {
       "phrase": "were told to evacuate immediately",
-      "query": "evacuation order residents leaving homes emergency coastal storm"
+      "query": "coastal suburb homes",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Island_Bay,_Wellington.jpg"
     },
     {
       "phrase": "Wind gusts hit 128 kilometers per hour at Wellington Airport",
-      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wellington_International_Airport_aerial.jpg",
-      "query": "Wellington Airport flights cancelled wind storm runway New Zealand"
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wellington_airport_aerial.jpg",
+      "query": "Wellington Airport runway"
     },
     {
       "phrase": "canceling dozens of flights",
-      "query": "airport cancellation board flights grounded storm wind closed"
+      "query": "airport runway",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wellington_airport_aerial.jpg"
     },
     {
       "phrase": "largest recorded wave peaked at 10.9 meters",
-      "query": "ocean wave measurement buoy 10 meters tall storm extreme"
+      "query": "giant ocean wave",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waves_crashing_up_through_the_boardwalk_in_Lysekil_during_Storm_Ciara_1.jpg"
     },
     {
       "phrase": "off the Wairarapa coast",
-      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wairarapa_coast_New_Zealand.jpg",
-      "query": "Wairarapa coast New Zealand rugged southern sea cliffs waves"
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cape_Palliser_coast.jpg",
+      "query": "Wairarapa rocky coast"
     },
     {
       "phrase": "Coastlines flooded. Roads closed",
-      "query": "flooded coastal road closed storm surge water street damage"
+      "query": "flooded coastal road",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waves_crashing_up_through_the_boardwalk_in_Lysekil_during_Storm_Ciara_1.jpg"
     },
     {
       "phrase": "state of emergency was lifted and residents began returning home",
-      "query": "residents returning home after emergency lifted coastal suburb"
+      "query": "coastal suburb homes",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Island_Bay,_Wellington.jpg"
     },
     {
       "phrase": "Was Wellington's south coast built to handle swells like this",
-      "query": "coastal infrastructure seawall Wellington rocky coast ocean protection"
+      "query": "rocky coast seawall",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cape_Palliser_coast.jpg"
     }
   ],
   "punches": [

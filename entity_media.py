@@ -544,17 +544,39 @@ def validate_package(pkg: dict) -> dict:
 
     matched: list[str] = []
     uncovered: list[str] = []
+    fundable_shots: set[int] = set()   # id(shot) -> covered by a real entity
     for v in visuals:
-        if _match_shot(shots, v.get("phrase") or "", v["entity"]) is not None:
+        target = _match_shot(shots, v.get("phrase") or "", v["entity"])
+        if target is not None:
             matched.append(v["entity"])
+            fundable_shots.add(id(target))
         else:
             uncovered.append(v["entity"])
+
+    # Illustration coverage: what fraction of shots will show a REAL image
+    # rather than falling to a bare keyword `query`? A shot is "illustrated"
+    # if it already carries an image_url (operator pick) OR its phrase maps
+    # to a named entity the funnel / Wikipedia path can resolve at render
+    # time. Shots that are neither are the ones that produced the off-topic
+    # stock (a serval beat showing a leopard, a "conservation officers"
+    # beat showing fishermen) — list them so the author can pin a photo.
+    keyword_only: list[str] = []
+    for s in shots:
+        has_img = bool(s.get("image_url") or s.get("image"))
+        if has_img or id(s) in fundable_shots:
+            continue
+        keyword_only.append((s.get("phrase") or "?")[:50])
+    n_shots = max(1, len(shots))
+    illustrated = len(shots) - len(keyword_only)
     return {
         "source": "llm" if used_llm else "regex",
         "total_visuals": len(visuals),
         "matched": matched,
         "uncovered": uncovered,
         "coverage_pct": round(100.0 * len(matched) / max(1, len(visuals)), 1),
+        "total_shots": len(shots),
+        "keyword_only_shots": keyword_only,
+        "illustration_pct": round(100.0 * illustrated / n_shots, 1),
     }
 
 

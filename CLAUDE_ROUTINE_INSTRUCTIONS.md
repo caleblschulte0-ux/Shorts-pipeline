@@ -78,20 +78,27 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
 4. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
    one per pick.
 
-5. **Pre-flight validation.** Cheapest gate to catch "I forgot to write a
-   shot about Putin" before render. Runs the LLM entity extractor against
-   every package and checks that each named entity has a shot whose
-   phrase covers it:
+5. **Pre-flight validation.** Cheapest gate to catch a bad slate before
+   render. Runs the LLM entity extractor against every package, checks
+   that each named entity has a shot whose phrase covers it, AND reports
+   **illustration coverage** — the fraction of shots that carry a real
+   `image_url` (or a named entity the funnel can resolve) rather than
+   falling to bare keyword stock:
 
    ```bash
    GROQ_API_KEY=$GROQ_API_KEY python3 scripts/validate_packages.py \
-     state/trending_packages/$(date -u +%Y%m%d) --min-coverage 70
+     state/trending_packages/$(date -u +%Y%m%d) \
+     --min-coverage 70 --min-illustration 60
    ```
 
-   Per-package coverage report. Exits non-zero when any package has
-   uncovered entities — fix by adding a shot whose `phrase` mentions
-   the uncovered entity (or by tightening the script if the entity
-   doesn't need its own visual), then re-run.
+   Exits non-zero when any package has uncovered entities OR illustration
+   coverage below the bar. Fix by adding a shot whose `phrase` mentions
+   the uncovered entity, or by pinning a real `image_url` on the shots
+   flagged as keyword-stock-only (see the Imagery rules above), then
+   re-run. The daily render runs this same gate and **quarantines any
+   package that fails — it ships the rest of the slate without the bad
+   one**, so a single un-illustratable package no longer poisons a day,
+   but it does mean you lose that slot. Fix it here instead.
 
 6. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
    branch nothing renders from; the PR is what auto-merge.yml watches:
@@ -118,8 +125,8 @@ Reference: `state/trending_packages/20260531/*.json`.
   "title": "Punchy 6-10 word YouTube title",
   "script": "110-140 word script. Hook is <=5 words and ends with ? or !. Kicker is a story-specific question answerable in one word.",
   "shots": [
-    {"phrase": "verbatim substring of script", "image": "https://...",
-     "query": "stock fallback", "mascot_pose": "idle"}
+    {"phrase": "verbatim substring of script", "image_url": "https://...",
+     "query": "tight 2-4 word stock fallback", "mascot_pose": "idle"}
   ],
   "punches": [
     {"phrase": "verbatim substring", "text": "1-3 ALL CAPS", "color": "#hex"}
@@ -211,30 +218,98 @@ baseline set (`#shorts #news #explainer #trending #viral #fyp`) before
 uploading. Algos weight the first 3-5 hardest — put the most specific topical
 ones at the front. Bare words, no `#`, no spaces (`aiethics` not `ai ethics`).
 
-## Specific imagery for proper nouns
+## Imagery — THE #1 quality problem, read this twice
 
-Stock libraries (Pexels/Pixabay) don't have photos of specific companies,
-products, people, or events. For every proper noun in the script, attach a
-real photo via the `image` field.
+Published videos have been failing on exactly one thing: **the picture on
+screen doesn't match what the narrator is saying.** A serval story showed a
+bobcat, a leopard in a zoo, fishermen, and a corrugated-iron wall. That
+happens when a shot has no real `image_url` and falls back to a `query`
+keyword string, because stock libraries (Pexels/Pixabay) return whatever
+loosely matches the words — not the thing you meant. Fix it at authoring
+time, every shot, no exceptions.
 
-1. WebFetch `https://en.wikipedia.org/wiki/<EntityName>`, grab a
-   `upload.wikimedia.org` URL. Prefer photos of the entity itself, NOT
-   wordmark logos.
-2. `500px` Wikimedia thumbs are almost always safe; `1024px` only for very
-   large originals.
-3. Attach to the shot whose phrase mentions that entity, AND keep `query`
-   as a fallback:
-   ```json
-   {"phrase": "Figure AI's humanoid",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/.../500px-...",
-    "query": "humanoid robot warehouse"}
-   ```
+### Rule A — every shot needs a real image, not just proper-noun shots
 
-If no Wikipedia article exists, try the news article's `og:image` or Commons
-search (`https://commons.wikimedia.org/wiki/Special:Search?search=<entity>`).
+The old rule ("attach a photo for every proper noun") left most shots on
+keyword stock. New rule: **every shot's primary visual is a real
+`image_url`.** A `query` is a *fallback only*, never the intended visual.
 
-Never use wordmark-only logos (composite as PowerPoint slides). Never use
-`image` without a `query` fallback (URL 404 → blank shot).
+For each shot, the on-screen image must clearly read as on-topic to a
+viewer who is half-paying-attention. Three tiers, in order of preference:
+
+1. **The actual subject** — the named person, place, building, named
+   animal/object, or event in that beat. WebFetch
+   `https://en.wikipedia.org/wiki/<EntityName>`, grab a
+   `upload.wikimedia.org` URL (a `500px` thumb is almost always safe;
+   `1024px` only for very large originals). Prefer a photo of the entity
+   itself, NEVER a wordmark logo.
+2. **A clearly-representative image** when the exact subject has no photo
+   (a random escaped pig, an anonymous lottery winner): use an
+   unmistakable stand-in — a photo of *a* pig, *a* scratch-off ticket, *a*
+   dumpster. It must be instantly recognizable as the thing being
+   described. A serval beat gets a serval, never "a wild cat."
+3. **Reuse the nearest real image** for un-photographable narration beats
+   ("he climbed in", "the first call came in at 5:45 a.m.", "severe air
+   hunger"). Don't invent literal stock for an abstract beat — repeat the
+   shot's anchor image (the renderer holds it with a slow pan). A wrong
+   literal clip is worse than holding a correct one.
+
+If no Wikipedia article exists, try the news article's `og:image` or a
+Commons search
+(`https://commons.wikimedia.org/wiki/Special:Search?search=<entity>`).
+
+```json
+{"phrase": "Figure AI's humanoid",
+ "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/.../500px-...",
+ "query": "humanoid robot warehouse"}
+```
+
+### Rule B — queries must be TIGHT, never keyword-soup
+
+When you do write a `query` fallback, keep it to 2-4 concrete nouns naming
+ONE recognizable thing. Long descriptive strings retrieve nonsense:
+- ❌ `"porch foundation under house shelter dark crawlspace animal hiding"`
+  → returned a corrugated-iron shanty wall.
+- ❌ `"wildlife conservation officers police team catching animal rope net"`
+  → returned fishermen.
+- ✅ `"serval cat"`, `"animal control van"`, `"scratch off lottery ticket"`.
+
+Hard rule: **never use a generic place/skyline photo for a story that
+isn't about that skyline.** A Vancouver skyline on a serval story is
+off-topic; pin the serval instead.
+
+### Rule C — visual-ability is now a topic-selection test
+
+Before you lock a pick, ask: *can a viewer SEE this story?* A topic with a
+recognizable subject (a named person, a specific place, an identifiable
+animal, a named object/event) is illustratable. A topic whose subject is
+abstract — a scientific journal, an organization, a virus, a statistic, a
+"someone somewhere did X" with no named subject — is NOT, and the funnel
+will return logos and the shots will fall to off-topic stock. Between two
+otherwise-equal quirky picks, take the one you can actually illustrate.
+Quirky-animal/disaster picks still dominate the slate (Rule 2) — just
+choose the ones with a clear visual subject.
+
+### Rule D — VERIFY every image_url exists (do not fabricate filenames)
+
+Guessing a plausible-looking Wikimedia filename is the #2 cause of broken
+shots — `Willard_Ohio_downtown.jpg`, `Circle_K_store.jpg`, and
+`Woodbridge,_Connecticut_aerial.jpg` were all invented, all 404'd, and all
+silently fell through to off-topic stock. Before you write an `image_url`,
+confirm the file actually exists. Cheapest check, no rate-limit pain:
+
+```bash
+curl -s "https://commons.wikimedia.org/w/api.php?action=query&titles=File:<Exact_Name>&prop=imageinfo&iiprop=mime&format=json"
+```
+
+A `"missing"` page means the file does NOT exist — pick a different one.
+Only use a filename you pulled from a real Commons/Wikipedia page or
+confirmed via the API. The renderer drops unresolvable URLs at render time
+(so a bad URL becomes a keyword-stock shot, i.e. the exact problem we're
+fixing) — catch it here instead.
+
+Never use wordmark-only logos. Never use `image_url` without a `query`
+fallback (URL 404 → blank shot).
 
 ## Other script rules
 
