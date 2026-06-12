@@ -1,6 +1,6 @@
 {
   "key": "jwst_hubble_tension",
-  "title": "Universe expansion rate \u2014 predicted vs. measured (km/s per megaparsec)",
+  "title": "Universe expansion rate (km/s/Mpc)",
   "unit": "km/s per megaparsec",
   "geography": "Observable universe",
   "time_coverage": "Current measurements",
@@ -11,14 +11,14 @@
     "officiality": "official",
     "access_date": "2026-06-12"
   },
-  "notes": "Illustrative; CMB early-universe prediction from Planck 2018 (H0=67.4). Direct measurement from SH0ES/Cepheid ladder confirmed with JWST calibration (H0\u224873). The ~5-unit gap \u2014 the Hubble Tension \u2014 remains unexplained and may require new physics.",
+  "notes": "Illustrative; CMB early-universe prediction from Planck 2018 (H0=67.4). Direct measurement from SH0ES/Cepheid ladder confirmed with JWST calibration (H0≈73). The ~5-unit gap — the Hubble Tension — remains unexplained and may require new physics.",
   "points": [
     {
-      "label": "JWST direct measurement",
+      "label": "JWST (measured)",
       "value": 73
     },
     {
-      "label": "CMB prediction (early universe)",
+      "label": "CMB (predicted)",
       "value": 67
     }
   ]
