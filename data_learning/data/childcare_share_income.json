@@ -1,0 +1,33 @@
+{
+  "key": "childcare_share_income",
+  "title": "Infant care as share of income (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Child care affordability by household",
+    "publisher": "U.S. Department of Labor",
+    "url": "https://www.dol.gov",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Minimum-wage worker",
+      "value": 64
+    },
+    {
+      "label": "Single parent",
+      "value": 36
+    },
+    {
+      "label": "Median family",
+      "value": 13
+    },
+    {
+      "label": "Top earners",
+      "value": 5
+    }
+  ]
+}

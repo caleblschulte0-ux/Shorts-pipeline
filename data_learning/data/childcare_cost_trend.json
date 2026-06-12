@@ -1,0 +1,32 @@
+{
+  "key": "childcare_cost_trend",
+  "title": "Infant daycare cost per year ($)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2000-2024 (annual)",
+  "source": {
+    "name": "Average price of child care",
+    "publisher": "U.S. Department of Labor",
+    "url": "https://www.dol.gov",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 5800,
+      "period": "2000"
+    },
+    {
+      "label": "2010",
+      "value": 9900,
+      "period": "2010"
+    },
+    {
+      "label": "2024",
+      "value": 16800,
+      "period": "2024"
+    }
+  ]
+}
