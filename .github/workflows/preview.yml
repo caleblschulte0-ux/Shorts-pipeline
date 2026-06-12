@@ -132,8 +132,15 @@ jobs:
             FILE_CNT=$(tr -dc '0-9' < .github/triggers/preview_count | head -c1)
             [ -n "$FILE_CNT" ] && COUNT="$FILE_CNT"
           fi
-          echo "Rendering $COUNT package(s) with --dry-run (no upload)"
-          python scripts/run_trending_daily.py --count "$COUNT" --dry-run
+          # Optional: pin a specific package by slug substring (e.g.
+          # "wellington") via .github/triggers/preview_only.
+          ONLY_ARG=""
+          if [ -f .github/triggers/preview_only ]; then
+            ONLY=$(head -1 .github/triggers/preview_only | tr -d '[:space:]')
+            [ -n "$ONLY" ] && ONLY_ARG="--only $ONLY" && COUNT=6
+          fi
+          echo "Rendering $COUNT package(s) $ONLY_ARG with --dry-run (no upload)"
+          python scripts/run_trending_daily.py --count "$COUNT" $ONLY_ARG --dry-run
 
       - name: List rendered output
         if: always()

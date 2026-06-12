@@ -385,6 +385,7 @@ class _Renderer:
     GOAL_ENABLED = True
     GOAL_TINT = (28, 120, 210)     # water blue (surface)
     GOAL_DEEP = (6, 38, 92)        # deep water (floor)
+    GOAL_FILL_START = 0.08         # already-visible water at the start
     GOAL_FILL_END = 0.94           # fraction of panel height filled at the end
 
     def goal_progress(self, t: float) -> float:
@@ -404,7 +405,15 @@ class _Renderer:
         p = self.goal_progress(t)
         if p <= 0.0:
             return frame
-        level = max(2, int(H * self.GOAL_FILL_END * p))
+        # Visible, surging rise: water is already showing at the start and
+        # climbs to GOAL_FILL_END, with a lively surge on top so the eye
+        # actually SEES it rising — a flat linear creep of ~1px/frame reads
+        # as static. The surge amplitude grows with progress.
+        start = getattr(self, "GOAL_FILL_START", 0.08)
+        base = start + (self.GOAL_FILL_END - start) * p
+        surge = float(np.sin(t * 2.3)) * (0.012 + 0.025 * p)
+        frac = min(0.99, max(0.02, base + surge))
+        level = max(2, int(H * frac))
         y0 = H - level
         band = frame[y0:H].astype(np.float32)            # (level, W, 3)
         rows = band.shape[0]

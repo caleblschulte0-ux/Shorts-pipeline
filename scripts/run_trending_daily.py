@@ -432,6 +432,10 @@ def main() -> int:
                     help="how many shorts to produce + post")
     ap.add_argument("--dry-run", action="store_true",
                     help="render but don't upload")
+    ap.add_argument("--only", default="",
+                    help="render only packages whose slug/path/title contains "
+                         "this substring (case-insensitive) — e.g. --only "
+                         "wellington to preview one specific package")
     ap.add_argument("--no-schedule", action="store_true",
                     help="upload immediately instead of scheduling slots")
     ap.add_argument("--top-k-buffer", type=int, default=3,
@@ -510,6 +514,15 @@ def main() -> int:
     # to the most recent day's packages — far better than burning
     # through Groq's free tier on emergency script generation.
     src_dir, prewritten = (None, []) if args.force_llm else load_prewritten_packages()
+    if prewritten and args.only:
+        needle = args.only.lower()
+        prewritten = [
+            p for p in prewritten
+            if needle in (p.get("_path", "") + " " + p.get("slug", "")
+                          + " " + p.get("title", "")).lower()
+        ]
+        print(f"=== --only {args.only!r}: {len(prewritten)} package(s) match ===",
+              flush=True)
     if prewritten:
         rel = src_dir.relative_to(REPO) if src_dir else "(unknown)"
         print(f"=== using {len(prewritten)} pre-written packages from "
