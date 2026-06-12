@@ -1,0 +1,22 @@
+{
+  "key": "most_spoken_languages_native",
+  "title": "Most spoken languages, native speakers",
+  "unit": "M native",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Ethnologue: Languages of the World",
+    "publisher": "Ethnologue (SIL International)",
+    "url": "https://www.ethnologue.com",
+    "officiality": "reputable",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    { "label": "Mandarin Chinese", "value": 940 },
+    { "label": "Spanish", "value": 485 },
+    { "label": "English", "value": 380 },
+    { "label": "Hindi", "value": 345 },
+    { "label": "Portuguese", "value": 235 }
+  ]
+}
