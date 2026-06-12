@@ -12,8 +12,14 @@
     "access_date": "2026-06-12"
   },
   "notes": "Illustrative; Hubble-era figure (~200 billion) reflects Gott et al. 2009 and Conselice et al. 2016 estimates. JWST-era figure (~2,000 billion / 2 trillion) reflects Conselice et al. 2016 deep-field extrapolation confirmed with JWST imaging depth.",
-  "baseline": {"label": "Hubble era (pre-2022)", "value": 200},
   "points": [
-    {"label": "JWST estimate (2023)", "value": 2000}
+    {
+      "label": "JWST estimate (2023)",
+      "value": 2000
+    },
+    {
+      "label": "Hubble era (pre-2022)",
+      "value": 200
+    }
   ]
 }

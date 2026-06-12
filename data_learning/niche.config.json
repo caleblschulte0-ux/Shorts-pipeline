@@ -1316,11 +1316,12 @@
           "params": {
             "file": "child_raising_cost.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "2 \u00b7 THE MATH",
           "topic": "cost to raise a child to age 18 (2025 dollars)",
-          "say": "Why? Raising a child to 18 cost 198 thousand in 1990, in today's money. Now it's 310 thousand, before college."
+          "say": "Why? Raising a child to 18 cost 198 thousand in 1990, in today's money. Now it's 310 thousand, before college.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -1378,11 +1379,12 @@
           "params": {
             "file": "digital_tip_effect.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "2 \u00b7 THE NUDGE",
           "topic": "average tip: pre-tablet vs. post-tablet POS",
-          "say": "When Square and Toast took over, they preset the buttons at 18, 20, and 25 percent instead of 15, 18, 20. The floor moved."
+          "say": "When Square and Toast took over, they preset the buttons at 18, 20, and 25 percent instead of 15, 18, 20. The floor moved.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -1658,11 +1660,12 @@
           "params": {
             "file": "jwst_galaxy_count.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "1 \u00b7 THE SCALE",
           "topic": "galaxy count estimate (billions)",
-          "say": "Hubble told us there were about 200 billion galaxies. JWST looked deeper and found closer to 2000 billion \u2014 2 trillion. That's 10 times more than we thought."
+          "say": "Hubble told us there were about 200 billion galaxies. JWST looked deeper and found closer to 2000 billion \u2014 2 trillion. That's 10 times more than we thought.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -1681,11 +1684,12 @@
           "params": {
             "file": "jwst_hubble_tension.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "3 \u00b7 THE BROKEN EQUATION",
           "topic": "universe expansion rate (km/s per megaparsec)",
-          "say": "Here's the problem. Early-universe physics predicts the expansion rate at 67. JWST direct measurement says 73. That gap \u2014 the Hubble Tension \u2014 means something in our model of the universe is wrong."
+          "say": "Here's the problem. Early-universe physics predicts the expansion rate at 67. JWST direct measurement says 73. That gap \u2014 the Hubble Tension \u2014 means something in our model of the universe is wrong.",
+          "ascending": false
         }
       ]
     },
@@ -1791,11 +1795,12 @@
           "params": {
             "file": "time_use_leisure_screen.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "2 \u00b7 THE SCREEN SPLIT",
           "topic": "screen vs. non-screen leisure (hours per day)",
-          "say": "Of those 5 leisure hours, screens take 3.2. Non-screen leisure \u2014 socializing, reading, exercise \u2014 gets just 1.8 hours. Reading alone is 12 minutes. We have more free time than ever, and screens claimed most of it."
+          "say": "Of those 5 leisure hours, screens take 3.2. Non-screen leisure \u2014 socializing, reading, exercise \u2014 gets just 1.8 hours. Reading alone is 12 minutes. We have more free time than ever, and screens claimed most of it.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -1851,11 +1856,12 @@
           "params": {
             "file": "wildfire_decade_avg.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "2 \u00b7 THE SHIFT",
           "topic": "average wildfire acres per year by decade (millions)",
-          "say": "Decade to decade, the shift is undeniable. The 1983 to 1992 average was 2.8 million acres. The 2013 to 2022 average was 7.4 million \u2014 nearly 3 times higher. Hotter, drier conditions changed the math."
+          "say": "Decade to decade, the shift is undeniable. The 1983 to 1992 average was 2.8 million acres. The 2013 to 2022 average was 7.4 million \u2014 nearly 3 times higher. Hotter, drier conditions changed the math.",
+          "ascending": false
         },
         {
           "source": "offline",

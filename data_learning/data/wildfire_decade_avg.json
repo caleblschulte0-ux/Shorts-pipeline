@@ -1,19 +1,25 @@
 {
   "key": "wildfire_decade_avg",
-  "title": "Average US wildfire acres burned per year — by decade (millions)",
+  "title": "Average US wildfire acres burned per year \u2014 by decade (millions)",
   "unit": "million acres",
   "geography": "United States",
   "time_coverage": "1983-2022 (by decade)",
   "source": {
-    "name": "National Interagency Fire Center — Historical wildfire statistics",
+    "name": "National Interagency Fire Center \u2014 Historical wildfire statistics",
     "publisher": "National Interagency Fire Center (NIFC)",
     "url": "https://www.nifc.gov/fire-information/statistics",
     "officiality": "official",
     "access_date": "2026-06-12"
   },
   "notes": "Illustrative; decade averages computed from NIFC annual totals. The 1983-1992 average is the pre-climate-shift baseline used by NIFC in trend assessments.",
-  "baseline": {"label": "1983-1992 decade average", "value": 2.8},
   "points": [
-    {"label": "2013-2022 decade average", "value": 7.4}
+    {
+      "label": "2013-2022 decade average",
+      "value": 7.4
+    },
+    {
+      "label": "1983-1992 decade average",
+      "value": 2.8
+    }
   ]
 }

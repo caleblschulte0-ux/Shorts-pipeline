@@ -12,8 +12,14 @@
     "access_date": "2026-06-10"
   },
   "notes": "Illustrative; pre-tablet era uses 2011 cash/paper register average; post-tablet uses 2025 touchscreen POS average. Default buttons on tablet POS systems moved from 15/18/20% to 18/20/25%.",
-  "baseline": {"label": "Pre-tablet default (2011)", "value": 16.2},
   "points": [
-    {"label": "Post-tablet default (2025)", "value": 22.4}
+    {
+      "label": "Post-tablet default (2025)",
+      "value": 22.4
+    },
+    {
+      "label": "Pre-tablet default (2011)",
+      "value": 16.2
+    }
   ]
 }
