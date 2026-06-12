@@ -1182,6 +1182,15 @@ def build_timed_top(
     # not 12. Verified images only — `media_funnel.search()` runs
     # every URL through entity_media.url_is_image() before returning.
     news_image_map: dict[str, str] = {}
+    # The funnel returns a RANKED LIST per entity. We used to keep only
+    # cands[0] (one photo per entity) and throw the rest away — so the
+    # second pig photo and the interview thumbnail it found never reached
+    # the screen. Keep the top few as a pool of real story media, fetched
+    # once and woven into the sub-cut scheduler ahead of generic stock.
+    funnel_extras: list[dict] = []
+    _funnel_seen: set[str] = set()
+    _FUNNEL_PER_ENTITY = 4
+    _FUNNEL_TOTAL_CAP = 10
     try:
         import media_funnel
         unique_queries: dict[str, str] = {}    # news_query -> news_angle
@@ -1202,10 +1211,29 @@ def build_timed_top(
                 print(f"      [media_funnel] {nq!r} fanout failed: "
                       f"{type(e).__name__}: {str(e)[:80]}")
                 cands = []
-            if cands and cands[0].score >= 0.4:
-                news_image_map[nq] = cands[0].url
+            good = [c for c in (cands or []) if c.score >= 0.4][:_FUNNEL_PER_ENTITY]
+            if good:
+                news_image_map[nq] = good[0].url
                 print(f"      [media_funnel] {nq!r} -> "
-                      f"{cands[0].source} score={cands[0].score:.2f}")
+                      f"{good[0].source} score={good[0].score:.2f} "
+                      f"(+{len(good) - 1} more kept)")
+                # Fetch the extras now so they're a usable image pool.
+                for c in good:
+                    if len(funnel_extras) >= _FUNNEL_TOTAL_CAP:
+                        break
+                    if c.url in _funnel_seen:
+                        continue
+                    _funnel_seen.add(c.url)
+                    try:
+                        p = _fetch_image(c.url, Path("/tmp/shot_images"))
+                        funnel_extras.append({
+                            "path": str(p), "title": nq,
+                            "source": "news_funnel", "is_image": True,
+                            "uses": 0, "width": W, "height": HALF_H,
+                        })
+                    except Exception as e:  # noqa: BLE001
+                        print(f"      [media_funnel] extra fetch fail "
+                              f"{c.url[:50]}: {e}")
             elif cands:
                 print(f"      [media_funnel] {nq!r}: best score "
                       f"{cands[0].score:.2f} below 0.4 threshold; skip")
@@ -1328,6 +1356,12 @@ def build_timed_top(
         # 2. an entity still (Wikipedia / Commons) for this shot
         if len(candidates) < need:
             _add_cand(_resolve_topic_media(shot, Path("/tmp/shot_images")))
+        # 2b. real story photos the news funnel found (extra pig photos, the
+        #     interview thumbnail) — most relevant variety, woven in ahead of
+        #     generic pool/stock. Added every shot; the least-aired picker
+        #     then spreads them across the video instead of dropping them.
+        for fx in funnel_extras:
+            _add_cand(fx)
         # 3. other distinct on-topic pool stills
         while len(candidates) < need and topic_image_pool:
             if not _add_cand(_pick_pool_image(
