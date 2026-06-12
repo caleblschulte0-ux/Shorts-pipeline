@@ -405,6 +405,11 @@ class _Renderer:
         p = self.goal_progress(t)
         if p <= 0.0:
             return frame
+        # Force a writable, contiguous uint8 copy — some themes return a
+        # read-only / broadcast frame from draw(), which made the in-place
+        # `frame[y0:H] = ...` assignment throw on every frame (the water
+        # silently never rendered).
+        frame = np.array(frame, dtype=np.uint8, copy=True)
         # Visible, surging rise: waves already fill the bottom ~10% and the
         # level climbs in pace with the video, spilling over the top by the
         # end. A surge term makes the surface visibly heave so the rise reads
@@ -476,9 +481,15 @@ class _Renderer:
                 try:
                     frame = self._goal_overlay(frame, i / FPS)
                 except Exception as e:  # noqa: BLE001
-                    if i == 0:
-                        print(f"      [goal_overlay skipped: "
-                              f"{type(e).__name__}: {e}]")
+                    # Report the FIRST real failure (frame 0 returns early at
+                    # p=0, so keying off i==0 hid the error before). Loud and
+                    # once, so a broken overlay is never silent again.
+                    if not getattr(self, "_goal_warned", False):
+                        self._goal_warned = True
+                        import traceback
+                        print(f"      [goal_overlay FAILED, NO WATER: "
+                              f"{type(e).__name__}: {e}]", flush=True)
+                        traceback.print_exc()
                 proc.stdin.write(frame.tobytes())
         finally:
             proc.stdin.close()

@@ -6,9 +6,9 @@
 - failed: **0**
 
 ## Posted
-- **Two Pigs Got Loose in the Same CT Town — On the Same Morning**
-  - topic: Two Pigs Got Loose in the Same CT Town — On the Same Morning
-  - publishes: `2026-06-12T19:00:00Z`
+- **Wellington Declared a State of Emergency as 11-Meter Waves Hit the Coast**
+  - topic: Wellington Declared a State of Emergency as 11-Meter Waves Hit the Coast
+  - publishes: `2026-06-12T23:00:00Z`
   - (dry-run)
-  - took: 894.2s
+  - took: 968.5s
 
