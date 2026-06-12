@@ -36,20 +36,27 @@ NS = {"ht": "https://trends.google.com/trending/rss"}
 # flag topics that fall apart on a faceless channel (live games,
 # specific dead people, individual political horserace stuff).
 POSITIVE_KEYWORDS = {
-    # Tech / business
-    "stock": 8, "ipo": 8, "earnings": 6, "layoffs": 10, "lawsuit": 6,
-    "lawsuit": 6, "acquisition": 6, "merger": 6, "bankruptcy": 9,
-    "recall": 8, "shortage": 7, "ban": 6, "boycott": 6,
-    "ceo": 4, "founder": 4, "billionaire": 5,
-    # Products / launches
-    "launches": 6, "released": 4, "release": 4, "leak": 5, "leaked": 5,
-    "price": 5, "raises": 4, "raise": 4, "discontinued": 7,
-    # Economy
-    "inflation": 8, "interest": 4, "rates": 4, "housing": 6, "rent": 6,
-    "wages": 6, "tax": 4, "tariff": 7, "recession": 8,
+    # "Data Minute" is a broad DATA-EXPLAINER channel, not a finance channel.
+    # The biggest weights go to curiosity-gap topics — science, space, nature,
+    # the human body, history, records, mysteries — the stuff that makes people
+    # stop scrolling. Economic/news terms stay in (they can still make a good
+    # chart) but are deliberately weighted LOW so they stop dominating picks.
+
+    # Curiosity / science / nature / space  (the channel's bread and butter)
+    "discovery": 9, "discovered": 9, "scientists": 8, "study": 7, "research": 6,
+    "space": 9, "nasa": 9, "universe": 9, "galaxy": 8, "planet": 8, "asteroid": 8,
+    "ocean": 8, "deepest": 8, "species": 8, "animal": 7, "extinct": 8, "fossil": 8,
+    "ancient": 8, "dinosaur": 8, "brain": 7, "human": 6, "body": 6, "dna": 7,
+    "mystery": 8, "rare": 7, "record": 8, "largest": 8, "biggest": 8, "deadliest": 9,
+    "oldest": 7, "fastest": 7, "history": 6, "map": 6, "why": 5, "how": 5,
+    # Tech / business (kept, modest)
+    "layoffs": 5, "recall": 6, "shortage": 5, "bankruptcy": 5, "ban": 5,
+    "launches": 6, "leak": 5, "leaked": 5, "discontinued": 5,
+    # Economy (deliberately low — was the source of the boring-topic drift)
+    "inflation": 3, "housing": 2, "rent": 2, "wages": 2, "tax": 2,
+    "tariff": 3, "recession": 3, "stock": 3,
     # Phenomena
-    "viral": 6, "tiktok": 4, "trend": 3, "ai": 5,
-    "scandal": 7, "controversy": 5, "exposed": 6,
+    "viral": 6, "ai": 5, "scandal": 5, "exposed": 5,
 }
 
 # Hard skips. Any of these in the trend or news text → score below floor.

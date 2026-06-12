@@ -1,0 +1,33 @@
+{
+  "key": "mosquito_disease_deaths",
+  "title": "Mosquito-borne deaths per year, by disease",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Vector-borne disease burden",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Malaria",
+      "value": 600000
+    },
+    {
+      "label": "Dengue",
+      "value": 40000
+    },
+    {
+      "label": "Yellow fever",
+      "value": 30000
+    },
+    {
+      "label": "Other",
+      "value": 30000
+    }
+  ]
+}

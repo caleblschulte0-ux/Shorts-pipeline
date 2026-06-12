@@ -1,0 +1,25 @@
+{
+  "key": "humans_ever_vs_alive",
+  "title": "Humans: ever born vs alive today (billions)",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "How many people have ever lived",
+    "publisher": "Population Reference Bureau",
+    "url": "https://www.prb.org",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Ever born",
+      "value": 117
+    },
+    {
+      "label": "Alive today",
+      "value": 8
+    }
+  ]
+}

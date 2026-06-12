@@ -1,0 +1,25 @@
+{
+  "key": "humans_alive_share",
+  "title": "Share of all humans (%)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Share of humans alive today",
+    "publisher": "Population Reference Bureau",
+    "url": "https://www.prb.org",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Already lived and died",
+      "value": 93
+    },
+    {
+      "label": "Alive right now",
+      "value": 7
+    }
+  ]
+}
