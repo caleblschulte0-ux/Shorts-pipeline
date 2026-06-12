@@ -1,0 +1,33 @@
+{
+  "key": "feared_predators_deaths",
+  "title": "Deaths per year: the predators we fear",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Wildlife-related human deaths",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Snakes",
+      "value": 110000
+    },
+    {
+      "label": "Crocodiles",
+      "value": 1000
+    },
+    {
+      "label": "Lions",
+      "value": 200
+    },
+    {
+      "label": "Sharks",
+      "value": 10
+    }
+  ]
+}

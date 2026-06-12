@@ -1,8 +1,9 @@
 {
-  "niche": "us-economy",
+  "niche": "data-explainer",
   "channel_name": "Data Minute",
   "music_vibe": "cinematic",
-  "query_theme": "data chart graph statistics economy finance",
+  "query_theme": "data chart graph statistics science space nature human body history records surprising facts",
+  "topic_doctrine": "Data Minute is a broad curiosity-driven DATA-EXPLAINER channel, NOT a finance/economics channel. Pick topics with a 'whoa, I didn't know that' hook: science, space, the human body, nature and animals, history, world records, mysteries, scale and superlatives. Avoid dry pocketbook/personal-finance topics (insurance premiums, rent, wages, taxes) unless there is a genuinely surprising, counterintuitive angle. Every video should make someone stop scrolling.",
   "source_allowlist": [
     "Bureau of Labor Statistics",
     "Federal Reserve",
@@ -2042,6 +2043,125 @@
           "role": "3 \u00b7 EVEN INSURED",
           "topic": "out-of-pocket cost",
           "say": "Even with insurance, the average family still pays about 2,900 dollars out of pocket.",
+          "ascending": false
+        }
+      ]
+    },
+    {
+      "slug": "humans-ever-lived",
+      "title": "How Many People Have Ever Lived",
+      "hook": "Way more people have lived than are alive now.",
+      "closing": "Everyone you'll ever meet is a sliver of everyone who ever was.",
+      "question": "Does 117 billion surprise you? Drop a thought below.",
+      "caption": "About 117 billion humans have ever been born \u2014 and the 8 billion alive today are just ~7% of them. It took all of history to reach 1 billion, then we added 7 billion in 200 years. Here's the breakdown \ud83d\udc47",
+      "hashtags": [
+        "history",
+        "population",
+        "humans",
+        "data",
+        "facts",
+        "science",
+        "world",
+        "didyouknow",
+        "statistics",
+        "mindblown",
+        "people",
+        "interesting"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "humans_ever_vs_alive",
+          "params": {
+            "file": "humans_ever_vs_alive.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 EVER BORN",
+          "topic": "humans ever born vs alive",
+          "say": "About 117 billion people have ever been born.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "humans_alive_share",
+          "params": {
+            "file": "humans_alive_share.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 ALIVE NOW",
+          "topic": "share alive today",
+          "say": "The 8 billion alive today are only about 7 percent of everyone.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "world_population_history",
+          "params": {
+            "file": "world_population_history.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 THE CURVE",
+          "topic": "population over time",
+          "say": "It took all of history to reach 1 billion \u2014 then we added 7 billion in 200 years."
+        }
+      ]
+    },
+    {
+      "slug": "deadliest-animals",
+      "title": "The Deadliest Animal On Earth",
+      "hook": "The deadliest animal isn't what you think.",
+      "closing": "The thing most likely to kill you is the size of a fingernail.",
+      "question": "Which one surprised you? Drop it below.",
+      "caption": "Sharks kill about 10 people a year. Mosquitoes kill over 700,000 \u2014 mostly through malaria. Here's what actually kills humans \ud83d\udc47",
+      "hashtags": [
+        "animals",
+        "nature",
+        "facts",
+        "science",
+        "didyouknow",
+        "mosquito",
+        "wildlife",
+        "data",
+        "mindblown",
+        "health",
+        "interesting",
+        "statistics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "deadliest_animals",
+          "params": {
+            "file": "deadliest_animals.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 THE KILLER",
+          "topic": "deaths by animal",
+          "say": "Mosquitoes kill more than 700,000 people a year \u2014 sharks barely 10.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "mosquito_disease_deaths",
+          "params": {
+            "file": "mosquito_disease_deaths.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 WHY",
+          "topic": "mosquito-borne disease",
+          "say": "Most of it is malaria \u2014 about 600,000 deaths a year.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "feared_predators_deaths",
+          "params": {
+            "file": "feared_predators_deaths.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 FEAR VS FACT",
+          "topic": "predators we fear",
+          "say": "Snakes alone kill over 100,000 \u2014 the animals we fear most barely register.",
           "ascending": false
         }
       ]
