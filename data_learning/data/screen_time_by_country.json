@@ -1,0 +1,22 @@
+{
+  "key": "screen_time_by_country",
+  "title": "Average daily screen time, by country",
+  "unit": "hrs/day",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Digital 2024 Global Overview Report",
+    "publisher": "DataReportal (We Are Social / Meltwater)",
+    "url": "https://datareportal.com",
+    "officiality": "reputable",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    { "label": "South Africa", "value": 9.5 },
+    { "label": "Brazil", "value": 9.0 },
+    { "label": "Philippines", "value": 8.5 },
+    { "label": "United States", "value": 7.0 },
+    { "label": "Japan", "value": 4.5 }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "screen_time_by_activity",
+  "title": "Where the screen hours go, per day",
+  "unit": "hrs/day",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Digital 2024 Global Overview Report",
+    "publisher": "DataReportal (We Are Social / Meltwater)",
+    "url": "https://datareportal.com",
+    "officiality": "reputable",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    { "label": "Social media", "value": 2.5 },
+    { "label": "TV & video", "value": 2.0 },
+    { "label": "Gaming", "value": 1.1 },
+    { "label": "Music & podcasts", "value": 0.9 },
+    { "label": "Reading", "value": 0.5 }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "most_spoken_languages_total",
+  "title": "Most spoken languages, total speakers",
+  "unit": "M speakers",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Ethnologue: Languages of the World",
+    "publisher": "Ethnologue (SIL International)",
+    "url": "https://www.ethnologue.com",
+    "officiality": "reputable",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    { "label": "English", "value": 1500 },
+    { "label": "Mandarin Chinese", "value": 1100 },
+    { "label": "Hindi", "value": 610 },
+    { "label": "Spanish", "value": 560 },
+    { "label": "French", "value": 310 }
+  ]
+}

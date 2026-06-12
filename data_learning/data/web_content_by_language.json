@@ -1,0 +1,22 @@
+{
+  "key": "web_content_by_language",
+  "title": "Share of websites, by content language",
+  "unit": "% of websites",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Usage statistics of content languages for websites",
+    "publisher": "W3Techs",
+    "url": "https://w3techs.com",
+    "officiality": "reputable",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    { "label": "English", "value": 52 },
+    { "label": "Spanish", "value": 5.5 },
+    { "label": "German", "value": 4.5 },
+    { "label": "Japanese", "value": 4.0 },
+    { "label": "French", "value": 3.5 }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "life_years_breakdown",
+  "title": "Years of an average life, by activity",
+  "unit": "years",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Time-use estimates over an 80-year life",
+    "publisher": "Compiled from OECD & DataReportal time-use data",
+    "url": "https://datareportal.com",
+    "officiality": "reputable",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    { "label": "Sleeping", "value": 26 },
+    { "label": "Working", "value": 13 },
+    { "label": "On screens", "value": 8 },
+    { "label": "Socializing", "value": 5 },
+    { "label": "Eating", "value": 4 }
+  ]
+}
