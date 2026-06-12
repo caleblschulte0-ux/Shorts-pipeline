@@ -107,9 +107,9 @@ from PIL import Image, ImageDraw
 W, H = 1080, 960
 FPS = 30
 
-THEMES = ("space", "rain", "ember", "ocean", "plinko", "coins",
-          "quake", "volcano", "runner", "stacker", "fight", "moto",
-          "train")
+THEMES = ("space", "shipwreck", "rain", "ember", "ocean", "plinko",
+          "coins", "quake", "volcano", "runner", "stacker", "fight",
+          "moto", "train")
 
 # Keyword → theme. Checked in order; first hit wins. Scanned against
 # title + script + hashtags lowercased.
@@ -129,6 +129,10 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("runner", ("escape", "escaped", "on the run", "chase", "loose",
                 "kangaroo", "devil", "raccoon", "zoo", "wildlife",
                 "bear", "koala", "leopard", "animal")),
+    ("shipwreck", ("shipwreck", "sunken", "sunk", "sank", "wreck",
+                   "salvage", "diver", "scuba", "treasure", "galleon",
+                   "u-boat", "submarine", "titanic", "antikythera",
+                   "lost at sea", "seabed", "deep sea")),
     ("ocean", ("shark", "whale", "ocean", "sea ", "marine", "coral",
                "fish", "beach")),
     ("fight", ("ufc", "mma", "boxing", "boxer", "knockout",
@@ -3191,8 +3195,231 @@ class _Train(_Renderer):
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
 
+# ---------- SHIPWRECK: a galleon founders; divers salvage the deep ----------
+# (Antikythera / sunken-treasure / lost-at-sea stories.)
+
+class _Shipwreck(_Renderer):
+    """A galleon lists, breaks, and sinks from the surface to the seabed
+    while divers descend on its bubble trail to recover a glowing
+    artifact — and a shark prowls the deep. Each cycle the sea gets
+    rougher: the ship lists harder and sinks faster until the hull
+    breaks apart in an overload burst, then a fresh wreck founders on a
+    newly-strewn seabed."""
+
+    CYCLE = 13.0
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self._cycle_seen = -1
+        self.bubbles = [self._bubble(True) for _ in range(34)]
+        # Deep-sea vertical gradient — lighter near the surface (top),
+        # sinking to near-black at the seabed.
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), dtype=np.float32)
+        self.bg[..., 0] = 5 + 9 * (1 - g)
+        self.bg[..., 1] = 24 + 42 * (1 - g)
+        self.bg[..., 2] = 48 + 78 * (1 - g)
+        self._regen()
+
+    def _bubble(self, stagger=False):
+        rng = self.rng
+        return {"x": rng.uniform(0, W),
+                "y": rng.uniform(0, H) if stagger else H + rng.uniform(5, 40),
+                "v": rng.uniform(45, 130), "r": rng.uniform(2, 11),
+                "ph": rng.uniform(0, math.tau)}
+
+    def _regen(self):
+        rng = self.rng
+        self.tilt_dir = rng.choice([-1, 1])
+        self.ship_x = rng.uniform(W * 0.40, W * 0.60)
+        self.artifact_x = rng.uniform(W * 0.18, W * 0.82)
+        self.shark_dir = rng.choice([-1, 1])
+        self.shark_t0 = rng.uniform(0.34, 0.54)   # cycle fraction it crosses
+        self.shark_y = rng.uniform(H * 0.34, H * 0.52)
+        self.divers = [{
+            "dx": self.artifact_x + rng.uniform(-160, 160),
+            "ph": rng.uniform(0, math.tau),
+            "delay": rng.uniform(0.12, 0.30),
+            "side": rng.choice([-1, 1]),
+        } for _ in range(rng.randint(2, 3))]
+        base = H - 64
+        self.seabed = []
+        x = -20
+        while x < W + 40:
+            self.seabed.append((x, base + rng.uniform(-26, 26)))
+            x += rng.uniform(60, 130)
+        self.debris: list[dict] = []
+
+    @staticmethod
+    def _rot(pts, cx, cy, a):
+        ca, sa = math.cos(a), math.sin(a)
+        return [(cx + (x - cx) * ca - (y - cy) * sa,
+                 cy + (x - cx) * sa + (y - cy) * ca) for x, y in pts]
+
+    def _draw_diver(self, d, x, y, t, ph):
+        kick = math.sin(t * 6 + ph)
+        body = (26, 34, 46, 255)
+        # Fins scissoring (drawn first, behind the torso).
+        d.line([(x - 4, y + 16), (x - 4 + 11 * kick, y + 34)], fill=body, width=6)
+        d.line([(x + 4, y + 16), (x + 4 - 11 * kick, y + 34)], fill=body, width=6)
+        d.polygon([(x - 4 + 11 * kick, y + 30), (x - 4 + 18 * kick, y + 42),
+                   (x - 10 + 11 * kick, y + 42)], fill=(18, 24, 32, 255))
+        d.rectangle([x - 3, y - 12, x + 3, y + 7], fill=(70, 80, 92, 255))  # tank
+        d.ellipse([x - 9, y - 16, x + 9, y + 18], fill=body)               # torso
+        d.ellipse([x - 8, y - 30, x + 8, y - 14], fill=body)               # hood
+        d.ellipse([x - 5, y - 26, x + 2, y - 19], fill=(150, 220, 240, 230))  # mask
+        for bI in range(3):
+            by = y - 30 - bI * 11 - (t * 42 % 13)
+            d.ellipse([x + 3, by - 2, x + 7, by + 2],
+                      outline=(220, 240, 255, 150), width=1)
+
+    def _draw_shark(self, d, x, y, dirn, t):
+        col = (32, 42, 56, 255)
+        L, Hh = 152, 34
+        tail = x - dirn * L * 0.5
+        sway = 11 * math.sin(t * 5)
+        d.polygon([(tail, y), (tail - dirn * 42, y - 30 + sway),
+                   (tail - dirn * 16, y), (tail - dirn * 42, y + 28 + sway)],
+                  fill=col)                                           # tail
+        d.ellipse([x - L * 0.5, y - Hh * 0.5, x + L * 0.5, y + Hh * 0.5], fill=col)
+        nose = x + dirn * L * 0.5
+        d.polygon([(nose, y - 9), (nose + dirn * 40, y), (nose, y + 8)], fill=col)
+        d.polygon([(x, y - Hh * 0.5), (x - dirn * 26, y - Hh * 0.5 - 36),
+                   (x + dirn * 16, y - Hh * 0.5)], fill=col)          # dorsal
+        d.polygon([(x + dirn * 6, y + Hh * 0.3), (x - dirn * 12, y + Hh * 0.3 + 26),
+                   (x + dirn * 22, y + Hh * 0.3)], fill=col)          # pectoral
+        d.ellipse([x - L * 0.34, y + 2, x + L * 0.34, y + Hh * 0.5],
+                  fill=(64, 78, 94, 255))                             # belly
+        for gi in range(4):
+            gx = x + dirn * (L * 0.16 - gi * 10)
+            d.line([(gx, y - 8), (gx, y + 8)], fill=(16, 22, 30, 200), width=2)
+        ex = x + dirn * L * 0.36
+        d.ellipse([ex - 3, y - 7, ex + 3, y - 1], fill=(8, 10, 14, 255))
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        dt = 1 / FPS
+        if self.cycle_index(t) != self._cycle_seen:
+            self._cycle_seen = self.cycle_index(t)
+            if self._cycle_seen > 0:
+                self._regen()
+        k = self.intensity(t)
+        p = self._phase(t) / self.CYCLE
+
+        bg = self.bg * (1.0 - 0.18 * k)
+        img = Image.fromarray(np.clip(bg, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+
+        # God rays from the surface.
+        for r in range(3):
+            bx = W * (0.18 + 0.32 * r) + 50 * math.sin(t * 0.13 + r * 2)
+            d.polygon([(bx - 36, 0), (bx + 54, 0), (bx + 240, H), (bx + 70, H)],
+                      fill=(150, 205, 235, 13))
+
+        # Surface chop up top — grows with the storm.
+        amp = 6 + 26 * k
+        surf = [(x, 30 + amp * math.sin(t * 1.6 + x * 0.015))
+                for x in range(0, W + 20, 20)]
+        d.line(surf, fill=(180, 225, 245, 120), width=3)
+
+        # Seabed + the glinting artifact (a gear half-buried in silt).
+        d.polygon([(0, H)] + self.seabed + [(W, H)], fill=(20, 26, 30, 255))
+        ax, ay = self.artifact_x, H - 80
+        glow = int(120 + 110 * (0.5 + 0.5 * math.sin(t * 2.2)))
+        for rr in (34, 26, 18):
+            d.ellipse([ax - rr, ay - rr, ax + rr, ay + rr],
+                      outline=(glow, int(glow * 0.85), 90, 180), width=3)
+        for tooth in range(12):
+            a = tooth / 12 * math.tau + t * 0.4
+            d.line([(ax + 18 * math.cos(a), ay + 18 * math.sin(a)),
+                    (ax + 36 * math.cos(a), ay + 36 * math.sin(a))],
+                   fill=(glow, int(glow * 0.8), 70, 200), width=3)
+
+        # Shark prowls across once per cycle (behind the ship/divers).
+        sp = p - self.shark_t0
+        if -0.12 < sp < 0.5:
+            travel = (sp + 0.12) / 0.62
+            sx = ((-170 if self.shark_dir > 0 else W + 170)
+                  + self.shark_dir * travel * (W + 340))
+            self._draw_shark(d, sx, self.shark_y + 18 * math.sin(t * 0.8),
+                             self.shark_dir, t)
+
+        # The ship: sinks surface->seabed over the cycle, listing harder.
+        surface_y, floor_y = 92, H - 150
+        sink = _ease(min(1.0, p / 0.82))
+        cy = surface_y + (floor_y - surface_y) * sink
+        cx = self.ship_x + self.tilt_dir * 40 * sink
+        ang = self.tilt_dir * (0.04 + (0.55 + 0.25 * k) * sink)
+        hw = 118
+        for mx, mh in ((cx - 46, 150), (cx + 30, 178), (cx + 96, 120)):
+            seg = self._rot([(mx, cy - 2), (mx, cy - mh)], cx, cy, ang)
+            d.line(seg, fill=(54, 38, 24, 255), width=6)
+            tatter = 1.0 - 0.7 * sink
+            if tatter > 0.12:
+                sw = 52 * tatter
+                sail = self._rot([(mx + 5, cy - mh + 18), (mx + 5 + sw, cy - mh + 40),
+                                  (mx + 5 + sw, cy - mh * 0.5),
+                                  (mx + 5, cy - mh * 0.5 + 10)], cx, cy, ang)
+                d.polygon(sail, fill=(120, 110, 95, int(150 * tatter)))
+        hull = [(cx - hw, cy - 4), (cx + hw, cy - 4), (cx + hw + 30, cy + 14),
+                (cx + hw * 0.7, cy + 52), (cx - hw * 0.82, cy + 52)]
+        d.polygon(self._rot(hull, cx, cy, ang), fill=(44, 30, 20, 255),
+                  outline=(84, 62, 40, 255))
+        # Bubbles streaming off the foundering hull.
+        if sink > 0.05:
+            for _ in range(2):
+                bxx = cx + rng.uniform(-hw, hw)
+                byy = cy - rng.uniform(0, 44)
+                d.ellipse([bxx - 3, byy - 3, bxx + 3, byy + 3],
+                          outline=(220, 240, 255, 150), width=2)
+
+        # Debris planks snap off once the sea turns violent, then sink.
+        if k > 0.5 and rng.random() < 0.25:
+            self.debris.append({"x": cx + rng.uniform(-hw, hw), "y": cy,
+                                "vx": rng.uniform(-25, 25), "vy": rng.uniform(-30, 10),
+                                "a": rng.uniform(0, math.tau),
+                                "va": rng.uniform(-2, 2), "L": rng.uniform(14, 30)})
+        for pl in self.debris[:]:
+            pl["vy"] += 60 * dt
+            pl["x"] += pl["vx"] * dt
+            pl["y"] += pl["vy"] * dt
+            pl["a"] += pl["va"] * dt
+            if pl["y"] > H - 58:
+                self.debris.remove(pl)
+                continue
+            L = pl["L"]
+            plank = [(pl["x"] - L, pl["y"] - 4), (pl["x"] + L, pl["y"] - 4),
+                     (pl["x"] + L, pl["y"] + 4), (pl["x"] - L, pl["y"] + 4)]
+            d.polygon(self._rot(plank, pl["x"], pl["y"], pl["a"]),
+                      fill=(60, 42, 28, 255))
+
+        # Divers descend on the wreck's trail toward the artifact.
+        for dv in self.divers:
+            dp = (p - dv["delay"]) / max(0.01, 0.86 - dv["delay"])
+            if dp <= 0:
+                continue
+            dp = min(1.0, dp)
+            dy = -40 + (H - 120 + 40) * _ease(dp)
+            dx = dv["dx"] + math.sin(t * 1.1 + dv["ph"]) * 26 \
+                + dv["side"] * 12 * (1 - dp)
+            self._draw_diver(d, dx, dy, t, dv["ph"])
+
+        # Ambient bubble field in the foreground.
+        for b in self.bubbles:
+            b["y"] -= b["v"] * dt
+            b["x"] += math.sin(t * 1.4 + b["ph"]) * 22 * dt
+            if b["y"] < -16:
+                b.update(self._bubble())
+            r = b["r"]
+            d.ellipse([b["x"] - r, b["y"] - r, b["x"] + r, b["y"] + r],
+                      outline=(215, 238, 255, 150), width=2)
+
+        return self.overload(np.asarray(img, dtype=np.uint8), t)
+
+
 _THEME_CLASSES = {
     "space": _Space,
+    "shipwreck": _Shipwreck,
     "plinko": _Plinko,
     "coins": lambda seed=None: _Plinko(seed, gold=True),
     "rain": _Rain,
@@ -3209,13 +3436,26 @@ _THEME_CLASSES = {
 
 
 def render(theme: str, duration: float, out_path: Path,
-           seed: int | None = None) -> Path:
+           seed: int | None = None,
+           height: int | None = None, width: int | None = None) -> Path:
     """Render `duration` seconds of the named theme to `out_path`
-    (1080x960@30, h264, silent). Unknown themes fall back to plinko."""
-    cls = _THEME_CLASSES.get(theme, _Plinko)
-    print(f"      [themed_bottom] generating {theme!r} "
-          f"({duration:.1f}s procedural)")
-    return cls(seed).render(duration, out_path)
+    (1080x960@30 by default, h264, silent). Unknown themes fall back to
+    plinko. Pass `height`/`width` to render at a non-default frame size
+    (used when the top/bottom split isn't 50/50, so the scene fills the
+    bottom region without a center-crop clipping its seabed/horizon)."""
+    global W, H
+    saved = (W, H)
+    if width:
+        W = width
+    if height:
+        H = height
+    try:
+        cls = _THEME_CLASSES.get(theme, _Plinko)
+        print(f"      [themed_bottom] generating {theme!r} "
+              f"({duration:.1f}s procedural, {W}x{H})")
+        return cls(seed).render(duration, out_path)
+    finally:
+        W, H = saved
 
 
 if __name__ == "__main__":

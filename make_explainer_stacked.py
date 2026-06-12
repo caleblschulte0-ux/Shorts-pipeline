@@ -2123,7 +2123,8 @@ def build_video(
                 if bottom_theme:
                     import themed_bottom
                     bottom = themed_bottom.render(
-                        bottom_theme, total_dur, workdir / "bottom_themed.mp4")
+                        bottom_theme, total_dur, workdir / "bottom_themed.mp4",
+                        height=BOTTOM_H)
                 else:
                     bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
         elif bottom_theme:
@@ -2131,7 +2132,8 @@ def build_video(
             try:
                 import themed_bottom
                 bottom = themed_bottom.render(
-                    bottom_theme, total_dur, workdir / "bottom_themed.mp4")
+                    bottom_theme, total_dur, workdir / "bottom_themed.mp4",
+                    height=BOTTOM_H)
             except Exception as e:  # noqa: BLE001
                 print(f"      [themed_bottom failed: {e}] -> gameplay")
                 bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
