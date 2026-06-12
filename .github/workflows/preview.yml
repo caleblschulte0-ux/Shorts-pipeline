@@ -151,7 +151,22 @@ jobs:
         run: |
           ls output/*.mp4 >/dev/null 2>&1 || { echo "no mp4s rendered — skipping"; exit 0; }
           tmp=$(mktemp -d)
-          cp output/*.mp4 "$tmp"/ 2>/dev/null || true
+          # Compress each render to a lightweight, phone-friendly preview
+          # (720-wide, CRF 30) so the file opens easily over chat — the
+          # full-res mp4 still goes up as the Actions artifact. The bold
+          # bottom overlays can push the raw file past 40MB, which some
+          # players refuse to open.
+          for mp4 in output/*.mp4; do
+            base=$(basename "$mp4")
+            if ffmpeg -y -loglevel error -i "$mp4" \
+                 -vf "scale=720:-2" -c:v libx264 -preset veryfast -crf 30 \
+                 -c:a aac -b:a 96k -movflags +faststart "$tmp/$base"; then
+              echo "compressed $base -> $(du -h "$tmp/$base" | cut -f1)"
+            else
+              echo "compress failed for $base, copying original"
+              cp "$mp4" "$tmp"/ || true
+            fi
+          done
           cp output/*.mp4.audit.json "$tmp"/ 2>/dev/null || true
           cp daily_report.md "$tmp"/ 2>/dev/null || true
           git config user.name "github-actions[bot]"
