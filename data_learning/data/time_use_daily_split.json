@@ -1,0 +1,24 @@
+{
+  "key": "time_use_daily_split",
+  "title": "How the average American spends 24 hours (hours per day)",
+  "unit": "hours",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "American Time Use Survey (ATUS)",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov/tus/",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures represent all persons age 15+ averaged across all days (weekdays and weekends). 'Other' includes personal care excluding sleep, education, civic activities, and telephone calls.",
+  "points": [
+    {"label": "Sleep", "value": 8.7},
+    {"label": "Leisure & sports", "value": 5.0},
+    {"label": "Work & related", "value": 3.4},
+    {"label": "Household activities", "value": 2.0},
+    {"label": "Caring for others", "value": 1.1},
+    {"label": "Eating & drinking", "value": 1.2},
+    {"label": "Other", "value": 2.6}
+  ]
+}

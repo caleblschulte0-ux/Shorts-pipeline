@@ -1,0 +1,23 @@
+{
+  "key": "myopia_regional_rank",
+  "title": "Myopia prevalence by world region — young adults (percent)",
+  "unit": "percent",
+  "geography": "World (by region)",
+  "time_coverage": "2020 estimate",
+  "source": {
+    "name": "Regional myopia prevalence",
+    "publisher": "World Health Organization / Brien Holden Vision Institute",
+    "url": "https://www.who.int/docs/default-source/blindness/myopia-report-en.pdf",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures represent approximate myopia prevalence among young adults (under 40) per region. East Asia range is 70-90% in urban populations; figure represents midpoint of urban estimates.",
+  "points": [
+    {"label": "East Asia", "value": 80},
+    {"label": "Europe", "value": 47},
+    {"label": "Middle East", "value": 38},
+    {"label": "Americas", "value": 31},
+    {"label": "South Asia", "value": 24},
+    {"label": "Sub-Saharan Africa", "value": 14}
+  ]
+}

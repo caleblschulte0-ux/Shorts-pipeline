@@ -1,0 +1,22 @@
+{
+  "key": "jwst_redshift_records",
+  "title": "Oldest confirmed galaxy — universe age at formation (million years after Big Bang)",
+  "unit": "million years after Big Bang",
+  "geography": "Observable universe",
+  "time_coverage": "2004-2024 (discovery year)",
+  "source": {
+    "name": "Redshift record progression",
+    "publisher": "NASA / ESA / JWST Science Team",
+    "url": "https://www.nasa.gov/mission/webb/",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; values represent approximate age of the universe when the oldest confirmed galaxy was formed, at each discovery year. Lower value = older galaxy, further back in cosmic time. 2024 record: JADES-GS-z14-0 (z≈14.3, ~290 Myr after Big Bang).",
+  "points": [
+    {"label": "2004 (z≈6.6)", "value": 800, "period": "2004"},
+    {"label": "2011 (z≈8.5)", "value": 600, "period": "2011"},
+    {"label": "2016 (z≈11.1)", "value": 400, "period": "2016"},
+    {"label": "2022 (z≈13.1)", "value": 330, "period": "2022"},
+    {"label": "2024 (z≈14.3)", "value": 290, "period": "2024"}
+  ]
+}

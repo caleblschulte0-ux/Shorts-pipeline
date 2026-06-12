@@ -1,0 +1,23 @@
+{
+  "key": "myopia_global_trend",
+  "title": "Global myopia prevalence (percent of world population)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "1990-2050 (2030 and 2050 are WHO projections)",
+  "source": {
+    "name": "Global prevalence of myopia and high myopia",
+    "publisher": "World Health Organization / Holden et al. 2016",
+    "url": "https://www.who.int/docs/default-source/blindness/myopia-report-en.pdf",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; based on Holden et al. (2016) Ophthalmology projections and WHO global estimates. 2020 figure: ~34% (2.6 billion people). 2030 and 2050 values are modeled projections.",
+  "points": [
+    {"label": "1990", "value": 22, "period": "1990"},
+    {"label": "2000", "value": 28, "period": "2000"},
+    {"label": "2010", "value": 32, "period": "2010"},
+    {"label": "2020", "value": 34, "period": "2020"},
+    {"label": "2030 (proj)", "value": 40, "period": "2030"},
+    {"label": "2050 (proj)", "value": 50, "period": "2050"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "wildfire_worst_years",
+  "title": "Worst US wildfire years by acres burned (millions)",
+  "unit": "million acres",
+  "geography": "United States",
+  "time_coverage": "Top years in NIFC record (1960-2022)",
+  "source": {
+    "name": "National Interagency Fire Center — Historical wildfire statistics",
+    "publisher": "National Interagency Fire Center (NIFC)",
+    "url": "https://www.nifc.gov/fire-information/statistics",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; top five years by total US acres burned per NIFC records. All five of the worst years on record have occurred since 2000.",
+  "points": [
+    {"label": "2015", "value": 10.1},
+    {"label": "2020", "value": 10.1},
+    {"label": "2017", "value": 10.0},
+    {"label": "2006", "value": 9.9},
+    {"label": "2012", "value": 9.3}
+  ]
+}
