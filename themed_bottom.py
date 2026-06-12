@@ -396,44 +396,37 @@ class _Renderer:
 
     def _goal_overlay(self, frame: np.ndarray, t: float) -> np.ndarray:
         """A BOLD rising water body — the end goal. Opaque enough to read
-        at a glance (the scene below shows through dimly, like it's being
-        submerged), with a big animated foam surface so the level is
-        obvious and visibly climbing across the whole clip."""
+        at a glance, with a big animated foam surface so the level is
+        obvious and visibly climbing across the whole clip. Operates on a
+        simple bottom slice (the proven, can't-crash shape)."""
         if not self.GOAL_ENABLED:
             return frame
         p = self.goal_progress(t)
         if p <= 0.0:
             return frame
         level = max(2, int(H * self.GOAL_FILL_END * p))
-        xs = np.arange(W)
         y0 = H - level
-        # Big, lively surface: tall waves that animate, so the water reads
-        # as alive and the rising line is impossible to miss.
-        surf = (y0 + np.sin(xs * 0.022 + t * 2.6) * 11.0
+        band = frame[y0:H].astype(np.float32)            # (level, W, 3)
+        rows = band.shape[0]
+        d = np.linspace(0.0, 1.0, rows, dtype=np.float32)[:, None, None]
+        tint = np.asarray(self.GOAL_TINT, np.float32)[None, None, :]
+        deep = np.asarray(self.GOAL_DEEP, np.float32)[None, None, :]
+        water = tint * (1.0 - d) + deep * d              # (rows,1,3)
+        # Opaque-ish so it's clearly WATER: 0.6 at the surface deepening to
+        # 0.9 at the floor (scene shows through dimly, like it's submerged).
+        alpha = 0.60 + 0.30 * d                          # (rows,1,1)
+        frame[y0:H] = (band * (1.0 - alpha) + water * alpha).astype(np.uint8)
+        # Big animated foam crest drawn on top so the level is unmistakable
+        # and reads as live, climbing water.
+        xs = np.arange(W)
+        wave = (np.sin(xs * 0.022 + t * 2.6) * 11.0
                 + np.sin(xs * 0.0075 - t * 1.9) * 7.0
-                + np.sin(xs * 0.05 + t * 4.0) * 3.0).astype(np.int32)
-        surf = np.clip(surf, 0, H - 1)
-
-        yy = np.arange(H)[:, None]                       # (H,1)
-        below = yy >= surf[None, :]                      # (H,W) underwater mask
-        depth = np.clip((yy - surf[None, :]) / float(level), 0.0, 1.0)
-        tint = np.asarray(self.GOAL_TINT, np.float32)
-        deep = np.asarray(self.GOAL_DEEP, np.float32)
-        water = (tint[None, None, :] * (1.0 - depth[..., None])
-                 + deep[None, None, :] * depth[..., None])
-        # Opaque-ish so it's clearly WATER, not a tint: 0.62 at the surface
-        # deepening to 0.9 at the floor.
-        alpha = (0.62 + 0.28 * depth)[..., None]
-        fb = frame.astype(np.float32)
-        blended = fb * (1.0 - alpha) + water * alpha
-        frame[:] = np.where(below[..., None], blended, fb).astype(np.uint8)
-
-        # Bright foam crest (thick band) + a sunlit highlight just under it.
+                + np.sin(xs * 0.05 + t * 4.0) * 3.0)
+        surf = np.clip((y0 + wave).astype(np.int32), 0, H - 1)
         crest = np.array([235, 248, 255], dtype=np.uint8)
         for dy in (0, 1, 2, 3):
             frame[np.clip(surf + dy, 0, H - 1), xs] = crest
-        frame[np.clip(surf + 6, 0, H - 1), xs] = (150, 215, 245)
-        frame[np.clip(surf + 10, 0, H - 1), xs] = (90, 175, 225)
+        frame[np.clip(surf + 7, 0, H - 1), xs] = (140, 210, 240)
         return frame
 
     def render(self, duration: float, out_path: Path) -> Path:
@@ -469,7 +462,15 @@ class _Renderer:
                 frame = self.draw(i / FPS, i)
                 # Universal end-goal: a rising fill that advances across the
                 # WHOLE clip and is nearly full at the end (see _goal_overlay).
-                frame = self._goal_overlay(frame, i / FPS)
+                # Guarded so an overlay bug skips the water rather than
+                # crashing the whole themed bottom (which would silently fall
+                # back to a Minecraft gameplay clip upstream).
+                try:
+                    frame = self._goal_overlay(frame, i / FPS)
+                except Exception as e:  # noqa: BLE001
+                    if i == 0:
+                        print(f"      [goal_overlay skipped: "
+                              f"{type(e).__name__}: {e}]")
                 proc.stdin.write(frame.tobytes())
         finally:
             proc.stdin.close()
