@@ -481,18 +481,23 @@ def _num_magnitude(text: str) -> float:
 
 
 def _headline_number(st: "story.Story") -> str | None:
-    """The single most eye-catching on-chart number across the story —
-    the biggest-magnitude punch label. None if the story has no punches."""
-    best, best_mag = None, -1.0
-    for seg in st.segments:
-        for p in seg.punches:
-            t = (p.get("text") or "").strip()
-            if not t:
-                continue
-            mag = _num_magnitude(t)
-            if mag > best_mag:
-                best, best_mag = t, mag
-    return best
+    """The number to lead the cold-open with: the most eye-catching stat from
+    the OPENING beat (segment 1), not merely the biggest number anywhere in the
+    video. Leading with segment 1's stat keeps frame 1 on-topic with the hook —
+    otherwise a late, mundane figure (e.g. a baseline '80%') can hijack the open.
+    Falls back to a whole-story scan if the first segment names no number."""
+    def biggest(segs) -> str | None:
+        best, best_mag = None, -1.0
+        for seg in segs:
+            for p in seg.punches:
+                t = (p.get("text") or "").strip()
+                if not t:
+                    continue
+                mag = _num_magnitude(t)
+                if mag > best_mag:
+                    best, best_mag = t, mag
+        return best
+    return biggest(st.segments[:1]) or biggest(st.segments)
 
 
 def _vgradient(top_hex: str, bot_hex: str):
@@ -660,23 +665,32 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Cap,,0,0,0,,"
                          f"{ch.strip()}")
 
-    # 0: HOOK — punchy KINETIC reveal. Show a few big words at a time, synced
-    # to the voice, so the open is a moving hook instead of one static wall of
-    # text (the instant-swipe killer). Each chunk pops in and replaces the last.
+    # 0: HOOK — LEAD WITH THE PUNCHLINE. The single biggest shock-number slams
+    # onto frame 1 as the hero (the same gut-punch the thumbnail promises),
+    # with the take spelled out beneath it in fast 2-word bursts. No more five
+    # seconds of an idle mascot before any substance — the payoff is on screen
+    # at t=0, which is the only moment that decides whether they keep watching.
     h0, h1 = windows[0]
+    headline = _headline_number(st)
+    if headline:
+        # Hero number: huge, accent-filled, punches in hard on the first frame.
+        num = ("{\\an5\\pos(540,235)\\fs240\\1c" + accent + "\\3c&H101010&"
+               "\\bord7\\shad0\\fad(0,90)\\fscx150\\fscy150"
+               "\\t(0,150,\\fscx100\\fscy100)\\blur1.2}" + headline)
+        lines.append(f"Dialogue: 1,{_ass_time(h0)},{_ass_time(h1)},Hook,,0,0,0,,{num}")
     hchunks = _chunks(st.hook, 2)          # 2-word bursts = faster, bigger words
     if hchunks:
         hstep = (h1 - h0) / len(hchunks)
         for j, ch in enumerate(hchunks):
             cs, ce = h0 + j * hstep, h0 + (j + 1) * hstep
-            # The FIRST burst slams in big on frame 1 with no fade-in lag — a
-            # hard pattern-interrupt that earns the next second. Later bursts
-            # pop in fast. Accent glow under white text for max contrast.
+            # The take sits BELOW the hero number (and above the mascot) so the
+            # number, the claim, and the host never fight for the same pixels.
             if j == 0:
-                pop = ("{\\fad(0,70)\\fscx128\\fscy128\\t(0,130,\\fscx100\\fscy100)"
-                       "\\3c" + accent + "\\bord10\\blur6}")
+                pop = ("{\\an5\\pos(540,470)\\fs92\\fad(0,70)\\fscx120\\fscy120"
+                       "\\t(0,130,\\fscx100\\fscy100)\\3c" + accent + "\\bord8\\blur5}")
             else:
-                pop = ("{\\fad(70,70)\\fscx112\\fscy112\\t(0,110,\\fscx100\\fscy100)}")
+                pop = ("{\\an5\\pos(540,470)\\fs92\\fad(70,70)\\fscx108\\fscy108"
+                       "\\t(0,110,\\fscx100\\fscy100)\\bord8}")
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Hook,,0,0,0,,"
                          f"{pop}{ch.strip()}")
 
