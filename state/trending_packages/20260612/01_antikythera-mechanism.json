@@ -1,0 +1,91 @@
+{
+  "version": 8,
+  "slug": "antikythera-mechanism",
+  "title": "A 2,000-Year-Old Computer Found in a Shipwreck",
+  "series_id": "impossible-artifacts",
+  "series_name": "Impossible Artifacts",
+  "episode_number": 1,
+  "music_vibe": "cinematic",
+  "hashtags": [
+    "antikythera",
+    "antikytheramechanism",
+    "ancientgreece",
+    "ancienttech",
+    "archaeology",
+    "shipwreck",
+    "history",
+    "historymystery",
+    "ancientengineering",
+    "soundsfakebutreal",
+    "losttechnology",
+    "didyouknow"
+  ],
+  "script": "They had computers?! In 1901, divers off the Greek island of Antikythera pulled a lump of corroded bronze from a 2,000-year-old shipwreck. For decades it sat ignored. Then X-rays revealed the truth: it held at least 30 interlocking bronze gears, cut by hand. It's now called the Antikythera mechanism — a working analog computer. Turn the crank, and it predicted the positions of the Sun, the Moon, and the planets. It tracked eclipses, and even the 4-year cycle of the ancient Olympic Games. Nothing this complex would appear again for over 1,000 years. We still don't know exactly who built it. So how did the makers of the Antikythera mechanism build a computer the world then forgot for over 1,000 years?",
+  "shots": [
+    {
+      "phrase": "In 1901, divers off the Greek island of Antikythera",
+      "query": "Greek sponge divers 1900 antique diving helmet sea black and white"
+    },
+    {
+      "phrase": "a lump of corroded bronze from a 2,000-year-old shipwreck",
+      "query": "corroded bronze artifact ancient shipwreck seafloor encrusted"
+    },
+    {
+      "phrase": "For decades it sat ignored",
+      "query": "museum storage dusty artifact shelf forgotten archive"
+    },
+    {
+      "phrase": "Then X-rays revealed the truth",
+      "query": "x-ray scan ancient artifact internal gears radiograph"
+    },
+    {
+      "phrase": "at least 30 interlocking bronze gears, cut by hand",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Antikythera_Fragment_A_%28Back%29.webp/500px-Antikythera_Fragment_A_%28Back%29.webp.png",
+      "query": "interlocking bronze gears mechanism close up corroded teeth"
+    },
+    {
+      "phrase": "It's now called the Antikythera mechanism",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Antikythera_Fragment_A_%28Front%29.webp/500px-Antikythera_Fragment_A_%28Front%29.webp.png",
+      "query": "Antikythera mechanism fragment museum Athens display"
+    },
+    {
+      "phrase": "a working analog computer",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Antikythera_model_front_panel_Mogi_Vicentini_2007.JPG/500px-Antikythera_model_front_panel_Mogi_Vicentini_2007.JPG",
+      "query": "Antikythera mechanism reconstruction model brass gears dials"
+    },
+    {
+      "phrase": "it predicted the positions of the Sun, the Moon, and the planets",
+      "query": "antique brass orrery solar system model sun moon planets gears"
+    },
+    {
+      "phrase": "It tracked eclipses",
+      "query": "solar eclipse diagram sun moon alignment ancient astronomy"
+    },
+    {
+      "phrase": "the 4-year cycle of the ancient Olympic Games",
+      "query": "ancient Greek Olympic games stadium ruins olympia laurel"
+    },
+    {
+      "phrase": "Nothing this complex would appear again for over 1,000 years",
+      "query": "medieval astronomical clock gears cathedral antique mechanism"
+    },
+    {
+      "phrase": "We still don't know exactly who built it",
+      "query": "ancient Greek workshop craftsman tools dim mystery silhouette"
+    },
+    {
+      "phrase": "how did the makers of the Antikythera mechanism build a computer",
+      "query": "Antikythera mechanism reconstruction dramatic lighting museum dusk"
+    }
+  ],
+  "punches": [
+    { "phrase": "They had computers", "text": "COMPUTERS?!", "color": "#ffaa30" },
+    { "phrase": "2,000-year-old shipwreck", "text": "2,000 YEARS", "color": "#ffffff" },
+    { "phrase": "30 interlocking bronze gears", "text": "30 GEARS", "color": "#ffaa30" },
+    { "phrase": "cut by hand", "text": "BY HAND", "color": "#ffffff" },
+    { "phrase": "a working analog computer", "text": "A COMPUTER", "color": "#50ff80" },
+    { "phrase": "It tracked eclipses", "text": "ECLIPSES", "color": "#ffaa30" },
+    { "phrase": "Nothing this complex would appear again for over 1,000 years", "text": "1,000 YEARS", "color": "#ff3030" },
+    { "phrase": "who built it", "text": "BUT WHO?", "color": "#ffffff" }
+  ]
+}
