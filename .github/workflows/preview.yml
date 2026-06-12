@@ -123,6 +123,15 @@ jobs:
           # video so a quick sample comes back in ~5 min instead of ~30.
           COUNT: ${{ github.event.inputs.count || '1' }}
         run: |
+          # On a push trigger there's no dispatch input, so default to 1 for
+          # a fast single-video preview — UNLESS .github/triggers/preview_count
+          # holds a number (e.g. "6" to render the whole slate for a
+          # repeatability check). Dispatch input always wins.
+          if [ -z "${{ github.event.inputs.count }}" ] \
+              && [ -f .github/triggers/preview_count ]; then
+            FILE_CNT=$(tr -dc '0-9' < .github/triggers/preview_count | head -c1)
+            [ -n "$FILE_CNT" ] && COUNT="$FILE_CNT"
+          fi
           echo "Rendering $COUNT package(s) with --dry-run (no upload)"
           python scripts/run_trending_daily.py --count "$COUNT" --dry-run
 

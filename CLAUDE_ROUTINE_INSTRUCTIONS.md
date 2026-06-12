@@ -372,6 +372,37 @@ fixing) — catch it here instead.
 Never use wordmark-only logos. Never use `image_url` without a `query`
 fallback (URL 404 → blank shot).
 
+### Rule E — the `query` is that beat's B-ROLL, so match the moment
+
+The renderer no longer holds one photo for the whole video. It shows each
+visual **once** (never twice), caps every cut at ~4 seconds, and **cuts in
+stock FOOTAGE from each shot's `query` to fill the gaps and break monotony.**
+So `query` is not just a 404 fallback any more — it's the moving footage for
+that exact beat. Write it to match what the narration is *saying right there*,
+as 2-4 concrete nouns:
+
+- beat says "...through the suburbs" → `query: "suburban street"`
+- beat says "police teamed up" → `query: "police car lights"`
+- beat says "at 5:45 a.m." → `query: "sunrise quiet neighborhood"`
+- a beat about the actual subject → `query: "domestic pig"` (a real pig clip)
+
+Give **every shot a distinct, on-moment `query`** (don't repeat
+`"domestic pig"` on all 12). You do NOT need a hand-picked unique `image_url`
+for every beat — 3-6 strong real photos plus good per-beat queries is plenty,
+because the renderer fills the rest with distinct stock automatically.
+
+### What the renderer now handles for you (don't fight it)
+
+- **Commons URLs:** `Special:FilePath/<File>` is auto-rewritten to the
+  `upload.wikimedia.org/.../960px-...` CDN thumbnail (the FilePath form is
+  rate-limited to 429 and was silently dropping images). You may still write
+  the thumbnail URL directly; just keep widths to allowed buckets (960 is safe).
+- **News media:** the funnel keeps the top *several* real photos per entity
+  (not just one) and weaves them in — so naming the right entities in
+  `news_query`/phrases is what surfaces real story photos.
+- **No-repeat + stock fill:** each visual airs once; gaps become fresh
+  on-`query` stock. That's why per-beat queries matter more than ever.
+
 ## Other script rules
 
 - **110-140 words.** Hook → escalating story → payoff (NOT a flat fact-list —
