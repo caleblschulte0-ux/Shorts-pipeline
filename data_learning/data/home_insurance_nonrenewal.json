@@ -1,0 +1,32 @@
+{
+  "key": "home_insurance_nonrenewal",
+  "title": "Homeowners dropped by insurer (% of policies)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2018-2024 (annual)",
+  "source": {
+    "name": "Policy nonrenewal rates",
+    "publisher": "U.S. Senate Budget Committee",
+    "url": "https://www.budget.senate.gov",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 1.5,
+      "period": "2018"
+    },
+    {
+      "label": "2021",
+      "value": 2.5,
+      "period": "2021"
+    },
+    {
+      "label": "2024",
+      "value": 4.0,
+      "period": "2024"
+    }
+  ]
+}

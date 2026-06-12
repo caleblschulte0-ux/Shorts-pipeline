@@ -1,0 +1,33 @@
+{
+  "key": "childcare_vs",
+  "title": "Annual cost, US average ($)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Cost of care comparison",
+    "publisher": "Child Care Aware of America",
+    "url": "https://www.childcareaware.org",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Infant daycare",
+      "value": 16800
+    },
+    {
+      "label": "Median rent",
+      "value": 15600
+    },
+    {
+      "label": "Public college (in-state)",
+      "value": 11000
+    },
+    {
+      "label": "Groceries (1 adult)",
+      "value": 4600
+    }
+  ]
+}

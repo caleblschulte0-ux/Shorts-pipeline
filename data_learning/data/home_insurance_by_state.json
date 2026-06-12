@@ -1,0 +1,41 @@
+{
+  "key": "home_insurance_by_state",
+  "title": "Average premium by state ($)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Premiums by state",
+    "publisher": "Insurance Information Institute",
+    "url": "https://www.iii.org",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "Florida",
+      "value": 11000
+    },
+    {
+      "label": "Louisiana",
+      "value": 6300
+    },
+    {
+      "label": "Oklahoma",
+      "value": 5400
+    },
+    {
+      "label": "Texas",
+      "value": 4400
+    },
+    {
+      "label": "National avg",
+      "value": 2400
+    },
+    {
+      "label": "Vermont",
+      "value": 900
+    }
+  ]
+}

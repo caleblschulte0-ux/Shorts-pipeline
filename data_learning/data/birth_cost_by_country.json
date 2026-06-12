@@ -1,0 +1,41 @@
+{
+  "key": "birth_cost_by_country",
+  "title": "Average cost to give birth ($)",
+  "unit": "",
+  "geography": "Selected countries",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Cost of childbirth, international",
+    "publisher": "OECD Health Statistics",
+    "url": "https://www.oecd.org",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "United States",
+      "value": 19000
+    },
+    {
+      "label": "Switzerland",
+      "value": 7900
+    },
+    {
+      "label": "Chile",
+      "value": 4100
+    },
+    {
+      "label": "Germany",
+      "value": 2100
+    },
+    {
+      "label": "United Kingdom",
+      "value": 600
+    },
+    {
+      "label": "Spain",
+      "value": 400
+    }
+  ]
+}

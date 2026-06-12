@@ -1,0 +1,29 @@
+{
+  "key": "birth_out_of_pocket",
+  "title": "Out-of-pocket birth cost, even insured ($)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Out-of-pocket maternity costs",
+    "publisher": "Peterson-KFF Health System Tracker",
+    "url": "https://www.healthsystemtracker.org",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "High-deductible plan",
+      "value": 4500
+    },
+    {
+      "label": "Employer PPO",
+      "value": 2900
+    },
+    {
+      "label": "Medicaid",
+      "value": 0
+    }
+  ]
+}

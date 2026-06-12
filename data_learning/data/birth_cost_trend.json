@@ -1,0 +1,32 @@
+{
+  "key": "birth_cost_trend",
+  "title": "US billed cost of childbirth ($)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2010-2024 (annual)",
+  "source": {
+    "name": "Childbirth cost trend",
+    "publisher": "Peterson-KFF Health System Tracker",
+    "url": "https://www.healthsystemtracker.org",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 9200,
+      "period": "2010"
+    },
+    {
+      "label": "2017",
+      "value": 13800,
+      "period": "2017"
+    },
+    {
+      "label": "2024",
+      "value": 19000,
+      "period": "2024"
+    }
+  ]
+}

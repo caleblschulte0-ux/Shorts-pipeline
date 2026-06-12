@@ -1,0 +1,37 @@
+{
+  "key": "home_insurance_premium",
+  "title": "Average annual home insurance premium ($)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2019-2025 (annual)",
+  "source": {
+    "name": "Homeowners insurance premiums",
+    "publisher": "Insurance Information Institute",
+    "url": "https://www.iii.org",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 1200,
+      "period": "2019"
+    },
+    {
+      "label": "2021",
+      "value": 1400,
+      "period": "2021"
+    },
+    {
+      "label": "2023",
+      "value": 1900,
+      "period": "2023"
+    },
+    {
+      "label": "2025",
+      "value": 2400,
+      "period": "2025"
+    }
+  ]
+}
