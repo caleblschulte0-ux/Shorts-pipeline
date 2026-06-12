@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-06-12T17:47:51Z",
+  "scouted_at": "2026-06-12T17:58:48Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,12 +20,12 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 110,
-    "wikimedia_commons_count": 0,
+    "wikimedia_commons_count": 2,
     "youtube_trending_count": 0,
     "lemmy_count": 0,
     "hackernews_count": 0
   },
-  "total": 110,
+  "total": 112,
   "reddit_posts": [],
   "wikipedia_events": [
     {
@@ -1129,7 +1129,22 @@
       "extract": "William Ralph Blass was an American fashion designer. He was the recipient of many fashion awards, including seven Coty Awards and the Fashion Institute of Technology's Lifetime Achievement Award (1999)."
     }
   ],
-  "wikimedia_videos": [],
+  "wikimedia_videos": [
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:Dornbirn-Photovoltaic module cleaning-21ASD.webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Dornbirn-Photovoltaic_module_cleaning-21ASD.webm",
+      "uploaded_at": "2026-06-12T17:56:29Z",
+      "uploader": "Asurnipal"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:Dornbirn-Photovoltaic module cleaning-12ASD.webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Dornbirn-Photovoltaic_module_cleaning-12ASD.webm",
+      "uploaded_at": "2026-06-12T17:54:37Z",
+      "uploader": "Asurnipal"
+    }
+  ],
   "youtube_trending": [],
   "lemmy_posts": [],
   "hackernews_posts": []
