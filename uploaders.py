@@ -257,7 +257,7 @@ class YouTubeUploader(Uploader):
             )
 
     def upload(self, file_path, *, title, description, tags=None, publish_at=None,
-               thumbnail=None):
+               thumbnail=None, localizations=None, default_language="en"):
         try:
             from googleapiclient.http import MediaFileUpload
         except ImportError as e:
@@ -283,16 +283,29 @@ class YouTubeUploader(Uploader):
                 "description": description[:5000],
                 "tags": list(tags or [])[:30],
                 "categoryId": "22",  # People & Blogs
+                # Required for localizations to take effect; declares the base
+                # language of the snippet above.
+                "defaultLanguage": default_language,
             },
             "status": status,
         }
+        # Localized titles/descriptions: the same Short surfaces in search and
+        # recommendations for viewers in each language. {} ships English only.
+        part = "snippet,status"
+        if localizations:
+            body["localizations"] = {
+                code: {"title": loc["title"][:100],
+                       "description": loc["description"][:5000]}
+                for code, loc in localizations.items()
+            }
+            part = "snippet,status,localizations"
         media = MediaFileUpload(
             str(file_path),
             mimetype="video/mp4",
             resumable=True,
             chunksize=8 * 1024 * 1024,
         )
-        req = svc.videos().insert(part="snippet,status", body=body, media_body=media)
+        req = svc.videos().insert(part=part, body=body, media_body=media)
         response = None
         while response is None:
             _, response = req.next_chunk()

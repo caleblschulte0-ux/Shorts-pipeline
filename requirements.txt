@@ -12,6 +12,9 @@ soundfile>=0.12
 google-api-python-client>=2.0
 google-auth>=2.0
 google-auth-oauthlib>=1.0
+# Localized titles/descriptions for YouTube `localizations` (multi-language
+# discovery). No API key; best-effort — post_stories ships English if it fails.
+deep-translator>=1.11
 # themed_bottom.py — procedural bottom-half generator draws frames
 # with PIL + numpy and pipes raw RGB into ffmpeg. numpy also rides in
 # with whisper/torch, but pin both explicitly so the themed bottoms

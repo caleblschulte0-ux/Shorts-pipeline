@@ -54,8 +54,38 @@ def _save_log(log: dict) -> None:
     LOG_PATH.write_text(json.dumps(log, indent=2) + "\n")
 
 
-def _description(cfg: dict) -> str:
-    # A hand-written caption wins; otherwise fall back to hook + closing.
+# Evergreen hashtags every data-explainer Short carries, on top of whatever the
+# story config specifies. Kept relevant (no spammy #viral/#fyp) so YouTube
+# doesn't discard them, and deliberately short — YouTube IGNORES ALL hashtags in
+# a description once there are more than 15, so we cap hard below.
+BASE_HASHTAGS = ["shorts", "facts", "didyouknow", "data", "explained",
+                 "education", "interesting"]
+# Required attribution for the CC-BY music bed (Kevin MacLeod / incompetech).
+ATTRIBUTION = ("Music by Kevin MacLeod (incompetech.com), licensed under "
+               "Creative Commons: By Attribution 4.0 "
+               "(creativecommons.org/licenses/by/4.0/)")
+
+
+def _dedupe(seq):
+    """Order-preserving, case-insensitive dedupe."""
+    seen, out = set(), []
+    for x in seq:
+        k = x.lower()
+        if k not in seen:
+            seen.add(k)
+            out.append(x)
+    return out
+
+
+def _merged_tags(cfg: dict) -> list[str]:
+    """Story hashtags first (most specific), then evergreen base. For the API
+    `tags` field, capped at YouTube's 30 (well within the 500-char limit for
+    these short tags)."""
+    return _dedupe(list(cfg.get("hashtags", [])) + BASE_HASHTAGS)[:30]
+
+
+def _human_body(cfg: dict) -> str:
+    """The prose part of the description (caption, or hook + closing)."""
     cap = (cfg.get("caption") or "").strip()
     if cap:
         parts = [cap]
@@ -63,14 +93,19 @@ def _description(cfg: dict) -> str:
         parts = [cfg.get("hook", "").strip()]
         if cfg.get("closing"):
             parts += ["", cfg["closing"].strip()]
-    tags = cfg.get("hashtags", [])
-    if tags:
-        parts += ["", " ".join(f"#{t}" for t in tags)]
-    # Required attribution for the CC-BY music bed (Kevin MacLeod / incompetech).
-    parts += ["", "Music by Kevin MacLeod (incompetech.com), "
-              "licensed under Creative Commons: By Attribution 4.0 "
-              "(creativecommons.org/licenses/by/4.0/)"]
-    return "\n".join(p for p in parts if p is not None)[:5000]
+    return "\n".join(p for p in parts if p)
+
+
+def _desc_suffix(cfg: dict) -> str:
+    """The non-prose tail appended to EVERY description (English and localized):
+    a hashtag block (<=15 so YouTube keeps them) + the CC-BY attribution."""
+    tags = _merged_tags(cfg)[:15]
+    block = " ".join(f"#{t}" for t in tags)
+    return (f"\n\n{block}" if block else "") + f"\n\n{ATTRIBUTION}"
+
+
+def _description(cfg: dict) -> str:
+    return (_human_body(cfg) + _desc_suffix(cfg))[:5000]
 
 
 def main() -> int:
@@ -146,13 +181,22 @@ def main() -> int:
               flush=True)
         # studio_render writes a title-aligned thumbnail next to the mp4.
         thumb = out.with_suffix(".jpg")
+        # Localized titles/descriptions (best-effort; English always ships).
+        try:
+            from localize import localize_meta
+            localizations = localize_meta(
+                sc.get("title", slug), _human_body(sc), _desc_suffix(sc))
+        except Exception as e:  # noqa: BLE001 — never let i18n block a post
+            print(f"[{slug}] localization skipped: {e}", flush=True)
+            localizations = {}
         res = uploader.upload(
             file_path=out,
             title=sc.get("title", slug)[:100],
             description=_description(sc),
-            tags=list(sc.get("hashtags", []))[:30],
+            tags=_merged_tags(sc),
             publish_at=publish_at,
             thumbnail=thumb if thumb.exists() else None,
+            localizations=localizations,
         )
         url = getattr(res, "url", None) or str(res)
         print(f"[{slug}] uploaded -> {url}", flush=True)
