@@ -3234,19 +3234,23 @@ class _Shipwreck(_Renderer):
         rng = self.rng
         self.tilt_dir = rng.choice([-1, 1])
         self.ship_x = rng.uniform(W * 0.42, W * 0.58)
-        # Artifact ends up beside the settled wreck so the divers converge
-        # on the ship at the end ("then they go to the ship").
-        landed_x = self.ship_x + self.tilt_dir * 46
-        self.artifact_x = min(W - 90, max(90, landed_x + rng.uniform(-30, 40)))
+        # Where the hull comes to rest, and the artifact lying beside it.
+        self.wreck_x = self.ship_x + self.tilt_dir * 46
+        self.artifact_x = min(W - 90, max(90, self.wreck_x + rng.uniform(-12, 28)))
         self.shark_dir = rng.choice([-1, 1])
-        self.shark_y = H * 0.42
+        self.shark_y = H * 0.40
+        n = rng.randint(2, 3)
         self.divers = [{
-            "delay": dl,
-            "off_x": rng.uniform(-72, 72),
-            "off_y": rng.uniform(-26, 6),
-            "entry_x": rng.uniform(W * 0.25, W * 0.75),
+            "delay": 0.05 * j,
+            "off_x": rng.uniform(-64, 64),
+            "off_y": rng.uniform(-22, 8),
+            "entry_x": rng.uniform(W * 0.28, W * 0.72),
             "ph": rng.uniform(0, math.tau),
-        } for dl in ((0.0, 0.06, 0.12)[:rng.randint(2, 3)])]
+        } for j in range(n)]
+        # Diver 0 is the lead: it hovers right on the artifact and is the
+        # one that grabs it and carries it back up.
+        self.divers[0]["off_x"] = self.artifact_x - self.wreck_x
+        self.divers[0]["off_y"] = -4
         base = H - 64
         self.seabed = []
         x = -20
@@ -3254,6 +3258,8 @@ class _Shipwreck(_Renderer):
             self.seabed.append((x, base + rng.uniform(-26, 26)))
             x += rng.uniform(60, 130)
         self.debris: list[dict] = []
+        self.silt: list[dict] = []
+        self._landed_done = False
 
     @staticmethod
     def _rot(pts, cx, cy, a):
@@ -3301,70 +3307,66 @@ class _Shipwreck(_Renderer):
         ex = x + dirn * L * 0.36
         d.ellipse([ex - 3, y - 7, ex + 3, y - 1], fill=(8, 10, 14, 255))
 
+    def _draw_gear(self, d, gx, gy, t, glow, s=1.0):
+        glow = min(255, int(glow))
+        for rr in (34, 26, 18):
+            r = rr * s
+            d.ellipse([gx - r, gy - r, gx + r, gy + r],
+                      outline=(glow, int(glow * 0.85), 90, 200), width=3)
+        for tooth in range(12):
+            a = tooth / 12 * math.tau + t * 0.4
+            d.line([(gx + 18 * s * math.cos(a), gy + 18 * s * math.sin(a)),
+                    (gx + 36 * s * math.cos(a), gy + 36 * s * math.sin(a))],
+                   fill=(glow, int(glow * 0.8), 70, 220), width=max(2, int(3 * s)))
+
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
         dt = 1 / FPS
         q = t / max(self.duration, 0.01)        # 0..1 across the WHOLE clip
 
-        # Story beats (fractions of the whole clip):
-        #   q 0.00-0.28  ship founders + sinks to the seabed
-        #   q 0.18-0.78  divers descend from the surface
-        #   q 0.30-0.70  a shark arrives mid-descent, circles, then leaves
-        #   q 0.72-1.00  divers reach the wreck; the artifact glows brighter
-        SINK_END = 0.28
+        # ONE sequential story across the whole clip (no loop):
+        #   0.00-0.20  ship founders + sinks; HITS the seabed at 0.20
+        #   0.26-0.52  THEN the divers descend from the surface
+        #   0.32-0.54  a shark cuts in, harries the divers, then swims off
+        #   0.52-0.62  divers reach the wreck; the lead GRABS the artifact
+        #   0.64-0.98  divers ASCEND, carrying it back up to the surface
+        SINK_END, DIVE_START = 0.20, 0.26
+        ARRIVE, GRAB, ASCEND, EXIT = 0.52, 0.60, 0.64, 0.98
+        SHARK_IN, SHARK_OUT = 0.32, 0.54
+        surface_y, floor_y = 90, H - 150
+        grabbed = q >= GRAB
 
-        # Storm peaks while the ship goes down, then the sea calms.
-        if q < 0.30:
-            storm = _ease(min(1.0, q / 0.22))
-        else:
-            storm = max(0.0, 1.0 - (q - 0.30) / 0.15)
+        storm = (_ease(min(1.0, q / 0.16)) if q < SINK_END
+                 else max(0.0, 1.0 - (q - SINK_END) / 0.14))
 
         bg = self.bg * (1.0 - 0.16 * storm)
         img = Image.fromarray(np.clip(bg, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        # God rays from the surface.
-        for r in range(3):
+        for r in range(3):                       # god rays
             bx = W * (0.18 + 0.32 * r) + 50 * math.sin(t * 0.13 + r * 2)
             d.polygon([(bx - 36, 0), (bx + 54, 0), (bx + 240, H), (bx + 70, H)],
                       fill=(150, 205, 235, 13))
 
-        # Surface chop — rough while she founders, then settles.
-        amp = 6 + 24 * storm
+        amp = 6 + 24 * storm                     # surface chop
         surf = [(x, 28 + amp * math.sin(t * 1.6 + x * 0.015))
                 for x in range(0, W + 20, 20)]
         d.line(surf, fill=(180, 225, 245, 120), width=3)
 
-        # Seabed + glinting artifact; the glint swells once divers arrive.
         d.polygon([(0, H)] + self.seabed + [(W, H)], fill=(20, 26, 30, 255))
-        ax, ay = self.artifact_x, H - 78
-        arrived = max(0.0, min(1.0, (q - 0.72) / 0.18))
-        glow = int(110 + 70 * arrived + 90 * (0.5 + 0.5 * math.sin(t * 2.2)))
-        glow = min(255, glow)
-        for rr in (34, 26, 18):
-            d.ellipse([ax - rr, ay - rr, ax + rr, ay + rr],
-                      outline=(glow, int(glow * 0.85), 90, 200), width=3)
-        for tooth in range(12):
-            a = tooth / 12 * math.tau + t * 0.4
-            d.line([(ax + 18 * math.cos(a), ay + 18 * math.sin(a)),
-                    (ax + 36 * math.cos(a), ay + 36 * math.sin(a))],
-                   fill=(glow, int(glow * 0.8), 70, 220), width=3)
 
-        # --- the ship founders and sinks over the first ~28% ---
-        surface_y, floor_y = 90, H - 150
+        # --- ship founders + sinks, HITS the seabed at SINK_END ---
         sink = _ease(min(1.0, q / SINK_END))
         landed = q >= SINK_END
-        cy = surface_y + (floor_y - surface_y) * sink
         cx = self.ship_x + self.tilt_dir * 46 * sink
-        if landed:
-            ang = self.tilt_dir * 0.60 + self.tilt_dir * 0.03 * math.sin(t * 0.6)
-        else:
-            ang = self.tilt_dir * (0.05 + 0.60 * sink)
+        cy = surface_y + (floor_y - surface_y) * sink
+        ang = (self.tilt_dir * 0.60 + self.tilt_dir * 0.03 * math.sin(t * 0.6)
+               if landed else self.tilt_dir * (0.05 + 0.60 * sink))
         hw = 118
         tatter = max(0.0, 1.0 - 0.9 * sink)
         for mx, mh in ((cx - 46, 150), (cx + 30, 178), (cx + 96, 120)):
-            seg = self._rot([(mx, cy - 2), (mx, cy - mh)], cx, cy, ang)
-            d.line(seg, fill=(54, 38, 24, 255), width=6)
+            d.line(self._rot([(mx, cy - 2), (mx, cy - mh)], cx, cy, ang),
+                   fill=(54, 38, 24, 255), width=6)
             if tatter > 0.12:
                 sw = 52 * tatter
                 sail = self._rot([(mx + 5, cy - mh + 18), (mx + 5 + sw, cy - mh + 40),
@@ -3377,17 +3379,22 @@ class _Shipwreck(_Renderer):
                   outline=(84, 62, 40, 255))
         if not landed:
             for _ in range(2):
-                bxx = cx + rng.uniform(-hw, hw)
-                byy = cy - rng.uniform(0, 44)
+                bxx, byy = cx + rng.uniform(-hw, hw), cy - rng.uniform(0, 44)
                 d.ellipse([bxx - 3, byy - 3, bxx + 3, byy + 3],
                           outline=(220, 240, 255, 150), width=2)
 
-        # Debris snaps off the hull as she breaks during the sink.
-        if 0.08 < q < SINK_END and rng.random() < 0.30:
+        # Debris breaks off during the sink; a silt cloud puffs on impact.
+        if 0.06 < q < SINK_END and rng.random() < 0.30:
             self.debris.append({"x": cx + rng.uniform(-hw, hw), "y": cy,
                                 "vx": rng.uniform(-25, 25), "vy": rng.uniform(-30, 10),
                                 "a": rng.uniform(0, math.tau),
                                 "va": rng.uniform(-2, 2), "L": rng.uniform(14, 30)})
+        if landed and not self._landed_done:
+            self._landed_done = True
+            for _ in range(6):
+                self.silt.append({"x": self.wreck_x + rng.uniform(-90, 90),
+                                  "y": floor_y + 46, "r": rng.uniform(20, 46),
+                                  "born": t})
         for pl in self.debris[:]:
             pl["vy"] += 60 * dt
             pl["x"] += pl["vx"] * dt
@@ -3401,22 +3408,32 @@ class _Shipwreck(_Renderer):
                      (pl["x"] + L, pl["y"] + 4), (pl["x"] - L, pl["y"] + 4)]
             d.polygon(self._rot(plank, pl["x"], pl["y"], pl["a"]),
                       fill=(60, 42, 28, 255))
+        for s_ in self.silt[:]:
+            age = t - s_["born"]
+            if age > 1.6:
+                self.silt.remove(s_)
+                continue
+            r = s_["r"] * (1 + age)
+            al = int(70 * (1 - age / 1.6))
+            d.ellipse([s_["x"] - r, s_["y"] - r * 0.6, s_["x"] + r, s_["y"] + r * 0.6],
+                      fill=(60, 60, 54, al))
 
-        # --- shark: arrives mid-descent (q .30-.70), circles, then leaves ---
-        if 0.30 < q < 0.70:
-            sq = (q - 0.30) / 0.40
+        # --- shark cuts in (after the divers start down), harries, swims off ---
+        sx = sy = None
+        if SHARK_IN < q < SHARK_OUT:
+            sq = (q - SHARK_IN) / (SHARK_OUT - SHARK_IN)
             cxx, cyy, dirn = W * 0.5, self.shark_y, self.shark_dir
-            if sq < 0.25:                              # glides in from a side
-                u = sq / 0.25
+            if sq < 0.22:                              # knifes in from a side
+                u = sq / 0.22
                 sx = (-200 if dirn > 0 else W + 200) * (1 - u) + cxx * u
                 sy = cyy
-            elif sq < 0.72:                            # circles the divers
-                u = (sq - 0.25) / 0.47
+            elif sq < 0.78:                            # prowls/lunges at divers
+                u = (sq - 0.22) / 0.56
                 a = u * math.tau * 1.25
-                sx = cxx + 175 * math.cos(a) * dirn
-                sy = cyy + 90 * math.sin(a)
-            else:                                      # slips back into the deep
-                u = (sq - 0.72) / 0.28
+                sx = cxx + 180 * math.cos(a) * dirn
+                sy = cyy + 70 * math.sin(a) + 60 * math.sin(u * math.pi)
+            else:                                      # turns and swims off
+                u = (sq - 0.78) / 0.22
                 sx = cxx * (1 - u) + (W + 220 if dirn > 0 else -220) * u
                 sy = cyy
             face = 1 if (self._shark_px is None or sx >= self._shark_px) else -1
@@ -3425,23 +3442,53 @@ class _Shipwreck(_Renderer):
         else:
             self._shark_px = None
 
-        # --- divers descend (q .18 -> ~.78), then swim around the wreck ---
+        # --- compute diver positions (descend -> work the wreck -> ascend) ---
+        positions = []
         for dv in self.divers:
-            start = 0.18 + dv["delay"]
-            if q <= start:
+            sd = DIVE_START + dv["delay"]
+            wx = self.wreck_x + dv["off_x"]
+            wy = min(H - 70, floor_y - 16 + dv["off_y"])
+            if q <= sd:
+                positions.append(None)
                 continue
-            dq = min(1.0, (q - start) / (0.78 - start))
-            ty = min(H - 70, floor_y - 16 + dv["off_y"])
-            dy = -40 + (ty + 40) * _ease(dq)
-            tx = cx + dv["off_x"]
-            dx = dv["entry_x"] + (tx - dv["entry_x"]) * _ease(dq)
-            # gentle swim/bob — small while descending, looser once arrived.
-            dx += math.sin(t * 0.9 + dv["ph"]) * (14 + 16 * dq)
-            dy += math.sin(t * 1.2 + dv["ph"]) * (6 + 6 * dq)
-            self._draw_diver(d, dx, dy, t, dv["ph"])
+            if q < ARRIVE:                              # descending
+                u = (q - sd) / (ARRIVE - sd)
+                x = dv["entry_x"] + (wx - dv["entry_x"]) * _ease(u)
+                y = -40 + (wy + 40) * _ease(u)
+            elif q < ASCEND:                            # working the wreck
+                x = wx + math.sin(t * 0.9 + dv["ph"]) * 16
+                y = wy + math.sin(t * 1.2 + dv["ph"]) * 8
+            else:                                       # ascending with the prize
+                u = min(1.0, (q - ASCEND) / (EXIT - ASCEND))
+                x = wx + (W * 0.5 - wx) * 0.25 * u \
+                    + math.sin(t * 0.9 + dv["ph"]) * 14
+                y = wy + (-70 - wy) * _ease(u)
+            # The shark scatters them: shove away when it's close.
+            if sx is not None:
+                ddx, ddy = x - sx, y - sy
+                dist = math.hypot(ddx, ddy)
+                if 1 < dist < 150:
+                    push = (150 - dist) / 150 * 46
+                    x += ddx / dist * push
+                    y += ddy / dist * push
+            positions.append((x, y))
 
-        # Ambient bubble field in the foreground.
-        for b in self.bubbles:
+        # --- the artifact: on the seabed until grabbed, then carried up ---
+        ay = floor_y + 4
+        if not grabbed:
+            near = positions[0] is not None and q > 0.46
+            glow = 110 + (60 if near else 0) + 80 * (0.5 + 0.5 * math.sin(t * 2.2))
+            self._draw_gear(d, self.artifact_x, ay, t, glow)
+        elif positions[0] is not None:
+            lx, ly = positions[0]
+            flash = max(0.0, 1.0 - (q - GRAB) / 0.05)
+            self._draw_gear(d, lx + 14, ly + 20, t, 170 + 60 * flash, s=0.62)
+
+        for dv, pos in zip(self.divers, positions):
+            if pos is not None:
+                self._draw_diver(d, pos[0], pos[1], t, dv["ph"])
+
+        for b in self.bubbles:                          # ambient bubbles
             b["y"] -= b["v"] * dt
             b["x"] += math.sin(t * 1.4 + b["ph"]) * 22 * dt
             if b["y"] < -16:
