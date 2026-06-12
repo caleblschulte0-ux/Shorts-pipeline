@@ -1,0 +1,22 @@
+{
+  "key": "myopia_high_severe",
+  "title": "High myopia (severe, ≥-6 diopters) global prevalence (percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2000-2050 (2030 and 2050 are WHO projections)",
+  "source": {
+    "name": "Global prevalence of high myopia",
+    "publisher": "World Health Organization / Holden et al. 2016",
+    "url": "https://www.who.int/docs/default-source/blindness/myopia-report-en.pdf",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; high myopia (≥-6 diopters) carries elevated risk of retinal detachment, glaucoma, and blindness. Figures from Holden et al. 2016 Ophthalmology with WHO projections for 2030/2050.",
+  "points": [
+    {"label": "2000", "value": 3, "period": "2000"},
+    {"label": "2010", "value": 5, "period": "2010"},
+    {"label": "2020", "value": 8, "period": "2020"},
+    {"label": "2030 (proj)", "value": 9, "period": "2030"},
+    {"label": "2050 (proj)", "value": 10, "period": "2050"}
+  ]
+}

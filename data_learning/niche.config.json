@@ -1626,6 +1626,249 @@
           "say": "That adds up to about 310 billion dollars scraped straight into the trash."
         }
       ]
+    },
+    {
+      "slug": "jwst-universe-rewrite",
+      "title": "James Webb Rewrote the Universe. 3 Numbers Prove It.",
+      "hook": "The universe is 10 times bigger than we thought.",
+      "closing": "Turns out, we had no idea how big it was.",
+      "question": "Does knowing the universe has 2 trillion galaxies make you feel small — or amazed? Drop it below.",
+      "caption": "Hubble told us there were 200 billion galaxies. JWST found 2 trillion. It also spotted a galaxy from 290 million years after the Big Bang. And it found a crack in the laws of physics. Here's the data 👇",
+      "hashtags": [
+        "jwst",
+        "jameswebb",
+        "space",
+        "universe",
+        "galaxies",
+        "nasa",
+        "science",
+        "astronomy",
+        "cosmology",
+        "hubble",
+        "bigbang",
+        "data",
+        "physics",
+        "spacetelescope"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "jwst_galaxy_count",
+          "params": {
+            "file": "jwst_galaxy_count.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "1 · THE SCALE",
+          "topic": "galaxy count estimate (billions)",
+          "say": "Hubble told us there were about 200 billion galaxies. JWST looked deeper and found closer to 2000 billion — 2 trillion. That's 10 times more than we thought."
+        },
+        {
+          "source": "offline",
+          "key": "jwst_redshift_records",
+          "params": {
+            "file": "jwst_redshift_records.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE OLDEST LIGHT",
+          "topic": "oldest confirmed galaxy (million years after Big Bang)",
+          "say": "JWST keeps breaking its own record. The newest: a galaxy that formed just 290 million years after the Big Bang. The universe is 13,800 million years old. We are watching the very first stars switch on."
+        },
+        {
+          "source": "offline",
+          "key": "jwst_hubble_tension",
+          "params": {
+            "file": "jwst_hubble_tension.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE BROKEN EQUATION",
+          "topic": "universe expansion rate (km/s per megaparsec)",
+          "say": "Here's the problem. Early-universe physics predicts the expansion rate at 67. JWST direct measurement says 73. That gap — the Hubble Tension — means something in our model of the universe is wrong."
+        }
+      ]
+    },
+    {
+      "slug": "myopia-epidemic",
+      "title": "Half the World Will Need Glasses by 2050. Here's Why.",
+      "hook": "The world's eyes are failing. Fast.",
+      "closing": "Two trillion screens. Fifty percent nearsighted. The math is written on the wall — if you can read it.",
+      "question": "Do you wear glasses or contacts? When did your vision start going? Drop it below.",
+      "caption": "In 1990, 22% of the world was nearsighted. Today it's 34% — 2.6 billion people. By 2050, the WHO projects 50%. In East Asia, 80% of young adults already need glasses. Here's the data 👇",
+      "hashtags": [
+        "myopia",
+        "nearsighted",
+        "eyehealth",
+        "vision",
+        "glasses",
+        "who",
+        "health",
+        "screentime",
+        "eyecare",
+        "optometry",
+        "globalhealth",
+        "data",
+        "science",
+        "eyes"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "myopia_global_trend",
+          "params": {
+            "file": "myopia_global_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE RISE",
+          "topic": "global myopia prevalence (percent)",
+          "say": "In 1990, 22 percent of the world was nearsighted. By 2020 that hit 34 percent — 2.6 billion people. The WHO projects 50 percent by 2050. This is growing faster than any eye disease in history."
+        },
+        {
+          "source": "offline",
+          "key": "myopia_regional_rank",
+          "params": {
+            "file": "myopia_regional_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE REGIONAL GAP",
+          "topic": "myopia rate by world region — young adults (percent)",
+          "say": "But here's what makes it strange. 80 percent of young adults in East Asia are nearsighted. In the Americas, it's 31 percent. In Africa, just 14. The same species, looking at wildly different numbers."
+        },
+        {
+          "source": "offline",
+          "key": "myopia_high_severe",
+          "params": {
+            "file": "myopia_high_severe.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE DANGER ZONE",
+          "topic": "high myopia (severe, ≥-6 diopters) — global (percent)",
+          "say": "The scary part is high myopia — the severe kind that risks blindness. It was 3 percent in 2000. It's 8 percent today, and projected to hit 10 percent by 2050. That's 1 billion people at risk of losing their sight."
+        }
+      ]
+    },
+    {
+      "slug": "time-use-reality",
+      "title": "You Think You Work All Day. Here's Where Your Time Actually Goes.",
+      "hook": "You're not as busy as you think.",
+      "closing": "5 hours of leisure a day — mostly screens. Make of that what you will.",
+      "question": "How many hours of screen time did you log yesterday? Drop the number below.",
+      "caption": "The average American gets 5 hours of leisure a day. 3.6 of those go to screens. You spend more time on leisure than on work. But only 12 minutes of that leisure is reading. Here's the data 👇",
+      "hashtags": [
+        "timeuse",
+        "productivity",
+        "screentime",
+        "leisure",
+        "bls",
+        "data",
+        "society",
+        "psychology",
+        "digitalllife",
+        "worklifebalance",
+        "statistics",
+        "attention",
+        "habits",
+        "lifestyle"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "time_use_daily_split",
+          "params": {
+            "file": "time_use_daily_split.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · THE DAY",
+          "topic": "how the average American spends 24 hours",
+          "say": "Here is where the day actually goes. Sleep wins at 8.7 hours. But leisure — 5 hours — beats out work at 3.4 hours. Most people think they work more than they play. The BLS data disagrees."
+        },
+        {
+          "source": "offline",
+          "key": "time_use_leisure_screen",
+          "params": {
+            "file": "time_use_leisure_screen.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · THE SCREEN SPLIT",
+          "topic": "screen vs. non-screen leisure (hours per day)",
+          "say": "Of those 5 leisure hours, screens take 3.2. Non-screen leisure — socializing, reading, exercise — gets just 1.8 hours. Reading alone is 12 minutes. We have more free time than ever, and screens claimed most of it."
+        },
+        {
+          "source": "offline",
+          "key": "time_use_screen_trend",
+          "params": {
+            "file": "time_use_screen_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE CREEP",
+          "topic": "daily leisure screen time (hours per day)",
+          "say": "And it's been climbing. In 2003, screen leisure was 2.8 hours a day. By 2023, it hit 3.6. That's nearly an hour of your daily life that migrated from the physical world to a screen in 20 years."
+        }
+      ]
+    },
+    {
+      "slug": "us-wildfire-surge",
+      "title": "US Wildfires Are Burning 3x More Land Than 30 Years Ago",
+      "hook": "The West is burning — and it's getting worse.",
+      "closing": "Every year, the fire season starts earlier and lasts longer. That's not bad luck — it's physics.",
+      "question": "Have wildfires ever affected where you live? Drop your state below.",
+      "caption": "In the 1980s, US wildfires burned 2.8 million acres a year. The last decade averaged 7.4 million. The 5 worst years on record all happened after 2000. Here's what the data shows 👇",
+      "hashtags": [
+        "wildfire",
+        "climate",
+        "nifc",
+        "forest",
+        "california",
+        "fire",
+        "climatechange",
+        "environment",
+        "wildfireseason",
+        "drought",
+        "nature",
+        "data",
+        "usa",
+        "westernfires"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "wildfire_us_acres_trend",
+          "params": {
+            "file": "wildfire_us_acres_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE TREND",
+          "topic": "US wildfire acres burned per year (millions)",
+          "say": "In the mid-1980s, US wildfires burned roughly 2 to 3 million acres a year. By 2015 and 2020, that reached 10.1 million acres. The trend line is not subtle — it's a straight climb."
+        },
+        {
+          "source": "offline",
+          "key": "wildfire_decade_avg",
+          "params": {
+            "file": "wildfire_decade_avg.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · THE SHIFT",
+          "topic": "average wildfire acres per year by decade (millions)",
+          "say": "Decade to decade, the shift is undeniable. The 1983 to 1992 average was 2.8 million acres. The 2013 to 2022 average was 7.4 million — nearly 3 times higher. Hotter, drier conditions changed the math."
+        },
+        {
+          "source": "offline",
+          "key": "wildfire_worst_years",
+          "params": {
+            "file": "wildfire_worst_years.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE RECORDS",
+          "topic": "worst US wildfire years by acres burned (millions)",
+          "say": "And all 5 of the worst wildfire years in American history happened after 2006. 2015 and 2020 tied at 10.1 million acres. These are not random — they follow the drought map exactly."
+        }
+      ]
     }
   ],
   "videos": [

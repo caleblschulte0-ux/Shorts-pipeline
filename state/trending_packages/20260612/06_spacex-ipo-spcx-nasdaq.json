@@ -1,0 +1,127 @@
+{
+  "version": 8,
+  "slug": "spacex-ipo-spcx-nasdaq",
+  "title": "SpaceX Just Had the Biggest IPO in History — $135 a Share Today",
+  "hashtags": [
+    "spacex",
+    "SPCX",
+    "IPO",
+    "elonmusk",
+    "nasdaq",
+    "spacexipo",
+    "stockmarket",
+    "investing",
+    "SpaceXAI",
+    "rockets",
+    "investing",
+    "biggestipo",
+    "techinvesting",
+    "spcxstock"
+  ],
+  "script": "SpaceX just went public today! This morning, SpaceX started trading on Nasdaq under the ticker SPCX. The IPO price: $135 per share — a flat, take-it-or-leave-it number. The total valuation: $1.77 trillion. That makes this the biggest IPO in history, bigger than Saudi Aramco in 2019. SpaceX raised $75 billion by selling 555 million new shares. Unlike most IPOs, there was no bidding range — Elon Musk's company set a fixed price and investors either bought in or they didn't. SpaceX also absorbed xAI — Musk's artificial intelligence company — and rebranded it SpaceXAI last month. Analysts set price targets ranging from $63 to $190 per share. At $135, the market is betting this space venture becomes the most valuable company on Earth. At $135 a share, would you buy a piece of SpaceX today?",
+  "shots": [
+    {
+      "phrase": "SpaceX just went public today",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Liftoff_of_SpaceX_IFT-5_%2854064037095%29.jpg",
+      "query": "SpaceX Falcon rocket launch pad liftoff flame smoke",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "SpaceX started trading on Nasdaq under the ticker SPCX",
+      "query": "Nasdaq stock exchange Times Square ticker board trading opening",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "IPO price: $135 per share",
+      "query": "stock price chart IPO debut $135 share price opening bell",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "total valuation: $1.77 trillion",
+      "query": "trillion dollar valuation company market cap bar chart comparison",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "biggest IPO in history, bigger than Saudi Aramco in 2019",
+      "query": "Saudi Aramco oil refinery facility comparison largest IPO historical",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "SpaceX raised $75 billion by selling 555 million new shares",
+      "query": "billions raised capital investment stock shares certificates IPO",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "no bidding range — Elon Musk's company set a fixed price",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society.jpg",
+      "query": "Elon Musk speaking confident take it or leave it decision",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "SpaceX also absorbed xAI — Musk's artificial intelligence company",
+      "query": "AI company merger acquisition artificial intelligence rebranding tech",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "rebranded it SpaceXAI last month",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Liftoff_of_SpaceX_IFT-5_%2854064037095%29.jpg",
+      "query": "SpaceX AI artificial intelligence combined company brand new",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Analysts set price targets ranging from $63 to $190 per share",
+      "query": "analyst price target range stock chart forecast bull bear",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the market is betting this space venture becomes the most valuable company on Earth",
+      "query": "most valuable company Earth space rockets future bet market",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "would you buy a piece of SpaceX today",
+      "query": "investor deciding stock buy sell SpaceX question choice",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "SpaceX just went public today",
+      "text": "SPACEX IPO DAY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "ticker SPCX",
+      "text": "$SPCX",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "$135 per share",
+      "text": "$135/SHARE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "total valuation: $1.77 trillion",
+      "text": "$1.77 TRILLION",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "biggest IPO in history",
+      "text": "BIGGEST IPO EVER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "SpaceX raised $75 billion",
+      "text": "$75 BILLION RAISED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "most valuable company on Earth",
+      "text": "MOST VALUABLE ON EARTH?",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto",
+  "gameplay": "subway"
+}

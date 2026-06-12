@@ -1,0 +1,120 @@
+{
+  "version": 8,
+  "slug": "angela-perryman-hantavirus-quarantine",
+  "title": "She Called It Being Held Hostage. The CDC Calls It a 42-Day Quarantine.",
+  "hashtags": [
+    "hantavirus",
+    "CDC",
+    "quarantine",
+    "MVHondius",
+    "angelaperryman",
+    "cruiseship",
+    "publichealth",
+    "andeshantavirus",
+    "nebraska",
+    "florida",
+    "healthlaw",
+    "outbreak",
+    "breakingnews",
+    "science"
+  ],
+  "script": "Cruise tourists held in Nebraska! Angela Perryman, 47, boarded the MV Hondius for an Arctic expedition cruise. What she didn't know was that her ship was about to become ground zero for a rare hantavirus outbreak. The Andes hantavirus — one of the few that can spread from person to person — infected multiple passengers. When Perryman landed back in the US in May, federal health officials immediately quarantined her and 17 other Americans at a federal facility in Nebraska. The quarantine lasts 42 days — until June 22. The CDC says the 6-week hold is necessary. Florida's health officials say the CDC overreached. Perryman says she feels like a hostage. 10 of 18 passengers have since been allowed to finish quarantine at home. When an outbreak starts on a ship, who decides how long you have to stay?",
+  "shots": [
+    {
+      "phrase": "Cruise tourists held in Nebraska",
+      "query": "quarantine facility federal building Nebraska government health",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Angela Perryman, 47",
+      "query": "cruise passenger woman spokesperson quarantine interview",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "MV Hondius for an Arctic expedition cruise",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/MV_Hondius_in_Ushuaia.jpg",
+      "query": "expedition cruise ship polar Arctic ocean vessel icebreaker",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "ground zero for a rare hantavirus outbreak",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hantavirus_TEM_PHIL_1217_lores.jpg",
+      "query": "hantavirus electron microscope virus particles outbreak CDC",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Andes hantavirus — one of the few that can spread from person to person",
+      "query": "virus human to human transmission spread infection disease",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "quarantined her and 17 other Americans at a federal facility in Nebraska",
+      "query": "federal quarantine facility isolation rooms Nebraska government building",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The quarantine lasts 42 days — until June 22",
+      "query": "calendar countdown quarantine days remaining isolation period",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The CDC says the 6-week hold is necessary",
+      "query": "CDC Centers for Disease Control Atlanta headquarters official announcement",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Florida's health officials say the CDC overreached",
+      "query": "Florida state capitol Tallahassee health department officials disagreement",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Perryman says she feels like a hostage",
+      "query": "quarantine patient room isolated window frustrated upset confined",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "10 of 18 passengers have since been allowed to finish quarantine at home",
+      "query": "home quarantine isolation release partial release passengers allowed home",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "who decides how long you have to stay",
+      "query": "public health law authority quarantine decision conflict federal state",
+      "mascot_pose": "think"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Angela Perryman, 47",
+      "text": "ANGELA PERRYMAN",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "rare hantavirus outbreak",
+      "text": "HANTAVIRUS OUTBREAK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Andes hantavirus",
+      "text": "ANDES STRAIN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "42 days — until June 22",
+      "text": "42-DAY QUARANTINE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "feels like a hostage",
+      "text": "\"LIKE A HOSTAGE\"",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "10 of 18 passengers have since been allowed",
+      "text": "10 OF 18 FREED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}

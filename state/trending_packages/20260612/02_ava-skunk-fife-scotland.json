@@ -1,0 +1,116 @@
+{
+  "version": 8,
+  "slug": "ava-skunk-fife-scotland",
+  "title": "A Skunk Named Ava Escaped in Scotland. Nobody's Been Sprayed Yet.",
+  "hashtags": [
+    "avatheskunk",
+    "scotland",
+    "fife",
+    "kelty",
+    "skunk",
+    "animalescape",
+    "wildlifescotland",
+    "weirdnews",
+    "animalnews",
+    "exoticanimals",
+    "northamerica",
+    "scottishwildlife",
+    "oddnews",
+    "escapedanimal"
+  ],
+  "script": "A skunk loose in Scotland! On June 9, drivers on the B914 road near Kelty, Fife spotted something that almost never happens there: a skunk. Skunks are native to North America — they simply don't exist in the Scottish wild. This one, named Ava, is 5 years old and burrowed out of her owner's nearby enclosure. Video shared by Fife Signal Jammers shows Ava waddling along the roadside — nobody got sprayed. The owners set humane traps and are hoping she stays close to home. Scotland's wildlife officials say there's no public safety risk — but if Ava feels threatened, that's a very different story. She hasn't been caught yet. If you're driving near Kelty tonight, crack your window carefully. Will Ava find her way home before anyone gets sprayed?",
+  "shots": [
+    {
+      "phrase": "A skunk loose in Scotland",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mephitis_mephitis_-_NBII_Image_Gallery.jpg",
+      "query": "striped skunk North American animal outdoors grass",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "B914 road near Kelty, Fife",
+      "query": "Scottish rural road countryside Fife Scotland landscape",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Skunks are native to North America — they simply don't exist in the Scottish wild",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mephitis_mephitis_-_NBII_Image_Gallery.jpg",
+      "query": "striped skunk North America wildlife habitat natural",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "named Ava, is 5 years old and burrowed out of her owner's nearby enclosure",
+      "query": "pet skunk captive enclosure escape hole domestic animal",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Fife Signal Jammers shows Ava waddling along the roadside",
+      "query": "skunk walking along road roadside video capture",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "nobody got sprayed",
+      "query": "skunk spray warning no one hurt relief",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "owners set humane traps and are hoping she stays close to home",
+      "query": "humane trap set cage wire animal capture wildlife",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "no public safety risk — but if Ava feels threatened, that's a very different story",
+      "query": "skunk threat spray defensive posture wildlife warning",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "She hasn't been caught yet",
+      "query": "animal still missing on the loose escaped not found",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "crack your window carefully",
+      "query": "car window cautious driving road warning sign",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Will Ava find her way home before anyone gets sprayed",
+      "query": "skunk roaming free Scotland rural road countryside night",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "A skunk loose in Scotland",
+      "text": "SKUNK ON THE LOOSE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "named Ava, is 5 years old",
+      "text": "AVA, AGE 5",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "don't exist in the Scottish wild",
+      "text": "NOT FROM HERE",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "nobody got sprayed",
+      "text": "NOBODY SPRAYED (YET)",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "owners set humane traps",
+      "text": "TRAPS ARE SET",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "She hasn't been caught yet",
+      "text": "STILL OUT THERE",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "gameplay": "subway"
+}

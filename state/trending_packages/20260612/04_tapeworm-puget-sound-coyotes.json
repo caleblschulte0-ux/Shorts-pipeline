@@ -1,0 +1,122 @@
+{
+  "version": 8,
+  "slug": "tapeworm-puget-sound-coyotes",
+  "title": "A Deadly Tapeworm Just Hit the Pacific Northwest — Found in 37% of Coyotes",
+  "hashtags": [
+    "echinococcus",
+    "tapeworm",
+    "pacificnorthwest",
+    "pugetsound",
+    "washington",
+    "coyote",
+    "publichealth",
+    "parasites",
+    "wildlife",
+    "UW",
+    "invasivespecies",
+    "healthalert",
+    "zoonotic",
+    "animalnews"
+  ],
+  "script": "Deadly tapeworm hits Pacific Northwest! Scientists at the University of Washington just confirmed a major finding: Echinococcus multilocularis — the fox tapeworm — has been found in 37 percent of coyotes tested around Puget Sound. This is the first time it's ever been detected in wild animals on the US West Coast. The parasite has spent decades spreading from Europe through Canada and the American Midwest. Now it's in Washington. In coyotes and foxes, it causes no symptoms. But if it reaches dogs or humans — through contaminated soil or animal feces — it can cause alveolar echinococcosis, a disease that grows slow cancer-like cysts through the body. Symptoms can hide for 5 to 15 years. No human cases have been reported on the West Coast yet. Could your dog be the first to bring it home?",
+  "shots": [
+    {
+      "phrase": "Deadly tapeworm hits Pacific Northwest",
+      "query": "Pacific Northwest forest coyote Washington state wildlife dangerous",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "University of Washington just confirmed a major finding",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/University_of_Washington_Rainier_Vista_and_Mt._Rainier.jpg",
+      "query": "University of Washington campus Seattle aerial view Rainier",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Echinococcus multilocularis — the fox tapeworm",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Echinococcus_multilocularis_in_liver_of_vole.jpg",
+      "query": "tapeworm parasite microscope science lab Echinococcus specimen",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "37 percent of coyotes tested around Puget Sound",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Canis_latrans_on_Santa_Rosa_Island.jpg",
+      "query": "coyote wild Pacific Northwest Washington state habitat",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "first time it's ever been detected in wild animals on the US West Coast",
+      "query": "map United States West Coast Pacific Northwest Washington Oregon",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "spreading from Europe through Canada and the American Midwest",
+      "query": "map parasite spread migration North America Europe Canada Midwest",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "In coyotes and foxes, it causes no symptoms",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Canis_latrans_on_Santa_Rosa_Island.jpg",
+      "query": "coyote healthy looking normal forest wildlife no symptoms",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "reaches dogs or humans — through contaminated soil or animal feces",
+      "query": "dog sniffing soil grass ground contaminated warning",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "alveolar echinococcosis, a disease that grows slow cancer-like cysts through the body",
+      "query": "medical scan cyst organ disease pathology MRI cancer-like",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Symptoms can hide for 5 to 15 years",
+      "query": "hidden silent disease years lurking long incubation medical",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "No human cases have been reported on the West Coast yet",
+      "query": "no cases yet map clean chart West Coast United States",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Could your dog be the first to bring it home",
+      "query": "dog owner backyard pet grass concern warning health risk",
+      "mascot_pose": "think"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Deadly tapeworm hits Pacific Northwest",
+      "text": "DEADLY TAPEWORM",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "37 percent of coyotes tested around Puget Sound",
+      "text": "37% INFECTED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "first time it's ever been detected in wild animals on the US West Coast",
+      "text": "FIRST WEST COAST CASE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "alveolar echinococcosis, a disease that grows slow cancer-like cysts",
+      "text": "CANCER-LIKE CYSTS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Symptoms can hide for 5 to 15 years",
+      "text": "HIDES 15 YEARS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "No human cases have been reported on the West Coast yet",
+      "text": "NO HUMAN CASES YET",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "dark",
+  "gameplay": "subway"
+}
