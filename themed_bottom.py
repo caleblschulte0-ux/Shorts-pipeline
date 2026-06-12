@@ -385,8 +385,8 @@ class _Renderer:
     GOAL_ENABLED = True
     GOAL_TINT = (28, 120, 210)     # water blue (surface)
     GOAL_DEEP = (6, 38, 92)        # deep water (floor)
-    GOAL_FILL_START = 0.08         # already-visible water at the start
-    GOAL_FILL_END = 0.94           # fraction of panel height filled at the end
+    GOAL_FILL_START = 0.10         # waves already fill the bottom 10% at t=0
+    GOAL_FILL_END = 1.00           # by the end the water fills (spills over) the top
 
     def goal_progress(self, t: float) -> float:
         """0..1 fill fraction, linear across the whole clip."""
@@ -405,37 +405,36 @@ class _Renderer:
         p = self.goal_progress(t)
         if p <= 0.0:
             return frame
-        # Visible, surging rise: water is already showing at the start and
-        # climbs to GOAL_FILL_END, with a lively surge on top so the eye
-        # actually SEES it rising — a flat linear creep of ~1px/frame reads
-        # as static. The surge amplitude grows with progress.
-        start = getattr(self, "GOAL_FILL_START", 0.08)
+        # Visible, surging rise: waves already fill the bottom ~10% and the
+        # level climbs in pace with the video, spilling over the top by the
+        # end. A surge term makes the surface visibly heave so the rise reads
+        # as motion, not a 1px/frame creep.
+        start = getattr(self, "GOAL_FILL_START", 0.10)
         base = start + (self.GOAL_FILL_END - start) * p
         surge = float(np.sin(t * 2.3)) * (0.012 + 0.025 * p)
-        frac = min(0.99, max(0.02, base + surge))
-        level = max(2, int(H * frac))
-        y0 = H - level
+        frac = min(1.0, max(0.02, base + surge))
+        level = min(H, max(2, int(H * frac)))
+        y0 = max(0, H - level)
         band = frame[y0:H].astype(np.float32)            # (level, W, 3)
         rows = band.shape[0]
         d = np.linspace(0.0, 1.0, rows, dtype=np.float32)[:, None, None]
         tint = np.asarray(self.GOAL_TINT, np.float32)[None, None, :]
         deep = np.asarray(self.GOAL_DEEP, np.float32)[None, None, :]
         water = tint * (1.0 - d) + deep * d              # (rows,1,3)
-        # Opaque-ish so it's clearly WATER: 0.6 at the surface deepening to
-        # 0.9 at the floor (scene shows through dimly, like it's submerged).
-        alpha = 0.60 + 0.30 * d                          # (rows,1,1)
+        # Nearly opaque so the WATER is the dominant element, unmistakable
+        # against the theme behind it: 0.78 at the surface -> 0.95 at the floor.
+        alpha = 0.78 + 0.17 * d                          # (rows,1,1)
         frame[y0:H] = (band * (1.0 - alpha) + water * alpha).astype(np.uint8)
-        # Big animated foam crest drawn on top so the level is unmistakable
-        # and reads as live, climbing water.
+        # BIG rolling waves at the surface so it clearly reads as moving water.
         xs = np.arange(W)
-        wave = (np.sin(xs * 0.022 + t * 2.6) * 11.0
-                + np.sin(xs * 0.0075 - t * 1.9) * 7.0
-                + np.sin(xs * 0.05 + t * 4.0) * 3.0)
+        wave = (np.sin(xs * 0.014 + t * 2.2) * 22.0
+                + np.sin(xs * 0.006 - t * 1.6) * 12.0
+                + np.sin(xs * 0.040 + t * 3.5) * 5.0)
         surf = np.clip((y0 + wave).astype(np.int32), 0, H - 1)
         crest = np.array([235, 248, 255], dtype=np.uint8)
-        for dy in (0, 1, 2, 3):
+        for dy in (0, 1, 2, 3, 4, 5):
             frame[np.clip(surf + dy, 0, H - 1), xs] = crest
-        frame[np.clip(surf + 7, 0, H - 1), xs] = (140, 210, 240)
+        frame[np.clip(surf + 9, 0, H - 1), xs] = (140, 210, 240)
         return frame
 
     def render(self, duration: float, out_path: Path) -> Path:

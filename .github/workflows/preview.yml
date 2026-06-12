@@ -174,6 +174,19 @@ jobs:
               cp "$mp4" "$tmp"/ || true
             fi
           done
+          # Extract start/middle/end frames so the bottom (water level) can
+          # be eyeballed as stills without playing the whole clip.
+          for mp4 in "$tmp"/*.mp4; do
+            fbase=$(basename "$mp4" .mp4)
+            DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$mp4" 2>/dev/null | cut -d. -f1)
+            [ -z "$DUR" ] && DUR=40
+            for pct in 12 55 92; do
+              ts=$(( DUR * pct / 100 ))
+              ffmpeg -y -loglevel error -ss "$ts" -i "$mp4" -frames:v 1 \
+                "$tmp/${fbase}.frame${pct}.png" 2>/dev/null || true
+            done
+            break
+          done
           cp output/*.mp4.audit.json "$tmp"/ 2>/dev/null || true
           cp daily_report.md "$tmp"/ 2>/dev/null || true
           git config user.name "github-actions[bot]"
@@ -181,7 +194,7 @@ jobs:
           git checkout --orphan preview-renders
           git reset            # unstage everything the orphan inherited
           cp "$tmp"/* .
-          git add -f *.mp4 *.audit.json daily_report.md 2>/dev/null || true
+          git add -f *.mp4 *.audit.json *.png daily_report.md 2>/dev/null || true
           git commit -m "preview render $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
           git push -f origin preview-renders
 
