@@ -383,8 +383,9 @@ class _Renderer:
     # EVERY theme gets it for free. Themes may recolor it (GOAL_TINT) or,
     # if they already own a clearer goal, opt out (GOAL_ENABLED = False).
     GOAL_ENABLED = True
-    GOAL_TINT = (38, 120, 210)     # water blue
-    GOAL_FILL_END = 0.92           # fraction of panel height filled at the end
+    GOAL_TINT = (28, 120, 210)     # water blue (surface)
+    GOAL_DEEP = (6, 38, 92)        # deep water (floor)
+    GOAL_FILL_END = 0.94           # fraction of panel height filled at the end
 
     def goal_progress(self, t: float) -> float:
         """0..1 fill fraction, linear across the whole clip."""
@@ -394,32 +395,45 @@ class _Renderer:
         return max(0.0, min(1.0, t / dur))
 
     def _goal_overlay(self, frame: np.ndarray, t: float) -> np.ndarray:
+        """A BOLD rising water body — the end goal. Opaque enough to read
+        at a glance (the scene below shows through dimly, like it's being
+        submerged), with a big animated foam surface so the level is
+        obvious and visibly climbing across the whole clip."""
         if not self.GOAL_ENABLED:
             return frame
         p = self.goal_progress(t)
         if p <= 0.0:
             return frame
-        level = int(H * self.GOAL_FILL_END * p)
-        if level < 2:
-            return frame
-        y0 = H - level
-        tint = np.asarray(self.GOAL_TINT, dtype=np.float32)
-        band = frame[y0:H].astype(np.float32)
-        rows = band.shape[0]
-        # Deeper = a touch more opaque (water with depth) but the game
-        # stays visible through it; surface ~0.22, floor ~0.42.
-        depth = np.linspace(0.0, 1.0, rows, dtype=np.float32)[:, None, None]
-        alpha = 0.22 + 0.20 * depth
-        frame[y0:H] = (band * (1.0 - alpha)
-                       + tint[None, None, :] * alpha).astype(np.uint8)
-        # Wavy bright surface line so the level is legible and alive.
+        level = max(2, int(H * self.GOAL_FILL_END * p))
         xs = np.arange(W)
-        surf = (y0 + np.sin(xs * 0.035 + t * 3.0) * 4.0
-                + np.sin(xs * 0.011 - t * 1.7) * 3.0).astype(np.int32)
+        y0 = H - level
+        # Big, lively surface: tall waves that animate, so the water reads
+        # as alive and the rising line is impossible to miss.
+        surf = (y0 + np.sin(xs * 0.022 + t * 2.6) * 11.0
+                + np.sin(xs * 0.0075 - t * 1.9) * 7.0
+                + np.sin(xs * 0.05 + t * 4.0) * 3.0).astype(np.int32)
         surf = np.clip(surf, 0, H - 1)
-        crest = np.array([210, 235, 255], dtype=np.uint8)
-        frame[surf, xs] = crest
-        frame[np.clip(surf - 1, 0, H - 1), xs] = crest
+
+        yy = np.arange(H)[:, None]                       # (H,1)
+        below = yy >= surf[None, :]                      # (H,W) underwater mask
+        depth = np.clip((yy - surf[None, :]) / float(level), 0.0, 1.0)
+        tint = np.asarray(self.GOAL_TINT, np.float32)
+        deep = np.asarray(self.GOAL_DEEP, np.float32)
+        water = (tint[None, None, :] * (1.0 - depth[..., None])
+                 + deep[None, None, :] * depth[..., None])
+        # Opaque-ish so it's clearly WATER, not a tint: 0.62 at the surface
+        # deepening to 0.9 at the floor.
+        alpha = (0.62 + 0.28 * depth)[..., None]
+        fb = frame.astype(np.float32)
+        blended = fb * (1.0 - alpha) + water * alpha
+        frame[:] = np.where(below[..., None], blended, fb).astype(np.uint8)
+
+        # Bright foam crest (thick band) + a sunlit highlight just under it.
+        crest = np.array([235, 248, 255], dtype=np.uint8)
+        for dy in (0, 1, 2, 3):
+            frame[np.clip(surf + dy, 0, H - 1), xs] = crest
+        frame[np.clip(surf + 6, 0, H - 1), xs] = (150, 215, 245)
+        frame[np.clip(surf + 10, 0, H - 1), xs] = (90, 175, 225)
         return frame
 
     def render(self, duration: float, out_path: Path) -> Path:
