@@ -24,28 +24,32 @@
   "shots": [
     {
       "phrase": "In 1901, divers off the Greek island of Antikythera",
-      "query": "Greek sponge divers 1900 antique diving helmet sea black and white"
+      "query": "Greek sponge divers 1900 antique diving helmet sea black and white",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/The_Antikythera_Shipwreck._National_Archaeological_Museum%2C_Athens%2C_Greece_%283209883801%29.jpg/1280px-The_Antikythera_Shipwreck._National_Archaeological_Museum%2C_Athens%2C_Greece_%283209883801%29.jpg"
     },
     {
       "phrase": "a lump of corroded bronze from a 2,000-year-old shipwreck",
-      "query": "corroded bronze artifact ancient shipwreck seafloor encrusted"
+      "query": "corroded bronze artifact ancient shipwreck seafloor encrusted",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Antikythera_Mechanism_-_National_Archaeological_Museum%2C_Athens_by_Joy_of_Museum.jpg/1280px-Antikythera_Mechanism_-_National_Archaeological_Museum%2C_Athens_by_Joy_of_Museum.jpg"
     },
     {
       "phrase": "For decades it sat ignored",
-      "query": "museum storage dusty artifact shelf forgotten archive"
+      "query": "museum storage dusty artifact shelf forgotten archive",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/The_Antikythera_Shipwreck._National_Archaeological_Museum%2C_Athens%2C_Greece_%283209908387%29.jpg/1280px-The_Antikythera_Shipwreck._National_Archaeological_Museum%2C_Athens%2C_Greece_%283209908387%29.jpg"
     },
     {
       "phrase": "Then X-rays revealed the truth",
-      "query": "x-ray scan ancient artifact internal gears radiograph"
+      "query": "x-ray scan ancient artifact internal gears radiograph",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/NAMA_Machine_d%27Anticyth%C3%A8re_5.jpg"
     },
     {
       "phrase": "at least 30 interlocking bronze gears, cut by hand",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Antikythera_Fragment_A_%28Back%29.webp/500px-Antikythera_Fragment_A_%28Back%29.webp.png",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/41598_2021_84310_Fig1_HTML.png/1280px-41598_2021_84310_Fig1_HTML.png",
       "query": "interlocking bronze gears mechanism close up corroded teeth"
     },
     {
       "phrase": "It's now called the Antikythera mechanism",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Antikythera_Fragment_A_%28Front%29.webp/500px-Antikythera_Fragment_A_%28Front%29.webp.png",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Antikythera_Fragment_A_%28Front%29.webp/1280px-Antikythera_Fragment_A_%28Front%29.webp.png",
       "query": "Antikythera mechanism fragment museum Athens display"
     },
     {
@@ -55,37 +59,75 @@
     },
     {
       "phrase": "it predicted the positions of the Sun, the Moon, and the planets",
-      "query": "antique brass orrery solar system model sun moon planets gears"
+      "query": "antique brass orrery solar system model sun moon planets gears",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Reconstruction_of_the_Antikythera_mechanism_%287751351552%29.jpg/1280px-Reconstruction_of_the_Antikythera_mechanism_%287751351552%29.jpg"
     },
     {
       "phrase": "It tracked eclipses",
-      "query": "solar eclipse diagram sun moon alignment ancient astronomy"
+      "query": "solar eclipse diagram sun moon alignment ancient astronomy",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Antikythera_Fragment_A_%28Back%29.webp/1280px-Antikythera_Fragment_A_%28Back%29.webp.png"
     },
     {
       "phrase": "the 4-year cycle of the ancient Olympic Games",
-      "query": "ancient Greek Olympic games stadium ruins olympia laurel"
+      "query": "ancient Greek Olympic games stadium ruins olympia laurel",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ancient_Olympia_Stadium_in_Greece_%2851224128585%29.jpg/1280px-Ancient_Olympia_Stadium_in_Greece_%2851224128585%29.jpg"
     },
     {
       "phrase": "Nothing this complex would appear again for over 1,000 years",
-      "query": "medieval astronomical clock gears cathedral antique mechanism"
+      "query": "medieval astronomical clock gears cathedral antique mechanism",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Czech-2013-Prague-Astronomical_clock_face.jpg/1280px-Czech-2013-Prague-Astronomical_clock_face.jpg"
     },
     {
       "phrase": "We still don't know exactly who built it",
-      "query": "ancient Greek workshop craftsman tools dim mystery silhouette"
+      "query": "ancient Greek workshop craftsman tools dim mystery silhouette",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Eph%C3%A8be_Antikythera_NAMA_%CE%A713396.jpg/1280px-Eph%C3%A8be_Antikythera_NAMA_%CE%A713396.jpg"
     },
     {
       "phrase": "how did the makers of the Antikythera mechanism build a computer",
-      "query": "Antikythera mechanism reconstruction dramatic lighting museum dusk"
+      "query": "Antikythera mechanism reconstruction dramatic lighting museum dusk",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/0145_-_Archaeological_Museum%2C_Athens_-_Reconstruction_of_the_Antikythera_mechanism_-_Photo_by_Giovanni_D.jpg/1280px-0145_-_Archaeological_Museum%2C_Athens_-_Reconstruction_of_the_Antikythera_mechanism_-_Photo_by_Giovanni_D.jpg"
     }
   ],
   "punches": [
-    { "phrase": "They had computers", "text": "COMPUTERS?!", "color": "#ffaa30" },
-    { "phrase": "2,000-year-old shipwreck", "text": "2,000 YEARS", "color": "#ffffff" },
-    { "phrase": "30 interlocking bronze gears", "text": "30 GEARS", "color": "#ffaa30" },
-    { "phrase": "cut by hand", "text": "BY HAND", "color": "#ffffff" },
-    { "phrase": "a working analog computer", "text": "A COMPUTER", "color": "#50ff80" },
-    { "phrase": "It tracked eclipses", "text": "ECLIPSES", "color": "#ffaa30" },
-    { "phrase": "Nothing this complex would appear again for over 1,000 years", "text": "1,000 YEARS", "color": "#ff3030" },
-    { "phrase": "who built it", "text": "BUT WHO?", "color": "#ffffff" }
+    {
+      "phrase": "They had computers",
+      "text": "COMPUTERS?!",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "corroded bronze",
+      "text": "2,000 YEARS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "30 interlocking bronze gears",
+      "text": "30 GEARS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "cut by hand",
+      "text": "BY HAND",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "a working analog computer",
+      "text": "A COMPUTER",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "It tracked eclipses",
+      "text": "ECLIPSES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Nothing this complex would appear again for over 1,000 years",
+      "text": "1,000 YEARS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "who built it",
+      "text": "BUT WHO?",
+      "color": "#ffffff"
+    }
   ]
 }

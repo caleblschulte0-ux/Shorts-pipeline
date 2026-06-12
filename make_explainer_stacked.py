@@ -27,6 +27,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -398,6 +399,19 @@ class Shot:
 
 # ---------- B-roll assembly (multi-cut) ----------
 
+# Wikimedia's image CDN (upload.wikimedia.org) aggressively rate-limits
+# (HTTP 429) generic browser User-Agents — a plain "Mozilla/5.0" gets
+# throttled after a couple of requests, which silently starves a render of
+# its pinned archival images and forces junk stock fallbacks. Their UA
+# policy wants a descriptive agent that identifies the client + a contact;
+# a compliant UA sails through where the browser string is throttled.
+_IMG_FETCH_UA = (
+    "ShortsPipeline/1.0 "
+    "(+https://github.com/caleblschulte0-ux/shorts-pipeline; "
+    "contact: caleblschulte0@gmail.com)"
+)
+
+
 def _fetch_image(url_or_path: str, cache: Path) -> Path:
     """Resolve a shot.image value (URL or local path) to a cached file
     on disk. Local paths pass through; URLs are downloaded once and
@@ -413,18 +427,31 @@ def _fetch_image(url_or_path: str, cache: Path) -> Path:
         if not dest.exists():
             req = urllib.request.Request(
                 url_or_path,
-                # Wikimedia rejects the default urllib UA outright and
-                # also requires a referer that looks like it came from a
-                # Wikipedia page. Most news CDNs are happy with any
-                # browser-shaped UA. This pair gets us through both.
                 headers={
-                    "User-Agent": ("Mozilla/5.0 (X11; Linux x86_64) "
-                                   "AppleWebKit/537.36 (KHTML, like Gecko)"),
+                    "User-Agent": _IMG_FETCH_UA,
                     "Referer": "https://en.wikipedia.org/",
                 },
             )
-            with urllib.request.urlopen(req, timeout=30) as r:
-                dest.write_bytes(r.read())
+            # Retry politely on transient throttling / upstream hiccups so a
+            # single 429 doesn't drop an on-topic image to stock.
+            last_err: Exception | None = None
+            for attempt in range(4):
+                try:
+                    with urllib.request.urlopen(req, timeout=30) as r:
+                        dest.write_bytes(r.read())
+                    last_err = None
+                    break
+                except urllib.error.HTTPError as e:
+                    last_err = e
+                    if e.code not in (429, 500, 502, 503, 504):
+                        raise
+                    retry_after = e.headers.get("Retry-After") if e.headers else None
+                    delay = (float(retry_after)
+                             if retry_after and retry_after.isdigit()
+                             else 2 ** attempt)
+                    time.sleep(min(delay, 10))
+            if last_err is not None:
+                raise last_err
         return dest
     p = Path(url_or_path)
     if not p.exists():

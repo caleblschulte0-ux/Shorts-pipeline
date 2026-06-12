@@ -331,8 +331,12 @@ def resolve_entity_media(entity: str, context: str = "") -> str | None:
 
 # ---------- URL verification ----------
 
-_VERIFY_UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-              "(KHTML, like Gecko) Chrome/120 Safari/537.36")
+# Wikimedia's CDN throttles generic browser UAs (HTTP 429) and its policy
+# wants a descriptive agent + contact. A plain Chrome string gets rate-limited
+# here, which made this verifier wrongly reject valid Commons images.
+_VERIFY_UA = ("ShortsPipeline/1.0 "
+              "(+https://github.com/caleblschulte0-ux/shorts-pipeline; "
+              "contact: caleblschulte0@gmail.com)")
 
 
 def url_is_image(url: str, timeout: float = 8.0) -> bool:
@@ -365,6 +369,13 @@ def url_is_image(url: str, timeout: float = 8.0) -> bool:
         except urllib.error.HTTPError as e:
             if method == "HEAD" and e.code in (403, 405, 501):
                 continue          # server dislikes HEAD — retry as GET
+            if e.code in (429, 500, 502, 503, 504):
+                # Transient throttle / upstream hiccup — NOT a bad URL.
+                # Don't discard a routine-supplied image over rate limiting;
+                # the render-time fetch retries with backoff. A genuinely
+                # bad URL (hallucinated filename) returns 404 and is still
+                # rejected below.
+                return True
             return False
         except Exception:  # noqa: BLE001 — timeouts, DNS, TLS: all unusable
             return False
