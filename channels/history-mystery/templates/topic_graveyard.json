@@ -1,0 +1,35 @@
+{
+  "_doc": "Rejected topics + reasons, so weak ideas are never re-evaluated. When the scoring system (scoring_sheet.md) kills a topic, record it here. rejection_reason is one of: credibility_issue, weak_hook, duplicate_topic, poor_visuals, low_search_interest.",
+  "rejected": [
+    {
+      "topic": "Anjikuni Lake vanishing village",
+      "category": "disappearances",
+      "rejection_reason": "credibility_issue",
+      "notes": "The 1930 'whole Inuit village vanished' story traces to a single sensational newspaper writer (Emmett Kelleher) and was debunked by the RCMP. Fails the §6 credibility floor — only ship if framed explicitly as a debunked legend, not a real disappearance."
+    },
+    {
+      "topic": "Dropa Stones",
+      "category": "impossible-artifacts",
+      "rejection_reason": "credibility_issue",
+      "notes": "No verifiable artifacts or sources; widely considered a hoax. Cannot clear the credibility floor."
+    },
+    {
+      "topic": "London Hammer (Texas)",
+      "category": "impossible-artifacts",
+      "rejection_reason": "credibility_issue",
+      "notes": "'Out-of-place' hammer is explained by ordinary concretion; promoted mainly by young-earth sources. Off-brand and uncredible."
+    },
+    {
+      "topic": "The Man from Taured",
+      "category": "disappearances",
+      "rejection_reason": "credibility_issue",
+      "notes": "No contemporary documentation; classic urban legend. Only usable as an explicitly-labeled 'famous legend' piece, not as a real event."
+    },
+    {
+      "topic": "Generic 'most haunted castle' listicle",
+      "category": "misc",
+      "rejection_reason": "weak_hook",
+      "notes": "No single named mystery, no verifiable claim, no 'sounds fake but true' payoff. Vague."
+    }
+  ]
+}

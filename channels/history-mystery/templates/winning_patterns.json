@@ -1,0 +1,40 @@
+{
+  "_doc": "Analytics memory for the History & Mystery channel. Log every video here once it has data; the periodic review (CONTENT_ENGINE.md §9) reads the rollups to bias future picks. The system should get measurably smarter every month.",
+  "schema": {
+    "video": [
+      "video_id", "slug", "topic_category", "series_id", "hook_type",
+      "title_style", "published", "retention", "average_view_duration_sec",
+      "rewatches", "views", "likes", "comments", "shares",
+      "subscriber_conversion"
+    ],
+    "hook_type_values": ["disbelief-question", "flat-number", "no-survivors", "named-mystery", "then-vs-now"],
+    "title_style_values": ["named-event", "impossible-claim", "unsolved-question", "list-curiosity"]
+  },
+  "videos": [
+    {
+      "video_id": "EXAMPLE-replace-me",
+      "slug": "dancing-plague-1518",
+      "topic_category": "forgotten-disasters",
+      "series_id": "forgotten-disasters",
+      "hook_type": "disbelief-question",
+      "title_style": "named-event",
+      "published": "2026-06-12",
+      "retention": 0.0,
+      "average_view_duration_sec": 0.0,
+      "rewatches": 0,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "subscriber_conversion": 0.0
+    }
+  ],
+  "rollups": {
+    "_doc": "Recompute periodically from videos[]. Bias the next slate toward the winners; push losers toward the graveyard.",
+    "by_hook_type": {},
+    "by_series": {},
+    "by_title_style": {},
+    "top_comment_drivers": [],
+    "top_sub_drivers": []
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 8,
+  "slug": "dancing-plague-1518",
+  "title": "In 1518, a Town Danced Itself to Death",
+  "series_id": "forgotten-disasters",
+  "series_name": "Forgotten Disasters",
+  "episode_number": 1,
+  "music_vibe": "cinematic",
+  "hashtags": [
+    "dancingplague",
+    "strasbourg",
+    "1518",
+    "history",
+    "historymystery",
+    "weirdhistory",
+    "unexplained",
+    "medievalhistory",
+    "soundsfakebutreal",
+    "forgottenhistory",
+    "darkhistory",
+    "didyouknow"
+  ],
+  "script": "This actually happened?! In July 1518, in Strasbourg, a woman named Frau Troffea stepped into the street and began to dance. She did not stop. Within a week, 34 more people joined her. Within a month, around 400 people were dancing — and they could not stop. City records show some danced for days, collapsing from strokes, heart attacks, and exhaustion. Panicked officials made it worse: they decided more dancing was the cure, built a wooden stage, and hired musicians. People kept dying. One theory says it was ergot, a toxic mold on rye bread. Another says it was mass stress-induced hysteria after famine and disease. Records confirm the dancing was real, but the cause is still debated. So what actually forced 400 people in Strasbourg to dance themselves to death?",
+  "shots": [
+    {
+      "phrase": "In July 1518, in Strasbourg",
+      "query": "Strasbourg old town medieval map engraving 16th century"
+    },
+    {
+      "phrase": "a woman named Frau Troffea stepped into the street and began to dance",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Dancingplague2_%28alt%29.jpg/500px-Dancingplague2_%28alt%29.jpg",
+      "query": "medieval people dancing in street engraving woodcut"
+    },
+    {
+      "phrase": "She did not stop",
+      "query": "woman dancing alone medieval street exhausted engraving"
+    },
+    {
+      "phrase": "Within a week, 34 more people joined her",
+      "query": "crowd of medieval people dancing street engraving"
+    },
+    {
+      "phrase": "around 400 people were dancing",
+      "query": "large crowd dancing frenzy medieval town square engraving"
+    },
+    {
+      "phrase": "City records show some danced for days",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Dancingplague2_%28alt%29.jpg/500px-Dancingplague2_%28alt%29.jpg",
+      "query": "old city record document parchment medieval manuscript"
+    },
+    {
+      "phrase": "collapsing from strokes, heart attacks, and exhaustion",
+      "query": "medieval people collapsing exhausted on ground engraving"
+    },
+    {
+      "phrase": "they decided more dancing was the cure, built a wooden stage, and hired musicians",
+      "query": "medieval musicians wooden stage town square engraving"
+    },
+    {
+      "phrase": "People kept dying",
+      "query": "medieval funeral death plague engraving dark"
+    },
+    {
+      "phrase": "One theory says it was ergot, a toxic mold on rye bread",
+      "query": "ergot fungus rye bread mold close up"
+    },
+    {
+      "phrase": "Another says it was mass stress-induced hysteria after famine and disease",
+      "query": "medieval famine starving peasants engraving misery"
+    },
+    {
+      "phrase": "Records confirm the dancing was real",
+      "query": "old historical archive document handwriting parchment"
+    },
+    {
+      "phrase": "what actually forced 400 people in Strasbourg to dance themselves to death",
+      "query": "Strasbourg cathedral old town mystery dusk atmospheric"
+    }
+  ],
+  "punches": [
+    { "phrase": "began to dance", "text": "IT BEGINS", "color": "#ffaa30" },
+    { "phrase": "She did not stop", "text": "NO STOPPING", "color": "#ffffff" },
+    { "phrase": "34 more people joined her", "text": "34 MORE", "color": "#ffaa30" },
+    { "phrase": "around 400 people were dancing", "text": "400 DANCING", "color": "#ffaa30" },
+    { "phrase": "danced for days", "text": "FOR DAYS", "color": "#ffffff" },
+    { "phrase": "People kept dying", "text": "DEAD", "color": "#ff3030" },
+    { "phrase": "more dancing was the cure", "text": "MORE DANCING", "color": "#ff3030" },
+    { "phrase": "still debated", "text": "STILL DEBATED", "color": "#ffffff" }
+  ]
+}
