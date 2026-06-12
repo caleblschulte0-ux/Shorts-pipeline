@@ -2304,8 +2304,24 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
         "shots":  [{"phrase": "...", "query": "..."}, ...],
         "punches":[{"phrase": "...", "text": "...", "color": "#..."}, ...],
         "music_vibe": "dark" | "cinematic" | "hiphop",
+        "visual": {"mode": "archival", "top_frac": 0.65}   # optional look profile
       }
     """
+    # Visual profile shipped IN the package so a channel's look (taller
+    # top, archival-stills pacing) doesn't depend on env flags — every
+    # package renders itself the same way the daily job or a local run
+    # would. Absent -> the env defaults (50/50, env STILLS_MODE) apply,
+    # so the news channel is unaffected.
+    global TOP_H, BOTTOM_H, STILLS_MODE, STILL_HOLD
+    vis = pkg.get("visual") or {}
+    if vis.get("top_frac"):
+        TOP_H = _even(H * float(vis["top_frac"]))
+        BOTTOM_H = H - TOP_H
+    if vis.get("mode") == "archival" or vis.get("stills"):
+        STILLS_MODE = True
+    if vis.get("still_hold"):
+        STILL_HOLD = float(vis["still_hold"])
+
     # Auto-attach real entity photos for any proper noun the routine
     # forgot. Mutates pkg["shots"] in place; existing image_urls win.
     # See entity_media.py for the contract — it's an enforcement layer

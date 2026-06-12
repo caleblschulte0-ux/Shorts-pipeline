@@ -78,13 +78,50 @@
     }
   ],
   "punches": [
-    { "phrase": "began to dance", "text": "IT BEGINS", "color": "#ffaa30" },
-    { "phrase": "She did not stop", "text": "NO STOPPING", "color": "#ffffff" },
-    { "phrase": "34 more people joined her", "text": "34 MORE", "color": "#ffaa30" },
-    { "phrase": "around 400 people were dancing", "text": "400 DANCING", "color": "#ffaa30" },
-    { "phrase": "danced for days", "text": "FOR DAYS", "color": "#ffffff" },
-    { "phrase": "People kept dying", "text": "DEAD", "color": "#ff3030" },
-    { "phrase": "more dancing was the cure", "text": "MORE DANCING", "color": "#ff3030" },
-    { "phrase": "still debated", "text": "STILL DEBATED", "color": "#ffffff" }
-  ]
+    {
+      "phrase": "began to dance",
+      "text": "IT BEGINS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "She did not stop",
+      "text": "NO STOPPING",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "34 more people joined her",
+      "text": "34 MORE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "around 400 people were dancing",
+      "text": "400 DANCING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "danced for days",
+      "text": "FOR DAYS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "People kept dying",
+      "text": "DEAD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "more dancing was the cure",
+      "text": "MORE DANCING",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "still debated",
+      "text": "STILL DEBATED",
+      "color": "#ffffff"
+    }
+  ],
+  "visual": {
+    "mode": "archival",
+    "top_frac": 0.65
+  },
+  "bottom_theme": "auto"
 }

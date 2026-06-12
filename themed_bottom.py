@@ -153,15 +153,26 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
 
 def pick_theme(title: str = "", script: str = "",
                hashtags: list[str] | None = None) -> str:
-    """Keyword-route a story to a theme. Plinko is the universal
-    fallback — it reads as 'satisfying' with no topical claim, so it
-    never clashes with the story the way a wrong theme would."""
-    blob = " ".join([title or "", script or "",
-                     " ".join(hashtags or [])]).lower()
+    """Keyword-route a story to a theme by SCORE, not first-match.
+
+    First-match-wins mis-routed stories whenever a common word in the
+    script body (e.g. "the Moon" -> space) outranked the real subject in
+    the title ("...Found in a Shipwreck"). So we score every theme by how
+    many of its keywords hit, weighting the title + hashtags 3x over the
+    script body — the title/tags name the actual subject, the body just
+    mentions things in passing. Highest score wins; ties break by the
+    keyword-list order (more specific themes are listed first). Plinko is
+    the universal fallback — 'satisfying' with no topical claim, so it
+    never clashes the way a wrong theme would."""
+    head = " ".join([title or "", " ".join(hashtags or [])]).lower()
+    body = (script or "").lower()
+    best, best_score = "plinko", 0
     for theme, words in _THEME_KEYWORDS:
-        if any(w in blob for w in words):
-            return theme
-    return "plinko"
+        score = sum(3 for w in words if w in head) \
+            + sum(1 for w in words if w in body)
+        if score > best_score:
+            best, best_score = theme, score
+    return best
 
 
 # ---------- shared helpers ----------

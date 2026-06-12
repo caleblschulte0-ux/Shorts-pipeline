@@ -25,8 +25,12 @@ import re
 import urllib.parse
 import urllib.request
 
-UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-      "(KHTML, like Gecko) shorts-pipeline/1.0")
+# Wikimedia's APIs/CDN throttle generic browser UAs (HTTP 429); their policy
+# wants a descriptive agent + contact. Match the renderer's fetch UA so the
+# whole pipeline identifies itself consistently and isn't rate-limited.
+UA = ("ShortsPipeline/1.0 "
+      "(+https://github.com/caleblschulte0-ux/shorts-pipeline; "
+      "contact: caleblschulte0@gmail.com)")
 TIMEOUT = 12
 
 

@@ -62,18 +62,34 @@ linting is also a human checklist in Manual §4 — the tool is the backstop.
 
 ### 5. Author the package (v8 schema)
 Copy `templates/package_template.json` and adapt. Requirements:
-- Attach a real archival `image_url` (Wikimedia/Commons) to every proper noun,
-  with a `query` fallback (CONTENT_ENGINE §5).
+- Write a descriptive `query` on **every** shot (this is what the image
+  auto-filler searches — the better the query, the better the image). You do
+  NOT need to hand-pick `image_url`s; step 5b fills them.
 - `music_vibe`: `cinematic` (or `dark` for a Concept-B lane video). **Never
   `hiphop`.**
-- `bottom_theme`: **omit** (or calmest existing fit) — no gameplay/runner/fight
-  (Manual §9).
+- `"visual": {"mode": "archival", "top_frac": 0.65}` — ships the channel LOOK
+  (taller archival top + steady stills pacing) in the package, no env flags.
+- `"bottom_theme": "auto"` — routes the bottom animation to the best-fit theme
+  by title/hashtags (sea/wreck → `shipwreck`, eruption → `volcano`, …). Set an
+  explicit theme only when `auto` guesses wrong; unmatched topics get the
+  neutral default (see CONTENT_ENGINE §11).
 - 10–14 shots, 6–10 punches; every `phrase` a verbatim substring of the script.
 - `channel`: your history-mystery routing slug **once it exists** (Manual §9);
   until then omit to use the default.
 - Carry `series_id` / `series_name` / `episode_number` for the series engine.
 
 Write to: `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`.
+
+### 5b. Auto-fill archival images (repeatable — no hand-picking)
+```bash
+python3 scripts/autofill_images.py state/trending_packages/$(date -u +%Y%m%d)
+```
+For every shot it searches free archival sources (Wikimedia Commons keyword →
+Wikipedia hero) using the shot's `query` and pins a verified `image_url`. Prints
+an `N/N shots have an image` report. **Eyeball the output and hand-swap the few
+misses** (a vague query like "antique brass orrery" can match literally) — that
+quick review is the only manual image step left. Operator-set `image_url`s are
+kept; pass `--force` to re-pick everything.
 
 ### 6. Validate
 ```bash

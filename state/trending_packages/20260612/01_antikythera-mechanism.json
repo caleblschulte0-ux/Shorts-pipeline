@@ -130,5 +130,9 @@
       "color": "#ffffff"
     }
   ],
-  "bottom_theme": "shipwreck"
+  "bottom_theme": "shipwreck",
+  "visual": {
+    "mode": "archival",
+    "top_frac": 0.65
+  }
 }

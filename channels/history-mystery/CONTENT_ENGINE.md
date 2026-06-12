@@ -204,6 +204,43 @@ channel should be measurably smarter every month.
 
 ---
 
+## 11. Repeatable production — turning ANY story into a finished video
+
+The whole point is that this is a *machine*, not a craft project. For any topic
+the pipeline is the same, and only the script is bespoke:
+
+1. **Pick** a topic from `topic_bank.json` (mechanical — by score).
+2. **Script** it from `script_template.md` into a v8 package, writing a strong
+   `query` on every shot. (In production the daily routine / `script_generator.py`
+   drafts this with an LLM; it needs an LLM API key configured.)
+3. **Auto-fill images** — `scripts/autofill_images.py <package>` pins a verified
+   archival image to every shot from its `query` (Wikimedia Commons → Wikipedia),
+   no keys, no hand-picking. Quick human swap for the occasional miss.
+4. **Render** — the package carries its own look (`"visual": {"mode":"archival",
+   "top_frac":0.65}`) and bottom (`"bottom_theme":"auto"`), so `make_explainer_stacked`
+   produces the taller-top, archival-stills, themed-bottom video with no env flags.
+
+**The look and the bottom travel IN the package** — that's what makes it
+repeatable. Two pieces do the heavy lifting:
+- `scripts/autofill_images.py` — the image engine. Its quality is bounded by the
+  `query` text, so writing good queries is the script step's real job.
+- `themed_bottom.pick_theme` — score-based routing (title/hashtags weighted over
+  the script body) maps the story to a bottom animation.
+
+### The bottom-animation library (the ongoing investment)
+The bottom is **not** a bespoke animation per video — that wouldn't scale. It's a
+**library of reusable procedural scenes** + auto-routing:
+- Matched topics get a themed scene automatically: sea/wreck/dive → `shipwreck`,
+  eruption/wildfire → `volcano`, earthquake/tsunami → `quake`, war/combat →
+  `fight`, animal escape → `runner`, launch/space → `space`, storm → `rain`, …
+- Unmatched topics fall to a neutral default. Set an explicit `bottom_theme` when
+  you want a specific scene.
+- **Grow the library over time.** `shipwreck` was the first history/mystery-native
+  scene (a full sink → dive → shark → salvage story in `themed_bottom.py`). Add
+  one scene per recurring bucket as you go (e.g. a "lost expedition" ice/snow
+  scene, a "forgotten disaster" one). Each new scene + its keywords widens
+  automatic coverage for every future story in that bucket.
+
 ## 10. Putting it together (one video, end to end)
 
 1. Pick a topic from `topic_bank.json` (score ≥85, visual ≥7, credibility ≥6),
