@@ -1301,6 +1301,9 @@ def build_timed_top(
     # for the least-shown clip instead of cutting back to the same photo.
     last_path: str = ""
     global_used: dict[str, int] = {}
+    # Every image/clip path shown ANYWHERE in this video. A visual is used
+    # at most once — when we'd otherwise repeat, we pull fresh stock instead.
+    used_paths: set[str] = set()
 
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
@@ -1321,91 +1324,73 @@ def build_timed_top(
                   f"relevant image {Path(image_clip['path']).name}")
 
         # ── Build this shot's sub-cuts ──────────────────────────────────
-        # Three hard rules from viewer feedback:
-        #   1. No single image on screen longer than IMAGE_MAX_DUR (~4s).
-        #   2. Never cut back to the same image — spread variety across the
-        #      whole video, don't loop one photo.
-        #   3. Match the moment — when curated stills run out, pull tight
-        #      on-query stock FOOTAGE ("the suburbs" -> suburban-street
-        #      clips) rather than recycling an earlier photo.
-        # We gather DISTINCT relevant clips (own/held still -> entity still
-        # -> other pool stills -> tight stock) and lay them across enough
-        # <=4s slots to fill the window, always reaching for the
-        # least-aired clip and never repeating the one currently on screen.
+        # Rules (viewer): (1) no image on screen longer than IMAGE_MAX_DUR
+        # (~4s); (2) NEVER show the same visual twice anywhere in the video;
+        # (3) when we'd otherwise repeat, cut in FRESH stock footage to break
+        # the monotony. We assemble DISTINCT, not-yet-used clips in priority
+        # order — the shot's own/held still, then real funnel photos, then an
+        # entity still, then pool stills, then fresh on-query stock — and lay
+        # one per <=4s slot. Only if every source is exhausted do we fall
+        # back to an earlier clip.
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
         n_cuts = max(1, math.ceil(seg_dur / IMAGE_MAX_DUR))
         slot_dur = seg_dur / n_cuts
-        # Gather at least 2 distinct candidates even for a single-cut beat,
-        # so a beat whose own image was just shown can cut to fresh on-moment
-        # stock instead of being the same photo a third time. (Viewer note:
-        # "stock footage is fine once you've already shown the subject.")
-        need = max(n_cuts, 2)
 
-        candidates: list[dict] = []
-        cand_paths: set[str] = set()
+        ordered: list[dict] = []
+        seen: set[str] = set()
 
         def _add_cand(clip: dict | None) -> bool:
-            if clip and clip.get("path") and clip["path"] not in cand_paths:
-                candidates.append(clip)
-                cand_paths.add(clip["path"])
-                return True
-            return False
+            p = clip.get("path") if clip else None
+            if not p or p in seen or p in used_paths:
+                return False
+            ordered.append(clip)
+            seen.add(p)
+            return True
 
-        # 1. the shot's own / held trusted still (most relevant for the beat)
+        # own/held still leads (skipped automatically if already shown),
+        # then the real story photos the funnel found.
         _add_cand(image_clip)
-        # 2. an entity still (Wikipedia / Commons) for this shot
-        if len(candidates) < need:
-            _add_cand(_resolve_topic_media(shot, Path("/tmp/shot_images")))
-        # 2b. real story photos the news funnel found (extra pig photos, the
-        #     interview thumbnail) — most relevant variety, woven in ahead of
-        #     generic pool/stock. Added every shot; the least-aired picker
-        #     then spreads them across the video instead of dropping them.
         for fx in funnel_extras:
             _add_cand(fx)
-        # 3. other distinct on-topic pool stills
-        while len(candidates) < need and topic_image_pool:
+        # Top up to n_cuts with distinct, never-used media: entity still,
+        # then pool stills, then FRESH on-query stock (a couple spare so a
+        # repeat is never forced).
+        if len(ordered) < n_cuts:
+            _add_cand(_resolve_topic_media(shot, Path("/tmp/shot_images")))
+        guard = 0
+        while len(ordered) < n_cuts and topic_image_pool and guard < 12:
+            guard += 1
             if not _add_cand(_pick_pool_image(
-                    topic_image_pool, shot, exclude_paths=cand_paths)):
+                    topic_image_pool, shot, exclude_paths=seen | used_paths)):
                 break
-        # 4. tight on-query stock footage for the remaining variety
-        if len(candidates) < need and has_stock:
+        if len(ordered) < n_cuts and has_stock:
             try:
                 for sc in _resolve_stock(
-                        shot, cache, n_target=need - len(candidates)):
+                        shot, cache, n_target=n_cuts - len(ordered) + 2):
                     _add_cand(sc)
+                    if len(ordered) >= n_cuts:
+                        break
             except Exception as e:  # noqa: BLE001
                 print(f"      [stock failed] {shot.phrase[:40]!r}: {e}")
 
-        if not candidates:
-            candidates.append({"is_image": True, "is_placeholder": True,
-                               "path": "", "width": W, "height": HALF_H,
-                               "source": "placeholder"})
-
-        own_image = own_trusted[i] is not None
         for slot in range(n_cuts):
-            pick: dict | None = None
-            if slot == 0 and own_image \
-                    and candidates[0].get("path", "") != last_path:
-                # Lead a beat with its OWN curated still (most relevant).
-                # Held/borrowed stills don't get to lead — that's what made
-                # one photo keep reappearing — they compete by least-aired.
-                pick = candidates[0]
+            if slot < len(ordered):
+                pick = ordered[slot]
+            elif ordered:
+                # Every source exhausted (rare) — reuse the least-aired
+                # earlier clip, never the one currently on screen.
+                pool_sorted = sorted(
+                    ordered, key=lambda c: global_used.get(c.get("path", ""), 0))
+                pick = next((c for c in pool_sorted
+                             if c.get("path", "") != last_path), pool_sorted[0])
             else:
-                # Otherwise take the least-aired clip that isn't the one
-                # currently on screen — never two slots of the same image.
-                order = sorted(
-                    range(len(candidates)),
-                    key=lambda k: (global_used.get(candidates[k]["path"], 0), k))
-                for k in order:
-                    if candidates[k].get("path", "") != last_path \
-                            or len(candidates) == 1:
-                        pick = candidates[k]
-                        break
-            if pick is None:
-                pick = candidates[0]
+                pick = {"is_image": True, "is_placeholder": True, "path": "",
+                        "width": W, "height": HALF_H, "source": "placeholder"}
             plan.append((pick, slot_dur))
             pp = pick.get("path", "")
-            global_used[pp] = global_used.get(pp, 0) + 1
+            if pp:
+                used_paths.add(pp)
+                global_used[pp] = global_used.get(pp, 0) + 1
             last_path = pp
 
         if audit is not None:
