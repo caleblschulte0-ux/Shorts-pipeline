@@ -15,11 +15,11 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'verify | canary | schedule | all | unpublish'
+        description: 'verify | canary | schedule | all | unpublish | preview'
         required: true
         default: 'verify'
         type: choice
-        options: [verify, canary, schedule, all, unpublish]
+        options: [verify, canary, schedule, all, unpublish, preview]
       canary_slug:
         description: 'slug to post in canary mode'
         required: false
@@ -216,6 +216,20 @@ jobs:
             unpublish)
               # Take down the given videos (public or scheduled) + prune the log.
               python scripts/unpublish_stories.py --slugs $SLUGS ;;
+            preview)
+              # Render to a file and commit it back to THIS branch so the new
+              # opening can be eyeballed before anything is posted. No upload.
+              mkdir -p preview
+              for s in $SLUGS; do
+                python data_learning/studio_render.py --slug "$s" --out "preview/$s.mp4"
+              done
+              git config user.name "github-actions[bot]"
+              git config user.email "github-actions[bot]@users.noreply.github.com"
+              git add -f preview/*.mp4
+              git commit -m "preview render: $SLUGS [skip ci]" || echo "nothing to commit"
+              git push origin "HEAD:${GITHUB_REF_NAME}" \
+                || (git pull --rebase origin "${GITHUB_REF_NAME}" \
+                    && git push origin "HEAD:${GITHUB_REF_NAME}") ;;
             auto)
               # post every un-posted story (no --slugs => all, deduped), hourly
               python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" ;;
@@ -224,7 +238,7 @@ jobs:
       # Pull view/like counts for the channel's published videos so the daily
       # routine learns which hooks/topics land (feedback loop, channel #3).
       - name: Fetch explainer analytics
-        if: always() && inputs.mode != 'verify'
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         continue-on-error: true
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
@@ -234,7 +248,7 @@ jobs:
             || { echo "analytics fetch skipped"; exit 0; }
 
       - name: Persist posted log + analytics
-        if: always() && inputs.mode != 'verify'
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         run: |
           git add state/explainer_posted_log.json state/analytics_explainer 2>/dev/null || true
           # --cached so brand-new (untracked) files are detected too.
