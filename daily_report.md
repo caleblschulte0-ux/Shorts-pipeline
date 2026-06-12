@@ -6,9 +6,9 @@
 - failed: **0**
 
 ## Posted
-- **2 Pigs Escaped in Woodbridge CT on the Same Day — 1 Is Still Missing**
-  - topic: 2 Pigs Escaped in Woodbridge CT on the Same Day — 1 Is Still Missing
+- **Two Pigs Got Loose in the Same CT Town — On the Same Morning**
+  - topic: Two Pigs Got Loose in the Same CT Town — On the Same Morning
   - publishes: `2026-06-12T13:00:00Z`
   - (dry-run)
-  - took: 313.3s
+  - took: 201.3s
 

@@ -408,6 +408,15 @@ def _fetch_image(url_or_path: str, cache: Path) -> Path:
     on disk. Local paths pass through; URLs are downloaded once and
     keyed by hash so subsequent renders re-use the same file."""
     if url_or_path.startswith(("http://", "https://")):
+        # Rate-limited Commons FilePath URLs -> CDN thumbnails (HTTP 429
+        # otherwise). Normally already rewritten upstream by
+        # entity_media.verify_shot_urls; this is a belt-and-suspenders for
+        # URLs that reach the fetcher directly (news funnel / topic media).
+        try:
+            from entity_media import commons_thumb_url
+            url_or_path = commons_thumb_url(url_or_path)
+        except Exception:  # noqa: BLE001
+            pass
         import hashlib
         cache.mkdir(parents=True, exist_ok=True)
         ext = (Path(url_or_path.split("?")[0]).suffix or ".jpg").lower()
@@ -1282,6 +1291,11 @@ def build_timed_top(
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
         n_cuts = max(1, math.ceil(seg_dur / IMAGE_MAX_DUR))
         slot_dur = seg_dur / n_cuts
+        # Gather at least 2 distinct candidates even for a single-cut beat,
+        # so a beat whose own image was just shown can cut to fresh on-moment
+        # stock instead of being the same photo a third time. (Viewer note:
+        # "stock footage is fine once you've already shown the subject.")
+        need = max(n_cuts, 2)
 
         candidates: list[dict] = []
         cand_paths: set[str] = set()
@@ -1296,18 +1310,18 @@ def build_timed_top(
         # 1. the shot's own / held trusted still (most relevant for the beat)
         _add_cand(image_clip)
         # 2. an entity still (Wikipedia / Commons) for this shot
-        if len(candidates) < n_cuts:
+        if len(candidates) < need:
             _add_cand(_resolve_topic_media(shot, Path("/tmp/shot_images")))
         # 3. other distinct on-topic pool stills
-        while len(candidates) < n_cuts and topic_image_pool:
+        while len(candidates) < need and topic_image_pool:
             if not _add_cand(_pick_pool_image(
                     topic_image_pool, shot, exclude_paths=cand_paths)):
                 break
         # 4. tight on-query stock footage for the remaining variety
-        if len(candidates) < n_cuts and has_stock:
+        if len(candidates) < need and has_stock:
             try:
                 for sc in _resolve_stock(
-                        shot, cache, n_target=n_cuts - len(candidates)):
+                        shot, cache, n_target=need - len(candidates)):
                     _add_cand(sc)
             except Exception as e:  # noqa: BLE001
                 print(f"      [stock failed] {shot.phrase[:40]!r}: {e}")
