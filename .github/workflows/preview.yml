@@ -191,7 +191,6 @@ jobs:
               ffmpeg -y -loglevel error -ss "$ts" -i "$mp4" -frames:v 1 \
                 "$tmp/${fbase}.frame${pct}.png" 2>/dev/null || true
             done
-            break
           done
           cp output/*.mp4.audit.json "$tmp"/ 2>/dev/null || true
           cp daily_report.md "$tmp"/ 2>/dev/null || true
