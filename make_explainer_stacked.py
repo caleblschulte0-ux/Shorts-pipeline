@@ -26,6 +26,7 @@ import ssl
 import subprocess
 import sys
 import tempfile
+import math
 import time
 import urllib.request
 from dataclasses import dataclass, field
@@ -1241,6 +1242,13 @@ def build_timed_top(
         elif held[idx] is None and nxt is not None:
             held[idx] = nxt
 
+    # Cross-shot variety state. last_path = the image currently on screen
+    # (so the next sub-cut never repeats it, even across a shot boundary);
+    # global_used = how many times each image has aired, so we always reach
+    # for the least-shown clip instead of cutting back to the same photo.
+    last_path: str = ""
+    global_used: dict[str, int] = {}
+
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
         seg_dur = max(0.5, end_t - start_t)
@@ -1259,136 +1267,82 @@ def build_timed_top(
             print(f"      [hold] shot {i+1} '{shot.phrase[:30]}' -> nearest "
                   f"relevant image {Path(image_clip['path']).name}")
 
-        # Operator-supplied image wins. Otherwise pull a pool clip
-        # scored against this shot's tokens. Fall through to topic_media
-        # stills and then stock only when the pool is empty.
-        topic_video_clip = None
-        if image_clip is None and topic_video_pool:
-            topic_video_clip = _pick_pool_clip(topic_video_pool, shot)
-            if topic_video_clip:
-                print(f"      [topic_video] shot {i+1} '{shot.phrase[:30]}' -> "
-                      f"{topic_video_clip['title'][:50]!r} @ seek={topic_video_clip['seek']:.0f}s")
-        if image_clip is None and topic_video_clip is None:
-            image_clip = _resolve_topic_media(shot, Path("/tmp/shot_images"))
+        # ── Build this shot's sub-cuts ──────────────────────────────────
+        # Three hard rules from viewer feedback:
+        #   1. No single image on screen longer than IMAGE_MAX_DUR (~4s).
+        #   2. Never cut back to the same image — spread variety across the
+        #      whole video, don't loop one photo.
+        #   3. Match the moment — when curated stills run out, pull tight
+        #      on-query stock FOOTAGE ("the suburbs" -> suburban-street
+        #      clips) rather than recycling an earlier photo.
+        # We gather DISTINCT relevant clips (own/held still -> entity still
+        # -> other pool stills -> tight stock) and lay them across enough
+        # <=4s slots to fill the window, always reaching for the
+        # least-aired clip and never repeating the one currently on screen.
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
+        n_cuts = max(1, math.ceil(seg_dur / IMAGE_MAX_DUR))
+        slot_dur = seg_dur / n_cuts
 
-        if topic_video_clip:
-            # Topic-video clips claim the full shot window. The clip is
-            # already on-topic; padding it with generic stock would only
-            # dilute the visual continuity.
-            available = max(0.0,
-                            float(topic_video_clip["duration"])
-                            - float(topic_video_clip.get("seek", 0.0)))
-            # Cap each topic-video sub-cut at SUB_CUT_TARGET. Without
-            # this, a 10s shot got 10 unbroken seconds from one source
-            # clip — even when there was motion, the lack of cuts read
-            # as a static frame. Capping forces the round-robin loop
-            # below to pull additional pool clips and produce the same
-            # rapid-cut feel the stock path already had.
-            vid_dur = min(seg_dur, available, SUB_CUT_TARGET)
-            plan.append((topic_video_clip, vid_dur))
-            remaining = seg_dur - vid_dur
-            # Fill the rest of the shot by ALTERNATING video and image
-            # pool entries. Images are cheaper to source and almost
-            # always on-topic, and alternating breaks up the visual
-            # monotony of a single source streaming for 5+ seconds.
-            # Image dur is capped at IMAGE_MAX_DUR (~4s with a slow
-            # Ken Burns pan); video dur stays at SUB_CUT_TARGET.
-            # Track images already used in this shot so the picker
-            # never returns the same one back-to-back even if it
-            # happens to be the highest-scoring pool entry.
-            used_image_paths: set[str] = set()
-            fill_idx = 1
-            while remaining > 0.3:
-                want_image = (fill_idx % 2 == 1 and topic_image_pool)
-                placed = False
-                if want_image:
-                    img = _pick_pool_image(topic_image_pool, shot,
-                                            exclude_paths=used_image_paths)
-                    if img:
-                        fill = min(remaining, IMAGE_MAX_DUR)
-                        if fill > 0.3:
-                            plan.append((img, fill))
-                            remaining -= fill
-                            fill_idx += 1
-                            placed = True
-                            used_image_paths.add(img["path"])
-                            print(f"      [topic_image] shot {i+1} fill -> "
-                                  f"{img['title'][:50]!r} ({fill:.1f}s)")
-                if not placed and topic_video_pool:
-                    nxt = _pick_pool_clip(topic_video_pool, shot)
-                    if nxt:
-                        nxt_avail = max(0.0,
-                                        float(nxt["duration"])
-                                        - float(nxt.get("seek", 0.0)))
-                        fill = min(remaining, nxt_avail, SUB_CUT_TARGET)
-                        if fill > 0.3:
-                            plan.append((nxt, fill))
-                            remaining -= fill
-                            fill_idx += 1
-                            placed = True
-                # Last-ditch: try the image pool even if it wasn't
-                # this slot's turn, so we don't bail on the round-robin
-                # just because the video pool ran out of clips that
-                # fit the remaining window.
-                if not placed and not want_image and topic_image_pool:
-                    img = _pick_pool_image(topic_image_pool, shot,
-                                            exclude_paths=used_image_paths)
-                    if img:
-                        fill = min(remaining, IMAGE_MAX_DUR)
-                        if fill > 0.3:
-                            plan.append((img, fill))
-                            remaining -= fill
-                            fill_idx += 1
-                            placed = True
-                            used_image_paths.add(img["path"])
-                            print(f"      [topic_image] shot {i+1} fill -> "
-                                  f"{img['title'][:50]!r} ({fill:.1f}s)")
-                if not placed:
-                    break
-        elif image_clip and image_clip.get("source") in ("image", "news_funnel"):
-            # A TRUSTED, on-topic still: an operator-supplied image_url or
-            # the news-image funnel's verified photo. Hold it for the WHOLE
-            # shot with a slow Ken Burns pan and never cut away to generic
-            # stock. Capping it at 4s and filling the rest with a loosely
-            # keyword-matched stock clip was exactly the "irrelevant footage
-            # + random cut" the viewer complained about — a curated photo
-            # would flip to an unrelated fisherman/skyline clip mid-sentence.
-            # One steady, beat-long hold per shot reads as a clean news
-            # explainer instead of a stock montage.
-            plan.append((image_clip, seg_dur))
-            remaining = 0.0
-        elif image_clip and has_stock:
-            image_dur = min(IMAGE_MAX_DUR, seg_dur)
-            plan.append((image_clip, image_dur))
-            remaining = seg_dur - image_dur
-        elif image_clip:
-            plan.append((image_clip, seg_dur))
-            remaining = 0.0
-        else:
-            remaining = seg_dur
+        candidates: list[dict] = []
+        cand_paths: set[str] = set()
 
-        if remaining > 0.3:
-            n_cuts = max(1, round(remaining / SUB_CUT_TARGET))
-            cut_dur = remaining / n_cuts
-            stock_clips: list[dict] = []
+        def _add_cand(clip: dict | None) -> bool:
+            if clip and clip.get("path") and clip["path"] not in cand_paths:
+                candidates.append(clip)
+                cand_paths.add(clip["path"])
+                return True
+            return False
+
+        # 1. the shot's own / held trusted still (most relevant for the beat)
+        _add_cand(image_clip)
+        # 2. an entity still (Wikipedia / Commons) for this shot
+        if len(candidates) < n_cuts:
+            _add_cand(_resolve_topic_media(shot, Path("/tmp/shot_images")))
+        # 3. other distinct on-topic pool stills
+        while len(candidates) < n_cuts and topic_image_pool:
+            if not _add_cand(_pick_pool_image(
+                    topic_image_pool, shot, exclude_paths=cand_paths)):
+                break
+        # 4. tight on-query stock footage for the remaining variety
+        if len(candidates) < n_cuts and has_stock:
             try:
-                stock_clips = _resolve_stock(shot, cache, n_target=n_cuts)
+                for sc in _resolve_stock(
+                        shot, cache, n_target=n_cuts - len(candidates)):
+                    _add_cand(sc)
             except Exception as e:  # noqa: BLE001
                 print(f"      [stock failed] {shot.phrase[:40]!r}: {e}")
-            if stock_clips:
-                for j in range(n_cuts):
-                    plan.append((stock_clips[j % len(stock_clips)], cut_dur))
-            else:
-                # Stock provider unreachable. Never stretch the image
-                # past its cap — long static holds feel dead. Use a
-                # slate-blue placeholder for the remainder so the
-                # timeline length is preserved. In real CI this path
-                # never fires because stock keys are configured.
-                placeholder = {"is_image": True, "is_placeholder": True,
+
+        if not candidates:
+            candidates.append({"is_image": True, "is_placeholder": True,
                                "path": "", "width": W, "height": HALF_H,
-                               "source": "placeholder"}
-                plan.append((placeholder, remaining))
+                               "source": "placeholder"})
+
+        own_image = own_trusted[i] is not None
+        for slot in range(n_cuts):
+            pick: dict | None = None
+            if slot == 0 and own_image \
+                    and candidates[0].get("path", "") != last_path:
+                # Lead a beat with its OWN curated still (most relevant).
+                # Held/borrowed stills don't get to lead — that's what made
+                # one photo keep reappearing — they compete by least-aired.
+                pick = candidates[0]
+            else:
+                # Otherwise take the least-aired clip that isn't the one
+                # currently on screen — never two slots of the same image.
+                order = sorted(
+                    range(len(candidates)),
+                    key=lambda k: (global_used.get(candidates[k]["path"], 0), k))
+                for k in order:
+                    if candidates[k].get("path", "") != last_path \
+                            or len(candidates) == 1:
+                        pick = candidates[k]
+                        break
+            if pick is None:
+                pick = candidates[0]
+            plan.append((pick, slot_dur))
+            pp = pick.get("path", "")
+            global_used[pp] = global_used.get(pp, 0) + 1
+            last_path = pp
 
         if audit is not None:
             # Summarise this shot's media decisions. Sources are tagged
