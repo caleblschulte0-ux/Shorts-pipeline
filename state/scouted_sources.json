@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-06-12T17:58:48Z",
+  "scouted_at": "2026-06-12T21:01:34Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,12 +20,12 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 110,
-    "wikimedia_commons_count": 2,
+    "wikimedia_commons_count": 0,
     "youtube_trending_count": 0,
     "lemmy_count": 0,
     "hackernews_count": 0
   },
-  "total": 112,
+  "total": 110,
   "reddit_posts": [],
   "wikipedia_events": [
     {
@@ -227,6 +227,16 @@
       "page_url": "https://en.wikipedia.org/wiki/Disputation_of_Paris",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Rashi%27s_Talmud_Commentary.jpg/330px-Rashi%27s_Talmud_Commentary.jpg",
       "extract": "The Disputation of Paris, also known as the Trial of the Talmud, took place in 1240 at the court of King Louis IX of France. It followed the work of Nicholas Donin, a Jewish convert to Christianity who translated the Talmud and pressed 35 charges against it to Pope Gregory IX by quoting a series of blasphemous passages about Jesus, Mary, or Christianity. Four rabbis defended the Talmud against Donin's accusations."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "events",
+      "year": 2026,
+      "text": "Elon Musk becomes the first US$ trillionaire in history.",
+      "page_title": "Elon Musk",
+      "page_url": "https://en.wikipedia.org/wiki/Elon_Musk",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Elon_Musk_-_54820081119_%28cropped%29.jpg/330px-Elon_Musk_-_54820081119_%28cropped%29.jpg",
+      "extract": "Elon Reeve Musk is a businessman and former public official known for his leadership of Tesla and SpaceX. Musk has been the wealthiest person in the world since 2025; as of June\u00a02026, Forbes estimates his net worth to be US$1.2 trillion, making him the world's first and only trillionaire in terms of United States dollars."
     },
     {
       "source_type": "wikipedia_on_this_day",
@@ -517,16 +527,6 @@
       "page_url": "https://en.wikipedia.org/wiki/World_War_II",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bundesarchiv_Bild_101I-646-5188-17%2C_Flugzeuge_Junkers_Ju_87.jpg/330px-Bundesarchiv_Bild_101I-646-5188-17%2C_Flugzeuge_Junkers_Ju_87.jpg",
       "extract": "World War\u00a0II, or the Second World War, was a global conflict between two coalitions: the Allies and the Axis powers. Nearly all of the world's countries participated. Tanks and aircraft played major roles, the latter enabling the strategic bombing of cities and delivery of the only nuclear weapons used in war. World War II was the deadliest conflict in history, causing the death of 60 to 75 million people. Millions died as a result of massacres, starvation, disease, and genocides, including the "
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "events",
-      "year": 1939,
-      "text": "Shooting begins on Paramount Pictures' Dr. Cyclops, the first horror film photographed in three-strip Technicolor.",
-      "page_title": "Paramount Pictures",
-      "page_url": "https://en.wikipedia.org/wiki/Paramount_Pictures",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Paramount_Pictures_with_Skydance_byline.svg/330px-Paramount_Pictures_with_Skydance_byline.svg.png",
-      "extract": "Paramount Pictures Corporation, commonly known as Paramount Pictures or simply Paramount, is an American film production and distribution company and the flagship namesake subsidiary of Paramount Skydance. Founded on May 8, 1912, it is the sixth-oldest global film studio and the second-oldest in the United States behind Universal Pictures, and it is one of the Big Five studios located within the city limits of Los Angeles."
     },
     {
       "source_type": "wikipedia_on_this_day",
@@ -1129,22 +1129,7 @@
       "extract": "William Ralph Blass was an American fashion designer. He was the recipient of many fashion awards, including seven Coty Awards and the Fashion Institute of Technology's Lifetime Achievement Award (1999)."
     }
   ],
-  "wikimedia_videos": [
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Dornbirn-Photovoltaic module cleaning-21ASD.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Dornbirn-Photovoltaic_module_cleaning-21ASD.webm",
-      "uploaded_at": "2026-06-12T17:56:29Z",
-      "uploader": "Asurnipal"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Dornbirn-Photovoltaic module cleaning-12ASD.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Dornbirn-Photovoltaic_module_cleaning-12ASD.webm",
-      "uploaded_at": "2026-06-12T17:54:37Z",
-      "uploader": "Asurnipal"
-    }
-  ],
+  "wikimedia_videos": [],
   "youtube_trending": [],
   "lemmy_posts": [],
   "hackernews_posts": []
