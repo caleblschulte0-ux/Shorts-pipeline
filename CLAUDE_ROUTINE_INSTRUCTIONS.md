@@ -73,7 +73,9 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
    avoid baking one publisher's slant. The ranker's `angle` field lists which
    sources flagged it ("BBC + Reuters + Politico all covering this"); if it's
    single-source, WebFetch one more outlet before writing. Write from the
-   facts all sources agree on. Neutral framing, no editorializing.
+   facts all sources agree on — get them right, then tell it with VOICE (see
+   the Writing section). Accuracy is non-negotiable; a flat wire-copy recap is
+   exactly what we're killing.
 
 4. **Write packages** to `state/trending_packages/$(date -u +%Y%m%d)/0N_slug.json`,
    one per pick.
@@ -194,6 +196,65 @@ field is always safe.
 - Banned phrases (algorithm-suppressed): "comment yes", "subscribe for part",
   "tag a friend", "let me know in the comments", "like if you agree".
 
+## Writing — voice, story, payoff (READ THIS; it's the whole channel)
+
+The #1 reason a finished video falls flat is NOT the images — it's that the
+script reads like a police blotter: a flat, chronological, who-did-what
+recap with no point of view and a limp ending. A neutral wire-copy recap is
+exactly what we are killing. Same energy as the Part-2 "EXPLAIN one thing"
+philosophy below, applied to quirky news.
+
+### Voice — write like a person, not a press release
+The narrator is a deadpan, slightly incredulous friend telling you the most
+ridiculous thing they read today. Dry wit, real reactions, second person,
+contractions. It has a TAKE. It's allowed to be amused, skeptical, or
+appalled — as long as every FACT stays true (accuracy is non-negotiable;
+attitude is mandatory). Concretely:
+- React to the absurd instead of just reporting it ("Cool, weird, whatever —
+  until a SECOND call comes in.").
+- Short punchy sentences. Vary rhythm. Sentence fragments are fine for
+  punch. The em-dash and the hard stop are your friends — they also make the
+  TTS breathe instead of droning.
+- No corporate hedging ("officials confirmed", "authorities stated"), no
+  filler procedure ("teamed up with officers from Naugatuck and Prospect").
+  Cut anything a viewer wouldn't repeat to a friend.
+
+### Story — find the ONE angle, then escalate
+Don't list facts in the order they happened. Find the single thing that makes
+this share-worthy (the coincidence, the absurd detail, the twist) and build
+the whole script around it: **setup → escalation → turn → payoff.** Each beat
+raises the stakes or twists; if you could shuffle the sentences and it still
+made sense, you wrote a list, not a story. Lead with the weird, withhold the
+turn, land the button.
+
+### Hook — stop the thumb in 2 seconds
+≤5 words, ends `?`/`!` (hard gate). But length isn't enough — it must open a
+curiosity gap or land a gut-punch, not just announce the topic.
+- ❌ Announces, no tension: "Pigs on the loose!", "A new study is out."
+- ✅ Opens a gap: "Two loose pigs — same morning?", "Why is this town on
+  fire?", "Nobody ordered 40,000 bees."
+
+### Kicker — land the plane, don't trail off
+Last line ends `?` and names something from the story (hard gate). But make
+it a SHARP question — ironic, pointed, or genuinely intriguing — that pays
+off the angle you set up. Not a noncommittal both-sides shrug.
+- ❌ Limp: "Is this one owner, or did two strangers lose their pigs?"
+- ✅ Pointed: "So who loses a pig and just… doesn't notice?"
+
+### Quick gut-check before you save
+Read the script out loud. If it sounds like a person who's actually amused by
+the story, ship it. If it sounds like the 6 o'clock news reading a wire
+report, rewrite it with voice. A worked example, same facts both ways:
+- ❌ BLOTTER: "On June 10, police in Woodbridge, Connecticut got 2 calls about
+  2 separate pigs… Animal control teamed up with officers from Naugatuck and
+  Prospect, plus a local vet… Is this 1 owner, or did 2 strangers lose
+  their pigs?"
+- ✅ VOICE: "Woodbridge, Connecticut woke up to a problem with hooves. Two
+  pigs, two streets, same tiny town, same morning. First one's trespassing
+  through a yard at 5:45 a.m. Weird — until a SECOND pig turns up a mile away,
+  apparently living its best life for two days… So who loses a pig and just…
+  doesn't notice?"
+
 ## Channel routing
 
 Each package can include an optional `"channel"` field that picks
@@ -313,8 +374,9 @@ fallback (URL 404 → blank shot).
 
 ## Other script rules
 
-- **110-140 words.** Hook → 6-9 facts → kicker. Use digits ("12 million", "25%",
-  "1980") so Whisper transcription matches.
+- **110-140 words.** Hook → escalating story → payoff (NOT a flat fact-list —
+  see the Writing section). Use digits ("12 million", "25%", "1980") so Whisper
+  transcription matches.
 - **10-14 shots, 6-10 punches.** Every `shot.phrase` / `punch.phrase` must be a
   verbatim substring of the script (case-insensitive).
 - **Punch SFX auto-mapped**: `$` in punch text → ka-ching;
