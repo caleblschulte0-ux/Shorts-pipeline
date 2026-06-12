@@ -1,0 +1,201 @@
+{
+  "out": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/daily_20260611-224138_2_pigs_escaped_in_woodbridge_ct_on_the_s.mp4",
+  "shots": [
+    {
+      "shot_idx": 0,
+      "phrase": "Pigs on the loose",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": true,
+      "sources": [
+        "image"
+      ],
+      "source_tier": "operator",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 1,
+      "phrase": "police in Woodbridge, Connecticut got 2 calls",
+      "pin_query": "Woodbridge",
+      "pin_context": "Connecticut town",
+      "news_query": "Woodbridge",
+      "had_image_url": true,
+      "sources": [
+        "image"
+      ],
+      "source_tier": "operator",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 2,
+      "phrase": "2 separate pigs wandering loose in the same town on the same day",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": true,
+      "sources": [
+        "image"
+      ],
+      "source_tier": "operator",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 3,
+      "phrase": "first call came in at 5:45 a.m.",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": true,
+      "sources": [
+        "image"
+      ],
+      "source_tier": "operator",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 4,
+      "phrase": "pig spotted in a yard on Old Quarry Road",
+      "pin_query": "Old Quarry Road",
+      "pin_context": "Woodbridge street",
+      "news_query": "Old Quarry Road",
+      "had_image_url": false,
+      "sources": [
+        "news_funnel"
+      ],
+      "source_tier": "news",
+      "titles": [
+        "Old Quarry Road"
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 5,
+      "phrase": "Acorn Hill Road, where neighbors said that pig had been roaming",
+      "pin_query": "Acorn Hill Road",
+      "pin_context": "Woodbridge street",
+      "news_query": "Acorn Hill Road",
+      "had_image_url": false,
+      "sources": [
+        "news_funnel"
+      ],
+      "source_tier": "news",
+      "titles": [
+        "Acorn Hill Road"
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 6,
+      "phrase": "Woodbridge Regional Animal Control teamed up with officers from Naugatuck and Prospect",
+      "pin_query": "Woodbridge Regional Animal Control",
+      "pin_context": "animal control service",
+      "news_query": "Woodbridge Regional Animal Control",
+      "had_image_url": true,
+      "sources": [
+        "image"
+      ],
+      "source_tier": "operator",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 7,
+      "phrase": "local vet, to track them both down",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "topic_video"
+      ],
+      "source_tier": "topic",
+      "titles": [
+        "President Reagan's Remarks at a Reagan Bush Rally in Waterbury, Connecticut on S"
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 8,
+      "phrase": "They caught one pig",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": true,
+      "sources": [
+        "image"
+      ],
+      "source_tier": "operator",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 9,
+      "phrase": "The other is still at large",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "topic_video"
+      ],
+      "source_tier": "topic",
+      "titles": [
+        "Alice and the Dog Catcher (1924)"
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 10,
+      "phrase": "Police are now asking residents to watch for the missing swine",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "topic_video"
+      ],
+      "source_tier": "topic",
+      "titles": [
+        "President Reagan's Remarks at a Reagan Bush Rally in Waterbury, Connecticut on S"
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 11,
+      "phrase": "Is this 1 escape artist owner, or did 2 strangers just happen to lose their pigs",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "topic_video",
+        "topic_video",
+        "topic_video"
+      ],
+      "source_tier": "topic",
+      "titles": [
+        "Alice and the Dog Catcher (1924)",
+        "President Reagan's Remarks at a Reagan Bush Rally in Waterbury, Connecticut on S",
+        "Alice and the Dog Catcher (1924)"
+      ],
+      "sub_cut_count": 3
+    }
+  ]
+}

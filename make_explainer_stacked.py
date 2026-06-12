@@ -1172,6 +1172,15 @@ def build_timed_top(
     # the in-process "we already tried this shot" set must not leak.
     _SUPPLEMENTARY_DONE.clear()
 
+    # Most recent trusted on-topic still (operator image_url or news-funnel
+    # photo) seen so far in this story. When a later shot has no image of its
+    # own, we hold THIS instead of dropping to the generic topic_video pool —
+    # which was matching clips on a stray geo word ("Connecticut" -> a Reagan
+    # rally) or a loose phrase ("dog catcher" -> a 1924 cartoon). Repeating a
+    # known-relevant photo beats showing irrelevant footage; coalescing then
+    # merges the repeat into one continuous pan.
+    last_trusted_image: dict | None = None
+
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
         seg_dur = max(0.5, end_t - start_t)
@@ -1201,6 +1210,26 @@ def build_timed_top(
             except Exception as e:  # noqa: BLE001
                 print(f"      [news_funnel] download failed for "
                       f"{shot.news_query!r}: {e}")
+        # Carry-forward: an image-led story should never drop a no-image
+        # shot to the generic topic_video pool. If we've already shown a
+        # trusted on-topic still earlier in this story, hold the most recent
+        # one for this shot instead. Only kicks in once a trusted image has
+        # been seen — stories with no curated imagery at all still fall
+        # through to the topic_video / topic_media / stock path below.
+        if image_clip is None and last_trusted_image is not None:
+            image_clip = last_trusted_image
+            print(f"      [hold] shot {i+1} '{shot.phrase[:30]}' -> reuse "
+                  f"last relevant image "
+                  f"{Path(last_trusted_image['path']).name}")
+
+        # Remember a trusted on-topic still (operator image_url or news
+        # funnel photo) so a later no-image shot can hold it. topic_media /
+        # topic_video / stock are resolved further down and are NOT trusted
+        # tier, so they never become the carry-forward source.
+        if image_clip is not None \
+                and image_clip.get("source") in ("image", "news_funnel"):
+            last_trusted_image = image_clip
+
         # Operator-supplied image wins. Otherwise pull a pool clip
         # scored against this shot's tokens. Fall through to topic_media
         # stills and then stock only when the pool is empty.
