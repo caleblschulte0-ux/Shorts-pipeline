@@ -189,15 +189,34 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001 — never let i18n block a post
             print(f"[{slug}] localization skipped: {e}", flush=True)
             localizations = {}
-        res = uploader.upload(
-            file_path=out,
-            title=sc.get("title", slug)[:100],
-            description=_description(sc),
-            tags=_merged_tags(sc),
-            publish_at=publish_at,
-            thumbnail=thumb if thumb.exists() else None,
-            localizations=localizations,
-        )
+        # Upload is the one step that legitimately fails mid-batch (YouTube's
+        # daily upload cap, a transient 5xx, a single bad video). Don't let one
+        # failure abort the rest — record it and move on. The one exception is
+        # the daily upload-limit: once hit, EVERY remaining upload will fail the
+        # same way, so stop early rather than burn render time on videos that
+        # physically can't post until the cap resets.
+        try:
+            res = uploader.upload(
+                file_path=out,
+                title=sc.get("title", slug)[:100],
+                description=_description(sc),
+                tags=_merged_tags(sc),
+                publish_at=publish_at,
+                thumbnail=thumb if thumb.exists() else None,
+                localizations=localizations,
+            )
+        except Exception as e:  # noqa: BLE001
+            msg = str(e)
+            limit_hit = ("uploadLimitExceeded" in msg
+                         or "exceeded the number of videos" in msg)
+            print(f"[{slug}] UPLOAD FAILED: {msg}", flush=True)
+            results.append({"slug": slug, "ok": False, "error": msg})
+            if limit_hit:
+                print("[post_stories] YouTube daily upload cap reached — "
+                      "stopping; remaining stories will retry next run.",
+                      flush=True)
+                break
+            continue
         url = getattr(res, "url", None) or str(res)
         print(f"[{slug}] uploaded -> {url}", flush=True)
         log["posted"][slug] = {
