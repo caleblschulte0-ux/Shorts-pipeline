@@ -448,6 +448,17 @@ def _fetch_image(url_or_path: str, cache: Path) -> Path:
                         data = r.read()
                     if not data:
                         raise ValueError("empty response body")
+                    # Reject non-image bodies (e.g. a Wikimedia 429 HTML
+                    # error page saved as .jpg) and absurdly tiny files —
+                    # those decode to a corrupt frame and crash ffmpeg.
+                    if not (data[:3] == b"\xff\xd8\xff"          # JPEG
+                            or data[:8] == b"\x89PNG\r\n\x1a\n"  # PNG
+                            or data[:6] in (b"GIF87a", b"GIF89a")
+                            or (data[:4] == b"RIFF" and data[8:12] == b"WEBP")):
+                        raise ValueError(
+                            f"not a valid image (got {data[:12]!r})")
+                    if len(data) < 1024:
+                        raise ValueError(f"image too small ({len(data)}B)")
                     dest.write_bytes(data)
                     last_err = None
                     break
@@ -1472,18 +1483,33 @@ def build_timed_top(
                 f":d={frames}:s={W}x{top_h}:fps={FPS},"
                 f"setsar=1[out]"
             )
-            run([
-                "ffmpeg", "-y", "-loglevel", "error",
-                "-loop", "1", "-i", clip["path"],
-                "-f", "lavfi", "-i",
-                f"color=c={bg_color}:s={W*2}x{top_h*2}:r={FPS}",
-                "-t", f"{dur:.3f}",
-                "-filter_complex", filt,
-                "-map", "[out]",
-                "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                "-pix_fmt", "yuv420p",
-                str(sub),
-            ])
+            try:
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-loop", "1", "-i", clip["path"],
+                    "-f", "lavfi", "-i",
+                    f"color=c={bg_color}:s={W*2}x{top_h*2}:r={FPS}",
+                    "-t", f"{dur:.3f}",
+                    "-filter_complex", filt,
+                    "-map", "[out]",
+                    "-an", "-c:v", "libx264", "-preset", "veryfast",
+                    "-crf", "20", "-pix_fmt", "yuv420p",
+                    str(sub),
+                ])
+            except Exception as e:  # noqa: BLE001
+                # A single corrupt/truncated image (e.g. a Wikimedia 429
+                # saved a partial JPEG) must NOT crash the whole render —
+                # paint a slate for this beat and carry on.
+                print(f"      [image sub-cut failed -> slate] "
+                      f"{Path(clip.get('path', '?')).name}: {e}")
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-f", "lavfi", "-i",
+                    f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
+                    "-t", f"{dur:.3f}",
+                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+                    "-pix_fmt", "yuv420p", str(sub),
+                ])
         else:
             clip_dur = float(clip.get("duration") or 10)
             # Topic-video clips carry their own seek offset (set by
@@ -1514,27 +1540,39 @@ def build_timed_top(
             rendered = False
             for attempt, seek in enumerate(candidates_seek[:3]):
                 seek = min(seek, max(0.0, clip_dur - dur - 0.3))
-                run([
-                    "ffmpeg", "-y", "-loglevel", "error",
-                    "-ss", f"{seek:.3f}", "-i", clip["path"],
-                    "-t", f"{dur:.3f}",
-                    "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
-                           f"crop={W}:{top_h},setsar=1,fps={FPS}",
-                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                    str(sub),
-                ])
+                try:
+                    run([
+                        "ffmpeg", "-y", "-loglevel", "error",
+                        "-ss", f"{seek:.3f}", "-i", clip["path"],
+                        "-t", f"{dur:.3f}",
+                        "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
+                               f"crop={W}:{top_h},setsar=1,fps={FPS}",
+                        "-an", "-c:v", "libx264", "-preset", "veryfast",
+                        "-crf", "20", str(sub),
+                    ])
+                except Exception as e:  # noqa: BLE001
+                    print(f"      [stock sub-cut ffmpeg fail, retry "
+                          f"{attempt+1}/3] {Path(clip.get('path','?')).name}: {e}")
+                    continue
                 if _sub_cut_is_blank(sub):
                     print(f"      [sub-cut blank @ seek={seek:.1f}s, "
                           f"retry {attempt+1}/3] {Path(clip['path']).name}")
                     continue
                 rendered = True
                 break
-            # If every juicy window on this clip rendered blank,
-            # we keep the last attempt rather than dropping the
-            # sub-cut — better a weak frame than a missing one in
-            # the timeline.
-            if not rendered:
-                print(f"      [sub-cut all retries blank, keeping last attempt]")
+            # If nothing rendered (every attempt blank OR ffmpeg errored on a
+            # corrupt clip), paint a slate so the timeline stays intact and a
+            # single bad clip never crashes the whole video.
+            if not rendered or not sub.exists():
+                print(f"      [sub-cut unrenderable -> slate]")
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-f", "lavfi", "-i",
+                    f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
+                    "-t", f"{dur:.3f}",
+                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+                    "-pix_fmt", "yuv420p", str(sub),
+                ])
         all_segments.append(sub)
         cut_times.append(sub_t)
         sub_t += dur
