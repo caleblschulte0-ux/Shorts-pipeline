@@ -12,8 +12,14 @@
     "access_date": "2026-06-10"
   },
   "notes": "Illustrative; 1990 figure inflation-adjusted to 2025 dollars. Includes housing, food, childcare, healthcare, clothing, education, and transportation. Excludes college.",
-  "baseline": {"label": "1990 (in 2025 dollars)", "value": 198},
   "points": [
-    {"label": "2025", "value": 310}
+    {
+      "label": "2025",
+      "value": 310
+    },
+    {
+      "label": "1990 (in 2025 dollars)",
+      "value": 198
+    }
   ]
 }

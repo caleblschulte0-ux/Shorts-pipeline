@@ -12,8 +12,14 @@
     "access_date": "2026-06-12"
   },
   "notes": "Illustrative; 'Screen leisure' includes TV/streaming watching, phone/computer use for personal entertainment. 'Non-screen leisure' includes socializing, sports, reading, games, arts. Totals to approximately 5 hours of daily leisure.",
-  "baseline": {"label": "Non-screen leisure", "value": 1.8},
   "points": [
-    {"label": "Screen leisure", "value": 3.2}
+    {
+      "label": "Screen leisure",
+      "value": 3.2
+    },
+    {
+      "label": "Non-screen leisure",
+      "value": 1.8
+    }
   ]
 }
