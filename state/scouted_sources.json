@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-06-12T15:47:03Z",
+  "scouted_at": "2026-06-12T16:04:06Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,12 +20,12 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 110,
-    "wikimedia_commons_count": 2,
+    "wikimedia_commons_count": 0,
     "youtube_trending_count": 0,
     "lemmy_count": 0,
     "hackernews_count": 0
   },
-  "total": 112,
+  "total": 110,
   "reddit_posts": [],
   "wikipedia_events": [
     {
@@ -1129,22 +1129,7 @@
       "extract": "William Ralph Blass was an American fashion designer. He was the recipient of many fashion awards, including seven Coty Awards and the Fashion Institute of Technology's Lifetime Achievement Award (1999)."
     }
   ],
-  "wikimedia_videos": [
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:2026-05-01 Video zur Demo Erst unsere Jobs, dann eure Profite C1933FIX.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:2026-05-01_Video_zur_Demo_Erst_unsere_Jobs,_dann_eure_Profite_C1933FIX.webm",
-      "uploaded_at": "2026-06-12T15:43:06Z",
-      "uploader": "PantheraLeo1359531"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:2026-05-01 Video zur Demo Erst unsere Jobs, dann eure Profite C1939FIX.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:2026-05-01_Video_zur_Demo_Erst_unsere_Jobs,_dann_eure_Profite_C1939FIX.webm",
-      "uploaded_at": "2026-06-12T15:42:19Z",
-      "uploader": "PantheraLeo1359531"
-    }
-  ],
+  "wikimedia_videos": [],
   "youtube_trending": [],
   "lemmy_posts": [],
   "hackernews_posts": []
