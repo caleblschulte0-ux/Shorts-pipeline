@@ -13,7 +13,6 @@
 [HumansBeingBros] all hosts failed: HTTP 403 from https://www.reddit.com
 [facepalm] all hosts failed: HTTP 403 from https://www.reddit.com
 [WTF] all hosts failed: HTTP 403 from https://www.reddit.com
-[wikipedia/onthisday] HTTPError: HTTP Error 504: Gateway Timeout
 [youtube/refresh] using client_id=808431681548-6isg95s8qoi... secret_len=35 refresh_prefix=1//04rYsva... refresh_len=103
 [youtube/refresh] HTTP 400: {
   "error": "invalid_grant",
