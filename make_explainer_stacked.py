@@ -427,8 +427,26 @@ def _fetch_image(url_or_path: str, cache: Path) -> Path:
                     "Referer": "https://en.wikipedia.org/",
                 },
             )
-            with urllib.request.urlopen(req, timeout=30) as r:
-                dest.write_bytes(r.read())
+            # Retry transient download failures. A single flaky fetch used
+            # to silently drop a curated image to the generic topic_video
+            # pool (a pig story opened on a Reagan rally clip), so give the
+            # CDN a few tries before giving up.
+            last_err: Exception | None = None
+            for attempt in range(3):
+                try:
+                    with urllib.request.urlopen(req, timeout=30) as r:
+                        data = r.read()
+                    if not data:
+                        raise ValueError("empty response body")
+                    dest.write_bytes(data)
+                    last_err = None
+                    break
+                except Exception as e:  # noqa: BLE001
+                    last_err = e
+                    if attempt < 2:
+                        time.sleep(1.5 * (attempt + 1))
+            if last_err is not None:
+                raise last_err
         return dest
     p = Path(url_or_path)
     if not p.exists():
@@ -1172,14 +1190,56 @@ def build_timed_top(
     # the in-process "we already tried this shot" set must not leak.
     _SUPPLEMENTARY_DONE.clear()
 
-    # Most recent trusted on-topic still (operator image_url or news-funnel
-    # photo) seen so far in this story. When a later shot has no image of its
-    # own, we hold THIS instead of dropping to the generic topic_video pool —
-    # which was matching clips on a stray geo word ("Connecticut" -> a Reagan
-    # rally) or a loose phrase ("dog catcher" -> a 1924 cartoon). Repeating a
-    # known-relevant photo beats showing irrelevant footage; coalescing then
-    # merges the repeat into one continuous pan.
-    last_trusted_image: dict | None = None
+    # Pass 1: resolve each shot's OWN trusted still — an operator image_url
+    # or a news-funnel photo — downloading once here. None when the shot has
+    # neither. A failed download just yields None (we hold a neighbour's
+    # photo instead of hard-failing or dropping to generic footage).
+    own_trusted: list[dict | None] = []
+    for shot in shots:
+        clip: dict | None = None
+        try:
+            clip = _resolve_image(shot)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [image FAILED, will hold neighbour] "
+                  f"{str(shot.image)[:60]}: {e}")
+            clip = None
+        if clip is None and shot.news_query \
+                and shot.news_query in news_image_map:
+            try:
+                p = _fetch_image(news_image_map[shot.news_query],
+                                 Path("/tmp/shot_images"))
+                clip = {"path": str(p), "is_image": True,
+                        "duration": 999.0, "width": W, "height": HALF_H,
+                        "source": "news_funnel",
+                        "title": shot.news_query[:80]}
+            except Exception as e:  # noqa: BLE001
+                print(f"      [news_funnel] download failed for "
+                      f"{shot.news_query!r}: {e}")
+                clip = None
+        own_trusted.append(clip)
+
+    # Nearest-trusted fill. An image-led story must never drop a no-image
+    # shot to the generic topic_video pool — which matched clips on a stray
+    # geo word ("Connecticut" -> a Reagan rally) or a loose phrase ("dog
+    # catcher" -> a 1924 cartoon). Each shot without its own photo holds the
+    # nearest trusted one: the most recent PRIOR still, or — for leading
+    # shots that have nothing before them — the next upcoming still. Only
+    # when the WHOLE story has zero trusted stills does `held` stay None and
+    # the topic_video / topic_media / stock path below take over. Coalescing
+    # then merges adjacent identical holds into one continuous pan.
+    held: list[dict | None] = list(own_trusted)
+    prev: dict | None = None
+    for idx in range(len(held)):
+        if own_trusted[idx] is not None:
+            prev = own_trusted[idx]
+        elif prev is not None:
+            held[idx] = prev
+    nxt: dict | None = None
+    for idx in range(len(held) - 1, -1, -1):
+        if own_trusted[idx] is not None:
+            nxt = own_trusted[idx]
+        elif held[idx] is None and nxt is not None:
+            held[idx] = nxt
 
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
@@ -1191,44 +1251,13 @@ def build_timed_top(
         #   2. Image only               -> image extended to full window
         #   3. Stock only               -> existing multi-cut behavior
         plan: list[tuple[dict, float]] = []
-        image_clip = _resolve_image(shot)
-        # News-image funnel result: if the entity_media LLM tagged
-        # this shot with a news_query AND the funnel found a verified
-        # photo for that entity, use it now — ahead of the
-        # topic_video pool. This is the path that catches the
-        # "Brad Paisley" / "Hunter the kangaroo" / "Mark Kohlhorst"
-        # current-news cases that Wikipedia + Commons + Pexels miss.
-        if image_clip is None and shot.news_query \
-                and shot.news_query in news_image_map:
-            news_url = news_image_map[shot.news_query]
-            try:
-                p = _fetch_image(news_url, Path("/tmp/shot_images"))
-                image_clip = {"path": str(p), "duration": 999.0,
-                              "width": W, "height": HALF_H,
-                              "source": "news_funnel",
-                              "title": shot.news_query[:80]}
-            except Exception as e:  # noqa: BLE001
-                print(f"      [news_funnel] download failed for "
-                      f"{shot.news_query!r}: {e}")
-        # Carry-forward: an image-led story should never drop a no-image
-        # shot to the generic topic_video pool. If we've already shown a
-        # trusted on-topic still earlier in this story, hold the most recent
-        # one for this shot instead. Only kicks in once a trusted image has
-        # been seen — stories with no curated imagery at all still fall
-        # through to the topic_video / topic_media / stock path below.
-        if image_clip is None and last_trusted_image is not None:
-            image_clip = last_trusted_image
-            print(f"      [hold] shot {i+1} '{shot.phrase[:30]}' -> reuse "
-                  f"last relevant image "
-                  f"{Path(last_trusted_image['path']).name}")
-
-        # Remember a trusted on-topic still (operator image_url or news
-        # funnel photo) so a later no-image shot can hold it. topic_media /
-        # topic_video / stock are resolved further down and are NOT trusted
-        # tier, so they never become the carry-forward source.
-        if image_clip is not None \
-                and image_clip.get("source") in ("image", "news_funnel"):
-            last_trusted_image = image_clip
+        # This shot's image: its own trusted still if it has one, else the
+        # nearest neighbour's (held), else None when the whole story has no
+        # curated imagery — see the two-pass resolution above the loop.
+        image_clip = held[i]
+        if image_clip is not None and own_trusted[i] is None:
+            print(f"      [hold] shot {i+1} '{shot.phrase[:30]}' -> nearest "
+                  f"relevant image {Path(image_clip['path']).name}")
 
         # Operator-supplied image wins. Otherwise pull a pool clip
         # scored against this shot's tokens. Fall through to topic_media

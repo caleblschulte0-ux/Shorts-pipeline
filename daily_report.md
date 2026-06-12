@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-06-11
+# Daily Trending Shorts — 2026-06-12
 
 - queued: **1**
 - succeeded: **1**
@@ -8,7 +8,7 @@
 ## Posted
 - **2 Pigs Escaped in Woodbridge CT on the Same Day — 1 Is Still Missing**
   - topic: 2 Pigs Escaped in Woodbridge CT on the Same Day — 1 Is Still Missing
-  - publishes: `2026-06-11T23:00:00Z`
+  - publishes: `2026-06-12T13:00:00Z`
   - (dry-run)
-  - took: 288.9s
+  - took: 313.3s
 
