@@ -206,6 +206,10 @@ jobs:
           # un-posted). No hardcoded slate to fall stale.
           SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
           export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
+          # Self-heal any un-renderable chart specs (single-point "comparison"
+          # charts the package generator sometimes emits) before we render, so
+          # the channel can never ship a broken/duplicated bar chart again.
+          python scripts/normalize_charts.py || echo "normalize skipped"
           echo "mode=$MODE expected=$EXPECTED every=$EVERY start=$START slugs='${SLUGS:-<all un-posted>}'"
           case "$MODE" in
             verify)
