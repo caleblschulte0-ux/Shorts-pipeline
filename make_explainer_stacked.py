@@ -1057,33 +1057,49 @@ def _classify_tier(sources: list[str]) -> str:
 
 
 def _check_relevance_gate(audit: list[dict], *,
-                          max_stock_ratio: float = 0.40) -> None:
-    """Refuse to ship if too many shots fell to generic stock.
+                          max_stock_ratio: float = 0.75,
+                          max_placeholder_ratio: float = 0.25) -> None:
+    """Refuse to ship only when the imagery is genuinely broken.
 
-    Reads the per-shot audit dicts (already classified by
-    `_classify_tier`), counts how many landed in `stock` or
-    `placeholder`, and raises `RelevanceGateError` if the ratio
-    crosses `max_stock_ratio` (default 40%). Dumps the failing
-    audit to `state/last_failed_audit.json` so the operator can
-    see exactly which shots blew the gate.
+    Two distinct failure modes, since moment-matched stock FOOTAGE is now
+    an intentional, on-topic visual source (tight per-shot queries — a
+    "suburbs" beat pulls suburban-street clips), not a junk fallback:
 
-    Disable for one-off emergencies via the
-    --allow-stock-fallthrough CLI flag on this module."""
+      * placeholder shots — truly nothing on screen — fail above
+        ``max_placeholder_ratio`` (default 25%).
+      * stock + placeholder combined fail above ``max_stock_ratio``
+        (default 75%): that high a stock share with almost no curated /
+        news / entity anchor means the curated pipeline wholesale failed
+        (e.g. every image 404'd), which is the real "imagery doesn't match
+        the narration" case the gate exists to catch.
+
+    Dumps the failing audit to ``state/last_failed_audit.json``. Disable
+    for one-off emergencies via --allow-stock-fallthrough."""
     if not audit:
         return
-    bad = sum(1 for r in audit
-              if r.get("source_tier") in {"stock", "placeholder"})
-    ratio = bad / len(audit)
-    if ratio <= max_stock_ratio:
+    n = len(audit)
+    placeholders = sum(1 for r in audit
+                       if r.get("source_tier") == "placeholder")
+    stockish = sum(1 for r in audit
+                   if r.get("source_tier") in {"stock", "placeholder"})
+    ph_ratio = placeholders / n
+    stock_ratio = stockish / n
+    if ph_ratio <= max_placeholder_ratio and stock_ratio <= max_stock_ratio:
         return
     fail_path = Path("state/last_failed_audit.json")
     fail_path.parent.mkdir(parents=True, exist_ok=True)
     fail_path.write_text(json.dumps(audit, indent=2))
+    if ph_ratio > max_placeholder_ratio:
+        why = (f"{ph_ratio:.0%} of shots ({placeholders}/{n}) had NO media "
+               f"at all (placeholder)")
+    else:
+        why = (f"{stock_ratio:.0%} of shots ({stockish}/{n}) fell to stock / "
+               f"placeholder with almost no curated anchor — the image "
+               f"pipeline likely failed wholesale")
     raise RelevanceGateError(
-        f"{ratio:.0%} of shots ({bad}/{len(audit)}) fell to generic "
-        f"stock / placeholder — refusing to ship a video where the "
-        f"on-screen imagery doesn't match the narration. "
-        f"Inspect {fail_path} for the per-shot breakdown."
+        f"{why} — refusing to ship a video where the on-screen imagery "
+        f"doesn't match the narration. Inspect {fail_path} for the "
+        f"per-shot breakdown."
     )
 
 
