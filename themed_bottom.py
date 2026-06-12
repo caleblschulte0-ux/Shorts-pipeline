@@ -19,7 +19,17 @@ audit it against ALL of them:
 
  2. ESCALATE OR DIE. Nothing idles at one speed. A compounding
     sim-clock multiplier (GROWTH) makes the scene start calm and
-    continuously accelerate. Flat ambient loops are rejected.
+    continuously accelerate. Flat ambient loops are rejected. The whole
+    escalation arc is stretched across the ENTIRE clip (see render()):
+    calm at the start, fastest at the very end — not a mid-clip break.
+
+ 2b. MOVE TOWARD AN END GOAL. The scene must visibly progress toward a
+    finish that fills across the whole clip and is nearly complete at the
+    end — water rising to flood the panel, a tank filling, a tower
+    reaching its line — so there's a reason to watch to the last second.
+    The base renderer applies a universal rising-fill goal to every theme
+    (_goal_overlay / goal_progress); recolor it with GOAL_TINT, or set
+    GOAL_ENABLED = False only if the theme already owns a clearer goal.
 
  3. THE BREAK MUST BE REAL. Never schedule a glitch effect. The sim
     clock feeds the ACTUAL physics step (sim_dt = dt * scale); the
@@ -363,6 +373,55 @@ class _Renderer:
     def draw(self, t: float, i: int) -> np.ndarray:  # pragma: no cover
         raise NotImplementedError
 
+    # -- end-goal progress: a level that fills toward a finish ----------
+    #
+    # Retention rule (operator): every bottom must visibly move toward an
+    # END GOAL — a level that fills across the WHOLE clip and is nearly
+    # full at the very end (e.g. water rising to flood the panel), so the
+    # viewer has a reason to watch to the last second. Implemented once
+    # here as a translucent rising fill over the finished theme frame, so
+    # EVERY theme gets it for free. Themes may recolor it (GOAL_TINT) or,
+    # if they already own a clearer goal, opt out (GOAL_ENABLED = False).
+    GOAL_ENABLED = True
+    GOAL_TINT = (38, 120, 210)     # water blue
+    GOAL_FILL_END = 0.92           # fraction of panel height filled at the end
+
+    def goal_progress(self, t: float) -> float:
+        """0..1 fill fraction, linear across the whole clip."""
+        dur = getattr(self, "duration", 0.0)
+        if not dur or dur <= 0:
+            return 0.0
+        return max(0.0, min(1.0, t / dur))
+
+    def _goal_overlay(self, frame: np.ndarray, t: float) -> np.ndarray:
+        if not self.GOAL_ENABLED:
+            return frame
+        p = self.goal_progress(t)
+        if p <= 0.0:
+            return frame
+        level = int(H * self.GOAL_FILL_END * p)
+        if level < 2:
+            return frame
+        y0 = H - level
+        tint = np.asarray(self.GOAL_TINT, dtype=np.float32)
+        band = frame[y0:H].astype(np.float32)
+        rows = band.shape[0]
+        # Deeper = a touch more opaque (water with depth) but the game
+        # stays visible through it; surface ~0.22, floor ~0.42.
+        depth = np.linspace(0.0, 1.0, rows, dtype=np.float32)[:, None, None]
+        alpha = 0.22 + 0.20 * depth
+        frame[y0:H] = (band * (1.0 - alpha)
+                       + tint[None, None, :] * alpha).astype(np.uint8)
+        # Wavy bright surface line so the level is legible and alive.
+        xs = np.arange(W)
+        surf = (y0 + np.sin(xs * 0.035 + t * 3.0) * 4.0
+                + np.sin(xs * 0.011 - t * 1.7) * 3.0).astype(np.int32)
+        surf = np.clip(surf, 0, H - 1)
+        crest = np.array([210, 235, 255], dtype=np.uint8)
+        frame[surf, xs] = crest
+        frame[np.clip(surf - 1, 0, H - 1), xs] = crest
+        return frame
+
     def render(self, duration: float, out_path: Path) -> Path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         n = int(duration * FPS) + 1
@@ -394,6 +453,9 @@ class _Renderer:
         try:
             for i in range(n):
                 frame = self.draw(i / FPS, i)
+                # Universal end-goal: a rising fill that advances across the
+                # WHOLE clip and is nearly full at the end (see _goal_overlay).
+                frame = self._goal_overlay(frame, i / FPS)
                 proc.stdin.write(frame.tobytes())
         finally:
             proc.stdin.close()
