@@ -288,10 +288,20 @@ class _Renderer:
     GROWTH = 0.0          # sim clock multiplies by this factor each second
 
     def sim_scale(self, t: float) -> float:
-        """Compounding time multiplier since the last reboot."""
+        """Compounding time multiplier. When the video duration is known,
+        the whole climb is stretched across the ENTIRE clip: a gradual
+        1x-at-the-start to peak-at-the-end ramp (exponential, so it stays
+        calm early and only runs hot in the final stretch). Falls back to
+        the raw per-second compounding when duration isn't set."""
         if not self.GROWTH:
             return 1.0
-        return self.GROWTH ** (t - getattr(self, "reset_t", 0.0))
+        elapsed = t - getattr(self, "reset_t", 0.0)
+        dur = getattr(self, "duration", 0.0)
+        if dur and dur > 1.0:
+            peak = getattr(self, "_peak_scale", self.GROWTH ** 14.0)
+            frac = min(1.0, elapsed / dur)
+            return peak ** frac
+        return self.GROWTH ** elapsed
 
     def kk(self, ts: float) -> float:
         """Visual-intensity proxy (0..1) derived from the sim scale —
@@ -315,6 +325,14 @@ class _Renderer:
                 self._hang_frame = frame.copy()
             fade = 1.0 - 0.25 * (t - failed_at) / self.HANG_LEN
             return (self._hang_frame * fade).astype(np.uint8)
+        # Near the end, don't reboot into a fresh calm world — that would
+        # leave a slow tail. Hold the broken frame so the clip ends at full
+        # tilt. (With the duration-stretched ramp a break should only land
+        # this late anyway.)
+        if getattr(self, "duration", 0.0) and t > self.duration - 1.0:
+            if self._hang_frame is not None:
+                return (self._hang_frame * 0.75).astype(np.uint8)
+            return frame
         # Reboot.
         self._regen()
         self.reset_t = t
@@ -348,6 +366,22 @@ class _Renderer:
     def render(self, duration: float, out_path: Path) -> Path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         n = int(duration * FPS) + 1
+        # Stretch the ENTIRE escalation arc across the WHOLE video: one
+        # gradual speed ramp that's calm at the start and only reaches its
+        # fast peak at the very end — no mid-video reboots. (Operator ask:
+        # "speed increase should be very gradual, take up the whole video,
+        # and by the end it's moving fast.")
+        self.duration = float(duration)
+        if self.GROWTH:
+            # Themes used to break (physics destabilizes) around a ~14s
+            # sim-clock multiplier. Peak just UNDER that at t=duration, so
+            # the end is very fast but still coherent — not a frozen hang —
+            # and no reboot fires mid-clip.
+            self._peak_scale = self.GROWTH ** 12.0
+        if self.CYCLE:
+            # One escalation cycle spanning the full video instead of a
+            # 14s sawtooth that resets two or three times per clip.
+            self.CYCLE = max(2.0, duration)
         proc = subprocess.Popen(
             ["ffmpeg", "-y", "-loglevel", "error",
              "-f", "rawvideo", "-pix_fmt", "rgb24",
