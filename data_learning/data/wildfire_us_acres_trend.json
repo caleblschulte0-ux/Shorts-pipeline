@@ -1,0 +1,26 @@
+{
+  "key": "wildfire_us_acres_trend",
+  "title": "US wildfire acres burned per year (millions)",
+  "unit": "million acres",
+  "geography": "United States",
+  "time_coverage": "1985-2022 (annual, NIFC)",
+  "source": {
+    "name": "National Interagency Fire Center — Historical wildfire statistics",
+    "publisher": "National Interagency Fire Center (NIFC)",
+    "url": "https://www.nifc.gov/fire-information/statistics",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; key-year values from published NIFC historical statistics table. Annual fluctuation is large; trend is sharply upward from 1980s baseline through 2020s.",
+  "points": [
+    {"label": "1985", "value": 2.9, "period": "1985"},
+    {"label": "1990", "value": 4.6, "period": "1990"},
+    {"label": "1995", "value": 1.6, "period": "1995"},
+    {"label": "2000", "value": 7.4, "period": "2000"},
+    {"label": "2005", "value": 8.7, "period": "2005"},
+    {"label": "2010", "value": 3.4, "period": "2010"},
+    {"label": "2015", "value": 10.1, "period": "2015"},
+    {"label": "2020", "value": 10.1, "period": "2020"},
+    {"label": "2022", "value": 7.6, "period": "2022"}
+  ]
+}

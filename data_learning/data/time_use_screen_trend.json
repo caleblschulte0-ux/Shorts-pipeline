@@ -1,0 +1,22 @@
+{
+  "key": "time_use_screen_trend",
+  "title": "Daily leisure screen time — TV, streaming, and phone (hours per day)",
+  "unit": "hours",
+  "geography": "United States",
+  "time_coverage": "2003-2023 (ATUS annual)",
+  "source": {
+    "name": "American Time Use Survey (ATUS)",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov/tus/",
+    "officiality": "official",
+    "access_date": "2026-06-12"
+  },
+  "notes": "Illustrative; 2003-2012 figures reflect TV-watching plus computer leisure. 2013 onward includes smartphone leisure as smartphones became widespread. Annual ATUS microdata aggregation.",
+  "points": [
+    {"label": "2003", "value": 2.8, "period": "2003"},
+    {"label": "2008", "value": 2.9, "period": "2008"},
+    {"label": "2013", "value": 3.1, "period": "2013"},
+    {"label": "2018", "value": 3.3, "period": "2018"},
+    {"label": "2023", "value": 3.6, "period": "2023"}
+  ]
+}
