@@ -54,6 +54,30 @@ MASCOT_MARGIN = 30
 SUB_CUT_TARGET = 2.0
 
 
+def _even(n: float) -> int:
+    """Round to the nearest even int (H.264 dims must be even)."""
+    return int(round(n / 2.0) * 2)
+
+
+# Vertical split between the top (B-roll) and bottom (motion) halves.
+# Default 0.5 preserves the original 50/50 stack for the news channel; the
+# history/mystery channel runs a TALLER top so the archival imagery
+# dominates the frame. Override per-render with the TOP_FRAC env var
+# (e.g. TOP_FRAC=0.65 -> 1248px top / 672px bottom).
+TOP_FRAC = float(os.environ.get("TOP_FRAC", "0.5"))
+TOP_H = _even(H * TOP_FRAC)
+BOTTOM_H = H - TOP_H
+
+# Archival-stills mode: each curated image owns its FULL shot window as a
+# sequence of even Ken Burns holds — no 2s cap, no stock fragmentation, no
+# slate-blue placeholder gaps between images. Off by default so the news
+# channel's rapid stock multi-cut is unchanged. STILL_HOLD = target
+# seconds per hold, so a long sentence becomes several even ~3s pans of
+# the same image instead of one long static frame.
+STILLS_MODE = os.environ.get("STILLS_MODE", "").lower() in ("1", "true", "yes")
+STILL_HOLD = float(os.environ.get("STILL_HOLD", "3.0"))
+
+
 # ---------- helpers ----------
 
 def run(cmd: list[str]) -> None:
@@ -1201,6 +1225,12 @@ def build_timed_top(
         if image_clip is None and topic_video_clip is None:
             image_clip = _resolve_topic_media(shot, Path("/tmp/shot_images"))
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
+        # Archival-stills channel: when we have a real image, it owns the
+        # whole shot window. Suppressing has_stock skips the 2s-cap +
+        # stock/placeholder path below so there are no dark gaps between
+        # images and the on-screen time tracks the narration cleanly.
+        if STILLS_MODE and image_clip is not None:
+            has_stock = False
 
         if topic_video_clip:
             # Topic-video clips claim the full shot window. The clip is
@@ -1281,7 +1311,18 @@ def build_timed_top(
             plan.append((image_clip, image_dur))
             remaining = seg_dur - image_dur
         elif image_clip:
-            plan.append((image_clip, seg_dur))
+            # Image fills the whole window. In stills mode, split a long
+            # window into even ~STILL_HOLD pans of the SAME image (the
+            # render alternates zoom-in/out by sub-cut index) so the
+            # cadence stays steady and no single hold drags or flashes to
+            # a placeholder.
+            if STILLS_MODE and seg_dur > STILL_HOLD * 1.5:
+                n = max(1, round(seg_dur / STILL_HOLD))
+                hold = seg_dur / n
+                for _ in range(n):
+                    plan.append((image_clip, hold))
+            else:
+                plan.append((image_clip, seg_dur))
             remaining = 0.0
         else:
             remaining = seg_dur
@@ -1455,6 +1496,72 @@ def build_timed_top(
         "-c", "copy", str(top_out),
     ])
     return top_out, cut_times
+
+
+def build_broll_bottom(queries: list[str], dur: float, out: Path,
+                       height: int, workdir: Path) -> Path:
+    """Build the bottom half from real stock B-roll clips instead of the
+    procedural sim. Downloads one clip per query (free Mixkit, no key),
+    then cycles them as ~4s scaled segments until the runtime is filled —
+    so a history/mystery bottom can be actual divers / sharks / ocean
+    that's worth watching, not an abstract loop. Raises if nothing is
+    downloadable so the caller can fall back to a themed/gameplay bottom."""
+    import mixkit_search as mk
+    cache = Path("/tmp/broll_clips")
+    cache.mkdir(parents=True, exist_ok=True)
+    clips: list[Path] = []
+    seen: set[str] = set()
+    for q in queries:
+        try:
+            res = mk.search(q)
+        except Exception:  # noqa: BLE001
+            res = []
+        for it in res:
+            if it["id"] in seen:
+                continue
+            try:
+                p = mk.download(it, cache)
+                if p.stat().st_size > 4096:
+                    clips.append(p)
+                    seen.add(it["id"])
+                    print(f"      [broll] {q!r} -> mixkit {it['id']}")
+                    break
+            except Exception as e:  # noqa: BLE001
+                print(f"      [broll] {q!r} download failed: {e}")
+    if not clips:
+        raise RuntimeError("no b-roll clips downloadable for any query")
+
+    CHUNK = 4.0
+    segs: list[Path] = []
+    t = 0.0
+    idx = 0
+    while t < dur - 0.05:
+        src = clips[idx % len(clips)]
+        seg = workdir / f"broll_{idx:02d}.mp4"
+        d = min(CHUNK, dur - t)
+        # Walk the seek forward each loop so re-used clips don't show the
+        # exact same frames; -stream_loop fills short clips to the chunk.
+        seek = 0.2 + (idx // len(clips)) * 1.3
+        run([
+            "ffmpeg", "-y", "-loglevel", "error",
+            "-ss", f"{seek:.2f}", "-stream_loop", "-1", "-i", str(src),
+            "-t", f"{d:.3f}",
+            "-vf", f"scale={W}:{height}:force_original_aspect_ratio=increase,"
+                   f"crop={W}:{height},setsar=1,fps={FPS}",
+            "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+            "-pix_fmt", "yuv420p", str(seg),
+        ])
+        segs.append(seg)
+        t += d
+        idx += 1
+    lst = workdir / "broll_list.txt"
+    lst.write_text("\n".join(f"file '{s}'" for s in segs))
+    run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "concat", "-safe", "0", "-i", str(lst),
+        "-c", "copy", str(out),
+    ])
+    return out
 
 
 def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
@@ -1943,6 +2050,7 @@ def build_video(
     out_path: Path,
     music_vibe: str = "dark",
     bottom_theme: str | None = None,
+    bottom_broll: list[str] | None = None,
 ) -> None:
     workdir = Path(tempfile.mkdtemp(prefix="exps_"))
     print(f"workdir: {workdir}")
@@ -1980,7 +2088,7 @@ def build_video(
         # 4. Build timed top half (multi-cut B-roll)
         print("[4/9] top: assembling multi-cut B-roll")
         audit: list[dict] = []
-        top, cut_times = build_timed_top(shots, shot_times, total_dur, HALF_H,
+        top, cut_times = build_timed_top(shots, shot_times, total_dur, TOP_H,
                                           workdir, audit=audit)
         print(f"      {len(cut_times)} sub-cuts")
 
@@ -2004,7 +2112,21 @@ def build_video(
         # instead of seeking into random Minecraft parkour. Falls back
         # to gameplay if generation blows up, so a bad theme never
         # kills a render.
-        if bottom_theme:
+        if bottom_broll:
+            print(f"[5/9] bottom: b-roll {bottom_broll}", flush=True)
+            try:
+                bottom = build_broll_bottom(
+                    bottom_broll, total_dur,
+                    workdir / "bottom_broll.mp4", BOTTOM_H, workdir)
+            except Exception as e:  # noqa: BLE001
+                print(f"      [b-roll failed: {e}] -> themed/gameplay")
+                if bottom_theme:
+                    import themed_bottom
+                    bottom = themed_bottom.render(
+                        bottom_theme, total_dur, workdir / "bottom_themed.mp4")
+                else:
+                    bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
+        elif bottom_theme:
             print(f"[5/9] bottom: themed '{bottom_theme}'", flush=True)
             try:
                 import themed_bottom
@@ -2021,11 +2143,13 @@ def build_video(
         print("[6/9] captions + animated punches")
         chunks = group_words(words)
         caps_path = workdir / "captions.ass"
-        # Captions sit just below the top/bottom split so gameplay's
-        # bottom is unobstructed. ASS MarginV is bottom margin in pixels
-        # with Alignment=2 (bottom-center): text bottom at y = H - margin_v.
-        # For text bottom around y~1110 (~150px below the split): 1920-1110 = 810.
-        write_captions_ass(chunks, caps_path, margin_v=810)
+        # Captions sit just below the top/bottom split. ASS MarginV is the
+        # bottom margin in pixels with Alignment=2 (bottom-center): text
+        # bottom at y = H - margin_v. Derive it from the actual split
+        # (TOP_H) so it tracks a taller top instead of a hardcoded 50/50
+        # seam — text lands ~130px below the seam.
+        cap_margin_v = max(60, H - (TOP_H + 130))
+        write_captions_ass(chunks, caps_path, margin_v=cap_margin_v)
 
         punches_resolved: list[tuple[Punch, float, float]] = []
         # (time, sfx_variant_name) — variant picked from the punch's
@@ -2115,8 +2239,14 @@ def build_video(
                 print(f"      [mascot] no idle.png in {MASCOT_DIR} — skipped")
 
         graph = (
-            f"[0:v]format=yuv420p[topf];"
-            f"[1:v]format=yuv420p[botf];"
+            # Force each half to its exact target size so the stack is
+            # always W x H regardless of the bottom source's native size
+            # (themed sim = 1080x960, gameplay/b-roll = arbitrary). This
+            # is what makes the configurable TOP_H/BOTTOM_H split safe.
+            f"[0:v]scale={W}:{TOP_H}:force_original_aspect_ratio=increase,"
+            f"crop={W}:{TOP_H},setsar=1,format=yuv420p[topf];"
+            f"[1:v]scale={W}:{BOTTOM_H}:force_original_aspect_ratio=increase,"
+            f"crop={W}:{BOTTOM_H},setsar=1,format=yuv420p[botf];"
             f"[topf][botf]vstack=inputs=2[stacked];"
             f"{mascot_stage}"
             f"[{stage_in}]ass='{_esc(punches_path)}'[withpunch];"
@@ -2224,11 +2354,17 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
             pkg.get("hashtags"))
         print(f"  [themed_bottom] auto-picked theme: {bottom_theme!r}")
 
+    # Optional real-clip bottom (list of stock queries). When present it
+    # takes priority over the procedural theme, so a story can run actual
+    # B-roll (divers, shark, ocean) on the bottom half.
+    bottom_broll = pkg.get("bottom_broll")
+
     build_video(
         pkg["script"], shots, punches,
         gameplay_tag=gameplay_tag, out_path=out_path,
         music_vibe=pkg.get("music_vibe", "dark"),
         bottom_theme=bottom_theme,
+        bottom_broll=bottom_broll,
     )
 
 
