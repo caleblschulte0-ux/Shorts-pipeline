@@ -196,7 +196,11 @@ jobs:
           EXPECTED="${{ inputs.expected_channel }}"; [ -z "$EXPECTED" ] && EXPECTED="short_explainer67"
           EVERY="${{ inputs.every_hours }}";         [ -z "$EVERY" ] && EVERY="6"
           START="${{ inputs.start_in_hours }}";      [ -z "$START" ] && START="1"
-          SLUGS="${{ inputs.slugs }}"
+          # Accept slugs comma- AND/OR space-separated; the scripts take them
+          # space-separated (nargs), so normalise commas to spaces. Without this
+          # a comma batch is read as one bogus slug and silently skipped.
+          SLUGS="$(echo "${{ inputs.slugs }}" | tr ',' ' ' | tr -s ' ')"
+          SLUGS="${SLUGS#"${SLUGS%%[![:space:]]*}"}"   # strip leading space
           # Blank slugs => omit --slugs entirely, so post_stories targets EVERY
           # story in config and dedupes against the posted-log (i.e. posts all
           # un-posted). No hardcoded slate to fall stale.
