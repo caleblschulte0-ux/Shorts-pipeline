@@ -195,6 +195,91 @@ def _stamp_glow(buf: np.ndarray, x: float, y: float, radius: float,
         buf[y0c:y1c, x0c:x1c, c] += falloff * color[c]
 
 
+# ── Universal rising-water end-goal ─────────────────────────────────────
+# Burned onto the FINAL bottom (procedural theme OR gameplay clip) so EVERY
+# video has it, not just procedural themes. One shared look.
+WATER_TINT = (28, 120, 210)     # surface blue
+WATER_DEEP = (6, 38, 92)        # deep-water navy
+WATER_FILL_START = 0.10         # waves already fill the bottom 10% at t=0
+WATER_FILL_END = 1.00           # fills / spills over the top by the end
+
+
+def draw_goal_water(frame: np.ndarray, t: float, duration: float) -> np.ndarray:
+    """Burn the rising-water goal onto one bottom-panel frame (H,W,3 uint8).
+    Bottom ~10% at the start, climbing (with a surging surface) to fill the
+    panel by the end. Returns a new writable frame."""
+    if not duration or duration <= 0:
+        return frame
+    p = max(0.0, min(1.0, t / duration))
+    if p <= 0.0:
+        return frame
+    frame = np.array(frame, dtype=np.uint8, copy=True)
+    base = WATER_FILL_START + (WATER_FILL_END - WATER_FILL_START) * p
+    surge = float(np.sin(t * 2.3)) * (0.012 + 0.025 * p)
+    frac = min(1.0, max(0.02, base + surge))
+    level = min(H, max(2, int(H * frac)))
+    y0 = max(0, H - level)
+    band = frame[y0:H].astype(np.float32)
+    rows = band.shape[0]
+    d = np.linspace(0.0, 1.0, rows, dtype=np.float32)[:, None, None]
+    tint = np.asarray(WATER_TINT, np.float32)[None, None, :]
+    deep = np.asarray(WATER_DEEP, np.float32)[None, None, :]
+    water = tint * (1.0 - d) + deep * d
+    alpha = 0.78 + 0.17 * d
+    frame[y0:H] = (band * (1.0 - alpha) + water * alpha).astype(np.uint8)
+    xs = np.arange(W)
+    wave = (np.sin(xs * 0.014 + t * 2.2) * 22.0
+            + np.sin(xs * 0.006 - t * 1.6) * 12.0
+            + np.sin(xs * 0.040 + t * 3.5) * 5.0)
+    surf = np.clip((y0 + wave).astype(np.int32), 0, H - 1)
+    crest = np.array([235, 248, 255], dtype=np.uint8)
+    for dy in (0, 1, 2, 3, 4, 5):
+        frame[np.clip(surf + dy, 0, H - 1), xs] = crest
+    frame[np.clip(surf + 9, 0, H - 1), xs] = (140, 210, 240)
+    return frame
+
+
+def apply_goal_water(in_path, out_path, duration: float):
+    """Decode a bottom clip, burn the rising water onto every frame, and
+    re-encode. Works on procedural themes AND gameplay clips, so every
+    video gets the same end-goal."""
+    in_path, out_path = Path(in_path), Path(out_path)
+    n = int(duration * FPS) + 1
+    dec = subprocess.Popen(
+        ["ffmpeg", "-y", "-loglevel", "error", "-i", str(in_path),
+         "-an", "-f", "rawvideo", "-pix_fmt", "rgb24",
+         "-s", f"{W}x{H}", "-r", str(FPS), "-"],
+        stdout=subprocess.PIPE)
+    enc = subprocess.Popen(
+        ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo",
+         "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
+         "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+         "-pix_fmt", "yuv420p", str(out_path)],
+        stdin=subprocess.PIPE)
+    fb = W * H * 3
+    i = 0
+    try:
+        while i < n:
+            raw = dec.stdout.read(fb)
+            if not raw or len(raw) < fb:
+                break
+            frame = np.frombuffer(raw, np.uint8).reshape(H, W, 3)
+            frame = draw_goal_water(frame, i / FPS, duration)
+            enc.stdin.write(frame.tobytes())
+            i += 1
+    finally:
+        try:
+            dec.stdout.close()
+        except Exception:  # noqa: BLE001
+            pass
+        enc.stdin.close()
+        dec.wait()
+        enc.wait()
+    if enc.returncode != 0:
+        raise RuntimeError(f"goal-water encode failed for {out_path}")
+    return out_path
+
+
 class _Renderer:
     """Pipes raw RGB frames into ffmpeg. Subclass per theme and
     implement draw(t, frame_idx) -> np.ndarray (H, W, 3) uint8.
@@ -473,23 +558,10 @@ class _Renderer:
         try:
             for i in range(n):
                 frame = self.draw(i / FPS, i)
-                # Universal end-goal: a rising fill that advances across the
-                # WHOLE clip and is nearly full at the end (see _goal_overlay).
-                # Guarded so an overlay bug skips the water rather than
-                # crashing the whole themed bottom (which would silently fall
-                # back to a Minecraft gameplay clip upstream).
-                try:
-                    frame = self._goal_overlay(frame, i / FPS)
-                except Exception as e:  # noqa: BLE001
-                    # Report the FIRST real failure (frame 0 returns early at
-                    # p=0, so keying off i==0 hid the error before). Loud and
-                    # once, so a broken overlay is never silent again.
-                    if not getattr(self, "_goal_warned", False):
-                        self._goal_warned = True
-                        import traceback
-                        print(f"      [goal_overlay FAILED, NO WATER: "
-                              f"{type(e).__name__}: {e}]", flush=True)
-                        traceback.print_exc()
+                # The rising-water end-goal is now applied as a universal
+                # post-process on the FINAL bottom (themed OR gameplay) in
+                # build_video via apply_goal_water — not here — so every
+                # video gets it, not just procedural themes.
                 proc.stdin.write(frame.tobytes())
         finally:
             proc.stdin.close()

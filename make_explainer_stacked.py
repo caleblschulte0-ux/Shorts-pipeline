@@ -2148,6 +2148,19 @@ def build_video(
             print(f"[5/9] bottom: {gameplay_tag} gameplay", flush=True)
             bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
 
+        # Universal end-goal: burn the rising water onto the FINAL bottom —
+        # procedural theme, gameplay clip, or a themed-render fallback alike —
+        # so EVERY video has it, not just the procedural themes.
+        try:
+            import themed_bottom
+            water_bottom = workdir / "bottom_water.mp4"
+            themed_bottom.apply_goal_water(bottom, water_bottom, total_dur)
+            bottom = water_bottom
+            print("      [goal water] rising-water end-goal applied to bottom")
+        except Exception as e:  # noqa: BLE001
+            print(f"      [goal water FAILED, no water: "
+                  f"{type(e).__name__}: {e}]", flush=True)
+
         # 6. Captions + punches (both ASS, one filter pass)
         print("[6/9] captions + animated punches")
         chunks = group_words(words)
