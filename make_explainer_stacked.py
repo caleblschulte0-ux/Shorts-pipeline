@@ -2135,32 +2135,41 @@ def build_video(
         # instead of seeking into random Minecraft parkour. Falls back
         # to gameplay if generation blows up, so a bad theme never
         # kills a render.
+        is_themed = False
         if bottom_theme:
             print(f"[5/9] bottom: themed '{bottom_theme}'", flush=True)
+            import themed_bottom
             try:
-                import themed_bottom
                 bottom = themed_bottom.render(
                     bottom_theme, total_dur, workdir / "bottom_themed.mp4")
+                is_themed = True
             except Exception as e:  # noqa: BLE001
-                print(f"      [themed_bottom failed: {e}] -> gameplay")
-                bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
-            else:
-                # Rising-water end-goal ONLY over the procedural themed
-                # background (the stormy/rain look where it makes sense) —
-                # never over Minecraft / gameplay clips. Rises once across
-                # the WHOLE clip (rate = total_dur), so it never loops.
+                # NO MINECRAFT: fall back to a neutral procedural theme
+                # (plinko), not a gameplay clip.
+                print(f"      [themed '{bottom_theme}' failed: {e}] -> plinko")
                 try:
-                    water_bottom = workdir / "bottom_water.mp4"
-                    themed_bottom.apply_goal_water(
-                        bottom, water_bottom, total_dur)
-                    bottom = water_bottom
-                    print("      [goal water] applied to themed bottom")
-                except Exception as e:  # noqa: BLE001
-                    print(f"      [goal water skipped, keeping themed bottom: "
-                          f"{type(e).__name__}: {e}]", flush=True)
+                    bottom = themed_bottom.render(
+                        "plinko", total_dur, workdir / "bottom_themed.mp4")
+                    is_themed = True
+                except Exception as e2:  # noqa: BLE001
+                    print(f"      [plinko fallback failed: {e2}] -> gameplay")
+                    bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
         else:
             print(f"[5/9] bottom: {gameplay_tag} gameplay", flush=True)
             bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
+
+        # Rising-water end-goal over any procedural themed background (rises
+        # once across the whole clip, never loops). Skipped only on the
+        # gameplay last-resort.
+        if is_themed:
+            try:
+                water_bottom = workdir / "bottom_water.mp4"
+                themed_bottom.apply_goal_water(bottom, water_bottom, total_dur)
+                bottom = water_bottom
+                print("      [goal water] applied to themed bottom")
+            except Exception as e:  # noqa: BLE001
+                print(f"      [goal water skipped, keeping themed bottom: "
+                      f"{type(e).__name__}: {e}]", flush=True)
 
         # 6. Captions + punches (both ASS, one filter pass)
         print("[6/9] captions + animated punches")
@@ -2358,10 +2367,10 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
         )
         for p in pkg["punches"]
     ]
-    # Bottom-half routing. "auto" lets the keyword router match the
-    # story to a theme; an explicit theme name is used as-is; absent /
-    # null keeps the classic Minecraft-gameplay bottom.
-    bottom_theme = pkg.get("bottom_theme")
+    # Bottom-half routing. No Minecraft: every bottom is a procedural theme.
+    # "auto" (and absent/null) lets the keyword router match the story to a
+    # theme; an explicit theme name is used as-is.
+    bottom_theme = pkg.get("bottom_theme") or "auto"
     if bottom_theme == "auto":
         import themed_bottom
         bottom_theme = themed_bottom.pick_theme(

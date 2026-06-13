@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "slug": "south-australia-koala-overpopulation",
+  "title": "Australia Has Too Many Koalas — and It's Becoming a Disaster",
+  "hashtags": [
+    "koala",
+    "australia",
+    "southaustralia",
+    "wildlife",
+    "conservation",
+    "ecology",
+    "eucalyptus",
+    "animals",
+    "overpopulation",
+    "nature",
+    "fyp",
+    "viral"
+  ],
+  "script": "Too many koalas? It sounds impossible, but in parts of South Australia there are now so many koalas that the forests literally cannot feed them all. Here's the trap: koalas basically only eat eucalyptus leaves. Pack too many koalas into one patch of trees, and they strip the branches bare faster than the leaves can grow back. The trees start dying. And once the food runs out, the same population boom that looked adorable turns into mass starvation. Wildlife officials are now stuck with brutal choices — move them, sterilize them, or let nature crash. A cuddly icon has quietly become an ecological time bomb. So what do you actually do when the koala becomes the threat?",
+  "shots": [
+    {
+      "phrase": "Too many koalas",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koala_climbing_tree.jpg",
+      "query": "koala in tree",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "the forests literally cannot feed them all",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koala_climbing_tree.jpg",
+      "query": "eucalyptus forest",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "koalas basically only eat eucalyptus leaves",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koala_climbing_tree.jpg",
+      "query": "koala eating leaves",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "they strip the branches bare",
+      "query": "bare eucalyptus branches",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The trees start dying",
+      "query": "dead trees forest",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "turns into mass starvation",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koala_climbing_tree.jpg",
+      "query": "koala sad",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "move them, sterilize them, or let nature crash",
+      "query": "wildlife ranger australia",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "A cuddly icon has quietly become an ecological time bomb",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koala_climbing_tree.jpg",
+      "query": "koala close up",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "when the koala becomes the threat",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Koala_climbing_tree.jpg",
+      "query": "koala",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Too many koalas",
+      "text": "TOO MANY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "cannot feed them all",
+      "text": "NO FOOD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "The trees start dying",
+      "text": "TREES DYING",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "mass starvation",
+      "text": "STARVATION",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "ecological time bomb",
+      "text": "TIME BOMB",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

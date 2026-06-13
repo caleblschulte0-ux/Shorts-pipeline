@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "slug": "midwest-severe-weather-40-million",
+  "title": "40 Million People Are in the Path of One Massive Midwest Storm",
+  "hashtags": [
+    "severeweather",
+    "tornado",
+    "midwest",
+    "chicago",
+    "kansascity",
+    "storm",
+    "weather",
+    "flashflood",
+    "hail",
+    "breaking",
+    "fyp",
+    "viral"
+  ],
+  "script": "40 million people, one storm? A massive severe-weather threat is lighting up the Midwest, and the numbers are ugly: from Kansas City to Chicago, around 40 million people sit in the path of the same system. Forecasters are warning about destructive winds over 70 miles an hour, hail the size of tennis balls, and the real fear — strong, fast-moving tornadoes. Some areas could get hit by round after round of storms, stacking up flash-flood risk on top of everything else. This is the kind of setup where the sky goes green and the warnings come faster than people can react. Millions are being told one thing: have a way to get the alert, tonight. So when the siren actually goes off, where exactly do you go?",
+  "shots": [
+    {
+      "phrase": "40 million people, one storm",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supercell-thunderstorm-in-Kansas.jpg",
+      "query": "severe storm radar",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "from Kansas City to Chicago",
+      "query": "chicago skyline storm",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "40 million people sit in the path",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supercell-thunderstorm-in-Kansas.jpg",
+      "query": "dark storm clouds city",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "destructive winds over 70 miles an hour",
+      "query": "wind storm bending trees",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "hail the size of tennis balls",
+      "query": "large hail stones",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "strong, fast-moving tornadoes",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supercell-thunderstorm-in-Kansas.jpg",
+      "query": "tornado funnel cloud",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "round after round of storms",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supercell-thunderstorm-in-Kansas.jpg",
+      "query": "supercell thunderstorm",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "stacking up flash-flood risk",
+      "query": "flash flood street",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the sky goes green",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supercell-thunderstorm-in-Kansas.jpg",
+      "query": "green storm sky",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "have a way to get the alert, tonight",
+      "query": "phone emergency weather alert",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "where exactly do you go",
+      "query": "storm shelter basement",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "40 million people, one storm",
+      "text": "40 MILLION",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "over 70 miles an hour",
+      "text": "70+ MPH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "hail the size of tennis balls",
+      "text": "TENNIS-BALL HAIL",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "strong, fast-moving tornadoes",
+      "text": "TORNADOES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "flash-flood risk",
+      "text": "FLASH FLOODS",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
