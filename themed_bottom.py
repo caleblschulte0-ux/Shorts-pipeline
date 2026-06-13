@@ -107,9 +107,9 @@ from PIL import Image, ImageDraw
 W, H = 1080, 960
 FPS = 30
 
-THEMES = ("space", "shipwreck", "rain", "ember", "ocean", "plinko",
-          "coins", "quake", "volcano", "runner", "stacker", "fight",
-          "moto", "train")
+THEMES = ("space", "shipwreck", "troy", "pompeii", "greatfire", "tunguska",
+          "rain", "ember", "ocean", "plinko", "coins", "quake", "volcano",
+          "runner", "stacker", "fight", "moto", "train")
 
 # Keyword → theme. Checked in order; first hit wins. Scanned against
 # title + script + hashtags lowercased.
@@ -117,6 +117,17 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("space", ("spacex", "rocket", "nasa", "starship", "satellite",
                "mars", "moon", "asteroid", "meteor", "astronaut",
                "orbit", "launch", "quantum", "telescope", "comet")),
+    # Story-specific history scenes are checked before the generic
+    # disaster loops so "Pompeii"/"Vesuvius" gets the burial story, not
+    # the plain volcano loop.
+    ("pompeii", ("pompeii", "vesuvius", "herculaneum", "ad 79", "79 ad",
+                 "buried city", "plaster cast")),
+    ("troy", ("troy", "trojan", "trojan horse", "achilles", "odysseus",
+              "the iliad", "fall of troy", "siege of troy")),
+    ("greatfire", ("great fire", "pudding lane", "1666", "samuel pepys",
+                   "london burned", "burned london")),
+    ("tunguska", ("tunguska", "airburst", "air burst", "podkamennaya",
+                  "flattened the forest", "flattened trees")),
     ("volcano", ("volcano", "erupt", "wildfire", "blaze", "lava",
                  "burning", "burned", "explosion", " ash", "ashfall")),
     ("quake", ("earthquake", "quake", "tsunami", "seismic",
@@ -181,6 +192,36 @@ def _ease(t: float) -> float:
     """Smoothstep ease-in-out, 0..1 -> 0..1."""
     t = max(0.0, min(1.0, t))
     return t * t * (3 - 2 * t)
+
+
+def _rot(pts, cx, cy, a):
+    """Rotate points around (cx, cy) by `a` radians."""
+    ca, sa = math.cos(a), math.sin(a)
+    return [(cx + (x - cx) * ca - (y - cy) * sa,
+             cy + (x - cx) * sa + (y - cy) * ca) for x, y in pts]
+
+
+def _flame(d, x, base, h):
+    """A two-tone flame tongue rising from (x, base) to height h."""
+    w = max(6.0, h * 0.42)
+    d.polygon([(x - w / 2, base), (x + w / 2, base), (x + w * 0.15, base - h * 0.6),
+               (x, base - h), (x - w * 0.2, base - h * 0.55)],
+              fill=(255, 150, 45, 210))
+    d.polygon([(x - w * 0.22, base), (x + w * 0.22, base), (x, base - h * 0.55)],
+              fill=(255, 222, 120, 225))
+
+
+def _person(d, x, y, col, s, lean=0.0):
+    """A tiny stick-silhouette person standing/running at ground (x, y).
+    `lean` (>0) tips it forward into a run."""
+    hx = x + lean * s
+    lw = max(2, int(s * 0.45))
+    d.ellipse([hx - s * 0.33, y - s * 2.0, hx + s * 0.33, y - s * 1.3], fill=col)
+    d.line([(x, y - s * 1.5), (hx, y - s * 0.25)], fill=col, width=lw)
+    d.line([(x, y - s * 0.25), (x - s * 0.5 - lean * s, y)], fill=col, width=lw)
+    d.line([(x, y - s * 0.25), (x + s * 0.5, y)], fill=col, width=lw)
+    d.line([(x, y - s * 1.15), (hx + lean * s + s * 0.4, y - s * 0.6)],
+           fill=col, width=lw)
 
 
 def _stamp_glow(buf: np.ndarray, x: float, y: float, radius: float,
@@ -3511,9 +3552,453 @@ class _Shipwreck(_Renderer):
         return np.asarray(img, dtype=np.uint8)
 
 
+# ---------- TROY: the wooden horse, the night the city fell ----------
+
+class _Troy(_Renderer):
+    """Night siege of Troy: the great wooden horse is wheeled to the gate,
+    soldiers slip out of its belly and into the city, and Troy goes up in
+    flames behind its own walls."""
+
+    CYCLE = 0.0
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self.duration = 30.0
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), dtype=np.float32)
+        self.bg[..., 0] = 12 + 12 * (1 - g)
+        self.bg[..., 1] = 12 + 16 * (1 - g)
+        self.bg[..., 2] = 28 + 40 * (1 - g)
+        self._setup()
+
+    def _setup(self):
+        rng = self.rng
+        self.stars = [(rng.uniform(0, W), rng.uniform(0, H * 0.45),
+                       rng.uniform(0.4, 1)) for _ in range(55)]
+        self.embers: list[dict] = []
+        self.wall_x0 = W * 0.42      # city fills most of the frame
+        self.gate_x = W * 0.60
+        # Rooftops of the burning city, poking above the wall.
+        self.roofs = [(rng.uniform(self.wall_x0 + 20, W - 20),
+                       rng.uniform(30, 80)) for _ in range(7)]
+
+    def _horse(self, d, x, ground, t):
+        col = (46, 32, 20, 255)
+        body_y = ground - 96
+        for wx in (x - 46, x + 46):
+            d.ellipse([wx - 16, ground - 16, wx + 16, ground + 12],
+                      fill=(40, 30, 20, 255), outline=(26, 20, 12, 255), width=4)
+            for sp in range(4):
+                a = t * 3 + sp * math.pi / 2
+                d.line([(wx, ground - 2), (wx + 12 * math.cos(a),
+                        ground - 2 + 12 * math.sin(a))], fill=(24, 18, 12, 255), width=2)
+        d.polygon([(x - 72, body_y), (x + 70, body_y), (x + 60, body_y + 60),
+                   (x - 60, body_y + 60)], fill=col, outline=(72, 54, 34, 255))
+        for lx in (x - 50, x - 18, x + 22, x + 52):
+            d.rectangle([lx - 6, body_y + 52, lx + 6, ground - 12], fill=col)
+        d.polygon([(x + 44, body_y + 4), (x + 80, body_y - 52), (x + 100, body_y - 46),
+                   (x + 66, body_y + 6)], fill=col)              # neck
+        d.polygon([(x + 80, body_y - 52), (x + 108, body_y - 56),
+                   (x + 100, body_y - 28), (x + 80, body_y - 30)], fill=col)  # head
+        d.ellipse([x + 92, body_y - 50, x + 98, body_y - 44], fill=(18, 12, 8, 255))
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        dt = 1 / FPS
+        q = t / max(self.duration, 0.01)
+        ground = H - 70
+        # Beats: horse rolls in 0.15-0.45; soldiers drop 0.46-0.64; city burns 0.55+.
+        fire = _ease(max(0.0, min(1.0, (q - 0.55) / 0.32)))
+
+        bg = self.bg.copy()
+        bg[..., 0] += 64 * fire
+        bg[..., 1] += 24 * fire
+        img = Image.fromarray(np.clip(bg, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+        for sx, sy, sb in self.stars:
+            a = int(160 * sb * (1 - fire))
+            if a > 12:
+                d.ellipse([sx - 1, sy - 1, sx + 1, sy + 1], fill=(255, 255, 230, a))
+        d.rectangle([0, ground, W, H], fill=(18, 16, 20, 255))
+
+        if fire > 0:                                   # firelight inside the walls
+            for _ in range(int(7 * fire)):
+                fx = rng.uniform(self.wall_x0, W)
+                fy = rng.uniform(ground - 200 * fire, ground)
+                r = rng.uniform(34, 96) * fire
+                d.ellipse([fx - r, fy - r, fx + r, fy + r], fill=(255, 140, 40, 16))
+
+        wall_top = H * 0.40                            # the city wall
+        for rx, rh in self.roofs:                      # rooftops behind the wall
+            d.rectangle([rx - 26, wall_top - rh, rx + 26, wall_top],
+                        fill=(26, 22, 30, 255))
+            d.polygon([(rx - 30, wall_top - rh), (rx + 30, wall_top - rh),
+                       (rx, wall_top - rh - 22)], fill=(22, 18, 26, 255))
+            if fire > 0:
+                _flame(d, rx, wall_top - rh + 6, (24 + 56 * fire) *
+                       (0.6 + 0.4 * math.sin(t * 9 + rx)))
+        d.rectangle([self.wall_x0, wall_top, W, H], fill=(34, 30, 40, 255),
+                    outline=(60, 54, 70, 255), width=2)
+        for cx in range(int(self.wall_x0), W, 46):
+            d.rectangle([cx, wall_top - 22, cx + 26, wall_top], fill=(34, 30, 40, 255))
+        gw = 64
+        gate_open = _ease(max(0.0, min(1.0, (q - 0.40) / 0.08)))
+        d.rectangle([self.gate_x - gw / 2, ground - 120, self.gate_x + gw / 2, ground],
+                    fill=(10, 8, 12, 255))
+        if gate_open < 1:
+            d.rectangle([self.gate_x - gw / 2, ground - 120,
+                         self.gate_x + gw / 2 - gw * gate_open, ground],
+                        fill=(50, 40, 28, 255))
+        if fire > 0:                                   # flames over the battlements
+            for fx in range(int(self.wall_x0), W, 26):
+                fh = (40 + 80 * fire) * (0.6 + 0.4 * math.sin(t * 8 + fx))
+                _flame(d, fx + 13, wall_top, fh)
+
+        hx = W * 0.06 + (self.gate_x - 96 - W * 0.06) * \
+            _ease(max(0.0, min(1.0, (q - 0.15) / 0.28)))
+        self._horse(d, hx, ground, t)   # the horse stays at the gate as Troy burns
+        if 0.46 < q < 0.64:                            # soldiers slip out and in
+            sp = (q - 0.46) / 0.18
+            for k in range(3):
+                drop = sp * 1.6 - k * 0.22
+                if drop <= 0:
+                    continue
+                drop = min(1.0, drop)
+                sxp = hx + 30 + k * 12 + (self.gate_x - (hx + 30)) * max(0.0, (drop - 0.5) * 2)
+                syp = ground - 70 + 70 * min(1.0, drop * 2)
+                _person(d, sxp, min(ground, syp), (16, 14, 20, 255), 9, lean=0.3)
+
+        if fire > 0 and rng.random() < 0.7:
+            self.embers.append({"x": rng.uniform(self.wall_x0, W), "y": ground,
+                                "vy": rng.uniform(40, 95), "vx": rng.uniform(-14, 14),
+                                "life": 0.0})
+        for e in self.embers[:]:
+            e["life"] += dt
+            e["y"] -= e["vy"] * dt
+            e["x"] += e["vx"] * dt
+            if e["life"] > 2.6:
+                self.embers.remove(e)
+                continue
+            a = int(220 * (1 - e["life"] / 2.6))
+            d.ellipse([e["x"] - 2, e["y"] - 2, e["x"] + 2, e["y"] + 2],
+                      fill=(255, 170, 60, a))
+        return np.asarray(img, dtype=np.uint8)
+
+
+# ---------- POMPEII: Vesuvius buries the city in ash ----------
+
+class _Pompeii(_Renderer):
+    """A Roman town under a calm sky; Vesuvius wakes, throws up an ash
+    column, the pyroclastic cloud rolls down and overruns the fleeing
+    townsfolk, and the city is buried — only the column-tops left."""
+
+    CYCLE = 0.0
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self.duration = 30.0
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), dtype=np.float32)
+        self.bg[..., 0] = 70 + 40 * (1 - g)
+        self.bg[..., 1] = 78 + 60 * (1 - g)
+        self.bg[..., 2] = 96 + 80 * (1 - g)
+        self._setup()
+
+    def _setup(self):
+        rng = self.rng
+        self.ash: list[dict] = []
+        self.cols = [W * 0.08 + i * W * 0.10 for i in range(6)]
+        self.volc_x = W * 0.82
+        self.people = [{"x": rng.uniform(W * 0.10, W * 0.55),
+                        "ph": rng.uniform(0, 6)} for _ in range(4)]
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        dt = 1 / FPS
+        q = t / max(self.duration, 0.01)
+        ground = H - 56
+        erupt = _ease(max(0.0, min(1.0, (q - 0.16) / 0.12)))
+        cloud_adv = _ease(max(0.0, min(1.0, (q - 0.32) / 0.30)))
+        bury = _ease(max(0.0, min(1.0, (q - 0.60) / 0.30)))
+
+        bg = self.bg * (1.0 - 0.55 * max(cloud_adv, bury))
+        bg[..., 0] += 26 * erupt
+        img = Image.fromarray(np.clip(bg, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+        d.rectangle([0, ground, W, H], fill=(64, 50, 42, 255))
+
+        vx, vtop = self.volc_x, H * 0.34            # Vesuvius on the horizon
+        d.polygon([(vx - 170, ground), (vx - 42, vtop), (vx + 42, vtop),
+                   (vx + 210, ground)], fill=(40, 34, 38, 255))
+        d.polygon([(vx - 42, vtop), (vx + 42, vtop), (vx + 18, vtop + 30),
+                   (vx - 18, vtop + 30)], fill=(int(120 + 100 * erupt), 60, 30, 255))
+        if erupt > 0:                                # ash column + mushroom cap
+            ch = vtop * erupt
+            d.polygon([(vx - 24 * erupt, vtop), (vx + 24 * erupt, vtop),
+                       (vx + 52 * erupt, vtop - ch), (vx - 52 * erupt, vtop - ch)],
+                      fill=(60, 54, 58, 235))
+            mr = 130 * erupt
+            d.ellipse([vx - mr, vtop - ch - mr * 0.6, vx + mr, vtop - ch + mr * 0.4],
+                      fill=(70, 64, 68, 230))
+
+        for cxp in self.cols:                        # town columns
+            top = ground - 150
+            d.rectangle([cxp - 12, top, cxp + 12, ground], fill=(178, 168, 148, 255))
+            d.rectangle([cxp - 20, top - 14, cxp + 20, top], fill=(200, 190, 170, 255))
+
+        if cloud_adv > 0:                            # pyroclastic cloud rolls in
+            front = vx - (vx + 140) * cloud_adv
+            for b in range(14):
+                bx = front + b * 58 + 28 * math.sin(t * 2 + b)
+                by = ground - 120 - 40 * math.sin(t * 1.5 + b * 0.7)
+                r = 68 + 30 * math.sin(t + b)
+                d.ellipse([bx - r, by - r, bx + r, by + r], fill=(48, 44, 48, 205))
+
+        if q < 0.62:                                 # townsfolk flee
+            run = max(0.0, min(1.0, (q - 0.30) / 0.32))
+            for p in self.people:
+                px = p["x"] - run * W * 0.18
+                _person(d, px, ground, (30, 26, 24, 255), 15, lean=0.6 * run)
+
+        ash_h = bury * (ground - H * 0.58)           # rising burial layer
+        if ash_h > 0:
+            d.polygon([(0, ground), (W, ground), (W, ground - ash_h), (0, ground - ash_h)],
+                      fill=(150, 142, 128, 255))
+
+        if cloud_adv > 0 and rng.random() < 0.9:
+            self.ash.append({"x": rng.uniform(0, W), "y": -5.0,
+                             "v": rng.uniform(60, 130)})
+        for a_ in self.ash[:]:
+            a_["y"] += a_["v"] * dt
+            a_["x"] += math.sin(t + a_["y"] * 0.01) * 8 * dt
+            if a_["y"] > ground:
+                self.ash.remove(a_)
+                continue
+            d.ellipse([a_["x"] - 2, a_["y"] - 2, a_["x"] + 2, a_["y"] + 2],
+                      fill=(192, 186, 174, 160))
+        return np.asarray(img, dtype=np.uint8)
+
+
+# ---------- GREAT FIRE OF LONDON 1666: the skyline burns ----------
+
+class _GreatFire(_Renderer):
+    """One bakery spark on Pudding Lane races across the timber skyline of
+    old London — St Paul's catches, buildings collapse into embers, and
+    boats flee down the Thames."""
+
+    CYCLE = 0.0
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self.duration = 30.0
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), dtype=np.float32)
+        self.bg[..., 0] = 14 + 10 * (1 - g)
+        self.bg[..., 1] = 12 + 12 * (1 - g)
+        self.bg[..., 2] = 22 + 26 * (1 - g)
+        self._setup()
+
+    def _setup(self):
+        rng = self.rng
+        self.embers: list[dict] = []
+        self.builds = []
+        x = -10
+        while x < W + 20:
+            self.builds.append({"x": x, "w": rng.randint(50, 90),
+                                "h": rng.randint(120, 240), "cath": False, "burn": 0.0})
+            x += self.builds[-1]["w"] + rng.randint(2, 10)
+        self.builds[int(len(self.builds) * 0.62)].update(cath=True, h=300, w=120)
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        dt = 1 / FPS
+        q = t / max(self.duration, 0.01)
+        ground, river = H - 70, H - 46
+        front = -0.1 + 1.25 * max(0.0, min(1.0, (q - 0.12) / 0.6))   # 0..1.1 sweep
+        glow = _ease(max(0.0, min(1.0, (q - 0.20) / 0.5)))
+        collapse = _ease(max(0.0, min(1.0, (q - 0.70) / 0.24)))
+
+        bg = self.bg.copy()
+        bg[..., 0] += 72 * glow
+        bg[..., 1] += 28 * glow
+        img = Image.fromarray(np.clip(bg, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+        if glow > 0:
+            for _ in range(int(7 * glow)):
+                fx = rng.uniform(0, W * min(1.0, front))
+                fy = rng.uniform(ground - 260, ground)
+                r = rng.uniform(40, 110)
+                d.ellipse([fx - r, fy - r, fx + r, fy + r], fill=(255, 120, 40, 16))
+
+        for b in self.builds:
+            frac = (b["x"] + b["w"] / 2) / W
+            if front > frac:
+                b["burn"] = min(1.0, b["burn"] + dt * 0.8)
+            bh = b["h"] * (1 - collapse * b["burn"] * 0.7)
+            x0, y0 = b["x"], ground - bh
+            d.rectangle([x0, y0, x0 + b["w"], ground], fill=(30, 26, 30, 255),
+                        outline=(46, 40, 46, 255), width=1)
+            if b["cath"]:
+                cx = x0 + b["w"] / 2
+                d.ellipse([cx - 46, y0 - 60, cx + 46, y0 + 40], fill=(34, 30, 34, 255))
+                d.rectangle([cx - 5, y0 - 104, cx + 5, y0 - 54], fill=(34, 30, 34, 255))
+            else:
+                d.polygon([(x0 - 4, y0), (x0 + b["w"] + 4, y0),
+                           (x0 + b["w"] / 2, y0 - 24)], fill=(26, 22, 26, 255))
+            if b["burn"] > 0:
+                for fx in range(int(x0), int(x0 + b["w"]), 22):
+                    fh = (34 + 72 * b["burn"]) * (0.6 + 0.4 * math.sin(t * 9 + fx))
+                    _flame(d, fx + 11, y0 + 8, fh)
+
+        d.rectangle([0, river, W, H], fill=(20, 24, 34, 235))   # the Thames
+        d.rectangle([0, river, W, river + 10], fill=(int(120 * glow + 20),
+                    int(50 * glow + 24), 34, 150))              # fire reflection band
+        for bi in range(3):
+            bx = (W * 0.18 + bi * W * 0.30 + t * 16) % W
+            d.polygon([(bx - 22, river + 14), (bx + 22, river + 14),
+                       (bx + 14, river + 26), (bx - 14, river + 26)], fill=(10, 10, 14, 255))
+            d.line([(bx, river + 14), (bx, river)], fill=(10, 10, 14, 255), width=2)
+
+        if glow > 0 and rng.random() < 0.9:
+            self.embers.append({"x": rng.uniform(0, W * min(1.0, front)), "y": ground,
+                                "vy": rng.uniform(50, 120), "vx": rng.uniform(-30, 30),
+                                "life": 0.0})
+        for e in self.embers[:]:
+            e["life"] += dt
+            e["y"] -= e["vy"] * dt
+            e["x"] += e["vx"] * dt
+            if e["life"] > 3:
+                self.embers.remove(e)
+                continue
+            a = int(230 * (1 - e["life"] / 3))
+            d.ellipse([e["x"] - 2, e["y"] - 2, e["x"] + 2, e["y"] + 2],
+                      fill=(255, 160, 60, a))
+        return np.asarray(img, dtype=np.uint8)
+
+
+# ---------- TUNGUSKA 1908: an airburst flattens the taiga ----------
+
+class _Tunguska(_Renderer):
+    """A fireball streaks across the Siberian dawn, detonates in an
+    airburst high over the forest (no crater), and a shockwave ring races
+    outward, flattening every pine away from ground zero."""
+
+    CYCLE = 0.0
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        self.duration = 30.0
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), dtype=np.float32)
+        self.bg[..., 0] = 44 + 40 * (1 - g)
+        self.bg[..., 1] = 32 + 34 * (1 - g)
+        self.bg[..., 2] = 46 + 50 * (1 - g)
+        self._setup()
+
+    def _setup(self):
+        rng = self.rng
+        self.ground = H - 56
+        self.gz = W * 0.5
+        self.trees = [{"x": float(x) + rng.uniform(-10, 10),
+                       "h": rng.uniform(90, 150), "fall": 0.0}
+                      for x in np.linspace(10, W - 10, 34)]
+        self.dust: list[dict] = []
+
+    def draw(self, t: float, i: int) -> np.ndarray:
+        rng = self.rng
+        dt = 1 / FPS
+        q = t / max(self.duration, 0.01)
+        ground = self.ground
+        flash = math.sin((q - 0.20) / 0.14 * math.pi) if 0.20 < q < 0.34 else 0.0
+        wave = _ease(max(0.0, min(1.0, (q - 0.28) / 0.34)))
+        smoke = _ease(max(0.0, min(1.0, (q - 0.30) / 0.5)))
+
+        bg = self.bg.copy()
+        bg[..., 0] += 40 * smoke
+        img = Image.fromarray(np.clip(bg + 220 * flash, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+        d.rectangle([0, ground, W, H], fill=(24, 22, 20, 255))
+
+        if 0.04 < q < 0.24:                          # the fireball streaks in
+            mp = (q - 0.04) / 0.20
+            mx, my = W * 1.05 - mp * (W * 0.6), H * 0.05 + mp * (H * 0.30)
+            for tr in range(10):
+                a = int(220 * (1 - tr / 10))
+                d.ellipse([mx + tr * 22 - 3, my - tr * 9 - 3,
+                           mx + tr * 22 + 3, my - tr * 9 + 3], fill=(255, 230, 180, a))
+            d.ellipse([mx - 7, my - 7, mx + 7, my + 7], fill=(255, 250, 230, 255))
+
+        if flash > 0:                                # airburst (high, no crater)
+            r = 60 + 260 * flash
+            bx, by = self.gz, H * 0.30
+            d.ellipse([bx - r, by - r, bx + r, by + r], fill=(255, 240, 200, int(180 * flash)))
+            d.ellipse([bx - r * 0.5, by - r * 0.5, bx + r * 0.5, by + r * 0.5],
+                      fill=(255, 255, 250, int(230 * flash)))
+
+        # Afterglow of the burst lingering in the sky + a rising smoke pall
+        # so the upper frame isn't dead air after the flash.
+        ag = max(0.0, 1.0 - (q - 0.30) / 0.45) if q > 0.30 else 0.0
+        if ag > 0:
+            r = 220 + 120 * (1 - ag)
+            d.ellipse([self.gz - r, H * 0.30 - r, self.gz + r, H * 0.30 + r],
+                      fill=(255, 150, 70, int(40 * ag)))
+        if smoke > 0:
+            pr = 120 + 260 * smoke
+            py = H * 0.34 - 120 * smoke
+            for off in (-pr * 0.45, 0, pr * 0.45):
+                d.ellipse([self.gz + off - pr, py - pr * 0.7,
+                           self.gz + off + pr, py + pr * 0.7],
+                          fill=(58, 50, 50, int(90 * smoke)))
+
+        if wave > 0:                                 # shockwave ring on the ground
+            rad = wave * W * 0.62
+            d.arc([self.gz - rad, ground - 40 - rad * 0.18, self.gz + rad,
+                   ground + 40 + rad * 0.18], 180, 360, fill=(230, 220, 190, 130), width=5)
+            for tr in self.trees:
+                if abs(tr["x"] - self.gz) < rad:
+                    tr["fall"] = min(1.0, tr["fall"] + dt * 2.2)
+
+        for tr in self.trees:                        # layered pines flatten outward
+            a = tr["fall"] * (math.pi / 2) * (1 if tr["x"] > self.gz else -1)
+            tx = tr["x"] + math.sin(a) * tr["h"]
+            ty = ground - math.cos(a) * tr["h"]
+            d.line([(tr["x"], ground), (tx, ty)], fill=(48, 36, 26, 255), width=7)
+            if tr["fall"] < 0.85:                     # 3 canopy tiers up the trunk
+                perp = (math.cos(a), math.sin(a))
+                for frac in (0.5, 0.68, 0.86):
+                    px = tr["x"] + math.sin(a) * tr["h"] * frac
+                    py = ground - math.cos(a) * tr["h"] * frac
+                    cw = tr["h"] * 0.22 * (1.1 - frac) * (1 - tr["fall"]) * 3
+                    tip = (tr["x"] + math.sin(a) * tr["h"] * (frac + 0.20),
+                           ground - math.cos(a) * tr["h"] * (frac + 0.20))
+                    d.polygon([(px - perp[0] * cw, py - perp[1] * cw),
+                               (px + perp[0] * cw, py + perp[1] * cw), tip],
+                              fill=(20, 44, 26, 255))
+
+        if smoke > 0 and rng.random() < 0.8:
+            self.dust.append({"x": self.gz + rng.uniform(-130, 130), "y": ground,
+                              "vy": rng.uniform(20, 50), "r": rng.uniform(30, 70),
+                              "life": 0.0})
+        for ds in self.dust[:]:
+            ds["life"] += dt
+            ds["y"] -= ds["vy"] * dt
+            if ds["life"] > 3:
+                self.dust.remove(ds)
+                continue
+            r = ds["r"] * (1 + ds["life"] * 0.4)
+            a = int(120 * (1 - ds["life"] / 3))
+            d.ellipse([ds["x"] - r, ds["y"] - r, ds["x"] + r, ds["y"] + r],
+                      fill=(70, 60, 55, a))
+        return np.asarray(img, dtype=np.uint8)
+
+
 _THEME_CLASSES = {
     "space": _Space,
     "shipwreck": _Shipwreck,
+    "troy": _Troy,
+    "pompeii": _Pompeii,
+    "greatfire": _GreatFire,
+    "tunguska": _Tunguska,
     "plinko": _Plinko,
     "coins": lambda seed=None: _Plinko(seed, gold=True),
     "rain": _Rain,
