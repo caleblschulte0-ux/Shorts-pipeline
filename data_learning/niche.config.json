@@ -1995,6 +1995,189 @@
           "ascending": false
         }
       ]
+    },
+    {
+      "slug": "birth-cost-shock",
+      "title": "Having a Baby in America Costs 30x More Than in the UK",
+      "hook": "Same baby. Wildly different bill.",
+      "closing": "Same medical event, same outcome \u2014 the only thing that really changes is the country printed on the bill.",
+      "question": "If you've had a kid, what did your bill actually look like? Drop it below.",
+      "caption": "The average US hospital birth is billed around $19,000 \u2014 up from $9,200 in 2010. In the UK it's about $600. In Spain, $400. Same baby, very different bill. Here's the data \ud83d\udc47",
+      "hashtags": [
+        "birth",
+        "childbirth",
+        "healthcare",
+        "hospital",
+        "baby",
+        "parents",
+        "maternity",
+        "pregnancy",
+        "usa",
+        "healthinsurance",
+        "data",
+        "oecd",
+        "newparents",
+        "costofliving"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "birth_cost_trend",
+          "params": {
+            "file": "birth_cost_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE CLIMB",
+          "topic": "US billed cost of childbirth ($)",
+          "say": "In 2010, the average US hospital birth was billed at about 9,200 dollars. By 2017 it was 13,800. By 2024, roughly 19,000 dollars \u2014 more than double in 14 years."
+        },
+        {
+          "source": "offline",
+          "key": "birth_cost_by_country",
+          "params": {
+            "file": "birth_cost_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 \u00b7 THE WORLD",
+          "topic": "average cost to give birth, by country ($)",
+          "say": "Now compare that to the rest of the world. The US bill is around 19,000 dollars. Switzerland, 7,900. Germany, about 2,100. The UK? Roughly 600. Spain, just 400. Same medical event."
+        },
+        {
+          "source": "offline",
+          "key": "birth_out_of_pocket",
+          "params": {
+            "file": "birth_out_of_pocket.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 \u00b7 EVEN INSURED",
+          "topic": "out-of-pocket birth cost, even with insurance ($)",
+          "say": "And insurance doesn't make it free. On a high-deductible plan, parents still pay about 4,500 dollars out of pocket. An employer PPO, around 2,900. Only Medicaid brings it close to zero."
+        }
+      ]
+    },
+    {
+      "slug": "childcare-paycheck",
+      "title": "Infant Daycare Now Costs More Than Rent",
+      "hook": "Daycare quietly became the biggest bill you never planned for.",
+      "closing": "For millions of parents, going to work barely covers the cost of someone else watching their kid while they do it.",
+      "question": "What does daycare cost where you live? Drop your state below.",
+      "caption": "Average US infant daycare runs about $16,800 a year \u2014 more than median rent, and more than in-state public college. For a minimum-wage worker, that's 64% of income. Here's the data \ud83d\udc47",
+      "hashtags": [
+        "childcare",
+        "daycare",
+        "parents",
+        "infant",
+        "toddler",
+        "family",
+        "parenting",
+        "motherhood",
+        "momlife",
+        "costofliving",
+        "usa",
+        "data",
+        "newparents",
+        "budgeting"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "childcare_cost_trend",
+          "params": {
+            "file": "childcare_cost_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE CLIMB",
+          "topic": "infant daycare cost per year ($)",
+          "say": "In 2000, a year of infant daycare averaged about 5,800 dollars. By 2010, 9,900. Today, around 16,800 dollars a year \u2014 nearly triple in a generation."
+        },
+        {
+          "source": "offline",
+          "key": "childcare_vs",
+          "params": {
+            "file": "childcare_vs.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 \u00b7 THE COMPARISON",
+          "topic": "annual US cost, daycare vs other big bills ($)",
+          "say": "Put that next to your other big bills. Infant daycare, 16,800 dollars. Median rent, 15,600. In-state public college, 11,000. A year of daycare now costs more than a year of college."
+        },
+        {
+          "source": "offline",
+          "key": "childcare_share_income",
+          "params": {
+            "file": "childcare_share_income.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 \u00b7 THE SQUEEZE",
+          "topic": "infant care as a share of income (%)",
+          "say": "And it lands hardest on the people with the least. For a minimum-wage worker, infant care eats 64 percent of income. For a single parent, 36 percent. Even a median family spends 13 percent."
+        }
+      ]
+    },
+    {
+      "slug": "home-insurance-exodus",
+      "title": "Insurers Are Quietly Abandoning Entire States",
+      "hook": "In some places, you can barely buy home insurance at any price.",
+      "closing": "As disasters get more expensive, insurers are doing the math \u2014 and in the riskiest places, they're simply walking away.",
+      "question": "Has your home insurance jumped or been dropped? Tell us where you live.",
+      "caption": "Average US home insurance hit about $2,400 a year \u2014 double 2019. In Florida it's around $11,000. And the share of homeowners dropped by their insurer reached 4% in 2024. Here's the data \ud83d\udc47",
+      "hashtags": [
+        "insurance",
+        "homeinsurance",
+        "climate",
+        "florida",
+        "homeowners",
+        "realestate",
+        "disaster",
+        "wildfire",
+        "hurricane",
+        "housing",
+        "usa",
+        "data",
+        "climatechange",
+        "costofliving"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "home_insurance_premium",
+          "params": {
+            "file": "home_insurance_premium.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE PRICE",
+          "topic": "average annual home insurance premium ($)",
+          "say": "In 2019, the average US home insurance policy cost about 1,200 dollars a year. By 2023, 1,900. By 2025, around 2,400 dollars \u2014 double in just six years."
+        },
+        {
+          "source": "offline",
+          "key": "home_insurance_by_state",
+          "params": {
+            "file": "home_insurance_by_state.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 \u00b7 THE MAP",
+          "topic": "average home insurance premium by state ($)",
+          "say": "But the average hides the extremes. In Florida, the typical premium is around 11,000 dollars. Louisiana, 6,300. Texas, 4,400. The national average is 2,400 \u2014 and in Vermont, just 900."
+        },
+        {
+          "source": "offline",
+          "key": "home_insurance_nonrenewal",
+          "params": {
+            "file": "home_insurance_nonrenewal.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 THE EXIT",
+          "topic": "share of homeowners dropped by their insurer (%)",
+          "say": "And increasingly, insurers just say no. In 2018, about 1.5 percent of homeowners were dropped at renewal. By 2024, that doubled to 4 percent \u2014 concentrated exactly where disaster risk is highest."
+        }
+      ]
     }
   ],
   "videos": [
