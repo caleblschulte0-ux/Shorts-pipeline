@@ -1,0 +1,126 @@
+{
+  "version": 8,
+  "slug": "violet-skunk-marshfield-zoo",
+  "title": "Wisconsin Zoo Lost Its Skunk. Her Name Is Violet.",
+  "hashtags": [
+    "violettheskunk",
+    "wildwoodzoo",
+    "marshfieldwi",
+    "skunkescaped",
+    "stripedskunk",
+    "animalescape",
+    "weirdnews",
+    "zooescape",
+    "wisconsin",
+    "animalnews",
+    "oddnews",
+    "skunks",
+    "localwildlife"
+  ],
+  "script": "Violet's gone missing! Wildwood Zoo in Marshfield, Wisconsin lost its resident striped skunk — and it's not a mystery how. Flash flooding this spring eroded the foundation of Violet's exhibit, opening a gap she apparently walked right through. She's been at the zoo for 2 years. Staff searched everywhere. Nothing. Now they're asking Marshfield residents: if you spot a striped skunk, call Marshfield Police dispatch at 715-387-4394 — but absolutely do NOT approach her. Because Violet is not declawed. Not defanged. Operating at full factory settings. Zoo officials say she poses no public safety risk — unless, of course, she disagrees. Humane traps are set. Cameras are out. Still nothing. If you're walking in Marshfield tonight and something smells off, is that a clue or a warning?",
+  "shots": [
+    {
+      "phrase": "Violet's gone missing",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mephitis_mephitis_-_NBII_Image_Gallery.jpg",
+      "query": "striped skunk outdoors grass escaped loose animal",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Wildwood Zoo in Marshfield, Wisconsin",
+      "query": "small city zoo midwestern exhibit enclosure outdoor",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Flash flooding this spring eroded the foundation",
+      "query": "flash flood erosion foundation damage soil crumbling",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "opening a gap she apparently walked right through",
+      "query": "animal escape gap hole enclosure fence broken",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "She's been at the zoo for 2 years",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mephitis_mephitis_-_NBII_Image_Gallery.jpg",
+      "query": "skunk zoo habitat enclosure captive kept resident",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "call Marshfield Police dispatch at 715-387-4394",
+      "query": "police dispatch phone non-emergency call wildlife report",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "do NOT approach her",
+      "query": "warning sign do not approach danger wild animal",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "Violet is not declawed. Not defanged.",
+      "query": "skunk claws defensive spray fully armed wild",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Operating at full factory settings",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mephitis_mephitis_-_NBII_Image_Gallery.jpg",
+      "query": "skunk raised tail defensive posture spray warning",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "she poses no public safety risk",
+      "query": "zoo official statement press release no risk public",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "Humane traps are set. Cameras are out.",
+      "query": "humane animal trap cage set wildlife camera surveillance",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "something smells off, is that a clue or a warning",
+      "query": "night outdoors dark quiet street suspicious smell skunk",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Violet's gone missing",
+      "text": "VIOLET'S GONE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "resident striped skunk",
+      "text": "ESCAPED SKUNK",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Flash flooding this spring eroded the foundation",
+      "text": "FLOOD DAMAGE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "do NOT approach her",
+      "text": "DO NOT APPROACH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Violet is not declawed",
+      "text": "FULLY ARMED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "she poses no public safety risk",
+      "text": "\"NO RISK\"",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "is that a clue or a warning",
+      "text": "CLUE OR WARNING?",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "gameplay": "subway"
+}
