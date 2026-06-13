@@ -1,0 +1,22 @@
+{
+  "key": "antidepressant_by_age",
+  "title": "U.S. antidepressant use by age group (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "NHANES — Prescription Drug Use and Health in Adults",
+    "publisher": "CDC National Center for Health Statistics",
+    "url": "https://www.cdc.gov/nchs/nhanes/index.htm",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; % of adults in each age group who took an antidepressant in the past 30 days. Use rises with age but fastest growth rate is in 18-34 cohort.",
+  "baseline": {"label": "All adults", "value": 13},
+  "points": [
+    {"label": "65 and older", "value": 20},
+    {"label": "50 to 64", "value": 18},
+    {"label": "35 to 49", "value": 13},
+    {"label": "18 to 34", "value": 8}
+  ]
+}

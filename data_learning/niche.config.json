@@ -2115,6 +2115,246 @@
           "ascending": false
         }
       ]
+    },
+    {
+      "slug": "hearing-loss-youth",
+      "title": "1 in 5 Young Adults Is Already Losing Their Hearing",
+      "hook": "1 in 5 young adults already has hearing loss.",
+      "closing": "By the time you notice it's gone, it already is.",
+      "question": "Do you ever get ringing in your ears after listening to music? Drop it below.",
+      "caption": "In 1990, 11% of U.S. teens had measurable hearing loss. Today it's 19.5% — and headphones only went mainstream in the 1980s. WHO says 60% of young people listen at unsafe volumes. 2.5 billion people globally will have hearing problems by 2050. Turn it down. 👇",
+      "hashtags": [
+        "hearingloss",
+        "youth",
+        "headphones",
+        "health",
+        "earhealth",
+        "hearinghealth",
+        "tinnitus",
+        "who",
+        "science",
+        "data",
+        "wellness",
+        "screentime",
+        "noiseinduced"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "youth_hearing_loss_trend",
+          "params": {
+            "file": "youth_hearing_loss_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE RISE",
+          "topic": "U.S. teens with measurable hearing loss",
+          "say": "In 1990, 11.2 percent of U.S. teens had measurable hearing loss. Today it's 19.5 percent. The ears didn't change — the headphones did."
+        },
+        {
+          "source": "offline",
+          "key": "unsafe_listening_pct",
+          "params": {
+            "file": "unsafe_listening_pct.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE CAUSE",
+          "topic": "young adults listening at unsafe vs. safe volumes",
+          "say": "WHO says safe daily exposure tops out at 75 decibels. 60 percent of 12-to-35 year olds already listen above that — most without realizing it."
+        },
+        {
+          "source": "offline",
+          "key": "global_hearing_loss_projection",
+          "params": {
+            "file": "global_hearing_loss_projection.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE CONSEQUENCE",
+          "topic": "people with disabling hearing loss globally (millions)",
+          "say": "WHO projects 2,500 million people with hearing problems by 2050 — up from 1,570 million today. It's the fastest-growing disability on earth, and it's preventable."
+        }
+      ]
+    },
+    {
+      "slug": "global-urbanization",
+      "title": "For Most of Human History, Nobody Lived in Cities",
+      "hook": "For 99% of history, almost nobody lived in cities.",
+      "closing": "Cities didn’t build civilization. Civilization built cities — and couldn’t stop.",
+      "question": "Do you live in a city, suburb, or small town — and would you change it? Drop it below.",
+      "caption": "In 1800, only 5% of humans lived in cities. By 2007 that crossed 50% — the first time in 300,000 years of human history. Sub-Saharan Africa is still only 43% urban and urbanizing faster than anywhere. Urban households earn 3x rural ones in the developing world. 👇",
+      "hashtags": [
+        "urbanization",
+        "cities",
+        "demographics",
+        "population",
+        "globaltrends",
+        "un",
+        "worldbank",
+        "society",
+        "data",
+        "geography",
+        "history",
+        "ruralvurban",
+        "development"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "urban_population_share",
+          "params": {
+            "file": "urban_population_share.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE MILESTONE",
+          "topic": "share of world population living in cities (%)",
+          "say": "In 1800, only 5 percent of humans lived in cities. By 2007 that crossed 50 percent for the first time in all of human history. We are now 56.2 percent urban."
+        },
+        {
+          "source": "offline",
+          "key": "urbanization_by_region",
+          "params": {
+            "file": "urbanization_by_region.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE SPLIT",
+          "topic": "urbanization rate by world region",
+          "say": "Northern America is 83 percent urban. Sub-Saharan Africa is only 43 percent — but adding more city dwellers than any other region. The least urban places are growing fastest."
+        },
+        {
+          "source": "offline",
+          "key": "urban_rural_income_gap",
+          "params": {
+            "file": "urban_rural_income_gap.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE PULL",
+          "topic": "urban vs. rural annual income in developing countries (USD)",
+          "say": "The reason people move? Urban households in developing countries earn roughly $12,000 a year. Rural ones earn $4,000. That 3-to-1 gap is the engine behind the fastest migration in human history."
+        }
+      ]
+    },
+    {
+      "slug": "antidepressant-surge",
+      "title": "Antidepressant Use Doubled in 20 Years. Here’s the Data.",
+      "hook": "Antidepressant use doubled in 20 years.",
+      "closing": "A pill a day is now more common than a gym membership.",
+      "question": "Do you think the U.S. is over-medicated, under-treated, or both? Drop it below.",
+      "caption": "In 2000, 6% of U.S. adults were on antidepressants. Today it’s 15% — 1 in 8 Americans. The US prescribes at double the OECD rate. Is it better diagnosis, worse mental health, or both? 👇",
+      "hashtags": [
+        "antidepressants",
+        "mentalhealth",
+        "mentalillness",
+        "depression",
+        "medication",
+        "psychiatry",
+        "cdc",
+        "data",
+        "health",
+        "publichealth",
+        "america",
+        "mentalwellness",
+        "oecd"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "antidepressant_use_trend",
+          "params": {
+            "file": "antidepressant_use_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CLIMB",
+          "topic": "U.S. adults on antidepressants (%)",
+          "say": "In 2000, about 6.1 percent of U.S. adults took an antidepressant. By 2024 it reached 15.1 percent — more than 1 in 8 Americans. The rate nearly tripled in 25 years."
+        },
+        {
+          "source": "offline",
+          "key": "antidepressant_by_age",
+          "params": {
+            "file": "antidepressant_by_age.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 · BY AGE",
+          "topic": "antidepressant use by age group (%)",
+          "say": "1 in 5 Americans over 65 takes one. But the fastest growth is at the other end — the 18-to-34 group, where rates are rising fastest year over year."
+        },
+        {
+          "source": "offline",
+          "key": "antidepressant_country_compare",
+          "params": {
+            "file": "antidepressant_country_compare.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE COMPARISON",
+          "topic": "adults on antidepressants: U.S. vs. OECD average",
+          "say": "The U.S. prescribes at 15 percent — more than double the OECD average of 6 percent. Whether that’s better diagnosis, worse mental health, or a cultural difference, the gap is real."
+        }
+      ]
+    },
+    {
+      "slug": "bee-colony-collapse",
+      "title": "A Third of U.S. Bee Colonies Die Every Year. Here’s Why.",
+      "hook": "A third of U.S. bee colonies died last year.",
+      "closing": "The mite is winning. We’re not.",
+      "question": "Have you noticed fewer bees around than when you were a kid? Drop it below.",
+      "caption": "U.S. beekeepers lost 37% of colonies last year — and it’s been above 30% every year since 2006. The main killer? The Varroa mite, responsible for 46% of deaths. Bees pollinate $15 billion in U.S. crops. Almonds alone: $6.3 billion. No bees, no almonds. 👇",
+      "hashtags": [
+        "bees",
+        "colonycollapsedisorder",
+        "beekeeping",
+        "pollination",
+        "nature",
+        "environment",
+        "usda",
+        "varroa",
+        "data",
+        "science",
+        "climate",
+        "agriculture",
+        "savethebees"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_bee_colony_loss_trend",
+          "params": {
+            "file": "us_bee_colony_loss_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE LOSS",
+          "topic": "U.S. honey bee colony loss per year (%)",
+          "say": "In 2006, beekeepers started losing 30 percent of colonies each winter. By 2020 that hit 43.7 percent. We’re still losing roughly 37 percent every year — more than double what’s considered acceptable."
+        },
+        {
+          "source": "offline",
+          "key": "bee_colony_loss_causes",
+          "params": {
+            "file": "bee_colony_loss_causes.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE KILLER",
+          "topic": "reported causes of U.S. colony loss",
+          "say": "The main killer is the Varroa mite — a parasite that spreads at least 7 viruses through a hive. It drives 46 percent of diagnosed colony deaths. Pesticides come second at 21 percent."
+        },
+        {
+          "source": "offline",
+          "key": "crops_dependent_on_bees",
+          "params": {
+            "file": "crops_dependent_on_bees.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE STAKES",
+          "topic": "U.S. crop value dependent on bee pollination (billion dollars)",
+          "say": "Bees pollinate about $15 billion in U.S. crops a year. Almonds alone: $6.3 billion, and they’re entirely bee-dependent. No bees, no almonds. It’s that direct."
+        }
+      ]
     }
   ],
   "videos": [

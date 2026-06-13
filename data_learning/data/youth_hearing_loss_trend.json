@@ -1,0 +1,25 @@
+{
+  "key": "youth_hearing_loss_trend",
+  "title": "U.S. teens with measurable hearing loss (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1990-2024 (selected years)",
+  "source": {
+    "name": "NHANES — National Health and Nutrition Examination Survey",
+    "publisher": "CDC National Center for Health Statistics",
+    "url": "https://www.cdc.gov/nchs/nhanes/index.htm",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; reflects share of 12-19 year olds with at least slight audiometric hearing loss (≥16 dB in at least one ear) per NHANES cycles. Noise-induced notch at 4 kHz used as indicator of noise damage.",
+  "points": [
+    {"label": "1990", "value": 11.2, "period": "1990"},
+    {"label": "1995", "value": 12.5, "period": "1995"},
+    {"label": "2000", "value": 13.8, "period": "2000"},
+    {"label": "2005", "value": 15.1, "period": "2005"},
+    {"label": "2010", "value": 17.0, "period": "2010"},
+    {"label": "2015", "value": 17.8, "period": "2015"},
+    {"label": "2020", "value": 18.9, "period": "2020"},
+    {"label": "2024", "value": 19.5, "period": "2024"}
+  ]
+}

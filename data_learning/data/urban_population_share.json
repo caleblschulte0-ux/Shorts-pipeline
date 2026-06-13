@@ -1,0 +1,25 @@
+{
+  "key": "urban_population_share",
+  "title": "World population living in urban areas (%)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "1800-2024 (selected years)",
+  "source": {
+    "name": "World Urbanization Prospects",
+    "publisher": "United Nations Department of Economic and Social Affairs",
+    "url": "https://population.un.org/wup/",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; pre-1950 estimates are modeled. The 50% threshold was crossed around 2007 — the first time in human history.",
+  "points": [
+    {"label": "1800", "value": 5.0, "period": "1800"},
+    {"label": "1850", "value": 7.0, "period": "1850"},
+    {"label": "1900", "value": 14.6, "period": "1900"},
+    {"label": "1950", "value": 29.6, "period": "1950"},
+    {"label": "1970", "value": 36.6, "period": "1970"},
+    {"label": "1990", "value": 43.0, "period": "1990"},
+    {"label": "2007", "value": 50.1, "period": "2007"},
+    {"label": "2024", "value": 56.2, "period": "2024"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "antidepressant_country_compare",
+  "title": "Adults on antidepressants: U.S. vs. OECD average (%)",
+  "unit": "percent",
+  "geography": "United States vs OECD",
+  "time_coverage": "2022",
+  "source": {
+    "name": "OECD Health Statistics — Pharmaceutical consumption",
+    "publisher": "OECD",
+    "url": "https://www.oecd.org/health/health-statistics.htm",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; share of total adult population using antidepressants. U.S. ranks among the highest of OECD members. OECD average driven by wide variation: Iceland/Portugal highest; South Korea/Japan lowest.",
+  "baseline": {"label": "OECD average", "value": 6},
+  "points": [
+    {"label": "United States", "value": 15},
+    {"label": "OECD average", "value": 6}
+  ]
+}

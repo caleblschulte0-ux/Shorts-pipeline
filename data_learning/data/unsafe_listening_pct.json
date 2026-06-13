@@ -1,0 +1,20 @@
+{
+  "key": "unsafe_listening_pct",
+  "title": "Young adults listening at unsafe vs. safe volumes (%)",
+  "unit": "percent",
+  "geography": "Global / United States",
+  "time_coverage": "2015-2022",
+  "source": {
+    "name": "Global Burden of Disease — Hearing Loss due to Recreational Noise",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; WHO estimates ~60% of 12-35 year olds exposed to levels above 75 dB for extended periods. Safe = under WHO 75 dB daily limit.",
+  "baseline": {"label": "WHO safe threshold", "value": 75},
+  "points": [
+    {"label": "At unsafe volume (>75 dB)", "value": 60},
+    {"label": "At safe volume (≤75 dB)", "value": 40}
+  ]
+}

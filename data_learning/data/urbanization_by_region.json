@@ -1,0 +1,25 @@
+{
+  "key": "urbanization_by_region",
+  "title": "Share of population living in cities by world region (%)",
+  "unit": "percent",
+  "geography": "World regions",
+  "time_coverage": "2024",
+  "source": {
+    "name": "World Urbanization Prospects 2024 Revision",
+    "publisher": "United Nations Department of Economic and Social Affairs",
+    "url": "https://population.un.org/wup/",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; most urbanized regions (Northern America, Latin America) vs. least urbanized (Sub-Saharan Africa, South Asia). The least urbanized are adding cities fastest.",
+  "points": [
+    {"label": "Northern America", "value": 83},
+    {"label": "Latin America", "value": 81},
+    {"label": "Europe", "value": 75},
+    {"label": "East Asia", "value": 62},
+    {"label": "World average", "value": 56},
+    {"label": "Southeast Asia", "value": 51},
+    {"label": "Sub-Saharan Africa", "value": 43},
+    {"label": "South Asia", "value": 35}
+  ]
+}

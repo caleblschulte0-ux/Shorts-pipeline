@@ -1,0 +1,22 @@
+{
+  "key": "bee_colony_loss_causes",
+  "title": "Reported causes of U.S. bee colony loss (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2018-2024 (averaged across survey years)",
+  "source": {
+    "name": "Bee Informed Partnership — Annual Colony Loss Survey",
+    "publisher": "USDA-NIFA / Bee Informed Partnership",
+    "url": "https://beeinformed.org/results/",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; causes identified by surveyed beekeepers. Varroa destructor mite is the dominant vector, transmitting at least 7 viruses. Percentages reflect beekeeper-attributed causes; totals may exceed 100% (multi-cause losses).",
+  "points": [
+    {"label": "Varroa mites", "value": 46},
+    {"label": "Pesticides", "value": 21},
+    {"label": "Poor nutrition / habitat", "value": 17},
+    {"label": "Disease / pathogens", "value": 12},
+    {"label": "Weather / other", "value": 4}
+  ]
+}

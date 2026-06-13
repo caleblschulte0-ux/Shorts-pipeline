@@ -1,0 +1,21 @@
+{
+  "key": "global_hearing_loss_projection",
+  "title": "People with disabling hearing loss, global (millions)",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "2019-2050 (projection)",
+  "source": {
+    "name": "World Report on Hearing",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/publications/i/item/world-report-on-hearing",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; WHO World Report on Hearing (2021) projects 2.5 billion by 2050 if trends continue, driven primarily by recreational noise in young people.",
+  "points": [
+    {"label": "2019", "value": 1570, "period": "2019"},
+    {"label": "2030", "value": 1900, "period": "2030"},
+    {"label": "2040", "value": 2200, "period": "2040"},
+    {"label": "2050", "value": 2500, "period": "2050"}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "key": "crops_dependent_on_bees",
+  "title": "U.S. crop value dependent on bee pollination (billion dollars)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "USDA Economic Research Service — Fruit and Nut Report",
+    "publisher": "U.S. Department of Agriculture",
+    "url": "https://www.ers.usda.gov/topics/crops/fruit-tree-nuts/",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; farm-gate value of crops for which honey bees provide primary or essential pollination services. Almonds are entirely bee-dependent — a single failed bloom season would collapse the $6.3 billion crop.",
+  "points": [
+    {"label": "Almonds", "value": 6.3},
+    {"label": "Apples", "value": 3.2},
+    {"label": "Berries", "value": 2.8},
+    {"label": "Melons", "value": 1.9},
+    {"label": "Avocados", "value": 1.6},
+    {"label": "Cucumbers", "value": 0.9}
+  ]
+}

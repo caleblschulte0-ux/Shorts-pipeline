@@ -1,0 +1,20 @@
+{
+  "key": "urban_rural_income_gap",
+  "title": "Urban vs. rural annual income in developing countries (USD)",
+  "unit": "dollars",
+  "geography": "Low- and middle-income countries",
+  "time_coverage": "2022",
+  "source": {
+    "name": "PovcalNet / Poverty and Inequality Platform",
+    "publisher": "World Bank",
+    "url": "https://pip.worldbank.org/",
+    "officiality": "official",
+    "access_date": "2026-06-13"
+  },
+  "notes": "Illustrative; median annual household income, urban vs rural in developing-country aggregate. Purchasing-power adjusted. Urban premium reflects access to formal employment, services, education.",
+  "baseline": {"label": "Rural median", "value": 4000},
+  "points": [
+    {"label": "Urban median", "value": 12000},
+    {"label": "Rural median", "value": 4000}
+  ]
+}
