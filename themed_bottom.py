@@ -88,6 +88,13 @@ audit it against ALL of them:
     DIVERS who appear nowhere in the script, and they carried it. Give
     the protagonist a mini-arc (enter -> face the event -> react ->
     escape / perish / triumph). No protagonist = no scene.
+    It draws the eye by DISTINCTION, NOT SIZE: the only one with colour,
+    an armour glint, or a lantern, or the only one moving — a red-cloaked
+    merchant among grey crowds, a bronze-helmed soldier among black
+    silhouettes, a white stag against dark pines. Same scale as the crowd
+    is fine; the *difference* is the hook. And animate it for real — a
+    true run/gallop cycle (bob, knee bend, opposite arm swing), never a
+    stiff pair of swinging lines.
 
 14. FILL THE FRAME — NO DEAD SPACE. Compose for the full 1080x960. If a
     third of the frame is empty sky or empty ground, the scene is
@@ -226,68 +233,111 @@ def _flame(d, x, base, h):
               fill=(255, 222, 120, 225))
 
 
-def _person(d, x, y, col, s, lean=0.0):
-    """A tiny stick-silhouette person standing/running at ground (x, y).
-    `lean` (>0) tips it forward into a run."""
+def _person(d, x, y, col, s, lean=0.0, t=0.0, phase=0.0, stride=0.0):
+    """A tiny background figure. Pass `t`/`phase`/`stride` to animate a
+    walk/run cycle (stride 0 = static)."""
+    sw = math.sin(t * 8 + phase) * stride
     hx = x + lean * s
     lw = max(2, int(s * 0.45))
     d.ellipse([hx - s * 0.33, y - s * 2.0, hx + s * 0.33, y - s * 1.3], fill=col)
     d.line([(x, y - s * 1.5), (hx, y - s * 0.25)], fill=col, width=lw)
-    d.line([(x, y - s * 0.25), (x - s * 0.5 - lean * s, y)], fill=col, width=lw)
-    d.line([(x, y - s * 0.25), (x + s * 0.5, y)], fill=col, width=lw)
-    d.line([(x, y - s * 1.15), (hx + lean * s + s * 0.4, y - s * 0.6)],
+    d.line([(x, y - s * 0.25), (x - s * 0.5 + sw * s * 0.7, y)], fill=col, width=lw)
+    d.line([(x, y - s * 0.25), (x + s * 0.5 - sw * s * 0.7, y)], fill=col, width=lw)
+    d.line([(x, y - s * 1.15), (hx + lean * s + s * 0.4 - sw * s * 0.3, y - s * 0.6)],
            fill=col, width=lw)
 
 
-def _hero(d, x, y, s, t, col=(18, 16, 22, 255), lean=0.5, torch=False, run=1.0):
-    """A larger FOREGROUND protagonist with animated stride — the
-    character the eye follows. `run` 0..1 scales the gait; `torch` adds a
-    raised flaming brand (and its glow) so the hero also lights the scene.
-    """
-    sw = math.sin(t * 9) * run
-    hx = x + lean * s * 0.6
+def _hero(d, x, y, s, t, col=(20, 16, 24, 255), run=1.0, face=1,
+          armor=None, cape=None, torch=False, lantern=False):
+    """The protagonist. It draws the eye by DISTINCTION, not size — give
+    it `armor` (a metal glint + helmet + plume), a `cape` (a flapping
+    colour the crowd doesn't have), a `torch`, or a `lantern`. The gait is
+    a real run cycle: bobbing body, two-segment legs with knee lift, arms
+    swinging opposite the legs. `face` is the run direction (+1 right)."""
+    ph = t * 9.0
+    bob = abs(math.sin(ph)) * s * 0.10 * run
+    hy = y - bob
     lw = max(3, int(s * 0.5))
-    d.line([(x, y - s * 0.4), (x - s * 0.6 + sw * s * 0.8, y)], fill=col, width=lw)
-    d.line([(x, y - s * 0.4), (x + s * 0.6 - sw * s * 0.8, y)], fill=col, width=lw)
-    d.line([(x, y - s * 1.7), (hx, y - s * 0.35)], fill=col, width=int(s * 0.7))
-    d.ellipse([hx - s * 0.42, y - s * 2.3, hx + s * 0.42, y - s * 1.45], fill=col)
-    d.line([(x, y - s * 1.45), (x - s * 0.5 - sw * s * 0.5, y - s * 0.85)],
+    hip = (x, hy - s * 0.45)
+    for phase in (0.0, math.pi):                       # 2-segment legs, knee lift
+        sw = math.sin(ph + phase) * run
+        lift = max(0.0, math.sin(ph + phase)) * s * 0.20 * run
+        knee = (hip[0] + face * sw * s * 0.45, hip[1] + s * 0.5 - lift * 0.4)
+        foot = (knee[0] + face * sw * s * 0.40, y - lift)
+        d.line([hip, knee], fill=col, width=lw)
+        d.line([knee, foot], fill=col, width=lw)
+    neck = (x + face * s * 0.25, hy - s * 1.7)
+    if cape:                                           # cape flaps behind the run
+        flap = math.sin(ph * 0.7) * s * 0.3
+        d.polygon([(x, hy - s * 1.5), (x, hy - s * 0.4),
+                   (x - face * s * 1.15, y - s * 0.1 + flap),
+                   (x - face * s * 0.9, hy - s * 1.3)], fill=cape)
+    d.line([(x, hy - s * 0.45), neck], fill=col, width=int(s * 0.8))
+    if armor:                                          # breastplate glint
+        d.line([(x, hy - s * 0.55), (neck[0], neck[1] + s * 0.2)],
+               fill=armor, width=max(2, int(s * 0.5)))
+    d.ellipse([neck[0] - s * 0.42, neck[1] - s * 0.5,
+               neck[0] + s * 0.42, neck[1] + s * 0.3], fill=col)
+    if armor:                                          # helmet rim + crest
+        d.arc([neck[0] - s * 0.46, neck[1] - s * 0.55, neck[0] + s * 0.46,
+               neck[1] + s * 0.35], 180, 360, fill=armor, width=max(2, int(s * 0.24)))
+        d.line([(neck[0], neck[1] - s * 0.5), (neck[0] - face * s * 0.32, neck[1] - s * 1.15)],
+               fill=cape or (200, 45, 40, 255), width=max(2, int(s * 0.26)))
+    aw = math.sin(ph + math.pi) * run                  # arms swing opposite legs
+    d.line([(x, hy - s * 1.4), (x - face * (0.3 + aw * 0.5) * s, hy - s * 0.85)],
            fill=col, width=lw)
-    fx, fy = hx + s * 0.7, y - s * 1.2
-    d.line([(x, y - s * 1.45), (fx, fy)], fill=col, width=lw)
+    fx, fy = neck[0] + face * (0.4 - aw * 0.4) * s, hy - s * 1.05
+    d.line([(x, hy - s * 1.4), (fx, fy)], fill=col, width=lw)
     if torch:
-        d.line([(fx, fy), (fx + s * 0.4, fy - s * 0.55)], fill=(70, 52, 34, 255),
-               width=max(2, int(s * 0.3)))
-        tx, ty = fx + s * 0.46, fy - s * 0.55
-        d.ellipse([tx - s * 2.2, ty - s * 2.4, tx + s * 2.6, ty + s * 2.0],
-                  fill=(255, 160, 60, 30))
-        _flame(d, tx, ty, s * 1.4)
+        d.line([(fx, fy), (fx + face * s * 0.4, fy - s * 0.5)],
+               fill=(70, 52, 34, 255), width=max(2, int(s * 0.3)))
+        tx, ty = fx + face * s * 0.46, fy - s * 0.5
+        d.ellipse([tx - s * 2.4, ty - s * 2.6, tx + s * 2.6, ty + s * 2.2],
+                  fill=(255, 160, 60, 34))
+        _flame(d, tx, ty, s * 1.5)
+    if lantern:
+        lx, ly = fx + face * s * 0.3, fy + s * 0.2
+        d.ellipse([lx - s * 2.2, ly - s * 2.2, lx + s * 2.2, ly + s * 2.2],
+                  fill=(255, 200, 90, 42))
+        d.rectangle([lx - s * 0.16, ly, lx + s * 0.16, ly + s * 0.5], fill=(60, 46, 30, 255))
+        d.rectangle([lx - s * 0.1, ly + s * 0.08, lx + s * 0.1, ly + s * 0.42],
+                    fill=(255, 215, 120, 235))
 
 
-def _deer(d, x, y, s, t, run=0.0, dirn=-1):
-    """A galloping deer silhouette — a hookable foreground creature (e.g.
-    fleeing a blast). `run` animates the gait; `dirn` is facing (-1 left)."""
-    col = (24, 20, 18, 255)
-    gallop = math.sin(t * 11) * run
-    for i, lx in enumerate((-s * 1.0, -s * 0.5, s * 0.3, s * 0.8)):
-        sw = gallop * (1 if i % 2 else -1)
-        d.line([(x + lx, y - s * 0.35), (x + lx + sw * s * 0.7, y)],
-               fill=col, width=max(2, int(s * 0.22)))
-    d.line([(x - s * 1.25, y - s * 0.8), (x - s * 1.55, y - s * 0.45)],
-           fill=col, width=max(2, int(s * 0.2)))                  # tail
-    d.ellipse([x - s * 1.3, y - s * 1.1, x + s * 1.1, y - s * 0.3], fill=col)  # body
-    nx, ny = x + dirn * s * 1.0, y - s * 1.0
-    d.polygon([(x + dirn * s * 0.7, y - s * 1.0), (nx, ny - s * 0.7),
-               (nx + dirn * s * 0.3, ny - s * 0.6), (x + dirn * s * 0.9, y - s * 0.55)],
-              fill=col)                                            # neck
+def _deer(d, x, y, s, t, run=0.0, dirn=-1, col=(220, 214, 202, 255)):
+    """A galloping deer — pale by default so it POPS against dark scenery
+    (a white stag the eye locks onto). Proper gallop: front pair and back
+    pair phase-offset, body + neck bob."""
+    ph = t * 7.0
+    bob = abs(math.sin(ph * 2)) * s * 0.10 * run
+    by = y - bob
+    leg = max(2, int(s * 0.22))
+    back_sw, front_sw = math.sin(ph) * run, math.sin(ph + 2.2) * run
+    for lx in (-1.0, -0.62):                           # back legs
+        d.line([(x + lx * s, by - s * 0.32), (x + lx * s + back_sw * s * 0.85, y)],
+               fill=col, width=leg)
+    for lx in (0.4, 0.78):                             # front legs
+        d.line([(x + lx * s, by - s * 0.32), (x + lx * s + front_sw * s * 0.85, y)],
+               fill=col, width=leg)
+    d.line([(x - s * 1.25, by - s * 0.8), (x - s * 1.5, by - s * 0.42)],
+           fill=col, width=max(2, int(s * 0.2)))       # tail
+    d.ellipse([x - s * 1.3, by - s * 1.05, x + s * 1.1, by - s * 0.3], fill=col)
+    nbob = math.sin(ph) * s * 0.12 * run
+    nx, ny = x + dirn * s * 1.0, by - s * 1.0 + nbob
+    d.polygon([(x + dirn * s * 0.7, by - s * 1.0), (nx, ny - s * 0.7),
+               (nx + dirn * s * 0.3, ny - s * 0.6), (x + dirn * s * 0.9, by - s * 0.5)],
+              fill=col)
     hx, hy = nx + dirn * s * 0.25, ny - s * 0.7
     d.ellipse([hx - s * 0.36, hy - s * 0.3, hx + s * 0.36, hy + s * 0.3], fill=col)
     d.line([(hx, hy - s * 0.2), (hx + dirn * s * 0.15, hy - s * 0.95)],
-           fill=col, width=max(2, int(s * 0.18)))                 # antler stem
+           fill=col, width=max(2, int(s * 0.18)))
     d.line([(hx + dirn * s * 0.12, hy - s * 0.6), (hx + dirn * s * 0.55, hy - s * 0.85)],
            fill=col, width=max(2, int(s * 0.15)))
     d.line([(hx + dirn * s * 0.12, hy - s * 0.7), (hx - dirn * s * 0.1, hy - s * 1.05)],
            fill=col, width=max(2, int(s * 0.15)))
+    d.ellipse([hx - s * 0.04, hy - s * 0.12, hx + s * 0.13, hy + s * 0.06],
+              fill=(40, 30, 30, 255))                  # eye (dark on pale)
+
 
 
 def _smoke_plume(d, x, base, h, w, t, seed=0.0, alpha=80, color=(44, 38, 40)):
@@ -3753,24 +3803,27 @@ class _Troy(_Renderer):
             for k in range(12):
                 ax = W * 0.02 + k * (self.gate_x - 70 - W * 0.02) / 12 + adv * 64
                 ay = ground - abs(math.sin(t * 6 + k * 0.7)) * 4
-                _person(d, ax, ay, (14, 12, 18, 255), 10, lean=0.45)
+                _person(d, ax, ay, (14, 12, 18, 255), 10, lean=0.45,
+                        t=t, phase=k * 0.7, stride=0.9)
 
-        # HERO (protagonist): the lone soldier who climbs out of the horse,
-        # heaves the gate open, and stands torch-high as Troy burns.
-        hs = 22
+        # HERO (protagonist): the lone BRONZE-ARMOURED soldier — the only
+        # glint of metal + red plume in a field of dark silhouettes.
+        hs = 17
+        ARM, CAPE = (196, 152, 74, 255), (170, 45, 40, 255)
         if 0.42 < q < 0.55:                            # climbs down the rope
             u = _ease((q - 0.42) / 0.13)
             hxh = hx + 18
             hyh = ground - 84 + 84 * u
             d.line([(hxh, ground - 150), (hxh, hyh - hs * 1.7)],
                    fill=(120, 110, 90, 255), width=2)
-            _hero(d, hxh, hyh, hs, t, lean=0.05, run=0.0)
+            _hero(d, hxh, hyh, hs, t, run=0.0, face=1, armor=ARM, cape=CAPE)
         elif 0.55 <= q < 0.66:                         # runs out onto the plain
             u = _ease((q - 0.55) / 0.11)
             hxr = (hx + 18) + ((self.wall_x0 - 44) - (hx + 18)) * u
-            _hero(d, hxr, ground, hs, t, lean=-0.5, run=1.0)
+            _hero(d, hxr, ground, hs, t, run=1.0, face=-1, armor=ARM, cape=CAPE)
         elif q >= 0.66:                # stands against the sky, torch raised
-            _hero(d, self.wall_x0 - 44, ground, hs, t, lean=0.0, run=0.0, torch=True)
+            _hero(d, self.wall_x0 - 44, ground, hs, t, run=0.0, face=1,
+                  armor=ARM, cape=CAPE, torch=True)
 
         if fire > 0 and rng.random() < 0.7:
             self.embers.append({"x": rng.uniform(self.wall_x0, W), "y": ground,
@@ -3872,7 +3925,8 @@ class _Pompeii(_Renderer):
             run = max(0.0, min(1.0, (q - 0.30) / 0.32))
             for p in self.people:
                 px = p["x"] - run * W * 0.20
-                _person(d, px, ground, (44, 40, 38, 255), 12, lean=0.6 * run)
+                _person(d, px, ground, (44, 40, 38, 255), 12, lean=0.6 * run,
+                        t=t, phase=p["ph"], stride=run)
 
         ash_h = bury * (ground - H * 0.58)           # rising burial layer
         if ash_h > 0:
@@ -3891,13 +3945,13 @@ class _Pompeii(_Renderer):
             d.ellipse([a_["x"] - 2, a_["y"] - 2, a_["x"] + 2, a_["y"] + 2],
                       fill=(192, 186, 174, 160))
 
-        # HERO (protagonist): a lone citizen sprinting from the eruption,
-        # foreground, the whole way — the one we worry will make it out.
+        # HERO (protagonist): the SOLE red-cloaked merchant — same size as
+        # the crowd, but the only colour on the street, so the eye locks on.
         running = 1.0 if q > 0.26 else 0.0
         flee = _ease(max(0.0, min(1.0, (q - 0.26) / 0.52)))
         hxp = W * 0.66 - flee * W * 0.56
-        _hero(d, hxp, ground, 26, t, col=(26, 22, 20, 255),
-              lean=0.65 * running, run=running)
+        _hero(d, hxp, ground, 16, t, run=running, face=-1,
+              cape=(175, 45, 40, 255))
         return np.asarray(img, dtype=np.uint8)
 
 
@@ -4005,18 +4059,23 @@ class _GreatFire(_Renderer):
 
         # HERO (protagonist): a Londoner hauling a handcart of belongings
         # down the foreground street, the fire at their back the whole way.
-        hs = 24
+        hs = 18
         flee = _ease(min(1.0, q / 0.92))
         hx = W * 0.86 - flee * W * 0.76
-        cxp = hx + hs * 2.7                           # the cart trails behind
-        d.line([(cxp - 30, ground - 16), (hx + hs * 0.4, ground - hs * 0.8)],
+        cxp = hx + hs * 2.9                           # the cart trails behind
+        d.line([(cxp - 30, ground - 16), (hx + hs * 0.4, ground - hs * 0.9)],
                fill=(48, 36, 26, 255), width=3)
         d.rectangle([cxp - 30, ground - 22, cxp + 30, ground - 4], fill=(42, 32, 22, 255))
         d.polygon([(cxp - 24, ground - 22), (cxp + 8, ground - 22),
                    (cxp - 2, ground - 48), (cxp - 18, ground - 48)], fill=(62, 48, 32, 255))
-        d.ellipse([cxp - 26, ground - 10, cxp - 8, ground + 8], fill=(22, 16, 12, 255))
-        d.ellipse([cxp + 8, ground - 10, cxp + 26, ground + 8], fill=(22, 16, 12, 255))
-        _hero(d, hx, ground, hs, t, col=(12, 10, 14, 255), lean=0.62, run=1.0)
+        for wcx in (cxp - 17, cxp + 17):             # rolling wheels w/ spokes
+            d.ellipse([wcx - 9, ground - 9, wcx + 9, ground + 9], fill=(22, 16, 12, 255))
+            for sp in range(4):
+                a = -t * 6 + sp * math.pi / 2
+                d.line([(wcx, ground), (wcx + 7 * math.cos(a), ground + 7 * math.sin(a))],
+                       fill=(46, 34, 24, 255), width=2)
+        _hero(d, hx, ground, hs, t, run=1.0, face=-1,
+              cape=(150, 40, 36, 255), lantern=True)   # red coat + swinging lantern
         return np.asarray(img, dtype=np.uint8)
 
 
@@ -4143,9 +4202,9 @@ class _Tunguska(_Renderer):
         # camera when the blast hits — the one life we follow through it.
         flee = _ease(max(0.0, min(1.0, (q - 0.30) / 0.5)))
         run = 1.0 if q > 0.30 else 0.0
-        dx = W * 0.50 - flee * W * 0.22
-        dy = min(H - 26, ground + 8 + flee * 34)      # toward camera, stays in frame
-        _deer(d, dx, dy, 28 + 24 * flee, t, run=run, dirn=-1)
+        dx = W * 0.50 - flee * W * 0.24
+        dy = min(H - 24, ground + 6 + flee * 30)      # toward camera, stays in frame
+        _deer(d, dx, dy, 24 + 14 * flee, t, run=run, dirn=-1)  # pale stag pops on its own
         return np.asarray(img, dtype=np.uint8)
 
 
