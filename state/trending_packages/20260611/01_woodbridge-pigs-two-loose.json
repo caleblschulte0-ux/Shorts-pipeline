@@ -1,7 +1,7 @@
 {
   "version": 8,
   "slug": "woodbridge-pigs-two-loose",
-  "title": "2 Pigs Escaped in Woodbridge CT on the Same Day — 1 Is Still Missing",
+  "title": "Two Pigs Got Loose in the Same CT Town — On the Same Morning",
   "hashtags": [
     "woodbridge",
     "connecticut",
@@ -18,88 +18,116 @@
     "connecticutpig",
     "wildlifenews"
   ],
-  "script": "Pigs on the loose! On June 10, police in Woodbridge, Connecticut got 2 calls about 2 separate pigs wandering loose in the same town on the same day. The first call came in at 5:45 a.m. — a pig spotted in a yard on Old Quarry Road. A second call came in from Acorn Hill Road, where neighbors said that pig had been roaming for at least 2 days. Woodbridge Regional Animal Control teamed up with officers from Naugatuck and Prospect, plus a local vet, to track them both down. They caught one pig. The other is still at large. Police are now asking residents to watch for the missing swine and report sightings while investigators try to identify the owners — or owner. Is this 1 escape artist owner, or did 2 strangers just happen to lose their pigs in Woodbridge on the same morning?",
+  "script": "Two pigs, same morning? Woodbridge, Connecticut woke up to a problem with hooves. Two pigs, two different streets, same tiny town, same morning. The first one's spotted at 5:45 a.m., trespassing through a yard on Old Quarry Road. Cute, weird, whatever — until a SECOND call comes in from Acorn Hill Road, where a totally different pig has apparently been living its best life for 2 days straight. Now it's a full pig-hunt: animal control, cops from 2 other towns, and a very confused vet, all chasing bacon through the suburbs. They corner one. The other? Still out there, living free. And here's the kicker — nobody knows whose pigs these even are. So who loses a pig on Old Quarry Road and just… doesn't notice?",
   "shots": [
     {
-      "phrase": "Pigs on the loose",
+      "phrase": "Two pigs, same morning",
       "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feeding_the_pigs_5.JPG",
-      "query": "pig loose farm escape yard suburban grass"
+      "query": "two pigs",
+      "mascot_pose": "point"
     },
     {
-      "phrase": "police in Woodbridge, Connecticut got 2 calls",
-      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Woodbridge,_Connecticut_aerial.jpg",
-      "query": "Connecticut suburban town street police call dispatch"
+      "phrase": "Woodbridge, Connecticut woke up to a problem with hooves",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Woodbridge-ct-1st-church-of-christ.jpg",
+      "query": "small town main street",
+      "mascot_pose": "idle"
     },
     {
-      "phrase": "2 separate pigs wandering loose in the same town on the same day",
-      "query": "two pigs wandering loose neighborhood street suburban yard"
+      "phrase": "two different streets, same tiny town",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domestic_pig_(Sus_scrofa_domesticus)_(27764807325).jpg",
+      "query": "suburban street aerial",
+      "mascot_pose": "idle"
     },
     {
-      "phrase": "first call came in at 5:45 a.m.",
-      "query": "early morning quiet suburban neighborhood street Connecticut dawn"
+      "phrase": "spotted at 5:45 a.m.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feeding_the_pigs_5.JPG",
+      "query": "sunrise quiet neighborhood",
+      "mascot_pose": "idle"
     },
     {
-      "phrase": "pig spotted in a yard on Old Quarry Road",
-      "query": "pig backyard grass fence suburban Connecticut yard morning"
+      "phrase": "trespassing through a yard on Old Quarry Road",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domestic_pig_(Sus_scrofa_domesticus)_(27764807325).jpg",
+      "query": "pig in backyard",
+      "mascot_pose": "idle"
     },
     {
-      "phrase": "Acorn Hill Road, where neighbors said that pig had been roaming",
-      "query": "neighbors watching pig loose suburban neighborhood street Connecticut"
+      "phrase": "a SECOND call comes in from Acorn Hill Road",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Woodbridge-ct-1st-church-of-christ.jpg",
+      "query": "police dispatch radio",
+      "mascot_pose": "shock"
     },
     {
-      "phrase": "Woodbridge Regional Animal Control teamed up with officers from Naugatuck and Prospect",
-      "query": "animal control officers team van suburban Connecticut neighborhood"
+      "phrase": "living its best life for 2 days straight",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domestic_pig_(Sus_scrofa_domesticus)_(27764807325).jpg",
+      "query": "happy pig mud",
+      "mascot_pose": "idle"
     },
     {
-      "phrase": "local vet, to track them both down",
-      "query": "veterinarian working animal control capture net suburban"
+      "phrase": "a full pig-hunt: animal control, cops from 2 other towns",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lakewood_Police_Animal_Control_%26_Protection_van.jpg",
+      "query": "police cars street",
+      "mascot_pose": "idle"
     },
     {
-      "phrase": "They caught one pig",
-      "query": "animal control capturing pig enclosed crate transport vehicle"
+      "phrase": "chasing bacon through the suburbs",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lakewood_Police_Animal_Control_%26_Protection_van.jpg",
+      "query": "suburban neighborhood street",
+      "mascot_pose": "laugh"
     },
     {
-      "phrase": "The other is still at large",
-      "query": "missing pig escaped loose neighborhood suburban backyard woods"
+      "phrase": "They corner one",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feeding_the_pigs_5.JPG",
+      "query": "pig farm pen",
+      "mascot_pose": "idle"
     },
     {
-      "phrase": "Police are now asking residents to watch for the missing swine",
-      "query": "police news report neighborhood residents reporting missing animal"
+      "phrase": "The other? Still out there, living free",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domestic_pig_(Sus_scrofa_domesticus)_(27764807325).jpg",
+      "query": "pig running field",
+      "mascot_pose": "idle"
     },
     {
-      "phrase": "Is this 1 escape artist owner, or did 2 strangers just happen to lose their pigs",
-      "query": "two pigs mystery coincidence unknown owner suburban investigation"
+      "phrase": "nobody knows whose pigs these even are",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Feeding_the_pigs_5.JPG",
+      "query": "pigs on farm",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "So who loses a pig on Old Quarry Road",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Woodbridge-ct-1st-church-of-christ.jpg",
+      "query": "quiet suburban road",
+      "mascot_pose": "idle"
     }
   ],
   "punches": [
     {
-      "phrase": "Pigs on the loose",
-      "text": "2 PIGS LOOSE!",
+      "phrase": "Two pigs, same morning",
+      "text": "2 PIGS?!",
       "color": "#ffaa30"
     },
     {
-      "phrase": "same town on the same day",
-      "text": "SAME DAY",
+      "phrase": "same tiny town, same morning",
+      "text": "SAME MORNING",
       "color": "#ffffff"
     },
     {
-      "phrase": "5:45 a.m.",
-      "text": "5:45 AM CALL",
+      "phrase": "spotted at 5:45 a.m.",
+      "text": "5:45 AM",
       "color": "#ffaa30"
     },
     {
-      "phrase": "They caught one pig",
-      "text": "1 DOWN",
-      "color": "#50ff80"
+      "phrase": "chasing bacon through the suburbs",
+      "text": "PIG-HUNT",
+      "color": "#ffaa30"
     },
     {
-      "phrase": "The other is still at large",
-      "text": "STILL MISSING",
+      "phrase": "Still out there, living free",
+      "text": "STILL LOOSE",
       "color": "#ff3030"
     },
     {
-      "phrase": "investigators try to identify the owners",
-      "text": "WHO'S THE OWNER?",
+      "phrase": "nobody knows whose pigs these even are",
+      "text": "WHOSE PIGS?",
       "color": "#ffffff"
     }
   ],

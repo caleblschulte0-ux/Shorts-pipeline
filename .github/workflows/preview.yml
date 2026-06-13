@@ -1,0 +1,219 @@
+name: Preview Render (no upload)
+
+# Renders the currently-committed package slate to downloadable .mp4
+# artifacts WITHOUT publishing to YouTube. Use this to actually watch the
+# output before it ships — the daily workflow uploads straight to YouTube,
+# which makes blind quality iteration painful.
+#
+# Two ways to fire:
+#   1. Actions tab -> "Preview Render (no upload)" -> Run workflow, pick the
+#      branch you want to render (the render uses that branch's CODE +
+#      committed packages).
+#   2. Push a change to .github/triggers/preview on any branch. Bump that
+#      file (e.g. `date > .github/triggers/preview`) when you want a fresh
+#      render of the current branch without opening the Actions UI.
+#
+# The job runs `run_trending_daily.py --dry-run`, which renders the
+# pre-written packages and skips the upload step entirely (the YouTube
+# uploader is only imported on the non-dry-run path), so none of the
+# YOUTUBE_* secrets are required here.
+
+on:
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'How many packages to render'
+        required: false
+        default: '6'
+  push:
+    paths:
+      - '.github/triggers/preview'
+
+permissions:
+  contents: write   # push rendered mp4s to the preview-renders branch
+
+concurrency:
+  # Separate from the daily publish lane so a preview never blocks a real
+  # run (and vice-versa). Newer preview pushes cancel older in-flight ones.
+  group: preview-render-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install system deps
+        run: |
+          # The hosted runner ships a Microsoft apt repo whose signing key
+          # intermittently breaks ("no longer signed"), failing apt-get update
+          # with exit 100. We don't need it — drop it, tolerate residual update
+          # errors, then install ffmpeg from the Ubuntu repos.
+          sudo rm -f /etc/apt/sources.list.d/microsoft*.list \
+                     /etc/apt/sources.list.d/*microsoft* 2>/dev/null || true
+          sudo apt-get update -qq || sudo apt-get update -qq || true
+          sudo apt-get install -y -q ffmpeg
+
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Cache Kokoro TTS models (~350MB)
+        id: cache-kokoro
+        uses: actions/cache@v4
+        with:
+          path: kokoro_models/
+          key: kokoro-onnx-v1.0
+
+      - name: Download Kokoro TTS models if cache miss
+        if: steps.cache-kokoro.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p kokoro_models
+          curl -fsSL -o kokoro_models/kokoro-v1.0.onnx \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx"
+          curl -fsSL -o kokoro_models/voices-v1.0.bin \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
+          ls -lh kokoro_models/
+
+      - name: Cache gameplay clips
+        id: cache-gameplay
+        uses: actions/cache@v4
+        with:
+          path: gameplay/
+          key: gameplay-${{ hashFiles('seed_gameplay.py') }}
+
+      - name: Seed gameplay clips
+        run: |
+          python seed_gameplay.py
+
+      - name: Render packages (dry-run, no upload)
+        id: render
+        env:
+          # Media-sourcing keys only. NO YouTube secrets — dry-run never
+          # uploads. Each optional provider skips silently if unset; the
+          # render still works, but coverage (and the relevance gate's
+          # pass rate) tracks whatever keys are present, exactly like the
+          # real daily run.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          DVIDS_API_KEY: ${{ secrets.DVIDS_API_KEY }}
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
+          TAVILY_KEY: ${{ secrets.TAVILY_KEY }}
+          NEWSDATA_KEY: ${{ secrets.NEWSDATA_KEY }}
+          IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
+          TOPIC_VIDEO_ALLOW_STRIKES: ${{ vars.TOPIC_VIDEO_ALLOW_STRIKES }}
+          KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
+          # On manual dispatch, honor the input (default 6). On a push
+          # trigger (the .github/triggers/preview bump), render just ONE
+          # video so a quick sample comes back in ~5 min instead of ~30.
+          COUNT: ${{ github.event.inputs.count || '1' }}
+        run: |
+          # On a push trigger there's no dispatch input, so default to 1 for
+          # a fast single-video preview — UNLESS .github/triggers/preview_count
+          # holds a number (e.g. "6" to render the whole slate for a
+          # repeatability check). Dispatch input always wins.
+          if [ -z "${{ github.event.inputs.count }}" ] \
+              && [ -f .github/triggers/preview_count ]; then
+            FILE_CNT=$(tr -dc '0-9' < .github/triggers/preview_count | head -c1)
+            [ -n "$FILE_CNT" ] && COUNT="$FILE_CNT"
+          fi
+          # Optional: pin a specific package by slug substring (e.g.
+          # "wellington") via .github/triggers/preview_only.
+          ONLY_ARG=""
+          if [ -f .github/triggers/preview_only ]; then
+            ONLY=$(head -1 .github/triggers/preview_only | tr -d '[:space:]')
+            [ -n "$ONLY" ] && ONLY_ARG="--only $ONLY" && COUNT=6
+          fi
+          echo "Rendering $COUNT package(s) $ONLY_ARG with --dry-run (no upload)"
+          python scripts/run_trending_daily.py --count "$COUNT" $ONLY_ARG --dry-run
+
+      - name: List rendered output
+        if: always()
+        run: |
+          echo "=== output/ ==="
+          ls -lh output/ 2>/dev/null || echo "(no output dir)"
+
+      - name: Publish renders to preview-renders branch
+        # Push the rendered mp4s to a dedicated orphan branch (single,
+        # force-replaced commit — keeps history from accumulating heavy
+        # binaries) so they can be fetched over plain git without the
+        # Actions artifact API / a token. This is what lets the rendered
+        # sample be pulled back and surfaced directly in chat.
+        if: always()
+        run: |
+          ls output/*.mp4 >/dev/null 2>&1 || { echo "no mp4s rendered — skipping"; exit 0; }
+          tmp=$(mktemp -d)
+          # Compress each render to a lightweight, phone-friendly preview
+          # (720-wide, CRF 30) so the file opens easily over chat — the
+          # full-res mp4 still goes up as the Actions artifact. The bold
+          # bottom overlays can push the raw file past 40MB, which some
+          # players refuse to open.
+          for mp4 in output/*.mp4; do
+            base=$(basename "$mp4")
+            if ffmpeg -y -loglevel error -i "$mp4" \
+                 -vf "scale=720:-2" -c:v libx264 -preset veryfast -crf 30 \
+                 -c:a aac -b:a 96k -movflags +faststart "$tmp/$base"; then
+              echo "compressed $base -> $(du -h "$tmp/$base" | cut -f1)"
+            else
+              echo "compress failed for $base, copying original"
+              cp "$mp4" "$tmp"/ || true
+            fi
+          done
+          # Extract start/middle/end frames so the bottom (water level) can
+          # be eyeballed as stills without playing the whole clip.
+          for mp4 in "$tmp"/*.mp4; do
+            fbase=$(basename "$mp4" .mp4)
+            DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$mp4" 2>/dev/null | cut -d. -f1)
+            [ -z "$DUR" ] && DUR=40
+            for pct in 12 55 92; do
+              ts=$(( DUR * pct / 100 ))
+              ffmpeg -y -loglevel error -ss "$ts" -i "$mp4" -frames:v 1 \
+                "$tmp/${fbase}.frame${pct}.png" 2>/dev/null || true
+            done
+          done
+          cp output/*.mp4.audit.json "$tmp"/ 2>/dev/null || true
+          cp daily_report.md "$tmp"/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan preview-renders
+          git reset            # unstage everything the orphan inherited
+          cp "$tmp"/* .
+          git add -f *.mp4 *.audit.json *.png daily_report.md 2>/dev/null || true
+          git commit -m "preview render $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
+          git push -f origin preview-renders
+
+      - name: Upload rendered videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-videos
+          # The .mp4s are the deliverable; the .audit.json sidecars let you
+          # see which media source won each shot (operator image / news
+          # funnel / topic video / stock) when something still looks off.
+          path: |
+            output/*.mp4
+            output/*.audit.json
+            daily_report.md
+          if-no-files-found: warn
+          retention-days: 14

@@ -19,7 +19,17 @@ audit it against ALL of them:
 
  2. ESCALATE OR DIE. Nothing idles at one speed. A compounding
     sim-clock multiplier (GROWTH) makes the scene start calm and
-    continuously accelerate. Flat ambient loops are rejected.
+    continuously accelerate. Flat ambient loops are rejected. The whole
+    escalation arc is stretched across the ENTIRE clip (see render()):
+    calm at the start, fastest at the very end — not a mid-clip break.
+
+ 2b. MOVE TOWARD AN END GOAL. The scene must visibly progress toward a
+    finish that fills across the whole clip and is nearly complete at the
+    end — water rising to flood the panel, a tank filling, a tower
+    reaching its line — so there's a reason to watch to the last second.
+    The base renderer applies a universal rising-fill goal to every theme
+    (_goal_overlay / goal_progress); recolor it with GOAL_TINT, or set
+    GOAL_ENABLED = False only if the theme already owns a clearer goal.
 
  3. THE BREAK MUST BE REAL. Never schedule a glitch effect. The sim
     clock feeds the ACTUAL physics step (sim_dt = dt * scale); the
@@ -185,6 +195,91 @@ def _stamp_glow(buf: np.ndarray, x: float, y: float, radius: float,
         buf[y0c:y1c, x0c:x1c, c] += falloff * color[c]
 
 
+# ── Universal rising-water end-goal ─────────────────────────────────────
+# Burned onto the FINAL bottom (procedural theme OR gameplay clip) so EVERY
+# video has it, not just procedural themes. One shared look.
+WATER_TINT = (28, 120, 210)     # surface blue
+WATER_DEEP = (6, 38, 92)        # deep-water navy
+WATER_FILL_START = 0.10         # waves already fill the bottom 10% at t=0
+WATER_FILL_END = 1.00           # fills / spills over the top by the end
+
+
+def draw_goal_water(frame: np.ndarray, t: float, duration: float) -> np.ndarray:
+    """Burn the rising-water goal onto one bottom-panel frame (H,W,3 uint8).
+    Bottom ~10% at the start, climbing (with a surging surface) to fill the
+    panel by the end. Returns a new writable frame."""
+    if not duration or duration <= 0:
+        return frame
+    p = max(0.0, min(1.0, t / duration))
+    if p <= 0.0:
+        return frame
+    frame = np.array(frame, dtype=np.uint8, copy=True)
+    base = WATER_FILL_START + (WATER_FILL_END - WATER_FILL_START) * p
+    surge = float(np.sin(t * 2.3)) * (0.012 + 0.025 * p)
+    frac = min(1.0, max(0.02, base + surge))
+    level = min(H, max(2, int(H * frac)))
+    y0 = max(0, H - level)
+    band = frame[y0:H].astype(np.float32)
+    rows = band.shape[0]
+    d = np.linspace(0.0, 1.0, rows, dtype=np.float32)[:, None, None]
+    tint = np.asarray(WATER_TINT, np.float32)[None, None, :]
+    deep = np.asarray(WATER_DEEP, np.float32)[None, None, :]
+    water = tint * (1.0 - d) + deep * d
+    alpha = 0.78 + 0.17 * d
+    frame[y0:H] = (band * (1.0 - alpha) + water * alpha).astype(np.uint8)
+    xs = np.arange(W)
+    wave = (np.sin(xs * 0.014 + t * 2.2) * 22.0
+            + np.sin(xs * 0.006 - t * 1.6) * 12.0
+            + np.sin(xs * 0.040 + t * 3.5) * 5.0)
+    surf = np.clip((y0 + wave).astype(np.int32), 0, H - 1)
+    crest = np.array([235, 248, 255], dtype=np.uint8)
+    for dy in (0, 1, 2, 3, 4, 5):
+        frame[np.clip(surf + dy, 0, H - 1), xs] = crest
+    frame[np.clip(surf + 9, 0, H - 1), xs] = (140, 210, 240)
+    return frame
+
+
+def apply_goal_water(in_path, out_path, duration: float):
+    """Decode a bottom clip, burn the rising water onto every frame, and
+    re-encode. Works on procedural themes AND gameplay clips, so every
+    video gets the same end-goal."""
+    in_path, out_path = Path(in_path), Path(out_path)
+    n = int(duration * FPS) + 1
+    dec = subprocess.Popen(
+        ["ffmpeg", "-y", "-loglevel", "error", "-i", str(in_path),
+         "-an", "-f", "rawvideo", "-pix_fmt", "rgb24",
+         "-s", f"{W}x{H}", "-r", str(FPS), "-"],
+        stdout=subprocess.PIPE)
+    enc = subprocess.Popen(
+        ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo",
+         "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
+         "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+         "-pix_fmt", "yuv420p", str(out_path)],
+        stdin=subprocess.PIPE)
+    fb = W * H * 3
+    i = 0
+    try:
+        while i < n:
+            raw = dec.stdout.read(fb)
+            if not raw or len(raw) < fb:
+                break
+            frame = np.frombuffer(raw, np.uint8).reshape(H, W, 3)
+            frame = draw_goal_water(frame, i / FPS, duration)
+            enc.stdin.write(frame.tobytes())
+            i += 1
+    finally:
+        try:
+            dec.stdout.close()
+        except Exception:  # noqa: BLE001
+            pass
+        enc.stdin.close()
+        dec.wait()
+        enc.wait()
+    if enc.returncode != 0:
+        raise RuntimeError(f"goal-water encode failed for {out_path}")
+    return out_path
+
+
 class _Renderer:
     """Pipes raw RGB frames into ffmpeg. Subclass per theme and
     implement draw(t, frame_idx) -> np.ndarray (H, W, 3) uint8.
@@ -288,10 +383,20 @@ class _Renderer:
     GROWTH = 0.0          # sim clock multiplies by this factor each second
 
     def sim_scale(self, t: float) -> float:
-        """Compounding time multiplier since the last reboot."""
+        """Compounding time multiplier. When the video duration is known,
+        the whole climb is stretched across the ENTIRE clip: a gradual
+        1x-at-the-start to peak-at-the-end ramp (exponential, so it stays
+        calm early and only runs hot in the final stretch). Falls back to
+        the raw per-second compounding when duration isn't set."""
         if not self.GROWTH:
             return 1.0
-        return self.GROWTH ** (t - getattr(self, "reset_t", 0.0))
+        elapsed = t - getattr(self, "reset_t", 0.0)
+        dur = getattr(self, "duration", 0.0)
+        if dur and dur > 1.0:
+            peak = getattr(self, "_peak_scale", self.GROWTH ** 14.0)
+            frac = min(1.0, elapsed / dur)
+            return peak ** frac
+        return self.GROWTH ** elapsed
 
     def kk(self, ts: float) -> float:
         """Visual-intensity proxy (0..1) derived from the sim scale —
@@ -315,6 +420,14 @@ class _Renderer:
                 self._hang_frame = frame.copy()
             fade = 1.0 - 0.25 * (t - failed_at) / self.HANG_LEN
             return (self._hang_frame * fade).astype(np.uint8)
+        # Near the end, don't reboot into a fresh calm world — that would
+        # leave a slow tail. Hold the broken frame so the clip ends at full
+        # tilt. (With the duration-stretched ramp a break should only land
+        # this late anyway.)
+        if getattr(self, "duration", 0.0) and t > self.duration - 1.0:
+            if self._hang_frame is not None:
+                return (self._hang_frame * 0.75).astype(np.uint8)
+            return frame
         # Reboot.
         self._regen()
         self.reset_t = t
@@ -345,9 +458,94 @@ class _Renderer:
     def draw(self, t: float, i: int) -> np.ndarray:  # pragma: no cover
         raise NotImplementedError
 
+    # -- end-goal progress: a level that fills toward a finish ----------
+    #
+    # Retention rule (operator): every bottom must visibly move toward an
+    # END GOAL — a level that fills across the WHOLE clip and is nearly
+    # full at the very end (e.g. water rising to flood the panel), so the
+    # viewer has a reason to watch to the last second. Implemented once
+    # here as a translucent rising fill over the finished theme frame, so
+    # EVERY theme gets it for free. Themes may recolor it (GOAL_TINT) or,
+    # if they already own a clearer goal, opt out (GOAL_ENABLED = False).
+    GOAL_ENABLED = True
+    GOAL_TINT = (28, 120, 210)     # water blue (surface)
+    GOAL_DEEP = (6, 38, 92)        # deep water (floor)
+    GOAL_FILL_START = 0.10         # waves already fill the bottom 10% at t=0
+    GOAL_FILL_END = 1.00           # by the end the water fills (spills over) the top
+
+    def goal_progress(self, t: float) -> float:
+        """0..1 fill fraction, linear across the whole clip."""
+        dur = getattr(self, "duration", 0.0)
+        if not dur or dur <= 0:
+            return 0.0
+        return max(0.0, min(1.0, t / dur))
+
+    def _goal_overlay(self, frame: np.ndarray, t: float) -> np.ndarray:
+        """A BOLD rising water body — the end goal. Opaque enough to read
+        at a glance, with a big animated foam surface so the level is
+        obvious and visibly climbing across the whole clip. Operates on a
+        simple bottom slice (the proven, can't-crash shape)."""
+        if not self.GOAL_ENABLED:
+            return frame
+        p = self.goal_progress(t)
+        if p <= 0.0:
+            return frame
+        # Force a writable, contiguous uint8 copy — some themes return a
+        # read-only / broadcast frame from draw(), which made the in-place
+        # `frame[y0:H] = ...` assignment throw on every frame (the water
+        # silently never rendered).
+        frame = np.array(frame, dtype=np.uint8, copy=True)
+        # Visible, surging rise: waves already fill the bottom ~10% and the
+        # level climbs in pace with the video, spilling over the top by the
+        # end. A surge term makes the surface visibly heave so the rise reads
+        # as motion, not a 1px/frame creep.
+        start = getattr(self, "GOAL_FILL_START", 0.10)
+        base = start + (self.GOAL_FILL_END - start) * p
+        surge = float(np.sin(t * 2.3)) * (0.012 + 0.025 * p)
+        frac = min(1.0, max(0.02, base + surge))
+        level = min(H, max(2, int(H * frac)))
+        y0 = max(0, H - level)
+        band = frame[y0:H].astype(np.float32)            # (level, W, 3)
+        rows = band.shape[0]
+        d = np.linspace(0.0, 1.0, rows, dtype=np.float32)[:, None, None]
+        tint = np.asarray(self.GOAL_TINT, np.float32)[None, None, :]
+        deep = np.asarray(self.GOAL_DEEP, np.float32)[None, None, :]
+        water = tint * (1.0 - d) + deep * d              # (rows,1,3)
+        # Nearly opaque so the WATER is the dominant element, unmistakable
+        # against the theme behind it: 0.78 at the surface -> 0.95 at the floor.
+        alpha = 0.78 + 0.17 * d                          # (rows,1,1)
+        frame[y0:H] = (band * (1.0 - alpha) + water * alpha).astype(np.uint8)
+        # BIG rolling waves at the surface so it clearly reads as moving water.
+        xs = np.arange(W)
+        wave = (np.sin(xs * 0.014 + t * 2.2) * 22.0
+                + np.sin(xs * 0.006 - t * 1.6) * 12.0
+                + np.sin(xs * 0.040 + t * 3.5) * 5.0)
+        surf = np.clip((y0 + wave).astype(np.int32), 0, H - 1)
+        crest = np.array([235, 248, 255], dtype=np.uint8)
+        for dy in (0, 1, 2, 3, 4, 5):
+            frame[np.clip(surf + dy, 0, H - 1), xs] = crest
+        frame[np.clip(surf + 9, 0, H - 1), xs] = (140, 210, 240)
+        return frame
+
     def render(self, duration: float, out_path: Path) -> Path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         n = int(duration * FPS) + 1
+        # Stretch the ENTIRE escalation arc across the WHOLE video: one
+        # gradual speed ramp that's calm at the start and only reaches its
+        # fast peak at the very end — no mid-video reboots. (Operator ask:
+        # "speed increase should be very gradual, take up the whole video,
+        # and by the end it's moving fast.")
+        self.duration = float(duration)
+        if self.GROWTH:
+            # Themes used to break (physics destabilizes) around a ~14s
+            # sim-clock multiplier. Peak just UNDER that at t=duration, so
+            # the end is very fast but still coherent — not a frozen hang —
+            # and no reboot fires mid-clip.
+            self._peak_scale = self.GROWTH ** 12.0
+        if self.CYCLE:
+            # One escalation cycle spanning the full video instead of a
+            # 14s sawtooth that resets two or three times per clip.
+            self.CYCLE = max(2.0, duration)
         proc = subprocess.Popen(
             ["ffmpeg", "-y", "-loglevel", "error",
              "-f", "rawvideo", "-pix_fmt", "rgb24",
@@ -360,6 +558,10 @@ class _Renderer:
         try:
             for i in range(n):
                 frame = self.draw(i / FPS, i)
+                # The rising-water end-goal is now applied as a universal
+                # post-process on the FINAL bottom (themed OR gameplay) in
+                # build_video via apply_goal_water — not here — so every
+                # video gets it, not just procedural themes.
                 proc.stdin.write(frame.tobytes())
         finally:
             proc.stdin.close()

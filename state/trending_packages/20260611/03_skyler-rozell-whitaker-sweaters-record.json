@@ -22,54 +22,63 @@
   "shots": [
     {
       "phrase": "He wore HOW many sweaters",
-      "query": "kid child puffed up wearing many layers sweaters comically big"
+      "query": "knitted wool sweater",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grey_knitted_sweater.jpg"
     },
     {
       "phrase": "Skyler Rozell-Whitaker is 7 years old",
-      "query": "7 year old boy smiling proud achievement school child"
+      "query": "child winter sweater",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grey_knitted_sweater.jpg"
     },
     {
       "phrase": "Ramsey Elementary School in Monroeville, Pennsylvania",
-      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monroeville_Pennsylvania.jpg",
-      "query": "Monroeville Pennsylvania elementary school building suburban Pittsburgh"
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monroeville,_PA,_USA_-_panoramio.jpg",
+      "query": "Monroeville Pennsylvania town"
     },
     {
       "phrase": "visited the Monroeville Public Library",
-      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monroeville_Public_Library.jpg",
-      "query": "public library Pennsylvania suburban interior building entrance"
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monroeville,_PA,_USA_-_panoramio.jpg",
+      "query": "public library building"
     },
     {
       "phrase": "put on sweater after sweater — 50 total",
-      "query": "person wearing enormous number of sweaters layers puffy silly funny"
+      "query": "knitted wool sweater",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grey_knitted_sweater.jpg"
     },
     {
       "phrase": "previous record of 46",
-      "query": "old world record certificate previous holder sweater layers"
+      "query": "world record certificate",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guinness_World_Records_Certificate.jpg"
     },
     {
       "phrase": "The first attempt almost didn't count",
-      "query": "Guinness World Records adjudicator judge clipboard reviewing video"
+      "query": "world record certificate",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guinness_World_Records_Certificate.jpg"
     },
     {
       "phrase": "Guinness required footage of both putting the sweaters ON and taking them OFF",
-      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guinness_World_Records_2015.jpg",
-      "query": "Guinness World Records book official badge rules requirement"
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guinness_World_Records_Certificate.jpg",
+      "query": "Guinness record certificate"
     },
     {
       "phrase": "Skyler went back to the library a second time",
-      "query": "library public building entrance second attempt retry challenge"
+      "query": "library building exterior",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monroeville,_PA,_USA_-_panoramio.jpg"
     },
     {
       "phrase": "50 sweaters. Confirmed",
-      "query": "record confirmed official certificate Guinness badge proud winner"
+      "query": "world record certificate",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guinness_World_Records_Certificate.jpg"
     },
     {
       "phrase": "sweaters will be donated to a fall charity drive",
-      "query": "sweaters folded pile donation charity clothing drive community"
+      "query": "folded sweaters pile",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grey_knitted_sweater.jpg"
     },
     {
       "phrase": "will someone beat Skyler by the time school starts",
-      "query": "next record breaker challenge question competition school kids"
+      "query": "knitted wool sweater",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grey_knitted_sweater.jpg"
     }
   ],
   "punches": [
