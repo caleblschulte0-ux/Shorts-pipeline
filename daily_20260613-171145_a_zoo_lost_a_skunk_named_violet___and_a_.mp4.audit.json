@@ -1,0 +1,169 @@
+{
+  "out": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/daily_20260613-171145_a_zoo_lost_a_skunk_named_violet___and_a_.mp4",
+  "shots": [
+    {
+      "shot_idx": 0,
+      "phrase": "A zoo lost a skunk",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": true,
+      "sources": [
+        "image"
+      ],
+      "source_tier": "operator",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 1,
+      "phrase": "a skunk named Violet squeezed out of her enclosure",
+      "pin_query": "Violet",
+      "pin_context": "skunk Wisconsin zoo animal",
+      "news_query": "Violet",
+      "had_image_url": true,
+      "sources": [
+        "news_funnel"
+      ],
+      "source_tier": "news",
+      "titles": [
+        "Violet"
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 2,
+      "phrase": "a whole city is on high alert",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "news_funnel",
+        "news_funnel"
+      ],
+      "source_tier": "news",
+      "titles": [
+        "Violet",
+        "Violet"
+      ],
+      "sub_cut_count": 2
+    },
+    {
+      "shot_idx": 3,
+      "phrase": "do not make her feel cornered",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": true,
+      "sources": [
+        "pexels"
+      ],
+      "source_tier": "stock",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 4,
+      "phrase": "a built-in chemical weapon",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": true,
+      "sources": [
+        "pexels",
+        "pixabay"
+      ],
+      "source_tier": "stock",
+      "titles": [
+        "",
+        ""
+      ],
+      "sub_cut_count": 2
+    },
+    {
+      "shot_idx": 5,
+      "phrase": "tucked somewhere cool and dark",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "pexels"
+      ],
+      "source_tier": "stock",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 6,
+      "phrase": "No confirmed sightings yet",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "pexels"
+      ],
+      "source_tier": "stock",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 7,
+      "phrase": "a tiny striped fugitive is loose in the suburbs",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": true,
+      "sources": [
+        "pexels"
+      ],
+      "source_tier": "stock",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 8,
+      "phrase": "the entire town is nervously sniffing the air",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "pexels"
+      ],
+      "source_tier": "stock",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    },
+    {
+      "shot_idx": 9,
+      "phrase": "Would you really call the zoo if Violet turned up under your porch",
+      "pin_query": null,
+      "pin_context": null,
+      "news_query": null,
+      "had_image_url": false,
+      "sources": [
+        "pexels"
+      ],
+      "source_tier": "stock",
+      "titles": [
+        ""
+      ],
+      "sub_cut_count": 1
+    }
+  ]
+}
