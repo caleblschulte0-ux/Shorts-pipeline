@@ -81,6 +81,21 @@ audit it against ALL of them:
     If the hero merely travels while scenery parallaxes past, it's
     a screensaver — rejected, no matter how pretty.
 
+13. A PROTAGONIST, ALWAYS. Every scene has ONE foreground character the
+    audience latches onto and follows for the whole clip — someone to
+    root for / worry about / just keep watching. It need NOT come from
+    the history being narrated: the Antikythera video's bottom starred
+    DIVERS who appear nowhere in the script, and they carried it. Give
+    the protagonist a mini-arc (enter -> face the event -> react ->
+    escape / perish / triumph). No protagonist = no scene.
+
+14. FILL THE FRAME — NO DEAD SPACE. Compose for the full 1080x960. If a
+    third of the frame is empty sky or empty ground, the scene is
+    unfinished: push the action bigger, bring the protagonist into the
+    foreground, fill the sky with the event (glow, smoke, ash, embers,
+    the burst) and the edges with the world (skyline, crowd, forest,
+    army). Empty regions read as "loading", and viewers swipe.
+
 POLISH IS THE DEFAULT. Every rule above ships in the FIRST version
 of a theme. "Make it polished" is never a follow-up request; an
 unpolished theme is an unfinished theme.
@@ -222,6 +237,71 @@ def _person(d, x, y, col, s, lean=0.0):
     d.line([(x, y - s * 0.25), (x + s * 0.5, y)], fill=col, width=lw)
     d.line([(x, y - s * 1.15), (hx + lean * s + s * 0.4, y - s * 0.6)],
            fill=col, width=lw)
+
+
+def _hero(d, x, y, s, t, col=(18, 16, 22, 255), lean=0.5, torch=False, run=1.0):
+    """A larger FOREGROUND protagonist with animated stride — the
+    character the eye follows. `run` 0..1 scales the gait; `torch` adds a
+    raised flaming brand (and its glow) so the hero also lights the scene.
+    """
+    sw = math.sin(t * 9) * run
+    hx = x + lean * s * 0.6
+    lw = max(3, int(s * 0.5))
+    d.line([(x, y - s * 0.4), (x - s * 0.6 + sw * s * 0.8, y)], fill=col, width=lw)
+    d.line([(x, y - s * 0.4), (x + s * 0.6 - sw * s * 0.8, y)], fill=col, width=lw)
+    d.line([(x, y - s * 1.7), (hx, y - s * 0.35)], fill=col, width=int(s * 0.7))
+    d.ellipse([hx - s * 0.42, y - s * 2.3, hx + s * 0.42, y - s * 1.45], fill=col)
+    d.line([(x, y - s * 1.45), (x - s * 0.5 - sw * s * 0.5, y - s * 0.85)],
+           fill=col, width=lw)
+    fx, fy = hx + s * 0.7, y - s * 1.2
+    d.line([(x, y - s * 1.45), (fx, fy)], fill=col, width=lw)
+    if torch:
+        d.line([(fx, fy), (fx + s * 0.4, fy - s * 0.55)], fill=(70, 52, 34, 255),
+               width=max(2, int(s * 0.3)))
+        tx, ty = fx + s * 0.46, fy - s * 0.55
+        d.ellipse([tx - s * 2.2, ty - s * 2.4, tx + s * 2.6, ty + s * 2.0],
+                  fill=(255, 160, 60, 30))
+        _flame(d, tx, ty, s * 1.4)
+
+
+def _deer(d, x, y, s, t, run=0.0, dirn=-1):
+    """A galloping deer silhouette — a hookable foreground creature (e.g.
+    fleeing a blast). `run` animates the gait; `dirn` is facing (-1 left)."""
+    col = (24, 20, 18, 255)
+    gallop = math.sin(t * 11) * run
+    for i, lx in enumerate((-s * 1.0, -s * 0.5, s * 0.3, s * 0.8)):
+        sw = gallop * (1 if i % 2 else -1)
+        d.line([(x + lx, y - s * 0.35), (x + lx + sw * s * 0.7, y)],
+               fill=col, width=max(2, int(s * 0.22)))
+    d.line([(x - s * 1.25, y - s * 0.8), (x - s * 1.55, y - s * 0.45)],
+           fill=col, width=max(2, int(s * 0.2)))                  # tail
+    d.ellipse([x - s * 1.3, y - s * 1.1, x + s * 1.1, y - s * 0.3], fill=col)  # body
+    nx, ny = x + dirn * s * 1.0, y - s * 1.0
+    d.polygon([(x + dirn * s * 0.7, y - s * 1.0), (nx, ny - s * 0.7),
+               (nx + dirn * s * 0.3, ny - s * 0.6), (x + dirn * s * 0.9, y - s * 0.55)],
+              fill=col)                                            # neck
+    hx, hy = nx + dirn * s * 0.25, ny - s * 0.7
+    d.ellipse([hx - s * 0.36, hy - s * 0.3, hx + s * 0.36, hy + s * 0.3], fill=col)
+    d.line([(hx, hy - s * 0.2), (hx + dirn * s * 0.15, hy - s * 0.95)],
+           fill=col, width=max(2, int(s * 0.18)))                 # antler stem
+    d.line([(hx + dirn * s * 0.12, hy - s * 0.6), (hx + dirn * s * 0.55, hy - s * 0.85)],
+           fill=col, width=max(2, int(s * 0.15)))
+    d.line([(hx + dirn * s * 0.12, hy - s * 0.7), (hx - dirn * s * 0.1, hy - s * 1.05)],
+           fill=col, width=max(2, int(s * 0.15)))
+
+
+def _smoke_plume(d, x, base, h, w, t, seed=0.0, alpha=80, color=(44, 38, 40)):
+    """A wavering column of smoke that widens as it rises from `base` up
+    `h` pixels — fills empty sky above a fire/eruption so nothing reads as
+    dead air."""
+    n = max(3, int(h / 38))
+    for k in range(n):
+        f = k / (n - 1)
+        bx = x + math.sin(t * 0.6 + f * 4 + seed) * w * 0.6 * f
+        by = base - f * h
+        r = w * (0.4 + 0.9 * f)
+        a = int(alpha * (1 - f * 0.55))
+        d.ellipse([bx - r, by - r * 0.8, bx + r, by + r * 0.8], fill=(*color, a))
 
 
 def _stamp_glow(buf: np.ndarray, x: float, y: float, radius: float,
@@ -3628,7 +3708,7 @@ class _Troy(_Renderer):
                 r = rng.uniform(34, 96) * fire
                 d.ellipse([fx - r, fy - r, fx + r, fy + r], fill=(255, 140, 40, 16))
 
-        wall_top = H * 0.40                            # the city wall
+        wall_top = H * 0.32                            # tall city, less empty sky
         for rx, rh in self.roofs:                      # rooftops behind the wall
             d.rectangle([rx - 26, wall_top - rh, rx + 26, wall_top],
                         fill=(26, 22, 30, 255))
@@ -3642,7 +3722,7 @@ class _Troy(_Renderer):
         for cx in range(int(self.wall_x0), W, 46):
             d.rectangle([cx, wall_top - 22, cx + 26, wall_top], fill=(34, 30, 40, 255))
         gw = 64
-        gate_open = _ease(max(0.0, min(1.0, (q - 0.40) / 0.08)))
+        gate_open = _ease(max(0.0, min(1.0, (q - 0.58) / 0.07)))  # hero heaves it open
         d.rectangle([self.gate_x - gw / 2, ground - 120, self.gate_x + gw / 2, ground],
                     fill=(10, 8, 12, 255))
         if gate_open < 1:
@@ -3653,20 +3733,44 @@ class _Troy(_Renderer):
             for fx in range(int(self.wall_x0), W, 26):
                 fh = (40 + 80 * fire) * (0.6 + 0.4 * math.sin(t * 8 + fx))
                 _flame(d, fx + 13, wall_top, fh)
+            for rx, rh in self.roofs[:4]:              # smoke + glow fill the sky
+                _smoke_plume(d, rx, wall_top - rh, wall_top * 0.95, 64, t,
+                             seed=rx, alpha=int(90 * fire), color=(50, 42, 44))
+            for _ in range(int(3 * fire)):
+                gx = rng.uniform(self.wall_x0 - 80, W)
+                gy = rng.uniform(0, wall_top)
+                r = rng.uniform(120, 260)
+                d.ellipse([gx - r, gy - r, gx + r, gy + r], fill=(255, 120, 50, 9))
 
         hx = W * 0.06 + (self.gate_x - 96 - W * 0.06) * \
             _ease(max(0.0, min(1.0, (q - 0.15) / 0.28)))
         self._horse(d, hx, ground, t)   # the horse stays at the gate as Troy burns
-        if 0.46 < q < 0.64:                            # soldiers slip out and in
-            sp = (q - 0.46) / 0.18
-            for k in range(3):
-                drop = sp * 1.6 - k * 0.22
-                if drop <= 0:
-                    continue
-                drop = min(1.0, drop)
-                sxp = hx + 30 + k * 12 + (self.gate_x - (hx + 30)) * max(0.0, (drop - 0.5) * 2)
-                syp = ground - 70 + 70 * min(1.0, drop * 2)
-                _person(d, sxp, min(ground, syp), (16, 14, 20, 255), 9, lean=0.3)
+
+        # The Greek army pours across the plain to the open gate — fills the
+        # left half with motion and tells the rest of the story.
+        if q > 0.56:
+            adv = _ease(min(1.0, (q - 0.56) / 0.30))
+            for k in range(12):
+                ax = W * 0.02 + k * (self.gate_x - 70 - W * 0.02) / 12 + adv * 64
+                ay = ground - abs(math.sin(t * 6 + k * 0.7)) * 4
+                _person(d, ax, ay, (14, 12, 18, 255), 10, lean=0.45)
+
+        # HERO (protagonist): the lone soldier who climbs out of the horse,
+        # heaves the gate open, and stands torch-high as Troy burns.
+        hs = 22
+        if 0.42 < q < 0.55:                            # climbs down the rope
+            u = _ease((q - 0.42) / 0.13)
+            hxh = hx + 18
+            hyh = ground - 84 + 84 * u
+            d.line([(hxh, ground - 150), (hxh, hyh - hs * 1.7)],
+                   fill=(120, 110, 90, 255), width=2)
+            _hero(d, hxh, hyh, hs, t, lean=0.05, run=0.0)
+        elif 0.55 <= q < 0.66:                         # runs out onto the plain
+            u = _ease((q - 0.55) / 0.11)
+            hxr = (hx + 18) + ((self.wall_x0 - 44) - (hx + 18)) * u
+            _hero(d, hxr, ground, hs, t, lean=-0.5, run=1.0)
+        elif q >= 0.66:                # stands against the sky, torch raised
+            _hero(d, self.wall_x0 - 44, ground, hs, t, lean=0.0, run=0.0, torch=True)
 
         if fire > 0 and rng.random() < 0.7:
             self.embers.append({"x": rng.uniform(self.wall_x0, W), "y": ground,
@@ -3732,14 +3836,24 @@ class _Pompeii(_Renderer):
                    (vx + 210, ground)], fill=(40, 34, 38, 255))
         d.polygon([(vx - 42, vtop), (vx + 42, vtop), (vx + 18, vtop + 30),
                    (vx - 18, vtop + 30)], fill=(int(120 + 100 * erupt), 60, 30, 255))
-        if erupt > 0:                                # ash column + mushroom cap
-            ch = vtop * erupt
-            d.polygon([(vx - 24 * erupt, vtop), (vx + 24 * erupt, vtop),
-                       (vx + 52 * erupt, vtop - ch), (vx - 52 * erupt, vtop - ch)],
-                      fill=(60, 54, 58, 235))
-            mr = 130 * erupt
-            d.ellipse([vx - mr, vtop - ch - mr * 0.6, vx + mr, vtop - ch + mr * 0.4],
-                      fill=(70, 64, 68, 230))
+        if erupt > 0:                                # billowing ash column
+            ch = (vtop + 30) * erupt
+            d.polygon([(vx - 26 * erupt, vtop), (vx + 26 * erupt, vtop),
+                       (vx + 46 * erupt, vtop - ch), (vx - 46 * erupt, vtop - ch)],
+                      fill=(58, 52, 56, 235))
+            _smoke_plume(d, vx, vtop, ch + 40, 72, t, seed=3, alpha=130,
+                         color=(56, 50, 54))
+        mature = _ease(max(0.0, min(1.0, (q - 0.22) / 0.40)))
+        if mature > 0:                               # ash ceiling descends over the town
+            reach = vx * mature
+            ceil_y = 30 + mature * H * 0.30
+            for row, ry in enumerate((ceil_y - 46, ceil_y, ceil_y + 52)):
+                x = vx + 70
+                while x > vx - reach:
+                    r = 82 + 24 * math.sin(t + x * 0.01 + row)
+                    d.ellipse([x - r, ry - r * 0.6, x + r, ry + r * 0.95],
+                              fill=(46, 42, 46, int(200 * mature)))
+                    x -= 62
 
         for cxp in self.cols:                        # town columns
             top = ground - 150
@@ -3754,11 +3868,11 @@ class _Pompeii(_Renderer):
                 r = 68 + 30 * math.sin(t + b)
                 d.ellipse([bx - r, by - r, bx + r, by + r], fill=(48, 44, 48, 205))
 
-        if q < 0.62:                                 # townsfolk flee
+        if q < 0.72:                                 # background crowd flees
             run = max(0.0, min(1.0, (q - 0.30) / 0.32))
             for p in self.people:
-                px = p["x"] - run * W * 0.18
-                _person(d, px, ground, (30, 26, 24, 255), 15, lean=0.6 * run)
+                px = p["x"] - run * W * 0.20
+                _person(d, px, ground, (44, 40, 38, 255), 12, lean=0.6 * run)
 
         ash_h = bury * (ground - H * 0.58)           # rising burial layer
         if ash_h > 0:
@@ -3776,6 +3890,14 @@ class _Pompeii(_Renderer):
                 continue
             d.ellipse([a_["x"] - 2, a_["y"] - 2, a_["x"] + 2, a_["y"] + 2],
                       fill=(192, 186, 174, 160))
+
+        # HERO (protagonist): a lone citizen sprinting from the eruption,
+        # foreground, the whole way — the one we worry will make it out.
+        running = 1.0 if q > 0.26 else 0.0
+        flee = _ease(max(0.0, min(1.0, (q - 0.26) / 0.52)))
+        hxp = W * 0.66 - flee * W * 0.56
+        _hero(d, hxp, ground, 26, t, col=(26, 22, 20, 255),
+              lean=0.65 * running, run=running)
         return np.asarray(img, dtype=np.uint8)
 
 
@@ -3850,6 +3972,13 @@ class _GreatFire(_Renderer):
                     fh = (34 + 72 * b["burn"]) * (0.6 + 0.4 * math.sin(t * 9 + fx))
                     _flame(d, fx + 11, y0 + 8, fh)
 
+        for b in self.builds[::3]:                   # smoke billows fill the sky
+            if b["burn"] > 0.2:
+                bx = b["x"] + b["w"] / 2
+                by = ground - b["h"] * (1 - collapse * b["burn"] * 0.7)
+                _smoke_plume(d, bx, by, by * 0.95, 64, t, seed=bx,
+                             alpha=int(80 * b["burn"]), color=(40, 32, 34))
+
         d.rectangle([0, river, W, H], fill=(20, 24, 34, 235))   # the Thames
         d.rectangle([0, river, W, river + 10], fill=(int(120 * glow + 20),
                     int(50 * glow + 24), 34, 150))              # fire reflection band
@@ -3873,6 +4002,21 @@ class _GreatFire(_Renderer):
             a = int(230 * (1 - e["life"] / 3))
             d.ellipse([e["x"] - 2, e["y"] - 2, e["x"] + 2, e["y"] + 2],
                       fill=(255, 160, 60, a))
+
+        # HERO (protagonist): a Londoner hauling a handcart of belongings
+        # down the foreground street, the fire at their back the whole way.
+        hs = 24
+        flee = _ease(min(1.0, q / 0.92))
+        hx = W * 0.86 - flee * W * 0.76
+        cxp = hx + hs * 2.7                           # the cart trails behind
+        d.line([(cxp - 30, ground - 16), (hx + hs * 0.4, ground - hs * 0.8)],
+               fill=(48, 36, 26, 255), width=3)
+        d.rectangle([cxp - 30, ground - 22, cxp + 30, ground - 4], fill=(42, 32, 22, 255))
+        d.polygon([(cxp - 24, ground - 22), (cxp + 8, ground - 22),
+                   (cxp - 2, ground - 48), (cxp - 18, ground - 48)], fill=(62, 48, 32, 255))
+        d.ellipse([cxp - 26, ground - 10, cxp - 8, ground + 8], fill=(22, 16, 12, 255))
+        d.ellipse([cxp + 8, ground - 10, cxp + 26, ground + 8], fill=(22, 16, 12, 255))
+        _hero(d, hx, ground, hs, t, col=(12, 10, 14, 255), lean=0.62, run=1.0)
         return np.asarray(img, dtype=np.uint8)
 
 
@@ -3942,13 +4086,13 @@ class _Tunguska(_Renderer):
             r = 220 + 120 * (1 - ag)
             d.ellipse([self.gz - r, H * 0.30 - r, self.gz + r, H * 0.30 + r],
                       fill=(255, 150, 70, int(40 * ag)))
-        if smoke > 0:
-            pr = 120 + 260 * smoke
-            py = H * 0.34 - 120 * smoke
-            for off in (-pr * 0.45, 0, pr * 0.45):
-                d.ellipse([self.gz + off - pr, py - pr * 0.7,
-                           self.gz + off + pr, py + pr * 0.7],
-                          fill=(58, 50, 50, int(90 * smoke)))
+        if smoke > 0:                                # towering smoke pall fills mid-sky
+            pr = 150 + 300 * smoke
+            py = H * 0.44 - 70 * smoke
+            for off in (-pr * 0.5, 0, pr * 0.5):
+                d.ellipse([self.gz + off - pr, py - pr * 0.75,
+                           self.gz + off + pr, py + pr * 0.85],
+                          fill=(58, 50, 50, int(80 * smoke)))
 
         if wave > 0:                                 # shockwave ring on the ground
             rad = wave * W * 0.62
@@ -3962,7 +4106,12 @@ class _Tunguska(_Renderer):
             a = tr["fall"] * (math.pi / 2) * (1 if tr["x"] > self.gz else -1)
             tx = tr["x"] + math.sin(a) * tr["h"]
             ty = ground - math.cos(a) * tr["h"]
-            d.line([(tr["x"], ground), (tx, ty)], fill=(48, 36, 26, 255), width=7)
+            # stripped logs turn pale tan once down, so the flattened forest
+            # reads as the iconic radial blast pattern, not invisible lines.
+            trunk = (104, 82, 56, 255) if tr["fall"] > 0.4 else (54, 42, 30, 255)
+            d.line([(tr["x"], ground), (tx, ty)], fill=trunk, width=9)
+            d.rectangle([tr["x"] - 5, ground - 8, tr["x"] + 5, ground + 4],
+                        fill=(40, 30, 22, 255))      # stump stays upright
             if tr["fall"] < 0.85:                     # 3 canopy tiers up the trunk
                 perp = (math.cos(a), math.sin(a))
                 for frac in (0.5, 0.68, 0.86):
@@ -3989,6 +4138,14 @@ class _Tunguska(_Renderer):
             a = int(120 * (1 - ds["life"] / 3))
             d.ellipse([ds["x"] - r, ds["y"] - r, ds["x"] + r, ds["y"] + r],
                       fill=(70, 60, 55, a))
+
+        # HERO (protagonist): a deer grazing in the taiga that bolts toward
+        # camera when the blast hits — the one life we follow through it.
+        flee = _ease(max(0.0, min(1.0, (q - 0.30) / 0.5)))
+        run = 1.0 if q > 0.30 else 0.0
+        dx = W * 0.50 - flee * W * 0.22
+        dy = min(H - 26, ground + 8 + flee * 34)      # toward camera, stays in frame
+        _deer(d, dx, dy, 28 + 24 * flee, t, run=run, dirn=-1)
         return np.asarray(img, dtype=np.uint8)
 
 
