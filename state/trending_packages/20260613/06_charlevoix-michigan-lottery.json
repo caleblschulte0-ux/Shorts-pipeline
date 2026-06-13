@@ -1,0 +1,135 @@
+{
+  "version": 8,
+  "slug": "charlevoix-michigan-lottery",
+  "title": "She Thought the Lottery Scanner Was Broken. It Wasn't.",
+  "hashtags": [
+    "michiganlottery",
+    "millionaireforlife",
+    "charlevoixcounty",
+    "lotterywin",
+    "lottoscanner",
+    "lotterywinner",
+    "michigan",
+    "oddnews",
+    "lotteryluck",
+    "scratchticket",
+    "mancelona",
+    "weirdnews",
+    "lotterylife"
+  ],
+  "script": "Broken scanner. Or $2.2 million? A 66-year-old woman from Charlevoix County, Michigan had an urge to buy a lottery ticket — Millionaire for Life from the Michigan Lottery. She scanned it at a store. A message came up: contact the lottery office. She figured the machine was broken. Walked to her car. Looked up the Michigan Lottery website. Her 5 numbers — 03, 15, 16, 24, 28 — matched the May 21 drawing. Not broken. She won $100,000 a year for life. She chose the lump sum: $2.2 million. The winning ticket was from the Mancelona North EZ Mart. She stayed anonymous. She's buying a house, a car, and a boat. If your lottery scanner said contact the lottery office, would you assume it was broken?",
+  "shots": [
+    {
+      "phrase": "Broken scanner. Or $2.2 million",
+      "query": "lottery scanner kiosk machine convenience store screen result",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "A 66-year-old woman from Charlevoix County, Michigan",
+      "query": "Michigan small town northern rural Charlevoix county woman",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "had an urge to buy a lottery ticket",
+      "query": "buying lottery ticket convenience store impulse purchase",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Millionaire for Life from the Michigan Lottery",
+      "query": "Michigan Lottery Millionaire for Life game ticket draw",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A message came up: contact the lottery office",
+      "query": "lottery scanner message screen contact office alert result",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "She figured the machine was broken",
+      "query": "broken machine error screen frustrated assume wrong dismiss",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Looked up the Michigan Lottery website",
+      "query": "phone checking lottery numbers website result online Michigan",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "Her 5 numbers — 03, 15, 16, 24, 28 — matched the May 21 drawing",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/New_israeli_lottery_ticket.JPG",
+      "query": "lottery numbers matching winning ticket five balls draw",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "She won $100,000 a year for life",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Worldbiggest_Scratchcard.jpg",
+      "query": "$100000 a year for life lottery annuity winning prize",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "She chose the lump sum: $2.2 million",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Worldbiggest_Scratchcard.jpg",
+      "query": "lump sum payout $2 million lottery winner check",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The winning ticket was from the Mancelona North EZ Mart",
+      "query": "convenience store gas station lottery retailer Michigan small town",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "She's buying a house, a car, and a boat",
+      "query": "buying house car boat lottery winner spending plans",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "would you assume it was broken",
+      "query": "lottery scanner broken assume walk away dismiss miss win",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Broken scanner. Or $2.2 million",
+      "text": "SCANNER \"BROKEN\"?",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "had an urge to buy a lottery ticket",
+      "text": "JUST AN URGE",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "A message came up: contact the lottery office",
+      "text": "CONTACT LOTTERY OFFICE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "She figured the machine was broken",
+      "text": "\"MACHINE BROKEN\"",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "matched the May 21 drawing",
+      "text": "ALL 5 MATCHED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "She won $100,000 a year for life",
+      "text": "$100K/YEAR FOR LIFE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "She chose the lump sum: $2.2 million",
+      "text": "$2.2M LUMP SUM",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "She's buying a house, a car, and a boat",
+      "text": "HOUSE • CAR • BOAT",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "gameplay": "subway"
+}

@@ -1,0 +1,137 @@
+{
+  "version": 8,
+  "slug": "irwin-alligator-marks-ark",
+  "title": "Irwin the Alligator Escaped Mark's Ark in Indiana. Again.",
+  "hashtags": [
+    "irwinthealligator",
+    "marksark",
+    "auburnindiana",
+    "alligatorloose",
+    "indiananews",
+    "exoticanimalshow",
+    "animalescape",
+    "alligatorescape",
+    "weirdnews",
+    "thirdescape",
+    "dekalb",
+    "exoticanimals",
+    "animalnews",
+    "oddnews"
+  ],
+  "script": "Irwin the gator is loose! Mark Kohlhorst runs Mark's Ark — an exotic animal show he takes to schools across Indiana. On June 9, he came home from a show, put his animals away, and noticed one cooler was empty. Irwin, his 2-foot alligator, was gone. Here's the thing: neighbors say this is the THIRD alligator to escape from the property. Not the first. Not the second. The third. Previous escapees from Mark's Ark include a pony, a tortoise, a pig, and an emu. The county is searching. Kohlhorst says Irwin is small and harmless — a 2-foot gator poses no danger. His neighbor says a 2-foot alligator could take your fingers off. Irwin is still at large. If a 2-foot alligator showed up in your yard, would you trust the owner's word?",
+  "shots": [
+    {
+      "phrase": "Irwin the gator is loose",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+      "query": "alligator loose outdoors grass escaped small gator",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Mark Kohlhorst runs Mark's Ark",
+      "query": "exotic animal show school presenter Indiana performer",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "an exotic animal show he takes to schools across Indiana",
+      "query": "school exotic animal show presenter students education",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "noticed one cooler was empty",
+      "query": "empty cooler transport box missing animal reptile",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Irwin, his 2-foot alligator, was gone",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+      "query": "small young 2-foot alligator baby gator escaped",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "this is the THIRD alligator to escape from the property",
+      "query": "third escape same property serial animal problem",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Not the first. Not the second. The third.",
+      "query": "third strike three times same animal owner escape",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Previous escapees from Mark's Ark include a pony, a tortoise, a pig, and an emu",
+      "query": "exotic animals pony tortoise pig emu escaped farm assorted",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Kohlhorst says Irwin is small and harmless",
+      "query": "alligator owner claiming harmless small no danger permit",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a 2-foot gator poses no danger",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+      "query": "small baby alligator hand size young harmless captive",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "His neighbor says a 2-foot alligator could take your fingers off",
+      "query": "alligator bite warning danger neighbor concerned worried",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Irwin is still at large",
+      "query": "alligator still missing on the loose Indiana neighborhood",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "would you trust the owner's word",
+      "query": "skeptical trust exotic animal owner escaped again",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Irwin the gator is loose",
+      "text": "IRWIN IS OUT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Mark's Ark",
+      "text": "MARK'S ARK",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "one cooler was empty",
+      "text": "EMPTY COOLER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "THIRD alligator to escape from the property",
+      "text": "THE THIRD TIME",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a pony, a tortoise, a pig, and an emu",
+      "text": "PONY • TORTOISE • PIG • EMU",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a 2-foot gator poses no danger",
+      "text": "\"NO DANGER\"",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "could take your fingers off",
+      "text": "COULD LOSE A FINGER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Irwin is still at large",
+      "text": "STILL AT LARGE",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "gameplay": "subway"
+}
