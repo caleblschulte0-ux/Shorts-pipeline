@@ -1,0 +1,126 @@
+{
+  "version": 8,
+  "slug": "woodbridge-ct-two-pigs",
+  "title": "Two Pigs, One Town, Same Morning — Connecticut Is Confused",
+  "hashtags": [
+    "woodbridgect",
+    "connecticutnews",
+    "loosepigs",
+    "pigsontheloose",
+    "twopigs",
+    "animalcontrol",
+    "weirdnews",
+    "connecticut",
+    "samemorning",
+    "localnews",
+    "animalnews",
+    "oddnews",
+    "newengland"
+  ],
+  "script": "Two loose pigs. Same morning? Woodbridge, Connecticut woke up to a problem with hooves. The first call came in at 5:45 a.m.: a pig was loose in someone's yard on Old Quarry Road. Cool, weird, whatever — until a SECOND call came in. Different street. Acorn Hill Road. Same tiny town. Same morning. That pig had apparently been living outdoors on its own for two full days. Animal control from Naugatuck and Prospect responded. A local vet came out. They caught one pig. The second one is still out there. Police are asking residents to report any sightings and NOT approach. Nobody has claimed either animal. Nobody has admitted to losing a pig. Two pigs, two streets, one town, same morning — so who loses a pig and just… doesn't notice?",
+  "shots": [
+    {
+      "phrase": "Two loose pigs. Same morning",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pig_USDA01c0116.jpg",
+      "query": "domestic pig loose backyard suburban neighborhood running",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Woodbridge, Connecticut woke up to a problem with hooves",
+      "query": "Connecticut suburban town street neighborhood quiet morning",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The first call came in at 5:45 a.m.",
+      "query": "early morning dark 5am neighborhood quiet street yard",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a pig was loose in someone's yard on Old Quarry Road",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pig_USDA01c0116.jpg",
+      "query": "pig trespassing residential yard suburban running loose",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "until a SECOND call came in",
+      "query": "second call police dispatch phone surprise again",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Acorn Hill Road. Same tiny town. Same morning.",
+      "query": "residential street road sign suburban Connecticut morning",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "had apparently been living outdoors on its own for two full days",
+      "query": "pig roaming free outdoors days alone grass field",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Animal control from Naugatuck and Prospect responded",
+      "query": "animal control van officers catching livestock suburban",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "They caught one pig",
+      "query": "pig caught captured animal control success wrangled",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The second one is still out there",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pig_USDA01c0116.jpg",
+      "query": "pig still on the loose missing not found free",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Nobody has claimed either animal",
+      "query": "unclaimed animal police shelter owner unknown nobody",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "so who loses a pig and just… doesn't notice",
+      "query": "confused owner missing pig livestock backyard fence",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Two loose pigs. Same morning",
+      "text": "2 PIGS SAME MORNING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "The first call came in at 5:45 a.m.",
+      "text": "FIRST PIG: 5:45 A.M.",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "until a SECOND call came in",
+      "text": "SECOND PIG!",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "for two full days",
+      "text": "WILD FOR 2 DAYS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "They caught one pig",
+      "text": "1 CAUGHT",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "The second one is still out there",
+      "text": "1 STILL LOOSE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Nobody has claimed either animal",
+      "text": "NO ONE CLAIMED THEM",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "gameplay": "subway"
+}
