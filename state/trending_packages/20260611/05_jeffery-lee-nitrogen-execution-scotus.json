@@ -22,53 +22,63 @@
   "shots": [
     {
       "phrase": "Is nitrogen execution legal",
-      "query": "nitrogen gas tank industrial pure chemistry laboratory canister"
+      "query": "nitrogen gas cylinder",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A_nitrogen_gas_cylinder_with_pressure-relief_devices.jpg"
     },
     {
       "phrase": "Jeffery Lee has been on Alabama's death row",
-      "query": "death row prison cell Alabama correctional facility hallway bars"
+      "query": "federal courthouse building",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montgomery_December_2018_20_(Frank_M._Johnson_Jr._Federal_Building_and_United_States_Courthouse).jpg"
     },
     {
       "phrase": "convicted of a 1998 double murder",
-      "query": "courtroom judge gavel conviction sentencing crime murder trial"
+      "query": "courtroom gavel",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Courtroom_One_Gavel_-_Flickr_-_Joe_Gratz.jpg"
     },
     {
       "phrase": "Alabama scheduled his execution for June 11",
-      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Holman_Correctional_Facility_sign.jpg",
-      "query": "Alabama Holman Correctional Facility prison sign entrance Atmore"
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montgomery_December_2018_20_(Frank_M._Johnson_Jr._Federal_Building_and_United_States_Courthouse).jpg",
+      "query": "federal courthouse building"
     },
     {
       "phrase": "nitrogen hypoxia: a gas mask forces pure nitrogen into the lungs",
-      "query": "gas mask respirator nitrogen gas industrial close up medical"
+      "query": "gas mask respirator",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/S10_Gas_Mask_Respirator.jpg"
     },
     {
       "phrase": "US District Judge Emily C. Marks ruled",
-      "query": "federal judge district court ruling bench gavel chambers"
+      "query": "federal courthouse building",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montgomery_December_2018_20_(Frank_M._Johnson_Jr._Federal_Building_and_United_States_Courthouse).jpg"
     },
     {
       "phrase": "severe air hunger — the desperate gasping",
-      "query": "person gasping struggling breathing air medical distress oxygen"
+      "query": "gas mask respirator",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/S10_Gas_Mask_Respirator.jpg"
     },
     {
       "phrase": "witnesses reported in earlier executions",
-      "query": "execution witness statement courtroom testimony newspaper report"
+      "query": "courtroom gavel",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Courtroom_One_Gavel_-_Flickr_-_Joe_Gratz.jpg"
     },
     {
       "phrase": "Alabama rushed to the US Supreme Court",
       "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Supreme_Court_Building.JPG",
-      "query": "US Supreme Court building steps pillars Washington DC marble"
+      "query": "Supreme Court building"
     },
     {
       "phrase": "The Supreme Court hasn't ruled yet",
-      "query": "Supreme Court justices emergency appeal deadline night session"
+      "query": "Supreme Court building",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Supreme_Court_Building.JPG"
     },
     {
       "phrase": "the original jury voted 7 to 5 for life in prison",
-      "query": "jury box courtroom Alabama death penalty vote life sentence"
+      "query": "courtroom gavel",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Courtroom_One_Gavel_-_Flickr_-_Joe_Gratz.jpg"
     },
     {
       "phrase": "Will the Supreme Court let Alabama execute Jeffery Lee by nitrogen tonight",
-      "query": "Supreme Court decision announcement legal ruling death penalty"
+      "query": "Supreme Court building",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Supreme_Court_Building.JPG"
     }
   ],
   "punches": [

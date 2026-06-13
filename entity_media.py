@@ -29,6 +29,7 @@ from __future__ import annotations
 import json
 import re
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -371,6 +372,38 @@ def url_is_image(url: str, timeout: float = 8.0) -> bool:
     return False
 
 
+def commons_thumb_url(url: str, width: int = 960) -> str:
+    """Rewrite a Wikimedia Commons ``Special:FilePath/<File>`` URL to a
+    direct ``upload.wikimedia.org`` thumbnail URL.
+
+    The FilePath redirect endpoint is aggressively rate-limited — under
+    a render that pulls a dozen images it returns HTTP 429 ("Too many
+    requests... instead use thumbnail images"), so every curated photo
+    gets dropped and the video collapses onto one fallback image. The
+    upload CDN thumbnails are cached, not rate-limited, and the form
+    Wikimedia explicitly recommends. Non-Commons or already-direct URLs
+    pass through unchanged."""
+    marker = "Special:FilePath/"
+    if marker not in url:
+        return url
+    import hashlib
+    name = url.split(marker, 1)[1].split("?")[0].split("#")[0]
+    name = urllib.parse.unquote(name).replace(" ", "_")
+    if not name:
+        return url
+    name = name[0].upper() + name[1:]
+    md5 = hashlib.md5(name.encode("utf-8")).hexdigest()
+    seg = urllib.parse.quote(name)
+    thumb = (f"https://upload.wikimedia.org/wikipedia/commons/thumb/"
+             f"{md5[0]}/{md5[:2]}/{seg}/{width}px-{seg}")
+    ext = name.rsplit(".", 1)[-1].lower() if "." in name else ""
+    if ext == "svg":
+        thumb += ".png"
+    elif ext in ("tif", "tiff"):
+        thumb += ".jpg"
+    return thumb
+
+
 def verify_shot_urls(pkg: dict, *, verbose: bool = True) -> int:
     """Drop every routine-supplied image URL that doesn't actually
     resolve to an image. Returns the number of URLs dropped.
@@ -384,6 +417,16 @@ def verify_shot_urls(pkg: dict, *, verbose: bool = True) -> int:
         url = s.get("image_url") or s.get("image")
         if not url:
             continue
+        # Rewrite rate-limited Commons FilePath URLs to CDN thumbnails
+        # BEFORE validating, and persist the rewrite so the render fetches
+        # the thumbnail too (the FilePath form 429s under a full render).
+        norm = commons_thumb_url(url)
+        if norm != url:
+            if s.get("image_url"):
+                s["image_url"] = norm
+            if s.get("image"):
+                s["image"] = norm
+            url = norm
         if url_is_image(url):
             continue
         if verbose:
@@ -544,17 +587,39 @@ def validate_package(pkg: dict) -> dict:
 
     matched: list[str] = []
     uncovered: list[str] = []
+    fundable_shots: set[int] = set()   # id(shot) -> covered by a real entity
     for v in visuals:
-        if _match_shot(shots, v.get("phrase") or "", v["entity"]) is not None:
+        target = _match_shot(shots, v.get("phrase") or "", v["entity"])
+        if target is not None:
             matched.append(v["entity"])
+            fundable_shots.add(id(target))
         else:
             uncovered.append(v["entity"])
+
+    # Illustration coverage: what fraction of shots will show a REAL image
+    # rather than falling to a bare keyword `query`? A shot is "illustrated"
+    # if it already carries an image_url (operator pick) OR its phrase maps
+    # to a named entity the funnel / Wikipedia path can resolve at render
+    # time. Shots that are neither are the ones that produced the off-topic
+    # stock (a serval beat showing a leopard, a "conservation officers"
+    # beat showing fishermen) — list them so the author can pin a photo.
+    keyword_only: list[str] = []
+    for s in shots:
+        has_img = bool(s.get("image_url") or s.get("image"))
+        if has_img or id(s) in fundable_shots:
+            continue
+        keyword_only.append((s.get("phrase") or "?")[:50])
+    n_shots = max(1, len(shots))
+    illustrated = len(shots) - len(keyword_only)
     return {
         "source": "llm" if used_llm else "regex",
         "total_visuals": len(visuals),
         "matched": matched,
         "uncovered": uncovered,
         "coverage_pct": round(100.0 * len(matched) / max(1, len(visuals)), 1),
+        "total_shots": len(shots),
+        "keyword_only_shots": keyword_only,
+        "illustration_pct": round(100.0 * illustrated / n_shots, 1),
     }
 
 

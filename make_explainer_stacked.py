@@ -7,7 +7,7 @@ actual TTS audio via whisper word-level timestamps.
 
 Energy upgrades vs the previous version:
   * Multi-cut shots: each beat fetches 2-3 different stock clips and
-    cuts between them every ~2s instead of holding one shot for 6s.
+    cuts between them every ~4s instead of holding one shot for 6s.
   * Animated punches: scale-bounce in via ASS animation tags (was a
     static drawtext fade).
   * Synthesized music bed: a dark, kick-driven loop generated with
@@ -26,6 +26,7 @@ import ssl
 import subprocess
 import sys
 import tempfile
+import math
 import time
 import urllib.request
 from dataclasses import dataclass, field
@@ -49,8 +50,12 @@ MASCOT_SIZE = 260
 # block either layer's content. Margin from the right edge of canvas.
 MASCOT_MARGIN = 30
 
-# Target seconds per sub-cut. ~2s feels fast without being epileptic.
-SUB_CUT_TARGET = 2.0
+# Target seconds per sub-cut. Was 2.0, but viewers reported shots
+# flashing by before they could register what they were looking at —
+# especially when the imagery is only loosely on-topic. ~4s holds each
+# visual long enough to read while still cutting often enough to keep
+# the doomscroll pace.
+SUB_CUT_TARGET = 4.0
 
 
 # ---------- helpers ----------
@@ -403,6 +408,15 @@ def _fetch_image(url_or_path: str, cache: Path) -> Path:
     on disk. Local paths pass through; URLs are downloaded once and
     keyed by hash so subsequent renders re-use the same file."""
     if url_or_path.startswith(("http://", "https://")):
+        # Rate-limited Commons FilePath URLs -> CDN thumbnails (HTTP 429
+        # otherwise). Normally already rewritten upstream by
+        # entity_media.verify_shot_urls; this is a belt-and-suspenders for
+        # URLs that reach the fetcher directly (news funnel / topic media).
+        try:
+            from entity_media import commons_thumb_url
+            url_or_path = commons_thumb_url(url_or_path)
+        except Exception:  # noqa: BLE001
+            pass
         import hashlib
         cache.mkdir(parents=True, exist_ok=True)
         ext = (Path(url_or_path.split("?")[0]).suffix or ".jpg").lower()
@@ -423,8 +437,37 @@ def _fetch_image(url_or_path: str, cache: Path) -> Path:
                     "Referer": "https://en.wikipedia.org/",
                 },
             )
-            with urllib.request.urlopen(req, timeout=30) as r:
-                dest.write_bytes(r.read())
+            # Retry transient download failures. A single flaky fetch used
+            # to silently drop a curated image to the generic topic_video
+            # pool (a pig story opened on a Reagan rally clip), so give the
+            # CDN a few tries before giving up.
+            last_err: Exception | None = None
+            for attempt in range(3):
+                try:
+                    with urllib.request.urlopen(req, timeout=30) as r:
+                        data = r.read()
+                    if not data:
+                        raise ValueError("empty response body")
+                    # Reject non-image bodies (e.g. a Wikimedia 429 HTML
+                    # error page saved as .jpg) and absurdly tiny files —
+                    # those decode to a corrupt frame and crash ffmpeg.
+                    if not (data[:3] == b"\xff\xd8\xff"          # JPEG
+                            or data[:8] == b"\x89PNG\r\n\x1a\n"  # PNG
+                            or data[:6] in (b"GIF87a", b"GIF89a")
+                            or (data[:4] == b"RIFF" and data[8:12] == b"WEBP")):
+                        raise ValueError(
+                            f"not a valid image (got {data[:12]!r})")
+                    if len(data) < 1024:
+                        raise ValueError(f"image too small ({len(data)}B)")
+                    dest.write_bytes(data)
+                    last_err = None
+                    break
+                except Exception as e:  # noqa: BLE001
+                    last_err = e
+                    if attempt < 2:
+                        time.sleep(1.5 * (attempt + 1))
+            if last_err is not None:
+                raise last_err
         return dest
     p = Path(url_or_path)
     if not p.exists():
@@ -1025,34 +1068,79 @@ def _classify_tier(sources: list[str]) -> str:
 
 
 def _check_relevance_gate(audit: list[dict], *,
-                          max_stock_ratio: float = 0.40) -> None:
-    """Refuse to ship if too many shots fell to generic stock.
+                          max_stock_ratio: float = 0.75,
+                          max_placeholder_ratio: float = 0.25) -> None:
+    """Refuse to ship only when the imagery is genuinely broken.
 
-    Reads the per-shot audit dicts (already classified by
-    `_classify_tier`), counts how many landed in `stock` or
-    `placeholder`, and raises `RelevanceGateError` if the ratio
-    crosses `max_stock_ratio` (default 40%). Dumps the failing
-    audit to `state/last_failed_audit.json` so the operator can
-    see exactly which shots blew the gate.
+    Two distinct failure modes, since moment-matched stock FOOTAGE is now
+    an intentional, on-topic visual source (tight per-shot queries — a
+    "suburbs" beat pulls suburban-street clips), not a junk fallback:
 
-    Disable for one-off emergencies via the
-    --allow-stock-fallthrough CLI flag on this module."""
+      * placeholder shots — truly nothing on screen — fail above
+        ``max_placeholder_ratio`` (default 25%).
+      * stock + placeholder combined fail above ``max_stock_ratio``
+        (default 75%): that high a stock share with almost no curated /
+        news / entity anchor means the curated pipeline wholesale failed
+        (e.g. every image 404'd), which is the real "imagery doesn't match
+        the narration" case the gate exists to catch.
+
+    Dumps the failing audit to ``state/last_failed_audit.json``. Disable
+    for one-off emergencies via --allow-stock-fallthrough."""
     if not audit:
         return
-    bad = sum(1 for r in audit
-              if r.get("source_tier") in {"stock", "placeholder"})
-    ratio = bad / len(audit)
-    if ratio <= max_stock_ratio:
+    n = len(audit)
+    placeholders = sum(1 for r in audit
+                       if r.get("source_tier") == "placeholder")
+    stockish = sum(1 for r in audit
+                   if r.get("source_tier") in {"stock", "placeholder"})
+    ph_ratio = placeholders / n
+    stock_ratio = stockish / n
+    if ph_ratio <= max_placeholder_ratio and stock_ratio <= max_stock_ratio:
         return
     fail_path = Path("state/last_failed_audit.json")
     fail_path.parent.mkdir(parents=True, exist_ok=True)
     fail_path.write_text(json.dumps(audit, indent=2))
+    if ph_ratio > max_placeholder_ratio:
+        why = (f"{ph_ratio:.0%} of shots ({placeholders}/{n}) had NO media "
+               f"at all (placeholder)")
+    else:
+        why = (f"{stock_ratio:.0%} of shots ({stockish}/{n}) fell to stock / "
+               f"placeholder with almost no curated anchor — the image "
+               f"pipeline likely failed wholesale")
     raise RelevanceGateError(
-        f"{ratio:.0%} of shots ({bad}/{len(audit)}) fell to generic "
-        f"stock / placeholder — refusing to ship a video where the "
-        f"on-screen imagery doesn't match the narration. "
-        f"Inspect {fail_path} for the per-shot breakdown."
+        f"{why} — refusing to ship a video where the on-screen imagery "
+        f"doesn't match the narration. Inspect {fail_path} for the "
+        f"per-shot breakdown."
     )
+
+
+def _coalesce_still_segments(
+        flat: list[tuple[dict, float]]) -> list[tuple[dict, float]]:
+    """Merge consecutive still-image sub-cuts that point at the SAME file
+    into one segment with their durations summed.
+
+    Today's packages reuse a handful of curated photos across many shots
+    (e.g. one scratch-off-ticket photo on six beats). Rendered naively,
+    each beat became its own segment: the Ken Burns pan jumped back to its
+    start and a whoosh fired on every shot boundary, so an unchanging photo
+    looked like a string of random cuts. Collapsing identical back-to-back
+    stills into a single continuous hold removes the resets and the spurious
+    cuts. Total timeline length is unchanged (durations are summed), so the
+    audio/caption sync downstream is unaffected."""
+    merged: list[tuple[dict, float]] = []
+    for clip, dur in flat:
+        if merged:
+            pclip, pdur = merged[-1]
+            same_still = bool(
+                clip.get("is_image") and pclip.get("is_image")
+                and not clip.get("is_placeholder")
+                and not pclip.get("is_placeholder")
+                and clip.get("path") and clip.get("path") == pclip.get("path"))
+            if same_still:
+                merged[-1] = (pclip, pdur + dur)
+                continue
+        merged.append((clip, dur))
+    return merged
 
 
 def build_timed_top(
@@ -1076,11 +1164,17 @@ def build_timed_top(
 
     all_segments: list[Path] = []
     cut_times: list[float] = []
+    # Sub-cuts are collected here across ALL shots first, then a coalescing
+    # pass merges identical back-to-back stills before rendering (see
+    # _coalesce_still_segments). Rendering deferred out of the shot loop.
+    flat_plan: list[tuple[dict, float]] = []
 
     # How long a still image is allowed to stay on screen before it
     # has to hand off to stock. Matches SUB_CUT_TARGET so video and
-    # image sub-cuts run uniform 2.0s and the cadence stays steady.
-    IMAGE_MAX_DUR = 2.0
+    # image sub-cuts run uniform ~4s and the cadence stays steady —
+    # a real on-topic photo held ~4s with a slow Ken Burns pan reads
+    # far better than the same photo flashed for 2s.
+    IMAGE_MAX_DUR = 4.0
 
     # One-shot per-render calls to topic_video / topic_media. Returns
     # pools of on-topic media. Each shot picks pool entries whose
@@ -1099,6 +1193,15 @@ def build_timed_top(
     # not 12. Verified images only — `media_funnel.search()` runs
     # every URL through entity_media.url_is_image() before returning.
     news_image_map: dict[str, str] = {}
+    # The funnel returns a RANKED LIST per entity. We used to keep only
+    # cands[0] (one photo per entity) and throw the rest away — so the
+    # second pig photo and the interview thumbnail it found never reached
+    # the screen. Keep the top few as a pool of real story media, fetched
+    # once and woven into the sub-cut scheduler ahead of generic stock.
+    funnel_extras: list[dict] = []
+    _funnel_seen: set[str] = set()
+    _FUNNEL_PER_ENTITY = 4
+    _FUNNEL_TOTAL_CAP = 10
     try:
         import media_funnel
         unique_queries: dict[str, str] = {}    # news_query -> news_angle
@@ -1119,10 +1222,29 @@ def build_timed_top(
                 print(f"      [media_funnel] {nq!r} fanout failed: "
                       f"{type(e).__name__}: {str(e)[:80]}")
                 cands = []
-            if cands and cands[0].score >= 0.4:
-                news_image_map[nq] = cands[0].url
+            good = [c for c in (cands or []) if c.score >= 0.4][:_FUNNEL_PER_ENTITY]
+            if good:
+                news_image_map[nq] = good[0].url
                 print(f"      [media_funnel] {nq!r} -> "
-                      f"{cands[0].source} score={cands[0].score:.2f}")
+                      f"{good[0].source} score={good[0].score:.2f} "
+                      f"(+{len(good) - 1} more kept)")
+                # Fetch the extras now so they're a usable image pool.
+                for c in good:
+                    if len(funnel_extras) >= _FUNNEL_TOTAL_CAP:
+                        break
+                    if c.url in _funnel_seen:
+                        continue
+                    _funnel_seen.add(c.url)
+                    try:
+                        p = _fetch_image(c.url, Path("/tmp/shot_images"))
+                        funnel_extras.append({
+                            "path": str(p), "title": nq,
+                            "source": "news_funnel", "is_image": True,
+                            "uses": 0, "width": W, "height": HALF_H,
+                        })
+                    except Exception as e:  # noqa: BLE001
+                        print(f"      [media_funnel] extra fetch fail "
+                              f"{c.url[:50]}: {e}")
             elif cands:
                 print(f"      [media_funnel] {nq!r}: best score "
                       f"{cands[0].score:.2f} below 0.4 threshold; skip")
@@ -1132,6 +1254,67 @@ def build_timed_top(
     # fresh — across renders the cached video files are reused, but
     # the in-process "we already tried this shot" set must not leak.
     _SUPPLEMENTARY_DONE.clear()
+
+    # Pass 1: resolve each shot's OWN trusted still — an operator image_url
+    # or a news-funnel photo — downloading once here. None when the shot has
+    # neither. A failed download just yields None (we hold a neighbour's
+    # photo instead of hard-failing or dropping to generic footage).
+    own_trusted: list[dict | None] = []
+    for shot in shots:
+        clip: dict | None = None
+        try:
+            clip = _resolve_image(shot)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [image FAILED, will hold neighbour] "
+                  f"{str(shot.image)[:60]}: {e}")
+            clip = None
+        if clip is None and shot.news_query \
+                and shot.news_query in news_image_map:
+            try:
+                p = _fetch_image(news_image_map[shot.news_query],
+                                 Path("/tmp/shot_images"))
+                clip = {"path": str(p), "is_image": True,
+                        "duration": 999.0, "width": W, "height": HALF_H,
+                        "source": "news_funnel",
+                        "title": shot.news_query[:80]}
+            except Exception as e:  # noqa: BLE001
+                print(f"      [news_funnel] download failed for "
+                      f"{shot.news_query!r}: {e}")
+                clip = None
+        own_trusted.append(clip)
+
+    # Nearest-trusted fill. An image-led story must never drop a no-image
+    # shot to the generic topic_video pool — which matched clips on a stray
+    # geo word ("Connecticut" -> a Reagan rally) or a loose phrase ("dog
+    # catcher" -> a 1924 cartoon). Each shot without its own photo holds the
+    # nearest trusted one: the most recent PRIOR still, or — for leading
+    # shots that have nothing before them — the next upcoming still. Only
+    # when the WHOLE story has zero trusted stills does `held` stay None and
+    # the topic_video / topic_media / stock path below take over. Coalescing
+    # then merges adjacent identical holds into one continuous pan.
+    held: list[dict | None] = list(own_trusted)
+    prev: dict | None = None
+    for idx in range(len(held)):
+        if own_trusted[idx] is not None:
+            prev = own_trusted[idx]
+        elif prev is not None:
+            held[idx] = prev
+    nxt: dict | None = None
+    for idx in range(len(held) - 1, -1, -1):
+        if own_trusted[idx] is not None:
+            nxt = own_trusted[idx]
+        elif held[idx] is None and nxt is not None:
+            held[idx] = nxt
+
+    # Cross-shot variety state. last_path = the image currently on screen
+    # (so the next sub-cut never repeats it, even across a shot boundary);
+    # global_used = how many times each image has aired, so we always reach
+    # for the least-shown clip instead of cutting back to the same photo.
+    last_path: str = ""
+    global_used: dict[str, int] = {}
+    # Every image/clip path shown ANYWHERE in this video. A visual is used
+    # at most once — when we'd otherwise repeat, we pull fresh stock instead.
+    used_paths: set[str] = set()
 
     for i, (shot, start_t) in enumerate(zip(shots, shot_times)):
         end_t = shot_times[i + 1] if i + 1 < len(shot_times) else total_dur
@@ -1143,143 +1326,83 @@ def build_timed_top(
         #   2. Image only               -> image extended to full window
         #   3. Stock only               -> existing multi-cut behavior
         plan: list[tuple[dict, float]] = []
-        image_clip = _resolve_image(shot)
-        # News-image funnel result: if the entity_media LLM tagged
-        # this shot with a news_query AND the funnel found a verified
-        # photo for that entity, use it now — ahead of the
-        # topic_video pool. This is the path that catches the
-        # "Brad Paisley" / "Hunter the kangaroo" / "Mark Kohlhorst"
-        # current-news cases that Wikipedia + Commons + Pexels miss.
-        if image_clip is None and shot.news_query \
-                and shot.news_query in news_image_map:
-            news_url = news_image_map[shot.news_query]
-            try:
-                p = _fetch_image(news_url, Path("/tmp/shot_images"))
-                image_clip = {"path": str(p), "duration": 999.0,
-                              "width": W, "height": HALF_H,
-                              "source": "news_funnel",
-                              "title": shot.news_query[:80]}
-            except Exception as e:  # noqa: BLE001
-                print(f"      [news_funnel] download failed for "
-                      f"{shot.news_query!r}: {e}")
-        # Operator-supplied image wins. Otherwise pull a pool clip
-        # scored against this shot's tokens. Fall through to topic_media
-        # stills and then stock only when the pool is empty.
-        topic_video_clip = None
-        if image_clip is None and topic_video_pool:
-            topic_video_clip = _pick_pool_clip(topic_video_pool, shot)
-            if topic_video_clip:
-                print(f"      [topic_video] shot {i+1} '{shot.phrase[:30]}' -> "
-                      f"{topic_video_clip['title'][:50]!r} @ seek={topic_video_clip['seek']:.0f}s")
-        if image_clip is None and topic_video_clip is None:
-            image_clip = _resolve_topic_media(shot, Path("/tmp/shot_images"))
+        # This shot's image: its own trusted still if it has one, else the
+        # nearest neighbour's (held), else None when the whole story has no
+        # curated imagery — see the two-pass resolution above the loop.
+        image_clip = held[i]
+        if image_clip is not None and own_trusted[i] is None:
+            print(f"      [hold] shot {i+1} '{shot.phrase[:30]}' -> nearest "
+                  f"relevant image {Path(image_clip['path']).name}")
+
+        # ── Build this shot's sub-cuts ──────────────────────────────────
+        # Rules (viewer): (1) no image on screen longer than IMAGE_MAX_DUR
+        # (~4s); (2) NEVER show the same visual twice anywhere in the video;
+        # (3) when we'd otherwise repeat, cut in FRESH stock footage to break
+        # the monotony. We assemble DISTINCT, not-yet-used clips in priority
+        # order — the shot's own/held still, then real funnel photos, then an
+        # entity still, then pool stills, then fresh on-query stock — and lay
+        # one per <=4s slot. Only if every source is exhausted do we fall
+        # back to an earlier clip.
         has_stock = bool(shot.queries or shot.pexels_query or shot.clip)
+        n_cuts = max(1, math.ceil(seg_dur / IMAGE_MAX_DUR))
+        slot_dur = seg_dur / n_cuts
 
-        if topic_video_clip:
-            # Topic-video clips claim the full shot window. The clip is
-            # already on-topic; padding it with generic stock would only
-            # dilute the visual continuity.
-            available = max(0.0,
-                            float(topic_video_clip["duration"])
-                            - float(topic_video_clip.get("seek", 0.0)))
-            # Cap each topic-video sub-cut at SUB_CUT_TARGET. Without
-            # this, a 10s shot got 10 unbroken seconds from one source
-            # clip — even when there was motion, the lack of cuts read
-            # as a static frame. Capping forces the round-robin loop
-            # below to pull additional pool clips and produce the same
-            # rapid-cut feel the stock path already had.
-            vid_dur = min(seg_dur, available, SUB_CUT_TARGET)
-            plan.append((topic_video_clip, vid_dur))
-            remaining = seg_dur - vid_dur
-            # Fill the rest of the shot by ALTERNATING video and image
-            # pool entries. Images are cheaper to source and almost
-            # always on-topic, and alternating breaks up the visual
-            # monotony of a single source streaming for 5+ seconds.
-            # Image dur is capped at IMAGE_MAX_DUR (Ken Burns gets
-            # boring past ~2s); video dur stays at SUB_CUT_TARGET.
-            # Track images already used in this shot so the picker
-            # never returns the same one back-to-back even if it
-            # happens to be the highest-scoring pool entry.
-            used_image_paths: set[str] = set()
-            fill_idx = 1
-            while remaining > 0.3:
-                want_image = (fill_idx % 2 == 1 and topic_image_pool)
-                placed = False
-                if want_image:
-                    img = _pick_pool_image(topic_image_pool, shot,
-                                            exclude_paths=used_image_paths)
-                    if img:
-                        fill = min(remaining, IMAGE_MAX_DUR)
-                        if fill > 0.3:
-                            plan.append((img, fill))
-                            remaining -= fill
-                            fill_idx += 1
-                            placed = True
-                            used_image_paths.add(img["path"])
-                            print(f"      [topic_image] shot {i+1} fill -> "
-                                  f"{img['title'][:50]!r} ({fill:.1f}s)")
-                if not placed and topic_video_pool:
-                    nxt = _pick_pool_clip(topic_video_pool, shot)
-                    if nxt:
-                        nxt_avail = max(0.0,
-                                        float(nxt["duration"])
-                                        - float(nxt.get("seek", 0.0)))
-                        fill = min(remaining, nxt_avail, SUB_CUT_TARGET)
-                        if fill > 0.3:
-                            plan.append((nxt, fill))
-                            remaining -= fill
-                            fill_idx += 1
-                            placed = True
-                # Last-ditch: try the image pool even if it wasn't
-                # this slot's turn, so we don't bail on the round-robin
-                # just because the video pool ran out of clips that
-                # fit the remaining window.
-                if not placed and not want_image and topic_image_pool:
-                    img = _pick_pool_image(topic_image_pool, shot,
-                                            exclude_paths=used_image_paths)
-                    if img:
-                        fill = min(remaining, IMAGE_MAX_DUR)
-                        if fill > 0.3:
-                            plan.append((img, fill))
-                            remaining -= fill
-                            fill_idx += 1
-                            placed = True
-                            used_image_paths.add(img["path"])
-                            print(f"      [topic_image] shot {i+1} fill -> "
-                                  f"{img['title'][:50]!r} ({fill:.1f}s)")
-                if not placed:
-                    break
-        elif image_clip and has_stock:
-            image_dur = min(IMAGE_MAX_DUR, seg_dur)
-            plan.append((image_clip, image_dur))
-            remaining = seg_dur - image_dur
-        elif image_clip:
-            plan.append((image_clip, seg_dur))
-            remaining = 0.0
-        else:
-            remaining = seg_dur
+        ordered: list[dict] = []
+        seen: set[str] = set()
 
-        if remaining > 0.3:
-            n_cuts = max(1, round(remaining / SUB_CUT_TARGET))
-            cut_dur = remaining / n_cuts
-            stock_clips: list[dict] = []
+        def _add_cand(clip: dict | None) -> bool:
+            p = clip.get("path") if clip else None
+            if not p or p in seen or p in used_paths:
+                return False
+            ordered.append(clip)
+            seen.add(p)
+            return True
+
+        # own/held still leads (skipped automatically if already shown),
+        # then the real story photos the funnel found.
+        _add_cand(image_clip)
+        for fx in funnel_extras:
+            _add_cand(fx)
+        # Top up to n_cuts with distinct, never-used media: entity still,
+        # then pool stills, then FRESH on-query stock (a couple spare so a
+        # repeat is never forced).
+        if len(ordered) < n_cuts:
+            _add_cand(_resolve_topic_media(shot, Path("/tmp/shot_images")))
+        guard = 0
+        while len(ordered) < n_cuts and topic_image_pool and guard < 12:
+            guard += 1
+            if not _add_cand(_pick_pool_image(
+                    topic_image_pool, shot, exclude_paths=seen | used_paths)):
+                break
+        if len(ordered) < n_cuts and has_stock:
             try:
-                stock_clips = _resolve_stock(shot, cache, n_target=n_cuts)
+                for sc in _resolve_stock(
+                        shot, cache, n_target=n_cuts - len(ordered) + 2):
+                    _add_cand(sc)
+                    if len(ordered) >= n_cuts:
+                        break
             except Exception as e:  # noqa: BLE001
                 print(f"      [stock failed] {shot.phrase[:40]!r}: {e}")
-            if stock_clips:
-                for j in range(n_cuts):
-                    plan.append((stock_clips[j % len(stock_clips)], cut_dur))
+
+        for slot in range(n_cuts):
+            if slot < len(ordered):
+                pick = ordered[slot]
+            elif ordered:
+                # Every source exhausted (rare) — reuse the least-aired
+                # earlier clip, never the one currently on screen.
+                pool_sorted = sorted(
+                    ordered, key=lambda c: global_used.get(c.get("path", ""), 0))
+                pick = next((c for c in pool_sorted
+                             if c.get("path", "") != last_path), pool_sorted[0])
             else:
-                # Stock provider unreachable. Never stretch the image
-                # past its cap — long static holds feel dead. Use a
-                # slate-blue placeholder for the remainder so the
-                # timeline length is preserved. In real CI this path
-                # never fires because stock keys are configured.
-                placeholder = {"is_image": True, "is_placeholder": True,
-                               "path": "", "width": W, "height": HALF_H,
-                               "source": "placeholder"}
-                plan.append((placeholder, remaining))
+                pick = {"is_image": True, "is_placeholder": True, "path": "",
+                        "width": W, "height": HALF_H, "source": "placeholder"}
+            plan.append((pick, slot_dur))
+            pp = pick.get("path", "")
+            if pp:
+                used_paths.add(pp)
+                global_used[pp] = global_used.get(pp, 0) + 1
+            last_path = pp
 
         if audit is not None:
             # Summarise this shot's media decisions. Sources are tagged
@@ -1303,55 +1426,64 @@ def build_timed_top(
                 "sub_cut_count": len(plan),
             })
 
-        # Render each planned sub-cut.
-        sub_t = start_t
-        for j, (clip, dur) in enumerate(plan):
-            sub = workdir / f"top_{i:02d}_{j:02d}.mp4"
+        # Defer rendering: stash this shot's sub-cuts in the global flat
+        # plan. A coalescing pass (after the shot loop) then merges any
+        # still image that repeats across consecutive shots into ONE
+        # continuous Ken Burns hold before rendering.
+        for clip, dur in plan:
+            flat_plan.append((clip, dur))
 
-            if clip.get("is_placeholder"):
-                # No image, no stock — just paint a slate background for
-                # this segment so the timeline doesn't drift.
-                run([
-                    "ffmpeg", "-y", "-loglevel", "error",
-                    "-f", "lavfi", "-i",
-                    f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
-                    "-t", f"{dur:.3f}",
-                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
-                    "-pix_fmt", "yuv420p",
-                    str(sub),
-                ])
-            elif clip.get("is_image"):
-                # Still image — Ken Burns it. Alternate zoom-in vs
-                # zoom-out based on cut index so successive image shots
-                # don't all do the same move. We work at 2x then scale
-                # down inside the zoompan filter so the zoom doesn't
-                # quantize to ugly stair-stepped frames.
-                frames = max(2, int(dur * FPS))
-                move = "zoom_in" if (i + j) % 2 == 0 else "zoom_out"
-                if move == "zoom_in":
-                    z_expr = f"min(zoom+0.0006,1.18)"
-                else:
-                    z_expr = f"if(eq(on,0),1.18,max(zoom-0.0006,1.0))"
-                # Build the frame in two layers. First input is the
-                # image (may have alpha → must NOT become the
-                # background); second is a solid colored canvas of the
-                # correct size we generate on the fly with `color=`.
-                # We overlay the fitted image onto the canvas, then
-                # zoompan that. This guarantees the encoded H.264
-                # frame has no transparent regions even when the
-                # source PNG is a logo with a transparent margin —
-                # the alpha gets composited against the non-black
-                # canvas instead of the H.264 void.
-                bg_color = "0x1f2a3a"  # medium-dark slate blue, clearly NOT black
-                filt = (
-                    f"[1:v]scale={W*2}:{top_h*2}[canvas];"
-                    f"[0:v]scale={W*2}:{top_h*2}:force_original_aspect_ratio=decrease[fg];"
-                    f"[canvas][fg]overlay=(W-w)/2:(H-h)/2:format=auto[stage];"
-                    f"[stage]zoompan=z='{z_expr}'"
-                    f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
-                    f":d={frames}:s={W}x{top_h}:fps={FPS},"
-                    f"setsar=1[out]"
-                )
+    # Merge identical back-to-back stills, then render the merged timeline.
+    merged_plan = _coalesce_still_segments(flat_plan)
+    sub_t = 0.0
+    for idx, (clip, dur) in enumerate(merged_plan):
+        sub = workdir / f"top_{idx:04d}.mp4"
+
+        if clip.get("is_placeholder"):
+            # No image, no stock — just paint a slate background for
+            # this segment so the timeline doesn't drift.
+            run([
+                "ffmpeg", "-y", "-loglevel", "error",
+                "-f", "lavfi", "-i",
+                f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
+                "-t", f"{dur:.3f}",
+                "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+                "-pix_fmt", "yuv420p",
+                str(sub),
+            ])
+        elif clip.get("is_image"):
+            # Still image — Ken Burns it. Alternate zoom-in vs zoom-out
+            # by segment index so successive image shots don't all do the
+            # same move. We work at 2x then scale down inside the zoompan
+            # filter so the zoom doesn't quantize to ugly stair-stepped
+            # frames.
+            frames = max(2, int(dur * FPS))
+            move = "zoom_in" if idx % 2 == 0 else "zoom_out"
+            if move == "zoom_in":
+                z_expr = f"min(zoom+0.0006,1.18)"
+            else:
+                z_expr = f"if(eq(on,0),1.18,max(zoom-0.0006,1.0))"
+            # Build the frame in two layers. First input is the
+            # image (may have alpha → must NOT become the
+            # background); second is a solid colored canvas of the
+            # correct size we generate on the fly with `color=`.
+            # We overlay the fitted image onto the canvas, then
+            # zoompan that. This guarantees the encoded H.264
+            # frame has no transparent regions even when the
+            # source PNG is a logo with a transparent margin —
+            # the alpha gets composited against the non-black
+            # canvas instead of the H.264 void.
+            bg_color = "0x1f2a3a"  # medium-dark slate blue, clearly NOT black
+            filt = (
+                f"[1:v]scale={W*2}:{top_h*2}[canvas];"
+                f"[0:v]scale={W*2}:{top_h*2}:force_original_aspect_ratio=decrease[fg];"
+                f"[canvas][fg]overlay=(W-w)/2:(H-h)/2:format=auto[stage];"
+                f"[stage]zoompan=z='{z_expr}'"
+                f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+                f":d={frames}:s={W}x{top_h}:fps={FPS},"
+                f"setsar=1[out]"
+            )
+            try:
                 run([
                     "ffmpeg", "-y", "-loglevel", "error",
                     "-loop", "1", "-i", clip["path"],
@@ -1360,64 +1492,90 @@ def build_timed_top(
                     "-t", f"{dur:.3f}",
                     "-filter_complex", filt,
                     "-map", "[out]",
-                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                    "-pix_fmt", "yuv420p",
+                    "-an", "-c:v", "libx264", "-preset", "veryfast",
+                    "-crf", "20", "-pix_fmt", "yuv420p",
                     str(sub),
                 ])
-            else:
-                clip_dur = float(clip.get("duration") or 10)
-                # Topic-video clips carry their own seek offset (set by
-                # _pick_pool_clip — skips past title cards, telemetry,
-                # and intro dead-air so successive uses of the same
-                # source clip show different moments). Stock clips just
-                # use the existing "vary seek by sub-cut index" logic
-                # to stop showing the same opening frames.
-                # Topic-video pool clips also carry a list of
-                # alternative juicy windows; if the first seek lands
-                # on a black/uniform frame (Range-truncated webm
-                # reporting a longer duration than its actual data),
-                # we retry with the next window.
-                candidates_seek: list[float]
-                if "seek" in clip:
-                    if clip.get("juicy"):
-                        # Sort juicy windows by distance from the
-                        # initially-chosen seek so the retry stays
-                        # close to the requested moment when possible.
-                        primary = float(clip["seek"])
-                        candidates_seek = sorted(
-                            clip["juicy"], key=lambda s: abs(s - primary))
-                    else:
-                        candidates_seek = [float(clip["seek"])]
+            except Exception as e:  # noqa: BLE001
+                # A single corrupt/truncated image (e.g. a Wikimedia 429
+                # saved a partial JPEG) must NOT crash the whole render —
+                # paint a slate for this beat and carry on.
+                print(f"      [image sub-cut failed -> slate] "
+                      f"{Path(clip.get('path', '?')).name}: {e}")
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-f", "lavfi", "-i",
+                    f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
+                    "-t", f"{dur:.3f}",
+                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+                    "-pix_fmt", "yuv420p", str(sub),
+                ])
+        else:
+            clip_dur = float(clip.get("duration") or 10)
+            # Topic-video clips carry their own seek offset (set by
+            # _pick_pool_clip — skips past title cards, telemetry,
+            # and intro dead-air so successive uses of the same
+            # source clip show different moments). Stock clips just
+            # use the existing "vary seek by sub-cut index" logic
+            # to stop showing the same opening frames.
+            # Topic-video pool clips also carry a list of
+            # alternative juicy windows; if the first seek lands
+            # on a black/uniform frame (Range-truncated webm
+            # reporting a longer duration than its actual data),
+            # we retry with the next window.
+            candidates_seek: list[float]
+            if "seek" in clip:
+                if clip.get("juicy"):
+                    # Sort juicy windows by distance from the
+                    # initially-chosen seek so the retry stays
+                    # close to the requested moment when possible.
+                    primary = float(clip["seek"])
+                    candidates_seek = sorted(
+                        clip["juicy"], key=lambda s: abs(s - primary))
                 else:
-                    candidates_seek = [0.3 + j * 1.5]
+                    candidates_seek = [float(clip["seek"])]
+            else:
+                candidates_seek = [0.3 + idx * 1.5]
 
-                rendered = False
-                for attempt, seek in enumerate(candidates_seek[:3]):
-                    seek = min(seek, max(0.0, clip_dur - dur - 0.3))
+            rendered = False
+            for attempt, seek in enumerate(candidates_seek[:3]):
+                seek = min(seek, max(0.0, clip_dur - dur - 0.3))
+                try:
                     run([
                         "ffmpeg", "-y", "-loglevel", "error",
                         "-ss", f"{seek:.3f}", "-i", clip["path"],
                         "-t", f"{dur:.3f}",
                         "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
                                f"crop={W}:{top_h},setsar=1,fps={FPS}",
-                        "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                        str(sub),
+                        "-an", "-c:v", "libx264", "-preset", "veryfast",
+                        "-crf", "20", str(sub),
                     ])
-                    if _sub_cut_is_blank(sub):
-                        print(f"      [sub-cut blank @ seek={seek:.1f}s, "
-                              f"retry {attempt+1}/3] {Path(clip['path']).name}")
-                        continue
-                    rendered = True
-                    break
-                # If every juicy window on this clip rendered blank,
-                # we keep the last attempt rather than dropping the
-                # sub-cut — better a weak frame than a missing one in
-                # the timeline.
-                if not rendered:
-                    print(f"      [sub-cut all retries blank, keeping last attempt]")
-            all_segments.append(sub)
-            cut_times.append(sub_t)
-            sub_t += dur
+                except Exception as e:  # noqa: BLE001
+                    print(f"      [stock sub-cut ffmpeg fail, retry "
+                          f"{attempt+1}/3] {Path(clip.get('path','?')).name}: {e}")
+                    continue
+                if _sub_cut_is_blank(sub):
+                    print(f"      [sub-cut blank @ seek={seek:.1f}s, "
+                          f"retry {attempt+1}/3] {Path(clip['path']).name}")
+                    continue
+                rendered = True
+                break
+            # If nothing rendered (every attempt blank OR ffmpeg errored on a
+            # corrupt clip), paint a slate so the timeline stays intact and a
+            # single bad clip never crashes the whole video.
+            if not rendered or not sub.exists():
+                print(f"      [sub-cut unrenderable -> slate]")
+                run([
+                    "ffmpeg", "-y", "-loglevel", "error",
+                    "-f", "lavfi", "-i",
+                    f"color=c=0x1f2a3a:s={W}x{top_h}:r={FPS}",
+                    "-t", f"{dur:.3f}",
+                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+                    "-pix_fmt", "yuv420p", str(sub),
+                ])
+        all_segments.append(sub)
+        cut_times.append(sub_t)
+        sub_t += dur
 
     list_file = workdir / "top_list.txt"
     list_file.write_text("\n".join(f"file '{s}'" for s in all_segments))
@@ -1986,6 +2144,20 @@ def build_video(
             except Exception as e:  # noqa: BLE001
                 print(f"      [themed_bottom failed: {e}] -> gameplay")
                 bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
+            else:
+                # Rising-water end-goal ONLY over the procedural themed
+                # background (the stormy/rain look where it makes sense) —
+                # never over Minecraft / gameplay clips. Rises once across
+                # the WHOLE clip (rate = total_dur), so it never loops.
+                try:
+                    water_bottom = workdir / "bottom_water.mp4"
+                    themed_bottom.apply_goal_water(
+                        bottom, water_bottom, total_dur)
+                    bottom = water_bottom
+                    print("      [goal water] applied to themed bottom")
+                except Exception as e:  # noqa: BLE001
+                    print(f"      [goal water skipped, keeping themed bottom: "
+                          f"{type(e).__name__}: {e}]", flush=True)
         else:
             print(f"[5/9] bottom: {gameplay_tag} gameplay", flush=True)
             bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)

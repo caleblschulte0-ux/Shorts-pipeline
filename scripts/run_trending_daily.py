@@ -101,6 +101,43 @@ def _slug(s: str, n: int = 40) -> str:
     return "".join(c if c.isalnum() else "_" for c in s.lower())[:n]
 
 
+# Pre-render illustration gate. A package whose shots mostly fall to bare
+# keyword stock (no real image_url, no fundable named entity) is the one
+# that ships off-topic imagery — a serval beat showing a leopard, a
+# "conservation officers" beat showing fishermen. We quarantine it BEFORE
+# burning render time, ship the rest of the slate, and report it so the
+# author can pin real photos. Tunable without a code change via the env
+# var; set to 0 to disable. This complements the render-time
+# RelevanceGateError in make_explainer_stacked (which judges the ACTUAL
+# resolved media post-render) — this one is the cheap pre-flight.
+MIN_ILLUSTRATION_PCT = float(os.environ.get("MIN_ILLUSTRATION_PCT", "50"))
+
+
+def _illustration_quarantine(pkg: dict) -> str | None:
+    """Return a human-readable quarantine reason if this package's
+    illustration coverage is below MIN_ILLUSTRATION_PCT, else None.
+
+    Best-effort: any failure in the validator (no LLM key, network out,
+    bad JSON) returns None so a flaky validator never blocks a render —
+    the render-time relevance gate is the backstop."""
+    if MIN_ILLUSTRATION_PCT <= 0:
+        return None
+    try:
+        import entity_media
+        report = entity_media.validate_package(pkg)
+    except Exception as e:  # noqa: BLE001
+        print(f"[quarantine] validator error, allowing render: "
+              f"{type(e).__name__}: {str(e)[:80]}", flush=True)
+        return None
+    illus = report.get("illustration_pct", 100.0)
+    if illus >= MIN_ILLUSTRATION_PCT:
+        return None
+    bad = report.get("keyword_only_shots", [])
+    return (f"illustration coverage {illus}% < {MIN_ILLUSTRATION_PCT}% — "
+            f"{len(bad)} shot(s) have no real image and would fall to "
+            f"off-topic keyword stock: {bad}")
+
+
 # Baseline reach hashtags appended to every short. Package-specific
 # topical hashtags come from the routine (pkg['hashtags']) and rank
 # higher in the final list — these are the always-on reach tags that
@@ -212,6 +249,15 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         "package_path": pkg.get("_path"),
     }
     t_start = time.time()
+    # Pre-render illustration gate. Quarantine (don't render) a package
+    # that would ship off-topic stock; the batch continues without it.
+    reason = _illustration_quarantine(pkg)
+    if reason is not None:
+        result["error"] = f"quarantined: {reason}"
+        result["quarantined"] = True
+        result["elapsed_seconds"] = round(time.time() - t_start, 1)
+        print(f"[{result['topic']!r}] QUARANTINED — {reason}", flush=True)
+        return result
     # BaseException not Exception — catches SystemExit too, so a
     # rogue sys.exit() in any downstream module can't kill the whole
     # batch silently. KeyboardInterrupt still propagates (Ctrl-C in
@@ -293,6 +339,15 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
         result["title"] = pkg.get("title", topic.query)
         result["package_path"] = str(pkg_path.relative_to(REPO))
 
+        # 1b. Pre-render illustration gate (same as the package path).
+        reason = _illustration_quarantine(pkg)
+        if reason is not None:
+            result["error"] = f"quarantined: {reason}"
+            result["quarantined"] = True
+            result["elapsed_seconds"] = round(time.time() - t_start, 1)
+            print(f"[{topic.query!r}] QUARANTINED — {reason}", flush=True)
+            return result
+
         # 2. Render to mp4.
         out_path = OUTPUT_DIR / f"daily_{ts}_{slug}.mp4"
         print(f"[{topic.query!r}] rendering -> {out_path}", flush=True)
@@ -330,12 +385,14 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
 
 def format_report(date_str: str, results: list[dict]) -> str:
     success = [r for r in results if r["ok"]]
-    failed = [r for r in results if not r["ok"]]
+    quarantined = [r for r in results if r.get("quarantined")]
+    failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
     lines = [
         f"# Daily Trending Shorts — {date_str}",
         "",
         f"- queued: **{len(results)}**",
         f"- succeeded: **{len(success)}**",
+        f"- quarantined (off-topic imagery): **{len(quarantined)}**",
         f"- failed: **{len(failed)}**",
         "",
     ]
@@ -351,6 +408,13 @@ def format_report(date_str: str, results: list[dict]) -> str:
             if r.get("video_url"):
                 lines.append(f"  - {r['video_url']}")
             lines.append(f"  - took: {r['elapsed_seconds']}s")
+        lines.append("")
+    if quarantined:
+        lines.append("## Quarantined (off-topic imagery — fix & re-author)")
+        for r in quarantined:
+            lines.append(f"- **{r['topic']}**")
+            if r.get("error"):
+                lines.append(f"  - {r['error']}")
         lines.append("")
     if failed:
         lines.append("## Failed")
@@ -368,6 +432,10 @@ def main() -> int:
                     help="how many shorts to produce + post")
     ap.add_argument("--dry-run", action="store_true",
                     help="render but don't upload")
+    ap.add_argument("--only", default="",
+                    help="render only packages whose slug/path/title contains "
+                         "this substring (case-insensitive) — e.g. --only "
+                         "wellington to preview one specific package")
     ap.add_argument("--no-schedule", action="store_true",
                     help="upload immediately instead of scheduling slots")
     ap.add_argument("--top-k-buffer", type=int, default=3,
@@ -446,6 +514,15 @@ def main() -> int:
     # to the most recent day's packages — far better than burning
     # through Groq's free tier on emergency script generation.
     src_dir, prewritten = (None, []) if args.force_llm else load_prewritten_packages()
+    if prewritten and args.only:
+        needle = args.only.lower()
+        prewritten = [
+            p for p in prewritten
+            if needle in (p.get("_path", "") + " " + p.get("slug", "")
+                          + " " + p.get("title", "")).lower()
+        ]
+        print(f"=== --only {args.only!r}: {len(prewritten)} package(s) match ===",
+              flush=True)
     if prewritten:
         rel = src_dir.relative_to(REPO) if src_dir else "(unknown)"
         print(f"=== using {len(prewritten)} pre-written packages from "
@@ -513,9 +590,17 @@ def main() -> int:
     REPORT_JSON.write_text(json.dumps(results, indent=2) + "\n")
     print(f"\n=== wrote {REPORT_PATH.name} + {REPORT_JSON.name} ===")
 
-    # Exit non-zero if anything failed so the workflow's failure
-    # counter bumps and we get a real notification.
-    failed = [r for r in results if not r["ok"]]
+    # Exit non-zero if anything genuinely FAILED so the workflow's
+    # failure counter bumps and we get a real notification. A
+    # quarantine is an intentional skip (off-topic imagery), not a
+    # crash — it must NOT bump the auto-pause counter, or a few
+    # un-illustratable packages would silence the whole pipeline.
+    quarantined = [r for r in results if r.get("quarantined")]
+    failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
+    if quarantined:
+        print(f"[run_trending_daily] {len(quarantined)} package(s) "
+              f"quarantined for off-topic imagery (slate shipped without "
+              f"them)", file=sys.stderr)
     if failed:
         print(f"[run_trending_daily] {len(failed)} of {len(results)} failed",
               file=sys.stderr)
