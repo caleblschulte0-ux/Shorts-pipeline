@@ -103,6 +103,15 @@ audit it against ALL of them:
     the burst) and the edges with the world (skyline, crowd, forest,
     army). Empty regions read as "loading", and viewers swipe.
 
+15. TELL A STORY, NOT JUST A MOMENT. Layer a 3-beat human arc on top of
+    the history: Act 1 — a calm beat that builds a BOND we care about (a
+    baker chatting with a girl at his stall; a stag grazing beside its
+    fawn). Act 2 — the event strikes and they react. Act 3 — they flee /
+    face it TOGETHER (hand in hand, the fawn at the stag's heels). The
+    stakes come from the bond: we're not watching a figure run, we're
+    hoping the TWO of them make it. A lone runner is a placeholder; a
+    couple fleeing is a story.
+
 POLISH IS THE DEFAULT. Every rule above ships in the FIRST version
 of a theme. "Make it polished" is never a follow-up request; an
 unpolished theme is an unfinished theme.
@@ -3945,13 +3954,17 @@ class _Pompeii(_Renderer):
             d.ellipse([a_["x"] - 2, a_["y"] - 2, a_["x"] + 2, a_["y"] + 2],
                       fill=(192, 186, 174, 160))
 
-        # HERO (protagonist): the SOLE red-cloaked merchant — same size as
-        # the crowd, but the only colour on the street, so the eye locks on.
-        running = 1.0 if q > 0.26 else 0.0
-        flee = _ease(max(0.0, min(1.0, (q - 0.26) / 0.52)))
+        # STORY: the red-cloaked merchant and his wife (teal) — they stand
+        # watching Vesuvius wake, then flee together hand in hand.
+        running = 1.0 if q > 0.24 else 0.0
+        flee = _ease(max(0.0, min(1.0, (q - 0.24) / 0.54)))
         hxp = W * 0.66 - flee * W * 0.56
-        _hero(d, hxp, ground, 16, t, run=running, face=-1,
-              cape=(175, 45, 40, 255))
+        wxp = hxp + 24
+        _hero(d, wxp, ground, 15, t, run=running, face=-1, cape=(70, 120, 170, 255))
+        if running:
+            d.line([(hxp + 5, ground - 15), (wxp - 5, ground - 14)],
+                   fill=(30, 26, 24, 255), width=3)   # clasped hands
+        _hero(d, hxp, ground, 16, t, run=running, face=-1, cape=(175, 45, 40, 255))
         return np.asarray(img, dtype=np.uint8)
 
 
@@ -4057,25 +4070,32 @@ class _GreatFire(_Renderer):
             d.ellipse([e["x"] - 2, e["y"] - 2, e["x"] + 2, e["y"] + 2],
                       fill=(255, 160, 60, a))
 
-        # HERO (protagonist): a Londoner hauling a handcart of belongings
-        # down the foreground street, the fire at their back the whole way.
+        # STORY: a baker chats with a girl at his stall; the spark catches
+        # the stall; the two of them flee together, hand in hand.
         hs = 18
-        flee = _ease(min(1.0, q / 0.92))
-        hx = W * 0.86 - flee * W * 0.76
-        cxp = hx + hs * 2.9                           # the cart trails behind
-        d.line([(cxp - 30, ground - 16), (hx + hs * 0.4, ground - hs * 0.9)],
-               fill=(48, 36, 26, 255), width=3)
-        d.rectangle([cxp - 30, ground - 22, cxp + 30, ground - 4], fill=(42, 32, 22, 255))
-        d.polygon([(cxp - 24, ground - 22), (cxp + 8, ground - 22),
-                   (cxp - 2, ground - 48), (cxp - 18, ground - 48)], fill=(62, 48, 32, 255))
-        for wcx in (cxp - 17, cxp + 17):             # rolling wheels w/ spokes
-            d.ellipse([wcx - 9, ground - 9, wcx + 9, ground + 9], fill=(22, 16, 12, 255))
-            for sp in range(4):
-                a = -t * 6 + sp * math.pi / 2
-                d.line([(wcx, ground), (wcx + 7 * math.cos(a), ground + 7 * math.sin(a))],
-                       fill=(46, 34, 24, 255), width=2)
-        _hero(d, hx, ground, hs, t, run=1.0, face=-1,
-              cape=(150, 40, 36, 255), lantern=True)   # red coat + swinging lantern
+        FLEE0 = 0.28
+        stall_x = W * 0.60
+        RED, TEAL = (160, 44, 38, 255), (60, 158, 146, 255)
+        if q < FLEE0:                                  # Act 1: the stall + the spark
+            _hero(d, stall_x - 16, ground, hs, t, run=0.0, face=1, cape=RED)  # baker
+            d.rectangle([stall_x - 46, ground - 30, stall_x + 46, ground - 4],
+                        fill=(54, 40, 28, 255))        # counter (in front of baker)
+            for px in (stall_x - 46, stall_x + 46):
+                d.line([(px, ground - 30), (px, ground - 80)], fill=(54, 40, 28, 255), width=4)
+            d.polygon([(stall_x - 58, ground - 80), (stall_x + 58, ground - 80),
+                       (stall_x + 46, ground - 94), (stall_x - 46, ground - 94)],
+                      fill=(122, 60, 50, 255))         # awning
+            _hero(d, stall_x + 36, ground, hs - 2, t, run=0.0, face=-1, cape=TEAL)  # girl
+            if q > 0.18:                               # the spark takes the stall
+                _flame(d, stall_x, ground - 30, 22 + 150 * (q - 0.18))
+        else:                                          # Act 2/3: run together
+            u = _ease((q - FLEE0) / (0.96 - FLEE0))
+            hx = stall_x - u * (stall_x - W * 0.05)
+            gx = hx + 26                               # the girl at his side
+            _hero(d, gx, ground, hs - 2, t, run=1.0, face=-1, cape=TEAL)
+            d.line([(hx + 5, ground - hs * 0.95), (gx - 5, ground - (hs - 2) * 0.95)],
+                   fill=(36, 28, 22, 255), width=3)    # clasped hands
+            _hero(d, hx, ground, hs, t, run=1.0, face=-1, cape=RED, lantern=True)
         return np.asarray(img, dtype=np.uint8)
 
 
@@ -4198,13 +4218,17 @@ class _Tunguska(_Renderer):
             d.ellipse([ds["x"] - r, ds["y"] - r, ds["x"] + r, ds["y"] + r],
                       fill=(70, 60, 55, a))
 
-        # HERO (protagonist): a deer grazing in the taiga that bolts toward
-        # camera when the blast hits — the one life we follow through it.
+        # STORY: a stag grazing beside its FAWN; the blast hits and the two
+        # bolt together, the fawn at its heels — we hope they both make it.
         flee = _ease(max(0.0, min(1.0, (q - 0.30) / 0.5)))
         run = 1.0 if q > 0.30 else 0.0
-        dx = W * 0.50 - flee * W * 0.24
-        dy = min(H - 24, ground + 6 + flee * 30)      # toward camera, stays in frame
-        _deer(d, dx, dy, 24 + 14 * flee, t, run=run, dirn=-1)  # pale stag pops on its own
+        sx = W * 0.50 - flee * W * 0.24
+        sy = min(H - 24, ground + 6 + flee * 30)
+        ssz = 24 + 14 * flee
+        fx = sx + ssz * 1.9 - flee * 12               # fawn trails just behind
+        fy = min(H - 18, sy - 4)
+        _deer(d, fx, fy, ssz * 0.6, t * 1.15, run=run, dirn=-1)
+        _deer(d, sx, sy, ssz, t, run=run, dirn=-1)
         return np.asarray(img, dtype=np.uint8)
 
 
