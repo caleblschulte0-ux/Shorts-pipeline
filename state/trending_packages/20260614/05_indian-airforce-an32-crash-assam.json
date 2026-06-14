@@ -1,0 +1,130 @@
+{
+  "version": 8,
+  "slug": "indian-airforce-an32-crash-assam",
+  "title": "5 Indian Air Force Pilots Are Dead. It Was a Training Flight.",
+  "hashtags": [
+    "IndianAirForce",
+    "AN32",
+    "Assam",
+    "Jorhat",
+    "planecrash",
+    "IAF",
+    "PrashantSingh",
+    "trainingaccident",
+    "India",
+    "airforcecrash",
+    "worldnews",
+    "militarynews",
+    "breakingnews"
+  ],
+  "script": "5 dead. A training flight? Yesterday morning at Jorhat Air Force Station in Assam, India, an AN-32 transport aircraft took off on a routine training sortie. Standard conditions. Ten a.m. departure. It never came back. The aircraft crashed at the station, and when rescuers reached the wreckage — visible as a plume of thick black smoke — 5 personnel were dead: Squadron Leader Prashant Singh, Flight Lieutenant Shubham Kumar, Sergeant Jitendra Sharma, Agniveervayu Khemaram Kumawat, and Agniveervayu Danish Alam. The co-pilot survived with injuries and is under treatment at an IAF facility. The Indian Air Force has flown AN-32s since 1984. A probe is underway. Could a 40-year-old aircraft on a routine morning flight be carrying this much risk?",
+  "shots": [
+    {
+      "phrase": "5 dead. A training flight?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+      "query": "military aircraft crash training flight smoke wreckage",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "Jorhat Air Force Station in Assam, India",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+      "query": "Indian Air Force base Jorhat Assam airstrip military",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "an AN-32 transport aircraft",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonov_An-32RE,_India_-_Air_Force_AN1983739.jpg",
+      "query": "Antonov AN-32 Indian Air Force transport turboprop aircraft",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "routine training sortie",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonov_An-32RE,_India_-_Air_Force_AN1983739.jpg",
+      "query": "military aircraft training flight sortie morning takeoff",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "It never came back.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+      "query": "plane crash military training accident aviation emergency",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "a plume of thick black smoke",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonov_An-32RE,_India_-_Air_Force_AN1983739.jpg",
+      "query": "aircraft crash fire smoke plume thick black emergency",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Squadron Leader Prashant Singh, Flight Lieutenant Shubham Kumar",
+      "query": "Indian Air Force officers military insignia rank uniform",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Sergeant Jitendra Sharma, Agniveervayu Khemaram Kumawat",
+      "query": "Indian Air Force crew personnel military training uniform",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The co-pilot survived with injuries",
+      "query": "crash survivor rescue hospital injured co-pilot",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The Indian Air Force has flown AN-32s since 1984",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+      "query": "AN-32 Indian Air Force fleet aging transport aircraft",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A probe is underway.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonov_An-32RE,_India_-_Air_Force_AN1983739.jpg",
+      "query": "aviation crash investigation evidence scene inquiry probe",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Could a 40-year-old aircraft on a routine morning flight be carrying this much risk?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+      "query": "aging military aircraft risk assessment old plane fleet India",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "5 dead.",
+      "text": "5 KILLED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "routine training sortie",
+      "text": "ROUTINE SORTIE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "It never came back.",
+      "text": "NEVER CAME BACK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Squadron Leader Prashant Singh",
+      "text": "SQN LDR PRASHANT SINGH",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "The co-pilot survived with injuries",
+      "text": "CO-PILOT SURVIVED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "flown AN-32s since 1984",
+      "text": "IN SERVICE 40 YEARS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "A probe is underway.",
+      "text": "INVESTIGATION OPEN",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "dark"
+}
