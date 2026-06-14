@@ -1,0 +1,133 @@
+{
+  "version": 8,
+  "slug": "midwest-derecho-june-2026",
+  "title": "One Storm Hit 8 States and Killed a Man. It Wasn't a Tornado.",
+  "hashtags": [
+    "midwestderecho",
+    "derecho",
+    "severestorm",
+    "Oshkosh",
+    "Illinois",
+    "Chicago",
+    "OHare",
+    "poweroutage",
+    "tornadowarning",
+    "stormchaser",
+    "extremeweather",
+    "Midwest",
+    "weathernews"
+  ],
+  "script": "8 states. One storm? On June 10th, a derecho — a rare, sustained line of thunderstorms — swept from Iowa through Illinois, Wisconsin, Michigan, and Indiana. Gusts hit 94 mph in Oshkosh, Wisconsin. In Des Moines, a tree fell on a man and killed him. The storm hit Chicago in two waves, forcing ground stops at O'Hare and Midway. Over 1,000 flights were delayed or canceled. Neighborhoods in Streator, Joliet, and Elgin were shredded. Two confirmed tornadoes near Chicago. Baseball-sized hail in Nebraska. 650,000 customers across 8 states lost power. As of Friday, 175,000 in Illinois still had none. A derecho is less dramatic than a tornado — no funnel cloud, no warning sirens — but could 94 mph in Oshkosh convince you otherwise?",
+  "shots": [
+    {
+      "phrase": "8 states. One storm?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado_Damage,_Illinois_2.JPG",
+      "query": "storm Midwest United States severe weather system map",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "a derecho — a rare, sustained line of thunderstorms",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greensburg_kansas_tornado.jpg",
+      "query": "derecho bow echo storm line supercell radar severe",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "swept from Iowa through Illinois, Wisconsin, Michigan, and Indiana",
+      "query": "severe storm path Midwest states map swath damage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Gusts hit 94 mph in Oshkosh, Wisconsin",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado_Damage,_Illinois_2.JPG",
+      "query": "storm wind damage trees down 90 mph gusts debris",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "a tree fell on a man and killed him",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greensburg_kansas_tornado.jpg",
+      "query": "fallen tree storm damage crushed debris Des Moines Iowa",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "forcing ground stops at O'Hare and Midway",
+      "query": "O'Hare airport tarmac planes grounded storm delay",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Over 1,000 flights were delayed or canceled",
+      "query": "flight departure board delays canceled hundreds airport",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Neighborhoods in Streator, Joliet, and Elgin were shredded",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado_Damage,_Illinois_2.JPG",
+      "query": "Illinois suburb storm destruction tornado damage neighborhood",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Two confirmed tornadoes near Chicago",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greensburg_kansas_tornado.jpg",
+      "query": "tornado funnel cloud Illinois Chicago suburb storm",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Baseball-sized hail in Nebraska",
+      "query": "baseball sized hail storm damage car dented hailstorm",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "650,000 customers across 8 states lost power",
+      "query": "power outage dark neighborhood street lights off Illinois",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "175,000 in Illinois still had none",
+      "query": "utility crew power line repair trucks outage restoration",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "could 94 mph in Oshkosh convince you otherwise?",
+      "query": "storm damage aftermath Oshkosh Wisconsin wind destruction",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "8 states",
+      "text": "8 STATES HIT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Gusts hit 94 mph in Oshkosh",
+      "text": "94 MPH GUSTS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a tree fell on a man and killed him",
+      "text": "1 KILLED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Over 1,000 flights were delayed or canceled",
+      "text": "1,000+ FLIGHTS GROUNDED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Two confirmed tornadoes near Chicago",
+      "text": "2 TORNADOES CONFIRMED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "650,000 customers across 8 states lost power",
+      "text": "650K WITHOUT POWER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "175,000 in Illinois still had none",
+      "text": "175K STILL DARK",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
