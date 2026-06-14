@@ -1,0 +1,126 @@
+{
+  "version": 8,
+  "slug": "us-iran-peace-deal",
+  "title": "Iran's War Ends Today — If Iran Signs the Paper",
+  "hashtags": [
+    "IranDeal",
+    "StraitOfHormuz",
+    "IranWar",
+    "TrumpIran",
+    "HormuzReopens",
+    "MiddleEast",
+    "WorldNews",
+    "PeaceDeal",
+    "Iran",
+    "OilCrisis",
+    "breakingnews",
+    "geopolitics",
+    "worldaffairs"
+  ],
+  "script": "Iran's war just ended? In February, the US and Israel struck Iran — killing the Supreme Leader — and Iran fought back by closing the Strait of Hormuz. That's 20% of the world's oil, cut off overnight. Prices spiked. Economies tightened. The world held its breath for 16 weeks. Then Pakistan stepped in to mediate. Both sides traded drafts. Yesterday Trump posted: the deal gets signed TODAY, and the moment it's done, the Hormuz Strait is open to all traffic. Iran's state media is still hedging. Saudi Arabia's celebrating. Pakistan's PM says it's hours away. This was the fastest oil crisis in modern history — closed to almost-peace in under 16 weeks. Could the Strait of Hormuz really reopen because Trump posted on Truth Social?",
+  "shots": [
+    {
+      "phrase": "Iran's war just ended",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz_full.jpg",
+      "query": "Strait of Hormuz aerial satellite map",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "the US and Israel struck Iran",
+      "query": "military airstrike explosion night city",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "killing the Supreme Leader",
+      "query": "breaking news alert red graphic announcement",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "closing the Strait of Hormuz",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz_full.jpg",
+      "query": "oil tanker ship sea strait passage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "20% of the world's oil, cut off overnight",
+      "query": "oil price spike chart gas station",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The world held its breath for 16 weeks",
+      "query": "world map diplomatic tension standoff",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "Pakistan stepped in to mediate",
+      "query": "diplomatic negotiations meeting table officials",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the deal gets signed TODAY",
+      "query": "peace deal signing ceremony document pen",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "the Hormuz Strait is open to all traffic",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz_full.jpg",
+      "query": "shipping lane tanker traffic open sea",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Iran's state media is still hedging",
+      "query": "Iran state media broadcast news anchor",
+      "mascot_pose": "dismiss"
+    },
+    {
+      "phrase": "Saudi Arabia's celebrating",
+      "query": "Saudi Arabia Riyadh city skyline Middle East",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Could the Strait of Hormuz really reopen because Trump posted on Truth Social?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz_full.jpg",
+      "query": "Strait of Hormuz tanker ship open channel",
+      "mascot_pose": "think"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "killing the Supreme Leader",
+      "text": "SUPREME LEADER KILLED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "closing the Strait of Hormuz",
+      "text": "HORMUZ CLOSED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "20% of the world's oil",
+      "text": "20% OF WORLD OIL",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "the deal gets signed TODAY",
+      "text": "SIGNED TODAY",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "the Hormuz Strait is open to all traffic",
+      "text": "HORMUZ REOPENS",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Iran's state media is still hedging",
+      "text": "IRAN STILL HEDGING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "fastest oil crisis in modern history",
+      "text": "16 WEEKS",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
