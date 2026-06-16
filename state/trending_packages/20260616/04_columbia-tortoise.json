@@ -1,0 +1,116 @@
+{
+  "version": 8,
+  "slug": "columbia-tortoise",
+  "title": "Nobody in Missouri Claims This 230-Pound Tortoise",
+  "hashtags": [
+    "africanspurredtortoise",
+    "columbiamoissouri",
+    "losttortoise",
+    "animalcontrol",
+    "tortoises",
+    "pettortoise",
+    "missourinews",
+    "weirdpets",
+    "gianttortoise",
+    "animalnews",
+    "missourianimals",
+    "localnews",
+    "funnylocalnews"
+  ],
+  "script": "Tortoise on the loose! Columbia, Missouri animal control picked up a large African spurred tortoise wandering near the intersection of Route Z and Enterprise Drive at 12:30 in the afternoon — just strolling through like he had somewhere to be. Male, appeared healthy, no ID. Officers posted photos to social media. Nobody claimed him. Here's the thing about African spurred tortoises: they're the third-largest tortoise species on Earth, they can weigh up to 230 pounds, and — this is key — they can dig under fenced yards and just... leave. Nobody sees them go. Animal control kept him on a 5-day stray hold. If no one steps forward, he goes to the Central Missouri Humane Society. He's been living in Columbia for at least a day. So whose 230-pound tortoise is just wandering around Missouri?",
+  "shots": [
+    {
+      "phrase": "Tortoise on the loose!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Spurred_Tortoise_in_Toronto.jpg",
+      "query": "tortoise walking outdoors loose neighborhood",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Columbia, Missouri animal control picked up a large African spurred tortoise",
+      "query": "animal control officer catching large reptile",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "wandering near the intersection of Route Z and Enterprise Drive",
+      "query": "street intersection suburban Missouri road",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "just strolling through like he had somewhere to be.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Spurred_Tortoise_in_Toronto.jpg",
+      "query": "large tortoise walking road street loose",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Officers posted photos to social media. Nobody claimed him.",
+      "query": "animal control social media post lost pet",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "they're the third-largest tortoise species on Earth, they can weigh up to 230 pounds",
+      "query": "giant African spurred tortoise size comparison",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "they can dig under fenced yards and just... leave.",
+      "query": "tortoise digging backyard fence hole escape",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Nobody sees them go.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Spurred_Tortoise_in_Toronto.jpg",
+      "query": "tortoise slowly moving away quietly escape",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "Animal control kept him on a 5-day stray hold.",
+      "query": "animal shelter holding pen stray animal",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "If no one steps forward, he goes to the Central Missouri Humane Society.",
+      "query": "humane society animal rescue facility shelter",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "whose 230-pound tortoise is just wandering around Missouri?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Spurred_Tortoise_in_Toronto.jpg",
+      "query": "lost large pet tortoise unclaimed owner",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Tortoise on the loose!",
+      "text": "TORTOISE ESCAPED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "large African spurred tortoise",
+      "text": "AFRICAN SPURRED TORTOISE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "they can weigh up to 230 pounds",
+      "text": "UP TO 230 LBS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "dig under fenced yards and just... leave.",
+      "text": "DIGS UNDER FENCES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "5-day stray hold",
+      "text": "5-DAY HOLD",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "no one steps forward",
+      "text": "UNCLAIMED",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
