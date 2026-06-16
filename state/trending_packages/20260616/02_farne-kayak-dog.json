@@ -1,0 +1,127 @@
+{
+  "version": 8,
+  "slug": "farne-kayak-dog",
+  "title": "A German Shepherd Drifted Out to Sea in a Kayak",
+  "hashtags": [
+    "germanshepherd",
+    "dogrescue",
+    "innerfarne",
+    "northumberland",
+    "kayak",
+    "coastguard",
+    "boatrescue",
+    "seasafety",
+    "dogstagram",
+    "animalnews",
+    "farneislands",
+    "uknews",
+    "doglovers"
+  ],
+  "script": "Dog at sea. Kayak? Off the coast of Northumberland, England, tour skipper Jimmy Reid was running a boat tour to Inner Farne island when the Coastguard radioed: a German shepherd was out at sea — alone — in an inflatable kayak. The wind had blown it offshore with the dog inside. Jimmy's crew spotted it bobbing in the channel. They pulled alongside. The dog panicked and slipped into the water. Crewman Aaron Fordy lunged over the rail and grabbed the dog by the scruff. Aaron started going overboard himself — Jimmy grabbed his leg. Together they hauled the dog back aboard. Soaked but fine. The owner was on shore, watching their kayak drift away, apparently unaware their dog had become a nautical emergency. So who brings a German shepherd on an inflatable kayak to begin with?",
+  "shots": [
+    {
+      "phrase": "Dog at sea. Kayak?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/German_shepherd.JPG",
+      "query": "kayak inflatable drifting open sea wave",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Off the coast of Northumberland, England",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lighthouse_LongStone_Farne_Islands_Northumberland.JPG",
+      "query": "Northumberland coast England sea cliffs",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "tour skipper Jimmy Reid was running a boat tour to Inner Farne island",
+      "query": "tour boat passengers sea Northumberland England",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the Coastguard radioed: a German shepherd was out at sea — alone — in an inflatable kayak",
+      "query": "UK coastguard boat radio marine rescue",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The wind had blown it offshore with the dog inside.",
+      "query": "inflatable kayak wind drift ocean sea",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Jimmy's crew spotted it bobbing in the channel.",
+      "query": "small inflatable boat bobbing sea channel",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The dog panicked and slipped into the water.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/German_shepherd.JPG",
+      "query": "dog swimming water scared sea rescue",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Crewman Aaron Fordy lunged over the rail and grabbed the dog by the scruff.",
+      "query": "man leaning over boat rail rescue overboard",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Aaron started going overboard himself — Jimmy grabbed his leg.",
+      "query": "boat crew safety overboard rescue sea",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Together they hauled the dog back aboard.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/German_shepherd.JPG",
+      "query": "rescued dog boat deck happy crew",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Soaked but fine.",
+      "query": "wet dog shaking water soaking dripping",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "watching their kayak drift away",
+      "query": "person on shore beach watching kayak drift",
+      "mascot_pose": "dismiss"
+    },
+    {
+      "phrase": "who brings a German shepherd on an inflatable kayak to begin with?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/German_shepherd.JPG",
+      "query": "German shepherd sitting looking curious",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Dog at sea. Kayak?",
+      "text": "DOG AT SEA?!",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "alone — in an inflatable kayak",
+      "text": "ALONE AT SEA",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "The dog panicked and slipped into the water.",
+      "text": "DOG OVERBOARD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Aaron started going overboard himself",
+      "text": "CREWMAN OVERBOARD",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Jimmy grabbed his leg.",
+      "text": "JIMMY SAVED HIM",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Soaked but fine.",
+      "text": "SOAKED BUT FINE",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

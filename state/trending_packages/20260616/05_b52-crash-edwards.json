@@ -1,0 +1,128 @@
+{
+  "version": 8,
+  "slug": "b52-crash-edwards",
+  "title": "8 Killed: A B-52 Bomber Crashed at Edwards Air Force Base",
+  "hashtags": [
+    "b52stratofortress",
+    "edwardsafb",
+    "airforcenews",
+    "militarynews",
+    "planecrashnews",
+    "boeing",
+    "usairforce",
+    "edwardsairforcebase",
+    "aviationdisaster",
+    "breakingnews",
+    "militaryaviation",
+    "coldwarbomber",
+    "usnews"
+  ],
+  "script": "The B-52 just crashed! America's most iconic Cold War bomber — a plane that's been flying since 1952, longer than any other bomber in history — went down yesterday at Edwards Air Force Base in California on a routine test mission. All 8 on board were killed. The crew was a mix of active military, government civilians, and 2 Boeing contractors. Edwards AFB is where Chuck Yeager first broke the sound barrier in 1947. Where America's most experimental aircraft get tested. A B-52 crashing there, on a routine mission, should be nearly impossible — and yet. The airfield is closed. Operations are standing down. The investigation will take months. So what actually goes wrong on a 70-year-old bomber's routine test flight?",
+  "shots": [
+    {
+      "phrase": "The B-52 just crashed!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/B-52_H_Stratofortress.JPG",
+      "query": "B-52 bomber aircraft flying military",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "America's most iconic Cold War bomber",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boeing_B-52_Stratofortress_over_Jersey.JPG",
+      "query": "B-52 Stratofortress bomber Cold War vintage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a plane that's been flying since 1952",
+      "query": "vintage bomber 1950s aircraft black and white photo",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "went down yesterday at Edwards Air Force Base in California",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edwards_Air_Force_Base_-_Rogers_Dry_Lake_CA_2006.jpg",
+      "query": "Edwards Air Force Base California aerial runway",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "on a routine test mission.",
+      "query": "test flight aircraft runway military takeoff",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "All 8 on board were killed.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/B-52_H_Stratofortress.JPG",
+      "query": "crash site military aircraft debris investigation",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The crew was a mix of active military, government civilians, and 2 Boeing contractors.",
+      "query": "Boeing aircraft manufacturing workers contractor",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Edwards AFB is where Chuck Yeager first broke the sound barrier in 1947.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edwards_Air_Force_Base_-_Rogers_Dry_Lake_CA_2006.jpg",
+      "query": "Edwards AFB historic test flight runway Mojave",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A B-52 crashing there, on a routine mission, should be nearly impossible — and yet.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/B-52_H_Stratofortress.JPG",
+      "query": "B-52 bomber crash site military investigation",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "The airfield is closed.",
+      "query": "airfield closed gate runway blocked military",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The investigation will take months.",
+      "query": "crash investigation debris military field team",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "what actually goes wrong on a 70-year-old bomber's routine test flight?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boeing_B-52_Stratofortress_over_Jersey.JPG",
+      "query": "B-52 Stratofortress test flight old bomber",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "The B-52 just crashed!",
+      "text": "B-52 CRASHED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "All 8 on board were killed.",
+      "text": "8 KILLED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "2 Boeing contractors",
+      "text": "2 BOEING EMPLOYEES",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Chuck Yeager first broke the sound barrier in 1947",
+      "text": "CHUCK YEAGER'S AFB",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "routine test mission",
+      "text": "ROUTINE MISSION",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "The airfield is closed.",
+      "text": "AIRFIELD CLOSED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "investigation will take months",
+      "text": "MONTHS OF INQUIRY",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "dark"
+}
