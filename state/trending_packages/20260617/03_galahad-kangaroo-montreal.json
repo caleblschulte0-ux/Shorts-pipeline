@@ -1,0 +1,131 @@
+{
+  "version": 8,
+  "slug": "galahad-kangaroo-montreal",
+  "title": "Quebec Had a Kangaroo on the Loose. His Name Was Galahad.",
+  "script": "Quebec has a kangaroo problem? Galahad — a juvenile kangaroo — escaped from an equestrian stable in Boucherville, on Montreal's South Shore. The SPCA put out the alert on June 13: animal spotted loose in a field, came from a facility that had been keeping it illegally. No permit. No authorization. Just a kangaroo in a horse barn south of Montreal. For days, people spotted Galahad bounding through the area. Tuesday, Quebec's environment ministry teams moved in, sedated him, and he's now headed to the Granby Zoo. The stable faces heat for the illegal captivity. But honestly, the weirdest part is that nobody noticed a kangaroo living there until it left. So: how long WAS Galahad at that Quebec stable before the escape?",
+  "shots": [
+    {
+      "phrase": "Quebec has a kangaroo problem?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Young_Waiting.JPG",
+      "query": "kangaroo hopping field grass",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Galahad — a juvenile kangaroo — escaped from an equestrian stable in Boucherville",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Young_Waiting.JPG",
+      "query": "juvenile kangaroo young marsupial",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "on Montreal's South Shore",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Young_Waiting.JPG",
+      "query": "Montreal suburb residential street Quebec",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The SPCA put out the alert on June 13",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Young_Waiting.JPG",
+      "query": "SPCA animal rescue van alert",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "keeping it illegally. No permit. No authorization.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Young_Waiting.JPG",
+      "query": "illegal exotic animal permit document",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Just a kangaroo in a horse barn south of Montreal.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Young_Waiting.JPG",
+      "query": "horse barn stable interior hay",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "people spotted Galahad bounding through the area",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Hands.jpg",
+      "query": "kangaroo bounding field running",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Quebec's environment ministry teams moved in, sedated him",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Hands.jpg",
+      "query": "wildlife capture team net field",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "now headed to the Granby Zoo",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Hands.jpg",
+      "query": "zoo Canada Quebec animal enclosure",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The stable faces heat for the illegal captivity.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Hands.jpg",
+      "query": "equestrian stable horse barn exterior",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "nobody noticed a kangaroo living there until it left",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Hands.jpg",
+      "query": "kangaroo grazing field unnoticed",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "how long WAS Galahad at that Quebec stable before the escape?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eastern_Grey_Kangaroo_Young_Waiting.JPG",
+      "query": "kangaroo curious looking around",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Quebec has a kangaroo problem?",
+      "text": "KANGAROO PROBLEM",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "No permit. No authorization.",
+      "text": "NO PERMIT.",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Just a kangaroo in a horse barn south of Montreal.",
+      "text": "KANGAROO IN A HORSE BARN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Quebec's environment ministry teams moved in, sedated him",
+      "text": "SEDATED",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "now headed to the Granby Zoo",
+      "text": "GRANBY ZOO BOUND",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "nobody noticed a kangaroo living there until it left",
+      "text": "NOBODY NOTICED",
+      "color": "#ff3030"
+    }
+  ],
+  "hashtags": [
+    "galahad",
+    "kangaroo",
+    "quebec",
+    "montreal",
+    "boucherville",
+    "escapedkangaroo",
+    "granbyzoo",
+    "exoticanimals",
+    "wildlifenews",
+    "animalescape",
+    "illegalpets",
+    "canadanews",
+    "kangarooloose",
+    "wildlifecapture",
+    "animalrescue"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
