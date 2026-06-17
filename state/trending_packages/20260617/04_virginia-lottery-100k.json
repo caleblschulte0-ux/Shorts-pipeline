@@ -1,0 +1,129 @@
+{
+  "version": 8,
+  "slug": "virginia-lottery-100k",
+  "title": "He Won $100, Reinvested $5, and Got Back $100,000",
+  "script": "Win $100, then win HOW? William Jackson of Stuarts Draft, Virginia, stopped at the Food Lion on Stuarts Draft Highway. Bought a scratch-off. Won $100. Standard win — most people pocket it and leave. Jackson did not leave. He took $5 of that $100 and bought another ticket — a Cash Wheel scratcher from the Virginia Lottery. He scratched it right there. $100,000. The whole strategy was: win once, reinvest $5, win 1,000 times more. That's it. Jackson confirmed the prize June 15. He told the lottery he was in complete shock. The Food Lion on that highway now has 2 major winners connected to its ticket machine. So next time you're up $100 on a scratch-off — are you walking out, or buying one more?",
+  "shots": [
+    {
+      "phrase": "Win $100, then win HOW?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "scratch off lottery ticket winning",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "William Jackson of Stuarts Draft, Virginia",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "grocery store customer lottery counter",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "stopped at the Food Lion on Stuarts Draft Highway",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "Food Lion grocery store entrance",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Bought a scratch-off. Won $100.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "scratch lottery ticket scratch coins",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "most people pocket it and leave. Jackson did not leave.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "person deciding at store lottery ticket",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "a Cash Wheel scratcher from the Virginia Lottery",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "Virginia lottery scratch ticket Cash Wheel",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "He scratched it right there. $100,000.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "scratch ticket winning 100000 dollars",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "win once, reinvest $5, win 1,000 times more. That's it.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "lottery ticket stack cash prize jackpot",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Jackson confirmed the prize June 15",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "Virginia lottery prize confirmation winner",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The Food Lion on that highway now has 2 major winners",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "lucky store sign lottery winners",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "are you walking out, or buying one more?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1st_California_Lottery_Tickets.jpg",
+      "query": "hand scratching lottery ticket decision",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Win $100, then win HOW?",
+      "text": "WIN $100 THEN WHAT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Bought a scratch-off. Won $100.",
+      "text": "WON $100",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "He took $5 of that $100 and bought another ticket",
+      "text": "$5 REINVESTED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "He scratched it right there. $100,000.",
+      "text": "$100,000",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "win once, reinvest $5, win 1,000 times more",
+      "text": "1,000X RETURN",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "The Food Lion on that highway now has 2 major winners",
+      "text": "2 MAJOR WINNERS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "are you walking out, or buying one more?",
+      "text": "WALK OUT OR BUY MORE?",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "virginialottery",
+    "scratchoff",
+    "williamjackson",
+    "stuartsdraft",
+    "cashwheelscratcher",
+    "lotterywinner",
+    "lottery",
+    "scratchticket",
+    "virginia",
+    "lotteryluck",
+    "cashprize",
+    "lotterywin",
+    "foodlion",
+    "luckyticket",
+    "lotterystory"
+  ],
+  "music_vibe": "hiphop"
+}
