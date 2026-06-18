@@ -1,0 +1,26 @@
+{
+  "key": "global_temp_anomaly",
+  "title": "Global mean surface temperature anomaly vs. 1850-1900 baseline (°C)",
+  "unit": "°C anomaly",
+  "geography": "Global",
+  "time_coverage": "1880-2024",
+  "source": {
+    "name": "NASA GISS Surface Temperature Analysis (GISTEMP v4); NOAA Global Surface Temperature",
+    "publisher": "NASA/NOAA",
+    "url": "https://climate.nasa.gov/vital-signs/global-temperature/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative; values are decade averages rounded to one decimal. Anomaly relative to 1850-1900 pre-industrial baseline (IPCC convention).",
+  "points": [
+    { "label": "1880-1889", "value": -0.2, "period": "1885" },
+    { "label": "1910-1919", "value": -0.1, "period": "1915" },
+    { "label": "1940-1949", "value": 0.1, "period": "1945" },
+    { "label": "1960-1969", "value": 0.0, "period": "1965" },
+    { "label": "1980-1989", "value": 0.3, "period": "1985" },
+    { "label": "2000-2009", "value": 0.7, "period": "2005" },
+    { "label": "2010-2019", "value": 0.9, "period": "2015" },
+    { "label": "2015-2024", "value": 1.1, "period": "2020" },
+    { "label": "2024 (annual)", "value": 1.29, "period": "2024" }
+  ]
+}

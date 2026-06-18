@@ -1,0 +1,26 @@
+{
+  "key": "urbanization_by_country",
+  "title": "Share of population living in urban areas by country (%, 2024)",
+  "unit": "%",
+  "geography": "Selected countries",
+  "time_coverage": "2024",
+  "source": {
+    "name": "UN World Urbanization Prospects 2023; World Bank World Development Indicators",
+    "publisher": "United Nations DESA",
+    "url": "https://population.un.org/wup/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative; rounded from cited sources. Selection highlights the global spread from near-total urban to majority rural.",
+  "points": [
+    { "label": "Singapore", "value": 100, "period": "2024" },
+    { "label": "Kuwait", "value": 99, "period": "2024" },
+    { "label": "Belgium", "value": 98, "period": "2024" },
+    { "label": "Japan", "value": 92, "period": "2024" },
+    { "label": "USA", "value": 83, "period": "2024" },
+    { "label": "Brazil", "value": 87, "period": "2024" },
+    { "label": "China", "value": 66, "period": "2024" },
+    { "label": "India", "value": 36, "period": "2024" },
+    { "label": "Uganda", "value": 26, "period": "2024" }
+  ]
+}

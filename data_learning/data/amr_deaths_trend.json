@@ -1,0 +1,21 @@
+{
+  "key": "amr_deaths_trend",
+  "title": "Annual deaths attributable to antibiotic-resistant bacteria (millions)",
+  "unit": "millions of deaths",
+  "geography": "World",
+  "time_coverage": "2013-2050",
+  "source": {
+    "name": "Lancet 2022 Global AMR Study; UN Ad Hoc Interagency Coordinating Group 2019",
+    "publisher": "The Lancet / IACG",
+    "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02724-0/fulltext",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative. 2019 figure (1.27M) is from the Lancet study as directly attributable deaths; ~700K pre-2019 estimates from O'Neill Review. 2050 projection (10M) is from the 2016 Review on AMR.",
+  "points": [
+    { "label": "2013 (est.)", "value": 0.7, "period": "2013" },
+    { "label": "2019 (confirmed)", "value": 1.27, "period": "2019" },
+    { "label": "2025 (proj.)", "value": 2.0, "period": "2025" },
+    { "label": "2050 (proj.)", "value": 10.0, "period": "2050" }
+  ]
+}

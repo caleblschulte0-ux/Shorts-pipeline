@@ -1,0 +1,23 @@
+{
+  "key": "oldest_known_animals",
+  "title": "Oldest confirmed individual animals ever documented (years)",
+  "unit": "years",
+  "geography": "global",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Guinness World Records, peer-reviewed studies, IUCN",
+    "publisher": "Multiple",
+    "url": "https://www.guinnessworldrecords.com/world-records/oldest-animal",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative. Ages verified where possible via growth rings, isotope dating, or documented records. Jonathan (tortoise) is still alive as of 2026.",
+  "points": [
+    { "label": "Ming (ocean quahog, died 2006)", "value": 507, "period": "2006" },
+    { "label": "Hanako (koi fish, died 1977)", "value": 226, "period": "1977" },
+    { "label": "Jonathan (tortoise, living)", "value": 194, "period": "2026" },
+    { "label": "Tu'i Malila (tortoise, died 1965)", "value": 188, "period": "1965" },
+    { "label": "Granny J2 (orca, died 2016)", "value": 105, "period": "2016" },
+    { "label": "Harriet (tortoise, died 2006)", "value": 176, "period": "2006" }
+  ]
+}

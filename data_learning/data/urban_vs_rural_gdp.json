@@ -1,0 +1,21 @@
+{
+  "key": "urban_vs_rural_gdp",
+  "title": "Urban share of global GDP vs. urban share of population (%)",
+  "unit": "%",
+  "geography": "World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "UN-Habitat, World Bank, McKinsey Global Institute",
+    "publisher": "UN-Habitat",
+    "url": "https://unhabitat.org/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative. Top 600 cities are estimated to produce ~60% of global GDP. Urban areas as a whole produce ~80%+ of global GDP while housing ~57% of the population.",
+  "points": [
+    { "label": "Urban: share of global GDP", "value": 80, "period": "2023" },
+    { "label": "Urban: share of global population", "value": 57, "period": "2023" },
+    { "label": "Top 600 cities: share of GDP", "value": 60, "period": "2023" },
+    { "label": "Top 600 cities: share of population", "value": 22, "period": "2023" }
+  ]
+}

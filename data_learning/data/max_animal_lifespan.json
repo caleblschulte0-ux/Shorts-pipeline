@@ -1,0 +1,24 @@
+{
+  "key": "max_animal_lifespan",
+  "title": "Maximum documented lifespan by species (years)",
+  "unit": "years",
+  "geography": "global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Multiple: PNAS 2016 (Greenland shark), ICES 2006 (ocean quahog), IWC, Guinness World Records",
+    "publisher": "Peer-reviewed literature",
+    "url": "https://www.science.org/doi/10.1126/science.aaf1520",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative; figures rounded from cited sources. Greenland shark age estimated via radiocarbon dating of eye lens nuclei.",
+  "points": [
+    { "label": "Ocean quahog clam", "value": 507, "period": "2006" },
+    { "label": "Greenland shark", "value": 400, "period": "2016" },
+    { "label": "Bowhead whale", "value": 211, "period": "2007" },
+    { "label": "Koi fish (Hanako)", "value": 226, "period": "1977" },
+    { "label": "Giant tortoise", "value": 194, "period": "2026" },
+    { "label": "Human (Jeanne Calment)", "value": 122, "period": "1997" },
+    { "label": "Asian elephant", "value": 65, "period": "2003" }
+  ]
+}

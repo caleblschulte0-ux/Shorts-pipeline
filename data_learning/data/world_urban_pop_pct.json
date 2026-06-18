@@ -1,0 +1,24 @@
+{
+  "key": "world_urban_pop_pct",
+  "title": "Share of world population living in urban areas (%)",
+  "unit": "%",
+  "geography": "World",
+  "time_coverage": "1800-2024",
+  "source": {
+    "name": "UN World Urbanization Prospects 2023; Our World in Data historical estimates",
+    "publisher": "United Nations DESA",
+    "url": "https://population.un.org/wup/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative; pre-1950 figures are historical estimates. The 50% threshold was crossed around 2007.",
+  "points": [
+    { "label": "1800", "value": 3, "period": "1800" },
+    { "label": "1850", "value": 7, "period": "1850" },
+    { "label": "1900", "value": 15, "period": "1900" },
+    { "label": "1950", "value": 30, "period": "1950" },
+    { "label": "1980", "value": 39, "period": "1980" },
+    { "label": "2007", "value": 50, "period": "2007" },
+    { "label": "2024", "value": 57, "period": "2024" }
+  ]
+}

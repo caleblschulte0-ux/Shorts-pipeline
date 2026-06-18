@@ -1,0 +1,23 @@
+{
+  "key": "heartbeats_per_lifetime",
+  "title": "Estimated heartbeats in a lifetime (millions)",
+  "unit": "millions of heartbeats",
+  "geography": "global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Estimated from published resting heart rates and median lifespans",
+    "publisher": "Multiple (veterinary and medical literature)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2633408/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative. Calculation: (resting bpm × 60 × 24 × 365 × median lifespan) ÷ 1,000,000. Humans shown above 1B due to modern medicine extending lifespan past the 'natural' baseline.",
+  "points": [
+    { "label": "Human", "value": 2900, "period": "2024" },
+    { "label": "Blue whale", "value": 1180, "period": "2024" },
+    { "label": "Cat", "value": 1180, "period": "2024" },
+    { "label": "Greenland shark", "value": 1050, "period": "2024" },
+    { "label": "Horse", "value": 580, "period": "2024" },
+    { "label": "Mouse", "value": 530, "period": "2024" }
+  ]
+}

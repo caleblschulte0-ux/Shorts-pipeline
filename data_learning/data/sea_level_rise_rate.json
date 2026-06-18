@@ -1,0 +1,21 @@
+{
+  "key": "sea_level_rise_rate",
+  "title": "Rate of global mean sea level rise by period (mm per year)",
+  "unit": "mm/year",
+  "geography": "Global",
+  "time_coverage": "1901-2020",
+  "source": {
+    "name": "IPCC AR6 (2021), Chapter 9; NASA Sea Level Change portal",
+    "publisher": "IPCC / NASA",
+    "url": "https://sealevel.nasa.gov/understanding-sea-level/global-sea-level/sea-level-101",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative. IPCC AR6 reports: 1901-1971 rate ~1.3 mm/yr; 1971-2006 ~1.9 mm/yr; 2006-2018 ~3.7 mm/yr. Values rounded for presentation.",
+  "points": [
+    { "label": "1901-1971", "value": 1.3, "period": "1936" },
+    { "label": "1971-2006", "value": 1.9, "period": "1988" },
+    { "label": "2006-2018", "value": 3.7, "period": "2012" },
+    { "label": "2018-2024 (proj.)", "value": 4.5, "period": "2021" }
+  ]
+}

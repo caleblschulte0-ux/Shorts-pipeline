@@ -1,0 +1,26 @@
+{
+  "key": "antibiotic_classes_by_decade",
+  "title": "New antibiotic classes discovered per decade",
+  "unit": "new classes",
+  "geography": "Global",
+  "time_coverage": "1940s-2020s",
+  "source": {
+    "name": "WHO Global Antimicrobial Resistance and Use Surveillance System; Pew Charitable Trusts Antibiotic Pipeline report",
+    "publisher": "WHO / Pew",
+    "url": "https://www.who.int/publications/i/item/9789240062382",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative. A 'new class' means a structurally novel antibiotic family with a new mechanism of action, not a variant of an existing class.",
+  "points": [
+    { "label": "1940s", "value": 5, "period": "1940s" },
+    { "label": "1950s", "value": 4, "period": "1950s" },
+    { "label": "1960s", "value": 3, "period": "1960s" },
+    { "label": "1970s", "value": 1, "period": "1970s" },
+    { "label": "1980s", "value": 1, "period": "1980s" },
+    { "label": "1990s", "value": 0, "period": "1990s" },
+    { "label": "2000s", "value": 0, "period": "2000s" },
+    { "label": "2010s", "value": 2, "period": "2010s" },
+    { "label": "2020s", "value": 1, "period": "2020s" }
+  ]
+}

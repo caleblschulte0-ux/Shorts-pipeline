@@ -1,0 +1,27 @@
+{
+  "key": "hottest_years_ranked",
+  "title": "Top 10 hottest years on record — temperature anomaly vs. 1850-1900 baseline (°C)",
+  "unit": "°C anomaly",
+  "geography": "Global",
+  "time_coverage": "1880-2024",
+  "source": {
+    "name": "NASA GISS Surface Temperature Analysis (GISTEMP v4); Copernicus Climate Change Service ERA5",
+    "publisher": "NASA / Copernicus C3S",
+    "url": "https://climate.nasa.gov/vital-signs/global-temperature/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative; all 10 hottest years on record occurred after 2005. Values rounded to two decimal places.",
+  "points": [
+    { "label": "2024", "value": 1.29, "period": "2024" },
+    { "label": "2023", "value": 1.17, "period": "2023" },
+    { "label": "2020", "value": 1.02, "period": "2020" },
+    { "label": "2016", "value": 1.01, "period": "2016" },
+    { "label": "2019", "value": 0.98, "period": "2019" },
+    { "label": "2022", "value": 0.89, "period": "2022" },
+    { "label": "2021", "value": 0.85, "period": "2021" },
+    { "label": "2015", "value": 0.87, "period": "2015" },
+    { "label": "2017", "value": 0.92, "period": "2017" },
+    { "label": "2018", "value": 0.83, "period": "2018" }
+  ]
+}

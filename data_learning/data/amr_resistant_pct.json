@@ -1,0 +1,22 @@
+{
+  "key": "amr_resistant_pct",
+  "title": "Share of infections caused by drug-resistant strains (%, 2023)",
+  "unit": "%",
+  "geography": "USA / Global",
+  "time_coverage": "2023",
+  "source": {
+    "name": "CDC 2023 Antibiotic Resistance Threats; WHO AMR reports",
+    "publisher": "CDC / WHO",
+    "url": "https://www.cdc.gov/antimicrobial-resistance/data-research/threats/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-18"
+  },
+  "notes": "Illustrative. Resistance percentages vary by region; figures represent US/global blended estimates for illustrative purposes.",
+  "points": [
+    { "label": "Drug-resistant TB (global)", "value": 30, "period": "2023" },
+    { "label": "Resistant E. coli UTIs (US)", "value": 50, "period": "2023" },
+    { "label": "MRSA staph (US hospitals)", "value": 33, "period": "2023" },
+    { "label": "Resistant gonorrhea (US)", "value": 55, "period": "2023" },
+    { "label": "Resistant pneumonia (US)", "value": 30, "period": "2023" }
+  ]
+}
