@@ -1,0 +1,25 @@
+{
+  "key": "animal_water_speed",
+  "title": "Top animal swimming speeds (mph)",
+  "unit": "mph",
+  "geography": "World",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Marine animal speed records",
+    "publisher": "NOAA Fisheries",
+    "url": "https://www.fisheries.noaa.gov",
+    "officiality": "illustrative",
+    "access_date": "2026-06-19"
+  },
+  "notes": "Illustrative; figures reflect top burst-speed estimates for each species from fisheries literature.",
+  "points": [
+    {"label": "Sailfish", "value": 68},
+    {"label": "Shortfin mako shark", "value": 60},
+    {"label": "Atlantic bluefin tuna", "value": 55},
+    {"label": "Wahoo", "value": 48},
+    {"label": "Yellowfin tuna", "value": 47},
+    {"label": "Blue marlin", "value": 50},
+    {"label": "Bottlenose dolphin", "value": 37}
+  ],
+  "baseline": {"label": "Olympic sprinter in water (5 mph)", "value": 5}
+}

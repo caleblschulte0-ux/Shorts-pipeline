@@ -2239,6 +2239,245 @@
       ]
     },
     {
+      "slug": "fastest-animals-speed",
+      "title": "The Cheetah Isn't the Fastest Animal on Earth",
+      "hook": "The cheetah isn't the fastest animal. Not even close.",
+      "closing": "On land you're fast. In the sky and sea, you're barely on the chart.",
+      "question": "Which speed surprised you most? Drop it below.",
+      "caption": "The cheetah tops out at 70 mph on land — but a peregrine falcon dives at 240 mph, and a sailfish hits 68 mph underwater. Here's the full speed breakdown 👇",
+      "hashtags": [
+        "animals",
+        "nature",
+        "science",
+        "facts",
+        "wildlife",
+        "didyouknow",
+        "speed",
+        "cheetah",
+        "falcon",
+        "data",
+        "interesting",
+        "mindblown"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "animal_land_speed",
+          "params": {
+            "file": "animal_land_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · ON LAND",
+          "topic": "top land animal speeds (mph)",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "On land, the cheetah tops at 70 miles per hour, barely faster than a highway speed limit. The pronghorn antelope, America's fastest animal, keeps pace at 55."
+        },
+        {
+          "source": "offline",
+          "key": "animal_air_speed",
+          "params": {
+            "file": "animal_air_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · IN THE AIR",
+          "topic": "top flight speeds (mph)",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "In the air, it isn't close. The peregrine falcon dives at 240 miles per hour in a hunting stoop. The cheetah — fastest thing on land — would look slow next to a racing pigeon."
+        },
+        {
+          "source": "offline",
+          "key": "animal_water_speed",
+          "params": {
+            "file": "animal_water_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "3 · IN THE WATER",
+          "topic": "top swimming speeds (mph)",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "In the water, the sailfish hits 68 miles per hour — faster than the cheetah. An Olympic swimmer goes about 5. The ocean has its own top gear."
+        }
+      ]
+    },
+    {
+      "slug": "arctic-ice-collapse",
+      "title": "The Arctic Is Melting Faster Than Anyone Predicted",
+      "hook": "The Arctic lost an area bigger than Alaska. Already.",
+      "closing": "The oldest, thickest ice is nearly gone. What's left is young, thin, and melting faster every year.",
+      "question": "Does the Arctic ice collapse change how you think about climate? Drop it below.",
+      "caption": "Arctic sea ice September minimum fell from 7.2M sq km in 1980 to 4.2M in 2023 — a loss bigger than Alaska. Multi-year ice dropped from 61% to just 13% of the total. Here's the data 👇",
+      "hashtags": [
+        "arctic",
+        "climate",
+        "seaice",
+        "climatechange",
+        "environment",
+        "nsidc",
+        "globalwarming",
+        "science",
+        "data",
+        "earth",
+        "nature",
+        "icemelt"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "arctic_sea_ice_minimum",
+          "params": {
+            "file": "arctic_sea_ice_minimum.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE TREND",
+          "topic": "Arctic September ice extent (million sq km)",
+          "say": "In 1980, Arctic sea ice reached 7.2 million square kilometers at its September minimum. By 2012 it hit a record low of 3.4 million. In 2023, it sat at 4.2 — about half what it was when your parents were born."
+        },
+        {
+          "source": "offline",
+          "key": "arctic_multiyear_ice_share",
+          "params": {
+            "file": "arctic_multiyear_ice_share.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE QUALITY",
+          "topic": "multi-year ice share of total (%)",
+          "say": "But the real story is what kind of ice is left. In 1985, 61 percent of Arctic ice was old, thick, multi-year ice that had survived summer melts. By 2023, that fell to just 13 percent. The durable ice is nearly gone."
+        },
+        {
+          "source": "offline",
+          "key": "arctic_ice_area_lost",
+          "params": {
+            "file": "arctic_ice_area_lost.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE LOSS",
+          "topic": "Arctic ice remaining vs lost since 1980 (million sq km)",
+          "use_baseline": true,
+          "say": "Put it together: 3 million square kilometers of ice — an area bigger than Alaska — has simply vanished since 1980. Of the original 7.2 million, only 4.2 million remains. The baseline is gone."
+        }
+      ]
+    },
+    {
+      "slug": "urban-shift",
+      "title": "More Than Half the World Now Lives in Cities",
+      "hook": "For the first time in history, cities beat the countryside.",
+      "closing": "We crossed the line in 2007. Most humans now live in cities — and that number keeps climbing.",
+      "question": "City or countryside? Where would you rather be? Drop it below.",
+      "caption": "In 1950, just 30% of the world lived in cities. In 2007 it crossed 50% for the first time. By 2025, 58% — and the number of megacities (10M+ people) grew from 2 to 37. Here's the data 👇",
+      "hashtags": [
+        "cities",
+        "urbanization",
+        "population",
+        "geography",
+        "world",
+        "un",
+        "data",
+        "megacity",
+        "demographics",
+        "society",
+        "science",
+        "interesting"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "world_urban_population_share",
+          "params": {
+            "file": "world_urban_population_share.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SHIFT",
+          "topic": "share of world population in urban areas (%)",
+          "say": "In 1950, just 30 percent of the world lived in cities. By 2007 it crossed 50 percent for the first time in human history. Today it's 58 and rising. We became an urban species within one lifetime."
+        },
+        {
+          "source": "offline",
+          "key": "most_urbanized_countries",
+          "params": {
+            "file": "most_urbanized_countries.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE LEADERS",
+          "topic": "most urbanized countries (% urban, 2023)",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "Some places are essentially already all city. Singapore and Monaco hit 100 percent. Kuwait, 99. Belgium, 98. The United States is at 83. The world average, still just 58 — the gap between rich and developing worlds is enormous."
+        },
+        {
+          "source": "offline",
+          "key": "megacities_count",
+          "params": {
+            "file": "megacities_count.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE GIANTS",
+          "topic": "number of megacities (10M+ population)",
+          "say": "And the giants keep multiplying. In 1950 only two cities held 10 million or more people. By 2000 there were 17. Today there are 37 megacities. We're building new ones faster than we built cathedrals."
+        }
+      ]
+    },
+    {
+      "slug": "lifespan-extension",
+      "title": "Humans Used to Die at 32. Then This Happened.",
+      "hook": "Humans used to die at 32. What changed everything?",
+      "closing": "Medicine didn't just add years. It changed what we die from. You're living in the longest era of human life in history.",
+      "question": "What age do you expect to live to? Drop it below.",
+      "caption": "In 1900, global life expectancy was 32. Today it's 73. Japan's average is 84.3. And the cause of death flipped: infectious diseases used to be 50% of deaths — today chronic diseases are 74%. Here's what happened 👇",
+      "hashtags": [
+        "health",
+        "lifeexpectancy",
+        "medicine",
+        "science",
+        "history",
+        "longevity",
+        "data",
+        "who",
+        "global",
+        "aging",
+        "interesting",
+        "mindblown"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "global_life_expectancy",
+          "params": {
+            "file": "global_life_expectancy.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE LEAP",
+          "topic": "global average life expectancy (years)",
+          "say": "In 1900, the average human lived to 32. By 1950 it was 48. Today it's 73 — more than doubled in one century. Vaccines, antibiotics, and clean water did more for humanity than almost anything else in history."
+        },
+        {
+          "source": "offline",
+          "key": "life_expectancy_by_country",
+          "params": {
+            "file": "life_expectancy_by_country.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE GAP",
+          "topic": "life expectancy by country (years, 2023)",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "But the gains are not equal. Japan averages 84.3 years, Switzerland 83.8. The United States, 78.4 — below most wealthy nations. Nigeria, 55.2. You can gain or lose 30 years of life just based on where you're born."
+        },
+        {
+          "source": "offline",
+          "key": "disease_shift",
+          "params": {
+            "file": "disease_shift.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE SHIFT",
+          "topic": "cause of death: infectious vs chronic (%)",
+          "say": "And what kills us changed completely. In 1900, infectious diseases — tuberculosis, cholera, pneumonia — caused about half of all deaths. Today, chronic diseases like heart disease and cancer account for 74 percent. We beat the old killers. We inherited new ones."
+        }
+      ]
+    },
+    {
       "slug": "home-insurance-exodus",
       "title": "Insurers Are Quietly Abandoning Entire States",
       "hook": "In some places, you can barely buy home insurance at any price.",

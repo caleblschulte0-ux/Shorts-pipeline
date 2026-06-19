@@ -1,0 +1,25 @@
+{
+  "key": "animal_air_speed",
+  "title": "Top animal flight speeds (mph)",
+  "unit": "mph",
+  "geography": "World",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Animal speed records",
+    "publisher": "Smithsonian National Zoo and Conservation Biology Institute",
+    "url": "https://nationalzoo.si.edu",
+    "officiality": "illustrative",
+    "access_date": "2026-06-19"
+  },
+  "notes": "Illustrative; peregrine falcon figure is terminal velocity in a hunting stoop (dive); others are level or wind-assisted flight records.",
+  "points": [
+    {"label": "Peregrine falcon (dive)", "value": 240},
+    {"label": "Golden eagle (dive)", "value": 150},
+    {"label": "White-throated needletail", "value": 105},
+    {"label": "Eurasian hobby", "value": 100},
+    {"label": "Frigatebird", "value": 95},
+    {"label": "Common swift", "value": 69},
+    {"label": "Racing pigeon", "value": 50}
+  ],
+  "baseline": {"label": "Cheetah on land (70 mph)", "value": 70}
+}
