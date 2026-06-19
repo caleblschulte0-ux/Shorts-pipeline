@@ -1,0 +1,28 @@
+{
+  "key": "most_urbanized_countries",
+  "title": "Most urbanized countries — share of population in cities (%)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "World Urbanization Prospects",
+    "publisher": "United Nations Department of Economic and Social Affairs",
+    "url": "https://population.un.org/wup/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-19"
+  },
+  "notes": "Illustrative; figures reflect 2023 estimates of urban share by country.",
+  "points": [
+    {"label": "Singapore", "value": 100},
+    {"label": "Kuwait", "value": 99},
+    {"label": "Monaco", "value": 100},
+    {"label": "Belgium", "value": 98},
+    {"label": "Iceland", "value": 94},
+    {"label": "Israel", "value": 93},
+    {"label": "New Zealand", "value": 87},
+    {"label": "Australia", "value": 87},
+    {"label": "United States", "value": 83},
+    {"label": "World average", "value": 58}
+  ],
+  "baseline": {"label": "World average (58%)", "value": 58}
+}

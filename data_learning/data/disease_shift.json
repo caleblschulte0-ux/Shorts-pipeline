@@ -1,0 +1,24 @@
+{
+  "key": "disease_shift",
+  "title": "Global deaths by disease type — infectious vs chronic (%)",
+  "unit": "percent of all deaths",
+  "geography": "World",
+  "time_coverage": "1900 vs 2019",
+  "source": {
+    "name": "Global Burden of Disease Study",
+    "publisher": "Institute for Health Metrics and Evaluation (IHME)",
+    "url": "https://www.healthdata.org/research-analysis/gbd",
+    "officiality": "illustrative",
+    "access_date": "2026-06-19"
+  },
+  "notes": "Illustrative; shows the dramatic shift from infectious/communicable causes to chronic non-communicable diseases over the 20th century.",
+  "points": [
+    {"label": "Infectious disease (1900)", "value": 50},
+    {"label": "Chronic disease (1900)", "value": 30},
+    {"label": "Other/injury (1900)", "value": 20},
+    {"label": "Infectious disease (2019)", "value": 19},
+    {"label": "Chronic disease (2019)", "value": 74},
+    {"label": "Other/injury (2019)", "value": 7}
+  ],
+  "baseline": {"label": "Benchmark: Infectious deaths halved since 1900", "value": 50}
+}

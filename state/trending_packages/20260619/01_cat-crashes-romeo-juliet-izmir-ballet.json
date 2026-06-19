@@ -1,0 +1,148 @@
+{
+  "version": 8,
+  "slug": "cat-crashes-romeo-juliet-izmir-ballet",
+  "title": "A Stray Cat Stole the Show at Romeo and Juliet",
+  "script": "Who invited this cat? A touring production of Romeo and Juliet in Izmir, Turkey, was going exactly as planned — until a ginger stray wandered onstage during the tragic final scene. Romeo was lying there, dramatically dying. The cat sat beside him. Licked his hair. Batted at his arm. The audience lost it. The dancer stayed in character — because what else do you do? — while the cat sprawled out and started grooming itself next to the 'corpse.' At curtain call, the cat took a bow. Videos went viral within hours — 8 million views combined. The Imperial Russian Ballet Company kept their dignity. The stray kept the stage. So: when does Juliet's cat get a contract?",
+  "shots": [
+    {
+      "phrase": "Who invited this cat?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "ginger stray cat sitting outdoors",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "A touring production of Romeo and Juliet in Izmir, Turkey",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Degas_Ballet_Dancers_on_the_Stage.jpg",
+      "query": "outdoor theater stage performance night",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "until a ginger stray wandered onstage",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "cat walking stage theater spotlight",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Romeo was lying there, dramatically dying.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Degas_Ballet_Dancers_on_the_Stage.jpg",
+      "query": "ballet dancer floor dramatic stage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The cat sat beside him.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "cat sitting next to person floor",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Licked his hair. Batted at his arm.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "cat grooming licking playful paw",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "The audience lost it.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Degas_Ballet_Dancers_on_the_Stage.jpg",
+      "query": "theater audience laughing applause crowd",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The dancer stayed in character",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Degas_Ballet_Dancers_on_the_Stage.jpg",
+      "query": "ballet dancer performing stage focused",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the cat sprawled out and started grooming itself next to the 'corpse.'",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "cat sprawled lying floor relaxed",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "At curtain call, the cat took a bow.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "cat bowing stage theater curtain",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Videos went viral within hours — 8 million views combined.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "viral video phone social media views",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The Imperial Russian Ballet Company kept their dignity.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Degas_Ballet_Dancers_on_the_Stage.jpg",
+      "query": "ballet company professional stage bow",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The stray kept the stage.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "stray cat confident outdoor urban",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "when does Juliet's cat get a contract?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_cat.JPG",
+      "query": "cat star famous celebrity spotlight",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "until a ginger stray wandered onstage",
+      "text": "WRONG KIND OF STAR",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Licked his hair. Batted at his arm.",
+      "text": "UNSCRIPTED",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "The audience lost it.",
+      "text": "HOUSE DOWN",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Videos went viral within hours — 8 million views combined.",
+      "text": "8 MILLION VIEWS",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "The Imperial Russian Ballet Company kept their dignity.",
+      "text": "DIGNITY: MAINTAINED",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "The stray kept the stage.",
+      "text": "STRAY: 1. ROMEO: 0.",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "when does Juliet's cat get a contract?",
+      "text": "STARRING: THE CAT",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "balletcat",
+    "izmir",
+    "imperialrussianballet",
+    "romeoandjuliet",
+    "straycat",
+    "gingercat",
+    "catcrashes",
+    "stageinvasion",
+    "viralcat",
+    "funnycat",
+    "cats",
+    "ballet",
+    "turkey",
+    "catshow",
+    "catsoftiktok"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

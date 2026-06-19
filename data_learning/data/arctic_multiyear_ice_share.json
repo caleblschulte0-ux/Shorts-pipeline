@@ -1,0 +1,26 @@
+{
+  "key": "arctic_multiyear_ice_share",
+  "title": "Multi-year Arctic sea ice share of total (%)",
+  "unit": "percent",
+  "geography": "Arctic Ocean",
+  "time_coverage": "1985-2023",
+  "source": {
+    "name": "Sea Ice Age Dataset",
+    "publisher": "National Snow and Ice Data Center (NSIDC)",
+    "url": "https://nsidc.org",
+    "officiality": "illustrative",
+    "access_date": "2026-06-19"
+  },
+  "notes": "Illustrative; multi-year ice is ice that has survived at least one summer melt season and is thicker and more resilient.",
+  "points": [
+    {"label": "1985", "value": 61, "period": "1985"},
+    {"label": "1990", "value": 58, "period": "1990"},
+    {"label": "1995", "value": 52, "period": "1995"},
+    {"label": "2000", "value": 46, "period": "2000"},
+    {"label": "2005", "value": 38, "period": "2005"},
+    {"label": "2010", "value": 27, "period": "2010"},
+    {"label": "2015", "value": 21, "period": "2015"},
+    {"label": "2020", "value": 17, "period": "2020"},
+    {"label": "2023", "value": 13, "period": "2023"}
+  ]
+}
