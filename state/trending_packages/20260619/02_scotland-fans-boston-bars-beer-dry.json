@@ -1,0 +1,135 @@
+{
+  "version": 8,
+  "slug": "scotland-fans-boston-bars-beer-dry",
+  "title": "Scotland Fans Drank Boston Out of Beer",
+  "script": "Boston out of beer? The Tartan Army rolled into town for the 2026 World Cup — kilts on, pints in hand — and within days, Boston bars ran dry. The Samuel Adams taproom alone sold 4,000 pints of Boston Lager in four days. That's roughly 90 empty kegs. The White Bull Tavern? No beer. The Phoenix Landing ran through 20 of its 24 draft lines and started receiving emergency beer deliveries while returning 50 empty kegs to distributors. Tennent's Lager — basically Scotland's national drink — suddenly appeared at 76 Boston locations. Bar workers were restocking around the clock. A city that survived the American Revolution, two Red Sox collapses, and three Patriots dynasties finally met its match: Scottish soccer fans. So: will Boston stock Tennent's from now on?",
+  "shots": [
+    {
+      "phrase": "Boston out of beer?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithwicks_pint.JPG",
+      "query": "empty bar no beer sign",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The Tartan Army rolled into town for the 2026 World Cup",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tartan_Army.png",
+      "query": "Scotland fans kilts crowd football",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "kilts on, pints in hand",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tartan_Army.png",
+      "query": "Scottish fans beer pints celebrating",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The Samuel Adams taproom alone sold 4,000 pints of Boston Lager in four days.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithwicks_pint.JPG",
+      "query": "Samuel Adams taproom beer tap draft",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "That's roughly 90 empty kegs.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithwicks_pint.JPG",
+      "query": "empty beer kegs stacked outside bar",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The White Bull Tavern? No beer.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithwicks_pint.JPG",
+      "query": "empty bar shelves tavern no drinks",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The Phoenix Landing ran through 20 of its 24 draft lines",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithwicks_pint.JPG",
+      "query": "bar draft beer taps row",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "emergency beer deliveries",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithwicks_pint.JPG",
+      "query": "beer truck delivery distributor loading",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Tennent's Lager — basically Scotland's national drink — suddenly appeared at 76 Boston locations.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tartan_Army.png",
+      "query": "Tennent's lager beer can Scottish",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A city that survived the American Revolution, two Red Sox collapses, and three Patriots dynasties",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithwicks_pint.JPG",
+      "query": "Boston skyline historic Freedom Trail",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "finally met its match: Scottish soccer fans.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tartan_Army.png",
+      "query": "Scottish fans celebration victory wave",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "will Boston stock Tennent's from now on?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithwicks_pint.JPG",
+      "query": "bar beer shelves restocked full",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "The Samuel Adams taproom alone sold 4,000 pints of Boston Lager in four days.",
+      "text": "4,000 PINTS. 4 DAYS.",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "That's roughly 90 empty kegs.",
+      "text": "90 EMPTY KEGS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "The Phoenix Landing ran through 20 of its 24 draft lines",
+      "text": "20 OF 24 TAPS: EMPTY",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "emergency beer deliveries",
+      "text": "EMERGENCY BEER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Tennent's Lager — basically Scotland's national drink — suddenly appeared at 76 Boston locations.",
+      "text": "76 NEW SCOTS BARS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "finally met its match: Scottish soccer fans.",
+      "text": "TARTAN ARMY: UNSTOPPABLE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "will Boston stock Tennent's from now on?",
+      "text": "BOSTON: CHANGED FOREVER",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "tartanarmy",
+    "worldcup2026",
+    "scotland",
+    "bostonbeer",
+    "beercrisis",
+    "scottishfans",
+    "tennentslager",
+    "samuelsadams",
+    "whitebulltavern",
+    "emptykeg",
+    "worldcup",
+    "soccer",
+    "boston",
+    "kilts",
+    "drinkingrecord"
+  ],
+  "music_vibe": "hiphop"
+}

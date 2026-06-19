@@ -1,0 +1,30 @@
+{
+  "key": "life_expectancy_by_country",
+  "title": "Life expectancy at birth by country (years, 2023)",
+  "unit": "years",
+  "geography": "World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "World Health Statistics",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/data/gho/data/themes/mortality-and-global-health-estimates/ghe-life-expectancy-and-healthy-life-expectancy",
+    "officiality": "illustrative",
+    "access_date": "2026-06-19"
+  },
+  "notes": "Illustrative; figures are 2023 estimates from WHO/UN sources.",
+  "points": [
+    {"label": "Japan", "value": 84.3},
+    {"label": "Switzerland", "value": 83.8},
+    {"label": "South Korea", "value": 83.5},
+    {"label": "Australia", "value": 83.3},
+    {"label": "Spain", "value": 83.2},
+    {"label": "France", "value": 82.5},
+    {"label": "United Kingdom", "value": 81.4},
+    {"label": "United States", "value": 78.4},
+    {"label": "China", "value": 77.1},
+    {"label": "Brazil", "value": 74.9},
+    {"label": "India", "value": 69.9},
+    {"label": "Nigeria", "value": 55.2}
+  ],
+  "baseline": {"label": "Global average (73 years)", "value": 73}
+}

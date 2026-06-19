@@ -1,0 +1,26 @@
+{
+  "key": "animal_land_speed",
+  "title": "Top land animal speeds (mph)",
+  "unit": "mph",
+  "geography": "World",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Animal speed records",
+    "publisher": "Smithsonian National Zoo and Conservation Biology Institute",
+    "url": "https://nationalzoo.si.edu",
+    "officiality": "illustrative",
+    "access_date": "2026-06-19"
+  },
+  "notes": "Illustrative; figures reflect widely reported top-speed estimates for each species.",
+  "points": [
+    {"label": "Cheetah", "value": 70},
+    {"label": "Pronghorn", "value": 55},
+    {"label": "Springbok", "value": 55},
+    {"label": "Wildebeest", "value": 50},
+    {"label": "Lion", "value": 50},
+    {"label": "Ostrich", "value": 43},
+    {"label": "Quarter horse", "value": 55},
+    {"label": "Coyote", "value": 43}
+  ],
+  "baseline": {"label": "Highway speed limit (65 mph)", "value": 65}
+}

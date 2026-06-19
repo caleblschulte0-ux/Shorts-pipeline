@@ -1,0 +1,30 @@
+{
+  "key": "arctic_sea_ice_minimum",
+  "title": "Arctic sea ice September minimum extent (million sq km)",
+  "unit": "million sq km",
+  "geography": "Arctic Ocean",
+  "time_coverage": "1980-2023 (annual)",
+  "source": {
+    "name": "Sea Ice Index",
+    "publisher": "National Snow and Ice Data Center (NSIDC)",
+    "url": "https://nsidc.org/arcticseaicenews",
+    "officiality": "illustrative",
+    "access_date": "2026-06-19"
+  },
+  "notes": "Illustrative; values approximate the NSIDC published September minimum extent series.",
+  "points": [
+    {"label": "1980", "value": 7.2, "period": "1980"},
+    {"label": "1985", "value": 6.9, "period": "1985"},
+    {"label": "1990", "value": 6.2, "period": "1990"},
+    {"label": "1995", "value": 6.1, "period": "1995"},
+    {"label": "2000", "value": 6.3, "period": "2000"},
+    {"label": "2005", "value": 5.6, "period": "2005"},
+    {"label": "2007", "value": 4.3, "period": "2007"},
+    {"label": "2010", "value": 4.9, "period": "2010"},
+    {"label": "2012", "value": 3.4, "period": "2012"},
+    {"label": "2015", "value": 4.4, "period": "2015"},
+    {"label": "2019", "value": 4.1, "period": "2019"},
+    {"label": "2020", "value": 3.9, "period": "2020"},
+    {"label": "2023", "value": 4.2, "period": "2023"}
+  ]
+}
