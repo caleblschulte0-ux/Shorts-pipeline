@@ -1,0 +1,141 @@
+{
+  "version": 8,
+  "slug": "us-measles-2104-cases-2026",
+  "title": "The U.S. Hit 2,104 Measles Cases. Second Year in a Row.",
+  "script": "Didn't we already fix this? The CDC confirmed this week that the United States has recorded 2,104 measles cases in 2026 — the second straight year the country has surpassed 2,000. Cases spread across 38 states. 93% are outbreak-associated. 92% of those infected were unvaccinated or had unknown vaccination status. Health officials are now openly questioning whether the U.S. can hold onto its measles-eliminated status, a title it earned in 2000 after decades of vaccination campaigns. That status is under formal review. The MMR vaccine is 97% effective against measles. But as vaccine hesitancy grows, so do the outbreaks. The CDC is warning that summer travel will make things worse. So: how many years in a row before the U.S. loses eliminated status?",
+  "shots": [
+    {
+      "phrase": "Didn't we already fix this?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+      "query": "measles rash skin illness outbreak",
+      "mascot_pose": "dismiss"
+    },
+    {
+      "phrase": "The CDC confirmed this week that the United States has recorded 2,104 measles cases in 2026",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+      "query": "CDC public health announcement measles 2026",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "the second straight year the country has surpassed 2,000",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+      "query": "measles cases rising bar chart graph",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Cases spread across 38 states.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+      "query": "US map states outbreak spread disease",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "93% are outbreak-associated.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+      "query": "disease outbreak cluster community spread",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "92% of those infected were unvaccinated or had unknown vaccination status.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+      "query": "unvaccinated child family vaccine refusal",
+      "mascot_pose": "dismiss"
+    },
+    {
+      "phrase": "Health officials are now openly questioning whether the U.S. can hold onto its measles-eliminated status",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+      "query": "health official press conference announcement serious",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a title it earned in 2000 after decades of vaccination campaigns.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+      "query": "measles vaccine campaign public health 2000",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "That status is under formal review.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+      "query": "CDC WHO health review formal document",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The MMR vaccine is 97% effective against measles.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+      "query": "MMR vaccine syringe injection pediatric",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "as vaccine hesitancy grows, so do the outbreaks.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+      "query": "anti-vaccine protest movement hesitancy",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "summer travel will make things worse.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+      "query": "airport summer travel crowded terminal",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "how many years in a row before the U.S. loses eliminated status?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+      "query": "measles outbreak US public health crisis",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "The CDC confirmed this week that the United States has recorded 2,104 measles cases in 2026",
+      "text": "2,104 CASES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the second straight year the country has surpassed 2,000",
+      "text": "YEAR 2 IN A ROW",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Cases spread across 38 states.",
+      "text": "38 STATES AFFECTED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "92% of those infected were unvaccinated or had unknown vaccination status.",
+      "text": "92%: UNVACCINATED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "The MMR vaccine is 97% effective against measles.",
+      "text": "MMR: 97% EFFECTIVE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "summer travel will make things worse.",
+      "text": "SUMMER TRAVEL: RISK",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "how many years in a row before the U.S. loses eliminated status?",
+      "text": "ELIMINATION: AT RISK",
+      "color": "#ff3030"
+    }
+  ],
+  "hashtags": [
+    "measles2026",
+    "measlesoutbreak",
+    "CDC",
+    "publichealth",
+    "MMRvaccine",
+    "vaccinepreventable",
+    "measleseliminated",
+    "outbreaks",
+    "vaccinehesitancy",
+    "healthnews",
+    "measles",
+    "vaccines",
+    "UShealth",
+    "disease",
+    "sciencenews"
+  ],
+  "music_vibe": "dark"
+}
