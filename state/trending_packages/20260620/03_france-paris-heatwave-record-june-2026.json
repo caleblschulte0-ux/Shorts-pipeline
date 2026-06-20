@@ -1,0 +1,142 @@
+{
+  "version": 8,
+  "slug": "france-paris-heatwave-record-june-2026",
+  "title": "Paris Could Hit 41°C Monday. France Has Never Seen This.",
+  "script": "Paris: 40 degrees Monday? That's not a typo. France is in its second heatwave of 2026, and meteorologists say Monday could be the hottest June day ever recorded — hitting 41°C in Paris, possibly 42°C in Nevers. 60 French departments are under orange alert. France's biggest summer music festival got cancelled in several cities. Schools are scrambling. Trains are slowing down to stop tracks from warping. The town of Montmorillon hit 40.2°C on Thursday. Saint-Florent-sur-Cher hit 40.4°C. And this is only June. France's all-time heat record is 45.9°C — set in 2019 during a week that killed hundreds. Forecasters aren't ruling out another run at it. So: which French city breaks the June record first?",
+  "shots": [
+    {
+      "phrase": "Paris: 40 degrees Monday?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+      "query": "Paris summer heat heatwave sky",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "That's not a typo.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "thermometer extreme heat red high",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "France is in its second heatwave of 2026",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+      "query": "France heatwave summer 2026 map",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "hitting 41°C in Paris, possibly 42°C in Nevers",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "thermometer 40 degrees extreme heat record",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "60 French departments are under orange alert",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+      "query": "France weather alert orange map departments",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "France's biggest summer music festival got cancelled in several cities",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "outdoor music festival cancelled empty stage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Trains are slowing down to stop tracks from warping.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+      "query": "train tracks heat warping bent rail",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The town of Montmorillon hit 40.2°C on Thursday.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "Montmorillon France town street heat",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Saint-Florent-sur-Cher hit 40.4°C.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+      "query": "France countryside river summer scorching",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "And this is only June.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "calendar June summer sun heat warning",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "France's all-time heat record is 45.9°C — set in 2019 during a week that killed hundreds.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+      "query": "heat record 2019 France disaster deaths",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Forecasters aren't ruling out another run at it.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "weather forecast meteorologist extreme heat",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "which French city breaks the June record first?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+      "query": "Paris aerial cityscape extreme summer heat",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "hitting 41°C in Paris, possibly 42°C in Nevers",
+      "text": "41°C PARIS. 42°C NEVERS.",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "60 French departments are under orange alert",
+      "text": "60 DEPARTMENTS: ORANGE ALERT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "France's biggest summer music festival got cancelled in several cities",
+      "text": "FESTIVAL: CANCELLED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "The town of Montmorillon hit 40.2°C on Thursday.",
+      "text": "40.2°C THURSDAY",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "France's all-time heat record is 45.9°C — set in 2019 during a week that killed hundreds.",
+      "text": "RECORD: 45.9°C IN 2019",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Forecasters aren't ruling out another run at it.",
+      "text": "RECORD IN REACH",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "which French city breaks the June record first?",
+      "text": "HOTTEST JUNE EVER?",
+      "color": "#ff3030"
+    }
+  ],
+  "hashtags": [
+    "franceheatwave",
+    "paris40degrees",
+    "europeanheatwave",
+    "montmorillon",
+    "heatrecord",
+    "climatecrisis",
+    "france2026",
+    "extremeheat",
+    "heatwave",
+    "paris",
+    "weathernews",
+    "climate",
+    "recordtemperature",
+    "europe",
+    "meteorology"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
