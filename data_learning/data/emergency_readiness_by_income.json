@@ -1,0 +1,23 @@
+{
+  "key": "emergency_readiness_by_income",
+  "title": "Adults with 3-month emergency fund by income bracket (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Emergency savings by income",
+    "publisher": "Federal Reserve / Bankrate",
+    "url": "https://www.bankrate.com",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; figures approximate Bankrate annual emergency savings survey results by income tier.",
+  "points": [
+    {"label": "Under $30K", "value": 12},
+    {"label": "$30K–$60K", "value": 28},
+    {"label": "$60K–$100K", "value": 46},
+    {"label": "$100K–$150K", "value": 63},
+    {"label": "Over $150K", "value": 78}
+  ],
+  "baseline": {"label": "National average (34%)", "value": 34}
+}

@@ -1,0 +1,20 @@
+{
+  "key": "caffeine_intake_vs_limit",
+  "title": "Daily caffeine: actual vs. safe limit (mg)",
+  "unit": "mg",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Caffeine intake comparison",
+    "publisher": "FDA / Mayo Clinic",
+    "url": "https://www.fda.gov",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; average intake estimate from NCA surveys; FDA recommends ≤400 mg/day for healthy adults.",
+  "points": [
+    {"label": "FDA safe daily limit", "value": 400},
+    {"label": "Average US adult intake", "value": 200},
+    {"label": "Heavy user daily intake", "value": 580}
+  ]
+}

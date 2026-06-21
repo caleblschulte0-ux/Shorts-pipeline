@@ -1,0 +1,21 @@
+{
+  "key": "language_concentration",
+  "title": "Share of world population by language group (%)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "World language speaker share",
+    "publisher": "SIL International / Ethnologue",
+    "url": "https://www.ethnologue.com",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; approximate share of world population (8.1B) that speaks each language tier as a first language.",
+  "points": [
+    {"label": "Top 10 languages", "value": 41, "period": "Top 10"},
+    {"label": "Languages 11–100", "value": 33, "period": "11-100"},
+    {"label": "Languages 101–500", "value": 18, "period": "101-500"},
+    {"label": "Remaining ~6,500 languages", "value": 8, "period": "6500+"}
+  ]
+}

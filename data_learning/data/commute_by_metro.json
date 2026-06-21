@@ -1,0 +1,25 @@
+{
+  "key": "commute_by_metro",
+  "title": "Average one-way commute by metro area (minutes)",
+  "unit": "minutes",
+  "geography": "United States (selected metros)",
+  "time_coverage": "2022-2023",
+  "source": {
+    "name": "American Community Survey 1-Year Estimates",
+    "publisher": "US Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; figures approximate published ACS estimates for mean travel time to work by metro area.",
+  "points": [
+    {"label": "New York City", "value": 41},
+    {"label": "San Francisco", "value": 34},
+    {"label": "Chicago", "value": 33},
+    {"label": "Boston", "value": 32},
+    {"label": "Los Angeles", "value": 31},
+    {"label": "Houston", "value": 28},
+    {"label": "National avg", "value": 28}
+  ],
+  "baseline": {"label": "National average (28 min)", "value": 28}
+}
