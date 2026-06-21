@@ -1,0 +1,23 @@
+{
+  "key": "commute_time_trend",
+  "title": "Average US one-way commute time (minutes)",
+  "unit": "minutes",
+  "geography": "United States",
+  "time_coverage": "1980-2023 (selected years)",
+  "source": {
+    "name": "American Community Survey / Decennial Census",
+    "publisher": "US Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; figures approximate published Census ACS estimates for mean travel time to work.",
+  "points": [
+    {"label": "1980", "value": 21.7, "period": "1980"},
+    {"label": "1990", "value": 22.4, "period": "1990"},
+    {"label": "2000", "value": 25.5, "period": "2000"},
+    {"label": "2010", "value": 25.3, "period": "2010"},
+    {"label": "2019", "value": 27.6, "period": "2019"},
+    {"label": "2023", "value": 28.4, "period": "2023"}
+  ]
+}

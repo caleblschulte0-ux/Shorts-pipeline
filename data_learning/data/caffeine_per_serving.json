@@ -1,0 +1,26 @@
+{
+  "key": "caffeine_per_serving",
+  "title": "Caffeine per serving (mg)",
+  "unit": "mg",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Caffeine content of beverages",
+    "publisher": "FDA / Mayo Clinic",
+    "url": "https://www.fda.gov",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; figures reflect widely reported estimates per standard serving size.",
+  "points": [
+    {"label": "Energy drink (16 oz)", "value": 160},
+    {"label": "Cold brew (12 oz)", "value": 155},
+    {"label": "Espresso (2 oz)", "value": 128},
+    {"label": "Drip coffee (8 oz)", "value": 95},
+    {"label": "Black tea (8 oz)", "value": 47},
+    {"label": "Cola (12 oz)", "value": 34},
+    {"label": "Green tea (8 oz)", "value": 28},
+    {"label": "Dark chocolate (1 oz)", "value": 12}
+  ],
+  "baseline": {"label": "FDA single-dose warning threshold (200 mg)", "value": 200}
+}

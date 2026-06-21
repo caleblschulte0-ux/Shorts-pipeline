@@ -1,0 +1,23 @@
+{
+  "key": "emergency_savings_readiness",
+  "title": "Share of US adults with 3-month emergency fund (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2010-2024 (selected years)",
+  "source": {
+    "name": "Survey of Household Economics and Decisionmaking",
+    "publisher": "Federal Reserve / Bankrate",
+    "url": "https://www.federalreserve.gov",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; figures approximate Federal Reserve SHED and Bankrate emergency savings survey results.",
+  "points": [
+    {"label": "2010", "value": 49, "period": "2010"},
+    {"label": "2014", "value": 45, "period": "2014"},
+    {"label": "2018", "value": 40, "period": "2018"},
+    {"label": "2020", "value": 42, "period": "2020"},
+    {"label": "2022", "value": 37, "period": "2022"},
+    {"label": "2024", "value": 34, "period": "2024"}
+  ]
+}

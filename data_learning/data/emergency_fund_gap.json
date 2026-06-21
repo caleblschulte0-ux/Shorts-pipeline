@@ -1,0 +1,20 @@
+{
+  "key": "emergency_fund_gap",
+  "title": "Emergency fund: what you need vs. what's saved ($)",
+  "unit": "",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Emergency fund gap",
+    "publisher": "Federal Reserve / Bankrate / BLS",
+    "url": "https://www.bankrate.com",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; 3-month fund based on ~$3,300/month avg household expenditures (BLS CE Survey). Median liquid savings from Fed SHED.",
+  "points": [
+    {"label": "3-month fund needed", "value": 9900},
+    {"label": "Median liquid savings held", "value": 2100},
+    {"label": "The gap", "value": 7800}
+  ]
+}
