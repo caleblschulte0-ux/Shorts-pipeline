@@ -1,0 +1,21 @@
+{
+  "key": "commute_hours_annual",
+  "title": "Annual time cost of commuting vs. other activities (hours)",
+  "unit": "hours",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Commute time cost comparison",
+    "publisher": "US Census Bureau / BLS American Time Use Survey",
+    "url": "https://www.census.gov",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; commute hours assume 250 workdays × 2 trips. NYC figure uses 41-min average.",
+  "points": [
+    {"label": "NYC commuter (annual)", "value": 342},
+    {"label": "National avg commuter", "value": 237},
+    {"label": "Average vacation taken", "value": 80},
+    {"label": "Average sick days taken", "value": 24}
+  ]
+}

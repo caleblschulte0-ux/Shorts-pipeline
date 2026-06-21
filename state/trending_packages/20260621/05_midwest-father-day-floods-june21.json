@@ -1,0 +1,131 @@
+{
+  "version": 8,
+  "slug": "midwest-father-day-floods-june21",
+  "title": "Tornadoes and Flash Floods Are Ruining Father's Day Across the Midwest",
+  "script": "Not the Father's Day plan! A violent storm system swept the Midwest today — Father's Day — threatening millions with flash floods, tornadoes, and 90 mph winds. The soil is already soaked from last week's tornado outbreak. Rain is falling at 2 inches per hour in some spots. The Illinois, Wabash, and Mississippi rivers are all running dangerously high — there is nowhere left for water to go. This same system already raked Iowa, Kentucky, Ohio, and Wisconsin this week. Today it pushed through eastern Colorado, Nebraska, Kansas, and Missouri. Parts of the central Plains hit an extreme risk rating. Millions who planned backyard barbecues got flash-flood warnings instead. Happy Father's Day. So: how many states were actually under severe weather warnings today?",
+  "shots": [
+    {
+      "phrase": "Not the Father's Day plan!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Levels_of_flooding_01.JPG",
+      "query": "flash flood road submerged water",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "A violent storm system swept the Midwest today — Father's Day",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Evolution_of_a_Tornado.jpg",
+      "query": "dark storm clouds Midwest sky",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "threatening millions with flash floods, tornadoes, and 90 mph winds",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Evolution_of_a_Tornado.jpg",
+      "query": "tornado funnel cloud forming",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The soil is already soaked from last week's tornado outbreak",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Levels_of_flooding_01.JPG",
+      "query": "saturated soil flooded field rain",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Rain is falling at 2 inches per hour in some spots",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Levels_of_flooding_01.JPG",
+      "query": "heavy rain puddle flooding street",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The Illinois, Wabash, and Mississippi rivers are all running dangerously high",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Levels_of_flooding_01.JPG",
+      "query": "river flooding dangerously high banks",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "there is nowhere left for water to go",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Levels_of_flooding_01.JPG",
+      "query": "flooded neighborhood houses water submerged",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "This same system already raked Iowa, Kentucky, Ohio, and Wisconsin",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Evolution_of_a_Tornado.jpg",
+      "query": "tornado damage aftermath Midwest",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Today it pushed through eastern Colorado, Nebraska, Kansas, and Missouri",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Levels_of_flooding_01.JPG",
+      "query": "storm radar weather map Plains",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Parts of the central Plains hit an extreme risk rating",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Evolution_of_a_Tornado.jpg",
+      "query": "severe weather warning sign alert",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Millions who planned backyard barbecues got flash-flood warnings instead",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Levels_of_flooding_01.JPG",
+      "query": "flooded backyard rain Father's Day",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "how many states were actually under severe weather warnings today?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Evolution_of_a_Tornado.jpg",
+      "query": "tornado watch warning map United States",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Not the Father's Day plan!",
+      "text": "NOT THE PLAN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "flash floods, tornadoes, and 90 mph winds",
+      "text": "FLOODS + TORNADOES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "2 inches per hour",
+      "text": "2 IN/HR RAIN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "nowhere left for water to go",
+      "text": "NOWHERE TO GO",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "extreme risk rating",
+      "text": "EXTREME RISK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Happy Father's Day.",
+      "text": "HAPPY FATHER'S DAY",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "fathersday",
+    "midwest",
+    "flashflood",
+    "tornado",
+    "severweather",
+    "severeweather",
+    "floodwarning",
+    "naturaldisaster",
+    "storms",
+    "iowa",
+    "nebraska",
+    "kansas",
+    "missouri",
+    "weathernews",
+    "extremeweather"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,24 @@
+{
+  "key": "language_loss_per_decade",
+  "title": "Languages lost (extinct or <10 speakers) per decade",
+  "unit": "languages",
+  "geography": "World",
+  "time_coverage": "1950s-2010s",
+  "source": {
+    "name": "Endangered languages database",
+    "publisher": "Endangered Languages Project / UNESCO",
+    "url": "https://www.endangeredlanguages.com",
+    "officiality": "illustrative",
+    "access_date": "2026-06-21"
+  },
+  "notes": "Illustrative; figures approximate UNESCO Atlas of the World's Languages in Danger and related scholarship.",
+  "points": [
+    {"label": "1950s", "value": 5, "period": "1950s"},
+    {"label": "1960s", "value": 9, "period": "1960s"},
+    {"label": "1970s", "value": 13, "period": "1970s"},
+    {"label": "1980s", "value": 17, "period": "1980s"},
+    {"label": "1990s", "value": 22, "period": "1990s"},
+    {"label": "2000s", "value": 27, "period": "2000s"},
+    {"label": "2010s", "value": 34, "period": "2010s"}
+  ]
+}

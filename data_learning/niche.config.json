@@ -2537,6 +2537,236 @@
           "say": "And increasingly, insurers just say no. In 2018, about 1.5 percent of homeowners were dropped at renewal. By 2024, that doubled to 4 percent — concentrated exactly where disaster risk is highest."
         }
       ]
+    },
+    {
+      "slug": "caffeine-data-every-cup",
+      "title": "Your Morning Cup Is the World's Most Popular Drug",
+      "hook": "Your morning cup is the most popular drug on Earth.",
+      "closing": "Three cups and counting. No prescription required.",
+      "hashtags": [
+        "caffeine",
+        "coffee",
+        "science",
+        "health",
+        "data",
+        "facts",
+        "morningcoffee",
+        "energydrink",
+        "brainscience",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "caffeine_us_daily_cups",
+          "params": {
+            "file": "caffeine_us_daily_cups.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · CONSUMPTION",
+          "topic": "US coffee cups per day",
+          "say": "In 2000 the average American drank fewer than 2 cups a day. By 2024 that's 3.2. We've been quietly dosing up for 25 years straight."
+        },
+        {
+          "source": "offline",
+          "key": "caffeine_per_serving",
+          "params": {
+            "file": "caffeine_per_serving.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE DOSES",
+          "topic": "caffeine mg per serving",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "A single large energy drink hits 160 mg. Cold brew edges it at 155. One espresso is 128. The FDA flags anything over 200 mg at once as a risk."
+        },
+        {
+          "source": "offline",
+          "key": "caffeine_intake_vs_limit",
+          "params": {
+            "file": "caffeine_intake_vs_limit.json"
+          },
+          "insight_type": "comparison",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 · YOUR LIMIT",
+          "topic": "intake vs. FDA safe limit",
+          "say": "The FDA says 400 mg a day is the safe ceiling. The average American clears half that. Heavy users hit 580 — clearing the limit by nearly 50 percent."
+        }
+      ],
+      "question": "How many cups are you actually drinking today?"
+    },
+    {
+      "slug": "commute-time-creep",
+      "title": "Your Commute Is Longer Than Your Parents' Was",
+      "hook": "Your commute is longer than your parents' was.",
+      "closing": "More minutes, same destination. The commute always wins.",
+      "hashtags": [
+        "commute",
+        "worklife",
+        "data",
+        "nyc",
+        "traffic",
+        "census",
+        "wfh",
+        "urbanliving",
+        "facts",
+        "transportation"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "commute_time_trend",
+          "params": {
+            "file": "commute_time_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · CREEP",
+          "topic": "US average commute over time",
+          "say": "In 1980 the average American commute was 22 minutes one-way. By 2023 it's 28. Small number — but that's 6 extra minutes every single workday, forever."
+        },
+        {
+          "source": "offline",
+          "key": "commute_by_metro",
+          "params": {
+            "file": "commute_by_metro.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · WORST OFFENDERS",
+          "topic": "commute time by metro area",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "New York City averages 41 minutes each way. San Francisco 34, Chicago 33. If you're in a major metro, your commute is already its own part-time job."
+        },
+        {
+          "source": "offline",
+          "key": "commute_hours_annual",
+          "params": {
+            "file": "commute_hours_annual.json"
+          },
+          "insight_type": "comparison",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 · THE MATH",
+          "topic": "annual hours in commute vs. vacation",
+          "say": "The average commuter loses 237 hours a year in transit. That's triple the vacation days most Americans actually take. NYC commuters burn 342 hours — six full weeks."
+        }
+      ],
+      "question": "How long is your commute? Drop it below."
+    },
+    {
+      "slug": "languages-dying",
+      "title": "40% of All Languages Have Fewer Than 1,000 Speakers",
+      "hook": "40% of all languages have under 1,000 speakers.",
+      "closing": "Seven thousand worlds of words. Most will never be written down.",
+      "hashtags": [
+        "language",
+        "linguistics",
+        "culture",
+        "extinction",
+        "data",
+        "facts",
+        "didyouknow",
+        "worldcultures",
+        "endangered",
+        "history"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "language_loss_per_decade",
+          "params": {
+            "file": "language_loss_per_decade.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE PACE",
+          "topic": "languages lost per decade",
+          "say": "In the 1950s about 5 languages went extinct each decade. By the 2010s that number hit 34. The pace of language loss has increased sevenfold in 70 years."
+        },
+        {
+          "source": "offline",
+          "key": "language_speaker_groups",
+          "params": {
+            "file": "language_speaker_groups.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE FRAGILE ONES",
+          "topic": "languages by speaker count",
+          "ascending": false,
+          "use_baseline": false,
+          "say": "Of roughly 7,100 languages alive today, 3,100 have under a thousand speakers. That's nearly half of all human languages — each a complete world — on the edge of silence."
+        },
+        {
+          "source": "offline",
+          "key": "language_concentration",
+          "params": {
+            "file": "language_concentration.json"
+          },
+          "insight_type": "share",
+          "role": "3 · THE LOPSIDED MATH",
+          "topic": "share of world population by language tier",
+          "say": "The top 10 languages cover 41% of all humans. The remaining 6,500 languages share just 8% of the world's population — spread impossibly thin across shrinking communities."
+        }
+      ],
+      "question": "Do you speak a language that could disappear?"
+    },
+    {
+      "slug": "emergency-savings-gap",
+      "title": "Most Americans Are One Bad Day From Broke",
+      "hook": "Most Americans are one bad day from broke.",
+      "closing": "The math is simple. The savings aren't.",
+      "hashtags": [
+        "personalfinance",
+        "emergencyfund",
+        "savings",
+        "money",
+        "data",
+        "finance",
+        "budget",
+        "economics",
+        "fed",
+        "usa"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "emergency_savings_readiness",
+          "params": {
+            "file": "emergency_savings_readiness.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SLIDE",
+          "topic": "share with 3-month emergency fund",
+          "say": "In 2010, 49% of Americans had a three-month emergency fund. By 2024 that's down to 34%. Fifteen years of gains — erased. And that was before inflation hit."
+        },
+        {
+          "source": "offline",
+          "key": "emergency_readiness_by_income",
+          "params": {
+            "file": "emergency_readiness_by_income.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · WHO'S COVERED",
+          "topic": "readiness by income bracket",
+          "ascending": false,
+          "use_baseline": true,
+          "say": "Earn over 150K? 78% are covered. Earn under 30K? Only 12%. Emergency funds aren't a savings problem — they're an income problem hiding inside a savings problem."
+        },
+        {
+          "source": "offline",
+          "key": "emergency_fund_gap",
+          "params": {
+            "file": "emergency_fund_gap.json"
+          },
+          "insight_type": "comparison",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 · THE GAP",
+          "topic": "needed vs. saved",
+          "say": "A proper three-month cushion costs about 9,900 dollars. The median American has 2,100 in liquid savings. That's a 7,800-dollar gap between where you are and where you'd be safe."
+        }
+      ],
+      "question": "Do you have a full emergency fund? Real talk below."
     }
   ],
   "videos": [
