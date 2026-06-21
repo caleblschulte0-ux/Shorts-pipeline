@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-06-14T16:00:26Z",
+  "scouted_at": "2026-06-21T16:18:25Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,79 +20,59 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 108,
-    "wikimedia_commons_count": 10,
+    "wikimedia_commons_count": 1,
     "youtube_trending_count": 0,
     "lemmy_count": 0,
     "hackernews_count": 0
   },
-  "total": 118,
+  "total": 109,
   "reddit_posts": [],
   "wikipedia_events": [
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 2017,
-      "text": "A fire severely damaged Grenfell Tower in North Kensington, London, killing 72 people.",
-      "page_title": "Grenfell Tower fire",
-      "page_url": "https://en.wikipedia.org/wiki/Grenfell_Tower_fire",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Grenfell_Tower_fire_%28wider_view%29.jpg/330px-Grenfell_Tower_fire_%28wider_view%29.jpg",
-      "extract": "On 14 June 2017, a high-rise fire broke out in the 24-storey Grenfell Tower block of flats in North Kensington, West London, England, at 00:54 BST and burned for 60 hours. A total of 70 people died at the scene and two other people died later in hospital, with more than 70 injured and 223 escaping. It was the deadliest structural fire in the United Kingdom since the 1988 Piper Alpha oil-platform disaster and the worst UK residential fire since the Blitz of World War II. It also became the deadli"
+      "year": 2000,
+      "text": "President Bill Clinton awarded the Medal of Honor to 22 Asian Americans, mostly from the 442nd Regimental Combat Team, for actions during World War\u00a0II.",
+      "page_title": "Bill Clinton",
+      "page_url": "https://en.wikipedia.org/wiki/Bill_Clinton",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Bill_Clinton_%28cropped_4%29.jpg/330px-Bill_Clinton_%28cropped_4%29.jpg",
+      "extract": "William Jefferson Clinton is an American former politician and lawyer who served as the 42nd president of the United States from 1993 to 2001. A member of the Democratic Party, he previously served as the attorney general of Arkansas from 1977 to 1979 and as the governor of Arkansas from 1979 to 1981, and again from 1983 to 1992. His centrist \"Third Way\" political philosophy became known as Clintonism, which dominated his presidency and the succeeding decades of Democratic Party history."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 2014,
-      "text": "War in Donbas: An Ilyushin Il-76 transport aircraft of the Ukrainian Air Force was shot down by forces of the self-proclaimed Luhansk People's Republic, killing all 49 people on board.",
-      "page_title": "War in Donbas",
-      "page_url": "https://en.wikipedia.org/wiki/War_in_Donbas",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/A_Russia-backed_rebel_armored_fighting_vehicles_convoy_near_Donetsk%2C_Eastern_Ukraine%2C_May_30%2C_2015.jpg/330px-A_Russia-backed_rebel_armored_fighting_vehicles_convoy_near_Donetsk%2C_Eastern_Ukraine%2C_May_30%2C_2015.jpg",
-      "extract": "The war in Donbas, also called the Donbas war, was a phase of the Russo-Ukrainian war in the eastern Donbas region of Ukraine. The war began in April 2014, when Russian-backed paramilitaries began an uprising against the Ukrainian government, seized territory and declared independent states. Ukraine's military launched an operation against them, but failed to fully retake the territory. Covertly, Russia's military were directly involved, and the separatists were largely under Russian control. Th"
+      "year": 1973,
+      "text": "The U.S. Supreme Court delivered its decision in the landmark case Miller v. California, establishing the Miller test for determining what is obscene material.",
+      "page_title": "Supreme Court of the United States",
+      "page_url": "https://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Seal_of_the_United_States_Supreme_Court.svg/330px-Seal_of_the_United_States_Supreme_Court.svg.png",
+      "extract": "The Supreme Court of the United States (SCOTUS) is the highest court in the federal judiciary of the United States. It has ultimate appellate jurisdiction over all U.S. federal court cases, and over state court cases that turn on questions of U.S. constitutional or federal law. It also has original jurisdiction over a narrow range of cases, specifically \"all Cases affecting Ambassadors, other public Ministers and Consuls, and those in which a State shall be Party\". In 1803, the court asserted it"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 1996,
-      "text": "After an 81-day standoff sparked by their refusal to be evicted from their foreclosed property in Jordan, Montana, the Christian Patriot group Montana Freemen surrendered to the FBI.",
-      "page_title": "Foreclosure",
-      "page_url": "https://en.wikipedia.org/wiki/Foreclosure",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Foreclosedhome.JPG/330px-Foreclosedhome.JPG",
-      "extract": "Foreclosure is a legal process in which a lender attempts to recover the balance of a loan from a borrower who has stopped making payments to the lender by forcing the sale of the asset used as the collateral for the loan."
+      "year": 1957,
+      "text": "Ellen Fairclough (pictured) became the first woman to be appointed to the cabinet of Canada.",
+      "page_title": "Ellen Fairclough",
+      "page_url": "https://en.wikipedia.org/wiki/Ellen_Fairclough",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Ellen_Fairclough_1940s.jpg/330px-Ellen_Fairclough_1940s.jpg",
+      "extract": "Ellen Louks Fairclough was a Canadian politician. A Progressive Conservative member of the House of Commons of Canada from 1950 to 1963, she was the first woman ever to serve in the Canadian Cabinet."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 1992,
-      "text": "Swedish woman Helena Andersson disappeared in Mariestad, one suspect were \u201dthe man with the pilot glasses\".",
-      "page_title": "Disappearance of Helena Andersson",
-      "page_url": "https://en.wikipedia.org/wiki/Disappearance_of_Helena_Andersson",
-      "thumbnail": null,
-      "extract": "22-year-old Helena Andersson disappeared on 14 June 1992 in Mariestad, Sweden. Since then, several suspects in her disappearance have been arrested and later released without charge. The disappearance has received extensive media attention since 1992."
+      "year": 1948,
+      "text": "The Manchester Baby (replica pictured), the world's first stored-program computer, ran its first program.",
+      "page_title": "Manchester Baby",
+      "page_url": "https://en.wikipedia.org/wiki/Manchester_Baby",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Manchester_Baby_Replica.webp/330px-Manchester_Baby_Replica.webp.png",
+      "extract": "The Manchester Baby, also called the Small-Scale Experimental Machine (SSEM), was the first electronic stored-program computer. It was built at the Victoria University of Manchester by Frederic C. Williams, Tom Kilburn, and Geoff Tootill, and ran its first program on 21 June 1948."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 1982,
-      "text": "Falklands War: British prime minister Margaret Thatcher announced that white flags were flying over Port Stanley, in advance of the formal surrender of Argentine forces.",
-      "page_title": "Falklands War",
-      "page_url": "https://en.wikipedia.org/wiki/Falklands_War",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/HMS_Broadsword_and_Hermes%2C_1982_%28IWM%29.jpg/330px-HMS_Broadsword_and_Hermes%2C_1982_%28IWM%29.jpg",
-      "extract": "The Falklands War was a ten-week undeclared war between Argentina and the United Kingdom in 1982 over two British Overseas Territories in the South Atlantic: the Falkland Islands and its territorial dependency, South Georgia and the South Sandwich Islands. The conflict began on 2\u00a0April 1982, when Argentina invaded and occupied the Falkland Islands, followed by the invasion of South Georgia the next day. On 5\u00a0April the British government dispatched a naval task force to engage the Argentine Navy "
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1966,
-      "text": "The Vatican formally abolished its 427-year-old list of prohibited books (title page pictured).",
-      "page_title": "Holy See",
-      "page_url": "https://en.wikipedia.org/wiki/Holy_See",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Flag_of_Vatican_City_%282023%E2%80%93present%29.svg/330px-Flag_of_Vatican_City_%282023%E2%80%93present%29.svg.png",
-      "extract": "The Holy See, also called the See of Rome, the Petrine See or the Apostolic See, is the central governing body of the Catholic Church and Vatican City. It encompasses the office of the pope as the bishop of the apostolic episcopal see of Rome, and serves as the spiritual and administrative authority of the worldwide Catholic Church and Vatican City. Under international law, the Holy See holds the status of a sovereign juridical entity."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1944,
-      "text": "Second World War: The British Army abandoned its attempt to capture the German-occupied city of Caen.",
+      "year": 1940,
+      "text": "World War\u00a0II: The main offensive of the unsuccessful Italian invasion of France began.",
       "page_title": "World War II",
       "page_url": "https://en.wikipedia.org/wiki/World_War_II",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bundesarchiv_Bild_101I-646-5188-17%2C_Flugzeuge_Junkers_Ju_87.jpg/330px-Bundesarchiv_Bild_101I-646-5188-17%2C_Flugzeuge_Junkers_Ju_87.jpg",
@@ -101,328 +81,398 @@
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 1940,
-      "text": "The Soviet Union issued an ultimatum to Lithuania demanding that the Red Army be allowed to enter the country and form a pro-Soviet government.",
-      "page_title": "Soviet ultimatum to Lithuania",
-      "page_url": "https://en.wikipedia.org/wiki/Soviet_ultimatum_to_Lithuania",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Ribbentrop-Molotov_no_legend.svg/330px-Ribbentrop-Molotov_no_legend.svg.png",
-      "extract": "The Soviet Union issued an ultimatum to Lithuania before midnight of 14 June 1940. The Soviets, using a formal pretext, demanded that an unspecified number of Soviet soldiers be allowed to enter the Lithuanian territory and that a new pro-Soviet government be formed. The ultimatum and subsequent incorporation of Lithuania into the Soviet Union stemmed from the division of Eastern Europe into the German and Soviet spheres of influence agreed in the Molotov\u2013Ribbentrop Pact of August 1939. Lithuani"
+      "year": 1921,
+      "text": "Irish War of Independence: Most of the village of Knockcroghery in County Roscommon was burned by British forces.",
+      "page_title": "Irish War of Independence",
+      "page_url": "https://en.wikipedia.org/wiki/Irish_War_of_Independence",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Hogan%27s_Flying_Column.gif/330px-Hogan%27s_Flying_Column.gif",
+      "extract": "The Irish War of Independence, also known as the Anglo-Irish War, was a guerrilla war fought in Ireland from 1919 to 1921 between the Irish Republican Army and British forces: the British Army, along with the quasi-military Royal Irish Constabulary (RIC) and its paramilitary forces the Auxiliaries and Ulster Special Constabulary (USC). It was part of the Irish revolutionary period."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 1940,
-      "text": "Second World War: Four days after the French government fled Paris, German forces occupied the French capital, a major accomplishment in the Fall Rot operation.",
-      "page_title": "World War II",
-      "page_url": "https://en.wikipedia.org/wiki/World_War_II",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bundesarchiv_Bild_101I-646-5188-17%2C_Flugzeuge_Junkers_Ju_87.jpg/330px-Bundesarchiv_Bild_101I-646-5188-17%2C_Flugzeuge_Junkers_Ju_87.jpg",
-      "extract": "World War\u00a0II, or the Second World War, was a global conflict between two coalitions: the Allies and the Axis powers. Nearly all of the world's countries participated. Tanks and aircraft played major roles, the latter enabling the strategic bombing of cities and delivery of the only nuclear weapons used in war. World War II was the deadliest conflict in history, causing the death of 60 to 75 million people. Millions died as a result of massacres, starvation, disease, and genocides, including the "
+      "year": 1919,
+      "text": "Admiral Ludwig von Reuter scuttled the German High Seas Fleet in Scapa Flow to prevent the ships from being seized and divided amongst the Allied Powers.",
+      "page_title": "Ludwig von Reuter",
+      "page_url": "https://en.wikipedia.org/wiki/Ludwig_von_Reuter",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Gettyimages-545682831-2048x2048.jpeg/330px-Gettyimages-545682831-2048x2048.jpeg",
+      "extract": "Hans Hermann Ludwig von Reuter was a German admiral who commanded the High Seas Fleet when it was interned at Scapa Flow in the Orkney Islands at the end of World War I. On 21 June 1919 he ordered the scuttling of the German fleet in Scapa Flow to prevent the British from seizing the ships."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 1934,
-      "text": "The landmark Australian Eastern Mission concluded after a three-month diplomatic tour of East and South-East Asia.",
-      "page_title": "Australian Eastern Mission",
-      "page_url": "https://en.wikipedia.org/wiki/Australian_Eastern_Mission",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/%E6%BE%B3%E6%B4%B2%E5%89%AF%E7%B8%BD%E7%90%86%E8%97%8D%E5%B1%B1%E6%B0%8F%E4%B9%8B%E5%8F%8B%E8%AA%BC%E8%A8%AA%E5%95%8F.png/330px-%E6%BE%B3%E6%B4%B2%E5%89%AF%E7%B8%BD%E7%90%86%E8%97%8D%E5%B1%B1%E6%B0%8F%E4%B9%8B%E5%8F%8B%E8%AA%BC%E8%A8%AA%E5%95%8F.png",
-      "extract": "The Australian Eastern Mission (AEM) was a 1934 diplomatic tour of East and South-East Asia led by Australian deputy prime minister John Latham. The mission was the first such official tour sent by Australia outside of the British Empire and has been seen as a landmark in Australian foreign policy and engagement with Asia."
+      "year": 1919,
+      "text": "During a general strike in Winnipeg, Canada, members of the Royal North-West Mounted Police attacked a crowd of strikers, armed with clubs and revolvers.",
+      "page_title": "Winnipeg general strike",
+      "page_url": "https://en.wikipedia.org/wiki/Winnipeg_general_strike",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/WinnipegGeneralStrike.jpg/330px-WinnipegGeneralStrike.jpg",
+      "extract": "The Winnipeg General Strike of 1919 was one of the most dramatic and influential strikes in Canadian history. For six weeks, May 15 to June 26, more than 30,000 strikers brought economic activity to a standstill in Winnipeg, Manitoba, which at the time was Canada's third largest city."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "selected",
-      "year": 1900,
-      "text": "The second of the German Naval Laws was passed, authorising the  doubling in size of the Imperial German Navy.",
-      "page_title": "German Naval Laws",
-      "page_url": "https://en.wikipedia.org/wiki/German_Naval_Laws",
+      "year": 1898,
+      "text": "The United States captured Guam from Spain in a bloodless event during the Spanish\u2013American War.",
+      "page_title": "Capture of Guam",
+      "page_url": "https://en.wikipedia.org/wiki/Capture_of_Guam",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Charleston_agana.jpg/330px-Charleston_agana.jpg",
+      "extract": "The capture of Guam from Spain by the United States took place in a bloodless engagement during the Spanish\u2013American War. \nThe U.S. Navy sent a single cruiser, USS\u00a0Charleston, and three vessels of marines to capture the island of Guam, which was under Spanish control. The Spanish garrison on the island had no knowledge of the war and no real ability to resist the American forces. They surrendered without resistance, and the island passed into American control. The event was the only conflict of "
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": 1890,
+      "text": "Rudyard Kipling's poem Mandalay was published.",
+      "page_title": "Rudyard Kipling",
+      "page_url": "https://en.wikipedia.org/wiki/Rudyard_Kipling",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Rudyard_Kipling_%28portrait%29.jpg/330px-Rudyard_Kipling_%28portrait%29.jpg",
+      "extract": "Joseph Rudyard Kipling was an English journalist, novelist, poet and short-story writer. He was born in British India, which inspired much of his work."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": 1864,
+      "text": "New Zealand Wars: A British victory against the M\u0101ori King Movement brought the Tauranga campaign to an end.",
+      "page_title": "New Zealand Wars",
+      "page_url": "https://en.wikipedia.org/wiki/New_Zealand_Wars",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Auckland-Museum-Tamaki-Paenga-Hira-New-Zealand-Wars-Memorial-Alcove-September-2017.jpg/330px-Auckland-Museum-Tamaki-Paenga-Hira-New-Zealand-Wars-Memorial-Alcove-September-2017.jpg",
+      "extract": "The New Zealand Wars took place from 1845 to 1872 between the New Zealand colonial government and allied M\u0101ori on one side, and M\u0101ori and M\u0101ori-allied settlers on the other."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": 1848,
+      "text": "In the Wallachian Revolution, Ion Heliade R\u0103dulescu and Christian Tell proclaimed a new republican government in present-day Romania.",
+      "page_title": "Wallachian Revolution of 1848",
+      "page_url": "https://en.wikipedia.org/wiki/Wallachian_Revolution_of_1848",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Tricolore1848.jpg/330px-Tricolore1848.jpg",
+      "extract": "The Wallachian Revolution of 1848 was a Romanian liberal and nationalist uprising in the Principality of Wallachia. Part of the Revolutions of 1848, and closely connected with the unsuccessful revolt in the Principality of Moldavia, it sought to overturn the administration imposed by Imperial Russian authorities under the Regulamentul Organic regime, and, through many of its leaders, demanded the abolition of boyar privilege. Led by a group of young intellectuals and officers in the Wallachian M"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": 1826,
+      "text": "Greek War of Independence: A combined Egyptian and Ottoman army began an invasion of the Mani Peninsula, but were initially held off by the Maniots at the fortifications of Vergas.",
+      "page_title": "Greek War of Independence",
+      "page_url": "https://en.wikipedia.org/wiki/Greek_War_of_Independence",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Greek_revolution_collage.jpg/330px-Greek_revolution_collage.jpg",
+      "extract": "The Greek War of Independence, also known as the Greek Revolution or the Greek Revolution of 1821, was a successful war of independence fought by Greek revolutionaries against the Ottoman Empire from 1821 to 1829. In 1826, the Greeks were assisted by the British Empire, the Kingdom of France, and the Russian Empire, while the Ottomans were aided by their vassals, especially by the Eyalet of Egypt. The war led to the formation of modern Greece, which in subsequent years would be expanded to its c"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": 1788,
+      "text": "New Hampshire ratified the U.S. Constitution and was admitted as the ninth U.S. state.",
+      "page_title": "New Hampshire",
+      "page_url": "https://en.wikipedia.org/wiki/New_Hampshire",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Flag_of_New_Hampshire.svg/330px-Flag_of_New_Hampshire.svg.png",
+      "extract": "New Hampshire is a state in the New England region of the Northeastern United States. It borders Massachusetts to the south, Vermont to the west, Maine and the Gulf of Maine to the east, and the Canadian province of Quebec to the north. Of the 50 U.S. states, New Hampshire is the seventh-smallest by land area and the tenth-least populous, with a population of 1,377,529 residents as of the 2020 census. Concord is the state capital and Manchester is the most populous city. New Hampshire's motto, \""
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": 1575,
+      "text": "French Wars of Religion: Catholic forces defeated an armed group of Huguenots attempting to capture Besan\u00e7on, from which they had previously been expelled.",
+      "page_title": "French Wars of Religion",
+      "page_url": "https://en.wikipedia.org/wiki/French_Wars_of_Religion",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/La_masacre_de_San_Bartolom%C3%A9%2C_por_Fran%C3%A7ois_Dubois.jpg/330px-La_masacre_de_San_Bartolom%C3%A9%2C_por_Fran%C3%A7ois_Dubois.jpg",
+      "extract": "The French Wars of Religion were a series of civil wars between French Catholics and Protestants from 1562 to 1598. Between two and four million people died from violence, famine or disease directly caused by the conflict, and it severely damaged the power of the French monarchy. The fighting ended with a compromise in 1598, when Henry of Navarre, who converted to Catholicism in 1593, was proclaimed King Henry IV of France and issued the Edict of Nantes, which granted substantial rights and free"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": 1529,
+      "text": "War of the League of Cognac: The French army under Francis de Bourbon was destroyed in Lombardy, Italy, by the Spanish army.",
+      "page_title": "War of the League of Cognac",
+      "page_url": "https://en.wikipedia.org/wiki/War_of_the_League_of_Cognac",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Siege_of_Florence.JPG/330px-Siege_of_Florence.JPG",
+      "extract": "The War of the League of Cognac (1526\u20131530) was fought between the Habsburg dominions of Charles V\u2014primarily the Holy Roman Empire and Spain\u2014and the League of Cognac, an alliance including the Kingdom of France, Pope Clement VII, the Republic of Venice, the Kingdom of England, the Duchy of Milan, and the Republic of Florence."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": 1128,
+      "text": "William Clito defeated Thierry of Alsace in a battle over the succession to the title of Count of Flanders.",
+      "page_title": "William Clito",
+      "page_url": "https://en.wikipedia.org/wiki/William_Clito",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Seal_of_William_Clito.jpg/330px-Seal_of_William_Clito.jpg",
+      "extract": "William Clito was a member of the House of Normandy who ruled the County of Flanders from 1127 until his death and unsuccessfully claimed the Duchy of Normandy. As the son of Robert Curthose, the eldest son of William the Conqueror, William Clito was seen as a candidate to succeed his uncle King Henry I of England. Henry viewed him as a rival, however, and William allied himself with King Louis VI of France. Louis installed him as the new count of Flanders upon the assassination of Charles the G"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "selected",
+      "year": -217,
+      "text": "Second Punic War: Commanded by Hannibal, the Carthaginians ambushed a Roman army at the Battle of Lake Trasimene, capturing or killing 25,000 men.",
+      "page_title": "Second Punic War",
+      "page_url": "https://en.wikipedia.org/wiki/Second_Punic_War",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Map_of_Rome_and_Carthage_at_the_start_of_the_Second_Punic_War.svg/330px-Map_of_Rome_and_Carthage_at_the_start_of_the_Second_Punic_War.svg.png",
+      "extract": "The Second Punic War was the second of three wars fought between Carthage and Rome, the two main powers of the western Mediterranean in the 3rd century BC. For 17 years the two states struggled for supremacy, primarily in Italy and Iberia, but also on the islands of Sicily and Sardinia and, towards the end of the war, in North Africa. After immense materiel and human losses on both sides, the Carthaginians were once again defeated. Macedonia, Syracuse and several Numidian kingdoms were drawn int"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "events",
+      "year": 2025,
+      "text": "A hot air balloon catches fire mid-flight and crashes in Praia Grande, Santa Catarina, Brazil, killing 8 of the 21 on board.",
+      "page_title": "Hot air balloon",
+      "page_url": "https://en.wikipedia.org/wiki/Hot_air_balloon",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/2006_Ojiya_balloon_festival_011.jpg/330px-2006_Ojiya_balloon_festival_011.jpg",
+      "extract": "A hot air balloon is a lighter-than-air aircraft consisting of a bag, called an envelope, which contains heated air. Suspended beneath is a gondola or wicker basket, which carries passengers and a source of heat, in most cases an open flame caused by burning liquid propane. The heated air inside the envelope makes it buoyant, since it has a lower density than the colder air outside the envelope. As with all aircraft, hot air balloons cannot fly beyond the atmosphere. The envelope does not have t"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "events",
+      "year": 2012,
+      "text": "A boat carrying more than 200 migrants capsizes in the Indian Ocean between the Indonesian island of Java and Christmas Island, killing 17 people and leaving 70 others missing.",
+      "page_title": "2012 Indian Ocean migrant boat disaster",
+      "page_url": "https://en.wikipedia.org/wiki/2012_Indian_Ocean_migrant_boat_disaster",
       "thumbnail": null,
-      "extract": "The Naval Laws were five separate laws passed by the German Empire, in 1898, 1900, 1906, 1908, and 1912. These acts, championed by Kaiser Wilhelm II and his State Secretary for the Navy, Grand Admiral Alfred von Tirpitz, committed Germany to building up a navy capable of competing with the Royal Navy of the United Kingdom."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1846,
-      "text": "Settlers in Sonoma began rebelling against Mexico, later proclaiming the California Republic and  raising a homemade flag with a bear and a star.",
-      "page_title": "Sonoma, California",
-      "page_url": "https://en.wikipedia.org/wiki/Sonoma%2C_California",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Sonoma_City_Hall_%28cropped%29.jpg/330px-Sonoma_City_Hall_%28cropped%29.jpg",
-      "extract": "Sonoma is a city in Sonoma County, California, United States, located in the North Bay region of the San Francisco Bay Area. Sonoma is one of the principal cities of California's Wine Country and the center of the Sonoma Valley AVA. Sonoma's population was 10,739 as of the 2020 census, while the Sonoma urban area had a population of 31,479. Sonoma is a popular tourist destination, owing to its Californian wineries, noted events like the Sonoma International Film Festival, and its historic center"
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1822,
-      "text": "In a paper presented to the Royal Astronomical Society, English mathematician Charles Babbage proposed a difference engine (pictured), an automatic, mechanical calculator designed to tabulate polynomial functions.",
-      "page_title": "Royal Astronomical Society",
-      "page_url": "https://en.wikipedia.org/wiki/Royal_Astronomical_Society",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Entrance_to_the_Royal_Astronomical_Society_3.jpg/330px-Entrance_to_the_Royal_Astronomical_Society_3.jpg",
-      "extract": "The Royal Astronomical Society (RAS) is a learned society and charity that encourages and promotes the study of astronomy, solar-system science, geophysics and closely related branches of science. Its headquarters are in Burlington House, on Piccadilly in London. The society has over 4,000 members, known as fellows, most of whom are professional researchers or postgraduate students. Around a quarter of Fellows live outside the UK."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1800,
-      "text": "War of the Second Coalition: In the Battle of Marengo, Napoleonic forces secured victory over the Habsburgs when defeat had appeared inevitable until the arrival of French troops led by Louis Desaix.",
-      "page_title": "War of the Second Coalition",
-      "page_url": "https://en.wikipedia.org/wiki/War_of_the_Second_Coalition",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/War_of_the_second_coalition.jpg/330px-War_of_the_second_coalition.jpg",
-      "extract": "The War of the Second Coalition (1798\u20131802) was the second war between revolutionary France and a coalition of European monarchies, led by Britain, Austria and Russia, and including the Ottoman Empire, Portugal, Naples and various German monarchies. Prussia did not join the coalition, while Spain supported France."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1777,
-      "text": "The Second Continental Congress adopted the stars and stripes design for the flag of the United States.",
-      "page_title": "Second Continental Congress",
-      "page_url": "https://en.wikipedia.org/wiki/Second_Continental_Congress",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Congress_voting_independence.jpg/330px-Congress_voting_independence.jpg",
-      "extract": "The Second Continental Congress (1775\u20131781) was the meeting of delegates from the Thirteen Colonies that united in support of the American Revolution and Revolutionary War, which established American independence from Great Britain. The Congress constituted a new federation that it first named the United Colonies of North America, and in 1776, renamed the United States of America. The Congress began convening in present-day Independence Hall in Philadelphia, on May 10, 1775, with representatives"
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1646,
-      "text": "Franco-Spanish War: French and Spanish fleets fought the inconclusive Battle of Orbetello, with sailing vessels of both sides having to be towed into action by galleys due to light winds.",
-      "page_title": "Franco-Spanish War (1635\u20131659)",
-      "page_url": "https://en.wikipedia.org/wiki/Franco-Spanish_War_(1635%E2%80%931659)",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Habsburg_dominions_1700.png/330px-Habsburg_dominions_1700.png",
-      "extract": "The Franco-Spanish War, May 1635 to November 1659, was fought between France and Spain, each supported by various allies at different points. It consists of two distinct phases, the first from May 1635 to October 1648, which is considered a related conflict of the Thirty Years' War, the second continued until the Treaty of the Pyrenees in 1659."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1644,
-      "text": "First English Civil War: Prince Maurice abandoned his siege of Lyme Regis in Dorset after learning of the approach of a Parliamentarian relief force.",
-      "page_title": "First English Civil War",
-      "page_url": "https://en.wikipedia.org/wiki/First_English_Civil_War",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Battle_of_Marston_Moor_1644_by_John_Barker.png/330px-Battle_of_Marston_Moor_1644_by_John_Barker.png",
-      "extract": "The First English Civil War took place in England and Wales from 1642 to 1646, and forms part of the 1639 to 1653 Wars of the Three Kingdoms. An estimated 15% to 20% of adult males in England and Wales served in the military at some point between 1639 and 1653, while around 4% of the total population died from war-related causes. These figures illustrate the widespread impact of the conflict on society, and the bitterness it engendered as a result."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "selected",
-      "year": 1381,
-      "text": "During the Peasants' Revolt in England, rebels stormed the Tower of London, killing Simon Sudbury, Lord Chancellor, and Robert Hales, Lord High Treasurer (both pictured).",
-      "page_title": "Peasants' Revolt",
-      "page_url": "https://en.wikipedia.org/wiki/Peasants'_Revolt",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Jean_Froissart%2C_Chroniques%2C_154v%2C_12148_btv1b8438605hf336%2C_crop.jpg/330px-Jean_Froissart%2C_Chroniques%2C_154v%2C_12148_btv1b8438605hf336%2C_crop.jpg",
-      "extract": "The Peasants' Revolt, also named Wat Tyler's Rebellion or the Great Uprising, was a major uprising across large parts of England in 1381. The revolt had various causes, including the socio-economic and political tensions generated by the Black Death in the 1340s, the high taxes resulting from the conflict with France during the Hundred Years' War, and instability within the local leadership of London. The revolt heavily influenced the course of the Hundred Years' War by deterring later Parliamen"
+      "extract": "The 2012 Indian Ocean migrant boat disaster occurred on 21 June 2012, when a boat carrying more than 200 refugees capsized in the Indian Ocean between the Indonesian island of Java and the Australian external territory of Christmas Island. 109 people were rescued, 17 bodies were recovered, and approximately 70 people remain missing. The boat's passengers were all male and were mostly from Afghanistan."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 2017,
-      "text": "The Grenfell Tower fire, a catastrophic fire in a high-rise apartment building in North Kensington, London, UK, leaves 72 people dead and another 74 injured.",
-      "page_title": "Grenfell Tower fire",
-      "page_url": "https://en.wikipedia.org/wiki/Grenfell_Tower_fire",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Grenfell_Tower_fire_%28wider_view%29.jpg/330px-Grenfell_Tower_fire_%28wider_view%29.jpg",
-      "extract": "On 14 June 2017, a high-rise fire broke out in the 24-storey Grenfell Tower block of flats in North Kensington, West London, England, at 00:54 BST and burned for 60 hours. A total of 70 people died at the scene and two other people died later in hospital, with more than 70 injured and 223 escaping. It was the deadliest structural fire in the United Kingdom since the 1988 Piper Alpha oil-platform disaster and the worst UK residential fire since the Blitz of World War II. It also became the deadli"
+      "year": 2012,
+      "text": "An Indonesian Air Force Fokker F27 Friendship crashes near Halim Perdanakusuma International Airport, killing 11.",
+      "page_title": "Indonesian Air Force",
+      "page_url": "https://en.wikipedia.org/wiki/Indonesian_Air_Force",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Insignia_of_the_Indonesian_Air_Force.svg/330px-Insignia_of_the_Indonesian_Air_Force.svg.png",
+      "extract": "The Indonesian Air Force is the aerial branch of the Indonesian National Armed Forces. The Indonesian Air Force is headquartered in Jakarta, Indonesia, and is headed by the Chief of Staff of the Air Force. Its order of battle is split into three Air Operations Commands. Most of its airbases are located on the island of Java. The Indonesian Air Force also has its ground force unit, called Air Force Quick Reaction Force Command (Korpasgat). The corps is also known as the \"Orange Berets\" due to the"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 2017,
-      "text": "Republican U.S. House Majority Whip Steve Scalise of Louisiana, and three others, are shot and wounded while practicing for the annual Congressional Baseball Game.",
-      "page_title": "Steve Scalise",
-      "page_url": "https://en.wikipedia.org/wiki/Steve_Scalise",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Steve_Scalise_116th_Congress_official_photo.jpg/330px-Steve_Scalise_116th_Congress_official_photo.jpg",
-      "extract": "Stephen Joseph Scalise is an American politician who has been the House majority leader since 2023 and the U.S. representative for Louisiana's 1st congressional district since 2008. A member of the Republican Party, he was the House majority whip from 2014 to 2019 and the House minority whip 2019 to 2023."
+      "year": 2009,
+      "text": "Greenland assumes self-rule.",
+      "page_title": "Greenland",
+      "page_url": "https://en.wikipedia.org/wiki/Greenland",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/330px-Flag_of_Greenland.svg.png",
+      "extract": "Greenland is an autonomous territory of the Kingdom of Denmark and is the largest of the kingdom's three constituent parts by land area, the others being Denmark proper and the Faroe Islands. Citizens of Greenland are citizens of Denmark. They are thus citizens of the European Union (EU), although Greenland is not part of the EU. It is the world's largest island and lies between the Arctic and Atlantic oceans, east of the Canadian Arctic Archipelago. It shares a small 1.2-kilometre (0.75\u00a0mi) bor"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 2014,
-      "text": "A Ukraine military Ilyushin Il-76 airlifter is shot down, killing all 49 people on board.",
-      "page_title": "2014 Ukrainian Air Force Ilyushin Il-76 shootdown",
-      "page_url": "https://en.wikipedia.org/wiki/2014_Ukrainian_Air_Force_Ilyushin_Il-76_shootdown",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Ukrainian_Air_Force_Ilyushin_Il-76MD_%2876777%29.jpeg/330px-Ukrainian_Air_Force_Ilyushin_Il-76MD_%2876777%29.jpeg",
-      "extract": "On 14 June 2014, an Ilyushin Il-76 transport aircraft of the 25th Transport Aviation Brigade of the Ukrainian Air Force was shot down by forces of the Russia-backed separatists from Luhansk People's Republic while on approach to land at Luhansk International Airport, Ukraine, during the initial phase of the war in Donbas. The aircraft was carrying troops and equipment from an undisclosed location. All 49 people on board were killed."
+      "year": 2006,
+      "text": "Pluto's newly discovered moons are officially named Nix and Hydra.",
+      "page_title": "Pluto",
+      "page_url": "https://en.wikipedia.org/wiki/Pluto",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pluto_in_True_Color_-_High-Res.png/330px-Pluto_in_True_Color_-_High-Res.png",
+      "extract": "Pluto is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. It is the ninth-largest and tenth-most-massive known object to directly orbit the Sun. It is the largest known trans-Neptunian object by volume by a small margin, but is less massive than Eris. Like other Kuiper belt objects, Pluto is made primarily of ice and rock and is much smaller than the inner planets. Pluto has roughly one-sixth the mass of the Moon and one-third of its volume. Originally considered "
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 2002,
-      "text": "Near-Earth asteroid 2002 MN misses the Earth by 75,000 miles (121,000\u00a0km), about one-third of the distance between the Earth and the Moon.",
-      "page_title": "Near-Earth object",
-      "page_url": "https://en.wikipedia.org/wiki/Near-Earth_object",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/The_VLT_images_the_very_faint_Near-Earth_Object_2009_FD.jpg/330px-The_VLT_images_the_very_faint_Near-Earth_Object_2009_FD.jpg",
-      "extract": "A near-Earth object (NEO) is by definition any small Solar System body orbiting the Sun whose closest approach to the Sun (perihelion) is less than 1.3 times the Earth\u2013Sun distance. This definition applies to the object's orbit around the Sun, rather than its current position, thus an object with such an orbit is considered an NEO even at times when it is far from making a close approach of Earth. If an NEO's orbit crosses the Earth's orbit, and the object is larger than 140 meters (460\u00a0ft) acro"
+      "year": 2006,
+      "text": "A Yeti Airlines de Havilland Canada DHC-6 Twin Otter crashes at Jumla Airport in Nepal, killing nine people.",
+      "page_title": "Yeti Airlines",
+      "page_url": "https://en.wikipedia.org/wiki/Yeti_Airlines",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Yeti_Air_ATR_72-500_9N-ALN.jpg/330px-Yeti_Air_ATR_72-500_9N-ALN.jpg",
+      "extract": "Yeti Airlines Pvt. Ltd. is an airline based in Kathmandu, Nepal. The airline was established in May 1998 and received its air operator's certificate on 17 August 1998. Since 2019, Yeti Airlines is the first carbon neutral airline in Nepal and South Asia. It is the parent company of Tara Air. As of 2024, Yeti Airlines is the second-largest domestic carrier in Nepal by passengers carried and third largest by fleet size."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1994,
-      "text": "The 1994 Vancouver Stanley Cup riot occurs after the New York Rangers defeat the Vancouver Canucks to win the Stanley Cup, causing an estimated C$1.1\u00a0million, leading to 200 arrests and injuries.",
-      "page_title": "1994 Vancouver Stanley Cup riot",
-      "page_url": "https://en.wikipedia.org/wiki/1994_Vancouver_Stanley_Cup_riot",
-      "thumbnail": null,
-      "extract": "The 1994 Vancouver Stanley Cup Riot occurred in Downtown Vancouver, British Columbia, Canada, on the evening of June 14, 1994, and continued into the following morning. The riot followed Game 7 of the 1994 Stanley Cup Finals in which the Vancouver Canucks lost to the New York Rangers. It was Vancouver's first riot since 1972, when the Rolling Stones American Tour 1972 led to confrontations between the police and 2,000 outside the Pacific Coliseum."
+      "year": 2005,
+      "text": "Edgar Ray Killen, who had previously been unsuccessfully tried for the murders of James Chaney, Andrew Goodman, and Mickey Schwerner, is convicted of manslaughter 41 years afterwards (the case had been reopened in 2004).",
+      "page_title": "Edgar Ray Killen",
+      "page_url": "https://en.wikipedia.org/wiki/Edgar_Ray_Killen",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Edgar_Ray_Killen_Mugshot_%283x4_cropped%29.jpg/330px-Edgar_Ray_Killen_Mugshot_%283x4_cropped%29.jpg",
+      "extract": "Edgar Ray Killen was an American Ku Klux Klan organizer who planned and directed the murders of James Chaney, Andrew Goodman, and Michael Schwerner, three civil rights activists participating in the Freedom Summer of 1964. He was found guilty in state court of three counts of manslaughter on June 21, 2005, the forty-first anniversary of the crime, and sentenced to 60 years in prison. He appealed the verdict, but the sentence was upheld on April 12, 2007, by the Supreme Court of Mississippi. He d"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1986,
-      "text": "The Mindbender derails, killing three riders and severely injuring one at the Fantasyland (known today as Galaxyland) indoor amusement park at West Edmonton Mall in Edmonton, Alberta.",
-      "page_title": "Mindbender (Galaxyland)",
-      "page_url": "https://en.wikipedia.org/wiki/Mindbender_(Galaxyland)",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/b/b7/Mindbender_Logo.png",
-      "extract": "The Mindbender was an Anton Schwarzkopf looping roller coaster at Galaxyland, a theme park in West Edmonton Mall, in Alberta, Canada. The ride officially opened to the public on December 20, 1985 at a cost of $6 million. At 44.2\u00a0m (145\u00a0ft) in height, it was the tallest indoor roller coaster in the world as of 2020."
+      "year": 2004,
+      "text": "SpaceShipOne becomes the first privately funded spaceplane to achieve spaceflight.",
+      "page_title": "SpaceShipOne",
+      "page_url": "https://en.wikipedia.org/wiki/SpaceShipOne",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/SpaceShipOne_Flight_15P_photo_Don_Ramey_Logan.jpg/330px-SpaceShipOne_Flight_15P_photo_Don_Ramey_Logan.jpg",
+      "extract": "SpaceShipOne is an experimental air-launched rocket-powered aircraft with sub-orbital spaceflight capability at speeds of up to 3,000\u00a0ft/s (2,000\u00a0mph) / 910\u00a0m/s (3,300\u00a0km/h)\nusing a hybrid rocket motor. The design features a unique \"feathering\" atmospheric reentry system where the rear half of the wing and the twin tail booms folds 70 degrees upward along a hinge running the length of the wing; this increases drag while retaining stability. SpaceShipOne completed the first crewed private spacefl"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "events",
+      "year": 2001,
+      "text": "A federal grand jury in Alexandria, Virginia, indicts 13 Saudis and a Lebanese in the 1996 bombing of the Khobar Towers in Saudi Arabia that killed 19 American servicemen.",
+      "page_title": "Alexandria, Virginia",
+      "page_url": "https://en.wikipedia.org/wiki/Alexandria%2C_Virginia",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Old_Town_Alexandria_from_George_Washington_Masonic_National_Memorial.jpg/330px-Old_Town_Alexandria_from_George_Washington_Masonic_National_Memorial.jpg",
+      "extract": "Alexandria is an independent city in the U.S. state of Virginia. It lies on the western bank of the Potomac River in Northern Virginia, bordering Washington, D.C. to the northeast. The city's population of 159,467 at the 2020 census made it the sixth-most populous city in Virginia and 169th-most populous city in the U.S. Alexandria is a principal city of the Washington metropolitan area, which is part of the larger Washington\u2013Baltimore combined statistical area. Large portions of neighboring Fai"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "events",
+      "year": 2000,
+      "text": "Section 28 (of the Local Government Act 1988), outlawing the 'promotion' of homosexuality in the United Kingdom, is repealed in Scotland with a 99 to 17 vote.",
+      "page_title": "Section 28",
+      "page_url": "https://en.wikipedia.org/wiki/Section_28",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/ConservativePartyPoster1987.jpg/330px-ConservativePartyPoster1987.jpg",
+      "extract": "Section 28 refers to a part of the Local Government Act 1988, which stated that local authorities in England, Scotland and Wales \"shall not intentionally promote homosexuality or publish material with the intention of promoting homosexuality\" or \"promote the teaching in any maintained school of the acceptability of homosexuality as a pretended family relationship\". It is sometimes referred to as Clause 28, or as Section 2A in reference to the relevant Scottish legislation."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "events",
+      "year": 1993,
+      "text": "Space Shuttle Endeavour is launched on STS-57 to retrieve the European Retrievable Carrier (EURECA) satellite. It is also the first shuttle mission to carry the Spacehab module.",
+      "page_title": "Space Shuttle Endeavour",
+      "page_url": "https://en.wikipedia.org/wiki/Space_Shuttle_Endeavour",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/STS-123_Dextre%26Kibo_ELM-PS_in_orbit_%28cropped%29.jpg/330px-STS-123_Dextre%26Kibo_ELM-PS_in_orbit_%28cropped%29.jpg",
+      "extract": "Space Shuttle Endeavour is a retired orbiter from NASA's Space Shuttle program and the fifth and final operational Shuttle built. It embarked on its first mission, STS-49, in May 1992 and its 25th and final mission, STS-134, in May 2011. STS-134 was expected to be the final mission of the Space Shuttle program, but with the authorization of STS-135 by the United States Congress, Atlantis became the last shuttle to fly."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "events",
+      "year": 1989,
+      "text": "The U.S. Supreme Court rules in Texas v. Johnson, 491 U.S. 397, that American flag-burning is a form of political protest protected by the First Amendment.",
+      "page_title": "Supreme Court of the United States",
+      "page_url": "https://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Seal_of_the_United_States_Supreme_Court.svg/330px-Seal_of_the_United_States_Supreme_Court.svg.png",
+      "extract": "The Supreme Court of the United States (SCOTUS) is the highest court in the federal judiciary of the United States. It has ultimate appellate jurisdiction over all U.S. federal court cases, and over state court cases that turn on questions of U.S. constitutional or federal law. It also has original jurisdiction over a narrow range of cases, specifically \"all Cases affecting Ambassadors, other public Ministers and Consuls, and those in which a State shall be Party\". In 1803, the court asserted it"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
       "year": 1985,
-      "text": "Five member nations of the European Economic Community sign the Schengen Agreement establishing a free travel zone with no border controls.",
-      "page_title": "European Economic Community",
-      "page_url": "https://en.wikipedia.org/wiki/European_Economic_Community",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/330px-Flag_of_Europe.svg.png",
-      "extract": "The European Economic Community (EEC) was a regional organisation created by the Treaty of Rome of 1957, aiming to foster economic integration among its member states. It was subsequently renamed the European Community (EC) upon becoming integrated into the first pillar of the newly formed European Union (EU) in 1993. In the popular language, the singular European Community was sometimes inaccurately used in the wider sense of the plural European Communities, in spite of the latter designation c"
+      "text": "Braathens SAFE Flight 139 is hijacked on approach to Oslo Airport, Fornebu. Special forces arrest the hijacker and there are no fatalities.",
+      "page_title": "Braathens SAFE Flight 139",
+      "page_url": "https://en.wikipedia.org/wiki/Braathens_SAFE_Flight_139",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Braathens_737-205_LN-SUG.jpg/330px-Braathens_737-205_LN-SUG.jpg",
+      "extract": "Braathens SAFE Flight 139 was an aircraft hijacking that occurred in Norway on 21 June 1985. The incident took place on a Boeing 737-205 belonging to Braathens SAFE that was on a scheduled domestic flight from Trondheim Airport, V\u00e6rnes to Oslo Airport, Fornebu. The hijacker was Stein Arvid Huseby, who was drunk during most of the incident. It was the first plane hijacking to take place in Norway; there were no deaths and no injuries. Huseby was sentenced to three years' imprisonment and five yea"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
       "year": 1982,
-      "text": "Falklands War: Argentine forces in the capital Stanley conditionally surrender to British forces ending the war.",
-      "page_title": "Falklands War",
-      "page_url": "https://en.wikipedia.org/wiki/Falklands_War",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/HMS_Broadsword_and_Hermes%2C_1982_%28IWM%29.jpg/330px-HMS_Broadsword_and_Hermes%2C_1982_%28IWM%29.jpg",
-      "extract": "The Falklands War was a ten-week undeclared war between Argentina and the United Kingdom in 1982 over two British Overseas Territories in the South Atlantic: the Falkland Islands and its territorial dependency, South Georgia and the South Sandwich Islands. The conflict began on 2\u00a0April 1982, when Argentina invaded and occupied the Falkland Islands, followed by the invasion of South Georgia the next day. On 5\u00a0April the British government dispatched a naval task force to engage the Argentine Navy "
+      "text": "John Hinckley is found not guilty by reason of insanity for the attempted assassination of U.S. President Ronald Reagan.",
+      "page_title": "John Hinckley Jr.",
+      "page_url": "https://en.wikipedia.org/wiki/John_Hinckley_Jr.",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/John_Hinckley%2C_Jr._Mugshot_%28colour_corrected%29.png/330px-John_Hinckley%2C_Jr._Mugshot_%28colour_corrected%29.png",
+      "extract": "John Warnock Hinckley Jr. is an American man who attempted to assassinate U.S. president Ronald Reagan as he left the Hilton Hotel in Washington, D.C., on March 30, 1981, two months after Reagan's first inauguration. Using a revolver, Hinckley wounded Reagan, police officer Thomas Delahanty, Secret Service agent Tim McCarthy, and White House Press Secretary James Brady. Brady was left disabled and died 33 years later from his injuries."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1972,
-      "text": "Japan Air Lines Flight 471 crashes on approach to Palam International Airport (now Indira Gandhi International Airport) in New Delhi, India, killing 82 of the 87 people on board and four more people on the ground.",
-      "page_title": "Japan Air Lines Flight 471",
-      "page_url": "https://en.wikipedia.org/wiki/Japan_Air_Lines_Flight_471",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/JA8012_DC-8-53_Japan_Air_Lines_JFK_09JUL70_%285580803202%29.jpg/330px-JA8012_DC-8-53_Japan_Air_Lines_JFK_09JUL70_%285580803202%29.jpg",
-      "extract": "Japan Air Lines Flight 471 was a Japan Air Lines international flight from Don Mueang International Airport in Bangkok, Thailand, to Palam International Airport in New Delhi, India. On 14 June 1972 the Douglas DC-8-53 operating the flight, registered JA8012, crashed short of the New Delhi airport, killing 86 of the 89 occupants: 10 of 11 crew members, and 76 of 78 passengers. Four people on the ground were also killed."
+      "year": 1978,
+      "text": "The original production of Tim Rice and Andrew Lloyd Webber's musical, Evita, based on the life of Eva Per\u00f3n, opens at the Prince Edward Theatre, London.",
+      "page_title": "Tim Rice",
+      "page_url": "https://en.wikipedia.org/wiki/Tim_Rice",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Tim_Rice%2C_1_December_2020.jpg/330px-Tim_Rice%2C_1_December_2020.jpg",
+      "extract": "Sir Timothy Miles Bindon Rice is an English songwriter. He is best known for his collaborations with Andrew Lloyd Webber, with whom he wrote, among other shows, Joseph and the Amazing Technicolor Dreamcoat, Jesus Christ Superstar, and Evita; Chess ; Aida ; and, for Disney, Aladdin, The Lion King, and the stage adaptation of Beauty and the Beast. He also wrote lyrics for the Alan Menken musical King David, and for DreamWorks Animation's The Road to El Dorado."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1967,
-      "text": "Mariner program: Mariner 5 is launched towards Venus.",
-      "page_title": "Mariner program",
-      "page_url": "https://en.wikipedia.org/wiki/Mariner_program",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Atlas_Agena_with_Mariner_1.jpg/330px-Atlas_Agena_with_Mariner_1.jpg",
-      "extract": "The Mariner program was conducted by the American space agency NASA to explore other planets. Between 1962 and late 1973, NASA's Jet Propulsion Laboratory (JPL) designed and built 10 robotic interplanetary probes named Mariner to explore the inner Solar System \u2013 visiting the planets Venus, Mars and Mercury for the first time, and returning to Venus and Mars for additional close observations."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "events",
-      "year": 1966,
-      "text": "The Vatican announces the abolition of the Index Librorum Prohibitorum (\"index of prohibited books\"), which was originally instituted in 1557.",
-      "page_title": "Roman Curia",
-      "page_url": "https://en.wikipedia.org/wiki/Roman_Curia",
+      "year": 1973,
+      "text": "The Primer Congreso del Hombre Andino is inaugurated in Arica, Chile.",
+      "page_title": "Primer Congreso del Hombre Andino",
+      "page_url": "https://en.wikipedia.org/wiki/Primer_Congreso_del_Hombre_Andino",
       "thumbnail": null,
-      "extract": "The Roman Curia comprises the administrative institutions of the Holy See. It is sometimes incorrectly referred to as the Vatican Curia."
+      "extract": "Primer Congreso del Hombre Andino was an academic conference in northern Chile organized by the northern branch of the University of Chile in June 1973. Its subject was the Indigenous societies of the Andean world, be these modern, historical or archaeological. The conference was an important milestone in the development of Andean studies including Andean archaeology and for Chile it marked the maturation of academic studies carried out by scholars based in its northern cities."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1962,
-      "text": "The European Space Research Organisation is established in Paris \u2013 later becoming the European Space Agency.",
-      "page_title": "European Space Research Organisation",
-      "page_url": "https://en.wikipedia.org/wiki/European_Space_Research_Organisation",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/3/3b/Esro-logo.png",
-      "extract": "The European Space Research Organisation (ESRO) was an international organisation founded by 10 European nations with the intention of jointly pursuing scientific research in space. It was founded in 1964. As an organisation ESRO was based on a previously existing international scientific institution, CERN. The ESRO convention, the organisations founding document outlines it as an entity exclusively devoted to scientific pursuits. This was the case for most of its lifetime but in the final years"
+      "year": 1973,
+      "text": "In its decision in Miller v. California, 413 U.S. 15, the Supreme Court of the United States establishes the Miller test for determining whether something is obscene and not protected speech under the U.S. constitution.",
+      "page_title": "Miller v. California",
+      "page_url": "https://en.wikipedia.org/wiki/Miller_v._California",
+      "thumbnail": null,
+      "extract": "Miller v. California, 413 U.S. 15 (1973), is a landmark decision of the U.S. Supreme Court clarifying the legal definition of obscenity. The ruling was the origin of the three-part judicial test for determining obscene media content that can be banned by government authorities, which is now known as the Miller test."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1959,
-      "text": "Disneyland Monorail System, the first daily operating monorail system in the Western Hemisphere, opens to the public in Anaheim, California.",
-      "page_title": "Disneyland Monorail",
-      "page_url": "https://en.wikipedia.org/wiki/Disneyland_Monorail",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Disneyland_Mark_VII_Monorail_Red.jpg/330px-Disneyland_Mark_VII_Monorail_Red.jpg",
-      "extract": "The Disneyland Monorail is an attraction and transportation line at the Disneyland Resort in Anaheim, California, United States. It was the first daily operating monorail in the country."
+      "year": 1970,
+      "text": "Penn Central declares Section 77 bankruptcy in what was the largest U.S. corporate bankruptcy to date.",
+      "page_title": "Penn Central Transportation Company",
+      "page_url": "https://en.wikipedia.org/wiki/Penn_Central_Transportation_Company",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/PC_SD45_6133_on_Horsesoe_Curve_near_Altoona%2C_PA_on_September_13%2C_1970_%2824713401701%29.jpg/330px-PC_SD45_6133_on_Horsesoe_Curve_near_Altoona%2C_PA_on_September_13%2C_1970_%2824713401701%29.jpg",
+      "extract": "The Penn Central Transportation Company, commonly abbreviated to Penn Central, was an American class I railroad that operated from 1968 to 1976. Penn Central combined three traditional corporate rivals, each of which were united by large-scale service into the New York metropolitan area and to a lesser extent New England and Chicago."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1955,
-      "text": "Chile becomes a signatory to the Buenos Aires copyright treaty.",
-      "page_title": "Chile",
-      "page_url": "https://en.wikipedia.org/wiki/Chile",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Flag_of_Chile.svg/330px-Flag_of_Chile.svg.png",
-      "extract": "Chile, officially the Republic of Chile, is a country in western South America. It is the southernmost country in the world and the closest to Antarctica, extending along a narrow strip of land between the Andes Mountains and the Pacific Ocean. According to the 2024 census, Chile had an enumerated population of 18.5 million. The country covers a territorial area of 756,102 square kilometers (291,933\u00a0sq\u00a0mi), sharing borders with Peru to the north, Bolivia to the northeast, Argentina to the east, "
+      "year": 1964,
+      "text": "Three civil rights workers, Andrew Goodman, James Chaney and Michael Schwerner, are murdered in Neshoba County, Mississippi, United States, by members of the Ku Klux Klan.",
+      "page_title": "Civil rights movement",
+      "page_url": "https://en.wikipedia.org/wiki/Civil_rights_movement",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Civil_Rights_March_on_Washington%2C_D.C._%28Leaders_marching_from_the_Washington_Monument_to_the_Lincoln_Memorial%29_-_NARA_-_542010.jpg/330px-Civil_Rights_March_on_Washington%2C_D.C._%28Leaders_marching_from_the_Washington_Monument_to_the_Lincoln_Memorial%29_-_NARA_-_542010.jpg",
+      "extract": "The civil rights movement was a social movement in the United States from 1954 to 1968 which aimed to abolish legalized racial segregation, discrimination, and disenfranchisement in the country, which most commonly affected African Americans. The movement had origins in the Reconstruction era in the late 19th century, and modern roots in the 1940s and in Mohandas Gandhi's nonviolent movement in India. After years of nonviolent protests and civil disobedience campaigns, the civil rights movement "
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1954,
-      "text": "U.S. President Dwight D. Eisenhower signs a bill into law that places the words \"under God\" into the United States Pledge of Allegiance.",
-      "page_title": "Dwight D. Eisenhower",
-      "page_url": "https://en.wikipedia.org/wiki/Dwight_D._Eisenhower",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg/330px-Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg",
-      "extract": "Dwight David Eisenhower, also known as Ike, was the 34th president of the United States from 1953 to 1961. He led the Allied Expeditionary Force during the Second World War, launching decisive campaigns in North Africa and Normandy and becoming a General of the Army."
+      "year": 1963,
+      "text": "Cardinal Giovanni Battista Montini is elected as Pope Paul VI.",
+      "page_title": "1963 conclave",
+      "page_url": "https://en.wikipedia.org/wiki/1963_conclave",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Paulus_VI%2C_from_University_of_Urbino_%283x4_cropped%29.jpg/330px-Paulus_VI%2C_from_University_of_Urbino_%283x4_cropped%29.jpg",
+      "extract": "A conclave was held from 19 to 21 June 1963 to elect a new pope to succeed John XXIII, who had died on 3 June 1963. It was the last conclave before the introduction of the current 80-year-old age limit for cardinal electors in 1970, and of the 82 members of the College of Cardinals, all but two attended. On the sixth ballot, the conclave elected Cardinal Giovanni Montini, the archbishop of Milan. After accepting his election, he took the name Paul VI. His coronation on 30 June 1963 was the lates"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1951,
-      "text": "UNIVAC I is dedicated by the U.S. Census Bureau.",
-      "page_title": "UNIVAC I",
-      "page_url": "https://en.wikipedia.org/wiki/UNIVAC_I",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Univac_I_Census_dedication.jpg/330px-Univac_I_Census_dedication.jpg",
-      "extract": "The UNIVAC I was the first general-purpose electronic digital computer for business applications produced in the United States. It was designed principally by J. Presper Eckert and John Mauchly, the inventors of the ENIAC. Design work was started by their company, Eckert\u2013Mauchly Computer Corporation (EMCC), and was completed after the company had been acquired by Remington Rand. In the years before successor models of the UNIVAC I appeared, the machine was simply known as \"the UNIVAC\"."
+      "year": 1957,
+      "text": "Ellen Fairclough is sworn in as Canada's first female Cabinet Minister.",
+      "page_title": "Ellen Fairclough",
+      "page_url": "https://en.wikipedia.org/wiki/Ellen_Fairclough",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Ellen_Fairclough_1940s.jpg/330px-Ellen_Fairclough_1940s.jpg",
+      "extract": "Ellen Louks Fairclough was a Canadian politician. A Progressive Conservative member of the House of Commons of Canada from 1950 to 1963, she was the first woman ever to serve in the Canadian Cabinet."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1950,
-      "text": "An Air France Douglas DC-4 crashes near Bahrain International Airport, killing 40 people. This came two days after another Air France DC-4 crashed in the same location.",
-      "page_title": "1950 Bahrain Air France Douglas DC-4 crashes",
-      "page_url": "https://en.wikipedia.org/wiki/1950_Bahrain_Air_France_Douglas_DC-4_crashes",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Douglas_DC-4%2C_F-BBDD%2C_Air_France_Manteufel-1.jpg/330px-Douglas_DC-4%2C_F-BBDD%2C_Air_France_Manteufel-1.jpg",
-      "extract": "Two Air France Douglas DC-4 aircraft crashed two days apart in June 1950 within a few miles of each other and under similar circumstances. These two accidents, on 12 and 14 June, occurred while the aircraft were operating the same route from Saigon to Paris. Both aircraft had stopped at Karachi Airport and crashed into the sea on approach to Bahrain. A total of 86 passengers and crew were killed: 46 on June 12 and 40 on June 14. There were a total of 19 survivors: 6 on June 12 and 13 on June 14."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "events",
-      "year": 1949,
-      "text": "Albert II, a rhesus monkey, rides a V-2 rocket to an altitude of 134\u00a0km (83\u00a0mi), thereby becoming the first mammal and first monkey in space.",
-      "page_title": "Albert II (monkey)",
-      "page_url": "https://en.wikipedia.org/wiki/Albert_II_(monkey)",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Albert_II_V2_launch.jpg/330px-Albert_II_V2_launch.jpg",
-      "extract": "Albert II was a male rhesus macaque monkey who was the first primate and first mammal to travel to outer space. He flew from Holloman Air Force Base in New Mexico, United States, to an altitude of 83 miles (134\u00a0km) aboard Blossom No. 4B, a U.S. V-2 sounding rocket on June 14, 1949. Albert died upon landing after a parachute failure caused his capsule to strike the ground at high speed. Albert's respiratory and cardiological data were recorded up to the moment of impact."
+      "year": 1952,
+      "text": "The Philippine School of Commerce, through a republic act, is converted to Philippine College of Commerce, later to be the Polytechnic University of the Philippines.",
+      "page_title": "Polytechnic University of the Philippines",
+      "page_url": "https://en.wikipedia.org/wiki/Polytechnic_University_of_the_Philippines",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Polytechnic_University_of_the_Philippines.svg/330px-Polytechnic_University_of_the_Philippines.svg.png",
+      "extract": "The Polytechnic University of the Philippines is a public research university in the Philippines with a main campus in Santa Mesa, Manila. It was founded on 19 October 1904, as the Manila Business School (MBS) and as part of Manila's public school system. It was eventually promoted to a chartered state university in 1978, by virtue of Presidential Decree 1341. PUP has more than 20 campuses across Central Luzon, Southern Luzon and Metro Manila. With over 80,000 enrolled students in all campuses, "
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
       "year": 1945,
-      "text": "World War II: Filipino troops of the Philippine Commonwealth Army liberate the captured in Ilocos Sur and start the Battle of Bessang Pass in Northern Luzon.",
-      "page_title": "Philippine Army",
-      "page_url": "https://en.wikipedia.org/wiki/Philippine_Army",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Philippine_Army_Seal.svg/330px-Philippine_Army_Seal.svg.png",
-      "extract": "The Philippine Army is the main, oldest and largest branch of the Armed Forces of the Philippines (AFP), responsible for ground warfare. As of 2025, it had an estimated strength of 110,000 personnel. The service branch was established on December 21, 1935, as the Army of the Philippines."
+      "text": "World War II: The Battle of Okinawa ends when the organized resistance of Imperial Japanese Army forces collapses in the Mabuni area on the southern tip of the main island.",
+      "page_title": "Battle of Okinawa",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Okinawa",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Ww2_158.jpg/330px-Ww2_158.jpg",
+      "extract": "The Battle of Okinawa , codenamed Operation Iceberg, was a major battle of the Pacific War fought on the island of Okinawa by the United States Army and United States Marine Corps forces against the Imperial Japanese Army. The initial invasion of Okinawa on 1 April 1945 was the largest amphibious assault in the Pacific Theater of World War II. The Kerama Islands surrounding Okinawa were preemptively captured on 26 March 1945 by the U.S. Army 77th Infantry Division. The 82-day battle on Okinawa l"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1944,
-      "text": "World War II: After several failed attempts, the British Army abandons Operation Perch, its plan to capture the German-occupied town of Caen.",
-      "page_title": "Operation Perch",
-      "page_url": "https://en.wikipedia.org/wiki/Operation_Perch",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/40/TillyCromwell.jpg",
-      "extract": "Operation Perch was a British offensive of the Second World War which took place from 7 to 14 June 1944, during the early stages of the Battle of Normandy. The operation was intended to encircle and seize the German occupied city of Caen, which was a D-Day objective for the British 3rd Infantry Division in the early phases of Operation Overlord. Operation Perch was to begin immediately after the British beach landings with an advance to the south-east of Caen by XXX Corps. Three days after the i"
+      "year": 1942,
+      "text": "World War II: Tobruk falls to Italian and German forces; 33,000 Allied troops are taken prisoner.",
+      "page_title": "Axis capture of Tobruk",
+      "page_url": "https://en.wikipedia.org/wiki/Axis_capture_of_Tobruk",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Bundesarchiv_Bild_101I-786-0301-32%2C_Tobruk%2C_Stra%C3%9Fe_zum_Hafen.jpg/330px-Bundesarchiv_Bild_101I-786-0301-32%2C_Tobruk%2C_Stra%C3%9Fe_zum_Hafen.jpg",
+      "extract": "The Axis capture of Tobruk, also known as the Fall of Tobruk and the Second Battle of Tobruk was part of the Western Desert campaign in Libya during the Second World War. The battle was fought by the Panzerarmee Afrika, a German\u2013Italian military force in North Africa which included the Afrika Korps, against the British Eighth Army which comprised contingents from Britain, India, South Africa and other Allied nations."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "events",
+      "year": 1942,
+      "text": "World War II: A Japanese submarine surfaces near the Columbia River in Oregon, firing 17 shells at Fort Stevens in one of only a handful of attacks by Japan against the United States mainland.",
+      "page_title": "Bombardment of Fort Stevens",
+      "page_url": "https://en.wikipedia.org/wiki/Bombardment_of_Fort_Stevens",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Shell_crater_resulting_form_Japanese_shelling_on_Fort_Stevens.jpg/330px-Shell_crater_resulting_form_Japanese_shelling_on_Fort_Stevens.jpg",
+      "extract": "The Bombardment of Fort Stevens occurred in June 1942, in the American Theater and the Pacific Theater of World War II. The Imperial Japanese submarine I-25 fired on Fort Stevens, which defended the Oregon side of the Columbia River's Pacific entrance."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
       "year": 1941,
-      "text": "June deportation: The first major wave of Soviet mass deportations of Estonians, Latvians, and Lithuanians from the occupied Baltic states begins.",
-      "page_title": "June deportation",
-      "page_url": "https://en.wikipedia.org/wiki/June_deportation",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Uskut.jpg/330px-Uskut.jpg",
-      "extract": "The June deportation of 1941 was a mass deportation of tens of thousands of people during World War II from Estonia, Latvia, Lithuania, present-day western Belarus and western Ukraine, and present-day Moldova \u2013 territories which had been occupied by the Soviet Union in 1939\u20131940 \u2013 into the interior of the Soviet Union."
+      "text": "Having defeated forces of Vichy France, Allied forces capture Damascus.",
+      "page_title": "Vichy France",
+      "page_url": "https://en.wikipedia.org/wiki/Vichy_France",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/330px-Flag_of_France.svg.png",
+      "extract": "Vichy France, also known as the P\u00e9tainist regime and P\u00e9tainist France, officially the French State, was a French rump state headed by Marshal Philippe P\u00e9tain during World War II, established as a result of German victory in the Battle of France. It was named after its seat of government, the city of Vichy."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
       "year": 1940,
-      "text": "World War II: The German occupation of Paris begins.",
+      "text": "World War II: Italy begins an unsuccessful invasion of France.",
       "page_title": "World War II",
       "page_url": "https://en.wikipedia.org/wiki/World_War_II",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bundesarchiv_Bild_101I-646-5188-17%2C_Flugzeuge_Junkers_Ju_87.jpg/330px-Bundesarchiv_Bild_101I-646-5188-17%2C_Flugzeuge_Junkers_Ju_87.jpg",
@@ -431,754 +481,641 @@
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1940,
-      "text": "The Soviet Union presents an ultimatum to Lithuania, resulting in Lithuanian loss of independence.",
-      "page_title": "Soviet ultimatum to Lithuania",
-      "page_url": "https://en.wikipedia.org/wiki/Soviet_ultimatum_to_Lithuania",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Ribbentrop-Molotov_no_legend.svg/330px-Ribbentrop-Molotov_no_legend.svg.png",
-      "extract": "The Soviet Union issued an ultimatum to Lithuania before midnight of 14 June 1940. The Soviets, using a formal pretext, demanded that an unspecified number of Soviet soldiers be allowed to enter the Lithuanian territory and that a new pro-Soviet government be formed. The ultimatum and subsequent incorporation of Lithuania into the Soviet Union stemmed from the division of Eastern Europe into the German and Soviet spheres of influence agreed in the Molotov\u2013Ribbentrop Pact of August 1939. Lithuani"
+      "year": 1930,
+      "text": "One-year conscription comes into force in France.",
+      "page_title": "Conscription",
+      "page_url": "https://en.wikipedia.org/wiki/Conscription",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conscription_map_of_the_world.svg/330px-Conscription_map_of_the_world.svg.png",
+      "extract": "Conscription, also known as the draft in American English, is the practice in which the compulsory enlistment in a national service, mainly a military service, is enforced by law. Conscription dates back to antiquity and it continues in some countries to the present day under various names. The modern system of near-universal national conscription for young men dates to the French Revolution in the 1790s, where it became the basis of a very large and powerful military. Most European nations late"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1940,
-      "text": "Seven hundred and twenty-eight Polish political prisoners from Tarn\u00f3w become the first inmates of the Auschwitz concentration camp.",
-      "page_title": "Tarn\u00f3w",
-      "page_url": "https://en.wikipedia.org/wiki/Tarn%C3%B3w",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Ratusz_w_Tarnowie_-_01.jpg/330px-Ratusz_w_Tarnowie_-_01.jpg",
-      "extract": "Tarn\u00f3w is a city in southeastern Poland with 105,922 inhabitants and a metropolitan area population of 269,000 inhabitants. The city is situated in the Lesser Poland Voivodeship. It is a major rail junction, located on the strategic east\u2013west connection from Lviv to Krak\u00f3w, and two additional lines, one of which links the city with the Slovak border."
+      "year": 1929,
+      "text": "An agreement brokered by U.S. Ambassador Dwight Whitney Morrow ends the Cristero War in Mexico.",
+      "page_title": "Dwight Morrow",
+      "page_url": "https://en.wikipedia.org/wiki/Dwight_Morrow",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/d/df/Dwight_Morrow.jpg",
+      "extract": "Dwight Whitney Morrow was an American businessman, diplomat, and politician, best known as the U.S. ambassador to Mexico from 1927 to 1930 who improved bilateral relations, mediating the religious conflict in Mexico known as the Cristero rebellion (1926\u201329), but also contributing to an easing of conflict between the two countries over oil. The Morrow Mission to Mexico was an \"important step in the 'retreat from imperialism.\" A member of the Republican Party, he also served as the United States s"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "events",
-      "year": 1937,
-      "text": "Pennsylvania becomes the first (and only) state of the United States to celebrate Flag Day officially as a state holiday.",
-      "page_title": "Pennsylvania",
-      "page_url": "https://en.wikipedia.org/wiki/Pennsylvania",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Pennsylvania.svg/330px-Flag_of_Pennsylvania.svg.png",
-      "extract": "Pennsylvania, officially the Commonwealth of Pennsylvania, is a state located in the Mid-Atlantic, Northeastern, Appalachian, and Great Lakes regions of the United States. It borders Delaware to its southeast, Maryland to its south, forming the Mason-Dixon Line, West Virginia to its southwest, Ohio to its west, the Canadian province of Ontario to its northwest via Lake Erie, New York to its north, and the Delaware River and New Jersey to its east. Pennsylvania's most populous city is Philadelphi"
+      "year": 1921,
+      "text": "The Irish village of Knockcroghery was burned by British forces.",
+      "page_title": "Knockcroghery",
+      "page_url": "https://en.wikipedia.org/wiki/Knockcroghery",
+      "thumbnail": null,
+      "extract": "Knockcroghery is a village and townland in County Roscommon, Ireland. It is located on the N61 road between Athlone and Roscommon town, near Lough Ree on the River Shannon. The townland of Knockcroghery is in the civil parish of Killinvoy and the historical barony of Athlone North."
     },
     {
       "source_type": "wikipedia_on_this_day",
-      "kind": "events",
-      "year": 1937,
-      "text": "U.S. House of Representatives passes the Marihuana Tax Act.",
-      "page_title": "Marihuana Tax Act of 1937",
-      "page_url": "https://en.wikipedia.org/wiki/Marihuana_Tax_Act_of_1937",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Great_Seal_of_the_United_States_%28obverse%29.svg/330px-Great_Seal_of_the_United_States_%28obverse%29.svg.png",
-      "extract": "The Marihuana Tax Act of 1937, Pub. L.\u00a075\u2013238, 50\u00a0Stat.\u00a0551, enacted August 2, 1937, was a United States Act that placed a tax on the sale of cannabis. It was the first national regulation on cannabis in the US."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "events",
-      "year": 1934,
-      "text": "The landmark Australian Eastern Mission returns from its three-month tour of East and South-East Asia.",
-      "page_title": "Australian Eastern Mission",
-      "page_url": "https://en.wikipedia.org/wiki/Australian_Eastern_Mission",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/%E6%BE%B3%E6%B4%B2%E5%89%AF%E7%B8%BD%E7%90%86%E8%97%8D%E5%B1%B1%E6%B0%8F%E4%B9%8B%E5%8F%8B%E8%AA%BC%E8%A8%AA%E5%95%8F.png/330px-%E6%BE%B3%E6%B4%B2%E5%89%AF%E7%B8%BD%E7%90%86%E8%97%8D%E5%B1%B1%E6%B0%8F%E4%B9%8B%E5%8F%8B%E8%AA%BC%E8%A8%AA%E5%95%8F.png",
-      "extract": "The Australian Eastern Mission (AEM) was a 1934 diplomatic tour of East and South-East Asia led by Australian deputy prime minister John Latham. The mission was the first such official tour sent by Australia outside of the British Empire and has been seen as a landmark in Australian foreign policy and engagement with Asia."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "events",
-      "year": 1931,
-      "text": "A deadly tornado strikes Birmingham, England, damaging 2,221 homes and businesses.",
-      "page_title": "1931 Birmingham tornado",
-      "page_url": "https://en.wikipedia.org/wiki/1931_Birmingham_tornado",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/1931_Birmingham_tornado_damage.jpg/330px-1931_Birmingham_tornado_damage.jpg",
-      "extract": "On the evening of June 14, 1931, a deadly F3 tornado moved through the southern and eastern suburbs of Birmingham, England, killing 1 person and injuring at least 10 others. The tornado caused significant damage along a 10-kilometre (6.2\u00a0mi) path."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "events",
-      "year": 1926,
-      "text": "Brazil leaves the League of Nations.",
-      "page_title": "Brazil",
-      "page_url": "https://en.wikipedia.org/wiki/Brazil",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/330px-Flag_of_Brazil.svg.png",
-      "extract": "Brazil, officially the Federative Republic of Brazil, is the largest country in South America. It is also the world's fifth-largest country by area and the seventh-largest by population, with over 213 million people. Brazil is a federation composed of 26 states and a Federal District, which hosts the capital, Bras\u00edlia. Its most populous city is S\u00e3o Paulo, followed by Rio de Janeiro. Brazil has the most Portuguese speakers in the world and is the only country in the Americas where Portuguese is a"
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "events",
-      "year": 1919,
-      "text": "John Alcock and Arthur Whitten Brown depart from St. John's, Newfoundland on the first nonstop transatlantic flight.",
-      "page_title": "Transatlantic flight of Alcock and Brown",
-      "page_url": "https://en.wikipedia.org/wiki/Transatlantic_flight_of_Alcock_and_Brown",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Alcockandbrown_mail.jpg/330px-Alcockandbrown_mail.jpg",
-      "extract": "John Alcock and Arthur Brown were British aviators who, in 1919, made the first non-stop transatlantic flight. They flew a modified First World War Vickers Vimy bomber from St. John's, Newfoundland, to Clifden, County Galway, Ireland. The Secretary of State for Air, Winston Churchill, presented them with the Daily Mail prize of \u00a310,000 for the first crossing of the Atlantic Ocean by aeroplane in \"less than 72 consecutive hours\". The flight carried nearly 200 letters, the first transatlantic airm"
+      "kind": "births",
+      "year": 2011,
+      "text": "Lil Bub, American celebrity cat (died 2019)",
+      "page_title": "Lil Bub",
+      "page_url": "https://en.wikipedia.org/wiki/Lil_Bub",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Lil-Bub-2013_%28cropped%29.jpg/330px-Lil-Bub-2013_%28cropped%29.jpg",
+      "extract": "Lil Bub, officially Lil BUB, was an American celebrity cat known for her unique physical appearance. Her photos were first posted to Tumblr in November 2011, before taking off after being featured on the social news website Reddit. \"Lil Bub\" on Facebook has over three million likes. Lil Bub starred in Lil Bub & Friendz, a documentary that premiered at the Tribeca Film Festival on April 18, 2013, and won the Tribeca Online Festival Best Feature Film."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 2007,
-      "text": "Bryce James, American basketball player",
-      "page_title": "Bryce James",
-      "page_url": "https://en.wikipedia.org/wiki/Bryce_James",
-      "thumbnail": null,
-      "extract": "Bryce Maximus James is an American college basketball player for the Arizona Wildcats of the Big 12 Conference. He is the second child of National Basketball Association (NBA) player LeBron James and the younger brother of NBA player Bronny James. He primarily plays the shooting guard position."
+      "text": "Nanou Philips, Belgian ASMR social media personality",
+      "page_title": "Nanou ASMR",
+      "page_url": "https://en.wikipedia.org/wiki/Nanou_ASMR",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/AVOND_ROUTINE_2.0_%28Nanou_Philips%29_4-30_screenshot_%28cropped%29.png/330px-AVOND_ROUTINE_2.0_%28Nanou_Philips%29_4-30_screenshot_%28cropped%29.png",
+      "extract": "Nanou Philips is a Belgian social media personality. Under the online handle Nanou ASMR, she produces ASMR content, which she is mostly known for, on YouTube, TikTok, and Instagram, in addition to other platforms. Besides ASMR, Philips also uploads vlogging content. Having done content creation since mid-childhood, she has amassed a large following online from her ASMR and vlogging content."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
-      "year": 2004,
-      "text": "Soyoka Yoshida, Japanese entertainer",
-      "page_title": "Soyoka Yoshida",
-      "page_url": "https://en.wikipedia.org/wiki/Soyoka_Yoshida",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Soyoka_Yoshida_Tainan_2024.jpg/330px-Soyoka_Yoshida_Tainan_2024.jpg",
-      "extract": "Soyoka Yoshida  is a Japanese singer, dancer, model, and actress. She is best known as a member of the girl group @onefive, and is a former member of the idol group Sakura Gakuin. She is represented by the talent agency Amuse Inc. and is signed with the record label Avex Trax."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 2000,
-      "text": "RJ Barrett, Canadian basketball player",
-      "page_title": "RJ Barrett",
-      "page_url": "https://en.wikipedia.org/wiki/RJ_Barrett",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2023-08-09_Deutschland_gegen_Kanada_%28Basketball-L%C3%A4nderspiel%29_by_Sandro_Halank%E2%80%93063.jpg/330px-2023-08-09_Deutschland_gegen_Kanada_%28Basketball-L%C3%A4nderspiel%29_by_Sandro_Halank%E2%80%93063.jpg",
-      "extract": "Rowan Alexander \"RJ\" Barrett Jr. is a Canadian professional basketball player for the Toronto Raptors of the National Basketball Association (NBA). Nicknamed \u201cthe Maple Mamba\u201d, he was selected third overall in the 2019 NBA draft by the New York Knicks after one year of college basketball with the Duke Blue Devils."
+      "year": 2001,
+      "text": "Alexandra Obolentseva, Russian chess player",
+      "page_title": "Alexandra Obolentseva",
+      "page_url": "https://en.wikipedia.org/wiki/Alexandra_Obolentseva",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Obolentseva%2CAlexandra_2018_Karlsruhe.jpg/330px-Obolentseva%2CAlexandra_2018_Karlsruhe.jpg",
+      "extract": "Alexandra Sergeevna Obolentseva is a Russian chess player. She was awarded the title Woman Grandmaster by FIDE in 2018. Obolentseva has won the World Youth Chess Championships, the World Schools Chess Championships and the European Schools Chess Championships in her age girls category."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 2000,
-      "text": "Naomi Girma, American soccer player",
-      "page_title": "Naomi Girma",
-      "page_url": "https://en.wikipedia.org/wiki/Naomi_Girma",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Naomi_Girma_USWNT_vs_Italy_Nov_28_2025-103_%28cropped%29.jpg/330px-Naomi_Girma_USWNT_vs_Italy_Nov_28_2025-103_%28cropped%29.jpg",
-      "extract": "Naomi Haile Girma is an American professional soccer player who plays as a center back for Women's Super League club Chelsea and the United States national team."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 2000,
-      "text": "Bobby Witt Jr., American baseball player",
-      "page_title": "Bobby Witt Jr.",
-      "page_url": "https://en.wikipedia.org/wiki/Bobby_Witt_Jr.",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Bobbywittjrprofile.png/330px-Bobbywittjrprofile.png",
-      "extract": "Robert Andrew Witt Jr. is an American professional baseball shortstop for the Kansas City Royals of Major League Baseball (MLB). The Royals selected him second overall in the 2019 MLB draft and he made his MLB debut in 2022. In 2024, Witt was named to his first All-Star Game and won his first Gold Glove Award and Silver Slugger Award. He repeated those honors in 2025 and additionally won the American League Platinum Glove Award. Internationally, Witt represents the United States."
+      "text": "Dylan Brown, New Zealand rugby league player",
+      "page_title": "Dylan Brown",
+      "page_url": "https://en.wikipedia.org/wiki/Dylan_Brown",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Dylan_Brown_Kiwis.jpg/330px-Dylan_Brown_Kiwis.jpg",
+      "extract": "Dylan Brown is a New Zealand professional rugby league footballer who plays as a five-eighth for the Newcastle Knights in the National Rugby League and New Zealand at international level."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1999,
-      "text": "Chou Tzuyu, Taiwanese singer",
-      "page_title": "Tzuyu",
-      "page_url": "https://en.wikipedia.org/wiki/Tzuyu",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/20240305_Chou_Tzuyu_%E5%91%A8%E5%AD%90%E7%91%9C_02.jpg/330px-20240305_Chou_Tzuyu_%E5%91%A8%E5%AD%90%E7%91%9C_02.jpg",
-      "extract": "Chou Tzu-yu, known mononymously as Tzuyu, is a Taiwanese singer based in South Korea. She is a member of the South Korean girl group Twice, formed by JYP Entertainment in 2015."
+      "text": "Ky Rodwell, Australian rugby league player",
+      "page_title": "Ky Rodwell",
+      "page_url": "https://en.wikipedia.org/wiki/Ky_Rodwell",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/KY_RODWELL.jpg/330px-KY_RODWELL.jpg",
+      "extract": "Ky Rodwell is an Australian professional rugby league footballer who plays as a prop and loose forward for Wakefield Trinity in the Super League."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
-      "year": 1997,
-      "text": "David Bangala, French football defender",
-      "page_title": "David Bangala",
-      "page_url": "https://en.wikipedia.org/wiki/David_Bangala",
+      "year": 1998,
+      "text": "Isabel Atkin, British-American freestyle skier",
+      "page_title": "Isabel Atkin",
+      "page_url": "https://en.wikipedia.org/wiki/Isabel_Atkin",
       "thumbnail": null,
-      "extract": "David Bangala is a Congolese professional footballer who last played as a defender for Scottish Championship side Ayr United."
+      "extract": "Isabel \"Izzy\" Atkin is a former British-American freestyle skier who competed internationally for Great Britain.\nShe won bronze in women's slopestyle at the 2018 Winter Olympics in Pyeongchang, the first British Olympic medal in skiing."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1997,
-      "text": "Fujii Kaze, Japanese singer-songwriter",
-      "page_title": "Fujii Kaze",
-      "page_url": "https://en.wikipedia.org/wiki/Fujii_Kaze",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Fujii_Kaze_performing_during_Best_Of_Fujii_Kaze_2020-2024_Asia_Tour_in_Axiata_Arena_Kuala_Lumpur_%28cropped%29_%282%29.jpg/330px-Fujii_Kaze_performing_during_Best_Of_Fujii_Kaze_2020-2024_Asia_Tour_in_Axiata_Arena_Kuala_Lumpur_%28cropped%29_%282%29.jpg",
-      "extract": "Fujii Kaze  is a Japanese singer-songwriter and musician. Born and raised in Satosh\u014d, Okayama, he began uploading piano covers of pop songs to YouTube at 12. Signed to Universal Sigma's Hehn Records, Fujii released his debut single, \"Nan-Nan\", in 2019. His first studio album, Help Ever Hurt Never (2020), reached number one on Billboard Japan's Hot Albums chart and number two on the Oricon Albums Chart and was certified gold in Japan. The song \"Shinunoga E-Wa\" became viral on social media and bro"
+      "text": "Rebecca Black, American singer-songwriter",
+      "page_title": "Rebecca Black",
+      "page_url": "https://en.wikipedia.org/wiki/Rebecca_Black",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Rebecca_Black_%40_El_Rey_05_20_2023_%2853047678286%29_%28cropped%29.jpg/330px-Rebecca_Black_%40_El_Rey_05_20_2023_%2853047678286%29_%28cropped%29.jpg",
+      "extract": "Rebecca Renee Black is an American singer, songwriter, YouTuber, and DJ. She gained extensive media coverage when the music video for her 2011 debut single \"Friday\" went viral on YouTube and various social media sites. The song had a polarizing reaction as while it peaked at number 58 on the Billboard Hot 100, it was also panned by audiences and music critics, many of whom considered it \"among the worst songs ever made\". In 2013, Black released a follow-up single \"Saturday\" to similar commercial"
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "births",
+      "year": 1997,
+      "text": "Derrius Guice, American football player",
+      "page_title": "Derrius Guice",
+      "page_url": "https://en.wikipedia.org/wiki/Derrius_Guice",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Redskins_Offense_%28cropped%29_3.jpg/330px-Redskins_Offense_%28cropped%29_3.jpg",
+      "extract": "Derrius Guice is an American former professional football player who was a running back in the National Football League (NFL). He played college football for the LSU Tigers, becoming the first player in Southeastern Conference (SEC) history with three career games of 250 or more rushing yards before being selected by the Washington Redskins in the second round of the 2018 NFL draft."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "births",
+      "year": 1996,
+      "text": "Tyrone May, Australian rugby league player",
+      "page_title": "Tyrone May",
+      "page_url": "https://en.wikipedia.org/wiki/Tyrone_May",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Ty_May.jpg/330px-Ty_May.jpg",
+      "extract": "Tyrone May is a Samoa international rugby league footballer who plays for Hull Kingston Rovers in the Super League. Primarily a stand-off, May has played in a number of other positions during his career, including centre, scrum-half, loose forward and fullback."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "births",
+      "year": 1996,
+      "text": "Scottie Scheffler, American golfer",
+      "page_title": "Scottie Scheffler",
+      "page_url": "https://en.wikipedia.org/wiki/Scottie_Scheffler",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Scottie_Scheffler_Ryder_Cup_2025_%28cropped%29.jpg/330px-Scottie_Scheffler_Ryder_Cup_2025_%28cropped%29.jpg",
+      "extract": "Scott Alexander Scheffler is an American professional golfer who plays on the PGA Tour. He is currently ranked world number one in the Official World Golf Ranking, a position he has held for over 175 weeks during his career. He has won four major championships."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1994,
-      "text": "Moon Tae-il, South Korean singer",
-      "page_title": "Taeil (singer)",
-      "page_url": "https://en.wikipedia.org/wiki/Taeil_(singer)",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/190524_NCT_127_%27We_Are_Superhuman%27_%EC%A0%9C%EC%9E%91%EB%B0%9C%ED%91%9C%ED%9A%8C_-_Taeil_02_%28derived%29.jpg/330px-190524_NCT_127_%27We_Are_Superhuman%27_%EC%A0%9C%EC%9E%91%EB%B0%9C%ED%91%9C%ED%9A%8C_-_Taeil_02_%28derived%29.jpg",
-      "extract": "Moon Tae-il, known mononymously as Taeil, is a South Korean former singer. He was a member of the South Korean boy band NCT from 2016 until 2024, when Korean investigators tied him to a criminal sexual offense."
+      "text": "Ba\u015fak Erayd\u0131n, Turkish tennis player",
+      "page_title": "Ba\u015fak Erayd\u0131n",
+      "page_url": "https://en.wikipedia.org/wiki/Ba%C5%9Fak_Erayd%C4%B1n",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Eraydin_WMQ19_%2856%29.jpg/330px-Eraydin_WMQ19_%2856%29.jpg",
+      "extract": "Ba\u015fak Erayd\u0131n is a Turkish inactive tennis player."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1993,
-      "text": "Gunna, American rapper",
-      "page_title": "Gunna (rapper)",
-      "page_url": "https://en.wikipedia.org/wiki/Gunna_(rapper)",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Gunna_June_2025.png/330px-Gunna_June_2025.png",
-      "extract": "Sergio Giavanni Kitchens, known professionally as Gunna, is an American rapper, singer, songwriter and record producer. He signed with Young Thug's YSL Records, an imprint of 300 Entertainment in 2016, and rose to fame with his third mixtape, Drip Season 3 (2018). It moderately entered the Billboard 200, while his collaborative mixtape with fellow Georgia rapper Lil Baby, Drip Harder (2018), peaked at number four on the chart. Its lead single, \"Drip Too Hard\" peaked at number four on the Billboa"
+      "text": "Hungrybox, Argentine-American esports player",
+      "page_title": "Hungrybox",
+      "page_url": "https://en.wikipedia.org/wiki/Hungrybox",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Hungrybox_at_GOML_2017_%28cropped%29.jpg/330px-Hungrybox_at_GOML_2017_%28cropped%29.jpg",
+      "extract": "Juan Manuel DeBiedma, better known by his alias Hungrybox, is an Argentine\u2013American professional Super Smash Bros. player, streamer, tournament organizer and commentator. Recognized as one of the greatest and most successful Super Smash Bros. Melee players of all time, he is one of the \"Five Gods of Melee\" along with Adam \"Armada\" Lindgren, Jason \"Mew2King\" Zimmerman, Joseph \"Mang0\" Marquez, and Kevin \"PPMD\" Nanney, and is regarded as the greatest Jigglypuff player in history. He is also an acti"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1992,
-      "text": "Daryl Sabara, American actor",
-      "page_title": "Daryl Sabara",
-      "page_url": "https://en.wikipedia.org/wiki/Daryl_Sabara",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/69/DarylSabara2022.png",
-      "extract": "Daryl Christopher Sabara is an American actor. He is known for portraying Juni Cortez in the Spy Kids film series, and for a variety of television and film appearances, first as a child actor and continuing into adult roles, including voice roles."
+      "text": "MAX, American singer, songwriter, actor, dancer and model",
+      "page_title": "Max Schneider",
+      "page_url": "https://en.wikipedia.org/wiki/Max_Schneider",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/MAX_Schneider_2019_by_Glenn_Francis.jpg/330px-MAX_Schneider_2019_by_Glenn_Francis.jpg",
+      "extract": "Maxwell George Schneider, also known by his mononym Max, is an American singer and actor. He is best known for his 2016 single \"Lights Down Low\", which peaked within the top 20 of the Billboard Hot 100 and received triple platinum certification by the Recording Industry Association of America (RIAA). A sleeper hit, the song emerged from his second album, Hell's Kitchen Angel (2016), which was released by DCD2 Records and narrowly entered the Billboard 200. He signed with Arista Records to releas"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1992,
-      "text": "Devante Smith-Pelly, Canadian ice hockey player",
-      "page_title": "Devante Smith-Pelly",
-      "page_url": "https://en.wikipedia.org/wiki/Devante_Smith-Pelly",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Devante_Smith-Pelly_2018-04-29.jpg/330px-Devante_Smith-Pelly_2018-04-29.jpg",
-      "extract": "Devante Malik Smith-Pelly is a Canadian former professional ice hockey player. A winger, he was selected by the Anaheim Ducks in the second round, 42nd overall, of the 2010 NHL entry draft. Smith-Pelly played in the style of a power forward and was known for his hitting and forechecking abilities. Smith-Pelly won the Stanley Cup as a member of the Capitals in 2018."
+      "text": "Hussein El Shahat, Egyptian professional footballer",
+      "page_title": "Hussein El Shahat",
+      "page_url": "https://en.wikipedia.org/wiki/Hussein_El_Shahat",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/El_Shahat.jpg/330px-El_Shahat.jpg",
+      "extract": "Hussein Ali El Shahat Ali Hassan is an Egyptian professional footballer who plays for Egyptian Premier League club Al Ahly as a winger."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1991,
-      "text": "Kostas Manolas, Greek footballer",
-      "page_title": "Kostas Manolas",
-      "page_url": "https://en.wikipedia.org/wiki/Kostas_Manolas",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/CSKA-Roma_%284%29.jpg/330px-CSKA-Roma_%284%29.jpg",
-      "extract": "Konstantinos \"Kostas\" Manolas is a Greek footballer who plays for Greek club Pannaxiakos. A defender throughout his career, Manolas also plays as a striker for Pannaxiakos since 2024."
+      "text": "Ga\u00ebl Kakuta, French footballer",
+      "page_title": "Ga\u00ebl Kakuta",
+      "page_url": "https://en.wikipedia.org/wiki/Ga%C3%ABl_Kakuta",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_24.jpg/330px-Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_24.jpg",
+      "extract": "Ga\u00ebl Romeo Kakuta Mambenga is a professional footballer who plays as a winger for Greek Super League club AEL. Born in France, he represents the DR Congo national team."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1991,
-      "text": "Jesy Nelson, English singer",
-      "page_title": "Jesy Nelson",
-      "page_url": "https://en.wikipedia.org/wiki/Jesy_Nelson",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Jesy_Nelson_in_2019.jpg/330px-Jesy_Nelson_in_2019.jpg",
-      "extract": "Jessica Louise Nelson is an English singer. She rose to prominence as a member of the girl group Little Mix, who were formed during the eighth series of The X Factor in 2011. As part of Little Mix, Nelson achieved seventeen top-ten singles and five number-one singles on the UK Singles Chart."
+      "text": "Lee Min-young, South Korean singer-songwriter, actress, and entertainer",
+      "page_title": "Min (South Korean singer)",
+      "page_url": "https://en.wikipedia.org/wiki/Min_(South_Korean_singer)",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Min_at_2014_K-Pop_Awards_red_carpet_02.jpg/330px-Min_at_2014_K-Pop_Awards_red_carpet_02.jpg",
+      "extract": "Lee Min-young, known professionally as Min, is a South Korean singer, television personality, songwriter, and actress. She is best known as a former member of the South Korean girl group Miss A."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1990,
-      "text": "Patrice Cormier, Canadian ice hockey player",
-      "page_title": "Patrice Cormier",
-      "page_url": "https://en.wikipedia.org/wiki/Patrice_Cormier",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Patrice_Cormier_%28cropped%29.jpg/330px-Patrice_Cormier_%28cropped%29.jpg",
-      "extract": "Patrice Victor Cormier is a Canadian professional ice hockey forward. He is currently under contract with the Bouctouche JC\u2019s of the Ligue de Hockey Senior Beausejour. Cormier was drafted in the second round, 54th overall, by the New Jersey Devils at the 2008 NHL entry draft."
+      "text": "Ri\u010dardas Berankis, Lithuanian tennis player",
+      "page_title": "Ri\u010dardas Berankis",
+      "page_url": "https://en.wikipedia.org/wiki/Ri%C4%8Dardas_Berankis",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Berankis_MLC21_%282%29_%2851601462247%29.jpg/330px-Berankis_MLC21_%282%29_%2851601462247%29.jpg",
+      "extract": "Ri\u010dardas Berankis is a Lithuanian former professional tennis player. He was the first and only Lithuanian to enter the ATP top 50 rankings, making him the highest ranked Lithuanian tennis player of all time. Berankis has reached two singles finals on the ATP World Tour, at the Los Angeles Open in 2012 and at the Kremlin Cup in 2017 and won one doubles title in Houston. He was also a prominent member of the Lithuania Davis Cup team."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1990,
-      "text": "Karoline Bjerkeli Gr\u00f8vdal, Norwegian long-distance runner",
-      "page_title": "Karoline Bjerkeli Gr\u00f8vdal",
-      "page_url": "https://en.wikipedia.org/wiki/Karoline_Bjerkeli_Gr%C3%B8vdal",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Karoline_Bjerkeli_Gr%C3%B8vdal_at_Piemonte_2022_%28cropped%29.jpg/330px-Karoline_Bjerkeli_Gr%C3%B8vdal_at_Piemonte_2022_%28cropped%29.jpg",
-      "extract": "Karoline Bjerkeli Gr\u00f8vdal is a Norwegian middle-, long-distance and steeplechase runner. She is a European Championships gold medallist in half marathon, silver medallist in 5000 metres and bronze medallist in 10,000 metres and 3000 metres steeplechase. Gr\u00f8vdal is a four-time Olympian and represented Norway at the 2012, 2016, 2020 and 2024 Olympic Games."
+      "text": "Sergei Matsenko, Russian chess player",
+      "page_title": "Sergei Matsenko",
+      "page_url": "https://en.wikipedia.org/wiki/Sergei_Matsenko",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Sergei_Matsenko_2010.JPG/330px-Sergei_Matsenko_2010.JPG",
+      "extract": "Sergei Vadimovich Matsenko is a Russian chess grandmaster."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "births",
+      "year": 1990,
+      "text": "Fran\u00e7ois Moubandje, Swiss footballer",
+      "page_title": "Fran\u00e7ois Moubandje",
+      "page_url": "https://en.wikipedia.org/wiki/Fran%C3%A7ois_Moubandje",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Fran%C3%A7ois_Moubandje.jpg/330px-Fran%C3%A7ois_Moubandje.jpg",
+      "extract": "Jacques Fran\u00e7ois Moubandje is a former professional footballer who played as a left back. Born in Cameroon, he represented the Switzerland national team."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "births",
+      "year": 1990,
+      "text": "H\u00e5vard Nordtveit, Norwegian footballer",
+      "page_title": "H\u00e5vard Nordtveit",
+      "page_url": "https://en.wikipedia.org/wiki/H%C3%A5vard_Nordtveit",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/2012-07_Nordtveit.jpg/330px-2012-07_Nordtveit.jpg",
+      "extract": "H\u00e5vard Nordtveit is a Norwegian former professional footballer who played as a defender or defensive midfielder."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "births",
+      "year": 1990,
+      "text": "Isabel Pires, Portuguese politician",
+      "page_title": "Isabel Pires",
+      "page_url": "https://en.wikipedia.org/wiki/Isabel_Pires",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Isabel_Pires_%2853595370923%29_%28cropped%29.jpg/330px-Isabel_Pires_%2853595370923%29_%28cropped%29.jpg",
+      "extract": "Isabel Cristina Rua Pires is a Portuguese politician and former member of the Assembly of the Republic, the national legislature of Portugal. A member of the Left Bloc, she has represented Lisbon from October 2015 to March 2022 and Porto from September 2023 to March 2024. She had also been a temporary substitute member of the Assembly from February 2023 to August 2023."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1989,
-      "text": "Lucy Hale, American actress and singer-songwriter",
-      "page_title": "Lucy Hale",
-      "page_url": "https://en.wikipedia.org/wiki/Lucy_Hale",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Lucy_Hale_in_2018.jpg/330px-Lucy_Hale_in_2018.jpg",
-      "extract": "Karen Lucille Hale is an American actress and singer. Her breakthrough role as Aria Montgomery in the television series Pretty Little Liars (2010\u20132017) won her seven Teen Choice Awards, the most for any actress in a single series. She has also won accolades at the Gracie Awards and the People's Choice Awards."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 1989,
-      "text": "Brad Takairangi, Australian-Cook Islands rugby league player",
-      "page_title": "Brad Takairangi",
-      "page_url": "https://en.wikipedia.org/wiki/Brad_Takairangi",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Brad_Takairangi_Roosters.jpg/330px-Brad_Takairangi_Roosters.jpg",
-      "extract": "Brad Takairangi is a professional rugby league footballer who plays as a five-eighth or centre. He has played for the Cook Islands, New Zealand and the New Zealand M\u0101ori at international level."
+      "text": "Abubaker Kaki, Sudanese runner",
+      "page_title": "Abubaker Kaki Khamis",
+      "page_url": "https://en.wikipedia.org/wiki/Abubaker_Kaki_Khamis",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Abubaker_Kaki_Valence_2008.jpg/330px-Abubaker_Kaki_Valence_2008.jpg",
+      "extract": "Abubaker Kaki Khamis is a Sudanese runner who specialises in the 800 metres. He is a two-time World Indoor Champion over the distance and also won gold at the 2007 All-Africa Games. He represented Sudan at the 2008 and 2012 Summer Olympics. He is a member of the Messiria ethnic minority."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1988,
-      "text": "Adri\u00e1n Aldrete, Mexican footballer",
-      "page_title": "Adri\u00e1n Aldrete",
-      "page_url": "https://en.wikipedia.org/wiki/Adri%C3%A1n_Aldrete",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Adri%C3%A1n_Aldrete.jpg",
-      "extract": "Adri\u00e1n Alexei Aldrete Rodr\u00edguez is a Mexican former professional footballer who played as a left-back."
+      "text": "Allyssa DeHaan, American basketball and volleyball player",
+      "page_title": "Allyssa DeHaan",
+      "page_url": "https://en.wikipedia.org/wiki/Allyssa_DeHaan",
+      "thumbnail": null,
+      "extract": "Allyssa DeHaan is an American former collegiate basketball and volleyball player. She played for Michigan State University from 2006 to 2010."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1988,
-      "text": "Kevin McHale, American actor, singer, dancer and radio personality",
-      "page_title": "Kevin McHale (actor)",
-      "page_url": "https://en.wikipedia.org/wiki/Kevin_McHale_(actor)",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/KevinMcHale-byPhilipRomano.jpg/330px-KevinMcHale-byPhilipRomano.jpg",
-      "extract": "Kevin Michael McHale is an American actor and singer. Formerly one of the two lead vocalists of the boy band NLT, McHale is best known for his role as Artie Abrams in the Fox musical comedy-drama series Glee, for which he was nominated for a Grammy Award, three Screen Actors Guild Award for Outstanding Performance by an Ensemble in a Comedy Series and two Teen Choice Awards."
+      "text": "Alejandro Ram\u00edrez, American chess player",
+      "page_title": "Alejandro Ram\u00edrez (chess player)",
+      "page_url": "https://en.wikipedia.org/wiki/Alejandro_Ram%C3%ADrez_(chess_player)",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Alejandro_Ramirez_%282020%29_%28cropped%29.jpg/330px-Alejandro_Ramirez_%282020%29_%28cropped%29.jpg",
+      "extract": "Alejandro Tadeo Ram\u00edrez \u00c1lvarez is a Costa Rican-American chess Grandmaster and commentator. At the age of 15, he became the first Central American to achieve the title of Grandmaster and was the second youngest chess grandmaster in the world at the time. Born in Costa Rica, he represented Costa Rica before switching to the United States in 2011."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "births",
+      "year": 1988,
+      "text": "Paolo Tornaghi, Italian footballer",
+      "page_title": "Paolo Tornaghi",
+      "page_url": "https://en.wikipedia.org/wiki/Paolo_Tornaghi",
+      "thumbnail": null,
+      "extract": "Paolo Tornaghi is an Italian footballer who plays as a goalkeeper."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "births",
+      "year": 1988,
+      "text": "Thaddeus Young, American basketball player",
+      "page_title": "Thaddeus Young",
+      "page_url": "https://en.wikipedia.org/wiki/Thaddeus_Young",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Thaddeus_Young_2010.jpg/330px-Thaddeus_Young_2010.jpg",
+      "extract": "Thaddeus Charles Young Sr. is an American professional basketball player who last played for the Phoenix Suns of the National Basketball Association (NBA). He played college basketball for the Georgia Tech Yellow Jackets, before being selected 12th overall in the 2007 NBA draft by the Philadelphia 76ers. In 2018, Young became the 5th player in NBA history with at least 800 games to average 13.5 points, 5.9 Rebounds, 1.4 steals, 49% FGS, and 30% 3PT FGS, after Larry Bird, Magic Johnson, Michael J"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1987,
-      "text": "Andrew Cogliano, Canadian ice hockey player",
-      "page_title": "Andrew Cogliano",
-      "page_url": "https://en.wikipedia.org/wiki/Andrew_Cogliano",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Andrew_Cogliano_Ducks_2012-02-15.JPG/330px-Andrew_Cogliano_Ducks_2012-02-15.JPG",
-      "extract": "Andrew Cogliano is a Canadian former professional ice hockey player who played for the Edmonton Oilers, Anaheim Ducks, Dallas Stars, San Jose Sharks, and Colorado Avalanche of the National Hockey League (NHL). On December 31, 2013, Cogliano became the 20th player in NHL history to play 500 consecutive games, and only the fifth to do so from the beginning of his NHL career. On November 4, 2017, Cogliano played in his 800th consecutive game, placing him in fourth place on the NHL's most consecutiv"
+      "text": "Pablo Barrera, Mexican footballer",
+      "page_title": "Pablo Barrera",
+      "page_url": "https://en.wikipedia.org/wiki/Pablo_Barrera",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/BarreraWHU21082010.jpg/330px-BarreraWHU21082010.jpg",
+      "extract": "Pablo Edson Barrera Acosta is a Mexican former professional footballer who played as a winger."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
       "year": 1987,
-      "text": "Mohamed Diam\u00e9, Senegalese footballer",
-      "page_title": "Mohamed Diam\u00e9",
-      "page_url": "https://en.wikipedia.org/wiki/Mohamed_Diam%C3%A9",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Mohamed_Diam%C3%A9_with_West_Ham_United.jpg/330px-Mohamed_Diam%C3%A9_with_West_Ham_United.jpg",
-      "extract": "Mohamed Diam\u00e9, also known as Momo Diam\u00e9, is a former professional footballer who played as a midfielder."
+      "text": "Sebastian Pr\u00f6dl, Austrian footballer",
+      "page_title": "Sebastian Pr\u00f6dl",
+      "page_url": "https://en.wikipedia.org/wiki/Sebastian_Pr%C3%B6dl",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/FC_Salzburg_gegen_FC_Twente_Enschede_%282024-08-06_CL-Qualifikation_Dritte_Runde%29_07.jpg/330px-FC_Salzburg_gegen_FC_Twente_Enschede_%282024-08-06_CL-Qualifikation_Dritte_Runde%29_07.jpg",
+      "extract": "Sebastian Pr\u00f6dl is an Austrian former professional footballer who played as a centre-back. A full international from 2007 to 2018, he represented the Austria national team at UEFA Euro 2008 and UEFA Euro 2016."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
-      "year": 1986,
-      "text": "Rhe-Ann Niles-Mapp, Barbadian netball player",
-      "page_title": "Rhe-Ann Niles-Mapp",
-      "page_url": "https://en.wikipedia.org/wiki/Rhe-Ann_Niles-Mapp",
-      "thumbnail": null,
-      "extract": "Rhe-Ann Niles-Mapp also simply known as Rhe-Ann Niles is a Barbadian netball player who represents Barbados internationally and plays in the positions of goal keeper and goal defense. She competed at the Netball World Cup on three occasions in 2003, 2015 and 2019. She also represented Barbados at the Commonwealth Games in 2014 and in 2018."
+      "year": 1987,
+      "text": "Dale Thomas, Australian footballer",
+      "page_title": "Dale Thomas (footballer)",
+      "page_url": "https://en.wikipedia.org/wiki/Dale_Thomas_(footballer)",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Dale_Thomas_2017.2.jpg/330px-Dale_Thomas_2017.2.jpg",
+      "extract": "Dale Robert Jordan \u201cDaisy\u201d Thomas is a former professional Australian rules footballer who played for the Collingwood Football Club and Carlton Football Club in the Australian Football League (AFL). Thomas was a priority pick in 2005, where he then played with the Collingwood Football Club from 2006 to 2013 before transferring to Carlton in 2014."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "births",
-      "year": 1986,
-      "text": "Matt Read, Canadian ice hockey player",
-      "page_title": "Matt Read",
-      "page_url": "https://en.wikipedia.org/wiki/Matt_Read",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Matt_Read_2018_%28a%29_01.png",
-      "extract": "Matthew Zachary Jarrett Read is a Canadian former professional ice hockey player who played eight seasons in the National Hockey League (NHL). He played for the Philadelphia Flyers, who signed him as an undrafted free agent in 2011, and the Minnesota Wild."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 1985,
-      "text": "Oleg Medvedev. Russian luger",
-      "page_title": "Oleg Medvedev",
-      "page_url": "https://en.wikipedia.org/wiki/Oleg_Medvedev",
-      "thumbnail": null,
-      "extract": "Oleg Medvedev is a Russian luge athlete. Along with Ivan Nevmerzhitski he placed twentieth in the two man luge doubles in the 2008\u201309 Luge World Cup. In 2009, at the world championships in Lake Placid, New York, the aforementioned duo placed 18th in the two man luge event."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 1985,
-      "text": "Andy Soucek, Spanish racing driver",
-      "page_title": "Andy Soucek",
-      "page_url": "https://en.wikipedia.org/wiki/Andy_Soucek",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Andy_Soucek.JPG/330px-Andy_Soucek.JPG",
-      "extract": "Andy Christian Soucek is a Spanish-Austrian former professional racing driver."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 1984,
-      "text": "Lorenzo Booker, American football player",
-      "page_title": "Lorenzo Booker",
-      "page_url": "https://en.wikipedia.org/wiki/Lorenzo_Booker",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Lorenzo_Booker_in_2009.jpg/330px-Lorenzo_Booker_in_2009.jpg",
-      "extract": "Lorenzo Adarryll Booker is an American former professional football player who was a running back in the National Football League (NFL). He was selected by the Miami Dolphins in the third round of the 2007 NFL draft. He played college football for the Florida State Seminoles."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 1984,
-      "text": "Mark Cosgrove, Australian cricketer",
-      "page_title": "Mark Cosgrove",
-      "page_url": "https://en.wikipedia.org/wiki/Mark_Cosgrove",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/2_25_Well_batted.jpg/330px-2_25_Well_batted.jpg",
-      "extract": "Mark James Cosgrove is an Australian-English cricketer. He is a left-handed batsman and part-time medium pace bowler. He represented Australia in three One Day Internationals in 2006."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 1984,
-      "text": "Siobh\u00e1n Donaghy, English singer-songwriter",
-      "page_title": "Siobh\u00e1n Donaghy",
-      "page_url": "https://en.wikipedia.org/wiki/Siobh%C3%A1n_Donaghy",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Mutya_Keisha_Siobhan_%28cropped%29.jpg/330px-Mutya_Keisha_Siobhan_%28cropped%29.jpg",
-      "extract": "Siobh\u00e1n Emma Donaghy is a British singer and songwriter best known as a founding member of the girl group Sugababes. Donaghy left Sugababes in 2001 and released her debut solo album, Revolution in Me, in 2003. Her second studio album, Ghosts, was released in 2007 and met critical acclaim."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "births",
-      "year": 1984,
-      "text": "Yury Prilukov, Russian swimmer",
-      "page_title": "Yury Prilukov",
-      "page_url": "https://en.wikipedia.org/wiki/Yury_Prilukov",
-      "thumbnail": null,
-      "extract": "Yury Aleksandrovich Prilukov is a freestyle swimmer from Russia, who specializes in long distance swimming."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2025,
-      "text": "Afa Ah Loo, Samoan fashion designer",
-      "page_title": "Afa Ah Loo",
-      "page_url": "https://en.wikipedia.org/wiki/Afa_Ah_Loo",
-      "thumbnail": null,
-      "extract": "Arthur Folasa Ah Loo, better known as Afa Ah Loo, was a Samoan fashion designer. He competed on season 17 of Project Runway."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2025,
-      "text": "Melissa Hortman, American lawyer and politician (born 1970)",
-      "page_title": "Melissa Hortman",
-      "page_url": "https://en.wikipedia.org/wiki/Melissa_Hortman",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Melissa_Hortman_at_One_Minnesota_Budget_Bill_Signing_%28cropped%29.jpg/330px-Melissa_Hortman_at_One_Minnesota_Budget_Bill_Signing_%28cropped%29.jpg",
-      "extract": "Melissa Anne Hortman was an American politician and lawyer who served as the 61st speaker of the Minnesota House of Representatives. A member of the Democratic\u2013Farmer\u2013Labor Party, she represented northern parts of the Twin Cities metropolitan area in the Minnesota House of Representatives from 2005 to 2025, serving as the House minority leader from 2017 to 2019 and as speaker from 2019 to January 2025. During her tenure, she advocated for transportation, environmental rights, abortion rights, po"
+      "year": 1987,
+      "text": "Kim Ryeo-wook, South Korean singer",
+      "page_title": "Kim Ryeo-wook",
+      "page_url": "https://en.wikipedia.org/wiki/Kim_Ryeo-wook",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/3/31/190709_%EC%8A%88%ED%8D%BC%EC%A3%BC%EB%8B%88%EC%96%B4_%EB%A0%A4%EC%9A%B1_%282%29.jpg",
+      "extract": "Kim Ryeo-wook, better known by the mononym Ryeowook, is a South Korean singer, songwriter, and musical actor. He is best known as a member of boy group Super Junior and its subgroups, Super Junior-K.R.Y. and Super Junior-M. Along with four other Super Junior members, he is one of the first Korean artists to appear on Chinese postage stamps. He began a solo career in 2016 with his first EP The Little Prince."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2024,
-      "text": "Dudu Myeni, South African businesswoman (born 1963)",
-      "page_title": "Dudu Myeni",
-      "page_url": "https://en.wikipedia.org/wiki/Dudu_Myeni",
-      "thumbnail": null,
-      "extract": "Duduzile \"Dudu\" Cynthia Myeni was a South African businesswoman, a chairperson of South African Airways SOC Limited, and executive chairperson of the Jacob Zuma Foundation since September 2008."
+      "text": "Frederick Crews, American essayist and literary critic (born 1933)",
+      "page_title": "Frederick Crews",
+      "page_url": "https://en.wikipedia.org/wiki/Frederick_Crews",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Frederick_Crews.JPG/330px-Frederick_Crews.JPG",
+      "extract": "Frederick Campbell Crews was an American essayist and literary critic. Professor of English at the University of California, Berkeley, Crews was the author of numerous books, including The Tragedy of Manners: Moral Drama in the Later Novels of Henry James (1957), E. M. Forster: The Perils of Humanism (1962), and The Sins of the Fathers: Hawthorne's Psychological Themes (1966), a discussion of the work of Nathaniel Hawthorne. He received popular attention for The Pooh Perplex (1963), a book of sa"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
-      "year": 2024,
-      "text": "George Nethercutt, American lawyer, author, and politician (born 1944)",
-      "page_title": "George Nethercutt",
-      "page_url": "https://en.wikipedia.org/wiki/George_Nethercutt",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/George_Nethercutt_%28high-resolution_portrait%29.jpg/330px-George_Nethercutt_%28high-resolution_portrait%29.jpg",
-      "extract": "George Rector Nethercutt Jr. was an American lawyer, author, and politician. A member of the Republican Party, he rose to national attention upon his election to the U.S. House of Representatives in 1994, when he defeated Tom Foley, the speaker of the house, in Washington's 5th congressional district. Nethercutt served five terms and left the House in 2004, when he mounted an unsuccessful bid for the U.S. Senate."
+      "year": 2023,
+      "text": "Winnie Ewing, Scottish politician (born 1929)",
+      "page_title": "Winnie Ewing",
+      "page_url": "https://en.wikipedia.org/wiki/Winnie_Ewing",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/1657533591768_P442_007_MOBILE.jpg/330px-1657533591768_P442_007_MOBILE.jpg",
+      "extract": "Winifred Margaret Ewing was a Scottish lawyer and politician who figured prominently in the Scottish National Party."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
-      "year": 2022,
-      "text": "A. B. Yehoshua,  Israeli novelist, essayist, and playwright (born 1936)",
-      "page_title": "A. B. Yehoshua",
-      "page_url": "https://en.wikipedia.org/wiki/A._B._Yehoshua",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/A_B_Yehoshua_DSC0153_%28cropped%29.jpg/330px-A_B_Yehoshua_DSC0153_%28cropped%29.jpg",
-      "extract": "Avraham Gabriel \"Boolie\" Yehoshua was an Israeli novelist, essayist, and playwright. The New York Times called him the \"Israeli Faulkner\". Underlying themes in Yehoshua's work are Jewish identity, the tense relations with non-Jews, the conflict between the older and younger generations, and the clash between religion and politics."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2020,
-      "text": "Sushant Singh Rajput, Indian film actor (born 1986)",
-      "page_title": "Sushant Singh Rajput",
-      "page_url": "https://en.wikipedia.org/wiki/Sushant_Singh_Rajput",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/96/Sushant_Singh_Rajput_snapped_at_the_promotions_of_%27M.S._Dhoni_-_The_Untold_Story%27_%28cropped%29.jpg",
-      "extract": "Sushant Singh Rajput was an Indian actor best known for his work in Hindi cinema. He earned acclaim for his performances in several notable films, including Kai Po Che! (2013), Detective Byomkesh Bakshy! (2015), M.S. Dhoni: The Untold Story (2016), Kedarnath (2018), Sonchiriya (2019), and Chhichhore (2019). Rajput received a Screen Award and was nominated for the Filmfare Awards on three occasions. He was featured twice on Forbes India's Celebrity 100 list, and was regarded as one of the most ta"
+      "year": 2018,
+      "text": "Charles Krauthammer, American columnist and conservative political commentator (born 1950)",
+      "page_title": "Charles Krauthammer",
+      "page_url": "https://en.wikipedia.org/wiki/Charles_Krauthammer",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/3/32/Charles_Krauthammer.jpg",
+      "extract": "Charles Krauthammer was an American political columnist and psychiatrist. A moderate liberal who turned independent conservative as a political pundit, Krauthammer won the Pulitzer Prize for his columns in The Washington Post in 1987. His weekly column was syndicated to more than 400 publications worldwide. While in his first year studying medicine at Harvard Medical School, Krauthammer became permanently paralyzed from the waist down after a diving board accident that severed his spinal cord at"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2016,
-      "text": "Ann Morgan Guilbert, American actress and singer (born 1928)",
-      "page_title": "Ann Morgan Guilbert",
-      "page_url": "https://en.wikipedia.org/wiki/Ann_Morgan_Guilbert",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Ann_Morgan_Guilbert_%22The_New_Andy_Griffith_Show%22_%281971_CBS_press_photo%29_%28cropped%29.jpg/330px-Ann_Morgan_Guilbert_%22The_New_Andy_Griffith_Show%22_%281971_CBS_press_photo%29_%28cropped%29.jpg",
-      "extract": "Ann Morgan Guilbert, sometimes credited as Ann Guilbert, was an American television and film actress and comedian who portrayed a number of roles from the 1950s on, most notably as Millie Helper in 61 episodes of the early 1960s sitcom The Dick Van Dyke Show, and later Yetta Rosenberg, Fran Fine's doddering grandmother, in 56 episodes of the 1990s sitcom The Nanny."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2016,
-      "text": "Gilles Lamontagne, Canadian politician, Lieutenant Governor of Quebec (born 1919)",
-      "page_title": "Gilles Lamontagne",
-      "page_url": "https://en.wikipedia.org/wiki/Gilles_Lamontagne",
+      "text": "Pierre Lalonde, Canadian television host and singer (born 1941)",
+      "page_title": "Pierre Lalonde",
+      "page_url": "https://en.wikipedia.org/wiki/Pierre_Lalonde",
       "thumbnail": null,
-      "extract": "Joseph Georges Gilles Claude Lamontagne was a Canadian politician who held a number of offices both in Quebec and federally. A Liberal, he was Mayor of Quebec City (1965\u20131977), Postmaster General of Canada (1978\u20131979), Minister of National Defence (1980\u20131983) and the 24th Lieutenant Governor of Quebec (1984\u20131990)."
+      "extract": "Pierre Lalonde was a Canadian singer and television host, who was sometimes also billed as Peter Martin in the United States."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2015,
-      "text": "Richard Cotton, Australian geneticist and academic (born 1940)",
-      "page_title": "Richard Cotton (geneticist)",
-      "page_url": "https://en.wikipedia.org/wiki/Richard_Cotton_(geneticist)",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Richard_Cotton.jpg",
-      "extract": "Richard Cotton AM was an Australian medical researcher and founder of the Murdoch Institute and the Human Variome Project. Cotton focused on the prevention and treatment of genetic disorders and birth defects."
+      "text": "Darryl Hamilton, American baseball player and sportscaster (born 1964)",
+      "page_title": "Darryl Hamilton",
+      "page_url": "https://en.wikipedia.org/wiki/Darryl_Hamilton",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/c/cb/Darryl_Hamilton.webp",
+      "extract": "Darryl Quinn Hamilton was an American professional baseball outfielder who played in Major League Baseball (MLB) between 1988 and 2001 for the Milwaukee Brewers, Texas Rangers, San Francisco Giants, Colorado Rockies, and New York Mets. Hamilton prepped at Louisiana State University Laboratory School in Baton Rouge and then attended Nicholls State University in Thibodaux, Louisiana."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2015,
-      "text": "Anne Nicol Gaylor, American activist, co-founded the Freedom From Religion Foundation (born 1926)",
-      "page_title": "Anne Nicol Gaylor",
-      "page_url": "https://en.wikipedia.org/wiki/Anne_Nicol_Gaylor",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Anne_Gaylor_clip_-_A_Second_Look_At_Religion.webm/330px--Anne_Gaylor_clip_-_A_Second_Look_At_Religion.webm.jpg",
-      "extract": "Anne Nicol Gaylor was an American atheist and reproductive rights advocate. She co-founded the Freedom from Religion Foundation and an abortion fund for Wisconsin women. She wrote the book Abortion Is a Blessing and edited The World Famous Atheist Cookbook. In 1985 Gaylor received the Humanist Heroine Award from the American Humanist Association, and in 2007 she was given the Tiller Award by NARAL Pro-Choice America."
+      "text": "Veijo Meri, Finnish author and poet (born 1928)",
+      "page_title": "Veijo Meri",
+      "page_url": "https://en.wikipedia.org/wiki/Veijo_Meri",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Veijo-Meri-1960.jpg/330px-Veijo-Meri-1960.jpg",
+      "extract": "Veijo V\u00e4in\u00f6 Valvo Meri was a Finnish writer. Much of his work focuses on war and its absurdity. The work is anti-war and has dark humor."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2015,
-      "text": "Qiao Shi, Chinese politician (born 1924)",
-      "page_title": "Qiao Shi",
-      "page_url": "https://en.wikipedia.org/wiki/Qiao_Shi",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/5/5d/Qiaoshi_in_1994.jpg",
-      "extract": "Qiao Shi was a Chinese politician and one of the top leaders of the Chinese Communist Party (CCP). He was a member of the party's top decision-making body, the Politburo Standing Committee, from 1987 to 1997. He was a contender for the paramount leadership of China, but lost out to his political rival Jiang Zemin, who assumed the post of General Secretary of the party in 1989. Qiao Shi instead served as Chairman of the National People's Congress, then the third-ranked political position, from 19"
+      "text": "Remo Remotti, Italian actor, playwright, and poet (born 1924)",
+      "page_title": "Remo Remotti",
+      "page_url": "https://en.wikipedia.org/wiki/Remo_Remotti",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/f/fb/Remo_Remotti_b-w.jpg",
+      "extract": "Remo Remotti was an Italian actor, playwright, artist and poet."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2015,
+      "text": "Alexander Schalck-Golodkowski, German soldier and politician (born 1932)",
+      "page_title": "Alexander Schalck-Golodkowski",
+      "page_url": "https://en.wikipedia.org/wiki/Alexander_Schalck-Golodkowski",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Bundesarchiv_Bild_183-1988-0317-312%2C_Alexander_Schalck-Golodkowski.jpg/330px-Bundesarchiv_Bild_183-1988-0317-312%2C_Alexander_Schalck-Golodkowski.jpg",
+      "extract": "Alexander Schalck-Golodkowski was a politician and trader in the German Democratic Republic. He was director of a main department ('Hauptverwaltungsleiter') in the Ministry for Foreign Trade and German Domestic Trade (1956\u201362), the Deputy Minister for External Trade (1967\u201375), and head of the GDR's Kommerzielle Koordinierung."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2015,
+      "text": "Gunther Schuller, American horn player, composer, and conductor (born 1925)",
+      "page_title": "Gunther Schuller",
+      "page_url": "https://en.wikipedia.org/wiki/Gunther_Schuller",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Gunther_Schuller_%282008%29.jpg",
+      "extract": "Gunther Alexander Schuller was an American composer, conductor, horn player, author, historian, educator, publisher, and jazz musician."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2014,
-      "text": "Alberto Ca\u00f1as Escalante, Costa Rican journalist and politician (born 1920)",
-      "page_title": "Alberto Ca\u00f1as Escalante",
-      "page_url": "https://en.wikipedia.org/wiki/Alberto_Ca%C3%B1as_Escalante",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Alberto_Ca%C3%B1as_Escalante.jpg/330px-Alberto_Ca%C3%B1as_Escalante.jpg",
-      "extract": "Alberto Ca\u00f1as Escalante was a politician, writer, intellectual, public servant, and journalist from San Jos\u00e9, Costa Rica. He is known as one of the most important figures in the cultural, political, and social life of Costa Rica during the latter half of the twentieth century. The National Library System of Costa Rica credits Ca\u00f1as with more than 4,773 publications as of 2005."
+      "text": "Yozo Ishikawa, Japanese politician, Japanese Minister of Defense (born 1925)",
+      "page_title": "Yozo Ishikawa",
+      "page_url": "https://en.wikipedia.org/wiki/Yozo_Ishikawa",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Yozo_Ishikawa.1990.jpg/330px-Yozo_Ishikawa.1990.jpg",
+      "extract": "Yozo Ishikawa  was a Japanese lawmaker and a member of the Liberal Democratic Party (LDP). He served as director general of the now-defunct defense agency of Japan in 1990."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2014,
-      "text": "Isabelle Collin Dufresne, French actress (born 1935)",
-      "page_title": "Isabelle Collin Dufresne",
-      "page_url": "https://en.wikipedia.org/wiki/Isabelle_Collin_Dufresne",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Isabelle_Collin_Dufresne_%28Ultra_Violet%29.jpg/330px-Isabelle_Collin_Dufresne_%28Ultra_Violet%29.jpg",
-      "extract": "Isabelle Collin Dufresne, known professionally as Ultra Violet, was a French-American artist, actress, and writer. She initially studied and worked with Surrealist artist Salvador Dal\u00ed before relocating to New York, where she became closely associated with Pop artist Andy Warhol and his Factory scene. As a Warhol superstar she appeared in several of his underground films. Beyond her work in film, she was an active participant in the 1960s and 1970s avant-garde art scene, collaborating with other"
+      "text": "Walter Kieber, Austrian-Liechtenstein politician, 7th Prime Minister of Liechtenstein (born 1931)",
+      "page_title": "Walter Kieber",
+      "page_url": "https://en.wikipedia.org/wiki/Walter_Kieber",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Walter_Kieber.png/330px-Walter_Kieber.png",
+      "extract": "Walter Kieber was a lawyer and politician from Liechtenstein who served as Prime Minister of Liechtenstein from 1974 to 1978. He also served as Deputy Prime Minister of Liechtenstein from 1970 to 1974 and again from 1978 to 1980."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2014,
-      "text": "Robert Lebeck, German photographer and journalist (born 1929)",
-      "page_title": "Robert Lebeck",
-      "page_url": "https://en.wikipedia.org/wiki/Robert_Lebeck",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lebeck_Robert_Leverkusen_200311.jpg/330px-Lebeck_Robert_Leverkusen_200311.jpg",
-      "extract": "Robert Lebeck was a German photojournalist."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2014,
-      "text": "James E. Rogers, American lawyer, businessman, and academic (born 1938)",
-      "page_title": "James E. Rogers (attorney)",
-      "page_url": "https://en.wikipedia.org/wiki/James_E._Rogers_(attorney)",
+      "text": "Wong Ho Leng, Malaysian lawyer and politician (born 1959)",
+      "page_title": "Wong Ho Leng",
+      "page_url": "https://en.wikipedia.org/wiki/Wong_Ho_Leng",
       "thumbnail": null,
-      "extract": "James E. Rogers was an American entrepreneur and former attorney. He served as interim chancellor of the Nevada System of Higher Education and the University of Arizona College of Law carries his name."
+      "extract": "Wong Ho Leng was a Malaysian politician. He was the opposition leader of the Sarawak State Assembly from May 2006 to June 2013. He was also the state chairman of the Democratic Action Party (DAP) from 2001 until 10 June 2013. He was the Member of the State Legislative Assembly of Sarawak for the seat of Bukit Assek until his death on 21 June 2014."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2013,
-      "text": "Elroy Schwartz, American screenwriter and producer (born 1923)",
-      "page_title": "Elroy Schwartz",
-      "page_url": "https://en.wikipedia.org/wiki/Elroy_Schwartz",
+      "text": "James P. Gordon, American physicist and academic (born 1928)",
+      "page_title": "James P. Gordon",
+      "page_url": "https://en.wikipedia.org/wiki/James_P._Gordon",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/James_P_Gordon.jpg/330px-James_P_Gordon.jpg",
+      "extract": "James Power Gordon was an American physicist known for his work in the fields of optics and quantum electronics. His contributions include the design, analysis and construction of the first maser in 1954 as a doctoral student at Columbia University under the supervision of C. H. Townes, development of the quantal equivalent of Shannon's information capacity formula in 1962, development of the theory for the diffusion of atoms in an optical trap in 1980, and the discovery of what is now known as "
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2013,
+      "text": "Elliott Reid, American actor and screenwriter (born 1920)",
+      "page_title": "Elliott Reid",
+      "page_url": "https://en.wikipedia.org/wiki/Elliott_Reid",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Elliott_Reid_20th_Century_Fox_player%2C_Gentlemen_Prefer_Blondes_1953.JPG/330px-Elliott_Reid_20th_Century_Fox_player%2C_Gentlemen_Prefer_Blondes_1953.JPG",
+      "extract": "Edgeworth Blair \"Elliott\" Reid was an American actor."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2012,
+      "text": "Richard Adler, American composer and producer (born 1921)",
+      "page_title": "Richard Adler",
+      "page_url": "https://en.wikipedia.org/wiki/Richard_Adler",
       "thumbnail": null,
-      "extract": "Elroy Schwartz was an American comedy and television writer."
+      "extract": "Richard Adler was an American lyricist, writer, composer and producer of several Broadway shows. He is best known for his work with Jerry Ross on the musicals The Pajama Game (1954) and Damn Yankees (1955)."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2012,
-      "text": "Peter Archer, Baron Archer of Sandwell, English lawyer and politician, Solicitor General for England and Wales (born 1926)",
-      "page_title": "Peter Archer, Baron Archer of Sandwell",
-      "page_url": "https://en.wikipedia.org/wiki/Peter_Archer%2C_Baron_Archer_of_Sandwell",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/7/74/Lord_Archer_of_Sandwell_2011.png",
-      "extract": "Peter Kingsley Archer, Baron Archer of Sandwell,, was a British lawyer and Labour Party politician. He was a Member of Parliament from 1966 until 1992, when he became a life peer. Between 1974 and 1979 he was Solicitor General for England and Wales."
+      "text": "Abid Hussain, Indian economist and diplomat, Indian Ambassador to the United States (born 1926)",
+      "page_title": "Abid Hussain",
+      "page_url": "https://en.wikipedia.org/wiki/Abid_Hussain",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Abid_Hussain_in_mid_1980s_Ministry_of_Commerce.jpg/330px-Abid_Hussain_in_mid_1980s_Ministry_of_Commerce.jpg",
+      "extract": "Abid Hussain was an Indian economist, civil servant and diplomat. He was India's ambassador to the United States of America from 1990 to 1992 and a member of the Planning Commission from 1985 to 1990."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2012,
-      "text": "Bob Chappuis, American football player and soldier (born 1923)",
-      "page_title": "Bob Chappuis",
-      "page_url": "https://en.wikipedia.org/wiki/Bob_Chappuis",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Bob_Chappuis_by_Harry_Watson_1947.jpg/330px-Bob_Chappuis_by_Harry_Watson_1947.jpg",
-      "extract": "Robert Richard Chappuis was an American football player who played halfback and quarterback for the University of Michigan Wolverines in 1942, 1946, and 1947. His college years were interrupted by service in the U.S. Army Air Forces during World War II. Chappuis flew 21\u00a0missions as a radio operator and aerial gunner on B-25 bombers in the European Theater. His aircraft was shot down in February 1945 in the Lombardy region of Northern Italy. Chappuis parachuted from the plane before it crashed, a"
+      "text": "Sunil Janah, Indian photographer and journalist (born 1918)",
+      "page_title": "Sunil Janah",
+      "page_url": "https://en.wikipedia.org/wiki/Sunil_Janah",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/b/be/Sunil_Janah.png",
+      "extract": "Sunil Janah was an Indian-American photojournalist and documentary photographer who worked in India in the 1940s. Janah documented India's independence movement, its peasant and labour movements, famines and riots, rural and tribal life, as well as the years of rapid urbanization and industrialization. He was best known for his coverage of the Bengal famine of 1943."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2012,
-      "text": "Margie Hyams, American pianist and vibraphone player (born 1920)",
-      "page_title": "Margie Hyams",
-      "page_url": "https://en.wikipedia.org/wiki/Margie_Hyams",
+      "text": "Anna Schwartz, American economist and author (born 1915)",
+      "page_title": "Anna Schwartz",
+      "page_url": "https://en.wikipedia.org/wiki/Anna_Schwartz",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Anna_Schwartz_by_David_Shankbone_%28cropped%29.jpg/330px-Anna_Schwartz_by_David_Shankbone_%28cropped%29.jpg",
+      "extract": "Anna Jacobson Schwartz was an American economist who worked at the National Bureau of Economic Research in New York City and a writer for The New York Times. Paul Krugman has said that Schwartz is \"one of the world's greatest monetary scholars.\""
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2011,
+      "text": "Robert Kroetsch, Canadian author and poet (born 1927)",
+      "page_title": "Robert Kroetsch",
+      "page_url": "https://en.wikipedia.org/wiki/Robert_Kroetsch",
       "thumbnail": null,
-      "extract": "Marjorie Hyams was an American jazz vibraphonist, pianist, and arranger. She began her career as a vibraphonist in the 1940s, playing with Woody Herman, the Hip Chicks, Mary Lou Williams, Charlie Ventura, and George Shearing. She also led her own groups."
+      "extract": "Robert Paul Kroetsch was a Canadian novelist, poet and nonfiction writer. In his fiction and critical essays, as well as in the journal he co-founded, boundary 2, he was an influential figure in Canada in introducing ideas about postmodernism."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
-      "year": 2012,
-      "text": "Karl-Heinz K\u00e4mmerling, German pianist and academic (born 1930)",
-      "page_title": "Karl-Heinz K\u00e4mmerling",
-      "page_url": "https://en.wikipedia.org/wiki/Karl-Heinz_K%C3%A4mmerling",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/e/e5/KAEMMER.jpg",
-      "extract": "Karl-Heinz K\u00e4mmerling was a German academic teacher of classical pianists, who trained pianists at the Mozarteum in Salzburg and the Hochschule f\u00fcr Musik, Theater und Medien Hannover for careers as performers and academic teachers, particularly in the early training of highly gifted students."
+      "year": 2010,
+      "text": "Russell Ash, English author (born 1946)",
+      "page_title": "Russell Ash",
+      "page_url": "https://en.wikipedia.org/wiki/Russell_Ash",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/e/ec/Russell_Ash.jpg",
+      "extract": "Russell Ash was the British author of the Top 10 of Everything series of books, as well as Great Wonders of the World, Incredible Comparisons and many other reference, art and humour titles, most notably his series of books on strange-but-true names, Potty, Fartwell & Knob, Busty, Slag and Nob End and Big Pants, Burpy and Bumface. Once described as 'the human Google', his obituary in The Times stated that 'In the age of the internet, it takes tenacity and idiosyncratic intelligence to make a liv"
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
-      "year": 2012,
-      "text": "Carlos Reichenbach, Brazilian director and producer (born 1945)",
-      "page_title": "Carlos Reichenbach",
-      "page_url": "https://en.wikipedia.org/wiki/Carlos_Reichenbach",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Carlos_Reichenbach_%283385914540%29_cropped.jpg/330px-Carlos_Reichenbach_%283385914540%29_cropped.jpg",
-      "extract": "Carlos Oscar Reichenbach Filho was a Brazilian filmmaker."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2012,
-      "text": "Gitta Sereny, Austrian-English historian, journalist, and author (born 1921)",
-      "page_title": "Gitta Sereny",
-      "page_url": "https://en.wikipedia.org/wiki/Gitta_Sereny",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/3/3e/Gitta_Sereny.jpg",
-      "extract": "Gitta Sereny, CBE was an Austrian-British biographer, historian, and investigative journalist who became known for her interviews and profiles of infamous figures, including Mary Bell, who was convicted in 1968 of killing two children when she herself was a child, and Franz Stangl, the commandant of the Treblinka extermination camp."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2009,
-      "text": "Bob Bogle, American musician (born 1934)",
-      "page_title": "Bob Bogle",
-      "page_url": "https://en.wikipedia.org/wiki/Bob_Bogle",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Bob_Bogle.png/330px-Bob_Bogle.png",
-      "extract": "Robert Lenard Bogle was an American musician who was a founding member of the instrumental rock band the Ventures. He and Don Wilson founded the group in 1958. Bogle was the lead guitarist and later bassist of the group. In 2008, Bogle and other members of the Ventures were inducted into the Rock and Roll Hall of Fame in the Performer category."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2009,
-      "text": "William McIntyre, Canadian soldier, lawyer, and judge (born 1918)",
-      "page_title": "William McIntyre (judge)",
-      "page_url": "https://en.wikipedia.org/wiki/William_McIntyre_(judge)",
+      "year": 2010,
+      "text": "Irwin Barker, Canadian actor and screenwriter (born 1956)",
+      "page_title": "Irwin Barker",
+      "page_url": "https://en.wikipedia.org/wiki/Irwin_Barker",
       "thumbnail": null,
-      "extract": "William Rogers McIntyre, was a Canadian Puisne Justice of the Supreme Court of Canada."
+      "extract": "Irwin Barker was a Canadian comedian and writer. He wrote for This Hour Has 22 Minutes and The Rick Mercer Report, and was nominated for four Gemini Awards as a writer and one as stand-up performer for his 2005 performance at the Halifax Comedy Festival. Barker was also nominated for three Writers' Guild of Canada Screenwriter's awards, and won the award in 2008. He was a regular writer and contributor for CBC Radio's The Debaters."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2010,
+      "text": "\u0130lhan Sel\u00e7uk, Turkish lawyer, journalist, and author (born 1925)",
+      "page_title": "\u0130lhan Sel\u00e7uk",
+      "page_url": "https://en.wikipedia.org/wiki/%C4%B0lhan_Sel%C3%A7uk",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Ilhan_selcuk_statue_detail.jpg/330px-Ilhan_selcuk_statue_detail.jpg",
+      "extract": "\u0130lhan Sel\u00e7uk was a Turkish lawyer, journalist, author, novelist and editor."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2008,
+      "text": "Scott Kalitta, American race car driver (born 1962)",
+      "page_title": "Scott Kalitta",
+      "page_url": "https://en.wikipedia.org/wiki/Scott_Kalitta",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ScottKalittaDragster.jpg/330px-ScottKalittaDragster.jpg",
+      "extract": "Scott D. Kalitta was an American drag racer who competed in the Funny Car and Top Fuel classes in the National Hot Rod Association (NHRA) Full Throttle Drag Racing Series. He had 17 career Top Fuel wins and one career Funny Car win. At the time of his death due to an accident during race qualifying, he was one of 14 drivers to win in both divisions. He was the son of veteran NHRA driver and crew chief Connie Kalitta."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2007,
-      "text": "Ruth Graham, Chinese-American author, poet, and painter (born 1920)",
-      "page_title": "Ruth Graham",
-      "page_url": "https://en.wikipedia.org/wiki/Ruth_Graham",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Ruth_Bell_Graham_-_L0055_860Fo30141612210075_%28cropped%29.jpg/330px-Ruth_Bell_Graham_-_L0055_860Fo30141612210075_%28cropped%29.jpg",
-      "extract": "Ruth McCue Bell Graham was an American Christian author. She was born in Qingjiang, Jiangsu, China, the second of five children. Her parents, Virginia Leftwich Bell and L. Nelson Bell, were medical missionaries at the Presbyterian Hospital 300 miles (480\u00a0km) north of Shanghai. At age 13 she was enrolled in Pyeng Yang Foreign School in Pyongyang, Korea, where she studied for three years. She completed her high school education at Montreat, North Carolina, while her parents were there on furlough."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2007,
-      "text": "Robin Olds, American general and pilot (born 1922)",
-      "page_title": "Robin Olds",
-      "page_url": "https://en.wikipedia.org/wiki/Robin_Olds",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Robin_Olds_during_vietnam_war.jpg/330px-Robin_Olds_during_vietnam_war.jpg",
-      "extract": "Robin Olds was an American fighter pilot and general officer in the United States Air Force (USAF). He was a \"triple ace\", with a combined total of 16 victories in World War II and the Vietnam War. He retired in 1973 as a brigadier general, after 30 years of service."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2007,
-      "text": "Kurt Waldheim, Secretary-General of the United Nations, Austrian politician, 9th President of Austria (born 1918)",
-      "page_title": "Kurt Waldheim",
-      "page_url": "https://en.wikipedia.org/wiki/Kurt_Waldheim",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Kurt_Waldheim_UN_%28cropped%29.jpg/330px-Kurt_Waldheim_UN_%28cropped%29.jpg",
-      "extract": "Kurt Josef Waldheim was an Austrian politician and diplomat. Waldheim was the secretary-general of the United Nations from 1972 to 1981 and the president of Austria from 1986 to 1992."
+      "text": "Bob Evans, American businessman, founded Bob Evans Restaurants (born 1918)",
+      "page_title": "Bob Evans (restaurateur)",
+      "page_url": "https://en.wikipedia.org/wiki/Bob_Evans_(restaurateur)",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/BobEvansFarmRioGrandeJuly2007.JPG/330px-BobEvansFarmRioGrandeJuly2007.JPG",
+      "extract": "Robert Lewis Evans was an American restaurateur and marketer of pork sausage products. He founded a restaurant chain bearing his name. The company also owns Owens Country Sausage."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2006,
-      "text": "Monty Berman, English director, producer, and cinematographer (born 1913)",
-      "page_title": "Monty Berman",
-      "page_url": "https://en.wikipedia.org/wiki/Monty_Berman",
-      "thumbnail": null,
-      "extract": "Nestor Montague Berman was an English producer, writer, cinematographer, and director of film and television. He was best known for his work at ITC Entertainment, particularly in collaboration with Dennis Spooner, where he created several television series including The Champions, Department S, and Jason King. He also co-founded the film production company Tempean Films."
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2006,
-      "text": "Jean Roba, Belgian author and illustrator (born 1930)",
-      "page_title": "Jean Roba",
-      "page_url": "https://en.wikipedia.org/wiki/Jean_Roba",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/en/d/de/Roba.jpg",
-      "extract": "Jean Roba was a Belgian comics author from the Marcinelle school. His best-known work is Boule et Bill."
+      "text": "Jared C. Monti, American sergeant, Medal of Honor recipient (born 1975)",
+      "page_title": "Jared C. Monti",
+      "page_url": "https://en.wikipedia.org/wiki/Jared_C._Monti",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Jared_C._Monti_crop.jpg/330px-Jared_C._Monti_crop.jpg",
+      "extract": "Jared Christopher Monti was a soldier in the United States Army who received the United States military's highest decoration for valor, the Medal of Honor, for his actions in the War in Afghanistan."
     },
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2005,
-      "text": "Carlo Maria Giulini, Italian conductor and director (born 1914)",
-      "page_title": "Carlo Maria Giulini",
-      "page_url": "https://en.wikipedia.org/wiki/Carlo_Maria_Giulini",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Carlo_Maria_Giulini%2C_1950_-_collezione_Tino_Barindelli_%28cropped%29.tif/lossless-page1-330px-Carlo_Maria_Giulini%2C_1950_-_collezione_Tino_Barindelli_%28cropped%29.tif.png",
-      "extract": "Carlo Maria Giulini was an Italian conductor.\nFrom the age of five, when he began to play the violin, Giulini's musical education was expanded when he began to study at Italy's foremost conservatory, the Conservatorio Santa Cecilia in Rome at the age of 16. Initially, he studied the viola and conducting; then, following an audition, he won a place in the Orchestra dell'Accademia Nazionale di Santa Cecilia."
+      "text": "Jaime Sin, Filipino cardinal (born 1928)",
+      "page_title": "Jaime Sin",
+      "page_url": "https://en.wikipedia.org/wiki/Jaime_Sin",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Cardinal_Jaime_Sin_in_1988.jpg/330px-Cardinal_Jaime_Sin_in_1988.jpg",
+      "extract": "Jaime Lachica Sin was a Filipino Catholic prelate who served as the 30th archbishop of Manila from 1974 until his retirement in 2003. He was elevated to the rank of cardinal by Pope Paul VI in 1976."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2004,
+      "text": "Leonel Brizola, Brazilian engineer and politician, Governor of Rio de Janeiro (born 1922)",
+      "page_title": "Leonel Brizola",
+      "page_url": "https://en.wikipedia.org/wiki/Leonel_Brizola",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Brizola.jpg/330px-Brizola.jpg",
+      "extract": "Leonel de Moura Brizola was a Brazilian politician. Launched into politics by Brazilian president Get\u00falio Vargas in the 1930\u20131950s, Brizola was the only politician to serve as elected governor of two Brazilian states. An engineer by training, Brizola organized the youth wing of the Brazilian Labour Party and served as state representative for Rio Grande do Sul and mayor of its capital, Porto Alegre."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2004,
+      "text": "Ruth Leach Amonette, American businesswoman (born 1916)",
+      "page_title": "Ruth Leach Amonette",
+      "page_url": "https://en.wikipedia.org/wiki/Ruth_Leach_Amonette",
+      "thumbnail": null,
+      "extract": "Ruth Leach Amonette was an American businesswoman, author, and educator. She was appointed as the first female executive and vice president at IBM in 1943, becoming one of only a few women in high-ranking corporate positions in the US at the time. She was renowned nationally for her work in business and as an educator."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2003,
+      "text": "Roger Neilson, Canadian ice hockey player and coach (born 1934)",
+      "page_title": "Roger Neilson",
+      "page_url": "https://en.wikipedia.org/wiki/Roger_Neilson",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/RogerNeilson.png/330px-RogerNeilson.png",
+      "extract": "Roger Paul Neilson was a Canadian professional ice hockey coach, most notably in the NHL, where he served with eight teams. Known as \"Captain Video\" because of his technological contributions to the game, he is a member of the Hockey Hall of Fame in the builder category. Alongside his decorated coaching abilities, Neilson is commonly remembered today for his many antics which resulted in the creation of several NHL rules."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
+      "year": 2003,
+      "text": "Leon Uris, American soldier and author (born 1924)",
+      "page_title": "Leon Uris",
+      "page_url": "https://en.wikipedia.org/wiki/Leon_Uris",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Leon_Uris_%28cropped%29.jpg",
+      "extract": "Leon Marcus Uris was an American author of historical fiction who wrote many bestselling books, including Exodus and Trinity."
     }
   ],
   "wikimedia_videos": [
     {
       "source_type": "wikimedia_commons_recent",
-      "title": "File:Petrobras fecha \u00faltimo trimestre de 2016 com lucro.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Petrobras_fecha_\u00faltimo_trimestre_de_2016_com_lucro.webm",
-      "uploaded_at": "2026-06-14T15:59:58Z",
-      "uploader": "Sturm"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:PSA Talks 5.56 AKs and a Sturmgewehr Shot Show 2023.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:PSA_Talks_5.56_AKs_and_a_Sturmgewehr_Shot_Show_2023.webm",
-      "uploaded_at": "2026-06-14T15:57:13Z",
-      "uploader": "Battlesnake1"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Veja o depoimento de Nestor Cerver\u00f3 na CPI da Petrobras.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Veja_o_depoimento_de_Nestor_Cerver\u00f3_na_CPI_da_Petrobras.webm",
-      "uploaded_at": "2026-06-14T15:56:23Z",
-      "uploader": "Sturm"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Petrobras aprova venda do primeiro campo do pr\u00e9-sal.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Petrobras_aprova_venda_do_primeiro_campo_do_pr\u00e9-sal.webm",
-      "uploaded_at": "2026-06-14T15:55:08Z",
-      "uploader": "Sturm"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Le village de Namo - Panorama pris d'une chaise \u00e0 porteurs (1900).webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Le_village_de_Namo_-_Panorama_pris_d'une_chaise_\u00e0_porteurs_(1900).webm",
-      "uploaded_at": "2026-06-14T15:54:26Z",
-      "uploader": "Irina666"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Pimentel lamenta recusa de ministro do TCU de comparecer a CPI.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Pimentel_lamenta_recusa_de_ministro_do_TCU_de_comparecer_a_CPI.webm",
-      "uploaded_at": "2026-06-14T15:53:31Z",
-      "uploader": "Sturm"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Oposi\u00e7\u00e3o classifica de \u2018chapa-branca\u2019 relat\u00f3rio da CPI Mista da Petrobras.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Oposi\u00e7\u00e3o_classifica_de_\u2018chapa-branca\u2019_relat\u00f3rio_da_CPI_Mista_da_Petrobras.webm",
-      "uploaded_at": "2026-06-14T15:52:26Z",
-      "uploader": "Sturm"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Instala\u00e7\u00e3o de CPI da Petrobras divide senadores.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Instala\u00e7\u00e3o_de_CPI_da_Petrobras_divide_senadores.webm",
-      "uploaded_at": "2026-06-14T15:51:29Z",
-      "uploader": "Sturm"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:CPI Mista deve investigar den\u00fancia de transfer\u00eancia de bens de Foster e Cerver\u00f3.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:CPI_Mista_deve_investigar_den\u00fancia_de_transfer\u00eancia_de_bens_de_Foster_e_Cerver\u00f3.webm",
-      "uploaded_at": "2026-06-14T15:51:08Z",
-      "uploader": "Sturm"
-    },
-    {
-      "source_type": "wikimedia_commons_recent",
-      "title": "File:Governistas dizem que depoimento de Gra\u00e7a Foster pode acrescentar informa\u00e7\u00f5es \u00e0 CPI.webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Governistas_dizem_que_depoimento_de_Gra\u00e7a_Foster_pode_acrescentar_informa\u00e7\u00f5es_\u00e0_CPI.webm",
-      "uploaded_at": "2026-06-14T15:50:23Z",
-      "uploader": "Sturm"
+      "title": "File:\u0539\u057c\u0579\u056f\u0561\u0576\u056b \u057b\u0580\u057e\u0565\u056a.webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:\u0539\u057c\u0579\u056f\u0561\u0576\u056b_\u057b\u0580\u057e\u0565\u056a.webm",
+      "uploaded_at": "2026-06-21T16:18:08Z",
+      "uploader": "Beko"
     }
   ],
   "youtube_trending": [],
