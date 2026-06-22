@@ -1,0 +1,33 @@
+{
+ "key": "ticket_fees_breakdown",
+ "title": "Add-on fees on a typical $90 ticket ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Add-on fees on a typical $90 ticket ($)",
+  "publisher": "GAO / consumer ticketing review",
+  "url": "https://www.gao.gov",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Service fee",
+   "value": 28
+  },
+  {
+   "label": "Facility fee",
+   "value": 6
+  },
+  {
+   "label": "Processing",
+   "value": 5
+  },
+  {
+   "label": "Delivery",
+   "value": 4
+  }
+ ]
+}

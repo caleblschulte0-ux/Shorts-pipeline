@@ -1,0 +1,41 @@
+{
+ "key": "wedding_cost_by_metro",
+ "title": "Average wedding cost by metro ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Average wedding cost by metro ($)",
+  "publisher": "The Knot Real Weddings Study",
+  "url": "https://www.theknot.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Manhattan, NY",
+   "value": 63000
+  },
+  {
+   "label": "San Francisco",
+   "value": 45000
+  },
+  {
+   "label": "Chicago",
+   "value": 40000
+  },
+  {
+   "label": "National average",
+   "value": 35000
+  },
+  {
+   "label": "Dallas",
+   "value": 30000
+  },
+  {
+   "label": "Rural Midwest",
+   "value": 21000
+  }
+ ]
+}

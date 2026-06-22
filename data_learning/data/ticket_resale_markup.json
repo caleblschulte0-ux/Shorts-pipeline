@@ -1,0 +1,29 @@
+{
+ "key": "ticket_resale_markup",
+ "title": "Resale price over face value, hot tours (%)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2015-2024 (annual)",
+ "source": {
+  "name": "Resale price over face value, hot tours (%)",
+  "publisher": "Secondary-market index",
+  "url": "https://www.pollstar.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "2015",
+   "value": 60
+  },
+  {
+   "label": "2019",
+   "value": 110
+  },
+  {
+   "label": "2024",
+   "value": 180
+  }
+ ]
+}

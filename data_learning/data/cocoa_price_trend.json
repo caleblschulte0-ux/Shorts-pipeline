@@ -1,0 +1,37 @@
+{
+ "key": "cocoa_price_trend",
+ "title": "Cocoa price ($ per metric ton)",
+ "unit": "",
+ "geography": "World",
+ "time_coverage": "2015-2025 (annual)",
+ "source": {
+  "name": "Cocoa price ($ per metric ton)",
+  "publisher": "ICCO daily price",
+  "url": "https://www.icco.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "2015",
+   "value": 3000
+  },
+  {
+   "label": "2020",
+   "value": 2400
+  },
+  {
+   "label": "2023",
+   "value": 3500
+  },
+  {
+   "label": "2024",
+   "value": 10000
+  },
+  {
+   "label": "2025",
+   "value": 9000
+  }
+ ]
+}
