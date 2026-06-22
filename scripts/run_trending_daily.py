@@ -187,6 +187,126 @@ def _tags(pkg: dict) -> list[str]:
     return _hashtag_list(pkg, max_total=15)
 
 
+# --------------------------------------------------------------------------- #
+# Gemini assists (image backfill, thumbnail, vision QA). All best-effort:
+# they no-op without GEMINI_API_KEY and never raise into render/upload.
+# --------------------------------------------------------------------------- #
+def _img_prompt(pkg: dict, shot: dict | None) -> str:
+    """Build an image-gen prompt from the story + (optional) shot beat."""
+    title = (pkg.get("title") or pkg.get("topic") or "").strip()
+    if shot is None:
+        return f"Editorial news photo for a story titled: {title}."
+    phrase = (shot.get("phrase") or "").strip()
+    query = (shot.get("query") or "").strip()
+    bits = [b for b in (phrase, query, f"Story: {title}") if b]
+    return "Editorial news photo illustrating: " + ". ".join(bits) + "."
+
+
+def _backfill_illustrations(pkg: dict) -> None:
+    """Feature 2: for beats that would fall to off-topic keyword stock,
+    generate a FREE Gemini image and pin it as the shot's image_url
+    (the renderer accepts local image paths). No-ops silently when free
+    image gen isn't available — lifts illustration coverage so a good
+    story isn't quarantined for thin imagery."""
+    try:
+        import gemini_images
+        import entity_media
+    except Exception:  # noqa: BLE001
+        return
+    if not gemini_images.enabled():
+        return
+    try:
+        keyword_only = set(entity_media.validate_package(pkg)
+                           .get("keyword_only_shots") or [])
+    except Exception:  # noqa: BLE001
+        return
+    if not keyword_only:
+        return
+    outdir = OUTPUT_DIR / "gen_images"
+    n = 0
+    for s in pkg.get("shots") or []:
+        if s.get("image_url"):
+            continue
+        phrase = s.get("phrase") or ""
+        # validate_package stores the phrase truncated to 50 chars.
+        if phrase[:50] not in keyword_only:
+            continue
+        dest = outdir / f"{_slug(phrase)}_{n}.png"
+        got = gemini_images.generate_image(_img_prompt(pkg, s), dest)
+        if got:
+            s["image_url"] = str(got)
+            n += 1
+    if n:
+        print(f"[backfill] pinned {n} Gemini image(s) for thin beats",
+              flush=True)
+
+
+def _sample_frames(video: Path, n: int = 3) -> list[str]:
+    """Extract up to n evenly-spaced JPEG frames from the video for QA."""
+    import subprocess
+    frames: list[str] = []
+    try:
+        out = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=nk=1:nw=1", str(video)],
+            capture_output=True, text=True, timeout=30)
+        dur = float((out.stdout or "0").strip() or 0) or 30.0
+    except Exception:  # noqa: BLE001
+        dur = 30.0
+    fdir = OUTPUT_DIR / "qa_frames"
+    fdir.mkdir(parents=True, exist_ok=True)
+    for i in range(1, n + 1):
+        ts = dur * i / (n + 1)
+        fp = fdir / f"{video.stem}_qa{i}.jpg"
+        try:
+            import subprocess
+            subprocess.run(
+                ["ffmpeg", "-y", "-ss", f"{ts:.2f}", "-i", str(video),
+                 "-frames:v", "1", "-q:v", "3", str(fp)],
+                capture_output=True, timeout=60)
+            if fp.exists():
+                frames.append(str(fp))
+        except Exception:  # noqa: BLE001
+            continue
+    return frames
+
+
+def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | None, str | None]:
+    """Features 1 + 3. Returns (thumbnail_path_or_None, qa_block_reason_or_None).
+    A non-None block reason means vision QA flagged the video as
+    broken/unsafe and the caller should skip the upload."""
+    block: str | None = None
+    thumb: str | None = None
+    try:
+        import gemini_images
+    except Exception:  # noqa: BLE001
+        return None, None
+    # Feature 3 — vision QA (blocks only broken/unsafe; fail-open).
+    try:
+        verdict = gemini_images.vision_judge(
+            _sample_frames(out_path), topic=result.get("topic", ""),
+            title=result.get("title") or "")
+        result["qa"] = verdict
+        if not verdict.get("ok"):
+            block = f"vision QA: {verdict.get('verdict')} — {verdict.get('reason')}"
+    except Exception as e:  # noqa: BLE001
+        print(f"[qa] skipped: {type(e).__name__}: {e}", flush=True)
+    # Feature 1 — custom thumbnail (best pinned image as bg, hook overlaid).
+    try:
+        bg = next((s.get("image_url") for s in (pkg.get("shots") or [])
+                   if s.get("image_url")), None)
+        hook = (pkg.get("script") or "").split("?")[0].split("!")[0][:60]
+        tp = OUTPUT_DIR / f"{out_path.stem}_thumb.jpg"
+        made = gemini_images.build_thumbnail(
+            tp, title=result.get("title") or pkg.get("title") or "",
+            hook=hook, bg_image=bg, bg_prompt=_img_prompt(pkg, None))
+        if made:
+            thumb = str(made)
+    except Exception as e:  # noqa: BLE001
+        print(f"[thumb] skipped: {type(e).__name__}: {e}", flush=True)
+    return thumb, block
+
+
 def todays_package_dir() -> Path:
     """Where a scheduled Claude Code session is expected to drop the
     day's hand-written packages. Format: state/trending_packages/YYYYMMDD/."""
@@ -249,6 +369,9 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         "package_path": pkg.get("_path"),
     }
     t_start = time.time()
+    # Feature 2: backfill thin beats with generated imagery so a good
+    # story isn't quarantined for stock-only shots (no-op without a key).
+    _backfill_illustrations(pkg)
     # Pre-render illustration gate. Quarantine (don't render) a package
     # that would ship off-topic stock; the batch continues without it.
     reason = _illustration_quarantine(pkg)
@@ -270,6 +393,14 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         make_explainer_stacked.build_from_package(pkg, out_path)
         result["video_path"] = str(out_path.relative_to(REPO))
 
+        # Features 1 + 3: custom thumbnail + vision QA on the finished mp4.
+        thumb, qa_block = _qa_and_thumbnail(pkg, out_path, result)
+        if qa_block:
+            result["error"] = f"quarantined: {qa_block}"
+            result["quarantined"] = True
+            print(f"[{result['topic']!r}] QUARANTINED — {qa_block}", flush=True)
+            return result
+
         if dry_run:
             result["ok"] = True
             result["video_url"] = "(dry-run)"
@@ -290,6 +421,7 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
                 description=_description(pkg),
                 tags=_tags(pkg),
                 publish_at=None if no_schedule else publish_at,
+                thumbnail=thumb,
             )
             result["video_url"] = (
                 getattr(upload_result, "url", None) or str(upload_result)
@@ -339,7 +471,8 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
         result["title"] = pkg.get("title", topic.query)
         result["package_path"] = str(pkg_path.relative_to(REPO))
 
-        # 1b. Pre-render illustration gate (same as the package path).
+        # 1b. Backfill thin beats, then the pre-render illustration gate.
+        _backfill_illustrations(pkg)
         reason = _illustration_quarantine(pkg)
         if reason is not None:
             result["error"] = f"quarantined: {reason}"
@@ -353,6 +486,14 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
         print(f"[{topic.query!r}] rendering -> {out_path}", flush=True)
         make_explainer_stacked.build_from_package(pkg, out_path)
         result["video_path"] = str(out_path.relative_to(REPO))
+
+        # Features 1 + 3: custom thumbnail + vision QA on the finished mp4.
+        thumb, qa_block = _qa_and_thumbnail(pkg, out_path, result)
+        if qa_block:
+            result["error"] = f"quarantined: {qa_block}"
+            result["quarantined"] = True
+            print(f"[{topic.query!r}] QUARANTINED — {qa_block}", flush=True)
+            return result
 
         # 3. Upload (unless dry-run).
         if dry_run:
@@ -368,6 +509,7 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
                 description=_description(pkg, topic.angle),
                 tags=_tags(pkg),
                 publish_at=None if no_schedule else publish_at,
+                thumbnail=thumb,
             )
             # uploaders return an UploadResult with .url; tolerate either
             # an object or a plain string for forward compat.

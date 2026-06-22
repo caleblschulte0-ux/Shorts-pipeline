@@ -12,6 +12,9 @@ soundfile>=0.12
 google-api-python-client>=2.0
 google-auth>=2.0
 google-auth-oauthlib>=1.0
+# Gemini assists (gemini_images.py): custom thumbnails, free-tier shot
+# image backfill, and vision QA. Best-effort — no-ops without GEMINI_API_KEY.
+google-genai>=0.3
 # Localized titles/descriptions for YouTube `localizations` (multi-language
 # discovery). No API key; best-effort — post_stories ships English if it fails.
 deep-translator>=1.11

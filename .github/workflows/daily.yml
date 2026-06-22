@@ -191,6 +191,11 @@ jobs:
           # error message tells you which one is missing.
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Optional: enables Gemini assists — custom thumbnails, shot
+          # image backfill (free image models only), and vision QA on the
+          # finished video. Skips silently if unset, so it's not in the
+          # required-secrets preflight.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           # Optional: when set, topic_video pulls from Vimeo's CC pool
