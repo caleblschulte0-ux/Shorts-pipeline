@@ -53,3 +53,6 @@ state/news_image_cache.json
 state/news_image_quota.json
 state/last_failed_audit.json
 preview/
+
+# Local Kanye-style sample workbench (audio + scripts kept out of git; delivered as zips)
+beats/
