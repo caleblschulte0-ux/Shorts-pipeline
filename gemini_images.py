@@ -211,14 +211,64 @@ def _cover(img, w: int, h: int):
     return img.crop((left, top, left + w, top + h))
 
 
+ACCENT = (255, 221, 0)   # punchy yellow for the highlighted hot word
+
+
+def _vignette(img):
+    """Darken the edges so the eye lands on the center subject + text."""
+    from PIL import Image, ImageDraw, ImageFilter
+    w, h = img.size
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).ellipse(
+        [-w * 0.25, -h * 0.25, w * 1.25, h * 1.25], fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(140))
+    return Image.composite(img, Image.new("RGB", (w, h), (0, 0, 0)), mask)
+
+
+def _hot_words(words: list[str]) -> set[str]:
+    """Which words to paint in the accent color. Numbers grab the most
+    attention, so highlight any token with a digit; otherwise fall back
+    to the single longest word."""
+    def clean(w):
+        return w.strip(",.!?:;\"'").lower()
+    hot = {clean(w) for w in words if any(c.isdigit() for c in w)}
+    if not hot and words:
+        hot = {clean(max(words, key=lambda w: len(clean(w))))}
+    return hot
+
+
+def _fit_lines(draw, words, max_w, font_fn, *, max_lines=3, start=148, floor=64):
+    """Greedy-wrap `words`, shrinking the font until it fits in max_lines.
+    Returns (font, [[word, ...], ...])."""
+    size = start
+    lines: list[list[str]] = []
+    font = font_fn(size)
+    while size >= floor:
+        font = font_fn(size)
+        lines, cur = [], []
+        for wd in words:
+            if not cur or draw.textlength(" ".join(cur + [wd]), font=font) <= max_w:
+                cur.append(wd)
+            else:
+                lines.append(cur)
+                cur = [wd]
+        if cur:
+            lines.append(cur)
+        if len(lines) <= max_lines:
+            return font, lines
+        size -= 8
+    return font, lines[:max_lines]
+
+
 def build_thumbnail(out_path, *, title: str, hook: str | None = None,
                     bg_image=None, bg_prompt: str | None = None) -> Path | None:
-    """Compose a 1280x720 thumbnail: a story-relevant background (an
-    existing pinned image, else a FREE Gemini generation, else a dark
-    gradient) with the hook overlaid in bold. Returns the path, or None
-    if PIL is missing / anything fails (caller just skips it)."""
+    """Compose a punchy 1280x720 thumbnail: a saturated, vignetted
+    story photo (an existing pinned image, else a FREE Gemini gen, else
+    a dark gradient), with a big auto-fit hook in heavy-stroked caps and
+    the number / key word highlighted in yellow. Returns the path, or
+    None if PIL is missing / anything fails (caller just skips it)."""
     try:
-        from PIL import Image, ImageDraw
+        from PIL import Image, ImageDraw, ImageEnhance
     except Exception:  # noqa: BLE001
         return None
     W, H = 1280, 720
@@ -228,44 +278,48 @@ def build_thumbnail(out_path, *, title: str, hook: str | None = None,
         if bg is None and bg_prompt:
             gp = generate_image(bg_prompt, out_path.with_suffix(".bg.png"))
             bg = _load_bg(gp) if gp else None
+        has_photo = bg is not None
         if bg is None:
             bg = Image.new("RGB", (W, H), (16, 18, 30))
         bg = _cover(bg, W, H)
 
-        # Bottom-up dark scrim for legibility.
+        if has_photo:
+            # Make the photo pop, then pull the edges down.
+            bg = ImageEnhance.Color(bg).enhance(1.35)
+            bg = ImageEnhance.Contrast(bg).enhance(1.15)
+            bg = ImageEnhance.Brightness(bg).enhance(1.03)
+            bg = _vignette(bg)
+
+        # Bottom-up dark scrim so the text always reads.
         black = Image.new("RGB", (W, H), (0, 0, 0))
         scrim = Image.new("L", (1, H), 0)
         px = scrim.load()
         for y in range(H):
-            px[0, y] = int(235 * (y / H) ** 1.4)
+            px[0, y] = int(245 * (y / H) ** 1.3)
         bg = Image.composite(black, bg, scrim.resize((W, H)))
 
         draw = ImageDraw.Draw(bg)
         text = (hook or title or "").upper().strip().strip("?!.,")
         if text:
-            font = _font(96)
-            # Greedy word-wrap to the width.
-            words, lines, cur = text.split(), [], ""
-            for wd in words:
-                trial = (cur + " " + wd).strip()
-                if draw.textlength(trial, font=font) <= W - 120:
-                    cur = trial
-                else:
-                    if cur:
-                        lines.append(cur)
-                    cur = wd
-            if cur:
-                lines.append(cur)
-            lines = lines[:4]
-            lh = int(font.size * 1.12)
-            y = H - 60 - lh * len(lines)
-            for ln in lines:
-                draw.text((60, y), ln, font=font, fill=(255, 255, 255),
-                          stroke_width=6, stroke_fill=(0, 0, 0))
+            words = text.split()
+            font, lines = _fit_lines(draw, words, W - 110, _font)
+            hot = _hot_words(words)
+            space = draw.textlength(" ", font=font)
+            stroke = max(8, font.size // 11)
+            lh = int(font.size * 1.06)
+            y = H - 64 - lh * len(lines)
+            for line in lines:
+                x = 56
+                for wd in line:
+                    key = wd.strip(",.!?:;\"'").lower()
+                    fill = ACCENT if key in hot else (255, 255, 255)
+                    draw.text((x, y), wd, font=font, fill=fill,
+                              stroke_width=stroke, stroke_fill=(0, 0, 0))
+                    x += draw.textlength(wd, font=font) + space
                 y += lh
 
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        bg.save(out_path, "JPEG", quality=88)
+        bg.save(out_path, "JPEG", quality=90)
         return out_path
     except Exception as e:  # noqa: BLE001
         print(f"[gemini] thumbnail failed: {type(e).__name__}: {e}", flush=True)
