@@ -1,0 +1,33 @@
+{
+ "key": "chocolate_bar_price",
+ "title": "Average US chocolate bar price ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2019-2025 (annual)",
+ "source": {
+  "name": "Average US chocolate bar price ($)",
+  "publisher": "BLS retail price data",
+  "url": "https://www.bls.gov",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "2019",
+   "value": 1.3
+  },
+  {
+   "label": "2022",
+   "value": 1.6
+  },
+  {
+   "label": "2024",
+   "value": 1.95
+  },
+  {
+   "label": "2025",
+   "value": 2.2
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "key": "concert_ticket_price",
+ "title": "Average concert ticket price, top tours ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2010-2024 (annual)",
+ "source": {
+  "name": "Average concert ticket price, top tours ($)",
+  "publisher": "Pollstar year-end",
+  "url": "https://www.pollstar.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "2010",
+   "value": 45
+  },
+  {
+   "label": "2016",
+   "value": 76
+  },
+  {
+   "label": "2020",
+   "value": 96
+  },
+  {
+   "label": "2024",
+   "value": 135
+  }
+ ]
+}

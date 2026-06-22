@@ -1,0 +1,33 @@
+{
+ "key": "pet_spending_by_category",
+ "title": "US pet spending by category ($ billions)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2024",
+ "source": {
+  "name": "US pet spending by category ($ billions)",
+  "publisher": "APPA National Pet Owners Survey",
+  "url": "https://www.americanpetproducts.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Food & treats",
+   "value": 64
+  },
+  {
+   "label": "Vet care & products",
+   "value": 47
+  },
+  {
+   "label": "Supplies & OTC meds",
+   "value": 32
+  },
+  {
+   "label": "Services (grooming/boarding)",
+   "value": 12
+  }
+ ]
+}

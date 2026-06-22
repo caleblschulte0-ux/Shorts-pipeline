@@ -1,0 +1,37 @@
+{
+ "key": "cocoa_production_share",
+ "title": "Share of world cocoa production (%)",
+ "unit": "",
+ "geography": "World",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Share of world cocoa production (%)",
+  "publisher": "International Cocoa Organization",
+  "url": "https://www.icco.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Ivory Coast",
+   "value": 38
+  },
+  {
+   "label": "Ghana",
+   "value": 17
+  },
+  {
+   "label": "Ecuador",
+   "value": 9
+  },
+  {
+   "label": "Nigeria",
+   "value": 6
+  },
+  {
+   "label": "Cameroon",
+   "value": 5
+  }
+ ]
+}

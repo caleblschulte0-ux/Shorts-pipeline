@@ -1,0 +1,33 @@
+{
+ "key": "pet_spending_trend",
+ "title": "Total US pet spending ($ billions)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2010-2024 (annual)",
+ "source": {
+  "name": "Total US pet spending ($ billions)",
+  "publisher": "APPA National Pet Owners Survey",
+  "url": "https://www.americanpetproducts.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "2010",
+   "value": 48
+  },
+  {
+   "label": "2015",
+   "value": 60
+  },
+  {
+   "label": "2020",
+   "value": 104
+  },
+  {
+   "label": "2024",
+   "value": 152
+  }
+ ]
+}

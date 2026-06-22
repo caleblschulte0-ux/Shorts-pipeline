@@ -1,0 +1,41 @@
+{
+ "key": "wedding_cost_by_item",
+ "title": "US wedding cost by category ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2024",
+ "source": {
+  "name": "US wedding cost by category ($)",
+  "publisher": "The Knot Real Weddings Study",
+  "url": "https://www.theknot.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Venue",
+   "value": 12800
+  },
+  {
+   "label": "Catering",
+   "value": 8500
+  },
+  {
+   "label": "Band/DJ",
+   "value": 4500
+  },
+  {
+   "label": "Photography",
+   "value": 3200
+  },
+  {
+   "label": "Flowers",
+   "value": 2500
+  },
+  {
+   "label": "Dress",
+   "value": 1900
+  }
+ ]
+}

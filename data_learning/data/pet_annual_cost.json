@@ -1,0 +1,33 @@
+{
+ "key": "pet_annual_cost",
+ "title": "Average annual cost per pet ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Average annual cost per pet ($)",
+  "publisher": "APPA / ASPCA estimates",
+  "url": "https://www.americanpetproducts.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Large dog",
+   "value": 1800
+  },
+  {
+   "label": "Small dog",
+   "value": 1200
+  },
+  {
+   "label": "Cat",
+   "value": 1100
+  },
+  {
+   "label": "Bird",
+   "value": 350
+  }
+ ]
+}

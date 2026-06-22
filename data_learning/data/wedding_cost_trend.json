@@ -1,0 +1,33 @@
+{
+ "key": "wedding_cost_trend",
+ "title": "Average US wedding cost ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2000-2024 (annual)",
+ "source": {
+  "name": "Average US wedding cost ($)",
+  "publisher": "The Knot Real Weddings Study",
+  "url": "https://www.theknot.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-22"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "2000",
+   "value": 20000
+  },
+  {
+   "label": "2008",
+   "value": 28000
+  },
+  {
+   "label": "2015",
+   "value": 31000
+  },
+  {
+   "label": "2024",
+   "value": 35000
+  }
+ ]
+}

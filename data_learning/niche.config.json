@@ -2767,6 +2767,249 @@
         }
       ],
       "question": "Do you have a full emergency fund? Real talk below."
+    },
+    {
+      "slug": "wedding-cost-spiral",
+      "title": "The Average US Wedding Now Costs More Than a New Car",
+      "hook": "Saying \"I do\" got expensive.",
+      "closing": "The party lasts one night — the price tag now rivals a car or a year of college.",
+      "question": "What did your wedding actually cost? Drop it below.",
+      "caption": "The average US wedding hit about $35,000 in 2024 — up from $20,000 in 2000 — and in Manhattan it's closer to $63,000. Here's where the money goes 👇",
+      "hashtags": [
+        "wedding",
+        "weddings",
+        "marriage",
+        "engaged",
+        "bride",
+        "groom",
+        "weddingplanning",
+        "costofliving",
+        "money",
+        "data",
+        "budget",
+        "love",
+        "weddingday",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "wedding_cost_trend",
+          "params": {
+            "file": "wedding_cost_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CLIMB",
+          "topic": "average US wedding cost ($)",
+          "say": "In 2000, the average US wedding cost about 20,000 dollars. By 2015 it was 31,000. Today it's around 35,000 dollars — more than the price of a new car."
+        },
+        {
+          "source": "offline",
+          "key": "wedding_cost_by_item",
+          "params": {
+            "file": "wedding_cost_by_item.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · WHERE IT GOES",
+          "topic": "wedding cost by category ($)",
+          "say": "And here's where it goes. The venue alone averages 12,800 dollars. Catering, 8,500. The band or DJ, 4,500. Photography, 3,200. The flowers cost more than the dress."
+        },
+        {
+          "source": "offline",
+          "key": "wedding_cost_by_metro",
+          "params": {
+            "file": "wedding_cost_by_metro.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "3 · THE MAP",
+          "topic": "average wedding cost by metro ($)",
+          "say": "But where you marry changes everything. In Manhattan the average is 63,000 dollars. San Francisco, 45,000. The national average is 35,000 — and in the rural Midwest, just 21,000."
+        }
+      ]
+    },
+    {
+      "slug": "cocoa-price-shock",
+      "title": "Why Chocolate Is About to Get Much More Expensive",
+      "hook": "Your favorite chocolate bar is in trouble.",
+      "closing": "When two countries grow most of the world's cocoa and their crops fail, the whole planet's chocolate gets more expensive.",
+      "question": "Have you noticed chocolate getting pricier? Tell us below.",
+      "caption": "Cocoa hit about $10,000 a ton in 2024 — more than triple the year before — because most of it comes from just two countries. Here's the data 👇",
+      "hashtags": [
+        "chocolate",
+        "cocoa",
+        "food",
+        "candy",
+        "prices",
+        "inflation",
+        "climate",
+        "westafrica",
+        "commodities",
+        "data",
+        "baking",
+        "dessert",
+        "costofliving",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "cocoa_price_trend",
+          "params": {
+            "file": "cocoa_price_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SPIKE",
+          "topic": "cocoa price ($ per ton)",
+          "say": "For years, cocoa traded around 3,000 dollars a ton. Then in 2024 it exploded to about 10,000 dollars — more than triple, the highest price in history."
+        },
+        {
+          "source": "offline",
+          "key": "cocoa_production_share",
+          "params": {
+            "file": "cocoa_production_share.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE SOURCE",
+          "topic": "share of world cocoa production (%)",
+          "say": "And here's the problem. The Ivory Coast grows 38 percent of the world's cocoa. Ghana, another 17. Just two countries supply over half the planet — so when their harvests fail, everyone pays."
+        },
+        {
+          "source": "offline",
+          "key": "chocolate_bar_price",
+          "params": {
+            "file": "chocolate_bar_price.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE SHELF",
+          "topic": "average chocolate bar price ($)",
+          "say": "You're already seeing it. A chocolate bar that cost about 1.30 in 2019 is now around 2.20 — and with cocoa this high, it isn't coming back down soon."
+        }
+      ]
+    },
+    {
+      "slug": "ticket-price-explosion",
+      "title": "Concert Tickets Cost Triple What They Did in 2010",
+      "hook": "Seeing your favorite artist got brutal.",
+      "closing": "Between face value and fees, a night out at a concert now costs what a weekend used to.",
+      "question": "What's the most you've paid for a ticket? Drop it below.",
+      "caption": "The average top-tour concert ticket went from about $45 in 2010 to $135 in 2024 — before fees add another 40%. Here's the breakdown 👇",
+      "hashtags": [
+        "concert",
+        "tickets",
+        "music",
+        "livemusic",
+        "ticketmaster",
+        "tour",
+        "festival",
+        "prices",
+        "fees",
+        "data",
+        "fyp",
+        "money",
+        "costofliving",
+        "resale"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "concert_ticket_price",
+          "params": {
+            "file": "concert_ticket_price.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CLIMB",
+          "topic": "average concert ticket, top tours ($)",
+          "say": "In 2010, the average top-tour concert ticket cost about 45 dollars. By 2020 it was 96. In 2024, around 135 dollars — triple what it was in 2010."
+        },
+        {
+          "source": "offline",
+          "key": "ticket_fees_breakdown",
+          "params": {
+            "file": "ticket_fees_breakdown.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE FEES",
+          "topic": "add-on fees on a $90 ticket ($)",
+          "say": "But the sticker price is a lie. On a 90 dollar ticket, the service fee adds 28 dollars. Facility fee, 6. Processing, 5. Delivery, 4 — nearly 40 percent on top."
+        },
+        {
+          "source": "offline",
+          "key": "ticket_resale_markup",
+          "params": {
+            "file": "ticket_resale_markup.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE RESALE",
+          "topic": "resale markup over face value (%)",
+          "say": "And for the hot shows, resale is worse. In 2015, tickets resold for about 60 percent over face. By 2024, 180 percent — nearly triple the printed price."
+        }
+      ]
+    },
+    {
+      "slug": "pet-spending-boom",
+      "title": "Americans Now Spend a Record Amount on Their Pets",
+      "hook": "Pets became a serious line item.",
+      "closing": "For a lot of households, the dog is officially a member of the family — budget and all.",
+      "question": "How much do you spend on your pet a year? Tell us below.",
+      "caption": "US pet spending hit about $152 billion in 2024 — triple what it was in 2010 — with a large dog now running ~$1,800 a year. Here's the data 👇",
+      "hashtags": [
+        "pets",
+        "dogs",
+        "cats",
+        "petlife",
+        "doglife",
+        "catlife",
+        "vet",
+        "animals",
+        "spending",
+        "data",
+        "petparent",
+        "costofliving",
+        "fyp",
+        "money"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "pet_spending_trend",
+          "params": {
+            "file": "pet_spending_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE BOOM",
+          "topic": "total US pet spending ($B)",
+          "say": "In 2010, Americans spent about 48 billion dollars on their pets. By 2020, 104 billion. In 2024, around 152 billion — more than triple in 14 years."
+        },
+        {
+          "source": "offline",
+          "key": "pet_spending_by_category",
+          "params": {
+            "file": "pet_spending_by_category.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE BREAKDOWN",
+          "topic": "pet spending by category ($B)",
+          "say": "Food and treats lead at 64 billion dollars. Vet care and products, 47 billion. Supplies and medications, 32 billion. Grooming and boarding, another 12."
+        },
+        {
+          "source": "offline",
+          "key": "pet_annual_cost",
+          "params": {
+            "file": "pet_annual_cost.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · PER PET",
+          "topic": "average annual cost per pet ($)",
+          "say": "Per animal, it adds up fast. A large dog runs about 1,800 dollars a year. A small dog, 1,200. A cat, 1,100. Even a bird is around 350 a year."
+        }
+      ]
     }
   ],
   "videos": [
