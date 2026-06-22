@@ -190,6 +190,9 @@ jobs:
           # YOUTUBE_TOKEN_JSON (other channel) is never referenced here.
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          # LLM key for the auto-localization layer (translates titles/
+          # descriptions into 12 languages on every upload).
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"

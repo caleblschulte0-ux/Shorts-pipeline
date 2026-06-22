@@ -257,7 +257,8 @@ class YouTubeUploader(Uploader):
             )
 
     def upload(self, file_path, *, title, description, tags=None, publish_at=None,
-               thumbnail=None, localizations=None, default_language="en"):
+               thumbnail=None, localizations=None, default_language="en",
+               audio_language=None):
         try:
             from googleapiclient.http import MediaFileUpload
         except ImportError as e:
@@ -277,6 +278,17 @@ class YouTubeUploader(Uploader):
         }
         if publish_at:
             status["publishAt"] = publish_at
+        # Auto-localize: when the caller doesn't supply translations, generate
+        # them here so EVERY post on EVERY channel surfaces in search and
+        # recommendations worldwide — all on one video. Pass localizations={}
+        # to opt out. Best-effort: a translation hiccup never blocks the upload.
+        if localizations is None:
+            try:
+                from localize import translate_metadata
+                localizations = translate_metadata(title, description)
+            except Exception as e:  # noqa: BLE001
+                print(f"[youtube] auto-localize skipped: {e}", flush=True)
+                localizations = {}
         body = {
             "snippet": {
                 "title": title[:100],
@@ -286,6 +298,10 @@ class YouTubeUploader(Uploader):
                 # Required for localizations to take effect; declares the base
                 # language of the snippet above.
                 "defaultLanguage": default_language,
+                # Declares the spoken-audio language so YouTube labels the track
+                # correctly and the video is eligible for auto-dubbing and the
+                # manual Studio alternate-audio-track workflow.
+                "defaultAudioLanguage": audio_language or default_language,
             },
             "status": status,
         }
