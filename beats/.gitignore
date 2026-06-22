@@ -1,0 +1,4 @@
+# regenerable from source via pipeline/flip.py
+stems/
+# large intermediates
+renders/*.wav
