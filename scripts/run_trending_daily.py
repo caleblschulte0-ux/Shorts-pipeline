@@ -343,6 +343,8 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
         seen.add(d)
         pkgs: list[dict] = []
         for p in sorted(d.glob("*.json")):
+            if p.name.startswith("_"):
+                continue  # _schedule.json etc. are config, not packages
             try:
                 pkg = json.loads(p.read_text())
                 pkg.setdefault("_path", str(p.relative_to(REPO)))
@@ -669,10 +671,27 @@ def main() -> int:
         rel = src_dir.relative_to(REPO) if src_dir else "(unknown)"
         print(f"=== using {len(prewritten)} pre-written packages from "
               f"{rel} ===", flush=True)
+        # Optional per-day schedule override: state/.../_schedule.json with
+        # {"per_slot": N} places N videos at each default time slot (e.g.
+        # 2 means two posts share each 2-hour slot). Defaults to 1.
+        per_slot = 1
+        if src_dir is not None and (src_dir / "_schedule.json").exists():
+            try:
+                cfg = json.loads((src_dir / "_schedule.json").read_text())
+                per_slot = max(1, int(cfg.get("per_slot", 1)))
+                print(f"[schedule] override: {per_slot} video(s) per slot",
+                      flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[schedule] bad _schedule.json ignored: {e}", flush=True)
+        import math
+        eff = min(args.count, len(prewritten))
+        sched = schedule_times(
+            now, max(1, math.ceil(eff / per_slot)), DEFAULT_PUBLISH_HOURS_UTC)
         results: list[dict] = []
         sched_idx = 0
         for pkg in prewritten[:args.count]:
-            publish_at = sched[sched_idx] if sched_idx < len(sched) else None
+            slot = sched_idx // per_slot
+            publish_at = sched[slot] if slot < len(sched) else None
             result = run_one_from_package(
                 pkg, publish_at,
                 dry_run=args.dry_run, no_schedule=args.no_schedule,
