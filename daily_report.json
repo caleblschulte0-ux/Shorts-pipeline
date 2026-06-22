@@ -1,74 +1,63 @@
 [
   {
-    "topic": "A 7.8 Quake Killed 37 in Mindanao. Tsunami Waves Followed.",
-    "title": "A 7.8 Quake Killed 37 in Mindanao. Tsunami Waves Followed.",
-    "publish_at": "2026-06-09T13:00:00Z",
+    "topic": "A Zoo Lost a Skunk Named Violet \u2014 and a Whole City Is on Alert",
+    "title": "A Zoo Lost a Skunk Named Violet \u2014 and a Whole City Is on Alert",
+    "publish_at": "2026-06-22T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/Sul8RE9xhKU",
+    "video_url": "https://youtube.com/shorts/xOxqOeZS8Ds",
     "error": null,
-    "elapsed_seconds": 306.1,
-    "package_path": "state/trending_packages/20260609/01_mindanao-earthquake-tsunami.json",
-    "video_path": "output/daily_20260609-114019_a_7_8_quake_killed_37_in_mindanao__tsuna.mp4",
+    "elapsed_seconds": 296.9,
+    "package_path": "state/trending_packages/20260622/01_violet-skunk-escape-wisconsin.json",
+    "video_path": "output/daily_20260622-112806_a_zoo_lost_a_skunk_named_violet___and_a_.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
     "channel": "default"
   },
   {
-    "topic": "Japan's Volcano Buried a City of 600,000 in Grey Rain",
-    "title": "Japan's Volcano Buried a City of 600,000 in Grey Rain",
-    "publish_at": "2026-06-09T15:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/HfY-i77y97A",
-    "error": null,
-    "elapsed_seconds": 278.1,
-    "package_path": "state/trending_packages/20260609/02_sakurajima-grey-rain-kagoshima.json",
-    "video_path": "output/daily_20260609-114525_japan_s_volcano_buried_a_city_of_600_000.mp4",
-    "channel": "default"
-  },
-  {
-    "topic": "A Tasmanian Devil Named Mary Escaped. 6 Days Later, She's Still Out There.",
-    "title": "A Tasmanian Devil Named Mary Escaped. 6 Days Later, She's Still Out There.",
-    "publish_at": "2026-06-09T17:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/MhMlwLZ3gIc",
-    "error": null,
-    "elapsed_seconds": 251.6,
-    "package_path": "state/trending_packages/20260609/03_mary-tasmanian-devil-escaped.json",
-    "video_path": "output/daily_20260609-115003_a_tasmanian_devil_named_mary_escaped__6_.mp4",
-    "channel": "default"
-  },
-  {
-    "topic": "An AI Company Wants to Build Next to Nashville's Zoo. The Leopards Said No.",
-    "title": "An AI Company Wants to Build Next to Nashville's Zoo. The Leopards Said No.",
-    "publish_at": "2026-06-09T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/psICUz75yH0",
-    "error": null,
-    "elapsed_seconds": 302.1,
-    "package_path": "state/trending_packages/20260609/04_nashville-zoo-ai-data-center.json",
-    "video_path": "output/daily_20260609-115415_an_ai_company_wants_to_build_next_to_nas.mp4",
-    "channel": "default"
-  },
-  {
-    "topic": "A Federal Judge Just Killed Trump's $100,000 H-1B Visa Tax",
-    "title": "A Federal Judge Just Killed Trump's $100,000 H-1B Visa Tax",
-    "publish_at": "2026-06-09T21:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/ak0kMm8gJOE",
-    "error": null,
-    "elapsed_seconds": 348.0,
-    "package_path": "state/trending_packages/20260609/05_h1b-fee-struck-down.json",
-    "video_path": "output/daily_20260609-115917_a_federal_judge_just_killed_trump_s__100.mp4",
-    "channel": "default"
-  },
-  {
-    "topic": "Xi Jinping Just Landed in North Korea. First Time in 7 Years.",
-    "title": "Xi Jinping Just Landed in North Korea. First Time in 7 Years.",
-    "publish_at": "2026-06-09T23:00:00Z",
+    "topic": "8 Goats Got Loose in Ohio \u2014 One Used an SUV as a Getaway Ramp",
+    "title": "8 Goats Got Loose in Ohio \u2014 One Used an SUV as a Getaway Ramp",
+    "publish_at": "2026-06-22T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">",
-    "elapsed_seconds": 310.0,
-    "package_path": "state/trending_packages/20260609/06_xi-kim-north-korea-summit.json",
-    "video_path": "output/daily_20260609-120505_xi_jinping_just_landed_in_north_korea__f.mp4",
+    "error": "RelevanceGateError: 90% of shots (9/10) fell to stock / placeholder with almost no curated anchor \u2014 the image pipeline likely failed wholesale \u2014 refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.",
+    "elapsed_seconds": 259.5,
+    "package_path": "state/trending_packages/20260622/02_ohio-goats-suv-getaway.json"
+  },
+  {
+    "topic": "1,037 Marilyn Monroes Gathered in One Place to Break a World Record",
+    "title": "1,037 Marilyn Monroes Gathered in One Place to Break a World Record",
+    "publish_at": "2026-06-22T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/xCe3A9DRgOk",
+    "error": null,
+    "elapsed_seconds": 275.3,
+    "package_path": "state/trending_packages/20260622/03_marilyn-monroe-1037-lookalikes-record.json",
+    "video_path": "output/daily_20260622-113722_1_037_marilyn_monroes_gathered_in_one_pl.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "An Octopus Just Passed a Test Scientists Thought Only Vertebrates Could",
+    "title": "An Octopus Just Passed a Test Scientists Thought Only Vertebrates Could",
+    "publish_at": "2026-06-22T15:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/7ZGCSH4blj4",
+    "error": null,
+    "elapsed_seconds": 230.5,
+    "package_path": "state/trending_packages/20260622/04_octopus-mirror-test-dartmouth.json",
+    "video_path": "output/daily_20260622-114156_an_octopus_just_passed_a_test_scientists.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
     "channel": "default"
   }
 ]
