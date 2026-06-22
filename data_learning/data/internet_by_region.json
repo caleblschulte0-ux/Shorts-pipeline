@@ -1,0 +1,24 @@
+{
+  "key": "internet_by_region",
+  "title": "Internet penetration by region, 2023 (%)",
+  "unit": "percent",
+  "geography": "Global (by region)",
+  "time_coverage": "2023",
+  "source": {
+    "name": "International Telecommunication Union (ITU) 2023",
+    "publisher": "ITU",
+    "url": "https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; approximate regional internet penetration rates from ITU 2023 data.",
+  "points": [
+    {"label": "North America", "value": 93, "period": "2023"},
+    {"label": "Europe", "value": 90, "period": "2023"},
+    {"label": "CIS", "value": 85, "period": "2023"},
+    {"label": "Arab States", "value": 70, "period": "2023"},
+    {"label": "Asia & Pacific", "value": 65, "period": "2023"},
+    {"label": "Latin America", "value": 75, "period": "2023"},
+    {"label": "Africa", "value": 37, "period": "2023"}
+  ]
+}

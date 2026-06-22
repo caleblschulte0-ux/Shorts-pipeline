@@ -1,0 +1,26 @@
+{
+  "key": "internet_users_billions",
+  "title": "Global internet users (billions)",
+  "unit": "billion users",
+  "geography": "Global",
+  "time_coverage": "1995-2023",
+  "source": {
+    "name": "Internet World Stats / Our World in Data — Internet users",
+    "publisher": "International Telecommunication Union (ITU) / Our World in Data",
+    "url": "https://ourworldindata.org/internet",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; figures rounded from ITU and Our World in Data annual series.",
+  "points": [
+    {"label": "1995", "value": 0.016, "period": "1995"},
+    {"label": "1998", "value": 0.147, "period": "1998"},
+    {"label": "2000", "value": 0.361, "period": "2000"},
+    {"label": "2005", "value": 1.0, "period": "2005"},
+    {"label": "2010", "value": 2.0, "period": "2010"},
+    {"label": "2015", "value": 3.2, "period": "2015"},
+    {"label": "2019", "value": 4.1, "period": "2019"},
+    {"label": "2021", "value": 4.9, "period": "2021"},
+    {"label": "2023", "value": 5.4, "period": "2023"}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "key": "internet_penetration",
+  "title": "Share of world population online (%)",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "1995-2023",
+  "source": {
+    "name": "International Telecommunication Union / Our World in Data",
+    "publisher": "ITU / Our World in Data",
+    "url": "https://ourworldindata.org/internet",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; percentage of global population with internet access per ITU estimates.",
+  "points": [
+    {"label": "1995", "value": 0.4, "period": "1995"},
+    {"label": "2000", "value": 5.8, "period": "2000"},
+    {"label": "2005", "value": 15.8, "period": "2005"},
+    {"label": "2010", "value": 29.4, "period": "2010"},
+    {"label": "2015", "value": 43.4, "period": "2015"},
+    {"label": "2019", "value": 53.6, "period": "2019"},
+    {"label": "2021", "value": 62.5, "period": "2021"},
+    {"label": "2023", "value": 67.4, "period": "2023"}
+  ]
+}

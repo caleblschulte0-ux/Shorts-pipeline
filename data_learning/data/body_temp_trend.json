@@ -1,0 +1,25 @@
+{
+  "key": "body_temp_trend",
+  "title": "Average normal human body temperature (°F)",
+  "unit": "°F",
+  "geography": "USA",
+  "time_coverage": "1851-2020",
+  "source": {
+    "name": "Protsiv et al. 2020 — Human body temperature decline since 1851",
+    "publisher": "eLife / Stanford University",
+    "url": "https://elifesciences.org/articles/49555",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; based on Protsiv et al. (2020) eLife analysis of historical datasets. Wunderlich 1851 baseline was 98.6°F. Modern US average ~97.5°F for men, ~97.9°F for women.",
+  "points": [
+    {"label": "1851", "value": 98.6, "period": "1851"},
+    {"label": "1900", "value": 98.4, "period": "1900"},
+    {"label": "1930", "value": 98.2, "period": "1930"},
+    {"label": "1960", "value": 98.1, "period": "1960"},
+    {"label": "1980", "value": 97.9, "period": "1980"},
+    {"label": "2000", "value": 97.8, "period": "2000"},
+    {"label": "2017", "value": 97.7, "period": "2017"},
+    {"label": "2020", "value": 97.5, "period": "2020"}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "key": "body_temp_vs_baseline",
+  "title": "Body temperature by historical era (°F)",
+  "unit": "°F",
+  "geography": "USA",
+  "time_coverage": "1860s-2010s",
+  "source": {
+    "name": "Protsiv et al. 2020 — Human body temperature decline since 1851",
+    "publisher": "eLife / Stanford University",
+    "url": "https://elifesciences.org/articles/49555",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; representative averages by historical period based on Protsiv et al. (2020).",
+  "points": [
+    {"label": "Civil War era (1860s)", "value": 98.6, "period": "1860s"},
+    {"label": "WWI era (1910s)", "value": 98.3, "period": "1910s"},
+    {"label": "WWII era (1940s)", "value": 98.2, "period": "1940s"},
+    {"label": "Baby Boomers (1960s)", "value": 98.1, "period": "1960s"},
+    {"label": "Gen X (1980s)", "value": 97.9, "period": "1980s"},
+    {"label": "Millennials (2000s)", "value": 97.8, "period": "2000s"},
+    {"label": "Gen Z (2010s)", "value": 97.5, "period": "2010s"}
+  ]
+}

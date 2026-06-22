@@ -1,0 +1,25 @@
+{
+  "key": "solar_country_leaders",
+  "title": "Top countries by solar PV capacity, 2023 (GW)",
+  "unit": "GW",
+  "geography": "Global (by country)",
+  "time_coverage": "2023",
+  "source": {
+    "name": "IRENA Renewable Capacity Statistics 2024",
+    "publisher": "International Renewable Energy Agency (IRENA)",
+    "url": "https://www.irena.org/publications/2024/Mar/Renewable-capacity-statistics-2024",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; cumulative installed solar PV capacity by country end-2023. Based on IRENA data.",
+  "points": [
+    {"label": "China", "value": 609, "period": "2023"},
+    {"label": "USA", "value": 180, "period": "2023"},
+    {"label": "Japan", "value": 85, "period": "2023"},
+    {"label": "Germany", "value": 81, "period": "2023"},
+    {"label": "India", "value": 73, "period": "2023"},
+    {"label": "Italy", "value": 30, "period": "2023"},
+    {"label": "Australia", "value": 29, "period": "2023"},
+    {"label": "Brazil", "value": 28, "period": "2023"}
+  ]
+}

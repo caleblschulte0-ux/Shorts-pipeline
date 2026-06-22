@@ -1,0 +1,19 @@
+{
+  "key": "body_temp_gender",
+  "title": "Body temperature drop since 1851 by gender (°F)",
+  "unit": "°F drop since 1851",
+  "geography": "USA",
+  "time_coverage": "1851-2020",
+  "source": {
+    "name": "Protsiv et al. 2020 — Human body temperature decline since 1851",
+    "publisher": "eLife / Stanford University",
+    "url": "https://elifesciences.org/articles/49555",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; based on reported gender-stratified findings from Protsiv et al. (2020). Men declined ~1.1°F, women ~0.7°F from 1851 baseline.",
+  "points": [
+    {"label": "Men", "value": 1.1, "period": "1851-2020"},
+    {"label": "Women", "value": 0.7, "period": "1851-2020"}
+  ]
+}

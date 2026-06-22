@@ -1,0 +1,25 @@
+{
+  "key": "glacier_sea_level",
+  "title": "Glacier contribution to sea level rise (mm, cumulative since 1993)",
+  "unit": "mm",
+  "geography": "Global",
+  "time_coverage": "1993-2022",
+  "source": {
+    "name": "IPCC AR6 / NASA Sea Level Change Portal",
+    "publisher": "IPCC / NASA",
+    "url": "https://sealevel.nasa.gov",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; glacier and ice cap (excluding Greenland/Antarctica) contribution to observed sea level rise since 1993 satellite era. Based on IPCC AR6 Chapter 9 estimates.",
+  "points": [
+    {"label": "1993", "value": 0, "period": "1993"},
+    {"label": "1997", "value": 5, "period": "1997"},
+    {"label": "2000", "value": 9, "period": "2000"},
+    {"label": "2005", "value": 14, "period": "2005"},
+    {"label": "2010", "value": 20, "period": "2010"},
+    {"label": "2015", "value": 28, "period": "2015"},
+    {"label": "2020", "value": 37, "period": "2020"},
+    {"label": "2022", "value": 41, "period": "2022"}
+  ]
+}

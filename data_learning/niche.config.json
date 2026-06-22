@@ -3010,6 +3010,245 @@
           "say": "Per animal, it adds up fast. A large dog runs about 1,800 dollars a year. A small dog, 1,200. A cat, 1,100. Even a bird is around 350 a year."
         }
       ]
+    },
+    {
+      "slug": "body-temp-decline",
+      "title": "Your Normal Isn't 98.6°F Anymore",
+      "hook": "98.6°F was never your normal.",
+      "closing": "Your body is running cooler than every generation before you. Science still isn't sure why.",
+      "question": "Did you know your normal temperature isn't 98.6°F? Drop your reaction below.",
+      "caption": "A Stanford study found the average American body temperature has fallen ~1°F since 1851 — dropping 0.05°F every decade. Men lost 1.1°F. Women, 0.7°F. 98.6 was never really normal. Here's the data 👇",
+      "hashtags": [
+        "health",
+        "science",
+        "bodytemp",
+        "stanford",
+        "medicine",
+        "biology",
+        "humanbody",
+        "data",
+        "facts",
+        "didyouknow",
+        "healthscience",
+        "temperature",
+        "research"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "body_temp_trend",
+          "params": {
+            "file": "body_temp_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE DROP",
+          "topic": "average human body temperature (°F)",
+          "say": "In 1851, a German doctor named Wunderlich measured thousands of patients and declared 98.6 degrees Fahrenheit the human normal. A 2020 Stanford study went back through 170 years of records and found something strange: body temperature has been falling ever since. The average American now runs at about 97.5 — more than a degree lower."
+        },
+        {
+          "source": "offline",
+          "key": "body_temp_vs_baseline",
+          "params": {
+            "file": "body_temp_vs_baseline.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · GENERATION BY GENERATION",
+          "topic": "body temperature by historical era (°F)",
+          "say": "Here it is by generation. Civil War era: 98.6. World War I: 98.3. Baby Boomers: 98.1. Millennials: 97.8. Gen Z: 97.5. Every generation is running slightly cooler than the one before it."
+        },
+        {
+          "source": "offline",
+          "key": "body_temp_gender",
+          "params": {
+            "file": "body_temp_gender.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · MEN VS WOMEN",
+          "topic": "temperature drop since 1851 by gender (°F)",
+          "say": "Men have dropped about 1.1 degrees since 1851. Women, 0.7 degrees. The leading theory: fewer chronic infections, better nutrition, lower metabolic demand. We are healthier and literally cooler."
+        }
+      ]
+    },
+    {
+      "slug": "internet-users-growth",
+      "title": "The Internet Went From 16 Million to 5.4 Billion People",
+      "hook": "The internet just turned 30. Look what happened.",
+      "closing": "16 million to 5.4 billion in 28 years. No technology has ever spread this fast.",
+      "question": "Do you remember the first time you used the internet? Drop the year below.",
+      "caption": "In 1995, about 16 million people were online — 0.4% of the world. By 2023, that's 5.4 billion — 67%. Africa is still at 37%. Here's how the internet took over the world 👇",
+      "hashtags": [
+        "internet",
+        "technology",
+        "data",
+        "history",
+        "digital",
+        "tech",
+        "world",
+        "facts",
+        "itu",
+        "statistics",
+        "growth",
+        "global",
+        "didyouknow",
+        "online"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "internet_users_billions",
+          "params": {
+            "file": "internet_users_billions.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE EXPLOSION",
+          "topic": "global internet users (billions)",
+          "say": "In 1995, 16 million people were online. By 2000 that hit 361 million. By 2010, 2 billion. Today 5.4 billion. No technology in history has reached this many people this fast."
+        },
+        {
+          "source": "offline",
+          "key": "internet_penetration",
+          "params": {
+            "file": "internet_penetration.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE SHARE",
+          "topic": "share of world population online (%)",
+          "say": "As a share of humanity: in 1995, just 0.4 percent of people were online. By 2010, 29 percent. Now 67 percent. Two thirds of the entire human race is connected."
+        },
+        {
+          "source": "offline",
+          "key": "internet_by_region",
+          "params": {
+            "file": "internet_by_region.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE GAP",
+          "topic": "internet penetration by world region, 2023 (%)",
+          "say": "But the gap is real. North America and Europe are at 90 percent or above. Africa is at 37. A third of Africa is still offline. The fastest-growing internet population on Earth is still largely disconnected."
+        }
+      ]
+    },
+    {
+      "slug": "glacier-retreat",
+      "title": "The World's Glaciers Are Melting 6x Faster Than the 1960s",
+      "hook": "The glaciers are disappearing. Fast.",
+      "closing": "We've lost the equivalent of the entire European Alps in glacier mass since 1960. This is the trend, and it's accelerating.",
+      "question": "Have you ever seen a glacier? Drop where below.",
+      "caption": "Glaciers are now losing mass 6x faster than in the 1960s. Since 1960, they've shed ~26,000 gigatonnes of water — raising sea levels by 41mm. The last 3 years are the worst on record. Here's the data 👇",
+      "hashtags": [
+        "glaciers",
+        "climate",
+        "climatechange",
+        "ice",
+        "science",
+        "nature",
+        "environment",
+        "sealevel",
+        "wgms",
+        "data",
+        "earth",
+        "global",
+        "arctic",
+        "facts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "glacier_mass_balance_trend",
+          "params": {
+            "file": "glacier_mass_balance_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE ACCELERATION",
+          "topic": "glacier mass loss rate (mm water equivalent per year)",
+          "say": "In the 1960s, glaciers were losing about 167 millimeters of water equivalent per year. By the 2000s, that was 571. By 2020 to 2022, it hit over 1,000 — more than six times the rate of the 1960s. This is not a gradual trend. It's a cliff."
+        },
+        {
+          "source": "offline",
+          "key": "glacier_cumulative_loss",
+          "params": {
+            "file": "glacier_cumulative_loss.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE TOTAL",
+          "topic": "cumulative glacier mass lost since 1960 (gigatonnes)",
+          "say": "Add it all up and since 1960 the world's glaciers have shed roughly 26,000 gigatonnes of water. That's the equivalent of the entire European Alps, melted and poured into the ocean."
+        },
+        {
+          "source": "offline",
+          "key": "glacier_sea_level",
+          "params": {
+            "file": "glacier_sea_level.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · WHERE IT GOES",
+          "topic": "glacier contribution to sea level rise since 1993 (mm)",
+          "say": "Since satellites started tracking in 1993, glaciers have raised sea levels by about 41 millimeters — nearly half of all observed sea level rise. That water used to be ice. Now it's in the ocean."
+        }
+      ]
+    },
+    {
+      "slug": "solar-power-surge",
+      "title": "Solar Power Grew 1,000x in 23 Years",
+      "hook": "Solar went from nothing to everything.",
+      "closing": "In 2000, solar barely powered a city block. Today it powers more than 200 million homes. That's the fastest energy buildout in history.",
+      "question": "Do you have solar panels? Would you get them? Drop it below.",
+      "caption": "Global solar capacity went from 1.3 GW in 2000 to 1,418 GW in 2023 — a 1,000x increase. The cost per watt fell from $5.50 to $0.18. China now has 609 GW alone. Here's the full picture 👇",
+      "hashtags": [
+        "solar",
+        "solarenergy",
+        "renewableenergy",
+        "cleanenergy",
+        "irena",
+        "energy",
+        "climate",
+        "technology",
+        "data",
+        "future",
+        "sustainability",
+        "facts",
+        "science",
+        "green"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "solar_capacity_gw",
+          "params": {
+            "file": "solar_capacity_gw.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE EXPLOSION",
+          "topic": "global solar PV capacity (GW)",
+          "say": "In 2000, the entire world had 1.3 gigawatts of solar power. By 2010, 40. By 2020, 714. By 2023, 1,418 gigawatts. That's a thousand-fold increase in 23 years — no energy technology has ever scaled this fast."
+        },
+        {
+          "source": "offline",
+          "key": "solar_cost_per_watt",
+          "params": {
+            "file": "solar_cost_per_watt.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · WHY IT HAPPENED",
+          "topic": "solar PV module price ($/watt)",
+          "say": "Here's why: the cost per watt fell from 5 dollars and 50 cents in 2000 to just 18 cents in 2023. That's a 97 percent price drop. Solar went from the most expensive electricity source to the cheapest in a single generation."
+        },
+        {
+          "source": "offline",
+          "key": "solar_country_leaders",
+          "params": {
+            "file": "solar_country_leaders.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · WHO LEADS",
+          "topic": "solar capacity by country, 2023 (GW)",
+          "say": "China leads with 609 gigawatts — more than the US, Japan, Germany, and India combined. The US is second at 180. The solar map of the world looks nothing like what anyone predicted in 2000."
+        }
+      ]
     }
   ],
   "videos": [

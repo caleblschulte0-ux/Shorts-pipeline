@@ -1,0 +1,24 @@
+{
+  "key": "glacier_mass_balance_trend",
+  "title": "Global glacier mean specific mass balance (mm water equivalent per year)",
+  "unit": "mm w.e. / yr",
+  "geography": "Global",
+  "time_coverage": "1960-2022",
+  "source": {
+    "name": "WGMS Fluctuations of Glaciers 2024",
+    "publisher": "World Glacier Monitoring Service (WGMS)",
+    "url": "https://wgms.ch/products_fog/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; negative values indicate mass loss. Based on WGMS global glacier monitoring. Values are approximate decadal means.",
+  "points": [
+    {"label": "1960s", "value": -167, "period": "1960-1969"},
+    {"label": "1970s", "value": -198, "period": "1970-1979"},
+    {"label": "1980s", "value": -293, "period": "1980-1989"},
+    {"label": "1990s", "value": -429, "period": "1990-1999"},
+    {"label": "2000s", "value": -571, "period": "2000-2009"},
+    {"label": "2010s", "value": -706, "period": "2010-2019"},
+    {"label": "2020-22", "value": -1047, "period": "2020-2022"}
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "key": "solar_cost_per_watt",
+  "title": "Solar PV module price ($/watt)",
+  "unit": "$/W",
+  "geography": "Global",
+  "time_coverage": "2000-2023",
+  "source": {
+    "name": "IRENA Renewable Power Generation Costs 2023",
+    "publisher": "International Renewable Energy Agency (IRENA)",
+    "url": "https://www.irena.org/publications/2024/Sep/Renewable-Power-Generation-Costs-in-2023",
+    "officiality": "illustrative",
+    "access_date": "2026-06-22"
+  },
+  "notes": "Illustrative; global average solar PV module spot price. Based on IRENA and BloombergNEF tracking data.",
+  "points": [
+    {"label": "2000", "value": 5.50, "period": "2000"},
+    {"label": "2005", "value": 3.50, "period": "2005"},
+    {"label": "2010", "value": 1.80, "period": "2010"},
+    {"label": "2012", "value": 0.90, "period": "2012"},
+    {"label": "2015", "value": 0.65, "period": "2015"},
+    {"label": "2018", "value": 0.38, "period": "2018"},
+    {"label": "2020", "value": 0.25, "period": "2020"},
+    {"label": "2022", "value": 0.23, "period": "2022"},
+    {"label": "2023", "value": 0.18, "period": "2023"}
+  ]
+}
