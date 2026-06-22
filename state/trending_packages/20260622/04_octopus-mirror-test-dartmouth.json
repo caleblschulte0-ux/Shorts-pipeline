@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "slug": "octopus-mirror-test-dartmouth",
+  "title": "An Octopus Just Passed a Test Scientists Thought Only Vertebrates Could",
+  "hashtags": [
+    "octopus",
+    "science",
+    "animals",
+    "intelligence",
+    "dartmouth",
+    "mirror",
+    "ocean",
+    "marinebiology",
+    "smart",
+    "study",
+    "fyp",
+    "viral"
+  ],
+  "script": "An octopus used a mirror? Researchers at Dartmouth just watched something that's supposed to be impossible for an invertebrate: an octopus using a mirror to find food hidden behind its own body. Think about that. The octopus looked into a reflection, understood the image was showing it the room, and used that to reach for a snack it couldn't directly see. Until now, using a mirror like a tool was a trick we'd only caught a handful of big-brained vertebrates doing. An octopus has no spine, no cortex like ours, and three hearts — and it still cracked it. We keep drawing a line between us and them, and the octopus keeps quietly stepping over it. So what else is this animal figuring out while we're not looking?",
+  "shots": [
+    {
+      "phrase": "An octopus used a mirror",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pulpo_com%C3%BAn_%28Octopus_vulgaris%29%2C_franja_marina_Teno-Rasca%2C_Tenerife%2C_Espa%C3%B1a%2C_2022-01-08%2C_DD_53.jpg",
+      "query": "octopus close up",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "Researchers at Dartmouth",
+      "query": "marine research laboratory",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "an octopus using a mirror to find food",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pulpo_com%C3%BAn_%28Octopus_vulgaris%29%2C_franja_marina_Teno-Rasca%2C_Tenerife%2C_Espa%C3%B1a%2C_2022-01-08%2C_DD_53.jpg",
+      "query": "octopus in tank",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The octopus looked into a reflection",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pulpo_com%C3%BAn_%28Octopus_vulgaris%29%2C_franja_marina_Teno-Rasca%2C_Tenerife%2C_Espa%C3%B1a%2C_2022-01-08%2C_DD_53.jpg",
+      "query": "octopus eye",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "reach for a snack it couldn't directly see",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pulpo_com%C3%BAn_%28Octopus_vulgaris%29%2C_franja_marina_Teno-Rasca%2C_Tenerife%2C_Espa%C3%B1a%2C_2022-01-08%2C_DD_53.jpg",
+      "query": "octopus arm reaching",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "only caught a handful of big-brained vertebrates doing",
+      "query": "dolphin underwater",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "no spine, no cortex like ours, and three hearts",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pulpo_com%C3%BAn_%28Octopus_vulgaris%29%2C_franja_marina_Teno-Rasca%2C_Tenerife%2C_Espa%C3%B1a%2C_2022-01-08%2C_DD_53.jpg",
+      "query": "octopus swimming",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the octopus keeps quietly stepping over it",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pulpo_com%C3%BAn_%28Octopus_vulgaris%29%2C_franja_marina_Teno-Rasca%2C_Tenerife%2C_Espa%C3%B1a%2C_2022-01-08%2C_DD_53.jpg",
+      "query": "octopus",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "what else is this animal figuring out while we're not looking",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pulpo_com%C3%BAn_%28Octopus_vulgaris%29%2C_franja_marina_Teno-Rasca%2C_Tenerife%2C_Espa%C3%B1a%2C_2022-01-08%2C_DD_53.jpg",
+      "query": "octopus dark water",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "An octopus used a mirror",
+      "text": "MIRROR TEST",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "supposed to be impossible",
+      "text": "IMPOSSIBLE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "three hearts",
+      "text": "3 HEARTS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "stepping over it",
+      "text": "TOO SMART",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
