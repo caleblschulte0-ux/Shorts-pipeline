@@ -261,14 +261,30 @@ jobs:
       - name: Persist posted log + analytics
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         run: |
-          git add state/explainer_posted_log.json state/analytics_explainer 2>/dev/null || true
+          git add state/explainer_posted_log.json state/analytics_explainer state/translation_cache.json 2>/dev/null || true
           # --cached so brand-new (untracked) files are detected too.
           if git diff --cached --quiet; then
             echo "nothing to commit"
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git commit -m "explainer: update posted log + analytics [skip ci]"
-            git push origin HEAD:main \
-              || (git pull --rebase origin main && git push origin HEAD:main)
+            exit 0
           fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "explainer: update posted log + analytics [skip ci]"
+          # A FAILED save here is exactly what stranded an un-logged upload and
+          # let the next auto-run re-post it as a duplicate. Make it robust:
+          #  * --autostash: the render step leaves other files dirty
+          #    (normalize_charts.py rewrites niche.config.json), which otherwise
+          #    aborts the rebase with "unstaged changes".
+          #  * -X ours: keep our fresh log on a race with a concurrent push.
+          #  * retry loop: ride out concurrent pushes from scout/daily.
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $i"
+              exit 0
+            fi
+            echo "Push failed on attempt $i, rebasing (autostash, ours)..."
+            git pull --rebase --autostash -X ours origin main || git rebase --abort || true
+            sleep 2
+          done
+          echo "::error::Failed to persist posted log after 5 attempts"
+          exit 1
