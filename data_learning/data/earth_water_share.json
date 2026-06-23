@@ -1,0 +1,22 @@
+{
+  "key": "earth_water_share",
+  "title": "Where Earth's water is",
+  "unit": "percent",
+  "geography": "Earth",
+  "time_coverage": "present",
+  "source": {
+    "name": "USGS Water Science School",
+    "publisher": "U.S. Geological Survey",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/science/how-much-water-there-earth",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; shares approximate USGS estimates of Earth's total water volume distribution.",
+  "insight_type": "share",
+  "points": [
+    {"label": "Saltwater (oceans)", "value": 97.0},
+    {"label": "Ice caps & glaciers", "value": 2.0},
+    {"label": "Deep groundwater", "value": 0.7},
+    {"label": "Accessible freshwater", "value": 0.3}
+  ]
+}

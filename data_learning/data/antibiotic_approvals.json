@@ -1,0 +1,22 @@
+{
+  "key": "antibiotic_approvals",
+  "title": "New antibiotics approved per decade (FDA)",
+  "unit": "new drugs",
+  "geography": "United States",
+  "time_coverage": "1980s-2020s",
+  "source": {
+    "name": "Antibiotic pipeline statistics",
+    "publisher": "Infectious Diseases Society of America / FDA Drug Database",
+    "url": "https://www.idsociety.org/globalassets/idsa/policy--advocacy/current_topics_and_issues/antimicrobial_resistance/10x20/data/ten-x20-progress-report.pdf",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; counts reflect FDA-approved new chemical entities with antibiotic activity per decade; 2020s is through 2025.",
+  "points": [
+    {"label": "1980s", "value": 16},
+    {"label": "1990s", "value": 10},
+    {"label": "2000s", "value": 7},
+    {"label": "2010s", "value": 10},
+    {"label": "2020s", "value": 4}
+  ]
+}

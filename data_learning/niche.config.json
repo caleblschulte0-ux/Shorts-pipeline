@@ -3010,6 +3010,241 @@
           "say": "Per animal, it adds up fast. A large dog runs about 1,800 dollars a year. A small dog, 1,200. A cat, 1,100. Even a bird is around 350 a year."
         }
       ]
+    },
+    {
+      "slug": "superbug-resistance",
+      "title": "The Silent War We're Losing: Superbugs",
+      "hook": "Antibiotics are running out of time — and so are we.",
+      "closing": "The drugs that saved the 20th century are losing the 21st.",
+      "question": "Did you know antibiotic approvals have dropped this much? Comment below.",
+      "caption": "AMR killed 1.27 million people in 2019 — and the antibiotic pipeline has nearly dried up. Here's the data 👇",
+      "hashtags": [
+        "superbugs",
+        "amr",
+        "antibioticresistance",
+        "mrsa",
+        "publichealth",
+        "medicine",
+        "bacteria",
+        "science",
+        "data",
+        "health",
+        "ecoli",
+        "pandemic"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "amr_deaths_trend",
+          "params": {
+            "file": "amr_deaths_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE RISE",
+          "topic": "annual deaths from AMR (million)",
+          "say": "In 2000, drug-resistant bacteria killed about 700 thousand people worldwide. By 2019, that number hit 1.27 million. By 2023, 1.35 million — more than HIV and malaria combined."
+        },
+        {
+          "source": "offline",
+          "key": "amr_pathogen_rank",
+          "params": {
+            "file": "amr_pathogen_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE KILLERS",
+          "topic": "deaths by superbug (thousand, 2019)",
+          "say": "The deadliest culprits: E. coli kills 216 thousand a year. MRSA, 170 thousand. Klebsiella pneumoniae, 143 thousand. Together, just these six pathogens account for most AMR deaths globally."
+        },
+        {
+          "source": "offline",
+          "key": "antibiotic_approvals",
+          "params": {
+            "file": "antibiotic_approvals.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE PIPELINE",
+          "topic": "new antibiotics approved per decade (FDA)",
+          "say": "And the pipeline is drying up. In the 1980s, the FDA approved 16 new antibiotics. By the 2000s, just 7. This decade so far: 4. Bacteria evolve faster than we innovate."
+        }
+      ]
+    },
+    {
+      "slug": "happiness-divide",
+      "title": "Why Finland Is the Happiest Country on Earth",
+      "hook": "Finland has been the world's happiest country for 7 years straight. Why?",
+      "closing": "The data says what happiness looks like. Now you know.",
+      "question": "What do you think matters most for national happiness? Drop it below.",
+      "caption": "Finland scores 7.74 out of 10 on the World Happiness Report — the US is 23rd. Here's the breakdown 👇",
+      "hashtags": [
+        "happiness",
+        "finland",
+        "worldhappinessreport",
+        "nordic",
+        "wellbeing",
+        "data",
+        "science",
+        "psychology",
+        "usa",
+        "lifestyle",
+        "mentalhealth",
+        "qualityoflife"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "finland_happiness_trend",
+          "params": {
+            "file": "finland_happiness_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CLIMB",
+          "topic": "Finland happiness score (out of 10)",
+          "say": "Finland's happiness score has risen almost every year since 2015 — from 7.41 to a peak of 7.84 in 2021. Even after a slight dip, Finland sits at 7.74 in 2024. It has topped the global rankings every year since 2018."
+        },
+        {
+          "source": "offline",
+          "key": "happiness_country_rank",
+          "params": {
+            "file": "happiness_country_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE RANKINGS",
+          "topic": "happiest countries 2024 (score out of 10)",
+          "say": "The top ten are dominated by Nordic countries. Finland 7.74, Denmark 7.58, Iceland 7.53, Sweden 7.35. The United States? 23rd, at 6.72 — well below the Nordic cluster."
+        },
+        {
+          "source": "offline",
+          "key": "finland_us_happiness",
+          "params": {
+            "file": "finland_us_happiness.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE GAP",
+          "topic": "Finland vs US vs world average happiness score",
+          "say": "Against a world average of 5.51, both Finland and the US are well above average. But Finland's 7.74 versus the US's 6.72 is a 1-point gap — enormous on this scale. Researchers point to social trust, safety nets, and work-life balance as the difference-makers."
+        }
+      ]
+    },
+    {
+      "slug": "freshwater-crisis",
+      "title": "97% of Earth's Water Is Useless to You",
+      "hook": "The planet is covered in water. Almost none of it is drinkable.",
+      "closing": "The blue planet has a freshwater problem. And it's getting worse.",
+      "question": "Did you know water access was this unequal? Comment below.",
+      "caption": "Only 0.3% of Earth's water is accessible freshwater — and 2.2 billion people still lack safe drinking water. Here's the data 👇",
+      "hashtags": [
+        "water",
+        "freshwater",
+        "watercrisis",
+        "climatechange",
+        "environment",
+        "data",
+        "science",
+        "earth",
+        "sustainability",
+        "drinkingwater",
+        "globalwarming",
+        "nature"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "earth_water_share",
+          "params": {
+            "file": "earth_water_share.json"
+          },
+          "insight_type": "share",
+          "role": "1 · THE MATH",
+          "topic": "Earth's water distribution (%)",
+          "say": "Of all the water on Earth, 97 percent is saltwater in the oceans. Two percent is locked in ice caps and glaciers. Groundwater accounts for 0.7 percent — most too deep or contaminated. Only 0.3 percent is actually accessible freshwater. That's all we have."
+        },
+        {
+          "source": "offline",
+          "key": "unsafe_water_access",
+          "params": {
+            "file": "unsafe_water_access.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE PROBLEM",
+          "topic": "people without safe drinking water (billion)",
+          "say": "And billions of people can't reliably access even that 0.3 percent. In 2015, 2.5 billion lacked safely managed drinking water. Progress has been slow: by 2022, still 2.2 billion — that's one in four people on Earth."
+        },
+        {
+          "source": "offline",
+          "key": "water_stress_rank",
+          "params": {
+            "file": "water_stress_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE HOTSPOTS",
+          "topic": "most water-stressed countries (WRI score 0-5)",
+          "say": "The worst-hit regions: Bahrain scores a perfect 5 on WRI's water stress index — every drop of rainfall is over-allocated. Kuwait, Qatar, Cyprus all near the top. Pakistan, home to 230 million people, is close behind. These countries are already running on empty."
+        }
+      ]
+    },
+    {
+      "slug": "satellite-surge",
+      "title": "Space Is Getting Crowded Fast",
+      "hook": "There are 9,000 satellites above your head — and it only just started.",
+      "closing": "We launched a space age without a space traffic plan.",
+      "question": "Are you worried about space debris? Drop your take below.",
+      "caption": "The number of active satellites shot from 1,400 in 2015 to 9,000 by 2024 — mostly thanks to one company. Here's the data 👇",
+      "hashtags": [
+        "satellites",
+        "space",
+        "spacex",
+        "starlink",
+        "spacedebris",
+        "nasa",
+        "orbit",
+        "technology",
+        "data",
+        "science",
+        "spacejunk",
+        "futurism"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "satellites_orbit_trend",
+          "params": {
+            "file": "satellites_orbit_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SURGE",
+          "topic": "active satellites in Earth orbit",
+          "say": "In 2000, about 600 active satellites orbited Earth. In 2015, 1,400. Then Starlink launched — and by 2021, 4,550. By 2023, 7,500. By 2024, roughly 9,000. More were launched in the last five years than in the previous 60 combined."
+        },
+        {
+          "source": "offline",
+          "key": "satellite_operators_rank",
+          "params": {
+            "file": "satellite_operators_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · WHO'S UP THERE",
+          "topic": "satellites by operator (2024)",
+          "say": "One company dominates completely: SpaceX operates roughly 6,500 Starlink satellites — nearly three-quarters of everything in orbit. OneWeb is a distant second at 630. Planet Labs, Spire, SES, and Intelsat account for most of the rest."
+        },
+        {
+          "source": "offline",
+          "key": "satellites_vs_debris",
+          "params": {
+            "file": "satellites_vs_debris.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE JUNKYARD",
+          "topic": "active satellites vs tracked debris (2024)",
+          "say": "But for every active satellite, there are three pieces of tracked debris. Space Command tracks 27,500 objects large enough to destroy a spacecraft. Estimated debris pieces over one centimeter: 130,000. A single collision can shatter into thousands of new fragments — the cascade known as Kessler Syndrome."
+        }
+      ]
     }
   ],
   "videos": [

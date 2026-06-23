@@ -1,0 +1,28 @@
+{
+  "key": "water_stress_rank",
+  "title": "Most water-stressed countries (WRI Aqueduct risk score, 0-5)",
+  "unit": "risk score",
+  "geography": "World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "WRI Aqueduct Water Risk Atlas 4.0",
+    "publisher": "World Resources Institute",
+    "url": "https://www.wri.org/aqueduct",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; overall water risk scores from WRI Aqueduct 4.0 (0 = low risk, 5 = extremely high risk).",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Bahrain", "value": 5.0},
+    {"label": "Cyprus", "value": 4.8},
+    {"label": "Kuwait", "value": 4.8},
+    {"label": "Qatar", "value": 4.7},
+    {"label": "Pakistan", "value": 4.6},
+    {"label": "Turkmenistan", "value": 4.6},
+    {"label": "Lebanon", "value": 4.5},
+    {"label": "Oman", "value": 4.5},
+    {"label": "Botswana", "value": 4.4},
+    {"label": "Morocco", "value": 4.3}
+  ]
+}
