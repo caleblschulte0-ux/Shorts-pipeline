@@ -1,0 +1,27 @@
+{
+  "key": "finland_happiness_trend",
+  "title": "Finland World Happiness Report score (out of 10)",
+  "unit": "score",
+  "geography": "Finland",
+  "time_coverage": "2015-2024 (annual)",
+  "source": {
+    "name": "World Happiness Report",
+    "publisher": "UN Sustainable Development Solutions Network",
+    "url": "https://worldhappiness.report",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; values approximate the Cantril ladder scores reported for Finland in each WHR edition.",
+  "points": [
+    {"label": "2015", "value": 7.41, "period": "2015"},
+    {"label": "2016", "value": 7.41, "period": "2016"},
+    {"label": "2017", "value": 7.47, "period": "2017"},
+    {"label": "2018", "value": 7.63, "period": "2018"},
+    {"label": "2019", "value": 7.77, "period": "2019"},
+    {"label": "2020", "value": 7.81, "period": "2020"},
+    {"label": "2021", "value": 7.84, "period": "2021"},
+    {"label": "2022", "value": 7.82, "period": "2022"},
+    {"label": "2023", "value": 7.80, "period": "2023"},
+    {"label": "2024", "value": 7.74, "period": "2024"}
+  ]
+}

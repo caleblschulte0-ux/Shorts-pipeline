@@ -1,0 +1,24 @@
+{
+  "key": "satellite_operators_rank",
+  "title": "Largest satellite operators by active satellite count (2024)",
+  "unit": "satellites",
+  "geography": "Earth orbit",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Union of Concerned Scientists Satellite Database",
+    "publisher": "Union of Concerned Scientists",
+    "url": "https://www.ucsusa.org/resources/satellite-database",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; approximate active satellite counts per operator from UCS database Q1 2024.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "SpaceX (Starlink)", "value": 6500},
+    {"label": "OneWeb", "value": 630},
+    {"label": "Planet Labs", "value": 220},
+    {"label": "Spire Global", "value": 110},
+    {"label": "SES", "value": 70},
+    {"label": "Intelsat", "value": 60}
+  ]
+}

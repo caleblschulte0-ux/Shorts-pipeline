@@ -1,0 +1,23 @@
+{
+  "key": "unsafe_water_access",
+  "title": "People without safely managed drinking water (billion)",
+  "unit": "billion",
+  "geography": "World",
+  "time_coverage": "2015-2022 (biennial)",
+  "source": {
+    "name": "WHO/UNICEF Joint Monitoring Programme (JMP)",
+    "publisher": "World Health Organization / UNICEF",
+    "url": "https://washdata.org",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; values approximate JMP estimates of global population lacking safely managed drinking water services.",
+  "insight_type": "trend",
+  "points": [
+    {"label": "2015", "value": 2.5, "period": "2015"},
+    {"label": "2017", "value": 2.4, "period": "2017"},
+    {"label": "2019", "value": 2.3, "period": "2019"},
+    {"label": "2020", "value": 2.3, "period": "2020"},
+    {"label": "2022", "value": 2.2, "period": "2022"}
+  ]
+}

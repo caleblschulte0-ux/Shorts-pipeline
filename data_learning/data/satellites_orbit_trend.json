@@ -1,0 +1,27 @@
+{
+  "key": "satellites_orbit_trend",
+  "title": "Active satellites in Earth orbit",
+  "unit": "satellites",
+  "geography": "Earth orbit",
+  "time_coverage": "2000-2024 (selected years)",
+  "source": {
+    "name": "Union of Concerned Scientists Satellite Database",
+    "publisher": "Union of Concerned Scientists",
+    "url": "https://www.ucsusa.org/resources/satellite-database",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; approximate counts from UCS Satellite Database; post-2019 surge driven by Starlink and other mega-constellations.",
+  "insight_type": "trend",
+  "points": [
+    {"label": "2000", "value": 600, "period": "2000"},
+    {"label": "2005", "value": 900, "period": "2005"},
+    {"label": "2010", "value": 1000, "period": "2010"},
+    {"label": "2015", "value": 1400, "period": "2015"},
+    {"label": "2019", "value": 2200, "period": "2019"},
+    {"label": "2021", "value": 4550, "period": "2021"},
+    {"label": "2022", "value": 5500, "period": "2022"},
+    {"label": "2023", "value": 7500, "period": "2023"},
+    {"label": "2024", "value": 9000, "period": "2024"}
+  ]
+}

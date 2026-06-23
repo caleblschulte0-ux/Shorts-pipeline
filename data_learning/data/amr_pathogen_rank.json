@@ -1,0 +1,23 @@
+{
+  "key": "amr_pathogen_rank",
+  "title": "Annual deaths directly caused by AMR, by pathogen (thousand)",
+  "unit": "thousand",
+  "geography": "World",
+  "time_coverage": "2019",
+  "source": {
+    "name": "Global Research on Antimicrobial Resistance (GRAM) 2022",
+    "publisher": "Institute for Health Metrics and Evaluation / The Lancet",
+    "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02724-0",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; values approximate published GRAM estimates for the six deadliest bacterial pathogens in 2019.",
+  "points": [
+    {"label": "E. coli", "value": 216},
+    {"label": "S. aureus (MRSA)", "value": 170},
+    {"label": "K. pneumoniae", "value": 143},
+    {"label": "S. pneumoniae", "value": 118},
+    {"label": "A. baumannii", "value": 99},
+    {"label": "M. tuberculosis", "value": 63}
+  ]
+}

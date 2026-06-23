@@ -1,0 +1,23 @@
+{
+  "key": "satellites_vs_debris",
+  "title": "Active satellites vs tracked debris in orbit (2024)",
+  "unit": "objects",
+  "geography": "Earth orbit",
+  "time_coverage": "2024",
+  "source": {
+    "name": "USSPACECOM Space-Track / ESA Space Debris Office",
+    "publisher": "US Space Command / European Space Agency",
+    "url": "https://www.space-track.org",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; active satellites from UCS database; tracked debris from USSPACECOM Space-Track catalog; estimated untracked from ESA debris model.",
+  "insight_type": "comparison",
+  "use_baseline": true,
+  "baseline": {"label": "Active satellites", "value": 9000},
+  "points": [
+    {"label": "Active satellites", "value": 9000},
+    {"label": "Tracked debris (>10 cm)", "value": 27500},
+    {"label": "Estimated debris (>1 cm)", "value": 130000}
+  ]
+}
