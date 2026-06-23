@@ -1,0 +1,23 @@
+{
+  "key": "amr_deaths_trend",
+  "title": "Annual deaths attributable to AMR (million)",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "2000-2023 (annual)",
+  "source": {
+    "name": "Global Research on Antimicrobial Resistance (GRAM)",
+    "publisher": "Institute for Health Metrics and Evaluation / The Lancet",
+    "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02724-0",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; values approximate GRAM 2022 published estimates for deaths directly attributable to bacterial AMR.",
+  "points": [
+    {"label": "2000", "value": 0.70, "period": "2000"},
+    {"label": "2005", "value": 0.82, "period": "2005"},
+    {"label": "2010", "value": 0.96, "period": "2010"},
+    {"label": "2015", "value": 1.10, "period": "2015"},
+    {"label": "2019", "value": 1.27, "period": "2019"},
+    {"label": "2023", "value": 1.35, "period": "2023"}
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "version": 8,
+  "slug": "tesla-autopilot-crash-katy-texas",
+  "title": "A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.",
+  "script": "Tesla drove into her house! On Friday evening in Katy, Texas, a Tesla Model 3 left the road and crashed through the side of a residential home. Inside was Martha Avila, 76 years old. She died from her injuries. The driver, Michael Butler, said he was using the car's Autopilot feature at the time — that the car was driving itself when it drifted out of its lane. A Ring doorbell camera recorded the moment of impact. Butler showed no signs of intoxication and is cooperating with investigators. The crash is now tied to a 3.2-million-vehicle federal probe by the National Highway Traffic Safety Administration, already at Engineering Analysis — the final step before a recall demand. A grandmother is dead. A 3.2-million-car recall is on the table. Was Autopilot to blame for Martha Avila's death?",
+  "shots": [
+    {
+      "phrase": "Tesla drove into her house!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "car crashed into house wall damage",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Katy, Texas",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "suburban neighborhood Texas residential street",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a Tesla Model 3 left the road and crashed through the side of a residential home",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "Tesla Model 3 road driving residential",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Inside was Martha Avila, 76 years old",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "home interior living room residential quiet",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "She died from her injuries",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "ambulance emergency response suburban house",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The driver, Michael Butler, said he was using the car's Autopilot feature at the time",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "Tesla autopilot dashboard touchscreen self driving",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "A Ring doorbell camera recorded the moment of impact",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "ring doorbell camera front porch footage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "3.2-million-vehicle federal probe by the National Highway Traffic Safety Administration",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "NHTSA federal investigation safety recall automotive",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "already at Engineering Analysis — the final step before a recall demand",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "federal agency recall engineering analysis document",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A grandmother is dead",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "crashed house wall impact damage exterior",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A 3.2-million-car recall is on the table",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "car recall notice fleet of vehicles",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Was Autopilot to blame for Martha Avila's death?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+      "query": "Tesla autopilot steering wheel driver assist",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Tesla drove into her house!",
+      "text": "CRASHED IN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Martha Avila, 76 years old",
+      "text": "76 YEARS OLD",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "She died from her injuries",
+      "text": "DEAD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the car was driving itself when it drifted out of its lane",
+      "text": "AUTOPILOT ON",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "3.2-million-vehicle federal probe",
+      "text": "3.2M CARS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the final step before a recall demand",
+      "text": "RECALL COMING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Was Autopilot to blame for Martha Avila's death?",
+      "text": "WHO'S GUILTY?",
+      "color": "#ffffff"
+    }
+  ],
+  "hashtags": [
+    "teslaautopilot",
+    "marthaavila",
+    "katytexas",
+    "teslacrash",
+    "nhtsa",
+    "autopilot",
+    "selfdriving",
+    "teslamodel3",
+    "carrecall",
+    "evnews",
+    "texasnews",
+    "crimejustice",
+    "tesla",
+    "selfdriving"
+  ],
+  "music_vibe": "dark"
+}

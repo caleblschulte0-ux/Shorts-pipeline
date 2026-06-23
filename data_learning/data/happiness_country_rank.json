@@ -1,0 +1,28 @@
+{
+  "key": "happiness_country_rank",
+  "title": "Happiest countries in the world (2024 WHR score out of 10)",
+  "unit": "score",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "World Happiness Report 2024",
+    "publisher": "UN Sustainable Development Solutions Network",
+    "url": "https://worldhappiness.report/ed/2024/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; Cantril ladder scores averaged over 2021-2023 as reported in WHR 2024 edition.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Finland", "value": 7.74},
+    {"label": "Denmark", "value": 7.58},
+    {"label": "Iceland", "value": 7.53},
+    {"label": "Sweden", "value": 7.35},
+    {"label": "Israel", "value": 7.34},
+    {"label": "Netherlands", "value": 7.32},
+    {"label": "Norway", "value": 7.30},
+    {"label": "Luxembourg", "value": 7.22},
+    {"label": "Switzerland", "value": 7.20},
+    {"label": "Australia", "value": 7.19}
+  ]
+}

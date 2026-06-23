@@ -1,0 +1,22 @@
+{
+  "key": "finland_us_happiness",
+  "title": "Finland vs United States happiness score (2024)",
+  "unit": "score",
+  "geography": "Finland vs United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "World Happiness Report 2024",
+    "publisher": "UN Sustainable Development Solutions Network",
+    "url": "https://worldhappiness.report/ed/2024/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-23"
+  },
+  "notes": "Illustrative; Cantril ladder scores from WHR 2024. World average is approximate cross-country mean.",
+  "insight_type": "comparison",
+  "use_baseline": true,
+  "baseline": {"label": "World average", "value": 5.51},
+  "points": [
+    {"label": "Finland", "value": 7.74},
+    {"label": "United States", "value": 6.72}
+  ]
+}
