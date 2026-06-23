@@ -1,62 +1,103 @@
 [
   {
-    "topic": "A Zoo Lost a Skunk Named Violet \u2014 and a Whole City Is on Alert",
-    "title": "A Zoo Lost a Skunk Named Violet \u2014 and a Whole City Is on Alert",
-    "publish_at": "2026-06-22T13:00:00Z",
+    "topic": "2 Million Bees Escaped a Texas Semi. It Was Chaos.",
+    "title": "2 Million Bees Escaped a Texas Semi. It Was Chaos.",
+    "publish_at": "2026-06-23T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/xOxqOeZS8Ds",
+    "video_url": "https://youtube.com/shorts/MNDY2vNRmJo",
     "error": null,
-    "elapsed_seconds": 296.9,
-    "package_path": "state/trending_packages/20260622/01_violet-skunk-escape-wisconsin.json",
-    "video_path": "output/daily_20260622-112806_a_zoo_lost_a_skunk_named_violet___and_a_.mp4",
+    "elapsed_seconds": 357.9,
+    "package_path": "state/trending_packages/20260623/01_mauriceville-bees-semi-texas.json",
+    "video_path": "output/daily_20260623-113016_2_million_bees_escaped_a_texas_semi__it_.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "A Snake Was Hiding Behind This Family's TV",
+    "title": "A Snake Was Hiding Behind This Family's TV",
+    "publish_at": "2026-06-23T15:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/sJ4Ba8dcIhk",
+    "error": null,
+    "elapsed_seconds": 281.6,
+    "package_path": "state/trending_packages/20260623/02_queensland-python-tv-sunshine-coast.json",
+    "video_path": "output/daily_20260623-113613_a_snake_was_hiding_behind_this_family_s_.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Bingo the Golden Retriever Brought Home a Live Armadillo",
+    "title": "Bingo the Golden Retriever Brought Home a Live Armadillo",
+    "publish_at": "2026-06-23T17:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/b_TxrT4mD0c",
+    "error": null,
+    "elapsed_seconds": 326.4,
+    "package_path": "state/trending_packages/20260623/03_bingo-armadillo-oklahoma.json",
+    "video_path": "output/daily_20260623-114055_bingo_the_golden_retriever_brought_home_.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.",
+    "title": "A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.",
+    "publish_at": "2026-06-23T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/ul4_-Lnu19I",
+    "error": null,
+    "elapsed_seconds": 389.8,
+    "package_path": "state/trending_packages/20260623/04_carol-oram-engagement-ring-michigan.json",
+    "video_path": "output/daily_20260623-114622_a_plumber_found_her_lost_engagement_ring.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.",
+    "title": "A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.",
+    "publish_at": "2026-06-23T21:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/jZpRNqvn4k4",
+    "error": null,
+    "elapsed_seconds": 389.7,
+    "package_path": "state/trending_packages/20260623/05_tesla-autopilot-crash-katy-texas.json",
+    "video_path": "output/daily_20260623-115253_a_tesla_on_autopilot_crashed_into_her_ho.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Seattle Just Broke a World Record With 830 People Eating Dim Sum",
+    "title": "Seattle Just Broke a World Record With 830 People Eating Dim Sum",
+    "publish_at": "2026-06-23T23:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/If7Ut6TVJl4",
+    "error": null,
+    "elapsed_seconds": 389.7,
+    "package_path": "state/trending_packages/20260623/06_seattle-dim-sum-guinness-record.json",
+    "video_path": "output/daily_20260623-115921_seattle_just_broke_a_world_record_with_8.mp4",
     "qa": {
       "ok": true,
       "verdict": "skip",
       "reason": "gemini unavailable"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "8 Goats Got Loose in Ohio \u2014 One Used an SUV as a Getaway Ramp",
-    "title": "8 Goats Got Loose in Ohio \u2014 One Used an SUV as a Getaway Ramp",
-    "publish_at": "2026-06-22T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RelevanceGateError: 90% of shots (9/10) fell to stock / placeholder with almost no curated anchor \u2014 the image pipeline likely failed wholesale \u2014 refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.",
-    "elapsed_seconds": 259.5,
-    "package_path": "state/trending_packages/20260622/02_ohio-goats-suv-getaway.json"
-  },
-  {
-    "topic": "1,037 Marilyn Monroes Gathered in One Place to Break a World Record",
-    "title": "1,037 Marilyn Monroes Gathered in One Place to Break a World Record",
-    "publish_at": "2026-06-22T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/xCe3A9DRgOk",
-    "error": null,
-    "elapsed_seconds": 275.3,
-    "package_path": "state/trending_packages/20260622/03_marilyn-monroe-1037-lookalikes-record.json",
-    "video_path": "output/daily_20260622-113722_1_037_marilyn_monroes_gathered_in_one_pl.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "An Octopus Just Passed a Test Scientists Thought Only Vertebrates Could",
-    "title": "An Octopus Just Passed a Test Scientists Thought Only Vertebrates Could",
-    "publish_at": "2026-06-22T15:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/7ZGCSH4blj4",
-    "error": null,
-    "elapsed_seconds": 230.5,
-    "package_path": "state/trending_packages/20260622/04_octopus-mirror-test-dartmouth.json",
-    "video_path": "output/daily_20260622-114156_an_octopus_just_passed_a_test_scientists.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
     },
     "channel": "default"
   }
