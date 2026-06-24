@@ -3245,6 +3245,241 @@
           "say": "But for every active satellite, there are three pieces of tracked debris. Space Command tracks 27,500 objects large enough to destroy a spacecraft. Estimated debris pieces over one centimeter: 130,000. A single collision can shatter into thousands of new fragments — the cascade known as Kessler Syndrome."
         }
       ]
+    },
+    {
+      "slug": "coral-reef-collapse",
+      "title": "Half the World's Coral Is Already Gone",
+      "hook": "Half the world's coral reefs are already gone. Quietly.",
+      "closing": "The reef took ten thousand years to build. We've undone half of it in fifty.",
+      "question": "Did you know coral reefs were disappearing this fast? Drop it below.",
+      "caption": "In 2023, 56% of the world's reefs experienced bleaching — the fourth global mass bleaching event ever. The Caribbean has lost 80% of its coral since the 1970s. Here's the data 👇",
+      "hashtags": [
+        "coralreef",
+        "coralbleaching",
+        "ocean",
+        "climatechange",
+        "environment",
+        "science",
+        "nature",
+        "data",
+        "marinelife",
+        "reef",
+        "conservation",
+        "interesting"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "coral_bleaching_frequency",
+          "params": {
+            "file": "coral_bleaching_frequency.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE WARMING",
+          "topic": "share of reefs bleaching per year (%)",
+          "say": "In 1998, the first global mass bleaching hit about 11 percent of reefs. By 2016 it was 46 percent — nearly half the world's coral, in a single year. In 2023, 56 percent. That's more than half of every reef on Earth, bleaching in one year."
+        },
+        {
+          "source": "offline",
+          "key": "coral_coverage_change",
+          "params": {
+            "file": "coral_coverage_change.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 · THE LOSS",
+          "topic": "coral cover: 1970s baseline vs. today (%)",
+          "say": "Zooming out: since the 1970s, about half of all coral cover on Earth has disappeared. A reef that took ten thousand years to grow — halved in fifty."
+        },
+        {
+          "source": "offline",
+          "key": "coral_loss_by_region",
+          "params": {
+            "file": "coral_loss_by_region.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE HOTSPOTS",
+          "topic": "coral cover lost since 1970s by region (%)",
+          "say": "But the losses aren't even. The Florida Keys have lost 90 percent of their coral. The Caribbean, 80 percent. Hawaii, 60. Even the Great Barrier Reef — Australia's national icon — has lost half its cover."
+        }
+      ]
+    },
+    {
+      "slug": "us-incarceration-rate",
+      "title": "The US Locks Up More People Than Any Country on Earth",
+      "hook": "The US has 5% of the world's people. And 20% of its prisoners.",
+      "closing": "No other rich country comes close. The question isn't how many — it's why.",
+      "question": "What do you think drives the US incarceration rate? Drop it below.",
+      "caption": "The US incarcerates 630 per 100,000 people — four times the world average. The rate rose sevenfold from 1972 to its peak in 2008. Here's the data 👇",
+      "hashtags": [
+        "criminaljustice",
+        "incarceration",
+        "prison",
+        "usa",
+        "data",
+        "statistics",
+        "society",
+        "policy",
+        "reform",
+        "facts",
+        "didyouknow",
+        "interesting"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_incarceration_trend",
+          "params": {
+            "file": "us_incarceration_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CLIMB",
+          "topic": "US incarceration rate (per 100,000 people)",
+          "say": "In 1972, the US imprisoned 161 people per 100,000. By 1980 it was 221. Then the War on Drugs hit — and by 2008, 755 per 100,000. The rate nearly quintupled in 36 years. Even after declining, it sits at 608 today."
+        },
+        {
+          "source": "offline",
+          "key": "us_vs_world_incarceration",
+          "params": {
+            "file": "us_vs_world_incarceration.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · THE COMPARISON",
+          "topic": "incarceration rate: US vs world benchmarks (per 100,000)",
+          "say": "Now compare that to the world. The US locks up 630 per 100,000. Russia, 328. The world average is 155. Western Europe averages around 100. The US rate is four times the global average — and six times Western Europe."
+        },
+        {
+          "source": "offline",
+          "key": "top_incarceration_countries",
+          "params": {
+            "file": "top_incarceration_countries.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE LEAGUE TABLE",
+          "topic": "highest incarceration rates by country (per 100,000, 2023)",
+          "say": "The US isn't just high — it leads the world. At 630 per 100,000, it beats Turkmenistan, El Salvador, and Cuba. The only company it keeps are authoritarian states. No other democracy is in the same bracket."
+        }
+      ]
+    },
+    {
+      "slug": "american-migration-map",
+      "title": "Americans Are Quietly Leaving California and New York",
+      "hook": "More Americans are leaving California than any state in history.",
+      "closing": "The map of where Americans live is redrawing itself — one moving truck at a time.",
+      "question": "Have you moved states in the last 5 years? Where'd you go? Drop it below.",
+      "caption": "In 2023, California lost 361,000 people to other states — and Florida gained 315,000. Only 57% of Americans still live where they were born. Here's the data 👇",
+      "hashtags": [
+        "migration",
+        "moving",
+        "california",
+        "florida",
+        "texas",
+        "newyork",
+        "demographics",
+        "usa",
+        "data",
+        "census",
+        "costofliving",
+        "interesting"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_migration_losses",
+          "params": {
+            "file": "us_migration_losses.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · LEAVING",
+          "topic": "top states by net domestic out-migration, 2023 (people)",
+          "say": "In 2023, California lost 361,000 more residents to other states than it gained. New York lost 209,000. Illinois, 102,000. Massachusetts and New Jersey round out the top five. These are the states people are leaving."
+        },
+        {
+          "source": "offline",
+          "key": "us_migration_gains",
+          "params": {
+            "file": "us_migration_gains.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · ARRIVING",
+          "topic": "top states by net domestic in-migration, 2023 (people)",
+          "say": "And here's where they're going. Florida gained 315,000. Texas, 290,000. North Carolina, South Carolina, Tennessee, Georgia — all in the top seven. Sun Belt states are absorbing the exodus."
+        },
+        {
+          "source": "offline",
+          "key": "us_migration_birth_state",
+          "params": {
+            "file": "us_migration_birth_state.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE TREND",
+          "topic": "share of Americans still living in birth state (%)",
+          "say": "And Americans are increasingly willing to move. In 1980, 68 percent of Americans still lived in the state where they were born. Today that's 57 percent — the lowest ever. One in three Americans has voted with their feet."
+        }
+      ]
+    },
+    {
+      "slug": "minimum-wage-purchasing-power",
+      "title": "The Minimum Wage Is Worth Less Than in 1968",
+      "hook": "The federal minimum wage hasn't changed since 2009. Here's what that actually means.",
+      "closing": "The number on the check went up. The number of things you can buy went down.",
+      "question": "Should the federal minimum wage be raised? Drop your number below.",
+      "caption": "The federal minimum wage peaked in 1968 at $1.60/hr — worth $14.63 today. It's been stuck at $7.25 since 2009. Here's what that gap actually looks like 👇",
+      "hashtags": [
+        "minimumwage",
+        "laborlaw",
+        "wages",
+        "economy",
+        "workers",
+        "usa",
+        "data",
+        "costofliving",
+        "inflation",
+        "interesting",
+        "facts",
+        "policy"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "federal_minwage_real",
+          "params": {
+            "file": "federal_minwage_real.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SLIDE",
+          "topic": "federal minimum wage in 2024 dollars ($/hr)",
+          "say": "In 1968, the federal minimum wage was $1.60 an hour — which is $14.63 in today's dollars. That's the peak. By 2000 the real value had fallen to $7.35. It briefly rose with a 2009 raise to $7.25 — but since then, inflation has eroded it back to the nominal. Today's minimum wage buys less than at any point since the 1940s."
+        },
+        {
+          "source": "offline",
+          "key": "minwage_nominal_vs_real",
+          "params": {
+            "file": "minwage_nominal_vs_real.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 · THE GAP",
+          "topic": "current federal minimum vs. 1968 peak in 2024 dollars ($/hr)",
+          "say": "Here's the gap: the current federal minimum is $7.25. The 1968 equivalent in today's dollars is $14.63. That means minimum wage workers today earn about half what their 1968 counterparts could buy. Same job. Half the purchasing power."
+        },
+        {
+          "source": "offline",
+          "key": "state_minwage_rank",
+          "params": {
+            "file": "state_minwage_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "3 · THE MAP",
+          "topic": "state minimum wages vs. federal floor ($/hr, 2024)",
+          "say": "States have stepped in where the federal government hasn't. California is at $16.50, Washington $16.28, New York $16. Massachusetts, $15. But 20 states still use the federal floor — $7.25 — unchanged since 2009."
+        }
+      ]
     }
   ],
   "videos": [

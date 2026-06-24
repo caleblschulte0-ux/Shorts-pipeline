@@ -1,0 +1,24 @@
+{
+  "key": "top_incarceration_countries",
+  "title": "Countries with highest incarceration rates (per 100,000 people, 2023)",
+  "unit": "per 100,000",
+  "geography": "Global",
+  "time_coverage": "2023",
+  "source": {
+    "name": "World Prison Brief",
+    "publisher": "Institute for Crime & Justice Policy Research, Birkbeck, University of London",
+    "url": "https://www.prisonstudies.org/highest-to-lowest/prison_population_rate",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; El Salvador's rate rose sharply under President Bukele's crackdown on gangs beginning 2022. US remains the highest among major democracies.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "United States", "value": 630},
+    {"label": "Turkmenistan", "value": 576},
+    {"label": "El Salvador", "value": 564},
+    {"label": "Cuba", "value": 510},
+    {"label": "Rwanda", "value": 464},
+    {"label": "Russia", "value": 328}
+  ]
+}

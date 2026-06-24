@@ -1,0 +1,129 @@
+{
+  "version": 8,
+  "slug": "gracie-giraffe-cedar-hollow-texas",
+  "title": "Texas Lost a Giraffe Named Gracie",
+  "script": "Texas lost a giraffe! Cedar Hollow Ranch in Real County had a problem Monday: Gracie — their giraffe — wandered to a corner of the property the herd never visits, found a gate, and walked out. Into the Texas Hill Country. By herself. The ranch offered a $5,000 reward. Authorities asked the public for help. A game camera caught her west of Leakey — which, if you're wondering, is deep in the Texas Hill Country. Ranch manager Vick Jones says she's been located and he's hoping to get her back Tuesday. The question nobody's asking: how does a giraffe just disappear? She's 15 feet tall. You can see her from a mile away. How does a 15-foot animal just vanish?",
+  "shots": [
+    {
+      "phrase": "Texas lost a giraffe!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe_standing.jpg",
+      "query": "giraffe standing tall",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Cedar Hollow Ranch in Real County",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+      "query": "Texas ranch fence road",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Gracie — their giraffe — wandered",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe_standing.jpg",
+      "query": "giraffe grazing open field",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "found a gate, and walked out",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+      "query": "ranch gate open countryside",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Into the Texas Hill Country",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Scrub_vegetation_in_Texas_Hill_Country_IMG_4318.JPG",
+      "query": "Texas Hill Country scrub brush landscape",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "By herself",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kruger_Giraffe.JPG",
+      "query": "lone giraffe savanna walking",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The ranch offered a $5,000 reward",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+      "query": "reward sign missing animal",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A game camera caught her west of Leakey",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe_standing.jpg",
+      "query": "trail camera wildlife night footage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Ranch manager Vick Jones says she's been located",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Scrub_vegetation_in_Texas_Hill_Country_IMG_4318.JPG",
+      "query": "Texas rancher outdoors hill country",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "how does a giraffe just disappear?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kruger_Giraffe.JPG",
+      "query": "giraffe camouflage brush trees",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "She's 15 feet tall",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe_standing.jpg",
+      "query": "giraffe height tall animal",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "How does a 15-foot animal just vanish?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kruger_Giraffe.JPG",
+      "query": "giraffe walking away disappearing",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Texas lost a giraffe!",
+      "text": "GRACIE'S GONE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "found a gate, and walked out",
+      "text": "JUST WALKED OUT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "The ranch offered a $5,000 reward",
+      "text": "$5,000 REWARD",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "A game camera caught her west of Leakey",
+      "text": "ON CAMERA",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "she's been located",
+      "text": "SHE'S FOUND",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "She's 15 feet tall",
+      "text": "15 FEET TALL",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "graciegiraffe",
+    "cedarhollowranch",
+    "texashillcountry",
+    "realcounty",
+    "giraffe",
+    "animalescape",
+    "texasnews",
+    "wildanimal",
+    "missinggiraffe",
+    "weirdnews",
+    "animalnews",
+    "texas",
+    "wildlife"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
