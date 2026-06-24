@@ -1,99 +1,92 @@
 [
   {
-    "topic": "2 Million Bees Escaped a Texas Semi. It Was Chaos.",
-    "title": "2 Million Bees Escaped a Texas Semi. It Was Chaos.",
-    "publish_at": "2026-06-23T13:00:00Z",
+    "topic": "Texas Lost a Giraffe Named Gracie",
+    "title": "Texas Lost a Giraffe Named Gracie",
+    "publish_at": "2026-06-24T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/MNDY2vNRmJo",
+    "video_url": "https://youtube.com/shorts/9MEQlY1gmRY",
     "error": null,
-    "elapsed_seconds": 357.9,
-    "package_path": "state/trending_packages/20260623/01_mauriceville-bees-semi-texas.json",
-    "video_path": "output/daily_20260623-113016_2_million_bees_escaped_a_texas_semi__it_.mp4",
+    "elapsed_seconds": 436.7,
+    "package_path": "state/trending_packages/20260624/01_gracie-giraffe-cedar-hollow-texas.json",
+    "video_path": "output/daily_20260624-113013_texas_lost_a_giraffe_named_gracie.mp4",
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "channel": "default"
   },
   {
-    "topic": "A Snake Was Hiding Behind This Family's TV",
-    "title": "A Snake Was Hiding Behind This Family's TV",
-    "publish_at": "2026-06-23T15:00:00Z",
+    "topic": "Toxic Caterpillars Just Shut Berlin's Parks",
+    "title": "Toxic Caterpillars Just Shut Berlin's Parks",
+    "publish_at": "2026-06-24T15:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/sJ4Ba8dcIhk",
+    "video_url": "https://youtube.com/shorts/vrDhoFqp2gA",
     "error": null,
-    "elapsed_seconds": 281.6,
-    "package_path": "state/trending_packages/20260623/02_queensland-python-tv-sunshine-coast.json",
-    "video_path": "output/daily_20260623-113613_a_snake_was_hiding_behind_this_family_s_.mp4",
+    "elapsed_seconds": 380.1,
+    "package_path": "state/trending_packages/20260624/02_berlin-caterpillars-parks-closed.json",
+    "video_path": "output/daily_20260624-113729_toxic_caterpillars_just_shut_berlin_s_pa.mp4",
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "channel": "default"
   },
   {
-    "topic": "Bingo the Golden Retriever Brought Home a Live Armadillo",
-    "title": "Bingo the Golden Retriever Brought Home a Live Armadillo",
-    "publish_at": "2026-06-23T17:00:00Z",
+    "topic": "A Mom Spent $9,500 to Barbie-fy Her House in Scotland",
+    "title": "A Mom Spent $9,500 to Barbie-fy Her House in Scotland",
+    "publish_at": "2026-06-24T17:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/b_TxrT4mD0c",
+    "video_url": "https://youtube.com/shorts/TPFp3pRLAGo",
     "error": null,
-    "elapsed_seconds": 326.4,
-    "package_path": "state/trending_packages/20260623/03_bingo-armadillo-oklahoma.json",
-    "video_path": "output/daily_20260623-114055_bingo_the_golden_retriever_brought_home_.mp4",
+    "elapsed_seconds": 417.4,
+    "package_path": "state/trending_packages/20260624/03_nicole-watt-barbie-dreamhouse-scotland.json",
+    "video_path": "output/daily_20260624-114350_a_mom_spent__9_500_to_barbie_fy_her_hous.mp4",
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "channel": "default"
   },
   {
-    "topic": "A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.",
-    "title": "A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.",
-    "publish_at": "2026-06-23T19:00:00Z",
+    "topic": "She Stopped for Gas in Ohio. Won $500,000.",
+    "title": "She Stopped for Gas in Ohio. Won $500,000.",
+    "publish_at": "2026-06-24T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RelevanceGateError: 91% of shots (10/11) fell to stock / placeholder with almost no curated anchor \u2014 the image pipeline likely failed wholesale \u2014 refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.",
+    "elapsed_seconds": 246.1,
+    "package_path": "state/trending_packages/20260624/04_tennessee-woman-ohio-lottery-500k.json"
+  },
+  {
+    "topic": "France Just Broke Its All-Time Heat Record. 40 Drowned.",
+    "title": "France Just Broke Its All-Time Heat Record. 40 Drowned.",
+    "publish_at": "2026-06-24T19:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/ul4_-Lnu19I",
+    "video_url": "https://youtube.com/shorts/bVYr4DAbcpY",
     "error": null,
-    "elapsed_seconds": 389.8,
-    "package_path": "state/trending_packages/20260623/04_carol-oram-engagement-ring-michigan.json",
-    "video_path": "output/daily_20260623-114622_a_plumber_found_her_lost_engagement_ring.mp4",
+    "elapsed_seconds": 326.1,
+    "package_path": "state/trending_packages/20260624/05_france-heatwave-44c-drowning-deaths.json",
+    "video_path": "output/daily_20260624-115452_france_just_broke_its_all_time_heat_reco.mp4",
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": ""
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "channel": "default"
   },
   {
-    "topic": "A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.",
-    "title": "A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.",
-    "publish_at": "2026-06-23T21:00:00Z",
+    "topic": "A Gunman Killed a Montreal Officer at the Hilton",
+    "title": "A Gunman Killed a Montreal Officer at the Hilton",
+    "publish_at": "2026-06-24T21:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/jZpRNqvn4k4",
+    "video_url": "https://youtube.com/shorts/G1HyluH1vGM",
     "error": null,
-    "elapsed_seconds": 389.7,
-    "package_path": "state/trending_packages/20260623/05_tesla-autopilot-crash-katy-texas.json",
-    "video_path": "output/daily_20260623-115253_a_tesla_on_autopilot_crashed_into_her_ho.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Seattle Just Broke a World Record With 830 People Eating Dim Sum",
-    "title": "Seattle Just Broke a World Record With 830 People Eating Dim Sum",
-    "publish_at": "2026-06-23T23:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/If7Ut6TVJl4",
-    "error": null,
-    "elapsed_seconds": 389.7,
-    "package_path": "state/trending_packages/20260623/06_seattle-dim-sum-guinness-record.json",
-    "video_path": "output/daily_20260623-115921_seattle_just_broke_a_world_record_with_8.mp4",
+    "elapsed_seconds": 364.7,
+    "package_path": "state/trending_packages/20260624/06_montreal-hilton-shooting-officer.json",
+    "video_path": "output/daily_20260624-120022_a_gunman_killed_a_montreal_officer_at_th.mp4",
     "qa": {
       "ok": true,
       "verdict": "skip",

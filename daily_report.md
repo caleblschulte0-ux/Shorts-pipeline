@@ -1,39 +1,38 @@
-# Daily Trending Shorts — 2026-06-23
+# Daily Trending Shorts — 2026-06-24
 
 - queued: **6**
-- succeeded: **6**
+- succeeded: **5**
 - quarantined (off-topic imagery): **0**
-- failed: **0**
+- failed: **1**
 
 ## Posted
-- **2 Million Bees Escaped a Texas Semi. It Was Chaos.**
-  - topic: 2 Million Bees Escaped a Texas Semi. It Was Chaos.
-  - publishes: `2026-06-23T13:00:00Z`
-  - https://youtube.com/shorts/MNDY2vNRmJo
-  - took: 357.9s
-- **A Snake Was Hiding Behind This Family's TV**
-  - topic: A Snake Was Hiding Behind This Family's TV
-  - publishes: `2026-06-23T15:00:00Z`
-  - https://youtube.com/shorts/sJ4Ba8dcIhk
-  - took: 281.6s
-- **Bingo the Golden Retriever Brought Home a Live Armadillo**
-  - topic: Bingo the Golden Retriever Brought Home a Live Armadillo
-  - publishes: `2026-06-23T17:00:00Z`
-  - https://youtube.com/shorts/b_TxrT4mD0c
-  - took: 326.4s
-- **A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.**
-  - topic: A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.
-  - publishes: `2026-06-23T19:00:00Z`
-  - https://youtube.com/shorts/ul4_-Lnu19I
-  - took: 389.8s
-- **A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.**
-  - topic: A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.
-  - publishes: `2026-06-23T21:00:00Z`
-  - https://youtube.com/shorts/jZpRNqvn4k4
-  - took: 389.7s
-- **Seattle Just Broke a World Record With 830 People Eating Dim Sum**
-  - topic: Seattle Just Broke a World Record With 830 People Eating Dim Sum
-  - publishes: `2026-06-23T23:00:00Z`
-  - https://youtube.com/shorts/If7Ut6TVJl4
-  - took: 389.7s
+- **Texas Lost a Giraffe Named Gracie**
+  - topic: Texas Lost a Giraffe Named Gracie
+  - publishes: `2026-06-24T13:00:00Z`
+  - https://youtube.com/shorts/9MEQlY1gmRY
+  - took: 436.7s
+- **Toxic Caterpillars Just Shut Berlin's Parks**
+  - topic: Toxic Caterpillars Just Shut Berlin's Parks
+  - publishes: `2026-06-24T15:00:00Z`
+  - https://youtube.com/shorts/vrDhoFqp2gA
+  - took: 380.1s
+- **A Mom Spent $9,500 to Barbie-fy Her House in Scotland**
+  - topic: A Mom Spent $9,500 to Barbie-fy Her House in Scotland
+  - publishes: `2026-06-24T17:00:00Z`
+  - https://youtube.com/shorts/TPFp3pRLAGo
+  - took: 417.4s
+- **France Just Broke Its All-Time Heat Record. 40 Drowned.**
+  - topic: France Just Broke Its All-Time Heat Record. 40 Drowned.
+  - publishes: `2026-06-24T19:00:00Z`
+  - https://youtube.com/shorts/bVYr4DAbcpY
+  - took: 326.1s
+- **A Gunman Killed a Montreal Officer at the Hilton**
+  - topic: A Gunman Killed a Montreal Officer at the Hilton
+  - publishes: `2026-06-24T21:00:00Z`
+  - https://youtube.com/shorts/G1HyluH1vGM
+  - took: 364.7s
+
+## Failed
+- **She Stopped for Gas in Ohio. Won $500,000.**
+  - error: `RelevanceGateError: 91% of shots (10/11) fell to stock / placeholder with almost no curated anchor — the image pipeline likely failed wholesale — refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.`
 
