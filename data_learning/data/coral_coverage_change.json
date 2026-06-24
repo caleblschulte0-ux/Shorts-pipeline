@@ -1,0 +1,20 @@
+{
+  "key": "coral_coverage_change",
+  "title": "Global coral cover remaining vs. 1970s baseline (%)",
+  "unit": "%",
+  "geography": "Global",
+  "time_coverage": "1970s vs. 2023",
+  "source": {
+    "name": "Status of Coral Reefs of the World 2020",
+    "publisher": "Global Coral Reef Monitoring Network (GCRMN)",
+    "url": "https://gcrmn.net/2020-report/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; global live coral cover estimated ~30-40% of 1970s extent by 2020. GCRMN 2020 report found ~50% decline in hard coral cover since 1950s. Values here represent hard coral cover as a percentage of historical baseline.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "1970s baseline", "value": 100},
+    {"label": "Today (2023)", "value": 50}
+  ]
+}

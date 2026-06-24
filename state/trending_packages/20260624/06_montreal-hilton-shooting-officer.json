@@ -1,0 +1,129 @@
+{
+  "version": 8,
+  "slug": "montreal-hilton-shooting-officer",
+  "title": "A Gunman Killed a Montreal Officer at the Hilton",
+  "script": "A Montreal cop was killed! Monday morning, June 22. Someone in Montreal's Côte-des-Neiges neighborhood called 911: there's a man in the Hilton with a gun pointed out the window. Officers responded. Constable Mohamed Lamine Benredouane — 34 years old, on the force since 2021 — was shot and killed. A second officer was wounded and is in stable condition. A civilian also died. The gunman was shot dead at the scene. It was the first time a Montreal police officer had been killed in the line of duty in 24 years. Investigators ruled out terrorism. They haven't confirmed what triggered the shooting. Constable Benredouane had spent 5 years protecting that city. What brought the gunman to that Hilton window?",
+  "shots": [
+    {
+      "phrase": "A Montreal cop was killed!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "Montreal police officer patrol car lights",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Someone in Montreal's Côte-des-Neiges neighborhood called 911",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "Montreal neighborhood residential street",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "there's a man in the Hilton with a gun pointed out the window",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "hotel building exterior urban city",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "Constable Mohamed Lamine Benredouane — 34 years old, on the force since 2021 — was shot and killed",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "police officer uniform badge memorial",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A second officer was wounded and is in stable condition",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "police ambulance emergency hospital",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A civilian also died",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "crime scene police tape urban street",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The gunman was shot dead at the scene",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "police response active shooter urban",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the first time a Montreal police officer had been killed in the line of duty in 24 years",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "Montreal police memorial tribute candles",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Investigators ruled out terrorism",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "investigators forensic police crime scene",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "They haven't confirmed what triggered the shooting",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "investigation unknown crime motive",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Constable Benredouane had spent 5 years protecting that city",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "Montreal skyline city Canada police",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "What brought the gunman to that Hilton window?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+      "query": "hotel window overlooking city mystery",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "A Montreal cop was killed!",
+      "text": "OFFICER DOWN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Constable Mohamed Lamine Benredouane",
+      "text": "CONSTABLE BENREDOUANE",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "A civilian also died",
+      "text": "3 DEAD TOTAL",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the first time a Montreal police officer had been killed in the line of duty in 24 years",
+      "text": "FIRST IN 24 YEARS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Investigators ruled out terrorism",
+      "text": "NOT TERRORISM",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "5 years protecting that city",
+      "text": "5 YEARS ON THE FORCE",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "montrealshooting",
+    "benredouane",
+    "cotedesneigesmontrealpolice",
+    "spvm",
+    "montreal",
+    "policenews",
+    "canada",
+    "officerdown",
+    "hilton",
+    "crimejustice",
+    "canadanews",
+    "breakingnews",
+    "worldnews",
+    "policeshooting"
+  ],
+  "music_vibe": "dark"
+}

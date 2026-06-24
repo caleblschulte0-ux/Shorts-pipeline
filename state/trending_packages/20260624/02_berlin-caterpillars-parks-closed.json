@@ -1,0 +1,129 @@
+{
+  "version": 8,
+  "slug": "berlin-caterpillars-parks-closed",
+  "title": "Toxic Caterpillars Just Shut Berlin's Parks",
+  "script": "Berlin's parks are closed! Not for a protest or a concert — for caterpillars. Specifically: oak processionary moth caterpillars. They've invaded Berlin's green spaces, and they look harmless. They are not. Each one carries about 700,000 microscopic barbed hairs. Those hairs break off in the wind and land on human skin, causing rashes, burning eyes, and breathing difficulties. Children have had severe reactions. Elderly residents are afraid to leave their homes. Berlin's second-largest park, Jungfernheide, has 2,000 trees cordoned off. Playgrounds closed. Sports fields shut down. The cleanup crew isn't using spray. They're wearing full protective suits — the same type used for asbestos — and vacuuming nests off branches 20 meters in the air. Climate change is making this worse every year. How long before Berlin can't keep up?",
+  "shots": [
+    {
+      "phrase": "Berlin's parks are closed!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "park closed barrier tape sign",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "They've invaded Berlin's green spaces, and they look harmless",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "Berlin park path trees summer green",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Specifically: oak processionary moth caterpillars",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "oak processionary caterpillar colony nest",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "Each one carries about 700,000 microscopic barbed hairs",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "caterpillar hairs magnified microscope toxic",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Elderly residents are afraid to leave their homes",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "elderly person home indoors worried",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Children have had severe reactions",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "child outdoor allergy skin reaction",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Berlin's second-largest park, Jungfernheide, has 2,000 trees cordoned off",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "park trees cordoned off warning signs",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Sports fields shut down",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "sports field closed empty grass",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "They're wearing full protective suits — the same type used for asbestos",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "hazmat suit protective gear blue workers",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "vacuuming nests off branches 20 meters in the air",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "cherry picker tree branch aerial workers",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Climate change is making this worse every year",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "climate change hot summer drought trees",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "How long before Berlin can't keep up?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+      "query": "Berlin park summer empty abandoned",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Berlin's parks are closed!",
+      "text": "PARKS CLOSED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Each one carries about 700,000 microscopic barbed hairs",
+      "text": "700,000 TOXIC HAIRS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Sports fields shut down",
+      "text": "SPORTS FIELDS: SHUT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "They're wearing full protective suits — the same type used for asbestos",
+      "text": "ASBESTOS-GRADE GEAR",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "2,000 trees cordoned off",
+      "text": "2,000 TREES CLOSED",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Climate change is making this worse every year",
+      "text": "GETS WORSE YEARLY",
+      "color": "#ff3030"
+    }
+  ],
+  "hashtags": [
+    "berlincaterpillars",
+    "oakprocessionary",
+    "jungfernheide",
+    "berlinparks",
+    "germany",
+    "toxiccaterpillars",
+    "climatechange",
+    "berlin",
+    "weirdnews",
+    "nature",
+    "invasivespecies",
+    "environmentalnews",
+    "europe"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

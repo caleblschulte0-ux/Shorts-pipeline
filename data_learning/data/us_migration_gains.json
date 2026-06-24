@@ -1,0 +1,25 @@
+{
+  "key": "us_migration_gains",
+  "title": "Top states by net domestic in-migration, 2023 (people)",
+  "unit": "people",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Census Bureau Population Estimates",
+    "publisher": "US Census Bureau",
+    "url": "https://www.census.gov/topics/population/migration/data/tables.html",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; net domestic migration is people moving in from other US states minus people leaving to other US states. Florida and Texas have led domestic in-migration for several consecutive years.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Florida", "value": 315000},
+    {"label": "Texas", "value": 290000},
+    {"label": "North Carolina", "value": 120000},
+    {"label": "South Carolina", "value": 95000},
+    {"label": "Tennessee", "value": 84000},
+    {"label": "Georgia", "value": 78000},
+    {"label": "Arizona", "value": 75000}
+  ]
+}

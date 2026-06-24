@@ -1,0 +1,31 @@
+{
+  "key": "us_incarceration_trend",
+  "title": "US incarceration rate (per 100,000 people)",
+  "unit": "per 100,000",
+  "geography": "United States",
+  "time_coverage": "1972-2023 (selected years)",
+  "source": {
+    "name": "Bureau of Justice Statistics / Prison Policy Initiative",
+    "publisher": "US Department of Justice",
+    "url": "https://bjs.ojp.gov/data/key-statistics",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; combines sentenced prisoners in state/federal facilities. The US incarceration rate rose sharply from the 1970s through the 2000s following the War on Drugs, peaked around 2008, then declined modestly. COVID-19 caused a sharp but partly temporary drop in 2020.",
+  "insight_type": "trend",
+  "points": [
+    {"label": "1972", "value": 161, "period": "1972"},
+    {"label": "1980", "value": 221, "period": "1980"},
+    {"label": "1985", "value": 313, "period": "1985"},
+    {"label": "1990", "value": 458, "period": "1990"},
+    {"label": "1995", "value": 600, "period": "1995"},
+    {"label": "2000", "value": 683, "period": "2000"},
+    {"label": "2005", "value": 738, "period": "2005"},
+    {"label": "2008", "value": 755, "period": "2008"},
+    {"label": "2010", "value": 731, "period": "2010"},
+    {"label": "2015", "value": 666, "period": "2015"},
+    {"label": "2019", "value": 655, "period": "2019"},
+    {"label": "2020", "value": 550, "period": "2020"},
+    {"label": "2023", "value": 608, "period": "2023"}
+  ]
+}
