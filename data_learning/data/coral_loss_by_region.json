@@ -1,0 +1,23 @@
+{
+  "key": "coral_loss_by_region",
+  "title": "Coral cover lost since 1970s by region (%)",
+  "unit": "% lost",
+  "geography": "Regional",
+  "time_coverage": "1970s-2023",
+  "source": {
+    "name": "GCRMN / NOAA / peer-reviewed literature",
+    "publisher": "Global Coral Reef Monitoring Network",
+    "url": "https://gcrmn.net/2020-report/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; Caribbean figures widely cited (~80% loss since 1970s). Florida Keys losses well-documented. Great Barrier Reef hard coral cover ~50% of 1995 levels per AIMS 2022.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Florida Keys", "value": 90},
+    {"label": "Caribbean", "value": 80},
+    {"label": "Hawaii", "value": 60},
+    {"label": "Great Barrier Reef", "value": 50},
+    {"label": "Indian Ocean", "value": 50}
+  ]
+}

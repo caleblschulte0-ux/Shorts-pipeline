@@ -1,0 +1,23 @@
+{
+  "key": "us_migration_losses",
+  "title": "Top states by net domestic out-migration, 2023 (people)",
+  "unit": "people",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Census Bureau Population Estimates",
+    "publisher": "US Census Bureau",
+    "url": "https://www.census.gov/topics/population/migration/data/tables.html",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; net domestic out-migration (departures minus arrivals from other US states). California and New York have led domestic out-migration for several consecutive years. Values shown as positive loss figures.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "California", "value": 361000},
+    {"label": "New York", "value": 209000},
+    {"label": "Illinois", "value": 102000},
+    {"label": "Massachusetts", "value": 46000},
+    {"label": "New Jersey", "value": 40000}
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "version": 8,
+  "slug": "france-heatwave-44c-drowning-deaths",
+  "title": "France Just Broke Its All-Time Heat Record. 40 Drowned.",
+  "script": "France just hit 44°C! That's not a typo. On June 23, France recorded its hottest day in history — 44.3 degrees Celsius, or about 112 degrees Fahrenheit, in parts of the southwest. Météo France put 54 departments — more than half the country — under a red heatwave alert. Now here's the worst part. At least 40 people drowned in rivers and lakes, trying to escape the heat. A 13-year-old girl drowned in the Seine. A professional footballer was pulled from the Rhône in critical condition. 2 young children were found dead in a parked car in southern France. This is not an ordinary heat wave. France has seen records broken year after year — but this one, June 23, 2026, is the worst in recorded French history. How many more summers like this can Europe handle?",
+  "shots": [
+    {
+      "phrase": "France just hit 44°C!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+      "query": "France heatwave extreme heat Europe satellite",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "France recorded its hottest day in history",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "Eiffel Tower summer heat Paris France",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "44.3 degrees Celsius, or about 112 degrees Fahrenheit",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+      "query": "thermometer extreme heat temperature record",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Météo France put 54 departments — more than half the country — under a red heatwave alert",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+      "query": "France map weather red alert heatwave",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "At least 40 people drowned in rivers and lakes, trying to escape the heat",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "river France swimming people crowded",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "A 13-year-old girl drowned in the Seine",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "Seine river Paris water shore",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A professional footballer was pulled from the Rhône in critical condition",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+      "query": "Rhone river France emergency rescue water",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "2 young children were found dead in a parked car in southern France",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+      "query": "parked car hot sun heatwave",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "This is not an ordinary heat wave",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "Paris summer empty streets extreme heat",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "the worst in recorded French history",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+      "query": "record breaking temperature chart graph history",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "How many more summers like this can Europe handle?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+      "query": "Europe summer heatwave future climate",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "France just hit 44°C!",
+      "text": "44.3°C RECORD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "France recorded its hottest day in history",
+      "text": "HOTTEST DAY EVER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "54 departments",
+      "text": "54 DEPTS RED ALERT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "At least 40 people drowned",
+      "text": "40 DROWNED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "A professional footballer was pulled from the Rhône in critical condition",
+      "text": "FOOTBALLER CRITICAL",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the worst in recorded French history",
+      "text": "WORST EVER RECORDED",
+      "color": "#ff3030"
+    }
+  ],
+  "hashtags": [
+    "franceheatwave",
+    "heatwave2026",
+    "europeanheatwave",
+    "44celsius",
+    "france",
+    "climate",
+    "climatecrisis",
+    "paris",
+    "extremeheat",
+    "climatechange",
+    "heatdome",
+    "europe",
+    "naturaldisaster",
+    "worldnews"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,20 @@
+{
+  "key": "minwage_nominal_vs_real",
+  "title": "Federal minimum wage: nominal vs. real 1968 value in 2024 dollars ($/hr)",
+  "unit": "$/hr",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Bureau of Labor Statistics / Department of Labor",
+    "publisher": "US Department of Labor",
+    "url": "https://www.dol.gov/agencies/whd/minimum-wage/history",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; comparison between the current nominal federal minimum wage ($7.25, unchanged since 2009) and what the 1968 peak minimum wage ($1.60) is worth in 2024 dollars after CPI adjustment (~$14.63). Shows purchasing power erosion.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Current federal minimum ($7.25 nominal)", "value": 7.25},
+    {"label": "1968 peak in today's dollars", "value": 14.63}
+  ]
+}

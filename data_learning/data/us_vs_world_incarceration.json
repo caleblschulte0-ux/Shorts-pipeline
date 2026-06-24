@@ -1,0 +1,22 @@
+{
+  "key": "us_vs_world_incarceration",
+  "title": "Incarceration rate: US vs global benchmarks (per 100,000 people)",
+  "unit": "per 100,000",
+  "geography": "Global",
+  "time_coverage": "2023",
+  "source": {
+    "name": "World Prison Brief",
+    "publisher": "Institute for Crime & Justice Policy Research, Birkbeck, University of London",
+    "url": "https://www.prisonstudies.org/highest-to-lowest/prison_population_rate",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; the US incarcerates more people per capita than any other democracy. The world average is calculated across ~220 jurisdictions. Western Europe averages roughly 100 per 100,000.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "United States", "value": 630},
+    {"label": "Russia", "value": 328},
+    {"label": "World average", "value": 155},
+    {"label": "Western Europe avg", "value": 100}
+  ]
+}

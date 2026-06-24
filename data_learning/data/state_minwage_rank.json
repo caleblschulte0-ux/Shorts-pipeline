@@ -1,0 +1,24 @@
+{
+  "key": "state_minwage_rank",
+  "title": "State minimum wages vs. federal floor ($/hr, 2024)",
+  "unit": "$/hr",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Department of Labor Wage and Hour Division",
+    "publisher": "US Department of Labor",
+    "url": "https://www.dol.gov/agencies/whd/minimum-wage/state",
+    "officiality": "illustrative",
+    "access_date": "2026-06-24"
+  },
+  "notes": "Illustrative; as of 2024. Many states have minimum wages above the $7.25 federal floor. 20 states still use the federal minimum. California, Washington, and New York lead at $16+.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "California", "value": 16.50},
+    {"label": "Washington", "value": 16.28},
+    {"label": "New York", "value": 16.00},
+    {"label": "Massachusetts", "value": 15.00},
+    {"label": "Colorado", "value": 14.42},
+    {"label": "Federal minimum", "value": 7.25}
+  ]
+}
