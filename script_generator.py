@@ -83,9 +83,14 @@ Hard rules (validated):
 1. SCRIPT LENGTH: 110-140 words, must end with a period or question mark. Shorter is rejected.
 
 2. HOOK: The first sentence MUST be a punchy question or 1-word exclamation, \
-5 words or fewer. Good: "A kangaroo did WHAT?", "Why fire 30,000 people?", \
-"This shouldn't be legal.". Bad: "Apple just unveiled a new...", "X is dying." \
-(too long, declarative). The hook is what stops the swipe.
+5 words or fewer, that OPENS A CURIOSITY GAP — it makes the viewer NEED the \
+answer, it does not announce the topic. Name the specific weird thing and \
+imply a contradiction or stakes. Lead with a number when the story has one \
+(numbers stop the swipe). Good: "A kangaroo did WHAT?", "8 goats, one county?", \
+"Too many koalas?", "Why fire 30,000 people?", "An octopus used a mirror?". \
+Bad (announces, no gap): "Apple just unveiled a new...", "Goats got loose.", \
+"A storm is coming." The hook is what stops the swipe AND it is burned huge \
+on the cover frame, so it must read as a tease, not a headline.
 
 3. KICKER: The final sentence MUST be a question the viewer can answer in ONE \
 WORD or comma-pick (yes/no, A/B, single noun). Specific to the story, not \

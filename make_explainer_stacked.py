@@ -2290,14 +2290,42 @@ def build_video(
             if MASCOT_DIR.exists():
                 print(f"      [mascot] no idle.png in {MASCOT_DIR} — skipped")
 
+        # Hook cover frame: a 1080x1920 first frame that stops the swipe and
+        # seeds the in-feed preview. Overlaid on the opening ~1.3s, then
+        # crossfades out to reveal the video (audio/TTS stays in sync — the
+        # spoken hook plays under the cover). Best-effort: skipped if it
+        # can't be built, leaving the original render untouched.
+        cover_path = None
+        try:
+            import gemini_images
+            hook_txt = re.split(r"[.!?]", script.strip(), maxsplit=1)[0].strip()
+            lead_img = next((s.image for s in shots
+                             if getattr(s, "image", None)), None)
+            cover_path = gemini_images.build_cover_frame(
+                workdir / "cover.jpg", title=hook_txt, hook=hook_txt,
+                bg_image=lead_img)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [cover] skipped: {type(e).__name__}: {e}")
+        cover_idx = 3 + len(mascot_inputs) // 2
+        COVER_DUR = 1.3
+        caps_out = "vbody" if cover_path else "v"
+
         graph = (
             f"[0:v]format=yuv420p[topf];"
             f"[1:v]format=yuv420p[botf];"
             f"[topf][botf]vstack=inputs=2[stacked];"
             f"{mascot_stage}"
             f"[{stage_in}]ass='{_esc(punches_path)}'[withpunch];"
-            f"[withpunch]ass='{_esc(caps_path)}'[v]"
+            f"[withpunch]ass='{_esc(caps_path)}'[{caps_out}]"
         )
+        if cover_path:
+            graph += (
+                f";[{cover_idx}:v]scale=1080:1920,setsar=1,format=rgba,"
+                f"fade=t=out:st={COVER_DUR - 0.35:.2f}:d=0.35:alpha=1,"
+                f"setpts=PTS-STARTPTS[cov];"
+                f"[vbody][cov]overlay=eof_action=pass:"
+                f"enable='lt(t,{COVER_DUR})'[v]"
+            )
 
         run([
             "ffmpeg", "-y", "-loglevel", "error",
@@ -2305,6 +2333,8 @@ def build_video(
             "-i", str(bottom),
             "-i", str(mixed_audio),
             *mascot_inputs,
+            *(["-loop", "1", "-t", f"{COVER_DUR}", "-i", str(cover_path)]
+              if cover_path else []),
             "-filter_complex", graph,
             "-map", "[v]", "-map", "2:a",
             "-t", f"{total_dur:.3f}",
