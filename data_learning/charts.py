@@ -521,6 +521,30 @@ def _norm_region(label: str) -> str:
     return _GEO_ALIAS.get(label.strip(), label.strip())
 
 
+def _region_names(scope: str) -> set:
+    key = f"_names_{scope}"
+    if key not in _GEO_CACHE:
+        _GEO_CACHE[key] = {f.get("properties", {}).get("name", "")
+                           for f in _load_geojson(scope)["features"]}
+    return _GEO_CACHE[key]
+
+
+def geo_scope_for(labels) -> str | None:
+    """Return "geo_us" / "geo_world" if a segment's region labels are mostly
+    US states / world countries (so it should render as a choropleth), else
+    None. Non-region labels (e.g. "National avg") just dilute the ratio."""
+    norm = [_norm_region(l) for l in labels if l and l.strip()]
+    if len(norm) < 3:
+        return None
+    us_r = sum(1 for l in norm if l in _region_names("us")) / len(norm)
+    world_r = sum(1 for l in norm if l in _region_names("world")) / len(norm)
+    if us_r >= 0.6 and us_r >= world_r:
+        return "geo_us"
+    if world_r >= 0.6:
+        return "geo_world"
+    return None
+
+
 def _exterior_rings(geom):
     """Yield each polygon's exterior ring (holes ignored — fine at this scale)."""
     t, c = geom.get("type"), geom.get("coordinates") or []

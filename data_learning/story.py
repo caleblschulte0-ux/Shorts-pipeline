@@ -186,7 +186,45 @@ def _build_insight(seg_cfg: dict):
                          ascending=bool(seg_cfg.get("ascending", False)))
     if seg_cfg.get("topic"):
         ins.topic = seg_cfg["topic"]
+    # Suggest a creative viz (decided per-video in _finalize_viz, not here, so we
+    # can cap maps and guarantee variety). An explicit `"viz"` hint wins;
+    # "bars"/"trend"/"default" opt out; no hint => auto-detect geographic data.
+    viz = (seg_cfg.get("viz") or "").strip().lower()
+    if viz in ("geo_us", "geo_world", "bignum", "pictograph"):
+        ins.suggested_viz = viz
+    elif viz in ("bars", "rank", "trend", "default", "none"):
+        ins.suggested_viz = None
+    else:  # "" / "auto"
+        ins.suggested_viz = charts.geo_scope_for([p.label for p in ins.items])
     return ins
+
+
+def _spread(ins) -> float:
+    """max/min value ratio — how dramatic (map-worthy / shock-worthy) a segment
+    is. Used to pick which segment gets the one map / the big-number scene."""
+    vals = [p.value for p in ins.items if p.value]
+    return (max(vals) / min(vals)) if vals and min(vals) > 0 else 0.0
+
+
+_CREATIVE_KINDS = {"geo_us", "geo_world", "share", "bignum", "pictograph"}
+
+
+def _finalize_viz(inss: list) -> None:
+    """Decide each segment's final `kind` at the VIDEO level: honor explicit
+    bignum/pictograph hints, allow at most ONE choropleth per video (the most
+    dramatic geographic segment — the rest fall back to bars for variety), and
+    guarantee at least one creative viz per video (promote the most dramatic
+    segment to a full-frame big-number scene if nothing else qualifies)."""
+    for ins in inss:
+        if getattr(ins, "suggested_viz", None) in ("bignum", "pictograph"):
+            ins.kind = ins.suggested_viz
+    geo = [ins for ins in inss
+           if getattr(ins, "suggested_viz", None) in ("geo_us", "geo_world")]
+    if geo:
+        best = max(geo, key=_spread)
+        best.kind = best.suggested_viz                 # others stay natural
+    if not any(ins.kind in _CREATIVE_KINDS for ins in inss):
+        max(inss, key=_spread).kind = "bignum"         # creative guarantee
 
 
 def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
@@ -195,8 +233,11 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     chart_dir = workdir / "charts"
     segments: list[Segment] = []
     sources: list[str] = []
-    for i, seg_cfg in enumerate(story_cfg["segments"]):
-        ins = _build_insight(seg_cfg)
+    # Build every insight first, then pick viz at the video level (cap maps,
+    # guarantee one creative viz), then render.
+    inss = [_build_insight(seg_cfg) for seg_cfg in story_cfg["segments"]]
+    _finalize_viz(inss)
+    for i, (seg_cfg, ins) in enumerate(zip(story_cfg["segments"], inss)):
         # A short "build" frame sequence (bars grow / line draws on) ending on
         # the exact static chart — the renderer plays it then holds the last
         # frame. Anchors come from the final frame so the rings still land.
