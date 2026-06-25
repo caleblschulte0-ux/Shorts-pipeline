@@ -59,6 +59,39 @@ def _diag_once():
         print(f"[scene][diag] probe error: {e}", flush=True)
 
 
+def _gen_pollinations(subject: str, dest: Path, context: str = "") -> Path | None:
+    """Generate a bold-cinematic image via Pollinations.ai — FREE, no API key,
+    just an HTTP GET. Deterministic per prompt (seeded) so re-renders are stable.
+    Best-effort: any failure returns None and the caller falls back."""
+    import hashlib
+    import ssl
+    import urllib.parse
+    import urllib.request
+    try:
+        prompt = _prompt(subject, context)
+        seed = int(hashlib.sha1(prompt.encode()).hexdigest()[:8], 16)
+        url = ("https://image.pollinations.ai/prompt/"
+               + urllib.parse.quote(prompt)
+               + f"?width=1080&height=1920&nologo=true&model=flux&seed={seed}")
+        ctx = ssl.create_default_context()
+        req = urllib.request.Request(url, headers={"User-Agent": "shorts-pipeline/1.0"})
+        with urllib.request.urlopen(req, timeout=90, context=ctx) as r:
+            data = r.read()
+        if len(data) < 4096:
+            return None
+        dest.write_bytes(data)
+        from PIL import Image
+        with Image.open(dest) as im:
+            if min(im.size) < 400:
+                dest.unlink(missing_ok=True)
+                return None
+        print(f"[scene] pollinations image OK -> {dest.name}", flush=True)
+        return dest
+    except Exception as e:  # noqa: BLE001 — never block a render
+        print(f"[scene] pollinations skipped: {e}", flush=True)
+        return None
+
+
 def _gen_ai(subject: str, dest: Path, context: str = "") -> Path | None:
     try:
         import gemini_images
@@ -85,6 +118,10 @@ def scene_image(subject: str, slug: str, tag: str, *, context: str = "",
     if dest.exists() and dest.stat().st_size > 2048:
         return dest
     if (subject or "").strip():
+        # Free AI first (Pollinations), then paid Gemini if ever enabled.
+        poll = _gen_pollinations(subject, dest, context)
+        if poll:
+            return poll
         ai = _gen_ai(subject, dest, context)
         if ai:
             return ai
