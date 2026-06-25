@@ -927,10 +927,15 @@ def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
         if best_score > 0:
             chosen = best
     if chosen is None:
-        # Nothing in the pool scored against the shot tokens. Prefer
-        # the just-found supplementary clip (queried specifically for
-        # this shot) over the least-used round-robin pick.
-        chosen = sup or min(pool, key=lambda c: c["uses"])
+        # RELEVANCE FLOOR: nothing in the pool genuinely matched this shot's
+        # tokens. Use ONLY the per-shot supplementary clip (queried for this
+        # shot, so on-topic) — NEVER fall back to an off-topic round-robin
+        # pick. That round-robin was the "constantly showing off-topic
+        # footage" bug. Returning None lets the caller use an on-topic still
+        # or on-topic stock instead of a wrong video.
+        if sup is None:
+            return None
+        chosen = sup
 
     # Seek policy: prefer a juicy (high-motion) start. Successive uses
     # of the same clip cycle through its juicy list so two shots never
@@ -940,8 +945,11 @@ def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
         starts = chosen["juicy"]
         seek = starts[chosen["uses"] % len(starts)]
     else:
-        seek = min(15.0 + chosen["uses"] * 12.0,
-                   max(0.0, chosen["duration"] - 5.0))
+        # No motion scan -> stay near the downloaded head. Range pulls only
+        # the first MAX_BYTES, so deep seeks can land past decodable data and
+        # render blank/cut. Small head-safe offsets instead of +15s/use.
+        seek = min(1.0 + chosen["uses"] * 2.5,
+                   max(0.0, chosen["duration"] - 4.0))
     chosen["uses"] += 1
     out = dict(chosen)
     out["seek"] = seek
@@ -1358,7 +1366,18 @@ def build_timed_top(
             seen.add(p)
             return True
 
-        # own/held still leads (skipped automatically if already shown),
+        # ON-TOPIC VIDEO LEADS (operator ask: ~65-70% video). _pick_pool_clip
+        # now returns None unless the clip genuinely matches this shot, so we
+        # only ever lead with relevant footage — and when there's no on-topic
+        # video, we fall straight to the on-topic still below (image-first
+        # fallback, never off-topic video). Each shot's leading sub-cut is
+        # thus video whenever relevant footage exists.
+        if topic_video_pool:
+            try:
+                _add_cand(_pick_pool_clip(topic_video_pool, shot))
+            except Exception as e:  # noqa: BLE001
+                print(f"      [topic_video pick failed] {shot.phrase[:30]!r}: {e}")
+        # own/held still next (skipped automatically if already shown),
         # then the real story photos the funnel found.
         _add_cand(image_clip)
         for fx in funnel_extras:
