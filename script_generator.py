@@ -181,10 +181,14 @@ def _call_groq(system: str, user: str, model: str = DEFAULT_GROQ_MODEL) -> str:
     }).encode()
 
     last_err: Exception | None = None
-    # Backoff schedule: respect Retry-After when present, otherwise
-    # exponential with jitter. 5 attempts ~= up to ~60s of waiting,
-    # enough for TPM windows to roll over.
-    for attempt in range(5):
+    # Backoff schedule: respect Retry-After when present, otherwise short
+    # exponential. Kept SHORT by default (2 tries) so callers that HAVE a
+    # fallback — entity_media drops to its regex visual extractor — bail to
+    # it in seconds during a 429 storm instead of stalling ~90s per call
+    # (which blew daily renders past the job timeout). Tune via
+    # GROQ_MAX_RETRIES; raise it for the Groq script-gen fallback path.
+    _retries = max(1, int(os.environ.get("GROQ_MAX_RETRIES", "2")))
+    for attempt in range(_retries):
         req = urllib.request.Request(
             GROQ_API,
             data=body,
@@ -209,9 +213,9 @@ def _call_groq(system: str, user: str, model: str = DEFAULT_GROQ_MODEL) -> str:
                 wait = float(retry_after) if retry_after else (2 ** attempt) * 4
             except ValueError:
                 wait = (2 ** attempt) * 4
-            wait = min(wait, 30)
-            print(f"[groq] 429 rate-limited, sleeping {wait:.1f}s (attempt {attempt+1}/5)",
-                  file=sys.stderr)
+            wait = min(wait, 12)
+            print(f"[groq] 429 rate-limited, sleeping {wait:.1f}s "
+                  f"(attempt {attempt+1}/{_retries})", file=sys.stderr)
             _time.sleep(wait)
     raise last_err if last_err else RuntimeError("groq retry exhausted")
 
