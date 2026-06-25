@@ -11,6 +11,7 @@ pipeline still produces a video.
 from __future__ import annotations
 
 import math
+import re
 from pathlib import Path
 
 from .insights import Insight
@@ -266,8 +267,11 @@ def _card_base():
 
 
 def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
-    # Auto-shrink long titles so they never clip the right edge of the card.
-    size = 42 if len(title) <= 26 else 36 if len(title) <= 34 else 30
+    # Drop a trailing unit parenthetical ("($)", "(%)", "($ billions)") and
+    # auto-shrink so long titles never clip the right edge of the card.
+    title = re.sub(r"\s*\([^)]*\)\s*$", "", title).strip()
+    size = (42 if len(title) <= 24 else 36 if len(title) <= 31
+            else 30 if len(title) <= 40 else 26)
     fig.text(0.085, 0.91, title, color=TEXT, fontsize=size, fontweight="bold",
              ha="left", va="top")
     if subtitle:
@@ -714,12 +718,137 @@ def _story_bignum(fig, plt, insight: Insight, reveal: float = 1.0):
     return ax, [(star.value, "art", big, None)]
 
 
+# Major US metros -> (lon, lat) for pin maps. Matched as substrings of a label
+# ("Manhattan, NY" -> new york). Non-city labels (National avg, Rural Midwest)
+# simply don't match and are skipped.
+METRO_COORDS: dict[str, tuple[float, float]] = {
+    "new york": (-73.97, 40.78), "manhattan": (-73.97, 40.78),
+    "los angeles": (-118.24, 34.05), "san francisco": (-122.42, 37.77),
+    "chicago": (-87.63, 41.88), "dallas": (-96.80, 32.78),
+    "houston": (-95.37, 29.76), "miami": (-80.19, 25.76),
+    "boston": (-71.06, 42.36), "seattle": (-122.33, 47.61),
+    "atlanta": (-84.39, 33.75), "denver": (-104.99, 39.74),
+    "phoenix": (-112.07, 33.45), "philadelphia": (-75.16, 39.95),
+    "washington": (-77.04, 38.91), "austin": (-97.74, 30.27),
+    "las vegas": (-115.14, 36.17), "nashville": (-86.78, 36.16),
+    "portland": (-122.68, 45.52), "detroit": (-83.05, 42.33),
+    "minneapolis": (-93.27, 44.98), "san diego": (-117.16, 32.72),
+    "tampa": (-82.46, 27.95), "orlando": (-81.38, 28.54),
+    "new orleans": (-90.07, 29.95),
+}
+
+
+def _metro_coord(label: str):
+    s = (label or "").lower()
+    for name, ll in METRO_COORDS.items():
+        if name in s:
+            return ll
+    return None
+
+
+def place_scope_for(labels) -> str | None:
+    """Return the kind of MAP a set of place labels needs: 'geo_us' (states),
+    'geo_world' (countries) or 'geo_city' (US metros). None if not geographic."""
+    labs = [l for l in labels if l and l.strip()]
+    if len(labs) < 2:
+        return None
+    us_r = sum(1 for l in labs if _norm_region(l) in _region_names("us")) / len(labs)
+    world_r = sum(1 for l in labs if _norm_region(l) in _region_names("world")) / len(labs)
+    city_r = sum(1 for l in labs if _metro_coord(l)) / len(labs)
+    if us_r >= 0.6 and us_r >= world_r:
+        return "geo_us"
+    if world_r >= 0.6:
+        return "geo_world"
+    if city_r >= 0.4:
+        return "geo_city"
+    return None
+
+
+def _shadow():
+    import matplotlib.patheffects as pe
+    return [pe.withStroke(linewidth=6, foreground="#05080FCC")]
+
+
+def _story_geo_city(fig, plt, insight: Insight, subtitle: str, reveal: float):
+    """US map with a pin per metro, sized + colored by value. For 'by metro'
+    data where the labels are cities, not states."""
+    import math as _m
+    from matplotlib.patches import Polygon as _Poly
+    from matplotlib.colors import Normalize, LinearSegmentedColormap, to_rgb
+    gj = _load_geojson("us")
+    pts = [(p, _metro_coord(p.label)) for p in insight.items]
+    pts = [(p, c) for p, c in pts if c]
+    vals = [p.value for p, _ in pts] or [0.0, 1.0]
+    vmin, vmax = min(vals), max(vals)
+    norm = Normalize(vmin, vmax if vmax > vmin else vmin + 1.0)
+    cmap = LinearSegmentedColormap.from_list("house", [ACCENT, HIGHLIGHT, WARN])
+    t = max(0.0, min(1.0, reveal))
+    ax = fig.add_axes([0.04, 0.13, 0.92, 0.64])
+    ax.set_axis_off(); ax.set_xlim(-125, -66); ax.set_ylim(24, 50)
+    ax.set_aspect(1.0 / _m.cos(_m.radians(37.0)))
+    base = to_rgb(BAR_BASE)
+    for feat in gj["features"]:
+        for ring in _exterior_rings(feat.get("geometry", {})):
+            ax.add_patch(_Poly(ring, closed=True, facecolor=base,
+                               edgecolor=CARD_EDGE, linewidth=0.4, zorder=2))
+    specs = []
+    for p, (lon, lat) in sorted(pts, key=lambda x: x[0].value):
+        col = cmap(norm(p.value))
+        r = 120 + 460 * (norm(p.value)) * t
+        ax.scatter([lon], [lat], s=r, color=col, edgecolors="white",
+                   linewidths=1.5, zorder=4, alpha=0.95)
+        txt = ax.text(lon, lat + 1.4, f"{p.label.split(',')[0]}  {_vfmt(p.value)}",
+                      ha="center", va="bottom", fontsize=21, color=TEXT,
+                      fontweight="bold", zorder=5, alpha=_lblalpha(reveal),
+                      path_effects=_shadow())
+        specs.append((p.value, "art", txt, None))
+    return ax, specs
+
+
+def _story_callouts(fig, plt, insight: Insight, subtitle: str, reveal: float):
+    """Bold ranked number callouts — label + big value, top item emphasized.
+    No dots, no bars, no icons; transparent so a scene image shows behind it."""
+    items = _ordered_items(insight)[:4]
+    n = max(1, len(items))
+    ax = fig.add_axes([0.06, 0.12, 0.88, 0.66])
+    ax.set_axis_off(); ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+    a = _lblalpha(reveal)
+    specs = []
+    for i, p in enumerate(items):
+        y = 0.9 - i * (0.84 / n)
+        if insight.baseline and p.label == insight.baseline.label:
+            color = WARN
+        elif p.label == insight.highlight_label:
+            color = HIGHLIGHT
+        else:
+            color = ACCENT
+        ax.text(0.04, y + 0.045, p.label, ha="left", va="center",
+                fontsize=30 if i == 0 else 26, color=TEXT, fontweight="bold",
+                path_effects=_shadow(), zorder=4)
+        big = ax.text(0.04, y - 0.05, _vfmt(p.value), ha="left", va="center",
+                      fontsize=78 if i == 0 else 56, color=color,
+                      fontweight="bold", alpha=a, path_effects=_shadow(), zorder=5)
+        specs.append((p.value, "art", big, None))
+    return ax, specs
+
+
 def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     """Draw the heading + the right chart kind (at the given build fraction)
     + footer. reveal=1.0 is the final, static chart."""
     star = insight.items[0]
-    if insight.kind == "bignum":
-        ax, specs = _story_bignum(fig, plt, insight, reveal)
+    if insight.kind == "geo_city":
+        low = "lowest" in insight.main_insight.lower()
+        _heading(fig, insight.topic, f"{star.label.split(',')[0]} "
+                 f"{'sits lowest' if low else 'leads the map'}")
+        ax, specs = _story_geo_city(fig, plt, insight, "", reveal)
+        _footer(fig, insight)
+        return ax, specs
+    if insight.kind in ("callouts", "pictograph", "bignum"):
+        # callouts is the creative replacement for dot/bar/bare-number viz.
+        low = "lowest" in insight.main_insight.lower()
+        _heading(fig, insight.topic, f"{star.label} "
+                 f"{'sits lowest' if low else 'tops the list'}")
+        ax, specs = _story_callouts(fig, plt, insight, "", reveal)
         _footer(fig, insight)
         return ax, specs
     if insight.kind == "comparison":

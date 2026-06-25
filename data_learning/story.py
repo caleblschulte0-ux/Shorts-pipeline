@@ -186,16 +186,14 @@ def _build_insight(seg_cfg: dict):
                          ascending=bool(seg_cfg.get("ascending", False)))
     if seg_cfg.get("topic"):
         ins.topic = seg_cfg["topic"]
-    # Suggest a creative viz (decided per-video in _finalize_viz, not here, so we
-    # can cap maps and guarantee variety). An explicit `"viz"` hint wins;
-    # "bars"/"trend"/"default" opt out; no hint => auto-detect geographic data.
+    # Suggest a viz (final kind decided per-video in _finalize_viz). An explicit
+    # `"viz"` hint wins; otherwise auto-detect whether the labels are PLACES
+    # (states/countries/metros -> a map). Non-place data is decided later.
     viz = (seg_cfg.get("viz") or "").strip().lower()
-    if viz in ("geo_us", "geo_world", "bignum", "pictograph"):
+    if viz in ("geo_us", "geo_world", "geo_city", "callouts", "trend"):
         ins.suggested_viz = viz
-    elif viz in ("bars", "rank", "trend", "default", "none"):
-        ins.suggested_viz = None
-    else:  # "" / "auto"
-        ins.suggested_viz = charts.geo_scope_for([p.label for p in ins.items])
+    else:
+        ins.suggested_viz = charts.place_scope_for([p.label for p in ins.items])
     return ins
 
 
@@ -206,34 +204,23 @@ def _spread(ins) -> float:
     return (max(vals) / min(vals)) if vals and min(vals) > 0 else 0.0
 
 
-_CREATIVE_KINDS = {"geo_us", "geo_world", "share", "bignum", "pictograph"}
-
-
 def _finalize_viz(inss: list) -> None:
-    """Decide each segment's final `kind` at the VIDEO level — CREATIVE-FIRST:
-    only use a plain chart when we have to (time-series trends). Order:
-      1. explicit bignum/pictograph hints,
-      2. at most ONE choropleth per video (the most dramatic geographic segment;
-         extra geo segments fall back to pictograph, not bars),
-      3. every remaining ranking/comparison/outlier -> pictograph (never a bar),
-      4. trends stay as a styled line (the only allowed chart); share stays a
-         donut. Plain bars are a last resort that should now almost never appear.
-    A final guard guarantees >=1 creative viz per video."""
+    """Decide each segment's final `kind`. Rules (operator-mandated):
+      * ANY place data -> a MAP, every time (states/countries -> choropleth,
+        cities/metros -> pinned map). No cap.
+      * time-series trends -> the styled line (the only 'chart' we keep).
+      * everything else -> bold number CALLOUTS over the scene image.
+    No dots, no icon-tiling, no bars, no bare numbers."""
     for ins in inss:
-        if getattr(ins, "suggested_viz", None) in ("bignum", "pictograph"):
-            ins.kind = ins.suggested_viz
-    geo = [ins for ins in inss
-           if getattr(ins, "suggested_viz", None) in ("geo_us", "geo_world")]
-    if geo:
-        best = max(geo, key=_spread)
-        best.kind = best.suggested_viz
-    # Creative-first: any segment still on a plain ranking chart becomes a
-    # pictograph. Trends (line) and share (donut) are left as-is.
-    for ins in inss:
-        if ins.kind in ("rank", "comparison", "outlier"):
-            ins.kind = "pictograph"
-    if not any(ins.kind in _CREATIVE_KINDS for ins in inss):
-        max(inss, key=_spread).kind = "pictograph"     # creative guarantee
+        sv = getattr(ins, "suggested_viz", None)
+        if sv in ("geo_us", "geo_world", "geo_city"):
+            ins.kind = sv                       # place -> map, always
+        elif sv == "callouts":
+            ins.kind = "callouts"
+        elif sv == "trend" or ins.kind == "trend":
+            ins.kind = "trend"                  # time-series keeps the line
+        else:
+            ins.kind = "callouts"               # rank/comparison/share/outlier
 
 
 def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
