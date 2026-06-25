@@ -106,9 +106,11 @@ Public API:
 """
 from __future__ import annotations
 
+import hashlib
 import math
 import random
 import subprocess
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -168,6 +170,48 @@ def pick_theme(title: str = "", script: str = "",
         if any(w in blob for w in words):
             return theme
     return "plinko"
+
+
+# Themes where the rising-water "end goal" overlay actually reads as
+# intentional (a flood / storm / sea). EVERY other theme carries its own
+# native motion and goal, so burning water onto it is just a confusing
+# blue band climbing the screen — that was the "water rising for no
+# reason" bug. Gate apply_goal_water on this set.
+WATER_THEMES = frozenset({"rain", "ocean"})
+
+
+def theme_uses_water(theme: str | None) -> bool:
+    """True only for themes where the rising-water overlay belongs."""
+    return bool(theme) and theme in WATER_THEMES
+
+
+# ── Per-story reskin ────────────────────────────────────────────────────
+# Each story gets a deterministic color grade applied to the WHOLE bottom
+# (background + characters), so the same base theme never looks identical
+# twice. Cheap per-frame numpy pass — no per-theme code changes needed.
+@dataclass
+class ThemeConfig:
+    seed: int | None = None
+    tint: tuple[float, float, float] = (1.0, 1.0, 1.0)  # per-channel gain
+    saturation: float = 1.0                              # around luma
+
+
+def config_from_story(key: str, theme: str | None = None) -> ThemeConfig:
+    """Deterministically derive a reskin (seed + gentle color grade) from a
+    story key (slug/title). Bounded so readability never breaks; water themes
+    stay close to blue so rain/ocean still read as water."""
+    h = hashlib.sha1((key or "x").encode("utf-8")).digest()
+    seed = int.from_bytes(h[:4], "big")
+    # Three bounded channel gains in ~[0.78, 1.22], plus a saturation nudge.
+    def gain(b: int) -> float:
+        return round(0.78 + (b / 255.0) * 0.44, 3)
+    tint = (gain(h[4]), gain(h[5]), gain(h[6]))
+    sat = round(0.85 + (h[7] / 255.0) * 0.45, 3)  # 0.85..1.30
+    if theme in WATER_THEMES:
+        # Keep water blue-dominant: damp red/green drift, keep blue strong.
+        tint = (min(tint[0], 1.05), min(tint[1], 1.08), max(tint[2], 1.0))
+        sat = min(sat, 1.15)
+    return ThemeConfig(seed=seed, tint=tint, saturation=sat)
 
 
 # ---------- shared helpers ----------
@@ -304,6 +348,30 @@ class _Renderer:
         self.trail = np.zeros((H, W, 3), dtype=np.float32)
         self._last_frame: np.ndarray | None = None
         self._hang_frame: np.ndarray | None = None
+        self.config: "ThemeConfig | None" = None
+        self._tint: np.ndarray | None = None
+
+    def set_config(self, config: "ThemeConfig | None") -> None:
+        """Attach a per-story reskin. Precomputes the grade vector so the
+        per-frame pass is a couple of cheap numpy ops."""
+        self.config = config
+        if config is not None:
+            self._tint = np.asarray(config.tint, dtype=np.float32)
+
+    def _apply_grade(self, frame: np.ndarray) -> np.ndarray:
+        """Per-story color grade (saturation + per-channel tint) over the
+        whole bottom panel. No-op when no config is attached."""
+        cfg = self.config
+        if cfg is None:
+            return frame
+        f = frame.astype(np.float32)
+        if cfg.saturation != 1.0:
+            luma = (f * np.array([0.299, 0.587, 0.114], np.float32)).sum(
+                axis=2, keepdims=True)
+            f = luma + (f - luma) * cfg.saturation
+        if self._tint is not None:
+            f *= self._tint
+        return np.clip(f, 0, 255).astype(np.uint8)
 
     # -- escalation helpers -------------------------------------------
     def _phase(self, t: float) -> float:
@@ -558,10 +626,11 @@ class _Renderer:
         try:
             for i in range(n):
                 frame = self.draw(i / FPS, i)
-                # The rising-water end-goal is now applied as a universal
-                # post-process on the FINAL bottom (themed OR gameplay) in
-                # build_video via apply_goal_water — not here — so every
-                # video gets it, not just procedural themes.
+                # Per-story reskin (color grade); no-op without a config.
+                frame = self._apply_grade(frame)
+                # The rising-water end-goal is applied as a post-process on
+                # the FINAL bottom in build_video (apply_goal_water) — and
+                # only for water themes — not here.
                 proc.stdin.write(frame.tobytes())
         finally:
             proc.stdin.close()
@@ -3411,13 +3480,19 @@ _THEME_CLASSES = {
 
 
 def render(theme: str, duration: float, out_path: Path,
-           seed: int | None = None) -> Path:
+           seed: int | None = None, config: "ThemeConfig | None" = None) -> Path:
     """Render `duration` seconds of the named theme to `out_path`
-    (1080x960@30, h264, silent). Unknown themes fall back to plinko."""
+    (1080x960@30, h264, silent). Unknown themes fall back to plinko.
+    An optional ThemeConfig applies a per-story reskin (color grade)."""
     cls = _THEME_CLASSES.get(theme, _Plinko)
+    if seed is None and config is not None:
+        seed = config.seed
     print(f"      [themed_bottom] generating {theme!r} "
-          f"({duration:.1f}s procedural)")
-    return cls(seed).render(duration, out_path)
+          f"({duration:.1f}s procedural){' +reskin' if config else ''}")
+    inst = cls(seed)
+    if config is not None:
+        inst.set_config(config)
+    return inst.render(duration, out_path)
 
 
 if __name__ == "__main__":
