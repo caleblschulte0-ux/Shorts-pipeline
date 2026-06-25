@@ -247,15 +247,22 @@ def _draw_trend_state(ax, insight: Insight, k: int):
 
 
 def _card_base():
-    # Transparent canvas: the renderer now puts a full-frame cinematic scene
-    # image behind every segment, so the viz composites ON the scene (no dark
-    # floating card). Text/shapes carry their own shadows for legibility.
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch
 
     fig = plt.figure(figsize=(SERIES_W, SERIES_H), dpi=SERIES_DPI)
     fig.patch.set_alpha(0.0)
+    bg = fig.add_axes([0, 0, 1, 1])
+    bg.set_axis_off()
+    bg.set_zorder(0)
+    card = FancyBboxPatch(
+        (0.02, 0.02), 0.96, 0.96,
+        boxstyle="round,pad=0.0,rounding_size=0.045",
+        transform=fig.transFigure, facecolor=CARD, edgecolor=CARD_EDGE,
+        linewidth=2, alpha=0.95)
+    bg.add_patch(card)
     return fig, plt
 
 
@@ -266,10 +273,10 @@ def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
     size = (42 if len(title) <= 24 else 36 if len(title) <= 31
             else 30 if len(title) <= 40 else 26)
     fig.text(0.085, 0.91, title, color=TEXT, fontsize=size, fontweight="bold",
-             ha="left", va="top", path_effects=_shadow())
+             ha="left", va="top")
     if subtitle:
         fig.text(0.085, 0.845, subtitle.upper(), color=accent, fontsize=22,
-                 fontweight="bold", ha="left", va="top", path_effects=_shadow())
+                 fontweight="bold", ha="left", va="top")
 
 
 def _footer(fig, insight: Insight):
