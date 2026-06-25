@@ -964,8 +964,8 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
         # (best-effort; abstract topics return None and keep the designed bg).
         hook_img = None
         try:
-            from data_learning import hook_media
-            hook_img = hook_media.fetch_hook_image(st)
+            from data_learning import scene_media
+            hook_img = scene_media.fetch_hook_image(st)
         except Exception as e:  # noqa: BLE001 — never block a render on this
             print(f"[studio] hook image skipped: {e}", flush=True)
 
