@@ -190,7 +190,7 @@ def _build_insight(seg_cfg: dict):
     # `"viz"` hint wins; otherwise auto-detect whether the labels are PLACES
     # (states/countries/metros -> a map). Non-place data is decided later.
     viz = (seg_cfg.get("viz") or "").strip().lower()
-    if viz in ("geo_us", "geo_world", "geo_city", "callouts", "trend"):
+    if viz in ("geo_us", "geo_world", "geo_city", "callouts", "diorama", "trend"):
         ins.suggested_viz = viz
     else:
         ins.suggested_viz = charts.place_scope_for([p.label for p in ins.items])
@@ -215,12 +215,15 @@ def _finalize_viz(inss: list) -> None:
         sv = getattr(ins, "suggested_viz", None)
         if sv in ("geo_us", "geo_world", "geo_city"):
             ins.kind = sv                       # place -> map, always
-        elif sv == "callouts":
-            ins.kind = "callouts"
+        elif sv in ("callouts", "diorama"):
+            ins.kind = sv
         elif sv == "trend" or ins.kind == "trend":
             ins.kind = "trend"                  # time-series keeps the line
         else:
-            ins.kind = "callouts"               # rank/comparison/share/outlier
+            # rank/comparison/share/outlier -> illustrated proportional SCENE
+            # (objects sized by value, numbers above). Falls back to callouts
+            # automatically if image generation is unavailable.
+            ins.kind = "diorama"
 
 
 def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:

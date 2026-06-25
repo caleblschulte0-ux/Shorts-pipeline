@@ -126,6 +126,16 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt -r data_learning/requirements.txt
+          # rembg: reliable background removal for the illustrated 'diorama'
+          # cut-outs (onnxruntime is already present for Kokoro).
+          pip install --quiet rembg || echo "rembg install failed (chroma fallback)"
+
+      - name: Cache rembg model (~170MB)
+        if: inputs.mode != 'verify'
+        uses: actions/cache@v4
+        with:
+          path: ~/.u2net
+          key: rembg-u2net-v1
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro

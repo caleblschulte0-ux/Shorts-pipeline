@@ -150,6 +150,136 @@ def scene_image(subject: str, slug: str, tag: str, *, context: str = "",
     return None
 
 
+CUTOUT_DIR = REPO / "state" / "cutouts"
+
+
+def _pollinations_raw(prompt: str, seed: int, size: int = 768):
+    """Return a PIL RGB image from Pollinations, or None."""
+    import io
+    import ssl
+    import urllib.parse
+    import urllib.request
+    try:
+        url = ("https://image.pollinations.ai/prompt/"
+               + urllib.parse.quote(prompt)
+               + f"?width={size}&height={size}&nologo=true&model=flux&seed={seed}")
+        ctx = ssl.create_default_context()
+        req = urllib.request.Request(url, headers={"User-Agent": "shorts-pipeline/1.0"})
+        with urllib.request.urlopen(req, timeout=90, context=ctx) as r:
+            data = r.read()
+        if len(data) < 4096:
+            return None
+        from PIL import Image
+        return Image.open(io.BytesIO(data)).convert("RGB")
+    except Exception as e:  # noqa: BLE001
+        print(f"[scene] cutout gen skipped: {e}", flush=True)
+        return None
+
+
+def _chroma_cut(img):
+    """Green-screen key (numpy): make the chroma-green background transparent,
+    despill, crop to the subject. Returns an RGBA PIL image or None."""
+    try:
+        import numpy as np
+        from PIL import Image
+        a = np.asarray(img.convert("RGB")).astype(np.int16)
+        r, g, b = a[..., 0], a[..., 1], a[..., 2]
+        green = (g > 90) & (g > r * 1.2) & (g > b * 1.2)
+        alpha = np.where(green, 0, 255).astype(np.uint8)
+        rgb = a.astype(np.uint8).copy()
+        # despill: pull green down toward the red/blue average on kept pixels
+        keep = ~green
+        avg = ((r + b) // 2).astype(np.uint8)
+        gg = rgb[..., 1]
+        spill = keep & (gg > avg)
+        gg[spill] = avg[spill]
+        rgb[..., 1] = gg
+        out = np.dstack([rgb, alpha])
+        im = Image.fromarray(out, "RGBA")
+        bbox = im.getbbox()
+        if not bbox:
+            return None
+        im = im.crop(bbox)
+        if min(im.size) < 80:           # keyed away almost everything -> unusable
+            return None
+        return im
+    except Exception as e:  # noqa: BLE001
+        print(f"[scene] chroma key failed: {e}", flush=True)
+        return None
+
+
+def illustration_subjects(labels, context: str = "") -> dict:
+    """Turn terse data labels ('Venue', 'Band/DJ') into concrete visual subjects
+    ('a grand wedding venue building') via the LLM, so each cut-out illustrates
+    the right thing. Falls back to 'label + context' if the LLM is unavailable."""
+    labels = list(labels)
+    out = {l: f"{l} {context}".strip() for l in labels}
+    try:
+        import json
+        from script_generator import _call_llm, _strip_fence
+        sysp = ("You turn data labels into concrete, literal single-subject "
+                "visual descriptions for standalone illustrations. JSON only.")
+        user = (f"Context: {context}. For each label give a vivid, concrete "
+                "4-7 word description of ONE object or simple scene that best "
+                "represents it as an isolated illustration (no text, no people "
+                "unless essential). Labels: " + json.dumps(labels)
+                + ". Return a JSON object mapping each EXACT label to its phrase.")
+        data = json.loads(_strip_fence(_call_llm(sysp, user)))
+        for l in labels:
+            if isinstance(data.get(l), str) and data[l].strip():
+                out[l] = data[l].strip()
+    except Exception as e:  # noqa: BLE001
+        print(f"[scene] subject LLM skipped: {e}", flush=True)
+    return out
+
+
+def _remove_bg(img):
+    """Isolate the subject. Prefer rembg (ML, works on any background); fall
+    back to the chroma-green key when rembg isn't installed."""
+    try:
+        from rembg import remove
+        from PIL import Image
+        r = remove(img)
+        if isinstance(r, Image.Image):
+            r = r.convert("RGBA")
+            bbox = r.getbbox()
+            if bbox:
+                r = r.crop(bbox)
+            if min(r.size) >= 80:
+                return r
+    except Exception as e:  # noqa: BLE001
+        print(f"[scene] rembg unavailable ({type(e).__name__}); chroma fallback",
+              flush=True)
+    return _chroma_cut(img)
+
+
+def subject_cutout(subject: str, slug: str, tag: str,
+                   *, cache_dir: Path = CUTOUT_DIR) -> Path | None:
+    """A transparent illustration of `subject` (Pollinations on chroma green,
+    keyed out, cropped). Cached. None on any failure -> caller skips it."""
+    import hashlib
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    safe = "".join(c if c.isalnum() or c in "-_" else "-" for c in f"{slug}__{tag}")
+    dest = cache_dir / f"{safe}.png"
+    if dest.exists() and dest.stat().st_size > 2048:
+        return dest
+    if not (subject or "").strip():
+        return None
+    prompt = (f"{subject}, single subject, centered, isolated on a solid pure "
+              "chroma key green background, bold flat vector illustration, "
+              "vibrant, clean, no text, no border")
+    seed = int(hashlib.sha1(prompt.encode()).hexdigest()[:8], 16)
+    img = _pollinations_raw(prompt, seed)
+    if img is None:
+        return None
+    cut = _remove_bg(img)
+    if cut is None:
+        return None
+    cut.save(dest)
+    print(f"[scene] cutout OK -> {dest.name}", flush=True)
+    return dest
+
+
 def fetch_hook_image(story, *, cache_dir: Path = CACHE_DIR) -> Path | None:
     """AI-first cinematic hook image for a story; stock then designed fallback."""
     if getattr(story, "hook_image", None) is False:
