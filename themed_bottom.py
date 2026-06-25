@@ -109,6 +109,7 @@ from __future__ import annotations
 import hashlib
 import math
 import random
+import re
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -138,9 +139,22 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
                "derail")),
     ("rain",  ("storm", "tornado", "hurricane", " rain", "rainfall",
                "flood", "lightning", "blizzard", "cyclone", "weather")),
-    ("runner", ("escape", "escaped", "on the run", "chase", "loose",
-                "kangaroo", "devil", "raccoon", "zoo", "wildlife",
-                "bear", "koala", "leopard", "animal")),
+    ("runner", ("escaped", "escape", "on the run", "loose", "zoo",
+                "wildlife", "animal", "kangaroo", "devil", "raccoon",
+                "bear", "koala", "leopard", "alligator", "gator",
+                "crocodile", "croc", "snake", "python", "reptile",
+                "emu", "ostrich", "beaver", "goat", "cow", "cattle",
+                "pig", "horse", "moose", "deer", "coyote", "fox",
+                "otter", "peacock", "llama", "lizard", "turtle",
+                "monkey", "stray", "escaped pet")),
+    ("pursuit", ("chase", "car chase", "police chase", "high-speed",
+                 "manhunt", "getaway", "fugitive", "pursuit", "fled",
+                 "suspect", "robbery", "heist", "stole", "stolen",
+                 "dashcam", "pulled over", "speeding away",
+                 # an escaped animal is also a chase — lets escapes spread
+                 # across runner + pursuit for variety, both on-topic.
+                 "escaped", "on the run", "loose", "recaptured",
+                 "cornered", "vanished")),
     ("ocean", ("shark", "whale", "ocean", "sea ", "marine", "coral",
                "fish", "beach")),
     ("fight", ("ufc", "mma", "boxing", "boxer", "knockout",
@@ -153,10 +167,25 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("stacker", ("world record", "record-breaking", "tallest",
                  "largest", "biggest", "assembl", "built the",
                  "stacked", "lego", "potato head", "guinness")),
+    ("claw", ("grabbed", "snatched", "seized", "claw", "prize",
+              "jackpot", "lottery", "scratch-off", "won the",
+              "scooped", "plucked", "nabbed")),
     ("coins", ("stock", "ipo", "market", "billion", "economy", "tax",
                "fee", "salary", "fine", "tariff", "bank", "crypto",
                "price", "invest", "visa")),
 ]
+
+
+def _kw_hit(blob: str, words) -> bool:
+    """Whole-WORD keyword match. Substring matching used to misfire badly —
+    'mars' hit 'marsupial', 'launch' hit 'launchpad', 'ash' hit 'crash' —
+    routing animal/quirky stories onto space/etc. Word boundaries fix the
+    whole class. Multi-word phrases ('car chase') still match as a unit."""
+    for w in words:
+        w = w.strip()
+        if w and re.search(r"\b" + re.escape(w) + r"\b", blob):
+            return True
+    return False
 
 
 def pick_theme(title: str = "", script: str = "",
@@ -167,9 +196,24 @@ def pick_theme(title: str = "", script: str = "",
     blob = " ".join([title or "", script or "",
                      " ".join(hashtags or [])]).lower()
     for theme, words in _THEME_KEYWORDS:
-        if any(w in blob for w in words):
+        if _kw_hit(blob, words):
             return theme
     return "plinko"
+
+
+def rank_themes(title: str = "", script: str = "",
+                hashtags: list[str] | None = None) -> list[str]:
+    """Every theme whose keywords match this story, in keyword-table order
+    (most specific first), deduped. Empty when nothing matches. The batch
+    allocator uses this to pick a RELEVANT alternate when diversifying —
+    instead of swapping a mismatched story onto a generic plinko."""
+    blob = " ".join([title or "", script or "",
+                     " ".join(hashtags or [])]).lower()
+    hits: list[str] = []
+    for theme, words in _THEME_KEYWORDS:
+        if _kw_hit(blob, words) and theme not in hits:
+            hits.append(theme)
+    return hits
 
 
 # Themes where the rising-water "end goal" overlay actually reads as
@@ -3462,6 +3506,199 @@ class _Train(_Renderer):
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
 
+
+# ---------- PURSUIT: top-down highway chase ----------
+class _Pursuit(_Renderer):
+    """Top-down highway chase: a blue runaway weaves down a scrolling road
+    while a red pursuer with a flashing siren closes in. Road scroll, weave
+    amplitude and chase pressure all ramp across the clip; the gap tightens
+    but never fully closes. Fits escapes, getaways, 'on the run', chases,
+    car/police stories, loose animals."""
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), np.float32)
+        self.bg[..., 0] = 40 - 12 * g
+        self.bg[..., 1] = 42 - 12 * g
+        self.bg[..., 2] = 50 - 14 * g
+        self.rx0, self.rx1 = W * 0.17, W * 0.83
+        self.scroll = 0.0
+        self.chase_x = (self.rx0 + self.rx1) / 2
+
+    def draw(self, t, i):
+        dt = 1.0 / FPS
+        k = min(1.0, t / max(1.0, getattr(self, "duration", 30.0)))
+        self.scroll += (340 + 560 * k) * dt
+        rx0, rx1 = self.rx0, self.rx1
+        cx = (rx0 + rx1) / 2
+
+        img = Image.fromarray(np.clip(self.bg.copy(), 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+        d.rectangle([0, 0, rx0, H], fill=(24, 50, 30, 255))
+        d.rectangle([rx1, 0, W, H], fill=(24, 50, 30, 255))
+        for side in (rx0, rx1):
+            off = self.scroll % 120
+            y = -off
+            while y < H:
+                d.rectangle([side - 6, y, side + 6, y + 60], fill=(232, 210, 70, 255))
+                y += 120
+        for L in (1, 2):
+            lx = rx0 + (rx1 - rx0) * L / 3
+            off = self.scroll % 130
+            y = -off
+            while y < H:
+                d.rectangle([lx - 5, y, lx + 5, y + 70], fill=(238, 238, 238, 235))
+                y += 130
+
+        amp = (rx1 - rx0) * 0.30 * (0.55 + 0.45 * k)
+        flee_x = cx + math.sin(t * (2.0 + 2.6 * k)) * amp
+        self.chase_x += (flee_x - self.chase_x) * 0.07
+        gap = 250 - 150 * k + math.sin(t * 3.0) * 14
+        flee_y = H * 0.30
+        chase_y = flee_y + max(64, gap)
+
+        self.trail *= 0.85
+        _stamp_glow(self.trail, flee_x, flee_y + 55, 38, (45, 120, 255), 0.6 + 0.5 * k)
+        _stamp_glow(self.trail, self.chase_x, chase_y + 55, 38, (255, 60, 50), 0.6 + 0.5 * k)
+        img = Image.fromarray(
+            np.clip(np.asarray(img, np.float32) + self.trail, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+
+        def car(x, y, col):
+            w, h = 50, 92
+            d.rounded_rectangle([x - w / 2, y - h / 2, x + w / 2, y + h / 2],
+                                radius=16, fill=(*col, 255))
+            d.rectangle([x - w / 2 + 8, y - 10, x + w / 2 - 8, y + 16],
+                        fill=(18, 22, 32, 220))
+            d.ellipse([x - w / 2 + 4, y - h / 2 + 5, x - w / 2 + 15, y - h / 2 + 16],
+                      fill=(255, 248, 205, 235))
+            d.ellipse([x + w / 2 - 15, y - h / 2 + 5, x + w / 2 - 4, y - h / 2 + 16],
+                      fill=(255, 248, 205, 235))
+
+        car(self.chase_x, chase_y, (205, 48, 44))
+        flash = int(t * 8) % 2
+        d.rectangle([self.chase_x - 17, chase_y - 56, self.chase_x - 2, chase_y - 49],
+                    fill=((255, 40, 40, 255) if flash else (120, 20, 20, 255)))
+        d.rectangle([self.chase_x + 2, chase_y - 56, self.chase_x + 17, chase_y - 49],
+                    fill=((40, 90, 255, 255) if not flash else (20, 30, 120, 255)))
+        car(flee_x, flee_y, (50, 120, 235))
+        return np.asarray(img, dtype=np.uint8)
+
+
+# ---------- CLAW: arcade claw machine grabbing prizes ----------
+class _Claw(_Renderer):
+    """Arcade claw machine: the claw tracks over a prize pile, drops, grabs,
+    and carries a prize to the chute — cycling faster as the clip builds.
+    Fits records, wins, 'caught/grabbed/snatched/seized', heists, captures."""
+
+    _COLS = [(255, 90, 110), (90, 200, 255), (255, 210, 80),
+             (150, 240, 130), (210, 130, 255), (255, 150, 70)]
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        rng = self.rng
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), np.float32)
+        self.bg[..., 0] = 26 + 16 * (1 - g)
+        self.bg[..., 1] = 16 + 8 * (1 - g)
+        self.bg[..., 2] = 34 + 18 * (1 - g)
+        self.floor_y = H * 0.80
+        self.pile = [self._prize() for _ in range(34)]
+        self.rail_y = 90
+        self.claw_x = W * 0.5
+        self.claw_y = self.rail_y
+        self.target = W * 0.5
+        self.phase = "seek"
+        self.pt = 0.0
+        self.held = None
+        self.chute_x = W * 0.88
+
+    def _prize(self):
+        rng = self.rng
+        return {"x": rng.uniform(W * 0.12, W * 0.78),
+                "y": rng.uniform(H * 0.80, H * 0.95),
+                "r": rng.uniform(20, 34), "c": rng.choice(self._COLS)}
+
+    def _dur(self, k):
+        f = 1.0 - 0.45 * k
+        return {"seek": 1.1 * f, "drop": 0.7 * f, "grab": 0.4 * f,
+                "lift": 0.7 * f, "carry": 1.0 * f, "release": 0.4 * f}
+
+    def draw(self, t, i):
+        dt = 1.0 / FPS
+        k = min(1.0, t / max(1.0, getattr(self, "duration", 30.0)))
+        self.pt += dt
+        durs = self._dur(k)
+        floor_y = self.floor_y
+        ph = self.phase
+        if ph == "seek":
+            self.claw_x += (self.target - self.claw_x) * min(1.0, 6 * dt)
+            if self.pt >= durs["seek"]:
+                self.phase, self.pt = "drop", 0.0
+        elif ph == "drop":
+            self.claw_y += (floor_y - self.claw_y) * min(1.0, 5 * dt)
+            if self.pt >= durs["drop"]:
+                if self.pile:
+                    self.held = min(self.pile, key=lambda p: abs(p["x"] - self.claw_x))
+                self.phase, self.pt = "grab", 0.0
+        elif ph == "grab":
+            if self.pt >= durs["grab"]:
+                self.phase, self.pt = "lift", 0.0
+        elif ph == "lift":
+            self.claw_y += (self.rail_y - self.claw_y) * min(1.0, 5 * dt)
+            if self.pt >= durs["lift"]:
+                self.phase, self.pt = "carry", 0.0
+        elif ph == "carry":
+            self.claw_x += (self.chute_x - self.claw_x) * min(1.0, 4 * dt)
+            if self.pt >= durs["carry"]:
+                self.phase, self.pt = "release", 0.0
+        elif ph == "release":
+            if self.held:
+                if self.held in self.pile:
+                    self.pile.remove(self.held)
+                self.held = None
+            if self.pt >= durs["release"]:
+                if len(self.pile) < 30:
+                    self.pile.append(self._prize())
+                self.target = self.rng.uniform(W * 0.15, W * 0.72)
+                self.phase, self.pt = "seek", 0.0
+        if self.held is not None:
+            self.held["x"], self.held["y"] = self.claw_x, self.claw_y + 46
+
+        img = Image.fromarray(np.clip(self.bg.copy(), 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+        d.rectangle([self.chute_x - 46, floor_y - 10, W - 8, H],
+                    fill=(20, 22, 34, 255), outline=(120, 130, 160, 220), width=3)
+        for p in self.pile:
+            if p is self.held:
+                continue
+            d.ellipse([p["x"] - p["r"], p["y"] - p["r"], p["x"] + p["r"], p["y"] + p["r"]],
+                      fill=(*p["c"], 255))
+            d.ellipse([p["x"] - p["r"] * 0.4, p["y"] - p["r"] * 0.45,
+                       p["x"] - p["r"] * 0.05, p["y"] - p["r"] * 0.1],
+                      fill=(255, 255, 255, 150))
+        d.rectangle([0, self.rail_y - 8, W, self.rail_y - 2], fill=(150, 160, 190, 255))
+        d.line([self.claw_x, self.rail_y - 6, self.claw_x, self.claw_y],
+               fill=(180, 190, 210, 255), width=4)
+        closed = self.phase in ("grab", "lift", "carry")
+        spread = 10 if closed else 26
+        cy = self.claw_y
+        d.rectangle([self.claw_x - 16, cy - 14, self.claw_x + 16, cy + 8],
+                    fill=(190, 200, 225, 255))
+        for sx in (-1, 1):
+            tipx = self.claw_x + sx * spread
+            d.line([self.claw_x + sx * 12, cy + 6, tipx, cy + 40],
+                   fill=(170, 180, 210, 255), width=7)
+            d.line([tipx, cy + 40, tipx - sx * 8, cy + 58],
+                   fill=(170, 180, 210, 255), width=7)
+        if self.held is not None:
+            p = self.held
+            d.ellipse([p["x"] - p["r"], p["y"] - p["r"], p["x"] + p["r"], p["y"] + p["r"]],
+                      fill=(*p["c"], 255))
+        return np.asarray(img, dtype=np.uint8)
+
+
 _THEME_CLASSES = {
     "space": _Space,
     "plinko": _Plinko,
@@ -3476,6 +3713,8 @@ _THEME_CLASSES = {
     "fight": _Fight,
     "moto": _Moto,
     "train": _Train,
+    "pursuit": _Pursuit,
+    "claw": _Claw,
 }
 
 
