@@ -266,7 +266,9 @@ def _card_base():
 
 
 def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
-    fig.text(0.085, 0.91, title, color=TEXT, fontsize=42, fontweight="bold",
+    # Auto-shrink long titles so they never clip the right edge of the card.
+    size = 42 if len(title) <= 26 else 36 if len(title) <= 34 else 30
+    fig.text(0.085, 0.91, title, color=TEXT, fontsize=size, fontweight="bold",
              ha="left", va="top")
     if subtitle:
         fig.text(0.085, 0.845, subtitle.upper(), color=accent, fontsize=22,
@@ -628,6 +630,25 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
     ax.set_ylim(-0.5, n - 0.5)
     ax.set_axis_off()
     t = max(0.0, min(1.0, reveal))
+    # A real graphic per row symbolizes the data (a dog/cat/house), tiled N
+    # times; falls back to a colored dot when no icon matches.
+    from . import icons as _icons
+    _img_cache: dict = {}
+
+    def _icon_img(label):
+        if label not in _img_cache:
+            p = _icons.icon_for(label)
+            img = None
+            if p:
+                try:
+                    import matplotlib.image as mpimg
+                    img = mpimg.imread(str(p))
+                except Exception:  # noqa: BLE001
+                    img = None
+            _img_cache[label] = img
+        return _img_cache[label]
+
+    from matplotlib.offsetbox import OffsetImage, AnnotationBbox
     for i, (p, v) in enumerate(zip(items, values)):
         y = n - 1 - i                          # top item on top
         if insight.baseline and p.label == insight.baseline.label:
@@ -638,13 +659,20 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
             color = ACCENT
         full = max(1, int(round((v / vmax) * cols)))
         shown = max(0, min(full, int(round(full * t + 0.5)))) if t < 1 else full
+        img = _icon_img(p.label)
         for c in range(full):
             on = c < shown
-            ax.scatter(c, y, s=290, marker="o",
-                       color=color if on else BAR_BASE,
-                       edgecolors="none", zorder=3, alpha=1.0 if on else 0.9)
+            if img is not None:
+                oi = OffsetImage(img, zoom=0.62, alpha=1.0 if on else 0.28)
+                ab = AnnotationBbox(oi, (c, y), frameon=False, zorder=3,
+                                    box_alignment=(0.5, 0.5))
+                ax.add_artist(ab)
+            else:
+                ax.scatter(c, y, s=290, marker="o",
+                           color=color if on else BAR_BASE,
+                           edgecolors="none", zorder=3, alpha=1.0 if on else 0.9)
         # label above the row, value at the end of the row
-        ax.text(-0.4, y + 0.34, p.label, ha="left", va="center", fontsize=24,
+        ax.text(-0.4, y + 0.40, p.label, ha="left", va="center", fontsize=24,
                 color=(color if p.label == insight.highlight_label else TEXT),
                 fontweight="bold", zorder=4)
         ax.text(full + 0.3, y, _vfmt(v), ha="left", va="center", fontsize=27,
