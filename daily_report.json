@@ -2,18 +2,12 @@
   {
     "topic": "A Raccoon Nearly Suffocated Inside a Glass Jar",
     "title": "A Raccoon Nearly Suffocated Inside a Glass Jar",
-    "publish_at": "2026-06-25T17:00:00Z",
-    "ok": true,
-    "video_url": "(dry-run)",
-    "error": null,
-    "elapsed_seconds": 303.3,
-    "package_path": "state/trending_packages/20260625/01_raccoon-jar-dedham-massachusetts.json",
-    "video_path": "output/daily_20260625-154058_a_raccoon_nearly_suffocated_inside_a_gla.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    }
+    "publish_at": "2026-06-25T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RelevanceGateError: 92% of shots (11/12) fell to stock / placeholder with almost no curated anchor \u2014 the image pipeline likely failed wholesale \u2014 refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.",
+    "elapsed_seconds": 718.0,
+    "package_path": "state/trending_packages/20260625/01_raccoon-jar-dedham-massachusetts.json"
   },
   {
     "topic": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
@@ -22,13 +16,13 @@
     "ok": true,
     "video_url": "(dry-run)",
     "error": null,
-    "elapsed_seconds": 571.8,
+    "elapsed_seconds": 757.5,
     "package_path": "state/trending_packages/20260625/02_kayla-ross-shark-santa-barbara.json",
-    "video_path": "output/daily_20260625-154601_a_teen_was_stalked_by_a_great_white___sh.mp4",
+    "video_path": "output/daily_20260625-175310_a_teen_was_stalked_by_a_great_white___sh.mp4",
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     }
   }
 ]
