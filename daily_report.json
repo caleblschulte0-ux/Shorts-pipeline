@@ -1,28 +1,104 @@
 [
   {
-    "topic": "A Raccoon Nearly Suffocated Inside a Glass Jar",
-    "title": "A Raccoon Nearly Suffocated Inside a Glass Jar",
-    "publish_at": "2026-06-25T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RelevanceGateError: 92% of shots (11/12) fell to stock / placeholder with almost no curated anchor \u2014 the image pipeline likely failed wholesale \u2014 refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.",
-    "elapsed_seconds": 718.0,
-    "package_path": "state/trending_packages/20260625/01_raccoon-jar-dedham-massachusetts.json"
+    "topic": "A Giraffe Named Gracie Escaped a Texas Ranch \u2014 and Vanished",
+    "title": "A Giraffe Named Gracie Escaped a Texas Ranch \u2014 and Vanished",
+    "publish_at": "2026-06-25T21:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/JviFa9Npwts",
+    "error": null,
+    "elapsed_seconds": 393.7,
+    "package_path": "state/trending_packages/20260625/01_gracie-giraffe-escape-texas.json",
+    "video_path": "output/daily_20260625-201814_a_giraffe_named_gracie_escaped_a_texas_r.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
   },
   {
-    "topic": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
-    "title": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
-    "publish_at": "2026-06-25T19:00:00Z",
+    "topic": "A Truck Flipped and Released 2 Million Bees Onto a Texas Road",
+    "title": "A Truck Flipped and Released 2 Million Bees Onto a Texas Road",
+    "publish_at": "2026-06-25T23:00:00Z",
     "ok": true,
-    "video_url": "(dry-run)",
+    "video_url": "https://youtube.com/shorts/PqmPWusedcA",
     "error": null,
-    "elapsed_seconds": 757.5,
-    "package_path": "state/trending_packages/20260625/02_kayla-ross-shark-santa-barbara.json",
-    "video_path": "output/daily_20260625-175310_a_teen_was_stalked_by_a_great_white___sh.mp4",
+    "elapsed_seconds": 373.8,
+    "package_path": "state/trending_packages/20260625/02_two-million-bees-semi-texas.json",
+    "video_path": "output/daily_20260625-202509_a_truck_flipped_and_released_2_million_b.mp4",
     "qa": {
       "ok": true,
       "verdict": "skip",
       "reason": "gemini unavailable"
-    }
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "He Skateboarded From California to Florida in 39 Days",
+    "title": "He Skateboarded From California to Florida in 39 Days",
+    "publish_at": "2026-06-26T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/5HfZ6F6FnWo",
+    "error": null,
+    "elapsed_seconds": 450.3,
+    "package_path": "state/trending_packages/20260625/03_skateboard-california-florida-record.json",
+    "video_path": "output/daily_20260625-203123_he_skateboarded_from_california_to_flori.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "830 People Ate Dim Sum Together and Broke a World Record",
+    "title": "830 People Ate Dim Sum Together and Broke a World Record",
+    "publish_at": "2026-06-26T15:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">",
+    "elapsed_seconds": 330.2,
+    "package_path": "state/trending_packages/20260625/04_seattle-dim-sum-world-record.json",
+    "video_path": "output/daily_20260625-203853_830_people_ate_dim_sum_together_and_brok.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "She Stopped for Gas and Left With $500,000",
+    "title": "She Stopped for Gas and Left With $500,000",
+    "publish_at": "2026-06-26T15:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">",
+    "elapsed_seconds": 378.9,
+    "package_path": "state/trending_packages/20260625/05_tennessee-woman-500k-scratch-off.json",
+    "video_path": "output/daily_20260625-204423_she_stopped_for_gas_and_left_with__500_0.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "A Tornado Touched Down in the Chicago Suburbs",
+    "title": "A Tornado Touched Down in the Chicago Suburbs",
+    "publish_at": "2026-06-26T15:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">",
+    "elapsed_seconds": 436.8,
+    "package_path": "state/trending_packages/20260625/06_huntley-illinois-tornado-chicago.json",
+    "video_path": "output/daily_20260625-205043_a_tornado_touched_down_in_the_chicago_su.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "channel": "default"
   }
 ]
