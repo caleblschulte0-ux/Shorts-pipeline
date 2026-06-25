@@ -17,6 +17,11 @@ on:
         required: false
         type: boolean
         default: false
+      dry_run:
+        description: 'Render only, do NOT upload (--dry-run). For testing.'
+        required: false
+        type: boolean
+        default: false
   # Auto-fire when the auto-merge workflow finishes a claude/* PR.
   # GitHub blocks GITHUB_TOKEN-attributed pushes from firing other
   # workflows (anti-recursion), so the push-paths trigger below never
@@ -257,10 +262,12 @@ jobs:
           COUNT: ${{ github.event.inputs.count || '6' }}
           FORCE: ${{ github.event.inputs.force }}
           NO_SCHEDULE: ${{ github.event.inputs.no_schedule }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: |
           ARGS="--count $COUNT"
           if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-rerun"; fi
           if [ "$NO_SCHEDULE" = "true" ]; then ARGS="$ARGS --no-schedule"; fi
+          if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           echo "Running: python scripts/run_trending_daily.py $ARGS"
           python scripts/run_trending_daily.py $ARGS
 

@@ -570,6 +570,41 @@ def format_report(date_str: str, results: list[dict]) -> str:
     return "\n".join(lines)
 
 
+# Broadly-reusable bottom themes the diversity allocator can swap in when a
+# story's natural theme is already used this batch — all fit almost any story
+# so a swap never looks wrong.
+_REUSABLE_THEMES = ["plinko", "stacker", "coins", "runner", "ocean", "space", "moto"]
+
+
+def _assign_bottom_diversity(pkgs: list[dict]) -> None:
+    """Tailor + diversify bottoms across the batch (operator: read each story,
+    make a fitting bottom; across every 3 keep >=2 distinct, at most 1 reuse).
+    Resolves each package's base theme, swaps a repeat to an unused
+    broadly-reusable theme where possible, and pins a distinct reskin seed so
+    even a reused base theme is visually re-skinned. Mutates pkgs in place."""
+    try:
+        import themed_bottom
+    except Exception:  # noqa: BLE001
+        return
+    used: dict[str, int] = {}
+    for i, p in enumerate(pkgs):
+        bt = (p.get("bottom_theme") or "").strip().lower()
+        if not bt or bt == "auto":
+            bt = themed_bottom.pick_theme(
+                p.get("title", ""), p.get("script", ""), p.get("hashtags"))
+        if used.get(bt, 0) >= 1:
+            alt = next((a for a in _REUSABLE_THEMES
+                        if used.get(a, 0) == 0 and a != bt), None)
+            if alt:
+                print(f"[bottom] {p.get('slug', i)}: {bt!r} repeats -> {alt!r}")
+                bt = alt
+        used[bt] = used.get(bt, 0) + 1
+        p["bottom_theme"] = bt
+        p["_theme_seed"] = f"{p.get('slug') or p.get('title', '')}-{i}"
+    print(f"[bottom] batch themes: {dict(used)} "
+          f"({len(used)} distinct)", flush=True)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--count", type=int, default=6,
@@ -671,6 +706,9 @@ def main() -> int:
         rel = src_dir.relative_to(REPO) if src_dir else "(unknown)"
         print(f"=== using {len(prewritten)} pre-written packages from "
               f"{rel} ===", flush=True)
+        # Tailor + diversify the bottom games across the batch (>=2 distinct
+        # per 3; a distinct reskin seed per video).
+        _assign_bottom_diversity(prewritten)
         # Optional per-day schedule override: state/.../_schedule.json with
         # {"per_slot": N} places N videos at each default time slot (e.g.
         # 2 means two posts share each 2-hour slot). Defaults to 1.
