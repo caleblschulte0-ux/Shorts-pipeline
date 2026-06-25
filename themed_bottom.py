@@ -111,6 +111,8 @@ import math
 import random
 import re
 import subprocess
+import urllib.parse
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -199,6 +201,59 @@ def pick_theme(title: str = "", script: str = "",
         if _kw_hit(blob, words):
             return theme
     return "plinko"
+
+
+# One-line description per theme, fed to the semantic router so it can
+# match ANY story — not just ones we wrote keywords for.
+THEME_DESC = {
+    "space": "rocket flying between stars (space, rockets, astronomy, launches, satellites)",
+    "rain": "storm with rain and lightning (storms, floods, hurricanes, weather)",
+    "ocean": "fish and bubbles underwater (sea, marine life, beaches, whales, sharks)",
+    "volcano": "erupting volcano raining fireballs (volcano, wildfire, lava, ash)",
+    "quake": "city shaking over a seismograph (earthquake, tsunami, sinkhole)",
+    "runner": "a little critter sprinting over obstacles (animals, wildlife, pets, escapes)",
+    "pursuit": "top-down highway car chase (chases, getaways, crime, fugitives, vehicles)",
+    "stacker": "blocks stacking into a tall tower (world records, building, biggest/tallest)",
+    "claw": "arcade claw grabbing prizes (winning, grabbing, records, lottery, heists)",
+    "fight": "two orbs clashing in an arena (combat sports, UFC, boxing, brawls)",
+    "moto": "dirt bike doing jumps (racing, motorcycles, stunts, vehicles)",
+    "train": "runaway train on a loop track (trains, rail, derailments, summits)",
+    "coins": "gold coins cascading (money, markets, finance, economy, prices)",
+    "ember": "rising sparks and embers (fire, heat)",
+    "plinko": "balls bouncing through pegs (neutral satisfying fallback for anything else)",
+}
+
+
+def smart_rank(title: str = "", script: str = "",
+               hashtags: list[str] | None = None, n: int = 3) -> list[str]:
+    """Rank the best-fitting bottom themes for a story SEMANTICALLY via
+    Pollinations' free text model — so relevance no longer depends on us
+    having written the right keyword (the gator->plinko problem). Returns up
+    to `n` valid theme names; falls back to keyword rank_themes() (then []) on
+    any failure. Keyless, best-effort, never raises."""
+    try:
+        menu = "; ".join(f"{k}: {v}" for k, v in THEME_DESC.items())
+        q = (f"You pick a background mini-game for a short news video. "
+             f"From this menu, choose the {n} that best FIT the story, most "
+             f"relevant first. Menu: {menu}. Story title: {title}. "
+             f"Script: {script[:280]}. "
+             f"Answer with ONLY a comma-separated list of theme names.")
+        url = "https://text.pollinations.ai/" + urllib.parse.quote(q[:1500])
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        txt = urllib.request.urlopen(req, timeout=20).read().decode(
+            "utf-8", "ignore").lower()
+        picks: list[str] = []
+        for tok in re.split(r"[^a-z]+", txt):
+            if tok in _THEME_CLASSES and tok not in picks:
+                picks.append(tok)
+            if len(picks) >= n:
+                break
+        if picks:
+            print(f"[smart_rank] {title[:40]!r} -> {picks}", flush=True)
+            return picks
+    except Exception as e:  # noqa: BLE001
+        print(f"[smart_rank] fallback ({type(e).__name__}: {e})", flush=True)
+    return rank_themes(title, script, hashtags)
 
 
 def rank_themes(title: str = "", script: str = "",
