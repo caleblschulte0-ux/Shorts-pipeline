@@ -1,38 +1,39 @@
-# Daily Trending Shorts — 2026-06-24
+# Daily Trending Shorts — 2026-06-25
 
 - queued: **6**
-- succeeded: **5**
+- succeeded: **6**
 - quarantined (off-topic imagery): **0**
-- failed: **1**
+- failed: **0**
 
 ## Posted
-- **Texas Lost a Giraffe Named Gracie**
-  - topic: Texas Lost a Giraffe Named Gracie
-  - publishes: `2026-06-24T13:00:00Z`
-  - https://youtube.com/shorts/9MEQlY1gmRY
-  - took: 436.7s
-- **Toxic Caterpillars Just Shut Berlin's Parks**
-  - topic: Toxic Caterpillars Just Shut Berlin's Parks
-  - publishes: `2026-06-24T15:00:00Z`
-  - https://youtube.com/shorts/vrDhoFqp2gA
-  - took: 380.1s
-- **A Mom Spent $9,500 to Barbie-fy Her House in Scotland**
-  - topic: A Mom Spent $9,500 to Barbie-fy Her House in Scotland
-  - publishes: `2026-06-24T17:00:00Z`
-  - https://youtube.com/shorts/TPFp3pRLAGo
-  - took: 417.4s
-- **France Just Broke Its All-Time Heat Record. 40 Drowned.**
-  - topic: France Just Broke Its All-Time Heat Record. 40 Drowned.
-  - publishes: `2026-06-24T19:00:00Z`
-  - https://youtube.com/shorts/bVYr4DAbcpY
-  - took: 326.1s
-- **A Gunman Killed a Montreal Officer at the Hilton**
-  - topic: A Gunman Killed a Montreal Officer at the Hilton
-  - publishes: `2026-06-24T21:00:00Z`
-  - https://youtube.com/shorts/G1HyluH1vGM
-  - took: 364.7s
-
-## Failed
-- **She Stopped for Gas in Ohio. Won $500,000.**
-  - error: `RelevanceGateError: 91% of shots (10/11) fell to stock / placeholder with almost no curated anchor — the image pipeline likely failed wholesale — refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.`
+- **A Raccoon Nearly Suffocated Inside a Glass Jar**
+  - topic: A Raccoon Nearly Suffocated Inside a Glass Jar
+  - publishes: `2026-06-25T13:00:00Z`
+  - https://youtube.com/shorts/3cKznL7rMHc
+  - took: 340.9s
+- **A Teen Was Stalked by a Great White — She Had No Idea**
+  - topic: A Teen Was Stalked by a Great White — She Had No Idea
+  - publishes: `2026-06-25T15:00:00Z`
+  - https://youtube.com/shorts/RTF5aHGl2M4
+  - took: 253.4s
+- **Florida Firefighters Rescued a 'Dog.' It Was a Coyote.**
+  - topic: Florida Firefighters Rescued a 'Dog.' It Was a Coyote.
+  - publishes: `2026-06-25T17:00:00Z`
+  - https://youtube.com/shorts/23Cra8kc_NQ
+  - took: 373.0s
+- **Montana Highway Patrol Pulled Over a Giant Banana Car**
+  - topic: Montana Highway Patrol Pulled Over a Giant Banana Car
+  - publishes: `2026-06-25T19:00:00Z`
+  - https://youtube.com/shorts/hIAq1WP6fns
+  - took: 388.5s
+- **Venezuela Just Had Its Worst Earthquake in Over a Century**
+  - topic: Venezuela Just Had Its Worst Earthquake in Over a Century
+  - publishes: `2026-06-25T21:00:00Z`
+  - https://youtube.com/shorts/jFSyadamo48
+  - took: 338.9s
+- **He Stole a Kayak and Used a Snow Shovel as a Paddle**
+  - topic: He Stole a Kayak and Used a Snow Shovel as a Paddle
+  - publishes: `2026-06-25T23:00:00Z`
+  - https://youtube.com/shorts/o6nowoUMVk0
+  - took: 373.0s
 
