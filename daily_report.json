@@ -2,29 +2,13 @@
   {
     "topic": "A Raccoon Nearly Suffocated Inside a Glass Jar",
     "title": "A Raccoon Nearly Suffocated Inside a Glass Jar",
-    "publish_at": "2026-06-25T15:00:00Z",
-    "ok": true,
-    "video_url": "(dry-run)",
-    "error": null,
-    "elapsed_seconds": 315.9,
-    "package_path": "state/trending_packages/20260625/01_raccoon-jar-dedham-massachusetts.json",
-    "video_path": "output/daily_20260625-135941_a_raccoon_nearly_suffocated_inside_a_gla.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    }
-  },
-  {
-    "topic": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
-    "title": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
     "publish_at": "2026-06-25T17:00:00Z",
     "ok": true,
     "video_url": "(dry-run)",
     "error": null,
-    "elapsed_seconds": 566.6,
-    "package_path": "state/trending_packages/20260625/02_kayla-ross-shark-santa-barbara.json",
-    "video_path": "output/daily_20260625-140457_a_teen_was_stalked_by_a_great_white___sh.mp4",
+    "elapsed_seconds": 303.3,
+    "package_path": "state/trending_packages/20260625/01_raccoon-jar-dedham-massachusetts.json",
+    "video_path": "output/daily_20260625-154058_a_raccoon_nearly_suffocated_inside_a_gla.mp4",
     "qa": {
       "ok": true,
       "verdict": "ok",
@@ -32,31 +16,15 @@
     }
   },
   {
-    "topic": "Florida Firefighters Rescued a 'Dog.' It Was a Coyote.",
-    "title": "Florida Firefighters Rescued a 'Dog.' It Was a Coyote.",
+    "topic": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
+    "title": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
     "publish_at": "2026-06-25T19:00:00Z",
     "ok": true,
     "video_url": "(dry-run)",
     "error": null,
-    "elapsed_seconds": 671.2,
-    "package_path": "state/trending_packages/20260625/03_coyote-cape-coral-firefighters.json",
-    "video_path": "output/daily_20260625-141424_florida_firefighters_rescued_a__dog___it.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    }
-  },
-  {
-    "topic": "Montana Highway Patrol Pulled Over a Giant Banana Car",
-    "title": "Montana Highway Patrol Pulled Over a Giant Banana Car",
-    "publish_at": "2026-06-25T21:00:00Z",
-    "ok": true,
-    "video_url": "(dry-run)",
-    "error": null,
-    "elapsed_seconds": 552.3,
-    "package_path": "state/trending_packages/20260625/04_banana-car-montana-braithwaite.json",
-    "video_path": "output/daily_20260625-142535_montana_highway_patrol_pulled_over_a_gia.mp4",
+    "elapsed_seconds": 571.8,
+    "package_path": "state/trending_packages/20260625/02_kayla-ross-shark-santa-barbara.json",
+    "video_path": "output/daily_20260625-154601_a_teen_was_stalked_by_a_great_white___sh.mp4",
     "qa": {
       "ok": true,
       "verdict": "ok",
