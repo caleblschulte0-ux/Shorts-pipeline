@@ -269,7 +269,7 @@ def subject_cutout(subject: str, slug: str, tag: str,
               "chroma key green background, bold flat vector illustration, "
               "vibrant, clean, no text, no border")
     seed = int(hashlib.sha1(prompt.encode()).hexdigest()[:8], 16)
-    img = _pollinations_raw(prompt, seed)
+    img = _pollinations_raw(prompt, seed, size=576)   # smaller -> faster rembg
     if img is None:
         return None
     cut = _remove_bg(img)

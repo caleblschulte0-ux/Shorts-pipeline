@@ -232,11 +232,18 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     chart_dir = workdir / "charts"
     segments: list[Segment] = []
     sources: list[str] = []
-    # Build every insight first, then pick viz at the video level (cap maps,
-    # guarantee one creative viz), then render.
-    inss = [_build_insight(seg_cfg) for seg_cfg in story_cfg["segments"]]
+    # Build every insight first, then pick viz at the video level, then render.
+    seg_cfgs = list(story_cfg["segments"])
+    inss = [_build_insight(seg_cfg) for seg_cfg in seg_cfgs]
     _finalize_viz(inss)
-    for i, (seg_cfg, ins) in enumerate(zip(story_cfg["segments"], inss)):
+    # NEVER open on a chart — viewers swipe away. Move trend (line) segments to
+    # the end so the video opens on a map / diorama / scene. Stable within groups.
+    order = sorted(range(len(inss)), key=lambda i: (inss[i].kind == "trend", i))
+    seg_cfgs = [seg_cfgs[i] for i in order]
+    inss = [inss[i] for i in order]
+    if inss and inss[0].kind == "trend":      # all-trend video: don't lead w/ a line
+        inss[0].kind = "callouts"
+    for i, (seg_cfg, ins) in enumerate(zip(seg_cfgs, inss)):
         # A short "build" frame sequence (bars grow / line draws on) ending on
         # the exact static chart — the renderer plays it then holds the last
         # frame. Anchors come from the final frame so the rings still land.

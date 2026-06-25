@@ -935,10 +935,11 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
                  r"price|prices|us|u\.s\.|the|of|in|\$|%)\b", " ", insight.topic,
                  flags=re.I)
     ctx = re.sub(r"\s+", " ", ctx).strip()
-    subjects = scene_media.illustration_subjects([p.label for p in items], ctx)
     cuts = []
     for i, p in enumerate(items):
-        subj = subjects.get(p.label) or f"{p.label}, {ctx}".strip().strip(",")
+        # Context first reads naturally for the image model ("wedding Venue",
+        # "pet Large dog") and needs no rate-limited LLM call.
+        subj = (f"{ctx} {p.label}".strip() or p.label).strip(",")
         cp = scene_media.subject_cutout(subj, slug, f"d{i}")
         img = None
         if cp:
@@ -956,38 +957,45 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
     num_font = _pil_font(58)
     lab_font = _pil_font(30)
     slot = W // n
+    max_w = int(slot * 0.86)             # cap width to the slot so nothing overlaps
+    span = 1.0 / n                       # each object owns 1/n of the timeline
     anchors = []
     pattern = str(out_dir / f"{slug}_build%02d.png")
     for f in range(1, frames + 1):
         r = f / frames
-        r = 1.0 - (1.0 - r) ** 2          # ease-out
         if f == frames:
             r = 1.0
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         draw = ImageDraw.Draw(canvas)
         for i, (p, img) in enumerate(zip(items, cuts)):
+            # Sequential entrance: object i rises/fades in during its own slice
+            # of the timeline, so they arrive one at a time, never all at once.
+            lr = (r - i * span) / (span * 0.85)
+            lr = max(0.0, min(1.0, lr))
+            lr = 1.0 - (1.0 - lr) ** 2    # ease-out
+            if lr <= 0.0:
+                continue
             frac = (p.value / vmax) if vmax else 1.0
-            target_h = int((0.30 + 0.70 * frac) * floor_h * r)
+            target_h = (0.34 + 0.66 * frac) * floor_h
             cx = slot * i + slot // 2
             color = (HIGHLIGHT if p.label == insight.highlight_label
                      else WARN if (insight.baseline and p.label == insight.baseline.label)
                      else ACCENT)
             top = baseline
-            if img is not None and target_h > 10:
-                ratio = target_h / img.height
-                w = max(1, int(img.width * ratio))
-                im = img.resize((w, target_h))
-                x = cx - w // 2
-                canvas.alpha_composite(im, (max(0, min(W - w, x)), baseline - target_h))
-                top = baseline - target_h
-            # number above the object (fades in last 25%)
-            na = max(0.0, min(1.0, (r - 0.75) / 0.25)) if r < 1 else 1.0
+            if img is not None:
+                scale = min(target_h / img.height, max_w / img.width) * lr
+                w = max(1, int(img.width * scale))
+                h = max(1, int(img.height * scale))
+                im = img.resize((w, h))
+                x = int(max(0, min(W - w, cx - w // 2)))
+                canvas.alpha_composite(im, (x, baseline - h))
+                top = baseline - h
+            na = max(0.0, min(1.0, (lr - 0.55) / 0.45))   # number lands as it settles
             num = _vfmt(p.value)
             nb = draw.textbbox((0, 0), num, font=num_font)
             nx = cx - (nb[2] - nb[0]) // 2
             ny = top - 78
-            draw.text((nx, ny), num, font=num_font,
-                      fill=_rgba(color, int(255 * na)))
+            draw.text((nx, ny), num, font=num_font, fill=_rgba(color, int(255 * na)))
             lb = draw.textbbox((0, 0), p.label, font=lab_font)
             draw.text((cx - (lb[2] - lb[0]) // 2, baseline + 12), p.label,
                       font=lab_font, fill=(248, 250, 252, int(255 * na)))
