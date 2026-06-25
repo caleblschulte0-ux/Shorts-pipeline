@@ -903,6 +903,106 @@ def _anchors_from(fig, ax, specs) -> list:
     return anchors
 
 
+def _pil_font(size: int, bold: bool = True):
+    from matplotlib import font_manager
+    from PIL import ImageFont
+    try:
+        fp = font_manager.findfont(
+            font_manager.FontProperties(family="DejaVu Sans",
+                                        weight="bold" if bold else "normal"))
+        return ImageFont.truetype(fp, size)
+    except Exception:  # noqa: BLE001
+        return ImageFont.load_default()
+
+
+def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """Illustrated proportional SCENE: each ranked item is a relevant cut-out
+    illustration sized by its value (big = high), arranged on a ground line with
+    its number above — 'a big venue, medium caterers, a small band'. Never just
+    numbers. Returns (printf_pattern, anchors), or None to fall back to callouts.
+    """
+    from PIL import Image, ImageDraw
+    from . import scene_media
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W = int(SERIES_W * SERIES_DPI)
+    H = int(SERIES_H * SERIES_DPI)
+    items = _ordered_items(insight)[:4]
+    vals = [p.value for p in items]
+    vmax = max(vals) if vals else 1.0
+    # clean subject context from the topic ("US wedding cost by category" ->
+    # "wedding ...") so the per-item prompt finds the right object.
+    ctx = re.sub(r"\b(cost|costs|average|avg|per|by|category|share|annual|"
+                 r"price|prices|us|u\.s\.|the|of|in|\$|%)\b", " ", insight.topic,
+                 flags=re.I)
+    ctx = re.sub(r"\s+", " ", ctx).strip()
+    subjects = scene_media.illustration_subjects([p.label for p in items], ctx)
+    cuts = []
+    for i, p in enumerate(items):
+        subj = subjects.get(p.label) or f"{p.label}, {ctx}".strip().strip(",")
+        cp = scene_media.subject_cutout(subj, slug, f"d{i}")
+        img = None
+        if cp:
+            try:
+                img = Image.open(cp).convert("RGBA")
+            except Exception:  # noqa: BLE001
+                img = None
+        cuts.append(img)
+    if not any(c is not None for c in cuts):
+        return None                      # nothing generated -> caller uses callouts
+
+    n = len(items)
+    baseline = H - 120
+    floor_h = H - 300                    # vertical room for the tallest object
+    num_font = _pil_font(58)
+    lab_font = _pil_font(30)
+    slot = W // n
+    anchors = []
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = f / frames
+        r = 1.0 - (1.0 - r) ** 2          # ease-out
+        if f == frames:
+            r = 1.0
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        draw = ImageDraw.Draw(canvas)
+        for i, (p, img) in enumerate(zip(items, cuts)):
+            frac = (p.value / vmax) if vmax else 1.0
+            target_h = int((0.30 + 0.70 * frac) * floor_h * r)
+            cx = slot * i + slot // 2
+            color = (HIGHLIGHT if p.label == insight.highlight_label
+                     else WARN if (insight.baseline and p.label == insight.baseline.label)
+                     else ACCENT)
+            top = baseline
+            if img is not None and target_h > 10:
+                ratio = target_h / img.height
+                w = max(1, int(img.width * ratio))
+                im = img.resize((w, target_h))
+                x = cx - w // 2
+                canvas.alpha_composite(im, (max(0, min(W - w, x)), baseline - target_h))
+                top = baseline - target_h
+            # number above the object (fades in last 25%)
+            na = max(0.0, min(1.0, (r - 0.75) / 0.25)) if r < 1 else 1.0
+            num = _vfmt(p.value)
+            nb = draw.textbbox((0, 0), num, font=num_font)
+            nx = cx - (nb[2] - nb[0]) // 2
+            ny = top - 78
+            draw.text((nx, ny), num, font=num_font,
+                      fill=_rgba(color, int(255 * na)))
+            lb = draw.textbbox((0, 0), p.label, font=lab_font)
+            draw.text((cx - (lb[2] - lb[0]) // 2, baseline + 12), p.label,
+                      font=lab_font, fill=(248, 250, 252, int(255 * na)))
+            if f == frames:
+                anchors.append({"value": float(p.value), "cx": float(cx),
+                                "cy": float(ny + 30), "w": 200.0, "h": 70.0})
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, anchors
+
+
+def _rgba(hex_color: str, alpha: int = 255):
+    h = hex_color.lstrip("#")
+    return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), alpha)
+
+
 def render_story_chart(insight: Insight, out_path: Path):
     """One *full*, visually distinct chart for a story segment. Returns
     ``(path, anchors)`` where each anchor is ``{"value","cx","cy","w","h"}``
@@ -927,6 +1027,11 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     ``(None, [])`` if matplotlib is absent."""
     if not _have_mpl():
         return None, []
+    if insight.kind == "diorama":
+        res = _render_diorama(insight, out_dir, slug, frames)
+        if res is not None:
+            return res
+        insight.kind = "callouts"        # cutouts failed -> graceful fallback
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
     for f in range(1, frames + 1):
