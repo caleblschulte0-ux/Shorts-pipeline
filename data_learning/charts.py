@@ -614,6 +614,48 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
     return ax, specs
 
 
+def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
+    """Proportional icon array: each item is a row of icons whose count scales
+    with its value (top item ~10 icons). Reads as 'X is N times Y' at a glance —
+    the creative replacement for a plain ranking bar chart."""
+    items = _ordered_items(insight)[:4]
+    values = [p.value for p in items]
+    vmax = max(values) if values else 1.0
+    n = len(items)
+    cols = 10                                  # icons for the top item
+    ax = fig.add_axes([0.08, 0.15, 0.86, 0.62])
+    ax.set_xlim(-0.6, cols + 2.2)
+    ax.set_ylim(-0.5, n - 0.5)
+    ax.set_axis_off()
+    t = max(0.0, min(1.0, reveal))
+    for i, (p, v) in enumerate(zip(items, values)):
+        y = n - 1 - i                          # top item on top
+        if insight.baseline and p.label == insight.baseline.label:
+            color = WARN
+        elif p.label == insight.highlight_label:
+            color = HIGHLIGHT
+        else:
+            color = ACCENT
+        full = max(1, int(round((v / vmax) * cols)))
+        shown = max(0, min(full, int(round(full * t + 0.5)))) if t < 1 else full
+        for c in range(full):
+            on = c < shown
+            ax.scatter(c, y, s=290, marker="o",
+                       color=color if on else BAR_BASE,
+                       edgecolors="none", zorder=3, alpha=1.0 if on else 0.9)
+        # label above the row, value at the end of the row
+        ax.text(-0.4, y + 0.34, p.label, ha="left", va="center", fontsize=24,
+                color=(color if p.label == insight.highlight_label else TEXT),
+                fontweight="bold", zorder=4)
+        ax.text(full + 0.3, y, _vfmt(v), ha="left", va="center", fontsize=27,
+                color=color, fontweight="bold", zorder=4, alpha=_lblalpha(reveal))
+    specs = []
+    if values:
+        top_icons = max(1, int(round((values[0] / vmax) * cols)))
+        specs = [(values[0], "pt", float(top_icons - 1), float(n - 1))]
+    return ax, specs
+
+
 def _story_bignum(fig, plt, insight: Insight, reveal: float = 1.0):
     """Full-frame 'shock number': the single biggest value counts up as the
     build plays, with the topic + which item it is underneath. For dramatic
@@ -671,6 +713,11 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{star.label} {'sits lowest' if low else 'leads the map'}"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
+    elif insight.kind == "pictograph":
+        low = "lowest" in insight.main_insight.lower()
+        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_pictograph(fig, plt, insight, subtitle, reveal)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"

@@ -210,11 +210,15 @@ _CREATIVE_KINDS = {"geo_us", "geo_world", "share", "bignum", "pictograph"}
 
 
 def _finalize_viz(inss: list) -> None:
-    """Decide each segment's final `kind` at the VIDEO level: honor explicit
-    bignum/pictograph hints, allow at most ONE choropleth per video (the most
-    dramatic geographic segment — the rest fall back to bars for variety), and
-    guarantee at least one creative viz per video (promote the most dramatic
-    segment to a full-frame big-number scene if nothing else qualifies)."""
+    """Decide each segment's final `kind` at the VIDEO level — CREATIVE-FIRST:
+    only use a plain chart when we have to (time-series trends). Order:
+      1. explicit bignum/pictograph hints,
+      2. at most ONE choropleth per video (the most dramatic geographic segment;
+         extra geo segments fall back to pictograph, not bars),
+      3. every remaining ranking/comparison/outlier -> pictograph (never a bar),
+      4. trends stay as a styled line (the only allowed chart); share stays a
+         donut. Plain bars are a last resort that should now almost never appear.
+    A final guard guarantees >=1 creative viz per video."""
     for ins in inss:
         if getattr(ins, "suggested_viz", None) in ("bignum", "pictograph"):
             ins.kind = ins.suggested_viz
@@ -222,9 +226,14 @@ def _finalize_viz(inss: list) -> None:
            if getattr(ins, "suggested_viz", None) in ("geo_us", "geo_world")]
     if geo:
         best = max(geo, key=_spread)
-        best.kind = best.suggested_viz                 # others stay natural
+        best.kind = best.suggested_viz
+    # Creative-first: any segment still on a plain ranking chart becomes a
+    # pictograph. Trends (line) and share (donut) are left as-is.
+    for ins in inss:
+        if ins.kind in ("rank", "comparison", "outlier"):
+            ins.kind = "pictograph"
     if not any(ins.kind in _CREATIVE_KINDS for ins in inss):
-        max(inss, key=_spread).kind = "bignum"         # creative guarantee
+        max(inss, key=_spread).kind = "pictograph"     # creative guarantee
 
 
 def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
