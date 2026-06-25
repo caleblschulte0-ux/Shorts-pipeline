@@ -193,6 +193,9 @@ jobs:
           # LLM key for the auto-localization layer (translates titles/
           # descriptions into 12 languages on every upload).
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Image-gen key for cinematic AI scene/hook backgrounds (free-tier,
+          # graceful fallback to stock/designed if unset or quota-limited).
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"

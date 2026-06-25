@@ -55,4 +55,5 @@ state/last_failed_audit.json
 # hook_media downloads subject photos here on demand; binary blobs, regenerated
 # in CI — gitignore so they don't bloat the repo or create churn.
 state/hook_images/
+state/scene_images/
 preview/
