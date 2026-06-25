@@ -960,7 +960,16 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
         broll_path, off = _pick_broll(total)
         use_broll = broll_path is not None
 
-        # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, charts, mascots, audio
+        # Image-led hook: a relevant photo of the subject behind the hook number
+        # (best-effort; abstract topics return None and keep the designed bg).
+        hook_img = None
+        try:
+            from . import hook_media
+            hook_img = hook_media.fetch_hook_image(st)
+        except Exception as e:  # noqa: BLE001 — never block a render on this
+            print(f"[studio] hook image skipped: {e}", flush=True)
+
+        # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, [hook img], charts, mascots, audio
         inputs = ["-f", "lavfi", "-i",
                   ambient.gradient_lavfi(total, colors=theme["grad"])]
         inputs += ["-loop", "1", "-i", str(bokeh)]
@@ -971,8 +980,13 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
                        f"mandelbrot=size=540x{FOOT_H // 2}:rate={FPS}"]
         inputs += ["-loop", "1", "-i", str(footmask)]
         foot_idx, mask_idx = 2, 3
-        seg_idx = {}
         idx = 4
+        hook_idx = None
+        if hook_img:
+            inputs += ["-loop", "1", "-i", str(hook_img)]
+            hook_idx = idx
+            idx += 1
+        seg_idx = {}
         for i, seg in enumerate(st.segments):
             if seg.chart_path:
                 # chart_path is a printf build sequence (..._build%02d.png);
@@ -1003,6 +1017,19 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
         fc.append("[ftex][fmask]alphamerge[foot]")
         fc.append(f"[bg][foot]overlay=0:{FOOT_Y}[bg2]")
         prev = "bg2"
+        # Image-led hook: full-frame subject photo during the hook window only,
+        # darkened so the white hero number/claim stay legible, fading out as the
+        # first chart arrives. The hero number + claim are ASS, drawn last on top.
+        if hook_idx is not None:
+            he = windows[0][1]
+            fc.append(
+                f"[{hook_idx}:v]scale={W}:{H}:force_original_aspect_ratio=increase,"
+                f"crop={W}:{H},eq=brightness=-0.16:saturation=1.05,format=rgba,"
+                f"fade=t=out:st={max(0.1, he - 0.5):.2f}:d=0.5:alpha=1[hookimg]")
+            fc.append(
+                f"[{prev}][hookimg]overlay=0:0:"
+                f"enable='between(t,0,{he:.2f})'[hk]")
+            prev = "hk"
         # Charts DRAW ON: the build sequence plays (~0.7s) then tpad holds the
         # final frame for the rest of the beat. setpts shifts the clip so its
         # frame 0 lands at s0; the final frame is the exact static chart, so the
