@@ -221,8 +221,13 @@ def _backfill_illustrations(pkg: dict) -> None:
     if not keyword_only:
         return
     outdir = OUTPUT_DIR / "gen_images"
+    # Cap generations per package: each call can wait out a slow Pollinations
+    # response, so bound the time cost (a render-time budget, not a money one).
+    MAX_GEN = int(os.environ.get("MAX_GEN_IMAGES", "3"))
     n = 0
     for s in pkg.get("shots") or []:
+        if n >= MAX_GEN:
+            break
         if s.get("image_url"):
             continue
         phrase = s.get("phrase") or ""

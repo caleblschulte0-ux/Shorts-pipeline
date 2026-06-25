@@ -102,7 +102,7 @@ def _pollinations_image(prompt, out_path, width, height, seed):
         if seed is not None:
             url += f"&seed={int(seed) % (2 ** 31)}"
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        data = urllib.request.urlopen(req, timeout=90).read()
+        data = urllib.request.urlopen(req, timeout=20).read()
         if not data or len(data) < 2000:        # tiny payload = error page
             return None
         out_path.parent.mkdir(parents=True, exist_ok=True)
