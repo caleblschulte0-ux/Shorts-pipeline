@@ -952,53 +952,68 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
         return None                      # nothing generated -> caller uses callouts
 
     n = len(items)
-    baseline = H - 120
-    floor_h = H - 300                    # vertical room for the tallest object
-    num_font = _pil_font(58)
+    num_font = _pil_font(56)
     lab_font = _pil_font(30)
-    slot = W // n
-    max_w = int(slot * 0.86)             # cap width to the slot so nothing overlaps
-    span = 1.0 / n                       # each object owns 1/n of the timeline
+    floor_h = int(H * 0.66)               # tallest object may be this tall
+    gap = int(W * 0.03)
+    usable = W - gap * (n + 1)
+    # Value-weighted widths: the biggest item is biggest and the row fills the
+    # full width edge-to-edge (no tiny objects, no empty slots, no dead band).
+    weights = [0.42 + 0.58 * ((p.value / vmax) if vmax else 1.0) for p in items]
+    wsum = sum(weights) or 1.0
+    widths, heights = [], []
+    for wt, img in zip(weights, cuts):
+        w = usable * wt / wsum
+        h = w * (img.height / img.width) if img else w
+        if h > floor_h:                   # keep tall objects inside the frame
+            w *= floor_h / h
+            h = floor_h
+        widths.append(w)
+        heights.append(h)
+    maxh = max(heights) if heights else floor_h
+    groupw = sum(widths) + gap * (n - 1)
+    x0 = (W - groupw) / 2.0
+    ground = int(min(H - 96, H * 0.56 + maxh * 0.5))   # band centred, not dumped low
+    xs, x = [], x0
+    for w in widths:
+        xs.append(x)
+        x += w + gap
+    span = 1.0 / n
     anchors = []
     pattern = str(out_dir / f"{slug}_build%02d.png")
     for f in range(1, frames + 1):
-        r = f / frames
-        if f == frames:
-            r = 1.0
+        r = 1.0 if f == frames else f / frames
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         draw = ImageDraw.Draw(canvas)
         for i, (p, img) in enumerate(zip(items, cuts)):
-            # Sequential entrance: object i rises/fades in during its own slice
-            # of the timeline, so they arrive one at a time, never all at once.
-            lr = (r - i * span) / (span * 0.85)
+            # one-at-a-time: object i rises + fades in during its 1/n slice.
+            lr = (r - i * span) / (span * 0.8)
             lr = max(0.0, min(1.0, lr))
-            lr = 1.0 - (1.0 - lr) ** 2    # ease-out
+            lr = 1.0 - (1.0 - lr) ** 2
             if lr <= 0.0:
                 continue
-            frac = (p.value / vmax) if vmax else 1.0
-            target_h = (0.34 + 0.66 * frac) * floor_h
-            cx = slot * i + slot // 2
             color = (HIGHLIGHT if p.label == insight.highlight_label
                      else WARN if (insight.baseline and p.label == insight.baseline.label)
                      else ACCENT)
-            top = baseline
-            if img is not None:
-                scale = min(target_h / img.height, max_w / img.width) * lr
-                w = max(1, int(img.width * scale))
-                h = max(1, int(img.height * scale))
+            w, h = int(widths[i]), int(heights[i])
+            cx = int(xs[i] + widths[i] / 2)
+            top = ground - h + int((1.0 - lr) * 90)        # rises into place
+            if img is not None and w > 0 and h > 0:
                 im = img.resize((w, h))
-                x = int(max(0, min(W - w, cx - w // 2)))
-                canvas.alpha_composite(im, (x, baseline - h))
-                top = baseline - h
-            na = max(0.0, min(1.0, (lr - 0.55) / 0.45))   # number lands as it settles
+                if lr < 1.0:                                # fade in
+                    im.putalpha(im.split()[3].point(lambda v: int(v * lr)))
+                canvas.alpha_composite(im, (int(xs[i]), top))
+            na = max(0.0, min(1.0, (lr - 0.5) / 0.5))
             num = _vfmt(p.value)
             nb = draw.textbbox((0, 0), num, font=num_font)
-            nx = cx - (nb[2] - nb[0]) // 2
-            ny = top - 78
-            draw.text((nx, ny), num, font=num_font, fill=_rgba(color, int(255 * na)))
+            ny = top - 72
+            draw.text((cx - (nb[2] - nb[0]) // 2, ny), num, font=num_font,
+                      fill=_rgba(color, int(255 * na)),
+                      stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
             lb = draw.textbbox((0, 0), p.label, font=lab_font)
-            draw.text((cx - (lb[2] - lb[0]) // 2, baseline + 12), p.label,
-                      font=lab_font, fill=(248, 250, 252, int(255 * na)))
+            draw.text((cx - (lb[2] - lb[0]) // 2, ground + 12), p.label,
+                      font=lab_font, fill=(248, 250, 252, int(255 * na)),
+                      stroke_width=2, stroke_fill=(5, 8, 15, int(255 * na)))
             if f == frames:
                 anchors.append({"value": float(p.value), "cx": float(cx),
                                 "cy": float(ny + 30), "w": 200.0, "h": 70.0})
