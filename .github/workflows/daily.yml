@@ -17,6 +17,11 @@ on:
         required: false
         type: boolean
         default: false
+      dry_run:
+        description: 'Render only, do NOT upload (--dry-run). For testing.'
+        required: false
+        type: boolean
+        default: false
   # Auto-fire when the auto-merge workflow finishes a claude/* PR.
   # GitHub blocks GITHUB_TOKEN-attributed pushes from firing other
   # workflows (anti-recursion), so the push-paths trigger below never
@@ -49,7 +54,7 @@ env:
 jobs:
   daily:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     concurrency:
       group: daily-shorts
       cancel-in-progress: false
@@ -257,12 +262,25 @@ jobs:
           COUNT: ${{ github.event.inputs.count || '6' }}
           FORCE: ${{ github.event.inputs.force }}
           NO_SCHEDULE: ${{ github.event.inputs.no_schedule }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: |
           ARGS="--count $COUNT"
           if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-rerun"; fi
           if [ "$NO_SCHEDULE" = "true" ]; then ARGS="$ARGS --no-schedule"; fi
+          if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           echo "Running: python scripts/run_trending_daily.py $ARGS"
           python scripts/run_trending_daily.py $ARGS
+
+      # Dry-run only: keep the rendered mp4s as a downloadable artifact so a
+      # full composited video can be reviewed without uploading anywhere.
+      - name: Upload rendered videos (dry-run)
+        if: ${{ github.event.inputs.dry_run == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: dry-run-videos
+          path: output/*.mp4
+          retention-days: 5
+          if-no-files-found: warn
 
       - name: Update failure counter
         if: always() && steps.preflight.outputs.skip == ''
