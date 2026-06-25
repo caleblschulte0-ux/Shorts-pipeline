@@ -614,10 +614,44 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
     return ax, specs
 
 
+def _story_bignum(fig, plt, insight: Insight, reveal: float = 1.0):
+    """Full-frame 'shock number': the single biggest value counts up as the
+    build plays, with the topic + which item it is underneath. For dramatic
+    single-stat segments and as the per-video creative fallback."""
+    star = max(insight.items, key=lambda p: p.value)
+    t = max(0.0, min(1.0, reveal))
+    eased = 1.0 - (1.0 - t) ** 3
+    shown = star.value * eased
+
+    def _fmt(v: float) -> str:
+        s = f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer() else f"{v:,.1f}"
+        u = (insight.unit or "").strip().lower()
+        if u in ("percent", "%", "rate", "pct"):
+            return s + "%"
+        if u in ("usd", "dollars", "$"):
+            return "$" + s
+        return s
+
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_axis_off()
+    big = fig.text(0.5, 0.55, _fmt(shown), ha="center", va="center",
+                   color=HIGHLIGHT, fontsize=168, fontweight="bold",
+                   alpha=min(1.0, 0.35 + 0.65 * t))
+    fig.text(0.5, 0.37, (insight.topic or "").upper(), ha="center", va="center",
+             color=TEXT, fontsize=30, fontweight="bold", alpha=t)
+    fig.text(0.5, 0.305, star.label, ha="center", va="center",
+             color=SUBTLE, fontsize=24, alpha=t)
+    return ax, [(star.value, "art", big, None)]
+
+
 def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     """Draw the heading + the right chart kind (at the given build fraction)
     + footer. reveal=1.0 is the final, static chart."""
     star = insight.items[0]
+    if insight.kind == "bignum":
+        ax, specs = _story_bignum(fig, plt, insight, reveal)
+        _footer(fig, insight)
+        return ax, specs
     if insight.kind == "comparison":
         lo = insight.items[1]
         subtitle, accent = f"{star.label} vs {lo.label}", HIGHLIGHT
