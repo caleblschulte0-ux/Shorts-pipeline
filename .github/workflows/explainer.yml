@@ -40,6 +40,12 @@ on:
         description: 'schedule/auto: hours from now until the first upload'
         required: false
         default: '1'
+      force:
+        description: 're-post even if already in the posted-log (new-look re-render)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
   # Chain off "Daily Shorts" (runs on main, so branches:[main] matches): after
   # each daily batch, render + post any un-posted explainer stories. The plan
   # job no-ops when there's nothing new, so chaining every daily run is cheap.
@@ -221,6 +227,7 @@ jobs:
           # story in config and dedupes against the posted-log (i.e. posts all
           # un-posted). No hardcoded slate to fall stale.
           SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
+          FORCEFLAG=""; [ "${{ inputs.force }}" = "true" ] && FORCEFLAG="--force"
           export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
           # Self-heal any un-renderable chart specs (single-point "comparison"
           # charts the package generator sometimes emits) before we render, so
@@ -233,7 +240,7 @@ jobs:
             canary)
               python scripts/post_stories.py --slugs "${{ inputs.canary_slug }}" ;;
             schedule)
-              python scripts/post_stories.py $SLUGFLAG \
+              python scripts/post_stories.py $SLUGFLAG $FORCEFLAG \
                 --every-hours "$EVERY" --start-in-hours "$START" ;;
             all)
               python scripts/post_stories.py $SLUGFLAG ;;
