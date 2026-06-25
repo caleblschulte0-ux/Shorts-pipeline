@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "slug": "huntley-illinois-tornado-chicago",
+  "title": "A Tornado Touched Down in the Chicago Suburbs",
+  "hashtags": [
+    "tornado",
+    "chicago",
+    "illinois",
+    "huntley",
+    "severeweather",
+    "storm",
+    "weather",
+    "funnelcloud",
+    "breaking",
+    "midwest",
+    "fyp",
+    "viral"
+  ],
+  "script": "A tornado near Chicago? Storms tore across the Chicago suburbs this week, and near Huntley, Illinois a funnel actually touched down — video caught debris getting ripped up and spun through the air. Towns like Streamwood, Bartlett, and Hanover Park got hammered with straight-line winds that snapped trees and tore off roofs. This is the part of a storm where seconds matter: the sky goes still, then green, then the wind hits like a wall. Forecasters had warned people to get to a basement and stay there. A tornado in the suburbs doesn't care about your fence or your car. So when the funnel is half a mile away, where do you actually go?",
+  "shots": [
+    {
+      "phrase": "A tornado near Chicago",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+      "query": "tornado funnel",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "Storms tore across the Chicago suburbs",
+      "query": "storm clouds suburb",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a funnel actually touched down",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+      "query": "tornado touchdown",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "debris getting ripped up and spun through the air",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+      "query": "tornado debris",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "straight-line winds that snapped trees",
+      "query": "storm damage trees",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the sky goes still, then green",
+      "query": "green storm sky",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the wind hits like a wall",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+      "query": "tornado wind",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "get to a basement and stay there",
+      "query": "storm shelter basement",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "where do you actually go",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+      "query": "tornado",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "A tornado near Chicago",
+      "text": "TORNADO!",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a funnel actually touched down",
+      "text": "TOUCHDOWN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "snapped trees and tore off roofs",
+      "text": "DESTRUCTION",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "seconds matter",
+      "text": "SECONDS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "get to a basement",
+      "text": "TAKE COVER",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
