@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "slug": "seattle-dim-sum-world-record",
+  "title": "830 People Ate Dim Sum Together and Broke a World Record",
+  "hashtags": [
+    "dimsum",
+    "seattle",
+    "worldrecord",
+    "guinnessworldrecord",
+    "food",
+    "dumplings",
+    "record",
+    "foodie",
+    "chinatown",
+    "brunch",
+    "fyp",
+    "viral"
+  ],
+  "script": "830 people, one brunch? In Seattle, a single neighborhood packed 830 people around tables to eat dim sum at the same time — and smashed a Guinness World Record for the largest dim sum gathering ever. Picture it: hundreds of bamboo steamers, clouds of dumpling steam, 830 pairs of chopsticks moving at once. Judges had to actually count every seated eater and verify everyone was served the real thing — no empty baskets allowed. It's part block party, part world record, part the best-smelling crowd on earth. Somehow nobody fought over the last shrimp dumpling. So how do you even feed 830 people dim sum before it goes cold?",
+  "shots": [
+    {
+      "phrase": "830 people, one brunch",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+      "query": "dim sum table",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "packed 830 people around tables",
+      "query": "large crowd banquet",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "eat dim sum at the same time",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+      "query": "dim sum",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "hundreds of bamboo steamers",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+      "query": "bamboo steamer dumplings",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "clouds of dumpling steam",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+      "query": "steaming dumplings",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "count every seated eater",
+      "query": "banquet hall crowd",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the best-smelling crowd on earth",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+      "query": "dim sum feast",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "feed 830 people dim sum before it goes cold",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+      "query": "dim sum",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "830 people, one brunch",
+      "text": "830 PEOPLE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Guinness World Record",
+      "text": "WORLD RECORD",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "largest dim sum gathering",
+      "text": "BIGGEST EVER",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "last shrimp dumpling",
+      "text": "LAST ONE!",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "before it goes cold",
+      "text": "STILL HOT?",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
