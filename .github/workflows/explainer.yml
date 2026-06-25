@@ -238,9 +238,17 @@ jobs:
               git config user.email "github-actions[bot]@users.noreply.github.com"
               git add -f preview/*.mp4
               git commit -m "preview render: $SLUGS [skip ci]" || echo "nothing to commit"
-              git push origin "HEAD:${GITHUB_REF_NAME}" \
-                || (git pull --rebase origin "${GITHUB_REF_NAME}" \
-                    && git push origin "HEAD:${GITHUB_REF_NAME}") ;;
+              # Robust push: the render leaves other files dirty (normalize_charts
+              # rewrites niche.config.json) so a plain rebase aborts with "unstaged
+              # changes"; --autostash + -X ours + retry rides that out and any
+              # concurrent push, so the rendered previews actually reach the branch.
+              for i in 1 2 3 4 5; do
+                git push origin "HEAD:${GITHUB_REF_NAME}" && { echo "pushed on attempt $i"; break; }
+                echo "push failed on attempt $i, rebasing (autostash, ours)..."
+                git pull --rebase --autostash -X ours origin "${GITHUB_REF_NAME}" \
+                  || git rebase --abort || true
+                sleep 2
+              done ;;
             auto)
               # post every un-posted story (no --slugs => all, deduped), hourly
               python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" ;;
