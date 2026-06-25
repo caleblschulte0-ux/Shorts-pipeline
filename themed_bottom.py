@@ -3530,10 +3530,22 @@ class _Pursuit(_Renderer):
         self.props = [{"y": rng.uniform(0, H), "side": s,
                        "kind": rng.choice(["pole", "tree", "tree"])}
                       for s in (0, 1) for _ in range(5)]
-        # Neutral traffic the runaway weaves around.
-        self.traffic = [{"lane": rng.randint(0, 2), "y": rng.uniform(-H, -80),
-                         "col": rng.choice([(150, 150, 162), (120, 140, 172),
-                                            (182, 172, 150)])} for _ in range(3)]
+        # Neutral traffic the runaway dodges. Spawned VERTICALLY SPACED
+        # (>~0.55 screen-heights apart) so at most one car is ever in the
+        # runaway's danger band — there's always an open adjacent lane to
+        # swerve into, and the runaway never has to drive through a wall.
+        self._traf_cols = [(150, 150, 162), (120, 140, 172),
+                           (182, 172, 150), (90, 110, 150)]
+        self.traffic = []
+        yy = -120.0
+        for n in range(4):
+            self.traffic.append({"lane": (n * 2 + rng.randint(0, 1)) % 3, "y": yy,
+                                 "spd": rng.uniform(0.62, 0.82),
+                                 "col": rng.choice(self._traf_cols)})
+            yy -= rng.uniform(0.6 * H, 0.85 * H)
+        self.flee_x = (self.rx0 + self.rx1) / 2
+        self.flee_lane = 1
+        self.flee_y = H * 0.30
 
     def _lane_x(self, lane):
         return self.rx0 + (self.rx1 - self.rx0) * (lane + 0.5) / 3
@@ -3604,16 +3616,53 @@ class _Pursuit(_Renderer):
                 d.rectangle([px - 4, yy + 10, px + 4, yy + 28], fill=(58, 44, 30, 255))
 
         for c in self.traffic:
-            c["y"] += speed * 0.72 * dt
+            c["y"] += speed * c["spd"] * dt
             if c["y"] > H + 100:
-                c["y"] = self.rng.uniform(-280, -100)
+                # Respawn ABOVE the current topmost car so spacing is kept
+                # and the danger band never holds more than one car.
+                topmost = min(o["y"] for o in self.traffic)
+                c["y"] = topmost - self.rng.uniform(0.6 * H, 0.9 * H)
                 c["lane"] = self.rng.randint(0, 2)
+                c["spd"] = self.rng.uniform(0.62, 0.82)
+                c["col"] = self.rng.choice(self._traf_cols)
 
-        amp = (rx1 - rx0) * 0.30 * (0.55 + 0.45 * k)
-        flee_x = cx + math.sin(t * (1.9 + 2.4 * k)) * amp
-        self.chase_x += (flee_x - self.chase_x) * 0.07
+        base_y = H * 0.30
+        lanes_x = [self._lane_x(L) for L in range(3)]
+        # Reactive dodging: look ahead for traffic about to reach the runaway
+        # and swerve to an open lane — no fixed sine, so the path is different
+        # every run and the car never drives THROUGH another car.
+        blocked = {c["lane"] for c in self.traffic
+                   if self.flee_y - 175 < c["y"] < self.flee_y + 40}
+        cur = min(range(3), key=lambda L: abs(lanes_x[L] - self.flee_x))
+        if cur in blocked:                              # threatened -> swerve
+            opts = [L for L in range(3) if L not in blocked]
+            self.flee_lane = (min(opts, key=lambda L: abs(L - cur))
+                              if opts else cur)          # boxed in -> near miss
+        elif (abs(self.flee_x - lanes_x[self.flee_lane]) < 16
+              and self.rng.random() < 0.02):
+            # settled: occasionally drift to another open lane so it never
+            # looks scripted
+            opts = [L for L in range(3) if L not in blocked and L != self.flee_lane]
+            if opts:
+                self.flee_lane = self.rng.choice(opts)
+        dodging = cur in blocked
+        target = (lanes_x[self.flee_lane]
+                  + math.sin(t * 2.3) * (rx1 - rx0) / 3 * 0.10)   # tiny in-lane life
+        self.flee_x += (target - self.flee_x) * (0.20 if dodging else 0.08)
+        flee_x = self.flee_x
+        # Vertical brake: if a car is in the runaway's column and too close to
+        # out-swerve, drop back so it passes ahead — guarantees the cars never
+        # occupy the same spot (no driving-through), and reads as braking.
+        nearest_dy = 1e9
+        for c in self.traffic:
+            if abs(lanes_x[c["lane"]] - flee_x) < 56:
+                nearest_dy = min(nearest_dy, abs(c["y"] - self.flee_y))
+        brake = nearest_dy < 150
+        self.flee_y += ((base_y + (160 if brake else 0)) - self.flee_y) * 0.18
+        flee_y = self.flee_y
+        # chaser hunts the runaway's real path, so it tracks the swerves
+        self.chase_x += (flee_x - self.chase_x) * 0.11
         gap = 250 - 150 * k + math.sin(t * 3.0) * 14
-        flee_y = H * 0.30
         chase_y = flee_y + max(64, gap)
 
         self.trail *= 0.82
