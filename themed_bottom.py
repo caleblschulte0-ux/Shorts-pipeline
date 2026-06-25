@@ -3522,67 +3522,111 @@ class _Pursuit(_Renderer):
         self.bg[..., 0] = 40 - 12 * g
         self.bg[..., 1] = 42 - 12 * g
         self.bg[..., 2] = 50 - 14 * g
-        self.rx0, self.rx1 = W * 0.17, W * 0.83
+        self.rx0, self.rx1 = W * 0.16, W * 0.84
         self.scroll = 0.0
         self.chase_x = (self.rx0 + self.rx1) / 2
+        rng = self.rng
+        # Roadside props whip past for a speed cue; recycled by wrapping y.
+        self.props = [{"y": rng.uniform(0, H), "side": s,
+                       "kind": rng.choice(["pole", "tree", "tree"])}
+                      for s in (0, 1) for _ in range(5)]
+        # Neutral traffic the runaway weaves around.
+        self.traffic = [{"lane": rng.randint(0, 2), "y": rng.uniform(-H, -80),
+                         "col": rng.choice([(150, 150, 162), (120, 140, 172),
+                                            (182, 172, 150)])} for _ in range(3)]
+
+    def _lane_x(self, lane):
+        return self.rx0 + (self.rx1 - self.rx0) * (lane + 0.5) / 3
+
+    def _car(self, d, x, y, col, t, siren=False):
+        w, h = 52, 96
+        for tx, ty in ((x - w / 2 - 4, y - h / 2 + 12), (x + w / 2 - 4, y - h / 2 + 12),
+                       (x - w / 2 - 4, y + h / 2 - 36), (x + w / 2 - 4, y + h / 2 - 36)):
+            d.rounded_rectangle([tx, ty, tx + 8, ty + 24], radius=4, fill=(15, 15, 18, 255))
+        d.rounded_rectangle([x - w / 2, y - h / 2, x + w / 2, y + h / 2],
+                            radius=18, fill=(*col, 255))
+        d.rounded_rectangle([x - w / 2 + 5, y - h / 2 + 5, x - 6, y + h / 2 - 5],
+                            radius=12, fill=(255, 255, 255, 30))   # body sheen
+        d.rounded_rectangle([x - w / 2 + 9, y - 20, x + w / 2 - 9, y + 2],
+                            radius=6, fill=(20, 26, 42, 235))       # windshield
+        d.rounded_rectangle([x - w / 2 + 9, y + 12, x + w / 2 - 9, y + 28],
+                            radius=6, fill=(22, 28, 44, 200))       # rear glass
+        d.ellipse([x - w / 2 + 5, y - h / 2 + 4, x - w / 2 + 16, y - h / 2 + 15],
+                  fill=(255, 248, 205, 235))
+        d.ellipse([x + w / 2 - 16, y - h / 2 + 4, x + w / 2 - 5, y - h / 2 + 15],
+                  fill=(255, 248, 205, 235))
+        d.rectangle([x - w / 2 + 6, y + h / 2 - 9, x - w / 2 + 18, y + h / 2 - 3],
+                    fill=(255, 60, 40, 235))
+        d.rectangle([x + w / 2 - 18, y + h / 2 - 9, x + w / 2 - 6, y + h / 2 - 3],
+                    fill=(255, 60, 40, 235))
+        if siren:
+            fl = int(t * 9) % 2
+            d.rounded_rectangle([x - 18, y - h / 2 - 10, x - 2, y - h / 2 - 1], radius=3,
+                                fill=((255, 40, 40, 255) if fl else (90, 16, 16, 255)))
+            d.rounded_rectangle([x + 2, y - h / 2 - 10, x + 18, y - h / 2 - 1], radius=3,
+                                fill=((40, 90, 255, 255) if not fl else (16, 24, 90, 255)))
 
     def draw(self, t, i):
         dt = 1.0 / FPS
         k = min(1.0, t / max(1.0, getattr(self, "duration", 30.0)))
-        self.scroll += (340 + 560 * k) * dt
+        speed = 360 + 620 * k
+        self.scroll += speed * dt
         rx0, rx1 = self.rx0, self.rx1
         cx = (rx0 + rx1) / 2
+        shake = self.rng.uniform(-1, 1) * 4.0 * k    # camera shake ramps
 
         img = Image.fromarray(np.clip(self.bg.copy(), 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
-        d.rectangle([0, 0, rx0, H], fill=(24, 50, 30, 255))
-        d.rectangle([rx1, 0, W, H], fill=(24, 50, 30, 255))
-        for side in (rx0, rx1):
-            off = self.scroll % 120
-            y = -off
-            while y < H:
-                d.rectangle([side - 6, y, side + 6, y + 60], fill=(232, 210, 70, 255))
-                y += 120
+        d.rectangle([0, 0, rx0, H], fill=(22, 46, 28, 255))
+        d.rectangle([rx1, 0, W, H], fill=(22, 46, 28, 255))
+        d.rectangle([rx0, 0, rx0 + 7, H], fill=(232, 210, 70, 255))
+        d.rectangle([rx1 - 7, 0, rx1, H], fill=(232, 210, 70, 255))
         for L in (1, 2):
             lx = rx0 + (rx1 - rx0) * L / 3
-            off = self.scroll % 130
+            off = self.scroll % 150
             y = -off
             while y < H:
-                d.rectangle([lx - 5, y, lx + 5, y + 70], fill=(238, 238, 238, 235))
-                y += 130
+                d.rectangle([lx - 5, y, lx + 5, y + 78], fill=(238, 238, 238, 235))
+                y += 150
+        # roadside scenery whipping past
+        for p in self.props:
+            p["y"] = (p["y"] + speed * dt) % (H + 90)
+            px = (rx0 - 24) if p["side"] == 0 else (rx1 + 24)
+            yy = p["y"]
+            if p["kind"] == "pole":
+                d.line([px, yy - 42, px, yy + 20], fill=(92, 98, 112, 255), width=5)
+                arm = 16 if p["side"] == 0 else -16
+                d.line([px, yy - 40, px + arm, yy - 40], fill=(92, 98, 112, 255), width=5)
+                d.ellipse([px + arm - 4, yy - 44, px + arm + 4, yy - 36], fill=(255, 230, 150, 230))
+            else:
+                d.ellipse([px - 22, yy - 32, px + 22, yy + 12], fill=(28, 78, 40, 255))
+                d.ellipse([px - 13, yy - 40, px + 9, yy - 14], fill=(36, 96, 50, 255))
+                d.rectangle([px - 4, yy + 10, px + 4, yy + 28], fill=(58, 44, 30, 255))
+
+        for c in self.traffic:
+            c["y"] += speed * 0.72 * dt
+            if c["y"] > H + 100:
+                c["y"] = self.rng.uniform(-280, -100)
+                c["lane"] = self.rng.randint(0, 2)
 
         amp = (rx1 - rx0) * 0.30 * (0.55 + 0.45 * k)
-        flee_x = cx + math.sin(t * (2.0 + 2.6 * k)) * amp
+        flee_x = cx + math.sin(t * (1.9 + 2.4 * k)) * amp
         self.chase_x += (flee_x - self.chase_x) * 0.07
         gap = 250 - 150 * k + math.sin(t * 3.0) * 14
         flee_y = H * 0.30
         chase_y = flee_y + max(64, gap)
 
-        self.trail *= 0.85
-        _stamp_glow(self.trail, flee_x, flee_y + 55, 38, (45, 120, 255), 0.6 + 0.5 * k)
-        _stamp_glow(self.trail, self.chase_x, chase_y + 55, 38, (255, 60, 50), 0.6 + 0.5 * k)
+        self.trail *= 0.82
+        _stamp_glow(self.trail, flee_x, flee_y + 62, 28, (50, 130, 255), 0.6 + 0.5 * k)
+        _stamp_glow(self.trail, self.chase_x, chase_y + 62, 28, (255, 60, 50), 0.6 + 0.5 * k)
         img = Image.fromarray(
             np.clip(np.asarray(img, np.float32) + self.trail, 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
 
-        def car(x, y, col):
-            w, h = 50, 92
-            d.rounded_rectangle([x - w / 2, y - h / 2, x + w / 2, y + h / 2],
-                                radius=16, fill=(*col, 255))
-            d.rectangle([x - w / 2 + 8, y - 10, x + w / 2 - 8, y + 16],
-                        fill=(18, 22, 32, 220))
-            d.ellipse([x - w / 2 + 4, y - h / 2 + 5, x - w / 2 + 15, y - h / 2 + 16],
-                      fill=(255, 248, 205, 235))
-            d.ellipse([x + w / 2 - 15, y - h / 2 + 5, x + w / 2 - 4, y - h / 2 + 16],
-                      fill=(255, 248, 205, 235))
-
-        car(self.chase_x, chase_y, (205, 48, 44))
-        flash = int(t * 8) % 2
-        d.rectangle([self.chase_x - 17, chase_y - 56, self.chase_x - 2, chase_y - 49],
-                    fill=((255, 40, 40, 255) if flash else (120, 20, 20, 255)))
-        d.rectangle([self.chase_x + 2, chase_y - 56, self.chase_x + 17, chase_y - 49],
-                    fill=((40, 90, 255, 255) if not flash else (20, 30, 120, 255)))
-        car(flee_x, flee_y, (50, 120, 235))
+        for c in self.traffic:
+            self._car(d, self._lane_x(c["lane"]) + shake, c["y"], c["col"], t)
+        self._car(d, self.chase_x + shake, chase_y, (205, 48, 44), t, siren=True)
+        self._car(d, flee_x + shake, flee_y, (52, 124, 238), t)
         return np.asarray(img, dtype=np.uint8)
 
 
@@ -3594,36 +3638,57 @@ class _Claw(_Renderer):
 
     _COLS = [(255, 90, 110), (90, 200, 255), (255, 210, 80),
              (150, 240, 130), (210, 130, 255), (255, 150, 70)]
+    _SHAPES = ("ball", "capsule", "star")
 
     def __init__(self, seed=None):
         super().__init__(seed)
-        rng = self.rng
         g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
         self.bg = np.zeros((H, W, 3), np.float32)
-        self.bg[..., 0] = 26 + 16 * (1 - g)
-        self.bg[..., 1] = 16 + 8 * (1 - g)
-        self.bg[..., 2] = 34 + 18 * (1 - g)
-        self.floor_y = H * 0.80
-        self.pile = [self._prize() for _ in range(34)]
-        self.rail_y = 90
+        self.bg[..., 0] = 30 + 18 * (1 - g)
+        self.bg[..., 1] = 18 + 10 * (1 - g)
+        self.bg[..., 2] = 42 + 22 * (1 - g)
+        self.floor_y = H * 0.78
+        self.pile = [self._prize() for _ in range(30)]
+        self.rail_y = 126
         self.claw_x = W * 0.5
         self.claw_y = self.rail_y
         self.target = W * 0.5
         self.phase = "seek"
         self.pt = 0.0
         self.held = None
-        self.chute_x = W * 0.88
+        self.chute_x = W * 0.86
+        self.spark: list[list] = []   # win sparkles: [x, y, vx, vy, life]
 
     def _prize(self):
         rng = self.rng
-        return {"x": rng.uniform(W * 0.12, W * 0.78),
+        return {"x": rng.uniform(W * 0.13, W * 0.74),
                 "y": rng.uniform(H * 0.80, H * 0.95),
-                "r": rng.uniform(20, 34), "c": rng.choice(self._COLS)}
+                "r": rng.uniform(20, 33), "c": rng.choice(self._COLS),
+                "s": rng.choice(self._SHAPES), "ph": rng.uniform(0, 6.28)}
+
+    def _blob(self, d, p, glow=False):
+        x, y, r, c, s = p["x"], p["y"], p["r"], p["c"], p["s"]
+        if glow:
+            d.ellipse([x - r * 1.6, y - r * 1.6, x + r * 1.6, y + r * 1.6], fill=(*c, 55))
+        if s == "capsule":
+            d.rounded_rectangle([x - r, y - r * 0.72, x + r, y + r * 0.72],
+                                radius=int(r * 0.7), fill=(*c, 255))
+        elif s == "star":
+            pts = []
+            for j in range(10):
+                rr = r if j % 2 == 0 else r * 0.45
+                a = -math.pi / 2 + j * math.pi / 5
+                pts.append((x + rr * math.cos(a), y + rr * math.sin(a)))
+            d.polygon(pts, fill=(*c, 255))
+        else:
+            d.ellipse([x - r, y - r, x + r, y + r], fill=(*c, 255))
+        d.ellipse([x - r * 0.42, y - r * 0.46, x - r * 0.05, y - r * 0.08],
+                  fill=(255, 255, 255, 150))
 
     def _dur(self, k):
         f = 1.0 - 0.45 * k
         return {"seek": 1.1 * f, "drop": 0.7 * f, "grab": 0.4 * f,
-                "lift": 0.7 * f, "carry": 1.0 * f, "release": 0.4 * f}
+                "lift": 0.7 * f, "carry": 1.0 * f, "release": 0.45 * f}
 
     def draw(self, t, i):
         dt = 1.0 / FPS
@@ -3658,44 +3723,72 @@ class _Claw(_Renderer):
                 if self.held in self.pile:
                     self.pile.remove(self.held)
                 self.held = None
+                for _ in range(16):    # win sparkle burst at the chute
+                    a = self.rng.uniform(0, 6.28)
+                    sp = self.rng.uniform(60, 240)
+                    self.spark.append([self.chute_x, floor_y, math.cos(a) * sp,
+                                       math.sin(a) * sp - 60, 1.0])
             if self.pt >= durs["release"]:
-                if len(self.pile) < 30:
+                if len(self.pile) < 28:
                     self.pile.append(self._prize())
                 self.target = self.rng.uniform(W * 0.15, W * 0.72)
                 self.phase, self.pt = "seek", 0.0
         if self.held is not None:
-            self.held["x"], self.held["y"] = self.claw_x, self.claw_y + 46
+            self.held["x"], self.held["y"] = self.claw_x, self.claw_y + 48
 
         img = Image.fromarray(np.clip(self.bg.copy(), 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")
-        d.rectangle([self.chute_x - 46, floor_y - 10, W - 8, H],
-                    fill=(20, 22, 34, 255), outline=(120, 130, 160, 220), width=3)
+        # marquee + glass cabinet frame
+        d.rectangle([0, 0, W, 44], fill=(82, 30, 122, 255))
+        d.rectangle([0, 44, W, 50], fill=(255, 210, 80, 255))
+        d.rounded_rectangle([12, 58, W - 12, H - 10], radius=20,
+                            outline=(150, 160, 215, 150), width=5)
+        # chute
+        won = any(s[4] > 0 for s in self.spark)
+        d.rounded_rectangle([self.chute_x - 50, floor_y - 16, W - 22, H - 18], radius=12,
+                            fill=(18, 20, 32, 255), outline=(120, 130, 160, 220), width=3)
+        if won:
+            d.ellipse([self.chute_x - 56, floor_y - 30, W - 16, floor_y + 34],
+                      fill=(255, 220, 90, 45))
+        # prize pile (idle jitter)
         for p in self.pile:
             if p is self.held:
                 continue
-            d.ellipse([p["x"] - p["r"], p["y"] - p["r"], p["x"] + p["r"], p["y"] + p["r"]],
-                      fill=(*p["c"], 255))
-            d.ellipse([p["x"] - p["r"] * 0.4, p["y"] - p["r"] * 0.45,
-                       p["x"] - p["r"] * 0.05, p["y"] - p["r"] * 0.1],
-                      fill=(255, 255, 255, 150))
-        d.rectangle([0, self.rail_y - 8, W, self.rail_y - 2], fill=(150, 160, 190, 255))
-        d.line([self.claw_x, self.rail_y - 6, self.claw_x, self.claw_y],
-               fill=(180, 190, 210, 255), width=4)
+            p_draw = dict(p, y=p["y"] + math.sin(t * 1.6 + p["ph"]) * 1.5)
+            self._blob(d, p_draw)
+        # gantry rail + trolley + cable
+        d.rectangle([0, self.rail_y - 13, W, self.rail_y - 5], fill=(120, 128, 152, 255))
+        d.rounded_rectangle([self.claw_x - 26, self.rail_y - 22, self.claw_x + 26,
+                             self.rail_y + 2], radius=6, fill=(180, 190, 216, 255))
+        d.line([self.claw_x, self.rail_y + 2, self.claw_x, self.claw_y],
+               fill=(200, 206, 222, 255), width=5)
         closed = self.phase in ("grab", "lift", "carry")
-        spread = 10 if closed else 26
+        spread = 8 if closed else 26
         cy = self.claw_y
-        d.rectangle([self.claw_x - 16, cy - 14, self.claw_x + 16, cy + 8],
-                    fill=(190, 200, 225, 255))
+        d.rounded_rectangle([self.claw_x - 18, cy - 16, self.claw_x + 18, cy + 8],
+                            radius=5, fill=(190, 200, 225, 255))
+        d.line([self.claw_x, cy + 6, self.claw_x, cy + 52], fill=(170, 180, 210, 255), width=6)
         for sx in (-1, 1):
             tipx = self.claw_x + sx * spread
-            d.line([self.claw_x + sx * 12, cy + 6, tipx, cy + 40],
+            d.line([self.claw_x + sx * 13, cy + 6, tipx, cy + 44],
                    fill=(170, 180, 210, 255), width=7)
-            d.line([tipx, cy + 40, tipx - sx * 8, cy + 58],
+            d.line([tipx, cy + 44, tipx - sx * 9, cy + 62],
                    fill=(170, 180, 210, 255), width=7)
         if self.held is not None:
-            p = self.held
-            d.ellipse([p["x"] - p["r"], p["y"] - p["r"], p["x"] + p["r"], p["y"] + p["r"]],
-                      fill=(*p["c"], 255))
+            self._blob(d, self.held, glow=True)
+        # update + draw sparkles
+        alive = []
+        for s in self.spark:
+            s[4] -= dt * 1.6
+            if s[4] <= 0:
+                continue
+            s[3] += 520 * dt
+            s[0] += s[2] * dt
+            s[1] += s[3] * dt
+            d.ellipse([s[0] - 3, s[1] - 3, s[0] + 3, s[1] + 3],
+                      fill=(255, 240, 160, int(max(0, s[4]) * 255)))
+            alive.append(s)
+        self.spark = alive
         return np.asarray(img, dtype=np.uint8)
 
 
