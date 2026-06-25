@@ -570,36 +570,37 @@ def format_report(date_str: str, results: list[dict]) -> str:
     return "\n".join(lines)
 
 
-# Broadly-reusable bottom themes the diversity allocator can swap in when a
-# story's natural theme is already used this batch — all fit almost any story
-# so a swap never looks wrong.
-_REUSABLE_THEMES = ["plinko", "stacker", "coins", "runner", "ocean", "space", "moto"]
-
-
 def _assign_bottom_diversity(pkgs: list[dict]) -> None:
-    """Tailor + diversify bottoms across the batch (operator: read each story,
-    make a fitting bottom; across every 3 keep >=2 distinct, at most 1 reuse).
-    Resolves each package's base theme, swaps a repeat to an unused
-    broadly-reusable theme where possible, and pins a distinct reskin seed so
-    even a reused base theme is visually re-skinned. Mutates pkgs in place."""
+    """Tailor + diversify bottoms across the batch. Each story keeps a
+    RELEVANT theme (one of its own keyword matches); when that theme is
+    already used this batch, we move to the story's NEXT relevant match
+    rather than a generic fallback — so the bottom never stops relating to
+    the video. Only a story that matches no theme at all falls to plinko.
+    Every package also gets a distinct reskin seed, so even a reused theme
+    looks different. Mutates pkgs in place."""
     try:
         import themed_bottom
     except Exception:  # noqa: BLE001
         return
     used: dict[str, int] = {}
     for i, p in enumerate(pkgs):
-        bt = (p.get("bottom_theme") or "").strip().lower()
-        if not bt or bt == "auto":
-            bt = themed_bottom.pick_theme(
+        explicit = (p.get("bottom_theme") or "").strip().lower()
+        if explicit and explicit != "auto":
+            choice = explicit
+        else:
+            ranked = themed_bottom.rank_themes(
                 p.get("title", ""), p.get("script", ""), p.get("hashtags"))
-        if used.get(bt, 0) >= 1:
-            alt = next((a for a in _REUSABLE_THEMES
-                        if used.get(a, 0) == 0 and a != bt), None)
-            if alt:
-                print(f"[bottom] {p.get('slug', i)}: {bt!r} repeats -> {alt!r}")
-                bt = alt
-        used[bt] = used.get(bt, 0) + 1
-        p["bottom_theme"] = bt
+            if not ranked:
+                choice = "plinko"
+            else:
+                # Among the story's RELEVANT themes, take the least-used so
+                # far (spreads escapes across runner/pursuit etc.); ties go
+                # to the most relevant (earliest-ranked). Never a generic
+                # off-topic swap.
+                choice = min(ranked,
+                             key=lambda th: (used.get(th, 0), ranked.index(th)))
+        used[choice] = used.get(choice, 0) + 1
+        p["bottom_theme"] = choice
         p["_theme_seed"] = f"{p.get('slug') or p.get('title', '')}-{i}"
     print(f"[bottom] batch themes: {dict(used)} "
           f"({len(used)} distinct)", flush=True)
