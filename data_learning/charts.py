@@ -491,6 +491,105 @@ def _story_pie(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     return ax, arts
 
 
+# --------------------------------------------------------------------------
+# Geographic choropleth (kind="geo_us" / "geo_world"). Pure matplotlib from a
+# bundled CC0 GeoJSON — no geopandas, no runtime network. Regions present in the
+# story's items are shaded by value (house ramp); the rest stay neutral so the
+# notable ones pop. Used for by_state / by_country segments.
+# --------------------------------------------------------------------------
+_GEO_DIR = Path(__file__).resolve().parent / "assets" / "geo"
+_GEO_FILE = {"us": "us_states.json", "world": "world_countries.json"}
+_GEO_CACHE: dict = {}
+
+# Dataset label -> GeoJSON 'name'. Covers the spellings our datasets use.
+_GEO_ALIAS = {
+    "United States": "United States of America", "USA": "United States of America",
+    "US": "United States of America", "U.S.": "United States of America",
+    "UK": "United Kingdom", "Britain": "United Kingdom",
+    "Czechia": "Czech Republic", "Korea": "South Korea",
+}
+
+
+def _load_geojson(scope: str):
+    if scope not in _GEO_CACHE:
+        import json as _json
+        _GEO_CACHE[scope] = _json.loads((_GEO_DIR / _GEO_FILE[scope]).read_text())
+    return _GEO_CACHE[scope]
+
+
+def _norm_region(label: str) -> str:
+    return _GEO_ALIAS.get(label.strip(), label.strip())
+
+
+def _exterior_rings(geom):
+    """Yield each polygon's exterior ring (holes ignored — fine at this scale)."""
+    t, c = geom.get("type"), geom.get("coordinates") or []
+    if t == "Polygon" and c:
+        yield c[0]
+    elif t == "MultiPolygon":
+        for poly in c:
+            if poly:
+                yield poly[0]
+
+
+def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: str):
+    """Choropleth for geographic data. Present regions fill from neutral ->
+    house ramp as `reveal` grows; value labels land on the top regions."""
+    import math as _m
+    from matplotlib.patches import Polygon as _Poly
+    from matplotlib.colors import Normalize, LinearSegmentedColormap, to_rgb
+
+    gj = _load_geojson(scope)
+    values = {_norm_region(p.label): p.value for p in insight.items}
+    vals = list(values.values()) or [0.0, 1.0]
+    vmin, vmax = min(vals), max(vals)
+    norm = Normalize(vmin, vmax if vmax > vmin else vmin + 1.0)
+    cmap = LinearSegmentedColormap.from_list("house", [ACCENT, HIGHLIGHT, WARN])
+    base_rgb = to_rgb(BAR_BASE)
+    t = max(0.0, min(1.0, reveal))
+
+    ax = fig.add_axes([0.05, 0.14, 0.90, 0.62])
+    ax.set_axis_off()
+    if scope == "us":
+        ax.set_xlim(-125, -66); ax.set_ylim(24, 50); mean_lat = 37.0
+    else:
+        ax.set_xlim(-170, 190); ax.set_ylim(-58, 84); mean_lat = 15.0
+    ax.set_aspect(1.0 / _m.cos(_m.radians(mean_lat)))
+
+    centroids: dict = {}
+    for feat in gj["features"]:
+        nm = feat.get("properties", {}).get("name", "")
+        present = nm in values
+        if present:
+            tgt = to_rgb(cmap(norm(values[nm])))
+            fc = tuple(base_rgb[i] + (tgt[i] - base_rgb[i]) * t for i in range(3))
+            edge, lw, z = TEXT, 0.8, 3
+        else:
+            fc, edge, lw, z = base_rgb, CARD_EDGE, 0.4, 2
+        best = None
+        for ring in _exterior_rings(feat.get("geometry", {})):
+            ax.add_patch(_Poly(ring, closed=True, facecolor=fc, edgecolor=edge,
+                               linewidth=lw, zorder=z))
+            if present and (best is None or len(ring) > len(best)):
+                best = ring
+        if present and best is not None:
+            xs = [pt[0] for pt in best]; ys = [pt[1] for pt in best]
+            centroids[nm] = (sum(xs) / len(xs), sum(ys) / len(ys))
+
+    specs = []
+    la = _lblalpha(reveal)
+    for nm, v in sorted(values.items(), key=lambda kv: kv[1], reverse=True):
+        if nm not in centroids:
+            continue
+        cx, cy = centroids[nm]
+        txt = ax.text(cx, cy, _vfmt(v), ha="center", va="center", fontsize=23,
+                      color=TEXT, fontweight="bold", zorder=5, alpha=la,
+                      bbox=dict(boxstyle="round,pad=0.18", fc=(0, 0, 0, 0.5 * la),
+                                ec="none"))
+        specs.append((v, "art", txt, None))
+    return ax, specs
+
+
 def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     """Draw the heading + the right chart kind (at the given build fraction)
     + footer. reveal=1.0 is the final, static chart."""
@@ -508,6 +607,12 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{star.label} is the biggest slice"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_pie(fig, plt, insight, subtitle, reveal)
+    elif insight.kind in ("geo_us", "geo_world"):
+        scope = "us" if insight.kind == "geo_us" else "world"
+        low = "lowest" in insight.main_insight.lower()
+        subtitle = f"{star.label} {'sits lowest' if low else 'leads the map'}"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
