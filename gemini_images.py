@@ -324,3 +324,66 @@ def build_thumbnail(out_path, *, title: str, hook: str | None = None,
     except Exception as e:  # noqa: BLE001
         print(f"[gemini] thumbnail failed: {type(e).__name__}: {e}", flush=True)
         return None
+
+
+def build_cover_frame(out_path, *, title: str, hook: str | None = None,
+                      bg_image=None) -> Path | None:
+    """Compose a 1080x1920 HOOK COVER for the video's first ~1.3s — the frame
+    that stops the swipe and seeds the in-feed preview. Same punch as the
+    thumbnail (saturated/vignetted lead image, dark scrim, huge stroked hook
+    with the number/key word in yellow), centered for vertical. Returns the
+    path, or None on any failure (caller just skips the cover)."""
+    try:
+        from PIL import Image, ImageDraw, ImageEnhance
+    except Exception:  # noqa: BLE001
+        return None
+    W, H = 1080, 1920
+    out_path = Path(out_path)
+    try:
+        bg = _load_bg(bg_image)
+        has_photo = bg is not None
+        if bg is None:
+            bg = Image.new("RGB", (W, H), (14, 16, 28))
+        bg = _cover(bg, W, H)
+        if has_photo:
+            bg = ImageEnhance.Color(bg).enhance(1.35)
+            bg = ImageEnhance.Contrast(bg).enhance(1.15)
+            bg = _vignette(bg)
+        # Center-weighted dark scrim so the centered hook always reads.
+        black = Image.new("RGB", (W, H), (0, 0, 0))
+        scrim = Image.new("L", (1, H), 0)
+        px = scrim.load()
+        for y in range(H):
+            d = abs(y - H * 0.5) / (H * 0.5)        # 0 center -> 1 edges
+            px[0, y] = int(120 + 70 * (1.0 - d))    # darker in the middle band
+        bg = Image.composite(black, bg, scrim.resize((W, H)))
+
+        draw = ImageDraw.Draw(bg)
+        text = (hook or title or "").upper().strip().strip("?!.,")
+        if text:
+            words = text.split()
+            font, lines = _fit_lines(draw, words, W - 120, _font,
+                                     max_lines=4, start=180, floor=78)
+            hot = _hot_words(words)
+            space = draw.textlength(" ", font=font)
+            stroke = max(10, font.size // 10)
+            lh = int(font.size * 1.08)
+            y = int(H * 0.5) - lh * len(lines) // 2   # vertically centered
+            for line in lines:
+                lw = sum(draw.textlength(w, font=font) for w in line) \
+                    + space * (len(line) - 1)
+                x = (W - lw) // 2                     # horizontally centered
+                for wd in line:
+                    key = wd.strip(",.!?:;\"'").lower()
+                    fill = ACCENT if key in hot else (255, 255, 255)
+                    draw.text((x, y), wd, font=font, fill=fill,
+                              stroke_width=stroke, stroke_fill=(0, 0, 0))
+                    x += draw.textlength(wd, font=font) + space
+                y += lh
+
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        bg.save(out_path, "JPEG", quality=90)
+        return out_path
+    except Exception as e:  # noqa: BLE001
+        print(f"[gemini] cover frame failed: {type(e).__name__}: {e}", flush=True)
+        return None

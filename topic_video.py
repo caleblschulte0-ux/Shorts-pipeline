@@ -72,7 +72,7 @@ TIMEOUT = 20
 # pull only the first MAX_BYTES — ffmpeg decodes the moov-atom + the
 # leading frames just fine. Wikimedia's per-IP policy is generous but
 # the UA below must identify us per their compliance docs.
-MAX_BYTES = 80 * 1024 * 1024
+MAX_BYTES = 128 * 1024 * 1024
 UA = ("shorts-pipeline/1.0 (https://github.com/caleblschulte0-ux/shorts-pipeline; "
       "caleblschulte0@gmail.com) urllib/python3")
 
