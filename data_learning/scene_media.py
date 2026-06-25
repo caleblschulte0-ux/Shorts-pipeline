@@ -36,14 +36,40 @@ def _prompt(subject: str, context: str = "") -> str:
     )
 
 
+_DIAG_DONE = False
+
+
+def _diag_once():
+    """Log, once per run, what image models this Gemini key actually exposes —
+    so we can tell 'not enabled' from 'quota' from 'reachable'."""
+    global _DIAG_DONE
+    if _DIAG_DONE:
+        return
+    _DIAG_DONE = True
+    try:
+        import gemini_images
+        print(f"[scene][diag] gemini enabled={gemini_images.enabled()}", flush=True)
+        avail = gemini_images._available_models()
+        img = sorted(m for m in avail if "image" in m.lower() or "imagen" in m.lower())
+        print(f"[scene][diag] image-capable models visible ({len(img)}): {img}",
+              flush=True)
+        free = [m for m in gemini_images.FREE_IMAGE_MODELS if (not avail or m in avail)]
+        print(f"[scene][diag] usable FREE image models: {free}", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"[scene][diag] probe error: {e}", flush=True)
+
+
 def _gen_ai(subject: str, dest: Path, context: str = "") -> Path | None:
     try:
         import gemini_images
+        _diag_once()
         if not gemini_images.enabled():
             return None
         p = gemini_images.generate_image(_prompt(subject, context), dest)
         if p and Path(p).exists() and Path(p).stat().st_size > 2048:
+            print(f"[scene] AI image OK -> {Path(p).name}", flush=True)
             return Path(p)
+        print("[scene] AI image returned nothing — falling back to stock", flush=True)
     except Exception as e:  # noqa: BLE001 — never block a render
         print(f"[scene] AI image skipped: {e}", flush=True)
     return None
