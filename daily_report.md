@@ -1,18 +1,32 @@
 # Daily Trending Shorts — 2026-06-25
 
-- queued: **2**
-- succeeded: **1**
+- queued: **6**
+- succeeded: **3**
 - quarantined (off-topic imagery): **0**
-- failed: **1**
+- failed: **3**
 
 ## Posted
-- **A Teen Was Stalked by a Great White — She Had No Idea**
-  - topic: A Teen Was Stalked by a Great White — She Had No Idea
-  - publishes: `2026-06-25T19:00:00Z`
-  - (dry-run)
-  - took: 757.5s
+- **A Giraffe Named Gracie Escaped a Texas Ranch — and Vanished**
+  - topic: A Giraffe Named Gracie Escaped a Texas Ranch — and Vanished
+  - publishes: `2026-06-25T21:00:00Z`
+  - https://youtube.com/shorts/JviFa9Npwts
+  - took: 393.7s
+- **A Truck Flipped and Released 2 Million Bees Onto a Texas Road**
+  - topic: A Truck Flipped and Released 2 Million Bees Onto a Texas Road
+  - publishes: `2026-06-25T23:00:00Z`
+  - https://youtube.com/shorts/PqmPWusedcA
+  - took: 373.8s
+- **He Skateboarded From California to Florida in 39 Days**
+  - topic: He Skateboarded From California to Florida in 39 Days
+  - publishes: `2026-06-26T13:00:00Z`
+  - https://youtube.com/shorts/5HfZ6F6FnWo
+  - took: 450.3s
 
 ## Failed
-- **A Raccoon Nearly Suffocated Inside a Glass Jar**
-  - error: `RelevanceGateError: 92% of shots (11/12) fell to stock / placeholder with almost no curated anchor — the image pipeline likely failed wholesale — refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.`
+- **830 People Ate Dim Sum Together and Broke a World Record**
+  - error: `ResumableUploadError: <HttpError 400 when requesting None returned "The user has exceeded the number of videos they may upload.". Details: "[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]">`
+- **She Stopped for Gas and Left With $500,000**
+  - error: `ResumableUploadError: <HttpError 400 when requesting None returned "The user has exceeded the number of videos they may upload.". Details: "[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]">`
+- **A Tornado Touched Down in the Chicago Suburbs**
+  - error: `ResumableUploadError: <HttpError 400 when requesting None returned "The user has exceeded the number of videos they may upload.". Details: "[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]">`
 
