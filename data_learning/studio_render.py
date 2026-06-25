@@ -969,28 +969,24 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
         except Exception as e:  # noqa: BLE001 — never block a render on this
             print(f"[studio] hook image skipped: {e}", flush=True)
 
-        # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, [hook img], charts, mascots, audio
+        # Inputs: 0 gradient, 1 bokeh, [scene image], charts, mascots, audio.
+        # The cinematic scene image (the hook image) backs the WHOLE frame for the
+        # whole video — no more chart-on-card + bottom bokeh strip (that left big
+        # dead space). The viz overlays transparently ON the scene.
         inputs = ["-f", "lavfi", "-i",
                   ambient.gradient_lavfi(total, colors=theme["grad"])]
         inputs += ["-loop", "1", "-i", str(bokeh)]
-        if use_broll:
-            inputs += ["-stream_loop", "-1", "-i", str(broll_path)]
-        else:
-            inputs += ["-f", "lavfi", "-i",
-                       f"mandelbrot=size=540x{FOOT_H // 2}:rate={FPS}"]
-        inputs += ["-loop", "1", "-i", str(footmask)]
-        foot_idx, mask_idx = 2, 3
-        idx = 4
-        hook_idx = None
+        idx = 2
+        scene_idx = None
         if hook_img:
             inputs += ["-loop", "1", "-i", str(hook_img)]
-            hook_idx = idx
+            scene_idx = idx
             idx += 1
         seg_idx = {}
         for i, seg in enumerate(st.segments):
             if seg.chart_path:
                 # chart_path is a printf build sequence (..._build%02d.png);
-                # read it at 24fps so the bars/line draw on.
+                # read it at 24fps so the viz draws/animates on.
                 inputs += ["-framerate", "24", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
@@ -1002,34 +998,16 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
         inputs += ["-i", str(soundtrack)]
         audio_idx = idx
 
-        fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]
-        # Footage strip in the bottom (feathered into the ambient).
-        if use_broll:
+        fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]  (fallback when no scene)
+        prev = "bg"
+        # Full-frame cinematic scene image behind the ENTIRE video (darkened +
+        # gently zooming) so every segment is a scene, never a card on dead space.
+        if scene_idx is not None:
             fc.append(
-                f"[{foot_idx}:v]trim=start={off:.2f},setpts=PTS-STARTPTS,"
-                f"scale={W}:{FOOT_H}:force_original_aspect_ratio=increase,"
-                f"crop={W}:{FOOT_H},eq=saturation=0.96:brightness=-0.04,"
-                f"format=rgba[ftex]")
-        else:
-            fc.append(f"[{foot_idx}:v]scale={W}:{FOOT_H},"
-                      f"eq=saturation=0.4:brightness=-0.06,format=rgba[ftex]")
-        fc.append(f"[{mask_idx}:v]format=gray,scale={W}:{FOOT_H}[fmask]")
-        fc.append("[ftex][fmask]alphamerge[foot]")
-        fc.append(f"[bg][foot]overlay=0:{FOOT_Y}[bg2]")
-        prev = "bg2"
-        # Image-led hook: full-frame subject photo during the hook window only,
-        # darkened so the white hero number/claim stay legible, fading out as the
-        # first chart arrives. The hero number + claim are ASS, drawn last on top.
-        if hook_idx is not None:
-            he = windows[0][1]
-            fc.append(
-                f"[{hook_idx}:v]scale={W}:{H}:force_original_aspect_ratio=increase,"
-                f"crop={W}:{H},eq=brightness=-0.16:saturation=1.05,format=rgba,"
-                f"fade=t=out:st={max(0.1, he - 0.5):.2f}:d=0.5:alpha=1[hookimg]")
-            fc.append(
-                f"[{prev}][hookimg]overlay=0:0:"
-                f"enable='between(t,0,{he:.2f})'[hk]")
-            prev = "hk"
+                f"[{scene_idx}:v]scale={W}:{H}:force_original_aspect_ratio=increase,"
+                f"crop={W}:{H},eq=brightness=-0.28:saturation=1.08,format=rgba[scene]")
+            fc.append(f"[{prev}][scene]overlay=0:0[scn]")
+            prev = "scn"
         # Charts DRAW ON: the build sequence plays (~0.7s) then tpad holds the
         # final frame for the rest of the beat. setpts shifts the clip so its
         # frame 0 lands at s0; the final frame is the exact static chart, so the
