@@ -36,6 +36,7 @@ class Segment:
     source_footer: str
     topic: str
     role: str = ""
+    kind: str = ""                      # viz kind; "diorama" renders full-frame
     # Every data point's pixel within the chart PNG: [{value, px, py}, ...].
     anchors: list = field(default_factory=list)
 
@@ -269,7 +270,7 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
             sources.append(footer)
         segments.append(Segment(
             sentence, str(cpath) if cpath else None, punches, footer,
-            ins.topic, role=seg_cfg.get("role", ""), anchors=anchors))
+            ins.topic, role=seg_cfg.get("role", ""), kind=ins.kind, anchors=anchors))
 
     return Story(
         slug=story_cfg["slug"],

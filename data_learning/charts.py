@@ -924,8 +924,7 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
     from PIL import Image, ImageDraw
     from . import scene_media
     out_dir.mkdir(parents=True, exist_ok=True)
-    W = int(SERIES_W * SERIES_DPI)
-    H = int(SERIES_H * SERIES_DPI)
+    W, H = 1080, 1920                     # full frame — the diorama owns the screen
     items = _ordered_items(insight)[:4]
     vals = [p.value for p in items]
     vmax = max(vals) if vals else 1.0
@@ -952,32 +951,10 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
         return None                      # nothing generated -> caller uses callouts
 
     n = len(items)
-    num_font = _pil_font(56)
-    lab_font = _pil_font(30)
-    floor_h = int(H * 0.66)               # tallest object may be this tall
-    gap = int(W * 0.03)
-    usable = W - gap * (n + 1)
-    # Value-weighted widths: the biggest item is biggest and the row fills the
-    # full width edge-to-edge (no tiny objects, no empty slots, no dead band).
-    weights = [0.42 + 0.58 * ((p.value / vmax) if vmax else 1.0) for p in items]
-    wsum = sum(weights) or 1.0
-    widths, heights = [], []
-    for wt, img in zip(weights, cuts):
-        w = usable * wt / wsum
-        h = w * (img.height / img.width) if img else w
-        if h > floor_h:                   # keep tall objects inside the frame
-            w *= floor_h / h
-            h = floor_h
-        widths.append(w)
-        heights.append(h)
-    maxh = max(heights) if heights else floor_h
-    groupw = sum(widths) + gap * (n - 1)
-    x0 = (W - groupw) / 2.0
-    ground = int(min(H - 96, H * 0.56 + maxh * 0.5))   # band centred, not dumped low
-    xs, x = [], x0
-    for w in widths:
-        xs.append(x)
-        x += w + gap
+    num_font = _pil_font(104)
+    lab_font = _pil_font(44)
+    top_m, bot_m = 250, 110               # room for the role label / captions
+    row_h = (H - top_m - bot_m) / n       # rows stack to fill the whole frame
     span = 1.0 / n
     anchors = []
     pattern = str(out_dir / f"{slug}_build%02d.png")
@@ -986,7 +963,7 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         draw = ImageDraw.Draw(canvas)
         for i, (p, img) in enumerate(zip(items, cuts)):
-            # one-at-a-time: object i rises + fades in during its 1/n slice.
+            # rows reveal top-to-bottom, one at a time.
             lr = (r - i * span) / (span * 0.8)
             lr = max(0.0, min(1.0, lr))
             lr = 1.0 - (1.0 - lr) ** 2
@@ -995,28 +972,34 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
             color = (HIGHLIGHT if p.label == insight.highlight_label
                      else WARN if (insight.baseline and p.label == insight.baseline.label)
                      else ACCENT)
-            w, h = int(widths[i]), int(heights[i])
-            cx = int(xs[i] + widths[i] / 2)
-            top = ground - h + int((1.0 - lr) * 90)        # rises into place
-            if img is not None and w > 0 and h > 0:
-                im = img.resize((w, h))
-                if lr < 1.0:                                # fade in
+            frac = (p.value / vmax) if vmax else 1.0
+            cy = int(top_m + row_h * (i + 0.5))           # row centre
+            obj_right = int(W * 0.40)
+            if img is not None:
+                oh = int((0.58 + 0.42 * frac) * row_h * 0.9)   # object height ∝ value
+                ow = int(oh * img.width / img.height)
+                if ow > int(W * 0.46):                    # cap to the left ~half
+                    ow = int(W * 0.46)
+                    oh = int(ow * img.height / img.width)
+                im = img.resize((max(1, ow), max(1, oh)))
+                if lr < 1.0:
                     im.putalpha(im.split()[3].point(lambda v: int(v * lr)))
-                canvas.alpha_composite(im, (int(xs[i]), top))
-            na = max(0.0, min(1.0, (lr - 0.5) / 0.5))
+                ox = 60
+                canvas.alpha_composite(im, (ox, int(cy - oh / 2)))
+                obj_right = ox + ow
+            # huge number + label to the RIGHT of the object
+            na = max(0.0, min(1.0, (lr - 0.4) / 0.6))
+            tx = max(obj_right + 60, int(W * 0.5))
             num = _vfmt(p.value)
-            nb = draw.textbbox((0, 0), num, font=num_font)
-            ny = top - 72
-            draw.text((cx - (nb[2] - nb[0]) // 2, ny), num, font=num_font,
+            draw.text((tx, cy - 88), num, font=num_font,
                       fill=_rgba(color, int(255 * na)),
+                      stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
+            draw.text((tx + 4, cy + 36), p.label, font=lab_font,
+                      fill=(248, 250, 252, int(255 * na)),
                       stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
-            lb = draw.textbbox((0, 0), p.label, font=lab_font)
-            draw.text((cx - (lb[2] - lb[0]) // 2, ground + 12), p.label,
-                      font=lab_font, fill=(248, 250, 252, int(255 * na)),
-                      stroke_width=2, stroke_fill=(5, 8, 15, int(255 * na)))
             if f == frames:
-                anchors.append({"value": float(p.value), "cx": float(cx),
-                                "cy": float(ny + 30), "w": 200.0, "h": 70.0})
+                anchors.append({"value": float(p.value), "cx": float(tx + 110),
+                                "cy": float(cy - 40), "w": 280.0, "h": 120.0})
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
     return pattern, anchors
 
