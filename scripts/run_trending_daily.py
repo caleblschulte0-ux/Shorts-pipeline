@@ -204,16 +204,14 @@ def _img_prompt(pkg: dict, shot: dict | None) -> str:
 
 def _backfill_illustrations(pkg: dict) -> None:
     """Feature 2: for beats that would fall to off-topic keyword stock,
-    generate a FREE Gemini image and pin it as the shot's image_url
-    (the renderer accepts local image paths). No-ops silently when free
-    image gen isn't available — lifts illustration coverage so a good
-    story isn't quarantined for thin imagery."""
+    generate an on-topic image (Pollinations.ai, free + keyless) and pin it
+    as the shot's image_url (the renderer accepts local image paths). Lifts
+    illustration coverage so a good story isn't quarantined for thin
+    imagery. Best-effort — no-ops if generation/network is unavailable."""
     try:
         import gemini_images
         import entity_media
     except Exception:  # noqa: BLE001
-        return
-    if not gemini_images.enabled():
         return
     try:
         keyword_only = set(entity_media.validate_package(pkg)
@@ -232,12 +230,13 @@ def _backfill_illustrations(pkg: dict) -> None:
         if phrase[:50] not in keyword_only:
             continue
         dest = outdir / f"{_slug(phrase)}_{n}.png"
-        got = gemini_images.generate_image(_img_prompt(pkg, s), dest)
+        got = gemini_images.generate_image(_img_prompt(pkg, s), dest,
+                                           width=1080, height=1080)
         if got:
             s["image_url"] = str(got)
             n += 1
     if n:
-        print(f"[backfill] pinned {n} Gemini image(s) for thin beats",
+        print(f"[backfill] pinned {n} generated image(s) for thin beats",
               flush=True)
 
 
@@ -588,7 +587,7 @@ def _assign_bottom_diversity(pkgs: list[dict]) -> None:
         if explicit and explicit != "auto":
             choice = explicit
         else:
-            ranked = themed_bottom.rank_themes(
+            ranked = themed_bottom.smart_rank(
                 p.get("title", ""), p.get("script", ""), p.get("hashtags"))
             if not ranked:
                 choice = "plinko"

@@ -22,9 +22,15 @@ import io
 import json
 import os
 import re
+import urllib.parse
 import urllib.request
 from functools import lru_cache
 from pathlib import Path
+
+# Pollinations.ai — free, keyless image generation. Primary generator: it
+# actually works (unlike the deprecated free Gemini image models) so any
+# beat/thumbnail/cover that lacks real media gets an on-topic image for $0.
+POLLINATIONS_IMG = "https://image.pollinations.ai/prompt/"
 
 # Free / experimental image-gen models ONLY (no paid models here).
 FREE_IMAGE_MODELS = (
@@ -67,13 +73,50 @@ def _available_models() -> frozenset:
 # --------------------------------------------------------------------------- #
 # image generation (free models only)
 # --------------------------------------------------------------------------- #
-def generate_image(prompt: str, out_path: Path) -> Path | None:
-    """Generate one image from `prompt` using a FREE Gemini image model.
+def generate_image(prompt, out_path, *, width: int = 1024, height: int = 1024,
+                   seed=None) -> "Path | None":
+    """Generate one on-topic image. Primary: Pollinations.ai (free, keyless,
+    reliable); fallback: free-tier Gemini. Returns the written path or None;
+    never raises.
 
-    Returns the written path, or None when generation isn't available
-    (no key, the free model isn't offered to this key, quota, or any
-    error). Never raises.
+    Use for ILLUSTRATIVE fill (animals, scenes, objects) when no real media
+    exists — not to fabricate photos of specific real people/events.
     """
+    if not prompt:
+        return None
+    out_path = Path(out_path)
+    p = _pollinations_image(prompt, out_path, width, height, seed)
+    if p:
+        return p
+    return _gemini_image(prompt, out_path)
+
+
+def _pollinations_image(prompt, out_path, width, height, seed):
+    """Fetch a generated image from Pollinations.ai. None on any failure."""
+    try:
+        styled = (prompt.strip()
+                  + ". photorealistic, editorial news photo, sharp, well lit, "
+                    "no text, no watermark, no caption")
+        url = (POLLINATIONS_IMG + urllib.parse.quote(styled[:480])
+               + f"?width={int(width)}&height={int(height)}&nologo=true&model=flux")
+        if seed is not None:
+            url += f"&seed={int(seed) % (2 ** 31)}"
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        data = urllib.request.urlopen(req, timeout=90).read()
+        if not data or len(data) < 2000:        # tiny payload = error page
+            return None
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_bytes(data)
+        print(f"[pollinations] image -> {out_path.name} ({len(data)} bytes)",
+              flush=True)
+        return out_path
+    except Exception as e:  # noqa: BLE001
+        print(f"[pollinations] image failed: {type(e).__name__}: {e}", flush=True)
+        return None
+
+
+def _gemini_image(prompt: str, out_path: Path) -> "Path | None":
+    """Fallback generator: a FREE Gemini image model. None when unavailable."""
     c = _client()
     if not c or not prompt:
         return None
