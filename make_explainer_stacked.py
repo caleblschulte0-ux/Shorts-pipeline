@@ -927,10 +927,15 @@ def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
         if best_score > 0:
             chosen = best
     if chosen is None:
-        # Nothing in the pool scored against the shot tokens. Prefer
-        # the just-found supplementary clip (queried specifically for
-        # this shot) over the least-used round-robin pick.
-        chosen = sup or min(pool, key=lambda c: c["uses"])
+        # RELEVANCE FLOOR: nothing in the pool genuinely matched this shot's
+        # tokens. Use ONLY the per-shot supplementary clip (queried for this
+        # shot, so on-topic) — NEVER fall back to an off-topic round-robin
+        # pick. That round-robin was the "constantly showing off-topic
+        # footage" bug. Returning None lets the caller use an on-topic still
+        # or on-topic stock instead of a wrong video.
+        if sup is None:
+            return None
+        chosen = sup
 
     # Seek policy: prefer a juicy (high-motion) start. Successive uses
     # of the same clip cycle through its juicy list so two shots never
@@ -940,8 +945,11 @@ def _pick_pool_clip(pool: list[dict], shot: "Shot") -> dict | None:
         starts = chosen["juicy"]
         seek = starts[chosen["uses"] % len(starts)]
     else:
-        seek = min(15.0 + chosen["uses"] * 12.0,
-                   max(0.0, chosen["duration"] - 5.0))
+        # No motion scan -> stay near the downloaded head. Range pulls only
+        # the first MAX_BYTES, so deep seeks can land past decodable data and
+        # render blank/cut. Small head-safe offsets instead of +15s/use.
+        seek = min(1.0 + chosen["uses"] * 2.5,
+                   max(0.0, chosen["duration"] - 4.0))
     chosen["uses"] += 1
     out = dict(chosen)
     out["seek"] = seek
@@ -1358,7 +1366,18 @@ def build_timed_top(
             seen.add(p)
             return True
 
-        # own/held still leads (skipped automatically if already shown),
+        # ON-TOPIC VIDEO LEADS (operator ask: ~65-70% video). _pick_pool_clip
+        # now returns None unless the clip genuinely matches this shot, so we
+        # only ever lead with relevant footage — and when there's no on-topic
+        # video, we fall straight to the on-topic still below (image-first
+        # fallback, never off-topic video). Each shot's leading sub-cut is
+        # thus video whenever relevant footage exists.
+        if topic_video_pool:
+            try:
+                _add_cand(_pick_pool_clip(topic_video_pool, shot))
+            except Exception as e:  # noqa: BLE001
+                print(f"      [topic_video pick failed] {shot.phrase[:30]!r}: {e}")
+        # own/held still next (skipped automatically if already shown),
         # then the real story photos the funnel found.
         _add_cand(image_clip)
         for fx in funnel_extras:
@@ -2074,6 +2093,7 @@ def build_video(
     out_path: Path,
     music_vibe: str = "dark",
     bottom_theme: str | None = None,
+    theme_config=None,
 ) -> None:
     workdir = Path(tempfile.mkdtemp(prefix="exps_"))
     print(f"workdir: {workdir}")
@@ -2137,26 +2157,37 @@ def build_video(
         # kills a render.
         if bottom_theme:
             print(f"[5/9] bottom: themed '{bottom_theme}'", flush=True)
+            import themed_bottom
+            rendered_theme = bottom_theme
             try:
-                import themed_bottom
                 bottom = themed_bottom.render(
-                    bottom_theme, total_dur, workdir / "bottom_themed.mp4")
+                    bottom_theme, total_dur, workdir / "bottom_themed.mp4",
+                    config=theme_config)
             except Exception as e:  # noqa: BLE001
-                print(f"      [themed_bottom failed: {e}] -> gameplay")
-                bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
-            else:
-                # Rising-water end-goal ONLY over the procedural themed
-                # background (the stormy/rain look where it makes sense) —
-                # never over Minecraft / gameplay clips. Rises once across
-                # the WHOLE clip (rate = total_dur), so it never loops.
+                # NO MINECRAFT: fall back to a neutral procedural theme
+                # (plinko), not a gameplay clip.
+                print(f"      [themed '{bottom_theme}' failed: {e}] -> plinko")
+                rendered_theme = "plinko"
+                try:
+                    bottom = themed_bottom.render(
+                        "plinko", total_dur, workdir / "bottom_themed.mp4")
+                except Exception as e2:  # noqa: BLE001
+                    print(f"      [plinko fallback failed: {e2}] -> gameplay")
+                    rendered_theme = None
+                    bottom = pick_gameplay_clip(gameplay_tag, total_dur, workdir)
+            # Rising-water end-goal ONLY on water-appropriate themes
+            # (rain/ocean). Every other theme carries its own native motion,
+            # so water there is just a confusing climbing band.
+            if rendered_theme and themed_bottom.theme_uses_water(rendered_theme):
                 try:
                     water_bottom = workdir / "bottom_water.mp4"
                     themed_bottom.apply_goal_water(
                         bottom, water_bottom, total_dur)
                     bottom = water_bottom
-                    print("      [goal water] applied to themed bottom")
+                    print("      [goal water] applied to water theme "
+                          f"{rendered_theme!r}")
                 except Exception as e:  # noqa: BLE001
-                    print(f"      [goal water skipped, keeping themed bottom: "
+                    print(f"      [goal water skipped: "
                           f"{type(e).__name__}: {e}]", flush=True)
         else:
             print(f"[5/9] bottom: {gameplay_tag} gameplay", flush=True)
@@ -2259,14 +2290,42 @@ def build_video(
             if MASCOT_DIR.exists():
                 print(f"      [mascot] no idle.png in {MASCOT_DIR} — skipped")
 
+        # Hook cover frame: a 1080x1920 first frame that stops the swipe and
+        # seeds the in-feed preview. Overlaid on the opening ~1.3s, then
+        # crossfades out to reveal the video (audio/TTS stays in sync — the
+        # spoken hook plays under the cover). Best-effort: skipped if it
+        # can't be built, leaving the original render untouched.
+        cover_path = None
+        try:
+            import gemini_images
+            hook_txt = re.split(r"[.!?]", script.strip(), maxsplit=1)[0].strip()
+            lead_img = next((s.image for s in shots
+                             if getattr(s, "image", None)), None)
+            cover_path = gemini_images.build_cover_frame(
+                workdir / "cover.jpg", title=hook_txt, hook=hook_txt,
+                bg_image=lead_img)
+        except Exception as e:  # noqa: BLE001
+            print(f"      [cover] skipped: {type(e).__name__}: {e}")
+        cover_idx = 3 + len(mascot_inputs) // 2
+        COVER_DUR = 1.3
+        caps_out = "vbody" if cover_path else "v"
+
         graph = (
             f"[0:v]format=yuv420p[topf];"
             f"[1:v]format=yuv420p[botf];"
             f"[topf][botf]vstack=inputs=2[stacked];"
             f"{mascot_stage}"
             f"[{stage_in}]ass='{_esc(punches_path)}'[withpunch];"
-            f"[withpunch]ass='{_esc(caps_path)}'[v]"
+            f"[withpunch]ass='{_esc(caps_path)}'[{caps_out}]"
         )
+        if cover_path:
+            graph += (
+                f";[{cover_idx}:v]scale=1080:1920,setsar=1,format=rgba,"
+                f"fade=t=out:st={COVER_DUR - 0.35:.2f}:d=0.35:alpha=1,"
+                f"setpts=PTS-STARTPTS[cov];"
+                f"[vbody][cov]overlay=eof_action=pass:"
+                f"enable='lt(t,{COVER_DUR})'[v]"
+            )
 
         run([
             "ffmpeg", "-y", "-loglevel", "error",
@@ -2274,6 +2333,8 @@ def build_video(
             "-i", str(bottom),
             "-i", str(mixed_audio),
             *mascot_inputs,
+            *(["-loop", "1", "-t", f"{COVER_DUR}", "-i", str(cover_path)]
+              if cover_path else []),
             "-filter_complex", graph,
             "-map", "[v]", "-map", "2:a",
             "-t", f"{total_dur:.3f}",
@@ -2358,22 +2419,29 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
         )
         for p in pkg["punches"]
     ]
-    # Bottom-half routing. "auto" lets the keyword router match the
-    # story to a theme; an explicit theme name is used as-is; absent /
-    # null keeps the classic Minecraft-gameplay bottom.
-    bottom_theme = pkg.get("bottom_theme")
+    # Bottom-half routing. NO MINECRAFT: absent/null defaults to "auto".
+    # "auto" lets the keyword router match the story to a theme; an explicit
+    # theme name (e.g. set by the batch diversity allocator) is used as-is.
+    import themed_bottom
+    bottom_theme = pkg.get("bottom_theme") or "auto"
     if bottom_theme == "auto":
-        import themed_bottom
         bottom_theme = themed_bottom.pick_theme(
             pkg.get("title", ""), pkg.get("script", ""),
             pkg.get("hashtags"))
         print(f"  [themed_bottom] auto-picked theme: {bottom_theme!r}")
+    # Per-story reskin so the same base theme never looks identical twice.
+    # The batch allocator may pin a distinct `_theme_seed` per video to force
+    # variety even when a base theme repeats; else seed from the slug/title.
+    story_key = str(pkg.get("_theme_seed") or pkg.get("slug")
+                    or pkg.get("title") or pkg.get("script", "")[:40])
+    theme_config = themed_bottom.config_from_story(story_key, bottom_theme)
 
     build_video(
         pkg["script"], shots, punches,
         gameplay_tag=gameplay_tag, out_path=out_path,
         music_vibe=pkg.get("music_vibe", "dark"),
         bottom_theme=bottom_theme,
+        theme_config=theme_config,
     )
 
 

@@ -204,16 +204,14 @@ def _img_prompt(pkg: dict, shot: dict | None) -> str:
 
 def _backfill_illustrations(pkg: dict) -> None:
     """Feature 2: for beats that would fall to off-topic keyword stock,
-    generate a FREE Gemini image and pin it as the shot's image_url
-    (the renderer accepts local image paths). No-ops silently when free
-    image gen isn't available — lifts illustration coverage so a good
-    story isn't quarantined for thin imagery."""
+    generate an on-topic image (Pollinations.ai, free + keyless) and pin it
+    as the shot's image_url (the renderer accepts local image paths). Lifts
+    illustration coverage so a good story isn't quarantined for thin
+    imagery. Best-effort — no-ops if generation/network is unavailable."""
     try:
         import gemini_images
         import entity_media
     except Exception:  # noqa: BLE001
-        return
-    if not gemini_images.enabled():
         return
     try:
         keyword_only = set(entity_media.validate_package(pkg)
@@ -223,8 +221,13 @@ def _backfill_illustrations(pkg: dict) -> None:
     if not keyword_only:
         return
     outdir = OUTPUT_DIR / "gen_images"
+    # Cap generations per package: each call can wait out a slow Pollinations
+    # response, so bound the time cost (a render-time budget, not a money one).
+    MAX_GEN = int(os.environ.get("MAX_GEN_IMAGES", "3"))
     n = 0
     for s in pkg.get("shots") or []:
+        if n >= MAX_GEN:
+            break
         if s.get("image_url"):
             continue
         phrase = s.get("phrase") or ""
@@ -232,12 +235,13 @@ def _backfill_illustrations(pkg: dict) -> None:
         if phrase[:50] not in keyword_only:
             continue
         dest = outdir / f"{_slug(phrase)}_{n}.png"
-        got = gemini_images.generate_image(_img_prompt(pkg, s), dest)
+        got = gemini_images.generate_image(_img_prompt(pkg, s), dest,
+                                           width=1080, height=1080)
         if got:
             s["image_url"] = str(got)
             n += 1
     if n:
-        print(f"[backfill] pinned {n} Gemini image(s) for thin beats",
+        print(f"[backfill] pinned {n} generated image(s) for thin beats",
               flush=True)
 
 
@@ -570,6 +574,42 @@ def format_report(date_str: str, results: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def _assign_bottom_diversity(pkgs: list[dict]) -> None:
+    """Tailor + diversify bottoms across the batch. Each story keeps a
+    RELEVANT theme (one of its own keyword matches); when that theme is
+    already used this batch, we move to the story's NEXT relevant match
+    rather than a generic fallback — so the bottom never stops relating to
+    the video. Only a story that matches no theme at all falls to plinko.
+    Every package also gets a distinct reskin seed, so even a reused theme
+    looks different. Mutates pkgs in place."""
+    try:
+        import themed_bottom
+    except Exception:  # noqa: BLE001
+        return
+    used: dict[str, int] = {}
+    for i, p in enumerate(pkgs):
+        explicit = (p.get("bottom_theme") or "").strip().lower()
+        if explicit and explicit != "auto":
+            choice = explicit
+        else:
+            ranked = themed_bottom.smart_rank(
+                p.get("title", ""), p.get("script", ""), p.get("hashtags"))
+            if not ranked:
+                choice = "plinko"
+            else:
+                # Among the story's RELEVANT themes, take the least-used so
+                # far (spreads escapes across runner/pursuit etc.); ties go
+                # to the most relevant (earliest-ranked). Never a generic
+                # off-topic swap.
+                choice = min(ranked,
+                             key=lambda th: (used.get(th, 0), ranked.index(th)))
+        used[choice] = used.get(choice, 0) + 1
+        p["bottom_theme"] = choice
+        p["_theme_seed"] = f"{p.get('slug') or p.get('title', '')}-{i}"
+    print(f"[bottom] batch themes: {dict(used)} "
+          f"({len(used)} distinct)", flush=True)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--count", type=int, default=6,
@@ -671,6 +711,9 @@ def main() -> int:
         rel = src_dir.relative_to(REPO) if src_dir else "(unknown)"
         print(f"=== using {len(prewritten)} pre-written packages from "
               f"{rel} ===", flush=True)
+        # Tailor + diversify the bottom games across the batch (>=2 distinct
+        # per 3; a distinct reskin seed per video).
+        _assign_bottom_diversity(prewritten)
         # Optional per-day schedule override: state/.../_schedule.json with
         # {"per_slot": N} places N videos at each default time slot (e.g.
         # 2 means two posts share each 2-hour slot). Defaults to 1.

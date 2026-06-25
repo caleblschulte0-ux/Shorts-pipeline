@@ -106,9 +106,14 @@ Public API:
 """
 from __future__ import annotations
 
+import hashlib
 import math
 import random
+import re
 import subprocess
+import urllib.parse
+import urllib.request
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -136,9 +141,22 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
                "derail")),
     ("rain",  ("storm", "tornado", "hurricane", " rain", "rainfall",
                "flood", "lightning", "blizzard", "cyclone", "weather")),
-    ("runner", ("escape", "escaped", "on the run", "chase", "loose",
-                "kangaroo", "devil", "raccoon", "zoo", "wildlife",
-                "bear", "koala", "leopard", "animal")),
+    ("runner", ("escaped", "escape", "on the run", "loose", "zoo",
+                "wildlife", "animal", "kangaroo", "devil", "raccoon",
+                "bear", "koala", "leopard", "alligator", "gator",
+                "crocodile", "croc", "snake", "python", "reptile",
+                "emu", "ostrich", "beaver", "goat", "cow", "cattle",
+                "pig", "horse", "moose", "deer", "coyote", "fox",
+                "otter", "peacock", "llama", "lizard", "turtle",
+                "monkey", "stray", "escaped pet")),
+    ("pursuit", ("chase", "car chase", "police chase", "high-speed",
+                 "manhunt", "getaway", "fugitive", "pursuit", "fled",
+                 "suspect", "robbery", "heist", "stole", "stolen",
+                 "dashcam", "pulled over", "speeding away",
+                 # an escaped animal is also a chase — lets escapes spread
+                 # across runner + pursuit for variety, both on-topic.
+                 "escaped", "on the run", "loose", "recaptured",
+                 "cornered", "vanished")),
     ("ocean", ("shark", "whale", "ocean", "sea ", "marine", "coral",
                "fish", "beach")),
     ("fight", ("ufc", "mma", "boxing", "boxer", "knockout",
@@ -151,10 +169,25 @@ _THEME_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("stacker", ("world record", "record-breaking", "tallest",
                  "largest", "biggest", "assembl", "built the",
                  "stacked", "lego", "potato head", "guinness")),
+    ("claw", ("grabbed", "snatched", "seized", "claw", "prize",
+              "jackpot", "lottery", "scratch-off", "won the",
+              "scooped", "plucked", "nabbed")),
     ("coins", ("stock", "ipo", "market", "billion", "economy", "tax",
                "fee", "salary", "fine", "tariff", "bank", "crypto",
                "price", "invest", "visa")),
 ]
+
+
+def _kw_hit(blob: str, words) -> bool:
+    """Whole-WORD keyword match. Substring matching used to misfire badly —
+    'mars' hit 'marsupial', 'launch' hit 'launchpad', 'ash' hit 'crash' —
+    routing animal/quirky stories onto space/etc. Word boundaries fix the
+    whole class. Multi-word phrases ('car chase') still match as a unit."""
+    for w in words:
+        w = w.strip()
+        if w and re.search(r"\b" + re.escape(w) + r"\b", blob):
+            return True
+    return False
 
 
 def pick_theme(title: str = "", script: str = "",
@@ -165,9 +198,119 @@ def pick_theme(title: str = "", script: str = "",
     blob = " ".join([title or "", script or "",
                      " ".join(hashtags or [])]).lower()
     for theme, words in _THEME_KEYWORDS:
-        if any(w in blob for w in words):
+        if _kw_hit(blob, words):
             return theme
     return "plinko"
+
+
+# One-line description per theme, fed to the semantic router so it can
+# match ANY story — not just ones we wrote keywords for.
+THEME_DESC = {
+    "space": "rocket flying between stars (space, rockets, astronomy, launches, satellites)",
+    "rain": "storm with rain and lightning (storms, floods, hurricanes, weather)",
+    "ocean": "fish and bubbles underwater (sea, marine life, beaches, whales, sharks)",
+    "volcano": "erupting volcano raining fireballs (volcano, wildfire, lava, ash)",
+    "quake": "city shaking over a seismograph (earthquake, tsunami, sinkhole)",
+    "runner": "a little critter sprinting over obstacles (animals, wildlife, pets, escapes)",
+    "pursuit": "top-down highway car chase (chases, getaways, crime, fugitives, vehicles)",
+    "stacker": "blocks stacking into a tall tower (world records, building, biggest/tallest)",
+    "claw": "arcade claw grabbing prizes (winning, grabbing, records, lottery, heists)",
+    "fight": "two orbs clashing in an arena (combat sports, UFC, boxing, brawls)",
+    "moto": "dirt bike doing jumps (racing, motorcycles, stunts, vehicles)",
+    "train": "runaway train on a loop track (trains, rail, derailments, summits)",
+    "coins": "gold coins cascading (money, markets, finance, economy, prices)",
+    "ember": "rising sparks and embers (fire, heat)",
+    "plinko": "balls bouncing through pegs (neutral satisfying fallback for anything else)",
+}
+
+
+def smart_rank(title: str = "", script: str = "",
+               hashtags: list[str] | None = None, n: int = 3) -> list[str]:
+    """Rank the best-fitting bottom themes for a story SEMANTICALLY via
+    Pollinations' free text model — so relevance no longer depends on us
+    having written the right keyword (the gator->plinko problem). Returns up
+    to `n` valid theme names; falls back to keyword rank_themes() (then []) on
+    any failure. Keyless, best-effort, never raises."""
+    try:
+        menu = "; ".join(f"{k}: {v}" for k, v in THEME_DESC.items())
+        q = (f"You pick a background mini-game for a short news video. "
+             f"From this menu, choose the {n} that best FIT the story, most "
+             f"relevant first. Menu: {menu}. Story title: {title}. "
+             f"Script: {script[:280]}. "
+             f"Answer with ONLY a comma-separated list of theme names.")
+        url = "https://text.pollinations.ai/" + urllib.parse.quote(q[:1500])
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        txt = urllib.request.urlopen(req, timeout=20).read().decode(
+            "utf-8", "ignore").lower()
+        picks: list[str] = []
+        for tok in re.split(r"[^a-z]+", txt):
+            if tok in _THEME_CLASSES and tok not in picks:
+                picks.append(tok)
+            if len(picks) >= n:
+                break
+        if picks:
+            print(f"[smart_rank] {title[:40]!r} -> {picks}", flush=True)
+            return picks
+    except Exception as e:  # noqa: BLE001
+        print(f"[smart_rank] fallback ({type(e).__name__}: {e})", flush=True)
+    return rank_themes(title, script, hashtags)
+
+
+def rank_themes(title: str = "", script: str = "",
+                hashtags: list[str] | None = None) -> list[str]:
+    """Every theme whose keywords match this story, in keyword-table order
+    (most specific first), deduped. Empty when nothing matches. The batch
+    allocator uses this to pick a RELEVANT alternate when diversifying —
+    instead of swapping a mismatched story onto a generic plinko."""
+    blob = " ".join([title or "", script or "",
+                     " ".join(hashtags or [])]).lower()
+    hits: list[str] = []
+    for theme, words in _THEME_KEYWORDS:
+        if _kw_hit(blob, words) and theme not in hits:
+            hits.append(theme)
+    return hits
+
+
+# Themes where the rising-water "end goal" overlay actually reads as
+# intentional (a flood / storm / sea). EVERY other theme carries its own
+# native motion and goal, so burning water onto it is just a confusing
+# blue band climbing the screen — that was the "water rising for no
+# reason" bug. Gate apply_goal_water on this set.
+WATER_THEMES = frozenset({"rain", "ocean"})
+
+
+def theme_uses_water(theme: str | None) -> bool:
+    """True only for themes where the rising-water overlay belongs."""
+    return bool(theme) and theme in WATER_THEMES
+
+
+# ── Per-story reskin ────────────────────────────────────────────────────
+# Each story gets a deterministic color grade applied to the WHOLE bottom
+# (background + characters), so the same base theme never looks identical
+# twice. Cheap per-frame numpy pass — no per-theme code changes needed.
+@dataclass
+class ThemeConfig:
+    seed: int | None = None
+    tint: tuple[float, float, float] = (1.0, 1.0, 1.0)  # per-channel gain
+    saturation: float = 1.0                              # around luma
+
+
+def config_from_story(key: str, theme: str | None = None) -> ThemeConfig:
+    """Deterministically derive a reskin (seed + gentle color grade) from a
+    story key (slug/title). Bounded so readability never breaks; water themes
+    stay close to blue so rain/ocean still read as water."""
+    h = hashlib.sha1((key or "x").encode("utf-8")).digest()
+    seed = int.from_bytes(h[:4], "big")
+    # Three bounded channel gains in ~[0.78, 1.22], plus a saturation nudge.
+    def gain(b: int) -> float:
+        return round(0.78 + (b / 255.0) * 0.44, 3)
+    tint = (gain(h[4]), gain(h[5]), gain(h[6]))
+    sat = round(0.85 + (h[7] / 255.0) * 0.45, 3)  # 0.85..1.30
+    if theme in WATER_THEMES:
+        # Keep water blue-dominant: damp red/green drift, keep blue strong.
+        tint = (min(tint[0], 1.05), min(tint[1], 1.08), max(tint[2], 1.0))
+        sat = min(sat, 1.15)
+    return ThemeConfig(seed=seed, tint=tint, saturation=sat)
 
 
 # ---------- shared helpers ----------
@@ -304,6 +447,30 @@ class _Renderer:
         self.trail = np.zeros((H, W, 3), dtype=np.float32)
         self._last_frame: np.ndarray | None = None
         self._hang_frame: np.ndarray | None = None
+        self.config: "ThemeConfig | None" = None
+        self._tint: np.ndarray | None = None
+
+    def set_config(self, config: "ThemeConfig | None") -> None:
+        """Attach a per-story reskin. Precomputes the grade vector so the
+        per-frame pass is a couple of cheap numpy ops."""
+        self.config = config
+        if config is not None:
+            self._tint = np.asarray(config.tint, dtype=np.float32)
+
+    def _apply_grade(self, frame: np.ndarray) -> np.ndarray:
+        """Per-story color grade (saturation + per-channel tint) over the
+        whole bottom panel. No-op when no config is attached."""
+        cfg = self.config
+        if cfg is None:
+            return frame
+        f = frame.astype(np.float32)
+        if cfg.saturation != 1.0:
+            luma = (f * np.array([0.299, 0.587, 0.114], np.float32)).sum(
+                axis=2, keepdims=True)
+            f = luma + (f - luma) * cfg.saturation
+        if self._tint is not None:
+            f *= self._tint
+        return np.clip(f, 0, 255).astype(np.uint8)
 
     # -- escalation helpers -------------------------------------------
     def _phase(self, t: float) -> float:
@@ -558,10 +725,11 @@ class _Renderer:
         try:
             for i in range(n):
                 frame = self.draw(i / FPS, i)
-                # The rising-water end-goal is now applied as a universal
-                # post-process on the FINAL bottom (themed OR gameplay) in
-                # build_video via apply_goal_water — not here — so every
-                # video gets it, not just procedural themes.
+                # Per-story reskin (color grade); no-op without a config.
+                frame = self._apply_grade(frame)
+                # The rising-water end-goal is applied as a post-process on
+                # the FINAL bottom in build_video (apply_goal_water) — and
+                # only for water themes — not here.
                 proc.stdin.write(frame.tobytes())
         finally:
             proc.stdin.close()
@@ -3393,6 +3561,341 @@ class _Train(_Renderer):
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
 
+
+# ---------- PURSUIT: top-down highway chase ----------
+class _Pursuit(_Renderer):
+    """Top-down highway chase: a blue runaway weaves down a scrolling road
+    while a red pursuer with a flashing siren closes in. Road scroll, weave
+    amplitude and chase pressure all ramp across the clip; the gap tightens
+    but never fully closes. Fits escapes, getaways, 'on the run', chases,
+    car/police stories, loose animals."""
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), np.float32)
+        self.bg[..., 0] = 40 - 12 * g
+        self.bg[..., 1] = 42 - 12 * g
+        self.bg[..., 2] = 50 - 14 * g
+        self.rx0, self.rx1 = W * 0.16, W * 0.84
+        self.scroll = 0.0
+        self.chase_x = (self.rx0 + self.rx1) / 2
+        rng = self.rng
+        # Roadside props whip past for a speed cue; recycled by wrapping y.
+        self.props = [{"y": rng.uniform(0, H), "side": s,
+                       "kind": rng.choice(["pole", "tree", "tree"])}
+                      for s in (0, 1) for _ in range(5)]
+        # Neutral traffic the runaway dodges. Spawned VERTICALLY SPACED
+        # (>~0.55 screen-heights apart) so at most one car is ever in the
+        # runaway's danger band — there's always an open adjacent lane to
+        # swerve into, and the runaway never has to drive through a wall.
+        self._traf_cols = [(150, 150, 162), (120, 140, 172),
+                           (182, 172, 150), (90, 110, 150)]
+        self.traffic = []
+        yy = -120.0
+        for n in range(4):
+            self.traffic.append({"lane": (n * 2 + rng.randint(0, 1)) % 3, "y": yy,
+                                 "spd": rng.uniform(0.62, 0.82),
+                                 "col": rng.choice(self._traf_cols)})
+            yy -= rng.uniform(0.6 * H, 0.85 * H)
+        self.flee_x = (self.rx0 + self.rx1) / 2
+        self.flee_lane = 1
+        self.flee_y = H * 0.30
+
+    def _lane_x(self, lane):
+        return self.rx0 + (self.rx1 - self.rx0) * (lane + 0.5) / 3
+
+    def _car(self, d, x, y, col, t, siren=False):
+        w, h = 52, 96
+        for tx, ty in ((x - w / 2 - 4, y - h / 2 + 12), (x + w / 2 - 4, y - h / 2 + 12),
+                       (x - w / 2 - 4, y + h / 2 - 36), (x + w / 2 - 4, y + h / 2 - 36)):
+            d.rounded_rectangle([tx, ty, tx + 8, ty + 24], radius=4, fill=(15, 15, 18, 255))
+        d.rounded_rectangle([x - w / 2, y - h / 2, x + w / 2, y + h / 2],
+                            radius=18, fill=(*col, 255))
+        d.rounded_rectangle([x - w / 2 + 5, y - h / 2 + 5, x - 6, y + h / 2 - 5],
+                            radius=12, fill=(255, 255, 255, 30))   # body sheen
+        d.rounded_rectangle([x - w / 2 + 9, y - 20, x + w / 2 - 9, y + 2],
+                            radius=6, fill=(20, 26, 42, 235))       # windshield
+        d.rounded_rectangle([x - w / 2 + 9, y + 12, x + w / 2 - 9, y + 28],
+                            radius=6, fill=(22, 28, 44, 200))       # rear glass
+        d.ellipse([x - w / 2 + 5, y - h / 2 + 4, x - w / 2 + 16, y - h / 2 + 15],
+                  fill=(255, 248, 205, 235))
+        d.ellipse([x + w / 2 - 16, y - h / 2 + 4, x + w / 2 - 5, y - h / 2 + 15],
+                  fill=(255, 248, 205, 235))
+        d.rectangle([x - w / 2 + 6, y + h / 2 - 9, x - w / 2 + 18, y + h / 2 - 3],
+                    fill=(255, 60, 40, 235))
+        d.rectangle([x + w / 2 - 18, y + h / 2 - 9, x + w / 2 - 6, y + h / 2 - 3],
+                    fill=(255, 60, 40, 235))
+        if siren:
+            fl = int(t * 9) % 2
+            d.rounded_rectangle([x - 18, y - h / 2 - 10, x - 2, y - h / 2 - 1], radius=3,
+                                fill=((255, 40, 40, 255) if fl else (90, 16, 16, 255)))
+            d.rounded_rectangle([x + 2, y - h / 2 - 10, x + 18, y - h / 2 - 1], radius=3,
+                                fill=((40, 90, 255, 255) if not fl else (16, 24, 90, 255)))
+
+    def draw(self, t, i):
+        dt = 1.0 / FPS
+        k = min(1.0, t / max(1.0, getattr(self, "duration", 30.0)))
+        speed = 360 + 620 * k
+        self.scroll += speed * dt
+        rx0, rx1 = self.rx0, self.rx1
+        cx = (rx0 + rx1) / 2
+        shake = self.rng.uniform(-1, 1) * 4.0 * k    # camera shake ramps
+
+        img = Image.fromarray(np.clip(self.bg.copy(), 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+        d.rectangle([0, 0, rx0, H], fill=(22, 46, 28, 255))
+        d.rectangle([rx1, 0, W, H], fill=(22, 46, 28, 255))
+        d.rectangle([rx0, 0, rx0 + 7, H], fill=(232, 210, 70, 255))
+        d.rectangle([rx1 - 7, 0, rx1, H], fill=(232, 210, 70, 255))
+        for L in (1, 2):
+            lx = rx0 + (rx1 - rx0) * L / 3
+            off = self.scroll % 150
+            y = -off
+            while y < H:
+                d.rectangle([lx - 5, y, lx + 5, y + 78], fill=(238, 238, 238, 235))
+                y += 150
+        # roadside scenery whipping past
+        for p in self.props:
+            p["y"] = (p["y"] + speed * dt) % (H + 90)
+            px = (rx0 - 24) if p["side"] == 0 else (rx1 + 24)
+            yy = p["y"]
+            if p["kind"] == "pole":
+                d.line([px, yy - 42, px, yy + 20], fill=(92, 98, 112, 255), width=5)
+                arm = 16 if p["side"] == 0 else -16
+                d.line([px, yy - 40, px + arm, yy - 40], fill=(92, 98, 112, 255), width=5)
+                d.ellipse([px + arm - 4, yy - 44, px + arm + 4, yy - 36], fill=(255, 230, 150, 230))
+            else:
+                d.ellipse([px - 22, yy - 32, px + 22, yy + 12], fill=(28, 78, 40, 255))
+                d.ellipse([px - 13, yy - 40, px + 9, yy - 14], fill=(36, 96, 50, 255))
+                d.rectangle([px - 4, yy + 10, px + 4, yy + 28], fill=(58, 44, 30, 255))
+
+        for c in self.traffic:
+            c["y"] += speed * c["spd"] * dt
+            if c["y"] > H + 100:
+                # Respawn ABOVE the current topmost car so spacing is kept
+                # and the danger band never holds more than one car.
+                topmost = min(o["y"] for o in self.traffic)
+                c["y"] = topmost - self.rng.uniform(0.6 * H, 0.9 * H)
+                c["lane"] = self.rng.randint(0, 2)
+                c["spd"] = self.rng.uniform(0.62, 0.82)
+                c["col"] = self.rng.choice(self._traf_cols)
+
+        base_y = H * 0.30
+        lanes_x = [self._lane_x(L) for L in range(3)]
+        # Reactive dodging: look ahead for traffic about to reach the runaway
+        # and swerve to an open lane — no fixed sine, so the path is different
+        # every run and the car never drives THROUGH another car.
+        blocked = {c["lane"] for c in self.traffic
+                   if self.flee_y - 175 < c["y"] < self.flee_y + 40}
+        cur = min(range(3), key=lambda L: abs(lanes_x[L] - self.flee_x))
+        if cur in blocked:                              # threatened -> swerve
+            opts = [L for L in range(3) if L not in blocked]
+            self.flee_lane = (min(opts, key=lambda L: abs(L - cur))
+                              if opts else cur)          # boxed in -> near miss
+        elif (abs(self.flee_x - lanes_x[self.flee_lane]) < 16
+              and self.rng.random() < 0.02):
+            # settled: occasionally drift to another open lane so it never
+            # looks scripted
+            opts = [L for L in range(3) if L not in blocked and L != self.flee_lane]
+            if opts:
+                self.flee_lane = self.rng.choice(opts)
+        dodging = cur in blocked
+        target = (lanes_x[self.flee_lane]
+                  + math.sin(t * 2.3) * (rx1 - rx0) / 3 * 0.10)   # tiny in-lane life
+        self.flee_x += (target - self.flee_x) * (0.20 if dodging else 0.08)
+        flee_x = self.flee_x
+        # Vertical brake: if a car is in the runaway's column and too close to
+        # out-swerve, drop back so it passes ahead — guarantees the cars never
+        # occupy the same spot (no driving-through), and reads as braking.
+        nearest_dy = 1e9
+        for c in self.traffic:
+            if abs(lanes_x[c["lane"]] - flee_x) < 56:
+                nearest_dy = min(nearest_dy, abs(c["y"] - self.flee_y))
+        brake = nearest_dy < 150
+        self.flee_y += ((base_y + (160 if brake else 0)) - self.flee_y) * 0.18
+        flee_y = self.flee_y
+        # chaser hunts the runaway's real path, so it tracks the swerves
+        self.chase_x += (flee_x - self.chase_x) * 0.11
+        gap = 250 - 150 * k + math.sin(t * 3.0) * 14
+        chase_y = flee_y + max(64, gap)
+
+        self.trail *= 0.82
+        _stamp_glow(self.trail, flee_x, flee_y + 62, 28, (50, 130, 255), 0.6 + 0.5 * k)
+        _stamp_glow(self.trail, self.chase_x, chase_y + 62, 28, (255, 60, 50), 0.6 + 0.5 * k)
+        img = Image.fromarray(
+            np.clip(np.asarray(img, np.float32) + self.trail, 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+
+        for c in self.traffic:
+            self._car(d, self._lane_x(c["lane"]) + shake, c["y"], c["col"], t)
+        self._car(d, self.chase_x + shake, chase_y, (205, 48, 44), t, siren=True)
+        self._car(d, flee_x + shake, flee_y, (52, 124, 238), t)
+        return np.asarray(img, dtype=np.uint8)
+
+
+# ---------- CLAW: arcade claw machine grabbing prizes ----------
+class _Claw(_Renderer):
+    """Arcade claw machine: the claw tracks over a prize pile, drops, grabs,
+    and carries a prize to the chute — cycling faster as the clip builds.
+    Fits records, wins, 'caught/grabbed/snatched/seized', heists, captures."""
+
+    _COLS = [(255, 90, 110), (90, 200, 255), (255, 210, 80),
+             (150, 240, 130), (210, 130, 255), (255, 150, 70)]
+    _SHAPES = ("ball", "capsule", "star")
+
+    def __init__(self, seed=None):
+        super().__init__(seed)
+        g = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+        self.bg = np.zeros((H, W, 3), np.float32)
+        self.bg[..., 0] = 30 + 18 * (1 - g)
+        self.bg[..., 1] = 18 + 10 * (1 - g)
+        self.bg[..., 2] = 42 + 22 * (1 - g)
+        self.floor_y = H * 0.78
+        self.pile = [self._prize() for _ in range(30)]
+        self.rail_y = 126
+        self.claw_x = W * 0.5
+        self.claw_y = self.rail_y
+        self.target = W * 0.5
+        self.phase = "seek"
+        self.pt = 0.0
+        self.held = None
+        self.chute_x = W * 0.86
+        self.spark: list[list] = []   # win sparkles: [x, y, vx, vy, life]
+
+    def _prize(self):
+        rng = self.rng
+        return {"x": rng.uniform(W * 0.13, W * 0.74),
+                "y": rng.uniform(H * 0.80, H * 0.95),
+                "r": rng.uniform(20, 33), "c": rng.choice(self._COLS),
+                "s": rng.choice(self._SHAPES), "ph": rng.uniform(0, 6.28)}
+
+    def _blob(self, d, p, glow=False):
+        x, y, r, c, s = p["x"], p["y"], p["r"], p["c"], p["s"]
+        if glow:
+            d.ellipse([x - r * 1.6, y - r * 1.6, x + r * 1.6, y + r * 1.6], fill=(*c, 55))
+        if s == "capsule":
+            d.rounded_rectangle([x - r, y - r * 0.72, x + r, y + r * 0.72],
+                                radius=int(r * 0.7), fill=(*c, 255))
+        elif s == "star":
+            pts = []
+            for j in range(10):
+                rr = r if j % 2 == 0 else r * 0.45
+                a = -math.pi / 2 + j * math.pi / 5
+                pts.append((x + rr * math.cos(a), y + rr * math.sin(a)))
+            d.polygon(pts, fill=(*c, 255))
+        else:
+            d.ellipse([x - r, y - r, x + r, y + r], fill=(*c, 255))
+        d.ellipse([x - r * 0.42, y - r * 0.46, x - r * 0.05, y - r * 0.08],
+                  fill=(255, 255, 255, 150))
+
+    def _dur(self, k):
+        f = 1.0 - 0.45 * k
+        return {"seek": 1.1 * f, "drop": 0.7 * f, "grab": 0.4 * f,
+                "lift": 0.7 * f, "carry": 1.0 * f, "release": 0.45 * f}
+
+    def draw(self, t, i):
+        dt = 1.0 / FPS
+        k = min(1.0, t / max(1.0, getattr(self, "duration", 30.0)))
+        self.pt += dt
+        durs = self._dur(k)
+        floor_y = self.floor_y
+        ph = self.phase
+        if ph == "seek":
+            self.claw_x += (self.target - self.claw_x) * min(1.0, 6 * dt)
+            if self.pt >= durs["seek"]:
+                self.phase, self.pt = "drop", 0.0
+        elif ph == "drop":
+            self.claw_y += (floor_y - self.claw_y) * min(1.0, 5 * dt)
+            if self.pt >= durs["drop"]:
+                if self.pile:
+                    self.held = min(self.pile, key=lambda p: abs(p["x"] - self.claw_x))
+                self.phase, self.pt = "grab", 0.0
+        elif ph == "grab":
+            if self.pt >= durs["grab"]:
+                self.phase, self.pt = "lift", 0.0
+        elif ph == "lift":
+            self.claw_y += (self.rail_y - self.claw_y) * min(1.0, 5 * dt)
+            if self.pt >= durs["lift"]:
+                self.phase, self.pt = "carry", 0.0
+        elif ph == "carry":
+            self.claw_x += (self.chute_x - self.claw_x) * min(1.0, 4 * dt)
+            if self.pt >= durs["carry"]:
+                self.phase, self.pt = "release", 0.0
+        elif ph == "release":
+            if self.held:
+                if self.held in self.pile:
+                    self.pile.remove(self.held)
+                self.held = None
+                for _ in range(16):    # win sparkle burst at the chute
+                    a = self.rng.uniform(0, 6.28)
+                    sp = self.rng.uniform(60, 240)
+                    self.spark.append([self.chute_x, floor_y, math.cos(a) * sp,
+                                       math.sin(a) * sp - 60, 1.0])
+            if self.pt >= durs["release"]:
+                if len(self.pile) < 28:
+                    self.pile.append(self._prize())
+                self.target = self.rng.uniform(W * 0.15, W * 0.72)
+                self.phase, self.pt = "seek", 0.0
+        if self.held is not None:
+            self.held["x"], self.held["y"] = self.claw_x, self.claw_y + 48
+
+        img = Image.fromarray(np.clip(self.bg.copy(), 0, 255).astype(np.uint8))
+        d = ImageDraw.Draw(img, "RGBA")
+        # marquee + glass cabinet frame
+        d.rectangle([0, 0, W, 44], fill=(82, 30, 122, 255))
+        d.rectangle([0, 44, W, 50], fill=(255, 210, 80, 255))
+        d.rounded_rectangle([12, 58, W - 12, H - 10], radius=20,
+                            outline=(150, 160, 215, 150), width=5)
+        # chute
+        won = any(s[4] > 0 for s in self.spark)
+        d.rounded_rectangle([self.chute_x - 50, floor_y - 16, W - 22, H - 18], radius=12,
+                            fill=(18, 20, 32, 255), outline=(120, 130, 160, 220), width=3)
+        if won:
+            d.ellipse([self.chute_x - 56, floor_y - 30, W - 16, floor_y + 34],
+                      fill=(255, 220, 90, 45))
+        # prize pile (idle jitter)
+        for p in self.pile:
+            if p is self.held:
+                continue
+            p_draw = dict(p, y=p["y"] + math.sin(t * 1.6 + p["ph"]) * 1.5)
+            self._blob(d, p_draw)
+        # gantry rail + trolley + cable
+        d.rectangle([0, self.rail_y - 13, W, self.rail_y - 5], fill=(120, 128, 152, 255))
+        d.rounded_rectangle([self.claw_x - 26, self.rail_y - 22, self.claw_x + 26,
+                             self.rail_y + 2], radius=6, fill=(180, 190, 216, 255))
+        d.line([self.claw_x, self.rail_y + 2, self.claw_x, self.claw_y],
+               fill=(200, 206, 222, 255), width=5)
+        closed = self.phase in ("grab", "lift", "carry")
+        spread = 8 if closed else 26
+        cy = self.claw_y
+        d.rounded_rectangle([self.claw_x - 18, cy - 16, self.claw_x + 18, cy + 8],
+                            radius=5, fill=(190, 200, 225, 255))
+        d.line([self.claw_x, cy + 6, self.claw_x, cy + 52], fill=(170, 180, 210, 255), width=6)
+        for sx in (-1, 1):
+            tipx = self.claw_x + sx * spread
+            d.line([self.claw_x + sx * 13, cy + 6, tipx, cy + 44],
+                   fill=(170, 180, 210, 255), width=7)
+            d.line([tipx, cy + 44, tipx - sx * 9, cy + 62],
+                   fill=(170, 180, 210, 255), width=7)
+        if self.held is not None:
+            self._blob(d, self.held, glow=True)
+        # update + draw sparkles
+        alive = []
+        for s in self.spark:
+            s[4] -= dt * 1.6
+            if s[4] <= 0:
+                continue
+            s[3] += 520 * dt
+            s[0] += s[2] * dt
+            s[1] += s[3] * dt
+            d.ellipse([s[0] - 3, s[1] - 3, s[0] + 3, s[1] + 3],
+                      fill=(255, 240, 160, int(max(0, s[4]) * 255)))
+            alive.append(s)
+        self.spark = alive
+        return np.asarray(img, dtype=np.uint8)
+
+
 _THEME_CLASSES = {
     "space": _Space,
     "plinko": _Plinko,
@@ -3407,17 +3910,25 @@ _THEME_CLASSES = {
     "fight": _Fight,
     "moto": _Moto,
     "train": _Train,
+    "pursuit": _Pursuit,
+    "claw": _Claw,
 }
 
 
 def render(theme: str, duration: float, out_path: Path,
-           seed: int | None = None) -> Path:
+           seed: int | None = None, config: "ThemeConfig | None" = None) -> Path:
     """Render `duration` seconds of the named theme to `out_path`
-    (1080x960@30, h264, silent). Unknown themes fall back to plinko."""
+    (1080x960@30, h264, silent). Unknown themes fall back to plinko.
+    An optional ThemeConfig applies a per-story reskin (color grade)."""
     cls = _THEME_CLASSES.get(theme, _Plinko)
+    if seed is None and config is not None:
+        seed = config.seed
     print(f"      [themed_bottom] generating {theme!r} "
-          f"({duration:.1f}s procedural)")
-    return cls(seed).render(duration, out_path)
+          f"({duration:.1f}s procedural){' +reskin' if config else ''}")
+    inst = cls(seed)
+    if config is not None:
+        inst.set_config(config)
+    return inst.render(duration, out_path)
 
 
 if __name__ == "__main__":
