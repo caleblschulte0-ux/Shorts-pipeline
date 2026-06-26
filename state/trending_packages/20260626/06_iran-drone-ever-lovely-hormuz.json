@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "slug": "iran-drone-ever-lovely-hormuz",
+  "title": "Iran Hit a Cargo Ship in the Strait of Hormuz Days After Signing Peace",
+  "script": "Iran called this peace? Iran's Revolutionary Guards struck the Singapore-flagged container ship Ever Lovely with a drone in the Strait of Hormuz on Thursday. The ship's bridge was damaged. Nobody was killed. Here's the catch — just last week, Iran and the United States signed a 60-day peace roadmap, with Iran agreeing to let ships pass through the strait freely. Then Iran's military launched a drone at one. Oil prices spiked immediately. The UN's International Maritime Organization paused its evacuation of vessels stranded in the Gulf. Iran's military called it a warning. Iran's foreign ministry said shipping was fine. The two contradicted each other within hours. Is the Strait of Hormuz actually safe to transit right now?",
+  "shots": [
+    {
+      "phrase": "Iran called this peace?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS004-37-716_-_Strait_of_Hormuz.jpg",
+      "query": "Strait of Hormuz aerial satellite",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Iran's Revolutionary Guards struck the Singapore-flagged container ship Ever Lovely",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS004-37-716_-_Strait_of_Hormuz.jpg",
+      "query": "container ship cargo vessel ocean",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "with a drone in the Strait of Hormuz on Thursday",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shahed_136_rendering.png",
+      "query": "military drone Iran UAV",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The ship's bridge was damaged",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS004-37-716_-_Strait_of_Hormuz.jpg",
+      "query": "cargo ship bridge damage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Nobody was killed",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shahed_136_rendering.png",
+      "query": "drone strike aftermath",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Iran and the United States signed a 60-day peace roadmap",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS004-37-716_-_Strait_of_Hormuz.jpg",
+      "query": "peace deal signing diplomacy",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "with Iran agreeing to let ships pass through the strait freely",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS004-37-716_-_Strait_of_Hormuz.jpg",
+      "query": "shipping lane cargo ships Persian Gulf",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Then Iran's military launched a drone at one",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shahed_136_rendering.png",
+      "query": "drone attack launch military",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Oil prices spiked immediately",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS004-37-716_-_Strait_of_Hormuz.jpg",
+      "query": "oil tanker ship refinery",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The UN's International Maritime Organization paused its evacuation of vessels stranded in the Gulf",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS004-37-716_-_Strait_of_Hormuz.jpg",
+      "query": "cargo ships stranded Gulf port",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Iran's military called it a warning. Iran's foreign ministry said shipping was fine.",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shahed_136_rendering.png",
+      "query": "Iran military press conference",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Is the Strait of Hormuz actually safe to transit right now?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS004-37-716_-_Strait_of_Hormuz.jpg",
+      "query": "Strait of Hormuz map shipping",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Iran called this peace?",
+      "text": "PEACE DEAL?",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Ever Lovely",
+      "text": "EVER LOVELY",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "with a drone in the Strait of Hormuz",
+      "text": "DRONE STRIKE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "60-day peace roadmap",
+      "text": "60-DAY PEACE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Oil prices spiked immediately",
+      "text": "OIL PRICES SPIKE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "The two contradicted each other within hours",
+      "text": "CONTRADICTED",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "iran",
+    "straitofhormuz",
+    "irgc",
+    "dronestrike",
+    "everlovely",
+    "oilprices",
+    "globalshipping",
+    "worldnews",
+    "middleeast",
+    "geopolitics",
+    "hormuz",
+    "peacedeal"
+  ],
+  "music_vibe": "cinematic"
+}
