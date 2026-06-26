@@ -1,82 +1,14 @@
 [
   {
-    "topic": "A Giraffe Named Gracie Escaped a Texas Ranch \u2014 and Vanished",
-    "title": "A Giraffe Named Gracie Escaped a Texas Ranch \u2014 and Vanished",
-    "publish_at": "2026-06-25T21:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/JviFa9Npwts",
-    "error": null,
-    "elapsed_seconds": 393.7,
-    "package_path": "state/trending_packages/20260625/01_gracie-giraffe-escape-texas.json",
-    "video_path": "output/daily_20260625-201814_a_giraffe_named_gracie_escaped_a_texas_r.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "A Truck Flipped and Released 2 Million Bees Onto a Texas Road",
-    "title": "A Truck Flipped and Released 2 Million Bees Onto a Texas Road",
-    "publish_at": "2026-06-25T23:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/PqmPWusedcA",
-    "error": null,
-    "elapsed_seconds": 373.8,
-    "package_path": "state/trending_packages/20260625/02_two-million-bees-semi-texas.json",
-    "video_path": "output/daily_20260625-202509_a_truck_flipped_and_released_2_million_b.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "He Skateboarded From California to Florida in 39 Days",
-    "title": "He Skateboarded From California to Florida in 39 Days",
+    "topic": "Snake AND Spider Found in the Same Australian Bedroom",
+    "title": "Snake AND Spider Found in the Same Australian Bedroom",
     "publish_at": "2026-06-26T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/5HfZ6F6FnWo",
+    "video_url": "https://youtube.com/shorts/62pDFn_rPWM",
     "error": null,
-    "elapsed_seconds": 450.3,
-    "package_path": "state/trending_packages/20260625/03_skateboard-california-florida-record.json",
-    "video_path": "output/daily_20260625-203123_he_skateboarded_from_california_to_flori.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "830 People Ate Dim Sum Together and Broke a World Record",
-    "title": "830 People Ate Dim Sum Together and Broke a World Record",
-    "publish_at": "2026-06-26T15:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">",
-    "elapsed_seconds": 330.2,
-    "package_path": "state/trending_packages/20260625/04_seattle-dim-sum-world-record.json",
-    "video_path": "output/daily_20260625-203853_830_people_ate_dim_sum_together_and_brok.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "She Stopped for Gas and Left With $500,000",
-    "title": "She Stopped for Gas and Left With $500,000",
-    "publish_at": "2026-06-26T15:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">",
-    "elapsed_seconds": 378.9,
-    "package_path": "state/trending_packages/20260625/05_tennessee-woman-500k-scratch-off.json",
-    "video_path": "output/daily_20260625-204423_she_stopped_for_gas_and_left_with__500_0.mp4",
+    "elapsed_seconds": 601.7,
+    "package_path": "state/trending_packages/20260626/01_python-spider-bedroom-queensland.json",
+    "video_path": "output/daily_20260626-112835_snake_and_spider_found_in_the_same_austr.mp4",
     "qa": {
       "ok": true,
       "verdict": "skip",
@@ -85,19 +17,87 @@
     "channel": "default"
   },
   {
-    "topic": "A Tornado Touched Down in the Chicago Suburbs",
-    "title": "A Tornado Touched Down in the Chicago Suburbs",
+    "topic": "Ohio Spent a Week Chasing a White Peacock Through the Suburbs",
+    "title": "Ohio Spent a Week Chasing a White Peacock Through the Suburbs",
     "publish_at": "2026-06-26T15:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "ResumableUploadError: <HttpError 400 when requesting None returned \"The user has exceeded the number of videos they may upload.\". Details: \"[{'message': 'The user has exceeded the number of videos they may upload.', 'domain': 'youtube.video', 'reason': 'uploadLimitExceeded'}]\">",
-    "elapsed_seconds": 436.8,
-    "package_path": "state/trending_packages/20260625/06_huntley-illinois-tornado-chicago.json",
-    "video_path": "output/daily_20260625-205043_a_tornado_touched_down_in_the_chicago_su.mp4",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/MKY0IKzGsh4",
+    "error": null,
+    "elapsed_seconds": 623.4,
+    "package_path": "state/trending_packages/20260626/02_white-peahen-ohio-cuyahoga.json",
+    "video_path": "output/daily_20260626-113837_ohio_spent_a_week_chasing_a_white_peacoc.mp4",
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "This Couple Got Married on a 60-Foot Water Slide at Wisconsin Dells",
+    "title": "This Couple Got Married on a 60-Foot Water Slide at Wisconsin Dells",
+    "publish_at": "2026-06-26T17:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/Tjw50o2-miI",
+    "error": null,
+    "elapsed_seconds": 536.7,
+    "package_path": "state/trending_packages/20260626/03_lakoduk-waterslide-wedding-wisconsin-dells.json",
+    "video_path": "output/daily_20260626-114901_this_couple_got_married_on_a_60_foot_wat.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "NC Siblings Used Family Birthdays to Win $390,000 in the Lottery",
+    "title": "NC Siblings Used Family Birthdays to Win $390,000 in the Lottery",
+    "publish_at": "2026-06-26T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/PYAGuOVNFZQ",
+    "error": null,
+    "elapsed_seconds": 527.5,
+    "package_path": "state/trending_packages/20260626/04_lowry-siblings-lottery-nc-birthdays.json",
+    "video_path": "output/daily_20260626-115757_nc_siblings_used_family_birthdays_to_win.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Camp Mystic Files for Bankruptcy After 28 Died in the Texas Flood",
+    "title": "Camp Mystic Files for Bankruptcy After 28 Died in the Texas Flood",
+    "publish_at": "2026-06-26T21:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/Ob5ZqX7Y9eQ",
+    "error": null,
+    "elapsed_seconds": 590.1,
+    "package_path": "state/trending_packages/20260626/05_camp-mystic-bankruptcy-texas-flood.json",
+    "video_path": "output/daily_20260626-120644_camp_mystic_files_for_bankruptcy_after_2.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Iran Hit a Cargo Ship in the Strait of Hormuz Days After Signing Peace",
+    "title": "Iran Hit a Cargo Ship in the Strait of Hormuz Days After Signing Peace",
+    "publish_at": "2026-06-26T23:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/UMpb60-Mu7E",
+    "error": null,
+    "elapsed_seconds": 673.4,
+    "package_path": "state/trending_packages/20260626/06_iran-drone-ever-lovely-hormuz.json",
+    "video_path": "output/daily_20260626-121721_iran_hit_a_cargo_ship_in_the_strait_of_h.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
     },
     "channel": "default"
   }
