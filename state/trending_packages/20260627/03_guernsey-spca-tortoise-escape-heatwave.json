@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "slug": "guernsey-spca-tortoise-escape-heatwave",
+  "title": "Guernsey Has a Tortoise Escape Epidemic Right Now",
+  "script": "Four tortoises. One morning? The Guernsey SPCA is overwhelmed. Their island is having a tortoise escape epidemic — and it's the heat's fault. Every summer, the shelter handles 20 to 30 lost tortoises. This week, 4 landed at the facility in a single 24-hour stretch. SPCA manager Steve Byrne explained it: tortoises are surprisingly good climbers, and when temperatures climb, they get motivated. The males especially wander in search of mates. Which means Guernsey just hit peak tortoise mating season during a full heat wave. Byrne says more escapes are coming as long as the temperatures hold. If you own a tortoise on this island, check your enclosure walls. Actually, check whether your tortoise is even home right now. Is anyone on Guernsey actually surprised that their tortoise isn't where they left it?",
+  "shots": [
+    {
+      "phrase": "Four tortoises. One morning?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "tortoise walking garden",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "The Guernsey SPCA is overwhelmed",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "animal shelter staff rescue center",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "having a tortoise escape epidemic — and it's the heat's fault",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "hot summer day dry grass heat",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Every summer, the shelter handles 20 to 30 lost tortoises",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "tortoise enclosure garden fence",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "4 landed at the facility in a single 24-hour stretch",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "animal rescue intake facility desk",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "tortoises are surprisingly good climbers, and when temperatures climb, they get motivated",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "tortoise climbing garden wall fence",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The males especially wander in search of mates",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "tortoise moving slowly garden path",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Guernsey just hit peak tortoise mating season during a full heat wave",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "Guernsey island summer heat sunny",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "more escapes are coming as long as the temperatures hold",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "thermometer hot temperature summer",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "check whether your tortoise is even home right now",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "empty tortoise enclosure backyard",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Is anyone on Guernsey actually surprised that their tortoise isn't where they left it?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+      "query": "person searching garden confused",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {"phrase": "Four tortoises. One morning?", "text": "4 TORTOISES", "color": "#ffaa30"},
+    {"phrase": "tortoise escape epidemic", "text": "ESCAPE EPIDEMIC", "color": "#ff3030"},
+    {"phrase": "4 landed at the facility in a single 24-hour stretch", "text": "24 HOURS", "color": "#ffaa30"},
+    {"phrase": "tortoises are surprisingly good climbers", "text": "GOOD CLIMBERS!", "color": "#ffffff"},
+    {"phrase": "peak tortoise mating season during a full heat wave", "text": "MATING SEASON", "color": "#50ff80"},
+    {"phrase": "check whether your tortoise is even home right now", "text": "CHECK YOUR PET", "color": "#ffaa30"},
+    {"phrase": "Is anyone on Guernsey actually surprised", "text": "GUERNSEY PROBLEM", "color": "#ffffff"}
+  ],
+  "hashtags": ["guernseySPCA", "tortoiseescapes", "tortoisenews", "petrescue", "weirdnews", "animalstories", "heatwave2026", "tortoise", "islandnews", "guernsey", "funnypets", "wildlifenews", "oddnews"],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
