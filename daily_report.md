@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-06-26
+# Daily Trending Shorts — 2026-06-27
 
 - queued: **6**
 - succeeded: **6**
@@ -6,34 +6,34 @@
 - failed: **0**
 
 ## Posted
-- **Snake AND Spider Found in the Same Australian Bedroom**
-  - topic: Snake AND Spider Found in the Same Australian Bedroom
-  - publishes: `2026-06-26T13:00:00Z`
-  - https://youtube.com/shorts/62pDFn_rPWM
-  - took: 601.7s
-- **Ohio Spent a Week Chasing a White Peacock Through the Suburbs**
-  - topic: Ohio Spent a Week Chasing a White Peacock Through the Suburbs
-  - publishes: `2026-06-26T15:00:00Z`
-  - https://youtube.com/shorts/MKY0IKzGsh4
-  - took: 623.4s
-- **This Couple Got Married on a 60-Foot Water Slide at Wisconsin Dells**
-  - topic: This Couple Got Married on a 60-Foot Water Slide at Wisconsin Dells
-  - publishes: `2026-06-26T17:00:00Z`
-  - https://youtube.com/shorts/Tjw50o2-miI
-  - took: 536.7s
-- **NC Siblings Used Family Birthdays to Win $390,000 in the Lottery**
-  - topic: NC Siblings Used Family Birthdays to Win $390,000 in the Lottery
-  - publishes: `2026-06-26T19:00:00Z`
-  - https://youtube.com/shorts/PYAGuOVNFZQ
-  - took: 527.5s
-- **Camp Mystic Files for Bankruptcy After 28 Died in the Texas Flood**
-  - topic: Camp Mystic Files for Bankruptcy After 28 Died in the Texas Flood
-  - publishes: `2026-06-26T21:00:00Z`
-  - https://youtube.com/shorts/Ob5ZqX7Y9eQ
-  - took: 590.1s
-- **Iran Hit a Cargo Ship in the Strait of Hormuz Days After Signing Peace**
-  - topic: Iran Hit a Cargo Ship in the Strait of Hormuz Days After Signing Peace
-  - publishes: `2026-06-26T23:00:00Z`
-  - https://youtube.com/shorts/UMpb60-Mu7E
-  - took: 673.4s
+- **FIFA Banned Merlín the Duck From Mexico's Match**
+  - topic: FIFA Banned Merlín the Duck From Mexico's Match
+  - publishes: `2026-06-27T13:00:00Z`
+  - https://youtube.com/shorts/m5vyxm44eUQ
+  - took: 619.1s
+- **Virginia Man Makes 3 Pizzas in 31 Seconds Flat**
+  - topic: Virginia Man Makes 3 Pizzas in 31 Seconds Flat
+  - publishes: `2026-06-27T15:00:00Z`
+  - https://youtube.com/shorts/uHaITAS4-1g
+  - took: 327.4s
+- **Guernsey Has a Tortoise Escape Epidemic Right Now**
+  - topic: Guernsey Has a Tortoise Escape Epidemic Right Now
+  - publishes: `2026-06-27T17:00:00Z`
+  - https://youtube.com/shorts/E-6vu2Vnf1o
+  - took: 311.7s
+- **Utah Just Banned July 4th Fireworks Statewide**
+  - topic: Utah Just Banned July 4th Fireworks Statewide
+  - publishes: `2026-06-27T19:00:00Z`
+  - https://youtube.com/shorts/0TnBqUhvpYM
+  - took: 500.7s
+- **They Used a Stolen Backhoe to Rob an ATM. It Went Wrong.**
+  - topic: They Used a Stolen Backhoe to Rob an ATM. It Went Wrong.
+  - publishes: `2026-06-27T21:00:00Z`
+  - https://youtube.com/shorts/B2WxCwsvuFw
+  - took: 477.8s
+- **$6.5 Billion Healthcare Fraud Bust — 90 Doctors Charged**
+  - topic: $6.5 Billion Healthcare Fraud Bust — 90 Doctors Charged
+  - publishes: `2026-06-27T23:00:00Z`
+  - https://youtube.com/shorts/vJZzuwJNmco
+  - took: 577.8s
 
