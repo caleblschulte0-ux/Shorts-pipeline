@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "slug": "merlin-duck-mexico-world-cup",
+  "title": "FIFA Banned Merlín the Duck From Mexico's Match",
+  "script": "FIFA banned... a duck? Merlín — a 2-year-old duck in a tiny green Mexico jersey — became the unofficial mascot of the 2026 World Cup. He showed up at Mexico's opening match and went instantly viral. Got invited to the presidential palace. Netflix. Televisa. He waddled through Mexico City streets while fans chanted his name. Then his owner brought him to Azteca Stadium for the Czech Republic match. Cameras set up outside. A FIFA spokesperson confirmed it: live animals aren't allowed inside the stadium. Merlín could film a commercial on the grounds. But not watch the game. In 2 weeks, that duck visited more Mexico City landmarks than most tourists manage in a month. Should the World Cup have a duck exemption?",
+  "shots": [
+    {
+      "phrase": "FIFA banned... a duck?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+      "query": "duck outdoors walking",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Merlín — a 2-year-old duck in a tiny green Mexico jersey",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+      "query": "duck wearing jersey mascot",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "unofficial mascot of the 2026 World Cup",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+      "query": "World Cup 2026 stadium Mexico fans",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "He showed up at Mexico's opening match and went instantly viral",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+      "query": "Mexico soccer fans cheering crowd",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Got invited to the presidential palace",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+      "query": "Mexico City Zocalo presidential palace",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Netflix. Televisa",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+      "query": "television studio broadcast camera",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "waddled through Mexico City streets while fans chanted his name",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+      "query": "Mexico City street market crowd",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "his owner brought him to Azteca Stadium for the Czech Republic match",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+      "query": "Azteca Stadium exterior entrance gate",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "live animals aren't allowed inside the stadium",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+      "query": "stadium security gate no entry sign",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Merlín could film a commercial on the grounds",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+      "query": "duck outside stadium camera crew film",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "that duck visited more Mexico City landmarks than most tourists manage in a month",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+      "query": "Mexico City aerial landmark skyline",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Should the World Cup have a duck exemption?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+      "query": "duck alone sad excluded outside",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {"phrase": "FIFA banned... a duck?", "text": "A DUCK?", "color": "#ffaa30"},
+    {"phrase": "2-year-old duck in a tiny green Mexico jersey", "text": "GREEN JERSEY DUCK", "color": "#50ff80"},
+    {"phrase": "unofficial mascot of the 2026 World Cup", "text": "WORLD CUP MASCOT", "color": "#ffffff"},
+    {"phrase": "live animals aren't allowed inside the stadium", "text": "NO LIVE ANIMALS", "color": "#ff3030"},
+    {"phrase": "But not watch the game", "text": "BANNED", "color": "#ff3030"},
+    {"phrase": "more Mexico City landmarks than most tourists manage in a month", "text": "FULL CITY TOUR", "color": "#ffffff"},
+    {"phrase": "Should the World Cup have a duck exemption?", "text": "DUCK EXEMPTION?", "color": "#ffaa30"}
+  ],
+  "hashtags": ["merlineldato", "mexicoworldcup2026", "FIFA2026", "worldcup2026", "worldcupmascot", "mexicosoccer", "aztecaestadio", "funnyanimals", "duckstory", "viral", "sportsweird", "animalnews", "mexico2026"],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

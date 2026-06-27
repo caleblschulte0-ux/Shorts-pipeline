@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "slug": "tobago-backhoe-atm-heist-batman",
+  "title": "They Used a Stolen Backhoe to Rob an ATM. It Went Wrong.",
+  "script": "A stolen backhoe. An ATM! Police in Tobago are looking for robbers who pulled up to a cash machine with a stolen backhoe. They dug out the ATM and dragged it to the sidewalk. Great start. Then the backhoe arm broke. They tried lifting the ATM onto a pickup truck. Failed. Tried again. Still failed. Security cameras recorded the whole thing — more than 10 minutes of footage. One suspect wore a black poncho that kept billowing in the wind like a superhero's cape. He tripped. More than once. By the next morning, Tobago radio was full of jokes. A local newspaper headlined it: 'Batman and robbing.' Police are still looking. The ATM is back where it was. What exactly is the exit strategy when your getaway vehicle is a backhoe?",
+  "shots": [
+    {
+      "phrase": "A stolen backhoe. An ATM!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+      "query": "backhoe excavator machine construction",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Police in Tobago are looking for robbers who pulled up to a cash machine with a stolen backhoe",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+      "query": "ATM cash machine outdoor bank",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "They dug out the ATM and dragged it to the sidewalk",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+      "query": "backhoe digging concrete street",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Great start. Then the backhoe arm broke",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+      "query": "broken machinery construction equipment failure",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "They tried lifting the ATM onto a pickup truck. Failed",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+      "query": "pickup truck loading heavy equipment",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Tried again. Still failed",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+      "query": "heavy metal machine sidewalk failed",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Security cameras recorded the whole thing — more than 10 minutes of footage",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+      "query": "security camera CCTV footage night",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "One suspect wore a black poncho that kept billowing in the wind like a superhero's cape",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+      "query": "black poncho cape wind billowing",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "He tripped. More than once",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+      "query": "person tripping falling debris floor",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Tobago radio was full of jokes",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+      "query": "radio station morning show hosts laughing",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "A local newspaper headlined it: 'Batman and robbing'",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+      "query": "newspaper headline print press morning",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The ATM is back where it was",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+      "query": "ATM machine bank sidewalk untouched",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "What exactly is the exit strategy when your getaway vehicle is a backhoe?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+      "query": "backhoe slow road highway traffic",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {"phrase": "A stolen backhoe. An ATM!", "text": "STOLEN BACKHOE", "color": "#ffaa30"},
+    {"phrase": "Great start. Then the backhoe arm broke", "text": "ARM BROKE", "color": "#ff3030"},
+    {"phrase": "Still failed", "text": "STILL FAILED", "color": "#ff3030"},
+    {"phrase": "more than 10 minutes of footage", "text": "10 MIN ON CAMERA", "color": "#ffaa30"},
+    {"phrase": "billowing in the wind like a superhero's cape", "text": "SUPERHERO CAPE", "color": "#50ff80"},
+    {"phrase": "He tripped. More than once", "text": "TRIPPED TWICE", "color": "#50ff80"},
+    {"phrase": "'Batman and robbing'", "text": "BATMAN ROBBING", "color": "#ffffff"},
+    {"phrase": "The ATM is back where it was", "text": "BACK WHERE IT WAS", "color": "#ff3030"}
+  ],
+  "hashtags": ["tobago", "ATMheist", "backhoe", "failedrobbery", "batmanandrobbing", "trinidadandtobago", "crimefail", "securitycamera", "heistfail", "weirdcrime", "viral", "oddnews", "crimestories"],
+  "music_vibe": "hiphop"
+}

@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "slug": "utah-fireworks-ban-july4th-cox-drought",
+  "title": "Utah Just Banned July 4th Fireworks Statewide",
+  "script": "No fireworks. Not one! Utah Governor Spencer Cox just declared a state of emergency and banned all personal fireworks statewide through July 5. That's the entire Fourth of July. Right now, 94% of Utah is in severe or extreme drought. This fire season: 354 fires, more than 141,000 acres burned. Cox says personal fireworks — backyard sparklers included — are banned everywhere in the state. Some permitted public shows are still happening. But if you were planning to light anything yourself in Utah this week, that's over. The timing: America turns 250 on July 4th. The single most fireworks-saturated holiday in American history — and Utah's sitting it out. Cox is essentially saying: the birthday party is on. Just without the part where things explode. Is 250 years of tradition worth a valley full of smoke?",
+  "shots": [
+    {
+      "phrase": "No fireworks. Not one!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fireworks_over_the_East_Village_of_New_York_City.JPG",
+      "query": "fireworks canceled ban sign",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Utah Governor Spencer Cox just declared a state of emergency",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Utah_Governor_Spencer_Cox_and_his_wife_(53708399012)_(cropped).jpg",
+      "query": "governor press conference podium announcement",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "banned all personal fireworks statewide through July 5",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fireworks_over_the_East_Village_of_New_York_City.JPG",
+      "query": "fireworks display night sky aerial",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "94% of Utah is in severe or extreme drought",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Utah_Governor_Spencer_Cox_and_his_wife_(53708399012)_(cropped).jpg",
+      "query": "Utah dry cracked earth drought",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "This fire season: 354 fires, more than 141,000 acres burned",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sawmill_Fire_6.16.26_(cropped).png",
+      "query": "Utah wildfire aerial smoke 2026",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Cox says personal fireworks — backyard sparklers included — are banned everywhere in the state",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Utah_Governor_Spencer_Cox_and_his_wife_(53708399012)_(cropped).jpg",
+      "query": "sparkler backyard Fourth of July",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Some permitted public shows are still happening",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fireworks_over_the_East_Village_of_New_York_City.JPG",
+      "query": "public fireworks display professional show",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "if you were planning to light anything yourself in Utah this week, that's over",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sawmill_Fire_6.16.26_(cropped).png",
+      "query": "Utah wildfire smoke dry landscape",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "America turns 250 on July 4th",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fireworks_over_the_East_Village_of_New_York_City.JPG",
+      "query": "Fourth of July celebration 250th anniversary",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the birthday party is on. Just without the part where things explode",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Utah_Governor_Spencer_Cox_and_his_wife_(53708399012)_(cropped).jpg",
+      "query": "birthday party no fireworks Utah",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "Is 250 years of tradition worth a valley full of smoke?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sawmill_Fire_6.16.26_(cropped).png",
+      "query": "Utah valley smoke wildfire haze",
+      "mascot_pose": "think"
+    }
+  ],
+  "punches": [
+    {"phrase": "No fireworks. Not one!", "text": "BANNED!", "color": "#ff3030"},
+    {"phrase": "declared a state of emergency", "text": "STATE OF EMERGENCY", "color": "#ff3030"},
+    {"phrase": "94% of Utah is in severe or extreme drought", "text": "94% DROUGHT", "color": "#ffaa30"},
+    {"phrase": "354 fires, more than 141,000 acres burned", "text": "141K ACRES BURNED", "color": "#ff3030"},
+    {"phrase": "backyard sparklers included", "text": "SPARKLERS TOO", "color": "#ffaa30"},
+    {"phrase": "America turns 250 on July 4th", "text": "AMERICA'S 250TH", "color": "#ffffff"},
+    {"phrase": "without the part where things explode", "text": "NO EXPLOSIONS", "color": "#ff3030"}
+  ],
+  "hashtags": ["UtahFireworks", "SpencerCox", "July4th2026", "UtahWildfires", "fireworksban", "Utah2026", "America250", "stateofemergency", "drought2026", "wildfires", "fourthofJuly", "usanews", "breaking"],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
