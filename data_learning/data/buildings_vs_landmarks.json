@@ -1,0 +1,33 @@
+{
+ "key": "buildings_vs_landmarks",
+ "title": "Height vs famous landmarks (m)",
+ "unit": "m",
+ "geography": "World",
+ "time_coverage": "2025",
+ "source": {
+  "name": "Height vs famous landmarks (m)",
+  "publisher": "CTBUH",
+  "url": "https://www.ctbuh.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Burj Khalifa",
+   "value": 828
+  },
+  {
+   "label": "Empire State",
+   "value": 443
+  },
+  {
+   "label": "Eiffel Tower",
+   "value": 330
+  },
+  {
+   "label": "Statue of Liberty",
+   "value": 93
+  }
+ ]
+}

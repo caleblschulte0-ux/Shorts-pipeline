@@ -1,0 +1,37 @@
+{
+ "key": "water_per_item",
+ "title": "Hidden water per item (liters)",
+ "unit": "L",
+ "geography": "World",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Hidden water per item (liters)",
+  "publisher": "Water Footprint Network",
+  "url": "https://waterfootprint.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Hamburger",
+   "value": 2400
+  },
+  {
+   "label": "Pizza",
+   "value": 1260
+  },
+  {
+   "label": "Cup of coffee",
+   "value": 140
+  },
+  {
+   "label": "Egg",
+   "value": 200
+  },
+  {
+   "label": "Apple",
+   "value": 125
+  }
+ ]
+}

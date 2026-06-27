@@ -1,0 +1,29 @@
+{
+ "key": "electricity_price_trend",
+ "title": "US electricity price (cents/kWh)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2005-2025",
+ "source": {
+  "name": "US electricity price (cents/kWh)",
+  "publisher": "EIA",
+  "url": "https://www.eia.gov",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "2005",
+   "value": 9.5
+  },
+  {
+   "label": "2015",
+   "value": 12.7
+  },
+  {
+   "label": "2025",
+   "value": 17.0
+  }
+ ]
+}

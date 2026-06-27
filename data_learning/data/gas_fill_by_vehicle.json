@@ -1,0 +1,37 @@
+{
+ "key": "gas_fill_by_vehicle",
+ "title": "Cost to fill the tank by vehicle ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2025",
+ "source": {
+  "name": "Cost to fill the tank by vehicle ($)",
+  "publisher": "EPA fuel economy",
+  "url": "https://www.fueleconomy.gov",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Full-size SUV",
+   "value": 95
+  },
+  {
+   "label": "Pickup truck",
+   "value": 88
+  },
+  {
+   "label": "Sedan",
+   "value": 52
+  },
+  {
+   "label": "Compact",
+   "value": 38
+  },
+  {
+   "label": "Motorcycle",
+   "value": 14
+  }
+ ]
+}

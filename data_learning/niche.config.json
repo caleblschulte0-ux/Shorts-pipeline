@@ -3480,6 +3480,301 @@
           "say": "States have stepped in where the federal government hasn't. California is at $16.50, Washington $16.28, New York $16. Massachusetts, $15. But 20 states still use the federal floor — $7.25 — unchanged since 2009."
         }
       ]
+    },
+    {
+      "slug": "tallest-buildings",
+      "title": "The World's Tallest Buildings Keep Getting Taller",
+      "hook": "Some buildings are half a mile tall.",
+      "closing": "We keep finding ways to build higher — the record has more than doubled in a single lifetime.",
+      "question": "Would you go up to the top? Drop a floor number.",
+      "caption": "The Burj Khalifa is 828m — nearly twice the Empire State Building, and the record has doubled since 1931. Here's the data 👇",
+      "hashtags": [
+        "architecture",
+        "skyscraper",
+        "buildings",
+        "engineering",
+        "burjkhalifa",
+        "construction",
+        "tallest",
+        "megastructure",
+        "city",
+        "design",
+        "data",
+        "dubai",
+        "fyp",
+        "amazing"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "buildings_tallest",
+          "params": {
+            "file": "buildings_tallest.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · THE GIANTS",
+          "topic": "tallest buildings (m)",
+          "say": "The Burj Khalifa towers at 828 meters. The Merdeka 118 in Kuala Lumpur, 679. Shanghai Tower, 632. These are the tallest structures humans have ever built."
+        },
+        {
+          "source": "offline",
+          "key": "buildings_vs_landmarks",
+          "params": {
+            "file": "buildings_vs_landmarks.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · FOR SCALE",
+          "topic": "height vs famous landmarks (m)",
+          "say": "Put it next to what you know. The Burj is 828 meters. The Empire State Building, 443. The Eiffel Tower, 330. The Statue of Liberty barely registers at 93."
+        },
+        {
+          "source": "offline",
+          "key": "buildings_record_trend",
+          "params": {
+            "file": "buildings_record_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE CLIMB",
+          "topic": "world's tallest building over time (m)",
+          "say": "And it keeps climbing. In 1931 the record was 381 meters. By 2004, 508. Then the Burj smashed it to 828 — more than double, in under a century."
+        }
+      ]
+    },
+    {
+      "slug": "gas-price-by-country",
+      "title": "Gas Costs Five Times More in Some Countries",
+      "hook": "Your gas might be a bargain.",
+      "closing": "Same fuel, wildly different price — mostly down to how each country taxes it.",
+      "question": "What do you pay per gallon where you live?",
+      "caption": "Gas runs about $3.50/gal in the US but $8.50 in Norway. Same fuel, very different bill — here's why 👇",
+      "hashtags": [
+        "gas",
+        "gasprices",
+        "fuel",
+        "cars",
+        "driving",
+        "economy",
+        "oil",
+        "europe",
+        "usa",
+        "commute",
+        "data",
+        "money",
+        "costofliving",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "gas_price_by_country",
+          "params": {
+            "file": "gas_price_by_country.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · THE MAP",
+          "topic": "gas price by country ($/gal)",
+          "say": "Norway pays about 8.50 a gallon. Germany, 7.40. The UK, 7. The US? Just 3.50 — among the cheapest in the developed world."
+        },
+        {
+          "source": "offline",
+          "key": "gas_fill_by_vehicle",
+          "params": {
+            "file": "gas_fill_by_vehicle.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE FILL-UP",
+          "topic": "cost to fill the tank ($)",
+          "say": "And what you drive decides the damage. Filling a full-size SUV runs about 95 dollars. A pickup, 88. A sedan, 52. A motorcycle, just 14."
+        },
+        {
+          "source": "offline",
+          "key": "gas_price_us_trend",
+          "params": {
+            "file": "gas_price_us_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE RIDE",
+          "topic": "US gas price over time ($/gal)",
+          "say": "US prices have been a roller coaster — 1.50 in 2000, nearly 5 dollars at the 2022 peak, back to about 3.50 today."
+        }
+      ]
+    },
+    {
+      "slug": "electricity-by-state",
+      "title": "Your Electric Bill Depends Wildly on Your State",
+      "hook": "Same power. Triple the price.",
+      "closing": "Where you plug in matters almost as much as how much you use.",
+      "question": "What's your rate per kilowatt-hour? Drop your state.",
+      "caption": "Electricity is ~44¢/kWh in Hawaii but 11¢ in Washington. Same power, 4x the price. Here's the map 👇",
+      "hashtags": [
+        "electricity",
+        "energy",
+        "power",
+        "utilities",
+        "bills",
+        "solar",
+        "grid",
+        "states",
+        "usa",
+        "data",
+        "money",
+        "costofliving",
+        "home",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "electricity_by_state",
+          "params": {
+            "file": "electricity_by_state.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · THE MAP",
+          "topic": "electricity price by state (cents/kWh)",
+          "say": "In Hawaii, power costs about 44 cents a kilowatt-hour. California, 31. New York, 23. But in Washington it's just 11 — a four-fold gap across one country."
+        },
+        {
+          "source": "offline",
+          "key": "electricity_by_appliance",
+          "params": {
+            "file": "electricity_by_appliance.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE HOGS",
+          "topic": "yearly cost to run an appliance ($)",
+          "say": "And some things quietly eat your bill. Charging an EV runs about 600 dollars a year. Air conditioning, 320. The water heater, 290. A laptop? Ten."
+        },
+        {
+          "source": "offline",
+          "key": "electricity_price_trend",
+          "params": {
+            "file": "electricity_price_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE CREEP",
+          "topic": "US electricity price over time (cents/kWh)",
+          "say": "And it keeps creeping up — from about 9.5 cents in 2005 to 17 today, far faster than it used to."
+        }
+      ]
+    },
+    {
+      "slug": "hidden-water-food",
+      "title": "How Much Hidden Water Is in Your Food",
+      "hook": "You drink way more water than you think.",
+      "closing": "The water you sip is nothing next to the water it took to grow your dinner.",
+      "question": "Which one surprised you most?",
+      "caption": "It takes ~15,400 liters of water to make 1kg of beef, vs 320 for vegetables. The water in your food dwarfs what you drink. Here's the data 👇",
+      "hashtags": [
+        "water",
+        "food",
+        "sustainability",
+        "environment",
+        "beef",
+        "agriculture",
+        "climate",
+        "footprint",
+        "facts",
+        "data",
+        "eating",
+        "didyouknow",
+        "fyp",
+        "earth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "water_per_food",
+          "params": {
+            "file": "water_per_food.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · THE COST",
+          "topic": "water to make 1kg of food (L)",
+          "say": "It takes about 15,400 liters of water to produce one kilo of beef. Cheese, 5,000. Chicken, 4,300. Vegetables? Just 320. The gap is staggering."
+        },
+        {
+          "source": "offline",
+          "key": "water_per_item",
+          "params": {
+            "file": "water_per_item.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · ON YOUR PLATE",
+          "topic": "hidden water per item (L)",
+          "say": "Per item it adds up fast. One hamburger hides about 2,400 liters of water. A pizza, 1,260. A single egg, 200. Even an apple, 125."
+        },
+        {
+          "source": "offline",
+          "key": "water_food_vs_drinking",
+          "params": {
+            "file": "water_food_vs_drinking.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE TWIST",
+          "topic": "food water vs the water you drink (L/day)",
+          "say": "Here's the kicker. You drink about 3 liters of water a day — but the food you eat took around 3,000 liters to produce. A thousand to one."
+        }
+      ]
+    },
+    {
+      "slug": "theme-park-tickets",
+      "title": "Theme Park Tickets Have Gotten Absurd",
+      "hook": "A day at the park isn't cheap anymore.",
+      "closing": "The magic is the same — the price tag is from another planet.",
+      "question": "What's the most you've paid for a park day?",
+      "caption": "A one-day Disneyland ticket hit ~$206 — up from $3.50 in 1971 — and a family day runs over $1,300. Here's the data 👇",
+      "hashtags": [
+        "themepark",
+        "disney",
+        "disneyland",
+        "universal",
+        "rollercoaster",
+        "vacation",
+        "family",
+        "travel",
+        "prices",
+        "data",
+        "money",
+        "costofliving",
+        "summer",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "park_ticket_by_park",
+          "params": {
+            "file": "park_ticket_by_park.json"
+          },
+          "insight_type": "rank",
+          "role": "1 · THE GATE",
+          "topic": "one-day ticket by park ($)",
+          "say": "A single day at Disneyland now runs about 206 dollars. Disney World, 189. Universal, 184. Even Six Flags will run you 90."
+        },
+        {
+          "source": "offline",
+          "key": "park_family_day",
+          "params": {
+            "file": "park_family_day.json"
+          },
+          "insight_type": "rank",
+          "role": "2 · THE REAL BILL",
+          "topic": "a park day for a family of 4 ($)",
+          "say": "But the ticket is just the start. For a family of four: 750 in tickets, 400 for a hotel, 160 on food, 35 to park — over 1,300 dollars for one day."
+        },
+        {
+          "source": "offline",
+          "key": "park_ticket_trend",
+          "params": {
+            "file": "park_ticket_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE CLIMB",
+          "topic": "Disney one-day ticket over time ($)",
+          "say": "And it's exploded. A Disney day cost 3.50 in 1971. By 2000, 43. Today, 189 — that's more than 50 times higher."
+        }
+      ]
     }
   ],
   "videos": [

@@ -1,0 +1,33 @@
+{
+ "key": "park_ticket_trend",
+ "title": "Disney one-day ticket ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "1971-2025",
+ "source": {
+  "name": "Disney one-day ticket ($)",
+  "publisher": "park price surveys",
+  "url": "https://www.themeparkinsider.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "1971",
+   "value": 3.5
+  },
+  {
+   "label": "2000",
+   "value": 43
+  },
+  {
+   "label": "2015",
+   "value": 99
+  },
+  {
+   "label": "2025",
+   "value": 189
+  }
+ ]
+}

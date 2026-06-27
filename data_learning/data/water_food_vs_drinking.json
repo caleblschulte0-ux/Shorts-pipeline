@@ -1,0 +1,25 @@
+{
+ "key": "water_food_vs_drinking",
+ "title": "Hidden food water vs water you drink (L/day)",
+ "unit": "L",
+ "geography": "World",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Hidden food water vs water you drink (L/day)",
+  "publisher": "Water Footprint Network",
+  "url": "https://waterfootprint.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Food you eat",
+   "value": 3000
+  },
+  {
+   "label": "Water you drink",
+   "value": 3
+  }
+ ]
+}

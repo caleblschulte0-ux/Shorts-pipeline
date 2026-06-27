@@ -1,0 +1,33 @@
+{
+ "key": "buildings_tallest",
+ "title": "Tallest buildings (m)",
+ "unit": "m",
+ "geography": "World",
+ "time_coverage": "2025",
+ "source": {
+  "name": "Tallest buildings (m)",
+  "publisher": "CTBUH",
+  "url": "https://www.ctbuh.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Burj Khalifa",
+   "value": 828
+  },
+  {
+   "label": "Merdeka 118",
+   "value": 679
+  },
+  {
+   "label": "Shanghai Tower",
+   "value": 632
+  },
+  {
+   "label": "Abraj Al-Bait",
+   "value": 601
+  }
+ ]
+}
