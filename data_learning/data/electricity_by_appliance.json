@@ -1,0 +1,37 @@
+{
+ "key": "electricity_by_appliance",
+ "title": "Yearly cost to run an appliance ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2025",
+ "source": {
+  "name": "Yearly cost to run an appliance ($)",
+  "publisher": "EIA / DOE",
+  "url": "https://www.energy.gov",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "EV charging",
+   "value": 600
+  },
+  {
+   "label": "Air conditioning",
+   "value": 320
+  },
+  {
+   "label": "Water heater",
+   "value": 290
+  },
+  {
+   "label": "Refrigerator",
+   "value": 90
+  },
+  {
+   "label": "Laptop",
+   "value": 10
+  }
+ ]
+}

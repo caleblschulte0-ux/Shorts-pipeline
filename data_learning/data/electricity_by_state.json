@@ -1,0 +1,41 @@
+{
+ "key": "electricity_by_state",
+ "title": "Electricity price by state (cents/kWh)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2025",
+ "source": {
+  "name": "Electricity price by state (cents/kWh)",
+  "publisher": "EIA",
+  "url": "https://www.eia.gov",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Hawaii",
+   "value": 44
+  },
+  {
+   "label": "California",
+   "value": 31
+  },
+  {
+   "label": "Massachusetts",
+   "value": 30
+  },
+  {
+   "label": "New York",
+   "value": 23
+  },
+  {
+   "label": "Texas",
+   "value": 15
+  },
+  {
+   "label": "Washington",
+   "value": 11
+  }
+ ]
+}

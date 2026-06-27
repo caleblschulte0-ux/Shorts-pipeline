@@ -1,0 +1,41 @@
+{
+ "key": "water_per_food",
+ "title": "Water to produce 1 kg of food (liters)",
+ "unit": "L",
+ "geography": "World",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Water to produce 1 kg of food (liters)",
+  "publisher": "Water Footprint Network",
+  "url": "https://waterfootprint.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Beef",
+   "value": 15400
+  },
+  {
+   "label": "Cheese",
+   "value": 5000
+  },
+  {
+   "label": "Chicken",
+   "value": 4300
+  },
+  {
+   "label": "Eggs",
+   "value": 3300
+  },
+  {
+   "label": "Rice",
+   "value": 2500
+  },
+  {
+   "label": "Vegetables",
+   "value": 320
+  }
+ ]
+}

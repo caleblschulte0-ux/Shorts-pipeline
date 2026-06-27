@@ -1,0 +1,45 @@
+{
+ "key": "gas_price_by_country",
+ "title": "Gas price by country ($/gal)",
+ "unit": "",
+ "geography": "World",
+ "time_coverage": "2025",
+ "source": {
+  "name": "Gas price by country ($/gal)",
+  "publisher": "GlobalPetrolPrices",
+  "url": "https://www.globalpetrolprices.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Norway",
+   "value": 8.5
+  },
+  {
+   "label": "Germany",
+   "value": 7.4
+  },
+  {
+   "label": "United Kingdom",
+   "value": 7.0
+  },
+  {
+   "label": "France",
+   "value": 6.9
+  },
+  {
+   "label": "United States",
+   "value": 3.5
+  },
+  {
+   "label": "Mexico",
+   "value": 3.9
+  },
+  {
+   "label": "India",
+   "value": 4.5
+  }
+ ]
+}

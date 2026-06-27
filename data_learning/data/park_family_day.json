@@ -1,0 +1,33 @@
+{
+ "key": "park_family_day",
+ "title": "A theme-park day for a family of 4 ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2025",
+ "source": {
+  "name": "A theme-park day for a family of 4 ($)",
+  "publisher": "park price surveys",
+  "url": "https://www.themeparkinsider.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Tickets",
+   "value": 750
+  },
+  {
+   "label": "Hotel",
+   "value": 400
+  },
+  {
+   "label": "Food",
+   "value": 160
+  },
+  {
+   "label": "Parking",
+   "value": 35
+  }
+ ]
+}

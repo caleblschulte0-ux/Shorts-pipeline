@@ -1,0 +1,33 @@
+{
+ "key": "buildings_record_trend",
+ "title": "World's tallest building by era (m)",
+ "unit": "m",
+ "geography": "World",
+ "time_coverage": "1931-2010",
+ "source": {
+  "name": "World's tallest building by era (m)",
+  "publisher": "CTBUH",
+  "url": "https://www.ctbuh.org",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "1931",
+   "value": 381
+  },
+  {
+   "label": "1998",
+   "value": 452
+  },
+  {
+   "label": "2004",
+   "value": 508
+  },
+  {
+   "label": "2010",
+   "value": 828
+  }
+ ]
+}

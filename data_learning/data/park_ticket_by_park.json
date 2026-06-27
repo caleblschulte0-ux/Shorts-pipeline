@@ -1,0 +1,37 @@
+{
+ "key": "park_ticket_by_park",
+ "title": "One-day theme park ticket ($)",
+ "unit": "",
+ "geography": "United States",
+ "time_coverage": "2025",
+ "source": {
+  "name": "One-day theme park ticket ($)",
+  "publisher": "park price surveys",
+  "url": "https://www.themeparkinsider.com",
+  "officiality": "illustrative",
+  "access_date": "2026-06-27"
+ },
+ "notes": "Illustrative; figures approximate published estimates and are used for explanation.",
+ "points": [
+  {
+   "label": "Disneyland",
+   "value": 206
+  },
+  {
+   "label": "Disney World",
+   "value": 189
+  },
+  {
+   "label": "Universal",
+   "value": 184
+  },
+  {
+   "label": "Six Flags",
+   "value": 90
+  },
+  {
+   "label": "Cedar Point",
+   "value": 85
+  }
+ ]
+}
