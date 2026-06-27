@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "slug": "doj-healthcare-fraud-takedown-2026",
+  "title": "$6.5 Billion Healthcare Fraud Bust — 90 Doctors Charged",
+  "script": "455 arrests. One morning! The Justice Department just ran the 2026 National Health Care Fraud Takedown — the program's largest ever single-day operation. 455 defendants charged. 90 of them are licensed doctors and other medical professionals. Total alleged fraud: over $6.5 billion in false claims. The schemes: billing Medicare and Medicaid for treatments patients never received, handing out illegal opioid prescriptions for cash, filing fake diagnoses so insurers pay for patients who aren't even sick. Prosecutors say some of these operations had been running for years. Today was collection day. The bust spans multiple states. If you've ever received a medical bill for something that didn't feel right, this is part of why. How does $6.5 billion in fake healthcare claims go undetected long enough to become the biggest bust of the year?",
+  "shots": [
+    {
+      "phrase": "455 arrests. One morning!",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "federal courthouse building exterior",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The Justice Department just ran the 2026 National Health Care Fraud Takedown",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "Department of Justice press conference podium",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "455 defendants charged",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "handcuffs arrest law enforcement federal",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "90 of them are licensed doctors and other medical professionals",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "doctor white coat medical professional",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Total alleged fraud: over $6.5 billion in false claims",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "medical billing paperwork insurance claim",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "billing Medicare and Medicaid for treatments patients never received",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "Medicare Medicaid billing invoice hospital",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "handing out illegal opioid prescriptions for cash",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "prescription pills opioids bottle drugs",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "filing fake diagnoses so insurers pay for patients who aren't even sick",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "medical records clipboard diagnosis form",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "some of these operations had been running for years",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "healthcare fraud investigation years paper",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "Today was collection day. The bust spans multiple states",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "FBI arrest federal agents raid",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "If you've ever received a medical bill for something that didn't feel right, this is part of why",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "medical bill invoice patient confused",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "How does $6.5 billion in fake healthcare claims go undetected long enough to become the biggest bust of the year?",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+      "query": "federal courthouse justice scales law",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {"phrase": "455 arrests. One morning!", "text": "455 ARRESTED", "color": "#ff3030"},
+    {"phrase": "the program's largest ever single-day operation", "text": "LARGEST EVER", "color": "#ff3030"},
+    {"phrase": "90 of them are licensed doctors", "text": "90 DOCTORS", "color": "#ffaa30"},
+    {"phrase": "over $6.5 billion in false claims", "text": "$6.5 BILLION", "color": "#ff3030"},
+    {"phrase": "billing Medicare and Medicaid for treatments patients never received", "text": "FAKE BILLING", "color": "#ff3030"},
+    {"phrase": "illegal opioid prescriptions for cash", "text": "OPIOIDS FOR CASH", "color": "#ff3030"},
+    {"phrase": "Today was collection day", "text": "COLLECTION DAY", "color": "#ffffff"},
+    {"phrase": "The bust spans multiple states", "text": "NATIONWIDE BUST", "color": "#ffaa30"}
+  ],
+  "hashtags": ["healthcarefraud", "DOJ2026", "medicarefraud", "opioidcrisis", "federalbust", "fraud2026", "455arrested", "medicaidfraud", "doctorsarrested", "healthcarenews", "justiceserved", "breaking", "usnews"],
+  "music_vibe": "dark"
+}
