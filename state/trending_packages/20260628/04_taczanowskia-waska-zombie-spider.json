@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "slug": "taczanowskia-waska-zombie-spider",
+  "title": "Amazon Scientists Just Found the Zombie Spider",
+  "hashtags": [
+    "spider",
+    "amazon",
+    "science",
+    "zombie",
+    "discovery",
+    "newspecies",
+    "wildlife",
+    "weird",
+    "nature",
+    "fyp",
+    "viral"
+  ],
+  "script": "This spider is the zombie? A team working in the Ecuadorian Amazon just described Taczanowskia waska, a new orb-weaver spider that does something no other animal on record has ever done: it mimics a Cordyceps zombie fungus. You know Cordyceps. It's the real fungus that takes over insects' brains and kills them. Other animals in the forest recognize infected bugs and flee. This spider figured out it can impersonate that infection, painting itself to look like a diseased corpse, so predators avoid it on instinct. It also plays completely motionless for minutes at a time to sell the act. Researchers call it the first known case of a non-fungus mimicking a pathogen to survive. So how do you outsmart a spider pretending to already be dead?",
+  "shots": [
+    {
+      "phrase": "This Ecuadorian Amazon spider is the zombie",
+      "query": "orb weaver spider web amazon",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Taczanowskia waska",
+      "query": "new spider species amazon jungle",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "Cordyceps zombie fungus",
+      "query": "cordyceps fungus zombie insect",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ophiocordyceps_unilateralis.jpg"
+    },
+    {
+      "phrase": "Other animals flee from infected bugs",
+      "query": "forest floor insects amazon",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "impersonate that infection",
+      "query": "spider camouflage disguise",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "plays completely motionless",
+      "query": "spider still camouflage leaf",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Researchers confirm first case of pathogen mimicry",
+      "query": "amazon rainforest research scientist",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "pretending to already be dead",
+      "query": "spider dead leaf disguise amazon",
+      "mascot_pose": "shock"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Cordyceps zombie fungus",
+      "text": "ZOMBIE FUNGUS",
+      "color": "#8a2be2"
+    },
+    {
+      "phrase": "impersonate that infection",
+      "text": "FAKE INFECTION",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "first known case",
+      "text": "FIRST EVER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "pretending to already be dead",
+      "text": "FAKING DEATH",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

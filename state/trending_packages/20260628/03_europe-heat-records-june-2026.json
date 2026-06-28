@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "slug": "europe-heat-uk-denmark-records-2026",
+  "title": "Europe Just Shattered 150 Years of Heat Records",
+  "hashtags": [
+    "heatwave",
+    "europe",
+    "uk",
+    "denmark",
+    "heatrecord",
+    "climate",
+    "weather",
+    "breaking",
+    "summer",
+    "fyp",
+    "viral"
+  ],
+  "script": "Europe just shattered June records! The UK hit 37.3 degrees Celsius this week, smashing its hottest June temperature ever recorded and breaking a mark that stood since 1976. Denmark hit 37.2 degrees, its hottest day since 1874. Basel in Switzerland climbed to 38 degrees. These aren't just records, they're obliterating temperatures that lasted through entire generations. The UK Health Security Agency confirmed four heat deaths in two days, including a 22-year-old and a 15-year-old. The heat is now pushing east toward Czech Republic and Austria. Meteorologists say June temperatures like this were essentially impossible under historical climate patterns. So is 37 degrees just June now?",
+  "shots": [
+    {
+      "phrase": "Europe just shattered June records",
+      "query": "europe heatwave summer city",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "UK hit 37.3 degrees Celsius",
+      "query": "london heatwave uk summer",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/London_from_St_Paul%27s_Cathedral_-_geograph.org.uk_-_1444.jpg"
+    },
+    {
+      "phrase": "Denmark hit 37.2 degrees, its hottest since 1874",
+      "query": "denmark copenhagen summer heat",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Copenhagen_City_Hall_Square.jpg"
+    },
+    {
+      "phrase": "Basel in Switzerland climbed to 38 degrees",
+      "query": "switzerland summer heat city",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "four heat deaths including a 15-year-old",
+      "query": "heatwave warning health",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "heat is pushing east toward Czech Republic",
+      "query": "europe weather map heat",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "impossible under historical climate patterns",
+      "query": "climate chart temperature record",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "37 degrees just June now",
+      "query": "thermometer extreme heat",
+      "mascot_pose": "shock"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "shattered June records",
+      "text": "RECORD SHATTERED",
+      "color": "#ff6a00"
+    },
+    {
+      "phrase": "hottest since 1874",
+      "text": "SINCE 1874",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "four heat deaths",
+      "text": "4 DEAD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "essentially impossible",
+      "text": "SHOULD BE IMPOSSIBLE",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
