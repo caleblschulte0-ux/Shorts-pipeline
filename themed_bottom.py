@@ -295,6 +295,12 @@ class ThemeConfig:
     saturation: float = 1.0                              # around luma
 
 
+# NOTE: see docs/BOTTOM_GAME_RULES.md. This reskin only COLOR-grades; it does
+# NOT swap the on-screen character/object to the story's subject. That's the #1
+# gap — a tortoise story and a duck story both get the same runner critter, just
+# tinted. The fix is a per-theme `character`/sprite param (duck/tortoise/backhoe
+# /warship...) chosen from the story's hero noun, plus new themes (naval,
+# fireworks) so novel stories don't fall to plinko.
 def config_from_story(key: str, theme: str | None = None) -> ThemeConfig:
     """Deterministically derive a reskin (seed + gentle color grade) from a
     story key (slug/title). Bounded so readability never breaks; water themes

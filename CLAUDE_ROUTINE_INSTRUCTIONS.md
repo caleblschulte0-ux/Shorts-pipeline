@@ -165,12 +165,17 @@ divergence / temporal aliasing), the engine hangs, and the world
 regenerates. That arc is the retention hook — see the DESIGN CHARTER
 at the top of `themed_bottom.py` before adding or modifying themes.
 
-**Slate rule: set `"bottom_theme": "auto"` on 3 of the 6 daily packages**
-(prefer the ones with the strongest theme match — space launch, storm,
-volcano, animal). The other 3 omit the field and keep Minecraft. This is
-a deliberate A/B: same channel, half themed bottoms, half gameplay, so
-analytics can tell us within ~2 weeks which retains better. Don't set it
-on all 6 — we lose the comparison.
+**Bottom-game rules (MUST — full spec in `docs/BOTTOM_GAME_RULES.md`).**
+Set `"bottom_theme": "auto"` on EVERY package (no Minecraft); semantic
+routing picks the theme. But routing to a theme is NOT enough — the bottom
+must match the story's SUBJECT visually:
+- The on-screen character/object must BE the subject — tortoise escape → a
+  tortoise running; stolen-backhoe chase → a backhoe being chased; duck story
+  → a duck. **Reskin = swap the sprite/object, not just recolor.**
+- Reuse a base game **at most ~1 in 3** videos; a reused game ALWAYS gets a
+  different character. Mostly new/distinct, not the same critter twice.
+- If no existing game fits, **build a new one** (naval battle for a warship
+  strike; fireworks duel for fireworks) — `plinko` is the last resort only.
 
 **`mascot_pose` per shot** — one of `idle | shock | point | laugh | think |
 dismiss`. Drives the news-anchor mascot's reaction in the corner overlay.
