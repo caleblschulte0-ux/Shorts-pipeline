@@ -1,0 +1,26 @@
+{
+  "key": "fastest_things_on_water_speed_records",
+  "title": "Speed Records",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1978",
+      "value": 180.0
+    },
+    {
+      "label": "2022",
+      "value": 244.0
+    }
+  ]
+}

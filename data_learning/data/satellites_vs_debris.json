@@ -14,10 +14,14 @@
   "notes": "Illustrative; active satellites from UCS database; tracked debris from USSPACECOM Space-Track catalog; estimated untracked from ESA debris model.",
   "insight_type": "comparison",
   "use_baseline": true,
-  "baseline": {"label": "Active satellites", "value": 9000},
   "points": [
-    {"label": "Active satellites", "value": 9000},
-    {"label": "Tracked debris (>10 cm)", "value": 27500},
-    {"label": "Estimated debris (>1 cm)", "value": 130000}
+    {
+      "label": "Active satellites",
+      "value": 9000
+    },
+    {
+      "label": "Active satellites",
+      "value": 9000
+    }
   ]
 }

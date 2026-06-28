@@ -1,0 +1,30 @@
+{
+  "key": "the_longest_migration_migration_time",
+  "title": "Migration Time",
+  "unit": "days",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Arctic Tern",
+      "value": 50.0
+    },
+    {
+      "label": "Caribou",
+      "value": 30.0
+    },
+    {
+      "label": "Monarch Butterfly",
+      "value": 20.0
+    }
+  ]
+}

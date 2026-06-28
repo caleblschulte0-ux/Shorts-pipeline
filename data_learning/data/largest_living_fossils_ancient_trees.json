@@ -1,0 +1,30 @@
+{
+  "key": "largest_living_fossils_ancient_trees",
+  "title": "Ancient Trees",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Bristlecone Pine",
+      "value": 5600.0
+    },
+    {
+      "label": "Giant Sequoia",
+      "value": 3000.0
+    },
+    {
+      "label": "Coast Redwood",
+      "value": 2000.0
+    }
+  ]
+}
