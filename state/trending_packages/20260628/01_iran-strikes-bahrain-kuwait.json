@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "slug": "iran-strikes-bahrain-kuwait",
+  "title": "Iran Just Bombed an American Ally's Backyard",
+  "hashtags": [
+    "iran",
+    "bahrain",
+    "kuwait",
+    "middleeast",
+    "breaking",
+    "military",
+    "war",
+    "news",
+    "usfifthfleet",
+    "fyp",
+    "viral"
+  ],
+  "script": "Iran just bombed an ally. IRGC ballistic missiles slammed into Bahrain, home of the US Navy's Fifth Fleet, and hit a Kuwaiti airbase in the same wave. Drones reached residential Manama, wounding an eleven-year-old girl in her own neighborhood. Bahrain and Kuwait both condemned the strikes and called emergency sessions of parliament. US CENTCOM launched retaliatory strikes on IRGC radar and missile sites within hours. This is the first direct Iranian strike on a Gulf Cooperation Council member's soil in modern history. It was supposed to be a pressure campaign, but missiles hitting civilian neighborhoods changes every calculation. Peace talks that were quietly happening in Oman have now collapsed. So at what point does this stop getting worse?",
+  "shots": [
+    {
+      "phrase": "Iran just bombed an ally",
+      "query": "iran missile launch",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "IRGC missiles targeting the Navy Fifth Fleet",
+      "query": "US navy fifth fleet bahrain",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manama_Skyline.jpg"
+    },
+    {
+      "phrase": "Drones reached residential Manama",
+      "query": "manama bahrain city",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manama_bahrain.jpg"
+    },
+    {
+      "phrase": "Kuwaiti airbase and Kuwait condemn the attacks",
+      "query": "bahrain street civilians",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "US CENTCOM launched retaliatory strikes",
+      "query": "us military aircraft strike",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "first direct Iranian strike on Gulf soil",
+      "query": "middle east map gulf",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manama_Skyline.jpg"
+    },
+    {
+      "phrase": "Peace talks in Oman have collapsed",
+      "query": "diplomacy negotiations table",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "does this stop getting worse",
+      "query": "middle east crisis news",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manama_bahrain.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "bombed an ally",
+      "text": "BOMBED AN ALLY",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "eleven-year-old girl",
+      "text": "CIVILIAN HIT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "first direct Iranian strike",
+      "text": "FIRST TIME EVER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Peace talks in Oman have collapsed",
+      "text": "TALKS COLLAPSE",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
