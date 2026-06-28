@@ -2,92 +2,13 @@
   {
     "topic": "Iran Just Bombed an American Ally's Backyard",
     "title": "Iran Just Bombed an American Ally's Backyard",
-    "publish_at": "2026-06-28T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/BpJ91FOqBhc",
-    "error": null,
-    "elapsed_seconds": 534.1,
-    "package_path": "state/trending_packages/20260628/01_iran-strikes-bahrain-kuwait.json",
-    "video_path": "output/daily_20260628-113136_iran_just_bombed_an_american_ally_s_back.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Utah's Biggest Fire Just Made Weather History",
-    "title": "Utah's Biggest Fire Just Made Weather History",
-    "publish_at": "2026-06-28T15:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/7iKzrP5dA1g",
-    "error": null,
-    "elapsed_seconds": 402.4,
-    "package_path": "state/trending_packages/20260628/02_cottonwood-fire-utah-2026.json",
-    "video_path": "output/daily_20260628-114051_utah_s_biggest_fire_just_made_weather_hi.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Europe Just Shattered 150 Years of Heat Records",
-    "title": "Europe Just Shattered 150 Years of Heat Records",
     "publish_at": "2026-06-28T17:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/zLDkIMhBVZ0",
+    "video_url": "https://youtube.com/shorts/4dH3FIwKXeI",
     "error": null,
-    "elapsed_seconds": 516.4,
-    "package_path": "state/trending_packages/20260628/03_europe-heat-records-june-2026.json",
-    "video_path": "output/daily_20260628-114734_europe_just_shattered_150_years_of_heat_.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Amazon Scientists Just Found the Zombie Spider",
-    "title": "Amazon Scientists Just Found the Zombie Spider",
-    "publish_at": "2026-06-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 37.5% < 50.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['Other animals flee from infected bugs', 'impersonate that infection', 'plays completely motionless', 'Researchers confirm first case of pathogen mimicry', 'pretending to already be dead']",
-    "elapsed_seconds": 23.3,
-    "package_path": "state/trending_packages/20260628/04_taczanowskia-waska-zombie-spider.json",
-    "quarantined": true
-  },
-  {
-    "topic": "Scientists Found a 400-Year-Old Sea Giant in Fiordland",
-    "title": "Scientists Found a 400-Year-Old Sea Giant in Fiordland",
-    "publish_at": "2026-06-28T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/JrNb0nUqty4",
-    "error": null,
-    "elapsed_seconds": 480.3,
-    "package_path": "state/trending_packages/20260628/05_fiordland-black-coral-400-years.json",
-    "video_path": "output/daily_20260628-115613_scientists_found_a_400_year_old_sea_gian.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.",
-    "title": "Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.",
-    "publish_at": "2026-06-28T21:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/zYYItLCApoU",
-    "error": null,
-    "elapsed_seconds": 515.2,
-    "package_path": "state/trending_packages/20260628/06_florida-python-challenge-alligator.json",
-    "video_path": "output/daily_20260628-120414_florida_is_paying__10_000_to_hunt_python.mp4",
+    "elapsed_seconds": 497.9,
+    "package_path": "state/trending_packages/20260628/01_iran-strikes-bahrain-kuwait.json",
+    "video_path": "output/daily_20260628-154151_iran_just_bombed_an_american_ally_s_back.mp4",
     "qa": {
       "ok": true,
       "verdict": "ok",
