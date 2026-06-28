@@ -1,0 +1,30 @@
+{
+  "key": "the_deepest_ocean_pressure",
+  "title": "Pressure",
+  "unit": "pounds per square inch",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Mariana Trench",
+      "value": 1086.0
+    },
+    {
+      "label": "Tonga Trench",
+      "value": 1050.0
+    },
+    {
+      "label": "Kermadec Trench",
+      "value": 1000.0
+    }
+  ]
+}

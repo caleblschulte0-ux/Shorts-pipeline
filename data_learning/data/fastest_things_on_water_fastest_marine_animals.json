@@ -1,0 +1,30 @@
+{
+  "key": "fastest_things_on_water_fastest_marine_animals",
+  "title": "Fastest Marine Animals",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Sailfish",
+      "value": 1.0
+    },
+    {
+      "label": "Black Marlin",
+      "value": 2.0
+    },
+    {
+      "label": "Bluefin Tuna",
+      "value": 3.0
+    }
+  ]
+}

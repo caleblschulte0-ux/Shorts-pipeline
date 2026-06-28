@@ -1,0 +1,30 @@
+{
+  "key": "largest_living_fossils_oldest_living_things",
+  "title": "Oldest Living Things",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Bristlecone Pine",
+      "value": 1.0
+    },
+    {
+      "label": "Giant Sequoia",
+      "value": 2.0
+    },
+    {
+      "label": "Coast Redwood",
+      "value": 3.0
+    }
+  ]
+}

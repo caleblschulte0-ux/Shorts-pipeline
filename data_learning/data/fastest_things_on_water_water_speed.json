@@ -1,0 +1,30 @@
+{
+  "key": "fastest_things_on_water_water_speed",
+  "title": "Water Speed",
+  "unit": "mph",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Sailfish",
+      "value": 68.0
+    },
+    {
+      "label": "Bluefin Tuna",
+      "value": 35.0
+    },
+    {
+      "label": "Speedboat",
+      "value": 60.0
+    }
+  ]
+}

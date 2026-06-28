@@ -1,0 +1,30 @@
+{
+  "key": "the_largest_living_thing_age",
+  "title": "Age",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Armillaria ostoyae",
+      "value": 2400.0
+    },
+    {
+      "label": "Great Barrier Reef",
+      "value": 20000000.0
+    },
+    {
+      "label": "Blue Whale",
+      "value": 20.0
+    }
+  ]
+}

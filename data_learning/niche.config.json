@@ -39,7 +39,7 @@
             "file": "median_home_price.json"
           },
           "insight_type": "trend",
-          "role": "1 · PRICES",
+          "role": "1 \u00b7 PRICES",
           "topic": "home prices",
           "say": "Your parents' house cost 270 thousand in 2019. Today, 449. Same house, 180 thousand more for nothing."
         },
@@ -50,7 +50,7 @@
             "file": "mortgage_rate_30yr.json"
           },
           "insight_type": "trend",
-          "role": "2 · RATES",
+          "role": "2 \u00b7 RATES",
           "topic": "mortgage rates",
           "say": "Then mortgage rates jumped from 3.9 percent to 6.6. Nearly double the interest, tens of thousands more for the same house."
         },
@@ -61,7 +61,7 @@
             "file": "price_to_income.json"
           },
           "insight_type": "rank",
-          "role": "3 · THE WALL",
+          "role": "3 \u00b7 THE WALL",
           "topic": "cost in years of pay",
           "ascending": false,
           "use_baseline": true,
@@ -74,7 +74,7 @@
       "slug": "grocery-squeeze",
       "title": "Why Your Grocery Bill Keeps Winning",
       "hook": "Same groceries. Way bigger receipt. Where'd it go?",
-      "closing": "Same cart, fatter receipt. Bon appétit.",
+      "closing": "Same cart, fatter receipt. Bon app\u00e9tit.",
       "hashtags": [
         "groceries",
         "inflation",
@@ -97,7 +97,7 @@
             "file": "grocery_since_2020.json"
           },
           "insight_type": "rank",
-          "role": "1 · SINCE 2020",
+          "role": "1 \u00b7 SINCE 2020",
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
@@ -110,7 +110,7 @@
             "file": "food_share_income.json"
           },
           "insight_type": "trend",
-          "role": "2 · YOUR BUDGET",
+          "role": "2 \u00b7 YOUR BUDGET",
           "topic": "the share of income spent on food",
           "say": "Add it up and food now eats 11.8 percent of your income, the most in decades."
         },
@@ -121,7 +121,7 @@
             "file": "monthly_grocery_cost.json"
           },
           "insight_type": "trend",
-          "role": "3 · WHAT YOU PAY",
+          "role": "3 \u00b7 WHAT YOU PAY",
           "topic": "the average grocery bill",
           "say": "The average grocery bill hit 1,030 dollars a month, about 300 more than 2019. Same fridge."
         }
@@ -155,7 +155,7 @@
             "file": "credit_card_debt.json"
           },
           "insight_type": "trend",
-          "role": "1 · BALANCES",
+          "role": "1 \u00b7 BALANCES",
           "topic": "credit card debt",
           "say": "Card debt just passed 1,370 billion dollars, nearly 1.4 trillion on plastic, climbing every month."
         },
@@ -166,7 +166,7 @@
             "file": "credit_card_apr.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE RATE",
+          "role": "2 \u00b7 THE RATE",
           "topic": "the credit card interest rate",
           "say": "And interest hit 22.9 percent. At that rate your balance grows even if you never swipe again. That's the trap."
         },
@@ -177,7 +177,7 @@
             "file": "savings_rate.json"
           },
           "insight_type": "trend",
-          "role": "3 · NO CUSHION",
+          "role": "3 \u00b7 NO CUSHION",
           "topic": "the savings rate",
           "say": "Meanwhile savings cratered, from 16.8 percent of income in 2020 to just 3.6. The cushion is gone."
         }
@@ -211,7 +211,7 @@
             "file": "hourly_wage.json"
           },
           "insight_type": "trend",
-          "role": "1 · YOUR RAISE",
+          "role": "1 \u00b7 YOUR RAISE",
           "topic": "the average wage",
           "say": "On paper you won. The average wage climbed to 31.9 dollars an hour. Your paycheck genuinely got bigger."
         },
@@ -222,7 +222,7 @@
             "file": "real_wage_index.json"
           },
           "insight_type": "trend",
-          "role": "2 · AFTER INFLATION",
+          "role": "2 \u00b7 AFTER INFLATION",
           "topic": "real, inflation-adjusted pay",
           "say": "But adjust for prices and the wage index sits at 99, below 2019. After inflation, you earn less."
         },
@@ -233,7 +233,7 @@
             "file": "hours_for_rent.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE TREADMILL",
+          "role": "3 \u00b7 THE TREADMILL",
           "topic": "hours of work to cover rent",
           "say": "Now it takes 69 hours of work to cover one month's rent, up from 52. Two extra days a month, gone."
         }
@@ -267,7 +267,7 @@
             "file": "unemployment_rate_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE HEADLINE",
+          "role": "1 \u00b7 THE HEADLINE",
           "topic": "the unemployment rate",
           "say": "Unemployment sits at just 4.3 percent, historically low. That's the headline, but it hides a lot."
         },
@@ -278,7 +278,7 @@
             "file": "part_time_economic.json"
           },
           "insight_type": "trend",
-          "role": "2 · PART-TIME",
+          "role": "2 \u00b7 PART-TIME",
           "topic": "people stuck in part-time work",
           "say": "Right now 4.8 million people are stuck part-time who want full-time. Employed on paper, not by choice."
         },
@@ -289,7 +289,7 @@
             "file": "multiple_jobholders.json"
           },
           "insight_type": "trend",
-          "role": "3 · WORKING DOUBLE",
+          "role": "3 \u00b7 WORKING DOUBLE",
           "topic": "people working two or more jobs",
           "say": "And 9 million now work two or more jobs, a record. Why does surviving take two paychecks?"
         }
@@ -323,7 +323,7 @@
             "file": "col_index_state.json"
           },
           "insight_type": "rank",
-          "role": "1 · COST OF LIVING",
+          "role": "1 \u00b7 COST OF LIVING",
           "topic": "cost of living",
           "ascending": false,
           "use_baseline": true,
@@ -336,7 +336,7 @@
             "file": "median_income_state.json"
           },
           "insight_type": "rank",
-          "role": "2 · WHAT YOU EARN",
+          "role": "2 \u00b7 WHAT YOU EARN",
           "topic": "household income",
           "ascending": false,
           "use_baseline": true,
@@ -349,7 +349,7 @@
             "file": "rent_one_bed.json"
           },
           "insight_type": "rank",
-          "role": "3 · THE RENT",
+          "role": "3 \u00b7 THE RENT",
           "topic": "one-bedroom rent",
           "ascending": false,
           "use_baseline": true,
@@ -385,7 +385,7 @@
             "file": "employer_premium.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE PREMIUM",
+          "role": "1 \u00b7 THE PREMIUM",
           "topic": "employer health insurance premium",
           "say": "Your employer paid 8,120 dollars per worker for coverage in 2026, up from 6,015 in 2019. 35 percent more for the same plan."
         },
@@ -396,7 +396,7 @@
             "file": "employee_deductible.json"
           },
           "insight_type": "trend",
-          "role": "2 · YOUR DEDUCTIBLE",
+          "role": "2 \u00b7 YOUR DEDUCTIBLE",
           "topic": "average annual deductible",
           "say": "Your deductible, what you pay before insurance kicks in, hit 2,340 dollars, up from 1,655. You pay more to wait longer."
         },
@@ -407,7 +407,7 @@
             "file": "out_of_pocket_max.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE WORST CASE",
+          "role": "3 \u00b7 THE WORST CASE",
           "topic": "out-of-pocket maximum",
           "say": "And the out-of-pocket cap hit 5,620 dollars before insurance covers everything, up from 3,970. The safety net got a hole."
         }
@@ -441,7 +441,7 @@
             "file": "student_debt_total.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE PILE",
+          "role": "1 \u00b7 THE PILE",
           "topic": "total student loan debt",
           "say": "Total student debt hit 1.74 trillion dollars, double what it was in 2010. A new class graduates owing more every May."
         },
@@ -452,7 +452,7 @@
             "file": "student_loan_monthly.json"
           },
           "insight_type": "trend",
-          "role": "2 · YOUR PAYMENT",
+          "role": "2 \u00b7 YOUR PAYMENT",
           "topic": "average monthly student loan payment",
           "say": "The average student loan payment is 352 dollars a month, more than most car payments, for a degree you already have."
         },
@@ -463,7 +463,7 @@
             "file": "college_wage_premium.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE PAYOFF",
+          "role": "3 \u00b7 THE PAYOFF",
           "topic": "college wage premium",
           "say": "And the payoff shrank. The wage premium for a bachelor's fell from 66 percent in 2014 to 54 today. Cost up, advantage down."
         }
@@ -497,7 +497,7 @@
             "file": "median_401k_by_age.json"
           },
           "insight_type": "rank",
-          "role": "1 · WHAT PEOPLE HAVE",
+          "role": "1 \u00b7 WHAT PEOPLE HAVE",
           "topic": "median retirement savings by age",
           "ascending": false,
           "use_baseline": true,
@@ -510,7 +510,7 @@
             "file": "social_security_replacement.json"
           },
           "insight_type": "trend",
-          "role": "2 · SOCIAL SECURITY",
+          "role": "2 \u00b7 SOCIAL SECURITY",
           "topic": "Social Security replacement rate",
           "say": "Social Security used to replace 41 percent of your income. By 2026 it's down to 31. The gap just got wider."
         },
@@ -521,7 +521,7 @@
             "file": "avg_retirement_age.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE RESULT",
+          "role": "3 \u00b7 THE RESULT",
           "topic": "average retirement age",
           "say": "So people work longer. Average retirement age climbed from 60 in 2000 to 66 today. Six extra years because the math didn't work."
         }
@@ -555,7 +555,7 @@
             "file": "new_car_price.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE STICKER",
+          "role": "1 \u00b7 THE STICKER",
           "topic": "average new car transaction price",
           "say": "The average new car hit 50,400 dollars in 2026, up from 38,000 in 2019. Same truck, 12,400 inflated."
         },
@@ -566,7 +566,7 @@
             "file": "auto_loan_rate.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE RATE",
+          "role": "2 \u00b7 THE RATE",
           "topic": "auto loan interest rate",
           "say": "Auto loan rates peaked at 8.1 percent, the highest since 2007. On a 50 thousand dollar car that's about 10,700 in interest."
         },
@@ -577,7 +577,7 @@
             "file": "monthly_car_ownership.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE TOTAL BILL",
+          "role": "3 \u00b7 THE TOTAL BILL",
           "topic": "total monthly car ownership cost",
           "say": "Add it all up. Owning a car now runs 1,920 dollars a month, what a 2-bedroom rented for not long ago."
         }
@@ -611,7 +611,7 @@
             "file": "confirmed_exoplanets_by_year.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE EXPLOSION",
+          "role": "1 \u00b7 THE EXPLOSION",
           "topic": "planets found around other stars",
           "say": "Thirty years ago we knew of zero. Today, 5,600 confirmed worlds, almost all found since 2009."
         },
@@ -622,7 +622,7 @@
             "file": "exoplanet_types.json"
           },
           "insight_type": "share",
-          "role": "2 · WHAT'S OUT THERE",
+          "role": "2 \u00b7 WHAT'S OUT THERE",
           "topic": "exoplanets by type",
           "say": "But almost none are like home. Only about 210 are small rocky worlds like Earth."
         },
@@ -633,7 +633,7 @@
             "file": "exoplanet_nearest_distance.json"
           },
           "insight_type": "rank",
-          "role": "3 · THE NEIGHBORS",
+          "role": "3 \u00b7 THE NEIGHBORS",
           "topic": "distance to the nearest exoplanets",
           "say": "And the closest, Proxima b, sits 4.2 light years away. That's 75,000 years at today's fastest spacecraft.",
           "ascending": true
@@ -668,7 +668,7 @@
             "file": "leading_causes_of_death.json"
           },
           "insight_type": "rank",
-          "role": "1 · WHAT ACTUALLY KILLS US",
+          "role": "1 \u00b7 WHAT ACTUALLY KILLS US",
           "topic": "annual US deaths (thousands)",
           "say": "Here's what actually kills Americans. Heart disease takes 695 thousand a year, cancer 605 thousand. Nearly half of all deaths."
         },
@@ -679,7 +679,7 @@
             "file": "feared_deaths.json"
           },
           "insight_type": "rank",
-          "role": "2 · WHAT WE FEAR",
+          "role": "2 \u00b7 WHAT WE FEAR",
           "topic": "annual US deaths from things we fear",
           "say": "Now what terrifies us. Sharks kill about 1 American a year, lightning 20. Your nightmares are a rounding error.",
           "ascending": true
@@ -691,7 +691,7 @@
             "file": "preventable_deaths.json"
           },
           "insight_type": "rank",
-          "role": "3 · THE REAL KILLERS",
+          "role": "3 \u00b7 THE REAL KILLERS",
           "topic": "preventable US deaths (thousands)",
           "say": "The real killers are habits. Smoking still takes 480 thousand a year, bad diet around 300 thousand. Slow daily choices."
         }
@@ -725,7 +725,7 @@
             "file": "living_planet_index.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE COLLAPSE",
+          "role": "1 \u00b7 THE COLLAPSE",
           "topic": "average wildlife population (1970 = 100)",
           "say": "Since 1970, average wildlife populations shrank nearly three-quarters. The index fell from 100 to 27. Two of every three wild animals, gone."
         },
@@ -736,7 +736,7 @@
             "file": "wildlife_decline_region.json"
           },
           "insight_type": "rank",
-          "role": "2 · WHERE IT'S WORST",
+          "role": "2 \u00b7 WHERE IT'S WORST",
           "topic": "wildlife decline by region",
           "say": "It's worst in the tropics. Latin America lost 95 percent of its wildlife, Africa 76. The richest ecosystems empty fastest."
         },
@@ -747,7 +747,7 @@
             "file": "wildlife_decline_habitat.json"
           },
           "insight_type": "rank",
-          "role": "3 · UNDER THE SURFACE",
+          "role": "3 \u00b7 UNDER THE SURFACE",
           "topic": "wildlife decline by habitat",
           "say": "Freshwater life is vanishing fastest, down 85 percent. The rivers you grew up near hold a fraction of what they did."
         }
@@ -756,7 +756,7 @@
     },
     {
       "slug": "rate-hike-squeeze",
-      "title": "You Paid for Inflation Twice — Once at the Store, Once at the Bank",
+      "title": "You Paid for Inflation Twice \u2014 Once at the Store, Once at the Bank",
       "hook": "They hiked rates to fix prices. It fixed nothing.",
       "closing": "The bill came due. You just didn't know it was yours.",
       "hashtags": [
@@ -782,7 +782,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "1 · THE DAMAGE",
+          "role": "1 \u00b7 THE DAMAGE",
           "topic": "cumulative price rise since 2020",
           "say": "Eggs up 44 percent since 2020. Gas up 33, rent up 29, groceries up 25. That's a new price floor."
         },
@@ -793,7 +793,7 @@
             "file": "fed_funds_rate.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE FIX",
+          "role": "2 \u00b7 THE FIX",
           "topic": "Federal Reserve rate hike cycle",
           "say": "So the Fed hiked, from 0.08 percent in 2021 to 5.33 in 2023. The most aggressive cycle since the 1980s."
         },
@@ -806,7 +806,7 @@
           "insight_type": "rank",
           "ascending": false,
           "use_baseline": true,
-          "role": "3 · STILL BURNING",
+          "role": "3 \u00b7 STILL BURNING",
           "topic": "year-over-year inflation by category (April 2026)",
           "say": "Did it work? Gas is still up 28.4 percent year over year. The stuff you can't avoid is still the most expensive."
         }
@@ -840,7 +840,7 @@
             "file": "us_obesity_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CLIMB",
+          "role": "1 \u00b7 THE CLIMB",
           "topic": "US adult obesity rate",
           "say": "In 1990, 12 percent of American adults were obese. By 2022 it's 41.9. A generation getting steadily heavier."
         },
@@ -853,7 +853,7 @@
           "insight_type": "rank",
           "ascending": false,
           "use_baseline": true,
-          "role": "2 · THE GAP",
+          "role": "2 \u00b7 THE GAP",
           "topic": "obesity rate by country",
           "say": "And 41.9 percent isn't just high. Japan is at 4.3, France 17. We are the global outlier."
         },
@@ -864,7 +864,7 @@
             "file": "obesity_annual_cost.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE BILL",
+          "role": "3 \u00b7 THE BILL",
           "topic": "annual US medical cost of obesity",
           "say": "The medical bill? 215 billion dollars a year, up from 61 billion in 2000. More than most countries' entire defense budget."
         }
@@ -898,7 +898,7 @@
             "file": "sleep_insufficient_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE TREND",
+          "role": "1 \u00b7 THE TREND",
           "topic": "adults sleeping less than 7 hours",
           "say": "In 1985, 22 percent of adults slept under 7 hours. By 2024 it's 37. More than 1 in 3 are chronically under-slept."
         },
@@ -910,7 +910,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE DAMAGE",
+          "role": "2 \u00b7 THE DAMAGE",
           "topic": "increased health risk from chronic sleep deprivation",
           "say": "Under 7 hours raises obesity risk 55 percent, heart disease 48, depression 55. You're breaking down while you scroll."
         },
@@ -921,7 +921,7 @@
             "file": "sleep_economy_cost.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE BILL",
+          "role": "3 \u00b7 THE BILL",
           "topic": "annual economic cost of sleep deprivation",
           "say": "RAND put a number on it. 527 billion dollars a year in lost productivity and health. Tired is expensive."
         }
@@ -955,7 +955,7 @@
             "file": "median_marriage_age.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE DELAY",
+          "role": "1 \u00b7 THE DELAY",
           "topic": "median age at first marriage (men)",
           "say": "In 1980, men married at 24.7. Today it's 30.5; women went from 22 to 28.6. A full decade shifted."
         },
@@ -966,7 +966,7 @@
             "file": "marriage_rate_trend.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE DECLINE",
+          "role": "2 \u00b7 THE DECLINE",
           "topic": "US marriage rate per 1,000 people",
           "say": "And fewer marry at all. The rate fell from 10.6 per thousand in 1980 to 5.8 today, nearly cut in half."
         },
@@ -979,7 +979,7 @@
           "insight_type": "rank",
           "ascending": false,
           "use_baseline": true,
-          "role": "3 · THE DIVIDE",
+          "role": "3 \u00b7 THE DIVIDE",
           "topic": "share of adults married by income quartile",
           "say": "The top income quartile still marries at 58 percent. The bottom, 31. Marriage became a luxury stability buys."
         }
@@ -1014,7 +1014,7 @@
             "file": "sub_think_vs_real.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE GUESS",
+          "role": "1 \u00b7 THE GUESS",
           "topic": "what people think vs really pay",
           "say": "Each charge is tiny, so you ignore it. You feel like you spend 86 dollars a month. You actually spend 219."
         },
@@ -1025,7 +1025,7 @@
             "file": "sub_count_growth.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE PILE-UP",
+          "role": "2 \u00b7 THE PILE-UP",
           "topic": "subscriptions per household",
           "say": "They pile up because nothing stops one. The average home went from 3 subscriptions to 12 in six years."
         },
@@ -1036,12 +1036,12 @@
             "file": "sub_regrets.json"
           },
           "insight_type": "rank",
-          "role": "3 · THE TRAP",
+          "role": "3 \u00b7 THE TRAP",
           "topic": "subscriber regrets",
           "say": "And they know it. 48 percent pay for something they never use; 42 percent forgot they signed up. The forgetting is the model."
         }
       ],
-      "caption": "You think you spend about $86 a month on subscriptions. The real average is $219 — and it climbs every single year. Here's exactly where the money leaks, in 4 charts. How many subscriptions are you actually paying for? 👇"
+      "caption": "You think you spend about $86 a month on subscriptions. The real average is $219 \u2014 and it climbs every single year. Here's exactly where the money leaks, in 4 charts. How many subscriptions are you actually paying for? \ud83d\udc47"
     },
     {
       "slug": "ocean-unexplored",
@@ -1071,7 +1071,7 @@
             "file": "surface_mapped.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE BLIND SPOT",
+          "role": "1 \u00b7 THE BLIND SPOT",
           "topic": "surface mapped in detail",
           "say": "Space is easy to look at; a telescope sees all of Mars. But you can't see through water, so only 25 percent of our seafloor is mapped.",
           "ascending": true
@@ -1083,7 +1083,7 @@
             "file": "ocean_depths.json"
           },
           "insight_type": "rank",
-          "role": "2 · HOW DEEP",
+          "role": "2 \u00b7 HOW DEEP",
           "topic": "ocean depth by point (meters)",
           "say": "It's absurdly deep and dark. The Titanic sits at 3,800 meters; the deepest trench hits 11,000, where pressure would crush a sub."
         },
@@ -1094,12 +1094,12 @@
             "file": "ocean_species.json"
           },
           "insight_type": "share",
-          "role": "3 · THE UNKNOWN",
+          "role": "3 \u00b7 THE UNKNOWN",
           "topic": "marine species (thousands)",
           "say": "We've named about 240 thousand ocean species and think there are 2 million. Nine in ten are still down there, unseen."
         }
       ],
-      "caption": "We have better maps of Mars and the Moon than our own ocean floor — only about 25% of it is mapped, and 9 in 10 ocean species are still unknown to science. The real final frontier is right under the boat. Would you ride to the bottom? 👇"
+      "caption": "We have better maps of Mars and the Moon than our own ocean floor \u2014 only about 25% of it is mapped, and 9 in 10 ocean species are still unknown to science. The real final frontier is right under the boat. Would you ride to the bottom? \ud83d\udc47"
     },
     {
       "slug": "loneliness-epidemic",
@@ -1128,7 +1128,7 @@
             "file": "no_close_friends.json"
           },
           "insight_type": "trend",
-          "role": "1 · NO ONE TO CALL",
+          "role": "1 \u00b7 NO ONE TO CALL",
           "topic": "Americans with no close friends",
           "say": "In 1990 only 3 percent of Americans had zero close friends. Today it's 12, quadrupled. More people have no one to call."
         },
@@ -1139,7 +1139,7 @@
             "file": "time_with_friends.json"
           },
           "insight_type": "trend",
-          "role": "2 · LESS TOGETHER",
+          "role": "2 \u00b7 LESS TOGETHER",
           "topic": "in-person time with friends",
           "say": "Why? We stopped hanging out. In-person time with friends fell from 6.5 hours a week to 2.5. We swapped it for screens."
         },
@@ -1150,12 +1150,12 @@
             "file": "loneliness_mortality.json"
           },
           "insight_type": "rank",
-          "role": "3 · IT'S DEADLY",
+          "role": "3 \u00b7 IT'S DEADLY",
           "topic": "early-death risk by factor",
           "say": "And chronic loneliness raises your risk of dying early by 26 percent, about the same as obesity. Your body treats alone like an injury."
         }
       ],
-      "caption": "In 1990, 3% of Americans said they had no close friends. Today it's 12% — and chronic loneliness raises your risk of early death by 26%, about the same as obesity. We've never been more connected, or more alone. How many close friends do you actually have? 👇"
+      "caption": "In 1990, 3% of Americans said they had no close friends. Today it's 12% \u2014 and chronic loneliness raises your risk of early death by 26%, about the same as obesity. We've never been more connected, or more alone. How many close friends do you actually have? \ud83d\udc47"
     },
     {
       "slug": "attention-span-collapse",
@@ -1185,7 +1185,7 @@
             "file": "focus_seconds.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE COLLAPSE",
+          "role": "1 \u00b7 THE COLLAPSE",
           "topic": "seconds of focus before switching",
           "say": "In 2004 people focused on a screen for 150 seconds before switching. Now it's 47. Something trained your brain to bail."
         },
@@ -1196,7 +1196,7 @@
             "file": "shortform_minutes.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE FUEL",
+          "role": "2 \u00b7 THE FUEL",
           "topic": "daily short-form video (minutes)",
           "say": "That something is short video. Daily time went from 20 minutes to 95, each swipe hitting the same reward chemical as a slot machine."
         },
@@ -1207,12 +1207,12 @@
             "file": "focus_hour.json"
           },
           "insight_type": "share",
-          "role": "3 · THE REAL HOUR",
+          "role": "3 \u00b7 THE REAL HOUR",
           "topic": "where a work hour goes (minutes)",
           "say": "And every interruption takes 23 minutes to recover from. A full hour of work leaves maybe 40 real minutes of focus."
         }
       ],
-      "caption": "In 2004 the average person focused on a screen for 150 seconds before switching. Today? 47 seconds. Meanwhile daily short-video time nearly 5x'd. Your attention span didn't break by accident. Did you make it to the end? Be honest 👇"
+      "caption": "In 2004 the average person focused on a screen for 150 seconds before switching. Today? 47 seconds. Meanwhile daily short-video time nearly 5x'd. Your attention span didn't break by accident. Did you make it to the end? Be honest \ud83d\udc47"
     },
     {
       "slug": "rocket-launch-surge",
@@ -1220,7 +1220,7 @@
       "hook": "More rockets launched last year than all of the '90s.",
       "closing": "Good news: internet everywhere. Bad news: space is getting crowded.",
       "question": "Would you use Starlink internet? Drop it below.",
-      "caption": "In 2000 the world launched 80 rockets. In 2025 it was 272 — and SpaceX ran half of them. 62 percent of active satellites are now internet relays. Meanwhile tracked debris jumped from 9,000 to 44,000 objects. Is space worth it? 👇",
+      "caption": "In 2000 the world launched 80 rockets. In 2025 it was 272 \u2014 and SpaceX ran half of them. 62 percent of active satellites are now internet relays. Meanwhile tracked debris jumped from 9,000 to 44,000 objects. Is space worth it? \ud83d\udc47",
       "hashtags": [
         "spacex",
         "rocket",
@@ -1245,7 +1245,7 @@
             "file": "rocket_launches_per_year.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE SURGE",
+          "role": "1 \u00b7 THE SURGE",
           "topic": "global orbital rocket launches per year",
           "say": "The world launched about 80 rockets in 2000. In 2025 it was 272, more than tripled, half of that in the last 5 years."
         },
@@ -1258,7 +1258,7 @@
           "insight_type": "rank",
           "ascending": false,
           "use_baseline": true,
-          "role": "2 · WHO'S FLYING",
+          "role": "2 \u00b7 WHO'S FLYING",
           "topic": "orbital launches by operator (2025)",
           "say": "That's SpaceX. It ran 134 of 2025's 272 launches, nearly half. One private company out-launched entire nations."
         },
@@ -1269,7 +1269,7 @@
             "file": "orbital_debris_count.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE COST",
+          "role": "3 \u00b7 THE COST",
           "topic": "tracked objects in Earth orbit (debris + active)",
           "say": "But debris piles up. Tracked objects in low orbit went from 9,000 in 2000 to 44,000 today. One collision could lock us out."
         }
@@ -1281,7 +1281,7 @@
       "hook": "The U.S. birth rate just hit a record low.",
       "closing": "We built an economy you can't afford to start a family in.",
       "question": "Do you want kids someday? What's your biggest hold-up? Drop it below.",
-      "caption": "The U.S. fertility rate just hit 1.62 — below the 2.1 replacement level. Raising a child costs $310,000 before college. The median mom is now nearly 28 at first birth. And the U.S. gives zero days of federally mandated paid leave. Want kids? Tell me. 👇",
+      "caption": "The U.S. fertility rate just hit 1.62 \u2014 below the 2.1 replacement level. Raising a child costs $310,000 before college. The median mom is now nearly 28 at first birth. And the U.S. gives zero days of federally mandated paid leave. Want kids? Tell me. \ud83d\udc47",
       "hashtags": [
         "birthrate",
         "fertility",
@@ -1306,7 +1306,7 @@
             "file": "us_fertility_rate_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE COLLAPSE",
+          "role": "1 \u00b7 THE COLLAPSE",
           "topic": "U.S. total fertility rate (births per woman)",
           "say": "The U.S. fertility rate fell from 3.65 in 1960 to 1.62 today. Below 2.1, the population shrinks. 2024 set a record low."
         },
@@ -1318,7 +1318,7 @@
           },
           "insight_type": "rank",
           "use_baseline": true,
-          "role": "2 · THE MATH",
+          "role": "2 \u00b7 THE MATH",
           "topic": "cost to raise a child to age 18 (2025 dollars)",
           "say": "Why? Raising a child to 18 cost 198 thousand in 1990, in today's money. Now it's 310 thousand, before college.",
           "ascending": false
@@ -1332,7 +1332,7 @@
           "insight_type": "rank",
           "ascending": false,
           "use_baseline": true,
-          "role": "3 · THE POLICY GAP",
+          "role": "3 \u00b7 THE POLICY GAP",
           "topic": "paid parental leave entitlement (weeks)",
           "say": "Other rich countries fight it. Hungary gives 180 weeks of paid leave. The U.S. mandates 0. We treat a new kid as a personal problem."
         }
@@ -1344,7 +1344,7 @@
       "hook": "You didn't choose 20 percent. Your iPad did.",
       "closing": "The house always wins. So does the tip screen.",
       "question": "Do you tip at coffee shops? Be honest below.",
-      "caption": "The average U.S. tip was 16.5 percent in 2010. In 2025 it's 22.4 — and spreading to takeout, coffee, and hotel housekeeping. The turning point: Square and Toast replaced cash registers in 2012 and set the default buttons at 18/20/25 instead of 15/18/20. One UX decision cost Americans $54 billion extra a year. Worth it? 👇",
+      "caption": "The average U.S. tip was 16.5 percent in 2010. In 2025 it's 22.4 \u2014 and spreading to takeout, coffee, and hotel housekeeping. The turning point: Square and Toast replaced cash registers in 2012 and set the default buttons at 18/20/25 instead of 15/18/20. One UX decision cost Americans $54 billion extra a year. Worth it? \ud83d\udc47",
       "hashtags": [
         "tipping",
         "tipcreep",
@@ -1369,7 +1369,7 @@
             "file": "avg_tip_percent_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE RISE",
+          "role": "1 \u00b7 THE RISE",
           "topic": "average U.S. restaurant tip percentage",
           "say": "In 2010 the standard tip was about 16.5 percent. By 2025 it's 22.4, not because service improved, but because tablets replaced registers."
         },
@@ -1381,7 +1381,7 @@
           },
           "insight_type": "rank",
           "use_baseline": true,
-          "role": "2 · THE NUDGE",
+          "role": "2 \u00b7 THE NUDGE",
           "topic": "average tip: pre-tablet vs. post-tablet POS",
           "say": "When Square and Toast took over, they preset the buttons at 18, 20, and 25 percent instead of 15, 18, 20. The floor moved.",
           "ascending": false
@@ -1393,7 +1393,7 @@
             "file": "tipping_economy_total.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE BILL",
+          "role": "3 \u00b7 THE BILL",
           "topic": "total U.S. tipping economy ($ billions)",
           "say": "Stack it up. Americans tipped 66 billion dollars in 2010; by 2025 it's 120 billion, a 54 billion increase we never voted on."
         }
@@ -1405,7 +1405,7 @@
       "hook": "Big Tech is draining your power grid.",
       "closing": "The cloud has a smokestack.",
       "question": "Would you give up AI to save power? Tell me below.",
-      "caption": "Data centers burned 200 terawatt-hours in 2018 — now it's 580, and one AI answer uses ~10x a Google search. Here's the hidden cost of the cloud 👇",
+      "caption": "Data centers burned 200 terawatt-hours in 2018 \u2014 now it's 580, and one AI answer uses ~10x a Google search. Here's the hidden cost of the cloud \ud83d\udc47",
       "hashtags": [
         "ai",
         "datacenters",
@@ -1428,7 +1428,7 @@
             "file": "ai_datacenter_twh.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE LOAD",
+          "role": "1 \u00b7 THE LOAD",
           "topic": "data-center electricity",
           "say": "Data centers used 200 terawatt hours in 2018. By 2026 it's 580, and AI is the reason."
         },
@@ -1439,7 +1439,7 @@
             "file": "ai_query_energy.json"
           },
           "insight_type": "rank",
-          "role": "2 · PER ANSWER",
+          "role": "2 \u00b7 PER ANSWER",
           "topic": "energy per request",
           "say": "One AI answer burns about 2.9 watt hours, nearly ten times a Google search at 0.3.",
           "ascending": false
@@ -1451,7 +1451,7 @@
             "file": "datacenter_grid_share.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE GRID",
+          "role": "3 \u00b7 THE GRID",
           "topic": "share of US power",
           "say": "So their slice of US electricity jumps from 2.5 percent toward 9 percent by 2030."
         }
@@ -1463,7 +1463,7 @@
       "hook": "Gas cars are finished. Big Oil knows.",
       "closing": "The gas tank is on its way out.",
       "question": "Would your next car be electric? Drop it below.",
-      "caption": "Battery prices crashed from $780 to ~$100 per kWh, electric hit 24% of new cars, and there are now 300+ models. The tipping point is here 👇",
+      "caption": "Battery prices crashed from $780 to ~$100 per kWh, electric hit 24% of new cars, and there are now 300+ models. The tipping point is here \ud83d\udc47",
       "hashtags": [
         "ev",
         "electricvehicles",
@@ -1486,7 +1486,7 @@
             "file": "battery_cost_kwh.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CRASH",
+          "role": "1 \u00b7 THE CRASH",
           "topic": "battery cost",
           "say": "Battery costs crashed from 780 dollars per kilowatt hour to about 100."
         },
@@ -1497,7 +1497,7 @@
             "file": "ev_share_sales.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE SHIFT",
+          "role": "2 \u00b7 THE SHIFT",
           "topic": "electric car share",
           "say": "So electric jumped to 24 percent of new cars sold, up from just 2 percent."
         },
@@ -1508,7 +1508,7 @@
             "file": "ev_models_available.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE CHOICE",
+          "role": "3 \u00b7 THE CHOICE",
           "topic": "EV models on sale",
           "say": "And buyers now pick from over 300 models, six times more than a decade ago."
         }
@@ -1516,11 +1516,11 @@
     },
     {
       "slug": "why-flights-are-late",
-      "title": "Flying Got Worse — The Data Proves It",
-      "hook": "Flying got worse — and it's not the weather.",
+      "title": "Flying Got Worse \u2014 The Data Proves It",
+      "hook": "Flying got worse \u2014 and it's not the weather.",
       "closing": "More flyers, same old runways.",
       "question": "What's your worst flight delay story? Tell me below.",
-      "caption": "Airlines now move 5.2 billion passengers a year, on-time arrivals fell to 74%, and the #1 cause of delays is simply too many planes. Here's why 👇",
+      "caption": "Airlines now move 5.2 billion passengers a year, on-time arrivals fell to 74%, and the #1 cause of delays is simply too many planes. Here's why \ud83d\udc47",
       "hashtags": [
         "flights",
         "airtravel",
@@ -1543,7 +1543,7 @@
             "file": "air_passengers_billion.json"
           },
           "insight_type": "trend",
-          "role": "1 · MORE FLYERS",
+          "role": "1 \u00b7 MORE FLYERS",
           "topic": "air passengers",
           "say": "Airlines now carry 5.2 billion passengers a year, nearly double 2010."
         },
@@ -1554,7 +1554,7 @@
             "file": "ontime_rate.json"
           },
           "insight_type": "trend",
-          "role": "2 · LESS ON TIME",
+          "role": "2 \u00b7 LESS ON TIME",
           "topic": "on-time arrivals",
           "say": "On-time arrivals slipped to 74 percent, down from 80."
         },
@@ -1565,7 +1565,7 @@
             "file": "delay_causes.json"
           },
           "insight_type": "rank",
-          "role": "3 · THE REASON",
+          "role": "3 \u00b7 THE REASON",
           "topic": "causes of delay",
           "say": "The biggest cause isn't weather, it's just too many planes, 35 percent of delays.",
           "ascending": false
@@ -1578,7 +1578,7 @@
       "hook": "We trash a third of all food.",
       "closing": "We farm it, then we trash it.",
       "question": "What do you throw out most? Drop it below.",
-      "caption": "Most food waste isn't farms — 43% happens in our own homes. The average American trashes 325 lbs a year, worth $310 billion. Here's the breakdown 👇",
+      "caption": "Most food waste isn't farms \u2014 43% happens in our own homes. The average American trashes 325 lbs a year, worth $310 billion. Here's the breakdown \ud83d\udc47",
       "hashtags": [
         "foodwaste",
         "food",
@@ -1601,7 +1601,7 @@
             "file": "food_waste_where.json"
           },
           "insight_type": "rank",
-          "role": "1 · WHERE",
+          "role": "1 \u00b7 WHERE",
           "topic": "where waste happens",
           "say": "Most waste isn't farms, it's us. 43 percent happens in our own homes.",
           "ascending": false
@@ -1613,7 +1613,7 @@
             "file": "food_waste_per_person.json"
           },
           "insight_type": "trend",
-          "role": "2 · HOW MUCH",
+          "role": "2 \u00b7 HOW MUCH",
           "topic": "food wasted per person",
           "say": "The average American now tosses 325 pounds of food a year."
         },
@@ -1624,7 +1624,7 @@
             "file": "food_waste_value.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE COST",
+          "role": "3 \u00b7 THE COST",
           "topic": "value wasted",
           "say": "That adds up to about 310 billion dollars scraped straight into the trash."
         }
@@ -1635,8 +1635,8 @@
       "title": "James Webb Rewrote the Universe. 3 Numbers Prove It.",
       "hook": "The universe is 10 times bigger than we thought.",
       "closing": "Turns out, we had no idea how big it was.",
-      "question": "Does knowing the universe has 2 trillion galaxies make you feel small — or amazed? Drop it below.",
-      "caption": "Hubble told us there were 200 billion galaxies. JWST found 2 trillion. It also spotted a galaxy from 290 million years after the Big Bang. And it found a crack in the laws of physics. Here's the data 👇",
+      "question": "Does knowing the universe has 2 trillion galaxies make you feel small \u2014 or amazed? Drop it below.",
+      "caption": "Hubble told us there were 200 billion galaxies. JWST found 2 trillion. It also spotted a galaxy from 290 million years after the Big Bang. And it found a crack in the laws of physics. Here's the data \ud83d\udc47",
       "hashtags": [
         "jwst",
         "jameswebb",
@@ -1662,9 +1662,9 @@
           },
           "insight_type": "rank",
           "use_baseline": true,
-          "role": "1 · THE SCALE",
+          "role": "1 \u00b7 THE SCALE",
           "topic": "galaxy count estimate (billions)",
-          "say": "Hubble told us there were about 200 billion galaxies. JWST looked deeper and found closer to 2000 billion — 2 trillion. That's 10 times more than we thought.",
+          "say": "Hubble told us there were about 200 billion galaxies. JWST looked deeper and found closer to 2000 billion \u2014 2 trillion. That's 10 times more than we thought.",
           "ascending": false
         },
         {
@@ -1674,7 +1674,7 @@
             "file": "jwst_redshift_records.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE OLDEST LIGHT",
+          "role": "2 \u00b7 THE OLDEST LIGHT",
           "topic": "oldest confirmed galaxy (million years after Big Bang)",
           "say": "JWST keeps breaking its own record. The newest: a galaxy that formed just 290 million years after the Big Bang. The universe is 13,800 million years old. We are watching the very first stars switch on."
         },
@@ -1686,9 +1686,9 @@
           },
           "insight_type": "rank",
           "use_baseline": true,
-          "role": "3 · THE BROKEN EQUATION",
+          "role": "3 \u00b7 THE BROKEN EQUATION",
           "topic": "universe expansion rate (km/s per megaparsec)",
-          "say": "Here's the problem. Early-universe physics predicts the expansion rate at 67. JWST direct measurement says 73. That gap — the Hubble Tension — means something in our model of the universe is wrong.",
+          "say": "Here's the problem. Early-universe physics predicts the expansion rate at 67. JWST direct measurement says 73. That gap \u2014 the Hubble Tension \u2014 means something in our model of the universe is wrong.",
           "ascending": false
         }
       ]
@@ -1697,9 +1697,9 @@
       "slug": "myopia-epidemic",
       "title": "Half the World Will Need Glasses by 2050. Here's Why.",
       "hook": "The world's eyes are failing. Fast.",
-      "closing": "Two trillion screens. Fifty percent nearsighted. The math is written on the wall — if you can read it.",
+      "closing": "Two trillion screens. Fifty percent nearsighted. The math is written on the wall \u2014 if you can read it.",
       "question": "Do you wear glasses or contacts? When did your vision start going? Drop it below.",
-      "caption": "In 1990, 22% of the world was nearsighted. Today it's 34% — 2.6 billion people. By 2050, the WHO projects 50%. In East Asia, 80% of young adults already need glasses. Here's the data 👇",
+      "caption": "In 1990, 22% of the world was nearsighted. Today it's 34% \u2014 2.6 billion people. By 2050, the WHO projects 50%. In East Asia, 80% of young adults already need glasses. Here's the data \ud83d\udc47",
       "hashtags": [
         "myopia",
         "nearsighted",
@@ -1724,9 +1724,9 @@
             "file": "myopia_global_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE RISE",
+          "role": "1 \u00b7 THE RISE",
           "topic": "global myopia prevalence (percent)",
-          "say": "In 1990, 22 percent of the world was nearsighted. By 2020 that hit 34 percent — 2.6 billion people. The WHO projects 50 percent by 2050. This is growing faster than any eye disease in history."
+          "say": "In 1990, 22 percent of the world was nearsighted. By 2020 that hit 34 percent \u2014 2.6 billion people. The WHO projects 50 percent by 2050. This is growing faster than any eye disease in history."
         },
         {
           "source": "offline",
@@ -1736,8 +1736,8 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE REGIONAL GAP",
-          "topic": "myopia rate by world region — young adults (percent)",
+          "role": "2 \u00b7 THE REGIONAL GAP",
+          "topic": "myopia rate by world region \u2014 young adults (percent)",
           "say": "But here's what makes it strange. 80 percent of young adults in East Asia are nearsighted. In the Americas, it's 31 percent. In Africa, just 14. The same species, looking at wildly different numbers."
         },
         {
@@ -1747,9 +1747,9 @@
             "file": "myopia_high_severe.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE DANGER ZONE",
-          "topic": "high myopia (severe, ≥-6 diopters) — global (percent)",
-          "say": "The scary part is high myopia — the severe kind that risks blindness. It was 3 percent in 2000. It's 8 percent today, and projected to hit 10 percent by 2050. That's 1 billion people at risk of losing their sight."
+          "role": "3 \u00b7 THE DANGER ZONE",
+          "topic": "high myopia (severe, \u2265-6 diopters) \u2014 global (percent)",
+          "say": "The scary part is high myopia \u2014 the severe kind that risks blindness. It was 3 percent in 2000. It's 8 percent today, and projected to hit 10 percent by 2050. That's 1 billion people at risk of losing their sight."
         }
       ]
     },
@@ -1757,9 +1757,9 @@
       "slug": "time-use-reality",
       "title": "You Think You Work All Day. Here's Where Your Time Actually Goes.",
       "hook": "You're not as busy as you think.",
-      "closing": "5 hours of leisure a day — mostly screens. Make of that what you will.",
+      "closing": "5 hours of leisure a day \u2014 mostly screens. Make of that what you will.",
       "question": "How many hours of screen time did you log yesterday? Drop the number below.",
-      "caption": "The average American gets 5 hours of leisure a day. 3.6 of those go to screens. You spend more time on leisure than on work. But only 12 minutes of that leisure is reading. Here's the data 👇",
+      "caption": "The average American gets 5 hours of leisure a day. 3.6 of those go to screens. You spend more time on leisure than on work. But only 12 minutes of that leisure is reading. Here's the data \ud83d\udc47",
       "hashtags": [
         "timeuse",
         "productivity",
@@ -1785,9 +1785,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "1 · THE DAY",
+          "role": "1 \u00b7 THE DAY",
           "topic": "how the average American spends 24 hours",
-          "say": "Here is where the day actually goes. Sleep wins at 8.7 hours. But leisure — 5 hours — beats out work at 3.4 hours. Most people think they work more than they play. The BLS data disagrees."
+          "say": "Here is where the day actually goes. Sleep wins at 8.7 hours. But leisure \u2014 5 hours \u2014 beats out work at 3.4 hours. Most people think they work more than they play. The BLS data disagrees."
         },
         {
           "source": "offline",
@@ -1797,9 +1797,9 @@
           },
           "insight_type": "rank",
           "use_baseline": true,
-          "role": "2 · THE SCREEN SPLIT",
+          "role": "2 \u00b7 THE SCREEN SPLIT",
           "topic": "screen vs. non-screen leisure (hours per day)",
-          "say": "Of those 5 leisure hours, screens take 3.2. Non-screen leisure — socializing, reading, exercise — gets just 1.8 hours. Reading alone is 12 minutes. We have more free time than ever, and screens claimed most of it.",
+          "say": "Of those 5 leisure hours, screens take 3.2. Non-screen leisure \u2014 socializing, reading, exercise \u2014 gets just 1.8 hours. Reading alone is 12 minutes. We have more free time than ever, and screens claimed most of it.",
           "ascending": false
         },
         {
@@ -1809,7 +1809,7 @@
             "file": "time_use_screen_trend.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE CREEP",
+          "role": "3 \u00b7 THE CREEP",
           "topic": "daily leisure screen time (hours per day)",
           "say": "And it's been climbing. In 2003, screen leisure was 2.8 hours a day. By 2023, it hit 3.6. That's nearly an hour of your daily life that migrated from the physical world to a screen in 20 years."
         }
@@ -1818,10 +1818,10 @@
     {
       "slug": "us-wildfire-surge",
       "title": "US Wildfires Are Burning 3x More Land Than 30 Years Ago",
-      "hook": "The West is burning — and it's getting worse.",
-      "closing": "Every year, the fire season starts earlier and lasts longer. That's not bad luck — it's physics.",
+      "hook": "The West is burning \u2014 and it's getting worse.",
+      "closing": "Every year, the fire season starts earlier and lasts longer. That's not bad luck \u2014 it's physics.",
       "question": "Have wildfires ever affected where you live? Drop your state below.",
-      "caption": "In the 1980s, US wildfires burned 2.8 million acres a year. The last decade averaged 7.4 million. The 5 worst years on record all happened after 2000. Here's what the data shows 👇",
+      "caption": "In the 1980s, US wildfires burned 2.8 million acres a year. The last decade averaged 7.4 million. The 5 worst years on record all happened after 2000. Here's what the data shows \ud83d\udc47",
       "hashtags": [
         "wildfire",
         "climate",
@@ -1846,9 +1846,9 @@
             "file": "wildfire_us_acres_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE TREND",
+          "role": "1 \u00b7 THE TREND",
           "topic": "US wildfire acres burned per year (millions)",
-          "say": "In the mid-1980s, US wildfires burned roughly 2 to 3 million acres a year. By 2015 and 2020, that reached 10.1 million acres. The trend line is not subtle — it's a straight climb."
+          "say": "In the mid-1980s, US wildfires burned roughly 2 to 3 million acres a year. By 2015 and 2020, that reached 10.1 million acres. The trend line is not subtle \u2014 it's a straight climb."
         },
         {
           "source": "offline",
@@ -1858,9 +1858,9 @@
           },
           "insight_type": "rank",
           "use_baseline": true,
-          "role": "2 · THE SHIFT",
+          "role": "2 \u00b7 THE SHIFT",
           "topic": "average wildfire acres per year by decade (millions)",
-          "say": "Decade to decade, the shift is undeniable. The 1983 to 1992 average was 2.8 million acres. The 2013 to 2022 average was 7.4 million — nearly 3 times higher. Hotter, drier conditions changed the math.",
+          "say": "Decade to decade, the shift is undeniable. The 1983 to 1992 average was 2.8 million acres. The 2013 to 2022 average was 7.4 million \u2014 nearly 3 times higher. Hotter, drier conditions changed the math.",
           "ascending": false
         },
         {
@@ -1871,9 +1871,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "3 · THE RECORDS",
+          "role": "3 \u00b7 THE RECORDS",
           "topic": "worst US wildfire years by acres burned (millions)",
-          "say": "And all 5 of the worst wildfire years in American history happened after 2006. 2015 and 2020 tied at 10.1 million acres. These are not random — they follow the drought map exactly."
+          "say": "And all 5 of the worst wildfire years in American history happened after 2006. 2015 and 2020 tied at 10.1 million acres. These are not random \u2014 they follow the drought map exactly."
         }
       ]
     },
@@ -1883,7 +1883,7 @@
       "hook": "Way more people have lived than are alive now.",
       "closing": "Everyone you'll ever meet is a sliver of everyone who ever was.",
       "question": "Does 117 billion surprise you? Drop a thought below.",
-      "caption": "About 117 billion humans have ever been born — and the 8 billion alive today are just ~7% of them. It took all of history to reach 1 billion, then we added 7 billion in 200 years. Here's the breakdown 👇",
+      "caption": "About 117 billion humans have ever been born \u2014 and the 8 billion alive today are just ~7% of them. It took all of history to reach 1 billion, then we added 7 billion in 200 years. Here's the breakdown \ud83d\udc47",
       "hashtags": [
         "history",
         "population",
@@ -1906,7 +1906,7 @@
             "file": "humans_ever_vs_alive.json"
           },
           "insight_type": "rank",
-          "role": "1 · EVER BORN",
+          "role": "1 \u00b7 EVER BORN",
           "topic": "humans ever born vs alive",
           "say": "About 117 billion people have ever been born.",
           "ascending": false
@@ -1918,7 +1918,7 @@
             "file": "humans_alive_share.json"
           },
           "insight_type": "rank",
-          "role": "2 · ALIVE NOW",
+          "role": "2 \u00b7 ALIVE NOW",
           "topic": "share alive today",
           "say": "The 8 billion alive today are only about 7 percent of everyone.",
           "ascending": false
@@ -1930,9 +1930,9 @@
             "file": "world_population_history.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE CURVE",
+          "role": "3 \u00b7 THE CURVE",
           "topic": "population over time",
-          "say": "It took all of history to reach 1 billion — then we added 7 billion in 200 years."
+          "say": "It took all of history to reach 1 billion \u2014 then we added 7 billion in 200 years."
         }
       ]
     },
@@ -1942,7 +1942,7 @@
       "hook": "The deadliest animal isn't what you think.",
       "closing": "The thing most likely to kill you is the size of a fingernail.",
       "question": "Which one surprised you? Drop it below.",
-      "caption": "Sharks kill about 10 people a year. Mosquitoes kill over 700,000 — mostly through malaria. Here's what actually kills humans 👇",
+      "caption": "Sharks kill about 10 people a year. Mosquitoes kill over 700,000 \u2014 mostly through malaria. Here's what actually kills humans \ud83d\udc47",
       "hashtags": [
         "animals",
         "nature",
@@ -1965,9 +1965,9 @@
             "file": "deadliest_animals.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE KILLER",
+          "role": "1 \u00b7 THE KILLER",
           "topic": "deaths by animal",
-          "say": "Mosquitoes kill more than 700,000 people a year — sharks barely 10.",
+          "say": "Mosquitoes kill more than 700,000 people a year \u2014 sharks barely 10.",
           "ascending": false
         },
         {
@@ -1977,9 +1977,9 @@
             "file": "mosquito_disease_deaths.json"
           },
           "insight_type": "rank",
-          "role": "2 · WHY",
+          "role": "2 \u00b7 WHY",
           "topic": "mosquito-borne disease",
-          "say": "Most of it is malaria — about 600,000 deaths a year.",
+          "say": "Most of it is malaria \u2014 about 600,000 deaths a year.",
           "ascending": false
         },
         {
@@ -1989,9 +1989,9 @@
             "file": "feared_predators_deaths.json"
           },
           "insight_type": "rank",
-          "role": "3 · FEAR VS FACT",
+          "role": "3 \u00b7 FEAR VS FACT",
           "topic": "predators we fear",
-          "say": "Snakes alone kill over 100,000 — the animals we fear most barely register.",
+          "say": "Snakes alone kill over 100,000 \u2014 the animals we fear most barely register.",
           "ascending": false
         }
       ]
@@ -2002,7 +2002,7 @@
       "hook": "You'll spend nearly a decade of your life staring at a screen.",
       "closing": "That's not screen time. That's life time.",
       "question": "How many hours is your screen time? Be honest below.",
-      "caption": "The average person spends about 7 hours a day looking at screens — that adds up to roughly 8 years of a lifetime. Here's where it all goes 👇",
+      "caption": "The average person spends about 7 hours a day looking at screens \u2014 that adds up to roughly 8 years of a lifetime. Here's where it all goes \ud83d\udc47",
       "hashtags": [
         "screentime",
         "phone",
@@ -2025,9 +2025,9 @@
             "file": "screen_time_by_country.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE HABIT",
+          "role": "1 \u00b7 THE HABIT",
           "topic": "daily screen time",
-          "say": "People now average around 7 hours a day on screens — in some countries it's over 9.",
+          "say": "People now average around 7 hours a day on screens \u2014 in some countries it's over 9.",
           "ascending": false
         },
         {
@@ -2037,9 +2037,9 @@
             "file": "screen_time_by_activity.json"
           },
           "insight_type": "rank",
-          "role": "2 · WHERE IT GOES",
+          "role": "2 \u00b7 WHERE IT GOES",
           "topic": "screen hours by activity",
-          "say": "Most of it is social media and video — about four and a half hours a day combined.",
+          "say": "Most of it is social media and video \u2014 about four and a half hours a day combined.",
           "ascending": false
         },
         {
@@ -2049,9 +2049,9 @@
             "file": "life_years_breakdown.json"
           },
           "insight_type": "rank",
-          "role": "3 · THE COST",
+          "role": "3 \u00b7 THE COST",
           "topic": "years of your life",
-          "say": "Over a lifetime that's roughly 8 years on screens — more than you'll spend eating or socializing.",
+          "say": "Over a lifetime that's roughly 8 years on screens \u2014 more than you'll spend eating or socializing.",
           "ascending": false
         }
       ]
@@ -2059,10 +2059,10 @@
     {
       "slug": "most-spoken-languages",
       "title": "The Most Spoken Languages on Earth",
-      "hook": "More people speak English than any language — but most of them learned it.",
+      "hook": "More people speak English than any language \u2014 but most of them learned it.",
       "closing": "The world speaks thousands of languages. Half of everyone uses just a handful.",
       "question": "What languages do you speak? Drop them below.",
-      "caption": "About 1.5 billion people speak English — but only ~380 million as a native tongue. The rest learned it. Here's how the world really talks 👇",
+      "caption": "About 1.5 billion people speak English \u2014 but only ~380 million as a native tongue. The rest learned it. Here's how the world really talks \ud83d\udc47",
       "hashtags": [
         "languages",
         "language",
@@ -2085,9 +2085,9 @@
             "file": "most_spoken_languages_total.json"
           },
           "insight_type": "rank",
-          "role": "1 · TOTAL SPEAKERS",
+          "role": "1 \u00b7 TOTAL SPEAKERS",
           "topic": "total speakers",
-          "say": "English leads with about 1.5 billion total speakers — most learned it as a second language.",
+          "say": "English leads with about 1.5 billion total speakers \u2014 most learned it as a second language.",
           "ascending": false
         },
         {
@@ -2097,9 +2097,9 @@
             "file": "most_spoken_languages_native.json"
           },
           "insight_type": "rank",
-          "role": "2 · NATIVE SPEAKERS",
+          "role": "2 \u00b7 NATIVE SPEAKERS",
           "topic": "native speakers",
-          "say": "By native speakers it flips — Mandarin comes first, and English drops to third.",
+          "say": "By native speakers it flips \u2014 Mandarin comes first, and English drops to third.",
           "ascending": false
         },
         {
@@ -2109,9 +2109,9 @@
             "file": "web_content_by_language.json"
           },
           "insight_type": "rank",
-          "role": "3 · ONLINE",
+          "role": "3 \u00b7 ONLINE",
           "topic": "languages of the web",
-          "say": "Online, English dominates — more than half of all websites are written in it.",
+          "say": "Online, English dominates \u2014 more than half of all websites are written in it.",
           "ascending": false
         }
       ]
@@ -2120,9 +2120,9 @@
       "slug": "birth-cost-shock",
       "title": "Having a Baby in America Costs 30x More Than in the UK",
       "hook": "Same baby. Wildly different bill.",
-      "closing": "Same medical event, same outcome — the only thing that really changes is the country printed on the bill.",
+      "closing": "Same medical event, same outcome \u2014 the only thing that really changes is the country printed on the bill.",
       "question": "If you've had a kid, what did your bill actually look like? Drop it below.",
-      "caption": "The average US hospital birth is billed around $19,000 — up from $9,200 in 2010. In the UK it's about $600. In Spain, $400. Same baby, very different bill. Here's the data 👇",
+      "caption": "The average US hospital birth is billed around $19,000 \u2014 up from $9,200 in 2010. In the UK it's about $600. In Spain, $400. Same baby, very different bill. Here's the data \ud83d\udc47",
       "hashtags": [
         "birth",
         "childbirth",
@@ -2147,9 +2147,9 @@
             "file": "birth_cost_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CLIMB",
+          "role": "1 \u00b7 THE CLIMB",
           "topic": "US billed cost of childbirth ($)",
-          "say": "In 2010, the average US hospital birth was billed at about 9,200 dollars. By 2017 it was 13,800. By 2024, roughly 19,000 dollars — more than double in 14 years."
+          "say": "In 2010, the average US hospital birth was billed at about 9,200 dollars. By 2017 it was 13,800. By 2024, roughly 19,000 dollars \u2014 more than double in 14 years."
         },
         {
           "source": "offline",
@@ -2159,7 +2159,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE WORLD",
+          "role": "2 \u00b7 THE WORLD",
           "topic": "average cost to give birth, by country ($)",
           "say": "Now compare that to the rest of the world. The US bill is around 19,000 dollars. Switzerland, 7,900. Germany, about 2,100. The UK? Roughly 600. Spain, just 400. Same medical event."
         },
@@ -2171,7 +2171,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "3 · EVEN INSURED",
+          "role": "3 \u00b7 EVEN INSURED",
           "topic": "out-of-pocket birth cost, even with insurance ($)",
           "say": "And insurance doesn't make it free. On a high-deductible plan, parents still pay about 4,500 dollars out of pocket. An employer PPO, around 2,900. Only Medicaid brings it close to zero."
         }
@@ -2183,7 +2183,7 @@
       "hook": "Daycare quietly became the biggest bill you never planned for.",
       "closing": "For millions of parents, going to work barely covers the cost of someone else watching their kid while they do it.",
       "question": "What does daycare cost where you live? Drop your state below.",
-      "caption": "Average US infant daycare runs about $16,800 a year — more than median rent, and more than in-state public college. For a minimum-wage worker, that's 64% of income. Here's the data 👇",
+      "caption": "Average US infant daycare runs about $16,800 a year \u2014 more than median rent, and more than in-state public college. For a minimum-wage worker, that's 64% of income. Here's the data \ud83d\udc47",
       "hashtags": [
         "childcare",
         "daycare",
@@ -2208,9 +2208,9 @@
             "file": "childcare_cost_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CLIMB",
+          "role": "1 \u00b7 THE CLIMB",
           "topic": "infant daycare cost per year ($)",
-          "say": "In 2000, a year of infant daycare averaged about 5,800 dollars. By 2010, 9,900. Today, around 16,800 dollars a year — nearly triple in a generation."
+          "say": "In 2000, a year of infant daycare averaged about 5,800 dollars. By 2010, 9,900. Today, around 16,800 dollars a year \u2014 nearly triple in a generation."
         },
         {
           "source": "offline",
@@ -2220,7 +2220,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE COMPARISON",
+          "role": "2 \u00b7 THE COMPARISON",
           "topic": "annual US cost, daycare vs other big bills ($)",
           "say": "Put that next to your other big bills. Infant daycare, 16,800 dollars. Median rent, 15,600. In-state public college, 11,000. A year of daycare now costs more than a year of college."
         },
@@ -2232,7 +2232,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "3 · THE SQUEEZE",
+          "role": "3 \u00b7 THE SQUEEZE",
           "topic": "infant care as a share of income (%)",
           "say": "And it lands hardest on the people with the least. For a minimum-wage worker, infant care eats 64 percent of income. For a single parent, 36 percent. Even a median family spends 13 percent."
         }
@@ -2244,7 +2244,7 @@
       "hook": "The cheetah isn't the fastest animal. Not even close.",
       "closing": "On land you're fast. In the sky and sea, you're barely on the chart.",
       "question": "Which speed surprised you most? Drop it below.",
-      "caption": "The cheetah tops out at 70 mph on land — but a peregrine falcon dives at 240 mph, and a sailfish hits 68 mph underwater. Here's the full speed breakdown 👇",
+      "caption": "The cheetah tops out at 70 mph on land \u2014 but a peregrine falcon dives at 240 mph, and a sailfish hits 68 mph underwater. Here's the full speed breakdown \ud83d\udc47",
       "hashtags": [
         "animals",
         "nature",
@@ -2267,7 +2267,7 @@
             "file": "animal_land_speed.json"
           },
           "insight_type": "rank",
-          "role": "1 · ON LAND",
+          "role": "1 \u00b7 ON LAND",
           "topic": "top land animal speeds (mph)",
           "ascending": false,
           "use_baseline": true,
@@ -2280,11 +2280,11 @@
             "file": "animal_air_speed.json"
           },
           "insight_type": "rank",
-          "role": "2 · IN THE AIR",
+          "role": "2 \u00b7 IN THE AIR",
           "topic": "top flight speeds (mph)",
           "ascending": false,
           "use_baseline": true,
-          "say": "In the air, it isn't close. The peregrine falcon dives at 240 miles per hour in a hunting stoop. The cheetah — fastest thing on land — would look slow next to a racing pigeon."
+          "say": "In the air, it isn't close. The peregrine falcon dives at 240 miles per hour in a hunting stoop. The cheetah \u2014 fastest thing on land \u2014 would look slow next to a racing pigeon."
         },
         {
           "source": "offline",
@@ -2293,11 +2293,11 @@
             "file": "animal_water_speed.json"
           },
           "insight_type": "rank",
-          "role": "3 · IN THE WATER",
+          "role": "3 \u00b7 IN THE WATER",
           "topic": "top swimming speeds (mph)",
           "ascending": false,
           "use_baseline": true,
-          "say": "In the water, the sailfish hits 68 miles per hour — faster than the cheetah. An Olympic swimmer goes about 5. The ocean has its own top gear."
+          "say": "In the water, the sailfish hits 68 miles per hour \u2014 faster than the cheetah. An Olympic swimmer goes about 5. The ocean has its own top gear."
         }
       ]
     },
@@ -2307,7 +2307,7 @@
       "hook": "The Arctic lost an area bigger than Alaska. Already.",
       "closing": "The oldest, thickest ice is nearly gone. What's left is young, thin, and melting faster every year.",
       "question": "Does the Arctic ice collapse change how you think about climate? Drop it below.",
-      "caption": "Arctic sea ice September minimum fell from 7.2M sq km in 1980 to 4.2M in 2023 — a loss bigger than Alaska. Multi-year ice dropped from 61% to just 13% of the total. Here's the data 👇",
+      "caption": "Arctic sea ice September minimum fell from 7.2M sq km in 1980 to 4.2M in 2023 \u2014 a loss bigger than Alaska. Multi-year ice dropped from 61% to just 13% of the total. Here's the data \ud83d\udc47",
       "hashtags": [
         "arctic",
         "climate",
@@ -2330,9 +2330,9 @@
             "file": "arctic_sea_ice_minimum.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE TREND",
+          "role": "1 \u00b7 THE TREND",
           "topic": "Arctic September ice extent (million sq km)",
-          "say": "In 1980, Arctic sea ice reached 7.2 million square kilometers at its September minimum. By 2012 it hit a record low of 3.4 million. In 2023, it sat at 4.2 — about half what it was when your parents were born."
+          "say": "In 1980, Arctic sea ice reached 7.2 million square kilometers at its September minimum. By 2012 it hit a record low of 3.4 million. In 2023, it sat at 4.2 \u2014 about half what it was when your parents were born."
         },
         {
           "source": "offline",
@@ -2341,7 +2341,7 @@
             "file": "arctic_multiyear_ice_share.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE QUALITY",
+          "role": "2 \u00b7 THE QUALITY",
           "topic": "multi-year ice share of total (%)",
           "say": "But the real story is what kind of ice is left. In 1985, 61 percent of Arctic ice was old, thick, multi-year ice that had survived summer melts. By 2023, that fell to just 13 percent. The durable ice is nearly gone."
         },
@@ -2351,11 +2351,12 @@
           "params": {
             "file": "arctic_ice_area_lost.json"
           },
-          "insight_type": "comparison",
-          "role": "3 · THE LOSS",
+          "insight_type": "rank",
+          "role": "3 \u00b7 THE LOSS",
           "topic": "Arctic ice remaining vs lost since 1980 (million sq km)",
           "use_baseline": true,
-          "say": "Put it together: 3 million square kilometers of ice — an area bigger than Alaska — has simply vanished since 1980. Of the original 7.2 million, only 4.2 million remains. The baseline is gone."
+          "say": "Put it together: 3 million square kilometers of ice \u2014 an area bigger than Alaska \u2014 has simply vanished since 1980. Of the original 7.2 million, only 4.2 million remains. The baseline is gone.",
+          "ascending": false
         }
       ]
     },
@@ -2363,9 +2364,9 @@
       "slug": "urban-shift",
       "title": "More Than Half the World Now Lives in Cities",
       "hook": "For the first time in history, cities beat the countryside.",
-      "closing": "We crossed the line in 2007. Most humans now live in cities — and that number keeps climbing.",
+      "closing": "We crossed the line in 2007. Most humans now live in cities \u2014 and that number keeps climbing.",
       "question": "City or countryside? Where would you rather be? Drop it below.",
-      "caption": "In 1950, just 30% of the world lived in cities. In 2007 it crossed 50% for the first time. By 2025, 58% — and the number of megacities (10M+ people) grew from 2 to 37. Here's the data 👇",
+      "caption": "In 1950, just 30% of the world lived in cities. In 2007 it crossed 50% for the first time. By 2025, 58% \u2014 and the number of megacities (10M+ people) grew from 2 to 37. Here's the data \ud83d\udc47",
       "hashtags": [
         "cities",
         "urbanization",
@@ -2388,7 +2389,7 @@
             "file": "world_urban_population_share.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE SHIFT",
+          "role": "1 \u00b7 THE SHIFT",
           "topic": "share of world population in urban areas (%)",
           "say": "In 1950, just 30 percent of the world lived in cities. By 2007 it crossed 50 percent for the first time in human history. Today it's 58 and rising. We became an urban species within one lifetime."
         },
@@ -2399,11 +2400,11 @@
             "file": "most_urbanized_countries.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE LEADERS",
+          "role": "2 \u00b7 THE LEADERS",
           "topic": "most urbanized countries (% urban, 2023)",
           "ascending": false,
           "use_baseline": true,
-          "say": "Some places are essentially already all city. Singapore and Monaco hit 100 percent. Kuwait, 99. Belgium, 98. The United States is at 83. The world average, still just 58 — the gap between rich and developing worlds is enormous."
+          "say": "Some places are essentially already all city. Singapore and Monaco hit 100 percent. Kuwait, 99. Belgium, 98. The United States is at 83. The world average, still just 58 \u2014 the gap between rich and developing worlds is enormous."
         },
         {
           "source": "offline",
@@ -2412,7 +2413,7 @@
             "file": "megacities_count.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE GIANTS",
+          "role": "3 \u00b7 THE GIANTS",
           "topic": "number of megacities (10M+ population)",
           "say": "And the giants keep multiplying. In 1950 only two cities held 10 million or more people. By 2000 there were 17. Today there are 37 megacities. We're building new ones faster than we built cathedrals."
         }
@@ -2424,7 +2425,7 @@
       "hook": "Humans used to die at 32. What changed everything?",
       "closing": "Medicine didn't just add years. It changed what we die from. You're living in the longest era of human life in history.",
       "question": "What age do you expect to live to? Drop it below.",
-      "caption": "In 1900, global life expectancy was 32. Today it's 73. Japan's average is 84.3. And the cause of death flipped: infectious diseases used to be 50% of deaths — today chronic diseases are 74%. Here's what happened 👇",
+      "caption": "In 1900, global life expectancy was 32. Today it's 73. Japan's average is 84.3. And the cause of death flipped: infectious diseases used to be 50% of deaths \u2014 today chronic diseases are 74%. Here's what happened \ud83d\udc47",
       "hashtags": [
         "health",
         "lifeexpectancy",
@@ -2447,9 +2448,9 @@
             "file": "global_life_expectancy.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE LEAP",
+          "role": "1 \u00b7 THE LEAP",
           "topic": "global average life expectancy (years)",
-          "say": "In 1900, the average human lived to 32. By 1950 it was 48. Today it's 73 — more than doubled in one century. Vaccines, antibiotics, and clean water did more for humanity than almost anything else in history."
+          "say": "In 1900, the average human lived to 32. By 1950 it was 48. Today it's 73 \u2014 more than doubled in one century. Vaccines, antibiotics, and clean water did more for humanity than almost anything else in history."
         },
         {
           "source": "offline",
@@ -2458,11 +2459,11 @@
             "file": "life_expectancy_by_country.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE GAP",
+          "role": "2 \u00b7 THE GAP",
           "topic": "life expectancy by country (years, 2023)",
           "ascending": false,
           "use_baseline": true,
-          "say": "But the gains are not equal. Japan averages 84.3 years, Switzerland 83.8. The United States, 78.4 — below most wealthy nations. Nigeria, 55.2. You can gain or lose 30 years of life just based on where you're born."
+          "say": "But the gains are not equal. Japan averages 84.3 years, Switzerland 83.8. The United States, 78.4 \u2014 below most wealthy nations. Nigeria, 55.2. You can gain or lose 30 years of life just based on where you're born."
         },
         {
           "source": "offline",
@@ -2470,10 +2471,11 @@
           "params": {
             "file": "disease_shift.json"
           },
-          "insight_type": "comparison",
-          "role": "3 · THE SHIFT",
+          "insight_type": "rank",
+          "role": "3 \u00b7 THE SHIFT",
           "topic": "cause of death: infectious vs chronic (%)",
-          "say": "And what kills us changed completely. In 1900, infectious diseases — tuberculosis, cholera, pneumonia — caused about half of all deaths. Today, chronic diseases like heart disease and cancer account for 74 percent. We beat the old killers. We inherited new ones."
+          "say": "And what kills us changed completely. In 1900, infectious diseases \u2014 tuberculosis, cholera, pneumonia \u2014 caused about half of all deaths. Today, chronic diseases like heart disease and cancer account for 74 percent. We beat the old killers. We inherited new ones.",
+          "ascending": false
         }
       ]
     },
@@ -2481,9 +2483,9 @@
       "slug": "home-insurance-exodus",
       "title": "Insurers Are Quietly Abandoning Entire States",
       "hook": "In some places, you can barely buy home insurance at any price.",
-      "closing": "As disasters get more expensive, insurers are doing the math — and in the riskiest places, they're simply walking away.",
+      "closing": "As disasters get more expensive, insurers are doing the math \u2014 and in the riskiest places, they're simply walking away.",
       "question": "Has your home insurance jumped or been dropped? Tell us where you live.",
-      "caption": "Average US home insurance hit about $2,400 a year — double 2019. In Florida it's around $11,000. And the share of homeowners dropped by their insurer reached 4% in 2024. Here's the data 👇",
+      "caption": "Average US home insurance hit about $2,400 a year \u2014 double 2019. In Florida it's around $11,000. And the share of homeowners dropped by their insurer reached 4% in 2024. Here's the data \ud83d\udc47",
       "hashtags": [
         "insurance",
         "homeinsurance",
@@ -2508,9 +2510,9 @@
             "file": "home_insurance_premium.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE PRICE",
+          "role": "1 \u00b7 THE PRICE",
           "topic": "average annual home insurance premium ($)",
-          "say": "In 2019, the average US home insurance policy cost about 1,200 dollars a year. By 2023, 1,900. By 2025, around 2,400 dollars — double in just six years."
+          "say": "In 2019, the average US home insurance policy cost about 1,200 dollars a year. By 2023, 1,900. By 2025, around 2,400 dollars \u2014 double in just six years."
         },
         {
           "source": "offline",
@@ -2521,9 +2523,9 @@
           "insight_type": "rank",
           "ascending": false,
           "use_baseline": true,
-          "role": "2 · THE MAP",
+          "role": "2 \u00b7 THE MAP",
           "topic": "average home insurance premium by state ($)",
-          "say": "But the average hides the extremes. In Florida, the typical premium is around 11,000 dollars. Louisiana, 6,300. Texas, 4,400. The national average is 2,400 — and in Vermont, just 900."
+          "say": "But the average hides the extremes. In Florida, the typical premium is around 11,000 dollars. Louisiana, 6,300. Texas, 4,400. The national average is 2,400 \u2014 and in Vermont, just 900."
         },
         {
           "source": "offline",
@@ -2532,9 +2534,9 @@
             "file": "home_insurance_nonrenewal.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE EXIT",
+          "role": "3 \u00b7 THE EXIT",
           "topic": "share of homeowners dropped by their insurer (%)",
-          "say": "And increasingly, insurers just say no. In 2018, about 1.5 percent of homeowners were dropped at renewal. By 2024, that doubled to 4 percent — concentrated exactly where disaster risk is highest."
+          "say": "And increasingly, insurers just say no. In 2018, about 1.5 percent of homeowners were dropped at renewal. By 2024, that doubled to 4 percent \u2014 concentrated exactly where disaster risk is highest."
         }
       ]
     },
@@ -2563,7 +2565,7 @@
             "file": "caffeine_us_daily_cups.json"
           },
           "insight_type": "trend",
-          "role": "1 · CONSUMPTION",
+          "role": "1 \u00b7 CONSUMPTION",
           "topic": "US coffee cups per day",
           "say": "In 2000 the average American drank fewer than 2 cups a day. By 2024 that's 3.2. We've been quietly dosing up for 25 years straight."
         },
@@ -2574,7 +2576,7 @@
             "file": "caffeine_per_serving.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE DOSES",
+          "role": "2 \u00b7 THE DOSES",
           "topic": "caffeine mg per serving",
           "ascending": false,
           "use_baseline": true,
@@ -2586,12 +2588,12 @@
           "params": {
             "file": "caffeine_intake_vs_limit.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "ascending": false,
           "use_baseline": false,
-          "role": "3 · YOUR LIMIT",
+          "role": "3 \u00b7 YOUR LIMIT",
           "topic": "intake vs. FDA safe limit",
-          "say": "The FDA says 400 mg a day is the safe ceiling. The average American clears half that. Heavy users hit 580 — clearing the limit by nearly 50 percent."
+          "say": "The FDA says 400 mg a day is the safe ceiling. The average American clears half that. Heavy users hit 580 \u2014 clearing the limit by nearly 50 percent."
         }
       ],
       "question": "How many cups are you actually drinking today?"
@@ -2621,9 +2623,9 @@
             "file": "commute_time_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · CREEP",
+          "role": "1 \u00b7 CREEP",
           "topic": "US average commute over time",
-          "say": "In 1980 the average American commute was 22 minutes one-way. By 2023 it's 28. Small number — but that's 6 extra minutes every single workday, forever."
+          "say": "In 1980 the average American commute was 22 minutes one-way. By 2023 it's 28. Small number \u2014 but that's 6 extra minutes every single workday, forever."
         },
         {
           "source": "offline",
@@ -2632,7 +2634,7 @@
             "file": "commute_by_metro.json"
           },
           "insight_type": "rank",
-          "role": "2 · WORST OFFENDERS",
+          "role": "2 \u00b7 WORST OFFENDERS",
           "topic": "commute time by metro area",
           "ascending": false,
           "use_baseline": true,
@@ -2644,12 +2646,12 @@
           "params": {
             "file": "commute_hours_annual.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "ascending": false,
           "use_baseline": false,
-          "role": "3 · THE MATH",
+          "role": "3 \u00b7 THE MATH",
           "topic": "annual hours in commute vs. vacation",
-          "say": "The average commuter loses 237 hours a year in transit. That's triple the vacation days most Americans actually take. NYC commuters burn 342 hours — six full weeks."
+          "say": "The average commuter loses 237 hours a year in transit. That's triple the vacation days most Americans actually take. NYC commuters burn 342 hours \u2014 six full weeks."
         }
       ],
       "question": "How long is your commute? Drop it below."
@@ -2679,7 +2681,7 @@
             "file": "language_loss_per_decade.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE PACE",
+          "role": "1 \u00b7 THE PACE",
           "topic": "languages lost per decade",
           "say": "In the 1950s about 5 languages went extinct each decade. By the 2010s that number hit 34. The pace of language loss has increased sevenfold in 70 years."
         },
@@ -2690,11 +2692,11 @@
             "file": "language_speaker_groups.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE FRAGILE ONES",
+          "role": "2 \u00b7 THE FRAGILE ONES",
           "topic": "languages by speaker count",
           "ascending": false,
           "use_baseline": false,
-          "say": "Of roughly 7,100 languages alive today, 3,100 have under a thousand speakers. That's nearly half of all human languages — each a complete world — on the edge of silence."
+          "say": "Of roughly 7,100 languages alive today, 3,100 have under a thousand speakers. That's nearly half of all human languages \u2014 each a complete world \u2014 on the edge of silence."
         },
         {
           "source": "offline",
@@ -2703,9 +2705,9 @@
             "file": "language_concentration.json"
           },
           "insight_type": "share",
-          "role": "3 · THE LOPSIDED MATH",
+          "role": "3 \u00b7 THE LOPSIDED MATH",
           "topic": "share of world population by language tier",
-          "say": "The top 10 languages cover 41% of all humans. The remaining 6,500 languages share just 8% of the world's population — spread impossibly thin across shrinking communities."
+          "say": "The top 10 languages cover 41% of all humans. The remaining 6,500 languages share just 8% of the world's population \u2014 spread impossibly thin across shrinking communities."
         }
       ],
       "question": "Do you speak a language that could disappear?"
@@ -2735,9 +2737,9 @@
             "file": "emergency_savings_readiness.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE SLIDE",
+          "role": "1 \u00b7 THE SLIDE",
           "topic": "share with 3-month emergency fund",
-          "say": "In 2010, 49% of Americans had a three-month emergency fund. By 2024 that's down to 34%. Fifteen years of gains — erased. And that was before inflation hit."
+          "say": "In 2010, 49% of Americans had a three-month emergency fund. By 2024 that's down to 34%. Fifteen years of gains \u2014 erased. And that was before inflation hit."
         },
         {
           "source": "offline",
@@ -2746,11 +2748,11 @@
             "file": "emergency_readiness_by_income.json"
           },
           "insight_type": "rank",
-          "role": "2 · WHO'S COVERED",
+          "role": "2 \u00b7 WHO'S COVERED",
           "topic": "readiness by income bracket",
           "ascending": false,
           "use_baseline": true,
-          "say": "Earn over 150K? 78% are covered. Earn under 30K? Only 12%. Emergency funds aren't a savings problem — they're an income problem hiding inside a savings problem."
+          "say": "Earn over 150K? 78% are covered. Earn under 30K? Only 12%. Emergency funds aren't a savings problem \u2014 they're an income problem hiding inside a savings problem."
         },
         {
           "source": "offline",
@@ -2758,10 +2760,10 @@
           "params": {
             "file": "emergency_fund_gap.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "ascending": false,
           "use_baseline": false,
-          "role": "3 · THE GAP",
+          "role": "3 \u00b7 THE GAP",
           "topic": "needed vs. saved",
           "say": "A proper three-month cushion costs about 9,900 dollars. The median American has 2,100 in liquid savings. That's a 7,800-dollar gap between where you are and where you'd be safe."
         }
@@ -2772,9 +2774,9 @@
       "slug": "wedding-cost-spiral",
       "title": "The Average US Wedding Now Costs More Than a New Car",
       "hook": "Saying \"I do\" got expensive.",
-      "closing": "The party lasts one night — the price tag now rivals a car or a year of college.",
+      "closing": "The party lasts one night \u2014 the price tag now rivals a car or a year of college.",
       "question": "What did your wedding actually cost? Drop it below.",
-      "caption": "The average US wedding hit about $35,000 in 2024 — up from $20,000 in 2000 — and in Manhattan it's closer to $63,000. Here's where the money goes 👇",
+      "caption": "The average US wedding hit about $35,000 in 2024 \u2014 up from $20,000 in 2000 \u2014 and in Manhattan it's closer to $63,000. Here's where the money goes \ud83d\udc47",
       "hashtags": [
         "wedding",
         "weddings",
@@ -2799,9 +2801,9 @@
             "file": "wedding_cost_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CLIMB",
+          "role": "1 \u00b7 THE CLIMB",
           "topic": "average US wedding cost ($)",
-          "say": "In 2000, the average US wedding cost about 20,000 dollars. By 2015 it was 31,000. Today it's around 35,000 dollars — more than the price of a new car."
+          "say": "In 2000, the average US wedding cost about 20,000 dollars. By 2015 it was 31,000. Today it's around 35,000 dollars \u2014 more than the price of a new car."
         },
         {
           "source": "offline",
@@ -2811,7 +2813,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · WHERE IT GOES",
+          "role": "2 \u00b7 WHERE IT GOES",
           "topic": "wedding cost by category ($)",
           "say": "And here's where it goes. The venue alone averages 12,800 dollars. Catering, 8,500. The band or DJ, 4,500. Photography, 3,200. The flowers cost more than the dress."
         },
@@ -2824,9 +2826,9 @@
           "insight_type": "rank",
           "ascending": false,
           "use_baseline": true,
-          "role": "3 · THE MAP",
+          "role": "3 \u00b7 THE MAP",
           "topic": "average wedding cost by metro ($)",
-          "say": "But where you marry changes everything. In Manhattan the average is 63,000 dollars. San Francisco, 45,000. The national average is 35,000 — and in the rural Midwest, just 21,000."
+          "say": "But where you marry changes everything. In Manhattan the average is 63,000 dollars. San Francisco, 45,000. The national average is 35,000 \u2014 and in the rural Midwest, just 21,000."
         }
       ]
     },
@@ -2836,7 +2838,7 @@
       "hook": "Your favorite chocolate bar is in trouble.",
       "closing": "When two countries grow most of the world's cocoa and their crops fail, the whole planet's chocolate gets more expensive.",
       "question": "Have you noticed chocolate getting pricier? Tell us below.",
-      "caption": "Cocoa hit about $10,000 a ton in 2024 — more than triple the year before — because most of it comes from just two countries. Here's the data 👇",
+      "caption": "Cocoa hit about $10,000 a ton in 2024 \u2014 more than triple the year before \u2014 because most of it comes from just two countries. Here's the data \ud83d\udc47",
       "hashtags": [
         "chocolate",
         "cocoa",
@@ -2861,9 +2863,9 @@
             "file": "cocoa_price_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE SPIKE",
+          "role": "1 \u00b7 THE SPIKE",
           "topic": "cocoa price ($ per ton)",
-          "say": "For years, cocoa traded around 3,000 dollars a ton. Then in 2024 it exploded to about 10,000 dollars — more than triple, the highest price in history."
+          "say": "For years, cocoa traded around 3,000 dollars a ton. Then in 2024 it exploded to about 10,000 dollars \u2014 more than triple, the highest price in history."
         },
         {
           "source": "offline",
@@ -2873,9 +2875,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE SOURCE",
+          "role": "2 \u00b7 THE SOURCE",
           "topic": "share of world cocoa production (%)",
-          "say": "And here's the problem. The Ivory Coast grows 38 percent of the world's cocoa. Ghana, another 17. Just two countries supply over half the planet — so when their harvests fail, everyone pays."
+          "say": "And here's the problem. The Ivory Coast grows 38 percent of the world's cocoa. Ghana, another 17. Just two countries supply over half the planet \u2014 so when their harvests fail, everyone pays."
         },
         {
           "source": "offline",
@@ -2884,9 +2886,9 @@
             "file": "chocolate_bar_price.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE SHELF",
+          "role": "3 \u00b7 THE SHELF",
           "topic": "average chocolate bar price ($)",
-          "say": "You're already seeing it. A chocolate bar that cost about 1.30 in 2019 is now around 2.20 — and with cocoa this high, it isn't coming back down soon."
+          "say": "You're already seeing it. A chocolate bar that cost about 1.30 in 2019 is now around 2.20 \u2014 and with cocoa this high, it isn't coming back down soon."
         }
       ]
     },
@@ -2896,7 +2898,7 @@
       "hook": "Seeing your favorite artist got brutal.",
       "closing": "Between face value and fees, a night out at a concert now costs what a weekend used to.",
       "question": "What's the most you've paid for a ticket? Drop it below.",
-      "caption": "The average top-tour concert ticket went from about $45 in 2010 to $135 in 2024 — before fees add another 40%. Here's the breakdown 👇",
+      "caption": "The average top-tour concert ticket went from about $45 in 2010 to $135 in 2024 \u2014 before fees add another 40%. Here's the breakdown \ud83d\udc47",
       "hashtags": [
         "concert",
         "tickets",
@@ -2921,9 +2923,9 @@
             "file": "concert_ticket_price.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CLIMB",
+          "role": "1 \u00b7 THE CLIMB",
           "topic": "average concert ticket, top tours ($)",
-          "say": "In 2010, the average top-tour concert ticket cost about 45 dollars. By 2020 it was 96. In 2024, around 135 dollars — triple what it was in 2010."
+          "say": "In 2010, the average top-tour concert ticket cost about 45 dollars. By 2020 it was 96. In 2024, around 135 dollars \u2014 triple what it was in 2010."
         },
         {
           "source": "offline",
@@ -2933,9 +2935,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE FEES",
+          "role": "2 \u00b7 THE FEES",
           "topic": "add-on fees on a $90 ticket ($)",
-          "say": "But the sticker price is a lie. On a 90 dollar ticket, the service fee adds 28 dollars. Facility fee, 6. Processing, 5. Delivery, 4 — nearly 40 percent on top."
+          "say": "But the sticker price is a lie. On a 90 dollar ticket, the service fee adds 28 dollars. Facility fee, 6. Processing, 5. Delivery, 4 \u2014 nearly 40 percent on top."
         },
         {
           "source": "offline",
@@ -2944,9 +2946,9 @@
             "file": "ticket_resale_markup.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE RESALE",
+          "role": "3 \u00b7 THE RESALE",
           "topic": "resale markup over face value (%)",
-          "say": "And for the hot shows, resale is worse. In 2015, tickets resold for about 60 percent over face. By 2024, 180 percent — nearly triple the printed price."
+          "say": "And for the hot shows, resale is worse. In 2015, tickets resold for about 60 percent over face. By 2024, 180 percent \u2014 nearly triple the printed price."
         }
       ]
     },
@@ -2954,9 +2956,9 @@
       "slug": "pet-spending-boom",
       "title": "Americans Now Spend a Record Amount on Their Pets",
       "hook": "Pets became a serious line item.",
-      "closing": "For a lot of households, the dog is officially a member of the family — budget and all.",
+      "closing": "For a lot of households, the dog is officially a member of the family \u2014 budget and all.",
       "question": "How much do you spend on your pet a year? Tell us below.",
-      "caption": "US pet spending hit about $152 billion in 2024 — triple what it was in 2010 — with a large dog now running ~$1,800 a year. Here's the data 👇",
+      "caption": "US pet spending hit about $152 billion in 2024 \u2014 triple what it was in 2010 \u2014 with a large dog now running ~$1,800 a year. Here's the data \ud83d\udc47",
       "hashtags": [
         "pets",
         "dogs",
@@ -2981,9 +2983,9 @@
             "file": "pet_spending_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE BOOM",
+          "role": "1 \u00b7 THE BOOM",
           "topic": "total US pet spending ($B)",
-          "say": "In 2010, Americans spent about 48 billion dollars on their pets. By 2020, 104 billion. In 2024, around 152 billion — more than triple in 14 years."
+          "say": "In 2010, Americans spent about 48 billion dollars on their pets. By 2020, 104 billion. In 2024, around 152 billion \u2014 more than triple in 14 years."
         },
         {
           "source": "offline",
@@ -2993,7 +2995,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE BREAKDOWN",
+          "role": "2 \u00b7 THE BREAKDOWN",
           "topic": "pet spending by category ($B)",
           "say": "Food and treats lead at 64 billion dollars. Vet care and products, 47 billion. Supplies and medications, 32 billion. Grooming and boarding, another 12."
         },
@@ -3005,7 +3007,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "3 · PER PET",
+          "role": "3 \u00b7 PER PET",
           "topic": "average annual cost per pet ($)",
           "say": "Per animal, it adds up fast. A large dog runs about 1,800 dollars a year. A small dog, 1,200. A cat, 1,100. Even a bird is around 350 a year."
         }
@@ -3014,10 +3016,10 @@
     {
       "slug": "superbug-resistance",
       "title": "The Silent War We're Losing: Superbugs",
-      "hook": "Antibiotics are running out of time — and so are we.",
+      "hook": "Antibiotics are running out of time \u2014 and so are we.",
       "closing": "The drugs that saved the 20th century are losing the 21st.",
       "question": "Did you know antibiotic approvals have dropped this much? Comment below.",
-      "caption": "AMR killed 1.27 million people in 2019 — and the antibiotic pipeline has nearly dried up. Here's the data 👇",
+      "caption": "AMR killed 1.27 million people in 2019 \u2014 and the antibiotic pipeline has nearly dried up. Here's the data \ud83d\udc47",
       "hashtags": [
         "superbugs",
         "amr",
@@ -3040,9 +3042,9 @@
             "file": "amr_deaths_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE RISE",
+          "role": "1 \u00b7 THE RISE",
           "topic": "annual deaths from AMR (million)",
-          "say": "In 2000, drug-resistant bacteria killed about 700 thousand people worldwide. By 2019, that number hit 1.27 million. By 2023, 1.35 million — more than HIV and malaria combined."
+          "say": "In 2000, drug-resistant bacteria killed about 700 thousand people worldwide. By 2019, that number hit 1.27 million. By 2023, 1.35 million \u2014 more than HIV and malaria combined."
         },
         {
           "source": "offline",
@@ -3052,7 +3054,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE KILLERS",
+          "role": "2 \u00b7 THE KILLERS",
           "topic": "deaths by superbug (thousand, 2019)",
           "say": "The deadliest culprits: E. coli kills 216 thousand a year. MRSA, 170 thousand. Klebsiella pneumoniae, 143 thousand. Together, just these six pathogens account for most AMR deaths globally."
         },
@@ -3064,7 +3066,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "3 · THE PIPELINE",
+          "role": "3 \u00b7 THE PIPELINE",
           "topic": "new antibiotics approved per decade (FDA)",
           "say": "And the pipeline is drying up. In the 1980s, the FDA approved 16 new antibiotics. By the 2000s, just 7. This decade so far: 4. Bacteria evolve faster than we innovate."
         }
@@ -3076,7 +3078,7 @@
       "hook": "Finland has been the world's happiest country for 7 years straight. Why?",
       "closing": "The data says what happiness looks like. Now you know.",
       "question": "What do you think matters most for national happiness? Drop it below.",
-      "caption": "Finland scores 7.74 out of 10 on the World Happiness Report — the US is 23rd. Here's the breakdown 👇",
+      "caption": "Finland scores 7.74 out of 10 on the World Happiness Report \u2014 the US is 23rd. Here's the breakdown \ud83d\udc47",
       "hashtags": [
         "happiness",
         "finland",
@@ -3099,9 +3101,9 @@
             "file": "finland_happiness_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CLIMB",
+          "role": "1 \u00b7 THE CLIMB",
           "topic": "Finland happiness score (out of 10)",
-          "say": "Finland's happiness score has risen almost every year since 2015 — from 7.41 to a peak of 7.84 in 2021. Even after a slight dip, Finland sits at 7.74 in 2024. It has topped the global rankings every year since 2018."
+          "say": "Finland's happiness score has risen almost every year since 2015 \u2014 from 7.41 to a peak of 7.84 in 2021. Even after a slight dip, Finland sits at 7.74 in 2024. It has topped the global rankings every year since 2018."
         },
         {
           "source": "offline",
@@ -3111,9 +3113,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · THE RANKINGS",
+          "role": "2 \u00b7 THE RANKINGS",
           "topic": "happiest countries 2024 (score out of 10)",
-          "say": "The top ten are dominated by Nordic countries. Finland 7.74, Denmark 7.58, Iceland 7.53, Sweden 7.35. The United States? 23rd, at 6.72 — well below the Nordic cluster."
+          "say": "The top ten are dominated by Nordic countries. Finland 7.74, Denmark 7.58, Iceland 7.53, Sweden 7.35. The United States? 23rd, at 6.72 \u2014 well below the Nordic cluster."
         },
         {
           "source": "offline",
@@ -3121,11 +3123,12 @@
           "params": {
             "file": "finland_us_happiness.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
-          "role": "3 · THE GAP",
+          "role": "3 \u00b7 THE GAP",
           "topic": "Finland vs US vs world average happiness score",
-          "say": "Against a world average of 5.51, both Finland and the US are well above average. But Finland's 7.74 versus the US's 6.72 is a 1-point gap — enormous on this scale. Researchers point to social trust, safety nets, and work-life balance as the difference-makers."
+          "say": "Against a world average of 5.51, both Finland and the US are well above average. But Finland's 7.74 versus the US's 6.72 is a 1-point gap \u2014 enormous on this scale. Researchers point to social trust, safety nets, and work-life balance as the difference-makers.",
+          "ascending": false
         }
       ]
     },
@@ -3135,7 +3138,7 @@
       "hook": "The planet is covered in water. Almost none of it is drinkable.",
       "closing": "The blue planet has a freshwater problem. And it's getting worse.",
       "question": "Did you know water access was this unequal? Comment below.",
-      "caption": "Only 0.3% of Earth's water is accessible freshwater — and 2.2 billion people still lack safe drinking water. Here's the data 👇",
+      "caption": "Only 0.3% of Earth's water is accessible freshwater \u2014 and 2.2 billion people still lack safe drinking water. Here's the data \ud83d\udc47",
       "hashtags": [
         "water",
         "freshwater",
@@ -3158,9 +3161,9 @@
             "file": "earth_water_share.json"
           },
           "insight_type": "share",
-          "role": "1 · THE MATH",
+          "role": "1 \u00b7 THE MATH",
           "topic": "Earth's water distribution (%)",
-          "say": "Of all the water on Earth, 97 percent is saltwater in the oceans. Two percent is locked in ice caps and glaciers. Groundwater accounts for 0.7 percent — most too deep or contaminated. Only 0.3 percent is actually accessible freshwater. That's all we have."
+          "say": "Of all the water on Earth, 97 percent is saltwater in the oceans. Two percent is locked in ice caps and glaciers. Groundwater accounts for 0.7 percent \u2014 most too deep or contaminated. Only 0.3 percent is actually accessible freshwater. That's all we have."
         },
         {
           "source": "offline",
@@ -3169,9 +3172,9 @@
             "file": "unsafe_water_access.json"
           },
           "insight_type": "trend",
-          "role": "2 · THE PROBLEM",
+          "role": "2 \u00b7 THE PROBLEM",
           "topic": "people without safe drinking water (billion)",
-          "say": "And billions of people can't reliably access even that 0.3 percent. In 2015, 2.5 billion lacked safely managed drinking water. Progress has been slow: by 2022, still 2.2 billion — that's one in four people on Earth."
+          "say": "And billions of people can't reliably access even that 0.3 percent. In 2015, 2.5 billion lacked safely managed drinking water. Progress has been slow: by 2022, still 2.2 billion \u2014 that's one in four people on Earth."
         },
         {
           "source": "offline",
@@ -3181,19 +3184,19 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "3 · THE HOTSPOTS",
+          "role": "3 \u00b7 THE HOTSPOTS",
           "topic": "most water-stressed countries (WRI score 0-5)",
-          "say": "The worst-hit regions: Bahrain scores a perfect 5 on WRI's water stress index — every drop of rainfall is over-allocated. Kuwait, Qatar, Cyprus all near the top. Pakistan, home to 230 million people, is close behind. These countries are already running on empty."
+          "say": "The worst-hit regions: Bahrain scores a perfect 5 on WRI's water stress index \u2014 every drop of rainfall is over-allocated. Kuwait, Qatar, Cyprus all near the top. Pakistan, home to 230 million people, is close behind. These countries are already running on empty."
         }
       ]
     },
     {
       "slug": "satellite-surge",
       "title": "Space Is Getting Crowded Fast",
-      "hook": "There are 9,000 satellites above your head — and it only just started.",
+      "hook": "There are 9,000 satellites above your head \u2014 and it only just started.",
       "closing": "We launched a space age without a space traffic plan.",
       "question": "Are you worried about space debris? Drop your take below.",
-      "caption": "The number of active satellites shot from 1,400 in 2015 to 9,000 by 2024 — mostly thanks to one company. Here's the data 👇",
+      "caption": "The number of active satellites shot from 1,400 in 2015 to 9,000 by 2024 \u2014 mostly thanks to one company. Here's the data \ud83d\udc47",
       "hashtags": [
         "satellites",
         "space",
@@ -3216,9 +3219,9 @@
             "file": "satellites_orbit_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE SURGE",
+          "role": "1 \u00b7 THE SURGE",
           "topic": "active satellites in Earth orbit",
-          "say": "In 2000, about 600 active satellites orbited Earth. In 2015, 1,400. Then Starlink launched — and by 2021, 4,550. By 2023, 7,500. By 2024, roughly 9,000. More were launched in the last five years than in the previous 60 combined."
+          "say": "In 2000, about 600 active satellites orbited Earth. In 2015, 1,400. Then Starlink launched \u2014 and by 2021, 4,550. By 2023, 7,500. By 2024, roughly 9,000. More were launched in the last five years than in the previous 60 combined."
         },
         {
           "source": "offline",
@@ -3228,9 +3231,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · WHO'S UP THERE",
+          "role": "2 \u00b7 WHO'S UP THERE",
           "topic": "satellites by operator (2024)",
-          "say": "One company dominates completely: SpaceX operates roughly 6,500 Starlink satellites — nearly three-quarters of everything in orbit. OneWeb is a distant second at 630. Planet Labs, Spire, SES, and Intelsat account for most of the rest."
+          "say": "One company dominates completely: SpaceX operates roughly 6,500 Starlink satellites \u2014 nearly three-quarters of everything in orbit. OneWeb is a distant second at 630. Planet Labs, Spire, SES, and Intelsat account for most of the rest."
         },
         {
           "source": "offline",
@@ -3238,11 +3241,12 @@
           "params": {
             "file": "satellites_vs_debris.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
-          "role": "3 · THE JUNKYARD",
+          "role": "3 \u00b7 THE JUNKYARD",
           "topic": "active satellites vs tracked debris (2024)",
-          "say": "But for every active satellite, there are three pieces of tracked debris. Space Command tracks 27,500 objects large enough to destroy a spacecraft. Estimated debris pieces over one centimeter: 130,000. A single collision can shatter into thousands of new fragments — the cascade known as Kessler Syndrome."
+          "say": "But for every active satellite, there are three pieces of tracked debris. Space Command tracks 27,500 objects large enough to destroy a spacecraft. Estimated debris pieces over one centimeter: 130,000. A single collision can shatter into thousands of new fragments \u2014 the cascade known as Kessler Syndrome.",
+          "ascending": false
         }
       ]
     },
@@ -3252,7 +3256,7 @@
       "hook": "Half the world's coral reefs are already gone. Quietly.",
       "closing": "The reef took ten thousand years to build. We've undone half of it in fifty.",
       "question": "Did you know coral reefs were disappearing this fast? Drop it below.",
-      "caption": "In 2023, 56% of the world's reefs experienced bleaching — the fourth global mass bleaching event ever. The Caribbean has lost 80% of its coral since the 1970s. Here's the data 👇",
+      "caption": "In 2023, 56% of the world's reefs experienced bleaching \u2014 the fourth global mass bleaching event ever. The Caribbean has lost 80% of its coral since the 1970s. Here's the data \ud83d\udc47",
       "hashtags": [
         "coralreef",
         "coralbleaching",
@@ -3275,9 +3279,9 @@
             "file": "coral_bleaching_frequency.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE WARMING",
+          "role": "1 \u00b7 THE WARMING",
           "topic": "share of reefs bleaching per year (%)",
-          "say": "In 1998, the first global mass bleaching hit about 11 percent of reefs. By 2016 it was 46 percent — nearly half the world's coral, in a single year. In 2023, 56 percent. That's more than half of every reef on Earth, bleaching in one year."
+          "say": "In 1998, the first global mass bleaching hit about 11 percent of reefs. By 2016 it was 46 percent \u2014 nearly half the world's coral, in a single year. In 2023, 56 percent. That's more than half of every reef on Earth, bleaching in one year."
         },
         {
           "source": "offline",
@@ -3285,10 +3289,11 @@
           "params": {
             "file": "coral_coverage_change.json"
           },
-          "insight_type": "comparison",
-          "role": "2 · THE LOSS",
+          "insight_type": "rank",
+          "role": "2 \u00b7 THE LOSS",
           "topic": "coral cover: 1970s baseline vs. today (%)",
-          "say": "Zooming out: since the 1970s, about half of all coral cover on Earth has disappeared. A reef that took ten thousand years to grow — halved in fifty."
+          "say": "Zooming out: since the 1970s, about half of all coral cover on Earth has disappeared. A reef that took ten thousand years to grow \u2014 halved in fifty.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -3298,9 +3303,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "3 · THE HOTSPOTS",
+          "role": "3 \u00b7 THE HOTSPOTS",
           "topic": "coral cover lost since 1970s by region (%)",
-          "say": "But the losses aren't even. The Florida Keys have lost 90 percent of their coral. The Caribbean, 80 percent. Hawaii, 60. Even the Great Barrier Reef — Australia's national icon — has lost half its cover."
+          "say": "But the losses aren't even. The Florida Keys have lost 90 percent of their coral. The Caribbean, 80 percent. Hawaii, 60. Even the Great Barrier Reef \u2014 Australia's national icon \u2014 has lost half its cover."
         }
       ]
     },
@@ -3308,9 +3313,9 @@
       "slug": "us-incarceration-rate",
       "title": "The US Locks Up More People Than Any Country on Earth",
       "hook": "The US has 5% of the world's people. And 20% of its prisoners.",
-      "closing": "No other rich country comes close. The question isn't how many — it's why.",
+      "closing": "No other rich country comes close. The question isn't how many \u2014 it's why.",
       "question": "What do you think drives the US incarceration rate? Drop it below.",
-      "caption": "The US incarcerates 630 per 100,000 people — four times the world average. The rate rose sevenfold from 1972 to its peak in 2008. Here's the data 👇",
+      "caption": "The US incarcerates 630 per 100,000 people \u2014 four times the world average. The rate rose sevenfold from 1972 to its peak in 2008. Here's the data \ud83d\udc47",
       "hashtags": [
         "criminaljustice",
         "incarceration",
@@ -3333,9 +3338,9 @@
             "file": "us_incarceration_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE CLIMB",
+          "role": "1 \u00b7 THE CLIMB",
           "topic": "US incarceration rate (per 100,000 people)",
-          "say": "In 1972, the US imprisoned 161 people per 100,000. By 1980 it was 221. Then the War on Drugs hit — and by 2008, 755 per 100,000. The rate nearly quintupled in 36 years. Even after declining, it sits at 608 today."
+          "say": "In 1972, the US imprisoned 161 people per 100,000. By 1980 it was 221. Then the War on Drugs hit \u2014 and by 2008, 755 per 100,000. The rate nearly quintupled in 36 years. Even after declining, it sits at 608 today."
         },
         {
           "source": "offline",
@@ -3343,11 +3348,12 @@
           "params": {
             "file": "us_vs_world_incarceration.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
-          "role": "2 · THE COMPARISON",
+          "role": "2 \u00b7 THE COMPARISON",
           "topic": "incarceration rate: US vs world benchmarks (per 100,000)",
-          "say": "Now compare that to the world. The US locks up 630 per 100,000. Russia, 328. The world average is 155. Western Europe averages around 100. The US rate is four times the global average — and six times Western Europe."
+          "say": "Now compare that to the world. The US locks up 630 per 100,000. Russia, 328. The world average is 155. Western Europe averages around 100. The US rate is four times the global average \u2014 and six times Western Europe.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -3357,9 +3363,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "3 · THE LEAGUE TABLE",
+          "role": "3 \u00b7 THE LEAGUE TABLE",
           "topic": "highest incarceration rates by country (per 100,000, 2023)",
-          "say": "The US isn't just high — it leads the world. At 630 per 100,000, it beats Turkmenistan, El Salvador, and Cuba. The only company it keeps are authoritarian states. No other democracy is in the same bracket."
+          "say": "The US isn't just high \u2014 it leads the world. At 630 per 100,000, it beats Turkmenistan, El Salvador, and Cuba. The only company it keeps are authoritarian states. No other democracy is in the same bracket."
         }
       ]
     },
@@ -3367,9 +3373,9 @@
       "slug": "american-migration-map",
       "title": "Americans Are Quietly Leaving California and New York",
       "hook": "More Americans are leaving California than any state in history.",
-      "closing": "The map of where Americans live is redrawing itself — one moving truck at a time.",
+      "closing": "The map of where Americans live is redrawing itself \u2014 one moving truck at a time.",
       "question": "Have you moved states in the last 5 years? Where'd you go? Drop it below.",
-      "caption": "In 2023, California lost 361,000 people to other states — and Florida gained 315,000. Only 57% of Americans still live where they were born. Here's the data 👇",
+      "caption": "In 2023, California lost 361,000 people to other states \u2014 and Florida gained 315,000. Only 57% of Americans still live where they were born. Here's the data \ud83d\udc47",
       "hashtags": [
         "migration",
         "moving",
@@ -3393,7 +3399,7 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "1 · LEAVING",
+          "role": "1 \u00b7 LEAVING",
           "topic": "top states by net domestic out-migration, 2023 (people)",
           "say": "In 2023, California lost 361,000 more residents to other states than it gained. New York lost 209,000. Illinois, 102,000. Massachusetts and New Jersey round out the top five. These are the states people are leaving."
         },
@@ -3405,9 +3411,9 @@
           },
           "insight_type": "rank",
           "ascending": false,
-          "role": "2 · ARRIVING",
+          "role": "2 \u00b7 ARRIVING",
           "topic": "top states by net domestic in-migration, 2023 (people)",
-          "say": "And here's where they're going. Florida gained 315,000. Texas, 290,000. North Carolina, South Carolina, Tennessee, Georgia — all in the top seven. Sun Belt states are absorbing the exodus."
+          "say": "And here's where they're going. Florida gained 315,000. Texas, 290,000. North Carolina, South Carolina, Tennessee, Georgia \u2014 all in the top seven. Sun Belt states are absorbing the exodus."
         },
         {
           "source": "offline",
@@ -3416,9 +3422,9 @@
             "file": "us_migration_birth_state.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE TREND",
+          "role": "3 \u00b7 THE TREND",
           "topic": "share of Americans still living in birth state (%)",
-          "say": "And Americans are increasingly willing to move. In 1980, 68 percent of Americans still lived in the state where they were born. Today that's 57 percent — the lowest ever. One in three Americans has voted with their feet."
+          "say": "And Americans are increasingly willing to move. In 1980, 68 percent of Americans still lived in the state where they were born. Today that's 57 percent \u2014 the lowest ever. One in three Americans has voted with their feet."
         }
       ]
     },
@@ -3428,7 +3434,7 @@
       "hook": "The federal minimum wage hasn't changed since 2009. Here's what that actually means.",
       "closing": "The number on the check went up. The number of things you can buy went down.",
       "question": "Should the federal minimum wage be raised? Drop your number below.",
-      "caption": "The federal minimum wage peaked in 1968 at $1.60/hr — worth $14.63 today. It's been stuck at $7.25 since 2009. Here's what that gap actually looks like 👇",
+      "caption": "The federal minimum wage peaked in 1968 at $1.60/hr \u2014 worth $14.63 today. It's been stuck at $7.25 since 2009. Here's what that gap actually looks like \ud83d\udc47",
       "hashtags": [
         "minimumwage",
         "laborlaw",
@@ -3451,9 +3457,9 @@
             "file": "federal_minwage_real.json"
           },
           "insight_type": "trend",
-          "role": "1 · THE SLIDE",
+          "role": "1 \u00b7 THE SLIDE",
           "topic": "federal minimum wage in 2024 dollars ($/hr)",
-          "say": "In 1968, the federal minimum wage was $1.60 an hour — which is $14.63 in today's dollars. That's the peak. By 2000 the real value had fallen to $7.35. It briefly rose with a 2009 raise to $7.25 — but since then, inflation has eroded it back to the nominal. Today's minimum wage buys less than at any point since the 1940s."
+          "say": "In 1968, the federal minimum wage was $1.60 an hour \u2014 which is $14.63 in today's dollars. That's the peak. By 2000 the real value had fallen to $7.35. It briefly rose with a 2009 raise to $7.25 \u2014 but since then, inflation has eroded it back to the nominal. Today's minimum wage buys less than at any point since the 1940s."
         },
         {
           "source": "offline",
@@ -3461,10 +3467,11 @@
           "params": {
             "file": "minwage_nominal_vs_real.json"
           },
-          "insight_type": "comparison",
-          "role": "2 · THE GAP",
+          "insight_type": "rank",
+          "role": "2 \u00b7 THE GAP",
           "topic": "current federal minimum vs. 1968 peak in 2024 dollars ($/hr)",
-          "say": "Here's the gap: the current federal minimum is $7.25. The 1968 equivalent in today's dollars is $14.63. That means minimum wage workers today earn about half what their 1968 counterparts could buy. Same job. Half the purchasing power."
+          "say": "Here's the gap: the current federal minimum is $7.25. The 1968 equivalent in today's dollars is $14.63. That means minimum wage workers today earn about half what their 1968 counterparts could buy. Same job. Half the purchasing power.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -3475,9 +3482,9 @@
           "insight_type": "rank",
           "ascending": false,
           "use_baseline": true,
-          "role": "3 · THE MAP",
+          "role": "3 \u00b7 THE MAP",
           "topic": "state minimum wages vs. federal floor ($/hr, 2024)",
-          "say": "States have stepped in where the federal government hasn't. California is at $16.50, Washington $16.28, New York $16. Massachusetts, $15. But 20 states still use the federal floor — $7.25 — unchanged since 2009."
+          "say": "States have stepped in where the federal government hasn't. California is at $16.50, Washington $16.28, New York $16. Massachusetts, $15. But 20 states still use the federal floor \u2014 $7.25 \u2014 unchanged since 2009."
         }
       ]
     },
@@ -3485,9 +3492,9 @@
       "slug": "tallest-buildings",
       "title": "The World's Tallest Buildings Keep Getting Taller",
       "hook": "Some buildings are half a mile tall.",
-      "closing": "We keep finding ways to build higher — the record has more than doubled in a single lifetime.",
+      "closing": "We keep finding ways to build higher \u2014 the record has more than doubled in a single lifetime.",
       "question": "Would you go up to the top? Drop a floor number.",
-      "caption": "The Burj Khalifa is 828m — nearly twice the Empire State Building, and the record has doubled since 1931. Here's the data 👇",
+      "caption": "The Burj Khalifa is 828m \u2014 nearly twice the Empire State Building, and the record has doubled since 1931. Here's the data \ud83d\udc47",
       "hashtags": [
         "architecture",
         "skyscraper",
@@ -3512,7 +3519,7 @@
             "file": "buildings_tallest.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE GIANTS",
+          "role": "1 \u00b7 THE GIANTS",
           "topic": "tallest buildings (m)",
           "say": "The Burj Khalifa towers at 828 meters. The Merdeka 118 in Kuala Lumpur, 679. Shanghai Tower, 632. These are the tallest structures humans have ever built."
         },
@@ -3523,7 +3530,7 @@
             "file": "buildings_vs_landmarks.json"
           },
           "insight_type": "rank",
-          "role": "2 · FOR SCALE",
+          "role": "2 \u00b7 FOR SCALE",
           "topic": "height vs famous landmarks (m)",
           "say": "Put it next to what you know. The Burj is 828 meters. The Empire State Building, 443. The Eiffel Tower, 330. The Statue of Liberty barely registers at 93."
         },
@@ -3534,9 +3541,9 @@
             "file": "buildings_record_trend.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE CLIMB",
+          "role": "3 \u00b7 THE CLIMB",
           "topic": "world's tallest building over time (m)",
-          "say": "And it keeps climbing. In 1931 the record was 381 meters. By 2004, 508. Then the Burj smashed it to 828 — more than double, in under a century."
+          "say": "And it keeps climbing. In 1931 the record was 381 meters. By 2004, 508. Then the Burj smashed it to 828 \u2014 more than double, in under a century."
         }
       ]
     },
@@ -3544,9 +3551,9 @@
       "slug": "gas-price-by-country",
       "title": "Gas Costs Five Times More in Some Countries",
       "hook": "Your gas might be a bargain.",
-      "closing": "Same fuel, wildly different price — mostly down to how each country taxes it.",
+      "closing": "Same fuel, wildly different price \u2014 mostly down to how each country taxes it.",
       "question": "What do you pay per gallon where you live?",
-      "caption": "Gas runs about $3.50/gal in the US but $8.50 in Norway. Same fuel, very different bill — here's why 👇",
+      "caption": "Gas runs about $3.50/gal in the US but $8.50 in Norway. Same fuel, very different bill \u2014 here's why \ud83d\udc47",
       "hashtags": [
         "gas",
         "gasprices",
@@ -3571,9 +3578,9 @@
             "file": "gas_price_by_country.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE MAP",
+          "role": "1 \u00b7 THE MAP",
           "topic": "gas price by country ($/gal)",
-          "say": "Norway pays about 8.50 a gallon. Germany, 7.40. The UK, 7. The US? Just 3.50 — among the cheapest in the developed world."
+          "say": "Norway pays about 8.50 a gallon. Germany, 7.40. The UK, 7. The US? Just 3.50 \u2014 among the cheapest in the developed world."
         },
         {
           "source": "offline",
@@ -3582,7 +3589,7 @@
             "file": "gas_fill_by_vehicle.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE FILL-UP",
+          "role": "2 \u00b7 THE FILL-UP",
           "topic": "cost to fill the tank ($)",
           "say": "And what you drive decides the damage. Filling a full-size SUV runs about 95 dollars. A pickup, 88. A sedan, 52. A motorcycle, just 14."
         },
@@ -3593,9 +3600,9 @@
             "file": "gas_price_us_trend.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE RIDE",
+          "role": "3 \u00b7 THE RIDE",
           "topic": "US gas price over time ($/gal)",
-          "say": "US prices have been a roller coaster — 1.50 in 2000, nearly 5 dollars at the 2022 peak, back to about 3.50 today."
+          "say": "US prices have been a roller coaster \u2014 1.50 in 2000, nearly 5 dollars at the 2022 peak, back to about 3.50 today."
         }
       ]
     },
@@ -3605,7 +3612,7 @@
       "hook": "Same power. Triple the price.",
       "closing": "Where you plug in matters almost as much as how much you use.",
       "question": "What's your rate per kilowatt-hour? Drop your state.",
-      "caption": "Electricity is ~44¢/kWh in Hawaii but 11¢ in Washington. Same power, 4x the price. Here's the map 👇",
+      "caption": "Electricity is ~44\u00a2/kWh in Hawaii but 11\u00a2 in Washington. Same power, 4x the price. Here's the map \ud83d\udc47",
       "hashtags": [
         "electricity",
         "energy",
@@ -3630,9 +3637,9 @@
             "file": "electricity_by_state.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE MAP",
+          "role": "1 \u00b7 THE MAP",
           "topic": "electricity price by state (cents/kWh)",
-          "say": "In Hawaii, power costs about 44 cents a kilowatt-hour. California, 31. New York, 23. But in Washington it's just 11 — a four-fold gap across one country."
+          "say": "In Hawaii, power costs about 44 cents a kilowatt-hour. California, 31. New York, 23. But in Washington it's just 11 \u2014 a four-fold gap across one country."
         },
         {
           "source": "offline",
@@ -3641,7 +3648,7 @@
             "file": "electricity_by_appliance.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE HOGS",
+          "role": "2 \u00b7 THE HOGS",
           "topic": "yearly cost to run an appliance ($)",
           "say": "And some things quietly eat your bill. Charging an EV runs about 600 dollars a year. Air conditioning, 320. The water heater, 290. A laptop? Ten."
         },
@@ -3652,9 +3659,9 @@
             "file": "electricity_price_trend.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE CREEP",
+          "role": "3 \u00b7 THE CREEP",
           "topic": "US electricity price over time (cents/kWh)",
-          "say": "And it keeps creeping up — from about 9.5 cents in 2005 to 17 today, far faster than it used to."
+          "say": "And it keeps creeping up \u2014 from about 9.5 cents in 2005 to 17 today, far faster than it used to."
         }
       ]
     },
@@ -3664,7 +3671,7 @@
       "hook": "You drink way more water than you think.",
       "closing": "The water you sip is nothing next to the water it took to grow your dinner.",
       "question": "Which one surprised you most?",
-      "caption": "It takes ~15,400 liters of water to make 1kg of beef, vs 320 for vegetables. The water in your food dwarfs what you drink. Here's the data 👇",
+      "caption": "It takes ~15,400 liters of water to make 1kg of beef, vs 320 for vegetables. The water in your food dwarfs what you drink. Here's the data \ud83d\udc47",
       "hashtags": [
         "water",
         "food",
@@ -3689,7 +3696,7 @@
             "file": "water_per_food.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE COST",
+          "role": "1 \u00b7 THE COST",
           "topic": "water to make 1kg of food (L)",
           "say": "It takes about 15,400 liters of water to produce one kilo of beef. Cheese, 5,000. Chicken, 4,300. Vegetables? Just 320. The gap is staggering."
         },
@@ -3700,7 +3707,7 @@
             "file": "water_per_item.json"
           },
           "insight_type": "rank",
-          "role": "2 · ON YOUR PLATE",
+          "role": "2 \u00b7 ON YOUR PLATE",
           "topic": "hidden water per item (L)",
           "say": "Per item it adds up fast. One hamburger hides about 2,400 liters of water. A pizza, 1,260. A single egg, 200. Even an apple, 125."
         },
@@ -3710,10 +3717,11 @@
           "params": {
             "file": "water_food_vs_drinking.json"
           },
-          "insight_type": "comparison",
-          "role": "3 · THE TWIST",
+          "insight_type": "rank",
+          "role": "3 \u00b7 THE TWIST",
           "topic": "food water vs the water you drink (L/day)",
-          "say": "Here's the kicker. You drink about 3 liters of water a day — but the food you eat took around 3,000 liters to produce. A thousand to one."
+          "say": "Here's the kicker. You drink about 3 liters of water a day \u2014 but the food you eat took around 3,000 liters to produce. A thousand to one.",
+          "ascending": false
         }
       ]
     },
@@ -3721,9 +3729,9 @@
       "slug": "theme-park-tickets",
       "title": "Theme Park Tickets Have Gotten Absurd",
       "hook": "A day at the park isn't cheap anymore.",
-      "closing": "The magic is the same — the price tag is from another planet.",
+      "closing": "The magic is the same \u2014 the price tag is from another planet.",
       "question": "What's the most you've paid for a park day?",
-      "caption": "A one-day Disneyland ticket hit ~$206 — up from $3.50 in 1971 — and a family day runs over $1,300. Here's the data 👇",
+      "caption": "A one-day Disneyland ticket hit ~$206 \u2014 up from $3.50 in 1971 \u2014 and a family day runs over $1,300. Here's the data \ud83d\udc47",
       "hashtags": [
         "themepark",
         "disney",
@@ -3748,7 +3756,7 @@
             "file": "park_ticket_by_park.json"
           },
           "insight_type": "rank",
-          "role": "1 · THE GATE",
+          "role": "1 \u00b7 THE GATE",
           "topic": "one-day ticket by park ($)",
           "say": "A single day at Disneyland now runs about 206 dollars. Disney World, 189. Universal, 184. Even Six Flags will run you 90."
         },
@@ -3759,9 +3767,9 @@
             "file": "park_family_day.json"
           },
           "insight_type": "rank",
-          "role": "2 · THE REAL BILL",
+          "role": "2 \u00b7 THE REAL BILL",
           "topic": "a park day for a family of 4 ($)",
-          "say": "But the ticket is just the start. For a family of four: 750 in tickets, 400 for a hotel, 160 on food, 35 to park — over 1,300 dollars for one day."
+          "say": "But the ticket is just the start. For a family of four: 750 in tickets, 400 for a hotel, 160 on food, 35 to park \u2014 over 1,300 dollars for one day."
         },
         {
           "source": "offline",
@@ -3770,11 +3778,326 @@
             "file": "park_ticket_trend.json"
           },
           "insight_type": "trend",
-          "role": "3 · THE CLIMB",
+          "role": "3 \u00b7 THE CLIMB",
           "topic": "Disney one-day ticket over time ($)",
-          "say": "And it's exploded. A Disney day cost 3.50 in 1971. By 2000, 43. Today, 189 — that's more than 50 times higher."
+          "say": "And it's exploded. A Disney day cost 3.50 in 1971. By 2000, 43. Today, 189 \u2014 that's more than 50 times higher."
         }
       ]
+    },
+    {
+      "slug": "giraffes-are-secretly-fast",
+      "title": "Giraffes Are Secretly Fast",
+      "hook": "You won't believe how quickly giraffes can run",
+      "closing": "Giraffes are way faster than you think",
+      "hashtags": [
+        "wildlife",
+        "giraffes",
+        "animalfacts",
+        "naturelovers"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "giraffes_are_secretly_fast_fastest_animals",
+          "params": {
+            "file": "giraffes_are_secretly_fast_fastest_animals.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 FASTEST ANIMALS",
+          "topic": "Fastest Animals",
+          "say": "A giraffe can run 35 miles per hour, a lion 30, and a zebra 25",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "giraffes_are_secretly_fast_leg_length",
+          "params": {
+            "file": "giraffes_are_secretly_fast_leg_length.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 LEG LENGTH",
+          "topic": "Leg Length",
+          "say": "A giraffe's legs are 6 feet long, while a horse's are 3 feet and a human's are 2.5 feet",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "giraffes_are_secretly_fast_running_distance",
+          "params": {
+            "file": "giraffes_are_secretly_fast_running_distance.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 RUNNING DISTANCE",
+          "topic": "Running Distance",
+          "say": "Giraffes can run for 10 miles without stopping, while horses can run for 5 miles and humans for 2 miles",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's the fastest land animal you've seen in person?"
+    },
+    {
+      "slug": "the-longest-migration",
+      "title": "The Longest Migration",
+      "hook": "You won't believe how far some animals migrate each year",
+      "closing": "Some animals migrate thousands of miles each year",
+      "hashtags": [
+        "wildlife",
+        "migration",
+        "animalfacts",
+        "naturelovers"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "the_longest_migration_longest_migrations",
+          "params": {
+            "file": "the_longest_migration_longest_migrations.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LONGEST MIGRATIONS",
+          "topic": "Longest Migrations",
+          "say": "The arctic tern migrates 44,000 miles, the caribou 3,000 miles, and the monarch butterfly 2,000 miles",
+          "viz": "diorama"
+        },
+        {
+          "source": "offline",
+          "key": "the_longest_migration_migration_routes",
+          "params": {
+            "file": "the_longest_migration_migration_routes.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 MIGRATION ROUTES",
+          "topic": "Migration Routes",
+          "say": "The arctic tern migrates from the Arctic to the Antarctic, the caribou from Alaska to Canada, and the monarch butterfly from Canada to Mexico",
+          "viz": "geo_world",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "the_longest_migration_migration_time",
+          "params": {
+            "file": "the_longest_migration_migration_time.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 MIGRATION TIME",
+          "topic": "Migration Time",
+          "say": "The arctic tern takes 50 days to migrate, the caribou 30 days, and the monarch butterfly 20 days",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's the longest journey you've ever taken?"
+    },
+    {
+      "slug": "the-deepest-ocean",
+      "title": "The Deepest Ocean",
+      "hook": "You won't believe how deep the ocean is",
+      "closing": "The ocean is way deeper than you think",
+      "hashtags": [
+        "ocean",
+        "depth",
+        "marinebiology",
+        "naturelovers"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "the_deepest_ocean_deepest_oceans",
+          "params": {
+            "file": "the_deepest_ocean_deepest_oceans.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DEEPEST OCEANS",
+          "topic": "Deepest Oceans",
+          "say": "The Mariana Trench is 36,000 feet deep, the Tonga Trench is 35,000 feet deep, and the Kermadec Trench is 32,000 feet deep",
+          "viz": "diorama"
+        },
+        {
+          "source": "offline",
+          "key": "the_deepest_ocean_ocean_zones",
+          "params": {
+            "file": "the_deepest_ocean_ocean_zones.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 OCEAN ZONES",
+          "topic": "Ocean Zones",
+          "say": "The Mariana Trench has 5 distinct zones, the Tonga Trench has 4, and the Kermadec Trench has 3",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "the_deepest_ocean_pressure",
+          "params": {
+            "file": "the_deepest_ocean_pressure.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 PRESSURE",
+          "topic": "Pressure",
+          "say": "The pressure at the bottom of the Mariana Trench is 1,086 pounds per square inch, the Tonga Trench is 1,050 pounds per square inch, and the Kermadec Trench is 1,000 pounds per square inch",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's the deepest place you've ever been?"
+    },
+    {
+      "slug": "the-largest-living-thing",
+      "title": "The Largest Living Thing",
+      "hook": "You won't believe what the largest living thing is",
+      "closing": "The largest living thing is way bigger than you think",
+      "hashtags": [
+        "nature",
+        "livingthings",
+        "fungi",
+        "armillariaostoyae"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "the_largest_living_thing_largest_living_things",
+          "params": {
+            "file": "the_largest_living_thing_largest_living_things.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST LIVING THI",
+          "topic": "Largest Living Things",
+          "say": "The Armillaria ostoyae fungus covers 2,200 acres, the Great Barrier Reef covers 133,000 acres, and the Blue Whale is 0.02 acres",
+          "viz": "diorama"
+        },
+        {
+          "source": "offline",
+          "key": "the_largest_living_thing_age",
+          "params": {
+            "file": "the_largest_living_thing_age.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 AGE",
+          "topic": "Age",
+          "say": "The Armillaria ostoyae fungus is 2,400 years old, the Great Barrier Reef is 20 million years old, and the Blue Whale is 10-30 years old",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "the_largest_living_thing_weight",
+          "params": {
+            "file": "the_largest_living_thing_weight.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 WEIGHT",
+          "topic": "Weight",
+          "say": "The Armillaria ostoyae fungus weighs 35,000 tons, the Great Barrier Reef weighs 2.5 billion tons, and the Blue Whale weighs 150-170 tons",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's the largest living thing you've ever seen?"
+    },
+    {
+      "slug": "fastest-things-on-water",
+      "title": "Fastest Things On Water",
+      "hook": "What's faster than a speedboat?",
+      "closing": "The fastest things on water will surprise you!",
+      "hashtags": [
+        "ocean",
+        "speed",
+        "water",
+        "animals",
+        "boats"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "fastest_things_on_water_water_speed",
+          "params": {
+            "file": "fastest_things_on_water_water_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 WATER SPEED",
+          "topic": "Water Speed",
+          "say": "The sailfish swims at 68 miles per hour, the bluefin tuna at 35, and the speedboat at 60",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "fastest_things_on_water_fastest_marine_animals",
+          "params": {
+            "file": "fastest_things_on_water_fastest_marine_animals.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 FASTEST MARINE ANI",
+          "topic": "Fastest Marine Animals",
+          "say": "The top three fastest marine animals are the sailfish, the black marlin, and the bluefin tuna",
+          "viz": "pictograph"
+        },
+        {
+          "source": "offline",
+          "key": "fastest_things_on_water_speed_records",
+          "params": {
+            "file": "fastest_things_on_water_speed_records.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SPEED RECORDS",
+          "topic": "Speed Records",
+          "say": "The speed record on water has increased from 180 miles per hour in 1978 to 244 in 2022",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's the fastest thing you've ever seen on water?"
+    },
+    {
+      "slug": "largest-living-fossils",
+      "title": "Largest Living Fossils",
+      "hook": "What's the oldest living thing on Earth?",
+      "closing": "The largest living fossils are still alive today!",
+      "hashtags": [
+        "fossils",
+        "living",
+        "ancient",
+        "trees",
+        "animals"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "largest_living_fossils_ancient_trees",
+          "params": {
+            "file": "largest_living_fossils_ancient_trees.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 ANCIENT TREES",
+          "topic": "Ancient Trees",
+          "say": "The bristlecone pine is 5,600 years old, the giant sequoia is 3,000, and the coast redwood is 2,000",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "largest_living_fossils_oldest_living_things",
+          "params": {
+            "file": "largest_living_fossils_oldest_living_things.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 OLDEST LIVING THIN",
+          "topic": "Oldest Living Things",
+          "say": "The top three oldest living things are the bristlecone pine, the giant sequoia, and the coast redwood",
+          "viz": "pictograph"
+        },
+        {
+          "source": "offline",
+          "key": "largest_living_fossils_fossil_records",
+          "params": {
+            "file": "largest_living_fossils_fossil_records.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 FOSSIL RECORDS",
+          "topic": "Fossil Records",
+          "say": "The number of discovered living fossils has increased from 100 in 1900 to 1,000 in 2020",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's the oldest living thing you've ever seen?"
     }
   ],
   "videos": [
