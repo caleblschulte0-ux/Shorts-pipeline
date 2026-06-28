@@ -60,3 +60,5 @@ preview/
 _preview/
 state/icons/
 state/cutouts/
+# Local viz validation renders (throwaway PNGs from layout iteration).
+scratchpad/
