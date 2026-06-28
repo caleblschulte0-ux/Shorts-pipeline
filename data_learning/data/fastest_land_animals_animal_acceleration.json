@@ -1,0 +1,30 @@
+{
+  "key": "fastest_land_animals_animal_acceleration",
+  "title": "Animal Acceleration",
+  "unit": "feet per second squared",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Cheetah",
+      "value": 32.0
+    },
+    {
+      "label": "Lion",
+      "value": 20.0
+    },
+    {
+      "label": "Elephant",
+      "value": 10.0
+    }
+  ]
+}

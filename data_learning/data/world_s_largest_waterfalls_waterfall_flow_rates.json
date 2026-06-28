@@ -1,0 +1,30 @@
+{
+  "key": "world_s_largest_waterfalls_waterfall_flow_rates",
+  "title": "Waterfall Flow Rates",
+  "unit": "cubic feet per second",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Inga Falls",
+      "value": 48000.0
+    },
+    {
+      "label": "Livingstone Falls",
+      "value": 32000.0
+    },
+    {
+      "label": "Victoria Falls",
+      "value": 28000.0
+    }
+  ]
+}

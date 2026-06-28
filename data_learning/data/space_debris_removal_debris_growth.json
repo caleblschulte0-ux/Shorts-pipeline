@@ -1,0 +1,30 @@
+{
+  "key": "space_debris_removal_debris_growth",
+  "title": "Debris Growth",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 100.0
+    },
+    {
+      "label": "2020",
+      "value": 150.0
+    },
+    {
+      "label": "2030",
+      "value": 200.0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "key": "human_brain_capacity_brain_processing_speed",
+  "title": "Brain Processing Speed",
+  "unit": "operations per second",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Human Brain",
+      "value": 1000000000000000.0
+    },
+    {
+      "label": "Supercomputer",
+      "value": 200000000000000.0
+    },
+    {
+      "label": "Average Computer",
+      "value": 100000000000.0
+    }
+  ]
+}

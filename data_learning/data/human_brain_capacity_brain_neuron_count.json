@@ -1,0 +1,30 @@
+{
+  "key": "human_brain_capacity_brain_neuron_count",
+  "title": "Brain Neuron Count",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Human Brain",
+      "value": 86000000000.0
+    },
+    {
+      "label": "Octopus Brain",
+      "value": 300000000.0
+    },
+    {
+      "label": "Mouse Brain",
+      "value": 75000000.0
+    }
+  ]
+}

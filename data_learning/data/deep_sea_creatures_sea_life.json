@@ -1,0 +1,30 @@
+{
+  "key": "deep_sea_creatures_sea_life",
+  "title": "Sea Life",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1950",
+      "value": 100.0
+    },
+    {
+      "label": "2000",
+      "value": 125.0
+    },
+    {
+      "label": "2050",
+      "value": 150.0
+    }
+  ]
+}

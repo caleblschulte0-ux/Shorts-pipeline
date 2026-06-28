@@ -1,0 +1,30 @@
+{
+  "key": "fastest_land_animals_animal_endurance",
+  "title": "Animal Endurance",
+  "unit": "miles",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Pronghorn Antelope",
+      "value": 20.0
+    },
+    {
+      "label": "Thomson's Gazelle",
+      "value": 15.0
+    },
+    {
+      "label": "Cheetah",
+      "value": 10.0
+    }
+  ]
+}

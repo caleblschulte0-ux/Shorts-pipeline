@@ -1,0 +1,30 @@
+{
+  "key": "human_brain_capacity_75_memory_storage",
+  "title": "Memory Storage",
+  "unit": "bytes",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 10000000000.0
+    },
+    {
+      "label": "2010",
+      "value": 20000000000.0
+    },
+    {
+      "label": "2020",
+      "value": 40000000000.0
+    }
+  ]
+}

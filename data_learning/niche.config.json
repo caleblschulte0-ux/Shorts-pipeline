@@ -4098,6 +4098,324 @@
         }
       ],
       "question": "What's the oldest living thing you've ever seen?"
+    },
+    {
+      "slug": "world-s-largest-waterfalls",
+      "title": "World's Largest Waterfalls",
+      "hook": "You won't believe where the most massive waterfalls are hidden",
+      "closing": "The world's largest waterfalls are truly awe-inspiring natural wonders",
+      "hashtags": [
+        "waterfalls",
+        "nature",
+        "travel",
+        "adventure",
+        "exploration"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "world_s_largest_waterfalls_waterfall_heights",
+          "params": {
+            "file": "world_s_largest_waterfalls_waterfall_heights.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 WATERFALL HEIGHTS",
+          "topic": "Waterfall Heights",
+          "say": "The Angel Falls in Venezuela stands at 3,212 feet, while the Tugela Falls in South Africa reaches 3,110 feet, and the Monge Falls in Norway reaches 2,808 feet",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "world_s_largest_waterfalls_waterfall_flow_rates",
+          "params": {
+            "file": "world_s_largest_waterfalls_waterfall_flow_rates.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 WATERFALL FLOW RAT",
+          "topic": "Waterfall Flow Rates",
+          "say": "The Inga Falls has a flow rate of 48,000 cubic feet per second, followed by the Livingstone Falls at 32,000 cubic feet per second, and the Victoria Falls at 28,000 cubic feet per second",
+          "viz": "pictograph"
+        },
+        {
+          "source": "offline",
+          "key": "world_s_largest_waterfalls_waterfall_tourism",
+          "params": {
+            "file": "world_s_largest_waterfalls_waterfall_tourism.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 WATERFALL TOURISM",
+          "topic": "Waterfall Tourism",
+          "say": "Tourism at the world's largest waterfalls has increased by 25% in the past five years, with a 15% increase in the past year alone",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's your favorite waterfall and why?"
+    },
+    {
+      "slug": "human-brain-capacity",
+      "title": "Human Brain Capacity",
+      "hook": "What if you could unlock the full potential of your brain?",
+      "closing": "The human brain is capable of incredible feats when we challenge it",
+      "hashtags": [
+        "brainpower",
+        "intelligence",
+        "learning",
+        "neuroscience",
+        "cognition"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "human_brain_capacity_brain_neuron_count",
+          "params": {
+            "file": "human_brain_capacity_brain_neuron_count.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 BRAIN NEURON COUNT",
+          "topic": "Brain Neuron Count",
+          "say": "The human brain contains approximately 86 billion neurons, while the octopus brain has around 300 million neurons, and the mouse brain has around 75 million neurons",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "human_brain_capacity_brain_processing_speed",
+          "params": {
+            "file": "human_brain_capacity_brain_processing_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 BRAIN PROCESSING S",
+          "topic": "Brain Processing Speed",
+          "say": "The human brain can process around 1 exaflop of information, while the fastest supercomputer can process around 200 petaflops, and the average computer can process around 100 gigaflops",
+          "viz": "pictograph"
+        },
+        {
+          "source": "offline",
+          "key": "human_brain_capacity_brain_learning_capacity",
+          "params": {
+            "file": "human_brain_capacity_brain_learning_capacity.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 BRAIN LEARNING CAP",
+          "topic": "Brain Learning Capacity",
+          "say": "The human brain can rewire itself to learn new skills, with a 20% increase in neural connections after just one month of practice, and a 50% increase after six months",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's the most impressive thing you've learned recently?"
+    },
+    {
+      "slug": "fastest-land-animals",
+      "title": "Fastest Land Animals",
+      "hook": "Which animal can run circles around the rest?",
+      "closing": "The fastest land animals are a marvel of evolution and speed",
+      "hashtags": [
+        "fastestanimals",
+        "wildlife",
+        "nature",
+        "zoology",
+        "speed"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "fastest_land_animals_animal_running_speeds",
+          "params": {
+            "file": "fastest_land_animals_animal_running_speeds.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 ANIMAL RUNNING SPE",
+          "topic": "Animal Running Speeds",
+          "say": "The cheetah can run up to 70 miles per hour, while the pronghorn antelope can reach 60 miles per hour, and the Thomson's gazelle can reach 50 miles per hour",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "fastest_land_animals_animal_acceleration",
+          "params": {
+            "file": "fastest_land_animals_animal_acceleration.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 ANIMAL ACCELERATIO",
+          "topic": "Animal Acceleration",
+          "say": "The cheetah can accelerate at 32 feet per second squared, while the lion can accelerate at 20 feet per second squared, and the elephant can accelerate at 10 feet per second squared",
+          "viz": "pictograph"
+        },
+        {
+          "source": "offline",
+          "key": "fastest_land_animals_animal_endurance",
+          "params": {
+            "file": "fastest_land_animals_animal_endurance.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ANIMAL ENDURANCE",
+          "topic": "Animal Endurance",
+          "say": "The pronghorn antelope can run for 20 miles without stopping, while the Thomson's gazelle can run for 15 miles, and the cheetah can run for 10 miles",
+          "viz": "trend"
+        }
+      ],
+      "question": "What's the fastest animal you've ever seen in person?"
+    },
+    {
+      "slug": "deep-sea-creatures",
+      "title": "Deep Sea Creatures",
+      "hook": "What's lurking in the darkest depths of our ocean?",
+      "closing": "The deep sea is home to more species than we ever thought possible",
+      "hashtags": [
+        "deepsea",
+        "ocean",
+        "marinebiology",
+        "wildlife",
+        "nature"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "deep_sea_creatures_deep_sea",
+          "params": {
+            "file": "deep_sea_creatures_deep_sea.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DEEP SEA",
+          "topic": "Deep Sea",
+          "say": "The anglerfish is 1 foot long, the giant squid is 20 feet long, and the colossal squid is 40 feet long",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "deep_sea_creatures_sea_life",
+          "params": {
+            "file": "deep_sea_creatures_sea_life.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 SEA LIFE",
+          "topic": "Sea Life",
+          "say": "In the last 50 years, deep sea species have increased by 25 percent, while coral reefs have decreased by 30 percent",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "deep_sea_creatures_marine_discoveries",
+          "params": {
+            "file": "deep_sea_creatures_marine_discoveries.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 MARINE DISCOVERIES",
+          "topic": "Marine Discoveries",
+          "say": "Out of 1 million species discovered, 750 thousand are found in the ocean, 200 thousand on land, and 50 thousand in freshwater",
+          "viz": "pictograph"
+        }
+      ],
+      "question": "What's the most bizarre deep sea creature you've ever heard of?"
+    },
+    {
+      "slug": "space-debris-removal",
+      "title": "Space Debris Removal",
+      "hook": "How much junk is floating around our planet?",
+      "closing": "It's time to take out the space trash before it's too late",
+      "hashtags": [
+        "spacedebris",
+        "satellites",
+        "astronomy",
+        "space",
+        "technology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_debris_removal_orbiting_debris",
+          "params": {
+            "file": "space_debris_removal_orbiting_debris.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 ORBITING DEBRIS",
+          "topic": "Orbiting Debris",
+          "say": "The International Space Station is 357 feet long, the Hubble Space Telescope is 43 feet long, and a CubeSat is 4 inches long",
+          "viz": "diorama"
+        },
+        {
+          "source": "offline",
+          "key": "space_debris_removal_debris_growth",
+          "params": {
+            "file": "space_debris_removal_debris_growth.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 DEBRIS GROWTH",
+          "topic": "Debris Growth",
+          "say": "In the last 10 years, space debris has increased by 50 percent, with 500 thousand pieces of junk orbiting the Earth",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "space_debris_removal_debris_removal",
+          "params": {
+            "file": "space_debris_removal_debris_removal.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 DEBRIS REMOVAL",
+          "topic": "Debris Removal",
+          "say": "The cost of removing space debris is 100 million dollars for the US, 50 million dollars for Europe, and 20 million dollars for Japan",
+          "viz": "geo_world",
+          "ascending": false
+        }
+      ],
+      "question": "What do you think is the best way to remove space debris?"
+    },
+    {
+      "slug": "human-brain-capacity-75",
+      "title": "Human Brain Capacity",
+      "hook": "How much information can our brains really handle?",
+      "closing": "The human brain is more powerful than we ever thought possible",
+      "hashtags": [
+        "humanbrain",
+        "neuroscience",
+        "intelligence",
+        "cognition",
+        "memory"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "human_brain_capacity_75_brain_power",
+          "params": {
+            "file": "human_brain_capacity_75_brain_power.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 BRAIN POWER",
+          "topic": "Brain Power",
+          "say": "The human brain has 86 billion neurons, the elephant brain has 257 billion neurons, and the mouse brain has 71 million neurons",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "human_brain_capacity_75_memory_storage",
+          "params": {
+            "file": "human_brain_capacity_75_memory_storage.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 MEMORY STORAGE",
+          "topic": "Memory Storage",
+          "say": "In the last 20 years, the average human brain has stored 100 terabytes of information, with a growth rate of 10 percent per year",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "human_brain_capacity_75_cognitive_abilities",
+          "params": {
+            "file": "human_brain_capacity_75_cognitive_abilities.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 COGNITIVE ABILITIE",
+          "topic": "Cognitive Abilities",
+          "say": "Out of 100 percent of cognitive abilities, 40 percent is attributed to working memory, 30 percent to attention, and 30 percent to processing speed",
+          "viz": "pictograph"
+        }
+      ],
+      "question": "What's the most impressive thing you've learned about the human brain?"
     }
   ],
   "videos": [
