@@ -1,0 +1,30 @@
+{
+  "key": "space_debris_removal_orbiting_debris",
+  "title": "Orbiting Debris",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "International Space Station",
+      "value": 357.0
+    },
+    {
+      "label": "Hubble Space Telescope",
+      "value": 43.0
+    },
+    {
+      "label": "CubeSat",
+      "value": 4.0
+    }
+  ]
+}

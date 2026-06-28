@@ -1,0 +1,30 @@
+{
+  "key": "deep_sea_creatures_deep_sea",
+  "title": "Deep Sea",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Anglerfish",
+      "value": 1.0
+    },
+    {
+      "label": "Giant Squid",
+      "value": 20.0
+    },
+    {
+      "label": "Colossal Squid",
+      "value": 40.0
+    }
+  ]
+}

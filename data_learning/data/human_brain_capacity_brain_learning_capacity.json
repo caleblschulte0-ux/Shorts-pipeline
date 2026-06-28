@@ -1,0 +1,26 @@
+{
+  "key": "human_brain_capacity_brain_learning_capacity",
+  "title": "Brain Learning Capacity",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1-month increase",
+      "value": 20.0
+    },
+    {
+      "label": "6-month increase",
+      "value": 50.0
+    }
+  ]
+}

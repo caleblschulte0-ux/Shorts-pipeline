@@ -1,0 +1,30 @@
+{
+  "key": "human_brain_capacity_75_brain_power",
+  "title": "Brain Power",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Human Brain",
+      "value": 86000000000.0
+    },
+    {
+      "label": "Elephant Brain",
+      "value": 257000000000.0
+    },
+    {
+      "label": "Mouse Brain",
+      "value": 71000000.0
+    }
+  ]
+}

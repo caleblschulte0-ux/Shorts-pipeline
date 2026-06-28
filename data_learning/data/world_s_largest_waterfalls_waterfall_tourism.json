@@ -1,0 +1,26 @@
+{
+  "key": "world_s_largest_waterfalls_waterfall_tourism",
+  "title": "Waterfall Tourism",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-28"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "5-year increase",
+      "value": 25.0
+    },
+    {
+      "label": "1-year increase",
+      "value": 15.0
+    }
+  ]
+}
