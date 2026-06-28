@@ -15,11 +15,11 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'verify | canary | schedule | all | unpublish | preview'
+        description: 'verify | canary | schedule | all | unpublish | preview | author'
         required: true
         default: 'verify'
         type: choice
-        options: [verify, canary, schedule, all, unpublish, preview]
+        options: [verify, canary, schedule, all, unpublish, preview, author]
       canary_slug:
         description: 'slug to post in canary mode'
         required: false
@@ -46,6 +46,10 @@ on:
         default: 'false'
         type: choice
         options: ['false', 'true']
+      topup:
+        description: 'keep at least this many un-posted stories (auto-author to refill)'
+        required: false
+        default: '6'
   # Chain off "Daily Shorts" (runs on main, so branches:[main] matches): after
   # each daily batch, render + post any un-posted explainer stories. The plan
   # job no-ops when there's nothing new, so chaining every daily run is cheap.
@@ -98,13 +102,15 @@ jobs:
 
   explainer:
     needs: plan
-    # Manual dispatch always runs. Automatic fire (cron or the Daily Shorts
-    # chain) runs only when there is at least one new story to post.
+    # Manual dispatch always runs. The daily CRON always runs too — even with an
+    # empty queue — because the author step refills it before posting (that's how
+    # the channel keeps inventing new topics instead of going dry). The Daily
+    # Shorts chain still only fires when there's already something to post.
     if: >-
       github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'schedule' ||
       (needs.plan.outputs.new_count != '0' &&
-       (github.event_name == 'schedule' ||
-        github.event.workflow_run.conclusion == 'success'))
+       github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 60
     concurrency:
@@ -228,13 +234,25 @@ jobs:
           # un-posted). No hardcoded slate to fall stale.
           SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
           FORCEFLAG=""; [ "${{ inputs.force }}" = "true" ] && FORCEFLAG="--force"
+          TOPUP="${{ inputs.topup }}";               [ -z "$TOPUP" ] && TOPUP="6"
           export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
+          # Keep the queue full: AUTHOR brand-new, non-duplicate stories (with
+          # illustrative data) so the channel never runs dry and has to re-post
+          # duplicates. Runs for queue-driven modes and the manual 'author' mode.
+          # Soft-fails (no LLM key / transient error) so posting still proceeds.
+          case "$MODE" in
+            author|schedule|auto|all)
+              python scripts/author_stories.py --top-up "$TOPUP" \
+                || echo "author step skipped (no LLM key or transient error)" ;;
+          esac
           # Self-heal any un-renderable chart specs (single-point "comparison"
           # charts the package generator sometimes emits) before we render, so
           # the channel can never ship a broken/duplicated bar chart again.
           python scripts/normalize_charts.py || echo "normalize skipped"
           echo "mode=$MODE expected=$EXPECTED every=$EVERY start=$START slugs='${SLUGS:-<all un-posted>}'"
           case "$MODE" in
+            author)
+              echo "author-only mode: queue topped up to >=$TOPUP un-posted, not posting." ;;
             verify)
               python scripts/post_stories.py --check-channel ;;
             canary)
@@ -290,6 +308,9 @@ jobs:
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         run: |
           git add state/explainer_posted_log.json state/analytics_explainer state/translation_cache.json 2>/dev/null || true
+          # Persist any freshly AUTHORED stories so they outlive this ephemeral
+          # run (the new config entries + their illustrative datasets).
+          git add data_learning/niche.config.json data_learning/data 2>/dev/null || true
           # --cached so brand-new (untracked) files are detected too.
           if git diff --cached --quiet; then
             echo "nothing to commit"
