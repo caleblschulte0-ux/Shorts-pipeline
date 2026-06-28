@@ -226,34 +226,11 @@ THEME_DESC = {
 
 def smart_rank(title: str = "", script: str = "",
                hashtags: list[str] | None = None, n: int = 3) -> list[str]:
-    """Rank the best-fitting bottom themes for a story SEMANTICALLY via
-    Pollinations' free text model — so relevance no longer depends on us
-    having written the right keyword (the gator->plinko problem). Returns up
-    to `n` valid theme names; falls back to keyword rank_themes() (then []) on
-    any failure. Keyless, best-effort, never raises."""
-    try:
-        menu = "; ".join(f"{k}: {v}" for k, v in THEME_DESC.items())
-        q = (f"You pick a background mini-game for a short news video. "
-             f"From this menu, choose the {n} that best FIT the story, most "
-             f"relevant first. Menu: {menu}. Story title: {title}. "
-             f"Script: {script[:280]}. "
-             f"Answer with ONLY a comma-separated list of theme names.")
-        url = "https://text.pollinations.ai/" + urllib.parse.quote(q[:1500])
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        txt = urllib.request.urlopen(req, timeout=20).read().decode(
-            "utf-8", "ignore").lower()
-        picks: list[str] = []
-        for tok in re.split(r"[^a-z]+", txt):
-            if tok in _THEME_CLASSES and tok not in picks:
-                picks.append(tok)
-            if len(picks) >= n:
-                break
-        if picks:
-            print(f"[smart_rank] {title[:40]!r} -> {picks}", flush=True)
-            return picks
-    except Exception as e:  # noqa: BLE001
-        print(f"[smart_rank] fallback ({type(e).__name__}: {e})", flush=True)
-    return rank_themes(title, script, hashtags)
+    """Rank the best-fitting bottom themes for a story. Keyword-only — NO image
+    or text AI (operator: do not use Pollinations for the bottom game). The
+    procedural engine does everything itself, including routing. Returns up to
+    `n` keyword-matched theme names, most specific first. Never raises."""
+    return rank_themes(title, script, hashtags)[:n]
 
 
 def rank_themes(title: str = "", script: str = "",
