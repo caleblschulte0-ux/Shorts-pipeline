@@ -61,3 +61,46 @@ the story and passes it to the theme as the character/object.
    and keep adding when a story type recurs with no fit.
 3. Enforce reuse ≤ 1 base game / 3 videos; a reused base game ALWAYS gets a
    different character.
+
+---
+
+## Continuous generation — how the bottom invents new stuff (NO image AI)
+
+Hard constraint (operator): **no Pollinations / no image generation for the
+bottom game.** The existing procedural engine (PIL/numpy) does EVERYTHING,
+including reskinning, and keeps regenerating fresh every render. Yet it must
+still fit stories it has never seen, without hand-coding each one. The way:
+**separate CREATIVITY from RENDERING.**
+
+### Rendering (100% procedural, in-vibe, fresh each render)
+1. **Parts sprite synthesizer.** One generic builder draws any creature/vehicle
+   from parameterized parts — body, head, neck, legs×N, tail, ears/horns, wings,
+   shell, beak, wheels, hull, turret… A *narwhal* or a *forklift* is just a new
+   set of part values. NO per-subject code. Rendered as a flat silhouette (or
+   posterized for colorful themes) so it always matches the game look.
+2. **Composable game engine.** Games are built from PRIMITIVES (`flee`, `chase`,
+   `stack`, `grab`, `launch-projectiles`, `bounce`, `collide`, `tug`, `scroll`)
+   over SCENES (road/water/night/arena/grid) with ACTORS (synthesized sprites).
+   A new game is a new COMBINATION, not a new class. Existing themes
+   (runner/pursuit/claw…) become presets of this engine.
+
+### Creativity (a tiny TEXT spec — text LLM only, e.g. Groq; NOT Pollinations)
+Map the story to a small JSON spec:
+```
+story → { game: {scene, primitive, actors:[subject,…]},
+          sprites: { subject → part-params } }
+```
+e.g. warship strike → `{scene:water, primitive:exchange-projectiles,
+actors:[ship,ship]}`; narwhal escape → `flee` with a narwhal synthesized from
+parts. The LLM COMPOSES; the procedural engine DRAWS.
+
+### Continuity (it keeps learning, on its own)
+- **Growing spec cache** `state/game_specs.json`: every authored spec is saved
+  by subject / story-type and reused next time. The library COMPOUNDS — faster
+  and deterministic on repeats, richer over time, no operator input.
+- **Fallback** when the LLM is unavailable: keyword/heuristic mapping + the
+  cache. No hard dependency, no rate-limit stalls, never blocks a render.
+
+Result: the bottom fits an unseen story (narwhal, forklift, tug-of-war,
+demolition derby) by composing parts + primitives from a one-shot text spec,
+rendered procedurally in-vibe, fresh every time — with ZERO image AI.
