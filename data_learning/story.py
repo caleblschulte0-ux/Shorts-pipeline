@@ -205,26 +205,46 @@ def _spread(ins) -> float:
     return (max(vals) / min(vals)) if vals and min(vals) > 0 else 0.0
 
 
+# The creative non-map, non-trend viz forms, in rotation order. The illustrated
+# DIORAMA (objects sized by value + numbers) is the strongest but heaviest, so it
+# runs at most ONCE per video; the rest cycle through other shapes so every video
+# shows VARIETY instead of the same graphic-plus-number every segment.
+_CREATIVE_ROTATION = ["pictograph", "callouts", "pictograph", "callouts"]
+
+
 def _finalize_viz(inss: list) -> None:
     """Decide each segment's final `kind`. Rules (operator-mandated):
       * ANY place data -> a MAP, every time (states/countries -> choropleth,
         cities/metros -> pinned map). No cap.
       * time-series trends -> the styled line (the only 'chart' we keep).
-      * everything else -> bold number CALLOUTS over the scene image.
-    No dots, no icon-tiling, no bars, no bare numbers."""
+      * everything else -> a creative form. The illustrated DIORAMA appears at
+        most ONCE per video (the 'graphic + number' scene); other comparison
+        segments rotate through bubbles / pictograph / callouts so each video
+        has visual VARIETY.
+    No dots, no bars, no bare numbers."""
+    diorama_used = False
+    rot = 0
     for ins in inss:
         sv = getattr(ins, "suggested_viz", None)
         if sv in ("geo_us", "geo_world", "geo_city"):
             ins.kind = sv                       # place -> map, always
-        elif sv in ("callouts", "diorama"):
-            ins.kind = sv
         elif sv == "trend" or ins.kind == "trend":
             ins.kind = "trend"                  # time-series keeps the line
+        elif sv in ("bubbles", "pictograph", "callouts"):
+            ins.kind = sv                       # explicit creative hint wins
+        elif sv == "diorama" and not diorama_used:
+            ins.kind = "diorama"                # the one illustrated scene
+            diorama_used = True
         else:
-            # rank/comparison/share/outlier -> illustrated proportional SCENE
-            # (objects sized by value, numbers above). Falls back to callouts
-            # automatically if image generation is unavailable.
-            ins.kind = "diorama"
+            # rank/comparison/share/outlier. First such segment gets the
+            # illustrated diorama; later ones rotate through other creative
+            # forms so the video doesn't repeat the same graphic-plus-number.
+            if not diorama_used:
+                ins.kind = "diorama"
+                diorama_used = True
+            else:
+                ins.kind = _CREATIVE_ROTATION[rot % len(_CREATIVE_ROTATION)]
+                rot += 1
 
 
 def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
