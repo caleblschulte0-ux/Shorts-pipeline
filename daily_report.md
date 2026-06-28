@@ -1,35 +1,38 @@
 # Daily Trending Shorts — 2026-06-28
 
 - queued: **6**
-- succeeded: **4**
-- quarantined (off-topic imagery): **0**
-- failed: **2**
+- succeeded: **5**
+- quarantined (off-topic imagery): **1**
+- failed: **0**
 
 ## Posted
-- **Monkeys Started Kidnapping Other Monkeys' Babies**
-  - topic: Monkeys Started Kidnapping Other Monkeys' Babies
+- **Iran Just Bombed an American Ally's Backyard**
+  - topic: Iran Just Bombed an American Ally's Backyard
   - publishes: `2026-06-28T13:00:00Z`
-  - https://youtube.com/shorts/ZIQ2YDCwhP8
-  - took: 368.0s
-- **They Built the Tallest Waterslide Ever**
-  - topic: They Built the Tallest Waterslide Ever
+  - https://youtube.com/shorts/BpJ91FOqBhc
+  - took: 534.1s
+- **Utah's Biggest Fire Just Made Weather History**
+  - topic: Utah's Biggest Fire Just Made Weather History
   - publishes: `2026-06-28T15:00:00Z`
-  - https://youtube.com/shorts/o8VT5JU6nZg
-  - took: 420.4s
-- **Kilauea Is Shooting Lava 1,000 Feet Into the Sky**
-  - topic: Kilauea Is Shooting Lava 1,000 Feet Into the Sky
+  - https://youtube.com/shorts/7iKzrP5dA1g
+  - took: 402.4s
+- **Europe Just Shattered 150 Years of Heat Records**
+  - topic: Europe Just Shattered 150 Years of Heat Records
   - publishes: `2026-06-28T17:00:00Z`
-  - https://youtube.com/shorts/zjHxv6WG7Yk
-  - took: 297.0s
-- **We're About to Lose Control of Earth's Orbit**
-  - topic: We're About to Lose Control of Earth's Orbit
+  - https://youtube.com/shorts/zLDkIMhBVZ0
+  - took: 516.4s
+- **Scientists Found a 400-Year-Old Sea Giant in Fiordland**
+  - topic: Scientists Found a 400-Year-Old Sea Giant in Fiordland
   - publishes: `2026-06-28T19:00:00Z`
-  - https://youtube.com/shorts/1NFrEwBha8I
-  - took: 293.7s
+  - https://youtube.com/shorts/JrNb0nUqty4
+  - took: 480.3s
+- **Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.**
+  - topic: Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.
+  - publishes: `2026-06-28T21:00:00Z`
+  - https://youtube.com/shorts/zYYItLCApoU
+  - took: 515.2s
 
-## Failed
-- **There's a Volcano Underwater With Sharks Inside It**
-  - error: `RelevanceGateError: 88% of shots (7/8) fell to stock / placeholder with almost no curated anchor — the image pipeline likely failed wholesale — refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.`
-- **A Heat Dome Is Turning the West Into a Tinderbox**
-  - error: `RelevanceGateError: 88% of shots (7/8) fell to stock / placeholder with almost no curated anchor — the image pipeline likely failed wholesale — refusing to ship a video where the on-screen imagery doesn't match the narration. Inspect state/last_failed_audit.json for the per-shot breakdown.`
+## Quarantined (off-topic imagery — fix & re-author)
+- **Amazon Scientists Just Found the Zombie Spider**
+  - quarantined: illustration coverage 37.5% < 50.0% — 5 shot(s) have no real image and would fall to off-topic keyword stock: ['Other animals flee from infected bugs', 'impersonate that infection', 'plays completely motionless', 'Researchers confirm first case of pathogen mimicry', 'pretending to already be dead']
 
