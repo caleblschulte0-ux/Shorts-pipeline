@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "slug": "kilauea-lava-fountain-hawaii-2026",
+  "title": "Kilauea Is Shooting Lava 1,000 Feet Into the Sky",
+  "hashtags": [
+    "kilauea",
+    "volcano",
+    "hawaii",
+    "lava",
+    "eruption",
+    "nature",
+    "geology",
+    "science",
+    "bigisland",
+    "wild",
+    "fyp",
+    "viral"
+  ],
+  "script": "Hawaii's Kilauea volcano is shooting fountains of lava a thousand feet into the sky. The eruptions come in bursts called episodes: the ground cracks open, and a wall of molten rock blasts upward like a fire hose, higher than the Eiffel Tower. Each episode can last hours, then suddenly stop, then start again days later. The lava glows so bright you can see it from miles away at night. Scientists watch the ground swell and tilt before each one, like the volcano is taking a breath before it spits. It's one of the most active volcanoes on Earth, and right now it's putting on a show. So what's pushing all that lava up so high?",
+  "shots": [
+    {
+      "phrase": "shooting fountains of lava a thousand feet into the sky",
+      "query": "lava fountain eruption",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pahoeoe_fountain_edit2.jpg"
+    },
+    {
+      "phrase": "bursts called episodes",
+      "query": "kilauea eruption",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pahoeoe_fountain_edit2.jpg"
+    },
+    {
+      "phrase": "a wall of molten rock blasts upward",
+      "query": "lava fountain night",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pahoeoe_fountain_edit2.jpg"
+    },
+    {
+      "phrase": "higher than the Eiffel Tower",
+      "query": "volcano lava fountain",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "glows so bright you can see it from miles away",
+      "query": "lava glow night",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pahoeoe_fountain_edit2.jpg"
+    },
+    {
+      "phrase": "watch the ground swell and tilt",
+      "query": "volcano monitoring",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "most active volcanoes on Earth",
+      "query": "hawaii volcano lava",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pahoeoe_fountain_edit2.jpg"
+    },
+    {
+      "phrase": "pushing all that lava up so high",
+      "query": "lava eruption",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pahoeoe_fountain_edit2.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "a thousand feet into the sky",
+      "text": "1,000 FEET",
+      "color": "#ff6a00"
+    },
+    {
+      "phrase": "higher than the Eiffel Tower",
+      "text": "TALLER THAN A TOWER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "molten rock blasts upward",
+      "text": "MOLTEN ROCK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "most active volcanoes on Earth",
+      "text": "MOST ACTIVE",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "epic",
+  "bottom_theme": "volcano"
+}
