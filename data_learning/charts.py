@@ -578,45 +578,45 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
     base_rgb = to_rgb(BAR_BASE)
     t = max(0.0, min(1.0, reveal))
 
-    ax = fig.add_axes([0.05, 0.14, 0.90, 0.62])
+    # Map on the LEFT ~60%; ranked legend on the right (collision-free).
+    ax = fig.add_axes([0.01, 0.13, 0.62, 0.62])
     ax.set_axis_off()
     if scope == "us":
         ax.set_xlim(-125, -66); ax.set_ylim(24, 50); mean_lat = 37.0
     else:
         ax.set_xlim(-170, 190); ax.set_ylim(-58, 84); mean_lat = 15.0
     ax.set_aspect(1.0 / _m.cos(_m.radians(mean_lat)))
-
-    centroids: dict = {}
     for feat in gj["features"]:
         nm = feat.get("properties", {}).get("name", "")
-        present = nm in values
-        if present:
+        if nm in values:
             tgt = to_rgb(cmap(norm(values[nm])))
             fc = tuple(base_rgb[i] + (tgt[i] - base_rgb[i]) * t for i in range(3))
             edge, lw, z = TEXT, 0.8, 3
         else:
             fc, edge, lw, z = base_rgb, CARD_EDGE, 0.4, 2
-        best = None
         for ring in _exterior_rings(feat.get("geometry", {})):
             ax.add_patch(_Poly(ring, closed=True, facecolor=fc, edgecolor=edge,
                                linewidth=lw, zorder=z))
-            if present and (best is None or len(ring) > len(best)):
-                best = ring
-        if present and best is not None:
-            xs = [pt[0] for pt in best]; ys = [pt[1] for pt in best]
-            centroids[nm] = (sum(xs) / len(xs), sum(ys) / len(ys))
 
-    specs = []
+    # Ranked legend (swatch + label + value), one row each — never overlaps.
     la = _lblalpha(reveal)
-    for nm, v in sorted(values.items(), key=lambda kv: kv[1], reverse=True):
-        if nm not in centroids:
-            continue
-        cx, cy = centroids[nm]
-        txt = ax.text(cx, cy, _vfmt(v), ha="center", va="center", fontsize=23,
-                      color=TEXT, fontweight="bold", zorder=5, alpha=la,
-                      bbox=dict(boxstyle="round,pad=0.18", fc=(0, 0, 0, 0.5 * la),
-                                ec="none"))
-        specs.append((v, "art", txt, None))
+    ranked = sorted(values.items(), key=lambda kv: kv[1], reverse=True)[:6]
+    leg = fig.add_axes([0, 0, 1, 1]); leg.set_axis_off()
+    leg.set_xlim(0, 1); leg.set_ylim(0, 1)
+    y0 = 0.70
+    dy = min(0.115, 0.60 / max(1, len(ranked)))
+    specs = []
+    for i, (nm, v) in enumerate(ranked):
+        y = y0 - i * dy
+        col = cmap(norm(v))
+        leg.scatter([0.655], [y], s=230, color=col, edgecolors="white",
+                    linewidths=1.2, zorder=6, alpha=min(1.0, 0.3 + la))
+        disp = nm if len(nm) <= 15 else nm[:14] + "…"
+        leg.text(0.69, y + 0.018, disp, fontsize=21, color=TEXT, fontweight="bold",
+                 va="center", alpha=la, zorder=6)
+        t2 = leg.text(0.69, y - 0.024, _vfmt(v), fontsize=30, color=col,
+                      fontweight="bold", va="center", alpha=la, zorder=6)
+        specs.append((v, "art", t2, None))
     return ax, specs
 
 
@@ -685,6 +685,54 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
     if values:
         top_icons = max(1, int(round((values[0] / vmax) * cols)))
         specs = [(values[0], "pt", float(top_icons - 1), float(n - 1))]
+    return ax, specs
+
+
+def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
+    """Proportional bubbles: each item a circle whose AREA scales with its value,
+    packed in a row, value inside + label below. A clean, fast, creative
+    alternative to the illustrated diorama (no images)."""
+    import math as _m
+    from matplotlib.patches import Circle
+    items = _ordered_items(insight)[:5]
+    vals = [max(0.0001, p.value) for p in items]
+    n = len(items)
+    ax = fig.add_axes([0.04, 0.08, 0.92, 0.68])
+    ax.set_axis_off()
+    wpx = 0.92 * SERIES_W * SERIES_DPI
+    hpx = 0.68 * SERIES_H * SERIES_DPI
+    ax.set_xlim(0, 100)
+    ax.set_ylim(0, 100 * hpx / wpx)
+    ax.set_aspect("equal")
+    ymax = 100 * hpx / wpx
+    t = max(0.0, min(1.0, reveal))
+    # radius ~ sqrt(value) (area ∝ value); scale the packed row to fit width.
+    rraw = [_m.sqrt(v) for v in vals]
+    gap = 4.0
+    scale = (100 - gap * (n + 1)) / (2 * sum(rraw)) if sum(rraw) else 1.0
+    rad = [r * scale for r in rraw]
+    rad = [min(r, ymax / 2 - 6) for r in rad]      # keep inside vertical band
+    # Centre the packed row both ways so there's no empty band / left bias.
+    row_w = sum(2 * r for r in rad) + gap * (n - 1)
+    cy = ymax / 2
+    x = (100 - row_w) / 2.0
+    specs = []
+    for i, (p, r) in enumerate(zip(items, rad)):
+        cx = x + r
+        x += 2 * r + gap
+        color = (HIGHLIGHT if p.label == insight.highlight_label
+                 else WARN if (insight.baseline and p.label == insight.baseline.label)
+                 else ACCENT)
+        ax.add_patch(Circle((cx, cy), r * t, facecolor=color, edgecolor="white",
+                            linewidth=1.5, alpha=0.92, zorder=3))
+        fs = max(16, min(46, r * 2.0))
+        tt = ax.text(cx, cy, _vfmt(p.value), ha="center", va="center",
+                     color="#0B1020", fontsize=fs, fontweight="bold",
+                     zorder=4, alpha=_lblalpha(reveal))
+        ax.text(cx, cy - r - 3.2, p.label, ha="center", va="top", color=TEXT,
+                fontsize=22, fontweight="bold", zorder=4, alpha=_lblalpha(reveal),
+                path_effects=_shadow())
+        specs.append((p.value, "art", tt, None))
     return ax, specs
 
 
@@ -875,6 +923,11 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_pictograph(fig, plt, insight, subtitle, reveal)
+    elif insight.kind == "bubbles":
+        low = "lowest" in insight.main_insight.lower()
+        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_bubbles(fig, plt, insight, subtitle, reveal)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
@@ -949,12 +1002,86 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
         cuts.append(img)
     if not any(c is not None for c in cuts):
         return None                      # nothing generated -> caller uses callouts
+    # Largest value first so the "hero" object is always the biggest one.
+    order = sorted(range(len(items)), key=lambda i: -items[i].value)
+    items = [items[i] for i in order]
+    cuts = [cuts[i] for i in order]
+    vals = [vals[i] for i in order]
 
     n = len(items)
-    num_font = _pil_font(104)
-    lab_font = _pil_font(44)
-    top_m, bot_m = 250, 110               # room for the role label / captions
-    row_h = (H - top_m - bot_m) / n       # rows stack to fill the whole frame
+    num_font = _pil_font(64)
+    lab_font = _pil_font(36)
+    big_num_font = _pil_font(124)         # for the side-by-side ranking rows
+    big_lab_font = _pil_font(48)
+    # The diorama owns the whole TOP region, above the bottom "game" strip.
+    RX0, RX1 = 40, 1040
+    RTOP, RBOT = 80, 1180                  # game strip begins ~1219
+    RW, RH = RX1 - RX0, RBOT - RTOP
+    NUM_H, LAB_H = 86, 56                  # reserved space for number / label
+    aspects = [(c.width / c.height) if c else 1.1 for c in cuts]
+
+    def _color(p):
+        return (HIGHLIGHT if p.label == insight.highlight_label
+                else WARN if (insight.baseline and p.label == insight.baseline.label)
+                else ACCENT)
+
+    # Each placed object -> dict(cx, top, w, h, value, label, color, idx).
+    placed: list[dict] = []
+    dominant = n >= 2 and vals[0] >= 1.8 * (vals[1] or 1e-9)
+
+    if dominant:
+        # One value dwarfs the rest: a giant HERO fills the upper frame and the
+        # others sit as a value-sized row on the ground line beneath it, so the
+        # hero literally towers over them ("the size IS the data").
+        prov = 0.58 * RH                  # provisional hero height for sizing sats
+        sat_h = [max(120.0, prov * (vals[i] / vals[0])) for i in range(1, n)]
+        sat_w = [sat_h[k] * aspects[k + 1] for k in range(len(sat_h))]
+        GAP_H = 54
+        row_w = sum(sat_w) + GAP_H * (len(sat_w) - 1)
+        if row_w > RW:                    # shrink ONLY the satellites to fit
+            s = RW / row_w
+            sat_h = [h * s for h in sat_h]
+            sat_w = [w * s for w in sat_w]
+            row_w = sum(sat_w) + GAP_H * (len(sat_w) - 1)
+        band_h = (max(sat_h) if sat_h else 0) + NUM_H + LAB_H
+        upper_h = RH - band_h - 30
+        hbw, hbh = RW * 0.96, upper_h - NUM_H - LAB_H
+        hero_h = min(hbh, hbw / aspects[0])
+        hero_w = hero_h * aspects[0]
+        hero_top = RTOP + NUM_H + (upper_h - NUM_H - LAB_H - hero_h) / 2
+        placed.append(dict(cx=RX0 + RW / 2.0, top=hero_top, w=hero_w, h=hero_h,
+                           value=vals[0], label=items[0].label,
+                           color=_color(items[0]), idx=0))
+        ground = RBOT - LAB_H
+        x = RX0 + (RW - row_w) / 2.0
+        for k in range(len(sat_h)):
+            placed.append(dict(cx=x + sat_w[k] / 2.0, top=ground - sat_h[k],
+                               w=sat_w[k], h=sat_h[k], value=vals[k + 1],
+                               label=items[k + 1].label,
+                               color=_color(items[k + 1]), idx=k + 1))
+            x += sat_w[k] + GAP_H
+    else:
+        # Comparable values -> a vertical RANKING that fills the whole frame top
+        # to bottom: each item is a big illustration on the left with its number
+        # on the right, one row each. Wide images can't share a row and stay
+        # tall, so we stack them instead — no empty bands.
+        row_h = RH / n
+        for i in range(n):
+            slot_cy = RTOP + i * row_h + row_h / 2.0
+            oh = (row_h - 26) * (0.66 + 0.34 * (vals[i] / vmax))
+            ow = oh * aspects[i]
+            ow_cap = RW * 0.46                 # leave the right half for the number
+            if ow > ow_cap:
+                ow = ow_cap
+                oh = ow / aspects[i]
+            ocx = RX0 + RW * 0.28              # object centred in the left half
+            nx = RX0 + RW * 0.72              # big number centred in the right half
+            placed.append(dict(cx=ocx, top=slot_cy - oh / 2.0, w=ow, h=oh,
+                               value=vals[i], label=items[i].label,
+                               color=_color(items[i]), idx=i, mode="side",
+                               num_pos=(nx, slot_cy - 30, "c"),
+                               lab_pos=(nx, slot_cy + 60, "c")))
+
     span = 1.0 / n
     anchors = []
     pattern = str(out_dir / f"{slug}_build%02d.png")
@@ -962,44 +1089,56 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
         r = 1.0 if f == frames else f / frames
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         draw = ImageDraw.Draw(canvas)
-        for i, (p, img) in enumerate(zip(items, cuts)):
-            # rows reveal top-to-bottom, one at a time.
-            lr = (r - i * span) / (span * 0.8)
+        for pl in placed:
+            i = pl["idx"]
+            lr = (r - i * span) / (span * 0.8)       # reveal one at a time
             lr = max(0.0, min(1.0, lr))
             lr = 1.0 - (1.0 - lr) ** 2
             if lr <= 0.0:
                 continue
-            color = (HIGHLIGHT if p.label == insight.highlight_label
-                     else WARN if (insight.baseline and p.label == insight.baseline.label)
-                     else ACCENT)
-            frac = (p.value / vmax) if vmax else 1.0
-            cy = int(top_m + row_h * (i + 0.5))           # row centre
-            obj_right = int(W * 0.40)
-            if img is not None:
-                oh = int((0.58 + 0.42 * frac) * row_h * 0.9)   # object height ∝ value
-                ow = int(oh * img.width / img.height)
-                if ow > int(W * 0.46):                    # cap to the left ~half
-                    ow = int(W * 0.46)
-                    oh = int(ow * img.height / img.width)
-                im = img.resize((max(1, ow), max(1, oh)))
+            w, h = int(pl["w"]), int(pl["h"])
+            cx = int(pl["cx"])
+            dy = int((1.0 - lr) * 70)               # rise into place
+            top = int(pl["top"]) + dy
+            img = cuts[i]
+            if img is not None and w > 0 and h > 0:
+                im = img.resize((w, h))
                 if lr < 1.0:
                     im.putalpha(im.split()[3].point(lambda v: int(v * lr)))
-                ox = 60
-                canvas.alpha_composite(im, (ox, int(cy - oh / 2)))
-                obj_right = ox + ow
-            # huge number + label to the RIGHT of the object
-            na = max(0.0, min(1.0, (lr - 0.4) / 0.6))
-            tx = max(obj_right + 60, int(W * 0.5))
-            num = _vfmt(p.value)
-            draw.text((tx, cy - 88), num, font=num_font,
-                      fill=_rgba(color, int(255 * na)),
+                canvas.alpha_composite(im, (int(cx - w / 2), top))
+            na = max(0.0, min(1.0, (lr - 0.45) / 0.55))
+            side = pl.get("mode") == "side"
+            nfont = big_num_font if side else num_font
+            lfont = big_lab_font if side else lab_font
+            num = _vfmt(pl["value"])
+            nb = draw.textbbox((0, 0), num, font=nfont)
+            nw, nh = nb[2] - nb[0], nb[3] - nb[1]
+            if pl.get("num_pos"):                   # side layout: explicit anchor
+                px, py, al = pl["num_pos"]
+                nx = px if al == "l" else px - nw / 2
+                ny = py - nh / 2 + dy
+            else:                                   # default: number above object
+                nx = cx - nw / 2
+                ny = top - NUM_H + 8
+            draw.text((nx, ny), num, font=nfont,
+                      fill=_rgba(pl["color"], int(255 * na)),
                       stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
-            draw.text((tx + 4, cy + 36), p.label, font=lab_font,
+            lb = draw.textbbox((0, 0), pl["label"], font=lfont)
+            lw = lb[2] - lb[0]
+            if pl.get("lab_pos"):
+                lx, ly, al = pl["lab_pos"]
+                lxx = lx if al == "l" else lx - lw / 2
+                lyy = ly + dy
+            else:
+                lxx = cx - lw / 2
+                lyy = top + h + 10
+            draw.text((lxx, lyy), pl["label"], font=lfont,
                       fill=(248, 250, 252, int(255 * na)),
                       stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
             if f == frames:
-                anchors.append({"value": float(p.value), "cx": float(tx + 110),
-                                "cy": float(cy - 40), "w": 280.0, "h": 120.0})
+                anchors.append({"value": float(pl["value"]),
+                                "cx": float(nx + nw / 2), "cy": float(ny + nh / 2),
+                                "w": 230.0, "h": 96.0})
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
     return pattern, anchors
 
