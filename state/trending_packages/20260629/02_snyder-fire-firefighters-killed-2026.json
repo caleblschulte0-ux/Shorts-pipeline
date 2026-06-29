@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "slug": "snyder-fire-firefighters-killed-2026",
+  "title": "3 Federal Firefighters Just Died in a Burnover",
+  "hashtags": [
+    "snyderfire",
+    "wildfire",
+    "firefighter",
+    "burnover",
+    "coloradowildfire",
+    "utahwildfire",
+    "BLM",
+    "wildfireseason",
+    "firefighters",
+    "news",
+    "fyp",
+    "viral"
+  ],
+  "script": "The shelter didn't work? Three federal wildland firefighters are dead after a burnover on the Colorado-Utah border Saturday, where two merging wildfires became the Snyder Fire and swallowed their position faster than any shelter could stop. They'd deployed emergency fire shelters — the last-resort metallic blankets designed to reflect heat when there's nowhere left to run. Two others survived, burned. Winds were gusting to 44 miles per hour. Humidity was 2%. Fuel moisture readings were between 2 and 8 percent — basically kindling. The Snyder Fire had been burning at 0 percent containment when the skies turned. Governors of both Utah and Colorado declared emergencies. The names of the three firefighters are still being withheld pending family notifications. So who sends people into those conditions?",
+  "shots": [
+    {
+      "phrase": "The shelter didn't work",
+      "query": "emergency fire shelter foil blanket wildland",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Three federal wildland firefighters are dead",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Small_team_gets_BLM_firetrucks_to_America%E2%80%99s_wildfires_(22845694861).jpg",
+      "query": "BLM wildland firefighters trucks forest",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "burnover on the Colorado-Utah border",
+      "query": "colorado utah border canyon red rock",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "two merging wildfires became the Snyder Fire",
+      "query": "wildfire smoke column aerial west",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "emergency fire shelters — the last-resort metallic blankets",
+      "query": "fire shelter deployment drill training",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "Two others survived, burned",
+      "query": "burn injury hospital emergency transport",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Winds were gusting to 44 miles per hour",
+      "query": "wildfire wind embers flying flames",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Fuel moisture readings were between 2 and 8 percent — basically kindling",
+      "query": "dry brush parched grass fire fuel",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Snyder Fire had been burning at 0 percent containment",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Firefighter_fighting_fire_03.jpg",
+      "query": "wildfire night aerial zero containment",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Governors of both Utah and Colorado declared emergencies",
+      "query": "governor press conference emergency declaration",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "names of the three firefighters are still being withheld",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/My_Public_Lands_Roadtrip-_Meet_BLM%27s_Boise%2C_Idaho_Smokejumpers_(20765838030).jpg",
+      "query": "fallen firefighter memorial tribute helmet",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "who sends people into those conditions",
+      "query": "wildfire crew line suppression helicopter",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "The shelter didn't work",
+      "text": "SHELTER FAILED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Three federal wildland firefighters are dead",
+      "text": "3 FIREFIGHTERS DEAD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Humidity was 2%",
+      "text": "2% HUMIDITY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "basically kindling",
+      "text": "BASICALLY KINDLING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "0 percent containment",
+      "text": "0% CONTAINED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "names of the three firefighters are still being withheld",
+      "text": "NAMES WITHHELD",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
