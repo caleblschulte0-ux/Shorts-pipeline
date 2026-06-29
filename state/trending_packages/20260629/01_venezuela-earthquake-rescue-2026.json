@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "slug": "venezuela-earthquake-rescue-2026",
+  "title": "1,400 Dead in Venezuela. 27 Countries Are Digging.",
+  "hashtags": [
+    "venezuelaearthquake",
+    "venezuela",
+    "caracas",
+    "earthquake",
+    "searchandrescue",
+    "disaster",
+    "worldnews",
+    "breaking",
+    "rescue",
+    "fyp",
+    "viral",
+    "news"
+  ],
+  "script": "Sixty-eight thousand still missing? Two magnitude 7 earthquakes — 39 seconds apart — struck Venezuela on June 24, killing more than 1,430 people and leaving 68,900 unaccounted for. It's the worst earthquake disaster in Venezuelan recorded history. Caracas and La Guaira took the worst of it. Buildings collapsed mid-block. Residents dug with their hands because the government never sent heavy equipment. The golden 72-hour window for finding survivors alive passed days ago. Then on Sunday, rescue workers pulled two 11-year-old boys out of the rubble — days after the quake. Teams from 27 countries are now on the ground with 140 search dogs and 2,245 specialists. The USGS model still says the final toll could reach 100,000. So which of those 68,900 people just hasn't been found yet?",
+  "shots": [
+    {
+      "phrase": "Sixty-eight thousand still missing",
+      "query": "earthquake rubble collapsed building rescue",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Two magnitude 7 earthquakes — 39 seconds apart — struck Venezuela",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2018_Venezuela_earthquake.jpg",
+      "query": "venezuela earthquake damage buildings",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "worst earthquake disaster in Venezuelan recorded history",
+      "query": "caracas venezuela city skyline aerial",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Caracas and La Guaira took the worst of it",
+      "query": "la guaira venezuela coastal city",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "Buildings collapsed mid-block",
+      "query": "collapsed building rubble earthquake destruction",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Residents dug with their hands because the government never sent heavy equipment",
+      "query": "earthquake volunteers digging rubble hands",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The golden 72-hour window for finding survivors alive passed days ago",
+      "query": "search rescue clock time pressure",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "rescue workers pulled two 11-year-old boys out of the rubble",
+      "query": "earthquake survivor rescue alive pulled",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Teams from 27 countries are now on the ground",
+      "query": "international rescue team disaster response",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "140 search dogs and 2,245 specialists",
+      "query": "search rescue dog disaster rubble",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The USGS model still says the final toll could reach 100,000",
+      "query": "USGS earthquake damage assessment map",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "68,900 people just hasn't been found yet",
+      "query": "missing persons earthquake aftermath",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Sixty-eight thousand still missing",
+      "text": "68,900 MISSING",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "killing more than 1,430 people",
+      "text": "1,430+ DEAD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "worst earthquake disaster in Venezuelan recorded history",
+      "text": "WORST IN HISTORY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "72-hour window for finding survivors alive passed",
+      "text": "72H WINDOW CLOSED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "two 11-year-old boys out of the rubble",
+      "text": "BOYS FOUND ALIVE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "final toll could reach 100,000",
+      "text": "MAY HIT 100,000",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

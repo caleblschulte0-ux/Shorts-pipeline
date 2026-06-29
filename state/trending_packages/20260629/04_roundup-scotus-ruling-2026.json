@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "slug": "roundup-scotus-ruling-2026",
+  "title": "Supreme Court Rules: You Can't Sue Roundup for Cancer",
+  "hashtags": [
+    "roundup",
+    "bayer",
+    "monsanto",
+    "supremecourt",
+    "glyphosate",
+    "SCOTUS",
+    "cancer",
+    "herbicide",
+    "lawsuits",
+    "health",
+    "news",
+    "fyp",
+    "viral"
+  ],
+  "script": "Your weed killer won? The Supreme Court ruled 7-to-2 today that you cannot sue Bayer — makers of Roundup — for failing to warn you about cancer risk from its main chemical, glyphosate. John Durnell used Roundup for years and got non-Hodgkin lymphoma, won a $1.25 million Missouri jury verdict, and brought it all the way to the Supreme Court. Gone. The court ruled the EPA said glyphosate was safe and that federally-approved labels preempt state-level lawsuits. Bayer stock jumped nearly 19 percent. The company still faces roughly 60,000 remaining lawsuits on other grounds. Glyphosate is in virtually every American lawn. The International Agency for Research on Cancer still lists it as a probable human carcinogen. So if you're still using Roundup, who's responsible if something goes wrong?",
+  "shots": [
+    {
+      "phrase": "Your weed killer won",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Weed_control_in_action_(8069319357).jpg",
+      "query": "roundup herbicide weed killer spray lawn",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Supreme Court ruled 7-to-2 today",
+      "query": "US Supreme Court building exterior",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "cannot sue Bayer — makers of Roundup",
+      "query": "roundup weed killer bottle garden store",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "cancer risk from its main chemical, glyphosate",
+      "query": "glyphosate herbicide field spray",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "John Durnell used Roundup for years and got non-Hodgkin lymphoma",
+      "query": "cancer patient hospital chemotherapy treatment",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "won a $1.25 million Missouri jury verdict",
+      "query": "courtroom jury trial verdict gavel",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Gone.",
+      "query": "gavel court ruling overturned",
+      "mascot_pose": "dismiss"
+    },
+    {
+      "phrase": "EPA said glyphosate was safe",
+      "query": "EPA headquarters Washington DC government",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Bayer stock jumped nearly 19 percent",
+      "query": "stock market chart green rising gains",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "roughly 60,000 remaining lawsuits",
+      "query": "legal documents courthouse lawsuit stack",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Glyphosate is in virtually every American lawn",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Weed_control_in_action_(8069319357).jpg",
+      "query": "american suburban lawn grass green",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "International Agency for Research on Cancer still lists it as a probable human carcinogen",
+      "query": "cancer research laboratory scientist",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Your weed killer won",
+      "text": "ROUNDUP WINS",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Supreme Court ruled 7-to-2",
+      "text": "7-2 RULING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Gone.",
+      "text": "CASE GONE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Bayer stock jumped nearly 19 percent",
+      "text": "+19% BAYER STOCK",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "roughly 60,000 remaining lawsuits",
+      "text": "60,000 SUITS REMAIN",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "probable human carcinogen",
+      "text": "PROBABLE CARCINOGEN",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
