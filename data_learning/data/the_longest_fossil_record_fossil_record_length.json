@@ -1,0 +1,26 @@
+{
+  "key": "the_longest_fossil_record_fossil_record_length",
+  "title": "Fossil Record Length",
+  "unit": "million years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Jellyfish",
+      "value": 500.0
+    },
+    {
+      "label": "Shortest Record",
+      "value": 10.0
+    }
+  ]
+}

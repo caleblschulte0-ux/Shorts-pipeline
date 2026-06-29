@@ -1,0 +1,26 @@
+{
+  "key": "the_world_s_largest_crystal_cave_crystal_cave_de",
+  "title": "Crystal Cave Depth",
+  "unit": "feet",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Largest Cave",
+      "value": 1000.0
+    },
+    {
+      "label": "Smallest Cave",
+      "value": 100.0
+    }
+  ]
+}

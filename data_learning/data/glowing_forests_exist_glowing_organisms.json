@@ -1,0 +1,30 @@
+{
+  "key": "glowing_forests_exist_glowing_organisms",
+  "title": "Glowing Organisms",
+  "unit": "%",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Fireflies",
+      "value": 1.0
+    },
+    {
+      "label": "Glowworms",
+      "value": 5.0
+    },
+    {
+      "label": "Glowing Mushrooms",
+      "value": 10.0
+    }
+  ]
+}

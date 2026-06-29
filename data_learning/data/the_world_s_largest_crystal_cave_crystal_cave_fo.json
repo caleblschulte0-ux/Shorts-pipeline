@@ -1,0 +1,26 @@
+{
+  "key": "the_world_s_largest_crystal_cave_crystal_cave_fo",
+  "title": "Crystal Cave Formation",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1 million years ago",
+      "value": 0.0
+    },
+    {
+      "label": "Present day",
+      "value": 50.0
+    }
+  ]
+}

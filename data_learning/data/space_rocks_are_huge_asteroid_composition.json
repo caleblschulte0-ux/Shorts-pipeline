@@ -1,0 +1,30 @@
+{
+  "key": "space_rocks_are_huge_asteroid_composition",
+  "title": "Asteroid Composition",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Rocky material",
+      "value": 75.0
+    },
+    {
+      "label": "Metal",
+      "value": 20.0
+    },
+    {
+      "label": "Ice",
+      "value": 5.0
+    }
+  ]
+}
