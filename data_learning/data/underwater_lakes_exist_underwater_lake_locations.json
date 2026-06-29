@@ -1,0 +1,30 @@
+{
+  "key": "underwater_lakes_exist_underwater_lake_locations",
+  "title": "Underwater Lake Locations",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "United States",
+      "value": 10.0
+    },
+    {
+      "label": "Mexico",
+      "value": 5.0
+    },
+    {
+      "label": "Australia",
+      "value": 8.0
+    }
+  ]
+}

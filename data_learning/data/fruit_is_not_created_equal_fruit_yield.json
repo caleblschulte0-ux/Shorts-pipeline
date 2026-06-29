@@ -1,0 +1,26 @@
+{
+  "key": "fruit_is_not_created_equal_fruit_yield",
+  "title": "Fruit Yield",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Banana tree",
+      "value": 100.0
+    },
+    {
+      "label": "Apple tree",
+      "value": 20.0
+    }
+  ]
+}

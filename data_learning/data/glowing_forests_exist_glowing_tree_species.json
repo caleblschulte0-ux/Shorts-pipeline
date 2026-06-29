@@ -1,0 +1,26 @@
+{
+  "key": "glowing_forests_exist_glowing_tree_species",
+  "title": "Glowing Tree Species",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 50.0
+    },
+    {
+      "label": "2023",
+      "value": 70.0
+    }
+  ]
+}

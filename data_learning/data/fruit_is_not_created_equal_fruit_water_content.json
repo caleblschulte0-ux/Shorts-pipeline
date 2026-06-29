@@ -1,0 +1,26 @@
+{
+  "key": "fruit_is_not_created_equal_fruit_water_content",
+  "title": "Fruit Water Content",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Watermelon",
+      "value": 92.0
+    },
+    {
+      "label": "Date",
+      "value": 21.0
+    }
+  ]
+}

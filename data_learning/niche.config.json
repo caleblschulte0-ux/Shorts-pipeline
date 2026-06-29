@@ -4416,6 +4416,324 @@
         }
       ],
       "question": "What's the most impressive thing you've learned about the human brain?"
+    },
+    {
+      "slug": "glowing-forests-exist",
+      "title": "Glowing Forests Exist",
+      "hook": "There's a magical place where trees light up the night",
+      "closing": "Bioluminescent forests are a real thing and they're breathtaking",
+      "hashtags": [
+        "bioluminescence",
+        "forest",
+        "nature",
+        "glowing",
+        "trees"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "glowing_forests_exist_glowing_organisms",
+          "params": {
+            "file": "glowing_forests_exist_glowing_organisms.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 GLOWING ORGANISMS",
+          "topic": "Glowing Organisms",
+          "say": "Fireflies glow at 1%, glowworms at 5%, and glowing mushrooms at 10% efficiency",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "glowing_forests_exist_forest_coverage",
+          "params": {
+            "file": "glowing_forests_exist_forest_coverage.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 FOREST COVERAGE",
+          "topic": "Forest Coverage",
+          "say": "The United States has 749 million acres of forest, while Brazil has 1.5 billion acres",
+          "viz": "geo_world"
+        },
+        {
+          "source": "offline",
+          "key": "glowing_forests_exist_glowing_tree_species",
+          "params": {
+            "file": "glowing_forests_exist_glowing_tree_species.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 GLOWING TREE SPECI",
+          "topic": "Glowing Tree Species",
+          "say": "There are over 70 species of glowing trees, with 10 new species discovered in the last 5 years",
+          "viz": "pictograph"
+        }
+      ],
+      "question": "Have you ever seen a glowing forest in person?"
+    },
+    {
+      "slug": "underwater-lakes-exist",
+      "title": "Underwater Lakes Exist",
+      "hook": "There's a lake that's completely underwater",
+      "closing": "Underwater lakes are a real thing and they're home to unique ecosystems",
+      "hashtags": [
+        "underwater",
+        "lake",
+        "ocean",
+        "unique",
+        "ecosystems"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "underwater_lakes_exist_underwater_lake_depth",
+          "params": {
+            "file": "underwater_lakes_exist_underwater_lake_depth.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 UNDERWATER LAKE DE",
+          "topic": "Underwater Lake Depth",
+          "say": "The deepest underwater lake is 300 feet deep, while the shallowest is 10 feet deep",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "underwater_lakes_exist_underwater_lake_locations",
+          "params": {
+            "file": "underwater_lakes_exist_underwater_lake_locations.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 UNDERWATER LAKE LO",
+          "topic": "Underwater Lake Locations",
+          "say": "Underwater lakes can be found in the United States, Mexico, and Australia",
+          "viz": "geo_world"
+        },
+        {
+          "source": "offline",
+          "key": "underwater_lakes_exist_underwater_lake_formation",
+          "params": {
+            "file": "underwater_lakes_exist_underwater_lake_formation.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 UNDERWATER LAKE FO",
+          "topic": "Underwater Lake Formation",
+          "say": "Underwater lakes have been forming for over 10,000 years, with new ones still being discovered",
+          "viz": "trend"
+        }
+      ],
+      "question": "What do you think is the most interesting thing about underwater lakes?"
+    },
+    {
+      "slug": "the-longest-fossil-record",
+      "title": "The Longest Fossil Record",
+      "hook": "There's a creature that's been alive for over 500 million years",
+      "closing": "The longest fossil record belongs to a species of jellyfish",
+      "hashtags": [
+        "fossil",
+        "record",
+        "jellyfish",
+        "longest",
+        "species"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "the_longest_fossil_record_fossil_record_length",
+          "params": {
+            "file": "the_longest_fossil_record_fossil_record_length.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 FOSSIL RECORD LENG",
+          "topic": "Fossil Record Length",
+          "say": "The longest fossil record belongs to a species of jellyfish, at 500 million years, while the shortest is 10 million years",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "the_longest_fossil_record_fossil_record_location",
+          "params": {
+            "file": "the_longest_fossil_record_fossil_record_location.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 FOSSIL RECORD LOCA",
+          "topic": "Fossil Record Locations",
+          "say": "Fossils can be found in the United States, Canada, and China",
+          "viz": "geo_world"
+        },
+        {
+          "source": "offline",
+          "key": "the_longest_fossil_record_fossil_record_discover",
+          "params": {
+            "file": "the_longest_fossil_record_fossil_record_discover.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 FOSSIL RECORD DISC",
+          "topic": "Fossil Record Discovery",
+          "say": "New fossils are still being discovered, with over 100 new species found in the last 10 years",
+          "viz": "trend"
+        }
+      ],
+      "question": "What do you think is the most interesting thing about the fossil record?"
+    },
+    {
+      "slug": "the-world-s-largest-crystal-cave",
+      "title": "The World's Largest Crystal Cave",
+      "hook": "There's a cave filled with giant crystals that's over 1,000 feet deep",
+      "closing": "The world's largest crystal cave is a breathtaking natural wonder",
+      "hashtags": [
+        "crystal",
+        "cave",
+        "giant",
+        "natural",
+        "wonder"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "the_world_s_largest_crystal_cave_crystal_cave_de",
+          "params": {
+            "file": "the_world_s_largest_crystal_cave_crystal_cave_de.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 CRYSTAL CAVE DEPTH",
+          "topic": "Crystal Cave Depth",
+          "say": "The world's largest crystal cave is over 1,000 feet deep, while the smallest is 100 feet deep",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "the_world_s_largest_crystal_cave_crystal_cave_lo",
+          "params": {
+            "file": "the_world_s_largest_crystal_cave_crystal_cave_lo.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 CRYSTAL CAVE LOCAT",
+          "topic": "Crystal Cave Locations",
+          "say": "Crystal caves can be found in Mexico, China, and the United States",
+          "viz": "geo_world"
+        },
+        {
+          "source": "offline",
+          "key": "the_world_s_largest_crystal_cave_crystal_cave_fo",
+          "params": {
+            "file": "the_world_s_largest_crystal_cave_crystal_cave_fo.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 CRYSTAL CAVE FORMA",
+          "topic": "Crystal Cave Formation",
+          "say": "Crystal caves have been forming for over 1 million years, with new ones still being discovered",
+          "viz": "trend"
+        }
+      ],
+      "question": "What do you think is the most interesting thing about crystal caves?"
+    },
+    {
+      "slug": "space-rocks-are-huge",
+      "title": "Space Rocks Are Huge",
+      "hook": "Asteroids are not just small rocks in space",
+      "closing": "The universe is full of massive asteroids waiting to be discovered",
+      "hashtags": [
+        "asteroids",
+        "space",
+        "rocks",
+        "universe",
+        "discovery"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_rocks_are_huge_asteroid_size",
+          "params": {
+            "file": "space_rocks_are_huge_asteroid_size.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 ASTEROID SIZE",
+          "topic": "Asteroid Size",
+          "say": "The largest asteroid is Ceres, which is roughly 590 miles in diameter, while the smallest is 2015 TC25, which is about 6 feet across",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_rocks_are_huge_asteroid_composition",
+          "params": {
+            "file": "space_rocks_are_huge_asteroid_composition.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 ASTEROID COMPOSITI",
+          "topic": "Asteroid Composition",
+          "say": "Asteroids are composed of 75% rocky material, 20% metal, and 5% ice",
+          "viz": "pictograph"
+        },
+        {
+          "source": "offline",
+          "key": "space_rocks_are_huge_asteroid_discovery",
+          "params": {
+            "file": "space_rocks_are_huge_asteroid_discovery.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ASTEROID DISCOVERY",
+          "topic": "Asteroid Discovery",
+          "say": "The rate of asteroid discovery has increased dramatically over the past 20 years, with over 100 new asteroids discovered every year since 2010",
+          "viz": "trend"
+        }
+      ],
+      "question": "What do you think is the most pressing issue in asteroid research?"
+    },
+    {
+      "slug": "fruit-is-not-created-equal",
+      "title": "Fruit Is Not Created Equal",
+      "hook": "Some fruits are much more efficient than others",
+      "closing": "The most efficient fruits can produce hundreds of times more fruit per tree",
+      "hashtags": [
+        "fruit",
+        "efficiency",
+        "production",
+        "nature",
+        "agriculture"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "fruit_is_not_created_equal_fruit_yield",
+          "params": {
+            "file": "fruit_is_not_created_equal_fruit_yield.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 FRUIT YIELD",
+          "topic": "Fruit Yield",
+          "say": "A single banana tree can produce up to 100 pounds of fruit per year, while a single apple tree can produce up to 20 bushels",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "fruit_is_not_created_equal_fruit_water_content",
+          "params": {
+            "file": "fruit_is_not_created_equal_fruit_water_content.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 FRUIT WATER CONTEN",
+          "topic": "Fruit Water Content",
+          "say": "Some fruits are made up of over 90% water, while others are as low as 20% water content",
+          "viz": "pictograph"
+        },
+        {
+          "source": "offline",
+          "key": "fruit_is_not_created_equal_fruit_production",
+          "params": {
+            "file": "fruit_is_not_created_equal_fruit_production.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 FRUIT PRODUCTION",
+          "topic": "Fruit Production",
+          "say": "Global fruit production has increased by over 50% in the past 20 years, with the majority coming from Asia",
+          "viz": "trend"
+        }
+      ],
+      "question": "What is your favorite fruit and why?"
     }
   ],
   "videos": [
