@@ -1,0 +1,30 @@
+{
+  "key": "tallest_trees_on_earth_tree_heights",
+  "title": "Tree Heights",
+  "unit": "feet",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Coast Redwood",
+      "value": 380.0
+    },
+    {
+      "label": "Mountain Ash",
+      "value": 320.0
+    },
+    {
+      "label": "Giant Sequoia",
+      "value": 280.0
+    }
+  ]
+}

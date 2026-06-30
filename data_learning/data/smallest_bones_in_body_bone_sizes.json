@@ -1,0 +1,30 @@
+{
+  "key": "smallest_bones_in_body_bone_sizes",
+  "title": "Bone Sizes",
+  "unit": "millimeters",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Stapes",
+      "value": 3.0
+    },
+    {
+      "label": "Incus",
+      "value": 4.0
+    },
+    {
+      "label": "Malleus",
+      "value": 5.0
+    }
+  ]
+}
