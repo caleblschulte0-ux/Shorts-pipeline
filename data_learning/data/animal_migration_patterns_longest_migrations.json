@@ -1,0 +1,30 @@
+{
+  "key": "animal_migration_patterns_longest_migrations",
+  "title": "Longest Migrations",
+  "unit": "kilometers",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Arctic Tern",
+      "value": 44000.0
+    },
+    {
+      "label": "Caribou",
+      "value": 5000.0
+    },
+    {
+      "label": "Monarch Butterfly",
+      "value": 4000.0
+    }
+  ]
+}

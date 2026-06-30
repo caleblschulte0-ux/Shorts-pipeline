@@ -1,0 +1,26 @@
+{
+  "key": "space_exploration_milestones_farthest_human_trav",
+  "title": "Farthest Human Travel",
+  "unit": "million kilometers",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Moon",
+      "value": 400.0
+    },
+    {
+      "label": "Voyager 1",
+      "value": 14000.0
+    }
+  ]
+}

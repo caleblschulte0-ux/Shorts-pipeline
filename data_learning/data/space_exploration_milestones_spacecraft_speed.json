@@ -1,0 +1,26 @@
+{
+  "key": "space_exploration_milestones_spacecraft_speed",
+  "title": "Spacecraft Speed",
+  "unit": "kilometers per hour",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Helios 2",
+      "value": 252792.0
+    },
+    {
+      "label": "Car on Earth",
+      "value": 50.0
+    }
+  ]
+}
