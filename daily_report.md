@@ -1,35 +1,39 @@
-# Daily Trending Shorts — 2026-06-29
+# Daily Trending Shorts — 2026-06-30
 
 - queued: **6**
-- succeeded: **4**
-- quarantined (off-topic imagery): **2**
+- succeeded: **6**
+- quarantined (off-topic imagery): **0**
 - failed: **0**
 
 ## Posted
-- **A Plane Full of Nurses Never Left the Runway**
-  - topic: A Plane Full of Nurses Never Left the Runway
-  - publishes: `2026-06-29T13:00:00Z`
-  - https://youtube.com/shorts/9sQQL6qyMVE
-  - took: 493.8s
-- **Supreme Court Rules: You Can't Sue Roundup for Cancer**
-  - topic: Supreme Court Rules: You Can't Sue Roundup for Cancer
-  - publishes: `2026-06-29T15:00:00Z`
-  - https://youtube.com/shorts/6h_pqFgLzKs
-  - took: 743.7s
-- **DC Is Shooting Off 851,000 Fireworks This July 4**
-  - topic: DC Is Shooting Off 851,000 Fireworks This July 4
-  - publishes: `2026-06-29T17:00:00Z`
-  - https://youtube.com/shorts/oUK6KrZLuLc
-  - took: 501.5s
-- **A Raccoon Got Its Head Stuck in a Jar. CPR Was on Standby.**
-  - topic: A Raccoon Got Its Head Stuck in a Jar. CPR Was on Standby.
-  - publishes: `2026-06-29T19:00:00Z`
-  - https://youtube.com/shorts/THfbw0_bezs
-  - took: 551.1s
-
-## Quarantined (off-topic imagery — fix & re-author)
-- **1,400 Dead in Venezuela. 27 Countries Are Digging.**
-  - quarantined: illustration coverage 33.3% < 50.0% — 8 shot(s) have no real image and would fall to off-topic keyword stock: ['worst earthquake disaster in Venezuelan recorded h', 'Buildings collapsed mid-block', 'Residents dug with their hands because the governm', 'The golden 72-hour window for finding survivors al', 'rescue workers pulled two 11-year-old boys out of ', 'Teams from 27 countries are now on the ground', '140 search dogs and 2,245 specialists', "68,900 people just hasn't been found yet"]
-- **3 Federal Firefighters Just Died in a Burnover**
-  - quarantined: illustration coverage 41.7% < 50.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ["The shelter didn't work", 'emergency fire shelters — the last-resort metallic', 'Two others survived, burned', 'Winds were gusting to 44 miles per hour', 'Fuel moisture readings were between 2 and 8 percen', 'Governors of both Utah and Colorado declared emerg', 'who sends people into those conditions']
+- **Gracie the Giraffe Was Missing 2 Weeks in Texas**
+  - topic: Gracie the Giraffe Was Missing 2 Weeks in Texas
+  - publishes: `2026-06-30T13:00:00Z`
+  - https://youtube.com/shorts/uvoSHZwI-8c
+  - took: 566.7s
+- **DC Hits 105°F on July 4th. No One Is Ready.**
+  - topic: DC Hits 105°F on July 4th. No One Is Ready.
+  - publishes: `2026-06-30T15:00:00Z`
+  - https://youtube.com/shorts/smuV7hyd3G8
+  - took: 614.9s
+- **A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC**
+  - topic: A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC
+  - publishes: `2026-06-30T17:00:00Z`
+  - https://youtube.com/shorts/6pV6brdeb0U
+  - took: 548.3s
+- **This Guy Made 3 Domino's Pizzas in 31 Seconds Flat**
+  - topic: This Guy Made 3 Domino's Pizzas in 31 Seconds Flat
+  - publishes: `2026-06-30T19:00:00Z`
+  - https://youtube.com/shorts/xvjBDXx-kQY
+  - took: 662.9s
+- **A Parcel Bomb Just Went Off in Monaco. First Time Ever.**
+  - topic: A Parcel Bomb Just Went Off in Monaco. First Time Ever.
+  - publishes: `2026-06-30T21:00:00Z`
+  - https://youtube.com/shorts/3iiG4zoRwSQ
+  - took: 491.8s
+- **Guernsey Is Having a Tortoise Escape Epidemic Right Now**
+  - topic: Guernsey Is Having a Tortoise Escape Epidemic Right Now
+  - publishes: `2026-06-30T23:00:00Z`
+  - https://youtube.com/shorts/v85DbrXdTpM
+  - took: 519.7s
 
