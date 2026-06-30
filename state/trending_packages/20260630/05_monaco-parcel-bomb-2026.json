@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "slug": "monaco-parcel-bomb-2026",
+  "title": "A Parcel Bomb Just Went Off in Monaco. First Time Ever.",
+  "script": "A bomb in Monaco? Sunday night, a package was left at the entrance of a residential building in the tiny principality of Monaco — the wealthiest per-capita nation on Earth. Inside the package: buckshot and bolts. When it exploded, it critically injured a couple in their 50s and put a 13-year-old in the hospital. One of the critically wounded is Vadym Yermolaiev, a Ukrainian oligarch. The attack appears to have been targeted. According to Monaco's own minister of state, this is the first time in the principality's entire history that something like this has happened. The suspect fled across the border into France before police could respond. French and Monegasque authorities are now hunting for them. So who plants a bomb in Monaco — and why?",
+  "shots": [
+    {
+      "phrase": "A bomb in Monaco",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Hercule_Harbour_Panorama.jpg/960px-Monaco_Hercule_Harbour_Panorama.jpg",
+      "query": "Monaco harbor luxury yachts aerial",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "package was left at the entrance of a residential building",
+      "query": "apartment building entrance lobby door",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "wealthiest per-capita nation on Earth",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Hercule_Harbour_Panorama.jpg/960px-Monaco_Hercule_Harbour_Panorama.jpg",
+      "query": "Monaco luxury wealth skyline harbor",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Inside the package: buckshot and bolts",
+      "query": "bomb disposal police crime scene",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "critically injured a couple in their 50s and put a 13-year-old in the hospital",
+      "query": "ambulance emergency hospital stretcher",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Vadym Yermolaiev, a Ukrainian oligarch",
+      "query": "Monaco residential building wealthy neighborhood",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "The attack appears to have been targeted",
+      "query": "police investigation crime scene tape Monaco",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "first time in the principality's entire history",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Hercule_Harbour_Panorama.jpg/960px-Monaco_Hercule_Harbour_Panorama.jpg",
+      "query": "Monaco principality history landmark",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "suspect fled across the border into France",
+      "query": "France Monaco border road",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "French and Monegasque authorities are now hunting for them",
+      "query": "police manhunt search suspect law enforcement",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "who plants a bomb in Monaco — and why",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Hercule_Harbour_Panorama.jpg/960px-Monaco_Hercule_Harbour_Panorama.jpg",
+      "query": "Monaco mystery investigation",
+      "mascot_pose": "think"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "A bomb in Monaco",
+      "text": "BOMB IN MONACO",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "buckshot and bolts",
+      "text": "BUCKSHOT & BOLTS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "critically injured",
+      "text": "CRITICALLY INJURED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "13-year-old in the hospital",
+      "text": "13-YEAR-OLD HIT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "first time in the principality's entire history",
+      "text": "FIRST TIME EVER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "fled across the border into France",
+      "text": "FLED TO FRANCE",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "monaco",
+    "monacoparcelbomb",
+    "vadymyermolaiev",
+    "ukrainianoligarch",
+    "monacoexplosion",
+    "parcelbomb",
+    "worldnews",
+    "crimeinvestigation",
+    "monaconews",
+    "europenews",
+    "breakingnews",
+    "crime",
+    "fyp"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

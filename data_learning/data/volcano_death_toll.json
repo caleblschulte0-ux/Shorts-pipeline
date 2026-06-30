@@ -1,0 +1,22 @@
+{
+  "key": "volcano_death_toll",
+  "title": "Death tolls from major volcanic eruptions (direct + indirect)",
+  "unit": "deaths",
+  "geography": "Global",
+  "time_coverage": "1783-1991",
+  "source": {
+    "name": "Global Volcanism Program / Oppenheimer 2003",
+    "publisher": "Smithsonian Institution / American Geophysical Union",
+    "url": "https://volcano.si.edu/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; Tambora total includes ~71,000 direct deaths and ~60,000-100,000 from resulting famine and disease in the 1815-1817 period. Figures are approximate published estimates.",
+  "points": [
+    {"label": "Pinatubo 1991", "value": 800},
+    {"label": "Mount St. Helens 1980", "value": 57},
+    {"label": "Nevado del Ruiz 1985", "value": 23000},
+    {"label": "Krakatoa 1883", "value": 36000},
+    {"label": "Tambora 1815", "value": 130000}
+  ]
+}

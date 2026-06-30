@@ -1,0 +1,26 @@
+{
+  "key": "movie_ticket_price",
+  "title": "Average US movie ticket price (dollars)",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2000-2024",
+  "source": {
+    "name": "Annual US Ticket Price Data",
+    "publisher": "Motion Picture Association (MPA) / NATO (National Association of Theatre Owners)",
+    "url": "https://www.nato.org/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; figures approximate published average ticket price estimates from NATO and MPA annual reports.",
+  "points": [
+    {"label": "2000", "value": 5.39, "period": "2000"},
+    {"label": "2005", "value": 6.41, "period": "2005"},
+    {"label": "2010", "value": 7.89, "period": "2010"},
+    {"label": "2015", "value": 8.61, "period": "2015"},
+    {"label": "2019", "value": 9.16, "period": "2019"},
+    {"label": "2021", "value": 9.57, "period": "2021"},
+    {"label": "2022", "value": 10.53, "period": "2022"},
+    {"label": "2023", "value": 10.98, "period": "2023"},
+    {"label": "2024", "value": 11.42, "period": "2024"}
+  ]
+}

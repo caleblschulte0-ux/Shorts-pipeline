@@ -1,0 +1,26 @@
+{
+  "key": "animal_max_lifespan",
+  "title": "Maximum recorded lifespan by animal (years)",
+  "unit": "years",
+  "geography": "Global",
+  "time_coverage": "through 2024",
+  "source": {
+    "name": "AnAge Database of Animal Ageing and Longevity / peer-reviewed studies",
+    "publisher": "Human Ageing Genomic Resources / Longevity Science",
+    "url": "https://genomics.senescence.info/species/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; figures represent maximum recorded or estimated lifespans from peer-reviewed sources including Nielsen et al. 2016 (Greenland shark) and Wanamaker et al. 2008 (ocean quahog).",
+  "points": [
+    {"label": "Ocean quahog clam", "value": 507},
+    {"label": "Greenland shark", "value": 400},
+    {"label": "Bowhead whale", "value": 211},
+    {"label": "Rougheye rockfish", "value": 205},
+    {"label": "Giant tortoise", "value": 191},
+    {"label": "Human", "value": 122},
+    {"label": "Elephant", "value": 70},
+    {"label": "Domestic dog", "value": 22},
+    {"label": "House mouse", "value": 4}
+  ]
+}

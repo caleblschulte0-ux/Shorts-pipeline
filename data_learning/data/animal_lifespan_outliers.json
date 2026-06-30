@@ -1,0 +1,21 @@
+{
+  "key": "animal_lifespan_outliers",
+  "title": "Outliers: actual vs expected lifespan for body size (years)",
+  "unit": "years",
+  "geography": "Global",
+  "time_coverage": "through 2024",
+  "source": {
+    "name": "AnAge Database / Naked mole rat research (University of Rochester)",
+    "publisher": "Human Ageing Genomic Resources / Buffenstein Lab",
+    "url": "https://genomics.senescence.info/species/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; comparing actual max lifespan to expected lifespan for the same body mass based on mammalian scaling laws. Naked mole rat lives ~10x longer than a mouse of the same size.",
+  "baseline": {"label": "Same-size mouse would live", "value": 4},
+  "points": [
+    {"label": "House mouse (actual)", "value": 4},
+    {"label": "Naked mole rat (same size, actual)", "value": 31},
+    {"label": "Little brown bat (same size, actual)", "value": 34}
+  ]
+}

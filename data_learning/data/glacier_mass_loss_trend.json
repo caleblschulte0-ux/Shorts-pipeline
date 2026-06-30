@@ -1,0 +1,22 @@
+{
+  "key": "glacier_mass_loss_trend",
+  "title": "Global glacier mass loss rate (Gt per year, excluding ice sheets)",
+  "unit": "Gt/yr",
+  "geography": "Global (excluding Greenland and Antarctic ice sheets)",
+  "time_coverage": "1970-2020",
+  "source": {
+    "name": "Global glacier mass changes and their contributions to sea-level rise",
+    "publisher": "Nature / Hugonnet et al. 2021",
+    "url": "https://www.nature.com/articles/s41586-021-03436-z",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; figures approximate published 5-year mean mass balance rates from Hugonnet et al. 2021 Nature study. Negative values indicate mass loss; shown here as absolute loss rates.",
+  "points": [
+    {"label": "1970-1980", "value": 219, "period": "1975"},
+    {"label": "1980-1990", "value": 249, "period": "1985"},
+    {"label": "1990-2000", "value": 269, "period": "1995"},
+    {"label": "2000-2010", "value": 310, "period": "2005"},
+    {"label": "2010-2020", "value": 370, "period": "2015"}
+  ]
+}
