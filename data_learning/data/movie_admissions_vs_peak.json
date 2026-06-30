@@ -1,0 +1,22 @@
+{
+  "key": "movie_admissions_vs_peak",
+  "title": "US movie admissions compared to 2002 peak (million tickets)",
+  "unit": "million tickets",
+  "geography": "United States",
+  "time_coverage": "selected years",
+  "source": {
+    "name": "Annual US Box Office Admissions",
+    "publisher": "Motion Picture Association (MPA) / Box Office Mojo",
+    "url": "https://www.mpaa.org/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; comparing key years to show the long-term structural decline in ticket sales. 2002 was the all-time peak. 2024 is still 46% below peak.",
+  "baseline": {"label": "2002 peak", "value": 1579},
+  "points": [
+    {"label": "2002 (peak)", "value": 1579},
+    {"label": "2019 (pre-pandemic)", "value": 1228},
+    {"label": "2022", "value": 813},
+    {"label": "2024 (est.)", "value": 855}
+  ]
+}

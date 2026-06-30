@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "slug": "jetblue-drone-jfk-2026",
+  "title": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
+  "script": "A drone hit a plane? A JetBlue flight from Las Vegas was on final approach to JFK International Airport Monday morning when the pilot reported a collision — a drone, striking the jet right above the cockpit at 3,000 feet. Flight 948 landed safely. Passengers deplaned normally. A post-flight inspection found zero damage. But here's the kicker: the same morning, a nearby helicopter reported almost hitting a model airplane — a completely separate incident in the same airspace. The FAA is now investigating both. Nobody got hurt. No windows blown out, no emergency landing, no chaos. Just a commercial jet and a small drone sharing the sky at 3,000 feet over New York — which, apparently, is just a Monday morning now. So whose drone was it?",
+  "shots": [
+    {
+      "phrase": "A drone hit a plane",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Quadcopter_camera_drone_in_flight.jpg/960px-Quadcopter_camera_drone_in_flight.jpg",
+      "query": "drone quadcopter flying sky",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "JetBlue flight from Las Vegas",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/JetBlue_A320_at_Orlando.jpeg/960px-JetBlue_A320_at_Orlando.jpeg",
+      "query": "JetBlue airplane runway airport",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "final approach to JFK International Airport",
+      "query": "JFK International Airport approach aerial view",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "striking the jet right above the cockpit at 3,000 feet",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Quadcopter_camera_drone_in_flight.jpg/960px-Quadcopter_camera_drone_in_flight.jpg",
+      "query": "drone near airplane cockpit sky",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Flight 948 landed safely",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/JetBlue_A320_at_Orlando.jpeg/960px-JetBlue_A320_at_Orlando.jpeg",
+      "query": "JetBlue plane landing runway safe",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "post-flight inspection found zero damage",
+      "query": "aircraft mechanic inspection maintenance",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the same morning, a nearby helicopter reported almost hitting a model airplane",
+      "query": "helicopter in flight sky",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "a completely separate incident in the same airspace",
+      "query": "airspace crowded flight paths radar",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "The FAA is now investigating both",
+      "query": "FAA aviation investigation aircraft",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a commercial jet and a small drone sharing the sky at 3,000 feet over New York",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Quadcopter_camera_drone_in_flight.jpg/960px-Quadcopter_camera_drone_in_flight.jpg",
+      "query": "drone airplane sky collision risk",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "whose drone was it",
+      "query": "drone quadcopter who pilot remote control",
+      "mascot_pose": "think"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "A drone hit a plane",
+      "text": "DRONE HIT A PLANE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "above the cockpit at 3,000 feet",
+      "text": "3,000 FEET UP",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "zero damage",
+      "text": "ZERO DAMAGE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "same morning",
+      "text": "SAME MORNING",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "almost hitting a model airplane",
+      "text": "2ND NEAR-MISS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "FAA is now investigating both",
+      "text": "FAA INVESTIGATING",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "jetblue",
+    "droneincident",
+    "JFK",
+    "dronevsplane",
+    "aviationsafety",
+    "FAA",
+    "dronenearairplane",
+    "nycnews",
+    "aviation",
+    "dronelaws",
+    "flight948",
+    "airspace",
+    "breakingnews",
+    "viral"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

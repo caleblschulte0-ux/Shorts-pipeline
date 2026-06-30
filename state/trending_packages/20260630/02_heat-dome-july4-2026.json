@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "slug": "heat-dome-july4-2026",
+  "title": "DC Hits 105°F on July 4th. No One Is Ready.",
+  "script": "105 degrees on July 4th? A massive heat dome is building over the eastern United States right now — and it's going to peak on the worst possible day. Washington, D.C. is forecast to hit 105 degrees Fahrenheit on Independence Day. New York City could reach 102. Philadelphia might tie its all-time June record of 104. That's not just uncomfortable — that's dangerous. The National Weather Service says heat index values could reach 115 degrees in some spots, meaning it feels even worse than the thermometer shows. At least 200 million Americans are in the path of this thing. The dome is already baking Chicago, Minneapolis, and St. Louis. It's only going to intensify as it shifts east. So if you've got fireworks plans this week — is your water bottle ready?",
+  "shots": [
+    {
+      "phrase": "105 degrees on July 4th",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg/960px-41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg",
+      "query": "thermometer extreme heat summer",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "heat dome is building over the eastern United States",
+      "query": "heat dome weather map United States",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Washington, D.C. is forecast to hit 105 degrees Fahrenheit",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/United_States_Capitol_Building.jpg/960px-United_States_Capitol_Building.jpg",
+      "query": "Washington DC summer heat",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "New York City could reach 102",
+      "query": "New York City skyline summer heat haze",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Philadelphia might tie its all-time June record of 104",
+      "query": "Philadelphia city skyline summer",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "That's not just uncomfortable — that's dangerous",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Summer_Heat.jpg/960px-Summer_Heat.jpg",
+      "query": "extreme heat warning danger sign",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "heat index values could reach 115 degrees",
+      "query": "heat index chart 115 degrees feels like",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "200 million Americans are in the path",
+      "query": "crowd people summer outdoor heat",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "already baking Chicago, Minneapolis, and St. Louis",
+      "query": "Chicago skyline summer heatwave",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "intensify as it shifts east",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg/960px-41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg",
+      "query": "heat wave map east coast",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "fireworks plans this week",
+      "query": "July 4th fireworks night sky",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "is your water bottle ready",
+      "query": "water bottle hydration summer heat outdoor",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "105 degrees on July 4th",
+      "text": "105°F JULY 4TH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "reach 102",
+      "text": "NYC: 102°F",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "all-time June record of 104",
+      "text": "PHILLY RECORD: 104°F",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "that's dangerous",
+      "text": "DANGEROUS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "heat index values could reach 115 degrees",
+      "text": "FEELS LIKE 115°F",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "200 million Americans",
+      "text": "200M AMERICANS",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "heatdome",
+    "heatwave",
+    "july4th",
+    "DC105degrees",
+    "extremeheat",
+    "heatindex",
+    "nationalweatherservice",
+    "summerheat",
+    "independenceday",
+    "weatheralert",
+    "heatstroke",
+    "staycool",
+    "weathernews",
+    "breaking"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

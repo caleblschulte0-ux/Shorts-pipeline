@@ -1,0 +1,25 @@
+{
+  "key": "animal_size_vs_lifespan",
+  "title": "Typical lifespan vs body mass — the general rule",
+  "unit": "years",
+  "geography": "Global",
+  "time_coverage": "through 2024",
+  "source": {
+    "name": "AnAge Database of Animal Ageing and Longevity",
+    "publisher": "Human Ageing Genomic Resources",
+    "url": "https://genomics.senescence.info/species/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; average lifespans in the wild or captivity. The 'bigger = longer' pattern breaks for some outliers (Greenland shark, naked mole rat, bats). Label includes approximate body mass for context.",
+  "points": [
+    {"label": "House mouse (20 g)", "value": 2},
+    {"label": "Rabbit (2 kg)", "value": 9},
+    {"label": "Domestic dog (30 kg)", "value": 13},
+    {"label": "Human (70 kg)", "value": 73},
+    {"label": "Horse (500 kg)", "value": 30},
+    {"label": "Hippo (1,500 kg)", "value": 45},
+    {"label": "Elephant (4,000 kg)", "value": 65},
+    {"label": "Blue whale (100,000 kg)", "value": 90}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "volcano_explosivity",
+  "title": "Volcanic Explosivity Index (VEI) of major historical eruptions",
+  "unit": "VEI scale",
+  "geography": "Global",
+  "time_coverage": "1783-2010",
+  "source": {
+    "name": "Global Volcanism Program",
+    "publisher": "Smithsonian Institution",
+    "url": "https://volcano.si.edu/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; VEI is a logarithmic scale — each step is ~10x more powerful. VEI 8 would be a supervolcano event.",
+  "points": [
+    {"label": "Eyjafjallajökull 2010", "value": 4},
+    {"label": "Mount St. Helens 1980", "value": 5},
+    {"label": "Krakatoa 1883", "value": 6},
+    {"label": "Pinatubo 1991", "value": 6},
+    {"label": "Tambora 1815", "value": 7}
+  ]
+}
