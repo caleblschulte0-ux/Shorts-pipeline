@@ -5076,6 +5076,219 @@
         }
       ],
       "question": "What's the smallest bone you can think of in the human body?"
+    },
+    {
+      "slug": "earth-s-largest-living-organisms",
+      "title": "Earth's Largest Living Organisms",
+      "hook": "What's the biggest thing alive on our planet?",
+      "closing": "These massive organisms are truly awe-inspiring!",
+      "hashtags": [
+        "nature",
+        "wildlife",
+        "ecology",
+        "conservation",
+        "sustainability",
+        "earth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "earth_s_largest_living_organisms_largest_organis",
+          "params": {
+            "file": "earth_s_largest_living_organisms_largest_organis.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST ORGANISMS",
+          "topic": "Largest Organisms",
+          "say": "The Great Barrier Reef is 133,000 football fields big, the Amazon Rainforest covers 5.5 million square kilometers, and the Armillaria ostoyae fungus spans 2,200 acres",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "earth_s_largest_living_organisms_organism_size",
+          "params": {
+            "file": "earth_s_largest_living_organisms_organism_size.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ORGANISM SIZE",
+          "topic": "Organism Size",
+          "say": "The largest organisms can grow up to 100,000 times bigger than the smallest ones, with the Great Barrier Reef covering 344,400 square kilometers and the smallest organism, a bacterium, covering just 3.5 square micrometers",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "earth_s_largest_living_organisms_ecosystem_impac",
+          "params": {
+            "file": "earth_s_largest_living_organisms_ecosystem_impac.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 ECOSYSTEM IMPACT",
+          "topic": "Ecosystem Impact",
+          "say": "These massive organisms provide habitats for up to 30% of all species, produce 20% of the world's oxygen, and support 15% of the global food supply",
+          "viz": "pictograph"
+        }
+      ],
+      "question": "What's the most fascinating living thing you've learned about?"
+    },
+    {
+      "slug": "space-exploration-milestones",
+      "title": "Space Exploration Milestones",
+      "hook": "How far have humans really explored the universe?",
+      "closing": "The universe is full of mysteries waiting to be uncovered!",
+      "hashtags": [
+        "space",
+        "exploration",
+        "astronomy",
+        "nasa",
+        "galaxy"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_exploration_milestones_farthest_human_trav",
+          "params": {
+            "file": "space_exploration_milestones_farthest_human_trav.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 FARTHEST HUMAN TRA",
+          "topic": "Farthest Human Travel",
+          "say": "The farthest human travel is 400,000 kilometers to the Moon, while the farthest spacecraft, Voyager 1, has traveled 14 billion kilometers",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_exploration_milestones_spacecraft_speed",
+          "params": {
+            "file": "space_exploration_milestones_spacecraft_speed.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 SPACECRAFT SPEED",
+          "topic": "Spacecraft Speed",
+          "say": "The fastest spacecraft, Helios 2, travels at 252,792 kilometers per hour, while the average speed of a car on Earth is just 50 kilometers per hour",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "space_exploration_milestones_galaxy_size",
+          "params": {
+            "file": "space_exploration_milestones_galaxy_size.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 GALAXY SIZE",
+          "topic": "Galaxy Size",
+          "say": "The Milky Way galaxy contains 200-400 billion stars, and the observable universe has over 100 billion galaxies, each containing billions of stars",
+          "viz": "pictograph"
+        }
+      ],
+      "question": "What's the most significant space exploration achievement in your opinion?"
+    },
+    {
+      "slug": "human-body-wonders",
+      "title": "Human Body Wonders",
+      "hook": "What's the most amazing thing about the human body?",
+      "closing": "The human body is a remarkable machine!",
+      "hashtags": [
+        "humanbody",
+        "anatomy",
+        "health",
+        "wellness",
+        "fitness"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "human_body_wonders_brain_power",
+          "params": {
+            "file": "human_body_wonders_brain_power.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 BRAIN POWER",
+          "topic": "Brain Power",
+          "say": "The human brain can store up to 100 terabytes of information, while a typical smartphone can store just 128 gigabytes",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "human_body_wonders_heart_rate",
+          "params": {
+            "file": "human_body_wonders_heart_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 HEART RATE",
+          "topic": "Heart Rate",
+          "say": "The human heart beats around 100,000 times per day, pumping over 2,000 gallons of blood, and can reach a maximum rate of 200 beats per minute during intense exercise",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "human_body_wonders_digestive_system",
+          "params": {
+            "file": "human_body_wonders_digestive_system.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 DIGESTIVE SYSTEM",
+          "topic": "Digestive System",
+          "say": "The human digestive system is around 9 meters long, and can absorb up to 90% of the nutrients from the food we eat",
+          "viz": "pictograph"
+        }
+      ],
+      "question": "What's the most fascinating human body fact you've learned?"
+    },
+    {
+      "slug": "animal-migration-patterns",
+      "title": "Animal Migration Patterns",
+      "hook": "Which animals migrate the farthest each year?",
+      "closing": "These incredible journeys are a testament to animal endurance!",
+      "hashtags": [
+        "animalmigration",
+        "wildlife",
+        "conservation",
+        "nature",
+        "ecology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "animal_migration_patterns_longest_migrations",
+          "params": {
+            "file": "animal_migration_patterns_longest_migrations.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LONGEST MIGRATIONS",
+          "topic": "Longest Migrations",
+          "say": "The Arctic tern migrates 44,000 kilometers each year, while the caribou migrates 5,000 kilometers, and the monarch butterfly migrates 4,000 kilometers",
+          "viz": "diorama",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "animal_migration_patterns_migration_speed",
+          "params": {
+            "file": "animal_migration_patterns_migration_speed.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 MIGRATION SPEED",
+          "topic": "Migration Speed",
+          "say": "Some animals can migrate at speeds of up to 800 kilometers per day, while others may only move 10 kilometers per day",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "animal_migration_patterns_migration_patterns",
+          "params": {
+            "file": "animal_migration_patterns_migration_patterns.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 MIGRATION PATTERNS",
+          "topic": "Migration Patterns",
+          "say": "Up to 50% of all animal species migrate at some point in their lives, with some species migrating alone and others in large groups",
+          "viz": "pictograph"
+        }
+      ],
+      "question": "What's the most impressive animal migration you've learned about?"
     }
   ],
   "videos": [

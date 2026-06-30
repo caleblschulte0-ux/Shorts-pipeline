@@ -1,0 +1,26 @@
+{
+  "key": "earth_s_largest_living_organisms_organism_size",
+  "title": "Organism Size",
+  "unit": "square kilometers",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Smallest Organism",
+      "value": 3.5
+    },
+    {
+      "label": "Largest Organism",
+      "value": 344400.0
+    }
+  ]
+}

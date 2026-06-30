@@ -1,0 +1,26 @@
+{
+  "key": "human_body_wonders_heart_rate",
+  "title": "Heart Rate",
+  "unit": "beats per minute",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Resting Heart Rate",
+      "value": 60.0
+    },
+    {
+      "label": "Maximum Heart Rate",
+      "value": 200.0
+    }
+  ]
+}

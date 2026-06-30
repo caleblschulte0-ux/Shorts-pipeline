@@ -1,0 +1,30 @@
+{
+  "key": "earth_s_largest_living_organisms_largest_organis",
+  "title": "Largest Organisms",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Great Barrier Reef",
+      "value": 133000.0
+    },
+    {
+      "label": "Amazon Rainforest",
+      "value": 5500000.0
+    },
+    {
+      "label": "Armillaria ostoyae",
+      "value": 2200.0
+    }
+  ]
+}

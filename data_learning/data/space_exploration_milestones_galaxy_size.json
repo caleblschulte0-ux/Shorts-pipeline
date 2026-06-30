@@ -1,0 +1,26 @@
+{
+  "key": "space_exploration_milestones_galaxy_size",
+  "title": "Galaxy Size",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Milky Way Stars",
+      "value": 300.0
+    },
+    {
+      "label": "Observable Universe Galaxies",
+      "value": 100.0
+    }
+  ]
+}
