@@ -1,0 +1,26 @@
+{
+  "key": "smallest_bones_in_body_bone_functions",
+  "title": "Bone Functions",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Bone count",
+      "value": 10.0
+    },
+    {
+      "label": "Hearing ability",
+      "value": 50.0
+    }
+  ]
+}

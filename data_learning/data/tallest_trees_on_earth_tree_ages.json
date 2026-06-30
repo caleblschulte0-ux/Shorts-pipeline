@@ -1,0 +1,26 @@
+{
+  "key": "tallest_trees_on_earth_tree_ages",
+  "title": "Tree Ages",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2,000 years ago",
+      "value": 2000.0
+    },
+    {
+      "label": "Present day",
+      "value": 3000.0
+    }
+  ]
+}

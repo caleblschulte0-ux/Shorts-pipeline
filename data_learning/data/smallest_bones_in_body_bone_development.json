@@ -1,0 +1,26 @@
+{
+  "key": "smallest_bones_in_body_bone_development",
+  "title": "Bone Development",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "6 weeks",
+      "value": 6.0
+    },
+    {
+      "label": "1 year",
+      "value": 20.0
+    }
+  ]
+}

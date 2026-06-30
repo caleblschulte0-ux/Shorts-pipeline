@@ -1,0 +1,30 @@
+{
+  "key": "tallest_trees_on_earth_tree_distribution",
+  "title": "Tree Distribution",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "North America",
+      "value": 5.0
+    },
+    {
+      "label": "Tropics",
+      "value": 60.0
+    },
+    {
+      "label": "Other regions",
+      "value": 35.0
+    }
+  ]
+}
