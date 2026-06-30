@@ -1,0 +1,28 @@
+{
+  "key": "movie_admissions_trend",
+  "title": "US movie theater admissions (millions of tickets sold)",
+  "unit": "million tickets",
+  "geography": "United States",
+  "time_coverage": "2000-2024",
+  "source": {
+    "name": "Annual US Box Office Admissions",
+    "publisher": "Motion Picture Association (MPA) / Box Office Mojo",
+    "url": "https://www.mpaa.org/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; figures approximate MPA and Box Office Mojo published admissions estimates. 2024 figure is preliminary estimate.",
+  "points": [
+    {"label": "2000", "value": 1476, "period": "2000"},
+    {"label": "2002", "value": 1579, "period": "2002"},
+    {"label": "2005", "value": 1380, "period": "2005"},
+    {"label": "2010", "value": 1339, "period": "2010"},
+    {"label": "2015", "value": 1316, "period": "2015"},
+    {"label": "2019", "value": 1228, "period": "2019"},
+    {"label": "2020", "value": 223, "period": "2020"},
+    {"label": "2021", "value": 447, "period": "2021"},
+    {"label": "2022", "value": 813, "period": "2022"},
+    {"label": "2023", "value": 885, "period": "2023"},
+    {"label": "2024", "value": 855, "period": "2024"}
+  ]
+}

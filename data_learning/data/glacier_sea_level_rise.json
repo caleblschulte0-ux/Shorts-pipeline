@@ -1,0 +1,21 @@
+{
+  "key": "glacier_sea_level_rise",
+  "title": "Sea level rise contribution by source (mm per year, 2006-2018 average)",
+  "unit": "mm/yr",
+  "geography": "Global",
+  "time_coverage": "2006-2018",
+  "source": {
+    "name": "IPCC AR6 Sea Level Chapter / Intergovernmental Panel on Climate Change",
+    "publisher": "IPCC",
+    "url": "https://www.ipcc.ch/report/ar6/wg1/",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; approximate contributions to observed global mean sea level rise from IPCC AR6. Thermal expansion is the largest single contributor; glaciers (excluding ice sheets) contribute about 0.74 mm/yr.",
+  "points": [
+    {"label": "Thermal expansion", "value": 1.4},
+    {"label": "Glaciers (excl. ice sheets)", "value": 0.74},
+    {"label": "Greenland ice sheet", "value": 0.77},
+    {"label": "Antarctic ice sheet", "value": 0.43}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "key": "glacier_loss_by_region",
+  "title": "Glacier mass loss by region (Gt per year, 2010-2020 average)",
+  "unit": "Gt/yr",
+  "geography": "Global",
+  "time_coverage": "2010-2020",
+  "source": {
+    "name": "Global glacier mass changes (Hugonnet et al. 2021)",
+    "publisher": "Nature",
+    "url": "https://www.nature.com/articles/s41586-021-03436-z",
+    "officiality": "illustrative",
+    "access_date": "2026-06-30"
+  },
+  "notes": "Illustrative; approximate regional mass loss rates from Hugonnet et al. 2021 and World Glacier Monitoring Service.",
+  "points": [
+    {"label": "Alaska", "value": 73},
+    {"label": "Greenland periphery", "value": 47},
+    {"label": "Arctic Canada", "value": 59},
+    {"label": "High Mountain Asia", "value": 42},
+    {"label": "Southern Andes", "value": 29},
+    {"label": "Iceland", "value": 18},
+    {"label": "Svalbard", "value": 16}
+  ]
+}
