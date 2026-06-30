@@ -1151,6 +1151,37 @@ def _coalesce_still_segments(
     return merged
 
 
+def _higgsfield_still_into(clip: dict, dur: float, sub: Path,
+                          top_h: int) -> bool:
+    """Optional Higgsfield image-to-video hook. DORMANT unless the operator
+    sets HIGGSFIELD_ENABLE=1 + HIGGSFIELD_API_KEY. When on, animate this
+    still into `sub` (scaled to the top frame) and return True; otherwise
+    return False instantly so the existing Ken Burns path runs unchanged.
+    Never raises into the render."""
+    try:
+        import higgsfield
+        if not higgsfield.is_enabled():
+            return False
+        raw = sub.with_name(sub.stem + "_hf_raw.mp4")
+        animated = higgsfield.maybe_animate_still(
+            clip["path"], raw, duration=dur)
+        if not animated:
+            return False
+        run([
+            "ffmpeg", "-y", "-loglevel", "error",
+            "-i", str(animated), "-t", f"{dur:.3f}",
+            "-vf", f"scale={W}:{top_h}:force_original_aspect_ratio=increase,"
+                   f"crop={W}:{top_h},setsar=1,fps={FPS}",
+            "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+            "-pix_fmt", "yuv420p", str(sub),
+        ])
+        return sub.exists()
+    except Exception as e:  # noqa: BLE001
+        print(f"      [higgsfield still skipped: {type(e).__name__}: {e}]",
+              flush=True)
+        return False
+
+
 def build_timed_top(
     shots: list[Shot],
     shot_times: list[float],
@@ -1471,6 +1502,14 @@ def build_timed_top(
                 str(sub),
             ])
         elif clip.get("is_image"):
+            # Optional Higgsfield AI motion (dormant unless enabled). On
+            # success the animated clip IS this sub-cut; fall through to the
+            # shared bookkeeping below. Otherwise run Ken Burns as before.
+            if _higgsfield_still_into(clip, dur, sub, top_h):
+                all_segments.append(sub)
+                cut_times.append(sub_t)
+                sub_t += dur
+                continue
             # Still image — Ken Burns it. Alternate zoom-in vs zoom-out
             # by segment index so successive image shots don't all do the
             # same move. We work at 2x then scale down inside the zoompan
