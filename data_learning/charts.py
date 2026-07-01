@@ -25,6 +25,39 @@ ACCENT = "#60A5FA"
 WARN = "#F59E0B"
 BAR_BASE = "#1F2937"
 
+# --- Viz registry -----------------------------------------------------------
+# Full-frame renderers author a 1080x1920 PNG sequence themselves (like the
+# diorama) instead of the top "card" region. studio_render reads this dict to
+# decide which segments fill the whole frame, so it's the single source of truth.
+FULLFRAME_RENDERERS: dict = {}
+
+
+def _fullframe(kind: str):
+    """Register a full-frame (own PNG sequence) renderer under `kind`."""
+    def deco(fn):
+        FULLFRAME_RENDERERS[kind] = fn
+        return fn
+    return deco
+
+
+# When a renderer can't produce its output (e.g. image generation failed), the
+# segment DEGRADES to another kind that still DEPICTS the data — never to a bare
+# number layout. `bubbles` is the terminal fallback: pure matplotlib, no network,
+# area-encodes value, always renders. NEVER map anything to callouts/bignum.
+FALLBACK = {
+    "diorama": "bubbles",
+    "pictorial_race": "rank",        # rounded bars — length still depicts
+    "scale_stack": "pictograph",
+    "timeline": "trend",             # position on a time axis
+    "fill_vessel": "bubbles",
+    "waffle_grid": "share",          # donut — angle still depicts
+    "orbit": "bubbles",
+    "flow_race": "bubbles",
+    "pictograph": "bubbles",
+    "callouts": "bubbles",           # legacy safety: never render bare text
+    "bignum": "fill_vessel",
+}
+
 # Top-half canvas: 1080x960 at 100 dpi -> 10.8 x 9.6 inches.
 FIG_W, FIG_H, DPI = 10.8, 9.6, 100
 
@@ -883,6 +916,9 @@ def _story_callouts(fig, plt, insight: Insight, subtitle: str, reveal: float):
 def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     """Draw the heading + the right chart kind (at the given build fraction)
     + footer. reveal=1.0 is the final, static chart."""
+    # Never render bare numbers: any stray number-only kind depicts as bubbles.
+    if insight.kind in ("callouts", "bignum"):
+        insight.kind = "bubbles"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
@@ -891,12 +927,11 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         ax, specs = _story_geo_city(fig, plt, insight, "", reveal)
         _footer(fig, insight)
         return ax, specs
-    if insight.kind in ("callouts", "pictograph", "bignum"):
-        # callouts is the creative replacement for dot/bar/bare-number viz.
+    if insight.kind == "pictograph":
         low = "lowest" in insight.main_insight.lower()
         _heading(fig, insight.topic, f"{star.label} "
                  f"{'sits lowest' if low else 'tops the list'}")
-        ax, specs = _story_callouts(fig, plt, insight, "", reveal)
+        ax, specs = _story_pictograph(fig, plt, insight, "", reveal)
         _footer(fig, insight)
         return ax, specs
     if insight.kind == "comparison":
@@ -918,11 +953,6 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{star.label} {'sits lowest' if low else 'leads the map'}"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
-    elif insight.kind == "pictograph":
-        low = "lowest" in insight.main_insight.lower()
-        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
-        _heading(fig, insight.topic, subtitle)
-        ax, specs = _story_pictograph(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "bubbles":
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
@@ -968,6 +998,7 @@ def _pil_font(size: int, bold: bool = True):
         return ImageFont.load_default()
 
 
+@_fullframe("diorama")
 def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     """Illustrated proportional SCENE: each ranked item is a relevant cut-out
     illustration sized by its value (big = high), arranged on a ground line with
@@ -1172,11 +1203,16 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     ``(None, [])`` if matplotlib is absent."""
     if not _have_mpl():
         return None, []
-    if insight.kind == "diorama":
-        res = _render_diorama(insight, out_dir, slug, frames)
+    # Full-frame renderers (diorama, timeline, fill_vessel, ...) author their own
+    # 1080x1920 sequence. If one can't produce (image gen failed), degrade to the
+    # next DEPICTED kind — never to bare numbers — and try again (cap the hops).
+    hops = 0
+    while insight.kind in FULLFRAME_RENDERERS and hops < 3:
+        res = FULLFRAME_RENDERERS[insight.kind](insight, out_dir, slug, frames)
         if res is not None:
             return res
-        insight.kind = "callouts"        # cutouts failed -> graceful fallback
+        insight.kind = FALLBACK.get(insight.kind, "bubbles")
+        hops += 1
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
     for f in range(1, frames + 1):
