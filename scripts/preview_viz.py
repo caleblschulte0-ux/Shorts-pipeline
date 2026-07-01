@@ -46,32 +46,56 @@ SAMPLES = {
 }
 
 
+# Hand-written scene specs for the generative interpreter (viz_scene).
+SCENES = {
+    "scene_orbit": dict(items=[("Neptune", 4500), ("Jupiter", 778), ("Earth", 150),
+                               ("Mercury", 58)], unit="M km", topic="Distance from the Sun",
+                        scene={"elements": [{"type": "orbit_group", "region": "full"}]}),
+    "scene_row": dict(items=[("Beef", 15400), ("Cheese", 5000), ("Chicken", 4300)],
+                      unit="liters", topic="Water to make food",
+                      scene={"title": True, "elements": [
+                          {"type": "object", "region": "ground-row", "subject": "beef steak",
+                           "data": {"value_from": "item:0"}},
+                          {"type": "object", "region": "ground-row", "subject": "cheese wheel",
+                           "data": {"value_from": "item:1"}},
+                          {"type": "object", "region": "ground-row", "subject": "roast chicken",
+                           "data": {"value_from": "item:2"}}]}),
+    "scene_timeline": dict(items=[("First humans", 300000)], unit="years ago",
+                           topic="How long ago humans appeared",
+                           scene={"elements": [{"type": "timeline_axis", "region": "full"}]},
+                           vp={"timeline_start": 0, "timeline_end": 4_500_000_000}),
+}
+
+
 def _mk(kind: str, s: dict) -> Insight:
     ins = Insight.__new__(Insight)
     ins.items = [_P(lbl, v) for lbl, v in s["items"]]
     ins.kind = kind
-    ins.topic = kind.replace("_", " ").title() + " sample"
+    ins.topic = s.get("topic", kind.replace("_", " ").title() + " sample")
     ins.unit = s["unit"]
     ins.baseline = None
     ins.highlight_label = s["items"][0][0]
     ins.main_insight = s["items"][0][0] + " tops the list"
     ins.source = _S()
-    ins.viz_params = s["vp"]
+    ins.viz_params = s.get("vp", {})
+    ins.scene = s.get("scene")
     return ins
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("kind", nargs="?", choices=sorted(SAMPLES))
+    ap.add_argument("kind", nargs="?", choices=sorted(SAMPLES) + sorted(SCENES))
     ap.add_argument("--all", action="store_true", help="render every sample kind")
     ap.add_argument("--out", default="preview_viz")
     ap.add_argument("--frames", type=int, default=16)
     a = ap.parse_args()
     if not a.kind and not a.all:
         ap.error("give a kind or --all")
-    kinds = sorted(SAMPLES) if a.all else [a.kind]
+    kinds = sorted(SAMPLES) + sorted(SCENES) if a.all else [a.kind]
     for kind in kinds:
-        ins = _mk(kind, SAMPLES[kind])
+        is_scene = kind in SCENES
+        ins = _mk("scene" if is_scene else kind,
+                  SCENES[kind] if is_scene else SAMPLES[kind])
         out = Path(a.out) / kind
         out.mkdir(parents=True, exist_ok=True)
         pat, anc = charts.render_story_build(ins, out, "preview", frames=a.frames)

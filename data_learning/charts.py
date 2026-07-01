@@ -45,6 +45,7 @@ def _fullframe(kind: str):
 # number layout. `bubbles` is the terminal fallback: pure matplotlib, no network,
 # area-encodes value, always renders. NEVER map anything to callouts/bignum.
 FALLBACK = {
+    "scene": "diorama",              # an invented scene degrades to the diorama
     "diorama": "bubbles",
     "pictorial_race": "rank",        # rounded bars — length still depicts
     "scale_stack": "pictograph",

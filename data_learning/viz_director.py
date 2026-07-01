@@ -17,6 +17,7 @@ from __future__ import annotations
 import re
 
 from . import charts
+from . import viz_scene  # noqa: F401  (registers the "scene" full-frame renderer)
 
 # --- Vocabulary --------------------------------------------------------------
 # Each depiction kind and how the director treats it:
