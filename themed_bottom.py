@@ -677,6 +677,32 @@ class _Renderer:
         frame[np.clip(surf + 9, 0, H - 1), xs] = (140, 210, 240)
         return frame
 
+    # Global art-direction "pop". The #1 reason bottoms read as a muddy
+    # dark blur in-feed is crushed shadows + flat saturation. This lifts
+    # the whole panel with a brightening gamma and a saturation boost so
+    # it POPS on a phone. Applied to EVERY theme frame, tunable per theme.
+    POP_ENABLED = True
+    POP_GAMMA = 0.80        # <1 brightens shadows/mids, protects highlights
+    POP_SAT = 1.30          # saturation multiplier
+    POP_CONTRAST = 1.06     # gentle S-curve contrast around mid grey
+
+    def _pop(self, frame: np.ndarray) -> np.ndarray:
+        if not self.POP_ENABLED:
+            return frame
+        f = frame.astype(np.float32)
+        # Brighten via gamma on normalized values (keeps whites from clipping).
+        if self.POP_GAMMA and self.POP_GAMMA != 1.0:
+            f = 255.0 * np.power(np.clip(f / 255.0, 0.0, 1.0), self.POP_GAMMA)
+        # Saturation around luma.
+        if self.POP_SAT != 1.0:
+            luma = (f * np.array([0.299, 0.587, 0.114], np.float32)).sum(
+                axis=2, keepdims=True)
+            f = luma + (f - luma) * self.POP_SAT
+        # Gentle contrast around mid grey.
+        if self.POP_CONTRAST != 1.0:
+            f = (f - 128.0) * self.POP_CONTRAST + 128.0
+        return np.clip(f, 0, 255).astype(np.uint8)
+
     def render(self, duration: float, out_path: Path) -> Path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         n = int(duration * FPS) + 1
@@ -708,6 +734,9 @@ class _Renderer:
         try:
             for i in range(n):
                 frame = self.draw(i / FPS, i)
+                # Global art-direction pop (brighten + saturate) so the panel
+                # reads punchy in-feed instead of a muddy dark blur.
+                frame = self._pop(frame)
                 # Per-story reskin (color grade); no-op without a config.
                 frame = self._apply_grade(frame)
                 # The rising-water end-goal is applied as a post-process on
