@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "slug": "tom-tortoise-uk-chase-2026",
+  "title": "Police Just Had the World's Slowest Chase",
+  "script": "Police chased a tortoise? Tom vanished from his yard in Huntingdonshire, England three weeks ago — his owner put up flyers and assumed the worst. Then a police officer spotted him. Crossing a live road. At tortoise speed. PC Charlie Brett didn't call for backup — he blocked the road himself and jogged over to scoop Tom up mid-crossing. Three weeks missing, and Tom picked a public highway for his big return. At tortoise pace, that's roughly 20 yards a day, tops. Which means somewhere out there, Tom spent 21 days casually touring gardens without anyone noticing. The department is calling it the world's slowest police chase, and honestly, they've earned that headline. So where exactly was Tom for three weeks?",
+  "shots": [
+    {"phrase": "Police chased a tortoise", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "pet tortoise garden", "mascot_pose": "shock"},
+    {"phrase": "Tom vanished from his yard in Huntingdonshire, England three weeks ago", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "English countryside village road", "mascot_pose": "idle"},
+    {"phrase": "his owner put up flyers and assumed the worst", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "missing pet flyer poster", "mascot_pose": "idle"},
+    {"phrase": "Crossing a live road", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "tortoise crossing road", "mascot_pose": "idle"},
+    {"phrase": "PC Charlie Brett didn't call for backup", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "British police officer roadside", "mascot_pose": "idle"},
+    {"phrase": "blocked the road himself and jogged over to scoop Tom up mid-crossing", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "police officer blocking road", "mascot_pose": "laugh"},
+    {"phrase": "Tom picked a public highway for his big return", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "rural highway asphalt", "mascot_pose": "idle"},
+    {"phrase": "roughly 20 yards a day, tops", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "tortoise slow walking grass", "mascot_pose": "idle"},
+    {"phrase": "Tom spent 21 days casually touring gardens without anyone noticing", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "backyard garden hedge", "mascot_pose": "idle"},
+    {"phrase": "the world's slowest police chase", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "police lights road night", "mascot_pose": "idle"},
+    {"phrase": "where exactly was Tom for three weeks", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG", "query": "tortoise close up face", "mascot_pose": "dismiss"}
+  ],
+  "punches": [
+    {"phrase": "Police chased a tortoise", "text": "TORTOISE ON THE RUN", "color": "#ffaa30"},
+    {"phrase": "three weeks ago", "text": "MISSING 3 WEEKS", "color": "#ffffff"},
+    {"phrase": "didn't call for backup", "text": "NO BACKUP NEEDED", "color": "#50ff80"},
+    {"phrase": "roughly 20 yards a day, tops", "text": "20 YARDS A DAY", "color": "#ffaa30"},
+    {"phrase": "the world's slowest police chase", "text": "SLOWEST CHASE EVER", "color": "#ff3030"},
+    {"phrase": "where exactly was Tom for three weeks", "text": "WHERE WAS TOM?", "color": "#ffaa30"}
+  ],
+  "hashtags": ["tortoise", "tortoisescape", "ukpolice", "englandnews", "slowestchase", "pettortoise", "weirdnews", "funnyanimals", "animalrescue", "viralanimals", "huntingdonshire", "fyp"],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

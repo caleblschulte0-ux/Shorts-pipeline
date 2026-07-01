@@ -1,0 +1,19 @@
+{
+  "key": "animal_sleep_predator_prey",
+  "title": "Sleep hours: apex predator vs prey animal",
+  "unit": "hours",
+  "geography": "World",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Comparative animal sleep duration research",
+    "publisher": "Sleep Foundation",
+    "url": "https://www.sleepfoundation.org/how-sleep-works/how-do-animals-sleep",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. Predators with little predation risk (lions) sleep far more than prey animals (giraffes) that must stay vigilant.",
+  "points": [
+    {"label": "Lion (predator)", "value": 20},
+    {"label": "Giraffe (prey)", "value": 1.9}
+  ]
+}

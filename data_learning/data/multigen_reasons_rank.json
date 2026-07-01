@@ -1,0 +1,19 @@
+{
+  "key": "multigen_reasons_rank",
+  "title": "Major reasons adults live in a multigenerational household",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Financial Issues Top the List of Reasons U.S. Adults Live in Multigenerational Homes",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/social-trends/2022/03/24/financial-issues-top-the-list-of-reasons-u-s-adults-live-in-multigenerational-homes/",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. Share of adults citing each reason as a major factor; younger adults (25-39) living with a parent are the 57 percent figure. Caregiving figure covers all multigenerational households (25 percent adult caregiving + 12 percent child care).",
+  "points": [
+    {"label": "Financial issues", "value": 57},
+    {"label": "Caregiving needs", "value": 33}
+  ]
+}

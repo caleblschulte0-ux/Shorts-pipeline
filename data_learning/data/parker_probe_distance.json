@@ -1,0 +1,20 @@
+{
+  "key": "parker_probe_distance",
+  "title": "Parker Solar Probe closest approach distance from the Sun's surface",
+  "unit": "million miles",
+  "geography": "The Sun",
+  "time_coverage": "2018-2024",
+  "source": {
+    "name": "Parker Solar Probe mission milestones",
+    "publisher": "NASA / Johns Hopkins APL",
+    "url": "https://www.jhuapl.edu/news/news-releases/241227-parker-closest-approach",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. 2018: first perihelion (~0.166 AU / ~15.4 million miles). 2021: first pass through the corona (~18.8 solar radii / ~8.1 million miles). 2024: record closest approach (6.1 million km / 3.8 million miles).",
+  "points": [
+    {"label": "2018", "value": 15.4, "period": "2018"},
+    {"label": "2021", "value": 8.1, "period": "2021"},
+    {"label": "2024", "value": 3.8, "period": "2024"}
+  ]
+}

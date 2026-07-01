@@ -1,0 +1,19 @@
+{
+  "key": "multigen_young_adults_compare",
+  "title": "Share of 25-34 year-olds living in a multigenerational household",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1971 vs 2021",
+  "source": {
+    "name": "Young adults in U.S. are much more likely than 50 years ago to be living in a multigenerational household",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/short-reads/2022/07/20/young-adults-in-u-s-are-much-more-likely-than-50-years-ago-to-be-living-in-a-multigenerational-household/",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. Pew's analysis of Census data: share of adults ages 25-34 living in a household with two or more adult generations.",
+  "points": [
+    {"label": "2021", "value": 25},
+    {"label": "1971", "value": 9}
+  ]
+}
