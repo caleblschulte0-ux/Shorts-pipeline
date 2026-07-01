@@ -1,14 +1,14 @@
 [
   {
-    "topic": "Gracie the Giraffe Was Missing 2 Weeks in Texas",
-    "title": "Gracie the Giraffe Was Missing 2 Weeks in Texas",
-    "publish_at": "2026-06-30T13:00:00Z",
+    "topic": "100 Monkeys Just Broke Out of Their Enclosure",
+    "title": "100 Monkeys Just Broke Out of Their Enclosure",
+    "publish_at": "2026-07-01T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/uvoSHZwI-8c",
+    "video_url": "https://youtube.com/shorts/adFTMyrrykA",
     "error": null,
-    "elapsed_seconds": 566.7,
-    "package_path": "state/trending_packages/20260630/01_gracie-giraffe-texas-2026.json",
-    "video_path": "output/daily_20260630-113215_gracie_the_giraffe_was_missing_2_weeks_i.mp4",
+    "elapsed_seconds": 656.2,
+    "package_path": "state/trending_packages/20260701/01_lopburi-monkey-escape-2026.json",
+    "video_path": "output/daily_20260701-113224_100_monkeys_just_broke_out_of_their_encl.mp4",
     "qa": {
       "ok": true,
       "verdict": "ok",
@@ -17,66 +17,15 @@
     "channel": "default"
   },
   {
-    "topic": "DC Hits 105\u00b0F on July 4th. No One Is Ready.",
-    "title": "DC Hits 105\u00b0F on July 4th. No One Is Ready.",
-    "publish_at": "2026-06-30T15:00:00Z",
+    "topic": "Police Just Had the World's Slowest Chase",
+    "title": "Police Just Had the World's Slowest Chase",
+    "publish_at": "2026-07-01T15:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/smuV7hyd3G8",
+    "video_url": "https://youtube.com/shorts/JzPy7UD3_fg",
     "error": null,
-    "elapsed_seconds": 614.9,
-    "package_path": "state/trending_packages/20260630/02_heat-dome-july4-2026.json",
-    "video_path": "output/daily_20260630-114204_dc_hits_105_f_on_july_4th__no_one_is_rea.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "None"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
-    "title": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
-    "publish_at": "2026-06-30T17:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/6pV6brdeb0U",
-    "error": null,
-    "elapsed_seconds": 548.3,
-    "package_path": "state/trending_packages/20260630/03_jetblue-drone-jfk-2026.json",
-    "video_path": "output/daily_20260630-115218_a_drone_hit_a_jetblue_plane_at_3_000_fee.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "This Guy Made 3 Domino's Pizzas in 31 Seconds Flat",
-    "title": "This Guy Made 3 Domino's Pizzas in 31 Seconds Flat",
-    "publish_at": "2026-06-30T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/xvjBDXx-kQY",
-    "error": null,
-    "elapsed_seconds": 662.9,
-    "package_path": "state/trending_packages/20260630/04_richard-delcid-dominos-pizza-2026.json",
-    "video_path": "output/daily_20260630-120132_this_guy_made_3_domino_s_pizzas_in_31_se.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "A Parcel Bomb Just Went Off in Monaco. First Time Ever.",
-    "title": "A Parcel Bomb Just Went Off in Monaco. First Time Ever.",
-    "publish_at": "2026-06-30T21:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/3iiG4zoRwSQ",
-    "error": null,
-    "elapsed_seconds": 491.8,
-    "package_path": "state/trending_packages/20260630/05_monaco-parcel-bomb-2026.json",
-    "video_path": "output/daily_20260630-121230_a_parcel_bomb_just_went_off_in_monaco__f.mp4",
+    "elapsed_seconds": 646.4,
+    "package_path": "state/trending_packages/20260701/02_tom-tortoise-uk-chase-2026.json",
+    "video_path": "output/daily_20260701-114320_police_just_had_the_world_s_slowest_chas.mp4",
     "qa": {
       "ok": true,
       "verdict": "skip",
@@ -85,19 +34,70 @@
     "channel": "default"
   },
   {
-    "topic": "Guernsey Is Having a Tortoise Escape Epidemic Right Now",
-    "title": "Guernsey Is Having a Tortoise Escape Epidemic Right Now",
-    "publish_at": "2026-06-30T23:00:00Z",
+    "topic": "A Highway Just Turned Into a River of Beer",
+    "title": "A Highway Just Turned Into a River of Beer",
+    "publish_at": "2026-07-01T17:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/v85DbrXdTpM",
+    "video_url": "https://youtube.com/shorts/PCjZirW_Nsc",
     "error": null,
-    "elapsed_seconds": 519.7,
-    "package_path": "state/trending_packages/20260630/06_guernsey-tortoise-epidemic-2026.json",
-    "video_path": "output/daily_20260630-122019_guernsey_is_having_a_tortoise_escape_epi.mp4",
+    "elapsed_seconds": 586.7,
+    "package_path": "state/trending_packages/20260701/03_connecticut-beer-truck-spill-2026.json",
+    "video_path": "output/daily_20260701-115407_a_highway_just_turned_into_a_river_of_be.mp4",
     "qa": {
       "ok": true,
       "verdict": "ok",
       "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "A Wild Seal Just Turned Completely Purple",
+    "title": "A Wild Seal Just Turned Completely Purple",
+    "publish_at": "2026-07-01T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/_3qri9uccB4",
+    "error": null,
+    "elapsed_seconds": 638.8,
+    "package_path": "state/trending_packages/20260701/04_purple-elephant-seal-ano-nuevo-2026.json",
+    "video_path": "output/daily_20260701-120353_a_wild_seal_just_turned_completely_purpl.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "155 Homes Were Gone by Morning",
+    "title": "155 Homes Were Gone by Morning",
+    "publish_at": "2026-07-01T21:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/PgBRsZI6vpM",
+    "error": null,
+    "elapsed_seconds": 581.3,
+    "package_path": "state/trending_packages/20260701/05_aspen-acres-fire-colorado-2026.json",
+    "video_path": "output/daily_20260701-121433_155_homes_were_gone_by_morning.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Scientists Found How Alzheimer's Actually Spreads",
+    "title": "Scientists Found How Alzheimer's Actually Spreads",
+    "publish_at": "2026-07-01T23:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/flUvmCQt_jc",
+    "error": null,
+    "elapsed_seconds": 607.1,
+    "package_path": "state/trending_packages/20260701/06_alzheimers-arc-protein-tau-2026.json",
+    "video_path": "output/daily_20260701-122413_scientists_found_how_alzheimer_s_actuall.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
     },
     "channel": "default"
   }
