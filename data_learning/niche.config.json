@@ -5329,11 +5329,12 @@
           "params": {
             "file": "multigen_young_adults_compare.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": false,
           "role": "2 \u00b7 THE YOUNG ADULTS",
           "topic": "25-34 year-olds living with family",
-          "say": "Look closer, and it's young adults driving it. In 1971, just 9 percent of 25 to 34 year-olds lived with family. By 2021, 25 percent did \u2014 more than double. Grown kids are staying put."
+          "say": "Look closer, and it's young adults driving it. In 1971, just 9 percent of 25 to 34 year-olds lived with family. By 2021, 25 percent did \u2014 more than double. Grown kids are staying put.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -5377,11 +5378,12 @@
           "params": {
             "file": "colorblind_gender_gap.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": false,
           "role": "1 \u00b7 THE GAP",
           "topic": "red-green color blindness by sex",
-          "say": "Eight percent of men have red-green color blindness. For women, it's only 0.5 percent \u2014 16 times rarer. Red and green vision genes sit on the X chromosome, and men only get one copy."
+          "say": "Eight percent of men have red-green color blindness. For women, it's only 0.5 percent \u2014 16 times rarer. Red and green vision genes sit on the X chromosome, and men only get one copy.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -5401,11 +5403,12 @@
           "params": {
             "file": "colorblind_true_rarity.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": false,
           "role": "3 \u00b7 TRUE COLORBLINDNESS",
           "topic": "any deficiency vs total colorblindness",
-          "say": "So what about seeing zero color? That's achromatopsia \u2014 roughly 1 in 30,000 people. Compare that to the 8 percent of men with some red-green deficiency. True colorblindness is about 2,500 times rarer."
+          "say": "So what about seeing zero color? That's achromatopsia \u2014 roughly 1 in 30,000 people. Compare that to the 8 percent of men with some red-green deficiency. True colorblindness is about 2,500 times rarer.",
+          "ascending": false
         }
       ]
     },
@@ -5449,11 +5452,12 @@
           "params": {
             "file": "sun_corona_vs_surface.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": false,
           "role": "2 \u00b7 THE PARADOX",
           "topic": "corona vs surface temperature",
-          "say": "That's the corona running 500 times hotter than the surface beneath it \u2014 like stepping from a fire and feeling it get hotter. Scientists call this the coronal heating problem. It stumped them for decades."
+          "say": "That's the corona running 500 times hotter than the surface beneath it \u2014 like stepping from a fire and feeling it get hotter. Scientists call this the coronal heating problem. It stumped them for decades.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -5508,11 +5512,12 @@
           "params": {
             "file": "animal_sleep_predator_prey.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": false,
           "role": "2 \u00b7 PREDATOR VS PREY",
           "topic": "predator vs prey sleep hours",
-          "say": "So why the gap? Predators like lions nap almost anywhere \u2014 20 hours a day. Prey like giraffes can't. They get about 1.9 hours, snatched in bursts, because standing still that long gets you eaten."
+          "say": "So why the gap? Predators like lions nap almost anywhere \u2014 20 hours a day. Prey like giraffes can't. They get about 1.9 hours, snatched in bursts, because standing still that long gets you eaten.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -5520,11 +5525,12 @@
           "params": {
             "file": "animal_sleep_body_size.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": false,
           "role": "3 \u00b7 SIZE MATTERS",
           "topic": "small vs large mammal sleep hours",
-          "say": "Body size matters too. The tiny brown bat sleeps almost 20 hours \u2014 its fast metabolism burns out quick. A multi-ton elephant, slow metabolism, needs barely 2. Less to maintain means less recovery required."
+          "say": "Body size matters too. The tiny brown bat sleeps almost 20 hours \u2014 its fast metabolism burns out quick. A multi-ton elephant, slow metabolism, needs barely 2. Less to maintain means less recovery required.",
+          "ascending": false
         }
       ]
     }
