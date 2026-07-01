@@ -2473,7 +2473,10 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
     # variety even when a base theme repeats; else seed from the slug/title.
     story_key = str(pkg.get("_theme_seed") or pkg.get("slug")
                     or pkg.get("title") or pkg.get("script", "")[:40])
-    theme_config = themed_bottom.config_from_story(story_key, bottom_theme)
+    theme_config = themed_bottom.config_from_story(
+        story_key, bottom_theme,
+        title=pkg.get("title", ""), script=pkg.get("script", ""),
+        hashtags=pkg.get("hashtags"))
 
     build_video(
         pkg["script"], shots, punches,

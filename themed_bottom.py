@@ -270,6 +270,48 @@ class ThemeConfig:
     seed: int | None = None
     tint: tuple[float, float, float] = (1.0, 1.0, 1.0)  # per-channel gain
     saturation: float = 1.0                              # around luma
+    character: str | None = None    # story subject to reskin the sprite to
+
+
+# Map a story's hero noun to a drawable character the sprite themes
+# (runner/pursuit) can render AS the subject — so the monkey story shows a
+# monkey, not a generic critter. Order matters: most specific first. Returns
+# None when nothing fits (keep the theme's default sprite).
+_CHARACTER_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
+    ("monkey", ("monkey", "capuchin", "ape", "chimp", "baboon", "primate",
+                "macaque", "gorilla")),
+    ("duck", ("duck", "duckling", "mallard", "goose", "geese", "swan")),
+    ("tortoise", ("tortoise", "turtle", "terrapin")),
+    ("dog", ("dog", "puppy", "hound", "terrier", "retriever", "canine",
+             "pup", "labrador")),
+    ("goat", ("goat", "ram", "sheep", "lamb", "ewe")),
+    ("bird", ("bird", "chicken", "hen", "rooster", "peacock", "peahen",
+              "emu", "ostrich", "parrot", "owl", "eagle", "penguin",
+              "flamingo", "seagull", "pigeon")),
+    ("cat", ("cat", "kitten", "feline", "lynx", "bobcat")),
+    ("pig", ("pig", "hog", "boar", "piglet")),
+    # Vehicles — used by the pursuit theme to reskin the fleeing vehicle.
+    ("backhoe", ("backhoe", "excavator", "digger", "bulldozer", "dozer",
+                 "loader", "forklift")),
+    ("truck", ("truck", "semi", "lorry", "18-wheeler", "pickup",
+               "dump truck", "tanker")),
+    ("bus", ("bus", "coach", "schoolbus")),
+    ("tractor", ("tractor", "combine", "harvester")),
+    ("motorcycle", ("motorcycle", "motorbike", "scooter", "moped",
+                    "dirt bike", "harley")),
+]
+
+
+def character_for_story(title: str = "", script: str = "",
+                        hashtags: list[str] | None = None) -> str | None:
+    """Pull the hero animal from the story so the sprite can BE it. None when
+    no clear animal subject (theme keeps its default critter)."""
+    blob = " ".join([title or "", script or "",
+                     " ".join(hashtags or [])]).lower()
+    for name, words in _CHARACTER_KEYWORDS:
+        if _kw_hit(blob, words):
+            return name
+    return None
 
 
 # NOTE: see docs/BOTTOM_GAME_RULES.md. This reskin only COLOR-grades; it does
@@ -278,10 +320,14 @@ class ThemeConfig:
 # tinted. The fix is a per-theme `character`/sprite param (duck/tortoise/backhoe
 # /warship...) chosen from the story's hero noun, plus new themes (naval,
 # fireworks) so novel stories don't fall to plinko.
-def config_from_story(key: str, theme: str | None = None) -> ThemeConfig:
+def config_from_story(key: str, theme: str | None = None, *,
+                      title: str = "", script: str = "",
+                      hashtags: list[str] | None = None) -> ThemeConfig:
     """Deterministically derive a reskin (seed + gentle color grade) from a
     story key (slug/title). Bounded so readability never breaks; water themes
-    stay close to blue so rain/ocean still read as water."""
+    stay close to blue so rain/ocean still read as water. When story text is
+    given, also pick the hero `character` so sprite themes render the SUBJECT
+    (monkey/duck/tortoise…) instead of a generic critter."""
     h = hashlib.sha1((key or "x").encode("utf-8")).digest()
     seed = int.from_bytes(h[:4], "big")
     # Three bounded channel gains in ~[0.78, 1.22], plus a saturation nudge.
@@ -293,7 +339,9 @@ def config_from_story(key: str, theme: str | None = None) -> ThemeConfig:
         # Keep water blue-dominant: damp red/green drift, keep blue strong.
         tint = (min(tint[0], 1.05), min(tint[1], 1.08), max(tint[2], 1.0))
         sat = min(sat, 1.15)
-    return ThemeConfig(seed=seed, tint=tint, saturation=sat)
+    character = character_for_story(title, script, hashtags)
+    return ThemeConfig(seed=seed, tint=tint, saturation=sat,
+                       character=character)
 
 
 # ---------- shared helpers ----------
@@ -439,6 +487,8 @@ class _Renderer:
         self.config = config
         if config is not None:
             self._tint = np.asarray(config.tint, dtype=np.float32)
+            if getattr(config, "character", None):
+                self.character = config.character
 
     def _apply_grade(self, frame: np.ndarray) -> np.ndarray:
         """Per-story color grade (saturation + per-channel tint) over the
@@ -677,6 +727,32 @@ class _Renderer:
         frame[np.clip(surf + 9, 0, H - 1), xs] = (140, 210, 240)
         return frame
 
+    # Global art-direction "pop". The #1 reason bottoms read as a muddy
+    # dark blur in-feed is crushed shadows + flat saturation. This lifts
+    # the whole panel with a brightening gamma and a saturation boost so
+    # it POPS on a phone. Applied to EVERY theme frame, tunable per theme.
+    POP_ENABLED = True
+    POP_GAMMA = 0.80        # <1 brightens shadows/mids, protects highlights
+    POP_SAT = 1.30          # saturation multiplier
+    POP_CONTRAST = 1.06     # gentle S-curve contrast around mid grey
+
+    def _pop(self, frame: np.ndarray) -> np.ndarray:
+        if not self.POP_ENABLED:
+            return frame
+        f = frame.astype(np.float32)
+        # Brighten via gamma on normalized values (keeps whites from clipping).
+        if self.POP_GAMMA and self.POP_GAMMA != 1.0:
+            f = 255.0 * np.power(np.clip(f / 255.0, 0.0, 1.0), self.POP_GAMMA)
+        # Saturation around luma.
+        if self.POP_SAT != 1.0:
+            luma = (f * np.array([0.299, 0.587, 0.114], np.float32)).sum(
+                axis=2, keepdims=True)
+            f = luma + (f - luma) * self.POP_SAT
+        # Gentle contrast around mid grey.
+        if self.POP_CONTRAST != 1.0:
+            f = (f - 128.0) * self.POP_CONTRAST + 128.0
+        return np.clip(f, 0, 255).astype(np.uint8)
+
     def render(self, duration: float, out_path: Path) -> Path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         n = int(duration * FPS) + 1
@@ -708,6 +784,9 @@ class _Renderer:
         try:
             for i in range(n):
                 frame = self.draw(i / FPS, i)
+                # Global art-direction pop (brighten + saturate) so the panel
+                # reads punchy in-feed instead of a muddy dark blur.
+                frame = self._pop(frame)
                 # Per-story reskin (color grade); no-op without a config.
                 frame = self._apply_grade(frame)
                 # The rising-water end-goal is applied as a post-process on
@@ -1972,6 +2051,120 @@ class _Runner(_Renderer):
             d.ellipse([sx - 4, gy - 38, sx + 4, gy - 30],
                       fill=(150, 60, 80, 255))   # little berry
 
+    # ── character reskin: the runner IS the story's subject ──────────────
+    def _char_tail(self, d, x0, cyv, bw, bh, phase, col):
+        ch = getattr(self, "character", None)
+        bx = x0 - bw / 2
+        ty = cyv - 6 + 10 * math.sin(phase * math.tau + 1.4)
+        if ch == "monkey":
+            pts = []
+            for kk in range(0, 13):
+                u = kk / 12.0
+                ang = math.pi * (0.35 + 1.25 * u)
+                r = 30 + 20 * u
+                pts.append((bx - 4 - math.cos(ang) * r * 0.55,
+                            cyv - 2 - math.sin(ang) * r))
+            d.line(pts, fill=col, width=7, joint="curve")
+        elif ch in ("duck", "bird"):
+            d.polygon([(bx + 2, cyv - 6), (bx - 24, cyv - 22),
+                       (bx - 4, cyv + 2)], fill=col)           # upturned tail
+        elif ch in ("tortoise", "goat", "pig"):
+            d.ellipse([bx - 14, cyv - 5, bx - 2, cyv + 9], fill=col)  # stub
+        elif ch in ("dog", "cat"):
+            d.line([bx, cyv - 2, bx - 30, ty - 12], fill=col, width=8)
+        else:                                                  # default critter
+            d.line([bx, cyv, bx - 30, ty], fill=col, width=9)
+
+    def _char_head(self, d, x0, cyv, bw, bh, col, t):
+        ch = getattr(self, "character", None)
+        hx = x0 + bw * 0.46
+        hy = cyv - bh * 0.52
+        twitch = 4 if math.sin(t * 0.9) > 0.96 else 0
+        if ch == "tortoise":
+            # domed shell over the body so it clearly reads as a tortoise
+            d.chord([x0 - bw * 0.6, cyv - bh * 1.15,
+                     x0 + bw * 0.55, cyv + bh * 0.55], 180, 360,
+                    fill=(74, 110, 64, 255))
+            d.arc([x0 - bw * 0.6, cyv - bh * 1.15,
+                   x0 + bw * 0.55, cyv + bh * 0.55], 180, 360,
+                  fill=(40, 62, 36, 255), width=4)
+            for sxk in (-0.32, -0.08, 0.16):
+                d.line([x0 + bw * sxk, cyv - bh * 0.9,
+                        x0 + bw * sxk, cyv - bh * 0.05],
+                       fill=(40, 62, 36, 255), width=3)
+        d.ellipse([hx - 19, hy - 17, hx + 19, hy + 17], fill=col)   # head
+        eye = (hx + 6, hy - 3)
+        if ch == "monkey":
+            d.ellipse([hx - 26, hy - 9, hx - 8, hy + 9], fill=col)  # ears
+            d.ellipse([hx + 8, hy - 9, hx + 26, hy + 9], fill=col)
+            d.ellipse([hx - 10, hy - 5, hx + 16, hy + 16],
+                      fill=(168, 128, 96, 255))                     # face patch
+            d.ellipse([hx - 2, hy + 3, hx + 14, hy + 15],
+                      fill=(134, 96, 70, 255))                      # muzzle
+            d.ellipse([hx + 3, hy + 6, hx + 7, hy + 10],
+                      fill=(60, 40, 30, 255))                       # nostril
+        elif ch == "duck":
+            d.ellipse([hx + 4, hy - 4, hx + 24, hy + 10], fill=col)
+            d.polygon([(hx + 12, hy - 4), (hx + 42, hy + 1),
+                       (hx + 12, hy + 9)], fill=(242, 172, 40, 255))  # bill
+        elif ch == "bird":
+            d.polygon([(hx + 12, hy - 3), (hx + 34, hy + 2),
+                       (hx + 12, hy + 8)], fill=(242, 172, 40, 255))  # beak
+            d.polygon([(hx - 7, hy - 15), (hx + 1, hy - 32),
+                       (hx + 8, hy - 14)], fill=col)                  # crest
+        elif ch == "tortoise":
+            d.ellipse([hx + 6, hy - 6, hx + 30, hy + 10], fill=col)   # snout/neck
+            d.ellipse([hx + 22, hy, hx + 28, hy + 6],
+                      fill=(60, 45, 45, 255))
+        elif ch == "dog":
+            d.ellipse([hx + 8, hy - 3, hx + 33, hy + 13], fill=col)   # snout
+            d.ellipse([hx + 27, hy + 2, hx + 33, hy + 9],
+                      fill=(35, 28, 28, 255))                         # nose
+            d.polygon([(hx - 16, hy - 14), (hx - 22, hy + 16),
+                       (hx - 3, hy + 6)], fill=col)                   # floppy ear
+        elif ch == "goat":
+            d.ellipse([hx + 8, hy - 2, hx + 30, hy + 13], fill=col)   # snout
+            d.polygon([(hx - 9, hy - 13), (hx - 20, hy - 31),
+                       (hx - 4, hy - 15)], fill=(122, 98, 72, 255))   # horns
+            d.polygon([(hx + 2, hy - 13), (hx + 11, hy - 31),
+                       (hx + 9, hy - 14)], fill=(122, 98, 72, 255))
+            d.polygon([(hx + 8, hy + 11), (hx + 3, hy + 24),
+                       (hx + 14, hy + 13)], fill=col)                 # beard
+        elif ch == "cat":
+            d.polygon([(hx - 14, hy - 12), (hx - 9, hy - 28),
+                       (hx - 1, hy - 12)], fill=col)                  # ear
+            d.polygon([(hx + 2, hy - 12), (hx + 10, hy - 28),
+                       (hx + 15, hy - 11)], fill=col)                 # ear
+            d.ellipse([hx + 8, hy - 2, hx + 28, hy + 12], fill=col)   # muzzle
+            d.ellipse([hx + 21, hy + 2, hx + 26, hy + 7],
+                      fill=(200, 120, 130, 255))
+        elif ch == "pig":
+            d.ellipse([hx + 8, hy - 2, hx + 30, hy + 14], fill=col)   # snout
+            d.ellipse([hx + 20, hy + 2, hx + 30, hy + 12],
+                      fill=(210, 130, 140, 255))                      # snout disc
+            d.polygon([(hx - 12, hy - 14), (hx - 6, hy - 24),
+                       (hx + 2, hy - 12)], fill=col)                  # ear
+        else:                                                        # critter
+            d.ellipse([hx + 8, hy - 4, hx + 30, hy + 10], fill=col)   # snout
+            d.ellipse([hx + 22, hy + 1, hx + 27, hy + 6],
+                      fill=(60, 45, 45, 255))
+            d.polygon([(hx - 13, hy - 13), (hx - 6, hy - 30 - twitch),
+                       (hx, hy - 11)], fill=col)
+            d.polygon([(hx - 10, hy - 14), (hx - 6, hy - 25 - twitch),
+                       (hx - 2, hy - 12)], fill=(200, 120, 130, 255))
+            d.polygon([(hx + 2, hy - 12), (hx + 9, hy - 27),
+                       (hx + 14, hy - 9)], fill=col)
+        # shared eye
+        ex, ey = eye
+        if ch in ("duck", "bird"):
+            ex, ey = hx + 4, hy - 4
+        if (t % 3.4) >= 0.12:
+            d.ellipse([ex - 2, ey - 3, ex + 5, ey + 4],
+                      fill=(255, 255, 255, 255))
+            d.ellipse([ex + 1, ey - 1, ex + 4, ey + 2], fill=(0, 0, 0, 255))
+        else:
+            d.line([ex - 2, ey, ex + 5, ey], fill=(60, 50, 50, 255), width=2)
+
     def draw(self, t: float, i: int) -> np.ndarray:
         rng = self.rng
         held = self.handle_fail(self._last_frame
@@ -2173,9 +2366,7 @@ class _Runner(_Renderer):
         squash = 1.0 / stretch
         bw, bh = 58 * squash * 1.15, 42 * stretch * 0.95
         body_col = (20, 17, 17, 255)
-        tail_y = cyv - 6 + 10 * math.sin(phase * math.tau + 1.4)
-        d.line([x0 - bw / 2, cyv, x0 - bw / 2 - 30, tail_y],
-               fill=body_col, width=9)
+        self._char_tail(d, x0, cyv, bw, bh, phase, body_col)
         d.ellipse([x0 - bw / 2, cyv - bh / 2, x0 + bw / 2, cyv + bh / 2],
                   fill=body_col)
         d.ellipse([x0 - bw * 0.55, cyv - bh * 0.30,
@@ -2196,28 +2387,7 @@ class _Runner(_Renderer):
             d.line([x0 + bw * 0.25, cyv + bh * 0.35,
                     x0 + bw * 0.25 + swing, cyv + bh * 0.75],
                    fill=body_col, width=7)
-        hx = x0 + bw * 0.46
-        hy = cyv - bh * 0.52
-        d.ellipse([hx - 19, hy - 17, hx + 19, hy + 17], fill=body_col)
-        d.ellipse([hx + 8, hy - 4, hx + 30, hy + 10], fill=body_col)
-        d.ellipse([hx + 22, hy + 1, hx + 27, hy + 6],
-                  fill=(60, 45, 45, 255))
-        twitch = 4 if math.sin(t * 0.9) > 0.96 else 0
-        d.polygon([(hx - 13, hy - 13), (hx - 6, hy - 30 - twitch),
-                   (hx, hy - 11)], fill=body_col)
-        d.polygon([(hx - 10, hy - 14), (hx - 6, hy - 25 - twitch),
-                   (hx - 2, hy - 12)], fill=(200, 120, 130, 255))
-        d.polygon([(hx + 2, hy - 12), (hx + 9, hy - 27), (hx + 14, hy - 9)],
-                  fill=body_col)
-        blink = (t % 3.4) < 0.12
-        if not blink:
-            d.ellipse([hx + 4, hy - 6, hx + 11, hy + 1],
-                      fill=(255, 255, 255, 255))
-            d.ellipse([hx + 7, hy - 4, hx + 10, hy - 1],
-                      fill=(0, 0, 0, 255))
-        else:
-            d.line([hx + 4, hy - 2, hx + 11, hy - 2],
-                   fill=(60, 50, 50, 255), width=2)
+        self._char_head(d, x0, cyv, bw, bh, body_col, t)
 
         if grounded:
             for _ in range(3):
@@ -2232,6 +2402,36 @@ class _Runner(_Renderer):
                 lx = rng.uniform(0, W)
                 d.line([lx, ly, lx + ll, ly],
                        fill=(220, 225, 255, int(60 * k)), width=2)
+
+        # Foreground parallax band: a nearer rolling hill + grass tufts
+        # scrolling FAST across the bottom, so the empty green dead-space
+        # becomes a layered, moving foreground. Deterministic (scroll-driven,
+        # no per-frame rng) so blades don't flicker.
+        fg = self.scroll * 1.8
+        fg_col = (12, 24, 16, 255)
+        base = H * 0.855
+        pts = [(0, H + 5)]
+        x_ = 0
+        while x_ <= W:
+            hy = (base + 24 * math.sin((x_ + fg) * 0.004)
+                  + 10 * math.sin((x_ + fg) * 0.013))
+            pts.append((x_, hy))
+            x_ += 30
+        pts.append((W, H + 5))
+        d.polygon(pts, fill=fg_col)
+        step = 46
+        gx = -(fg % step)
+        bi = int(fg // step)
+        while gx <= W:
+            hy = (base + 24 * math.sin((gx + fg) * 0.004)
+                  + 10 * math.sin((gx + fg) * 0.013))
+            h_var = 14 + 4 * ((bi * 37) % 5)
+            for bd in (-7, -2, 3, 8):
+                lean = 4 * math.sin(bi + bd)
+                d.line([gx + bd, hy + 4, gx + bd + lean, hy - h_var],
+                       fill=fg_col, width=3)
+            gx += step
+            bi += 1
 
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
@@ -3616,6 +3816,55 @@ class _Pursuit(_Renderer):
             d.rounded_rectangle([x + 2, y - h / 2 - 10, x + 18, y - h / 2 - 1], radius=3,
                                 fill=((40, 90, 255, 255) if not fl else (16, 24, 90, 255)))
 
+    def _vehicle(self, d, x, y, col, t):
+        """The FLEEING vehicle, reskinned to the story's subject (top-down).
+        Falls back to the normal car when there's no vehicle subject."""
+        ch = getattr(self, "character", None)
+        if ch == "backhoe":
+            yel = (240, 190, 40)
+            d.rounded_rectangle([x - 40, y - 30, x - 28, y + 34], radius=6,
+                                fill=(30, 30, 34, 255))            # track
+            d.rounded_rectangle([x + 28, y - 30, x + 40, y + 34], radius=6,
+                                fill=(30, 30, 34, 255))
+            d.rounded_rectangle([x - 30, y - 44, x + 30, y + 40], radius=10,
+                                fill=(*yel, 255))                  # body
+            d.rounded_rectangle([x - 19, y - 8, x + 19, y + 28], radius=8,
+                                fill=(36, 42, 54, 235))            # cab
+            d.line([x, y - 30, x, y - 68], fill=(70, 70, 78, 255),
+                   width=12)                                       # boom
+            d.rounded_rectangle([x - 16, y - 82, x + 16, y - 64], radius=4,
+                                fill=(54, 54, 60, 255))            # bucket
+        elif ch == "truck":
+            d.rounded_rectangle([x - 26, y - 54, x + 26, y + 52], radius=8,
+                                fill=(80, 84, 96, 255))            # trailer
+            d.rounded_rectangle([x - 28, y - 58, x + 28, y - 18], radius=10,
+                                fill=(*col, 255))                  # cab
+            d.rounded_rectangle([x - 20, y - 52, x + 20, y - 30], radius=6,
+                                fill=(20, 26, 42, 235))            # windshield
+        elif ch == "bus":
+            d.rounded_rectangle([x - 28, y - 60, x + 28, y + 56], radius=14,
+                                fill=(*col, 255))
+            for wy in range(-46, 50, 22):
+                d.rounded_rectangle([x - 22, y + wy, x + 22, y + wy + 12],
+                                    radius=4, fill=(28, 38, 60, 220))
+        elif ch == "tractor":
+            d.ellipse([x - 44, y + 8, x - 14, y + 54], fill=(28, 28, 32, 255))
+            d.ellipse([x + 14, y + 8, x + 44, y + 54], fill=(28, 28, 32, 255))
+            d.ellipse([x - 34, y - 40, x - 16, y - 18], fill=(28, 28, 32, 255))
+            d.ellipse([x + 16, y - 40, x + 34, y - 18], fill=(28, 28, 32, 255))
+            d.rounded_rectangle([x - 22, y - 32, x + 22, y + 40], radius=8,
+                                fill=(*col, 255))                  # body
+            d.rounded_rectangle([x - 17, y - 26, x + 17, y], radius=6,
+                                fill=(20, 26, 42, 235))            # cab glass
+        elif ch == "motorcycle":
+            d.ellipse([x - 6, y - 44, x + 6, y - 22], fill=(28, 28, 32, 255))
+            d.ellipse([x - 6, y + 22, x + 6, y + 44], fill=(28, 28, 32, 255))
+            d.rounded_rectangle([x - 8, y - 22, x + 8, y + 26], radius=6,
+                                fill=(*col, 255))                  # body
+            d.ellipse([x - 10, y - 6, x + 10, y + 16], fill=(20, 20, 24, 255))
+        else:
+            self._car(d, x, y, col, t)
+
     def draw(self, t, i):
         dt = 1.0 / FPS
         k = min(1.0, t / max(1.0, getattr(self, "duration", 30.0)))
@@ -3713,7 +3962,7 @@ class _Pursuit(_Renderer):
         for c in self.traffic:
             self._car(d, self._lane_x(c["lane"]) + shake, c["y"], c["col"], t)
         self._car(d, self.chase_x + shake, chase_y, (205, 48, 44), t, siren=True)
-        self._car(d, flee_x + shake, flee_y, (52, 124, 238), t)
+        self._vehicle(d, flee_x + shake, flee_y, (52, 124, 238), t)
         return np.asarray(img, dtype=np.uint8)
 
 
