@@ -1,0 +1,20 @@
+{
+  "key": "sun_layer_temperatures",
+  "title": "Temperature by layer of the Sun",
+  "unit": "degrees Celsius",
+  "geography": "The Sun",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Sun: Facts",
+    "publisher": "NASA Science",
+    "url": "https://science.nasa.gov/sun/facts/",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. Core and corona temperatures are commonly cited NASA approximations; the photosphere (visible surface) is the coolest of the three despite sitting between them.",
+  "points": [
+    {"label": "Core", "value": 15000000},
+    {"label": "Corona", "value": 2000000},
+    {"label": "Surface (photosphere)", "value": 5500}
+  ]
+}

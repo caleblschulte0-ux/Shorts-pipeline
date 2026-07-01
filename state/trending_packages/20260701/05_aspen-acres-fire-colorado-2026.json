@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "slug": "aspen-acres-fire-colorado-2026",
+  "title": "155 Homes Were Gone by Morning",
+  "script": "155 homes, gone overnight? The Aspen Acres Fire tore through southern Colorado's Beulah and Rye on Monday, and 100 mile-per-hour winds turned it into something else entirely — an 8-mile run in a single day. By morning, more than 155 homes and structures were gone across Pueblo and Custer counties. The historic Horseshoe Lodge, standing in Pueblo Mountain Park since the early 1900s, took heavy damage too. Residents had minutes, not hours, to grab what they could and evacuate as the fire jumped ridgelines faster than crews could track it. Colorado's governor has already declared a disaster. Families who've lived in these mountains for generations are now sorting through what didn't burn. So how do you rebuild a town the wind erased in a day?",
+  "shots": [
+    {"phrase": "155 homes, gone overnight", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Small_team_gets_BLM_firetrucks_to_America%E2%80%99s_wildfires_(22845694861).jpg", "query": "wildfire burning homes", "mascot_pose": "shock"},
+    {"phrase": "The Aspen Acres Fire tore through southern Colorado's Beulah and Rye", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quail_Run_Fire_in_Alpine_Utah.jpg", "query": "mountain wildfire smoke", "mascot_pose": "idle"},
+    {"phrase": "100 mile-per-hour winds turned it into something else entirely", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quail_Run_Fire_in_Alpine_Utah.jpg", "query": "wind blown wildfire flames", "mascot_pose": "idle"},
+    {"phrase": "an 8-mile run in a single day", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quail_Run_Fire_in_Alpine_Utah.jpg", "query": "wildfire spreading hillside", "mascot_pose": "idle"},
+    {"phrase": "more than 155 homes and structures were gone", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Firefighter_fighting_fire_03.jpg", "query": "burned home rubble", "mascot_pose": "idle"},
+    {"phrase": "across Pueblo and Custer counties", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Firefighter_fighting_fire_03.jpg", "query": "Colorado mountain town", "mascot_pose": "idle"},
+    {"phrase": "The historic Horseshoe Lodge, standing in Pueblo Mountain Park since the early 1900s", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Firefighter_fighting_fire_03.jpg", "query": "historic wooden lodge building", "mascot_pose": "idle"},
+    {"phrase": "Residents had minutes, not hours, to grab what they could and evacuate", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Small_team_gets_BLM_firetrucks_to_America%E2%80%99s_wildfires_(22845694861).jpg", "query": "evacuation cars packed road", "mascot_pose": "laugh"},
+    {"phrase": "the fire jumped ridgelines faster than crews could track it", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Small_team_gets_BLM_firetrucks_to_America%E2%80%99s_wildfires_(22845694861).jpg", "query": "firefighters battling flames", "mascot_pose": "idle"},
+    {"phrase": "Colorado's governor has already declared a disaster", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quail_Run_Fire_in_Alpine_Utah.jpg", "query": "state disaster press conference", "mascot_pose": "idle"},
+    {"phrase": "sorting through what didn't burn", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Firefighter_fighting_fire_03.jpg", "query": "family sifting ash rubble", "mascot_pose": "idle"},
+    {"phrase": "rebuild a town the wind erased in a day", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Small_team_gets_BLM_firetrucks_to_America%E2%80%99s_wildfires_(22845694861).jpg", "query": "burned neighborhood aftermath", "mascot_pose": "dismiss"}
+  ],
+  "punches": [
+    {"phrase": "155 homes, gone overnight", "text": "155 HOMES GONE", "color": "#ff3030"},
+    {"phrase": "100 mile-per-hour winds", "text": "100 MPH WINDS", "color": "#ffaa30"},
+    {"phrase": "an 8-mile run in a single day", "text": "8 MILES IN 1 DAY", "color": "#ffaa30"},
+    {"phrase": "The historic Horseshoe Lodge", "text": "HISTORIC LODGE HIT", "color": "#ffffff"},
+    {"phrase": "Colorado's governor has already declared a disaster", "text": "DISASTER DECLARED", "color": "#ff3030"},
+    {"phrase": "sorting through what didn't burn", "text": "WHAT'S LEFT", "color": "#ffffff"}
+  ],
+  "hashtags": ["coloradowildfire", "aspenacresfire", "beulahcolorado", "wildfire", "coloradonews", "evacuation", "naturaldisaster", "breakingnews", "pueblocounty", "climatenews", "fyp"],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

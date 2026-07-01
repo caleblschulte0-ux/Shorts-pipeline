@@ -1,0 +1,21 @@
+{
+  "key": "colorblind_type_breakdown",
+  "title": "Red-green color blindness type breakdown (share of men)",
+  "unit": "percent",
+  "geography": "World (Northern European descent populations)",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Facts About Color Blindness",
+    "publisher": "National Eye Institute (NIH)",
+    "url": "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. Deuteranomaly (reduced green sensitivity) is the most common type; protanomaly, protanopia, and deuteranopia are rarer.",
+  "points": [
+    {"label": "Deuteranomaly", "value": 5},
+    {"label": "Protanomaly", "value": 1},
+    {"label": "Protanopia", "value": 1},
+    {"label": "Deuteranopia", "value": 1}
+  ]
+}

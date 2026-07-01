@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "slug": "alzheimers-arc-protein-tau-2026",
+  "title": "Scientists Found How Alzheimer's Actually Spreads",
+  "script": "Alzheimer's spreads like a virus? For decades, scientists knew the disease crept from neuron to neuron — they just didn't know how a sick cell infects a healthy one. A new study out of the University of Utah just named the courier. It's a protein called Arc, and its normal job is harmless — until it starts packaging toxic tau, the tangled protein behind Alzheimer's, into tiny vesicles and shipping it straight into neighboring brain cells. One infected neuron becomes ten. Ten becomes a hundred. That's the spread doctors have watched for years without ever seeing the mechanism behind it. Block Arc, and you might block the delivery truck entirely — stopping the disease from spreading cell to cell in the first place. So what happens to treatment once you can shut the courier down?",
+  "shots": [
+    {"phrase": "Alzheimer's spreads like a virus", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg", "query": "brain neurons illustration", "mascot_pose": "shock"},
+    {"phrase": "the disease crept from neuron to neuron", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg", "query": "neuron network diagram", "mascot_pose": "idle"},
+    {"phrase": "how a sick cell infects a healthy one", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Neurofibrillary_tangles_in_the_Hippocampus_of_an_old_person_with_Alzheimer-related_pathology,_immunohistochemistry_for_tau_protein.JPG", "query": "cell infection microscope", "mascot_pose": "idle"},
+    {"phrase": "A new study out of the University of Utah", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg", "query": "university research lab", "mascot_pose": "idle"},
+    {"phrase": "just named the courier", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg", "query": "scientist pointing research", "mascot_pose": "idle"},
+    {"phrase": "a protein called Arc, and its normal job is harmless", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg", "query": "protein molecule model", "mascot_pose": "idle"},
+    {"phrase": "packaging toxic tau, the tangled protein behind Alzheimer's", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Neurofibrillary_tangles_in_the_Hippocampus_of_an_old_person_with_Alzheimer-related_pathology,_immunohistochemistry_for_tau_protein.JPG", "query": "tau tangles brain scan", "mascot_pose": "idle"},
+    {"phrase": "shipping it straight into neighboring brain cells", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Neurofibrillary_tangles_in_the_Hippocampus_of_an_old_person_with_Alzheimer-related_pathology,_immunohistochemistry_for_tau_protein.JPG", "query": "brain cells closeup", "mascot_pose": "laugh"},
+    {"phrase": "One infected neuron becomes ten. Ten becomes a hundred.", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg", "query": "spreading network nodes", "mascot_pose": "idle"},
+    {"phrase": "without ever seeing the mechanism behind it", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Neurofibrillary_tangles_in_the_Hippocampus_of_an_old_person_with_Alzheimer-related_pathology,_immunohistochemistry_for_tau_protein.JPG", "query": "doctor reviewing brain scan", "mascot_pose": "idle"},
+    {"phrase": "block the delivery truck entirely", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg", "query": "delivery truck road", "mascot_pose": "idle"},
+    {"phrase": "what happens to treatment once you can shut the courier down", "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg", "query": "medical research hopeful", "mascot_pose": "dismiss"}
+  ],
+  "punches": [
+    {"phrase": "Alzheimer's spreads like a virus", "text": "SPREADS LIKE A VIRUS", "color": "#ff3030"},
+    {"phrase": "a protein called Arc", "text": "THE PROTEIN: ARC", "color": "#ffaa30"},
+    {"phrase": "One infected neuron becomes ten. Ten becomes a hundred.", "text": "1 BECOMES 100", "color": "#ff3030"},
+    {"phrase": "Block Arc, and you might block the delivery truck entirely", "text": "BLOCK ARC?", "color": "#50ff80"},
+    {"phrase": "stopping the disease from spreading cell to cell", "text": "STOP THE SPREAD", "color": "#50ff80"},
+    {"phrase": "A new study out of the University of Utah", "text": "UNIVERSITY OF UTAH", "color": "#ffffff"}
+  ],
+  "hashtags": ["alzheimers", "brainhealth", "neuroscience", "tauprotein", "medicalbreakthrough", "sciencenews", "dementia", "universityofutah", "healthnews", "brainscience", "fyp"],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

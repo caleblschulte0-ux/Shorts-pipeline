@@ -5289,6 +5289,244 @@
         }
       ],
       "question": "What's the most impressive animal migration you've learned about?"
+    },
+    {
+      "slug": "multigenerational-households-comeback",
+      "title": "Grown Kids Never Left. Here's Why.",
+      "hook": "Grown kids never left. Here's why.",
+      "closing": "Moving out got expensive. Moving back got normal.",
+      "question": "Do you live with extended family right now? Tell us below.",
+      "caption": "A quarter of Americans 25 to 34 now live with their parents or grandparents \u2014 more than double the rate in 1971. It's not culture. It's money. Here's the data \ud83d\udc47",
+      "hashtags": [
+        "multigenerational",
+        "familylife",
+        "genz",
+        "millennials",
+        "costofliving",
+        "demographics",
+        "boomerangkids",
+        "familyfinance",
+        "society",
+        "pewresearch",
+        "data",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "multigen_household_share",
+          "params": {
+            "file": "multigen_household_share.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE TREND",
+          "topic": "share in a multigenerational household",
+          "say": "In 1971, only 7 percent of Americans lived with extended family under one roof. By 2021, that number hit 18 percent \u2014 the highest share in decades. Something reversed."
+        },
+        {
+          "source": "offline",
+          "key": "multigen_young_adults_compare",
+          "params": {
+            "file": "multigen_young_adults_compare.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 THE YOUNG ADULTS",
+          "topic": "25-34 year-olds living with family",
+          "say": "Look closer, and it's young adults driving it. In 1971, just 9 percent of 25 to 34 year-olds lived with family. By 2021, 25 percent did \u2014 more than double. Grown kids are staying put."
+        },
+        {
+          "source": "offline",
+          "key": "multigen_reasons_rank",
+          "params": {
+            "file": "multigen_reasons_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 \u00b7 WHY",
+          "topic": "major reason for living together",
+          "say": "So why? Ask people living it, and 57 percent say money is the main reason \u2014 rent, debt, or a paycheck that doesn't stretch far enough. This isn't a lifestyle trend. It's a budget decision."
+        }
+      ]
+    },
+    {
+      "slug": "colorblind-by-the-numbers",
+      "title": "Colorblind Doesn't Mean What You Think",
+      "hook": "Colorblind almost never means what you think.",
+      "closing": "Most 'colorblind' guys just see less green \u2014 not zero color.",
+      "question": "Do you know anyone who's colorblind? Tell us below.",
+      "caption": "8 percent of men can't fully tell certain reds from greens \u2014 only 0.5 percent of women share that. But most 'colorblind' people still see color; true total colorblindness is about 2,500 times rarer. Here's the data \ud83d\udc47",
+      "hashtags": [
+        "colorblind",
+        "colorblindness",
+        "eyehealth",
+        "visionscience",
+        "genetics",
+        "didyouknow",
+        "science",
+        "healthfacts",
+        "biology",
+        "eyesight",
+        "data",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "colorblind_gender_gap",
+          "params": {
+            "file": "colorblind_gender_gap.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "1 \u00b7 THE GAP",
+          "topic": "red-green color blindness by sex",
+          "say": "Eight percent of men have red-green color blindness. For women, it's only 0.5 percent \u2014 16 times rarer. Red and green vision genes sit on the X chromosome, and men only get one copy."
+        },
+        {
+          "source": "offline",
+          "key": "colorblind_type_breakdown",
+          "params": {
+            "file": "colorblind_type_breakdown.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 \u00b7 THE BREAKDOWN",
+          "topic": "type of color blindness (share of men)",
+          "say": "Most cases aren't full colorblindness. 5 percent of men have deuteranomaly \u2014 weak green vision, not missing green. The rarer forms \u2014 protanomaly, protanopia, deuteranopia \u2014 each affect about 1 percent. One glitch, four results."
+        },
+        {
+          "source": "offline",
+          "key": "colorblind_true_rarity",
+          "params": {
+            "file": "colorblind_true_rarity.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 TRUE COLORBLINDNESS",
+          "topic": "any deficiency vs total colorblindness",
+          "say": "So what about seeing zero color? That's achromatopsia \u2014 roughly 1 in 30,000 people. Compare that to the 8 percent of men with some red-green deficiency. True colorblindness is about 2,500 times rarer."
+        }
+      ]
+    },
+    {
+      "slug": "sun-colder-than-its-atmosphere",
+      "title": "The Sun's Surface Is Colder Than Its Air",
+      "hook": "The Sun's surface is the cold part.",
+      "closing": "Somewhere out past the Sun's 'cool' surface, it gets hot again.",
+      "question": "Did you know the Sun's atmosphere is hotter than its surface? Tell us below.",
+      "caption": "The Sun's surface is 'only' 5,500 degrees Celsius \u2014 but its outer atmosphere, the corona, is over 2 million degrees. Scientists call it the coronal heating problem. Here's the data \ud83d\udc47",
+      "hashtags": [
+        "sun",
+        "space",
+        "astronomy",
+        "nasa",
+        "corona",
+        "solarphysics",
+        "science",
+        "didyouknow",
+        "mindblown",
+        "parkersolarprobe",
+        "data",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sun_layer_temperatures",
+          "params": {
+            "file": "sun_layer_temperatures.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 \u00b7 THE LAYERS",
+          "topic": "temperature by layer",
+          "say": "You'd expect the Sun to cool as you leave its 15 million degree core. The surface \u2014 the photosphere \u2014 is 'only' 5,500 degrees. Then the corona, further out, hits 2 million degrees again."
+        },
+        {
+          "source": "offline",
+          "key": "sun_corona_vs_surface",
+          "params": {
+            "file": "sun_corona_vs_surface.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 THE PARADOX",
+          "topic": "corona vs surface temperature",
+          "say": "That's the corona running 500 times hotter than the surface beneath it \u2014 like stepping from a fire and feeling it get hotter. Scientists call this the coronal heating problem. It stumped them for decades."
+        },
+        {
+          "source": "offline",
+          "key": "parker_probe_distance",
+          "params": {
+            "file": "parker_probe_distance.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 THE ANSWER",
+          "topic": "Parker Solar Probe distance from the Sun",
+          "say": "NASA's Parker Solar Probe flew closer to find out \u2014 15 million miles out in 2018, 8 million in 2021, 3.8 million by 2024. Flying through the corona, it found magnetic waves doing the heating."
+        }
+      ]
+    },
+    {
+      "slug": "how-long-animals-actually-sleep",
+      "title": "Why Some Animals Barely Sleep at All",
+      "hook": "A koala sleeps 22 hours. A giraffe barely 2.",
+      "closing": "Sleep isn't laziness. For a giraffe, it's survival math.",
+      "question": "How many hours did YOU sleep last night? Tell us below.",
+      "caption": "A koala sleeps 22 hours a day. A giraffe gets by on less than 2. It's not random \u2014 it's about who's hunting whom, and how big you are. Here's the data \ud83d\udc47",
+      "hashtags": [
+        "animalfacts",
+        "sleepscience",
+        "wildlife",
+        "koala",
+        "giraffe",
+        "nature",
+        "didyouknow",
+        "biology",
+        "mindblown",
+        "zoology",
+        "data",
+        "fyp"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "animal_sleep_scale",
+          "params": {
+            "file": "animal_sleep_scale.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 \u00b7 THE SCALE",
+          "topic": "average hours of sleep per day",
+          "say": "Sleep needs across the animal kingdom swing wildly. A koala sleeps 22 hours a day. A lion, up to 20. Humans average 8. Elephants and giraffes get by on barely 2 hours."
+        },
+        {
+          "source": "offline",
+          "key": "animal_sleep_predator_prey",
+          "params": {
+            "file": "animal_sleep_predator_prey.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 PREDATOR VS PREY",
+          "topic": "predator vs prey sleep hours",
+          "say": "So why the gap? Predators like lions nap almost anywhere \u2014 20 hours a day. Prey like giraffes can't. They get about 1.9 hours, snatched in bursts, because standing still that long gets you eaten."
+        },
+        {
+          "source": "offline",
+          "key": "animal_sleep_body_size",
+          "params": {
+            "file": "animal_sleep_body_size.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 SIZE MATTERS",
+          "topic": "small vs large mammal sleep hours",
+          "say": "Body size matters too. The tiny brown bat sleeps almost 20 hours \u2014 its fast metabolism burns out quick. A multi-ton elephant, slow metabolism, needs barely 2. Less to maintain means less recovery required."
+        }
+      ]
     }
   ],
   "videos": [

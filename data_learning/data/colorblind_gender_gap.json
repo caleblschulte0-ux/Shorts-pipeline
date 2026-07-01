@@ -1,0 +1,19 @@
+{
+  "key": "colorblind_gender_gap",
+  "title": "Red-green color blindness prevalence by sex",
+  "unit": "percent",
+  "geography": "World (Northern European descent populations)",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Facts About Color Blindness",
+    "publisher": "National Eye Institute (NIH)",
+    "url": "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. NEI's commonly cited figures for red-green color vision deficiency prevalence.",
+  "points": [
+    {"label": "Men", "value": 8},
+    {"label": "Women", "value": 0.5}
+  ]
+}
