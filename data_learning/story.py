@@ -16,7 +16,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import charts, insights
+from . import charts, insights, viz_director
 from .insights import Insight
 from .sources import get_source
 from .sources.offline import OfflineSource
@@ -187,64 +187,13 @@ def _build_insight(seg_cfg: dict):
                          ascending=bool(seg_cfg.get("ascending", False)))
     if seg_cfg.get("topic"):
         ins.topic = seg_cfg["topic"]
-    # Suggest a viz (final kind decided per-video in _finalize_viz). An explicit
-    # `"viz"` hint wins; otherwise auto-detect whether the labels are PLACES
-    # (states/countries/metros -> a map). Non-place data is decided later.
-    viz = (seg_cfg.get("viz") or "").strip().lower()
-    if viz in ("geo_us", "geo_world", "geo_city", "callouts", "diorama", "trend"):
-        ins.suggested_viz = viz
-    else:
-        ins.suggested_viz = charts.place_scope_for([p.label for p in ins.items])
+    # The creative DEPICTION is chosen by viz_director (honouring the LLM's
+    # authored concept). Carry the authored concept + its params onto the insight
+    # so the director can honour it and the renderer can read the params.
+    ins.authored_viz = (seg_cfg.get("viz") or "").strip().lower()
+    ins.viz_params = seg_cfg.get("viz_params") or {}
+    ins.scene = seg_cfg.get("scene") or None      # LLM-invented depiction, if any
     return ins
-
-
-def _spread(ins) -> float:
-    """max/min value ratio — how dramatic (map-worthy / shock-worthy) a segment
-    is. Used to pick which segment gets the one map / the big-number scene."""
-    vals = [p.value for p in ins.items if p.value]
-    return (max(vals) / min(vals)) if vals and min(vals) > 0 else 0.0
-
-
-# The creative non-map, non-trend viz forms, in rotation order. The illustrated
-# DIORAMA (objects sized by value + numbers) is the strongest but heaviest, so it
-# runs at most ONCE per video; the rest cycle through other shapes so every video
-# shows VARIETY instead of the same graphic-plus-number every segment.
-_CREATIVE_ROTATION = ["pictograph", "callouts", "pictograph", "callouts"]
-
-
-def _finalize_viz(inss: list) -> None:
-    """Decide each segment's final `kind`. Rules (operator-mandated):
-      * ANY place data -> a MAP, every time (states/countries -> choropleth,
-        cities/metros -> pinned map). No cap.
-      * time-series trends -> the styled line (the only 'chart' we keep).
-      * everything else -> a creative form. The illustrated DIORAMA appears at
-        most ONCE per video (the 'graphic + number' scene); other comparison
-        segments rotate through bubbles / pictograph / callouts so each video
-        has visual VARIETY.
-    No dots, no bars, no bare numbers."""
-    diorama_used = False
-    rot = 0
-    for ins in inss:
-        sv = getattr(ins, "suggested_viz", None)
-        if sv in ("geo_us", "geo_world", "geo_city"):
-            ins.kind = sv                       # place -> map, always
-        elif sv == "trend" or ins.kind == "trend":
-            ins.kind = "trend"                  # time-series keeps the line
-        elif sv in ("bubbles", "pictograph", "callouts"):
-            ins.kind = sv                       # explicit creative hint wins
-        elif sv == "diorama" and not diorama_used:
-            ins.kind = "diorama"                # the one illustrated scene
-            diorama_used = True
-        else:
-            # rank/comparison/share/outlier. First such segment gets the
-            # illustrated diorama; later ones rotate through other creative
-            # forms so the video doesn't repeat the same graphic-plus-number.
-            if not diorama_used:
-                ins.kind = "diorama"
-                diorama_used = True
-            else:
-                ins.kind = _CREATIVE_ROTATION[rot % len(_CREATIVE_ROTATION)]
-                rot += 1
 
 
 def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
@@ -256,14 +205,17 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     # Build every insight first, then pick viz at the video level, then render.
     seg_cfgs = list(story_cfg["segments"])
     inss = [_build_insight(seg_cfg) for seg_cfg in seg_cfgs]
-    _finalize_viz(inss)
+    # The viz director assigns each segment's DEPICTION (honouring the LLM's
+    # authored concept, else best-fit by data shape). Never bare numbers, no
+    # repeated depiction in a video, >=1 novelty. Seed by slug for stable variety.
+    viz_director.assign(inss, seed=abs(hash(story_cfg["slug"])) % 997)
     # NEVER open on a chart — viewers swipe away. Move trend (line) segments to
     # the end so the video opens on a map / diorama / scene. Stable within groups.
     order = sorted(range(len(inss)), key=lambda i: (inss[i].kind == "trend", i))
     seg_cfgs = [seg_cfgs[i] for i in order]
     inss = [inss[i] for i in order]
     if inss and inss[0].kind == "trend":      # all-trend video: don't lead w/ a line
-        inss[0].kind = "callouts"
+        inss[0].kind = "bubbles"
     for i, (seg_cfg, ins) in enumerate(zip(seg_cfgs, inss)):
         # A short "build" frame sequence (bars grow / line draws on) ending on
         # the exact static chart — the renderer plays it then holds the last

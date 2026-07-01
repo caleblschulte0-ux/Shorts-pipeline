@@ -245,6 +245,13 @@ jobs:
               python scripts/author_stories.py --top-up "$TOPUP" \
                 || echo "author step skipped (no LLM key or transient error)" ;;
           esac
+          # Manual 'author' mode also CREATIVE-DIRECTS the whole back catalogue:
+          # the LLM picks the most entertaining depiction for every existing
+          # story's segments (viz + params). One-shot level-up; soft-fails.
+          if [ "$MODE" = "author" ]; then
+            python scripts/author_stories.py --backfill \
+              || echo "backfill skipped (no LLM key or transient error)"
+          fi
           # Self-heal any un-renderable chart specs (single-point "comparison"
           # charts the package generator sometimes emits) before we render, so
           # the channel can never ship a broken/duplicated bar chart again.
