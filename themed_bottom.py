@@ -309,8 +309,10 @@ def character_for_story(title: str = "", script: str = "",
     blob = " ".join([title or "", script or "",
                      " ".join(hashtags or [])]).lower()
     for name, words in _CHARACTER_KEYWORDS:
-        if _kw_hit(blob, words):
-            return name
+        # plural-tolerant whole-word match ('goats' -> goat, 'buses' -> bus)
+        for w in words:
+            if re.search(r"\b" + re.escape(w) + r"(?:s|es)?\b", blob):
+                return name
     return None
 
 
