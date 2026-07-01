@@ -60,7 +60,7 @@ _SCALE_KW = re.compile(r"\b(tall|taller|tallest|height|deep|deepest|far|"
 # Card kinds handled by the `_compose_story` dispatch. Later chunks add
 # depictions here (waffle_grid, pictorial_race) as their renderers land.
 CARD_KINDS = {"pictograph", "bubbles", "share", "comparison", "trend",
-              "geo_us", "geo_world", "geo_city"}
+              "geo_us", "geo_world", "geo_city", "waffle_grid", "pictorial_race"}
 
 
 def renderable(kind: str) -> bool:

@@ -721,6 +721,118 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
     return ax, specs
 
 
+def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
+    """100-cell waffle: a 10x10 grid that FILLS IN to depict shares/percentages.
+    Each item owns a contiguous band of cells in its colour; cells light up in
+    reading order as the build plays, so the grid literally fills to the number.
+    The depicted replacement for a bare percentage."""
+    from matplotlib.patches import FancyBboxPatch
+    items = _ordered_items(insight)[:6]
+    vals = [max(0.0, p.value) for p in items]
+    tot = sum(vals) or 1.0
+    # Cells per item (percent of 100), remainder to the largest so it sums to 100.
+    cells = [int(round(v / tot * 100)) for v in vals]
+    if cells:
+        cells[cells.index(max(cells))] += 100 - sum(cells)
+    band, colors, labels = [], [], []
+    palette = [HIGHLIGHT, ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399"]
+    for i, (p, c) in enumerate(zip(items, cells)):
+        col = (HIGHLIGHT if p.label == insight.highlight_label
+               else palette[i % len(palette)])
+        band += [col] * max(0, c)
+        colors.append(col)
+        labels.append((p.label, p.value, col))
+    band = (band + [BAR_BASE] * 100)[:100]
+    t = max(0.0, min(1.0, reveal))
+    lit = int(round(t * 100))
+    ax = fig.add_axes([0.07, 0.12, 0.52, 0.66])
+    ax.set_xlim(-0.5, 10.0); ax.set_ylim(-0.5, 10.0)
+    ax.set_aspect("equal"); ax.set_axis_off()
+    for idx in range(100):
+        r, cN = divmod(idx, 10)
+        y = 9 - r                              # fill top-to-bottom, left-to-right
+        on = idx < lit
+        fc = band[idx] if on else BAR_BASE
+        ax.add_patch(FancyBboxPatch(
+            (cN - 0.42, y - 0.42), 0.84, 0.84,
+            boxstyle="round,pad=0.02,rounding_size=0.18",
+            linewidth=0, facecolor=fc, alpha=1.0 if on else 0.55, zorder=3))
+    # Legend chips (label + value) on the right, fading in with the fill.
+    specs, la = [], _lblalpha(reveal)
+    top = 0.70
+    for lbl, val, col in labels[:5]:
+        yy = top
+        fig.text(0.635, yy, "■", color=col, fontsize=26, va="center")
+        fig.text(0.675, yy + 0.005, lbl, color=TEXT, fontsize=23,
+                 fontweight="bold", va="center")
+        t2 = fig.text(0.675, yy - 0.045, _vfmt(val) + "%", color=col, fontsize=30,
+                      fontweight="bold", va="center", alpha=la)
+        specs.append((val, "art", t2, None))
+        top -= 0.135
+    return ax, specs
+
+
+def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
+                          reveal: float = 1.0):
+    """Bars that GROW left->right, each capped with a relevant icon riding the
+    tip — a ranking with pictures, not a plain bar chart. Icons are free cached
+    Twemoji (icons.icon_for); falls back to a coloured cap dot when none match."""
+    from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+    from . import icons as _icons
+    items = _ordered_items(insight)[:5]
+    values = [p.value for p in items]
+    vmax = max(values) if values else 1.0
+    n = len(items)
+    lw = _bar_lw(n)
+    ax = fig.add_axes([0.24, 0.16, 0.62, 0.60])
+    ax.set_facecolor("none")
+    t = max(0.0, min(1.0, reveal))
+    _cache: dict = {}
+
+    def _icon(label):
+        if label not in _cache:
+            p = _icons.icon_for(label)
+            img = None
+            if p:
+                try:
+                    import matplotlib.image as mpimg
+                    img = mpimg.imread(str(p))
+                except Exception:  # noqa: BLE001
+                    img = None
+            _cache[label] = img
+        return _cache[label]
+
+    specs = []
+    for i, (p, v) in enumerate(zip(items, values)):
+        y = n - 1 - i
+        color = (WARN if (insight.baseline and p.label == insight.baseline.label)
+                 else HIGHLIGHT if p.label == insight.highlight_label else ACCENT)
+        tip = max(v * t, vmax * 0.02)
+        _round_barh(ax, y, vmax, lw, BAR_BASE, zorder=2)          # track
+        _round_barh(ax, y, tip, lw, color, zorder=3)              # grown bar
+        img = _icon(p.label)
+        cap_w = vmax * 0.055                    # visual width of the tip cap
+        if img is not None:
+            oi = OffsetImage(img, zoom=0.9)
+            ax.add_artist(AnnotationBbox(oi, (tip, y), frameon=False, zorder=5,
+                                         box_alignment=(0.5, 0.5)))
+        else:
+            ax.scatter([tip], [y], s=340, color=color, edgecolors="white",
+                       linewidths=1.5, zorder=5)
+        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=24,
+                color=(color if p.label == insight.highlight_label else TEXT),
+                fontweight="bold", zorder=4)
+        tt = ax.text(tip + cap_w + vmax * 0.03, y, _vfmt(v), va="center",
+                     ha="left", fontsize=28, color=color, fontweight="bold",
+                     zorder=6, alpha=_lblalpha(reveal))
+        specs.append((p.value, "art", tt, None))
+    ax.set_xlim(0, vmax * 1.34); ax.set_ylim(-0.6, n - 0.4)
+    ax.set_xticks([]); ax.set_yticks([])
+    for s in ax.spines.values():
+        s.set_visible(False)
+    return ax, specs
+
+
 def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """Proportional bubbles: each item a circle whose AREA scales with its value,
     packed in a row, value inside + label below. A clean, fast, creative
@@ -953,6 +1065,15 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{star.label} {'sits lowest' if low else 'leads the map'}"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
+    elif insight.kind == "waffle_grid":
+        subtitle = f"{star.label} is {_vfmt(star.value)}% of the whole"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_waffle(fig, plt, insight, subtitle, reveal)
+    elif insight.kind == "pictorial_race":
+        low = "lowest" in insight.main_insight.lower()
+        subtitle = f"{star.label} {'sits lowest' if low else 'pulls ahead'}"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_pictorial_race(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "bubbles":
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
