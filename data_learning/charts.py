@@ -1445,6 +1445,118 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
     return pattern, []
 
 
+@_fullframe("scale_stack")
+def _render_scale_stack(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """'As tall as N school buses': STACKS copies of one relatable object to
+    depict a magnitude. One cut-out is generated and tiled (cheap). Needs a
+    viz_params.scale_ref = {object, per_value[, unit]}. Returns None (-> depicted
+    fallback) if the reference or the cut-out is unavailable."""
+    from PIL import Image, ImageDraw
+    from . import scene_media
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    star = max(insight.items, key=lambda p: p.value)
+    ref = (getattr(insight, "viz_params", {}) or {}).get("scale_ref") or {}
+    obj = str(ref.get("object", "")).strip()
+    per = _num_or_none(ref.get("per_value"))
+    if not obj or not per or per <= 0:
+        return None
+    cp = scene_media.subject_cutout(obj, slug, "stack")
+    if not cp:
+        return None
+    try:
+        base = Image.open(cp).convert("RGBA")
+    except Exception:  # noqa: BLE001
+        return None
+    n = max(1, int(round(star.value / per)))
+    cap = min(n, 8)
+    top, bot = 430, 1175
+    gap = 10
+    ch = int((bot - top - gap * (cap - 1)) / cap)
+    cw = int(ch * base.width / base.height)
+    if cw > 360:
+        cw, ch = 360, int(360 * base.height / base.width)
+    icon = base.resize((max(1, cw), max(1, ch)))
+    unit = str(ref.get("unit") or insight.unit or "").strip()
+    num_font, top_font = _pil_font(84), _pil_font(40)
+    cap_txt = f"= {n:,} × {obj}"
+    cap_font = _pil_font(56)
+    cx = W // 2
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=top_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 150), title, font=top_font,
+               fill=(248, 250, 252, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        val = f"{star.value:,.0f} {unit}".strip()
+        vb = d.textbbox((0, 0), val, font=num_font)
+        d.text(((W - (vb[2] - vb[0])) // 2, 215), val, font=num_font,
+               fill=_rgba(HIGHLIGHT, 255), stroke_width=5, stroke_fill=(5, 8, 15, 255))
+        na = max(0.0, min(1.0, (r - 0.35) / 0.6))
+        full = cap_txt + (f"  (showing {cap})" if n > cap else "")
+        cb = d.textbbox((0, 0), full, font=cap_font)
+        d.text(((W - (cb[2] - cb[0])) // 2, 330), full, font=cap_font,
+               fill=(248, 250, 252, int(255 * na)),
+               stroke_width=4, stroke_fill=(5, 8, 15, int(255 * na)))
+        shown = int(round(r * cap))
+        for k in range(min(shown, cap)):
+            y = bot - ch - k * (ch + gap)
+            canvas.alpha_composite(icon, (cx - cw // 2, y))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
+@_fullframe("orbit")
+def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """Bodies ORBIT a centre at radii ∝ value — a cosmic depiction for
+    distances / counts / 'how far'. Pure shapes, zero network. Empty anchors."""
+    from PIL import Image, ImageDraw
+    import math as _m
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    items = _ordered_items(insight)[:5]
+    vals = [max(0.0001, p.value) for p in items]
+    vmax = max(vals)
+    cx, cy = W // 2, 760
+    r_in, r_out = 150, 430
+    radii = [r_in + (r_out - r_in) * (v / vmax) for v in vals]
+    ang0 = [-90 + i * (360.0 / max(1, len(items))) for i in range(len(items))]
+    lab_font, title_font = _pil_font(38), _pil_font(52)
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=title_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 150), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+        for rad in radii:                                    # orbit rings
+            d.ellipse([cx - rad, cy - rad, cx + rad, cy + rad],
+                      outline=(90, 110, 140, 120), width=3)
+        for rad, alpha in ((70, 60), (52, 130), (38, 255)):  # central sun
+            d.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=_rgba(WARN, alpha))
+        for i, (p, rad) in enumerate(zip(items, radii)):
+            na = max(0.0, min(1.0, (r - i * 0.12) / 0.6))
+            if na <= 0:
+                continue
+            ang = _m.radians(ang0[i] + r * 300.0)
+            bx, by = cx + rad * _m.cos(ang), cy + rad * _m.sin(ang)
+            col = HIGHLIGHT if p.label == insight.highlight_label else ACCENT
+            d.ellipse([bx - 28, by - 28, bx + 28, by + 28], fill=_rgba(col, int(255 * na)))
+            txt = f"{p.label} {_vfmt(p.value)}"
+            tw = d.textbbox((0, 0), txt, font=lab_font)
+            lx = min(max(bx + 36, 20), W - 20 - (tw[2] - tw[0]))
+            d.text((lx, by - 18), txt, font=lab_font,
+                   fill=(248, 250, 252, int(255 * na)),
+                   stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
 def _rgba(hex_color: str, alpha: int = 255):
     h = hex_color.lstrip("#")
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), alpha)
