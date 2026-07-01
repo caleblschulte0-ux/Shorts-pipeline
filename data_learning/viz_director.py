@@ -44,7 +44,13 @@ KINDS = {
     "bubbles":        {"image": False, "novelty": False},
     "share":          {"image": False, "novelty": False},   # donut
     "comparison":     {"image": False, "novelty": False},   # versus columns
+    # A canonical SCENE the director attaches (resolves to kind "scene"):
+    "fill_scene":     {"image": True,  "novelty": True},     # subject filled to %
+    "scene":          {"image": True,  "novelty": True},     # an authored scene
 }
+
+# Pseudo-kinds that resolve to an attached `ins.scene` (kind becomes "scene").
+_SCENE_BUILDERS = {"fill_scene": "fill_scene"}   # -> viz_scene.<builder>(ins)
 
 # Depictions that are always available (pure matplotlib, no image gen, and their
 # renderer already exists). Used as guaranteed fallbacks + the terminal choice.
@@ -66,7 +72,8 @@ CARD_KINDS = {"pictograph", "bubbles", "share", "comparison", "trend",
 
 def renderable(kind: str) -> bool:
     """Only offer a kind whose renderer is actually wired up in this build."""
-    return kind in charts.FULLFRAME_RENDERERS or kind in CARD_KINDS
+    return (kind in _SCENE_BUILDERS or kind in charts.FULLFRAME_RENDERERS
+            or kind in CARD_KINDS)
 
 
 # --- Feature extraction ------------------------------------------------------
@@ -120,17 +127,17 @@ def _candidates(ins, f: dict) -> list[str]:
     # Scale / magnitude comparisons.
     if f["scale"] and f["dominance"] >= 1.6:
         ranked += ["scale_stack", "diorama"]
-    # Shares / part-to-whole.
+    # Shares / part-to-whole -> a filled SUBJECT (globe), not a grid.
     if f["is_share"]:
-        ranked += ["waffle_grid", "share"]
+        ranked += ["fill_scene", "waffle_grid", "share"]
     # One value dwarfs the rest -> a hero depiction.
     if f["dominance"] >= 2.0:
-        ranked += ["diorama", "fill_vessel"]
-    # Single shock stat.
+        ranked += ["diorama", "fill_scene"]
+    # Single shock stat -> fill a themed subject.
     if f["n"] <= 2:
-        ranked += ["fill_vessel", "diorama"]
-    # General ranking / comparison.
-    ranked += ["pictorial_race", "diorama", "pictograph", "bubbles"]
+        ranked += ["fill_scene", "diorama", "bubbles"]
+    # General ranking / comparison -> illustrated objects (not a bar race).
+    ranked += ["diorama", "pictograph", "bubbles"]
     # De-dup preserving order, keep only renderable kinds.
     seen, out = set(), []
     for k in ranked:
@@ -167,9 +174,23 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
         used.add(kind)
         return True
 
-    # Pass 1 — honour a valid authored concept (the LLM's creative choice).
     order = sorted(range(n), key=lambda i: (seed + i) % max(1, n))
+
+    # Pass 0 — honour a valid LLM-authored SCENE (invent-first). Bespoke scenes
+    # may repeat across segments (each is distinct by construction), so "scene"
+    # is not added to `used`; only the image budget bounds them.
     for i in order:
+        sc = getattr(inss[i], "scene", None)
+        if sc and viz_scene.validate(sc, inss[i]):
+            cost = viz_scene.image_cost(sc)
+            if images + cost <= image_budget:
+                chosen[i] = "scene"
+                images += cost
+
+    # Pass 1 — honour a valid authored concept (the LLM's creative choice).
+    for i in order:
+        if chosen[i]:
+            continue
         av = (getattr(inss[i], "authored_viz", "") or "").strip().lower()
         if av and av in KINDS and renderable(av):
             # timeline needs time data; skip if unsupported so it falls through.
@@ -206,4 +227,9 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
                 break
 
     for ins, k in zip(inss, chosen):
-        ins.kind = k
+        if k in _SCENE_BUILDERS:                 # deterministic scene token
+            builder = getattr(viz_scene, _SCENE_BUILDERS[k])
+            ins.scene = builder(ins)
+            ins.kind = "scene"
+        else:
+            ins.kind = k                         # "scene" already has ins.scene set

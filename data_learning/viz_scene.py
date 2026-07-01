@@ -25,6 +25,7 @@ chain degrades to another DEPICTION (never bare numbers).
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from . import charts
@@ -474,6 +475,33 @@ def draw_timeline(d, box, insight, reveal):
 # --------------------------------------------------------------------------- #
 # Interpreter
 # --------------------------------------------------------------------------- #
+# --------------------------------------------------------------------------- #
+# Canonical scene builders — deterministic scenes the director can attach when
+# there's no LLM-authored scene (so shares get a filled globe, etc.).
+# --------------------------------------------------------------------------- #
+_GEO_WORDS = re.compile(r"\b(earth|ocean|sea|water|planet|world|global|globe|"
+                        r"land|continent|surface|atmosphere|freshwater|ice)\b", re.I)
+
+
+def globe_subject(insight) -> str:
+    """Pick the object to fill for a share/percentage — a globe for Earth/water
+    topics, else a noun derived from the topic."""
+    topic = insight.topic or ""
+    if _GEO_WORDS.search(topic):
+        return "planet Earth, whole globe seen from space"
+    noun = re.sub(r"\b(share|percent|of|the|by|in|rate|amount|total)\b", " ",
+                  topic, flags=re.I)
+    noun = re.sub(r"\s+", " ", noun).strip()
+    return noun or "a glass jar"
+
+
+def fill_scene(insight) -> dict:
+    """A single subject filled to the headline value — shares & shock stats."""
+    return {"elements": [{"type": "fill_object", "region": "center",
+                          "subject": globe_subject(insight),
+                          "data": {"value_from": "star"}, "anim": "fill"}]}
+
+
 def _load_cutout(subject, slug, tag):
     from . import scene_media
     from PIL import Image
