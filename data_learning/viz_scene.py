@@ -245,6 +245,151 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax):
             "w": 220.0, "h": 90.0}
 
 
+def _fmt_stat(value, unit):
+    s = (f"{value:,.0f}" if abs(value) >= 100 or float(value).is_integer()
+         else f"{value:,.1f}")
+    u = (unit or "").lower()
+    if u in ("percent", "%", "rate", "pct"):
+        return s + "%"
+    if u in ("dollars", "usd", "$"):
+        return "$" + s
+    return s
+
+
+def draw_fill_object(d, canvas, box, cutout, value, label, color, reveal, unit=""):
+    """Fill a SUBJECT silhouette bottom-up to a % while the number counts up —
+    the 'filled globe' for shares. The cut-out's alpha is the fill mask. If the
+    cut-out is missing, degrade to a filled rounded vessel (still depicts %)."""
+    from PIL import Image, ImageChops
+    bx0, by0, bx1, by1 = box
+    bw, bh = bx1 - bx0, by1 - by0
+    is_pct = (unit or "").lower() in ("percent", "%", "rate", "pct")
+    frac = (max(0.06, min(1.0, value / 100.0)) if is_pct else 1.0)
+    eased = 1.0 - (1.0 - reveal) ** 3
+    fill_frac = frac * eased
+    avail_h = bh - 150
+    cx = _cx(box)
+    if cutout is not None:
+        asp = cutout.width / cutout.height
+        oh = int(min(avail_h, bw / asp))
+        ow = int(oh * asp)
+        im = cutout.resize((max(1, ow), max(1, oh)))
+        ox, oy = cx - ow // 2, by0 + 120 + (avail_h - oh) // 2
+        mask = im.split()[3]
+        # dim ghost so the unfilled part reads as a hollow outline
+        ghost = im.copy()
+        ghost.putalpha(mask.point(lambda v: int(v * 0.28)))
+        canvas.alpha_composite(ghost, (ox, oy))
+        # rising fill clipped to the silhouette
+        fh = int(oh * fill_frac)
+        if fh > 4:
+            band = Image.new("L", (ow, oh), 0)
+            band.paste(255, (0, oh - fh, ow, oh))
+            clip = ImageChops.multiply(mask, band)
+            layer = Image.new("RGBA", (ow, oh), _rgba(color, 235))
+            layer.putalpha(clip)
+            canvas.alpha_composite(layer, (ox, oy))
+        num_cy = oy + oh // 2
+    else:                                          # vessel degrade
+        vw, vh = int(bw * 0.6), int(avail_h * 0.9)
+        vx, vy = cx - vw // 2, by0 + 120
+        d.rounded_rectangle([vx, vy, vx + vw, vy + vh], radius=48,
+                            outline=(150, 170, 200, 255), width=8)
+        fh = int((vh - 16) * fill_frac)
+        if fh > 4:
+            d.rounded_rectangle([vx + 10, vy + vh - 8 - fh, vx + vw - 10, vy + vh - 8],
+                                radius=40, fill=_rgba(color, 235))
+        num_cy = vy + vh // 2
+    num = _fmt_stat(value * eased, unit)
+    nf = _pil_font(104)
+    nb = d.textbbox((0, 0), num, font=nf)
+    d.text((cx - (nb[2] - nb[0]) // 2, num_cy - 64), num, font=nf,
+           fill=(255, 255, 255, 255), stroke_width=6, stroke_fill=(5, 8, 15, 255))
+    if label:
+        lf = _pil_font(46)
+        lb = d.textbbox((0, 0), label, font=lf)
+        d.text((cx - (lb[2] - lb[0]) // 2, by1 - 60), label, font=lf,
+               fill=(248, 250, 252, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
+    return {"value": float(value), "cx": float(cx), "cy": float(num_cy - 20),
+            "w": 240.0, "h": 140.0}
+
+
+def draw_stack(d, canvas, box, cutout, value, per_value, label, color, reveal, unit=""):
+    """Stack N=value/per_value copies of a cut-out to depict a magnitude."""
+    bx0, by0, bx1, by1 = box
+    n = max(1, int(round(value / per_value))) if per_value else 1
+    cap = min(n, 8)
+    top, bot = by0 + 150, by1 - 20
+    gap = 8
+    ch = int((bot - top - gap * (cap - 1)) / cap)
+    if cutout is not None:
+        cw = int(ch * cutout.width / cutout.height)
+        icon = cutout.resize((max(1, cw), max(1, ch)))
+    else:
+        cw, icon = int(ch * 0.9), None
+    cx = _cx(box)
+    shown = int(round(reveal * cap))
+    for k in range(min(shown, cap)):
+        y = bot - ch - k * (ch + gap)
+        if icon is not None:
+            canvas.alpha_composite(icon, (cx - cw // 2, y))
+        else:
+            d.rounded_rectangle([cx - cw // 2, y, cx + cw // 2, y + ch],
+                                radius=14, fill=_rgba(color, 235))
+    na = max(0.0, min(1.0, (reveal - 0.35) / 0.6))
+    val = f"{value:,.0f} {unit}".strip()
+    vf = _pil_font(60)
+    vb = d.textbbox((0, 0), val, font=vf)
+    d.text((cx - (vb[2] - vb[0]) // 2, by0 + 60), val, font=vf,
+           fill=_rgba(HIGHLIGHT, 255), stroke_width=5, stroke_fill=(5, 8, 15, 255))
+    cap_txt = f"= {n:,} × {label}"
+    cf = _pil_font(40)
+    cb = d.textbbox((0, 0), cap_txt, font=cf)
+    d.text((cx - (cb[2] - cb[0]) // 2, by0 + 120), cap_txt, font=cf,
+           fill=(248, 250, 252, int(255 * na)), stroke_width=3,
+           stroke_fill=(5, 8, 15, int(255 * na)))
+    return None
+
+
+def draw_bar(d, box, value, label, color, reveal, vmax):
+    """A horizontal bar whose length ∝ value, with the number at the tip."""
+    bx0, by0, bx1, by1 = box
+    cy = (by0 + by1) // 2
+    x0, x1 = bx0 + 20, bx1 - 120
+    tip = x0 + (x1 - x0) * (value / vmax if vmax else 1.0) * reveal
+    d.line([(x0, cy), (x1, cy)], fill=_rgba(charts.BAR_BASE, 255), width=54)
+    d.line([(x0, cy), (max(x0 + 4, tip), cy)], fill=_rgba(color, 255), width=54)
+    lf = _pil_font(30)
+    d.text((bx0 + 20, by0 + 6), label, font=lf, fill=(248, 250, 252, 255),
+           stroke_width=3, stroke_fill=(5, 8, 15, 255))
+    na = max(0.0, min(1.0, (reveal - 0.8) / 0.2))
+    nf = _pil_font(40)
+    d.text((tip + 16, cy - 24), _vfmt(value), font=nf, fill=_rgba(color, int(255 * na)),
+           stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
+    return {"value": float(value), "cx": float(tip + 60), "cy": float(cy),
+            "w": 120.0, "h": 60.0}
+
+
+def draw_bubble(d, box, value, label, color, reveal, vmax):
+    """A proportional circle (area ∝ value)."""
+    import math as _m
+    bx0, by0, bx1, by1 = box
+    cx, cy = _cx(box), (by0 + by1) // 2
+    rmax = min(bx1 - bx0, by1 - by0) / 2 - 60
+    r = rmax * _m.sqrt(value / vmax if vmax else 1.0) * reveal
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=_rgba(color, 235),
+              outline=(255, 255, 255, 255), width=3)
+    na = max(0.0, min(1.0, (reveal - 0.8) / 0.2))
+    nf, lf = _pil_font(46), _pil_font(34)
+    nb = d.textbbox((0, 0), _vfmt(value), font=nf)
+    d.text((cx - (nb[2] - nb[0]) // 2, cy - 28), _vfmt(value), font=nf,
+           fill=(11, 16, 32, int(255 * na)), stroke_width=0)
+    lb = d.textbbox((0, 0), label, font=lf)
+    d.text((cx - (lb[2] - lb[0]) // 2, cy + r + 8), label, font=lf,
+           fill=(248, 250, 252, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
+    return {"value": float(value), "cx": float(cx), "cy": float(cy), "w": 120.0, "h": 60.0}
+
+
 def draw_orbit(d, box, insight, reveal):
     """Bodies orbit a centre at radii ∝ value (the loved solar-system look)."""
     import math as _m
@@ -353,14 +498,18 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     show_title = spec.get("title", True) and bool(insight.topic)
     # Pre-load cut-outs once (cached anyway) so we can bail to fallback if the
     # whole scene is image-only and every image failed.
-    cuts, img_ok = {}, 0
+    cuts = {}
     for i, el in enumerate(els):
         if el.get("type") in _IMAGE_TYPES:
-            c = _load_cutout(str(el.get("subject", "")), slug, f"s{i}")
-            cuts[i] = c
-            img_ok += (c is not None)
-    if els and all(e.get("type") in _IMAGE_TYPES for e in els) and img_ok == 0:
-        return None                                    # nothing to show -> fallback
+            cuts[i] = _load_cutout(str(el.get("subject", "")), slug, f"s{i}")
+    # `object`/`stack` are only meaningful WITH a cut-out (their placeholder is a
+    # bare rectangle). If every element is one of those and all cut-outs failed,
+    # bail to a cleaner FALLBACK depiction. fill_object/bar/bubble/orbit/timeline
+    # all self-degrade, so a scene containing any of them still renders.
+    hard = {"object", "stack"}
+    if els and all(e.get("type") in hard for e in els) \
+            and all(cuts.get(i) is None for i in range(len(els))):
+        return None
     vmax = max((p.value for p in insight.items), default=1.0) or 1.0
     n = len(els)
     anchors: list = []
@@ -389,12 +538,26 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 if lv:
                     draw_number(d, box, lv[1], lv[0], _color_for(lv[0], insight),
                                 lr, insight.unit)
-            elif t in ("object", "fill_object", "stack"):
+            elif t in ("object", "fill_object", "stack", "bar", "bubble"):
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
-                if lv:
+                if not lv:
+                    continue
+                col = _color_for(lv[0], insight)
+                if t == "fill_object":
+                    an = draw_fill_object(d, canvas, box, cuts.get(i), lv[1], lv[0],
+                                          col, lr, insight.unit)
+                elif t == "stack":
+                    per = charts._num_or_none((el.get("data") or {}).get("per_value"))
+                    an = draw_stack(d, canvas, box, cuts.get(i), lv[1], per, lv[0],
+                                    col, lr, insight.unit)
+                elif t == "bar":
+                    an = draw_bar(d, box, lv[1], lv[0], col, lr, vmax)
+                elif t == "bubble":
+                    an = draw_bubble(d, box, lv[1], lv[0], col, lr, vmax)
+                else:
                     an = draw_object(d, canvas, box, cuts.get(i), lv[1], lv[0],
-                                     _color_for(lv[0], insight), lr, vmax)
-                    if f == frames and an:
-                        anchors.append(an)
+                                     col, lr, vmax)
+                if f == frames and an:
+                    anchors.append(an)
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
     return pattern, anchors
