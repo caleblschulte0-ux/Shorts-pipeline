@@ -290,6 +290,15 @@ _CHARACTER_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
               "flamingo", "seagull", "pigeon")),
     ("cat", ("cat", "kitten", "feline", "lynx", "bobcat")),
     ("pig", ("pig", "hog", "boar", "piglet")),
+    # Vehicles — used by the pursuit theme to reskin the fleeing vehicle.
+    ("backhoe", ("backhoe", "excavator", "digger", "bulldozer", "dozer",
+                 "loader", "forklift")),
+    ("truck", ("truck", "semi", "lorry", "18-wheeler", "pickup",
+               "dump truck", "tanker")),
+    ("bus", ("bus", "coach", "schoolbus")),
+    ("tractor", ("tractor", "combine", "harvester")),
+    ("motorcycle", ("motorcycle", "motorbike", "scooter", "moped",
+                    "dirt bike", "harley")),
 ]
 
 
@@ -2394,6 +2403,36 @@ class _Runner(_Renderer):
                 d.line([lx, ly, lx + ll, ly],
                        fill=(220, 225, 255, int(60 * k)), width=2)
 
+        # Foreground parallax band: a nearer rolling hill + grass tufts
+        # scrolling FAST across the bottom, so the empty green dead-space
+        # becomes a layered, moving foreground. Deterministic (scroll-driven,
+        # no per-frame rng) so blades don't flicker.
+        fg = self.scroll * 1.8
+        fg_col = (12, 24, 16, 255)
+        base = H * 0.855
+        pts = [(0, H + 5)]
+        x_ = 0
+        while x_ <= W:
+            hy = (base + 24 * math.sin((x_ + fg) * 0.004)
+                  + 10 * math.sin((x_ + fg) * 0.013))
+            pts.append((x_, hy))
+            x_ += 30
+        pts.append((W, H + 5))
+        d.polygon(pts, fill=fg_col)
+        step = 46
+        gx = -(fg % step)
+        bi = int(fg // step)
+        while gx <= W:
+            hy = (base + 24 * math.sin((gx + fg) * 0.004)
+                  + 10 * math.sin((gx + fg) * 0.013))
+            h_var = 14 + 4 * ((bi * 37) % 5)
+            for bd in (-7, -2, 3, 8):
+                lean = 4 * math.sin(bi + bd)
+                d.line([gx + bd, hy + 4, gx + bd + lean, hy - h_var],
+                       fill=fg_col, width=3)
+            gx += step
+            bi += 1
+
         out = np.asarray(img, dtype=np.uint8)
         return self.lag(out, ts)
 # ---------- STACKER: world-record tower assembly ----------
@@ -3777,6 +3816,55 @@ class _Pursuit(_Renderer):
             d.rounded_rectangle([x + 2, y - h / 2 - 10, x + 18, y - h / 2 - 1], radius=3,
                                 fill=((40, 90, 255, 255) if not fl else (16, 24, 90, 255)))
 
+    def _vehicle(self, d, x, y, col, t):
+        """The FLEEING vehicle, reskinned to the story's subject (top-down).
+        Falls back to the normal car when there's no vehicle subject."""
+        ch = getattr(self, "character", None)
+        if ch == "backhoe":
+            yel = (240, 190, 40)
+            d.rounded_rectangle([x - 40, y - 30, x - 28, y + 34], radius=6,
+                                fill=(30, 30, 34, 255))            # track
+            d.rounded_rectangle([x + 28, y - 30, x + 40, y + 34], radius=6,
+                                fill=(30, 30, 34, 255))
+            d.rounded_rectangle([x - 30, y - 44, x + 30, y + 40], radius=10,
+                                fill=(*yel, 255))                  # body
+            d.rounded_rectangle([x - 19, y - 8, x + 19, y + 28], radius=8,
+                                fill=(36, 42, 54, 235))            # cab
+            d.line([x, y - 30, x, y - 68], fill=(70, 70, 78, 255),
+                   width=12)                                       # boom
+            d.rounded_rectangle([x - 16, y - 82, x + 16, y - 64], radius=4,
+                                fill=(54, 54, 60, 255))            # bucket
+        elif ch == "truck":
+            d.rounded_rectangle([x - 26, y - 54, x + 26, y + 52], radius=8,
+                                fill=(80, 84, 96, 255))            # trailer
+            d.rounded_rectangle([x - 28, y - 58, x + 28, y - 18], radius=10,
+                                fill=(*col, 255))                  # cab
+            d.rounded_rectangle([x - 20, y - 52, x + 20, y - 30], radius=6,
+                                fill=(20, 26, 42, 235))            # windshield
+        elif ch == "bus":
+            d.rounded_rectangle([x - 28, y - 60, x + 28, y + 56], radius=14,
+                                fill=(*col, 255))
+            for wy in range(-46, 50, 22):
+                d.rounded_rectangle([x - 22, y + wy, x + 22, y + wy + 12],
+                                    radius=4, fill=(28, 38, 60, 220))
+        elif ch == "tractor":
+            d.ellipse([x - 44, y + 8, x - 14, y + 54], fill=(28, 28, 32, 255))
+            d.ellipse([x + 14, y + 8, x + 44, y + 54], fill=(28, 28, 32, 255))
+            d.ellipse([x - 34, y - 40, x - 16, y - 18], fill=(28, 28, 32, 255))
+            d.ellipse([x + 16, y - 40, x + 34, y - 18], fill=(28, 28, 32, 255))
+            d.rounded_rectangle([x - 22, y - 32, x + 22, y + 40], radius=8,
+                                fill=(*col, 255))                  # body
+            d.rounded_rectangle([x - 17, y - 26, x + 17, y], radius=6,
+                                fill=(20, 26, 42, 235))            # cab glass
+        elif ch == "motorcycle":
+            d.ellipse([x - 6, y - 44, x + 6, y - 22], fill=(28, 28, 32, 255))
+            d.ellipse([x - 6, y + 22, x + 6, y + 44], fill=(28, 28, 32, 255))
+            d.rounded_rectangle([x - 8, y - 22, x + 8, y + 26], radius=6,
+                                fill=(*col, 255))                  # body
+            d.ellipse([x - 10, y - 6, x + 10, y + 16], fill=(20, 20, 24, 255))
+        else:
+            self._car(d, x, y, col, t)
+
     def draw(self, t, i):
         dt = 1.0 / FPS
         k = min(1.0, t / max(1.0, getattr(self, "duration", 30.0)))
@@ -3874,7 +3962,7 @@ class _Pursuit(_Renderer):
         for c in self.traffic:
             self._car(d, self._lane_x(c["lane"]) + shake, c["y"], c["col"], t)
         self._car(d, self.chase_x + shake, chase_y, (205, 48, 44), t, siren=True)
-        self._car(d, flee_x + shake, flee_y, (52, 124, 238), t)
+        self._vehicle(d, flee_x + shake, flee_y, (52, 124, 238), t)
         return np.asarray(img, dtype=np.uint8)
 
 
