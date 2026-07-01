@@ -1,0 +1,19 @@
+{
+  "key": "colorblind_true_rarity",
+  "title": "Prevalence: any red-green deficiency (men) vs total colorblindness (achromatopsia)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Facts About Color Blindness",
+    "publisher": "National Eye Institute (NIH)",
+    "url": "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. Achromatopsia (true, total colorblindness) affects roughly 1 in 30,000 people (about 0.0033 percent), compared with 8 percent of men having some red-green deficiency.",
+  "points": [
+    {"label": "Any red-green deficiency (men)", "value": 8},
+    {"label": "Total colorblindness (achromatopsia)", "value": 0.0033}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "sun_corona_vs_surface",
+  "title": "Corona temperature vs surface temperature",
+  "unit": "degrees Celsius",
+  "geography": "The Sun",
+  "time_coverage": "Current",
+  "source": {
+    "name": "NASA's Parker Solar Probe and the Curious Case of the Hot Corona",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/science-research/heliophysics/nasas-parker-solar-probe-and-the-curious-case-of-the-hot-corona/",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. The corona can reach up to roughly 500 times the temperature of the photosphere directly below it — the 'coronal heating problem.'",
+  "points": [
+    {"label": "Corona", "value": 2000000},
+    {"label": "Surface (photosphere)", "value": 5500}
+  ]
+}

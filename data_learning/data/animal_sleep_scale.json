@@ -1,0 +1,24 @@
+{
+  "key": "animal_sleep_scale",
+  "title": "Average hours of sleep per day",
+  "unit": "hours",
+  "geography": "World",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Comparative animal sleep duration research",
+    "publisher": "Sleep Foundation",
+    "url": "https://www.sleepfoundation.org/how-sleep-works/how-do-animals-sleep",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative; figures reflect widely reported averages compiled from comparative sleep research across species.",
+  "points": [
+    {"label": "Koala", "value": 22},
+    {"label": "Lion", "value": 20},
+    {"label": "Cat", "value": 14},
+    {"label": "Dog", "value": 13},
+    {"label": "Human (adult)", "value": 8},
+    {"label": "African elephant", "value": 2},
+    {"label": "Giraffe", "value": 1.9}
+  ]
+}

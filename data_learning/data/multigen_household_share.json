@@ -1,0 +1,21 @@
+{
+  "key": "multigen_household_share",
+  "title": "Share of Americans in a multigenerational household",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1971-2021 (selected years)",
+  "source": {
+    "name": "Demographics of Multigenerational Households",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/social-trends/2022/03/24/the-demographics-of-multigenerational-households/",
+    "officiality": "illustrative",
+    "access_date": "2026-07-01"
+  },
+  "notes": "Illustrative. Pew's analysis of Census/IPUMS data on the share of the U.S. population living in a household with two or more adult generations (or a grandparent and grandchild).",
+  "points": [
+    {"label": "1971", "value": 7, "period": "1971"},
+    {"label": "1980", "value": 12, "period": "1980"},
+    {"label": "2008", "value": 16.1, "period": "2008"},
+    {"label": "2021", "value": 18, "period": "2021"}
+  ]
+}
