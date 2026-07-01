@@ -1041,9 +1041,10 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
             s0, s1 = windows[1 + i]
             fd = 0.3
             hold = max(0.5, (s1 - s0)) + 1.0
-            # Dioramas are authored full-frame (1080x1920) and fill the whole
-            # frame; charts/maps/callouts stay in the top chart region.
-            full = getattr(st.segments[i], "kind", "") == "diorama"
+            # Full-frame viz (diorama, timeline, fill_vessel, ...) are authored
+            # at 1080x1920 and fill the whole frame; card charts/maps stay in the
+            # top chart region. The registry is charts' single source of truth.
+            full = getattr(st.segments[i], "kind", "") in charts.FULLFRAME_RENDERERS
             vw, vh = (W, H) if full else (CHART_W, CHART_H)
             vx, vy = (0, 0) if full else (CHART_X, CHART_Y)
             fc.append(

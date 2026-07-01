@@ -25,6 +25,40 @@ ACCENT = "#60A5FA"
 WARN = "#F59E0B"
 BAR_BASE = "#1F2937"
 
+# --- Viz registry -----------------------------------------------------------
+# Full-frame renderers author a 1080x1920 PNG sequence themselves (like the
+# diorama) instead of the top "card" region. studio_render reads this dict to
+# decide which segments fill the whole frame, so it's the single source of truth.
+FULLFRAME_RENDERERS: dict = {}
+
+
+def _fullframe(kind: str):
+    """Register a full-frame (own PNG sequence) renderer under `kind`."""
+    def deco(fn):
+        FULLFRAME_RENDERERS[kind] = fn
+        return fn
+    return deco
+
+
+# When a renderer can't produce its output (e.g. image generation failed), the
+# segment DEGRADES to another kind that still DEPICTS the data — never to a bare
+# number layout. `bubbles` is the terminal fallback: pure matplotlib, no network,
+# area-encodes value, always renders. NEVER map anything to callouts/bignum.
+FALLBACK = {
+    "scene": "diorama",              # an invented scene degrades to the diorama
+    "diorama": "bubbles",
+    "pictorial_race": "rank",        # rounded bars — length still depicts
+    "scale_stack": "pictograph",
+    "timeline": "trend",             # position on a time axis
+    "fill_vessel": "bubbles",
+    "waffle_grid": "share",          # donut — angle still depicts
+    "orbit": "bubbles",
+    "flow_race": "bubbles",
+    "pictograph": "bubbles",
+    "callouts": "bubbles",           # legacy safety: never render bare text
+    "bignum": "fill_vessel",
+}
+
 # Top-half canvas: 1080x960 at 100 dpi -> 10.8 x 9.6 inches.
 FIG_W, FIG_H, DPI = 10.8, 9.6, 100
 
@@ -688,6 +722,118 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
     return ax, specs
 
 
+def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
+    """100-cell waffle: a 10x10 grid that FILLS IN to depict shares/percentages.
+    Each item owns a contiguous band of cells in its colour; cells light up in
+    reading order as the build plays, so the grid literally fills to the number.
+    The depicted replacement for a bare percentage."""
+    from matplotlib.patches import FancyBboxPatch
+    items = _ordered_items(insight)[:6]
+    vals = [max(0.0, p.value) for p in items]
+    tot = sum(vals) or 1.0
+    # Cells per item (percent of 100), remainder to the largest so it sums to 100.
+    cells = [int(round(v / tot * 100)) for v in vals]
+    if cells:
+        cells[cells.index(max(cells))] += 100 - sum(cells)
+    band, colors, labels = [], [], []
+    palette = [HIGHLIGHT, ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399"]
+    for i, (p, c) in enumerate(zip(items, cells)):
+        col = (HIGHLIGHT if p.label == insight.highlight_label
+               else palette[i % len(palette)])
+        band += [col] * max(0, c)
+        colors.append(col)
+        labels.append((p.label, p.value, col))
+    band = (band + [BAR_BASE] * 100)[:100]
+    t = max(0.0, min(1.0, reveal))
+    lit = int(round(t * 100))
+    ax = fig.add_axes([0.07, 0.12, 0.52, 0.66])
+    ax.set_xlim(-0.5, 10.0); ax.set_ylim(-0.5, 10.0)
+    ax.set_aspect("equal"); ax.set_axis_off()
+    for idx in range(100):
+        r, cN = divmod(idx, 10)
+        y = 9 - r                              # fill top-to-bottom, left-to-right
+        on = idx < lit
+        fc = band[idx] if on else BAR_BASE
+        ax.add_patch(FancyBboxPatch(
+            (cN - 0.42, y - 0.42), 0.84, 0.84,
+            boxstyle="round,pad=0.02,rounding_size=0.18",
+            linewidth=0, facecolor=fc, alpha=1.0 if on else 0.55, zorder=3))
+    # Legend chips (label + value) on the right, fading in with the fill.
+    specs, la = [], _lblalpha(reveal)
+    top = 0.70
+    for lbl, val, col in labels[:5]:
+        yy = top
+        fig.text(0.635, yy, "■", color=col, fontsize=26, va="center")
+        fig.text(0.675, yy + 0.005, lbl, color=TEXT, fontsize=23,
+                 fontweight="bold", va="center")
+        t2 = fig.text(0.675, yy - 0.045, _vfmt(val) + "%", color=col, fontsize=30,
+                      fontweight="bold", va="center", alpha=la)
+        specs.append((val, "art", t2, None))
+        top -= 0.135
+    return ax, specs
+
+
+def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
+                          reveal: float = 1.0):
+    """Bars that GROW left->right, each capped with a relevant icon riding the
+    tip — a ranking with pictures, not a plain bar chart. Icons are free cached
+    Twemoji (icons.icon_for); falls back to a coloured cap dot when none match."""
+    from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+    from . import icons as _icons
+    items = _ordered_items(insight)[:5]
+    values = [p.value for p in items]
+    vmax = max(values) if values else 1.0
+    n = len(items)
+    lw = _bar_lw(n)
+    ax = fig.add_axes([0.24, 0.16, 0.62, 0.60])
+    ax.set_facecolor("none")
+    t = max(0.0, min(1.0, reveal))
+    _cache: dict = {}
+
+    def _icon(label):
+        if label not in _cache:
+            p = _icons.icon_for(label)
+            img = None
+            if p:
+                try:
+                    import matplotlib.image as mpimg
+                    img = mpimg.imread(str(p))
+                except Exception:  # noqa: BLE001
+                    img = None
+            _cache[label] = img
+        return _cache[label]
+
+    specs = []
+    for i, (p, v) in enumerate(zip(items, values)):
+        y = n - 1 - i
+        color = (WARN if (insight.baseline and p.label == insight.baseline.label)
+                 else HIGHLIGHT if p.label == insight.highlight_label else ACCENT)
+        tip = max(v * t, vmax * 0.02)
+        _round_barh(ax, y, vmax, lw, BAR_BASE, zorder=2)          # track
+        _round_barh(ax, y, tip, lw, color, zorder=3)              # grown bar
+        img = _icon(p.label)
+        cap_w = vmax * 0.055                    # visual width of the tip cap
+        if img is not None:
+            oi = OffsetImage(img, zoom=0.9)
+            ax.add_artist(AnnotationBbox(oi, (tip, y), frameon=False, zorder=5,
+                                         box_alignment=(0.5, 0.5)))
+        else:
+            ax.scatter([tip], [y], s=340, color=color, edgecolors="white",
+                       linewidths=1.5, zorder=5)
+        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=24,
+                color=(color if p.label == insight.highlight_label else TEXT),
+                fontweight="bold", zorder=4)
+        tt = ax.text(tip + cap_w + vmax * 0.03, y, _vfmt(v), va="center",
+                     ha="left", fontsize=28, color=color, fontweight="bold",
+                     zorder=6, alpha=_lblalpha(reveal))
+        specs.append((p.value, "art", tt, None))
+    ax.set_xlim(0, vmax * 1.34); ax.set_ylim(-0.6, n - 0.4)
+    ax.set_xticks([]); ax.set_yticks([])
+    for s in ax.spines.values():
+        s.set_visible(False)
+    return ax, specs
+
+
 def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """Proportional bubbles: each item a circle whose AREA scales with its value,
     packed in a row, value inside + label below. A clean, fast, creative
@@ -883,6 +1029,9 @@ def _story_callouts(fig, plt, insight: Insight, subtitle: str, reveal: float):
 def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     """Draw the heading + the right chart kind (at the given build fraction)
     + footer. reveal=1.0 is the final, static chart."""
+    # Never render bare numbers: any stray number-only kind depicts as bubbles.
+    if insight.kind in ("callouts", "bignum"):
+        insight.kind = "bubbles"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
@@ -891,12 +1040,11 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         ax, specs = _story_geo_city(fig, plt, insight, "", reveal)
         _footer(fig, insight)
         return ax, specs
-    if insight.kind in ("callouts", "pictograph", "bignum"):
-        # callouts is the creative replacement for dot/bar/bare-number viz.
+    if insight.kind == "pictograph":
         low = "lowest" in insight.main_insight.lower()
         _heading(fig, insight.topic, f"{star.label} "
                  f"{'sits lowest' if low else 'tops the list'}")
-        ax, specs = _story_callouts(fig, plt, insight, "", reveal)
+        ax, specs = _story_pictograph(fig, plt, insight, "", reveal)
         _footer(fig, insight)
         return ax, specs
     if insight.kind == "comparison":
@@ -918,11 +1066,15 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{star.label} {'sits lowest' if low else 'leads the map'}"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
-    elif insight.kind == "pictograph":
-        low = "lowest" in insight.main_insight.lower()
-        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
+    elif insight.kind == "waffle_grid":
+        subtitle = f"{star.label} is {_vfmt(star.value)}% of the whole"
         _heading(fig, insight.topic, subtitle)
-        ax, specs = _story_pictograph(fig, plt, insight, subtitle, reveal)
+        ax, specs = _story_waffle(fig, plt, insight, subtitle, reveal)
+    elif insight.kind == "pictorial_race":
+        low = "lowest" in insight.main_insight.lower()
+        subtitle = f"{star.label} {'sits lowest' if low else 'pulls ahead'}"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_pictorial_race(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "bubbles":
         low = "lowest" in insight.main_insight.lower()
         subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
@@ -968,6 +1120,7 @@ def _pil_font(size: int, bold: bool = True):
         return ImageFont.load_default()
 
 
+@_fullframe("diorama")
 def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     """Illustrated proportional SCENE: each ranked item is a relevant cut-out
     illustration sized by its value (big = high), arranged on a ground line with
@@ -1143,6 +1296,268 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
     return pattern, anchors
 
 
+def _num_or_none(x):
+    try:
+        return float(str(x).replace(",", "").strip())
+    except (TypeError, ValueError):
+        return None
+
+
+def _sci(v: float) -> str:
+    """Compact number for axis ticks / big values (13.8B, 4.5M, 1,969)."""
+    av = abs(v)
+    if av >= 1e9:
+        return f"{v / 1e9:.1f}B"
+    if av >= 1e6:
+        return f"{v / 1e6:.1f}M"
+    if av >= 1000:
+        return f"{v:,.0f}"
+    return f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}"
+
+
+@_fullframe("timeline")
+def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """A horizontal time / number line with era ticks; a glowing marker DOT
+    TRAVELS from the start to its point as the build plays, trailing a comet, and
+    the value + label land at the dot. Depicts 'how long / where in time' by
+    POSITION and MOTION — never a bare number. Empty anchors (pure depiction)."""
+    from PIL import Image, ImageDraw
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    items = _ordered_items(insight)
+    vp = getattr(insight, "viz_params", {}) or {}
+    star = max(items, key=lambda p: p.value)
+    periods = [_num_or_none(getattr(p, "period", None)) for p in items]
+    have_periods = len(periods) >= 2 and all(v is not None for v in periods)
+    lo = _num_or_none(vp.get("timeline_start"))
+    hi = _num_or_none(vp.get("timeline_end"))
+    if have_periods:
+        lo = min(periods) if lo is None else lo
+        hi = max(periods) if hi is None else hi
+        target = periods[items.index(star)]
+        unit_suffix = ""
+    else:
+        lo = 0.0 if lo is None else lo
+        hi = (star.value * 1.12 or 1.0) if hi is None else hi
+        target = star.value
+        unit_suffix = f" {insight.unit}" if insight.unit else ""
+    if hi <= lo:
+        hi = lo + 1.0
+    frac = max(0.0, min(1.0, (target - lo) / (hi - lo)))
+
+    title_font, num_font = _pil_font(56), _pil_font(72)
+    tick_font, lab_font = _pil_font(30), _pil_font(46)
+    axis_y, x0, x1 = 940, 110, W - 110
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        r = 1.0 - (1.0 - r) ** 2
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=title_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 300), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+        d.line([(x0, axis_y), (x1, axis_y)], fill=(120, 140, 170, 255), width=6)
+        for k in range(5):
+            tx = x0 + (x1 - x0) * k / 4
+            tv = lo + (hi - lo) * k / 4
+            d.line([(tx, axis_y - 14), (tx, axis_y + 14)],
+                   fill=(120, 140, 170, 255), width=4)
+            lbl = _sci(tv)
+            lb = d.textbbox((0, 0), lbl, font=tick_font)
+            d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl,
+                   font=tick_font, fill=(165, 180, 199, 255))
+        mx = x0 + r * frac * (x1 - x0)
+        d.line([(x0, axis_y), (mx, axis_y)], fill=_rgba(HIGHLIGHT, 255), width=12)
+        for rad, alpha in ((48, 60), (34, 120), (23, 255)):
+            d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad],
+                      fill=_rgba(HIGHLIGHT, alpha))
+        na = max(0.0, min(1.0, (r - 0.35) / 0.65))
+        val_txt = _sci(target) + unit_suffix
+        vb = d.textbbox((0, 0), val_txt, font=num_font)
+        vx = min(max(mx - (vb[2] - vb[0]) / 2, 20), W - 20 - (vb[2] - vb[0]))
+        d.text((vx, axis_y - 170), val_txt, font=num_font,
+               fill=_rgba(HIGHLIGHT, int(255 * na)),
+               stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
+        sb = d.textbbox((0, 0), star.label, font=lab_font)
+        sx = min(max(mx - (sb[2] - sb[0]) / 2, 20), W - 20 - (sb[2] - sb[0]))
+        d.text((sx, axis_y + 78), star.label, font=lab_font,
+               fill=(248, 250, 252, int(255 * na)),
+               stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
+@_fullframe("fill_vessel")
+def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """A jar/beaker that FILLS from the bottom while the number counts up in
+    sync — the depicted replacement for a lone shock stat. Fill height encodes a
+    percentage (or animates full while the count-up carries a raw magnitude)."""
+    from PIL import Image, ImageDraw
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    star = max(insight.items, key=lambda p: p.value)
+    unit = (insight.unit or "").lower()
+    is_pct = unit in ("percent", "%", "rate", "pct")
+    target_frac = max(0.06, min(1.0, star.value / 100.0)) if is_pct else 1.0
+    num_font, lab_font, title_font = _pil_font(118), _pil_font(48), _pil_font(54)
+    vw, vh, vy = 440, 640, 460
+    vx = (W - vw) // 2
+
+    def fmt(v):
+        s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
+             else f"{v:,.1f}")
+        if is_pct:
+            return s + "%"
+        if unit in ("dollars", "usd", "$"):
+            return "$" + s
+        return s
+
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        eased = 1.0 - (1.0 - r) ** 3
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=title_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 285), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+        d.rounded_rectangle([vx, vy, vx + vw, vy + vh], radius=64,
+                            outline=(150, 170, 200, 255), width=10)
+        fill_h = int((vh - 20) * target_frac * eased)
+        if fill_h > 8:
+            ly = vy + vh - 10 - fill_h
+            d.rounded_rectangle([vx + 12, ly, vx + vw - 12, vy + vh - 10],
+                                radius=54, fill=_rgba(HIGHLIGHT, 235))
+            d.ellipse([vx + 12, ly - 15, vx + vw - 12, ly + 15],
+                      fill=_rgba("#7FE3DC", 235))
+        num = fmt(star.value * eased)
+        nb = d.textbbox((0, 0), num, font=num_font)
+        d.text(((W - (nb[2] - nb[0])) // 2, vy + vh // 2 - 74), num,
+               font=num_font, fill=(255, 255, 255, 255),
+               stroke_width=7, stroke_fill=(5, 8, 15, 255))
+        lb = d.textbbox((0, 0), star.label, font=lab_font)
+        d.text(((W - (lb[2] - lb[0])) // 2, vy + vh + 34), star.label,
+               font=lab_font, fill=(248, 250, 252, 255),
+               stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
+@_fullframe("scale_stack")
+def _render_scale_stack(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """'As tall as N school buses': STACKS copies of one relatable object to
+    depict a magnitude. One cut-out is generated and tiled (cheap). Needs a
+    viz_params.scale_ref = {object, per_value[, unit]}. Returns None (-> depicted
+    fallback) if the reference or the cut-out is unavailable."""
+    from PIL import Image, ImageDraw
+    from . import scene_media
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    star = max(insight.items, key=lambda p: p.value)
+    ref = (getattr(insight, "viz_params", {}) or {}).get("scale_ref") or {}
+    obj = str(ref.get("object", "")).strip()
+    per = _num_or_none(ref.get("per_value"))
+    if not obj or not per or per <= 0:
+        return None
+    cp = scene_media.subject_cutout(obj, slug, "stack")
+    if not cp:
+        return None
+    try:
+        base = Image.open(cp).convert("RGBA")
+    except Exception:  # noqa: BLE001
+        return None
+    n = max(1, int(round(star.value / per)))
+    cap = min(n, 8)
+    top, bot = 430, 1175
+    gap = 10
+    ch = int((bot - top - gap * (cap - 1)) / cap)
+    cw = int(ch * base.width / base.height)
+    if cw > 360:
+        cw, ch = 360, int(360 * base.height / base.width)
+    icon = base.resize((max(1, cw), max(1, ch)))
+    unit = str(ref.get("unit") or insight.unit or "").strip()
+    num_font, top_font = _pil_font(84), _pil_font(40)
+    cap_txt = f"= {n:,} × {obj}"
+    cap_font = _pil_font(56)
+    cx = W // 2
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=top_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 150), title, font=top_font,
+               fill=(248, 250, 252, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        val = f"{star.value:,.0f} {unit}".strip()
+        vb = d.textbbox((0, 0), val, font=num_font)
+        d.text(((W - (vb[2] - vb[0])) // 2, 215), val, font=num_font,
+               fill=_rgba(HIGHLIGHT, 255), stroke_width=5, stroke_fill=(5, 8, 15, 255))
+        na = max(0.0, min(1.0, (r - 0.35) / 0.6))
+        full = cap_txt + (f"  (showing {cap})" if n > cap else "")
+        cb = d.textbbox((0, 0), full, font=cap_font)
+        d.text(((W - (cb[2] - cb[0])) // 2, 330), full, font=cap_font,
+               fill=(248, 250, 252, int(255 * na)),
+               stroke_width=4, stroke_fill=(5, 8, 15, int(255 * na)))
+        shown = int(round(r * cap))
+        for k in range(min(shown, cap)):
+            y = bot - ch - k * (ch + gap)
+            canvas.alpha_composite(icon, (cx - cw // 2, y))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
+@_fullframe("orbit")
+def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """Bodies ORBIT a centre at radii ∝ value — a cosmic depiction for
+    distances / counts / 'how far'. Pure shapes, zero network. Empty anchors."""
+    from PIL import Image, ImageDraw
+    import math as _m
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    items = _ordered_items(insight)[:5]
+    vals = [max(0.0001, p.value) for p in items]
+    vmax = max(vals)
+    cx, cy = W // 2, 760
+    r_in, r_out = 150, 430
+    radii = [r_in + (r_out - r_in) * (v / vmax) for v in vals]
+    ang0 = [-90 + i * (360.0 / max(1, len(items))) for i in range(len(items))]
+    lab_font, title_font = _pil_font(38), _pil_font(52)
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=title_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 150), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+        for rad in radii:                                    # orbit rings
+            d.ellipse([cx - rad, cy - rad, cx + rad, cy + rad],
+                      outline=(90, 110, 140, 120), width=3)
+        for rad, alpha in ((70, 60), (52, 130), (38, 255)):  # central sun
+            d.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=_rgba(WARN, alpha))
+        for i, (p, rad) in enumerate(zip(items, radii)):
+            na = max(0.0, min(1.0, (r - i * 0.12) / 0.6))
+            if na <= 0:
+                continue
+            ang = _m.radians(ang0[i] + r * 300.0)
+            bx, by = cx + rad * _m.cos(ang), cy + rad * _m.sin(ang)
+            col = HIGHLIGHT if p.label == insight.highlight_label else ACCENT
+            d.ellipse([bx - 28, by - 28, bx + 28, by + 28], fill=_rgba(col, int(255 * na)))
+            txt = f"{p.label} {_vfmt(p.value)}"
+            tw = d.textbbox((0, 0), txt, font=lab_font)
+            lx = min(max(bx + 36, 20), W - 20 - (tw[2] - tw[0]))
+            d.text((lx, by - 18), txt, font=lab_font,
+                   fill=(248, 250, 252, int(255 * na)),
+                   stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
 def _rgba(hex_color: str, alpha: int = 255):
     h = hex_color.lstrip("#")
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), alpha)
@@ -1172,11 +1587,16 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     ``(None, [])`` if matplotlib is absent."""
     if not _have_mpl():
         return None, []
-    if insight.kind == "diorama":
-        res = _render_diorama(insight, out_dir, slug, frames)
+    # Full-frame renderers (diorama, timeline, fill_vessel, ...) author their own
+    # 1080x1920 sequence. If one can't produce (image gen failed), degrade to the
+    # next DEPICTED kind — never to bare numbers — and try again (cap the hops).
+    hops = 0
+    while insight.kind in FULLFRAME_RENDERERS and hops < 3:
+        res = FULLFRAME_RENDERERS[insight.kind](insight, out_dir, slug, frames)
         if res is not None:
             return res
-        insight.kind = "callouts"        # cutouts failed -> graceful fallback
+        insight.kind = FALLBACK.get(insight.kind, "bubbles")
+        hops += 1
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
     for f in range(1, frames + 1):
