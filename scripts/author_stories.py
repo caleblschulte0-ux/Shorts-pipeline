@@ -37,8 +37,36 @@ DATA_DIR = ROOT / "data_learning" / "data"
 POSTED_LOG = ROOT / "state" / "explainer_posted_log.json"
 
 _VALID_INSIGHT = {"rank", "trend", "comparison", "share", "outlier"}
-_VALID_VIZ = {"geo_us", "geo_world", "geo_city", "callouts", "diorama",
-              "trend", "pictograph", "bubbles"}
+
+# The depiction vocabulary the creative director chooses from — each with a
+# "use when" so the LLM picks the most ENTERTAINING way to show THIS data.
+# Every one DEPICTS the data (motion / size / position / fill / count); there is
+# no bare-number option, on purpose.
+VIZ_VOCAB = {
+    "timeline": "a glowing dot travels a time/number line to a point — for AGES, "
+                "dates, 'how long ago', durations. REQUIRES viz_params."
+                "{timeline_start, timeline_end} (numbers on the same scale as the "
+                "value) and/or a 'period' on each point.",
+    "scale_stack": "stacks N copies of a relatable object to show a magnitude "
+                   "('as tall as N buses') — for the HEIGHT/DEPTH/DISTANCE/SIZE of "
+                   "ONE thing. REQUIRES viz_params.scale_ref={object, per_value, unit}.",
+    "fill_vessel": "a jar fills while a number counts up — for a single SHOCK "
+                   "percentage or count.",
+    "orbit": "bodies orbit a centre at radii set by value — for DISTANCES or a few "
+             "counts (planets, moons, satellites).",
+    "waffle_grid": "a 100-square grid fills to a percentage — for SHARES / "
+                   "part-of-whole expressed in percent.",
+    "pictorial_race": "bars race with an icon riding each tip — for a RANKING of "
+                      "3-5 items.",
+    "diorama": "illustrated cut-outs sized by value — for a RANK/COMPARISON of 2-4 "
+               "CONCRETE drawable objects (animals, foods, vehicles, landmarks).",
+    "geo_us": "US state choropleth — use when the labels are US STATES.",
+    "geo_world": "world choropleth — use when the labels are COUNTRIES.",
+    "trend": "an animated line — for a TIME SERIES across several periods.",
+}
+# Depictions that read as a stand-out 'moment' — aim for >=1 per story.
+_NOVELTY = {"timeline", "scale_stack", "fill_vessel", "orbit", "waffle_grid", "diorama"}
+_VALID_VIZ = set(VIZ_VOCAB) | {"geo_city", "pictograph", "bubbles"}
 _DUP_THRESHOLD = 0.5          # topic_guard overlap fraction that = "already done"
 
 
@@ -117,31 +145,46 @@ def _user_prompt(cfg: dict, n: int) -> str:
                 "topic": "2-4 word topic label shown on screen",
                 "insight_type": "rank | comparison | share | trend",
                 "unit": "percent | dollars | years | x | mph | '' (blank for counts)",
-                "viz": "diorama | geo_us | geo_world | trend | pictograph (optional)",
+                "viz": "the depiction you choose from the MENU below",
+                "viz_params": {"...": "only the params that viz needs (see menu)"},
                 "say": "spoken line that NAMES the key numbers it shows",
-                "points": [{"label": "concrete label", "value": 0}]
+                "points": [{"label": "concrete label", "value": 0,
+                            "period": "optional year for timeline/trend"}]
             }]
         }]
     }
+    menu = "\n".join(f"  - {k}: {v}" for k, v in VIZ_VOCAB.items())
     return (
         f"Channel doctrine: {doctrine}\n\n"
         f"Invent {n} BRAND-NEW data stories that fit the doctrine. Each is a "
         f"25-40 second Short with EXACTLY 3 segments that build one arc.\n\n"
+        "You are also the CREATIVE DIRECTOR. For EACH segment, decide the single "
+        "most ENTERTAINING way to VISUALLY depict that specific data — like a top "
+        "YouTube channel's motion designer. Pick a `viz` from this menu and supply "
+        "its `viz_params`:\n" + menu + "\n\n"
         "HARD RULES:\n"
+        "- NEVER just show numbers. Every segment must DEPICT its data with one of "
+        "the menu depictions. There is no bare-number option.\n"
+        "- VARY the depiction across the 3 segments (do not reuse the same viz "
+        "twice in one story) and include at least ONE stand-out novelty "
+        "(timeline / scale_stack / fill_vessel / orbit / waffle_grid).\n"
+        "- Choose the viz that genuinely FITS the data: ages/dates -> timeline; a "
+        "single height/size/distance -> scale_stack (give scale_ref); a share in "
+        "% -> waffle_grid or fill_vessel; a ranking of drawable things -> diorama "
+        "or pictorial_race; places -> geo_us/geo_world; a multi-year series -> "
+        "trend.\n"
+        "- Supply the REQUIRED viz_params (timeline_start/end for timeline; "
+        "scale_ref{object,per_value,unit} for scale_stack). Add a 'period' to each "
+        "point for timeline/trend.\n"
         "- Do NOT repeat or closely resemble any already-covered subject.\n"
         "- Each segment needs 2-6 data points with realistic, illustrative "
-        "numbers (approximate real-world values; they will be labelled "
-        "'illustrative').\n"
-        "- At least ONE segment must be a 'diorama': a RANK or COMPARISON of "
-        "2-4 CONCRETE PHYSICAL THINGS that an illustrator can draw as single "
-        "objects (e.g. animals, foods, vehicles, planets, landmarks) — never "
-        "abstract concepts. Use literal object names as labels.\n"
-        "- If a segment compares PLACES, use real US states (viz geo_us) or "
-        "real countries (viz geo_world) as labels, and set the viz field.\n"
-        "- Make the numbers have a dramatic spread so the visual pops.\n"
+        "numbers (approximate real-world values; labelled 'illustrative'). Give "
+        "them a dramatic spread so the visual pops.\n"
+        "- Labels for diorama/scale_stack must be CONCRETE drawable objects "
+        "(animals, foods, vehicles, planets, landmarks) — never abstractions.\n"
         "- 'say' lines must speak the actual numbers shown.\n"
-        "- Prefer science, space, nature, animals, the human body, history, "
-        "records, scale and superlatives. Avoid dry personal-finance topics.\n\n"
+        "- Prefer science, space, nature, the human body, history, records, scale "
+        "and superlatives. Avoid dry personal-finance topics.\n\n"
         f"ALREADY COVERED (avoid these): {covered_blob}\n\n"
         "Return STRICT JSON matching this schema exactly:\n"
         + json.dumps(schema)
@@ -151,6 +194,38 @@ def _user_prompt(cfg: dict, n: int) -> str:
 # --------------------------------------------------------------------------- #
 # Validation + materialisation
 # --------------------------------------------------------------------------- #
+def _num(x):
+    try:
+        return float(str(x).replace(",", "").strip())
+    except (TypeError, ValueError):
+        return None
+
+
+def _clean_viz(seg: dict, points: list) -> tuple[str, dict]:
+    """Validate the authored depiction + its params against what each viz needs.
+    Returns ("", {}) — so the render-time director picks a best-fit depiction —
+    when the concept can't be supported by the data (e.g. timeline w/o a span)."""
+    viz = str(seg.get("viz", "")).strip().lower()
+    if viz not in _VALID_VIZ:
+        return "", {}
+    vp_in = seg.get("viz_params") or {}
+    vp: dict = {}
+    if viz == "timeline":
+        lo, hi = _num(vp_in.get("timeline_start")), _num(vp_in.get("timeline_end"))
+        if lo is not None and hi is not None and hi != lo:
+            vp["timeline_start"], vp["timeline_end"] = lo, hi
+        elif not any(p.get("period") for p in points):
+            return "", {}
+    elif viz == "scale_stack":
+        ref = vp_in.get("scale_ref") or {}
+        obj, per = str(ref.get("object", "")).strip(), _num(ref.get("per_value"))
+        if not obj or not per or per <= 0:
+            return "", {}
+        vp["scale_ref"] = {"object": obj, "per_value": per,
+                           "unit": str(ref.get("unit", "")).strip()}
+    return viz, vp
+
+
 def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict | None:
     """Validate + normalise one LLM story into the on-disk config shape, or
     None if it's unusable."""
@@ -177,10 +252,13 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
         points = []
         for p in pts_in:
             try:
-                points.append({"label": str(p["label"]).strip(),
-                               "value": float(p["value"])})
+                pt = {"label": str(p["label"]).strip(),
+                      "value": float(p["value"])}
             except (KeyError, TypeError, ValueError):
                 continue
+            if p.get("period") not in (None, ""):
+                pt["period"] = str(p["period"]).strip()
+            points.append(pt)
         if len(points) < 2:
             return None
         itype = str(seg.get("insight_type", "rank")).strip().lower()
@@ -191,8 +269,7 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
         if key in used_keys:
             key = f"{key}_{i}"
         used_keys.add(key)
-        viz = str(seg.get("viz", "")).strip().lower()
-        viz = viz if viz in _VALID_VIZ else ""
+        viz, viz_params = _clean_viz(seg, points)
 
         datasets.append({
             "key": key,
@@ -226,6 +303,8 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
             seg_cfg["say"] = str(seg["say"]).strip()
         if viz:
             seg_cfg["viz"] = viz
+        if viz_params:
+            seg_cfg["viz_params"] = viz_params
         segments.append(seg_cfg)
 
     tags = [re.sub(r"[^a-z0-9]", "", str(t).lower())
@@ -263,6 +342,104 @@ def _renders(story: dict) -> bool:
     return True
 
 
+def _seg_dataset(seg: dict) -> dict:
+    fn = (seg.get("params") or {}).get("file") or f"{seg.get('key')}.json"
+    p = DATA_DIR / fn
+    if p.exists():
+        try:
+            return json.loads(p.read_text())
+        except Exception:  # noqa: BLE001
+            return {}
+    return {}
+
+
+def _direct_batch(stories: list) -> dict:
+    """Ask the LLM (creative director) for a depiction per segment for a batch of
+    existing stories. Returns {slug: [{viz, viz_params}, ...one per segment]}."""
+    from script_generator import _call_llm, _strip_fence
+    menu = "\n".join(f"  - {k}: {v}" for k, v in VIZ_VOCAB.items())
+    briefs = []
+    for s in stories:
+        segs = []
+        for i, seg in enumerate(s.get("segments", [])):
+            ds = _seg_dataset(seg)
+            pts = ds.get("points", [])
+            segs.append({
+                "i": i, "topic": seg.get("topic", ""),
+                "insight_type": seg.get("insight_type", ""),
+                "unit": ds.get("unit", ""),
+                "labels": [str(x.get("label")) for x in pts][:6],
+                "values": [x.get("value") for x in pts][:6],
+                "has_period": any(x.get("period") for x in pts),
+            })
+        briefs.append({"slug": s["slug"], "title": s.get("title", ""),
+                       "segments": segs})
+    sysp = ("You are the creative director for a data-explainer YouTube channel. "
+            "For each segment you pick the most ENTERTAINING way to depict that "
+            "data. Output STRICT JSON only.")
+    user = (
+        "Depiction menu:\n" + menu + "\n\n"
+        "For EACH story below, choose a `viz` (and `viz_params` when required) for "
+        "EACH segment, in order. VARY the depiction within a story and include at "
+        "least one novelty (timeline/scale_stack/fill_vessel/orbit/waffle_grid). "
+        "NEVER bare numbers. Places -> geo_us/geo_world. Provide timeline_start & "
+        "timeline_end for timeline, and scale_ref{object,per_value,unit} for "
+        "scale_stack. Match the viz to what the data actually is.\n\n"
+        "Return JSON mapping each slug to a list of {\"viz\":..., "
+        "\"viz_params\":{...}} — one entry per segment, in order.\n\nStories:\n"
+        + json.dumps(briefs))
+    txt = _strip_fence(_call_llm(sysp, user))
+    try:
+        return json.loads(txt)
+    except json.JSONDecodeError:
+        m = re.search(r"\{.*\}", txt, re.S)
+        return json.loads(m.group(0)) if m else {}
+
+
+def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
+    """Run the creative director over EVERY existing story, tagging each segment
+    with a depiction (viz + viz_params). One-time levelling-up of the back
+    catalogue so re-renders/re-posts get the new look too."""
+    stories = cfg.get("stories", [])
+    changed = 0
+    for start in range(0, len(stories), batch):
+        chunk = stories[start:start + batch]
+        print(f"[backfill] directing {start + 1}-{start + len(chunk)} of "
+              f"{len(stories)}...")
+        try:
+            out = _direct_batch(chunk)
+        except Exception as e:  # noqa: BLE001
+            print(f"  batch error: {e}")
+            continue
+        for s in chunk:
+            choices = out.get(s["slug"])
+            if not isinstance(choices, list):
+                continue
+            for seg, ch in zip(s.get("segments", []), choices):
+                if not isinstance(ch, dict):
+                    continue
+                pts = _seg_dataset(seg).get("points", [])
+                viz, vp = _clean_viz(ch, pts)
+                if not viz:
+                    continue
+                seg["viz"] = viz
+                if vp:
+                    seg["viz_params"] = vp
+                elif "viz_params" in seg:
+                    del seg["viz_params"]
+                changed += 1
+    print(f"[backfill] set a depiction on {changed} segments "
+          f"across {len(stories)} stories")
+    if dry_run:
+        for s in stories[:10]:
+            print("  ", s["slug"],
+                  [seg.get("viz", "-") for seg in s.get("segments", [])])
+        return 0
+    CONFIG.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+    print(f"[backfill] wrote {CONFIG.relative_to(ROOT)}")
+    return 0
+
+
 def _generate(cfg: dict, n: int) -> list[dict]:
     from script_generator import _call_llm, _strip_fence
     raw = _call_llm(_SYSTEM, _user_prompt(cfg, n))
@@ -287,6 +464,8 @@ def main() -> int:
     g.add_argument("--count", type=int, help="author exactly N new stories")
     g.add_argument("--top-up", type=int, metavar="N",
                    help="author until at least N un-posted stories exist")
+    g.add_argument("--backfill", action="store_true",
+                   help="creative-direct every EXISTING story (set viz per segment)")
     ap.add_argument("--dry-run", action="store_true",
                     help="print what would be added; don't write files")
     ap.add_argument("--max-attempts", type=int, default=3,
@@ -294,6 +473,8 @@ def main() -> int:
     args = ap.parse_args()
 
     cfg = json.loads(CONFIG.read_text())
+    if args.backfill:
+        return _backfill(cfg, args.dry_run)
     used_slugs = {s["slug"] for s in cfg.get("stories", [])}
     used_keys = {seg.get("key") for s in cfg.get("stories", [])
                  for seg in s.get("segments", []) if seg.get("key")}
