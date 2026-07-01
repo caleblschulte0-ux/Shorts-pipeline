@@ -192,6 +192,7 @@ def _build_insight(seg_cfg: dict):
     # so the director can honour it and the renderer can read the params.
     ins.authored_viz = (seg_cfg.get("viz") or "").strip().lower()
     ins.viz_params = seg_cfg.get("viz_params") or {}
+    ins.scene = seg_cfg.get("scene") or None      # LLM-invented depiction, if any
     return ins
 
 

@@ -69,6 +69,32 @@ _NOVELTY = {"timeline", "scale_stack", "fill_vessel", "orbit", "waffle_grid", "d
 _VALID_VIZ = set(VIZ_VOCAB) | {"geo_city", "pictograph", "bubbles"}
 _DUP_THRESHOLD = 0.5          # topic_guard overlap fraction that = "already done"
 
+# The composable SCENE element kit — the director can INVENT a bespoke depiction
+# per data point by arranging these, instead of picking a fixed viz.
+SCENE_ELEMENTS = {
+    "fill_object": "fill a SUBJECT silhouette bottom-up to a % (a globe for "
+                   "Earth/water, a body, a brain, a gas tank). Needs `subject` + "
+                   "`data.value_from`. Best for a share / single %.",
+    "object": "a subject cut-out sized by its value, with number+label. Needs "
+              "`subject` + `data.value_from`. Use several in region 'ground-row' "
+              "for an illustrated ranking of concrete things.",
+    "stack": "stack N=value/per_value copies of an object to show a magnitude. "
+             "Needs `subject` + `data.value_from` + `data.per_value`.",
+    "orbit_group": "bodies orbit a centre at radii by value (distances/counts). "
+                   "region 'full'.",
+    "timeline_axis": "a marker travels a time/number axis (ages, dates). "
+                     "region 'full'.",
+    "bar": "a horizontal bar, length by value. `data.value_from`.",
+    "bubble": "a circle, area by value. `data.value_from`.",
+    "number": "a big count-up of one value. `data.value_from`.",
+    "caption": "a short text line. `text`.",
+}
+_SCENE_TYPES = set(SCENE_ELEMENTS)
+_SCENE_IMAGE = {"object", "fill_object", "stack"}
+_SCENE_DATA = {"object", "fill_object", "stack", "number", "bar", "bubble"}
+_SCENE_REGIONS = {"full", "center", "hero", "left", "right", "top", "bottom",
+                  "ground-row"} | {f"grid-{i}" for i in range(1, 5)}
+
 
 # --------------------------------------------------------------------------- #
 # Helpers
@@ -145,43 +171,50 @@ def _user_prompt(cfg: dict, n: int) -> str:
                 "topic": "2-4 word topic label shown on screen",
                 "insight_type": "rank | comparison | share | trend",
                 "unit": "percent | dollars | years | x | mph | '' (blank for counts)",
-                "viz": "the depiction you choose from the MENU below",
-                "viz_params": {"...": "only the params that viz needs (see menu)"},
+                "scene": {"title": True, "elements": [
+                    {"type": "one of the element kit", "region": "a region",
+                     "subject": "drawable thing (image elements)",
+                     "data": {"value_from": "star | item:0 | item:<label> | total"}}]},
+                "viz": "OPTIONAL fallback named viz if no scene fits",
+                "viz_params": {"...": "params for the fallback viz"},
                 "say": "spoken line that NAMES the key numbers it shows",
                 "points": [{"label": "concrete label", "value": 0,
                             "period": "optional year for timeline/trend"}]
             }]
         }]
     }
+    kit = "\n".join(f"  - {k}: {v}" for k, v in SCENE_ELEMENTS.items())
     menu = "\n".join(f"  - {k}: {v}" for k, v in VIZ_VOCAB.items())
+    exs = _scene_examples(cfg, 3)
+    ex_blob = ("\nGreat scenes we've made before (learn from these, then do "
+               "something fresh):\n" + json.dumps(exs)) if exs else ""
     return (
         f"Channel doctrine: {doctrine}\n\n"
         f"Invent {n} BRAND-NEW data stories that fit the doctrine. Each is a "
         f"25-40 second Short with EXACTLY 3 segments that build one arc.\n\n"
-        "You are also the CREATIVE DIRECTOR. For EACH segment, decide the single "
-        "most ENTERTAINING way to VISUALLY depict that specific data — like a top "
-        "YouTube channel's motion designer. Pick a `viz` from this menu and supply "
-        "its `viz_params`:\n" + menu + "\n\n"
+        "You are the CREATIVE DIRECTOR of a top-tier YouTube channel. For EACH "
+        "segment, FIRST invent the single most ENTERTAINING way to VISUALLY depict "
+        "THAT specific data — compose a `scene` from this element kit (arrange "
+        "elements in regions, drive their size/fill/position from the data):\n"
+        + kit + "\n\n"
+        "REGIONS: full, center, hero, left, right, top, bottom, ground-row, "
+        "grid-1..4. Put several `object` elements in 'ground-row' for an "
+        "illustrated ranking. Use 'full' for orbit_group/timeline_axis.\n"
+        + ex_blob + "\n\n"
+        "Only if NOTHING in the kit fits, name a fallback `viz` instead:\n" + menu + "\n\n"
         "HARD RULES:\n"
-        "- NEVER just show numbers. Every segment must DEPICT its data with one of "
-        "the menu depictions. There is no bare-number option.\n"
-        "- VARY the depiction across the 3 segments (do not reuse the same viz "
-        "twice in one story) and include at least ONE stand-out novelty "
-        "(timeline / scale_stack / fill_vessel / orbit / waffle_grid).\n"
-        "- Choose the viz that genuinely FITS the data: ages/dates -> timeline; a "
-        "single height/size/distance -> scale_stack (give scale_ref); a share in "
-        "% -> waffle_grid or fill_vessel; a ranking of drawable things -> diorama "
-        "or pictorial_race; places -> geo_us/geo_world; a multi-year series -> "
-        "trend.\n"
-        "- Supply the REQUIRED viz_params (timeline_start/end for timeline; "
-        "scale_ref{object,per_value,unit} for scale_stack). Add a 'period' to each "
-        "point for timeline/trend.\n"
+        "- NEVER just show numbers. Every segment DEPICTS its data (a scene, or a "
+        "fallback viz). No bare-number option exists.\n"
+        "- Think like a pro: ages/dates -> a timeline_axis; a share/% -> fill a "
+        "relevant SUBJECT (a globe for Earth/water) with fill_object; one big "
+        "height/size -> a stack vs a hero object; a ranking of drawable things -> "
+        "a ground-row of `object`s; distances/counts -> orbit_group.\n"
+        "- VARY the depiction across the 3 segments; include at least ONE stand-out.\n"
+        "- `subject` for image elements must be a CONCRETE drawable thing (animals, "
+        "foods, vehicles, planets, landmarks, a globe) — never an abstraction.\n"
         "- Do NOT repeat or closely resemble any already-covered subject.\n"
-        "- Each segment needs 2-6 data points with realistic, illustrative "
-        "numbers (approximate real-world values; labelled 'illustrative'). Give "
-        "them a dramatic spread so the visual pops.\n"
-        "- Labels for diorama/scale_stack must be CONCRETE drawable objects "
-        "(animals, foods, vehicles, planets, landmarks) — never abstractions.\n"
+        "- Each segment: 2-6 points with realistic, illustrative numbers (labelled "
+        "'illustrative') and a dramatic spread. Add a 'period' per point for time.\n"
         "- 'say' lines must speak the actual numbers shown.\n"
         "- Prefer science, space, nature, the human body, history, records, scale "
         "and superlatives. Avoid dry personal-finance topics.\n\n"
@@ -224,6 +257,80 @@ def _clean_viz(seg: dict, points: list) -> tuple[str, dict]:
         vp["scale_ref"] = {"object": obj, "per_value": per,
                            "unit": str(ref.get("unit", "")).strip()}
     return viz, vp
+
+
+def _resolve_sel(sel, points) -> bool:
+    if sel in (None, "", "star", "total"):
+        return bool(points)
+    if isinstance(sel, str) and sel.startswith("item:"):
+        k = sel[5:].strip()
+        if k.isdigit():
+            return 0 <= int(k) < len(points)
+        return any(str(p.get("label", "")).lower() == k.lower() for p in points)
+    return False
+
+
+def _clean_scene(seg: dict, points: list) -> dict | None:
+    """Validate + normalise an LLM-invented scene against the element kit and the
+    segment's data. Returns a clean spec, or None (→ fall back to a viz kind)."""
+    sc = seg.get("scene")
+    if not isinstance(sc, dict):
+        return None
+    els = sc.get("elements")
+    if not isinstance(els, list) or not (1 <= len(els) <= 6):
+        return None
+    clean = []
+    for el in els:
+        if not isinstance(el, dict):
+            return None
+        t = el.get("type")
+        if t not in _SCENE_TYPES:
+            return None
+        reg = el.get("region", "center")
+        if reg not in _SCENE_REGIONS:
+            return None
+        ne = {"type": t, "region": reg}
+        if el.get("anim"):
+            ne["anim"] = str(el["anim"]).strip().lower()
+        if t in _SCENE_IMAGE:
+            subj = str(el.get("subject", "")).strip()
+            if not subj:
+                return None
+            ne["subject"] = subj
+        if t in _SCENE_DATA:
+            data = el.get("data") or {}
+            sel = data.get("value_from")
+            if not _resolve_sel(sel, points):
+                return None
+            ne["data"] = {"value_from": sel or "star"}
+            if t == "stack":
+                per = _num(data.get("per_value"))
+                if not per or per <= 0:
+                    return None
+                ne["data"]["per_value"] = per
+        if t == "caption":
+            ne["text"] = str(el.get("text", "")).strip()
+        clean.append(ne)
+    return {"title": bool(sc.get("title", True)), "elements": clean}
+
+
+def _scene_examples(cfg: dict, k: int = 3) -> list[dict]:
+    """A few DIVERSE scenes already in the config — the 'growing library' the
+    model learns from (quality compounds as more good scenes accumulate)."""
+    seen, out = set(), []
+    for s in cfg.get("stories", []):
+        for seg in s.get("segments", []):
+            sc = seg.get("scene")
+            if not isinstance(sc, dict):
+                continue
+            sig = tuple(sorted(e.get("type", "") for e in sc.get("elements", [])))
+            if sig in seen:
+                continue
+            seen.add(sig)
+            out.append({"topic": seg.get("topic", ""), "scene": sc})
+            if len(out) >= k:
+                return out
+    return out
 
 
 def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict | None:
@@ -301,6 +408,11 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
         }
         if seg.get("say"):
             seg_cfg["say"] = str(seg["say"]).strip()
+        # An invented SCENE wins (the director honours it first); a named viz is
+        # the fallback. Keep both so render-time can still best-fit.
+        scene = _clean_scene(seg, points)
+        if scene:
+            seg_cfg["scene"] = scene
         if viz:
             seg_cfg["viz"] = viz
         if viz_params:
@@ -353,10 +465,11 @@ def _seg_dataset(seg: dict) -> dict:
     return {}
 
 
-def _direct_batch(stories: list) -> dict:
-    """Ask the LLM (creative director) for a depiction per segment for a batch of
-    existing stories. Returns {slug: [{viz, viz_params}, ...one per segment]}."""
+def _direct_batch(stories: list, examples: list | None = None) -> dict:
+    """Ask the LLM (creative director) to INVENT a depiction per segment for a
+    batch of existing stories. Returns {slug: [{scene|viz, ...}, ...per segment]}."""
     from script_generator import _call_llm, _strip_fence
+    kit = "\n".join(f"  - {k}: {v}" for k, v in SCENE_ELEMENTS.items())
     menu = "\n".join(f"  - {k}: {v}" for k, v in VIZ_VOCAB.items())
     briefs = []
     for s in stories:
@@ -374,20 +487,26 @@ def _direct_batch(stories: list) -> dict:
             })
         briefs.append({"slug": s["slug"], "title": s.get("title", ""),
                        "segments": segs})
-    sysp = ("You are the creative director for a data-explainer YouTube channel. "
-            "For each segment you pick the most ENTERTAINING way to depict that "
-            "data. Output STRICT JSON only.")
+    ex_blob = ("\nGreat scenes we've made (learn from these):\n"
+               + json.dumps(examples)) if examples else ""
+    sysp = ("You are the creative director for a top-tier data-explainer YouTube "
+            "channel. For each segment you INVENT the most ENTERTAINING way to "
+            "depict that data. Output STRICT JSON only.")
     user = (
-        "Depiction menu:\n" + menu + "\n\n"
-        "For EACH story below, choose a `viz` (and `viz_params` when required) for "
-        "EACH segment, in order. VARY the depiction within a story and include at "
-        "least one novelty (timeline/scale_stack/fill_vessel/orbit/waffle_grid). "
-        "NEVER bare numbers. Places -> geo_us/geo_world. Provide timeline_start & "
-        "timeline_end for timeline, and scale_ref{object,per_value,unit} for "
-        "scale_stack. Match the viz to what the data actually is.\n\n"
-        "Return JSON mapping each slug to a list of {\"viz\":..., "
-        "\"viz_params\":{...}} — one entry per segment, in order.\n\nStories:\n"
-        + json.dumps(briefs))
+        "Compose a `scene` from this element kit (arrange elements in regions "
+        "full/center/hero/left/right/top/bottom/ground-row/grid-1..4; drive "
+        "size/fill/position from the data via data.value_from = "
+        "star|item:<idx>|item:<label>|total):\n" + kit + ex_blob + "\n\n"
+        "Think like a pro: share/% -> fill a relevant SUBJECT (globe for "
+        "Earth/water) with fill_object; ranking of drawable things -> a "
+        "'ground-row' of `object`s; ages/dates -> timeline_axis; distances/counts "
+        "-> orbit_group; one big size -> stack vs a hero object. Only if nothing "
+        "fits, name a fallback `viz` (+viz_params) from:\n" + menu + "\n\n"
+        "For EACH story below, return the depiction for EACH segment IN ORDER. "
+        "VARY within a story; NEVER bare numbers; places -> geo_us/geo_world.\n\n"
+        "Return JSON mapping each slug to a list of "
+        "{\"scene\":{...}} or {\"viz\":...,\"viz_params\":{...}} — one per "
+        "segment, in order.\n\nStories:\n" + json.dumps(briefs))
     txt = _strip_fence(_call_llm(sysp, user))
     try:
         return json.loads(txt)
@@ -407,7 +526,7 @@ def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
         print(f"[backfill] directing {start + 1}-{start + len(chunk)} of "
               f"{len(stories)}...")
         try:
-            out = _direct_batch(chunk)
+            out = _direct_batch(chunk, examples=_scene_examples(cfg, 3))
         except Exception as e:  # noqa: BLE001
             print(f"  batch error: {e}")
             continue
@@ -419,6 +538,12 @@ def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
                 if not isinstance(ch, dict):
                     continue
                 pts = _seg_dataset(seg).get("points", [])
+                scene = _clean_scene(ch, pts)          # INVENTED scene wins
+                if scene:
+                    seg["scene"] = scene
+                    changed += 1
+                    continue
+                seg.pop("scene", None)
                 viz, vp = _clean_viz(ch, pts)
                 if not viz:
                     continue
@@ -433,7 +558,8 @@ def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
     if dry_run:
         for s in stories[:10]:
             print("  ", s["slug"],
-                  [seg.get("viz", "-") for seg in s.get("segments", [])])
+                  [("scene" if seg.get("scene") else seg.get("viz", "-"))
+                   for seg in s.get("segments", [])])
         return 0
     CONFIG.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
     print(f"[backfill] wrote {CONFIG.relative_to(ROOT)}")
