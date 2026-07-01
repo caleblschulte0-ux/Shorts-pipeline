@@ -1295,6 +1295,156 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
     return pattern, anchors
 
 
+def _num_or_none(x):
+    try:
+        return float(str(x).replace(",", "").strip())
+    except (TypeError, ValueError):
+        return None
+
+
+def _sci(v: float) -> str:
+    """Compact number for axis ticks / big values (13.8B, 4.5M, 1,969)."""
+    av = abs(v)
+    if av >= 1e9:
+        return f"{v / 1e9:.1f}B"
+    if av >= 1e6:
+        return f"{v / 1e6:.1f}M"
+    if av >= 1000:
+        return f"{v:,.0f}"
+    return f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}"
+
+
+@_fullframe("timeline")
+def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """A horizontal time / number line with era ticks; a glowing marker DOT
+    TRAVELS from the start to its point as the build plays, trailing a comet, and
+    the value + label land at the dot. Depicts 'how long / where in time' by
+    POSITION and MOTION — never a bare number. Empty anchors (pure depiction)."""
+    from PIL import Image, ImageDraw
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    items = _ordered_items(insight)
+    vp = getattr(insight, "viz_params", {}) or {}
+    star = max(items, key=lambda p: p.value)
+    periods = [_num_or_none(getattr(p, "period", None)) for p in items]
+    have_periods = len(periods) >= 2 and all(v is not None for v in periods)
+    lo = _num_or_none(vp.get("timeline_start"))
+    hi = _num_or_none(vp.get("timeline_end"))
+    if have_periods:
+        lo = min(periods) if lo is None else lo
+        hi = max(periods) if hi is None else hi
+        target = periods[items.index(star)]
+        unit_suffix = ""
+    else:
+        lo = 0.0 if lo is None else lo
+        hi = (star.value * 1.12 or 1.0) if hi is None else hi
+        target = star.value
+        unit_suffix = f" {insight.unit}" if insight.unit else ""
+    if hi <= lo:
+        hi = lo + 1.0
+    frac = max(0.0, min(1.0, (target - lo) / (hi - lo)))
+
+    title_font, num_font = _pil_font(56), _pil_font(72)
+    tick_font, lab_font = _pil_font(30), _pil_font(46)
+    axis_y, x0, x1 = 940, 110, W - 110
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        r = 1.0 - (1.0 - r) ** 2
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=title_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 300), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+        d.line([(x0, axis_y), (x1, axis_y)], fill=(120, 140, 170, 255), width=6)
+        for k in range(5):
+            tx = x0 + (x1 - x0) * k / 4
+            tv = lo + (hi - lo) * k / 4
+            d.line([(tx, axis_y - 14), (tx, axis_y + 14)],
+                   fill=(120, 140, 170, 255), width=4)
+            lbl = _sci(tv)
+            lb = d.textbbox((0, 0), lbl, font=tick_font)
+            d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl,
+                   font=tick_font, fill=(165, 180, 199, 255))
+        mx = x0 + r * frac * (x1 - x0)
+        d.line([(x0, axis_y), (mx, axis_y)], fill=_rgba(HIGHLIGHT, 255), width=12)
+        for rad, alpha in ((48, 60), (34, 120), (23, 255)):
+            d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad],
+                      fill=_rgba(HIGHLIGHT, alpha))
+        na = max(0.0, min(1.0, (r - 0.35) / 0.65))
+        val_txt = _sci(target) + unit_suffix
+        vb = d.textbbox((0, 0), val_txt, font=num_font)
+        vx = min(max(mx - (vb[2] - vb[0]) / 2, 20), W - 20 - (vb[2] - vb[0]))
+        d.text((vx, axis_y - 170), val_txt, font=num_font,
+               fill=_rgba(HIGHLIGHT, int(255 * na)),
+               stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
+        sb = d.textbbox((0, 0), star.label, font=lab_font)
+        sx = min(max(mx - (sb[2] - sb[0]) / 2, 20), W - 20 - (sb[2] - sb[0]))
+        d.text((sx, axis_y + 78), star.label, font=lab_font,
+               fill=(248, 250, 252, int(255 * na)),
+               stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
+@_fullframe("fill_vessel")
+def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """A jar/beaker that FILLS from the bottom while the number counts up in
+    sync — the depicted replacement for a lone shock stat. Fill height encodes a
+    percentage (or animates full while the count-up carries a raw magnitude)."""
+    from PIL import Image, ImageDraw
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    star = max(insight.items, key=lambda p: p.value)
+    unit = (insight.unit or "").lower()
+    is_pct = unit in ("percent", "%", "rate", "pct")
+    target_frac = max(0.06, min(1.0, star.value / 100.0)) if is_pct else 1.0
+    num_font, lab_font, title_font = _pil_font(118), _pil_font(48), _pil_font(54)
+    vw, vh, vy = 440, 640, 460
+    vx = (W - vw) // 2
+
+    def fmt(v):
+        s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
+             else f"{v:,.1f}")
+        if is_pct:
+            return s + "%"
+        if unit in ("dollars", "usd", "$"):
+            return "$" + s
+        return s
+
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        eased = 1.0 - (1.0 - r) ** 3
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=title_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 285), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+        d.rounded_rectangle([vx, vy, vx + vw, vy + vh], radius=64,
+                            outline=(150, 170, 200, 255), width=10)
+        fill_h = int((vh - 20) * target_frac * eased)
+        if fill_h > 8:
+            ly = vy + vh - 10 - fill_h
+            d.rounded_rectangle([vx + 12, ly, vx + vw - 12, vy + vh - 10],
+                                radius=54, fill=_rgba(HIGHLIGHT, 235))
+            d.ellipse([vx + 12, ly - 15, vx + vw - 12, ly + 15],
+                      fill=_rgba("#7FE3DC", 235))
+        num = fmt(star.value * eased)
+        nb = d.textbbox((0, 0), num, font=num_font)
+        d.text(((W - (nb[2] - nb[0])) // 2, vy + vh // 2 - 74), num,
+               font=num_font, fill=(255, 255, 255, 255),
+               stroke_width=7, stroke_fill=(5, 8, 15, 255))
+        lb = d.textbbox((0, 0), star.label, font=lab_font)
+        d.text(((W - (lb[2] - lb[0])) // 2, vy + vh + 34), star.label,
+               font=lab_font, fill=(248, 250, 252, 255),
+               stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
 def _rgba(hex_color: str, alpha: int = 255):
     h = hex_color.lstrip("#")
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), alpha)
