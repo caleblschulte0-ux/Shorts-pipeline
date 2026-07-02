@@ -1,4 +1,53 @@
-{
-  "skipped": true,
-  "recent_posts": 3
-}
+[
+  {
+    "topic": "Someone Stole a Tractor and Led a Slow-Speed Chase",
+    "title": "Someone Stole a Tractor and Led a Slow-Speed Chase",
+    "publish_at": "2026-07-02T15:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/e8-z79yty-c",
+    "error": null,
+    "elapsed_seconds": 452.0,
+    "package_path": "state/trending_packages/20260702/02_stolen-tractor-slow-chase-2026.json",
+    "video_path": "output/daily_20260702-144408_someone_stole_a_tractor_and_led_a_slow_s.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "A Pod of Killer Whales Showed Up Right Off the Beach",
+    "title": "A Pod of Killer Whales Showed Up Right Off the Beach",
+    "publish_at": "2026-07-02T17:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/nuYYxacGNWE",
+    "error": null,
+    "elapsed_seconds": 418.8,
+    "package_path": "state/trending_packages/20260702/04_killer-whales-off-the-beach-2026.json",
+    "video_path": "output/daily_20260702-145203_a_pod_of_killer_whales_showed_up_right_o.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "They Built the Tallest Sandcastle in History",
+    "title": "They Built the Tallest Sandcastle in History",
+    "publish_at": "2026-07-02T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/jdf-8tWZ6TU",
+    "error": null,
+    "elapsed_seconds": 398.9,
+    "package_path": "state/trending_packages/20260702/05_tallest-sandcastle-record-2026.json",
+    "video_path": "output/daily_20260702-145909_they_built_the_tallest_sandcastle_in_his.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  }
+]
