@@ -1,0 +1,28 @@
+{
+  "key": "space_junk_cleanup_debris_removal",
+  "title": "Debris Removal",
+  "unit": "%",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-02"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Removed debris",
+      "value": 10.0,
+      "period": "2020"
+    },
+    {
+      "label": "Remaining debris",
+      "value": 90.0,
+      "period": "2020"
+    }
+  ]
+}
