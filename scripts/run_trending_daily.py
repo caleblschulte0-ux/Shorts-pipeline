@@ -575,39 +575,44 @@ def format_report(date_str: str, results: list[dict]) -> str:
 
 
 def _assign_bottom_diversity(pkgs: list[dict]) -> None:
-    """Tailor + diversify bottoms across the batch. Each story keeps a
-    RELEVANT theme (one of its own keyword matches); when that theme is
-    already used this batch, we move to the story's NEXT relevant match
-    rather than a generic fallback — so the bottom never stops relating to
-    the video. Only a story that matches no theme at all falls to plinko.
-    Every package also gets a distinct reskin seed, so even a reused theme
-    looks different. Mutates pkgs in place."""
+    """Spread the bottom across the batch so it isn't the same clip six
+    times. DEFAULT bottom is real gameplay footage: round-robin a distinct
+    `_gameplay_tag` per video across the seeded gameplay pool. A package can
+    still opt into the procedural engine (bottom_style: procedural); those
+    keep the old relevant-theme diversity. Mutates pkgs in place."""
     try:
+        import make_explainer_stacked as mes
         import themed_bottom
     except Exception:  # noqa: BLE001
         return
-    used: dict[str, int] = {}
+    tags = mes._seeded_gameplay_tags() or list(mes.GAMEPLAY_TAGS)
+    gi = 0
+    used_theme: dict[str, int] = {}
+    used_tag: dict[str, int] = {}
     for i, p in enumerate(pkgs):
-        explicit = (p.get("bottom_theme") or "").strip().lower()
-        if explicit and explicit != "auto":
-            choice = explicit
-        else:
-            ranked = themed_bottom.smart_rank(
-                p.get("title", ""), p.get("script", ""), p.get("hashtags"))
-            if not ranked:
-                choice = "plinko"
-            else:
-                # Among the story's RELEVANT themes, take the least-used so
-                # far (spreads escapes across runner/pursuit etc.); ties go
-                # to the most relevant (earliest-ranked). Never a generic
-                # off-topic swap.
-                choice = min(ranked,
-                             key=lambda th: (used.get(th, 0), ranked.index(th)))
-        used[choice] = used.get(choice, 0) + 1
-        p["bottom_theme"] = choice
         p["_theme_seed"] = f"{p.get('slug') or p.get('title', '')}-{i}"
-    print(f"[bottom] batch themes: {dict(used)} "
-          f"({len(used)} distinct)", flush=True)
+        style = (p.get("bottom_style") or "gameplay").strip().lower()
+        if style == "procedural":
+            explicit = (p.get("bottom_theme") or "").strip().lower()
+            if explicit and explicit != "auto":
+                choice = explicit
+            else:
+                ranked = themed_bottom.smart_rank(
+                    p.get("title", ""), p.get("script", ""), p.get("hashtags"))
+                choice = (min(ranked, key=lambda th: (used_theme.get(th, 0),
+                                                      ranked.index(th)))
+                          if ranked else "plinko")
+            used_theme[choice] = used_theme.get(choice, 0) + 1
+            p["bottom_theme"] = choice
+        else:
+            # Round-robin the gameplay pool for maximum spread across a batch.
+            tag = tags[gi % len(tags)]
+            gi += 1
+            used_tag[tag] = used_tag.get(tag, 0) + 1
+            p["_gameplay_tag"] = tag
+    print(f"[bottom] gameplay tags: {dict(used_tag)}"
+          + (f" | procedural: {dict(used_theme)}" if used_theme else ""),
+          flush=True)
 
 
 def main() -> int:

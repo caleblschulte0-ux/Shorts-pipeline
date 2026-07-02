@@ -126,14 +126,67 @@ def normalize_for_tts(text: str) -> str:
 
 
 def tts(text: str, out: Path) -> None:
-    """Synthesize narration. Prefers local Kokoro TTS (free, unlimited,
-    significantly more natural than edge-tts) if model files are
-    present. Falls back to edge-tts otherwise."""
+    """Synthesize narration. Prefers Gemini TTS (free tier, far more human
+    and style-controllable) when GEMINI_API_KEY is set; falls back to local
+    Kokoro, then edge-tts, so a render never hard-fails on a rate limit."""
     text = normalize_for_tts(text)
+    if os.environ.get("GEMINI_API_KEY"):
+        try:
+            _tts_gemini(text, out)
+            return
+        except Exception as e:  # noqa: BLE001
+            print(f"[tts] gemini failed ({type(e).__name__}: {e}); "
+                  f"falling back", flush=True)
     if KOKORO_MODEL.exists() and KOKORO_VOICES.exists():
         _tts_kokoro(text, out)
     else:
         asyncio.run(_tts_edge(text, out))
+
+
+def _tts_gemini(text: str, out: Path) -> None:
+    """Google Gemini TTS (gemini-2.5-flash-preview-tts). Free tier covers a
+    daily batch. Voice + delivery style are env-configurable. Returns 24kHz
+    PCM which we wrap to WAV and transcode to mp3."""
+    import base64
+    import json as _json
+    import struct
+    import urllib.request
+    key = os.environ["GEMINI_API_KEY"]
+    voice = os.environ.get("GEMINI_TTS_VOICE", "Puck")
+    style = os.environ.get(
+        "GEMINI_TTS_STYLE",
+        "Read like a punchy, high-energy YouTube narrator — fast, confident, "
+        "a little dramatic, natural and human")
+    url = ("https://generativelanguage.googleapis.com/v1beta/models/"
+           "gemini-2.5-flash-preview-tts:generateContent?key=" + key)
+    body = {
+        "contents": [{"parts": [{"text": f"{style}: {text}"}]}],
+        "generationConfig": {
+            "responseModalities": ["AUDIO"],
+            "speechConfig": {"voiceConfig": {
+                "prebuiltVoiceConfig": {"voiceName": voice}}},
+        },
+    }
+    req = urllib.request.Request(
+        url, data=_json.dumps(body).encode(),
+        headers={"Content-Type": "application/json"}, method="POST")
+    with urllib.request.urlopen(req, timeout=90) as r:
+        resp = _json.loads(r.read().decode())
+    pcm = base64.b64decode(
+        resp["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
+    wav_path = out.with_suffix(".wav")
+    data_len = len(pcm)
+    hdr = (b"RIFF" + struct.pack("<I", 36 + data_len) + b"WAVE"
+           + b"fmt " + struct.pack("<IHHIIHH", 16, 1, 1, 24000,
+                                   24000 * 2, 2, 16)
+           + b"data" + struct.pack("<I", data_len))
+    wav_path.write_bytes(hdr + pcm)
+    subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-i", str(wav_path), "-codec:a", "libmp3lame", "-qscale:a", "2",
+        str(out),
+    ], check=True)
+    wav_path.unlink(missing_ok=True)
 
 
 def _tts_kokoro(text: str, out: Path) -> None:
@@ -1649,21 +1702,53 @@ def build_timed_top(
     return top_out, cut_times
 
 
+# No-copyright gameplay / satisfying loops used for the bottom half.
+# Ordered most-preferred first; only tags actually seeded into GAMEPLAY_DIR
+# get used (see _gameplay_tag_for).
+GAMEPLAY_TAGS = ["minecraft", "geometry", "subway", "marble",
+                 "gta", "satisfying"]
+
+
+def _seeded_gameplay_tags() -> list[str]:
+    if not GAMEPLAY_DIR.exists():
+        return []
+    stems = [p.stem.lower() for p in GAMEPLAY_DIR.iterdir()
+             if p.suffix.lower() in (".mp4", ".mov", ".mkv", ".webm")]
+    return [t for t in GAMEPLAY_TAGS if any(t in s for s in stems)]
+
+
+def _gameplay_tag_for(key: str) -> str:
+    """Deterministically pick a gameplay tag from the seeded pool so a batch
+    spreads across different gameplay instead of the same clip six times.
+    Falls back to the full list when nothing is seeded yet (pick_gameplay_clip
+    then resolves whatever is actually present)."""
+    import hashlib
+    tags = _seeded_gameplay_tags() or GAMEPLAY_TAGS
+    h = int(hashlib.sha1((key or "x").encode("utf-8")).hexdigest()[:8], 16)
+    return tags[h % len(tags)]
+
+
 def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
-    pool = [p for p in GAMEPLAY_DIR.iterdir()
-            if p.suffix.lower() in (".mp4", ".mov", ".mkv", ".webm")
-            and tag.lower() in p.stem.lower()]
+    all_clips = [p for p in GAMEPLAY_DIR.iterdir()
+                 if p.suffix.lower() in (".mp4", ".mov", ".mkv", ".webm")] \
+        if GAMEPLAY_DIR.exists() else []
+    pool = [p for p in all_clips if tag.lower() in p.stem.lower()]
     if not pool:
-        # Don't sys.exit here — it skips the caller's exception handler
-        # and the orchestrator never logs which package failed or why.
-        # Listing what IS in the dir makes the error self-diagnosing
-        # ("ah, the cache restored only the sidecar json").
-        existing = [p.name for p in GAMEPLAY_DIR.iterdir()] if GAMEPLAY_DIR.exists() else []
-        raise RuntimeError(
-            f"no gameplay clips matching {tag!r} in {GAMEPLAY_DIR}. "
-            f"Existing files: {existing}. "
-            f"Run seed_gameplay.py to download fresh."
-        )
+        # Requested tag isn't seeded — DON'T fail the render; use any
+        # gameplay clip we do have. Only raise when the dir is truly empty
+        # (the sidecar-json-only cache case), which is self-diagnosing.
+        if all_clips:
+            print(f"      [gameplay] tag {tag!r} not seeded; using any of "
+                  f"{[p.stem for p in all_clips]}", flush=True)
+            pool = all_clips
+        else:
+            existing = [p.name for p in GAMEPLAY_DIR.iterdir()] \
+                if GAMEPLAY_DIR.exists() else []
+            raise RuntimeError(
+                f"no gameplay clips at all in {GAMEPLAY_DIR}. "
+                f"Existing files: {existing}. "
+                f"Run seed_gameplay.py to download fresh."
+            )
     src = random.choice(pool)
     dur = ffprobe_duration(src)
 
@@ -2461,25 +2546,33 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
         )
         for p in pkg["punches"]
     ]
-    # Bottom-half routing. NO MINECRAFT: absent/null defaults to "auto".
-    # "auto" lets the keyword router match the story to a theme; an explicit
-    # theme name (e.g. set by the batch diversity allocator) is used as-is.
+    # Bottom-half routing. DEFAULT = real no-copyright GAMEPLAY footage
+    # (the proven faceless-shorts format). A package may opt into the
+    # procedural engine with "bottom_style": "procedural". The batch
+    # allocator pins a distinct `_gameplay_tag` per video for variety.
     import themed_bottom
-    bottom_theme = pkg.get("bottom_theme") or "auto"
-    if bottom_theme == "auto":
-        bottom_theme = themed_bottom.pick_theme(
-            pkg.get("title", ""), pkg.get("script", ""),
-            pkg.get("hashtags"))
-        print(f"  [themed_bottom] auto-picked theme: {bottom_theme!r}")
-    # Per-story reskin so the same base theme never looks identical twice.
-    # The batch allocator may pin a distinct `_theme_seed` per video to force
-    # variety even when a base theme repeats; else seed from the slug/title.
+    bottom_style = (pkg.get("bottom_style") or "gameplay").strip().lower()
     story_key = str(pkg.get("_theme_seed") or pkg.get("slug")
                     or pkg.get("title") or pkg.get("script", "")[:40])
-    theme_config = themed_bottom.config_from_story(
-        story_key, bottom_theme,
-        title=pkg.get("title", ""), script=pkg.get("script", ""),
-        hashtags=pkg.get("hashtags"))
+    bottom_theme = None
+    theme_config = None
+    if bottom_style == "procedural":
+        bottom_theme = pkg.get("bottom_theme") or "auto"
+        if bottom_theme == "auto":
+            bottom_theme = themed_bottom.pick_theme(
+                pkg.get("title", ""), pkg.get("script", ""),
+                pkg.get("hashtags"))
+            print(f"  [themed_bottom] auto-picked theme: {bottom_theme!r}")
+        theme_config = themed_bottom.config_from_story(
+            story_key, bottom_theme,
+            title=pkg.get("title", ""), script=pkg.get("script", ""),
+            hashtags=pkg.get("hashtags"))
+    else:
+        # Gameplay bottom. Use the allocator-assigned tag, else rotate over
+        # the available clips deterministically by story so a batch spreads
+        # across different gameplay (not the same clip six times).
+        gameplay_tag = pkg.get("_gameplay_tag") or _gameplay_tag_for(story_key)
+        print(f"  [bottom] gameplay footage: tag {gameplay_tag!r}")
 
     build_video(
         pkg["script"], shots, punches,
