@@ -1,34 +1,4 @@
-[
-  {
-    "topic": "Someone Stole a Tractor and Led a Slow-Speed Chase",
-    "title": "Someone Stole a Tractor and Led a Slow-Speed Chase",
-    "publish_at": "2026-07-02T19:00:00Z",
-    "ok": true,
-    "video_url": "(dry-run)",
-    "error": null,
-    "elapsed_seconds": 377.4,
-    "package_path": "state/trending_packages/20260702/02_stolen-tractor-slow-chase-2026.json",
-    "video_path": "output/daily_20260702-172511_someone_stole_a_tractor_and_led_a_slow_s.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    }
-  },
-  {
-    "topic": "A Pod of Killer Whales Showed Up Right Off the Beach",
-    "title": "A Pod of Killer Whales Showed Up Right Off the Beach",
-    "publish_at": "2026-07-02T21:00:00Z",
-    "ok": true,
-    "video_url": "(dry-run)",
-    "error": null,
-    "elapsed_seconds": 405.9,
-    "package_path": "state/trending_packages/20260702/04_killer-whales-off-the-beach-2026.json",
-    "video_path": "output/daily_20260702-173204_a_pod_of_killer_whales_showed_up_right_o.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    }
-  }
-]
+{
+  "skipped": true,
+  "recent_posts": 3
+}
