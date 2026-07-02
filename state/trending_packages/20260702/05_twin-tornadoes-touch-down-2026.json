@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "twin-tornadoes-touch-down-2026",
+  "title": "Two Tornadoes Touched Down at the Exact Same Time",
+  "hashtags": [
+    "tornado",
+    "storm",
+    "weather",
+    "twin",
+    "severeweather",
+    "viral",
+    "scary",
+    "nature",
+    "midwest",
+    "wild",
+    "fyp",
+    "news"
+  ],
+  "script": "Two tornadoes dropped out of the same storm at the exact same time and started spinning side by side. Drivers pulled over and filmed as the twin funnels tore across open fields, close enough that they looked like they might merge into one. It's rare but real; a single powerful storm can spin up multiple tornadoes at once when the winds inside it wrap around each other. Sometimes a smaller twister even orbits the bigger one before getting swallowed up. Forecasters call these the most dangerous storms because the second funnel often hides behind the first. So where are you supposed to run when there are two?",
+  "shots": [
+    {
+      "phrase": "Two tornadoes dropped out of the same storm",
+      "query": "tornado funnel",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+    },
+    {
+      "phrase": "started spinning side by side",
+      "query": "twin tornadoes",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+    },
+    {
+      "phrase": "the twin funnels tore across open fields",
+      "query": "tornado field",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "close enough that they looked like they might merge",
+      "query": "tornado storm",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+    },
+    {
+      "phrase": "wrap around each other",
+      "query": "storm clouds",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a smaller twister even orbits the bigger one",
+      "query": "tornado",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+    },
+    {
+      "phrase": "the second funnel often hides behind the first",
+      "query": "dark storm",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "run when there are two",
+      "query": "tornado",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Two tornadoes",
+      "text": "TWIN TORNADOES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "at the exact same time",
+      "text": "AT ONCE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "might merge into one",
+      "text": "ALMOST MERGED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "most dangerous storms",
+      "text": "MOST DANGEROUS",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "dark"
+}
