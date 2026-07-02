@@ -1076,7 +1076,7 @@ def _classify_tier(sources: list[str]) -> str:
 
 
 def _check_relevance_gate(audit: list[dict], *,
-                          max_stock_ratio: float = 0.75,
+                          max_stock_ratio: float = 0.90,
                           max_placeholder_ratio: float = 0.25) -> None:
     """Refuse to ship only when the imagery is genuinely broken.
 
@@ -1087,10 +1087,13 @@ def _check_relevance_gate(audit: list[dict], *,
       * placeholder shots — truly nothing on screen — fail above
         ``max_placeholder_ratio`` (default 25%).
       * stock + placeholder combined fail above ``max_stock_ratio``
-        (default 75%): that high a stock share with almost no curated /
-        news / entity anchor means the curated pipeline wholesale failed
-        (e.g. every image 404'd), which is the real "imagery doesn't match
-        the narration" case the gate exists to catch.
+        (default 90%): on-topic stock FOOTAGE is an intentional source, so
+        a stock-heavy video is fine — only a near-total wipeout (almost
+        nothing curated AND barely any real footage) means the pipeline
+        wholesale failed. The strict PLACEHOLDER gate above is the real
+        "imagery is broken" signal; this one is the last-resort backstop.
+        (Raised from 0.75 — that was killing legitimately stock-heavy
+        videos like the 07-02 orca/sandcastle beats.)
 
     Dumps the failing audit to ``state/last_failed_audit.json``. Disable
     for one-off emergencies via --allow-stock-fallthrough."""
