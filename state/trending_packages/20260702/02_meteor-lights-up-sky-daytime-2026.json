@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "meteor-lights-up-sky-daytime-2026",
+  "title": "A Meteor Lit Up the Sky Like It Was Daytime",
+  "hashtags": [
+    "meteor",
+    "fireball",
+    "space",
+    "sky",
+    "astronomy",
+    "night",
+    "viral",
+    "science",
+    "cosmos",
+    "shocking",
+    "fyp",
+    "news"
+  ],
+  "script": "A meteor streaked across the night and lit up the whole sky like it was suddenly daytime. Cameras caught a blinding green fireball tearing overhead, casting shadows on the ground for a few seconds before it burned out. Most meteors are no bigger than a pebble; they just hit the atmosphere at over thirty thousand miles an hour, and the air in front of them compresses so hard it glows white-hot. Some ended with a sonic boom that rattled windows for miles. Scientists say a fireball this bright happens somewhere on Earth almost every night. So what are the odds a piece actually lands near you?",
+  "shots": [
+    {
+      "phrase": "A meteor streaked across the night",
+      "query": "meteor fireball",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+    },
+    {
+      "phrase": "a blinding green fireball tearing overhead",
+      "query": "green meteor",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+    },
+    {
+      "phrase": "casting shadows on the ground",
+      "query": "night sky meteor",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Most meteors are no bigger than a pebble",
+      "query": "meteor space",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "over thirty thousand miles an hour",
+      "query": "meteor streak",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+    },
+    {
+      "phrase": "a sonic boom that rattled windows",
+      "query": "night sky",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "almost every night",
+      "query": "shooting star",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+    },
+    {
+      "phrase": "a piece actually lands near you",
+      "query": "meteor",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "lit up the whole sky",
+      "text": "LIKE DAYTIME",
+      "color": "#30c0ff"
+    },
+    {
+      "phrase": "blinding green fireball",
+      "text": "GREEN FIREBALL",
+      "color": "#00e070"
+    },
+    {
+      "phrase": "thirty thousand miles an hour",
+      "text": "30,000 MPH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "sonic boom",
+      "text": "BOOM",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "epic"
+}

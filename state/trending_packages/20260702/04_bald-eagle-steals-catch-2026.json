@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "bald-eagle-steals-catch-2026",
+  "title": "A Bald Eagle Swooped In and Stole His Fish",
+  "hashtags": [
+    "eagle",
+    "baldeagle",
+    "fishing",
+    "wildlife",
+    "bird",
+    "nature",
+    "viral",
+    "wild",
+    "america",
+    "funny",
+    "fyp",
+    "news"
+  ],
+  "script": "A fisherman reeled in his catch, and a bald eagle swooped down and stole it right off the line. The whole thing took about two seconds; the eagle dropped out of a tree, snatched the fish mid-air, and was gone before he could react. Bald eagles can dive at a hundred miles an hour and carry off prey nearly their own body weight, gripping with a force ten times stronger than a human hand. They're also notorious thieves, often robbing other birds instead of hunting themselves. The fisherman just stood there holding an empty line. So how do you even compete with that?",
+  "shots": [
+    {
+      "phrase": "a bald eagle swooped down and stole it",
+      "query": "bald eagle flying",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+    },
+    {
+      "phrase": "snatched the fish mid-air",
+      "query": "eagle catching fish",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+    },
+    {
+      "phrase": "dropped out of a tree",
+      "query": "eagle tree",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "dive at a hundred miles an hour",
+      "query": "eagle diving",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+    },
+    {
+      "phrase": "carry off prey nearly their own body weight",
+      "query": "eagle talons",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "notorious thieves",
+      "query": "bald eagle",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+    },
+    {
+      "phrase": "holding an empty line",
+      "query": "fishing rod",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "compete with that",
+      "query": "eagle",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "stole it right off the line",
+      "text": "STOLEN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "about two seconds",
+      "text": "2 SECONDS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a hundred miles an hour",
+      "text": "100 MPH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "ten times stronger than a human hand",
+      "text": "10x YOUR GRIP",
+      "color": "#30c0ff"
+    }
+  ],
+  "music_vibe": "hype"
+}

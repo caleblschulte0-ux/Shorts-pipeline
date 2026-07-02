@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "lightning-strikes-man-survives-2026",
+  "title": "He Got Struck by Lightning and Walked Away",
+  "hashtags": [
+    "lightning",
+    "survived",
+    "weather",
+    "storm",
+    "crazy",
+    "science",
+    "viral",
+    "shocking",
+    "nature",
+    "wild",
+    "fyp",
+    "news"
+  ],
+  "script": "A man got struck by lightning and somehow walked away alive. He was crossing a parking lot when a bolt hit nearby and the current jumped through him, throwing him to the ground. Lightning carries up to a billion volts and is five times hotter than the surface of the sun, yet most people who are struck actually survive, because the charge flashes over the skin instead of stopping the heart. He walked away with burns shaped like branching lines across his back, called a lightning flower. Doctors say the fact that it was raining may have saved him. So why do some people survive a direct hit?",
+  "shots": [
+    {
+      "phrase": "A man got struck by lightning",
+      "query": "lightning strike",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+    },
+    {
+      "phrase": "a bolt hit nearby",
+      "query": "lightning bolt",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+    },
+    {
+      "phrase": "Lightning carries up to a billion volts",
+      "query": "lightning storm",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "five times hotter than the surface of the sun",
+      "query": "lightning sky",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+    },
+    {
+      "phrase": "most people who are struck actually survive",
+      "query": "storm clouds",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "burns shaped like branching lines",
+      "query": "lightning pattern",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "it was raining may have saved him",
+      "query": "rain storm",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+    },
+    {
+      "phrase": "survive a direct hit",
+      "query": "lightning",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "struck by lightning",
+      "text": "STRUCK",
+      "color": "#ffd000"
+    },
+    {
+      "phrase": "a billion volts",
+      "text": "1 BILLION VOLTS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "hotter than the surface of the sun",
+      "text": "HOTTER THAN THE SUN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "walked away alive",
+      "text": "SURVIVED",
+      "color": "#30c0ff"
+    }
+  ],
+  "music_vibe": "tense"
+}
