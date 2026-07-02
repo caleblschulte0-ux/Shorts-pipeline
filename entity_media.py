@@ -417,21 +417,24 @@ def verify_shot_urls(pkg: dict, *, verbose: bool = True) -> int:
         url = s.get("image_url") or s.get("image")
         if not url:
             continue
-        # Rewrite rate-limited Commons FilePath URLs to CDN thumbnails
-        # BEFORE validating, and persist the rewrite so the render fetches
-        # the thumbnail too (the FilePath form 429s under a full render).
+        # Prefer the rate-limited-safe CDN thumbnail, but FALL BACK to the
+        # original FilePath URL when the thumb 404s (e.g. the original is
+        # narrower than the requested width, so Wikimedia won't generate a
+        # thumbnail — that was silently dropping good curated photos onto
+        # stock/logo placeholders). Only drop when BOTH forms fail.
+        orig = url
         norm = commons_thumb_url(url)
-        if norm != url:
+        candidates = [norm, orig] if norm != orig else [orig]
+        chosen = next((c for c in candidates if url_is_image(c)), None)
+        if chosen:
             if s.get("image_url"):
-                s["image_url"] = norm
+                s["image_url"] = chosen
             if s.get("image"):
-                s["image"] = norm
-            url = norm
-        if url_is_image(url):
+                s["image"] = chosen
             continue
         if verbose:
             print(f"  [entity_media] BROKEN url dropped "
-                  f"({(s.get('phrase') or '?')[:30]!r}): {url[:80]}")
+                  f"({(s.get('phrase') or '?')[:30]!r}): {orig[:80]}")
         s.pop("image_url", None)
         s.pop("image", None)
         dropped += 1
