@@ -30,6 +30,9 @@ SEEDS = [
     # high contrast, reads great as background. Gameplay is the first
     # ~145 seconds before the level-complete screen.
     ("geometry", "https://archive.org/download/youtube-15WkXLsg6OQ/Sonic_Wave_Update_by_Cyclic_gameplay_resubido_reuploaded-15WkXLsg6OQ.mkv"),
+    # Subway Surfers 2024 gameplay, native 9:16, explicitly no-copyright —
+    # the single most-recognizable "brainrot" bottom-half loop. ~58 MB.
+    ("subway", "https://archive.org/download/subway-surfers-2024-gameplay-4-k-9x-16-no-copyright-1/Subway%20Surfers%20%282024%29%20-%20Gameplay%20%5B4K%209x16%5D%20No%20Copyright%20%281%29.mp4"),
 ]
 
 # After download, trim these tags to skip leading intro / trailing outro
