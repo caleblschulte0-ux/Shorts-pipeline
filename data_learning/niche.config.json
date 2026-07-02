@@ -6889,6 +6889,112 @@
         }
       ],
       "question": "What can we do to reduce space debris?"
+    },
+    {
+      "slug": "underwater-lakes-secret",
+      "title": "Underwater Lakes Secret",
+      "hook": "There's a lake that exists entirely underwater",
+      "closing": "Underwater lakes are a fascinating phenomenon that scientists are still studying",
+      "hashtags": [
+        "underwaterlakes",
+        "oceanwonders",
+        "lake",
+        "mystery",
+        "science"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "underwater_lakes_secret_lake_size",
+          "params": {
+            "file": "underwater_lakes_secret_lake_size.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LAKE SIZE",
+          "topic": "Lake Size",
+          "say": "This underwater lake is three times larger than that one",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lake",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lake",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lake",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "underwater_lakes_secret_underwater_depth",
+          "params": {
+            "file": "underwater_lakes_secret_underwater_depth.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 UNDERWATER DEPTH",
+          "topic": "Underwater Depth",
+          "say": "The depth of underwater lakes has been increasing over the past twenty years",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "diver",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "underwater_lakes_secret_lake_formation",
+          "params": {
+            "file": "underwater_lakes_secret_lake_formation.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 LAKE FORMATION",
+          "topic": "Lake Formation",
+          "say": "Twenty percent of underwater lakes are formed by earthquakes",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "lake",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What do you think is the most interesting thing about underwater lakes?"
     }
   ],
   "videos": [
