@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "humpback-breaches-next-to-kayaker-2026",
+  "title": "A Humpback Whale Breached Right Next to a Kayaker",
+  "hashtags": [
+    "whale",
+    "humpback",
+    "ocean",
+    "kayak",
+    "breach",
+    "marine",
+    "viral",
+    "wild",
+    "sea",
+    "nature",
+    "fyp",
+    "news"
+  ],
+  "script": "A humpback whale the size of a bus breached right next to a kayaker, and the video is terrifying. The paddler was floating quietly when forty tons of whale exploded out of the water just feet away, crashing back down in a wall of white spray that nearly flipped the kayak. Humpbacks breach by launching almost their entire body into the air, and nobody fully knows why; it might be to communicate, knock off parasites, or just play. The kayaker was fine, just soaked and shaking. Getting that close to something that big is a once-in-a-lifetime near miss. So what makes a fifty-foot animal want to jump?",
+  "shots": [
+    {
+      "phrase": "A humpback whale the size of a bus breached right next to a kayaker",
+      "query": "humpback whale breaching",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+    },
+    {
+      "phrase": "forty tons of whale exploded out of the water",
+      "query": "whale breach",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+    },
+    {
+      "phrase": "a wall of white spray",
+      "query": "whale splash",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "launching almost their entire body into the air",
+      "query": "humpback jumping",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+    },
+    {
+      "phrase": "knock off parasites, or just play",
+      "query": "whale ocean",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "just soaked and shaking",
+      "query": "kayak ocean",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a once-in-a-lifetime near miss",
+      "query": "humpback whale",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+    },
+    {
+      "phrase": "want to jump",
+      "query": "whale",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "the size of a bus",
+      "text": "SIZE OF A BUS",
+      "color": "#30c0ff"
+    },
+    {
+      "phrase": "forty tons of whale",
+      "text": "40 TONS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "nearly flipped the kayak",
+      "text": "ALMOST FLIPPED HIM",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "once-in-a-lifetime",
+      "text": "ONCE IN A LIFETIME",
+      "color": "#30c0ff"
+    }
+  ],
+  "music_vibe": "epic"
+}

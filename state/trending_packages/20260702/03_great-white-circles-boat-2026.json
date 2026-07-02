@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "great-white-circles-boat-2026",
+  "title": "A Great White Circled Their Boat for Hours",
+  "hashtags": [
+    "greatwhite",
+    "shark",
+    "ocean",
+    "boat",
+    "scary",
+    "marine",
+    "viral",
+    "wild",
+    "predator",
+    "sea",
+    "fyp",
+    "news"
+  ],
+  "script": "A great white shark circled a small fishing boat for hours, and the people on board caught the whole thing on camera. The shark, easily longer than the boat itself, kept gliding past just under the surface, bumping the hull and rolling an eye up at the crew. Great whites do this to investigate; they have no hands, so they nudge and test things with their mouths to figure out what they are. It never attacked, but it wouldn't leave either, shadowing the boat until they finally started the engine. The crew said the scariest part was how silent it was. So what was it actually waiting for?",
+  "shots": [
+    {
+      "phrase": "A great white shark circled a small fishing boat",
+      "query": "great white shark",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+    },
+    {
+      "phrase": "longer than the boat itself",
+      "query": "shark boat",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+    },
+    {
+      "phrase": "gliding past just under the surface",
+      "query": "shark underwater",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "bumping the hull",
+      "query": "shark fin",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+    },
+    {
+      "phrase": "they nudge and test things with their mouths",
+      "query": "shark teeth",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "shadowing the boat",
+      "query": "shark ocean",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+    },
+    {
+      "phrase": "how silent it was",
+      "query": "ocean surface",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "waiting for",
+      "query": "great white",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "circled a small fishing boat",
+      "text": "CIRCLED FOR HOURS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "longer than the boat itself",
+      "text": "BIGGER THAN THE BOAT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "bumping the hull",
+      "text": "IT BUMPED THEM",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "wouldn't leave",
+      "text": "WOULDN'T LEAVE",
+      "color": "#30c0ff"
+    }
+  ],
+  "music_vibe": "dark"
+}
