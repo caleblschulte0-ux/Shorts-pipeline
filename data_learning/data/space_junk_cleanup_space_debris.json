@@ -1,0 +1,28 @@
+{
+  "key": "space_junk_cleanup_space_debris",
+  "title": "Space Debris",
+  "unit": "pieces",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-02"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Small debris",
+      "value": 500000.0,
+      "period": "2022"
+    },
+    {
+      "label": "Large objects",
+      "value": 20000.0,
+      "period": "2022"
+    }
+  ]
+}

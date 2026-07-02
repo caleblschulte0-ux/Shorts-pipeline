@@ -1,0 +1,28 @@
+{
+  "key": "space_junk_cleanup_cleanup_efforts",
+  "title": "Cleanup Efforts",
+  "unit": "dollars",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-02"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "NASA investment",
+      "value": 100.0,
+      "period": "2022"
+    },
+    {
+      "label": "EU investment",
+      "value": 50.0,
+      "period": "2022"
+    }
+  ]
+}
