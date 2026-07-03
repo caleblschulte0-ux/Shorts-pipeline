@@ -1,0 +1,21 @@
+{
+  "key": "remote_capable_arrangement_share",
+  "title": "Work arrangement among remote-capable US jobs",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "State of the Global Workplace / hybrid work tracking",
+    "publisher": "Gallup",
+    "url": "https://www.gallup.com/workplace/",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Gallup's published breakdown of on-site, hybrid, and fully remote arrangements among jobs that can be done remotely.",
+  "insight_type": "share",
+  "points": [
+    {"label": "Hybrid", "value": 51},
+    {"label": "Fully remote", "value": 28},
+    {"label": "Fully on-site", "value": 21}
+  ]
+}

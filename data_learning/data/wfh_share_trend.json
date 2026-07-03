@@ -1,0 +1,23 @@
+{
+  "key": "wfh_share_trend",
+  "title": "Work-from-home share of all paid workdays (US)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2019-2025 (annual average)",
+  "source": {
+    "name": "Survey of Working Arrangements and Attitudes (SWAA)",
+    "publisher": "WFH Research (Stanford / ITAM / Chicago Booth)",
+    "url": "https://wfhresearch.com/data/",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative approximation of SWAA's tracked WFH share of paid workdays: a 2019 pre-pandemic baseline, the 2020 lockdown peak, and the post-2023 plateau around one-fifth of days, which the survey's own reporting describes as stabilized.",
+  "points": [
+    {"label": "2019", "value": 7, "period": "2019"},
+    {"label": "2020", "value": 55, "period": "2020"},
+    {"label": "2021", "value": 40, "period": "2021"},
+    {"label": "2022", "value": 30, "period": "2022"},
+    {"label": "2023", "value": 28, "period": "2023"},
+    {"label": "2025", "value": 21, "period": "2025"}
+  ]
+}

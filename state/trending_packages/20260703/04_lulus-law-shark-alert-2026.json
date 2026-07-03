@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "slug": "lulus-law-shark-alert-2026",
+  "title": "A Shark Bite Just Rewrote Federal Law",
+  "script": "A Shark Attack Changed Law! In 2024, Lulu Gribbin was swimming off Walton County, Florida when a shark attacked — she lost her hand and part of her leg. Ninety minutes earlier, four miles away, another woman named Elisabeth Foley had already been bitten. Nobody warned Lulu. There was no way to. Now there is: President Trump just signed Lulu's Law, forcing the FCC to treat shark attacks like Amber Alerts — instant, geofenced warnings blasted straight to phones near the beach where it happened. Regulators have 180 days to get the system live. Lulu and Elisabeth both survived, rebuilt their lives, and pushed this through Congress themselves. So why did it take two bites to build one warning system?",
+  "shots": [
+    {"phrase": "A Shark Attack Changed Law!", "query": "shark fin ocean", "mascot_pose": "point"},
+    {"phrase": "Lulu Gribbin was swimming off Walton County, Florida", "query": "florida beach coastline", "mascot_pose": "idle"},
+    {"phrase": "she lost her hand and part of her leg", "query": "hospital recovery", "mascot_pose": "shock"},
+    {"phrase": "another woman named Elisabeth Foley had already been bitten", "query": "empty beach danger", "mascot_pose": "idle"},
+    {"phrase": "Nobody warned Lulu", "query": "beach warning sign", "mascot_pose": "idle"},
+    {"phrase": "President Trump just signed Lulu's Law", "query": "capitol building congress", "mascot_pose": "idle"},
+    {"phrase": "forcing the FCC to treat shark attacks like Amber Alerts", "query": "phone alert notification", "mascot_pose": "idle"},
+    {"phrase": "instant, geofenced warnings blasted straight to phones", "query": "cell tower signal", "mascot_pose": "idle"},
+    {"phrase": "180 days to get the system live", "query": "calendar countdown", "mascot_pose": "idle"},
+    {"phrase": "Lulu and Elisabeth both survived", "query": "survivors smiling", "mascot_pose": "idle"},
+    {"phrase": "pushed this through Congress themselves", "query": "congress building dc", "mascot_pose": "idle"},
+    {"phrase": "why did it take two bites to build one warning system", "query": "beach lifeguard tower", "mascot_pose": "think"}
+  ],
+  "punches": [
+    {"phrase": "she lost her hand and part of her leg", "text": "LOST HER HAND", "color": "#ff3030", "flash_bg": "#220404"},
+    {"phrase": "already been bitten", "text": "2ND BITE", "color": "#ff3030"},
+    {"phrase": "Lulu's Law", "text": "LULU'S LAW", "color": "#ffe24a"},
+    {"phrase": "Amber Alerts", "text": "LIKE AMBER ALERTS", "color": "#30c0ff"},
+    {"phrase": "180 days", "text": "180 DAYS", "color": "#ffaa30"},
+    {"phrase": "both survived", "text": "BOTH SURVIVED", "color": "#50ff80"}
+  ],
+  "hashtags": ["lulugribbin", "sharkattack", "sharkalert", "florida", "waltoncounty", "fcc", "emergencyalert", "sharks", "beachsafety", "congress", "viral", "news", "safety", "shorts"],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

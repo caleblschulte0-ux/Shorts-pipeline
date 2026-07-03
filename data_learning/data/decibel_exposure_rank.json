@@ -1,0 +1,24 @@
+{
+  "key": "decibel_exposure_rank",
+  "title": "Everyday sound levels vs the safe daily limit (dB)",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "present",
+  "source": {
+    "name": "Make Listening Safe initiative",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/activities/making-listening-safe",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Standard reference decibel levels for common sound sources, compared with WHO's recommended safe daily exposure limit of 80 dB for adults.",
+  "insight_type": "rank",
+  "ascending": false,
+  "points": [
+    {"label": "Rock concert (front row)", "value": 120},
+    {"label": "Club / concert venue", "value": 110},
+    {"label": "Headphones at max volume", "value": 105},
+    {"label": "Normal conversation", "value": 60}
+  ],
+  "baseline": {"label": "WHO safe daily limit", "value": 80}
+}

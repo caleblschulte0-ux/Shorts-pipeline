@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "slug": "pierce-county-goat-chase-2026",
+  "title": "A Goat Led Deputies on a 20-Minute Chase",
+  "script": "One goat. Twenty minutes. Chaos! Tuesday afternoon, a loose goat started weaving through traffic near Pacific Lutheran University in Washington state — dodging cars like it had somewhere to be. Deputies and animal control raced in, but the goat had other plans, leading them on a full sprint through yards and parking lots. One deputy tried speaking what he called goat language to calm it down. The goat was not impressed. It took nearly twenty minutes before officers finally cornered the runaway on an outdoor staircase, boxed in with nowhere left to run. It's now resting at a local rescue farm while officials try to track down its owner. So who loses a goat and doesn't notice?",
+  "shots": [
+    {"phrase": "One goat. Twenty minutes. Chaos!", "query": "goat running road", "mascot_pose": "point"},
+    {"phrase": "a loose goat started weaving through traffic", "query": "traffic street cars", "mascot_pose": "idle"},
+    {"phrase": "near Pacific Lutheran University in Washington state", "query": "university campus building", "mascot_pose": "idle"},
+    {"phrase": "dodging cars like it had somewhere to be", "query": "goat dodging cars", "mascot_pose": "idle"},
+    {"phrase": "Deputies and animal control raced in", "query": "police car lights", "mascot_pose": "idle"},
+    {"phrase": "leading them on a full sprint through yards and parking lots", "query": "goat running yard", "mascot_pose": "idle"},
+    {"phrase": "speaking what he called goat language", "query": "sheriff deputy talking", "mascot_pose": "idle"},
+    {"phrase": "The goat was not impressed", "query": "goat staring camera", "mascot_pose": "laugh"},
+    {"phrase": "cornered the runaway on an outdoor staircase", "query": "outdoor staircase", "mascot_pose": "idle"},
+    {"phrase": "boxed in with nowhere left to run", "query": "goat cornered fence", "mascot_pose": "idle"},
+    {"phrase": "resting at a local rescue farm", "query": "farm animal rescue", "mascot_pose": "idle"},
+    {"phrase": "track down its owner", "query": "missing pet flyer", "mascot_pose": "idle"},
+    {"phrase": "who loses a goat and doesn't notice", "query": "goat close up face", "mascot_pose": "dismiss"}
+  ],
+  "punches": [
+    {"phrase": "a loose goat started weaving through traffic", "text": "LOOSE GOAT", "color": "#ffaa30"},
+    {"phrase": "full sprint through yards and parking lots", "text": "20 MIN CHASE", "color": "#ffe24a"},
+    {"phrase": "goat language", "text": "GOAT TALK", "color": "#30c0ff"},
+    {"phrase": "The goat was not impressed", "text": "NOT IMPRESSED", "color": "#ffffff"},
+    {"phrase": "cornered the runaway on an outdoor staircase", "text": "CORNERED", "color": "#ff3030"},
+    {"phrase": "track down its owner", "text": "OWNER: MISSING", "color": "#ffaa30"}
+  ],
+  "hashtags": ["goat", "piercecounty", "washingtonstate", "animalcontrol", "viral", "funny", "police", "deputies", "wildlifechase", "funnyanimals", "shorts", "news", "quirky", "trending"],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
