@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "slug": "corolla-apples-wild-horses-2026",
+  "title": "Apples Kept Washing Up. That Was the Problem.",
+  "script": "Are These Apples Deadly? Tuesday morning, loose apples started washing ashore on the sand in Corolla, North Carolina — hundreds of them, scattered like they'd fallen off a ship. Then came the oranges too. It looked harmless, almost funny, until the Corolla Wild Horse Fund got the call: apples can kill their wild horses, causing choking and deadly colic if the herd finds them first. Local families, deputies, and volunteer turtle patrols dropped everything and raced the clock, bagging up the fruit handful by handful before the horses could. It's not even the strangest thing to wash up here — a few years back it was bags of Doritos. So what nearly poisoned Corolla's wild horses?",
+  "shots": [
+    {"phrase": "Are These Apples Deadly?", "query": "apples on sand", "mascot_pose": "point"},
+    {"phrase": "loose apples started washing ashore on the sand in Corolla, North Carolina", "query": "beach debris fruit", "mascot_pose": "idle"},
+    {"phrase": "hundreds of them, scattered like they'd fallen off a ship", "query": "cargo ship ocean", "mascot_pose": "idle"},
+    {"phrase": "Then came the oranges too", "query": "orange fruit beach", "mascot_pose": "idle"},
+    {"phrase": "Corolla Wild Horse Fund got the call", "query": "phone call emergency", "mascot_pose": "idle"},
+    {"phrase": "apples can kill their wild horses", "query": "wild horses grazing", "mascot_pose": "shock"},
+    {"phrase": "choking and deadly colic", "query": "veterinarian animal", "mascot_pose": "idle"},
+    {"phrase": "deputies, and volunteer turtle patrols dropped everything", "query": "volunteers beach cleanup", "mascot_pose": "idle"},
+    {"phrase": "raced the clock", "query": "clock ticking", "mascot_pose": "idle"},
+    {"phrase": "bagging up the fruit handful by handful", "query": "bag of apples", "mascot_pose": "idle"},
+    {"phrase": "before the horses could", "query": "wild horse herd", "mascot_pose": "idle"},
+    {"phrase": "a few years back it was bags of Doritos", "query": "chips bag beach", "mascot_pose": "laugh"},
+    {"phrase": "nearly poisoned Corolla's wild horses", "query": "wild horse close up", "mascot_pose": "idle"}
+  ],
+  "punches": [
+    {"phrase": "apples can kill their wild horses", "text": "CAN KILL HORSES", "color": "#ff3030"},
+    {"phrase": "choking and deadly colic", "text": "DEADLY COLIC", "color": "#ff3030"},
+    {"phrase": "raced the clock", "text": "RACE AGAINST TIME", "color": "#ffe24a"},
+    {"phrase": "hundreds of them", "text": "HUNDREDS OF APPLES", "color": "#ffaa30"},
+    {"phrase": "bags of Doritos", "text": "DORITOS. SERIOUSLY.", "color": "#30c0ff"},
+    {"phrase": "Wild Horse Fund got the call", "text": "EMERGENCY CALL", "color": "#ffffff"}
+  ],
+  "hashtags": ["corolla", "outerbanks", "wildhorses", "bankerhorse", "northcarolina", "beachcleanup", "animalrescue", "wildlife", "viral", "quirky", "weirdnews", "naturenews", "shorts", "news"],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

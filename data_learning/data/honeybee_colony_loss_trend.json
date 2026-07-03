@@ -1,0 +1,22 @@
+{
+  "key": "honeybee_colony_loss_trend",
+  "title": "US annual managed honeybee colony loss rate",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2011-2025 (annual survey)",
+  "source": {
+    "name": "U.S. Beekeeping Survey",
+    "publisher": "Apiary Inspectors of America / Auburn University (funded by USDA APHIS)",
+    "url": "https://apiaryinspectors.org/US-beekeeping-survey-24-25",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative approximation of the annual survey's historical loss-rate range (roughly 30-45%) through the 2010s-early 2020s; the 2024-2025 figure (55.6%) is the survey's real, published record high.",
+  "points": [
+    {"label": "2011", "value": 30, "period": "2011"},
+    {"label": "2015", "value": 33, "period": "2015"},
+    {"label": "2019", "value": 38, "period": "2019"},
+    {"label": "2022", "value": 39, "period": "2022"},
+    {"label": "2024-25", "value": 55.6, "period": "2025"}
+  ]
+}

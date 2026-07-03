@@ -1,0 +1,22 @@
+{
+  "key": "honeybee_loss_by_operation_rank",
+  "title": "2024-25 colony loss rate by operation type",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024-2025 survey year",
+  "source": {
+    "name": "U.S. Beekeeping Survey 2024-2025 results",
+    "publisher": "Apiary Inspectors of America / Auburn University",
+    "url": "https://apiaryinspectors.org/US-beekeeping-survey-24-25",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Published 2024-2025 survey results by operation type, against the national average loss rate.",
+  "insight_type": "rank",
+  "ascending": false,
+  "points": [
+    {"label": "Commercial operations", "value": 62},
+    {"label": "Backyard beekeepers", "value": 51}
+  ],
+  "baseline": {"label": "National average", "value": 55.6}
+}

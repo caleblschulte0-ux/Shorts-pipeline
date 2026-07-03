@@ -1,0 +1,24 @@
+{
+  "key": "solar_cycle_sunspots",
+  "title": "Annual sunspot number (Solar Cycle 25)",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "2019-2025 (annual average)",
+  "source": {
+    "name": "Solar Cycle Progression",
+    "publisher": "NOAA Space Weather Prediction Center",
+    "url": "https://www.swpc.noaa.gov/products/solar-cycle-progression",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative approximation of NOAA SWPC's smoothed annual sunspot-number progression through Solar Cycle 25, which peaked in 2024.",
+  "points": [
+    {"label": "2019", "value": 3, "period": "2019"},
+    {"label": "2020", "value": 9, "period": "2020"},
+    {"label": "2021", "value": 30, "period": "2021"},
+    {"label": "2022", "value": 85, "period": "2022"},
+    {"label": "2023", "value": 115, "period": "2023"},
+    {"label": "2024", "value": 140, "period": "2024"},
+    {"label": "2025", "value": 125, "period": "2025"}
+  ]
+}

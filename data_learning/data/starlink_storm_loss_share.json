@@ -1,0 +1,20 @@
+{
+  "key": "starlink_storm_loss_share",
+  "title": "Feb 2022 Starlink batch: destroyed vs survived",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "February 2022 event",
+  "source": {
+    "name": "Starlink geomagnetic storm mission update",
+    "publisher": "SpaceX",
+    "url": "https://www.spacex.com/updates",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Real event: a geomagnetic storm on Feb 3-4 2022 increased atmospheric drag and destroyed up to 40 of the 49 Starlink satellites launched a day earlier.",
+  "insight_type": "share",
+  "points": [
+    {"label": "Destroyed by the storm", "value": 82},
+    {"label": "Survived", "value": 18}
+  ]
+}

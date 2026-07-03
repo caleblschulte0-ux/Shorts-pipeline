@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "slug": "neil-the-seal-tasmania-2026",
+  "title": "Neil the Seal Is Wrecking Cars Again",
+  "script": "Neil the seal is BACK! Every year, this 2,200-pound elephant seal drags himself onto the beaches of southern Tasmania — and every year the damage report gets weirder. He's flattened traffic cones, snapped fence posts, and this season he picked a new target: headbutting parked Toyotas. Wildlife officers insist it's not aggression, it's practice — young male elephant seals need to spar for dominance, and with no other seals his age around, Neil just picks a car instead. He's turned into a full-blown local celebrity, tracked online like a rockstar on tour. Officials are now begging fans to keep their distance and let him nap in peace. So who's going to tell Neil no?",
+  "shots": [
+    {"phrase": "Neil the seal is BACK", "query": "elephant seal beach", "mascot_pose": "point"},
+    {"phrase": "this 2,200-pound elephant seal", "query": "elephant seal closeup", "mascot_pose": "idle"},
+    {"phrase": "beaches of southern Tasmania", "query": "tasmania coastline", "mascot_pose": "idle"},
+    {"phrase": "the damage report gets weirder", "query": "wrecked yard fence", "mascot_pose": "idle"},
+    {"phrase": "flattened traffic cones", "query": "traffic cones road", "mascot_pose": "idle"},
+    {"phrase": "snapped fence posts", "query": "broken fence post", "mascot_pose": "idle"},
+    {"phrase": "headbutting parked Toyotas", "query": "dented car door", "mascot_pose": "laugh"},
+    {"phrase": "young male elephant seals need to spar for dominance", "query": "seals fighting beach", "mascot_pose": "idle"},
+    {"phrase": "Neil just picks a car instead", "query": "parked car street", "mascot_pose": "idle"},
+    {"phrase": "turned into a full-blown local celebrity", "query": "crowd phones cameras", "mascot_pose": "idle"},
+    {"phrase": "tracked online like a rockstar on tour", "query": "social media phone screen", "mascot_pose": "idle"},
+    {"phrase": "begging fans to keep their distance", "query": "warning sign beach", "mascot_pose": "idle"},
+    {"phrase": "let him nap in peace", "query": "seal sleeping sand", "mascot_pose": "idle"},
+    {"phrase": "who's going to tell Neil no", "query": "seal close up eyes", "mascot_pose": "dismiss"}
+  ],
+  "punches": [
+    {"phrase": "this 2,200-pound elephant seal", "text": "2,200 LBS", "color": "#ffaa30"},
+    {"phrase": "flattened traffic cones", "text": "FLATTENED", "color": "#ff3030"},
+    {"phrase": "snapped fence posts", "text": "FENCE GONE", "color": "#ff3030"},
+    {"phrase": "headbutting parked Toyotas", "text": "CAR VS SEAL", "color": "#ffe24a"},
+    {"phrase": "spar for dominance", "text": "PRACTICE MODE", "color": "#30c0ff"},
+    {"phrase": "full-blown local celebrity", "text": "CELEBRITY STATUS", "color": "#50ff80"},
+    {"phrase": "keep their distance", "text": "BACK OFF", "color": "#ffffff"}
+  ],
+  "hashtags": ["neiltheseal", "tasmania", "elephantseal", "australia", "wildlife", "seal", "viral", "animals", "wildanimals", "funnyanimals", "oceanlife", "naturenews", "shorts", "news"],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
