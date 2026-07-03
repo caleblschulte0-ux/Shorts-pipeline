@@ -1,0 +1,28 @@
+{
+  "key": "space_smells_like_astronaut_reports",
+  "title": "Astronaut Reports",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "First Report",
+      "value": 1960.0,
+      "period": "1960"
+    },
+    {
+      "label": "Recent Report",
+      "value": 2020.0,
+      "period": "2020"
+    }
+  ]
+}

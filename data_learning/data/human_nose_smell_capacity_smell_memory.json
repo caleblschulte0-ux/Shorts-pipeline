@@ -1,0 +1,26 @@
+{
+  "key": "human_nose_smell_capacity_smell_memory",
+  "title": "Smell Memory",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Emotional Triggers",
+      "value": 75.0
+    },
+    {
+      "label": "Neutral Smells",
+      "value": 25.0
+    }
+  ]
+}
