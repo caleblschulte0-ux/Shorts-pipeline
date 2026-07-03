@@ -1,0 +1,26 @@
+{
+  "key": "human_nose_smell_capacity_smell_capacity",
+  "title": "Smell Capacity",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Unique Smells",
+      "value": 1000000000000.0
+    },
+    {
+      "label": "Common Smells",
+      "value": 1000.0
+    }
+  ]
+}

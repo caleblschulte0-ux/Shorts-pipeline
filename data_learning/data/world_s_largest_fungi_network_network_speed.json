@@ -1,0 +1,28 @@
+{
+  "key": "world_s_largest_fungi_network_network_speed",
+  "title": "Network Speed",
+  "unit": "mph",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Slowest Speed",
+      "value": 0.5,
+      "period": "day"
+    },
+    {
+      "label": "Fastest Speed",
+      "value": 1.6,
+      "period": "hour"
+    }
+  ]
+}

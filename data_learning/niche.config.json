@@ -7412,6 +7412,364 @@
         }
       ],
       "question": "How do you think we can make space travel more affordable?"
+    },
+    {
+      "slug": "world-s-largest-fungi-network",
+      "title": "World's Largest Fungi Network",
+      "hook": "A hidden network beneath our feet",
+      "closing": "The secret life of fungi",
+      "hashtags": [
+        "fungi",
+        "nature",
+        "mushrooms",
+        "mycelium",
+        "networks"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "world_s_largest_fungi_network_fungal_network",
+          "params": {
+            "file": "world_s_largest_fungi_network_fungal_network.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 FUNGAL NETWORK",
+          "topic": "Fungal Network",
+          "say": "This fungal network spans over 2.5 acres, with over 2 million individual mushrooms",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "mushroom",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "world_s_largest_fungi_network_network_speed",
+          "params": {
+            "file": "world_s_largest_fungi_network_network_speed.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 NETWORK SPEED",
+          "topic": "Network Speed",
+          "say": "The fungal network can spread at speeds of up to 1.6 miles per hour",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "world_s_largest_fungi_network_network_benefits",
+          "params": {
+            "file": "world_s_largest_fungi_network_network_benefits.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 NETWORK BENEFITS",
+          "topic": "Network Benefits",
+          "say": "The fungal network can increase tree growth by up to 60 percent",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What other secrets do fungi hold?"
+    },
+    {
+      "slug": "space-station-size-comparison",
+      "title": "Space Station Size Comparison",
+      "hook": "The largest human-made object in space",
+      "closing": "The incredible scale of space stations",
+      "hashtags": [
+        "space",
+        "iss",
+        "nasa",
+        "spacestation",
+        "satellites"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_station_size_comparison_space_station_size",
+          "params": {
+            "file": "space_station_size_comparison_space_station_size.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SPACE STATION SIZE",
+          "topic": "Space Station Size",
+          "say": "The International Space Station is roughly the size of a football field",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "space station",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "football field",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_station_size_comparison_space_station_mass",
+          "params": {
+            "file": "space_station_size_comparison_space_station_mass.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 SPACE STATION MASS",
+          "topic": "Space Station Mass",
+          "say": "The space station has a mass of over 450,000 kilograms",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "space_station_size_comparison_space_station_cost",
+          "params": {
+            "file": "space_station_size_comparison_space_station_cost.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 SPACE STATION COST",
+          "topic": "Space Station Cost",
+          "say": "The space station has cost over 150 billion dollars to build and maintain",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bubble",
+                "region": "center",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the future of space exploration?"
+    },
+    {
+      "slug": "human-nose-smell-capacity",
+      "title": "Human Nose Smell Capacity",
+      "hook": "The incredible power of the human nose",
+      "closing": "The secret life of smells",
+      "hashtags": [
+        "smell",
+        "nose",
+        "scent",
+        "odor",
+        "perfume"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "human_nose_smell_capacity_smell_capacity",
+          "params": {
+            "file": "human_nose_smell_capacity_smell_capacity.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SMELL CAPACITY",
+          "topic": "Smell Capacity",
+          "say": "The human nose can detect over 1 trillion different scents",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "number",
+                "region": "center",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "human_nose_smell_capacity_smell_sensitivity",
+          "params": {
+            "file": "human_nose_smell_capacity_smell_sensitivity.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 SMELL SENSITIVITY",
+          "topic": "Smell Sensitivity",
+          "say": "Some people have a highly developed sense of smell, while others struggle to detect even strong odors",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "orbit_group",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "human_nose_smell_capacity_smell_memory",
+          "params": {
+            "file": "human_nose_smell_capacity_smell_memory.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 SMELL MEMORY",
+          "topic": "Smell Memory",
+          "say": "Smells can evoke powerful memories, with 75 percent of emotions triggered by smells",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "brain",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most unique smell you've ever encountered?"
+    },
+    {
+      "slug": "space-smells-like",
+      "title": "Space Smells Like",
+      "hook": "Astronauts have reported a unique smell in space",
+      "closing": "The smell of space is out of this world, literally",
+      "hashtags": [
+        "spacesmell",
+        "astronauts",
+        "nasa",
+        "space",
+        "secrets"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_smells_like_space_smell",
+          "params": {
+            "file": "space_smells_like_space_smell.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SPACE SMELL",
+          "topic": "Space Smell",
+          "say": "Astronauts have described the smell of space as similar to seared steak and hot metal",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "space helmet",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "seared steak",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_smells_like_smell_composition",
+          "params": {
+            "file": "space_smells_like_smell_composition.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 SMELL COMPOSITION",
+          "topic": "Smell Composition",
+          "say": "The smell of space is composed of 70 percent acetylene, 20 percent hydrogen, and 10 percent other gases",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "atom",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "space_smells_like_astronaut_reports",
+          "params": {
+            "file": "space_smells_like_astronaut_reports.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ASTRONAUT REPORTS",
+          "topic": "Astronaut Reports",
+          "say": "Astronauts have been reporting the unique smell of space for over 50 years, with the first reports dating back to the 1960s",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What do you think space would smell like?"
     }
   ],
   "videos": [
