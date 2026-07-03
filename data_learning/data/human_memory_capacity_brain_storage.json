@@ -1,0 +1,28 @@
+{
+  "key": "human_memory_capacity_brain_storage",
+  "title": "Brain Storage",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Average Brain",
+      "value": 100.0,
+      "period": "2020"
+    },
+    {
+      "label": "Expert Brain",
+      "value": 200.0,
+      "period": "2020"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "key": "human_memory_capacity_forgetting_curve",
+  "title": "Forgetting Curve",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1 Hour",
+      "value": 50.0,
+      "period": "2020"
+    },
+    {
+      "label": "1 Day",
+      "value": 80.0,
+      "period": "2020"
+    },
+    {
+      "label": "1 Week",
+      "value": 90.0,
+      "period": "2020"
+    }
+  ]
+}

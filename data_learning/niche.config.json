@@ -7233,6 +7233,185 @@
           "say": "Even every planned return-to-office mandate this year would only shave that 21.2 percent down to 20.8. And just 44 percent of workers say they'd actually comply with a full mandate."
         }
       ]
+    },
+    {
+      "slug": "human-memory-capacity",
+      "title": "Human Memory Capacity",
+      "hook": "You won't believe how much information your brain can store",
+      "closing": "The human brain is a powerful storage device",
+      "hashtags": [
+        "brainpower",
+        "memory",
+        "humanbody",
+        "neuroscience",
+        "learning"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "human_memory_capacity_brain_storage",
+          "params": {
+            "file": "human_memory_capacity_brain_storage.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 BRAIN STORAGE",
+          "topic": "Brain Storage",
+          "say": "Your brain can store up to 100 terabytes of information, that's like stacking 100 hard drives",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "human_memory_capacity_memory_types",
+          "params": {
+            "file": "human_memory_capacity_memory_types.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 MEMORY TYPES",
+          "topic": "Memory Types",
+          "say": "Short term memory accounts for 20%, long term memory 60%, and sensory memory 20%",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "shortterm",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "longterm",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "sensory",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "human_memory_capacity_forgetting_curve",
+          "params": {
+            "file": "human_memory_capacity_forgetting_curve.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 FORGETTING CURVE",
+          "topic": "Forgetting Curve",
+          "say": "We forget up to 80% of what we learn within 24 hours, that's a steep forgetting curve",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "How do you think we can improve our memory?"
+    },
+    {
+      "slug": "space-exploration-costs",
+      "title": "Space Exploration Costs",
+      "hook": "You won't believe how much it costs to go to space",
+      "closing": "Space exploration is a costly but worthwhile endeavor",
+      "hashtags": [
+        "space",
+        "exploration",
+        "cost",
+        "spaceagency",
+        "innovation"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_exploration_costs_mission_costs",
+          "params": {
+            "file": "space_exploration_costs_mission_costs.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 MISSION COSTS",
+          "topic": "Mission Costs",
+          "say": "A single space mission can cost up to 1 billion dollars, that's like stacking 1000 piles of 1 million dollars",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_exploration_costs_agency_budgets",
+          "params": {
+            "file": "space_exploration_costs_agency_budgets.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 AGENCY BUDGETS",
+          "topic": "Agency Budgets",
+          "say": "NASA accounts for 50% of global space agency budgets, ESA 20%, and Roscosmos 10%",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "nasa",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "esa",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "roscomos",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "space_exploration_costs_private_investment",
+          "params": {
+            "file": "space_exploration_costs_private_investment.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 PRIVATE INVESTMENT",
+          "topic": "Private Investment",
+          "say": "Private investment in space exploration has grown from 1 billion dollars in 2010 to 10 billion dollars in 2020",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "How do you think we can make space travel more affordable?"
     }
   ],
   "videos": [
