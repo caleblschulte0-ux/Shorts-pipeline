@@ -6995,6 +6995,244 @@
         }
       ],
       "question": "What do you think is the most interesting thing about underwater lakes?"
+    },
+    {
+      "slug": "space-weather-satellite-toll",
+      "title": "The Sun Just Woke Up. Satellites Are Paying For It.",
+      "hook": "The sun is waking up. Here's the proof.",
+      "closing": "The sun ruins satellites for fun.",
+      "question": "Have you ever seen the northern lights? Comment below.",
+      "caption": "One solar storm knocked 40 Starlink satellites out of the sky in a single week. The sun is waking up after years of quiet, and 2024 already broke the sunspot record. Have you seen the northern lights? \ud83d\udc47",
+      "hashtags": [
+        "solarstorm",
+        "spaceweather",
+        "sunspots",
+        "noaa",
+        "aurora",
+        "geomagneticstorm",
+        "spacex",
+        "starlink",
+        "science",
+        "space",
+        "astronomy",
+        "solarcycle",
+        "didyouknow",
+        "mindblown"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "solar_cycle_sunspots",
+          "params": {
+            "file": "solar_cycle_sunspots.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE CYCLE",
+          "topic": "sunspot activity",
+          "say": "Right now we're near solar maximum. The sunspot number just hit 140, up from single digits back in 2019. More sunspots mean more solar storms heading our way."
+        },
+        {
+          "source": "offline",
+          "key": "geomagnetic_storm_scale",
+          "params": {
+            "file": "geomagnetic_storm_scale.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 \u00b7 THE SCALE",
+          "topic": "geomagnetic storm frequency",
+          "say": "NOAA ranks these storms G1 to G5. The mildest, G1, hits about 1,700 days every 11-year cycle. The most extreme, G5? Just 4 days. Rare, but not harmless."
+        },
+        {
+          "source": "offline",
+          "key": "starlink_storm_loss_share",
+          "params": {
+            "file": "starlink_storm_loss_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 THE PROOF",
+          "topic": "satellites lost in one storm",
+          "say": "In February 2022, one storm hit a fresh SpaceX batch mid-launch. 49 satellites went up. 82 percent of them, 40 satellites, came right back down within days."
+        }
+      ]
+    },
+    {
+      "slug": "headphone-hearing-loss",
+      "title": "Your Headphones Are Quietly Wrecking Your Ears",
+      "hook": "Your headphones might be wrecking your ears.",
+      "closing": "Turn it down two notches. Your ears will thank you.",
+      "question": "How loud do you keep your headphones? Be honest below.",
+      "caption": "430 million people already live with disabling hearing loss, and the WHO says that's headed past 700 million by 2050. The culprit? Everyday headphone volume blowing past the safe limit. How loud do you keep yours? \ud83d\udc47",
+      "hashtags": [
+        "hearingloss",
+        "headphones",
+        "earbuds",
+        "who",
+        "publichealth",
+        "hearing",
+        "healthdata",
+        "science",
+        "healthtips",
+        "noise",
+        "mindblown",
+        "didyouknow",
+        "health"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "hearing_loss_global",
+          "params": {
+            "file": "hearing_loss_global.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE SCALE",
+          "topic": "disabling hearing loss worldwide",
+          "say": "Right now, 430 million people live with disabling hearing loss. The World Health Organization expects that to pass 700 million by 2050 \u2014 one in four of us, eventually."
+        },
+        {
+          "source": "offline",
+          "key": "decibel_exposure_rank",
+          "params": {
+            "file": "decibel_exposure_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 \u00b7 THE CAUSE",
+          "topic": "everyday sound levels",
+          "say": "Here's why: a normal conversation sits around 60 decibels. The safe daily limit is 80. Max-volume headphones blast past 105, and concerts often hit 110 or higher."
+        },
+        {
+          "source": "offline",
+          "key": "youth_unsafe_listening_share",
+          "params": {
+            "file": "youth_unsafe_listening_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 THE RISK",
+          "topic": "young people in the unsafe zone",
+          "say": "So it's no shock that about 35 percent of people aged 12 to 34 worldwide are already stuck in that unsafe zone \u2014 over a billion of us, turning it up too loud, too often."
+        }
+      ]
+    },
+    {
+      "slug": "honeybee-colony-collapse-2025",
+      "title": "America's Bees Just Had Their Worst Year Ever",
+      "hook": "America's bees just had their worst year ever.",
+      "closing": "No bees, no almonds. It's that simple.",
+      "question": "Did you know almonds needed that many bees? Comment below.",
+      "caption": "US beekeepers just lost 55.6% of their colonies in one year, the worst on record. And 60% of every managed hive in the country gets trucked to one crop every February: California almonds. Did you know that? \ud83d\udc47",
+      "hashtags": [
+        "honeybees",
+        "bees",
+        "colonycollapse",
+        "beekeeping",
+        "pollinators",
+        "almonds",
+        "agriculture",
+        "usda",
+        "science",
+        "data",
+        "nature",
+        "foodsupply",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "honeybee_colony_loss_trend",
+          "params": {
+            "file": "honeybee_colony_loss_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE RECORD",
+          "topic": "annual colony loss rate",
+          "say": "US beekeepers just lost 55.6 percent of their colonies in a single year, the worst die-off since records began in 2011, driven largely by mite-borne viruses."
+        },
+        {
+          "source": "offline",
+          "key": "honeybee_loss_by_operation_rank",
+          "params": {
+            "file": "honeybee_loss_by_operation_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 \u00b7 WHO GOT HIT",
+          "topic": "losses by operation type",
+          "say": "Commercial operations, the ones renting out hives to farms, got hit even harder: 62 percent losses, compared to 51 percent for backyard beekeepers. Nobody was safe this year."
+        },
+        {
+          "source": "offline",
+          "key": "almond_colony_share",
+          "params": {
+            "file": "almond_colony_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 WHY IT MATTERS",
+          "topic": "colonies riding on one crop",
+          "say": "Here's why that's terrifying: about 60 percent of every managed colony in the country converges on one single crop every February, California's almond bloom. One bad year threatens the whole harvest."
+        }
+      ]
+    },
+    {
+      "slug": "remote-work-plateau",
+      "title": "Return-to-Office Mandates Aren't Working",
+      "hook": "Return-to-office mandates aren't working.",
+      "closing": "Hybrid won. The office isn't coming back the same.",
+      "question": "Would you actually comply with a full RTO mandate? Comment below.",
+      "caption": "Remote work peaked at 55% of paid workdays in 2020, and five years later it's still stuck around 21%, five times pre-pandemic levels. Even a wave of new RTO mandates barely moves that number. Would you comply with one? \ud83d\udc47",
+      "hashtags": [
+        "remotework",
+        "wfh",
+        "hybridwork",
+        "returntooffice",
+        "futureofwork",
+        "workplace",
+        "labor",
+        "gallup",
+        "careertok",
+        "worklife",
+        "jobs",
+        "corporate",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "wfh_share_trend",
+          "params": {
+            "file": "wfh_share_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE PEAK",
+          "topic": "work-from-home share of workdays",
+          "say": "Remote work exploded to 55 percent of paid workdays in 2020, then settled, not back to normal, but around 21 percent today. Five times the pre-pandemic level."
+        },
+        {
+          "source": "offline",
+          "key": "remote_capable_arrangement_share",
+          "params": {
+            "file": "remote_capable_arrangement_share.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 THE SPLIT",
+          "topic": "how remote-capable jobs actually work",
+          "say": "Among jobs that can be done remotely, only 21 percent are fully on-site now. 28 percent are fully remote, and the majority, 51 percent, are hybrid."
+        },
+        {
+          "source": "offline",
+          "key": "rto_mandate_impact_rank",
+          "params": {
+            "file": "rto_mandate_impact_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 \u00b7 THE PUSHBACK",
+          "topic": "RTO mandates barely move the needle",
+          "say": "Even every planned return-to-office mandate this year would only shave that 21.2 percent down to 20.8. And just 44 percent of workers say they'd actually comply with a full mandate."
+        }
+      ]
     }
   ],
   "videos": [

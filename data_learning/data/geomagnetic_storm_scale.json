@@ -1,0 +1,22 @@
+{
+  "key": "geomagnetic_storm_scale",
+  "title": "Average days per 11-year solar cycle, by storm class",
+  "unit": "days",
+  "geography": "Global",
+  "time_coverage": "Per 11-year solar cycle (NOAA G-scale)",
+  "source": {
+    "name": "Space Weather Scales (G-scale)",
+    "publisher": "NOAA Space Weather Prediction Center",
+    "url": "https://www.swpc.noaa.gov/noaa-scales-explanation",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "NOAA's published average frequency, in days per 11-year solar cycle, for each geomagnetic storm category.",
+  "points": [
+    {"label": "G1 Minor", "value": 1700},
+    {"label": "G2 Moderate", "value": 600},
+    {"label": "G3 Strong", "value": 200},
+    {"label": "G4 Severe", "value": 100},
+    {"label": "G5 Extreme", "value": 4}
+  ]
+}

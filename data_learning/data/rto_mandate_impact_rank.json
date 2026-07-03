@@ -1,0 +1,21 @@
+{
+  "key": "rto_mandate_impact_rank",
+  "title": "WFH share of paid workdays: today vs. after every planned RTO mandate",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025, with projection",
+  "source": {
+    "name": "SWAA executive survey on planned return-to-office mandates",
+    "publisher": "WFH Research (Stanford SIEPR)",
+    "url": "https://siepr.stanford.edu/publications/policy-brief/us-executives-predict-work-home-here-stay",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Stanford SIEPR's published estimate: executives' planned RTO mandates would cut the WFH share of paid workdays from 21.2% to 20.8%, a 0.4 percentage-point drop.",
+  "insight_type": "rank",
+  "ascending": false,
+  "points": [
+    {"label": "Today", "value": 21.2},
+    {"label": "After every planned RTO mandate", "value": 20.8}
+  ]
+}

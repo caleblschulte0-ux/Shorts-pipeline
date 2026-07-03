@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "slug": "venezuela-earthquake-rescue-2026",
+  "title": "Buried for 8 Days. He Walked Out Alive.",
+  "script": "Buried Alive For Eight Days? When Venezuela's twin earthquakes leveled a shopping mall in La Guaira, the whole parking structure came down — except one thing: a tiny security booth, and the guard still inside it. Hernan Gil Flores spent eight days trapped in that pocket of space while 29 feet of concrete crushed everything around him. Rescuers lowered water and nutrients down a narrow shaft just to keep him alive, talking to him through a telescopic camera while international crews from Chile, Costa Rica, the U.S., Portugal, and Mexico spent three straight days tunneling toward him. On day eight, they pulled him out alive, in what officials called a miracle. More than 2,300 people didn't make it. So what are the odds a security booth saves your life?",
+  "shots": [
+    {"phrase": "Buried Alive For Eight Days?", "query": "collapsed building rubble", "mascot_pose": "point"},
+    {"phrase": "Venezuela's twin earthquakes leveled a shopping mall in La Guaira", "query": "earthquake damage city", "mascot_pose": "idle"},
+    {"phrase": "the whole parking structure came down", "query": "concrete rubble pile", "mascot_pose": "idle"},
+    {"phrase": "a tiny security booth, and the guard still inside it", "query": "security guard booth", "mascot_pose": "idle"},
+    {"phrase": "Hernan Gil Flores spent eight days trapped", "query": "rescue crews digging", "mascot_pose": "idle"},
+    {"phrase": "29 feet of concrete crushed everything around him", "query": "concrete rubble pile", "mascot_pose": "shock"},
+    {"phrase": "Rescuers lowered water and nutrients down a narrow shaft", "query": "narrow rescue shaft", "mascot_pose": "idle"},
+    {"phrase": "talking to him through a telescopic camera", "query": "rescue camera equipment", "mascot_pose": "idle"},
+    {"phrase": "international crews from Chile, Costa Rica, the U.S., Portugal, and Mexico", "query": "international rescue team", "mascot_pose": "idle"},
+    {"phrase": "three straight days tunneling toward him", "query": "tunneling excavation", "mascot_pose": "idle"},
+    {"phrase": "they pulled him out alive", "query": "survivor rescued cheering", "mascot_pose": "idle"},
+    {"phrase": "officials called a miracle", "query": "rescue crews cheering", "mascot_pose": "idle"},
+    {"phrase": "More than 2,300 people didn't make it", "query": "memorial candles vigil", "mascot_pose": "think"},
+    {"phrase": "odds a security booth saves your life", "query": "disaster aftermath city", "mascot_pose": "idle"}
+  ],
+  "punches": [
+    {"phrase": "Hernan Gil Flores spent eight days trapped", "text": "8 DAYS TRAPPED", "color": "#ff3030", "flash_bg": "#220404"},
+    {"phrase": "29 feet of concrete", "text": "29 FT OF RUBBLE", "color": "#ffaa30"},
+    {"phrase": "three straight days tunneling", "text": "3 DAYS DIGGING", "color": "#ffe24a"},
+    {"phrase": "they pulled him out alive", "text": "PULLED OUT ALIVE", "color": "#50ff80"},
+    {"phrase": "officials called a miracle", "text": "MIRACLE", "color": "#ffffff"},
+    {"phrase": "More than 2,300 people didn't make it", "text": "2,300 DEAD", "color": "#ff3030"}
+  ],
+  "hashtags": ["venezuela", "laguaira", "earthquake", "miraclerescue", "survivor", "rescue", "disaster", "breakingnews", "naturaldisaster", "worldnews", "viral", "shorts", "news"],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

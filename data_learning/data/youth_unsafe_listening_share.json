@@ -1,0 +1,20 @@
+{
+  "key": "youth_unsafe_listening_share",
+  "title": "People aged 12-34 practicing unsafe listening",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "present",
+  "source": {
+    "name": "1+ billion young people at risk of hearing loss",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/news/item/02-03-2022-who-1-in-4-people-projected-to-have-hearing-problems-by-2050",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "WHO-cited meta-analysis estimate: roughly 0.67-1.35 billion of the world's ~12-34 age group engage in unsafe listening via personal devices or loud venues; midpoint used here as a share of that age group.",
+  "insight_type": "share",
+  "points": [
+    {"label": "Unsafe listening habits", "value": 35},
+    {"label": "Within safe limits", "value": 65}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "hearing_loss_global",
+  "title": "People living with disabling hearing loss (million)",
+  "unit": "million",
+  "geography": "Global",
+  "time_coverage": "2019, with 2050 projection",
+  "source": {
+    "name": "World Report on Hearing",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "WHO's published estimate of disabling hearing loss prevalence, current and projected.",
+  "points": [
+    {"label": "2019", "value": 430, "period": "2019"},
+    {"label": "2050 (projected)", "value": 700, "period": "2050"}
+  ]
+}

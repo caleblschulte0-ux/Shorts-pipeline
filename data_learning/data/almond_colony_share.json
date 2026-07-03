@@ -1,0 +1,20 @@
+{
+  "key": "almond_colony_share",
+  "title": "US managed honeybee colonies: sent to California almonds vs elsewhere",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "February bloom, annual",
+  "source": {
+    "name": "Colonies trucked to California almond pollination vs. total US managed colonies",
+    "publisher": "USDA Economic Research Service / Apiary Inspectors of America",
+    "url": "http://www.ers.usda.gov/data-products/charts-of-note/chart-detail?chartId=107088",
+    "officiality": "official",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Derived share: USDA ERS reports roughly 1.6 million colonies are trucked to California almond orchards each February, against the U.S. Beekeeping Survey's estimated ~2.6 million total managed colonies nationwide.",
+  "insight_type": "share",
+  "points": [
+    {"label": "Sent to California almonds", "value": 60},
+    {"label": "Everywhere else", "value": 40}
+  ]
+}

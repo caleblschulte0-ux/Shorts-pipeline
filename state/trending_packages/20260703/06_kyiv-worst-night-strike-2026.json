@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "slug": "kyiv-worst-night-strike-2026",
+  "title": "Kyiv Just Survived Its Worst Night in Months",
+  "script": "Kyiv's Worst Night In Months? For eleven straight hours, Russia hit Ukraine's capital with almost 500 drones and more than 70 missiles — nearly half of them ballistic. At least 21 people were killed. In the Darnytskyi district, a nine-story apartment building partially collapsed with residents still inside, and a second building nearby was blown apart from the first floor to the sixth. Around 130 buildings across the city took damage in a single night. Officials are calling it one of the largest strikes of the entire war — the deadliest attack on the capital since May, when a similar strike brought down another apartment block and killed 24. Rescue crews are still digging through the wreckage for survivors. So how many more worst nights does one city get?",
+  "shots": [
+    {"phrase": "Kyiv's Worst Night In Months?", "query": "kyiv skyline city", "mascot_pose": "point"},
+    {"phrase": "Russia hit Ukraine's capital with almost 500 drones and more than 70 missiles", "query": "drone attack night sky", "mascot_pose": "idle"},
+    {"phrase": "nearly half of them ballistic", "query": "missile explosion night", "mascot_pose": "idle"},
+    {"phrase": "At least 21 people were killed", "query": "apartment building damage", "mascot_pose": "shock"},
+    {"phrase": "In the Darnytskyi district", "query": "collapsed building rubble", "mascot_pose": "idle"},
+    {"phrase": "a nine-story apartment building partially collapsed with residents still inside", "query": "rescue crews search", "mascot_pose": "idle"},
+    {"phrase": "blown apart from the first floor to the sixth", "query": "city destruction aftermath", "mascot_pose": "idle"},
+    {"phrase": "Around 130 buildings across the city took damage", "query": "emergency workers night", "mascot_pose": "idle"},
+    {"phrase": "one of the largest strikes of the entire war", "query": "war damage street", "mascot_pose": "idle"},
+    {"phrase": "the deadliest attack on the capital since May", "query": "ukraine flag building", "mascot_pose": "idle"},
+    {"phrase": "killed 24", "query": "firefighters rubble search", "mascot_pose": "idle"},
+    {"phrase": "Rescue crews are still digging through the wreckage", "query": "night sky explosions", "mascot_pose": "idle"},
+    {"phrase": "how many more worst nights does one city get", "query": "city under attack", "mascot_pose": "think"}
+  ],
+  "punches": [
+    {"phrase": "almost 500 drones and more than 70 missiles", "text": "500 DRONES", "color": "#ff3030"},
+    {"phrase": "At least 21 people were killed", "text": "21 KILLED", "color": "#ff3030", "flash_bg": "#220404"},
+    {"phrase": "Around 130 buildings across the city took damage", "text": "130 BUILDINGS HIT", "color": "#ffaa30"},
+    {"phrase": "one of the largest strikes of the entire war", "text": "LARGEST STRIKE YET", "color": "#ffffff"},
+    {"phrase": "killed 24", "text": "MAY: 24 KILLED", "color": "#ff3030"},
+    {"phrase": "still digging through the wreckage", "text": "STILL SEARCHING", "color": "#30c0ff"}
+  ],
+  "hashtags": ["kyiv", "ukraine", "russia", "warnews", "worldnews", "drones", "missiles", "breakingnews", "ukrainewar", "europe", "geopolitics", "shorts", "news"],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
