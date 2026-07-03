@@ -1,0 +1,28 @@
+{
+  "key": "space_exploration_costs_mission_costs",
+  "title": "Mission Costs",
+  "unit": "dollars",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Average Mission",
+      "value": 500000000.0,
+      "period": "2020"
+    },
+    {
+      "label": "Mars Mission",
+      "value": 1000000000.0,
+      "period": "2020"
+    }
+  ]
+}

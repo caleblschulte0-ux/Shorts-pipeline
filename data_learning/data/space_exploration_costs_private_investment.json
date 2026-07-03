@@ -1,0 +1,33 @@
+{
+  "key": "space_exploration_costs_private_investment",
+  "title": "Private Investment",
+  "unit": "dollars",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-03"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 1000000000.0,
+      "period": "2010"
+    },
+    {
+      "label": "2015",
+      "value": 5000000000.0,
+      "period": "2015"
+    },
+    {
+      "label": "2020",
+      "value": 10000000000.0,
+      "period": "2020"
+    }
+  ]
+}
