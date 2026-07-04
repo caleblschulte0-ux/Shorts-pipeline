@@ -7770,6 +7770,340 @@
         }
       ],
       "question": "What do you think space would smell like?"
+    },
+    {
+      "slug": "longest-recorded-flights",
+      "title": "Longest Recorded Flights",
+      "hook": "Some birds fly non-stop for days, but which ones go the farthest?",
+      "closing": "The longest migrations are a testament to nature's endurance.",
+      "hashtags": [
+        "animalmigration",
+        "birdflight",
+        "longestflights",
+        "naturewonders",
+        "wildlife"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "longest_recorded_flights_longest_flights",
+          "params": {
+            "file": "longest_recorded_flights_longest_flights.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LONGEST FLIGHTS",
+          "topic": "Longest Flights",
+          "say": "The eagle migrates 4,000 miles, the albatross 6,000 miles, and the arctic tern a staggering 44,000 miles.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "eagle",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "albatross",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "arctic tern",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "longest_recorded_flights_flight_speed",
+          "params": {
+            "file": "longest_recorded_flights_flight_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 FLIGHT SPEED",
+          "topic": "Flight Speed",
+          "say": "The peregrine falcon dives at 242 mph, the golden eagle cruises at 240 mph, and the gyrfalcon soars at 200 mph.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "longest_recorded_flights_longest_non_stop",
+          "params": {
+            "file": "longest_recorded_flights_longest_non_stop.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 LONGEST NON-STOP",
+          "topic": "Longest Non-Stop",
+          "say": "The bar-tailed godwit flies non-stop for 72 hours, while the great frigatebird stays aloft for 48 hours.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "number",
+                "region": "center",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's the most impressive animal migration you've heard of?"
+    },
+    {
+      "slug": "deepest-ocean-trenches",
+      "title": "Deepest Ocean Trenches",
+      "hook": "The deepest parts of our ocean are still unexplored, but what do we know about them?",
+      "closing": "The deepest trenches are some of the most extreme environments on Earth.",
+      "hashtags": [
+        "deeppocean",
+        "oceanexploration",
+        "trenches",
+        "marinebiology",
+        "oceanwonders"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "deepest_ocean_trenches_deepest_trenches",
+          "params": {
+            "file": "deepest_ocean_trenches_deepest_trenches.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DEEPEST TRENCHES",
+          "topic": "Deepest Trenches",
+          "say": "The Mariana Trench is 11,000 meters deep, the Tonga Trench is 10,882 meters deep, and the Kermadec Trench is 10,047 meters deep.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mountain",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mountain",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mountain",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "deepest_ocean_trenches_pressure_at_depth",
+          "params": {
+            "file": "deepest_ocean_trenches_pressure_at_depth.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 PRESSURE AT DEPTH",
+          "topic": "Pressure at Depth",
+          "say": "The pressure at the bottom of the Mariana Trench is 1,086 atm, while at 5,000 meters it's 500 atm, and at sea level it's 1 atm.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "deepest_ocean_trenches_temperature_at_depth",
+          "params": {
+            "file": "deepest_ocean_trenches_temperature_at_depth.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 TEMPERATURE AT DEP",
+          "topic": "Temperature at Depth",
+          "say": "The temperature at the bottom of the Mariana Trench is just 1 degree Celsius, while at 5,000 meters it's 2 degrees Celsius.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "number",
+                "region": "center",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What do you think is the most fascinating thing about the deep ocean?"
+    },
+    {
+      "slug": "largest-organisms-ever",
+      "title": "Largest Organisms Ever",
+      "hook": "The largest living thing is way bigger than you think",
+      "closing": "Size matters in the natural world",
+      "hashtags": [
+        "nature",
+        "wildlife",
+        "recordbreakers",
+        "fungi",
+        "trees"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "largest_organisms_ever_largest_fungi",
+          "params": {
+            "file": "largest_organisms_ever_largest_fungi.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST FUNGI",
+          "topic": "Largest Fungi",
+          "say": "This fungus covers over 2,200 acres, that's around 1,665 football fields",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mushroom",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "football field",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "largest_organisms_ever_largest_trees",
+          "params": {
+            "file": "largest_organisms_ever_largest_trees.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 LARGEST TREES",
+          "topic": "Largest Trees",
+          "say": "The tallest tree stands at 380 feet, that's like stacking 38 cars on top of each other",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "tree",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "largest_organisms_ever_largest_coral_reef",
+          "params": {
+            "file": "largest_organisms_ever_largest_coral_reef.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 LARGEST CORAL REEF",
+          "topic": "Largest Coral Reef",
+          "say": "The Great Barrier Reef covers around 133,000 square miles, that's about 5% of the world's coral reefs",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "globe",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most massive living thing you've seen in person?"
     }
   ],
   "videos": [

@@ -1,0 +1,28 @@
+{
+  "key": "largest_organisms_ever_largest_fungi",
+  "title": "Largest Fungi",
+  "unit": "acres",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-04"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Fungus size",
+      "value": 2200.0,
+      "period": "2020"
+    },
+    {
+      "label": "Football fields",
+      "value": 1665.0,
+      "period": "2020"
+    }
+  ]
+}
