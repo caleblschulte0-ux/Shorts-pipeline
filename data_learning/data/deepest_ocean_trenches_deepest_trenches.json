@@ -1,0 +1,30 @@
+{
+  "key": "deepest_ocean_trenches_deepest_trenches",
+  "title": "Deepest Trenches",
+  "unit": "meters",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-04"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Mariana Trench",
+      "value": 11000.0
+    },
+    {
+      "label": "Tonga Trench",
+      "value": 10882.0
+    },
+    {
+      "label": "Kermadec Trench",
+      "value": 10047.0
+    }
+  ]
+}

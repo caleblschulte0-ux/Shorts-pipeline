@@ -1,0 +1,30 @@
+{
+  "key": "deepest_ocean_trenches_pressure_at_depth",
+  "title": "Pressure at Depth",
+  "unit": "atm",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-04"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Mariana Trench",
+      "value": 1086.0
+    },
+    {
+      "label": "5,000 meters",
+      "value": 500.0
+    },
+    {
+      "label": "Sea Level",
+      "value": 1.0
+    }
+  ]
+}

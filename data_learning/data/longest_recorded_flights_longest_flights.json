@@ -1,0 +1,33 @@
+{
+  "key": "longest_recorded_flights_longest_flights",
+  "title": "Longest Flights",
+  "unit": "miles",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-04"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Eagle",
+      "value": 4000.0,
+      "period": "annually"
+    },
+    {
+      "label": "Albatross",
+      "value": 6000.0,
+      "period": "annually"
+    },
+    {
+      "label": "Arctic Tern",
+      "value": 44000.0,
+      "period": "annually"
+    }
+  ]
+}

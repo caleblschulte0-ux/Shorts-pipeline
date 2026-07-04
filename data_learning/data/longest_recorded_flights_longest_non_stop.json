@@ -1,0 +1,26 @@
+{
+  "key": "longest_recorded_flights_longest_non_stop",
+  "title": "Longest Non-Stop",
+  "unit": "hours",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-04"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Bar-tailed Godwit",
+      "value": 72.0
+    },
+    {
+      "label": "Great Frigatebird",
+      "value": 48.0
+    }
+  ]
+}
