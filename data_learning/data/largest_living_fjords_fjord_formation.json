@@ -1,0 +1,33 @@
+{
+  "key": "largest_living_fjords_fjord_formation",
+  "title": "Fjord Formation",
+  "unit": "millions of years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Formation",
+      "value": 2.5,
+      "period": "millions of years ago"
+    },
+    {
+      "label": "Glaciation",
+      "value": 1.8,
+      "period": "millions of years ago"
+    },
+    {
+      "label": "Erosion",
+      "value": 0.5,
+      "period": "millions of years ago"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "key": "largest_star_ever_found_star_size",
+  "title": "Star Size",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Our Sun",
+      "value": 1.0,
+      "period": "now"
+    },
+    {
+      "label": "Largest Star",
+      "value": 1500.0,
+      "period": "now"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "key": "largest_living_fjords_longest_fjords",
+  "title": "Longest Fjords",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Scoresby Sund",
+      "value": 110.0,
+      "period": "2020"
+    },
+    {
+      "label": "Greely Fiord",
+      "value": 230.0,
+      "period": "2020"
+    },
+    {
+      "label": "Sognefjord",
+      "value": 204.0,
+      "period": "2020"
+    }
+  ]
+}

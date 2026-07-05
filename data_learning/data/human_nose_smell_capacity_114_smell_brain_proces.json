@@ -1,0 +1,28 @@
+{
+  "key": "human_nose_smell_capacity_114_smell_brain_proces",
+  "title": "Smell Brain Processing",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Brain Smell Processing",
+      "value": 5.0,
+      "period": "now"
+    },
+    {
+      "label": "Total Brain",
+      "value": 100.0,
+      "period": "now"
+    }
+  ]
+}

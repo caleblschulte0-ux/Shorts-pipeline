@@ -1,0 +1,33 @@
+{
+  "key": "space_smells_bad_smell_perception",
+  "title": "Smell Perception",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Short-term",
+      "value": 10.0,
+      "period": "2020"
+    },
+    {
+      "label": "Medium-term",
+      "value": 20.0,
+      "period": "2020"
+    },
+    {
+      "label": "Long-term",
+      "value": 30.0,
+      "period": "2020"
+    }
+  ]
+}

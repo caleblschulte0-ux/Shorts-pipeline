@@ -1,0 +1,33 @@
+{
+  "key": "space_smells_bad_space_odor",
+  "title": "Space Odor",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Gunpowder",
+      "value": 40.0,
+      "period": "2020"
+    },
+    {
+      "label": "Welding torches",
+      "value": 30.0,
+      "period": "2020"
+    },
+    {
+      "label": "Seared steak",
+      "value": 30.0,
+      "period": "2020"
+    }
+  ]
+}

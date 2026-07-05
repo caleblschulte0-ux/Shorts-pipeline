@@ -1,0 +1,33 @@
+{
+  "key": "largest_living_fjords_deepest_fjords",
+  "title": "Deepest Fjords",
+  "unit": "meters",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Skelton Inlet",
+      "value": 1935.0,
+      "period": "2020"
+    },
+    {
+      "label": "Nansen Fjord",
+      "value": 2200.0,
+      "period": "2020"
+    },
+    {
+      "label": "Hinlopen Strait",
+      "value": 1500.0,
+      "period": "2020"
+    }
+  ]
+}

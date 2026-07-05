@@ -8104,6 +8104,392 @@
         }
       ],
       "question": "What's the most massive living thing you've seen in person?"
+    },
+    {
+      "slug": "largest-living-fjords",
+      "title": "Largest Living Fjords",
+      "hook": "Nature's colossal wonders are hiding in plain sight",
+      "closing": "The world's largest fjords are a testament to nature's awe-inspiring power",
+      "hashtags": [
+        "nature",
+        "fjords",
+        "geology",
+        "travel",
+        "wonder"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "largest_living_fjords_longest_fjords",
+          "params": {
+            "file": "largest_living_fjords_longest_fjords.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LONGEST FJORDS",
+          "topic": "Longest Fjords",
+          "say": "The longest fjords in the world are the Scoresby Sund in Greenland at 110 kilometers, the Greely Fiord in Canada at 230 kilometers, and the Sognefjord in Norway at 204 kilometers",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fjord",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fjord",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fjord",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "largest_living_fjords_deepest_fjords",
+          "params": {
+            "file": "largest_living_fjords_deepest_fjords.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 DEEPEST FJORDS",
+          "topic": "Deepest Fjords",
+          "say": "The deepest fjords in the world are the Skelton Inlet in Antarctica at 1935 meters, the Nansen Fjord in Greenland at 2200 meters, and the Hinlopen Strait in Norway at 1500 meters",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "mountain",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 100.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "largest_living_fjords_fjord_formation",
+          "params": {
+            "file": "largest_living_fjords_fjord_formation.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 FJORD FORMATION",
+          "topic": "Fjord Formation",
+          "say": "Fjords were formed over 2.5 million years ago during the Pleistocene era, and have been shaped by glaciers and erosion over time",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's your favorite natural wonder?"
+    },
+    {
+      "slug": "space-smells-bad",
+      "title": "Space Smells Bad",
+      "hook": "The final frontier has a foul odor",
+      "closing": "Space is full of mysteries, including its terrible smell",
+      "hashtags": [
+        "space",
+        "smell",
+        "astronomy",
+        "nasa"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_smells_bad_space_odor",
+          "params": {
+            "file": "space_smells_bad_space_odor.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SPACE ODOR",
+          "topic": "Space Odor",
+          "say": "Space smells like a combination of gunpowder, welding torches, and seared steak, according to astronauts",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "space helmet",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_smells_bad_odor_sources",
+          "params": {
+            "file": "space_smells_bad_odor_sources.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 ODOR SOURCES",
+          "topic": "Odor Sources",
+          "say": "The smell of space comes from meteorites, comets, and the exhaust of spacecraft, which burn fuel and release toxic chemicals",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "meteorite",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "comet",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "spaceship",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "space_smells_bad_smell_perception",
+          "params": {
+            "file": "space_smells_bad_smell_perception.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SMELL PERCEPTION",
+          "topic": "Smell Perception",
+          "say": "As astronauts spend more time in space, their sense of smell can decrease by up to 30 percent, making it harder to detect the foul odors",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bubble",
+                "region": "center",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What do you think space smells like?"
+    },
+    {
+      "slug": "largest-star-ever-found",
+      "title": "Largest Star Ever Found",
+      "hook": "A star so massive it defies explanation",
+      "closing": "The universe still holds many secrets",
+      "hashtags": [
+        "space",
+        "astronomy",
+        "stars",
+        "universe",
+        "galaxy",
+        "cosmos"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "largest_star_ever_found_star_size",
+          "params": {
+            "file": "largest_star_ever_found_star_size.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 STAR SIZE",
+          "topic": "Star Size",
+          "say": "This star is millions of times larger than our sun",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "full",
+                "subject": "sun",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 1.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "largest_star_ever_found_star_mass",
+          "params": {
+            "file": "largest_star_ever_found_star_mass.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 STAR MASS",
+          "topic": "Star Mass",
+          "say": "The largest star has a mass over a thousand times that of our sun",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "sun",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "sun",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "largest_star_ever_found_star_discovery",
+          "params": {
+            "file": "largest_star_ever_found_star_discovery.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 STAR DISCOVERY",
+          "topic": "Star Discovery",
+          "say": "Astronomers have been discovering larger stars over the past century",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most mind-blowing space fact you know?"
+    },
+    {
+      "slug": "human-nose-smell-capacity-114",
+      "title": "Human Nose Smell Capacity",
+      "hook": "Your nose can detect a staggering number of smells",
+      "closing": "The human sense of smell is incredibly powerful",
+      "hashtags": [
+        "humanbody",
+        "smell",
+        "nose",
+        "senses",
+        "brain"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "human_nose_smell_capacity_114_smell_detection",
+          "params": {
+            "file": "human_nose_smell_capacity_114_smell_detection.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SMELL DETECTION",
+          "topic": "Smell Detection",
+          "say": "The human nose can detect over a trillion different scents",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "number",
+                "region": "center",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "human_nose_smell_capacity_114_smell_brain_proces",
+          "params": {
+            "file": "human_nose_smell_capacity_114_smell_brain_proces.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 SMELL BRAIN PROCES",
+          "topic": "Smell Brain Processing",
+          "say": "The brain dedicates a significant portion to processing smells",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "brain",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "human_nose_smell_capacity_114_smell_evolution",
+          "params": {
+            "file": "human_nose_smell_capacity_114_smell_evolution.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SMELL EVOLUTION",
+          "topic": "Smell Evolution",
+          "say": "The human sense of smell has evolved over millions of years",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most distinct smell you can remember?"
     }
   ],
   "videos": [

@@ -1,0 +1,28 @@
+{
+  "key": "largest_star_ever_found_star_discovery",
+  "title": "Star Discovery",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "First Large Star",
+      "value": 1920.0,
+      "period": "1920"
+    },
+    {
+      "label": "Largest Star Found",
+      "value": 2020.0,
+      "period": "2020"
+    }
+  ]
+}
