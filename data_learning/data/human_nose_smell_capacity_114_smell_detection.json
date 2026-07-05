@@ -1,0 +1,28 @@
+{
+  "key": "human_nose_smell_capacity_114_smell_detection",
+  "title": "Smell Detection",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Number of Smells",
+      "value": 1.0,
+      "period": "now"
+    },
+    {
+      "label": "Trillion",
+      "value": 1000000000000.0,
+      "period": "now"
+    }
+  ]
+}

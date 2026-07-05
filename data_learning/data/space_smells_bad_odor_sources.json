@@ -1,0 +1,33 @@
+{
+  "key": "space_smells_bad_odor_sources",
+  "title": "Odor Sources",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-05"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Meteorites",
+      "value": 60.0,
+      "period": "2020"
+    },
+    {
+      "label": "Comets",
+      "value": 20.0,
+      "period": "2020"
+    },
+    {
+      "label": "Spaceship exhaust",
+      "value": 20.0,
+      "period": "2020"
+    }
+  ]
+}
