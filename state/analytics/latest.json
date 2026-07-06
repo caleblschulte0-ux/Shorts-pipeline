@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-07-06T17:25:35.331959+00:00",
+  "fetched_at": "2026-07-06T23:40:21.751972+00:00",
   "videos": [
     {
       "video_id": "iujoHGlJtmY",
@@ -7,11 +7,38 @@
       "catalog_id": null,
       "title": "Two Tornadoes Touched Down at the Exact Same Time",
       "published_at": "2026-07-03T15:00:25Z",
-      "age_hours": 74.4,
-      "views": 39,
+      "age_hours": 80.7,
+      "views": 41,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.52
+      "views_per_hour": 0.51,
+      "average_view_percentage": 58.2,
+      "average_view_duration_s": 18.0,
+      "estimated_minutes_watched": 4.0
+    },
+    {
+      "video_id": "Khca9tQOiLU",
+      "url": "https://youtube.com/shorts/Khca9tQOiLU",
+      "catalog_id": null,
+      "title": "A Diver Swam Next to the Biggest Fish on Earth",
+      "published_at": "2026-07-06T17:00:16Z",
+      "age_hours": 6.7,
+      "views": 3,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.45
+    },
+    {
+      "video_id": "chFAEZCswvk",
+      "url": "https://youtube.com/shorts/chFAEZCswvk",
+      "catalog_id": null,
+      "title": "A Volcano That's Been Erupting for 2,000 Years",
+      "published_at": "2026-07-06T19:00:06Z",
+      "age_hours": 4.7,
+      "views": 2,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.43
     },
     {
       "video_id": "oUK6KrZLuLc",
@@ -19,11 +46,14 @@
       "catalog_id": null,
       "title": "DC Is Shooting Off 851,000 Fireworks This July 4",
       "published_at": "2026-06-29T17:00:37Z",
-      "age_hours": 168.4,
+      "age_hours": 174.7,
       "views": 31,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.18
+      "views_per_hour": 0.18,
+      "average_view_percentage": 55.8,
+      "average_view_duration_s": 26.0,
+      "estimated_minutes_watched": 7.0
     },
     {
       "video_id": "6pV6brdeb0U",
@@ -31,11 +61,14 @@
       "catalog_id": null,
       "title": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
       "published_at": "2026-06-30T17:00:01Z",
-      "age_hours": 144.4,
+      "age_hours": 150.7,
       "views": 21,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.15
+      "views_per_hour": 0.14,
+      "average_view_percentage": 37.0,
+      "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 2.0
     },
     {
       "video_id": "hIAq1WP6fns",
@@ -43,11 +76,14 @@
       "catalog_id": null,
       "title": "Montana Highway Patrol Pulled Over a Giant Banana Car",
       "published_at": "2026-06-25T19:00:24Z",
-      "age_hours": 262.4,
+      "age_hours": 268.7,
       "views": 33,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.13
+      "views_per_hour": 0.12,
+      "average_view_percentage": 55.0,
+      "average_view_duration_s": 23.0,
+      "estimated_minutes_watched": 7.0
     },
     {
       "video_id": "b_TxrT4mD0c",
@@ -55,11 +91,14 @@
       "catalog_id": null,
       "title": "Bingo the Golden Retriever Brought Home a Live Armadillo",
       "published_at": "2026-06-23T17:00:07Z",
-      "age_hours": 312.4,
+      "age_hours": 318.7,
       "views": 32,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.1
+      "views_per_hour": 0.1,
+      "average_view_percentage": 74.8,
+      "average_view_duration_s": 31.0,
+      "estimated_minutes_watched": 9.0
     },
     {
       "video_id": "5HfZ6F6FnWo",
@@ -67,23 +106,14 @@
       "catalog_id": null,
       "title": "He Skateboarded From California to Florida in 39 Days",
       "published_at": "2026-06-26T13:00:27Z",
-      "age_hours": 244.4,
+      "age_hours": 250.7,
       "views": 24,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.1
-    },
-    {
-      "video_id": "xvjBDXx-kQY",
-      "url": "https://youtube.com/shorts/xvjBDXx-kQY",
-      "catalog_id": null,
-      "title": "This Guy Made 3 Domino's Pizzas in 31 Seconds Flat",
-      "published_at": "2026-06-30T19:00:18Z",
-      "age_hours": 142.4,
-      "views": 14,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.1
+      "views_per_hour": 0.1,
+      "average_view_percentage": 59.9,
+      "average_view_duration_s": 20.0,
+      "estimated_minutes_watched": 6.0
     },
     {
       "video_id": "zYYItLCApoU",
@@ -91,11 +121,29 @@
       "catalog_id": null,
       "title": "Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.",
       "published_at": "2026-06-28T21:00:10Z",
-      "age_hours": 188.4,
+      "age_hours": 194.7,
       "views": 17,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.09
+      "views_per_hour": 0.09,
+      "average_view_percentage": 30.9,
+      "average_view_duration_s": 13.0,
+      "estimated_minutes_watched": 2.0
+    },
+    {
+      "video_id": "xvjBDXx-kQY",
+      "url": "https://youtube.com/shorts/xvjBDXx-kQY",
+      "catalog_id": null,
+      "title": "This Guy Made 3 Domino's Pizzas in 31 Seconds Flat",
+      "published_at": "2026-06-30T19:00:18Z",
+      "age_hours": 148.7,
+      "views": 14,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.09,
+      "average_view_percentage": 28.6,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "_3qri9uccB4",
@@ -103,11 +151,14 @@
       "catalog_id": null,
       "title": "A Wild Seal Just Turned Completely Purple",
       "published_at": "2026-07-01T19:00:13Z",
-      "age_hours": 118.4,
+      "age_hours": 124.7,
       "views": 11,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.09
+      "views_per_hour": 0.09,
+      "average_view_percentage": 40.0,
+      "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 2.0
     },
     {
       "video_id": "JviFa9Npwts",
@@ -115,11 +166,14 @@
       "catalog_id": null,
       "title": "A Giraffe Named Gracie Escaped a Texas Ranch \u2014 and Vanished",
       "published_at": "2026-06-25T21:00:07Z",
-      "age_hours": 260.4,
+      "age_hours": 266.7,
       "views": 21,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.08
+      "views_per_hour": 0.08,
+      "average_view_percentage": 102.2,
+      "average_view_duration_s": 35.0,
+      "estimated_minutes_watched": 6.0
     },
     {
       "video_id": "Tjw50o2-miI",
@@ -127,11 +181,14 @@
       "catalog_id": null,
       "title": "This Couple Got Married on a 60-Foot Water Slide at Wisconsin Dells",
       "published_at": "2026-06-26T17:00:03Z",
-      "age_hours": 240.4,
+      "age_hours": 246.7,
       "views": 19,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.08
+      "views_per_hour": 0.08,
+      "average_view_percentage": 74.1,
+      "average_view_duration_s": 26.0,
+      "estimated_minutes_watched": 5.0
     },
     {
       "video_id": "62pDFn_rPWM",
@@ -139,11 +196,14 @@
       "catalog_id": null,
       "title": "Snake AND Spider Found in the Same Australian Bedroom",
       "published_at": "2026-06-26T13:00:10Z",
-      "age_hours": 244.4,
+      "age_hours": 250.7,
       "views": 17,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.07
+      "views_per_hour": 0.07,
+      "average_view_percentage": 73.6,
+      "average_view_duration_s": 26.0,
+      "estimated_minutes_watched": 3.0
     },
     {
       "video_id": "0TnBqUhvpYM",
@@ -151,23 +211,14 @@
       "catalog_id": null,
       "title": "Utah Just Banned July 4th Fireworks Statewide",
       "published_at": "2026-06-27T19:00:22Z",
-      "age_hours": 214.4,
+      "age_hours": 220.7,
       "views": 15,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.07
-    },
-    {
-      "video_id": "GXIRSOsWWJ0",
-      "url": "https://youtube.com/shorts/GXIRSOsWWJ0",
-      "catalog_id": null,
-      "title": "A Bald Eagle Swooped In and Stole His Fish",
-      "published_at": "2026-07-03T13:00:05Z",
-      "age_hours": 76.4,
-      "views": 5,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.07
+      "views_per_hour": 0.07,
+      "average_view_percentage": 41.4,
+      "average_view_duration_s": 20.0,
+      "estimated_minutes_watched": 3.0
     },
     {
       "video_id": "9MEQlY1gmRY",
@@ -175,11 +226,14 @@
       "catalog_id": null,
       "title": "Texas Lost a Giraffe Named Gracie",
       "published_at": "2026-06-24T13:00:11Z",
-      "age_hours": 292.4,
+      "age_hours": 298.7,
       "views": 18,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.06
+      "views_per_hour": 0.06,
+      "average_view_percentage": 88.5,
+      "average_view_duration_s": 32.0,
+      "estimated_minutes_watched": 5.0
     },
     {
       "video_id": "vrDhoFqp2gA",
@@ -187,11 +241,14 @@
       "catalog_id": null,
       "title": "Toxic Caterpillars Just Shut Berlin's Parks",
       "published_at": "2026-06-24T15:00:17Z",
-      "age_hours": 290.4,
+      "age_hours": 296.7,
       "views": 17,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.06
+      "views_per_hour": 0.06,
+      "average_view_percentage": 58.3,
+      "average_view_duration_s": 27.0,
+      "estimated_minutes_watched": 4.0
     },
     {
       "video_id": "3iiG4zoRwSQ",
@@ -199,11 +256,29 @@
       "catalog_id": null,
       "title": "A Parcel Bomb Just Went Off in Monaco. First Time Ever.",
       "published_at": "2026-06-30T21:00:06Z",
-      "age_hours": 140.4,
+      "age_hours": 146.7,
       "views": 9,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.06
+      "views_per_hour": 0.06,
+      "average_view_percentage": 51.7,
+      "average_view_duration_s": 20.0,
+      "estimated_minutes_watched": 1.0
+    },
+    {
+      "video_id": "GXIRSOsWWJ0",
+      "url": "https://youtube.com/shorts/GXIRSOsWWJ0",
+      "catalog_id": null,
+      "title": "A Bald Eagle Swooped In and Stole His Fish",
+      "published_at": "2026-07-03T13:00:05Z",
+      "age_hours": 82.7,
+      "views": 5,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.06,
+      "average_view_percentage": 26.4,
+      "average_view_duration_s": 8.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "foVStf1xx7k",
@@ -211,35 +286,14 @@
       "catalog_id": null,
       "title": "Australia Just Had Its 3rd Fatal Shark Attack in 4 Weeks",
       "published_at": "2026-06-07T19:00:02Z",
-      "age_hours": 694.4,
+      "age_hours": 700.7,
       "views": 38,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.05
-    },
-    {
-      "video_id": "uvoSHZwI-8c",
-      "url": "https://youtube.com/shorts/uvoSHZwI-8c",
-      "catalog_id": null,
-      "title": "Gracie the Giraffe Was Missing 2 Weeks in Texas",
-      "published_at": "2026-06-30T13:00:33Z",
-      "age_hours": 148.4,
-      "views": 7,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.05
-    },
-    {
-      "video_id": "tpMrQpslIPo",
-      "url": "https://youtube.com/shorts/tpMrQpslIPo",
-      "catalog_id": null,
-      "title": "An Asteroid Is About to Pass Closer Than the Moon",
-      "published_at": "2026-07-02T17:00:21Z",
-      "age_hours": 96.4,
-      "views": 5,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.05
+      "views_per_hour": 0.05,
+      "average_view_percentage": 58.5,
+      "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 4.0
     },
     {
       "video_id": "JrNb0nUqty4",
@@ -247,11 +301,44 @@
       "catalog_id": null,
       "title": "Scientists Found a 400-Year-Old Sea Giant in Fiordland",
       "published_at": "2026-06-28T19:00:16Z",
-      "age_hours": 190.4,
-      "views": 8,
+      "age_hours": 196.7,
+      "views": 10,
+      "likes": 1,
+      "comments": 0,
+      "views_per_hour": 0.05,
+      "average_view_percentage": 82.1,
+      "average_view_duration_s": 35.0,
+      "estimated_minutes_watched": 2.0
+    },
+    {
+      "video_id": "uvoSHZwI-8c",
+      "url": "https://youtube.com/shorts/uvoSHZwI-8c",
+      "catalog_id": null,
+      "title": "Gracie the Giraffe Was Missing 2 Weeks in Texas",
+      "published_at": "2026-06-30T13:00:33Z",
+      "age_hours": 154.7,
+      "views": 7,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.04
+      "views_per_hour": 0.05,
+      "average_view_percentage": 106.6,
+      "average_view_duration_s": 45.0,
+      "estimated_minutes_watched": 1.0
+    },
+    {
+      "video_id": "tpMrQpslIPo",
+      "url": "https://youtube.com/shorts/tpMrQpslIPo",
+      "catalog_id": null,
+      "title": "An Asteroid Is About to Pass Closer Than the Moon",
+      "published_at": "2026-07-02T17:00:21Z",
+      "age_hours": 102.7,
+      "views": 5,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.05,
+      "average_view_percentage": 113.4,
+      "average_view_duration_s": 32.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "wk_lairTLKI",
@@ -259,11 +346,14 @@
       "catalog_id": null,
       "title": "A Herd of Goats Took Over an Entire Neighborhood",
       "published_at": "2026-07-02T13:00:08Z",
-      "age_hours": 100.4,
+      "age_hours": 106.7,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.04
+      "views_per_hour": 0.04,
+      "average_view_percentage": 25.6,
+      "average_view_duration_s": 8.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "_sVnIvbdnRU",
@@ -271,11 +361,14 @@
       "catalog_id": null,
       "title": "A Humpback Whale Breached Right Next to a Kayaker",
       "published_at": "2026-07-03T17:00:05Z",
-      "age_hours": 72.4,
+      "age_hours": 78.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.04
+      "views_per_hour": 0.04,
+      "average_view_percentage": 7.3,
+      "average_view_duration_s": 2.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "bVYr4DAbcpY",
@@ -283,11 +376,14 @@
       "catalog_id": null,
       "title": "France Just Broke Its All-Time Heat Record. 40 Drowned.",
       "published_at": "2026-06-24T19:00:30Z",
-      "age_hours": 286.4,
+      "age_hours": 292.7,
       "views": 8,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.03
+      "views_per_hour": 0.03,
+      "average_view_percentage": 43.7,
+      "average_view_duration_s": 19.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "PqmPWusedcA",
@@ -295,23 +391,14 @@
       "catalog_id": null,
       "title": "A Truck Flipped and Released 2 Million Bees Onto a Texas Road",
       "published_at": "2026-06-25T23:00:17Z",
-      "age_hours": 258.4,
+      "age_hours": 264.7,
       "views": 8,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.03
-    },
-    {
-      "video_id": "Ob5ZqX7Y9eQ",
-      "url": "https://youtube.com/shorts/Ob5ZqX7Y9eQ",
-      "catalog_id": null,
-      "title": "Camp Mystic Files for Bankruptcy After 28 Died in the Texas Flood",
-      "published_at": "2026-06-26T21:00:02Z",
-      "age_hours": 236.4,
-      "views": 6,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.03
+      "views_per_hour": 0.03,
+      "average_view_percentage": 67.2,
+      "average_view_duration_s": 22.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "o8VT5JU6nZg",
@@ -319,11 +406,14 @@
       "catalog_id": null,
       "title": "They Built the Tallest Waterslide Ever",
       "published_at": "2026-06-28T15:00:36Z",
-      "age_hours": 194.4,
+      "age_hours": 200.7,
       "views": 6,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.03
+      "views_per_hour": 0.03,
+      "average_view_percentage": 49.6,
+      "average_view_duration_s": 17.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "9sQQL6qyMVE",
@@ -331,11 +421,14 @@
       "catalog_id": null,
       "title": "A Plane Full of Nurses Never Left the Runway",
       "published_at": "2026-06-29T13:00:24Z",
-      "age_hours": 172.4,
+      "age_hours": 178.7,
       "views": 5,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.03
+      "views_per_hour": 0.03,
+      "average_view_percentage": 32.5,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "adFTMyrrykA",
@@ -343,11 +436,14 @@
       "catalog_id": null,
       "title": "100 Monkeys Just Broke Out of Their Enclosure",
       "published_at": "2026-07-01T13:00:13Z",
-      "age_hours": 124.4,
+      "age_hours": 130.7,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.03
+      "views_per_hour": 0.03,
+      "average_view_percentage": 60.3,
+      "average_view_duration_s": 24.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "M0dF3XAg-vc",
@@ -355,11 +451,14 @@
       "catalog_id": null,
       "title": "A Sinkhole Swallowed an Entire Street Overnight",
       "published_at": "2026-07-02T15:00:10Z",
-      "age_hours": 98.4,
+      "age_hours": 104.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.03
+      "views_per_hour": 0.03,
+      "average_view_percentage": 101.3,
+      "average_view_duration_s": 30.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "jdf-8tWZ6TU",
@@ -367,11 +466,14 @@
       "catalog_id": null,
       "title": "They Built the Tallest Sandcastle in History",
       "published_at": "2026-07-02T19:00:01Z",
-      "age_hours": 94.4,
+      "age_hours": 100.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.03
+      "views_per_hour": 0.03,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "EEVH17t1VUE",
@@ -379,11 +481,14 @@
       "catalog_id": null,
       "title": "A Kangaroo Named Hunter Escaped in Kentucky. It Took 3 Agencies.",
       "published_at": "2026-06-07T13:00:31Z",
-      "age_hours": 700.4,
+      "age_hours": 706.7,
       "views": 15,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 88.8,
+      "average_view_duration_s": 21.0,
+      "estimated_minutes_watched": 2.0
     },
     {
       "video_id": "QnqkFuR4HkQ",
@@ -391,11 +496,14 @@
       "catalog_id": null,
       "title": "A Singapore Teen Just Shattered the Mr. Potato Head World Record",
       "published_at": "2026-06-08T17:00:21Z",
-      "age_hours": 672.4,
+      "age_hours": 678.7,
       "views": 12,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 61.4,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "xOxqOeZS8Ds",
@@ -403,11 +511,14 @@
       "catalog_id": null,
       "title": "A Zoo Lost a Skunk Named Violet \u2014 and a Whole City Is on Alert",
       "published_at": "2026-06-22T13:00:37Z",
-      "age_hours": 340.4,
+      "age_hours": 346.7,
       "views": 7,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 48.6,
+      "average_view_duration_s": 17.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "TPFp3pRLAGo",
@@ -415,11 +526,14 @@
       "catalog_id": null,
       "title": "A Mom Spent $9,500 to Barbie-fy Her House in Scotland",
       "published_at": "2026-06-24T17:00:29Z",
-      "age_hours": 288.4,
+      "age_hours": 294.7,
       "views": 5,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 118.1,
+      "average_view_duration_s": 49.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "G1HyluH1vGM",
@@ -427,11 +541,14 @@
       "catalog_id": null,
       "title": "A Gunman Killed a Montreal Officer at the Hilton",
       "published_at": "2026-06-24T21:00:27Z",
-      "age_hours": 284.4,
+      "age_hours": 290.7,
       "views": 6,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 51.7,
+      "average_view_duration_s": 21.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "o6nowoUMVk0",
@@ -439,11 +556,29 @@
       "catalog_id": null,
       "title": "He Stole a Kayak and Used a Snow Shovel as a Paddle",
       "published_at": "2026-06-25T23:00:21Z",
-      "age_hours": 258.4,
+      "age_hours": 264.7,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 101.7,
+      "average_view_duration_s": 42.0,
+      "estimated_minutes_watched": 0.0
+    },
+    {
+      "video_id": "Ob5ZqX7Y9eQ",
+      "url": "https://youtube.com/shorts/Ob5ZqX7Y9eQ",
+      "catalog_id": null,
+      "title": "Camp Mystic Files for Bankruptcy After 28 Died in the Texas Flood",
+      "published_at": "2026-06-26T21:00:02Z",
+      "age_hours": 242.7,
+      "views": 6,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.02,
+      "average_view_percentage": 63.2,
+      "average_view_duration_s": 27.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "m5vyxm44eUQ",
@@ -451,11 +586,14 @@
       "catalog_id": null,
       "title": "FIFA Banned Merl\u00edn the Duck From Mexico's Match",
       "published_at": "2026-06-27T13:00:27Z",
-      "age_hours": 220.4,
+      "age_hours": 226.7,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 59.4,
+      "average_view_duration_s": 24.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "B2WxCwsvuFw",
@@ -463,11 +601,14 @@
       "catalog_id": null,
       "title": "They Used a Stolen Backhoe to Rob an ATM. It Went Wrong.",
       "published_at": "2026-06-27T21:00:17Z",
-      "age_hours": 212.4,
+      "age_hours": 218.7,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 29.3,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "vJZzuwJNmco",
@@ -475,23 +616,14 @@
       "catalog_id": null,
       "title": "$6.5 Billion Healthcare Fraud Bust \u2014 90 Doctors Charged",
       "published_at": "2026-06-27T23:00:17Z",
-      "age_hours": 210.4,
+      "age_hours": 216.7,
       "views": 5,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
-    },
-    {
-      "video_id": "ZIQ2YDCwhP8",
-      "url": "https://youtube.com/shorts/ZIQ2YDCwhP8",
-      "catalog_id": null,
-      "title": "Monkeys Started Kidnapping Other Monkeys' Babies",
-      "published_at": "2026-06-28T13:00:38Z",
-      "age_hours": 196.4,
-      "views": 3,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 57.1,
+      "average_view_duration_s": 28.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "zjHxv6WG7Yk",
@@ -499,11 +631,14 @@
       "catalog_id": null,
       "title": "Kilauea Is Shooting Lava 1,000 Feet Into the Sky",
       "published_at": "2026-06-28T17:00:11Z",
-      "age_hours": 192.4,
+      "age_hours": 198.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 63.2,
+      "average_view_duration_s": 22.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "7iKzrP5dA1g",
@@ -511,11 +646,14 @@
       "catalog_id": null,
       "title": "Utah's Biggest Fire Just Made Weather History",
       "published_at": "2026-06-28T15:00:11Z",
-      "age_hours": 194.4,
+      "age_hours": 200.7,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 106.8,
+      "average_view_duration_s": 49.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "4dH3FIwKXeI",
@@ -523,11 +661,14 @@
       "catalog_id": null,
       "title": "Iran Just Bombed an American Ally's Backyard",
       "published_at": "2026-06-28T15:50:29Z",
-      "age_hours": 193.6,
+      "age_hours": 199.8,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 31.3,
+      "average_view_duration_s": 13.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "THfbw0_bezs",
@@ -535,11 +676,14 @@
       "catalog_id": null,
       "title": "A Raccoon Got Its Head Stuck in a Jar. CPR Was on Standby.",
       "published_at": "2026-06-29T19:00:39Z",
-      "age_hours": 166.4,
+      "age_hours": 172.7,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 40.8,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "smuV7hyd3G8",
@@ -547,11 +691,14 @@
       "catalog_id": null,
       "title": "DC Hits 105\u00b0F on July 4th. No One Is Ready.",
       "published_at": "2026-06-30T15:00:39Z",
-      "age_hours": 146.4,
+      "age_hours": 152.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 25.2,
+      "average_view_duration_s": 11.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "v85DbrXdTpM",
@@ -559,11 +706,14 @@
       "catalog_id": null,
       "title": "Guernsey Is Having a Tortoise Escape Epidemic Right Now",
       "published_at": "2026-06-30T23:00:05Z",
-      "age_hours": 138.4,
+      "age_hours": 144.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 60.4,
+      "average_view_duration_s": 23.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "nuYYxacGNWE",
@@ -571,11 +721,14 @@
       "catalog_id": null,
       "title": "A Pod of Killer Whales Showed Up Right Off the Beach",
       "published_at": "2026-07-02T17:00:22Z",
-      "age_hours": 96.4,
+      "age_hours": 102.7,
       "views": 2,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 46.7,
+      "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "L8Hm2xMpHXY",
@@ -583,11 +736,14 @@
       "catalog_id": null,
       "title": "A Great White Circled Their Boat for Hours",
       "published_at": "2026-07-02T23:00:06Z",
-      "age_hours": 90.4,
+      "age_hours": 96.7,
       "views": 2,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 29.1,
+      "average_view_duration_s": 9.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "JRYTGzTPxaw",
@@ -595,11 +751,14 @@
       "catalog_id": null,
       "title": "A Coyote Sank Into 4-Foot Mud on Long Island. A Rescuer Waded In.",
       "published_at": "2026-06-07T15:00:10Z",
-      "age_hours": 698.4,
+      "age_hours": 704.7,
       "views": 6,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 71.3,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "k-9YVJ-y0EY",
@@ -607,11 +766,14 @@
       "catalog_id": null,
       "title": "Ontario Set the World's Largest Human Foosball Record Before the World Cup",
       "published_at": "2026-06-07T17:00:29Z",
-      "age_hours": 696.4,
+      "age_hours": 702.7,
       "views": 9,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 42.9,
+      "average_view_duration_s": 10.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "kVuaw0a-suQ",
@@ -619,11 +781,14 @@
       "catalog_id": null,
       "title": "They Billed $30M for Fake Kids' Therapy. The FBI Found Bentleys.",
       "published_at": "2026-06-07T23:00:11Z",
-      "age_hours": 690.4,
+      "age_hours": 696.7,
       "views": 6,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 67.6,
+      "average_view_duration_s": 17.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "9-bX9a0sJds",
@@ -631,11 +796,14 @@
       "catalog_id": null,
       "title": "UFC Is Fighting on the White House Lawn. A Lawsuit Just Tried to Stop It.",
       "published_at": "2026-06-08T13:00:35Z",
-      "age_hours": 676.4,
+      "age_hours": 682.7,
       "views": 9,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 47.1,
+      "average_view_duration_s": 11.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "RT8OUsXDNqY",
@@ -643,11 +811,14 @@
       "catalog_id": null,
       "title": "Apple Rebuilt Siri With Google's AI. Tim Cook Called It Goodbye.",
       "published_at": "2026-06-08T19:00:05Z",
-      "age_hours": 670.4,
+      "age_hours": 676.7,
       "views": 9,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 44.9,
+      "average_view_duration_s": 11.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "b1zTZXg9_i0",
@@ -655,11 +826,14 @@
       "catalog_id": null,
       "title": "South Korea Just Nominated Its First Female Prime Minister in 20 Years",
       "published_at": "2026-06-08T21:00:06Z",
-      "age_hours": 668.4,
+      "age_hours": 674.7,
       "views": 7,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 81.7,
+      "average_view_duration_s": 20.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "F0AhiVkovfU",
@@ -667,11 +841,14 @@
       "catalog_id": null,
       "title": "A Judge Said Nitrogen Execution Is Legal. The Man Dies June 11.",
       "published_at": "2026-06-08T23:00:38Z",
-      "age_hours": 666.4,
+      "age_hours": 672.7,
       "views": 5,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 93.6,
+      "average_view_duration_s": 23.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "kTP_jQfhyuo",
@@ -679,11 +856,14 @@
       "catalog_id": null,
       "title": "Apple Rebuilt Siri With Google's AI. Tim Cook Called It Goodbye.",
       "published_at": "2026-06-09T02:21:45Z",
-      "age_hours": 663.1,
+      "age_hours": 669.3,
       "views": 4,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 138.8,
+      "average_view_duration_s": 34.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "sJ4Ba8dcIhk",
@@ -691,11 +871,14 @@
       "catalog_id": null,
       "title": "A Snake Was Hiding Behind This Family's TV",
       "published_at": "2026-06-23T15:00:24Z",
-      "age_hours": 314.4,
+      "age_hours": 320.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 104.8,
+      "average_view_duration_s": 41.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "RTF5aHGl2M4",
@@ -703,11 +886,14 @@
       "catalog_id": null,
       "title": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
       "published_at": "2026-06-25T15:00:28Z",
-      "age_hours": 266.4,
+      "age_hours": 272.7,
       "views": 2,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 47.7,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "23Cra8kc_NQ",
@@ -715,11 +901,14 @@
       "catalog_id": null,
       "title": "Florida Firefighters Rescued a 'Dog.' It Was a Coyote.",
       "published_at": "2026-06-25T17:00:17Z",
-      "age_hours": 264.4,
+      "age_hours": 270.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 26.2,
+      "average_view_duration_s": 10.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "jFSyadamo48",
@@ -727,11 +916,14 @@
       "catalog_id": null,
       "title": "Venezuela Just Had Its Worst Earthquake in Over a Century",
       "published_at": "2026-06-25T21:00:29Z",
-      "age_hours": 260.4,
+      "age_hours": 266.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 54.9,
+      "average_view_duration_s": 26.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "uHaITAS4-1g",
@@ -739,11 +931,14 @@
       "catalog_id": null,
       "title": "Virginia Man Makes 3 Pizzas in 31 Seconds Flat",
       "published_at": "2026-06-27T15:00:32Z",
-      "age_hours": 218.4,
+      "age_hours": 224.7,
       "views": 2,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 35.2,
+      "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "E-6vu2Vnf1o",
@@ -751,11 +946,29 @@
       "catalog_id": null,
       "title": "Guernsey Has a Tortoise Escape Epidemic Right Now",
       "published_at": "2026-06-27T17:00:08Z",
-      "age_hours": 216.4,
+      "age_hours": 222.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 10.5,
+      "average_view_duration_s": 4.0,
+      "estimated_minutes_watched": 0.0
+    },
+    {
+      "video_id": "ZIQ2YDCwhP8",
+      "url": "https://youtube.com/shorts/ZIQ2YDCwhP8",
+      "catalog_id": null,
+      "title": "Monkeys Started Kidnapping Other Monkeys' Babies",
+      "published_at": "2026-06-28T13:00:38Z",
+      "age_hours": 202.7,
+      "views": 3,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.01,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "1NFrEwBha8I",
@@ -763,11 +976,14 @@
       "catalog_id": null,
       "title": "We're About to Lose Control of Earth's Orbit",
       "published_at": "2026-06-28T19:00:08Z",
-      "age_hours": 190.4,
+      "age_hours": 196.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "zLDkIMhBVZ0",
@@ -775,11 +991,14 @@
       "catalog_id": null,
       "title": "Europe Just Shattered 150 Years of Heat Records",
       "published_at": "2026-06-28T17:00:10Z",
-      "age_hours": 192.4,
+      "age_hours": 198.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 33.0,
+      "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "6h_pqFgLzKs",
@@ -787,11 +1006,14 @@
       "catalog_id": null,
       "title": "Supreme Court Rules: You Can't Sue Roundup for Cancer",
       "published_at": "2026-06-29T15:00:36Z",
-      "age_hours": 170.4,
+      "age_hours": 176.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 99.8,
+      "average_view_duration_s": 45.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "flUvmCQt_jc",
@@ -799,11 +1021,14 @@
       "catalog_id": null,
       "title": "Scientists Found How Alzheimer's Actually Spreads",
       "published_at": "2026-07-01T23:00:31Z",
-      "age_hours": 114.4,
+      "age_hours": 120.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "e8-z79yty-c",
@@ -811,7 +1036,7 @@
       "catalog_id": null,
       "title": "Someone Stole a Tractor and Led a Slow-Speed Chase",
       "published_at": "2026-07-02T15:00:00Z",
-      "age_hours": 98.4,
+      "age_hours": 104.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
@@ -823,11 +1048,14 @@
       "catalog_id": null,
       "title": "A Meteor Lit Up the Sky Like It Was Daytime",
       "published_at": "2026-07-02T21:00:07Z",
-      "age_hours": 92.4,
+      "age_hours": 98.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 42.4,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "vs3QYUXAoqU",
@@ -835,11 +1063,14 @@
       "catalog_id": null,
       "title": "Scientists Just Tested the First AI-Designed Vaccine on Humans",
       "published_at": "2026-06-07T21:00:23Z",
-      "age_hours": 692.4,
+      "age_hours": 698.7,
       "views": 2,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 54.1,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "sx5T9KKWrTg",
@@ -847,11 +1078,14 @@
       "catalog_id": null,
       "title": "South Australia Has Too Many Koalas. Scientists Want to Sterilize 22%.",
       "published_at": "2026-06-08T15:00:18Z",
-      "age_hours": 674.4,
+      "age_hours": 680.7,
       "views": 3,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 30.3,
+      "average_view_duration_s": 8.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "h3G0SmbB72Y",
@@ -859,7 +1093,7 @@
       "catalog_id": null,
       "title": "UFC Is Fighting on the White House Lawn. A Lawsuit Just Tried to Stop It.",
       "published_at": "2026-06-09T02:13:44Z",
-      "age_hours": 663.2,
+      "age_hours": 669.4,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -871,11 +1105,14 @@
       "catalog_id": null,
       "title": "South Australia Has Too Many Koalas. Scientists Want to Sterilize 22%.",
       "published_at": "2026-06-09T02:16:12Z",
-      "age_hours": 663.2,
+      "age_hours": 669.4,
       "views": 2,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 44.8,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "2v21RuGf01s",
@@ -883,11 +1120,14 @@
       "catalog_id": null,
       "title": "A Singapore Teen Just Shattered the Mr. Potato Head World Record",
       "published_at": "2026-06-09T02:18:42Z",
-      "age_hours": 663.1,
+      "age_hours": 669.4,
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "kM4xjud8G0I",
@@ -895,11 +1135,14 @@
       "catalog_id": null,
       "title": "South Korea Just Nominated Its First Female Prime Minister in 20 Years",
       "published_at": "2026-06-09T02:24:07Z",
-      "age_hours": 663.0,
+      "age_hours": 669.3,
       "views": 2,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 45.6,
+      "average_view_duration_s": 11.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "0sYaeoX5Nl4",
@@ -907,11 +1150,14 @@
       "catalog_id": null,
       "title": "A Judge Said Nitrogen Execution Is Legal. The Man Dies June 11.",
       "published_at": "2026-06-09T02:26:52Z",
-      "age_hours": 663.0,
+      "age_hours": 669.2,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "xCe3A9DRgOk",
@@ -919,7 +1165,7 @@
       "catalog_id": null,
       "title": "1,037 Marilyn Monroes Gathered in One Place to Break a World Record",
       "published_at": "2026-06-22T13:00:33Z",
-      "age_hours": 340.4,
+      "age_hours": 346.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -931,11 +1177,14 @@
       "catalog_id": null,
       "title": "An Octopus Just Passed a Test Scientists Thought Only Vertebrates Could",
       "published_at": "2026-06-22T15:00:26Z",
-      "age_hours": 338.4,
+      "age_hours": 344.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 45.6,
+      "average_view_duration_s": 17.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "MNDY2vNRmJo",
@@ -943,11 +1192,14 @@
       "catalog_id": null,
       "title": "2 Million Bees Escaped a Texas Semi. It Was Chaos.",
       "published_at": "2026-06-23T13:00:23Z",
-      "age_hours": 316.4,
+      "age_hours": 322.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 42.5,
+      "average_view_duration_s": 20.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "ul4_-Lnu19I",
@@ -955,11 +1207,14 @@
       "catalog_id": null,
       "title": "A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.",
       "published_at": "2026-06-23T19:00:37Z",
-      "age_hours": 310.4,
+      "age_hours": 316.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "jZpRNqvn4k4",
@@ -967,7 +1222,7 @@
       "catalog_id": null,
       "title": "A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.",
       "published_at": "2026-06-23T21:00:38Z",
-      "age_hours": 308.4,
+      "age_hours": 314.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -979,11 +1234,14 @@
       "catalog_id": null,
       "title": "Seattle Just Broke a World Record With 830 People Eating Dim Sum",
       "published_at": "2026-06-23T23:00:07Z",
-      "age_hours": 306.4,
+      "age_hours": 312.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 17.1,
+      "average_view_duration_s": 8.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "3cKznL7rMHc",
@@ -991,7 +1249,7 @@
       "catalog_id": null,
       "title": "A Raccoon Nearly Suffocated Inside a Glass Jar",
       "published_at": "2026-06-25T13:00:09Z",
-      "age_hours": 268.4,
+      "age_hours": 274.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1003,7 +1261,7 @@
       "catalog_id": null,
       "title": "Ohio Spent a Week Chasing a White Peacock Through the Suburbs",
       "published_at": "2026-06-26T15:00:05Z",
-      "age_hours": 242.4,
+      "age_hours": 248.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1015,7 +1273,7 @@
       "catalog_id": null,
       "title": "NC Siblings Used Family Birthdays to Win $390,000 in the Lottery",
       "published_at": "2026-06-26T19:00:01Z",
-      "age_hours": 238.4,
+      "age_hours": 244.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1027,11 +1285,14 @@
       "catalog_id": null,
       "title": "Iran Hit a Cargo Ship in the Strait of Hormuz Days After Signing Peace",
       "published_at": "2026-06-26T23:00:17Z",
-      "age_hours": 234.4,
+      "age_hours": 240.7,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 22.5,
+      "average_view_duration_s": 9.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "BpJ91FOqBhc",
@@ -1039,7 +1300,7 @@
       "catalog_id": null,
       "title": "Iran Just Bombed an American Ally's Backyard",
       "published_at": "2026-06-28T13:00:10Z",
-      "age_hours": 196.4,
+      "age_hours": 202.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1051,7 +1312,7 @@
       "catalog_id": null,
       "title": "Police Just Had the World's Slowest Chase",
       "published_at": "2026-07-01T15:00:14Z",
-      "age_hours": 122.4,
+      "age_hours": 128.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1063,7 +1324,7 @@
       "catalog_id": null,
       "title": "A Highway Just Turned Into a River of Beer",
       "published_at": "2026-07-01T17:00:36Z",
-      "age_hours": 120.4,
+      "age_hours": 126.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1075,31 +1336,7 @@
       "catalog_id": null,
       "title": "155 Homes Were Gone by Morning",
       "published_at": "2026-07-01T21:00:30Z",
-      "age_hours": 116.4,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.0
-    },
-    {
-      "video_id": "Khca9tQOiLU",
-      "url": "https://youtube.com/shorts/Khca9tQOiLU",
-      "catalog_id": null,
-      "title": "A Diver Swam Next to the Biggest Fish on Earth",
-      "published_at": "2026-07-06T17:00:16Z",
-      "age_hours": 0.4,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.0
-    },
-    {
-      "video_id": "chFAEZCswvk",
-      "url": "https://youtube.com/shorts/chFAEZCswvk",
-      "catalog_id": null,
-      "title": "A Volcano That's Been Erupting for 2,000 Years",
-      "published_at": "2026-07-06T17:00:55Z",
-      "age_hours": 0.4,
+      "age_hours": 122.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1110,8 +1347,8 @@
       "url": "https://youtube.com/shorts/xunB6be4bls",
       "catalog_id": null,
       "title": "A Tourist Got Way Too Close to a Bison",
-      "published_at": "2026-07-06T17:06:39Z",
-      "age_hours": 0.3,
+      "published_at": "2026-07-06T21:00:03Z",
+      "age_hours": 2.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1122,8 +1359,8 @@
       "url": "https://youtube.com/shorts/k8VtGfnuZA0",
       "catalog_id": null,
       "title": "His Parachute Failed at 12,000 Feet. He Lived.",
-      "published_at": "2026-07-06T17:13:24Z",
-      "age_hours": 0.2,
+      "published_at": "2026-07-06T23:00:21Z",
+      "age_hours": 0.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1135,7 +1372,7 @@
       "catalog_id": null,
       "title": "A Family Found an Alligator in Their Pool",
       "published_at": "2026-07-06T17:19:02Z",
-      "age_hours": 0.1,
+      "age_hours": 6.4,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1147,7 +1384,7 @@
       "catalog_id": null,
       "title": "Someone Went Over Niagara Falls and Lived",
       "published_at": "2026-07-06T17:25:28Z",
-      "age_hours": 0.0,
+      "age_hours": 6.2,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1156,44 +1393,44 @@
   ],
   "summary": {
     "total_videos": 96,
-    "total_views": 633,
-    "avg_views_per_video": 6.6,
+    "total_views": 642,
+    "avg_views_per_video": 6.7,
     "median_views_per_hour": 0.02,
     "top_5_by_vph": [
       {
         "title": "Two Tornadoes Touched Down at the Exact Same Time",
-        "views_per_hour": 0.52,
-        "views": 39,
-        "age_hours": 74.4,
+        "views_per_hour": 0.51,
+        "views": 41,
+        "age_hours": 80.7,
         "url": "https://youtube.com/shorts/iujoHGlJtmY"
+      },
+      {
+        "title": "A Diver Swam Next to the Biggest Fish on Earth",
+        "views_per_hour": 0.45,
+        "views": 3,
+        "age_hours": 6.7,
+        "url": "https://youtube.com/shorts/Khca9tQOiLU"
+      },
+      {
+        "title": "A Volcano That's Been Erupting for 2,000 Years",
+        "views_per_hour": 0.43,
+        "views": 2,
+        "age_hours": 4.7,
+        "url": "https://youtube.com/shorts/chFAEZCswvk"
       },
       {
         "title": "DC Is Shooting Off 851,000 Fireworks This July 4",
         "views_per_hour": 0.18,
         "views": 31,
-        "age_hours": 168.4,
+        "age_hours": 174.7,
         "url": "https://youtube.com/shorts/oUK6KrZLuLc"
       },
       {
         "title": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
-        "views_per_hour": 0.15,
+        "views_per_hour": 0.14,
         "views": 21,
-        "age_hours": 144.4,
+        "age_hours": 150.7,
         "url": "https://youtube.com/shorts/6pV6brdeb0U"
-      },
-      {
-        "title": "Montana Highway Patrol Pulled Over a Giant Banana Car",
-        "views_per_hour": 0.13,
-        "views": 33,
-        "age_hours": 262.4,
-        "url": "https://youtube.com/shorts/hIAq1WP6fns"
-      },
-      {
-        "title": "Bingo the Golden Retriever Brought Home a Live Armadillo",
-        "views_per_hour": 0.1,
-        "views": 32,
-        "age_hours": 312.4,
-        "url": "https://youtube.com/shorts/b_TxrT4mD0c"
       }
     ],
     "bottom_5_by_vph": [
@@ -1201,36 +1438,112 @@
         "title": "Someone Went Over Niagara Falls and Lived",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 0.0,
+        "age_hours": 6.2,
         "url": "https://youtube.com/shorts/9-ChnhdwDdU"
       },
       {
         "title": "A Family Found an Alligator in Their Pool",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 0.1,
+        "age_hours": 6.4,
         "url": "https://youtube.com/shorts/4ao_CPZ82_4"
       },
       {
         "title": "His Parachute Failed at 12,000 Feet. He Lived.",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 0.2,
+        "age_hours": 0.7,
         "url": "https://youtube.com/shorts/k8VtGfnuZA0"
       },
       {
         "title": "A Tourist Got Way Too Close to a Bison",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 0.3,
+        "age_hours": 2.7,
         "url": "https://youtube.com/shorts/xunB6be4bls"
       },
       {
-        "title": "A Volcano That's Been Erupting for 2,000 Years",
+        "title": "155 Homes Were Gone by Morning",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 0.4,
-        "url": "https://youtube.com/shorts/chFAEZCswvk"
+        "age_hours": 122.7,
+        "url": "https://youtube.com/shorts/PgBRsZI6vpM"
+      }
+    ],
+    "videos_with_retention": 79,
+    "avg_view_percentage": 52.3,
+    "top_5_by_retention": [
+      {
+        "title": "Apple Rebuilt Siri With Google's AI. Tim Cook Called It Goodbye.",
+        "average_view_percentage": 138.8,
+        "average_view_duration_s": 34.0,
+        "views": 4,
+        "url": "https://youtube.com/shorts/kTP_jQfhyuo"
+      },
+      {
+        "title": "A Mom Spent $9,500 to Barbie-fy Her House in Scotland",
+        "average_view_percentage": 118.1,
+        "average_view_duration_s": 49.0,
+        "views": 5,
+        "url": "https://youtube.com/shorts/TPFp3pRLAGo"
+      },
+      {
+        "title": "An Asteroid Is About to Pass Closer Than the Moon",
+        "average_view_percentage": 113.4,
+        "average_view_duration_s": 32.0,
+        "views": 5,
+        "url": "https://youtube.com/shorts/tpMrQpslIPo"
+      },
+      {
+        "title": "Utah's Biggest Fire Just Made Weather History",
+        "average_view_percentage": 106.8,
+        "average_view_duration_s": 49.0,
+        "views": 4,
+        "url": "https://youtube.com/shorts/7iKzrP5dA1g"
+      },
+      {
+        "title": "Gracie the Giraffe Was Missing 2 Weeks in Texas",
+        "average_view_percentage": 106.6,
+        "average_view_duration_s": 45.0,
+        "views": 7,
+        "url": "https://youtube.com/shorts/uvoSHZwI-8c"
+      }
+    ],
+    "bottom_5_by_retention": [
+      {
+        "title": "A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.",
+        "average_view_percentage": 0.0,
+        "average_view_duration_s": 0.0,
+        "views": 1,
+        "url": "https://youtube.com/shorts/ul4_-Lnu19I"
+      },
+      {
+        "title": "A Judge Said Nitrogen Execution Is Legal. The Man Dies June 11.",
+        "average_view_percentage": 0.0,
+        "average_view_duration_s": 0.0,
+        "views": 1,
+        "url": "https://youtube.com/shorts/0sYaeoX5Nl4"
+      },
+      {
+        "title": "A Singapore Teen Just Shattered the Mr. Potato Head World Record",
+        "average_view_percentage": 0.0,
+        "average_view_duration_s": 0.0,
+        "views": 0,
+        "url": "https://youtube.com/shorts/2v21RuGf01s"
+      },
+      {
+        "title": "Scientists Found How Alzheimer's Actually Spreads",
+        "average_view_percentage": 0.0,
+        "average_view_duration_s": 0.0,
+        "views": 1,
+        "url": "https://youtube.com/shorts/flUvmCQt_jc"
+      },
+      {
+        "title": "We're About to Lose Control of Earth's Orbit",
+        "average_view_percentage": 0.0,
+        "average_view_duration_s": 0.0,
+        "views": 1,
+        "url": "https://youtube.com/shorts/1NFrEwBha8I"
       }
     ]
   }
