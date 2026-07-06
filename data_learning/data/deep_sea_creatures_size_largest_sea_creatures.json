@@ -1,0 +1,33 @@
+{
+  "key": "deep_sea_creatures_size_largest_sea_creatures",
+  "title": "Largest Sea Creatures",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Giant Squid",
+      "value": 13.0,
+      "period": "2020"
+    },
+    {
+      "label": "Whale Shark",
+      "value": 20.0,
+      "period": "2019"
+    },
+    {
+      "label": "Giant Pacific Octopus",
+      "value": 15.0,
+      "period": "2018"
+    }
+  ]
+}

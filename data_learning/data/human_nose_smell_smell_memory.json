@@ -1,0 +1,33 @@
+{
+  "key": "human_nose_smell_smell_memory",
+  "title": "Smell Memory",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Recent Memories",
+      "value": 5.0,
+      "period": "2020"
+    },
+    {
+      "label": "Childhood Memories",
+      "value": 10.0,
+      "period": "2018"
+    },
+    {
+      "label": "Distant Memories",
+      "value": 20.0,
+      "period": "2015"
+    }
+  ]
+}

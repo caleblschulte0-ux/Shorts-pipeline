@@ -1,0 +1,28 @@
+{
+  "key": "deepest_part_of_ocean_ocean_depth",
+  "title": "Ocean Depth",
+  "unit": "feet",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Ocean Depth",
+      "value": 1000.0,
+      "period": "2022"
+    },
+    {
+      "label": "Distance",
+      "value": 10.0,
+      "period": "2022"
+    }
+  ]
+}
