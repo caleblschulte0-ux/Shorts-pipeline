@@ -358,11 +358,14 @@ def _fmt_stat(value, unit):
     return s
 
 
-def draw_fill_object(d, canvas, box, cutout, value, label, color, reveal, unit=""):
+def draw_fill_object(d, canvas, box, cutout, value, label, color, reveal, unit="",
+                     photo=None):
     """Fill a SUBJECT silhouette bottom-up to a % while the number counts up —
-    the 'filled globe' for shares. The cut-out's alpha is the fill mask. If the
-    cut-out is missing, degrade to a filled rounded vessel (still depicts %)."""
-    from PIL import Image, ImageChops
+    the 'filled globe/brain' viz. The cut-out's alpha is the shape mask; when a
+    REAL PHOTO of the subject is available it fills the shape (a real brain in a
+    brain outline, real Earth in the globe) instead of a flat colour. Degrades to
+    a rounded vessel if there's no cut-out at all."""
+    from PIL import Image, ImageChops, ImageOps
     bx0, by0, bx1, by1 = box
     bw, bh = bx1 - bx0, by1 - by0
     is_pct = (unit or "").lower() in ("percent", "%", "rate", "pct")
@@ -388,10 +391,27 @@ def draw_fill_object(d, canvas, box, cutout, value, label, color, reveal, unit="
             band = Image.new("L", (ow, oh), 0)
             band.paste(255, (0, oh - fh, ow, oh))
             clip = ImageChops.multiply(mask, band)
-            layer = Image.new("RGBA", (ow, oh), _rgba(color, 235))
+            if photo is not None:      # fill the shape with a REAL photo
+                layer = ImageOps.fit(photo.convert("RGB"), (ow, oh),
+                                     method=Image.LANCZOS).convert("RGBA")
+                # a faint colour wash so the waterline still reads
+                wash = Image.new("RGBA", (ow, oh), _rgba(color, 70))
+                layer = Image.alpha_composite(layer, wash)
+            else:
+                layer = Image.new("RGBA", (ow, oh), _rgba(color, 235))
             layer.putalpha(clip)
             canvas.alpha_composite(layer, (ox, oy))
         num_cy = oy + oh // 2
+    elif photo is not None:                        # no silhouette -> real photo card
+        ph = int(avail_h * 0.9)
+        pw = int(min(bw * 0.82, ph * 1.35))
+        ph = int(pw / 1.35)
+        px, py = cx - pw // 2, by0 + 120
+        card = _cover_round(photo, pw, ph, radius=30)
+        d.rounded_rectangle([px - 4, py - 4, px + pw + 4, py + ph + 4], radius=34,
+                            outline=_rgba(color, 255), width=5)
+        canvas.alpha_composite(card, (px, py))
+        num_cy = py + ph // 2
     else:                                          # vessel degrade
         vw, vh = int(bw * 0.6), int(avail_h * 0.9)
         vx, vy = cx - vw // 2, by0 + 120
@@ -674,6 +694,10 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             photos[i] = _load_photo(subj, slug, f"p{i}-{sh}")
             if photos[i] is None:
                 cuts[i] = _load_cutout(subj, slug, f"s{i}-{sh}")
+        elif t == "fill_object":
+            subj = str(el.get("subject", ""))
+            cuts[i] = _load_cutout(subj, slug, f"s{i}")     # silhouette mask
+            photos[i] = _load_photo(subj, slug, f"pf{i}")   # real fill content
         elif t in _IMAGE_TYPES:
             cuts[i] = _load_cutout(str(el.get("subject", "")), slug, f"s{i}")
     # `object`/`stack` need SOME image (photo or cut-out). If every element is one
@@ -718,7 +742,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 col = _color_for(lv[0], insight)
                 if t == "fill_object":
                     an = draw_fill_object(d, canvas, box, cuts.get(i), lv[1], lv[0],
-                                          col, lr, insight.unit)
+                                          col, lr, insight.unit, photo=photos.get(i))
                 elif t == "stack":
                     per = charts._num_or_none((el.get("data") or {}).get("per_value"))
                     an = draw_stack(d, canvas, box, cuts.get(i), lv[1], per, lv[0],

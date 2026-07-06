@@ -1324,22 +1324,25 @@ def _render_race(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     water = bool(_WATER_RE.search((insight.topic or "")
                  + " " + " ".join(p.label for p in items)))
     # Load a real photo per contender (fallback to the illustrated cut-out).
+    # For a RACE the subject rides the lane, so an AI CUT-OUT (transparent, no
+    # box) blends into the road/water far better than a clunky rectangular photo.
     imgs = []
     for i, p in enumerate(items):
-        import hashlib
-        sh = hashlib.sha1((p.label or "").lower().encode()).hexdigest()[:6]
-        pth = scene_media.subject_photo(p.label, slug, f"race{i}-{sh}")
+        subj = f"{p.label}, side view, full body"
         im = None
-        if pth:
+        cp = scene_media.subject_cutout(subj, slug, f"racec{i}")
+        if cp:
             try:
-                im = Image.open(pth).convert("RGB")
+                im = Image.open(cp).convert("RGBA")
             except Exception:  # noqa: BLE001
                 im = None
-        if im is None:
-            cp = scene_media.subject_cutout(p.label, slug, f"racec{i}")
-            if cp:
+        if im is None:                         # last resort: a real photo chip
+            import hashlib
+            sh = hashlib.sha1((p.label or "").lower().encode()).hexdigest()[:6]
+            pth = scene_media.subject_photo(p.label, slug, f"race{i}-{sh}")
+            if pth:
                 try:
-                    im = Image.open(cp).convert("RGBA")
+                    im = Image.open(pth).convert("RGB")
                 except Exception:  # noqa: BLE001
                     im = None
         imgs.append(im)
