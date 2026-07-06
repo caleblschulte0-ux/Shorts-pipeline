@@ -218,6 +218,11 @@ jobs:
           # Image-gen key for cinematic AI scene/hook backgrounds (free-tier,
           # graceful fallback to stock/designed if unset or quota-limited).
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # CLAUDE is the creative director: it INVENTS each depiction/mechanic at
+          # render time (viz_director._llm_try prefers Anthropic). Paid, so it
+          # doesn't hit the free-tier 429s that were dropping the invention. If the
+          # secret is unset this is empty -> the director falls over to Gemini/Groq.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"

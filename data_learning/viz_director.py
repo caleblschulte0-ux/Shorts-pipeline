@@ -263,17 +263,17 @@ _mech_cache: dict = {}
 
 def _llm_try(sysp: str, user: str) -> str:
     """Call the LLM for a render-time invention, failing OVER across backends.
-    Render bursts hammer Groq's free tier (429s), so we lead with Gemini (higher
-    free limits) and fall through to Groq then Anthropic — otherwise a single 429
-    would silently drop the AI's creative decision for that data point."""
+    Inventing a bespoke depiction is the hardest, most valuable call in the whole
+    pipeline, so it uses the STRONGEST brain first: CLAUDE (Anthropic) — which is
+    also paid, so it doesn't hit the free-tier 429 wall that was silently dropping
+    every invention. Falls over to Gemini then Groq if Claude isn't configured or
+    errors. (Override the order with VIZ_INVENT_BACKENDS="gemini,groq".)"""
     from script_generator import _call_llm
-    order = []
-    if os.environ.get("GEMINI_API_KEY"):
-        order.append("gemini")
-    if os.environ.get("GROQ_API_KEY"):
-        order.append("groq")
-    if os.environ.get("ANTHROPIC_API_KEY"):
-        order.append("anthropic")
+    pref = os.environ.get("VIZ_INVENT_BACKENDS", "anthropic,gemini,groq")
+    have = {"anthropic": "ANTHROPIC_API_KEY", "gemini": "GEMINI_API_KEY",
+            "groq": "GROQ_API_KEY"}
+    order = [b for b in (x.strip() for x in pref.split(","))
+             if b in have and os.environ.get(have[b])]
     last = None
     for backend in (order or [None]):
         try:
