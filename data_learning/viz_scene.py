@@ -662,15 +662,20 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     cuts, photos = {}, {}
     for i, el in enumerate(els):
         t = el.get("type")
-        subj = str(el.get("subject", ""))
-        # `object` prefers a REAL PHOTO of the thing (what viewers want to see);
-        # fill_object/stack need a transparent illustration to mask/tile.
+        # CRITICAL: for an `object` the image must match the number/label the row
+        # shows. That comes from the RESOLVED item (value_from), NOT the element's
+        # authored `subject` (which can be misaligned after value-sorting). Fetch
+        # the photo for the item this row actually displays.
         if t == "object":
-            photos[i] = _load_photo(subj, slug, f"p{i}")
+            lv = _resolve((el.get("data") or {}).get("value_from"), insight)
+            subj = (lv[0] if lv else str(el.get("subject", ""))).strip()
+            import hashlib
+            sh = hashlib.sha1(subj.lower().encode()).hexdigest()[:6]  # subject-keyed cache
+            photos[i] = _load_photo(subj, slug, f"p{i}-{sh}")
             if photos[i] is None:
-                cuts[i] = _load_cutout(subj, slug, f"s{i}")
+                cuts[i] = _load_cutout(subj, slug, f"s{i}-{sh}")
         elif t in _IMAGE_TYPES:
-            cuts[i] = _load_cutout(subj, slug, f"s{i}")
+            cuts[i] = _load_cutout(str(el.get("subject", "")), slug, f"s{i}")
     # `object`/`stack` need SOME image (photo or cut-out). If every element is one
     # of those and none produced an image, bail to a cleaner FALLBACK depiction.
     hard = {"object", "stack"}
