@@ -186,6 +186,16 @@ def _scout_digest(max_chars: int = 1800) -> str:
         if vids:
             lines.append(f"YouTube trending ({cat}): " + "; ".join(
                 (v.get("title") or "")[:60] for v in vids[:5]))
+    # Science/health headlines: Google News topics + editorial science feeds.
+    sci: list[str] = []
+    gnews = d.get("google_news") or {}
+    for topic in ("science", "health", "technology"):
+        sci += [(x.get("title") or "")[:70] for x in (gnews.get(topic) or [])[:3]]
+    ed = d.get("editorial_feeds") or {}
+    for feed in ("nasa", "sciencedaily", "livescience", "bbc_science"):
+        sci += [(x.get("title") or "")[:70] for x in (ed.get(feed) or [])[:2]]
+    if sci:
+        lines.append("Science/health headlines: " + "; ".join(sci[:10]))
     if not lines:
         return ""
     return ("\nTOP-OF-FUNNEL SIGNALS (refreshed " + str(d.get("scouted_at", "?"))

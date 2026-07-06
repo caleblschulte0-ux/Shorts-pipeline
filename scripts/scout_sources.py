@@ -468,9 +468,91 @@ def fetch_upcoming_observances(country: str = "US") -> list[dict]:
             for h in (data or [])[:8]]
 
 
+def _rss_titles(url: str, source_type: str, limit: int = 20) -> list[dict]:
+    """Generic RSS/Atom title scraper (regex — no extra deps). Soft-fails."""
+    import re as _re
+    try:
+        raw = _get_url(url).decode("utf-8", "replace")
+    except Exception as e:  # noqa: BLE001
+        _err(f"[{source_type}] {type(e).__name__}: {e}")
+        return []
+    out: list[dict] = []
+    for m in _re.finditer(r"<item>.*?<title>(.*?)</title>.*?</item>", raw, _re.S):
+        t = _re.sub(r"<!\[CDATA\[|\]\]>", "", m.group(1)).strip()
+        t = _re.sub(r"&amp;", "&", t)
+        if t:
+            out.append({"source_type": source_type, "title": t})
+        if len(out) >= limit:
+            break
+    return out
+
+
+# Google News topic feeds — the general-news slice of the funnel (a future
+# news channel's bread and butter; the explainer mines them for data angles).
+_GNEWS_TOPICS = ["WORLD", "NATION", "SCIENCE", "TECHNOLOGY", "HEALTH",
+                 "SPORTS", "ENTERTAINMENT", "BUSINESS"]
+
+
+def fetch_google_news() -> dict:
+    out: dict = {}
+    for topic in _GNEWS_TOPICS:
+        url = (f"https://news.google.com/rss/headlines/section/topic/{topic}"
+               "?hl=en-US&gl=US&ceid=US:en")
+        items = _rss_titles(url, f"google_news_{topic.lower()}", limit=15)
+        if items:
+            out[topic.lower()] = items
+        time.sleep(1)
+    return out
+
+
+# Science/nature/space editorial feeds — high-quality curiosity fodder.
+_RSS_FEEDS = {
+    "nasa": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+    "sciencedaily": "https://www.sciencedaily.com/rss/all.xml",
+    "physorg": "https://phys.org/rss-feed/",
+    "bbc_science": "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+    "bbc_world": "http://feeds.bbci.co.uk/news/world/rss.xml",
+    "livescience": "https://www.livescience.com/feeds/all",
+    "smithsonian": "https://www.smithsonianmag.com/rss/latest_articles/",
+}
+
+
+def fetch_editorial_feeds() -> dict:
+    out: dict = {}
+    for name, url in _RSS_FEEDS.items():
+        items = _rss_titles(url, f"rss_{name}", limit=15)
+        if items:
+            out[name] = items
+        time.sleep(1)
+    return out
+
+
+def fetch_hackernews_top(limit: int = 30) -> list[dict]:
+    """Top HN stories (ALL, not just video links) — tech/science curiosity."""
+    try:
+        ids = json.loads(_get_url(
+            "https://hacker-news.firebaseio.com/v0/topstories.json"))[:limit]
+        out = []
+        for i in ids:
+            it = json.loads(_get_url(
+                f"https://hacker-news.firebaseio.com/v0/item/{i}.json"))
+            if it and it.get("title"):
+                out.append({"source_type": "hackernews_top",
+                            "title": it["title"],
+                            "score": int(it.get("score", 0) or 0)})
+        return out
+    except Exception as e:  # noqa: BLE001
+        _err(f"[hn_top] {type(e).__name__}: {e}")
+        return []
+
+
 # Category-scoped YouTube trending so each channel has a fitted slice of the
-# pool (Science&Tech / Education / Pets&Animals today; add per new channel).
-_YT_CATEGORIES = {"science_tech": 28, "education": 27, "pets_animals": 15}
+# pool. Broad on purpose: gaming/sports/entertainment/news feed future
+# channels; science/education/animals feed the explainer.
+_YT_CATEGORIES = {"science_tech": 28, "education": 27, "pets_animals": 15,
+                  "gaming": 20, "sports": 17, "entertainment": 24,
+                  "news_politics": 25, "howto_style": 26, "music": 10,
+                  "comedy": 23}
 
 
 def fetch_youtube_trending_by_category() -> dict:
@@ -540,9 +622,24 @@ def main() -> int:
     hn = fetch_hackernews_video_links()
     print(f"  hn: {len(hn)}")
 
-    print("\nscouting Google Trends...")
-    gtrends = fetch_google_trends()
+    print("\nscouting Google Trends (multi-geo)...")
+    gtrends: list[dict] = []
+    for geo in ("US", "GB", "CA", "AU"):
+        gtrends.extend(fetch_google_trends(geo))
+        time.sleep(1)
     print(f"  google_trends: {len(gtrends)}")
+
+    print("\nscouting Google News topics...")
+    gnews = fetch_google_news()
+    print(f"  google_news: { {k: len(v) for k, v in gnews.items()} }")
+
+    print("\nscouting editorial science/news feeds...")
+    editorial = fetch_editorial_feeds()
+    print(f"  editorial: { {k: len(v) for k, v in editorial.items()} }")
+
+    print("\nscouting Hacker News top stories...")
+    hn_top = fetch_hackernews_top()
+    print(f"  hn_top: {len(hn_top)}")
 
     print("\nscouting Wikipedia top articles (yesterday)...")
     wiki_top = fetch_wikipedia_top_articles()
@@ -558,7 +655,9 @@ def main() -> int:
 
     total = (len(all_reddit) + len(wikipedia) + len(wikimedia) + len(youtube)
              + len(lemmy) + len(hn) + len(gtrends) + len(wiki_top)
-             + len(observances) + sum(len(v) for v in yt_cats.values()))
+             + len(observances) + sum(len(v) for v in yt_cats.values())
+             + sum(len(v) for v in gnews.values())
+             + sum(len(v) for v in editorial.values()) + len(hn_top))
     OUT_PATH.parent.mkdir(exist_ok=True)
     OUT_PATH.write_text(json.dumps({
         "scouted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -574,6 +673,9 @@ def main() -> int:
             "wikipedia_top_count": len(wiki_top),
             "observances_count": len(observances),
             "youtube_category_counts": {k: len(v) for k, v in yt_cats.items()},
+            "google_news_counts": {k: len(v) for k, v in gnews.items()},
+            "editorial_counts": {k: len(v) for k, v in editorial.items()},
+            "hackernews_top_count": len(hn_top),
         },
         "total": total,
         "reddit_posts": all_reddit,
@@ -587,6 +689,9 @@ def main() -> int:
         "wikipedia_top_articles": wiki_top,
         "upcoming_observances": observances,
         "youtube_trending_by_category": yt_cats,
+        "google_news": gnews,
+        "editorial_feeds": editorial,
+        "hackernews_top": hn_top,
     }, indent=2) + "\n")
     print(f"\nwrote {total} candidates -> {OUT_PATH}")
 
