@@ -804,6 +804,7 @@ def main() -> int:
     # quarantine is an intentional skip (off-topic imagery), not a
     # crash — it must NOT bump the auto-pause counter, or a few
     # un-illustratable packages would silence the whole pipeline.
+    posted = [r for r in results if r["ok"]]
     quarantined = [r for r in results if r.get("quarantined")]
     failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
     if quarantined:
@@ -813,6 +814,18 @@ def main() -> int:
     if failed:
         print(f"[run_trending_daily] {len(failed)} of {len(results)} failed",
               file=sys.stderr)
+    # ZERO-POST SAFEGUARD: a non-empty slate that shipped NOTHING is a real
+    # outage (every package quarantined and/or failed). Fail loudly so the
+    # run goes RED, the failure counter bumps, and the ntfy alert fires —
+    # instead of a silent green "0 posted" that goes unnoticed for days
+    # (exactly what happened 07-03..07-05). A partial run (>=1 posted) with
+    # some quarantines stays green, per the original intent.
+    if results and not args.dry_run and not posted:
+        print(f"[run_trending_daily] ZERO of {len(results)} posted — total "
+              f"outage; exiting non-zero so the run goes RED and alerts.",
+              file=sys.stderr)
+        return 1
+    if failed:
         return 1
     return 0
 
