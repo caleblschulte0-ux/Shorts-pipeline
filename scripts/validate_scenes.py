@@ -18,8 +18,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
-from data_learning import viz_scene            # noqa: E402
-from data_learning.insights import Insight     # noqa: E402
+from data_learning import viz_director, viz_scene   # noqa: E402
+from data_learning.insights import Insight          # noqa: E402
+
+# Named chart kinds a segment may pick via its "viz" field instead of a scene.
+# Everything renderable except the bare-number kinds (which don't exist anyway).
+_BARE = {"callouts", "bignum"}
 
 DATA = REPO / "data_learning" / "data"
 CFG = REPO / "data_learning" / "niche.config.json"
@@ -55,7 +59,13 @@ def _stub_insight(seg: dict) -> Insight:
 def _check(seg: dict) -> tuple[bool, str]:
     sc = seg.get("scene")
     if not isinstance(sc, dict):
-        return False, "no scene"
+        # A segment may instead pick a NAMED chart via its "viz" field (trend,
+        # share, waffle_grid, geo_*, timeline, orbit, ...) — valid variety, as
+        # long as it's renderable and never a bare-number kind.
+        viz = (seg.get("viz") or "").strip().lower()
+        if viz and viz not in _BARE and viz_director.renderable(viz):
+            return True, f"viz '{viz}' (classic chart)"
+        return False, "no scene (and no valid named viz)"
     ins = _stub_insight(seg)
     if "code" in sc or "mechanic" in sc:                       # procedural mechanic
         if not viz_scene.validate_mechanic(sc):
