@@ -50,6 +50,8 @@ KINDS = {
     "rank_scene":     {"image": True,  "novelty": True,  "repeatable": True},
     "race":           {"image": True,  "novelty": True,  "repeatable": True},
     "scene":          {"image": True,  "novelty": True,  "repeatable": True},
+    # An AI-invented, code-generated mechanic (the "make something new" path).
+    "mechanic":       {"image": True,  "novelty": True,  "repeatable": True},
 }
 
 # Pseudo-kinds that resolve to an attached `ins.scene` (kind becomes "scene").
@@ -250,6 +252,120 @@ def _invent_scene(ins):
     return scene
 
 
+# --- Invent a BRAND-NEW mechanic (the AI writes the drawing code) -------------
+# This is the channel's top-level move: before touching the kit, the AI designs
+# a depiction that doesn't exist yet and writes the PIL code for it. Accepted
+# mechanics are saved to a growing library and fed back as examples, so the kit
+# literally grows and the AI learns from its own best inventions.
+_MECH_LIB = charts.__file__.rsplit("/", 1)[0] + "/viz_mechanics.json"
+_mech_cache: dict = {}
+
+# The sandbox the mechanic code runs in — the AI must be told EXACTLY what it can
+# call (see viz_scene._run_mechanic_frame for the real implementation).
+_MECH_API = """\
+You write the BODY of a function that draws ONE frame of a vertical 1080x1920
+video. It runs once per frame with these names already in scope (NO imports, NO
+while-loops, NO names with underscores):
+
+  d        - PIL ImageDraw: d.rectangle/rounded_rectangle/ellipse/line/polygon/
+             arc/pieslice/text(box_or_xy, ...). Use fill=rgba(COLOR, alpha).
+  reveal   - float 0..1, the build progress. ANIMATE everything off this
+             (grow/rise/sweep from 0 to its final state as reveal -> 1).
+  values   - list[float] data;  labels - list[str];  vmax - max value;  n - count
+  images   - dict label -> subject image (RGBA, may be None)
+  subject_image(name) - fetch a real photo/cut-out of ANY subject you name
+                        (a flame, a lung, a droplet); returns image or None
+  paste(img, x, y, w=None, h=None)          - stamp a subject image
+  fill_image(img, frac, x, y, w, h, direction='up', color=None)
+                        - reveal a subject filled to `frac` (gauges/'X% of a thing')
+  text(s, x, y, size=48, color=TEXT, center=False)   - labelled numbers
+  font(size), rgba(color, alpha), clamp(v,lo,hi), lerp(a,b,t), math
+  Colors: ACCENT, HIGHLIGHT, WARN, TEXT (RGB tuples)
+  Safe drawing area: x in [RX0=40, RX1=1040], y in [RTOP=80, RBOT=1180].
+
+HARD RULES:
+- SHOW THE THING: you MUST place at least one real subject image (paste /
+  fill_image / images / subject_image). A mechanic with no subject is rejected.
+- Depict every data point THROUGH the visual (size/fill/position/count/motion),
+  each with its label and value shown. NEVER a plain bar or bubble or lone number.
+- Invent something we don't already have — a bespoke mechanic that fits THIS data.
+"""
+
+
+def _mechanic_examples(k: int = 2) -> list:
+    import json
+    try:
+        with open(_MECH_LIB, encoding="utf-8") as fh:
+            lib = json.load(fh)
+        return [{"mechanic": m.get("mechanic"), "concept": m.get("concept"),
+                 "code": m.get("code")} for m in lib[-k:]]
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def _record_mechanic(ins, spec) -> None:
+    """Save an accepted mechanic to the growing library (dedup by name+code)."""
+    if os.environ.get("VIZ_LIBRARY_WRITE", "1") == "0":
+        return
+    import json
+    import hashlib
+    try:
+        try:
+            with open(_MECH_LIB, encoding="utf-8") as fh:
+                lib = json.load(fh)
+        except Exception:  # noqa: BLE001
+            lib = []
+        sig = hashlib.sha1((spec.get("mechanic", "") + spec.get("code", ""))
+                           .encode()).hexdigest()[:12]
+        if any(m.get("sig") == sig for m in lib):
+            return
+        lib.append({"sig": sig, "mechanic": spec.get("mechanic", ""),
+                    "concept": spec.get("concept", ""), "code": spec.get("code", ""),
+                    "topic": ins.topic or ""})
+        lib = lib[-60:]                       # keep the corpus bounded
+        with open(_MECH_LIB, "w", encoding="utf-8") as fh:
+            json.dump(lib, fh, indent=1, ensure_ascii=False)
+    except Exception as e:  # noqa: BLE001
+        print(f"[director] mechanic save skipped: {e}", flush=True)
+
+
+def _invent_mechanic(ins):
+    """Ask the LLM to INVENT a new visual mechanic and write its drawing code.
+    Returns a spec {mechanic, concept, code, title} or None. Cached per data sig."""
+    import json
+    key = _insight_key(ins)
+    if key in _mech_cache:
+        return _mech_cache[key]
+    spec = None
+    try:
+        from script_generator import _call_llm, _strip_fence
+        items = [{"label": p.label, "value": p.value,
+                  **({"period": p.period} if getattr(p, "period", None) else {})}
+                 for p in ins.items]
+        exs = _mechanic_examples(2)
+        ex_blob = ("\nMechanics we've invented before (learn, then do something "
+                   "NEW):\n" + json.dumps(exs)) if exs else ""
+        sysp = ("You are the creative director + creative coder of a top-tier "
+                "data channel. You INVENT brand-new visual mechanics and write "
+                "the Python/PIL code that draws them. Output ONE JSON object only.")
+        user = (
+            f"Topic: {ins.topic!r}\nUnit: {ins.unit!r}\n"
+            f"Data points: {json.dumps(items)}\n\n"
+            + _MECH_API + ex_blob + "\n\n"
+            'Return ONLY: {"mechanic": "short-name", "concept": "one sentence", '
+            '"code": "the frame-drawing body as a Python string"}')
+        raw = _strip_fence(_call_llm(sysp, user))
+        cand = json.loads(raw)
+        if isinstance(cand, dict) and viz_scene.validate_mechanic(cand):
+            cand["title"] = True
+            spec = cand
+    except Exception as e:  # noqa: BLE001
+        print(f"[director] mechanic invent skipped: {type(e).__name__}: {e}",
+              flush=True)
+    _mech_cache[key] = spec
+    return spec
+
+
 # --- Assignment --------------------------------------------------------------
 def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
     """Set each insight's final ``kind`` (depiction). Honours a valid authored
@@ -280,23 +396,35 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
 
     order = sorted(range(n), key=lambda i: (seed + i) % max(1, n))
 
-    # Pass -1 — RENDER-TIME creative director. For each data point (except place
-    # data, which is always better as a map), the LLM invents a fresh image-first
-    # scene right now. This is the "AI decides per data point, every render" path;
-    # it OVERRIDES any baked scene. Falls through silently if the LLM is down.
+    # Pass -1 — RENDER-TIME creative director, per data point (skip place data,
+    # which is always better as a map). The AI's FIRST move is to INVENT A BRAND
+    # -NEW mechanic — it writes the drawing code itself (procedural, sandboxed).
+    # Only if that can't be produced does it fall to composing from the kit. This
+    # is the "make something new first, then get creative with the kit" path; it
+    # OVERRIDES any baked choice and falls through silently if the LLM is down.
     if os.environ.get("VIZ_INVENT", "1") != "0":
         for i in order:
             if feats[i]["place"]:
                 continue
-            invented = _invent_scene(inss[i])
+            mech = _invent_mechanic(inss[i])
+            if mech and viz_scene.mechanic_dry_ok(mech, inss[i]):
+                inss[i].scene = mech                 # a procedural mechanic
+                _record_mechanic(inss[i], mech)      # grow the library
+                if images < image_budget:
+                    images += 1
+                chosen[i] = "mechanic"
+                continue
+            invented = _invent_scene(inss[i])        # fall to the kit
             if invented:
                 inss[i].scene = invented
 
-    # Pass 0 — honour a valid SCENE (the render-time invention above, or a
+    # Pass 0 — honour a valid SCENE (the render-time kit invention above, or a
     # previously-authored one). Bespoke scenes may repeat across segments (each is
     # distinct by construction), so "scene" is not added to `used`; only the image
     # budget bounds them.
     for i in order:
+        if chosen[i]:
+            continue
         sc = getattr(inss[i], "scene", None)
         if sc and viz_scene.validate(sc, inss[i]):
             cost = viz_scene.image_cost(sc)

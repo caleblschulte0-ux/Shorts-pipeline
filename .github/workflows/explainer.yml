@@ -318,6 +318,8 @@ jobs:
           # Persist any freshly AUTHORED stories so they outlive this ephemeral
           # run (the new config entries + their illustrative datasets).
           git add data_learning/niche.config.json data_learning/data 2>/dev/null || true
+          # The growing library of AI-invented visual mechanics (learns + compounds).
+          git add data_learning/viz_mechanics.json 2>/dev/null || true
           # --cached so brand-new (untracked) files are detected too.
           if git diff --cached --quiet; then
             echo "nothing to commit"
