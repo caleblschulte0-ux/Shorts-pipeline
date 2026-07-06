@@ -2,103 +2,17 @@
   {
     "topic": "A Diver Swam Next to the Biggest Fish on Earth",
     "title": "A Diver Swam Next to the Biggest Fish on Earth",
-    "publish_at": "2026-07-06T17:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/Khca9tQOiLU",
-    "error": null,
-    "elapsed_seconds": 345.4,
-    "package_path": "state/trending_packages/20260706/01_whale-shark-biggest-fish-diver-2026.json",
-    "video_path": "output/daily_20260706-165113_a_diver_swam_next_to_the_biggest_fish_on.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "A Volcano That's Been Erupting for 2,000 Years",
-    "title": "A Volcano That's Been Erupting for 2,000 Years",
-    "publish_at": "2026-07-06T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/chFAEZCswvk",
-    "error": null,
-    "elapsed_seconds": 277.0,
-    "package_path": "state/trending_packages/20260706/02_stromboli-volcano-erupts-2026.json",
-    "video_path": "output/daily_20260706-165652_a_volcano_that_s_been_erupting_for_2_000.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "A Tourist Got Way Too Close to a Bison",
-    "title": "A Tourist Got Way Too Close to a Bison",
-    "publish_at": "2026-07-06T21:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/xunB6be4bls",
-    "error": null,
-    "elapsed_seconds": 344.2,
-    "package_path": "state/trending_packages/20260706/03_bison-charges-tourist-yellowstone-2026.json",
-    "video_path": "output/daily_20260706-170130_a_tourist_got_way_too_close_to_a_bison.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "His Parachute Failed at 12,000 Feet. He Lived.",
-    "title": "His Parachute Failed at 12,000 Feet. He Lived.",
-    "publish_at": "2026-07-06T23:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/k8VtGfnuZA0",
-    "error": null,
-    "elapsed_seconds": 405.7,
-    "package_path": "state/trending_packages/20260706/04_skydiver-parachute-fails-survives-2026.json",
-    "video_path": "output/daily_20260706-170801_his_parachute_failed_at_12_000_feet__he_.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "A Family Found an Alligator in Their Pool",
-    "title": "A Family Found an Alligator in Their Pool",
     "publish_at": "2026-07-07T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/4ao_CPZ82_4",
+    "video_url": "(dry-run)",
     "error": null,
-    "elapsed_seconds": 336.9,
-    "package_path": "state/trending_packages/20260706/05_alligator-in-swimming-pool-2026.json",
-    "video_path": "output/daily_20260706-171441_a_family_found_an_alligator_in_their_poo.mp4",
+    "elapsed_seconds": 297.0,
+    "package_path": "state/trending_packages/20260706/01_whale-shark-biggest-fish-diver-2026.json",
+    "video_path": "output/daily_20260706-233546_a_diver_swam_next_to_the_biggest_fish_on.mp4",
     "qa": {
       "ok": true,
       "verdict": "ok",
       "reason": "short"
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Someone Went Over Niagara Falls and Lived",
-    "title": "Someone Went Over Niagara Falls and Lived",
-    "publish_at": "2026-07-07T15:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/9-ChnhdwDdU",
-    "error": null,
-    "elapsed_seconds": 386.8,
-    "package_path": "state/trending_packages/20260706/06_survived-going-over-niagara-falls-2026.json",
-    "video_path": "output/daily_20260706-172018_someone_went_over_niagara_falls_and_live.mp4",
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "channel": "default"
+    }
   }
 ]
