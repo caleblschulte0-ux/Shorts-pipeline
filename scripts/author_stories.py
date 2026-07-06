@@ -157,6 +157,48 @@ _SYSTEM = (
 )
 
 
+def _scout_digest(max_chars: int = 1800) -> str:
+    """A compact digest of the repo-wide TOP-OF-FUNNEL scout pool
+    (state/scouted_sources.json, refreshed daily by scout.yml). Channel rule:
+    the pool tells you WHAT the world is paying attention to; this channel
+    derives its own DATA-EXPLAINER angle from it — never the news angle.
+    Soft-fails to '' so authoring works even if the scout hasn't run."""
+    try:
+        d = json.loads((ROOT / "state" / "scouted_sources.json").read_text())
+    except Exception:  # noqa: BLE001
+        return ""
+    lines: list[str] = []
+    obs = d.get("upcoming_observances") or []
+    if obs:
+        lines.append("Upcoming observances: " + "; ".join(
+            f"{o.get('name')} ({o.get('date')})" for o in obs[:6]))
+    gt = d.get("google_trends") or []
+    if gt:
+        lines.append("Trending searches now: " + "; ".join(
+            (g.get("title") or "") for g in gt[:10]))
+    wt = d.get("wikipedia_top_articles") or []
+    if wt:
+        lines.append("Most-read Wikipedia yesterday: " + "; ".join(
+            (w.get("title") or "") for w in wt[:12]))
+    cats = d.get("youtube_trending_by_category") or {}
+    for cat in ("science_tech", "education", "pets_animals"):
+        vids = cats.get(cat) or []
+        if vids:
+            lines.append(f"YouTube trending ({cat}): " + "; ".join(
+                (v.get("title") or "")[:60] for v in vids[:5]))
+    if not lines:
+        return ""
+    return ("\nTOP-OF-FUNNEL SIGNALS (refreshed " + str(d.get("scouted_at", "?"))
+            + ") — what the world is paying attention to right now:\n"
+            + "\n".join("  - " + ln[:280] for ln in lines)
+            + "\nUse these as DEMAND signals: prefer topics people are already "
+              "curious about, but derive THIS channel's angle — the underlying "
+              "DATA story, never the news story. Example: an upcoming 4th of "
+              "July -> firework costs, sizes, and physics; NOT coverage of any "
+              "specific event. A trending animal -> that animal's records and "
+              "extremes. Skip signals with no honest data angle.\n")[:max_chars]
+
+
 def _user_prompt(cfg: dict, n: int) -> str:
     doctrine = cfg.get("topic_doctrine", "")
     covered = _covered_subjects(cfg)
@@ -190,7 +232,8 @@ def _user_prompt(cfg: dict, n: int) -> str:
     ex_blob = ("\nGreat scenes we've made before (learn from these, then do "
                "something fresh):\n" + json.dumps(exs)) if exs else ""
     return (
-        f"Channel doctrine: {doctrine}\n\n"
+        f"Channel doctrine: {doctrine}\n"
+        + _scout_digest() + "\n"
         f"Invent {n} BRAND-NEW data stories that fit the doctrine. Each is a "
         f"25-40 second Short with EXACTLY 3 segments that build one arc.\n\n"
         "You are the CREATIVE DIRECTOR of a top-tier YouTube channel. For EACH "
