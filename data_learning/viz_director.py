@@ -210,7 +210,7 @@ def _invent_scene(ins):
         return _invent_cache[key]
     scene = None
     try:
-        from script_generator import _call_llm, _strip_fence
+        from script_generator import _strip_fence
         items = [{"label": p.label, "value": p.value,
                   **({"period": p.period} if getattr(p, "period", None) else {})}
                  for p in ins.items]
@@ -241,7 +241,7 @@ def _invent_scene(ins):
             "- `data.value_from` is one of: 'star' (the max), 'total', or "
             "'item:<index>' (0-based) / 'item:<label>'.\n\n"
             'Return ONLY: {"title": true, "elements": [ ... ]}')
-        raw = _strip_fence(_call_llm(sysp, user))
+        raw = _strip_fence(_llm_try(sysp, user))
         spec = json.loads(raw)
         if viz_scene.validate(spec, ins):
             scene = spec
@@ -259,6 +259,29 @@ def _invent_scene(ins):
 # literally grows and the AI learns from its own best inventions.
 _MECH_LIB = charts.__file__.rsplit("/", 1)[0] + "/viz_mechanics.json"
 _mech_cache: dict = {}
+
+
+def _llm_try(sysp: str, user: str) -> str:
+    """Call the LLM for a render-time invention, failing OVER across backends.
+    Render bursts hammer Groq's free tier (429s), so we lead with Gemini (higher
+    free limits) and fall through to Groq then Anthropic — otherwise a single 429
+    would silently drop the AI's creative decision for that data point."""
+    from script_generator import _call_llm
+    order = []
+    if os.environ.get("GEMINI_API_KEY"):
+        order.append("gemini")
+    if os.environ.get("GROQ_API_KEY"):
+        order.append("groq")
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        order.append("anthropic")
+    last = None
+    for backend in (order or [None]):
+        try:
+            return _call_llm(sysp, user, backend=backend)
+        except Exception as e:  # noqa: BLE001
+            last = e
+            continue
+    raise last or RuntimeError("no LLM backend configured")
 
 # The sandbox the mechanic code runs in — the AI must be told EXACTLY what it can
 # call (see viz_scene._run_mechanic_frame for the real implementation).
@@ -338,7 +361,7 @@ def _invent_mechanic(ins):
         return _mech_cache[key]
     spec = None
     try:
-        from script_generator import _call_llm, _strip_fence
+        from script_generator import _strip_fence
         items = [{"label": p.label, "value": p.value,
                   **({"period": p.period} if getattr(p, "period", None) else {})}
                  for p in ins.items]
@@ -354,7 +377,7 @@ def _invent_mechanic(ins):
             + _MECH_API + ex_blob + "\n\n"
             'Return ONLY: {"mechanic": "short-name", "concept": "one sentence", '
             '"code": "the frame-drawing body as a Python string"}')
-        raw = _strip_fence(_call_llm(sysp, user))
+        raw = _strip_fence(_llm_try(sysp, user))
         cand = json.loads(raw)
         if isinstance(cand, dict) and viz_scene.validate_mechanic(cand):
             cand["title"] = True
