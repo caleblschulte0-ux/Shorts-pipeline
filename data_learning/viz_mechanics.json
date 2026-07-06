@@ -14,5 +14,21 @@
   "code": "\ncy = 600\nwimg = images.get(labels[0])\njimg = images.get(labels[1])\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    col = HIGHLIGHT if i == 0 else ACCENT\n    rings = int(clamp(v / vmax) * 6.0 * reveal) + 1\n    for k in range(rings):\n        rr = 60 + k * 52\n        a = int(190.0 * (1.0 - k / (rings + 1.0)) * reveal)\n        d.ellipse([cxs - rr, cy - rr, cxs + rr, cy + rr],\n                  outline=rgba(col, a), width=6)\nimg = wimg\nfor i in range(2):\n    img = wimg if i == 0 else jimg\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    if img is not None:\n        asp = img.width / img.height\n        w = 330\n        h = int(w / asp)\n        if h > 300:\n            h = 300\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    na = clamp((reveal - 0.4) / 0.6)\n    text(str(int(values[i])) + ' dB', cxs, cy - 330, size=70, color=col, center=True)\n    text(labels[i], cxs, cy + 210, size=40, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('1.5x LOUDER', (RX0 + RX1) // 2, 950, size=54, color=WARN, center=True)\n",
   "topic": "Loudest Animals — whale vs jet engine",
   "starred": true
+ },
+ {
+  "sig": "epicenter-v1",
+  "mechanic": "epicenter",
+  "concept": "the single subject sits at the center of sound rings radiating to the frame edges, its value huge at the top",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = 620\nimg = images.get(labels[0])\nrings = int(9.0 * reveal) + 1\nfor k in range(rings):\n    rr = 100 + k * 95\n    a = int(170.0 * (1.0 - k / (rings + 2.0)))\n    d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr],\n              outline=rgba(HIGHLIGHT, a), width=8)\nif img is not None:\n    asp = img.width / img.height\n    w = 660\n    h = int(w / asp)\n    if h > 500:\n        h = 500\n        w = int(h * asp)\n    paste(img, cx - w // 2, cy - h // 2, w, h)\nna = clamp((reveal - 0.3) / 0.5)\ntext(str(int(values[0])) + ' dB', cx, RTOP + 40, size=120,\n     color=HIGHLIGHT, center=True)\ntext('the loudest animal EVER', cx, cy + 300, size=46, center=True)\ntext(labels[0], cx, cy + 360, size=40, color=ACCENT, center=True)\n",
+  "topic": "single record-holder + frame-filling rings",
+  "starred": true
+ },
+ {
+  "sig": "pressure-gauges-v1",
+  "mechanic": "pressure-gauges",
+  "concept": "two pressure gauges sweep to each contender's PSI, their photos mounted under the dials",
+  "code": "\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 210\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.arc([cxs - r, cy - r, cxs + r, cy + r], 150, 390,\n          fill=rgba(TEXT, 90), width=16)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.arc([cxs - r, cy - r, cxs + r, cy + r], 150, int(sweep),\n          fill=rgba(col, 255), width=16)\n    ang = sweep * math.pi / 180.0\n    nx = cxs + int((r - 30) * math.cos(ang))\n    ny = cy + int((r - 30) * math.sin(ang))\n    d.line([cxs, cy, nx, ny], fill=rgba(col, 255), width=10)\n    d.ellipse([cxs - 16, cy - 16, cxs + 16, cy + 16], fill=rgba(col, 255))\n    if i == 0:\n        img = subject_image('saltwater crocodile open jaws close up')\n    else:\n        img = subject_image('human man smiling portrait face')\n    if img is not None:\n        asp = img.width / img.height\n        w = 310\n        h = int(w / asp)\n        if h > 220:\n            h = 220\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy + r + 10, w, h)\n    text(str(int(v)) + ' PSI', cxs, cy - r - 100, size=62, color=col, center=True)\n    text(labels[i], cxs, cy + r + 240, size=38, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('23x STRONGER', (RX0 + RX1) // 2, RBOT - 80, size=56,\n         color=WARN, center=True)\n",
+  "topic": "two contenders on sweeping pressure dials",
+  "starred": true
  }
 ]
