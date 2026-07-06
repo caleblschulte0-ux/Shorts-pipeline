@@ -1,0 +1,33 @@
+{
+  "key": "space_exploration_costs_115_space_exploration_ro",
+  "title": "Space Exploration ROI",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1960",
+      "value": 2.0,
+      "period": "1960"
+    },
+    {
+      "label": "1980",
+      "value": 5.0,
+      "period": "1980"
+    },
+    {
+      "label": "2020",
+      "value": 10.0,
+      "period": "2020"
+    }
+  ]
+}

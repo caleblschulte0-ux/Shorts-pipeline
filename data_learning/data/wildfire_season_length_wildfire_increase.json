@@ -1,0 +1,28 @@
+{
+  "key": "wildfire_season_length_wildfire_increase",
+  "title": "Wildfire Increase",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2010-2020",
+      "value": 25.0,
+      "period": "2020"
+    },
+    {
+      "label": "2020-2030",
+      "value": 30.0,
+      "period": "2030"
+    }
+  ]
+}
