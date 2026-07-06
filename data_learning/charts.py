@@ -1315,7 +1315,7 @@ def _render_race(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     track (a highway for land, water for swimming). The 'show the thing + make it
     move' viz for speeds/records. Returns None -> fallback if no images."""
     from PIL import Image, ImageDraw
-    from . import scene_media, viz_scene
+    from . import scene_media
     out_dir.mkdir(parents=True, exist_ok=True)
     W, H = 1080, 1920
     items = sorted(_ordered_items(insight), key=lambda p: -p.value)[:4]
@@ -1331,20 +1331,16 @@ def _render_race(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
         subj = f"{p.label}, side view, full body"
         im = None
         cp = scene_media.subject_cutout(subj, slug, f"racec{i}")
+        # Fallback when the AI illustrator is down: a REAL photo, background
+        # removed -> still a transparent cut-out, never a rectangular box.
+        if not cp:
+            cp = scene_media.subject_photo_cutout(
+                p.label, slug, f"racep{i}", context=insight.topic or "")
         if cp:
             try:
-                im = Image.open(cp).convert("RGBA")
+                im = Image.open(cp).convert("RGBA")   # always a cut-out (RGBA)
             except Exception:  # noqa: BLE001
                 im = None
-        if im is None:                         # last resort: a real photo chip
-            import hashlib
-            sh = hashlib.sha1((p.label or "").lower().encode()).hexdigest()[:6]
-            pth = scene_media.subject_photo(p.label, slug, f"race{i}-{sh}")
-            if pth:
-                try:
-                    im = Image.open(pth).convert("RGB")
-                except Exception:  # noqa: BLE001
-                    im = None
         imgs.append(im)
     if not any(im is not None for im in imgs):
         return None
@@ -1388,14 +1384,10 @@ def _render_race(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
             reach = (x1 - x0 - int(ch * 1.4))
             xt = x0 + int(frac * reach)
             cx = x0 + int(lr * (xt - x0))
-            if im is not None:
-                if im.mode == "RGB":              # real photo -> rounded chip
-                    cw = int(ch * 1.3)
-                    chip = viz_scene._cover_round(im, cw, ch, radius=24)
-                else:                              # cut-out -> as-is
-                    asp = im.width / im.height
-                    cw = int(ch * asp)
-                    chip = im.resize((max(1, cw), max(1, ch)))
+            if im is not None:                    # always a transparent cut-out
+                asp = im.width / im.height
+                cw = int(ch * asp)
+                chip = im.resize((max(1, cw), max(1, ch)))
                 if lr < 1.0:
                     chip.putalpha(chip.split()[3].point(lambda v: int(v * min(1.0, lr + 0.2))))
                 canvas.alpha_composite(chip, (cx, int(lcy - ch / 2)))
