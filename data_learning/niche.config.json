@@ -9089,6 +9089,113 @@
         }
       ],
       "question": "What do you think could be living at the bottom of the ocean?"
+    },
+    {
+      "slug": "space-rocks-size-comparison",
+      "title": "Space Rocks Size Comparison",
+      "hook": "You won't believe how massive space rocks are!",
+      "closing": "The scale of space debris is mind-blowing!",
+      "hashtags": [
+        "space",
+        "astronomy",
+        "debris",
+        "solar",
+        "system"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_rocks_size_comparison_largest_asteroids",
+          "params": {
+            "file": "space_rocks_size_comparison_largest_asteroids.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST ASTEROIDS",
+          "topic": "Largest Asteroids",
+          "say": "The largest asteroids are over 500 kilometers in diameter, with Ceres being the largest at 950 kilometers.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "asteroid",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "asteroid",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "asteroid",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_rocks_size_comparison_comet_size",
+          "params": {
+            "file": "space_rocks_size_comparison_comet_size.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 COMET SIZE",
+          "topic": "Comet Size",
+          "say": "Comets can be as large as 100 kilometers in diameter, with some having a highly elliptical orbit.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "comet",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_rocks_size_comparison_meteorite_size",
+          "params": {
+            "file": "space_rocks_size_comparison_meteorite_size.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 METEORITE SIZE",
+          "topic": "Meteorite Size",
+          "say": "The largest meteorites can weigh over 60,000 kilograms, with the Hoba meteorite being the largest at 66,000 kilograms.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bubble",
+                "region": "center",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What do you think is the biggest threat from space?"
     }
   ],
   "videos": [
