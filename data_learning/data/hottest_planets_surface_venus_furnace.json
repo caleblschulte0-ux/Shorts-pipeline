@@ -1,0 +1,22 @@
+{
+  "key": "hottest_planets_surface_venus_furnace",
+  "title": "Venus Furnace",
+  "unit": "°F",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Venus",
+      "value": 900.0
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "key": "hottest_planets_surface_surface_heat",
+  "title": "Surface Heat",
+  "unit": "°F",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Venus",
+      "value": 900.0
+    },
+    {
+      "label": "Mercury",
+      "value": 800.0
+    },
+    {
+      "label": "Jupiter",
+      "value": 240.0
+    },
+    {
+      "label": "Earth",
+      "value": 59.0
+    },
+    {
+      "label": "Mars",
+      "value": -80.0
+    }
+  ]
+}

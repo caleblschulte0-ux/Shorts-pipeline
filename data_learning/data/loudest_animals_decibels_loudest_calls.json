@@ -1,0 +1,38 @@
+{
+  "key": "loudest_animals_decibels_loudest_calls",
+  "title": "Loudest Calls",
+  "unit": "dB",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Sperm Whale",
+      "value": 230.0
+    },
+    {
+      "label": "Blue Whale",
+      "value": 188.0
+    },
+    {
+      "label": "Howler Monkey",
+      "value": 140.0
+    },
+    {
+      "label": "Lion",
+      "value": 114.0
+    },
+    {
+      "label": "Cicada",
+      "value": 106.0
+    }
+  ]
+}
