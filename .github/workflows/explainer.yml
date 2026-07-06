@@ -261,9 +261,11 @@ jobs:
           4. Run 'python scripts/validate_scenes.py ${BRAIN_SLUGS}' and fix until
              it prints OK.
           5. LOOK at your work: run 'python scripts/render_frames.py
-             ${BRAIN_SLUGS} --out preview/frames' and Read every PNG it produces.
-             Judge each against the checklist in VIZ_BRAIN.md; fix the scene and
-             re-render until every frame passes. Do not skip this.
+             ${BRAIN_SLUGS} --out preview/frames --motion' and Read the PNGs —
+             final frames AND the 25/50/75 percent motion samples. Judge against
+             the RETENTION DOCTRINE (does something change every beat? first
+             second earns the view? reads muted?) and the frame checklist; fix
+             and re-render until every segment passes. Do not skip this.
           6. Save good new mechanics to data_learning/viz_mechanics.json; star the
              exceptional ones.
           Do NOT modify stories outside the target slugs. Finish with a 5-line

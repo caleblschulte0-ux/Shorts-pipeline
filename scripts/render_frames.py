@@ -35,6 +35,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("slugs", nargs="+")
     ap.add_argument("--out", default="preview/frames")
+    ap.add_argument("--motion", action="store_true",
+                    help="export 4 frames per segment (25/50/75/100%% of the "
+                         "build) so the reviewer judges MOTION/progress, not "
+                         "just the final look")
     a = ap.parse_args()
     cfg = json.load(open(CFG, encoding="utf-8"))
     byslug = {s["slug"]: s for s in cfg["stories"]}
@@ -68,6 +72,14 @@ def main() -> int:
             if files:
                 shutil.copyfile(files[-1], dest)
                 print(f"[OK] {slug} seg{i} kind={seg.kind} -> {dest}")
+                if a.motion and len(files) >= 4:
+                    # Sample the build at 25/50/75% so "did something change
+                    # every beat?" is judgeable — retention QC, not frame QC.
+                    for pct in (25, 50, 75):
+                        src = files[max(0, len(files) * pct // 100 - 1)]
+                        mdest = outdir / f"{slug}_seg{i}_t{pct}.png"
+                        shutil.copyfile(src, mdest)
+                        print(f"[OK] {slug} seg{i} t{pct}% -> {mdest}")
             else:
                 print(f"[FAIL] {slug} seg{i}: kind={seg.kind} produced no frame")
                 rc = 1
