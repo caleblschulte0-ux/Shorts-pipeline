@@ -12,6 +12,7 @@ to None, so a scene always renders. Images cache under state/scene_images/.
 """
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -282,6 +283,18 @@ def subject_cutout(subject: str, slug: str, tag: str,
 
 PHOTO_DIR = REPO / "state" / "subject_photos"
 
+# Wikimedia is full of non-photographic files (logos, flags, maps, diagrams,
+# charts, coats of arms, icons). For "show me what it looks like" we want an
+# actual PHOTO, so reject these by filename/extension.
+_BAD_PHOTO = re.compile(
+    r"(\.svg|logo|icon|map|diagram|chart|graph|flag|seal|"
+    r"coat[_-]?of[_-]?arms|emblem|symbol|schematic|blueprint|"
+    r"wordmark|banner|\.gif)", re.I)
+
+
+def _is_photo_url(url: str) -> bool:
+    return not _BAD_PHOTO.search(url or "")
+
 
 def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
                   cache_dir: Path = PHOTO_DIR) -> Path | None:
@@ -316,6 +329,8 @@ def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
             continue
         for url in urls[:6]:
             try:
+                if not _is_photo_url(url):          # skip logos/maps/diagrams/svg
+                    continue
                 if not entity_media.url_is_image(url):
                     continue
                 p = hook_media._download(url, cache_dir)
