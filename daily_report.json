@@ -1,68 +1,104 @@
 [
   {
-    "topic": "Neil the Seal Is Wrecking Cars Again",
-    "title": "Neil the Seal Is Wrecking Cars Again",
-    "publish_at": "2026-07-03T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 28.6% < 50.0% \u2014 10 shot(s) have no real image and would fall to off-topic keyword stock: ['the damage report gets weirder', 'flattened traffic cones', 'snapped fence posts', 'young male elephant seals need to spar for dominan', 'Neil just picks a car instead', 'turned into a full-blown local celebrity', 'tracked online like a rockstar on tour', 'begging fans to keep their distance', 'let him nap in peace', \"who's going to tell Neil no\"]",
-    "elapsed_seconds": 27.5,
-    "package_path": "state/trending_packages/20260703/01_neil-the-seal-tasmania-2026.json",
-    "quarantined": true
+    "topic": "A Diver Swam Next to the Biggest Fish on Earth",
+    "title": "A Diver Swam Next to the Biggest Fish on Earth",
+    "publish_at": "2026-07-06T17:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/Khca9tQOiLU",
+    "error": null,
+    "elapsed_seconds": 345.4,
+    "package_path": "state/trending_packages/20260706/01_whale-shark-biggest-fish-diver-2026.json",
+    "video_path": "output/daily_20260706-165113_a_diver_swam_next_to_the_biggest_fish_on.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
   },
   {
-    "topic": "A Goat Led Deputies on a 20-Minute Chase",
-    "title": "A Goat Led Deputies on a 20-Minute Chase",
-    "publish_at": "2026-07-03T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 7.7% < 50.0% \u2014 12 shot(s) have no real image and would fall to off-topic keyword stock: ['One goat. Twenty minutes. Chaos!', 'a loose goat started weaving through traffic', 'dodging cars like it had somewhere to be', 'Deputies and animal control raced in', 'leading them on a full sprint through yards and pa', 'speaking what he called goat language', 'The goat was not impressed', 'cornered the runaway on an outdoor staircase', 'boxed in with nowhere left to run', 'resting at a local rescue farm', 'track down its owner', \"who loses a goat and doesn't notice\"]",
-    "elapsed_seconds": 4.6,
-    "package_path": "state/trending_packages/20260703/02_pierce-county-goat-chase-2026.json",
-    "quarantined": true
+    "topic": "A Volcano That's Been Erupting for 2,000 Years",
+    "title": "A Volcano That's Been Erupting for 2,000 Years",
+    "publish_at": "2026-07-06T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/chFAEZCswvk",
+    "error": null,
+    "elapsed_seconds": 277.0,
+    "package_path": "state/trending_packages/20260706/02_stromboli-volcano-erupts-2026.json",
+    "video_path": "output/daily_20260706-165652_a_volcano_that_s_been_erupting_for_2_000.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
   },
   {
-    "topic": "Apples Kept Washing Up. That Was the Problem.",
-    "title": "Apples Kept Washing Up. That Was the Problem.",
-    "publish_at": "2026-07-03T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 23.1% < 50.0% \u2014 10 shot(s) have no real image and would fall to off-topic keyword stock: ['Are These Apples Deadly?', \"hundreds of them, scattered like they'd fallen off\", 'Then came the oranges too', 'apples can kill their wild horses', 'choking and deadly colic', 'deputies, and volunteer turtle patrols dropped eve', 'raced the clock', 'bagging up the fruit handful by handful', 'before the horses could', \"nearly poisoned Corolla's wild horses\"]",
-    "elapsed_seconds": 4.6,
-    "package_path": "state/trending_packages/20260703/03_corolla-apples-wild-horses-2026.json",
-    "quarantined": true
+    "topic": "A Tourist Got Way Too Close to a Bison",
+    "title": "A Tourist Got Way Too Close to a Bison",
+    "publish_at": "2026-07-06T21:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/xunB6be4bls",
+    "error": null,
+    "elapsed_seconds": 344.2,
+    "package_path": "state/trending_packages/20260706/03_bison-charges-tourist-yellowstone-2026.json",
+    "video_path": "output/daily_20260706-170130_a_tourist_got_way_too_close_to_a_bison.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "channel": "default"
   },
   {
-    "topic": "A Shark Bite Just Rewrote Federal Law",
-    "title": "A Shark Bite Just Rewrote Federal Law",
-    "publish_at": "2026-07-03T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 41.7% < 50.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['A Shark Attack Changed Law!', 'she lost her hand and part of her leg', 'Nobody warned Lulu', 'instant, geofenced warnings blasted straight to ph', '180 days to get the system live', 'Lulu and Elisabeth both survived', 'why did it take two bites to build one warning sys']",
-    "elapsed_seconds": 4.2,
-    "package_path": "state/trending_packages/20260703/04_lulus-law-shark-alert-2026.json",
-    "quarantined": true
+    "topic": "His Parachute Failed at 12,000 Feet. He Lived.",
+    "title": "His Parachute Failed at 12,000 Feet. He Lived.",
+    "publish_at": "2026-07-06T23:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/k8VtGfnuZA0",
+    "error": null,
+    "elapsed_seconds": 405.7,
+    "package_path": "state/trending_packages/20260706/04_skydiver-parachute-fails-survives-2026.json",
+    "video_path": "output/daily_20260706-170801_his_parachute_failed_at_12_000_feet__he_.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
   },
   {
-    "topic": "Buried for 8 Days. He Walked Out Alive.",
-    "title": "Buried for 8 Days. He Walked Out Alive.",
-    "publish_at": "2026-07-03T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 21.4% < 50.0% \u2014 11 shot(s) have no real image and would fall to off-topic keyword stock: ['Buried Alive For Eight Days?', 'the whole parking structure came down', 'a tiny security booth, and the guard still inside ', '29 feet of concrete crushed everything around him', 'Rescuers lowered water and nutrients down a narrow', 'talking to him through a telescopic camera', 'three straight days tunneling toward him', 'they pulled him out alive', 'officials called a miracle', \"More than 2,300 people didn't make it\", 'odds a security booth saves your life']",
-    "elapsed_seconds": 37.7,
-    "package_path": "state/trending_packages/20260703/05_venezuela-earthquake-rescue-2026.json",
-    "quarantined": true
+    "topic": "A Family Found an Alligator in Their Pool",
+    "title": "A Family Found an Alligator in Their Pool",
+    "publish_at": "2026-07-07T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/4ao_CPZ82_4",
+    "error": null,
+    "elapsed_seconds": 336.9,
+    "package_path": "state/trending_packages/20260706/05_alligator-in-swimming-pool-2026.json",
+    "video_path": "output/daily_20260706-171441_a_family_found_an_alligator_in_their_poo.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
   },
   {
-    "topic": "Kyiv Just Survived Its Worst Night in Months",
-    "title": "Kyiv Just Survived Its Worst Night in Months",
-    "publish_at": "2026-07-03T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 30.8% < 50.0% \u2014 9 shot(s) have no real image and would fall to off-topic keyword stock: [\"Kyiv's Worst Night In Months?\", 'nearly half of them ballistic', 'At least 21 people were killed', 'a nine-story apartment building partially collapse', 'blown apart from the first floor to the sixth', 'one of the largest strikes of the entire war', 'the deadliest attack on the capital since May', 'killed 24', 'how many more worst nights does one city get']",
-    "elapsed_seconds": 10.8,
-    "package_path": "state/trending_packages/20260703/06_kyiv-worst-night-strike-2026.json",
-    "quarantined": true
+    "topic": "Someone Went Over Niagara Falls and Lived",
+    "title": "Someone Went Over Niagara Falls and Lived",
+    "publish_at": "2026-07-07T15:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/9-ChnhdwDdU",
+    "error": null,
+    "elapsed_seconds": 386.8,
+    "package_path": "state/trending_packages/20260706/06_survived-going-over-niagara-falls-2026.json",
+    "video_path": "output/daily_20260706-172018_someone_went_over_niagara_falls_and_live.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
   }
 ]
