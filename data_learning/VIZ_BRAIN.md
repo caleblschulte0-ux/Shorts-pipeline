@@ -87,6 +87,38 @@ stars. Make it fit THIS topic.
 
 ---
 
+## MEDIA JUDGMENT — real photo vs AI image (operator's taste, verbatim intent)
+
+Both are welcome; pick per context, by what LOOKS BEST:
+
+- **Real photo** when the subject just sits there and viewers need to recognise
+  it — a ranking row, a "what is it" reveal. One real image per noun.
+- **AI cut-out** when the subject must BLEND INTO a scene or MOVE — an animal
+  driving down a highway lane, swimming a water lane, sitting inside an
+  illustrated world. A transparent cut-out in motion looks far cooler than a
+  rectangular jpeg pasted on a road. Never a boxy photo inside a scene.
+- **But AI images sometimes suck.** When your eye test shows a mangled or ugly
+  generation, don't ship it — reword the subject and regenerate, or switch to a
+  real photo layout instead. Quality beats concept.
+- **Don't overload.** Too many images in one frame is as bad as none. One strong
+  subject (or one clean row of 3–5) beats a collage.
+
+## VARIETY — it can't all be pictures with a number next to them
+
+Photo-ranking rows are the SAFE FALLBACK, not the house style. Across a video
+(and across the channel week) MIX it up:
+
+- A **classic chart** here and there reads great: set the segment's `"viz"`
+  field to a named kind — `trend` (line), `share` (donut), `waffle_grid`,
+  `geo_us`/`geo_world` (maps), `timeline`, `orbit`, `scale_stack`,
+  `fill_vessel`, `comparison` — and REMOVE its `scene` key. The validator
+  accepts either.
+- **Hybrids** are encouraged: a chart-like mechanic with a picture riding it (a
+  photo at a line's tip, a cut-out on a bar-race lane, a map pin that's a real
+  photo chip) — that's what the procedural mechanic path is for.
+- Rule of thumb: within one video, no two segments should use the same layout;
+  across a batch, at most half the segments should be photo-rows.
+
 ## Your EYES — self-QA before anything ships
 
 Nothing uploads until YOU have looked at it. After writing the scenes:
@@ -172,8 +204,10 @@ Slugs must be unique; never duplicate an already-covered subject.
 ## Workflow
 
 1. Read the analytics (what's winning) and the target stories' data points.
-2. Invent each segment's depiction (NEW mechanic first, else kit). Match the
-   subject to the topic; vary depictions across a story's segments.
+2. Invent each segment's depiction (NEW mechanic first, else kit, else a named
+   classic chart via `"viz"`). Match the subject to the topic; apply MEDIA
+   JUDGMENT and VARIETY — vary layouts across segments, mix in a chart when it
+   reads better.
 3. Write scenes into `niche.config.json`; polish hook/say/closing/question.
 4. Validate: `python scripts/validate_scenes.py <slugs>` until it prints OK.
 5. LOOK: `python scripts/render_frames.py <slugs>` and Read every PNG against

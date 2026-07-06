@@ -250,10 +250,12 @@ jobs:
           1. Read state/analytics_explainer to see which past topics/depictions
              win views; note the direction in one line.
           2. For EACH segment of each target story, read its data file and invent
-             the most creative, image-first depiction of THAT data — prefer a
-             brand-new procedural mechanic; else compose from the element kit.
-             Write it to the segment's scene in data_learning/niche.config.json.
-             Never a bar, a bubble, or a bare number.
+             the most creative depiction of THAT data — prefer a brand-new
+             procedural mechanic; else compose from the element kit; a classic
+             chart (segment 'viz' field) is welcome variety when it reads better.
+             Apply the MEDIA JUDGMENT and VARIETY sections of the playbook.
+             Write it to the segment in data_learning/niche.config.json.
+             Never a plain bar, a bubble, or a bare number.
           3. Direct the whole video: sharpen hook / say / closing / question so
              they speak the exact numbers the scenes show.
           4. Run 'python scripts/validate_scenes.py ${BRAIN_SLUGS}' and fix until
