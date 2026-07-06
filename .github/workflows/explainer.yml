@@ -205,8 +205,76 @@ jobs:
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
+      # THE BRAIN. Runs CLAUDE (the Claude Code CLI, authed by the operator's
+      # subscription via CLAUDE_CODE_OAUTH_TOKEN — NOT an API key) right before we
+      # render, so Claude itself invents the depiction for every data point and
+      # writes it into the config. This is "be the brain at the moment of
+      # rendering." Skips gracefully if the token isn't set (-> baked / determ.).
+      - name: Claude invents the depictions (the brain)
+        if: inputs.mode != 'verify' && inputs.mode != 'unpublish'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          BRAIN_MODEL: ${{ vars.BRAIN_MODEL }}
+          RAW_SLUGS: ${{ inputs.slugs }}
+        run: |
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::notice::CLAUDE_CODE_OAUTH_TOKEN not set — skipping the brain (renders use baked/deterministic depictions). Add it with 'claude setup-token'."
+            exit 0
+          fi
+          # Which stories are about to render? The given slugs, else the un-posted
+          # queue (what a blank-slug schedule/auto run will post).
+          BRAIN_SLUGS="$(echo "$RAW_SLUGS" | tr ',' ' ' | tr -s ' ')"
+          if [ -z "$(echo "$BRAIN_SLUGS" | tr -d ' ')" ]; then
+            BRAIN_SLUGS="$(python3 - <<'PY'
+          import json, os
+          cfg = json.load(open('data_learning/niche.config.json'))
+          posted = set()
+          p = 'state/explainer_posted_log.json'
+          if os.path.exists(p):
+              posted = set(json.load(open(p)).get('posted', {}))
+          print(' '.join(s['slug'] for s in cfg['stories'] if s['slug'] not in posted))
+          PY
+          )"
+          fi
+          BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
+          if [ -z "$BRAIN_SLUGS" ]; then echo "no target stories; skipping brain"; exit 0; fi
+          echo "brain targets: $BRAIN_SLUGS"
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || \
+            { echo "::warning::claude CLI install failed — skipping brain"; exit 0; }
+          MODEL="${BRAIN_MODEL:-sonnet}"
+          PROMPT="$(cat <<BRAINPROMPT
+          You are the visualization BRAIN for this data-shorts channel. FIRST read
+          data_learning/VIZ_BRAIN.md for the depiction toolkit and the hard rules.
+          THEN, for ONLY these story slugs: ${BRAIN_SLUGS}, rewrite EACH segment's
+          scene field in data_learning/niche.config.json to the most creative,
+          image-first depiction of that segment's data — prefer inventing a
+          brand-new procedural mechanic; otherwise compose from the element kit.
+          Read each segment's data file so the depiction matches the real numbers.
+          Vary the depiction across a story's segments. Never a bar, a bubble, or a
+          bare number. Do NOT change any other story or field. Finally run
+          'python scripts/validate_scenes.py ${BRAIN_SLUGS}' and fix anything it
+          reports until it prints OK.
+          BRAINPROMPT
+          )"
+          # Bounded so a stuck brain can't blow the 60-min job cap; non-fatal so a
+          # brain hiccup still lets the render proceed on the prior depictions.
+          timeout 1500 claude -p "$PROMPT" \
+            --allowedTools "Read,Edit,Write,Bash" \
+            --model "$MODEL" \
+            --permission-mode acceptEdits \
+            --output-format text || \
+            echo "::warning::brain step did not finish cleanly — rendering with current depictions"
+          echo "--- brain validation ---"
+          python scripts/validate_scenes.py $BRAIN_SLUGS || \
+            echo "::warning::some scenes still invalid — renderer will fall back for those"
+
       - name: Run
         env:
+          # The BRAIN step above already invented the depictions with Claude and
+          # baked them into the config, so the renderer just RENDERS them — no
+          # render-time LLM API calls. (Set VIZ_INVENT=1 to also let the render
+          # fall over to a Groq/Gemini API invention when no brain ran.)
+          VIZ_INVENT: '0'
           # Native multi-channel routing: post_stories uses channel "explainer",
           # so the uploader reads YOUTUBE_TOKEN_JSON_EXPLAINER. The original
           # YOUTUBE_TOKEN_JSON (other channel) is never referenced here.
