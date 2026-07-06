@@ -1,0 +1,10 @@
+[
+ {
+  "sig": "seed-subject-tubes",
+  "mechanic": "subject-thermometers",
+  "concept": "each data point is a glass tube that fills with the subject's own photo to its value, side by side",
+  "code": "for i in range(n):\n    frac = clamp(values[i]/vmax) * reveal\n    x = RX0 + 20 + i*300\n    w = 220; h = 600; y = 500\n    img = images.get(labels[i]) if labels[i] in images else None\n    fill_image(img, frac, x, y, w, h, direction='up', color=ACCENT)\n    d.rounded_rectangle([x,y,x+w,y+h], outline=rgba(TEXT,255), width=4)\n    text(labels[i], x+w/2, y+h+16, size=34, center=True)\n    text(str(int(values[i])), x+w/2, y-60, size=48, color=HIGHLIGHT, center=True)",
+  "topic": "seed example",
+  "starred": true
+ }
+]

@@ -320,8 +320,13 @@ def _mechanic_examples(k: int = 2) -> list:
     try:
         with open(_MECH_LIB, encoding="utf-8") as fh:
             lib = json.load(fh)
+        # The brain STARS its best inventions — teach from those first, most
+        # recent otherwise, so the visual language compounds around quality.
+        starred = [m for m in lib if m.get("starred")]
+        rest = [m for m in lib if not m.get("starred")]
+        pool = (starred[::-1] + rest[::-1])[:k]
         return [{"mechanic": m.get("mechanic"), "concept": m.get("concept"),
-                 "code": m.get("code")} for m in lib[-k:]]
+                 "code": m.get("code")} for m in pool]
     except Exception:  # noqa: BLE001
         return []
 

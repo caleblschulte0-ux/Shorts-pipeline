@@ -243,17 +243,29 @@ jobs:
             { echo "::warning::claude CLI install failed — skipping brain"; exit 0; }
           MODEL="${BRAIN_MODEL:-sonnet}"
           PROMPT="$(cat <<BRAINPROMPT
-          You are the visualization BRAIN for this data-shorts channel. FIRST read
-          data_learning/VIZ_BRAIN.md for the depiction toolkit and the hard rules.
-          THEN, for ONLY these story slugs: ${BRAIN_SLUGS}, rewrite EACH segment's
-          scene field in data_learning/niche.config.json to the most creative,
-          image-first depiction of that segment's data — prefer inventing a
-          brand-new procedural mechanic; otherwise compose from the element kit.
-          Read each segment's data file so the depiction matches the real numbers.
-          Vary the depiction across a story's segments. Never a bar, a bubble, or a
-          bare number. Do NOT change any other story or field. Finally run
-          'python scripts/validate_scenes.py ${BRAIN_SLUGS}' and fix anything it
-          reports until it prints OK.
+          You are the BRAIN of this data-shorts channel: creative director, coder,
+          and quality gate in one. FIRST read data_learning/VIZ_BRAIN.md — it is
+          your complete playbook (toolkit, hard rules, QA checklist, schemas).
+          Work on ONLY these story slugs: ${BRAIN_SLUGS}. Then:
+          1. Read state/analytics_explainer to see which past topics/depictions
+             win views; note the direction in one line.
+          2. For EACH segment of each target story, read its data file and invent
+             the most creative, image-first depiction of THAT data — prefer a
+             brand-new procedural mechanic; else compose from the element kit.
+             Write it to the segment's scene in data_learning/niche.config.json.
+             Never a bar, a bubble, or a bare number.
+          3. Direct the whole video: sharpen hook / say / closing / question so
+             they speak the exact numbers the scenes show.
+          4. Run 'python scripts/validate_scenes.py ${BRAIN_SLUGS}' and fix until
+             it prints OK.
+          5. LOOK at your work: run 'python scripts/render_frames.py
+             ${BRAIN_SLUGS} --out preview/frames' and Read every PNG it produces.
+             Judge each against the checklist in VIZ_BRAIN.md; fix the scene and
+             re-render until every frame passes. Do not skip this.
+          6. Save good new mechanics to data_learning/viz_mechanics.json; star the
+             exceptional ones.
+          Do NOT modify stories outside the target slugs. Finish with a 5-line
+          summary: analytics direction, depictions chosen per story, QA fixes.
           BRAINPROMPT
           )"
           # Bounded so a stuck brain can't blow the 60-min job cap; non-fatal so a
