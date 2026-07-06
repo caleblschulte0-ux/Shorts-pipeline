@@ -46,8 +46,9 @@ KINDS = {
     "comparison":     {"image": False, "novelty": False},   # versus columns
     # A canonical SCENE the director attaches (resolves to kind "scene"):
     "fill_scene":     {"image": True,  "novelty": True},     # subject filled to %
-    "rank_scene":     {"image": True,  "novelty": False},    # real photos per item
-    "scene":          {"image": True,  "novelty": True},     # an authored scene
+    "rank_scene":     {"image": True,  "novelty": True,  "repeatable": True},
+    "race":           {"image": True,  "novelty": True,  "repeatable": True},
+    "scene":          {"image": True,  "novelty": True,  "repeatable": True},
 }
 
 # Pseudo-kinds that resolve to an attached `ins.scene` (kind becomes "scene").
@@ -60,6 +61,9 @@ _ALWAYS = {"bubbles", "pictograph", "trend", "share", "comparison",
 
 _AGE_KW = re.compile(r"\b(age|old|older|oldest|ancient|since|ago|history|"
                      r"historic|year[s]? old|existed|lifespan|founded|era)\b", re.I)
+_SPEED_KW = re.compile(r"\b(speed|speeds|fast|fastest|faster|mph|km/?h|kmh|kph|"
+                       r"knots|velocity|quick|quickest|swim|swimming|run|running|"
+                       r"fly|flying|flight|race|racing|sprint)\b", re.I)
 _SCALE_KW = re.compile(r"\b(tall|taller|tallest|height|deep|deepest|far|"
                        r"farther|distance|long|longest|size|huge|heavy|"
                        r"heaviest|big|biggest|massive)\b", re.I)
@@ -109,6 +113,7 @@ def _features(ins) -> dict:
         "place": place,
         "age": bool(_AGE_KW.search(topic)),
         "scale": bool(_SCALE_KW.search(topic)),
+        "speed": unit_class == "speed" or bool(_SPEED_KW.search(topic)),
         "is_share": ins.kind == "share" or (unit_class == "pct" and n >= 3),
     }
 
@@ -120,6 +125,9 @@ def _candidates(ins, f: dict) -> list[str]:
     if f["place"]:
         return [f["place"]]
     ranked: list[str] = []
+    # Speeds / velocities -> a RACE (real photos moving on a highway / in water).
+    if f["speed"] and f["n"] >= 2:
+        ranked += ["race", "rank_scene", "diorama"]
     # Time / age.
     if f["age"] and (f["has_period"] or getattr(ins, "viz_params", None)):
         ranked += ["timeline", "trend"]
@@ -136,10 +144,10 @@ def _candidates(ins, f: dict) -> list[str]:
         ranked += ["rank_scene", "diorama", "fill_scene"]
     # Single shock stat -> fill a themed subject.
     if f["n"] <= 2:
-        ranked += ["fill_scene", "diorama", "bubbles"]
-    # General ranking / comparison -> REAL PHOTOS of each thing (big rows),
-    # then illustrated objects, then simple shapes.
-    ranked += ["rank_scene", "diorama", "pictograph", "bubbles"]
+        ranked += ["fill_scene", "diorama"]
+    # General ranking / comparison -> REAL PHOTOS of each thing (big rows), then
+    # the illustrated diorama. NO lazy dots/bubbles for a real ranking.
+    ranked += ["rank_scene", "diorama"]
     # De-dup preserving order, keep only renderable kinds.
     seen, out = set(), []
     for k in ranked:
@@ -165,8 +173,10 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
     def _take(i: int, kind: str) -> bool:
         nonlocal images
         meta = KINDS.get(kind, {})
-        # place/trend may repeat; other depictions must be distinct in a video.
-        if not (meta.get("place") or meta.get("time")) and kind in used:
+        # place/trend/real-photo depictions may repeat (all good); the lazy shape
+        # depictions must stay distinct within a video.
+        if not (meta.get("place") or meta.get("time") or meta.get("repeatable")) \
+                and kind in used:
             return False
         if meta.get("image"):
             if images >= image_budget:
