@@ -160,6 +160,30 @@ def _layout(els):
     return boxes
 
 
+def _object_ranking(els):
+    """Indices of a set of `object` elements that form a ranking we should render
+    as big vertical rows (image + number), or [] if the scene isn't one."""
+    obj = [i for i, e in enumerate(els)
+           if e.get("type") == "object" and e.get("region") in _ROW_REGIONS]
+    holistic = any(e.get("type") in _HOLISTIC for e in els)
+    # 2-5 illustrated things, no full-frame holistic element sharing the frame.
+    return obj if (2 <= len(obj) <= 5 and not holistic) else []
+
+
+def _vlist_layout(els, rows):
+    """Full-width horizontal strips stacked top->bottom for a ranking, so big
+    subject pictures fill the whole frame (no dead top third)."""
+    boxes = [None] * len(els)
+    for i, e in enumerate(els):
+        if i not in rows:
+            boxes[i] = REGIONS.get(e.get("region", "center"), REGIONS["center"])
+    top, bot = RTOP + 10, RBOT
+    rh = (bot - top) / len(rows)
+    for k, i in enumerate(rows):
+        boxes[i] = (RX0, int(top + k * rh), RX1, int(top + (k + 1) * rh))
+    return boxes
+
+
 def _stagger(reveal, i, n):
     span = 1.0 / max(1, n)
     lr = (reveal - i * span) / (span * 0.8)
@@ -202,11 +226,52 @@ def draw_number(d, box, value, label, color, reveal, unit=""):
                fill=(248, 250, 252, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
 
 
-def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax):
-    """A subject cut-out sized ∝ value, bottom-anchored in the box, number above
-    + label below. Placeholder silhouette if the cut-out is missing."""
+def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
+                side=False):
+    """A subject cut-out with its number + label. Two modes:
+      * side=True  -> a full-width RANKING ROW: a BIG recognizable picture on the
+        left, a big number + label on the right (rows stack to fill the frame).
+      * side=False -> the classic bottom-anchored object sized by value.
+    Placeholder silhouette if the cut-out is missing."""
     bx0, by0, bx1, by1 = box
     bw, bh = bx1 - bx0, by1 - by0
+    if side:
+        # Big image on the left, filling most of the row height so viewers can
+        # actually SEE what the thing looks like; number + label on the right.
+        rise = int((1.0 - reveal) * 40)
+        cy = (by0 + by1) // 2 + rise
+        ih = int(bh * 0.84)
+        img_cx = bx0 + int(bw * 0.02) + int(bw * 0.24)   # image centred in left ~48%
+        if cutout is not None:
+            asp = cutout.width / cutout.height
+            iw = int(ih * asp)
+            iw_cap = int(bw * 0.46)
+            if iw > iw_cap:
+                iw, ih = iw_cap, int(iw_cap / asp)
+            im = cutout.resize((max(1, iw), max(1, ih)))
+            if reveal < 1.0:
+                im.putalpha(im.split()[3].point(lambda v: int(v * reveal)))
+            canvas.alpha_composite(im, (int(img_cx - iw / 2), int(cy - ih / 2)))
+        else:
+            iw = int(ih * 0.9)
+            d.rounded_rectangle([img_cx - iw // 2, cy - ih // 2,
+                                 img_cx + iw // 2, cy + ih // 2],
+                                radius=24, fill=_rgba(color, int(255 * reveal)))
+        na = max(0.0, min(1.0, (reveal - 0.35) / 0.5))
+        nx = bx0 + int(bw * 0.56)
+        nf = _pil_font(min(150, max(84, int(bh * 0.42))))
+        num = _vfmt(value)
+        nb = d.textbbox((0, 0), num, font=nf)
+        d.text((nx, cy - (nb[3] - nb[1]) - 6), num, font=nf,
+               fill=_rgba(color, int(255 * na)), stroke_width=6,
+               stroke_fill=(5, 8, 15, int(255 * na)))
+        lf = _pil_font(46)
+        d.text((nx, cy + 14), label, font=lf,
+               fill=(248, 250, 252, int(255 * na)), stroke_width=3,
+               stroke_fill=(5, 8, 15, int(255 * na)))
+        return {"value": float(value), "cx": float(nx + (nb[2] - nb[0]) / 2),
+                "cy": float(cy - (nb[3] - nb[1]) / 2), "w": 240.0, "h": 120.0}
+    frac = 0.55 + 0.45 * (value / vmax if vmax else 1.0)
     frac = 0.55 + 0.45 * (value / vmax if vmax else 1.0)
     avail_h = bh - 150                                 # room for number + label
     if cutout is not None:
@@ -522,8 +587,15 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
         return None
     els = spec["elements"]
     out_dir.mkdir(parents=True, exist_ok=True)
-    boxes = _layout(els)
-    show_title = spec.get("title", True) and bool(insight.topic)
+    # A ranking of illustrated things -> big vertical rows (picture + number)
+    # that FILL the frame, instead of a cramped bottom row with a dead top third.
+    rank_rows = _object_ranking(els)
+    boxes = _vlist_layout(els, rank_rows) if rank_rows else _layout(els)
+    side_set = set(rank_rows)
+    # Only show the standalone title when NOT a vertical ranking (the rows own
+    # the whole frame; the topic is spoken + captioned by the renderer anyway).
+    show_title = (spec.get("title", True) and bool(insight.topic)
+                  and not rank_rows)
     # Pre-load cut-outs once (cached anyway) so we can bail to fallback if the
     # whole scene is image-only and every image failed.
     cuts = {}
@@ -584,7 +656,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                     an = draw_bubble(d, box, lv[1], lv[0], col, lr, vmax)
                 else:
                     an = draw_object(d, canvas, box, cuts.get(i), lv[1], lv[0],
-                                     col, lr, vmax)
+                                     col, lr, vmax, side=(i in side_set))
                 if f == frames and an:
                     anchors.append(an)
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
