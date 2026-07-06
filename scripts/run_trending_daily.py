@@ -110,7 +110,7 @@ def _slug(s: str, n: int = 40) -> str:
 # var; set to 0 to disable. This complements the render-time
 # RelevanceGateError in make_explainer_stacked (which judges the ACTUAL
 # resolved media post-render) — this one is the cheap pre-flight.
-MIN_ILLUSTRATION_PCT = float(os.environ.get("MIN_ILLUSTRATION_PCT", "50"))
+MIN_ILLUSTRATION_PCT = float(os.environ.get("MIN_ILLUSTRATION_PCT", "20"))
 
 
 def _illustration_quarantine(pkg: dict) -> str | None:
