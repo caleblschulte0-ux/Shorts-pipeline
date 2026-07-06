@@ -1,0 +1,33 @@
+{
+  "key": "space_exploration_costs_115_space_agency_budgets",
+  "title": "Space Agency Budgets",
+  "unit": "dollars",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "NASA",
+      "value": 23.0,
+      "period": "2020"
+    },
+    {
+      "label": "ESA",
+      "value": 5.0,
+      "period": "2019"
+    },
+    {
+      "label": "Roscomos",
+      "value": 2.0,
+      "period": "2018"
+    }
+  ]
+}

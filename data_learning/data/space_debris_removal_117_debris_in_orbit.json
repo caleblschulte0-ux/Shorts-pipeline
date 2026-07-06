@@ -1,0 +1,28 @@
+{
+  "key": "space_debris_removal_117_debris_in_orbit",
+  "title": "Debris in Orbit",
+  "unit": "thousands",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Total Debris",
+      "value": 500000.0,
+      "period": "2020"
+    },
+    {
+      "label": "Large Debris",
+      "value": 20000.0,
+      "period": "2019"
+    }
+  ]
+}

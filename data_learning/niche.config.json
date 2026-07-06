@@ -8490,6 +8490,305 @@
         }
       ],
       "question": "What's the most distinct smell you can remember?"
+    },
+    {
+      "slug": "space-exploration-costs-115",
+      "title": "Space Exploration Costs",
+      "hook": "The price of reaching the stars is skyrocketing!",
+      "closing": "But the discoveries we make are priceless!",
+      "hashtags": [
+        "spaceexploration",
+        "nasa",
+        "spaceagency",
+        "spacecosts",
+        "spaceworthit"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_exploration_costs_115_space_agency_budgets",
+          "params": {
+            "file": "space_exploration_costs_115_space_agency_budgets.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SPACE AGENCY BUDGE",
+          "topic": "Space Agency Budgets",
+          "say": "The top three space agencies by budget are NASA with $23 billion, ESA with $5 billion, and Roscomos with $2 billion!",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "nasa",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "esa",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "roscomos",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "space_exploration_costs_115_mission_costs",
+          "params": {
+            "file": "space_exploration_costs_115_mission_costs.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 MISSION COSTS",
+          "topic": "Mission Costs",
+          "say": "The cost of a single mission to Mars can range from $500 million to $2 billion, depending on the agency and the scope of the mission!",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_exploration_costs_115_space_exploration_ro",
+          "params": {
+            "file": "space_exploration_costs_115_space_exploration_ro.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SPACE EXPLORATION ",
+          "topic": "Space Exploration ROI",
+          "say": "For every dollar invested in space exploration, we get a return of $7 to $14 in economic benefits, new technologies, and scientific discoveries!",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "Is space exploration worth the cost?"
+    },
+    {
+      "slug": "wildfire-season-length",
+      "title": "Wildfire Season Length",
+      "hook": "What's behind the rising flames?",
+      "closing": "The wildfire season is now a year-round threat",
+      "hashtags": [
+        "wildfires",
+        "climatechange",
+        "sustainability",
+        "environment"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "wildfire_season_length_longest_fire_seasons",
+          "params": {
+            "file": "wildfire_season_length_longest_fire_seasons.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LONGEST FIRE SEASO",
+          "topic": "Longest Fire Seasons",
+          "say": "The wildfire season in Australia now lasts 7 years, in the US it's 6 years, and in Canada it's 5 years",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "wildfire_season_length_fire_prone_regions",
+          "params": {
+            "file": "wildfire_season_length_fire_prone_regions.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 FIRE-PRONE REGIONS",
+          "topic": "Fire-Prone Regions",
+          "say": "The top 3 most fire-prone regions are California, Australia's New South Wales, and Canada's British Columbia",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "map pin",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "map pin",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "map pin",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "wildfire_season_length_wildfire_increase",
+          "params": {
+            "file": "wildfire_season_length_wildfire_increase.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 WILDFIRE INCREASE",
+          "topic": "Wildfire Increase",
+          "say": "Wildfires have increased by 25% in the last decade, and are expected to rise another 30% by 2030",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "How can we mitigate the impact of wildfires?"
+    },
+    {
+      "slug": "space-debris-removal-117",
+      "title": "Space Debris Removal",
+      "hook": "The final frontier is getting crowded",
+      "closing": "Removing space debris is crucial for future space exploration",
+      "hashtags": [
+        "spacedebris",
+        "spaceexploration",
+        "sustainability"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_debris_removal_117_debris_in_orbit",
+          "params": {
+            "file": "space_debris_removal_117_debris_in_orbit.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DEBRIS IN ORBIT",
+          "topic": "Debris in Orbit",
+          "say": "There are over 500,000 pieces of debris in Earth's orbit, with 20,000 of them being larger than a softball",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "orbit_group",
+                "region": "full"
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "space_debris_removal_117_debris_removal_methods",
+          "params": {
+            "file": "space_debris_removal_117_debris_removal_methods.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 DEBRIS REMOVAL MET",
+          "topic": "Debris Removal Methods",
+          "say": "The top 3 debris removal methods are robotic arms, nets, and harpoons",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "robot arm",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "net",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "harpoon",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "space_debris_removal_117_debris_removal_cost",
+          "params": {
+            "file": "space_debris_removal_117_debris_removal_cost.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 DEBRIS REMOVAL COS",
+          "topic": "Debris Removal Cost",
+          "say": "Removing space debris is estimated to cost over $10 billion, with costs expected to rise to $50 billion by 2030",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "dollar bill",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 1000000.0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "How can we effectively remove space debris?"
     }
   ],
   "videos": [

@@ -1,0 +1,33 @@
+{
+  "key": "space_debris_removal_117_debris_removal_methods",
+  "title": "Debris Removal Methods",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Robotic Arms",
+      "value": 1.0,
+      "period": "2020"
+    },
+    {
+      "label": "Nets",
+      "value": 2.0,
+      "period": "2019"
+    },
+    {
+      "label": "Harpoons",
+      "value": 3.0,
+      "period": "2018"
+    }
+  ]
+}

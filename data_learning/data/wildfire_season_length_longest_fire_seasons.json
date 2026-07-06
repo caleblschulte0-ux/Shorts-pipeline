@@ -1,0 +1,33 @@
+{
+  "key": "wildfire_season_length_longest_fire_seasons",
+  "title": "Longest Fire Seasons",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Australia",
+      "value": 7.0,
+      "period": "2020"
+    },
+    {
+      "label": "US",
+      "value": 6.0,
+      "period": "2019"
+    },
+    {
+      "label": "Canada",
+      "value": 5.0,
+      "period": "2018"
+    }
+  ]
+}
