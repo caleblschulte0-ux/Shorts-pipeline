@@ -87,6 +87,59 @@ stars. Make it fit THIS topic.
 
 ---
 
+## RETENTION DOCTRINE — every second must earn the next second
+
+The platforms rank on view-vs-swipe and watch-through, not on pretty final
+frames. You are a RETENTION engine first, a frame engine second.
+
+**First second.** The opening frame + first spoken clause must create a reason
+not to swipe: a curiosity gap, an expected-winner-about-to-lose, a visual
+already in motion. Never open on a slow build or an empty layout.
+
+**Motion density.** A premium short is never static:
+- something visually meaningful changes at least every ~1 second (fill level,
+  scale, position, count, or context — if none changed, you made dead time);
+- a harder pattern interrupt every 3–5 seconds (new layout, reveal, re-rank);
+- ONE signature mechanic per video that viewers remember afterward;
+- the ending either loops cleanly into the hook or lands abruptly enough that
+  a replay feels natural.
+Animate everything off `reveal` — a mechanic whose frame at 50% looks like its
+frame at 100% is coasting; stagger events across the build instead.
+
+**Three-layer frames.** Foreground: one dominant subject or metric reveal.
+Midground: the mechanic doing the explanatory work. Background: subtle
+texture/depth so the frame feels alive without competing. Clarity + depth +
+motion discipline beats complexity.
+
+**Story arc.** Hook (curiosity promise) → beat 1: show the expected winner
+LOSING visually → beat 2: the surprise contender via the signature mechanic →
+beat 3: the most extreme case or strangest consequence → the comment question
+only AFTER the last visual payoff.
+
+**Search legibility.** Titles, hooks, and topic labels should contain the
+exact noun phrase a person would search ("loudest animal on earth", "hottest
+planet"), not only clever phrasing. Group topics into repeatable, searchable
+FRANCHISES ("World's Most…", "The Animal That Beats…") — story configs may
+carry optional `search_phrase`, `franchise`, and `hook_variants` fields; use
+them, and rotate hook variants across re-posts to learn what holds.
+
+**Timeline QC (mandatory).** Run `render_frames.py <slugs> --motion` and
+review the 25/50/75/100% frames per segment. Ask, per segment: did something
+meaningful change between each sample? Would a viewer feel PROGRESS at every
+step? Then the five retention questions:
+1. Do the first ~1.0s give a reason not to swipe?
+2. Does something visually change at least every second?
+3. Is the bottom strip helping this segment or stealing attention?
+4. Does the video read correctly MUTED (burned-in text carries the numbers)?
+5. Would it still read if platform UI covered the bottom of the screen?
+
+**Analytics buckets** (once retention data is available): high view + high
+retention → clone the format; high view + weak retention → hook worked, body
+failed; low view + high retention → packaging failed, keep the core; low +
+low → kill or radically rewrite. Optimize in this order: chose-to-watch →
+kept-watching → searched/shared → commented/subscribed. Raw views alone are
+the weakest signal.
+
 ## MEDIA JUDGMENT — real photo vs AI image (operator's taste, verbatim intent)
 
 Both are welcome; pick per context, by what LOOKS BEST:
