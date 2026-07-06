@@ -1,0 +1,33 @@
+{
+  "key": "deep_sea_creatures_size_sea_creature_length",
+  "title": "Sea Creature Length",
+  "unit": "meters",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2015",
+      "value": 5.0,
+      "period": "2015"
+    },
+    {
+      "label": "2018",
+      "value": 10.0,
+      "period": "2018"
+    },
+    {
+      "label": "2020",
+      "value": 20.0,
+      "period": "2020"
+    }
+  ]
+}

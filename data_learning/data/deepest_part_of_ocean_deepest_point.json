@@ -1,0 +1,28 @@
+{
+  "key": "deepest_part_of_ocean_deepest_point",
+  "title": "Deepest Point",
+  "unit": "feet",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Deepest Point",
+      "value": 36000.0,
+      "period": "2022"
+    },
+    {
+      "label": "Mountain Height",
+      "value": 5000.0,
+      "period": "2022"
+    }
+  ]
+}

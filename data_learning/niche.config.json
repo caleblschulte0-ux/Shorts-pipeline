@@ -8789,6 +8789,306 @@
         }
       ],
       "question": "How can we effectively remove space debris?"
+    },
+    {
+      "slug": "deep-sea-creatures-size",
+      "title": "Deep Sea Creatures Size",
+      "hook": "The ocean's darkest depths are home to gargantuan creatures",
+      "closing": "The deep sea is full of mysteries and gigantic beings",
+      "hashtags": [
+        "deepsea",
+        "oceanmysteries",
+        "giantseacreatures",
+        "marinebiology",
+        "wildlife"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "deep_sea_creatures_size_largest_sea_creatures",
+          "params": {
+            "file": "deep_sea_creatures_size_largest_sea_creatures.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST SEA CREATU",
+          "topic": "Largest Sea Creatures",
+          "say": "Meet the massive squid, the huge shark, and the enormous octopus",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "squid",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "shark",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "octopus",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "deep_sea_creatures_size_deep_sea_fish_size",
+          "params": {
+            "file": "deep_sea_creatures_size_deep_sea_fish_size.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 DEEP SEA FISH SIZE",
+          "topic": "Deep Sea Fish Size",
+          "say": "The deep sea is home to fish that are stacked as high as 30 times the size of a regular fish",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "fish",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 5.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "deep_sea_creatures_size_sea_creature_length",
+          "params": {
+            "file": "deep_sea_creatures_size_sea_creature_length.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SEA CREATURE LENGT",
+          "topic": "Sea Creature Length",
+          "say": "The length of sea creatures has been increasing over the years, with some reaching up to 20 meters",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most fascinating deep-sea creature to you?"
+    },
+    {
+      "slug": "human-nose-smell",
+      "title": "Human Nose Smell",
+      "hook": "Your nose can detect an astonishing number of scents",
+      "closing": "The human sense of smell is incredibly powerful and complex",
+      "hashtags": [
+        "humansmell",
+        "nosesense",
+        "scentdetection",
+        "olfactorysystem",
+        "brainpower"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "human_nose_smell_smell_detection",
+          "params": {
+            "file": "human_nose_smell_smell_detection.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SMELL DETECTION",
+          "topic": "Smell Detection",
+          "say": "The human nose can detect a staggering number of different scents, filling up the nose with smells",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "nose",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "human_nose_smell_smell_types",
+          "params": {
+            "file": "human_nose_smell_smell_types.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 SMELL TYPES",
+          "topic": "Smell Types",
+          "say": "From the sweet smell of flowers to the pungent smell of garbage, our noses can detect a wide range of scents",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "flower",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "coffee",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "garbage",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "human_nose_smell_smell_memory",
+          "params": {
+            "file": "human_nose_smell_smell_memory.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SMELL MEMORY",
+          "topic": "Smell Memory",
+          "say": "Our sense of smell can evoke powerful memories that last for years, with some smells triggering memories from up to 20 years ago",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most distinct smell you've ever encountered?"
+    },
+    {
+      "slug": "deepest-part-of-ocean",
+      "title": "Deepest Part of Ocean",
+      "hook": "You won't believe what's at the bottom of the ocean!",
+      "closing": "The deepest part of the ocean is a mysterious world!",
+      "hashtags": [
+        "ocean",
+        "deepsea",
+        "mystery",
+        "nature",
+        "wildlife"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "deepest_part_of_ocean_deepest_point",
+          "params": {
+            "file": "deepest_part_of_ocean_deepest_point.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DEEPEST POINT",
+          "topic": "Deepest Point",
+          "say": "The deepest point in the ocean is as deep as 7 mountains stacked on top of each other!",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "mountain",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "deepest_part_of_ocean_ocean_depth",
+          "params": {
+            "file": "deepest_part_of_ocean_ocean_depth.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 OCEAN DEPTH",
+          "topic": "Ocean Depth",
+          "say": "The ocean depth increases by 1000 feet every 10 miles!",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "bar",
+                "region": "center",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "deepest_part_of_ocean_deep_sea_creatures",
+          "params": {
+            "file": "deepest_part_of_ocean_deep_sea_creatures.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 DEEP SEA CREATURES",
+          "topic": "Deep Sea Creatures",
+          "say": "The deepest part of the ocean is home to the largest anglerfish and giant squid!",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "anglerfish",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "giant squid",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What do you think could be living at the bottom of the ocean?"
     }
   ],
   "videos": [
