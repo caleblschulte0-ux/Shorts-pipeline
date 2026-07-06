@@ -91,6 +91,15 @@ def _color_for(label, insight):
 # --------------------------------------------------------------------------- #
 # Validation + cost
 # --------------------------------------------------------------------------- #
+# Abstract chart shapes we REFUSE to render as a depiction — a bare bar / bubble
+# / lone number is exactly the "lazy" look the channel bans. A scene must show
+# the SUBJECT (a real photo / cut-out) and depict the value THROUGH it, or be a
+# genuine holistic time depiction. These types are rejected outright.
+_BANNED_TYPES = {"bar", "bubble"}
+# Elements that count as a real, subject-bearing depiction.
+_RICH_TYPES = _IMAGE_TYPES | _HOLISTIC
+
+
 def validate(spec, insight) -> bool:
     if not isinstance(spec, dict):
         return False
@@ -101,7 +110,7 @@ def validate(spec, insight) -> bool:
         if not isinstance(el, dict):
             return False
         t = el.get("type")
-        if t not in _TYPES:
+        if t not in _TYPES or t in _BANNED_TYPES:
             return False
         reg = el.get("region", "center")
         if reg not in _VALID_REGIONS:
@@ -116,6 +125,12 @@ def validate(spec, insight) -> bool:
         if t == "stack" and not charts._num_or_none((el.get("data") or {})
                                                     .get("per_value")):
             return False
+    # QUALITY GATE: a scene must SHOW something — at least one image/subject
+    # element or a holistic time depiction. An abstract-only scene (just a
+    # number/caption, or the old bar) is rejected so the director re-picks an
+    # image-first depiction instead of shipping the lazy look.
+    if not any(e.get("type") in _RICH_TYPES for e in els):
+        return False
     return True
 
 
@@ -610,8 +625,9 @@ def globe_subject(insight) -> str:
     topic = insight.topic or ""
     if _GEO_WORDS.search(topic):
         return "planet Earth, whole globe seen from space"
-    noun = re.sub(r"\b(share|percent|of|the|by|in|rate|amount|total)\b", " ",
-                  topic, flags=re.I)
+    noun = re.sub(r"\b(share|percent|of|the|by|in|rate|amount|total|increase|"
+                  r"growth|change|rise|decline|drop|length|duration|level|"
+                  r"season|per|vs|and)\b", " ", topic, flags=re.I)
     noun = re.sub(r"\s+", " ", noun).strip()
     return noun or "a glass jar"
 
