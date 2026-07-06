@@ -51,12 +51,16 @@ def test_director_no_repeat_and_has_novelty():
                 items=[("A", 80 - i), ("B", 40), ("C", 20)]) for i in range(3)]
     viz_director.assign(inss, seed=9)
     kinds = [i.kind for i in inss]
-    # No depiction repeats within a video (maps/trend are allowed to repeat).
-    non_repeatable = [k for k in kinds
-                      if not (viz_director.KINDS.get(k, {}).get("place")
-                              or viz_director.KINDS.get(k, {}).get("time"))]
+    # Lazy SHAPE depictions must not repeat; maps/trend/real-photo depictions may
+    # (all of those are good, so repeating them beats degrading to junk).
+    def _may_repeat(k):
+        m = viz_director.KINDS.get(k, {})
+        return m.get("place") or m.get("time") or m.get("repeatable")
+    non_repeatable = [k for k in kinds if not _may_repeat(k)]
     assert len(non_repeatable) == len(set(non_repeatable)), kinds
     assert any(viz_director.KINDS.get(k, {}).get("novelty") for k in kinds), kinds
+    # And never a lazy bare/dots depiction for a real ranking.
+    assert not any(k in ("callouts", "bignum") for k in kinds), kinds
 
 
 def test_fallback_values_are_depictions():

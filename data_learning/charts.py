@@ -46,6 +46,7 @@ def _fullframe(kind: str):
 # area-encodes value, always renders. NEVER map anything to callouts/bignum.
 FALLBACK = {
     "scene": "diorama",              # an invented scene degrades to the diorama
+    "race": "diorama",               # a race with no images -> illustrated ranking
     "diorama": "bubbles",
     "pictorial_race": "rank",        # rounded bars — length still depicts
     "scale_stack": "pictograph",
@@ -1301,6 +1302,114 @@ def _num_or_none(x):
         return float(str(x).replace(",", "").strip())
     except (TypeError, ValueError):
         return None
+
+
+_WATER_RE = re.compile(r"\b(swim|swimming|water|aquatic|fish|sea|ocean|marine|"
+                       r"underwater|river|dive|diving)\b", re.I)
+
+
+@_fullframe("race")
+def _render_race(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
+    """A RACE: each contender is a real photo riding a lane, driven RIGHT to a
+    finish position proportional to its value (fastest = furthest), on a themed
+    track (a highway for land, water for swimming). The 'show the thing + make it
+    move' viz for speeds/records. Returns None -> fallback if no images."""
+    from PIL import Image, ImageDraw
+    from . import scene_media, viz_scene
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    items = sorted(_ordered_items(insight), key=lambda p: -p.value)[:4]
+    vals = [p.value for p in items]
+    vmax = max(vals) if vals else 1.0
+    water = bool(_WATER_RE.search((insight.topic or "")
+                 + " " + " ".join(p.label for p in items)))
+    # Load a real photo per contender (fallback to the illustrated cut-out).
+    imgs = []
+    for i, p in enumerate(items):
+        import hashlib
+        sh = hashlib.sha1((p.label or "").lower().encode()).hexdigest()[:6]
+        pth = scene_media.subject_photo(p.label, slug, f"race{i}-{sh}")
+        im = None
+        if pth:
+            try:
+                im = Image.open(pth).convert("RGB")
+            except Exception:  # noqa: BLE001
+                im = None
+        if im is None:
+            cp = scene_media.subject_cutout(p.label, slug, f"racec{i}")
+            if cp:
+                try:
+                    im = Image.open(cp).convert("RGBA")
+                except Exception:  # noqa: BLE001
+                    im = None
+        imgs.append(im)
+    if not any(im is not None for im in imgs):
+        return None
+    n = len(items)
+    RTOP, RBOT = 150, 1170
+    lane_h = (RBOT - RTOP) / n
+    x0, x1 = 70, W - 70
+    title_font = _pil_font(52)
+    num_font = _pil_font(72)
+    lab_font = _pil_font(40)
+    span = 1.0 / n
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        r = 1.0 - (1.0 - r) ** 2
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        title = (insight.topic or "").strip()
+        tb = d.textbbox((0, 0), title, font=title_font)
+        d.text(((W - (tb[2] - tb[0])) // 2, 60), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+        for i, (p, im) in enumerate(zip(items, imgs)):
+            lcy = int(RTOP + i * lane_h + lane_h / 2)
+            # ---- themed track ----
+            if water:
+                d.rectangle([x0, lcy - int(lane_h * 0.42), x1, lcy + int(lane_h * 0.42)],
+                            fill=(14, 60, 104, 200))
+                for wx in range(x0, x1, 60):
+                    d.line([(wx, lcy + 8), (wx + 30, lcy - 6)],
+                           fill=(120, 180, 220, 90), width=4)
+            else:
+                d.rectangle([x0, lcy - int(lane_h * 0.42), x1, lcy + int(lane_h * 0.42)],
+                            fill=(34, 34, 40, 220))
+                for dx in range(x0, x1, 90):        # dashed centre line
+                    d.line([(dx, lcy), (dx + 46, lcy)], fill=(240, 210, 60, 200), width=6)
+            # ---- contender drives to its finish position ----
+            lr = max(0.0, min(1.0, (r - i * span) / (span * 0.85)))
+            lr = 1.0 - (1.0 - lr) ** 2
+            ch = int(lane_h * 0.82)
+            frac = vals[i] / vmax if vmax else 1.0
+            reach = (x1 - x0 - int(ch * 1.4))
+            xt = x0 + int(frac * reach)
+            cx = x0 + int(lr * (xt - x0))
+            if im is not None:
+                if im.mode == "RGB":              # real photo -> rounded chip
+                    cw = int(ch * 1.3)
+                    chip = viz_scene._cover_round(im, cw, ch, radius=24)
+                else:                              # cut-out -> as-is
+                    asp = im.width / im.height
+                    cw = int(ch * asp)
+                    chip = im.resize((max(1, cw), max(1, ch)))
+                if lr < 1.0:
+                    chip.putalpha(chip.split()[3].point(lambda v: int(v * min(1.0, lr + 0.2))))
+                canvas.alpha_composite(chip, (cx, int(lcy - ch / 2)))
+                tipx = cx + cw
+            else:
+                tipx = cx
+            # number rides just ahead of the racer as it settles
+            na = max(0.0, min(1.0, (lr - 0.5) / 0.5))
+            num = _vfmt(p.value)
+            d.text((min(tipx + 18, x1 - 120), lcy - 40), num, font=num_font,
+                   fill=_rgba(HIGHLIGHT if p.label == insight.highlight_label
+                              else ACCENT, int(255 * na)),
+                   stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
+            d.text((x0 + 6, int(lcy - lane_h / 2) + 4), p.label, font=lab_font,
+                   fill=(248, 250, 252, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
 
 
 def _sci(v: float) -> str:
