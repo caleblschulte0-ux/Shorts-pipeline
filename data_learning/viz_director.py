@@ -395,7 +395,10 @@ def _invent_mechanic(ins):
 
 
 # --- Assignment --------------------------------------------------------------
-def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
+# Budget raised 5 -> 12: rankings now show up to 5 REAL photos per segment
+# (cheap cached Wikimedia fetches, unlike AI generations), so a single ranking
+# must not starve the rest of the video into lazy fallbacks.
+def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     """Set each insight's final ``kind`` (depiction). Honours a valid authored
     concept; otherwise best-fit by shape. Enforces: never bare numbers, no
     repeated depiction within a video (maps/trend may repeat), >=1 novelty,
@@ -447,13 +450,21 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
                 inss[i].scene = invented
 
     # Pass 0 — honour a valid SCENE (the render-time kit invention above, or a
-    # previously-authored one). Bespoke scenes may repeat across segments (each is
-    # distinct by construction), so "scene" is not added to `used`; only the image
-    # budget bounds them.
+    # previously-authored one). A baked PROCEDURAL MECHANIC (the brain writes
+    # {mechanic, code} into the config) is honoured here too — dry-rendered
+    # first so a broken one falls through instead of shipping. Bespoke scenes
+    # may repeat across segments (each is distinct by construction), so "scene"
+    # is not added to `used`; only the image budget bounds them.
     for i in order:
         if chosen[i]:
             continue
         sc = getattr(inss[i], "scene", None)
+        if isinstance(sc, dict) and ("code" in sc or "mechanic" in sc):
+            if viz_scene.validate_mechanic(sc) and images + 2 <= image_budget \
+                    and viz_scene.mechanic_dry_ok(sc, inss[i]):
+                chosen[i] = "mechanic"
+                images += 2
+            continue
         if sc and viz_scene.validate(sc, inss[i]):
             cost = viz_scene.image_cost(sc)
             if images + cost <= image_budget:

@@ -9422,25 +9422,10 @@
      "topic": "Vs a Jet Engine",
      "say": "A jet engine roars at 150 dB — a sperm whale is far louder!",
      "scene": {
-      "title": true,
-      "elements": [
-       {
-        "type": "object",
-        "region": "ground-row",
-        "subject": "Sperm Whale",
-        "data": {
-         "value_from": "item:0"
-        }
-       },
-       {
-        "type": "object",
-        "region": "ground-row",
-        "subject": "Jet Engine",
-        "data": {
-         "value_from": "item:1"
-        }
-       }
-      ]
+      "mechanic": "shockwave-duel",
+      "concept": "two subjects face off, each emitting expanding sound rings whose count and reach scale with its decibel value",
+      "code": "\ncy = 600\nwimg = images.get(labels[0])\njimg = images.get(labels[1])\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    col = HIGHLIGHT if i == 0 else ACCENT\n    rings = int(clamp(v / vmax) * 6.0 * reveal) + 1\n    for k in range(rings):\n        rr = 60 + k * 52\n        a = int(190.0 * (1.0 - k / (rings + 1.0)) * reveal)\n        d.ellipse([cxs - rr, cy - rr, cxs + rr, cy + rr],\n                  outline=rgba(col, a), width=6)\nimg = wimg\nfor i in range(2):\n    img = wimg if i == 0 else jimg\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    if img is not None:\n        asp = img.width / img.height\n        w = 330\n        h = int(w / asp)\n        if h > 300:\n            h = 300\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    na = clamp((reveal - 0.4) / 0.6)\n    text(str(int(values[i])) + ' dB', cxs, cy - 330, size=70, color=col, center=True)\n    text(labels[i], cxs, cy + 210, size=40, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('1.5x LOUDER', (RX0 + RX1) // 2, 950, size=54, color=WARN, center=True)\n",
+      "title": true
      },
      "ascending": false
     },
