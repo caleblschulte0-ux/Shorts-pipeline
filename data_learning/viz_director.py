@@ -46,11 +46,12 @@ KINDS = {
     "comparison":     {"image": False, "novelty": False},   # versus columns
     # A canonical SCENE the director attaches (resolves to kind "scene"):
     "fill_scene":     {"image": True,  "novelty": True},     # subject filled to %
+    "rank_scene":     {"image": True,  "novelty": False},    # real photos per item
     "scene":          {"image": True,  "novelty": True},     # an authored scene
 }
 
 # Pseudo-kinds that resolve to an attached `ins.scene` (kind becomes "scene").
-_SCENE_BUILDERS = {"fill_scene": "fill_scene"}   # -> viz_scene.<builder>(ins)
+_SCENE_BUILDERS = {"fill_scene": "fill_scene", "rank_scene": "object_scene"}
 
 # Depictions that are always available (pure matplotlib, no image gen, and their
 # renderer already exists). Used as guaranteed fallbacks + the terminal choice.
@@ -130,14 +131,15 @@ def _candidates(ins, f: dict) -> list[str]:
     # Shares / part-to-whole -> a filled SUBJECT (globe), not a grid.
     if f["is_share"]:
         ranked += ["fill_scene", "waffle_grid", "share"]
-    # One value dwarfs the rest -> a hero depiction.
+    # One value dwarfs the rest -> real photos (or a hero illustration).
     if f["dominance"] >= 2.0:
-        ranked += ["diorama", "fill_scene"]
+        ranked += ["rank_scene", "diorama", "fill_scene"]
     # Single shock stat -> fill a themed subject.
     if f["n"] <= 2:
         ranked += ["fill_scene", "diorama", "bubbles"]
-    # General ranking / comparison -> illustrated objects (not a bar race).
-    ranked += ["diorama", "pictograph", "bubbles"]
+    # General ranking / comparison -> REAL PHOTOS of each thing (big rows),
+    # then illustrated objects, then simple shapes.
+    ranked += ["rank_scene", "diorama", "pictograph", "bubbles"]
     # De-dup preserving order, keep only renderable kinds.
     seen, out = set(), []
     for k in ranked:

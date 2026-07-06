@@ -603,6 +603,18 @@ def fill_scene(insight) -> dict:
                           "data": {"value_from": "star"}, "anim": "fill"}]}
 
 
+def object_scene(insight) -> dict:
+    """A ranking of REAL THINGS: one `object` per item (its own label as the
+    photo subject) in a ground-row. render_scene turns this into big vertical
+    rows with a real photo of each thing — the 'show me what it looks like' viz."""
+    items = list(insight.items)[:5]
+    els = [{"type": "object", "region": "ground-row",
+            "subject": (p.label or "").strip(),
+            "data": {"value_from": f"item:{i}"}}
+           for i, p in enumerate(items)]
+    return {"title": True, "elements": els}
+
+
 def _load_cutout(subject, slug, tag):
     from . import scene_media
     from PIL import Image
