@@ -1,0 +1,26 @@
+{
+  "key": "loudest_animals_decibels_vs_jet",
+  "title": "Vs a Jet Engine",
+  "unit": "dB",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Sperm Whale",
+      "value": 230.0
+    },
+    {
+      "label": "Jet Engine",
+      "value": 150.0
+    }
+  ]
+}
