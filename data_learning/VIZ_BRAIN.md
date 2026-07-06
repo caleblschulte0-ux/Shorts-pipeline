@@ -205,6 +205,19 @@ fetch finds the right thing), re-render, re-look. Iterate until every frame
 passes. If a mechanic can't be made to look good in 2–3 attempts, replace it
 with a kit composition — a clean kit scene beats a janky invention.
 
+## TOPIC SIGNALS — the shared top-of-funnel scout
+
+`state/scouted_sources.json` is refreshed daily by the repo-wide scout: Google
+trending searches, yesterday's most-read Wikipedia articles, YouTube trending
+(overall + science/education/animals), upcoming holidays/observances, plus the
+older feeds. It is CHANNEL-AGNOSTIC — every channel in this repo reads the same
+pool and derives its OWN angle. This channel's rule: extract the underlying
+DATA story, never the news story. 4th of July coming -> firework costs, sizes,
+physics (not any specific event). A trending animal -> its records and
+extremes. A most-read article -> the numbers that make it fascinating. Prefer
+topics with demonstrated demand over pure invention; skip signals with no
+honest data angle.
+
 ## Learn from PERFORMANCE
 
 `state/analytics_explainer/` holds per-video view stats; the posted log
