@@ -280,6 +280,55 @@ def subject_cutout(subject: str, slug: str, tag: str,
     return dest
 
 
+PHOTO_DIR = REPO / "state" / "subject_photos"
+
+
+def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
+                  cache_dir: Path = PHOTO_DIR) -> Path | None:
+    """A REAL photo of `subject` pulled off the internet (Wikipedia / Wikimedia
+    Commons via topic_media), downloaded + cached. This is what viewers want —
+    an actual picture of the thing being discussed, not an illustration. Returns
+    a local image Path, or None if nothing relevant was found."""
+    import shutil
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    safe = "".join(c if c.isalnum() or c in "-_" else "-" for c in f"{slug}__{tag}")
+    dest = cache_dir / f"{safe}.jpg"
+    if dest.exists() and dest.stat().st_size > 2048:
+        return dest
+    if not (subject or "").strip():
+        return None
+    try:
+        import topic_media
+        import entity_media
+    except Exception:  # noqa: BLE001
+        return None
+    # Try the full phrase first, then progressively simpler queries.
+    queries, seen = [], set()
+    for q in (subject, context, " ".join(subject.split()[:3])):
+        q = (q or "").strip()
+        if q and q.lower() not in seen:
+            seen.add(q.lower())
+            queries.append(q)
+    for q in queries:
+        try:
+            urls = topic_media.search(q, context) or []
+        except Exception:  # noqa: BLE001
+            continue
+        for url in urls[:6]:
+            try:
+                if not entity_media.url_is_image(url):
+                    continue
+                p = hook_media._download(url, cache_dir)
+                if p and Path(p).stat().st_size > 2048:
+                    if Path(p) != dest:
+                        shutil.copyfile(p, dest)
+                    print(f"[scene] subject photo OK ({q}) -> {dest.name}", flush=True)
+                    return dest
+            except Exception:  # noqa: BLE001
+                continue
+    return None
+
+
 def fetch_hook_image(story, *, cache_dir: Path = CACHE_DIR) -> Path | None:
     """AI-first cinematic hook image for a story; stock then designed fallback."""
     if getattr(story, "hook_image", None) is False:

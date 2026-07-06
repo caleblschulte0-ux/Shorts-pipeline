@@ -62,3 +62,5 @@ state/icons/
 state/cutouts/
 # Local viz validation renders (throwaway PNGs from layout iteration).
 scratchpad/
+# real subject photos downloaded on demand (Wikimedia); binary, regenerated in CI
+state/subject_photos/
