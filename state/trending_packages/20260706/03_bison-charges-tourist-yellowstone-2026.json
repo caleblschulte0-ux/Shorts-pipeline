@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "bison-charges-tourist-yellowstone-2026",
+  "title": "A Tourist Got Way Too Close to a Bison",
+  "hashtags": [
+    "bison",
+    "yellowstone",
+    "tourist",
+    "wildlife",
+    "charge",
+    "nature",
+    "wild",
+    "viral",
+    "animals",
+    "danger",
+    "fyp",
+    "news"
+  ],
+  "script": "A tourist walked way too close to a wild bison for a photo, and it did not end well. The animal, which can weigh a ton and run three times faster than a person, lowered its head and charged in a blur. Bison look slow and calm, but they injure more people in national parks than any other animal, including bears. Rangers say to stay at least seventy-five feet back, but every year someone ignores it for a selfie. This time the tourist got tossed into the air and got lucky to walk away with only bruises. So why do people keep underestimating them?",
+  "shots": [
+    {
+      "phrase": "walked way too close to a wild bison",
+      "query": "american bison",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+    },
+    {
+      "phrase": "it did not end well",
+      "query": "bison closeup",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+    },
+    {
+      "phrase": "can weigh a ton and run three times faster than a person",
+      "query": "bison running",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "lowered its head and charged",
+      "query": "bison charging",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+    },
+    {
+      "phrase": "injure more people in national parks than any other animal",
+      "query": "bison herd",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "stay at least seventy-five feet back",
+      "query": "bison field",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+    },
+    {
+      "phrase": "tossed into the air",
+      "query": "yellowstone bison",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "keep underestimating them",
+      "query": "bison",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "way too close",
+      "text": "TOO CLOSE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "can weigh a ton",
+      "text": "1 TON",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "than any other animal",
+      "text": "#1 MOST DANGEROUS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "tossed into the air",
+      "text": "LAUNCHED",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "tense"
+}

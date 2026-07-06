@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "slug": "stromboli-volcano-erupts-2026",
+  "title": "A Volcano That's Been Erupting for 2,000 Years",
+  "hashtags": [
+    "volcano",
+    "stromboli",
+    "lava",
+    "eruption",
+    "italy",
+    "nature",
+    "geology",
+    "wild",
+    "science",
+    "viral",
+    "fyp",
+    "news"
+  ],
+  "script": "There's a volcano that has been erupting almost nonstop for over two thousand years, and people still live right next to it. It's called Stromboli, a small island off Italy, and it fires glowing chunks of lava into the sky every few minutes like clockwork. Sailors have used its constant glow as a natural lighthouse for centuries, calling it the lighthouse of the Mediterranean. Most eruptions are small, but every so often it lets out a big one that sends ash and rock raining down. The people who live there have simply learned to time their lives around a mountain that never sleeps. So why would anyone build a home on an active volcano?",
+  "shots": [
+    {
+      "phrase": "a volcano that has been erupting almost nonstop for over two thousand years",
+      "query": "volcano erupting",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+    },
+    {
+      "phrase": "people still live right next to it",
+      "query": "volcano island",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+    },
+    {
+      "phrase": "fires glowing chunks of lava into the sky",
+      "query": "lava eruption night",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+    },
+    {
+      "phrase": "every few minutes like clockwork",
+      "query": "volcano lava",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the lighthouse of the Mediterranean",
+      "query": "stromboli volcano",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+    },
+    {
+      "phrase": "ash and rock raining down",
+      "query": "volcanic ash",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a mountain that never sleeps",
+      "query": "volcano night",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+    },
+    {
+      "phrase": "build a home on an active volcano",
+      "query": "volcano",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "erupting almost nonstop for over two thousand years",
+      "text": "2,000 YEARS",
+      "color": "#ff6a00"
+    },
+    {
+      "phrase": "every few minutes like clockwork",
+      "text": "EVERY FEW MINUTES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "lighthouse of the Mediterranean",
+      "text": "NATURAL LIGHTHOUSE",
+      "color": "#30c0ff"
+    },
+    {
+      "phrase": "never sleeps",
+      "text": "NEVER SLEEPS",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "epic"
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "skydiver-parachute-fails-survives-2026",
+  "title": "His Parachute Failed at 12,000 Feet. He Lived.",
+  "hashtags": [
+    "skydiving",
+    "parachute",
+    "survived",
+    "extreme",
+    "freefall",
+    "crazy",
+    "viral",
+    "adrenaline",
+    "stunt",
+    "wild",
+    "fyp",
+    "news"
+  ],
+  "script": "A skydiver's parachute failed at twelve thousand feet, and somehow he survived the fall. When his main chute tangled, he had seconds to cut it away and deploy his reserve, but that one only half-opened. He hit the ground at highway speed, and by every rule of physics he should not have made it. But he landed in a soft muddy field that absorbed just enough of the impact, walking away with broken bones instead of worse. Skydivers train for total chute failure over and over, because the difference between living and dying is what you do in about ten seconds. So what would you actually do in free fall?",
+  "shots": [
+    {
+      "phrase": "A skydiver's parachute failed at twelve thousand feet",
+      "query": "skydiver falling",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+    },
+    {
+      "phrase": "somehow he survived the fall",
+      "query": "skydiving",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+    },
+    {
+      "phrase": "his main chute tangled",
+      "query": "parachute sky",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "that one only half-opened",
+      "query": "skydiver parachute",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+    },
+    {
+      "phrase": "hit the ground at highway speed",
+      "query": "skydiver ground",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "landed in a soft muddy field",
+      "query": "skydiving field",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+    },
+    {
+      "phrase": "the difference between living and dying is what you do in about ten seconds",
+      "query": "skydiver freefall",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "do in free fall",
+      "query": "skydiving",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "parachute failed at twelve thousand feet",
+      "text": "12,000 FEET",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "only half-opened",
+      "text": "HALF-OPENED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "hit the ground at highway speed",
+      "text": "HIGHWAY SPEED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "survived the fall",
+      "text": "HE LIVED",
+      "color": "#00e070"
+    }
+  ],
+  "music_vibe": "tense"
+}

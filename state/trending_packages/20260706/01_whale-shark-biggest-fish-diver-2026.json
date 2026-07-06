@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "whale-shark-biggest-fish-diver-2026",
+  "title": "A Diver Swam Next to the Biggest Fish on Earth",
+  "hashtags": [
+    "whaleshark",
+    "ocean",
+    "diver",
+    "biggestfish",
+    "marine",
+    "sea",
+    "wild",
+    "nature",
+    "viral",
+    "scuba",
+    "fyp",
+    "news"
+  ],
+  "script": "A diver swam right next to the biggest fish in the ocean, and it's the size of a school bus. It's a whale shark, and despite the name, it's completely harmless, gliding through the water with its mouth wide open. That mouth is nearly five feet across, but all it eats is tiny plankton, filtering thousands of gallons of water an hour. They can grow past forty feet long and live over a hundred years, making them one of the oldest, largest animals alive. Divers who see one describe it as swimming next to a living submarine. So how does something that huge survive on food that small?",
+  "shots": [
+    {
+      "phrase": "the biggest fish in the ocean",
+      "query": "whale shark",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+    },
+    {
+      "phrase": "the size of a school bus",
+      "query": "whale shark diver",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+    },
+    {
+      "phrase": "gliding through the water with its mouth wide open",
+      "query": "whale shark swimming",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "all it eats is tiny plankton",
+      "query": "whale shark mouth",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+    },
+    {
+      "phrase": "filtering thousands of gallons",
+      "query": "ocean plankton",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "past forty feet long and live over a hundred years",
+      "query": "giant whale shark",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+    },
+    {
+      "phrase": "swimming next to a living submarine",
+      "query": "scuba diver ocean",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "survive on food that small",
+      "query": "whale shark",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "the biggest fish in the ocean",
+      "text": "BIGGEST FISH ALIVE",
+      "color": "#30c0ff"
+    },
+    {
+      "phrase": "the size of a school bus",
+      "text": "SIZE OF A BUS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "completely harmless",
+      "text": "HARMLESS",
+      "color": "#00e070"
+    },
+    {
+      "phrase": "over a hundred years",
+      "text": "100+ YEARS OLD",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "epic"
+}
