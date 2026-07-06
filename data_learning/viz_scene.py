@@ -226,8 +226,20 @@ def draw_number(d, box, value, label, color, reveal, unit=""):
                fill=(248, 250, 252, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
 
 
+def _cover_round(photo, w, h, radius=28):
+    """Cover-crop a real photo to (w,h) with rounded corners -> RGBA."""
+    from PIL import Image, ImageDraw, ImageOps
+    w, h = max(1, int(w)), max(1, int(h))
+    im = ImageOps.fit(photo.convert("RGB"), (w, h), method=Image.LANCZOS)
+    im = im.convert("RGBA")
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], radius=radius, fill=255)
+    im.putalpha(mask)
+    return im
+
+
 def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
-                side=False):
+                side=False, photo=None):
     """A subject cut-out with its number + label. Two modes:
       * side=True  -> a full-width RANKING ROW: a BIG recognizable picture on the
         left, a big number + label on the right (rows stack to fill the frame).
@@ -241,8 +253,19 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
         rise = int((1.0 - reveal) * 40)
         cy = (by0 + by1) // 2 + rise
         ih = int(bh * 0.84)
-        img_cx = bx0 + int(bw * 0.02) + int(bw * 0.24)   # image centred in left ~48%
-        if cutout is not None:
+        if photo is not None:
+            # A REAL photo of the thing, framed as a rounded card filling the left.
+            iw = int(bw * 0.48)
+            card = _cover_round(photo, iw, ih, radius=30)
+            if reveal < 1.0:
+                card.putalpha(card.split()[3].point(lambda v: int(v * reveal)))
+            px = bx0 + int(bw * 0.03)
+            d.rounded_rectangle([px - 4, int(cy - ih / 2) - 4, px + iw + 4,
+                                 int(cy + ih / 2) + 4], radius=34,
+                                outline=_rgba(color, int(255 * reveal)), width=5)
+            canvas.alpha_composite(card, (px, int(cy - ih / 2)))
+        elif cutout is not None:
+            img_cx = bx0 + int(bw * 0.26)
             asp = cutout.width / cutout.height
             iw = int(ih * asp)
             iw_cap = int(bw * 0.46)
@@ -253,6 +276,7 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
                 im.putalpha(im.split()[3].point(lambda v: int(v * reveal)))
             canvas.alpha_composite(im, (int(img_cx - iw / 2), int(cy - ih / 2)))
         else:
+            img_cx = bx0 + int(bw * 0.26)
             iw = int(ih * 0.9)
             d.rounded_rectangle([img_cx - iw // 2, cy - ih // 2,
                                  img_cx + iw // 2, cy + ih // 2],
@@ -272,29 +296,41 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
         return {"value": float(value), "cx": float(nx + (nb[2] - nb[0]) / 2),
                 "cy": float(cy - (nb[3] - nb[1]) / 2), "w": 240.0, "h": 120.0}
     frac = 0.55 + 0.45 * (value / vmax if vmax else 1.0)
-    frac = 0.55 + 0.45 * (value / vmax if vmax else 1.0)
     avail_h = bh - 150                                 # room for number + label
-    if cutout is not None:
-        asp = cutout.width / cutout.height
-        oh = int(avail_h * frac)
-        ow = int(oh * asp)
-        if ow > bw:
-            ow, oh = bw, int(bw / asp)
-    else:
-        oh = int(avail_h * frac)
-        ow = int(oh * 0.9)
     cx = _cx(box)
     ground = by1 - 60
-    top = ground - oh + int((1.0 - reveal) * 60)
     a = int(255 * reveal)
-    if cutout is not None and ow > 0 and oh > 0:
-        im = cutout.resize((ow, oh))
+    if photo is not None:                              # real photo -> framed card
+        ph = int(avail_h * max(0.7, frac))
+        pw = int(min(bw * 0.94, ph * 1.35))
+        ph = int(pw / 1.35)
+        top = ground - ph + int((1.0 - reveal) * 60)
+        card = _cover_round(photo, pw, ph, radius=30)
         if reveal < 1.0:
-            im.putalpha(im.split()[3].point(lambda v: int(v * reveal)))
-        canvas.alpha_composite(im, (int(cx - ow / 2), int(top)))
+            card.putalpha(card.split()[3].point(lambda v: int(v * reveal)))
+        d.rounded_rectangle([cx - pw // 2 - 4, top - 4, cx + pw // 2 + 4, top + ph + 4],
+                            radius=34, outline=_rgba(color, a), width=5)
+        canvas.alpha_composite(card, (int(cx - pw / 2), int(top)))
+        oh = ph
     else:
-        d.rounded_rectangle([cx - ow // 2, top, cx + ow // 2, top + oh],
-                            radius=24, fill=_rgba(color, a))
+        if cutout is not None:
+            asp = cutout.width / cutout.height
+            oh = int(avail_h * frac)
+            ow = int(oh * asp)
+            if ow > bw:
+                ow, oh = bw, int(bw / asp)
+        else:
+            oh = int(avail_h * frac)
+            ow = int(oh * 0.9)
+        top = ground - oh + int((1.0 - reveal) * 60)
+        if cutout is not None and ow > 0 and oh > 0:
+            im = cutout.resize((ow, oh))
+            if reveal < 1.0:
+                im.putalpha(im.split()[3].point(lambda v: int(v * reveal)))
+            canvas.alpha_composite(im, (int(cx - ow / 2), int(top)))
+        else:
+            d.rounded_rectangle([cx - ow // 2, top, cx + ow // 2, top + oh],
+                                radius=24, fill=_rgba(color, a))
     na = max(0.0, min(1.0, (reveal - 0.45) / 0.55))
     nf, lf = _pil_font(60), _pil_font(36)
     num = _vfmt(value)
@@ -579,6 +615,19 @@ def _load_cutout(subject, slug, tag):
         return None
 
 
+def _load_photo(subject, slug, tag):
+    """A REAL internet photo of the subject (Wikipedia/Commons), as a PIL RGB."""
+    from . import scene_media
+    from PIL import Image
+    pp = scene_media.subject_photo(subject, slug, tag)
+    if not pp:
+        return None
+    try:
+        return Image.open(pp).convert("RGB")
+    except Exception:  # noqa: BLE001
+        return None
+
+
 @_fullframe("scene")
 def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     from PIL import Image, ImageDraw
@@ -598,17 +647,24 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                   and not rank_rows)
     # Pre-load cut-outs once (cached anyway) so we can bail to fallback if the
     # whole scene is image-only and every image failed.
-    cuts = {}
+    cuts, photos = {}, {}
     for i, el in enumerate(els):
-        if el.get("type") in _IMAGE_TYPES:
-            cuts[i] = _load_cutout(str(el.get("subject", "")), slug, f"s{i}")
-    # `object`/`stack` are only meaningful WITH a cut-out (their placeholder is a
-    # bare rectangle). If every element is one of those and all cut-outs failed,
-    # bail to a cleaner FALLBACK depiction. fill_object/bar/bubble/orbit/timeline
-    # all self-degrade, so a scene containing any of them still renders.
+        t = el.get("type")
+        subj = str(el.get("subject", ""))
+        # `object` prefers a REAL PHOTO of the thing (what viewers want to see);
+        # fill_object/stack need a transparent illustration to mask/tile.
+        if t == "object":
+            photos[i] = _load_photo(subj, slug, f"p{i}")
+            if photos[i] is None:
+                cuts[i] = _load_cutout(subj, slug, f"s{i}")
+        elif t in _IMAGE_TYPES:
+            cuts[i] = _load_cutout(subj, slug, f"s{i}")
+    # `object`/`stack` need SOME image (photo or cut-out). If every element is one
+    # of those and none produced an image, bail to a cleaner FALLBACK depiction.
     hard = {"object", "stack"}
     if els and all(e.get("type") in hard for e in els) \
-            and all(cuts.get(i) is None for i in range(len(els))):
+            and all(cuts.get(i) is None and photos.get(i) is None
+                    for i in range(len(els))):
         return None
     vmax = max((p.value for p in insight.items), default=1.0) or 1.0
     n = len(els)
@@ -656,7 +712,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                     an = draw_bubble(d, box, lv[1], lv[0], col, lr, vmax)
                 else:
                     an = draw_object(d, canvas, box, cuts.get(i), lv[1], lv[0],
-                                     col, lr, vmax, side=(i in side_set))
+                                     col, lr, vmax, side=(i in side_set),
+                                     photo=photos.get(i))
                 if f == frames and an:
                     anchors.append(an)
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
