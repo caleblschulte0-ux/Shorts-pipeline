@@ -84,14 +84,15 @@ SCENE_ELEMENTS = {
                    "region 'full'.",
     "timeline_axis": "a marker travels a time/number axis (ages, dates). "
                      "region 'full'.",
-    "bar": "a horizontal bar, length by value. `data.value_from`.",
-    "bubble": "a circle, area by value. `data.value_from`.",
-    "number": "a big count-up of one value. `data.value_from`.",
+    "number": "a big count-up — ONLY as an accent riding on top of an image "
+              "element, never alone. `data.value_from`.",
     "caption": "a short text line. `text`.",
 }
 _SCENE_TYPES = set(SCENE_ELEMENTS)
 _SCENE_IMAGE = {"object", "fill_object", "stack"}
-_SCENE_DATA = {"object", "fill_object", "stack", "number", "bar", "bubble"}
+# A real depiction shows the SUBJECT (image) or is a holistic time depiction.
+_SCENE_RICH = _SCENE_IMAGE | {"orbit_group", "timeline_axis"}
+_SCENE_DATA = {"object", "fill_object", "stack", "number"}
 _SCENE_REGIONS = {"full", "center", "hero", "left", "right", "top", "bottom",
                   "ground-row"} | {f"grid-{i}" for i in range(1, 5)}
 
@@ -205,10 +206,17 @@ def _user_prompt(cfg: dict, n: int) -> str:
         "HARD RULES:\n"
         "- NEVER just show numbers. Every segment DEPICTS its data (a scene, or a "
         "fallback viz). No bare-number option exists.\n"
-        "- Think like a pro: ages/dates -> a timeline_axis; a share/% -> fill a "
-        "relevant SUBJECT (a globe for Earth/water) with fill_object; one big "
-        "height/size -> a stack vs a hero object; a ranking of drawable things -> "
-        "a ground-row of `object`s; distances/counts -> orbit_group.\n"
+        "- SHOW THE THING. Every scene must contain at least one image element "
+        "(object / fill_object / stack) or a holistic time depiction "
+        "(timeline_axis / orbit_group). A scene that is only a number/caption is "
+        "REJECTED. There is NO bar and NO bubble — abstract chart shapes are "
+        "banned. Depict the value THROUGH the image: fill it, size it, position "
+        "it, repeat it, or move it.\n"
+        "- Think like a pro: ages/dates -> a timeline_axis; a share/% or a single "
+        "shock stat -> FILL a relevant real SUBJECT (a globe for Earth/water, a "
+        "forest on fire for wildfire, a lung for breathing) with fill_object; one "
+        "big height/size -> a stack vs a hero object; a ranking of drawable things "
+        "-> a ground-row of `object`s; distances/counts -> orbit_group.\n"
         "- VARY the depiction across the 3 segments; include at least ONE stand-out.\n"
         "- `subject` for image elements must be a CONCRETE drawable thing (animals, "
         "foods, vehicles, planets, landmarks, a globe) — never an abstraction.\n"
@@ -311,6 +319,12 @@ def _clean_scene(seg: dict, points: list) -> dict | None:
         if t == "caption":
             ne["text"] = str(el.get("text", "")).strip()
         clean.append(ne)
+    # QUALITY GATE: a scene must SHOW the subject (an image element) or be a
+    # holistic time depiction. Abstract-only scenes (just a number/caption) are
+    # rejected here so the segment gets an image-first depiction instead — this
+    # is what stops "invent a scene" collapsing into a lazy bar.
+    if not any(e["type"] in _SCENE_RICH for e in clean):
+        return None
     return {"title": bool(sc.get("title", True)), "elements": clean}
 
 

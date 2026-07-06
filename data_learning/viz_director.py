@@ -101,7 +101,8 @@ def _features(ins) -> dict:
         unit_class = "speed"
     else:
         unit_class = "count"
-    has_period = any(getattr(p, "period", None) for p in ins.items)
+    n_periods = sum(1 for p in ins.items if getattr(p, "period", None))
+    has_period = n_periods >= 2          # a real time series needs >=2 points
     place = charts.place_scope_for([p.label for p in ins.items])
     topic = ins.topic or ""
     return {
@@ -139,12 +140,15 @@ def _candidates(ins, f: dict) -> list[str]:
     # Shares / part-to-whole -> a filled SUBJECT (globe), not a grid.
     if f["is_share"]:
         ranked += ["fill_scene", "waffle_grid", "share"]
-    # One value dwarfs the rest -> real photos (or a hero illustration).
-    if f["dominance"] >= 2.0:
-        ranked += ["rank_scene", "diorama", "fill_scene"]
-    # Single shock stat -> fill a themed subject.
+    # Single shock stat (one or two values) -> FILL a real photo of the subject
+    # to the value. This is the image-first answer for a lone "30% increase" —
+    # never an abstract bar/trend. Checked before the ranking branch so a single
+    # value shows the TOPIC's photo, not a stray item label.
     if f["n"] <= 2:
         ranked += ["fill_scene", "diorama"]
+    # One value dwarfs the rest of a real (3+) list -> real photos of each.
+    elif f["dominance"] >= 2.0:
+        ranked += ["rank_scene", "diorama", "fill_scene"]
     # General ranking / comparison -> REAL PHOTOS of each thing (big rows), then
     # the illustrated diorama. NO lazy dots/bubbles for a real ranking.
     ranked += ["rank_scene", "diorama"]

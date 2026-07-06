@@ -50,6 +50,26 @@ def test_invalid_scene_falls_back_not_bare():
     assert viz_director.renderable(ins.kind)
 
 
+def test_abstract_only_scene_rejected():
+    """The lazy look we ban: a lone bar / bubble / number is NOT a valid scene,
+    so the director re-picks an image-first depiction instead of shipping it."""
+    for bad in (
+        {"elements": [{"type": "bar", "region": "center",
+                       "data": {"value_from": "star"}}]},
+        {"elements": [{"type": "bubble", "region": "center",
+                       "data": {"value_from": "star"}}]},
+        {"elements": [{"type": "number", "region": "center",
+                       "data": {"value_from": "star"}}]},
+    ):
+        ins = _mk(bad, items=[("Alpha", 30)])
+        assert not viz_scene.validate(bad, ins), bad
+    # A scene that SHOWS the subject is still valid.
+    good = {"elements": [{"type": "fill_object", "region": "center",
+                          "subject": "a forest fire",
+                          "data": {"value_from": "star"}}]}
+    assert viz_scene.validate(good, _mk(good, items=[("Alpha", 30)]))
+
+
 def test_image_cost_counts_cutout_elements():
     spec = {"elements": [
         {"type": "object", "region": "left", "subject": "x", "data": {"value_from": "star"}},
