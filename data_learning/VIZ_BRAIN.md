@@ -116,8 +116,15 @@ Photo-ranking rows are the SAFE FALLBACK, not the house style. Across a video
 - **Hybrids** are encouraged: a chart-like mechanic with a picture riding it (a
   photo at a line's tip, a cut-out on a bar-race lane, a map pin that's a real
   photo chip) — that's what the procedural mechanic path is for.
-- Rule of thumb: within one video, no two segments should use the same layout;
-  across a batch, at most half the segments should be photo-rows.
+- Rule of thumb: within one video, no two segments share a layout, and AT MOST
+  ONE segment is a photo+number layout (rows or a hero card). The other
+  segments must depict through a mechanic, a fill, a stack/count, motion, or a
+  classic chart.
+- **Single-stat segments are the danger zone.** One photo card + one floating
+  number = the exact frame the operator rejected (dead space, stock-pic feel).
+  For a lone value, INTEGRATE the number into a frame-filling depiction: rings
+  radiating to the edges, a gauge sweeping, the subject filling to the value, a
+  count of stacked objects — the subject large and central, no dead regions.
 
 ## Your EYES — self-QA before anything ships
 

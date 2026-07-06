@@ -805,10 +805,12 @@ _SAFE_BUILTINS = {k: __builtins__[k] if isinstance(__builtins__, dict)
                             "True", "False", "None") if True}
 # Tokens that must never appear in generated mechanic code (defense in depth on
 # top of the stripped builtins).
+# Function-like tokens are only dangerous when CALLED — require the paren so a
+# subject phrase like 'crocodile open jaws' or 'evaluation of...' isn't flagged.
 _FORBIDDEN = re.compile(
-    r"__|\bimport\b|\bopen\b|\beval\b|\bexec\b|\bcompile\b|\bglobals\b|"
-    r"\blocals\b|\bgetattr\b|\bsetattr\b|\bdelattr\b|\bvars\b|\binput\b|"
-    r"\bwhile\b|\bexit\b|\bquit\b")
+    r"__|\bimport\b|\bwhile\b|"
+    r"\b(?:open|eval|exec|compile|globals|locals|getattr|setattr|delattr|"
+    r"vars|input|exit|quit)\s*\(")
 _IMAGE_CALL = re.compile(r"\b(paste|fill_image|images|subject_image)\b")
 
 
