@@ -93,7 +93,10 @@ def _auto_pick(pts: list[DataPoint], ds: Dataset) -> str:
 def _rank(ds: Dataset, pts: list[DataPoint], base: DataPoint | None,
           ascending: bool) -> Insight:
     ordered = T.rank(pts, ascending=ascending)
-    top = ordered[:3]
+    # Keep up to 5: the vertical photo-ranking rows look best with 4-5 real
+    # things, and authored scenes reference item:3/item:4. Renderers that want
+    # fewer slice their own cap.
+    top = ordered[:5]
     star = top[0]
     facts = [
         Fact(f"F{i+1}", f"{p.label} {_fmt(p.value, ds.unit)} {ds.unit}",

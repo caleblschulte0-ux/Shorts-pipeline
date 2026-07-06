@@ -298,13 +298,23 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
                                 radius=24, fill=_rgba(color, int(255 * reveal)))
         na = max(0.0, min(1.0, (reveal - 0.35) / 0.5))
         nx = bx0 + int(bw * 0.56)
-        nf = _pil_font(min(150, max(84, int(bh * 0.42))))
+        avail = bx1 - nx - 12                     # keep text inside the frame
+        nfs = min(150, max(84, int(bh * 0.42)))
         num = _vfmt(value)
+        nf = _pil_font(nfs)
         nb = d.textbbox((0, 0), num, font=nf)
+        while nfs > 48 and (nb[2] - nb[0]) > avail:     # shrink number to fit
+            nfs -= 8
+            nf = _pil_font(nfs)
+            nb = d.textbbox((0, 0), num, font=nf)
         d.text((nx, cy - (nb[3] - nb[1]) - 6), num, font=nf,
                fill=_rgba(color, int(255 * na)), stroke_width=6,
                stroke_fill=(5, 8, 15, int(255 * na)))
-        lf = _pil_font(46)
+        lfs = 46
+        lf = _pil_font(lfs)
+        while lfs > 24 and d.textbbox((0, 0), label, font=lf)[2] > avail:
+            lfs -= 4                                    # shrink label to fit
+            lf = _pil_font(lfs)
         d.text((nx, cy + 14), label, font=lf,
                fill=(248, 250, 252, int(255 * na)), stroke_width=3,
                stroke_fill=(5, 8, 15, int(255 * na)))
