@@ -14,6 +14,7 @@ automatically join the vocabulary the director can pick from.
 """
 from __future__ import annotations
 
+import os
 import re
 
 from . import charts
@@ -162,6 +163,93 @@ def _candidates(ins, f: dict) -> list[str]:
     return out
 
 
+# --- Render-time creative director -------------------------------------------
+# The heart of the channel: at RENDER time, for EACH data point, an LLM invents
+# the single most creative, image-first way to depict THAT data — fresh, every
+# video. No baked choice; the AI decides on the spot. If the LLM is unreachable
+# the deterministic image-first passes below still guarantee a real depiction.
+
+# The element kit the AI composes a depiction from. Abstract chart shapes
+# (bar/bubble) are deliberately absent — every depiction SHOWS the subject.
+_KIT = (
+    "  - object: a real photo / cut-out of a CONCRETE subject, sized by its "
+    "value, with number+label. Needs `subject` + `data.value_from`. Put 2-5 in "
+    "region 'ground-row' for a ranking of real things.\n"
+    "  - fill_object: fill a real SUBJECT bottom-up to a % / share / single shock "
+    "stat (a globe for Earth/water, a lung, a burning forest, a brain). Needs "
+    "`subject` + `data.value_from`.\n"
+    "  - stack: stack value/per_value copies of a subject to show magnitude. "
+    "Needs `subject` + `data.value_from` + `data.per_value`.\n"
+    "  - orbit_group: bodies orbit a centre at radii by value (distances/counts). "
+    "region 'full'.\n"
+    "  - timeline_axis: a marker travels a time/number axis (ages, dates, years). "
+    "region 'full'.\n"
+    "  - number: a big count-up — ONLY as an accent on top of an image, never "
+    "alone. `data.value_from`.\n"
+    "  - caption: a short text line. `text`.\n"
+)
+
+_invent_cache: dict = {}
+
+
+def _insight_key(ins) -> tuple:
+    items = tuple((p.label, round(float(p.value), 4), getattr(p, "period", None))
+                  for p in (ins.items or []))
+    return ((ins.topic or ""), (ins.unit or ""), items)
+
+
+def _invent_scene(ins):
+    """Ask the LLM to invent the most creative image-first SCENE for THIS data.
+    Returns a validated scene dict, or None (LLM down / invalid -> deterministic
+    fallback picks up). Cached per data signature so a re-render is stable+free."""
+    import json
+    key = _insight_key(ins)
+    if key in _invent_cache:
+        return _invent_cache[key]
+    scene = None
+    try:
+        from script_generator import _call_llm, _strip_fence
+        items = [{"label": p.label, "value": p.value,
+                  **({"period": p.period} if getattr(p, "period", None) else {})}
+                 for p in ins.items]
+        sysp = ("You are the creative director of a top-tier data-explainer "
+                "channel. For ONE data point you invent the single most "
+                "entertaining, image-first way to VISUALLY depict it. Output ONE "
+                "JSON scene object, nothing else.")
+        user = (
+            f"Topic: {ins.topic!r}\nUnit: {ins.unit!r}\n"
+            f"Data points: {json.dumps(items)}\n\n"
+            "Compose a `scene` from this element kit:\n" + _KIT + "\n"
+            "REGIONS: full, center, hero, left, right, top, bottom, ground-row, "
+            "grid-1..4.\n\n"
+            "RULES:\n"
+            "- SHOW THE THING. The scene MUST contain >=1 image element (object / "
+            "fill_object / stack) or a holistic time depiction (timeline_axis / "
+            "orbit_group). Depict the value THROUGH the image: fill it, size it, "
+            "position it, repeat it, or move it.\n"
+            "- There is NO bar and NO bubble. Never a lone number. Abstract chart "
+            "shapes are banned.\n"
+            "- `subject` must be a CONCRETE, real, photographable thing (an "
+            "animal, a planet, a landmark, a lung, a wildfire) — never an "
+            "abstraction. Match it to the topic so viewers recognise it.\n"
+            "- Pick the smartest shape for the data: a single % / shock stat -> "
+            "fill_object of the subject; a ranking of things -> a ground-row of "
+            "objects; ages/dates -> timeline_axis; distances/counts -> "
+            "orbit_group; one huge magnitude -> stack or a hero object.\n"
+            "- `data.value_from` is one of: 'star' (the max), 'total', or "
+            "'item:<index>' (0-based) / 'item:<label>'.\n\n"
+            'Return ONLY: {"title": true, "elements": [ ... ]}')
+        raw = _strip_fence(_call_llm(sysp, user))
+        spec = json.loads(raw)
+        if viz_scene.validate(spec, ins):
+            scene = spec
+    except Exception as e:  # noqa: BLE001
+        print(f"[director] render-time invent skipped: {type(e).__name__}: {e}",
+              flush=True)
+    _invent_cache[key] = scene
+    return scene
+
+
 # --- Assignment --------------------------------------------------------------
 def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
     """Set each insight's final ``kind`` (depiction). Honours a valid authored
@@ -192,9 +280,22 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 5) -> None:
 
     order = sorted(range(n), key=lambda i: (seed + i) % max(1, n))
 
-    # Pass 0 — honour a valid LLM-authored SCENE (invent-first). Bespoke scenes
-    # may repeat across segments (each is distinct by construction), so "scene"
-    # is not added to `used`; only the image budget bounds them.
+    # Pass -1 — RENDER-TIME creative director. For each data point (except place
+    # data, which is always better as a map), the LLM invents a fresh image-first
+    # scene right now. This is the "AI decides per data point, every render" path;
+    # it OVERRIDES any baked scene. Falls through silently if the LLM is down.
+    if os.environ.get("VIZ_INVENT", "1") != "0":
+        for i in order:
+            if feats[i]["place"]:
+                continue
+            invented = _invent_scene(inss[i])
+            if invented:
+                inss[i].scene = invented
+
+    # Pass 0 — honour a valid SCENE (the render-time invention above, or a
+    # previously-authored one). Bespoke scenes may repeat across segments (each is
+    # distinct by construction), so "scene" is not added to `used`; only the image
+    # budget bounds them.
     for i in order:
         sc = getattr(inss[i], "scene", None)
         if sc and viz_scene.validate(sc, inss[i]):
