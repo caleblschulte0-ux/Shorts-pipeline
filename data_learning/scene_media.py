@@ -344,6 +344,45 @@ def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
     return None
 
 
+def subject_photo_cutout(subject: str, slug: str, tag: str, *, context: str = "",
+                         cache_dir: Path = CUTOUT_DIR) -> Path | None:
+    """A REAL photo of `subject` with its background removed -> a transparent
+    cut-out. This is the fallback for `subject_cutout` when the AI illustrator is
+    down: we still get a photo of the actual thing, but keyed out so it blends
+    into a scene (a race lane, a road) instead of reading as a clunky box.
+    Cached under the cut-out dir. None on any failure -> caller skips it."""
+    from PIL import Image
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    safe = "".join(c if c.isalnum() or c in "-_" else "-" for c in f"{slug}__{tag}")
+    dest = cache_dir / f"{safe}.png"
+    if dest.exists() and dest.stat().st_size > 2048:
+        return dest
+    pth = subject_photo(subject, slug, f"{tag}-src", context=context)
+    if not pth:
+        return None
+    try:
+        img = Image.open(pth).convert("RGBA")
+    except Exception:  # noqa: BLE001
+        return None
+    cut = _remove_bg(img)
+    if cut is None or min(cut.size) < 40:
+        return None
+    # Only accept a genuine cut-out: if almost nothing was keyed away the result
+    # is really a rectangular photo (chroma-key fallback on a non-green image), so
+    # reject it rather than render a "box" in the race.
+    try:
+        alpha = cut.split()[3]
+        hist = alpha.histogram()
+        transparent = sum(hist[:32])
+        if transparent < 0.08 * (cut.width * cut.height):
+            return None
+    except Exception:  # noqa: BLE001
+        return None
+    cut.save(dest)
+    print(f"[scene] photo cut-out OK -> {dest.name}", flush=True)
+    return dest
+
+
 def fetch_hook_image(story, *, cache_dir: Path = CACHE_DIR) -> Path | None:
     """AI-first cinematic hook image for a story; stock then designed fallback."""
     if getattr(story, "hook_image", None) is False:
