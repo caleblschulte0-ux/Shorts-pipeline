@@ -1,25 +1,37 @@
 {
+  "count": 3,
   "channel": "third",
-  "slug": "clip-20260707-1",
   "title": "{clip_title}",
   "hook": "",
-  "proof_plan": "Top fresh clip from the allowlist (Twitch/Kick/Rumble), our edit layer on top.",
+  "proof_plan": "Top fresh clip from the allowlist (velocity-ranked, core cluster weighted), our edit layer on top.",
   "capture": {
     "kind": "twitch_clip",
     "sources": {
       "twitch": [
-        "xqc",
         "kaicenat",
-        "jynxzi",
-        "caseoh_",
-        "lospollostv",
         "lacy",
         "silky",
         "stableronaldo",
         "jasontheween",
         "rayasianboy",
         "kaysan",
-        "plaqueboymax"
+        "plaqueboymax",
+        "lospollostv",
+        "xqc",
+        "jynxzi",
+        "caseoh_",
+        "zackrawrr",
+        "hasanabi",
+        "moistcr1tikal",
+        "clix",
+        "tarik",
+        "summit1g",
+        "lirik",
+        "sodapoppin",
+        "loltyler1",
+        "ohnepixel",
+        "emiru",
+        "ironmouse"
       ],
       "kick": [
         "adinross"
@@ -28,9 +40,6 @@
         "AdinLive"
       ]
     },
-    "range": "24hr",
-    "top": 8,
-    "min_views": 2500,
     "core": [
       "kaicenat",
       "lacy",
@@ -41,15 +50,15 @@
       "kaysan",
       "plaqueboymax",
       "lospollostv"
-    ]
+    ],
+    "range": "24hr",
+    "top": 8,
+    "min_views": 2500
   },
   "hashtags": [
-    "streamer",
-    "clips",
-    "funny",
-    "gaming",
-    "twitch",
-    "kick"
+    "streamerclips",
+    "kaicenat",
+    "clips"
   ],
   "description_note": "Edited highlight \u2014 full credit to the streamer (linked below).",
   "risk_flags": [],
