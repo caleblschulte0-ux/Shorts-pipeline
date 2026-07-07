@@ -67,7 +67,7 @@ jobs:
           sudo apt-get install -y -q ffmpeg miller fonts-dejavu-core
 
       - name: Install python deps
-        run: pip install -q pillow edge-tts google-api-python-client google-auth google-auth-oauthlib
+        run: pip install -q pillow numpy edge-tts yt-dlp openai-whisper google-api-python-client google-auth google-auth-oauthlib
 
       - name: Render + upload
         env:

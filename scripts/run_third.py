@@ -77,6 +77,11 @@ def run_capture(pkg: dict, work: Path) -> Path:
 
 
 def _fmt_from_ledger(led: dict) -> dict:
+    if led.get("kind") == "twitch_clip":
+        return {"clip_title": led["clip_title"],
+                "streamer": led["streamer"]}
+    if led.get("kind") == "sim":
+        return {"peak": f"{led['peak_multiplier']:.1f}"}
     n_in = led["files"]["input"]["rows"]
     n_out = led["files"]["output"]["rows"]
     return {"n_in": f"{n_in:,}", "n_out": f"{n_out:,}",
@@ -86,10 +91,19 @@ def _fmt_from_ledger(led: dict) -> dict:
 def _description(pkg: dict, led: dict) -> str:
     tags = " ".join(f"#{t}" for t in pkg.get("hashtags", [])[:14])
     note = pkg.get("description_note", "")
-    return (f"{pkg['proof_plan']}\n\n{note}\n\n"
-            f"Measured: {led['wall_time_s']:.2f}s wall time, "
-            f"{led['files']['input']['rows']} rows in, "
-            f"{led['files']['output']['rows']} rows out.\n\n{tags}")
+    if led.get("kind") == "twitch_clip":
+        detail = (f"Clip from twitch.tv/{led['streamer']} — full credit "
+                  f"to the streamer. Source: {led['source_url']}\n"
+                  f"Clipped by {led['clipper']}.")
+    elif led.get("kind") == "sim":
+        detail = (f"Simulation: {led['theme']}, one continuous speed ramp "
+                  f"to x{led['peak_multiplier']} — the on-screen speed "
+                  "counter is the sim's actual clock multiplier.")
+    else:
+        detail = (f"Measured: {led['wall_time_s']:.2f}s wall time, "
+                  f"{led['files']['input']['rows']} rows in, "
+                  f"{led['files']['output']['rows']} rows out.")
+    return f"{pkg['proof_plan']}\n\n{note}\n\n{detail}\n\n{tags}"
 
 
 def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
@@ -103,10 +117,52 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
     work.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     try:
-        ledger_path = run_capture(pkg, work)
-        led = json.loads(ledger_path.read_text())
         out_mp4 = work / f"third_{slug}.mp4"
-        composer.compose(pkg_path, ledger_path, out_mp4)
+        if pkg["capture"]["kind"] == "twitch_clip":
+            from third_capture import clip_edit
+            spec = pkg["capture"]
+            if spec.get("clip_url"):
+                info = clip_edit.download(spec["clip_url"], work)
+                streamer = spec["credit"]
+            else:
+                posted_urls = {v.get("source_url")
+                               for v in log["posted"].values()}
+                cands = []
+                for ch in spec["channels"]:
+                    cands += clip_edit.discover(
+                        ch, top=spec.get("top", 8),
+                        range_=spec.get("range", "24hr"))
+                cands.sort(key=lambda c: -c["views"])
+                cands = [c for c in cands
+                         if c["url"] not in posted_urls
+                         and c["views"] >= spec.get("min_views", 500)]
+                if not cands:
+                    raise RuntimeError("no fresh clip above min_views "
+                                       "across the allowlist")
+                pick = cands[0]
+                info = clip_edit.download(pick["url"], work)
+                streamer = pick["channel"]
+            led = clip_edit.edit(
+                info["path"], out_mp4, credit=streamer,
+                hook=pkg.get("hook", ""),
+                start=spec.get("start", 0.0), end=spec.get("end", 0.0),
+                whisper_model=spec.get("whisper_model", "base"))
+            led["source_url"] = info["url"]
+            led["source_views"] = info["views"]
+            led["clip_title"] = info["title"]
+            led["clipper"] = info["clipper"]
+            led["streamer"] = streamer
+            ledger_path = work / f"{slug}.ledger.json"
+            ledger_path.write_text(json.dumps(led, indent=2) + "\n")
+        elif pkg["capture"]["kind"] == "sim":
+            from third_capture import sim_video
+            led = sim_video.compose_sim(pkg, out_mp4)
+            ledger_path = work / f"{slug}.ledger.json"
+            ledger_path.write_text(json.dumps(led, indent=2) + "\n")
+        else:
+            ledger_path = run_capture(pkg, work)
+            led = json.loads(ledger_path.read_text())
+            composer.compose(pkg_path, ledger_path, out_mp4)
         result["video_path"] = str(out_mp4.relative_to(REPO))
         result["ledger"] = str(ledger_path.relative_to(REPO))
         title = pkg["title"].format(**_fmt_from_ledger(led))[:100]
@@ -122,11 +178,18 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
                 publish_at=publish_at,
             )
             result.update(ok=True, video_url=getattr(up, "url", str(up)))
-            log["posted"][slug] = {
+            entry = {
                 "url": result["video_url"], "title": title,
+                "kind": led.get("kind", "cli"),
                 "ts": datetime.now(timezone.utc).isoformat(),
-                "ledger_sha_input": led["files"]["input"]["sha256"][:16],
             }
+            if led.get("kind") == "twitch_clip":
+                entry["source_url"] = led["source_url"]
+                entry["streamer"] = led["streamer"]
+            elif "files" in led:
+                entry["ledger_sha_input"] = \
+                    led["files"]["input"]["sha256"][:16]
+            log["posted"][slug] = entry
             _save_log(log)
     except Exception as e:  # noqa: BLE001
         result["error"] = f"{type(e).__name__}: {e}"

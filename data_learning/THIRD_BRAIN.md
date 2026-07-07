@@ -1,221 +1,148 @@
-# THIRD CHANNEL ("third") — brain playbook: THE EXPERIMENT CHANNEL
+# THIRD CHANNEL ("third") — brain playbook: THE CLIPPER
 
-**Working title:** *Overload* — a mass-appeal, entertainment-first channel:
-**"We run wild experiments. You watch them succeed — or break."**
+**The channel:** a Twitch/Kick clip channel. **We find the moments already
+blowing up live, add our edit layer, and ship them as Shorts.** This is the
+safest, most middle-of-the-road guaranteed-views lane on the platform: the
+content is pre-validated (a clip pulling 10k views on Twitch in a day has
+already won its A/B test with a live audience), the supply is infinite and
+daily, and the audience is the broadest on YouTube.
 
-The channel slug is `third`; every package sets `"channel": "third"` and the
-uploader routes it to the `YOUTUBE_TOKEN_JSON_THIRD` secret. See §12 for
-wiring and isolation.
-
-This file is the channel. The brain reads it first and treats it as law.
-Operator feedback gets written back INTO this file as permanent doctrine.
+The channel slug is `third`; every package sets `"channel": "third"` and
+the uploader routes it to the `YOUTUBE_TOKEN_JSON_THIRD` secret. See §10
+for wiring. Operator direction 2026-07-07 (permanent doctrine): mass
+audience → millions of views → brand → affiliates/products/sponsors.
+Entertainment first. No B2B, no office tools, no niche-utility content,
+ever.
 
 ---
 
-## 0. The money-printer doctrine (operator law, 2026-07-07)
-
-The funnel is **mass audience → millions of views → brand → affiliate /
-digital products / courses / sponsors** — NOT "niche tool → hope the right
-person watches → hope they buy." Shorts is entertainment first; even
-educational channels are entertaining. B2B utility content (workflow
-tutorials, "stop doing X manually") is BANNED here — that material belongs
-in a separate LinkedIn/X/SEO funnel, never on this channel.
-
-The prior "Proof Mode" identity failed the mass test ("I don't clean
-spreadsheets" → swipe). Its production machinery survives — the capture
-harness, proof ledger, and truthfulness rules now serve SPECTACLE, not
-tutorials. Same capability, opposite psychology:
-
-- ~~"Stop cleaning spreadsheets by hand"~~ → **"I built the messiest
-  spreadsheet ever. One command gets one shot to fix it."**
-- ~~"This tool dedupes CSVs"~~ → **"Can it fix 10,000 broken rows before
-  you can blink?"**
-
-A tutorial promises usefulness. A challenge promises an OUTCOME — and the
-viewer stays to see if it survives.
-
 ## 1. Identity (one swipe)
 
-**Every video is an experiment with visible stakes: we build something
-extreme, push it until it succeeds or breaks, and you watch the outcome
-live.** Challenges, stress tests, simulations, impossible comparisons,
-satisfying transformations. The viewer never needs a job, a tool, or
-context to care — only eyes.
+**The best live moments on the internet, edited to hit.** Streamer
+freakouts, clutch plays, perfect comedic timing, wholesome chaos — the
+moments people already clip, quote, and repost, delivered clean: instant
+hook, big word-pop captions, tight cut, loud clear audio, credit on
+screen.
 
-Distinct from the other channels by verb: channel 1 *tells* quirky news,
-channel 2 *explains* data facts, channel 3 **RUNS experiments**.
+## 2. Sourcing doctrine (what gets clipped)
 
-## 2. The iron gate — the mass-appeal test (a package may not enter unless…)
+- **Pre-validated only.** We never guess what's funny. The scout pulls
+  each allowlisted channel's top clips of the last 24h sorted by views
+  (no API key needed — `third_capture/clip_edit.discover`). A clip
+  qualifies when its source views clear the package's `min_views` bar.
+  Twitch's own viewers are our test audience.
+- **Allowlist, not open season.** We clip only channels on the package
+  allowlist. Preference order: (1) streamers with official clipping/
+  content programs or explicit permission, (2) major streamers who
+  publicly welcome clip channels. The operator owns the allowlist;
+  the brain may propose additions, never add them.
+- **The 1-second rule still applies.** The moment must land with zero
+  stream context — a scream, a fail, a jackpot, a perfect line. If it
+  needs lore, skip it.
+- **Banned content:** harassment/drama-bait targeting private people,
+  slurs or TOS-violating source material, sexualized content, gambling
+  sponsorship segments, anything mid-apology/mid-controversy. Skip the
+  clip, keep the channel safe — this is the yellow middle of the road.
 
-> **The premise is understandable in ONE SECOND by someone with no job, no
-> tools, and no English.** Concretely, every package must pass ALL of:
-> - **The mom test / 16-year-old test / Brazil test** — would a teenager, a
->   parent, and a non-English speaker all get it and want the outcome?
-> - **Works muted** — the visual alone carries the stakes and the outcome.
-> - **One number of stakes** — the premise compresses to a single visible
->   number or contrast (10,000 rows; 1 vs 1,000,000; before vs after).
-> - **An outcome question** — the viewer can silently ask "will it make
->   it?" / "what happens?" and must watch to find out.
+## 3. Credit & takedown doctrine [ABSOLUTE]
 
-Reject even if trending or technically impressive: anything needing >1
-sentence of context, anything whose audience is "people who do task X at
-work", tutorials, tool reviews, listicles, anything where the 50% frame
-equals the 100% frame.
+- Streamer handle burned on screen for the FULL duration (credit banner)
+  + source link and clipper credit in every description.
+- Any streamer/rights-holder removal request is honored immediately and
+  the channel goes on the internal blocklist. No arguing, no delay.
+- No raw reuploads, ever: every video carries our full edit layer
+  (reframe, hook, captions, cut, loudness) — both for YouTube's
+  reused-content/originality rules and because the edit IS the product.
+- Never imply the streamer endorses this channel or any sponsor.
 
-## 3. Editorial pillars
+## 4. The edit layer (what makes it OURS)
 
-| Pillar | What it looks like | Engine |
-|---|---|---|
-| **Impossible challenges** (spine) | "Can one command fix 10,000 broken rows?" · "Can AI un-shred this photo?" · escalation sequels (10k → 100k → 1M) | capture harness (real runs, real numbers) |
-| **Simulations & what-happens-if** | physics sims pushed until they genuinely break — flood the city, overload the tower, 1M bouncing balls; the crash IS the payoff | `themed_bottom.py` procedural engine (already built: escalate-until-the-solver-breaks arc) |
-| **Satisfying transformations & impossible comparisons** | chaos → order wipes, extreme before/afters, scale face-offs with animated counters | composer element kit (diff wipe, counters, split compare) |
+Built in `third_capture/clip_edit.py`, applied to every clip:
 
-Money / psychology / weird-facts angles are allowed only as the *frame* on
-an experiment ("what $1M in rice looks like — we counted"), never as
-narrated facts (that's channel 2's lane).
+1. **Hook card** (first ~3s) — a 5-8 word tension line in plain English
+   ("HE DID NOT EXPECT THIS…"). Written per-clip by the brain; never
+   clickbait that the clip doesn't pay off.
+2. **9:16 reframe** — blurred zoom-fill background + source centered.
+   (Next upgrades: facecam/action crop layouts, punch-in zooms on the
+   payoff beat, reaction freeze-frames.)
+3. **Word-pop captions** — whisper word timestamps, 1-3 word ALL-CAPS
+   pops, styled thick-outline white; the video must work muted.
+4. **Tight cut** — trim dead air before the moment; get to the payoff
+   fast; end within ~1s after it lands (`start`/`end` per package).
+5. **Credit banner** — permanent `twitch.tv/<streamer>`.
+6. **Loudness normalize** (-14 LUFS) — screams hit, mumbles are audible.
 
-## 4. The challenge grammar (how every script is built)
+House rule: hook card answers "why watch", captions carry the dialogue,
+the cut removes everything that isn't the moment. If the edited clip is
+over ~45s, cut harder.
 
-1. **The absurd setup** (1–2s) — show the monster we built: the wall of
-   garbage, the tower too tall, the number too big. Bragging, not teaching:
-   "The messiest spreadsheet ever made!"
-2. **Stakes in one number** — say it and SHOW it big: "10,000 rows.
-   2,400 clones."
-3. **The attempt, live** — one shot, visible progress: counter ticking,
-   wipe advancing, sim escalating. This is the retention spine.
-4. **The outcome** — WORKED / FAILED / BROKE stamp. Failure ships proudly;
-   a spectacular break outperforms a clean win.
-5. **The escalation hook** — every video ends by raising the stakes for
-   the sequel: "Next: one MILLION rows." Winners become series; series
-   compound.
+## 5. Daily operation
 
-Retention doctrine [SHARED — platform truth]: first second = spectacle,
-not setup; something meaningful changes every 0.6–1.2s; context never
-before intrigue; the last line escalates, inverts, or resolves. The three
-retention failures and fixes: `LEARNING_LOOP.md` §1.
+1. Scout the allowlist (top clips, last 24h, by views).
+2. Rank by source views-per-hour; drop anything already posted
+   (`source_url` dedupe in the posted log) or banned by §2.
+3. For each pick, the brain writes: hook line, cut points, title.
+4. Render + eye-QA (captions in safe area, hook readable, credit visible,
+   payoff inside the cut) → upload, spaced through the day.
+5. Log everything to the ledger for the learning loop.
 
-**Language-independence rule:** numbers, counters, wipes, stamps, and
-physics carry the story; narration and captions are a bonus layer. If the
-video stops working with captions off, the visual failed the gate.
+Cadence: start **3/day** (clips are cheap), scale with watch signals.
+Freshness beats polish — a 6-hour-old exploding clip outranks a better
+edit of yesterday's.
 
-## 5. Visual system
+## 6. Titles & packaging
 
-Full 9:16 clean master (no watermark/border), critical content inside
-x 70–1010 / y 160–1580. The element kit (composer, `third_capture/`):
+- Title = the moment, not the streamer: "He opened the one box he
+  shouldn't have" > "xQc funny moment #347". Streamer name goes in
+  description/tags (their search traffic still finds it).
+- No #shorts spam, a few relevant tags, no emoji walls (one is fine).
+- Thumbnails don't matter for Shorts; the first frame does — the cut
+  must open ON motion or ON the face, never on dead air.
 
-| Element | Purpose |
-|---|---|
-| `input_frame` | the monster we built — must look genuinely extreme |
-| `big_counter` | animated stakes/progress number — the channel's signature |
-| `split_compare` | before/after, A vs B |
-| `diff_wipe` | chaos → order sweep (the satisfying beat) |
-| `stopwatch_tag` | real measured time |
-| `proof_stamp` | WORKED / FAILED / BROKE |
-| `task_card` | the challenge in ≤6 plain words |
-| `redaction_box` | privacy masking (synthetic data only anyway) |
+## 7. Learning loop [SHARED — `LEARNING_LOOP.md` is law]
 
-Sim pillar reuses `themed_bottom.py` full-frame (not as a bottom strip):
-its DESIGN CHARTER arc — calm start, compounding escalation, genuine
-physics breakdown, regeneration — is exactly the what-happens-if format.
+Staged scorecard, `state/brain_context.json`, no auto-adaptation below
+~100 views/video, bounded reversible edits. Clip-channel additions to the
+ledger per upload: `streamer`, `source_views`, `source_age_h`, `category`
+(fail/clutch/funny/wholesome/scare), `hook_text`, `cut_length_s`,
+`caption_density`. Learn: which streamers convert HERE (not on Twitch),
+which categories retain, whether tighter cuts beat longer context, and
+which hook styles survive the first 3 seconds. Winners: more of that
+streamer/category same week. Losers: 30-day ban on the pattern, not the
+streamer.
 
-## 6. Truthfulness invariants [ABSOLUTE — unchanged from Proof Mode]
+## 8. Monetization
 
-Spectacle NEVER licenses fakery — being the channel whose experiments are
-real is the moat:
-- Every number on screen (rows, seconds, counts) comes from the proof
-  ledger of a real recorded run. No measured-sounding number without a
-  measurement.
-- Real-run content: the terminal/screen replay draws actual recorded
-  bytes. Simulations are fine — they're labeled as simulations, and their
-  breakdowns are genuine solver behavior, not scripted animations.
-- FAIL/BROKE outcomes ship honestly framed. If a run breaks, that's the
-  video, not a reshoot-until-it-works.
-- Synthetic fixture data only; nothing private ever on screen.
-- AI-content disclosure ON (TTS narration); FTC-clear disclosure of any
-  sponsor/affiliate relationship, always.
-- No near-duplicate mass production; sequels must escalate, not repeat.
+Reach → brand → then: streamer-adjacent sponsors (energy, peripherals,
+games), affiliate links, and eventually direct streamer partnerships
+(official clip deals — clip channels big enough get PAID by streamers'
+teams). Platform payouts last. Nothing that makes a video feel like an ad
+before the channel has pull. Disclose every paid relationship (FTC),
+always.
 
-## 7. Package output schema
+## 9. Rendering pillars kept in the toolbox
 
-```json
-{
-  "channel": "third",
-  "slug": "...",
-  "title": "Can one command fix {n_in} broken rows?",
-  "premise_1s": "one-second silent pitch (what the first frame shows)",
-  "stakes_number": "the single number the video hangs on",
-  "hook_lines": ["…"], "hook_stamp": "{n_in} ROWS",
-  "script": {"hook": "…", "input": "…", "proof": "…", "output": "…", "verdict": "…"},
-  "verdict": "WORKED|FAILED|BROKE",
-  "escalation_next": "the sequel's bigger stakes",
-  "capture": {"kind": "cli|sim", "…": "…"},
-  "disclosures": ["ai_tts"]
-}
-```
+The channel is a clipper first, but `third_capture/` retains two original
+renderers usable as in-between content or B-sides, both truthful by
+construction: `sim_video.py` (full-frame escalating physics sims) and the
+real-run capture/composer stack. The brain may propose them; the operator
+decides if/when they slot in.
 
-`{n_in}`-style placeholders are filled from the ledger at render time so
-scripts can never drift from measured reality.
-
-## 8. QA (pre-render and render-time)
-
-Pre-render reject: fails any §2 gate · stakes not visible as one number ·
-no live-progress element in beat 3 · outcome not visually obvious.
-Render-time verify: spectacle visible by second one · captions in safe
-zones · every shown number matches the ledger · something changes every
-0.6–1.2s. Then the shared eye-QA loop: render beat-final frames +
-25/50/75% samples and LOOK; fix → re-render → re-look. **Non-negotiable.**
-
-## 9. Cadence and growth
-
-- **Phase 1 — YouTube only, 1/day**, escalation series from day one
-  (each video advertises the next). 10–15% of uploads are controlled
-  experiments, one variable per batch (hook framing, counter style,
-  stamp timing, CTA).
-- **Phase 2 — 2/day + affiliates/products** once 30–50 uploads of
-  retention data exist. English-first; the format is designed to need
-  little language, so localization (channel 2's `localize.py` machinery)
-  is a cheap later multiplier.
-- **Phase 3 — TikTok/IG wrappers** when posting APIs are approved;
-  sponsors only if they fit the experiment frame natively.
-
-Monetization order: reach → brand → affiliates/digital products/courses →
-sponsors → platform payouts. Never let a sponsor turn a video back into a
-tutorial.
-
-## 10. Learning loop [SHARED — `LEARNING_LOOP.md` is law]
-
-Staged scorecard, `state/brain_context.json`, shot-aligned retention map,
-no auto-adaptation below ~100 views/video, bounded reversible edits only.
-Channel additions: ledger every upload with `premise_1s`, `stakes_number`,
-`pillar`, `outcome` (worked/failed/broke), `series_id`, beat annotations;
-before writing, retrieve ~15 nearest priors by FORMAT first; winners spawn
-escalation sequels, losers' premises are banned patterns for 30 days.
-Watch especially: hook-survival by premise type, and whether FAIL/BROKE
-outcomes out-retain WORKED (if yes, engineer more genuine jeopardy).
-
-## 11. Production infrastructure (built)
-
-`third_capture/` — real-run recorder (pty capture, timestamped events,
-proof ledger with hashes/counts/wall time) + 9:16 composer (element kit,
-terminal replay, counters, stamps, burned captions, edge-tts VO).
-`scripts/run_third.py` — capture → compose → upload, kills any package
-whose run fails. `.github/workflows/third.yml` — isolated workflow.
-Sim-pillar renderer (full-frame `themed_bottom` capture) is the next
-build item.
-
-## 12. Wiring & isolation (zero shared-pipeline impact)
+## 10. Wiring & isolation (zero shared-pipeline impact)
 
 - **Token:** `YouTubeUploader(channel="third")` → secret
   `YOUTUBE_TOKEN_JSON_THIRD` (mint via `setup_youtube.py` signed into the
   new channel's account; shared OAuth app).
-- **Guard:** workflow sets `YOUTUBE_EXPECTED_CHANNEL` from repo var
-  `THIRD_EXPECTED_CHANNEL` so a mis-set token can never post elsewhere.
-- **Packages:** `state/third_packages/YYYYMMDD/` (never
-  `state/trending_packages/`). **State:** `state/third_posted_log.json`;
+- **Guard:** repo var `THIRD_EXPECTED_CHANNEL` → `YOUTUBE_EXPECTED_CHANNEL`
+  in `third.yml`, so a mis-set token can never post to the other channels.
+- **Packages:** `state/third_packages/YYYYMMDD/` — `capture.kind:
+  "twitch_clip"` with `channels` allowlist (or explicit `clip_url` +
+  `credit`), `min_views`, optional `start`/`end` cut, `hook`.
+- **State:** `state/third_posted_log.json` (dedupes by `source_url`);
   analytics `fetch_analytics.py --channel third` → `state/analytics_third/`.
-- **Workflow:** `third.yml`, concurrency group `third-shorts`;
-  `daily.yml`/`explainer.yml` are never edited for this channel.
+- **Workflow:** `third.yml` (concurrency `third-shorts`);
+  `daily.yml`/`explainer.yml` are never touched.
 
 Operator setup checklist: create the channel + @handle → mint
-`YOUTUBE_TOKEN_JSON_THIRD` → set repo var `THIRD_EXPECTED_CHANNEL` →
-merge + run the "Third Channel" workflow.
+`YOUTUBE_TOKEN_JSON_THIRD` → set `THIRD_EXPECTED_CHANNEL` → approve the
+starting streamer allowlist → merge and run the workflow.

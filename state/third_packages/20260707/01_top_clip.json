@@ -1,0 +1,18 @@
+{
+  "channel": "third",
+  "slug": "clip-20260707-a",
+  "title": "{clip_title}",
+  "hook": "",
+  "proof_plan": "Top clip of the last 24h from the allowlist, our edit layer on top.",
+  "capture": {
+    "kind": "twitch_clip",
+    "channels": ["xqc", "kaicenat", "jynxzi", "caseoh_"],
+    "range": "24hr",
+    "top": 8,
+    "min_views": 1000
+  },
+  "hashtags": ["twitch", "streamer", "clips", "funny", "gaming"],
+  "description_note": "Edited highlight — full credit to the streamer (linked below).",
+  "risk_flags": [],
+  "disclosures": []
+}
