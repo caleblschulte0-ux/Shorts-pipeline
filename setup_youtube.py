@@ -40,12 +40,16 @@ TOKEN_PATH = REPO / "token.json"
 SCOPES = [
     "https://www.googleapis.com/auth/youtube.upload",
     "https://www.googleapis.com/auth/youtube.readonly",
+    # Retention/curves/search-terms — without this the token can upload but the
+    # learning loop is blind (fetch_analytics falls back to raw view counts).
+    "https://www.googleapis.com/auth/yt-analytics.readonly",
 ]
 # Device flow doesn't permit youtube.upload directly; the broader
 # `youtube` scope is allowed and is a superset (covers videos.insert).
 DEVICE_SCOPES = [
     "https://www.googleapis.com/auth/youtube",
     "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/yt-analytics.readonly",
 ]
 
 
