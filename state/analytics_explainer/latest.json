@@ -635,7 +635,7 @@
       "views": 5,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.1
+      "views_per_hour": 0.09
     },
     {
       "video_id": "YNAGiSR3YcM",
@@ -1946,6 +1946,17 @@
         "views": 0,
         "age_hours": 48.8,
         "url": "https://youtube.com/shorts/-raGzekyiLY"
+      }
+    ],
+    "videos_with_retention": 91,
+    "avg_view_percentage": 43.0,
+    "top_5_by_retention": [
+      {
+        "title": "How Many People Have Ever Lived",
+        "average_view_percentage": 173.8,
+        "average_view_duration_s": 41.0,
+        "views": 14,
+        "url": "https://youtube.com/shorts/6H-Q6BlS2IM"
       },
       {
         "title": "Space Smells Like",
@@ -1962,8 +1973,25 @@
         "url": "https://youtube.com/shorts/H1OGcWFtRIk"
       },
       {
-        "title": "Underwater Lakes Secret",
-        "views_per_hour": 0.0,
+        "title": "Insurers Are Quietly Abandoning Entire States",
+        "average_view_percentage": 102.0,
+        "average_view_duration_s": 65.0,
+        "views": 3,
+        "url": "https://youtube.com/shorts/49vhclVhvD4"
+      },
+      {
+        "title": "Human Brain Capacity",
+        "average_view_percentage": 101.8,
+        "average_view_duration_s": 43.0,
+        "views": 2,
+        "url": "https://youtube.com/shorts/EGTCfLIyAAA"
+      }
+    ],
+    "bottom_5_by_retention": [
+      {
+        "title": "The Silent War We're Losing: Superbugs",
+        "average_view_percentage": 0.0,
+        "average_view_duration_s": 0.0,
         "views": 0,
         "age_hours": 90.8,
         "url": "https://youtube.com/shorts/nczQEkHXPkw"
