@@ -182,6 +182,67 @@ jobs:
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
+      # THE BRAIN. Headless Claude authors the day's packages per the
+      # Schulte Media playbook BEFORE render, so we never silently fall to
+      # the weak Groq writer. Non-fatal + time-boxed: if the token is
+      # missing or it errors, we log LOUDLY and the orchestrator proceeds
+      # (prewritten if present, else Groq — which now warns).
+      - name: Brain — author today's packages (Claude)
+        if: steps.preflight.outputs.skip == ''
+        continue-on-error: true
+        timeout-minutes: 20
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          set +e
+          TODAY=$(date -u +%Y%m%d)
+          DIR="state/trending_packages/$TODAY"
+          if ls "$DIR"/*.json >/dev/null 2>&1; then
+            echo "brain: $DIR already has hand-authored packages — leaving them."; exit 0
+          fi
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::warning::BRAIN SKIPPED — CLAUDE_CODE_OAUTH_TOKEN not set; run will fall to Groq."; exit 0
+          fi
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || { echo "::warning::BRAIN — claude-code install failed; falling to Groq."; exit 0; }
+          mkdir -p "$DIR"
+          cat > "$RUNNER_TEMP/brain_prompt.txt" <<EOF
+          You are the Schulte Media BRAIN, running headless in CI before render. Author today's 6 video packages into the directory: $DIR
+
+          READ FIRST and treat as law:
+          - data_learning/SCHULTE_MEDIA_BRAIN.md  (playbook: identity, iron gate, hooks, retention doctrine)
+          - data_learning/LEARNING_LOOP.md         (how to read analytics)
+          - state/scouted_sources.json             (today's raw trending material — derive angles from THIS)
+          - state/analytics/latest.json            (what is winning — lean into high-retention topics; animals win)
+          - state/posted_log.json                  (do NOT reuse a subject/title posted recently)
+
+          DOCTRINE (enforce):
+          - Niche: animal encounters / showdowns / "nature is metal" (the channel's proven winners).
+          - IRON GATE: every story is a vivid question with >=3 concrete visual beats, or it's rejected.
+          - OPEN-LOOP HOOKS: the title and first line WITHHOLD the answer (e.g. "The one animal a great white shark runs from..." — do not say "orca" until seconds in).
+          - First line = proof/intrigue, never setup. Noun-heavy, picturable script, ~100-115 words, ends on a question.
+
+          WRITE 6 files named 01_<slug>.json ... 06_<slug>.json, EXACT schema:
+          {"version":1,"slug":"kebab-unique","title":"open-loop title","hashtags":["10-12 lowercase no #"],"script":"~100-115 words one paragraph ending in a question","shots":[{"phrase":"EXACT substring of script","image_url":"optional Commons Special:FilePath URL","query":"stock phrase","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"EXACT substring of script","text":"SHORT CAPS","color":"#ff3030"}],"music_vibe":"dark|tense|epic|hype"}
+          7-8 shots and 4 punches per file.
+
+          HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
+          1. Every shot.phrase and punch.phrase MUST be an exact substring of that file's script.
+          2. Pin a Wikimedia Commons hero image on ~4 shots per file, form https://commons.wikimedia.org/wiki/Special:FilePath/<File> . VERIFY each: curl -s -o /dev/null -w "%{http_code}" -L "<url>" must print 200; drop any that isn't 200 (leave that shot with only a query).
+          3. Each file parses as valid JSON. Exactly 6 files.
+
+          Finish by printing the 6 titles and confirming all substring + image-200 checks passed.
+          EOF
+          echo "brain: authoring into $DIR ..."
+          claude -p "$(cat "$RUNNER_TEMP/brain_prompt.txt")" \
+            --allowedTools "Read,Write,Edit,Bash" \
+            --permission-mode acceptEdits \
+            --model "${BRAIN_MODEL:-sonnet}" \
+            --output-format text 2>&1 | tail -40 || echo "::warning::BRAIN run errored (non-fatal)."
+          N=$(ls "$DIR"/*.json 2>/dev/null | wc -l)
+          echo "brain: authored $N package(s)"
+          [ "$N" -eq 0 ] && echo "::warning::BRAIN produced 0 packages; run will fall to Groq."
+          exit 0
+
       - name: Run daily orchestrator
         id: run
         continue-on-error: true
