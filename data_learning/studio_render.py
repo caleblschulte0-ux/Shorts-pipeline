@@ -1022,9 +1022,16 @@ def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
         # first chart arrives. The hero number + claim are ASS, drawn last on top.
         if hook_idx is not None:
             he = windows[0][1]
+            # KEN BURNS: the hook image is a still, so a static hold of it for the
+            # whole hook window is the #1 swipe-away trigger. Push in slowly
+            # (zoompan) so the first frame is ALWAYS moving — never a frozen photo.
+            zframes = max(1, int((he + 0.6) * FPS))
             fc.append(
-                f"[{hook_idx}:v]scale={W}:{H}:force_original_aspect_ratio=increase,"
-                f"crop={W}:{H},eq=brightness=-0.16:saturation=1.05,format=rgba,"
+                f"[{hook_idx}:v]scale={int(W*1.35)}:{int(H*1.35)}:"
+                f"force_original_aspect_ratio=increase,crop={int(W*1.35)}:{int(H*1.35)},"
+                f"zoompan=z='min(zoom+0.0012,1.30)':d={zframes}:"
+                f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS},"
+                f"eq=brightness=-0.16:saturation=1.05,format=rgba,"
                 f"fade=t=out:st={max(0.1, he - 0.5):.2f}:d=0.5:alpha=1[hookimg]")
             fc.append(
                 f"[{prev}][hookimg]overlay=0:0:"
