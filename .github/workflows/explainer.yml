@@ -247,11 +247,15 @@ jobs:
           and quality gate in one. FIRST read data_learning/VIZ_BRAIN.md — it is
           your complete playbook (toolkit, hard rules, QA checklist, schemas).
           Work on ONLY these story slugs: ${BRAIN_SLUGS}. Then:
-          1. LEARN FIRST: follow the LEARNING LEDGER section of the playbook —
-             load state/video_ledger.json + state/analytics_explainer, retrieve
-             the ~10 most SIMILAR past videos (same topic/hook-type/franchise,
-             not top overall), join them to retention data, and reason
-             explicitly about why they held or died before you direct anything.
+          1. LEARN FIRST: read data_learning/LEARNING_LOOP.md (shared learning
+             doctrine) and state/brain_context.json (apply its directives and
+             guardrails - especially the 100-view adaptation floor). Then per
+             the LEARNING LEDGER: load state/video_ledger.json +
+             state/analytics_explainer, retrieve the ~10 most SIMILAR past
+             videos (same topic/hook-type/franchise, not top overall), score
+             them on the STAGED SCORECARD (name the failing stage: exposure/
+             hook/body/ending/satisfaction/expansion), and reason explicitly
+             before you direct anything.
           2. For EACH segment of each target story, read its data file and invent
              the most creative depiction of THAT data — prefer a brand-new
              procedural mechanic; else compose from the element kit; a classic
@@ -274,8 +278,12 @@ jobs:
              movement in the first second, max ~7-10 words readable per moment,
              and an ending that surprises (escalate/invert/consequence) — never
              a summary.
-          7. RECORD: append each directed video's creative fingerprint to
-             state/video_ledger.json per the LEARNING LEDGER schema.
+          7. RECORD: append each directed video's creative fingerprint WITH its
+             shot timeline (hook/punches/visual swaps/captions/payoff/CTA
+             timestamps) to state/video_ledger.json, and make bounded updates to
+             state/brain_context.json (weights/rules-of-thumb only; obey its
+             guardrails; playbook-rule changes are operator-reviewed, not yours
+             to make silently).
           Do NOT modify stories outside the target slugs. Finish with a 6-line
           summary: evidence from similar past videos, depictions chosen per
           story, hook/ending choices, QA fixes.
@@ -415,7 +423,7 @@ jobs:
           git add state/explainer_posted_log.json state/analytics_explainer state/translation_cache.json 2>/dev/null || true
           # The brain's creative memory: per-video fingerprints joined to
           # analytics so the next direction is evidence-based, not fresh guess.
-          git add state/video_ledger.json 2>/dev/null || true
+          git add state/video_ledger.json state/brain_context.json 2>/dev/null || true
           # Persist any freshly AUTHORED stories so they outlive this ephemeral
           # run (the new config entries + their illustrative datasets).
           git add data_learning/niche.config.json data_learning/data 2>/dev/null || true

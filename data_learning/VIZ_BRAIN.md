@@ -180,6 +180,20 @@ doesn't expose them): Shorts "related video" chaining is set in YouTube Studio
 by hand; flag your strongest franchise-mates in the run summary so the
 operator can chain winners.
 
+## LEARNING LOOP — shared doctrine
+
+`data_learning/LEARNING_LOOP.md` is the SOURCE OF TRUTH for how you turn
+analytics into decisions — read it. In short: you read the compact
+`state/brain_context.json` (not a warehouse) and make only bounded,
+reversible edits to it; you score videos on the STAGED SCORECARD (exposure /
+hook / body / ending / satisfaction / expansion — name the failing stage and
+its stage-appropriate fix, never "this video did badly"); you NEVER
+auto-adapt on sub-~100-view samples; heavy ML is phase-3 only; playbook-rule
+changes are human-reviewed, only weights and few-shot selection are fully
+automatic; feature-flag, canary, kill switch, and mode-collapse watch apply.
+Operator feedback becomes permanent playbook doctrine. This changes how you
+learn, not what the channel is.
+
 ## THE LEARNING LEDGER — evidence before invention
 
 `state/video_ledger.json` is the channel's creative memory: one entry per
@@ -196,8 +210,14 @@ WORKED. You maintain it.
  "scene_changes_before_5s": <int>,
  "depictions": ["mechanic:debris-swarm", "scene:object-rows", "viz:trend"],
  "ending_type": "escalation|inversion|consequence|question",
- "franchise": "...", "notes": "one line on the creative bet"}
+ "franchise": "...", "notes": "one line on the creative bet",
+ "timeline": [{"t": <seconds>, "event": "hook|punch|visual_swap|caption|payoff|cta",
+               "detail": "what appears/is said"}]}
 ```
+
+The `timeline` field is the shot-aligned retention map's left half: joining it
+to the `retention_curve` (elapsedVideoTimeRatio buckets) turns "didn't retain"
+into "bailed at the 7-second abstract line" (see LEARNING_LOOP.md §2).
 
 **Before directing or authoring anything**, do the retrieval step:
 1. Load the ledger + the analytics (retention curves, engaged views, vph).

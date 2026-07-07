@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "updated_at": "2026-07-07",
+  "channel": "explainer",
+  "flags": {
+    "adaptive_enabled": true,
+    "force_exploration": false
+  },
+  "guardrails": {
+    "min_views_for_adaptation": 100,
+    "max_daily_allocation_shift_pct": 20,
+    "canary_videos_per_new_rule": 2
+  },
+  "metric_versions": {
+    "shorts_view_count": "post-2025-03-31 definition"
+  },
+  "scoring_weights": {
+    "hook_hold": 0.3,
+    "body_retention": 0.3,
+    "ending_retention": 0.15,
+    "satisfaction_per_engaged_view": 0.15,
+    "expansion_vph_vs_baseline": 0.1
+  },
+  "current_directives": [
+    "Sample sizes are below the 100-view adaptation floor for most videos; use judgment + the obvious sort, no weight changes yet."
+  ],
+  "active_experiments": [],
+  "last_known_good": {
+    "note": "seed state - first snapshot",
+    "commit": null
+  },
+  "rules_of_thumb": [
+    "Action-framed topics beat passive-fact topics within the same category.",
+    "Body-facts and cost-shock topics outperform space on views/hour so far."
+  ]
+}
