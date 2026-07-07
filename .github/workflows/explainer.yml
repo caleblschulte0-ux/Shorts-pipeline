@@ -247,8 +247,11 @@ jobs:
           and quality gate in one. FIRST read data_learning/VIZ_BRAIN.md — it is
           your complete playbook (toolkit, hard rules, QA checklist, schemas).
           Work on ONLY these story slugs: ${BRAIN_SLUGS}. Then:
-          1. Read state/analytics_explainer to see which past topics/depictions
-             win views; note the direction in one line.
+          1. LEARN FIRST: follow the LEARNING LEDGER section of the playbook —
+             load state/video_ledger.json + state/analytics_explainer, retrieve
+             the ~10 most SIMILAR past videos (same topic/hook-type/franchise,
+             not top overall), join them to retention data, and reason
+             explicitly about why they held or died before you direct anything.
           2. For EACH segment of each target story, read its data file and invent
              the most creative depiction of THAT data — prefer a brand-new
              procedural mechanic; else compose from the element kit; a classic
@@ -267,9 +270,15 @@ jobs:
              second earns the view? reads muted?) and the frame checklist; fix
              and re-render until every segment passes. Do not skip this.
           6. Save good new mechanics to data_learning/viz_mechanics.json; star the
-             exceptional ones.
-          Do NOT modify stories outside the target slugs. Finish with a 5-line
-          summary: analytics direction, depictions chosen per story, QA fixes.
+             exceptional ones. Apply the HOOK DOCTRINE: curiosity-first hooks,
+             movement in the first second, max ~7-10 words readable per moment,
+             and an ending that surprises (escalate/invert/consequence) — never
+             a summary.
+          7. RECORD: append each directed video's creative fingerprint to
+             state/video_ledger.json per the LEARNING LEDGER schema.
+          Do NOT modify stories outside the target slugs. Finish with a 6-line
+          summary: evidence from similar past videos, depictions chosen per
+          story, hook/ending choices, QA fixes.
           BRAINPROMPT
           )"
           # Bounded so a stuck brain can't blow the 60-min job cap; non-fatal so a
@@ -404,6 +413,9 @@ jobs:
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         run: |
           git add state/explainer_posted_log.json state/analytics_explainer state/translation_cache.json 2>/dev/null || true
+          # The brain's creative memory: per-video fingerprints joined to
+          # analytics so the next direction is evidence-based, not fresh guess.
+          git add state/video_ledger.json 2>/dev/null || true
           # Persist any freshly AUTHORED stories so they outlive this ephemeral
           # run (the new config entries + their illustrative datasets).
           git add data_learning/niche.config.json data_learning/data 2>/dev/null || true
