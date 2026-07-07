@@ -414,8 +414,20 @@ jobs:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
         run: |
-          python3 scripts/fetch_analytics.py --channel explainer --max-age-days 60 \
-            || { echo "analytics fetch skipped"; exit 0; }
+          # Surface failures as ANNOTATIONS (retrievable via the checks API) —
+          # the old silent `|| exit 0` swallowed the real error and made a
+          # broken token look like a green step.
+          set +e
+          OUT=$(python3 scripts/fetch_analytics.py --channel explainer \
+                --max-age-days 60 2>&1)
+          RC=$?
+          set -e
+          echo "$OUT"
+          if [ $RC -ne 0 ]; then
+            SNIP=$(echo "$OUT" | tail -c 600 | tr '\n' ' ')
+            echo "::error title=analytics-fetch-failed::rc=$RC $SNIP"
+          fi
+          exit 0
 
       - name: Persist posted log + analytics
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
