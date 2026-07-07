@@ -21,6 +21,11 @@ on:
     branches: [main]
     paths:
       - 'state/third_packages/**'
+  # Daily slate: packages synthesize from state/third_packages/default_clip.json
+  # when no authored packages exist for the day. 11:00 UTC → publish slots
+  # land 17:00/19:00/21:00 UTC (US afternoon/evening).
+  schedule:
+    - cron: '0 11 * * *'
 
 permissions:
   contents: write   # commit third_posted_log.json
@@ -77,6 +82,10 @@ jobs:
           # Groq author writes per-clip titles/hooks/hashtags from the
           # transcript; run degrades to raw clip titles without it
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Twitch Helix (optional): exact clip ages + proper windowing.
+          # Discovery falls back to yt-dlp when unset.
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
           # Wrong-channel guard: hard default to the real third channel;
           # repo var THIRD_EXPECTED_CHANNEL can override if renamed.
           YOUTUBE_EXPECTED_CHANNEL: ${{ vars.THIRD_EXPECTED_CHANNEL || 'Thirdbraindown' }}

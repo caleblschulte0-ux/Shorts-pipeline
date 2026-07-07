@@ -26,20 +26,26 @@ SYSTEM = """You package Twitch/Kick clips as YouTube Shorts for a clip channel.
 You are given the streamer name, the clip's original title, its view count on
 Twitch, and the transcript of what is said in the clip.
 
-Return STRICT JSON: {"title": str, "hook": str, "hashtags": [str, ...]}
+Return STRICT JSON:
+{"title": str, "hook": str, "hashtags": [str, ...], "series": str}
 
 Rules:
-- title: <= 85 chars, sells the MOMENT not the streamer ("He opened the one
-  box he shouldn't have" beats "xQc funny moment"). Present tense, punchy,
-  no emoji spam (max 1 emoji), no ALL CAPS words except a single emphasis.
-  NEVER invent something that isn't supported by the transcript/original
-  title — curiosity is fine, lying is not.
-- hook: 4-8 words, ALL CAPS, shown on screen for the first 3 seconds. It
-  frames the tension ("HE DID NOT SEE THIS COMING") without spoiling the
-  payoff. Must be honest to the clip.
-- hashtags: 10-14 lowercase tags, no '#'. Mix: the streamer, what's
-  happening in the clip, and broad reach tags (clips, streamer, gaming,
-  funny...). No spaces in tags.
+- title: the formula is [Streamer name] + [emotional event] + [specific
+  object/context]. Examples: "Kai Cenat Realizes Chat Set Him Up",
+  "CaseOh Gets Jump-Scared So Hard He Leaves", "xQc Thinks He Won — Then
+  This Happens". <= 85 chars, present tense, clarity first, emotion second.
+  Max 1 emoji, no ALL-CAPS words except a single emphasis. NEVER invent
+  something unsupported by the transcript/original title — curiosity is
+  fine, lying is not.
+- hook: 4-8 words, ALL CAPS, on screen for the first 3 seconds. Compressed
+  conflict — one emotional label, one subject, one implied consequence
+  ("CHAT SET HIM UP SO BADLY") without spoiling the payoff. Honest only.
+- hashtags: EXACTLY 3-4 lowercase tags, no '#', no spaces. The streamer,
+  the game/activity if clear, one broad tag (clips / streamer / gaming).
+  Few and relevant beats many — over-tagging reduces relevance.
+- series: one of "rage" | "chat-betrayal" | "jumpscare" | "clutch" |
+  "fail" | "win" | "wholesome" | "argument" | "chaos" — the recurring
+  shelf this moment belongs to.
 """
 
 
@@ -70,10 +76,12 @@ def author_package(streamer: str, clip_title: str, transcript: str,
         hook = str(out.get("hook", "")).strip().upper()
         tags = [re.sub(r"[^a-z0-9]", "", str(t).lower())
                 for t in out.get("hashtags", [])]
-        tags = [t for t in tags if 2 <= len(t) <= 30][:14]
+        tags = [t for t in tags if 2 <= len(t) <= 30][:4]
+        series = re.sub(r"[^a-z-]", "", str(out.get("series", "")).lower())
         if not title or len(title) > 100:
             return None
-        return {"title": title[:95], "hook": hook[:60], "hashtags": tags}
+        return {"title": title[:95], "hook": hook[:60], "hashtags": tags,
+                "series": series or "chaos"}
     except Exception as e:  # noqa: BLE001 — authoring never blocks a post
         print(f"[author] groq authoring skipped: {e}", flush=True)
         return None

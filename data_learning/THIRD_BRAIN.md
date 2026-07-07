@@ -1,160 +1,249 @@
-# THIRD CHANNEL ("third") — brain playbook: THE CLIPPER
+# THIRD CHANNEL ("third" / @Thirdbraindown) — brain playbook: THE CLIP DESK
 
-**The channel:** a Twitch/Kick clip channel. **We find the moments already
-blowing up live, add our edit layer, and ship them as Shorts.** This is the
-safest, most middle-of-the-road guaranteed-views lane on the platform: the
-content is pre-validated (a clip pulling 10k views on Twitch in a day has
-already won its A/B test with a live audience), the supply is infinite and
-daily, and the audience is the broadest on YouTube.
+Operator playbook v3 (2026-07-07). **We are not a clip mirror. We are a
+mobile newsroom for one streamer universe.** Status tags: ✅ implemented in
+the pipeline · 🔜 roadmap.
 
 The channel slug is `third`; every package sets `"channel": "third"` and
-the uploader routes it to the `YOUTUBE_TOKEN_JSON_THIRD` secret. See §10
-for wiring. Operator direction 2026-07-07 (permanent doctrine): mass
-audience → millions of views → brand → affiliates/products/sponsors.
-Entertainment first. No B2B, no office tools, no niche-utility content,
-ever.
+the uploader routes to `YOUTUBE_TOKEN_JSON_THIRD`. Wiring in §12. Operator
+doctrine (permanent): mass audience → millions of views → brand →
+affiliates/products/sponsors. Entertainment first; no B2B/niche-utility
+content ever; rights respected (credit + instant takedown, §3).
 
 ---
 
-## 1. Identity (one swipe)
+## 1. Thesis and identity
 
-**The best live moments on the internet, edited to hit.** Streamer
-freakouts, clutch plays, perfect comedic timing, wholesome chaos — the
-moments people already clip, quote, and repost, delivered clean: instant
-hook, big word-pop captions, tight cut, loud clear audio, credit on
-screen.
+**One streamer cluster, not all of streaming.** Single-franchise depth
+beats broad aggregation: recurring characters, recurring stakes, cleaner
+analytics, repeatable audience promise.
 
-## 2. Sourcing doctrine (what gets clipped)
+> **"We turn the most chaotic, funniest, highest-stakes moments from the
+> Kai Cenat / ex-FaZe crew universe into fast, context-rich mobile
+> stories."**
 
-- **Pre-validated only.** We never guess what's funny. The scout pulls
-  each allowlisted channel's top clips of the last 24h, then ranks the
-  global shortlist by **views-per-hour velocity** (age probed per clip) —
-  a 2-hour-old clip at 5k views beats a 20-hour-old one at 8k. Floor:
-  `min_views` 2500. Twitch's own viewers are our test audience; velocity
-  is the viral signal, raw views are just the qualifier.
-- **Allowlist, not open season.** We clip only channels on the package
-  allowlist. Preference order: (1) streamers with official clipping/
-  content programs or explicit permission, (2) major streamers who
-  publicly welcome clip channels. The operator owns the allowlist;
-  the brain may propose additions, never add them.
-- **The 1-second rule still applies.** The moment must land with zero
-  stream context — a scream, a fail, a jackpot, a perfect line. If it
-  needs lore, skip it.
-- **Banned content:** harassment/drama-bait targeting private people,
-  slurs or TOS-violating source material, sexualized content, gambling
-  sponsorship segments, anything mid-apology/mid-controversy. Skip the
-  clip, keep the channel safe — this is the yellow middle of the road.
+| Identity element | Choice |
+|---|---|
+| Audience promise | You will never miss the most insane moment from this crew |
+| Emotional promise | shock, embarrassment, wins, rage, chat betrayals, wholesome reversals |
+| Editorial stance | fast, witty, context-first, never slow |
+| Format promise | every clip understandable in <2s cold, even muted |
 
-## 3. Credit & takedown doctrine [ABSOLUTE]
+**Core cluster (score weight 1.0) ✅:** kaicenat, lacy, silky,
+stableronaldo, jasontheween, rayasianboy, kaysan, plaqueboymax,
+lospollostv. **Fallback supply (weight 0.45) ✅:** xqc, jynxzi, caseoh_
+(+ kick:adinross, rumble:AdinLive when reachable). Fallback exists so a
+quiet crew day still ships; the brand is the crew. Operator owns both
+lists (`state/third_packages/default_clip.json`).
 
-- Streamer handle burned on screen for the FULL duration (credit banner)
-  + source link and clipper credit in every description.
-- Any streamer/rights-holder removal request is honored immediately and
-  the channel goes on the internal blocklist. No arguing, no delay.
-- No raw reuploads, ever: every video carries our full edit layer
-  (reframe, hook, captions, cut, loudness) — both for YouTube's
-  reused-content/originality rules and because the edit IS the product.
-- Never imply the streamer endorses this channel or any sponsor.
+Consistent visual system: same caption font (Anton), same hook-card
+logic, same credit banner on every upload — viewers recognize the channel
+in one frame. High-clarity, face-first, motion-first; never cinematic
+overdesign.
 
-## 4. The edit layer (what makes it OURS)
+## 2. Sourcing and selection
 
-Built in `third_capture/clip_edit.py`, applied to every clip:
+Three layers:
+1. **Platform-native discovery ✅** — per-channel top clips of the last
+   24h (yt-dlp, no keys; Twitch Helix `Get Clips` is the 🔜 upgrade for
+   `created_at`/`vod_offset`/game filters — needs TWITCH_CLIENT_ID/SECRET).
+2. **Velocity ranking ✅** — global shortlist re-ranked by views-per-hour
+   (age probed per clip) × franchise-fit weight. A 2h-old clip at 5k beats
+   a 20h-old one at 8k.
+3. **Floors ✅** — `min_views` 2500; thin-day relaxation to `min_views_floor`
+   800 (warned in logs) so a slot is never lost to a quiet day.
 
-1. **Hook card** (first ~3s) — a 4-8 word tension line written by the
-   Groq author (`third_capture/author.py`) FROM THE TRANSCRIPT of the
-   clip; never clickbait the clip doesn't pay off. The author also writes
-   the YouTube title (raw clip titles like "v" never ship) and 10-14
-   per-clip hashtags, merged with the package's evergreen tags (cap 14 —
-   YouTube discards all hashtags past 15).
-2. **9:16 reframe** — blurred zoom-fill background + source centered.
-   (Next upgrades: facecam/action crop layouts, punch-in zooms on the
-   payoff beat, reaction freeze-frames.)
-3. **Word-pop captions** — whisper `small` word timestamps
-   (`condition_on_previous_text=False` + no-speech filtering so stream
-   music never hallucinates text), 1-3 word ALL-CAPS pops in bundled
-   Anton (OFL, `assets/fonts/`), thick outline + shadow, pop-in scale
-   animation, one yellow-emphasized word per group, positioned below the
-   clip at y≈1350. The video must work muted.
-4. **Tight cut** — trim dead air before the moment; get to the payoff
-   fast; end within ~1s after it lands (`start`/`end` per package).
-5. **Credit banner** — permanent `twitch.tv/<streamer>`.
-6. **Loudness normalize** (-14 LUFS) — screams hit, mumbles are audible.
+Priority score = source signal + moment intensity + context clarity +
+novelty + franchise fit − saturation penalty. Implemented today: source
+signal (views), velocity, franchise fit, dedupe (`source_url`). 🔜: chat
+spike counts, novelty/saturation penalties from the ledger (same joke /
+same game too often), VOD highlight mining.
 
-House rule: hook card answers "why watch", captions carry the dialogue,
-the cut removes everything that isn't the moment. If the edited clip is
-over ~45s, cut harder.
+Selection rule: **clip moments with standalone narrative shape** — a
+scream, a fail, a jackpot, a betrayal, a perfect line. If it needs stream
+lore, skip it. Banned (unchanged): harassment/drama-bait on private
+people, slurs/TOS-violating source, sexualized content, gambling segments,
+mid-controversy content.
 
-## 5. Daily operation
+## 3. Credit & takedown [ABSOLUTE, unchanged]
 
-1. Scout the allowlist (top clips, last 24h, by views).
-2. Rank by source views-per-hour; drop anything already posted
-   (`source_url` dedupe in the posted log) or banned by §2.
-3. For each pick, the brain writes: hook line, cut points, title.
-4. Render + eye-QA (captions in safe area, hook readable, credit visible,
-   payoff inside the cut) → upload, spaced through the day.
-5. Log everything to the ledger for the learning loop.
+Streamer handle burned on screen full duration ✅ + source link & clipper
+credit in every description ✅. Any removal request honored instantly;
+channel goes on the blocklist. No raw reuploads ever — the edit layer is
+the monetization qualifier (non-original Shorts are ineligible) AND the
+product. Never imply streamer endorsement.
 
-Cadence: start **3/day** (clips are cheap), scale with watch signals.
-Freshness beats polish — a 6-hour-old exploding clip outranks a better
-edit of yesterday's.
+## 4. Editing and packaging
 
-## 6. Titles & packaging
+Everything happens in three windows: **0–3s, 3–10s, final payoff.**
+Master: 1080×1920 H.264/AAC ✅, no baked bars, loudness −14 LUFS ✅.
 
-- Title = the moment, not the streamer: "He opened the one box he
-  shouldn't have" > "xQc funny moment #347". Written by the Groq author
-  from the transcript; falls back to the raw clip title only if the LLM
-  is unavailable. Streamer name goes in description/tags.
-- **Every language:** titles + descriptions localized to the extended
-  ~29-language set (`localize.ALL_LANGS`) on every upload — clip content
-  is visual-first, so metadata is the only language barrier.
-- No #shorts spam, a few relevant tags, no emoji walls (one is fine).
-- Thumbnails don't matter for Shorts; the first frame does — the cut
-  must open ON motion or ON the face, never on dead air.
+**Framing rule:** if a face exists, the face wins; if no face, the
+decisive action wins; both → alternate aggressively. (Current reframe is
+blur-fill + centered source ✅; facecam/action crop layouts + punch-in
+zooms on the payoff beat are the top 🔜 edit upgrade.)
 
-## 7. Learning loop [SHARED — `LEARNING_LOOP.md` is law]
+**Never start with dead air ✅** — auto tight-cut opens ~0.8s before the
+first spoken word, ends ~1.5s after the last, hard cap 45s. Never open on
+scene setup or "hello".
 
-Staged scorecard, `state/brain_context.json`, no auto-adaptation below
-~100 views/video, bounded reversible edits. Clip-channel additions to the
-ledger per upload: `streamer`, `source_views`, `source_age_h`, `category`
-(fail/clutch/funny/wholesome/scare), `hook_text`, `cut_length_s`,
-`caption_density`. Learn: which streamers convert HERE (not on Twitch),
-which categories retain, whether tighter cuts beat longer context, and
-which hook styles survive the first 3 seconds. Winners: more of that
-streamer/category same week. Losers: 30-day ban on the pattern, not the
-streamer.
+**Hook = compressed conflict.** First card 4–8 words: one emotional
+label + one subject + one implied consequence ("CHAT SET HIM UP SO
+BADLY"). Written by the Groq author from the transcript ✅ — honest to the
+clip, never clickbait it doesn't pay off.
 
-## 8. Monetization
+**On-screen text rules ✅:** captions 1–3 words per pop, ALL CAPS Anton,
+thick outline + shadow, pop-in scale, one yellow-emphasized word per
+group, positioned below the clip (y≈1350 — clears Reels' bottom-35%
+danger zone and TikTok safe zones for future cross-posting). Expressive
+face → fewer overlays.
 
-Reach → brand → then: streamer-adjacent sponsors (energy, peripherals,
-games), affiliate links, and eventually direct streamer partnerships
-(official clip deals — clip channels big enough get PAID by streamers'
-teams). Platform payouts last. Nothing that makes a video feel like an ad
-before the channel has pull. Disclose every paid relationship (FTC),
-always.
+**Edit templates** (the brain picks per clip 🔜 explicit; today the tight
+cut + hook approximates "instant punchline"):
 
-## 9. Rendering pillars kept in the toolbox
+| Template | Hook window | Payoff |
+|---|---|---|
+| Instant punchline | open ON the reaction/fail frame + 4-6 word card | immediate aftermath, one reaction beat |
+| Escalation | the threatening clue first | fail/win + release |
+| Reversal | confidence line first | hard reversal + close-up |
+| Argument | strongest line first, filler stripped | final line / stunned silence |
 
-The channel is a clipper first, but `third_capture/` retains two original
-renderers usable as in-between content or B-sides, both truthful by
-construction: `sim_video.py` (full-frame escalating physics sims) and the
-real-run capture/composer stack. The brain may propose them; the operator
-decides if/when they slot in.
+**Sound:** source-first — the streamer's audio IS the asset ✅; SFX/
+risers only when source is weak 🔜. **Cover frame 🔜:** one readable face
+or decisive action, 2–4 words, high contrast (matters on channel-page
+surfaces, not feed).
 
-## 10. Wiring & isolation (zero shared-pipeline impact)
+## 5. Metadata
 
-- **Token:** `YouTubeUploader(channel="third")` → secret
-  `YOUTUBE_TOKEN_JSON_THIRD` (mint via `setup_youtube.py` signed into the
-  new channel's account; shared OAuth app).
-- **Guard:** repo var `THIRD_EXPECTED_CHANNEL` → `YOUTUBE_EXPECTED_CHANNEL`
-  in `third.yml`, so a mis-set token can never post to the other channels.
-- **Packages:** `state/third_packages/YYYYMMDD/` — `capture.kind:
-  "twitch_clip"` with `channels` allowlist (or explicit `clip_url` +
-  `credit`), `min_views`, optional `start`/`end` cut, `hook`.
-- **State:** `state/third_posted_log.json` (dedupes by `source_url`);
-  analytics `fetch_analytics.py --channel third` → `state/analytics_third/`.
-- **Workflow:** `third.yml` (concurrency `third-shorts`);
-  `daily.yml`/`explainer.yml` are never touched.
+- **Title formula ✅:** [Streamer] + [emotional event] + [object/context]
+  — "Kai Cenat Realizes Chat Set Him Up". Clarity first, emotion second,
+  keyword third. Groq-authored from transcript; raw clip titles ("v")
+  never ship when the author is up.
+- **Hashtags ✅: 2–4 only** (YouTube surfaces 3 by the title; over-tagging
+  reduces relevance). Authored per clip.
+- **Tags field ✅: sparse name variants** ("kaicenat", "kai cenat clips"…)
+  — tags play a minimal role beyond misspellings.
+- **Description ✅:** sentence 1 = what happened; sentence 2 = source
+  credit + link; hashtags. Short.
+- **Series shelves ✅ label / 🔜 playlists:** every clip gets a series
+  label (rage / chat-betrayal / jumpscare / clutch / fail / win /
+  wholesome / argument / chaos) in the ledger; identity-based playlists
+  ("Chat Betrayals", "Best of the Crew This Week") via API next.
+- **Related-video linking 🔜** — point each Short at a recap/another
+  Short; no dead ends.
+- **Every language ✅:** titles + descriptions localized to ~29 languages
+  (`localize.ALL_LANGS`) on every upload.
 
-Operator setup checklist: create the channel + @handle → mint
-`YOUTUBE_TOKEN_JSON_THIRD` → set `THIRD_EXPECTED_CHANNEL` → approve the
-starting streamer allowlist → merge and run the workflow.
+## 6. Cadence and CI
+
+- **3/day ✅** via daily cron (11:00 UTC) → publish slots 17:00/19:00/21:00
+  UTC. Packages self-synthesize from `default_clip.json` when none are
+  authored ✅ — the machine never has a no-op day.
+- Scale 4–5/day only when the QA pass rate holds (days 91+, §10).
+- Publish time is not a growth lever (YouTube's own guidance) — slots
+  exist for early data density, not mythology.
+- 🔜 split jobs: scout every 2–4h, render 2–3×/day, nightly analytics
+  (today: one daily run + `fetch_analytics.py --channel third`).
+- Weekly long-form recap 🔜 phase 2 (watch-page RPM + mid-rolls).
+
+## 7. Analytics learning loop [LEARNING_LOOP.md is law]
+
+Daily ingest per video ✅ views/likes/vph + retention where exposed;
+🔜 full set: shown-in-feed, viewed-vs-swiped, engaged views, avg view %,
+1s/3s/7s retention, retention curve (`elapsedVideoTimeRatio`), traffic
+split, subs gained — joined to hook template, series, streamer, caption
+density, cut length from the ledger. NOTE: Shorts `viewCount` counts
+plays with NO minimum watch time (2025-03-31 change) — never optimize on
+raw views; engaged views + avg view % + viewed-vs-swiped are the truth.
+
+**Operating thresholds** (internal control limits for 15–45s clips;
+recalibrate per duration bucket + streamer after ~100 uploads; no
+auto-adaptation below ~100 views/video):
+
+| Metric | Green | Red | Action if red |
+|---|---:|---:|---|
+| Viewed vs swiped | ≥38% | <30% | rebuild first second / opening frame / premise card |
+| 1s retention | ≥78% | <68% | change first frame, tighter crop, kill intro air |
+| 3s retention | ≥65% | <55% | replace hook copy, start later in the moment |
+| 7s retention | ≥48% | <38% | compress setup, more motion, fewer words |
+| Avg view % | ≥85% | <70% | clip too long / payoff weak — cut harder |
+| Subs /1k views | ≥3 | <1 | identity weak — series naming + niche clarity |
+| Share rate | ≥0.7% | <0.25% | more universally legible moments |
+
+**Failure→action mapping:** weak viewed-rate = packaging (never topic
+first); 1s good but 3s/7s collapse = setup too long, start later;
+retention spikes late = move that beat to the open next time; high
+retention + low reach = narrow the niche, harden series identity; high
+shares + low comments = add pinned question + sequels; high comments +
+weak retention = keep topic class, rebuild the format.
+
+**Frame-mapped retention 🔜 (highest-value build):** join retention
+buckets to frame grabs, caption windows, face-size and audio-intensity —
+"what was on screen when 3s retention failed?"
+
+**A/B rules:** one variable per experiment, 20–30 clips per condition,
+same cluster + duration band, randomized slots. Candidate tests: opening
+frame, 4- vs 8-word card, punchline-first vs setup-first, facecam- vs
+gameplay-dominant, 18–24s vs 28–35s cuts, streamer-first vs event-first
+titles.
+
+**The 90-day bar:** the brain must be able to explain in writing why the
+last 20 winners won and the last 20 losers lost. That's the difference
+between a system and uploads.
+
+## 8. QA gates (before every publish)
+
+Five tests: cold-view clarity <2s · mobile dominance (subject centered) ·
+caption legibility (never covering face or bottom-35%) · pacing (no dead
+second unless deliberate tension) · payoff density (ends on a reaction/
+reversal/line). Human spot-check + brain answers in structured form: the
+clip's emotional promise, why a cold viewer stops, the one context
+sentence, the first likely drop-off point, which similar past clip failed
+this same way, and the sequel opportunity if it hits.
+
+## 9. Monetization stack (in order)
+
+1. Shorts ad revenue (YPP: 500 subs + 3M Shorts views/90d early access;
+   1k subs + 10M/90d full share at 45%) — requires the value-add edit
+   layer, which is doctrine anyway.
+2. Weekly long-form recaps (55% share, mid-rolls at 8+ min) 🔜.
+3. Affiliate commerce (gear/peripherals; Shorts product tagging).
+4. Memberships (70% share) — members-only weekly best-of.
+5. Sponsorships (gaming/energy/peripherals) — disclosed, never before the
+   channel has pull.
+6. Licensing/service: the channel is the demo reel for an official clip
+   desk streamers pay for.
+
+**Use Shorts to acquire, long-form to deepen, Shopping/memberships to
+monetize, sponsorships to multiply.**
+
+## 10. KPI roadmap (high-growth targets, not guarantees)
+
+| Horizon | Output | Growth | Quality |
+|---|---|---|---|
+| 90 days | 180–270 Shorts, 3/day, one clear niche | 5–20k subs, 0.5–3M monthly views | median viewed-rate >35%, avg view % >75%, top-3 series identified |
+| 180 days | +weekly recap | 20–75k subs, 3–15M monthly | viewed-rate >38%, winner archetypes documented |
+| 365 days | 1,000–1,500 Shorts, mature automation | 75–250k subs, 15–60M monthly | 80% of uploads pass green/yellow |
+
+## 11. Toolbox (B-sides)
+
+`sim_video.py` (escalating physics sims) and the real-run capture stack
+remain available for original in-between content — also useful for the
+originality profile of the channel. Operator decides if/when.
+
+## 12. Wiring & isolation (zero shared-pipeline impact)
+
+- Token: `YouTubeUploader(channel="third")` → `YOUTUBE_TOKEN_JSON_THIRD`;
+  guard `YOUTUBE_EXPECTED_CHANNEL` defaults to `Thirdbraindown`.
+- Discovery/edit: `third_capture/clip_edit.py`; authoring:
+  `third_capture/author.py` (GROQ_API_KEY); orchestrator:
+  `scripts/run_third.py`; workflow `third.yml` (cron 11:00 UTC daily,
+  concurrency `third-shorts`).
+- Packages: `state/third_packages/YYYYMMDD/` or self-synthesized from
+  `state/third_packages/default_clip.json` (core/fallback lists live
+  there). State: `state/third_posted_log.json` (source_url dedupe),
+  analytics → `state/analytics_third/`.
+- `daily.yml` / `explainer.yml` are never touched by this channel.
+- 🔜 needs from operator: TWITCH_CLIENT_ID/SECRET (Helix upgrade),
+  decision on comment seeding (API can post but not pin — manual op),
+  Kick/Rumble access route (bot-walled from CI today).

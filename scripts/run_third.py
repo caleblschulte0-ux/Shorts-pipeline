@@ -89,19 +89,31 @@ def _fmt_from_ledger(led: dict) -> dict:
             "removed": f"{n_in - n_out:,}", "wall": f"{led['wall_time_s']:.2f}"}
 
 
-def _merged_tags(pkg: dict, led: dict) -> list[str]:
-    tags = list(led.get("authored_tags") or []) + \
+def _hashtags(pkg: dict, led: dict) -> list[str]:
+    """Description hashtags: 3-4, sparse and relevant (over-tagging
+    reduces relevance; YouTube surfaces at most 3 by the title)."""
+    tags = list(led.get("authored_tags") or []) or \
         list(pkg.get("hashtags") or [])
     seen, out = set(), []
     for t in tags:
         if t not in seen:
             seen.add(t)
             out.append(t)
-    return out[:14]   # YouTube discards ALL hashtags past 15
+    return out[:4]
+
+
+def _yt_tags(pkg: dict, led: dict) -> list[str]:
+    """The tags FIELD (not hashtags): sparse, mostly name variants —
+    YouTube says tags play a minimal role beyond misspellings."""
+    if led.get("kind") != "twitch_clip":
+        return list(pkg.get("hashtags") or [])[:10]
+    s = led["streamer"]
+    return [s, f"{s} clips", f"{s} stream", "streamer clips",
+            *(led.get("authored_tags") or [])][:10]
 
 
 def _description(pkg: dict, led: dict) -> str:
-    tags = " ".join(f"#{t}" for t in _merged_tags(pkg, led))
+    tags = " ".join(f"#{t}" for t in _hashtags(pkg, led))
     note = pkg.get("description_note", "")
     if led.get("kind") == "twitch_clip":
         detail = (f"Clip from {led['credit']} — full credit "
@@ -118,8 +130,8 @@ def _description(pkg: dict, led: dict) -> str:
     return f"{pkg['proof_plan']}\n\n{note}\n\n{detail}\n\n{tags}"
 
 
-def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
-    pkg = json.loads(pkg_path.read_text())
+def process(pkg: dict, pkg_path: Path | None, *,
+            dry_run: bool, publish_at, log: dict) -> dict:
     slug = pkg["slug"]
     result = {"slug": slug, "ok": False}
     if slug in log["posted"]:
@@ -158,26 +170,39 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
                                   f"failed ({type(e).__name__}) — skipped",
                                   flush=True)
                 # views are comparable on twitch, best-effort elsewhere;
-                # min_views gates only candidates that report views.
-                cands = [c for c in cands
-                         if c["url"] not in posted_urls
-                         and (c["views"] == 0
-                              or c["views"] >= spec.get("min_views", 2000))]
+                # min_views gates only candidates that report views. On a
+                # thin day, relax to the hard floor instead of losing the
+                # slot — a 1.5k-view core-cluster clip still beats nothing.
+                fresh = [c for c in cands if c["url"] not in posted_urls]
+                min_v = spec.get("min_views", 2500)
+                floor = spec.get("min_views_floor", 800)
+                cands = [c for c in fresh
+                         if c["views"] == 0 or c["views"] >= min_v]
+                if not cands:
+                    cands = [c for c in fresh if c["views"] >= floor]
+                    if cands:
+                        print(f"::warning::thin day — relaxed min_views "
+                              f"{min_v} -> floor {floor}", flush=True)
                 cands.sort(key=lambda c: -c["views"])
                 if not cands:
                     raise RuntimeError("no fresh clip across the allowlist")
                 # viral signal = velocity, not raw views: probe ages for
-                # the top of the board and re-rank by views/hour
+                # the top of the board and re-rank by views/hour, weighted
+                # by franchise fit (core cluster > fallback supply)
+                core = set(spec.get("core", []))
                 shortlist = cands[:8]
                 for c in shortlist:
-                    age = clip_edit.fetch_age_hours(c["url"])
+                    # helix candidates carry exact age; yt-dlp ones probe
+                    age = c.get("age_h") or clip_edit.fetch_age_hours(c["url"])
                     c["vph"] = c["views"] / max(age, 0.5) if age else \
                         c["views"] / 24.0
-                shortlist.sort(key=lambda c: -c["vph"])
+                    c["score"] = c["vph"] * \
+                        (1.0 if not core or c["channel"] in core else 0.45)
+                shortlist.sort(key=lambda c: -c["score"])
                 for c in shortlist[:5]:
                     print(f"[pick] {c['channel']:>14} {c['views']:>7}v "
-                          f"{c['vph']:>8.0f}v/h  {c['title'][:50]!r}",
-                          flush=True)
+                          f"{c['vph']:>8.0f}v/h score={c['score']:>7.0f} "
+                          f"{c['title'][:45]!r}", flush=True)
                 pick = shortlist[0]
                 info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]
@@ -203,6 +228,7 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
             if meta:
                 led["authored_title"] = meta["title"]
                 led["authored_tags"] = meta["hashtags"]
+                led["series"] = meta.get("series", "chaos")
             led["source_url"] = info["url"]
             led["source_views"] = info["views"]
             led["clip_title"] = info["title"]
@@ -219,6 +245,8 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
         else:
             ledger_path = run_capture(pkg, work)
             led = json.loads(ledger_path.read_text())
+            if pkg_path is None:
+                raise RuntimeError("cli/sim packages must exist on disk")
             composer.compose(pkg_path, ledger_path, out_mp4)
         result["video_path"] = str(out_mp4.relative_to(REPO))
         result["ledger"] = str(ledger_path.relative_to(REPO))
@@ -245,7 +273,7 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
             up = YouTubeUploader(channel="third").upload(
                 file_path=out_mp4, title=title,
                 description=description,
-                tags=_merged_tags(pkg, led),
+                tags=_yt_tags(pkg, led),
                 publish_at=publish_at,
                 localizations=localizations,
             )
@@ -279,10 +307,24 @@ def main() -> int:
     args = ap.parse_args()
 
     day_dir = PACKAGE_DIR / args.date
-    packages = sorted(day_dir.glob("*.json")) if day_dir.is_dir() else []
+    paths = sorted(day_dir.glob("*.json")) if day_dir.is_dir() else []
+    packages: list[tuple[dict, Path | None]] = \
+        [(json.loads(p.read_text()), p) for p in paths]
     if not packages:
-        print(f"no packages under {day_dir}")
-        return 0
+        # self-sufficient cron: synthesize the day's slate from the
+        # default template so no one has to author packages daily
+        template = PACKAGE_DIR / "default_clip.json"
+        if template.exists():
+            base = json.loads(template.read_text())
+            n = int(base.pop("count", 3))
+            for i in range(1, n + 1):
+                pkg = json.loads(json.dumps(base))
+                pkg["slug"] = f"clip-{args.date}-{i}"
+                packages.append((pkg, None))
+            print(f"no authored packages — synthesized {n} from template")
+        else:
+            print(f"no packages under {day_dir}")
+            return 0
     publish_base = None
     if not args.no_schedule and not args.dry_run:
         now = datetime.now(timezone.utc)
@@ -294,12 +336,12 @@ def main() -> int:
 
     log = _load_log()
     # uploaders.upload wants publish_at as an RFC3339 string, not datetime
-    results = [process(p, dry_run=args.dry_run,
+    results = [process(pkg, path, dry_run=args.dry_run,
                        publish_at=((publish_base + timedelta(hours=2 * i))
                                    .strftime("%Y-%m-%dT%H:%M:%SZ")
                                    if publish_base else None),
                        log=log)
-               for i, p in enumerate(packages)]
+               for i, (pkg, path) in enumerate(packages)]
     print(json.dumps(results, indent=2))
     return 0 if all(r["ok"] for r in results) else 1
 

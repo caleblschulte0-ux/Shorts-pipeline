@@ -36,6 +36,77 @@ def _run(cmd: list[str]) -> str:
 
 # ---------- 1. discover ----------
 
+# Twitch Helix path — used automatically when TWITCH_CLIENT_ID/SECRET are
+# set. Gives exact created_at (real velocity, no per-clip age probes),
+# proper 24h windowing, and vod offsets for future VOD mining.
+_HELIX_TOKEN: dict = {}
+_HELIX_IDS: dict[str, str] = {}
+
+
+def _helix_creds() -> tuple[str, str] | None:
+    import os
+    cid = os.environ.get("TWITCH_CLIENT_ID", "").strip()
+    sec = os.environ.get("TWITCH_CLIENT_SECRET", "").strip()
+    return (cid, sec) if cid and sec else None
+
+
+def _helix_headers() -> dict:
+    import time
+    import requests
+    cid, sec = _helix_creds()
+    if not _HELIX_TOKEN or _HELIX_TOKEN["exp"] < time.time() + 60:
+        r = requests.post("https://id.twitch.tv/oauth2/token",
+                          data={"client_id": cid, "client_secret": sec,
+                                "grant_type": "client_credentials"},
+                          timeout=20)
+        r.raise_for_status()
+        d = r.json()
+        _HELIX_TOKEN.update(tok=d["access_token"],
+                            exp=time.time() + d.get("expires_in", 3600))
+    return {"Client-Id": cid,
+            "Authorization": f"Bearer {_HELIX_TOKEN['tok']}"}
+
+
+def _helix_user_id(login: str) -> str | None:
+    import requests
+    if login not in _HELIX_IDS:
+        r = requests.get("https://api.twitch.tv/helix/users",
+                         params={"login": login},
+                         headers=_helix_headers(), timeout=20)
+        r.raise_for_status()
+        data = r.json().get("data", [])
+        _HELIX_IDS[login] = data[0]["id"] if data else ""
+    return _HELIX_IDS[login] or None
+
+
+def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
+    import time
+    import requests
+    from datetime import datetime, timezone, timedelta
+    bid = _helix_user_id(channel)
+    if not bid:
+        return []
+    started = (datetime.now(timezone.utc) - timedelta(hours=hours)) \
+        .strftime("%Y-%m-%dT%H:%M:%SZ")
+    r = requests.get("https://api.twitch.tv/helix/clips",
+                     params={"broadcaster_id": bid, "started_at": started,
+                             "first": max(top, 12)},
+                     headers=_helix_headers(), timeout=20)
+    r.raise_for_status()
+    clips = []
+    now = time.time()
+    for c in r.json().get("data", [])[:top]:   # helix returns views desc
+        created = datetime.fromisoformat(
+            c["created_at"].replace("Z", "+00:00")).timestamp()
+        clips.append({"url": c["url"], "views": int(c["view_count"]),
+                      "duration": float(c.get("duration", 0)),
+                      "title": c["title"], "channel": channel,
+                      "platform": "twitch",
+                      "age_h": max(0.05, (now - created) / 3600),
+                      "vod_offset": c.get("vod_offset")})
+    return clips
+
+
 # Kick and Rumble sit behind bot protection; yt-dlp's TLS impersonation
 # (curl_cffi) gets through from clean egress (e.g. CI runners). Twitch
 # needs nothing.
@@ -62,6 +133,12 @@ def discover(platform: str, channel: str, *, top: int = 8,
     clip-length (<=2min) — rumble has no clip system, streamers post
     short highlights as videos."""
     if platform == "twitch":
+        if _helix_creds():
+            try:
+                return _discover_helix(channel, top)
+            except Exception as e:  # noqa: BLE001 — fall back to yt-dlp
+                print(f"[helix] {channel}: {e} — falling back to yt-dlp",
+                      flush=True)
         url = (f"https://www.twitch.tv/{channel}/clips"
                f"?filter=clips&range={range_}")
     elif platform == "kick":
@@ -229,6 +306,16 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
     src_dur = float(probe["format"]["duration"])
     t0 = max(0.0, start)
     t1 = min(src_dur, end) if end else src_dur
+    # auto tight-cut when no explicit cut was authored: never open on dead
+    # air (start just before the first spoken word), end ~1.5s after the
+    # last word so the reaction lands, hard cap 45s (playbook: cut harder)
+    if not start and not end and words:
+        t0 = max(0.0, words[0]["s"] - 0.8)
+        t1 = min(src_dur, words[-1]["e"] + 1.5)
+        if t1 - t0 > 45.0:
+            t1 = t0 + 45.0
+        words = [{"w": w["w"], "s": w["s"] - t0, "e": w["e"] - t0}
+                 for w in words if t0 <= w["s"] < t1 - 0.2]
     dur = t1 - t0
 
     with tempfile.TemporaryDirectory() as td:
@@ -242,7 +329,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         else:
             cut = raw
 
-        if words is None or t0 > 0.01 or t1 < src_dur - 0.01:
+        if words is None:
             words = transcribe_words(cut, whisper_model)
         ass = build_ass(words, credit, dur, tmp / "caps.ass")
 
