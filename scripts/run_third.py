@@ -242,8 +242,10 @@ def main() -> int:
             publish_base += timedelta(hours=2)
 
     log = _load_log()
+    # uploaders.upload wants publish_at as an RFC3339 string, not datetime
     results = [process(p, dry_run=args.dry_run,
-                       publish_at=(publish_base + timedelta(hours=2 * i)
+                       publish_at=((publish_base + timedelta(hours=2 * i))
+                                   .strftime("%Y-%m-%dT%H:%M:%SZ")
                                    if publish_base else None),
                        log=log)
                for i, p in enumerate(packages)]
