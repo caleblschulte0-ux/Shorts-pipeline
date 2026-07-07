@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import importlib
 import json
+import re
 import sys
 import time
 from datetime import datetime, timezone, timedelta
@@ -116,10 +117,15 @@ def _description(pkg: dict, led: dict) -> str:
     tags = " ".join(f"#{t}" for t in _hashtags(pkg, led))
     note = pkg.get("description_note", "")
     if led.get("kind") == "twitch_clip":
-        detail = (f"Clip from {led['credit']} — full credit "
-                  f"to the streamer. Source: {led['source_url']}\n"
+        # the public caption: one human sentence, credit, tags — never
+        # internal pipeline jargon
+        lead = led.get("authored_caption") \
+            or led.get("authored_title") or led["clip_title"]
+        credit = (f"Clip from {led['credit']} — full credit to the "
+                  f"streamer.\nSource: {led['source_url']}\n"
                   f"Clipped by {led['clipper']}.")
-    elif led.get("kind") == "sim":
+        return f"{lead}\n\n{credit}\n\n{tags}"
+    if led.get("kind") == "sim":
         detail = (f"Simulation: {led['theme']}, one continuous speed ramp "
                   f"to x{led['peak_multiplier']} — the on-screen speed "
                   "counter is the sim's actual clock multiplier.")
@@ -174,6 +180,31 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # thin day, relax to the hard floor instead of losing the
                 # slot — a 1.5k-view core-cluster clip still beats nothing.
                 fresh = [c for c in cands if c["url"] not in posted_urls]
+                # VARIETY (operator law): max 1 clip per streamer per day,
+                # and max 1 clip of the same EVENT per day — when one hot
+                # event (Streamer University) floods every crew channel,
+                # we take the best moment once, not a wall of it.
+                today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+                posted_today = [v for v in log["posted"].values()
+                                if str(v.get("ts", "")).startswith(today)]
+                used_streamers = {v.get("streamer") for v in posted_today}
+                used_titles = [str(v.get("title", "")).lower()
+                               for v in posted_today]
+
+                def _same_event(title: str) -> bool:
+                    toks = {t for t in re.findall(r"[a-z]{5,}",
+                                                  title.lower())}
+                    return any(len(toks & set(re.findall(r"[a-z]{5,}", u)))
+                               >= 2 for u in used_titles)
+
+                varied = [c for c in fresh
+                          if c["channel"] not in used_streamers
+                          and not _same_event(c["title"])]
+                if varied:
+                    fresh = varied
+                else:
+                    print("::warning::variety rules exhausted the pool — "
+                          "allowing repeats", flush=True)
                 min_v = spec.get("min_views", 2500)
                 floor = spec.get("min_views_floor", 800)
                 cands = [c for c in fresh
@@ -228,6 +259,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
             if meta:
                 led["authored_title"] = meta["title"]
                 led["authored_tags"] = meta["hashtags"]
+                led["authored_caption"] = meta.get("caption", "")
                 led["series"] = meta.get("series", "chaos")
             led["source_url"] = info["url"]
             led["source_views"] = info["views"]
@@ -256,8 +288,13 @@ def process(pkg: dict, pkg_path: Path | None, *,
             result.update(ok=True, video_url="(dry-run)")
             if led.get("kind") == "twitch_clip":
                 # in-memory only (never saved): keeps the next package in
-                # this run from picking the same clip
-                log["posted"][slug] = {"source_url": led["source_url"]}
+                # this run from re-picking the clip, streamer, or event
+                log["posted"][slug] = {
+                    "source_url": led["source_url"],
+                    "streamer": led["streamer"],
+                    "title": led.get("authored_title") or led["clip_title"],
+                    "ts": datetime.now(timezone.utc).isoformat(),
+                }
         else:
             from uploaders import YouTubeUploader
             description = _description(pkg, led)

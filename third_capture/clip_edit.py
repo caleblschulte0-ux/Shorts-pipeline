@@ -209,7 +209,10 @@ def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
             continue
         for w in seg.get("words", []):
             token = w["word"].strip()
-            if token and not _JUNK.match(token):
+            # low-probability words are usually crowd-noise mishears —
+            # better no caption than a wrong (or offensive) one
+            if (token and not _JUNK.match(token)
+                    and w.get("probability", 1.0) >= 0.35):
                 words.append({"w": token, "s": w["start"], "e": w["end"]})
     return words
 
@@ -233,6 +236,14 @@ _YELLOW = r"\c&H00FFFF&"
 _WHITE = r"\c&HFFFFFF&"
 _POP_FX = r"{\pos(540,1350)\fscx72\fscy72\t(0,70,\fscx100\fscy100)}"
 
+# Caption safety: whisper mishears crowd noise into words we must never
+# burn on screen ("higger" was a real incident). Any group containing a
+# match is dropped entirely — no caption beats a catastrophic caption.
+_CAPTION_BLOCKLIST = re.compile(
+    r"n+[i1e]+gg+|higger|f+a+gg+[oe]t|retard|tranny|k[i1]ke|"
+    r"sp[i1]c\b|ch[i1]nk|c+o+o+n\b|wetback",
+    re.IGNORECASE)
+
 
 def _ts(sec: float) -> str:
     h = int(sec // 3600)
@@ -247,8 +258,10 @@ def _clean(token: str) -> str:
 
 def build_ass(words: list[dict], credit: str, dur: float, out: Path,
               max_group: int = 3) -> Path:
-    """1-3 word caption pops, centered mid-low, plus a permanent credit
-    line. Groups split on gaps > 0.6s or punctuation."""
+    """Word-pop subtitles (ALL-CAPS Anton, one yellow-emphasized word per
+    group, pop-in) plus a permanent credit line. Groups split on gaps
+    > 0.6s or punctuation. Groups containing blocklisted tokens are
+    dropped entirely — no caption beats a catastrophic caption."""
     lines = [_ASS_HEADER]
     group: list[dict] = []
 
@@ -257,13 +270,14 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
             return
         s, e = group[0]["s"], max(group[-1]["e"], group[0]["s"] + 0.35)
         toks = [_clean(g["w"]) for g in group]
-        # emphasize the longest meaningful word in yellow — the classic
-        # clip-caption look, one color pop per group
+        if _CAPTION_BLOCKLIST.search(" ".join(toks)):
+            group.clear()
+            return
         emph = max(range(len(toks)), key=lambda i: len(toks[i]))
         if len(toks[emph]) >= 4:
             toks[emph] = "{%s}%s{%s}" % (_YELLOW, toks[emph], _WHITE)
-        text = _POP_FX + " ".join(toks)
-        lines.append(f"Dialogue: 1,{_ts(s)},{_ts(e)},Pop,{text}\n")
+        lines.append(f"Dialogue: 1,{_ts(s)},{_ts(e)},Pop,"
+                     f"{_POP_FX}{' '.join(toks)}\n")
         group.clear()
 
     for w in words:
