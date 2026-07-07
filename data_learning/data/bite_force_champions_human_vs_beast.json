@@ -1,0 +1,26 @@
+{
+  "key": "bite_force_champions_human_vs_beast",
+  "title": "Human vs Beast",
+  "unit": "psi",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Saltwater Crocodile",
+      "value": 3700.0
+    },
+    {
+      "label": "Human",
+      "value": 160.0
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "key": "hottest_planets_surface_order_from_sun",
+  "title": "Order From the Sun",
+  "unit": "million miles",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Mercury",
+      "value": 36.0
+    },
+    {
+      "label": "Venus",
+      "value": 67.0
+    },
+    {
+      "label": "Earth",
+      "value": 93.0
+    },
+    {
+      "label": "Mars",
+      "value": 142.0
+    }
+  ]
+}
