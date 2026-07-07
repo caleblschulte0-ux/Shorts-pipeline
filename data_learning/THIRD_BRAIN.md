@@ -1,242 +1,292 @@
-# THIRD CHANNEL ("third") — brain playbook: TRUE SURVIVAL STORIES
+# THIRD CHANNEL ("third") — brain playbook: PROOF MODE
 
-Working title: **"Survived"** (branding is the operator's call — alternatives:
-"Against All Odds", "The Last Second"). The channel slug is `third`; every
-package for this channel sets `"channel": "third"` and the uploader routes it
-to the `YOUTUBE_TOKEN_JSON_THIRD` secret. See §12 for the full wiring and the
-isolation guarantees.
+**Working title:** *Proof Mode* — a proof-first, faceless software-workflow
+channel. **Positioning: "One workflow. One visible result. No hype."**
 
-This file is the channel. The scout, sandbox, validators, render tools,
-uploader and token are shared infrastructure; what makes this channel itself
-is the doctrine below. The brain reads this file first and treats it as law.
-Operator feedback gets written back INTO this file so it becomes permanent
-doctrine, not a one-off fix.
+The channel slug is `third`; every package sets `"channel": "third"` and the
+uploader routes it to the `YOUTUBE_TOKEN_JSON_THIRD` secret. See §13 for
+wiring and isolation. This playbook supersedes the earlier survival-stories
+concept for this slug (preserved in git history at c364670 if ever wanted
+for a fourth channel).
+
+This file is the channel. Scout, validators, uploader, learning loop are
+shared infrastructure; the doctrine below is what makes Proof Mode itself.
+The brain reads this file first and treats it as law. Operator feedback gets
+written back INTO this file as permanent doctrine.
 
 ---
 
-## 0. Why this niche (evidence, 2026-07-07)
+## 0. Strategy and the honest constraint
 
-Chosen from our own two channels' analytics, not taste:
+**The bet:** intersect search intent with visible proof. Don't ask what
+topic is trending — ask what task people are trying to solve, then prove a
+visible result fast. Audience: students, creators, freelancers, founders,
+office workers searching "can this tool do X" / "fastest way to Y" /
+"A vs B". Monetization potential (sponsors, affiliates, template/prompt
+packs) is structurally better than facts/news entertainment niches, and the
+niche is naturally 9:16-visual.
 
-- **Survival stories are the default channel's best performers.** Top 3 by
-  views-per-hour on baller_bro_2_0: "His Parachute Failed at 12,000 Feet. He
-  Lived." (#1), "Two Tornadoes Touched Down at the Exact Same Time" (#2),
-  "A Diver Swam Next to the Biggest Fish on Earth" (#3). Danger + a person +
-  a resolution outperforms everything else we ship there.
-- **Named incidents drive our only real search traffic.** The only search
-  terms with meaningful volume across both channels are named entities —
-  including `twistex dashcam` (the El Reno storm-chaser tragedy). People
-  search *named* disasters and survivors for years. Survival stories are a
-  named-entity catalog with permanent search demand.
-- **Animals/vivid-danger retain 74–102%** on the explainer channel; dry
-  process content dies at 31–41%. Survival stories are 100% vivid danger.
-- **Evergreen beats perishable at our size.** The trending channel averages
-  6 views/video because one-cycle news dies with the cycle. A survival
-  catalog (decades of documented cases) keeps earning search + suggested
-  traffic long after upload.
-- **Zero cannibalization.** Channel 1 = quirky trending news / animal-danger
-  facts. Channel 2 (Schulte Media / Data Minute) = data & scale explainers.
-  Nobody owns "one person, one impossible situation, how they lived."
+**The honest constraint (operator-acknowledged):** this channel's iron gate
+is REAL screen proof, and the pipeline today cannot produce a single frame
+of it — the renderer composes stock/AI imagery and procedural games. AI
+imagery standing in for software proof would violate the channel's own core
+rule and make every "I tested" claim a fabrication. Therefore:
+
+> **Phase 0 blocks everything.** No Proof Mode video ships until the
+> capture harness (§10) exists: headless Claude in CI actually PERFORMS the
+> task (Playwright + the preinstalled Chromium, or a CLI under asciinema/
+> script), records the screen with ffmpeg, and emits a proof ledger (run
+> log, timings, input/output artifacts). "I tested" must mean "CI ran it."
+
+This also means the *entire moat is real proof*. The niche is flooded with
+AI-slop listicles; the only durable differentiation is that our results are
+demonstrably real — including honest FAILs, which are content, not waste.
 
 ## 1. Identity (one swipe)
 
-**One real person. One impossible situation. How they made it out — in 45
-seconds.**
+**Every Short proves a real outcome on screen: the input, the steps, the
+output.** Never listicles, never "top 5 AI tools", never generic AI news,
+never vague promises. Skeptical, practical, fast, never guru-ish. Value
+delivery is task transformation, not facts (channel 2) or events (channel 1)
+— zero cannibalization.
 
-Every video is a true, documented survival story with a named human at the
-center. The viewer's contract: *someone should have died here, and didn't —
-stay to find out how.* The promise in the title/hook is always survival, so
-the watch is a search for the mechanism, not the outcome. That's the
-retention engine: outcome known, method withheld.
+## 2. The iron gate (a package may not enter the queue unless…)
 
-## 2. The iron gate (a story may not enter the queue unless…)
+> It answers **one plausibly-searched question** ("Can this tool do X?",
+> "Fastest way to Y?", "A or B?"), the task was **actually executed by the
+> harness** with a proof ledger attached, the result is **legible in
+> vertical video without pausing**, and the demo needs **no private or
+> risky data** (synthetic fixtures only).
 
-> It has a **named survivor** (person, crew, or named incident), **documented
-> mortal stakes** (a number: altitude, depth, days, degrees, distance), a
-> **survival mechanism you can show** in one concrete image, AND at least
-> **three concrete visual beats** (a place on a map, a physical object, a
-> scale comparison, a before/after).
+Reject even if trending:
+- Anything whose proof can't be shown on screen or requires trusting the
+  narration.
+- Trivial or visually boring tasks; tasks needing >4s of setup narration.
+- Claims depending on unclear benchmarking. Time/cost/performance numbers
+  appear ONLY if measured in the production run or labeled example/demo.
+- Roundup/listicle framing — commoditized, monetization-fragile.
+- Tools we can't actually run headless in phase 1 (see §10 scope).
 
-Reject even if compelling:
-- Unverifiable tales (reddit-only, "friend of a friend", uncorroborated
-  viral posts). Requires wire service (AP/UPI/Reuters/BBC), official report
-  (NTSB, Coast Guard, park service), or established documentary record.
-- Stories where nobody survives — the channel promise is survival. Incidents
-  with mixed outcomes (some lived, some didn't) are allowed only when told
-  through the survivor, with the deceased treated respectfully by name or
-  not at all.
-- Ongoing tragedies (<30 days old with active grief/rescue) — we are not a
-  news channel; let the second channel's rules handle fresh events.
-- Crime/violence-as-entertainment, self-harm, and anything whose "survival
-  mechanism" is luck alone with no picturable method.
+## 3. Angle-derivation rule for the scout pool
 
-## 3. Angle-derivation rule for the shared scout pool
+From trend/search sources, extract **the underlying TASK a person is trying
+to get done — never the tool announcement itself.**
 
-The scout pool (`state/scouted_sources.json`) is channel-agnostic RAW
-MATERIAL. From the shared pool, extract **the human-survival kernel — who
-came closest to dying and the specific mechanism that kept them alive —
-never the event itself.**
+- "New AI model released" → not "X launched" → **"Can it turn a messy voice
+  note into a client-ready memo? Tested."**
+- "Layoffs / job market trends" → **"The 15-minute workflow that makes a
+  portfolio site from a resume."**
 
-- Tornado outbreak trends → not "F4 hits Oklahoma" → **"He rode out an F4 in
-  a bathtub. The bathtub is why he's alive."**
-- Shark sighting trends → not "shark seen off beach" → **"She punched a
-  great white in the gills. That's the only spot that works."**
+Scout stack, in priority order: YouTube Trends tab (top searches, breakout,
+Shorts content gaps) → TikTok Creative Center trends (public) → Google
+Trends (durability, geography) → official product release notes/changelogs
+→ official help-center docs (confirm what the tool actually does BEFORE
+authoring). Operator-fed inputs (TikTok Creator Search Insights) are
+welcome but never assumed automatable.
 
-But the scout pool is a *minority* input here (§11). The spine of the
-channel is the **evergreen catalog**: aviation (Juliane Koepcke, Vesna
-Vulović), mountains (Joe Simpson, Beck Weathers), open ocean (José
-Salvador Alvarenga, the Robertsons), caves/mines (Chilean 33, Tham Luang),
-wilderness (Aron Ralston, Hugh Glass), animal encounters, freak physics
-(Roy Sullivan's 7 lightning strikes). Maintain a backlog file of gated
-candidates; never depend on the day's news to fill the slate.
+**Topic score (100 pts):** search demand 30 · Shorts content-gap fit 20 ·
+visual proof potential 15 · evergreen durability 15 · monetization fit 10 ·
+source reliability 5 · production ease 5. Every upload logs its
+trend-source lineage.
 
 ## 4. Editorial pillars
 
 | Pillar | Qualifies | Rejected |
 |---|---|---|
-| **Survival vs. physics** — falls, crashes, exposure, depth, lightning | parachute failure, plane-crash sole survivors, avalanche burials, free-diving blackouts | fatal-only crashes, disaster-porn compilations |
-| **Survival vs. nature** — animal encounters, open ocean, wilderness, weather | shark/bear/croc attacks survived, adrift-at-sea, desert/jungle treks, tornado close calls | animal facts with no human story (channel 1's lane), pet content |
-| **Survival vs. entrapment** — caves, mines, rubble, wrecks, machinery | Chilean miners, Tham Luang, earthquake-rubble rescues, sunken-ship air pockets | active/ongoing rescues, crime confinement cases |
+| **AI tool trials & workflow proofs** (spine) | "can it do X" tests, prompt iteration ladders, messy-input→clean-output | slow screen tutorials, tool-news recaps |
+| **Task showdowns** | A-vs-B on the SAME task with the same fixture, stamped verdicts | vague "which is better" opinion |
+| **Workflow deletions** | "this removed N clicks/steps", automation of a repetitive desk task | unmeasured time-saved claims |
 
-Seed weights from this channel's OWN analytics once it has them; until then
-the prior is the cross-channel evidence in §0.
+Seed weights from this channel's OWN analytics once available; retrieval
+overweights **format similarity over topic similarity** (the best analog
+for an email-cleanup Short may be a spreadsheet-cleanup Short with the same
+proof template).
 
-**Named-entity rule (hard):** "Juliane Koepcke fell 10,000 feet into the
-Amazon" > "teen survives plane crash". Always pick the version with the
-name — names compound in search. Title/description/hashtags carry the name
-and the incident name (e.g. "LANSA Flight 508").
+## 5. Format: the four beats (master ≈ 28–42s)
 
-## 5. Retention doctrine [SHARED — platform truth]
+1. **Pain or impossible result** — first 1–2s shows the pain, the result,
+   or a before/after contrast. Never branding.
+2. **Task setup** — the messy input, visibly imperfect. One sentence.
+3. **Workflow proof** — the actual run, compressed. One sentence.
+4. **Payoff + future-oriented CTA** — stamped verdict, never generic
+   "follow for more".
 
-- First second = **proof, not setup**. No branding/throat-clearing. Open on
-  the moment of maximum danger.
-- New information OR a new visual state every **1–1.5 seconds** (the 50%
-  frame must not equal the 100% frame).
-- **Context never before intrigue** — at most one context sentence, after
-  the hook earns the stay.
-- The final line must **escalate, invert, or resolve** — never restate a
-  shown fact.
+One sentence of narration per beat; captions must carry the claim muted.
+One master timeline; platform wrappers (when they exist, §11) change
+opening card / caption density / cover only — never a re-edit.
 
-Channel-specific arc (every script): **danger peak → how bad, in numbers →
-the mechanism, step by step → the survival proof → an aftermath kicker that
-inverts or escalates** ("She was found 11 days later — she walked out on a
-broken collarbone. Would you have followed the water downstream?").
+**Retention doctrine [SHARED — platform truth]:** first second = proof, not
+setup; something meaningful changes every 0.6–1.2s (cursor, card, reveal,
+comparison, verdict); context never before intrigue; the final line
+escalates, inverts, or resolves. The three retention failures and their
+fixes are as defined in `LEARNING_LOOP.md` §1.
 
-## 6. The three retention failures [SHARED]
+## 6. Visual system (proof motion, not gameplay strip)
 
-1. **Packaging** (good shown-in-feed, weak viewed-vs-swiped) → fix first
-   frame / first clause. Nothing else matters until this is fixed.
-2. **Body** (stay past 1s, leave mid) → cut filler; add a change where they
-   drop.
-3. **Payoff** (competent but weak ending) → last line must add something new.
+**This channel does NOT use the stacked gameplay/themed-bottom format.**
+The capture IS the visual. It needs its own render path (§10): full 9:16
+clean master, no watermark/border, critical text inside x 70–1010 /
+y 160–1580 (house guardrails, not platform specs).
 
-## 7. Production rules (house style)
+Element kit the brain recombines:
 
-1. **Cold open = the danger stated in ≤5 words**, ending `?` or `!`
-   ("12,000 feet. No parachute!"), over the proof frame.
-2. **Proof frame** — a real, on-topic image: the actual person, aircraft,
-   mountain, or a labeled map/scale comparison. Never generic stock as the
-   opener.
-3. **Numbers are the texture** — altitude, temperature, days without water,
-   depth. Every number shown on screen is spoken. Punch the biggest one.
-4. **Maps and scale comparisons whenever geography or magnitude matters**
-   (the shared entity/media funnel already resolves these).
-5. **`bottom_theme: "auto"` on every package** — the themed-bottom router
-   already covers this niche's subjects (`quake`, `volcano`, `rain`,
-   `ocean`, `runner`, `moto`, `train`). Reskin rules in
-   `docs/BOTTOM_GAME_RULES.md` apply: the bottom character/object must BE
-   the story's subject.
-6. **Tone: awe and respect, never mockery.** No gore, no body imagery, no
-   suffering close-ups. The camera looks at the mechanism, not the wound.
-   Deceased parties in the same incident are either named respectfully or
-   left out.
-7. **Kicker** — last line ends with `?`, names something from the story,
-   answerable in one word (validator-enforced by the shared rules).
+| Element | Purpose | House rule |
+|---|---|---|
+| `task_card` | the task in plain English | one line only |
+| `input_frame` | messy source material | must be visibly imperfect |
+| `cursor_path` | action path | only when action matters, never decorative |
+| `split_compare` | before/after, A/B | the default proof element |
+| `stopwatch_tag` | measured task time | only if actually measured |
+| `output_card` | result asset | must feel real and usable |
+| `redaction_box` | privacy masking | aggressive on any sensitive screen |
+| `proof_stamp` | WORKED / FAILED / PARTIAL | one-word verdict |
+| `micro_chart` | tiny comparison | accent only, never full frame |
+
+Proof-motion mechanics: click-race (compressed clicks + time delta), diff
+wipe, inbox drain, prompt ladder, tab collapse, error radar (fails get red
+marks, winner gets green lock-on).
+
+**Asset doctrine:** our own screen captures are the proof layer, always.
+Stock (Pexels/Pixabay/Wikimedia, license-checked) only for context shots.
+AI-generated visuals are accents (transition cards, thumbnails) and may
+NEVER stand in for software proof. AI-content disclosure stays ON.
+
+## 7. Truthfulness invariants [ABSOLUTE — no brain may break these]
+
+- Every on-screen and spoken claim maps to an entry in that video's proof
+  ledger. No measured-sounding number without a measurement.
+- A FAIL or PARTIAL result ships honestly framed — often outperforms, and
+  it's the credibility engine.
+- If the tool demo breaks, **kill the package** — never improvise claims.
+- Synthetic fixture data only; redaction QA on every frame; no real
+  personal data ever on screen.
+- FTC-clear disclosure of any material relationship (sponsor/affiliate),
+  plus platform commercial-content toggles. Never hidden, ever.
+- No near-duplicate mass production (YouTube originality/monetization risk
+  — and it's brand death in this niche).
+- AI-use disclosure ON for TTS narration.
 
 ## 8. Package output schema
 
-Same JSON schema as the explainer packages
-(`CLAUDE_ROUTINE_INSTRUCTIONS.md` §"Script package schema" — title, 110–140
-word script, shots with verbatim phrases, punches, hashtags, music_vibe,
-mascot poses), with these channel constants:
+New package type (not the explainer schema — different renderer):
 
 ```json
 {
   "channel": "third",
-  "bottom_theme": "auto",
-  "music_vibe": "cinematic | dark"
+  "topic_cluster": ["email", "AI writing"],
+  "search_intent": "plain-English query this answers",
+  "tool_name": "…",
+  "task_definition": "…",
+  "proof_plan": "what the harness will execute + record",
+  "measured_claims": [{"claim": "…", "source": "ledger key"}],
+  "hook_options": ["3 candidates"],
+  "scene_plan": ["element kit + mechanics per beat"],
+  "risk_flags": ["paywall", "account", "flaky"],
+  "disclosures": ["ai_tts"]
 }
 ```
 
-Hashtags always include the survivor's name and the incident name as tags.
+Three hooks, one body, one close per package; render only the winning
+master (optionally cheap-prerender the first 4–6s to pick the hook).
 
-## 9. Eye-QA checklist [SHARED loop + channel specifics]
+## 9. QA (pre-render and render-time)
 
-After baking, render each beat's final frame + 25/50/75% samples and
-**LOOK**. Shared checks: would a pro proudly post this frame; does the first
-second earn the view; does something visibly change every beat; text legible
-in the safe area; survives platform UI. Channel-specific:
-- The real survivor/incident is recognizable or clearly labeled — no
-  anonymous stock human standing in for a named person.
-- Every number shown is spoken.
-- Nothing in frame is gory or disrespectful to victims.
-- The map (when present) actually shows the incident location.
+Pre-render reject: not demonstrable on screen · trivial/boring · unclear
+benchmark · needs private data · illegible vertical.
+Render-time verify: result visible by second two · captions in safe zones ·
+zero sensitive-info leaks (automated + eye pass) · purposeful cursor ·
+verdict matches the ledger (worked/partial/failed).
+Then the shared eye-QA loop: render beat-final frames + 25/50/75% samples
+and LOOK; fix → re-render → re-look until every frame passes.
+**Non-negotiable.**
 
-Fix → re-render → re-look until every frame passes. **Non-negotiable.**
+## 10. Phased build plan (each phase gates the next)
 
-## 10. Invariants no brain may break [SHARED]
+**Phase 0 — capture harness (blocks all uploads).**
+`third_capture/`: Playwright + preinstalled Chromium (or `script`/asciinema
+for CLI tools) performs the task; ffmpeg records; overlay compositor adds
+the element kit; proof ledger (JSON: commands, timings, artifacts) saved
+per run. Tool scope: **free-tier, headless-runnable tools only** — web apps
+without hard auth walls, CLIs, open models. Paywalled tools wait for a
+tooling budget (operator decision; accounts cost real money).
 
-- Trend is raw material — never publish the raw item form.
-- The iron gate (§2) is absolute.
-- Every on-screen claim spoken + labeled honestly; illustrative media
-  labeled as such.
-- **AI-content disclosure stays ON** for every upload.
-- **The eye-QA loop is non-negotiable.**
-- The brain edits only its target slugs' fields; state, dedupe, caps, and
-  channel guards are outside its blast radius.
+**Phase 1 — YouTube only, 1/day.** Not 2/day×3 platforms: every video costs
+a real CI tool-trial, TikTok posting needs app approval (sandbox demo only
+today) and IG needs Meta business tokens. Prove hook-survival and retention
+on 30–50 uploads first. 10–15% of uploads are controlled experiments —
+**one variable per batch** (hook archetype, first-frame, caption density,
+CTA, verdict framing).
 
-## 11. Weekly cadence
+**Phase 2 — scale + affiliates.** 2/day when QA holds; affiliate links,
+template/prompt vault, related-video links funneling to longer breakdowns.
 
-| Track | Share | Goal |
-|---|---:|---|
-| Evergreen catalog survival stories (named, historical) | 70% | search compounding + shelf life |
-| Survival kernel extracted from current events (≥30 days settled, or clearly resolved happy-ending rescues) | 25% | relevance + suggested traffic |
-| Format experiments (2-part cliffhangers, "survival rule" explainers) | 5% | learn without diluting identity |
+**Phase 3 — TikTok/IG wrappers + sponsorships.** Only when posting APIs are
+approved and the format is proven. Sponsor fit: SaaS/productivity, note
+tools, email/meeting software, no-code, browser extensions, honest career
+services. Never: crypto/speculation, get-rich offers, low-trust anything.
 
-## 12. Wiring & isolation (how "third" stays out of the shared pipeline)
+Fallbacks: scout fails → last valid scout cache · demo breaks → kill
+package · upload fails → reschedule, never blind-repost · sponsor asset
+conflicts with disclosure/originality → reject · a template family's
+retention collapses → pause the family, expand exploration.
 
-The shared infrastructure is already channel-generic; this channel plugs in
-by slug with **zero edits to the existing channels' workflows**:
+## 11. Learning loop [SHARED — `LEARNING_LOOP.md` is law]
 
-- **Token**: `uploaders.YouTubeUploader(channel="third")` reads the
-  `YOUTUBE_TOKEN_JSON_THIRD` repo secret (suffix = upper-cased slug). Mint it
-  with `setup_youtube.py` signed into the NEW channel's Google account, then
-  save the token JSON as that secret. The shared
-  `YOUTUBE_CLIENT_SECRETS_JSON` OAuth app is reused — only the token is
-  per-channel.
-- **Wrong-channel guard**: any workflow step uploading for this channel must
-  set `YOUTUBE_EXPECTED_CHANNEL` to the new channel's @handle/title/id so a
-  mis-set token can never post to the other channels (enforced in
-  `uploaders.py`).
-- **Packages**: carry `"channel": "third"`. Keep them in their own dated dir
-  `state/third_packages/YYYYMMDD/` (NOT `state/trending_packages/` — that
-  dir is rendered by the shared daily workflow, and dropping third-channel
-  packages there would make `daily.yml` render them and burn its slots).
-- **State**: own posted log (`state/third_posted_log.json`) and analytics dir
-  (`state/analytics_third/`, produced by
-  `python scripts/fetch_analytics.py --channel third`, which already
-  generalizes by slug).
-- **Workflow**: clone the reference `explainer.yml`/`daily.yml` per
-  `BRAIN_PLAYBOOK_TEMPLATE.md`, point its brain step at THIS file, give it
-  its own concurrency group (`third-shorts`) and a cron offset after the
-  05:00 UTC scout. Until that workflow exists and the secret is set,
-  **nothing in this channel runs — the shared pipeline is untouched.**
+Staged scorecard, `state/brain_context.json`, shot-aligned retention map,
+**no auto-adaptation below ~100 views/video**, bounded reversible edits
+only. Channel-specific additions:
+- Ledger every upload in the shared `video_ledger` pattern with:
+  `search_intent`, `tool_name`, `hook_template_id`, `scene_mechanics`,
+  `claim_type` (measured/qualitative/comparison), `proof_status`
+  (worked/failed/mixed), `trend_sources`, beat-level annotations
+  (`beat_type`, `proof_visible`, `change_events`, `drop_marker`).
+- Before writing any script, retrieve the ~15 most similar priors (format
+  similarity first) and produce a contrastive memo: nearest winners' shared
+  traits, nearest losers' drop points, rules to preserve, patterns banned
+  this run.
+- House thresholds (tune after 50–100 uploads, treat as operational rules
+  not vanity): hook 3s-survival red <75% → rewrite hook library · midpoint
+  retention red <55% → compress setup · completion red <30% → move payoff
+  earlier · subs/1k views red <0.8 → strengthen conversion promise ·
+  saves/1k red <10 → make the workflow more reference-worthy.
+- Low reach + high retention = packaging problem. High reach + low
+  retention = body/proof problem. Permanent playbook edits only on repeated
+  evidence, never one outlier.
 
-Setup checklist (operator):
-1. Create the YouTube channel; note its @handle.
-2. Run `python setup_youtube.py` signed into that account → save the token
-   as repo secret `YOUTUBE_TOKEN_JSON_THIRD`.
-3. Add repo secret/var for the guard handle; wire the cloned workflow with
-   `YOUTUBE_EXPECTED_CHANNEL` set to it.
-4. First slate: 6 evergreen catalog stories from §3's backlog, dry-run,
-   eye-QA, then ship.
+## 12. Templates (seed library)
+
+**Hooks:** "Can this AI turn a messy note into a client-ready deck?" ·
+"Stop rewriting these emails by hand." · "This workflow deleted 18 clicks
+from one task." · "I tried three prompts so you don't have to."
+**Titles:** "This AI turned notes into slides in 27 seconds" · "Stop doing
+inbox triage like this" · "I tested the fastest way to clean messy
+spreadsheet data" · "Can one prompt replace this entire workflow?"
+**Closes/CTAs (always future-oriented):** "Verdict: usable if you need
+speed." · "Verdict: looks good, breaks on edge cases." · "Tomorrow: same
+task, cheaper tool." · "Save this for the next time this task shows up." ·
+"Comment the task you want stress-tested."
+**Cover lines:** "ONE TASK / ONE RESULT" · "TESTED: DOES IT WORK?" ·
+"USE THIS / SKIP THIS".
+Hashtags: a few search-aligned tags, never a generic-tag cloud.
+English-first; localization only after the format proves itself.
+
+## 13. Wiring & isolation (zero shared-pipeline impact)
+
+- **Token:** `YouTubeUploader(channel="third")` reads secret
+  `YOUTUBE_TOKEN_JSON_THIRD` (mint via `setup_youtube.py` signed into the
+  new channel's account; shared `YOUTUBE_CLIENT_SECRETS_JSON` OAuth app).
+- **Guard:** the channel's workflow sets `YOUTUBE_EXPECTED_CHANNEL` to the
+  new @handle so a mis-set token can never post elsewhere.
+- **Packages:** `state/third_packages/YYYYMMDD/` — NOT
+  `state/trending_packages/` (that dir feeds the shared `daily.yml`).
+- **State:** `state/third_posted_log.json`; analytics via
+  `python scripts/fetch_analytics.py --channel third` →
+  `state/analytics_third/` (already channel-generic).
+- **Workflow:** new `third.yml` cloned per `BRAIN_PLAYBOOK_TEMPLATE.md`,
+  own concurrency group `third-shorts`, pointed at THIS playbook.
+  `daily.yml` / `explainer.yml` are never edited for this channel.
+- Until the harness, secret, and workflow exist, nothing runs.
+
+Operator setup checklist: create the channel + @handle → mint
+`YOUTUBE_TOKEN_JSON_THIRD` → decide phase-1 tool budget (free-only vs
+funded accounts) → greenlight Phase 0 harness build.
