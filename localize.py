@@ -57,7 +57,7 @@ ALL_LANGS: dict[str, str] = {
     "ur": "urdu",
     "bn": "bengali",
     "ta": "tamil",
-    "tl": "tagalog",
+    "fil": "filipino",
     "sw": "swahili",
     "fa": "persian",
     "uk": "ukrainian",

@@ -105,7 +105,9 @@ jobs:
           python scripts/run_third.py --date "$DATE" $FLAGS
 
       - name: Commit posted log
-        if: ${{ inputs.dry_run != true }}
+        # always() so the log lands even when the render step fails —
+        # losing dedupe state causes re-uploads (batch-3 incident)
+        if: ${{ always() && inputs.dry_run != true }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
