@@ -1,0 +1,38 @@
+{
+  "key": "bite_force_champions_top_biters",
+  "title": "Top Biters",
+  "unit": "psi",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Saltwater Crocodile",
+      "value": 3700.0
+    },
+    {
+      "label": "Hippopotamus",
+      "value": 1800.0
+    },
+    {
+      "label": "Jaguar",
+      "value": 1500.0
+    },
+    {
+      "label": "Gorilla",
+      "value": 1300.0
+    },
+    {
+      "label": "Lion",
+      "value": 650.0
+    }
+  ]
+}
