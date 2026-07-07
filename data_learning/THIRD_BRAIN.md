@@ -89,7 +89,7 @@ scene setup or "hello".
 
 **Hook = compressed conflict.** First card 4–8 words: one emotional
 label + one subject + one implied consequence ("CHAT SET HIM UP SO
-BADLY"). Written by the Groq author from the transcript ✅ — honest to the
+BADLY"). Written by the Claude author (Groq fallback) from the transcript ✅ — honest to the
 clip, never clickbait it doesn't pay off.
 
 **On-screen text rules ✅:** captions 1–3 words per pop, ALL CAPS Anton,
