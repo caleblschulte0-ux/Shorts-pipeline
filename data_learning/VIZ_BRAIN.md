@@ -96,15 +96,35 @@ frames. You are a RETENTION engine first, a frame engine second.
 not to swipe: a curiosity gap, an expected-winner-about-to-lose, a visual
 already in motion. Never open on a slow build or an empty layout.
 
-**Motion density.** A premium short is never static:
-- something visually meaningful changes at least every ~1 second (fill level,
-  scale, position, count, or context — if none changed, you made dead time);
+**THE PRIME QUESTION — "What is changing?"** Audit every second of every
+segment with one question: *what is changing right now?* If the answer is
+"nothing", you have found dead space. Something must change every 0.5–1.5
+seconds — an object entering, a number counting, a fill rising, a highlight
+landing, a zoom, a label appearing, a color shift, a comparison arriving, a
+re-rank, a transition. The changes do NOT need to be large: small, purposeful
+motion beats chaotic editing. Platforms reward continuously NEW visual
+information, not stimulation for its own sake. This one rule outranks every
+other motion heuristic — when in doubt, apply it.
+
+**Motion density** (supporting rhythm under the prime question):
 - a harder pattern interrupt every 3–5 seconds (new layout, reveal, re-rank);
 - ONE signature mechanic per video that viewers remember afterward;
 - the ending either loops cleanly into the hook or lands abruptly enough that
   a replay feels natural.
 Animate everything off `reveal` — a mechanic whose frame at 50% looks like its
 frame at 100% is coasting; stagger events across the build instead.
+
+**Visual energy vs the game strip.** The doctrine is NOT "always use the game
+strip"; it is "the frame always has continuous visual energy" — the strip is
+ONE way to supply it, not the only way. It earns its place when the explainer
+canvas risks stillness (it adds motion, prevents static frames, gives the eye
+somewhere to land). But when your depictions already fill the screen with
+meaningful movement, the strip stops adding value and can become a
+distraction. Today the strip is baked into the renderer, so: design your
+canvas AS IF it must carry the energy alone, and note in your QA summary any
+segment where the strip is competing with (not supporting) the explainer.
+When retention data lands, a per-story strip switch gets built and the call
+becomes yours per video.
 
 **Three-layer frames.** Foreground: one dominant subject or metric reveal.
 Midground: the mechanic doing the explanatory work. Background: subtle
@@ -132,6 +152,11 @@ step? Then the five retention questions:
 3. Is the bottom strip helping this segment or stealing attention?
 4. Does the video read correctly MUTED (burned-in text carries the numbers)?
 5. Would it still read if platform UI covered the bottom of the screen?
+
+**Operator-manual optimizations** (not yours to automate — the upload API
+doesn't expose them): Shorts "related video" chaining is set in YouTube Studio
+by hand; flag your strongest franchise-mates in the run summary so the
+operator can chain winners.
 
 **Analytics buckets** (once retention data is available): high view + high
 retention → clone the format; high view + weak retention → hook worked, body
