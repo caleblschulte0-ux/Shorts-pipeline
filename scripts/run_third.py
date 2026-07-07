@@ -78,7 +78,8 @@ def run_capture(pkg: dict, work: Path) -> Path:
 
 def _fmt_from_ledger(led: dict) -> dict:
     if led.get("kind") == "twitch_clip":
-        return {"clip_title": led["clip_title"],
+        # the Groq author's title beats the raw clip title ("v", "W"...)
+        return {"clip_title": led.get("authored_title") or led["clip_title"],
                 "streamer": led["streamer"]}
     if led.get("kind") == "sim":
         return {"peak": f"{led['peak_multiplier']:.1f}"}
@@ -88,8 +89,19 @@ def _fmt_from_ledger(led: dict) -> dict:
             "removed": f"{n_in - n_out:,}", "wall": f"{led['wall_time_s']:.2f}"}
 
 
+def _merged_tags(pkg: dict, led: dict) -> list[str]:
+    tags = list(led.get("authored_tags") or []) + \
+        list(pkg.get("hashtags") or [])
+    seen, out = set(), []
+    for t in tags:
+        if t not in seen:
+            seen.add(t)
+            out.append(t)
+    return out[:14]   # YouTube discards ALL hashtags past 15
+
+
 def _description(pkg: dict, led: dict) -> str:
-    tags = " ".join(f"#{t}" for t in pkg.get("hashtags", [])[:14])
+    tags = " ".join(f"#{t}" for t in _merged_tags(pkg, led))
     note = pkg.get("description_note", "")
     if led.get("kind") == "twitch_clip":
         detail = (f"Clip from {led['credit']} — full credit "
@@ -150,19 +162,47 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
                 cands = [c for c in cands
                          if c["url"] not in posted_urls
                          and (c["views"] == 0
-                              or c["views"] >= spec.get("min_views", 500))]
+                              or c["views"] >= spec.get("min_views", 2000))]
                 cands.sort(key=lambda c: -c["views"])
                 if not cands:
                     raise RuntimeError("no fresh clip across the allowlist")
-                pick = cands[0]
+                # viral signal = velocity, not raw views: probe ages for
+                # the top of the board and re-rank by views/hour
+                shortlist = cands[:8]
+                for c in shortlist:
+                    age = clip_edit.fetch_age_hours(c["url"])
+                    c["vph"] = c["views"] / max(age, 0.5) if age else \
+                        c["views"] / 24.0
+                shortlist.sort(key=lambda c: -c["vph"])
+                for c in shortlist[:5]:
+                    print(f"[pick] {c['channel']:>14} {c['views']:>7}v "
+                          f"{c['vph']:>8.0f}v/h  {c['title'][:50]!r}",
+                          flush=True)
+                pick = shortlist[0]
                 info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]
+            # transcribe once, then let the Groq author write the
+            # packaging from what's actually said in the clip
+            wmodel = spec.get("whisper_model", "small")
+            has_cut = spec.get("start") or spec.get("end")
+            words = None if has_cut else \
+                clip_edit.transcribe_words(info["path"], wmodel)
+            meta = None
+            if words is not None:
+                from third_capture import author
+                meta = author.author_package(
+                    streamer, info["title"],
+                    " ".join(w["w"] for w in words), info["views"])
+            hook = (meta or {}).get("hook") or pkg.get("hook", "")
             led = clip_edit.edit(
                 info["path"], out_mp4,
                 credit=clip_edit.credit_label(platform, streamer),
-                hook=pkg.get("hook", ""),
+                hook=hook, words=words,
                 start=spec.get("start", 0.0), end=spec.get("end", 0.0),
-                whisper_model=spec.get("whisper_model", "base"))
+                whisper_model=wmodel)
+            if meta:
+                led["authored_title"] = meta["title"]
+                led["authored_tags"] = meta["hashtags"]
             led["source_url"] = info["url"]
             led["source_views"] = info["views"]
             led["clip_title"] = info["title"]
@@ -192,11 +232,22 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
                 log["posted"][slug] = {"source_url": led["source_url"]}
         else:
             from uploaders import YouTubeUploader
+            description = _description(pkg, led)
+            # every language: extended locale set (clipper content is
+            # visual-first, so localized metadata travels worldwide)
+            localizations = None
+            try:
+                from localize import translate_metadata, ALL_LANGS
+                localizations = translate_metadata(title, description,
+                                                   langs=ALL_LANGS)
+            except Exception as e:  # noqa: BLE001
+                print(f"[localize] extended set skipped: {e}", flush=True)
             up = YouTubeUploader(channel="third").upload(
                 file_path=out_mp4, title=title,
-                description=_description(pkg, led),
-                tags=pkg.get("hashtags", []),
+                description=description,
+                tags=_merged_tags(pkg, led),
                 publish_at=publish_at,
+                localizations=localizations,
             )
             result.update(ok=True, video_url=getattr(up, "url", str(up)))
             entry = {
