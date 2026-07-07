@@ -27,10 +27,11 @@ screen.
 ## 2. Sourcing doctrine (what gets clipped)
 
 - **Pre-validated only.** We never guess what's funny. The scout pulls
-  each allowlisted channel's top clips of the last 24h sorted by views
-  (no API key needed — `third_capture/clip_edit.discover`). A clip
-  qualifies when its source views clear the package's `min_views` bar.
-  Twitch's own viewers are our test audience.
+  each allowlisted channel's top clips of the last 24h, then ranks the
+  global shortlist by **views-per-hour velocity** (age probed per clip) —
+  a 2-hour-old clip at 5k views beats a 20-hour-old one at 8k. Floor:
+  `min_views` 2500. Twitch's own viewers are our test audience; velocity
+  is the viral signal, raw views are just the qualifier.
 - **Allowlist, not open season.** We clip only channels on the package
   allowlist. Preference order: (1) streamers with official clipping/
   content programs or explicit permission, (2) major streamers who
@@ -59,14 +60,21 @@ screen.
 
 Built in `third_capture/clip_edit.py`, applied to every clip:
 
-1. **Hook card** (first ~3s) — a 5-8 word tension line in plain English
-   ("HE DID NOT EXPECT THIS…"). Written per-clip by the brain; never
-   clickbait that the clip doesn't pay off.
+1. **Hook card** (first ~3s) — a 4-8 word tension line written by the
+   Groq author (`third_capture/author.py`) FROM THE TRANSCRIPT of the
+   clip; never clickbait the clip doesn't pay off. The author also writes
+   the YouTube title (raw clip titles like "v" never ship) and 10-14
+   per-clip hashtags, merged with the package's evergreen tags (cap 14 —
+   YouTube discards all hashtags past 15).
 2. **9:16 reframe** — blurred zoom-fill background + source centered.
    (Next upgrades: facecam/action crop layouts, punch-in zooms on the
    payoff beat, reaction freeze-frames.)
-3. **Word-pop captions** — whisper word timestamps, 1-3 word ALL-CAPS
-   pops, styled thick-outline white; the video must work muted.
+3. **Word-pop captions** — whisper `small` word timestamps
+   (`condition_on_previous_text=False` + no-speech filtering so stream
+   music never hallucinates text), 1-3 word ALL-CAPS pops in bundled
+   Anton (OFL, `assets/fonts/`), thick outline + shadow, pop-in scale
+   animation, one yellow-emphasized word per group, positioned below the
+   clip at y≈1350. The video must work muted.
 4. **Tight cut** — trim dead air before the moment; get to the payoff
    fast; end within ~1s after it lands (`start`/`end` per package).
 5. **Credit banner** — permanent `twitch.tv/<streamer>`.
@@ -93,8 +101,12 @@ edit of yesterday's.
 ## 6. Titles & packaging
 
 - Title = the moment, not the streamer: "He opened the one box he
-  shouldn't have" > "xQc funny moment #347". Streamer name goes in
-  description/tags (their search traffic still finds it).
+  shouldn't have" > "xQc funny moment #347". Written by the Groq author
+  from the transcript; falls back to the raw clip title only if the LLM
+  is unavailable. Streamer name goes in description/tags.
+- **Every language:** titles + descriptions localized to the extended
+  ~29-language set (`localize.ALL_LANGS`) on every upload — clip content
+  is visual-first, so metadata is the only language barrier.
 - No #shorts spam, a few relevant tags, no emoji walls (one is fine).
 - Thumbnails don't matter for Shorts; the first frame does — the cut
   must open ON motion or ON the face, never on dead air.

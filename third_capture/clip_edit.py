@@ -24,7 +24,9 @@ import tempfile
 from pathlib import Path
 
 CANVAS_W, CANVAS_H = 1080, 1920
-FONT_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+REPO = Path(__file__).resolve().parent.parent
+FONTS_DIR = REPO / "assets" / "fonts"            # bundled Anton (OFL)
+FONT_BOLD = str(FONTS_DIR / "Anton-Regular.ttf")
 
 
 def _run(cmd: list[str]) -> str:
@@ -114,15 +116,23 @@ def download(url: str, work: Path) -> dict:
 
 # ---------- 3. captions ----------
 
-def transcribe_words(video: Path, model_name: str = "base") -> list[dict]:
+_JUNK = re.compile(r"^[\W_]+$|♪|^\[.*\]$|^\(.*\)$")
+
+
+def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
     import whisper
     model = whisper.load_model(model_name)
-    res = model.transcribe(str(video), word_timestamps=True, fp16=False)
+    # condition_on_previous_text=False stops the music/crowd-noise
+    # hallucination loops stream audio triggers
+    res = model.transcribe(str(video), word_timestamps=True, fp16=False,
+                           condition_on_previous_text=False)
     words = []
     for seg in res["segments"]:
+        if seg.get("no_speech_prob", 0) > 0.66:
+            continue
         for w in seg.get("words", []):
             token = w["word"].strip()
-            if token:
+            if token and not _JUNK.match(token):
                 words.append({"w": token, "s": w["start"], "e": w["end"]})
     return words
 
@@ -134,12 +144,17 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Pop,DejaVu Sans,96,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,100,100,0,0,1,7,0,5,60,60,760,1
-Style: Credit,DejaVu Sans,44,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,4,0,2,40,40,64,1
+Style: Pop,Anton,116,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,1,0,1,10,2,5,60,60,0,1
+Style: Credit,Anton,40,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,1,0,1,5,0,2,40,40,64,1
 
 [Events]
 Format: Layer, Start, End, Style, Text
 """
+
+# ASS colors are &HAABBGGRR
+_YELLOW = r"\c&H00FFFF&"
+_WHITE = r"\c&HFFFFFF&"
+_POP_FX = r"{\pos(540,1350)\fscx72\fscy72\t(0,70,\fscx100\fscy100)}"
 
 
 def _ts(sec: float) -> str:
@@ -164,7 +179,13 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
         if not group:
             return
         s, e = group[0]["s"], max(group[-1]["e"], group[0]["s"] + 0.35)
-        text = " ".join(_clean(g["w"]) for g in group)
+        toks = [_clean(g["w"]) for g in group]
+        # emphasize the longest meaningful word in yellow — the classic
+        # clip-caption look, one color pop per group
+        emph = max(range(len(toks)), key=lambda i: len(toks[i]))
+        if len(toks[emph]) >= 4:
+            toks[emph] = "{%s}%s{%s}" % (_YELLOW, toks[emph], _WHITE)
+        text = _POP_FX + " ".join(toks)
         lines.append(f"Dialogue: 1,{_ts(s)},{_ts(e)},Pop,{text}\n")
         group.clear()
 
@@ -183,11 +204,25 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
 
 # ---------- 4. edit ----------
 
+def fetch_age_hours(url: str) -> float:
+    """Clip age in hours from a metadata-only probe. 0.0 when unknown."""
+    try:
+        import time
+        out = _ytdlp(["--skip-download", "--print", "%(timestamp|0)s", url],
+                     impersonate=_needs_impersonation(url))
+        ts = float(out.strip().splitlines()[-1] or 0)
+        return max(0.0, (time.time() - ts) / 3600) if ts else 0.0
+    except Exception:  # noqa: BLE001
+        return 0.0
+
+
 def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
-         whisper_model: str = "base") -> dict:
+         whisper_model: str = "small", words: list[dict] | None = None) -> dict:
     """Compose the 9:16 edit. `credit` is the full on-screen label
-    (e.g. "twitch.tv/xqc", "kick.com/adinross"). Returns the edit ledger."""
+    (e.g. "twitch.tv/xqc", "kick.com/adinross"). Pass precomputed `words`
+    (from transcribe_words on the SAME uncut file) to skip re-transcribing —
+    only valid when start/end are unset. Returns the edit ledger."""
     probe = json.loads(_run(
         ["ffprobe", "-v", "quiet", "-print_format", "json",
          "-show_format", str(raw)]))
@@ -207,7 +242,8 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         else:
             cut = raw
 
-        words = transcribe_words(cut, whisper_model)
+        if words is None or t0 > 0.01 or t1 < src_dur - 0.01:
+            words = transcribe_words(cut, whisper_model)
         ass = build_ass(words, credit, dur, tmp / "caps.ass")
 
         # visual chain: blurred fill + centered source + captions
@@ -218,13 +254,13 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             "eq=brightness=-0.12:saturation=1.15[bgd];"
             "[fg]scale=1080:-2[fgs];"
             "[bgd][fgs]overlay=(W-w)/2:(H-h)/2[base];"
-            f"[base]ass={ass}[capped]"
+            f"[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
         )
         if hook:
             safe = hook.replace(":", r"\:").replace("'", r"\\\'")
             chain = (vf + ";[capped]"
                      f"drawtext=fontfile={FONT_BOLD}:text='{safe}'"
-                     ":fontsize=64:fontcolor=white:box=1:boxcolor=black@0.72"
+                     ":fontsize=72:fontcolor=white:box=1:boxcolor=black@0.72"
                      ":boxborderw=26:x=(w-text_w)/2:y=230"
                      ":enable='between(t,0,3.0)'[vout]")
         else:
