@@ -114,23 +114,33 @@ def _retention_metrics(analytics, video_ids: list[str],
     if analytics is None or not video_ids:
         return {}
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    base = ("views,estimatedMinutesWatched,"
+            "averageViewDuration,averageViewPercentage")
+    # engagedViews = the Shorts 'chose to watch (vs swiped away)' signal;
+    # shares + subscribersGained show which videos actually build the channel.
+    extended = base + ",engagedViews,shares,subscribersGained"
     out: dict[str, dict] = {}
     for batch in _chunked(video_ids, 200):       # filter caps at 500 ids
-        try:
-            resp = analytics.reports().query(
-                ids="channel==MINE",
-                startDate=start_date,
-                endDate=today,
-                dimensions="video",
-                metrics="views,estimatedMinutesWatched,"
-                        "averageViewDuration,averageViewPercentage",
-                filters="video==" + ",".join(batch),
-                maxResults=len(batch),
-            ).execute()
-        except Exception as e:  # noqa: BLE001
-            print(f"[analytics] retention skipped ({e}); "
+        resp = None
+        for metrics in (extended, base):         # extras may 400 → retry basic
+            try:
+                resp = analytics.reports().query(
+                    ids="channel==MINE",
+                    startDate=start_date,
+                    endDate=today,
+                    dimensions="video",
+                    metrics=metrics,
+                    filters="video==" + ",".join(batch),
+                    maxResults=len(batch),
+                ).execute()
+                break
+            except Exception as e:  # noqa: BLE001
+                err = e
+                continue
+        if resp is None:
+            print(f"[analytics] retention skipped ({err}); "
                   f"view counts only", file=sys.stderr)
-            return out                          # one failure → give up cleanly
+            return out                          # both variants failed → clean
         headers = [h["name"] for h in resp.get("columnHeaders", [])]
         for row in resp.get("rows", []):
             r = dict(zip(headers, row))
@@ -145,6 +155,72 @@ def _retention_metrics(analytics, video_ids: list[str],
                 "estimated_minutes_watched": round(
                     float(r.get("estimatedMinutesWatched", 0)), 1),
             }
+            for k, name in (("engaged_views", "engagedViews"),
+                            ("shares", "shares"),
+                            ("subscribers_gained", "subscribersGained")):
+                if name in r:
+                    out[vid][k] = int(float(r.get(name, 0) or 0))
+    return out
+
+
+def _retention_curves(analytics, video_ids: list[str],
+                      start_date: str, limit: int = 12) -> dict[str, list]:
+    """Per-moment retention CURVE for the newest videos: audienceWatchRatio at
+    each elapsedVideoTimeRatio step. This shows WHERE viewers drop — mappable
+    onto the 3 segments (each ≈ a third of runtime), so the brain can blame the
+    exact beat that lost the audience. One query per video; best-effort."""
+    if analytics is None or not video_ids:
+        return {}
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    out: dict[str, list] = {}
+    for vid in video_ids[:limit]:
+        try:
+            resp = analytics.reports().query(
+                ids="channel==MINE",
+                startDate=start_date,
+                endDate=today,
+                dimensions="elapsedVideoTimeRatio",
+                metrics="audienceWatchRatio",
+                filters=f"video=={vid}",
+                maxResults=100,
+            ).execute()
+        except Exception as e:  # noqa: BLE001
+            print(f"[analytics] curve skipped for {vid} ({e})", file=sys.stderr)
+            continue
+        rows = resp.get("rows") or []
+        if rows:
+            out[vid] = [[round(float(a), 2), round(float(b), 3)]
+                        for a, b in rows]
+    return out
+
+
+def _search_and_traffic(analytics, start_date: str) -> dict:
+    """Channel-level: which traffic sources drive views, and the ACTUAL search
+    terms viewers typed to find us — direct fuel for the search-legibility
+    strategy (title/hook phrasing) and topic choice. Best-effort."""
+    if analytics is None:
+        return {}
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    out: dict = {}
+    try:
+        resp = analytics.reports().query(
+            ids="channel==MINE", startDate=start_date, endDate=today,
+            dimensions="insightTrafficSourceType", metrics="views",
+            sort="-views", maxResults=15).execute()
+        out["traffic_sources"] = {row[0]: int(row[1])
+                                  for row in resp.get("rows") or []}
+    except Exception as e:  # noqa: BLE001
+        print(f"[analytics] traffic sources skipped ({e})", file=sys.stderr)
+    try:
+        resp = analytics.reports().query(
+            ids="channel==MINE", startDate=start_date, endDate=today,
+            dimensions="insightTrafficSourceDetail", metrics="views",
+            filters="insightTrafficSourceType==YT_SEARCH",
+            sort="-views", maxResults=25).execute()
+        out["search_terms"] = [{"term": row[0], "views": int(row[1])}
+                               for row in resp.get("rows") or []]
+    except Exception as e:  # noqa: BLE001
+        print(f"[analytics] search terms skipped ({e})", file=sys.stderr)
     return out
 
 
@@ -246,8 +322,15 @@ def build_snapshot(posted_log: Path, channel: str = "",
                  if s.get("published_at")]
     start_date = min(pub_dates) if pub_dates else \
         datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    retention = _retention_metrics(_analytics_service(channel),
-                                   list(stats.keys()), start_date)
+    an = _analytics_service(channel)
+    retention = _retention_metrics(an, list(stats.keys()), start_date)
+    # Retention CURVES for the newest videos (where exactly viewers drop) +
+    # channel-level traffic sources and real viewer search terms.
+    newest_ids = [vid for vid, s in sorted(
+        stats.items(), key=lambda kv: kv[1].get("published_at") or "",
+        reverse=True)]
+    curves = _retention_curves(an, newest_ids, start_date)
+    discovery = _search_and_traffic(an, start_date)
 
     videos: list[dict] = []
     for vid, entry in candidates:
@@ -274,6 +357,8 @@ def build_snapshot(posted_log: Path, channel: str = "",
             "views_per_hour": round(s["views"] / age, 2),
         }
         v.update(retention.get(vid, {}))   # retention keys when available
+        if vid in curves:
+            v["retention_curve"] = curves[vid]   # [[elapsed_ratio, watch_ratio]]
         videos.append(v)
 
     videos.sort(key=lambda v: v["views_per_hour"], reverse=True)
@@ -317,11 +402,16 @@ def build_snapshot(posted_log: Path, channel: str = "",
         summary["top_5_by_retention"] = [_ret_card(v) for v in by_ret[:5]]
         summary["bottom_5_by_retention"] = [_ret_card(v) for v in by_ret[-5:][::-1]]
 
-    return {
+    snap = {
         "fetched_at": datetime.now(timezone.utc).isoformat(),
         "videos": videos,
         "summary": summary,
     }
+    if discovery.get("traffic_sources"):
+        snap["traffic_sources"] = discovery["traffic_sources"]
+    if discovery.get("search_terms"):
+        snap["search_terms"] = discovery["search_terms"]
+    return snap
 
 
 def main() -> int:

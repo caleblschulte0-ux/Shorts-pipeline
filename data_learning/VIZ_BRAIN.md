@@ -158,6 +158,19 @@ doesn't expose them): Shorts "related video" chaining is set in YouTube Studio
 by hand; flag your strongest franchise-mates in the run summary so the
 operator can chain winners.
 
+**Reading the deep analytics** (fields in `state/analytics_explainer/`):
+- `average_view_percentage` / `engaged_views` (chose-to-watch vs swiped) /
+  `shares` / `subscribers_gained` per video — rank formats by HOLD, not views.
+- `retention_curve` = `[[elapsed_ratio, audience_watch_ratio], ...]` for the
+  newest videos. Map curve position onto the 3 segments (each ≈ ⅓ of runtime):
+  a cliff at ~0.05 = the hook failed; a slide across 0.33–0.66 = segment 2's
+  depiction lost them; blame the exact beat and fix THAT segment's approach in
+  the next videos.
+- `search_terms` = the actual queries viewers typed to find us — feed these
+  directly into titles, hooks, `search_phrase` fields, and topic choice.
+- `traffic_sources` — if SHORTS-feed dwarfs SEARCH, hooks matter most; if
+  SEARCH grows, double down on search-legible franchises.
+
 **Analytics buckets** (once retention data is available): high view + high
 retention → clone the format; high view + weak retention → hook worked, body
 failed; low view + high retention → packaging failed, keep the core; low +
