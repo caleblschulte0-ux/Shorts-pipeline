@@ -755,6 +755,20 @@ def main() -> int:
                   "GROQ_API_KEY for fallback", file=sys.stderr)
             return 2
 
+        # LOUD: falling to Groq is a degraded path (weak writer, no brain).
+        # It must NEVER be silent — surface it in the log AND the committed
+        # report so a missing brain/prewritten batch is impossible to miss.
+        print("::warning::FELL BACK TO GROQ — no brain/pre-written packages "
+              "for today. Writer quality is degraded; check the brain step.",
+              flush=True)
+        try:
+            REPORT_PATH.write_text(
+                f"# Daily Trending Shorts — {now.strftime('%Y-%m-%d')}\n\n"
+                "> ⚠️ **FELL BACK TO GROQ** — no brain-authored or pre-written "
+                "packages for today; the day shipped on the weak fallback "
+                "writer. Fix the brain step / token.\n")
+        except Exception:  # noqa: BLE001
+            pass
         print("=== no pre-written packages — Groq fallback ===", flush=True)
         print("=== discovery ===", flush=True)
         raw = discover_all()
