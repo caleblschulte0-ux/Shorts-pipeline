@@ -335,13 +335,18 @@ def main() -> int:
             publish_base += timedelta(hours=2)
 
     log = _load_log()
-    # uploaders.upload wants publish_at as an RFC3339 string, not datetime
-    results = [process(pkg, path, dry_run=args.dry_run,
-                       publish_at=((publish_base + timedelta(hours=2 * i))
-                                   .strftime("%Y-%m-%dT%H:%M:%SZ")
-                                   if publish_base else None),
-                       log=log)
-               for i, (pkg, path) in enumerate(packages)]
+    # uploaders.upload wants publish_at as an RFC3339 string, not datetime.
+    # Slot index only advances for packages that will actually post, so
+    # already-posted slugs don't leave gaps in the schedule.
+    results, slot = [], 0
+    for pkg, path in packages:
+        publish_at = None
+        if publish_base and pkg["slug"] not in log["posted"]:
+            publish_at = (publish_base + timedelta(hours=2 * slot)) \
+                .strftime("%Y-%m-%dT%H:%M:%SZ")
+            slot += 1
+        results.append(process(pkg, path, dry_run=args.dry_run,
+                               publish_at=publish_at, log=log))
     print(json.dumps(results, indent=2))
     return 0 if all(r["ok"] for r in results) else 1
 
