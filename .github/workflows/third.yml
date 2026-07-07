@@ -74,6 +74,9 @@ jobs:
           # channel="third" in the packages routes the uploader to this
           # token; the shared channels' tokens are never referenced here.
           YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+          # Groq author writes per-clip titles/hooks/hashtags from the
+          # transcript; run degrades to raw clip titles without it
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           # Wrong-channel guard: hard default to the real third channel;
           # repo var THIRD_EXPECTED_CHANNEL can override if renamed.
           YOUTUBE_EXPECTED_CHANNEL: ${{ vars.THIRD_EXPECTED_CHANNEL || 'Thirdbraindown' }}
