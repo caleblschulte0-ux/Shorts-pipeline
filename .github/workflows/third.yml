@@ -66,7 +66,7 @@ jobs:
 
       - name: Install python deps
         # curl_cffi powers yt-dlp's TLS impersonation for Kick/Rumble
-        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper google-api-python-client google-auth google-auth-oauthlib
+        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper deep-translator google-api-python-client google-auth google-auth-oauthlib
 
       - name: Render + upload
         env:
