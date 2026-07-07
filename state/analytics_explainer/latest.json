@@ -1,17 +1,20 @@
 {
-  "fetched_at": "2026-07-06T16:18:05.566205+00:00",
+  "fetched_at": "2026-07-07T13:08:56.646374+00:00",
   "videos": [
     {
-      "video_id": "6mkEiKrbujk",
-      "url": "https://youtube.com/shorts/6mkEiKrbujk",
-      "catalog_id": "human-nose-smell",
-      "title": "Human Nose Smell",
-      "published_at": "2026-07-06T16:34:36Z",
-      "age_hours": 0.1,
-      "views": 2,
+      "video_id": "0kG7drCJ6k0",
+      "url": "https://youtube.com/shorts/0kG7drCJ6k0",
+      "catalog_id": "largest-organisms-ever",
+      "title": "Largest Organisms Ever",
+      "published_at": "2026-07-05T03:27:10Z",
+      "age_hours": 57.7,
+      "views": 166,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 15.7
+      "views_per_hour": 2.88,
+      "average_view_percentage": 51.4,
+      "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 3.0
     },
     {
       "video_id": "_Lj6q627YzI",
@@ -19,11 +22,11 @@
       "catalog_id": "largest-star-ever-found",
       "title": "Largest Star Ever Found",
       "published_at": "2026-07-06T03:29:15Z",
-      "age_hours": 12.8,
-      "views": 91,
+      "age_hours": 33.7,
+      "views": 93,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 7.1
+      "views_per_hour": 2.76
     },
     {
       "video_id": "-mKQu-Grqy4",
@@ -31,23 +34,11 @@
       "catalog_id": "space-smells-bad",
       "title": "Space Smells Bad",
       "published_at": "2026-07-05T21:29:22Z",
-      "age_hours": 18.8,
+      "age_hours": 39.7,
       "views": 92,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 4.89
-    },
-    {
-      "video_id": "0kG7drCJ6k0",
-      "url": "https://youtube.com/shorts/0kG7drCJ6k0",
-      "catalog_id": "largest-organisms-ever",
-      "title": "Largest Organisms Ever",
-      "published_at": "2026-07-05T03:27:10Z",
-      "age_hours": 36.8,
-      "views": 166,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 4.5
+      "views_per_hour": 2.32
     },
     {
       "video_id": "sxScken0E18",
@@ -55,23 +46,11 @@
       "catalog_id": "largest-living-fjords",
       "title": "Largest Living Fjords",
       "published_at": "2026-07-05T15:29:13Z",
-      "age_hours": 24.8,
+      "age_hours": 45.7,
       "views": 76,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 3.06
-    },
-    {
-      "video_id": "OZs56TorTX8",
-      "url": "https://youtube.com/shorts/OZs56TorTX8",
-      "catalog_id": "glacier-melt-pace",
-      "title": "Glaciers Are Melting Faster Every Decade",
-      "published_at": "2026-07-01T06:33:12Z",
-      "age_hours": 129.7,
-      "views": 222,
-      "likes": 1,
-      "comments": 0,
-      "views_per_hour": 1.71
+      "views_per_hour": 1.66
     },
     {
       "video_id": "FMXkn3Iphwg",
@@ -79,17 +58,14 @@
       "catalog_id": "birth-rate-collapse",
       "title": "Americans Are Having Fewer Kids Than Ever. Here's the Math.",
       "published_at": "2026-06-10T16:19:26Z",
-      "age_hours": 624.0,
+      "age_hours": 644.8,
       "views": 1063,
       "likes": 11,
       "comments": 10,
       "views_per_hour": 1.65,
       "average_view_percentage": 30.6,
       "average_view_duration_s": 25.0,
-      "estimated_minutes_watched": 231.0,
-      "engaged_views": 515,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 231.0
     },
     {
       "video_id": "OZs56TorTX8",
@@ -97,23 +73,14 @@
       "catalog_id": "glacier-melt-pace",
       "title": "Glaciers Are Melting Faster Every Decade",
       "published_at": "2026-07-01T06:33:12Z",
-      "age_hours": 130.6,
-      "views": 222,
+      "age_hours": 150.6,
+      "views": 223,
       "likes": 1,
       "comments": 0,
-      "views_per_hour": 1.7
-    },
-    {
-      "video_id": "XIBL9sn_rgU",
-      "url": "https://youtube.com/shorts/XIBL9sn_rgU",
-      "catalog_id": "space-exploration-milestones",
-      "title": "Space Exploration Milestones",
-      "published_at": "2026-07-02T06:33:36Z",
-      "age_hours": 105.7,
-      "views": 171,
-      "likes": 1,
-      "comments": 0,
-      "views_per_hour": 1.61
+      "views_per_hour": 1.48,
+      "average_view_percentage": 21.7,
+      "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 14.0
     },
     {
       "video_id": "tXumZPp0BFg",
@@ -121,11 +88,29 @@
       "catalog_id": "the-longest-fossil-record",
       "title": "The Longest Fossil Record",
       "published_at": "2026-06-30T05:36:33Z",
-      "age_hours": 154.7,
+      "age_hours": 175.5,
       "views": 238,
       "likes": 1,
       "comments": 0,
-      "views_per_hour": 1.53
+      "views_per_hour": 1.36,
+      "average_view_percentage": 45.8,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 13.0
+    },
+    {
+      "video_id": "XIBL9sn_rgU",
+      "url": "https://youtube.com/shorts/XIBL9sn_rgU",
+      "catalog_id": "space-exploration-milestones",
+      "title": "Space Exploration Milestones",
+      "published_at": "2026-07-02T06:33:36Z",
+      "age_hours": 126.6,
+      "views": 171,
+      "likes": 1,
+      "comments": 0,
+      "views_per_hour": 1.35,
+      "average_view_percentage": 27.1,
+      "average_view_duration_s": 11.0,
+      "estimated_minutes_watched": 7.0
     },
     {
       "video_id": "Q2EiEB-iSQY",
@@ -133,11 +118,14 @@
       "catalog_id": "cocoa-price-shock",
       "title": "Why Chocolate Is About to Get Much More Expensive",
       "published_at": "2026-06-26T06:46:23Z",
-      "age_hours": 249.5,
+      "age_hours": 270.4,
       "views": 347,
       "likes": 4,
       "comments": 0,
-      "views_per_hour": 1.38
+      "views_per_hour": 1.28,
+      "average_view_percentage": 25.9,
+      "average_view_duration_s": 13.0,
+      "estimated_minutes_watched": 21.0
     },
     {
       "video_id": "sxQILIKqlhU",
@@ -145,11 +133,14 @@
       "catalog_id": "animal-lifespans",
       "title": "Some Animals Live 500 Years. Here's the Scale.",
       "published_at": "2026-06-30T12:33:06Z",
-      "age_hours": 147.7,
+      "age_hours": 168.6,
       "views": 164,
       "likes": 1,
       "comments": 0,
-      "views_per_hour": 1.1
+      "views_per_hour": 0.97,
+      "average_view_percentage": 35.5,
+      "average_view_duration_s": 19.0,
+      "estimated_minutes_watched": 11.0
     },
     {
       "video_id": "Gb9mYlJ4Jcw",
@@ -157,47 +148,14 @@
       "catalog_id": "space-weather-satellite-toll",
       "title": "The Sun Just Woke Up. Satellites Are Paying For It.",
       "published_at": "2026-07-03T12:30:59Z",
-      "age_hours": 75.8,
+      "age_hours": 96.6,
       "views": 75,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.98
-    },
-    {
-      "video_id": "ZGWh5ECQTOs",
-      "url": "https://youtube.com/shorts/ZGWh5ECQTOs",
-      "catalog_id": "remote-work-plateau",
-      "title": "Return-to-Office Mandates Aren't Working",
-      "published_at": "2026-07-04T06:31:02Z",
-      "age_hours": 57.8,
-      "views": 48,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.82
-    },
-    {
-      "video_id": "zeslz_6hxFQ",
-      "url": "https://youtube.com/shorts/zeslz_6hxFQ",
-      "catalog_id": "honeybee-colony-collapse-2025",
-      "title": "America's Bees Just Had Their Worst Year Ever",
-      "published_at": "2026-07-04T00:30:35Z",
-      "age_hours": 63.8,
-      "views": 49,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.76
-    },
-    {
-      "video_id": "z0hg7-UsU20",
-      "url": "https://youtube.com/shorts/z0hg7-UsU20",
-      "catalog_id": "multigenerational-households-comeback",
-      "title": "Grown Kids Never Left. Here's Why.",
-      "published_at": "2026-07-03T00:33:39Z",
-      "age_hours": 87.7,
-      "views": 65,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.73
+      "views_per_hour": 0.78,
+      "average_view_percentage": 36.9,
+      "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 4.0
     },
     {
       "video_id": "JPDc4qWc_VI",
@@ -205,11 +163,29 @@
       "catalog_id": "theme-park-tickets",
       "title": "Theme Park Tickets Have Gotten Absurd",
       "published_at": "2026-06-28T01:17:31Z",
-      "age_hours": 207.0,
+      "age_hours": 227.9,
       "views": 151,
       "likes": 2,
       "comments": 2,
-      "views_per_hour": 0.72
+      "views_per_hour": 0.66,
+      "average_view_percentage": 37.3,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 10.0
+    },
+    {
+      "video_id": "ZGWh5ECQTOs",
+      "url": "https://youtube.com/shorts/ZGWh5ECQTOs",
+      "catalog_id": "remote-work-plateau",
+      "title": "Return-to-Office Mandates Aren't Working",
+      "published_at": "2026-07-04T06:31:02Z",
+      "age_hours": 78.6,
+      "views": 48,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.61,
+      "average_view_percentage": 18.2,
+      "average_view_duration_s": 7.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "z0hg7-UsU20",
@@ -217,47 +193,29 @@
       "catalog_id": "multigenerational-households-comeback",
       "title": "Grown Kids Never Left. Here's Why.",
       "published_at": "2026-07-03T00:33:39Z",
-      "age_hours": 88.6,
+      "age_hours": 108.6,
       "views": 65,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.73
+      "views_per_hour": 0.6,
+      "average_view_percentage": 21.8,
+      "average_view_duration_s": 10.0,
+      "estimated_minutes_watched": 2.0
     },
     {
-      "video_id": "WlNxA0Vn4Eo",
-      "url": "https://youtube.com/shorts/WlNxA0Vn4Eo",
-      "catalog_id": "human-nose-smell-capacity",
-      "title": "Human Nose Smell Capacity",
-      "published_at": "2026-07-04T04:07:22Z",
-      "age_hours": 60.2,
-      "views": 37,
+      "video_id": "zeslz_6hxFQ",
+      "url": "https://youtube.com/shorts/zeslz_6hxFQ",
+      "catalog_id": "honeybee-colony-collapse-2025",
+      "title": "America's Bees Just Had Their Worst Year Ever",
+      "published_at": "2026-07-04T00:30:35Z",
+      "age_hours": 84.6,
+      "views": 49,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.61
-    },
-    {
-      "video_id": "rwcd9aYU2s8",
-      "url": "https://youtube.com/shorts/rwcd9aYU2s8",
-      "catalog_id": "movie-theater-collapse",
-      "title": "Hollywood Is Losing the Seat War",
-      "published_at": "2026-07-01T00:33:17Z",
-      "age_hours": 135.7,
-      "views": 81,
-      "likes": 1,
-      "comments": 0,
-      "views_per_hour": 0.59
-    },
-    {
-      "video_id": "JSKgSd_CFE4",
-      "url": "https://youtube.com/shorts/JSKgSd_CFE4",
-      "catalog_id": "human-nose-smell-capacity-114",
-      "title": "Human Nose Smell Capacity",
-      "published_at": "2026-07-06T09:29:39Z",
-      "age_hours": 6.8,
-      "views": 4,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.59
+      "views_per_hour": 0.58,
+      "average_view_percentage": 13.3,
+      "average_view_duration_s": 5.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "zVSrTnf0X1w",
@@ -265,35 +223,14 @@
       "catalog_id": "rocket-launch-surge",
       "title": "We're Launching 10x More Rockets. SpaceX Is Why.",
       "published_at": "2026-06-10T12:33:18Z",
-      "age_hours": 627.7,
+      "age_hours": 648.6,
       "views": 364,
       "likes": 4,
       "comments": 2,
-      "views_per_hour": 0.58
-    },
-    {
-      "video_id": "dGC70CU5hPQ",
-      "url": "https://youtube.com/shorts/dGC70CU5hPQ",
-      "catalog_id": "us-wildfire-surge",
-      "title": "US Wildfires Are Burning 3x More Land Than 30 Years Ago",
-      "published_at": "2026-06-26T03:46:02Z",
-      "age_hours": 252.5,
-      "views": 146,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.58
-    },
-    {
-      "video_id": "JSKgSd_CFE4",
-      "url": "https://youtube.com/shorts/JSKgSd_CFE4",
-      "catalog_id": "human-nose-smell-capacity-114",
-      "title": "Human Nose Smell Capacity",
-      "published_at": "2026-07-06T09:29:39Z",
-      "age_hours": 6.9,
-      "views": 4,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.58
+      "views_per_hour": 0.56,
+      "average_view_percentage": 51.3,
+      "average_view_duration_s": 36.0,
+      "estimated_minutes_watched": 63.0
     },
     {
       "video_id": "KpEctZEm7Ss",
@@ -301,17 +238,14 @@
       "catalog_id": "food-we-throw-away",
       "title": "A Third Of All Food Is Never Eaten",
       "published_at": "2026-06-12T03:04:55Z",
-      "age_hours": 589.2,
+      "age_hours": 610.1,
       "views": 337,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.55,
       "average_view_percentage": 37.9,
       "average_view_duration_s": 8.0,
-      "estimated_minutes_watched": 12.0,
-      "engaged_views": 48,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 12.0
     },
     {
       "video_id": "dGC70CU5hPQ",
@@ -319,17 +253,14 @@
       "catalog_id": "us-wildfire-surge",
       "title": "US Wildfires Are Burning 3x More Land Than 30 Years Ago",
       "published_at": "2026-06-26T03:46:02Z",
-      "age_hours": 271.8,
+      "age_hours": 273.4,
       "views": 146,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.54,
+      "views_per_hour": 0.53,
       "average_view_percentage": 83.5,
       "average_view_duration_s": 48.0,
-      "estimated_minutes_watched": 24.0,
-      "engaged_views": 27,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 24.0
     },
     {
       "video_id": "rwcd9aYU2s8",
@@ -337,29 +268,14 @@
       "catalog_id": "movie-theater-collapse",
       "title": "Hollywood Is Losing the Seat War",
       "published_at": "2026-07-01T00:33:17Z",
-      "age_hours": 155.0,
+      "age_hours": 156.6,
       "views": 81,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.52,
       "average_view_percentage": 21.1,
       "average_view_duration_s": 15.0,
-      "estimated_minutes_watched": 4.0,
-      "engaged_views": 13,
-      "shares": 0,
-      "subscribers_gained": 0
-    },
-    {
-      "video_id": "dGC70CU5hPQ",
-      "url": "https://youtube.com/shorts/dGC70CU5hPQ",
-      "catalog_id": "us-wildfire-surge",
-      "title": "US Wildfires Are Burning 3x More Land Than 30 Years Ago",
-      "published_at": "2026-06-26T03:46:02Z",
-      "age_hours": 254.0,
-      "views": 146,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.57
+      "estimated_minutes_watched": 4.0
     },
     {
       "video_id": "P7bJXzEE9vE",
@@ -367,23 +283,14 @@
       "catalog_id": "hidden-water-food",
       "title": "How Much Hidden Water Is in Your Food",
       "published_at": "2026-06-28T04:00:18Z",
-      "age_hours": 204.3,
+      "age_hours": 225.1,
       "views": 114,
       "likes": 1,
       "comments": 0,
-      "views_per_hour": 0.55
-    },
-    {
-      "video_id": "JSKgSd_CFE4",
-      "url": "https://youtube.com/shorts/JSKgSd_CFE4",
-      "catalog_id": "human-nose-smell-capacity-114",
-      "title": "Human Nose Smell Capacity",
-      "published_at": "2026-07-06T09:29:39Z",
-      "age_hours": 7.2,
-      "views": 4,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.55
+      "views_per_hour": 0.51,
+      "average_view_percentage": 25.7,
+      "average_view_duration_s": 11.0,
+      "estimated_minutes_watched": 5.0
     },
     {
       "video_id": "X42f4MWeBu4",
@@ -391,23 +298,29 @@
       "catalog_id": "the-world-s-largest-crystal-cave",
       "title": "The World's Largest Crystal Cave",
       "published_at": "2026-06-30T11:36:50Z",
-      "age_hours": 148.7,
+      "age_hours": 169.5,
       "views": 80,
       "likes": 1,
       "comments": 0,
-      "views_per_hour": 0.53
+      "views_per_hour": 0.47,
+      "average_view_percentage": 56.2,
+      "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 3.0
     },
     {
-      "video_id": "JSKgSd_CFE4",
-      "url": "https://youtube.com/shorts/JSKgSd_CFE4",
-      "catalog_id": "human-nose-smell-capacity-114",
+      "video_id": "WlNxA0Vn4Eo",
+      "url": "https://youtube.com/shorts/WlNxA0Vn4Eo",
+      "catalog_id": "human-nose-smell-capacity",
       "title": "Human Nose Smell Capacity",
-      "published_at": "2026-07-06T09:29:39Z",
-      "age_hours": 7.7,
-      "views": 4,
+      "published_at": "2026-07-04T04:07:22Z",
+      "age_hours": 81.0,
+      "views": 37,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.52
+      "views_per_hour": 0.46,
+      "average_view_percentage": 49.8,
+      "average_view_duration_s": 9.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "L_blsIf-lKI",
@@ -415,35 +328,14 @@
       "catalog_id": "electricity-by-state",
       "title": "Your Electric Bill Depends Wildly on Your State",
       "published_at": "2026-06-28T01:27:10Z",
-      "age_hours": 206.8,
+      "age_hours": 227.7,
       "views": 91,
       "likes": 2,
       "comments": 0,
-      "views_per_hour": 0.44
-    },
-    {
-      "video_id": "nBYnwI5Whxc",
-      "url": "https://youtube.com/shorts/nBYnwI5Whxc",
-      "catalog_id": "headphone-hearing-loss",
-      "title": "Your Headphones Are Quietly Wrecking Your Ears",
-      "published_at": "2026-07-03T18:31:04Z",
-      "age_hours": 69.8,
-      "views": 30,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.42
-    },
-    {
-      "video_id": "TwNUi8dYOns",
-      "url": "https://youtube.com/shorts/TwNUi8dYOns",
-      "catalog_id": "tallest-trees-on-earth",
-      "title": "Tallest Trees on Earth",
-      "published_at": "2026-07-01T12:33:41Z",
-      "age_hours": 123.7,
-      "views": 49,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.4
+      "views_per_hour": 0.4,
+      "average_view_percentage": 57.5,
+      "average_view_duration_s": 24.0,
+      "estimated_minutes_watched": 5.0
     },
     {
       "video_id": "DN-hcZlzKQI",
@@ -451,17 +343,14 @@
       "catalog_id": "exoplanet-explosion",
       "title": "We've Found 5,600 Worlds Beyond Our Own",
       "published_at": "2026-06-07T16:53:11Z",
-      "age_hours": 695.4,
+      "age_hours": 716.3,
       "views": 267,
       "likes": 7,
       "comments": 0,
       "views_per_hour": 0.37,
       "average_view_percentage": 34.5,
       "average_view_duration_s": 21.0,
-      "estimated_minutes_watched": 41.0,
-      "engaged_views": 105,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 41.0
     },
     {
       "video_id": "u-HGbrYmXkM",
@@ -469,23 +358,44 @@
       "catalog_id": "fastest-land-animals",
       "title": "Fastest Land Animals",
       "published_at": "2026-06-29T04:53:26Z",
-      "age_hours": 179.4,
+      "age_hours": 200.3,
       "views": 69,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.38
+      "views_per_hour": 0.34,
+      "average_view_percentage": 47.7,
+      "average_view_duration_s": 18.0,
+      "estimated_minutes_watched": 3.0
     },
     {
-      "video_id": "QiYIZtyDc0E",
-      "url": "https://youtube.com/shorts/QiYIZtyDc0E",
-      "catalog_id": "colorblind-by-the-numbers",
-      "title": "Colorblind Doesn't Mean What You Think",
-      "published_at": "2026-07-03T06:33:36Z",
-      "age_hours": 81.7,
-      "views": 29,
+      "video_id": "TwNUi8dYOns",
+      "url": "https://youtube.com/shorts/TwNUi8dYOns",
+      "catalog_id": "tallest-trees-on-earth",
+      "title": "Tallest Trees on Earth",
+      "published_at": "2026-07-01T12:33:41Z",
+      "age_hours": 144.6,
+      "views": 49,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.35
+      "views_per_hour": 0.34,
+      "average_view_percentage": 20.3,
+      "average_view_duration_s": 6.0,
+      "estimated_minutes_watched": 1.0
+    },
+    {
+      "video_id": "nBYnwI5Whxc",
+      "url": "https://youtube.com/shorts/nBYnwI5Whxc",
+      "catalog_id": "headphone-hearing-loss",
+      "title": "Your Headphones Are Quietly Wrecking Your Ears",
+      "published_at": "2026-07-03T18:31:04Z",
+      "age_hours": 90.6,
+      "views": 30,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.33,
+      "average_view_percentage": 42.6,
+      "average_view_duration_s": 20.0,
+      "estimated_minutes_watched": 4.0
     },
     {
       "video_id": "7vi8HJsMF80",
@@ -493,11 +403,14 @@
       "catalog_id": "the-deepest-ocean",
       "title": "The Deepest Ocean",
       "published_at": "2026-06-29T00:35:13Z",
-      "age_hours": 183.7,
+      "age_hours": 204.6,
       "views": 62,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.33
+      "views_per_hour": 0.3,
+      "average_view_percentage": 68.4,
+      "average_view_duration_s": 23.0,
+      "estimated_minutes_watched": 4.0
     },
     {
       "video_id": "Sq3ZvVtEaFY",
@@ -505,11 +418,29 @@
       "catalog_id": "the-largest-living-thing",
       "title": "The Largest Living Thing",
       "published_at": "2026-06-29T06:35:52Z",
-      "age_hours": 177.7,
+      "age_hours": 198.6,
       "views": 60,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.33
+      "views_per_hour": 0.3,
+      "average_view_percentage": 89.3,
+      "average_view_duration_s": 35.0,
+      "estimated_minutes_watched": 4.0
+    },
+    {
+      "video_id": "QiYIZtyDc0E",
+      "url": "https://youtube.com/shorts/QiYIZtyDc0E",
+      "catalog_id": "colorblind-by-the-numbers",
+      "title": "Colorblind Doesn't Mean What You Think",
+      "published_at": "2026-07-03T06:33:36Z",
+      "age_hours": 102.6,
+      "views": 29,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.28,
+      "average_view_percentage": 37.9,
+      "average_view_duration_s": 19.0,
+      "estimated_minutes_watched": 2.0
     },
     {
       "video_id": "3PFvrH5HNZY",
@@ -517,11 +448,14 @@
       "catalog_id": "ocean-unexplored",
       "title": "We've Mapped Mars Better Than Our Own Ocean",
       "published_at": "2026-06-09T09:28:59Z",
-      "age_hours": 654.8,
+      "age_hours": 675.7,
       "views": 177,
       "likes": 4,
       "comments": 0,
-      "views_per_hour": 0.27
+      "views_per_hour": 0.26,
+      "average_view_percentage": 32.2,
+      "average_view_duration_s": 22.0,
+      "estimated_minutes_watched": 8.0
     },
     {
       "video_id": "3RlkWghzeGQ",
@@ -529,23 +463,26 @@
       "catalog_id": "pet-spending-boom",
       "title": "Americans Now Spend a Record Amount on Their Pets",
       "published_at": "2026-06-25T21:46:20Z",
-      "age_hours": 258.5,
+      "age_hours": 279.4,
       "views": 66,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.25
+      "views_per_hour": 0.24,
+      "average_view_percentage": 28.4,
+      "average_view_duration_s": 13.0,
+      "estimated_minutes_watched": 5.0
     },
     {
-      "video_id": "rkKZJ2e3DDE",
-      "url": "https://youtube.com/shorts/rkKZJ2e3DDE",
-      "catalog_id": "earth-s-largest-living-organisms",
-      "title": "Earth's Largest Living Organisms",
-      "published_at": "2026-07-02T00:33:27Z",
-      "age_hours": 111.7,
-      "views": 27,
+      "video_id": "JSKgSd_CFE4",
+      "url": "https://youtube.com/shorts/JSKgSd_CFE4",
+      "catalog_id": "human-nose-smell-capacity-114",
+      "title": "Human Nose Smell Capacity",
+      "published_at": "2026-07-06T09:29:39Z",
+      "age_hours": 27.7,
+      "views": 6,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.24
+      "views_per_hour": 0.22
     },
     {
       "video_id": "y3RXI_Ftiq4",
@@ -553,11 +490,29 @@
       "catalog_id": "childcare-paycheck",
       "title": "Infant Daycare Now Costs More Than Rent",
       "published_at": "2026-06-14T06:08:34Z",
-      "age_hours": 538.2,
+      "age_hours": 559.0,
       "views": 116,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.21
+      "views_per_hour": 0.21,
+      "average_view_percentage": 35.0,
+      "average_view_duration_s": 19.0,
+      "estimated_minutes_watched": 3.0
+    },
+    {
+      "video_id": "rkKZJ2e3DDE",
+      "url": "https://youtube.com/shorts/rkKZJ2e3DDE",
+      "catalog_id": "earth-s-largest-living-organisms",
+      "title": "Earth's Largest Living Organisms",
+      "published_at": "2026-07-02T00:33:27Z",
+      "age_hours": 132.6,
+      "views": 27,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.2,
+      "average_view_percentage": 26.8,
+      "average_view_duration_s": 13.0,
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "AmZKHlKlRlM",
@@ -565,11 +520,26 @@
       "catalog_id": "ev-tipping-point",
       "title": "Gas Cars Just Hit Their Peak",
       "published_at": "2026-06-12T03:39:10Z",
-      "age_hours": 588.6,
+      "age_hours": 609.5,
       "views": 116,
       "likes": 1,
       "comments": 0,
-      "views_per_hour": 0.2
+      "views_per_hour": 0.19,
+      "average_view_percentage": 49.9,
+      "average_view_duration_s": 11.0,
+      "estimated_minutes_watched": 3.0
+    },
+    {
+      "video_id": "WV0q_s_6kjQ",
+      "url": "https://youtube.com/shorts/WV0q_s_6kjQ",
+      "catalog_id": "fastest-animals-speed",
+      "title": "The Cheetah Isn't the Fastest Animal on Earth",
+      "published_at": "2026-07-06T16:18:28Z",
+      "age_hours": 20.8,
+      "views": 4,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.19
     },
     {
       "video_id": "yMj8_Fx7IW0",
@@ -577,23 +547,26 @@
       "catalog_id": "wedding-cost-spiral",
       "title": "The Average US Wedding Now Costs More Than a New Car",
       "published_at": "2026-06-26T00:46:24Z",
-      "age_hours": 255.5,
+      "age_hours": 276.4,
       "views": 50,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.2
+      "views_per_hour": 0.18,
+      "average_view_percentage": 16.4,
+      "average_view_duration_s": 8.0,
+      "estimated_minutes_watched": 1.0
     },
     {
-      "video_id": "xYze1khN6Bo",
-      "url": "https://youtube.com/shorts/xYze1khN6Bo",
-      "catalog_id": "subscription-creep",
-      "title": "You're Paying for Way More Subscriptions Than You Think",
-      "published_at": "2026-06-09T03:28:55Z",
-      "age_hours": 660.8,
-      "views": 90,
-      "likes": 5,
+      "video_id": "6mkEiKrbujk",
+      "url": "https://youtube.com/shorts/6mkEiKrbujk",
+      "catalog_id": "human-nose-smell",
+      "title": "Human Nose Smell",
+      "published_at": "2026-07-06T16:34:36Z",
+      "age_hours": 20.6,
+      "views": 3,
+      "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.14
+      "views_per_hour": 0.15
     },
     {
       "video_id": "aykoIZOT9x0",
@@ -601,11 +574,29 @@
       "catalog_id": "loneliness-epidemic",
       "title": "The Loneliness Epidemic, in Four Charts",
       "published_at": "2026-06-09T15:29:01Z",
-      "age_hours": 648.8,
+      "age_hours": 669.7,
       "views": 94,
       "likes": 4,
       "comments": 0,
-      "views_per_hour": 0.14
+      "views_per_hour": 0.14,
+      "average_view_percentage": 32.1,
+      "average_view_duration_s": 20.0,
+      "estimated_minutes_watched": 2.0
+    },
+    {
+      "video_id": "xYze1khN6Bo",
+      "url": "https://youtube.com/shorts/xYze1khN6Bo",
+      "catalog_id": "subscription-creep",
+      "title": "You're Paying for Way More Subscriptions Than You Think",
+      "published_at": "2026-06-09T03:28:55Z",
+      "age_hours": 681.7,
+      "views": 90,
+      "likes": 5,
+      "comments": 0,
+      "views_per_hour": 0.13,
+      "average_view_percentage": 36.9,
+      "average_view_duration_s": 23.0,
+      "estimated_minutes_watched": 6.0
     },
     {
       "video_id": "t5yKDlLmFJw",
@@ -613,26 +604,35 @@
       "catalog_id": "wage-illusion",
       "title": "Your Raise Was Fake (Here's The Math)",
       "published_at": "2026-06-06T00:11:56Z",
-      "age_hours": 736.1,
+      "age_hours": 757.0,
       "views": 89,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.12,
       "average_view_percentage": 48.2,
       "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 8.0,
-      "engaged_views": 24,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 8.0
     },
     {
-      "video_id": "wHQ-up17IW8",
-      "url": "https://youtube.com/shorts/wHQ-up17IW8",
-      "catalog_id": "human-memory-capacity",
-      "title": "Human Memory Capacity",
-      "published_at": "2026-07-04T12:30:32Z",
-      "age_hours": 51.8,
-      "views": 5,
+      "video_id": "PbFSWztvwyI",
+      "url": "https://youtube.com/shorts/PbFSWztvwyI",
+      "catalog_id": "deep-sea-creatures-size",
+      "title": "Deep Sea Creatures Size",
+      "published_at": "2026-07-06T16:39:33Z",
+      "age_hours": 20.5,
+      "views": 2,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.09
+    },
+    {
+      "video_id": "8fIVO1_ZRnU",
+      "url": "https://youtube.com/shorts/8fIVO1_ZRnU",
+      "catalog_id": "tallest-buildings",
+      "title": "The World's Tallest Buildings Keep Getting Taller",
+      "published_at": "2026-07-06T15:34:52Z",
+      "age_hours": 21.6,
+      "views": 2,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.09
@@ -643,29 +643,14 @@
       "catalog_id": "minimum-wage-purchasing-power",
       "title": "The Minimum Wage Is Worth Less Than in 1968",
       "published_at": "2026-06-25T06:30:40Z",
-      "age_hours": 273.8,
+      "age_hours": 294.6,
       "views": 25,
       "likes": 2,
       "comments": 0,
-      "views_per_hour": 0.09,
+      "views_per_hour": 0.08,
       "average_view_percentage": 21.5,
       "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 3.0,
-      "engaged_views": 9,
-      "shares": 0,
-      "subscribers_gained": 0
-    },
-    {
-      "video_id": "wHQ-up17IW8",
-      "url": "https://youtube.com/shorts/wHQ-up17IW8",
-      "catalog_id": "human-memory-capacity",
-      "title": "Human Memory Capacity",
-      "published_at": "2026-07-04T12:30:32Z",
-      "age_hours": 52.6,
-      "views": 5,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.09
+      "estimated_minutes_watched": 3.0
     },
     {
       "video_id": "wi0pDkVkRTs",
@@ -673,17 +658,14 @@
       "catalog_id": "car-cost-explosion",
       "title": "A New Car Costs What a House Used To. Here's the Receipt.",
       "published_at": "2026-06-07T14:58:19Z",
-      "age_hours": 697.3,
+      "age_hours": 718.2,
       "views": 53,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.07,
       "average_view_percentage": 30.8,
       "average_view_duration_s": 20.0,
-      "estimated_minutes_watched": 6.0,
-      "engaged_views": 18,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 6.0
     },
     {
       "video_id": "Sec1U32VKis",
@@ -691,17 +673,14 @@
       "catalog_id": "tipping-creep",
       "title": "Why Tipping Went From 15% to 22% in 10 Years",
       "published_at": "2026-06-10T19:21:17Z",
-      "age_hours": 620.9,
+      "age_hours": 641.8,
       "views": 47,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.07,
       "average_view_percentage": 39.0,
       "average_view_duration_s": 28.0,
-      "estimated_minutes_watched": 4.0,
-      "engaged_views": 9,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 4.0
     },
     {
       "video_id": "ykPDZAv7JtY",
@@ -709,17 +688,14 @@
       "catalog_id": "birth-cost-shock",
       "title": "Having a Baby in America Costs 30x More Than in the UK",
       "published_at": "2026-06-14T00:08:26Z",
-      "age_hours": 544.2,
+      "age_hours": 565.0,
       "views": 38,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.07,
       "average_view_percentage": 23.1,
       "average_view_duration_s": 13.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 4,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "G59TWwXMX5Y",
@@ -727,17 +703,14 @@
       "catalog_id": "freshwater-crisis",
       "title": "97% of Earth's Water Is Useless to You",
       "published_at": "2026-06-24T08:34:24Z",
-      "age_hours": 295.7,
+      "age_hours": 316.6,
       "views": 22,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.07,
       "average_view_percentage": 10.3,
       "average_view_duration_s": 6.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 4,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "wHQ-up17IW8",
@@ -745,17 +718,14 @@
       "catalog_id": "human-memory-capacity",
       "title": "Human Memory Capacity",
       "published_at": "2026-07-04T12:30:32Z",
-      "age_hours": 71.0,
+      "age_hours": 72.6,
       "views": 5,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.07,
       "average_view_percentage": 140.4,
       "average_view_duration_s": 39.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "7p8hT8_NwJ8",
@@ -763,17 +733,14 @@
       "catalog_id": "jobs-beneath-surface",
       "title": "The Jobs Report Hides 3 Ugly Truths",
       "published_at": "2026-06-06T01:12:00Z",
-      "age_hours": 735.1,
+      "age_hours": 755.9,
       "views": 46,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.06,
       "average_view_percentage": 48.1,
       "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 4.0,
-      "engaged_views": 13,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 4.0
     },
     {
       "video_id": "vilaMGNr5PE",
@@ -781,23 +748,14 @@
       "catalog_id": "american-obesity",
       "title": "America Got 3 Times Fatter in 30 Years. Here's the Bill.",
       "published_at": "2026-06-08T13:55:27Z",
-      "age_hours": 674.4,
+      "age_hours": 695.2,
       "views": 40,
       "likes": 4,
       "comments": 0,
-      "views_per_hour": 0.06
-    },
-    {
-      "video_id": "HTaCZf6-aFo",
-      "url": "https://youtube.com/shorts/HTaCZf6-aFo",
-      "catalog_id": "how-long-animals-actually-sleep",
-      "title": "Why Some Animals Barely Sleep at All",
-      "published_at": "2026-07-03T18:33:32Z",
-      "age_hours": 69.7,
-      "views": 4,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.06
+      "views_per_hour": 0.06,
+      "average_view_percentage": 43.4,
+      "average_view_duration_s": 27.0,
+      "estimated_minutes_watched": 6.0
     },
     {
       "video_id": "goJHFA3gjjA",
@@ -805,17 +763,38 @@
       "catalog_id": "space-station-size-comparison",
       "title": "Space Station Size Comparison",
       "published_at": "2026-07-03T22:07:06Z",
-      "age_hours": 66.2,
+      "age_hours": 87.0,
       "views": 4,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.05,
       "average_view_percentage": 45.6,
       "average_view_duration_s": 10.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
+    },
+    {
+      "video_id": "Hg9DpNqIFKA",
+      "url": "https://youtube.com/shorts/Hg9DpNqIFKA",
+      "catalog_id": "deepest-part-of-ocean",
+      "title": "Deepest Part of Ocean",
+      "published_at": "2026-07-06T16:36:53Z",
+      "age_hours": 20.5,
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.05
+    },
+    {
+      "video_id": "jJGhRbaZdNM",
+      "url": "https://youtube.com/shorts/jJGhRbaZdNM",
+      "catalog_id": "wildfire-season-length",
+      "title": "Wildfire Season Length",
+      "published_at": "2026-07-06T16:42:44Z",
+      "age_hours": 20.4,
+      "views": 1,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.05
     },
     {
       "video_id": "500bXun_fCk",
@@ -823,17 +802,14 @@
       "catalog_id": "sun-colder-than-its-atmosphere",
       "title": "The Sun's Surface Is Colder Than Its Air",
       "published_at": "2026-07-03T12:33:32Z",
-      "age_hours": 75.7,
+      "age_hours": 96.6,
       "views": 4,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.04,
       "average_view_percentage": 17.9,
       "average_view_duration_s": 9.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "HTaCZf6-aFo",
@@ -841,17 +817,14 @@
       "catalog_id": "how-long-animals-actually-sleep",
       "title": "Why Some Animals Barely Sleep at All",
       "published_at": "2026-07-03T18:33:32Z",
-      "age_hours": 89.0,
+      "age_hours": 90.6,
       "views": 4,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.04,
       "average_view_percentage": 23.4,
       "average_view_duration_s": 11.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "uigBZPIdrQQ",
@@ -859,17 +832,14 @@
       "catalog_id": "rate-hike-squeeze",
       "title": "You Paid for Inflation Twice \u2014 Once at the Store, Once at the Bank",
       "published_at": "2026-06-08T11:59:53Z",
-      "age_hours": 676.3,
+      "age_hours": 697.2,
       "views": 24,
       "likes": 4,
       "comments": 0,
       "views_per_hour": 0.03,
       "average_view_percentage": 29.1,
       "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 2.0,
-      "engaged_views": 7,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 2.0
     },
     {
       "video_id": "mrbe42PACJo",
@@ -877,17 +847,14 @@
       "catalog_id": "marriage-later",
       "title": "Nobody's Getting Married Anymore. Here's Where It Went.",
       "published_at": "2026-06-08T17:55:57Z",
-      "age_hours": 670.4,
+      "age_hours": 691.2,
       "views": 22,
       "likes": 4,
       "comments": 0,
       "views_per_hour": 0.03,
       "average_view_percentage": 47.6,
       "average_view_duration_s": 29.0,
-      "estimated_minutes_watched": 6.0,
-      "engaged_views": 12,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 6.0
     },
     {
       "video_id": "j4d5uk3T90s",
@@ -895,17 +862,14 @@
       "catalog_id": "most-spoken-languages",
       "title": "The Most Spoken Languages on Earth",
       "published_at": "2026-06-28T13:00:38Z",
-      "age_hours": 195.3,
+      "age_hours": 216.1,
       "views": 6,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.03,
       "average_view_percentage": 54.7,
       "average_view_duration_s": 13.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 4,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "vRND9Wyv2II",
@@ -913,17 +877,14 @@
       "catalog_id": "happiness-divide",
       "title": "Why Finland Is the Happiest Country on Earth",
       "published_at": "2026-06-24T02:34:23Z",
-      "age_hours": 301.7,
+      "age_hours": 322.6,
       "views": 9,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.03,
       "average_view_percentage": 25.4,
       "average_view_duration_s": 15.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 5,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "h0xSTuOfwds",
@@ -931,17 +892,14 @@
       "catalog_id": "coral-reef-collapse",
       "title": "Half the World's Coral Is Already Gone",
       "published_at": "2026-06-24T12:30:40Z",
-      "age_hours": 291.8,
+      "age_hours": 312.6,
       "views": 8,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.03,
       "average_view_percentage": 62.8,
       "average_view_duration_s": 33.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "aa8pZZWsyKk",
@@ -949,17 +907,14 @@
       "catalog_id": "giraffes-are-secretly-fast",
       "title": "Giraffes Are Secretly Fast",
       "published_at": "2026-06-28T12:35:29Z",
-      "age_hours": 195.7,
+      "age_hours": 216.6,
       "views": 6,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.03,
       "average_view_percentage": 90.0,
       "average_view_duration_s": 23.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "tXKi3wSbMAQ",
@@ -967,17 +922,14 @@
       "catalog_id": "smallest-bones-in-body",
       "title": "Smallest Bones in Body",
       "published_at": "2026-07-01T18:33:43Z",
-      "age_hours": 117.7,
+      "age_hours": 138.6,
       "views": 4,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.03,
       "average_view_percentage": 53.0,
       "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "UgmBS7Iz0yw",
@@ -985,17 +937,14 @@
       "catalog_id": "what-actually-kills-you",
       "title": "You're Scared of the Wrong Things. Here's What Kills You.",
       "published_at": "2026-06-07T18:53:06Z",
-      "age_hours": 693.4,
+      "age_hours": 714.3,
       "views": 15,
       "likes": 4,
       "comments": 0,
       "views_per_hour": 0.02,
       "average_view_percentage": 46.9,
       "average_view_duration_s": 25.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 4,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "AnP0Lq870RA",
@@ -1003,17 +952,14 @@
       "catalog_id": "sleep-deprivation",
       "title": "A Third of America Is Running on Too Little Sleep. Here's What It Costs.",
       "published_at": "2026-06-08T15:55:40Z",
-      "age_hours": 672.4,
+      "age_hours": 693.2,
       "views": 14,
       "likes": 4,
       "comments": 0,
       "views_per_hour": 0.02,
       "average_view_percentage": 47.0,
       "average_view_duration_s": 30.0,
-      "estimated_minutes_watched": 2.0,
-      "engaged_views": 4,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 2.0
     },
     {
       "video_id": "6H-Q6BlS2IM",
@@ -1021,17 +967,14 @@
       "catalog_id": "humans-ever-lived",
       "title": "How Many People Have Ever Lived",
       "published_at": "2026-06-12T15:19:10Z",
-      "age_hours": 577.0,
+      "age_hours": 597.8,
       "views": 14,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.02,
       "average_view_percentage": 173.8,
       "average_view_duration_s": 41.0,
-      "estimated_minutes_watched": 2.0,
-      "engaged_views": 3,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 2.0
     },
     {
       "video_id": "zVueA1LiWXQ",
@@ -1039,17 +982,14 @@
       "catalog_id": "urban-shift",
       "title": "More Than Half the World Now Lives in Cities",
       "published_at": "2026-07-02T12:13:05Z",
-      "age_hours": 100.1,
+      "age_hours": 120.9,
       "views": 2,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.02,
       "average_view_percentage": 21.2,
       "average_view_duration_s": 12.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "YmkGocRlIsE",
@@ -1057,17 +997,14 @@
       "catalog_id": "lifespan-extension",
       "title": "Humans Used to Die at 32. Then This Happened.",
       "published_at": "2026-07-02T15:13:04Z",
-      "age_hours": 97.1,
+      "age_hours": 117.9,
       "views": 2,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.02,
       "average_view_percentage": 39.5,
       "average_view_duration_s": 23.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "AGlipf8EGrE",
@@ -1075,17 +1012,14 @@
       "catalog_id": "space-debris-removal",
       "title": "Space Debris Removal",
       "published_at": "2026-06-29T16:53:10Z",
-      "age_hours": 167.4,
+      "age_hours": 188.3,
       "views": 3,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.02,
       "average_view_percentage": 70.3,
       "average_view_duration_s": 26.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "moC17bDKZ8A",
@@ -1093,17 +1027,14 @@
       "catalog_id": "human-brain-capacity-75",
       "title": "Human Brain Capacity",
       "published_at": "2026-06-29T22:53:27Z",
-      "age_hours": 161.4,
+      "age_hours": 182.3,
       "views": 4,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.02,
       "average_view_percentage": 51.5,
       "average_view_duration_s": 19.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 3,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "6cBGIGmmxbc",
@@ -1111,17 +1042,14 @@
       "catalog_id": "glowing-forests-exist",
       "title": "Glowing Forests Exist",
       "published_at": "2026-06-29T17:36:44Z",
-      "age_hours": 166.7,
+      "age_hours": 187.5,
       "views": 3,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.02,
       "average_view_percentage": 106.8,
       "average_view_duration_s": 32.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "CIreoASuieU",
@@ -1129,17 +1057,14 @@
       "catalog_id": "housing-affordability-wall",
       "title": "Priced Out: The Home You Can't Afford (4 Charts)",
       "published_at": "2026-06-05T17:01:59Z",
-      "age_hours": 743.3,
+      "age_hours": 764.1,
       "views": 8,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 29.4,
       "average_view_duration_s": 17.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 3,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "UUzz1chQmuE",
@@ -1147,17 +1072,14 @@
       "catalog_id": "grocery-squeeze",
       "title": "Why Your Grocery Bill Keeps Winning",
       "published_at": "2026-06-05T22:12:06Z",
-      "age_hours": 738.1,
+      "age_hours": 758.9,
       "views": 6,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 61.8,
       "average_view_duration_s": 24.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "jTVmjMw2Qo8",
@@ -1165,17 +1087,14 @@
       "catalog_id": "debt-trap",
       "title": "Americans Owe $1.4 Trillion On Plastic",
       "published_at": "2026-06-05T23:12:06Z",
-      "age_hours": 737.1,
+      "age_hours": 757.9,
       "views": 9,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 98.1,
       "average_view_duration_s": 41.0,
-      "estimated_minutes_watched": 2.0,
-      "engaged_views": 3,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 2.0
     },
     {
       "video_id": "nXHtOsGXG6U",
@@ -1183,17 +1102,14 @@
       "catalog_id": "student-loan-wall",
       "title": "The Degree That Tripled in Cost But Pays Half as Much",
       "published_at": "2026-06-06T15:06:22Z",
-      "age_hours": 721.2,
+      "age_hours": 742.0,
       "views": 5,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 50.1,
       "average_view_duration_s": 31.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "c50C9LHQk98",
@@ -1201,17 +1117,14 @@
       "catalog_id": "wildlife-collapse",
       "title": "Earth Lost Most of Its Wildlife in 50 Years",
       "published_at": "2026-06-07T20:53:01Z",
-      "age_hours": 691.4,
+      "age_hours": 712.3,
       "views": 7,
       "likes": 4,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 53.8,
       "average_view_duration_s": 29.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "ZqV-oZW3NrU",
@@ -1219,17 +1132,14 @@
       "catalog_id": "attention-span-collapse",
       "title": "Your Attention Span Collapsed. Here's the Data.",
       "published_at": "2026-06-09T21:28:43Z",
-      "age_hours": 642.8,
+      "age_hours": 663.7,
       "views": 5,
       "likes": 3,
       "comments": 1,
       "views_per_hour": 0.01,
       "average_view_percentage": 14.6,
       "average_view_duration_s": 9.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "lXdiK29aPvg",
@@ -1237,17 +1147,14 @@
       "catalog_id": "why-flights-are-late",
       "title": "Flying Got Worse \u2014 The Data Proves It",
       "published_at": "2026-06-12T03:40:45Z",
-      "age_hours": 588.6,
+      "age_hours": 609.5,
       "views": 8,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 82.1,
       "average_view_duration_s": 17.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "8xjdOrmH52g",
@@ -1255,17 +1162,14 @@
       "catalog_id": "jwst-universe-rewrite",
       "title": "James Webb Rewrote the Universe. 3 Numbers Prove It.",
       "published_at": "2026-06-12T16:11:34Z",
-      "age_hours": 576.1,
+      "age_hours": 597.0,
       "views": 6,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 30.8,
       "average_view_duration_s": 15.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "5Yottpe2BIc",
@@ -1273,17 +1177,14 @@
       "catalog_id": "myopia-epidemic",
       "title": "Half the World Will Need Glasses by 2050. Here's Why.",
       "published_at": "2026-06-12T16:15:06Z",
-      "age_hours": 576.0,
+      "age_hours": 596.9,
       "views": 8,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 55.9,
       "average_view_duration_s": 28.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 3,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "49vhclVhvD4",
@@ -1291,17 +1192,14 @@
       "catalog_id": "home-insurance-exodus",
       "title": "Insurers Are Quietly Abandoning Entire States",
       "published_at": "2026-06-14T12:08:07Z",
-      "age_hours": 532.2,
+      "age_hours": 553.0,
       "views": 3,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 102.0,
       "average_view_duration_s": 65.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "mUuh6fRdsMQ",
@@ -1309,17 +1207,14 @@
       "catalog_id": "arctic-ice-collapse",
       "title": "The Arctic Is Melting Faster Than Anyone Predicted",
       "published_at": "2026-06-20T02:18:14Z",
-      "age_hours": 398.0,
+      "age_hours": 418.8,
       "views": 3,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 51.1,
       "average_view_duration_s": 28.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "MYcyuJKD-Lc",
@@ -1327,17 +1222,14 @@
       "catalog_id": "commute-time-creep",
       "title": "Your Commute Is Longer Than Your Parents' Was",
       "published_at": "2026-06-22T01:13:21Z",
-      "age_hours": 351.1,
+      "age_hours": 371.9,
       "views": 4,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 37.7,
       "average_view_duration_s": 17.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 3,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "l3kzCUcuKKw",
@@ -1345,17 +1237,14 @@
       "catalog_id": "languages-dying",
       "title": "40% of All Languages Have Fewer Than 1,000 Speakers",
       "published_at": "2026-06-22T07:13:18Z",
-      "age_hours": 345.1,
+      "age_hours": 365.9,
       "views": 4,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 46.3,
       "average_view_duration_s": 19.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "PQRyA9SBJxE",
@@ -1363,17 +1252,14 @@
       "catalog_id": "ticket-price-explosion",
       "title": "Concert Tickets Cost Triple What They Did in 2010",
       "published_at": "2026-06-23T10:38:30Z",
-      "age_hours": 317.7,
+      "age_hours": 338.5,
       "views": 4,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 20.4,
       "average_view_duration_s": 10.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "hITRxBDo2FI",
@@ -1381,17 +1267,14 @@
       "catalog_id": "american-migration-map",
       "title": "Americans Are Quietly Leaving California and New York",
       "published_at": "2026-06-25T00:31:08Z",
-      "age_hours": 279.8,
+      "age_hours": 300.6,
       "views": 2,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 101.1,
       "average_view_duration_s": 54.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "yQQFMfBhSGQ",
@@ -1399,35 +1282,14 @@
       "catalog_id": "gas-price-by-country",
       "title": "Gas Costs Five Times More in Some Countries",
       "published_at": "2026-06-28T16:00:44Z",
-      "age_hours": 192.3,
+      "age_hours": 213.1,
       "views": 2,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 14.6,
       "average_view_duration_s": 5.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
-    },
-    {
-      "video_id": "4pGEEVLxObg",
-      "url": "https://youtube.com/shorts/4pGEEVLxObg",
-      "catalog_id": "fastest-things-on-water",
-      "title": "Fastest Things On Water",
-      "published_at": "2026-06-29T12:35:46Z",
-      "age_hours": 171.7,
-      "views": 2,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 54.9,
-      "average_view_duration_s": 16.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "LrZyl6Tlf4w",
@@ -1435,23 +1297,14 @@
       "catalog_id": "largest-living-fossils",
       "title": "Largest Living Fossils",
       "published_at": "2026-06-29T18:35:43Z",
-      "age_hours": 165.7,
+      "age_hours": 186.6,
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "views_per_hour": 0.01
-    },
-    {
-      "video_id": "qZb2QSfGAyU",
-      "url": "https://youtube.com/shorts/qZb2QSfGAyU",
-      "catalog_id": "world-s-largest-waterfalls",
-      "title": "World's Largest Waterfalls",
-      "published_at": "2026-06-28T16:53:23Z",
-      "age_hours": 191.4,
-      "views": 1,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "EGTCfLIyAAA",
@@ -1459,17 +1312,14 @@
       "catalog_id": "human-brain-capacity",
       "title": "Human Brain Capacity",
       "published_at": "2026-06-28T22:53:08Z",
-      "age_hours": 185.4,
+      "age_hours": 206.3,
       "views": 2,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 101.8,
       "average_view_duration_s": 43.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "p1zqnV8U7QQ",
@@ -1477,17 +1327,14 @@
       "catalog_id": "fruit-is-not-created-equal",
       "title": "Fruit Is Not Created Equal",
       "published_at": "2026-06-30T23:36:38Z",
-      "age_hours": 136.7,
+      "age_hours": 157.5,
       "views": 1,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 30.0,
       "average_view_duration_s": 9.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "2pByeVUq-f0",
@@ -1495,17 +1342,14 @@
       "catalog_id": "tambora-year-without-summer",
       "title": "One Volcano Darkened the World for a Year",
       "published_at": "2026-06-30T18:33:04Z",
-      "age_hours": 141.8,
+      "age_hours": 162.6,
       "views": 1,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 0.0,
       "average_view_duration_s": 0.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 0,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "KrP0bCHELZ4",
@@ -1513,17 +1357,14 @@
       "catalog_id": "animal-migration-patterns",
       "title": "Animal Migration Patterns",
       "published_at": "2026-07-02T18:33:30Z",
-      "age_hours": 93.7,
+      "age_hours": 114.6,
       "views": 1,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.01,
       "average_view_percentage": 17.9,
       "average_view_duration_s": 7.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "C_0wPVQi-iE",
@@ -1531,7 +1372,7 @@
       "catalog_id": "world-s-largest-fungi-network",
       "title": "World's Largest Fungi Network",
       "published_at": "2026-07-03T16:07:23Z",
-      "age_hours": 72.2,
+      "age_hours": 93.0,
       "views": 1,
       "likes": 0,
       "comments": 0,
@@ -1543,17 +1384,14 @@
       "catalog_id": "two-americas-cost",
       "title": "Same Salary, Different State, Opposite Life",
       "published_at": "2026-06-06T02:12:05Z",
-      "age_hours": 734.1,
+      "age_hours": 754.9,
       "views": 1,
       "likes": 1,
       "comments": 0,
       "views_per_hour": 0.0,
       "average_view_percentage": 0.0,
       "average_view_duration_s": 0.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 0,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "IeooShO-bjs",
@@ -1561,17 +1399,14 @@
       "catalog_id": "healthcare-cost-spiral",
       "title": "You Pay More for Health Insurance and Get Less Every Year",
       "published_at": "2026-06-06T15:02:00Z",
-      "age_hours": 721.3,
+      "age_hours": 742.1,
       "views": 1,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.0,
       "average_view_percentage": 0.0,
       "average_view_duration_s": 0.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 0,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "UhDcpI9RZ2A",
@@ -1579,17 +1414,14 @@
       "catalog_id": "retirement-savings-gap",
       "title": "Most Americans Are Behind on Retirement. Here's How Far.",
       "published_at": "2026-06-06T15:11:10Z",
-      "age_hours": 721.1,
+      "age_hours": 742.0,
       "views": 3,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.0,
       "average_view_percentage": 60.0,
       "average_view_duration_s": 44.0,
-      "estimated_minutes_watched": 1.0,
-      "engaged_views": 2,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 1.0
     },
     {
       "video_id": "8WEbgkh1qXc",
@@ -1597,19 +1429,7 @@
       "catalog_id": "deadliest-animals",
       "title": "The Deadliest Animal On Earth",
       "published_at": "2026-07-06T15:53:04Z",
-      "age_hours": 19.7,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.0
-    },
-    {
-      "video_id": "8WEbgkh1qXc",
-      "url": "https://youtube.com/shorts/8WEbgkh1qXc",
-      "catalog_id": "deadliest-animals",
-      "title": "The Deadliest Animal On Earth",
-      "published_at": "2026-07-06T15:53:04Z",
-      "age_hours": 0.4,
+      "age_hours": 21.3,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1621,17 +1441,14 @@
       "catalog_id": "time-use-reality",
       "title": "You Think You Work All Day. Here's Where Your Time Actually Goes.",
       "published_at": "2026-06-12T16:18:36Z",
-      "age_hours": 576.0,
+      "age_hours": 596.8,
       "views": 2,
       "likes": 2,
       "comments": 0,
       "views_per_hour": 0.0,
       "average_view_percentage": 0.0,
       "average_view_duration_s": 0.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 0,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "S8cLeKMgLKY",
@@ -1639,23 +1456,14 @@
       "catalog_id": "screen-time-life",
       "title": "You'll Spend 8 Years of Your Life on Your Phone",
       "published_at": "2026-06-13T18:56:35Z",
-      "age_hours": 549.4,
+      "age_hours": 570.2,
       "views": 1,
       "likes": 1,
       "comments": 0,
-      "views_per_hour": 0.0
-    },
-    {
-      "video_id": "WV0q_s_6kjQ",
-      "url": "https://youtube.com/shorts/WV0q_s_6kjQ",
-      "catalog_id": "fastest-animals-speed",
-      "title": "The Cheetah Isn't the Fastest Animal on Earth",
-      "published_at": "2026-07-06T16:18:01Z",
-      "age_hours": 0.0,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.0
+      "views_per_hour": 0.0,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "yVZfuyMSaps",
@@ -1663,17 +1471,14 @@
       "catalog_id": "superbug-resistance",
       "title": "The Silent War We're Losing: Superbugs",
       "published_at": "2026-06-23T20:34:13Z",
-      "age_hours": 307.7,
+      "age_hours": 328.6,
       "views": 0,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.0,
       "average_view_percentage": 0.0,
       "average_view_duration_s": 0.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 0,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "CXxE8lzJw6E",
@@ -1681,7 +1486,7 @@
       "catalog_id": "satellite-surge",
       "title": "Space Is Getting Crowded Fast",
       "published_at": "2026-06-24T14:34:04Z",
-      "age_hours": 289.7,
+      "age_hours": 310.6,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1693,19 +1498,7 @@
       "catalog_id": "us-incarceration-rate",
       "title": "The US Locks Up More People Than Any Country on Earth",
       "published_at": "2026-06-24T18:30:36Z",
-      "age_hours": 285.8,
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "views_per_hour": 0.0
-    },
-    {
-      "video_id": "8fIVO1_ZRnU",
-      "url": "https://youtube.com/shorts/8fIVO1_ZRnU",
-      "catalog_id": "tallest-buildings",
-      "title": "The World's Tallest Buildings Keep Getting Taller",
-      "published_at": "2026-07-06T15:34:52Z",
-      "age_hours": 0.7,
+      "age_hours": 306.6,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1717,7 +1510,19 @@
       "catalog_id": "the-longest-migration",
       "title": "The Longest Migration",
       "published_at": "2026-06-28T18:35:52Z",
-      "age_hours": 189.7,
+      "age_hours": 210.6,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "P4-h4LRtfPk",
+      "url": "https://youtube.com/shorts/P4-h4LRtfPk",
+      "catalog_id": "fastest-things-on-water",
+      "title": "Fastest Things On Water",
+      "published_at": "2026-07-06T16:23:49Z",
+      "age_hours": 20.8,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1729,17 +1534,14 @@
       "catalog_id": "world-s-largest-waterfalls",
       "title": "World's Largest Waterfalls",
       "published_at": "2026-06-28T16:53:23Z",
-      "age_hours": 210.7,
+      "age_hours": 212.3,
       "views": 1,
       "likes": 0,
       "comments": 0,
       "views_per_hour": 0.0,
       "average_view_percentage": 38.5,
       "average_view_duration_s": 17.0,
-      "estimated_minutes_watched": 0.0,
-      "engaged_views": 1,
-      "shares": 0,
-      "subscribers_gained": 0
+      "estimated_minutes_watched": 0.0
     },
     {
       "video_id": "hosfSfiRZ70",
@@ -1747,7 +1549,7 @@
       "catalog_id": "deep-sea-creatures",
       "title": "Deep Sea Creatures",
       "published_at": "2026-07-06T15:37:31Z",
-      "age_hours": 0.7,
+      "age_hours": 21.5,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1759,7 +1561,7 @@
       "catalog_id": "underwater-lakes-exist",
       "title": "Underwater Lakes Exist",
       "published_at": "2026-06-29T23:36:59Z",
-      "age_hours": 160.7,
+      "age_hours": 181.5,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1771,7 +1573,7 @@
       "catalog_id": "space-rocks-are-huge",
       "title": "Space Rocks Are Huge",
       "published_at": "2026-06-30T17:37:03Z",
-      "age_hours": 142.7,
+      "age_hours": 163.5,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1783,7 +1585,7 @@
       "catalog_id": "human-body-wonders",
       "title": "Human Body Wonders",
       "published_at": "2026-07-02T12:33:48Z",
-      "age_hours": 99.7,
+      "age_hours": 120.6,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1795,7 +1597,7 @@
       "catalog_id": "space-junk-cleanup",
       "title": "Space Junk Cleanup",
       "published_at": "2026-07-02T15:28:36Z",
-      "age_hours": 96.8,
+      "age_hours": 117.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1807,7 +1609,7 @@
       "catalog_id": "underwater-lakes-secret",
       "title": "Underwater Lakes Secret",
       "published_at": "2026-07-02T21:28:47Z",
-      "age_hours": 90.8,
+      "age_hours": 111.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1819,7 +1621,7 @@
       "catalog_id": "space-exploration-costs",
       "title": "Space Exploration Costs",
       "published_at": "2026-07-04T18:30:41Z",
-      "age_hours": 45.8,
+      "age_hours": 66.6,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1831,7 +1633,7 @@
       "catalog_id": "space-smells-like",
       "title": "Space Smells Like",
       "published_at": "2026-07-04T10:07:20Z",
-      "age_hours": 54.2,
+      "age_hours": 75.0,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1843,7 +1645,7 @@
       "catalog_id": "longest-recorded-flights",
       "title": "Longest Recorded Flights",
       "published_at": "2026-07-04T15:27:12Z",
-      "age_hours": 48.8,
+      "age_hours": 69.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1855,7 +1657,7 @@
       "catalog_id": "deepest-ocean-trenches",
       "title": "Deepest Ocean Trenches",
       "published_at": "2026-07-04T21:26:55Z",
-      "age_hours": 42.9,
+      "age_hours": 63.7,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -1863,88 +1665,60 @@
     }
   ],
   "summary": {
-    "total_videos": 112,
-    "total_views": 6189,
-    "avg_views_per_video": 55.3,
+    "total_videos": 116,
+    "total_views": 6205,
+    "avg_views_per_video": 53.5,
     "median_views_per_hour": 0.03,
     "top_5_by_vph": [
       {
-        "title": "Human Nose Smell",
-        "views_per_hour": 15.7,
-        "views": 2,
-        "age_hours": 0.1,
-        "url": "https://youtube.com/shorts/6mkEiKrbujk"
+        "title": "Largest Organisms Ever",
+        "views_per_hour": 2.88,
+        "views": 166,
+        "age_hours": 57.7,
+        "url": "https://youtube.com/shorts/0kG7drCJ6k0"
       },
       {
         "title": "Largest Star Ever Found",
-        "views_per_hour": 7.1,
-        "views": 91,
-        "age_hours": 12.8,
+        "views_per_hour": 2.76,
+        "views": 93,
+        "age_hours": 33.7,
         "url": "https://youtube.com/shorts/_Lj6q627YzI"
       },
       {
         "title": "Space Smells Bad",
-        "views_per_hour": 4.89,
+        "views_per_hour": 2.32,
         "views": 92,
-        "age_hours": 18.8,
+        "age_hours": 39.7,
         "url": "https://youtube.com/shorts/-mKQu-Grqy4"
       },
       {
-        "title": "Largest Organisms Ever",
-        "views_per_hour": 4.5,
-        "views": 166,
-        "age_hours": 36.8,
-        "url": "https://youtube.com/shorts/0kG7drCJ6k0"
-      },
-      {
         "title": "Largest Living Fjords",
-        "views_per_hour": 3.06,
+        "views_per_hour": 1.66,
         "views": 76,
-        "age_hours": 24.8,
+        "age_hours": 45.7,
         "url": "https://youtube.com/shorts/sxScken0E18"
       },
       {
-        "title": "Glaciers Are Melting Faster Every Decade",
-        "views_per_hour": 1.71,
-        "views": 222,
-        "age_hours": 129.7,
-        "url": "https://youtube.com/shorts/OZs56TorTX8"
+        "title": "Americans Are Having Fewer Kids Than Ever. Here's the Math.",
+        "views_per_hour": 1.65,
+        "views": 1063,
+        "age_hours": 644.8,
+        "url": "https://youtube.com/shorts/FMXkn3Iphwg"
       }
     ],
     "bottom_5_by_vph": [
       {
-        "title": "Wildfire Season Length",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 0.0,
-        "url": "https://youtube.com/shorts/jJGhRbaZdNM"
-      },
-      {
-        "title": "Deep Sea Creatures Size",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 0.0,
-        "url": "https://youtube.com/shorts/PbFSWztvwyI"
-      },
-      {
-        "title": "Deepest Part of Ocean",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 0.1,
-        "url": "https://youtube.com/shorts/Hg9DpNqIFKA"
-      },
-      {
         "title": "Deepest Ocean Trenches",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 42.9,
+        "age_hours": 63.7,
         "url": "https://youtube.com/shorts/1SlLw-F02cc"
       },
       {
         "title": "Longest Recorded Flights",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 48.8,
+        "age_hours": 69.7,
         "url": "https://youtube.com/shorts/-raGzekyiLY"
       }
     ],
@@ -1962,14 +1736,14 @@
         "title": "Space Smells Like",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 54.2,
+        "age_hours": 75.0,
         "url": "https://youtube.com/shorts/t1cqhjyf4jI"
       },
       {
         "title": "Space Exploration Costs",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 45.8,
+        "age_hours": 66.6,
         "url": "https://youtube.com/shorts/H1OGcWFtRIk"
       },
       {
@@ -1993,12 +1767,12 @@
         "average_view_percentage": 0.0,
         "average_view_duration_s": 0.0,
         "views": 0,
-        "age_hours": 90.8,
+        "age_hours": 111.7,
         "url": "https://youtube.com/shorts/nczQEkHXPkw"
       }
     ],
-    "videos_with_retention": 91,
-    "avg_view_percentage": 43.0,
+    "videos_with_retention": 90,
+    "avg_view_percentage": 42.8,
     "top_5_by_retention": [
       {
         "title": "How Many People Have Ever Lived",
@@ -2073,117 +1847,5 @@
         "url": "https://youtube.com/shorts/kHx6zjWPDsI"
       }
     ]
-  },
-  "traffic_sources": {
-    "SHORTS": 6559,
-    "YT_SEARCH": 366,
-    "YT_CHANNEL": 329,
-    "YT_OTHER_PAGE": 157,
-    "SUBSCRIBER": 1,
-    "HASHTAGS": 1,
-    "NO_LINK_OTHER": 0,
-    "RELATED_VIDEO": 0
-  },
-  "search_terms": [
-    {
-      "term": "backrooms",
-      "views": 2
-    },
-    {
-      "term": "deep sea creatures",
-      "views": 2
-    },
-    {
-      "term": "gas",
-      "views": 2
-    },
-    {
-      "term": "space station",
-      "views": 2
-    },
-    {
-      "term": "theme park crazy",
-      "views": 2
-    },
-    {
-      "term": "ticketswap",
-      "views": 2
-    },
-    {
-      "term": "#asmr",
-      "views": 1
-    },
-    {
-      "term": "bones die knochenj\u00e4gerin",
-      "views": 1
-    },
-    {
-      "term": "car survival rate",
-      "views": 1
-    },
-    {
-      "term": "cave",
-      "views": 1
-    },
-    {
-      "term": "cheetah speed",
-      "views": 1
-    },
-    {
-      "term": "chiara",
-      "views": 1
-    },
-    {
-      "term": "chokolate",
-      "views": 1
-    },
-    {
-      "term": "chuck norris",
-      "views": 1
-    },
-    {
-      "term": "claudio bravo edit",
-      "views": 1
-    },
-    {
-      "term": "cloud burst",
-      "views": 1
-    },
-    {
-      "term": "color blind",
-      "views": 1
-    },
-    {
-      "term": "colour blindness",
-      "views": 1
-    },
-    {
-      "term": "dalton rushing",
-      "views": 1
-    },
-    {
-      "term": "dance tiktok",
-      "views": 1
-    },
-    {
-      "term": "easy crochet for beginners",
-      "views": 1
-    },
-    {
-      "term": "finland country",
-      "views": 1
-    },
-    {
-      "term": "fish trap",
-      "views": 1
-    },
-    {
-      "term": "fossils",
-      "views": 1
-    },
-    {
-      "term": "fv4005",
-      "views": 1
-    }
-  ]
+  }
 }
