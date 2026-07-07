@@ -16,6 +16,7 @@ allowlist in the package are used.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import subprocess
@@ -91,17 +92,21 @@ def discover(platform: str, channel: str, *, top: int = 8,
 
 def download(url: str, work: Path) -> dict:
     work.mkdir(parents=True, exist_ok=True)
-    raw = work / "raw_clip.mp4"
-    meta = work / "raw_clip.meta"
+    # per-clip filenames — a shared name collides when several packages
+    # run in one invocation (and --print-to-file APPENDS across runs)
+    stem = f"raw_{hashlib.sha1(url.encode()).hexdigest()[:10]}"
+    raw = work / f"{stem}.mp4"
+    meta = work / f"{stem}.meta"
+    meta.unlink(missing_ok=True)
     _ytdlp(["-q", "--force-overwrites",
-            "-o", str(work / "raw_clip.%(ext)s"),
+            "-o", str(work / (stem + ".%(ext)s")),
             "--recode-video", "mp4",
             "--print-to-file",
             "%(id)s\t%(title)s\t%(uploader)s\t%(view_count|0)s\t%(duration)s",
             str(meta), url],
            impersonate=_needs_impersonation(url))
     cid, title, clipper, views, dur = \
-        meta.read_text().strip().split("\t")
+        meta.read_text().strip().splitlines()[-1].split("\t")
     return {"path": raw, "clip_id": cid, "title": title,
             "clipper": clipper, "views": int(float(views or 0)),
             "duration": float(dur), "url": url}
