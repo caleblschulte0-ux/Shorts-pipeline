@@ -202,7 +202,7 @@ and LOOK; fix → re-render → re-look until every frame passes.
 
 ## 10. Phased build plan (each phase gates the next)
 
-**Phase 0 — capture harness (blocks all uploads).**
+**Phase 0 — capture harness. ✅ BUILT 2026-07-07** (`third_capture/` + `scripts/run_third.py` + `third.yml`; first package rendered and eye-QA'd).
 `third_capture/`: Playwright + preinstalled Chromium (or `script`/asciinema
 for CLI tools) performs the task; ffmpeg records; overlay compositor adds
 the element kit; proof ledger (JSON: commands, timings, artifacts) saved
@@ -289,4 +289,4 @@ English-first; localization only after the format proves itself.
 
 Operator setup checklist: create the channel + @handle → mint
 `YOUTUBE_TOKEN_JSON_THIRD` → decide phase-1 tool budget (free-only vs
-funded accounts) → greenlight Phase 0 harness build.
+funded accounts). Phase 0 is built; uploads start when the secret exists.

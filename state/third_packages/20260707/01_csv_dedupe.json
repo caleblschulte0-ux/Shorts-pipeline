@@ -1,0 +1,37 @@
+{
+  "channel": "third",
+  "slug": "csv-dedupe-miller",
+  "title": "One command deleted {removed} duplicate rows in {wall} seconds",
+  "topic_cluster": ["spreadsheets", "data cleaning", "CLI tools"],
+  "search_intent": "fastest way to remove duplicate rows from a csv without excel",
+  "tool_name": "Miller (mlr)",
+  "task_definition": "TASK: clean a messy 1,000-row contact CSV",
+  "proof_plan": "Run mlr clean-whitespace + uniq on a synthetic messy fixture in CI; record the pty session, wall time, and row counts; replay the real bytes on screen.",
+  "hook_lines": ["Stop cleaning", "spreadsheets", "by hand!"],
+  "script": {
+    "hook": "Stop cleaning spreadsheets by hand!",
+    "input": "This contact list has {n_in} rows. Duplicates, random capitals, stray spaces.",
+    "proof": "One free command. Miller cleans the whitespace and drops every duplicate.",
+    "output": "Done in {wall} seconds. {removed} junk rows gone, {n_out} clean contacts left.",
+    "verdict": "Verdict: it works. Save this for your next messy export. What file should I stress-test next?"
+  },
+  "verdict": "WORKED",
+  "verdict_lines": ["Save this for your next messy export.", "Next: the same task, but with AI."],
+  "capture": {
+    "kind": "cli",
+    "fixture": "third_capture.make_fixture",
+    "input": "third_capture/fixtures/messy_contacts.csv",
+    "output": "third_capture/fixtures/clean_contacts.csv",
+    "argv_template": ["bash", "-c", "mlr --csv clean-whitespace then uniq -a {input} > {output} && wc -l {input} {output}"],
+    "shell_line": "mlr --csv clean-whitespace then uniq -a messy_contacts.csv > clean_contacts.csv && wc -l *.csv"
+  },
+  "measured_claims": [
+    {"claim": "row counts before/after", "source": "ledger files.input.rows / files.output.rows"},
+    {"claim": "wall time on screen", "source": "ledger wall_time_s"}
+  ],
+  "risk_flags": [],
+  "disclosures": ["ai_tts"],
+  "voice": "en-US-ChristopherNeural",
+  "hashtags": ["spreadsheets", "datacleaning", "csv", "commandline", "productivity", "miller"],
+  "description_note": "Real run: the terminal output, timing, and row counts in this video come from an actual recorded execution (proof ledger in the pipeline). Narration is AI text-to-speech."
+}
