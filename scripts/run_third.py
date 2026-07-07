@@ -385,7 +385,10 @@ def main() -> int:
         results.append(process(pkg, path, dry_run=args.dry_run,
                                publish_at=publish_at, log=log))
     print(json.dumps(results, indent=2))
-    return 0 if all(r["ok"] for r in results) else 1
+    # partial success is success: a late-day slot finding no fresh clip
+    # must not fail the run (that skips the posted-log commit and desyncs
+    # dedupe state). Fail only when NOTHING succeeded.
+    return 0 if any(r["ok"] for r in results) else 1
 
 
 if __name__ == "__main__":
