@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "slug": "orca-great-white-fear-2026",
+  "title": "The One Animal a Great White Shark Runs From",
+  "hashtags": [
+    "orca",
+    "killerwhale",
+    "greatwhite",
+    "shark",
+    "ocean",
+    "predator",
+    "wildlife",
+    "nature",
+    "viral",
+    "animals",
+    "fyp",
+    "scary"
+  ],
+  "script": "There's one animal that makes a great white shark flee in pure terror, and it's not what you'd guess. When it shows up, great whites don't fight; they abandon their entire hunting grounds for months. That animal is the orca. Orcas hunt in coordinated packs, and they've figured out how to flip a shark upside down, which locks it into a frozen, helpless trance, then they eat only its liver and leave the rest. Off California, tagged great whites fled the instant orcas arrived. The ocean's most feared predator has a predator of its own. So what does that make the orca?",
+  "shots": [
+    {
+      "phrase": "makes a great white shark flee in pure terror",
+      "query": "orca killer whale",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Killerwhales_jumping.jpg"
+    },
+    {
+      "phrase": "they abandon their entire hunting grounds",
+      "query": "great white shark",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "That animal is the orca",
+      "query": "killer whale ocean",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Killerwhales_jumping.jpg"
+    },
+    {
+      "phrase": "flip a shark upside down",
+      "query": "orca hunting",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "eat only its liver",
+      "query": "orca pod",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Killerwhales_jumping.jpg"
+    },
+    {
+      "phrase": "great whites fled the instant orcas arrived",
+      "query": "great white ocean",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "has a predator of its own",
+      "query": "killer whale",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Killerwhales_jumping.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "flee in pure terror",
+      "text": "IT RUNS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "That animal is the orca",
+      "text": "THE ORCA",
+      "color": "#30c0ff"
+    },
+    {
+      "phrase": "eat only its liver",
+      "text": "JUST THE LIVER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a predator of its own",
+      "text": "APEX OF THE APEX",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "dark"
+}

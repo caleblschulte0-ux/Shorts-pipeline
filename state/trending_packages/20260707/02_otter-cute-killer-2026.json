@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "slug": "otter-cute-killer-2026",
+  "title": "This 'Cute' Animal Is a Ruthless Killer",
+  "hashtags": [
+    "otter",
+    "seaotter",
+    "wildlife",
+    "animals",
+    "nature",
+    "cute",
+    "killer",
+    "viral",
+    "river",
+    "wild",
+    "fyp",
+    "shocking"
+  ],
+  "script": "This looks like the most adorable animal in the river, and it is actually a ruthless killer. Otters look cuddly, but they drown prey, raid nests, and the males can be shockingly violent. Otters have been filmed attacking animals many times their own size and holding them underwater until they stop moving. They crack open shells with rocks, one of the only animals that use tools, and they eat almost constantly to survive the cold. That fluffy little face hides one of nature's most efficient hunters. So why do we all think they're harmless?",
+  "shots": [
+    {
+      "phrase": "the most adorable animal in the river",
+      "query": "sea otter",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+    },
+    {
+      "phrase": "it is actually a ruthless killer",
+      "query": "otter closeup",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+    },
+    {
+      "phrase": "they drown prey, raid nests",
+      "query": "otter water",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "attacking animals many times their own size",
+      "query": "otter swimming",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+    },
+    {
+      "phrase": "crack open shells with rocks",
+      "query": "sea otter rock",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "one of nature's most efficient hunters",
+      "query": "otter",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+    },
+    {
+      "phrase": "think they're harmless",
+      "query": "sea otter",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "a ruthless killer",
+      "text": "NOT SO CUTE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "drown prey",
+      "text": "THEY DROWN PREY",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "use tools",
+      "text": "TOOL USERS",
+      "color": "#30c0ff"
+    },
+    {
+      "phrase": "harmless",
+      "text": "HARMLESS?",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "tense"
+}
