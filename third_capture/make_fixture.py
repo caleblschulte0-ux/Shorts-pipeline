@@ -62,9 +62,9 @@ def _row(rng: random.Random) -> dict:
 
 def main() -> Path:
     rng = random.Random(20260707)
-    rows = [_row(rng) for _ in range(760)]
+    rows = [_row(rng) for _ in range(7600)]
     # Inject exact duplicates (the headline defect the command removes).
-    dupes = [dict(r) for r in rng.sample(rows, 200) for _ in (0, 1)][:240]
+    dupes = [dict(r) for r in rng.sample(rows, 1200) for _ in (0, 1)][:2400]
     rows += dupes
     rng.shuffle(rows)
     OUT.parent.mkdir(parents=True, exist_ok=True)

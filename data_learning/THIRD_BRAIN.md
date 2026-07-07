@@ -1,292 +1,221 @@
-# THIRD CHANNEL ("third") — brain playbook: PROOF MODE
+# THIRD CHANNEL ("third") — brain playbook: THE EXPERIMENT CHANNEL
 
-**Working title:** *Proof Mode* — a proof-first, faceless software-workflow
-channel. **Positioning: "One workflow. One visible result. No hype."**
+**Working title:** *Overload* — a mass-appeal, entertainment-first channel:
+**"We run wild experiments. You watch them succeed — or break."**
 
 The channel slug is `third`; every package sets `"channel": "third"` and the
-uploader routes it to the `YOUTUBE_TOKEN_JSON_THIRD` secret. See §13 for
-wiring and isolation. This playbook supersedes the earlier survival-stories
-concept for this slug (preserved in git history at c364670 if ever wanted
-for a fourth channel).
+uploader routes it to the `YOUTUBE_TOKEN_JSON_THIRD` secret. See §12 for
+wiring and isolation.
 
-This file is the channel. Scout, validators, uploader, learning loop are
-shared infrastructure; the doctrine below is what makes Proof Mode itself.
-The brain reads this file first and treats it as law. Operator feedback gets
-written back INTO this file as permanent doctrine.
+This file is the channel. The brain reads it first and treats it as law.
+Operator feedback gets written back INTO this file as permanent doctrine.
 
 ---
 
-## 0. Strategy and the honest constraint
+## 0. The money-printer doctrine (operator law, 2026-07-07)
 
-**The bet:** intersect search intent with visible proof. Don't ask what
-topic is trending — ask what task people are trying to solve, then prove a
-visible result fast. Audience: students, creators, freelancers, founders,
-office workers searching "can this tool do X" / "fastest way to Y" /
-"A vs B". Monetization potential (sponsors, affiliates, template/prompt
-packs) is structurally better than facts/news entertainment niches, and the
-niche is naturally 9:16-visual.
+The funnel is **mass audience → millions of views → brand → affiliate /
+digital products / courses / sponsors** — NOT "niche tool → hope the right
+person watches → hope they buy." Shorts is entertainment first; even
+educational channels are entertaining. B2B utility content (workflow
+tutorials, "stop doing X manually") is BANNED here — that material belongs
+in a separate LinkedIn/X/SEO funnel, never on this channel.
 
-**The honest constraint (operator-acknowledged):** this channel's iron gate
-is REAL screen proof, and the pipeline today cannot produce a single frame
-of it — the renderer composes stock/AI imagery and procedural games. AI
-imagery standing in for software proof would violate the channel's own core
-rule and make every "I tested" claim a fabrication. Therefore:
+The prior "Proof Mode" identity failed the mass test ("I don't clean
+spreadsheets" → swipe). Its production machinery survives — the capture
+harness, proof ledger, and truthfulness rules now serve SPECTACLE, not
+tutorials. Same capability, opposite psychology:
 
-> **Phase 0 blocks everything.** No Proof Mode video ships until the
-> capture harness (§10) exists: headless Claude in CI actually PERFORMS the
-> task (Playwright + the preinstalled Chromium, or a CLI under asciinema/
-> script), records the screen with ffmpeg, and emits a proof ledger (run
-> log, timings, input/output artifacts). "I tested" must mean "CI ran it."
+- ~~"Stop cleaning spreadsheets by hand"~~ → **"I built the messiest
+  spreadsheet ever. One command gets one shot to fix it."**
+- ~~"This tool dedupes CSVs"~~ → **"Can it fix 10,000 broken rows before
+  you can blink?"**
 
-This also means the *entire moat is real proof*. The niche is flooded with
-AI-slop listicles; the only durable differentiation is that our results are
-demonstrably real — including honest FAILs, which are content, not waste.
+A tutorial promises usefulness. A challenge promises an OUTCOME — and the
+viewer stays to see if it survives.
 
 ## 1. Identity (one swipe)
 
-**Every Short proves a real outcome on screen: the input, the steps, the
-output.** Never listicles, never "top 5 AI tools", never generic AI news,
-never vague promises. Skeptical, practical, fast, never guru-ish. Value
-delivery is task transformation, not facts (channel 2) or events (channel 1)
-— zero cannibalization.
+**Every video is an experiment with visible stakes: we build something
+extreme, push it until it succeeds or breaks, and you watch the outcome
+live.** Challenges, stress tests, simulations, impossible comparisons,
+satisfying transformations. The viewer never needs a job, a tool, or
+context to care — only eyes.
 
-## 2. The iron gate (a package may not enter the queue unless…)
+Distinct from the other channels by verb: channel 1 *tells* quirky news,
+channel 2 *explains* data facts, channel 3 **RUNS experiments**.
 
-> It answers **one plausibly-searched question** ("Can this tool do X?",
-> "Fastest way to Y?", "A or B?"), the task was **actually executed by the
-> harness** with a proof ledger attached, the result is **legible in
-> vertical video without pausing**, and the demo needs **no private or
-> risky data** (synthetic fixtures only).
+## 2. The iron gate — the mass-appeal test (a package may not enter unless…)
 
-Reject even if trending:
-- Anything whose proof can't be shown on screen or requires trusting the
-  narration.
-- Trivial or visually boring tasks; tasks needing >4s of setup narration.
-- Claims depending on unclear benchmarking. Time/cost/performance numbers
-  appear ONLY if measured in the production run or labeled example/demo.
-- Roundup/listicle framing — commoditized, monetization-fragile.
-- Tools we can't actually run headless in phase 1 (see §10 scope).
+> **The premise is understandable in ONE SECOND by someone with no job, no
+> tools, and no English.** Concretely, every package must pass ALL of:
+> - **The mom test / 16-year-old test / Brazil test** — would a teenager, a
+>   parent, and a non-English speaker all get it and want the outcome?
+> - **Works muted** — the visual alone carries the stakes and the outcome.
+> - **One number of stakes** — the premise compresses to a single visible
+>   number or contrast (10,000 rows; 1 vs 1,000,000; before vs after).
+> - **An outcome question** — the viewer can silently ask "will it make
+>   it?" / "what happens?" and must watch to find out.
 
-## 3. Angle-derivation rule for the scout pool
+Reject even if trending or technically impressive: anything needing >1
+sentence of context, anything whose audience is "people who do task X at
+work", tutorials, tool reviews, listicles, anything where the 50% frame
+equals the 100% frame.
 
-From trend/search sources, extract **the underlying TASK a person is trying
-to get done — never the tool announcement itself.**
+## 3. Editorial pillars
 
-- "New AI model released" → not "X launched" → **"Can it turn a messy voice
-  note into a client-ready memo? Tested."**
-- "Layoffs / job market trends" → **"The 15-minute workflow that makes a
-  portfolio site from a resume."**
-
-Scout stack, in priority order: YouTube Trends tab (top searches, breakout,
-Shorts content gaps) → TikTok Creative Center trends (public) → Google
-Trends (durability, geography) → official product release notes/changelogs
-→ official help-center docs (confirm what the tool actually does BEFORE
-authoring). Operator-fed inputs (TikTok Creator Search Insights) are
-welcome but never assumed automatable.
-
-**Topic score (100 pts):** search demand 30 · Shorts content-gap fit 20 ·
-visual proof potential 15 · evergreen durability 15 · monetization fit 10 ·
-source reliability 5 · production ease 5. Every upload logs its
-trend-source lineage.
-
-## 4. Editorial pillars
-
-| Pillar | Qualifies | Rejected |
+| Pillar | What it looks like | Engine |
 |---|---|---|
-| **AI tool trials & workflow proofs** (spine) | "can it do X" tests, prompt iteration ladders, messy-input→clean-output | slow screen tutorials, tool-news recaps |
-| **Task showdowns** | A-vs-B on the SAME task with the same fixture, stamped verdicts | vague "which is better" opinion |
-| **Workflow deletions** | "this removed N clicks/steps", automation of a repetitive desk task | unmeasured time-saved claims |
+| **Impossible challenges** (spine) | "Can one command fix 10,000 broken rows?" · "Can AI un-shred this photo?" · escalation sequels (10k → 100k → 1M) | capture harness (real runs, real numbers) |
+| **Simulations & what-happens-if** | physics sims pushed until they genuinely break — flood the city, overload the tower, 1M bouncing balls; the crash IS the payoff | `themed_bottom.py` procedural engine (already built: escalate-until-the-solver-breaks arc) |
+| **Satisfying transformations & impossible comparisons** | chaos → order wipes, extreme before/afters, scale face-offs with animated counters | composer element kit (diff wipe, counters, split compare) |
 
-Seed weights from this channel's OWN analytics once available; retrieval
-overweights **format similarity over topic similarity** (the best analog
-for an email-cleanup Short may be a spreadsheet-cleanup Short with the same
-proof template).
+Money / psychology / weird-facts angles are allowed only as the *frame* on
+an experiment ("what $1M in rice looks like — we counted"), never as
+narrated facts (that's channel 2's lane).
 
-## 5. Format: the four beats (master ≈ 28–42s)
+## 4. The challenge grammar (how every script is built)
 
-1. **Pain or impossible result** — first 1–2s shows the pain, the result,
-   or a before/after contrast. Never branding.
-2. **Task setup** — the messy input, visibly imperfect. One sentence.
-3. **Workflow proof** — the actual run, compressed. One sentence.
-4. **Payoff + future-oriented CTA** — stamped verdict, never generic
-   "follow for more".
+1. **The absurd setup** (1–2s) — show the monster we built: the wall of
+   garbage, the tower too tall, the number too big. Bragging, not teaching:
+   "The messiest spreadsheet ever made!"
+2. **Stakes in one number** — say it and SHOW it big: "10,000 rows.
+   2,400 clones."
+3. **The attempt, live** — one shot, visible progress: counter ticking,
+   wipe advancing, sim escalating. This is the retention spine.
+4. **The outcome** — WORKED / FAILED / BROKE stamp. Failure ships proudly;
+   a spectacular break outperforms a clean win.
+5. **The escalation hook** — every video ends by raising the stakes for
+   the sequel: "Next: one MILLION rows." Winners become series; series
+   compound.
 
-One sentence of narration per beat; captions must carry the claim muted.
-One master timeline; platform wrappers (when they exist, §11) change
-opening card / caption density / cover only — never a re-edit.
+Retention doctrine [SHARED — platform truth]: first second = spectacle,
+not setup; something meaningful changes every 0.6–1.2s; context never
+before intrigue; the last line escalates, inverts, or resolves. The three
+retention failures and fixes: `LEARNING_LOOP.md` §1.
 
-**Retention doctrine [SHARED — platform truth]:** first second = proof, not
-setup; something meaningful changes every 0.6–1.2s (cursor, card, reveal,
-comparison, verdict); context never before intrigue; the final line
-escalates, inverts, or resolves. The three retention failures and their
-fixes are as defined in `LEARNING_LOOP.md` §1.
+**Language-independence rule:** numbers, counters, wipes, stamps, and
+physics carry the story; narration and captions are a bonus layer. If the
+video stops working with captions off, the visual failed the gate.
 
-## 6. Visual system (proof motion, not gameplay strip)
+## 5. Visual system
 
-**This channel does NOT use the stacked gameplay/themed-bottom format.**
-The capture IS the visual. It needs its own render path (§10): full 9:16
-clean master, no watermark/border, critical text inside x 70–1010 /
-y 160–1580 (house guardrails, not platform specs).
+Full 9:16 clean master (no watermark/border), critical content inside
+x 70–1010 / y 160–1580. The element kit (composer, `third_capture/`):
 
-Element kit the brain recombines:
+| Element | Purpose |
+|---|---|
+| `input_frame` | the monster we built — must look genuinely extreme |
+| `big_counter` | animated stakes/progress number — the channel's signature |
+| `split_compare` | before/after, A vs B |
+| `diff_wipe` | chaos → order sweep (the satisfying beat) |
+| `stopwatch_tag` | real measured time |
+| `proof_stamp` | WORKED / FAILED / BROKE |
+| `task_card` | the challenge in ≤6 plain words |
+| `redaction_box` | privacy masking (synthetic data only anyway) |
 
-| Element | Purpose | House rule |
-|---|---|---|
-| `task_card` | the task in plain English | one line only |
-| `input_frame` | messy source material | must be visibly imperfect |
-| `cursor_path` | action path | only when action matters, never decorative |
-| `split_compare` | before/after, A/B | the default proof element |
-| `stopwatch_tag` | measured task time | only if actually measured |
-| `output_card` | result asset | must feel real and usable |
-| `redaction_box` | privacy masking | aggressive on any sensitive screen |
-| `proof_stamp` | WORKED / FAILED / PARTIAL | one-word verdict |
-| `micro_chart` | tiny comparison | accent only, never full frame |
+Sim pillar reuses `themed_bottom.py` full-frame (not as a bottom strip):
+its DESIGN CHARTER arc — calm start, compounding escalation, genuine
+physics breakdown, regeneration — is exactly the what-happens-if format.
 
-Proof-motion mechanics: click-race (compressed clicks + time delta), diff
-wipe, inbox drain, prompt ladder, tab collapse, error radar (fails get red
-marks, winner gets green lock-on).
+## 6. Truthfulness invariants [ABSOLUTE — unchanged from Proof Mode]
 
-**Asset doctrine:** our own screen captures are the proof layer, always.
-Stock (Pexels/Pixabay/Wikimedia, license-checked) only for context shots.
-AI-generated visuals are accents (transition cards, thumbnails) and may
-NEVER stand in for software proof. AI-content disclosure stays ON.
+Spectacle NEVER licenses fakery — being the channel whose experiments are
+real is the moat:
+- Every number on screen (rows, seconds, counts) comes from the proof
+  ledger of a real recorded run. No measured-sounding number without a
+  measurement.
+- Real-run content: the terminal/screen replay draws actual recorded
+  bytes. Simulations are fine — they're labeled as simulations, and their
+  breakdowns are genuine solver behavior, not scripted animations.
+- FAIL/BROKE outcomes ship honestly framed. If a run breaks, that's the
+  video, not a reshoot-until-it-works.
+- Synthetic fixture data only; nothing private ever on screen.
+- AI-content disclosure ON (TTS narration); FTC-clear disclosure of any
+  sponsor/affiliate relationship, always.
+- No near-duplicate mass production; sequels must escalate, not repeat.
 
-## 7. Truthfulness invariants [ABSOLUTE — no brain may break these]
-
-- Every on-screen and spoken claim maps to an entry in that video's proof
-  ledger. No measured-sounding number without a measurement.
-- A FAIL or PARTIAL result ships honestly framed — often outperforms, and
-  it's the credibility engine.
-- If the tool demo breaks, **kill the package** — never improvise claims.
-- Synthetic fixture data only; redaction QA on every frame; no real
-  personal data ever on screen.
-- FTC-clear disclosure of any material relationship (sponsor/affiliate),
-  plus platform commercial-content toggles. Never hidden, ever.
-- No near-duplicate mass production (YouTube originality/monetization risk
-  — and it's brand death in this niche).
-- AI-use disclosure ON for TTS narration.
-
-## 8. Package output schema
-
-New package type (not the explainer schema — different renderer):
+## 7. Package output schema
 
 ```json
 {
   "channel": "third",
-  "topic_cluster": ["email", "AI writing"],
-  "search_intent": "plain-English query this answers",
-  "tool_name": "…",
-  "task_definition": "…",
-  "proof_plan": "what the harness will execute + record",
-  "measured_claims": [{"claim": "…", "source": "ledger key"}],
-  "hook_options": ["3 candidates"],
-  "scene_plan": ["element kit + mechanics per beat"],
-  "risk_flags": ["paywall", "account", "flaky"],
+  "slug": "...",
+  "title": "Can one command fix {n_in} broken rows?",
+  "premise_1s": "one-second silent pitch (what the first frame shows)",
+  "stakes_number": "the single number the video hangs on",
+  "hook_lines": ["…"], "hook_stamp": "{n_in} ROWS",
+  "script": {"hook": "…", "input": "…", "proof": "…", "output": "…", "verdict": "…"},
+  "verdict": "WORKED|FAILED|BROKE",
+  "escalation_next": "the sequel's bigger stakes",
+  "capture": {"kind": "cli|sim", "…": "…"},
   "disclosures": ["ai_tts"]
 }
 ```
 
-Three hooks, one body, one close per package; render only the winning
-master (optionally cheap-prerender the first 4–6s to pick the hook).
+`{n_in}`-style placeholders are filled from the ledger at render time so
+scripts can never drift from measured reality.
 
-## 9. QA (pre-render and render-time)
+## 8. QA (pre-render and render-time)
 
-Pre-render reject: not demonstrable on screen · trivial/boring · unclear
-benchmark · needs private data · illegible vertical.
-Render-time verify: result visible by second two · captions in safe zones ·
-zero sensitive-info leaks (automated + eye pass) · purposeful cursor ·
-verdict matches the ledger (worked/partial/failed).
-Then the shared eye-QA loop: render beat-final frames + 25/50/75% samples
-and LOOK; fix → re-render → re-look until every frame passes.
-**Non-negotiable.**
+Pre-render reject: fails any §2 gate · stakes not visible as one number ·
+no live-progress element in beat 3 · outcome not visually obvious.
+Render-time verify: spectacle visible by second one · captions in safe
+zones · every shown number matches the ledger · something changes every
+0.6–1.2s. Then the shared eye-QA loop: render beat-final frames +
+25/50/75% samples and LOOK; fix → re-render → re-look. **Non-negotiable.**
 
-## 10. Phased build plan (each phase gates the next)
+## 9. Cadence and growth
 
-**Phase 0 — capture harness. ✅ BUILT 2026-07-07** (`third_capture/` + `scripts/run_third.py` + `third.yml`; first package rendered and eye-QA'd).
-`third_capture/`: Playwright + preinstalled Chromium (or `script`/asciinema
-for CLI tools) performs the task; ffmpeg records; overlay compositor adds
-the element kit; proof ledger (JSON: commands, timings, artifacts) saved
-per run. Tool scope: **free-tier, headless-runnable tools only** — web apps
-without hard auth walls, CLIs, open models. Paywalled tools wait for a
-tooling budget (operator decision; accounts cost real money).
+- **Phase 1 — YouTube only, 1/day**, escalation series from day one
+  (each video advertises the next). 10–15% of uploads are controlled
+  experiments, one variable per batch (hook framing, counter style,
+  stamp timing, CTA).
+- **Phase 2 — 2/day + affiliates/products** once 30–50 uploads of
+  retention data exist. English-first; the format is designed to need
+  little language, so localization (channel 2's `localize.py` machinery)
+  is a cheap later multiplier.
+- **Phase 3 — TikTok/IG wrappers** when posting APIs are approved;
+  sponsors only if they fit the experiment frame natively.
 
-**Phase 1 — YouTube only, 1/day.** Not 2/day×3 platforms: every video costs
-a real CI tool-trial, TikTok posting needs app approval (sandbox demo only
-today) and IG needs Meta business tokens. Prove hook-survival and retention
-on 30–50 uploads first. 10–15% of uploads are controlled experiments —
-**one variable per batch** (hook archetype, first-frame, caption density,
-CTA, verdict framing).
+Monetization order: reach → brand → affiliates/digital products/courses →
+sponsors → platform payouts. Never let a sponsor turn a video back into a
+tutorial.
 
-**Phase 2 — scale + affiliates.** 2/day when QA holds; affiliate links,
-template/prompt vault, related-video links funneling to longer breakdowns.
-
-**Phase 3 — TikTok/IG wrappers + sponsorships.** Only when posting APIs are
-approved and the format is proven. Sponsor fit: SaaS/productivity, note
-tools, email/meeting software, no-code, browser extensions, honest career
-services. Never: crypto/speculation, get-rich offers, low-trust anything.
-
-Fallbacks: scout fails → last valid scout cache · demo breaks → kill
-package · upload fails → reschedule, never blind-repost · sponsor asset
-conflicts with disclosure/originality → reject · a template family's
-retention collapses → pause the family, expand exploration.
-
-## 11. Learning loop [SHARED — `LEARNING_LOOP.md` is law]
+## 10. Learning loop [SHARED — `LEARNING_LOOP.md` is law]
 
 Staged scorecard, `state/brain_context.json`, shot-aligned retention map,
-**no auto-adaptation below ~100 views/video**, bounded reversible edits
-only. Channel-specific additions:
-- Ledger every upload in the shared `video_ledger` pattern with:
-  `search_intent`, `tool_name`, `hook_template_id`, `scene_mechanics`,
-  `claim_type` (measured/qualitative/comparison), `proof_status`
-  (worked/failed/mixed), `trend_sources`, beat-level annotations
-  (`beat_type`, `proof_visible`, `change_events`, `drop_marker`).
-- Before writing any script, retrieve the ~15 most similar priors (format
-  similarity first) and produce a contrastive memo: nearest winners' shared
-  traits, nearest losers' drop points, rules to preserve, patterns banned
-  this run.
-- House thresholds (tune after 50–100 uploads, treat as operational rules
-  not vanity): hook 3s-survival red <75% → rewrite hook library · midpoint
-  retention red <55% → compress setup · completion red <30% → move payoff
-  earlier · subs/1k views red <0.8 → strengthen conversion promise ·
-  saves/1k red <10 → make the workflow more reference-worthy.
-- Low reach + high retention = packaging problem. High reach + low
-  retention = body/proof problem. Permanent playbook edits only on repeated
-  evidence, never one outlier.
+no auto-adaptation below ~100 views/video, bounded reversible edits only.
+Channel additions: ledger every upload with `premise_1s`, `stakes_number`,
+`pillar`, `outcome` (worked/failed/broke), `series_id`, beat annotations;
+before writing, retrieve ~15 nearest priors by FORMAT first; winners spawn
+escalation sequels, losers' premises are banned patterns for 30 days.
+Watch especially: hook-survival by premise type, and whether FAIL/BROKE
+outcomes out-retain WORKED (if yes, engineer more genuine jeopardy).
 
-## 12. Templates (seed library)
+## 11. Production infrastructure (built)
 
-**Hooks:** "Can this AI turn a messy note into a client-ready deck?" ·
-"Stop rewriting these emails by hand." · "This workflow deleted 18 clicks
-from one task." · "I tried three prompts so you don't have to."
-**Titles:** "This AI turned notes into slides in 27 seconds" · "Stop doing
-inbox triage like this" · "I tested the fastest way to clean messy
-spreadsheet data" · "Can one prompt replace this entire workflow?"
-**Closes/CTAs (always future-oriented):** "Verdict: usable if you need
-speed." · "Verdict: looks good, breaks on edge cases." · "Tomorrow: same
-task, cheaper tool." · "Save this for the next time this task shows up." ·
-"Comment the task you want stress-tested."
-**Cover lines:** "ONE TASK / ONE RESULT" · "TESTED: DOES IT WORK?" ·
-"USE THIS / SKIP THIS".
-Hashtags: a few search-aligned tags, never a generic-tag cloud.
-English-first; localization only after the format proves itself.
+`third_capture/` — real-run recorder (pty capture, timestamped events,
+proof ledger with hashes/counts/wall time) + 9:16 composer (element kit,
+terminal replay, counters, stamps, burned captions, edge-tts VO).
+`scripts/run_third.py` — capture → compose → upload, kills any package
+whose run fails. `.github/workflows/third.yml` — isolated workflow.
+Sim-pillar renderer (full-frame `themed_bottom` capture) is the next
+build item.
 
-## 13. Wiring & isolation (zero shared-pipeline impact)
+## 12. Wiring & isolation (zero shared-pipeline impact)
 
-- **Token:** `YouTubeUploader(channel="third")` reads secret
+- **Token:** `YouTubeUploader(channel="third")` → secret
   `YOUTUBE_TOKEN_JSON_THIRD` (mint via `setup_youtube.py` signed into the
-  new channel's account; shared `YOUTUBE_CLIENT_SECRETS_JSON` OAuth app).
-- **Guard:** the channel's workflow sets `YOUTUBE_EXPECTED_CHANNEL` to the
-  new @handle so a mis-set token can never post elsewhere.
-- **Packages:** `state/third_packages/YYYYMMDD/` — NOT
-  `state/trending_packages/` (that dir feeds the shared `daily.yml`).
-- **State:** `state/third_posted_log.json`; analytics via
-  `python scripts/fetch_analytics.py --channel third` →
-  `state/analytics_third/` (already channel-generic).
-- **Workflow:** new `third.yml` cloned per `BRAIN_PLAYBOOK_TEMPLATE.md`,
-  own concurrency group `third-shorts`, pointed at THIS playbook.
-  `daily.yml` / `explainer.yml` are never edited for this channel.
-- Until the harness, secret, and workflow exist, nothing runs.
+  new channel's account; shared OAuth app).
+- **Guard:** workflow sets `YOUTUBE_EXPECTED_CHANNEL` from repo var
+  `THIRD_EXPECTED_CHANNEL` so a mis-set token can never post elsewhere.
+- **Packages:** `state/third_packages/YYYYMMDD/` (never
+  `state/trending_packages/`). **State:** `state/third_posted_log.json`;
+  analytics `fetch_analytics.py --channel third` → `state/analytics_third/`.
+- **Workflow:** `third.yml`, concurrency group `third-shorts`;
+  `daily.yml`/`explainer.yml` are never edited for this channel.
 
 Operator setup checklist: create the channel + @handle → mint
-`YOUTUBE_TOKEN_JSON_THIRD` → decide phase-1 tool budget (free-only vs
-funded accounts). Phase 0 is built; uploads start when the secret exists.
+`YOUTUBE_TOKEN_JSON_THIRD` → set repo var `THIRD_EXPECTED_CHANNEL` →
+merge + run the "Third Channel" workflow.

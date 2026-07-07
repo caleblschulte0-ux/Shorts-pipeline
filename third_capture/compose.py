@@ -229,20 +229,21 @@ def build_beats(pkg, led, fixture_rows, clean_rows):
 
     header = ("name", "email", "city")
 
-    # find a real adjacent-duplicate pair to highlight honestly
-    seen, dupe_pair = {}, (0, 1)
-    for i, r in enumerate(fixture_rows[:60]):
+    # find a REAL duplicate pair (whole file) and show it adjacent at the
+    # top — the red boxes must sit on genuinely identical rows (§6)
+    seen, dupe_pair = {}, None
+    for i, r in enumerate(fixture_rows):
         k = json.dumps(r, sort_keys=True)
         if k in seen:
             dupe_pair = (seen[k], i)
             break
         seen[k] = i
-    show = fixture_rows[:10]
-    if dupe_pair[1] >= 10:   # pull the real pair into view
-        show = [fixture_rows[dupe_pair[0]], fixture_rows[dupe_pair[1]]] \
-            + [r for i, r in enumerate(fixture_rows[:12])
-               if i not in dupe_pair][:8]
-        dupe_pair = (0, 1)
+    if dupe_pair is None:
+        raise RuntimeError("no duplicate pair found — input beat would lie")
+    show = [fixture_rows[dupe_pair[0]], fixture_rows[dupe_pair[1]]] \
+        + [r for i, r in enumerate(fixture_rows[:12])
+           if i not in dupe_pair][:8]
+    dupe_pair = (0, 1)
 
     def hook(t, dur):
         img = table_frame(show, header, title=None)
@@ -255,8 +256,8 @@ def build_beats(pkg, led, fixture_rows, clean_rows):
             d.text(((W - tw) / 2, 560 + i * 130), ln, font=font, fill=INK)
         if t > 0.5:
             s = 0.7 + 0.3 * ease((t - 0.5) / 0.25)
-            stamp(img, f"{fmt['removed']} DUPES", RED, cy=1120, scale=s * 0.62,
-                  angle=-6)
+            stamp(img, pkg["hook_stamp"].format(**fmt), RED, cy=1120,
+                  scale=s * 0.62, angle=-6)
         return img
 
     def input_beat(t, dur):
@@ -302,20 +303,30 @@ def build_beats(pkg, led, fixture_rows, clean_rows):
             if led["exit_code"] == 0 and rt > led["wall_time_s"] + 0.2:
                 txt += f"\n$ # exit 0 — {fmt['wall']}s"
         img = terminal_panel(txt, y0=470, y1=1120)
-        img = task_card(img, "One free command: Miller (mlr)")
+        img = task_card(img, pkg["proof_card"])
         if t > type_time + led["wall_time_s"] + 0.4:
             s = min(1.0, (t - type_time - led["wall_time_s"] - 0.4) / 0.25)
-            stopwatch_tag(img, f"⏱ {fmt['wall']}s measured", cy=1230,
+            stopwatch_tag(img, f"{fmt['wall']}s — measured", cy=1230,
                           scale=0.7 + 0.3 * s)
         return img
 
     def output_beat(t, dur):
         img = table_frame(clean_rows[:9], header, n=9,
-                          title="Same file. Zero duplicates.")
+                          title=pkg["output_title"])
         d = ImageDraw.Draw(img)
-        if t > 0.8:
-            stopwatch_tag(img, f"−{fmt['removed']} junk rows",
-                          cy=1165, scale=0.9)
+        # big_counter — the channel's signature: rows tick down live
+        tick = ease(min(1.0, t / 1.3))
+        val = int(n_in - (n_in - n_out) * tick)
+        cf = F("DejaVuSans-Bold.ttf", 110)
+        label = f"{val:,}"
+        color = YELLOW if tick < 1.0 else GREEN
+        d.text(((W - d.textlength(label, font=cf)) / 2, 1120), label,
+               font=cf, fill=color)
+        if tick >= 1.0:
+            sf = F("DejaVuSans-Bold.ttf", 44)
+            sub = f"−{fmt['removed']} clones"
+            d.text(((W - d.textlength(sub, font=sf)) / 2, 1378), sub,
+                   font=sf, fill=RED)
         # split_compare chips
         chip = F("DejaVuSans-Bold.ttf", 44)
         rounded(d, (SAFE_X0, 1250, 520, 1360), 20, fill=(60, 18, 18),
@@ -334,7 +345,7 @@ def build_beats(pkg, led, fixture_rows, clean_rows):
         stamp(img, pkg["verdict"], GREEN, cy=640, scale=s)
         font = F("DejaVuSans-Bold.ttf", 54)
         ty = 900
-        for i, block in enumerate(pkg["verdict_lines"]):
+        for i, block in enumerate(fmt_verdict_lines):
             for ln in _wrap(d, block, font, SAFE_X1 - SAFE_X0 - 40):
                 tw = d.textlength(ln, font=font)
                 d.text(((W - tw) / 2, ty), ln, font=font,
@@ -344,6 +355,7 @@ def build_beats(pkg, led, fixture_rows, clean_rows):
         return img
 
     script = {k: v.format(**fmt) for k, v in pkg["script"].items()}
+    fmt_verdict_lines = [v.format(**fmt) for v in pkg["verdict_lines"]]
     return [
         Beat("hook", script["hook"], 2.8, hook),
         Beat("input", script["input"], 5.5, input_beat),
