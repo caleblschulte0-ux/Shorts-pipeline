@@ -33,20 +33,58 @@ def _run(cmd: list[str]) -> str:
 
 # ---------- 1. discover ----------
 
-def discover(channel: str, *, top: int = 8, range_: str = "24hr") -> list[dict]:
-    """Top clips for a channel in the window, best-first. No API key."""
-    url = f"https://www.twitch.tv/{channel}/clips?filter=clips&range={range_}"
-    out = _run(["yt-dlp", "--flat-playlist", "--playlist-items", f"1-{top}",
-                "--print", "%(url)s\t%(view_count)s\t%(title)s", url])
+# Kick and Rumble sit behind bot protection; yt-dlp's TLS impersonation
+# (curl_cffi) gets through from clean egress (e.g. CI runners). Twitch
+# needs nothing.
+def _needs_impersonation(platform_or_url: str) -> bool:
+    return any(s in platform_or_url for s in ("kick", "rumble"))
+
+
+def _ytdlp(args: list[str], *, impersonate: bool = False) -> str:
+    cmd = ["yt-dlp"] + (["--impersonate", "chrome"] if impersonate else [])
+    return _run(cmd + args)
+
+
+def credit_label(platform: str, channel: str) -> str:
+    return {"twitch": f"twitch.tv/{channel}",
+            "kick": f"kick.com/{channel}",
+            "rumble": f"rumble.com/c/{channel}"}[platform]
+
+
+def discover(platform: str, channel: str, *, top: int = 8,
+             range_: str = "24hr") -> list[dict]:
+    """Top clips for a channel, best-first. No API keys on any platform.
+    twitch: clips page sorted by views in the window. kick: the channel's
+    clips page (site-ranked). rumble: latest channel uploads filtered to
+    clip-length (<=2min) — rumble has no clip system, streamers post
+    short highlights as videos."""
+    if platform == "twitch":
+        url = (f"https://www.twitch.tv/{channel}/clips"
+               f"?filter=clips&range={range_}")
+    elif platform == "kick":
+        url = f"https://kick.com/{channel}/clips"
+    elif platform == "rumble":
+        url = f"https://rumble.com/c/{channel}"
+    else:
+        raise ValueError(f"unknown platform {platform!r}")
+    out = _ytdlp(
+        ["--flat-playlist", "--playlist-items", f"1-{max(top, 12)}",
+         "--print", "%(url)s\t%(view_count|0)s\t%(duration|0)s\t%(title)s",
+         url],
+        impersonate=_needs_impersonation(platform))
     clips = []
     for line in out.strip().splitlines():
         try:
-            u, views, title = line.split("\t", 2)
-            clips.append({"url": u, "views": int(views or 0),
-                          "title": title, "channel": channel})
+            u, views, dur, title = line.split("\t", 3)
         except ValueError:
             continue
-    return clips
+        dur = float(dur or 0)
+        if platform == "rumble" and (dur == 0 or dur > 120):
+            continue                      # VODs/streams, not clip-length
+        clips.append({"url": u, "views": int(float(views or 0)),
+                      "duration": dur, "title": title,
+                      "channel": channel, "platform": platform})
+    return clips[:top]
 
 
 # ---------- 2. download ----------
@@ -55,11 +93,13 @@ def download(url: str, work: Path) -> dict:
     work.mkdir(parents=True, exist_ok=True)
     raw = work / "raw_clip.mp4"
     meta = work / "raw_clip.meta"
-    _run(["yt-dlp", "-q", "--force-overwrites",
-          "-o", str(work / "raw_clip.%(ext)s"),
-          "--print-to-file",
-          "%(id)s\t%(title)s\t%(uploader)s\t%(view_count)s\t%(duration)s",
-          str(meta), url])
+    _ytdlp(["-q", "--force-overwrites",
+            "-o", str(work / "raw_clip.%(ext)s"),
+            "--recode-video", "mp4",
+            "--print-to-file",
+            "%(id)s\t%(title)s\t%(uploader)s\t%(view_count|0)s\t%(duration)s",
+            str(meta), url],
+           impersonate=_needs_impersonation(url))
     cid, title, clipper, views, dur = \
         meta.read_text().strip().split("\t")
     return {"path": raw, "clip_id": cid, "title": title,
@@ -131,8 +171,7 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
         group.append(w)
     flush()
     lines.append(
-        f"Dialogue: 0,{_ts(0)},{_ts(dur)},Credit,"
-        f"twitch.tv/{credit}\n")
+        f"Dialogue: 0,{_ts(0)},{_ts(dur)},Credit,{credit}\n")
     out.write_text("".join(lines))
     return out
 
@@ -142,7 +181,8 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
 def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
          whisper_model: str = "base") -> dict:
-    """Compose the 9:16 edit. Returns the edit ledger."""
+    """Compose the 9:16 edit. `credit` is the full on-screen label
+    (e.g. "twitch.tv/xqc", "kick.com/adinross"). Returns the edit ledger."""
     probe = json.loads(_run(
         ["ffprobe", "-v", "quiet", "-print_format", "json",
          "-show_format", str(raw)]))

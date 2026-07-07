@@ -51,8 +51,6 @@ jobs:
               echo "::error::missing secret YOUTUBE_TOKEN_JSON_THIRD — mint it with setup_youtube.py signed into the third channel's account"; exit 1; }
             [ -z "${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}" ] && {
               echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; exit 1; }
-            [ -z "${{ vars.THIRD_EXPECTED_CHANNEL }}" ] && \
-              echo "::warning::repo variable THIRD_EXPECTED_CHANNEL not set — wrong-channel guard is OFF"
           fi
           exit 0
 
@@ -67,7 +65,8 @@ jobs:
           sudo apt-get install -y -q ffmpeg miller fonts-dejavu-core
 
       - name: Install python deps
-        run: pip install -q pillow numpy edge-tts yt-dlp openai-whisper google-api-python-client google-auth google-auth-oauthlib
+        # curl_cffi powers yt-dlp's TLS impersonation for Kick/Rumble
+        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper google-api-python-client google-auth google-auth-oauthlib
 
       - name: Render + upload
         env:
@@ -75,7 +74,9 @@ jobs:
           # channel="third" in the packages routes the uploader to this
           # token; the shared channels' tokens are never referenced here.
           YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
-          YOUTUBE_EXPECTED_CHANNEL: ${{ vars.THIRD_EXPECTED_CHANNEL }}
+          # Wrong-channel guard: hard default to the real third channel;
+          # repo var THIRD_EXPECTED_CHANNEL can override if renamed.
+          YOUTUBE_EXPECTED_CHANNEL: ${{ vars.THIRD_EXPECTED_CHANNEL || 'Thirdbraindown' }}
         run: |
           set -e
           DATE="${{ inputs.date }}"

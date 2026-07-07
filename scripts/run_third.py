@@ -92,7 +92,7 @@ def _description(pkg: dict, led: dict) -> str:
     tags = " ".join(f"#{t}" for t in pkg.get("hashtags", [])[:14])
     note = pkg.get("description_note", "")
     if led.get("kind") == "twitch_clip":
-        detail = (f"Clip from twitch.tv/{led['streamer']} — full credit "
+        detail = (f"Clip from {led['credit']} — full credit "
                   f"to the streamer. Source: {led['source_url']}\n"
                   f"Clipped by {led['clipper']}.")
     elif led.get("kind") == "sim":
@@ -123,27 +123,43 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
             spec = pkg["capture"]
             if spec.get("clip_url"):
                 info = clip_edit.download(spec["clip_url"], work)
+                platform = spec.get("platform", "twitch")
                 streamer = spec["credit"]
             else:
                 posted_urls = {v.get("source_url")
                                for v in log["posted"].values()}
+                # sources: {"twitch": [...], "kick": [...], "rumble": [...]}
+                # (legacy "channels" list = twitch). A platform that's
+                # blocked/unreachable logs a warning and never kills the
+                # run — the other platforms carry the day.
+                sources = spec.get("sources") \
+                    or {"twitch": spec.get("channels", [])}
                 cands = []
-                for ch in spec["channels"]:
-                    cands += clip_edit.discover(
-                        ch, top=spec.get("top", 8),
-                        range_=spec.get("range", "24hr"))
-                cands.sort(key=lambda c: -c["views"])
+                for platform, chans in sources.items():
+                    for ch in chans:
+                        try:
+                            cands += clip_edit.discover(
+                                platform, ch, top=spec.get("top", 8),
+                                range_=spec.get("range", "24hr"))
+                        except Exception as e:  # noqa: BLE001
+                            print(f"::warning::discover {platform}:{ch} "
+                                  f"failed ({type(e).__name__}) — skipped",
+                                  flush=True)
+                # views are comparable on twitch, best-effort elsewhere;
+                # min_views gates only candidates that report views.
                 cands = [c for c in cands
                          if c["url"] not in posted_urls
-                         and c["views"] >= spec.get("min_views", 500)]
+                         and (c["views"] == 0
+                              or c["views"] >= spec.get("min_views", 500))]
+                cands.sort(key=lambda c: -c["views"])
                 if not cands:
-                    raise RuntimeError("no fresh clip above min_views "
-                                       "across the allowlist")
+                    raise RuntimeError("no fresh clip across the allowlist")
                 pick = cands[0]
                 info = clip_edit.download(pick["url"], work)
-                streamer = pick["channel"]
+                platform, streamer = pick["platform"], pick["channel"]
             led = clip_edit.edit(
-                info["path"], out_mp4, credit=streamer,
+                info["path"], out_mp4,
+                credit=clip_edit.credit_label(platform, streamer),
                 hook=pkg.get("hook", ""),
                 start=spec.get("start", 0.0), end=spec.get("end", 0.0),
                 whisper_model=spec.get("whisper_model", "base"))
@@ -152,6 +168,7 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
             led["clip_title"] = info["title"]
             led["clipper"] = info["clipper"]
             led["streamer"] = streamer
+            led["platform"] = platform
             ledger_path = work / f"{slug}.ledger.json"
             ledger_path.write_text(json.dumps(led, indent=2) + "\n")
         elif pkg["capture"]["kind"] == "sim":
@@ -169,6 +186,10 @@ def process(pkg_path: Path, *, dry_run: bool, publish_at, log: dict) -> dict:
         result["title"] = title
         if dry_run:
             result.update(ok=True, video_url="(dry-run)")
+            if led.get("kind") == "twitch_clip":
+                # in-memory only (never saved): keeps the next package in
+                # this run from picking the same clip
+                log["posted"][slug] = {"source_url": led["source_url"]}
         else:
             from uploaders import YouTubeUploader
             up = YouTubeUploader(channel="third").upload(
@@ -211,17 +232,21 @@ def main() -> int:
     if not packages:
         print(f"no packages under {day_dir}")
         return 0
-    publish_at = None
+    publish_base = None
     if not args.no_schedule and not args.dry_run:
-        nxt = datetime.now(timezone.utc).replace(
-            hour=17, minute=0, second=0, microsecond=0)
-        if nxt < datetime.now(timezone.utc):
-            nxt += timedelta(days=1)
-        publish_at = nxt
+        now = datetime.now(timezone.utc)
+        publish_base = now.replace(hour=17, minute=0, second=0,
+                                   microsecond=0)
+        # next slot at least 30 min out; extra packages 2h apart
+        while publish_base < now + timedelta(minutes=30):
+            publish_base += timedelta(hours=2)
 
     log = _load_log()
     results = [process(p, dry_run=args.dry_run,
-                       publish_at=publish_at, log=log) for p in packages]
+                       publish_at=(publish_base + timedelta(hours=2 * i)
+                                   if publish_base else None),
+                       log=log)
+               for i, p in enumerate(packages)]
     print(json.dumps(results, indent=2))
     return 0 if all(r["ok"] for r in results) else 1
 
