@@ -56,11 +56,16 @@ def author_package(streamer: str, clip_title: str, transcript: str,
         return None
     try:
         import requests
+        sparse = len(transcript.split()) < 8
         user = (f"Streamer: {streamer}\n"
                 f"Original clip title: {clip_title!r}\n"
                 f"Twitch views in <24h: {views}\n"
-                f"Transcript (whisper, may have small errors):\n"
-                f"{transcript[:1800]}")
+                + ("NOTE: the clip has almost no dialogue (screaming/"
+                   "crowd moment) — build the title from the original "
+                   "clip title and the streamer, do NOT guess events.\n"
+                   if sparse else "")
+                + f"Transcript (whisper, may have small errors):\n"
+                  f"{transcript[:1800]}")
         resp = requests.post(
             "https://api.groq.com/openai/v1/chat/completions",
             headers={"Authorization": f"Bearer {key}"},
@@ -80,6 +85,11 @@ def author_package(streamer: str, clip_title: str, transcript: str,
         series = re.sub(r"[^a-z-]", "", str(out.get("series", "")).lower())
         if not title or len(title) > 100:
             return None
+        # the title formula REQUIRES the right streamer: if the author
+        # named someone else (or nobody), anchor it to the real handle
+        norm = lambda s: re.sub(r"[^a-z0-9]", "", s.lower())  # noqa: E731
+        if norm(streamer) not in norm(title):
+            title = f"{streamer.strip('_').title()}: {title}"
         return {"title": title[:95], "hook": hook[:60], "hashtags": tags,
                 "series": series or "chaos"}
     except Exception as e:  # noqa: BLE001 — authoring never blocks a post
