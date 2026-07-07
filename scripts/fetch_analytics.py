@@ -173,24 +173,39 @@ def _retention_curves(analytics, video_ids: list[str],
         return {}
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     out: dict[str, list] = {}
+    got = 0
     for vid in video_ids[:limit]:
-        try:
-            resp = analytics.reports().query(
-                ids="channel==MINE",
-                startDate=start_date,
-                endDate=today,
-                dimensions="elapsedVideoTimeRatio",
-                metrics="audienceWatchRatio",
-                filters=f"video=={vid}",
-                maxResults=100,
-            ).execute()
-        except Exception as e:  # noqa: BLE001
-            print(f"[analytics] curve skipped for {vid} ({e})", file=sys.stderr)
+        rows = None
+        # audienceWatchRatio + relativeRetentionPerformance is the documented
+        # audience-retention report; if the pair 400s, retry the bare ratio.
+        for metrics in ("audienceWatchRatio,relativeRetentionPerformance",
+                        "audienceWatchRatio"):
+            try:
+                resp = analytics.reports().query(
+                    ids="channel==MINE",
+                    startDate=start_date,
+                    endDate=today,
+                    dimensions="elapsedVideoTimeRatio",
+                    metrics=metrics,
+                    filters=f"video=={vid}",
+                    maxResults=100,
+                ).execute()
+                rows = resp.get("rows") or []
+                break
+            except Exception as e:  # noqa: BLE001
+                err = e
+                continue
+        if rows is None:
+            print(f"[analytics] curve skipped for {vid} ({err})", file=sys.stderr)
             continue
-        rows = resp.get("rows") or []
         if rows:
-            out[vid] = [[round(float(a), 2), round(float(b), 3)]
-                        for a, b in rows]
+            # [elapsed_ratio, audience_watch_ratio, (relative_perf if present)]
+            out[vid] = [[round(float(r[0]), 3), round(float(r[1]), 3)]
+                        + ([round(float(r[2]), 3)] if len(r) > 2 else [])
+                        for r in rows]
+            got += 1
+    print(f"[analytics] retention curves: {got}/{min(limit, len(video_ids))} "
+          f"videos had enough watch data", file=sys.stderr)
     return out
 
 
@@ -324,12 +339,13 @@ def build_snapshot(posted_log: Path, channel: str = "",
         datetime.now(timezone.utc).strftime("%Y-%m-%d")
     an = _analytics_service(channel)
     retention = _retention_metrics(an, list(stats.keys()), start_date)
-    # Retention CURVES for the newest videos (where exactly viewers drop) +
-    # channel-level traffic sources and real viewer search terms.
-    newest_ids = [vid for vid, s in sorted(
-        stats.items(), key=lambda kv: kv[1].get("published_at") or "",
-        reverse=True)]
-    curves = _retention_curves(an, newest_ids, start_date)
+    # Retention CURVES: query the HIGHEST-VIEW videos, not the newest — YouTube
+    # only returns a per-moment curve once a video has enough watch data, and a
+    # brand-new 6-view video never will. These are also the ones worth learning
+    # from. Plus channel-level traffic sources + real viewer search terms.
+    top_ids = [vid for vid, s in sorted(
+        stats.items(), key=lambda kv: kv[1].get("views", 0), reverse=True)]
+    curves = _retention_curves(an, top_ids, start_date, limit=15)
     discovery = _search_and_traffic(an, start_date)
 
     videos: list[dict] = []
