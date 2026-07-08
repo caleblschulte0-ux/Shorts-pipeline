@@ -457,10 +457,30 @@ jobs:
               echo "Pushed on attempt $i"
               exit 0
             fi
-            echo "Push failed on attempt $i, union-merging posted-log..."
+            echo "Push failed on attempt $i, preserving artifacts + union-merging posted-log..."
+            # `git reset --hard origin/main` below rewinds to a main that does
+            # NOT yet contain the artifacts this run just generated, so it
+            # DELETES them from the tree. The old code only re-applied the
+            # posted-log afterward, silently dropping the fresh analytics
+            # snapshot / ledger / brain_context / mechanics on EVERY push race —
+            # which is exactly why explainer analytics on main went stale (the
+            # brain kept reading day-old numbers). Back the whole artifact set
+            # up first, restore it after the reset, THEN commit.
+            SAVE=$(mktemp -d)
+            for p in state/analytics_explainer state/translation_cache.json \
+                     state/video_ledger.json state/brain_context.json \
+                     data_learning/niche.config.json data_learning/data \
+                     data_learning/viz_mechanics.json; do
+              [ -e "$p" ] && cp -a --parents "$p" "$SAVE/" 2>/dev/null || true
+            done
             cp state/explainer_posted_log.json /tmp/ours_log.json 2>/dev/null || true
             git fetch origin main
             git reset --hard origin/main
+            # Restore every regenerated artifact on top of the fresh main. The
+            # posted-log is deliberately NOT restored here — it is union-merged
+            # below so no entry from either side is lost.
+            cp -a "$SAVE/." . 2>/dev/null || true
+            rm -rf "$SAVE"
             python3 - <<'PY' || true
           import json, os
           base = "state/explainer_posted_log.json"
