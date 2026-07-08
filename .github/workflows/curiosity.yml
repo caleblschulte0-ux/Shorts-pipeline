@@ -115,7 +115,8 @@ jobs:
       - name: Pre-flight — kill switch + secrets + channel guard
         env:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
-          YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY }}
+          # Canonical name first; _ORI accepted as the operator-created alias.
+          YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
           EXPECTED: ${{ inputs.expected_channel || vars.CURIOSITY_EXPECTED_CHANNEL }}
         run: |
           [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
@@ -124,7 +125,7 @@ jobs:
           if [ "$MODE" != "verify" ] && [ "$MODE" != "preview" ]; then
             missing=0
             [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
-            [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON_CURIOSITY — mint it with setup_youtube.py signed into the curiosity channel's account"; missing=1; }
+            [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON_CURIOSITY (or its alias YOUTUBE_TOKEN_JSON_ORI) — mint it with setup_youtube.py signed into the curiosity channel's account"; missing=1; }
             # The channel handle isn't known at wiring time, so there is NO
             # hardcoded default: fail closed rather than risk posting to the
             # wrong account with a mis-pasted token.
@@ -200,7 +201,9 @@ jobs:
       - name: Run
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
-          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY }}
+          # uploader(channel="curiosity") reads this env var; the secret may
+          # live under either name (_ORI is the operator-created alias).
+          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -259,7 +262,7 @@ jobs:
         continue-on-error: true
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
-          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY }}
+          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
         run: |
           python3 scripts/fetch_analytics.py --channel curiosity --max-age-days 60 \
             || { echo "analytics fetch skipped"; exit 0; }
