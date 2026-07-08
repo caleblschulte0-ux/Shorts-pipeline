@@ -38,45 +38,22 @@ from __future__ import annotations
 import json
 import math
 import os
+import sys
+from pathlib import Path
 
 import numpy as np
 from manim import (BOLD, DOWN, LEFT, RIGHT, UP, UL, Circle, Dot, FadeIn,
                    FadeOut, Line, MovingCameraScene, Rectangle, Text,
                    ValueTracker, VGroup, always_redraw, rate_functions)
 
+# manim runs this file by path — make the repo importable so the canonical
+# builder registry (data_learning.world_builders) resolves to ONE module.
+_REPO = Path(__file__).resolve().parent.parent
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+
 FRAME_W0 = 14.222                 # manim default frame width (1920x1080)
 GRAY_TEXT = "#98a2b4"
-
-# ---------------------------------------------------------------------------
-# Object builders — populated by curiosity_scenes-derived builders (task:
-# assets & builders). A builder returns (group, anims): the group is placed
-# at the waypoint's anchor by the template; anims play on camera arrival.
-# The registry is extended by world_builders.py; these built-ins keep the
-# engine testable standalone.
-# ---------------------------------------------------------------------------
-BUILDERS = {}
-
-
-def builder(name):
-    def reg(fn):
-        BUILDERS[name] = fn
-        return fn
-    return reg
-
-
-@builder("marker")
-def _build_marker(wp: dict, theme: dict, scale: float):
-    """Placeholder waypoint: a glowing dot + label + value counter."""
-    hi = theme.get("highlight", "#4FD1C5")
-    p = wp.get("params", {})
-    dot = Dot([0, 0, 0], radius=0.16 * scale, color=hi)
-    halo = Circle(radius=0.34 * scale, stroke_width=6 * scale,
-                  color=hi, stroke_opacity=0.5)
-    label = Text(str(p.get("label", "")), font_size=int(34 * scale),
-                 weight=BOLD, color="#ffffff").next_to(dot, DOWN, buff=0.3 * scale)
-    g = VGroup(dot, halo, label)
-    anims = [FadeIn(label, shift=UP * 0.2 * scale)]
-    return g, anims
 
 
 # ---------------------------------------------------------------------------
@@ -164,6 +141,7 @@ def _spec() -> dict:
 
 class WorldScene(MovingCameraScene):
     def construct(self):
+        from data_learning.world_builders import BUILDERS   # canonical copy
         sp = _spec()
         theme = sp.get("theme", {})
         self.camera.background_color = theme.get("bg", "#080a14")
@@ -188,16 +166,23 @@ class WorldScene(MovingCameraScene):
         self.add(bands, blobs)
 
         # --- waypoint objects, placed in the one place ---
-        arrival_anims = []
+        arrival_anims, groups = [], []
         for i, wp in enumerate(wps):
             anchor, fw = anchors[i]
             scale = fw / 11.0
             build = BUILDERS.get(wp.get("builder", "marker"),
                                  BUILDERS["marker"])
-            g, anims = build(wp, theme, scale)
-            g.move_to(anchor)
+            # Builders position themselves at the anchor BEFORE creating
+            # animations — .animate targets snapshot coordinates at
+            # creation time, so a post-hoc group move would teleport
+            # transformed objects back toward the origin (one-take rule).
+            g, anims = build(wp, theme, scale, np.array(anchor))
+            # Updaters (live counters) only run while their waypoint is
+            # active — a passed or unvisited exhibit costs nothing.
+            g.suspend_updating()
             self.add(g)
             arrival_anims.append(anims)
+            groups.append(g)
 
         # --- connective tissue for depth/system worlds: the journey line ---
         if world.get("template") in (None, "depth", "system"):
@@ -259,6 +244,7 @@ class WorldScene(MovingCameraScene):
                       run_time=travel,
                       rate_func=rate_functions.ease_in_out_sine)
             chrome = chrome_for(i)
+            groups[i].resume_updating()
             self.play(FadeIn(chrome), run_time=0.3)
             # Waypoint animations, then dwell with real frame creep — the
             # camera keeps breathing even while the exhibit holds.
@@ -267,12 +253,16 @@ class WorldScene(MovingCameraScene):
                 rt = getattr(a, "run_time", 1.0)
                 if spent + rt > dur - 0.4:
                     break
-                self.play(a, run_time=rt)
+                if hasattr(a, "anims"):          # _Par bundle
+                    self.play(*a.anims, run_time=rt)
+                else:
+                    self.play(a, run_time=rt)
                 spent += rt
             creep = max(0.05, dur - spent)
             self.play(frame.animate.set(width=fw * 0.94),
                       run_time=creep,
                       rate_func=rate_functions.ease_in_out_sine)
+            groups[i].suspend_updating()
 
         # Exit: final pullback reveals the whole journey; closing text pins.
         t0, t1 = windows[-1]
