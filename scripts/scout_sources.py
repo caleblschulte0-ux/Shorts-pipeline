@@ -399,6 +399,198 @@ def fetch_wikimedia_recent_videos(limit: int = 100) -> list[dict]:
     return out
 
 
+# --------------------------------------------------------------------------- #
+# TOP-OF-FUNNEL signals — channel-agnostic "what is the world paying attention
+# to" feeds. Every channel's brain reads this pool and derives its OWN angle
+# (a data-explainer turns "4th of July" into firework costs/physics; a news
+# channel turns it into the event itself). Keep these RAW and broad.
+# --------------------------------------------------------------------------- #
+def fetch_google_trends(geo: str = "US") -> list[dict]:
+    """Google Trends trending-searches RSS (no key). The single strongest
+    'people are searching this RIGHT NOW' signal available for free."""
+    url = f"https://trends.google.com/trending/rss?geo={geo}"
+    try:
+        raw = _get_url(url)
+    except Exception as e:  # noqa: BLE001
+        _err(f"[google_trends] {type(e).__name__}: {e}")
+        return []
+    import re as _re
+    out: list[dict] = []
+    for m in _re.finditer(
+            r"<item>.*?<title>(.*?)</title>(?:.*?<ht:approx_traffic>"
+            r"(.*?)</ht:approx_traffic>)?.*?</item>",
+            raw.decode("utf-8", "replace"), _re.S):
+        title = _re.sub(r"<!\[CDATA\[|\]\]>", "", m.group(1)).strip()
+        if title:
+            out.append({"source_type": "google_trends", "geo": geo,
+                        "title": title,
+                        "approx_traffic": (m.group(2) or "").strip()})
+    return out[:25]
+
+
+def fetch_wikipedia_top_articles() -> list[dict]:
+    """Yesterday's most-viewed Wikipedia articles — what the world was curious
+    enough about to READ UP on (a deeper signal than watch-trends)."""
+    from datetime import timedelta
+    d = datetime.now(timezone.utc) - timedelta(days=1)
+    url = ("https://wikimedia.org/api/rest_v1/metrics/pageviews/top/"
+           f"en.wikipedia/all-access/{d.year}/{d.month:02d}/{d.day:02d}")
+    try:
+        data = json.loads(_get_url(url))
+    except Exception as e:  # noqa: BLE001
+        _err(f"[wiki_top] {type(e).__name__}: {e}")
+        return []
+    out: list[dict] = []
+    for a in (data.get("items") or [{}])[0].get("articles", []):
+        name = a.get("article") or ""
+        if name.startswith(("Main_Page", "Special:", "Wikipedia:", "Portal:",
+                            "File:", "Help:")):
+            continue
+        out.append({"source_type": "wikipedia_top",
+                    "title": name.replace("_", " "),
+                    "views": int(a.get("views", 0) or 0)})
+        if len(out) >= 40:
+            break
+    return out
+
+
+def fetch_upcoming_observances(country: str = "US") -> list[dict]:
+    """Next public holidays (Nager.Date, no key) — SEASONAL angles every
+    channel can exploit its own way (July 4th -> firework data / parade news)."""
+    url = f"https://date.nager.at/api/v3/NextPublicHolidays/{country}"
+    try:
+        data = json.loads(_get_url(url))
+    except Exception as e:  # noqa: BLE001
+        _err(f"[observances] {type(e).__name__}: {e}")
+        return []
+    return [{"source_type": "observance", "date": h.get("date"),
+             "name": h.get("name"), "local_name": h.get("localName")}
+            for h in (data or [])[:8]]
+
+
+def _rss_titles(url: str, source_type: str, limit: int = 20) -> list[dict]:
+    """Generic RSS/Atom title scraper (regex — no extra deps). Soft-fails."""
+    import re as _re
+    try:
+        raw = _get_url(url).decode("utf-8", "replace")
+    except Exception as e:  # noqa: BLE001
+        _err(f"[{source_type}] {type(e).__name__}: {e}")
+        return []
+    out: list[dict] = []
+    for m in _re.finditer(r"<item>.*?<title>(.*?)</title>.*?</item>", raw, _re.S):
+        t = _re.sub(r"<!\[CDATA\[|\]\]>", "", m.group(1)).strip()
+        t = _re.sub(r"&amp;", "&", t)
+        if t:
+            out.append({"source_type": source_type, "title": t})
+        if len(out) >= limit:
+            break
+    return out
+
+
+# Google News topic feeds — the general-news slice of the funnel (a future
+# news channel's bread and butter; the explainer mines them for data angles).
+_GNEWS_TOPICS = ["WORLD", "NATION", "SCIENCE", "TECHNOLOGY", "HEALTH",
+                 "SPORTS", "ENTERTAINMENT", "BUSINESS"]
+
+
+def fetch_google_news() -> dict:
+    out: dict = {}
+    for topic in _GNEWS_TOPICS:
+        url = (f"https://news.google.com/rss/headlines/section/topic/{topic}"
+               "?hl=en-US&gl=US&ceid=US:en")
+        items = _rss_titles(url, f"google_news_{topic.lower()}", limit=15)
+        if items:
+            out[topic.lower()] = items
+        time.sleep(1)
+    return out
+
+
+# Science/nature/space editorial feeds — high-quality curiosity fodder.
+_RSS_FEEDS = {
+    "nasa": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+    "sciencedaily": "https://www.sciencedaily.com/rss/all.xml",
+    "physorg": "https://phys.org/rss-feed/",
+    "bbc_science": "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+    "bbc_world": "http://feeds.bbci.co.uk/news/world/rss.xml",
+    "livescience": "https://www.livescience.com/feeds/all",
+    "smithsonian": "https://www.smithsonianmag.com/rss/latest_articles/",
+}
+
+
+def fetch_editorial_feeds() -> dict:
+    out: dict = {}
+    for name, url in _RSS_FEEDS.items():
+        items = _rss_titles(url, f"rss_{name}", limit=15)
+        if items:
+            out[name] = items
+        time.sleep(1)
+    return out
+
+
+def fetch_hackernews_top(limit: int = 30) -> list[dict]:
+    """Top HN stories (ALL, not just video links) — tech/science curiosity."""
+    try:
+        ids = json.loads(_get_url(
+            "https://hacker-news.firebaseio.com/v0/topstories.json"))[:limit]
+        out = []
+        for i in ids:
+            it = json.loads(_get_url(
+                f"https://hacker-news.firebaseio.com/v0/item/{i}.json"))
+            if it and it.get("title"):
+                out.append({"source_type": "hackernews_top",
+                            "title": it["title"],
+                            "score": int(it.get("score", 0) or 0)})
+        return out
+    except Exception as e:  # noqa: BLE001
+        _err(f"[hn_top] {type(e).__name__}: {e}")
+        return []
+
+
+# Category-scoped YouTube trending so each channel has a fitted slice of the
+# pool. Broad on purpose: gaming/sports/entertainment/news feed future
+# channels; science/education/animals feed the explainer.
+_YT_CATEGORIES = {"science_tech": 28, "education": 27, "pets_animals": 15,
+                  "gaming": 20, "sports": 17, "entertainment": 24,
+                  "news_politics": 25, "howto_style": 26, "music": 10,
+                  "comedy": 23}
+
+
+def fetch_youtube_trending_by_category() -> dict:
+    access_token = _refresh_youtube_access_token()
+    if not access_token:
+        return {}
+    out: dict = {}
+    for name, cid in _YT_CATEGORIES.items():
+        params = ("chart=mostPopular&maxResults=25&regionCode=US"
+                  f"&videoCategoryId={cid}&part=snippet,statistics")
+        url = f"https://www.googleapis.com/youtube/v3/videos?{params}"
+        req = urllib.request.Request(
+            url, headers={"Authorization": f"Bearer {access_token}"})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.loads(r.read())
+        except Exception as e:  # noqa: BLE001
+            _err(f"[youtube/cat/{name}] {type(e).__name__}: {e}")
+            continue
+        out[name] = [{
+            "source_type": f"youtube_trending_{name}",
+            "video_id": item.get("id"),
+            "title": (item.get("snippet") or {}).get("title"),
+            "channel": (item.get("snippet") or {}).get("channelTitle"),
+            "views": int((item.get("statistics") or {}).get("viewCount", 0) or 0),
+        } for item in data.get("items", [])]
+        time.sleep(1)
+    return out
+
+
+def _get_url(url: str) -> bytes:
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) shorts-pipeline-scout/1.0",
+        "Accept": "application/json,application/rss+xml,text/xml,*/*"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return r.read()
+
+
 def main() -> int:
     print("scouting Reddit (likely blocked from Azure)...")
     all_reddit: list[dict] = []
@@ -430,7 +622,42 @@ def main() -> int:
     hn = fetch_hackernews_video_links()
     print(f"  hn: {len(hn)}")
 
-    total = len(all_reddit) + len(wikipedia) + len(wikimedia) + len(youtube) + len(lemmy) + len(hn)
+    print("\nscouting Google Trends (multi-geo)...")
+    gtrends: list[dict] = []
+    for geo in ("US", "GB", "CA", "AU"):
+        gtrends.extend(fetch_google_trends(geo))
+        time.sleep(1)
+    print(f"  google_trends: {len(gtrends)}")
+
+    print("\nscouting Google News topics...")
+    gnews = fetch_google_news()
+    print(f"  google_news: { {k: len(v) for k, v in gnews.items()} }")
+
+    print("\nscouting editorial science/news feeds...")
+    editorial = fetch_editorial_feeds()
+    print(f"  editorial: { {k: len(v) for k, v in editorial.items()} }")
+
+    print("\nscouting Hacker News top stories...")
+    hn_top = fetch_hackernews_top()
+    print(f"  hn_top: {len(hn_top)}")
+
+    print("\nscouting Wikipedia top articles (yesterday)...")
+    wiki_top = fetch_wikipedia_top_articles()
+    print(f"  wikipedia_top: {len(wiki_top)}")
+
+    print("\nscouting upcoming observances...")
+    observances = fetch_upcoming_observances()
+    print(f"  observances: {len(observances)}")
+
+    print("\nscouting YouTube trending by category...")
+    yt_cats = fetch_youtube_trending_by_category()
+    print(f"  youtube categories: { {k: len(v) for k, v in yt_cats.items()} }")
+
+    total = (len(all_reddit) + len(wikipedia) + len(wikimedia) + len(youtube)
+             + len(lemmy) + len(hn) + len(gtrends) + len(wiki_top)
+             + len(observances) + sum(len(v) for v in yt_cats.values())
+             + sum(len(v) for v in gnews.values())
+             + sum(len(v) for v in editorial.values()) + len(hn_top))
     OUT_PATH.parent.mkdir(exist_ok=True)
     OUT_PATH.write_text(json.dumps({
         "scouted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -442,6 +669,13 @@ def main() -> int:
             "youtube_trending_count": len(youtube),
             "lemmy_count": len(lemmy),
             "hackernews_count": len(hn),
+            "google_trends_count": len(gtrends),
+            "wikipedia_top_count": len(wiki_top),
+            "observances_count": len(observances),
+            "youtube_category_counts": {k: len(v) for k, v in yt_cats.items()},
+            "google_news_counts": {k: len(v) for k, v in gnews.items()},
+            "editorial_counts": {k: len(v) for k, v in editorial.items()},
+            "hackernews_top_count": len(hn_top),
         },
         "total": total,
         "reddit_posts": all_reddit,
@@ -450,6 +684,14 @@ def main() -> int:
         "youtube_trending": youtube,
         "lemmy_posts": lemmy,
         "hackernews_posts": hn,
+        # Top-of-funnel signal pool — every channel derives its own angle.
+        "google_trends": gtrends,
+        "wikipedia_top_articles": wiki_top,
+        "upcoming_observances": observances,
+        "youtube_trending_by_category": yt_cats,
+        "google_news": gnews,
+        "editorial_feeds": editorial,
+        "hackernews_top": hn_top,
     }, indent=2) + "\n")
     print(f"\nwrote {total} candidates -> {OUT_PATH}")
 

@@ -91,6 +91,15 @@ def _color_for(label, insight):
 # --------------------------------------------------------------------------- #
 # Validation + cost
 # --------------------------------------------------------------------------- #
+# Abstract chart shapes we REFUSE to render as a depiction — a bare bar / bubble
+# / lone number is exactly the "lazy" look the channel bans. A scene must show
+# the SUBJECT (a real photo / cut-out) and depict the value THROUGH it, or be a
+# genuine holistic time depiction. These types are rejected outright.
+_BANNED_TYPES = {"bar", "bubble"}
+# Elements that count as a real, subject-bearing depiction.
+_RICH_TYPES = _IMAGE_TYPES | _HOLISTIC
+
+
 def validate(spec, insight) -> bool:
     if not isinstance(spec, dict):
         return False
@@ -101,7 +110,7 @@ def validate(spec, insight) -> bool:
         if not isinstance(el, dict):
             return False
         t = el.get("type")
-        if t not in _TYPES:
+        if t not in _TYPES or t in _BANNED_TYPES:
             return False
         reg = el.get("region", "center")
         if reg not in _VALID_REGIONS:
@@ -116,6 +125,12 @@ def validate(spec, insight) -> bool:
         if t == "stack" and not charts._num_or_none((el.get("data") or {})
                                                     .get("per_value")):
             return False
+    # QUALITY GATE: a scene must SHOW something — at least one image/subject
+    # element or a holistic time depiction. An abstract-only scene (just a
+    # number/caption, or the old bar) is rejected so the director re-picks an
+    # image-first depiction instead of shipping the lazy look.
+    if not any(e.get("type") in _RICH_TYPES for e in els):
+        return False
     return True
 
 
@@ -283,13 +298,23 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
                                 radius=24, fill=_rgba(color, int(255 * reveal)))
         na = max(0.0, min(1.0, (reveal - 0.35) / 0.5))
         nx = bx0 + int(bw * 0.56)
-        nf = _pil_font(min(150, max(84, int(bh * 0.42))))
+        avail = bx1 - nx - 12                     # keep text inside the frame
+        nfs = min(150, max(84, int(bh * 0.42)))
         num = _vfmt(value)
+        nf = _pil_font(nfs)
         nb = d.textbbox((0, 0), num, font=nf)
+        while nfs > 48 and (nb[2] - nb[0]) > avail:     # shrink number to fit
+            nfs -= 8
+            nf = _pil_font(nfs)
+            nb = d.textbbox((0, 0), num, font=nf)
         d.text((nx, cy - (nb[3] - nb[1]) - 6), num, font=nf,
                fill=_rgba(color, int(255 * na)), stroke_width=6,
                stroke_fill=(5, 8, 15, int(255 * na)))
-        lf = _pil_font(46)
+        lfs = 46
+        lf = _pil_font(lfs)
+        while lfs > 24 and d.textbbox((0, 0), label, font=lf)[2] > avail:
+            lfs -= 4                                    # shrink label to fit
+            lf = _pil_font(lfs)
         d.text((nx, cy + 14), label, font=lf,
                fill=(248, 250, 252, int(255 * na)), stroke_width=3,
                stroke_fill=(5, 8, 15, int(255 * na)))
@@ -610,8 +635,9 @@ def globe_subject(insight) -> str:
     topic = insight.topic or ""
     if _GEO_WORDS.search(topic):
         return "planet Earth, whole globe seen from space"
-    noun = re.sub(r"\b(share|percent|of|the|by|in|rate|amount|total)\b", " ",
-                  topic, flags=re.I)
+    noun = re.sub(r"\b(share|percent|of|the|by|in|rate|amount|total|increase|"
+                  r"growth|change|rise|decline|drop|length|duration|level|"
+                  r"season|per|vs|and)\b", " ", topic, flags=re.I)
     noun = re.sub(r"\s+", " ", noun).strip()
     return noun or "a glass jar"
 
@@ -759,3 +785,245 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                     anchors.append(an)
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
     return pattern, anchors
+
+
+# --------------------------------------------------------------------------- #
+# PROCEDURAL mechanics — the AI INVENTS A BRAND-NEW depiction by writing the
+# drawing code itself, run in a locked-down sandbox. This is the "make something
+# new first" path: a spec is {"mechanic": name, "concept": text, "code": body}
+# where `code` draws ONE frame given a safe namespace (an ImageDraw `d`, the data
+# in `values`/`labels`, subject `images`, `reveal` 0..1, and a few helpers). No
+# imports, no builtins beyond a whitelist, guarded by a wall-clock alarm, dry-run
+# validated before use, and it MUST place a real subject image (so a new mechanic
+# still SHOWS the thing — never abstract shapes).
+# --------------------------------------------------------------------------- #
+_SAFE_BUILTINS = {k: __builtins__[k] if isinstance(__builtins__, dict)
+                  else getattr(__builtins__, k)
+                  for k in ("range", "len", "min", "max", "abs", "int", "float",
+                            "round", "enumerate", "zip", "list", "tuple",
+                            "sorted", "sum", "map", "filter", "str", "bool",
+                            "True", "False", "None") if True}
+# Tokens that must never appear in generated mechanic code (defense in depth on
+# top of the stripped builtins).
+# Function-like tokens are only dangerous when CALLED — require the paren so a
+# subject phrase like 'crocodile open jaws' or 'evaluation of...' isn't flagged.
+_FORBIDDEN = re.compile(
+    r"__|\bimport\b|\bwhile\b|"
+    r"\b(?:open|eval|exec|compile|globals|locals|getattr|setattr|delattr|"
+    r"vars|input|exit|quit)\s*\(")
+_IMAGE_CALL = re.compile(r"\b(paste|fill_image|images|subject_image)\b")
+
+
+def validate_mechanic(spec) -> bool:
+    """Structural check for a procedural mechanic spec (not a dry-run)."""
+    if not isinstance(spec, dict):
+        return False
+    code = spec.get("code")
+    if not isinstance(code, str) or not (10 <= len(code) <= 6000):
+        return False
+    if _FORBIDDEN.search(code):
+        return False
+    if not _IMAGE_CALL.search(code):        # must place a real subject
+        return False
+    try:
+        compile(code, "<mechanic>", "exec")
+    except SyntaxError:
+        return False
+    return True
+
+
+def _mechanic_env(insight, slug):
+    """Build the sandbox helpers + preloaded subject images for a mechanic."""
+    from PIL import Image, ImageDraw, ImageOps, ImageChops
+    items = list(insight.items or [])
+    values = [float(p.value) for p in items]
+    labels = [p.label for p in items]
+    vmax = max(values) if values else 1.0
+    # Preload a real subject image per label (photo -> cut-out); best-effort.
+    images = {}
+    for i, p in enumerate(items):
+        import hashlib
+        sh = hashlib.sha1((p.label or "").lower().encode()).hexdigest()[:6]
+        img = _load_photo(p.label, slug, f"m{i}-{sh}")
+        if img is None:
+            img = _load_cutout(p.label, slug, f"mc{i}-{sh}")
+        images[p.label] = img.convert("RGBA") if img is not None else None
+
+    _extra: dict = {}
+
+    def subject_image(name):
+        """Fetch ANY subject the mechanic names (cached), so a new mechanic can
+        show things beyond the row labels (a flame, a lung, a droplet)."""
+        name = str(name or "").strip()
+        if not name:
+            return None
+        if name in images and images[name] is not None:
+            return images[name]
+        if name in _extra:
+            return _extra[name]
+        import hashlib
+        sh = hashlib.sha1(name.lower().encode()).hexdigest()[:6]
+        img = _load_cutout(name, slug, f"mx-{sh}") or _load_photo(name, slug, f"mp-{sh}")
+        img = img.convert("RGBA") if img is not None else None
+        _extra[name] = img
+        return img
+
+    return dict(values=values, labels=labels, vmax=vmax, n=len(values),
+                images=images, subject_image=subject_image,
+                _Image=Image, _ImageDraw=ImageDraw, _ImageOps=ImageOps,
+                _ImageChops=ImageChops)
+
+
+def _run_mechanic_frame(code_obj, canvas, base, reveal):
+    """Exec the mechanic body for one frame in the sandbox, drawing onto canvas."""
+    from PIL import Image, ImageDraw, ImageOps, ImageChops
+    d = ImageDraw.Draw(canvas)
+    Image, ImageOps, ImageChops = base["_Image"], base["_ImageOps"], base["_ImageChops"]
+
+    def clamp(v, lo=0.0, hi=1.0):
+        return lo if v < lo else hi if v > hi else v
+
+    def lerp(a, b, t):
+        return a + (b - a) * clamp(t, 0.0, 1.0)
+
+    def rgba(c, a=255):
+        # Accept a hex string ("#60A5FA"), an (r,g,b[,a]) tuple, or a palette name.
+        if isinstance(c, str):
+            return _rgba(c, int(a))
+        if isinstance(c, (tuple, list)):
+            r, g, b = int(c[0]), int(c[1]), int(c[2])
+            return (r, g, b, int(c[3]) if len(c) > 3 else int(a))
+        return _rgba(ACCENT, int(a))
+
+    def font(size=48):
+        return _pil_font(int(size))
+
+    def text(s, x, y, size=48, color=TEXT, center=False, stroke=4):
+        fnt = _pil_font(int(size))
+        s = str(s)
+        if center:
+            bb = d.textbbox((0, 0), s, font=fnt)
+            x = x - (bb[2] - bb[0]) / 2
+        d.text((int(x), int(y)), s, font=fnt, fill=rgba(color),
+               stroke_width=int(stroke), stroke_fill=(5, 8, 15, 255))
+
+    def paste(img, x, y, w=None, h=None):
+        if img is None:
+            return
+        im = img.convert("RGBA")
+        if w or h:
+            ww = int(w or im.width)
+            hh = int(h or im.height)
+            im = im.resize((max(1, ww), max(1, hh)))
+        canvas.alpha_composite(im, (int(x), int(y)))
+
+    def fill_image(img, frac, x, y, w, h, direction="up", color=None):
+        """Reveal a subject filled to `frac` of the box (bottom-up by default) —
+        the workhorse for gauges/thermometers/'X% of a thing' mechanics."""
+        w, h = int(w), int(h)
+        frac = clamp(frac, 0.0, 1.0)
+        if img is not None:
+            im = ImageOps.fit(img.convert("RGBA"), (w, h))
+            if color is not None:                       # optional tint wash
+                wash = Image.new("RGBA", (w, h), rgba(color, 90))
+                im = Image.alpha_composite(im, wash)
+            a = im.split()[3]
+            mask = Image.new("L", (w, h), 0)
+            md = ImageDraw.Draw(mask)
+            fp = int(h * frac)
+            if direction == "down":
+                md.rectangle([0, 0, w, fp], fill=255)
+            elif direction == "left":
+                md.rectangle([w - int(w * frac), 0, w, h], fill=255)
+            elif direction == "right":
+                md.rectangle([0, 0, int(w * frac), h], fill=255)
+            else:                                       # up
+                md.rectangle([0, h - fp, w, h], fill=255)
+            im.putalpha(ImageChops.multiply(a, mask))
+            canvas.alpha_composite(im, (int(x), int(y)))
+        else:                                           # no image -> rounded fill
+            col = color or ACCENT
+            fp = int(h * frac)
+            d.rounded_rectangle([int(x), int(y + h - fp), int(x + w), int(y + h)],
+                                radius=18, fill=rgba(col))
+
+    ns = {"__builtins__": _SAFE_BUILTINS,
+          "d": d, "canvas": canvas, "reveal": reveal,
+          "W": W, "H": H, "RX0": RX0, "RX1": RX1, "RTOP": RTOP, "RBOT": RBOT,
+          "ACCENT": ACCENT, "HIGHLIGHT": HIGHLIGHT, "WARN": WARN, "TEXT": TEXT,
+          "clamp": clamp, "lerp": lerp, "rgba": rgba, "font": font, "text": text,
+          "paste": paste, "fill_image": fill_image,
+          "values": base["values"], "labels": base["labels"],
+          "vmax": base["vmax"], "n": base["n"],
+          "images": base["images"], "subject_image": base["subject_image"]}
+    import math as _math
+    ns["math"] = _math
+    exec(code_obj, ns)   # noqa: S102 — sandboxed (no builtins/imports; token-scanned)
+
+
+@_fullframe("mechanic")
+def render_procedural(insight, out_dir: Path, slug: str, frames: int = 16):
+    """Render an AI-invented procedural mechanic. Returns (pattern, []) or None
+    (bad code / it raised / drew nothing) -> caller FALLBACK chain takes over."""
+    from PIL import Image
+    spec = getattr(insight, "scene", None)
+    if not (isinstance(spec, dict) and validate_mechanic(spec)):
+        return None
+    try:
+        code_obj = compile(spec["code"], "<mechanic>", "exec")
+    except SyntaxError:
+        return None
+    out_dir.mkdir(parents=True, exist_ok=True)
+    base = _mechanic_env(insight, slug)
+    show_title = bool(spec.get("title", True)) and bool(insight.topic)
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    import signal
+    have_alarm = hasattr(signal, "SIGALRM")
+
+    def _guard(seconds):
+        if have_alarm:
+            def _raise(*_a):
+                raise TimeoutError("mechanic frame timed out")
+            signal.signal(signal.SIGALRM, _raise)
+            signal.setitimer(signal.ITIMER_REAL, seconds)
+
+    def _unguard():
+        if have_alarm:
+            signal.setitimer(signal.ITIMER_REAL, 0)
+
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        r = 1.0 - (1.0 - r) ** 2
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        try:
+            _guard(3.0)
+            _run_mechanic_frame(code_obj, canvas, base, r)
+            _unguard()
+        except Exception as e:  # noqa: BLE001
+            _unguard()
+            print(f"[mechanic] '{spec.get('mechanic','?')}' failed on frame {f}: "
+                  f"{type(e).__name__}: {e}", flush=True)
+            return None                     # bail -> deterministic fallback
+        if show_title:
+            from PIL import ImageDraw
+            draw_caption(ImageDraw.Draw(canvas), (RX0, 40, RX1, 40),
+                         insight.topic, 1.0, size=50)
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
+def mechanic_dry_ok(spec, insight) -> bool:
+    """Validate a mechanic by actually rendering ONE frame to a throwaway canvas.
+    Cheap, catches runtime errors before we commit the mechanic to a full render."""
+    if not validate_mechanic(spec):
+        return False
+    from PIL import Image
+    try:
+        code_obj = compile(spec["code"], "<mechanic>", "exec")
+        base = _mechanic_env(insight, getattr(insight, "slug", "dry"))
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        _run_mechanic_frame(code_obj, canvas, base, 1.0)
+        return canvas.getbbox() is not None      # it drew SOMETHING
+    except Exception as e:  # noqa: BLE001
+        print(f"[mechanic] dry-run rejected: {type(e).__name__}: {e}", flush=True)
+        return False

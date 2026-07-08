@@ -1,0 +1,66 @@
+{
+  "channel": "third",
+  "title": "{clip_title}",
+  "hook": "",
+  "proof_plan": "Top fresh clip from the allowlist (velocity-ranked, core cluster weighted), our edit layer on top.",
+  "capture": {
+    "kind": "twitch_clip",
+    "sources": {
+      "twitch": [
+        "kaicenat",
+        "lacy",
+        "silky",
+        "stableronaldo",
+        "jasontheween",
+        "rayasianboy",
+        "kaysan",
+        "plaqueboymax",
+        "lospollostv",
+        "xqc",
+        "jynxzi",
+        "caseoh_",
+        "zackrawrr",
+        "hasanabi",
+        "moistcr1tikal",
+        "clix",
+        "tarik",
+        "summit1g",
+        "lirik",
+        "sodapoppin",
+        "loltyler1",
+        "ohnepixel",
+        "emiru",
+        "ironmouse"
+      ],
+      "kick": [
+        "adinross"
+      ],
+      "rumble": [
+        "AdinLive"
+      ]
+    },
+    "core": [
+      "kaicenat",
+      "lacy",
+      "silky",
+      "stableronaldo",
+      "jasontheween",
+      "rayasianboy",
+      "kaysan",
+      "plaqueboymax",
+      "lospollostv"
+    ],
+    "range": "24hr",
+    "top": 8,
+    "min_views": 2500
+  },
+  "hashtags": [
+    "streamerclips",
+    "kaicenat",
+    "clips"
+  ],
+  "description_note": "Edited highlight \u2014 full credit to the streamer (linked below).",
+  "risk_flags": [],
+  "disclosures": [],
+  "slug": "clip-20260707-10"
+}

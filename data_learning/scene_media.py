@@ -296,6 +296,25 @@ def _is_photo_url(url: str) -> bool:
     return not _BAD_PHOTO.search(url or "")
 
 
+_STOP = {"the", "and", "for", "with", "from", "into", "are", "was", "you",
+         "his", "her", "its", "over", "than", "how", "what", "why", "top",
+         "most", "best", "fastest", "biggest", "largest", "world", "worlds"}
+
+
+def _tok(s: str) -> set:
+    """Content tokens of a phrase (lowercased alnum words >2 chars, no stops)."""
+    return {w for w in re.findall(r"[a-z0-9]+", (s or "").lower())
+            if len(w) > 2 and w not in _STOP}
+
+
+def _photo_relevance(url: str, subj_tokens: set) -> int:
+    """How well a candidate URL's filename matches the subject. Used to PICK the
+    best on-topic photo instead of blindly taking the first that loads."""
+    import urllib.parse
+    name = urllib.parse.unquote(url.rsplit("/", 1)[-1]) if url else ""
+    return len(_tok(name) & subj_tokens)
+
+
 def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
                   cache_dir: Path = PHOTO_DIR) -> Path | None:
     """A REAL photo of `subject` pulled off the internet (Wikipedia / Wikimedia
@@ -322,26 +341,79 @@ def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
         if q and q.lower() not in seen:
             seen.add(q.lower())
             queries.append(q)
+    # Gather every candidate URL (best-first per source), then RANK by how well
+    # each filename matches the subject so we return the most on-topic photo, not
+    # just the first that happens to load. Position is the tiebreaker, so the
+    # trusted Wikipedia lead still wins when nothing scores higher.
+    cands, seen_u = [], set()
     for q in queries:
         try:
             urls = topic_media.search(q, context) or []
         except Exception:  # noqa: BLE001
             continue
         for url in urls[:6]:
-            try:
-                if not _is_photo_url(url):          # skip logos/maps/diagrams/svg
-                    continue
-                if not entity_media.url_is_image(url):
-                    continue
-                p = hook_media._download(url, cache_dir)
-                if p and Path(p).stat().st_size > 2048:
-                    if Path(p) != dest:
-                        shutil.copyfile(p, dest)
-                    print(f"[scene] subject photo OK ({q}) -> {dest.name}", flush=True)
-                    return dest
-            except Exception:  # noqa: BLE001
+            if url in seen_u or not _is_photo_url(url):
                 continue
+            seen_u.add(url)
+            cands.append(url)
+    subj_tokens = _tok(subject)
+    ranked = sorted(range(len(cands)),
+                    key=lambda i: (-_photo_relevance(cands[i], subj_tokens), i))
+    for i in ranked:
+        url = cands[i]
+        try:
+            if not entity_media.url_is_image(url):
+                continue
+            p = hook_media._download(url, cache_dir)
+            if p and Path(p).stat().st_size > 2048:
+                if Path(p) != dest:
+                    shutil.copyfile(p, dest)
+                score = _photo_relevance(url, subj_tokens)
+                print(f"[scene] subject photo OK (score {score}) -> {dest.name}",
+                      flush=True)
+                return dest
+        except Exception:  # noqa: BLE001
+            continue
     return None
+
+
+def subject_photo_cutout(subject: str, slug: str, tag: str, *, context: str = "",
+                         cache_dir: Path = CUTOUT_DIR) -> Path | None:
+    """A REAL photo of `subject` with its background removed -> a transparent
+    cut-out. This is the fallback for `subject_cutout` when the AI illustrator is
+    down: we still get a photo of the actual thing, but keyed out so it blends
+    into a scene (a race lane, a road) instead of reading as a clunky box.
+    Cached under the cut-out dir. None on any failure -> caller skips it."""
+    from PIL import Image
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    safe = "".join(c if c.isalnum() or c in "-_" else "-" for c in f"{slug}__{tag}")
+    dest = cache_dir / f"{safe}.png"
+    if dest.exists() and dest.stat().st_size > 2048:
+        return dest
+    pth = subject_photo(subject, slug, f"{tag}-src", context=context)
+    if not pth:
+        return None
+    try:
+        img = Image.open(pth).convert("RGBA")
+    except Exception:  # noqa: BLE001
+        return None
+    cut = _remove_bg(img)
+    if cut is None or min(cut.size) < 40:
+        return None
+    # Only accept a genuine cut-out: if almost nothing was keyed away the result
+    # is really a rectangular photo (chroma-key fallback on a non-green image), so
+    # reject it rather than render a "box" in the race.
+    try:
+        alpha = cut.split()[3]
+        hist = alpha.histogram()
+        transparent = sum(hist[:32])
+        if transparent < 0.08 * (cut.width * cut.height):
+            return None
+    except Exception:  # noqa: BLE001
+        return None
+    cut.save(dest)
+    print(f"[scene] photo cut-out OK -> {dest.name}", flush=True)
+    return dest
 
 
 def fetch_hook_image(story, *, cache_dir: Path = CACHE_DIR) -> Path | None:

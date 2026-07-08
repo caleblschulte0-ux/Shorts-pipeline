@@ -22,10 +22,8 @@ on:
     paths:
       - 'state/third_packages/**'
   # Daily slate: packages synthesize from state/third_packages/default_clip.json
-  # when no authored packages exist for the day. 11:00 UTC → publish slots
-  # land 17:00/19:00/21:00 UTC (US afternoon/evening).
-  schedule:
-    - cron: '0 11 * * *'
+  # when no authored packages exist for the day. NO git cron — the morning
+  # kickoff is a Claude Routine that dispatches this workflow directly each day.
   # Chain off "Daily Shorts" the SAME way explainer.yml does, so one kickoff of
   # daily.yml (the morning Claude Routine → workflow_dispatch) cascades to all
   # THREE channels. Safe to run alongside the cron above: run_third.py

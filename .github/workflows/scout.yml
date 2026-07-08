@@ -2,10 +2,11 @@ name: Scout Sources
 
 on:
   workflow_dispatch: {}
-  schedule:
-    # Sunday 10:00 UTC — gives Claude something fresh to pull from on
-    # the Monday morning weekly-refresh chat.
-    - cron: '0 10 * * 0'
+  # NO git cron. The scout is the shared TOP-OF-FUNNEL for every channel: it
+  # harvests what the world is paying attention to (search trends, top Wikipedia
+  # reads, trending video by category, upcoming observances) and each channel's
+  # brain derives its OWN angle. The morning Claude Routine dispatches this
+  # FIRST (before the channels) so same-day topics are fresh.
   push:
     branches: [main]
     # No path filter while we're debugging — every push to main fires

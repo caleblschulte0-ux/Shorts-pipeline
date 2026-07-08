@@ -42,8 +42,8 @@ SCOPES = [
     "https://www.googleapis.com/auth/youtube.readonly",
     # captions.insert (uploaded subtitles) requires force-ssl specifically.
     "https://www.googleapis.com/auth/youtube.force-ssl",
-    # Retention + engagement metrics (avg view %, avg view duration,
-    # estimated minutes watched) via the YouTube Analytics API.
+    # Retention/curves/search-terms — without this the token can upload but the
+    # learning loop is blind (fetch_analytics falls back to raw view counts).
     "https://www.googleapis.com/auth/yt-analytics.readonly",
 ]
 # Device flow doesn't permit youtube.upload directly; the broader

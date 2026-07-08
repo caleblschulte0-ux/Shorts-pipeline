@@ -67,7 +67,8 @@ VIZ_VOCAB = {
 # Depictions that read as a stand-out 'moment' — aim for >=1 per story.
 _NOVELTY = {"timeline", "scale_stack", "fill_vessel", "orbit", "waffle_grid", "diorama"}
 _VALID_VIZ = set(VIZ_VOCAB) | {"geo_city", "pictograph", "bubbles"}
-_DUP_THRESHOLD = 0.5          # topic_guard overlap fraction that = "already done"
+_DUP_THRESHOLD = 0.4          # topic_guard overlap fraction that = "already done"
+                             # (0.5 -> 0.4: catch near-duplicate subjects earlier)
 
 # The composable SCENE element kit — the director can INVENT a bespoke depiction
 # per data point by arranging these, instead of picking a fixed viz.
@@ -84,14 +85,15 @@ SCENE_ELEMENTS = {
                    "region 'full'.",
     "timeline_axis": "a marker travels a time/number axis (ages, dates). "
                      "region 'full'.",
-    "bar": "a horizontal bar, length by value. `data.value_from`.",
-    "bubble": "a circle, area by value. `data.value_from`.",
-    "number": "a big count-up of one value. `data.value_from`.",
+    "number": "a big count-up — ONLY as an accent riding on top of an image "
+              "element, never alone. `data.value_from`.",
     "caption": "a short text line. `text`.",
 }
 _SCENE_TYPES = set(SCENE_ELEMENTS)
 _SCENE_IMAGE = {"object", "fill_object", "stack"}
-_SCENE_DATA = {"object", "fill_object", "stack", "number", "bar", "bubble"}
+# A real depiction shows the SUBJECT (image) or is a holistic time depiction.
+_SCENE_RICH = _SCENE_IMAGE | {"orbit_group", "timeline_axis"}
+_SCENE_DATA = {"object", "fill_object", "stack", "number"}
 _SCENE_REGIONS = {"full", "center", "hero", "left", "right", "top", "bottom",
                   "ground-row"} | {f"grid-{i}" for i in range(1, 5)}
 
@@ -156,6 +158,58 @@ _SYSTEM = (
 )
 
 
+def _scout_digest(max_chars: int = 1800) -> str:
+    """A compact digest of the repo-wide TOP-OF-FUNNEL scout pool
+    (state/scouted_sources.json, refreshed daily by scout.yml). Channel rule:
+    the pool tells you WHAT the world is paying attention to; this channel
+    derives its own DATA-EXPLAINER angle from it — never the news angle.
+    Soft-fails to '' so authoring works even if the scout hasn't run."""
+    try:
+        d = json.loads((ROOT / "state" / "scouted_sources.json").read_text())
+    except Exception:  # noqa: BLE001
+        return ""
+    lines: list[str] = []
+    obs = d.get("upcoming_observances") or []
+    if obs:
+        lines.append("Upcoming observances: " + "; ".join(
+            f"{o.get('name')} ({o.get('date')})" for o in obs[:6]))
+    gt = d.get("google_trends") or []
+    if gt:
+        lines.append("Trending searches now: " + "; ".join(
+            (g.get("title") or "") for g in gt[:10]))
+    wt = d.get("wikipedia_top_articles") or []
+    if wt:
+        lines.append("Most-read Wikipedia yesterday: " + "; ".join(
+            (w.get("title") or "") for w in wt[:12]))
+    cats = d.get("youtube_trending_by_category") or {}
+    for cat in ("science_tech", "education", "pets_animals"):
+        vids = cats.get(cat) or []
+        if vids:
+            lines.append(f"YouTube trending ({cat}): " + "; ".join(
+                (v.get("title") or "")[:60] for v in vids[:5]))
+    # Science/health headlines: Google News topics + editorial science feeds.
+    sci: list[str] = []
+    gnews = d.get("google_news") or {}
+    for topic in ("science", "health", "technology"):
+        sci += [(x.get("title") or "")[:70] for x in (gnews.get(topic) or [])[:3]]
+    ed = d.get("editorial_feeds") or {}
+    for feed in ("nasa", "sciencedaily", "livescience", "bbc_science"):
+        sci += [(x.get("title") or "")[:70] for x in (ed.get(feed) or [])[:2]]
+    if sci:
+        lines.append("Science/health headlines: " + "; ".join(sci[:10]))
+    if not lines:
+        return ""
+    return ("\nTOP-OF-FUNNEL SIGNALS (refreshed " + str(d.get("scouted_at", "?"))
+            + ") — what the world is paying attention to right now:\n"
+            + "\n".join("  - " + ln[:280] for ln in lines)
+            + "\nUse these as DEMAND signals: prefer topics people are already "
+              "curious about, but derive THIS channel's angle — the underlying "
+              "DATA story, never the news story. Example: an upcoming 4th of "
+              "July -> firework costs, sizes, and physics; NOT coverage of any "
+              "specific event. A trending animal -> that animal's records and "
+              "extremes. Skip signals with no honest data angle.\n")[:max_chars]
+
+
 def _user_prompt(cfg: dict, n: int) -> str:
     doctrine = cfg.get("topic_doctrine", "")
     covered = _covered_subjects(cfg)
@@ -189,7 +243,8 @@ def _user_prompt(cfg: dict, n: int) -> str:
     ex_blob = ("\nGreat scenes we've made before (learn from these, then do "
                "something fresh):\n" + json.dumps(exs)) if exs else ""
     return (
-        f"Channel doctrine: {doctrine}\n\n"
+        f"Channel doctrine: {doctrine}\n"
+        + _scout_digest() + "\n"
         f"Invent {n} BRAND-NEW data stories that fit the doctrine. Each is a "
         f"25-40 second Short with EXACTLY 3 segments that build one arc.\n\n"
         "You are the CREATIVE DIRECTOR of a top-tier YouTube channel. For EACH "
@@ -205,10 +260,17 @@ def _user_prompt(cfg: dict, n: int) -> str:
         "HARD RULES:\n"
         "- NEVER just show numbers. Every segment DEPICTS its data (a scene, or a "
         "fallback viz). No bare-number option exists.\n"
-        "- Think like a pro: ages/dates -> a timeline_axis; a share/% -> fill a "
-        "relevant SUBJECT (a globe for Earth/water) with fill_object; one big "
-        "height/size -> a stack vs a hero object; a ranking of drawable things -> "
-        "a ground-row of `object`s; distances/counts -> orbit_group.\n"
+        "- SHOW THE THING. Every scene must contain at least one image element "
+        "(object / fill_object / stack) or a holistic time depiction "
+        "(timeline_axis / orbit_group). A scene that is only a number/caption is "
+        "REJECTED. There is NO bar and NO bubble — abstract chart shapes are "
+        "banned. Depict the value THROUGH the image: fill it, size it, position "
+        "it, repeat it, or move it.\n"
+        "- Think like a pro: ages/dates -> a timeline_axis; a share/% or a single "
+        "shock stat -> FILL a relevant real SUBJECT (a globe for Earth/water, a "
+        "forest on fire for wildfire, a lung for breathing) with fill_object; one "
+        "big height/size -> a stack vs a hero object; a ranking of drawable things "
+        "-> a ground-row of `object`s; distances/counts -> orbit_group.\n"
         "- VARY the depiction across the 3 segments; include at least ONE stand-out.\n"
         "- `subject` for image elements must be a CONCRETE drawable thing (animals, "
         "foods, vehicles, planets, landmarks, a globe) — never an abstraction.\n"
@@ -311,6 +373,12 @@ def _clean_scene(seg: dict, points: list) -> dict | None:
         if t == "caption":
             ne["text"] = str(el.get("text", "")).strip()
         clean.append(ne)
+    # QUALITY GATE: a scene must SHOW the subject (an image element) or be a
+    # holistic time depiction. Abstract-only scenes (just a number/caption) are
+    # rejected here so the segment gets an image-first depiction instead — this
+    # is what stops "invent a scene" collapsing into a lazy bar.
+    if not any(e["type"] in _SCENE_RICH for e in clean):
+        return None
     return {"title": bool(sc.get("title", True)), "elements": clean}
 
 

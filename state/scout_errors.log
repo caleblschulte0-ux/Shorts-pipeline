@@ -13,4 +13,6 @@
 [HumansBeingBros] all hosts failed: HTTP 403 from https://www.reddit.com
 [facepalm] all hosts failed: HTTP 403 from https://www.reddit.com
 [WTF] all hosts failed: HTTP 403 from https://www.reddit.com
-[youtube/refresh] using client_id=808431681548-6isg95s8qoi... secret_len=35 refresh_prefix=1//04mNAeh... refresh_len=103
+[youtube/refresh] using client_id=808431681548-v3q2f1dkgif... secret_len=35 refresh_prefix=1//04fp1bU... refresh_len=103
+[youtube/refresh] using client_id=808431681548-v3q2f1dkgif... secret_len=35 refresh_prefix=1//04fp1bU... refresh_len=103
+[youtube/cat/education] HTTPError: HTTP Error 404: Not Found
