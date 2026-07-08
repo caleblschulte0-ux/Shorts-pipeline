@@ -191,11 +191,167 @@ def build(spec: dict):
     sc.view_settings.look = "Medium High Contrast"
 
 
+def build_earth_dive(spec: dict):
+    """The 'Earth opens' hero: phase 1 — the camera dives from space
+    toward THE Earth; phase 2 (hard cut inside the shot, masked by the
+    assembler's luminance dip) — the camera rides down the glowing
+    borehole past depth markers to a pulsing dot at the bottom.
+
+    Spec: markers=[{label, display, frac}] (frac = depth/max_depth),
+    accent, seconds, fps, samples, res_x/res_y."""
+    sc = bpy.context.scene
+    for o in list(sc.objects):
+        bpy.data.objects.remove(o, do_unlink=True)
+    accent = _hex(spec.get("accent", "#4FD1C5"))
+    markers = spec.get("markers", [])[:5]
+    fps = int(spec.get("fps", 12))
+    secs = float(spec.get("seconds", 8))
+    frames = max(4, int(round(fps * secs)))
+    half = frames // 2
+
+    # --- phase 1 world: THE Earth in space ---
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=5, location=(0, 0, 0),
+                                         segments=48, ring_count=24)
+    earth = bpy.context.object
+    bpy.ops.object.shade_smooth()
+    earth.data.materials.append(_body("earth_sea", (0.05, 0.18, 0.42)))
+    for i, (dx, dy, dz, r) in enumerate([(2.2, -3.4, 2.6, 1.5),
+                                         (-3.0, -3.2, 0.6, 1.2),
+                                         (0.8, -4.4, -2.0, 1.7),
+                                         (-1.8, -3.8, 2.8, 1.0)]):
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=r,
+                                             location=(dx, dy, dz),
+                                             segments=24, ring_count=12)
+        blob = bpy.context.object
+        bpy.ops.object.shade_smooth()
+        blob.scale = (1.0, 0.35, 1.0)          # squashed = continent shell
+        blob.data.materials.append(_body(f"land{i}", (0.10, 0.34, 0.18)))
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=5.25, location=(0, 0, 0),
+                                         segments=32, ring_count=16)
+    atmo = bpy.context.object
+    m = bpy.data.materials.new("atmo")
+    m.use_nodes = True
+    bsdf = m.node_tree.nodes["Principled BSDF"]
+    bsdf.inputs["Base Color"].default_value = (0.3, 0.55, 1.0, 1)
+    bsdf.inputs["Alpha"].default_value = 0.08
+    m.blend_method = "BLEND"
+    atmo.data.materials.append(m)
+    bpy.ops.object.light_add(type="SUN", location=(20, -18, 14))
+    bpy.context.object.data.energy = 4.0
+
+    # --- phase 2 world: the underground descent, far away at x=200 ---
+    ox = 200.0
+    depth = 15.0                     # tight ride: something near every frame
+    bpy.ops.mesh.primitive_plane_add(size=1, location=(ox, 8, -depth / 2))
+    wall = bpy.context.object
+    wall.rotation_euler = (math.radians(90), 0, 0)
+    wall.scale = (60, depth * 1.4, 1)
+    wall.data.materials.append(_body("rock", (0.045, 0.055, 0.09)))
+    # strata seams — dense enough that the ride always passes something
+    for i in range(1, 10):
+        z = -depth * i / 10
+        bpy.ops.mesh.primitive_cube_add(location=(ox, 7.8, z))
+        seam = bpy.context.object
+        seam.scale = (30, 0.05, 0.05)
+        seam.data.materials.append(
+            _emission(f"seam{i}", (0.13, 0.17, 0.30), 2.0))
+    # the glowing borehole
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.10, depth=depth,
+                                        location=(ox, 6.5, -depth / 2))
+    bore = bpy.context.object
+    bore.data.materials.append(_emission("bore", accent, 6.0))
+    # depth markers
+    for mk in markers:
+        z = -depth * max(0.02, min(1.0, float(mk.get("frac", 0.5))))
+        bpy.ops.object.text_add(location=(ox + 1.0, 6.4, z + 0.2))
+        t = bpy.context.object
+        t.data.body = f"{mk.get('label', '')} · {mk.get('display', '')}"
+        t.data.size = 0.55
+        t.data.extrude = 0.02
+        t.rotation_euler = (math.radians(90), 0, 0)
+        t.data.materials.append(_emission(
+            f"mk{z}", accent if mk is markers[-1] else (0.8, 0.85, 0.95),
+            2.6))
+        bpy.ops.mesh.primitive_cube_add(location=(ox, 6.5, z))
+        tick = bpy.context.object
+        tick.scale = (0.55, 0.06, 0.02)
+        tick.data.materials.append(_emission(
+            f"tk{z}", accent if mk is markers[-1] else (0.6, 0.7, 0.9), 3.5))
+    # the bottom: a pulsing dot
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.22,
+                                         location=(ox, 6.5, -depth))
+    dot = bpy.context.object
+    dm = _emission("dot", accent, 8.0)
+    dot.data.materials.append(dm)
+    em = dm.node_tree.nodes["Emission"].inputs["Strength"]
+    for f, v in ((half + 1, 4.0), (int(frames * 0.85), 14.0), (frames, 7.0)):
+        em.default_value = v
+        em.keyframe_insert(data_path="default_value", frame=f)
+    bpy.ops.object.light_add(type="AREA", location=(ox, -2, -depth / 2))
+    dl = bpy.context.object
+    dl.data.energy = 350
+    dl.data.size = 25
+    dl.rotation_euler = (math.radians(90), 0, 0)
+
+    # world background
+    w = bpy.data.worlds.new("w")
+    w.use_nodes = True
+    w.node_tree.nodes["Background"].inputs["Color"].default_value = \
+        (0.004, 0.006, 0.014, 1)
+    sc.world = w
+
+    # --- camera: dive (phase 1), then ride the bore down (phase 2) ---
+    bpy.ops.object.camera_add()
+    cam = bpy.context.object
+    sc.camera = cam
+    sc.render.fps = fps
+    sc.frame_start, sc.frame_end = 1, frames
+    # phase 1: from deep space toward the surface
+    for f, (loc, rot) in ((1, ((0, -34, 10), (math.radians(73), 0, 0))),
+                          (half, ((0, -8.2, 1.2),
+                                  (math.radians(82), 0, 0)))):
+        cam.location = loc
+        cam.rotation_euler = rot
+        cam.keyframe_insert(data_path="location", frame=f)
+        cam.keyframe_insert(data_path="rotation_euler", frame=f)
+    # phase 2: underground, facing the wall, riding down beside the bore,
+    # holding on the pulsing dot for the final ~15%.
+    for f, z in ((half + 1, -0.8), (int(frames * 0.85), -depth + 0.6),
+                 (frames, -depth + 0.5)):
+        cam.location = (ox, -7.0, z)   # pulled back: readable, roomy frame
+        cam.rotation_euler = (math.radians(90), 0, 0)
+        cam.keyframe_insert(data_path="location", frame=f)
+        cam.keyframe_insert(data_path="rotation_euler", frame=f)
+    for fc in cam.animation_data.action.fcurves:
+        for kp in fc.keyframe_points:
+            kp.interpolation = "BEZIER"
+
+    _render_settings(sc, spec)
+
+
+def _render_settings(sc, spec):
+    sc.render.engine = "CYCLES"
+    sc.cycles.samples = int(spec.get("samples", 32))
+    sc.cycles.use_adaptive_sampling = True
+    sc.cycles.adaptive_threshold = 0.05
+    sc.cycles.max_bounces = 3
+    sc.render.use_persistent_data = True
+    sc.cycles.use_denoising = False
+    sc.render.resolution_x = int(spec.get("res_x", 1920))
+    sc.render.resolution_y = int(spec.get("res_y", 1080))
+    sc.render.image_settings.file_format = "PNG"
+    sc.view_settings.view_transform = "Filmic"
+    sc.view_settings.look = "Medium High Contrast"
+
+
+TEMPLATES = {"monoliths": build, "earth_dive": build_earth_dive}
+
+
 def main():
     argv = sys.argv[sys.argv.index("--") + 1:]
     spec = json.loads(open(argv[0]).read())
     outdir = argv[1]
-    build(spec)
+    TEMPLATES.get(spec.get("template", "monoliths"), build)(spec)
     sc = bpy.context.scene
     sc.render.filepath = outdir.rstrip("/") + "/hero_"
     bpy.ops.render.render(animation=True)
