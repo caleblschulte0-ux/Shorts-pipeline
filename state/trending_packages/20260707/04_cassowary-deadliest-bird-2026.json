@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "slug": "cassowary-deadliest-bird-2026",
+  "title": "The Bird That Can Kill You With One Kick",
+  "hashtags": [
+    "cassowary",
+    "bird",
+    "dinosaur",
+    "deadliest",
+    "australia",
+    "wildlife",
+    "animals",
+    "nature",
+    "viral",
+    "scary",
+    "fyp",
+    "wild"
+  ],
+  "script": "There is a bird that can kill a grown adult with a single kick, and it looks like a dinosaur because it basically is. The cassowary. It stands up to six feet tall, and each foot has a dagger-like claw up to four inches long. When it feels threatened, it leaps and slashes downward, and that claw can open a person from top to bottom. They live in the rainforests of Australia and New Guinea, and they are considered the single most dangerous bird on Earth. Scientists say they are living relatives of the dinosaurs. So what are you supposed to do if one charges you?",
+  "shots": [
+    {
+      "phrase": "kill a grown adult with a single kick",
+      "query": "cassowary",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+    },
+    {
+      "phrase": "it looks like a dinosaur",
+      "query": "cassowary closeup",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+    },
+    {
+      "phrase": "a dagger-like claw up to four inches long",
+      "query": "cassowary foot claw",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "leaps and slashes downward",
+      "query": "cassowary walking",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+    },
+    {
+      "phrase": "the single most dangerous bird on Earth",
+      "query": "cassowary",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+    },
+    {
+      "phrase": "living relatives of the dinosaurs",
+      "query": "cassowary rainforest",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "if one charges you",
+      "query": "cassowary",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "kill a grown adult with a single kick",
+      "text": "ONE KICK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "looks like a dinosaur",
+      "text": "A LIVING DINOSAUR",
+      "color": "#00e070"
+    },
+    {
+      "phrase": "four inches long",
+      "text": "4-INCH DAGGER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "most dangerous bird on Earth",
+      "text": "#1 DEADLIEST BIRD",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "tense"
+}

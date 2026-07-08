@@ -38,6 +38,35 @@ LANGS: dict[str, str] = {
     "fr": "french",
     "de": "german",
 }
+
+# Extended set for channels that want max worldwide reach (opt-in via the
+# langs= parameter — the default LANGS behavior is unchanged). Used by the
+# clipper (channel "third"), whose content is visual-first and travels.
+ALL_LANGS: dict[str, str] = {
+    **LANGS,
+    "ja": "japanese",
+    "ko": "korean",
+    "ru": "russian",
+    "tr": "turkish",
+    "vi": "vietnamese",
+    "th": "thai",
+    "pl": "polish",
+    "it": "italian",
+    "nl": "dutch",
+    "ms": "malay",
+    "ur": "urdu",
+    "bn": "bengali",
+    "ta": "tamil",
+    "fil": "filipino",
+    "sw": "swahili",
+    "fa": "persian",
+    "uk": "ukrainian",
+    "el": "greek",
+    "cs": "czech",
+    "ro": "romanian",
+    "hu": "hungarian",
+    "sv": "swedish",
+}
 DEFAULT_LANG = "en"
 
 # Kept in English on every localized description (license requirement).

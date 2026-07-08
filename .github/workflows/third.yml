@@ -1,0 +1,138 @@
+name: Third Channel (Proof Mode)
+
+# Fully isolated from daily.yml / explainer.yml (THIRD_BRAIN.md §13):
+# own packages dir, own posted log, own token secret, own concurrency
+# group. Renders Proof Mode packages by EXECUTING their capture spec
+# for real and composing the video from the recorded proof ledger.
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Package date folder (YYYYMMDD, default today UTC)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Render only, do NOT upload'
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - 'state/third_packages/**'
+  # Daily slate: packages synthesize from state/third_packages/default_clip.json
+  # when no authored packages exist for the day. 11:00 UTC → publish slots
+  # land 17:00/19:00/21:00 UTC (US afternoon/evening).
+  schedule:
+    - cron: '0 11 * * *'
+  # Chain off "Daily Shorts" the SAME way explainer.yml does, so one kickoff of
+  # daily.yml (the morning Claude Routine → workflow_dispatch) cascades to all
+  # THREE channels. Safe to run alongside the cron above: run_third.py
+  # synthesizes deterministic per-day slugs (clip-YYYYMMDD-N) and skips any slug
+  # already in the posted log, so a second same-day run no-ops. The cron stays
+  # as the reliable fallback because GitHub does not cascade workflow_run ->
+  # workflow_run (a workflow_dispatch of daily.yml DOES fire this chain).
+  workflow_run:
+    workflows: ["Daily Shorts"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: write   # commit third_posted_log.json
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  third:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    # On a chain fire (workflow_run) only run when Daily Shorts actually
+    # succeeded; all other triggers (dispatch, schedule, push) always run.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    concurrency:
+      group: third-shorts
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pre-flight — secrets + kill switch
+        run: |
+          set -e
+          [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
+          if [ "${{ inputs.dry_run }}" != "true" ]; then
+            [ -z "${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}" ] && {
+              echo "::error::missing secret YOUTUBE_TOKEN_JSON_THIRD — mint it with setup_youtube.py signed into the third channel's account"; exit 1; }
+            [ -z "${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}" ] && {
+              echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; exit 1; }
+          fi
+          exit 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg miller fonts-dejavu-core
+
+      - name: Install python deps
+        # curl_cffi powers yt-dlp's TLS impersonation for Kick/Rumble
+        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper deep-translator google-api-python-client google-auth google-auth-oauthlib
+
+      - name: Install Claude CLI (the author brain)
+        # Claude-first authoring, same pattern as daily.yml's brain step;
+        # best-effort — the run falls to Groq (loudly) without it.
+        run: npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || echo "::warning::claude-code install failed — author falls to Groq"
+
+      - name: Render + upload
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          # channel="third" in the packages routes the uploader to this
+          # token; the shared channels' tokens are never referenced here.
+          YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+          # Groq author writes per-clip titles/hooks/hashtags from the
+          # transcript; run degrades to raw clip titles without it
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Claude authors titles/hooks/hashtags (Groq is the loud fallback)
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Twitch Helix (optional): exact clip ages + proper windowing.
+          # Discovery falls back to yt-dlp when unset.
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          # Wrong-channel guard: hard default to the real third channel;
+          # repo var THIRD_EXPECTED_CHANNEL can override if renamed.
+          YOUTUBE_EXPECTED_CHANNEL: ${{ vars.THIRD_EXPECTED_CHANNEL || 'Thirdbraindown' }}
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          FLAGS=""
+          [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="--dry-run"
+          python scripts/run_third.py --date "$DATE" $FLAGS
+
+      - name: Commit posted log
+        # always() so the log lands even when the render step fails —
+        # losing dedupe state causes re-uploads (batch-3 incident)
+        if: ${{ always() && inputs.dry_run != true }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # translation_cache is written by the auto-localize step;
+          # --autostash rides over any other unstaged tree noise (run 2
+          # died here with 3 uploads live but the log commit unpushed)
+          git add state/third_posted_log.json state/translation_cache.json || true
+          git diff --cached --quiet || {
+            git commit -m "third: update posted log [skip ci]"
+            git pull --rebase --autostash origin main
+            git push
+          }

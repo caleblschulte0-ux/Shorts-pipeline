@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "slug": "electric-eel-leaping-shock-2026",
+  "title": "This Fish Can Leap Out of the Water to Shock You",
+  "hashtags": [
+    "electriceel",
+    "fish",
+    "amazon",
+    "wildlife",
+    "animals",
+    "nature",
+    "predator",
+    "shock",
+    "viral",
+    "wild",
+    "fyp",
+    "animalfacts"
+  ],
+  "script": "This fish generates more voltage than a wall outlet, enough to drop a horse. The electric eel. It is not actually an eel, it is a knife fish that builds up to six hundred volts in organs running the length of its body, then fires it in pulses to stun prey before it can react. Threatened on land, it does something stranger: it leaps out of the water and presses its chin against the target to deliver the shock directly, first filmed by scientists in 2016. A jolt like that will not kill a healthy adult, but enough to knock a grown man underwater. Why would a fish ever climb out of the water to attack?",
+  "shots": [
+    {
+      "phrase": "This fish generates more voltage than a wall outlet",
+      "query": "electric eel underwater",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Electric-eel.jpg"
+    },
+    {
+      "phrase": "The electric eel",
+      "query": "electric eel closeup",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Electric-eel.jpg"
+    },
+    {
+      "phrase": "up to six hundred volts",
+      "query": "electric eel voltage diagram",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "stun prey before it can react",
+      "query": "electric eel hunting fish",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Electric-eel.jpg"
+    },
+    {
+      "phrase": "leaps out of the water and presses its chin against the target",
+      "query": "electric eel leaping attack",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "first filmed by scientists in 2016",
+      "query": "scientist studying electric eel",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "knock a grown man underwater",
+      "query": "electric eel river",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Electric-eel.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "more voltage than a wall outlet",
+      "text": "600+ VOLTS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "It is not actually an eel",
+      "text": "NOT EVEN AN EEL",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "leaps out of the water",
+      "text": "LEAPS TO ATTACK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "knock a grown man underwater",
+      "text": "KNOCKS YOU DOWN",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "tense"
+}

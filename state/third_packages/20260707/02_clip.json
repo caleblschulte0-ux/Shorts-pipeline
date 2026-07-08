@@ -1,0 +1,57 @@
+{
+  "channel": "third",
+  "slug": "clip-20260707-2",
+  "title": "{clip_title}",
+  "hook": "",
+  "proof_plan": "Top fresh clip from the allowlist (Twitch/Kick/Rumble), our edit layer on top.",
+  "capture": {
+    "kind": "twitch_clip",
+    "sources": {
+      "twitch": [
+        "xqc",
+        "kaicenat",
+        "jynxzi",
+        "caseoh_",
+        "lospollostv",
+        "lacy",
+        "silky",
+        "stableronaldo",
+        "jasontheween",
+        "rayasianboy",
+        "kaysan",
+        "plaqueboymax"
+      ],
+      "kick": [
+        "adinross"
+      ],
+      "rumble": [
+        "AdinLive"
+      ]
+    },
+    "range": "24hr",
+    "top": 8,
+    "min_views": 2500,
+    "core": [
+      "kaicenat",
+      "lacy",
+      "silky",
+      "stableronaldo",
+      "jasontheween",
+      "rayasianboy",
+      "kaysan",
+      "plaqueboymax",
+      "lospollostv"
+    ]
+  },
+  "hashtags": [
+    "streamer",
+    "clips",
+    "funny",
+    "gaming",
+    "twitch",
+    "kick"
+  ],
+  "description_note": "Edited highlight \u2014 full credit to the streamer (linked below).",
+  "risk_flags": [],
+  "disclosures": []
+}

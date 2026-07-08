@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "slug": "mantis-shrimp-glass-punch-2026",
+  "title": "This Shrimp Can Crack Aquarium Glass With One Punch",
+  "hashtags": [
+    "mantisshrimp",
+    "shrimp",
+    "ocean",
+    "wildlife",
+    "animals",
+    "nature",
+    "predator",
+    "aquarium",
+    "viral",
+    "wild",
+    "fyp",
+    "animalfacts"
+  ],
+  "script": "This shrimp throws a punch fast enough to boil the water around it. The peacock mantis shrimp. Its club-like claws accelerate faster than a twenty-two caliber bullet, so fast the strike creates a flash of light and a shockwave that can crack aquarium glass from across the tank. Marine biologists keep them in reinforced tanks for exactly that reason. That single punch can shatter crab shells, snail shells, even its own prey's bones in one hit, and it can throw that punch dozens of times before resetting. Aquarium keepers call it the thumb splitter because of what happens if you reach into its tank. What animal on Earth hits harder for its size than this?",
+  "shots": [
+    {
+      "phrase": "This shrimp throws a punch fast enough to boil the water around it",
+      "query": "mantis shrimp underwater",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odontodactylus_scyllarus1.jpg"
+    },
+    {
+      "phrase": "The peacock mantis shrimp",
+      "query": "peacock mantis shrimp closeup",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odontodactylus_scyllarus1.jpg"
+    },
+    {
+      "phrase": "faster than a twenty-two caliber bullet",
+      "query": "mantis shrimp claw strike",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "crack aquarium glass from across the tank",
+      "query": "cracked aquarium glass",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "reinforced tanks for exactly that reason",
+      "query": "reinforced aquarium tank",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "shatter crab shells, snail shells",
+      "query": "shattered crab shell",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odontodactylus_scyllarus1.jpg"
+    },
+    {
+      "phrase": "the thumb splitter",
+      "query": "mantis shrimp claws closeup",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odontodactylus_scyllarus1.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "boil the water around it",
+      "text": "BOILS THE WATER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "faster than a twenty-two caliber bullet",
+      "text": "FASTER THAN A BULLET",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "crack aquarium glass",
+      "text": "CRACKS GLASS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the thumb splitter",
+      "text": "\"THUMB SPLITTER\"",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hype"
+}

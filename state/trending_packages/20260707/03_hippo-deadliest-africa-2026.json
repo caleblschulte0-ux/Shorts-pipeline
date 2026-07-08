@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "slug": "hippo-deadliest-africa-2026",
+  "title": "The Deadliest Big Animal in Africa Isn't the Lion",
+  "hashtags": [
+    "hippo",
+    "hippopotamus",
+    "africa",
+    "deadliest",
+    "wildlife",
+    "animals",
+    "nature",
+    "danger",
+    "viral",
+    "wild",
+    "fyp",
+    "scary"
+  ],
+  "script": "The animal that kills the most people in Africa is not the lion or the crocodile, it is this. The hippo. They look slow and lazy, but a hippo can run over twenty miles an hour, faster than most people can sprint, and their jaws open four feet wide with enough force to snap a canoe in half. They are fiercely territorial in the water and will capsize boats without warning. Hippos kill an estimated five hundred people a year, more than sharks, lions, and elephants combined. Behind that goofy face is Africa's deadliest heavyweight. So why does nobody warn you about them?",
+  "shots": [
+    {
+      "phrase": "kills the most people in Africa",
+      "query": "hippopotamus",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+    },
+    {
+      "phrase": "it is this. The hippo",
+      "query": "hippo water",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+    },
+    {
+      "phrase": "run over twenty miles an hour",
+      "query": "hippo running",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "jaws open four feet wide",
+      "query": "hippo mouth open",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+    },
+    {
+      "phrase": "capsize boats without warning",
+      "query": "hippo river",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "more than sharks, lions, and elephants combined",
+      "query": "hippo pod",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+    },
+    {
+      "phrase": "nobody warn you about them",
+      "query": "hippopotamus",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "kills the most people in Africa",
+      "text": "#1 KILLER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "twenty miles an hour",
+      "text": "20 MPH",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "snap a canoe in half",
+      "text": "SNAPS A CANOE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "five hundred people a year",
+      "text": "500 A YEAR",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark"
+}
