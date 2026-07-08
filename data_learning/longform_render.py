@@ -451,6 +451,66 @@ def _still_beat(seg, theme: dict, idx: int, n: int, dur: float,
 
 
 # --------------------------------------------------------------------------
+# B-roll — real footage between the data payoffs. Documentary grammar:
+# stock clips play while the narration sets the beat up, then the cut lands
+# on the chart/hero exactly when the number does. Providers via the repo's
+# stock_search (Pexels/Pixabay when keys exist, keyless Mixkit always).
+# --------------------------------------------------------------------------
+BROLL_MAX_SHARE = 0.45      # never let footage eat the data payoff
+BROLL_CLIP_SECONDS = 4.5    # per-clip cap (playbook: a cut every 1-4s)
+
+
+def _broll_part(query: str, want: float, overlay: Path, work: Path,
+                tag: str) -> Path | None:
+    """Fetch one stock clip, grade it into the channel look (crop to
+    1920x1080, slight desaturated-dark grade, vignette, heading chrome),
+    trimmed to `want` seconds. None on any failure — b-roll is a bonus,
+    never a blocker."""
+    try:
+        import stock_search
+        c = stock_search.fetch_top(query, work / f"broll_{tag}_dl",
+                                   min_duration=4, max_duration=30)
+        raw = Path(c["path"])          # fetch_top's dest is a DIRECTORY
+        out = work / f"broll_{tag}.mp4"
+        vf = (f"scale={W}:{H}:force_original_aspect_ratio=increase,"
+              f"crop={W}:{H},fps={FPS},"
+              f"eq=saturation=1.05:brightness=-0.04,vignette=PI/5")
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(raw),
+              "-i", str(overlay), "-filter_complex",
+              f"[0:v]{vf}[v];[v][1:v]overlay=0:0,"
+              f"fade=t=in:st=0:d=0.3,format=yuv420p[o]",
+              "-map", "[o]", "-t", f"{want:.3f}", "-r", str(FPS), "-an",
+              "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+              str(out)])
+        return out if _dur(out) >= 1.5 else None
+    except Exception as e:  # noqa: BLE001
+        print(f"[longform] b-roll {tag} ({query!r}) skipped: {e}",
+              file=sys.stderr)
+        return None
+
+
+def _broll_parts(seg_cfg: dict, seg, theme: dict, dur: float, work: Path,
+                 idx: int) -> tuple[list[Path], float]:
+    """Up to 2 graded b-roll clips for this beat, within the share cap.
+    Returns (clips, seconds_used)."""
+    queries = list(seg_cfg.get("broll") or [])[:2]
+    if not queries or dur < 16:
+        return [], 0.0
+    budget = min(dur * BROLL_MAX_SHARE, BROLL_CLIP_SECONDS * len(queries))
+    overlay = _heading_overlay(seg, theme, work / f"bover{idx}.png")
+    parts, used = [], 0.0
+    for j, q in enumerate(queries):
+        want = min(BROLL_CLIP_SECONDS, budget - used)
+        if want < 2.5:
+            break
+        clip = _broll_part(q, want, overlay, work, f"{idx}_{j}")
+        if clip:
+            parts.append(clip)
+            used += _dur(clip)
+    return parts, used
+
+
+# --------------------------------------------------------------------------
 # Assembly.
 # --------------------------------------------------------------------------
 def _kenburns_clip(frame: Path, dur: float, idx: int, out: Path) -> Path:
@@ -527,28 +587,35 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         for i, (seg, (t0, t1)) in enumerate(zip(st.segments, windows[1:-1])):
             dur = t1 - t0
             seg_cfg = seg_cfgs[i] if ordered else {}
+            # Real footage plays while the narration sets the beat up...
+            broll, used = _broll_parts(seg_cfg, seg, theme, dur, work, i)
+            payoff_dur = dur - used
+            # ...then the cut lands on the data payoff with the number.
             clip = None
             if seg_cfg.get("hero") and have_blender:
                 try:
                     clip = _fit_clip(_hero_beat(seg_cfg, seg, theme, work, i),
-                                     dur, work / f"c{i + 1}.mp4")
-                    print(f"[longform] beat {i + 1}: blender hero")
+                                     payoff_dur, work / f"c{i + 1}.mp4")
+                    print(f"[longform] beat {i + 1}: blender hero"
+                          + (f" (+{used:.1f}s b-roll)" if used else ""))
                 except Exception as e:  # noqa: BLE001
                     print(f"[longform] beat {i + 1}: hero FAILED ({e}) — "
                           "degrading to manim/still", file=sys.stderr)
             if clip is None and seg_cfg and have_manim:
                 try:
                     clip = _fit_clip(_manim_beat(seg_cfg, seg, theme, work, i),
-                                     dur, work / f"c{i + 1}.mp4")
+                                     payoff_dur, work / f"c{i + 1}.mp4")
                     print(f"[longform] beat {i + 1}: manim "
-                          f"{seg_cfg.get('insight_type')}")
+                          f"{seg_cfg.get('insight_type')}"
+                          + (f" (+{used:.1f}s b-roll)" if used else ""))
                 except Exception as e:  # noqa: BLE001
                     print(f"[longform] beat {i + 1}: manim FAILED ({e}) — "
                           "degrading to still", file=sys.stderr)
             if clip is None:
                 clip = _still_beat(seg, theme, i + 1, len(st.segments),
-                                   dur, work)
+                                   payoff_dur, work)
                 print(f"[longform] beat {i + 1}: still fallback")
+            clips.extend(broll)
             clips.append(clip)
 
         clips.append(_kenburns_clip(close_frame,

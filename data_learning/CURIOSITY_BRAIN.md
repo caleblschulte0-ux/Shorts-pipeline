@@ -167,6 +167,16 @@ view); build reusable scene templates before reaching for it.
   prefer VIZ-scene depictions (fill_object / stack / timeline / orbit over
   real photos) once the viz director runs on this config — a bare chart is a
   fallback, not the goal.
+- **B-roll between the payoffs (documentary grammar).** Real stock footage
+  plays while the narration sets each beat up, then the cut lands on the
+  chart/hero exactly when the number does. Every segment carries a
+  `"broll": ["query one", "query two"]` list — 1–2 queries of 2–4 concrete
+  nouns naming ONE recognizable thing (same Rule-E discipline as the news
+  channel: `"mount everest aerial"`, never keyword soup). Footage is
+  capped at 45% of the beat so the data payoff always dominates; providers
+  are Pexels/Pixabay (keys) with keyless Mixkit as the always-on net, and
+  a failed fetch silently yields the beat back to the payoff — b-roll is
+  a bonus, never a blocker.
 - **The muted test [the final operating rule]:** if the narration were muted,
   would the visual story still feel worth watching? If no, it's drifting
   back toward a generic faceless explainer — rebuild the visuals.

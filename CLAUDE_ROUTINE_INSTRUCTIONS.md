@@ -759,6 +759,11 @@ the queue stocked.
      segment `"hero": true` — the beat with the most cinematic scale
      contrast gets the Blender 3D shot (add `"hero_invert": true` when
      the values are depths, so the monoliths hang downward);
+   - give **every segment a `"broll"` list** (1–2 stock-footage queries,
+     2–4 concrete nouns each, matched to what the narration says right
+     there — "mount everest aerial", "molten lava glowing"); the renderer
+     plays the footage while the beat sets up, then cuts to the data
+     payoff;
    - **6–8 segments**, each `say` 50–90 words (3–5 sentences), total
      **550–800 spoken words**; the arc is hook → why it matters → build →
      escalate → **REVEAL around beat 5** → zoom-out implication;
