@@ -1,0 +1,28 @@
+{
+  "key": "longest_living_organisms_animal_longevity",
+  "title": "Animal Longevity",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-08"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Turritopsis",
+      "value": 200.0,
+      "period": "2022"
+    },
+    {
+      "label": "Tortoise",
+      "value": 150.0,
+      "period": "2022"
+    }
+  ]
+}
