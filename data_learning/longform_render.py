@@ -377,9 +377,13 @@ def _heading_overlay(seg, theme: dict, out: Path) -> Path:
 def _manim_beat(seg_cfg: dict, seg, theme: dict, work: Path,
                 idx: int) -> Path:
     """Render one animated data beat with Manim (curiosity_scenes.py)."""
-    from data_learning.curiosity_scenes import SCENE_FOR_KIND
+    from data_learning.curiosity_scenes import SCENE_BY_NAME, SCENE_FOR_KIND
     kind = seg_cfg.get("insight_type", "rank")
-    scene_cls = SCENE_FOR_KIND[kind]                    # KeyError -> fallback
+    # A story can request a named storytelling primitive per beat
+    # ("scene": "descent" | "zoomout" | "cutaway"); otherwise the chart
+    # scene for the data shape.                         KeyError -> fallback
+    scene_cls = (SCENE_BY_NAME[seg_cfg["scene"]] if seg_cfg.get("scene")
+                 else SCENE_FOR_KIND[kind])
     points, unit = _seg_points(seg_cfg)
     spec = {
         "kind": kind, "role": seg.role, "topic": seg.topic, "unit": unit,

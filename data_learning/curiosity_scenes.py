@@ -56,8 +56,10 @@ class _BeatBase(Scene):
         self.camera.background_color = sp.get("bg", "#0a0e20")
         role = Text(sp.get("role", "").upper(), font_size=26, weight=BOLD,
                     color=sp.get("accent", "#60A5FA"))
-        topic = Text(sp.get("topic", "").title(), font_size=44, weight=BOLD,
-                     color="#ffffff")
+        # str.title() breaks on apostrophes ("Earth'S"); cap word-starts only.
+        heading = " ".join(w[:1].upper() + w[1:]
+                           for w in sp.get("topic", "").split())
+        topic = Text(heading, font_size=44, weight=BOLD, color="#ffffff")
         head = VGroup(role, topic).arrange(DOWN, aligned_edge=LEFT, buff=0.18)
         head.to_corner(UP + LEFT, buff=0.55)
         rule = Rectangle(width=1.6, height=0.07, stroke_width=0,
@@ -239,3 +241,231 @@ class TrendBeat(_BeatBase):
 
 SCENE_FOR_KIND = {"rank": "RankBeat", "comparison": "CompareBeat",
                   "trend": "TrendBeat"}
+
+
+# ==========================================================================
+# ILLUSTRATIVE PRIMITIVES — the visual storytelling engine (tier 1/2).
+# Journeys, not graphs: the camera travels, numbers stamp in as waypoints.
+# All plain Scenes animating a WORLD group (chrome stays fixed), all
+# spec-driven, all reusable across stories.
+# ==========================================================================
+import numpy as np
+from manim import (Arc, ArcBetweenPoints, Circle, DashedLine, FadeIn,
+                   FadeOut, ORIGIN, Polygon, Triangle)
+
+
+class DescentBeat(_BeatBase):
+    """The camera falls down a cross-section shaft past depth markers —
+    ...and keeps falling through the empty distance to the deepest value.
+    points: [{label, value}] where value is a DEPTH in `unit`."""
+
+    def construct(self):
+        sp = _spec()
+        hi = sp.get("highlight", "#4FD1C5")
+        unit = sp.get("unit", "")
+        pts = sorted(sp["points"], key=lambda p: p["value"])
+        deepest = pts[-1]["value"] or 1.0
+        # Log-ish mapping so a 12 km marker and a 6,371 km floor can share
+        # one shaft without the top markers overlapping.
+        import math
+        def depth_y(v):
+            return -math.log10(1 + 9 * v / deepest) * 16.0   # 0..-16 units
+
+        world = VGroup()
+        ground = Line([-8, 0.9, 0], [8, 0.9, 0], color="#e8ecf4",
+                      stroke_width=5)
+        world.add(ground)
+        # Strata bands with alternating tones + drifting rock blobs.
+        y_floor = depth_y(deepest) - 2.5
+        band_cols = ["#141a2c", "#101626", "#0c1220", "#0a0e1a"]
+        n_bands = 12
+        for i in range(n_bands):
+            y0 = 0.9 + (y_floor - 0.9) * i / n_bands
+            y1 = 0.9 + (y_floor - 0.9) * (i + 1) / n_bands
+            world.add(Rectangle(width=16, height=abs(y1 - y0), stroke_width=0,
+                                fill_color=band_cols[i % 4], fill_opacity=1.0)
+                      .move_to([0, (y0 + y1) / 2, 0]))
+            for j in range(3):
+                bx = ((i * 37 + j * 53) % 130) / 10.0 - 6.5
+                by = y0 + (y1 - y0) * (((i * 17 + j * 29) % 10) / 10.0)
+                world.add(Circle(radius=0.06 + ((i + j) % 3) * 0.05,
+                                 stroke_width=0, fill_color="#232c44",
+                                 fill_opacity=0.8).move_to([bx, by, 0]))
+        # The shaft.
+        world.add(Line([0, 0.9, 0], [0, depth_y(deepest), 0], color=hi,
+                       stroke_width=6))
+        # Waypoint markers.
+        for p in pts:
+            y = depth_y(p["value"])
+            star = p["value"] == deepest
+            world.add(DashedLine([-3.4, y, 0], [3.4, y, 0],
+                                 color=hi if star else "#5b8fd9",
+                                 stroke_width=4 if star else 2.5))
+            world.add(Text(p["label"], font_size=30 if star else 25,
+                           weight=BOLD, color="#ffffff")
+                      .move_to([-3.7, y, 0], aligned_edge=RIGHT))
+            world.add(Text(f"{_fmt(p['value'])} {unit}".strip(),
+                           font_size=32 if star else 25, weight=BOLD,
+                           color=hi if star else GRAY_TEXT)
+                      .move_to([3.7, y, 0], aligned_edge=LEFT))
+        self.add(world)
+        self.setup_chrome(sp)          # chrome AFTER the world = on top
+        # Depth counter riding the fall.
+        v = ValueTracker(0.0)
+        counter = always_redraw(lambda: Text(
+            f"{_fmt(v.get_value())} {unit}".strip(), font_size=46,
+            weight=BOLD, color=hi).to_corner(UP + RIGHT, buff=0.7))
+        self.add(counter)
+        # The fall: ease through the marker cluster, cruise the empty gulf.
+        total_shift = -depth_y(deepest) + 1.2
+        self.play(world.animate.shift(UP * total_shift),
+                  v.animate.set_value(deepest),
+                  run_time=11.0, rate_func=rate_functions.ease_in_out_sine)
+        self.hold(1.6)
+
+
+class ZoomOutBeat(_BeatBase):
+    """The cosmic address: each tableau shrinks into a dot of the next,
+    stamping its number on the way out (powers-of-ten grammar).
+    points: [{label, value}] ordered small scale -> large scale."""
+
+    def _tableau(self, idx: int, hi: str):
+        g = VGroup()
+        if idx == 0:                                   # the spinning Earth
+            earth = Circle(radius=1.5, stroke_width=0, fill_color="#1c4a8c",
+                           fill_opacity=1.0)
+            g.add(earth)
+            for k in range(4):
+                g.add(Circle(radius=0.28 + (k % 2) * 0.12, stroke_width=0,
+                             fill_color="#2f8f5b", fill_opacity=0.95)
+                      .move_to([0.7 - k * 0.5, 0.5 - (k % 3) * 0.55, 0]))
+            g.add(Arc(radius=1.95, start_angle=-0.6, angle=2.0,
+                      color=hi, stroke_width=6))
+            g.add(Triangle(stroke_width=0, fill_color=hi, fill_opacity=1.0)
+                  .scale(0.14).rotate(-1.2).move_to(
+                      [1.95 * np.cos(1.4), 1.95 * np.sin(1.4), 0]))
+        elif idx == 1:                                 # orbit around the Sun
+            g.add(Circle(radius=0.55, stroke_width=0, fill_color="#f4c34a",
+                         fill_opacity=1.0))
+            g.add(Circle(radius=2.6, color="#5b8fd9", stroke_width=3))
+            g.add(Circle(radius=0.16, stroke_width=0, fill_color="#1c4a8c",
+                         fill_opacity=1.0).move_to([2.6, 0, 0]))
+            g.add(Arc(radius=2.6, start_angle=0.15, angle=1.1, color=hi,
+                      stroke_width=6))
+        else:                                          # the galaxy
+            for arm in range(4):
+                th0 = arm * np.pi / 2
+                spiral = [
+                    [r * np.cos(th0 + 2.4 * r), r * np.sin(th0 + 2.4 * r), 0]
+                    for r in np.linspace(0.25, 3.1, 40)]
+                for a, b in zip(spiral, spiral[1:]):
+                    g.add(Line(a, b, color="#8fa8d9", stroke_width=3,
+                               stroke_opacity=0.8))
+            g.add(Circle(radius=0.5, stroke_width=0, fill_color="#f4e6c0",
+                         fill_opacity=0.9))
+            g.add(Dot([2.1 * np.cos(1.1), 2.1 * np.sin(1.1), 0], radius=0.09,
+                      color="#ffe9a0"))
+        return g
+
+    def construct(self):
+        sp = _spec()
+        self.setup_chrome(sp)
+        hi = sp.get("highlight", "#4FD1C5")
+        unit = sp.get("unit", "")
+        pts = sorted(sp["points"], key=lambda p: p["value"])[:3]
+        center = [1.9, -0.3, 0]
+        current = self._tableau(0, hi).move_to(center)
+        self.add(current)
+        stamp = None
+        for i, p in enumerate(pts):
+            v = ValueTracker(0.0)
+            label = always_redraw(lambda v=v, p=p: VGroup(
+                Text(p["label"], font_size=30, color=GRAY_TEXT),
+                Text(f"{_fmt(v.get_value())} {unit}".strip(), font_size=44,
+                     weight=BOLD, color=hi),
+            ).arrange(DOWN, aligned_edge=LEFT, buff=0.12)
+             .to_corner(DOWN + RIGHT, buff=0.7))   # clear of the heading
+            self.add(label)
+            self.play(v.animate.set_value(p["value"]), run_time=1.6,
+                      rate_func=rate_functions.ease_out_cubic)
+            self.hold(0.7)
+            if i < len(pts) - 1:
+                nxt = self._tableau(i + 1, hi).move_to(center)
+                # Shrink the outgoing tableau ONTO its dot in the next one:
+                # Earth -> the orbit's planet dot; orbit -> the galaxy's sun.
+                dest = ([center[0] + 2.6, center[1], 0] if i == 0 else
+                        [center[0] + 2.1 * np.cos(1.1),
+                         center[1] + 2.1 * np.sin(1.1), 0])
+                self.play(current.animate.scale(0.05).move_to(dest),
+                          FadeIn(nxt), run_time=1.8,
+                          rate_func=rate_functions.ease_in_out_sine)
+                self.remove(label)
+                current = nxt
+        self.hold(1.2)
+
+
+class CutawayBeat(_BeatBase):
+    """A planet cross-section builds itself layer by layer, then the probe
+    line shows how little of it we've touched.
+    points: 2 values — the WHOLE (layer thickness) and the PART reached."""
+
+    def construct(self):
+        sp = _spec()
+        self.setup_chrome(sp)
+        hi = sp.get("highlight", "#4FD1C5")
+        unit = sp.get("unit", "")
+        pts = sorted(sp["points"], key=lambda p: p["value"], reverse=True)
+        whole, part = pts[0], pts[-1]
+        cx = [2.3, -4.6, 0]                     # planet center, below frame
+        r_out = 6.4
+        layers = [(r_out, "#2a3350", "surface"),
+                  (r_out - 1.5, "#3d2f28", ""),
+                  (r_out - 3.0, "#5c3a22", ""),
+                  (r_out - 4.4, "#8c5a2a", "")]
+        world = VGroup()
+        for r, col, _ in layers:
+            world.add(Circle(radius=r, stroke_width=0, fill_color=col,
+                             fill_opacity=1.0).move_to(cx))
+        self.play(FadeIn(world), run_time=1.2)
+        # The whole layer: a bracket spanning the outer band.
+        depth_frac = 1.5 / r_out                # outer band visual share
+        y_top, y_bot = cx[1] + r_out, cx[1] + r_out - 1.5
+        wv = ValueTracker(0.0)
+        wlabel = always_redraw(lambda: VGroup(
+            Text(whole["label"], font_size=24, color=GRAY_TEXT),
+            Text(f"{_fmt(wv.get_value())} {unit}".strip(), font_size=32,
+                 weight=BOLD, color="#ffffff"),
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.1)
+         .move_to([5.25, (y_top + y_bot) / 2, 0], aligned_edge=LEFT))
+        self.add(Line([5.0, y_top, 0], [5.0, y_bot, 0], color="#ffffff",
+                      stroke_width=4),
+                 Line([4.85, y_top, 0], [5.15, y_top, 0], color="#ffffff",
+                      stroke_width=4),
+                 Line([4.85, y_bot, 0], [5.15, y_bot, 0], color="#ffffff",
+                      stroke_width=4), wlabel)
+        self.play(wv.animate.set_value(whole["value"]), run_time=1.6,
+                  rate_func=rate_functions.ease_out_cubic)
+        self.hold(0.5)
+        # The part: the probe line drills its true fraction of the band.
+        frac = max(0.02, min(1.0, part["value"] / whole["value"]))
+        probe_y = y_top - 1.5 * frac
+        pv = ValueTracker(0.0)
+        probe = always_redraw(lambda: Line(
+            [cx[0], y_top, 0],
+            [cx[0], y_top - 1.5 * frac * min(1.0, pv.get_value()
+                                             / max(1e-9, part["value"])), 0],
+            color=hi, stroke_width=7))
+        plabel = always_redraw(lambda: Text(
+            f"{part['label']}: {_fmt(pv.get_value())} {unit}".strip(),
+            font_size=34, weight=BOLD, color=hi
+        ).move_to([cx[0] - 0.4, probe_y - 0.55, 0], aligned_edge=RIGHT))
+        self.add(probe, plabel)
+        self.play(pv.animate.set_value(part["value"]), run_time=2.4,
+                  rate_func=rate_functions.ease_out_cubic)
+        self.hold(1.6)
+
+
+SCENE_FOR_KIND.update({})
+# Named scene overrides a story can request per beat ("scene": "descent").
+SCENE_BY_NAME = {"descent": "DescentBeat", "zoomout": "ZoomOutBeat",
+                 "cutaway": "CutawayBeat"}

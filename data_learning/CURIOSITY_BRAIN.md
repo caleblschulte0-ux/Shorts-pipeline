@@ -181,6 +181,42 @@ view); build reusable scene templates before reaching for it.
   would the visual story still feel worth watching? If no, it's drifting
   back toward a generic faceless explainer — rebuild the visuals.
 
+## 7.5 The visual storytelling engine (operator doctrine, 2026-07-08)
+
+The channel is built on a **visual storytelling engine, not an animation
+tool**: a growing vocabulary of reusable, parameterized primitives that
+the authoring brain COMPOSES. The brain's intelligence goes into "what
+should the viewer see, where does the camera go?" — never into inventing
+frames. Quality compounds as the library grows. Five tiers:
+
+| Tier | What | Engine |
+|---|---|---|
+| 1–2 (~80%) | Procedural + vector motion: journeys, ladders, cutaways, counters, labels, orbits, fills, stacks | Manim scenes in `curiosity_scenes.py` (vector, deterministic, TeX-free) |
+| 3 | 3D asset/template library — build Earth/shaft/lineup ONCE, then only camera + parameters change per video (brand consistency) | `blender_hero.py` templates, headless Cycles |
+| 4 | AI **stills** for the un-photographable (`gemini_images.py`), then animate them OURSELVES — Ken Burns, parallax, zoom. Never ask AI to animate | Pillow + ffmpeg |
+| 5 | AI **video**, 5–10s max, only for scenes nothing else can make (eruptions, ancient scenes). The one slot worth a paid service later | not wired yet |
+
+**Named primitives so far** (a story requests one per beat with
+`"scene": "<name>"`; the data shape's chart scene is the default):
+`descent` (camera falls past depth waypoints), `zoomout` (powers-of-ten
+ladder — each tableau shrinks into a dot of the next), `cutaway`
+(planet layers draw themselves, the probe shows the fraction touched),
+plus the chart beats `rank` / `comparison` / `trend`. Real footage
+(b-roll) is garnish between payoffs, never the spine.
+
+**Rules that make it feel premium:**
+- **Camera language** — animate the camera, not the object. Not "Earth
+  appears" but "we pull away from Earth"; not "a list of depths" but
+  "we fall past them."
+- **One world** — every video feels like one connected universe (same
+  chrome, same palette, transitions that travel), not
+  picture-picture-picture.
+- **Text is an object** — counters, measurements, callouts, scale bars
+  that move with the world; subtitles are not animation.
+- **Grow the library, not one-offs** — a new visual need becomes a new
+  parameterized primitive (or Blender template or effect), added here
+  by name, so the next 100 videos get it for free.
+
 ## 8. Package output schema
 
 Stories live in `data_learning/curiosity.config.json` → `"stories"[]`, the

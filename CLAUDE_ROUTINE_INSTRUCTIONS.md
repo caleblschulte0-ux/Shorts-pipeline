@@ -764,6 +764,12 @@ the queue stocked.
      there — "mount everest aerial", "molten lava glowing"); the renderer
      plays the footage while the beat sets up, then cuts to the data
      payoff;
+   - **pick each beat's storytelling primitive** (CURIOSITY_BRAIN.md §7.5):
+     set `"scene": "descent" | "zoomout" | "cutaway"` on beats where a
+     journey beats a chart (depths → descent, scale ladders → zoomout,
+     part-of-a-whole → cutaway); leave chart beats (rank/comparison/trend)
+     for the record-book moments. Think camera, not chart: "what does the
+     viewer fly past?";
    - **6–8 segments**, each `say` 50–90 words (3–5 sentences), total
      **550–800 spoken words**; the arc is hook → why it matters → build →
      escalate → **REVEAL around beat 5** → zoom-out implication;

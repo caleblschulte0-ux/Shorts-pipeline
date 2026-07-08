@@ -99,7 +99,8 @@
      "broll": [
       "canyon rock layers",
       "cave interior rock"
-     ]
+     ],
+     "scene": "cutaway"
     },
     {
      "source": "offline",
@@ -129,7 +130,8 @@
      "broll": [
       "earth from space",
       "night sky stars"
-     ]
+     ],
+     "scene": "descent"
     }
    ]
   },
@@ -216,7 +218,8 @@
      "broll": [
       "milky way time lapse",
       "galaxy stars"
-     ]
+     ],
+     "scene": "zoomout"
     },
     {
      "source": "offline",
