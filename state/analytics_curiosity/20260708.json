@@ -1,7 +1,41 @@
 {
-  "fetched_at": "2026-07-08T17:23:00.569385+00:00",
-  "videos": [],
+  "fetched_at": "2026-07-08T18:27:01.431310+00:00",
+  "videos": [
+    {
+      "video_id": "JzMogQCJFE8",
+      "url": "https://www.youtube.com/watch?v=JzMogQCJFE8",
+      "catalog_id": "kola-deepest-hole",
+      "title": "The Deepest Hole on Earth Is Welded Shut",
+      "published_at": "2026-07-08T18:26:54Z",
+      "age_hours": 0.0,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "views_per_hour": 0.0
+    }
+  ],
   "summary": {
-    "total_videos": 0
+    "total_videos": 1,
+    "total_views": 0,
+    "avg_views_per_video": 0.0,
+    "median_views_per_hour": 0.0,
+    "top_5_by_vph": [
+      {
+        "title": "The Deepest Hole on Earth Is Welded Shut",
+        "views_per_hour": 0.0,
+        "views": 0,
+        "age_hours": 0.0,
+        "url": "https://www.youtube.com/watch?v=JzMogQCJFE8"
+      }
+    ],
+    "bottom_5_by_vph": [
+      {
+        "title": "The Deepest Hole on Earth Is Welded Shut",
+        "views_per_hour": 0.0,
+        "views": 0,
+        "age_hours": 0.0,
+        "url": "https://www.youtube.com/watch?v=JzMogQCJFE8"
+      }
+    ]
   }
 }
