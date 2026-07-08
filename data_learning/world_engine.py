@@ -1,0 +1,299 @@
+#!/usr/bin/env python3
+"""The simulation engine's compositor — one place, one camera, one take.
+
+Executes a renderer-agnostic VISUAL SCRIPT (the IR): a world template lays
+out waypoints as points of interest in ONE connected place; a single camera
+makes one continuous journey through it, arriving at each waypoint as its
+narration beat begins. There are no cuts in the body — transitions ARE
+camera moves, and the frame is never locked (dwell = slow real frame creep,
+not post-hoc Ken Burns).
+
+Manim's MovingCameraScene is used strictly as the 2.5D compositor/camera
+behind the IR — an implementation detail, not the engine's identity
+(CURIOSITY_BRAIN.md §7.5). Blender heroes and footage are sibling backends
+spliced by the assembler (longform_render) over their waypoint's window.
+
+IR (the "world" block of a story in curiosity.config.json):
+    {
+      "template": "depth" | "scale" | "system",
+      "story_template": "mystery-reveal" | "question-journey-discovery" |
+                        "scale-comparison-perspective" | "countdown-winner-surprise",
+      "waypoints": [
+        {"builder": "<object builder name>",
+         "params": {...},                  # builder-specific (incl. data file)
+         "camera": "dive|glide|push|pullback|track",   # entry move flavor
+         "hero": "earth_dive"|"monoliths"?  # blender splice over this window
+        }, ...                             # waypoint i <-> narration beat i+1
+      ]
+    }
+
+The renderer writes a full runtime spec (IR + narration windows + theme +
+chrome strings) to a JSON file and invokes:
+
+    CURIO_WORLD_SPEC=/path/spec.json python -m manim render -qm --fps 30 \
+        -r 1920,1080 data_learning/world_engine.py WorldScene
+"""
+from __future__ import annotations
+
+import json
+import math
+import os
+
+import numpy as np
+from manim import (BOLD, DOWN, LEFT, RIGHT, UP, UL, Circle, Dot, FadeIn,
+                   FadeOut, Line, MovingCameraScene, Rectangle, Text,
+                   ValueTracker, VGroup, always_redraw, rate_functions)
+
+FRAME_W0 = 14.222                 # manim default frame width (1920x1080)
+GRAY_TEXT = "#98a2b4"
+
+# ---------------------------------------------------------------------------
+# Object builders — populated by curiosity_scenes-derived builders (task:
+# assets & builders). A builder returns (group, anims): the group is placed
+# at the waypoint's anchor by the template; anims play on camera arrival.
+# The registry is extended by world_builders.py; these built-ins keep the
+# engine testable standalone.
+# ---------------------------------------------------------------------------
+BUILDERS = {}
+
+
+def builder(name):
+    def reg(fn):
+        BUILDERS[name] = fn
+        return fn
+    return reg
+
+
+@builder("marker")
+def _build_marker(wp: dict, theme: dict, scale: float):
+    """Placeholder waypoint: a glowing dot + label + value counter."""
+    hi = theme.get("highlight", "#4FD1C5")
+    p = wp.get("params", {})
+    dot = Dot([0, 0, 0], radius=0.16 * scale, color=hi)
+    halo = Circle(radius=0.34 * scale, stroke_width=6 * scale,
+                  color=hi, stroke_opacity=0.5)
+    label = Text(str(p.get("label", "")), font_size=int(34 * scale),
+                 weight=BOLD, color="#ffffff").next_to(dot, DOWN, buff=0.3 * scale)
+    g = VGroup(dot, halo, label)
+    anims = [FadeIn(label, shift=UP * 0.2 * scale)]
+    return g, anims
+
+
+# ---------------------------------------------------------------------------
+# World templates — ONE PLACE per archetype. A template returns, for each
+# waypoint index, (anchor xy, frame_width at that waypoint) plus builds the
+# world's connective tissue (backdrop, path geometry) so the journey reads
+# as one continuous place, never as islands.
+# ---------------------------------------------------------------------------
+def _layout_depth(n: int):
+    """Vertical descent: surface at the top, waypoints stacked downward.
+    Spacing generous enough that neighbours aren't co-visible at dwell zoom."""
+    fw = 11.0
+    step = fw * 1.35
+    return [([0.0, -i * step, 0.0], fw) for i in range(n)], step
+
+
+def _layout_scale(n: int):
+    """One continuous zoom axis: all waypoints share a centre; each level's
+    frame is Z× wider than the last (powers-of-ten). Objects for level i are
+    built at scale fw_i/11 so each fills its own frame."""
+    z = 7.0
+    return [([0.0, 0.0, 0.0], 11.0 * (z ** i)) for i in range(n)], z
+
+
+def _layout_system(n: int):
+    """A map/flow surface the camera tracks across, left to right with a
+    gentle meander."""
+    fw = 11.0
+    step = fw * 1.30
+    return ([([i * step, 2.2 * math.sin(i * 1.1), 0.0], fw)
+             for i in range(n)], step)
+
+
+LAYOUTS = {"depth": _layout_depth, "scale": _layout_scale,
+           "system": _layout_system}
+
+
+def _backdrop_depth(anchors, theme):
+    """Strata bands + drifting rock blobs spanning the whole journey."""
+    g = VGroup()
+    top = anchors[0][1] + 8
+    bot = anchors[-1][1] - 10
+    band_cols = ["#141a2c", "#101626", "#0c1220", "#0a0e1a"]
+    n_bands = max(6, int((top - bot) / 6))
+    for i in range(n_bands):
+        y0 = top + (bot - top) * i / n_bands
+        y1 = top + (bot - top) * (i + 1) / n_bands
+        g.add(Rectangle(width=90, height=abs(y1 - y0) + 0.05, stroke_width=0,
+                        fill_color=band_cols[i % 4], fill_opacity=1.0)
+              .move_to([0, (y0 + y1) / 2, 0]))
+    rocks = VGroup()
+    for i in range(90):
+        rx = ((i * 37) % 700) / 10.0 - 35
+        ry = top + (bot - top) * (((i * 61) % 100) / 100.0)
+        rocks.add(Circle(radius=0.08 + (i % 4) * 0.07, stroke_width=0,
+                         fill_color="#232c44", fill_opacity=0.75)
+                  .move_to([rx, ry, 0]))
+    return g, rocks
+
+
+def _backdrop_space(anchors, theme):
+    """Star field spanning the widest frame (scale worlds zoom, not travel)."""
+    g = VGroup()                                     # no strata bands
+    span = (max(fw for _, fw in anchors) * 1.6) if anchors else 100
+    stars = VGroup()
+    for i in range(160):
+        x = (((i * 73) % 1000) / 1000.0 - 0.5) * span
+        y = (((i * 149) % 1000) / 1000.0 - 0.5) * span * 0.6
+        r = (0.02 + (i % 3) * 0.015) * max(1.0, span / 100)
+        stars.add(Dot([x, y, 0], radius=r,
+                      color="#cdd6ea").set_opacity(0.5 + (i % 5) * 0.1))
+    return g, stars
+
+
+BACKDROPS = {"depth": _backdrop_depth, "scale": _backdrop_space,
+             "system": _backdrop_depth}
+
+
+# ---------------------------------------------------------------------------
+# The one-take scene.
+# ---------------------------------------------------------------------------
+def _spec() -> dict:
+    return json.loads(open(os.environ["CURIO_WORLD_SPEC"]).read())
+
+
+class WorldScene(MovingCameraScene):
+    def construct(self):
+        sp = _spec()
+        theme = sp.get("theme", {})
+        self.camera.background_color = theme.get("bg", "#080a14")
+        world = sp["world"]
+        wps = world["waypoints"]
+        windows = sp["windows"]              # [[t0,t1], ...] == sentences
+        chrome_meta = sp.get("chrome", [])   # per-beat {role, topic}
+        hi = theme.get("highlight", "#4FD1C5")
+        accent = theme.get("accent", "#60A5FA")
+
+        anchors, _step = LAYOUTS[world.get("template", "depth")](len(wps))
+
+        # --- backdrop (far + mid parallax layers) ---
+        bands, blobs = BACKDROPS[world.get("template", "depth")](anchors, theme)
+        frame = self.camera.frame
+        # Positional parallax: far layers lag the camera. base positions
+        # captured at build time; updaters re-anchor relative to the frame.
+        blob_base = blobs.get_center().copy()
+        def parallax(m, k=0.35, base=blob_base):
+            m.move_to(base + frame.get_center() * k)
+        blobs.add_updater(parallax)
+        self.add(bands, blobs)
+
+        # --- waypoint objects, placed in the one place ---
+        arrival_anims = []
+        for i, wp in enumerate(wps):
+            anchor, fw = anchors[i]
+            scale = fw / 11.0
+            build = BUILDERS.get(wp.get("builder", "marker"),
+                                 BUILDERS["marker"])
+            g, anims = build(wp, theme, scale)
+            g.move_to(anchor)
+            self.add(g)
+            arrival_anims.append(anims)
+
+        # --- connective tissue for depth/system worlds: the journey line ---
+        if world.get("template") in (None, "depth", "system"):
+            pts = [a for a, _ in anchors]
+            for a, b in zip(pts, pts[1:]):
+                self.add(Line(a, b, color=hi, stroke_width=5,
+                              stroke_opacity=0.55))
+
+        # --- chrome pinned to the camera frame (rides the journey) ---
+        def chrome_for(i):
+            meta = (chrome_meta[i] if i < len(chrome_meta) else {})
+            role = Text(str(meta.get("role", "")).upper(), font_size=26,
+                        weight=BOLD, color=accent)
+            topic = Text(" ".join(w[:1].upper() + w[1:] for w in
+                                  str(meta.get("topic", "")).split()),
+                         font_size=42, weight=BOLD, color="#ffffff")
+            g = VGroup(role, topic).arrange(DOWN, aligned_edge=LEFT, buff=0.15)
+
+            base_w = g.width or 1.0
+
+            def pin(m, base_w=base_w):
+                s = frame.width / FRAME_W0
+                m.set_width(min(base_w, 5.4) * s)   # absolute each frame
+                m.move_to(frame.get_corner(UL)
+                          + np.array([0.6, -0.65, 0]) * s, aligned_edge=UL)
+            g.add_updater(pin)
+            return g
+
+        # --- the journey ---
+        title_w = windows[0][1] - windows[0][0]
+        # Entry: start wide above/outside the first waypoint, glide in.
+        a0, fw0 = anchors[0]
+        frame.set(width=fw0 * 2.6).move_to(
+            np.array(a0) + np.array([0, fw0 * 0.5, 0]))
+        title = Text(sp.get("title", ""), font_size=64, weight=BOLD,
+                     color="#ffffff")
+        title_pin = VGroup(title)
+
+        title_base_w = min(title_pin.width or 9.0, 9.0)
+
+        def pin_title(m):
+            m.set_width(title_base_w * frame.width / FRAME_W0)
+            m.move_to(frame.get_center() + np.array([0, frame.height * 0.28, 0]))
+        title_pin.add_updater(pin_title)
+        self.add(title_pin)
+        self.play(frame.animate.set(width=fw0 * 1.9), run_time=title_w * 0.8,
+                  rate_func=rate_functions.ease_in_out_sine)
+        self.play(FadeOut(title_pin), run_time=max(0.3, title_w * 0.2))
+
+        chrome = None
+        for i, wp in enumerate(wps):
+            t0, t1 = windows[i + 1]
+            dur = t1 - t0
+            anchor, fw = anchors[i]
+            travel = min(2.8, dur * 0.30)
+            if chrome:
+                self.play(FadeOut(chrome), run_time=0.01)
+            self.play(frame.animate.move_to(anchor).set(width=fw),
+                      run_time=travel,
+                      rate_func=rate_functions.ease_in_out_sine)
+            chrome = chrome_for(i)
+            self.play(FadeIn(chrome), run_time=0.3)
+            # Waypoint animations, then dwell with real frame creep — the
+            # camera keeps breathing even while the exhibit holds.
+            spent = travel + 0.3
+            for a in arrival_anims[i]:
+                rt = getattr(a, "run_time", 1.0)
+                if spent + rt > dur - 0.4:
+                    break
+                self.play(a, run_time=rt)
+                spent += rt
+            creep = max(0.05, dur - spent)
+            self.play(frame.animate.set(width=fw * 0.94),
+                      run_time=creep,
+                      rate_func=rate_functions.ease_in_out_sine)
+
+        # Exit: final pullback reveals the whole journey; closing text pins.
+        t0, t1 = windows[-1]
+        if chrome:
+            self.play(FadeOut(chrome), run_time=0.01)
+        whole_h = abs(anchors[-1][0][1] - anchors[0][0][1]) + 14
+        mid = [(anchors[0][0][0] + anchors[-1][0][0]) / 2,
+               (anchors[0][0][1] + anchors[-1][0][1]) / 2, 0]
+        closing = Text(sp.get("closing", ""), font_size=48, weight=BOLD,
+                       color="#ffffff")
+        cpin = VGroup(closing)
+
+        close_ratio = 0.62
+
+        def pin_close(m):
+            m.set_width(frame.width * close_ratio)
+            m.move_to(frame.get_center()
+                      + np.array([0, -frame.height * 0.30, 0]))
+        cpin.add_updater(pin_close)
+        self.add(cpin)
+        self.play(frame.animate.move_to(mid).set(
+            width=max(whole_h * 16 / 9, anchors[0][1] * 2.2)),
+            run_time=(t1 - t0),
+            rate_func=rate_functions.ease_in_out_sine)
