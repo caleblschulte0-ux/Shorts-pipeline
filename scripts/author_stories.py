@@ -67,7 +67,8 @@ VIZ_VOCAB = {
 # Depictions that read as a stand-out 'moment' — aim for >=1 per story.
 _NOVELTY = {"timeline", "scale_stack", "fill_vessel", "orbit", "waffle_grid", "diorama"}
 _VALID_VIZ = set(VIZ_VOCAB) | {"geo_city", "pictograph", "bubbles"}
-_DUP_THRESHOLD = 0.5          # topic_guard overlap fraction that = "already done"
+_DUP_THRESHOLD = 0.4          # topic_guard overlap fraction that = "already done"
+                             # (0.5 -> 0.4: catch near-duplicate subjects earlier)
 
 # The composable SCENE element kit — the director can INVENT a bespoke depiction
 # per data point by arranging these, instead of picking a fixed viz.
