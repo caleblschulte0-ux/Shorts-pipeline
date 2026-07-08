@@ -348,18 +348,23 @@ def _fit_clip(src: Path, dur: float, out: Path) -> Path:
     return out
 
 
-def _heading_overlay(seg, theme: dict, out: Path) -> Path:
+def _heading_overlay(seg, theme: dict, out: Path,
+                     bottom: bool = False) -> Path:
     """Transparent 1920x1080 PNG with the beat's role/topic/rule/footer —
-    laid over Blender hero clips so every beat shares one chrome system."""
+    laid over Blender hero and b-roll clips so every beat shares one
+    chrome system. `bottom=True` anchors the heading lower-left (hero
+    scenes keep their 3D labels along the top — never collide with them)."""
     from PIL import Image, ImageDraw
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     M = 90
     accent = _rgb(theme.get("accent", "#60A5FA"))
     rf = _font(38)
-    d.text((M, 120), (seg.role or "").upper(), font=rf, fill=(*accent, 255))
     tf, tlines = _fit_text(d, (seg.topic or "").title(), 66, 760, 3)
-    y = 185
+    block_h = 65 + len(tlines) * int(tf.size * 1.18) + 34
+    y0 = (H - 150 - block_h) if bottom else 120
+    d.text((M, y0), (seg.role or "").upper(), font=rf, fill=(*accent, 255))
+    y = y0 + 65
     for ln in tlines:
         d.text((M + 4, y + 4), ln, font=tf, fill=(0, 0, 0, 200))
         d.text((M, y), ln, font=tf, fill=(255, 255, 255, 255))
@@ -435,7 +440,8 @@ def _hero_beat(seg_cfg: dict, seg, theme: dict, work: Path,
         check=False, capture_output=True, text=True, timeout=3600)
     if "HERO_DONE" not in (res.stdout or ""):
         raise RuntimeError(f"blender hero failed: {(res.stderr or '')[-400:]}")
-    overlay = _heading_overlay(seg, theme, work / f"hover{idx}.png")
+    overlay = _heading_overlay(seg, theme, work / f"hover{idx}.png",
+                               bottom=True)
     out = work / f"herobeat{idx}.mp4"
     _run(["ffmpeg", "-y", "-loglevel", "error",
           "-framerate", str(HERO_FPS), "-i", str(frames_dir / "hero_%04d.png"),
