@@ -29,9 +29,17 @@ FONTS_DIR = REPO / "assets" / "fonts"            # bundled Anton (OFL)
 FONT_BOLD = str(FONTS_DIR / "Anton-Regular.ttf")
 
 
-def _run(cmd: list[str]) -> str:
+# Hard ceiling on every external tool call (yt-dlp download, ffprobe,
+# ffmpeg encode). Without this a stalled download/encode hangs the whole
+# run until GitHub's 60-min job timeout — the batch-4 incident. On
+# timeout the package raises and the orchestrator moves to the next one.
+_RUN_TIMEOUT = 300  # seconds
+
+
+def _run(cmd: list[str], timeout: int = _RUN_TIMEOUT) -> str:
     return subprocess.check_output(cmd, text=True,
-                                   stderr=subprocess.STDOUT)
+                                   stderr=subprocess.STDOUT,
+                                   timeout=timeout)
 
 
 # ---------- 1. discover ----------
