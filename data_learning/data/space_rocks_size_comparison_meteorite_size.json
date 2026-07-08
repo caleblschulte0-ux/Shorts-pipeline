@@ -1,0 +1,33 @@
+{
+  "key": "space_rocks_size_comparison_meteorite_size",
+  "title": "Meteorite Size",
+  "unit": "kg",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-06"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Hoba meteorite",
+      "value": 66000.0,
+      "period": "1920"
+    },
+    {
+      "label": "Gibeon meteorite",
+      "value": 14000.0,
+      "period": "1911"
+    },
+    {
+      "label": "Chelyabinsk meteorite",
+      "value": 13000.0,
+      "period": "2013"
+    }
+  ]
+}

@@ -64,3 +64,6 @@ state/cutouts/
 scratchpad/
 # real subject photos downloaded on demand (Wikimedia); binary, regenerated in CI
 state/subject_photos/
+
+# Proof Mode (third channel) generated fixtures — deterministic, rebuilt each run
+third_capture/fixtures/

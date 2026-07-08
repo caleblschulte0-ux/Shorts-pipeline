@@ -755,6 +755,20 @@ def main() -> int:
                   "GROQ_API_KEY for fallback", file=sys.stderr)
             return 2
 
+        # LOUD: falling to Groq is a degraded path (weak writer, no brain).
+        # It must NEVER be silent — surface it in the log AND the committed
+        # report so a missing brain/prewritten batch is impossible to miss.
+        print("::warning::FELL BACK TO GROQ — no brain/pre-written packages "
+              "for today. Writer quality is degraded; check the brain step.",
+              flush=True)
+        try:
+            REPORT_PATH.write_text(
+                f"# Daily Trending Shorts — {now.strftime('%Y-%m-%d')}\n\n"
+                "> ⚠️ **FELL BACK TO GROQ** — no brain-authored or pre-written "
+                "packages for today; the day shipped on the weak fallback "
+                "writer. Fix the brain step / token.\n")
+        except Exception:  # noqa: BLE001
+            pass
         print("=== no pre-written packages — Groq fallback ===", flush=True)
         print("=== discovery ===", flush=True)
         raw = discover_all()
@@ -804,6 +818,7 @@ def main() -> int:
     # quarantine is an intentional skip (off-topic imagery), not a
     # crash — it must NOT bump the auto-pause counter, or a few
     # un-illustratable packages would silence the whole pipeline.
+    posted = [r for r in results if r["ok"]]
     quarantined = [r for r in results if r.get("quarantined")]
     failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
     if quarantined:
@@ -813,6 +828,18 @@ def main() -> int:
     if failed:
         print(f"[run_trending_daily] {len(failed)} of {len(results)} failed",
               file=sys.stderr)
+    # ZERO-POST SAFEGUARD: a non-empty slate that shipped NOTHING is a real
+    # outage (every package quarantined and/or failed). Fail loudly so the
+    # run goes RED, the failure counter bumps, and the ntfy alert fires —
+    # instead of a silent green "0 posted" that goes unnoticed for days
+    # (exactly what happened 07-03..07-05). A partial run (>=1 posted) with
+    # some quarantines stays green, per the original intent.
+    if results and not args.dry_run and not posted:
+        print(f"[run_trending_daily] ZERO of {len(results)} posted — total "
+              f"outage; exiting non-zero so the run goes RED and alerts.",
+              file=sys.stderr)
+        return 1
+    if failed:
         return 1
     return 0
 

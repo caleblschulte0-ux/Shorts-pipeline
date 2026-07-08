@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "slug": "musk-ox-wolf-circle-defense-2026",
+  "title": "Wolves Won't Touch a Herd That Forms This Shape",
+  "hashtags": [
+    "muskox",
+    "wolves",
+    "arctic",
+    "wildlife",
+    "animals",
+    "nature",
+    "predator",
+    "survival",
+    "viral",
+    "wild",
+    "fyp",
+    "animalfacts"
+  ],
+  "script": "A wolf pack can bring down almost anything in the Arctic, except this formation. Musk oxen under attack do not run, they circle. Adults face outward in a tight ring, horns down, with calves pushed into the center where nothing can reach them. Any wolf that gets too close meets a nine hundred pound animal that can charge at thirty miles an hour and crack a skull in one hit. Packs will circle a herd for hours looking for a gap and usually leave with nothing. It is one of the oldest group defenses in the animal kingdom, older than the wolves testing it today. What happens the one time the circle breaks?",
+  "shots": [
+    {
+      "phrase": "A wolf pack can bring down almost anything in the Arctic",
+      "query": "wolf pack arctic",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Musk oxen under attack do not run, they circle",
+      "query": "musk oxen herd",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Muskox_(Ovibos_moschatus)_male_Dovrefjell_1.jpg"
+    },
+    {
+      "phrase": "Adults face outward in a tight ring, horns down",
+      "query": "musk ox horns",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Muskox_(Ovibos_moschatus)_male_Dovrefjell_1.jpg"
+    },
+    {
+      "phrase": "calves pushed into the center where nothing can reach them",
+      "query": "musk ox calf herd",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "charge at thirty miles an hour and crack a skull in one hit",
+      "query": "musk ox charging",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Muskox_(Ovibos_moschatus)_male_Dovrefjell_1.jpg"
+    },
+    {
+      "phrase": "usually leave with nothing",
+      "query": "wolves retreating",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the oldest group defenses in the animal kingdom",
+      "query": "musk ox herd snow",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Muskox_(Ovibos_moschatus)_male_Dovrefjell_1.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "they circle",
+      "text": "THEY CIRCLE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "nine hundred pound animal",
+      "text": "900 LBS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "crack a skull in one hit",
+      "text": "1 HIT = SKULL CRACKED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "usually leave with nothing",
+      "text": "WOLVES LEAVE EMPTY",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "epic"
+}
