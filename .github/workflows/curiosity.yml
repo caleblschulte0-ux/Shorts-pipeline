@@ -47,8 +47,11 @@ on:
         type: choice
         options: ['false', 'true']
   # Weekly cadence — long-form is a catalog play, not a firehose.
-  schedule:
-    - cron: '0 15 * * 6'
+  # DISARMED (operator ruling 2026-07-08): nothing publishes while the
+  # simulation-engine rebuild is in progress. Re-enable by uncommenting
+  # once the operator approves the new-engine preview.
+  # schedule:
+  #   - cron: '0 15 * * 6'
 
 permissions:
   contents: write          # persist state/curiosity_posted_log.json
