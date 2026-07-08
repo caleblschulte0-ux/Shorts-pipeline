@@ -486,9 +486,10 @@ def _b_scalelevel(wp, theme, scale, anchor=None):
     stamp = VGroup(label, value).arrange(DOWN, aligned_edge=LEFT,
                                          buff=0.12 * scale)
     stamp.move_to([2.9 * scale, -2.2 * scale, 0], aligned_edge=LEFT)
-    stamp.set_opacity(0)
     g.add(stamp)
     if anchor is not None:
-        g.move_to(anchor)          # BEFORE anims: .animate snapshots coords
-    anims = [_Par([stamp.animate.set_opacity(1.0)], run_time=0.9)]
-    return g, anims
+        g.move_to(anchor)
+    # No arrival anims: in a ScaleWorld the zoom itself is the reveal —
+    # the engine's visibility gate fades the whole level in as the camera
+    # approaches its magnification (an opacity anim would fight the gate).
+    return g, []

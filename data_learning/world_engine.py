@@ -166,23 +166,51 @@ class WorldScene(MovingCameraScene):
         self.add(bands, blobs)
 
         # --- waypoint objects, placed in the one place ---
+        is_scale = world.get("template") == "scale"
         arrival_anims, groups = [], []
         for i, wp in enumerate(wps):
             anchor, fw = anchors[i]
-            scale = fw / 11.0
             build = BUILDERS.get(wp.get("builder", "marker"),
                                  BUILDERS["marker"])
             # Builders position themselves at the anchor BEFORE creating
             # animations — .animate targets snapshot coordinates at
             # creation time, so a post-hoc group move would teleport
             # transformed objects back toward the origin (one-take rule).
-            g, anims = build(wp, theme, scale, np.array(anchor))
+            if is_scale:
+                # Scale levels build at unit design scale, then the GROUP
+                # scales geometrically — Text glyphs are vector outlines,
+                # so this survives zooms where a 15,000pt font would not.
+                g, anims = build(wp, theme, 1.0, np.array(anchor))
+                g.scale(fw / 11.0, about_point=np.array(anchor),
+                        scale_stroke=True)
+            else:
+                g, anims = build(wp, theme, fw / 11.0, np.array(anchor))
             # Updaters (live counters) only run while their waypoint is
             # active — a passed or unvisited exhibit costs nothing.
             g.suspend_updating()
             self.add(g)
             arrival_anims.append(anims)
             groups.append(g)
+
+        # Scale worlds nest all levels around one centre (powers of ten) —
+        # each level is only visible while the camera is near its zoom, so
+        # a galaxy arm never slashes through the couch-level frame. The
+        # fade PRESERVES each submobject's designed opacity (an atmosphere
+        # ring at 0.35 must never become an opaque disc).
+        if is_scale:
+            for g, (anchor, fw) in zip(groups, anchors):
+                designed = [(m, m.get_fill_opacity(), m.get_stroke_opacity())
+                            for m in g.family_members_with_points()]
+
+                def vis(_g, fw=fw, designed=designed):
+                    ratio = frame.width / fw
+                    o = 1.0 if 0.45 <= ratio <= 2.4 else max(
+                        0.0, 1.0 - 0.9 * abs(math.log(max(ratio, 1e-6), 3)))
+                    for m, f0, s0 in designed:
+                        m.set_fill(opacity=f0 * o)
+                        m.set_stroke(opacity=s0 * o)
+                g.add_updater(vis)
+                g.resume_updating()          # visibility must always run
 
         # --- connective tissue for depth/system worlds: the journey line ---
         if world.get("template") in (None, "depth", "system"):
@@ -262,13 +290,18 @@ class WorldScene(MovingCameraScene):
             self.play(frame.animate.set(width=fw * 0.94),
                       run_time=creep,
                       rate_func=rate_functions.ease_in_out_sine)
-            groups[i].suspend_updating()
+            if world.get("template") != "scale":
+                groups[i].suspend_updating()   # scale keeps visibility upds
 
         # Exit: final pullback reveals the whole journey; closing text pins.
         t0, t1 = windows[-1]
         if chrome:
             self.play(FadeOut(chrome), run_time=0.01)
-        whole_h = abs(anchors[-1][0][1] - anchors[0][0][1]) + 14
+        if world.get("template") == "scale":
+            # Exit for a zoom world: pull out past the widest level.
+            whole_h = max(fw for _, fw in anchors) * 0.9
+        else:
+            whole_h = abs(anchors[-1][0][1] - anchors[0][0][1]) + 14
         mid = [(anchors[0][0][0] + anchors[-1][0][0]) / 2,
                (anchors[0][0][1] + anchors[-1][0][1]) / 2, 0]
         closing = Text(sp.get("closing", ""), font_size=48, weight=BOLD,
