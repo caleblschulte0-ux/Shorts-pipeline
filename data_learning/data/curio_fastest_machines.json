@@ -1,0 +1,29 @@
+{
+ "key": "curio_fastest_machines",
+ "title": "You vs the fastest things ever built (km/h)",
+ "unit": "km/h",
+ "geography": "World / Solar System",
+ "time_coverage": "2024",
+ "source": {
+  "name": "Parker Solar Probe record speed vs galactic ride",
+  "publisher": "NASA",
+  "url": "https://science.nasa.gov/mission/parker-solar-probe/",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures, rounded. Parker Solar Probe reached ~692,000 km/h (430,000 mph) at its December 2024 perihelion — the fastest human-made object ever. Galactic orbital speed ~828,000 km/h; jet airliner cruise ~900 km/h.",
+ "points": [
+  {
+   "label": "You (galactic orbit)",
+   "value": 828000
+  },
+  {
+   "label": "Parker Solar Probe",
+   "value": 692000
+  },
+  {
+   "label": "Jet airliner",
+   "value": 900
+  }
+ ]
+}

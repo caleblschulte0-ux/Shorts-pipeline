@@ -44,25 +44,26 @@ def _story_keywords(s: dict) -> set[str]:
                " ".join(s.get("hashtags", [])))
 
 
-def _load() -> list[dict]:
-    return json.loads(CONFIG.read_text()).get("stories", [])
+def _load(config: Path = CONFIG) -> list[dict]:
+    return json.loads(config.read_text()).get("stories", [])
 
 
-def cmd_list() -> int:
-    for s in _load():
+def cmd_list(config: Path = CONFIG) -> int:
+    for s in _load(config):
         kws = sorted(_story_keywords(s))
         print(f"{s['slug']:28} {s.get('title','')}")
         print(f"    keywords: {', '.join(kws)}")
     return 0
 
 
-def cmd_check(title: str, keywords: list[str], threshold: float) -> int:
+def cmd_check(title: str, keywords: list[str], threshold: float,
+              config: Path = CONFIG) -> int:
     cand = _kw(title, " ".join(keywords))
     if not cand:
         print("no usable candidate keywords")
         return 0
     worst_slug, worst_score, worst_shared = None, 0.0, set()
-    for s in _load():
+    for s in _load(config):
         existing = _story_keywords(s)
         shared = cand & existing
         # Overlap as a share of the (smaller) candidate set — "how much of this
@@ -89,11 +90,15 @@ def main() -> int:
                     help="first arg = candidate title, rest = keywords/hashtags")
     ap.add_argument("--threshold", type=float, default=0.5,
                     help="overlap fraction that counts as a duplicate (default 0.5)")
+    ap.add_argument("--config", type=Path, default=CONFIG,
+                    help="story config JSON to check against (default: "
+                         "data_learning/niche.config.json)")
     args = ap.parse_args()
     if args.list:
-        return cmd_list()
+        return cmd_list(args.config)
     if args.check:
-        return cmd_check(args.check[0], args.check[1:], args.threshold)
+        return cmd_check(args.check[0], args.check[1:], args.threshold,
+                         args.config)
     ap.print_help()
     return 0
 

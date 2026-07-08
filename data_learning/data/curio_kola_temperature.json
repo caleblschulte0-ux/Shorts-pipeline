@@ -1,0 +1,25 @@
+{
+ "key": "curio_kola_temperature",
+ "title": "Rock temperature at 12 km down (°C)",
+ "unit": "°C",
+ "geography": "Kola Peninsula, Russia",
+ "time_coverage": "1989-1992",
+ "source": {
+  "name": "Kola Superdeep Borehole bottom-hole temperature",
+  "publisher": "Published drilling-project accounts",
+  "url": "https://en.wikipedia.org/wiki/Kola_Superdeep_Borehole",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures. Project models predicted ~100 °C at ~12 km; measured bottom-hole temperature was ~180 °C, which made further drilling impractical. Work stopped in 1992; the site is sealed.",
+ "points": [
+  {
+   "label": "Expected",
+   "value": 100
+  },
+  {
+   "label": "Measured",
+   "value": 180
+  }
+ ]
+}

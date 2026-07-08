@@ -1,0 +1,137 @@
+{
+ "niche": "visual-curiosity",
+ "channel_name": "Visualized",
+ "music_vibe": "cinematic",
+ "query_theme": "space earth geology ocean depth scale maps infrastructure systems science engineering curiosity",
+ "topic_doctrine": "Visualized is a faceless EVERGREEN visual-curiosity channel. One broad question, one tension, one memorable reveal, one visual experience per video — a museum exhibit in motion, never a lecture and never news. Topics must score on the six pillars (impossible scale, hidden systems, what-if scenarios, extreme comparisons, process journeys, maps & layers), stay relevant for years, and become MORE compelling when seen. Every number is real and traceable to a source; the notes field of each dataset says exactly where it came from. If the narration were muted, the visual story must still feel worth watching. Full doctrine: data_learning/CURIOSITY_BRAIN.md.",
+ "source_allowlist": [
+  "NASA",
+  "NOAA",
+  "USGS",
+  "UN",
+  "World Bank",
+  "OECD",
+  "Guinness World Records",
+  "peer-reviewed literature"
+ ],
+ "stories": [
+  {
+   "slug": "kola-deepest-hole",
+   "title": "The Deepest Hole on Earth Is Welded Shut",
+   "hook": "We dug for 20 years. Then Earth said no.",
+   "closing": "12 kilometers down — and we never left the first layer.",
+   "question": "How deep would you dare to go? Drop your limit below.",
+   "caption": "Humans spent 20 years drilling the deepest hole on Earth — 12,262 meters, deeper than the ocean's deepest trench — and still only made it a third of the way through the crust. At 180°C the rock itself fought back, and in 1992 the planet won. The hole is welded shut today. How deep would you dare to go? 👇",
+   "hashtags": [
+    "kolaborehole",
+    "deepesthole",
+    "earthscrust",
+    "geology",
+    "deepearth",
+    "engineering",
+    "exploration",
+    "science",
+    "planetearth",
+    "howdeep",
+    "russia",
+    "curiosity"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "curio_deepest_human_points",
+     "params": {
+      "file": "curio_deepest_human_points.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE RECORD",
+     "topic": "deepest points ever reached",
+     "say": "The deepest any human has ever traveled: 10,935 meters, the bottom of the ocean. But a hole in Russia goes deeper — the Kola Superdeep Borehole, 12,262 meters straight down."
+    },
+    {
+     "source": "offline",
+     "key": "curio_crust_progress",
+     "params": {
+      "file": "curio_crust_progress.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE CATCH",
+     "topic": "progress through Earth's crust",
+     "say": "Here's the catch — Earth's crust runs about 35,000 meters deep. Twenty years of drilling got us to 12,262. Barely a third of the way through the planet's THINNEST layer."
+    },
+    {
+     "source": "offline",
+     "key": "curio_kola_temperature",
+     "params": {
+      "file": "curio_kola_temperature.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHY WE STOPPED",
+     "topic": "rock temperature at depth",
+     "say": "So why stop? Heat. Scientists expected 100 degrees Celsius down there — the rock was 180. Drill bits went soft, and in 1992 the planet won. The hole is welded shut today."
+    }
+   ]
+  },
+  {
+   "slug": "sitting-still-speed",
+   "title": "You're Moving 828,000 km/h Right Now",
+   "hook": "You're moving faster than a bullet right now!",
+   "closing": "The couch is the fastest vehicle you own.",
+   "question": "Did you feel any of that? Tell me below.",
+   "caption": "You think you're sitting still — but Earth's spin is carrying you at 1,670 km/h, its orbit at 107,000 km/h, and the galaxy is dragging you at 828,000 km/h. That's faster than the fastest machine humans ever built. Did you feel any of it? 👇",
+   "hashtags": [
+    "earthrotation",
+    "galaxy",
+    "milkyway",
+    "parkersolarprobe",
+    "howfast",
+    "solarsystem",
+    "astronomy",
+    "physics",
+    "space",
+    "science",
+    "mindblown",
+    "curiosity"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "curio_speeds_riding",
+     "params": {
+      "file": "curio_speeds_riding.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE RIDE",
+     "topic": "speeds you are riding",
+     "say": "Right now Earth's spin is carrying you at 1,670 km/h — faster than the speed of sound. And that is the SLOWEST ride you're on."
+    },
+    {
+     "source": "offline",
+     "key": "curio_orbit_vs_bullet",
+     "params": {
+      "file": "curio_orbit_vs_bullet.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE ESCALATION",
+     "topic": "orbit vs a bullet",
+     "say": "Because the whole planet is orbiting the Sun at 107,000 km/h — about 30 times faster than a rifle bullet's 3,400. And you have felt none of it."
+    },
+    {
+     "source": "offline",
+     "key": "curio_fastest_machines",
+     "params": {
+      "file": "curio_fastest_machines.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE REVEAL",
+     "topic": "you vs the fastest machines",
+     "say": "And the Sun drags us around the galaxy at 828,000 km/h — faster than the Parker Solar Probe at 692,000, the fastest machine humans ever built. Sitting still is the fastest thing you do."
+    }
+   ]
+  }
+ ],
+ "videos": []
+}

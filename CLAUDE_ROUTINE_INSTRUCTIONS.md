@@ -721,3 +721,54 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
 
 4. Commit the new `data_learning/data/*.json` + the `niche.config.json` change
    in the **same daily PR** as the trending packages. Done — they post on merge.
+
+---
+
+# Part 3 — Evergreen curiosity story (Visualized channel)
+
+After Part 2, ALSO author **exactly 1 evergreen visual-curiosity story** for
+the **Visualized** channel (slug `curiosity`). Read
+`data_learning/CURIOSITY_BRAIN.md` FIRST and treat it as law — it is a
+different brand from Data Minute: **question-first, strictly evergreen, one
+memorable reveal**, never news, never a "here's a dataset" story.
+
+Quick rules (the brain doc has the full doctrine):
+
+1. **Pick from the topic bank** (CURIOSITY_BRAIN.md §14) or add a new idea
+   that passes the iron gate (§2: instant question, 2–5 year half-life,
+   ≥24/30 scorecard). NEVER derive from today's headlines.
+2. **Read the channel's own analytics first** (skip if missing):
+   ```bash
+   cat state/analytics_curiosity/latest.json 2>/dev/null
+   ```
+3. **Dedupe against BOTH channels** — its own config AND Data Minute's
+   (cross-channel near-dupes split the same audience):
+   ```bash
+   python3 scripts/topic_guard.py --config data_learning/curiosity.config.json \
+     --check "<your title>" tag1 tag2 tag3
+   python3 scripts/topic_guard.py --check "<your title>" tag1 tag2 tag3
+   ```
+4. **Author it** exactly like a Part-2 story (same schema), but:
+   - story block goes in `data_learning/curiosity.config.json` → `"stories"`;
+   - datasets go in `data_learning/data/curio_<key>.json` (prefix `curio_`);
+   - **numbers must be REAL and traceable** — encyclopedic constants from
+     NASA/USGS/NOAA/records with the exact figure + source named in `notes`
+     and `officiality: "reference"`. Never invent, never mark a real-agency
+     figure "illustrative";
+   - beat arc is **setup → escalation → REVEAL** (the biggest visual moment
+     is beat 3, not beat 1); hook ≤10 words opens a curiosity gap; closing
+     ≤12 words zooms out. Worked examples: `kola-deepest-hole`,
+     `sitting-still-speed`.
+5. **Sanity-build it** (same snippet as Part 2 step 3, but load
+   `data_learning/curiosity.config.json`).
+6. Commit in the **same daily PR**. Then, after merge, **fire the posting**
+   (cron 14:00 UTC is the fallback, the explicit trigger is the guarantee):
+   ```bash
+   # Native tool preferred (Claude): mcp__github__actions_run_trigger
+   #   workflow_id: curiosity.yml   inputs: { "mode": "schedule" }
+   gh workflow run curiosity.yml -f mode=schedule
+   ```
+   Un-posted stories schedule 24h apart (1/day cadence), deduped by
+   `state/curiosity_posted_log.json`, so a second same-day fire no-ops.
+
+Mark the topic bank row ✅ authored in `CURIOSITY_BRAIN.md` §14 in the same PR.

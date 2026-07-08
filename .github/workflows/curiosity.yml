@@ -1,0 +1,291 @@
+name: Curiosity Stories
+
+# Posts the EVERGREEN visual-curiosity stories (Visualized channel) —
+# CURIOSITY_BRAIN.md is the doctrine. Fully separate from daily.yml /
+# explainer.yml / third.yml: own config (data_learning/curiosity.config.json),
+# own posted-log (state/curiosity_posted_log.json), own token secret
+# (YOUTUBE_TOKEN_JSON_CURIOSITY), own concurrency group. It reuses the shared
+# studio renderer + channel-routed uploader via post_stories.py --config/--log.
+#
+# Cadence: 1/day (evergreen catalog, un-spammy) — un-posted stories are
+# scheduled 24h apart. The daily Claude routine authors new stories
+# (CLAUDE_ROUTINE_INSTRUCTIONS.md Part 3).
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'verify | canary | schedule | all | preview'
+        required: true
+        default: 'verify'
+        type: choice
+        options: [verify, canary, schedule, all, preview]
+      canary_slug:
+        description: 'slug to post in canary mode'
+        required: false
+        default: 'kola-deepest-hole'
+      slugs:
+        description: 'space-separated slugs (blank = every un-posted story)'
+        required: false
+        default: ''
+      expected_channel:
+        description: 'channel guard override (blank = CURIOSITY_EXPECTED_CHANNEL repo var)'
+        required: false
+        default: ''
+      every_hours:
+        description: 'schedule/auto: hours between uploads'
+        required: false
+        default: '24'
+      start_in_hours:
+        description: 'schedule/auto: hours from now until the first upload'
+        required: false
+        default: '1'
+      force:
+        description: 're-post even if already in the posted-log'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+  # Chain off "Daily Shorts" so the one morning kickoff drives this channel
+  # too (same pattern as explainer.yml / third.yml).
+  workflow_run:
+    workflows: ["Daily Shorts"]
+    types: [completed]
+    branches: [main]
+  # RELIABLE fallback: GitHub does not cascade workflow_run -> workflow_run,
+  # so this cron is the real guarantee. 14:00 UTC — offset after the 05:00
+  # scout, the morning daily batch, and explainer's 13:00 cron.
+  schedule:
+    - cron: '0 14 * * *'
+
+permissions:
+  contents: write          # persist state/curiosity_posted_log.json
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  # Cheap gate: on an automatic fire, only spin up the heavy render job if
+  # there is actually something un-posted to ship.
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      new_count: ${{ steps.count.outputs.new_count }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Count un-posted stories
+        id: count
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          cfg = json.load(open('data_learning/curiosity.config.json'))
+          posted = set()
+          p = 'state/curiosity_posted_log.json'
+          if os.path.exists(p):
+              posted = set(json.load(open(p)).get('posted', {}))
+          new = [s['slug'] for s in cfg.get('stories', []) if s['slug'] not in posted]
+          print('new_count=' + str(len(new)))
+          PY
+          echo "::notice::un-posted curiosity stories: $(grep new_count "$GITHUB_OUTPUT" | tail -1)"
+
+  curiosity:
+    needs: plan
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (needs.plan.outputs.new_count != '0' &&
+       (github.event_name == 'schedule' ||
+        github.event.workflow_run.conclusion == 'success'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: curiosity-shorts
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Pre-flight — kill switch + secrets + channel guard
+        env:
+          YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY }}
+          EXPECTED: ${{ inputs.expected_channel || vars.CURIOSITY_EXPECTED_CHANNEL }}
+        run: |
+          [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
+          MODE="${{ inputs.mode }}"; [ -z "$MODE" ] && MODE="auto"
+          # verify/preview never upload, so they may run without upload wiring
+          if [ "$MODE" != "verify" ] && [ "$MODE" != "preview" ]; then
+            missing=0
+            [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
+            [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON_CURIOSITY — mint it with setup_youtube.py signed into the curiosity channel's account"; missing=1; }
+            # The channel handle isn't known at wiring time, so there is NO
+            # hardcoded default: fail closed rather than risk posting to the
+            # wrong account with a mis-pasted token.
+            [ -z "$EXPECTED" ] && { echo "::error::set the CURIOSITY_EXPECTED_CHANNEL repo variable (or the expected_channel input) to the new channel's handle before posting"; missing=1; }
+            [ $missing -ne 0 ] && exit 1
+          fi
+          echo "Pre-flight OK."
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -q ffmpeg
+
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt -r data_learning/requirements.txt
+          pip install --quiet rembg || echo "rembg install failed (chroma fallback)"
+
+      - name: Cache rembg model (~170MB)
+        if: inputs.mode != 'verify'
+        uses: actions/cache@v4
+        with:
+          path: ~/.u2net
+          key: rembg-u2net-v1
+
+      - name: Cache Kokoro TTS models (~350MB)
+        id: cache-kokoro
+        uses: actions/cache@v4
+        with:
+          path: kokoro_models/
+          key: kokoro-onnx-v1.0
+
+      - name: Download Kokoro TTS models if cache miss
+        if: steps.cache-kokoro.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p kokoro_models
+          curl -fsSL -o kokoro_models/kokoro-v1.0.onnx \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx"
+          curl -fsSL -o kokoro_models/voices-v1.0.bin \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
+
+      - name: Cache b-roll strip clips
+        if: inputs.mode != 'verify'
+        id: cache-broll
+        uses: actions/cache@v4
+        with:
+          path: data_learning/broll/styles/
+          key: broll-styles-${{ hashFiles('data_learning/broll_gen.py') }}
+
+      - name: Build b-roll strip clips if missing
+        if: inputs.mode != 'verify' && steps.cache-broll.outputs.cache-hit != 'true'
+        run: python -m data_learning.broll_gen --styles --clip-seconds 45
+
+      - name: Cache music library (~110MB)
+        if: inputs.mode != 'verify'
+        id: cache-music
+        uses: actions/cache@v4
+        with:
+          path: data_learning/music/
+          key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
+
+      - name: Fetch music if missing
+        if: inputs.mode != 'verify' && steps.cache-music.outputs.cache-hit != 'true'
+        run: python3 scripts/fetch_music.py
+
+      - name: Run
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -e
+          MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
+          EXPECTED="${{ inputs.expected_channel }}"
+          [ -z "$EXPECTED" ] && EXPECTED="${{ vars.CURIOSITY_EXPECTED_CHANNEL }}"
+          EVERY="${{ inputs.every_hours }}";         [ -z "$EVERY" ] && EVERY="24"
+          START="${{ inputs.start_in_hours }}";      [ -z "$START" ] && START="1"
+          SLUGS="$(echo "${{ inputs.slugs }}" | tr ',' ' ' | tr -s ' ')"
+          SLUGS="${SLUGS#"${SLUGS%%[![:space:]]*}"}"
+          SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
+          FORCEFLAG=""; [ "${{ inputs.force }}" = "true" ] && FORCEFLAG="--force"
+          export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
+          CHANNELFLAGS="--config data_learning/curiosity.config.json --log state/curiosity_posted_log.json --channel curiosity"
+          echo "mode=$MODE expected=$EXPECTED every=$EVERY start=$START slugs='${SLUGS:-<all un-posted>}'"
+          case "$MODE" in
+            verify)
+              python scripts/post_stories.py $CHANNELFLAGS --check-channel ;;
+            canary)
+              python scripts/post_stories.py $CHANNELFLAGS --slugs "${{ inputs.canary_slug }}" ;;
+            schedule)
+              python scripts/post_stories.py $CHANNELFLAGS $SLUGFLAG $FORCEFLAG \
+                --every-hours "$EVERY" --start-in-hours "$START" ;;
+            all)
+              python scripts/post_stories.py $CHANNELFLAGS $SLUGFLAG ;;
+            preview)
+              # Render to a file and commit it back to THIS branch so it can
+              # be eyeballed before anything posts. No upload.
+              mkdir -p preview
+              for s in $SLUGS; do
+                python data_learning/studio_render.py --slug "$s" --out "preview/$s.mp4" \
+                  --config data_learning/curiosity.config.json
+              done
+              git config user.name "github-actions[bot]"
+              git config user.email "github-actions[bot]@users.noreply.github.com"
+              git add -f preview/*.mp4
+              git commit -m "curiosity preview render: $SLUGS [skip ci]" || echo "nothing to commit"
+              for i in 1 2 3 4 5; do
+                git push origin "HEAD:${GITHUB_REF_NAME}" && { echo "pushed on attempt $i"; break; }
+                echo "push failed on attempt $i, rebasing (autostash, ours)..."
+                git pull --rebase --autostash -X ours origin "${GITHUB_REF_NAME}" \
+                  || git rebase --abort || true
+                sleep 2
+              done ;;
+            auto)
+              # post every un-posted story, spaced a day apart (1/day cadence)
+              python scripts/post_stories.py $CHANNELFLAGS \
+                --every-hours "$EVERY" --start-in-hours "$START" ;;
+          esac
+
+      # Pull view/like counts so the daily routine learns which pillars and
+      # hooks land (state/analytics_curiosity/latest.json).
+      - name: Fetch curiosity analytics
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        continue-on-error: true
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY }}
+        run: |
+          python3 scripts/fetch_analytics.py --channel curiosity --max-age-days 60 \
+            || { echo "analytics fetch skipped"; exit 0; }
+
+      - name: Persist posted log + analytics
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        run: |
+          git add state/curiosity_posted_log.json state/analytics_curiosity state/translation_cache.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "curiosity: update posted log + analytics [skip ci]"
+          # Robust push (same hardening as explainer.yml): --autostash rides
+          # over render-dirtied files, -X ours keeps our fresh log on a race,
+          # retries ride out concurrent pushes from scout/daily.
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $i"
+              exit 0
+            fi
+            echo "Push failed on attempt $i, rebasing (autostash, ours)..."
+            git pull --rebase --autostash -X ours origin main || git rebase --abort || true
+            sleep 2
+          done
+          echo "::error::Failed to persist posted log after 5 attempts"
+          exit 1

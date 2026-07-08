@@ -872,11 +872,15 @@ def _piecewise(kfs, axis: int) -> str:
 # --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
-def render(slug: str, out_path: Path, voice: str | None = None) -> Path:
-    cfg = json.loads((PKG_DIR / "niche.config.json").read_text())
+def render(slug: str, out_path: Path, voice: str | None = None,
+           config_path: Path | None = None) -> Path:
+    """`config_path` lets a sibling channel (e.g. curiosity) render from its
+    own story config; default stays the explainer's niche.config.json."""
+    config_path = Path(config_path) if config_path else PKG_DIR / "niche.config.json"
+    cfg = json.loads(config_path.read_text())
     story_cfg = next((s for s in cfg.get("stories", []) if s["slug"] == slug), None)
     if not story_cfg:
-        raise KeyError(f"no story with slug {slug!r} in niche.config.json")
+        raise KeyError(f"no story with slug {slug!r} in {config_path.name}")
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Per-video theme: chart palette, background gradient, bokeh, voice — so no
@@ -1097,8 +1101,10 @@ def main() -> int:
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--voice", default=None,
                     help="Kokoro voice id (default am_fenrir)")
+    ap.add_argument("--config", type=Path, default=None,
+                    help="story config JSON (default: data_learning/niche.config.json)")
     args = ap.parse_args()
-    render(args.slug, args.out, voice=args.voice)
+    render(args.slug, args.out, voice=args.voice, config_path=args.config)
     return 0
 
 
