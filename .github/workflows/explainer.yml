@@ -57,13 +57,9 @@ on:
     workflows: ["Daily Shorts"]
     types: [completed]
     branches: [main]
-  # RELIABLE fallback: a daily cron. GitHub does NOT reliably cascade
-  # workflow_run -> workflow_run (when Daily Shorts is itself workflow_run-
-  # triggered, the chain above silently never fires), so this cron is the real
-  # guarantee. Runs after the morning daily batch; MODE defaults to "auto",
-  # which posts every un-posted story (deduped). 13:00 UTC daily.
-  schedule:
-    - cron: '0 13 * * *'
+  # NOTE: no git cron. The morning kickoff is a Claude Routine (Claude Code
+  # Remote scheduled trigger) that dispatches this workflow directly each day.
+  # workflow_dispatch below is how the Routine (and the daily.yml chain) fires it.
 
 permissions:
   contents: write          # persist state/explainer_posted_log.json
