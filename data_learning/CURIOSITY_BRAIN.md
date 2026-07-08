@@ -1,8 +1,11 @@
 # VISUALIZED (curiosity channel) — brain playbook
 
-Faceless, **evergreen**, AI-assisted visual-curiosity channel. Operator playbook
-v1 (2026-07-08), adapted from the operator's source playbook (ChatGPT) to run on
-this repo's pipeline — see §13 for every deliberate deviation and why.
+Faceless, **evergreen**, AI-assisted visual-curiosity channel publishing
+**4–5 minute LONG-FORM 16:9 videos on the main YouTube watch feed — NOT
+Shorts** (operator ruling, 2026-07-08: the portfolio already has plenty of
+Shorts channels; this one is the long-form play). Operator playbook v2,
+adapted from the operator's source playbook (ChatGPT) to run on this repo's
+pipeline — see §13 for every deliberate deviation and why.
 
 The channel slug is `curiosity`; the YouTube channel is
 **OpenRangeInteractive (@OpenRangeInteractive)** — "ORI". Config:
@@ -19,9 +22,9 @@ watching in five years; growth by catalog compounding, not by news cycles.
 
 ## 1. Identity — one swipe
 
-> **Visualized turns one broad, evergreen question into a short, visually
-> dense story with one memorable reveal — a museum exhibit in motion, never
-> a lecture.**
+> **Visualized turns one broad, evergreen question into a visually dense
+> 4–5 minute story with one memorable reveal — a museum exhibit in motion,
+> never a lecture.**
 
 The operating idea, per video: **one question → one tension → one memorable
 reveal → one visual experience.** The winning subject is not "interesting
@@ -83,15 +86,19 @@ happened, it qualifies. Otherwise it's news — route it away.
 Seed re-weighting from the channel's OWN analytics once ~100-view samples
 exist (LEARNING_LOOP.md) — pillars earn their slate share, taste doesn't.
 
-## 5. Retention doctrine [SHARED — platform truth, keep verbatim]
-- First second = **proof, not setup**. No branding/throat-clearing.
-- New information OR a new visual state every **1–1.5 seconds** (the 50% frame
-  must not equal the 100% frame).
-- **Context never before intrigue** — at most one context sentence, after the
+## 5. Retention doctrine [platform truth, long-form calibration]
+- First seconds = **proof, not setup**. No branding/throat-clearing; the
+  hook states the premise, the tension, and the promised payoff inside
+  the first 15–20 seconds.
+- New information OR a new visual state every **1–3 seconds** (camera,
+  object, label, scale, crop, or motion — the 50% frame must not equal the
+  100% frame).
+- **Context never before intrigue** — context sentences come after the
   hook earns the stay.
-- The final line must **escalate, invert, or resolve** — never restate a shown
-  fact. Short form rewards relative watch time; every extra second must earn
-  itself.
+- The final line must **escalate, invert, or resolve** — never restate a
+  shown fact. Watch time is the currency; every extra second must earn
+  itself, and long-form's advantage is that earned seconds compound into
+  watch-hours.
 
 ## 6. The three retention failures [SHARED]
 1. **Packaging** (good shown-in-feed, weak viewed-vs-swiped) → fix first frame /
@@ -101,10 +108,30 @@ exist (LEARNING_LOOP.md) — pillars earn their slate share, taste doesn't.
 
 ## 7. Production rules — the house style
 
-**Format (launch): vertical Shorts, 45–60s, ~110–160 spoken words**, rendered
-by the shared studio renderer (`data_learning/studio_render.py --config
-data_learning/curiosity.config.json`). The source playbook's 4–5-minute
-16:9 long-form is **phase 2**, built as weekly compilations (§13.2).
+**Format: 1920×1080 16:9, 30fps, MP4/H.264, AAC-LC 48kHz, −14 LUFS,
+4–5 minutes, ~550–800 spoken words** — the source playbook's spec, rendered
+by the channel's own long-form renderer
+(`python -m data_learning.longform_render --slug <slug>`). Documentary
+pacing: calm narration (no Shorts-speed voice), one "exhibit" frame per
+beat with a slow Ken Burns push, a ducked music bed, a title card open and
+a takeaway card close.
+
+**Chapters are mandatory** (auto-emitted to `<out>.meta.json` and written
+into the description): first at 00:00, at least 3, each ≥10 seconds —
+beats run 20–40s so this holds by construction. **Thumbnail** is
+auto-emitted at 1920×1080 (claim + biggest on-chart number in the video's
+theme palette); once the channel earns advanced features, A/B test
+titles/thumbnails on the back catalog.
+
+**Tools doctrine (operator ruling, verbatim):** *"Desktop tools are allowed
+only if they support reliable, fully headless operation through a stable
+CLI or scripting API and integrate cleanly into the CI pipeline without
+requiring human interaction."* In practice: ffmpeg, matplotlib/Pillow,
+ONNX TTS, ImageMagick, Graphviz, and Blender (`blender -b`, Python API)
+are all fair game when a story needs them; Inkscape/Kdenlive/Resolve/
+Premiere/After Effects are not — they're GUI-first. Blender is the
+sanctioned path if a story ever needs true 3D (a fly-through, an exploded
+view); build reusable scene templates before reaching for it.
 
 - **The opening frame is already content** (never branding); **the script is
   picturable** (abstract language is a defect unless immediately made
@@ -112,10 +139,12 @@ data_learning/curiosity.config.json`). The source playbook's 4–5-minute
 - **Thesis before script.** One sentence stating the surprising truth
   ("GPS feels instant, but it depends on a fragile chain of clocks moving
   above the Earth"). If you can't write the thesis, kill the topic.
-- **Story shape = the source playbook's arc, compressed to 3 beats:**
-  hook (≤10 words, curiosity gap) → **setup → escalation → REVEAL** →
-  closing line that zooms out (≤12 words). Each beat picks up where the
-  last left off; if the beats could be shuffled, it's a list, not a story.
+- **Story shape = the source playbook's five-part arc over 6–8 beats:**
+  hook (2–3 sentences, 15–20s: premise fast, tension, promised payoff) →
+  why it matters → build the system → escalate → **REVEAL (the biggest
+  visual moment, around beat 5)** → zoom out to one memorable implication →
+  closing + engagement question. Each beat picks up where the last left
+  off; if the beats could be shuffled, it's a list, not a story.
 - **Hook formulas** (pick one, then make the title PAIR with it, not repeat it):
   - Hidden reality — "You use X every day, but no one sees Y."
   - Extreme scale — "X sounds small until you see how much there is."
@@ -145,12 +174,14 @@ data_learning/curiosity.config.json`). The source playbook's 4–5-minute
 ## 8. Package output schema
 
 Stories live in `data_learning/curiosity.config.json` → `"stories"[]`, the
-exact schema the explainer uses (slug, title, hook, closing, question,
-caption, hashtags 10–15 most-specific-first, 3 segments each with a
-`data_learning/data/curio_*.json` dataset, insight_type, topic, role, say
-≤35 words). Dataset filenames are prefixed `curio_` so the two channels'
-data never collides. Worked examples: `kola-deepest-hole`,
-`sitting-still-speed`.
+same schema shape the explainer uses (slug, title, hook, closing, question,
+caption, hashtags 10–15 most-specific-first) but long-form sized:
+**6–8 segments**, each with a `data_learning/data/curio_*.json` dataset,
+insight_type, topic, a `role` that becomes the chapter name ("2 · TWENTY
+YEARS DOWN" → chapter "Twenty Years Down"), and a **`say` of 50–90 words
+(3–5 sentences)** — total spoken words 550–800. Dataset filenames are
+prefixed `curio_` so the two channels' data never collides. Worked
+examples: `kola-deepest-hole`, `sitting-still-speed`.
 
 ## 9. Eye-QA checklist [SHARED loop + channel specifics]
 
@@ -186,10 +217,12 @@ written back INTO this playbook.
 Growth roadmap (targets, not guarantees): first 90 days = prove one
 repeatable pillar + aesthetic consistency; months 4–6 = back-catalog
 title/thumbnail refresh + tighten openings on first-30s data; months 6–12 =
-YPP thresholds (early access 500 subs + 3M Shorts views/90d; full share
-1k subs + 10M/90d), then monetize in layers: ads → affiliates (books, maps,
-science kits, globes) → digital products (poster/map packs, template packs)
-→ sponsors → course, in that order, each only after the previous is earning.
+YPP thresholds via the long-form path (early access 500 subs + 3,000 public
+watch hours/12mo; full share 1,000 subs + 4,000 watch hours — a 4.5-min
+evergreen catalog earns watch-hours while it sleeps), then monetize in
+layers: ads → affiliates (books, maps, science kits, globes) → digital
+products (poster/map packs, template packs) → sponsors → course, in that
+order, each only after the previous is earning.
 
 ## 12. Wiring & isolation (zero shared-pipeline impact)
 
@@ -201,12 +234,25 @@ science kits, globes) → digital products (poster/map packs, template packs)
   repo var `CURIOSITY_EXPECTED_CHANNEL` overrides if the channel renames.
 - **Config/log/analytics:** `data_learning/curiosity.config.json` ·
   `state/curiosity_posted_log.json` · `state/analytics_curiosity/`.
-- **Render + post:** `scripts/post_stories.py --config
-  data_learning/curiosity.config.json --log state/curiosity_posted_log.json
-  --channel curiosity` (the explainer's defaults are untouched).
-- **Workflow:** `.github/workflows/curiosity.yml` — cron 14:00 UTC daily +
-  chained off "Daily Shorts", concurrency group `curiosity-shorts`,
-  schedules un-posted stories **24h apart** (1/day cadence).
+- **Render:** `data_learning/longform_render.py` (1920×1080 watch-page
+  video + `<out>.jpg` thumbnail + `<out>.meta.json` chapters). Tiered
+  beat treatments, best available wins: **Blender Cycles hero shot**
+  (`blender_hero.py`, the segment marked `"hero": true` — one per video,
+  `"hero_invert"` hangs the monoliths downward for depth stories) →
+  **Manim motion scene** (`curiosity_scenes.py`: rank/comparison/trend,
+  TeX-free) → Pillow still + Ken Burns (loud fallback — a missing tool
+  degrades the look, never kills a video). Stories MUST set
+  `"keep_order": true` (treatments map config order to story order, and
+  a hand-authored arc must never be reshuffled). Kokoro voice primary,
+  edge-tts loud fallback.
+- **Post:** `scripts/post_curiosity.py` — builds the description
+  (caption → chapters block → sources → hashtags → music attribution),
+  dedupes on the posted log, refuses videos under 2 minutes, `--max 1`
+  for the weekly cadence.
+- **Workflow:** `.github/workflows/curiosity.yml` — weekly cron
+  (Saturdays 15:00 UTC) posts at most ONE un-posted story; manual modes
+  verify / canary / schedule / all / preview; concurrency group
+  `curiosity-longform`.
 - **Dedupe:** `python3 scripts/topic_guard.py --config
   data_learning/curiosity.config.json --check "<title>" tag1 tag2` — and ALSO
   run the same check against the default config to avoid re-telling a
@@ -229,33 +275,42 @@ not** — it was written for a human with a desktop, not for this pipeline:
    check (§12) exist precisely to keep them from cannibalizing each other.
    If after ~60 days the two channels' audiences look identical in
    analytics, fold this doctrine into Data Minute instead of running both.
-2. **4–5 min 16:9 long-form weekly → 45–60s vertical Shorts daily, long-form
-   as phase 2.** The repo renders vertical; the proven in-repo hybrid is
-   Shorts daily + `build_longform.py`-style weekly compilations. A
-   zero-subscriber channel posting one long video a week starves the
-   algorithm of signal; Shorts-first compounds, and the long-form
-   compilation lands the watch-hours later (also how YPP's 3M/10M Shorts
-   thresholds are actually reachable). The playbook's 1080p/H.264/AAC/48kHz
-   spec, chapters, and 3840×2160 thumbnails apply when phase 2 starts.
-3. **Blender/Inkscape/Manim/Glaxnimate/Kdenlive → the studio renderer.**
-   Those are human-in-the-loop desktop tools; CI can't art-direct Blender.
-   The pipeline's viz engine (real-photo scenes: fill, stack, orbit,
-   timeline, pictorial races) already implements the playbook's actual
-   goal — deterministic, reproducible, visually dense scenes — headlessly.
-4. **Piper/Audacity → Kokoro.** Same reasoning (local, free, reproducible);
-   Kokoro is already cached in CI with per-video voice theming.
+2. **~~Shorts-first launch~~ — OVERRULED by the operator (2026-07-08).**
+   The original v1 doctrine launched this channel as vertical Shorts with
+   long-form as phase 2. The operator killed that: the portfolio already
+   has three Shorts channels, and this channel exists precisely to be the
+   4–5 minute main-feed play. Long-form IS phase 1; there is no Shorts
+   phase. The playbook's format spec (1080p/H.264/AAC/48kHz, chapters,
+   large thumbnails, 550–800 words, weekly cadence) applies from video #1,
+   implemented by `longform_render.py`. Shorts *cutdowns* of long-form
+   videos remain a possible future experiment, but only as trailers for
+   the catalog, never as the product.
+3. **Tools rule (operator ruling): headless-capable desktop tools are IN,
+   GUI-first tools are OUT.** Not "no desktop apps" — the rule is:
+   *reliable, fully headless operation through a stable CLI or scripting
+   API, integrating into CI without human interaction.* Approved when
+   needed: ffmpeg, ImageMagick, Graphviz, Pandoc, Blender (`blender -b` +
+   Python API — the render-farm path), GIMP/Krita scripting at the margins.
+   Rejected: Inkscape, Kdenlive, DaVinci Resolve, Premiere, After Effects,
+   Canva — scriptable at the edges but designed around a human at a GUI.
+   The production renderer now runs on exactly this doctrine: Manim
+   (pure-Python motion graphics) for data beats, Blender Cycles headless
+   for the per-video hero shot, ffmpeg for assembly, Pillow for cards and
+   overlays.
+4. **Piper/Audacity → Kokoro (+ edge-tts fallback).** Same spirit (local,
+   free, reproducible, headless); Kokoro is already cached in CI with
+   per-video voice theming and is the pipeline's QA'd voice.
 5. **ComfyUI → `gemini_images.py`**, already wired with graceful fallback.
    Generative art stays the last resort, as the playbook says.
-6. **1 video/week → 1/day.** The weekly cadence priced in 6–11 human-hours
-   per video; the pipeline's marginal cost is ~zero, and an evergreen
-   catalog compounds with size. Quality is enforced by the gate (§2) and
-   eye-QA (§9), not by scarcity.
-7. **550–800 words → ~110–160.** Scaled to the Shorts format; the full
-   word budget returns in phase-2 long-form.
-8. **Noto Sans/Sora → the renderer's existing type system.** Consistent
+6. **Cadence: 1/week posting, queue always ≥2 ahead.** The weekly cadence
+   survives (it's a catalog play and matches the playbook), but the
+   *authoring* is decoupled from it: the daily routine keeps at least two
+   finished stories in the queue so a bad authoring day never creates a
+   silent week.
+7. **Noto Sans/Sora → the renderer's existing type system.** Consistent
    tooling across channels beats a per-channel font swap; revisit if the
    channel earns a bespoke look.
-9. **Google Drive/OneDrive/Dropbox storage plan → this git repo.** Projects,
+8. **Google Drive/OneDrive/Dropbox storage plan → this git repo.** Projects,
    sources, analytics, and templates already live here versioned; no new
    storage accounts.
 

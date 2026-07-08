@@ -724,51 +724,56 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
 
 ---
 
-# Part 3 — Evergreen curiosity story (Visualized channel)
+# Part 3 — Evergreen curiosity LONG-FORM story (Visualized / OpenRangeInteractive)
 
-After Part 2, ALSO author **exactly 1 evergreen visual-curiosity story** for
-the **Visualized** channel (slug `curiosity`). Read
-`data_learning/CURIOSITY_BRAIN.md` FIRST and treat it as law — it is a
-different brand from Data Minute: **question-first, strictly evergreen, one
-memorable reveal**, never news, never a "here's a dataset" story.
+This channel is **4–5 minute 16:9 long-form on the main watch feed — NOT a
+Shorts channel.** Read `data_learning/CURIOSITY_BRAIN.md` FIRST and treat it
+as law — it is a different brand from Data Minute: **question-first, strictly
+evergreen, one memorable reveal**, never news, never a "here's a dataset"
+story. Posting is weekly (Saturday cron posts ONE story); your job is to keep
+the queue stocked.
 
-Quick rules (the brain doc has the full doctrine):
-
-1. **Pick from the topic bank** (CURIOSITY_BRAIN.md §14) or add a new idea
-   that passes the iron gate (§2: instant question, 2–5 year half-life,
-   ≥24/30 scorecard). NEVER derive from today's headlines.
-2. **Read the channel's own analytics first** (skip if missing):
+1. **Check the queue first — only author when it's short.** Count un-posted
+   stories (in `curiosity.config.json` but not in
+   `state/curiosity_posted_log.json`). If **≥2 are queued, skip Part 3
+   entirely today.** Otherwise author exactly 1 story.
+2. **Read the channel's own analytics** (skip if missing):
    ```bash
    cat state/analytics_curiosity/latest.json 2>/dev/null
    ```
-3. **Dedupe against BOTH channels** — its own config AND Data Minute's
-   (cross-channel near-dupes split the same audience):
+3. **Pick from the topic bank** (CURIOSITY_BRAIN.md §14) or add a new idea
+   that passes the iron gate (§2: instant question, 2–5 year half-life,
+   ≥24/30 scorecard). NEVER derive from today's headlines. **Dedupe against
+   BOTH channels** (cross-channel near-dupes split the same audience):
    ```bash
    python3 scripts/topic_guard.py --config data_learning/curiosity.config.json \
      --check "<your title>" tag1 tag2 tag3
    python3 scripts/topic_guard.py --check "<your title>" tag1 tag2 tag3
    ```
-4. **Author it** exactly like a Part-2 story (same schema), but:
-   - story block goes in `data_learning/curiosity.config.json` → `"stories"`;
-   - datasets go in `data_learning/data/curio_<key>.json` (prefix `curio_`);
+4. **Author it long-form** (worked examples: `kola-deepest-hole`,
+   `sitting-still-speed`):
+   - story block in `data_learning/curiosity.config.json` → `"stories"`;
+     datasets in `data_learning/data/curio_<key>.json` (prefix `curio_`);
+   - **set `"keep_order": true` on the story** (mandatory — the renderer
+     maps beats to treatments by config order) and mark exactly ONE
+     segment `"hero": true` — the beat with the most cinematic scale
+     contrast gets the Blender 3D shot (add `"hero_invert": true` when
+     the values are depths, so the monoliths hang downward);
+   - **6–8 segments**, each `say` 50–90 words (3–5 sentences), total
+     **550–800 spoken words**; the arc is hook → why it matters → build →
+     escalate → **REVEAL around beat 5** → zoom-out implication;
+   - hook = 2–3 sentences (premise, tension, promised payoff — it narrates
+     the title card); closing = one zoom-out line; `role` becomes the
+     chapter name, so make it clean ("2 · TWENTY YEARS DOWN");
    - **numbers must be REAL and traceable** — encyclopedic constants from
      NASA/USGS/NOAA/records with the exact figure + source named in `notes`
      and `officiality: "reference"`. Never invent, never mark a real-agency
-     figure "illustrative";
-   - beat arc is **setup → escalation → REVEAL** (the biggest visual moment
-     is beat 3, not beat 1); hook ≤10 words opens a curiosity gap; closing
-     ≤12 words zooms out. Worked examples: `kola-deepest-hole`,
-     `sitting-still-speed`.
+     figure "illustrative"; vary chart types (≥2 of rank/comparison/trend).
 5. **Sanity-build it** (same snippet as Part 2 step 3, but load
-   `data_learning/curiosity.config.json`).
-6. Commit in the **same daily PR**. Then, after merge, **fire the posting**
-   (cron 14:00 UTC is the fallback, the explicit trigger is the guarantee):
-   ```bash
-   # Native tool preferred (Claude): mcp__github__actions_run_trigger
-   #   workflow_id: curiosity.yml   inputs: { "mode": "schedule" }
-   gh workflow run curiosity.yml -f mode=schedule
-   ```
-   Un-posted stories schedule 24h apart (1/day cadence), deduped by
-   `state/curiosity_posted_log.json`, so a second same-day fire no-ops.
+   `data_learning/curiosity.config.json`) and check the spoken-word count
+   lands in 550–800.
+6. Commit in the **same daily PR**. No posting trigger needed — the weekly
+   cron (Saturdays 15:00 UTC) posts one queued story. To post out-of-band,
+   dispatch `curiosity.yml` with `mode: schedule`.
 
 Mark the topic bank row ✅ authored in `CURIOSITY_BRAIN.md` §14 in the same PR.

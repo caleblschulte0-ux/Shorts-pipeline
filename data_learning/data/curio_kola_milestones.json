@@ -1,0 +1,37 @@
+{
+ "key": "curio_kola_milestones",
+ "title": "Kola borehole depth by year (m)",
+ "unit": "m",
+ "geography": "Kola Peninsula, Russia",
+ "time_coverage": "1970-1989",
+ "source": {
+  "name": "Kola Superdeep Borehole drilling milestones",
+  "publisher": "Published drilling-project accounts",
+  "url": "https://en.wikipedia.org/wiki/Kola_Superdeep_Borehole",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published milestones. Drilling began 1970; passed the previous world record (Bertha Rogers, 9,583 m) in 1979; reached 12,000 m in 1983; final depth 12,262 m in 1989. Progress collapsed near the bottom — the last 262 m took six years.",
+ "points": [
+  {
+   "label": "1970",
+   "value": 0,
+   "period": "1970"
+  },
+  {
+   "label": "1979",
+   "value": 9583,
+   "period": "1979"
+  },
+  {
+   "label": "1983",
+   "value": 12000,
+   "period": "1983"
+  },
+  {
+   "label": "1989",
+   "value": 12262,
+   "period": "1989"
+  }
+ ]
+}
