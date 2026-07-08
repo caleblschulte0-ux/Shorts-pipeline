@@ -2,14 +2,11 @@ name: Scout Sources
 
 on:
   workflow_dispatch: {}
-  schedule:
-    # DAILY 05:00 UTC — the scout is the shared TOP-OF-FUNNEL for every
-    # channel in this repo: it harvests what the world is paying attention to
-    # (search trends, top Wikipedia reads, trending video by category,
-    # upcoming observances) and each channel's brain derives its OWN angle
-    # from the same pool. Trend signals decay in ~24-48h and the job is
-    # free, so daily beats weekly. Runs before the channels' daily crons.
-    - cron: '0 5 * * *'
+  # NO git cron. The scout is the shared TOP-OF-FUNNEL for every channel: it
+  # harvests what the world is paying attention to (search trends, top Wikipedia
+  # reads, trending video by category, upcoming observances) and each channel's
+  # brain derives its OWN angle. The morning Claude Routine dispatches this
+  # FIRST (before the channels) so same-day topics are fresh.
   push:
     branches: [main]
     # No path filter while we're debugging — every push to main fires
