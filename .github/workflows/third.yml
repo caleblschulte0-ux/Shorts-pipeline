@@ -26,6 +26,17 @@ on:
   # land 17:00/19:00/21:00 UTC (US afternoon/evening).
   schedule:
     - cron: '0 11 * * *'
+  # Chain off "Daily Shorts" the SAME way explainer.yml does, so one kickoff of
+  # daily.yml (the morning Claude Routine → workflow_dispatch) cascades to all
+  # THREE channels. Safe to run alongside the cron above: run_third.py
+  # synthesizes deterministic per-day slugs (clip-YYYYMMDD-N) and skips any slug
+  # already in the posted log, so a second same-day run no-ops. The cron stays
+  # as the reliable fallback because GitHub does not cascade workflow_run ->
+  # workflow_run (a workflow_dispatch of daily.yml DOES fire this chain).
+  workflow_run:
+    workflows: ["Daily Shorts"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: write   # commit third_posted_log.json
@@ -37,6 +48,11 @@ jobs:
   third:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    # On a chain fire (workflow_run) only run when Daily Shorts actually
+    # succeeded; all other triggers (dispatch, schedule, push) always run.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     concurrency:
       group: third-shorts
       cancel-in-progress: false
