@@ -253,7 +253,56 @@
       "starry night sky"
      ]
     }
-   ]
+   ],
+   "world": {
+    "template": "scale",
+    "story_template": "question-journey-discovery",
+    "waypoints": [
+     {
+      "builder": "rank",
+      "params": {
+       "file": "curio_everyday_speeds.json"
+      }
+     },
+     {
+      "builder": "scalelevel",
+      "params": {
+       "tableau": "earth",
+       "label": "Earth's spin",
+       "display": "1,670 km/h"
+      }
+     },
+     {
+      "builder": "scalelevel",
+      "params": {
+       "tableau": "orbit",
+       "label": "Around the Sun",
+       "display": "107,000 km/h"
+      }
+     },
+     {
+      "builder": "scalelevel",
+      "params": {
+       "tableau": "galaxy",
+       "label": "Around the galaxy",
+       "display": "828,000 km/h"
+      }
+     },
+     {
+      "builder": "rank",
+      "hero": "monoliths",
+      "params": {
+       "file": "curio_fastest_machines.json"
+      }
+     },
+     {
+      "builder": "compare",
+      "params": {
+       "file": "curio_cmb_speed.json"
+      }
+     }
+    ]
+   }
   }
  ],
  "videos": []

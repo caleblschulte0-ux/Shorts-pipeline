@@ -521,6 +521,154 @@ def _broll_parts(seg_cfg: dict, seg, theme: dict, dur: float, work: Path,
 
 
 # --------------------------------------------------------------------------
+# The simulation engine path — one place, one camera, one take
+# (world_engine.WorldScene), with Blender heroes spliced over their
+# waypoint windows behind a luminance dip. Falls back LOUDLY to the
+# clip-per-beat renderer below if anything in here fails.
+# --------------------------------------------------------------------------
+def _hex_grad0(theme: dict) -> str:
+    g = (theme.get("grad") or ("0x080A14",))[0]
+    return "#" + str(g).replace("0x", "").replace("#", "")
+
+
+def _hero_spec(template: str, seg_cfg: dict, theme: dict) -> dict:
+    points, unit = _seg_points(seg_cfg)
+    vals = [abs(float(p["value"])) or 1e-9 for p in points]
+    vmax = max(vals) if vals else 1.0
+    spec = {
+        "template": template,
+        "accent": theme.get("highlight", "#4FD1C5"),
+        "seconds": HERO_SECONDS, "fps": HERO_FPS, "samples": 32,
+        "res_x": 1440, "res_y": 810,
+    }
+    if template == "earth_dive":
+        spec["markers"] = [
+            {"label": p["label"], "display": _disp(p["value"], unit),
+             "frac": abs(float(p["value"])) / vmax} for p in points]
+    else:
+        spec["points"] = [{"label": p["label"], "value": p["value"],
+                           "display": _disp(p["value"], unit)}
+                          for p in points]
+        spec["invert"] = bool(seg_cfg.get("hero_invert"))
+        spec["log_scale"] = (max(vals) / min(vals)) > 50 if vals else False
+    return spec
+
+
+def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
+               work: Path, idx: int) -> Path:
+    """Render a Blender hero and dress it for splicing: minterpolated to
+    30fps, scaled, luminance-dip fades at both ends (the simple splice —
+    no motion matching, per doctrine)."""
+    spec_path = work / f"whspec{idx}.json"
+    spec_path.write_text(json.dumps(_hero_spec(template, seg_cfg, theme)))
+    frames_dir = work / f"whero{idx}"
+    frames_dir.mkdir(exist_ok=True)
+    res = subprocess.run(
+        ["blender", "-b", "--factory-startup", "--python",
+         str(PKG_DIR / "blender_hero.py"), "--", str(spec_path),
+         str(frames_dir)],
+        check=False, capture_output=True, text=True, timeout=3600)
+    if "HERO_DONE" not in (res.stdout or ""):
+        raise RuntimeError(f"hero failed: {(res.stderr or '')[-300:]}")
+    out = work / f"wherobeat{idx}.mp4"
+    fade_out_st = max(0.0, dur - 0.3)
+    _run(["ffmpeg", "-y", "-loglevel", "error",
+          "-framerate", str(HERO_FPS), "-i", str(frames_dir / "hero_%04d.png"),
+          "-vf",
+          f"minterpolate=fps={FPS}:mi_mode=mci,scale={W}:{H},"
+          f"tpad=stop_mode=clone:stop_duration={dur:.3f},"
+          f"fade=t=in:st=0:d=0.3,fade=t=out:st={fade_out_st:.3f}:d=0.3,"
+          f"format=yuv420p",
+          "-t", f"{dur:.3f}", "-r", str(FPS),
+          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+          str(out)])
+    return out
+
+
+def _splice(body: Path, hero: Path, t0: float, t1: float, out: Path) -> Path:
+    """Replace body[t0:t1] with the hero clip (three-part trim+concat)."""
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(body),
+          "-i", str(hero), "-filter_complex",
+          f"[0:v]trim=0:{t0:.3f},setpts=PTS-STARTPTS[a];"
+          f"[1:v]setpts=PTS-STARTPTS[h];"
+          f"[0:v]trim={t1:.3f},setpts=PTS-STARTPTS[b];"
+          f"[a][h][b]concat=n=3:v=1:a=0,format=yuv420p[o]",
+          "-map", "[o]", "-r", str(FPS),
+          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+          str(out)])
+    return out
+
+
+def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
+                work: Path) -> Path:
+    """Render the whole video body as ONE take through the story's world,
+    then splice Blender heroes over their waypoint windows."""
+    world = story_cfg["world"]
+    seg_cfgs = list(story_cfg.get("segments", []))
+    wps = []
+    for i, wp in enumerate(world.get("waypoints", [])):
+        wp = dict(wp)
+        seg = seg_cfgs[i] if i < len(seg_cfgs) else {}
+        wp.setdefault("params", {})
+        if "file" not in wp["params"] and seg.get("params", {}).get("file"):
+            wp["params"]["file"] = seg["params"]["file"]
+        wps.append(wp)
+    spec = {
+        "title": st.title,
+        "closing": (st.closing + " " + st.question).strip(),
+        "theme": {"bg": _hex_grad0(theme),
+                  "highlight": theme.get("highlight", "#4FD1C5"),
+                  "accent": theme.get("accent", "#60A5FA")},
+        "windows": [[round(a, 3), round(b, 3)] for a, b in windows],
+        "chrome": [{"role": s.role, "topic": s.topic} for s in st.segments],
+        "world": {"template": world.get("template", "depth"),
+                  "story_template": world.get("story_template", ""),
+                  "waypoints": wps},
+    }
+    spec_path = work / "world_spec.json"
+    spec_path.write_text(json.dumps(spec))
+    media = work / "worldmedia"
+    env = dict(os.environ, CURIO_WORLD_SPEC=str(spec_path))
+    subprocess.run(
+        [sys.executable, "-m", "manim", "render", "-qm", "--fps", str(FPS),
+         "-r", f"{W},{H}", "--media_dir", str(media), "-o", "body.mp4",
+         "-v", "ERROR", str(PKG_DIR / "world_engine.py"), "WorldScene"],
+        check=True, env=env, capture_output=True, text=True)
+    hits = list(media.glob("videos/**/body.mp4"))
+    if not hits:
+        raise FileNotFoundError("world engine produced no body.mp4")
+    body = hits[0]
+    # Conform to the narration length exactly.
+    total = windows[-1][1]
+    conformed = work / "body_conformed.mp4"
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(body),
+          "-vf", f"fps={FPS},tpad=stop_mode=clone:stop_duration=2,"
+                 f"format=yuv420p",
+          "-t", f"{total:.3f}", "-r", str(FPS),
+          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+          str(conformed)])
+    body = conformed
+    # Blender heroes over their waypoint windows (waypoint i <-> beat i+1).
+    for i, wp in enumerate(wps):
+        template = wp.get("hero")
+        if not template:
+            continue
+        template = "monoliths" if template is True else str(template)
+        t0, t1 = windows[i + 1]
+        try:
+            hero = _hero_clip(template, {**(seg_cfgs[i] if i < len(seg_cfgs)
+                                            else {}), **wp}, theme,
+                              t1 - t0, work, i)
+            body = _splice(body, hero, t0, t1, work / f"spliced{i}.mp4")
+            print(f"[longform] world hero '{template}' spliced over "
+                  f"beat {i + 1}")
+        except Exception as e:  # noqa: BLE001 — a hero is never fatal
+            print(f"[longform] hero splice {i + 1} FAILED ({e}) — "
+                  "world take keeps its own waypoint", file=sys.stderr)
+    return body
+
+
+# --------------------------------------------------------------------------
 # Assembly.
 # --------------------------------------------------------------------------
 def _kenburns_clip(frame: Path, dur: float, idx: int, out: Path) -> Path:
@@ -605,6 +753,21 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         total = windows[-1][1]
         write_srt(sentences, windows, out_path.with_suffix(".srt"))
 
+        # THE SIMULATION ENGINE (one place, one camera, one take) is the
+        # primary body renderer; the clip-per-beat path below is the loud
+        # fallback so a world failure can never mean no video.
+        video = None
+        if story_cfg.get("world"):
+            try:
+                video = _body_world(story_cfg, cfg, st, theme, windows, work)
+                print("[longform] body: world engine (one take)")
+            except Exception as e:  # noqa: BLE001
+                print(f"[longform] WORLD ENGINE FAILED ({e}) — falling back "
+                      "to clip-per-beat renderer", file=sys.stderr)
+        if video is not None:
+            return _finish(out_path, st, theme, cfg, work, video, narration,
+                           windows, total)
+
         # Title + closing cards (Pillow + Ken Burns).
         title_frame = _title_card(theme, cfg.get("channel_name", "Visualized"),
                                   st.title, st.hook, work / "f_title.png")
@@ -664,42 +827,47 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         video = work / "video.mp4"
         _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat",
               "-safe", "0", "-i", str(listf), "-c", "copy", str(video)])
+        return _finish(out_path, st, theme, cfg, work, video, narration,
+                       windows, total)
 
-        # Soundtrack: narration + ducked music bed (skip music gracefully).
-        track = _music_track(cfg.get("music_vibe", "cinematic"), slug)
-        audio = work / "mix.wav"
-        if track:
-            _run(["ffmpeg", "-y", "-loglevel", "error",
-                  "-i", str(narration), "-stream_loop", "-1",
-                  "-i", str(track), "-filter_complex",
-                  f"[1:a]volume={MUSIC_VOL},atrim=0:{total:.3f},"
-                  f"afade=t=out:st={max(0.0, total - 3):.3f}:d=3[m];"
-                  f"[0:a][m]amix=inputs=2:duration=first:normalize=0,"
-                  f"loudnorm=I=-14:TP=-1.5:LRA=11[a]",
-                  "-map", "[a]", "-ar", "48000", str(audio)])
-        else:
-            print("[longform] no music bed found — narration only",
-                  file=sys.stderr)
-            _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(narration),
-                  "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "48000",
-                  str(audio)])
 
-        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(video),
-              "-i", str(audio), "-map", "0:v", "-map", "1:a",
-              "-c:v", "copy", "-c:a", "aac", "-b:a", "384k", "-ar", "48000",
-              "-movflags", "+faststart", str(out_path)])
+def _finish(out_path: Path, st, theme: dict, cfg: dict, work: Path,
+            video: Path, narration: Path, windows, total: float) -> Path:
+    """Shared tail for both body renderers: soundtrack, mux, chapters."""
+    track = _music_track(cfg.get("music_vibe", "cinematic"), st.slug)
+    audio = work / "mix.wav"
+    if track:
+        _run(["ffmpeg", "-y", "-loglevel", "error",
+              "-i", str(narration), "-stream_loop", "-1",
+              "-i", str(track), "-filter_complex",
+              f"[1:a]volume={MUSIC_VOL},atrim=0:{total:.3f},"
+              f"afade=t=out:st={max(0.0, total - 3):.3f}:d=3[m];"
+              f"[0:a][m]amix=inputs=2:duration=first:normalize=0,"
+              f"loudnorm=I=-14:TP=-1.5:LRA=11[a]",
+              "-map", "[a]", "-ar", "48000", str(audio)])
+    else:
+        print("[longform] no music bed found — narration only",
+              file=sys.stderr)
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(narration),
+              "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "48000",
+              str(audio)])
 
-        # Chapters sidecar: first at 00:00, names from segment roles. Beats
-        # run 20-40s each so the >=10s chapter rule holds by construction.
-        chapters = [{"t": 0.0, "label": "Intro"}]
-        for seg, (t0, _) in zip(st.segments, windows[1:-1]):
-            chapters.append({"t": round(t0, 2),
-                             "label": _chapter_name(seg.role, seg.topic)})
-        chapters.append({"t": round(windows[-1][0], 2), "label": "Takeaway"})
-        meta = {"slug": slug, "duration": round(total, 2),
-                "chapters": chapters, "sources": st.sources}
-        out_path.with_suffix(".meta.json").write_text(
-            json.dumps(meta, indent=2) + "\n")
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(video),
+          "-i", str(audio), "-map", "0:v", "-map", "1:a",
+          "-c:v", "copy", "-c:a", "aac", "-b:a", "384k", "-ar", "48000",
+          "-movflags", "+faststart", str(out_path)])
+
+    # Chapters sidecar: first at 00:00, names from segment roles. Beats
+    # run 20-40s each so the >=10s chapter rule holds by construction.
+    chapters = [{"t": 0.0, "label": "Intro"}]
+    for seg, (t0, _) in zip(st.segments, windows[1:-1]):
+        chapters.append({"t": round(t0, 2),
+                         "label": _chapter_name(seg.role, seg.topic)})
+    chapters.append({"t": round(windows[-1][0], 2), "label": "Takeaway"})
+    meta = {"slug": st.slug, "duration": round(total, 2),
+            "chapters": chapters, "sources": st.sources}
+    out_path.with_suffix(".meta.json").write_text(
+        json.dumps(meta, indent=2) + "\n")
 
     print(f"[longform] {out_path}  ({total:.0f}s, "
           f"{len(st.segments)} beats)")

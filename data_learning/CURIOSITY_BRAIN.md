@@ -177,45 +177,66 @@ view); build reusable scene templates before reaching for it.
   are Pexels/Pixabay (keys) with keyless Mixkit as the always-on net, and
   a failed fetch silently yields the beat back to the payoff — b-roll is
   a bonus, never a blocker.
-- **The muted test [the final operating rule]:** if the narration were muted,
-  would the visual story still feel worth watching? If no, it's drifting
-  back toward a generic faceless explainer — rebuild the visuals.
+- **THE MUTE TEST [permanent law, operator-set]:** with narration off, a
+  viewer must follow **~70% of the story from visuals alone** — the
+  defining trait of elite visual explainers. Visuals do the explanatory
+  work; narration is commentary on what the viewer is already seeing.
+  Checked in eye-QA on every video; below the bar → rebuild the visuals,
+  not the words.
 
-## 7.5 The visual storytelling engine (operator doctrine, 2026-07-08)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-08, v2)
 
-The channel is built on a **visual storytelling engine, not an animation
-tool**: a growing vocabulary of reusable, parameterized primitives that
-the authoring brain COMPOSES. The brain's intelligence goes into "what
-should the viewer see, where does the camera go?" — never into inventing
-frames. Quality compounds as the library grows. Five tiers:
+The channel does not run a video generator; it runs a **simulation
+engine**: `World → Camera → Objects → Narration`, never
+`script → scene → scene → scene`. Each video instantiates **ONE
+connected place**; a single camera makes **one continuous journey**
+through it (the body is ONE take — `world_engine.py`); beats are
+**waypoints** in that one geography; transitions do not exist, camera
+moves do. The brain's intelligence goes into the operator's prime
+directive, verbatim: *"Stop asking 'How do I display this information?'
+Ask: if Pixar had to explain this, what would the audience SEE?"*
 
-| Tier | What | Engine |
-|---|---|---|
-| 1–2 (~80%) | Procedural + vector motion: journeys, ladders, cutaways, counters, labels, orbits, fills, stacks | Manim scenes in `curiosity_scenes.py` (vector, deterministic, TeX-free) |
-| 3 | 3D asset/template library — build Earth/shaft/lineup ONCE, then only camera + parameters change per video (brand consistency) | `blender_hero.py` templates, headless Cycles |
-| 4 | AI **stills** for the un-photographable (`gemini_images.py`), then animate them OURSELVES — Ken Burns, parallax, zoom. Never ask AI to animate | Pillow + ffmpeg |
-| 5 | AI **video**, 5–10s max, only for scenes nothing else can make (eruptions, ancient scenes). The one slot worth a paid service later | not wired yet |
+**The visual script (IR)** — every story carries a `"world"` block
+(renderer-agnostic; see `world_engine.py` docstring): a world template,
+waypoints (one per narration beat, each naming an object BUILDER and
+optionally a Blender `hero` template), and a story template. Authored
+BEFORE any data work.
 
-**Named primitives so far** (a story requests one per beat with
-`"scene": "<name>"`; the data shape's chart scene is the default):
-`descent` (camera falls past depth waypoints), `zoomout` (powers-of-ten
-ladder — each tableau shrinks into a dot of the next), `cutaway`
-(planet layers draw themselves, the probe shows the fraction touched),
-plus the chart beats `rank` / `comparison` / `trend`. Real footage
-(b-roll) is garnish between payoffs, never the spine.
+**World templates** (`depth` | `scale` | `system`) make "one place"
+real: DepthWorld (surface → strata → the deep), ScaleWorld (one
+continuous powers-of-ten zoom axis with zoom-gated level visibility),
+SystemWorld (a map/flow surface the camera tracks across). New world =
+new template, added once, reused forever.
 
-**Rules that make it feel premium:**
-- **Camera language** — animate the camera, not the object. Not "Earth
-  appears" but "we pull away from Earth"; not "a list of depths" but
-  "we fall past them."
-- **One world** — every video feels like one connected universe (same
-  chrome, same palette, transitions that travel), not
-  picture-picture-picture.
-- **Text is an object** — counters, measurements, callouts, scale bars
-  that move with the world; subtitles are not animation.
-- **Grow the library, not one-offs** — a new visual need becomes a new
-  parameterized primitive (or Blender template or effect), added here
-  by name, so the next 100 videos get it for free.
+**Persistent objects** (`world_builders.py ASSETS`): ONE Earth, ONE
+mountain, ONE drill, ONE thermometer, ONE human, ONE jet — defined once,
+referenced by every video. A new visual need becomes a new persistent
+asset or builder, NEVER a one-off. This is the compounding mechanism.
+
+**Object builders** (`world_builders.py BUILDERS`): `rank`, `compare`,
+`gauge` (THE thermometer blows past its expected marker), `flipcompare`
+(THE mountain flips into the shaft), `drilljourney` (THE drill descends
+past year stamps), `scalelevel` (earth/orbit/galaxy/human tableaus),
+`marker`. One-take rule: builders position at their anchor BEFORE
+creating animations; live numbers anchor to sibling objects.
+
+**Backends behind the IR** — Manim's moving camera is the 2.5D
+compositor (an implementation detail, not the identity); Blender
+renders hero waypoints (`monoliths`, `earth_dive`) spliced over their
+windows behind a luminance dip (the SIMPLE splice — no motion-matched
+portals, by operator ruling); footage appears only on in-world screens
+or ≤1–2 act-break inserts. **Ken Burns/drift is legal ONLY on footage**
+— everywhere else motion is the real camera.
+
+**Story templates** (pick per story, don't force one shape):
+`mystery-reveal` (question → clues → reveal → twist),
+`question-journey-discovery`, `scale-comparison-perspective`,
+`countdown-winner-surprise`. Shared invariants: 2–3 hero moments; ≥2
+metaphor waypoints; ≤2 chart waypoints; the reveal/summit waypoint gets
+the biggest camera event.
+
+**Hero-moment budget**: the most important fact gets the most expensive
+visual. Rank the script's facts, spend unequally.
 
 ## 8. Package output schema
 
@@ -241,6 +262,11 @@ legible in the safe area; reads muted; survives platform UI. Then:
 - No two segments share a layout.
 - Title + thumbnail pair honestly with the reveal (the thumbnail is
   auto-emitted by the renderer; check it reads at small size).
+- **Motion gate:** `python3 scripts/qa_motion.py <mp4>` — consecutive-frame
+  diffs at 8 sample points; ANY static point fails the video (the camera
+  locked somewhere, which the one-take engine should make impossible).
+- **The mute test (§7):** watch a muted pass; if you can't follow ~70%,
+  the visuals aren't doing the explanatory work yet.
 
 ## 10. Invariants no brain may break [SHARED]
 - Trend is raw material — never publish the raw item form.
