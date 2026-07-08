@@ -117,7 +117,9 @@ jobs:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           # Canonical name first; _ORI accepted as the operator-created alias.
           YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
-          EXPECTED: ${{ inputs.expected_channel || vars.CURIOSITY_EXPECTED_CHANNEL }}
+          # Hard default to the real channel (OpenRangeInteractive / @ORI);
+          # repo var CURIOSITY_EXPECTED_CHANNEL can override if renamed.
+          EXPECTED: ${{ inputs.expected_channel || vars.CURIOSITY_EXPECTED_CHANNEL || 'OpenRangeInteractive' }}
         run: |
           [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
           MODE="${{ inputs.mode }}"; [ -z "$MODE" ] && MODE="auto"
@@ -126,10 +128,9 @@ jobs:
             missing=0
             [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
             [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON_CURIOSITY (or its alias YOUTUBE_TOKEN_JSON_ORI) — mint it with setup_youtube.py signed into the curiosity channel's account"; missing=1; }
-            # The channel handle isn't known at wiring time, so there is NO
-            # hardcoded default: fail closed rather than risk posting to the
-            # wrong account with a mis-pasted token.
-            [ -z "$EXPECTED" ] && { echo "::error::set the CURIOSITY_EXPECTED_CHANNEL repo variable (or the expected_channel input) to the new channel's handle before posting"; missing=1; }
+            # Belt-and-braces: the env default above should make this
+            # unreachable, but never post guardless.
+            [ -z "$EXPECTED" ] && { echo "::error::channel guard is empty — set CURIOSITY_EXPECTED_CHANNEL"; missing=1; }
             [ $missing -ne 0 ] && exit 1
           fi
           echo "Pre-flight OK."
@@ -211,6 +212,7 @@ jobs:
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
           EXPECTED="${{ inputs.expected_channel }}"
           [ -z "$EXPECTED" ] && EXPECTED="${{ vars.CURIOSITY_EXPECTED_CHANNEL }}"
+          [ -z "$EXPECTED" ] && EXPECTED="OpenRangeInteractive"
           EVERY="${{ inputs.every_hours }}";         [ -z "$EVERY" ] && EVERY="24"
           START="${{ inputs.start_in_hours }}";      [ -z "$START" ] && START="1"
           SLUGS="$(echo "${{ inputs.slugs }}" | tr ',' ' ' | tr -s ' ')"

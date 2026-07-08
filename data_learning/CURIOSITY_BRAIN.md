@@ -4,9 +4,14 @@ Faceless, **evergreen**, AI-assisted visual-curiosity channel. Operator playbook
 v1 (2026-07-08), adapted from the operator's source playbook (ChatGPT) to run on
 this repo's pipeline — see §13 for every deliberate deviation and why.
 
-The channel slug is `curiosity`. Config: `data_learning/curiosity.config.json`.
-Posted log: `state/curiosity_posted_log.json`. Token:
-`YOUTUBE_TOKEN_JSON_CURIOSITY`. Workflow: `curiosity.yml`. Wiring in §12.
+The channel slug is `curiosity`; the YouTube channel is
+**OpenRangeInteractive (@OpenRangeInteractive)** — "ORI". Config:
+`data_learning/curiosity.config.json`. Posted log:
+`state/curiosity_posted_log.json`. Token: `YOUTUBE_TOKEN_JSON_CURIOSITY`
+(alias `YOUTUBE_TOKEN_JSON_ORI` accepted). Workflow: `curiosity.yml`.
+Wiring in §12. "Visualized" is the on-video brand label
+(`channel_name` in config), same as Data Minute is the brand riding on
+short_explainer67; rename either if the operator wants them unified.
 Operator doctrine (permanent): a library of videos that are still worth
 watching in five years; growth by catalog compounding, not by news cycles.
 
@@ -189,10 +194,11 @@ science kits, globes) → digital products (poster/map packs, template packs)
 ## 12. Wiring & isolation (zero shared-pipeline impact)
 
 - **Token:** `YouTubeUploader(channel="curiosity")` → reads
-  `YOUTUBE_TOKEN_JSON_CURIOSITY` (mint with `setup_youtube.py` signed into
-  the new channel's account). Guard: `YOUTUBE_EXPECTED_CHANNEL` — the
-  workflow **fails closed** if the `CURIOSITY_EXPECTED_CHANNEL` repo var /
-  input is unset, because this channel's handle isn't known at wiring time.
+  `YOUTUBE_TOKEN_JSON_CURIOSITY`; the workflow also accepts the
+  operator-created secret name `YOUTUBE_TOKEN_JSON_ORI` (mint with
+  `setup_youtube.py` signed into the OpenRangeInteractive account).
+  Guard: `YOUTUBE_EXPECTED_CHANNEL` defaults to `OpenRangeInteractive`;
+  repo var `CURIOSITY_EXPECTED_CHANNEL` overrides if the channel renames.
 - **Config/log/analytics:** `data_learning/curiosity.config.json` ·
   `state/curiosity_posted_log.json` · `state/analytics_curiosity/`.
 - **Render + post:** `scripts/post_stories.py --config
