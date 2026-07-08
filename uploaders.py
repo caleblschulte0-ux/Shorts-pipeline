@@ -258,7 +258,7 @@ class YouTubeUploader(Uploader):
 
     def upload(self, file_path, *, title, description, tags=None, publish_at=None,
                thumbnail=None, localizations=None, default_language="en",
-               audio_language=None):
+               audio_language=None, category="22", captions_srt=None):
         try:
             from googleapiclient.http import MediaFileUpload
         except ImportError as e:
@@ -294,7 +294,7 @@ class YouTubeUploader(Uploader):
                 "title": title[:100],
                 "description": description[:5000],
                 "tags": list(tags or [])[:30],
-                "categoryId": "22",  # People & Blogs
+                "categoryId": str(category),  # default 22 People & Blogs
                 # Required for localizations to take effect; declares the base
                 # language of the snippet above.
                 "defaultLanguage": default_language,
@@ -339,6 +339,26 @@ class YouTubeUploader(Uploader):
                 print(f"[youtube] set custom thumbnail for {vid}", flush=True)
             except Exception as e:  # noqa: BLE001
                 print(f"[youtube] thumbnail skipped for {vid}: {e}", flush=True)
+
+        # Uploaded captions (accessibility + search + the base for YouTube's
+        # auto-translated subtitles in every language). Best-effort: needs the
+        # youtube.force-ssl scope — tokens minted before that scope was added
+        # 403 here and we skip without losing the upload.
+        if captions_srt and Path(str(captions_srt)).exists():
+            try:
+                svc.captions().insert(
+                    part="snippet",
+                    body={"snippet": {"videoId": vid,
+                                      "language": default_language,
+                                      "name": ""}},
+                    media_body=MediaFileUpload(str(captions_srt),
+                                               mimetype="application/octet-stream"),
+                ).execute()
+                print(f"[youtube] uploaded captions for {vid}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[youtube] captions skipped for {vid} (re-mint the "
+                      f"token with youtube.force-ssl to enable): {e}",
+                      flush=True)
 
         return UploadResult(self.name, f"https://youtube.com/shorts/{vid}", response)
 

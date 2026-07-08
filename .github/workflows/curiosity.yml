@@ -266,14 +266,17 @@ jobs:
           git commit -m "curiosity: update posted log + analytics [skip ci]"
           # Robust push (same hardening as explainer.yml): --autostash rides
           # over render-dirtied files, -X ours keeps our fresh log on a race,
-          # retries ride out concurrent pushes from scout/daily.
+          # retries ride out concurrent pushes from scout/daily. Push to the
+          # ref the workflow ran FROM (== main on cron; the feature branch on
+          # a branch dispatch) so a branch run can never implicitly merge the
+          # whole branch into main.
           for i in 1 2 3 4 5; do
-            if git push origin HEAD:main; then
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
               echo "Pushed on attempt $i"
               exit 0
             fi
             echo "Push failed on attempt $i, rebasing (autostash, ours)..."
-            git pull --rebase --autostash -X ours origin main || git rebase --abort || true
+            git pull --rebase --autostash -X ours origin "${GITHUB_REF_NAME}" || git rebase --abort || true
             sleep 2
           done
           echo "::error::Failed to persist posted log after 5 attempts"

@@ -542,6 +542,33 @@ def _chapter_name(role: str, topic: str) -> str:
     return name.title() if name else "Chapter"
 
 
+def _srt_ts(t: float) -> str:
+    ms = int(round(t * 1000))
+    return (f"{ms // 3600000:02d}:{ms // 60000 % 60:02d}:"
+            f"{ms // 1000 % 60:02d},{ms % 1000:03d}")
+
+
+def write_srt(sentences: list[str], windows, out: Path) -> Path:
+    """Uploadable captions: each sentence's window is split into ~8-word
+    cues, time allocated proportional to character count (no word-level
+    timestamps needed — proportional split tracks TTS pacing closely)."""
+    cues = []
+    for sent, (t0, t1) in zip(sentences, windows):
+        words = sent.split()
+        chunks = [" ".join(words[i:i + 8]) for i in range(0, len(words), 8)]
+        total_chars = sum(len(c) for c in chunks) or 1
+        t = t0
+        for c in chunks:
+            d = (t1 - t0 - 0.15) * len(c) / total_chars
+            cues.append((t, min(t + d, t1), c))
+            t += d
+    lines = []
+    for i, (a, b, text) in enumerate(cues, 1):
+        lines += [str(i), f"{_srt_ts(a)} --> {_srt_ts(b)}", text, ""]
+    out.write_text("\n".join(lines), encoding="utf-8")
+    return out
+
+
 def render(slug: str, out_path: Path, voice: str | None = None,
            config_path: Path | None = None) -> Path:
     config_path = (Path(config_path) if config_path
@@ -570,6 +597,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         sentences = st.sentences()
         narration, windows = synth_narration(sentences, work, voice)
         total = windows[-1][1]
+        write_srt(sentences, windows, out_path.with_suffix(".srt"))
 
         # Title + closing cards (Pillow + Ken Burns).
         title_frame = _title_card(theme, cfg.get("channel_name", "Visualized"),

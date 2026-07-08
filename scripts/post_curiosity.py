@@ -195,6 +195,7 @@ def main() -> int:
         print(f"[{slug}] uploading {dur:.0f}s video"
               + (f" (scheduled {publish_at})" if publish_at else ""),
               flush=True)
+        srt = out.with_suffix(".srt")
         try:
             res = uploader.upload(
                 file_path=out,
@@ -204,6 +205,9 @@ def main() -> int:
                 publish_at=publish_at,
                 thumbnail=thumb if thumb.exists() else None,
                 localizations=localizations,
+                category="27",              # Education — the watch-page niche
+                audio_language="en",
+                captions_srt=srt if srt.exists() else None,
             )
         except Exception as e:  # noqa: BLE001
             msg = str(e)
@@ -216,6 +220,9 @@ def main() -> int:
                 break
             continue
         url = getattr(res, "url", None) or str(res)
+        vid = (getattr(res, "raw", None) or {}).get("id")
+        if vid:                       # long-form: a watch URL, not /shorts/
+            url = f"https://www.youtube.com/watch?v={vid}"
         print(f"[{slug}] uploaded -> {url}", flush=True)
         log["posted"][slug] = {
             "url": url, "title": sc.get("title"),
