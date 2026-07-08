@@ -199,16 +199,18 @@ class WorldScene(MovingCameraScene):
         # ring at 0.35 must never become an opaque disc).
         if is_scale:
             for g, (anchor, fw) in zip(groups, anchors):
-                designed = [(m, m.get_fill_opacity(), m.get_stroke_opacity())
+                designed = [(m, m.get_fill_opacity(), m.get_stroke_opacity(),
+                             m.get_stroke_width())
                             for m in g.family_members_with_points()]
 
                 def vis(_g, fw=fw, designed=designed):
                     ratio = frame.width / fw
                     o = 1.0 if 0.45 <= ratio <= 2.4 else max(
                         0.0, 1.0 - 0.9 * abs(math.log(max(ratio, 1e-6), 3)))
-                    for m, f0, s0 in designed:
+                    for m, f0, s0, w0 in designed:
                         m.set_fill(opacity=f0 * o)
-                        m.set_stroke(opacity=s0 * o)
+                        if w0 > 0:      # never conjure a stroke that wasn't
+                            m.set_stroke(opacity=s0 * o)   # designed in
                 g.add_updater(vis)
                 g.resume_updating()          # visibility must always run
 

@@ -571,12 +571,16 @@ def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
     if "HERO_DONE" not in (res.stdout or ""):
         raise RuntimeError(f"hero failed: {(res.stderr or '')[-300:]}")
     out = work / f"wherobeat{idx}.mp4"
+    # Fill the WHOLE splice with real motion: stretch playback (slow-mo)
+    # to the splice duration, then motion-interpolate to 30fps. Never a
+    # frozen hold — the motion gate fails static frames.
+    factor = max(1.0, dur / HERO_SECONDS)
     fade_out_st = max(0.0, dur - 0.3)
     _run(["ffmpeg", "-y", "-loglevel", "error",
           "-framerate", str(HERO_FPS), "-i", str(frames_dir / "hero_%04d.png"),
           "-vf",
-          f"minterpolate=fps={FPS}:mi_mode=mci,scale={W}:{H},"
-          f"tpad=stop_mode=clone:stop_duration={dur:.3f},"
+          f"setpts={factor:.4f}*PTS,minterpolate=fps={FPS}:mi_mode=mci,"
+          f"scale={W}:{H},"
           f"fade=t=in:st=0:d=0.3,fade=t=out:st={fade_out_st:.3f}:d=0.3,"
           f"format=yuv420p",
           "-t", f"{dur:.3f}", "-r", str(FPS),
@@ -655,11 +659,15 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
             continue
         template = "monoliths" if template is True else str(template)
         t0, t1 = windows[i + 1]
+        # The hero punctuates the beat, it doesn't own it: cap the splice
+        # at 2x the hero's natural length (slow-mo fills it with real
+        # motion) and give the world take the rest of the window.
+        h_end = min(t1, t0 + 2.0 * HERO_SECONDS)
         try:
             hero = _hero_clip(template, {**(seg_cfgs[i] if i < len(seg_cfgs)
                                             else {}), **wp}, theme,
-                              t1 - t0, work, i)
-            body = _splice(body, hero, t0, t1, work / f"spliced{i}.mp4")
+                              h_end - t0, work, i)
+            body = _splice(body, hero, t0, h_end, work / f"spliced{i}.mp4")
             print(f"[longform] world hero '{template}' spliced over "
                   f"beat {i + 1}")
         except Exception as e:  # noqa: BLE001 — a hero is never fatal
