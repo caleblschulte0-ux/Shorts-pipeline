@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "slug": "harpy-eagle-grizzly-talons-2026",
+  "title": "This Bird's Talons Are Bigger Than a Grizzly Bear's Claws",
+  "hashtags": [
+    "harpyeagle",
+    "eagle",
+    "rainforest",
+    "wildlife",
+    "animals",
+    "nature",
+    "predator",
+    "birds",
+    "viral",
+    "wild",
+    "fyp",
+    "animalfacts"
+  ],
+  "script": "This bird can snatch a monkey off a branch and never slow down. The harpy eagle. Its talons grow longer than a grizzly bear's claws and close with enough force to crush bone instantly, over five hundred pounds per square inch. It flies silently between trees at speeds up to fifty miles an hour, using the canopy as cover until it is already too close to escape. A single strike can lift prey nearly its own body weight straight up into the air. Females are almost twice the size of males and hunt sloths and monkeys that never see the attack coming. How does something this powerful stay invisible until the last second?",
+  "shots": [
+    {
+      "phrase": "This bird can snatch a monkey off a branch and never slow down",
+      "query": "harpy eagle flying",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harpia-harpyja-001.jpg"
+    },
+    {
+      "phrase": "The harpy eagle",
+      "query": "harpy eagle portrait",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harpia-harpyja-001.jpg"
+    },
+    {
+      "phrase": "longer than a grizzly bear's claws",
+      "query": "harpy eagle talons closeup",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harpia-harpyja-001.jpg"
+    },
+    {
+      "phrase": "over five hundred pounds per square inch",
+      "query": "harpy eagle grip",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "flies silently between trees",
+      "query": "harpy eagle rainforest canopy",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "lift prey nearly its own body weight straight up into the air",
+      "query": "harpy eagle carrying prey",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "never see the attack coming",
+      "query": "harpy eagle hunting",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harpia-harpyja-001.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "longer than a grizzly bear's claws",
+      "text": "BIGGER THAN GRIZZLY CLAWS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "five hundred pounds per square inch",
+      "text": "500 PSI GRIP",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "fifty miles an hour",
+      "text": "50 MPH SILENT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "twice the size of males",
+      "text": "FEMALES 2X SIZE",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "epic"
+}

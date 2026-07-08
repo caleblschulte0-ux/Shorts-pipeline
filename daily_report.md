@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-07-07
+# Daily Trending Shorts — 2026-07-08
 
 - queued: **6**
 - succeeded: **6**
@@ -6,34 +6,34 @@
 - failed: **0**
 
 ## Posted
-- **The One Animal a Great White Shark Runs From**
-  - topic: The One Animal a Great White Shark Runs From
-  - publishes: `2026-07-07T13:00:00Z`
-  - https://youtube.com/shorts/u8DHcc2ZmpY
-  - took: 271.2s
-- **This 'Cute' Animal Is a Ruthless Killer**
-  - topic: This 'Cute' Animal Is a Ruthless Killer
-  - publishes: `2026-07-07T15:00:00Z`
-  - https://youtube.com/shorts/cBcUi6gIOLA
-  - took: 280.1s
-- **The Deadliest Big Animal in Africa Isn't the Lion**
-  - topic: The Deadliest Big Animal in Africa Isn't the Lion
-  - publishes: `2026-07-07T17:00:00Z`
-  - https://youtube.com/shorts/trZD_nPr2Bc
-  - took: 415.6s
-- **The Bird That Can Kill You With One Kick**
-  - topic: The Bird That Can Kill You With One Kick
-  - publishes: `2026-07-07T19:00:00Z`
-  - https://youtube.com/shorts/Xqwqgn_slBU
-  - took: 350.9s
-- **The Biggest Animal on Land Is Scared of Something Tiny**
-  - topic: The Biggest Animal on Land Is Scared of Something Tiny
-  - publishes: `2026-07-07T21:00:00Z`
-  - https://youtube.com/shorts/RVWDuSH2kAU
-  - took: 307.9s
-- **The Animal Too Fearless to Have Predators**
-  - topic: The Animal Too Fearless to Have Predators
-  - publishes: `2026-07-07T23:00:00Z`
-  - https://youtube.com/shorts/eNjf5maGyko
-  - took: 227.0s
+- **The Snake That Almost Never Wins This Fight**
+  - topic: The Snake That Almost Never Wins This Fight
+  - publishes: `2026-07-08T13:00:00Z`
+  - https://youtube.com/shorts/FAucC2-Jx74
+  - took: 408.6s
+- **This Bird Hunts the Deadliest Snakes on Foot**
+  - topic: This Bird Hunts the Deadliest Snakes on Foot
+  - publishes: `2026-07-08T15:00:00Z`
+  - https://youtube.com/shorts/_rl9XiooEu8
+  - took: 479.5s
+- **This Shrimp Can Crack Aquarium Glass With One Punch**
+  - topic: This Shrimp Can Crack Aquarium Glass With One Punch
+  - publishes: `2026-07-08T17:00:00Z`
+  - https://youtube.com/shorts/OZ9WzXStqFI
+  - took: 519.1s
+- **Wolves Won't Touch a Herd That Forms This Shape**
+  - topic: Wolves Won't Touch a Herd That Forms This Shape
+  - publishes: `2026-07-08T19:00:00Z`
+  - https://youtube.com/shorts/-Mln7MgW4BY
+  - took: 462.0s
+- **This Bird's Talons Are Bigger Than a Grizzly Bear's Claws**
+  - topic: This Bird's Talons Are Bigger Than a Grizzly Bear's Claws
+  - publishes: `2026-07-08T21:00:00Z`
+  - https://youtube.com/shorts/NdjuGPDEBjo
+  - took: 263.5s
+- **This Fish Can Leap Out of the Water to Shock You**
+  - topic: This Fish Can Leap Out of the Water to Shock You
+  - publishes: `2026-07-08T23:00:00Z`
+  - https://youtube.com/shorts/8yZ51VA6fK8
+  - took: 495.2s
 
