@@ -1,0 +1,28 @@
+{
+  "key": "longest_living_organisms_fungal_longevity",
+  "title": "Fungal Longevity",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-08"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Armillaria ostoyae",
+      "value": 8000.0,
+      "period": "2022"
+    },
+    {
+      "label": "Reishi",
+      "value": 1000.0,
+      "period": "2022"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "key": "longest_living_trees_tree_age_comparison",
+  "title": "Tree Age Comparison",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-08"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Methuselah",
+      "value": 4850.0,
+      "period": "2020"
+    },
+    {
+      "label": "Sarv-e Abarkuh",
+      "value": 2500.0,
+      "period": "2020"
+    }
+  ]
+}
