@@ -310,11 +310,12 @@ class DescentBeat(_BeatBase):
                       .move_to([3.7, y, 0], aligned_edge=LEFT))
         self.add(world)
         self.setup_chrome(sp)          # chrome AFTER the world = on top
-        # Depth counter riding the fall.
+        # Depth counter riding the fall — bottom-right, clear of the
+        # waypoint value lane (top-right is where labels scroll past).
         v = ValueTracker(0.0)
         counter = always_redraw(lambda: Text(
             f"{_fmt(v.get_value())} {unit}".strip(), font_size=46,
-            weight=BOLD, color=hi).to_corner(UP + RIGHT, buff=0.7))
+            weight=BOLD, color=hi).to_corner(DOWN + RIGHT, buff=0.7))
         self.add(counter)
         # The fall: ease through the marker cluster, cruise the empty gulf.
         total_shift = -depth_y(deepest) + 1.2
@@ -431,12 +432,13 @@ class CutawayBeat(_BeatBase):
         depth_frac = 1.5 / r_out                # outer band visual share
         y_top, y_bot = cx[1] + r_out, cx[1] + r_out - 1.5
         wv = ValueTracker(0.0)
+        # Label sits LEFT of the bracket (right of it runs off-frame).
         wlabel = always_redraw(lambda: VGroup(
             Text(whole["label"], font_size=24, color=GRAY_TEXT),
             Text(f"{_fmt(wv.get_value())} {unit}".strip(), font_size=32,
                  weight=BOLD, color="#ffffff"),
-        ).arrange(DOWN, aligned_edge=LEFT, buff=0.1)
-         .move_to([5.25, (y_top + y_bot) / 2, 0], aligned_edge=LEFT))
+        ).arrange(DOWN, aligned_edge=RIGHT, buff=0.1)
+         .move_to([4.7, (y_top + y_bot) / 2, 0], aligned_edge=RIGHT))
         self.add(Line([5.0, y_top, 0], [5.0, y_bot, 0], color="#ffffff",
                       stroke_width=4),
                  Line([4.85, y_top, 0], [5.15, y_top, 0], color="#ffffff",
