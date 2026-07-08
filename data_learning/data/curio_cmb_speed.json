@@ -1,0 +1,25 @@
+{
+ "key": "curio_cmb_speed",
+ "title": "Your speed vs the Big Bang's afterglow (km/h)",
+ "unit": "km/h",
+ "geography": "Solar System / Milky Way",
+ "time_coverage": "constant",
+ "source": {
+  "name": "CMB dipole velocity of the Sun",
+  "publisher": "NASA (COBE/WMAP cosmic microwave background dipole)",
+  "url": "https://lambda.gsfc.nasa.gov/product/cobe/",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures, rounded. The Sun moves ~370 km/s relative to the cosmic microwave background (the CMB dipole) ≈ 1,330,000 km/h; galactic orbital speed ~230 km/s ≈ 828,000 km/h.",
+ "points": [
+  {
+   "label": "Vs the cosmic background",
+   "value": 1330000
+  },
+  {
+   "label": "Around the galaxy",
+   "value": 828000
+  }
+ ]
+}

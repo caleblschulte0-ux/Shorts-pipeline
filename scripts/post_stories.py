@@ -36,22 +36,24 @@ CONFIG = REPO / "data_learning" / "niche.config.json"
 OUTPUT_DIR = REPO / "output"
 STATE_DIR = REPO / "state"
 # Deliberately a DIFFERENT log file from the trending pipeline's
-# state/posted_log.json so the two channels never collide.
+# state/posted_log.json so the two channels never collide. Sibling channels
+# (e.g. curiosity) pass --config/--log to get their own story config and
+# posted-log; these module-level paths stay the explainer defaults.
 LOG_PATH = STATE_DIR / "explainer_posted_log.json"
 
 
-def _load_log() -> dict:
-    if LOG_PATH.exists():
+def _load_log(path: Path = LOG_PATH) -> dict:
+    if path.exists():
         try:
-            return json.loads(LOG_PATH.read_text())
+            return json.loads(path.read_text())
         except json.JSONDecodeError:
             pass
     return {"posted": {}}
 
 
-def _save_log(log: dict) -> None:
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
-    LOG_PATH.write_text(json.dumps(log, indent=2) + "\n")
+def _save_log(log: dict, path: Path = LOG_PATH) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(log, indent=2) + "\n")
 
 
 # Evergreen hashtags every data-explainer Short carries, on top of whatever the
@@ -128,6 +130,12 @@ def main() -> int:
                          "publishAt); 0 = publish immediately")
     ap.add_argument("--start-in-hours", type=float, default=1.0,
                     help="when scheduling, how long from now the first one posts")
+    ap.add_argument("--config", type=Path, default=CONFIG,
+                    help="story config JSON (default: data_learning/"
+                         "niche.config.json; sibling channels pass their own)")
+    ap.add_argument("--log", type=Path, default=LOG_PATH,
+                    help="posted-log JSON (default: state/"
+                         "explainer_posted_log.json)")
     args = ap.parse_args()
 
     if args.check_channel:
@@ -137,7 +145,7 @@ def main() -> int:
               f"handle={me['handle']!r} id={me['id']}")
         return 0
 
-    cfg = json.loads(CONFIG.read_text())
+    cfg = json.loads(args.config.read_text())
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
     slugs = args.slugs or list(stories)
     unknown = [s for s in slugs if s not in stories]
@@ -146,7 +154,7 @@ def main() -> int:
               file=sys.stderr)
         return 2
 
-    log = _load_log()
+    log = _load_log(args.log)
     results = []
     uploader = None
     when = datetime.now(timezone.utc) + timedelta(hours=args.start_in_hours)
@@ -160,7 +168,7 @@ def main() -> int:
         out = OUTPUT_DIR / f"story_{slug}.mp4"
         print(f"[{slug}] rendering -> {out}", flush=True)
         from data_learning import studio_render       # lazy: needs Pillow etc.
-        studio_render.render(slug, out)
+        studio_render.render(slug, out, config_path=args.config)
 
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered, not uploading")
@@ -224,7 +232,7 @@ def main() -> int:
             "at": datetime.now(timezone.utc).isoformat(),
             "publish_at": publish_at,
         }
-        _save_log(log)
+        _save_log(log, args.log)
         results.append({"slug": slug, "ok": True, "url": url})
 
     ok = sum(1 for r in results if r["ok"])

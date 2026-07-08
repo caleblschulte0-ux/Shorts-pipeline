@@ -40,6 +40,8 @@ TOKEN_PATH = REPO / "token.json"
 SCOPES = [
     "https://www.googleapis.com/auth/youtube.upload",
     "https://www.googleapis.com/auth/youtube.readonly",
+    # captions.insert (uploaded subtitles) requires force-ssl specifically.
+    "https://www.googleapis.com/auth/youtube.force-ssl",
     # Retention/curves/search-terms — without this the token can upload but the
     # learning loop is blind (fetch_analytics falls back to raw view counts).
     "https://www.googleapis.com/auth/yt-analytics.readonly",
@@ -49,6 +51,7 @@ SCOPES = [
 DEVICE_SCOPES = [
     "https://www.googleapis.com/auth/youtube",
     "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/youtube.force-ssl",
     "https://www.googleapis.com/auth/yt-analytics.readonly",
 ]
 

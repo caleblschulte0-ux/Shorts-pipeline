@@ -1,0 +1,33 @@
+{
+ "key": "curio_deepest_human_points",
+ "title": "Deepest points humans ever reached (m)",
+ "unit": "m",
+ "geography": "World",
+ "time_coverage": "1989-2021",
+ "source": {
+  "name": "Deepest human-made / human-visited points",
+  "publisher": "Guinness World Records / NOAA / published surveys",
+  "url": "https://en.wikipedia.org/wiki/Kola_Superdeep_Borehole",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures, rounded for narration. Kola Superdeep Borehole final depth 12,262 m (1989); Challenger Deep ~10,935 m (2021 survey); Mponeng mine ~4,000 m; Veryovkina cave 2,212 m.",
+ "points": [
+  {
+   "label": "Kola Borehole",
+   "value": 12262
+  },
+  {
+   "label": "Challenger Deep",
+   "value": 10935
+  },
+  {
+   "label": "Mponeng Mine",
+   "value": 4000
+  },
+  {
+   "label": "Veryovkina Cave",
+   "value": 2212
+  }
+ ]
+}

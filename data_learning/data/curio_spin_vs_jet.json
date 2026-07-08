@@ -1,0 +1,25 @@
+{
+ "key": "curio_spin_vs_jet",
+ "title": "Earth's spin vs a jet airliner (km/h)",
+ "unit": "km/h",
+ "geography": "Equator",
+ "time_coverage": "constant",
+ "source": {
+  "name": "Equatorial rotation speed vs airliner cruise",
+  "publisher": "NASA",
+  "url": "https://spaceplace.nasa.gov/how-fast-is-earth-moving/en/",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures, rounded. Earth's circumference ~40,075 km per ~24h day → ~1,670 km/h at the equator; jet airliner cruise ~900 km/h.",
+ "points": [
+  {
+   "label": "Earth's spin",
+   "value": 1670
+  },
+  {
+   "label": "Jet airliner",
+   "value": 900
+  }
+ ]
+}
