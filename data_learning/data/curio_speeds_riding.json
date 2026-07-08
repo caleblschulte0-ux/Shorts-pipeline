@@ -1,0 +1,29 @@
+{
+ "key": "curio_speeds_riding",
+ "title": "Speeds you are riding right now (km/h)",
+ "unit": "km/h",
+ "geography": "Earth / Milky Way",
+ "time_coverage": "constant",
+ "source": {
+  "name": "Earth rotation, orbital and galactic speeds",
+  "publisher": "NASA",
+  "url": "https://spaceplace.nasa.gov/how-fast-is-earth-moving/en/",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures, rounded. Equatorial rotation ~1,670 km/h; Earth's orbital speed ~29.8 km/s ≈ 107,000 km/h; Solar System's galactic orbit ~230 km/s ≈ 828,000 km/h (NASA figure).",
+ "points": [
+  {
+   "label": "Around the galaxy",
+   "value": 828000
+  },
+  {
+   "label": "Around the Sun",
+   "value": 107000
+  },
+  {
+   "label": "Earth's spin",
+   "value": 1670
+  }
+ ]
+}

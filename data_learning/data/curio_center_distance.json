@@ -1,0 +1,25 @@
+{
+ "key": "curio_center_distance",
+ "title": "To Earth's center vs deepest hole (km)",
+ "unit": "km",
+ "geography": "World",
+ "time_coverage": "constant",
+ "source": {
+  "name": "Earth mean radius vs deepest borehole",
+  "publisher": "NASA / published geodesy references",
+  "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures. Earth's mean radius ~6,371 km; deepest borehole 12.262 km — about 0.2% of the way to the center.",
+ "points": [
+  {
+   "label": "To Earth's center",
+   "value": 6371
+  },
+  {
+   "label": "Deepest hole ever",
+   "value": 12.3
+  }
+ ]
+}

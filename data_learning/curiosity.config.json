@@ -1,0 +1,260 @@
+{
+ "niche": "visual-curiosity",
+ "channel_name": "Visualized",
+ "music_vibe": "cinematic",
+ "query_theme": "space earth geology ocean depth scale maps infrastructure systems science engineering curiosity",
+ "topic_doctrine": "Visualized is a faceless EVERGREEN visual-curiosity channel publishing 4-5 minute LONG-FORM 16:9 videos on the main YouTube watch feed (not Shorts). One broad question, one tension, one memorable reveal, one visual experience per video — a museum exhibit in motion, never a lecture and never news. Topics must score on the six pillars (impossible scale, hidden systems, what-if scenarios, extreme comparisons, process journeys, maps & layers), stay relevant for years, and become MORE compelling when seen. Every number is real and traceable to a source; the notes field of each dataset says exactly where it came from. If the narration were muted, the visual story must still feel worth watching. Full doctrine: data_learning/CURIOSITY_BRAIN.md.",
+ "source_allowlist": [
+  "NASA",
+  "NOAA",
+  "USGS",
+  "UN",
+  "World Bank",
+  "OECD",
+  "Guinness World Records",
+  "peer-reviewed literature"
+ ],
+ "stories": [
+  {
+   "slug": "kola-deepest-hole",
+   "keep_order": true,
+   "title": "The Deepest Hole on Earth Is Welded Shut",
+   "hook": "In 1970, Soviet engineers started drilling a hole just 23 centimeters wide — and didn't stop for twenty years. What happened on the way down was strange enough that the site is welded shut today. This is how deep humans have ever gone, and why we couldn't go one meter deeper.",
+   "closing": "The deepest journey in human history now ends at a rusted metal cap in the Russian Arctic — twelve kilometers of ambition, sealed with a few bolts.",
+   "question": "Would you have kept drilling? Tell me below.",
+   "caption": "Humans spent 20 years drilling the deepest hole on Earth — 12,262 meters, deeper than Everest is tall — and still only made it a third of the way through the crust, 0.2% of the way to the center. At 180°C the rock itself fought back, and in 1992 the planet won. The hole is welded shut today. Would you have kept drilling? 👇",
+   "hashtags": [
+    "kolaborehole",
+    "deepesthole",
+    "earthscrust",
+    "geology",
+    "deepearth",
+    "engineering",
+    "exploration",
+    "science",
+    "planetearth",
+    "howdeep",
+    "russia",
+    "curiosity"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "curio_deepest_human_points",
+     "params": {
+      "file": "curio_deepest_human_points.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "hero": true,
+     "hero_invert": true,
+     "role": "1 · THE RECORD",
+     "topic": "deepest points ever reached",
+     "say": "Start with the records. The deepest a human being has ever traveled is 10,935 meters — the bottom of the Challenger Deep, in a submersible built like a pressure bomb. The deepest mine on Earth, Mponeng in South Africa, reaches about 4,000 meters. The deepest cave anyone has ever descended, Veryovkina, bottoms out at 2,212. And then there's the hole. The Kola Superdeep Borehole goes 12,262 meters straight down through solid rock — deeper than any human, any machine with a person inside, has ever been. And picture the machine: twelve kilometers of steel drill pipe hanging from one derrick — the weight of the string itself was a monster engineering problem.",
+     "broll": [
+      "deep ocean underwater",
+      "oil drilling rig"
+     ]
+    },
+    {
+     "source": "offline",
+     "key": "curio_kola_milestones",
+     "params": {
+      "file": "curio_kola_milestones.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · TWENTY YEARS DOWN",
+     "topic": "drilling progress by year",
+     "say": "It took a generation. Drilling started in 1970 and ground on for two decades. By 1979 the bore had passed 9,583 meters, quietly breaking the world depth record. By 1983 it touched 12,000 — and then the planet started winning. Progress collapsed. The final 262 meters took six more years of snapped pipe and abandoned side-holes, ending at 12,262 meters in 1989. The deeper they went, the harder every single meter fought back. It wasn't one clean shaft either — the bore kept snapping and wandering, so they drilled branch after branch off the main hole, like the roots of a steel tree.",
+     "broll": [
+      "industrial drilling machine",
+      "arctic winter industrial"
+     ]
+    },
+    {
+     "source": "offline",
+     "key": "curio_kola_vs_everest",
+     "params": {
+      "file": "curio_kola_vs_everest.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · EVEREST, INVERTED",
+     "topic": "the hole vs the mountain",
+     "say": "To feel how deep that is, take Mount Everest — all 8,849 meters of it — and flip it upside down into the hole. It disappears. Completely. And there are still 3,400 meters of hole left over below the summit. Every climber who ever stood on top of the world would still be dangling three kilometers above the bottom of this shaft. And remember: the hole itself is only about 23 centimeters wide. The deepest thing our species ever made, and you couldn't fit your shoulders into it.",
+     "broll": [
+      "mount everest aerial",
+      "snowy mountain peak"
+     ]
+    },
+    {
+     "source": "offline",
+     "key": "curio_crust_progress",
+     "params": {
+      "file": "curio_crust_progress.json"
+     },
+     "insight_type": "comparison",
+     "role": "4 · STILL IN THE FIRST LAYER",
+     "topic": "progress through Earth's crust",
+     "say": "Now here's the humbling part. That record-shattering hole never even left the planet's first layer. The continental crust — Earth's thin outer shell — runs about 35,000 meters deep on average. Twenty years of drilling covered 12,262 of them. Barely a third of the way through the THINNEST layer of the planet, and nowhere near the mantle below it. Everything we've ever dug, drilled, or mined lives in the skin.",
+     "broll": [
+      "canyon rock layers",
+      "cave interior rock"
+     ],
+     "scene": "cutaway"
+    },
+    {
+     "source": "offline",
+     "key": "curio_kola_temperature",
+     "params": {
+      "file": "curio_kola_temperature.json"
+     },
+     "insight_type": "comparison",
+     "role": "5 · WHY WE STOPPED",
+     "topic": "rock temperature at depth",
+     "say": "So what actually stopped us? Heat. The models predicted about 100 degrees Celsius at that depth. The rock was really 180 — nearly double — and at those temperatures granite stops behaving like stone and starts behaving like soft plastic. Drill bits came back deformed, and every time the drill was pulled out, the hole slowly squeezed itself shut behind it. Along the way they found rock soaked with water that shouldn't exist down there, and microscopic plankton fossils 6,700 meters below the surface. But in 1992, the heat won. Drilling stopped for good.",
+     "broll": [
+      "molten lava glowing",
+      "industrial steam pipes"
+     ]
+    },
+    {
+     "source": "offline",
+     "key": "curio_center_distance",
+     "params": {
+      "file": "curio_center_distance.json"
+     },
+     "insight_type": "comparison",
+     "role": "6 · 0.2 PERCENT",
+     "topic": "how far to the center",
+     "say": "And that's the punchline of the whole project. The distance from where you're sitting to the center of the Earth is about 6,371 kilometers. The deepest hole our species ever managed covers 12.3 of them — roughly 0.2 percent of the way down. Everything we know about the remaining 99.8 percent of our own planet, we learned without ever touching it. Put it this way: if Earth were an apple, all of human drilling combined would not have broken through the skin.",
+     "broll": [
+      "earth from space",
+      "night sky stars"
+     ],
+     "scene": "descent"
+    }
+   ]
+  },
+  {
+   "slug": "sitting-still-speed",
+   "keep_order": true,
+   "title": "You're Moving 828,000 km/h Right Now",
+   "hook": "How fast are you moving right now? You'd probably say zero — you're sitting down. But sitting still might be the biggest illusion in physics. By the end of this video, the fastest machines humanity has ever built are going to look slow.",
+   "closing": "You have never been still — not for one single second of your life.",
+   "question": "Which of those speeds blew your mind first? Drop it below.",
+   "caption": "You think you're sitting still — but Earth's spin is carrying you at 1,670 km/h, its orbit at 107,000 km/h, and the galaxy is dragging you at 828,000 km/h — faster than the Parker Solar Probe, the fastest machine humans ever built. Measured against the afterglow of the Big Bang, you're doing 1.3 million. Which speed blew your mind first? 👇",
+   "hashtags": [
+    "earthrotation",
+    "galaxy",
+    "milkyway",
+    "parkersolarprobe",
+    "howfast",
+    "solarsystem",
+    "astronomy",
+    "physics",
+    "space",
+    "science",
+    "mindblown",
+    "curiosity"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "curio_everyday_speeds",
+     "params": {
+      "file": "curio_everyday_speeds.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · WHAT FAST MEANS",
+     "topic": "what 'fast' usually means",
+     "say": "First, let's calibrate what fast even means. Usain Bolt, the fastest human ever timed, peaked at about 45 km/h. A cruising jet airliner does roughly 900. A high-velocity rifle bullet leaves the muzzle around 3,400 km/h. And the International Space Station — the fastest place a human can currently live — laps the entire planet at about 28,000. Hold onto those four numbers. Every single one of them is about to look slow.",
+     "broll": [
+      "fighter jet flying",
+      "sprinter running"
+     ]
+    },
+    {
+     "source": "offline",
+     "key": "curio_spin_vs_jet",
+     "params": {
+      "file": "curio_spin_vs_jet.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE SPIN",
+     "topic": "Earth's spin vs a jet",
+     "say": "Because you are standing on a spinning ball. At the equator, Earth's rotation carries the ground — and everything on it — at about 1,670 km/h. That is nearly twice as fast as a jet airliner, faster than the speed of sound. You have never felt a single km/h of it, because the air, the buildings, and you are all moving together. There's no wind in your face when the whole sky moves with you. It's also why you weigh a tiny bit less at the equator — the spin is literally trying to fling you off the planet, and losing.",
+     "broll": [
+      "earth from space rotating",
+      "clouds time lapse"
+     ]
+    },
+    {
+     "source": "offline",
+     "key": "curio_orbit_vs_bullet",
+     "params": {
+      "file": "curio_orbit_vs_bullet.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE ORBIT",
+     "topic": "the orbit vs a bullet",
+     "say": "And the spinning ball is falling around the Sun. Earth's orbital speed is about 107,000 km/h — thirty times faster than that rifle bullet. In the ten seconds it takes to say this sentence, you will have traveled roughly 300 kilometers through space. No engine noise, no seatbelt, nothing. That's the trick of physics: you can only ever feel CHANGES in speed, and Earth's ride is astonishingly smooth. Keep that up for a year and Earth completes its whole orbit — about 940 million kilometers — without ever missing a beat.",
+     "broll": [
+      "sun in space",
+      "night sky time lapse"
+     ]
+    },
+    {
+     "source": "offline",
+     "key": "curio_speeds_riding",
+     "params": {
+      "file": "curio_speeds_riding.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "4 · THE GALAXY",
+     "topic": "the full ladder of speeds",
+     "say": "Now zoom all the way out. The entire Solar System — the Sun, the planets, you — is orbiting the center of the Milky Way at roughly 828,000 km/h. Stack the whole ladder up: the spin is 1,670. The orbit, 107,000. The galactic ride, 828,000. Each level is enormously faster than the one before, and all of them are happening to you at once, right now, in your chair. One full lap around the galaxy takes roughly 230 million years. The last time the Sun was in this neighborhood, dinosaurs were just getting started.",
+     "broll": [
+      "milky way time lapse",
+      "galaxy stars"
+     ],
+     "scene": "zoomout"
+    },
+    {
+     "source": "offline",
+     "key": "curio_fastest_machines",
+     "params": {
+      "file": "curio_fastest_machines.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "hero": true,
+     "role": "5 · YOU VS THE MACHINES",
+     "topic": "you vs the fastest machines",
+     "say": "Here's the twist that makes it real. The fastest machine our species has ever built is the Parker Solar Probe. Skimming the Sun in December 2024, it hit about 692,000 km/h — a record that took 66 years of spaceflight to set. Your galactic ride is 828,000. Sitting on your couch, doing absolutely nothing, you are outrunning the fastest thing humanity has ever made — by 136,000 km/h. And unlike the probe, you didn't need a heat shield, seven gravity assists, or 66 years of trying.",
+     "broll": [
+      "rocket launch",
+      "solar flare sun"
+     ]
+    },
+    {
+     "source": "offline",
+     "key": "curio_cmb_speed",
+     "params": {
+      "file": "curio_cmb_speed.json"
+     },
+     "insight_type": "comparison",
+     "role": "6 · THE FINAL SPEEDOMETER",
+     "topic": "your speed vs the universe",
+     "say": "And there is one final speedometer. Measured against the afterglow of the Big Bang itself — the cosmic microwave background, the most absolute backdrop physics has to offer — the Sun and everything traveling with it is doing about 1,330,000 km/h. That is the closest thing the universe has to your true speed. Zero was never on the menu. There is no universal parking brake — physics doesn't offer one. Every speedometer needs a backdrop, and this is the deepest backdrop there is.",
+     "broll": [
+      "nebula space",
+      "starry night sky"
+     ]
+    }
+   ]
+  }
+ ],
+ "videos": []
+}

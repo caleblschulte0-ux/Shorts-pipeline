@@ -1,0 +1,25 @@
+{
+ "key": "curio_kola_vs_everest",
+ "title": "Kola borehole vs Mount Everest (m)",
+ "unit": "m",
+ "geography": "World",
+ "time_coverage": "1989 / 2020 survey",
+ "source": {
+  "name": "Kola depth vs Everest official height",
+  "publisher": "Published surveys (2020 China-Nepal joint Everest survey)",
+  "url": "https://en.wikipedia.org/wiki/Mount_Everest",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures. Everest official height 8,848.86 m (2020 joint survey), rounded to 8,849; Kola Superdeep Borehole 12,262 m — Everest inverted would leave ~3,400 m of hole to spare.",
+ "points": [
+  {
+   "label": "Kola Borehole",
+   "value": 12262
+  },
+  {
+   "label": "Mount Everest",
+   "value": 8849
+  }
+ ]
+}

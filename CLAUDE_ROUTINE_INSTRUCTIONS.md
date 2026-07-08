@@ -721,3 +721,70 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
 
 4. Commit the new `data_learning/data/*.json` + the `niche.config.json` change
    in the **same daily PR** as the trending packages. Done — they post on merge.
+
+---
+
+# Part 3 — Evergreen curiosity LONG-FORM story (Visualized / OpenRangeInteractive)
+
+This channel is **4–5 minute 16:9 long-form on the main watch feed — NOT a
+Shorts channel.** Read `data_learning/CURIOSITY_BRAIN.md` FIRST and treat it
+as law — it is a different brand from Data Minute: **question-first, strictly
+evergreen, one memorable reveal**, never news, never a "here's a dataset"
+story. Posting is weekly (Saturday cron posts ONE story); your job is to keep
+the queue stocked.
+
+1. **Check the queue first — only author when it's short.** Count un-posted
+   stories (in `curiosity.config.json` but not in
+   `state/curiosity_posted_log.json`). If **≥2 are queued, skip Part 3
+   entirely today.** Otherwise author exactly 1 story.
+2. **Read the channel's own analytics** (skip if missing):
+   ```bash
+   cat state/analytics_curiosity/latest.json 2>/dev/null
+   ```
+3. **Pick from the topic bank** (CURIOSITY_BRAIN.md §14) or add a new idea
+   that passes the iron gate (§2: instant question, 2–5 year half-life,
+   ≥24/30 scorecard). NEVER derive from today's headlines. **Dedupe against
+   BOTH channels** (cross-channel near-dupes split the same audience):
+   ```bash
+   python3 scripts/topic_guard.py --config data_learning/curiosity.config.json \
+     --check "<your title>" tag1 tag2 tag3
+   python3 scripts/topic_guard.py --check "<your title>" tag1 tag2 tag3
+   ```
+4. **Author it long-form** (worked examples: `kola-deepest-hole`,
+   `sitting-still-speed`):
+   - story block in `data_learning/curiosity.config.json` → `"stories"`;
+     datasets in `data_learning/data/curio_<key>.json` (prefix `curio_`);
+   - **set `"keep_order": true` on the story** (mandatory — the renderer
+     maps beats to treatments by config order) and mark exactly ONE
+     segment `"hero": true` — the beat with the most cinematic scale
+     contrast gets the Blender 3D shot (add `"hero_invert": true` when
+     the values are depths, so the monoliths hang downward);
+   - give **every segment a `"broll"` list** (1–2 stock-footage queries,
+     2–4 concrete nouns each, matched to what the narration says right
+     there — "mount everest aerial", "molten lava glowing"); the renderer
+     plays the footage while the beat sets up, then cuts to the data
+     payoff;
+   - **pick each beat's storytelling primitive** (CURIOSITY_BRAIN.md §7.5):
+     set `"scene": "descent" | "zoomout" | "cutaway"` on beats where a
+     journey beats a chart (depths → descent, scale ladders → zoomout,
+     part-of-a-whole → cutaway); leave chart beats (rank/comparison/trend)
+     for the record-book moments. Think camera, not chart: "what does the
+     viewer fly past?";
+   - **6–8 segments**, each `say` 50–90 words (3–5 sentences), total
+     **550–800 spoken words**; the arc is hook → why it matters → build →
+     escalate → **REVEAL around beat 5** → zoom-out implication;
+   - hook = 2–3 sentences (premise, tension, promised payoff — it narrates
+     the title card); closing = one zoom-out line; `role` becomes the
+     chapter name, so make it clean ("2 · TWENTY YEARS DOWN");
+   - **numbers must be REAL and traceable** — encyclopedic constants from
+     NASA/USGS/NOAA/records with the exact figure + source named in `notes`
+     and `officiality: "reference"`. Never invent, never mark a real-agency
+     figure "illustrative"; vary chart types (≥2 of rank/comparison/trend).
+5. **Sanity-build it** (same snippet as Part 2 step 3, but load
+   `data_learning/curiosity.config.json`) and check the spoken-word count
+   lands in 550–800.
+6. Commit in the **same daily PR**. No posting trigger needed — the weekly
+   cron (Saturdays 15:00 UTC) posts one queued story. To post out-of-band,
+   dispatch `curiosity.yml` with `mode: schedule`.
+
+Mark the topic bank row ✅ authored in `CURIOSITY_BRAIN.md` §14 in the same PR.

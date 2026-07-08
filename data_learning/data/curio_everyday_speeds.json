@@ -1,0 +1,33 @@
+{
+ "key": "curio_everyday_speeds",
+ "title": "What 'fast' usually means (km/h)",
+ "unit": "km/h",
+ "geography": "World",
+ "time_coverage": "records as of 2026",
+ "source": {
+  "name": "Benchmark speeds: sprinter, jet, bullet, ISS",
+  "publisher": "NASA / IAAF records / standard references",
+  "url": "https://www.nasa.gov/international-space-station/",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures, rounded. Usain Bolt peak ~44.7 km/h (Berlin 2009); jet airliner cruise ~900 km/h; high-velocity rifle bullet ~940 m/s ≈ 3,400 km/h; ISS orbital speed ~28,000 km/h.",
+ "points": [
+  {
+   "label": "Space station",
+   "value": 28000
+  },
+  {
+   "label": "Rifle bullet",
+   "value": 3400
+  },
+  {
+   "label": "Jet airliner",
+   "value": 900
+  },
+  {
+   "label": "Usain Bolt",
+   "value": 45
+  }
+ ]
+}

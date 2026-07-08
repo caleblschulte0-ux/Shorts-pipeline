@@ -1,0 +1,25 @@
+{
+ "key": "curio_orbit_vs_bullet",
+ "title": "Earth's orbit vs a rifle bullet (km/h)",
+ "unit": "km/h",
+ "geography": "World",
+ "time_coverage": "constant",
+ "source": {
+  "name": "Orbital speed vs typical rifle muzzle velocity",
+  "publisher": "NASA / standard ballistics references",
+  "url": "https://spaceplace.nasa.gov/how-fast-is-earth-moving/en/",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures, rounded. A high-velocity rifle bullet leaves the muzzle around 940 m/s ≈ 3,400 km/h; Earth's orbital speed is ~107,000 km/h — roughly 30x faster.",
+ "points": [
+  {
+   "label": "Earth's orbit",
+   "value": 107000
+  },
+  {
+   "label": "Rifle bullet",
+   "value": 3400
+  }
+ ]
+}

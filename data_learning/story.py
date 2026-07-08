@@ -211,11 +211,16 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     viz_director.assign(inss, seed=abs(hash(story_cfg["slug"])) % 997)
     # NEVER open on a chart — viewers swipe away. Move trend (line) segments to
     # the end so the video opens on a map / diorama / scene. Stable within groups.
-    order = sorted(range(len(inss)), key=lambda i: (inss[i].kind == "trend", i))
-    seg_cfgs = [seg_cfgs[i] for i in order]
-    inss = [inss[i] for i in order]
-    if inss and inss[0].kind == "trend":      # all-trend video: don't lead w/ a line
-        inss[0].kind = "bubbles"
+    # Long-form stories with a hand-authored narrative arc opt out with
+    # "keep_order": true (their beats are chained prose — reordering breaks
+    # the story, and they open on a title card, not a chart).
+    if not story_cfg.get("keep_order"):
+        order = sorted(range(len(inss)),
+                       key=lambda i: (inss[i].kind == "trend", i))
+        seg_cfgs = [seg_cfgs[i] for i in order]
+        inss = [inss[i] for i in order]
+        if inss and inss[0].kind == "trend":  # all-trend video: don't lead w/ a line
+            inss[0].kind = "bubbles"
     for i, (seg_cfg, ins) in enumerate(zip(seg_cfgs, inss)):
         # A short "build" frame sequence (bars grow / line draws on) ending on
         # the exact static chart — the renderer plays it then holds the last

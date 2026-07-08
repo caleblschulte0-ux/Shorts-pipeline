@@ -1,0 +1,25 @@
+{
+ "key": "curio_crust_progress",
+ "title": "How far through the crust we got (m)",
+ "unit": "m",
+ "geography": "World",
+ "time_coverage": "1970-1992",
+ "source": {
+  "name": "Continental crust thickness vs deepest borehole",
+  "publisher": "USGS / published geology references",
+  "url": "https://www.usgs.gov",
+  "officiality": "reference",
+  "access_date": "2026-07-08"
+ },
+ "notes": "Real published figures, rounded. Average continental crust ~35 km; Kola Superdeep Borehole reached 12,262 m — roughly a third of the way through the crust, nowhere near the mantle.",
+ "points": [
+  {
+   "label": "Continental crust",
+   "value": 35000
+  },
+  {
+   "label": "Kola Borehole",
+   "value": 12262
+  }
+ ]
+}
