@@ -37,6 +37,9 @@ state/entity_media_cache.json
 # OAuth secrets — never commit
 client_secret.json
 token.json
+# Runtime credential files materialized from inline env secrets (belt-and-
+# braces: fetch_analytics writes these to /tmp, but block them here too).
+*.runtime.json
 # Any other YouTube tokens we mint during channel setup (token_new.json,
 # per-channel files, etc.). Tokens carry refresh credentials so the
 # pattern is broad on purpose.
@@ -58,6 +61,8 @@ state/hook_images/
 state/scene_images/
 preview/
 _preview/
+# Sample renders are large one-off mp4s — keep out of git like previews.
+samples/*.mp4
 state/icons/
 state/cutouts/
 # Local viz validation renders (throwaway PNGs from layout iteration).
