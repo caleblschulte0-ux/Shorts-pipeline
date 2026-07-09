@@ -797,6 +797,14 @@ the queue stocked.
      (`scripts/qa_escalation.py` on the render's `.ledger.json`) FAILS
      any beat with a >9 s hole, a missing payoff, or a starved
      discovery cadence — author to pass it, don't fight it;
+   - **the facts happen TO the world** (§7.5 v5): beats may declare
+     `"intensity"` (0–3) but usually inherit the rising ladder from
+     their emotion tag — the engine escalates streaks/dust/energy
+     automatically and the payoff grade FAILS any beat whose world
+     state never changes, whose camera reveals no new space, or whose
+     last payoff lands in the first half. Scale worlds end with the
+     returning counter (`cold_open.final` = the story's true final
+     number);
    - **name each beat's physical metaphor before writing its `say`**
      (§7.5 law): a race, a flipped mountain, a filling thermometer —
      restated data is not an explanation. No existing builder fits the

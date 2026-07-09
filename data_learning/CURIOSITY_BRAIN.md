@@ -184,13 +184,47 @@ view); build reusable scene templates before reaching for it.
   Checked in eye-QA on every video; below the bar → rebuild the visuals,
   not the words.
 
-## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-09, v4)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-09, v5)
 
 > **"The viewer should feel like they are riding the camera, not
 > watching a presentation."** — operator, verbatim, round-3 review.
 > **"It isn't lacking motion. It's lacking cinematic escalation."**
-> — operator, verbatim, round-4 review. Every cinematography decision
-> is judged against these two sentences.
+> — operator, verbatim, round-4 review.
+> **"The viewer should feel the facts happening to the world, not
+> watch the facts get displayed."** — operator, verbatim, round-5
+> review. Every cinematography decision is judged against these three
+> sentences.
+
+**WORLD CONSEQUENCE (v5 — enforced, not remembered):**
+- **"Every major fact must change the state of the world."** (operator,
+  verbatim.) Not appear. Not animate. CHANGE the world.
+- **INTENSITY**: the world runs a monotonic state machine — calm →
+  fast → extreme → cosmic — set per beat (explicit `"intensity"`, else
+  the emotion map capped by story position so the ladder always rises).
+  It automatically drives the standing star-streaks (they STAY
+  stretched), the dust layer's drift velocity, dwell energy, punch
+  magnitude, and the auto reaction cadence. The world never calms back
+  down.
+- **Consequence bundles**: a builder event may carry `cam=` (it steers
+  the camera: follow the winner, get pulled along the orbit) and
+  `state=True` (it permanently changed the world — logged, graded).
+- **"A chart can support a beat, but it cannot be the beat."**
+  (operator, verbatim.) Physical library so far: `comparison_race` v2
+  (trails + camera rides the winner), orbit ride (the path lights up
+  behind the dragged planet), galaxy carry (the solar system visibly
+  carried along an arm), `speedometer`. Build-out queue (one per video,
+  §11): scale tunnel, cross-section dive, comparison arena, object
+  swarm, force field, timeline journey.
+- **PAYOFF GRADE** (qa_escalation, per beat, build-failing): the world
+  state changed; the camera revealed new space; the beat ends stronger
+  than it starts (last payoff in the second half). Thumbnail-worthiness
+  stays human (frame sheet).
+- **ENDING MENU** (every video ends structurally huge): giant pullback ·
+  full-system reveal · collapse into the final answer · before/after
+  transformation · **return to the opening with new meaning** (the
+  scale-world default: the cold-open counter RETURNS during the cosmic
+  ride-out and surges to the story's true final number — the answer
+  persists, huge, over the streaking world).
 
 **The game-engine frame (v4).** Steal from GAMES, not movies. The
 engine is: **World** (one place) → **Entities** (persistent objects
@@ -370,11 +404,12 @@ legible in the safe area; reads muted; survives platform UI. Then:
   per minute tiled into a contact sheet; judge EACH frame against the
   thumbnail-click test ("if this frame became the thumbnail, would someone
   click?"). Any minute without a click-worthy frame gets redone.
-- **Escalation gate (§7.5 v4):** `python3 scripts/qa_escalation.py
+- **Escalation gate (§7.5 v4/v5):** `python3 scripts/qa_escalation.py
   <mp4's .ledger.json>` — validates the escalation laws against the
   engine's event ledger (no >9 s hole per beat, a payoff per beat,
-  discovery cadence, no skipped reactions). Design QA runs on rules the
-  engine logged, never on pixel inference.
+  discovery cadence, no skipped reactions) PLUS the payoff grade
+  (world-state change, new space revealed, ends-stronger). Design QA
+  runs on rules the engine logged, never on pixel inference.
 - **Builder contract:** `python3 scripts/check_builders.py` — every
   registered builder returns an escalating timeline (run when builders
   change).
