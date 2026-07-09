@@ -421,7 +421,7 @@ def build_earth_spin(spec: dict):
     spin.rotation_euler = (0, 0, 1.0)            # ~57 deg of visible spin
     spin.keyframe_insert(data_path="rotation_euler", frame=frames)
     # equatorial speed band
-    bpy.ops.mesh.primitive_torus_add(major_radius=5.14, minor_radius=0.015,
+    bpy.ops.mesh.primitive_torus_add(major_segments=96, minor_segments=12, major_radius=5.14, minor_radius=0.015,
                                      location=(0, 0, 0))
     bpy.context.object.data.materials.append(
         _emission("belt", accent, 1.8))
@@ -461,11 +461,11 @@ def build_orbit_fly(spec: dict):
     bpy.ops.object.light_add(type="SUN", location=(0, 0, 60))
     bpy.context.object.data.energy = 2.0
     # the orbit path + a farther, fainter sibling for depth
-    bpy.ops.mesh.primitive_torus_add(major_radius=40, minor_radius=0.06,
+    bpy.ops.mesh.primitive_torus_add(major_segments=96, minor_segments=12, major_radius=40, minor_radius=0.06,
                                      location=(0, 0, 0))
     bpy.context.object.data.materials.append(
         _emission("path", accent, 3.0))
-    bpy.ops.mesh.primitive_torus_add(major_radius=70, minor_radius=0.05,
+    bpy.ops.mesh.primitive_torus_add(major_segments=96, minor_segments=12, major_radius=70, minor_radius=0.05,
                                      location=(0, 0, 0))
     bpy.context.object.data.materials.append(
         _emission("path2", (0.35, 0.42, 0.6), 1.2))
