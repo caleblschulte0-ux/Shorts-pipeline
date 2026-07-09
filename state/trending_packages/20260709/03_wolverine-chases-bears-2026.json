@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "slug": "wolverine-chases-bears-2026",
+  "title": "This Dog-Sized Animal Steals Food From Bears",
+  "hashtags": [
+    "wolverine",
+    "fearless",
+    "animals",
+    "nature",
+    "wildlife",
+    "tough",
+    "viral",
+    "predator",
+    "wild",
+    "snow",
+    "fyp",
+    "facts"
+  ],
+  "script": "This animal is the size of a small dog, but it will chase a grown bear off its own kill. It's the wolverine. Pound for pound, it might be the strongest mammal in the north. It has jaws that can crush frozen meat and bone solid as rock, and paws that spread wide to run across deep snow where bigger predators sink. It's been recorded taking down prey many times its size, and it fears almost nothing that walks. Ranchers say it's the meanest animal in the mountains. So where does an animal this small find that much nerve?",
+  "shots": [
+    {
+      "phrase": "chase a grown bear off its own kill",
+      "query": "wolverine",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+    },
+    {
+      "phrase": "It's the wolverine",
+      "query": "wolverine snow",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+    },
+    {
+      "phrase": "crush frozen meat and bone",
+      "query": "wolverine teeth",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "run across deep snow",
+      "query": "wolverine walking snow",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+    },
+    {
+      "phrase": "taking down prey many times its size",
+      "query": "wolverine wild",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the meanest animal in the mountains",
+      "query": "wolverine",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+    },
+    {
+      "phrase": "that much nerve",
+      "query": "wolverine",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "the size of a small dog",
+      "text": "SIZE OF A DOG",
+      "color": "#30c0ff"
+    },
+    {
+      "phrase": "chase a grown bear off its own kill",
+      "text": "STEALS FROM BEARS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "strongest mammal in the north",
+      "text": "POUND-FOR-POUND #1",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "fears almost nothing",
+      "text": "FEARS NOTHING",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "tense"
+}

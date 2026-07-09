@@ -171,12 +171,39 @@ def _format_topics(topics: list[Topic], *, max_headline_chars: int = 140) -> str
     return "\n".join(lines)
 
 
+# Hard ceiling on how many candidates we serialize into the ranker prompt.
+# A busy news day produced 542 candidates and the single ranking request hit
+# HTTP 413 (Payload Too Large), which crashed the whole run and shipped zero
+# videos. ~100 candidates is the normal load; 160 keeps the payload well under
+# the limit with headroom.
+MAX_RANK_CANDIDATES = 160
+
+# Cheap local signal used ONLY to decide which candidates survive the cap —
+# floats the channel's high-engagement animal/quirky bucket to the front so a
+# trim never drops the bangers. The LLM still does the real ranking.
+_QUIRKY_HINT = re.compile(
+    r"\b(animal|shark|snake|spider|bug|insect|bear|croc|gator|whale|orca|"
+    r"octopus|venom|venomous|bite|sting|predator|dinosaur|beast|florida|"
+    r"weird|bizarre|freak|world record|caught on|attack)", re.I)
+
+
 def rank(topics: list[Topic], *, top_k: int = 5, backend: str | None = None,
          model: str | None = None) -> list[Topic]:
     """Send candidates to the LLM, return the top_k picks as enriched
     Topic objects (with .score from the LLM and .angle populated)."""
     if not topics:
         return []
+
+    # Bound the prompt payload so a big discovery day can never 413 the ranker.
+    if len(topics) > MAX_RANK_CANDIDATES:
+        def _quirky_first(t):
+            blob = (t.query + " " + " ".join(t.headlines or [])
+                    + " " + " ".join(t.sources or [])).lower()
+            return 0 if _QUIRKY_HINT.search(blob) else 1
+        topics = sorted(topics, key=_quirky_first)[:MAX_RANK_CANDIDATES]
+        print(f"[rank] capped candidate pool to {MAX_RANK_CANDIDATES} "
+              f"(quirky-first) to bound the LLM request payload", flush=True)
+
     # Lazy import — keeps discovery usable without the LLM dep installed.
     from script_generator import _call_llm
 

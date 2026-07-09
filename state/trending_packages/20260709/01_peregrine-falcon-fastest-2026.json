@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "slug": "peregrine-falcon-fastest-2026",
+  "title": "The Fastest Animal Alive Isn't the Cheetah",
+  "hashtags": [
+    "peregrine",
+    "falcon",
+    "fastest",
+    "bird",
+    "animals",
+    "nature",
+    "wildlife",
+    "viral",
+    "predator",
+    "raptor",
+    "fyp",
+    "facts"
+  ],
+  "script": "There's an animal that hits speeds a race car can't match, and it does it falling out of the sky. It's the peregrine falcon. When it spots a target, it folds its wings and dives in what's called a stoop, reaching over two hundred miles an hour. At that speed, special baffles in its nose let it keep breathing, and a third eyelid wipes its eyes clear. It hits its prey mid-air with a closed foot, a strike so hard the impact alone kills. The fastest animal alive isn't the cheetah. So what happens to a pigeon that never sees it coming?",
+  "shots": [
+    {
+      "phrase": "hits speeds a race car can't match",
+      "query": "peregrine falcon",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg"
+    },
+    {
+      "phrase": "falling out of the sky",
+      "query": "falcon diving sky",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "It's the peregrine falcon",
+      "query": "peregrine falcon flight",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg"
+    },
+    {
+      "phrase": "reaching over two hundred miles an hour",
+      "query": "falcon stoop dive",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "special baffles in its nose",
+      "query": "peregrine falcon head",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg"
+    },
+    {
+      "phrase": "The fastest animal alive isn't the cheetah",
+      "query": "cheetah running",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "never sees it coming",
+      "query": "peregrine falcon",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "a race car can't match",
+      "text": "FASTER THAN A CAR",
+      "color": "#30c0ff"
+    },
+    {
+      "phrase": "two hundred miles an hour",
+      "text": "200+ MPH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the impact alone kills",
+      "text": "IMPACT KILLS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "isn't the cheetah",
+      "text": "NOT THE CHEETAH",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "epic"
+}

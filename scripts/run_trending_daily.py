@@ -773,7 +773,15 @@ def main() -> int:
         print("=== discovery ===", flush=True)
         raw = discover_all()
         print(f"=== ranking {len(raw)} raw candidates ===", flush=True)
-        picks = rank_topics.rank(raw, top_k=args.count + args.top_k_buffer)
+        try:
+            picks = rank_topics.rank(raw, top_k=args.count + args.top_k_buffer)
+        except Exception as e:  # noqa: BLE001
+            # Ranking is a nice-to-have, not a gate: a failed LLM call (413,
+            # rate limit, timeout) must NEVER ship zero videos. Degrade to the
+            # unranked top candidates so the day still publishes.
+            print(f"::warning::ranking failed ({type(e).__name__}: {e}) — "
+                  f"falling back to unranked top candidates", flush=True)
+            picks = raw[:args.count + args.top_k_buffer]
         print(f"=== Groq picked {len(picks)} candidates ===", flush=True)
         for i, t in enumerate(picks, 1):
             print(f"  {i}. [{t.score:>4.1f}] {t.query[:90]}", flush=True)
