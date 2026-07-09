@@ -778,12 +778,25 @@ the queue stocked.
    - **author beats as SHOT LISTS before words** (§7.5 THE SHOT SYSTEM):
      the doctrine is "the viewer should feel like they are riding the
      camera, not watching a presentation." Set `"cold_open"` on the
-     world (`{"value": N, "unit": "..."}` when there's a number worth
-     surging), then give each waypoint a `"shot"` (+ optional
-     `"dwell"`) from `data_learning/shots.py` — e.g. `dive` →
-     `counter_surge` → `comparison_race` — travel/discover rhythm
-     mandatory, never the same shot twice in a row (un-annotated
-     waypoints get safe defaults, but AUTHORED beats beat defaults);
+     world (`{"value": N, "unit": "...", "levels": [...]}` — route the
+     rush through the TABLEAU levels), then give each waypoint a
+     `"shot"` (+ optional `"dwell"`) from `data_learning/shots.py` —
+     e.g. `dive` → `counter_surge` → `comparison_race` —
+     travel/discover rhythm mandatory, never the same shot twice in a
+     row (un-annotated waypoints get safe defaults, but AUTHORED beats
+     beat defaults);
+   - **author each beat as an EVENT TIMELINE** (§7.5 v4 — "It isn't
+     lacking motion. It's lacking cinematic escalation."): the builder
+     supplies arrival → development → payoff; on top of that, give
+     waypoints `"react"` entries ("Every fact should change the world"
+     — a narrated speed gets `star_streak`, force gets `shake`, heat
+     gets `glow_pulse`), an `"emotion"` tag (wonder/speed/danger/awe/
+     scale/mystery — the rhythm is Emotion. Information. Emotion.), and
+     ≥2 waypoints a `"discovery"` (`{"asset": "comet"}` — something
+     unexpected crosses the frame every 20–30 s). The escalation gate
+     (`scripts/qa_escalation.py` on the render's `.ledger.json`) FAILS
+     any beat with a >9 s hole, a missing payoff, or a starved
+     discovery cadence — author to pass it, don't fight it;
    - **name each beat's physical metaphor before writing its `say`**
      (§7.5 law): a race, a flipped mountain, a filling thermometer —
      restated data is not an explanation. No existing builder fits the

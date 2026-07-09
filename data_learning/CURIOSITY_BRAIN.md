@@ -184,11 +184,57 @@ view); build reusable scene templates before reaching for it.
   Checked in eye-QA on every video; below the bar → rebuild the visuals,
   not the words.
 
-## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-09, v3)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-09, v4)
 
 > **"The viewer should feel like they are riding the camera, not
 > watching a presentation."** — operator, verbatim, round-3 review.
-> Every cinematography decision is judged against this sentence.
+> **"It isn't lacking motion. It's lacking cinematic escalation."**
+> — operator, verbatim, round-4 review. Every cinematography decision
+> is judged against these two sentences.
+
+**The game-engine frame (v4).** Steal from GAMES, not movies. The
+engine is: **World** (one place) → **Entities** (persistent objects
+with **State** — the world remembers; mutations are never undone) →
+**Beats** (narration windows, each an **event timeline**) →
+**Reactions** (narration-causal world effects) → **Discoveries**
+(unexpected encounters) → **Camera** (the shot vocabulary) →
+**Ledger** (the engine logs everything it played; QA validates rules
+against the ledger, never pixel inference).
+
+**THE ESCALATION LAWS (v4 — enforced, not remembered):**
+1. A new visual event at least every ~6 seconds; nothing holds >8 s
+   unchanged. The scheduler spreads every builder bundle across the
+   whole window (`shots.py` `_visit`) — a beat mechanically cannot sit
+   still — and `scripts/qa_escalation.py` fails the build on any >9 s
+   hole in the ledger.
+2. Every beat escalates **arrival → development → payoff**; the payoff
+   (a `punch` bundle) lands with a camera pop and is guaranteed by the
+   scheduler. No payoff in the ledger = failed build.
+3. **"Every fact should change the world."** (operator, verbatim.) A
+   narrated force/speed/heat has a REACTION: `star_streak`, `shake`,
+   `glow_pulse`, `slow_drift_stop` — authored per waypoint
+   (`"react": [{"fx": ..., "at": 0.55}]`) or picked by the emotion tag.
+4. **"Every 20–30 seconds the audience must discover something
+   completely unexpected."** (operator, verbatim.) Discoveries are
+   FOUND, not narrated first — `"discovery": {"asset": "comet"}` sends
+   it across the frame during the approach. ≥2 per video; the gate
+   fails any 60 s span without a discovery-class moment.
+5. Charts are ingredients, never beats. Physical builders replace them:
+   `comparison_race` (2–4 staggered lanes) for any speed/size compare,
+   `speedometer` (the whole ladder on one dial) for any
+   final-number-in-context finale.
+6. Openings explode, endings are the biggest pullback — engine laws,
+   not authoring: the cold-open rush and the rewind-then-ride-out exit
+   (back to level 0, then out THROUGH every zoom band past the
+   accumulated world).
+7. Emotion seed: tag beats `"emotion": "wonder|speed|danger|awe|scale|
+   mystery"` — it selects default reactions today and grows into the
+   full check ("does the visual language match the intended emotion?")
+   later. The rhythm to author for: Emotion. Information. Emotion.
+   Information.
+8. Builder contract: every registry entry returns an escalating
+   timeline (≥3 bundles incl. a payoff) — `scripts/check_builders.py`
+   enforces it registry-wide.
 
 The channel does not run a video generator; it runs a **simulation
 engine**: `World → Camera → Objects → Narration`, never
@@ -324,6 +370,14 @@ legible in the safe area; reads muted; survives platform UI. Then:
   per minute tiled into a contact sheet; judge EACH frame against the
   thumbnail-click test ("if this frame became the thumbnail, would someone
   click?"). Any minute without a click-worthy frame gets redone.
+- **Escalation gate (§7.5 v4):** `python3 scripts/qa_escalation.py
+  <mp4's .ledger.json>` — validates the escalation laws against the
+  engine's event ledger (no >9 s hole per beat, a payoff per beat,
+  discovery cadence, no skipped reactions). Design QA runs on rules the
+  engine logged, never on pixel inference.
+- **Builder contract:** `python3 scripts/check_builders.py` — every
+  registered builder returns an escalating timeline (run when builders
+  change).
 
 ## 10. Invariants no brain may break [SHARED]
 - Trend is raw material — never publish the raw item form.
@@ -342,6 +396,11 @@ formula, title pattern, first-30s retention, avg % viewed, CTR (when
 exposed), subs/1k, traffic mix. Bias future slates toward what retains;
 **no auto-adaptation below ~100 views/video.** Operator feedback gets
 written back INTO this playbook.
+
+**The library compounds (§7.5 v4):** every video's WEAKEST beat — by
+the gates or the operator's verdict — must produce a new reusable
+library piece (a shot, a reaction, a builder, an asset) before the next
+video is authored. Fix the system, never just the video.
 
 Growth roadmap (targets, not guarantees): first 90 days = prove one
 repeatable pillar + aesthetic consistency; months 4–6 = back-catalog
