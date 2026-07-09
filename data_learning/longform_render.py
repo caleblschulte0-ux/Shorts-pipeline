@@ -627,6 +627,7 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
         "chrome": [{"role": s.role, "topic": s.topic} for s in st.segments],
         "world": {"template": world.get("template", "depth"),
                   "story_template": world.get("story_template", ""),
+                  "cold_open": world.get("cold_open"),
                   "waypoints": wps},
     }
     spec_path = work / "world_spec.json"

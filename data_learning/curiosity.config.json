@@ -176,12 +176,27 @@
     },
     {
      "source": "offline",
+     "key": "curio_sky_reference",
+     "params": {
+      "file": "curio_sky_reference.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE SKY",
+     "topic": "the fastest thing you ever see",
+     "say": "Start with the fastest thing most of us ever actually see: a passenger jet crossing the sky at about 900 km/h. That is twenty times faster than the fastest human who ever lived, yet from the ground it looks like it's crawling. Remember that jet. It is the quickest everyday object in your world — and it is about to become the slowest thing in this story.",
+     "broll": [
+      "airplane contrail sky",
+      "passenger jet flying"
+     ]
+    },
+    {
+     "source": "offline",
      "key": "curio_spin_vs_jet",
      "params": {
       "file": "curio_spin_vs_jet.json"
      },
      "insight_type": "comparison",
-     "role": "2 · THE SPIN",
+     "role": "3 · THE SPIN",
      "topic": "Earth's spin vs a jet",
      "say": "Because you are standing on a spinning ball. At the equator, Earth's rotation carries the ground — and everything on it — at about 1,670 km/h. That is nearly twice as fast as a jet airliner, faster than the speed of sound. You have never felt a single km/h of it, because the air, the buildings, and you are all moving together. There's no wind in your face when the whole sky moves with you. It's also why you weigh a tiny bit less at the equator — the spin is literally trying to fling you off the planet, and losing.",
      "broll": [
@@ -196,7 +211,7 @@
       "file": "curio_orbit_vs_bullet.json"
      },
      "insight_type": "comparison",
-     "role": "3 · THE ORBIT",
+     "role": "4 · THE ORBIT",
      "topic": "the orbit vs a bullet",
      "say": "And the spinning ball is falling around the Sun. Earth's orbital speed is about 107,000 km/h — thirty times faster than that rifle bullet. In the ten seconds it takes to say this sentence, you will have traveled roughly 300 kilometers through space. No engine noise, no seatbelt, nothing. That's the trick of physics: you can only ever feel CHANGES in speed, and Earth's ride is astonishingly smooth. Keep that up for a year and Earth completes its whole orbit — about 940 million kilometers — without ever missing a beat.",
      "broll": [
@@ -212,7 +227,7 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "role": "4 · THE GALAXY",
+     "role": "5 · THE GALAXY",
      "topic": "the full ladder of speeds",
      "say": "Now zoom all the way out. The entire Solar System — the Sun, the planets, you — is orbiting the center of the Milky Way at roughly 828,000 km/h. Stack the whole ladder up: the spin is 1,670. The orbit, 107,000. The galactic ride, 828,000. Each level is enormously faster than the one before, and all of them are happening to you at once, right now, in your chair. One full lap around the galaxy takes roughly 230 million years. The last time the Sun was in this neighborhood, dinosaurs were just getting started.",
      "broll": [
@@ -230,7 +245,7 @@
      "insight_type": "rank",
      "ascending": false,
      "hero": true,
-     "role": "5 · YOU VS THE MACHINES",
+     "role": "6 · YOU VS THE MACHINES",
      "topic": "you vs the fastest machines",
      "say": "Here's the twist that makes it real. The fastest machine our species has ever built is the Parker Solar Probe. Skimming the Sun in December 2024, it hit about 692,000 km/h — a record that took 66 years of spaceflight to set. Your galactic ride is 828,000. Sitting on your couch, doing absolutely nothing, you are outrunning the fastest thing humanity has ever made — by 136,000 km/h. And unlike the probe, you didn't need a heat shield, seven gravity assists, or 66 years of trying.",
      "broll": [
@@ -245,7 +260,7 @@
       "file": "curio_cmb_speed.json"
      },
      "insight_type": "comparison",
-     "role": "6 · THE FINAL SPEEDOMETER",
+     "role": "7 · THE FINAL SPEEDOMETER",
      "topic": "your speed vs the universe",
      "say": "And there is one final speedometer. Measured against the afterglow of the Big Bang itself — the cosmic microwave background, the most absolute backdrop physics has to offer — the Sun and everything traveling with it is doing about 1,330,000 km/h. That is the closest thing the universe has to your true speed. Zero was never on the menu. There is no universal parking brake — physics doesn't offer one. Every speedometer needs a backdrop, and this is the deepest backdrop there is.",
      "broll": [
@@ -257,15 +272,32 @@
    "world": {
     "template": "scale",
     "story_template": "question-journey-discovery",
+    "cold_open": {
+     "value": 828000,
+     "unit": "km/h"
+    },
     "waypoints": [
      {
       "builder": "rank",
+      "shot": "fly_to",
+      "dwell": "drift_hold",
       "params": {
        "file": "curio_everyday_speeds.json"
       }
      },
      {
       "builder": "scalelevel",
+      "shot": "pull_back",
+      "dwell": "parallax_sweep",
+      "params": {
+       "tableau": "sky",
+       "label": "a cruising jet",
+       "display": "900 km/h"
+      }
+     },
+     {
+      "builder": "scalelevel",
+      "shot": "scale_up",
       "params": {
        "tableau": "earth",
        "label": "Earth's spin",
@@ -273,15 +305,15 @@
       }
      },
      {
-      "builder": "scalelevel",
+      "builder": "comparison_race",
+      "shot": "comparison_race",
       "params": {
-       "tableau": "orbit",
-       "label": "Around the Sun",
-       "display": "107,000 km/h"
+       "file": "curio_orbit_vs_bullet.json"
       }
      },
      {
       "builder": "scalelevel",
+      "shot": "counter_surge",
       "params": {
        "tableau": "galaxy",
        "label": "Around the galaxy",
@@ -290,6 +322,8 @@
      },
      {
       "builder": "rank",
+      "shot": "pull_back",
+      "dwell": "push_in",
       "hero": "monoliths",
       "params": {
        "file": "curio_fastest_machines.json"
@@ -297,6 +331,8 @@
      },
      {
       "builder": "compare",
+      "shot": "dive",
+      "dwell": "push_in",
       "params": {
        "file": "curio_cmb_speed.json"
       }

@@ -15,11 +15,13 @@
  "points": [
   {
    "label": "Earth's orbit",
-   "value": 107000
+   "value": 107000,
+   "asset": "earth"
   },
   {
    "label": "Rifle bullet",
-   "value": 3400
+   "value": 3400,
+   "asset": "bullet"
   }
  ]
 }

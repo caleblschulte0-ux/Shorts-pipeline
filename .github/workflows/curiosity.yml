@@ -94,7 +94,7 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'schedule' && needs.plan.outputs.new_count != '0')
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150   # one-take manim body + Cycles hero need headroom
     concurrency:
       group: curiosity-longform
       cancel-in-progress: false
