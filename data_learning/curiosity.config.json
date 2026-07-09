@@ -332,6 +332,10 @@
        "tableau": "earth",
        "label": "Earth's spin",
        "display": "1,670 km/h"
+      },
+      "hero": {
+       "template": "earth_spin",
+       "seconds": 6
       }
      },
      {
@@ -380,7 +384,10 @@
       "builder": "rank",
       "shot": "pull_back",
       "dwell": "push_in",
-      "hero": "monoliths",
+      "hero": {
+       "template": "monoliths",
+       "seconds": 16
+      },
       "emotion": "scale",
       "discovery": {
        "asset": "comet",
@@ -418,6 +425,19 @@
       "params": {
        "file": "curio_speed_ladder.json"
       }
+     }
+    ],
+    "heroes": [
+     {
+      "window": "cold_open",
+      "template": "orbit_fly",
+      "seconds": 5
+     },
+     {
+      "window": "ending",
+      "template": "cosmic_exit",
+      "seconds": 14,
+      "end_offset": 7
      }
     ]
    }

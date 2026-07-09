@@ -329,6 +329,259 @@ def build_earth_dive(spec: dict):
     _render_settings(sc, spec)
 
 
+def _stars(n=120, spread=600.0, exclude=60.0, bright=5.0):
+    """Deterministic emission star field (no RNG — resumable renders).
+    Emission spheres are noise-free on CPU Cycles: free production value."""
+    for i in range(n):
+        a = (i * 2.399963) % (2 * math.pi)          # golden angle
+        r = exclude + (spread - exclude) * (((i * 73) % 97) / 97.0)
+        zz = (((i * 41) % 89) / 89.0 - 0.5) * spread * 0.55
+        bpy.ops.mesh.primitive_uv_sphere_add(
+            radius=spread / 900.0 * (0.5 + ((i * 13) % 7) / 7.0),
+            location=(r * math.cos(a), r * math.sin(a), zz),
+            segments=8, ring_count=4)
+        bpy.context.object.data.materials.append(
+            _emission(f"star{i}", (0.85, 0.9, 1.0), bright))
+
+
+def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None):
+    """THE Earth (sea sphere + squashed continent shells + atmosphere),
+    reused by every space template. Returns the sea sphere."""
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=radius, location=loc,
+                                         segments=48, ring_count=24)
+    sea = bpy.context.object
+    bpy.ops.object.shade_smooth()
+    sea.data.materials.append(_body("earth_sea", (0.05, 0.18, 0.42)))
+    k = radius / 5.0
+    for i, (dx, dy, dz, r) in enumerate([(2.2, -3.4, 2.6, 1.5),
+                                         (-3.0, -3.2, 0.6, 1.2),
+                                         (0.8, -4.4, -2.0, 1.7),
+                                         (-1.8, -3.8, 2.8, 1.0)]):
+        bpy.ops.mesh.primitive_uv_sphere_add(
+            radius=r * k, location=(loc[0] + dx * k, loc[1] + dy * k,
+                                    loc[2] + dz * k),
+            segments=24, ring_count=12)
+        blob = bpy.context.object
+        bpy.ops.object.shade_smooth()
+        blob.scale = (1.0, 0.35, 1.0)
+        blob.data.materials.append(_body(f"land{i}", (0.10, 0.34, 0.18)))
+        blob.parent = parent if parent is not None else sea
+        if parent is None:
+            blob.matrix_parent_inverse = sea.matrix_world.inverted()
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=radius * 1.05, location=loc,
+                                         segments=32, ring_count=16)
+    atmo = bpy.context.object
+    m = bpy.data.materials.new("atmo")
+    m.use_nodes = True
+    bsdf = m.node_tree.nodes["Principled BSDF"]
+    bsdf.inputs["Base Color"].default_value = (0.3, 0.55, 1.0, 1)
+    bsdf.inputs["Alpha"].default_value = 0.08
+    m.blend_method = "BLEND"
+    atmo.data.materials.append(m)
+    return sea
+
+
+def _dark_world(sc):
+    w = bpy.data.worlds.new("w")
+    w.use_nodes = True
+    w.node_tree.nodes["Background"].inputs["Color"].default_value = \
+        (0.004, 0.006, 0.014, 1)
+    sc.world = w
+
+
+def _frames(sc, spec):
+    fps = int(spec.get("fps", 10))
+    frames = max(4, int(round(fps * float(spec.get("seconds", 7)))))
+    sc.render.fps = fps
+    sc.frame_start, sc.frame_end = 1, frames
+    return frames
+
+
+def _bezier(cam):
+    for fc in cam.animation_data.action.fcurves:
+        for kp in fc.keyframe_points:
+            kp.interpolation = "BEZIER"
+
+
+def build_earth_spin(spec: dict):
+    """Premium reveal for 'the ground is moving': THE Earth visibly
+    ROTATING under sunlight while the camera arcs closer — continents
+    sweep past; a faint equatorial speed band hints the motion's edge."""
+    sc = bpy.context.scene
+    for o in list(sc.objects):
+        bpy.data.objects.remove(o, do_unlink=True)
+    accent = _hex(spec.get("accent", "#4FD1C5"))
+    frames = _frames(sc, spec)
+
+    bpy.ops.object.empty_add(location=(0, 0, 0))
+    spin = bpy.context.object                    # continents parent
+    _the_earth(5.0, (0, 0, 0), parent=spin)
+    spin.rotation_euler = (0, 0, 0)
+    spin.keyframe_insert(data_path="rotation_euler", frame=1)
+    spin.rotation_euler = (0, 0, 1.0)            # ~57 deg of visible spin
+    spin.keyframe_insert(data_path="rotation_euler", frame=frames)
+    # equatorial speed band
+    bpy.ops.mesh.primitive_torus_add(major_radius=5.14, minor_radius=0.015,
+                                     location=(0, 0, 0))
+    bpy.context.object.data.materials.append(
+        _emission("belt", accent, 1.8))
+    bpy.ops.object.light_add(type="SUN", location=(24, -20, 12))
+    bpy.context.object.data.energy = 4.5
+    _stars(110, spread=420.0, exclude=90.0, bright=4.0)
+    _dark_world(sc)
+
+    bpy.ops.object.empty_add(location=(0, 0, 0.4))
+    target = bpy.context.object
+    bpy.ops.object.camera_add()
+    cam = bpy.context.object
+    sc.camera = cam
+    cam.data.clip_end = 1500
+    cam.constraints.new(type="TRACK_TO").target = target
+    for f, loc in ((1, (6.0, -30.0, 8.0)), (frames, (-5.0, -17.0, 3.5))):
+        cam.location = loc
+        cam.keyframe_insert(data_path="location", frame=f)
+    _bezier(cam)
+    _render_settings(sc, spec)
+
+
+def build_orbit_fly(spec: dict):
+    """The hook: the camera RACES along orbital space chasing THE Earth
+    on its glowing path around the Sun — flying through, not looking at."""
+    sc = bpy.context.scene
+    for o in list(sc.objects):
+        bpy.data.objects.remove(o, do_unlink=True)
+    accent = _hex(spec.get("accent", "#4FD1C5"))
+    frames = _frames(sc, spec)
+
+    # the Sun: emission sphere lights the whole scene noise-free
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=8, location=(0, 0, 0),
+                                         segments=32, ring_count=16)
+    bpy.context.object.data.materials.append(
+        _emission("sun", (1.0, 0.82, 0.45), 30.0))
+    bpy.ops.object.light_add(type="SUN", location=(0, 0, 60))
+    bpy.context.object.data.energy = 2.0
+    # the orbit path + a farther, fainter sibling for depth
+    bpy.ops.mesh.primitive_torus_add(major_radius=40, minor_radius=0.06,
+                                     location=(0, 0, 0))
+    bpy.context.object.data.materials.append(
+        _emission("path", accent, 3.0))
+    bpy.ops.mesh.primitive_torus_add(major_radius=70, minor_radius=0.05,
+                                     location=(0, 0, 0))
+    bpy.context.object.data.materials.append(
+        _emission("path2", (0.35, 0.42, 0.6), 1.2))
+
+    # Earth rides the path (parented to a rotating empty)…
+    bpy.ops.object.empty_add(location=(0, 0, 0))
+    eorb = bpy.context.object
+    earth = _the_earth(1.6, (40, 0, 0))
+    earth.parent = eorb
+    earth.matrix_parent_inverse = eorb.matrix_world.inverted()
+    eorb.rotation_euler = (0, 0, 0)
+    eorb.keyframe_insert(data_path="rotation_euler", frame=1)
+    eorb.rotation_euler = (0, 0, 0.55)
+    eorb.keyframe_insert(data_path="rotation_euler", frame=frames)
+    # …the camera chases on a slower arc just outside the ring
+    bpy.ops.object.empty_add(location=(0, 0, 0))
+    corb = bpy.context.object
+    bpy.ops.object.camera_add()
+    cam = bpy.context.object
+    sc.camera = cam
+    cam.data.clip_end = 2000
+    cam.location = (44.5, -7.5, 2.4)
+    cam.parent = corb
+    cam.matrix_parent_inverse = corb.matrix_world.inverted()
+    cam.constraints.new(type="TRACK_TO").target = earth
+    corb.rotation_euler = (0, 0, 0)
+    corb.keyframe_insert(data_path="rotation_euler", frame=1)
+    corb.rotation_euler = (0, 0, 0.40)
+    corb.keyframe_insert(data_path="rotation_euler", frame=frames)
+    for fc in corb.animation_data.action.fcurves:
+        for kp in fc.keyframe_points:
+            kp.interpolation = "BEZIER"
+    _stars(130, spread=700.0, exclude=110.0, bright=4.5)
+    _dark_world(sc)
+    _render_settings(sc, spec)
+
+
+def build_cosmic_exit(spec: dict):
+    """The ending: the camera can no longer hold — it is DRAGGED away
+    from Earth, accelerating out past the orbit rings toward the galaxy,
+    stars smearing into streaks as the world hits cosmic."""
+    sc = bpy.context.scene
+    for o in list(sc.objects):
+        bpy.data.objects.remove(o, do_unlink=True)
+    accent = _hex(spec.get("accent", "#4FD1C5"))
+    frames = _frames(sc, spec)
+
+    earth = _the_earth(5.0, (0, 0, 0))
+    # the Sun, far off-axis — enters frame as we recede
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=12,
+                                         location=(220, 120, 60),
+                                         segments=32, ring_count=16)
+    bpy.context.object.data.materials.append(
+        _emission("sun", (1.0, 0.82, 0.45), 40.0))
+    bpy.ops.object.light_add(type="SUN", location=(40, -20, 30))
+    bpy.context.object.data.energy = 3.0
+    # orbit rings around the Sun (ours through Earth, siblings beyond)
+    for r, br in ((255, 2.6), (180, 1.2), (330, 1.0)):
+        bpy.ops.mesh.primitive_torus_add(
+            major_radius=r, minor_radius=0.35, location=(220, 120, 0))
+        bpy.context.object.data.materials.append(
+            _emission(f"ring{r}", accent if r == 255 else (0.35, 0.42, 0.6),
+                      br))
+    # galaxy hint beyond the Sun: a flat spiral of emission points
+    for i in range(90):
+        th = 0.35 * i
+        rr = 40 + 6.5 * th
+        x = 800 + rr * math.cos(th)
+        y = 500 + rr * math.sin(th)
+        bpy.ops.mesh.primitive_uv_sphere_add(
+            radius=2.4, location=(x, y, 120 + (((i * 7) % 11) - 5) * 4),
+            segments=6, ring_count=3)
+        bpy.context.object.data.materials.append(
+            _emission(f"gal{i}", (0.75, 0.8, 1.0), 3.0))
+    # star STREAKS along the exit corridor — dark until the acceleration,
+    # then they smear into view (the world's answer to cosmic intensity)
+    streak_mats = []
+    for i in range(46):
+        a = (i * 2.399963) % (2 * math.pi)
+        rr = 26 + (((i * 73) % 97) / 97.0) * 130
+        yy = -80 - (((i * 41) % 89) / 89.0) * 1050
+        bpy.ops.mesh.primitive_cylinder_add(
+            radius=0.32, depth=1,
+            location=(rr * math.cos(a), yy, rr * math.sin(a)))
+        st = bpy.context.object
+        st.rotation_euler = (math.radians(90), 0, 0)
+        st.scale = (1, 1, 34)                       # long smear along -y
+        mm = _emission(f"streak{i}", (0.85, 0.9, 1.0), 0.0)
+        st.data.materials.append(mm)
+        streak_mats.append(mm)
+    for mm in streak_mats:
+        em = mm.node_tree.nodes["Emission"].inputs["Strength"]
+        for f, v in ((1, 0.0), (int(frames * 0.5), 0.0),
+                     (int(frames * 0.72), 5.0), (frames, 7.0)):
+            em.default_value = v
+            em.keyframe_insert(data_path="default_value", frame=f)
+    _stars(120, spread=1400.0, exclude=140.0, bright=5.0)
+    _dark_world(sc)
+
+    bpy.ops.object.empty_add(location=(0, 0, 0))
+    target = bpy.context.object
+    bpy.ops.object.camera_add()
+    cam = bpy.context.object
+    sc.camera = cam
+    cam.data.clip_end = 8000
+    cam.constraints.new(type="TRACK_TO").target = target
+    for f, loc in ((1, (2.0, -15.0, 4.0)),
+                   (int(frames * 0.35), (6.0, -75.0, 20.0)),
+                   (int(frames * 0.70), (14.0, -400.0, 90.0)),
+                   (frames, (30.0, -1350.0, 280.0))):
+        cam.location = loc
+        cam.keyframe_insert(data_path="location", frame=f)
+    _bezier(cam)
+    _render_settings(sc, spec)
+
+
 def _render_settings(sc, spec):
     sc.render.engine = "CYCLES"
     sc.cycles.samples = int(spec.get("samples", 32))
@@ -344,7 +597,9 @@ def _render_settings(sc, spec):
     sc.view_settings.look = "Medium High Contrast"
 
 
-TEMPLATES = {"monoliths": build, "earth_dive": build_earth_dive}
+TEMPLATES = {"monoliths": build, "earth_dive": build_earth_dive,
+             "earth_spin": build_earth_spin, "orbit_fly": build_orbit_fly,
+             "cosmic_exit": build_cosmic_exit}
 
 
 def main():

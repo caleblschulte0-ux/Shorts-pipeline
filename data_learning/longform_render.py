@@ -531,16 +531,24 @@ def _hex_grad0(theme: dict) -> str:
     return "#" + str(g).replace("0x", "").replace("#", "")
 
 
-def _hero_spec(template: str, seg_cfg: dict, theme: dict) -> dict:
-    points, unit = _seg_points(seg_cfg)
-    vals = [abs(float(p["value"])) or 1e-9 for p in points]
-    vmax = max(vals) if vals else 1.0
+# Templates that are pure visual journeys — no data points required
+# (premium budget law: entering/exiting things, impossible transitions).
+_VISUAL_TEMPLATES = {"earth_spin", "orbit_fly", "cosmic_exit"}
+
+
+def _hero_spec(template: str, seg_cfg: dict, theme: dict,
+               seconds: float = HERO_SECONDS) -> dict:
     spec = {
         "template": template,
         "accent": theme.get("highlight", "#4FD1C5"),
-        "seconds": HERO_SECONDS, "fps": HERO_FPS, "samples": 32,
+        "seconds": seconds, "fps": HERO_FPS, "samples": 32,
         "res_x": 1440, "res_y": 810,
     }
+    if template in _VISUAL_TEMPLATES:
+        return spec
+    points, unit = _seg_points(seg_cfg)
+    vals = [abs(float(p["value"])) or 1e-9 for p in points]
+    vmax = max(vals) if vals else 1.0
     if template == "earth_dive":
         spec["markers"] = [
             {"label": p["label"], "display": _disp(p["value"], unit),
@@ -555,12 +563,13 @@ def _hero_spec(template: str, seg_cfg: dict, theme: dict) -> dict:
 
 
 def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
-               work: Path, idx: int) -> Path:
+               work: Path, idx, seconds: float = HERO_SECONDS) -> Path:
     """Render a Blender hero and dress it for splicing: minterpolated to
     30fps, scaled, luminance-dip fades at both ends (the simple splice —
     no motion matching, per doctrine)."""
     spec_path = work / f"whspec{idx}.json"
-    spec_path.write_text(json.dumps(_hero_spec(template, seg_cfg, theme)))
+    spec_path.write_text(json.dumps(
+        _hero_spec(template, seg_cfg, theme, seconds)))
     frames_dir = work / f"whero{idx}"
     frames_dir.mkdir(exist_ok=True)
     res = subprocess.run(
@@ -574,7 +583,7 @@ def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
     # Fill the WHOLE splice with real motion: stretch playback (slow-mo)
     # to the splice duration, then motion-interpolate to 30fps. Never a
     # frozen hold — the motion gate fails static frames.
-    factor = max(1.0, dur / HERO_SECONDS)
+    factor = max(1.0, dur / seconds)
     fade_out_st = max(0.0, dur - 0.3)
     _run(["ffmpeg", "-y", "-loglevel", "error",
           "-framerate", str(HERO_FPS), "-i", str(frames_dir / "hero_%04d.png"),
@@ -665,26 +674,54 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
           str(conformed)])
     body = conformed
     # Blender heroes over their waypoint windows (waypoint i <-> beat i+1).
+    # Beat heroes: wp["hero"] is a template name or {"template",
+    # "seconds"} — the uneven premium budget (§7.5 v6) lives in the
+    # per-hero seconds.
+    jobs = []
     for i, wp in enumerate(wps):
-        template = wp.get("hero")
-        if not template:
+        hz = wp.get("hero")
+        if not hz:
             continue
-        template = "monoliths" if template is True else str(template)
+        if hz is True:
+            hz = {"template": "monoliths"}
+        elif isinstance(hz, str):
+            hz = {"template": hz}
+        template = str(hz.get("template", "monoliths"))
+        secs = float(hz.get("seconds", HERO_SECONDS))
         t0, t1 = windows[i + 1]
-        # The hero punctuates the beat, it doesn't own it: cap the splice
-        # at 2x the hero's natural length (slow-mo fills it with real
-        # motion) and give the world take the rest of the window.
-        h_end = min(t1, t0 + 2.0 * HERO_SECONDS)
+        # The hero punctuates the beat, it doesn't own it: mild slow-mo
+        # cap (1.3x) fills the splice with real motion; the world take
+        # keeps the rest of the window.
+        h_end = min(t1, t0 + 1.3 * secs)
+        seg = {**(seg_cfgs[i] if i < len(seg_cfgs) else {}), **wp}
+        jobs.append((f"beat {i + 1}", template, secs, seg, t0, h_end, i))
+    # World heroes: the hook and the ending get premium windows too
+    # (window: "cold_open" | "ending"; end_offset keeps the vector
+    # layer's finale — the returning counter — on screen after it).
+    for j, hz in enumerate(world.get("heroes", []) or []):
+        template = str(hz.get("template", "monoliths"))
+        secs = float(hz.get("seconds", HERO_SECONDS))
+        if hz.get("window") == "cold_open":
+            t0 = windows[0][0]
+            h_end = min(windows[0][1], t0 + secs * 1.1)
+        elif hz.get("window") == "ending":
+            h_end = total - float(hz.get("end_offset", 0.0))
+            t0 = max(windows[-1][0] - 8.0, h_end - secs * 1.1)
+        else:
+            continue
+        jobs.append((f"{hz.get('window')}", template, secs,
+                     dict(hz), t0, h_end, f"w{j}"))
+    for name, template, secs, seg, t0, h_end, idx in jobs:
         try:
-            hero = _hero_clip(template, {**(seg_cfgs[i] if i < len(seg_cfgs)
-                                            else {}), **wp}, theme,
-                              h_end - t0, work, i)
-            body = _splice(body, hero, t0, h_end, work / f"spliced{i}.mp4")
-            print(f"[longform] world hero '{template}' spliced over "
-                  f"beat {i + 1}")
+            hero = _hero_clip(template, seg, theme, h_end - t0, work, idx,
+                              seconds=secs)
+            body = _splice(body, hero, t0, h_end,
+                           work / f"spliced{idx}.mp4")
+            print(f"[longform] world hero '{template}' ({secs:.0f}s) "
+                  f"spliced over {name}")
         except Exception as e:  # noqa: BLE001 — a hero is never fatal
-            print(f"[longform] hero splice {i + 1} FAILED ({e}) — "
-                  "world take keeps its own waypoint", file=sys.stderr)
+            print(f"[longform] hero splice {name} FAILED ({e}) — "
+                  "world take keeps its own window", file=sys.stderr)
     return body
 
 
