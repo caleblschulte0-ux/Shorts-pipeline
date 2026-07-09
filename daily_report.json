@@ -1,4 +1,104 @@
-{
-  "skipped": true,
-  "recent_posts": 6
-}
+[
+  {
+    "topic": "The Fastest Animal Alive Isn't the Cheetah",
+    "title": "The Fastest Animal Alive Isn't the Cheetah",
+    "publish_at": "2026-07-09T15:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/JSByGUiU9o8",
+    "error": null,
+    "elapsed_seconds": 251.4,
+    "package_path": "state/trending_packages/20260709/01_peregrine-falcon-fastest-2026.json",
+    "video_path": "output/daily_20260709-135325_the_fastest_animal_alive_isn_t_the_cheet.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "This Lizard Only Needs to Bite You Once",
+    "title": "This Lizard Only Needs to Bite You Once",
+    "publish_at": "2026-07-09T17:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/OIOTOpHY-9M",
+    "error": null,
+    "elapsed_seconds": 265.6,
+    "package_path": "state/trending_packages/20260709/02_komodo-dragon-one-bite-2026.json",
+    "video_path": "output/daily_20260709-135712_this_lizard_only_needs_to_bite_you_once.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "This Dog-Sized Animal Steals Food From Bears",
+    "title": "This Dog-Sized Animal Steals Food From Bears",
+    "publish_at": "2026-07-09T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/rgJkiinYKQ8",
+    "error": null,
+    "elapsed_seconds": 464.4,
+    "package_path": "state/trending_packages/20260709/03_wolverine-chases-bears-2026.json",
+    "video_path": "output/daily_20260709-140205_this_dog_sized_animal_steals_food_from_b.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "The Bug With a Sting So Bad You Just Lie Down",
+    "title": "The Bug With a Sting So Bad You Just Lie Down",
+    "publish_at": "2026-07-09T21:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/lTN-qZjTVIQ",
+    "error": null,
+    "elapsed_seconds": 284.8,
+    "package_path": "state/trending_packages/20260709/04_tarantula-hawk-worst-sting-2026.json",
+    "video_path": "output/daily_20260709-140941_the_bug_with_a_sting_so_bad_you_just_lie.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "The Weirdest Face in Nature Is the Fastest Eater Alive",
+    "title": "The Weirdest Face in Nature Is the Fastest Eater Alive",
+    "publish_at": "2026-07-09T23:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/wETwVyzAMH8",
+    "error": null,
+    "elapsed_seconds": 286.0,
+    "package_path": "state/trending_packages/20260709/05_star-nosed-mole-fastest-eater-2026.json",
+    "video_path": "output/daily_20260709-141439_the_weirdest_face_in_nature_is_the_faste.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "The Lizard That Literally Runs on Water",
+    "title": "The Lizard That Literally Runs on Water",
+    "publish_at": "2026-07-10T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/GRYn9aLs4ow",
+    "error": null,
+    "elapsed_seconds": 426.7,
+    "package_path": "state/trending_packages/20260709/06_basilisk-lizard-runs-on-water-2026.json",
+    "video_path": "output/daily_20260709-141912_the_lizard_that_literally_runs_on_water.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  }
+]
