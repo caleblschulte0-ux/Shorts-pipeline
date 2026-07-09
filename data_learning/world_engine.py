@@ -144,10 +144,12 @@ class WorldScene(MovingCameraScene):
         import data_learning.world_builders as wb
         from data_learning.world_builders import BUILDERS   # canonical copy
         from data_learning.shots import (DEFAULT_DWELL, DEFAULT_TRAVEL,
+                                         EMOTION_INTENSITY, INTENSITY,
                                          LEDGER, SHOTS, cold_open_rush,
-                                         log_event)
+                                         log_event, set_intensity)
         LEDGER.clear()
         wb.STATE.clear()          # the world remembers — per render only
+        INTENSITY.update(level=0, stretch=1.0)   # calm until the facts hit
         sp = _spec()
         theme = sp.get("theme", {})
         self.camera.background_color = theme.get("bg", "#080a14")
@@ -170,6 +172,30 @@ class WorldScene(MovingCameraScene):
             m.move_to(base + frame.get_center() * k)
         blobs.add_updater(parallax)
         self.add(bands, blobs)
+
+        # --- the DUST LAYER (§7.5 v5): frame-relative particles whose
+        # drift velocity reads the world INTENSITY live. Invisible while
+        # calm; a streaming field by cosmic — continuous, automatic proof
+        # that the world is accelerating. Deterministic phases (no RNG).
+        dust = VGroup()
+        _phase = {}
+        for di in range(46):
+            dot = Dot([0, 0, 0], radius=0.03, color="#9fb0cd")
+            _phase[di] = ((di * 37) % 100) / 100.0
+            yfrac = ((di * 61) % 100) / 100.0 - 0.5
+
+            def dust_upd(m, dt, di=di, yfrac=yfrac):
+                lv = INTENSITY["level"]
+                fw, fh = frame.width, frame.height
+                _phase[di] = (_phase[di] + dt * (0.02 + 0.16 * lv)) % 1.0
+                c = frame.get_center()
+                m.move_to([c[0] + (0.55 - 1.1 * _phase[di]) * fw,
+                           c[1] + yfrac * fh * 1.02, 0.0])
+                m.set(width=max(1e-4, fw * (0.004 + 0.002 * (di % 3))))
+                m.set_opacity(0.0 if lv == 0 else 0.10 + 0.07 * lv)
+            dot.add_updater(dust_upd)
+            dust.add(dot)
+        self.add(dust)
 
         # --- waypoint objects, placed in the one place ---
         is_scale = world.get("template") == "scale"
@@ -291,6 +317,18 @@ class WorldScene(MovingCameraScene):
         title_pin.add_updater(pin_title)
         self.add(title_pin)
 
+        def make_surge_counter(v, unit, dy=-0.30, hscale=0.075):
+            """Frame-pinned live number used by the cold open AND the
+            returning-counter ending (§7.5 v5)."""
+            def _mk(v=v, unit=unit):
+                t = Text(f"{int(v.get_value()):,} {unit}".strip(),
+                         font_size=54, weight=BOLD, color=hi)
+                t.scale(frame.height * hscale / max(t.height, 1e-6))
+                t.move_to(frame.get_center()
+                          + np.array([0, frame.height * dy, 0]))
+                return t
+            return always_redraw(_mk)
+
         cold = world.get("cold_open")
         if cold:
             # The hook is a RIDE: sprint through the WHOLE world with the
@@ -300,16 +338,7 @@ class WorldScene(MovingCameraScene):
             surge, counter = None, None
             if isinstance(cold, dict) and cold.get("value"):
                 v = ValueTracker(0.0)
-                unit = str(cold.get("unit", ""))
-
-                def _mk_counter(v=v, unit=unit):
-                    t = Text(f"{int(v.get_value()):,} {unit}".strip(),
-                             font_size=54, weight=BOLD, color=hi)
-                    t.scale(frame.height * 0.075 / max(t.height, 1e-6))
-                    t.move_to(frame.get_center()
-                              + np.array([0, -frame.height * 0.30, 0]))
-                    return t
-                counter = always_redraw(_mk_counter)
+                counter = make_surge_counter(v, str(cold.get("unit", "")))
                 self.add(counter)
                 surge = (v, float(cold["value"]))
             # cold_open.levels picks which waypoints the rush flies
@@ -362,6 +391,13 @@ class WorldScene(MovingCameraScene):
                 if name == last_shot:
                     name = next((s for s in travel_cycle if s != last_shot),
                                 name)
+            # World intensity (§7.5 v5): explicit override, else the
+            # emotion map CAPPED by story position so the ladder always
+            # RISES calm -> cosmic (set_intensity keeps it monotonic).
+            cap = int(math.ceil(3 * (i + 1) / max(1, len(wps))))
+            lv = wp.get("intensity",
+                        min(EMOTION_INTENSITY.get(wp.get("emotion"), cap),
+                            cap))
             ctx = {
                 "frame": frame, "anchor": np.array(anchor), "fw": fw,
                 "dur": dur, "group": groups[i],
@@ -374,6 +410,7 @@ class WorldScene(MovingCameraScene):
                 "shot_name": name, "backdrop": blobs,
                 "react": wp.get("react"), "emotion": wp.get("emotion"),
                 "discovery": wp.get("discovery"), "state": wb.STATE,
+                "intensity": lv,
             }
             SHOTS[name](self, ctx)
             last_shot = name
@@ -402,20 +439,34 @@ class WorldScene(MovingCameraScene):
         exit_rt = max(2.0, t1 - max(t0, now))
         log_event(self, "exit", rt=round(exit_rt, 2))
         if world.get("template") == "scale":
-            # Rewind-then-ride-out: fast ease back to level 0, then ONE
-            # accelerating pullback THROUGH every zoom band — each level
-            # (with its accumulated state) flashes past via the gate —
-            # ending beyond the world: closing line alone on the stars.
-            # The cold open's mirror. One take, no cuts.
+            # ENDING LAW v2 (§7.5 v5): return to the opening with new
+            # meaning. Rewind to level 0, force the world to COSMIC (max
+            # streaks, dust storm), then one accelerating ride-out
+            # THROUGH every band — the camera can no longer hold — while
+            # the cold-open's counter RETURNS and surges past its opening
+            # value to the story's TRUE final number. The answer persists
+            # on screen with the world still streaking past.
             a0, fw0 = anchors[0]
-            rewind = min(1.6, exit_rt * 0.22)
+            rewind = min(1.6, exit_rt * 0.2)
             self.play(frame.animate.move_to(np.array(a0)).set(width=fw0),
                       run_time=rewind,
                       rate_func=rate_functions.ease_in_out_cubic)
-            self.play(frame.animate.set(
-                width=max(fw for _, fw in anchors) * 3.2),
-                run_time=max(0.5, exit_rt - rewind),
-                rate_func=rate_functions.ease_in_quad)
+            spent_x = rewind + set_intensity(
+                self, {"backdrop": blobs, "idx": None}, 3)
+            ride_anims = [frame.animate.set(
+                width=max(fw for _, fw in anchors) * 3.2)]
+            if (isinstance(cold, dict) and cold.get("value")
+                    and cold.get("final")):
+                v_end = ValueTracker(float(cold["value"]))
+                # the ANSWER, huge and central, over the streaking world
+                self.add(make_surge_counter(v_end,
+                                            str(cold.get("unit", "")),
+                                            dy=-0.04, hscale=0.105))
+                ride_anims.append(
+                    v_end.animate.set_value(float(cold["final"])))
+            self.play(*ride_anims,
+                      run_time=max(0.5, exit_rt - spent_x),
+                      rate_func=rate_functions.ease_in_quad)
         else:
             whole_h = abs(anchors[-1][0][1] - anchors[0][0][1]) + 14
             mid = [(anchors[0][0][0] + anchors[-1][0][0]) / 2,

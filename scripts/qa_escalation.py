@@ -20,18 +20,30 @@ Rules (doctrine targets in brackets — CURIOSITY_BRAIN §7.5):
   5. No skipped reactions — a world-reaction that couldn't fit its beat
      is a design error in that beat's timeline.
 
+PAYOFF GRADE (§7.5 v5 — world consequence), per beat:
+  A. the world STATE changed (an intensity rise or a persistent entity
+     mutation logged in the beat);
+  B. the camera REVEALED NEW SPACE (travel zoom ratio or normalized
+     distance above threshold);
+  C. the beat ENDS STRONGER than it starts (its last payoff lands in
+     the second half of the window).
+Any of A–C failing fails the build, like the base rules.
+
 Exits 1 on any violation.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 
 EVENT_GAP_MAX = 9.0
 SURPRISE_GAP_MAX = 60.0
 MIN_DISCOVERIES = 2
+SPACE_ZOOM_MIN = 0.15      # |log(w1/w0)| — the camera changed magnitude
+SPACE_MOVE_MIN = 0.30      # centre travel in units of the target width
 HAPPENING = {"travel", "reveal", "event", "payoff", "reaction", "discovery"}
 SURPRISE = {"discovery", "cold_open"}
 
@@ -72,8 +84,31 @@ def main() -> int:
             flags.append(f"{n_skip} skipped reaction(s)")
             fails.append(f"beat {i}: {n_skip} planned reaction(s) never "
                          "fired — the beat's timeline is over-packed")
+        # --- payoff grade (§7.5 v5) ---
+        grade = []
+        if not any(r["kind"] == "state" for r in rs):
+            grade.append("A:no-state-change")
+            fails.append(f"beat {i}: the world state never changed "
+                         "(no intensity rise or entity mutation)")
+        trav = next((r for r in rs if r["kind"] == "travel"), None)
+        revealed = False
+        if trav and trav.get("w0"):
+            zoom = abs(math.log(max(trav.get("w1", 1), 1e-9)
+                                / max(trav["w0"], 1e-9)))
+            revealed = (zoom > SPACE_ZOOM_MIN
+                        or trav.get("moved", 0) > SPACE_MOVE_MIN)
+        if not revealed:
+            grade.append("B:no-new-space")
+            fails.append(f"beat {i}: the camera revealed no new space")
+        pays = [r["t"] for r in rs if r["kind"] == "payoff"]
+        if pays and max(pays) < (t0 + t1) / 2:
+            grade.append("C:weak-ending")
+            fails.append(f"beat {i}: last payoff at {max(pays):.1f}s — "
+                         "the beat must end stronger than it starts")
+        flags.extend(grade)
         print(f"beat {i}: {n_ev:2d} events  {n_pay} payoff  "
-              f"max-hole {gap:4.1f}s  {'FAIL: ' + ', '.join(flags) if flags else 'ok'}")
+              f"max-hole {gap:4.1f}s  "
+              f"{'FAIL: ' + ', '.join(flags) if flags else 'ok'}")
 
     stimes = sorted(r["t"] for r in rows if r["kind"] in SURPRISE)
     cur, sgap = 0.0, 0.0

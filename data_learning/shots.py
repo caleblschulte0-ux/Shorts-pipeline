@@ -76,6 +76,48 @@ def log_event(scene, kind: str, **detail):
 
 
 # ---------------------------------------------------------------------------
+# INTENSITY — the world has a state machine (§7.5 v5: WORLD CONSEQUENCE).
+# calm(0) → fast(1) → extreme(2) → cosmic(3), set at every beat start and
+# MONOTONIC: the world remembers it is accelerating and never calms back
+# down. Intensity drives, automatically: the STANDING star-streak factor,
+# the dust layer's drift velocity (read live by its updater), dwell-leg
+# energy, punch magnitude, and the auto reaction cadence.
+# ---------------------------------------------------------------------------
+INTENSITY = {"level": 0, "stretch": 1.0}
+
+EMOTION_INTENSITY = {"wonder": 1, "mystery": 1, "speed": 2, "scale": 2,
+                     "heat": 2, "force": 2, "danger": 3, "awe": 3}
+
+_STREAK = [1.0, 1.35, 1.85, 2.5]      # standing star-stretch per level
+
+
+def _energy() -> float:
+    return 1.0 + 0.35 * INTENSITY["level"]
+
+
+def set_intensity(scene, ctx, level: int) -> float:
+    """Raise the world state (never lowers). Plays the standing streak
+    change on the backdrop, logs a `state` ledger row, returns seconds
+    consumed."""
+    level = max(0, min(3, int(level)))
+    if level <= INTENSITY["level"]:
+        return 0.0
+    INTENSITY["level"] = level
+    log_event(scene, "state", beat=ctx.get("idx"), what="intensity",
+              to=level)
+    bg = ctx.get("backdrop")
+    target = _STREAK[level]
+    factor = target / INTENSITY["stretch"]
+    INTENSITY["stretch"] = target
+    if bg is None or len(bg) == 0 or abs(factor - 1.0) < 1e-3:
+        return 0.0
+    rt = 0.6
+    scene.play(bg.animate.stretch(factor, 0), run_time=rt,
+               rate_func=rate_functions.ease_in_out_sine)
+    return rt
+
+
+# ---------------------------------------------------------------------------
 # REACTIONS — narration changes the world ("Every fact should change the
 # world"). World-level effects: they touch the backdrop/camera/frame, not
 # the exhibit. All geometry/position based (gate-safe).
@@ -143,7 +185,16 @@ EMOTION_FX = {"speed": "star_streak", "scale": "star_streak",
 def _reactions_for(ctx) -> list[dict]:
     declared = list(ctx.get("react") or [])
     if not declared and ctx.get("emotion") in EMOTION_FX:
-        declared = [{"fx": EMOTION_FX[ctx["emotion"]], "at": 0.55}]
+        # Auto cadence scales with the window: long beats get several
+        # emotion-mapped reactions, not one (the engine applies the
+        # reaction layer; authors only override for narration-causal
+        # timing).
+        n = 1 + int(float(ctx.get("dur", 0)) // 14)
+        fx = EMOTION_FX[ctx["emotion"]]
+        declared = [{"fx": fx,
+                     "at": 0.42 + 0.45 * k / max(1, n - 1) if n > 1
+                     else 0.55}
+                    for k in range(n)]
     return [r for r in declared if r.get("fx") in REACTIONS]
 
 
@@ -198,12 +249,23 @@ def _play_discovery(scene, ctx) -> float:
 def _play_bundle(scene, ctx, b) -> float:
     rt = getattr(b, "run_time", 1.0)
     anims = list(b.anims) if hasattr(b, "anims") else [b]
-    if getattr(b, "punch", False):
-        # Visual consequence: the payoff lands WITH a camera pop; the
-        # next dwell leg re-normalizes the width.
+    cam = getattr(b, "cam", None)
+    if cam is not None:
+        # CONSEQUENCE bundle: the event steers the camera (follow the
+        # winner, get pulled along the orbit) — the fact happens TO the
+        # viewer, not beside them. Dwell legs re-centre afterwards.
+        anims.extend(cam(ctx) or [])
+    elif getattr(b, "punch", False):
+        # Payoff pop, scaled by world intensity.
         frame = ctx["frame"]
-        anims.append(frame.animate.set(width=frame.width * 0.955))
+        anims.append(frame.animate.set(
+            width=frame.width * (0.96 - 0.012 * INTENSITY["level"])))
     scene.play(*anims, run_time=rt)
+    if getattr(b, "state", False):
+        # this bundle PERMANENTLY changed the world (bars stay landed,
+        # ticks stay lit, the fill stays past the marker)
+        log_event(scene, "state", beat=ctx.get("idx"), what="entity",
+                  rt=0.0)
     return rt
 
 
@@ -212,12 +274,20 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
     frame, dur = ctx["frame"], ctx["dur"]
     idx = ctx.get("idx")
     t_approach = min(2.8, max(0.8, dur * approach_frac))
+    # travel metrics feed the payoff grade: did the camera reveal new
+    # space this beat?
+    w0 = float(frame.width)
+    moved = float(np.linalg.norm(
+        np.array(frame.get_center()) - np.array(ctx["anchor"])))
     log_event(scene, "travel", beat=idx, shot=ctx.get("shot_name"),
-              rt=round(t_approach, 2))
+              rt=round(t_approach, 2), w0=round(w0, 2),
+              w1=round(float(ctx["fw"]), 2),
+              moved=round(moved / max(float(ctx["fw"]), 1e-9), 3))
     if ctx.get("emotion"):
         log_event(scene, "emotion", beat=idx, tag=ctx["emotion"])
+    spent = set_intensity(scene, ctx, int(ctx.get("intensity", 0)))
     approach(scene, ctx, t_approach)
-    spent = t_approach
+    spent += t_approach
     spent += _play_discovery(scene, ctx)
     if reveal_target is not None:                       # the subject is BORN
         scene.play(Restore(reveal_target), run_time=0.7,
@@ -281,6 +351,17 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
         t_cursor += gap
         items.append((t_cursor, "event", b))
         t_cursor += getattr(b, "run_time", 1.0)
+    # The beat must END STRONGER than it starts (payoff grade): pin the
+    # last punch toward ~0.7 of the window — bounded so it never opens a
+    # >8s hole behind it and always fits before the window closes.
+    punch_ix = max((i for i, it in enumerate(items)
+                    if it[1] == "event" and getattr(it[2], "punch", False)),
+                   default=None)
+    if punch_ix is not None:
+        t_nat, _, pb = items[punch_ix]
+        rt_p = getattr(pb, "run_time", 1.0)
+        items[punch_ix] = (max(t_nat, min(0.68 * dur, t_nat + 8.0,
+                                          dur - rt_p - 0.6)), "event", pb)
     items.sort(key=lambda x: x[0])
 
     for target, kind, payload in items:
@@ -381,10 +462,11 @@ def _dw_phase(ctx) -> int:
 
 def _dw_orbit(scene, ctx, rt):
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
+    e = _energy()          # dwell amplitude rises with world intensity
     for L in _leg_times(rt):
         i = _dw_phase(ctx)
         sgn = 1 if i % 2 == 0 else -1
-        off = np.array([fw * 0.026 * sgn, fw * 0.012 * -sgn, 0.0])
+        off = np.array([fw * 0.026 * sgn, fw * 0.012 * -sgn, 0.0]) * e
         scene.play(frame.animate(path_arc=0.5 * sgn).move_to(a + off)
                    .set(width=fw * (0.975 - 0.025 * (i % 2))),
                    run_time=L, rate_func=rate_functions.ease_in_out_sine)
@@ -395,10 +477,11 @@ def _dw_push(scene, ctx, rt):
     # offset — a pure width-set leg is a frozen frame whenever the
     # camera already sits at that width (e.g. right after a punch pop).
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
+    e = _energy()
     for L in _leg_times(rt):
         i = _dw_phase(ctx)
         off = np.array([fw * 0.013 * (1 if i % 2 else -1),
-                        fw * 0.007 * (-1 if i % 2 else 1), 0.0])
+                        fw * 0.007 * (-1 if i % 2 else 1), 0.0]) * e
         scene.play(frame.animate.move_to(a + off)
                    .set(width=fw * (0.90 if i % 2 == 0 else 0.935)),
                    run_time=L, rate_func=rate_functions.ease_in_out_sine)
@@ -410,23 +493,25 @@ _DRIFT_PATH = [(0.022, -0.012), (-0.016, -0.020), (0.026, 0.009),
 
 def _dw_drift(scene, ctx, rt):
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
+    e = _energy()
     for L in _leg_times(rt):
         i = _dw_phase(ctx)
         dx, dy = _DRIFT_PATH[i % len(_DRIFT_PATH)]
         scene.play(frame.animate
-                   .move_to(a + np.array([fw * dx, fw * dy, 0.0]))
+                   .move_to(a + np.array([fw * dx, fw * dy, 0.0]) * e)
                    .set(width=fw * (0.965 - 0.015 * (i % 2))),
                    run_time=L, rate_func=rate_functions.ease_in_out_sine)
 
 
 def _dw_sweep(scene, ctx, rt):
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
+    e = _energy()
     for L in _leg_times(rt):
         i = _dw_phase(ctx)
         sgn = 1 if i % 2 == 0 else -1
         scene.play(frame.animate
                    .move_to(a + np.array([fw * 0.032 * sgn,
-                                          fw * 0.006 * -sgn, 0.0])),
+                                          fw * 0.006 * -sgn, 0.0]) * e),
                    run_time=L, rate_func=rate_functions.ease_in_out_sine)
 
 

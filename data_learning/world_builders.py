@@ -390,7 +390,8 @@ def _b_rank(wp, theme, scale, anchor=None, post_scale=1.0):
              .stretch_to_fit_width(target_w, about_edge=LEFT),
              v.animate.set_value(p["value"])],
             run_time=1.5 if star else 1.0,
-            punch=star))            # the champion landing IS the payoff
+            punch=star,             # the champion landing IS the payoff
+            state=True))            # landed bars stay landed
     return g, anims
 
 
@@ -402,12 +403,24 @@ class _Par:
     the first is the subject's arrival (plays as the reveal), the rest are
     scheduled across the beat's whole window. punch=True marks a PAYOFF:
     it lands with a camera pop and the ledger logs it as such (the gate
-    requires >=1 payoff per beat)."""
+    requires >=1 payoff per beat).
 
-    def __init__(self, anims, run_time=1.0, punch=False):
+    World-consequence contract (§7.5 v5):
+    - cam=callable(ctx)->[anims]: the bundle STEERS THE CAMERA (follow
+      the winner, get pulled along the path) — played in the same
+      scene.play; dwell legs re-centre afterwards.
+    - state=True: the bundle PERMANENTLY changes the world (bars stay
+      landed, ticks stay lit); logged as a `state` ledger row for the
+      payoff grade. Defaults to punch (payoffs persist unless said
+      otherwise)."""
+
+    def __init__(self, anims, run_time=1.0, punch=False, cam=None,
+                 state=None):
         self.anims = anims
         self.run_time = run_time
         self.punch = punch
+        self.cam = cam
+        self.state = punch if state is None else state
 
 
 @builder("compare")
@@ -507,7 +520,8 @@ def _b_gauge(wp, theme, scale, anchor=None, post_scale=1.0):
         # 1) climb to the expected marker — tension
         _Par([fill.animate(rate_func=rate_functions.ease_in_out_sine)
               .stretch_to_fit_height(expected_h, about_edge=DOWN),
-              v.animate.set_value(expected["value"])], run_time=1.6),
+              v.animate.set_value(expected["value"])], run_time=1.6,
+             state=True),
         # 2) BLOW PAST it — the payoff
         _Par([fill.animate(rate_func=rate_functions.ease_in_quad)
               .stretch_to_fit_height(target_h, about_edge=DOWN),
@@ -612,7 +626,8 @@ def _b_drilljourney(wp, theme, scale, anchor=None, post_scale=1.0):
              .put_start_and_end_on(top, np.array([top[0], y_world, 0.0])),
              v.animate.set_value(p["value"]),
              stamp.animate.set_opacity(1.0)], run_time=seg_rt,
-            punch=(k == len(stamps) - 1)))   # deepest stamp = payoff
+            punch=(k == len(stamps) - 1),    # deepest stamp = payoff
+            state=True))                     # stamped depths persist
         prev = p["value"]
     return g, anims
 
@@ -648,8 +663,10 @@ def _b_comparison_race(wp, theme, scale, anchor=None, post_scale=1.0):
     lanes = []
     for k, (p, y) in enumerate(zip(pts, ys)):   # fastest = top lane
         color = hi if p is fast else COOL
+        # lanes are SUPPORT, not the subject — thin and dim; the racers,
+        # trails and camera carry the beat (§7.5 v5)
         lane = Line([x0, y, 0], [x1, y, 0],
-                    color="#2a3350", stroke_width=4 * scale)
+                    color="#1c2338", stroke_width=2.5 * scale)
         tick = Line([x1, y - 0.2 * scale, 0], [x1, y + 0.2 * scale, 0],
                     color="#8fa0bd", stroke_width=3 * scale)  # finish
         name = Text(_diet(p["label"]), font_size=int(22 * scale),
@@ -658,11 +675,24 @@ def _b_comparison_race(wp, theme, scale, anchor=None, post_scale=1.0):
         racer = ASSETS.get(p.get("asset", defaults[k % len(defaults)]),
                            ASSETS["jet"])(scale * 0.42)
         racer.move_to([x0 + 0.45 * scale, y, 0])
+        start_mark = Dot([x0 + 0.45 * scale, y, 0], radius=0.02 * scale)
+        start_mark.set_opacity(0)               # invisible trail anchor
+        trail = Line([x0 + 0.45 * scale, y, 0],
+                     [x0 + 0.47 * scale, y, 0], color=color,
+                     stroke_width=3.5 * scale, stroke_opacity=0.45)
+
+        def trail_upd(m, r=racer, s=start_mark):
+            a_pt = np.array(s.get_center())
+            b_pt = np.array(r.get_center())
+            if np.linalg.norm(b_pt - a_pt) < 1e-4:
+                b_pt = a_pt + np.array([1e-4, 0.0, 0.0])
+            m.put_start_and_end_on(a_pt, b_pt)
+        trail.add_updater(trail_upd)
         v = ValueTracker(0.0)
         num = _counter(v, unit, int(22 * scale), color,
                        anchor=racer, direction=UP, buff=0.16 * scale,
                        size_ref=(racer, "width", 0.22))
-        g.add(lane, tick, name, racer, num)
+        g.add(lane, tick, name, start_mark, trail, racer, num)
         lanes.append((racer, v, p, lane))
     ratio_txt = None
     if slow["value"] > 0 and fast["value"] / slow["value"] >= 1.5:
@@ -693,12 +723,25 @@ def _b_comparison_race(wp, theme, scale, anchor=None, post_scale=1.0):
         frac = p["value"] / (fast["value"] or 1.0)
         target = s_pt + (e_pt - s_pt) * (0.10 + 0.84 * frac)
         target[1] = racer.get_center()[1]          # hold the lane
+        cam = None
+        if p is fast:
+            # CONSEQUENCE: the camera abandons the field and rides with
+            # the winner — the losers visibly fall away behind the
+            # frame. The next dwell leg pulls back to reveal the gap.
+            w_target = target.copy()
+
+            def cam(c, wt=w_target):
+                return [c["frame"].animate(
+                    rate_func=rate_functions.ease_in_quad)
+                    .move_to([wt[0] - c["fw"] * 0.06, wt[1], 0.0])
+                    .set(width=c["fw"] * 0.62)]
         anims.append(_Par(
             [racer.animate(rate_func=rate_functions.ease_in_quad)
              .move_to(target),
              v.animate.set_value(p["value"])],
             run_time=2.0 if p is fast else 1.5,
-            punch=(p is fast and ratio_txt is None)))
+            punch=(p is fast and ratio_txt is None),
+            cam=cam, state=True))
     if ratio_txt is not None:
         anims.append(_Par(
             [ratio_txt.animate(rate_func=rate_functions.ease_out_back)
@@ -784,7 +827,8 @@ def _b_speedometer(wp, theme, scale, anchor=None, post_scale=1.0):
              v.animate.set_value(p["value"]),
              tick.animate.set_color(hi)],         # passed ticks stay lit
             run_time=1.6 if last else 1.0,
-            punch=last))                          # pinning at max = payoff
+            punch=last,                           # pinning at max = payoff
+            state=True))                          # lit ticks stay lit
     return g, anims
 
 
@@ -838,7 +882,31 @@ def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
         planet = ASSETS["earth"](scale * 0.12).move_to([2.4 * scale, 0, 0])
         planet.add_updater(lambda m, dt, sun=sun: m.rotate(
             dt * 0.16, about_point=sun.get_center()))     # rides the ring
-        g.add(sun, ring, planet)
+        # ORBIT RIDE (§7.5 v5): the path LIGHTS UP behind the travelling
+        # planet — the Sun visibly drags Earth along a growing arc.
+        trail = Arc(radius=2.4 * scale, start_angle=0.0, angle=1e-3,
+                    color=hi, stroke_width=4.5 * scale, stroke_opacity=0.8)
+        _ride = {"cum": 0.0, "prev": 0.0}
+
+        def orbit_trail(m, planet=planet, sun=sun, ring=ring, st=_ride):
+            c = np.array(sun.get_center())
+            rel = np.array(planet.get_center()) - c
+            ang = math.atan2(rel[1], rel[0])
+            d = ang - st["prev"]
+            while d < -math.pi:
+                d += 2 * math.pi
+            while d > math.pi:
+                d -= 2 * math.pi
+            st["cum"] = min(2 * math.pi - 1e-3, st["cum"] + max(0.0, d))
+            st["prev"] = ang
+            new = Arc(radius=float(np.linalg.norm(rel)),
+                      start_angle=ang - st["cum"], angle=st["cum"],
+                      arc_center=c, color=trail.get_color(),
+                      stroke_width=ring.get_stroke_width() * 1.6,
+                      stroke_opacity=0.8)
+            m.become(new)
+        trail.add_updater(orbit_trail)
+        g.add(sun, ring, trail, planet)
     elif kind == "galaxy":
         arms = VGroup()
         for arm in range(4):
@@ -853,7 +921,33 @@ def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
                       fill_color="#f4e6c0", fill_opacity=0.9)
         arms.add_updater(lambda m, dt, core=core: m.rotate(
             dt * 0.045, about_point=core.get_center()))
-        g.add(arms, core)
+        # GALAXY CARRY (§7.5 v5): the whole solar system — a marked gold
+        # dot with a trail — is VISIBLY carried outward along a spiral
+        # arm. Being carried is the fact; the dot riding is the proof.
+        sol = Dot([0.0, 0.0, 0.0], radius=0.085 * scale, color="#ffd9a0")
+        soltrail = Line([0, 0, 0], [1e-4, 0, 0], color="#ffd9a0",
+                        stroke_width=4 * scale, stroke_opacity=0.55)
+        _carry = {"s": 6.0}
+
+        def sol_ride(m, dt, arms=arms, st=_carry):
+            st["s"] = min(33.9, st["s"] + dt * 0.9)
+            i0 = int(st["s"])
+            frac = st["s"] - i0
+            seg = arms[i0]          # arm 0 = segments [0..34], live coords
+            p = ((1 - frac) * np.array(seg.get_start())
+                 + frac * np.array(seg.get_end()))
+            m.move_to(p)
+        sol.add_updater(sol_ride)
+
+        def sol_trail(m, sol=sol, arms=arms, st=_carry):
+            back = arms[max(0, int(st["s"]) - 5)]
+            a_pt = np.array(back.get_start())
+            b_pt = np.array(sol.get_center())
+            if np.linalg.norm(b_pt - a_pt) < 1e-4:
+                b_pt = a_pt + np.array([1e-4, 0.0, 0.0])
+            m.put_start_and_end_on(a_pt, b_pt)
+        soltrail.add_updater(sol_trail)
+        g.add(arms, core, soltrail, sol)
     elif kind == "human":
         g.add(ASSETS["human"](scale * 2.2))
     label = Text(_diet(p.get("label", "")), font_size=int(30 * scale),
@@ -887,6 +981,13 @@ def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
         c = np.array(sun.get_center())
         motions = [_Par([Rotate(planet, ang, about_point=c)], run_time=rt)
                    for ang, rt in ((1.3, 2.0), (1.6, 2.4), (1.2, 2.0))]
+        # CONSEQUENCE: for one stretch the camera is PULLED ALONG with
+        # the dragged planet — the viewer rides the orbit, then the
+        # dwell re-centres to reveal the lit path behind it.
+        motions[1].cam = (lambda cx, p=planet: [
+            cx["frame"].animate(rate_func=rate_functions.ease_in_out_sine)
+            .move_to(np.array(p.get_center()))
+            .set(width=cx["fw"] * 0.55)])
     elif kind == "galaxy":
         c = np.array(core.get_center())
         motions = [_Par([Rotate(arms, ang, about_point=c)], run_time=rt)
