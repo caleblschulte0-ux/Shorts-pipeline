@@ -1,0 +1,28 @@
+{
+  "key": "fruit_and_vegetable_records_longest_vegetable",
+  "title": "Longest Vegetable",
+  "unit": "inches",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-09"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Carrot",
+      "value": 19.0,
+      "period": "2025"
+    },
+    {
+      "label": "Beet",
+      "value": 10.0,
+      "period": "2025"
+    }
+  ]
+}
