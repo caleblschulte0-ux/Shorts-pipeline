@@ -79,7 +79,7 @@ def _diet(s, max_words: int = 2) -> str:
     return " ".join(str(s).split()[:max_words])
 
 
-def _settle(g, anchor, post_scale: float = 1.0):
+def _settle(g, anchor, post_scale: float = 1.0, about: str = "bbox"):
     """Anchor-first AND scale-first: position and zoom the group BEFORE
     any animation is created. .animate/Transform targets snapshot coords
     at creation time — an engine-side scale applied after the builder
@@ -89,9 +89,19 @@ def _settle(g, anchor, post_scale: float = 1.0):
     not survive) and geometrically zoom here with scale_stroke=True so
     hairline strokes stay visible at ×343. manim 0.20 quirk: scale_stroke
     CONJURES a stroke on width-0 mobjects (Text stickers, rims on
-    stroke-less fills) — designed-zero widths are re-zeroed after."""
+    stroke-less fills) — designed-zero widths are re-zeroed after.
+
+    about="bbox" centres the group's bounding box on the anchor (right
+    for symmetric exhibits). about="origin" translates design coords to
+    the anchor verbatim — REQUIRED when the build-time bbox lies about
+    the final composition (rank's bars are 0.02 wide at build and race
+    outward later; bbox-centring would shove the whole layout
+    off-frame)."""
     if anchor is not None:
-        g.move_to(anchor)
+        if about == "origin":
+            g.shift(np.array(anchor))
+        else:
+            g.move_to(anchor)
     if post_scale and post_scale != 1.0:
         ap = (np.array(anchor) if anchor is not None
               else g.get_center().copy())
@@ -279,17 +289,19 @@ def _b_rank(wp, theme, scale, anchor=None, post_scale=1.0):
     vmax = max(p["value"] for p in pts) or 1.0
     n = len(pts)
     row_h = min(1.2, 5.0 / n) * scale
-    # Champion bar + its riding counter must BOTH fit inside the dwell
-    # frame (fw≈11, half-width 5.5): bars start further left and run
-    # shorter so the biggest number never slides off-frame right.
-    bar_w = 5.6 * scale
-    x0 = -1.9 * scale
+    # The whole composition — longest label left, champion bar + its
+    # riding "828,000 km/h" counter right — must fit the tightest dwell
+    # frame (0.88 fw → usable half-width ≈4.8). Design coords are world
+    # coords: rank settles about="origin", because its build-time bbox
+    # (0.02-wide bars) lies about where the raced bars will end.
+    bar_w = 3.3 * scale
+    x0 = -1.3 * scale
     g = VGroup()
     rows = []
     for i, p in enumerate(sorted(pts, key=lambda q: q["value"])):
         y = (n / 2 - i - 0.5) * row_h * -1
         star = p["value"] == vmax
-        label = Text(p["label"], font_size=int(28 * scale), color="#ffffff")
+        label = Text(p["label"], font_size=int(22 * scale), color="#ffffff")
         label.move_to([x0 - 0.35 * scale, y, 0], aligned_edge=RIGHT)
         bar = Rectangle(width=0.02, height=row_h * 0.5, stroke_width=0,
                         fill_color=hi if star else COOL, fill_opacity=0.95)
@@ -297,10 +309,10 @@ def _b_rank(wp, theme, scale, anchor=None, post_scale=1.0):
         v = ValueTracker(0.0)
         num = _counter(v, unit, int(26 * scale), "#ffffff",
                        anchor=bar, direction=RIGHT, buff=0.25 * scale,
-                       size_ref=(bar, "height", 0.72))   # width animates
+                       size_ref=(bar, "height", 0.45))   # width animates
         g.add(label, bar, num)
         rows.append((bar, v, p, star))
-    _settle(g, anchor, post_scale)   # BEFORE anims: targets snapshot coords
+    _settle(g, anchor, post_scale, about="origin")   # BEFORE anims
     anims = []
     for bar, v, p, star in rows:
         target_w = max(0.03, bar_w * p["value"] / vmax) * post_scale
@@ -662,9 +674,11 @@ def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
                  color=GRAY_TEXT)
     value = Text(str(p.get("display", "")), font_size=int(46 * scale),
                  weight=BOLD, color=hi)
-    stamp = VGroup(label, value).arrange(DOWN, aligned_edge=LEFT,
+    stamp = VGroup(label, value).arrange(DOWN, aligned_edge=RIGHT,
                                          buff=0.12 * scale)
-    stamp.move_to([2.9 * scale, -2.2 * scale, 0], aligned_edge=LEFT)
+    # RIGHT-aligned inside the push-in frame (half-width ~4.8 at 0.88 fw)
+    # so a wide number never clips the edge.
+    stamp.move_to([4.2 * scale, -2.2 * scale, 0], aligned_edge=RIGHT)
     g.add(stamp)
     _settle(g, anchor, post_scale)
     # No arrival anims: in a ScaleWorld the zoom itself is the reveal —
