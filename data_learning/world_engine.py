@@ -142,6 +142,8 @@ def _spec() -> dict:
 class WorldScene(MovingCameraScene):
     def construct(self):
         from data_learning.world_builders import BUILDERS   # canonical copy
+        from data_learning.shots import (DEFAULT_DWELL, DEFAULT_TRAVEL,
+                                         SHOTS, cold_open_rush)
         sp = _spec()
         theme = sp.get("theme", {})
         self.camera.background_color = theme.get("bg", "#080a14")
@@ -191,6 +193,25 @@ class WorldScene(MovingCameraScene):
             self.add(g)
             arrival_anims.append(anims)
             groups.append(g)
+
+        # Reveal doctrine (non-scale worlds): subjects are BORN as the
+        # camera arrives, not pre-placed geometry waiting. Each group is
+        # pre-shrunk to a ghost seed; the shot Restores it on arrival.
+        # save_state() is taken at designed size/opacity, and builder
+        # arrival anims snapshot their targets at creation, so the
+        # Restore lands exactly on the coordinates the anims expect.
+        # Scale worlds skip this — their zoom visibility gate IS the
+        # reveal, and a Restore would fight it.
+        if not is_scale:
+            for g, wp in zip(groups, wps):
+                if wp.get("reveal", True):
+                    # Seed stays readable as a DISTANT LANDMARK — the cold
+                    # open rushes past unvisited exhibits, and an empty
+                    # world reads as a broken render, not anticipation.
+                    g.save_state()
+                    g.scale(0.45).set_opacity(0.22)
+                else:
+                    g.save_state()   # shots may Restore unconditionally
 
         # Scale worlds nest all levels around one centre (powers of ten) —
         # each level is only visible while the camera is near its zoom, so
@@ -243,10 +264,7 @@ class WorldScene(MovingCameraScene):
 
         # --- the journey ---
         title_w = windows[0][1] - windows[0][0]
-        # Entry: start wide above/outside the first waypoint, glide in.
         a0, fw0 = anchors[0]
-        frame.set(width=fw0 * 2.6).move_to(
-            np.array(a0) + np.array([0, fw0 * 0.5, 0]))
         title = Text(sp.get("title", ""), font_size=64, weight=BOLD,
                      color="#ffffff")
         title_pin = VGroup(title)
@@ -258,47 +276,79 @@ class WorldScene(MovingCameraScene):
             m.move_to(frame.get_center() + np.array([0, frame.height * 0.28, 0]))
         title_pin.add_updater(pin_title)
         self.add(title_pin)
-        self.play(frame.animate.set(width=fw0 * 1.9), run_time=title_w * 0.8,
-                  rate_func=rate_functions.ease_in_out_sine)
-        self.play(FadeOut(title_pin), run_time=max(0.3, title_w * 0.2))
 
-        chrome = None
+        cold = world.get("cold_open")
+        if cold:
+            # The hook is a RIDE: sprint through the WHOLE world with the
+            # title pinned to the frame — show the ride first, explain it
+            # second — then reset to level 0 for the narrated journey.
+            frame.set(width=fw0 * 1.15).move_to(np.array(a0))
+            surge, counter = None, None
+            if isinstance(cold, dict) and cold.get("value"):
+                v = ValueTracker(0.0)
+                unit = str(cold.get("unit", ""))
+
+                def _mk_counter(v=v, unit=unit):
+                    t = Text(f"{int(v.get_value()):,} {unit}".strip(),
+                             font_size=54, weight=BOLD, color=hi)
+                    t.scale(frame.height * 0.075 / max(t.height, 1e-6))
+                    t.move_to(frame.get_center()
+                              + np.array([0, -frame.height * 0.30, 0]))
+                    return t
+                counter = always_redraw(_mk_counter)
+                self.add(counter)
+                surge = (v, float(cold["value"]))
+            cold_open_rush(self, {"frame": frame, "anchors_all": anchors,
+                                  "dur": max(2.5, title_w - 0.35),
+                                  "surge": surge})
+            if counter is not None:
+                self.remove(counter)     # always_redraw defeats FadeOut
+            self.play(FadeOut(title_pin), run_time=0.35)
+        else:
+            # Classic entry: start wide above the first waypoint, glide in.
+            frame.set(width=fw0 * 2.6).move_to(
+                np.array(a0) + np.array([0, fw0 * 0.5, 0]))
+            self.play(frame.animate.set(width=fw0 * 1.9),
+                      run_time=title_w * 0.8,
+                      rate_func=rate_functions.ease_in_out_sine)
+            self.play(FadeOut(title_pin), run_time=max(0.3, title_w * 0.2))
+
+        # The waypoint loop is a thin dispatcher over the shot vocabulary
+        # (data_learning/shots.py): a SHOT owns the approach, arrival
+        # choreography, chrome in/out, and dwell for exactly its window.
+        # Un-annotated waypoints draw from the template's default cycle,
+        # never repeating the same shot back-to-back.
+        tpl = world.get("template", "depth")
+        travel_cycle = DEFAULT_TRAVEL.get(tpl, DEFAULT_TRAVEL["depth"])
+        dwell_cycle = DEFAULT_DWELL.get(tpl, DEFAULT_DWELL["depth"])
+        last_shot = None
         for i, wp in enumerate(wps):
             t0, t1 = windows[i + 1]
             dur = t1 - t0
             anchor, fw = anchors[i]
-            travel = min(2.8, dur * 0.30)
-            if chrome:
-                self.play(FadeOut(chrome), run_time=0.01)
-            self.play(frame.animate.move_to(anchor).set(width=fw),
-                      run_time=travel,
-                      rate_func=rate_functions.ease_in_out_sine)
-            chrome = chrome_for(i)
-            groups[i].resume_updating()
-            self.play(FadeIn(chrome), run_time=0.3)
-            # Waypoint animations, then dwell with real frame creep — the
-            # camera keeps breathing even while the exhibit holds.
-            spent = travel + 0.3
-            for a in arrival_anims[i]:
-                rt = getattr(a, "run_time", 1.0)
-                if spent + rt > dur - 0.4:
-                    break
-                if hasattr(a, "anims"):          # _Par bundle
-                    self.play(*a.anims, run_time=rt)
-                else:
-                    self.play(a, run_time=rt)
-                spent += rt
-            creep = max(0.05, dur - spent)
-            self.play(frame.animate.set(width=fw * 0.94),
-                      run_time=creep,
-                      rate_func=rate_functions.ease_in_out_sine)
-            if world.get("template") != "scale":
+            name = wp.get("shot")
+            if not name or name not in SHOTS:
+                name = travel_cycle[i % len(travel_cycle)]
+                if name == last_shot:
+                    name = next((s for s in travel_cycle if s != last_shot),
+                                name)
+            ctx = {
+                "frame": frame, "anchor": np.array(anchor), "fw": fw,
+                "dur": dur, "group": groups[i],
+                "arrival_anims": arrival_anims[i],
+                "chrome_factory": (lambda i=i: chrome_for(i)),
+                "idx": i, "is_scale": is_scale, "anchors_all": anchors,
+                "dwell": wp.get("dwell") or dwell_cycle[i % len(dwell_cycle)],
+                "reveal_target": (groups[i] if not is_scale
+                                  and wp.get("reveal", True) else None),
+            }
+            SHOTS[name](self, ctx)
+            last_shot = name
+            if not is_scale:
                 groups[i].suspend_updating()   # scale keeps visibility upds
 
         # Exit: final pullback reveals the whole journey; closing text pins.
         t0, t1 = windows[-1]
-        if chrome:
-            self.play(FadeOut(chrome), run_time=0.01)
         if world.get("template") == "scale":
             # Exit for a zoom world: pull out past the widest level.
             whole_h = max(fw for _, fw in anchors) * 0.9
