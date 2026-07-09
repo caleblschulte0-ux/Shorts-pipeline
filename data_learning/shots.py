@@ -149,36 +149,66 @@ def _mv_follow(scene, ctx, rt):
 
 # ---------------------------------------------------------------------------
 # Dwell moves — the frame breathes; never static, always unwound.
+#
+# LOOPED, not single eased plays: a narration beat can run 35 s, and one
+# 10%-width ease spread across 25 s is sub-pixel per frame — a locked
+# camera by the motion gate's (and the operator's) standard. Every dwell
+# splits its time into ~5.5 s legs that alternate direction/zoom, so the
+# frame visibly lives for however long the beat holds.
 # ---------------------------------------------------------------------------
+DWELL_LEG = 5.5
+
+
+def _leg_times(rt: float) -> list[float]:
+    n = max(1, round(rt / DWELL_LEG))
+    return [rt / n] * n
+
+
 def _dw_orbit(scene, ctx, rt):
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
-    half = rt / 2
-    off = np.array([fw * 0.02, fw * 0.008, 0.0])
-    scene.play(frame.animate(path_arc=0.5).move_to(a + off)
-               .set(width=fw * 0.97),
-               run_time=half, rate_func=rate_functions.ease_in_out_sine)
-    scene.play(frame.animate(path_arc=0.5).move_to(a).set(width=fw * 0.95),
-               run_time=half, rate_func=rate_functions.ease_in_out_sine)
+    for i, L in enumerate(_leg_times(rt)):
+        sgn = 1 if i % 2 == 0 else -1
+        off = np.array([fw * 0.026 * sgn, fw * 0.012 * -sgn, 0.0])
+        scene.play(frame.animate(path_arc=0.5 * sgn).move_to(a + off)
+                   .set(width=fw * (0.975 - 0.025 * (i % 2))),
+                   run_time=L, rate_func=rate_functions.ease_in_out_sine)
 
 
 def _dw_push(scene, ctx, rt):
-    scene.play(ctx["frame"].animate.set(width=ctx["fw"] * 0.90),
-               run_time=rt, rate_func=rate_functions.ease_in_out_sine)
+    frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
+    legs = _leg_times(rt)
+    scene.play(frame.animate.set(width=fw * 0.90),
+               run_time=legs[0], rate_func=rate_functions.ease_in_out_sine)
+    for i, L in enumerate(legs[1:]):
+        off = np.array([fw * 0.014 * (1 if i % 2 else -1),
+                        fw * 0.007 * (-1 if i % 2 else 1), 0.0])
+        scene.play(frame.animate.move_to(a + off)
+                   .set(width=fw * (0.935 if i % 2 == 0 else 0.90)),
+                   run_time=L, rate_func=rate_functions.ease_in_out_sine)
+
+
+_DRIFT_PATH = [(0.022, -0.012), (-0.016, -0.020), (0.026, 0.009),
+               (-0.020, 0.016)]
 
 
 def _dw_drift(scene, ctx, rt):
-    a, fw = ctx["anchor"], ctx["fw"]
-    scene.play(ctx["frame"].animate
-               .move_to(a + np.array([fw * 0.018, -fw * 0.012, 0.0]))
-               .set(width=fw * 0.95),
-               run_time=rt, rate_func=rate_functions.ease_in_out_sine)
+    frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
+    for i, L in enumerate(_leg_times(rt)):
+        dx, dy = _DRIFT_PATH[i % len(_DRIFT_PATH)]
+        scene.play(frame.animate
+                   .move_to(a + np.array([fw * dx, fw * dy, 0.0]))
+                   .set(width=fw * (0.965 - 0.015 * (i % 2))),
+                   run_time=L, rate_func=rate_functions.ease_in_out_sine)
 
 
 def _dw_sweep(scene, ctx, rt):
-    a, fw = ctx["anchor"], ctx["fw"]
-    scene.play(ctx["frame"].animate
-               .move_to(a + np.array([fw * 0.03, 0.0, 0.0])),
-               run_time=rt, rate_func=rate_functions.ease_in_out_sine)
+    frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
+    for i, L in enumerate(_leg_times(rt)):
+        sgn = 1 if i % 2 == 0 else -1
+        scene.play(frame.animate
+                   .move_to(a + np.array([fw * 0.032 * sgn,
+                                          fw * 0.006 * -sgn, 0.0])),
+                   run_time=L, rate_func=rate_functions.ease_in_out_sine)
 
 
 _DWELLS = {"orbit": _dw_orbit, "push_in": _dw_push, "drift_hold": _dw_drift,
@@ -215,10 +245,15 @@ def _s_counter_surge(scene, ctx):
                 run_time=rt, rate_func=rate_functions.ease_in_quad)
 
     def dwell(sc, c, rt):
+        t1 = min(4.0, rt * 0.45)
         sc.play(frame.animate.move_to(a).set(width=fw * 0.88),
-                run_time=rt * 0.45, rate_func=rate_functions.ease_in_out_sine)
-        sc.play(frame.animate.set(width=fw * 0.94),
-                run_time=rt * 0.55, rate_func=rate_functions.ease_in_out_sine)
+                run_time=t1, rate_func=rate_functions.ease_in_out_sine)
+        t2 = min(3.0, (rt - t1) * 0.5)
+        if t2 > 0.05:
+            sc.play(frame.animate.set(width=fw * 0.94), run_time=t2,
+                    rate_func=rate_functions.ease_in_out_sine)
+        if rt - t1 - t2 > 0.05:
+            _dw_drift(sc, c, rt - t1 - t2)   # looped — long beats stay alive
 
     _visit(scene, ctx, approach, dwell,
            reveal_target=ctx.get("reveal_target"))
@@ -235,9 +270,11 @@ def _s_cross_section(scene, ctx):
                 run_time=rt, rate_func=rate_functions.ease_in_out_sine)
 
     def dwell(sc, c, rt):
+        t1 = min(4.5, rt * 0.6)
         sc.play(frame.animate.set(width=fw),
-                run_time=rt * 0.6, rate_func=rate_functions.ease_in_out_sine)
-        _dw_drift(sc, c, rt * 0.4)
+                run_time=t1, rate_func=rate_functions.ease_in_out_sine)
+        if rt - t1 > 0.05:
+            _dw_drift(sc, c, rt - t1)
 
     _visit(scene, ctx, approach, dwell,
            reveal_target=ctx.get("reveal_target"))
@@ -253,9 +290,11 @@ def _s_scale_up(scene, ctx):
                 run_time=rt, rate_func=rate_functions.ease_out_quad)
 
     def dwell(sc, c, rt):
+        t1 = min(5.0, rt * 0.7)
         sc.play(frame.animate.set(width=fw),
-                run_time=rt * 0.7, rate_func=rate_functions.ease_in_out_sine)
-        _dw_sweep(sc, c, rt * 0.3)
+                run_time=t1, rate_func=rate_functions.ease_in_out_sine)
+        if rt - t1 > 0.05:
+            _dw_sweep(sc, c, rt - t1)
 
     _visit(scene, ctx, approach, dwell,
            reveal_target=ctx.get("reveal_target"))
