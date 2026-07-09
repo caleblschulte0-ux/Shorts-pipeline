@@ -347,20 +347,24 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
     for r in reactions:
         items.append((dur * float(r.get("at", 0.55)), "react", r))
     t_cursor = spent
+    prev_ends = {}
     for b in bundles:
+        prev_ends[len(items)] = t_cursor      # end of what came before
         t_cursor += gap
         items.append((t_cursor, "event", b))
         t_cursor += getattr(b, "run_time", 1.0)
     # The beat must END STRONGER than it starts (payoff grade): pin the
-    # last punch toward ~0.7 of the window — bounded so it never opens a
-    # >8s hole behind it and always fits before the window closes.
+    # last punch toward ~0.7 of the window — capped at 7.5s after the
+    # PREVIOUS happening's END so the pin can never open a >9s hole,
+    # and always fitting before the window closes.
     punch_ix = max((i for i, it in enumerate(items)
                     if it[1] == "event" and getattr(it[2], "punch", False)),
                    default=None)
     if punch_ix is not None:
         t_nat, _, pb = items[punch_ix]
         rt_p = getattr(pb, "run_time", 1.0)
-        items[punch_ix] = (max(t_nat, min(0.68 * dur, t_nat + 8.0,
+        cap = prev_ends.get(punch_ix, t_nat) + 7.5
+        items[punch_ix] = (max(t_nat, min(0.68 * dur, cap,
                                           dur - rt_p - 0.6)), "event", pb)
     items.sort(key=lambda x: x[0])
 
