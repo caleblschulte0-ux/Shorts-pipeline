@@ -274,7 +274,12 @@
     "story_template": "question-journey-discovery",
     "cold_open": {
      "value": 828000,
-     "unit": "km/h"
+     "unit": "km/h",
+     "levels": [
+      1,
+      2,
+      4
+     ]
     },
     "waypoints": [
      {

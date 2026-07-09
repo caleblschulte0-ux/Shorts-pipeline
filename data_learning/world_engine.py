@@ -308,7 +308,17 @@ class WorldScene(MovingCameraScene):
                 counter = always_redraw(_mk_counter)
                 self.add(counter)
                 surge = (v, float(cold["value"]))
-            cold_open_rush(self, {"frame": frame, "anchors_all": anchors,
+            # cold_open.levels picks which waypoints the rush flies
+            # through — chart exhibits sit un-raced ("0" counters, flat
+            # bars) until visited, so authors rush the TABLEAU levels.
+            lvls = cold.get("levels") if isinstance(cold, dict) else None
+            rush_anchors = ([anchors[i] for i in lvls
+                             if 0 <= i < len(anchors)] if lvls else
+                            list(anchors))
+            if not rush_anchors or rush_anchors[0] != anchors[0]:
+                rush_anchors = [anchors[0]] + rush_anchors
+            cold_open_rush(self, {"frame": frame,
+                                  "anchors_all": rush_anchors,
                                   "dur": max(2.5, title_w - 0.35),
                                   "surge": surge})
             if counter is not None:
