@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "slug": "komodo-dragon-one-bite-2026",
+  "title": "This Lizard Only Needs to Bite You Once",
+  "hashtags": [
+    "komodo",
+    "dragon",
+    "lizard",
+    "venom",
+    "deadliest",
+    "animals",
+    "nature",
+    "wildlife",
+    "viral",
+    "reptile",
+    "fyp",
+    "scary"
+  ],
+  "script": "This giant lizard doesn't need to win the fight, it just needs one bite. It's the Komodo dragon, and it can grow ten feet long. When it ambushes a water buffalo, it doesn't hold on. It bites once, then backs off and follows. Its mouth carries venom that stops blood from clotting, so the wound never closes. It will trail its prey for days, waiting, until the animal finally collapses from blood loss. Then the whole dragon clan moves in. It's less a hunter and more a patient executioner. So how does something this big stay hidden long enough to strike?",
+  "shots": [
+    {
+      "phrase": "it just needs one bite",
+      "query": "komodo dragon",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+    },
+    {
+      "phrase": "It's the Komodo dragon",
+      "query": "komodo dragon closeup",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+    },
+    {
+      "phrase": "it ambushes a water buffalo",
+      "query": "water buffalo",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "venom that stops blood from clotting",
+      "query": "komodo dragon tongue",
+      "mascot_pose": "shock",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+    },
+    {
+      "phrase": "trail its prey for days",
+      "query": "komodo dragon walking",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a patient executioner",
+      "query": "komodo dragon",
+      "mascot_pose": "idle",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+    },
+    {
+      "phrase": "stay hidden long enough to strike",
+      "query": "komodo dragon",
+      "mascot_pose": "point",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "just needs one bite",
+      "text": "ONE BITE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "ten feet long",
+      "text": "10 FEET LONG",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "venom that stops blood from clotting",
+      "text": "VENOM: NO CLOTTING",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "patient executioner",
+      "text": "PATIENT EXECUTIONER",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "dark"
+}
