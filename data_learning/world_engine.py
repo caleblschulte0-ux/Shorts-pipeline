@@ -219,22 +219,31 @@ class WorldScene(MovingCameraScene):
         # a galaxy arm never slashes through the couch-level frame. The
         # fade PRESERVES each submobject's designed opacity (an atmosphere
         # ring at 0.35 must never become an opaque disc).
+        #
+        # The gates live on the BACKDROP (always updating), not on the
+        # groups: (a) groups can then suspend/resume like every other
+        # world's — counters and idle motion only cost while their level
+        # is visited; (b) become()-style counters swap their glyphs every
+        # frame, so the gate walks the LIVE family (base opacities cached
+        # by id, unknown members default to designed-1.0) — otherwise a
+        # deep level's counter would ignore the gate and ghost through
+        # every other level at full opacity.
         if is_scale:
             for g, (anchor, fw) in zip(groups, anchors):
-                designed = [(m, m.get_fill_opacity(), m.get_stroke_opacity(),
-                             m.get_stroke_width())
-                            for m in g.family_members_with_points()]
+                base = {id(m): (m.get_fill_opacity(), m.get_stroke_opacity(),
+                                m.get_stroke_width())
+                        for m in g.family_members_with_points()}
 
-                def vis(_g, fw=fw, designed=designed):
+                def vis(_b, g=g, fw=fw, base=base):
                     ratio = frame.width / fw
                     o = 1.0 if 0.45 <= ratio <= 2.4 else max(
                         0.0, 1.0 - 0.9 * abs(math.log(max(ratio, 1e-6), 3)))
-                    for m, f0, s0, w0 in designed:
+                    for m in g.family_members_with_points():
+                        f0, s0, w0 = base.get(id(m), (1.0, 1.0, 0.0))
                         m.set_fill(opacity=f0 * o)
                         if w0 > 0:      # never conjure a stroke that wasn't
                             m.set_stroke(opacity=s0 * o)   # designed in
-                g.add_updater(vis)
-                g.resume_updating()          # visibility must always run
+                bands.add_updater(vis)
 
         # --- connective tissue for depth/system worlds: the journey line ---
         if world.get("template") in (None, "depth", "system"):
@@ -345,14 +354,15 @@ class WorldScene(MovingCameraScene):
             }
             SHOTS[name](self, ctx)
             last_shot = name
-            if not is_scale:
-                groups[i].suspend_updating()   # scale keeps visibility upds
+            groups[i].suspend_updating()   # gates live on the backdrop
 
         # Exit: final pullback reveals the whole journey; closing text pins.
         t0, t1 = windows[-1]
         if world.get("template") == "scale":
-            # Exit for a zoom world: pull out past the widest level.
-            whole_h = max(fw for _, fw in anchors) * 0.9
+            # Exit for a zoom world: pull out PAST the whole world — the
+            # gate fades every level away and the closing line is alone
+            # on the star field. The ending is empty space, on purpose.
+            whole_h = max(fw for _, fw in anchors) * 3.2
         else:
             whole_h = abs(anchors[-1][0][1] - anchors[0][0][1]) + 14
         mid = [(anchors[0][0][0] + anchors[-1][0][0]) / 2,

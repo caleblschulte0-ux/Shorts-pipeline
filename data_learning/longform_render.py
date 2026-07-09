@@ -619,7 +619,9 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
         wps.append(wp)
     spec = {
         "title": st.title,
-        "closing": (st.closing + " " + st.question).strip(),
+        # On-screen closing is the takeaway line ONLY (text diet) — the
+        # narration still speaks the engagement question over the exit.
+        "closing": st.closing,
         "theme": {"bg": _hex_grad0(theme),
                   "highlight": theme.get("highlight", "#4FD1C5"),
                   "accent": theme.get("accent", "#60A5FA")},

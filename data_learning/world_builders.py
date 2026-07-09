@@ -139,7 +139,8 @@ def _counter(v: ValueTracker, unit: str, size: int, color: str,
         new.next_to(a, direction, buff=b)
         m.become(new)
     num.add_updater(upd)
-    return num
+    upd(num)     # groups may stay suspended until visited — position and
+    return num   # format the counter NOW, not on its first update
 
 
 # ===========================================================================
@@ -278,17 +279,21 @@ def _b_rank(wp, theme, scale, anchor=None, post_scale=1.0):
     vmax = max(p["value"] for p in pts) or 1.0
     n = len(pts)
     row_h = min(1.2, 5.0 / n) * scale
-    bar_w = 6.4 * scale
+    # Champion bar + its riding counter must BOTH fit inside the dwell
+    # frame (fw≈11, half-width 5.5): bars start further left and run
+    # shorter so the biggest number never slides off-frame right.
+    bar_w = 5.6 * scale
+    x0 = -1.9 * scale
     g = VGroup()
     rows = []
     for i, p in enumerate(sorted(pts, key=lambda q: q["value"])):
         y = (n / 2 - i - 0.5) * row_h * -1
         star = p["value"] == vmax
         label = Text(p["label"], font_size=int(28 * scale), color="#ffffff")
-        label.move_to([-1.2 * scale - 0.35 * scale, y, 0], aligned_edge=RIGHT)
+        label.move_to([x0 - 0.35 * scale, y, 0], aligned_edge=RIGHT)
         bar = Rectangle(width=0.02, height=row_h * 0.5, stroke_width=0,
                         fill_color=hi if star else COOL, fill_opacity=0.95)
-        bar.move_to([-1.2 * scale, y, 0], aligned_edge=LEFT)
+        bar.move_to([x0, y, 0], aligned_edge=LEFT)
         v = ValueTracker(0.0)
         num = _counter(v, unit, int(26 * scale), "#ffffff",
                        anchor=bar, direction=RIGHT, buff=0.25 * scale,
@@ -325,10 +330,10 @@ def _b_compare(wp, theme, scale, anchor=None, post_scale=1.0):
     small, big = pts
     hi = theme.get("highlight", "#4FD1C5")
     vmax = big["value"] or 1.0
-    col_h = 4.0 * scale
+    col_h = 3.6 * scale
     g = VGroup()
     cols = []
-    for p, x, color in ((small, -1.4 * scale, COOL), (big, 1.4 * scale, hi)):
+    for p, x, color in ((small, -1.9 * scale, COOL), (big, 1.9 * scale, hi)):
         col = Rectangle(width=1.5 * scale, height=0.03, stroke_width=0,
                         fill_color=color, fill_opacity=0.95)
         col.move_to([x, -2.0 * scale, 0], aligned_edge=DOWN)
@@ -336,13 +341,16 @@ def _b_compare(wp, theme, scale, anchor=None, post_scale=1.0):
         num = _counter(v, unit, int(28 * scale), "#ffffff",
                        anchor=col, direction=UP, buff=0.3 * scale,
                        size_ref=(col, "width", 0.34))    # height animates
-        label = Text(p["label"], font_size=int(24 * scale), color=GRAY_TEXT)
+        label = Text(_diet(p["label"]), font_size=int(24 * scale),
+                     color=GRAY_TEXT)
         label.move_to([x, -2.45 * scale, 0])
         g.add(col, num, label)
         cols.append((col, v, p))
     mult = None
     if small["value"] > 0 and big["value"] / small["value"] >= 1.5:
-        mult = Text(f"{big['value'] / small['value']:,.0f}×",
+        r = big["value"] / small["value"]
+        # honest formatting: 1.6x must not read as "2x"
+        mult = Text(f"{r:.1f}×" if r < 3 else f"{r:,.0f}×",
                     font_size=int(52 * scale), weight=BOLD, color=hi)
         mult.move_to([0, 1.6 * scale, 0])
         mult.scale(1e-3)     # size reveal — opacity anims fight the gate
