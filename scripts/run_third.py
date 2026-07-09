@@ -38,6 +38,18 @@ LOG_PATH = REPO / "state" / "third_posted_log.json"
 OUTPUT_DIR = REPO / "output"
 
 
+def _clip_key(url: str) -> str:
+    """Canonical clip identity for dedupe. Twitch serves one clip as both
+    `clips.twitch.tv/SLUG` and `twitch.tv/<ch>/clip/SLUG`; both reduce to
+    SLUG here, so the same clip can never post twice regardless of the URL
+    form it was discovered under. Falls back to the trimmed URL."""
+    if not url:
+        return ""
+    path = url.split("?", 1)[0].split("#", 1)[0].rstrip("/")
+    seg = path.rsplit("/", 1)[-1]
+    return seg.lower() or path.lower()
+
+
 def _load_log() -> dict:
     if LOG_PATH.exists():
         try:
@@ -156,7 +168,13 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 platform = spec.get("platform", "twitch")
                 streamer = spec["credit"]
             else:
-                posted_urls = {v.get("source_url")
+                # Dedupe on a CANONICAL clip key (the slug), not the raw
+                # URL: Twitch serves the same clip as both
+                # clips.twitch.tv/SLUG and twitch.tv/<ch>/clip/SLUG, so
+                # string-comparing URLs can miss a repeat. _clip_key
+                # normalizes any form to the slug so the same clip is
+                # never posted twice, even across a ledger hiccup.
+                posted_keys = {_clip_key(v.get("source_url", ""))
                                for v in log["posted"].values()}
                 # sources: {"twitch": [...], "kick": [...], "rumble": [...]}
                 # (legacy "channels" list = twitch). A platform that's
@@ -179,7 +197,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # min_views gates only candidates that report views. On a
                 # thin day, relax to the hard floor instead of losing the
                 # slot — a 1.5k-view core-cluster clip still beats nothing.
-                fresh = [c for c in cands if c["url"] not in posted_urls]
+                fresh = [c for c in cands
+                         if _clip_key(c["url"]) not in posted_keys]
                 # VARIETY (operator law): cap clips PER STREAMER per day
                 # (default 2) and hard-limit 1 clip of the same EVENT per
                 # day. The event cap is the important one — it stops one
