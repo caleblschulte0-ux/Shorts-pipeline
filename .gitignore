@@ -67,3 +67,6 @@ state/subject_photos/
 
 # Proof Mode (third channel) generated fixtures — deterministic, rebuilt each run
 third_capture/fixtures/
+
+# manim render/text cache (in-process sanity builds spill this)
+media/
