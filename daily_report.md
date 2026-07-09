@@ -1,3 +1,3 @@
-# Daily Trending Shorts — 2026-07-08
+# Daily Trending Shorts — 2026-07-09
 
-Already posted 6 short(s) in the last 6 hours; skipped duplicate trigger.
+> ⚠️ **FELL BACK TO GROQ** — no brain-authored or pre-written packages for today; the day shipped on the weak fallback writer. Fix the brain step / token.
