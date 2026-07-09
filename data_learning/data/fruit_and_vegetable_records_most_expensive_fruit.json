@@ -1,0 +1,28 @@
+{
+  "key": "fruit_and_vegetable_records_most_expensive_fruit",
+  "title": "Most Expensive Fruit",
+  "unit": "dollars",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-09"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Densuke Watermelon",
+      "value": 200.0,
+      "period": "2025"
+    },
+    {
+      "label": "Yubari King Melon",
+      "value": 100.0,
+      "period": "2025"
+    }
+  ]
+}

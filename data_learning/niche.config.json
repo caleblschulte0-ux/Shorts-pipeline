@@ -9457,12 +9457,20 @@
     {
       "slug": "longest-living-organisms",
       "title": "Longest Living Organisms",
-      "hook": "What is the longest living organism on Earth?",
-      "closing": "The turritopsis dohrnii is the longest living organism, with some specimens living up to 200 years",
+      "hook": "Some animals never really die of old age \u2014 this jellyfish just resets itself back to a baby, again and again.",
+      "hook_variants": [
+        "Some animals never really die of old age \u2014 this jellyfish just resets itself back to a baby, again and again.",
+        "Meet the animal that can turn back into a baby \u2014 and do it again and again."
+      ],
+      "franchise": "Earth's Oldest Living Things",
+      "search_phrase": "longest living organism on earth",
+      "closing": "But 8,000 years old isn't even its craziest record \u2014 the armillaria ostoyae fungus might also be the single largest living organism on the planet, one organism spanning 3.7 square miles underground.",
       "hashtags": [
         "longestliving",
         "turritopsis",
-        "jellyfish"
+        "jellyfish",
+        "immortal",
+        "fungus"
       ],
       "segments": [
         {
@@ -9474,27 +9482,11 @@
           "insight_type": "rank",
           "role": "1 \u00b7 ANIMAL LONGEVITY",
           "topic": "Animal Longevity",
-          "say": "The turritopsis dohrnii can live up to 200 years, while the tortoise can live up to 150 years",
+          "say": "This jellyfish has been tracked living past 200 years by resetting itself back into a baby, while the giant tortoise tops out around 150.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "turritopsis",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "tortoise",
-                "data": {
-                  "value_from": "item:1"
-                }
-              }
-            ]
+            "mechanic": "immortal-reset-loop",
+            "concept": "the tortoise fills a tall vessel with its own photo up to its capped number, while the turritopsis sits centered inside expanding pulse rings that keep collapsing and firing again to show it resetting itself",
+            "code": "cx1, cx2 = RX0 + 260, RX1 - 260\ntop, bot = RTOP + 230, RBOT - 40\ncy1 = (top + bot) // 2\nv2 = values[1]\nfrac2 = clamp(v2 / vmax) * reveal\nw = 220\nx0, x1 = cx2 - w / 2, cx2 + w / 2\nd.rounded_rectangle([x0, top, x1, bot], radius=34, outline=rgba(TEXT, 200), width=6)\nimg2 = images.get(labels[1])\nfill_image(img2, frac2, x0 + 6, top + 6, w - 12, (bot - top) - 12, direction='up', color=ACCENT)\ntext(str(int(v2 * clamp(reveal))) + ' yrs', cx2, top - 90, size=52, color=ACCENT, center=True)\ntext(labels[1], cx2, bot + 24, size=34, center=True)\ncapa = clamp((reveal - 0.75) / 0.25)\nif capa > 0:\n    text('STOPS AT ' + str(int(v2)), cx2, top - 150, size=26, color=WARN, center=True)\ncycles = reveal * 2.4\npulses = int(cycles) + 1\nfor k in range(pulses):\n    prog = clamp(cycles - k)\n    rr = 40 + prog * 210\n    a = int(210 * max(0.0, 1.0 - prog))\n    if a > 0:\n        d.ellipse([cx1 - rr, cy1 - rr, cx1 + rr, cy1 + rr], outline=rgba(HIGHLIGHT, a), width=8)\nimg1 = subject_image('Turritopsis dohrnii jellyfish')\nif img1 is not None:\n    w1 = 220\n    h1 = int(w1 * img1.height / img1.width)\n    paste(img1, cx1 - w1 / 2, cy1 - h1 / 2, w1, h1)\nresets = int(cycles)\ntext(str(int(values[0] * clamp(reveal))) + ' yrs', cx1, top - 90, size=52, color=HIGHLIGHT, center=True)\ntext(labels[0], cx1, bot + 24, size=34, center=True)\nra = clamp((reveal - 0.4) / 0.6)\nif ra > 0:\n    text('RESETS x' + str(resets), cx1, top - 150, size=26, color=HIGHLIGHT, center=True)"
           },
           "ascending": false
         },
@@ -9507,20 +9499,11 @@
           "insight_type": "rank",
           "role": "2 \u00b7 PLANT LONGEVITY",
           "topic": "Plant Longevity",
-          "say": "The bristlecone pine is the longest living plant, with some specimens living up to 5,000 years",
+          "say": "Count the rings: the bristlecone pine has stood for 5,000 years, two and a half times older than the 2,000-year-old redwood beside it.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "tree",
-                "data": {
-                  "value_from": "total",
-                  "per_value": 100.0
-                }
-              }
-            ]
+            "mechanic": "tree-ring-race",
+            "concept": "two growth-ring clocks expand outward from each tree's own photo, the bristlecone's rings reaching more than twice as far as the redwood's",
+            "code": "cx1, cx2, cy = RX0 + 260, RX1 - 260, 620\nmaxr = 260\nfor i in range(2):\n    cx = cx1 if i == 0 else cx2\n    v = values[i]\n    col = HIGHLIGHT if i == 0 else ACCENT\n    frac = clamp(v / vmax)\n    rings = int(9 * frac * reveal) + 1\n    for k in range(rings):\n        rr = 20 + k * (maxr / 10.0)\n        a = int(200 * (1.0 - k / (rings + 2.0)))\n        d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], outline=rgba(col, a), width=5)\n    img = images.get(labels[i])\n    if img is not None:\n        w = 190\n        h = int(w * img.height / img.width)\n        paste(img, cx - w / 2, cy - h / 2, w, h)\n    text(str(int(v * clamp(reveal))) + ' yrs', cx, cy - maxr - 70, size=58, color=col, center=True)\n    text(labels[i], cx, cy + maxr + 40, size=38, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('2.5x OLDER', (RX0 + RX1) // 2, RBOT - 90, size=54, color=WARN, center=True)"
           }
         },
         {
@@ -9532,30 +9515,33 @@
           "insight_type": "trend",
           "role": "3 \u00b7 FUNGAL LONGEVITY",
           "topic": "Fungal Longevity",
-          "say": "The armillaria ostoyae fungus is the longest living fungus, with some specimens living up to 8,000 years",
+          "say": "Underground, the armillaria ostoyae fungus has been quietly spreading its network for 8,000 years, eight times older than the reishi mushroom next to it.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "orbit_group",
-                "region": "full"
-              }
-            ]
+            "mechanic": "mycelium-spread",
+            "concept": "underground mycelium branches radiate outward from each fungus's photo, farther for every extra year of age, foreshadowing this fungus's other record",
+            "code": "cx1, cx2, cy = RX0 + 260, RX1 - 260, 620\nfor i in range(2):\n    cx = cx1 if i == 0 else cx2\n    v = values[i]\n    col = HIGHLIGHT if i == 0 else ACCENT\n    frac = clamp(v / vmax)\n    branches = int(10 * frac * reveal) + 2\n    for k in range(branches):\n        ang = math.radians(k * (360.0 / branches))\n        length = (40 + 220 * frac) * reveal\n        ex = cx + length * math.cos(ang)\n        ey = cy + length * math.sin(ang) * 0.6\n        d.line([cx, cy, ex, ey], fill=rgba(col, 200), width=6)\n        d.ellipse([ex - 8, ey - 8, ex + 8, ey + 8], fill=rgba(col, 220))\n    img = images.get(labels[i])\n    if img is not None:\n        w = 170\n        h = int(w * img.height / img.width)\n        paste(img, cx - w / 2, cy - h / 2, w, h)\n    text(str(int(v * clamp(reveal))) + ' yrs', cx, cy - 300, size=54, color=col, center=True)\n    text(labels[i], cx, cy + 300, size=36, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('8x OLDER, STILL SPREADING', (RX0 + RX1) // 2, RBOT - 90, size=42, color=WARN, center=True)"
           }
         }
       ],
-      "question": "What do you think is the secret to the turritopsis dohrnii's longevity?"
+      "question": "If you could hit reset and go back to being a baby forever, would you?"
     },
     {
       "slug": "longest-living-trees",
       "title": "Longest Living Trees",
-      "hook": "Meet the trees that have been alive for over 2,000 years.",
-      "closing": "These trees have seen the rise and fall of civilizations.",
+      "hook": "This tree started growing before the Great Pyramid of Giza was even built \u2014 and it's still alive today.",
+      "hook_variants": [
+        "This tree started growing before the Great Pyramid of Giza was even built \u2014 and it's still alive today.",
+        "Some trees alive right now were already ancient when the pyramids were new."
+      ],
+      "franchise": "Earth's Oldest Living Things",
+      "search_phrase": "oldest tree in the world",
+      "closing": "And at barely an inch of growth a year, it's taken nearly 5,000 years to become one of the oldest living things on Earth \u2014 it still isn't finished.",
       "hashtags": [
         "treelife",
         "longestliving",
         "nature",
-        "sustainability"
+        "oldesttree",
+        "methuselah"
       ],
       "segments": [
         {
@@ -9565,29 +9551,13 @@
             "file": "longest_living_trees_tree_age_comparison.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 TREE AGE COMPARISO",
+          "role": "1 \u00b7 TREE AGE COMPARISON",
           "topic": "Tree Age Comparison",
-          "say": "The oldest tree is over 2,000 years older than the youngest.",
+          "say": "Methuselah has stood for 4,850 years, nearly double the 2,500-year-old Sarv-e Abarkuh growing beside it.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "tree",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "tree",
-                "data": {
-                  "value_from": "item:1"
-                }
-              }
-            ]
+            "mechanic": "age-ring-towers",
+            "concept": "two ring-marked growth towers rise to each tree's age with its own photo riding the top of the fill, Methuselah's climbing almost twice as high",
+            "code": "cx1, cx2 = RX0 + 260, RX1 - 260\ntop, bot = RTOP + 170, RBOT - 140\nw = 190\nfor i in range(2):\n    cx = cx1 if i == 0 else cx2\n    v = values[i]\n    col = HIGHLIGHT if i == 0 else ACCENT\n    frac = clamp(v / vmax) * reveal\n    fh = int((bot - top) * frac)\n    x0, x1 = cx - w / 2, cx + w / 2\n    d.rounded_rectangle([x0, top, x1, bot], radius=26, outline=rgba(TEXT, 180), width=5)\n    d.rounded_rectangle([x0 + 6, bot - fh, x1 - 6, bot - 6], radius=20, fill=rgba(col, 220))\n    rings = int(8 * frac) + 1\n    for k in range(rings):\n        ry = bot - 10 - k * (fh / (rings + 1))\n        d.line([x0 + 10, ry, x1 - 10, ry], fill=rgba(TEXT, 90), width=3)\n    img = subject_image('Methuselah ancient bristlecone pine tree trunk') if i == 0 else images.get(labels[i])\n    if img is not None:\n        iw = 190\n        ih = int(iw * img.height / img.width)\n        paste(img, cx - iw / 2, bot - fh - ih - 10, iw, ih)\n    text(str(int(v * clamp(reveal))), cx, top - 90, size=54, color=col, center=True)\n    text(labels[i], cx, bot + 20, size=34, center=True)\nmid = clamp((reveal - 0.65) / 0.35)\nif mid > 0:\n    text('OLDER THAN THE PYRAMIDS', (RX0 + RX1) // 2, RBOT - 40, size=38, color=WARN, center=True)"
           },
           "ascending": false
         },
@@ -9600,20 +9570,11 @@
           "insight_type": "trend",
           "role": "2 \u00b7 TREE GROWTH RATE",
           "topic": "Tree Growth Rate",
-          "say": "These trees grow at a rate of 1 inch per 10 years.",
+          "say": "Yet it grows barely an inch a year: just 1 inch by year one, only 10 inches by year ten.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "tree ring",
-                "data": {
-                  "value_from": "star",
-                  "per_value": 1.0
-                }
-              }
-            ]
+            "mechanic": "growing-sapling",
+            "concept": "a small ghost sapling anchors Year 1 while the same tree rides a ground axis toward Year 10, growing taller and thicker in real time as its height ticks up an inch at a time",
+            "code": "x0, x1 = RX0 + 110, RX1 - 220\ngy = 1080\nd.rounded_rectangle([x0 - 30, gy, x1 + 60, gy + 50], radius=18, fill=rgba(ACCENT, 45))\nd.line([x0, gy, x1, gy], fill=rgba(TEXT, 160), width=6)\nfor i in range(2):\n    tx = x0 if i == 0 else x1\n    d.line([tx, gy - 14, tx, gy + 14], fill=rgba(TEXT, 200), width=5)\n    text(labels[i], tx, gy + 28, size=32, center=True)\nghost = subject_image('young sapling tree')\nif ghost is not None:\n    gw = 66\n    gh = int(gw * ghost.height / ghost.width)\n    paste(ghost, x0 - gw / 2, gy - gh, gw, gh)\nprog = clamp(reveal)\ngx = x0 + (x1 - x0) * prog\ngv = values[0] + (values[1] - values[0]) * prog\nh = int(90 + (gy - 320) * (gv / vmax))\nw = int(h * 0.32)\nif ghost is not None:\n    paste(ghost, gx - w / 2, gy - h, w, h)\nd.line([gx, gy, gx, gy - h], fill=rgba(ACCENT, 120), width=4)\ntext(str(round(gv, 1)) + ' in', gx, gy - h - 60, size=48, color=HIGHLIGHT, center=True)"
           }
         },
         {
@@ -9625,19 +9586,104 @@
           "insight_type": "rank",
           "role": "3 \u00b7 TREE LOCATIONS",
           "topic": "Tree Locations",
-          "say": "The oldest trees can be found in the White Mountains of California.",
+          "say": "Of the world's oldest trees, ten stand in California's White Mountains, twice as many as the five found in Utah.",
+          "scene": {
+            "mechanic": "grove-roll-call",
+            "concept": "ancient tree icons roll-call into two clustered groves, one per location, until each cluster reaches its state's count",
+            "code": "cx1, cx2 = RX0 + 260, RX1 - 260\ntop = RTOP + 170\ncols = 3\nisz = 160\ncounts = [int(values[0]), int(values[1])]\nrows_list = [(v - 1) // cols + 1 for v in counts]\nfor i in range(2):\n    cx = cx1 if i == 0 else cx2\n    v = counts[i]\n    col = HIGHLIGHT if i == 0 else ACCENT\n    shown = int(clamp(reveal) * v + 0.999)\n    img = subject_image('ancient bristlecone pine tree small icon')\n    for k in range(v):\n        row = k // cols\n        colpos = k % cols\n        ix = cx - (cols * isz) / 2 + colpos * isz + isz / 2\n        iy = top + row * isz\n        if k < shown:\n            if img is not None:\n                paste(img, ix - isz * 0.42, iy - isz * 0.42, isz * 0.85, isz * 0.85)\n            else:\n                d.ellipse([ix - 30, iy - 30, ix + 30, iy + 30], fill=rgba(col, 220))\n    text(str(shown), cx, top - 90, size=64, color=col, center=True)\n    text(labels[i], cx, top + rows_list[i] * isz + 40, size=36, center=True)\nbottom_of_content = top + max(rows_list) * isz\nmid = clamp((reveal - 0.75) / 0.25)\nif mid > 0:\n    text('TWICE AS MANY IN CALIFORNIA', (RX0 + RX1) // 2, bottom_of_content + 110, size=40, color=WARN, center=True)"
+          }
+        }
+      ],
+      "question": "If this tree could talk, which 5,000 years of history would you want it to tell you first?"
+    },
+    {
+      "slug": "fruit-and-vegetable-records",
+      "title": "Fruit and Vegetable Records",
+      "hook": "What's the largest fruit ever recorded?",
+      "closing": "Fruits and vegetables come in all shapes and sizes, and some are truly record-breaking",
+      "hashtags": [
+        "fruit",
+        "vegetable",
+        "recordbreaking",
+        "food"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "fruit_and_vegetable_records_largest_fruit",
+          "params": {
+            "file": "fruit_and_vegetable_records_largest_fruit.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST FRUIT",
+          "topic": "Largest Fruit",
+          "say": "The largest fruit ever recorded was a pumpkin that weighed over 2,600 pounds",
           "scene": {
             "title": true,
             "elements": [
               {
-                "type": "orbit_group",
-                "region": "full"
+                "type": "object",
+                "region": "center",
+                "subject": "pumpkin",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "fruit_and_vegetable_records_longest_vegetable",
+          "params": {
+            "file": "fruit_and_vegetable_records_longest_vegetable.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 LONGEST VEGETABLE",
+          "topic": "Longest Vegetable",
+          "say": "The longest vegetable ever recorded was a carrot that measured over 19 feet long",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "carrot",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "fruit_and_vegetable_records_most_expensive_fruit",
+          "params": {
+            "file": "fruit_and_vegetable_records_most_expensive_fruit.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 MOST EXPENSIVE FRU",
+          "topic": "Most Expensive Fruit",
+          "say": "The most expensive fruit in the world is the Densuke watermelon, which can cost up to $200 per pound",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "pineapple",
+                "data": {
+                  "value_from": "star"
+                }
               }
             ]
           }
         }
       ],
-      "question": "What do you think is the secret to their longevity?"
+      "question": "What's the biggest fruit or vegetable you've ever eaten?"
     }
   ],
   "videos": [
