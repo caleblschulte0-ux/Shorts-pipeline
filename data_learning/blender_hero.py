@@ -609,6 +609,9 @@ def main():
     TEMPLATES.get(spec.get("template", "monoliths"), build)(spec)
     sc = bpy.context.scene
     sc.render.filepath = outdir.rstrip("/") + "/hero_"
+    if "probe" in argv:
+        # look-check: first / mid / last frames only
+        sc.frame_step = max(1, (sc.frame_end - 1) // 2)
     bpy.ops.render.render(animation=True)
     print("HERO_DONE", sc.frame_end)
 
