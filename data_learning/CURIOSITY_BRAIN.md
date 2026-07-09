@@ -184,7 +184,28 @@ view); build reusable scene templates before reaching for it.
   Checked in eye-QA on every video; below the bar → rebuild the visuals,
   not the words.
 
-## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-09, v5)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-10, v6)
+
+**FACT PROPAGATION (v6, verbatim):** *"Every major fact must create a
+chain reaction. A fact is not complete until it changes the world, the
+camera, the atmosphere, and the viewer's expectations."* Facts don't
+just change the world (v5) — they PROPAGATE through the engine: every
+payoff automatically fires an echo (stars jolt, dust surges, the camera
+recoils) with zero authoring. Think in simulations, not scenes.
+
+**THE QUESTIONS ENGINE (v6):** the engine thinks in QUESTIONS, not
+scenes. Every beat ANSWERS one question while PLANTING the next
+("Wait — the ground is moving?" → "Faster than a bullet?" → "Then what
+ISN'T moving?"). Segments carry `"question"`; the beat's chrome shows
+the question it answers. A beat that answers nothing and raises nothing
+is a slide, not a discovery.
+
+**PREMIUM BUDGET LAW (v6):** *"Use Blender only when 2D cannot produce
+the same emotional effect."* Hero seconds are spent UNEVENLY — hook,
+two reveals, the main payoff, and the ending get the budget; expensive
+fly-arounds of things 2D already shows are cut. Premium rendering is
+justified by: entering/exiting something, impossible scale transitions,
+travelling through layers.
 
 > **"The viewer should feel like they are riding the camera, not
 > watching a presentation."** — operator, verbatim, round-3 review.

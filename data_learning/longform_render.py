@@ -628,7 +628,13 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
                   "highlight": theme.get("highlight", "#4FD1C5"),
                   "accent": theme.get("accent", "#60A5FA")},
         "windows": [[round(a, 3), round(b, 3)] for a, b in windows],
-        "chrome": [{"role": s.role, "topic": s.topic} for s in st.segments],
+        # Questions engine (§7.5 v6): a beat's chrome shows the QUESTION
+        # it answers (while its payoff plants the next one) — the story
+        # is a chain of questions, not a sequence of scenes.
+        "chrome": [{"role": s.role,
+                    "topic": (seg_cfgs[j].get("question", s.topic)
+                              if j < len(seg_cfgs) else s.topic)}
+                   for j, s in enumerate(st.segments)],
         "world": {"template": world.get("template", "depth"),
                   "story_template": world.get("story_template", ""),
                   "cold_open": world.get("cold_open"),

@@ -172,7 +172,8 @@
      "broll": [
       "fighter jet flying",
       "sprinter running"
-     ]
+     ],
+     "question": "How fast are you moving right now?"
     },
     {
      "source": "offline",
@@ -187,7 +188,8 @@
      "broll": [
       "airplane contrail sky",
       "passenger jet flying"
-     ]
+     ],
+     "question": "What's the fastest thing you ever see?"
     },
     {
      "source": "offline",
@@ -202,7 +204,8 @@
      "broll": [
       "earth from space rotating",
       "clouds time lapse"
-     ]
+     ],
+     "question": "Wait — the ground is moving?"
     },
     {
      "source": "offline",
@@ -217,7 +220,8 @@
      "broll": [
       "sun in space",
       "night sky time lapse"
-     ]
+     ],
+     "question": "Faster than a bullet?"
     },
     {
      "source": "offline",
@@ -234,7 +238,8 @@
       "milky way time lapse",
       "galaxy stars"
      ],
-     "scene": "zoomout"
+     "scene": "zoomout",
+     "question": "Is the Sun moving too?"
     },
     {
      "source": "offline",
@@ -251,7 +256,8 @@
      "broll": [
       "rocket launch",
       "solar flare sun"
-     ]
+     ],
+     "question": "Faster than anything we built?"
     },
     {
      "source": "offline",
@@ -266,7 +272,8 @@
      "broll": [
       "nebula space",
       "starry night sky"
-     ]
+     ],
+     "question": "Then what isn't moving?"
     }
    ],
    "world": {

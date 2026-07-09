@@ -204,6 +204,30 @@ def _fire_reaction(scene, ctx, spec) -> float:
     return rt
 
 
+def _echo(scene, ctx) -> float:
+    """FACT PROPAGATION (§7.5 v6): 'Every major fact must create a chain
+    reaction.' The instant a payoff lands, the whole engine answers —
+    stars jolt, dust surges (its updater reads intensity live), the
+    camera recoils a breath — automatically, with no authoring. One
+    fact; the world reacts."""
+    frame = ctx["frame"]
+    bg = ctx.get("backdrop")
+    rt = 0.7
+    jolt = [frame.animate.set(width=frame.width * 1.02)]
+    if bg is not None and len(bg):
+        jolt.append(bg.animate.stretch(1.16, 0))
+    scene.play(*jolt, run_time=rt * 0.4,
+               rate_func=rate_functions.ease_out_quad)
+    relax = [frame.animate.set(width=frame.width / 1.012)]
+    if bg is not None and len(bg):
+        relax.append(bg.animate.stretch(1 / 1.16, 0))
+    scene.play(*relax, run_time=rt * 0.6,
+               rate_func=rate_functions.ease_in_out_sine)
+    log_event(scene, "reaction", beat=ctx.get("idx"), fx="echo",
+              cause="payoff", rt=rt)
+    return rt
+
+
 # ---------------------------------------------------------------------------
 # DISCOVERIES — found, not navigated. An unexpected object crosses the
 # frame during the approach; it is never narrated before it is seen.
@@ -323,8 +347,10 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
 
     def _fit_gap():
         n = len(bundles) + len(reactions)
+        n_punch = sum(1 for b in bundles if getattr(b, "punch", False))
         need = (sum(getattr(b, "run_time", 1.0) for b in bundles)
-                + 1.6 * len(reactions) + 0.6 + 0.5 * n)   # incl. min gaps
+                + 1.6 * len(reactions) + 0.7 * n_punch   # payoff echoes
+                + 0.6 + 0.5 * n)                         # incl. min gaps
         avail = (dur - spent) - need
         return avail, max(0.5, min(EVENT_GAP,
                                    0.5 + avail / max(1, n)))
@@ -387,9 +413,11 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
         elif kind == "event":
             rt = _play_bundle(scene, ctx, payload)
             spent += rt
-            log_event(scene,
-                      "payoff" if getattr(payload, "punch", False)
-                      else "event", beat=idx, rt=round(rt, 2))
+            is_punch = getattr(payload, "punch", False)
+            log_event(scene, "payoff" if is_punch else "event",
+                      beat=idx, rt=round(rt, 2))
+            if is_punch and dur - spent > 1.0:
+                spent += _echo(scene, ctx)   # the chain reaction
         else:
             spent += _fire_reaction(scene, ctx, payload)
 
