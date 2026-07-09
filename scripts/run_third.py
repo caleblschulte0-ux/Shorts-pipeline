@@ -180,14 +180,19 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # thin day, relax to the hard floor instead of losing the
                 # slot — a 1.5k-view core-cluster clip still beats nothing.
                 fresh = [c for c in cands if c["url"] not in posted_urls]
-                # VARIETY (operator law): max 1 clip per streamer per day,
-                # and max 1 clip of the same EVENT per day — when one hot
-                # event (Streamer University) floods every crew channel,
-                # we take the best moment once, not a wall of it.
+                # VARIETY (operator law): cap clips PER STREAMER per day
+                # (default 2) and hard-limit 1 clip of the same EVENT per
+                # day. The event cap is the important one — it stops one
+                # hot moment (Streamer University) flooding every channel;
+                # the streamer cap just trims monotony, so 2 is fine and
+                # lets us actually fill the daily slate.
+                per_streamer = spec.get("max_per_streamer", 2)
                 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
                 posted_today = [v for v in log["posted"].values()
                                 if str(v.get("ts", "")).startswith(today)]
-                used_streamers = {v.get("streamer") for v in posted_today}
+                from collections import Counter
+                streamer_counts = Counter(v.get("streamer")
+                                          for v in posted_today)
                 used_titles = [str(v.get("title", "")).lower()
                                for v in posted_today]
 
@@ -198,7 +203,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                                >= 2 for u in used_titles)
 
                 varied = [c for c in fresh
-                          if c["channel"] not in used_streamers
+                          if streamer_counts[c["channel"]] < per_streamer
                           and not _same_event(c["title"])]
                 if varied:
                     fresh = varied

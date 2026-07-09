@@ -53,7 +53,8 @@
     ],
     "range": "24hr",
     "top": 8,
-    "min_views": 2500
+    "min_views": 1500,
+    "max_per_streamer": 2
   },
   "hashtags": [
     "streamerclips",
