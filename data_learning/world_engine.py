@@ -348,7 +348,13 @@ class WorldScene(MovingCameraScene):
         last_shot = None
         for i, wp in enumerate(wps):
             t0, t1 = windows[i + 1]
-            dur = t1 - t0
+            # Drift compensation: manim rounds every play to frame
+            # boundaries, so bookkept time slips ~0.02s per play behind
+            # the real clock. Each beat re-syncs by consuming up to its
+            # window END as measured by the renderer — otherwise beat 7
+            # of a 130-play video starts seconds late vs narration.
+            now = float(getattr(self.renderer, "time", t0))
+            dur = max(3.0, t1 - max(t0, now))
             anchor, fw = anchors[i]
             name = wp.get("shot")
             if not name or name not in SHOTS:
@@ -392,7 +398,8 @@ class WorldScene(MovingCameraScene):
                       + np.array([0, frame.height * close_y, 0]))
         cpin.add_updater(pin_close)
         self.add(cpin)
-        exit_rt = t1 - t0
+        now = float(getattr(self.renderer, "time", t0))
+        exit_rt = max(2.0, t1 - max(t0, now))
         log_event(self, "exit", rt=round(exit_rt, 2))
         if world.get("template") == "scale":
             # Rewind-then-ride-out: fast ease back to level 0, then ONE

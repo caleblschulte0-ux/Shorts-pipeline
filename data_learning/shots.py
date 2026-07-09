@@ -379,15 +379,15 @@ def _dw_orbit(scene, ctx, rt):
 
 
 def _dw_push(scene, ctx, rt):
+    # Every leg pairs its width target with an ALTERNATING positional
+    # offset — a pure width-set leg is a frozen frame whenever the
+    # camera already sits at that width (e.g. right after a punch pop).
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
-    legs = _leg_times(rt)
-    scene.play(frame.animate.set(width=fw * 0.90),
-               run_time=legs[0], rate_func=rate_functions.ease_in_out_sine)
-    for i, L in enumerate(legs[1:]):
-        off = np.array([fw * 0.014 * (1 if i % 2 else -1),
+    for i, L in enumerate(_leg_times(rt)):
+        off = np.array([fw * 0.013 * (1 if i % 2 else -1),
                         fw * 0.007 * (-1 if i % 2 else 1), 0.0])
         scene.play(frame.animate.move_to(a + off)
-                   .set(width=fw * (0.935 if i % 2 == 0 else 0.90)),
+                   .set(width=fw * (0.90 if i % 2 == 0 else 0.935)),
                    run_time=L, rate_func=rate_functions.ease_in_out_sine)
 
 
@@ -450,12 +450,16 @@ def _s_counter_surge(scene, ctx):
 
     def dwell(sc, c, rt):
         t1 = min(4.0, rt * 0.45)
-        sc.play(frame.animate.move_to(a).set(width=fw * 0.88),
-                run_time=t1, rate_func=rate_functions.ease_in_out_sine)
+        sc.play(frame.animate.move_to(
+            a + np.array([fw * 0.008, -fw * 0.005, 0.0]))
+            .set(width=fw * 0.88),
+            run_time=t1, rate_func=rate_functions.ease_in_out_sine)
         t2 = min(3.0, (rt - t1) * 0.5)
         if t2 > 0.05:
-            sc.play(frame.animate.set(width=fw * 0.94), run_time=t2,
-                    rate_func=rate_functions.ease_in_out_sine)
+            sc.play(frame.animate.move_to(
+                a - np.array([fw * 0.008, -fw * 0.005, 0.0]))
+                .set(width=fw * 0.94), run_time=t2,
+                rate_func=rate_functions.ease_in_out_sine)
         if rt - t1 - t2 > 0.05:
             _dw_drift(sc, c, rt - t1 - t2)   # looped — long beats stay alive
 
@@ -551,3 +555,6 @@ def cold_open_rush(scene, ctx):
                rate_func=rate_functions.ease_in_out_cubic)
     scene.play(frame.animate.set(width=fw0 * 1.35), run_time=settle,
                rate_func=rate_functions.ease_in_out_sine)
+    # end marker: the rush is surprise-class for its WHOLE span — the
+    # cadence gate should measure from where the ride ended
+    log_event(scene, "cold_open", rt=0.0)

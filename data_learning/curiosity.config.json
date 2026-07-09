@@ -300,6 +300,10 @@
        "tableau": "sky",
        "label": "a cruising jet",
        "display": "900 km/h"
+      },
+      "discovery": {
+       "asset": "jet",
+       "cross": "rl"
       }
      },
      {
