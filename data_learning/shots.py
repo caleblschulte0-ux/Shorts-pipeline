@@ -244,18 +244,43 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
             spent += _play_bundle(scene, ctx, b)
             log_event(scene, "reveal", beat=idx, rt=round(rt, 2))
 
-    # … and EVERYTHING else is scheduled across the window: events at
-    # EVENT_GAP spacing, reactions at their authored fractions, chrome
-    # exit at its diet time. Dwell legs are the filler between items.
+    # … and EVERYTHING else is scheduled across the window: events with
+    # ADAPTIVE spacing (breathe at EVENT_GAP when time is generous,
+    # compress when the window is tight — the payoff MUST land),
+    # reactions at their authored fractions, chrome exit at its diet
+    # time. Dwell legs are the filler between items.
+    reactions = _reactions_for(ctx)
+
+    def _fit_gap():
+        n = len(bundles) + len(reactions)
+        need = (sum(getattr(b, "run_time", 1.0) for b in bundles)
+                + 1.6 * len(reactions) + 0.6 + 0.5 * n)   # incl. min gaps
+        avail = (dur - spent) - need
+        return avail, max(0.5, min(EVENT_GAP,
+                                   0.5 + avail / max(1, n)))
+
+    avail, gap = _fit_gap()
+    while avail < 0 and any(not getattr(b, "punch", False)
+                            for b in bundles):
+        # window physically too small — drop trailing non-payoffs first,
+        # NEVER the punch (every beat must land its payoff)
+        for k in range(len(bundles) - 1, -1, -1):
+            if not getattr(bundles[k], "punch", False):
+                log_event(scene, "skipped", beat=idx, what="event")
+                del bundles[k]
+                break
+        avail, gap = _fit_gap()
+
     items = []
     if chrome is not None:
         items.append((spent + CHROME_SECONDS, "chrome_out", None))
-    for r in _reactions_for(ctx):
+    for r in reactions:
         items.append((dur * float(r.get("at", 0.55)), "react", r))
-    t_next = spent + EVENT_GAP
+    t_cursor = spent
     for b in bundles:
-        items.append((t_next, "event", b))
-        t_next += EVENT_GAP
+        t_cursor += gap
+        items.append((t_cursor, "event", b))
+        t_cursor += getattr(b, "run_time", 1.0)
     items.sort(key=lambda x: x[0])
 
     for target, kind, payload in items:

@@ -24,9 +24,9 @@ import math
 from pathlib import Path
 
 import numpy as np
-from manim import (BOLD, DOWN, LEFT, RIGHT, UP, Circle, Create, DashedLine,
-                   Dot, FadeIn, Line, Polygon, Rectangle, Text, Transform,
-                   ValueTracker, VGroup, rate_functions)
+from manim import (BOLD, DOWN, LEFT, RIGHT, UP, Arc, Circle, Create,
+                   DashedLine, Dot, FadeIn, Line, Polygon, Rectangle, Rotate,
+                   Text, Transform, ValueTracker, VGroup, rate_functions)
 
 PKG_DIR = Path(__file__).resolve().parent
 DATA_DIR = PKG_DIR / "data"
@@ -69,7 +69,13 @@ def _build_marker(wp: dict, theme: dict, scale: float, anchor=None,
                                                        buff=0.3 * scale)
     g = VGroup(dot, halo, label)
     _settle(g, anchor, post_scale)
-    return g, [FadeIn(label, shift=UP * 0.2 * scale * post_scale)]
+    return g, [
+        _Par([FadeIn(label, shift=UP * 0.2 * scale * post_scale)],
+             run_time=0.8),
+        _Par([halo.animate.scale(1.35)], run_time=0.9),
+        _Par([dot.animate.scale(1.3), halo.animate.scale(1.15)],
+             run_time=0.7, punch=True),
+    ]
 
 
 def _fmt(v: float) -> str:
@@ -383,17 +389,25 @@ def _b_rank(wp, theme, scale, anchor=None, post_scale=1.0):
             [bar.animate(rate_func=rate_functions.ease_out_cubic)
              .stretch_to_fit_width(target_w, about_edge=LEFT),
              v.animate.set_value(p["value"])],
-            run_time=1.5 if star else 1.0))
+            run_time=1.5 if star else 1.0,
+            punch=star))            # the champion landing IS the payoff
     return g, anims
 
 
 class _Par:
     """Tiny AnimationGroup stand-in the engine can `self.play(*a.anims)`.
-    Exposes .anims + .run_time; world_engine unpacks it."""
+    Exposes .anims + .run_time; the shot scheduler unpacks it.
 
-    def __init__(self, anims, run_time=1.0):
+    Escalation contract (§7.5 v4): a builder returns a TIMELINE of these —
+    the first is the subject's arrival (plays as the reveal), the rest are
+    scheduled across the beat's whole window. punch=True marks a PAYOFF:
+    it lands with a camera pop and the ledger logs it as such (the gate
+    requires >=1 payoff per beat)."""
+
+    def __init__(self, anims, run_time=1.0, punch=False):
         self.anims = anims
         self.run_time = run_time
+        self.punch = punch
 
 
 @builder("compare")
@@ -442,7 +456,9 @@ def _b_compare(wp, theme, scale, anchor=None, post_scale=1.0):
     if mult is not None:
         anims.append(_Par(
             [mult.animate(rate_func=rate_functions.ease_out_back)
-             .scale(1e3)], run_time=0.5))
+             .scale(1e3)], run_time=0.5, punch=True))
+    else:
+        anims[-1].punch = True      # the tall column landing is the payoff
     return g, anims
 
 
@@ -486,11 +502,19 @@ def _b_gauge(wp, theme, scale, anchor=None, post_scale=1.0):
     g.add(num)
     _settle(g, anchor, post_scale)   # BEFORE anims: targets snapshot coords
     target_h = tube_h * (actual["value"] / vmax) * post_scale
+    expected_h = max(0.05, tube_h * (expected["value"] / vmax) * post_scale)
     anims = [
+        # 1) climb to the expected marker — tension
         _Par([fill.animate(rate_func=rate_functions.ease_in_out_sine)
+              .stretch_to_fit_height(expected_h, about_edge=DOWN),
+              v.animate.set_value(expected["value"])], run_time=1.6),
+        # 2) BLOW PAST it — the payoff
+        _Par([fill.animate(rate_func=rate_functions.ease_in_quad)
               .stretch_to_fit_height(target_h, about_edge=DOWN),
               v.animate.set_value(actual["value"]),
-              glow.animate.set_opacity(0.16)], run_time=3.2),
+              glow.animate.set_opacity(0.16)], run_time=1.9, punch=True),
+        # 3) the surround keeps heating — consequence lingers
+        _Par([glow.animate.set_opacity(0.26)], run_time=1.2),
     ]
     return g, anims
 
@@ -535,7 +559,7 @@ def _b_flipcompare(wp, theme, scale, anchor=None, post_scale=1.0):
     flipped.move_to(np.array(shaft.get_start()), aligned_edge=UP)
     anims = [
         _Par([Create(shaft), FadeIn(dlabel)], run_time=1.4),
-        _Par([Transform(mtn, flipped)], run_time=1.8),
+        _Par([Transform(mtn, flipped)], run_time=1.8, punch=True),
         _Par([rem.animate.set_opacity(1.0)], run_time=0.8),
     ]
     return g, anims
@@ -580,14 +604,15 @@ def _b_drilljourney(wp, theme, scale, anchor=None, post_scale=1.0):
     top = np.array(string.get_start())
     anims = []
     prev = 0.0
-    for stamp, p in stamps:
+    for k, (stamp, p) in enumerate(stamps):
         y_world = stamp[0].get_center()[1]
         seg_rt = max(0.8, 2.2 * (p["value"] - prev) / vmax)
         anims.append(_Par(
             [string.animate(rate_func=rate_functions.ease_in_out_sine)
              .put_start_and_end_on(top, np.array([top[0], y_world, 0.0])),
              v.animate.set_value(p["value"]),
-             stamp.animate.set_opacity(1.0)], run_time=seg_rt))
+             stamp.animate.set_opacity(1.0)], run_time=seg_rt,
+            punch=(k == len(stamps) - 1)))   # deepest stamp = payoff
         prev = p["value"]
     return g, anims
 
@@ -600,68 +625,166 @@ def _b_comparison_race(wp, theme, scale, anchor=None, post_scale=1.0):
     riding them; the gap on screen IS the ratio in the data. Motion is
     the message, so the slower racer being left behind needs no caption.
 
-    params.points: two {label, value, asset?} entries (asset defaults to
-    jet for the faster, bullet for the slower)."""
+    params.points: 2–4 {label, value, asset?} entries. Racers launch
+    STAGGERED, slowest first — each new racer blows past the previous
+    one (escalation is the choreography, not an afterthought). The
+    fastest's landing (or the ratio stamp) is the payoff punch.
+    params.ticker {rate, unit}: an odometer event accumulates real
+    distance at `rate`/second — 'you travelled THIS while watching'."""
     pts, unit = _points(wp)
-    pts = sorted(pts[:2], key=lambda q: q["value"], reverse=True)
+    pts = sorted(pts[:4], key=lambda q: q["value"], reverse=True)
     if len(pts) < 2:
         pts = pts * 2
-    fast, slow = pts
+    fast, slow = pts[0], pts[-1]
     hi = theme.get("highlight", "#4FD1C5")
-    track_w = 7.4 * scale
+    n = len(pts)
+    span = min(3.8, 1.35 * (n - 1)) * scale
+    # nudged down so the top lane's name clears the frame-pinned chrome
+    ys = [span / 2 - k * (span / max(1, n - 1)) - 0.4 * scale
+          for k in range(n)]
+    x0, x1 = -2.3 * scale, 4.2 * scale        # labels own the left column
+    defaults = ["jet", "bullet", "human", "iss"]
     g = VGroup()
     lanes = []
-    # Counters and names point AWAY from the track centre so nothing
-    # collides in the gap between lanes while the racers sit at the start.
-    for p, y, out, color, default_asset in (
-            (fast, 0.95 * scale, UP, hi, "jet"),
-            (slow, -0.95 * scale, DOWN, COOL, "bullet")):
-        lane = Line([-track_w / 2, y, 0], [track_w / 2, y, 0],
+    for k, (p, y) in enumerate(zip(pts, ys)):   # fastest = top lane
+        color = hi if p is fast else COOL
+        lane = Line([x0, y, 0], [x1, y, 0],
                     color="#2a3350", stroke_width=4 * scale)
-        tick = Line([track_w / 2, y - 0.22 * scale, 0],
-                    [track_w / 2, y + 0.22 * scale, 0],
+        tick = Line([x1, y - 0.2 * scale, 0], [x1, y + 0.2 * scale, 0],
                     color="#8fa0bd", stroke_width=3 * scale)  # finish
-        name = Text(_diet(p["label"]), font_size=int(24 * scale),
+        name = Text(_diet(p["label"]), font_size=int(22 * scale),
                     color=GRAY_TEXT)
-        name.move_to([-track_w / 2, y + 0.55 * scale * out[1], 0],
-                     aligned_edge=LEFT)
-        racer = ASSETS.get(p.get("asset", default_asset),
-                           ASSETS["jet"])(scale * 0.5)
-        racer.move_to([-track_w / 2 + 0.5 * scale, y, 0])
+        name.move_to([x0 - 0.35 * scale, y, 0], aligned_edge=RIGHT)
+        racer = ASSETS.get(p.get("asset", defaults[k % len(defaults)]),
+                           ASSETS["jet"])(scale * 0.42)
+        racer.move_to([x0 + 0.45 * scale, y, 0])
         v = ValueTracker(0.0)
-        num = _counter(v, unit, int(24 * scale), color,
-                       anchor=racer, direction=out, buff=0.25 * scale,
-                       size_ref=(racer, "width", 0.24))
+        num = _counter(v, unit, int(22 * scale), color,
+                       anchor=racer, direction=UP, buff=0.16 * scale,
+                       size_ref=(racer, "width", 0.22))
         g.add(lane, tick, name, racer, num)
         lanes.append((racer, v, p, lane))
     ratio_txt = None
     if slow["value"] > 0 and fast["value"] / slow["value"] >= 1.5:
-        ratio_txt = Text(f"{fast['value'] / slow['value']:,.0f}× faster",
+        r = fast["value"] / slow["value"]
+        ratio_txt = Text(f"{r:.1f}× faster" if r < 3 else
+                         f"{r:,.0f}× faster",
                          font_size=int(44 * scale), weight=BOLD, color=hi)
-        ratio_txt.move_to([0.6 * scale, 0, 0])   # the empty gap between lanes
+        ratio_txt.move_to([0.9 * scale, -span / 2 - 1.1 * scale, 0])
         # Size-based reveal: an opacity anim would fight the scale-world
-        # zoom gate (which caches designed opacities and multiplies them
-        # every frame) — growth is gate-proof.
+        # zoom gate — growth is gate-proof.
         ratio_txt.scale(1e-3)
         g.add(ratio_txt)
+    tick_spec = wp.get("params", {}).get("ticker")
+    odo = odo_v = None
+    if tick_spec:
+        odo_v = ValueTracker(0.0)
+        odo = _counter(odo_v, str(tick_spec.get("unit", "km")),
+                       int(30 * scale), "#ffffff",
+                       anchor=lanes[0][3], direction=UP,
+                       buff=0.7 * scale,
+                       size_ref=(lanes[0][3], "width", 0.055))
+        g.add(odo)
     _settle(g, anchor, post_scale)   # BEFORE anims: targets snapshot coords
-    race = []
-    for racer, v, p, lane in lanes:
+    anims = []
+    for racer, v, p, lane in sorted(lanes, key=lambda L: L[2]["value"]):
         s_pt = np.array(lane.get_start())
         e_pt = np.array(lane.get_end())
         frac = p["value"] / (fast["value"] or 1.0)
         target = s_pt + (e_pt - s_pt) * (0.10 + 0.84 * frac)
         target[1] = racer.get_center()[1]          # hold the lane
-        race.append(racer.animate(rate_func=rate_functions.ease_in_quad)
-                    .move_to(target))
-        race.append(v.animate.set_value(p["value"]))
-    # 3.6 + 0.5 fits a ~10 s beat's arrival budget WITH the ratio payoff —
-    # the engine drops arrivals that overrun, and the payoff must land.
-    anims = [_Par(race, run_time=3.6)]
+        anims.append(_Par(
+            [racer.animate(rate_func=rate_functions.ease_in_quad)
+             .move_to(target),
+             v.animate.set_value(p["value"])],
+            run_time=2.0 if p is fast else 1.5,
+            punch=(p is fast and ratio_txt is None)))
     if ratio_txt is not None:
         anims.append(_Par(
             [ratio_txt.animate(rate_func=rate_functions.ease_out_back)
-             .scale(1e3)], run_time=0.5))
+             .scale(1e3)], run_time=0.5, punch=True))
+    if odo_v is not None:
+        rate = float(tick_spec.get("rate", 1.0))
+        anims.append(_Par(                       # honest odometer: real
+            [odo_v.animate(rate_func=rate_functions.linear)   # rate x 5 s
+             .set_value(rate * 5.0)], run_time=5.0))
+    return g, anims
+
+
+@builder("speedometer")
+def _b_speedometer(wp, theme, scale, anchor=None, post_scale=1.0):
+    """THE final-number-in-context finale: a dial whose tick marks are
+    the ENTIRE ladder of values seen so far; the needle sweeps up and
+    passes every tick — each passage is an event, a recap and an
+    escalation at once — then pins at the maximum with the payoff punch.
+    Physical metaphor: the speedometer (log-scaled so 45 and 1,330,000
+    share one dial honestly — the ticks say so)."""
+    pts, unit = _points(wp)
+    pts = sorted((p for p in pts if p["value"] > 0),
+                 key=lambda q: q["value"])[:8]
+    if not pts:
+        pts = [{"label": "value", "value": 1.0}]
+    hi = theme.get("highlight", "#4FD1C5")
+    vmin, vmax = pts[0]["value"], pts[-1]["value"]
+    lo = math.log10(max(vmin, 1e-9) / 2.0)
+    hi_log = math.log10(vmax * 1.3)
+
+    def frac(v):
+        return (math.log10(v) - lo) / max(1e-9, hi_log - lo)
+
+    a0, a1 = math.radians(215), math.radians(-35)     # sweep, left → right
+    r = 2.7 * scale
+    hub = np.array([0.0, -0.7 * scale, 0.0])
+
+    def at(ang, k):
+        return hub + np.array([math.cos(ang) * r * k,
+                               math.sin(ang) * r * k, 0.0])
+
+    g = VGroup()
+    g.add(Arc(radius=r, start_angle=a1, angle=a0 - a1, arc_center=hub,
+              color="#2a3350", stroke_width=7 * scale))
+    ticks = []
+    for k, p in enumerate(pts):
+        ang = a0 + (a1 - a0) * frac(p["value"])
+        tick = Line(at(ang, 0.93), at(ang, 1.05),
+                    color="#8fa0bd", stroke_width=4 * scale)
+        # log scale crowds the top values — alternate label radii so
+        # neighbouring ticks never stack their numbers
+        tval = Text(_fmt(p["value"]), font_size=int(17 * scale),
+                    color=GRAY_TEXT).move_to(
+                        at(ang, 1.20 if k % 2 == 0 else 1.42))
+        g.add(tick, tval)
+        ticks.append((tick, p, ang))
+    dial = g[0]
+    needle = Line(hub, at(a0, 0.82), color=hi, stroke_width=6 * scale)
+    hub_dot = Dot(hub, radius=0.09 * scale, color=hi)
+    v = ValueTracker(0.0)
+    v_ang = ValueTracker(a0)
+
+    # Tracker-driven needle (ABSOLUTE angles): the scheduler may drop
+    # intermediate tick bundles in a tight window — relative Rotate
+    # deltas would corrupt the sweep, absolute targets just jump farther.
+    def _needle_upd(m, dial=dial, hubd=hub_dot, va=v_ang):
+        c = hubd.get_center()
+        rl = dial.width / 2
+        ang = va.get_value()
+        m.put_start_and_end_on(
+            c, c + np.array([math.cos(ang), math.sin(ang), 0.0]) * rl * 0.82)
+    needle.add_updater(_needle_upd)
+    num = _counter(v, unit, int(34 * scale), "#ffffff",
+                   anchor=hub_dot, direction=DOWN, buff=0.45 * scale,
+                   size_ref=(dial, "width", 0.085))
+    g.add(needle, hub_dot, num)
+    _settle(g, anchor, post_scale)   # BEFORE anims: targets snapshot coords
+    anims = []
+    for k, (tick, p, ang) in enumerate(ticks):
+        last = k == len(ticks) - 1
+        anims.append(_Par(
+            [v_ang.animate.set_value(ang),
+             v.animate.set_value(p["value"]),
+             tick.animate.set_color(hi)],         # passed ticks stay lit
+            run_time=1.6 if last else 1.0,
+            punch=last))                          # pinning at max = payoff
     return g, anims
 
 
@@ -744,7 +867,36 @@ def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
     stamp.move_to([4.2 * scale, -2.2 * scale, 0], aligned_edge=RIGHT)
     g.add(stamp)
     _settle(g, anchor, post_scale)
-    # No arrival anims: in a ScaleWorld the zoom itself is the reveal —
-    # the engine's visibility gate fades the whole level in as the camera
-    # approaches its magnification (an opacity anim would fight the gate).
-    return g, []
+    STATE.setdefault(f"level:{kind}", g)     # the world remembers
+    # The zoom itself is the REVEAL (the gate fades the level in — an
+    # opacity anim would fight it), but the level still owes the beat an
+    # escalating timeline: gate-safe POSITIONAL events (the tableau's own
+    # physics on fast-forward) plus the stamp payoff.
+    value = stamp[1]
+    anims = []
+    if kind == "earth":
+        c = np.array(earth.get_center())
+        motions = [_Par([Rotate(earth, ang, about_point=c)], run_time=rt)
+                   for ang, rt in ((0.55, 2.2), (0.7, 2.6), (0.6, 2.4))]
+    elif kind == "sky":
+        motions = [_Par([jet.animate(
+            rate_func=rate_functions.ease_in_out_sine)
+            .shift(np.array([jet.width * dx, 0.0, 0.0]))], run_time=rt)
+            for dx, rt in ((1.3, 1.5), (1.1, 1.4), (1.4, 1.6))]
+    elif kind == "orbit":
+        c = np.array(sun.get_center())
+        motions = [_Par([Rotate(planet, ang, about_point=c)], run_time=rt)
+                   for ang, rt in ((1.3, 2.0), (1.6, 2.4), (1.2, 2.0))]
+    elif kind == "galaxy":
+        c = np.array(core.get_center())
+        motions = [_Par([Rotate(arms, ang, about_point=c)], run_time=rt)
+                   for ang, rt in ((0.4, 2.4), (0.5, 2.8), (0.45, 2.6))]
+    else:
+        motions = [_Par([Rotate(g[0], sgn * 0.05)], run_time=1.2)
+                   for sgn in (1, -1, 1)]
+    anims.append(motions[0])
+    anims.append(_Par([value.animate(
+        rate_func=rate_functions.ease_out_back).scale(1.18)],
+        run_time=0.7, punch=True))           # the number lands — payoff
+    anims.extend(motions[1:])
+    return g, anims
