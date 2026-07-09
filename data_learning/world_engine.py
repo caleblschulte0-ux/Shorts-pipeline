@@ -179,12 +179,13 @@ class WorldScene(MovingCameraScene):
             # creation time, so a post-hoc group move would teleport
             # transformed objects back toward the origin (one-take rule).
             if is_scale:
-                # Scale levels build at unit design scale, then the GROUP
-                # scales geometrically — Text glyphs are vector outlines,
-                # so this survives zooms where a 15,000pt font would not.
-                g, anims = build(wp, theme, 1.0, np.array(anchor))
-                g.scale(fw / 11.0, about_point=np.array(anchor),
-                        scale_stroke=True)
+                # Scale levels build at unit design scale, then the
+                # builder's _settle zooms the group geometrically BEFORE
+                # creating animations — anim targets snapshot coords at
+                # creation, so scaling here (after build) would warp
+                # played objects back to unit-scale positions.
+                g, anims = build(wp, theme, 1.0, np.array(anchor),
+                                 post_scale=fw / 11.0)
             else:
                 g, anims = build(wp, theme, fw / 11.0, np.array(anchor))
             # Updaters (live counters) only run while their waypoint is
@@ -362,10 +363,15 @@ class WorldScene(MovingCameraScene):
 
         close_ratio = 0.62
 
+        # Scale worlds park their level stamps bottom-right, so the
+        # closing line pins to the UPPER third there to avoid colliding
+        # with the top level's stamp during the pullback.
+        close_y = 0.30 if world.get("template") == "scale" else -0.30
+
         def pin_close(m):
             m.set_width(frame.width * close_ratio)
             m.move_to(frame.get_center()
-                      + np.array([0, -frame.height * 0.30, 0]))
+                      + np.array([0, frame.height * close_y, 0]))
         cpin.add_updater(pin_close)
         self.add(cpin)
         self.play(frame.animate.move_to(mid).set(

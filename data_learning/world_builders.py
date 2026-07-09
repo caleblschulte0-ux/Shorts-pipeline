@@ -49,7 +49,8 @@ def builder(name):
 
 
 @builder("marker")
-def _build_marker(wp: dict, theme: dict, scale: float, anchor=None):
+def _build_marker(wp: dict, theme: dict, scale: float, anchor=None,
+                  post_scale: float = 1.0):
     """Simplest waypoint: a glowing dot + label."""
     hi = theme.get("highlight", "#4FD1C5")
     p = wp.get("params", {})
@@ -60,9 +61,8 @@ def _build_marker(wp: dict, theme: dict, scale: float, anchor=None):
                  weight=BOLD, color="#ffffff").next_to(dot, DOWN,
                                                        buff=0.3 * scale)
     g = VGroup(dot, halo, label)
-    if anchor is not None:
-        g.move_to(anchor)
-    return g, [FadeIn(label, shift=UP * 0.2 * scale)]
+    _settle(g, anchor, post_scale)
+    return g, [FadeIn(label, shift=UP * 0.2 * scale * post_scale)]
 
 
 def _fmt(v: float) -> str:
@@ -71,6 +71,36 @@ def _fmt(v: float) -> str:
     if float(v).is_integer():
         return f"{v:.0f}"
     return f"{v:,.1f}"
+
+
+def _diet(s, max_words: int = 2) -> str:
+    """Text diet (mute-test doctrine): a stamp is a number + at most two
+    words — the visual carries the noun."""
+    return " ".join(str(s).split()[:max_words])
+
+
+def _settle(g, anchor, post_scale: float = 1.0):
+    """Anchor-first AND scale-first: position and zoom the group BEFORE
+    any animation is created. .animate/Transform targets snapshot coords
+    at creation time — an engine-side scale applied after the builder
+    returns would warp played objects back to unit-scale positions.
+
+    Scale worlds build at unit design scale (a 15,000pt Pango font would
+    not survive) and geometrically zoom here with scale_stroke=True so
+    hairline strokes stay visible at ×343. manim 0.20 quirk: scale_stroke
+    CONJURES a stroke on width-0 mobjects (Text stickers, rims on
+    stroke-less fills) — designed-zero widths are re-zeroed after."""
+    if anchor is not None:
+        g.move_to(anchor)
+    if post_scale and post_scale != 1.0:
+        ap = (np.array(anchor) if anchor is not None
+              else g.get_center().copy())
+        zeros = [m for m in g.family_members_with_points()
+                 if m.get_stroke_width() == 0]
+        g.scale(post_scale, about_point=ap, scale_stroke=True)
+        for m in zeros:
+            m.set_stroke(width=0)
+    return g
 
 
 def _points(wp: dict) -> tuple[list[dict], str]:
@@ -83,16 +113,30 @@ def _points(wp: dict) -> tuple[list[dict], str]:
 
 
 def _counter(v: ValueTracker, unit: str, size: int, color: str,
-             anchor, direction=UP, buff=0.3):
+             anchor, direction=UP, buff=0.3, size_ref=None):
     """A live number that stays glued to a sibling mobject (one-take
-    safe). `anchor` may be a mobject or a callable returning one."""
+    safe). `anchor` may be a mobject or a callable returning one.
+
+    size_ref=(mobject, attr, ratio): size the number each frame as
+    ratio × the sibling's stable dimension instead of a fixed font size.
+    REQUIRED in scale worlds — the group is geometrically scaled AFTER
+    build, but become() targets are created at font scale, so a fixed-size
+    counter is microscopic at deep zoom levels. Pick a dimension the
+    arrival anims don't stretch (bar HEIGHT, column WIDTH)."""
     num = Text("0", font_size=size, weight=BOLD, color=color)
 
     def upd(m):
         a = anchor() if callable(anchor) else anchor
         new = Text(f"{_fmt(v.get_value())} {unit}".strip(),
                    font_size=size, weight=BOLD, color=color)
-        new.next_to(a, direction, buff=buff)
+        b = buff
+        if size_ref is not None:
+            ref, attr, ratio = size_ref
+            ref = ref() if callable(ref) else ref
+            target = max(1e-6, getattr(ref, attr) * ratio)
+            new.scale(target / max(new.height, 1e-9))
+            b = new.height * 0.45
+        new.next_to(a, direction, buff=b)
         m.become(new)
     num.add_updater(upd)
     return num
@@ -205,11 +249,28 @@ def _jet(scale=1.0):
     return g
 
 
+@asset("bullet")
+def _bullet(scale=1.0):
+    s = scale * 0.9
+    g = VGroup()
+    g.add(Rectangle(width=0.9 * s, height=0.34 * s, stroke_width=0,
+                    fill_color="#d9b06a", fill_opacity=1.0)
+          .move_to([-0.15 * s, 0, 0]))                       # casing
+    g.add(Polygon([0.3 * s, 0.17 * s, 0], [0.78 * s, 0, 0],
+                  [0.3 * s, -0.17 * s, 0], stroke_width=0,
+                  fill_color="#b8874a", fill_opacity=1.0))   # nose
+    for k, dy in enumerate((-0.11, 0.02, 0.13)):
+        g.add(Line([(-1.15 - 0.12 * k) * s, dy * s, 0],
+                   [-0.68 * s, dy * s, 0], stroke_width=2.5 * s,
+                   color="#cdd6ea", stroke_opacity=0.5))     # speed lines
+    return g
+
+
 # ===========================================================================
 # BUILDERS — waypoint exhibits (one-take safe).
 # ===========================================================================
 @builder("rank")
-def _b_rank(wp, theme, scale, anchor=None):
+def _b_rank(wp, theme, scale, anchor=None, post_scale=1.0):
     """Bars race in smallest -> biggest; the champion lands last."""
     pts, unit = _points(wp)
     pts = pts[:5]
@@ -230,14 +291,14 @@ def _b_rank(wp, theme, scale, anchor=None):
         bar.move_to([-1.2 * scale, y, 0], aligned_edge=LEFT)
         v = ValueTracker(0.0)
         num = _counter(v, unit, int(26 * scale), "#ffffff",
-                       anchor=bar, direction=RIGHT, buff=0.25 * scale)
+                       anchor=bar, direction=RIGHT, buff=0.25 * scale,
+                       size_ref=(bar, "height", 0.72))   # width animates
         g.add(label, bar, num)
         rows.append((bar, v, p, star))
-    if anchor is not None:
-        g.move_to(anchor)          # BEFORE anims: .animate snapshots coords
+    _settle(g, anchor, post_scale)   # BEFORE anims: targets snapshot coords
     anims = []
     for bar, v, p, star in rows:
-        target_w = max(0.03, bar_w * p["value"] / vmax)
+        target_w = max(0.03, bar_w * p["value"] / vmax) * post_scale
         anims.append(_Par(
             [bar.animate(rate_func=rate_functions.ease_out_cubic)
              .stretch_to_fit_width(target_w, about_edge=LEFT),
@@ -256,7 +317,7 @@ class _Par:
 
 
 @builder("compare")
-def _b_compare(wp, theme, scale, anchor=None):
+def _b_compare(wp, theme, scale, anchor=None, post_scale=1.0):
     pts, unit = _points(wp)
     pts = sorted(pts[:2], key=lambda p: p["value"])
     if len(pts) < 2:
@@ -273,7 +334,8 @@ def _b_compare(wp, theme, scale, anchor=None):
         col.move_to([x, -2.0 * scale, 0], aligned_edge=DOWN)
         v = ValueTracker(0.0)
         num = _counter(v, unit, int(28 * scale), "#ffffff",
-                       anchor=col, direction=UP, buff=0.3 * scale)
+                       anchor=col, direction=UP, buff=0.3 * scale,
+                       size_ref=(col, "width", 0.34))    # height animates
         label = Text(p["label"], font_size=int(24 * scale), color=GRAY_TEXT)
         label.move_to([x, -2.45 * scale, 0])
         g.add(col, num, label)
@@ -283,25 +345,26 @@ def _b_compare(wp, theme, scale, anchor=None):
         mult = Text(f"{big['value'] / small['value']:,.0f}×",
                     font_size=int(52 * scale), weight=BOLD, color=hi)
         mult.move_to([0, 1.6 * scale, 0])
-        mult.set_opacity(0)
+        mult.scale(1e-3)     # size reveal — opacity anims fight the gate
         g.add(mult)
-    if anchor is not None:
-        g.move_to(anchor)          # BEFORE anims: .animate snapshots coords
+    _settle(g, anchor, post_scale)   # BEFORE anims: targets snapshot coords
     anims = []
     for col, v, p in cols:
-        h = max(0.03, col_h * p["value"] / vmax)
+        h = max(0.03, col_h * p["value"] / vmax) * post_scale
         anims.append(_Par(
             [col.animate(rate_func=rate_functions.ease_out_cubic)
              .stretch_to_fit_height(h, about_edge=DOWN),
              v.animate.set_value(p["value"])],
             run_time=1.3 if p is small else 2.2))
     if mult is not None:
-        anims.append(_Par([mult.animate.set_opacity(1.0)], run_time=0.5))
+        anims.append(_Par(
+            [mult.animate(rate_func=rate_functions.ease_out_back)
+             .scale(1e3)], run_time=0.5))
     return g, anims
 
 
 @builder("gauge")
-def _b_gauge(wp, theme, scale, anchor=None):
+def _b_gauge(wp, theme, scale, anchor=None, post_scale=1.0):
     """The metaphor for limits: THE thermometer fills past its expected
     marker into the red; the surround glows molten as it climbs."""
     pts, unit = _points(wp)
@@ -338,9 +401,8 @@ def _b_gauge(wp, theme, scale, anchor=None):
     num = _counter(v, unit, int(40 * scale), "#ff8a5a",
                    anchor=therm, direction=RIGHT, buff=0.8 * scale)
     g.add(num)
-    if anchor is not None:
-        g.move_to(anchor)          # BEFORE anims: .animate snapshots coords
-    target_h = tube_h * (actual["value"] / vmax)
+    _settle(g, anchor, post_scale)   # BEFORE anims: targets snapshot coords
+    target_h = tube_h * (actual["value"] / vmax) * post_scale
     anims = [
         _Par([fill.animate(rate_func=rate_functions.ease_in_out_sine)
               .stretch_to_fit_height(target_h, about_edge=DOWN),
@@ -351,7 +413,7 @@ def _b_gauge(wp, theme, scale, anchor=None):
 
 
 @builder("flipcompare")
-def _b_flipcompare(wp, theme, scale, anchor=None):
+def _b_flipcompare(wp, theme, scale, anchor=None, post_scale=1.0):
     """THE mountain flips upside-down into the shaft — X fits inside Y
     with room to spare. For 'Everest, inverted' class comparisons."""
     pts, unit = _points(wp)
@@ -385,8 +447,7 @@ def _b_flipcompare(wp, theme, scale, anchor=None):
     rem[1].next_to(rem[0], RIGHT, buff=0.25 * scale)
     rem.set_opacity(0)
     g.add(rem)
-    if anchor is not None:
-        g.move_to(anchor)          # BEFORE anims + Transform targets
+    _settle(g, anchor, post_scale)   # BEFORE anims + Transform targets
     flipped = mtn.copy().rotate(math.pi)
     flipped.move_to(np.array(shaft.get_start()), aligned_edge=UP)
     anims = [
@@ -398,7 +459,7 @@ def _b_flipcompare(wp, theme, scale, anchor=None):
 
 
 @builder("drilljourney")
-def _b_drilljourney(wp, theme, scale, anchor=None):
+def _b_drilljourney(wp, theme, scale, anchor=None, post_scale=1.0):
     """THE drill descends as years stamp in at their depths — progress
     over time as a physical journey, not a line chart."""
     pts, unit = _points(wp)
@@ -432,8 +493,7 @@ def _b_drilljourney(wp, theme, scale, anchor=None):
         stamp.set_opacity(0)
         g.add(stamp)
         stamps.append((stamp, p))
-    if anchor is not None:
-        g.move_to(anchor)          # BEFORE anims: live world coords below
+    _settle(g, anchor, post_scale)   # BEFORE anims: live world coords below
     top = np.array(string.get_start())
     anims = []
     prev = 0.0
@@ -449,8 +509,81 @@ def _b_drilljourney(wp, theme, scale, anchor=None):
     return g, anims
 
 
+@builder("comparison_race")
+def _b_comparison_race(wp, theme, scale, anchor=None, post_scale=1.0):
+    """THE physical metaphor for any speed compare (doctrine: every
+    explanation names a metaphor humans already understand — this one is
+    a race). Two persistent assets run the same track with live counters
+    riding them; the gap on screen IS the ratio in the data. Motion is
+    the message, so the slower racer being left behind needs no caption.
+
+    params.points: two {label, value, asset?} entries (asset defaults to
+    jet for the faster, bullet for the slower)."""
+    pts, unit = _points(wp)
+    pts = sorted(pts[:2], key=lambda q: q["value"], reverse=True)
+    if len(pts) < 2:
+        pts = pts * 2
+    fast, slow = pts
+    hi = theme.get("highlight", "#4FD1C5")
+    track_w = 7.4 * scale
+    g = VGroup()
+    lanes = []
+    # Counters and names point AWAY from the track centre so nothing
+    # collides in the gap between lanes while the racers sit at the start.
+    for p, y, out, color, default_asset in (
+            (fast, 0.95 * scale, UP, hi, "jet"),
+            (slow, -0.95 * scale, DOWN, COOL, "bullet")):
+        lane = Line([-track_w / 2, y, 0], [track_w / 2, y, 0],
+                    color="#2a3350", stroke_width=4 * scale)
+        tick = Line([track_w / 2, y - 0.22 * scale, 0],
+                    [track_w / 2, y + 0.22 * scale, 0],
+                    color="#8fa0bd", stroke_width=3 * scale)  # finish
+        name = Text(_diet(p["label"]), font_size=int(24 * scale),
+                    color=GRAY_TEXT)
+        name.move_to([-track_w / 2, y + 0.55 * scale * out[1], 0],
+                     aligned_edge=LEFT)
+        racer = ASSETS.get(p.get("asset", default_asset),
+                           ASSETS["jet"])(scale * 0.5)
+        racer.move_to([-track_w / 2 + 0.5 * scale, y, 0])
+        v = ValueTracker(0.0)
+        num = _counter(v, unit, int(24 * scale), color,
+                       anchor=racer, direction=out, buff=0.25 * scale,
+                       size_ref=(racer, "width", 0.24))
+        g.add(lane, tick, name, racer, num)
+        lanes.append((racer, v, p, lane))
+    ratio_txt = None
+    if slow["value"] > 0 and fast["value"] / slow["value"] >= 1.5:
+        ratio_txt = Text(f"{fast['value'] / slow['value']:,.0f}× faster",
+                         font_size=int(44 * scale), weight=BOLD, color=hi)
+        ratio_txt.move_to([0.6 * scale, 0, 0])   # the empty gap between lanes
+        # Size-based reveal: an opacity anim would fight the scale-world
+        # zoom gate (which caches designed opacities and multiplies them
+        # every frame) — growth is gate-proof.
+        ratio_txt.scale(1e-3)
+        g.add(ratio_txt)
+    _settle(g, anchor, post_scale)   # BEFORE anims: targets snapshot coords
+    race = []
+    for racer, v, p, lane in lanes:
+        s_pt = np.array(lane.get_start())
+        e_pt = np.array(lane.get_end())
+        frac = p["value"] / (fast["value"] or 1.0)
+        target = s_pt + (e_pt - s_pt) * (0.10 + 0.84 * frac)
+        target[1] = racer.get_center()[1]          # hold the lane
+        race.append(racer.animate(rate_func=rate_functions.ease_in_quad)
+                    .move_to(target))
+        race.append(v.animate.set_value(p["value"]))
+    # 3.6 + 0.5 fits a ~10 s beat's arrival budget WITH the ratio payoff —
+    # the engine drops arrivals that overrun, and the payoff must land.
+    anims = [_Par(race, run_time=3.6)]
+    if ratio_txt is not None:
+        anims.append(_Par(
+            [ratio_txt.animate(rate_func=rate_functions.ease_out_back)
+             .scale(1e3)], run_time=0.5))
+    return g, anims
+
+
 @builder("scalelevel")
-def _b_scalelevel(wp, theme, scale, anchor=None):
+def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
     """One level of a ScaleWorld: a tableau (earth / orbit / galaxy /
     human...) built from persistent assets at this level's scale, with the
     level's speed/size stamped on arrival."""
@@ -458,28 +591,66 @@ def _b_scalelevel(wp, theme, scale, anchor=None):
     hi = theme.get("highlight", "#4FD1C5")
     kind = p.get("tableau", "earth")
     g = VGroup()
+    # Idle motion doctrine: objects EXIST, they don't float. Every tableau
+    # gets cheap persistent motion (dt updaters, suspended off-screen by
+    # the engine). All idle motion is ANGLE-based or sized off a sibling —
+    # scale worlds geometrically rescale the group after build, so a
+    # fixed-offset shift would become invisible at deep zoom.
     if kind == "earth":
-        g.add(ASSETS["earth"](scale))
+        earth = ASSETS["earth"](scale)
+
+        def spin(m, dt):
+            c = m[0].get_center()          # [0]=disc, [-1]=atmosphere
+            for sub in m.submobjects[1:-1]:
+                sub.rotate(dt * 0.10, about_point=c)
+        earth.add_updater(spin)
+        g.add(earth)
+    elif kind == "sky":
+        for (cx, cy, r, o) in ((-2.2, 0.9, 0.55, 0.30), (1.6, -0.7, 0.7, 0.24),
+                               (2.6, 1.2, 0.45, 0.20), (-1.0, -1.3, 0.5, 0.18)):
+            g.add(Circle(radius=r * scale, stroke_width=0,
+                         fill_color="#cdd6ea", fill_opacity=o)
+                  .stretch(0.45, 1).move_to([cx * scale, cy * scale, 0]))
+        jet = ASSETS["jet"](scale * 0.6)
+        jet.move_to([-1.4 * scale, 0.3 * scale, 0])
+        trail = Line([0, 0, 0], [0.01, 0, 0], color="#e8ecf4",
+                     stroke_width=3 * scale, stroke_opacity=0.45)
+        jet.add_updater(lambda m, dt: m.shift(
+            np.array([dt * 0.06 * m.width, 0, 0])))       # endless drift
+
+        def ride(m, jet=jet):
+            tail = np.array(jet.get_left())
+            m.put_start_and_end_on(
+                tail + np.array([-jet.width * 1.9, 0, 0]), tail)
+        trail.add_updater(ride)                # after jet in family order
+        g.add(jet, trail)
     elif kind == "orbit":
-        g.add(Circle(radius=0.5 * scale, stroke_width=0,
-                     fill_color="#f4c34a", fill_opacity=1.0))
-        g.add(Circle(radius=2.4 * scale, color=COOL,
-                     stroke_width=3 * scale))
-        g.add(ASSETS["earth"](scale * 0.12).move_to([2.4 * scale, 0, 0]))
+        sun = Circle(radius=0.5 * scale, stroke_width=0,
+                     fill_color="#f4c34a", fill_opacity=1.0)
+        ring = Circle(radius=2.4 * scale, color=COOL,
+                      stroke_width=3 * scale)
+        planet = ASSETS["earth"](scale * 0.12).move_to([2.4 * scale, 0, 0])
+        planet.add_updater(lambda m, dt, sun=sun: m.rotate(
+            dt * 0.16, about_point=sun.get_center()))     # rides the ring
+        g.add(sun, ring, planet)
     elif kind == "galaxy":
+        arms = VGroup()
         for arm in range(4):
             th0 = arm * math.pi / 2
             pts_sp = [[r * math.cos(th0 + 2.4 * r / scale),
                        r * math.sin(th0 + 2.4 * r / scale), 0]
                       for r in np.linspace(0.25 * scale, 2.9 * scale, 36)]
             for a, b in zip(pts_sp, pts_sp[1:]):
-                g.add(Line(a, b, color="#8fa8d9", stroke_width=3,
-                           stroke_opacity=0.8))
-        g.add(Circle(radius=0.45 * scale, stroke_width=0,
-                     fill_color="#f4e6c0", fill_opacity=0.9))
+                arms.add(Line(a, b, color="#8fa8d9", stroke_width=3,
+                              stroke_opacity=0.8))
+        core = Circle(radius=0.45 * scale, stroke_width=0,
+                      fill_color="#f4e6c0", fill_opacity=0.9)
+        arms.add_updater(lambda m, dt, core=core: m.rotate(
+            dt * 0.045, about_point=core.get_center()))
+        g.add(arms, core)
     elif kind == "human":
         g.add(ASSETS["human"](scale * 2.2))
-    label = Text(str(p.get("label", "")), font_size=int(30 * scale),
+    label = Text(_diet(p.get("label", "")), font_size=int(30 * scale),
                  color=GRAY_TEXT)
     value = Text(str(p.get("display", "")), font_size=int(46 * scale),
                  weight=BOLD, color=hi)
@@ -487,8 +658,7 @@ def _b_scalelevel(wp, theme, scale, anchor=None):
                                          buff=0.12 * scale)
     stamp.move_to([2.9 * scale, -2.2 * scale, 0], aligned_edge=LEFT)
     g.add(stamp)
-    if anchor is not None:
-        g.move_to(anchor)
+    _settle(g, anchor, post_scale)
     # No arrival anims: in a ScaleWorld the zoom itself is the reveal —
     # the engine's visibility gate fades the whole level in as the camera
     # approaches its magnification (an opacity anim would fight the gate).
