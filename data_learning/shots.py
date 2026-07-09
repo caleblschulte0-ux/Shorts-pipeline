@@ -368,9 +368,21 @@ def _leg_times(rt: float) -> list[float]:
     return [rt / n] * n
 
 
+def _dw_phase(ctx) -> int:
+    """Dwell leg counter that persists ACROSS fragments within a visit.
+    The scheduler calls a dwell several times (gap fillers, tail); if
+    each call restarted at leg 0, two consecutive fragments would target
+    the same point — a frozen no-op play (the motion gate caught exactly
+    this after reactions that don't move the frame)."""
+    i = ctx.get("_dw_i", 0)
+    ctx["_dw_i"] = i + 1
+    return i
+
+
 def _dw_orbit(scene, ctx, rt):
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
-    for i, L in enumerate(_leg_times(rt)):
+    for L in _leg_times(rt):
+        i = _dw_phase(ctx)
         sgn = 1 if i % 2 == 0 else -1
         off = np.array([fw * 0.026 * sgn, fw * 0.012 * -sgn, 0.0])
         scene.play(frame.animate(path_arc=0.5 * sgn).move_to(a + off)
@@ -383,7 +395,8 @@ def _dw_push(scene, ctx, rt):
     # offset — a pure width-set leg is a frozen frame whenever the
     # camera already sits at that width (e.g. right after a punch pop).
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
-    for i, L in enumerate(_leg_times(rt)):
+    for L in _leg_times(rt):
+        i = _dw_phase(ctx)
         off = np.array([fw * 0.013 * (1 if i % 2 else -1),
                         fw * 0.007 * (-1 if i % 2 else 1), 0.0])
         scene.play(frame.animate.move_to(a + off)
@@ -397,7 +410,8 @@ _DRIFT_PATH = [(0.022, -0.012), (-0.016, -0.020), (0.026, 0.009),
 
 def _dw_drift(scene, ctx, rt):
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
-    for i, L in enumerate(_leg_times(rt)):
+    for L in _leg_times(rt):
+        i = _dw_phase(ctx)
         dx, dy = _DRIFT_PATH[i % len(_DRIFT_PATH)]
         scene.play(frame.animate
                    .move_to(a + np.array([fw * dx, fw * dy, 0.0]))
@@ -407,7 +421,8 @@ def _dw_drift(scene, ctx, rt):
 
 def _dw_sweep(scene, ctx, rt):
     frame, a, fw = ctx["frame"], ctx["anchor"], ctx["fw"]
-    for i, L in enumerate(_leg_times(rt)):
+    for L in _leg_times(rt):
+        i = _dw_phase(ctx)
         sgn = 1 if i % 2 == 0 else -1
         scene.play(frame.animate
                    .move_to(a + np.array([fw * 0.032 * sgn,
@@ -449,15 +464,16 @@ def _s_counter_surge(scene, ctx):
                 run_time=rt, rate_func=rate_functions.ease_in_quad)
 
     def dwell(sc, c, rt):
+        sgn = 1 if _dw_phase(c) % 2 == 0 else -1   # never repeat a target
         t1 = min(4.0, rt * 0.45)
         sc.play(frame.animate.move_to(
-            a + np.array([fw * 0.008, -fw * 0.005, 0.0]))
+            a + sgn * np.array([fw * 0.008, -fw * 0.005, 0.0]))
             .set(width=fw * 0.88),
             run_time=t1, rate_func=rate_functions.ease_in_out_sine)
         t2 = min(3.0, (rt - t1) * 0.5)
         if t2 > 0.05:
             sc.play(frame.animate.move_to(
-                a - np.array([fw * 0.008, -fw * 0.005, 0.0]))
+                a - sgn * np.array([fw * 0.008, -fw * 0.005, 0.0]))
                 .set(width=fw * 0.94), run_time=t2,
                 rate_func=rate_functions.ease_in_out_sine)
         if rt - t1 - t2 > 0.05:
