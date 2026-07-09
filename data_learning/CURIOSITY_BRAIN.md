@@ -184,7 +184,11 @@ view); build reusable scene templates before reaching for it.
   Checked in eye-QA on every video; below the bar → rebuild the visuals,
   not the words.
 
-## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-08, v2)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-09, v3)
+
+> **"The viewer should feel like they are riding the camera, not
+> watching a presentation."** — operator, verbatim, round-3 review.
+> Every cinematography decision is judged against this sentence.
 
 The channel does not run a video generator; it runs a **simulation
 engine**: `World → Camera → Objects → Narration`, never
@@ -238,6 +242,55 @@ the biggest camera event.
 **Hero-moment budget**: the most important fact gets the most expensive
 visual. Rank the script's facts, spend unequally.
 
+**THE SHOT SYSTEM (v3 — cinematography is chosen, not invented).**
+Don't solve cinematography in the renderer. `data_learning/shots.py` is
+a growing library of named, parameterized shots (target 30–50); the
+engine's waypoint loop is a thin dispatcher over it. *"Claude's job
+isn't to invent cinematography every week — it's to choose and combine
+proven shots."* A shot owns everything cinematic about one waypoint
+visit: approach, arrival choreography, chrome in/out, dwell — for
+exactly its narration window. The rhythm is **Travel. Discover. Travel.
+Discover. Travel. Reveal.** — never look-here → look-here.
+- *Travel:* `fly_to` · `dive` · `pull_back` · `track` · `follow_path`
+- *Dwell (never static):* `orbit` · `push_in` · `drift_hold` ·
+  `parallax_sweep`
+- *Specials:* `counter_surge` · `cross_section` · `scale_up`; story
+  aliases `comparison_race` · `stack_build` · `timeline_travel`
+- *Cold open:* `cold_open_rush` — the world block sets
+  `"cold_open": true|{value, unit}` and the video opens by sprinting
+  through the ENTIRE world in ~6–8 s (title riding the frame, counter
+  surging), then resets and begins the narrated journey. Show the whole
+  ride first; explain it second. No static title card exists.
+- Waypoints name their shot (`"shot"`, optional `"dwell"`); un-annotated
+  waypoints draw from per-template default cycles and never repeat a
+  shot back-to-back.
+- A cinematic need no shot covers = add a NEW named shot (it upgrades
+  every future video), never a one-off camera move in a builder.
+
+**The screenshot-worthy-frame law.** Every minute must contain one
+screenshot-worthy frame. The test, verbatim: *"if this frame became the
+thumbnail, would someone click?"* If no — redo that minute.
+`scripts/qa_frames.py` renders the one-frame-per-minute contact sheet
+that makes this judgment unskippable (§9).
+
+**The physical-metaphor law.** Every explanation names its physical
+metaphor from the human-scale world (a race, a spinning basketball, a
+moving walkway) BEFORE the beat is written — restated data is not an
+explanation. `comparison_race` is the canonical example: two persistent
+assets race one track and the gap on screen IS the ratio. A metaphor
+with no builder/asset yet becomes the next library addition.
+
+**Objects exist, they don't float.** Every tableau carries cheap idle
+motion (Earth's continents rotate, the orbit planet rides its ring, the
+galaxy turns, the jet drifts) and subjects are BORN as the camera
+arrives (pre-shrunk seeds Restored on arrival) — never pre-placed
+geometry waiting in a display case.
+
+**Text diet.** Chrome fades out ~3.5 s after arrival — travel frames
+are clean. Stamps are a number + ≤2 words (`_diet()` enforces); ≤6
+on-screen words per waypoint excluding the number. The visual carries
+the noun.
+
 ## 8. Package output schema
 
 Stories live in `data_learning/curiosity.config.json` → `"stories"[]`, the
@@ -267,6 +320,10 @@ legible in the safe area; reads muted; survives platform UI. Then:
   locked somewhere, which the one-take engine should make impossible).
 - **The mute test (§7):** watch a muted pass; if you can't follow ~70%,
   the visuals aren't doing the explanatory work yet.
+- **Frame sheet (§7.5):** `python3 scripts/qa_frames.py <mp4>` — one frame
+  per minute tiled into a contact sheet; judge EACH frame against the
+  thumbnail-click test ("if this frame became the thumbnail, would someone
+  click?"). Any minute without a click-worthy frame gets redone.
 
 ## 10. Invariants no brain may break [SHARED]
 - Trend is raw material — never publish the raw item form.

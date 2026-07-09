@@ -768,13 +768,27 @@ the queue stocked.
      simulation engine): give the story a `"world"` block — pick the
      world template (`depth`/`scale`/`system` — ONE connected place),
      the story template, and one waypoint per beat naming its object
-     builder (`gauge`/`flipcompare`/`drilljourney`/`scalelevel`/`rank`/
-     `compare`) with 1–2 waypoints carrying a Blender `"hero"`
-     (`"earth_dive"` or `"monoliths"`) on the facts that matter most.
-     Prime directive: "if Pixar had to explain this, what would the
-     audience SEE?" Invariants: 2–3 heroes, ≥2 metaphor waypoints, ≤2
-     chart waypoints, and the video must pass the mute test (~70%
-     followable with sound off);
+     builder (`gauge`/`flipcompare`/`drilljourney`/`scalelevel`/
+     `comparison_race`/`rank`/`compare`) with 1–2 waypoints carrying a
+     Blender `"hero"` (`"earth_dive"` or `"monoliths"`) on the facts
+     that matter most. Prime directive: "if Pixar had to explain this,
+     what would the audience SEE?" Invariants: 2–3 heroes, ≥2 metaphor
+     waypoints, ≤2 chart waypoints, and the video must pass the mute
+     test (~70% followable with sound off);
+   - **author beats as SHOT LISTS before words** (§7.5 THE SHOT SYSTEM):
+     the doctrine is "the viewer should feel like they are riding the
+     camera, not watching a presentation." Set `"cold_open"` on the
+     world (`{"value": N, "unit": "..."}` when there's a number worth
+     surging), then give each waypoint a `"shot"` (+ optional
+     `"dwell"`) from `data_learning/shots.py` — e.g. `dive` →
+     `counter_surge` → `comparison_race` — travel/discover rhythm
+     mandatory, never the same shot twice in a row (un-annotated
+     waypoints get safe defaults, but AUTHORED beats beat defaults);
+   - **name each beat's physical metaphor before writing its `say`**
+     (§7.5 law): a race, a flipped mountain, a filling thermometer —
+     restated data is not an explanation. No existing builder fits the
+     metaphor → that builder/asset is the next library addition, and
+     the beat gets authored around one that exists today;
    - **6–8 segments**, each `say` 50–90 words (3–5 sentences), total
      **550–800 spoken words**; the arc is hook → why it matters → build →
      escalate → **REVEAL around beat 5** → zoom-out implication;
