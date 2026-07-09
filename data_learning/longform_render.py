@@ -616,6 +616,8 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
         wp.setdefault("params", {})
         if "file" not in wp["params"] and seg.get("params", {}).get("file"):
             wp["params"]["file"] = seg["params"]["file"]
+        if "emotion" not in wp and seg.get("emotion"):
+            wp["emotion"] = seg["emotion"]     # emotion seed (§7.5 v4)
         wps.append(wp)
     spec = {
         "title": st.title,
@@ -635,7 +637,8 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
     spec_path = work / "world_spec.json"
     spec_path.write_text(json.dumps(spec))
     media = work / "worldmedia"
-    env = dict(os.environ, CURIO_WORLD_SPEC=str(spec_path))
+    env = dict(os.environ, CURIO_WORLD_SPEC=str(spec_path),
+               CURIO_WORLD_LOG=str(work / "world_ledger.json"))
     subprocess.run(
         [sys.executable, "-m", "manim", "render", "-qm", "--fps", str(FPS),
          "-r", f"{W},{H}", "--media_dir", str(media), "-o", "body.mp4",
@@ -772,6 +775,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             try:
                 video = _body_world(story_cfg, cfg, st, theme, windows, work)
                 print("[longform] body: world engine (one take)")
+                lg = work / "world_ledger.json"
+                if lg.exists():   # for scripts/qa_escalation.py
+                    shutil.copy(lg, out_path.with_suffix(".ledger.json"))
             except Exception as e:  # noqa: BLE001
                 print(f"[longform] WORLD ENGINE FAILED ({e}) — falling back "
                       "to clip-per-beat renderer", file=sys.stderr)

@@ -141,9 +141,13 @@ def _spec() -> dict:
 
 class WorldScene(MovingCameraScene):
     def construct(self):
+        import data_learning.world_builders as wb
         from data_learning.world_builders import BUILDERS   # canonical copy
         from data_learning.shots import (DEFAULT_DWELL, DEFAULT_TRAVEL,
-                                         SHOTS, cold_open_rush)
+                                         LEDGER, SHOTS, cold_open_rush,
+                                         log_event)
+        LEDGER.clear()
+        wb.STATE.clear()          # the world remembers — per render only
         sp = _spec()
         theme = sp.get("theme", {})
         self.camera.background_color = theme.get("bg", "#080a14")
@@ -361,22 +365,16 @@ class WorldScene(MovingCameraScene):
                 "dwell": wp.get("dwell") or dwell_cycle[i % len(dwell_cycle)],
                 "reveal_target": (groups[i] if not is_scale
                                   and wp.get("reveal", True) else None),
+                "shot_name": name, "backdrop": blobs,
+                "react": wp.get("react"), "emotion": wp.get("emotion"),
+                "discovery": wp.get("discovery"), "state": wb.STATE,
             }
             SHOTS[name](self, ctx)
             last_shot = name
             groups[i].suspend_updating()   # gates live on the backdrop
 
-        # Exit: final pullback reveals the whole journey; closing text pins.
+        # Exit: the biggest pullback in the video (engine law).
         t0, t1 = windows[-1]
-        if world.get("template") == "scale":
-            # Exit for a zoom world: pull out PAST the whole world — the
-            # gate fades every level away and the closing line is alone
-            # on the star field. The ending is empty space, on purpose.
-            whole_h = max(fw for _, fw in anchors) * 3.2
-        else:
-            whole_h = abs(anchors[-1][0][1] - anchors[0][0][1]) + 14
-        mid = [(anchors[0][0][0] + anchors[-1][0][0]) / 2,
-               (anchors[0][0][1] + anchors[-1][0][1]) / 2, 0]
         closing = Text(sp.get("closing", ""), font_size=48, weight=BOLD,
                        color="#ffffff")
         cpin = VGroup(closing)
@@ -394,7 +392,35 @@ class WorldScene(MovingCameraScene):
                       + np.array([0, frame.height * close_y, 0]))
         cpin.add_updater(pin_close)
         self.add(cpin)
-        self.play(frame.animate.move_to(mid).set(
-            width=max(whole_h * 16 / 9, anchors[0][1] * 2.2)),
-            run_time=(t1 - t0),
-            rate_func=rate_functions.ease_in_out_sine)
+        exit_rt = t1 - t0
+        log_event(self, "exit", rt=round(exit_rt, 2))
+        if world.get("template") == "scale":
+            # Rewind-then-ride-out: fast ease back to level 0, then ONE
+            # accelerating pullback THROUGH every zoom band — each level
+            # (with its accumulated state) flashes past via the gate —
+            # ending beyond the world: closing line alone on the stars.
+            # The cold open's mirror. One take, no cuts.
+            a0, fw0 = anchors[0]
+            rewind = min(1.6, exit_rt * 0.22)
+            self.play(frame.animate.move_to(np.array(a0)).set(width=fw0),
+                      run_time=rewind,
+                      rate_func=rate_functions.ease_in_out_cubic)
+            self.play(frame.animate.set(
+                width=max(fw for _, fw in anchors) * 3.2),
+                run_time=max(0.5, exit_rt - rewind),
+                rate_func=rate_functions.ease_in_quad)
+        else:
+            whole_h = abs(anchors[-1][0][1] - anchors[0][0][1]) + 14
+            mid = [(anchors[0][0][0] + anchors[-1][0][0]) / 2,
+                   (anchors[0][0][1] + anchors[-1][0][1]) / 2, 0]
+            self.play(frame.animate.move_to(mid).set(
+                width=max(whole_h * 16 / 9, anchors[0][1] * 2.2)),
+                run_time=exit_rt,
+                rate_func=rate_functions.ease_in_out_sine)
+
+        # THE LEDGER — written for scripts/qa_escalation.py (design QA
+        # runs on rules the engine logged, not on pixel inference).
+        log_path = os.environ.get("CURIO_WORLD_LOG")
+        if log_path:
+            Path(log_path).write_text(json.dumps(
+                {"windows": windows, "rows": LEDGER}, indent=1))

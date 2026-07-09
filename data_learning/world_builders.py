@@ -40,6 +40,13 @@ COOL = "#5b8fd9"
 # ---------------------------------------------------------------------------
 BUILDERS = {}
 
+# THE WORLD REMEMBERS (§7.5 v4): a per-render dict of named entity
+# handles. A builder registers what it creates (STATE["earth"] = mobject);
+# later beats' events may MUTATE the entity (crack it, warm it, add a
+# satellite) and mutations are NEVER undone — the final pullback rides
+# past the accumulated world. The engine clears this at construct start.
+STATE: dict = {}
+
 
 def builder(name):
     def reg(fn):
@@ -274,6 +281,62 @@ def _bullet(scale=1.0):
         g.add(Line([(-1.15 - 0.12 * k) * s, dy * s, 0],
                    [-0.68 * s, dy * s, 0], stroke_width=2.5 * s,
                    color="#cdd6ea", stroke_opacity=0.5))     # speed lines
+    return g
+
+
+@asset("comet")
+def _comet(scale=1.0):
+    s = scale
+    g = VGroup()
+    for dy, ln, o in ((0.0, 1.5, 0.6), (0.09, 1.1, 0.4), (-0.08, 1.2, 0.35)):
+        g.add(Line([-ln * s, (dy + ln * 0.18) * s, 0], [0, dy * s, 0],
+                   stroke_width=4 * s, color="#bcd4ff", stroke_opacity=o))
+    g.add(Circle(radius=0.16 * s, stroke_width=0, fill_color="#eaf2ff",
+                 fill_opacity=1.0))
+    return g
+
+
+@asset("moon")
+def _moon(scale=1.0):
+    s = scale
+    g = VGroup()
+    g.add(Circle(radius=1.0 * s, stroke_width=0, fill_color="#b9beca",
+                 fill_opacity=1.0))
+    for x, y, r in ((0.3, 0.25, 0.16), (-0.35, -0.1, 0.22),
+                    (0.1, -0.45, 0.12), (-0.15, 0.5, 0.1)):
+        g.add(Circle(radius=r * s, stroke_width=0, fill_color="#8f95a3",
+                     fill_opacity=0.9).move_to([x * s, y * s, 0]))
+    return g
+
+
+@asset("satellite")
+def _satellite(scale=1.0):
+    s = scale
+    g = VGroup()
+    g.add(Rectangle(width=0.5 * s, height=0.3 * s, stroke_width=0,
+                    fill_color="#cdd6ea", fill_opacity=1.0))       # body
+    for sx in (-1, 1):
+        g.add(Line([sx * 0.25 * s, 0, 0], [sx * 0.34 * s, 0, 0],
+                   stroke_width=3 * s, color="#8fa0bd"))
+        g.add(Rectangle(width=0.62 * s, height=0.26 * s, stroke_width=0,
+                        fill_color="#3b6bd6", fill_opacity=0.95)
+              .move_to([sx * 0.68 * s, 0, 0]))                     # panels
+    return g
+
+
+@asset("iss")
+def _iss(scale=1.0):
+    s = scale
+    g = VGroup()
+    g.add(Rectangle(width=1.6 * s, height=0.08 * s, stroke_width=0,
+                    fill_color="#9fb0cd", fill_opacity=1.0))       # truss
+    g.add(Rectangle(width=0.42 * s, height=0.26 * s, stroke_width=0,
+                    fill_color="#cdd6ea", fill_opacity=1.0))       # modules
+    for sx in (-0.62, 0.62):
+        for dy in (0.24, -0.24):
+            g.add(Rectangle(width=0.34 * s, height=0.3 * s, stroke_width=0,
+                            fill_color="#3b6bd6", fill_opacity=0.95)
+                  .move_to([sx * s, dy * s, 0]))                   # arrays
     return g
 
 

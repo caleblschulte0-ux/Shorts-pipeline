@@ -55,37 +55,175 @@ DEFAULT_DWELL = {
 }
 
 CHROME_SECONDS = 3.5      # text diet: chrome leaves after this
+EVENT_GAP = 5.5           # escalation law: a new visual event this often
 
 
 # ---------------------------------------------------------------------------
-# The visit scaffold — shared skeleton every shot composes:
-#   approach -> [reveal] -> chrome in -> arrivals -> chrome out -> dwell
-# Time bookkeeping keeps the visit EXACTLY ctx["dur"] seconds.
+# THE LEDGER — the engine KNOWS what happened (§7.5 v4). Every travel,
+# reveal, event, payoff, reaction and discovery logs a row; the world
+# engine writes the ledger to disk and scripts/qa_escalation.py validates
+# the escalation laws against it. Design QA runs on rules, not pixels.
 # ---------------------------------------------------------------------------
-def _play_arrivals(scene, ctx, budget: float) -> float:
-    spent = 0.0
-    for a in ctx.get("arrival_anims") or []:
-        rt = getattr(a, "run_time", 1.0)
-        if spent + rt > budget:
-            break
-        if hasattr(a, "anims"):
-            scene.play(*a.anims, run_time=rt)
-        else:
-            scene.play(a, run_time=rt)
-        spent += rt
-    return spent
+LEDGER: list[dict] = []
+
+
+def _now(scene) -> float:
+    return round(float(getattr(scene.renderer, "time", 0.0)), 2)
+
+
+def log_event(scene, kind: str, **detail):
+    LEDGER.append({"t": _now(scene), "kind": kind, **detail})
+
+
+# ---------------------------------------------------------------------------
+# REACTIONS — narration changes the world ("Every fact should change the
+# world"). World-level effects: they touch the backdrop/camera/frame, not
+# the exhibit. All geometry/position based (gate-safe).
+# ---------------------------------------------------------------------------
+def _fx_star_streak(scene, ctx, rt=1.5):
+    """Speed: the backdrop stars stretch into streaks, then relax."""
+    bg = ctx.get("backdrop")
+    if bg is None or len(bg) == 0:
+        return _fx_shake(scene, ctx, rt)
+    scene.play(bg.animate.stretch(2.4, 0), run_time=rt * 0.45,
+               rate_func=rate_functions.ease_in_quad)
+    scene.play(bg.animate.stretch(1 / 2.4, 0), run_time=rt * 0.55,
+               rate_func=rate_functions.ease_out_sine)
+    return rt
+
+
+def _fx_shake(scene, ctx, rt=0.9):
+    """Force/impact: camera micro-jitter, always returned to centre."""
+    frame = ctx["frame"]
+    fw = frame.width
+    c = frame.get_center().copy()
+    jolts = ((1.0, 0.6), (-0.9, -1.0), (0.7, -0.5), (-0.4, 0.8))
+    leg = rt / (len(jolts) + 1)
+    for dx, dy in jolts:
+        scene.play(frame.animate.move_to(
+            c + np.array([fw * 0.007 * dx, fw * 0.006 * dy, 0.0])),
+            run_time=leg, rate_func=rate_functions.linear)
+    scene.play(frame.animate.move_to(c), run_time=leg,
+               rate_func=rate_functions.ease_out_sine)
+    return rt
+
+
+def _fx_glow_pulse(scene, ctx, rt=1.6):
+    """Heat/energy: the backdrop warms, then cools."""
+    bg = ctx.get("backdrop")
+    if bg is None or len(bg) == 0:
+        return _fx_shake(scene, ctx, rt)
+    orig = bg[0].get_color()
+    scene.play(bg.animate.set_color("#ffb27a"), run_time=rt * 0.4,
+               rate_func=rate_functions.ease_in_sine)
+    scene.play(bg.animate.set_color(orig), run_time=rt * 0.6,
+               rate_func=rate_functions.ease_out_sine)
+    return rt
+
+
+def _fx_still(scene, ctx, rt=2.0):
+    """Awe/silence: the world holds its breath — one near-still breath."""
+    frame = ctx["frame"]
+    scene.play(frame.animate.set(width=frame.width * 0.985),
+               run_time=rt, rate_func=rate_functions.ease_in_out_sine)
+    return rt
+
+
+REACTIONS = {"star_streak": _fx_star_streak, "shake": _fx_shake,
+             "glow_pulse": _fx_glow_pulse, "slow_drift_stop": _fx_still}
+
+# Emotion seed (§7.5 v4): an emotion tag picks a default reaction when the
+# author didn't name one. Full emotion system comes later.
+EMOTION_FX = {"speed": "star_streak", "scale": "star_streak",
+              "danger": "shake", "force": "shake",
+              "heat": "glow_pulse", "wonder": "glow_pulse",
+              "awe": "slow_drift_stop", "mystery": "slow_drift_stop"}
+
+
+def _reactions_for(ctx) -> list[dict]:
+    declared = list(ctx.get("react") or [])
+    if not declared and ctx.get("emotion") in EMOTION_FX:
+        declared = [{"fx": EMOTION_FX[ctx["emotion"]], "at": 0.55}]
+    return [r for r in declared if r.get("fx") in REACTIONS]
+
+
+def _fire_reaction(scene, ctx, spec) -> float:
+    rt = REACTIONS[spec["fx"]](scene, ctx)
+    log_event(scene, "reaction", beat=ctx.get("idx"), fx=spec["fx"], rt=rt)
+    return rt
+
+
+# ---------------------------------------------------------------------------
+# DISCOVERIES — found, not navigated. An unexpected object crosses the
+# frame during the approach; it is never narrated before it is seen.
+# ---------------------------------------------------------------------------
+def _play_discovery(scene, ctx) -> float:
+    d = ctx.get("discovery")
+    if not d:
+        return 0.0
+    from data_learning.world_builders import ASSETS
+    make = ASSETS.get(str(d.get("asset", "comet")))
+    if make is None:
+        return 0.0
+    frame = ctx["frame"]
+    fw, fh = frame.width, frame.height
+    m = make(1.0)
+    m.scale(fw * 0.13 / max(m.width, 1e-6))
+    c = frame.get_center()
+    if d.get("cross", "lr") == "rl":
+        start = c + np.array([fw * 0.62, -fh * 0.16, 0.0])
+        end = c + np.array([-fw * 0.62, fh * 0.14, 0.0])
+    else:
+        start = c + np.array([-fw * 0.62, fh * 0.16, 0.0])
+        end = c + np.array([fw * 0.62, -fh * 0.14, 0.0])
+    m.move_to(start)
+    scene.add(m)
+    rt = 1.3
+    scene.play(m.animate(path_arc=-0.22).move_to(end).scale(1.6),
+               run_time=rt, rate_func=rate_functions.ease_in_out_sine)
+    scene.remove(m)
+    log_event(scene, "discovery", beat=ctx.get("idx"),
+              asset=str(d.get("asset", "comet")), rt=rt)
+    return rt
+
+
+# ---------------------------------------------------------------------------
+# The visit scaffold — the ESCALATION ENGINE. A beat is an event timeline:
+#   approach -> [discovery] -> [reveal] -> chrome in -> reveal bundle ->
+#   dwell leg -> event -> dwell leg -> reaction -> ... -> payoff -> tail
+# ALL bundles beyond the first are scheduled across the whole window at
+# EVENT_GAP, so a beat mechanically cannot sit still. Time bookkeeping
+# keeps the visit EXACTLY ctx["dur"] seconds.
+# ---------------------------------------------------------------------------
+def _play_bundle(scene, ctx, b) -> float:
+    rt = getattr(b, "run_time", 1.0)
+    anims = list(b.anims) if hasattr(b, "anims") else [b]
+    if getattr(b, "punch", False):
+        # Visual consequence: the payoff lands WITH a camera pop; the
+        # next dwell leg re-normalizes the width.
+        frame = ctx["frame"]
+        anims.append(frame.animate.set(width=frame.width * 0.955))
+    scene.play(*anims, run_time=rt)
+    return rt
 
 
 def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
            reveal_target=None):
     frame, dur = ctx["frame"], ctx["dur"]
+    idx = ctx.get("idx")
     t_approach = min(2.8, max(0.8, dur * approach_frac))
+    log_event(scene, "travel", beat=idx, shot=ctx.get("shot_name"),
+              rt=round(t_approach, 2))
+    if ctx.get("emotion"):
+        log_event(scene, "emotion", beat=idx, tag=ctx["emotion"])
     approach(scene, ctx, t_approach)
     spent = t_approach
+    spent += _play_discovery(scene, ctx)
     if reveal_target is not None:                       # the subject is BORN
         scene.play(Restore(reveal_target), run_time=0.7,
                    rate_func=rate_functions.ease_out_back)
         spent += 0.7
+        log_event(scene, "reveal", beat=idx, rt=0.7)
     # Live counters (become+next_to updaters) must only run once the
     # subject is at full size — resuming before the reveal would pin a
     # full-size number to a shrunken ghost.
@@ -97,18 +235,59 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
         scene.add(chrome)
         scene.play(FadeIn(chrome), run_time=0.3)
         spent += 0.3
-    arr_budget = max(0.0, dur - spent - max(1.2, dur * 0.25))
-    spent += _play_arrivals(scene, ctx, arr_budget)
-    remaining = max(0.05, dur - spent)
-    if chrome is not None and remaining > CHROME_SECONDS:
-        dwell(scene, ctx, CHROME_SECONDS - 0.4)
-        scene.play(FadeOut(chrome), run_time=0.4)
-        remaining -= CHROME_SECONDS
-        dwell(scene, ctx, remaining)
-    else:
-        dwell(scene, ctx, remaining)
-        if chrome is not None:
-            scene.remove(chrome)
+
+    bundles = list(ctx.get("arrival_anims") or [])
+    if bundles:                       # the subject's arrival plays NOW …
+        b = bundles.pop(0)
+        rt = getattr(b, "run_time", 1.0)
+        if spent + rt <= dur - 0.4:
+            spent += _play_bundle(scene, ctx, b)
+            log_event(scene, "reveal", beat=idx, rt=round(rt, 2))
+
+    # … and EVERYTHING else is scheduled across the window: events at
+    # EVENT_GAP spacing, reactions at their authored fractions, chrome
+    # exit at its diet time. Dwell legs are the filler between items.
+    items = []
+    if chrome is not None:
+        items.append((spent + CHROME_SECONDS, "chrome_out", None))
+    for r in _reactions_for(ctx):
+        items.append((dur * float(r.get("at", 0.55)), "react", r))
+    t_next = spent + EVENT_GAP
+    for b in bundles:
+        items.append((t_next, "event", b))
+        t_next += EVENT_GAP
+    items.sort(key=lambda x: x[0])
+
+    for target, kind, payload in items:
+        left = dur - spent
+        need = (0.4 if kind == "chrome_out" else
+                getattr(payload, "run_time", 1.0) if kind == "event" else 1.6)
+        if need > left - 0.05:
+            if kind != "chrome_out":
+                log_event(scene, "skipped", beat=idx, what=kind)
+            continue
+        gap = min(target - spent, left - need - 0.05)
+        if gap > 0.15:
+            dwell(scene, ctx, gap)
+            spent += gap
+        if kind == "chrome_out":
+            scene.play(FadeOut(chrome), run_time=0.4)
+            spent += 0.4
+            chrome = None
+        elif kind == "event":
+            rt = _play_bundle(scene, ctx, payload)
+            spent += rt
+            log_event(scene,
+                      "payoff" if getattr(payload, "punch", False)
+                      else "event", beat=idx, rt=round(rt, 2))
+        else:
+            spent += _fire_reaction(scene, ctx, payload)
+
+    left = dur - spent
+    if left > 0.05:
+        dwell(scene, ctx, left)
+    if chrome is not None:
+        scene.remove(chrome)
 
 
 # ---------------------------------------------------------------------------
@@ -322,6 +501,7 @@ def cold_open_rush(scene, ctx):
     frame = ctx["frame"]
     anchors = ctx["anchors_all"]
     dur = ctx["dur"]
+    log_event(scene, "cold_open", rt=round(dur, 2))
     reset = min(1.4, dur * 0.18)
     rush = min(8.0, dur - reset - 0.3)
     settle = max(0.05, dur - rush - reset)
