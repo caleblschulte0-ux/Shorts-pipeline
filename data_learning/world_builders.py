@@ -995,9 +995,10 @@ def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
     else:
         motions = [_Par([Rotate(g[0], sgn * 0.05)], run_time=1.2)
                    for sgn in (1, -1, 1)]
-    anims.append(motions[0])
+    # the tableau's physics build first; the number lands LAST — the
+    # beat culminates (payoff grade C: end stronger than you started)
+    anims.extend(motions)
     anims.append(_Par([value.animate(
         rate_func=rate_functions.ease_out_back).scale(1.18)],
-        run_time=0.7, punch=True))           # the number lands — payoff
-    anims.extend(motions[1:])
+        run_time=0.7, punch=True))
     return g, anims
