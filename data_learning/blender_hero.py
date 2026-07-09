@@ -437,7 +437,7 @@ def build_earth_spin(spec: dict):
     sc.camera = cam
     cam.data.clip_end = 1500
     cam.constraints.new(type="TRACK_TO").target = target
-    for f, loc in ((1, (6.0, -30.0, 8.0)), (frames, (-5.0, -17.0, 3.5))):
+    for f, loc in ((1, (6.0, -30.0, 8.0)), (frames, (-6.0, -21.0, 4.5))):
         cam.location = loc
         cam.keyframe_insert(data_path="location", frame=f)
     _bezier(cam)
@@ -487,7 +487,7 @@ def build_orbit_fly(spec: dict):
     cam = bpy.context.object
     sc.camera = cam
     cam.data.clip_end = 2000
-    cam.location = (44.5, -7.5, 2.4)
+    cam.location = (47.0, -10.0, 5.5)   # off-axis: Sun clears Earth's disc
     cam.parent = corb
     cam.matrix_parent_inverse = corb.matrix_world.inverted()
     cam.constraints.new(type="TRACK_TO").target = earth
@@ -523,9 +523,9 @@ def build_cosmic_exit(spec: dict):
     bpy.ops.object.light_add(type="SUN", location=(40, -20, 30))
     bpy.context.object.data.energy = 3.0
     # orbit rings around the Sun (ours through Earth, siblings beyond)
-    for r, br in ((255, 2.6), (180, 1.2), (330, 1.0)):
+    for r, br in ((255, 2.0), (180, 1.2), (330, 1.0)):
         bpy.ops.mesh.primitive_torus_add(
-            major_radius=r, minor_radius=0.35, location=(220, 120, 0))
+            major_radius=r, minor_radius=0.18, location=(220, 120, 0))
         bpy.context.object.data.materials.append(
             _emission(f"ring{r}", accent if r == 255 else (0.35, 0.42, 0.6),
                       br))
