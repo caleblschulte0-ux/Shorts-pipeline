@@ -401,56 +401,93 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             # program is already a sharp 1080x1920 face crop — just grade +
             # burn captions (reuse the longform grade: gentle sat + vignette).
             src = reframed
-            vf = (
+            base_vf = (
                 "[0:v]eq=saturation=1.05,vignette=PI/5[base];"
                 f"[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
             )
+            # bulletproof visual if even captions fail: the crop is already 9:16
+            plain_vf = "[0:v]null[vout]"
         else:
             # blur-fill center reframe — the guaranteed, battle-tested look
             # (auto=False renders exactly this path).
             src = program
-            vf = (
+            _blur = (
                 "[0:v]split=2[bg][fg];"
                 f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
                 "increase,crop=1080:1920,gblur=sigma=24,"
                 "eq=brightness=-0.12:saturation=1.15[bgd];"
                 "[fg]scale=1080:-2[fgs];"
-                "[bgd][fgs]overlay=(W-w)/2:(H-h)/2[base];"
-                f"[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
+                "[bgd][fgs]overlay=(W-w)/2:(H-h)/2[base]"
             )
+            base_vf = _blur + f";[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
+            plain_vf = _blur.replace("[base]", "[vout]")
+
         # Post-caption overlays drawn in the final 1080x1920 frame (centered,
         # so the face-follow crop can't clip them): auto-edit stamps (REPLAY)
-        # first, then the hook card. Assembled onto [capped] -> [vout].
+        # first, then the hook card. Text is read from files via drawtext's
+        # `textfile=` so apostrophes/colons/% in a hook can never break the
+        # filtergraph (the exit-8 bug that wiped a whole slate). Assembled
+        # onto [capped] -> [vout].
         post: list[str] = []
-        for ov in overlays:
-            txt = re.sub(r"[^A-Za-z0-9 !?]", "", str(ov.get("text", "")))[:16]
+        for i, ov in enumerate(overlays):
+            txt = re.sub(r"[^A-Za-z0-9 !?'.,]", "", str(ov.get("text", "")))[:24]
             if not txt:
                 continue
+            ovf = tmp / f"ov{i}.txt"
+            ovf.write_text(txt)
             post.append(
-                f"drawtext=fontfile={FONT_BOLD}:text='{txt}'"
+                f"drawtext=fontfile={FONT_BOLD}:textfile={ovf}:expansion=none"
                 ":fontsize=64:fontcolor=white:box=1:boxcolor=red@0.75"
                 ":boxborderw=18:x=(w-text_w)/2:y=150"
                 f":enable='between(t,{ov['s']:.2f},{ov['e']:.2f})'")
         if hook:
-            safe = hook.replace(":", r"\:").replace("'", r"\\\'")
+            hf = tmp / "hook.txt"
+            hf.write_text(hook)
             post.append(
-                f"drawtext=fontfile={FONT_BOLD}:text='{safe}'"
+                f"drawtext=fontfile={FONT_BOLD}:textfile={hf}:expansion=none"
                 ":fontsize=72:fontcolor=white:box=1:boxcolor=black@0.72"
                 ":boxborderw=26:x=(w-text_w)/2:y=230"
                 ":enable='between(t,0,3.0)'")
-        if post:
-            chain = vf + ";[capped]" + ",".join(post) + "[vout]"
-        else:
-            chain = vf.replace("[capped]", "[vout]")
 
-        _run(["ffmpeg", "-y", "-v", "error", "-i", str(src),
-              "-filter_complex", chain, "-map", "[vout]", "-map", "0:a",
-              "-af", "loudnorm=I=-14:TP=-1.5",
-              "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-              "-pix_fmt", "yuv420p", "-r", "30",
-              "-c:a", "aac", "-b:a", "160k", str(out_path)])
+        full_vf = (base_vf + ";[capped]" + ",".join(post) + "[vout]"
+                   if post else base_vf.replace("[capped]", "[vout]"))
+        caps_vf = base_vf.replace("[capped]", "[vout]")
+
+        def _render(chain: str) -> bool:
+            try:
+                _run(["ffmpeg", "-y", "-v", "error", "-i", str(src),
+                      "-filter_complex", chain, "-map", "[vout]", "-map", "0:a",
+                      "-af", "loudnorm=I=-14:TP=-1.5",
+                      "-c:v", "libx264", "-preset", "medium", "-crf", "19",
+                      "-pix_fmt", "yuv420p", "-r", "30",
+                      "-c:a", "aac", "-b:a", "160k", str(out_path)])
+                return True
+            except Exception:  # noqa: BLE001
+                return False
+
+        # Render ladder — a clip must ALWAYS ship. Full (captions + overlays +
+        # hook) -> captions only -> plain reframe (no text) -> raw vertical
+        # re-encode with no filters at all. Record which level succeeded.
+        if _render(full_vf):
+            render_level = "full"
+        elif post and _render(caps_vf):
+            render_level = "captions_only"
+        elif _render(plain_vf):
+            render_level = "plain"
+        else:
+            _run(["ffmpeg", "-y", "-v", "error", "-i", str(src),
+                  "-vf", f"scale={CANVAS_W}:{CANVAS_H}:"
+                  "force_original_aspect_ratio=decrease,"
+                  f"pad={CANVAS_W}:{CANVAS_H}:(ow-iw)/2:(oh-ih)/2",
+                  "-c:v", "libx264", "-preset", "medium", "-crf", "19",
+                  "-pix_fmt", "yuv420p", "-r", "30",
+                  "-c:a", "aac", "-b:a", "160k", str(out_path)])
+            render_level = "raw"
+        if render_level != "full":
+            ledger_ae["render_fallback"] = render_level
 
     return {"kind": "twitch_clip", "credit": credit,
+            "render_level": render_level,
             "cut": [t0, t1], "duration_s": round(dur, 2),
             "caption_words": len(words), "hook": hook,
             "reframe": "face" if reframed is not None else "blur",
