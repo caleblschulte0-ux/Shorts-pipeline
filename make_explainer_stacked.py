@@ -726,7 +726,7 @@ def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
     except ImportError:
         return []
     try:
-        items = topic_video.search(context, "", max_clips=6)
+        items = topic_video.search(context, "", max_clips=10)
     except Exception as e:  # noqa: BLE001
         print(f"      [topic_video pool error] {e}")
         return []
@@ -856,7 +856,7 @@ def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
     pool: list[dict] = []
     seen_stems: set[str] = set()
     cache = Path("/tmp/shot_images")
-    for url in (urls or [])[:8]:
+    for url in (urls or [])[:16]:
         try:
             path = _fetch_image(url, cache)
         except Exception as e:  # noqa: BLE001
@@ -1295,8 +1295,12 @@ def build_timed_top(
     # once and woven into the sub-cut scheduler ahead of generic stock.
     funnel_extras: list[dict] = []
     _funnel_seen: set[str] = set()
-    _FUNNEL_PER_ENTITY = 4
-    _FUNNEL_TOTAL_CAP = 10
+    # Raised 2026-07-10 (operator: "drowning in options") — the keyless
+    # providers made candidates cheap, so keep many more per entity and
+    # overall. Renderer-side dedup + the relevance floor still pick
+    # only the best; the rest are depth for variety.
+    _FUNNEL_PER_ENTITY = 8
+    _FUNNEL_TOTAL_CAP = 24
     try:
         import media_funnel
         unique_queries: dict[str, str] = {}    # news_query -> news_angle

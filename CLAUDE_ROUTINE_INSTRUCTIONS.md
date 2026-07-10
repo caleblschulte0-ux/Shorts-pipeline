@@ -31,11 +31,18 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
    **At least 4 of 6 picks from the Quirky / Animal / Disaster bucket**, and
    those 4 must cover at least TWO of these three sub-buckets:
    - **Animals / Wildlife** — Hunter the kangaroo, shark attack, raccoon
-     shuts down airport, world's biggest pumpkin
+     shuts down airport, world's biggest pumpkin.
+     **HARD CAP: at most 1 animal pick per slate** (operator ruling
+     2026-07-10 — the slate had drifted animal-heavy; an exceptional
+     named-animal story may take a 2nd slot at most once a week).
    - **Weather / Natural disaster / Freak event** — meteor over Rome, F4
      tornado, dust devil flips truck, sinkhole swallows house
    - **Weird local / Quirky news** — NYC sewer mystery, town renames itself,
      Hell Michigan listed at $666K, blanket fort, 1M bees escape semi
+
+   With animals capped, the quirky weight shifts to weather/freak events
+   and weird-local stories — those two sub-buckets should carry most of
+   the 4 quirky slots on a normal day.
 
    **Named-entity rule**: "Hunter the kangaroo escapes Kentucky" >
    "kangaroo escapes in US". Specific names compound on YouTube search
@@ -353,8 +360,8 @@ abstract — a scientific journal, an organization, a virus, a statistic, a
 "someone somewhere did X" with no named subject — is NOT, and the funnel
 will return logos and the shots will fall to off-topic stock. Between two
 otherwise-equal quirky picks, take the one you can actually illustrate.
-Quirky-animal/disaster picks still dominate the slate (Rule 2) — just
-choose the ones with a clear visual subject.
+Quirky/disaster picks still dominate the slate (Rule 2 — animals now
+hard-capped at 1) — just choose the ones with a clear visual subject.
 
 ### Rule D — VERIFY every image_url exists (do not fabricate filenames)
 
