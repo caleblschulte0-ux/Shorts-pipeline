@@ -788,3 +788,17 @@ the queue stocked.
    dispatch `curiosity.yml` with `mode: schedule`.
 
 Mark the topic bank row ✅ authored in `CURIOSITY_BRAIN.md` §14 in the same PR.
+
+---
+
+## Engines capability layer (shared, opt-in)
+
+The repo has a top-of-pipeline capability library at `engines/` — reusable
+rendering/media engines any channel or session can call (Ken Burns,
+experimental depth-parallax, more coming via tickets E1–E14). Discover it
+with `python -m engines list` (offline, fast); full registry + verdicts in
+`docs/ENGINE_REGISTRY.md`. If a package or render idea needs a capability,
+check the registry BEFORE writing new code or requesting new tools —
+it may already exist, be one `install` away, or be explicitly rejected
+with a reason. Note: `parallax` is experimental and must not be used in
+production renders until Ticket E2's benchmark passes.
