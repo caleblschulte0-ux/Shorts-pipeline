@@ -274,12 +274,14 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     streamer, info["title"],
                     " ".join(w["w"] for w in words), info["views"])
             hook = (meta or {}).get("hook") or pkg.get("hook", "")
+            series = (meta or {}).get("series", "chaos")
             led = clip_edit.edit(
                 info["path"], out_mp4,
                 credit=clip_edit.credit_label(platform, streamer),
                 hook=hook, words=words,
                 start=spec.get("start", 0.0), end=spec.get("end", 0.0),
-                whisper_model=wmodel)
+                whisper_model=wmodel,
+                auto=spec.get("auto_edit", True), series=series)
             if meta:
                 led["authored_title"] = meta["title"]
                 led["authored_tags"] = meta["hashtags"]
