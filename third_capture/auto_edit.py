@@ -153,45 +153,61 @@ def dead_air(words, dur, gap=1.4) -> list[tuple[float, float]]:
 
 # ---------------------------------------------------------------- style
 
+# series -> reaction emoji asset (assets/emoji/<name>.png) popped on the
+# money moment by the overlay layer. Unknown series fall to mindblown.
+SERIES_EMOJI = {
+    "fail": "skull", "rage": "rage", "jumpscare": "scream",
+    "clutch": "fire", "win": "fire", "wholesome": "pleading",
+    "argument": "eyes", "chat-betrayal": "eyes", "funny": "joy",
+    "chaos": "mindblown",
+}
+
+
 @dataclass
 class Style:
-    punch: bool = True          # zoom-in on the reaction beat
-    slowmo: bool = True         # slow the money moment
+    punch: bool = True          # gentle zoom-in on the reaction beat
+    slowmo: bool = True         # slow the money moment (time effect, not camera)
     replay: bool = True         # instant replay of the money moment
-    shake: bool = True          # impact shake/flash/glitch on the hit
+    shake: bool = True          # brief impact hit on the peak (kept subtle)
     speedup_dead: bool = True   # compress dead air
     sfx: bool = True
-    zoom_to: float = 1.18
+    zoom_to: float = 1.08
     slow_speed: float = 0.5
-    shake_intensity: float = 1.0
+    shake_intensity: float = 0.35
 
 
 def choose_style(series: str, dur: float, peak_strength: float) -> Style:
     """Discretion: pick effects that fit the clip. `series` is the author's
-    label (rage/fail/clutch/win/wholesome/argument/jumpscare/chaos)."""
+    label (rage/fail/clutch/win/wholesome/argument/jumpscare/chaos).
+
+    Camera moves are deliberately gentle — the operator wants the footage to
+    mostly hold still and the energy to live in the overlay effect layer
+    (emoji pops, emphasis hits). Punch/shake are brief emphasis on the peak,
+    never a constant push; the time effects (slow-mo, replay, dead-air) carry
+    the pacing."""
     s = (series or "chaos").lower()
     st = Style()
     if s in ("wholesome",):
         st.shake = False
         st.slowmo = True
         st.replay = False
-        st.zoom_to = 1.12
+        st.zoom_to = 1.06
         st.shake_intensity = 0.0
     elif s in ("argument", "chat-betrayal"):
         st.slowmo = False           # keep the back-and-forth snappy
         st.replay = False
-        st.shake_intensity = 0.5
+        st.shake_intensity = 0.25
     elif s in ("fail", "rage", "jumpscare"):
-        st.zoom_to = 1.22
-        st.shake_intensity = 1.0
+        st.zoom_to = 1.12
+        st.shake_intensity = 0.5
         st.slow_speed = 0.45
     elif s in ("clutch", "win"):
-        st.zoom_to = 1.18
-        st.shake_intensity = 0.7
-    # weak/flat clips: minimal — just a gentle punch, no drama
+        st.zoom_to = 1.10
+        st.shake_intensity = 0.4
+    # weak/flat clips: minimal — barely any camera move at all
     if peak_strength < 0.25:
         st.slowmo = st.replay = st.shake = False
-        st.zoom_to = min(st.zoom_to, 1.10)
+        st.zoom_to = min(st.zoom_to, 1.04)
     # very short clips can't spare a replay
     if dur < 8.0:
         st.replay = False
@@ -475,16 +491,26 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
         if style.sfx and edl.sfx_cues:
             program = _mix_sfx(program, edl.sfx_cues, work / "program_sfx.mp4")
 
-        # Stamp windows on the OUTPUT timeline (REPLAY etc). Drawn by Stage 2
-        # centered in the final frame so the face-follow crop can't clip them.
-        overlays, _tcur = [], 0.0
+        # Overlay cues on the OUTPUT timeline, drawn by Stage 2 on the final
+        # frame: REPLAY-style text stamps, plus a contextual reaction EMOJI
+        # that pops on the money moment (the overlay-effect layer the camera
+        # now stays still for). Both ride the output timeline so retiming and
+        # the static crop can't misplace them.
+        overlays, _tcur, money_out = [], 0.0, None
         for seg in edl.segments:
             od = seg.out_dur()
             if seg.stamp:
-                overlays.append({"text": seg.stamp,
+                overlays.append({"type": "text", "text": seg.stamp,
                                  "s": round(_tcur, 3),
                                  "e": round(_tcur + od, 3)})
+            if seg.kind == "money" and money_out is None:
+                money_out = _tcur
             _tcur += od
+        emoji = SERIES_EMOJI.get((series or "chaos").lower(), "mindblown")
+        if money_out is not None:
+            overlays.append({"type": "emoji", "name": emoji,
+                             "s": round(money_out, 3),
+                             "e": round(money_out + 1.5, 3)})
 
         result.update(
             program=program,
@@ -585,68 +611,31 @@ def reframe(program: Path, work: Path) -> Path | None:
         if hits < 3 or n <= 0 or not samp_idx:   # not enough face signal
             return None
 
-        # Cluster the talking-face centers into fixed anchor positions. Each
-        # anchor is one static framing; reading anchors AFTER the pass means
-        # every shot uses a single constant x (no intra-shot drift = no pan).
-        anchors: list[float] = []
+        # ONE STATIC FRAMING for the whole clip — the camera never moves. We
+        # cluster the talking-face centers into positions and lock the crop on
+        # the single most-persistent subject (the streamer's facecam), holding
+        # it dead still. No pan, no speaker-cutting — motion is for the overlay
+        # effect layer, not the camera. If no stable subject, blur-fill instead.
+        anchors: list[list[float]] = []          # [running_center, weight]
 
         def _anchor(x: float) -> int:
-            for i, a in enumerate(anchors):
+            for i, (a, _w) in enumerate(anchors):
                 if abs(a - x) <= crop_w * 0.45:
-                    anchors[i] = 0.8 * a + 0.2 * x
+                    anchors[i][0] = (a * anchors[i][1] + x) / (anchors[i][1] + 1)
+                    anchors[i][1] += 1
                     return i
-            anchors.append(x)
+            anchors.append([x, 1.0])
             return len(anchors) - 1
 
-        raw = [_anchor(a) if a is not None else None for a in samp_active]
-
-        # Only cut between PERSISTENT subjects. The streamer(s) appear in most
-        # of the clip; a face inside the content they're reacting to flashes
-        # by. Require an anchor to hold ≥15% of face-samples (and at least a
-        # full shot's worth) before it's allowed to become a shot — transient
-        # content faces are ignored so the crop stays on the real people.
-        from collections import Counter
-        counts = Counter(r for r in raw if r is not None)
-        total_face = sum(counts.values()) or 1
-        hold = max(2, int(round(sample_fps * 1.2)))
-        persistent = {a for a, c in counts.items()
-                      if c >= max(hold, 0.15 * total_face)}
-        if not persistent:                       # no stable subject → blur-fill
+        for a in samp_active:
+            if a is not None:
+                _anchor(a)
+        if not anchors:                          # no stable subject → blur-fill
             return None
-
-        # Debounce: only commit a cut to a persistent anchor after it holds
-        # ~1.2s, so shots never flicker. Everything else holds the current shot.
-        cur = counts.most_common(1)[0][0]
-        committed: list[int] = []
-        pending, pcnt, cuts = None, 0, 0
-        for r in raw:
-            if r is None or r not in persistent or r == cur:
-                pending, pcnt = None, 0
-                committed.append(cur)
-                continue
-            pcnt = pcnt + 1 if r == pending else 1
-            pending = r
-            if pcnt >= hold:
-                cur, pending, pcnt = r, None, 0
-                cuts += 1
-            committed.append(cur)
-
-        # Guard against pathological choppiness — if we'd cut more than about
-        # once every 2s the source is too busy for clean cutting; blur-fill.
-        clip_s = n / (src_fps or FPS)
-        if cuts > max(1, clip_s / 2.0):
-            return None
-
-        # Per-sample static target, then expand to a piecewise-constant
-        # per-frame path (hard cuts at sample boundaries, otherwise frozen).
-        samp_target = [anchors[c] for c in committed]
-        path = []
-        k = 0
-        for i in range(n):
-            while k + 1 < len(samp_idx) and samp_idx[k + 1] <= i:
-                k += 1
-            t = samp_target[k]
-            path.append(min(max(t - crop_w / 2, 0), sw - crop_w))
+        # dominant subject = the anchor seen in the most samples
+        cx = max(anchors, key=lambda aw: aw[1])[0]
+        static_x = min(max(cx - crop_w / 2, 0), sw - crop_w)
+        path = [static_x] * n
 
         # numpy round-trip: crop each frame to the path, resize to 1080x1920,
         # pipe raw RGB into an encoder that also muxes the program's audio.

@@ -1,0 +1,12 @@
+Reaction-emoji overlay set (skull/fire/sob/joy/eyes/mindblown/scream/
+flushed/pleading/rage .png)
+
+Rendered from Noto Color Emoji by assets/emoji/make_emoji.py.
+
+Font:    Noto Color Emoji (Google), SIL Open Font License 1.1.
+Source:  system package fonts-noto-color-emoji
+         (https://github.com/googlefonts/noto-emoji)
+
+Each PNG is a single standard Unicode emoji glyph rasterized from that
+OFL font. Redistributed here as build artifacts so the renderer needs no
+color-emoji font at runtime. Re-run make_emoji.py to regenerate.
