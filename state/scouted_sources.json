@@ -1,5 +1,5 @@
 {
-  "scouted_at": "2026-07-10T02:19:50Z",
+  "scouted_at": "2026-07-10T11:07:24Z",
   "sources": {
     "reddit_subs": [
       "PublicFreakout",
@@ -20,17 +20,17 @@
     ],
     "reddit_count": 0,
     "wikipedia_on_this_day_count": 111,
-    "wikimedia_commons_count": 2,
+    "wikimedia_commons_count": 8,
     "youtube_trending_count": 49,
     "lemmy_count": 0,
     "hackernews_count": 1,
     "google_trends_count": 40,
-    "wikipedia_top_count": 0,
+    "wikipedia_top_count": 40,
     "observances_count": 8,
     "youtube_category_counts": {
       "science_tech": 25,
       "pets_animals": 25,
-      "gaming": 23,
+      "gaming": 24,
       "sports": 25,
       "entertainment": 25,
       "news_politics": 25,
@@ -49,7 +49,6 @@
       "business": 15
     },
     "editorial_counts": {
-      "nasa": 10,
       "sciencedaily": 15,
       "physorg": 15,
       "bbc_science": 15,
@@ -59,7 +58,7 @@
     },
     "hackernews_top_count": 30
   },
-  "total": 679,
+  "total": 716,
   "reddit_posts": [],
   "wikipedia_events": [
     {
@@ -875,6 +874,16 @@
     {
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
+      "year": 2026,
+      "text": "Derryn Hinch, New Zealand-born Australian radio and television host (born 1944)",
+      "page_title": "Derryn Hinch",
+      "page_url": "https://en.wikipedia.org/wiki/Derryn_Hinch",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Derryn_Hinch_at_the_Australian_Commercial_Radio_Awards.jpg/330px-Derryn_Hinch_at_the_Australian_Commercial_Radio_Awards.jpg",
+      "extract": "Derryn Nigel Hinch was an Australian media personality, politician, actor, journalist and published author. Born in New Zealand, he moved to Australia in 1963 and became known for his career on Melbourne radio and television. He served as a Senator for Victoria from 2016 to 2019."
+    },
+    {
+      "source_type": "wikipedia_on_this_day",
+      "kind": "deaths",
       "year": 2025,
       "text": "David Gergen, American political consultant (born 1942)",
       "page_title": "David Gergen",
@@ -896,7 +905,7 @@
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2024,
-      "text": "Alex Janvier, Native American Artist (born 1935)",
+      "text": "Alex Janvier, Native American artist (born 1935)",
       "page_title": "Alex Janvier",
       "page_url": "https://en.wikipedia.org/wiki/Alex_Janvier",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Alex_Janvier%2C_NGC%2C_2017.jpg/330px-Alex_Janvier%2C_NGC%2C_2017.jpg",
@@ -946,7 +955,7 @@
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2019,
-      "text": "Denise Nickerson,  American former child actress known for playing Violet Beauregarde in Willy Wonka & the Chocolate Factory (born 1957)",
+      "text": "Denise Nickerson, American former child actress known for playing Violet Beauregarde in Willy Wonka & the Chocolate Factory (born 1957)",
       "page_title": "Denise Nickerson",
       "page_url": "https://en.wikipedia.org/wiki/Denise_Nickerson",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Denise_Nickerson_by_Gage_Skidmore.jpg/330px-Denise_Nickerson_by_Gage_Skidmore.jpg",
@@ -956,7 +965,7 @@
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2018,
-      "text": "Henry Morgenthau III,  American author and television producer (born 1917)",
+      "text": "Henry Morgenthau III, American author and television producer (born 1917)",
       "page_title": "Henry Morgenthau III",
       "page_url": "https://en.wikipedia.org/wiki/Henry_Morgenthau_III",
       "thumbnail": null,
@@ -1146,16 +1155,6 @@
       "source_type": "wikipedia_on_this_day",
       "kind": "deaths",
       "year": 2012,
-      "text": "Fritz Langanke, German lieutenant (born 1919)",
-      "page_title": "List of Knight's Cross of the Iron Cross recipients (L)",
-      "page_url": "https://en.wikipedia.org/wiki/List_of_Knight's_Cross_of_the_Iron_Cross_recipients_(L)",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/DE_Band_mit_RK_%281%29.jpg/330px-DE_Band_mit_RK_%281%29.jpg",
-      "extract": "The Knight's Cross of the Iron Cross and its variants were the highest awards in the military and paramilitary forces of Nazi Germany during World War II. The Knight's Cross of the Iron Cross was awarded for a wide range of reasons and across all ranks, from a senior commander for skilled leadership of his troops in battle to a low-ranking soldier for a single act of extreme gallantry. A total of 7,321 awards were made between its first presentation on 30 September 1939 and its last bestowal on "
-    },
-    {
-      "source_type": "wikipedia_on_this_day",
-      "kind": "deaths",
-      "year": 2012,
       "text": "Viktor Suslin, Russian-German composer (born 1942)",
       "page_title": "Viktor Suslin",
       "page_url": "https://en.wikipedia.org/wiki/Viktor_Suslin",
@@ -1176,31 +1175,73 @@
   "wikimedia_videos": [
     {
       "source_type": "wikimedia_commons_recent",
-      "title": "File:Stolen Cerberus XII; Guardians of the gate, masters of the sky (961915).webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Stolen_Cerberus_XII;_Guardians_of_the_gate,_masters_of_the_sky_(961915).webm",
-      "uploaded_at": "2026-07-10T02:13:21Z",
+      "title": "File:Ruck for the Pups (957473).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Ruck_for_the_Pups_(957473).webm",
+      "uploaded_at": "2026-07-10T10:51:17Z",
       "uploader": "OptimusPrimeBot"
     },
     {
       "source_type": "wikimedia_commons_recent",
-      "title": "File:Teams Prepare Artemis IV Intertank for Thermal Protection System (MAF 20260529 CS4 IT lift to CellG v3).webm",
-      "page_url": "https://commons.wikimedia.org/wiki/File:Teams_Prepare_Artemis_IV_Intertank_for_Thermal_Protection_System_(MAF_20260529_CS4_IT_lift_to_CellG_v3).webm",
-      "uploaded_at": "2026-07-10T02:12:18Z",
+      "title": "File:Antwerp RSOM Operations (956405).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Antwerp_RSOM_Operations_(956405).webm",
+      "uploaded_at": "2026-07-10T10:50:28Z",
+      "uploader": "OptimusPrimeBot"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:555th participates in Combat Archer U K (959688).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:555th_participates_in_Combat_Archer_U_K_(959688).webm",
+      "uploaded_at": "2026-07-10T10:49:40Z",
+      "uploader": "OptimusPrimeBot"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:RAF Mildenhall Pinch Point procedures (959186).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:RAF_Mildenhall_Pinch_Point_procedures_(959186).webm",
+      "uploaded_at": "2026-07-10T10:49:02Z",
+      "uploader": "OptimusPrimeBot"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:NAVSTA Rota HSM-79 Supported Command Spotlight (973716).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:NAVSTA_Rota_HSM-79_Supported_Command_Spotlight_(973716).webm",
+      "uploaded_at": "2026-07-10T10:48:09Z",
+      "uploader": "OptimusPrimeBot"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:Mass Casualty Training at Mihail Kog\u0103lniceanu Air Base (960337).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Mass_Casualty_Training_at_Mihail_Kog\u0103lniceanu_Air_Base_(960337).webm",
+      "uploaded_at": "2026-07-10T10:47:24Z",
+      "uploader": "OptimusPrimeBot"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:U S Soldiers and NATO Conduct a MASCAL Exercise in Romania (959802).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:U_S_Soldiers_and_NATO_Conduct_a_MASCAL_Exercise_in_Romania_(959802).webm",
+      "uploaded_at": "2026-07-10T10:46:20Z",
+      "uploader": "OptimusPrimeBot"
+    },
+    {
+      "source_type": "wikimedia_commons_recent",
+      "title": "File:U S Army Europe and Africa Band and Chorus Performs at Outreach Tour Reel (958866).webm",
+      "page_url": "https://commons.wikimedia.org/wiki/File:U_S_Army_Europe_and_Africa_Band_and_Chorus_Performs_at_Outreach_Tour_Reel_(958866).webm",
+      "uploaded_at": "2026-07-10T10:45:24Z",
       "uploader": "OptimusPrimeBot"
     }
   ],
   "youtube_trending": [
     {
       "source_type": "youtube_trending",
-      "video_id": "FdzPyCJpl_A",
-      "title": "FullyChop - Vultures (Official Music Video)",
-      "channel": "FullyChop",
-      "published_at": "2026-07-09T20:11:46Z",
-      "iso_duration": "PT2M32S",
-      "views": 73445,
-      "likes": 8292,
-      "url": "https://www.youtube.com/watch?v=FdzPyCJpl_A",
-      "thumbnail": "https://i.ytimg.com/vi/FdzPyCJpl_A/hqdefault.jpg"
+      "video_id": "ESORouDblNg",
+      "title": "One Two",
+      "channel": "Future - Topic",
+      "published_at": "2026-07-09T17:40:14Z",
+      "iso_duration": "PT2M",
+      "views": 128660,
+      "likes": 8221,
+      "url": "https://www.youtube.com/watch?v=ESORouDblNg",
+      "thumbnail": "https://i.ytimg.com/vi/ESORouDblNg/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1209,22 +1250,22 @@
       "channel": "GODZILLA OFFICIAL by TOHO",
       "published_at": "2026-07-09T13:55:06Z",
       "iso_duration": "PT31S",
-      "views": 1114721,
-      "likes": 58313,
+      "views": 1389295,
+      "likes": 65092,
       "url": "https://www.youtube.com/watch?v=Xmy-Z3dHMd8",
       "thumbnail": "https://i.ytimg.com/vi/Xmy-Z3dHMd8/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "5SCJM6aYsK0",
-      "title": "Riley Green - Think As You Drunk (Official Video)",
-      "channel": "RileyGreenVEVO",
-      "published_at": "2026-07-09T21:00:06Z",
-      "iso_duration": "PT3M53S",
-      "views": 31617,
-      "likes": 3012,
-      "url": "https://www.youtube.com/watch?v=5SCJM6aYsK0",
-      "thumbnail": "https://i.ytimg.com/vi/5SCJM6aYsK0/hqdefault.jpg"
+      "video_id": "FdzPyCJpl_A",
+      "title": "FullyChop - Vultures (Official Music Video)",
+      "channel": "FullyChop",
+      "published_at": "2026-07-09T20:11:46Z",
+      "iso_duration": "PT2M32S",
+      "views": 142428,
+      "likes": 11286,
+      "url": "https://www.youtube.com/watch?v=FdzPyCJpl_A",
+      "thumbnail": "https://i.ytimg.com/vi/FdzPyCJpl_A/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1233,46 +1274,10 @@
       "channel": "Warner Bros.",
       "published_at": "2026-07-08T17:59:03Z",
       "iso_duration": "PT2M51S",
-      "views": 11829414,
-      "likes": 358091,
+      "views": 12699760,
+      "likes": 372340,
       "url": "https://www.youtube.com/watch?v=NdvqHc56lE0",
       "thumbnail": "https://i.ytimg.com/vi/NdvqHc56lE0/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "6xW45Y6SxLI",
-      "title": "My Best Meccha Chameleon Strategy Yet",
-      "channel": "SMii7Y",
-      "published_at": "2026-07-08T19:13:23Z",
-      "iso_duration": "PT46M57S",
-      "views": 3079976,
-      "likes": 152159,
-      "url": "https://www.youtube.com/watch?v=6xW45Y6SxLI",
-      "thumbnail": "https://i.ytimg.com/vi/6xW45Y6SxLI/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "yopgS0mOGqI",
-      "title": "Malcolm Todd - I Just Got Mad (Unofficial Music Video)",
-      "channel": "Malcolm Todd",
-      "published_at": "2026-07-10T00:00:06Z",
-      "iso_duration": "PT2M29S",
-      "views": 22269,
-      "likes": 11515,
-      "url": "https://www.youtube.com/watch?v=yopgS0mOGqI",
-      "thumbnail": "https://i.ytimg.com/vi/yopgS0mOGqI/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "1fpGg9wNM9A",
-      "title": "Palworld 1.0 Official Launch Trailer",
-      "channel": "Pocketpair Palworld",
-      "published_at": "2026-07-09T13:00:14Z",
-      "iso_duration": "PT2M33S",
-      "views": 494458,
-      "likes": 41124,
-      "url": "https://www.youtube.com/watch?v=1fpGg9wNM9A",
-      "thumbnail": "https://i.ytimg.com/vi/1fpGg9wNM9A/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1281,22 +1286,22 @@
       "channel": "CaseOh",
       "published_at": "2026-07-09T22:00:24Z",
       "iso_duration": "PT1H20M2S",
-      "views": 165548,
-      "likes": 12104,
+      "views": 566227,
+      "likes": 24512,
       "url": "https://www.youtube.com/watch?v=PYy17045AmE",
       "thumbnail": "https://i.ytimg.com/vi/PYy17045AmE/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "WbkQp_XEJbw",
-      "title": "Em I Orait - Tonton Malele (feat. Jarahn & Rich Antony)",
-      "channel": "Tonton Malele",
-      "published_at": "2026-07-02T14:00:06Z",
-      "iso_duration": "PT4M1S",
-      "views": 87293,
-      "likes": 2658,
-      "url": "https://www.youtube.com/watch?v=WbkQp_XEJbw",
-      "thumbnail": "https://i.ytimg.com/vi/WbkQp_XEJbw/hqdefault.jpg"
+      "video_id": "ihvuwqlGHXs",
+      "title": "YEONJUN (\uc5f0\uc900) 'Ice Cream' Official MV",
+      "channel": "HYBE LABELS",
+      "published_at": "2026-07-10T03:58:06Z",
+      "iso_duration": "PT2M43S",
+      "views": 466343,
+      "likes": 113194,
+      "url": "https://www.youtube.com/watch?v=ihvuwqlGHXs",
+      "thumbnail": "https://i.ytimg.com/vi/ihvuwqlGHXs/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1305,8 +1310,8 @@
       "channel": "New Rockstars",
       "published_at": "2026-07-09T18:55:01Z",
       "iso_duration": "PT11M13S",
-      "views": 119022,
-      "likes": 5130,
+      "views": 194827,
+      "likes": 7008,
       "url": "https://www.youtube.com/watch?v=RJ54QW7ujxA",
       "thumbnail": "https://i.ytimg.com/vi/RJ54QW7ujxA/hqdefault.jpg"
     },
@@ -1317,22 +1322,58 @@
       "channel": "JEV",
       "published_at": "2026-07-09T21:03:02Z",
       "iso_duration": "PT8M28S",
-      "views": 274478,
-      "likes": 16092,
+      "views": 585807,
+      "likes": 25679,
       "url": "https://www.youtube.com/watch?v=hshJR2eJvfQ",
       "thumbnail": "https://i.ytimg.com/vi/hshJR2eJvfQ/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "RMnIj8Wajo8",
-      "title": "Show Me Love - Mal Meninga Kuri (KTP)",
-      "channel": "Mal Meninga Kuri ",
-      "published_at": "2026-07-06T08:29:14Z",
-      "iso_duration": "PT3M35S",
-      "views": 26699,
-      "likes": 1771,
-      "url": "https://www.youtube.com/watch?v=RMnIj8Wajo8",
-      "thumbnail": "https://i.ytimg.com/vi/RMnIj8Wajo8/hqdefault.jpg"
+      "video_id": "5SCJM6aYsK0",
+      "title": "Riley Green - Think As You Drunk (Official Video)",
+      "channel": "RileyGreenVEVO",
+      "published_at": "2026-07-09T21:00:06Z",
+      "iso_duration": "PT3M53S",
+      "views": 71724,
+      "likes": 4441,
+      "url": "https://www.youtube.com/watch?v=5SCJM6aYsK0",
+      "thumbnail": "https://i.ytimg.com/vi/5SCJM6aYsK0/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "1fpGg9wNM9A",
+      "title": "Palworld 1.0 Official Launch Trailer",
+      "channel": "Pocketpair Palworld",
+      "published_at": "2026-07-09T13:00:14Z",
+      "iso_duration": "PT2M33S",
+      "views": 619229,
+      "likes": 45408,
+      "url": "https://www.youtube.com/watch?v=1fpGg9wNM9A",
+      "thumbnail": "https://i.ytimg.com/vi/1fpGg9wNM9A/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "6xW45Y6SxLI",
+      "title": "My Best Meccha Chameleon Strategy Yet",
+      "channel": "SMii7Y",
+      "published_at": "2026-07-08T19:13:23Z",
+      "iso_duration": "PT46M57S",
+      "views": 3385508,
+      "likes": 160035,
+      "url": "https://www.youtube.com/watch?v=6xW45Y6SxLI",
+      "thumbnail": "https://i.ytimg.com/vi/6xW45Y6SxLI/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "WbkQp_XEJbw",
+      "title": "Em I Orait - Tonton Malele (feat. Jarahn & Rich Antony)",
+      "channel": "Tonton Malele",
+      "published_at": "2026-07-02T14:00:06Z",
+      "iso_duration": "PT4M1S",
+      "views": 91706,
+      "likes": 2703,
+      "url": "https://www.youtube.com/watch?v=WbkQp_XEJbw",
+      "thumbnail": "https://i.ytimg.com/vi/WbkQp_XEJbw/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1341,46 +1382,10 @@
       "channel": "Netflix",
       "published_at": "2026-07-09T12:00:00Z",
       "iso_duration": "PT1M44S",
-      "views": 333898,
-      "likes": 14060,
+      "views": 431663,
+      "likes": 16312,
       "url": "https://www.youtube.com/watch?v=t_QUYXwkwss",
       "thumbnail": "https://i.ytimg.com/vi/t_QUYXwkwss/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "8utcF9Azbxo",
-      "title": "Something Won't Let You Leave...",
-      "channel": "ThatMob",
-      "published_at": "2026-07-08T14:00:06Z",
-      "iso_duration": "PT24M48S",
-      "views": 6340854,
-      "likes": 381868,
-      "url": "https://www.youtube.com/watch?v=8utcF9Azbxo",
-      "thumbnail": "https://i.ytimg.com/vi/8utcF9Azbxo/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "MehA1EXYmrc",
-      "title": "MAS PERRO",
-      "channel": "Ra\u00fal Beltran - Topic",
-      "published_at": "2026-07-09T07:05:01Z",
-      "iso_duration": "PT3M48S",
-      "views": 87101,
-      "likes": 1494,
-      "url": "https://www.youtube.com/watch?v=MehA1EXYmrc",
-      "thumbnail": "https://i.ytimg.com/vi/MehA1EXYmrc/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "mahKifMsaTk",
-      "title": "GODZILLA MINUS ZERO Official Teaser Trailer 2 (2026)",
-      "channel": "ONE Media",
-      "published_at": "2026-07-09T14:09:55Z",
-      "iso_duration": "PT1M28S",
-      "views": 187731,
-      "likes": 5009,
-      "url": "https://www.youtube.com/watch?v=mahKifMsaTk",
-      "thumbnail": "https://i.ytimg.com/vi/mahKifMsaTk/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1389,10 +1394,82 @@
       "channel": "Markiplier",
       "published_at": "2026-07-09T19:20:51Z",
       "iso_duration": "PT58M2S",
-      "views": 298204,
-      "likes": 33095,
+      "views": 630709,
+      "likes": 49679,
       "url": "https://www.youtube.com/watch?v=icAKnjfNxT4",
       "thumbnail": "https://i.ytimg.com/vi/icAKnjfNxT4/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "RMnIj8Wajo8",
+      "title": "Show Me Love - Mal Meninga Kuri (KTP)",
+      "channel": "Mal Meninga Kuri ",
+      "published_at": "2026-07-06T08:29:14Z",
+      "iso_duration": "PT3M35S",
+      "views": 28956,
+      "likes": 1833,
+      "url": "https://www.youtube.com/watch?v=RMnIj8Wajo8",
+      "thumbnail": "https://i.ytimg.com/vi/RMnIj8Wajo8/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "mahKifMsaTk",
+      "title": "GODZILLA MINUS ZERO Official Teaser Trailer 2 (2026)",
+      "channel": "ONE Media",
+      "published_at": "2026-07-09T14:09:55Z",
+      "iso_duration": "PT1M28S",
+      "views": 330846,
+      "likes": 7296,
+      "url": "https://www.youtube.com/watch?v=mahKifMsaTk",
+      "thumbnail": "https://i.ytimg.com/vi/mahKifMsaTk/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "OsEeZdu3rhA",
+      "title": "EA Responded",
+      "channel": "Bordeaux",
+      "published_at": "2026-07-09T22:42:29Z",
+      "iso_duration": "PT13M32S",
+      "views": 398763,
+      "likes": 25134,
+      "url": "https://www.youtube.com/watch?v=OsEeZdu3rhA",
+      "thumbnail": "https://i.ytimg.com/vi/OsEeZdu3rhA/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "yopgS0mOGqI",
+      "title": "Malcolm Todd - I Just Got Mad (Unofficial Music Video)",
+      "channel": "Malcolm Todd",
+      "published_at": "2026-07-10T00:00:06Z",
+      "iso_duration": "PT2M29S",
+      "views": 117895,
+      "likes": 20036,
+      "url": "https://www.youtube.com/watch?v=yopgS0mOGqI",
+      "thumbnail": "https://i.ytimg.com/vi/yopgS0mOGqI/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "2WmI_bYr40U",
+      "title": "The Odyssey: How 1 Trailer Destroyed a Movie",
+      "channel": "Moon",
+      "published_at": "2026-07-09T21:16:48Z",
+      "iso_duration": "PT10M36S",
+      "views": 130137,
+      "likes": 6516,
+      "url": "https://www.youtube.com/watch?v=2WmI_bYr40U",
+      "thumbnail": "https://i.ytimg.com/vi/2WmI_bYr40U/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "8utcF9Azbxo",
+      "title": "Something Won't Let You Leave...",
+      "channel": "ThatMob",
+      "published_at": "2026-07-08T14:00:06Z",
+      "iso_duration": "PT24M48S",
+      "views": 6921797,
+      "likes": 403825,
+      "url": "https://www.youtube.com/watch?v=8utcF9Azbxo",
+      "thumbnail": "https://i.ytimg.com/vi/8utcF9Azbxo/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1401,8 +1478,8 @@
       "channel": "SeanRiiVEVO",
       "published_at": "2026-07-02T15:00:06Z",
       "iso_duration": "PT3M4S",
-      "views": 144684,
-      "likes": 4868,
+      "views": 151508,
+      "likes": 4962,
       "url": "https://www.youtube.com/watch?v=N4jtgcOIzVA",
       "thumbnail": "https://i.ytimg.com/vi/N4jtgcOIzVA/hqdefault.jpg"
     },
@@ -1413,8 +1490,8 @@
       "channel": "Red Barrels",
       "published_at": "2026-07-09T14:00:06Z",
       "iso_duration": "PT2M45S",
-      "views": 147546,
-      "likes": 13546,
+      "views": 169920,
+      "likes": 14579,
       "url": "https://www.youtube.com/watch?v=n27Mc6ebjR4",
       "thumbnail": "https://i.ytimg.com/vi/n27Mc6ebjR4/hqdefault.jpg"
     },
@@ -1425,22 +1502,22 @@
       "channel": "PrestonPlayz",
       "published_at": "2026-07-09T20:00:24Z",
       "iso_duration": "PT19M30S",
-      "views": 170750,
-      "likes": 3841,
+      "views": 354271,
+      "likes": 5627,
       "url": "https://www.youtube.com/watch?v=dy1Pgbvmdfg",
       "thumbnail": "https://i.ytimg.com/vi/dy1Pgbvmdfg/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "XscUvf1_G8E",
-      "title": "Alphaville - Forever Young (Sub. Espa\u00f1ol + Lyrics)",
-      "channel": "jostland.",
-      "published_at": "2026-07-08T17:09:04Z",
-      "iso_duration": "PT3M46S",
-      "views": 461713,
-      "likes": 3557,
-      "url": "https://www.youtube.com/watch?v=XscUvf1_G8E",
-      "thumbnail": "https://i.ytimg.com/vi/XscUvf1_G8E/hqdefault.jpg"
+      "video_id": "MehA1EXYmrc",
+      "title": "MAS PERRO",
+      "channel": "Ra\u00fal Beltran - Topic",
+      "published_at": "2026-07-09T07:05:01Z",
+      "iso_duration": "PT3M48S",
+      "views": 115024,
+      "likes": 1785,
+      "url": "https://www.youtube.com/watch?v=MehA1EXYmrc",
+      "thumbnail": "https://i.ytimg.com/vi/MehA1EXYmrc/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1449,34 +1526,34 @@
       "channel": "3C Films",
       "published_at": "2026-07-09T18:41:49Z",
       "iso_duration": "PT16M12S",
-      "views": 57565,
-      "likes": 4128,
+      "views": 79363,
+      "likes": 4989,
       "url": "https://www.youtube.com/watch?v=DzYg8pW2M9U",
       "thumbnail": "https://i.ytimg.com/vi/DzYg8pW2M9U/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "caoa9lHg7aY",
-      "title": "Meccha Chameleon - These Spots Shouldn't Work... But They Do",
-      "channel": "VanossGaming",
-      "published_at": "2026-07-09T02:13:11Z",
-      "iso_duration": "PT23M13S",
-      "views": 710680,
-      "likes": 33656,
-      "url": "https://www.youtube.com/watch?v=caoa9lHg7aY",
-      "thumbnail": "https://i.ytimg.com/vi/caoa9lHg7aY/hqdefault.jpg"
+      "video_id": "O4sLy50ifN8",
+      "title": "ROBLOX DEMONOLOGY",
+      "channel": "Flamingo",
+      "published_at": "2026-07-10T04:00:22Z",
+      "iso_duration": "PT17M53S",
+      "views": 233228,
+      "likes": 16888,
+      "url": "https://www.youtube.com/watch?v=O4sLy50ifN8",
+      "thumbnail": "https://i.ytimg.com/vi/O4sLy50ifN8/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "7wrdrSIYk_E",
-      "title": "Morgan Wallen - Chasin' You (Lyrics)",
-      "channel": "Rap Paradise",
-      "published_at": "2026-07-06T13:08:06Z",
-      "iso_duration": "PT3M26S",
-      "views": 30031,
-      "likes": 167,
-      "url": "https://www.youtube.com/watch?v=7wrdrSIYk_E",
-      "thumbnail": "https://i.ytimg.com/vi/7wrdrSIYk_E/hqdefault.jpg"
+      "video_id": "XscUvf1_G8E",
+      "title": "Alphaville - Forever Young (Sub. Espa\u00f1ol + Lyrics)",
+      "channel": "jostland.",
+      "published_at": "2026-07-08T17:09:04Z",
+      "iso_duration": "PT3M46S",
+      "views": 604209,
+      "likes": 4379,
+      "url": "https://www.youtube.com/watch?v=XscUvf1_G8E",
+      "thumbnail": "https://i.ytimg.com/vi/XscUvf1_G8E/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1485,34 +1562,34 @@
       "channel": "NEON",
       "published_at": "2026-07-09T14:00:20Z",
       "iso_duration": "PT1M59S",
-      "views": 328515,
-      "likes": 11391,
+      "views": 437586,
+      "likes": 13383,
       "url": "https://www.youtube.com/watch?v=R5jcEBVBEbQ",
       "thumbnail": "https://i.ytimg.com/vi/R5jcEBVBEbQ/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "mIriLi61g3o",
-      "title": "I Beat World 3 In Roblox Keyboard Escape..",
-      "channel": "Foltyn",
-      "published_at": "2026-07-09T03:56:22Z",
-      "iso_duration": "PT24M26S",
-      "views": 1283507,
-      "likes": 27921,
-      "url": "https://www.youtube.com/watch?v=mIriLi61g3o",
-      "thumbnail": "https://i.ytimg.com/vi/mIriLi61g3o/hqdefault.jpg"
+      "video_id": "0lOYSDeWDZU",
+      "title": "AMP PLAYS MECCHA CHAMELEON!",
+      "channel": "Kai Cenat Live",
+      "published_at": "2026-07-10T05:48:27Z",
+      "iso_duration": "PT1H3M51S",
+      "views": 107060,
+      "likes": 3359,
+      "url": "https://www.youtube.com/watch?v=0lOYSDeWDZU",
+      "thumbnail": "https://i.ytimg.com/vi/0lOYSDeWDZU/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "TRvAnGP6SS4",
-      "title": "El Ultimo Suspiro",
-      "channel": "DOOMFLOW23",
-      "published_at": "2026-07-05T21:40:14Z",
-      "iso_duration": "PT4M9S",
-      "views": 159704,
-      "likes": 2076,
-      "url": "https://www.youtube.com/watch?v=TRvAnGP6SS4",
-      "thumbnail": "https://i.ytimg.com/vi/TRvAnGP6SS4/hqdefault.jpg"
+      "video_id": "7wrdrSIYk_E",
+      "title": "Morgan Wallen - Chasin' You (Lyrics)",
+      "channel": "Rap Paradise",
+      "published_at": "2026-07-06T13:08:06Z",
+      "iso_duration": "PT3M26S",
+      "views": 42621,
+      "likes": 179,
+      "url": "https://www.youtube.com/watch?v=7wrdrSIYk_E",
+      "thumbnail": "https://i.ytimg.com/vi/7wrdrSIYk_E/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1521,22 +1598,22 @@
       "channel": "Paramount Plus",
       "published_at": "2026-07-09T13:00:03Z",
       "iso_duration": "PT1M26S",
-      "views": 709059,
-      "likes": 7266,
+      "views": 1197409,
+      "likes": 9037,
       "url": "https://www.youtube.com/watch?v=8SCegP4s3n0",
       "thumbnail": "https://i.ytimg.com/vi/8SCegP4s3n0/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "S-8YkBgjFfo",
-      "title": "New Brawler: Nori's Origin Story! (Brawl Stars Animation)",
-      "channel": "Brawl Stars",
-      "published_at": "2026-07-09T08:07:22Z",
-      "iso_duration": "PT2M20S",
-      "views": 2472814,
-      "likes": 111754,
-      "url": "https://www.youtube.com/watch?v=S-8YkBgjFfo",
-      "thumbnail": "https://i.ytimg.com/vi/S-8YkBgjFfo/hqdefault.jpg"
+      "video_id": "M7rY72AGqfo",
+      "title": "Our Freshman Year At Florida State! RTG Ep. #3",
+      "channel": "MMG",
+      "published_at": "2026-07-09T22:00:32Z",
+      "iso_duration": "PT40M10S",
+      "views": 136512,
+      "likes": 4713,
+      "url": "https://www.youtube.com/watch?v=M7rY72AGqfo",
+      "thumbnail": "https://i.ytimg.com/vi/M7rY72AGqfo/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1545,22 +1622,22 @@
       "channel": "RyloRodriguezVEVO",
       "published_at": "2026-07-08T19:00:06Z",
       "iso_duration": "PT3M26S",
-      "views": 129584,
-      "likes": 7601,
+      "views": 151576,
+      "likes": 8091,
       "url": "https://www.youtube.com/watch?v=YYI5bWq3gnU",
       "thumbnail": "https://i.ytimg.com/vi/YYI5bWq3gnU/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "2WmI_bYr40U",
-      "title": "The Odyssey: How 1 Trailer Destroyed a Movie",
-      "channel": "Moon",
-      "published_at": "2026-07-09T21:16:48Z",
-      "iso_duration": "PT10M36S",
-      "views": 54861,
-      "likes": 3434,
-      "url": "https://www.youtube.com/watch?v=2WmI_bYr40U",
-      "thumbnail": "https://i.ytimg.com/vi/2WmI_bYr40U/hqdefault.jpg"
+      "video_id": "ZVLaaFFJyfM",
+      "title": "The Legend of Aang FINALLY Has a Trailer",
+      "channel": "Danny Motta",
+      "published_at": "2026-07-10T01:17:30Z",
+      "iso_duration": "PT19M12S",
+      "views": 33796,
+      "likes": 4877,
+      "url": "https://www.youtube.com/watch?v=ZVLaaFFJyfM",
+      "thumbnail": "https://i.ytimg.com/vi/ZVLaaFFJyfM/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1569,22 +1646,22 @@
       "channel": "LDShadowLady",
       "published_at": "2026-07-09T17:45:08Z",
       "iso_duration": "PT17M20S",
-      "views": 188896,
-      "likes": 25865,
+      "views": 302880,
+      "likes": 34223,
       "url": "https://www.youtube.com/watch?v=OWcTJCJsNSQ",
       "thumbnail": "https://i.ytimg.com/vi/OWcTJCJsNSQ/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "2R2DxCQPQj4",
-      "title": "Mi Olvido",
-      "channel": "Banda MS de Sergio Liz\u00e1rraga - Topic",
-      "published_at": "2026-07-09T01:17:31Z",
-      "iso_duration": "PT3M39S",
-      "views": 130544,
-      "likes": 850,
-      "url": "https://www.youtube.com/watch?v=2R2DxCQPQj4",
-      "thumbnail": "https://i.ytimg.com/vi/2R2DxCQPQj4/hqdefault.jpg"
+      "video_id": "Uk_aLT1VpxA",
+      "title": "Brabo Gator -Bullet (Official Music Video)",
+      "channel": "Brabo Gator",
+      "published_at": "2026-07-09T23:30:06Z",
+      "iso_duration": "PT3M35S",
+      "views": 20808,
+      "likes": 5415,
+      "url": "https://www.youtube.com/watch?v=Uk_aLT1VpxA",
+      "thumbnail": "https://i.ytimg.com/vi/Uk_aLT1VpxA/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1593,22 +1670,58 @@
       "channel": "Avatar Legends",
       "published_at": "2026-07-07T15:00:30Z",
       "iso_duration": "PT2M25S",
-      "views": 4987394,
-      "likes": 212283,
+      "views": 5482601,
+      "likes": 219352,
       "url": "https://www.youtube.com/watch?v=7b20GRFZBFE",
       "thumbnail": "https://i.ytimg.com/vi/7b20GRFZBFE/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "YBrtgbRgEX0",
-      "title": "BLACK OPS 2 IS BACK",
-      "channel": "TimTheTatman",
-      "published_at": "2026-07-10T00:51:09Z",
-      "iso_duration": "PT3H32M31S",
-      "views": 186484,
-      "likes": 3091,
-      "url": "https://www.youtube.com/watch?v=YBrtgbRgEX0",
-      "thumbnail": "https://i.ytimg.com/vi/YBrtgbRgEX0/hqdefault.jpg"
+      "video_id": "caoa9lHg7aY",
+      "title": "Meccha Chameleon - These Spots Shouldn't Work... But They Do",
+      "channel": "VanossGaming",
+      "published_at": "2026-07-09T02:13:11Z",
+      "iso_duration": "PT23M13S",
+      "views": 816314,
+      "likes": 36230,
+      "url": "https://www.youtube.com/watch?v=caoa9lHg7aY",
+      "thumbnail": "https://i.ytimg.com/vi/caoa9lHg7aY/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "TRvAnGP6SS4",
+      "title": "El Ultimo Suspiro",
+      "channel": "DOOMFLOW23",
+      "published_at": "2026-07-05T21:40:14Z",
+      "iso_duration": "PT4M9S",
+      "views": 187095,
+      "likes": 2310,
+      "url": "https://www.youtube.com/watch?v=TRvAnGP6SS4",
+      "thumbnail": "https://i.ytimg.com/vi/TRvAnGP6SS4/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "fanBFK3txvE",
+      "title": "Spider-Man: Brand New Day - NEW Trailer + SONY COMMENTS - Reaction!",
+      "channel": "Tyrone Magnus",
+      "published_at": "2026-07-10T00:13:16Z",
+      "iso_duration": "PT5M17S",
+      "views": 38706,
+      "likes": 2280,
+      "url": "https://www.youtube.com/watch?v=fanBFK3txvE",
+      "thumbnail": "https://i.ytimg.com/vi/fanBFK3txvE/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "ehBnNWS86d4",
+      "title": "Trolling as ADMIN in +1 Speed Keyboard Escape!",
+      "channel": "Tyler & Snowi",
+      "published_at": "2026-07-09T23:04:33Z",
+      "iso_duration": "PT22M33S",
+      "views": 266838,
+      "likes": 10701,
+      "url": "https://www.youtube.com/watch?v=ehBnNWS86d4",
+      "thumbnail": "https://i.ytimg.com/vi/ehBnNWS86d4/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1617,46 +1730,10 @@
       "channel": "Bloodhound Q50",
       "published_at": "2026-07-08T21:13:28Z",
       "iso_duration": "PT2M",
-      "views": 152818,
-      "likes": 14046,
+      "views": 185462,
+      "likes": 15323,
       "url": "https://www.youtube.com/watch?v=xjZOQR9uqdA",
       "thumbnail": "https://i.ytimg.com/vi/xjZOQR9uqdA/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "DUsJ8_2RmrQ",
-      "title": "Dune Part 3 FULL TRAILER ANALYSIS | Quinn's Ideas",
-      "channel": "Quinn's Ideas",
-      "published_at": "2026-07-08T20:51:02Z",
-      "iso_duration": "PT20M43S",
-      "views": 123806,
-      "likes": 10163,
-      "url": "https://www.youtube.com/watch?v=DUsJ8_2RmrQ",
-      "thumbnail": "https://i.ytimg.com/vi/DUsJ8_2RmrQ/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "8xHVKzkiAqQ",
-      "title": "Animal Hospital, But I Only Let ANOMALIES IN...",
-      "channel": "Techy Plays",
-      "published_at": "2026-07-09T14:00:33Z",
-      "iso_duration": "PT15M37S",
-      "views": 208396,
-      "likes": 3710,
-      "url": "https://www.youtube.com/watch?v=8xHVKzkiAqQ",
-      "thumbnail": "https://i.ytimg.com/vi/8xHVKzkiAqQ/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "ILPWLB7Cc4A",
-      "title": "Por el Pueblo y Para el Pueblo",
-      "channel": "Los Farmerz - Topic",
-      "published_at": "2026-07-09T04:00:25Z",
-      "iso_duration": "PT4M16S",
-      "views": 39304,
-      "likes": 584,
-      "url": "https://www.youtube.com/watch?v=ILPWLB7Cc4A",
-      "thumbnail": "https://i.ytimg.com/vi/ILPWLB7Cc4A/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1665,10 +1742,46 @@
       "channel": "Prime Video",
       "published_at": "2026-07-09T15:00:30Z",
       "iso_duration": "PT2M42S",
-      "views": 744417,
-      "likes": 1830,
+      "views": 925995,
+      "likes": 2620,
       "url": "https://www.youtube.com/watch?v=bwwF3TuJQME",
       "thumbnail": "https://i.ytimg.com/vi/bwwF3TuJQME/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "mIriLi61g3o",
+      "title": "I Beat World 3 In Roblox Keyboard Escape..",
+      "channel": "Foltyn",
+      "published_at": "2026-07-09T03:56:22Z",
+      "iso_duration": "PT24M26S",
+      "views": 1511171,
+      "likes": 30839,
+      "url": "https://www.youtube.com/watch?v=mIriLi61g3o",
+      "thumbnail": "https://i.ytimg.com/vi/mIriLi61g3o/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "fE6w_LdkFHg",
+      "title": "Skillet - Scream (Official Music Video)",
+      "channel": "SkilletVEVO",
+      "published_at": "2026-07-10T04:00:06Z",
+      "iso_duration": "PT3M27S",
+      "views": 48707,
+      "likes": 11396,
+      "url": "https://www.youtube.com/watch?v=fE6w_LdkFHg",
+      "thumbnail": "https://i.ytimg.com/vi/fE6w_LdkFHg/hqdefault.jpg"
+    },
+    {
+      "source_type": "youtube_trending",
+      "video_id": "uU8slMpqDXU",
+      "title": "Ghost of Tsushima Legends | Official Teaser | Crunchyroll",
+      "channel": "Crunchyroll",
+      "published_at": "2026-07-10T00:00:22Z",
+      "iso_duration": "PT41S",
+      "views": 65739,
+      "likes": 5090,
+      "url": "https://www.youtube.com/watch?v=uU8slMpqDXU",
+      "thumbnail": "https://i.ytimg.com/vi/uU8slMpqDXU/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
@@ -1677,8 +1790,8 @@
       "channel": "ItsFunneh",
       "published_at": "2026-07-09T20:00:39Z",
       "iso_duration": "PT24M47S",
-      "views": 146706,
-      "likes": 9031,
+      "views": 294282,
+      "likes": 12500,
       "url": "https://www.youtube.com/watch?v=a6fPF1JZOGw",
       "thumbnail": "https://i.ytimg.com/vi/a6fPF1JZOGw/hqdefault.jpg"
     },
@@ -1689,94 +1802,22 @@
       "channel": "Chilanga Banda",
       "published_at": "2026-07-08T00:00:06Z",
       "iso_duration": "PT3M54S",
-      "views": 496686,
-      "likes": 558,
+      "views": 604945,
+      "likes": 658,
       "url": "https://www.youtube.com/watch?v=qJ2XLckOpZo",
       "thumbnail": "https://i.ytimg.com/vi/qJ2XLckOpZo/hqdefault.jpg"
     },
     {
       "source_type": "youtube_trending",
-      "video_id": "650iPnUnpCo",
-      "title": "Idiots - Official Trailer (2026) Dave Franco, O'Shea Jackson Jr., Peter Dinklage",
-      "channel": "IGN",
-      "published_at": "2026-07-09T15:46:08Z",
-      "iso_duration": "PT1M41S",
-      "views": 44875,
-      "likes": 1276,
-      "url": "https://www.youtube.com/watch?v=650iPnUnpCo",
-      "thumbnail": "https://i.ytimg.com/vi/650iPnUnpCo/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "n2p64a8PDEg",
-      "title": "Having a REALISTIC LIFE in Minecraft!",
-      "channel": "Cash",
-      "published_at": "2026-07-09T15:00:27Z",
-      "iso_duration": "PT2H6M39S",
-      "views": 261370,
-      "likes": 4202,
-      "url": "https://www.youtube.com/watch?v=n2p64a8PDEg",
-      "thumbnail": "https://i.ytimg.com/vi/n2p64a8PDEg/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "kwAhKmSWdx8",
-      "title": "'Dynamite' by V | BTS WORLD TOUR \u2018ARIRANG\u2019",
-      "channel": "BANGTANTV",
-      "published_at": "2026-07-09T09:00:00Z",
-      "iso_duration": "PT3M30S",
-      "views": 891860,
-      "likes": 213126,
-      "url": "https://www.youtube.com/watch?v=kwAhKmSWdx8",
-      "thumbnail": "https://i.ytimg.com/vi/kwAhKmSWdx8/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "9oJPs2nengg",
-      "title": "DUNE Part 3 Official Trailer Breakdown | Easter Eggs, Messiah Book Changes And Things You Missed",
-      "channel": "Heavy Spoilers",
-      "published_at": "2026-07-09T09:50:06Z",
-      "iso_duration": "PT20M7S",
-      "views": 44614,
-      "likes": 2463,
-      "url": "https://www.youtube.com/watch?v=9oJPs2nengg",
-      "thumbnail": "https://i.ytimg.com/vi/9oJPs2nengg/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "0rWyHX_9PpY",
-      "title": "ROBLOX DRAIN THE LAKE\u2026",
-      "channel": "More Techy",
-      "published_at": "2026-07-09T16:00:25Z",
-      "iso_duration": "PT11M46S",
-      "views": 216403,
-      "likes": 4984,
-      "url": "https://www.youtube.com/watch?v=0rWyHX_9PpY",
-      "thumbnail": "https://i.ytimg.com/vi/0rWyHX_9PpY/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "yFtpbcZFebU",
-      "title": "Romeo Santos - Imitadora (Letra / Lyrics)",
-      "channel": "beats and beats",
-      "published_at": "2026-07-08T18:00:06Z",
-      "iso_duration": "PT3M55S",
-      "views": 290897,
-      "likes": 567,
-      "url": "https://www.youtube.com/watch?v=yFtpbcZFebU",
-      "thumbnail": "https://i.ytimg.com/vi/yFtpbcZFebU/hqdefault.jpg"
-    },
-    {
-      "source_type": "youtube_trending",
-      "video_id": "MRY6622aZIs",
-      "title": "Carter's Mafia (Season 2) | Official Trailer",
-      "channel": "Carter Kench",
-      "published_at": "2026-07-09T19:12:15Z",
-      "iso_duration": "PT2M26S",
-      "views": 26562,
-      "likes": 3256,
-      "url": "https://www.youtube.com/watch?v=MRY6622aZIs",
-      "thumbnail": "https://i.ytimg.com/vi/MRY6622aZIs/hqdefault.jpg"
+      "video_id": "D4A6-WuEx8I",
+      "title": "AVATAR AANG THE LAST AIRBENDER TRAILER: New Avatar Movie!",
+      "channel": "Emergency Awesome",
+      "published_at": "2026-07-09T21:54:29Z",
+      "iso_duration": "PT16M54S",
+      "views": 32188,
+      "likes": 1519,
+      "url": "https://www.youtube.com/watch?v=D4A6-WuEx8I",
+      "thumbnail": "https://i.ytimg.com/vi/D4A6-WuEx8I/hqdefault.jpg"
     }
   ],
   "lemmy_posts": [],
@@ -1785,7 +1826,7 @@
       "source_type": "hackernews_video",
       "title": "Maxwell's Equations Were Discovered [video]",
       "url": "https://www.youtube.com/watch?v=-hua8RWopfw",
-      "score": 48,
+      "score": 51,
       "permalink": "https://news.ycombinator.com/item?id=48846276"
     }
   ],
@@ -1793,245 +1834,446 @@
     {
       "source_type": "google_trends",
       "geo": "US",
-      "title": "cody williams",
-      "approx_traffic": "500+"
+      "title": "chevrolet corvette grand sport",
+      "approx_traffic": "100+"
     },
     {
       "source_type": "google_trends",
       "geo": "US",
-      "title": "darryn peterson",
-      "approx_traffic": "1000+"
+      "title": "louisville weather",
+      "approx_traffic": "100+"
     },
     {
       "source_type": "google_trends",
       "geo": "US",
-      "title": "jordan walker",
-      "approx_traffic": "1000+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "US",
-      "title": "trae young",
-      "approx_traffic": "500+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "US",
-      "title": "taylor frankie paul",
-      "approx_traffic": "2000+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "US",
-      "title": "burning man",
-      "approx_traffic": "500+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "US",
-      "title": "love island usa season 8 episode 32",
+      "title": "pet shop boys depeche mode outkast",
       "approx_traffic": "200+"
     },
     {
       "source_type": "google_trends",
       "geo": "US",
-      "title": "dbacks - padres",
-      "approx_traffic": "2000+"
+      "title": "today&apos;s weather",
+      "approx_traffic": "200+"
     },
     {
       "source_type": "google_trends",
       "geo": "US",
-      "title": "tigers standings",
+      "title": "paula badosa",
       "approx_traffic": "500+"
     },
     {
       "source_type": "google_trends",
       "geo": "US",
-      "title": "cfl",
+      "title": "pete hegseth military grooming policy",
+      "approx_traffic": "500+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "US",
+      "title": "gta online kortz center heist",
       "approx_traffic": "200+"
     },
     {
       "source_type": "google_trends",
-      "geo": "GB",
-      "title": "the rookie",
-      "approx_traffic": "100+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "GB",
-      "title": "postcode lottery",
+      "geo": "US",
+      "title": "north carolina",
       "approx_traffic": "200+"
     },
     {
       "source_type": "google_trends",
-      "geo": "GB",
-      "title": "betmgm",
+      "geo": "US",
+      "title": "huey lewis deafness condition",
       "approx_traffic": "100+"
     },
     {
       "source_type": "google_trends",
-      "geo": "GB",
-      "title": "telegram",
-      "approx_traffic": "100+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "GB",
-      "title": "paul gambaccini",
+      "geo": "US",
+      "title": "rattlesnake",
       "approx_traffic": "1000+"
     },
     {
       "source_type": "google_trends",
       "geo": "GB",
-      "title": "fast and furious",
+      "title": "judi dench",
       "approx_traffic": "200+"
     },
     {
       "source_type": "google_trends",
       "geo": "GB",
-      "title": "austin butler",
+      "title": "grand theft auto",
       "approx_traffic": "200+"
     },
     {
       "source_type": "google_trends",
       "geo": "GB",
-      "title": "prime",
-      "approx_traffic": "200+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "GB",
-      "title": "palworld 1.0 release time",
+      "title": "ethan nwaneri",
       "approx_traffic": "100+"
     },
     {
       "source_type": "google_trends",
       "geo": "GB",
-      "title": "gakuran codes",
+      "title": "bcfc",
+      "approx_traffic": "100+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "GB",
+      "title": "neco williams",
+      "approx_traffic": "100+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "GB",
+      "title": "logan paul",
+      "approx_traffic": "200+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "GB",
+      "title": "waitrose feminine care",
+      "approx_traffic": "1000+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "GB",
+      "title": "kyle joseph",
+      "approx_traffic": "200+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "GB",
+      "title": "indw vs en-w",
+      "approx_traffic": "100000+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "GB",
+      "title": "national league fixtures",
+      "approx_traffic": "1000+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "CA",
+      "title": "action collective",
+      "approx_traffic": "100+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "CA",
+      "title": "journal de quebec",
+      "approx_traffic": "1000+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "CA",
+      "title": "mcdonald&apos;s",
       "approx_traffic": "200+"
     },
     {
       "source_type": "google_trends",
       "geo": "CA",
-      "title": "feux d&apos;artifice 2026",
-      "approx_traffic": "200+"
+      "title": "the u.s. election assistance commission.",
+      "approx_traffic": "100+"
     },
     {
       "source_type": "google_trends",
       "geo": "CA",
-      "title": "love island usa season 8 episode 32",
-      "approx_traffic": "200+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "CA",
-      "title": "fever vs mercury",
-      "approx_traffic": "200+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "CA",
-      "title": "diamondbacks vs padres",
-      "approx_traffic": "200+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "CA",
-      "title": "rockies vs giants",
+      "title": "argentina national football team",
       "approx_traffic": "500+"
     },
     {
       "source_type": "google_trends",
       "geo": "CA",
-      "title": "amber alert",
+      "title": "pr\u00e9sident",
+      "approx_traffic": "500+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "CA",
+      "title": "vladimir guerrero jr.",
+      "approx_traffic": "200+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "CA",
+      "title": "andrew s. boutros",
+      "approx_traffic": "100+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "CA",
+      "title": "gendarmerie royale du canada",
+      "approx_traffic": "500+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "CA",
+      "title": "jennifer garner",
+      "approx_traffic": "100+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "AU",
+      "title": "parramatta eels",
+      "approx_traffic": "500+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "AU",
+      "title": "brisbane airport flight paths",
+      "approx_traffic": "200+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "AU",
+      "title": "jana armstrong",
+      "approx_traffic": "200+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "AU",
+      "title": "retirement pension",
+      "approx_traffic": "200+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "AU",
+      "title": "monty don",
+      "approx_traffic": "500+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "AU",
+      "title": "paul okon-engstler transfer news",
+      "approx_traffic": "500+"
+    },
+    {
+      "source_type": "google_trends",
+      "geo": "AU",
+      "title": "wests tigers vs warriors",
       "approx_traffic": "5000+"
     },
     {
       "source_type": "google_trends",
-      "geo": "CA",
-      "title": "emergency alert",
-      "approx_traffic": "200+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "CA",
-      "title": "cassadee pope",
-      "approx_traffic": "100+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "CA",
-      "title": "larry ellison",
-      "approx_traffic": "100+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "CA",
-      "title": "malahat accident today",
-      "approx_traffic": "1000+"
-    },
-    {
-      "source_type": "google_trends",
       "geo": "AU",
-      "title": "israel adesanya",
-      "approx_traffic": "100+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "AU",
-      "title": "childcare",
+      "title": "nick daicos",
       "approx_traffic": "500+"
     },
     {
       "source_type": "google_trends",
       "geo": "AU",
-      "title": "daycare",
-      "approx_traffic": "500+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "AU",
-      "title": "iran news",
+      "title": "xpeng",
       "approx_traffic": "200+"
     },
     {
       "source_type": "google_trends",
       "geo": "AU",
-      "title": "nba summer league",
-      "approx_traffic": "500+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "AU",
-      "title": "harry",
-      "approx_traffic": "2000+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "AU",
-      "title": "vicki brady",
-      "approx_traffic": "1000+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "AU",
-      "title": "codex",
-      "approx_traffic": "500+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "AU",
-      "title": "explosive diarrhea",
+      "title": "coles butter chicken roast chook",
       "approx_traffic": "200+"
-    },
-    {
-      "source_type": "google_trends",
-      "geo": "AU",
-      "title": "golden boot world cup 2026",
-      "approx_traffic": "1000+"
     }
   ],
-  "wikipedia_top_articles": [],
+  "wikipedia_top_articles": [
+    {
+      "source_type": "wikipedia_top",
+      "title": "Bonnie Tyler",
+      "views": 1271358
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Erling Haaland",
+      "views": 499486
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Kylian Mbapp\u00e9",
+      "views": 454611
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Roblox\u2013Schlep controversy",
+      "views": 385048
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "2026 FIFA World Cup",
+      "views": 371120
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Count Binface",
+      "views": 295771
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": ".xyz",
+      "views": 225714
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Arthur Fery",
+      "views": 215139
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Graham Platner",
+      "views": 172125
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "The Odyssey (2026 film)",
+      "views": 169366
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Robert Sullivan (judoka)",
+      "views": 169305
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Morocco",
+      "views": 168824
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Karol\u00edna Muchov\u00e1",
+      "views": 167757
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Yassine Bounou",
+      "views": 154532
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "FIFA World Cup",
+      "views": 153376
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Cristiano Ronaldo",
+      "views": 150420
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Mitch McConnell",
+      "views": 149797
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Lionel Messi",
+      "views": 148405
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Deaths in 2026",
+      "views": 147614
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Michael Olise",
+      "views": 146454
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Obsession (2025 film)",
+      "views": 145306
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Achraf Hakimi",
+      "views": 127418
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Ousmane Demb\u00e9l\u00e9",
+      "views": 127316
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Gianni Infantino",
+      "views": 125331
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "List of FIFA World Cup finals",
+      "views": 122100
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": ".xxx",
+      "views": 119714
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Coco Gauff",
+      "views": 110466
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "ChatGPT",
+      "views": 98606
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Morocco national football team",
+      "views": 97164
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "List of FIFA World Cup top goalscorers",
+      "views": 96690
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "2026 Clacton by-election",
+      "views": 94270
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Evil Dead Burn",
+      "views": 91474
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "France national football team",
+      "views": 91447
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Shakira",
+      "views": 90740
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Neatsville, Kentucky",
+      "views": 90419
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Brahim D\u00edaz",
+      "views": 87863
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Total Eclipse of the Heart",
+      "views": 87059
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Andrey Santos",
+      "views": 84629
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "2022 FIFA World Cup",
+      "views": 83489
+    },
+    {
+      "source_type": "wikipedia_top",
+      "title": "Jude Bellingham",
+      "views": 81965
+    }
+  ],
   "upcoming_observances": [
     {
       "source_type": "observance",
@@ -2089,175 +2331,175 @@
         "video_id": "Q-0TTdoaSHc",
         "title": "Fixing Screens Now vs. Back Then \ud83e\udea5",
         "channel": "OkCron",
-        "views": 994112
+        "views": 1214349
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "rUPO3AV9Zno",
         "title": "Otterboxes are cooking your phone\u2026 #c#carterpcstech #iphone #phonecase #otterbox",
         "channel": "CarterPCs",
-        "views": 1260248
+        "views": 1336261
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "VDjl_OjlWZ4",
         "title": "\ud83d\ude80\u26a1 IPHONE 17E VS IPHONE 17 SPEED TEST!!",
         "channel": "TECH DSI ",
-        "views": 8179045
+        "views": 8180936
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "NvT_8lQLYAQ",
         "title": "iPhone 17 Pro Max Cosmic Orange\ud83d\udcf1\ud83d\udd25#noads",
         "channel": "STEVEN SENZ",
-        "views": 32664896
+        "views": 32666358
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "nGMVZAZyS4k",
         "title": "My Brother Bought An iPone 17 For $25 \ud83d\ude33",
         "channel": "His Story",
-        "views": 1744150
-      },
-      {
-        "source_type": "youtube_trending_science_tech",
-        "video_id": "yaDcdlYhW-A",
-        "title": "Phones In 2000 vs 2010 vs 2020 vs 2030.",
-        "channel": "Ryan HD",
-        "views": 32258356
+        "views": 1811353
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "rt-r-Bx5-io",
         "title": "Aire acondicionado inteligente inversor de ventana en forma de U",
         "channel": "GAMELOTE",
-        "views": 899207
-      },
-      {
-        "source_type": "youtube_trending_science_tech",
-        "video_id": "Lw3lIv6cOyI",
-        "title": "Daliy video Go4 test water \ud83d\udca6 speaker JBL crazy try raced the fastest man on earth \ud83c\udf0d",
-        "channel": "Mini spoke sound JBL water \ud83d\udca6 ",
-        "views": 35492228
-      },
-      {
-        "source_type": "youtube_trending_science_tech",
-        "video_id": "zFpTIALMM4U",
-        "title": "Correct sequence for the Cosmic Orange iPhone 17 Pro Max #shorts #noads",
-        "channel": "Jun\u00e3o Pro Player",
-        "views": 21155962
+        "views": 964698
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "FezDNx0vlEs",
         "title": "The Most Affordable Gaming Device DEBATE \u2696\ufe0f",
         "channel": "Garett",
-        "views": 230328
+        "views": 418023
       },
       {
         "source_type": "youtube_trending_science_tech",
-        "video_id": "h1VkvMfbLLQ",
-        "title": "iPhone Drop Test from 30 Meters!",
-        "channel": "CinemaGuy Era",
-        "views": 3867322
+        "video_id": "yaDcdlYhW-A",
+        "title": "Phones In 2000 vs 2010 vs 2020 vs 2030.",
+        "channel": "Ryan HD",
+        "views": 32319755
+      },
+      {
+        "source_type": "youtube_trending_science_tech",
+        "video_id": "Lw3lIv6cOyI",
+        "title": "Daliy video Go4 test water \ud83d\udca6 speaker JBL crazy try raced the fastest man on earth \ud83c\udf0d",
+        "channel": "Mini spoke sound JBL water \ud83d\udca6 ",
+        "views": 35495126
+      },
+      {
+        "source_type": "youtube_trending_science_tech",
+        "video_id": "zFpTIALMM4U",
+        "title": "Correct sequence for the Cosmic Orange iPhone 17 Pro Max #shorts #noads",
+        "channel": "Jun\u00e3o Pro Player",
+        "views": 21163928
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "pPgQ1d1-tTU",
         "title": "This iPhone has a serious problem #tech #apple #iphone",
         "channel": "Andrew Bond",
-        "views": 831279
+        "views": 883752
+      },
+      {
+        "source_type": "youtube_trending_science_tech",
+        "video_id": "h1VkvMfbLLQ",
+        "title": "iPhone Drop Test from 30 Meters!",
+        "channel": "CinemaGuy Era",
+        "views": 3883170
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "1zJR9Tt_DJ8",
         "title": "TikTok taught her how to clean her PS5... \ud83d\ude05\ud83c\udfae\ud83d\udca6",
         "channel": "iFlex",
-        "views": 963733
+        "views": 995047
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "xcLD3R1mnjc",
         "title": "When the Data Center Takes Your Land",
         "channel": "Digital Taxidermy",
-        "views": 1104672
+        "views": 1109830
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "fRYSBR85teQ",
         "title": "The Real Voice of Alexa \ud83d\ude31 #shorts",
         "channel": "Epic methods ",
-        "views": 2359174
+        "views": 2386820
+      },
+      {
+        "source_type": "youtube_trending_science_tech",
+        "video_id": "Nd-8lUUmMjA",
+        "title": "We Got The Trump Phone!",
+        "channel": "Linus Tech Tips",
+        "views": 374907
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "lPWmIqbcHq4",
         "title": "What Keyboard User are YOU?!",
         "channel": "300HB",
-        "views": 774433
+        "views": 783326
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "eWKY0OnPByg",
         "title": "Apple Lost the AI Race",
         "channel": "Marques Brownlee",
-        "views": 1422626
-      },
-      {
-        "source_type": "youtube_trending_science_tech",
-        "video_id": "-qxvzu3d5Is",
-        "title": "\ud83d\udcf8 Y2K SONY CAMERA VIBE / Don\u2019t forget to check the description \ud83c\udfb0",
-        "channel": "The Digital Camera Club",
-        "views": 939032
+        "views": 1527626
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "Dywp85pKZYc",
         "title": "Valve Scores Another W",
         "channel": "Zach's Tech Turf",
-        "views": 418552
+        "views": 474035
+      },
+      {
+        "source_type": "youtube_trending_science_tech",
+        "video_id": "-qxvzu3d5Is",
+        "title": "\ud83d\udcf8 Y2K SONY CAMERA VIBE / Don\u2019t forget to check the description \ud83c\udfb0",
+        "channel": "The Digital Camera Club",
+        "views": 940460
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "yqRuQdBLMUA",
         "title": "\ud83e\udee0\u26a1NOKIA N80 vs I PHONE 17 PRO MAX SPEED TEST !! \ud83d\udd25",
         "channel": "TECH LAKA",
-        "views": 6555102
+        "views": 6559363
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "qIUVUsSMtfU",
         "title": "Ranking PC Fails \ud83d\ude2d\ud83d\udca5",
         "channel": "Bandu",
-        "views": 3787223
+        "views": 3882527
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "mWMkR_fwNTk",
         "title": "Impossible to Remove Police Device - Cracked",
         "channel": "Money Mind",
-        "views": 620725
+        "views": 627174
+      },
+      {
+        "source_type": "youtube_trending_science_tech",
+        "video_id": "nXk5r6vmYFU",
+        "title": "We Bought the Trump Phone So You Don\u2019t Have To",
+        "channel": "ShortCircuit",
+        "views": 535437
       },
       {
         "source_type": "youtube_trending_science_tech",
         "video_id": "kAVnaOLKCxc",
         "title": "This iPhone Virus Is Everywhere... #Shorts",
         "channel": "Phone Repair Guru",
-        "views": 808332
-      },
-      {
-        "source_type": "youtube_trending_science_tech",
-        "video_id": "dcU2idUSRAA",
-        "title": "Vinyl vs CD vs Spotify",
-        "channel": "Speeed",
-        "views": 1027916
-      },
-      {
-        "source_type": "youtube_trending_science_tech",
-        "video_id": "O0SqVX1sP-I",
-        "title": "BUYING CURVED MONITOR FOR PERSONAL SETUP!!! #brokenfix #problemfix #smartphone #screenbreak",
-        "channel": "Digital Doctor ",
-        "views": 1901078
+        "views": 851995
       }
     ],
     "pets_animals": [
@@ -2266,338 +2508,345 @@
         "video_id": "9rsBbFgcucU",
         "title": "I am feeling much better guys. I\u2019ll think I\u2019ll just walk now. \ud83e\udd72",
         "channel": "Brighter Paws",
-        "views": 1272068
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "eVEk3WhVTRU",
-        "title": "Bro is the danger\ud83d\udc80\ud83d\udd25 #shorts #boss #viralmemes",
-        "channel": "LoreNest",
-        "views": 16965549
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "mCqOyzBynpk",
-        "title": "I want that gentleman \ud83e\udd0c\ud83c\udffb\ud83d\ude2d\ud83d\ude02#aestheic #shortvideo #trending #viral #relatable",
-        "channel": "Xthetics Beauty!\ud83c\udf77",
-        "views": 17408777
+        "views": 1917767
       },
       {
         "source_type": "youtube_trending_pets_animals",
         "video_id": "b9EPqDMOyPo",
         "title": "World's Naughtiest Chihuahua Spills Red Wine \ud83d\ude02\ud83c\udf77",
         "channel": "Tim and Jeffy",
-        "views": 12236628
+        "views": 15999686
       },
       {
         "source_type": "youtube_trending_pets_animals",
-        "video_id": "u7q9bJdjGA8",
-        "title": "Housing A Megalodon In An Aquarium \ud83e\udd28",
-        "channel": "Zack D. Films",
-        "views": 4641468
+        "video_id": "eVEk3WhVTRU",
+        "title": "Bro is the danger\ud83d\udc80\ud83d\udd25 #shorts #boss #viralmemes",
+        "channel": "LoreNest",
+        "views": 17106774
       },
       {
         "source_type": "youtube_trending_pets_animals",
         "video_id": "f0-kYIB7EYI",
         "title": "I Followed The Fish \ud83d\udc1f",
         "channel": "His Story",
-        "views": 2125791
+        "views": 2473323
       },
       {
         "source_type": "youtube_trending_pets_animals",
-        "video_id": "L9bbBhs2e_4",
-        "title": "That didn\u2019t last long\u2026",
-        "channel": "Happi acres ",
-        "views": 2199773
+        "video_id": "mCqOyzBynpk",
+        "title": "I want that gentleman \ud83e\udd0c\ud83c\udffb\ud83d\ude2d\ud83d\ude02#aestheic #shortvideo #trending #viral #relatable",
+        "channel": "Xthetics Beauty!\ud83c\udf77",
+        "views": 17435775
       },
       {
         "source_type": "youtube_trending_pets_animals",
-        "video_id": "9f6bmiJ6tlw",
-        "title": "How different water animals eat\ud83d\ude02",
-        "channel": "Nick Wilkins",
-        "views": 18434830
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "g94Uvt4czGU",
-        "title": "Ranking BEST SMALL DOGS Core Moments!! \ud83d\udc36\ud83c\udf7c",
-        "channel": "AniRank",
-        "views": 4362429
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "N6FVdVDHrl8",
-        "title": "Big Cat Claws: Don\u2019t be fooled.#bigcat #bigcats #claw #pawan #lion #tiger #bigclaw #wildlife",
-        "channel": "PawsHaven",
-        "views": 7432394
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "605B9DOlWK0",
-        "title": "\ud83d\udc0a Spawned The Entire Lobby \ud83d\ude2d #funny #fyp #shorts #foryou",
-        "channel": "Matt Sowards",
-        "views": 4066011
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "9nJTtR0xfWk",
-        "title": "Max Got Revenge \ud83d\ude28\ud83d\ude31",
-        "channel": "Zentro",
-        "views": 1736859
+        "video_id": "u7q9bJdjGA8",
+        "title": "Housing A Megalodon In An Aquarium \ud83e\udd28",
+        "channel": "Zack D. Films",
+        "views": 4755329
       },
       {
         "source_type": "youtube_trending_pets_animals",
         "video_id": "2W2ZzHb2N_4",
         "title": "All I needed to hear #dogs #dogcomedy",
         "channel": "Agirlandadoodle",
-        "views": 1488375
+        "views": 1745061
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "N6FVdVDHrl8",
+        "title": "Big Cat Claws: Don\u2019t be fooled.#bigcat #bigcats #claw #pawan #lion #tiger #bigclaw #wildlife",
+        "channel": "PawsHaven",
+        "views": 7702554
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "L9bbBhs2e_4",
+        "title": "That didn\u2019t last long\u2026",
+        "channel": "Happi acres ",
+        "views": 2269189
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "9f6bmiJ6tlw",
+        "title": "How different water animals eat\ud83d\ude02",
+        "channel": "Nick Wilkins",
+        "views": 18590786
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "g94Uvt4czGU",
+        "title": "Ranking BEST SMALL DOGS Core Moments!! \ud83d\udc36\ud83c\udf7c",
+        "channel": "AniRank",
+        "views": 4442348
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "605B9DOlWK0",
+        "title": "\ud83d\udc0a Spawned The Entire Lobby \ud83d\ude2d #funny #fyp #shorts #foryou",
+        "channel": "Matt Sowards",
+        "views": 4394074
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "9nJTtR0xfWk",
+        "title": "Max Got Revenge \ud83d\ude28\ud83d\ude31",
+        "channel": "Zentro",
+        "views": 1782535
       },
       {
         "source_type": "youtube_trending_pets_animals",
         "video_id": "I7w3uP4g8E0",
         "title": "Moose Makes Unexpected Move on Highway",
         "channel": "All In Camera",
-        "views": 11373096
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "gHJNsAXdG9I",
-        "title": "DOG FOUND A WAY TO CLIMB",
-        "channel": "AMERICAN NEWS",
-        "views": 5028785
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "ikT1oFrWj_A",
-        "title": "Hamster dumb therapy #FunnyHamster #HamsterSoftTikTok #PetFails #CutePets",
-        "channel": "Gehek.44",
-        "views": 1729241
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "3uu6vWcZdi4",
-        "title": "#pets #artist #petportrait #catmom #dogmom #petloss #petmemorial #petsofyoutube #artandcraft #diy",
-        "channel": "Vanessa (Fetching Collies)",
-        "views": 1701330
+        "views": 11424479
       },
       {
         "source_type": "youtube_trending_pets_animals",
         "video_id": "RCcGPHYKvmU",
         "title": "Leveling Up Through Animals! \ud83d\udc08",
         "channel": "Air Run",
-        "views": 9777192
+        "views": 10455850
       },
       {
         "source_type": "youtube_trending_pets_animals",
-        "video_id": "joNfgfIQlzw",
-        "title": "Spoilt Kid Tries to Pet her Neighbor's Dog Without Permission..",
-        "channel": "voyageash",
-        "views": 12604169
+        "video_id": "lJLPnY8a4M0",
+        "title": "Wyd in this situation?!\ud83d\ude2d\ud83d\udc80",
+        "channel": "Curly Wrld",
+        "views": 663651
       },
       {
         "source_type": "youtube_trending_pets_animals",
-        "video_id": "bQ25n3kqnZY",
-        "title": "Animals deciding how many LEGS they want\u2026 \ud83d\ude2d\ud83d\udc3b\ud83d\udc1c",
-        "channel": "Michael Storen",
-        "views": 4899758
+        "video_id": "gHJNsAXdG9I",
+        "title": "DOG FOUND A WAY TO CLIMB",
+        "channel": "AMERICAN NEWS",
+        "views": 5033436
       },
       {
         "source_type": "youtube_trending_pets_animals",
-        "video_id": "13nE-cSw0J8",
-        "title": "I felt so bad waking him up from his cute lil nap\ud83e\udd7a\ud83e\udd7a #farmlife #fyp #pov #grwm #tackup",
-        "channel": "Zoey Berg",
-        "views": 3579427
+        "video_id": "3uu6vWcZdi4",
+        "title": "#pets #artist #petportrait #catmom #dogmom #petloss #petmemorial #petsofyoutube #artandcraft #diy",
+        "channel": "Vanessa (Fetching Collies)",
+        "views": 1734549
       },
       {
         "source_type": "youtube_trending_pets_animals",
-        "video_id": "QQGTmGStgYQ",
-        "title": "Gort is currently running all over my bedroom, but it\u2019s worth it #capybara #pets #surprise #fyp",
-        "channel": "MrExotic Vlogs",
-        "views": 1071547
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "pk5_0UrSzmk",
-        "title": "We met two beautiful Chows in the park! #chow #dog",
-        "channel": "Tail Talks",
-        "views": 3671270
-      },
-      {
-        "source_type": "youtube_trending_pets_animals",
-        "video_id": "ApdYaUvglDg",
-        "title": "It\u2019s crazy, TRY IT! #squishy #tryit",
-        "channel": "Gianna Joyce",
-        "views": 766946
+        "video_id": "ikT1oFrWj_A",
+        "title": "Hamster dumb therapy #FunnyHamster #HamsterSoftTikTok #PetFails #CutePets",
+        "channel": "Gehek.44",
+        "views": 1748761
       },
       {
         "source_type": "youtube_trending_pets_animals",
         "video_id": "NgoPzXo1kQI",
         "title": "Guys, Goose is literally the best bodygu #funny #petshub #dogshorts #pets",
         "channel": "Doggosbuzz\ud83d\udc36",
-        "views": 1649585
+        "views": 1842949
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "ApdYaUvglDg",
+        "title": "It\u2019s crazy, TRY IT! #squishy #tryit",
+        "channel": "Gianna Joyce",
+        "views": 857630
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "6qPyFJZUKdQ",
+        "title": "Thank you so much for the tour! @AustralianReptilePark \ufffc",
+        "channel": "Bridey Drake",
+        "views": 1405021
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "bQ25n3kqnZY",
+        "title": "Animals deciding how many LEGS they want\u2026 \ud83d\ude2d\ud83d\udc3b\ud83d\udc1c",
+        "channel": "Michael Storen",
+        "views": 4975365
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "joNfgfIQlzw",
+        "title": "Spoilt Kid Tries to Pet her Neighbor's Dog Without Permission..",
+        "channel": "voyageash",
+        "views": 12622675
+      },
+      {
+        "source_type": "youtube_trending_pets_animals",
+        "video_id": "13nE-cSw0J8",
+        "title": "I felt so bad waking him up from his cute lil nap\ud83e\udd7a\ud83e\udd7a #farmlife #fyp #pov #grwm #tackup",
+        "channel": "Zoey Berg",
+        "views": 3714949
       }
     ],
     "gaming": [
       {
         "source_type": "youtube_trending_gaming",
-        "video_id": "6xW45Y6SxLI",
-        "title": "My Best Meccha Chameleon Strategy Yet",
-        "channel": "SMii7Y",
-        "views": 3079976
-      },
-      {
-        "source_type": "youtube_trending_gaming",
         "video_id": "PYy17045AmE",
         "title": "Animal Hospital\u2026",
         "channel": "CaseOh",
-        "views": 166123
+        "views": 566227
       },
       {
         "source_type": "youtube_trending_gaming",
         "video_id": "hshJR2eJvfQ",
         "title": "BLACK OPS and BLACK OPS 2 on PS5 feels surreal",
         "channel": "JEV",
-        "views": 274478
+        "views": 585807
       },
       {
         "source_type": "youtube_trending_gaming",
-        "video_id": "8utcF9Azbxo",
-        "title": "Something Won't Let You Leave...",
-        "channel": "ThatMob",
-        "views": 6340854
+        "video_id": "6xW45Y6SxLI",
+        "title": "My Best Meccha Chameleon Strategy Yet",
+        "channel": "SMii7Y",
+        "views": 3385508
       },
       {
         "source_type": "youtube_trending_gaming",
         "video_id": "icAKnjfNxT4",
         "title": "Little Nightmares II - Part 1",
         "channel": "Markiplier",
-        "views": 298231
+        "views": 630709
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "OsEeZdu3rhA",
+        "title": "EA Responded",
+        "channel": "Bordeaux",
+        "views": 399467
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "8utcF9Azbxo",
+        "title": "Something Won't Let You Leave...",
+        "channel": "ThatMob",
+        "views": 6921797
       },
       {
         "source_type": "youtube_trending_gaming",
         "video_id": "dy1Pgbvmdfg",
         "title": "Every Minute COCA-COLA Rises Higher In Minecraft!",
         "channel": "PrestonPlayz",
-        "views": 170784
+        "views": 354271
       },
       {
         "source_type": "youtube_trending_gaming",
-        "video_id": "caoa9lHg7aY",
-        "title": "Meccha Chameleon - These Spots Shouldn't Work... But They Do",
-        "channel": "VanossGaming",
-        "views": 710680
+        "video_id": "O4sLy50ifN8",
+        "title": "ROBLOX DEMONOLOGY",
+        "channel": "Flamingo",
+        "views": 234208
       },
       {
         "source_type": "youtube_trending_gaming",
-        "video_id": "mIriLi61g3o",
-        "title": "I Beat World 3 In Roblox Keyboard Escape..",
-        "channel": "Foltyn",
-        "views": 1283507
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "S-8YkBgjFfo",
-        "title": "New Brawler: Nori's Origin Story! (Brawl Stars Animation)",
-        "channel": "Brawl Stars",
-        "views": 2472814
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "OWcTJCJsNSQ",
-        "title": "\ud83c\udf3a Starter Build Challenge \ud83c\udf38",
-        "channel": "LDShadowLady",
-        "views": 188896
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "8xHVKzkiAqQ",
-        "title": "Animal Hospital, But I Only Let ANOMALIES IN...",
-        "channel": "Techy Plays",
-        "views": 208396
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "a6fPF1JZOGw",
-        "title": "Our First Job as AIRPORT SECURITY in Roblox!",
-        "channel": "ItsFunneh",
-        "views": 146738
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "n2p64a8PDEg",
-        "title": "Having a REALISTIC LIFE in Minecraft!",
-        "channel": "Cash",
-        "views": 261370
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "0rWyHX_9PpY",
-        "title": "ROBLOX DRAIN THE LAKE\u2026",
-        "channel": "More Techy",
-        "views": 216403
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "93MP8HlRb0k",
-        "title": "BLACK OPS 2 on the PS5 PRO!",
-        "channel": "M3RKMUS1C",
-        "views": 202238
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "GKVckpk3U8c",
-        "title": "Minecraft VERITY Mod IS INSANE!",
-        "channel": "Thinknoodles",
-        "views": 314152
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "ehBnNWS86d4",
-        "title": "Trolling as ADMIN in +1 Speed Keyboard Escape!",
-        "channel": "Tyler & Snowi",
-        "views": 92011
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "1fpGg9wNM9A",
-        "title": "Palworld 1.0 Official Launch Trailer",
-        "channel": "Pocketpair Palworld",
-        "views": 494840
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "uiw__JHpa-Y",
-        "title": "Playing the OFFICIAL VERITY MOD in Minecraft\u2026",
-        "channel": "dakblake",
-        "views": 83393
-      },
-      {
-        "source_type": "youtube_trending_gaming",
-        "video_id": "2WJ8irTIw7I",
-        "title": "DRAGON BALL XENOVERSE 3 - Gameplay Closer Look",
-        "channel": "Bandai Namco Entertainment America",
-        "views": 313981
+        "video_id": "0lOYSDeWDZU",
+        "title": "AMP PLAYS MECCHA CHAMELEON!",
+        "channel": "Kai Cenat Live",
+        "views": 107116
       },
       {
         "source_type": "youtube_trending_gaming",
         "video_id": "M7rY72AGqfo",
         "title": "Our Freshman Year At Florida State! RTG Ep. #3",
         "channel": "MMG",
-        "views": 52971
+        "views": 136512
       },
       {
         "source_type": "youtube_trending_gaming",
-        "video_id": "ipee0TpjGCI",
-        "title": "BLACK OPS 1 & BLACK OPS 2 PS5 PORTS ARE OFFICIALLY HERE! (GAMEPLAY & ALL CHANGES)",
-        "channel": "MrDalekJD",
-        "views": 116599
+        "video_id": "OWcTJCJsNSQ",
+        "title": "\ud83c\udf3a Starter Build Challenge \ud83c\udf38",
+        "channel": "LDShadowLady",
+        "views": 302880
       },
       {
         "source_type": "youtube_trending_gaming",
-        "video_id": "wiVVZyLRvlE",
-        "title": "\ud83d\udd34LIVE | RUNESCAPE: DRAGONWILDS | WACKADOODLE WEDNESDAY | Gimmick X Habibi | #BUNGULATE",
-        "channel": "TheBurntPeanut",
-        "views": 639807
+        "video_id": "caoa9lHg7aY",
+        "title": "Meccha Chameleon - These Spots Shouldn't Work... But They Do",
+        "channel": "VanossGaming",
+        "views": 816314
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "ehBnNWS86d4",
+        "title": "Trolling as ADMIN in +1 Speed Keyboard Escape!",
+        "channel": "Tyler & Snowi",
+        "views": 266838
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "mIriLi61g3o",
+        "title": "I Beat World 3 In Roblox Keyboard Escape..",
+        "channel": "Foltyn",
+        "views": 1511171
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "a6fPF1JZOGw",
+        "title": "Our First Job as AIRPORT SECURITY in Roblox!",
+        "channel": "ItsFunneh",
+        "views": 294292
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "QywxmI2XSPU",
+        "title": "We Ignored Emma For 24 Hours In Roblox Snapchat\u2026",
+        "channel": "Techy Plays",
+        "views": 185475
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "dDJ-wldylkc",
+        "title": "We Survived Every Disaster\u2026",
+        "channel": "daukey",
+        "views": 260809
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "Ah-2scJ-Uow",
+        "title": "Meccha Chameleon But Someone Made a Vanoss Crew Map",
+        "channel": "WILDCAT",
+        "views": 160064
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "YBrtgbRgEX0",
+        "title": "BLACK OPS 2 IS BACK",
+        "channel": "TimTheTatman",
+        "views": 219826
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "S-8YkBgjFfo",
+        "title": "New Brawler: Nori's Origin Story! (Brawl Stars Animation)",
+        "channel": "Brawl Stars",
+        "views": 2816463
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "_YOLVnrySO8",
+        "title": "WE PLAYED CUSTOM MECCHA CHAMELEON MAPS!",
+        "channel": "Grizzy",
+        "views": 146849
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "wuFCkUgetGQ",
+        "title": "NEW UPDATE *HOLOFOIL SPRITES* in FORTNITE!",
+        "channel": "TG Plays",
+        "views": 211926
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "0rWyHX_9PpY",
+        "title": "ROBLOX DRAIN THE LAKE\u2026",
+        "channel": "More Techy",
+        "views": 306901
+      },
+      {
+        "source_type": "youtube_trending_gaming",
+        "video_id": "n2p64a8PDEg",
+        "title": "Having a REALISTIC LIFE in Minecraft!",
+        "channel": "Cash",
+        "views": 383764
       }
     ],
     "sports": [
@@ -2606,352 +2855,352 @@
         "video_id": "XO3x8vm0Ijc",
         "title": "Argentina vs Egypt Highlights \ud83c\udf0e\ud83c\udfc6 2026 FIFA World Cup\u2122 | Round of 16",
         "channel": "FOX Sports",
-        "views": 4838185
+        "views": 4921767
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "wUa1wNpk5FY",
         "title": "hit by pitch? \ud83d\ude33",
         "channel": "Cam 23",
-        "views": 3031598
-      },
-      {
-        "source_type": "youtube_trending_sports",
-        "video_id": "_Nc_i7QuOP0",
-        "title": "The ref is having a hard time \ud83d\udc80 #basketball",
-        "channel": "Global Hoops",
-        "views": 9598591
+        "views": 3201820
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "YW2r0RKzzzw",
         "title": "Adrien Broner And DEEN Started Their 45 Day Marathon Inside A Gym\ud83d\ude33",
         "channel": "Conc Clips",
-        "views": 970870
+        "views": 1299674
       },
       {
         "source_type": "youtube_trending_sports",
-        "video_id": "X995V7TvoSI",
-        "title": "When Haaland Go Full Anime Mode \u26a1 #football #haaland #edit #shorts  #football",
-        "channel": "GOA7_Editz",
-        "views": 10999894
+        "video_id": "_Nc_i7QuOP0",
+        "title": "The ref is having a hard time \ud83d\udc80 #basketball",
+        "channel": "Global Hoops",
+        "views": 9853405
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "_25EwjRDfjo",
         "title": "The WORLD cried with Ronaldo\u2764\ufe0f\u200d\ud83e\ude79||#cristianoronaldo #edit #portugal #ronaldo #fyp #worldcup",
         "channel": "Aminejr",
-        "views": 6359697
+        "views": 7359486
+      },
+      {
+        "source_type": "youtube_trending_sports",
+        "video_id": "X995V7TvoSI",
+        "title": "When Haaland Go Full Anime Mode \u26a1 #football #haaland #edit #shorts  #football",
+        "channel": "GOA7_Editz",
+        "views": 11405170
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "xhK1tFIrMMo",
         "title": "I Met Ronaldo At The World Cup \ud83d\ude33\ud83d\udc10",
         "channel": "Celine Dept",
-        "views": 50350350
+        "views": 50972773
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "j7yHd_K-pnU",
         "title": "I Couldn't Afford A Football \ud83d\ude22",
         "channel": "His Story",
-        "views": 4199734
-      },
-      {
-        "source_type": "youtube_trending_sports",
-        "video_id": "40WRIj2J9Mc",
-        "title": "Players Mocking Each Other Gets Wild \ud83c\udfc0 #nba #drama #highlights",
-        "channel": "Sports Flash Daily",
-        "views": 2171393
+        "views": 4818767
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "_wJvTqNJMVI",
         "title": "Speed Reacts to Ronaldo's Last World Cup Game \ud83d\ude14\ud83d\udc94#ishowspeed",
         "channel": "Speed O Speed",
-        "views": 3838328
-      },
-      {
-        "source_type": "youtube_trending_sports",
-        "video_id": "hffY1S8TAbY",
-        "title": "Ronaldo's LAST World Cup\u2026 \ud83d\ude2d\u26bd",
-        "channel": "BRIGHTR",
-        "views": 3741509
-      },
-      {
-        "source_type": "youtube_trending_sports",
-        "video_id": "dHQSCr55bVA",
-        "title": "Why Does Speed's Chat Always Do This? \ud83d\ude2d\ud83d\ude2d",
-        "channel": "deagzzzshorts",
-        "views": 11979425
-      },
-      {
-        "source_type": "youtube_trending_sports",
-        "video_id": "fY-wdkrHPcQ",
-        "title": "Nico Rosberg's CRAZY 1KG Weight Hack",
-        "channel": "Young Kings",
-        "views": 5023227
-      },
-      {
-        "source_type": "youtube_trending_sports",
-        "video_id": "63uSOF1E108",
-        "title": "He Might Be Faster Than Speed\ud83e\udd76",
-        "channel": "Goofy Recaps",
-        "views": 17776854
-      },
-      {
-        "source_type": "youtube_trending_sports",
-        "video_id": "ykrjhDQpoCg",
-        "title": "IShowSpeed is Ditching Ronaldo for Messi \ud83d\ude2d\ud83d\ude2d",
-        "channel": "Jorski",
-        "views": 2522074
-      },
-      {
-        "source_type": "youtube_trending_sports",
-        "video_id": "6O7wiyGQHCI",
-        "title": "Lavar Ball Breaks Down Whoopings \ud83e\udd23",
-        "channel": "Meiz Productions",
-        "views": 1717447
+        "views": 4885451
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "u_87PUu_4A4",
         "title": "Truly inspiring. #nfl #football #viral #sports #cfb",
         "channel": "Play Fakes",
-        "views": 826372
+        "views": 1035614
       },
       {
         "source_type": "youtube_trending_sports",
-        "video_id": "MzDUpA8NeBk",
-        "title": "Dwight Howard says he got TOO swole \ud83d\ude33\ud83d\udcaa",
-        "channel": "KIRILENKO",
-        "views": 1234131
+        "video_id": "fY-wdkrHPcQ",
+        "title": "Nico Rosberg's CRAZY 1KG Weight Hack",
+        "channel": "Young Kings",
+        "views": 5410117
       },
       {
         "source_type": "youtube_trending_sports",
-        "video_id": "vGW4uidLxYQ",
-        "title": "Speed Reacts To Ronaldo's Final World Cup\ud83d\ude14\ud83d\udc94",
-        "channel": "Ironaldox",
-        "views": 6453573
+        "video_id": "40WRIj2J9Mc",
+        "title": "Players Mocking Each Other Gets Wild \ud83c\udfc0 #nba #drama #highlights",
+        "channel": "Sports Flash Daily",
+        "views": 2191543
       },
       {
         "source_type": "youtube_trending_sports",
-        "video_id": "7Kvayk14aOk",
-        "title": "Who can Escape Zombies but the Fence gets Really High \ud83d\udc80 @cobytatum @pronobi1",
-        "channel": "Hero DW",
-        "views": 46402256
+        "video_id": "hffY1S8TAbY",
+        "title": "Ronaldo's LAST World Cup\u2026 \ud83d\ude2d\u26bd",
+        "channel": "BRIGHTR",
+        "views": 3918656
       },
       {
         "source_type": "youtube_trending_sports",
-        "video_id": "nZwI-838o2w",
-        "title": "He Needs Help \u2764\ufe0f @milb central",
-        "channel": "Lily's Diary",
-        "views": 2664053
+        "video_id": "dHQSCr55bVA",
+        "title": "Why Does Speed's Chat Always Do This? \ud83d\ude2d\ud83d\ude2d",
+        "channel": "deagzzzshorts",
+        "views": 12294167
       },
       {
         "source_type": "youtube_trending_sports",
-        "video_id": "7dl-t1bWfRQ",
-        "title": "Sports star took the time to stop!",
-        "channel": "David Begnaud",
-        "views": 3851548
+        "video_id": "63uSOF1E108",
+        "title": "He Might Be Faster Than Speed\ud83e\udd76",
+        "channel": "Goofy Recaps",
+        "views": 17827718
+      },
+      {
+        "source_type": "youtube_trending_sports",
+        "video_id": "6O7wiyGQHCI",
+        "title": "Lavar Ball Breaks Down Whoopings \ud83e\udd23",
+        "channel": "Meiz Productions",
+        "views": 1802875
+      },
+      {
+        "source_type": "youtube_trending_sports",
+        "video_id": "ykrjhDQpoCg",
+        "title": "IShowSpeed is Ditching Ronaldo for Messi \ud83d\ude2d\ud83d\ude2d",
+        "channel": "Jorski",
+        "views": 2583365
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "46c_jizaOM8",
         "title": "NFL Legends talk about Facing Deion Sanders! \ud83d\udd25 #nfl #deionsanders #coachprime #ochocinco #nightcap",
         "channel": "NFL Matchup Highlights",
-        "views": 546078
+        "views": 658540
+      },
+      {
+        "source_type": "youtube_trending_sports",
+        "video_id": "MzDUpA8NeBk",
+        "title": "Dwight Howard says he got TOO swole \ud83d\ude33\ud83d\udcaa",
+        "channel": "KIRILENKO",
+        "views": 1301804
+      },
+      {
+        "source_type": "youtube_trending_sports",
+        "video_id": "7dl-t1bWfRQ",
+        "title": "Sports star took the time to stop!",
+        "channel": "David Begnaud",
+        "views": 4127901
+      },
+      {
+        "source_type": "youtube_trending_sports",
+        "video_id": "vGW4uidLxYQ",
+        "title": "Speed Reacts To Ronaldo's Final World Cup\ud83d\ude14\ud83d\udc94",
+        "channel": "Ironaldox",
+        "views": 6553076
+      },
+      {
+        "source_type": "youtube_trending_sports",
+        "video_id": "nZwI-838o2w",
+        "title": "He Needs Help \u2764\ufe0f @milb central",
+        "channel": "Lily's Diary",
+        "views": 2770259
+      },
+      {
+        "source_type": "youtube_trending_sports",
+        "video_id": "7Kvayk14aOk",
+        "title": "Who can Escape Zombies but the Fence gets Really High \ud83d\udc80 @cobytatum @pronobi1",
+        "channel": "Hero DW",
+        "views": 46565996
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "x3E8cnYDHaA",
         "title": "Changing Jerseys During World Cup! \ud83e\udd23\u26bd\ufe0f\ud83c\udfc6 #ad #FIFAWorldCup",
         "channel": "Jenny Hoyos",
-        "views": 2586067
+        "views": 2707003
       },
       {
         "source_type": "youtube_trending_sports",
         "video_id": "AcaZd1t8Sd4",
         "title": "Everything Reminds Me Of CR7 \ud83d\ude14\ud83d\udc94",
         "channel": "Ramo Akh",
-        "views": 2718204
+        "views": 2846044
       }
     ],
     "entertainment": [
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "2u3xjS7M-Fo",
-        "title": "Bro MIGHT be the smartest \u270c\ufe0f",
-        "channel": "MrUnknown",
-        "views": 7355620
-      },
-      {
-        "source_type": "youtube_trending_entertainment",
         "video_id": "8_BrKQ__vlM",
         "title": "\"Can't you see I'm trying to learn?\" \ud83d\ude02 #usa",
         "channel": "Frame242",
-        "views": 4667703
+        "views": 5223225
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "rX_eUqHRqvQ",
-        "title": "AMP Tries To Find The Secret YN! \ud83d\ude2d\ud83d\ude4f",
-        "channel": "Succesful Celebrity",
-        "views": 3234022
-      },
-      {
-        "source_type": "youtube_trending_entertainment",
-        "video_id": "fVNJUOMxXIk",
-        "title": "#movie Spartacus \u2013 The First Law of the Gladiator: \"I Am Not Your Enemy\"",
-        "channel": "American Premiere",
-        "views": 5368394
-      },
-      {
-        "source_type": "youtube_trending_entertainment",
-        "video_id": "7L4CSmStIQI",
-        "title": "This Is How Long You'd Survive On The Moon",
-        "channel": "andyy",
-        "views": 2645424
-      },
-      {
-        "source_type": "youtube_trending_entertainment",
-        "video_id": "BpwBEiCALlE",
-        "title": "Salish exposes a liar\ud83e\udd2b #short #jordanmatter #salishmatter",
-        "channel": "Sweetz",
-        "views": 11479968
-      },
-      {
-        "source_type": "youtube_trending_entertainment",
-        "video_id": "Vmf4hr9Uh0g",
-        "title": "Dan Soder Got BUSTED by His Mom \ud83d\ude02\ud83e\udd23\ud83d\ude05",
-        "channel": "Comedy Commodity ",
-        "views": 2132323
+        "video_id": "2u3xjS7M-Fo",
+        "title": "Bro MIGHT be the smartest \u270c\ufe0f",
+        "channel": "MrUnknown",
+        "views": 7780128
       },
       {
         "source_type": "youtube_trending_entertainment",
         "video_id": "TlRoYP1hYOs",
         "title": "Hugh Jackman actually felt bad for this #logan #wolverine #dc",
         "channel": "Cinema Noctis",
-        "views": 2123148
+        "views": 2614747
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "pikXLaZZ364",
-        "title": "Me when bro and his gf are fighting! \ud83d\ude0f\ud83d\ude09",
-        "channel": "Meme Alive",
-        "views": 2264811
+        "video_id": "7L4CSmStIQI",
+        "title": "This Is How Long You'd Survive On The Moon",
+        "channel": "andyy",
+        "views": 3003322
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "y418PsZLhPc",
-        "title": "Celebrating 4th Of July With Strangers",
-        "channel": "yairbmotivation",
-        "views": 3877229
+        "video_id": "rX_eUqHRqvQ",
+        "title": "AMP Tries To Find The Secret YN! \ud83d\ude2d\ud83d\ude4f",
+        "channel": "Succesful Celebrity",
+        "views": 3447856
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "o2-zGCz0oLE",
-        "title": "When Dave Chappelle Made Chris Rock Very Angry \ud83d\ude0b\ud83e\udd69",
-        "channel": "HeroTimes",
-        "views": 2098147
+        "video_id": "fVNJUOMxXIk",
+        "title": "#movie Spartacus \u2013 The First Law of the Gladiator: \"I Am Not Your Enemy\"",
+        "channel": "American Premiere",
+        "views": 5662359
+      },
+      {
+        "source_type": "youtube_trending_entertainment",
+        "video_id": "Vmf4hr9Uh0g",
+        "title": "Dan Soder Got BUSTED by His Mom \ud83d\ude02\ud83e\udd23\ud83d\ude05",
+        "channel": "Comedy Commodity ",
+        "views": 2437681
       },
       {
         "source_type": "youtube_trending_entertainment",
         "video_id": "YtaoUXPIRZA",
         "title": "Only Adam Sandler could get away with recycling the same bit for 30 years \ud83d\udc80",
         "channel": "Movie Moments",
-        "views": 1432784
+        "views": 1795244
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "L4AZAsH1qa8",
-        "title": "THE PINNICHO GRAVITY CHECK...",
-        "channel": "ComedyComics",
-        "views": 3976839
+        "video_id": "BpwBEiCALlE",
+        "title": "Salish exposes a liar\ud83e\udd2b #short #jordanmatter #salishmatter",
+        "channel": "Sweetz",
+        "views": 11771445
       },
       {
         "source_type": "youtube_trending_entertainment",
         "video_id": "sdbtaTZNnek",
         "title": "#mountains",
         "channel": "Smirk",
-        "views": 1736483
+        "views": 2015755
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "-UChsnzNnRI",
-        "title": "She wanted that money \ud83d\udc80\ud83e\udd23",
-        "channel": "Prank Lab",
-        "views": 12880660
+        "video_id": "y418PsZLhPc",
+        "title": "Celebrating 4th Of July With Strangers",
+        "channel": "yairbmotivation",
+        "views": 3961606
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "BmPdY3o_wg8",
-        "title": "Comedian Goes Patriotic\ufffc",
-        "channel": "Thinking What",
-        "views": 3021297
+        "video_id": "pikXLaZZ364",
+        "title": "Me when bro and his gf are fighting! \ud83d\ude0f\ud83d\ude09",
+        "channel": "Meme Alive",
+        "views": 2286975
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "bQwyidRUgr8",
-        "title": "My first commercial !!! \ud83e\udd70",
-        "channel": "Serena Neel",
-        "views": 1917245
+        "video_id": "9rsBbFgcucU",
+        "title": "I am feeling much better guys. I\u2019ll think I\u2019ll just walk now. \ud83e\udd72",
+        "channel": "Brighter Paws",
+        "views": 1917767
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "5-oLYTYkDMQ",
-        "title": "Rick Tried to Steal Alien Tree Sap\u2026 Then Nature Trapped Him in an Evolution Prison",
-        "channel": "VioletFisher980",
-        "views": 2390933
+        "video_id": "o2-zGCz0oLE",
+        "title": "When Dave Chappelle Made Chris Rock Very Angry \ud83d\ude0b\ud83e\udd69",
+        "channel": "HeroTimes",
+        "views": 2199817
       },
       {
         "source_type": "youtube_trending_entertainment",
         "video_id": "ldP6_ZXi69M",
         "title": "we both got there and that\u2019s what counts \ud83d\ude02 #watermelon he\u2019s rkaysgc on TikTok",
         "channel": "The Plant Slant",
-        "views": 3050223
+        "views": 3479786
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "1t-UNZAKunA",
-        "title": "The Most Dangerous Job in the World \ud83e\udd2f",
-        "channel": "Shawn Ryan Show",
-        "views": 2128325
+        "video_id": "bQwyidRUgr8",
+        "title": "My first commercial !!! \ud83e\udd70",
+        "channel": "Serena Neel",
+        "views": 2119421
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "usc4sko3zm8",
-        "title": "Men can bond over the dumbest things",
-        "channel": "Avirel",
-        "views": 3459338
+        "video_id": "L4AZAsH1qa8",
+        "title": "THE PINNICHO GRAVITY CHECK...",
+        "channel": "ComedyComics",
+        "views": 4158854
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "qvFwsZ5MngE",
-        "title": "WHY WOULD SHE DO THAT | ib: jacopoaquila",
-        "channel": "ian lex",
-        "views": 3921131
+        "video_id": "5-oLYTYkDMQ",
+        "title": "Rick Tried to Steal Alien Tree Sap\u2026 Then Nature Trapped Him in an Evolution Prison",
+        "channel": "VioletFisher980",
+        "views": 2544760
       },
       {
         "source_type": "youtube_trending_entertainment",
         "video_id": "jX0lr--KCYA",
         "title": "Ray Gets Accepted Into Streamer University \ud83d\udd25",
         "channel": "Kai Cenat Live",
-        "views": 3379565
+        "views": 3809109
+      },
+      {
+        "source_type": "youtube_trending_entertainment",
+        "video_id": "usc4sko3zm8",
+        "title": "Men can bond over the dumbest things",
+        "channel": "Avirel",
+        "views": 3895743
+      },
+      {
+        "source_type": "youtube_trending_entertainment",
+        "video_id": "BmPdY3o_wg8",
+        "title": "Comedian Goes Patriotic\ufffc",
+        "channel": "Thinking What",
+        "views": 3083159
+      },
+      {
+        "source_type": "youtube_trending_entertainment",
+        "video_id": "-UChsnzNnRI",
+        "title": "She wanted that money \ud83d\udc80\ud83e\udd23",
+        "channel": "Prank Lab",
+        "views": 12923875
       },
       {
         "source_type": "youtube_trending_entertainment",
         "video_id": "C1qWrqozmLo",
         "title": "\"Georgie Meets Mandy's Parents\"\u2620\ufe0f\ud83d\udd25 | young sheldon |#Trending #Shorts",
         "channel": "Marvin vanegas",
-        "views": 2968580
+        "views": 3326872
       },
       {
         "source_type": "youtube_trending_entertainment",
-        "video_id": "F1yQAd4tJ70",
-        "title": "The Most Unserious Cops",
-        "channel": "Austin Sweatt",
-        "views": 2725003
+        "video_id": "1t-UNZAKunA",
+        "title": "The Most Dangerous Job in the World \ud83e\udd2f",
+        "channel": "Shawn Ryan Show",
+        "views": 2193773
+      },
+      {
+        "source_type": "youtube_trending_entertainment",
+        "video_id": "gztn7OC90M4",
+        "title": "A police officer was shot and injured by a teenager#shorts  #usa",
+        "channel": "ToonHUB",
+        "views": 3469556
       }
     ],
     "news_politics": [
@@ -2960,175 +3209,175 @@
         "video_id": "X2E_dfHjwP4",
         "title": "Fifa Investigating Alleged Racist Abuse of IShowSpeed",
         "channel": "DeFranco News Clips",
-        "views": 1273678
+        "views": 1319068
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "SnBF3DzGCmA",
         "title": "The Charlie Kirk Footage Doesn\u2019t Add Up \ud83d\ude33",
         "channel": "Shawn Ryan Show",
-        "views": 1658297
+        "views": 1700386
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "YpTRbj5mtcM",
         "title": "Trump Declares Iran Ceasefire \"Over\" & Goes No-Contact with Spain | The Daily Show",
         "channel": "The Daily Show",
-        "views": 2565768
+        "views": 2827613
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "anjAKFMYxN8",
         "title": "What Happened in Alabama?!",
         "channel": "Trish Regan",
-        "views": 732190
+        "views": 736941
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "fki9ix96B_I",
         "title": "That time a BBC anchor realized too late the camera was already live \ud83d\udc80",
         "channel": "Foeko",
-        "views": 14834463
-      },
-      {
-        "source_type": "youtube_trending_news_politics",
-        "video_id": "Ainlxbt5Gic",
-        "title": "Two people climb the Empire State Building spire",
-        "channel": "NBC News",
-        "views": 2784965
-      },
-      {
-        "source_type": "youtube_trending_news_politics",
-        "video_id": "1DgfPjHEurs",
-        "title": "WATCH: Beachgoer Films Deadly Venezuela Earthquake as Buildings Collapse | Times Now World",
-        "channel": "Times Now World",
-        "views": 5311058
+        "views": 14938407
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "T0FXrb6Pyxk",
         "title": "'Incomprehensible, unhinged, EMBARRASSING': Nicolle on bizarre Trump behavior at NATO summit",
         "channel": "MS NOW",
-        "views": 738170
+        "views": 843684
       },
       {
         "source_type": "youtube_trending_news_politics",
-        "video_id": "cWV3FMr1Im4",
-        "title": "Trump Just Hit Iran SO HARD\u2026 THEY AREN\u2019T COMING BACK",
-        "channel": "Cash Jordan",
-        "views": 780522
+        "video_id": "Ainlxbt5Gic",
+        "title": "Two people climb the Empire State Building spire",
+        "channel": "NBC News",
+        "views": 2785934
       },
       {
         "source_type": "youtube_trending_news_politics",
-        "video_id": "91bXXlgMgsk",
-        "title": "She wasn\u2019t expecting that \ud83d\ude0f",
-        "channel": "Red Shorts Politics",
-        "views": 366026
+        "video_id": "1DgfPjHEurs",
+        "title": "WATCH: Beachgoer Films Deadly Venezuela Earthquake as Buildings Collapse | Times Now World",
+        "channel": "Times Now World",
+        "views": 5312000
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "cRIb9S3F-Ts",
         "title": "ABC World News Tonight with David Muir Full Broadcast - July 8, 2026",
         "channel": "ABC News",
-        "views": 797258
+        "views": 854474
       },
       {
         "source_type": "youtube_trending_news_politics",
-        "video_id": "53AXBGlkc1k",
-        "title": "When Mothers Get Arrested",
-        "channel": "InOutExclusive",
-        "views": 1271071
+        "video_id": "cWV3FMr1Im4",
+        "title": "Trump Just Hit Iran SO HARD\u2026 THEY AREN\u2019T COMING BACK",
+        "channel": "Cash Jordan",
+        "views": 805783
       },
       {
         "source_type": "youtube_trending_news_politics",
-        "video_id": "siazPdsZHuI",
-        "title": "China Is About To Pop The AI Bubble",
-        "channel": "Andrei Jikh",
-        "views": 1001827
-      },
-      {
-        "source_type": "youtube_trending_news_politics",
-        "video_id": "gW0ymn0xwHg",
-        "title": "Trump gets BOOED IN NEBRASKA as TERM COLLAPSES!!!",
-        "channel": "MeidasTouch",
-        "views": 423069
+        "video_id": "91bXXlgMgsk",
+        "title": "She wasn\u2019t expecting that \ud83d\ude0f",
+        "channel": "Red Shorts Politics",
+        "views": 389518
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "dcPMQ0-b26g",
         "title": "Top Iranian negotiator issues CHILLING warning: 'You'll get HIT'",
         "channel": "Fox News",
-        "views": 403389
+        "views": 468064
+      },
+      {
+        "source_type": "youtube_trending_news_politics",
+        "video_id": "gW0ymn0xwHg",
+        "title": "Trump gets BOOED IN NEBRASKA as TERM COLLAPSES!!!",
+        "channel": "MeidasTouch",
+        "views": 493686
+      },
+      {
+        "source_type": "youtube_trending_news_politics",
+        "video_id": "53AXBGlkc1k",
+        "title": "When Mothers Get Arrested",
+        "channel": "InOutExclusive",
+        "views": 1271725
+      },
+      {
+        "source_type": "youtube_trending_news_politics",
+        "video_id": "siazPdsZHuI",
+        "title": "China Is About To Pop The AI Bubble",
+        "channel": "Andrei Jikh",
+        "views": 1037142
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "e3ZGSZ4KD-Y",
         "title": "BREAKING: New STRIKES on Iran have begun: CENTCOM",
         "channel": "Fox Business",
-        "views": 828202
-      },
-      {
-        "source_type": "youtube_trending_news_politics",
-        "video_id": "Ya56eCwjyY0",
-        "title": "BREAKING: U.S. Strikes IRGC Nuclear City - Iran's Power Plants Hit - Middle East On Fire",
-        "channel": "Tousi TV",
-        "views": 977683
+        "views": 863155
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "V2U1mSND5jY",
         "title": "Trump EMBARRASSED as Judge Releases Fmr. Olympian at Reflecting Pool Arraignment!!!",
         "channel": "Legal AF",
-        "views": 526403
+        "views": 620141
+      },
+      {
+        "source_type": "youtube_trending_news_politics",
+        "video_id": "74nHLkrMoZ0",
+        "title": "Iran has a new plan to kill Trump, Israel warns: Sources",
+        "channel": "CNN",
+        "views": 334161
+      },
+      {
+        "source_type": "youtube_trending_news_politics",
+        "video_id": "Ya56eCwjyY0",
+        "title": "BREAKING: U.S. Strikes IRGC Nuclear City - Iran's Power Plants Hit - Middle East On Fire",
+        "channel": "Tousi TV",
+        "views": 988858
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "Ogch_Wf8pIw",
         "title": "HOT TOPICS | EXCLUSIVE: Attorney Benjamin Crump Speaks Out On Nolan Wells Case!",
         "channel": "Don Lemon",
-        "views": 329673
+        "views": 349307
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "bHYNESfrd-Y",
         "title": "Republicans All Told the Exact Same Mitch McConnell Story | The Next Level",
         "channel": "The Bulwark",
-        "views": 318047
+        "views": 322062
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "Tcy3wjjTeQo",
         "title": "DAY ONE - Preliminary Hearing and Andrew Kolvet Crash Outs - Ep 140",
         "channel": "Baron Coleman",
-        "views": 463636
+        "views": 466136
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "FQRB8Nf5IZ4",
         "title": "Trump slurring BADLY, STUNS leaders",
         "channel": "David Pakman Show",
-        "views": 474583
+        "views": 476368
       },
       {
         "source_type": "youtube_trending_news_politics",
         "video_id": "f3o4nCfmGco",
         "title": "We Talked to a Trump Whistleblower. What He Saw Will Shock You.",
         "channel": "More Perfect Union",
-        "views": 724194
+        "views": 773384
       },
       {
         "source_type": "youtube_trending_news_politics",
-        "video_id": "gdUWN50uq5c",
-        "title": "Structural engineer reacts to NYC high-rise at risk of collapse",
-        "channel": "CNN",
-        "views": 955522
-      },
-      {
-        "source_type": "youtube_trending_news_politics",
-        "video_id": "-OPZpLxlGpo",
-        "title": "Trump gets one FINAL Reflecting Pool HUMILIATION on national TV",
-        "channel": "Brian Tyler Cohen",
-        "views": 685971
+        "video_id": "17m_neviIA0",
+        "title": "\ud83d\udea8BREAKING: Platner Suspends Campaign, US Striking Iran, Hormuz on Fire, FBI Arrests 113 Active Spies",
+        "channel": "The Daily Signal",
+        "views": 266616
       }
     ],
     "howto_style": [
@@ -3137,175 +3386,175 @@
         "video_id": "VRftaAS_3CU",
         "title": "When Getting Off A Crane Goes Horribly Wrong...",
         "channel": "SoUnseen",
-        "views": 7119163
+        "views": 7461552
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "ZB2mN2PClOI",
         "title": "The dedication that he had \ud83e\udd23 via - cpowellc/tiktok",
         "channel": "Girlyybloom",
-        "views": 8766846
+        "views": 9160745
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "DzsFHd4HvUs",
         "title": "Day 42: restoring FDNY fire call box",
         "channel": "Sweet P",
-        "views": 5076806
+        "views": 5689328
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "cQqijmTRA10",
         "title": "We bought a Brand New 55 years old truck \ud83d\ude05",
         "channel": "Emonalvidz",
-        "views": 6999774
+        "views": 7588130
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "Dvk-8btACxo",
-        "title": "who wore it better? \ud83d\ude29\ud83e\udd37\ud83c\udffd\u200d\u2640\ufe0f #outfitideas #bodypositivity #fashion #sister #outfitinspo",
-        "channel": "Coral",
-        "views": 9005328
+        "video_id": "NCIG9yRsb-g",
+        "title": "Customer made a big mistake today\u2026 \ud83e\udd26\u200d\u2642\ufe0f\ud83e\udee3\ud83d\ude33 #detailer #money",
+        "channel": "angel\u2019s_wash",
+        "views": 1821864
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "NLPpJBTUsxQ",
         "title": "can u tell when we fought before filming \ud83d\ude10",
         "channel": "jasmine le",
-        "views": 5575894
+        "views": 5784418
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "zA2tdpAbdXI",
         "title": "shes my wife fr",
         "channel": "ChaseRandy",
-        "views": 8465975
+        "views": 9216103
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "peobFsxEizQ",
-        "title": "Biker accidentally learns how to do a stoppie\ud83d\ude39",
-        "channel": "BikersEncounters",
-        "views": 3894694
-      },
-      {
-        "source_type": "youtube_trending_howto_style",
-        "video_id": "6-q1gnd1biY",
-        "title": "Every Red Flag Was There... We Ignored Them \ud83d\ude2c",
-        "channel": "Hey Skipper",
-        "views": 4250242
-      },
-      {
-        "source_type": "youtube_trending_howto_style",
-        "video_id": "C3gVs_yN9Ik",
-        "title": "This Ride Is Literally BROKEN! #shorts",
-        "channel": "Robby and Penny",
-        "views": 5496536
-      },
-      {
-        "source_type": "youtube_trending_howto_style",
-        "video_id": "-ODPBiB7PcQ",
-        "title": "Ain\u2019t no way\ud83d\ude33\ud83d\ude2d",
-        "channel": "DOVE CLUBB",
-        "views": 2688747
+        "video_id": "Dvk-8btACxo",
+        "title": "who wore it better? \ud83d\ude29\ud83e\udd37\ud83c\udffd\u200d\u2640\ufe0f #outfitideas #bodypositivity #fashion #sister #outfitinspo",
+        "channel": "Coral",
+        "views": 9274287
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "ubWdv-g7lFw",
         "title": "E-Scooter Avoids Kid Running Across Road...",
         "channel": "DashDoge",
-        "views": 4475476
+        "views": 5065144
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "HEPAaI-hZe0",
-        "title": "He Knew They Were In Danger \ud83d\ude33\u2764\ufe0f",
-        "channel": "Ella\u2019s Voice",
-        "views": 4682352
+        "video_id": "-ODPBiB7PcQ",
+        "title": "Ain\u2019t no way\ud83d\ude33\ud83d\ude2d",
+        "channel": "DOVE CLUBB",
+        "views": 2981349
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "ZVlok0tzxfM",
-        "title": "When Mom finds out she\u2019s on camera \ud83e\udd29\ud83d\udd25",
-        "channel": "StoryInner",
-        "views": 3080166
-      },
-      {
-        "source_type": "youtube_trending_howto_style",
-        "video_id": "Cvt5sKJDpH0",
-        "title": "School makeup ban in Japan = SECRET school makeup \ud83e\udd2b",
-        "channel": "Megan and Ben",
-        "views": 6200019
-      },
-      {
-        "source_type": "youtube_trending_howto_style",
-        "video_id": "3Gy6noMaDmw",
-        "title": "The declaration isn\u2019t safe here !!! \ud83d\udc40\ud83e\udd78\ud83d\udcdc #painting #DIY #homeimprovement painting my July bathroom",
-        "channel": "Serena Neel",
-        "views": 5385115
+        "video_id": "peobFsxEizQ",
+        "title": "Biker accidentally learns how to do a stoppie\ud83d\ude39",
+        "channel": "BikersEncounters",
+        "views": 4191297
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "cwOAcsBIZXU",
         "title": "bro outsmarted everyone\ud83d\udc80",
         "channel": "Peek Clips",
-        "views": 3665730
+        "views": 4346914
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "5brMqbSAdtU",
-        "title": "Cop Loses It Over an RC Boat",
-        "channel": "Mega Detective",
-        "views": 2843541
+        "video_id": "C3gVs_yN9Ik",
+        "title": "This Ride Is Literally BROKEN! #shorts",
+        "channel": "Robby and Penny",
+        "views": 5886200
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "1QxkSIgCjN0",
-        "title": "Boy dad started plannin a wedding. Girl dad never comin over again.",
-        "channel": "Jay & Sharon",
-        "views": 8839449
-      },
-      {
-        "source_type": "youtube_trending_howto_style",
-        "video_id": "sUQRIdVhvls",
-        "title": "She\u2019s a Peppa Pig \ud83d\udc3d #shorts #couple #relationship",
-        "channel": "NickandCarrie",
-        "views": 6458743
+        "video_id": "6-q1gnd1biY",
+        "title": "Every Red Flag Was There... We Ignored Them \ud83d\ude2c",
+        "channel": "Hey Skipper",
+        "views": 4450887
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "nTnBgsVzMfs",
         "title": "Don\u2019t let the wrong chalk ruin your project \ud83d\udc4e #chalkline #learn #stains #deck #siding",
         "channel": "BAS Renovations ",
-        "views": 1316352
+        "views": 1622176
+      },
+      {
+        "source_type": "youtube_trending_howto_style",
+        "video_id": "F6_nCHJUZOI",
+        "title": "Son Almost Crashes Porsche! \ud83d\ude31",
+        "channel": "Auto Motive",
+        "views": 1716824
+      },
+      {
+        "source_type": "youtube_trending_howto_style",
+        "video_id": "HEPAaI-hZe0",
+        "title": "He Knew They Were In Danger \ud83d\ude33\u2764\ufe0f",
+        "channel": "Ella\u2019s Voice",
+        "views": 4947815
+      },
+      {
+        "source_type": "youtube_trending_howto_style",
+        "video_id": "ZVlok0tzxfM",
+        "title": "When Mom finds out she\u2019s on camera \ud83e\udd29\ud83d\udd25",
+        "channel": "StoryInner",
+        "views": 3163428
+      },
+      {
+        "source_type": "youtube_trending_howto_style",
+        "video_id": "sUQRIdVhvls",
+        "title": "She\u2019s a Peppa Pig \ud83d\udc3d #shorts #couple #relationship",
+        "channel": "NickandCarrie",
+        "views": 6764199
+      },
+      {
+        "source_type": "youtube_trending_howto_style",
+        "video_id": "Cvt5sKJDpH0",
+        "title": "School makeup ban in Japan = SECRET school makeup \ud83e\udd2b",
+        "channel": "Megan and Ben",
+        "views": 6383288
+      },
+      {
+        "source_type": "youtube_trending_howto_style",
+        "video_id": "3Gy6noMaDmw",
+        "title": "The declaration isn\u2019t safe here !!! \ud83d\udc40\ud83e\udd78\ud83d\udcdc #painting #DIY #homeimprovement painting my July bathroom",
+        "channel": "Serena Neel",
+        "views": 5581612
       },
       {
         "source_type": "youtube_trending_howto_style",
         "video_id": "n9gy-ulGCvU",
         "title": "Lacy Realized His Aura Was In Serious Danger After Comparing It With Marlon \ud83d\udc80\u274c",
         "channel": "Aurafy",
-        "views": 3797515
+        "views": 4103552
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "a4r9dHR-VmA",
-        "title": "#aestheic",
-        "channel": "Jackson Jax",
-        "views": 24070959
+        "video_id": "5brMqbSAdtU",
+        "title": "Cop Loses It Over an RC Boat",
+        "channel": "Mega Detective",
+        "views": 2953999
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "279V_Tse6y4",
-        "title": "#illustration #tattoo #art #pov #procreate #drawing #whydidntmyexcomeback #digitalart",
-        "channel": "dayebao",
-        "views": 3053122
+        "video_id": "1QxkSIgCjN0",
+        "title": "Boy dad started plannin a wedding. Girl dad never comin over again.",
+        "channel": "Jay & Sharon",
+        "views": 9116219
       },
       {
         "source_type": "youtube_trending_howto_style",
-        "video_id": "U0TyYxYT0D8",
-        "title": "Hot dog insanity ends in the least way I expected.",
-        "channel": "Farming While Beige",
-        "views": 3610507
+        "video_id": "HkxQUEOwfJk",
+        "title": "Styling Adopted Son\u2019s Hair! (via: harrisparty6/TT) #shorts #trending #viral #family #love #happy",
+        "channel": "Shiba Diva",
+        "views": 4134161
       }
     ],
     "music": [
@@ -3314,175 +3563,175 @@
         "video_id": "Mv5f9Q2LJYM",
         "title": "Beyonc\u00e9 - MORNING DEW (DONK)",
         "channel": "Beyonc\u00e9",
-        "views": 2747166
+        "views": 2838423
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "XyDabx34rug",
         "title": "GloRilla & Pooh Shiesty - MANE (Official Visual)",
         "channel": "theofficialGloRilla",
-        "views": 5193815
+        "views": 5287840
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "Hl5_Lc6b3AU",
         "title": "Fenix Flexin & Purps On The Beat - RUBBERZ (Official Video)",
         "channel": "Fenix Flexin",
-        "views": 2333065
+        "views": 2398755
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "vutbVGewIcg",
         "title": "Anuel AA - Las Mas Bonitas Son P*tas (Video Oficial)",
         "channel": "Anuel AA",
-        "views": 24706387
+        "views": 24981774
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "6dfNMwl6sSM",
         "title": "Conep - After (Official Video)",
         "channel": "ConepVEVO",
-        "views": 6506826
+        "views": 6653645
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "098m8TLTb4Y",
         "title": "Rylo Rodriguez - Neighborhood Starz (ft. Lil Baby & Kevin Gates) (Visualizer)",
         "channel": "Rylo Rodriguez",
-        "views": 498031
-      },
-      {
-        "source_type": "youtube_trending_music",
-        "video_id": "j7Ud7yHN784",
-        "title": "Try So Hard",
-        "channel": "Never Broke Again - Topic",
-        "views": 480859
-      },
-      {
-        "source_type": "youtube_trending_music",
-        "video_id": "4ubjZcyxzBY",
-        "title": "Don Omar - Dale Don Dale (Lyric Video)",
-        "channel": "MacheteMusicVEVO",
-        "views": 4179389
+        "views": 516265
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "FRspkI7w-rU",
         "title": "Dominic Fike - Babydoll (Lyrics)",
         "channel": "7clouds Trap",
-        "views": 1490788
+        "views": 1703390
+      },
+      {
+        "source_type": "youtube_trending_music",
+        "video_id": "j7Ud7yHN784",
+        "title": "Try So Hard",
+        "channel": "Never Broke Again - Topic",
+        "views": 501286
+      },
+      {
+        "source_type": "youtube_trending_music",
+        "video_id": "4ubjZcyxzBY",
+        "title": "Don Omar - Dale Don Dale (Lyric Video)",
+        "channel": "MacheteMusicVEVO",
+        "views": 4216174
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "rGHVzPq4hRM",
         "title": "Rylo Rodriguez - Excuse Me (ft. NoCap) (Visualizer)",
         "channel": "Rylo Rodriguez",
-        "views": 412303
+        "views": 428935
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "jUEyjE92fG4",
         "title": "BossMan Dlow - Plays Of The Week (Official Music Video)",
         "channel": "BossMan Dlow",
-        "views": 462426
-      },
-      {
-        "source_type": "youtube_trending_music",
-        "video_id": "Ojyu-svsBZY",
-        "title": "Rod Wave - Piece Of Your Love (Short Film)",
-        "channel": "RodWave",
-        "views": 2038680
-      },
-      {
-        "source_type": "youtube_trending_music",
-        "video_id": "em1pC8BWxXc",
-        "title": "Rylo Rodriguez - Low Top Vanz (Visualizer)",
-        "channel": "Rylo Rodriguez",
-        "views": 320206
+        "views": 483930
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "HbRJ0K69XOw",
         "title": "YTB Fatt - \"I Gotcha Bitch\" (feat. FoxBD) (Official Music Video)",
         "channel": "YTB Fatt ",
-        "views": 193500
+        "views": 207134
+      },
+      {
+        "source_type": "youtube_trending_music",
+        "video_id": "Ojyu-svsBZY",
+        "title": "Rod Wave - Piece Of Your Love (Short Film)",
+        "channel": "RodWave",
+        "views": 2057902
+      },
+      {
+        "source_type": "youtube_trending_music",
+        "video_id": "em1pC8BWxXc",
+        "title": "Rylo Rodriguez - Low Top Vanz (Visualizer)",
+        "channel": "Rylo Rodriguez",
+        "views": 332724
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "glqkQynuP3Q",
         "title": "Cristian Robles - No Fue Suerte, Fue Dios (Lyric Video)",
         "channel": "Cristian Robles",
-        "views": 435603
+        "views": 468171
       },
       {
         "source_type": "youtube_trending_music",
-        "video_id": "xVLDmJaob7Q",
-        "title": "Nadie Sabe Lo Que Tiene - EFECTO ELEGANTE (VIDEO OFICIAL)",
-        "channel": "Efecto Elegante",
-        "views": 928687
+        "video_id": "FdzPyCJpl_A",
+        "title": "FullyChop - Vultures (Official Music Video)",
+        "channel": "FullyChop",
+        "views": 142428
       },
       {
         "source_type": "youtube_trending_music",
-        "video_id": "CrHkBh4h9Xo",
-        "title": "Don't tell your dream",
-        "channel": "LOVIXX - Topic",
-        "views": 885450
+        "video_id": "ESORouDblNg",
+        "title": "One Two",
+        "channel": "Future - Topic",
+        "views": 128660
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "jC8pJl75X38",
         "title": "Enamorado de Ti",
         "channel": "Los Temerarios - Topic",
-        "views": 341867
+        "views": 403712
+      },
+      {
+        "source_type": "youtube_trending_music",
+        "video_id": "xVLDmJaob7Q",
+        "title": "Nadie Sabe Lo Que Tiene - EFECTO ELEGANTE (VIDEO OFICIAL)",
+        "channel": "Efecto Elegante",
+        "views": 979928
+      },
+      {
+        "source_type": "youtube_trending_music",
+        "video_id": "CrHkBh4h9Xo",
+        "title": "Don't tell your dream",
+        "channel": "LOVIXX - Topic",
+        "views": 946104
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "ykVpDClBL6U",
         "title": "Screwly G - \"Brag Different\" (Official Video)",
         "channel": "Screwly G",
-        "views": 223195
-      },
-      {
-        "source_type": "youtube_trending_music",
-        "video_id": "bJEFMBwIjIc",
-        "title": "Rio Da Yung Og - Another 4 Minutes Of Hell - (Official Video)",
-        "channel": "Rio Da Yung OG",
-        "views": 449149
-      },
-      {
-        "source_type": "youtube_trending_music",
-        "video_id": "AHuKFYTSrZU",
-        "title": "Future - Radio (Official Music Video)",
-        "channel": "FutureVEVO",
-        "views": 2738418
+        "views": 236119
       },
       {
         "source_type": "youtube_trending_music",
         "video_id": "GdXlVStmpCY",
         "title": "Ahora Pienso M\u00e1s en Ti",
         "channel": "Los Temerarios - Topic",
-        "views": 250197
+        "views": 298872
       },
       {
         "source_type": "youtube_trending_music",
-        "video_id": "9ehwH719JKU",
-        "title": "Tom MacDonald - \"Us In The USA\"",
-        "channel": "Tom MacDonald",
-        "views": 2699642
+        "video_id": "RHrk0-phLOI",
+        "title": "Tank Top Pluto",
+        "channel": "Future - Topic",
+        "views": 104822
       },
       {
         "source_type": "youtube_trending_music",
-        "video_id": "a1cWHFy4kKM",
-        "title": "Natanael Cano - Aprevenido [Official Video]",
-        "channel": "Natanael Cano",
-        "views": 2226830
+        "video_id": "AHuKFYTSrZU",
+        "title": "Future - Radio (Official Music Video)",
+        "channel": "FutureVEVO",
+        "views": 2792146
       },
       {
         "source_type": "youtube_trending_music",
-        "video_id": "Q7IFjVUUb_E",
-        "title": "Stray Kids \"RUN IT\" M/V",
-        "channel": "JYP Entertainment",
-        "views": 30610434
+        "video_id": "bJEFMBwIjIc",
+        "title": "Rio Da Yung Og - Another 4 Minutes Of Hell - (Official Video)",
+        "channel": "Rio Da Yung OG",
+        "views": 458070
       }
     ],
     "comedy": [
@@ -3491,175 +3740,175 @@
         "video_id": "8_BrKQ__vlM",
         "title": "\"Can't you see I'm trying to learn?\" \ud83d\ude02 #usa",
         "channel": "Frame242",
-        "views": 4667703
-      },
-      {
-        "source_type": "youtube_trending_comedy",
-        "video_id": "BpwBEiCALlE",
-        "title": "Salish exposes a liar\ud83e\udd2b #short #jordanmatter #salishmatter",
-        "channel": "Sweetz",
-        "views": 11479968
-      },
-      {
-        "source_type": "youtube_trending_comedy",
-        "video_id": "Vmf4hr9Uh0g",
-        "title": "Dan Soder Got BUSTED by His Mom \ud83d\ude02\ud83e\udd23\ud83d\ude05",
-        "channel": "Comedy Commodity ",
-        "views": 2132323
+        "views": 5223225
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "TlRoYP1hYOs",
         "title": "Hugh Jackman actually felt bad for this #logan #wolverine #dc",
         "channel": "Cinema Noctis",
-        "views": 2123148
+        "views": 2614747
       },
       {
         "source_type": "youtube_trending_comedy",
-        "video_id": "oxG9YfKbWkI",
-        "title": "Kai Cenat Accepted Suburb Baby to Streamer University Over Rakai \ud83d\ude02",
-        "channel": "WClipMedia",
-        "views": 2478862
-      },
-      {
-        "source_type": "youtube_trending_comedy",
-        "video_id": "pikXLaZZ364",
-        "title": "Me when bro and his gf are fighting! \ud83d\ude0f\ud83d\ude09",
-        "channel": "Meme Alive",
-        "views": 2264811
-      },
-      {
-        "source_type": "youtube_trending_comedy",
-        "video_id": "o2-zGCz0oLE",
-        "title": "When Dave Chappelle Made Chris Rock Very Angry \ud83d\ude0b\ud83e\udd69",
-        "channel": "HeroTimes",
-        "views": 2098147
+        "video_id": "Vmf4hr9Uh0g",
+        "title": "Dan Soder Got BUSTED by His Mom \ud83d\ude02\ud83e\udd23\ud83d\ude05",
+        "channel": "Comedy Commodity ",
+        "views": 2437681
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "YtaoUXPIRZA",
         "title": "Only Adam Sandler could get away with recycling the same bit for 30 years \ud83d\udc80",
         "channel": "Movie Moments",
-        "views": 1432784
+        "views": 1795244
       },
       {
         "source_type": "youtube_trending_comedy",
-        "video_id": "-UChsnzNnRI",
-        "title": "She wanted that money \ud83d\udc80\ud83e\udd23",
-        "channel": "Prank Lab",
-        "views": 12880660
+        "video_id": "oxG9YfKbWkI",
+        "title": "Kai Cenat Accepted Suburb Baby to Streamer University Over Rakai \ud83d\ude02",
+        "channel": "WClipMedia",
+        "views": 2767725
       },
       {
         "source_type": "youtube_trending_comedy",
-        "video_id": "BmPdY3o_wg8",
-        "title": "Comedian Goes Patriotic\ufffc",
-        "channel": "Thinking What",
-        "views": 3021297
+        "video_id": "BpwBEiCALlE",
+        "title": "Salish exposes a liar\ud83e\udd2b #short #jordanmatter #salishmatter",
+        "channel": "Sweetz",
+        "views": 11771445
+      },
+      {
+        "source_type": "youtube_trending_comedy",
+        "video_id": "pikXLaZZ364",
+        "title": "Me when bro and his gf are fighting! \ud83d\ude0f\ud83d\ude09",
+        "channel": "Meme Alive",
+        "views": 2286975
+      },
+      {
+        "source_type": "youtube_trending_comedy",
+        "video_id": "o2-zGCz0oLE",
+        "title": "When Dave Chappelle Made Chris Rock Very Angry \ud83d\ude0b\ud83e\udd69",
+        "channel": "HeroTimes",
+        "views": 2199817
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "5-oLYTYkDMQ",
         "title": "Rick Tried to Steal Alien Tree Sap\u2026 Then Nature Trapped Him in an Evolution Prison",
         "channel": "VioletFisher980",
-        "views": 2390933
+        "views": 2544760
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "usc4sko3zm8",
         "title": "Men can bond over the dumbest things",
         "channel": "Avirel",
-        "views": 3459338
+        "views": 3895743
+      },
+      {
+        "source_type": "youtube_trending_comedy",
+        "video_id": "BmPdY3o_wg8",
+        "title": "Comedian Goes Patriotic\ufffc",
+        "channel": "Thinking What",
+        "views": 3083159
+      },
+      {
+        "source_type": "youtube_trending_comedy",
+        "video_id": "-UChsnzNnRI",
+        "title": "She wanted that money \ud83d\udc80\ud83e\udd23",
+        "channel": "Prank Lab",
+        "views": 12923875
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "C1qWrqozmLo",
         "title": "\"Georgie Meets Mandy's Parents\"\u2620\ufe0f\ud83d\udd25 | young sheldon |#Trending #Shorts",
         "channel": "Marvin vanegas",
-        "views": 2968580
+        "views": 3326872
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "gztn7OC90M4",
         "title": "A police officer was shot and injured by a teenager#shorts  #usa",
         "channel": "ToonHUB",
-        "views": 2862636
+        "views": 3469556
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "zt513dx-epo",
         "title": "Ranking The Best Prom Jump Trend\ud83d\ude02\ud83d\udc96\u2728 #ranking #tiktok #viral #trend",
         "channel": "Gelio",
-        "views": 2624733
-      },
-      {
-        "source_type": "youtube_trending_comedy",
-        "video_id": "_VBhfBsNn4g",
-        "title": "When Carmela steals Tony\u2019s money  #foryou #thesopranos #series #shorts #drama",
-        "channel": "Onilda Caatellon",
-        "views": 2083280
-      },
-      {
-        "source_type": "youtube_trending_comedy",
-        "video_id": "CpKzMc-557c",
-        "title": "Rick going back to spawn to be with Morty was pretty wholesome \ud83e\udd79 || #rickandmorty #ricksanchez",
-        "channel": "WahZabi",
-        "views": 2606419
+        "views": 2896555
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "ML9vQgn0rfI",
         "title": "Tony Hinchcliffe Meets A Mexican!!! \ud83d\ude02\ud83d\ude02\ud83d\ude02 | Kill Tony ft. Ivan Volkov",
         "channel": "LifeofLogos",
-        "views": 1340291
+        "views": 1561338
       },
       {
         "source_type": "youtube_trending_comedy",
-        "video_id": "llmT9EOkS40",
-        "title": "Dad Threw His Son\u2026 But Gently Lifted His Daughter \ud83e\udd79\ud83d\ude02\u2764\ufe0f",
-        "channel": "Daily Hip Hop & Trending News ",
-        "views": 4034533
+        "video_id": "_VBhfBsNn4g",
+        "title": "When Carmela steals Tony\u2019s money  #foryou #thesopranos #series #shorts #drama",
+        "channel": "Onilda Caatellon",
+        "views": 2202955
       },
       {
         "source_type": "youtube_trending_comedy",
-        "video_id": "dtzKvMt-Ay0",
-        "title": "Mike Myers WAS FORCED To Be The Cat in The Hat #mikemyers #thecatinthehat #moviefacts #snl",
-        "channel": "fluffieduffie",
-        "views": 1872297
+        "video_id": "CpKzMc-557c",
+        "title": "Rick going back to spawn to be with Morty was pretty wholesome \ud83e\udd79 || #rickandmorty #ricksanchez",
+        "channel": "WahZabi",
+        "views": 2889891
       },
       {
         "source_type": "youtube_trending_comedy",
-        "video_id": "4tFOD6JdFUw",
-        "title": "Should Andi be worried?#shorts",
-        "channel": "JKMVOIE",
-        "views": 5155197
+        "video_id": "e1m0ZxOhOmo",
+        "title": "#newstatus",
+        "channel": "Smirk",
+        "views": 873226
       },
       {
         "source_type": "youtube_trending_comedy",
-        "video_id": "Mpw4A9QS9II",
-        "title": "Por favor comparte con tus amigos #pov #herramientas #sketch #gracioso #actuaci\u00f3n #historia",
-        "channel": "Trung Trung Vu",
-        "views": 5450323
-      },
-      {
-        "source_type": "youtube_trending_comedy",
-        "video_id": "2GflKcHHE8A",
-        "title": "Don\u2019t be fooled by the pretty zombies#shorts",
-        "channel": "SignalSanction ",
-        "views": 3693263
-      },
-      {
-        "source_type": "youtube_trending_comedy",
-        "video_id": "9GXWtF2jn5k",
-        "title": "The miracle reappearing was just a misunderstanding. \u2728\ud83d\ude05#shorts",
-        "channel": "FrameAlchemy",
-        "views": 2890047
+        "video_id": "zzxAG75heyI",
+        "title": "She Expected Everyone to Just Accept Her Behavior #humanbehavior #psychology",
+        "channel": "The Alpha Mind",
+        "views": 1828890
       },
       {
         "source_type": "youtube_trending_comedy",
         "video_id": "LZ1CokD7uIc",
         "title": "The Weirdest Family Ever",
         "channel": "Pure Moments",
-        "views": 2400980
+        "views": 2731856
+      },
+      {
+        "source_type": "youtube_trending_comedy",
+        "video_id": "dtzKvMt-Ay0",
+        "title": "Mike Myers WAS FORCED To Be The Cat in The Hat #mikemyers #thecatinthehat #moviefacts #snl",
+        "channel": "fluffieduffie",
+        "views": 1985206
+      },
+      {
+        "source_type": "youtube_trending_comedy",
+        "video_id": "Mpw4A9QS9II",
+        "title": "Por favor comparte con tus amigos #pov #herramientas #sketch #gracioso #actuaci\u00f3n #historia",
+        "channel": "Trung Trung Vu",
+        "views": 5830422
+      },
+      {
+        "source_type": "youtube_trending_comedy",
+        "video_id": "4tFOD6JdFUw",
+        "title": "Should Andi be worried?#shorts",
+        "channel": "JKMVOIE",
+        "views": 5413190
+      },
+      {
+        "source_type": "youtube_trending_comedy",
+        "video_id": "llmT9EOkS40",
+        "title": "Dad Threw His Son\u2026 But Gently Lifted His Daughter \ud83e\udd79\ud83d\ude02\u2764\ufe0f",
+        "channel": "Daily Hip Hop & Trending News ",
+        "views": 4079178
       }
     ]
   },
@@ -3667,11 +3916,27 @@
     "world": [
       {
         "source_type": "google_news_world",
-        "title": "Ukrainian drones batter Russian oil facilities and set more oil tankers ablaze - AP News"
+        "title": "At Least 11 People Die in Southern Spain Wildfire - The New York Times"
       },
       {
         "source_type": "google_news_world",
-        "title": "Live updates: US-Iran ceasefire crumbles as fresh strikes rock Middle East - CNN"
+        "title": "Count Binface: The intergalactic warrior who could upend Britain's strangest election - NPR"
+      },
+      {
+        "source_type": "google_news_world",
+        "title": "At least 28 killed in shoe factory fire in southeast China, state media says - Reuters"
+      },
+      {
+        "source_type": "google_news_world",
+        "title": "UK Labour leadership nominations begin: Who\u2019s running and how it works - Al Jazeera"
+      },
+      {
+        "source_type": "google_news_world",
+        "title": "US and Iran exchange intensifying fire across Mideast, threatening ceasefire deal - AP News"
+      },
+      {
+        "source_type": "google_news_world",
+        "title": "Ukraine escalates attacks on tankers near Crimea as Russian fuel shortages bite - CNBC"
       },
       {
         "source_type": "google_news_world",
@@ -3679,105 +3944,77 @@
       },
       {
         "source_type": "google_news_world",
-        "title": "How England's class divide shaped Andy Burnham, the U.K.'s likely next prime minister - NPR"
+        "title": "Ukrainian agent accused of murdering Monaco bomb suspect changes story - BBC"
       },
       {
         "source_type": "google_news_world",
-        "title": "Trump targets Spain, NATO backs Ukraine: Is the alliance still united? - Al Jazeera"
+        "title": "Japan's southwestern islands on high alert as powerful Typhoon Bavi approaches - Reuters"
       },
       {
         "source_type": "google_news_world",
-        "title": "Strait of Hormuz traffic is near a standstill again, but analysts say 'the world has adapted' - Yahoo Finance"
+        "title": "The Bayeux Tapestry is at the British Museum after a secret journey from France - AP News"
       },
       {
         "source_type": "google_news_world",
-        "title": "Regions Calling: Russia's Fuel-Producing Hub Struggles to Shake Off Supply Crisis - The Moscow Times"
+        "title": "A quest for closure: In search of the missing after Venezuela\u2019s earthquakes - Al Jazeera"
       },
       {
         "source_type": "google_news_world",
-        "title": "Zelensky reveals details about massive explosions in Kyiv suburb, promises dismissals at Ukraine's largest defense company - The Kyiv Independent"
+        "title": "Missile test showcases sensitive Chinese submarine capabilities key to nuclear deterrent - Reuters"
       },
       {
         "source_type": "google_news_world",
-        "title": "Fire at a shoe factory kills 28 in one of China\u2019s deadliest blazes in recent years - AP News"
+        "title": "China recovers reusable rocket used in the maiden launch of Long March 10B - South China Morning Post"
       },
       {
         "source_type": "google_news_world",
-        "title": "China\u2019s ballistic missile launch was a message for the US - AP News"
+        "title": "Strait of Hormuz traffic plunges as US, Iran resume fighting - Al Jazeera"
       },
       {
         "source_type": "google_news_world",
-        "title": "Republican Rebukes Trump Over \u2018Foolish\u2019 Greenland Comments at NATO - Newsweek"
-      },
-      {
-        "source_type": "google_news_world",
-        "title": "\u2018Not Nigel Farage\u2019: Who is Count Binface, contesting as MP for Clacton, UK? - Al Jazeera"
-      },
-      {
-        "source_type": "google_news_world",
-        "title": "Flight school pilot Leandro Andres Bertazzo jumps to his death midair, leaving student to land plane in Argentina - ABC7 Los Angeles"
-      },
-      {
-        "source_type": "google_news_world",
-        "title": "Death toll from Venezuela quakes rises to 3,811 as government seeks frozen funds - Reuters"
-      },
-      {
-        "source_type": "google_news_world",
-        "title": "Trump\u2019s humiliation on the world stage triggers acts of desperation at home - MS NOW"
+        "title": "NATO\u2019s Ankara summit was a wasted opportunity - politico.eu"
       }
     ],
     "nation": [
       {
         "source_type": "google_news_nation",
-        "title": "Mexican Man Fatally Shot by ICE Wasn\u2019t the Intended Target - The New York Times"
+        "title": "Migrants who saw man killed by ICE in Houston say he did not ram officers - The Washington Post"
       },
       {
         "source_type": "google_news_nation",
-        "title": "Man accused of killing Charlie Kirk wished \u2018he hadn\u2019t done it,\u2019 roommate says - The Washington Post"
+        "title": "Why Some Women in Maine Are Mourning the End of Graham Platner\u2019s Campaign - The New York Times"
       },
       {
         "source_type": "google_news_nation",
-        "title": "Trump revels in America's military might as Iran fighting drags on - Axios"
+        "title": "Trump\u2019s Air Force One switcheroo highlights security concerns around Qatari model - The Hill"
       },
       {
         "source_type": "google_news_nation",
-        "title": "Courts reject Trump's Hail Mary bids to avoid paying E. Jean Carroll - Politico"
+        "title": "Trump Pushes Out Remaining Members of Bipartisan Election Commission Ahead of Midterms - ProPublica"
       },
       {
         "source_type": "google_news_nation",
-        "title": "Former Olympian pleads not guilty in Reflecting Pool damage case after Trump alleged vandalism - AP News"
+        "title": "Charlie Kirk murder suspect told roommate 'he wishes he hadn't done it', court hears - BBC"
       },
       {
         "source_type": "google_news_nation",
-        "title": "Judge finds Chicago\u2019s embattled U.S. attorney violated secrecy order in Tren de Aragua case - Chicago Sun-Times"
+        "title": "Missing Michigan woman Lynette Hooker may have returned to her sailboat before disappearance in the Bahamas, source says - CBS News"
       },
       {
         "source_type": "google_news_nation",
-        "title": "Here's who's vying to replace Graham Platner as Maine Democratic Senate nominee - CBS News"
+        "title": "Live Updates: Iran and U.S. ramp up tit-for-tat strikes as Khamenei laid to rest - CBS News"
       },
       {
         "source_type": "google_news_nation",
-        "title": "'Charade': Calls for answers about McConnell's health now bipartisan - The Courier-Journal"
+        "title": "Trump\u2019s proposed triumphal arch clears another key hurdle - The Washington Post"
       },
       {
         "source_type": "google_news_nation",
-        "title": "New Air Force One Lacks Defensive Countermeasures of Previous Model, Officials Say - The New York Times"
+        "title": "On the same day, a Florida airport and a Tennessee bridge are renamed after Trump - NBC News"
       },
       {
         "source_type": "google_news_nation",
-        "title": "New Mexico Accuses D.O.J. of Obstructing Epstein Ranch Inquiry - The New York Times"
-      },
-      {
-        "source_type": "google_news_nation",
-        "title": "South Florida's Palm Beach airport renamed President Donald J. Trump International - PBS"
-      },
-      {
-        "source_type": "google_news_nation",
-        "title": "Strong El Ni\u00f1o now a virtual certainty, forecasters say. What it means for California - Los Angeles Times"
-      },
-      {
-        "source_type": "google_news_nation",
-        "title": "As Workers Shore Up Midtown Building, Developer Reassures Investors - The New York Times"
+        "title": "Recap: Jury finds Larry Millete guilty of 1st-degree murder in Maya's death - NBC 7 San Diego"
       },
       {
         "source_type": "google_news_nation",
@@ -3785,21 +4022,33 @@
       },
       {
         "source_type": "google_news_nation",
-        "title": "Live updates: Jury finds Larry Millete guilty of 1st-degree murder in Maya's death - NBC 7 San Diego"
+        "title": "Man charged with killing National Guard member is hospitalized after refusing food, prosecutors say - AP News"
+      },
+      {
+        "source_type": "google_news_nation",
+        "title": "Former Olympic canoe racer pleads not guilty in Reflecting Pool damage case - PBS"
+      },
+      {
+        "source_type": "google_news_nation",
+        "title": "Iran had 'specific' plan to kill Trump, US media report citing Israeli intel - France 24"
+      },
+      {
+        "source_type": "google_news_nation",
+        "title": "Victor Marx wins GOP nod for governor, will face Democrat Phil Weiser in November - Colorado Public Radio"
       }
     ],
     "science": [
       {
         "source_type": "google_news_science",
-        "title": "SpaceX stock in focus as launch, Starlink business hit new milestones - Yahoo Finance"
+        "title": "'Complex numbers are not needed for quantum mechanics': Physicists develop quantum model that uses only 'real' numbers for first time ever - Live Science"
       },
       {
         "source_type": "google_news_science",
-        "title": "Earliest animal with a head was also the oldest known \u2018righty\u2019 - CNN"
+        "title": "Ancient fossil may reveal animal kingdom's earliest right-handedness at 550 million years old - Phys.org"
       },
       {
         "source_type": "google_news_science",
-        "title": "A Chinese Spacecraft Captures First Image of Quasi-Moon - The New York Times"
+        "title": "Birdlike robot swims underwater, then flaps into flight without paddling - Tech Xplore"
       },
       {
         "source_type": "google_news_science",
@@ -3807,15 +4056,39 @@
       },
       {
         "source_type": "google_news_science",
+        "title": "SpaceX stock in focus as launch, Starlink business hit new milestones - Yahoo Finance"
+      },
+      {
+        "source_type": "google_news_science",
+        "title": "Scientists Say This Climate Hack Could Stop El Ni\u00f1o Before It Starts - Gizmodo"
+      },
+      {
+        "source_type": "google_news_science",
         "title": "See it: Scientists sample once-inaccessible tephra from wall of crater on Kilauea's summit - FOX Weather"
       },
       {
         "source_type": "google_news_science",
-        "title": "A new kind of robot swims the seas and soars the skies - NPR"
+        "title": "'Astronomers have to revise estimates': The Milky Way may be larger, heavier and more lopsided than we realized - Live Science"
       },
       {
         "source_type": "google_news_science",
-        "title": "Dimming the Sun Would Help Lower the Risks of El Ni\u00f1o. No, Really - WIRED"
+        "title": "Verification of the Outer Space Treaty with cosmic protons - Nature"
+      },
+      {
+        "source_type": "google_news_science",
+        "title": "Leap Seconds Were a Headache. Now Timekeepers Are Considering a Leap Hour - Gizmodo"
+      },
+      {
+        "source_type": "google_news_science",
+        "title": "From the lab to the moon: Lunar cement alternative survives 6 months on ISS and returned stronger in some tests - Phys.org"
+      },
+      {
+        "source_type": "google_news_science",
+        "title": "NASA's Roman Space Telescope prepares for launch | Space photo of the day for July 8, 2026 - Space"
+      },
+      {
+        "source_type": "google_news_science",
+        "title": "Scientists have discovered the oldest quasar ever seen, and it shines with the light of a trillion suns - Space"
       },
       {
         "source_type": "google_news_science",
@@ -3824,64 +4097,36 @@
       {
         "source_type": "google_news_science",
         "title": "The Branching Dendrite Secret Behind Human Cognitive Superiority - Neuroscience News"
-      },
-      {
-        "source_type": "google_news_science",
-        "title": "NASA's Roman Space Telescope prepares for launch | Space photo of the day for July 8, 2026 - Space"
-      },
-      {
-        "source_type": "google_news_science",
-        "title": "Astronomers perplexed by new James Webb Space Telescope photos unveiling secrets of a galaxy 11 million lig... - Yahoo"
-      },
-      {
-        "source_type": "google_news_science",
-        "title": "Verification of the Outer Space Treaty with cosmic protons - Nature"
-      },
-      {
-        "source_type": "google_news_science",
-        "title": "Scientists Say a Critical Ocean Current System May Already Be Past the Point of No Return - Gizmodo"
-      },
-      {
-        "source_type": "google_news_science",
-        "title": "Beyond Lithium: New Battery Tech Starts to Break Through - Yale E360"
-      },
-      {
-        "source_type": "google_news_science",
-        "title": "On July 7, a small Miami company called City Labs put a tritium-powered battery the size of a pencil eraser into orbit aboard a SpaceX Falcon 9 \u2014 its softball-sized BOHR CubeSat becoming the first commercial spacecraft ever cleared to carry a nuclear power - Space Daily"
       }
     ],
     "technology": [
       {
         "source_type": "google_news_technology",
-        "title": "Sony's RX10 V Superzoom Finally Arrives With A New Design And 4K 120p Video - Engadget"
+        "title": "More Than a Thousand \u2018Pok\u00e9mon Go\u2019 Players Descend on Times Square to Defeat Mewtwo - WIRED"
       },
       {
         "source_type": "google_news_technology",
-        "title": "Anthropic\u2019s new Claude feature is quietly selling you on AI - TechCrunch"
+        "title": "Samsung shares first official glimpse at wide Galaxy Z Fold 8, with Spider-Man\u2019s help - 9to5Google"
       },
       {
         "source_type": "google_news_technology",
-        "title": "iOS 27 Beta 3 Changes the Way CarPlay Looks and Feels: Every New Feature - Geeky Gadgets"
+        "title": "Google starts rolling out local Documents backup on Android, lets you turn off SMS & RCS - 9to5Google"
       },
       {
         "source_type": "google_news_technology",
-        "title": "Patch for Windows Defender 0-day could allow attackers to fill hard disk - Ars Technica"
+        "title": "Google updates Android Bench with new LLMs, but Gemini still lags behind - Ars Technica"
+      },
+      {
+        "source_type": "google_news_technology",
+        "title": "Venus Williams-backed WeWard can now lock your apps until you hit your steps - TechCrunch"
+      },
+      {
+        "source_type": "google_news_technology",
+        "title": "Samsung said to discontinue its Galaxy Z Flip lineup after the Flip8 - GSMArena.com news - GSMArena.com"
       },
       {
         "source_type": "google_news_technology",
         "title": "\"We really squeezed the PS5 as much as we could\": Ubisoft talks tech on Assassin's Creed Black Flag Resynced - Digital Foundry"
-      },
-      {
-        "source_type": "google_news_technology",
-        "title": "iPadOS 27 Beta 3 Finally Unlocks the iPad\u2019s Full Multitasking Potential - Geeky Gadgets"
-      },
-      {
-        "source_type": "google_news_technology",
-        "title": "Vermont is creating a statewide trail, and making sure it's accessible to all - NPR"
-      },
-      {
-        "source_type": "google_news_technology",
-        "title": "Google is changing how it judges AI models for Android coding, updates list with Fable 5 - 9to5Google"
       },
       {
         "source_type": "google_news_technology",
@@ -3893,15 +4138,19 @@
       },
       {
         "source_type": "google_news_technology",
-        "title": "YouTuber turns $4000 AMD Ryzen AI Halo into the SteamOS gaming system - VideoCardz.com"
+        "title": "The new 788HS is the first \u2018new\u2019 McLaren for almost two years - Top Gear"
       },
       {
         "source_type": "google_news_technology",
-        "title": "Report: Obsidian Cancels Avowed Sequel To Begin Work On A New Fallout Game - Game Informer"
+        "title": "Yoshi's New Switch 2 Game Is Getting A Demo On The Nintendo eShop - Nintendo Life"
       },
       {
         "source_type": "google_news_technology",
-        "title": "Over 220,000 People Petition Sony Not To Kill Physical PlayStation Game Discs - GameSpot"
+        "title": "\u2018Sony essentially destroys its own defense\u2019: How its disc-free PS5 plan triggered a $457M lawsuit and undercut its antitrust defense - Fortune"
+      },
+      {
+        "source_type": "google_news_technology",
+        "title": "iRacing set to increase subscription costs - Traxion.GG"
       },
       {
         "source_type": "google_news_technology",
@@ -3909,25 +4158,17 @@
       },
       {
         "source_type": "google_news_technology",
-        "title": "The new 788HS is the first \u2018new\u2019 McLaren for almost two years - Top Gear"
+        "title": "Sony's RX10 V Superzoom Finally Arrives With A New Design And 4K 120p Video - Engadget"
       }
     ],
     "health": [
       {
         "source_type": "google_news_health",
-        "title": "What to know about 'explosive diarrhoea' parasite outbreak in US - BBC"
+        "title": "Ohio counties with cases of diarrhea parasite: list - FOX 8 News"
       },
       {
         "source_type": "google_news_health",
-        "title": "In Congo, health workers fighting Ebola go on strike after months without pay - The Washington Post"
-      },
-      {
-        "source_type": "google_news_health",
-        "title": "Legionnaires\u2019 outbreak rocks New York as experts warn of rising climate threat - The Guardian"
-      },
-      {
-        "source_type": "google_news_health",
-        "title": "90 percent of U.S. adults have this syndrome \u2014 but most have never heard of it - Yahoo"
+        "title": "The smell of dark chocolate could make a leg workout easier, even on an empty stomach - Medical Xpress"
       },
       {
         "source_type": "google_news_health",
@@ -3935,23 +4176,15 @@
       },
       {
         "source_type": "google_news_health",
-        "title": "Cluster of extremely rare cancer cases suddenly strikes kids in wealthy SoCal city - New York Post"
+        "title": "In Congo, health workers fighting Ebola go on strike after months without pay - The Washington Post"
       },
       {
         "source_type": "google_news_health",
-        "title": "\ufeffIowa's first measles case of 2026 reflects a changing reality for doctors, health officials - KCCI"
+        "title": "Legionnaires' disease cluster in New York City grows to 46 cases - ABC News - Breaking News, Latest News and Videos"
       },
       {
         "source_type": "google_news_health",
-        "title": "Brits' Plan in 1788 to Stop Smallpox May Have Backfired - Newser"
-      },
-      {
-        "source_type": "google_news_health",
-        "title": "Column | What a sleep expert eats in a day for better rest at night - The Washington Post"
-      },
-      {
-        "source_type": "google_news_health",
-        "title": "Doctors Say This 'Embarrassing' Symptom Could Be A Warning Sign Of Colorectal Cancer - HuffPost"
+        "title": "90 percent of U.S. adults have this syndrome \u2014 but most have never heard of it - Yahoo"
       },
       {
         "source_type": "google_news_health",
@@ -3959,61 +4192,65 @@
       },
       {
         "source_type": "google_news_health",
+        "title": "\ufeffIowa's first measles case of 2026 reflects a changing reality for doctors, health officials - KCCI"
+      },
+      {
+        "source_type": "google_news_health",
+        "title": "Ladera Ranch families concerned after several children diagnosed with rare cancer - NBC Los Angeles"
+      },
+      {
+        "source_type": "google_news_health",
+        "title": "Genomic epidemiology of the ongoing 2026 Bundibugyo Virus Disease outbreak in the Democratic Republic of the Congo - Virological"
+      },
+      {
+        "source_type": "google_news_health",
+        "title": "Brits' Plan in 1788 to Stop Smallpox May Have Backfired - Newser"
+      },
+      {
+        "source_type": "google_news_health",
+        "title": "Fast Walkers Could Cut Their Risk of Cognitive Decline in Half, New Study Finds - EatingWell"
+      },
+      {
+        "source_type": "google_news_health",
         "title": "West Nile virus detected in mosquitoes from 13 Orange County cities - KTLA"
       },
       {
         "source_type": "google_news_health",
-        "title": "One walking habit could signal a healthier brain after 80, scientists say - Fox News"
-      },
-      {
-        "source_type": "google_news_health",
-        "title": "Smelling chocolate could make your leg day workout easier, even on an empty stomach - Earth.com"
-      },
-      {
-        "source_type": "google_news_health",
         "title": "Tiny silica particles wiped out aggressive prostate cancer in mice - ScienceDaily"
+      },
+      {
+        "source_type": "google_news_health",
+        "title": "Men\u2019s Testosterone Levels Have Fallen by Half in 50 Years and Scientists Are Worried - ZME Science"
       }
     ],
     "sports": [
       {
         "source_type": "google_news_sports",
-        "title": "Mbappe and Dembele net as France beat Morocco to reach World Cup semifinal - Al Jazeera"
+        "title": "LA Galaxy coach Greg Vanney says Team USA was 'too naive,' explains Christian Pulisic's struggles - Fox News"
       },
       {
         "source_type": "google_news_sports",
-        "title": "Teams sending recruiting voice notes to LeBron James via Rich Paul - ESPN"
+        "title": "Joe Mazzulla on Jaylen Brown trade: \u2018We have a different identity.\u2019 Brown felt \u2018no loyalty\u2019 - The New York Times"
       },
       {
         "source_type": "google_news_sports",
-        "title": "Kawhi Leonard trade to Raptors put on hold until Clippers\u2019 Aspiration investigation ends - The New York Times"
+        "title": "France's Kylian Mbapp\u00e9 allays any World Cup injury concern: 'I'm all good' - ESPN"
       },
       {
         "source_type": "google_news_sports",
-        "title": "A Messi conspiracy: Egyptian pundit blames Israel for Egypt's World Cup loss against Argentina - The Jerusalem Post"
+        "title": "New LeBron James Rumors on NBA Teams Sending Voice Notes to Star Amid Free Agency Recruitment - Bleacher Report"
       },
       {
         "source_type": "google_news_sports",
-        "title": "World Cup 2026: Carli Lloyd doubles down on Christian Pulisic 'rest' comments after USMNT star's microfracture diagnosis - Yahoo Sports"
+        "title": "Kawhi deal paused & Summer League takeaways with Nekias Duncan & Es Baraheni - Yahoo Sports"
       },
       {
         "source_type": "google_news_sports",
-        "title": "Israel Adesanya reveals he\u2019s split with longtime head coach Eugene Bareman and City Kickboxing: \u2018A long time coming\u2019 - MMA Fighting"
+        "title": "Conor McGregor v Max Holloway: McGregor rips off Holloway's glasses at UFC 329 news conference - BBC"
       },
       {
         "source_type": "google_news_sports",
-        "title": "Kylian Mbappe produces a copy & paste performance as his World Cup battle with Lionel Messi continues to produce magic - Sky Sports"
-      },
-      {
-        "source_type": "google_news_sports",
-        "title": "Ducks match Carlsson 5-year, $90 million offer sheet from Flyers - NHL.com"
-      },
-      {
-        "source_type": "google_news_sports",
-        "title": "Brussels wants action over Trump-Infantino red card controversy - Politico"
-      },
-      {
-        "source_type": "google_news_sports",
-        "title": "White Sox considering three hitters for No. 1 pick - NBC Sports"
+        "title": "'Would you give away stages?' \u2013 Tadej Poga\u010dar consumes all on Col du Tourmalet at the Tour de France but does he win too much? - Cyclingnews"
       },
       {
         "source_type": "google_news_sports",
@@ -4021,15 +4258,27 @@
       },
       {
         "source_type": "google_news_sports",
-        "title": "Coco Gauff \u2018panicked\u2019 on match-point miss in drama-filled Wimbledon semifinal loss - AP News"
+        "title": "Brussels wants action over Trump-Infantino red card controversy - Politico"
       },
       {
         "source_type": "google_news_sports",
-        "title": "'Do you really support Conor McGregor?' For Ireland, UFC 329 reopens old wounds - Yahoo Sports"
+        "title": "Unbeaten Spain meets star-powered Belgium in the World Cup quarterfinals - AP News"
       },
       {
         "source_type": "google_news_sports",
-        "title": "'I couldn't sleep long because I was so excited' \u2013 Despite flashbacks and an early wake-up, Tadej Poga\u010dar takes complete control of Tour de France on first mountain stage - Cyclingnews"
+        "title": "World Cup 2026: England reached rare heights at the Azteca. Now comes Erling Haaland's Norway - Yahoo Sports"
+      },
+      {
+        "source_type": "google_news_sports",
+        "title": "Without Leo Carlsson, the Flyers\u2019 hunt for their pot of gold just got harder and longer - Inquirer.com"
+      },
+      {
+        "source_type": "google_news_sports",
+        "title": "4 thoughts following the Mavericks\u2019 loss to the Warriors, 101-90 - Mavs Moneyball"
+      },
+      {
+        "source_type": "google_news_sports",
+        "title": "New president chosen for Clemson University - WYFF News 4"
       },
       {
         "source_type": "google_news_sports",
@@ -4039,39 +4288,35 @@
     "entertainment": [
       {
         "source_type": "google_news_entertainment",
-        "title": "Emmy Predictions via Feinberg Forecast: Scott\u2019s First Post-Nominations Read of the Race - The Hollywood Reporter"
-      },
-      {
-        "source_type": "google_news_entertainment",
         "title": "Live-action remake of 'Moana' gets ravaged by critics in latest blow to Disney Studios - Fox News"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "Netflix Woke-ified Little House on the Prairie - Slate Magazine"
+        "title": "Emmy Predictions via Feinberg Forecast: Scott\u2019s First Post-Nominations Read of the Race - The Hollywood Reporter"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "\u2018Heartfelt\u2019 or \u2018creepy\u2019? Justin Baldoni video after Blake Lively legal battle divides PR experts - NBC News"
+        "title": "Darrell Sheets, \u2018Storage Wars\u2019 star who died by suicide, left note about cyberbully - NBC News"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "Reality TV star, 67, mentioned \u2018Facebook bullying\u2019 in apparent suicide note - NJ.com"
+        "title": "Moana Reviews Are Rough, But Dwayne Johnson Pushes Back On The Live-Action Version Coming Too Soon - Yahoo"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "'RHOC' star confirms son's involvement in seven-acre SoCal fire - Yahoo News Canada"
+        "title": "\u2018Big Brother\u2019s Levi Banks Explains Dropping Out Before Season 28: \u201cNot The Right Fit\u201d - Deadline"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "\u2018Freddy the 13th\u2019 Animated Horror-Comedy From Dan Trachtenberg Sets 2028 Release - The Hollywood Reporter"
+        "title": "Justin Baldoni Makes First Public Statement After \u2018It Ends With Us\u2019 Lawsuit Settlement - Rolling Stone"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "Bonnie Tyler Tributes: Kevin Bacon, Johnny Knoxville & Rod Stewart Remember \u201cOne Of The Greatest Voices Of Rock\u201d - Deadline"
+        "title": "Bonnie Tyler, singer of 'Total Eclipse of the Heart', dies at 75 - Reuters"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "How Much Did Taylor Swift\u2019s Wedding to Travis Kelce Cost? - Rolling Stone"
+        "title": "Horoscope for Friday, July 10, 2026 - Chicago Sun-Times"
       },
       {
         "source_type": "google_news_entertainment",
@@ -4079,135 +4324,113 @@
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "Black Sabbath drummer Bill Ward pledges to 'keep on rocking' despite wheelchair - BBC"
+        "title": "Taylor Swift & Travis Kelce Spent an Estimated $30 Million on Their Wedding - instyle.com"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "In its second season, HBO\u2019s \u2018Task\u2019 will see a crossover with \u2018Mare of Easttown\u2019 - Inquirer.com"
+        "title": "New 'Little House' series explores complicated history but keeps heart, community at the center - AP News"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "\u2018Alien: Earth\u2019 Season 2 Adds Tracey Ullman, Sam Spruell, Jerome Flynn - Variety"
+        "title": "Ariana Grande Look-Alike Paige Niemann Says She Felt 'Misled' by Star's DM - TMZ"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "\u2018Summer House\u2019 Headed to Canada (Exclusive) - The Hollywood Reporter"
+        "title": "Julianne Nicholson to Reprise \u2018Mare of Easttown\u2019 Role in \u2018Task\u2019 Season 2 - The Hollywood Reporter"
       },
       {
         "source_type": "google_news_entertainment",
-        "title": "New WWE champ CM Punk has a full-time schedule this summer - Cageside Seats"
+        "title": "Tracey Ullman, Sam Spruell & Jerome Flynn Join \u2018Alien: Earth\u2019 Season 2 As Production Begins In London - Deadline"
+      },
+      {
+        "source_type": "google_news_entertainment",
+        "title": "\u2018The Five Star Weekend\u2019 premiere red carpet: Jennifer Garner, D'Arcy Carden, Chloe Sevigny and more - Page Six"
       }
     ],
     "business": [
       {
         "source_type": "google_news_business",
-        "title": "Days after announcing mass layoffs, Xbox CEO Asha Sharma tapped to advise the Federal Reserve on jobs - Engadget"
+        "title": "Stock futures mixed as investors await SK Hynix U.S. debut; chip stocks retreat from rally: Live updates - CNBC"
       },
       {
         "source_type": "google_news_business",
-        "title": "SK Hynix (SKHY) US Listing: What to Know About the Largest-Ever ADR Offering - Barron's"
+        "title": "Chip stocks boost global markets ahead of SK Hynix blockbuster US debut - Reuters"
       },
       {
         "source_type": "google_news_business",
-        "title": "OpenAI launches its new family of models with GPT-5.6 - TechCrunch"
+        "title": "Delta expects higher airfare to last, bringing 2026 profit goal in reach, CEO says - CNBC"
       },
       {
         "source_type": "google_news_business",
-        "title": "EPA proposes weakening heavy-duty truck pollution rules - NPR"
+        "title": "Fidji Simo steps down from OpenAI\u2019s no. 2 role - TechCrunch"
       },
       {
         "source_type": "google_news_business",
-        "title": "Fidji Simo steps down from leading OpenAI\u2019s AGI work due to illness - The Verge"
+        "title": "Volkswagen Is Cutting Production as Sales in China Plunge - The New York Times"
       },
       {
         "source_type": "google_news_business",
-        "title": "How to deal with seesawing gas prices - NPR"
+        "title": "Fed chief taps Trump ally Marc Andreessen to advise on how AI reshapes work - The Washington Post"
       },
       {
         "source_type": "google_news_business",
-        "title": "Goldman Sachs limits prediction market betting for employees - Financial Times"
+        "title": "Can AI answer the $3 trillion question? - TechCrunch"
       },
       {
         "source_type": "google_news_business",
-        "title": "Gas spikes, snacks tank: PepsiCo issues warning on consumer squeeze (PEP:NASDAQ) - Seeking Alpha"
+        "title": "Oil heads for weekly gain as Middle East supply risks persist - Reuters"
       },
       {
         "source_type": "google_news_business",
-        "title": "Grocery Stores Lower Prices as Consumers Pare Spending - The New York Times"
+        "title": "OpenAI releases GPT-5.6 and ChatGPT Work tool - Axios"
       },
       {
         "source_type": "google_news_business",
-        "title": "OpenAI is discontinuing ChatGPT Atlas, its standalone desktop browser - 9to5Mac"
+        "title": "The Price of Staying on Trump\u2019s Good Side - The Bulwark"
       },
       {
         "source_type": "google_news_business",
-        "title": "Stocks recover losses, and oil prices ease as calm returns to financial markets worldwide - AP News"
+        "title": "Trump-promoted discount gas stations fuel a mystery and questions - ABC News - Breaking News, Latest News and Videos"
       },
       {
         "source_type": "google_news_business",
-        "title": "Exclusive | Boeing\u2019s Smallest MAX Jet Nears FAA Milestone After Years of Delays - WSJ"
+        "title": "Elon Musk Claims SpaceX Will Send \u2018Thousands\u2019 Of People To The Moon And Mars In Next Ten Years - Forbes"
       },
       {
         "source_type": "google_news_business",
-        "title": "Broadcom Stock Investors Just Got Incredible News from Apple CEO Tim Cook - The Motley Fool"
+        "title": "Kalshi traders think gas prices will stay higher for longer as U.S.-Iran tensions heat back up - CNBC"
       },
       {
         "source_type": "google_news_business",
-        "title": "Mortgage rates edge higher as US-Iran ceasefire falls apart: Mortgage and refinance interest rates today - Yahoo Finance"
+        "title": "'Sign the Damn Bill!' Anger at Trump Grows as US Housing Prices Hit All-Time High - Common Dreams"
       },
       {
         "source_type": "google_news_business",
-        "title": "Workers keep leaving the US labor force. Experts can't agree why - USA Today"
+        "title": "Farmers Finally Get a John Deere Right to Repair Agreement That Doesn\u2019t Screw Them Over - 404 Media"
       }
     ]
   },
   "editorial_feeds": {
-    "nasa": [
-      {
-        "source_type": "rss_nasa",
-        "title": "NASA Sets Coverage for Astronaut Anil Menon Launch to Space Station"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "NASA Space Telescope Maps Magnetic Fields of \u2018Lighthouse\u2019 Pulsar"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "Principal Investigator and Quality Assessment Reports Evaluate Umbra Synthetic Aperture Radar Data"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "Curiosity Sees Martian Sulfur Up Close"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "NASA Scientists Take to Air\u00a0and Space\u00a0to Study Arctic Sea Ice"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "Super Typhoon Bavi"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "Students Connect NASA Science With Indigenous Knowledge to Study Coastal Erosion"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "Hubble Captures Star-Studded Cluster"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "Cottonwood Fire Chars Utah"
-      },
-      {
-        "source_type": "rss_nasa",
-        "title": "NASA Transfers \u2018Hundred Acre Wood\u2019 to Patuxent Research Refuge"
-      }
-    ],
     "sciencedaily": [
       {
         "source_type": "rss_sciencedaily",
+        "title": "This alien planet never has sunrise or sunset. It may support life"
+      },
+      {
+        "source_type": "rss_sciencedaily",
+        "title": "Physicists created a tiny universe where time emerged without a clock"
+      },
+      {
+        "source_type": "rss_sciencedaily",
+        "title": "Hawaii&#039;s famous \u201chappy-face\u201d spider has a surprising relative"
+      },
+      {
+        "source_type": "rss_sciencedaily",
         "title": "A vitamin A discovery is changing what scientists know about vision"
+      },
+      {
+        "source_type": "rss_sciencedaily",
+        "title": "A hidden immune backup system could supercharge mRNA cancer vaccines"
       },
       {
         "source_type": "rss_sciencedaily",
@@ -4216,6 +4439,10 @@
       {
         "source_type": "rss_sciencedaily",
         "title": "Rare goblin shark filmed alive for the first time in the deep sea"
+      },
+      {
+        "source_type": "rss_sciencedaily",
+        "title": "Scientists found a longevity diet that helped mice eat more and lose fat"
       },
       {
         "source_type": "rss_sciencedaily",
@@ -4235,38 +4462,46 @@
       },
       {
         "source_type": "rss_sciencedaily",
+        "title": "Scientists just debunked a dangerous baby rattlesnake myth"
+      },
+      {
+        "source_type": "rss_sciencedaily",
         "title": "Scientists finally solved a 150-year-old gallium mystery"
       },
       {
         "source_type": "rss_sciencedaily",
         "title": "New weight loss pill beats oral Ozempic in major trial"
-      },
-      {
-        "source_type": "rss_sciencedaily",
-        "title": "Ancient DNA reveals the mysterious collapse of Europe&#039;s megalith builders"
-      },
-      {
-        "source_type": "rss_sciencedaily",
-        "title": "This Mars rover could finally reveal whether life ever existed on Mars"
-      },
-      {
-        "source_type": "rss_sciencedaily",
-        "title": "These ancient quasars shouldn&#039;t exist so soon after the Big Bang"
-      },
-      {
-        "source_type": "rss_sciencedaily",
-        "title": "Scientists used AI to crack one of water&#039;s biggest mysteries"
-      },
-      {
-        "source_type": "rss_sciencedaily",
-        "title": "Incredible new material makes heat programmable"
-      },
-      {
-        "source_type": "rss_sciencedaily",
-        "title": "Bumblebees collect up to 7 times more toxic metals than honeybees"
       }
     ],
     "physorg": [
+      {
+        "source_type": "rss_physorg",
+        "title": "Study underscores barriers for male survivor support"
+      },
+      {
+        "source_type": "rss_physorg",
+        "title": "US pushes for weaker truck pollution rules"
+      },
+      {
+        "source_type": "rss_physorg",
+        "title": "H5 bird flu detected in Australian seabird for first time"
+      },
+      {
+        "source_type": "rss_physorg",
+        "title": "Capturing the cosmic &#039;drift&#039; before a star is born"
+      },
+      {
+        "source_type": "rss_physorg",
+        "title": "Wally Funk, aviation pioneer who was the oldest woman to travel into space, dies at 87"
+      },
+      {
+        "source_type": "rss_physorg",
+        "title": "Q&A: Examining the Global South&#039;s call for environmental justice amid expanding technology"
+      },
+      {
+        "source_type": "rss_physorg",
+        "title": "The Matua people: Sounds and rituals strengthen cross-border sense of community"
+      },
       {
         "source_type": "rss_physorg",
         "title": "From The Godfather to Middlemarch: 8 of the most faithful adaptations ever"
@@ -4298,37 +4533,17 @@
       {
         "source_type": "rss_physorg",
         "title": "New catalyst could make mixed plastic waste recyclable in one chemical step"
-      },
-      {
-        "source_type": "rss_physorg",
-        "title": "Krill buildup could slow fin whale filter-feeding unless baleen stays 15% clear"
-      },
-      {
-        "source_type": "rss_physorg",
-        "title": "Programmable light simulates quantum matter across 300 processes without bigger circuits"
-      },
-      {
-        "source_type": "rss_physorg",
-        "title": "Pre-cooked seafood-based meals can absorb chemical contaminants during packaging and processing"
-      },
-      {
-        "source_type": "rss_physorg",
-        "title": "Quantum optics may turn this rare visual phenomenon into an eye test"
-      },
-      {
-        "source_type": "rss_physorg",
-        "title": "From bursts to creep: Rewriting the story of mud volcano flows"
-      },
-      {
-        "source_type": "rss_physorg",
-        "title": "Neutron imaging reveals how water limits CO\u2082 storage in recycled concrete"
-      },
-      {
-        "source_type": "rss_physorg",
-        "title": "Self-propelled microparticles scrub stubborn biofilms, improving wound care and instrument cleaning"
       }
     ],
     "bbc_science": [
+      {
+        "source_type": "rss_bbc_science",
+        "title": "East Asia braces for destructive typhoon as landslides kill 15 in Philippines"
+      },
+      {
+        "source_type": "rss_bbc_science",
+        "title": "How cows are helping one of Britain's rarest butterflies"
+      },
       {
         "source_type": "rss_bbc_science",
         "title": "UK bakes in 35C highs as heatwave to continue next week"
@@ -4375,29 +4590,17 @@
       },
       {
         "source_type": "rss_bbc_science",
-        "title": "This 'ambitious' tree planting action plan is a first for NI"
-      },
-      {
-        "source_type": "rss_bbc_science",
-        "title": "Will this heatwave feel as hot and sticky as the last one?"
+        "title": "How a 40-year project helped save little terns"
       },
       {
         "source_type": "rss_bbc_science",
         "title": "Viral squeaky frog now at risk of extinction"
-      },
-      {
-        "source_type": "rss_bbc_science",
-        "title": "Lynx reintroduction plans opposed by councillors"
       }
     ],
     "bbc_world": [
       {
         "source_type": "rss_bbc_world",
-        "title": "US and Iran trade attacks as Khamenei is buried"
-      },
-      {
-        "source_type": "rss_bbc_world",
-        "title": "Ukraine strikes Russian ships near Crimea, escalating attacks on fuel supplies"
+        "title": "Huge crowds in Mashhad as Iran's late supreme leader is buried"
       },
       {
         "source_type": "rss_bbc_world",
@@ -4409,15 +4612,19 @@
       },
       {
         "source_type": "rss_bbc_world",
-        "title": "South Korean chip giant SK Hynix raises $26.5bn in US share sale"
+        "title": "East Asia braces for destructive typhoon as landslides kill 15 in Philippines"
       },
       {
         "source_type": "rss_bbc_world",
-        "title": "Big fall in oil, gas and cargo ships taking US-backed Hormuz route after new strikes"
+        "title": "China lands reusable rocket for first time, state media says"
       },
       {
         "source_type": "rss_bbc_world",
-        "title": "Tensions erupt in Indian state after 11-year-old raped and murdered"
+        "title": "Chip giant SK Hynix raises $26.5bn in mega US share sale"
+      },
+      {
+        "source_type": "rss_bbc_world",
+        "title": "Ukraine strikes Russian ships near Crimea, escalating attacks on fuel supplies"
       },
       {
         "source_type": "rss_bbc_world",
@@ -4560,153 +4767,153 @@
   "hackernews_top": [
     {
       "source_type": "hackernews_top",
+      "title": "GPT-5.6",
+      "score": 1319
+    },
+    {
+      "source_type": "hackernews_top",
       "title": "Show HN: Getting GLM 5.2 running on my slow computer",
-      "score": 395
+      "score": 707
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "In Emacs, Everything Looks Like a Service",
+      "score": 32
     },
     {
       "source_type": "hackernews_top",
       "title": "EU Parliament greenlights Chat Control 1.0",
-      "score": 1014
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "GPT-5.6",
-      "score": 1080
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Show HN: 18 Words",
-      "score": 836
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Star Just Ate a Planet, and It's Not Done Yet",
-      "score": 11
+      "score": 1423
     },
     {
       "source_type": "hackernews_top",
       "title": "Train sim created by just one person is being called the best ever made",
-      "score": 301
+      "score": 633
     },
     {
       "source_type": "hackernews_top",
-      "title": "Focus",
-      "score": 19
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Interview with Mitchell Hashimoto about Ghostty and Zig",
-      "score": 130
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "My Story of 3D Realms / Apogee Part I (2020)",
-      "score": 33
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Hy3",
-      "score": 391
+      "title": "Show HN: 18 Words",
+      "score": 1009
     },
     {
       "source_type": "hackernews_top",
       "title": "Postgres rewritten in Rust, now passing 100% of the Postgres regression tests",
-      "score": 394
+      "score": 692
     },
     {
       "source_type": "hackernews_top",
-      "title": "Triple Dragon Fractal (2020)",
-      "score": 14
+      "title": "Apple Silicon Exec Explains Mac Mini AI Demand and On-Device Future",
+      "score": 85
     },
     {
       "source_type": "hackernews_top",
-      "title": "Build your own vulnerability harness",
-      "score": 8
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "No leap second will be introduced at the end of December 2026",
-      "score": 242
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "A road to Lisp: Why Lisp",
-      "score": 118
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "The glass backbone: Why the Army's logistics will break in the next war",
-      "score": 298
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Girls just wanna have fast MPMC queues with bounded waiting",
-      "score": 138
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Building a real-time AI tutor for 5-year-olds",
-      "score": 46
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Launch HN: Context.dev (YC S26) \u2013 API to get structured data from any website",
+      "title": "AI-generated videos to maximally drive a target brain region",
       "score": 73
     },
     {
       "source_type": "hackernews_top",
-      "title": "Cache-Conscious Data Layout in Rust: Field Zoning, False Sharing, 128-Byte Rule",
-      "score": 7
+      "title": "Interview with Mitchell Hashimoto about Ghostty and Zig",
+      "score": 266
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Hy3",
+      "score": 485
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "The glass backbone: Why the Army's logistics will break in the next war",
+      "score": 384
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "No leap second will be introduced at the end of December 2026",
+      "score": 289
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "A road to Lisp: Why Lisp",
+      "score": 244
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "My Story of 3D Realms / Apogee Part I (2020)",
+      "score": 79
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Common prefix skipping, adaptive sort",
+      "score": 26
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Parental device use and the adolescent-caregiver attachment bond",
+      "score": 131
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Ditching Vagrant: VMs with KVM and Virsh on Debian",
+      "score": 12
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Life with Hazard Ratios",
+      "score": 46
     },
     {
       "source_type": "hackernews_top",
       "title": "A possible future for Damn Interesting",
-      "score": 242
+      "score": 287
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Building a real-time AI tutor for 5-year-olds",
+      "score": 92
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Launch HN: Context.dev (YC S26) \u2013 API to get structured data from any website",
+      "score": 98
     },
     {
       "source_type": "hackernews_top",
       "title": "Muse Spark 1.1",
-      "score": 328
+      "score": 379
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Girls just wanna have fast MPMC queues with bounded waiting",
+      "score": 177
     },
     {
       "source_type": "hackernews_top",
       "title": "Why American ambulance rides are so expensive",
-      "score": 94
+      "score": 228
     },
     {
       "source_type": "hackernews_top",
-      "title": "Wildcard (YC W25) Is Hiring a Founding Engineer",
-      "score": 1
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Patterncollider: Generate and explore quasiperiodic tiling patterns",
-      "score": 23
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Buried Apple feature turns an iPhone into the perfect kids' dumb phone",
-      "score": 276
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "GLM 5.2 is nearly as accurate as a human book keeper",
-      "score": 189
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "Opinionated and easy Pi.dev configuration",
-      "score": 113
-    },
-    {
-      "source_type": "hackernews_top",
-      "title": "SimPolitics: America\u2019s quest to solve politics with computers",
-      "score": 83
+      "title": "Triple Dragon Fractal (2020)",
+      "score": 52
     },
     {
       "source_type": "hackernews_top",
       "title": "TLS certificates for internal services done right",
-      "score": 132
+      "score": 157
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "John Deere owners will get the right to repair equipment under FTC settlement",
+      "score": 1328
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Harman and Dr. Sean Olive are reshaping headphone sound (2025)",
+      "score": 19
+    },
+    {
+      "source_type": "hackernews_top",
+      "title": "Patterncollider: Generate and explore quasiperiodic tiling patterns",
+      "score": 52
     }
   ]
 }
