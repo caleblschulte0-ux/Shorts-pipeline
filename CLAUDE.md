@@ -34,6 +34,15 @@ Rules:
   contract). One at a time, each earning its slot with a better video.
 - Models/caches live in `cache/` (gitignored) — never commit binaries.
 
+## Media acquisition (docs/MEDIA_ACQUISITION.md)
+
+Every visual carries a `source_class` + license (recorded in the audit
+sidecar). Copyrighted media is NOT auto-rejected — it enters through the
+transformative-evidence lane when the script directly engages with it,
+the amount is proportionate, and the use is documented. Never bypass
+DRM/paywalls/rate limits. The funnel pulls from 18 providers; new source
+adapters are tickets M1–M9 in the doctrine doc.
+
 ## Storage rules (from the audit — docs/STORAGE_AUDIT.md)
 
 - Never commit media (mp4/png renders) or files >256KB to git; `state/` is
