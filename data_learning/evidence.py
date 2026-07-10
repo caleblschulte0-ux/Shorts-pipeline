@@ -33,13 +33,24 @@ def _get(url: str, timeout: int = 30) -> bytes:
         return r.read()
 
 
+# Metadata can match while the PICTURE is wrong (the probe's transport
+# crate, a survey poster). Penalize titles that scream "not the thing
+# itself" — and pin flagship stories so search never decides.
+_NOISE = ("transport", "offload", "arrival", "marshal", "crate",
+          "packing", "poster", "chart", "logo", "ceremony", "briefing",
+          "press", "interview", "crowd", "administrator")
+
+
 def _relevance(query: str, title: str, desc: str) -> float:
     terms = [w for w in re.findall(r"[a-z0-9]+", query.lower())
              if len(w) > 3]
     if not terms:
         return 0.0
     hay = f"{title} {desc}".lower()
-    return sum(1 for t in terms if t in hay) / len(terms)
+    score = sum(1 for t in terms if t in hay) / len(terms)
+    if any(n in title.lower() for n in _NOISE):
+        score -= 0.5
+    return score
 
 
 def _download_asset(nasa_id: str, dest: Path) -> Path:
