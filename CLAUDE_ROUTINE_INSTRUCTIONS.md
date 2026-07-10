@@ -809,3 +809,18 @@ check the registry BEFORE writing new code or requesting new tools —
 it may already exist, be one `install` away, or be explicitly rejected
 with a reason. Note: `parallax` is experimental and must not be used in
 production renders until Ticket E2's benchmark passes.
+
+### Evidence URLs (media doctrine M9)
+
+When you (the routine) find THE article or post showing the exact event —
+not just a related page — pin it on the shot:
+
+```json
+{"phrase": "the moment the truck flipped", "evidence_urls":
+ ["https://example-news.com/dust-devil-flips-truck-video"]}
+```
+
+The renderer pulls that page's hero image (og:image, Wayback fallback) as
+the shot's trusted still under the transformative-evidence lane. Only use
+pages whose content the script directly discusses (docs/MEDIA_ACQUISITION.md
+§2) — this is for evidence, not decoration. `image_url` still wins when set.
