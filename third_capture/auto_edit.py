@@ -533,35 +533,72 @@ def reframe(program: Path, work: Path) -> Path | None:
         if crop_w >= sw:                        # already portrait-ish → skip
             cap.release(); return None
 
-        # sample faces ~6Hz to build a smoothed center-x path (per frame)
+        # Sample faces ~6Hz. Instead of chasing the largest face every frame
+        # (which whip-pans between two speakers and parks the crop in the
+        # empty gap between them — motion sickness + nobody on screen), we
+        # LOCK onto one subject: each sample we keep the face nearest the
+        # locked position and only switch when that subject leaves the frame
+        # region. Two-shots too wide for one crop bail to blur-fill (below).
         detect_every = max(1, int(round(src_fps / 6)))
-        centers = [None] * total
-        idx, last_cx, hits = 0, sw / 2, 0
+        targets = [None] * total
+        idx, hits, sampled, wide_two = 0, 0, 0, 0
+        locked_cx, have_lock = sw / 2, False
         while True:
             ok, frame = cap.read()
             if not ok:
                 break
             if idx % detect_every == 0:
+                sampled += 1
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 faces = cc.detectMultiScale(gray, 1.15, 5,
                                             minSize=(sh // 10, sh // 10))
                 if len(faces):
-                    fx, _fy, fw, _fh = max(faces, key=lambda f: f[2] * f[3])
-                    last_cx = fx + fw / 2
                     hits += 1
-                centers[idx] = last_cx
+                    cand = [(fx + fw / 2.0, fw * fh) for (fx, _fy, fw, fh)
+                            in faces]
+                    xs = [c for c, _ in cand]
+                    # persistent wide two-shot? (crop can't hold both)
+                    if len(xs) >= 2 and (max(xs) - min(xs)) > crop_w * 0.85:
+                        wide_two += 1
+                    if not have_lock:
+                        locked_cx = max(cand, key=lambda t: t[1])[0]
+                        have_lock = True
+                    else:
+                        near = min(cand, key=lambda t: abs(t[0] - locked_cx))
+                        if abs(near[0] - locked_cx) <= crop_w * 0.5:
+                            locked_cx = near[0]      # stay on the same person
+                        else:                        # subject left → re-lock
+                            locked_cx = max(cand, key=lambda t: t[1])[0]
+                targets[idx] = locked_cx if have_lock else None
             idx += 1
         cap.release()
         n = idx
         if hits < 3 or n <= 0:                  # not enough face signal
             return None
+        # A clip that's mostly a wide two-shot can't be cropped to 9:16
+        # without dropping a speaker — let blur-fill keep both on screen.
+        if hits and wide_two / hits > 0.35:
+            return None
 
-        # forward-fill + EMA smooth + clamp so the crop window stays in-frame
-        path, cx = [], sw / 2
-        alpha = 0.12
+        # Forward-fill the locked target, then build a MOSTLY-STATIC path: a
+        # center deadzone (hold still) + a capped slow glide when the subject
+        # drifts out of it. No continuous panning, so no seasickness.
+        cx = sw / 2
         for i in range(n):
-            target = centers[i] if centers[i] is not None else cx
-            cx = (1 - alpha) * cx + alpha * target
+            if targets[i] is None:
+                targets[i] = cx
+            else:
+                cx = targets[i]
+        path, cx = [], targets[0]
+        deadzone = crop_w * 0.12
+        max_step = crop_w * 0.009               # per-frame pan speed ceiling
+        for i in range(n):
+            d = targets[i] - cx
+            if abs(d) > deadzone:
+                dz = deadzone if d > 0 else -deadzone
+                step = (d - dz) * 0.06
+                step = max(-max_step, min(max_step, step))
+                cx += step
             x = min(max(cx - crop_w / 2, 0), sw - crop_w)
             path.append(x)
 
@@ -569,30 +606,43 @@ def reframe(program: Path, work: Path) -> Path | None:
         # pipe raw RGB into an encoder that also muxes the program's audio.
         cap = cv2.VideoCapture(str(program))
         out = work / "reframed.mp4"
+        # Pipe at the program's OWN fps so the rawvideo stream length matches
+        # the muxed audio — otherwise `-shortest` stops the encoder early and
+        # the crop path desyncs from the audio (and the pipe closes mid-write).
+        pipe_fps = src_fps if src_fps and src_fps > 1 else FPS
         enc = subprocess.Popen(
             ["ffmpeg", "-y", "-v", "error",
              "-f", "rawvideo", "-pix_fmt", "rgb24",
-             "-s", f"{CANVAS_W}x{CANVAS_H}", "-r", str(FPS), "-i", "-",
+             "-s", f"{CANVAS_W}x{CANVAS_H}", "-r", f"{pipe_fps}", "-i", "-",
              "-i", str(program),
              "-map", "0:v", "-map", "1:a?",
              "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-             "-pix_fmt", "yuv420p", "-c:a", "aac", "-ar", "48000",
+             "-pix_fmt", "yuv420p", "-r", str(FPS),
+             "-c:a", "aac", "-ar", "48000",
              "-b:a", "160k", "-shortest", str(out)],
             stdin=subprocess.PIPE)
         i = 0
-        while True:
-            ok, frame = cap.read()
-            if not ok:
-                break
-            x = int(path[i]) if i < len(path) else int(path[-1])
-            crop = frame[:, x:x + crop_w]
-            crop = cv2.resize(crop, (CANVAS_W, CANVAS_H),
-                              interpolation=cv2.INTER_LINEAR)
-            crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
-            enc.stdin.write(crop.tobytes())
-            i += 1
+        try:
+            while True:
+                ok, frame = cap.read()
+                if not ok:
+                    break
+                x = int(path[i]) if i < len(path) else int(path[-1])
+                crop = frame[:, x:x + crop_w]
+                crop = cv2.resize(crop, (CANVAS_W, CANVAS_H),
+                                  interpolation=cv2.INTER_LINEAR)
+                crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
+                enc.stdin.write(crop.tobytes())
+                i += 1
+        except BrokenPipeError:
+            # ffmpeg hit `-shortest` and closed the pipe — it already has a
+            # complete file. Not an error; fall through to the rc/out check.
+            pass
         cap.release()
-        enc.stdin.close()
+        try:
+            enc.stdin.close()
+        except (BrokenPipeError, OSError):
+            pass
         enc.wait(timeout=_MINTERP_TIMEOUT)
         if enc.returncode != 0 or not out.exists():
             return None
