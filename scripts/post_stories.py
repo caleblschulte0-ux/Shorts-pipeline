@@ -52,8 +52,8 @@ def _load_log(path: Path = LOG_PATH) -> dict:
 
 
 def _save_log(log: dict, path: Path = LOG_PATH) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(log, indent=2) + "\n")
+    from fsutil import atomic_write_json
+    atomic_write_json(path, log)
 
 
 # Evergreen hashtags every data-explainer Short carries, on top of whatever the

@@ -152,12 +152,24 @@ jobs:
           pip install --quiet manim || echo "::warning::manim install failed — beats degrade to stills"
           pip install --quiet rembg || echo "rembg install failed (chroma fallback)"
 
+      # Translation cache (audit Ticket 3): moved out of git into cache/,
+      # persisted between runs via actions/cache (evolving-cache pattern).
+      - name: Cache translations
+        uses: actions/cache@v4
+        with:
+          path: cache/translation/
+          key: translation-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            translation-cache-v1-
+
       - name: Cache rembg model (~170MB)
         if: inputs.mode != 'verify'
         uses: actions/cache@v4
         with:
           path: ~/.u2net
           key: rembg-u2net-v1
+          restore-keys: |
+            rembg-u2net-
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
@@ -165,6 +177,8 @@ jobs:
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
+          restore-keys: |
+            kokoro-onnx-
 
       - name: Download Kokoro TTS models if cache miss
         if: steps.cache-kokoro.outputs.cache-hit != 'true'
@@ -183,6 +197,8 @@ jobs:
         with:
           path: data_learning/music/
           key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
+          restore-keys: |
+            music-kmcl-
 
       - name: Fetch music if missing
         if: inputs.mode != 'verify' && steps.cache-music.outputs.cache-hit != 'true'
@@ -258,29 +274,13 @@ jobs:
 
       - name: Persist posted log + analytics
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        env:
+          # Push to the ref the workflow ran FROM (== main on cron; the
+          # feature branch on a branch dispatch) so a branch run can never
+          # implicitly merge the whole branch into main.
+          CI_COMMIT_BRANCH: ${{ github.ref_name }}
         run: |
-          git add state/curiosity_posted_log.json state/analytics_curiosity state/translation_cache.json 2>/dev/null || true
-          if git diff --cached --quiet; then
-            echo "nothing to commit"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -m "curiosity: update posted log + analytics [skip ci]"
-          # Robust push (same hardening as explainer.yml): --autostash rides
-          # over render-dirtied files, -X ours keeps our fresh log on a race,
-          # retries ride out concurrent pushes from scout/daily. Push to the
-          # ref the workflow ran FROM (== main on cron; the feature branch on
-          # a branch dispatch) so a branch run can never implicitly merge the
-          # whole branch into main.
-          for i in 1 2 3 4 5; do
-            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
-              echo "Pushed on attempt $i"
-              exit 0
-            fi
-            echo "Push failed on attempt $i, rebasing (autostash, ours)..."
-            git pull --rebase --autostash -X ours origin "${GITHUB_REF_NAME}" || git rebase --abort || true
-            sleep 2
-          done
-          echo "::error::Failed to persist posted log after 5 attempts"
-          exit 1
+          # Shared hardened persist (audit Ticket 1): retry + union-merge.
+          bash scripts/ci_commit_state.sh \
+            "curiosity: update posted log + analytics [skip ci]" \
+            state/curiosity_posted_log.json state/analytics_curiosity

@@ -74,7 +74,12 @@ REGISTRY: dict[str, dict] = {
     },
     "parallax": {
         "kind": "module",
-        "status": "experimental",
+        # Promoted 2026-07-10 after the 8-category benchmark (Ticket E2):
+        # all photo categories rendered clean; flat art + text are refused
+        # by the input suitability gate (see _suitable in parallax.py).
+        # Production adoption per channel still requires a preview render.
+        "status": "active",
+        "gated": True,
         "problem": "2.5D depth-parallax camera move from a single still — "
                    "genuinely new capability vs. flat Ken Burns zoom.",
         "headless": True,

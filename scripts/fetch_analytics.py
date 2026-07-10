@@ -443,10 +443,9 @@ def main() -> int:
 
     out_dir.mkdir(parents=True, exist_ok=True)
     today = datetime.now(timezone.utc).strftime("%Y%m%d")
-    snap_path = out_dir / f"{today}.json"
-    latest_path = out_dir / "latest.json"
-    snap_path.write_text(json.dumps(snap, indent=2))
-    latest_path.write_text(json.dumps(snap, indent=2))
+    from fsutil import atomic_write_json
+    atomic_write_json(out_dir / f"{today}.json", snap)
+    atomic_write_json(out_dir / "latest.json", snap)
 
     summary = snap["summary"]
     print(f"[analytics] {summary['total_videos']} videos, "

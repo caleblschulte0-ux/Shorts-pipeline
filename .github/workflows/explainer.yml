@@ -119,6 +119,17 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
 
+      - name: Pre-flight — kill switch
+        # Same PAUSED semantics as daily/curiosity/third. Explainer was the
+        # one channel that ignored the kill switch: because it fires on
+        # daily's completion (which exits 0 when paused), a PAUSED repo
+        # could still post explainer videos.
+        run: |
+          if [ -f PAUSED ]; then
+            echo "Pipeline paused: PAUSED file exists in repo root."
+            exit 1
+          fi
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -138,12 +149,24 @@ jobs:
           # cut-outs (onnxruntime is already present for Kokoro).
           pip install --quiet rembg || echo "rembg install failed (chroma fallback)"
 
+      # Translation cache (audit Ticket 3): moved out of git into cache/,
+      # persisted between runs via actions/cache (evolving-cache pattern).
+      - name: Cache translations
+        uses: actions/cache@v4
+        with:
+          path: cache/translation/
+          key: translation-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            translation-cache-v1-
+
       - name: Cache rembg model (~170MB)
         if: inputs.mode != 'verify'
         uses: actions/cache@v4
         with:
           path: ~/.u2net
           key: rembg-u2net-v1
+          restore-keys: |
+            rembg-u2net-
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
@@ -151,6 +174,8 @@ jobs:
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
+          restore-keys: |
+            kokoro-onnx-
 
       - name: Download Kokoro TTS models if cache miss
         if: steps.cache-kokoro.outputs.cache-hit != 'true'
@@ -170,6 +195,8 @@ jobs:
         with:
           path: data_learning/broll/styles/
           key: broll-styles-${{ hashFiles('data_learning/broll_gen.py') }}
+          restore-keys: |
+            broll-styles-
 
       - name: Build b-roll strip clips if missing
         if: inputs.mode != 'verify' && steps.cache-broll.outputs.cache-hit != 'true'
@@ -185,6 +212,8 @@ jobs:
         with:
           path: data_learning/music/
           key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
+          restore-keys: |
+            music-kmcl-
 
       - name: Fetch music if missing
         if: inputs.mode != 'verify' && steps.cache-music.outputs.cache-hit != 'true'
@@ -428,82 +457,15 @@ jobs:
       - name: Persist posted log + analytics
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         run: |
-          git add state/explainer_posted_log.json state/analytics_explainer state/translation_cache.json 2>/dev/null || true
-          # The brain's creative memory: per-video fingerprints joined to
-          # analytics so the next direction is evidence-based, not fresh guess.
-          git add state/video_ledger.json state/brain_context.json 2>/dev/null || true
-          # Persist any freshly AUTHORED stories so they outlive this ephemeral
-          # run (the new config entries + their illustrative datasets).
-          git add data_learning/niche.config.json data_learning/data 2>/dev/null || true
-          # The growing library of AI-invented visual mechanics (learns + compounds).
-          git add data_learning/viz_mechanics.json 2>/dev/null || true
-          # --cached so brand-new (untracked) files are detected too.
-          if git diff --cached --quiet; then
-            echo "nothing to commit"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -m "explainer: update posted log + analytics [skip ci]"
-          # A FAILED save here strands an un-logged upload and the next run
-          # re-posts it as a DUPLICATE (wasting the daily cap). Old code used
-          # `-X ours` on the rebase, but during a rebase "ours" is UPSTREAM —
-          # so a real conflict on the posted-log DROPPED our just-uploaded IDs.
-          # Fix: on a push race, UNION-MERGE the posted-log (never lose an entry
-          # from either side), then push. Union is the only safe merge for an
-          # append-only dedupe ledger.
-          for i in 1 2 3 4 5; do
-            if git push origin HEAD:main; then
-              echo "Pushed on attempt $i"
-              exit 0
-            fi
-            echo "Push failed on attempt $i, preserving artifacts + union-merging posted-log..."
-            # `git reset --hard origin/main` below rewinds to a main that does
-            # NOT yet contain the artifacts this run just generated, so it
-            # DELETES them from the tree. The old code only re-applied the
-            # posted-log afterward, silently dropping the fresh analytics
-            # snapshot / ledger / brain_context / mechanics on EVERY push race —
-            # which is exactly why explainer analytics on main went stale (the
-            # brain kept reading day-old numbers). Back the whole artifact set
-            # up first, restore it after the reset, THEN commit.
-            SAVE=$(mktemp -d)
-            for p in state/analytics_explainer state/translation_cache.json \
-                     state/video_ledger.json state/brain_context.json \
-                     data_learning/niche.config.json data_learning/data \
-                     data_learning/viz_mechanics.json; do
-              [ -e "$p" ] && cp -a --parents "$p" "$SAVE/" 2>/dev/null || true
-            done
-            cp state/explainer_posted_log.json /tmp/ours_log.json 2>/dev/null || true
-            git fetch origin main
-            git reset --hard origin/main
-            # Restore every regenerated artifact on top of the fresh main. The
-            # posted-log is deliberately NOT restored here — it is union-merged
-            # below so no entry from either side is lost.
-            cp -a "$SAVE/." . 2>/dev/null || true
-            rm -rf "$SAVE"
-            python3 - <<'PY' || true
-          import json, os
-          base = "state/explainer_posted_log.json"
-          try:
-              cur = json.load(open(base))
-          except Exception:
-              cur = {"posted": {}}
-          try:
-              ours = json.load(open("/tmp/ours_log.json"))
-          except Exception:
-              ours = {"posted": {}}
-          merged = dict(cur.get("posted", {}))
-          merged.update(ours.get("posted", {}))   # our fresh uploads win, none lost
-          cur["posted"] = merged
-          json.dump(cur, open(base, "w"), indent=2)
-          print(f"[persist] union-merged posted-log -> {len(merged)} entries")
-          PY
-            git add state/explainer_posted_log.json state/analytics_explainer \
-                    state/translation_cache.json state/video_ledger.json \
-                    state/brain_context.json data_learning/niche.config.json \
-                    data_learning/data data_learning/viz_mechanics.json 2>/dev/null || true
-            git commit -m "explainer: update posted log + analytics [skip ci]" || true
-            sleep 2
-          done
-          echo "::error::Failed to persist posted log after 5 attempts"
-          exit 1
+          # Shared hardened persist (audit Ticket 1). This inline logic was
+          # the original union-merge implementation — it now lives in
+          # scripts/ci_commit_state.sh so every channel gets it: backup +
+          # restore of the full artifact set on a push race, and a UNION-
+          # MERGE of the posted-log so no entry from either side is lost
+          # (a lost entry = a duplicate upload next run).
+          bash scripts/ci_commit_state.sh \
+            "explainer: update posted log + analytics [skip ci]" \
+            state/explainer_posted_log.json state/analytics_explainer \
+            state/video_ledger.json state/brain_context.json \
+            data_learning/niche.config.json data_learning/data \
+            data_learning/viz_mechanics.json

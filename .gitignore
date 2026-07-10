@@ -35,6 +35,9 @@ state/trending_packages/*.json
 
 # Per-machine entity media resolution cache. Regenerated on demand.
 state/entity_media_cache.json
+# Translation cache moved to cache/translation/<channel>.json (Ticket 3) —
+# ignore the legacy path so `git add state/` can never re-commit it.
+state/translation_cache.json
 
 # OAuth secrets — never commit
 client_secret.json
