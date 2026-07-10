@@ -495,19 +495,28 @@ _REDDIT_SUBS = [
 def p_reddit(entity: str, angle: str) -> list[Candidate]:
     """Multi-subreddit JSON deep scrape. Reddit allows unauthenticated
     JSON access at a generous rate when the UA includes a real
-    contact — we send the project's UA so we don't get IP-banned."""
+    contact — we send the project's UA so we don't get IP-banned.
+
+    With REDDIT_CLIENT_ID/REDDIT_CLIENT_SECRET secrets set, requests go
+    through the official OAuth endpoint instead — which works from CI
+    IPs where the anonymous endpoint 403s (doctrine M4)."""
     if not _quota_check("reddit", daily=600):
         return []
+    token = _reddit_token()
     out: list[Candidate] = []
     q = urllib.parse.quote(_build_query(entity, angle))
+    host = "https://oauth.reddit.com" if token else "https://www.reddit.com"
+    auth_headers = {"User-Agent": _UA_REDDIT}
+    if token:
+        auth_headers["Authorization"] = f"Bearer {token}"
     # First: site-wide search, then per-subreddit when site-wide is thin.
-    targets = [f"https://www.reddit.com/search.json?q={q}&limit=10&sort=relevance"]
+    targets = [f"{host}/search.json?q={q}&limit=10&sort=relevance"]
     for sub in _REDDIT_SUBS[:6]:
         targets.append(
-            f"https://www.reddit.com/r/{sub}/search.json"
+            f"{host}/r/{sub}/search.json"
             f"?q={q}&restrict_sr=1&limit=5&sort=relevance")
     for url in targets:
-        data = _get(url, headers={"User-Agent": _UA_REDDIT}, tag="reddit")
+        data = _get(url, headers=auth_headers, tag="reddit")
         if not data:
             continue
         for child in (data.get("data") or {}).get("children") or []:
@@ -542,6 +551,65 @@ def p_reddit(entity: str, angle: str) -> list[Candidate]:
     return out[:30]    # avoid runaway when every sub returns 5+
 
 
+_REDDIT_TOKEN: dict = {}
+
+
+def _reddit_token() -> str:
+    """App-only OAuth token (client_credentials) when the operator has
+    added REDDIT_CLIENT_ID/REDDIT_CLIENT_SECRET secrets. Cached for the
+    process; empty string = run unauthenticated."""
+    cid = os.environ.get("REDDIT_CLIENT_ID")
+    sec = os.environ.get("REDDIT_CLIENT_SECRET")
+    if not cid or not sec:
+        return ""
+    if _REDDIT_TOKEN.get("t") and time.time() < _REDDIT_TOKEN.get("exp", 0):
+        return _REDDIT_TOKEN["t"]
+    try:
+        import base64
+        req = urllib.request.Request(
+            "https://www.reddit.com/api/v1/access_token",
+            data=b"grant_type=client_credentials",
+            headers={"User-Agent": _UA_REDDIT,
+                     "Authorization": "Basic " + base64.b64encode(
+                         f"{cid}:{sec}".encode()).decode()})
+        with urllib.request.urlopen(req, timeout=_TIMEOUT) as r:
+            tok = json.loads(r.read())
+        _REDDIT_TOKEN["t"] = tok.get("access_token", "")
+        _REDDIT_TOKEN["exp"] = time.time() + int(tok.get("expires_in", 3600)) - 60
+        return _REDDIT_TOKEN["t"]
+    except Exception as e:  # noqa: BLE001
+        _dbg("reddit", f"oauth failed: {e}")
+        return ""
+
+
+_BSKY_SESSION: dict = {}
+
+
+def _bsky_jwt() -> str:
+    """Bluesky session token when BLUESKY_HANDLE/BLUESKY_APP_PASSWORD
+    secrets exist (the public endpoint 403s from CI IPs). Cached."""
+    handle = os.environ.get("BLUESKY_HANDLE")
+    pw = os.environ.get("BLUESKY_APP_PASSWORD")
+    if not handle or not pw:
+        return ""
+    if _BSKY_SESSION.get("jwt") and time.time() < _BSKY_SESSION.get("exp", 0):
+        return _BSKY_SESSION["jwt"]
+    try:
+        req = urllib.request.Request(
+            "https://bsky.social/xrpc/com.atproto.server.createSession",
+            data=json.dumps({"identifier": handle, "password": pw}).encode(),
+            headers={"Content-Type": "application/json",
+                     "User-Agent": _UA_BLUESKY})
+        with urllib.request.urlopen(req, timeout=_TIMEOUT) as r:
+            sess = json.loads(r.read())
+        _BSKY_SESSION["jwt"] = sess.get("accessJwt", "")
+        _BSKY_SESSION["exp"] = time.time() + 45 * 60
+        return _BSKY_SESSION["jwt"]
+    except Exception as e:  # noqa: BLE001
+        _dbg("bluesky", f"session failed: {e}")
+        return ""
+
+
 def p_mastodon(entity: str, angle: str) -> list[Candidate]:
     if not _quota_check("mastodon", daily=400):
         return []
@@ -568,9 +636,17 @@ def p_bluesky(entity: str, angle: str) -> list[Candidate]:
     if not _quota_check("bluesky", daily=400):
         return []
     q = urllib.parse.quote(_build_query(entity, angle))
-    url = (f"https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts"
-           f"?q={q}&limit=25")
-    data = _get(url, headers={"User-Agent": _UA_BLUESKY}, tag="bluesky")
+    # Authed endpoint when the operator added app-password secrets (the
+    # public endpoint 403s from CI IPs — doctrine M4); public otherwise.
+    jwt = _bsky_jwt()
+    headers = {"User-Agent": _UA_BLUESKY}
+    if jwt:
+        base = "https://bsky.social/xrpc/app.bsky.feed.searchPosts"
+        headers["Authorization"] = f"Bearer {jwt}"
+    else:
+        base = "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts"
+    url = f"{base}?q={q}&limit=25"
+    data = _get(url, headers=headers, tag="bluesky")
     if not data:
         _quota_refund("bluesky")
         return []
@@ -1010,6 +1086,98 @@ def p_artic(entity: str, angle: str) -> list[Candidate]:
     return out
 
 
+def p_smithsonian(entity: str, angle: str) -> list[Candidate]:
+    """Smithsonian Open Access — CC0, millions of items. Activates when
+    the operator adds SMITHSONIAN_KEY (free instant key at
+    api.data.gov/signup). Doctrine M7."""
+    key = os.environ.get("SMITHSONIAN_KEY")
+    if not key or not _quota_check("smithsonian", daily=300):
+        return []
+    q = urllib.parse.quote(f'{entity} AND online_media_type:"Images"')
+    data = _get("https://api.si.edu/openaccess/api/v1.0/search"
+                f"?q={q}&rows=10&api_key={urllib.parse.quote(key)}",
+                tag="smithsonian")
+    if not data:
+        _quota_refund("smithsonian")
+        return []
+    out = []
+    for row in ((data.get("response") or {}).get("rows") or [])[:10]:
+        content = row.get("content") or {}
+        media = (((content.get("descriptiveNonRepeating") or {})
+                  .get("online_media") or {}).get("media") or [])
+        for m in media[:2]:
+            u = m.get("content") or ""
+            if u.startswith("http"):
+                out.append(Candidate(
+                    url=u, source="smithsonian",
+                    source_class="open_or_licensed",
+                    license="CC0 (Smithsonian Open Access)",
+                    article_title=(row.get("title") or "")[:200],
+                    article_url=((content.get("descriptiveNonRepeating") or {})
+                                 .get("record_link") or "")))
+    return out
+
+
+def p_europeana(entity: str, angle: str) -> list[Candidate]:
+    """Europeana — pan-European museums/archives, open-reusability
+    filter. Activates when the operator adds EUROPEANA_KEY (free at
+    pro.europeana.eu/get-api). Doctrine M7."""
+    key = os.environ.get("EUROPEANA_KEY")
+    if not key or not _quota_check("europeana", daily=300):
+        return []
+    q = urllib.parse.quote(entity)
+    data = _get("https://api.europeana.eu/record/v2/search.json"
+                f"?wskey={urllib.parse.quote(key)}&query={q}"
+                f"&qf=TYPE:IMAGE&reusability=open&rows=10&media=true",
+                tag="europeana")
+    if not data:
+        _quota_refund("europeana")
+        return []
+    out = []
+    for it in (data.get("items") or [])[:10]:
+        u = (it.get("edmIsShownBy") or [""])[0] or (it.get("edmPreview") or [""])[0]
+        if not u:
+            continue
+        title = (it.get("title") or [""])[0]
+        rights = (it.get("rights") or [""])[0]
+        out.append(Candidate(
+            url=u, source="europeana",
+            source_class="open_or_licensed",
+            license=f"open reusability ({rights[:60]})" if rights else "open reusability",
+            article_title=title[:200],
+            article_url=it.get("guid") or ""))
+    return out
+
+
+def p_nps(entity: str, angle: str) -> list[Candidate]:
+    """National Park Service — PD landscape/wildlife/site photos.
+    Activates when the operator adds NPS_KEY (same api.data.gov signup
+    as Smithsonian). Doctrine M7."""
+    key = os.environ.get("NPS_KEY")
+    if not key or not _quota_check("nps", daily=150):
+        return []
+    q = urllib.parse.quote(entity)
+    data = _get(f"https://developer.nps.gov/api/v1/multimedia/assets"
+                f"?q={q}&limit=10&api_key={urllib.parse.quote(key)}",
+                tag="nps")
+    if not data:
+        _quota_refund("nps")
+        return []
+    out = []
+    for a in (data.get("data") or [])[:10]:
+        versions = a.get("versions") or []
+        u = max(versions, key=lambda v: v.get("width", 0), default={}).get("url", "") \
+            if versions else (a.get("fileInfo") or {}).get("url", "")
+        if u:
+            out.append(Candidate(
+                url=u, source="nps",
+                source_class="primary_source",
+                license="public domain (NPS) — verify per item",
+                article_title=(a.get("title") or "")[:200],
+                article_url=a.get("permalinkUrl") or ""))
+    return out
+
+
 def p_pexels_images(entity: str, angle: str) -> list[Candidate]:
     """Pexels IMAGE search — reuses the PEXELS_API_KEY already in CI for
     stock video. Licensed stock photos of the subject (not day-fresh
@@ -1118,12 +1286,22 @@ _PROVIDERS: list[tuple[str, Callable[[str, str], list[Candidate]]]] = [
     ("pexels_images", p_pexels_images),
     ("pixabay_images", p_pixabay_images),
     ("dvids_images", p_dvids_images),
+    # Key-gated open collections (doctrine M7) — each returns [] until
+    # the operator adds its secret, then lights up with zero code change.
+    ("smithsonian", p_smithsonian),
+    ("europeana", p_europeana),
+    ("nps", p_nps),
 ]
+# Social lanes auto-enable when the operator has added credentials —
+# authed endpoints work from CI IPs where the anonymous ones 403
+# (doctrine M4). MEDIA_FUNNEL_SOCIAL=1 still force-enables everything.
+if os.environ.get("REDDIT_CLIENT_ID") or _SOCIAL_ENABLED:
+    _PROVIDERS.append(("reddit", p_reddit))
+if os.environ.get("BLUESKY_HANDLE") or _SOCIAL_ENABLED:
+    _PROVIDERS.append(("bluesky", p_bluesky))
 if _SOCIAL_ENABLED:
     _PROVIDERS.extend([
-        ("reddit", p_reddit),
         ("mastodon", p_mastodon),
-        ("bluesky", p_bluesky),
         ("ddg", p_ddg),
     ])
 
@@ -1243,6 +1421,7 @@ def _prefilter(candidates: list[Candidate],
             "wikidata": 0.60, "dvids_images": 0.55, "loc": 0.50,
             "gbif": 0.50, "met": 0.42, "artic": 0.42,
             "pexels_images": 0.45, "pixabay_images": 0.42,
+            "smithsonian": 0.50, "europeana": 0.45, "nps": 0.50,
         }.get(c.source, 0.40)
         c.score = base
         # Primary-source detection (doctrine M3): official .gov/.mil

@@ -133,6 +133,15 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # Media-funnel expansion secrets (doctrine M4/M7): every one is
+          # optional — its provider stays silent until the secret exists.
+          SMITHSONIAN_KEY: ${{ secrets.SMITHSONIAN_KEY }}
+          EUROPEANA_KEY: ${{ secrets.EUROPEANA_KEY }}
+          NPS_KEY: ${{ secrets.NPS_KEY }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           DVIDS_API_KEY: ${{ secrets.DVIDS_API_KEY }}
