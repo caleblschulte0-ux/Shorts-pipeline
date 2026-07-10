@@ -44,8 +44,9 @@ SURPRISE_GAP_MAX = 60.0
 MIN_DISCOVERIES = 2
 SPACE_ZOOM_MIN = 0.15      # |log(w1/w0)| — the camera changed magnitude
 SPACE_MOVE_MIN = 0.30      # centre travel in units of the target width
-HAPPENING = {"travel", "reveal", "event", "payoff", "reaction", "discovery"}
-SURPRISE = {"discovery", "cold_open"}
+HAPPENING = {"travel", "reveal", "event", "payoff", "reaction",
+             "discovery", "evidence"}
+SURPRISE = {"discovery", "cold_open", "evidence"}
 
 
 def main() -> int:

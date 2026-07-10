@@ -757,7 +757,95 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
                       + ("" if attempt == 1 else
                          " — world take keeps its own window"),
                       file=sys.stderr)
+
+    # EVIDENCE SHOTS (§7.5 v7): real imagery cuts the hero moments —
+    # animation explains, evidence grounds. NASA-first with the on-topic
+    # gate; a beat whose evidence can't pass keeps its animation.
+    from data_learning.evidence import fetch_evidence
+    ev_rows, ev_credits, ev_tiles = [], [], []
+    for i, wp in enumerate(wps):
+        for j, ev in enumerate((wp.get("evidence") or [])[:2]):
+            t0w, t1w = windows[i + 1]
+            secs = min(4.0, max(2.0, float(ev.get("seconds", 3.0))))
+            e0 = max(t0w + 1.0,
+                     min(t0w + (t1w - t0w) * float(ev.get("at", 0.5)),
+                         t1w - secs - 1.0))
+            label = str(ev.get("nasa_id") or ev.get("query") or "?")
+            try:
+                kind, src, credit = fetch_evidence(ev, work, f"{i}_{j}")
+                if kind == "image":
+                    norm = work / f"evnorm{i}_{j}.jpg"
+                    _run(["ffmpeg", "-y", "-loglevel", "error", "-i",
+                          str(src), "-vf",
+                          "scale=2400:1350:force_original_aspect_ratio="
+                          "increase,crop=2400:1350", str(norm)])
+                    kb = _kenburns_clip(norm, secs, i + j,
+                                        work / f"evkb{i}_{j}.mp4")
+                else:
+                    kb = work / f"evkb{i}_{j}.mp4"
+                    _run(["ffmpeg", "-y", "-loglevel", "error", "-i",
+                          str(src), "-t", f"{secs:.2f}", "-vf",
+                          f"scale={W}:{H}:force_original_aspect_ratio="
+                          f"increase,crop={W}:{H},fps={FPS}", "-an",
+                          "-c:v", "libx264", "-preset", "veryfast",
+                          "-crf", "18", str(kb)])
+                clip = work / f"evclip{i}_{j}.mp4"
+                _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(kb),
+                      "-vf", f"fade=t=in:st=0:d=0.25,fade=t=out:"
+                      f"st={secs - 0.25:.2f}:d=0.25,format=yuv420p",
+                      "-t", f"{secs:.2f}", "-r", str(FPS),
+                      "-c:v", "libx264", "-preset", "veryfast",
+                      "-crf", "18", "-an", str(clip)])
+                body = _splice(body, clip, e0, e0 + secs,
+                               work / f"evsp{i}_{j}.mp4")
+                ev_rows.append({"t": round(e0, 2), "kind": "evidence",
+                                "beat": i, "rt": secs, "what": label})
+                ev_credits.append(credit)
+                if kind == "image":
+                    ev_tiles.append((src, label, e0))
+                print(f"[longform] evidence '{label}' cut into "
+                      f"beat {i + 1} at {e0:.1f}s")
+            except Exception as e:  # noqa: BLE001 — never fatal
+                print(f"[longform] evidence '{label}' beat {i + 1} "
+                      f"skipped ({e}) — a wrong picture is worse than "
+                      "no picture", file=sys.stderr)
+    if ev_rows:
+        lp = work / "world_ledger.json"
+        if lp.exists():
+            led = json.loads(lp.read_text())
+            led["rows"].extend(ev_rows)
+            led["rows"].sort(key=lambda r: r.get("t", 0))
+            lp.write_text(json.dumps(led, indent=1))
+        (work / "evidence_credits.json").write_text(
+            json.dumps(ev_credits, indent=1))
+        _evidence_sheet(ev_tiles, work / "evidence_sheet.png")
     return body
+
+
+def _evidence_sheet(tiles, out: Path) -> None:
+    """Eye-QA contact sheet: every accepted evidence image with its
+    query and landing timestamp — wrong imagery dies at preview."""
+    if not tiles:
+        return
+    from PIL import Image, ImageDraw
+    tw, th, cap = 640, 360, 44
+    cols = min(3, len(tiles))
+    rows = (len(tiles) + cols - 1) // cols
+    sheet = Image.new("RGB", (tw * cols, (th + cap) * rows), "#101626")
+    draw = ImageDraw.Draw(sheet)
+    font = _font(26)
+    for k, (src, label, t0) in enumerate(tiles):
+        x, y = (k % cols) * tw, (k // cols) * (th + cap)
+        try:
+            im = Image.open(src).convert("RGB")
+            im.thumbnail((tw, th))
+            sheet.paste(im, (x + (tw - im.width) // 2,
+                             y + (th - im.height) // 2))
+        except Exception:  # noqa: BLE001
+            pass
+        draw.text((x + 12, y + th + 8), f"{label}  @ {t0:.0f}s",
+                  fill="#e8ecf4", font=font)
+    sheet.save(out)
 
 
 # --------------------------------------------------------------------------
@@ -856,6 +944,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 lg = work / "world_ledger.json"
                 if lg.exists():   # for scripts/qa_escalation.py
                     shutil.copy(lg, out_path.with_suffix(".ledger.json"))
+                es = work / "evidence_sheet.png"
+                if es.exists():   # eye-QA: on-topic check before publish
+                    shutil.copy(es, out_path.with_suffix(".evidence.png"))
             except Exception as e:  # noqa: BLE001
                 print(f"[longform] WORLD ENGINE FAILED ({e}) — falling back "
                       "to clip-per-beat renderer", file=sys.stderr)
@@ -985,8 +1076,12 @@ def _finish_mux(out_path: Path, st, theme: dict, work: Path, video: Path,
         chapters.append({"t": round(t0, 2),
                          "label": _chapter_name(seg.role, seg.topic)})
     chapters.append({"t": round(windows[-1][0], 2), "label": "Takeaway"})
+    sources = list(st.sources)
+    evc = work / "evidence_credits.json"
+    if evc.exists():   # image credits ride the description like data does
+        sources += [f"Image: {c}" for c in json.loads(evc.read_text())]
     meta = {"slug": st.slug, "duration": round(total, 2),
-            "chapters": chapters, "sources": st.sources}
+            "chapters": chapters, "sources": sources}
     out_path.with_suffix(".meta.json").write_text(
         json.dumps(meta, indent=2) + "\n")
 
