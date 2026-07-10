@@ -1,0 +1,35 @@
+name: Pull Videos (explainer)
+
+# One-shot: yank scheduled videos by id from the explainer channel (used when a
+# batch shouldn't publish). Deletes; falls back to un-scheduling; prints a
+# Studio link if the token lacks the scope for either.
+
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: 'Space-separated YouTube video IDs to pull'
+        required: true
+        default: 'KroC__pKIj0 5VfwDT9MflU _iQMTPlguFg'
+
+permissions:
+  contents: read
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install -q google-api-python-client google-auth google-auth-oauthlib
+      - name: Pull videos
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+        run: |
+          python scripts/pull_videos.py --channel explainer ${{ github.event.inputs.ids }}
