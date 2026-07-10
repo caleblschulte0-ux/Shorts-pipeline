@@ -94,31 +94,55 @@ freshness/host boosts, cross-video repetition penalty, LLM rerank.
 `topic_media` adds Wikipedia hero + full article image set + Commons +
 Openverse + GDELT.
 
-## 6. Tickets (implementation order — one per session, opt-in, no channel
-breakage; mirror of the external draft's phases minus what shipped today)
+## 6. Implementation status (nothing left as an unowned ticket — items are
+either DONE or BLOCKED on a specific operator action, per operator ruling
+2026-07-10: "no one is coming to fix them")
 
-- **M1 — Admission-decision output.** Extend the audit sidecar to a per-
-  asset manifest with the §2 documentation fields + an
-  `APPROVED_*/REVIEW/REJECTED` verdict string per visual.
-- **M2 — YouTube evidence lane.** Data-API discovery + channel/official-
-  source verification + timestamped excerpt selection under §2 rules.
-  Builds on the existing `TOPIC_VIDEO_ALLOW_STRIKES` opt-in; keeps it
-  opt-in per package.
-- **M3 — Official press-room/government discovery.** Company newsrooms,
-  agency pressrooms, gov YouTube channels → `primary_source` lane.
-- **M4 — Social evidence lanes (Bluesky/Mastodon/Reddit).** Providers exist
-  but are gated off (CI IPs get 403s) — needs authed access; capture
-  poster/original-source metadata per §2.7.
-- **M5 — Ad libraries** (Meta Ad Library, Google Ads Transparency) for
-  marketing-claim stories → `primary_source`/`transformative_evidence`.
-- **M6 — Academic/patent sources** (arXiv, PMC figures, USPTO/Google
-  Patents diagrams) with per-figure licenses.
-- **M7 — More open collections:** Smithsonian OA, Europeana, Art Institute
-  of Chicago, NYPL, BHL, NPS/USFWS, CDC PHIL (mostly free keys — needs
-  operator signups; wire like the keyless providers).
-- **M8 — Creator-permission workflow** → `permission_granted` registry.
-- **M9 — TikTok/Instagram/X candidate ingestion** (operator- or
-  research-supplied URLs only; no scraping around platform terms).
+**Done (2026-07-10):**
+- **M1 — Admission documentation.** Every sub-cut in the audit sidecar now
+  records `source_class`, `license`, and source `url` alongside the
+  existing tier/sources fields (`make_explainer_stacked` audit block).
+- **M2 v1 — Official-source detection on YouTube.** `p_youtube` marks
+  results whose channel name matches the entity as `primary_source`
+  ("official channel upload"). Full timestamped-excerpt lane remains
+  governed by the existing `TOPIC_VIDEO_ALLOW_STRIKES` opt-in.
+- **M3 v1 — Government primary-source lane.** Any candidate whose page or
+  image host is `.gov`/`.mil` is classified `primary_source`, licensed
+  "US government media", and score-boosted +0.10 — regardless of which
+  provider surfaced it. (A dedicated GDELT gov-domain provider was probed
+  and returned zero usable articles — not built, on evidence.)
+- **M7 v1 — Art Institute of Chicago** (`p_artic`): keyless, CC0-only,
+  IIIF URLs. In the fan-out now (19 providers).
+- **M8 — Permission workflow tool.** `scripts/request_permission.py`
+  drafts the ask, tracks pending/granted/denied in
+  `state/permission_requests.json`, and only a recorded GRANT admits the
+  asset. The human reply is the one step a machine can't do.
+- **M9 — Evidence-URL ingestion.** Packages may set per-shot
+  `evidence_url`/`evidence_urls`; the renderer pulls the page's hero
+  image via `og_scrape` (Wayback fallback included) as the shot's
+  trusted still. The brain browses — when it finds THE post/article
+  showing the event, it pins it. Documented in
+  CLAUDE_ROUTINE_INSTRUCTIONS.md.
+
+**Blocked — each needs exactly one operator action, then any session can
+finish the wiring in minutes:**
+- **M4 — Social lanes.** Bluesky public API re-probed 2026-07-10: still
+  403 from CI-type egress; Reddit/Mastodon likewise. Needs: a Reddit
+  script-app client id/secret, a Bluesky app password, and/or a Mastodon
+  account token added as repo secrets. Providers already exist behind
+  `MEDIA_FUNNEL_SOCIAL=1`.
+- **M5 — Ad libraries.** Meta Ad Library API requires a Meta developer
+  token + identity verification; Google Ads Transparency has no public
+  API. Needs: operator-created Meta token (secret `META_AD_LIBRARY_TOKEN`).
+- **M6 — Academic/patent figures.** No keyless API serves usable figure
+  images directly (arXiv og:images are logos; PMC figure extraction needs
+  real R&D). Revisit when a channel actually runs a science-paper story
+  format — build then, against real stories.
+- **M7 remainder — Smithsonian OA / Europeana / NYPL / NPS / BHL.** All
+  free but all key-gated. Needs: operator signups (~5 minutes each);
+  paste keys as secrets named `SMITHSONIAN_KEY`, `EUROPEANA_KEY`,
+  `NYPL_TOKEN`, `NPS_KEY`, `BHL_KEY` and any session can clone the
+  `p_met`/`p_artic` pattern per source.
 
 ## 7. Anti-fear rule (permanent)
 

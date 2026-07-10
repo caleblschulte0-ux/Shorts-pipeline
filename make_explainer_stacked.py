@@ -1347,6 +1347,11 @@ def build_timed_top(
                             "path": str(p), "title": nq,
                             "source": "news_funnel", "is_image": True,
                             "uses": 0, "width": W, "height": HALF_H,
+                            # Doctrine M1: admission lane + license ride
+                            # with the asset into the audit sidecar.
+                            "url": c.url,
+                            "source_class": c.source_class,
+                            "license": c.license,
                         })
                     except Exception as e:  # noqa: BLE001
                         print(f"      [media_funnel] extra fetch fail "
@@ -1539,6 +1544,12 @@ def build_timed_top(
                 "had_image_url": bool(shot.image),
                 "sources": shot_sources,
                 "source_tier": _classify_tier(shot_sources),
+                # Doctrine M1: per-visual admission documentation — the
+                # lane each asset entered through and its license, so a
+                # future dispute has a written editorial position.
+                "source_classes": [c.get("source_class", "") for c, _ in plan],
+                "licenses": [c.get("license", "") for c, _ in plan],
+                "urls": [c.get("url", "") for c, _ in plan],
                 "titles": [c.get("title", "")[:80] for c, _ in plan],
                 "sub_cut_count": len(plan),
             })
@@ -2550,12 +2561,31 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
     for s in pkg["shots"]:
         # Each shot is one of: image-anchored, stock-query, or local clip.
         # The package can also pass a list of queries for sub-cut variety.
+        #
+        # evidence_urls (media doctrine M9): the brain browses; when it
+        # finds THE article/post showing the exact event, it pins the
+        # URL here and we pull that page's hero image via og_scrape —
+        # transformative-evidence lane, first URL that yields an image
+        # wins. Only consulted when the shot has no direct image pin.
+        image = s.get("image_url") or s.get("image")
+        if not image:
+            for ev in (s.get("evidence_urls") or
+                       ([s["evidence_url"]] if s.get("evidence_url") else [])):
+                try:
+                    import og_scrape
+                    hero = og_scrape.fetch(ev)
+                except Exception:  # noqa: BLE001
+                    hero = None
+                if hero:
+                    image = hero
+                    print(f"  [evidence_url] {ev[:60]} -> hero image pinned")
+                    break
         shots.append(Shot(
             phrase=s["phrase"],
             # Packages emit `image_url`; older code wrote `image`. Accept
             # both so we don't silently drop the routine's hand-picked
             # Wikipedia/news images.
-            image=s.get("image_url") or s.get("image"),
+            image=image,
             queries=s.get("queries"),
             pexels_query=s.get("query"),
             topic_context=pkg.get("title", ""),

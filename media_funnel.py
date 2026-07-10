@@ -732,15 +732,23 @@ def p_youtube(entity: str, angle: str) -> list[Candidate]:
         _quota_refund("youtube")
         return []
     out = []
+    ent_l = entity.lower()
     for item in (data.get("items") or [])[:10]:
         sn = item.get("snippet") or {}
         thumbs = sn.get("thumbnails") or {}
+        # Official-source detection (doctrine M2 v1): a channel named
+        # after the entity itself ("NASA", "Tesla", "Kentucky State
+        # Police") is primary-source media, not third-party commentary.
+        chan = (sn.get("channelTitle") or "").lower()
+        official = bool(chan) and (chan in ent_l or ent_l in chan)
         # Prefer high → medium → default.
         for k in ("high", "medium", "default"):
             t = thumbs.get(k)
             if t and t.get("url"):
                 out.append(Candidate(
                     url=t["url"], source="youtube",
+                    source_class="primary_source" if official else "",
+                    license=("official channel upload" if official else ""),
                     article_title=(sn.get("title") or "")[:200],
                     article_url=(
                         f"https://youtube.com/watch?v="
@@ -974,6 +982,34 @@ def p_gbif(entity: str, angle: str) -> list[Candidate]:
     return out[:12]
 
 
+def p_artic(entity: str, angle: str) -> list[Candidate]:
+    """Art Institute of Chicago — keyless open API, public-domain-only
+    filter, IIIF image URLs. History/culture stories (doctrine M7 v1;
+    Smithsonian/Europeana/NYPL need operator-created keys — see
+    docs/MEDIA_ACQUISITION.md §6)."""
+    if not _quota_check("artic", daily=200):
+        return []
+    q = urllib.parse.quote(entity)
+    data = _get("https://api.artic.edu/api/v1/artworks/search"
+                f"?q={q}&fields=id,title,image_id,is_public_domain"
+                f"&limit=8", tag="artic")
+    if not data:
+        _quota_refund("artic")
+        return []
+    out = []
+    for r in (data.get("data") or []):
+        if not r.get("is_public_domain") or not r.get("image_id"):
+            continue
+        out.append(Candidate(
+            url=(f'https://www.artic.edu/iiif/2/{r["image_id"]}'
+                 f'/full/843,/0/default.jpg'),
+            source="artic",
+            source_class="open_or_licensed", license="CC0 (ARTIC Open Access)",
+            article_title=(r.get("title") or "")[:200],
+            article_url=f'https://www.artic.edu/artworks/{r.get("id")}'))
+    return out
+
+
 def p_pexels_images(entity: str, angle: str) -> list[Candidate]:
     """Pexels IMAGE search — reuses the PEXELS_API_KEY already in CI for
     stock video. Licensed stock photos of the subject (not day-fresh
@@ -1077,6 +1113,7 @@ _PROVIDERS: list[tuple[str, Callable[[str, str], list[Candidate]]]] = [
     ("wikidata", p_wikidata),
     ("loc", p_loc),
     ("met", p_met),
+    ("artic", p_artic),
     ("gbif", p_gbif),
     ("pexels_images", p_pexels_images),
     ("pixabay_images", p_pixabay_images),
@@ -1204,10 +1241,23 @@ def _prefilter(candidates: list[Candidate],
             # stock — real photos of the subject but generic, so they
             # rank just above the stock-search floor.
             "wikidata": 0.60, "dvids_images": 0.55, "loc": 0.50,
-            "gbif": 0.50, "met": 0.42,
+            "gbif": 0.50, "met": 0.42, "artic": 0.42,
             "pexels_images": 0.45, "pixabay_images": 0.42,
         }.get(c.source, 0.40)
         c.score = base
+        # Primary-source detection (doctrine M3): official .gov/.mil
+        # media is both the strongest evidence AND overwhelmingly public
+        # domain — classify and boost it regardless of which provider
+        # surfaced it (a NOAA photo may arrive via a news API).
+        try:
+            host = urllib.parse.urlparse(c.article_url or c.url).netloc.lower()
+            if host.endswith((".gov", ".mil")):
+                c.source_class = "primary_source"
+                c.license = c.license or "US government media (verify per item)"
+                c.score += 0.10
+                c.boosts["gov_primary"] = True
+        except ValueError:
+            pass
         # Source class + license (media-acquisition doctrine, Phase 1):
         # recorded per asset so the audit sidecar can articulate the
         # admission lane. News-photo usage rides the reporting/
