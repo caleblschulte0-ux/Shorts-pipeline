@@ -69,6 +69,50 @@ def _wikipedia_image(topic: str) -> str | None:
     return None
 
 
+def _wikipedia_article_images(topic: str, limit: int = 6) -> list[str]:
+    """ALL content images from the topic's Wikipedia article, not just
+    the infobox hero. `prop=images` lists the article's files; a second
+    call resolves them to URLs. Icons/flags/logos are filtered by name
+    and extension. This is the deepest free source of on-subject photos
+    for anything with an article — one API pair yields 5-10 usable
+    images where `_wikipedia_image` yields one."""
+    if not topic.strip():
+        return []
+    try:
+        qs = urllib.parse.urlencode({
+            "action": "query", "format": "json", "prop": "images",
+            "imlimit": 30, "redirects": 1, "titles": topic,
+        })
+        data = json.loads(_get(f"https://en.wikipedia.org/w/api.php?{qs}"))
+        names = []
+        junk = re.compile(r"(icon|logo|flag|map|seal|coat[_ ]of[_ ]arms|"
+                          r"symbol|wiki|commons-|edit-|padlock|question|"
+                          r"star|arrow|button)", re.I)
+        for p in ((data.get("query") or {}).get("pages") or {}).values():
+            for im in p.get("images") or []:
+                t = im.get("title") or ""
+                if (t.lower().endswith((".jpg", ".jpeg", ".png"))
+                        and not junk.search(t)):
+                    names.append(t)
+        if not names:
+            return []
+        qs = urllib.parse.urlencode({
+            "action": "query", "format": "json", "prop": "imageinfo",
+            "iiprop": "url|size", "titles": "|".join(names[:limit * 2]),
+        })
+        data = json.loads(_get(f"https://en.wikipedia.org/w/api.php?{qs}"))
+        out = []
+        for p in ((data.get("query") or {}).get("pages") or {}).values():
+            for ii in p.get("imageinfo") or []:
+                u = ii.get("url") or ""
+                # Skip tiny images (icons that dodged the name filter).
+                if u and min(ii.get("width", 0), ii.get("height", 0)) >= 400:
+                    out.append(u)
+        return out[:limit]
+    except Exception:  # noqa: BLE001 — best-effort like every source here
+        return []
+
+
 def _commons_files(topic: str, mime_prefix: str = "image/",
                    limit: int = 3) -> list[str]:
     """Search Wikimedia Commons for files matching `topic`. Returns
@@ -210,17 +254,22 @@ def search(topic: str, context: str = "") -> list[str]:
         _add(_wikipedia_image(context))
     # Topic alone as a backup in case the title was vague.
     _add(_wikipedia_image(topic))
+    # Then the article's FULL image set (not just the hero) — the deepest
+    # free source for named subjects.
+    for u in _wikipedia_article_images(topic):
+        _add(u)
 
-    # Commons: combined query gets us event/diagram photos. Two results
-    # is usually enough — more than that and we're scraping the long tail.
+    # Commons: combined query gets us event/diagram photos. Deeper pull
+    # since 2026-07-10 — the renderer pools want to be drowning in
+    # options; its dedup + token scoring pick the winners.
     combined = f"{topic} {context}".strip()
-    for url in _commons_images(combined, limit=3):
+    for url in _commons_images(combined, limit=6):
         _add(url)
 
     # Openverse: CC-licensed subject photos (keyless). Query the topic
     # alone — the license-filtered index does better on a clean noun
     # than on a headline.
-    for url in _openverse_images(topic, limit=2):
+    for url in _openverse_images(topic, limit=5):
         _add(url)
 
     # GDELT: the news angle. Search the combined topic so a story like
