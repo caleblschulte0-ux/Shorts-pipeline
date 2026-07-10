@@ -59,6 +59,16 @@ jobs:
           # if it (or its model download) is unavailable, so this is best-effort.
           pip install -q rembg onnxruntime || echo "::warning::rembg unavailable — cutouts use chroma-key fallback"
 
+      # Translation cache (audit Ticket 3): moved out of git into cache/,
+      # persisted between runs via actions/cache (evolving-cache pattern).
+      - name: Cache translations
+        uses: actions/cache@v4
+        with:
+          path: cache/translation/
+          key: translation-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            translation-cache-v1-
+
       - name: Render + schedule (${{ matrix.slug }})
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
@@ -76,3 +86,14 @@ jobs:
           echo "Scheduling ${{ matrix.slug }} for $PUB (UTC, +${OFF}h)"
           python scripts/render_cinematic.py \
             --story "${{ matrix.slug }}" --upload --publish-at "$PUB" --channel explainer
+
+      - name: Persist posted log
+        # Without this, every matrix leg's upload was UNLOGGED — a re-dispatch
+        # re-uploaded all three videos as duplicates. The shared persist
+        # script's union-merge also handles the 3 parallel legs racing each
+        # other to push the same file.
+        if: always()
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "cinematic: update posted log [skip ci]" \
+            state/explainer_posted_log.json

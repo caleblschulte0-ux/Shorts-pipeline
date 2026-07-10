@@ -25,8 +25,10 @@ Full registry, triage verdicts, and the ticket backlog (E1–E14):
 or `None`, never raise — safe to call best-effort from any renderer.
 
 Rules:
-- **`parallax` is EXPERIMENTAL** — no production channel may call it until
-  the benchmark verdict (Ticket E2). `still_motion.kenburns` is the fallback.
+- **`parallax` is active but GATED** (E2 verdict 2026-07-10: photos pass,
+  flat art/text refused by the input suitability gate). First adoption in
+  any channel still requires a preview render before flipping a default.
+  `still_motion.kenburns` is always the fallback.
 - New engines follow the checklist at the bottom of the registry doc
   (headless, CPU-viable, commercial-safe license, pinned models, `maybe_*`
   contract). One at a time, each earning its slot with a better video.

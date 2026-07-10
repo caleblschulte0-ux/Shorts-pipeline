@@ -60,8 +60,8 @@ def _load_log() -> dict:
 
 
 def _save_log(log: dict) -> None:
-    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    LOG_PATH.write_text(json.dumps(log, indent=2) + "\n")
+    from fsutil import atomic_write_json
+    atomic_write_json(LOG_PATH, log)
 
 
 def run_capture(pkg: dict, work: Path) -> Path:

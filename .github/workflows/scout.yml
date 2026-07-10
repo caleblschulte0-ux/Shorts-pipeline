@@ -52,18 +52,16 @@ jobs:
         run: python scripts/scout_sources.py
 
       - name: Commit results
+        env:
+          CI_COMMIT_BRANCH: ${{ github.ref_name }}
         run: |
-          set -e
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add state/scouted_sources.json state/scout_errors.log
-          if git diff --staged --quiet; then
-            echo "Nothing to commit."
-          else
-            count=$(python3 -c "import json; print(json.load(open('state/scouted_sources.json'))['total'])")
-            git commit -m "scout: $(date -u +%Y-%m-%d) — $count posts"
-            git push origin HEAD:${{ github.ref_name }}
-          fi
+          # Shared hardened persist (audit Ticket 1) — scout previously had
+          # ZERO push retry and failed the whole run on any race with a
+          # channel's state commit.
+          count=$(python3 -c "import json; print(json.load(open('state/scouted_sources.json'))['total'])" 2>/dev/null || echo "?")
+          bash scripts/ci_commit_state.sh \
+            "scout: $(date -u +%Y-%m-%d) — $count posts [skip ci]" \
+            state/scouted_sources.json state/scout_errors.log
 
       - name: Comment on tracking issue
         env:

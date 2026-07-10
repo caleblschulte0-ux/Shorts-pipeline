@@ -248,17 +248,37 @@ def main():
     ap.add_argument("--music",default=""); ap.add_argument("--upload",action="store_true")
     ap.add_argument("--publish-at",default=""); ap.add_argument("--channel",default="explainer")
     a=ap.parse_args()
+    # Dedupe against the explainer posted-log BEFORE rendering: a re-dispatch
+    # of the workflow must not upload the same story twice.
+    from fsutil import atomic_write_json, load_json
+    log_path=ROOT/"state"/"explainer_posted_log.json"
+    if a.upload:
+        log=load_json(log_path, {"posted": {}})
+        if a.story in log.get("posted", {}):
+            print(f"[cine] {a.story} already in posted log — skipping")
+            return 0
     story=_story(a.story)
     work=Path(tempfile.mkdtemp(prefix="cine_"))
     out=Path(a.out) if a.out else ROOT/f"{a.story}.mp4"
     meta=render_story(story,out,work,music=a.music or None)
     print(f"[cine] rendered {out} ({meta['duration']:.1f}s)")
     if a.upload:
+        from datetime import datetime, timezone
         from uploaders import YouTubeUploader
         up=YouTubeUploader(channel=a.channel)
         res=up.upload(str(out),title=meta["title"],description=meta["description"],
                       tags=meta["tags"],publish_at=a.publish_at or None,category="27")
         print(f"[cine] uploaded: {res}")
+        # Record the upload immediately — an upload that isn't logged is a
+        # duplicate waiting to happen. The workflow persists this file.
+        log=load_json(log_path, {"posted": {}})
+        log.setdefault("posted", {})[a.story]={
+            "url": getattr(res, "url", None) or str(res),
+            "title": meta["title"],
+            "at": datetime.now(timezone.utc).isoformat(),
+            "publish_at": a.publish_at or None,
+        }
+        atomic_write_json(log_path, log)
     print("CINE_DONE", out)
 
 
