@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -271,20 +272,33 @@ def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
 
 # ---------- Cache ----------
 
-_CACHE_PATH = (Path(__file__).resolve().parent / "state"
+# Moved to cache/funnel/ so actions/cache persists it between CI runs
+# (under state/ it was gitignored and wiped with every runner). The
+# legacy path seeds the first run.
+_CACHE_PATH = (Path(__file__).resolve().parent / "cache" / "funnel"
                / "entity_media_cache.json")
+_LEGACY_CACHE_PATH = (Path(__file__).resolve().parent / "state"
+                      / "entity_media_cache.json")
+
+# TTLs (seconds). Negative results ("tried, nothing found") used to be
+# cached FOREVER — one transient network blip poisoned an entity until
+# someone wiped the file. Positive results now expire too, so a repeat
+# subject gets a chance to rotate onto a different photo instead of
+# opening on the same Wikipedia hero in video after video.
+_NEG_TTL = 24 * 3600
+_POS_TTL = 7 * 24 * 3600
 
 
-def _load_cache() -> dict[str, str]:
-    if not _CACHE_PATH.exists():
-        return {}
-    try:
-        return json.loads(_CACHE_PATH.read_text())
-    except (json.JSONDecodeError, OSError):
-        return {}
+def _load_cache() -> dict:
+    for p in (_CACHE_PATH, _LEGACY_CACHE_PATH):
+        try:
+            return json.loads(p.read_text())
+        except (FileNotFoundError, json.JSONDecodeError, OSError):
+            continue
+    return {}
 
 
-def _save_cache(cache: dict[str, str]) -> None:
+def _save_cache(cache: dict) -> None:
     try:
         _CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
         _CACHE_PATH.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n")
@@ -309,8 +323,16 @@ def resolve_entity_media(entity: str, context: str = "") -> str | None:
     ctx_norm = " ".join((context or "").lower().split())[:80]
     key = f"{entity.lower()}|{ctx_norm}" if ctx_norm else entity.lower()
     cache = _load_cache()
-    if key in cache:
-        return cache[key] or None
+    rec = cache.get(key)
+    if rec is not None:
+        # Legacy entries are bare strings (no timestamp — treat as
+        # expired so they re-resolve once and gain a ts); new entries
+        # are {"url": ..., "ts": ...} with TTLs per polarity.
+        if isinstance(rec, dict):
+            age = time.time() - rec.get("ts", 0)
+            url = rec.get("url", "")
+            if (url and age < _POS_TTL) or (not url and age < _NEG_TTL):
+                return url or None
     chosen = ""
     try:
         import topic_media
@@ -325,7 +347,7 @@ def resolve_entity_media(entity: str, context: str = "") -> str | None:
                 break
     except Exception as e:  # noqa: BLE001
         print(f"  [entity_media resolve fail] {entity!r}: {e}")
-    cache[key] = chosen
+    cache[key] = {"url": chosen, "ts": time.time()}
     _save_cache(cache)
     return chosen or None
 

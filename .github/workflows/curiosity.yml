@@ -157,7 +157,9 @@ jobs:
       - name: Cache translations
         uses: actions/cache@v4
         with:
-          path: cache/translation/
+          path: |
+            cache/translation/
+            cache/funnel/
           key: translation-cache-v1-${{ github.run_id }}
           restore-keys: |
             translation-cache-v1-
