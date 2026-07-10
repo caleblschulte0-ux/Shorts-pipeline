@@ -84,8 +84,12 @@ jobs:
           sudo apt-get install -y -q ffmpeg miller fonts-dejavu-core
 
       - name: Install python deps
-        # curl_cffi powers yt-dlp's TLS impersonation for Kick/Rumble
-        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper deep-translator google-api-python-client google-auth google-auth-oauthlib
+        # curl_cffi powers yt-dlp's TLS impersonation for Kick/Rumble.
+        # opencv-python-headless<5 drives the auto-editor's face-tracking
+        # reframe (5.0 dropped CascadeClassifier from the headless wheel);
+        # the reframe is import-guarded, so a missing wheel just falls back
+        # to the blur-fill center crop.
+        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper deep-translator google-api-python-client google-auth google-auth-oauthlib "opencv-python-headless<5"
 
       - name: Install Claude CLI (the author brain)
         # Claude-first authoring, same pattern as daily.yml's brain step;

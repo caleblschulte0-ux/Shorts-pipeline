@@ -79,9 +79,20 @@ Everything happens in three windows: **0–3s, 3–10s, final payoff.**
 Master: 1080×1920 H.264/AAC ✅, no baked bars, loudness −14 LUFS ✅.
 
 **Framing rule:** if a face exists, the face wins; if no face, the
-decisive action wins; both → alternate aggressively. (Current reframe is
-blur-fill + centered source ✅; facecam/action crop layouts + punch-in
-zooms on the payoff beat are the top 🔜 edit upgrade.)
+decisive action wins; both → alternate aggressively. **Two-stage
+auto-editor ✅** (`third_capture/auto_edit.py`): Stage 1 retimes the clip
+into a dynamically edited program (motion+speech locate the "money
+moment"; punch-in zoom on the reaction, `minterpolate` slow-mo + instant
+`REPLAY` of the payoff, dead-air speed-up, impact shake/flash/aberration);
+Stage 2 face-tracks the reframe (OpenCV Haar cascade → EMA-smoothed 9:16
+crop that fills the frame — no blur bars — when a confident face track
+exists, else blur-fill center). A **style selector** applies effects with
+discretion per `series` and clip strength (wholesome → gentle punch, no
+shake/replay; fail/rage → full package; weak/flat clips → minimal), and an
+**ironclad fallback ladder** (per-effect → per-segment plain re-encode →
+whole-Stage-1 skip → blur-fill reframe → today's simple render) guarantees
+every clip ships; each fallback is logged in the ledger
+(`auto_edit`/`fallback_reason`/`effects`/`edl`). Behind `auto=True`.
 
 **Never start with dead air ✅** — auto tight-cut opens ~0.8s before the
 first spoken word, ends ~1.5s after the last, hard cap 45s. Never open on
@@ -108,10 +119,13 @@ cut + hook approximates "instant punchline"):
 | Reversal | confidence line first | hard reversal + close-up |
 | Argument | strongest line first, filler stripped | final line / stunned silence |
 
-**Sound:** source-first — the streamer's audio IS the asset ✅; SFX/
-risers only when source is weak 🔜. **Cover frame 🔜:** one readable face
-or decisive action, 2–4 words, high contrast (matters on channel-page
-surfaces, not feed).
+**Sound:** source-first — the streamer's audio IS the asset ✅; **CC0
+impact SFX ✅** (self-authored numpy one-shots in `assets/sfx/`, zero
+licensing risk — whoosh on the punch-in, boom on the peak hit, riser into
+the replay) mixed onto the Stage-1 beats via `adelay`|`amix`, **no music
+bed** (licensing risk). Asset-guarded — missing files skip silently.
+**Cover frame 🔜:** one readable face or decisive action, 2–4 words, high
+contrast (matters on channel-page surfaces, not feed).
 
 ## 5. Metadata
 

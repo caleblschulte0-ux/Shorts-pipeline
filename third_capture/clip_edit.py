@@ -317,11 +317,20 @@ def fetch_age_hours(url: str) -> float:
 
 def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
-         whisper_model: str = "small", words: list[dict] | None = None) -> dict:
+         whisper_model: str = "small", words: list[dict] | None = None,
+         auto: bool = True, series: str = "chaos") -> dict:
     """Compose the 9:16 edit. `credit` is the full on-screen label
     (e.g. "twitch.tv/xqc", "kick.com/adinross"). Pass precomputed `words`
     (from transcribe_words on the SAME uncut file) to skip re-transcribing —
-    only valid when start/end are unset. Returns the edit ledger."""
+    only valid when start/end are unset.
+
+    `auto=True` runs the two-stage auto-editor (third_capture/auto_edit):
+    Stage 1 retimes the clip into a dynamically edited program (punch-in
+    zooms, slow-mo + replay of the money moment, dead-air speed-up, impact
+    shake/flash, SFX); Stage 2 face-tracks the reframe and burns captions.
+    Every layer degrades gracefully — on any failure this falls back to the
+    plain reframe+captions render, so a clip always ships. Returns the ledger.
+    """
     probe = json.loads(_run(
         ["ffprobe", "-v", "quiet", "-print_format", "json",
          "-show_format", str(raw)]))
@@ -353,29 +362,88 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
 
         if words is None:
             words = transcribe_words(cut, whisper_model)
+
+        # ---- Stage 1: time-domain auto-edit (retime into a program) ----
+        # Punch-in zooms, slow-mo + instant replay of the money moment,
+        # dead-air speed-up, impact shake/flash, SFX. Never raises — on any
+        # failure `program` stays the raw cut and words/dur are untouched, so
+        # the simple render below still ships the clip.
+        program = cut
+        overlays: list[dict] = []
+        ledger_ae = {"auto_edit": False, "fallback_reason": None,
+                     "effects": [], "edl": None}
+        if auto:
+            try:
+                from third_capture import auto_edit as ae
+                st1 = ae.build(cut, words, dur, series, tmp)
+                program, words, dur = st1["program"], st1["words"], st1["dur"]
+                overlays = st1.get("overlays", [])
+                ledger_ae = {k: st1[k] for k in
+                             ("auto_edit", "fallback_reason", "effects", "edl")}
+            except Exception as e:  # noqa: BLE001
+                ledger_ae["fallback_reason"] = f"stage1:{type(e).__name__}"
+
+        # ---- Stage 2: presentation ----
+        # Face-tracked reframe fills the 9:16 frame (no blur bars) when a
+        # confident track exists; otherwise fall back to today's blur-fill
+        # center reframe. Reframe is a bonus and never blocks the render.
+        reframed = None
+        if auto:
+            try:
+                from third_capture import auto_edit as ae
+                reframed = ae.reframe(program, tmp)
+            except Exception:  # noqa: BLE001
+                reframed = None
+
         ass = build_ass(words, credit, dur, tmp / "caps.ass")
 
-        # visual chain: blurred fill + centered source + captions
-        vf = (
-            "[0:v]split=2[bg][fg];"
-            f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
-            "increase,crop=1080:1920,gblur=sigma=24,"
-            "eq=brightness=-0.12:saturation=1.15[bgd];"
-            "[fg]scale=1080:-2[fgs];"
-            "[bgd][fgs]overlay=(W-w)/2:(H-h)/2[base];"
-            f"[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
-        )
+        if reframed is not None:
+            # program is already a sharp 1080x1920 face crop — just grade +
+            # burn captions (reuse the longform grade: gentle sat + vignette).
+            src = reframed
+            vf = (
+                "[0:v]eq=saturation=1.05,vignette=PI/5[base];"
+                f"[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
+            )
+        else:
+            # blur-fill center reframe — the guaranteed, battle-tested look
+            # (auto=False renders exactly this path).
+            src = program
+            vf = (
+                "[0:v]split=2[bg][fg];"
+                f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
+                "increase,crop=1080:1920,gblur=sigma=24,"
+                "eq=brightness=-0.12:saturation=1.15[bgd];"
+                "[fg]scale=1080:-2[fgs];"
+                "[bgd][fgs]overlay=(W-w)/2:(H-h)/2[base];"
+                f"[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
+            )
+        # Post-caption overlays drawn in the final 1080x1920 frame (centered,
+        # so the face-follow crop can't clip them): auto-edit stamps (REPLAY)
+        # first, then the hook card. Assembled onto [capped] -> [vout].
+        post: list[str] = []
+        for ov in overlays:
+            txt = re.sub(r"[^A-Za-z0-9 !?]", "", str(ov.get("text", "")))[:16]
+            if not txt:
+                continue
+            post.append(
+                f"drawtext=fontfile={FONT_BOLD}:text='{txt}'"
+                ":fontsize=64:fontcolor=white:box=1:boxcolor=red@0.75"
+                ":boxborderw=18:x=(w-text_w)/2:y=150"
+                f":enable='between(t,{ov['s']:.2f},{ov['e']:.2f})'")
         if hook:
             safe = hook.replace(":", r"\:").replace("'", r"\\\'")
-            chain = (vf + ";[capped]"
-                     f"drawtext=fontfile={FONT_BOLD}:text='{safe}'"
-                     ":fontsize=72:fontcolor=white:box=1:boxcolor=black@0.72"
-                     ":boxborderw=26:x=(w-text_w)/2:y=230"
-                     ":enable='between(t,0,3.0)'[vout]")
+            post.append(
+                f"drawtext=fontfile={FONT_BOLD}:text='{safe}'"
+                ":fontsize=72:fontcolor=white:box=1:boxcolor=black@0.72"
+                ":boxborderw=26:x=(w-text_w)/2:y=230"
+                ":enable='between(t,0,3.0)'")
+        if post:
+            chain = vf + ";[capped]" + ",".join(post) + "[vout]"
         else:
             chain = vf.replace("[capped]", "[vout]")
 
-        _run(["ffmpeg", "-y", "-v", "error", "-i", str(cut),
+        _run(["ffmpeg", "-y", "-v", "error", "-i", str(src),
               "-filter_complex", chain, "-map", "[vout]", "-map", "0:a",
               "-af", "loudnorm=I=-14:TP=-1.5",
               "-c:v", "libx264", "-preset", "medium", "-crf", "19",
@@ -384,4 +452,6 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
 
     return {"kind": "twitch_clip", "credit": credit,
             "cut": [t0, t1], "duration_s": round(dur, 2),
-            "caption_words": len(words), "hook": hook}
+            "caption_words": len(words), "hook": hook,
+            "reframe": "face" if reframed is not None else "blur",
+            **ledger_ae}
