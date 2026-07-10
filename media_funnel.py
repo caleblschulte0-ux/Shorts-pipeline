@@ -30,6 +30,22 @@ Providers, free-tier and no credit card unless noted:
     Vimeo thumbnails   VIMEO_TOKEN        already wired
     YouTube thumbnails YOUTUBE_API_KEY    already wired
 
+  Keyless subject-photo providers (no auth, CI-verified — cover the
+  evergreen quirky/animal/disaster slate the news APIs are weakest on):
+    Openverse          CC aggregator (Flickr/Wikimedia/museums),
+                       commercial-license filter on
+    iNaturalist        research-grade wildlife photos, CC-licensed,
+                       animals-only taxa filter + whole-word common-name
+                       match (a 'meteor' story must not get the flatworm
+                       Benthoplana meteoris)
+    NASA image library public-domain space/weather/disaster imagery
+
+  Cross-video repetition: media_usage.py records every chosen URL;
+  _prefilter penalizes anything aired in the last 14 days (soft -0.25).
+  Caches+quota live in cache/funnel/ (actions/cache persisted between
+  CI runs; legacy state/ copies seed the first run). Failed provider
+  calls refund their optimistic quota bump.
+
   Universal helpers (used on every article URL the others return):
     og:image scraper   og_scrape.fetch()
     Wayback Machine    (fallback in og_scrape)
@@ -77,8 +93,15 @@ import og_scrape
 
 ROOT = Path(__file__).resolve().parent
 STATE_DIR = ROOT / "state"
-CACHE_PATH = STATE_DIR / "news_image_cache.json"
-QUOTA_PATH = STATE_DIR / "news_image_quota.json"
+# Funnel caches moved to cache/funnel/ so actions/cache persists them
+# between CI runs — under state/ (gitignored) they were wiped with every
+# runner, so the 48h news TTL and the quota counters never actually
+# functioned in CI. Legacy state/ copies seed the first run.
+FUNNEL_CACHE_DIR = ROOT / "cache" / "funnel"
+CACHE_PATH = FUNNEL_CACHE_DIR / "news_image_cache.json"
+QUOTA_PATH = FUNNEL_CACHE_DIR / "news_image_quota.json"
+_LEGACY = {CACHE_PATH: STATE_DIR / "news_image_cache.json",
+           QUOTA_PATH: STATE_DIR / "news_image_quota.json"}
 
 # 48-hour TTL — news photos roll off CDNs; same story re-rendered
 # tomorrow might find better photos.
@@ -129,10 +152,14 @@ class Candidate:
 # ---------- cache + quota ----------
 
 def _load_json(path: Path) -> dict:
-    try:
-        return json.loads(path.read_text())
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
+    for p in (path, _LEGACY.get(path)):
+        if p is None:
+            continue
+        try:
+            return json.loads(p.read_text())
+        except (FileNotFoundError, json.JSONDecodeError):
+            continue
+    return {}
 
 
 def _save_json(path: Path, data: dict) -> None:
@@ -200,6 +227,22 @@ def _quota_check(provider: str, *, daily: int = 0,
         q[provider] = rec
         _save_json(QUOTA_PATH, q)
     return True
+
+
+def _quota_refund(provider: str) -> None:
+    """Give back the optimistic bump when the call transport-failed
+    (timeout/HTTP error/empty body). A failed request costs the remote
+    API nothing meaningful, but eating budget for it starved providers
+    late in the day after a flaky morning."""
+    with _QUOTA_LOCK:
+        q = _load_json(QUOTA_PATH)
+        rec = q.get(provider)
+        if not rec:
+            return
+        rec["day_count"] = max(0, rec.get("day_count", 0) - 1)
+        rec["month_count"] = max(0, rec.get("month_count", 0) - 1)
+        q[provider] = rec
+        _save_json(QUOTA_PATH, q)
 
 
 # ---------- HTTP helpers ----------
@@ -280,6 +323,7 @@ def p_newsapi(entity: str, angle: str) -> list[Candidate]:
            f"&pageSize=10&sortBy=relevancy&language=en&apiKey={key}")
     data = _get(url, tag="newsapi")
     if not data:
+        _quota_refund("newsapi")
         return []
     if data.get("status") != "ok":
         _dbg("newsapi", f"non-ok status: {str(data)[:200]}")
@@ -306,6 +350,7 @@ def p_gnews(entity: str, angle: str) -> list[Candidate]:
            f"&max=10&lang=en&apikey={key}")
     data = _get(url, tag="gnews")
     if not data:
+        _quota_refund("gnews")
         return []
     out = []
     for a in (data.get("articles") or [])[:10]:
@@ -332,6 +377,7 @@ def p_brave(entity: str, angle: str) -> list[Candidate]:
         "Accept": "application/json",
     }, tag="brave")
     if not data:
+        _quota_refund("brave")
         return []
     out = []
     for a in (data.get("results") or [])[:10]:
@@ -413,6 +459,7 @@ def p_newsdata(entity: str, angle: str) -> list[Candidate]:
            f"&language=en")
     data = _get(url, tag="newsdata")
     if not data:
+        _quota_refund("newsdata")
         return []
     out = []
     for a in (data.get("results") or [])[:10]:
@@ -495,6 +542,7 @@ def p_mastodon(entity: str, angle: str) -> list[Candidate]:
            f"?type=statuses&q={q}&limit=15")
     data = _get(url, headers={"User-Agent": _UA_MASTODON}, tag="mastodon")
     if not data:
+        _quota_refund("mastodon")
         return []
     out = []
     for s in (data.get("statuses") or [])[:15]:
@@ -516,6 +564,7 @@ def p_bluesky(entity: str, angle: str) -> list[Candidate]:
            f"?q={q}&limit=25")
     data = _get(url, headers={"User-Agent": _UA_BLUESKY}, tag="bluesky")
     if not data:
+        _quota_refund("bluesky")
         return []
     out = []
     for post in (data.get("posts") or [])[:25]:
@@ -551,6 +600,7 @@ def p_imgur(entity: str, angle: str) -> list[Candidate]:
     url = f"https://api.imgur.com/3/gallery/search?q={q}"
     data = _get(url, headers={"Authorization": f"Client-ID {cid}"}, tag="imgur")
     if not data:
+        _quota_refund("imgur")
         return []
     out = []
     for item in (data.get("data") or [])[:10]:
@@ -634,6 +684,7 @@ def p_vimeo(entity: str, angle: str) -> list[Candidate]:
         "Accept": "application/vnd.vimeo.*+json;version=3.4",
     }, tag="vimeo")
     if not data:
+        _quota_refund("vimeo")
         return []
     out = []
     for v in (data.get("data") or [])[:8]:
@@ -670,6 +721,7 @@ def p_youtube(entity: str, angle: str) -> list[Candidate]:
            f"&q={q}&key={key}")
     data = _get(url, tag="youtube")
     if not data:
+        _quota_refund("youtube")
         return []
     out = []
     for item in (data.get("items") or [])[:10]:
@@ -687,6 +739,116 @@ def p_youtube(entity: str, angle: str) -> list[Candidate]:
                         f"{(item.get('id') or {}).get('videoId', '')}"),
                     published_at=sn.get("publishedAt") or ""))
                 break
+    return out
+
+
+# ---------- keyless subject-photo providers ----------
+# The news APIs above find TODAY's photos of NEWS subjects, but this
+# channel's slate is 4/6 quirky/animal/disaster — evergreen subjects the
+# news APIs are weakest on. These three cost nothing, need no keys, work
+# from CI IPs (verified), and return properly-licensed subject photos.
+
+def p_openverse(entity: str, angle: str) -> list[Candidate]:
+    """Openverse — CC-licensed aggregator (Flickr/Wikimedia/museums).
+    Commercial-license filter on; license + creator recorded in the
+    article fields so provenance survives into the audit sidecar."""
+    if not _quota_check("openverse", daily=90):   # anon tier: 100/day
+        return []
+    q = urllib.parse.quote(entity)
+    url = (f"https://api.openverse.org/v1/images/?q={q}"
+           f"&license_type=commercial&page_size=8&mature=false")
+    data = _get(url, tag="openverse")
+    if not data:
+        _quota_refund("openverse")
+        return []
+    out = []
+    for r in (data.get("results") or [])[:8]:
+        u = r.get("url") or ""
+        if not u:
+            continue
+        out.append(Candidate(
+            url=u, source="openverse",
+            article_title=(r.get("title") or "")[:200],
+            article_url=(f'{r.get("foreign_landing_url") or ""}'
+                         f'#license={r.get("license") or "?"}'
+                         f'-by-{r.get("creator") or "?"}')[:400]))
+    return out
+
+
+def p_inaturalist(entity: str, angle: str) -> list[Candidate]:
+    """iNaturalist — research-grade wildlife photos with CC licensing.
+    Made for this channel's animal-heavy slate. Tries the full entity
+    ('Hunter the kangaroo'), then the trailing noun ('kangaroo')."""
+    if not _quota_check("inaturalist", daily=300):
+        return []
+    # iconic_taxa filter = animals only: without it, token matches drag
+    # in plants ("Kangaroo Paw" for a kangaroo story — observed in the
+    # keyless bench probe).
+    base = ("https://api.inaturalist.org/v1/observations"
+            "?photo_license=cc0,cc-by,cc-by-sa&quality_grade=research"
+            "&order_by=votes&per_page=6"
+            "&iconic_taxa=Mammalia,Aves,Reptilia,Amphibia,"
+            "Actinopterygii,Insecta,Arachnida,Mollusca,Animalia"
+            "&taxon_name=")
+    words = [w for w in re.findall(r"[A-Za-z']+", entity)]
+    tries = [entity] + ([words[-1]] if len(words) > 1 else [])
+    for q in tries:
+        data = _get(base + urllib.parse.quote(q), tag="inaturalist")
+        results = (data or {}).get("results") or []
+        if results:
+            out = []
+            # Whole-word match against the COMMON name, else the taxon-name
+            # search drags in species whose Latin binomial merely contains
+            # the query ("Benthoplana meteoris" for a 'meteor' story).
+            q_word = re.compile(
+                rf"\b{re.escape(q.split()[-1].lower())}\b")
+            for obs in results:
+                taxon = (obs.get("taxon") or {})
+                name = taxon.get("preferred_common_name") or taxon.get("name") or q
+                if not q_word.search(name.lower()):
+                    continue
+                for ph in (obs.get("photos") or [])[:2]:
+                    u = (ph.get("url") or "").replace("square", "large")
+                    if not u:
+                        continue
+                    lic = ph.get("license_code") or "cc"
+                    out.append(Candidate(
+                        url=u, source="inaturalist",
+                        article_title=name[:200],
+                        article_url=(f'https://www.inaturalist.org/'
+                                     f'observations/{obs.get("id")}'
+                                     f'#license={lic}')))
+            return out[:8]
+    return []
+
+
+def p_nasa_images(entity: str, angle: str) -> list[Candidate]:
+    """NASA image library — public domain space/weather/disaster
+    imagery (meteors, wildfires from orbit, storms). Keyless."""
+    if not _quota_check("nasa_images", daily=300):
+        return []
+    # NASA's search is literal — the quoted news-style query from
+    # _build_query returns zero hits; the bare subject returns plenty.
+    q = urllib.parse.quote(entity)
+    url = f"https://images-api.nasa.gov/search?q={q}&media_type=image"
+    data = _get(url, tag="nasa_images")
+    if not data:
+        _quota_refund("nasa_images")
+        return []
+    out = []
+    for item in ((data.get("collection") or {}).get("items") or [])[:6]:
+        links = item.get("links") or []
+        meta = (item.get("data") or [{}])[0]
+        thumb = next((ln.get("href") for ln in links
+                      if ln.get("href")), "")
+        if not thumb:
+            continue
+        out.append(Candidate(
+            url=thumb.replace("~thumb", "~large"),
+            source="nasa_images",
+            article_title=(meta.get("title") or "")[:200],
+            article_url=(f'https://images.nasa.gov/details-'
+                         f'{meta.get("nasa_id") or ""}')))
     return out
 
 
@@ -710,6 +872,11 @@ _PROVIDERS: list[tuple[str, Callable[[str, str], list[Candidate]]]] = [
     ("imgur", p_imgur),
     ("vimeo", p_vimeo),
     ("youtube", p_youtube),
+    # Keyless subject-photo providers (evergreen quirky/animal/disaster
+    # coverage the news APIs can't give) — verified reachable from CI.
+    ("openverse", p_openverse),
+    ("inaturalist", p_inaturalist),
+    ("nasa_images", p_nasa_images),
 ]
 if _SOCIAL_ENABLED:
     _PROVIDERS.extend([
@@ -822,8 +989,24 @@ def _prefilter(candidates: list[Candidate],
             "bluesky": 0.45, "bluesky_link_og": 0.65, "bluesky_og": 0.60,
             "imgur": 0.40, "ddg": 0.35,
             "vimeo": 0.45, "youtube": 0.40,
+            # Keyless subject-photo sources: iNaturalist is species-
+            # accurate (research-grade IDs) so it outranks generic image
+            # hosts; Openverse/NASA sit with the news APIs — properly
+            # licensed but not day-fresh.
+            "inaturalist": 0.58, "openverse": 0.52, "nasa_images": 0.52,
         }.get(c.source, 0.40)
         c.score = base
+        # Cross-video repetition penalty: a photo that aired in the last
+        # 14 days loses 0.25 so a fresh alternative wins when one exists
+        # (soft — a repeat still beats junk or a placeholder slate).
+        try:
+            import media_usage
+            pen = media_usage.penalty(c.url)
+            if pen:
+                c.score -= pen
+                c.boosts["recently_used"] = True
+        except Exception:  # noqa: BLE001
+            pass
         # +0.20 if published within the last 7 days.
         if c.published_at:
             try:

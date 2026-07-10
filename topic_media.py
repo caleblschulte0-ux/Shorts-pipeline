@@ -171,6 +171,22 @@ def _gdelt_news_image(topic: str, max_hours: int = 24 * 30) -> str | None:
     return None
 
 
+def _openverse_images(query: str, limit: int = 3) -> list[str]:
+    """Openverse (CC-licensed aggregator: Flickr/Wikimedia/museums) —
+    keyless, commercial-license filter on. Fills the gap between the
+    Wikipedia hero image and generic stock for evergreen subjects."""
+    try:
+        url = ("https://api.openverse.org/v1/images/?q="
+               + urllib.parse.quote(query)
+               + "&license_type=commercial&page_size="
+               + str(limit) + "&mature=false")
+        data = json.loads(_get(url, timeout=8).decode("utf-8", "ignore"))
+        return [r["url"] for r in (data.get("results") or [])
+                if r.get("url")][:limit]
+    except Exception:  # noqa: BLE001 — best-effort like every source here
+        return []
+
+
 def search(topic: str, context: str = "") -> list[str]:
     """Return a list of topic-specific image URLs, best first.
 
@@ -199,6 +215,12 @@ def search(topic: str, context: str = "") -> list[str]:
     # is usually enough — more than that and we're scraping the long tail.
     combined = f"{topic} {context}".strip()
     for url in _commons_images(combined, limit=3):
+        _add(url)
+
+    # Openverse: CC-licensed subject photos (keyless). Query the topic
+    # alone — the license-filtered index does better on a clean noun
+    # than on a headline.
+    for url in _openverse_images(topic, limit=2):
         _add(url)
 
     # GDELT: the news angle. Search the combined topic so a story like

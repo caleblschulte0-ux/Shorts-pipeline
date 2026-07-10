@@ -1320,6 +1320,13 @@ def build_timed_top(
             good = [c for c in (cands or []) if c.score >= 0.4][:_FUNNEL_PER_ENTITY]
             if good:
                 news_image_map[nq] = good[0].url
+                # Cross-video repetition ledger: remember what aired so
+                # tomorrow's prefilter penalizes an immediate repeat.
+                try:
+                    import media_usage
+                    media_usage.record(good[0].url, slug)
+                except Exception:  # noqa: BLE001
+                    pass
                 print(f"      [media_funnel] {nq!r} -> "
                       f"{good[0].source} score={good[0].score:.2f} "
                       f"(+{len(good) - 1} more kept)")
