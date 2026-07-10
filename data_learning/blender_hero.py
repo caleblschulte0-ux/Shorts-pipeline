@@ -100,6 +100,7 @@ def build(spec: dict):
     bpy.ops.mesh.primitive_plane_add(size=90, location=(0, 0, 0))
     bpy.context.object.data.materials.append(_glossy_floor())
 
+    grow_bars = []                        # (bar, value_text, h, z, i) for grow anim
     for i, (p, h) in enumerate(zip(pts, heights)):
         star = vals[i] == vmax
         x = x0 + i * gap
@@ -132,6 +133,7 @@ def build(spec: dict):
         lb.data.extrude = 0.01
         lb.rotation_euler = (math.radians(80), 0, 0)
         lb.data.materials.append(_emission(f"lb{i}", (0.75, 0.8, 0.9), 1.6))
+        grow_bars.append((bar, t, h, z, i))
 
     # Key + rim lights.
     bpy.ops.object.light_add(type="AREA", location=(6, -7, 9))
@@ -173,6 +175,37 @@ def build(spec: dict):
     for fc in cam.animation_data.action.fcurves:
         for kp in fc.keyframe_points:
             kp.interpolation = "BEZIER"
+
+    # Optional: the monoliths RISE from the floor one by one (smallest first,
+    # champion last), each value popping in as its bar lands — so the hero shot
+    # is a reveal, not a static tableau. Guarded by spec["grow"] so ORI's
+    # existing look is unchanged unless a caller opts in.
+    if spec.get("grow") and grow_bars:
+        span = max(3, int(frames * 0.18))                    # rise time per bar
+        order_g = sorted(grow_bars, key=lambda gb: gb[2])    # by height, small->big
+        step = max(1, int(frames * 0.55 / max(1, len(order_g))))
+        for k, (bar, t, h, z, i) in enumerate(order_g):
+            f0 = 1 + k * step
+            f1 = min(frames, f0 + span)
+            flat = 0.0009
+            bar.scale.z = flat
+            bar.location.z = (-flat) if invert else flat
+            t.scale = (0.0, 0.0, 0.0)
+            bar.keyframe_insert("scale", index=2, frame=f0)
+            bar.keyframe_insert("location", index=2, frame=f0)
+            t.keyframe_insert("scale", frame=max(1, f1 - 3))
+            bar.scale.z = h / 2
+            bar.location.z = z
+            t.scale = (1.0, 1.0, 1.0)
+            bar.keyframe_insert("scale", index=2, frame=f1)
+            bar.keyframe_insert("location", index=2, frame=f1)
+            t.keyframe_insert("scale", frame=f1)
+        for bar, t, *_ in grow_bars:
+            for ob in (bar, t):
+                if ob.animation_data and ob.animation_data.action:
+                    for fc in ob.animation_data.action.fcurves:
+                        for kp in fc.keyframe_points:
+                            kp.interpolation = "BEZIER"
 
     # Render settings — CPU Cycles tuned for a CI budget: adaptive sampling,
     # short bounce depth (emission-lit scene needs few), persistent data so
