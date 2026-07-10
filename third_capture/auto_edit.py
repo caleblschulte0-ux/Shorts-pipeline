@@ -162,6 +162,15 @@ SERIES_EMOJI = {
     "chaos": "mindblown",
 }
 
+# series -> big word that SLAMS on screen at the money moment (generic hype
+# exclamations — always safe, never invents a claim about the clip).
+SERIES_WORD = {
+    "fail": "BROOO", "rage": "NO WAY", "jumpscare": "AHHH",
+    "clutch": "INSANE", "win": "LETS GO", "wholesome": "AWW",
+    "argument": "OHHH", "chat-betrayal": "SNAKE", "funny": "LMAOO",
+    "chaos": "WAIT",
+}
+
 
 @dataclass
 class Style:
@@ -506,11 +515,19 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
             if seg.kind == "money" and money_out is None:
                 money_out = _tcur
             _tcur += od
-        emoji = SERIES_EMOJI.get((series or "chaos").lower(), "mindblown")
+        s = (series or "chaos").lower()
+        emoji = SERIES_EMOJI.get(s, "mindblown")
+        word = SERIES_WORD.get(s, "WAIT")
         if money_out is not None:
-            overlays.append({"type": "emoji", "name": emoji,
-                             "s": round(money_out, 3),
-                             "e": round(money_out + 1.5, 3)})
+            m = round(money_out, 3)
+            # speed-lines flash first (behind), emoji burst, then the word slam
+            overlays.append({"type": "lines", "s": m, "e": round(m + 0.45, 3)})
+            overlays.append({"type": "emoji", "name": emoji, "x": 0.30,
+                             "s": m, "e": round(m + 1.4, 3)})
+            overlays.append({"type": "emoji", "name": emoji, "x": 0.70,
+                             "s": round(m + 0.08, 3), "e": round(m + 1.4, 3)})
+            overlays.append({"type": "word", "text": word,
+                             "s": m, "e": round(m + 1.2, 3)})
 
         result.update(
             program=program,

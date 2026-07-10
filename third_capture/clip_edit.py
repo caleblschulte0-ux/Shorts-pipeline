@@ -28,6 +28,7 @@ REPO = Path(__file__).resolve().parent.parent
 FONTS_DIR = REPO / "assets" / "fonts"            # bundled Anton (OFL)
 FONT_BOLD = str(FONTS_DIR / "Anton-Regular.ttf")
 EMOJI_DIR = REPO / "assets" / "emoji"            # baked reaction-emoji PNGs
+FX_DIR = REPO / "assets" / "fx"                  # procedural FX overlays
 
 
 # Hard ceiling on every external tool call (yt-dlp download, ffprobe,
@@ -429,9 +430,26 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # — the overlay energy the camera now holds still for. Emoji ride in as
         # extra image inputs; the graph and its inputs degrade together in the
         # render ladder so a bad overlay can never drop the clip.
+        # Text draws (top layer): REPLAY stamps, the big WORD slam, hook card.
         text_draws: list[str] = []
         for i, ov in enumerate(overlays):
-            if ov.get("type") == "emoji":
+            typ = ov.get("type")
+            if typ in ("emoji", "lines"):
+                continue
+            if typ == "word":
+                w = re.sub(r"[^A-Za-z0-9 !?']", "", str(ov.get("text", "")))[:14]
+                if not w:
+                    continue
+                wf = tmp / f"word{i}.txt"
+                wf.write_text(w)
+                ws, we = float(ov["s"]), float(ov["e"])
+                # slams in mid-frame with a quick damped bounce
+                yb = f"(H*0.40)-55*exp(-7*(t-{ws:.2f}))*sin(15*(t-{ws:.2f}))"
+                text_draws.append(
+                    f"drawtext=fontfile={FONT_BOLD}:textfile={wf}:expansion=none"
+                    ":fontsize=132:fontcolor=yellow:borderw=10:bordercolor=black"
+                    f":x=(w-text_w)/2:y='{yb}'"
+                    f":enable='between(t,{ws:.2f},{we:.2f})'")
                 continue
             txt = re.sub(r"[^A-Za-z0-9 !?'.,]", "", str(ov.get("text", "")))[:24]
             if not txt:
@@ -452,35 +470,44 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 ":boxborderw=26:x=(w-text_w)/2:y=230"
                 ":enable='between(t,0,3.0)'")
 
-        # emoji cues -> (png_path, start, end); asset-guarded (missing = skip)
-        emoji_cues = []
+        # Image overlays (behind the text): speed-lines flash first, then the
+        # emoji burst. Each -> (png, start, end, scale_h, x_expr). Asset-guarded.
+        img_cues = []
         for ov in overlays:
-            if ov.get("type") != "emoji":
-                continue
-            png = EMOJI_DIR / f"{ov.get('name', '')}.png"
-            if png.exists():
-                emoji_cues.append((png, float(ov["s"]), float(ov["e"])))
+            if ov.get("type") == "lines":
+                png = FX_DIR / "speedlines.png"
+                if png.exists():
+                    img_cues.append((png, float(ov["s"]), float(ov["e"]),
+                                     1180, "(W-w)/2"))
+        for ov in overlays:
+            if ov.get("type") == "emoji":
+                png = EMOJI_DIR / f"{ov.get('name', '')}.png"
+                if png.exists():
+                    x = float(ov.get("x", 0.5))
+                    img_cues.append((png, float(ov["s"]), float(ov["e"]),
+                                     300, f"(W*{x:.3f})-w/2"))
 
-        def _compose(with_text: bool, with_emoji: bool) -> tuple[str, list]:
+        def _compose(with_text: bool, with_img: bool) -> tuple[str, list]:
             """Build (filter_complex, extra_input_paths) for the given layers."""
-            parts, cur = [base_vf], "capped"
+            parts, cur, inputs = [base_vf], "capped", []
+            if with_img and img_cues:
+                for k, (png, _s, _e, h, _x) in enumerate(img_cues):
+                    inputs.append(png)
+                    parts.append(f"[{k+1}:v]scale=-1:{h},format=rgba[i{k}]")
+                for k, (_png, s, e, h, xe) in enumerate(img_cues):
+                    nxt = f"im{k}"
+                    if h <= 320:      # emoji — pop up with a damped bounce
+                        ye = (f"(H*0.17)-70*exp(-6*(t-{s:.2f}))"
+                              f"*sin(14*(t-{s:.2f}))")
+                    else:             # speed-lines — centered hard flash
+                        ye = "(H-h)/2"
+                    parts.append(
+                        f"[{cur}][i{k}]overlay=x='{xe}':y='{ye}'"
+                        f":enable='between(t,{s:.2f},{e:.2f})'[{nxt}]")
+                    cur = nxt
             if with_text and text_draws:
                 parts.append(f"[{cur}]" + ",".join(text_draws) + "[txt]")
                 cur = "txt"
-            inputs = []
-            if with_emoji and emoji_cues:
-                for i, (png, _s, _e) in enumerate(emoji_cues):
-                    inputs.append(png)
-                    # scale to ~340px tall, keep alpha
-                    parts.append(f"[{i+1}:v]scale=-1:340,format=rgba[e{i}]")
-                for i, (_png, s, e) in enumerate(emoji_cues):
-                    nxt = f"ov{i}"
-                    # centered upper-third, with a quick damped bounce as it pops
-                    yexpr = f"(H*0.19)-70*exp(-6*(t-{s:.2f}))*sin(14*(t-{s:.2f}))"
-                    parts.append(
-                        f"[{cur}][e{i}]overlay=x=(W-w)/2:y='{yexpr}'"
-                        f":enable='between(t,{s:.2f},{e:.2f})'[{nxt}]")
-                    cur = nxt
             parts.append(f"[{cur}]null[vout]")
             return ";".join(parts), inputs
 
@@ -499,16 +526,16 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             except Exception:  # noqa: BLE001
                 return False
 
-        full_chain, full_inputs = _compose(with_text=True, with_emoji=True)
-        text_chain, _ = _compose(with_text=True, with_emoji=False)
+        full_chain, full_inputs = _compose(with_text=True, with_img=True)
+        text_chain, _ = _compose(with_text=True, with_img=False)
         caps_vf = base_vf.replace("[capped]", "[vout]")
 
         # Render ladder — a clip must ALWAYS ship. Full (captions + text
-        # overlays + emoji) -> text overlays only (drop emoji) -> captions only
-        # -> plain reframe -> raw vertical re-encode. Record what shipped.
+        # overlays + image FX) -> text overlays only (drop emoji/lines) ->
+        # captions only -> plain reframe -> raw re-encode. Record what shipped.
         if _render(full_chain, full_inputs):
             render_level = "full"
-        elif (text_draws or emoji_cues) and _render(text_chain):
+        elif (text_draws or img_cues) and _render(text_chain):
             render_level = "text_only"
         elif _render(caps_vf):
             render_level = "captions_only"
