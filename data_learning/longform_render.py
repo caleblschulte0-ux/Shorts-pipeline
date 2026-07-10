@@ -567,18 +567,32 @@ def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
     """Render a Blender hero and dress it for splicing: minterpolated to
     30fps, scaled, luminance-dip fades at both ends (the simple splice —
     no motion matching, per doctrine)."""
+    spec = _hero_spec(template, seg_cfg, theme, seconds)
     spec_path = work / f"whspec{idx}.json"
-    spec_path.write_text(json.dumps(
-        _hero_spec(template, seg_cfg, theme, seconds)))
-    frames_dir = work / f"whero{idx}"
-    frames_dir.mkdir(exist_ok=True)
-    res = subprocess.run(
-        ["blender", "-b", "--factory-startup", "--python",
-         str(PKG_DIR / "blender_hero.py"), "--", str(spec_path),
-         str(frames_dir)],
-        check=False, capture_output=True, text=True, timeout=3600)
-    if "HERO_DONE" not in (res.stdout or ""):
-        raise RuntimeError(f"hero failed: {(res.stderr or '')[-300:]}")
+    spec_path.write_text(json.dumps(spec))
+    # Cycles frames are the expensive asset — cache them outside the
+    # tempdir (CURIO_HERO_CACHE) keyed by the spec, so a failed splice
+    # or a re-run never re-pays the render.
+    cache_root = os.environ.get("CURIO_HERO_CACHE")
+    expected = max(4, int(round(HERO_FPS * seconds)))
+    if cache_root:
+        import hashlib
+        key = hashlib.md5(json.dumps(spec, sort_keys=True)
+                          .encode()).hexdigest()[:16]
+        frames_dir = Path(cache_root) / f"{template}_{key}"
+    else:
+        frames_dir = work / f"whero{idx}"
+    frames_dir.mkdir(parents=True, exist_ok=True)
+    if len(list(frames_dir.glob("hero_*.png"))) < expected:
+        res = subprocess.run(
+            ["blender", "-b", "--factory-startup", "--python",
+             str(PKG_DIR / "blender_hero.py"), "--", str(spec_path),
+             str(frames_dir)],
+            check=False, capture_output=True, text=True, timeout=7200)
+        if "HERO_DONE" not in (res.stdout or ""):
+            raise RuntimeError(f"hero failed: {(res.stderr or '')[-300:]}")
+    else:
+        print(f"[longform] hero cache hit: {frames_dir.name}")
     out = work / f"wherobeat{idx}.mp4"
     # Fill the WHOLE splice with real motion: stretch playback (slow-mo)
     # to the splice duration, then motion-interpolate to 30fps. Never a
@@ -599,16 +613,32 @@ def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
 
 
 def _splice(body: Path, hero: Path, t0: float, t1: float, out: Path) -> Path:
-    """Replace body[t0:t1] with the hero clip (three-part trim+concat)."""
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(body),
-          "-i", str(hero), "-filter_complex",
-          f"[0:v]trim=0:{t0:.3f},setpts=PTS-STARTPTS[a];"
-          f"[1:v]setpts=PTS-STARTPTS[h];"
-          f"[0:v]trim={t1:.3f},setpts=PTS-STARTPTS[b];"
-          f"[a][h][b]concat=n=3:v=1:a=0,format=yuv420p[o]",
-          "-map", "[o]", "-r", str(FPS),
-          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
-          str(out)])
+    """Replace body[t0:t1] with the hero clip.
+
+    Memory-frugal: encode the head/tail parts as separate sequential
+    passes and join with the concat DEMUXER (stream copy) — the old
+    single-pass 3-branch concat FILTER buffered whole branches and got
+    OOM-killed on long bodies, and a zero-length first trim (t0=0) made
+    it buffer without bound."""
+    total = _dur(body)
+    enc = ["-an", "-r", str(FPS), "-c:v", "libx264", "-preset", "veryfast",
+           "-crf", "18", "-pix_fmt", "yuv420p"]
+    parts = []
+    if t0 > 0.05:
+        pa = out.with_name(out.stem + "_a.mp4")
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(body),
+              "-t", f"{t0:.3f}", *enc, str(pa)])
+        parts.append(pa)
+    parts.append(hero)
+    if t1 < total - 0.05:
+        pc = out.with_name(out.stem + "_c.mp4")
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t1:.3f}",
+              "-i", str(body), *enc, str(pc)])
+        parts.append(pc)
+    lst = out.with_name(out.stem + "_list.txt")
+    lst.write_text("".join(f"file '{p}'\n" for p in parts))
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe",
+          "0", "-i", str(lst), "-c", "copy", str(out)])
     return out
 
 
@@ -712,16 +742,21 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
         jobs.append((f"{hz.get('window')}", template, secs,
                      dict(hz), t0, h_end, f"w{j}"))
     for name, template, secs, seg, t0, h_end, idx in jobs:
-        try:
-            hero = _hero_clip(template, seg, theme, h_end - t0, work, idx,
-                              seconds=secs)
-            body = _splice(body, hero, t0, h_end,
-                           work / f"spliced{idx}.mp4")
-            print(f"[longform] world hero '{template}' ({secs:.0f}s) "
-                  f"spliced over {name}")
-        except Exception as e:  # noqa: BLE001 — a hero is never fatal
-            print(f"[longform] hero splice {name} FAILED ({e}) — "
-                  "world take keeps its own window", file=sys.stderr)
+        for attempt in (1, 2):
+            try:
+                hero = _hero_clip(template, seg, theme, h_end - t0, work,
+                                  idx, seconds=secs)
+                body = _splice(body, hero, t0, h_end,
+                               work / f"spliced{idx}.mp4")
+                print(f"[longform] world hero '{template}' ({secs:.0f}s) "
+                      f"spliced over {name}")
+                break
+            except Exception as e:  # noqa: BLE001 — a hero is never fatal
+                print(f"[longform] hero splice {name} attempt {attempt} "
+                      f"FAILED ({e})"
+                      + ("" if attempt == 1 else
+                         " — world take keeps its own window"),
+                      file=sys.stderr)
     return body
 
 
