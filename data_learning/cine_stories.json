@@ -1,0 +1,47 @@
+{
+  "_doc": "Fact-driven cinematic stories. Each beat names a DIFFERENT mechanic that fits the fact — never the same one twice in a video, and no two videos built the same. The brain authors these; a validator enforces variety.",
+  "stories": [
+    {
+      "slug": "blue-whale-size",
+      "title": "How Big Is a Blue Whale, Really?",
+      "tags": ["animals", "shorts", "facts", "ocean", "science"],
+      "hook": {"subject": "blue whale side view", "top": "How big is a", "big": "BLUE WHALE?"},
+      "beats": [
+        {"mechanic": "scale_compare", "layout": "row", "top": "It's as long as", "big": "3 SCHOOL BUSES",
+         "subject": "blue whale side view", "ref": "yellow school bus side view", "ref_count": 3, "caption": "~90 feet long"},
+        {"mechanic": "hero_number", "top": "Its tongue alone weighs", "value": 5780, "unit": "lb",
+         "subject": "african elephant", "compare": "= a full-grown elephant"}
+      ],
+      "payoff": {"subject": "blue whale side view", "big": "200 TONS", "lines": ["The largest animal", "that has ever lived."]},
+      "narration": "How big is a blue whale, really? It's as long as three school buses, about ninety feet. Its tongue alone weighs five thousand pounds, as much as a full grown elephant. All together, two hundred tons, the largest animal that has ever lived."
+    },
+    {
+      "slug": "earth-water",
+      "title": "How Much of Earth Is Actually Water?",
+      "tags": ["earth", "shorts", "facts", "science", "water"],
+      "hook": {"subject": "planet earth from space", "top": "How much of Earth", "big": "IS WATER?"},
+      "beats": [
+        {"mechanic": "fill_meter", "top": "Water covers", "subject": "planet earth from space", "frac": 0.71,
+         "fill_color": [70, 140, 220], "big": "71%", "caption": "of the surface"},
+        {"mechanic": "hero_number", "top": "But drinkable freshwater is only", "value": 3, "unit": "%",
+         "subject": "single water droplet", "compare": "the other 97% is salt"}
+      ],
+      "payoff": {"subject": "planet earth from space", "big": "0.5%", "lines": ["is fresh water", "we can actually reach."]},
+      "narration": "How much of Earth is water? Water covers seventy one percent of the surface. But drinkable fresh water? Only three percent. The other ninety seven percent is salt. And the water we can actually reach is barely half a percent."
+    },
+    {
+      "slug": "everest-height",
+      "title": "Just How Tall Is Mount Everest?",
+      "tags": ["earth", "shorts", "facts", "mountains", "science"],
+      "hook": {"subject": "mount everest snowy peak", "top": "How tall is", "big": "EVEREST?"},
+      "beats": [
+        {"mechanic": "scale_compare", "layout": "stack", "top": "Stack the", "big": "BURJ KHALIFA x10",
+         "subject": "mount everest snowy peak", "ref": "burj khalifa skyscraper", "ref_count": 10, "caption": "29,032 feet up"},
+        {"mechanic": "hero_number", "top": "At the summit the air holds", "value": 33, "unit": "%",
+         "subject": "oxygen mask climber", "compare": "of the oxygen at sea level"}
+      ],
+      "payoff": {"subject": "mount everest snowy peak", "big": "-76°F", "lines": ["cold enough to freeze", "skin in minutes."]},
+      "narration": "Just how tall is Mount Everest? Stack ten Burj Khalifas and you're close, twenty nine thousand feet up. At the summit the air holds only a third of the oxygen you breathe at sea level. And it's seventy six below, cold enough to freeze skin in minutes."
+    }
+  ]
+}
