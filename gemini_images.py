@@ -18,14 +18,20 @@ charges. Vision QA runs on the free flash text+vision tier.
 """
 from __future__ import annotations
 
+import hashlib
 import io
 import json
 import os
 import re
+import shutil
 import urllib.parse
 import urllib.request
 from functools import lru_cache
 from pathlib import Path
+
+# Content-addressed store for generated images (audit Ticket 5) — under the
+# gitignored cache/ dir so actions/cache persists it between CI runs.
+_GEN_CACHE_DIR = Path(__file__).resolve().parent / "cache" / "gen_images"
 
 # Pollinations.ai — free, keyless image generation. Primary generator: it
 # actually works (unlike the deprecated free Gemini image models) so any
@@ -85,10 +91,27 @@ def generate_image(prompt, out_path, *, width: int = 1024, height: int = 1024,
     if not prompt:
         return None
     out_path = Path(out_path)
+    # Content-addressed cache (audit Ticket 5): identical prompt+params never
+    # regenerate — the runner's cache/ dir is persisted via actions/cache, so
+    # repeated daily renders reuse yesterday's generations for free.
+    key = hashlib.sha1(
+        f"{prompt}|{int(width)}x{int(height)}|{seed}".encode()).hexdigest()[:20]
+    cached = _GEN_CACHE_DIR / f"{key}.png"
+    if cached.is_file() and cached.stat().st_size > 2000:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(cached, out_path)
+        print(f"[gen-cache] hit -> {out_path.name}", flush=True)
+        return out_path
     p = _pollinations_image(prompt, out_path, width, height, seed)
+    if not p:
+        p = _gemini_image(prompt, out_path)
     if p:
-        return p
-    return _gemini_image(prompt, out_path)
+        try:
+            _GEN_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(p, cached)
+        except OSError:
+            pass
+    return p
 
 
 def _pollinations_image(prompt, out_path, width, height, seed):

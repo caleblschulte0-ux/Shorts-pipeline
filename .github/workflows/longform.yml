@@ -54,12 +54,24 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt -r data_learning/requirements.txt
+      # Translation cache (audit Ticket 3): moved out of git into cache/,
+      # persisted between runs via actions/cache (evolving-cache pattern).
+      - name: Cache translations
+        uses: actions/cache@v4
+        with:
+          path: cache/translation/
+          key: translation-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            translation-cache-v1-
+
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
         uses: actions/cache@v4
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
+          restore-keys: |
+            kokoro-onnx-
       - name: Download Kokoro TTS models if cache miss
         if: steps.cache-kokoro.outputs.cache-hit != 'true'
         run: |
@@ -74,6 +86,8 @@ jobs:
         with:
           path: data_learning/broll/styles/
           key: broll-styles-${{ hashFiles('data_learning/broll_gen.py') }}
+          restore-keys: |
+            broll-styles-
       - name: Build b-roll strip clips if missing
         if: steps.cache-broll.outputs.cache-hit != 'true'
         run: python -m data_learning.broll_gen --styles --clip-seconds 45
@@ -99,13 +113,7 @@ jobs:
       - name: Persist long-form log
         if: always()
         run: |
-          git add state/longform_log.json 2>/dev/null || true
-          if git diff --cached --quiet; then
-            echo "nothing to commit"
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git commit -m "explainer: long-form log [skip ci]"
-            git push origin HEAD:main \
-              || (git pull --rebase origin main && git push origin HEAD:main)
-          fi
+          # Shared hardened persist (audit Ticket 1): retry + union-merge.
+          bash scripts/ci_commit_state.sh \
+            "explainer: long-form log [skip ci]" \
+            state/longform_log.json

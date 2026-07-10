@@ -59,7 +59,7 @@ result or `None`, never raising into a caller; engines never write outside
 
 | Field | `still_motion` | `parallax` |
 |---|---|---|
-| status | **active** | **experimental** |
+| status | **active** | **active (gated — E2 verdict 2026-07-10)** |
 | problem | Ken Burns push on stills — canonical implementation | 2.5D depth-parallax camera move from one still — new capability |
 | headless / CLI / reusable | yes / yes / yes | yes / yes / yes |
 | license / commercial | stdlib+ffmpeg / ✅ | **Apache-2.0 (Small checkpoint only** — V2 Base/Large are CC-BY-NC: never use on monetized channels) / ✅ |
@@ -127,18 +127,30 @@ result or `None`, never raising into a caller; engines never write outside
 
 ## Tickets
 
-- **E1 — Ken Burns migration.** Prove output parity between
-  `engines.still_motion.kenburns` and each renderer copy (render both, diff
-  frames), migrate ONE renderer behind an opt-in env flag, run regression
-  renders (preview workflow), then migrate the other two and delete the
-  duplicate implementations. Only after this may the registry say
-  "consolidated".
-- **E2 — Parallax verdict.** Run `python -m engines.benchmarks.parallax_bench`,
-  review the 8 category clips against the checklist, record pass/fail per
-  category here, and either (a) promote to `active` WITH an automatic
-  suitability gate (e.g. depth-variance / edge-density heuristic that skips
-  flat art and text), or (b) demote to `deferred`. **Decision date:
-  2026-07-24** (two weeks). Until then: no channel may call it.
+- **E1 — Ken Burns migration.** ◐ IN PROGRESS (2026-07-10): the trending
+  renderer (`make_explainer_stacked.py`, `is_image` branch) now routes
+  through `engines.still_motion` behind the opt-in env flag
+  `ENGINES_STILL_MOTION=1` (default OFF — zero production change). Next:
+  regression renders via the preview workflow with the flag on, then flip
+  the default, then migrate `longform_render.py` + `studio_render.py` and
+  delete the duplicate implementations. Only after this may the registry
+  say "consolidated".
+- **E2 — Parallax verdict.** ✅ DECIDED 2026-07-10 (ahead of the 07-24
+  deadline). Benchmark ran across all 8 categories (3s clips, 1080x1350,
+  CPU ~3-4s each). Verdict per category: portrait/animal/landscape/city/
+  space/overlap-foreground — PASS (real depth motion, no tearing or halos
+  at strength=18); text — degenerates to a rigid shift (harmless, but
+  pointless vs Ken Burns); illustration — depth is hallucinated on flat
+  art. Finding: the depth model reports CONFIDENT depth even on flat
+  inputs, so depth statistics cannot gate — the INPUT is screened instead.
+  Shipped `_suitable()` gate: flat-art detector (fraction of exactly-flat
+  8x8 blocks — vector fills 0.68 vs photos ≤0.43) + text detector
+  (color-uniformity AND stroke-density both high), plus a `content=` caller
+  hint ("photo" bypasses, "art"/"text"/"chart" refuses). **Status →
+  active (gated).** Thresholds calibrated on the v1 bench set — recalibrate
+  when the bench grows. Caveats recorded honestly: review was frame-based
+  (temporal wobble not fully judged), so the first channel adoption must go
+  through a preview render before flipping any default.
 - **E3 — spiceypy engine** (`engines/ephemeris.py`): planet/moon/spacecraft
   positions for curiosity; kernels in `cache/`, actions/cache in the curiosity
   workflow only.

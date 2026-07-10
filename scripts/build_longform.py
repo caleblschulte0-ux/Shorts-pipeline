@@ -146,12 +146,11 @@ def main() -> int:
                     publish_at=args.publish_at)
     url = getattr(res, "url", None) or str(res)
     print(f"[longform] uploaded -> {url}")
-    LONGFORM_LOG.parent.mkdir(parents=True, exist_ok=True)
-    log = (json.loads(LONGFORM_LOG.read_text())
-           if LONGFORM_LOG.exists() else {"posted": []})
+    from fsutil import atomic_write_json, load_json
+    log = load_json(LONGFORM_LOG, {"posted": []})
     log["posted"].append({"url": url, "title": title, "slugs": slugs,
                           "at": datetime.now(timezone.utc).isoformat()})
-    LONGFORM_LOG.write_text(json.dumps(log, indent=2) + "\n")
+    atomic_write_json(LONGFORM_LOG, log)
     return 0
 
 

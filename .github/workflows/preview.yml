@@ -80,6 +80,8 @@ jobs:
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
+          restore-keys: |
+            kokoro-onnx-
 
       - name: Download Kokoro TTS models if cache miss
         if: steps.cache-kokoro.outputs.cache-hit != 'true'
@@ -97,6 +99,23 @@ jobs:
         with:
           path: gameplay/
           key: gameplay-${{ hashFiles('seed_gameplay.py') }}
+          restore-keys: |
+            gameplay-
+
+      # Persistent media caches (audit Tickets 3/4/5): stock footage, AI-
+      # generated images, and translations survive between runs instead of
+      # re-downloading/regenerating daily. run_id key + restore-keys prefix
+      # = the standard evolving-cache pattern (restore newest, save updated).
+      - name: Cache media + translations
+        uses: actions/cache@v4
+        with:
+          path: |
+            cache/stock_video/
+            cache/gen_images/
+            cache/translation/
+          key: media-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            media-cache-v1-
 
       - name: Seed gameplay clips
         run: |

@@ -65,7 +65,27 @@ from pathlib import Path
 
 from topic_media import _get  # shared UA/Accept HTTP helper
 
-CACHE_DIR = Path("/tmp/topic_videos")
+# Stock-footage download cache (audit Ticket 4). Lives in the repo's
+# cache/ dir (gitignored) instead of /tmp so actions/cache can persist it
+# between CI runs — /tmp is wiped with every runner, which re-downloaded
+# the same footage daily. Env-overridable for local setups.
+CACHE_DIR = Path(os.environ.get("TOPIC_VIDEO_CACHE",
+                                Path(__file__).resolve().parent / "cache" / "stock_video"))
+# Prune oldest files beyond this cap so the cache stays inside
+# actions/cache's useful size (the whole repo shares a 10 GB pool).
+CACHE_MAX_BYTES = 2 * 1024 * 1024 * 1024
+
+
+def _prune_cache() -> None:
+    try:
+        files = sorted(CACHE_DIR.glob("*"), key=lambda p: p.stat().st_mtime)
+        total = sum(p.stat().st_size for p in files)
+        while files and total > CACHE_MAX_BYTES:
+            victim = files.pop(0)
+            total -= victim.stat().st_size
+            victim.unlink(missing_ok=True)
+    except OSError:
+        pass
 TIMEOUT = 20
 # 80 MB hard cap. We ship a 3-5 second sub-cut from the head of the
 # file anyway, so for very long source clips we use a Range request to
@@ -105,6 +125,7 @@ def _looks_like_junk(url_or_name: str) -> bool:
 
 def _cache_path(url: str, ext: str = ".mp4") -> Path:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    _prune_cache()
     name = hashlib.sha1(url.encode()).hexdigest()[:16] + ext
     return CACHE_DIR / name
 

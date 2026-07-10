@@ -75,8 +75,8 @@ def load_log() -> dict:
 
 
 def save_log(log: dict) -> None:
-    STATE_DIR.mkdir(exist_ok=True)
-    LOG_PATH.write_text(json.dumps(log, indent=2, sort_keys=True) + "\n")
+    from fsutil import atomic_write_json
+    atomic_write_json(LOG_PATH, log, sort_keys=True)
 
 
 def schedule_times(now: datetime, n: int, hours: list[int]) -> list[str]:

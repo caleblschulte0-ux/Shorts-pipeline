@@ -138,6 +138,8 @@ jobs:
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
+          restore-keys: |
+            kokoro-onnx-
 
       - name: Download Kokoro TTS models if cache miss
         if: steps.cache-kokoro.outputs.cache-hit != 'true'
@@ -160,6 +162,23 @@ jobs:
         with:
           path: gameplay/
           key: gameplay-${{ hashFiles('seed_gameplay.py') }}
+          restore-keys: |
+            gameplay-
+
+      # Persistent media caches (audit Tickets 3/4/5): stock footage, AI-
+      # generated images, and translations survive between runs instead of
+      # re-downloading/regenerating daily. run_id key + restore-keys prefix
+      # = the standard evolving-cache pattern (restore newest, save updated).
+      - name: Cache media + translations
+        uses: actions/cache@v4
+        with:
+          path: |
+            cache/stock_video/
+            cache/gen_images/
+            cache/translation/
+          key: media-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            media-cache-v1-
 
       - name: Seed gameplay clips
         run: |
@@ -372,55 +391,24 @@ jobs:
         run: |
           python3 scripts/fetch_analytics.py --max-age-days 30
 
+      - name: Roll up aged state (audit Ticket 6)
+        if: always() && steps.preflight.outputs.skip == ''
+        # Folds analytics dailies + package day-dirs older than 90 days into
+        # monthly rollups (data preserved, file count bounded). No-ops until
+        # anything is actually that old. Never touches posted logs.
+        run: python3 scripts/rollup_state.py --max-age-days 90 || echo "::warning::rollup skipped"
+
       - name: Commit log + counter + report
         if: always() && steps.preflight.outputs.skip == ''
+        env:
+          CI_COMMIT_BRANCH: ${{ github.ref_name }}
         run: |
-          set -e
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add state/ daily_report.md daily_report.json 2>/dev/null || true
-          if git diff --staged --quiet; then
-            echo "Nothing to commit."
-            exit 0
-          fi
-          git commit -m "daily: $(date -u +%Y-%m-%d) report + state"
-          # Scout and earlier daily runs both push to state/ and to the
-          # report files. On a race, the rebase needs an automatic
-          # conflict resolution — `-X ours` keeps OUR fresh report and
-          # posted_log (they're regenerated every run from scratch, so
-          # losing the prior version is fine — we'd rather overwrite
-          # than fail the whole workflow on a textual conflict).
-          for i in 1 2 3 4 5; do
-            if git push origin HEAD:${{ github.ref_name }}; then
-              echo "Pushed on attempt $i"
-              exit 0
-            fi
-            echo "Push failed on attempt $i, rebasing (ours)..."
-            # Capture our fresh commit's SHA so we can cherry-pick its
-            # tree back after the hard reset in the recovery path
-            # below. Without this safeguard, `git reset --hard` silently
-            # wiped the orchestrator's fresh daily_report + posted_log
-            # — the re-stage step found no diff against origin/main, the
-            # commit became empty, the push became a no-op, and the
-            # YouTube uploads were stranded with no source-of-truth entry.
-            our_sha=$(git rev-parse HEAD)
-            git pull --rebase -X ours origin ${{ github.ref_name }} || {
-              echo "Rebase still conflicted — aborting + cherry-picking ours."
-              git rebase --abort || true
-              git fetch origin ${{ github.ref_name }}
-              git reset --hard origin/${{ github.ref_name }}
-              # Cherry-pick the original commit's tree state onto the
-              # remote-advanced base. -X theirs (the perspective flipped
-              # after the reset) keeps OUR file content on any conflict
-              # against the remote's drift.
-              git cherry-pick --no-commit -X theirs "$our_sha" || true
-              git add state/ daily_report.md daily_report.json 2>/dev/null || true
-              git commit -m "daily: $(date -u +%Y-%m-%d) report + state (retry $i)" || true
-            }
-            sleep 2
-          done
-          echo "::error::Failed to push state after 5 attempts"
-          exit 1
+          # Shared hardened persist (audit Ticket 1): retry loop + backup/
+          # restore of our artifacts + UNION-MERGE of every posted-log on a
+          # push race, so no dedupe entry from either side is ever lost.
+          bash scripts/ci_commit_state.sh \
+            "daily: $(date -u +%Y-%m-%d) report + state" \
+            state/ daily_report.md daily_report.json
 
       - name: Post report to tracking issue
         if: always() && steps.preflight.outputs.skip == ''

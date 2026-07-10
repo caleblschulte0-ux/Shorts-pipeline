@@ -22,10 +22,29 @@ failure that silently disabled localization. Keep it as the only ``localize``.
 from __future__ import annotations
 
 import json
+import os
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-CACHE = ROOT / "state" / "translation_cache.json"
+
+# Translation cache (audit Ticket 3): split per channel and moved OUT of
+# git into cache/ (gitignored, persisted between CI runs via actions/cache).
+# The old committed state/translation_cache.json was rewritten wholesale by
+# three channels concurrently — the single worst git-churn file in the repo
+# and a permanent push-race hazard. Losing this cache costs only some
+# re-translation; it is not state.
+_LEGACY_CACHE = ROOT / "state" / "translation_cache.json"
+
+
+def _cache_path() -> Path:
+    chan = os.environ.get("TRANSLATION_CACHE_CHANNEL") \
+        or os.environ.get("YOUTUBE_EXPECTED_CHANNEL") or "shared"
+    slug = re.sub(r"[^A-Za-z0-9_-]+", "_", chan).strip("_").lower() or "shared"
+    return ROOT / "cache" / "translation" / f"{slug}.json"
+
+
+CACHE = _cache_path()
 
 # Top short-form languages by global reach. Keys are YouTube/BCP-47 codes;
 # values are GoogleTranslator language names.
@@ -76,17 +95,18 @@ ATTRIBUTION = ("Music by Kevin MacLeod (incompetech.com), licensed under "
 
 
 def _load_cache() -> dict:
-    if CACHE.exists():
-        try:
-            return json.loads(CACHE.read_text())
-        except Exception:  # noqa: BLE001 — a corrupt cache should never break a post
-            return {}
+    for path in (CACHE, _LEGACY_CACHE):  # legacy file seeds the first run
+        if path.exists():
+            try:
+                return json.loads(path.read_text())
+            except Exception:  # noqa: BLE001 — corrupt cache must never break a post
+                continue
     return {}
 
 
 def _save_cache(cache: dict) -> None:
-    CACHE.parent.mkdir(parents=True, exist_ok=True)
-    CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=2) + "\n")
+    from fsutil import atomic_write_json
+    atomic_write_json(CACHE, cache, ensure_ascii=False, sort_keys=True)
 
 
 def _translate(text: str, lang_name: str, cache: dict) -> str | None:

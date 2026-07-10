@@ -1566,6 +1566,24 @@ def build_timed_top(
                 cut_times.append(sub_t)
                 sub_t += dur
                 continue
+            # Ticket E1 (opt-in, default OFF): route the Ken Burns through
+            # the shared engines layer instead of the inline filter below.
+            # Same visual design (2x canvas overlay + zoompan, 1.18 cap,
+            # alternating in/out). Flip ENGINES_STILL_MOTION=1 in a preview
+            # render to compare; the inline copy is deleted only after
+            # regression renders pass.
+            if os.environ.get("ENGINES_STILL_MOTION") == "1":
+                try:
+                    from engines.still_motion import maybe_kenburns
+                except ImportError:
+                    maybe_kenburns = None
+                if maybe_kenburns and maybe_kenburns(
+                        clip["path"], sub, dur, size=(W, top_h), fps=FPS,
+                        direction="in" if idx % 2 == 0 else "out"):
+                    all_segments.append(sub)
+                    cut_times.append(sub_t)
+                    sub_t += dur
+                    continue
             # Still image — Ken Burns it. Alternate zoom-in vs zoom-out
             # by segment index so successive image shots don't all do the
             # same move. We work at 2x then scale down inside the zoompan

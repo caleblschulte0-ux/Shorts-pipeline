@@ -103,6 +103,40 @@ def _depth_map(bgr):
 # ---------------------------------------------------------------------------
 # Rendering
 # ---------------------------------------------------------------------------
+def _suitable(stage) -> tuple[bool, str]:
+    """Suitability gate (Ticket E2): depth models hallucinate confident
+    relief on flat art and text, so intrinsic depth stats can't gate —
+    we screen the INPUT instead. Thresholds calibrated on the v1 benchmark
+    set (engines/benchmarks/parallax_bench.py); recalibrate there when the
+    bench grows.
+
+    - flat art / posterized graphics: vector fills are EXACTLY flat while
+      photos (even B&W) always carry grain — fraction of 8x8 blocks with
+      near-zero std separates them (mascot 0.68 vs photos <=0.43).
+    - text documents: uniquely high color-uniformity AND stroke density
+      (0.83/0.53 on the bench doc; nothing else exceeds both).
+    """
+    import cv2
+    import numpy as np
+
+    gray = cv2.cvtColor(stage, cv2.COLOR_BGR2GRAY).astype("float32")
+    h, w = gray.shape
+    g = gray[:h // 8 * 8, :w // 8 * 8]
+    blocks = g.reshape(h // 8, 8, w // 8, 8).transpose(0, 2, 1, 3).reshape(-1, 64)
+    flat = float((blocks.std(axis=1) < 1.5).mean())
+    if flat > 0.55:
+        return False, f"flat-art input (flat-block fraction {flat:.2f})"
+    small = cv2.resize(stage, (128, 128))
+    _, counts = np.unique((small >> 4).reshape(-1, 3), axis=0, return_counts=True)
+    top8 = float(np.sort(counts)[-8:].sum() / counts.sum())
+    lap = np.abs(cv2.Laplacian(
+        cv2.cvtColor(small, cv2.COLOR_BGR2GRAY).astype("float32"), cv2.CV_32F))
+    strokes = float((lap > 40).mean())
+    if top8 > 0.70 and strokes > 0.40:
+        return False, f"text-heavy input (top8 {top8:.2f}, strokes {strokes:.2f})"
+    return True, ""
+
+
 def _fit_cover(img, w, h):
     """Cover-crop `img` to exactly (w, h)."""
     import cv2
@@ -126,6 +160,9 @@ def parallax(
     drift: str = "orbit",     # "orbit" | "lateral" | "vertical"
     zoom: float = 1.06,       # slight push-in layered on top
     crf: int = 20,
+    content: str | None = None,  # caller hint: "photo" skips the input
+                                 # gate; "art"/"text"/"chart"/"diagram"
+                                 # refuses outright (caller falls back)
 ) -> Path:
     """Render a depth-parallax clip. Raises on failure; use maybe_parallax
     for the best-effort contract."""
@@ -140,6 +177,12 @@ def parallax(
     margin = 1.0 + 2.2 * strength / min(w, h)
     sw, sh = int(w * margin) // 2 * 2, int(h * margin) // 2 * 2
     stage = _fit_cover(src, sw, sh)
+    if content in ("art", "text", "chart", "diagram"):
+        raise ValueError(f"content={content!r} — parallax not suitable")
+    if content != "photo":
+        ok, why = _suitable(stage)
+        if not ok:
+            raise ValueError(f"suitability gate: {why}")
     depth = _depth_map(stage)
     if depth is None:
         raise ValueError("flat depth map — image unsuitable for parallax")

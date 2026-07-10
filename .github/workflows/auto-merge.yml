@@ -1,10 +1,12 @@
 name: Auto-merge claude PRs
 
-# Fires on every PR from a claude/* branch and auto-merges it. No
-# diff inspection, no whitelist — the routine is trusted code-author
-# and daily.yml has its own auto-pause-on-2-failures safety net, so
-# a bad commit self-pauses within a day instead of needing pre-merge
-# review.
+# Fires on every PR from a claude/* branch and auto-merges it AFTER a
+# mechanical sanity gate (audit Ticket 10). The gate is objective-only —
+# no human review required, so the pipeline stays autonomous — but it
+# stops the obviously-bad merges an unreviewed LLM branch could ship:
+# broken workflow YAML, Python that doesn't compile, committed media/
+# large binaries, or credential-shaped strings. daily.yml's auto-pause
+# remains the runtime safety net.
 on:
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
@@ -15,7 +17,59 @@ permissions:
   actions: write   # needed for `gh workflow run` to dispatch daily.yml
 
 jobs:
+  sanity:
+    if: startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Mechanical sanity gate
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -e
+          git checkout -q "$HEAD_SHA"
+          fail=0
+          # 1. Every workflow must parse.
+          pip install --quiet pyyaml
+          python3 -c "
+          import yaml, glob, sys
+          for f in glob.glob('.github/workflows/*.yml'):
+              try: yaml.safe_load(open(f))
+              except Exception as e: print(f'::error file={f}::invalid YAML: {e}'); sys.exit(1)
+          print('workflows parse')"
+          # 2. Every changed .py must compile.
+          changed=$(git diff --name-only --diff-filter=d "$BASE_SHA" "$HEAD_SHA")
+          echo "$changed" | grep '\.py$' | while read -r f; do
+            python3 -m py_compile "$f" || { echo "::error file=$f::does not compile"; exit 1; }
+          done
+          # 3. No file over 1MB, no committed media/binaries (storage rule).
+          for f in $changed; do
+            [ -f "$f" ] || continue
+            size=$(stat -c%s "$f")
+            if [ "$size" -gt 1048576 ]; then
+              echo "::error file=$f::${size} bytes — files >1MB never belong in git (see docs/STORAGE_AUDIT.md)"; fail=1
+            fi
+            case "$f" in
+              *.mp4|*.mov|*.webm|*.mkv|*.wav|*.mp3|*.onnx|*.pt|*.bin)
+                echo "::error file=$f::committed media/model binary — use cache/ or artifacts"; fail=1;;
+            esac
+          done
+          # 4. No credential-shaped additions (private keys, OAuth blobs).
+          if git diff "$BASE_SHA" "$HEAD_SHA" -- . ':!*.md' | grep -E '^\+.*(BEGIN (RSA|EC|OPENSSH) PRIVATE KEY|"refresh_token"\s*:|AIza[0-9A-Za-z_-]{35})' >/dev/null; then
+            echo "::error::diff adds credential-shaped content — refusing to auto-merge"; fail=1
+          fi
+          [ "$fail" -eq 0 ] && echo "sanity gate: PASS"
+          exit "$fail"
+
   automerge:
+    needs: sanity
     if: startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
