@@ -145,8 +145,51 @@ result or `None`, never raising into a caller; engines never write outside
 - **E4 — pybullet engine** (`engines/physics.py`): headless sim → frame
   sequence → ffmpeg, same `maybe_*` contract.
 - **E5 — geo engine** (`engines/geo.py`): OSM extract + GDAL DEM → styled
-  map/terrain renders.
+  map/terrain renders (Natural Earth data — see E14).
 - **E6 — SoX audio chain** (`engines/audio_polish.py`).
+
+### Backlog (recorded 2026-07-10 — approved for the queue, one at a time)
+
+*Tier 1 — capabilities hiding inside engines we already own (zero new installs):*
+
+- **E7 — Blender volumetrics + compositor templates.** Smoke, fog, god-rays,
+  atmosphere for curiosity hero shots. The engine is installed; only scene
+  templates (`data_learning/blender_*.py`) are missing. This IS the OpenVDB
+  "integration".
+- **E8 — Kinetic typography engine** (`engines/kinetic_text.py`). The ASS/libass
+  caption path already supports karaoke tags, per-word pops, color sweeps —
+  an unused motion-graphics engine inside ffmpeg. Ship reusable templates.
+- **E9 — Depth-map reuse pack.** Parallax's depth model also enables fake
+  depth-of-field blur, fog-by-distance, and dolly-zoom on any photo — one
+  model, four effects. **Gated on E2 passing**; extends `engines/parallax.py`.
+- **E10 — Channel LUT pack** (`engines/grade.py`). One `lut3d` per channel for
+  a consistent color identity. The realistic version of the OpenColorIO idea.
+
+*Tier 2 — new engines that pass all four tests:*
+
+- **E11 — MediaPipe composition/QA** (`engines/composition.py`, Apache-2.0,
+  CPU, pip). Face/pose/object landmarks → auto-crop stills so subjects don't
+  sit under the caption block, smarter thumbnail crops, subject-presence QA.
+  Best pound-for-pound candidate in the backlog.
+- **E12 — PySceneDetect highlight cuts** (`engines/scene_cuts.py`, CPU, pip).
+  Automatic cut detection for the third channel: find the actual highlight
+  moment in a captured clip instead of trusting spec timestamps.
+- **E13 — Lottie vector motion graphics** (`engines/vector_motion.py`,
+  python-lottie). Crisp animated icons/arrows/counters — the gap between
+  matplotlib charts and full Blender.
+
+*Tier 3 — data engines (story fuel is an engine too):*
+
+- **E14 — Datasets engine** (`engines/datasets.py`). Thin fetch+cache wrappers
+  with license metadata baked in: Our World in Data (CC-BY CSVs — endless
+  "top 10 X by Y" chart stories), Wikidata SPARQL (superlatives/rankings on
+  demand), Natural Earth (feeds E5), NASA open APIs. Cache under `cache/`,
+  same provisioning pattern as models.
+
+*Round-two rejects (asked and answered — recorded so they don't come back):*
+local diffusion image-gen (CPU-hopeless on runners; Gemini/Pollinations
+already cover it), Real-ESRGAN / RIFE upscale-interpolation (GPU-bound),
+voice cloning (rights/likeness minefield on monetized channels).
 
 ## Adding a new engine (checklist)
 
