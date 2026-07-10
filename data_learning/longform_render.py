@@ -929,8 +929,29 @@ def render(slug: str, out_path: Path, voice: str | None = None,
 def _finish(out_path: Path, st, theme: dict, cfg: dict, work: Path,
             video: Path, narration: Path, windows, total: float) -> Path:
     """Shared tail for both body renderers: soundtrack, mux, chapters."""
-    track = _music_track(cfg.get("music_vibe", "cinematic"), st.slug)
+    # Ledger-driven sound design (§7.5 v7): whooshes/impacts/shimmers on
+    # the engine's own event timestamps + a sidechain-ducked bed that
+    # swells in breathing gaps. Falls back to the plain mix when there is
+    # no ledger (clip-per-beat path).
     audio = work / "mix.wav"
+    ledger_path = work / "world_ledger.json"
+    if ledger_path.exists():
+        try:
+            from data_learning.sound_design import build_soundtrack
+            stk = build_soundtrack(
+                json.loads(ledger_path.read_text()), narration, total,
+                work, cfg.get("music_vibe", "cinematic"), st.slug)
+            _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(stk),
+                  "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "48000",
+                  str(audio)])
+        except Exception as e:  # noqa: BLE001 — sound is never fatal
+            print(f"[longform] sound design FAILED ({e}) — plain mix",
+                  file=sys.stderr)
+            audio = work / "mix.wav"
+        else:
+            return _finish_mux(out_path, st, theme, work, video, audio,
+                               windows, total)
+    track = _music_track(cfg.get("music_vibe", "cinematic"), st.slug)
     if track:
         _run(["ffmpeg", "-y", "-loglevel", "error",
               "-i", str(narration), "-stream_loop", "-1",
@@ -946,7 +967,12 @@ def _finish(out_path: Path, st, theme: dict, cfg: dict, work: Path,
         _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(narration),
               "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "48000",
               str(audio)])
+    return _finish_mux(out_path, st, theme, work, video, audio, windows,
+                       total)
 
+
+def _finish_mux(out_path: Path, st, theme: dict, work: Path, video: Path,
+                audio: Path, windows, total: float) -> Path:
     _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(video),
           "-i", str(audio), "-map", "0:v", "-map", "1:a",
           "-c:v", "copy", "-c:a", "aac", "-b:a", "384k", "-ar", "48000",
