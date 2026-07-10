@@ -63,16 +63,25 @@ def _glossy_floor():
 
 
 def _body(name, rgb):
+    """Vector-brand shading (§7.5 v7 — ONE visual language): a flat
+    emission base mixed with soft diffuse form. No speculars, no metal,
+    no glossy highlight — the 3D windows read like the 2D world gaining
+    depth, not like a different film."""
     m = bpy.data.materials.new(name)
     m.use_nodes = True
-    bsdf = m.node_tree.nodes["Principled BSDF"]
-    bsdf.inputs["Base Color"].default_value = (*rgb, 1)
-    bsdf.inputs["Roughness"].default_value = 0.35
-    bsdf.inputs["Metallic"].default_value = 0.2
-    # A hint of the same color as emission so bars read on the dark floor.
-    if "Emission Color" in bsdf.inputs:            # Blender 4.x
-        bsdf.inputs["Emission Color"].default_value = (*rgb, 1)
-        bsdf.inputs["Emission Strength"].default_value = 0.6
+    nt = m.node_tree
+    nt.nodes.clear()
+    em = nt.nodes.new("ShaderNodeEmission")
+    em.inputs["Color"].default_value = (*rgb, 1.0)
+    em.inputs["Strength"].default_value = 0.55
+    df = nt.nodes.new("ShaderNodeBsdfDiffuse")
+    df.inputs["Color"].default_value = (*rgb, 1.0)
+    mix = nt.nodes.new("ShaderNodeMixShader")
+    mix.inputs["Fac"].default_value = 0.55        # 55% diffuse form
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    nt.links.new(em.outputs["Emission"], mix.inputs[1])
+    nt.links.new(df.outputs["BSDF"], mix.inputs[2])
+    nt.links.new(mix.outputs["Shader"], out.inputs["Surface"])
     return m
 
 

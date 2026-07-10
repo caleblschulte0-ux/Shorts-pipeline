@@ -553,7 +553,8 @@ def _hero_spec(template: str, seg_cfg: dict, theme: dict,
         "accent": theme.get("highlight", "#4FD1C5"),
         "seconds": seconds, "fps": HERO_FPS, "samples": 32,
         "res_x": 1440, "res_y": 810,
-    }
+        "style": 2,     # material language version — busts the hero
+    }                   # cache when the brand shading changes
     if template in _VISUAL_TEMPLATES:
         return spec
     points, unit = _seg_points(seg_cfg)
@@ -734,7 +735,13 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
         # keeps the rest of the window.
         h_end = min(t1, t0 + 1.3 * secs)
         seg = {**(seg_cfgs[i] if i < len(seg_cfgs) else {}), **wp}
-        jobs.append((f"beat {i + 1}", template, secs, seg, t0, h_end, i))
+        # stamp overlay: the beat's number stays on screen during its
+        # premium window (mute test holds through the hero)
+        params = wp.get("params") or {}
+        stamp = (hz.get("stamp") or params.get("display"),
+                 hz.get("stamp_label") or params.get("label"))
+        jobs.append((f"beat {i + 1}", template, secs, seg, t0, h_end, i,
+                     stamp, False))
     # World heroes: the hook and the ending get premium windows too
     # (window: "cold_open" | "ending"; end_offset keeps the vector
     # layer's finale — the returning counter — on screen after it).
@@ -749,13 +756,30 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
             t0 = max(windows[-1][0] - 8.0, h_end - secs * 1.1)
         else:
             continue
+        # the cold-open hero carries the TITLE; the ending hero stays
+        # clean (the returning counter follows it in the vector layer)
+        stamp = ((st.title, None) if hz.get("window") == "cold_open"
+                 else (hz.get("stamp"), hz.get("stamp_label")))
         jobs.append((f"{hz.get('window')}", template, secs,
-                     dict(hz), t0, h_end, f"w{j}"))
-    for name, template, secs, seg, t0, h_end, idx in jobs:
+                     dict(hz), t0, h_end, f"w{j}", stamp,
+                     hz.get("window") == "cold_open"))
+    for name, template, secs, seg, t0, h_end, idx, stamp, as_title in jobs:
         for attempt in (1, 2):
             try:
                 hero = _hero_clip(template, seg, theme, h_end - t0, work,
                                   idx, seconds=secs)
+                if stamp and stamp[0]:
+                    png = work / f"stamp{idx}.png"
+                    _stamp_png(str(stamp[0]), stamp[1], theme, png,
+                               title=as_title)
+                    stamped = work / f"herostamped{idx}.mp4"
+                    _run(["ffmpeg", "-y", "-loglevel", "error",
+                          "-i", str(hero), "-i", str(png),
+                          "-filter_complex",
+                          "[0:v][1:v]overlay=0:0,format=yuv420p",
+                          "-r", str(FPS), "-c:v", "libx264", "-preset",
+                          "veryfast", "-crf", "18", "-an", str(stamped)])
+                    hero = stamped
                 body = _splice(body, hero, t0, h_end,
                                work / f"spliced{idx}.mp4")
                 print(f"[longform] world hero '{template}' ({secs:.0f}s) "
@@ -830,6 +854,32 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
             json.dumps(ev_credits, indent=1))
         _evidence_sheet(ev_tiles, work / "evidence_sheet.png")
     return body
+
+
+def _stamp_png(big: str, small, theme: dict, out: Path,
+               title: bool = False) -> None:
+    """Brand-font overlay for hero windows: the number (or title) rides
+    the premium shot so the mute test never dips (§7.5 v7). Stroked for
+    readability over bright 3D frames."""
+    from PIL import Image, ImageDraw
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    hi = theme.get("highlight", "#4FD1C5")
+    stroke = dict(stroke_width=4, stroke_fill=(8, 10, 20, 230))
+    if title:
+        fb = _font(76)
+        tw = d.textlength(big, font=fb)
+        d.text(((W - tw) / 2, H * 0.08), big, font=fb, fill="#ffffff",
+               **stroke)
+    else:
+        fb, fs = _font(72), _font(34)
+        tw = d.textlength(big, font=fb)
+        x, y = W - max(tw, 200) - 90, H - 190
+        if small:
+            d.text((x, y - 48), str(small), font=fs, fill="#c7cede",
+                   **stroke)
+        d.text((x, y), big, font=fb, fill=hi, **stroke)
+    im.save(out)
 
 
 def _evidence_sheet(tiles, out: Path) -> None:
