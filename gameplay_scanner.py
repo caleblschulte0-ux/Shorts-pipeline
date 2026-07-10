@@ -44,11 +44,16 @@ SCAN_FPS = 2.0
 SCAN_W, SCAN_H = 160, 90  # downscale for speed; signalstats doesn't need detail
 
 
-def _scan(video: Path, scan_mode: str = "full") -> list[tuple[float, float, float, float]]:
+def _scan(video: Path, scan_mode: str = "full",
+          fps: float = SCAN_FPS) -> list[tuple[float, float, float, float]]:
     """Return [(time_seconds, YAVG, YMAX, YRANGE), ...] for the whole
     video. `scan_mode="center"` center-crops before the diff filter so
     small bright moving objects (rockets against sky) aren't drowned
     out by the unchanged majority of the frame.
+
+    `fps` sets the sampling rate (default SCAN_FPS=2Hz, fine for scanning
+    long gameplay). The Proof/clip auto-editor calls this at ~8Hz on short
+    clips to locate the peak-motion "money moment" at finer resolution.
 
     `YRANGE = YHIGH - YLOW` is a robust spread proxy from the same
     signalstats output (ffmpeg's signalstats doesn't emit a YSTD
@@ -67,7 +72,7 @@ def _scan(video: Path, scan_mode: str = "full") -> list[tuple[float, float, floa
             pre = f"crop=iw*0.5:ih*0.6,scale={SCAN_W}:{SCAN_H}"
         else:
             pre = f"scale={SCAN_W}:{SCAN_H}"
-        vf = (f"fps={SCAN_FPS},{pre},"
+        vf = (f"fps={fps},{pre},"
               f"tblend=all_mode=difference,signalstats,"
               f"metadata=print:file={log_path}")
         subprocess.run([
