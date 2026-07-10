@@ -124,25 +124,34 @@ either DONE or BLOCKED on a specific operator action, per operator ruling
   showing the event, it pins it. Documented in
   CLAUDE_ROUTINE_INSTRUCTIONS.md.
 
-**Blocked — each needs exactly one operator action, then any session can
-finish the wiring in minutes:**
-- **M4 — Social lanes.** Bluesky public API re-probed 2026-07-10: still
-  403 from CI-type egress; Reddit/Mastodon likewise. Needs: a Reddit
-  script-app client id/secret, a Bluesky app password, and/or a Mastodon
-  account token added as repo secrets. Providers already exist behind
-  `MEDIA_FUNNEL_SOCIAL=1`.
-- **M5 — Ad libraries.** Meta Ad Library API requires a Meta developer
-  token + identity verification; Google Ads Transparency has no public
-  API. Needs: operator-created Meta token (secret `META_AD_LIBRARY_TOKEN`).
+**Pre-wired — code is DONE and fail-closed; each lights up the moment its
+secret appears in repo Settings → Secrets → Actions (no code change):**
+- **Smithsonian Open Access** (`p_smithsonian`, CC0): secret
+  `SMITHSONIAN_KEY` — free instant key at https://api.data.gov/signup
+- **National Park Service** (`p_nps`, PD): secret `NPS_KEY` — same
+  api.data.gov key works.
+- **Europeana** (`p_europeana`, open-reusability filter): secret
+  `EUROPEANA_KEY` — free at https://pro.europeana.eu/get-api
+- **Reddit eyewitness lane** (authed `p_reddit` via OAuth
+  client-credentials — works from CI IPs where anonymous 403s): secrets
+  `REDDIT_CLIENT_ID` + `REDDIT_CLIENT_SECRET` — create a "script" app at
+  https://www.reddit.com/prefs/apps
+- **Bluesky lane** (authed `p_bluesky` via app password): secrets
+  `BLUESKY_HANDLE` + `BLUESKY_APP_PASSWORD` — bsky.app → Settings →
+  App Passwords.
+All seven secrets are already plumbed through daily.yml/preview.yml env.
+
+**Still blocked (no clean automatable path — revisit on a real trigger):**
+- **M5 — Ad libraries.** Meta Ad Library API needs identity-verified
+  developer access AND its ads_archive endpoint returns snapshot HTML,
+  not image URLs — needs rendering R&D, not just a key. Google Ads
+  Transparency has no public API. Revisit if a marketing-claims story
+  format actually launches.
 - **M6 — Academic/patent figures.** No keyless API serves usable figure
-  images directly (arXiv og:images are logos; PMC figure extraction needs
-  real R&D). Revisit when a channel actually runs a science-paper story
-  format — build then, against real stories.
-- **M7 remainder — Smithsonian OA / Europeana / NYPL / NPS / BHL.** All
-  free but all key-gated. Needs: operator signups (~5 minutes each);
-  paste keys as secrets named `SMITHSONIAN_KEY`, `EUROPEANA_KEY`,
-  `NYPL_TOKEN`, `NPS_KEY`, `BHL_KEY` and any session can clone the
-  `p_met`/`p_artic` pattern per source.
+  images (arXiv og:images are logos; PMC figure extraction is real R&D).
+  Build against real stories when a science-paper format exists.
+- **Mastodon** stays behind `MEDIA_FUNNEL_SOCIAL=1` (needs an
+  instance-specific account token; low expected yield).
 
 ## 7. Anti-fear rule (permanent)
 
