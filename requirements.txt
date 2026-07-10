@@ -24,3 +24,7 @@ deep-translator>=1.11
 # never silently fall back to gameplay on a missing import.
 pillow>=10.0
 numpy>=1.24
+# third_capture/auto_edit.py — face-tracking auto-reframe (Haar cascade +
+# frame round-trip). Pinned <5 because opencv 5.0's headless wheel dropped
+# CascadeClassifier. Import-guarded: absent → blur-fill center crop.
+opencv-python-headless<5

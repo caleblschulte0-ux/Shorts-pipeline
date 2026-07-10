@@ -1,0 +1,14 @@
+haarcascade_frontalface_default.xml
+==================================
+
+Bundled face-detection model used by third_capture/auto_edit.py's
+face-tracking reframe (Stage 2). Loaded via OpenCV's CascadeClassifier.
+
+Source:  OpenCV (https://github.com/opencv/opencv, data/haarcascades/)
+License: BSD 3-Clause (OpenCV's license), plus the Intel Corporation
+         cascade-data notice embedded in the XML header.
+
+The XML file carries its own copyright/redistribution notice inline
+(Intel License Agreement For Open Source Computer Vision Library). It is
+redistributed here unmodified. See the header of the .xml for the full
+text. Committed to the repo so CI needs no runtime download.
