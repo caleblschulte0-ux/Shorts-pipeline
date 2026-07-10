@@ -755,14 +755,15 @@ def p_openverse(entity: str, angle: str) -> list[Candidate]:
     if not _quota_check("openverse", daily=90):   # anon tier: 100/day
         return []
     q = urllib.parse.quote(entity)
+    # page_size is free depth: one request either way, so ask for plenty.
     url = (f"https://api.openverse.org/v1/images/?q={q}"
-           f"&license_type=commercial&page_size=8&mature=false")
+           f"&license_type=commercial&page_size=16&mature=false")
     data = _get(url, tag="openverse")
     if not data:
         _quota_refund("openverse")
         return []
     out = []
-    for r in (data.get("results") or [])[:8]:
+    for r in (data.get("results") or [])[:16]:
         u = r.get("url") or ""
         if not u:
             continue
@@ -786,7 +787,7 @@ def p_inaturalist(entity: str, angle: str) -> list[Candidate]:
     # keyless bench probe).
     base = ("https://api.inaturalist.org/v1/observations"
             "?photo_license=cc0,cc-by,cc-by-sa&quality_grade=research"
-            "&order_by=votes&per_page=6"
+            "&order_by=votes&per_page=12"
             "&iconic_taxa=Mammalia,Aves,Reptilia,Amphibia,"
             "Actinopterygii,Insecta,Arachnida,Mollusca,Animalia"
             "&taxon_name=")
@@ -818,7 +819,7 @@ def p_inaturalist(entity: str, angle: str) -> list[Candidate]:
                         article_url=(f'https://www.inaturalist.org/'
                                      f'observations/{obs.get("id")}'
                                      f'#license={lic}')))
-            return out[:8]
+            return out[:16]
     return []
 
 
@@ -836,7 +837,7 @@ def p_nasa_images(entity: str, angle: str) -> list[Candidate]:
         _quota_refund("nasa_images")
         return []
     out = []
-    for item in ((data.get("collection") or {}).get("items") or [])[:6]:
+    for item in ((data.get("collection") or {}).get("items") or [])[:12]:
         links = item.get("links") or []
         meta = (item.get("data") or [{}])[0]
         thumb = next((ln.get("href") for ln in links
