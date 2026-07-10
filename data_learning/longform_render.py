@@ -117,29 +117,39 @@ def _synth_edge(sentences, workdir: Path):
     return wavs
 
 
-def synth_narration(sentences, workdir: Path, voice: str):
-    """Per-sentence wavs -> one narration track + (start, end) windows."""
+def synth_narration(sentences, workdir: Path, voice: str, holds=None):
+    """Per-sentence wavs -> one narration track + (start, end) windows.
+
+    holds: optional per-sentence extra silence (seconds) appended AFTER
+    the sentence — BREATHING GAPS (§7.5 v7) where narration stops and
+    music + visuals carry the moment (the sidechained bed swells on its
+    own). The sentence's window stretches to include its hold, so the
+    escalation scheduler fills the gap with events and dwell."""
     if KOKORO_MODEL.exists() and KOKORO_VOICES.exists():
         wavs = _synth_kokoro(sentences, workdir, voice)
     else:
         print("[longform] Kokoro models missing — falling back to edge-tts "
               f"({EDGE_VOICE})", file=sys.stderr)
         wavs = _synth_edge(sentences, workdir)
+    holds = list(holds or [])
+    holds += [0.0] * (len(wavs) - len(holds))
     windows, t = [], 0.0
-    for w in wavs:
-        d = _dur(w) + SENT_GAP
+    for w, hold in zip(wavs, holds):
+        d = _dur(w) + SENT_GAP + max(0.0, float(hold))
         windows.append((t, t + d))
         t += d
     listf = workdir / "list.txt"
     listf.write_text("\n".join(
-        f"file '{w}'\nduration {_dur(w) + SENT_GAP:.3f}" for w in wavs) + "\n")
+        f"file '{w}'\nduration {_dur(w) + SENT_GAP + max(0.0, float(h)):.3f}"
+        for w, h in zip(wavs, holds)) + "\n")
     # concat with per-file padding so audio timing matches the windows
     padded = []
-    for i, w in enumerate(wavs):
+    for i, (w, hold) in enumerate(zip(wavs, holds)):
         p = workdir / f"p{i}.wav"
         _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(w),
-              "-af", f"apad=pad_dur={SENT_GAP}", "-ar", "48000",
-              "-c:a", "pcm_s16le", str(p)])
+              "-af",
+              f"apad=pad_dur={SENT_GAP + max(0.0, float(hold)):.3f}",
+              "-ar", "48000", "-c:a", "pcm_s16le", str(p)])
         padded.append(p)
     lf = workdir / "plist.txt"
     lf.write_text("\n".join(f"file '{p}'" for p in padded) + "\n")
@@ -929,7 +939,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             print(f"[longform] thumbnail skipped: {e}", file=sys.stderr)
 
         sentences = st.sentences()
-        narration, windows = synth_narration(sentences, work, voice)
+        # breathing gaps (§7.5 v7): hook and closing never hold; segments
+        # may declare "hold": N seconds of narration silence after them
+        holds = [0.0] + [float(s.get("hold", 0.0))
+                         for s in story_cfg.get("segments", [])] + [0.0]
+        narration, windows = synth_narration(sentences, work, voice,
+                                             holds=holds)
         total = windows[-1][1]
         write_srt(sentences, windows, out_path.with_suffix(".srt"))
 
