@@ -138,6 +138,12 @@ class Candidate:
     article_url: str = ""
     published_at: str = ""    # ISO-8601 or empty
     score: float = 0.0
+    # Media-acquisition doctrine (docs/MEDIA_ACQUISITION.md): every asset
+    # carries a source class + best-known license so the audit sidecar
+    # documents WHY each visual was admissible. Filled in _prefilter.
+    source_class: str = ""    # open_or_licensed | primary_source |
+                              # transformative_evidence | unverified
+    license: str = ""
     # Internal — set during prefilter, used by the LLM reranker.
     boosts: dict = field(default_factory=dict)
 
@@ -146,7 +152,9 @@ class Candidate:
                 "score": round(self.score, 3),
                 "article_title": self.article_title,
                 "article_url": self.article_url,
-                "published_at": self.published_at}
+                "published_at": self.published_at,
+                "source_class": self.source_class,
+                "license": self.license}
 
 
 # ---------- cache + quota ----------
@@ -798,15 +806,17 @@ def p_inaturalist(entity: str, angle: str) -> list[Candidate]:
         results = (data or {}).get("results") or []
         if results:
             out = []
-            # Whole-word match against the COMMON name, else the taxon-name
-            # search drags in species whose Latin binomial merely contains
-            # the query ("Benthoplana meteoris" for a 'meteor' story).
-            q_word = re.compile(
-                rf"\b{re.escape(q.split()[-1].lower())}\b")
+            # The species' common name must END with the query noun —
+            # head-noun position is what makes it that animal. Catches
+            # both Latin-substring junk ("Benthoplana meteoris" for
+            # 'meteor') and modifier-position junk ("Pink Tower Shell"
+            # for 'Eiffel Tower', "Kangaroo Rat" for 'kangaroo').
+            q_last = q.split()[-1].lower().rstrip("s")
             for obs in results:
                 taxon = (obs.get("taxon") or {})
                 name = taxon.get("preferred_common_name") or taxon.get("name") or q
-                if not q_word.search(name.lower()):
+                last = re.findall(r"[a-z']+", name.lower())
+                if not last or last[-1].rstrip("s") != q_last:
                     continue
                 for ph in (obs.get("photos") or [])[:2]:
                     u = (ph.get("url") or "").replace("square", "large")
@@ -853,6 +863,190 @@ def p_nasa_images(entity: str, angle: str) -> list[Candidate]:
     return out
 
 
+def p_wikidata(entity: str, angle: str) -> list[Candidate]:
+    """Wikidata P18 — THE canonical image of a named entity (person,
+    place, organization, animal-with-an-article). Keyless, 2 requests."""
+    if not _quota_check("wikidata", daily=400):
+        return []
+    qs = urllib.parse.urlencode({
+        "action": "wbsearchentities", "search": entity,
+        "language": "en", "format": "json", "limit": 1})
+    data = _get(f"https://www.wikidata.org/w/api.php?{qs}", tag="wikidata")
+    hits = (data or {}).get("search") or []
+    if not hits:
+        return []
+    qid = hits[0].get("id")
+    label = (hits[0].get("display") or {}).get("label", {}).get("value", entity)
+    qs = urllib.parse.urlencode({
+        "action": "wbgetclaims", "entity": qid, "property": "P18",
+        "format": "json"})
+    data = _get(f"https://www.wikidata.org/w/api.php?{qs}", tag="wikidata")
+    claims = ((data or {}).get("claims") or {}).get("P18") or []
+    out = []
+    for cl in claims[:3]:
+        fn = (((cl.get("mainsnak") or {}).get("datavalue") or {})
+              .get("value"))
+        if isinstance(fn, str) and fn:
+            out.append(Candidate(
+                url=("https://commons.wikimedia.org/wiki/Special:FilePath/"
+                     + urllib.parse.quote(fn) + "?width=1600"),
+                source="wikidata", article_title=label,
+                article_url=f"https://www.wikidata.org/wiki/{qid}"))
+    return out
+
+
+def p_loc(entity: str, angle: str) -> list[Candidate]:
+    """Library of Congress photos/prints — keyless, overwhelmingly
+    public-domain Americana. Strong for history + weird-local stories."""
+    if not _quota_check("loc", daily=200):
+        return []
+    q = urllib.parse.quote(_build_query(entity, angle).replace('"', ""))
+    data = _get(f"https://www.loc.gov/photos/?q={q}&fo=json&c=10", tag="loc")
+    if not data:
+        _quota_refund("loc")
+        return []
+    out = []
+    for r in (data.get("results") or [])[:10]:
+        imgs = r.get("image_url") or []
+        if not imgs:
+            continue
+        out.append(Candidate(
+            url=imgs[-1] if imgs[-1].startswith("http") else "https:" + imgs[-1],
+            source="loc",
+            article_title=(str(r.get("title") or ""))[:200],
+            article_url=str(r.get("url") or ""),
+            published_at=""))
+    return out
+
+
+def p_met(entity: str, angle: str) -> list[Candidate]:
+    """Met Museum Open Access — keyless, CC0, art/artifact imagery for
+    history and culture stories. Search + up to 4 object lookups."""
+    if not _quota_check("met", daily=150):
+        return []
+    q = urllib.parse.quote(entity)
+    data = _get("https://collectionapi.metmuseum.org/public/collection/v1/"
+                f"search?q={q}&hasImages=true", tag="met")
+    ids = ((data or {}).get("objectIDs") or [])[:4]
+    out = []
+    for oid in ids:
+        obj = _get("https://collectionapi.metmuseum.org/public/collection/"
+                   f"v1/objects/{oid}", tag="met")
+        if not obj or not obj.get("isPublicDomain"):
+            continue
+        u = obj.get("primaryImage") or ""
+        if u:
+            out.append(Candidate(
+                url=u, source="met",
+                article_title=(obj.get("title") or "")[:200],
+                article_url=obj.get("objectURL") or ""))
+    return out
+
+
+def p_gbif(entity: str, angle: str) -> list[Candidate]:
+    """GBIF — CC-licensed biodiversity occurrence photos (keyless).
+    Deepens wildlife coverage beyond iNaturalist; same whole-word
+    species-name guard."""
+    if not _quota_check("gbif", daily=300):
+        return []
+    q = urllib.parse.quote(entity)
+    data = _get("https://api.gbif.org/v1/occurrence/search"
+                f"?mediaType=StillImage&q={q}&limit=12", tag="gbif")
+    if not data:
+        _quota_refund("gbif")
+        return []
+    words = re.findall(r"[A-Za-z']+", entity)
+    q_word = re.compile(rf"\b{re.escape(words[-1].lower())}\b") if words else None
+    out = []
+    for r in (data.get("results") or []):
+        name = (r.get("vernacularName") or r.get("species")
+                or r.get("scientificName") or "")
+        if q_word and not q_word.search(name.lower()):
+            continue
+        for m in (r.get("media") or [])[:2]:
+            u = m.get("identifier") or ""
+            lic = (m.get("license") or "").lower()
+            if u and ("creativecommons" in lic or lic.startswith("cc")):
+                out.append(Candidate(
+                    url=u, source="gbif", article_title=name[:200],
+                    article_url=(f'https://www.gbif.org/occurrence/'
+                                 f'{r.get("key")}#license={lic[:60]}')))
+    return out[:12]
+
+
+def p_pexels_images(entity: str, angle: str) -> list[Candidate]:
+    """Pexels IMAGE search — reuses the PEXELS_API_KEY already in CI for
+    stock video. Licensed stock photos of the subject (not day-fresh
+    news, hence the lower base score)."""
+    key = os.environ.get("PEXELS_API_KEY")
+    if not key or not _quota_check("pexels_images", daily=180):
+        return []
+    q = urllib.parse.quote(entity)
+    data = _get(f"https://api.pexels.com/v1/search?query={q}&per_page=12",
+                headers={"Authorization": key}, tag="pexels_images")
+    if not data:
+        _quota_refund("pexels_images")
+        return []
+    out = []
+    for ph in (data.get("photos") or []):
+        u = (ph.get("src") or {}).get("large2x") or (ph.get("src") or {}).get("original")
+        if u:
+            out.append(Candidate(
+                url=u, source="pexels_images",
+                article_title=(ph.get("alt") or "")[:200],
+                article_url=ph.get("url") or ""))
+    return out
+
+
+def p_pixabay_images(entity: str, angle: str) -> list[Candidate]:
+    """Pixabay IMAGE search — reuses the PIXABAY_API_KEY already in CI."""
+    key = os.environ.get("PIXABAY_API_KEY")
+    if not key or not _quota_check("pixabay_images", daily=250):
+        return []
+    q = urllib.parse.quote(entity)
+    data = _get(f"https://pixabay.com/api/?key={key}&q={q}"
+                f"&image_type=photo&per_page=12&safesearch=true",
+                tag="pixabay_images")
+    if not data:
+        _quota_refund("pixabay_images")
+        return []
+    out = []
+    for h in (data.get("hits") or []):
+        u = h.get("largeImageURL") or h.get("webformatURL") or ""
+        if u:
+            out.append(Candidate(
+                url=u, source="pixabay_images",
+                article_title=(h.get("tags") or "")[:200],
+                article_url=h.get("pageURL") or ""))
+    return out
+
+
+def p_dvids_images(entity: str, angle: str) -> list[Candidate]:
+    """DVIDS IMAGE search — reuses DVIDS_API_KEY (already in CI for
+    video). US-military/federal PD photos: superb for disaster response,
+    rescues, aviation, severe weather."""
+    key = os.environ.get("DVIDS_API_KEY")
+    if not key or not _quota_check("dvids_images", daily=150):
+        return []
+    q = urllib.parse.quote(_build_query(entity, angle).replace('"', ""))
+    data = _get(f"https://api.dvidshub.net/search?type=image&q={q}"
+                f"&max_results=10&api_key={urllib.parse.quote(key)}",
+                tag="dvids_images")
+    if not data:
+        _quota_refund("dvids_images")
+        return []
+    out = []
+    for r in (data.get("results") or [])[:10]:
+        u = (r.get("image_url") or r.get("url") or r.get("thumbnail") or "")
+        if u.startswith("http"):
+            out.append(Candidate(
+                url=u, source="dvids_images",
+                article_title=(r.get("title") or "")[:200],
+                article_url=f'https://www.dvidshub.net/image/{r.get("id")}',
+                published_at=r.get("date_published") or ""))
+    return out
+
+
 # Provider registry — order is only for display; fan-out is parallel.
 # Reddit / Bluesky / DDG / Mastodon all reject GitHub Actions IP
 # ranges: Reddit + Bluesky return 403 anti-bot pages, DDG returns a
@@ -878,6 +1072,15 @@ _PROVIDERS: list[tuple[str, Callable[[str, str], list[Candidate]]]] = [
     ("openverse", p_openverse),
     ("inaturalist", p_inaturalist),
     ("nasa_images", p_nasa_images),
+    # Round 2 ("pull from way more places"): keyless institutional
+    # sources + image lanes of APIs whose keys are ALREADY in CI.
+    ("wikidata", p_wikidata),
+    ("loc", p_loc),
+    ("met", p_met),
+    ("gbif", p_gbif),
+    ("pexels_images", p_pexels_images),
+    ("pixabay_images", p_pixabay_images),
+    ("dvids_images", p_dvids_images),
 ]
 if _SOCIAL_ENABLED:
     _PROVIDERS.extend([
@@ -995,8 +1198,42 @@ def _prefilter(candidates: list[Candidate],
             # hosts; Openverse/NASA sit with the news APIs — properly
             # licensed but not day-fresh.
             "inaturalist": 0.58, "openverse": 0.52, "nasa_images": 0.52,
+            # Round 2: wikidata is THE canonical image of a named entity;
+            # DVIDS/LoC are PD event/history photos; GBIF like iNat;
+            # Met is art (culture stories); Pexels/Pixabay are licensed
+            # stock — real photos of the subject but generic, so they
+            # rank just above the stock-search floor.
+            "wikidata": 0.60, "dvids_images": 0.55, "loc": 0.50,
+            "gbif": 0.50, "met": 0.42,
+            "pexels_images": 0.45, "pixabay_images": 0.42,
         }.get(c.source, 0.40)
         c.score = base
+        # Source class + license (media-acquisition doctrine, Phase 1):
+        # recorded per asset so the audit sidecar can articulate the
+        # admission lane. News-photo usage rides the reporting/
+        # commentary lane; institutional sources are openly licensed.
+        if not c.source_class:
+            src_root = c.source.replace("_og", "")
+            if src_root in ("openverse", "inaturalist", "gbif", "met",
+                            "loc", "nasa_images", "wikidata",
+                            "dvids_images", "pexels_images",
+                            "pixabay_images"):
+                c.source_class = "open_or_licensed"
+                c.license = c.license or {
+                    "nasa_images": "public-domain (NASA)",
+                    "dvids_images": "public-domain (US federal, 17 USC 105)",
+                    "loc": "no-known-restrictions (verify per item)",
+                    "met": "CC0 (Met Open Access)",
+                    "wikidata": "Commons file — license per file page",
+                    "pexels_images": "Pexels license",
+                    "pixabay_images": "Pixabay license",
+                }.get(src_root, "CC (recorded in article_url fragment)")
+            elif src_root in ("newsapi", "gnews", "brave", "tavily",
+                              "newsdata", "youtube", "vimeo"):
+                c.source_class = "transformative_evidence"
+                c.license = c.license or "news photo — reporting/commentary use"
+            else:
+                c.source_class = "unverified"
         # Cross-video repetition penalty: a photo that aired in the last
         # 14 days loses 0.25 so a fresh alternative wins when one exists
         # (soft — a repeat still beats junk or a placeholder slate).
@@ -1118,7 +1355,8 @@ def search(story_angle: str, entities: list[str],
             return [Candidate(**{k: v for k, v in c.items()
                                   if k in {"url", "source", "score",
                                            "article_title", "article_url",
-                                           "published_at"}})
+                                           "published_at",
+                                           "source_class", "license"}})
                     for c in cached]
 
     # 1. Fan out — every provider for the PRIMARY entity. Other
@@ -1157,6 +1395,18 @@ def search(story_angle: str, entities: list[str],
                       f"abandoning slow providers: {', '.join(pending)}")
     finally:
         ex.shutdown(wait=False, cancel_futures=True)
+
+    # 1b. URL dedup across providers (Wikidata/Commons/Openverse overlap;
+    # with 18 providers this saves a pile of duplicate HEAD verifies).
+    seen_urls: set[str] = set()
+    unique_candidates: list[Candidate] = []
+    for c in all_candidates:
+        if c.url and c.url in seen_urls:
+            continue
+        if c.url:
+            seen_urls.add(c.url)
+        unique_candidates.append(c)
+    all_candidates = unique_candidates
 
     # 2. og:image expansion on every article URL (Wayback fallback
     # baked into og_scrape).
