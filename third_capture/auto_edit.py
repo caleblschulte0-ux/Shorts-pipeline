@@ -533,74 +533,120 @@ def reframe(program: Path, work: Path) -> Path | None:
         if crop_w >= sw:                        # already portrait-ish → skip
             cap.release(); return None
 
-        # Sample faces ~6Hz. Instead of chasing the largest face every frame
-        # (which whip-pans between two speakers and parks the crop in the
-        # empty gap between them — motion sickness + nobody on screen), we
-        # LOCK onto one subject: each sample we keep the face nearest the
-        # locked position and only switch when that subject leaves the frame
-        # region. Two-shots too wide for one crop bail to blur-fill (below).
+        # NO PANNING. Smooth auto-pans cause motion sickness and, with two
+        # people, slide through the empty gap between them. Instead we build
+        # STATIC shots and HARD-CUT to whoever is talking: sample faces ~6Hz,
+        # score each face by mouth-region motion (the talker's mouth moves),
+        # cluster faces into fixed anchor positions, and switch the committed
+        # anchor only after a change is sustained (debounced ~1.2s min shot).
+        # The crop never moves within a shot; it jump-cuts between speakers.
         detect_every = max(1, int(round(src_fps / 6)))
-        targets = [None] * total
-        idx, hits, sampled, wide_two = 0, 0, 0, 0
-        locked_cx, have_lock = sw / 2, False
+        sample_fps = src_fps / detect_every
+        samp_idx: list[int] = []          # frame index of each sample
+        samp_active: list[float | None] = []   # talking-face center, or None
+        prev_gray = None
+        idx, hits = 0, 0
         while True:
             ok, frame = cap.read()
             if not ok:
                 break
             if idx % detect_every == 0:
-                sampled += 1
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 faces = cc.detectMultiScale(gray, 1.15, 5,
                                             minSize=(sh // 10, sh // 10))
+                active = None
                 if len(faces):
                     hits += 1
-                    cand = [(fx + fw / 2.0, fw * fh) for (fx, _fy, fw, fh)
-                            in faces]
-                    xs = [c for c, _ in cand]
-                    # persistent wide two-shot? (crop can't hold both)
-                    if len(xs) >= 2 and (max(xs) - min(xs)) > crop_w * 0.85:
-                        wide_two += 1
-                    if not have_lock:
-                        locked_cx = max(cand, key=lambda t: t[1])[0]
-                        have_lock = True
-                    else:
-                        near = min(cand, key=lambda t: abs(t[0] - locked_cx))
-                        if abs(near[0] - locked_cx) <= crop_w * 0.5:
-                            locked_cx = near[0]      # stay on the same person
-                        else:                        # subject left → re-lock
-                            locked_cx = max(cand, key=lambda t: t[1])[0]
-                targets[idx] = locked_cx if have_lock else None
+                    best_m, best_area, best_cx = -1.0, -1, None
+                    for (fx, fy, fw, fh) in faces:
+                        cxf = fx + fw / 2.0
+                        # mouth region: lower-central of the face box
+                        my0, my1 = fy + int(fh * 0.55), min(fy + fh, sh)
+                        mx0 = max(fx + int(fw * 0.2), 0)
+                        mx1 = min(fx + int(fw * 0.8), sw)
+                        m = 0.0
+                        if prev_gray is not None and my1 > my0 and mx1 > mx0:
+                            a = gray[my0:my1, mx0:mx1].astype(np.int16)
+                            b = prev_gray[my0:my1, mx0:mx1].astype(np.int16)
+                            if a.shape == b.shape and a.size:
+                                m = float(np.abs(a - b).mean())
+                        area = fw * fh
+                        # the talking face wins; near-ties fall to the largest
+                        if m > best_m + 0.5 or (
+                                abs(m - best_m) <= 0.5 and area > best_area):
+                            best_m, best_area, best_cx = m, area, cxf
+                    active = best_cx
+                samp_idx.append(idx)
+                samp_active.append(active)
+                prev_gray = gray
             idx += 1
         cap.release()
         n = idx
-        if hits < 3 or n <= 0:                  # not enough face signal
-            return None
-        # A clip that's mostly a wide two-shot can't be cropped to 9:16
-        # without dropping a speaker — let blur-fill keep both on screen.
-        if hits and wide_two / hits > 0.35:
+        if hits < 3 or n <= 0 or not samp_idx:   # not enough face signal
             return None
 
-        # Forward-fill the locked target, then build a MOSTLY-STATIC path: a
-        # center deadzone (hold still) + a capped slow glide when the subject
-        # drifts out of it. No continuous panning, so no seasickness.
-        cx = sw / 2
+        # Cluster the talking-face centers into fixed anchor positions. Each
+        # anchor is one static framing; reading anchors AFTER the pass means
+        # every shot uses a single constant x (no intra-shot drift = no pan).
+        anchors: list[float] = []
+
+        def _anchor(x: float) -> int:
+            for i, a in enumerate(anchors):
+                if abs(a - x) <= crop_w * 0.45:
+                    anchors[i] = 0.8 * a + 0.2 * x
+                    return i
+            anchors.append(x)
+            return len(anchors) - 1
+
+        raw = [_anchor(a) if a is not None else None for a in samp_active]
+
+        # Only cut between PERSISTENT subjects. The streamer(s) appear in most
+        # of the clip; a face inside the content they're reacting to flashes
+        # by. Require an anchor to hold ≥15% of face-samples (and at least a
+        # full shot's worth) before it's allowed to become a shot — transient
+        # content faces are ignored so the crop stays on the real people.
+        from collections import Counter
+        counts = Counter(r for r in raw if r is not None)
+        total_face = sum(counts.values()) or 1
+        hold = max(2, int(round(sample_fps * 1.2)))
+        persistent = {a for a, c in counts.items()
+                      if c >= max(hold, 0.15 * total_face)}
+        if not persistent:                       # no stable subject → blur-fill
+            return None
+
+        # Debounce: only commit a cut to a persistent anchor after it holds
+        # ~1.2s, so shots never flicker. Everything else holds the current shot.
+        cur = counts.most_common(1)[0][0]
+        committed: list[int] = []
+        pending, pcnt, cuts = None, 0, 0
+        for r in raw:
+            if r is None or r not in persistent or r == cur:
+                pending, pcnt = None, 0
+                committed.append(cur)
+                continue
+            pcnt = pcnt + 1 if r == pending else 1
+            pending = r
+            if pcnt >= hold:
+                cur, pending, pcnt = r, None, 0
+                cuts += 1
+            committed.append(cur)
+
+        # Guard against pathological choppiness — if we'd cut more than about
+        # once every 2s the source is too busy for clean cutting; blur-fill.
+        clip_s = n / (src_fps or FPS)
+        if cuts > max(1, clip_s / 2.0):
+            return None
+
+        # Per-sample static target, then expand to a piecewise-constant
+        # per-frame path (hard cuts at sample boundaries, otherwise frozen).
+        samp_target = [anchors[c] for c in committed]
+        path = []
+        k = 0
         for i in range(n):
-            if targets[i] is None:
-                targets[i] = cx
-            else:
-                cx = targets[i]
-        path, cx = [], targets[0]
-        deadzone = crop_w * 0.12
-        max_step = crop_w * 0.009               # per-frame pan speed ceiling
-        for i in range(n):
-            d = targets[i] - cx
-            if abs(d) > deadzone:
-                dz = deadzone if d > 0 else -deadzone
-                step = (d - dz) * 0.06
-                step = max(-max_step, min(max_step, step))
-                cx += step
-            x = min(max(cx - crop_w / 2, 0), sw - crop_w)
-            path.append(x)
+            while k + 1 < len(samp_idx) and samp_idx[k + 1] <= i:
+                k += 1
+            t = samp_target[k]
+            path.append(min(max(t - crop_w / 2, 0), sw - crop_w))
 
         # numpy round-trip: crop each frame to the path, resize to 1080x1920,
         # pipe raw RGB into an encoder that also muxes the program's audio.
