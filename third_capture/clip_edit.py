@@ -27,6 +27,7 @@ CANVAS_W, CANVAS_H = 1080, 1920
 REPO = Path(__file__).resolve().parent.parent
 FONTS_DIR = REPO / "assets" / "fonts"            # bundled Anton (OFL)
 FONT_BOLD = str(FONTS_DIR / "Anton-Regular.ttf")
+EMOJI_DIR = REPO / "assets" / "emoji"            # baked reaction-emoji PNGs
 
 
 # Hard ceiling on every external tool call (yt-dlp download, ffprobe,
@@ -422,20 +423,22 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             base_vf = _blur + f";[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
             plain_vf = _blur.replace("[base]", "[vout]")
 
-        # Post-caption overlays drawn in the final 1080x1920 frame (centered,
-        # so the face-follow crop can't clip them): auto-edit stamps (REPLAY)
-        # first, then the hook card. Text is read from files via drawtext's
-        # `textfile=` so apostrophes/colons/% in a hook can never break the
-        # filtergraph (the exit-8 bug that wiped a whole slate). Assembled
-        # onto [capped] -> [vout].
-        post: list[str] = []
+        # ---- overlay effect layer (drawn on the final 1080x1920) ----
+        # Text stamps (REPLAY) + hook card via drawtext textfile= (apostrophe-
+        # safe), and a contextual reaction EMOJI that pops on the money moment
+        # — the overlay energy the camera now holds still for. Emoji ride in as
+        # extra image inputs; the graph and its inputs degrade together in the
+        # render ladder so a bad overlay can never drop the clip.
+        text_draws: list[str] = []
         for i, ov in enumerate(overlays):
+            if ov.get("type") == "emoji":
+                continue
             txt = re.sub(r"[^A-Za-z0-9 !?'.,]", "", str(ov.get("text", "")))[:24]
             if not txt:
                 continue
             ovf = tmp / f"ov{i}.txt"
             ovf.write_text(txt)
-            post.append(
+            text_draws.append(
                 f"drawtext=fontfile={FONT_BOLD}:textfile={ovf}:expansion=none"
                 ":fontsize=64:fontcolor=white:box=1:boxcolor=red@0.75"
                 ":boxborderw=18:x=(w-text_w)/2:y=150"
@@ -443,34 +446,71 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         if hook:
             hf = tmp / "hook.txt"
             hf.write_text(hook)
-            post.append(
+            text_draws.append(
                 f"drawtext=fontfile={FONT_BOLD}:textfile={hf}:expansion=none"
                 ":fontsize=72:fontcolor=white:box=1:boxcolor=black@0.72"
                 ":boxborderw=26:x=(w-text_w)/2:y=230"
                 ":enable='between(t,0,3.0)'")
 
-        full_vf = (base_vf + ";[capped]" + ",".join(post) + "[vout]"
-                   if post else base_vf.replace("[capped]", "[vout]"))
-        caps_vf = base_vf.replace("[capped]", "[vout]")
+        # emoji cues -> (png_path, start, end); asset-guarded (missing = skip)
+        emoji_cues = []
+        for ov in overlays:
+            if ov.get("type") != "emoji":
+                continue
+            png = EMOJI_DIR / f"{ov.get('name', '')}.png"
+            if png.exists():
+                emoji_cues.append((png, float(ov["s"]), float(ov["e"])))
 
-        def _render(chain: str) -> bool:
+        def _compose(with_text: bool, with_emoji: bool) -> tuple[str, list]:
+            """Build (filter_complex, extra_input_paths) for the given layers."""
+            parts, cur = [base_vf], "capped"
+            if with_text and text_draws:
+                parts.append(f"[{cur}]" + ",".join(text_draws) + "[txt]")
+                cur = "txt"
+            inputs = []
+            if with_emoji and emoji_cues:
+                for i, (png, _s, _e) in enumerate(emoji_cues):
+                    inputs.append(png)
+                    # scale to ~340px tall, keep alpha
+                    parts.append(f"[{i+1}:v]scale=-1:340,format=rgba[e{i}]")
+                for i, (_png, s, e) in enumerate(emoji_cues):
+                    nxt = f"ov{i}"
+                    # centered upper-third, with a quick damped bounce as it pops
+                    yexpr = f"(H*0.19)-70*exp(-6*(t-{s:.2f}))*sin(14*(t-{s:.2f}))"
+                    parts.append(
+                        f"[{cur}][e{i}]overlay=x=(W-w)/2:y='{yexpr}'"
+                        f":enable='between(t,{s:.2f},{e:.2f})'[{nxt}]")
+                    cur = nxt
+            parts.append(f"[{cur}]null[vout]")
+            return ";".join(parts), inputs
+
+        def _render(chain: str, extra_inputs: list | None = None) -> bool:
+            cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(src)]
+            for p in (extra_inputs or []):
+                cmd += ["-i", str(p)]
+            cmd += ["-filter_complex", chain, "-map", "[vout]", "-map", "0:a",
+                    "-af", "loudnorm=I=-14:TP=-1.5",
+                    "-c:v", "libx264", "-preset", "medium", "-crf", "19",
+                    "-pix_fmt", "yuv420p", "-r", "30",
+                    "-c:a", "aac", "-b:a", "160k", str(out_path)]
             try:
-                _run(["ffmpeg", "-y", "-v", "error", "-i", str(src),
-                      "-filter_complex", chain, "-map", "[vout]", "-map", "0:a",
-                      "-af", "loudnorm=I=-14:TP=-1.5",
-                      "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-                      "-pix_fmt", "yuv420p", "-r", "30",
-                      "-c:a", "aac", "-b:a", "160k", str(out_path)])
+                _run(cmd)
                 return True
             except Exception:  # noqa: BLE001
                 return False
 
-        # Render ladder — a clip must ALWAYS ship. Full (captions + overlays +
-        # hook) -> captions only -> plain reframe (no text) -> raw vertical
-        # re-encode with no filters at all. Record which level succeeded.
-        if _render(full_vf):
+        full_chain, full_inputs = _compose(with_text=True, with_emoji=True)
+        text_chain, _ = _compose(with_text=True, with_emoji=False)
+        caps_vf = base_vf.replace("[capped]", "[vout]")
+
+        # Render ladder — a clip must ALWAYS ship. Full (captions + text
+        # overlays + emoji) -> text overlays only (drop emoji) -> captions only
+        # -> plain reframe -> raw vertical re-encode. Record what shipped.
+        if _render(full_chain, full_inputs):
             render_level = "full"
-        elif post and _render(caps_vf):
+        elif (text_draws or emoji_cues) and _render(text_chain):
+            render_level = "text_only"
+        elif _render(caps_vf):
             render_level = "captions_only"
         elif _render(plain_vf):
             render_level = "plain"
