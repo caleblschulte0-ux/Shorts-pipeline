@@ -184,7 +184,32 @@ view); build reusable scene templates before reaching for it.
   Checked in eye-QA on every video; below the bar → rebuild the visuals,
   not the words.
 
-## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-10, v6)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-10, v7)
+
+**THE DOCUMENTARY CUT (v7):**
+- **THE EVIDENCE LAW:** animation EXPLAINS; evidence GROUNDS. A hero
+  moment is cut against something REAL (the actual probe, the real
+  Earth) — that's what makes the animation exist for a reason, not to
+  fill time. NASA Image Library first (public domain, the actual
+  thing); the on-topic gate rejects anything whose own metadata doesn't
+  match the query; **"a wrong picture is worse than no picture"** — a
+  beat whose evidence can't pass keeps its animation. Every accepted
+  image lands on `<out>.evidence.png` for eye-QA. Ken Burns on stills
+  is legal (footage rule).
+- **BREATHING GAPS:** segments may `"hold": N` — narration stops, the
+  sidechain-ducked bed swells, the scheduler fills the stretched window
+  with events and dwell. The video breathes; wall-to-wall narration is
+  shorts DNA.
+- **LEDGER-DRIVEN SOUND DESIGN:** whoosh on travels, impact landing
+  WITH each payoff, shimmer on discoveries, risers under the cold open
+  and ending — placed automatically from the engine's own timestamps,
+  volumes scaled by intensity. Music bed ducks under the voice and
+  swells in the gaps. Synth kit is license-free; real tracks dropped
+  into `data_learning/music/<vibe>/` upgrade the bed.
+- **ONE VISUAL LANGUAGE:** hero materials are flat emission + soft
+  diffuse (no speculars) — the 3D windows are the 2D world gaining
+  depth, never a different film. Hero windows carry their beat's number
+  (stamp overlay); the cold-open hero carries the title.
 
 **FACT PROPAGATION (v6, verbatim):** *"Every major fact must create a
 chain reaction. A fact is not complete until it changes the world, the

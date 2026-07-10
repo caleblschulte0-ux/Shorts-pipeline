@@ -205,7 +205,8 @@
       "earth from space rotating",
       "clouds time lapse"
      ],
-     "question": "Wait — the ground is moving?"
+     "question": "Wait — the ground is moving?",
+     "hold": 4
     },
     {
      "source": "offline",
@@ -221,7 +222,8 @@
       "sun in space",
       "night sky time lapse"
      ],
-     "question": "Faster than a bullet?"
+     "question": "Faster than a bullet?",
+     "hold": 4
     },
     {
      "source": "offline",
@@ -257,7 +259,8 @@
       "rocket launch",
       "solar flare sun"
      ],
-     "question": "Faster than anything we built?"
+     "question": "Faster than anything we built?",
+     "hold": 4
     },
     {
      "source": "offline",
@@ -297,7 +300,14 @@
       "emotion": "speed",
       "params": {
        "file": "curio_everyday_speeds.json"
-      }
+      },
+      "evidence": [
+       {
+        "query": "International Space Station orbit",
+        "at": 0.78,
+        "seconds": 3
+       }
+      ]
      },
      {
       "builder": "scalelevel",
@@ -312,7 +322,15 @@
       "discovery": {
        "asset": "jet",
        "cross": "rl"
-      }
+      },
+      "evidence": [
+       {
+        "query": "airplane contrail sky",
+        "at": 0.6,
+        "seconds": 3,
+        "stock_ok": true
+       }
+      ]
      },
      {
       "builder": "scalelevel",
@@ -336,7 +354,14 @@
       "hero": {
        "template": "earth_spin",
        "seconds": 6
-      }
+      },
+      "evidence": [
+       {
+        "query": "Blue Marble Earth",
+        "at": 0.75,
+        "seconds": 3.5
+       }
+      ]
      },
      {
       "builder": "comparison_race",
@@ -378,7 +403,14 @@
        "tableau": "galaxy",
        "label": "Around the galaxy",
        "display": "828,000 km/h"
-      }
+      },
+      "evidence": [
+       {
+        "query": "Milky Way galaxy panorama",
+        "at": 0.4,
+        "seconds": 3.5
+       }
+      ]
      },
      {
       "builder": "rank",
@@ -405,7 +437,14 @@
       ],
       "params": {
        "file": "curio_fastest_machines.json"
-      }
+      },
+      "evidence": [
+       {
+        "query": "Parker Solar Probe spacecraft",
+        "at": 0.78,
+        "seconds": 3.5
+       }
+      ]
      },
      {
       "builder": "speedometer",

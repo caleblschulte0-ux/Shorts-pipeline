@@ -797,6 +797,14 @@ the queue stocked.
      (`scripts/qa_escalation.py` on the render's `.ledger.json`) FAILS
      any beat with a >9 s hole, a missing payoff, or a starved
      discovery cadence — author to pass it, don't fight it;
+   - **cut hero moments against EVIDENCE** (§7.5 v7): where narration
+     names a real thing, give the waypoint `"evidence": [{"query":
+     "<specific proper-noun query>", "at": 0.7, "seconds": 3}]` (NASA
+     first; `"nasa_id"` pins an exact image; `"stock_ok": true` only
+     for earthly generics) — the on-topic gate rejects mismatches and
+     the beat keeps its animation ("a wrong picture is worse than no
+     picture"; check `<out>.evidence.png` in eye-QA). Add `"hold": N`
+     breathing gaps to 2-3 segments (music carries the moment);
    - **the facts happen TO the world** (§7.5 v5): beats may declare
      `"intensity"` (0–3) but usually inherit the rising ladder from
      their emotion tag — the engine escalates streaks/dust/energy
