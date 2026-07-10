@@ -1,0 +1,26 @@
+{
+  "key": "space_exploration_milestones_127_space_station",
+  "title": "Space Station",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-10"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "ISS Mass",
+      "value": 450000.0
+    },
+    {
+      "label": "Mir Mass",
+      "value": 137000.0
+    }
+  ]
+}

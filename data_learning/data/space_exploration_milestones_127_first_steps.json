@@ -1,0 +1,26 @@
+{
+  "key": "space_exploration_milestones_127_first_steps",
+  "title": "First Steps",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-10"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "First Human Spaceflight",
+      "value": 1961.0
+    },
+    {
+      "label": "First Moon Landing",
+      "value": 1969.0
+    }
+  ]
+}

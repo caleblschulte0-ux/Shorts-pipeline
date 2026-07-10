@@ -9684,6 +9684,74 @@
         }
       ],
       "question": "What's the biggest fruit or vegetable you've ever eaten?"
+    },
+    {
+      "slug": "space-exploration-milestones-127",
+      "title": "Space Exploration Milestones",
+      "hook": "What's the most significant space exploration achievement?",
+      "closing": "Space exploration has led to countless discoveries and innovations",
+      "hashtags": [
+        "space",
+        "exploration",
+        "milestones",
+        "innovation"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "space_exploration_milestones_127_first_steps",
+          "params": {
+            "file": "space_exploration_milestones_127_first_steps.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 FIRST STEPS",
+          "topic": "First Steps",
+          "say": "The first human spaceflight was achieved by Yuri Gagarin in nineteen sixty-one, followed by the first moon landing in nineteen sixty-nine",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "space_exploration_milestones_127_space_station",
+          "params": {
+            "file": "space_exploration_milestones_127_space_station.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 SPACE STATION",
+          "topic": "Space Station",
+          "say": "The International Space Station is the largest human-made object in space, with a mass of around four hundred fifty thousand kilograms, surpassing the Russian space station Mir",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "iss",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mir",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's the next big milestone in space exploration?"
     }
   ],
   "videos": [
