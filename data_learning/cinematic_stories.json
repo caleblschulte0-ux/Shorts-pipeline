@@ -1,0 +1,70 @@
+{
+  "stories": [
+    {
+      "slug": "strongest-bite-forces-cine",
+      "title": "The Strongest Bite Forces on Earth",
+      "kicker": "TODAY'S RECORD",
+      "chart_title": "Strongest Bite Force",
+      "unit": "PSI",
+      "hook_top": "Who bites the",
+      "hook_big": "HARDEST?",
+      "hook_sub": "5 animals, ranked by PSI",
+      "payoff_big": "3,700 PSI",
+      "payoff_lines": ["A saltwater croc bites", "5x harder than a lion."],
+      "source": "Illustrative — commonly cited PSI estimates",
+      "narration": "Which animal has the strongest bite on Earth? Let's rank five of them by pounds per square inch. The lion, king of the savanna, clamps down at six hundred fifty. The gorilla, thirteen hundred. The jaguar, fifteen hundred, strong enough to crack a turtle shell. The hippo, eighteen hundred. But the champion? The saltwater crocodile, at three thousand seven hundred PSI. That's more than five times a lion's bite.",
+      "subjects": [
+        {"label": "Saltwater Croc", "value": 3700, "display": "3,700", "query": "saltwater crocodile"},
+        {"label": "Hippo", "value": 1800, "display": "1,800", "query": "hippopotamus"},
+        {"label": "Jaguar", "value": 1500, "display": "1,500", "query": "jaguar big cat"},
+        {"label": "Gorilla", "value": 1300, "display": "1,300", "query": "gorilla"},
+        {"label": "Lion", "value": 650, "display": "650", "query": "male lion"}
+      ],
+      "tags": ["animals", "shorts", "facts", "wildlife", "biteforce"]
+    },
+    {
+      "slug": "fastest-land-animals-cine",
+      "title": "The Fastest Land Animals on Earth",
+      "kicker": "TOP SPEED",
+      "chart_title": "Fastest Land Animals",
+      "unit": "mph",
+      "hook_top": "What's the",
+      "hook_big": "FASTEST?",
+      "hook_sub": "5 land animals, ranked by top speed",
+      "payoff_big": "70 mph",
+      "payoff_lines": ["A cheetah hits 70 mph", "faster than cars on a highway."],
+      "source": "Illustrative — commonly cited top-speed estimates",
+      "narration": "How fast can a land animal really run? Here are five of the quickest, in miles per hour. The greyhound, bred for speed, reaches forty five. The wildebeest, fifty. The lion, also fifty in a short burst. The pronghorn can cruise at fifty five for miles. But nothing beats the cheetah, exploding to seventy miles per hour, faster than cars on a highway.",
+      "subjects": [
+        {"label": "Cheetah", "value": 70, "display": "70", "query": "cheetah running"},
+        {"label": "Pronghorn", "value": 55, "display": "55", "query": "pronghorn antelope"},
+        {"label": "Wildebeest", "value": 50, "display": "50", "query": "wildebeest"},
+        {"label": "Lion", "value": 50, "display": "50", "query": "male lion"},
+        {"label": "Greyhound", "value": 45, "display": "45", "query": "greyhound dog"}
+      ],
+      "tags": ["animals", "shorts", "facts", "wildlife", "speed"]
+    },
+    {
+      "slug": "heaviest-land-animals-cine",
+      "title": "The Heaviest Land Animals Alive",
+      "kicker": "HEAVYWEIGHTS",
+      "chart_title": "Heaviest Land Animals",
+      "unit": "tons",
+      "hook_top": "What's the",
+      "hook_big": "HEAVIEST?",
+      "hook_sub": "5 land giants, ranked by weight",
+      "payoff_big": "6 TONS",
+      "payoff_lines": ["An elephant weighs as much", "as 90 grown adults."],
+      "source": "Illustrative — typical adult weights",
+      "narration": "What's the heaviest animal walking the Earth today? Five giants, ranked in tons. The American bison, one ton of muscle. The giraffe, the tallest of them all, one point two. The hippo, one point five. The white rhino, over two tons of armor. But the heaviest is the African elephant, at six tons, as much as ninety grown adults combined.",
+      "subjects": [
+        {"label": "African Elephant", "value": 6.0, "display": "6.0", "query": "african elephant"},
+        {"label": "White Rhino", "value": 2.3, "display": "2.3", "query": "white rhinoceros"},
+        {"label": "Hippo", "value": 1.5, "display": "1.5", "query": "hippopotamus"},
+        {"label": "Giraffe", "value": 1.2, "display": "1.2", "query": "giraffe"},
+        {"label": "Bison", "value": 1.0, "display": "1.0", "query": "american bison"}
+      ],
+      "tags": ["animals", "shorts", "facts", "wildlife", "size"]
+    }
+  ]
+}

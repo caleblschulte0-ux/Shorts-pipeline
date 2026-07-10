@@ -1,0 +1,78 @@
+name: Explainer Cinematic (3D)
+
+# The operator-approved v3 look — big subject photos + curiosity hook, an
+# animated photo-card bar race (bars grow, counters count), a Blender 3D hero
+# that RISES from the floor, a payoff card, the mascot hosting, edge-tts
+# narration. Renders each story on its own runner (parallel matrix) and
+# SCHEDULES it spaced through the day on the explainer channel.
+#
+# Manual for now (workflow_dispatch): this path installs Blender + renders 3D,
+# which is heavier than the standard PIL pipeline. Once proven we fold it into
+# the daily routine as a depiction the brain can pick.
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_in_hours:
+        description: 'First video publishes this many hours from now'
+        default: '2'
+      spacing_hours:
+        description: 'Hours between each scheduled video'
+        default: '3'
+
+permissions:
+  contents: write
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  cine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { slug: strongest-bite-forces-cine, idx: 0 }
+          - { slug: fastest-land-animals-cine,  idx: 1 }
+          - { slug: heaviest-land-animals-cine, idx: 2 }
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install system deps (Blender + ffmpeg + fonts)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg blender fonts-dejavu-core
+
+      - name: Install python deps
+        run: |
+          pip install -q pillow numpy edge-tts requests \
+            google-api-python-client google-auth google-auth-oauthlib deep-translator
+          # rembg gives cleaner cutouts; subject_cutout falls back to chroma-key
+          # if it (or its model download) is unavailable, so this is best-effort.
+          pip install -q rembg onnxruntime || echo "::warning::rembg unavailable — cutouts use chroma-key fallback"
+
+      - name: Render + schedule (${{ matrix.slug }})
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+        run: |
+          set -e
+          if [ -z "$YOUTUBE_TOKEN_JSON_EXPLAINER" ] || [ -z "$YOUTUBE_CLIENT_SECRETS_JSON" ]; then
+            echo "::error::missing YouTube secrets for the explainer channel"; exit 1
+          fi
+          export YOUTUBE_EXPECTED_CHANNEL="${{ vars.EXPLAINER_EXPECTED_CHANNEL || 'short_explainer67' }}"
+          START="${{ github.event.inputs.start_in_hours }}"; [ -z "$START" ] && START=2
+          SP="${{ github.event.inputs.spacing_hours }}";     [ -z "$SP" ] && SP=3
+          OFF=$(( START + ${{ matrix.idx }} * SP ))
+          PUB=$(date -u -d "+${OFF} hours" +%Y-%m-%dT%H:%M:%SZ)
+          echo "Scheduling ${{ matrix.slug }} for $PUB (UTC, +${OFF}h)"
+          python scripts/render_cinematic.py \
+            --story "${{ matrix.slug }}" --upload --publish-at "$PUB" --channel explainer
