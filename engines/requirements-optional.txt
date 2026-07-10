@@ -1,0 +1,8 @@
+# Optional dependencies for the engines/ capability layer.
+# Deliberately NOT installed by any workflow — engines are opt-in.
+# Install on demand via: python -m engines install <engine>
+# (or pip install -r engines/requirements-optional.txt)
+opencv-python-headless>=4.8   # parallax (remap/warp); future stabilization/QA
+onnxruntime>=1.16             # parallax depth inference (already present
+                              # transitively via kokoro-onnx in most workflows)
+numpy>=1.24                   # already in base requirements.txt

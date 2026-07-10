@@ -25,6 +25,8 @@ gameplay/*.avi
 
 # Whisper model cache
 .cache/
+# engines/ capability layer: downloaded models + benchmark output
+cache/
 
 # Loose trending-package JSONs are local QA artifacts. The daily routine
 # writes its packages into a date-stamped subdir (state/trending_packages/
