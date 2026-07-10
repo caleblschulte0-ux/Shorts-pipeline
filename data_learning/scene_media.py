@@ -234,10 +234,36 @@ def illustration_subjects(labels, context: str = "") -> dict:
     return out
 
 
+def _ensure_rembg_model():
+    """rembg auto-downloads u2net.onnx from a GitHub release, which the agent
+    proxy blocks (HTTPError) — so cut-outs silently fell back to the rough
+    chroma key. Pre-fetch the model from a mirror via curl (which works through
+    the proxy) so rembg gets crisp ML background removal everywhere."""
+    import os, subprocess
+    home = os.path.expanduser("~/.u2net")
+    dest = os.path.join(home, "u2net.onnx")
+    if os.path.exists(dest) and os.path.getsize(dest) > 1_000_000:
+        return
+    os.makedirs(home, exist_ok=True)
+    for url in (
+        "https://huggingface.co/tomjackson2023/rembg/resolve/main/u2net.onnx",
+        "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx",
+    ):
+        try:
+            subprocess.run(["curl", "-sSL", "-m", "180", "-o", dest, url],
+                           check=True)
+            if os.path.getsize(dest) > 1_000_000:
+                print(f"[scene] rembg model ready ({url.split('/')[2]})", flush=True)
+                return
+        except Exception:  # noqa: BLE001
+            continue
+
+
 def _remove_bg(img):
     """Isolate the subject. Prefer rembg (ML, works on any background); fall
     back to the chroma-green key when rembg isn't installed."""
     try:
+        _ensure_rembg_model()
         from rembg import remove
         from PIL import Image
         r = remove(img)
