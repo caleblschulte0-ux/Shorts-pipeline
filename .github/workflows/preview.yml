@@ -113,6 +113,7 @@ jobs:
             cache/stock_video/
             cache/gen_images/
             cache/translation/
+            cache/funnel/
           key: media-cache-v1-${{ github.run_id }}
           restore-keys: |
             media-cache-v1-
