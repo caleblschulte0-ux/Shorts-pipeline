@@ -87,6 +87,36 @@ stars. Make it fit THIS topic.
 
 ---
 
+## HOUSE LOOK — the QUALITY FLOOR every depiction must clear (v3, operator-approved)
+
+This is NOT a template — you still invent the best depiction for THIS data point
+at EVERY step (Option A/B above are the job). This is the *floor*: whatever you
+invent must clear all of these, or it isn't good enough to ship.
+
+1. **Show the thing, big.** Every subject the script names gets a real, prominent
+   PICTURE (photo cutout / illustration) — not a tiny avatar, not a bare number.
+   If we say "crocodile," a crocodile is on screen and large. A number next to a
+   small icon is a fail.
+2. **Open on the subject.** Beat 1 is a full-frame picture of the hero subject +
+   a curiosity hook ("Who bites the HARDEST?"), not a chart. The chart is the
+   *answer*, revealed after the question.
+3. **It moves.** Nothing static that could move: bars GROW in, counters COUNT up,
+   the subject rises/sweeps/fills. A still chart with a pan is the old lazy thing.
+   The animated bar-with-counters is the *baseline* — everything else meets or
+   beats it.
+4. **Mascot charm.** The mascot hosts the video (present on the beats, reacting).
+   This is the channel's identity — never a faceless, cold ORI-style render.
+5. **Land the payoff.** Close on the hero subject + the one shocking number + a
+   plain-English comparison ("5× harder than a lion") — the gut-punch, not a
+   fade-to-black.
+6. **Polish.** Gradient backgrounds (not flat), rounded cards, consistent bold
+   type, transitions that travel between beats.
+
+If a depiction is just "bars" or "a number," it FAILS floor #1 and #3 — invent
+the picture-forward, moving version instead.
+
+---
+
 ## RETENTION DOCTRINE — every second must earn the next second
 
 The platforms rank on view-vs-swipe and watch-through, not on pretty final
