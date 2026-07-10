@@ -42,7 +42,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -70,18 +69,6 @@ def _extract_id(url: str | None) -> str | None:
         if m:
             return m.group(1)
     return None
-
-
-def _resolve_secret(env_path_var: str, env_inline_var: str, fallback: str) -> Path:
-    """Same pattern uploaders.py uses: prefer an inline JSON blob in env
-    (for CI), fall back to a path on disk, then a local filename."""
-    inline = os.environ.get(env_inline_var)
-    if inline:
-        tmp = ROOT / f".{fallback}.runtime.json"
-        tmp.write_text(inline)
-        return tmp
-    p = os.environ.get(env_path_var)
-    return Path(p) if p else (ROOT / fallback)
 
 
 def _youtube_service(channel: str = ""):

@@ -9,9 +9,14 @@ on:
   # FIRST (before the channels) so same-day topics are fresh.
   push:
     branches: [main]
-    # No path filter while we're debugging — every push to main fires
-    # the scout. Once we confirm Actions is on, we'll narrow it back
-    # down so the scout doesn't run on every code change.
+    # Narrowed after the debugging window: the unfiltered trigger fired the
+    # scout on EVERY push to main — including every state commit from the four
+    # channels — creating redundant runs and extra push contention on main.
+    # Now it only fires when the scout itself changes or the trigger file is
+    # touched; the morning Claude Routine still dispatches it directly.
+    paths:
+      - scripts/scout_sources.py
+      - .github/triggers/scout
 
 permissions:
   contents: write
