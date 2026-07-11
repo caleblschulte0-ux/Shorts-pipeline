@@ -246,7 +246,11 @@ def _user_prompt(cfg: dict, n: int) -> str:
         f"Channel doctrine: {doctrine}\n"
         + _scout_digest() + "\n"
         f"Invent {n} BRAND-NEW data stories that fit the doctrine. Each is a "
-        f"25-40 second Short with EXACTLY 3 segments that build one arc.\n\n"
+        f"35-45 second Short with EXACTLY 4 segments that build one arc.\n"
+        f"LENGTH IS A HARD FLOOR: the finished narration must run 35-45 seconds, "
+        f"so give EACH segment a full TWO-sentence 'say' (a setup line, then the "
+        f"line that speaks the number), plus a hooky opening and a closing beat. "
+        f"Four segments of one short clause each is too short and is REJECTED.\n\n"
         "You are the CREATIVE DIRECTOR of a top-tier YouTube channel. For EACH "
         "segment, FIRST invent the single most ENTERTAINING way to VISUALLY depict "
         "THAT specific data — compose a `scene` from this element kit (arrange "
@@ -271,13 +275,15 @@ def _user_prompt(cfg: dict, n: int) -> str:
         "forest on fire for wildfire, a lung for breathing) with fill_object; one "
         "big height/size -> a stack vs a hero object; a ranking of drawable things "
         "-> a ground-row of `object`s; distances/counts -> orbit_group.\n"
-        "- VARY the depiction across the 3 segments; include at least ONE stand-out.\n"
+        "- VARY the depiction across the 4 segments; include at least ONE stand-out. "
+        "No two segments may use the same mechanic.\n"
         "- `subject` for image elements must be a CONCRETE drawable thing (animals, "
         "foods, vehicles, planets, landmarks, a globe) — never an abstraction.\n"
         "- Do NOT repeat or closely resemble any already-covered subject.\n"
         "- Each segment: 2-6 points with realistic, illustrative numbers (labelled "
         "'illustrative') and a dramatic spread. Add a 'period' per point for time.\n"
-        "- 'say' lines must speak the actual numbers shown.\n"
+        "- 'say' is TWO full sentences per segment that speak the actual numbers "
+        "shown (setup, then the number) — not a single clause.\n"
         "- Prefer science, space, nature, the human body, history, records, scale "
         "and superlatives. Avoid dry personal-finance topics.\n\n"
         f"ALREADY COVERED (avoid these): {covered_blob}\n\n"
@@ -420,7 +426,7 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
         return None
 
     segments, datasets = [], []
-    for i, seg in enumerate(segs_in[:3]):
+    for i, seg in enumerate(segs_in[:4]):
         if not isinstance(seg, dict):
             return None
         pts_in = seg.get("points") or []
