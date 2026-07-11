@@ -51,16 +51,27 @@ Done:
   midpoint, no ping-pong cuts). The plan + reasons land in the ledger
   (`shot_plan`). Wide/uncertain → blur-fill whole frame. (§3-§8)
 
+- **Clip boundaries (§9)** — never open on dead air; 2.2s reaction tail after
+  the last word (the reaction IS the payoff); the 45s cap snaps back to the
+  last word that fully fits (+1.0s) instead of slicing mid-word; captions
+  only for words entirely inside the cut; 0.25s audio fade-out so no clip
+  ends on an abrupt chop.
+- **Spatial safe-zones (§15)** — the shot plan exports face bands in output
+  coordinates; the emoji burst and word slam pick a vertical position that
+  avoids faces and the caption zone from a candidate list (no hardcoded y).
+- **Dimensional emoji set (§11)** — Microsoft Fluent UI Emoji 3D (MIT):
+  one cohesive glossy/dimensional iOS-style set; the flat Noto generator
+  remains as an offline fallback only.
+
 Not yet built (priority order per §21):
 1. **Active-speaker shot sequences** — multi-shot plans that cut between
-   speakers with hysteresis + minimum shot duration (current plans are calm
-   single-shot; split/stacked layouts cover the two-speaker case). (§5-§7)
-2. **Clip-boundary intelligence** — setup/escalation/payoff/reaction detection,
-   speech-boundary trims, reaction-tail preservation, no cut-off words. (§9)
-3. **Spatial safe-zone maps** — overlays placed off faces/UI/gameplay by a
-   per-frame occupancy map, not hardcoded coordinates. (§10, §15)
-4. **Higher-quality emoji set** — iOS-style dimensional emoji, one cohesive
-   system (current set is flat Noto). (§11)
+   speakers with hysteresis + minimum shot duration. DELIBERATELY DEFERRED:
+   the operator's "let the camera be" doctrine outweighs it, and the
+   split/stacked layouts already keep both speakers visible. (§5-§7)
+2. **Setup/escalation/payoff narrative detection** — deeper §9: classify the
+   beats and trim escalation-aware, beyond the word-safe bounds now in place.
+3. **Per-frame occupancy maps** — full §15: hands/UI/gameplay-focus occupancy
+   per frame (current safe zones are face bands + caption band).
 
 ---
 

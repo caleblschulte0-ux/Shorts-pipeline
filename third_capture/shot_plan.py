@@ -283,6 +283,30 @@ def _render_stacked(video: Path, shot: Shot, an: dict,
     return _ff_complex(video, fc, out)
 
 
+def _face_bands(shot: Shot, an: dict) -> list:
+    """Vertical [y0, y1] bands (fractions of the 1920 output height) that
+    contain faces — the overlay layer must not place graphics there (§15).
+    Bands are generous (±1 face height around the center)."""
+    sh = an["sh"]
+    bands = []
+    if shot.mode in ("closeup", "two_shot"):
+        # full-height crop scaled to 1920: y fractions carry over directly
+        for s in shot.subjects:
+            h = s.med_h()
+            bands.append([max(0.0, (s.cy - h) / sh),
+                          min(1.0, (s.cy + h) / sh)])
+    elif shot.mode == "split":
+        subs = sorted(shot.subjects[:2], key=lambda s: s.cx)
+        for i, s in enumerate(subs):
+            h = s.med_h()
+            y0 = max(0.0, (s.cy - h) / sh) * 0.5 + i * 0.5
+            y1 = min(1.0, (s.cy + h) / sh) * 0.5 + i * 0.5
+            bands.append([y0, y1])
+    elif shot.mode == "stacked":
+        bands.append([0.0, CAM_PANEL_H / CANVAS_H])   # whole cam panel
+    return [[round(a, 3), round(b, 3)] for a, b in bands]
+
+
 def _ff(video: Path, vf: str, out: Path) -> Path | None:
     try:
         subprocess.run(
@@ -355,6 +379,8 @@ def build(video: Path, work: Path,
         if rendered is None:
             summary["shots"] = []
             summary["reason"] += " (render fell back to whole frame)"
+        else:
+            summary["face_bands"] = _face_bands(shot, an)
         return rendered, summary
     except Exception as e:  # noqa: BLE001
         summary["reason"] = f"shot_plan error (fell back): " \

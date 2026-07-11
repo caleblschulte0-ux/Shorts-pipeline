@@ -1,12 +1,14 @@
 Reaction-emoji overlay set (skull/fire/sob/joy/eyes/mindblown/scream/
 flushed/pleading/rage .png)
 
-Rendered from Noto Color Emoji by assets/emoji/make_emoji.py.
+Current assets: Microsoft Fluent UI Emoji, 3D style (256x256 RGBA).
+Source:  https://github.com/microsoft/fluentui-emoji
+License: MIT (Copyright (c) Microsoft Corporation) — free commercial use.
+Mapping note: rage.png is Fluent's "Pouting face" 3D asset.
 
-Font:    Noto Color Emoji (Google), SIL Open Font License 1.1.
-Source:  system package fonts-noto-color-emoji
-         (https://github.com/googlefonts/noto-emoji)
+Chosen per the channel playbook §11: one cohesive, dimensional, glossy,
+iOS-style set — never mixed with flat/native/sticker emoji.
 
-Each PNG is a single standard Unicode emoji glyph rasterized from that
-OFL font. Redistributed here as build artifacts so the renderer needs no
-color-emoji font at runtime. Re-run make_emoji.py to regenerate.
+Fallback generator: make_emoji.py renders the same names from Noto Color
+Emoji (OFL 1.1) if the Fluent assets ever need regenerating offline. The
+committed PNGs are what the renderer uses.

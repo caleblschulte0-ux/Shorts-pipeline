@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Render the clip channel's reaction-emoji overlay set to transparent PNGs.
+"""FALLBACK generator for the reaction-emoji overlay set.
 
-The overlay effect layer (third_capture/auto_edit) pops a contextual emoji on
-the money moment. Rather than depend on a color-emoji font at render time
-(ffmpeg drawtext + NotoColorEmoji is finicky), we bake a small curated set to
-RGBA PNGs here and overlay the images. Re-run to regenerate; the committed
-PNGs are what the renderer uses.
-
-Font: Noto Color Emoji (system package fonts-noto-color-emoji, OFL 1.1).
-Only the rendered glyphs are redistributed, each a standard Unicode emoji.
+The committed PNGs are Microsoft Fluent UI Emoji 3D (MIT — see LICENSE.txt):
+dimensional/glossy per playbook §11. This script regenerates the same names
+from Noto Color Emoji (flat, OFL 1.1) for offline environments only — do not
+run it casually, it would downgrade the set. The renderer overlays whatever
+PNGs are committed.
 """
 from __future__ import annotations
 

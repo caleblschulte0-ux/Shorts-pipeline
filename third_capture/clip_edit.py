@@ -339,16 +339,24 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
     src_dur = float(probe["format"]["duration"])
     t0 = max(0.0, start)
     t1 = min(src_dur, end) if end else src_dur
-    # auto tight-cut when no explicit cut was authored: never open on dead
-    # air (start just before the first spoken word), end ~1.5s after the
-    # last word so the reaction lands, hard cap 45s (playbook: cut harder)
+    # Auto tight-cut when no explicit cut was authored (playbook §9): never
+    # open on dead air (start just before the first spoken word); keep a
+    # 2.2s REACTION TAIL after the last word so the laugh/stunned-silence
+    # lands (the reaction often IS the payoff); and cap at 45s WORD-SAFELY —
+    # snap the cap back to the end of the last word that fully fits plus a
+    # 1.0s tail, never slicing mid-word or mid-payoff.
     if not start and not end and words:
         t0 = max(0.0, words[0]["s"] - 0.8)
-        t1 = min(src_dur, words[-1]["e"] + 1.5)
+        t1 = min(src_dur, words[-1]["e"] + 2.2)
         if t1 - t0 > 45.0:
-            t1 = t0 + 45.0
+            cap = t0 + 45.0
+            last_e = max((w["e"] for w in words if w["e"] <= cap - 1.0),
+                         default=None)
+            t1 = (last_e + 1.0) if last_e is not None else cap
+        # captions: only words that fit ENTIRELY inside the cut — a caption
+        # for a half-sliced word reads as a broken edit
         words = [{"w": w["w"], "s": w["s"] - t0, "e": w["e"] - t0}
-                 for w in words if t0 <= w["s"] < t1 - 0.2]
+                 for w in words if t0 <= w["s"] and w["e"] <= t1 - 0.05]
     dur = t1 - t0
 
     with tempfile.TemporaryDirectory() as td:
@@ -391,7 +399,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # deliberate two-shot / designed split-screen / stacked facecam+
         # full-width-gameplay. None → blur-fill whole frame (action always
         # visible). Never blocks the render.
-        reframed = None
+        reframed, sp_summary = None, None
         if auto:
             try:
                 from third_capture import shot_plan as spn
@@ -434,6 +442,23 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # — the overlay energy the camera now holds still for. Emoji ride in as
         # extra image inputs; the graph and its inputs degrade together in the
         # render ladder so a bad overlay can never drop the clip.
+
+        # Spatial safe-zones (§15): overlays pick a vertical position that
+        # avoids the faces (bands exported by the shot plan) and the caption
+        # zone, instead of hardcoded coordinates. Blur-fill wide look → the
+        # centered source occupies the middle band.
+        _bands = list((sp_summary or {}).get("face_bands")
+                      or [[0.34, 0.66]])
+        _bands.append([0.65, 0.80])                    # caption zone
+
+        def _safe_y(cands: list[float], frac_h: float) -> float:
+            for c in cands:
+                if all(c + frac_h <= b0 or c >= b1 for b0, b1 in _bands):
+                    return c
+            return cands[0]
+
+        emoji_y = _safe_y([0.15, 0.30, 0.50, 0.04], 0.16)
+        word_y = _safe_y([0.40, 0.28, 0.55, 0.09], 0.09)
         # Text draws (top layer): REPLAY stamps, the big WORD slam, hook card.
         text_draws: list[str] = []
         for i, ov in enumerate(overlays):
@@ -447,8 +472,9 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 wf = tmp / f"word{i}.txt"
                 wf.write_text(w)
                 ws, we = float(ov["s"]), float(ov["e"])
-                # slams in mid-frame with a quick damped bounce
-                yb = f"(H*0.40)-55*exp(-7*(t-{ws:.2f}))*sin(15*(t-{ws:.2f}))"
+                # slams in with a quick damped bounce, at the safe-zone y
+                yb = (f"(H*{word_y:.3f})-55*exp(-7*(t-{ws:.2f}))"
+                      f"*sin(15*(t-{ws:.2f}))")
                 text_draws.append(
                     f"drawtext=fontfile={FONT_BOLD}:textfile={wf}:expansion=none"
                     ":fontsize=132:fontcolor=yellow:borderw=10:bordercolor=black"
@@ -500,8 +526,8 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                     parts.append(f"[{k+1}:v]scale=-1:{h},format=rgba[i{k}]")
                 for k, (_png, s, e, h, xe) in enumerate(img_cues):
                     nxt = f"im{k}"
-                    if h <= 320:      # emoji — pop up with a damped bounce
-                        ye = (f"(H*0.17)-70*exp(-6*(t-{s:.2f}))"
+                    if h <= 320:      # emoji — damped bounce at the safe y
+                        ye = (f"(H*{emoji_y:.3f})-70*exp(-6*(t-{s:.2f}))"
                               f"*sin(14*(t-{s:.2f}))")
                     else:             # speed-lines — centered hard flash
                         ye = "(H-h)/2"
@@ -515,12 +541,17 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             parts.append(f"[{cur}]null[vout]")
             return ";".join(parts), inputs
 
+        # §9: a 0.25s audio fade-out — the clip breathes out instead of the
+        # audio slamming shut on the final frame
+        afade = (f"loudnorm=I=-14:TP=-1.5,"
+                 f"afade=t=out:st={max(0.0, dur - 0.25):.2f}:d=0.25")
+
         def _render(chain: str, extra_inputs: list | None = None) -> bool:
             cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(src)]
             for p in (extra_inputs or []):
                 cmd += ["-i", str(p)]
             cmd += ["-filter_complex", chain, "-map", "[vout]", "-map", "0:a",
-                    "-af", "loudnorm=I=-14:TP=-1.5",
+                    "-af", afade,
                     "-c:v", "libx264", "-preset", "medium", "-crf", "19",
                     "-pix_fmt", "yuv420p", "-r", "30",
                     "-c:a", "aac", "-b:a", "160k", str(out_path)]
