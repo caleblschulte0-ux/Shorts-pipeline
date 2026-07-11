@@ -1,0 +1,33 @@
+{
+  "key": "space_rock_sizes_largest_asteroids",
+  "title": "Largest Asteroids",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Ceres",
+      "value": 946.0,
+      "period": "2006"
+    },
+    {
+      "label": "Vesta",
+      "value": 530.0,
+      "period": "2011"
+    },
+    {
+      "label": "Pallas",
+      "value": 560.0,
+      "period": "2007"
+    }
+  ]
+}
