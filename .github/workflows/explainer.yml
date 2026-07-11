@@ -330,11 +330,12 @@ jobs:
 
       - name: Run
         env:
-          # The BRAIN step above already invented the depictions with Claude and
-          # baked them into the config, so the renderer just RENDERS them — no
-          # render-time LLM API calls. (Set VIZ_INVENT=1 to also let the render
-          # fall over to a Groq/Gemini API invention when no brain ran.)
-          VIZ_INVENT: '0'
+          # Render-time depiction invention is ON. Freshly top-up-authored stories
+          # arrive with viz='auto'; without this they render with the GENERIC
+          # fallback (the stale "old look" that shipped 2026-07-11). With it, the
+          # viz_director invents a varied depiction per segment at render time,
+          # preferring Anthropic (reliable) over the 429-prone free tiers.
+          VIZ_INVENT: '1'
           # Native multi-channel routing: post_stories uses channel "explainer",
           # so the uploader reads YOUTUBE_TOKEN_JSON_EXPLAINER. The original
           # YOUTUBE_TOKEN_JSON (other channel) is never referenced here.
@@ -343,6 +344,9 @@ jobs:
           # LLM key for the auto-localization layer (translates titles/
           # descriptions into 12 languages on every upload).
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Ride out Groq's free-tier 429 window instead of giving up after ~16s
+          # (the 2026-07-11 starvation) — only used when Groq is the last resort.
+          GROQ_MAX_RETRIES: '6'
           # Image-gen key for cinematic AI scene/hook backgrounds (free-tier,
           # graceful fallback to stock/designed if unset or quota-limited).
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -367,7 +371,9 @@ jobs:
           # un-posted). No hardcoded slate to fall stale.
           SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
           FORCEFLAG=""; [ "${{ inputs.force }}" = "true" ] && FORCEFLAG="--force"
-          TOPUP="${{ inputs.topup }}";               [ -z "$TOPUP" ] && TOPUP="6"
+          # Buffer of 8 un-posted so posting 4+/day never runs the queue dry even
+          # on a bad authoring day (2026-07-11: queue hit 0, only 1 posted).
+          TOPUP="${{ inputs.topup }}";               [ -z "$TOPUP" ] && TOPUP="8"
           export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
           # Keep the queue full: AUTHOR brand-new, non-duplicate stories (with
           # illustrative data) so the channel never runs dry and has to re-post
@@ -375,7 +381,7 @@ jobs:
           # Soft-fails (no LLM key / transient error) so posting still proceeds.
           case "$MODE" in
             author|schedule|auto|all)
-              python scripts/author_stories.py --top-up "$TOPUP" \
+              python scripts/author_stories.py --top-up "$TOPUP" --max-attempts 6 \
                 || echo "author step skipped (no LLM key or transient error)" ;;
           esac
           # Manual 'author' mode also CREATIVE-DIRECTS the whole back catalogue:

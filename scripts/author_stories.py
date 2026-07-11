@@ -635,18 +635,42 @@ def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
 
 
 def _generate(cfg: dict, n: int) -> list[dict]:
+    import os
     from script_generator import _call_llm, _strip_fence
-    raw = _call_llm(_SYSTEM, _user_prompt(cfg, n))
-    text = _strip_fence(raw)
-    try:
-        data = json.loads(text)
-    except json.JSONDecodeError:
-        m = re.search(r"\{.*\}", text, re.S)
-        if not m:
-            raise
-        data = json.loads(m.group(0))
-    stories = data.get("stories") if isinstance(data, dict) else data
-    return stories or []
+    # Reliability order: paid/stable backends FIRST, flaky free Groq LAST.
+    # The author used to always pick Groq (free) whenever GROQ_API_KEY was set,
+    # get 429-starved, and ship ~1 story instead of the whole top-up — which is
+    # why the queue kept running dry and the channel posted only 1/day. Try each
+    # present backend in turn and fall through on failure so a rate-limited
+    # backend can never dry the queue while a working one is available.
+    order = [("anthropic", "ANTHROPIC_API_KEY"),
+             ("gemini", "GEMINI_API_KEY"),
+             ("groq", "GROQ_API_KEY")]
+    backends = [b for b, key in order if os.environ.get(key)]
+    if not backends:
+        raise RuntimeError("no LLM API key set (ANTHROPIC / GEMINI / GROQ)")
+    last_err: Exception | None = None
+    for b in backends:
+        try:
+            raw = _call_llm(_SYSTEM, _user_prompt(cfg, n), backend=b)
+            text = _strip_fence(raw)
+            try:
+                data = json.loads(text)
+            except json.JSONDecodeError:
+                m = re.search(r"\{.*\}", text, re.S)
+                if not m:
+                    raise
+                data = json.loads(m.group(0))
+            stories = data.get("stories") if isinstance(data, dict) else data
+            if stories:
+                return stories
+            last_err = RuntimeError(f"{b}: empty story list")
+        except Exception as e:  # noqa: BLE001
+            last_err = e
+            print(f"[author] backend '{b}' failed ({str(e)[:120]}); trying next",
+                  flush=True)
+            continue
+    raise last_err if last_err else RuntimeError("all LLM backends failed")
 
 
 # --------------------------------------------------------------------------- #
