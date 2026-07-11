@@ -386,14 +386,18 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 ledger_ae["fallback_reason"] = f"stage1:{type(e).__name__}"
 
         # ---- Stage 2: presentation ----
-        # Face-tracked reframe fills the 9:16 frame (no blur bars) when a
-        # confident track exists; otherwise fall back to today's blur-fill
-        # center reframe. Reframe is a bonus and never blocks the render.
+        # Shot-plan layer (playbook §3-§8): analyze subjects, classify the
+        # layout, and execute an explicit reasoned plan — static close-up /
+        # deliberate two-shot / designed split-screen / stacked facecam+
+        # full-width-gameplay. None → blur-fill whole frame (action always
+        # visible). Never blocks the render.
         reframed = None
         if auto:
             try:
-                from third_capture import auto_edit as ae
-                reframed = ae.reframe(program, tmp)
+                from third_capture import shot_plan as spn
+                # analysis on the SOURCE cut (§3), plan executed on the program
+                reframed, sp_summary = spn.build(program, tmp, analyze_on=cut)
+                ledger_ae["shot_plan"] = sp_summary
             except Exception:  # noqa: BLE001
                 reframed = None
 

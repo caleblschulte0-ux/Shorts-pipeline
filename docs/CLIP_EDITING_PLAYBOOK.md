@@ -40,23 +40,26 @@ Done:
   headless Claude CLI against the §17 checklist. A fail rejects the clip
   before upload (slug stays unposted; a different clip competes next run);
   QA-internal errors fail OPEN so the gate can't lose good clips. (§16, §17)
+- **Shot-plan layer** (`third_capture/shot_plan.py`) — analysis on the SOURCE
+  cut (§3: subject tracks with presence/size/talk-activity/position-jitter,
+  scored — never just the largest face), layout classification (closeup /
+  two_shot / split / facecam_gameplay / wide), an explicit reasoned Shot plan
+  with a subject-containment (midpoint-trap) guard, executed on the program
+  with static ffmpeg crops. Designed layouts: stacked facecam-panel +
+  FULL-WIDTH gameplay (the action can't be cropped out) and stacked
+  split-screen for far-apart two-shots (both people always visible — no
+  midpoint, no ping-pong cuts). The plan + reasons land in the ledger
+  (`shot_plan`). Wide/uncertain → blur-fill whole frame. (§3-§8)
 
 Not yet built (priority order per §21):
-1. **Shot plan layer** — explicit shot timeline (subject/framing/reason per
-   segment) that the renderer executes, instead of improvising from raw
-   detections. (§5)
-2. **Subject scoring & active-speaker** — the largest face is not the subject;
-   score by who speaks / who is discussed / whose reaction is the payoff, with
-   hysteresis + minimum shot duration. (§4, §6 Laws 5–6, §7)
-3. **Layout classification** — solo / gameplay+facecam / two-shot / podcast /
-   reaction / split-screen, each with different crop logic. (§3, §8)
-4. **Designed layouts** — stacked gameplay-on-top and intentional split-screen
-   instead of blur-fill for multi-region moments. (§7 Mode D, §8)
-5. **Clip-boundary intelligence** — setup/escalation/payoff/reaction detection,
+1. **Active-speaker shot sequences** — multi-shot plans that cut between
+   speakers with hysteresis + minimum shot duration (current plans are calm
+   single-shot; split/stacked layouts cover the two-speaker case). (§5-§7)
+2. **Clip-boundary intelligence** — setup/escalation/payoff/reaction detection,
    speech-boundary trims, reaction-tail preservation, no cut-off words. (§9)
-6. **Spatial safe-zone maps** — overlays placed off faces/UI/gameplay by a
+3. **Spatial safe-zone maps** — overlays placed off faces/UI/gameplay by a
    per-frame occupancy map, not hardcoded coordinates. (§10, §15)
-7. **Higher-quality emoji set** — iOS-style dimensional emoji, one cohesive
+4. **Higher-quality emoji set** — iOS-style dimensional emoji, one cohesive
    system (current set is flat Noto). (§11)
 
 ---
