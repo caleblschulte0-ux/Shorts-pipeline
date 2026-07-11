@@ -1,0 +1,33 @@
+{
+  "key": "space_rock_sizes_comet_sizes",
+  "title": "Comet Sizes",
+  "unit": "kilometers",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Comet Hale-Bopp",
+      "value": 40.0,
+      "period": "1997"
+    },
+    {
+      "label": "Comet Hyakutake",
+      "value": 100.0,
+      "period": "1996"
+    },
+    {
+      "label": "Comet Lovejoy",
+      "value": 200.0,
+      "period": "2011"
+    }
+  ]
+}
