@@ -85,6 +85,12 @@ def log_event(scene, kind: str, **detail):
 # ---------------------------------------------------------------------------
 INTENSITY = {"level": 0, "stretch": 1.0}
 
+# CAPABILITIES (§7.5 v8 — the NO-DOWNGRADE LAW): visual capabilities the
+# world has gained (environment:space, environment:depth, ...). Granted
+# by hero breaches, NEVER revoked; every later beat logs that it runs
+# with the granted layers in frame. Cleared per render by the engine.
+CAPS: set = set()
+
 EMOTION_INTENSITY = {"wonder": 1, "mystery": 1, "speed": 2, "scale": 2,
                      "heat": 2, "force": 2, "danger": 3, "awe": 3}
 
@@ -290,7 +296,81 @@ def _play_bundle(scene, ctx, b) -> float:
         # ticks stay lit, the fill stays past the marker)
         log_event(scene, "state", beat=ctx.get("idx"), what="entity",
                   rt=0.0)
+    if getattr(b, "sem", None):
+        # SEMANTIC PROGRESSION (§7.5 v8): this bundle introduced a new
+        # visual idea — a counter merely climbing or a bar merely
+        # extending never carries a sem tag.
+        dim, what = b.sem
+        log_event(scene, "semantic", beat=ctx.get("idx"), dim=dim,
+                  what=what, rt=0.0)
+    if getattr(b, "focus", None):
+        # DOMINANT-SUBJECT CONTRACT (§7.5 v8): who owns the frame now.
+        log_event(scene, "focus", beat=ctx.get("idx"), what=b.focus,
+                  rt=0.0)
     return rt
+
+
+BREACH_RT = 1.1
+
+
+def _breach_and_cover(scene, ctx, plan) -> float:
+    """THE HERO-INTEGRATION CONTRACT (§7.5 v8). Setup already played
+    (approach + reveal + arrival). This function plays stages 2-4:
+
+    BREACH — an ACCELERATING push INTO the hero object (a push that
+    never decelerates reads as 'we're going through it'). The logged
+    breach row's t+rt IS the splice cut: the engine decides when, the
+    assembler obeys the ledger.
+
+    COVERED SPAN — the 2D take keeps rendering underneath the premium
+    splice; that hidden time is spent MUTATING the world (intensity up,
+    capability grant, the persistent consequence object, camera pulled
+    farther out) so the return frame is already the changed world. A
+    hero you could delete without changing later footage is decorative —
+    this makes deletion structurally impossible."""
+    from data_learning import world_builders as wb
+    frame, fw, idx = ctx["frame"], ctx["fw"], ctx.get("idx")
+    obj = wb.STATE.get(str(plan.get("object") or ""))
+    if obj is None:
+        obj = ctx.get("group")
+    target = (np.array(obj.get_center()) if obj is not None
+              else np.array(ctx["anchor"]))
+    scene.play(frame.animate.move_to(target).set(width=fw * 0.28),
+               run_time=BREACH_RT, rate_func=rate_functions.ease_in_quad)
+    log_event(scene, "breach", beat=idx, hero=plan.get("id"),
+              rt=BREACH_RT)
+    log_event(scene, "semantic", beat=idx, dim="camera", what="3d-breach",
+              rt=0.0)
+    cover = float(plan.get("splice", 7.0))
+    used = set_intensity(scene, ctx,
+                         INTENSITY["level"] + int(plan.get("intensity", 1)))
+    grants = list(plan.get("grants") or [])
+    if grants:
+        CAPS.update(grants)
+        log_event(scene, "capability", beat=idx, grant=grants,
+                  by=plan.get("id"))
+        fx = ctx.get("grant_fx")
+        if fx is not None:
+            used += fx(scene, ctx, grants)
+    maker = getattr(wb, "CONSEQUENCES", {}).get(
+        str(plan.get("consequence") or ""))
+    if maker is not None:
+        used += maker(scene, ctx, plan)
+        log_event(scene, "state", beat=idx, what="hero_consequence",
+                  hero=plan.get("id"),
+                  consequence=plan.get("consequence"), rt=0.0)
+    # Ride the rest of the covered span out to the resume frame — wider
+    # than we left it: the world keeps the hero's altitude.
+    left = cover - used
+    out_w = fw * float(plan.get("camera_out", 1.18))
+    if left > 0.3:
+        scene.play(frame.animate.move_to(ctx["anchor"]).set(width=out_w),
+                   run_time=left, rate_func=rate_functions.ease_in_out_sine)
+    else:
+        frame.move_to(ctx["anchor"]).set(width=out_w)
+    log_event(scene, "semantic", beat=idx, dim="camera", what="3d-return",
+              rt=0.0)
+    return BREACH_RT + max(cover, used)
 
 
 def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
@@ -309,6 +389,20 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
               moved=round(moved / max(float(ctx["fw"]), 1e-9), 3))
     if ctx.get("emotion"):
         log_event(scene, "emotion", beat=idx, tag=ctx["emotion"])
+    # SEMANTIC PROGRESSION (§7.5 v8): what this arrival changes in the
+    # viewer's understanding — new scale band, new environment, new
+    # metaphor — prepared by the engine, logged as facts.
+    for srow in ctx.get("semantics") or []:
+        log_event(scene, "semantic", beat=idx, rt=0.0, **srow)
+    # NO-DOWNGRADE LAW (§7.5 v8): once capabilities are granted, every
+    # later beat runs with the granted layers literally in frame (the
+    # persistent star sub-layer, the consequence objects, the intensity
+    # machinery) — the row records that inheritance.
+    if CAPS:
+        consumed = sorted(CAPS)
+        if ctx.get("in_world"):
+            consumed.append("in_world")
+        log_event(scene, "capability", beat=idx, consumed=consumed)
     spent = set_intensity(scene, ctx, int(ctx.get("intensity", 0)))
     approach(scene, ctx, t_approach)
     spent += t_approach
@@ -337,6 +431,19 @@ def _visit(scene, ctx, approach, dwell, approach_frac=0.28,
         if spent + rt <= dur - 0.4:
             spent += _play_bundle(scene, ctx, b)
             log_event(scene, "reveal", beat=idx, rt=round(rt, 2))
+
+    # HERO BREACH (§7.5 v8): Setup has played — if the director gave
+    # this beat premium seconds, dive through the subject NOW. The
+    # scheduler below then lands the beat's punch AFTER the return, so
+    # the hero can never be a deletable cutaway. A window the plan
+    # doesn't fit is a loud ledger fact the -ql gate fails on.
+    plan = ctx.get("hero_plan")
+    if plan:
+        if dur - spent >= float(plan.get("splice", 7.0)) + BREACH_RT + 3.0:
+            spent += _breach_and_cover(scene, ctx, plan)
+        else:
+            log_event(scene, "skipped", beat=idx, what="hero",
+                      hero=plan.get("id"))
 
     # … and EVERYTHING else is scheduled across the window: events with
     # ADAPTIVE spacing (breathe at EVENT_GAP when time is generous,

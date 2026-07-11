@@ -143,12 +143,13 @@ class WorldScene(MovingCameraScene):
     def construct(self):
         import data_learning.world_builders as wb
         from data_learning.world_builders import BUILDERS   # canonical copy
-        from data_learning.shots import (DEFAULT_DWELL, DEFAULT_TRAVEL,
+        from data_learning.shots import (CAPS, DEFAULT_DWELL, DEFAULT_TRAVEL,
                                          EMOTION_INTENSITY, INTENSITY,
                                          LEDGER, SHOTS, cold_open_rush,
                                          log_event, set_intensity)
         LEDGER.clear()
         wb.STATE.clear()          # the world remembers — per render only
+        CAPS.clear()              # capabilities are earned per render
         INTENSITY.update(level=0, stretch=1.0)   # calm until the facts hit
         sp = _spec()
         theme = sp.get("theme", {})
@@ -197,6 +198,47 @@ class WorldScene(MovingCameraScene):
             dust.add(dot)
         self.add(dust)
 
+        # --- the GRANTED STAR LAYER (§7.5 v8 no-downgrade law): a
+        # parallax starfield that fades in when a hero grants
+        # environment:space and NEVER leaves — every later beat runs
+        # inside the environment the hero introduced. Frame-relative
+        # with per-dot depth drift (same trick as the dust layer), so it
+        # survives any zoom. Invisible until granted.
+        _grant = {"o": 0.0, "target": 0.0}
+        space_layer = VGroup()
+        _sphase = {}
+        for si in range(30):
+            sdot = Dot([0, 0, 0], radius=0.03, color="#dfe8ff")
+            _sphase[si] = ((si * 53) % 100) / 100.0
+            s_yf = ((si * 71) % 100) / 100.0 - 0.5
+            s_depth = 0.25 + ((si * 29) % 80) / 100.0
+
+            def star_upd(m, dt, si=si, s_yf=s_yf, s_depth=s_depth):
+                fw, fh = frame.width, frame.height
+                _sphase[si] = (_sphase[si]
+                               + dt * 0.014 * (0.4 + s_depth)) % 1.0
+                c = frame.get_center()
+                m.move_to([c[0] + (0.55 - 1.1 * _sphase[si]) * fw,
+                           c[1] + s_yf * fh * 1.04, 0.0])
+                m.set(width=max(1e-4, fw * 0.0035 * (0.5 + s_depth)))
+                m.set_opacity(_grant["o"] * (0.30 + 0.38 * s_depth))
+            sdot.add_updater(star_upd)
+            space_layer.add(sdot)
+        space_layer.add_updater(lambda m, dt: _grant.update(
+            o=min(_grant["target"], _grant["o"] + dt * 0.45)))
+        self.add(space_layer)
+
+        def grant_fx(scene, ctx, grants):
+            """Consumed by the breach's covered span: turning the granted
+            environment ON is part of the hero's persistent consequence."""
+            if (_grant["target"] == 0.0
+                    and any(str(g).startswith("environment:")
+                            for g in grants)):
+                _grant["target"] = 1.0
+                scene.wait(0.9)
+                return 0.9
+            return 0.0
+
         # --- waypoint objects, placed in the one place ---
         is_scale = world.get("template") == "scale"
         arrival_anims, groups = [], []
@@ -224,6 +266,32 @@ class WorldScene(MovingCameraScene):
             self.add(g)
             arrival_anims.append(anims)
             groups.append(g)
+
+        # --- LEGIBILITY QA (§7.5 v8): the engine KNOWS every text's
+        # rendered size at its beat's planned frame width — px height =
+        # h / fw * 1080 — and where it sits relative to the frame. A
+        # violation is a ledger fact the gate fails on, found at build
+        # time, not in a finished 4-hour render. Sub-pixel texts are
+        # size-reveal seeds (scale 1e-3 stamps), not mistakes — skipped.
+        from manim import Text as _Text
+        for i, (g, wp) in enumerate(zip(groups, wps)):
+            anchor, fw = anchors[i]
+            for m in g.family_members_with_points():
+                if not isinstance(m, _Text):
+                    continue
+                px = m.height / max(fw, 1e-9) * 1080.0
+                if px < 1.0:                      # reveal seed
+                    continue
+                if px < 18.0:
+                    log_event(self, "legibility", beat=i, what="too-small",
+                              text=m.text[:24], px=round(px, 1))
+                c = np.array(m.get_center()) - np.array(anchor)
+                if (abs(c[0]) + m.width / 2 > fw * 0.46
+                        or abs(c[1]) + m.height / 2 > fw * 0.252):
+                    log_event(self, "legibility", beat=i, what="off-frame",
+                              text=m.text[:24],
+                              dx=round(float(c[0]) / fw, 3),
+                              dy=round(float(c[1]) / fw, 3))
 
         # Reveal doctrine (non-scale worlds): subjects are BORN as the
         # camera arrives, not pre-placed geometry waiting. Each group is
@@ -317,16 +385,25 @@ class WorldScene(MovingCameraScene):
         title_pin.add_updater(pin_title)
         self.add(title_pin)
 
-        def make_surge_counter(v, unit, dy=-0.30, hscale=0.075):
+        def make_surge_counter(v, unit, dy=-0.30, hscale=0.075, role=None):
             """Frame-pinned live number used by the cold open AND the
-            returning-counter ending (§7.5 v5)."""
+            returning-counter ending (§7.5 v5). `role` (v8 value-role
+            clarity) captions WHAT this number answers — RIGHT NOW vs
+            the story's FINAL total — so big values never read as three
+            competing answers."""
             def _mk(v=v, unit=unit):
                 t = Text(f"{int(v.get_value()):,} {unit}".strip(),
                          font_size=54, weight=BOLD, color=hi)
                 t.scale(frame.height * hscale / max(t.height, 1e-6))
                 t.move_to(frame.get_center()
                           + np.array([0, frame.height * dy, 0]))
-                return t
+                if not role:
+                    return t
+                r = Text(str(role).upper(), font_size=26, weight=BOLD,
+                         color="#98a2b4")
+                r.scale(t.height * 0.30 / max(r.height, 1e-6))
+                r.next_to(t, UP, buff=t.height * 0.22)
+                return VGroup(r, t)
             return always_redraw(_mk)
 
         cold = world.get("cold_open")
@@ -338,7 +415,9 @@ class WorldScene(MovingCameraScene):
             surge, counter = None, None
             if isinstance(cold, dict) and cold.get("value"):
                 v = ValueTracker(0.0)
-                counter = make_surge_counter(v, str(cold.get("unit", "")))
+                counter = make_surge_counter(v, str(cold.get("unit", "")),
+                                             role=cold.get("role",
+                                                           "right now"))
                 self.add(counter)
                 surge = (v, float(cold["value"]))
             # cold_open.levels picks which waypoints the rush flies
@@ -398,6 +477,15 @@ class WorldScene(MovingCameraScene):
             lv = wp.get("intensity",
                         min(EMOTION_INTENSITY.get(wp.get("emotion"), cap),
                             cap))
+            # SEMANTIC PROGRESSION (§7.5 v8): what this arrival changes
+            # in the viewer's understanding — logged as engine facts.
+            sems = [{"dim": "metaphor", "what": wp.get("builder",
+                                                       "marker")}]
+            if is_scale:
+                sems.append({"dim": "scale", "what": f"band:{i}"})
+            tab = wp.get("params", {}).get("tableau")
+            if tab:
+                sems.append({"dim": "environment", "what": str(tab)})
             ctx = {
                 "frame": frame, "anchor": np.array(anchor), "fw": fw,
                 "dur": dur, "group": groups[i],
@@ -411,6 +499,10 @@ class WorldScene(MovingCameraScene):
                 "react": wp.get("react"), "emotion": wp.get("emotion"),
                 "discovery": wp.get("discovery"), "state": wb.STATE,
                 "intensity": lv,
+                # v8 hero-integration + no-downgrade plumbing
+                "accent": hi, "hero_plan": wp.get("hero_plan"),
+                "in_world": wp.get("params", {}).get("mode") == "in_world",
+                "grant_fx": grant_fx, "semantics": sems,
             }
             SHOTS[name](self, ctx)
             last_shot = name
@@ -435,6 +527,17 @@ class WorldScene(MovingCameraScene):
                       + np.array([0, frame.height * close_y, 0]))
         cpin.add_updater(pin_close)
         self.add(cpin)
+        # HERO ECHO (§7.5 v8 contract stage 5): the ending recalls what
+        # the heroes left behind — each consequence object pulses as the
+        # finale begins, and the ride-out passes them all again.
+        for key, mobj in [(k, m) for k, m in wb.STATE.items()
+                          if str(k).startswith("consequence:")][:2]:
+            self.play(mobj.animate.scale(1.12), run_time=0.25,
+                      rate_func=rate_functions.ease_out_quad)
+            self.play(mobj.animate.scale(1 / 1.12), run_time=0.25,
+                      rate_func=rate_functions.ease_in_out_sine)
+            log_event(self, "echo", hero=str(key).split(":", 1)[1],
+                      rt=0.5)
         now = float(getattr(self.renderer, "time", t0))
         exit_rt = max(2.0, t1 - max(t0, now))
         log_event(self, "exit", rt=round(exit_rt, 2))
@@ -461,7 +564,9 @@ class WorldScene(MovingCameraScene):
                 # the ANSWER, huge and central, over the streaking world
                 self.add(make_surge_counter(v_end,
                                             str(cold.get("unit", "")),
-                                            dy=-0.04, hscale=0.105))
+                                            dy=-0.04, hscale=0.105,
+                                            role=cold.get("final_role",
+                                                          "in total")))
                 ride_anims.append(
                     v_end.animate.set_value(float(cold["final"])))
             self.play(*ride_anims,

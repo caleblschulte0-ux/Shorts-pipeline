@@ -380,11 +380,174 @@ def _iss(scale=1.0):
 
 
 # ===========================================================================
+# CONSEQUENCES — what a premium hero leaves behind in the 2D world
+# (§7.5 v8 hero-integration contract, stage 4). Built during the covered
+# span (the 2D take keeps rendering under the splice), registered in
+# STATE["consequence:<hero id>"], adopted into the beat's GROUP so the
+# scale-world zoom gate governs their visibility, and pulsed by the
+# ending's echo pass. Each returns seconds consumed.
+# ===========================================================================
+CONSEQUENCES = {}
+
+
+def consequence(name):
+    def reg(fn):
+        CONSEQUENCES[name] = fn
+        return fn
+    return reg
+
+
+def _adopt(scene, ctx, m):
+    scene.remove(m)                  # Create/FadeIn parked it at the root
+    g = ctx.get("group")
+    if g is not None:
+        g.add(m)                     # ride the exhibit; obey the zoom gate
+    else:
+        scene.add(m)
+
+
+@consequence("orbit_ring")
+def _c_orbit_ring(scene, ctx, plan):
+    """earth_spin's speed band stays behind: a glowing equatorial ring
+    around the subject — the world remembers the hero happened."""
+    hi = ctx.get("accent", "#4FD1C5")
+    sub = STATE.get("level:earth") or ctx.get("group")
+    c = (np.array(sub.get_center()) if sub is not None
+         else np.array(ctx["anchor"]))
+    w = (sub.width if sub is not None and sub.width > 1e-6
+         else ctx["fw"] * 0.4)
+    ring = Circle(radius=w * 0.60, color=hi, stroke_width=w * 0.55,
+                  stroke_opacity=0.75).stretch(0.34, 1).move_to(c)
+    rt = 1.2
+    scene.play(Create(ring), run_time=rt,
+               rate_func=rate_functions.ease_in_out_sine)
+    _adopt(scene, ctx, ring)
+    STATE[f"consequence:{plan.get('id')}"] = ring
+    return rt
+
+
+@consequence("standing_trail")
+def _c_standing_trail(scene, ctx, plan):
+    """monoliths leave their ground behind: a lit baseline + under-glow
+    beneath the lineup — the 2D slabs now stand on the hero's floor."""
+    hi = ctx.get("accent", "#4FD1C5")
+    g = ctx.get("group")
+    if g is None or g.width < 1e-6:
+        return 0.0
+    x0, x1 = float(g.get_left()[0]), float(g.get_right()[0])
+    y = float(g.get_bottom()[1])
+    pad = (x1 - x0) * 0.10
+    base = Line([x0 - pad, y, 0], [x1 + pad, y, 0], color=hi,
+                stroke_width=(x1 - x0) * 0.8, stroke_opacity=0.9)
+    glow = Line([x0 - pad * 2, y, 0], [x1 + pad * 2, y, 0], color=hi,
+                stroke_width=(x1 - x0) * 2.6, stroke_opacity=0.16)
+    keep = VGroup(glow, base)
+    rt = 1.0
+    scene.play(Create(base), FadeIn(glow), run_time=rt,
+               rate_func=rate_functions.ease_out_cubic)
+    _adopt(scene, ctx, keep)
+    STATE[f"consequence:{plan.get('id')}"] = keep
+    return rt
+
+
+@consequence("depth_mark")
+def _c_depth_mark(scene, ctx, plan):
+    """earth_dive leaves the bottom of the world behind: a glowing mark
+    at the exhibit's deepest point."""
+    hi = ctx.get("accent", "#4FD1C5")
+    g = ctx.get("group")
+    bottom = (np.array(g.get_bottom()) if g is not None
+              else np.array(ctx["anchor"]))
+    w = (g.width if g is not None and g.width > 1e-6
+         else ctx["fw"] * 0.3)
+    dot = Dot([bottom[0], bottom[1], 0], radius=w * 0.035, color=hi)
+    tick = Line([bottom[0] - w * 0.12, bottom[1], 0],
+                [bottom[0] + w * 0.12, bottom[1], 0], color=hi,
+                stroke_width=w * 0.5, stroke_opacity=0.8)
+    keep = VGroup(tick, dot)
+    rt = 0.9
+    scene.play(FadeIn(tick), dot.animate.scale(1.6),
+               run_time=rt, rate_func=rate_functions.ease_out_back)
+    _adopt(scene, ctx, keep)
+    STATE[f"consequence:{plan.get('id')}"] = keep
+    return rt
+
+
+# ===========================================================================
 # BUILDERS — waypoint exhibits (one-take safe).
 # ===========================================================================
+def _rank_in_world(wp, theme, scale, anchor=None, post_scale=1.0):
+    """NO-DOWNGRADE MODE (§7.5 v8): after the world gains an environment,
+    comparisons PHYSICALIZE — bars become lit monolith slabs standing on
+    a floor in the persistent starfield, values riding their tops, and a
+    second phase re-compares by ratio. Never a flat standalone chart
+    right after a cinematic reveal."""
+    pts, unit = _points(wp)
+    pts = pts[:5]
+    p = wp.get("params", {})
+    hi = theme.get("highlight", "#4FD1C5")
+    vmax = max(q["value"] for q in pts) or 1.0
+    vmin = min(q["value"] for q in pts) or 1.0
+    n = len(pts)
+    col_w = min(1.5, 6.6 / n) * scale
+    col_h = 3.0 * scale
+    x00 = -(n - 1) / 2 * col_w
+    g = VGroup()
+    span = n * col_w
+    glow = Line([x00 - col_w, -0.02 * scale, 0],
+                [x00 + span, -0.02 * scale, 0], color=hi,
+                stroke_width=span * 1.1, stroke_opacity=0.10)
+    floor = Line([x00 - col_w, 0, 0], [x00 + span, 0, 0],
+                 color="#8fa0bd", stroke_width=span * 0.28,
+                 stroke_opacity=0.8)
+    g.add(glow, floor)
+    slabs = []
+    for i, q in enumerate(sorted(pts, key=lambda r: r["value"])):
+        x = x00 + i * col_w
+        star = q["value"] == vmax
+        slab = Rectangle(width=col_w * 0.44, height=0.02, stroke_width=0,
+                         fill_color=hi if star else COOL,
+                         fill_opacity=0.95)
+        slab.move_to([x, 0, 0], aligned_edge=DOWN)
+        label = Text(_diet(q["label"]), font_size=int(20 * scale),
+                     color="#ffffff").move_to([x, -0.45 * scale, 0])
+        v = ValueTracker(0.0)
+        num = _counter(v, unit, int(24 * scale), "#ffffff",
+                       anchor=slab, direction=UP, buff=0.22 * scale,
+                       size_ref=(slab, "width", 0.55))
+        g.add(slab, label, num)
+        slabs.append((slab, v, q, star))
+    # phase 2: the same facts re-compared as a RATIO (new comparison
+    # method = a real semantic event, not more of the same grammar).
+    ratio = Text(f"{vmax / max(vmin, 1e-9):,.0f}× "
+                 + _diet(p.get("ratio_label", "the slowest")),
+                 font_size=int(30 * scale), weight=BOLD, color=hi)
+    ratio.move_to([x00 + span * 0.5, col_h * 1.12, 0])
+    g.add(ratio)
+    _settle(g, anchor, post_scale, about="origin")
+    ratio.scale(1e-3)                      # size-reveal (zoom-gate safe)
+    anims = [_Par([Create(floor), FadeIn(glow)], run_time=0.9,
+                  sem=("environment", "monolith-floor"), focus="floor")]
+    for slab, v, q, star in slabs:
+        target_h = max(0.05, col_h * q["value"] / vmax) * post_scale
+        anims.append(_Par(
+            [slab.animate(rate_func=rate_functions.ease_out_cubic)
+             .stretch_to_fit_height(target_h, about_edge=DOWN),
+             v.animate.set_value(q["value"])],
+            run_time=1.4 if star else 0.9,
+            state=True, focus="champion" if star else None))
+    anims.append(_Par([ratio.animate(
+        rate_func=rate_functions.ease_out_back).scale(1e3)],
+        run_time=1.0, punch=True, state=True,
+        sem=("comparison", "ratio-stamp"), focus="ratio"))
+    return g, anims
+
+
 @builder("rank")
 def _b_rank(wp, theme, scale, anchor=None, post_scale=1.0):
     """Bars race in smallest -> biggest; the champion lands last."""
+    if wp.get("params", {}).get("mode") == "in_world":
+        return _rank_in_world(wp, theme, scale, anchor, post_scale)
     pts, unit = _points(wp)
     pts = pts[:5]
     hi = theme.get("highlight", "#4FD1C5")
@@ -424,7 +587,10 @@ def _b_rank(wp, theme, scale, anchor=None, post_scale=1.0):
              v.animate.set_value(p["value"])],
             run_time=1.5 if star else 1.0,
             punch=star,             # the champion landing IS the payoff
-            state=True))            # landed bars stay landed
+            state=True,             # landed bars stay landed
+            focus="champion" if star else None))
+    if anims:
+        anims[0].sem = ("comparison", "bar-lineup")
     return g, anims
 
 
@@ -445,15 +611,24 @@ class _Par:
     - state=True: the bundle PERMANENTLY changes the world (bars stay
       landed, ticks stay lit); logged as a `state` ledger row for the
       payoff grade. Defaults to punch (payoffs persist unless said
-      otherwise)."""
+      otherwise).
+
+    Semantic-progression contract (§7.5 v8):
+    - sem=("dim", "what"): this bundle introduces a NEW VISUAL IDEA (a
+      new phase, comparison method, object role...). A counter climbing,
+      a bar extending, a trail growing is NOT one — never tag those.
+    - focus="name": who owns the frame when this bundle plays (the
+      dominant-subject contract; one primary at a time)."""
 
     def __init__(self, anims, run_time=1.0, punch=False, cam=None,
-                 state=None):
+                 state=None, sem=None, focus=None):
         self.anims = anims
         self.run_time = run_time
         self.punch = punch
         self.cam = cam
         self.state = punch if state is None else state
+        self.sem = sem
+        self.focus = focus
 
 
 @builder("compare")
@@ -502,7 +677,8 @@ def _b_compare(wp, theme, scale, anchor=None, post_scale=1.0):
     if mult is not None:
         anims.append(_Par(
             [mult.animate(rate_func=rate_functions.ease_out_back)
-             .scale(1e3)], run_time=0.5, punch=True))
+             .scale(1e3)], run_time=0.5, punch=True,
+            sem=("comparison", "multiplier"), focus="multiplier"))
     else:
         anims[-1].punch = True      # the tall column landing is the payoff
     return g, anims
@@ -559,7 +735,8 @@ def _b_gauge(wp, theme, scale, anchor=None, post_scale=1.0):
         _Par([fill.animate(rate_func=rate_functions.ease_in_quad)
               .stretch_to_fit_height(target_h, about_edge=DOWN),
               v.animate.set_value(actual["value"]),
-              glow.animate.set_opacity(0.16)], run_time=1.9, punch=True),
+              glow.animate.set_opacity(0.16)], run_time=1.9, punch=True,
+             sem=("state", "past-the-limit"), focus="gauge"),
         # 3) the surround keeps heating — consequence lingers
         _Par([glow.animate.set_opacity(0.26)], run_time=1.2),
     ]
@@ -606,7 +783,8 @@ def _b_flipcompare(wp, theme, scale, anchor=None, post_scale=1.0):
     flipped.move_to(np.array(shaft.get_start()), aligned_edge=UP)
     anims = [
         _Par([Create(shaft), FadeIn(dlabel)], run_time=1.4),
-        _Par([Transform(mtn, flipped)], run_time=1.8, punch=True),
+        _Par([Transform(mtn, flipped)], run_time=1.8, punch=True,
+             sem=("metaphor", "flip"), focus="mountain"),
         _Par([rem.animate.set_opacity(1.0)], run_time=0.8),
     ]
     return g, anims
@@ -774,11 +952,13 @@ def _b_comparison_race(wp, theme, scale, anchor=None, post_scale=1.0):
              v.animate.set_value(p["value"])],
             run_time=2.0 if p is fast else 1.5,
             punch=(p is fast and ratio_txt is None),
-            cam=cam, state=True))
+            cam=cam, state=True,
+            focus="winner" if p is fast else None))
     if ratio_txt is not None:
         anims.append(_Par(
             [ratio_txt.animate(rate_func=rate_functions.ease_out_back)
-             .scale(1e3)], run_time=0.5, punch=True))
+             .scale(1e3)], run_time=0.5, punch=True,
+            sem=("comparison", "ratio-stamp"), focus="ratio"))
     if odo_v is not None:
         rate = float(tick_spec.get("rate", 1.0))
         anims.append(_Par(                       # honest odometer: real
@@ -1033,5 +1213,5 @@ def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
     anims.extend(motions)
     anims.append(_Par([value.animate(
         rate_func=rate_functions.ease_out_back).scale(1.18)],
-        run_time=0.7, punch=True))
+        run_time=0.7, punch=True, focus="stamp"))
     return g, anims
