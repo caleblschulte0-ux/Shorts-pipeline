@@ -454,7 +454,7 @@ def _hero_beat(seg_cfg: dict, seg, theme: dict, work: Path,
                                bottom=True)
     out = work / f"herobeat{idx}.mp4"
     _run(["ffmpeg", "-y", "-loglevel", "error",
-          "-framerate", str(HERO_FPS), "-i", str(frames_dir / "hero_%04d.png"),
+          "-framerate", str(hero_fps), "-i", str(frames_dir / "hero_%04d.png"),
           "-i", str(overlay), "-filter_complex",
           f"[0:v]minterpolate=fps={FPS}:mi_mode=mci,scale={W}:{H}[v];"
           f"[v][1:v]overlay=0:0,format=yuv420p[o]",
@@ -549,14 +549,23 @@ _EARTH_TEMPLATES = {"earth_spin", "orbit_fly", "cosmic_exit", "earth_dive"}
 
 
 def _hero_spec(template: str, seg_cfg: dict, theme: dict,
-               seconds: float = HERO_SECONDS) -> dict:
+               seconds: float = HERO_SECONDS, breach: bool = False) -> dict:
+    # Interpolation-suitability triage (§7.5 v8): fps class per template
+    # — crossing objects and fast edges warp at 10fps minterpolate.
+    from data_learning.render_director import FPS_CLASS
     spec = {
         "template": template,
         "accent": theme.get("highlight", "#4FD1C5"),
-        "seconds": seconds, "fps": HERO_FPS, "samples": 32,
+        "seconds": seconds, "fps": int(FPS_CLASS.get(template, HERO_FPS)),
+        "samples": 32,
         "res_x": 1440, "res_y": 810,
         "style": 3,     # visual language version — busts the hero
     }                   # cache when the brand look changes
+    if breach:
+        # hero-integration contract: open inside the 2D push-in target,
+        # end wide enough to match the mutated return frame
+        spec["entry"] = "breach"
+        spec["exit"] = "wide"
     if template in _EARTH_TEMPLATES:
         # v8: THE continents ride in the spec (blender_hero never imports
         # pipeline code) — and being part of the md5 cache key, editing
@@ -583,18 +592,20 @@ def _hero_spec(template: str, seg_cfg: dict, theme: dict,
 
 
 def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
-               work: Path, idx, seconds: float = HERO_SECONDS) -> Path:
+               work: Path, idx, seconds: float = HERO_SECONDS,
+               breach: bool = False) -> Path:
     """Render a Blender hero and dress it for splicing: minterpolated to
     30fps, scaled, luminance-dip fades at both ends (the simple splice —
     no motion matching, per doctrine)."""
-    spec = _hero_spec(template, seg_cfg, theme, seconds)
+    spec = _hero_spec(template, seg_cfg, theme, seconds, breach=breach)
     spec_path = work / f"whspec{idx}.json"
     spec_path.write_text(json.dumps(spec))
     # Cycles frames are the expensive asset — cache them outside the
     # tempdir (CURIO_HERO_CACHE) keyed by the spec, so a failed splice
     # or a re-run never re-pays the render.
     cache_root = os.environ.get("CURIO_HERO_CACHE")
-    expected = max(4, int(round(HERO_FPS * seconds)))
+    hero_fps = int(spec.get("fps", HERO_FPS))
+    expected = max(4, int(round(hero_fps * seconds)))
     if cache_root:
         import hashlib
         key = hashlib.md5(json.dumps(spec, sort_keys=True)
@@ -620,7 +631,7 @@ def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
     factor = max(1.0, dur / seconds)
     fade_out_st = max(0.0, dur - 0.3)
     _run(["ffmpeg", "-y", "-loglevel", "error",
-          "-framerate", str(HERO_FPS), "-i", str(frames_dir / "hero_%04d.png"),
+          "-framerate", str(hero_fps), "-i", str(frames_dir / "hero_%04d.png"),
           "-vf",
           f"setpts={factor:.4f}*PTS,minterpolate=fps={FPS}:mi_mode=mci,"
           f"scale={W}:{H},"
@@ -678,6 +689,19 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
         if "emotion" not in wp and seg.get("emotion"):
             wp["emotion"] = seg["emotion"]     # emotion seed (§7.5 v4)
         wps.append(wp)
+    # THE DIRECTOR (§7.5 v8): premium frames are allocated by narrative
+    # value BEFORE the world spec is written — the engine executes the
+    # plan (breach, consequence, grants) and its ledger tells us where
+    # to cut. Chart beats after the first environment grant physicalize
+    # (mode=in_world). Every decision is on the record.
+    from data_learning.render_director import plan_heroes
+    hero_plans, dreport = plan_heroes(world, wps, windows)
+    for i, plan in hero_plans.items():
+        wps[i]["hero_plan"] = plan
+    for i in dreport.get("in_world_beats", []):
+        wps[i].setdefault("params", {})["mode"] = "in_world"
+    (work / "director_report.json").write_text(json.dumps(dreport,
+                                                          indent=1))
     spec = {
         "title": st.title,
         # On-screen closing is the takeaway line ONLY (text diet) — the
@@ -723,33 +747,35 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
           "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
           str(conformed)])
     body = conformed
-    # Blender heroes over their waypoint windows (waypoint i <-> beat i+1).
-    # Beat heroes: wp["hero"] is a template name or {"template",
-    # "seconds"} — the uneven premium budget (§7.5 v6) lives in the
-    # per-hero seconds.
+    # Blender heroes: the director chose them; the ENGINE chose when.
+    # Each planned beat hero has a `breach` ledger row — its t+rt is the
+    # splice cut (the fade lands mid-dive, never on an unrelated cut).
+    # No breach row means the engine logged skipped:hero; we drop the
+    # job and the QA gate decides whether that's fatal.
+    world_rows = json.loads(
+        (work / "world_ledger.json").read_text()).get("rows", [])
     jobs = []
-    for i, wp in enumerate(wps):
-        hz = wp.get("hero")
-        if not hz:
+    for i, plan in sorted(hero_plans.items()):
+        br = next((r for r in world_rows if r.get("kind") == "breach"
+                   and r.get("hero") == plan["id"]), None)
+        if br is None:
+            print(f"[longform] hero {plan['id']} not breached by the "
+                  "engine — window too small; the gate will judge")
             continue
-        if hz is True:
-            hz = {"template": "monoliths"}
-        elif isinstance(hz, str):
-            hz = {"template": hz}
-        template = str(hz.get("template", "monoliths"))
-        secs = float(hz.get("seconds", HERO_SECONDS))
-        t0, t1 = windows[i + 1]
-        # The hero punctuates the beat, it doesn't own it: mild slow-mo
-        # cap (1.3x) fills the splice with real motion; the world take
-        # keeps the rest of the window.
-        h_end = min(t1, t0 + 1.3 * secs)
+        t0 = float(br["t"]) + float(br.get("rt", 0.0))
+        h_end = min(t0 + float(plan["splice"]), total - 0.5)
+        wp = wps[i]
         seg = {**(seg_cfgs[i] if i < len(seg_cfgs) else {}), **wp}
         # stamp overlay: the beat's number stays on screen during its
         # premium window (mute test holds through the hero)
         params = wp.get("params") or {}
-        stamp = (hz.get("stamp") or params.get("display"),
-                 hz.get("stamp_label") or params.get("label"))
-        jobs.append((f"beat {i + 1}", template, secs, seg, t0, h_end, i,
+        hc = (wp.get("hero_candidate")
+              or (wp.get("hero") if isinstance(wp.get("hero"), dict)
+                  else None) or {})
+        stamp = (hc.get("stamp") or params.get("display"),
+                 hc.get("stamp_label") or params.get("label"))
+        jobs.append((f"beat {i + 1}", plan["template"],
+                     float(plan["seconds"]), seg, t0, h_end, i,
                      stamp, False))
     # World heroes: the hook and the ending get premium windows too
     # (window: "cold_open" | "ending"; end_offset keeps the vector
@@ -776,7 +802,8 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
         for attempt in (1, 2):
             try:
                 hero = _hero_clip(template, seg, theme, h_end - t0, work,
-                                  idx, seconds=secs)
+                                  idx, seconds=secs,
+                                  breach=isinstance(idx, int))
                 if stamp and stamp[0]:
                     png = work / f"stamp{idx}.png"
                     _stamp_png(str(stamp[0]), stamp[1], theme, png,
@@ -1021,6 +1048,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 es = work / "evidence_sheet.png"
                 if es.exists():   # eye-QA: on-topic check before publish
                     shutil.copy(es, out_path.with_suffix(".evidence.png"))
+                dr = work / "director_report.json"
+                if dr.exists():   # the premium-budget decision record
+                    shutil.copy(dr, out_path.with_suffix(".director.json"))
             except Exception as e:  # noqa: BLE001
                 print(f"[longform] WORLD ENGINE FAILED ({e}) — falling back "
                       "to clip-per-beat renderer", file=sys.stderr)

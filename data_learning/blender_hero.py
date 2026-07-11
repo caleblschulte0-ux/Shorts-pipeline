@@ -176,8 +176,21 @@ def build(spec: dict):
     sc.render.fps = fps
     sc.frame_start, sc.frame_end = 1, frames
     z0, z1 = (6.5, 4.6) if not invert else (8.0, 5.2)
-    for f, (y, z) in ((1, (-19.0, z0)), (frames, (-14.0, z1))):
-        cam.location = (3.2, y, z)
+    if spec.get("entry") == "breach":
+        # hero-integration contract: open close on the CHAMPION's face
+        # (the 2D breach dove into the champion bar), then REVERSE the
+        # old dolly-in — the lineup is WIDEST at the cut, so the return
+        # to the 2D world never reads as a downgrade.
+        ci = vals.index(vmax)
+        xc = x0 + ci * gap
+        hc = heights[ci]
+        keys = ((1, (xc, -6.5, (-hc * 0.7) if invert else hc * 0.7)),
+                (max(2, int(frames * 0.35)), (3.2, -16.0, z0)),
+                (frames, (3.2, -21.0, z0 * 1.1)))
+    else:
+        keys = ((1, (3.2, -19.0, z0)), (frames, (3.2, -14.0, z1)))
+    for f, loc in keys:
+        cam.location = loc
         cam.keyframe_insert(data_path="location", frame=f)
     for fc in cam.animation_data.action.fcurves:
         for kp in fc.keyframe_points:
@@ -457,8 +470,8 @@ def build_earth_spin(spec: dict):
     # equatorial speed band
     bpy.ops.mesh.primitive_torus_add(major_segments=96, minor_segments=12, major_radius=5.14, minor_radius=0.015,
                                      location=(0, 0, 0))
-    bpy.context.object.data.materials.append(
-        _emission("belt", accent, 1.8))
+    belt_m = _emission("belt", accent, 1.8)
+    bpy.context.object.data.materials.append(belt_m)
     bpy.ops.object.light_add(type="SUN", location=(24, -20, 12))
     bpy.context.object.data.energy = 4.5
     _stars(110, spread=420.0, exclude=90.0, bright=4.0)
@@ -471,7 +484,21 @@ def build_earth_spin(spec: dict):
     sc.camera = cam
     cam.data.clip_end = 1500
     cam.constraints.new(type="TRACK_TO").target = target
-    for f, loc in ((1, (6.0, -30.0, 8.0)), (frames, (-6.0, -21.0, 4.5))):
+    if spec.get("entry") == "breach":
+        # hero-integration contract: open INSIDE the 2D push-in (the
+        # limb fills the frame), arc out, and END WIDE with the speed
+        # band brightening — the band is what stays behind in the 2D
+        # world as the orbit_ring consequence.
+        keys = ((1, (2.5, -11.0, 2.0)),
+                (max(2, int(frames * 0.45)), (6.5, -27.0, 7.5)),
+                (frames, (-6.0, -24.0, 6.0)))
+        em = belt_m.node_tree.nodes["Emission"].inputs["Strength"]
+        for f, v in ((max(2, int(frames * 0.72)), 1.8), (frames, 4.5)):
+            em.default_value = v
+            em.keyframe_insert(data_path="default_value", frame=f)
+    else:
+        keys = ((1, (6.0, -30.0, 8.0)), (frames, (-6.0, -21.0, 4.5)))
+    for f, loc in keys:
         cam.location = loc
         cam.keyframe_insert(data_path="location", frame=f)
     _bezier(cam)
