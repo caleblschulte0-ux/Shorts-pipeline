@@ -1,0 +1,33 @@
+{
+  "key": "birds_fly_nonstop_bird_navigation",
+  "title": "Bird Navigation",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Magnetic Field",
+      "value": 50.0,
+      "period": "2020"
+    },
+    {
+      "label": "Visual Cues",
+      "value": 30.0,
+      "period": "2019"
+    },
+    {
+      "label": "Olfactory Cues",
+      "value": 20.0,
+      "period": "2018"
+    }
+  ]
+}

@@ -41,7 +41,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 PRICES",
           "topic": "home prices",
-          "say": "Your parents' house cost 270 thousand in 2019. Today, 449. Same house, 180 thousand more for nothing."
+          "say": "Your parents' house cost 270 thousand in 2019. Today, 449. Same house, 180 thousand more for nothing.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -52,7 +61,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 RATES",
           "topic": "mortgage rates",
-          "say": "Then mortgage rates jumped from 3.9 percent to 6.6. Nearly double the interest, tens of thousands more for the same house."
+          "say": "Then mortgage rates jumped from 3.9 percent to 6.6. Nearly double the interest, tens of thousands more for the same house.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -101,7 +119,60 @@
           "topic": "price jump since 2020",
           "ascending": false,
           "use_baseline": true,
-          "say": "Since 2020, eggs are up 86 percent. Not 86 cents, 86 percent, while your paycheck barely moved."
+          "say": "Since 2020, eggs are up 86 percent. Not 86 cents, 86 percent, while your paycheck barely moved.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "egg",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "coffee",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "beef",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bread",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "milk",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bananas",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -112,7 +183,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 YOUR BUDGET",
           "topic": "the share of income spent on food",
-          "say": "Add it up and food now eats 11.8 percent of your income, the most in decades."
+          "say": "Add it up and food now eats 11.8 percent of your income, the most in decades.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -123,7 +203,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 WHAT YOU PAY",
           "topic": "the average grocery bill",
-          "say": "The average grocery bill hit 1,030 dollars a month, about 300 more than 2019. Same fridge."
+          "say": "The average grocery bill hit 1,030 dollars a month, about 300 more than 2019. Same fridge.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ],
       "question": "What's gotten insanely expensive at your store? Comment."
@@ -157,7 +246,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 BALANCES",
           "topic": "credit card debt",
-          "say": "Card debt just passed 1,370 billion dollars, nearly 1.4 trillion on plastic, climbing every month."
+          "say": "Card debt just passed 1,370 billion dollars, nearly 1.4 trillion on plastic, climbing every month.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -168,7 +266,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE RATE",
           "topic": "the credit card interest rate",
-          "say": "And interest hit 22.9 percent. At that rate your balance grows even if you never swipe again. That's the trap."
+          "say": "And interest hit 22.9 percent. At that rate your balance grows even if you never swipe again. That's the trap.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -179,7 +286,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 NO CUSHION",
           "topic": "the savings rate",
-          "say": "Meanwhile savings cratered, from 16.8 percent of income in 2020 to just 3.6. The cushion is gone."
+          "say": "Meanwhile savings cratered, from 16.8 percent of income in 2020 to just 3.6. The cushion is gone.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ],
       "question": "Credit card debt: winning or losing? Tell me below."
@@ -213,7 +329,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 YOUR RAISE",
           "topic": "the average wage",
-          "say": "On paper you won. The average wage climbed to 31.9 dollars an hour. Your paycheck genuinely got bigger."
+          "say": "On paper you won. The average wage climbed to 31.9 dollars an hour. Your paycheck genuinely got bigger.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -224,7 +349,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 AFTER INFLATION",
           "topic": "real, inflation-adjusted pay",
-          "say": "But adjust for prices and the wage index sits at 99, below 2019. After inflation, you earn less."
+          "say": "But adjust for prices and the wage index sits at 99, below 2019. After inflation, you earn less.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -235,7 +369,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE TREADMILL",
           "topic": "hours of work to cover rent",
-          "say": "Now it takes 69 hours of work to cover one month's rent, up from 52. Two extra days a month, gone."
+          "say": "Now it takes 69 hours of work to cover one month's rent, up from 52. Two extra days a month, gone.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ],
       "question": "Did your raise actually help? Comment below."
@@ -269,7 +412,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE HEADLINE",
           "topic": "the unemployment rate",
-          "say": "Unemployment sits at just 4.3 percent, historically low. That's the headline, but it hides a lot."
+          "say": "Unemployment sits at just 4.3 percent, historically low. That's the headline, but it hides a lot.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -280,7 +432,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 PART-TIME",
           "topic": "people stuck in part-time work",
-          "say": "Right now 4.8 million people are stuck part-time who want full-time. Employed on paper, not by choice."
+          "say": "Right now 4.8 million people are stuck part-time who want full-time. Employed on paper, not by choice.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -291,7 +452,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 WORKING DOUBLE",
           "topic": "people working two or more jobs",
-          "say": "And 9 million now work two or more jobs, a record. Why does surviving take two paychecks?"
+          "say": "And 9 million now work two or more jobs, a record. Why does surviving take two paychecks?",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ],
       "question": "Is your job market good or brutal right now?"
@@ -387,7 +557,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE PREMIUM",
           "topic": "employer health insurance premium",
-          "say": "Your employer paid 8,120 dollars per worker for coverage in 2026, up from 6,015 in 2019. 35 percent more for the same plan."
+          "say": "Your employer paid 8,120 dollars per worker for coverage in 2026, up from 6,015 in 2019. 35 percent more for the same plan.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -398,7 +577,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 YOUR DEDUCTIBLE",
           "topic": "average annual deductible",
-          "say": "Your deductible, what you pay before insurance kicks in, hit 2,340 dollars, up from 1,655. You pay more to wait longer."
+          "say": "Your deductible, what you pay before insurance kicks in, hit 2,340 dollars, up from 1,655. You pay more to wait longer.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -409,7 +597,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE WORST CASE",
           "topic": "out-of-pocket maximum",
-          "say": "And the out-of-pocket cap hit 5,620 dollars before insurance covers everything, up from 3,970. The safety net got a hole."
+          "say": "And the out-of-pocket cap hit 5,620 dollars before insurance covers everything, up from 3,970. The safety net got a hole.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ],
       "question": "What's your deductible this year? Drop it below."
@@ -443,7 +640,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE PILE",
           "topic": "total student loan debt",
-          "say": "Total student debt hit 1.74 trillion dollars, double what it was in 2010. A new class graduates owing more every May."
+          "say": "Total student debt hit 1.74 trillion dollars, double what it was in 2010. A new class graduates owing more every May.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -454,7 +660,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 YOUR PAYMENT",
           "topic": "average monthly student loan payment",
-          "say": "The average student loan payment is 352 dollars a month, more than most car payments, for a degree you already have."
+          "say": "The average student loan payment is 352 dollars a month, more than most car payments, for a degree you already have.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -465,7 +680,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE PAYOFF",
           "topic": "college wage premium",
-          "say": "And the payoff shrank. The wage premium for a bachelor's fell from 66 percent in 2014 to 54 today. Cost up, advantage down."
+          "say": "And the payoff shrank. The wage premium for a bachelor's fell from 66 percent in 2014 to 54 today. Cost up, advantage down.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ],
       "question": "Was your degree worth it? Yes or no below."
@@ -501,7 +725,52 @@
           "topic": "median retirement savings by age",
           "ascending": false,
           "use_baseline": true,
-          "say": "The median 50-something has 130 thousand saved. The target is around 360 thousand. That's a 230,000 dollar hole mid-career."
+          "say": "The median 50-something has 130 thousand saved. The target is around 360 thousand. That's a 230,000 dollar hole mid-career.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "piggy bank",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "piggy bank",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "piggy bank",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "piggy bank",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "piggy bank",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -636,7 +905,52 @@
           "role": "3 \u00b7 THE NEIGHBORS",
           "topic": "distance to the nearest exoplanets",
           "say": "And the closest, Proxima b, sits 4.2 light years away. That's 75,000 years at today's fastest spacecraft.",
-          "ascending": true
+          "ascending": true,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         }
       ],
       "question": "Do you think we're alone out there? Comment below."
@@ -670,7 +984,52 @@
           "insight_type": "rank",
           "role": "1 \u00b7 WHAT ACTUALLY KILLS US",
           "topic": "annual US deaths (thousands)",
-          "say": "Here's what actually kills Americans. Heart disease takes 695 thousand a year, cancer 605 thousand. Nearly half of all deaths."
+          "say": "Here's what actually kills Americans. Heart disease takes 695 thousand a year, cancer 605 thousand. Nearly half of all deaths.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "heart",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cancer cell",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "car crash",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "stroke",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "brain",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -682,7 +1041,52 @@
           "role": "2 \u00b7 WHAT WE FEAR",
           "topic": "annual US deaths from things we fear",
           "say": "Now what terrifies us. Sharks kill about 1 American a year, lightning 20. Your nightmares are a rounding error.",
-          "ascending": true
+          "ascending": true,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "shark",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bee",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightning",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "hurricane",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tornado",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -693,7 +1097,44 @@
           "insight_type": "rank",
           "role": "3 \u00b7 THE REAL KILLERS",
           "topic": "preventable US deaths (thousands)",
-          "say": "The real killers are habits. Smoking still takes 480 thousand a year, bad diet around 300 thousand. Slow daily choices."
+          "say": "The real killers are habits. Smoking still takes 480 thousand a year, bad diet around 300 thousand. Slow daily choices.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cigarette",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "junk food",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "alcohol",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "couch",
+                "data": {
+                  "value_from": "item:3"
+                }
+              }
+            ]
+          }
         }
       ],
       "question": "What are you irrationally scared of? Tell me below."
@@ -749,7 +1190,36 @@
           "insight_type": "rank",
           "role": "3 \u00b7 UNDER THE SURFACE",
           "topic": "wildlife decline by habitat",
-          "say": "Freshwater life is vanishing fastest, down 85 percent. The rivers you grew up near hold a fraction of what they did."
+          "say": "Freshwater life is vanishing fastest, down 85 percent. The rivers you grew up near hold a fraction of what they did.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "coral",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
         }
       ],
       "question": "What animal do you never see anymore? Comment below."
@@ -784,7 +1254,52 @@
           "ascending": false,
           "role": "1 \u00b7 THE DAMAGE",
           "topic": "cumulative price rise since 2020",
-          "say": "Eggs up 44 percent since 2020. Gas up 33, rent up 29, groceries up 25. That's a new price floor."
+          "say": "Eggs up 44 percent since 2020. Gas up 33, rent up 29, groceries up 25. That's a new price floor.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "egg",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "gas pump",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "house",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "light bulb",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "groceries",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -808,7 +1323,36 @@
           "use_baseline": true,
           "role": "3 \u00b7 STILL BURNING",
           "topic": "year-over-year inflation by category (April 2026)",
-          "say": "Did it work? Gas is still up 28.4 percent year over year. The stuff you can't avoid is still the most expensive."
+          "say": "Did it work? Gas is still up 28.4 percent year over year. The stuff you can't avoid is still the most expensive.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "gas pump",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "power plant",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "groceries",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
         }
       ],
       "question": "Are higher rates helping or hurting you? Comment."
@@ -957,7 +1501,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE DELAY",
           "topic": "median age at first marriage (men)",
-          "say": "In 1980, men married at 24.7. Today it's 30.5; women went from 22 to 28.6. A full decade shifted."
+          "say": "In 1980, men married at 24.7. Today it's 30.5; women went from 22 to 28.6. A full decade shifted.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -968,7 +1521,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE DECLINE",
           "topic": "US marriage rate per 1,000 people",
-          "say": "And fewer marry at all. The rate fell from 10.6 per thousand in 1980 to 5.8 today, nearly cut in half."
+          "say": "And fewer marry at all. The rate fell from 10.6 per thousand in 1980 to 5.8 today, nearly cut in half.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -981,7 +1543,44 @@
           "use_baseline": true,
           "role": "3 \u00b7 THE DIVIDE",
           "topic": "share of adults married by income quartile",
-          "say": "The top income quartile still marries at 58 percent. The bottom, 31. Marriage became a luxury stability buys."
+          "say": "The top income quartile still marries at 58 percent. The bottom, 31. Marriage became a luxury stability buys.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "couple",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "couple",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "couple",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "couple",
+                "data": {
+                  "value_from": "item:3"
+                }
+              }
+            ]
+          }
         }
       ],
       "question": "Married, single, or never? Drop it in the comments."
@@ -1016,7 +1615,28 @@
           "insight_type": "rank",
           "role": "1 \u00b7 THE GUESS",
           "topic": "what people think vs really pay",
-          "say": "Each charge is tiny, so you ignore it. You feel like you spend 86 dollars a month. You actually spend 219."
+          "say": "Each charge is tiny, so you ignore it. You feel like you spend 86 dollars a month. You actually spend 219.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wallet",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wallet",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1027,7 +1647,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE PILE-UP",
           "topic": "subscriptions per household",
-          "say": "They pile up because nothing stops one. The average home went from 3 subscriptions to 12 in six years."
+          "say": "They pile up because nothing stops one. The average home went from 3 subscriptions to 12 in six years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1038,7 +1667,44 @@
           "insight_type": "rank",
           "role": "3 \u00b7 THE TRAP",
           "topic": "subscriber regrets",
-          "say": "And they know it. 48 percent pay for something they never use; 42 percent forgot they signed up. The forgetting is the model."
+          "say": "And they know it. 48 percent pay for something they never use; 42 percent forgot they signed up. The forgetting is the model.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "sad face",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "forgetful face",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "angry face",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "shocked face",
+                "data": {
+                  "value_from": "item:3"
+                }
+              }
+            ]
+          }
         }
       ],
       "caption": "You think you spend about $86 a month on subscriptions. The real average is $219 \u2014 and it climbs every single year. Here's exactly where the money leaks, in 4 charts. How many subscriptions are you actually paying for? \ud83d\udc47"
@@ -1074,7 +1740,36 @@
           "role": "1 \u00b7 THE BLIND SPOT",
           "topic": "surface mapped in detail",
           "say": "Space is easy to look at; a telescope sees all of Mars. But you can't see through water, so only 25 percent of our seafloor is mapped.",
-          "ascending": true
+          "ascending": true,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "moon",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mars",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1085,7 +1780,48 @@
           "insight_type": "rank",
           "role": "2 \u00b7 HOW DEEP",
           "topic": "ocean depth by point (meters)",
-          "say": "It's absurdly deep and dark. The Titanic sits at 3,800 meters; the deepest trench hits 11,000, where pressure would crush a sub."
+          "say": "It's absurdly deep and dark. The Titanic sits at 3,800 meters; the deepest trench hits 11,000, where pressure would crush a sub.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "diving helmet",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "diving helmet",
+                "data": {
+                  "value_from": "item:1",
+                  "per_value": 100.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "diving helmet",
+                "data": {
+                  "value_from": "item:2",
+                  "per_value": 100.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "diving helmet",
+                "data": {
+                  "value_from": "item:3",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1096,7 +1832,28 @@
           "insight_type": "share",
           "role": "3 \u00b7 THE UNKNOWN",
           "topic": "marine species (thousands)",
-          "say": "We've named about 240 thousand ocean species and think there are 2 million. Nine in ten are still down there, unseen."
+          "say": "We've named about 240 thousand ocean species and think there are 2 million. Nine in ten are still down there, unseen.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         }
       ],
       "caption": "We have better maps of Mars and the Moon than our own ocean floor \u2014 only about 25% of it is mapped, and 9 in 10 ocean species are still unknown to science. The real final frontier is right under the boat. Would you ride to the bottom? \ud83d\udc47"
@@ -1130,7 +1887,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 NO ONE TO CALL",
           "topic": "Americans with no close friends",
-          "say": "In 1990 only 3 percent of Americans had zero close friends. Today it's 12, quadrupled. More people have no one to call."
+          "say": "In 1990 only 3 percent of Americans had zero close friends. Today it's 12, quadrupled. More people have no one to call.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1141,7 +1907,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 LESS TOGETHER",
           "topic": "in-person time with friends",
-          "say": "Why? We stopped hanging out. In-person time with friends fell from 6.5 hours a week to 2.5. We swapped it for screens."
+          "say": "Why? We stopped hanging out. In-person time with friends fell from 6.5 hours a week to 2.5. We swapped it for screens.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1152,7 +1927,44 @@
           "insight_type": "rank",
           "role": "3 \u00b7 IT'S DEADLY",
           "topic": "early-death risk by factor",
-          "say": "And chronic loneliness raises your risk of dying early by 26 percent, about the same as obesity. Your body treats alone like an injury."
+          "say": "And chronic loneliness raises your risk of dying early by 26 percent, about the same as obesity. Your body treats alone like an injury.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person",
+                "data": {
+                  "value_from": "item:3"
+                }
+              }
+            ]
+          }
         }
       ],
       "caption": "In 1990, 3% of Americans said they had no close friends. Today it's 12% \u2014 and chronic loneliness raises your risk of early death by 26%, about the same as obesity. We've never been more connected, or more alone. How many close friends do you actually have? \ud83d\udc47"
@@ -1187,7 +1999,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE COLLAPSE",
           "topic": "seconds of focus before switching",
-          "say": "In 2004 people focused on a screen for 150 seconds before switching. Now it's 47. Something trained your brain to bail."
+          "say": "In 2004 people focused on a screen for 150 seconds before switching. Now it's 47. Something trained your brain to bail.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1198,7 +2019,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE FUEL",
           "topic": "daily short-form video (minutes)",
-          "say": "That something is short video. Daily time went from 20 minutes to 95, each swipe hitting the same reward chemical as a slot machine."
+          "say": "That something is short video. Daily time went from 20 minutes to 95, each swipe hitting the same reward chemical as a slot machine.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1209,7 +2039,36 @@
           "insight_type": "share",
           "role": "3 \u00b7 THE REAL HOUR",
           "topic": "where a work hour goes (minutes)",
-          "say": "And every interruption takes 23 minutes to recover from. A full hour of work leaves maybe 40 real minutes of focus."
+          "say": "And every interruption takes 23 minutes to recover from. A full hour of work leaves maybe 40 real minutes of focus.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "clock",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "clock",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "clock",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
         }
       ],
       "caption": "In 2004 the average person focused on a screen for 150 seconds before switching. Today? 47 seconds. Meanwhile daily short-video time nearly 5x'd. Your attention span didn't break by accident. Did you make it to the end? Be honest \ud83d\udc47"
@@ -1247,7 +2106,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE SURGE",
           "topic": "global orbital rocket launches per year",
-          "say": "The world launched about 80 rockets in 2000. In 2025 it was 272, more than tripled, half of that in the last 5 years."
+          "say": "The world launched about 80 rockets in 2000. In 2025 it was 272, more than tripled, half of that in the last 5 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1260,7 +2128,52 @@
           "use_baseline": true,
           "role": "2 \u00b7 WHO'S FLYING",
           "topic": "orbital launches by operator (2025)",
-          "say": "That's SpaceX. It ran 134 of 2025's 272 launches, nearly half. One private company out-launched entire nations."
+          "say": "That's SpaceX. It ran 134 of 2025's 272 launches, nearly half. One private company out-launched entire nations.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rocket",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rocket",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rocket",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rocket",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rocket",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1430,7 +2343,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE LOAD",
           "topic": "data-center electricity",
-          "say": "Data centers used 200 terawatt hours in 2018. By 2026 it's 580, and AI is the reason."
+          "say": "Data centers used 200 terawatt hours in 2018. By 2026 it's 580, and AI is the reason.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1442,7 +2364,28 @@
           "role": "2 \u00b7 PER ANSWER",
           "topic": "energy per request",
           "say": "One AI answer burns about 2.9 watt hours, nearly ten times a Google search at 0.3.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "light bulb",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "light bulb",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1453,7 +2396,20 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE GRID",
           "topic": "share of US power",
-          "say": "So their slice of US electricity jumps from 2.5 percent toward 9 percent by 2030."
+          "say": "So their slice of US electricity jumps from 2.5 percent toward 9 percent by 2030.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "globe",
+                "data": {
+                  "value_from": "total"
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -1488,7 +2444,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE CRASH",
           "topic": "battery cost",
-          "say": "Battery costs crashed from 780 dollars per kilowatt hour to about 100."
+          "say": "Battery costs crashed from 780 dollars per kilowatt hour to about 100.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1499,7 +2464,20 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE SHIFT",
           "topic": "electric car share",
-          "say": "So electric jumped to 24 percent of new cars sold, up from just 2 percent."
+          "say": "So electric jumped to 24 percent of new cars sold, up from just 2 percent.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "car",
+                "data": {
+                  "value_from": "total"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1510,7 +2488,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE CHOICE",
           "topic": "EV models on sale",
-          "say": "And buyers now pick from over 300 models, six times more than a decade ago."
+          "say": "And buyers now pick from over 300 models, six times more than a decade ago.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ]
     },
@@ -1545,7 +2532,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 MORE FLYERS",
           "topic": "air passengers",
-          "say": "Airlines now carry 5.2 billion passengers a year, nearly double 2010."
+          "say": "Airlines now carry 5.2 billion passengers a year, nearly double 2010.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1556,7 +2552,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 LESS ON TIME",
           "topic": "on-time arrivals",
-          "say": "On-time arrivals slipped to 74 percent, down from 80."
+          "say": "On-time arrivals slipped to 74 percent, down from 80.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1568,7 +2573,44 @@
           "role": "3 \u00b7 THE REASON",
           "topic": "causes of delay",
           "say": "The biggest cause isn't weather, it's just too many planes, 35 percent of delays.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "airplane",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cloud",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "clock",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wrench",
+                "data": {
+                  "value_from": "item:3"
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -1604,7 +2646,52 @@
           "role": "1 \u00b7 WHERE",
           "topic": "where waste happens",
           "say": "Most waste isn't farms, it's us. 43 percent happens in our own homes.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "apple",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "plate",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "farm",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "store",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "factory",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1615,7 +2702,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 HOW MUCH",
           "topic": "food wasted per person",
-          "say": "The average American now tosses 325 pounds of food a year."
+          "say": "The average American now tosses 325 pounds of food a year.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1626,7 +2722,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE COST",
           "topic": "value wasted",
-          "say": "That adds up to about 310 billion dollars scraped straight into the trash."
+          "say": "That adds up to about 310 billion dollars scraped straight into the trash.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ]
     },
@@ -1665,7 +2770,28 @@
           "role": "1 \u00b7 THE SCALE",
           "topic": "galaxy count estimate (billions)",
           "say": "Hubble told us there were about 200 billion galaxies. JWST looked deeper and found closer to 2000 billion \u2014 2 trillion. That's 10 times more than we thought.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "galaxy",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "galaxy",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1676,7 +2802,16 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE OLDEST LIGHT",
           "topic": "oldest confirmed galaxy (million years after Big Bang)",
-          "say": "JWST keeps breaking its own record. The newest: a galaxy that formed just 290 million years after the Big Bang. The universe is 13,800 million years old. We are watching the very first stars switch on."
+          "say": "JWST keeps breaking its own record. The newest: a galaxy that formed just 290 million years after the Big Bang. The universe is 13,800 million years old. We are watching the very first stars switch on.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1689,7 +2824,28 @@
           "role": "3 \u00b7 THE BROKEN EQUATION",
           "topic": "universe expansion rate (km/s per megaparsec)",
           "say": "Here's the problem. Early-universe physics predicts the expansion rate at 67. JWST direct measurement says 73. That gap \u2014 the Hubble Tension \u2014 means something in our model of the universe is wrong.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "telescope",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "telescope",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -1726,7 +2882,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE RISE",
           "topic": "global myopia prevalence (percent)",
-          "say": "In 1990, 22 percent of the world was nearsighted. By 2020 that hit 34 percent \u2014 2.6 billion people. The WHO projects 50 percent by 2050. This is growing faster than any eye disease in history."
+          "say": "In 1990, 22 percent of the world was nearsighted. By 2020 that hit 34 percent \u2014 2.6 billion people. The WHO projects 50 percent by 2050. This is growing faster than any eye disease in history.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1738,7 +2903,60 @@
           "ascending": false,
           "role": "2 \u00b7 THE REGIONAL GAP",
           "topic": "myopia rate by world region \u2014 young adults (percent)",
-          "say": "But here's what makes it strange. 80 percent of young adults in East Asia are nearsighted. In the Americas, it's 31 percent. In Africa, just 14. The same species, looking at wildly different numbers."
+          "say": "But here's what makes it strange. 80 percent of young adults in East Asia are nearsighted. In the Americas, it's 31 percent. In Africa, just 14. The same species, looking at wildly different numbers.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "eye",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "eye",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "eye",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "eye",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "eye",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "eye",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1749,7 +2967,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE DANGER ZONE",
           "topic": "high myopia (severe, \u2265-6 diopters) \u2014 global (percent)",
-          "say": "The scary part is high myopia \u2014 the severe kind that risks blindness. It was 3 percent in 2000. It's 8 percent today, and projected to hit 10 percent by 2050. That's 1 billion people at risk of losing their sight."
+          "say": "The scary part is high myopia \u2014 the severe kind that risks blindness. It was 3 percent in 2000. It's 8 percent today, and projected to hit 10 percent by 2050. That's 1 billion people at risk of losing their sight.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ]
     },
@@ -1787,7 +3014,60 @@
           "ascending": false,
           "role": "1 \u00b7 THE DAY",
           "topic": "how the average American spends 24 hours",
-          "say": "Here is where the day actually goes. Sleep wins at 8.7 hours. But leisure \u2014 5 hours \u2014 beats out work at 3.4 hours. Most people think they work more than they play. The BLS data disagrees."
+          "say": "Here is where the day actually goes. Sleep wins at 8.7 hours. But leisure \u2014 5 hours \u2014 beats out work at 3.4 hours. Most people think they work more than they play. The BLS data disagrees.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bed",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tv",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "desk",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "broom",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "stroller",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fork",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1800,7 +3080,28 @@
           "role": "2 \u00b7 THE SCREEN SPLIT",
           "topic": "screen vs. non-screen leisure (hours per day)",
           "say": "Of those 5 leisure hours, screens take 3.2. Non-screen leisure \u2014 socializing, reading, exercise \u2014 gets just 1.8 hours. Reading alone is 12 minutes. We have more free time than ever, and screens claimed most of it.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "phone",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "book",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1811,7 +3112,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE CREEP",
           "topic": "daily leisure screen time (hours per day)",
-          "say": "And it's been climbing. In 2003, screen leisure was 2.8 hours a day. By 2023, it hit 3.6. That's nearly an hour of your daily life that migrated from the physical world to a screen in 20 years."
+          "say": "And it's been climbing. In 2003, screen leisure was 2.8 hours a day. By 2023, it hit 3.6. That's nearly an hour of your daily life that migrated from the physical world to a screen in 20 years.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ]
     },
@@ -1848,7 +3158,16 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE TREND",
           "topic": "US wildfire acres burned per year (millions)",
-          "say": "In the mid-1980s, US wildfires burned roughly 2 to 3 million acres a year. By 2015 and 2020, that reached 10.1 million acres. The trend line is not subtle \u2014 it's a straight climb."
+          "say": "In the mid-1980s, US wildfires burned roughly 2 to 3 million acres a year. By 2015 and 2020, that reached 10.1 million acres. The trend line is not subtle \u2014 it's a straight climb.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1909,7 +3228,28 @@
           "role": "1 \u00b7 EVER BORN",
           "topic": "humans ever born vs alive",
           "say": "About 117 billion people have ever been born.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1921,7 +3261,20 @@
           "role": "2 \u00b7 ALIVE NOW",
           "topic": "share alive today",
           "say": "The 8 billion alive today are only about 7 percent of everyone.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1932,7 +3285,16 @@
           "insight_type": "trend",
           "role": "3 \u00b7 THE CURVE",
           "topic": "population over time",
-          "say": "It took all of history to reach 1 billion \u2014 then we added 7 billion in 200 years."
+          "say": "It took all of history to reach 1 billion \u2014 then we added 7 billion in 200 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ]
     },
@@ -1968,7 +3330,52 @@
           "role": "1 \u00b7 THE KILLER",
           "topic": "deaths by animal",
           "say": "Mosquitoes kill more than 700,000 people a year \u2014 sharks barely 10.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mosquito",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "snake",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "dog",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crocodile",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "shark",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1980,7 +3387,44 @@
           "role": "2 \u00b7 WHY",
           "topic": "mosquito-borne disease",
           "say": "Most of it is malaria \u2014 about 600,000 deaths a year.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "malaria",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "dengue",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "yellow fever",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "other",
+                "data": {
+                  "value_from": "item:3"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -1992,7 +3436,44 @@
           "role": "3 \u00b7 FEAR VS FACT",
           "topic": "predators we fear",
           "say": "Snakes alone kill over 100,000 \u2014 the animals we fear most barely register.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "snake",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crocodile",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lion",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "shark",
+                "data": {
+                  "value_from": "item:3"
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -2028,7 +3509,52 @@
           "role": "1 \u00b7 THE HABIT",
           "topic": "daily screen time",
           "say": "People now average around 7 hours a day on screens \u2014 in some countries it's over 9.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "phone",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "phone",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "phone",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "phone",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "phone",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -2040,7 +3566,52 @@
           "role": "2 \u00b7 WHERE IT GOES",
           "topic": "screen hours by activity",
           "say": "Most of it is social media and video \u2014 about four and a half hours a day combined.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "social media",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tv",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "gaming console",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "music",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "book",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -2052,7 +3623,52 @@
           "role": "3 \u00b7 THE COST",
           "topic": "years of your life",
           "say": "Over a lifetime that's roughly 8 years on screens \u2014 more than you'll spend eating or socializing.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bed",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "desk",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "phone",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "people",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "plate",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -2088,7 +3704,52 @@
           "role": "1 \u00b7 TOTAL SPEAKERS",
           "topic": "total speakers",
           "say": "English leads with about 1.5 billion total speakers \u2014 most learned it as a second language.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "english flag",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "chinese flag",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "indian flag",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "spanish flag",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "french flag",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -2100,7 +3761,52 @@
           "role": "2 \u00b7 NATIVE SPEAKERS",
           "topic": "native speakers",
           "say": "By native speakers it flips \u2014 Mandarin comes first, and English drops to third.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "chinese flag",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "spanish flag",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "english flag",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "indian flag",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "portuguese flag",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -2112,7 +3818,28 @@
           "role": "3 \u00b7 ONLINE",
           "topic": "languages of the web",
           "say": "Online, English dominates \u2014 more than half of all websites are written in it.",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "english flag",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "spanish flag",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -2423,48 +4150,48 @@
             "elements": [
               {
                 "type": "object",
-                "region": "center",
-                "subject": "city",
+                "region": "ground-row",
+                "subject": "skyscraper",
                 "data": {
                   "value_from": "item:0"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "city",
+                "region": "ground-row",
+                "subject": "skyscraper",
                 "data": {
                   "value_from": "item:1"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "city",
+                "region": "ground-row",
+                "subject": "skyscraper",
                 "data": {
                   "value_from": "item:2"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "city",
+                "region": "ground-row",
+                "subject": "skyscraper",
                 "data": {
                   "value_from": "item:3"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "city",
+                "region": "ground-row",
+                "subject": "skyscraper",
                 "data": {
                   "value_from": "item:4"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "city",
+                "region": "ground-row",
+                "subject": "skyscraper",
                 "data": {
                   "value_from": "item:5"
                 }
@@ -2486,8 +4213,8 @@
             "title": true,
             "elements": [
               {
-                "type": "timeline_axis",
-                "region": "center"
+                "type": "orbit_group",
+                "region": "full"
               }
             ]
           }
@@ -2531,7 +4258,7 @@
             "elements": [
               {
                 "type": "timeline_axis",
-                "region": "center"
+                "region": "full"
               }
             ]
           }
@@ -2553,48 +4280,48 @@
             "elements": [
               {
                 "type": "object",
-                "region": "center",
-                "subject": "person",
+                "region": "ground-row",
+                "subject": "human",
                 "data": {
                   "value_from": "item:0"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "person",
+                "region": "ground-row",
+                "subject": "human",
                 "data": {
                   "value_from": "item:1"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "person",
+                "region": "ground-row",
+                "subject": "human",
                 "data": {
                   "value_from": "item:2"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "person",
+                "region": "ground-row",
+                "subject": "human",
                 "data": {
                   "value_from": "item:3"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "person",
+                "region": "ground-row",
+                "subject": "human",
                 "data": {
                   "value_from": "item:4"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "person",
+                "region": "ground-row",
+                "subject": "human",
                 "data": {
                   "value_from": "item:5"
                 }
@@ -2618,11 +4345,11 @@
             "elements": [
               {
                 "type": "stack",
-                "region": "center",
+                "region": "hero",
                 "subject": "pill",
                 "data": {
-                  "value_from": "star",
-                  "per_value": 100.0
+                  "value_from": "item:0",
+                  "per_value": 10.0
                 }
               }
             ]
@@ -2669,7 +4396,7 @@
             "elements": [
               {
                 "type": "timeline_axis",
-                "region": "center"
+                "region": "full"
               }
             ]
           }
@@ -2685,7 +4412,8 @@
           "use_baseline": true,
           "role": "2 \u00b7 THE MAP",
           "topic": "average home insurance premium by state ($)",
-          "say": "But the average hides the extremes. In Florida, the typical premium is around 11,000 dollars. Louisiana, 6,300. Texas, 4,400. The national average is 2,400 \u2014 and in Vermont, just 900."
+          "say": "But the average hides the extremes. In Florida, the typical premium is around 11,000 dollars. Louisiana, 6,300. Texas, 4,400. The national average is 2,400 \u2014 and in Vermont, just 900.",
+          "viz": "geo_us"
         },
         {
           "source": "offline",
@@ -2746,7 +4474,7 @@
             "elements": [
               {
                 "type": "timeline_axis",
-                "region": "center"
+                "region": "full"
               }
             ]
           }
@@ -2768,48 +4496,48 @@
             "elements": [
               {
                 "type": "object",
-                "region": "center",
-                "subject": "cup",
+                "region": "ground-row",
+                "subject": "coffee cup",
                 "data": {
                   "value_from": "item:0"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "cup",
+                "region": "ground-row",
+                "subject": "coffee cup",
                 "data": {
                   "value_from": "item:1"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "cup",
+                "region": "ground-row",
+                "subject": "coffee cup",
                 "data": {
                   "value_from": "item:2"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "cup",
+                "region": "ground-row",
+                "subject": "coffee cup",
                 "data": {
                   "value_from": "item:3"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "cup",
+                "region": "ground-row",
+                "subject": "coffee cup",
                 "data": {
                   "value_from": "item:4"
                 }
               },
               {
                 "type": "object",
-                "region": "center",
-                "subject": "cup",
+                "region": "ground-row",
+                "subject": "coffee cup",
                 "data": {
                   "value_from": "item:5"
                 }
@@ -2834,10 +4562,10 @@
             "elements": [
               {
                 "type": "stack",
-                "region": "center",
-                "subject": "cup",
+                "region": "hero",
+                "subject": "coffee bean",
                 "data": {
-                  "value_from": "star",
+                  "value_from": "item:0",
                   "per_value": 100.0
                 }
               }
@@ -2880,7 +4608,7 @@
             "elements": [
               {
                 "type": "timeline_axis",
-                "region": "center"
+                "region": "full"
               }
             ]
           }
@@ -2902,7 +4630,7 @@
             "elements": [
               {
                 "type": "object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "car",
                 "data": {
                   "value_from": "item:0"
@@ -2910,7 +4638,7 @@
               },
               {
                 "type": "object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "car",
                 "data": {
                   "value_from": "item:1"
@@ -2918,7 +4646,7 @@
               },
               {
                 "type": "object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "car",
                 "data": {
                   "value_from": "item:2"
@@ -2926,7 +4654,7 @@
               },
               {
                 "type": "object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "car",
                 "data": {
                   "value_from": "item:3"
@@ -2934,7 +4662,7 @@
               },
               {
                 "type": "object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "car",
                 "data": {
                   "value_from": "item:4"
@@ -2942,7 +4670,7 @@
               },
               {
                 "type": "object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "car",
                 "data": {
                   "value_from": "item:5"
@@ -2968,11 +4696,11 @@
             "elements": [
               {
                 "type": "stack",
-                "region": "center",
-                "subject": "hourglass",
+                "region": "hero",
+                "subject": "clock",
                 "data": {
-                  "value_from": "star",
-                  "per_value": 100.0
+                  "value_from": "item:0",
+                  "per_value": 10.0
                 }
               }
             ]
@@ -3014,7 +4742,7 @@
             "elements": [
               {
                 "type": "timeline_axis",
-                "region": "center"
+                "region": "full"
               }
             ]
           }
@@ -3036,7 +4764,7 @@
             "elements": [
               {
                 "type": "object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "book",
                 "data": {
                   "value_from": "item:0"
@@ -3044,26 +4772,10 @@
               },
               {
                 "type": "object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "book",
                 "data": {
                   "value_from": "item:1"
-                }
-              },
-              {
-                "type": "object",
-                "region": "center",
-                "subject": "book",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "object",
-                "region": "center",
-                "subject": "book",
-                "data": {
-                  "value_from": "item:3"
                 }
               }
             ]
@@ -9853,6 +11565,251 @@
         }
       ],
       "question": "What's the largest space rock you've heard of?"
+    },
+    {
+      "slug": "birds-migrate-insanely-far",
+      "title": "Birds Migrate Insanely Far",
+      "hook": "Get ready to have your mind blown by the incredible journeys of birds",
+      "closing": "The next time you see a bird, remember its epic journey",
+      "hashtags": [
+        "birdmigration",
+        "wildlife",
+        "nature",
+        "conservation",
+        "ornithology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "birds_migrate_insanely_far_longest_migrations",
+          "params": {
+            "file": "birds_migrate_insanely_far_longest_migrations.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LONGEST MIGRATIONS",
+          "topic": "Longest Migrations",
+          "say": "The Arctic tern migrates an average of 44,000 miles each year, while the Amur falcon travels around 22,000 miles, and the semipalmated sandpiper covers approximately 18,000 miles.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bird",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bird",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bird",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "birds_migrate_insanely_far_fastest_flyers",
+          "params": {
+            "file": "birds_migrate_insanely_far_fastest_flyers.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 FASTEST FLYERS",
+          "topic": "Fastest Flyers",
+          "say": "The peregrine falcon is the fastest flyer, reaching speeds of up to 242 miles per hour, while the golden eagle can reach speeds of up to 240 miles per hour, and the gyrfalcon can fly at speeds of up to 200 miles per hour.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "plane",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 100.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "birds_migrate_insanely_far_highest_altitudes",
+          "params": {
+            "file": "birds_migrate_insanely_far_highest_altitudes.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 HIGHEST ALTITUDES",
+          "topic": "Highest Altitudes",
+          "say": "The bar-headed goose has been tracked flying as high as 29,000 feet, while the whooper swan has been recorded at altitudes of up to 27,000 feet, and the Ruppell's griffon vulture has been spotted at heights of up to 24,000 feet.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "mountain",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "birds_migrate_insanely_far_longest_non_stop_flig",
+          "params": {
+            "file": "birds_migrate_insanely_far_longest_non_stop_flig.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 LONGEST NON-STOP F",
+          "topic": "Longest Non-Stop Flights",
+          "say": "The great frigatebird has been tracked flying non-stop for up to 48 hours, while the albatross can fly for up to 36 hours without rest, and the arctic tern can fly for up to 24 hours without landing.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most amazing bird migration story you've heard?"
+    },
+    {
+      "slug": "birds-fly-nonstop",
+      "title": "Birds Fly Nonstop",
+      "hook": "Some birds make insane journeys without rest",
+      "closing": "Nature's endurance champions",
+      "hashtags": [
+        "birdmigration",
+        "longestflights",
+        "nature",
+        "wildlife",
+        "ornithology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "birds_fly_nonstop_longest_flights",
+          "params": {
+            "file": "birds_fly_nonstop_longest_flights.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LONGEST FLIGHTS",
+          "topic": "Longest Flights",
+          "say": "The Arctic tern migrates around 44,000 miles each year, while the common cuckoo covers about 12,000 miles, and the Amur falcon flies some 22,000 miles.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "airplane",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "airplane",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "birds_fly_nonstop_flight_speeds",
+          "params": {
+            "file": "birds_fly_nonstop_flight_speeds.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 FLIGHT SPEEDS",
+          "topic": "Flight Speeds",
+          "say": "The peregrine falcon is the fastest bird on record, reaching speeds of up to 242 miles per hour, followed by the golden eagle at 240 miles per hour, and the gyrfalcon at 200 miles per hour.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "bird",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "birds_fly_nonstop_migration_patterns",
+          "params": {
+            "file": "birds_fly_nonstop_migration_patterns.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 MIGRATION PATTERNS",
+          "topic": "Migration Patterns",
+          "say": "Over the past 50 years, many bird species have been migrating earlier due to climate change, with some species arriving at their destinations up to 20 days earlier than they did in the 1960s.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "birds_fly_nonstop_bird_navigation",
+          "params": {
+            "file": "birds_fly_nonstop_bird_navigation.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 BIRD NAVIGATION",
+          "topic": "Bird Navigation",
+          "say": "Scientists believe that about 50% of bird species use the Earth's magnetic field to navigate during migration, while about 30% use visual cues like the sun and stars, and 20% use olfactory cues like smells.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "compass",
+                "data": {
+                  "value_from": "star"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the longest flight you've ever taken?"
     }
   ],
   "videos": [

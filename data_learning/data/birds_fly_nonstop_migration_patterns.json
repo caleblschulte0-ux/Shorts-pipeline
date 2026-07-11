@@ -1,0 +1,28 @@
+{
+  "key": "birds_fly_nonstop_migration_patterns",
+  "title": "Migration Patterns",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1960s",
+      "value": 0.0,
+      "period": "1960"
+    },
+    {
+      "label": "2020s",
+      "value": 20.0,
+      "period": "2020"
+    }
+  ]
+}

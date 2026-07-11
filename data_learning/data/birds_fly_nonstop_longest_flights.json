@@ -1,0 +1,33 @@
+{
+  "key": "birds_fly_nonstop_longest_flights",
+  "title": "Longest Flights",
+  "unit": "miles",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Arctic Tern",
+      "value": 44000.0,
+      "period": "2020"
+    },
+    {
+      "label": "Common Cuckoo",
+      "value": 12000.0,
+      "period": "2019"
+    },
+    {
+      "label": "Amur Falcon",
+      "value": 22000.0,
+      "period": "2018"
+    }
+  ]
+}

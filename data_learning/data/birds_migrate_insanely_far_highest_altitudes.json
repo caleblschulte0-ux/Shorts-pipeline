@@ -1,0 +1,33 @@
+{
+  "key": "birds_migrate_insanely_far_highest_altitudes",
+  "title": "Highest Altitudes",
+  "unit": "feet",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Bar-Headed Goose",
+      "value": 29000.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Whooper Swan",
+      "value": 27000.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Ruppell's Griffon Vulture",
+      "value": 24000.0,
+      "period": "recorded"
+    }
+  ]
+}

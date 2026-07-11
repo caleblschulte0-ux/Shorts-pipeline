@@ -1,0 +1,33 @@
+{
+  "key": "birds_migrate_insanely_far_longest_non_stop_flig",
+  "title": "Longest Non-Stop Flights",
+  "unit": "hours",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Great Frigatebird",
+      "value": 48.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Albatross",
+      "value": 36.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Arctic Tern",
+      "value": 24.0,
+      "period": "recorded"
+    }
+  ]
+}

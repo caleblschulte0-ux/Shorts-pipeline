@@ -1,0 +1,33 @@
+{
+  "key": "birds_fly_nonstop_flight_speeds",
+  "title": "Flight Speeds",
+  "unit": "mph",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Peregrine Falcon",
+      "value": 242.0,
+      "period": "2020"
+    },
+    {
+      "label": "Golden Eagle",
+      "value": 240.0,
+      "period": "2019"
+    },
+    {
+      "label": "Gyrfalcon",
+      "value": 200.0,
+      "period": "2018"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "key": "birds_migrate_insanely_far_longest_migrations",
+  "title": "Longest Migrations",
+  "unit": "miles",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-11"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Arctic Tern",
+      "value": 44000.0,
+      "period": "annually"
+    },
+    {
+      "label": "Amur Falcon",
+      "value": 22000.0,
+      "period": "annually"
+    },
+    {
+      "label": "Semipalmated Sandpiper",
+      "value": 18000.0,
+      "period": "annually"
+    }
+  ]
+}
