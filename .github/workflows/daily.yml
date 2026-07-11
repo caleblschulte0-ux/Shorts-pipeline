@@ -70,9 +70,13 @@ jobs:
         id: preflight
         run: |
           set -e
-          if [ -f PAUSED ]; then
+          # PAUSED = global kill switch (all channels). PAUSED_DAILY = pause
+          # ONLY this trending channel (operator ruling 2026-07-11: keep
+          # trending down for the distribution diagnosis while the other
+          # channels resume). Either file skips the daily run.
+          if [ -f PAUSED ] || [ -f PAUSED_DAILY ]; then
             echo "skip=manual" >> $GITHUB_OUTPUT
-            echo "Pipeline paused: PAUSED file exists in repo root."
+            echo "Daily paused: PAUSED or PAUSED_DAILY file exists in repo root."
             exit 0
           fi
           fc=$(cat state/failure_count.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
