@@ -769,12 +769,31 @@ the queue stocked.
      world template (`depth`/`scale`/`system` — ONE connected place),
      the story template, and one waypoint per beat naming its object
      builder (`gauge`/`flipcompare`/`drilljourney`/`scalelevel`/
-     `comparison_race`/`rank`/`compare`) with 1–2 waypoints carrying a
-     Blender `"hero"` (`"earth_dive"` or `"monoliths"`) on the facts
-     that matter most. Prime directive: "if Pixar had to explain this,
-     what would the audience SEE?" Invariants: 2–3 heroes, ≥2 metaphor
-     waypoints, ≤2 chart waypoints, and the video must pass the mute
-     test (~70% followable with sound off);
+     `comparison_race`/`rank`/`compare`). Prime directive: "if Pixar
+     had to explain this, what would the audience SEE?" Invariants:
+     ≥2 metaphor waypoints, ≤2 chart waypoints, and the video must
+     pass the mute test (~70% followable with sound off);
+   - **author premium as CANDIDATES, not seconds** (§7.5 v8 — "premium
+     time is allocated by narrative value, not beat count"): waypoints
+     whose fact deserves an impossible camera get `"hero_candidate":
+     {"template": "earth_spin"|"monoliths"|"earth_dive",
+     "max_seconds": N, "scores": {"mental_model": 1-3}}` — the
+     RenderBudgetDirector zeroes weak candidates, floors the flagship
+     reveal at 12 s, and writes its decisions to `<out>.director.json`.
+     Author each such beat in the DIRECTOR HANDOFF SHAPE: starting
+     belief → new discovery → required transformation → dominant
+     visual → premium allowance → persistent consequence → ending
+     state. The engine executes the 5-stage hero contract (Setup →
+     Breach → Transformation → Consequence → Echo) automatically —
+     your job is choosing WHICH beat deserves it and why;
+   - **no semantic plateaus** (§7.5 v8 law — "no visual grammar may
+     remain conceptually unchanged for more than 12–15 seconds"): long
+     beats must develop mid-beat — an evidence cut, a discovery, a new
+     comparison phase, a hero breach. Counters climbing and bars
+     extending do not count. Never two consecutive beats with the same
+     grammar (the machines beat after a space reveal physicalizes:
+     the director sets rank `mode: in_world` automatically). Author to
+     pass `scripts/qa_semantics.py`, don't fight it;
    - **author beats as SHOT LISTS before words** (§7.5 THE SHOT SYSTEM):
      the doctrine is "the viewer should feel like they are riding the
      camera, not watching a presentation." Set `"cold_open"` on the

@@ -838,6 +838,8 @@ def _b_drilljourney(wp, theme, scale, anchor=None, post_scale=1.0):
              v.animate.set_value(p["value"]),
              stamp.animate.set_opacity(1.0)], run_time=seg_rt,
             punch=(k == len(stamps) - 1),    # deepest stamp = payoff
+            sem=(("state", "deepest-mark")
+                 if k == len(stamps) - 1 else None),
             state=True))                     # stamped depths persist
         prev = p["value"]
     return g, anims
@@ -1041,7 +1043,11 @@ def _b_speedometer(wp, theme, scale, anchor=None, post_scale=1.0):
              tick.animate.set_color(hi)],         # passed ticks stay lit
             run_time=1.6 if last else 1.0,
             punch=last,                           # pinning at max = payoff
-            state=True))                          # lit ticks stay lit
+            state=True,                           # lit ticks stay lit
+            # the pin is an IRREVERSIBLE state change — the whole ladder
+            # lit and the needle at max IS the final answer landing
+            sem=("state", "needle-pinned") if last else None,
+            focus="needle" if last else None))
     return g, anims
 
 

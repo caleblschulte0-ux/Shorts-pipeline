@@ -184,7 +184,73 @@ view); build reusable scene templates before reaching for it.
   Checked in eye-QA on every video; below the bar → rebuild the visuals,
   not the words.
 
-## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-10, v7)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-11, v8)
+
+**THE DIRECTOR'S CUT (v8) — the round-8 verdict:** the engine can make
+premium shots; it doesn't yet know *which moments deserve them, how long
+they should last, or how they permanently alter everything after them.*
+Preview 6 exposed **semantic plateaus**: the screen changes while the
+viewer's understanding doesn't. *"The pipeline confuses movement with
+meaningful visual progression."*
+
+- **THE SEMANTIC-PROGRESSION LAW:** *"No visual grammar may remain
+  conceptually unchanged for more than 12–15 seconds. If narration
+  needs longer, the beat must develop through multiple visual phases."*
+  These COUNT as progression: a new spatial scale, causal relationship,
+  object role, environment, physical metaphor, camera dimension,
+  comparison method, revealed piece of the system, irreversible
+  world-state change. These do NOT: counters climbing, continuous
+  travel, ambient drift, trail growth, camera breathing, bars
+  extending, the same composition with new numbers. The engine logs
+  `semantic` rows only for the former; `scripts/qa_semantics.py` fails
+  any >15 s span without one, any long beat without MID-beat
+  development, and any two consecutive beats with identical grammar.
+- **THE RENDER-BUDGET DIRECTOR:** *"Premium time is allocated by
+  narrative value, not by beat count."* Candidates are scored (mental-
+  model change, emotional payoff, impossible-camera value, could-2D-do-
+  it penalty); low values get ZERO Blender; the flagship reveal gets
+  12–15 s. The budget is denominated in Cycles FRAMES (fps classes make
+  seconds lie about cost); the decision record ships as
+  `<out>.director.json`. Authors write `hero_candidate` (template,
+  max_seconds, optional scores) — never fixed seconds.
+- **THE HERO-INTEGRATION CONTRACT** (every premium shot, 5 stages):
+  **Setup** (the 2D world builds the question/object) → **Breach** (the
+  camera accelerates INTO an existing object — the engine logs the
+  `breach` row and the assembler cuts exactly there; never an unrelated
+  cut) → **Impossible transformation** (something 2D can't do) →
+  **Persistent consequence** (performed UNDER the splice: intensity up,
+  capability granted, a consequence object left in the world, camera
+  wider — the return frame is already the changed world) → **Echo**
+  (the ending pulses what the heroes left behind). *"If a premium shot
+  can be deleted without requiring any later scene to change, it is
+  decorative and fails."* — enforced: the beat's payoff must land AFTER
+  the splice, and qa_escalation `--director` fails any missing stage.
+- **THE NO-DOWNGRADE LAW:** *"Every later beat must inherit at least
+  one visual capability introduced by the previous hero beat."* Grants
+  are engine state (`CAPS`) with real pixels behind them: the granted
+  parallax star layer persists for every later beat, consequence
+  objects stay in the world, intensity never calms. Chart beats after
+  an environment grant PHYSICALIZE (`mode: in_world` — bars become lit
+  monolith slabs on a floor with a ratio-stamp second phase). *"Do not
+  follow a cinematic galaxy reveal with a disconnected standalone bar
+  chart."*
+- **THE DOMINANT-SUBJECT CONTRACT:** at every moment ONE element owns
+  the frame (builders tag `focus=`; payoffs own it by definition;
+  logged, gated). **LEGIBILITY QA:** the engine measures every text at
+  its beat's planned frame — px height ≥18, inside the safe frame —
+  and logs violations that fail the build. Big numbers carry ROLE
+  captions (`you, right now` vs `all your motion, combined`) so the
+  ending's values never read as competing answers.
+- **INTERPOLATION TRIAGE:** per-template fps class (10 fps for slow
+  pullbacks/gradual depth; 15 for crossing objects/fast edges), priced
+  by the director; the frame sheet samples INSIDE every hero splice so
+  optical-flow warping is caught like wrong evidence was. *"Fifteen
+  artifact-free seconds are more valuable than 25 seconds of warped
+  edges."*
+- **THE DIRECTOR HANDOFF SHAPE:** a beat is authored as *starting
+  belief → new discovery → required transformation → dominant visual →
+  premium allowance → persistent consequence → ending state* — never
+  "make a race / make a chart".
 
 **THE DOCUMENTARY CUT (v7):**
 - **THE EVIDENCE LAW:** animation EXPLAINS; evidence GROUNDS. A hero
@@ -446,19 +512,28 @@ legible in the safe area; reads muted; survives platform UI. Then:
   locked somewhere, which the one-take engine should make impossible).
 - **The mute test (§7):** watch a muted pass; if you can't follow ~70%,
   the visuals aren't doing the explanatory work yet.
-- **Frame sheet (§7.5):** `python3 scripts/qa_frames.py <mp4>` — one frame
-  per minute tiled into a contact sheet; judge EACH frame against the
-  thumbnail-click test ("if this frame became the thumbnail, would someone
-  click?"). Any minute without a click-worthy frame gets redone.
-- **Escalation gate (§7.5 v4/v5):** `python3 scripts/qa_escalation.py
-  <mp4's .ledger.json>` — validates the escalation laws against the
-  engine's event ledger (no >9 s hole per beat, a payoff per beat,
-  discovery cadence, no skipped reactions) PLUS the payoff grade
-  (world-state change, new space revealed, ends-stronger). Design QA
-  runs on rules the engine logged, never on pixel inference.
+- **Frame sheet (§7.5):** `python3 scripts/qa_frames.py <mp4> --ledger
+  <mp4's .ledger.json>` — one frame per minute tiled into a contact
+  sheet, PLUS three samples inside every hero splice (interpolation
+  eye-QA: warped edges, trails, occlusions). Judge each frame against
+  the thumbnail-click test; any minute without a click-worthy frame
+  gets redone.
+- **Escalation + hero contract (§7.5 v4/v5/v8):**
+  `python3 scripts/qa_escalation.py <mp4's .ledger.json> --director
+  <mp4's .director.json>` — the escalation laws (no >9 s hole per beat,
+  a payoff per beat, discovery cadence, no skipped reactions), the
+  payoff grade (world-state change, new space revealed, ends-stronger),
+  the HERO CONTRACT (breach/consequence/grant/post-splice-payoff/echo/
+  no-downgrade; a planned-but-skipped hero is fatal), and every
+  engine-measured legibility violation. Design QA runs on rules the
+  engine logged, never on pixel inference.
+- **Semantic progression (§7.5 v8):** `python3 scripts/qa_semantics.py
+  <mp4's .ledger.json>` — no >15 s span without a new visual idea, long
+  beats develop mid-beat, no grammar plateau across consecutive beats,
+  every beat declares a dominant subject.
 - **Builder contract:** `python3 scripts/check_builders.py` — every
-  registered builder returns an escalating timeline (run when builders
-  change).
+  registered builder (and in-world variant) returns an escalating
+  timeline (run when builders change).
 
 ## 10. Invariants no brain may break [SHARED]
 - Trend is raw material — never publish the raw item form.

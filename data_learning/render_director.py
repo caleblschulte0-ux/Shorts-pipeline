@@ -50,8 +50,10 @@ EMOTION_VALUE = {"wonder": 1, "mystery": 1, "speed": 2, "scale": 2,
 # Hero-integration defaults per template: what the camera breaches
 # through, what stays changed in the 2D world afterwards, and which
 # capability the premium window grants to every later beat.
-TEMPLATE_OBJECT = {"earth_spin": "earth", "earth_dive": "earth",
-                   "orbit_fly": "earth", "cosmic_exit": "earth"}
+# STATE keys as builders actually register them (scalelevel uses
+# "level:<tableau>"); the engine falls back to the beat's group.
+TEMPLATE_OBJECT = {"earth_spin": "level:earth", "earth_dive": "level:earth",
+                   "orbit_fly": "level:earth", "cosmic_exit": "level:earth"}
 TEMPLATE_CONSEQUENCE = {"earth_spin": "orbit_ring",
                         "monoliths": "standing_trail",
                         "earth_dive": "depth_mark"}
