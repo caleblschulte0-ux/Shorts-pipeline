@@ -29,6 +29,15 @@ PAYOFF GRADE (§7.5 v5 — world consequence), per beat:
      the second half of the window).
 Any of A–C failing fails the build, like the base rules.
 
+HERO CONTRACT (§7.5 v8), with --director <report.json> — per planned
+beat hero: a breach row inside its beat with the splice span fitting and
+a >=2.5s tail; a hero_consequence state row in the covered span; a
+capability grant; a payoff AFTER the splice end (the DELETABILITY law —
+cutting the hero must force later footage to change); an echo row in the
+final window; capability inheritance in every later beat (no-downgrade);
+and no skipped:hero rows. Legibility rows (engine-measured text px /
+off-frame) always fail.
+
 Exits 1 on any violation.
 """
 from __future__ import annotations
@@ -45,13 +54,71 @@ MIN_DISCOVERIES = 2
 SPACE_ZOOM_MIN = 0.15      # |log(w1/w0)| — the camera changed magnitude
 SPACE_MOVE_MIN = 0.30      # centre travel in units of the target width
 HAPPENING = {"travel", "reveal", "event", "payoff", "reaction",
-             "discovery", "evidence"}
+             "discovery", "evidence", "breach"}
 SURPRISE = {"discovery", "cold_open", "evidence"}
+
+
+def _check_heroes(report: dict, windows, rows, fails: list[str]):
+    """The hero-integration contract, verified from what the engine
+    actually logged (never from pixels)."""
+    plan_ids = list(report.get("plan") or [])
+    planned = {c["id"]: c for c in report.get("candidates", [])
+               if c.get("id") in plan_ids}
+    for r in rows:
+        if r["kind"] == "skipped" and r.get("what") == "hero":
+            fails.append(f"hero {r.get('hero')}: planned but the window "
+                         "couldn't fit it — fix seconds/window before "
+                         "the premium run")
+    fin0, fin1 = windows[-1]
+    for hid, c in planned.items():
+        beat = int(c["beat"])
+        t0, t1 = windows[beat + 1]
+        brs = [r for r in rows if r["kind"] == "breach"
+               and r.get("hero") == hid]
+        if len(brs) != 1:
+            fails.append(f"hero {hid}: {len(brs)} breach rows in the "
+                         "ledger (contract: exactly one)")
+            continue
+        br = brs[0]
+        cut0 = br["t"] + float(br.get("rt", 0.0))
+        cut1 = cut0 + float(c.get("splice", 0.0))
+        if not (t0 <= br["t"] and cut1 <= t1 - 2.5):
+            fails.append(f"hero {hid}: splice [{cut0:.1f},{cut1:.1f}] "
+                         f"doesn't fit beat {beat} "
+                         f"[{t0:.1f},{t1:.1f}] with a >=2.5s tail")
+        if not any(r["kind"] == "state"
+                   and r.get("what") == "hero_consequence"
+                   and r.get("hero") == hid
+                   and cut0 - 0.1 <= r["t"] <= cut1 + 0.1 for r in rows):
+            fails.append(f"hero {hid}: no persistent consequence in the "
+                         "covered span — the hero is decorative")
+        if not any(r["kind"] == "capability" and r.get("by") == hid
+                   for r in rows):
+            fails.append(f"hero {hid}: granted no capability")
+        if not any(r["kind"] == "payoff" and r.get("beat") == beat
+                   and r["t"] >= cut1 - 0.1 for r in rows):
+            fails.append(f"hero {hid}: beat {beat} has no payoff AFTER "
+                         "the splice — the hero could be deleted "
+                         "without changing later footage (deletability "
+                         "law)")
+        if not any(r["kind"] == "echo" and r.get("hero") == hid
+                   and r["t"] >= fin0 - 0.5 for r in rows):
+            fails.append(f"hero {hid}: the ending never echoes it")
+        # no-downgrade: every later beat inherits >=1 capability
+        n_beats = len(windows) - 2
+        for j in range(beat + 1, n_beats):
+            if not any(r["kind"] == "capability" and r.get("beat") == j
+                       and r.get("consumed") for r in rows):
+                fails.append(f"beat {j}: inherits nothing from hero "
+                             f"{hid} (no-downgrade law)")
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("ledger", type=Path)
+    ap.add_argument("--director", type=Path, default=None,
+                    help="director report — enables the hero-contract "
+                         "rules (§7.5 v8)")
     args = ap.parse_args()
 
     d = json.loads(args.ledger.read_text())
@@ -59,6 +126,20 @@ def main() -> int:
     total = windows[-1][1]
     beats = windows[1:-1]
     fails: list[str] = []
+
+    # LEGIBILITY (§7.5 v8): the engine measured every text at its beat's
+    # planned frame — a violation row is a build-time fact.
+    for r in rows:
+        if r["kind"] == "legibility":
+            fails.append(f"beat {r.get('beat')}: {r.get('what')} text "
+                         f"{r.get('text')!r} "
+                         + (f"({r.get('px')}px < 18px min)"
+                            if r.get("what") == "too-small" else
+                            f"(dx={r.get('dx')}, dy={r.get('dy')})"))
+
+    if args.director and args.director.exists():
+        _check_heroes(json.loads(args.director.read_text()),
+                      windows, rows, fails)
 
     for i, (t0, t1) in enumerate(beats):
         rs = [r for r in rows if r.get("beat") == i]

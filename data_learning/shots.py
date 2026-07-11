@@ -303,10 +303,13 @@ def _play_bundle(scene, ctx, b) -> float:
         dim, what = b.sem
         log_event(scene, "semantic", beat=ctx.get("idx"), dim=dim,
                   what=what, rt=0.0)
-    if getattr(b, "focus", None):
-        # DOMINANT-SUBJECT CONTRACT (§7.5 v8): who owns the frame now.
-        log_event(scene, "focus", beat=ctx.get("idx"), what=b.focus,
-                  rt=0.0)
+    # DOMINANT-SUBJECT CONTRACT (§7.5 v8): who owns the frame now. A
+    # punch owns it by definition (it pops the camera) — authored tags
+    # refine the name.
+    foc = getattr(b, "focus", None) or (
+        "payoff" if getattr(b, "punch", False) else None)
+    if foc:
+        log_event(scene, "focus", beat=ctx.get("idx"), what=foc, rt=0.0)
     return rt
 
 
@@ -338,7 +341,7 @@ def _breach_and_cover(scene, ctx, plan) -> float:
     scene.play(frame.animate.move_to(target).set(width=fw * 0.28),
                run_time=BREACH_RT, rate_func=rate_functions.ease_in_quad)
     log_event(scene, "breach", beat=idx, hero=plan.get("id"),
-              rt=BREACH_RT)
+              rt=BREACH_RT, splice=float(plan.get("splice", 7.0)))
     log_event(scene, "semantic", beat=idx, dim="camera", what="3d-breach",
               rt=0.0)
     cover = float(plan.get("splice", 7.0))

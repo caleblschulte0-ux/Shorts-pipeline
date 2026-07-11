@@ -9,7 +9,12 @@ a single contact sheet for the eye-QA judgment — this tool renders the
 evidence; a human (or the routine's eye pass) renders the verdict.
 
     python3 scripts/qa_frames.py output/curiosity_<slug>.mp4 \
-        [--out sheet.png] [--per-minute 1]
+        [--out sheet.png] [--per-minute 1] [--ledger <ledger.json>]
+
+--ledger adds INTERPOLATION EYE-QA samples (§7.5 v8): three frames
+inside every hero splice, taken from the minterpolated output, so
+optical-flow warping around edges/trails/occlusions is caught the same
+way wrong evidence photos were — on a sheet, before anything ships.
 
 Always exits 0 unless extraction itself fails — judging click-worthiness
 is not automatable; the sheet exists to make skipping the judgment
@@ -18,6 +23,7 @@ impossible.
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import subprocess
 import sys
@@ -38,6 +44,9 @@ def main() -> int:
     ap.add_argument("--out", type=Path, default=None,
                     help="contact sheet path (default: <video>_frames.png)")
     ap.add_argument("--per-minute", type=int, default=1)
+    ap.add_argument("--ledger", type=Path, default=None,
+                    help="world ledger — adds 3 samples per hero splice "
+                         "for interpolation eye-QA")
     args = ap.parse_args()
 
     out = args.out or args.video.with_name(args.video.stem + "_frames.png")
@@ -47,6 +56,15 @@ def main() -> int:
     times = [min(total - 0.2, t + step / 2)
              for t in [i * step for i in range(max(1, math.ceil(total / step)))]]
     times.append(max(0.0, total - 1.0))          # the closing frame counts
+    if args.ledger and args.ledger.exists():
+        rows = json.loads(args.ledger.read_text()).get("rows", [])
+        for r in rows:
+            if r.get("kind") != "breach":
+                continue
+            cut0 = float(r["t"]) + float(r.get("rt", 0.0))
+            splice = float(r.get("splice", 6.0))
+            for f in (0.15, 0.5, 0.85):       # early / occlusion / exit
+                times.append(min(total - 0.2, cut0 + f * splice))
 
     with tempfile.TemporaryDirectory() as td:
         for i, t in enumerate(times):

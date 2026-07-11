@@ -39,8 +39,16 @@ PARAMS = {
 
 def main() -> int:
     fails = []
-    for name, build in sorted(BUILDERS.items()):
-        params = PARAMS.get(name, {"points": POINTS, "unit": "km/h"})
+    # in-world variants (§7.5 v8 no-downgrade law) obey the same contract
+    variants = [(name, dict(PARAMS.get(name,
+                                       {"points": POINTS, "unit": "km/h"})))
+                for name in sorted(BUILDERS)]
+    variants.append(("rank", {"points": POINTS, "unit": "km/h",
+                              "mode": "in_world"}))
+    for name, params in variants:
+        build = BUILDERS[name]
+        if params.get("mode"):
+            name = f"{name}[{params['mode']}]"
         wp = {"builder": name, "params": params}
         try:
             _g, anims = build(wp, THEME, 1.0, np.array([0.0, 0.0, 0.0]),
