@@ -617,8 +617,10 @@ def _assign_bottom_diversity(pkgs: list[dict]) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--count", type=int, default=6,
-                    help="how many shorts to produce + post")
+    ap.add_argument("--count", type=int, default=1,
+                    help="how many shorts to produce + post (reset 2026-07: "
+                         "1/day, one niche, quality over volume — 6/day was "
+                         "feeding YouTube a mass-production signal)")
     ap.add_argument("--dry-run", action="store_true",
                     help="render but don't upload")
     ap.add_argument("--only", default="",

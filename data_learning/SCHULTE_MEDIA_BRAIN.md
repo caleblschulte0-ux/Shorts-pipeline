@@ -8,6 +8,37 @@ this file so it becomes permanent doctrine, not a one-off fix.
 
 ---
 
+## 0. CHANNEL RESET — 2026-07 (OVERRIDES everything below on conflict)
+
+**Why:** 96 videos shipped → 580 total views (median 3/video), 1 subscriber,
+~48% avg-view. The channel read as an interchangeable AI template farm (news →
+quirky → animals, 6/day, gameplay-split), so YouTube gave each upload a tiny
+feed test and never expanded it. We are resetting to ONE lane, done well.
+
+The reset doctrine, in force until the operator says otherwise:
+
+1. **Niche is LOCKED: impossible animal abilities.** One animal per video, a
+   real ability/adaptation/defense/weapon that sounds impossible but is true.
+   No news, no showdowns, no politics, no niche drift. Ever.
+2. **Cadence: 1 video/day.** Quality over volume. Six weak signals a day was
+   the problem, not the fix.
+3. **FIRST-FRAME CLAIM, not open-loop.** This REVERSES the old "withhold the
+   answer" rule. The title and first sentence STATE the impossible thing and
+   NAME the animal immediately so frame 1 stops the swipe
+   (e.g. "This shrimp punches so fast it boils the water."). Shot 1 shows the
+   animal.
+4. **Length: ~55-70 words, one paragraph (~20-30s).** Not 100+, not 45s.
+5. **No end question.** End on the surprising payoff. Kill "So what happens…?"
+   and "Which animal next?" — they waste the closing seconds.
+6. **Full-screen subject media. No bottom gameplay split.** The animal fills
+   the frame; the gameplay half was a template-farm tell.
+
+Sections 1–N below are retained for context, but where they conflict with this
+reset (identity framing, open-loop hooks, one-word-answer kickers, trending
+news as source material), **this section wins.**
+
+---
+
 ## 1. Identity (one swipe)
 
 **Schulte Media shows the single most visually compelling thing hidden inside
