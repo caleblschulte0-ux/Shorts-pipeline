@@ -8,34 +8,41 @@ this file so it becomes permanent doctrine, not a one-off fix.
 
 ---
 
-## 0. CHANNEL RESET — 2026-07 (OVERRIDES everything below on conflict)
+## 0. CHANNEL RESET v2 — 2026-07 (OVERRIDES everything below on conflict)
 
-**Why:** 96 videos shipped → 580 total views (median 3/video), 1 subscriber,
-~48% avg-view. The channel read as an interchangeable AI template farm (news →
-quirky → animals, 6/day, gameplay-split), so YouTube gave each upload a tiny
-feed test and never expanded it. We are resetting to ONE lane, done well.
+**Why:** 96 videos shipped → 580 total views (median 3/video), 1 subscriber.
+The channel read as an interchangeable, topic-drifting AI template farm, so
+YouTube gave each upload a tiny feed test and never expanded it. We are
+resetting to ONE format, done well. Consistency now comes from **format**, not
+topic.
 
-The reset doctrine, in force until the operator says otherwise:
+**The channel is now: viral Reddit-style DRAMA STORYTIME.** In force until the
+operator says otherwise:
 
-1. **Niche is LOCKED: impossible animal abilities.** One animal per video, a
-   real ability/adaptation/defense/weapon that sounds impossible but is true.
-   No news, no showdowns, no politics, no niche drift. Ever.
-2. **Cadence: 1 video/day.** Quality over volume. Six weak signals a day was
-   the problem, not the fix.
-3. **FIRST-FRAME CLAIM, not open-loop.** This REVERSES the old "withhold the
-   answer" rule. The title and first sentence STATE the impossible thing and
-   NAME the animal immediately so frame 1 stops the swipe
-   (e.g. "This shrimp punches so fast it boils the water."). Shot 1 shows the
-   animal.
-4. **Length: ~55-70 words, one paragraph (~20-30s).** Not 100+, not 45s.
-5. **No end question.** End on the surprising payoff. Kill "So what happens…?"
-   and "Which animal next?" — they waste the closing seconds.
-6. **Full-screen subject media. No bottom gameplay split.** The animal fills
-   the frame; the gameplay half was a template-farm tell.
+1. **Format is LOCKED: first-person Reddit drama stories.** Buckets: AITA,
+   relationship betrayal / cheating, entitled family & in-laws, weddings gone
+   wrong, petty revenge, malicious compliance, workplace blowups. The *story*
+   can be anything juicy — the **format** never changes. Stories are ORIGINAL,
+   written in authentic Reddit voice (never a copied post — copyright + reused
+   content).
+2. **Cadence: 1 video/day.** Quality over volume.
+3. **Open-loop hook (correct for stories).** Sentence 1 drops the viewer into
+   the most shocking moment / premise so they NEED to know what happens
+   (e.g. "My fiance's mom read my private diary out loud at our rehearsal
+   dinner."). Name the drama, withhold the resolution.
+4. **First-person, specific, real.** "I / my", names, ages, exact texts and
+   quotes, rising tension. It must feel like a real person venting.
+5. **Length: ~130-170 words, one paragraph (~45-60s).**
+6. **End on the twist or a cliffhanger gut-punch.** No "what would you do?",
+   no "part 2?", no CTA.
+7. **Keep the gameplay strip on the bottom half** — for THIS format the
+   satisfying-gameplay bottom is native and expected, not a liability. Mood
+   b-roll on top matches the story beats; big captions carry the narration.
 
-Sections 1–N below are retained for context, but where they conflict with this
-reset (identity framing, open-loop hooks, one-word-answer kickers, trending
-news as source material), **this section wins.**
+Sections 1–N below are retained for mechanics (validators, render, hooks
+craft), but where they conflict with this format (animals, trending news as
+source, one-word-answer kickers, full-screen/no-gameplay), **this section
+wins.**
 
 ---
 
