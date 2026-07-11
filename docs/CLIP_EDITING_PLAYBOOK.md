@@ -63,6 +63,24 @@ Done:
   one cohesive glossy/dimensional iOS-style set; the flat Noto generator
   remains as an offline fallback only.
 
+- **SFX mixing rules (§12)** — all SFX mix into one bed that is sidechain-
+  DUCKED by the dialogue: a boom can never bury what the streamer says.
+- **Learning loop (§20)** — every run appends a compact record (layouts,
+  render levels, QA verdicts, self-heals, errors) to
+  `state/third_qa_stats.json` (last 30 runs, committed by CI) so recurring
+  failure categories become visible across batches and turn into rules.
+- **Self-healing QA (§18, beyond the playbook)** — a clip that fails QA is
+  automatically re-rendered ONCE as the plain simple look and re-inspected
+  before the slot is given up: "a clean basic clip is better than an
+  ambitious broken clip", enforced by the pipeline itself.
+- **Edit Director (beyond the playbook)** — the author brain (Claude, Groq
+  fallback) that already reads every transcript now also DIRECTS the edit:
+  picks the word slam VERBATIM from what was actually said (validated
+  against the transcript — an invented word is discarded), chooses the
+  reaction emoji from the asset whitelist, and can veto the replay when the
+  moment is pure talk. Content-aware judgement layered over the signal
+  heuristics, which remain the fallback when no author is available.
+
 Not yet built (priority order per §21):
 1. **Active-speaker shot sequences** — multi-shot plans that cut between
    speakers with hysteresis + minimum shot duration. DELIBERATELY DEFERRED:

@@ -28,7 +28,8 @@ Twitch, and the transcript of what is said in the clip.
 
 Return STRICT JSON:
 {"title": str, "hook": str, "caption": str, "hashtags": [str, ...],
- "series": str}
+ "series": str,
+ "edit": {"slam": str, "emoji": str, "replay_worthy": bool}}
 
 Rules:
 - title: the formula is [Streamer name] + [emotional event] + [specific
@@ -51,6 +52,17 @@ Rules:
 - series: one of "rage" | "chat-betrayal" | "jumpscare" | "clutch" |
   "fail" | "win" | "wholesome" | "argument" | "chaos" — the recurring
   shelf this moment belongs to.
+- edit: you also DIRECT the edit (a human editor's judgement):
+  - slam: the punchline word(s) that slam on screen at the peak — 1-2
+    words, <= 12 chars, taken VERBATIM from the transcript (the funniest/
+    most explosive thing actually said), or "" when nothing said fits.
+    Never write a word nobody said.
+  - emoji: exactly one of "skull" | "fire" | "sob" | "joy" | "eyes" |
+    "mindblown" | "scream" | "flushed" | "pleading" | "rage" — the
+    reaction a viewer would actually comment on this moment.
+  - replay_worthy: true ONLY if the peak moment genuinely rewards seeing
+    twice (a visible event, a wild line). Talking with nothing visual
+    happening = false.
 
 HONESTY (hard rules):
 - If the transcript is noisy, thin, or ambiguous, DO NOT infer what the
@@ -123,8 +135,25 @@ def _postprocess(out: dict, streamer: str, context: str) -> dict | None:
     if not matched:
         title = f"{pretty}: {title}"
     caption = str(out.get("caption", "")).strip()[:180]
+
+    # Edit direction (validated hard — the renderer must never trust raw
+    # model output): slam must be words actually present in the source
+    # material, emoji from the asset whitelist, replay a strict bool.
+    _EMOJI_OK = {"skull", "fire", "sob", "joy", "eyes", "mindblown",
+                 "scream", "flushed", "pleading", "rage"}
+    edit_raw = out.get("edit") or {}
+    slam = re.sub(r"[^A-Za-z0-9 !?']", "",
+                  str(edit_raw.get("slam", ""))).strip().upper()[:14]
+    if slam and _norm(slam) not in _norm(context):
+        slam = ""                     # said by nobody → not a slam
+    emoji = str(edit_raw.get("emoji", "")).strip().lower()
+    if emoji not in _EMOJI_OK:
+        emoji = ""
+    edit = {"slam": slam, "emoji": emoji,
+            "replay_worthy": bool(edit_raw.get("replay_worthy", True))}
+
     return {"title": title[:95], "hook": hook[:60], "caption": caption,
-            "hashtags": tags, "series": series or "chaos"}
+            "hashtags": tags, "series": series or "chaos", "edit": edit}
 
 
 def _call_claude(user: str) -> dict | None:

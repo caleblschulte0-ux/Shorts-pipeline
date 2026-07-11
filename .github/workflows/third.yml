@@ -143,4 +143,4 @@ jobs:
         run: |
           bash scripts/ci_commit_state.sh \
             "third: update posted log [skip ci]" \
-            state/third_posted_log.json
+            state/third_posted_log.json state/third_qa_stats.json

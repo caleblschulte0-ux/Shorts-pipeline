@@ -275,34 +275,51 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     " ".join(w["w"] for w in words), info["views"])
             hook = (meta or {}).get("hook") or pkg.get("hook", "")
             series = (meta or {}).get("series", "chaos")
-            led = clip_edit.edit(
-                info["path"], out_mp4,
-                credit=clip_edit.credit_label(platform, streamer),
-                hook=hook, words=words,
-                start=spec.get("start", 0.0), end=spec.get("end", 0.0),
-                whisper_model=wmodel,
-                auto=spec.get("auto_edit", True), series=series)
-            if meta:
-                led["authored_title"] = meta["title"]
-                led["authored_tags"] = meta["hashtags"]
-                led["authored_caption"] = meta.get("caption", "")
-                led["series"] = meta.get("series", "chaos")
-            led["source_url"] = info["url"]
-            led["source_views"] = info["views"]
-            led["clip_title"] = info["title"]
-            led["clipper"] = info["clipper"]
-            led["streamer"] = streamer
-            led["platform"] = platform
 
-            # QA gate (playbook §16-17): mechanical broken-clip checks +
-            # contact-sheet vision review. A "fail" rejects THIS clip before
-            # upload — the slot's slug stays unposted so a different clip
-            # competes next run. Fails open on QA-internal errors.
+            # Render + QA gate (playbook §16-18), with SELF-HEAL: if the
+            # full auto-edit fails QA, re-render once as the plain simple
+            # look and re-inspect — "a clean basic clip is better than an
+            # ambitious broken clip" (§18). Only after the clean retry also
+            # fails is the clip rejected (slug stays unposted; a different
+            # clip competes next run).
             from third_capture import clip_qa
-            qa = clip_qa.review(out_mp4, led, work)
-            led["qa"] = {k: qa[k] for k in ("verdict", "problems", "vision")}
-            ledger_path = work / f"{slug}.ledger.json"
-            ledger_path.write_text(json.dumps(led, indent=2) + "\n")
+            auto_first = spec.get("auto_edit", True)
+            attempts = [True, False] if auto_first else [False]
+            for auto_flag in attempts:
+                led = clip_edit.edit(
+                    info["path"], out_mp4,
+                    credit=clip_edit.credit_label(platform, streamer),
+                    hook=hook, words=words,
+                    start=spec.get("start", 0.0), end=spec.get("end", 0.0),
+                    whisper_model=wmodel,
+                    auto=auto_flag, series=series,
+                    direct=(meta or {}).get("edit"))
+                if meta:
+                    led["authored_title"] = meta["title"]
+                    led["authored_tags"] = meta["hashtags"]
+                    led["authored_caption"] = meta.get("caption", "")
+                    led["series"] = meta.get("series", "chaos")
+                led["source_url"] = info["url"]
+                led["source_views"] = info["views"]
+                led["clip_title"] = info["title"]
+                led["clipper"] = info["clipper"]
+                led["streamer"] = streamer
+                led["platform"] = platform
+                qa = clip_qa.review(out_mp4, led, work)
+                led["qa"] = {k: qa[k] for k in
+                             ("verdict", "problems", "vision")}
+                led["self_healed"] = (auto_first and not auto_flag)
+                ledger_path = work / f"{slug}.ledger.json"
+                ledger_path.write_text(json.dumps(led, indent=2) + "\n")
+                if qa["verdict"] != "fail":
+                    break
+                if auto_flag:
+                    print(f"::warning::[qa] {slug} failed "
+                          f"({'; '.join(qa['problems'])[:140]}) — "
+                          "self-healing with the simple render", flush=True)
+            result["render_level"] = led.get("render_level")
+            result["layout"] = (led.get("shot_plan") or {}).get("layout")
+            result["self_healed"] = led["self_healed"]
             if qa["verdict"] == "fail":
                 result["qa"] = led["qa"]
                 result["video_path"] = str(out_mp4.relative_to(REPO))
@@ -425,6 +442,28 @@ def main() -> int:
         results.append(process(pkg, path, dry_run=args.dry_run,
                                publish_at=publish_at, log=log))
     print(json.dumps(results, indent=2))
+
+    # Learning loop (playbook §20): persist a compact per-run record —
+    # layouts chosen, render levels, QA verdicts, self-heals — so recurring
+    # failure categories are visible across batches and turn into rules,
+    # not one-off fixes. Kept small (last 30 runs) per storage doctrine.
+    try:
+        stats_path = REPO / "state" / "third_qa_stats.json"
+        hist = []
+        if stats_path.exists():
+            hist = json.loads(stats_path.read_text()).get("runs", [])
+        hist.append({
+            "date": args.date, "dry_run": args.dry_run,
+            "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "clips": [{k: r.get(k) for k in
+                       ("slug", "ok", "skipped", "render_level", "layout",
+                        "self_healed", "error") if r.get(k) is not None}
+                      for r in results],
+        })
+        from fsutil import atomic_write_json
+        atomic_write_json(stats_path, {"runs": hist[-30:]})
+    except Exception as e:  # noqa: BLE001 — stats never fail the run
+        print(f"[stats] skipped: {e}", flush=True)
     # partial success is success: a late-day slot finding no fresh clip
     # must not fail the run (that skips the posted-log commit and desyncs
     # dedupe state). Fail only when NOTHING succeeded.

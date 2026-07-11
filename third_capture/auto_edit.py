@@ -458,14 +458,25 @@ def _mix_sfx(program: Path, cues, out: Path) -> Path:
     if not usable:
         return program
     try:
-        inputs, filt, tags = ["-i", str(program)], [], ["[0:a]"]
+        # §12 mixing rules: dialogue always stays intelligible. All SFX mix
+        # into one bed which is then DUCKED by the dialogue (sidechain) —
+        # a boom can never bury what the streamer is saying.
+        inputs, filt, tags = ["-i", str(program)], [], []
         for i, (t, p) in enumerate(usable, start=1):
             inputs += ["-i", str(p)]
             ms = int(max(0.0, t) * 1000)
-            filt.append(f"[{i}:a]adelay={ms}|{ms},volume=0.7[s{i}]")
+            filt.append(f"[{i}:a]adelay={ms}|{ms},volume=0.6[s{i}]")
             tags.append(f"[s{i}]")
-        filt.append(f"{''.join(tags)}amix=inputs={len(usable)+1}:"
-                    f"normalize=0:dropout_transition=0[aout]")
+        if len(usable) > 1:
+            filt.append(f"{''.join(tags)}amix=inputs={len(usable)}:"
+                        f"normalize=0:dropout_transition=0[sbed]")
+        else:
+            filt.append(f"{tags[0]}anull[sbed]")
+        filt.append("[0:a]asplit=2[dlg][key]")
+        filt.append("[sbed][key]sidechaincompress=threshold=0.06:ratio=6:"
+                    "attack=5:release=250[sduck]")
+        filt.append("[dlg][sduck]amix=inputs=2:normalize=0:"
+                    "dropout_transition=0[aout]")
         _run(["ffmpeg", "-y", "-v", "error", *inputs,
               "-filter_complex", ";".join(filt),
               "-map", "0:v", "-map", "[aout]",
@@ -477,13 +488,19 @@ def _mix_sfx(program: Path, cues, out: Path) -> Path:
 
 
 def build(cut: Path, words: list[dict], dur: float, series: str,
-          work: Path) -> dict:
+          work: Path, direct: dict | None = None) -> dict:
     """Stage-1 entry. Returns a dict with program path, remapped words, new
     duration, and a ledger. NEVER raises — on any failure returns the
-    untouched cut so the simple render still ships."""
+    untouched cut so the simple render still ships.
+
+    `direct` is the author brain's EDIT DIRECTION (validated upstream in
+    author._postprocess): {"slam": word-actually-said, "emoji": whitelisted
+    name, "replay_worthy": bool}. Content-aware judgement layered over the
+    signal heuristics — absent/empty fields fall back to the heuristics."""
     result = {"program": cut, "words": words, "dur": dur,
               "auto_edit": False, "fallback_reason": None,
               "effects": [], "edl": None, "overlays": []}
+    direct = direct or {}
     try:
         wh = _probe_wh(cut)
         motion = motion_energy(cut)
@@ -493,6 +510,10 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
         mvals = _norm([v for _t, v in motion]) if motion else [0.0]
         peak_strength = max(mvals) if mvals else 0.0
         style = choose_style(series, dur, peak_strength)
+        # the director can veto a replay (talking head, nothing visual) —
+        # it can only remove drama, never force it onto a weak clip
+        if direct.get("replay_worthy") is False:
+            style.replay = False
         edl = build_edl(words, dur, style, motion)
         if not edl.segments:
             raise RuntimeError("empty EDL")
@@ -520,9 +541,11 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
             if seg.kind == "money" and money_out is None:
                 money_out = _tcur
             _tcur += od
+        # director's picks win (a slam actually said in the clip beats a
+        # generic hype word); heuristics fill anything the director left blank
         s = (series or "chaos").lower()
-        emoji = SERIES_EMOJI.get(s, "mindblown")
-        word = SERIES_WORD.get(s, "WAIT")
+        emoji = direct.get("emoji") or SERIES_EMOJI.get(s, "mindblown")
+        word = direct.get("slam") or SERIES_WORD.get(s, "WAIT")
         if money_out is not None:
             m = round(money_out, 3)
             # speed-lines flash first (behind), emoji burst, then the word slam

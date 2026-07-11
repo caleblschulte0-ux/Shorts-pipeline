@@ -320,7 +320,8 @@ def fetch_age_hours(url: str) -> float:
 def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
          whisper_model: str = "small", words: list[dict] | None = None,
-         auto: bool = True, series: str = "chaos") -> dict:
+         auto: bool = True, series: str = "chaos",
+         direct: dict | None = None) -> dict:
     """Compose the 9:16 edit. `credit` is the full on-screen label
     (e.g. "twitch.tv/xqc", "kick.com/adinross"). Pass precomputed `words`
     (from transcribe_words on the SAME uncut file) to skip re-transcribing —
@@ -385,7 +386,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         if auto:
             try:
                 from third_capture import auto_edit as ae
-                st1 = ae.build(cut, words, dur, series, tmp)
+                st1 = ae.build(cut, words, dur, series, tmp, direct=direct)
                 program, words, dur = st1["program"], st1["words"], st1["dur"]
                 overlays = st1.get("overlays", [])
                 ledger_ae = {k: st1[k] for k in
