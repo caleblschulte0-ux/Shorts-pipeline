@@ -33,6 +33,13 @@ Done:
   land on the money moment; degrade safely in the render ladder. (§11, §14)
 - **Ironclad render ladder** — full → text-only → captions → plain → raw; a
   clip always ships. (§18 fallback ladder)
+- **QA gate + vision review** (`third_capture/clip_qa.py`, wired into
+  `run_third.py` before upload) — mechanical checks (black/frozen frames,
+  ≥2.5s silence gaps, abrupt silent endings, A/V drift, duration bounds,
+  face-crop-lost-the-face) + a labeled 12-frame contact sheet reviewed by the
+  headless Claude CLI against the §17 checklist. A fail rejects the clip
+  before upload (slug stays unposted; a different clip competes next run);
+  QA-internal errors fail OPEN so the gate can't lose good clips. (§16, §17)
 
 Not yet built (priority order per §21):
 1. **Shot plan layer** — explicit shot timeline (subject/framing/reason per
@@ -49,10 +56,7 @@ Not yet built (priority order per §21):
    speech-boundary trims, reaction-tail preservation, no cut-off words. (§9)
 6. **Spatial safe-zone maps** — overlays placed off faces/UI/gameplay by a
    per-frame occupancy map, not hardcoded coordinates. (§10, §15)
-7. **QA gates + vision review** — midpoint-trap, motion-sickness, subject-
-   visibility, caption/effect/cut QA; low-res preview + contact sheet + vision
-   pass before auto-publish. (§16, §17)
-8. **Higher-quality emoji set** — iOS-style dimensional emoji, one cohesive
+7. **Higher-quality emoji set** — iOS-style dimensional emoji, one cohesive
    system (current set is flat Noto). (§11)
 
 ---

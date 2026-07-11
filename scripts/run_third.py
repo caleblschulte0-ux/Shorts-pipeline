@@ -293,8 +293,22 @@ def process(pkg: dict, pkg_path: Path | None, *,
             led["clipper"] = info["clipper"]
             led["streamer"] = streamer
             led["platform"] = platform
+
+            # QA gate (playbook §16-17): mechanical broken-clip checks +
+            # contact-sheet vision review. A "fail" rejects THIS clip before
+            # upload — the slot's slug stays unposted so a different clip
+            # competes next run. Fails open on QA-internal errors.
+            from third_capture import clip_qa
+            qa = clip_qa.review(out_mp4, led, work)
+            led["qa"] = {k: qa[k] for k in ("verdict", "problems", "vision")}
             ledger_path = work / f"{slug}.ledger.json"
             ledger_path.write_text(json.dumps(led, indent=2) + "\n")
+            if qa["verdict"] == "fail":
+                result["qa"] = led["qa"]
+                result["video_path"] = str(out_mp4.relative_to(REPO))
+                result["ledger"] = str(ledger_path.relative_to(REPO))
+                raise RuntimeError(
+                    "qa_rejected: " + "; ".join(qa["problems"])[:200])
         elif pkg["capture"]["kind"] == "sim":
             from third_capture import sim_video
             led = sim_video.compose_sim(pkg, out_mp4)
