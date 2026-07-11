@@ -1,0 +1,38 @@
+{
+  "runs": [
+    {
+      "date": "20260711b",
+      "dry_run": false,
+      "ts": "2026-07-11T19:51:57+00:00",
+      "clips": [
+        {
+          "slug": "clip-20260711b-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260711b-2",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        },
+        {
+          "slug": "clip-20260711b-3",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        },
+        {
+          "slug": "clip-20260711b-4",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        },
+        {
+          "slug": "clip-20260711b-5",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        }
+      ]
+    }
+  ]
+}
