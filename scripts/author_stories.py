@@ -35,6 +35,7 @@ if str(ROOT) not in sys.path:
 CONFIG = ROOT / "data_learning" / "niche.config.json"
 DATA_DIR = ROOT / "data_learning" / "data"
 POSTED_LOG = ROOT / "state" / "explainer_posted_log.json"
+RESERVOIR = ROOT / "data_learning" / "topic_reservoir.json"
 
 _VALID_INSIGHT = {"rank", "trend", "comparison", "share", "outlier"}
 
@@ -131,6 +132,40 @@ def _covered_subjects(cfg: dict) -> list[str]:
     return [f"{s.get('title', s['slug'])}" for s in cfg.get("stories", [])]
 
 
+def _reservoir_topics(cfg: dict, k: int) -> list[str]:
+    """Return up to k topics from the durable reservoir that are NOT already
+    covered by an existing story. This is the permanent cure for the empty-queue
+    problem: instead of free-inventing (which collides with the 100+ covered
+    subjects and gets dedup-rejected), the author is handed fresh, guaranteed-
+    distinct subjects to write. Topics 'retire' automatically once written (they
+    become covered), so no manual bookkeeping is needed — just extend the list."""
+    try:
+        topics = json.loads(RESERVOIR.read_text()).get("topics", [])
+    except Exception:  # noqa: BLE001
+        return []
+    if not topics:
+        return []
+    try:
+        from scripts.topic_guard import _kw, _story_keywords
+    except Exception:  # noqa: BLE001
+        return topics[:k]
+    existing = [_story_keywords(s) for s in cfg.get("stories", [])]
+    fresh = []
+    for t in topics:
+        tk = _kw(t)
+        if not tk:
+            continue
+        if any(len(tk & ek) / max(1, len(tk)) >= _DUP_THRESHOLD for ek in existing):
+            continue                                    # already covered -> retired
+        fresh.append(t)
+    # Rotate so successive runs draw DIFFERENT fresh topics (no random: keep it
+    # deterministic/resumable), varying by how many stories already exist.
+    if fresh:
+        off = len(cfg.get("stories", [])) % len(fresh)
+        fresh = fresh[off:] + fresh[:off]
+    return fresh[:k]
+
+
 def _too_similar(story: dict, cfg: dict) -> str | None:
     """Return the slug of an existing story this duplicates, or None. Reuses the
     topic_guard keyword-overlap heuristic so we dedupe at the TOPIC level."""
@@ -210,10 +245,17 @@ def _scout_digest(max_chars: int = 1800) -> str:
               "extremes. Skip signals with no honest data angle.\n")[:max_chars]
 
 
-def _user_prompt(cfg: dict, n: int) -> str:
+def _user_prompt(cfg: dict, n: int, topics: list[str] | None = None) -> str:
     doctrine = cfg.get("topic_doctrine", "")
     covered = _covered_subjects(cfg)
     covered_blob = "; ".join(covered[-80:])     # most-recent window keeps it short
+    reservoir_blob = ""
+    if topics:
+        reservoir_blob = (
+            "\nWRITE ONE STORY FOR EACH of these under-covered subjects (they were "
+            "picked specifically because they do NOT overlap the covered list, so "
+            "you won't be rejected as a duplicate — use them, don't reinvent):\n"
+            + "\n".join(f"  - {t}" for t in topics) + "\n")
     schema = {
         "stories": [{
             "title": "5-9 word curiosity-gap title",
@@ -286,7 +328,8 @@ def _user_prompt(cfg: dict, n: int) -> str:
         "shown (setup, then the number) — not a single clause.\n"
         "- Prefer science, space, nature, the human body, history, records, scale "
         "and superlatives. Avoid dry personal-finance topics.\n\n"
-        f"ALREADY COVERED (avoid these): {covered_blob}\n\n"
+        f"ALREADY COVERED (avoid these): {covered_blob}\n"
+        + reservoir_blob + "\n"
         "Return STRICT JSON matching this schema exactly:\n"
         + json.dumps(schema)
     )
@@ -655,10 +698,13 @@ def _generate(cfg: dict, n: int) -> list[dict]:
     backends = [b for b, key in order if os.environ.get(key)]
     if not backends:
         raise RuntimeError("no LLM API key set (ANTHROPIC / GEMINI / GROQ)")
+    # Hand the model fresh, guaranteed-distinct subjects from the reservoir so it
+    # stops colliding with the covered catalogue (the empty-queue root cause).
+    topics = _reservoir_topics(cfg, max(6, n * 2))
     last_err: Exception | None = None
     for b in backends:
         try:
-            raw = _call_llm(_SYSTEM, _user_prompt(cfg, n), backend=b)
+            raw = _call_llm(_SYSTEM, _user_prompt(cfg, n, topics), backend=b)
             text = _strip_fence(raw)
             try:
                 data = json.loads(text)
@@ -692,7 +738,7 @@ def main() -> int:
                    help="creative-direct every EXISTING story (set viz per segment)")
     ap.add_argument("--dry-run", action="store_true",
                     help="print what would be added; don't write files")
-    ap.add_argument("--max-attempts", type=int, default=3,
+    ap.add_argument("--max-attempts", type=int, default=5,
                     help="LLM batches to try before giving up")
     args = ap.parse_args()
 
@@ -720,7 +766,7 @@ def main() -> int:
         want = need - len(kept)
         print(f"[attempt {attempt}] asking for {want} stories...")
         try:
-            raws = _generate(cfg, want + 2)        # over-ask; some get filtered
+            raws = _generate(cfg, want + 3)        # over-ask; some get filtered
         except Exception as e:  # noqa: BLE001
             print(f"  LLM/parse error: {e}")
             continue
