@@ -143,8 +143,13 @@ def main() -> int:
 
     for i, (t0, t1) in enumerate(beats):
         rs = [r for r in rows if r.get("beat") == i]
-        spans = sorted((r["t"], float(r.get("rt", 0.5))) for r in rs
-                       if r["kind"] in HAPPENING)
+        # a breach covers its whole splice: the premium hero occupies
+        # that span in the assembled video (the 2D take underneath is
+        # busy mutating the world, not performing)
+        spans = sorted((r["t"], float(r.get("rt", 0.5))
+                        + (float(r.get("splice", 0.0))
+                           if r["kind"] == "breach" else 0.0))
+                       for r in rs if r["kind"] in HAPPENING)
         cur, gap = t0, 0.0
         for t, rt in spans:
             gap = max(gap, t - cur)

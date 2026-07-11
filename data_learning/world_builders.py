@@ -955,6 +955,12 @@ def _b_comparison_race(wp, theme, scale, anchor=None, post_scale=1.0):
             run_time=2.0 if p is fast else 1.5,
             punch=(p is fast and ratio_txt is None),
             cam=cam, state=True,
+            # each racer is a NEW comparator entering the hierarchy (a
+            # new object role — not the excluded 'repeated launches',
+            # which relaunch the same visual); the champion's landing
+            # completes the comparison
+            sem=(("role", "champion-lands") if p is fast
+                 else ("role", f"enters:{_diet(p['label'], 1)}")),
             focus="winner" if p is fast else None))
     if ratio_txt is not None:
         anims.append(_Par(
@@ -1219,5 +1225,8 @@ def _b_scalelevel(wp, theme, scale, anchor=None, post_scale=1.0):
     anims.extend(motions)
     anims.append(_Par([value.animate(
         rate_func=rate_functions.ease_out_back).scale(1.18)],
-        run_time=0.7, punch=True, focus="stamp"))
+        run_time=0.7, punch=True, focus="stamp",
+        # the level's value lands ONCE and stays — an irreversible
+        # world-state change (like the speedometer pin), not an update
+        sem=("state", "value-stamped")))
     return g, anims

@@ -54,8 +54,11 @@ def main() -> int:
     beats = windows[1:-1]
     fails: list[str] = []
 
-    # 1. the 12-15s law, video-wide
-    marks = sorted((r["t"], float(r.get("rt", 0.0))) for r in rows
+    # 1. the 12-15s law, video-wide. A breach covers its whole splice:
+    # the viewer is inside the premium transformation for all of it.
+    marks = sorted((r["t"], float(r.get("rt", 0.0))
+                    + (float(r.get("splice", 0.0))
+                       if r["kind"] == "breach" else 0.0)) for r in rows
                    if r["kind"] in SEMANTIC_KINDS)
     cur, gap, at = 0.0, 0.0, 0.0
     for t, rt in marks:
