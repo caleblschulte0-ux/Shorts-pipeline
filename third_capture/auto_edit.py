@@ -294,7 +294,10 @@ def build_edl(words, dur, style: Style, motion) -> EDL:
             seg.kind = "money"
             seg.speed = style.slow_speed
             seg.minterp = True
-            seg.mute = True
+            # DO NOT mute — muting the slow-mo dropped the payoff audio right
+            # as the overlays land ("sound cuts off"). Keep it and time-stretch
+            # (atempo) so the moment is heard, slowed, not silenced.
+            seg.mute = False
             if has_peak and style.shake and style.shake_intensity > 0:
                 seg.impact_t = max(0.0, (t_peak - a) / seg.speed)
                 edl.sfx_cues.append((out_t + seg.impact_t, "boom"))
@@ -314,13 +317,15 @@ def build_edl(words, dur, style: Style, motion) -> EDL:
         edl.segments.append(seg)
         out_t += seg.out_dur()
 
-    # instant replay: clone the money window, slower + muted + stamped
+    # instant replay: clone the money window, slower + stamped. Keep its audio
+    # (time-stretched) so the moment is heard again rather than going silent —
+    # a whoosh marks the cut into it instead of a riser under the dialogue.
     if style.replay:
         rs = Segment(src_s=ws, src_e=we, speed=min(style.slow_speed, 0.55),
-                     kind="replay", minterp=True, mute=True, stamp="REPLAY")
+                     kind="replay", minterp=True, mute=False, stamp="REPLAY")
         edl.segments.append(rs)
         if style.sfx:
-            edl.sfx_cues.append((out_t, "riser"))
+            edl.sfx_cues.append((out_t, "whoosh"))
 
     # keep edits tight: if slow-mo + replay overran, drop the replay first,
     # then ease the slow-mo toward real time until under the cap.
