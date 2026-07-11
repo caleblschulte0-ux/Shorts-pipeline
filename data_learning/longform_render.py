@@ -48,6 +48,13 @@ from data_learning.studio_render import (                        # noqa: E402
     _theme_for, _tts_text)
 
 W, H, FPS = 1920, 1080, 30
+if os.environ.get("CURIO_REGRESSION"):
+    # The 15-minute contract tier: the FULL pipeline (director, world
+    # take, evidence, sound, gates' ledger) at low quality with Blender
+    # skipped — the ledger it produces is identical in shape to the
+    # premium run's, so every v8 gate verdict is known before a single
+    # Cycles frame is paid for.
+    W, H, FPS = 854, 480, 15
 EDGE_VOICE = "en-US-GuyNeural"       # fallback narrator (calm US male)
 SENT_GAP = 0.35                      # documentary breathing between beats
 MUSIC_VOL = 0.09
@@ -729,7 +736,9 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
     env = dict(os.environ, CURIO_WORLD_SPEC=str(spec_path),
                CURIO_WORLD_LOG=str(work / "world_ledger.json"))
     subprocess.run(
-        [sys.executable, "-m", "manim", "render", "-qm", "--fps", str(FPS),
+        [sys.executable, "-m", "manim", "render",
+         "-ql" if os.environ.get("CURIO_REGRESSION") else "-qm",
+         "--fps", str(FPS),
          "-r", f"{W},{H}", "--media_dir", str(media), "-o", "body.mp4",
          "-v", "ERROR", str(PKG_DIR / "world_engine.py"), "WorldScene"],
         check=True, env=env, capture_output=True, text=True)
@@ -755,6 +764,8 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
     world_rows = json.loads(
         (work / "world_ledger.json").read_text()).get("rows", [])
     jobs = []
+    if os.environ.get("CURIO_REGRESSION"):
+        hero_plans = {}          # Cycles is the premium tier's bill
     for i, plan in sorted(hero_plans.items()):
         br = next((r for r in world_rows if r.get("kind") == "breach"
                    and r.get("hero") == plan["id"]), None)
@@ -780,7 +791,8 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
     # World heroes: the hook and the ending get premium windows too
     # (window: "cold_open" | "ending"; end_offset keeps the vector
     # layer's finale — the returning counter — on screen after it).
-    for j, hz in enumerate(world.get("heroes", []) or []):
+    for j, hz in enumerate([] if os.environ.get("CURIO_REGRESSION")
+                           else (world.get("heroes", []) or [])):
         template = str(hz.get("template", "monoliths"))
         secs = float(hz.get("seconds", HERO_SECONDS))
         if hz.get("window") == "cold_open":
