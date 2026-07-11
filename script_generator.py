@@ -50,11 +50,12 @@ DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
 
-SYSTEM_PROMPT = """You write viral-style YouTube Shorts scripts as strict JSON. \
-1080x1920 vertical, ~20-30 seconds, tight factual tone: state the claim up \
-front, dense delivery, no filler, no editorial opinion. Each shot can carry a \
-`mascot_pose` hint for the on-screen anchor character. Output JSON only — no \
-prose, no fences."""
+SYSTEM_PROMPT = """You write viral Reddit-style DRAMA STORYTIME scripts for \
+YouTube Shorts as strict JSON. 1080x1920 vertical, ~45-60 seconds. First-person, \
+emotionally charged, authentic Reddit voice (AITA / relationship / entitled \
+family / revenge). Write an ORIGINAL story — never copy a real post. Open on the \
+shock, build tension, end on a twist. Each shot can carry a `mascot_pose` hint. \
+Output JSON only — no prose, no fences."""
 
 
 USER_PROMPT_TEMPLATE = """Topic: {topic_query}
@@ -65,7 +66,7 @@ Context (headlines and snippets driving the trend):
 Schema:
 {{
   "title": "<6-10 word punchy YouTube title>",
-  "script": "<55-75 words, sentence 1 STATES the impossible claim and names the subject, ends on the surprising payoff — NOT a question>",
+  "script": "<130-170 words, first-person, sentence 1 drops into the shock/premise, builds tension, ends on the twist — NOT a question>",
   "shots": [
     {{"phrase": "<2-4 word VERBATIM substring of the script>",
       "query": "<1-3 word stock-footage search, visually concrete>",
@@ -81,27 +82,28 @@ Schema:
 
 Hard rules (validated):
 
-1. SCRIPT LENGTH: 55-75 words (renders ~20-30s). Must end with a period. Longer or shorter is rejected.
+1. SCRIPT LENGTH: 130-170 words (renders ~45-60s, must fit a 60s Short). First-person. Must end on a statement. Longer or shorter is rejected.
 
-2. FIRST-FRAME CLAIM HOOK (NOT open-loop): The first sentence STATES the \
-impossible-but-true thing AND names the subject immediately, so the very first \
-frame stops the swipe. It shows the payoff-claim, it does NOT withhold it. \
-Good: "This shrimp punches so fast it boils the water.", "This frog freezes \
-solid every winter and wakes up alive.". Bad (withholds / announces): "You \
-won't believe what this animal can do.", "One animal terrifies great whites." \
-Lead with the concrete claim; it is burned huge on the cover frame.
+2. OPEN-LOOP HOOK (correct for stories): Sentence 1 drops the viewer into the \
+most shocking moment or the jaw-dropping premise so they NEED to know what \
+happens. Name the drama, WITHHOLD the resolution. Good: "My fiance's mother \
+stood up at our rehearsal dinner and read my private diary out loud.", "I found \
+out my sister had been forwarding my texts to my ex for a year." Bad (vague / \
+no stakes): "Something crazy happened to me.", "You won't believe this story." \
+It is burned huge on the cover frame — make it a specific, dramatic gut-punch.
 
-3. ENDING: End on the SURPRISING PAYOFF or consequence. Do NOT append a \
-question ("So what happens...?", "Which animal next?") — the forced question \
-wastes the most valuable closing seconds. No call-to-action.
+3. ENDING: Land on the TWIST or a cliffhanger gut-punch. Do NOT append a \
+question ("What would you do?", "AITA?", "Part 2?") or any call-to-action — it \
+wastes the closing seconds and reads as bait.
 
 4. BANNED phrases — algorithm-suppressed engagement-bait: "comment YES", \
 "subscribe for part 2", "tag a friend", "let me know in the comments", \
 "like if you agree", "drop a like".
 
-5. SCRIPT SHAPE: Claim sentence (names subject + impossible thing) → 4-6 dense \
-factual sentences showing HOW it works → land on the surprising payoff. Mention \
-{topic_query} clearly enough that a stranger understands.
+5. STORY SHAPE: Shock hook (drop into the drama) → escalating first-person \
+beats with concrete details (names, ages, exact texts/quotes) → the twist. Feel \
+like a real person venting, not a summary. Use {topic_query} only as loose \
+inspiration for the drama — the story is original, not about a news topic.
 
 6. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Each shot.phrase and punch.phrase \
 must appear in the script word-for-word, exact order. Mismatches break the renderer.
@@ -112,9 +114,10 @@ matches. Trigger phrases that contain numbers must also use digits.
 8. AVOID: "Wayfair" (transcribes as "wafer"); "Once" as a sentence opener \
 (transcribes as "wants" — use "First" / "Back in" / "Once you").
 
-9. SHOTS: exactly 5-7 (short video). shot.query is a concrete visible noun \
-("mantis shrimp", "cracked glass"), not an abstraction. Shot 1 is the subject \
-itself so frame 1 shows it.
+9. SHOTS: exactly 6-8. shot.query is concrete MOOD b-roll matching the beat \
+("woman crying", "phone text messages", "couple arguing", "wedding rings", \
+"person walking away"), not an abstraction. These are stock clips over the \
+gameplay strip.
 
 10. MASCOT POSE per shot — one of: idle (default, neutral at desk), shock \
 (twist / surprising fact), point (first mention of the central entity), laugh \
@@ -122,10 +125,10 @@ itself so frame 1 shows it.
 kicker). Default to "idle" for most shots. **At most 3 non-idle poses per \
 script** — over-reacting defeats the watermark feel.
 
-11. PUNCHES: exactly 3-4 (short video). 1-3 ALL CAPS words. Colors: #ff3030 \
-(shock/bad), #50ff80 (positive), #ffaa30 (warning), #ffffff (neutral). The \
-FIRST punch fires at video start (frame 0) so the claim is on screen before the \
-TTS even speaks.
+11. PUNCHES: exactly 3-5. 1-3 ALL CAPS words on the most shocking phrases. \
+Colors: #ff3030 (shock/bad), #50ff80 (positive), #ffaa30 (warning), #ffffff \
+(neutral). The FIRST punch fires at video start (frame 0) so a jaw-drop word is \
+on screen before the TTS even speaks.
 
 12. music_vibe: dark (serious/exposé), cinematic (big-picture), hiphop (cultural/upbeat).
 
@@ -325,17 +328,18 @@ def _validate_package(pkg: dict) -> list[str]:
     script = pkg.get("script", "") or ""
     script_lower = script.lower()
 
-    # RESET 2026-07: short-form (~20-30s), claim-first hook, no end question.
+    # RESET v2 2026-07: Reddit drama storytime (~45-60s), open-loop hook, twist
+    # ending (no question).
     word_count = len(script.split())
-    if word_count < 45:
+    if word_count < 100:
         issues.append(
-            f"script is only {word_count} words — must be 55-75 words. "
-            "Add one or two more factual beats."
+            f"script is only {word_count} words — must be 130-170 words. "
+            "Build the drama with more concrete beats."
         )
-    elif word_count > 85:
+    elif word_count > 200:
         issues.append(
-            f"script is {word_count} words — must be 55-75 words (renders "
-            "~20-30s). Tighten it."
+            f"script is {word_count} words — must be 130-170 words (renders "
+            "~45-60s, must fit a 60s Short). Tighten it."
         )
     if not script.rstrip().endswith((".", "!")):
         issues.append(
@@ -343,15 +347,14 @@ def _validate_package(pkg: dict) -> list[str]:
             "surprising payoff, NOT a question."
         )
 
-    # Hook: first sentence must be a concrete CLAIM that names the subject —
-    # not a coy open-loop. Require a real sentence (>=5 words), not a teaser.
+    # Hook: first sentence must be a specific, dramatic open-loop that drops
+    # the viewer into the shock — a real sentence (>=6 words), not a vague tease.
     hook_wc = _hook_word_count(script)
-    if hook_wc < 5:
+    if hook_wc < 6:
         issues.append(
-            f"hook (first sentence) is only {hook_wc} words — state the "
-            "impossible-but-true claim AND name the subject in sentence 1 so "
-            "frame 1 stops the swipe (e.g. 'This shrimp punches so fast it "
-            "boils the water.')."
+            f"hook (first sentence) is only {hook_wc} words — drop the viewer "
+            "into the specific shocking moment in sentence 1 (e.g. \"My fiance's "
+            "mom read my private diary out loud at our rehearsal dinner.\")."
         )
 
     # No forced end question — the reset kills the one-word-answer kicker.
@@ -411,11 +414,11 @@ def _validate_package(pkg: dict) -> list[str]:
             )
 
     n_shots = len(pkg.get("shots", []))
-    if not (5 <= n_shots <= 7):
-        issues.append(f"have {n_shots} shots — must be 5-7 (short video).")
+    if not (6 <= n_shots <= 8):
+        issues.append(f"have {n_shots} shots — must be 6-8 (mood b-roll per beat).")
     n_punches = len(pkg.get("punches", []))
-    if not (3 <= n_punches <= 4):
-        issues.append(f"have {n_punches} punches — must be 3-4 (short video).")
+    if not (3 <= n_punches <= 5):
+        issues.append(f"have {n_punches} punches — must be 3-5.")
 
     return issues
 

@@ -238,23 +238,23 @@ jobs:
           - state/analytics/latest.json            (what is winning — study retention)
           - state/posted_log.json                  (do NOT reuse a subject/title posted recently)
 
-          CHANNEL RESET (2026-07) — this REPLACES older doctrine. Enforce exactly:
-          - NICHE (locked): impossible animal abilities — one animal per video, a real ability/adaptation/defense that sounds impossible but is true. Nothing else. No news, no "showdowns", no politics.
-          - FIRST-FRAME CLAIM (not open-loop): the title AND first sentence STATE the impossible thing and NAME the animal immediately, so the very first frame stops the swipe. Example: "This shrimp punches so fast it boils the water." Do NOT withhold the answer.
-          - LENGTH: ~55-70 words, ONE paragraph. This renders ~20-30s. Longer is rejected.
-          - NO END QUESTION: end on the surprising payoff/consequence. Do NOT append "So what happens...?" or "Which animal should we cover next?" — the forced question wastes the closing seconds.
-          - IRON GATE: >=3 concrete, picturable visual beats of THIS animal or it's rejected.
+          CHANNEL RESET v2 (2026-07) — this REPLACES all older doctrine. Enforce exactly:
+          - FORMAT (locked): viral Reddit-style DRAMA STORY. First-person, high-stakes, emotionally charged. Buckets: AITA (am I the a-hole), relationship betrayal / cheating, entitled family / in-laws, weddings gone wrong, petty revenge, "malicious compliance", workplace blowups. Original story written in authentic Reddit voice — NOT a real copied post.
+          - HOOK (open loop — for stories this is CORRECT): sentence 1 drops the reader into the most shocking moment or the jaw-dropping premise so they NEED to know what happens. Example: "My fiance's mother stood up at our rehearsal dinner and read my private diary out loud." Name the drama, withhold the resolution.
+          - VOICE: real, specific, first-person ("I", "my"). Concrete details (names, ages, texts, exact quotes). Rising tension. It must feel like a real person venting, not a summary.
+          - LENGTH: ~130-170 words, ONE paragraph. Renders ~45-60s (a Short). Too short kills the drama; too long overflows 60s.
+          - ENDING: land on the TWIST or a cliffhanger gut-punch. NO question, NO "what would you do?", NO "part 2?" call-to-action.
 
           WRITE EXACTLY 1 file named 01_<slug>.json, EXACT schema:
-          {"version":1,"slug":"kebab-unique","title":"first-frame claim title naming the animal","hashtags":["10-12 lowercase no #"],"script":"~55-70 words, one paragraph, states the claim in sentence 1, ends on the payoff (NOT a question)","shots":[{"phrase":"EXACT substring of script","image_url":"optional Commons Special:FilePath URL","query":"stock phrase","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"EXACT substring of script","text":"SHORT CAPS","color":"#ff3030"}],"music_vibe":"dark|tense|epic|hype"}
-          5-6 shots and 3-4 punches. Shot 1 MUST be the animal itself with a pinned hero image, so frame 1 shows the animal.
+          {"version":1,"slug":"kebab-unique","title":"dramatic first-person clickbait title (AITA / 'My X did Y') <=90 chars","hashtags":["10-12 lowercase no #, e.g. reddit aita storytime drama"],"script":"~130-170 words, one paragraph, first-person, opens on the shock, ends on the twist (NOT a question)","shots":[{"phrase":"EXACT substring of script","query":"mood b-roll search, e.g. woman crying, phone text messages, wedding, couple arguing","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"EXACT substring of script","text":"SHORT CAPS","color":"#ff3030"}],"music_vibe":"dark|hiphop|cinematic (use dark for drama)"}
+          6-8 shots (mood b-roll matching each beat — NO Commons hero image needed, these are stock mood shots) and 3-5 punches on the most shocking phrases.
 
           HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
-          1. Every shot.phrase and punch.phrase MUST be an exact substring of that file's script.
-          2. Pin a Wikimedia Commons hero image on shot 1 AND ~3 more shots, form https://commons.wikimedia.org/wiki/Special:FilePath/<File> . VERIFY each: curl -s -o /dev/null -w "%{http_code}" -L "<url>" must print 200; drop any that isn't 200 (leave that shot with only a query).
-          3. The file parses as valid JSON. Script is <=70 words and does NOT end in a question. Exactly 1 file.
+          1. Every shot.phrase and punch.phrase MUST be an exact substring of that file's script (exact, case-sensitive).
+          2. The file parses as valid JSON. Script is 120-180 words, first-person, and does NOT end in a question. Exactly 1 file.
+          3. Do NOT copy a real Reddit post verbatim — write an ORIGINAL story in that voice (avoids copyright + "reused content").
 
-          Finish by printing the title and confirming substring + image-200 + word-count + no-end-question checks passed.
+          Finish by printing the title and confirming substring + word-count + first-person + no-end-question checks passed.
           EOF
           echo "brain: authoring into $DIR ..."
           claude -p "$(cat "$RUNNER_TEMP/brain_prompt.txt")" \
