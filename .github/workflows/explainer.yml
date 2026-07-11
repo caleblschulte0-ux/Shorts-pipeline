@@ -273,57 +273,41 @@ jobs:
           You are the BRAIN of this data-shorts channel: creative director, coder,
           and quality gate in one. FIRST read data_learning/VIZ_BRAIN.md — it is
           your complete playbook (toolkit, hard rules, QA checklist, schemas).
-          Work on ONLY these story slugs: ${BRAIN_SLUGS}. Then:
-          1. LEARN FIRST: read data_learning/LEARNING_LOOP.md (shared learning
-             doctrine) and state/brain_context.json (apply its directives and
-             guardrails - especially the 100-view adaptation floor). Then per
-             the LEARNING LEDGER: load state/video_ledger.json +
-             state/analytics_explainer, retrieve the ~10 most SIMILAR past
-             videos (same topic/hook-type/franchise, not top overall), score
-             them on the STAGED SCORECARD (name the failing stage: exposure/
-             hook/body/ending/satisfaction/expansion), and reason explicitly
-             before you direct anything.
-          2. For EACH segment of each target story, read its data file and invent
-             the most creative depiction of THAT data — prefer a brand-new
-             procedural mechanic; else compose from the element kit; a classic
-             chart (segment 'viz' field) is welcome variety when it reads better.
-             Apply the MEDIA JUDGMENT and VARIETY sections of the playbook.
-             Write it to the segment in data_learning/niche.config.json.
-             Never a plain bar, a bubble, or a bare number.
-          3. Direct the whole video: sharpen hook / say / closing / question so
-             they speak the exact numbers the scenes show.
+          Work on ONLY these story slugs: ${BRAIN_SLUGS}. Be FAST and efficient —
+          this runs in CI on a tight time budget. Do NOT render frames or images
+          and do NOT run any visual "look" loop; the renderer handles all visuals
+          at render time. Steps:
+          1. Skim state/brain_context.json (obey its guardrails) and read each
+             target story's segment data files. Keep this quick — no deep ledger
+             or analytics trawl.
+          2. For EACH segment, invent the most creative depiction of THAT data —
+             a brand-new procedural mechanic, or a scene composed from the element
+             kit; a named classic chart ('viz') is fine when it reads better.
+             VARY the mechanic across segments, never repeat one in a video, and
+             never a plain bar, a bubble, or a bare number. Write it into the
+             segment in data_learning/niche.config.json.
+          3. Sharpen hook / say / closing / question so they speak the exact
+             numbers the scenes show — curiosity hook, movement early, an ending
+             that surprises (escalate/invert/consequence), never a summary.
           4. Run 'python scripts/validate_scenes.py ${BRAIN_SLUGS}' and fix until
-             it prints OK.
-          5. LOOK at your work: run 'python scripts/render_frames.py
-             ${BRAIN_SLUGS} --out preview/frames --motion' and Read the PNGs —
-             final frames AND the 25/50/75 percent motion samples. Judge against
-             the RETENTION DOCTRINE (does something change every beat? first
-             second earns the view? reads muted?) and the frame checklist; fix
-             and re-render until every segment passes. Do not skip this.
-          6. Save good new mechanics to data_learning/viz_mechanics.json; star the
-             exceptional ones. Apply the HOOK DOCTRINE: curiosity-first hooks,
-             movement in the first second, max ~7-10 words readable per moment,
-             and an ending that surprises (escalate/invert/consequence) — never
-             a summary.
-          7. RECORD: append each directed video's creative fingerprint WITH its
-             shot timeline (hook/punches/visual swaps/captions/payoff/CTA
-             timestamps) to state/video_ledger.json, and make bounded updates to
-             state/brain_context.json (weights/rules-of-thumb only; obey its
-             guardrails; playbook-rule changes are operator-reviewed, not yours
-             to make silently).
-          Do NOT modify stories outside the target slugs. Finish with a 6-line
-          summary: evidence from similar past videos, depictions chosen per
-          story, hook/ending choices, QA fixes.
+             it prints OK. Do NOT render_frames.
+          5. Append a one-line creative fingerprint per story to
+             state/video_ledger.json and save any standout new mechanic to
+             data_learning/viz_mechanics.json.
+          Do NOT modify stories outside the target slugs. Finish with a short
+          summary: the depiction chosen per segment and the hook/ending.
           BRAINPROMPT
           )"
-          # Bounded so a stuck brain can't blow the 60-min job cap; non-fatal so a
-          # brain hiccup still lets the render proceed on the prior depictions.
-          timeout 1500 claude -p "$PROMPT" \
+          # Invent + validate ONLY — no frame-render/look loop. That loop blew the
+          # 25-min cap (2026-07-11) and shipped un-directed videos. Tight timeout;
+          # non-fatal so a hiccup still lets the render invent at render time
+          # (VIZ_INVENT=1). The renderer, not the brain, produces the visuals.
+          timeout 720 claude -p "$PROMPT" \
             --allowedTools "Read,Edit,Write,Bash" \
             --model "$MODEL" \
             --permission-mode acceptEdits \
             --output-format text || \
-            echo "::warning::brain step did not finish cleanly — rendering with current depictions"
+            echo "::warning::brain step did not finish in time — render invents at render time (VIZ_INVENT)"
           echo "--- brain validation ---"
           python scripts/validate_scenes.py $BRAIN_SLUGS || \
             echo "::warning::some scenes still invalid — renderer will fall back for those"
