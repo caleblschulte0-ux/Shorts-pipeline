@@ -587,6 +587,7 @@ def reframe(program: Path, work: Path) -> Path | None:
         sample_fps = src_fps / detect_every
         samp_idx: list[int] = []          # frame index of each sample
         samp_active: list[float | None] = []   # talking-face center, or None
+        samp_h: list[float | None] = []        # its face height (size proxy)
         prev_gray = None
         idx, hits = 0, 0
         while True:
@@ -597,10 +598,10 @@ def reframe(program: Path, work: Path) -> Path | None:
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 faces = cc.detectMultiScale(gray, 1.15, 5,
                                             minSize=(sh // 10, sh // 10))
-                active = None
+                active = active_h = None
                 if len(faces):
                     hits += 1
-                    best_m, best_area, best_cx = -1.0, -1, None
+                    best_m, best_area, best_cx, best_h = -1.0, -1, None, None
                     for (fx, fy, fw, fh) in faces:
                         cxf = fx + fw / 2.0
                         # mouth region: lower-central of the face box
@@ -617,15 +618,25 @@ def reframe(program: Path, work: Path) -> Path | None:
                         # the talking face wins; near-ties fall to the largest
                         if m > best_m + 0.5 or (
                                 abs(m - best_m) <= 0.5 and area > best_area):
-                            best_m, best_area, best_cx = m, area, cxf
-                    active = best_cx
+                            best_m, best_area, best_cx, best_h = m, area, cxf, fh
+                    active, active_h = best_cx, best_h
                 samp_idx.append(idx)
                 samp_active.append(active)
+                samp_h.append(active_h)
                 prev_gray = gray
             idx += 1
         cap.release()
         n = idx
         if hits < 3 or n <= 0 or not samp_idx:   # not enough face signal
+            return None
+        # CROP ONLY WHEN THE FACE IS THE CONTENT. A tight 9:16 crop keeps ~30%
+        # of a 16:9 frame's width — fine for a talking-head close-up, but on a
+        # gameplay/action clip it slices out the money shot (the streamer's
+        # facecam is a small corner; the action — a bridge jump, a drown — is
+        # elsewhere). So we only crop when faces are consistently present AND
+        # the dominant face is large; otherwise return None so the caller's
+        # blur-fill shows the WHOLE frame and the money shot is never lost.
+        if hits / len(samp_idx) < 0.5:           # faces not consistent → action
             return None
 
         # ONE STATIC FRAMING for the whole clip — the camera never moves. We
@@ -651,6 +662,16 @@ def reframe(program: Path, work: Path) -> Path | None:
             return None
         # dominant subject = the anchor seen in the most samples
         cx = max(anchors, key=lambda aw: aw[1])[0]
+        # How big is that face? Median height of samples that landed on it.
+        near_h = [h for c, h in zip(samp_active, samp_h)
+                  if c is not None and h is not None and abs(c - cx) <= crop_w * 0.45]
+        near_h.sort()
+        med_h = near_h[len(near_h) // 2] if near_h else 0.0
+        # A real talking-head close-up fills a big slice of the height; a small
+        # facecam does not. Below ~32% of frame height → it's a facecam in a
+        # bigger scene, so cropping to it would drop the action → blur-fill.
+        if med_h < 0.32 * sh:
+            return None
         static_x = min(max(cx - crop_w / 2, 0), sw - crop_w)
         path = [static_x] * n
 
