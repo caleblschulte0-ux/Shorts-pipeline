@@ -544,6 +544,8 @@ def _hex_grad0(theme: dict) -> str:
 # Templates that are pure visual journeys — no data points required
 # (premium budget law: entering/exiting things, impossible transitions).
 _VISUAL_TEMPLATES = {"earth_spin", "orbit_fly", "cosmic_exit"}
+# Templates that draw THE Earth and need the continent silhouettes.
+_EARTH_TEMPLATES = {"earth_spin", "orbit_fly", "cosmic_exit", "earth_dive"}
 
 
 def _hero_spec(template: str, seg_cfg: dict, theme: dict,
@@ -553,8 +555,15 @@ def _hero_spec(template: str, seg_cfg: dict, theme: dict,
         "accent": theme.get("highlight", "#4FD1C5"),
         "seconds": seconds, "fps": HERO_FPS, "samples": 32,
         "res_x": 1440, "res_y": 810,
-        "style": 2,     # material language version — busts the hero
-    }                   # cache when the brand shading changes
+        "style": 3,     # visual language version — busts the hero
+    }                   # cache when the brand look changes
+    if template in _EARTH_TEMPLATES:
+        # v8: THE continents ride in the spec (blender_hero never imports
+        # pipeline code) — and being part of the md5 cache key, editing
+        # the silhouettes re-renders every earth shot automatically.
+        from data_learning.continents import LANDMASSES
+        spec["continents"] = {k: [list(p) for p in v]
+                              for k, v in LANDMASSES.items()}
     if template in _VISUAL_TEMPLATES:
         return spec
     points, unit = _seg_points(seg_cfg)

@@ -28,6 +28,11 @@ from manim import (BOLD, DOWN, LEFT, RIGHT, UP, Arc, Circle, Create,
                    DashedLine, Dot, FadeIn, Line, Polygon, Rectangle, Rotate,
                    Text, Transform, ValueTracker, VGroup, rate_functions)
 
+try:
+    from data_learning import continents as cont
+except ImportError:          # loaded with data_learning/ itself on the path
+    import continents as cont
+
 PKG_DIR = Path(__file__).resolve().parent
 DATA_DIR = PKG_DIR / "data"
 GRAY_TEXT = "#98a2b4"
@@ -179,16 +184,44 @@ def asset(name):
     return reg
 
 
+def _earth_face(scale):
+    """The Atlantic hemisphere as landmass Polygons (v8: THE continents,
+    not green circles). One shared sinusoidal projection keeps the
+    geography coherent; vertices past the disc edge clamp radially onto
+    the limb — the same smear a real globe shows at its horizon."""
+    outlines = []
+    for name in cont.ATLANTIC_FACE:
+        pts = cont.LANDMASSES[name]
+        if name == "eurasia":
+            pts = [p for p in pts if p[0] <= cont.EURASIA_FACE_MAX_LON]
+        outlines.append([((lon - cont.ATLANTIC_LON0) * math.cos(
+            math.radians(lat)), lat) for lon, lat in pts])
+    xs = [x for o in outlines for x, _ in o]
+    ys = [y for o in outlines for _, y in o]
+    cx, cy = (max(xs) + min(xs)) / 2, (max(ys) + min(ys)) / 2
+    s = 2.84 * scale / max(max(xs) - min(xs), max(ys) - min(ys))
+    lim = 1.44 * scale
+    polys = []
+    for o in outlines:
+        anchors = []
+        for x, y in o:
+            px, py = (x - cx) * s, (y - cy) * s
+            rr = math.hypot(px, py)
+            if rr > lim:
+                px, py = px * lim / rr, py * lim / rr
+            anchors.append([px, py, 0])
+        polys.append(Polygon(*anchors, stroke_width=0,
+                             fill_color="#2f8f5b", fill_opacity=0.95))
+    return polys
+
+
 @asset("earth")
 def _earth(scale=1.0):
     g = VGroup()
     g.add(Circle(radius=1.5 * scale, stroke_width=0, fill_color="#1c4a8c",
                  fill_opacity=1.0))
-    for k, (x, y, r) in enumerate([(0.65, 0.55, 0.34), (-0.4, 0.7, 0.26),
-                                   (0.2, -0.5, 0.42), (-0.75, -0.35, 0.3),
-                                   (0.95, -0.15, 0.22)]):
-        g.add(Circle(radius=r * scale, stroke_width=0, fill_color="#2f8f5b",
-                     fill_opacity=0.95).move_to([x * scale, y * scale, 0]))
+    for poly in _earth_face(scale):
+        g.add(poly)       # [1:-1] — the spin updater's rotating slice
     g.add(Circle(radius=1.62 * scale, stroke_width=3 * scale,
                  color="#7fb4ff", stroke_opacity=0.35))     # atmosphere
     return g

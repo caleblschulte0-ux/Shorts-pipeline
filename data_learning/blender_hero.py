@@ -219,32 +219,7 @@ def build_earth_dive(spec: dict):
     half = frames // 2
 
     # --- phase 1 world: THE Earth in space ---
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=5, location=(0, 0, 0),
-                                         segments=48, ring_count=24)
-    earth = bpy.context.object
-    bpy.ops.object.shade_smooth()
-    earth.data.materials.append(_body("earth_sea", (0.05, 0.18, 0.42)))
-    for i, (dx, dy, dz, r) in enumerate([(2.2, -3.4, 2.6, 1.5),
-                                         (-3.0, -3.2, 0.6, 1.2),
-                                         (0.8, -4.4, -2.0, 1.7),
-                                         (-1.8, -3.8, 2.8, 1.0)]):
-        bpy.ops.mesh.primitive_uv_sphere_add(radius=r,
-                                             location=(dx, dy, dz),
-                                             segments=24, ring_count=12)
-        blob = bpy.context.object
-        bpy.ops.object.shade_smooth()
-        blob.scale = (1.0, 0.35, 1.0)          # squashed = continent shell
-        blob.data.materials.append(_body(f"land{i}", (0.10, 0.34, 0.18)))
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=5.25, location=(0, 0, 0),
-                                         segments=32, ring_count=16)
-    atmo = bpy.context.object
-    m = bpy.data.materials.new("atmo")
-    m.use_nodes = True
-    bsdf = m.node_tree.nodes["Principled BSDF"]
-    bsdf.inputs["Base Color"].default_value = (0.3, 0.55, 1.0, 1)
-    bsdf.inputs["Alpha"].default_value = 0.08
-    m.blend_method = "BLEND"
-    atmo.data.materials.append(m)
+    _the_earth(5.0, (0, 0, 0), continents=spec.get("continents"))
     bpy.ops.object.light_add(type="SUN", location=(20, -18, 14))
     bpy.context.object.data.energy = 4.0
 
@@ -353,27 +328,76 @@ def _stars(n=120, spread=600.0, exclude=60.0, bright=5.0):
             _emission(f"star{i}", (0.85, 0.9, 1.0), bright))
 
 
-def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None):
-    """THE Earth (sea sphere + squashed continent shells + atmosphere),
-    reused by every space template. Returns the sea sphere."""
+def _continent_shell(name, outline, radius, loc):
+    """One landmass as a thin mesh shell hugging the globe: the authored
+    (lon, lat) outline is triangulated flat, mapped onto the sphere, then
+    subdivided and re-projected so big triangles can't sag below the sea
+    surface (a boundary-only mesh would chord straight through)."""
+    import bmesh
+    from mathutils import Vector
+    from mathutils.geometry import tessellate_polygon
+    tris = tessellate_polygon([[Vector((lon, lat, 0))
+                                for lon, lat in outline]])
+
+    def ll(lon, lat):
+        lam, phi = math.radians(lon), math.radians(lat)
+        return (radius * math.cos(phi) * math.cos(lam),
+                radius * math.cos(phi) * math.sin(lam),
+                radius * math.sin(phi))
+
+    me = bpy.data.meshes.new(f"land_{name}")
+    me.from_pydata([ll(lon, lat) for lon, lat in outline], [],
+                   [list(t) for t in tris])
+    bm = bmesh.new()
+    bm.from_mesh(me)
+    for _ in range(3):
+        bmesh.ops.subdivide_edges(bm, edges=bm.edges[:], cuts=1,
+                                  use_grid_fill=True)
+    for v in bm.verts:
+        v.co = v.co.normalized() * radius
+    bm.to_mesh(me)
+    bm.free()
+    for p in me.polygons:
+        p.use_smooth = True
+    ob = bpy.data.objects.new(f"land_{name}", me)
+    bpy.context.collection.objects.link(ob)
+    ob.location = loc
+    return ob
+
+
+def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
+    """THE Earth (sea sphere + continent shells + atmosphere), reused by
+    every space template. Returns the sea sphere. `continents` is the
+    {name: [(lon, lat), ...]} silhouette set carried in the spec (v8 —
+    THE same recognizable landmasses the 2D disc shows); without it we
+    fall back to the legacy squashed-blob shells."""
     bpy.ops.mesh.primitive_uv_sphere_add(radius=radius, location=loc,
                                          segments=48, ring_count=24)
     sea = bpy.context.object
     bpy.ops.object.shade_smooth()
     sea.data.materials.append(_body("earth_sea", (0.05, 0.18, 0.42)))
     k = radius / 5.0
-    for i, (dx, dy, dz, r) in enumerate([(2.2, -3.4, 2.6, 1.5),
-                                         (-3.0, -3.2, 0.6, 1.2),
-                                         (0.8, -4.4, -2.0, 1.7),
-                                         (-1.8, -3.8, 2.8, 1.0)]):
-        bpy.ops.mesh.primitive_uv_sphere_add(
-            radius=r * k, location=(loc[0] + dx * k, loc[1] + dy * k,
-                                    loc[2] + dz * k),
-            segments=24, ring_count=12)
-        blob = bpy.context.object
-        bpy.ops.object.shade_smooth()
-        blob.scale = (1.0, 0.35, 1.0)
-        blob.data.materials.append(_body(f"land{i}", (0.10, 0.34, 0.18)))
+    if continents:
+        lands = [_continent_shell(n, o, radius * 1.012, loc)
+                 for n, o in continents.items()]
+    else:
+        lands = []
+        for i, (dx, dy, dz, r) in enumerate([(2.2, -3.4, 2.6, 1.5),
+                                             (-3.0, -3.2, 0.6, 1.2),
+                                             (0.8, -4.4, -2.0, 1.7),
+                                             (-1.8, -3.8, 2.8, 1.0)]):
+            bpy.ops.mesh.primitive_uv_sphere_add(
+                radius=r * k, location=(loc[0] + dx * k, loc[1] + dy * k,
+                                        loc[2] + dz * k),
+                segments=24, ring_count=12)
+            blob = bpy.context.object
+            bpy.ops.object.shade_smooth()
+            blob.scale = (1.0, 0.35, 1.0)
+            lands.append(blob)
+    land_mat = _body("land", (0.10, 0.34, 0.18))
+    for blob in lands:
+        if not blob.data.materials:
+            blob.data.materials.append(land_mat)
         blob.parent = parent if parent is not None else sea
         if parent is None:
             blob.matrix_parent_inverse = sea.matrix_world.inverted()
@@ -424,7 +448,8 @@ def build_earth_spin(spec: dict):
 
     bpy.ops.object.empty_add(location=(0, 0, 0))
     spin = bpy.context.object                    # continents parent
-    _the_earth(5.0, (0, 0, 0), parent=spin)
+    _the_earth(5.0, (0, 0, 0), parent=spin,
+               continents=spec.get("continents"))
     spin.rotation_euler = (0, 0, 0)
     spin.keyframe_insert(data_path="rotation_euler", frame=1)
     spin.rotation_euler = (0, 0, 1.0)            # ~57 deg of visible spin
@@ -482,7 +507,8 @@ def build_orbit_fly(spec: dict):
     # Earth rides the path (parented to a rotating empty)…
     bpy.ops.object.empty_add(location=(0, 0, 0))
     eorb = bpy.context.object
-    earth = _the_earth(1.6, (40, 0, 0))
+    earth = _the_earth(1.6, (40, 0, 0),
+                       continents=spec.get("continents"))
     earth.parent = eorb
     earth.matrix_parent_inverse = eorb.matrix_world.inverted()
     eorb.rotation_euler = (0, 0, 0)
@@ -522,7 +548,8 @@ def build_cosmic_exit(spec: dict):
     accent = _hex(spec.get("accent", "#4FD1C5"))
     frames = _frames(sc, spec)
 
-    earth = _the_earth(5.0, (0, 0, 0))
+    earth = _the_earth(5.0, (0, 0, 0),
+                       continents=spec.get("continents"))
     # the Sun, far off-axis — enters frame as we recede
     bpy.ops.mesh.primitive_uv_sphere_add(radius=12,
                                          location=(220, 120, 60),
