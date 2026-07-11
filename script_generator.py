@@ -51,9 +51,10 @@ DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
 
 SYSTEM_PROMPT = """You write viral-style YouTube Shorts scripts as strict JSON. \
-1080x1920 vertical, ~45 seconds, doomscroll-explainer tone: factual hook, dense \
-delivery, no filler, no editorial opinion. Each shot can carry a `mascot_pose` \
-hint for the on-screen anchor character. Output JSON only — no prose, no fences."""
+1080x1920 vertical, ~20-30 seconds, tight factual tone: state the claim up \
+front, dense delivery, no filler, no editorial opinion. Each shot can carry a \
+`mascot_pose` hint for the on-screen anchor character. Output JSON only — no \
+prose, no fences."""
 
 
 USER_PROMPT_TEMPLATE = """Topic: {topic_query}
@@ -64,7 +65,7 @@ Context (headlines and snippets driving the trend):
 Schema:
 {{
   "title": "<6-10 word punchy YouTube title>",
-  "script": "<110-140 words, opens with a SHORT hook (<=5 words ending in ? or !), ends with a one-word-answer question>",
+  "script": "<55-75 words, sentence 1 STATES the impossible claim and names the subject, ends on the surprising payoff — NOT a question>",
   "shots": [
     {{"phrase": "<2-4 word VERBATIM substring of the script>",
       "query": "<1-3 word stock-footage search, visually concrete>",
@@ -80,31 +81,27 @@ Schema:
 
 Hard rules (validated):
 
-1. SCRIPT LENGTH: 110-140 words, must end with a period or question mark. Shorter is rejected.
+1. SCRIPT LENGTH: 55-75 words (renders ~20-30s). Must end with a period. Longer or shorter is rejected.
 
-2. HOOK: The first sentence MUST be a punchy question or 1-word exclamation, \
-5 words or fewer, that OPENS A CURIOSITY GAP — it makes the viewer NEED the \
-answer, it does not announce the topic. Name the specific weird thing and \
-imply a contradiction or stakes. Lead with a number when the story has one \
-(numbers stop the swipe). Good: "A kangaroo did WHAT?", "8 goats, one county?", \
-"Too many koalas?", "Why fire 30,000 people?", "An octopus used a mirror?". \
-Bad (announces, no gap): "Apple just unveiled a new...", "Goats got loose.", \
-"A storm is coming." The hook is what stops the swipe AND it is burned huge \
-on the cover frame, so it must read as a tease, not a headline.
+2. FIRST-FRAME CLAIM HOOK (NOT open-loop): The first sentence STATES the \
+impossible-but-true thing AND names the subject immediately, so the very first \
+frame stops the swipe. It shows the payoff-claim, it does NOT withhold it. \
+Good: "This shrimp punches so fast it boils the water.", "This frog freezes \
+solid every winter and wakes up alive.". Bad (withholds / announces): "You \
+won't believe what this animal can do.", "One animal terrifies great whites." \
+Lead with the concrete claim; it is burned huge on the cover frame.
 
-3. KICKER: The final sentence MUST be a question the viewer can answer in ONE \
-WORD or comma-pick (yes/no, A/B, single noun). Specific to the story, not \
-generic. Good: "Would you have eaten that kangaroo?", "Was the captain right?", \
-"Could YOU survive a 9.0 quake?". Bad: "What do you think?", "Let us know!" \
-(generic = no comments).
+3. ENDING: End on the SURPRISING PAYOFF or consequence. Do NOT append a \
+question ("So what happens...?", "Which animal next?") — the forced question \
+wastes the most valuable closing seconds. No call-to-action.
 
 4. BANNED phrases — algorithm-suppressed engagement-bait: "comment YES", \
 "subscribe for part 2", "tag a friend", "let me know in the comments", \
 "like if you agree", "drop a like".
 
-5. SCRIPT SHAPE: Question hook (5 words max) → 6-9 dense factual sentences → \
-one-word-answer question kicker. Mention {topic_query} clearly enough that a \
-stranger understands.
+5. SCRIPT SHAPE: Claim sentence (names subject + impossible thing) → 4-6 dense \
+factual sentences showing HOW it works → land on the surprising payoff. Mention \
+{topic_query} clearly enough that a stranger understands.
 
 6. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Each shot.phrase and punch.phrase \
 must appear in the script word-for-word, exact order. Mismatches break the renderer.
@@ -115,8 +112,9 @@ matches. Trigger phrases that contain numbers must also use digits.
 8. AVOID: "Wayfair" (transcribes as "wafer"); "Once" as a sentence opener \
 (transcribes as "wants" — use "First" / "Back in" / "Once you").
 
-9. SHOTS: exactly 10-14. shot.query is a concrete visible noun ("empty store shelves", \
-"stock chart"), not an abstraction ("economic anxiety", "frustration").
+9. SHOTS: exactly 5-7 (short video). shot.query is a concrete visible noun \
+("mantis shrimp", "cracked glass"), not an abstraction. Shot 1 is the subject \
+itself so frame 1 shows it.
 
 10. MASCOT POSE per shot — one of: idle (default, neutral at desk), shock \
 (twist / surprising fact), point (first mention of the central entity), laugh \
@@ -124,9 +122,9 @@ matches. Trigger phrases that contain numbers must also use digits.
 kicker). Default to "idle" for most shots. **At most 3 non-idle poses per \
 script** — over-reacting defeats the watermark feel.
 
-11. PUNCHES: exactly 6-10. 1-3 ALL CAPS words. Colors: #ff3030 (shock/bad), \
-#50ff80 (positive), #ffaa30 (warning), #ffffff (neutral). The FIRST punch \
-fires at video start (frame 0) so the shock-number is on screen before the \
+11. PUNCHES: exactly 3-4 (short video). 1-3 ALL CAPS words. Colors: #ff3030 \
+(shock/bad), #50ff80 (positive), #ffaa30 (warning), #ffffff (neutral). The \
+FIRST punch fires at video start (frame 0) so the claim is on screen before the \
 TTS even speaks.
 
 12. music_vibe: dark (serious/exposé), cinematic (big-picture), hiphop (cultural/upbeat).
@@ -327,43 +325,40 @@ def _validate_package(pkg: dict) -> list[str]:
     script = pkg.get("script", "") or ""
     script_lower = script.lower()
 
+    # RESET 2026-07: short-form (~20-30s), claim-first hook, no end question.
     word_count = len(script.split())
-    if word_count < 100:
+    if word_count < 45:
         issues.append(
-            f"script is only {word_count} words — must be 110-140 words. "
-            "Add more factual content."
+            f"script is only {word_count} words — must be 55-75 words. "
+            "Add one or two more factual beats."
         )
-    elif word_count > 150:
+    elif word_count > 85:
         issues.append(
-            f"script is {word_count} words — must be 110-140 words. Tighten it."
+            f"script is {word_count} words — must be 55-75 words (renders "
+            "~20-30s). Tighten it."
         )
-    if not script.rstrip().endswith((".", "!", "?")):
-        issues.append("script must end with a period, exclamation, or question mark.")
+    if not script.rstrip().endswith((".", "!")):
+        issues.append(
+            "script must end on a statement (period or exclamation) — end on the "
+            "surprising payoff, NOT a question."
+        )
 
-    # Hook: first sentence must be ≤5 words AND end with ? or !.
+    # Hook: first sentence must be a concrete CLAIM that names the subject —
+    # not a coy open-loop. Require a real sentence (>=5 words), not a teaser.
     hook_wc = _hook_word_count(script)
-    if hook_wc > 5:
+    if hook_wc < 5:
         issues.append(
-            f"hook (first sentence) is {hook_wc} words — must be 5 or fewer. "
-            "Rewrite as a short question or exclamation that stops the swipe."
-        )
-    first_punct = next((c for c in script if c in ".!?"), "")
-    if first_punct == ".":
-        issues.append(
-            "hook ends with a period — must end with ? or ! to drive 3-second "
-            "hold. Make it a question or exclamation."
+            f"hook (first sentence) is only {hook_wc} words — state the "
+            "impossible-but-true claim AND name the subject in sentence 1 so "
+            "frame 1 stops the swipe (e.g. 'This shrimp punches so fast it "
+            "boils the water.')."
         )
 
-    # Kicker: last non-empty sentence must be a question.
-    last = re.split(r"[.!?]", script.rstrip(".!?").strip())
-    last_sentence = next((s for s in reversed(last) if s.strip()), "")
-    # The final character of the whole script tells us if it ended with ?.
-    if not script.rstrip().endswith("?"):
+    # No forced end question — the reset kills the one-word-answer kicker.
+    if script.rstrip().endswith("?"):
         issues.append(
-            "kicker (final sentence) must end with a question mark — a story-"
-            "specific question answerable in one word ('yes/no' or 'A/B'). "
-            "Generic 'what do you think?' is also rejected; the question must "
-            "name a thing from the story."
+            "script ends with a question — the reset forbids the forced "
+            "kicker question. End on the surprising payoff or consequence."
         )
 
     # Suppression-bait phrases.
@@ -416,11 +411,11 @@ def _validate_package(pkg: dict) -> list[str]:
             )
 
     n_shots = len(pkg.get("shots", []))
-    if not (10 <= n_shots <= 14):
-        issues.append(f"have {n_shots} shots — must be 10-14.")
+    if not (5 <= n_shots <= 7):
+        issues.append(f"have {n_shots} shots — must be 5-7 (short video).")
     n_punches = len(pkg.get("punches", []))
-    if not (6 <= n_punches <= 10):
-        issues.append(f"have {n_punches} punches — must be 6-10.")
+    if not (3 <= n_punches <= 4):
+        issues.append(f"have {n_punches} punches — must be 3-4 (short video).")
 
     return issues
 

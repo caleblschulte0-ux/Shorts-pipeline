@@ -6,7 +6,7 @@ on:
       count:
         description: 'How many shorts to publish'
         required: false
-        default: '6'
+        default: '1'
       force:
         description: 'Bypass 6-hour duplicate-trigger guard (--force-rerun, keeps pre-written packages)'
         required: false
@@ -230,31 +230,31 @@ jobs:
           npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || { echo "::warning::BRAIN — claude-code install failed; falling to Groq."; exit 0; }
           mkdir -p "$DIR"
           cat > "$RUNNER_TEMP/brain_prompt.txt" <<EOF
-          You are the Schulte Media BRAIN, running headless in CI before render. Author today's 6 video packages into the directory: $DIR
+          You are the Schulte Media BRAIN, running headless in CI before render. Author today's SINGLE video package into the directory: $DIR
 
           READ FIRST and treat as law:
           - data_learning/SCHULTE_MEDIA_BRAIN.md  (playbook: identity, iron gate, hooks, retention doctrine)
           - data_learning/LEARNING_LOOP.md         (how to read analytics)
-          - state/scouted_sources.json             (today's raw trending material — derive angles from THIS)
-          - state/analytics/latest.json            (what is winning — lean into high-retention topics; animals win)
+          - state/analytics/latest.json            (what is winning — study retention)
           - state/posted_log.json                  (do NOT reuse a subject/title posted recently)
 
-          DOCTRINE (enforce):
-          - Niche: animal encounters / showdowns / "nature is metal" (the channel's proven winners).
-          - IRON GATE: every story is a vivid question with >=3 concrete visual beats, or it's rejected.
-          - OPEN-LOOP HOOKS: the title and first line WITHHOLD the answer (e.g. "The one animal a great white shark runs from..." — do not say "orca" until seconds in).
-          - First line = proof/intrigue, never setup. Noun-heavy, picturable script, ~100-115 words, ends on a question.
+          CHANNEL RESET (2026-07) — this REPLACES older doctrine. Enforce exactly:
+          - NICHE (locked): impossible animal abilities — one animal per video, a real ability/adaptation/defense that sounds impossible but is true. Nothing else. No news, no "showdowns", no politics.
+          - FIRST-FRAME CLAIM (not open-loop): the title AND first sentence STATE the impossible thing and NAME the animal immediately, so the very first frame stops the swipe. Example: "This shrimp punches so fast it boils the water." Do NOT withhold the answer.
+          - LENGTH: ~55-70 words, ONE paragraph. This renders ~20-30s. Longer is rejected.
+          - NO END QUESTION: end on the surprising payoff/consequence. Do NOT append "So what happens...?" or "Which animal should we cover next?" — the forced question wastes the closing seconds.
+          - IRON GATE: >=3 concrete, picturable visual beats of THIS animal or it's rejected.
 
-          WRITE 6 files named 01_<slug>.json ... 06_<slug>.json, EXACT schema:
-          {"version":1,"slug":"kebab-unique","title":"open-loop title","hashtags":["10-12 lowercase no #"],"script":"~100-115 words one paragraph ending in a question","shots":[{"phrase":"EXACT substring of script","image_url":"optional Commons Special:FilePath URL","query":"stock phrase","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"EXACT substring of script","text":"SHORT CAPS","color":"#ff3030"}],"music_vibe":"dark|tense|epic|hype"}
-          7-8 shots and 4 punches per file.
+          WRITE EXACTLY 1 file named 01_<slug>.json, EXACT schema:
+          {"version":1,"slug":"kebab-unique","title":"first-frame claim title naming the animal","hashtags":["10-12 lowercase no #"],"script":"~55-70 words, one paragraph, states the claim in sentence 1, ends on the payoff (NOT a question)","shots":[{"phrase":"EXACT substring of script","image_url":"optional Commons Special:FilePath URL","query":"stock phrase","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"EXACT substring of script","text":"SHORT CAPS","color":"#ff3030"}],"music_vibe":"dark|tense|epic|hype"}
+          5-6 shots and 3-4 punches. Shot 1 MUST be the animal itself with a pinned hero image, so frame 1 shows the animal.
 
           HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
           1. Every shot.phrase and punch.phrase MUST be an exact substring of that file's script.
-          2. Pin a Wikimedia Commons hero image on ~4 shots per file, form https://commons.wikimedia.org/wiki/Special:FilePath/<File> . VERIFY each: curl -s -o /dev/null -w "%{http_code}" -L "<url>" must print 200; drop any that isn't 200 (leave that shot with only a query).
-          3. Each file parses as valid JSON. Exactly 6 files.
+          2. Pin a Wikimedia Commons hero image on shot 1 AND ~3 more shots, form https://commons.wikimedia.org/wiki/Special:FilePath/<File> . VERIFY each: curl -s -o /dev/null -w "%{http_code}" -L "<url>" must print 200; drop any that isn't 200 (leave that shot with only a query).
+          3. The file parses as valid JSON. Script is <=70 words and does NOT end in a question. Exactly 1 file.
 
-          Finish by printing the 6 titles and confirming all substring + image-200 checks passed.
+          Finish by printing the title and confirming substring + image-200 + word-count + no-end-question checks passed.
           EOF
           echo "brain: authoring into $DIR ..."
           claude -p "$(cat "$RUNNER_TEMP/brain_prompt.txt")" \
