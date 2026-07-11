@@ -406,18 +406,31 @@ def _adopt(scene, ctx, m):
         scene.add(m)
 
 
+def _brand_stroke(ctx, pts=3.5):
+    """Stroke width matched to the beat's local scale: scale-world
+    exhibits settle with scale_stroke=True, so a designed 3.5pt line at
+    this level is 3.5 x (fw/11) — creating post-settle geometry with a
+    raw design number renders hair-thin or planet-fat at deep zooms."""
+    return pts * float(ctx.get("fw", 11.0)) / 11.0
+
+
 @consequence("orbit_ring")
 def _c_orbit_ring(scene, ctx, plan):
     """earth_spin's speed band stays behind: a glowing equatorial ring
-    around the subject — the world remembers the hero happened."""
+    around THE EARTH — the world remembers the hero happened."""
     hi = ctx.get("accent", "#4FD1C5")
-    sub = STATE.get("level:earth") or ctx.get("group")
+    lvl = STATE.get("level:earth")
+    # the level group includes its stamp/label — the ring must circle
+    # the earth asset itself (first child), never the group bbox
+    sub = (lvl.submobjects[0] if lvl is not None and lvl.submobjects
+           else ctx.get("group"))
     c = (np.array(sub.get_center()) if sub is not None
          else np.array(ctx["anchor"]))
     w = (sub.width if sub is not None and sub.width > 1e-6
-         else ctx["fw"] * 0.4)
-    ring = Circle(radius=w * 0.60, color=hi, stroke_width=w * 0.55,
-                  stroke_opacity=0.75).stretch(0.34, 1).move_to(c)
+         else ctx["fw"] * 0.3)
+    ring = Circle(radius=w * 0.62, color=hi,
+                  stroke_width=_brand_stroke(ctx, 4.0),
+                  stroke_opacity=0.8).stretch(0.34, 1).move_to(c)
     rt = 1.2
     scene.play(Create(ring), run_time=rt,
                rate_func=rate_functions.ease_in_out_sine)
@@ -438,9 +451,9 @@ def _c_standing_trail(scene, ctx, plan):
     y = float(g.get_bottom()[1])
     pad = (x1 - x0) * 0.10
     base = Line([x0 - pad, y, 0], [x1 + pad, y, 0], color=hi,
-                stroke_width=(x1 - x0) * 0.8, stroke_opacity=0.9)
+                stroke_width=_brand_stroke(ctx, 5.0), stroke_opacity=0.9)
     glow = Line([x0 - pad * 2, y, 0], [x1 + pad * 2, y, 0], color=hi,
-                stroke_width=(x1 - x0) * 2.6, stroke_opacity=0.16)
+                stroke_width=_brand_stroke(ctx, 16.0), stroke_opacity=0.16)
     keep = VGroup(glow, base)
     rt = 1.0
     scene.play(Create(base), FadeIn(glow), run_time=rt,
@@ -463,7 +476,7 @@ def _c_depth_mark(scene, ctx, plan):
     dot = Dot([bottom[0], bottom[1], 0], radius=w * 0.035, color=hi)
     tick = Line([bottom[0] - w * 0.12, bottom[1], 0],
                 [bottom[0] + w * 0.12, bottom[1], 0], color=hi,
-                stroke_width=w * 0.5, stroke_opacity=0.8)
+                stroke_width=_brand_stroke(ctx, 5.0), stroke_opacity=0.8)
     keep = VGroup(tick, dot)
     rt = 0.9
     scene.play(FadeIn(tick), dot.animate.scale(1.6),
@@ -489,18 +502,25 @@ def _rank_in_world(wp, theme, scale, anchor=None, post_scale=1.0):
     vmax = max(q["value"] for q in pts) or 1.0
     vmin = min(q["value"] for q in pts) or 1.0
     n = len(pts)
-    col_w = min(1.5, 6.6 / n) * scale
+    col_w = min(1.6, 7.4 / n) * scale
     col_h = 3.0 * scale
     x00 = -(n - 1) / 2 * col_w
     g = VGroup()
     span = n * col_w
     glow = Line([x00 - col_w, -0.02 * scale, 0],
-                [x00 + span, -0.02 * scale, 0], color=hi,
-                stroke_width=span * 1.1, stroke_opacity=0.10)
-    floor = Line([x00 - col_w, 0, 0], [x00 + span, 0, 0],
-                 color="#8fa0bd", stroke_width=span * 0.28,
+                [x00 + span - col_w * 0.5, -0.02 * scale, 0], color=hi,
+                stroke_width=14 * scale, stroke_opacity=0.12)
+    floor = Line([x00 - col_w, 0, 0], [x00 + span - col_w * 0.5, 0, 0],
+                 color="#8fa0bd", stroke_width=4 * scale,
                  stroke_opacity=0.8)
     g.add(glow, floor)
+
+    def _h(v):
+        # log heights: a 900 vs 828,000 spread must still show every
+        # monolith standing (linear flattens all but the champion)
+        return col_h * max(0.12, math.log10(max(v, 1.1))
+                           / math.log10(max(vmax, 10.0)))
+
     slabs = []
     for i, q in enumerate(sorted(pts, key=lambda r: r["value"])):
         x = x00 + i * col_w
@@ -509,12 +529,12 @@ def _rank_in_world(wp, theme, scale, anchor=None, post_scale=1.0):
                          fill_color=hi if star else COOL,
                          fill_opacity=0.95)
         slab.move_to([x, 0, 0], aligned_edge=DOWN)
-        label = Text(_diet(q["label"]), font_size=int(20 * scale),
-                     color="#ffffff").move_to([x, -0.45 * scale, 0])
+        label = Text(_diet(q["label"], 1), font_size=int(16 * scale),
+                     color=GRAY_TEXT).move_to([x, -0.42 * scale, 0])
         v = ValueTracker(0.0)
         num = _counter(v, unit, int(24 * scale), "#ffffff",
-                       anchor=slab, direction=UP, buff=0.22 * scale,
-                       size_ref=(slab, "width", 0.55))
+                       anchor=slab, direction=UP, buff=0.20 * scale,
+                       size_ref=(slab, "width", 0.30))
         g.add(slab, label, num)
         slabs.append((slab, v, q, star))
     # phase 2: the same facts re-compared as a RATIO (new comparison
@@ -529,13 +549,14 @@ def _rank_in_world(wp, theme, scale, anchor=None, post_scale=1.0):
     anims = [_Par([Create(floor), FadeIn(glow)], run_time=0.9,
                   sem=("environment", "monolith-floor"), focus="floor")]
     for slab, v, q, star in slabs:
-        target_h = max(0.05, col_h * q["value"] / vmax) * post_scale
+        target_h = _h(q["value"]) * post_scale
         anims.append(_Par(
             [slab.animate(rate_func=rate_functions.ease_out_cubic)
              .stretch_to_fit_height(target_h, about_edge=DOWN),
              v.animate.set_value(q["value"])],
             run_time=1.4 if star else 0.9,
-            state=True, focus="champion" if star else None))
+            state=True, sem=("role", f"rises:{_diet(q['label'], 1)}"),
+            focus="champion" if star else None))
     anims.append(_Par([ratio.animate(
         rate_func=rate_functions.ease_out_back).scale(1e3)],
         run_time=1.0, punch=True, state=True,
