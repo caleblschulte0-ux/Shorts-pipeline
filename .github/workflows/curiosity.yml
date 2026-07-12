@@ -46,6 +46,14 @@ on:
         default: 'false'
         type: choice
         options: ['false', 'true']
+      hero_res:
+        description: 'Blender hero resolution WxH (blank = CI default 960x540; full quality is 1440x810 but will NOT fit GitHub''s 6h cap — use a faster host)'
+        required: false
+        default: ''
+      hero_samples:
+        description: 'Blender hero Cycles samples (blank = CI default 24; full quality is 32)'
+        required: false
+        default: ''
   # Weekly cadence — long-form is a catalog play, not a firehose.
   # DISARMED (operator ruling 2026-07-08): nothing publishes while the
   # simulation-engine rebuild is in progress. Re-enable by uncommenting
@@ -205,8 +213,8 @@ jobs:
           # toon shading upscales cleanly) so the full premium cut finishes
           # in ~2.5h with margin. A faster host leaves these unset for full
           # 1440x810/32 quality.
-          CURIO_HERO_RES: '960x540'
-          CURIO_HERO_SAMPLES: '24'
+          CURIO_HERO_RES: ${{ inputs.hero_res || '960x540' }}
+          CURIO_HERO_SAMPLES: ${{ inputs.hero_samples || '24' }}
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
