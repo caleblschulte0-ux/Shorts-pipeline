@@ -11569,8 +11569,8 @@
     {
       "slug": "birds-migrate-insanely-far",
       "title": "Birds Migrate Insanely Far",
-      "hook": "Meet the bird that circles the ENTIRE planet... almost twice a year.",
-      "closing": "And some don't land once in two straight days \u2014 not even to sleep.",
+      "hook": "What if a bird could fly farther in ONE year than most people drive in a lifetime \u2014 without a single map?",
+      "closing": "And the most extreme flyer of them all stays airborne for a FULL 48 hours straight \u2014 two days, zero landings.",
       "hashtags": [
         "birdmigration",
         "wildlife",
@@ -11586,13 +11586,13 @@
             "file": "birds_migrate_insanely_far_longest_migrations.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 LAPS AROUND EARTH",
+          "role": "1 \u00b7 LONGEST MIGRATIONS",
           "topic": "Longest Migrations",
-          "say": "The Arctic tern flies 44,000 miles a year \u2014 almost twice around the entire planet. The Amur falcon circles it nearly once, and the semipalmated sandpiper flies three-quarters of the way around.",
+          "say": "Every year the Arctic tern flies 44,000 miles, the Amur falcon covers 22,000, and the semipalmated sandpiper logs 18,000 \u2014 watch the trails stretch across the globe.",
           "scene": {
-            "mechanic": "earth-lap-trails",
-            "concept": "each bird orbits a real Earth image, its arc trail sweeping the exact number of planet-circumferences its annual mileage covers",
-            "code": "cx = (RX0 + RX1) // 2\ncy = 560\nearth = subject_image('planet Earth from space blue marble')\ner = 140\nif earth is not None:\n    paste(earth, cx - er, cy - er, er * 2, er * 2)\ncircumference = 24901.0\nradii = [er + 100, er + 190, er + 280]\ncols = [HIGHLIGHT, ACCENT, WARN]\nfor i in range(n):\n    v = values[i]\n    revs = v / circumference\n    r = radii[i] if i < len(radii) else radii[-1] + (i - 2) * 90\n    col = cols[i % len(cols)]\n    ang_total = clamp(revs / 2.0) * 720.0 * clamp(reveal)\n    start = -90\n    end = start + ang_total\n    d.arc([cx - r, cy - r, cx + r, cy + r], start, end, fill=rgba(col, 230), width=8)\n    tip_a = math.radians(end)\n    tx = cx + r * math.cos(tip_a)\n    ty = cy + r * math.sin(tip_a)\n    img = images.get(labels[i])\n    if img is not None:\n        paste(img, int(tx - 55), int(ty - 55), 110, 110)\n    lx = cx + (r + 55) * math.cos(math.radians(start + 8))\n    ly = cy + (r + 55) * math.sin(math.radians(start + 8))\n    text(labels[i] + \" \" + str(round(revs, 1)) + \"x\", int(lx), int(ly), size=28, color=col)\ntext('LAPS AROUND EARTH EACH YEAR', cx, RTOP + 10, size=38, center=True)"
+            "mechanic": "migration-flightlines",
+            "concept": "three bird photos race dotted flight-lines across a world map, trail length scaled to annual miles",
+            "code": "bg = subject_image('world map')\nif bg is not None:\n    paste(bg, 0, 0, W, H)\n    d.rectangle([0, 0, W, H], fill=rgba((5, 8, 15), 130))\nrows_y = [300, 640, 980]\ncols = [HIGHLIGHT, ACCENT, WARN]\nfor i in range(min(n, 3)):\n    y = rows_y[i]\n    col = cols[i]\n    frac = clamp(values[i] / vmax) * reveal\n    x0 = RX0 + 40\n    xw = RX1 - RX0 - 220\n    xend = x0 + int(xw * frac)\n    d.line([x0, y, xend, y], fill=rgba(col, 230), width=8)\n    for t in range(0, max(1, xend - x0), 40):\n        d.ellipse([x0 + t - 4, y - 4, x0 + t + 4, y + 4], fill=rgba(col, 170))\n    img = images.get(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        wI = 130\n        hI = int(wI / asp)\n        paste(img, xend - wI // 2, y - hI // 2, wI, hI)\n    text(str(int(values[i])) + ' mi/yr', xend + 90, y - 16, size=36, color=col)\n    text(labels[i], x0, y - 64, size=32, color=col)\ntext('MILES FLOWN EVERY YEAR', (RX0 + RX1) // 2, RTOP + 30, size=40, center=True)"
           },
           "ascending": false
         },
@@ -11603,13 +11603,13 @@
             "file": "birds_migrate_insanely_far_fastest_flyers.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 STOOP SPEED",
+          "role": "2 \u00b7 FASTEST FLYERS",
           "topic": "Fastest Flyers",
-          "say": "The peregrine falcon dives at 242 miles an hour \u2014 the fastest of any animal on Earth. The golden eagle isn't far behind at 240, and the gyrfalcon still hits 200.",
+          "say": "The peregrine falcon streaks in at 242 miles per hour, the golden eagle hits 240, and the gyrfalcon tops out at 200 \u2014 speeds no engine gave them.",
           "scene": {
-            "mechanic": "stoop-dive-speedometer",
-            "concept": "birds stoop down a vertical mph ruler leaving a motion-blur streak, diving further the faster their real top speed",
-            "code": "ruler_x = RX1 - 90\nd.line([ruler_x, RTOP + 40, ruler_x, RBOT - 40], fill=rgba(TEXT, 160), width=6)\ntop_v = 260.0\nfor tick in range(0, 261, 50):\n    ty = RTOP + 40 + (RBOT - 40 - RTOP - 40) * (1 - tick / top_v)\n    d.line([ruler_x - 14, ty, ruler_x + 14, ty], fill=rgba(TEXT, 160), width=4)\n    text(str(tick), ruler_x + 24, ty - 16, size=24, color=TEXT)\nlane_w = (RX1 - RX0 - 200) / max(1, n)\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / top_v)\n    cx = RX0 + 40 + lane_w * (i + 0.5)\n    y_end = RTOP + 40 + (RBOT - 80) * (1 - frac) * clamp(reveal / 0.85)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    for k in range(8):\n        a = int(140 * (1 - k / 8.0) * clamp(reveal))\n        yy = RTOP + (y_end - RTOP) * (1 - k / 9.0)\n        d.line([cx, RTOP + 40, cx, yy], fill=rgba(col, a), width=10)\n    img = images.get(labels[i])\n    if img is not None:\n        paste(img, int(cx - 65), int(y_end - 65), 130, 130)\n    text(str(int(v)) + \" MPH\", int(cx), int(y_end + 76), size=30, center=True, color=col)\n    text(labels[i], int(cx), int(y_end + 112), size=22, center=True)\ntext('STOOP SPEED', RX0 + 10, RTOP, size=38, color=TEXT)"
+            "mechanic": "speed-streak-race",
+            "concept": "three birds race parallel lanes with motion-blur speed streaks trailing to their top mph",
+            "code": "lane_h = 300\ncols = [HIGHLIGHT, ACCENT, WARN]\nfor i in range(min(n, 3)):\n    y = RTOP + 140 + i * lane_h\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = RX0 + 150\n    xmax = RX1 - 60\n    xpos = x0 + int((xmax - x0) * frac)\n    col = cols[i]\n    d.line([x0 - 40, y + 90, xmax, y + 90], fill=rgba(TEXT, 70), width=4)\n    for s in range(7):\n        sx = xpos - 50 - s * 24\n        a = int(210 * (1 - s / 7.0) * reveal)\n        if sx > x0 - 40:\n            d.line([sx, y, sx - 20, y], fill=rgba(col, a), width=7)\n    img = images.get(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 150\n        h = int(w / asp)\n        paste(img, xpos - w // 2, y - h // 2, w, h)\n    text(str(int(v)) + ' mph', xpos, y - 130, size=44, color=col, center=True)\n    text(labels[i], x0 - 40, y + 110, size=32, color=col)\ntext('WHO FLIES FASTEST?', (RX0 + RX1) // 2, RTOP + 20, size=42, center=True)"
           }
         },
         {
@@ -11621,11 +11621,11 @@
           "insight_type": "rank",
           "role": "3 \u00b7 HIGHEST ALTITUDES",
           "topic": "Highest Altitudes",
-          "say": "The bar-headed goose has been tracked flying at 29,000 feet \u2014 as high as the summit of Mount Everest. The whooper swan reaches 27,000 feet, and the Ruppell's griffon vulture has been spotted at 24,000.",
+          "say": "The bar-headed goose has been tracked at 29,000 feet, the whooper swan at 27,000, and the Ruppell's griffon vulture at 24,000 \u2014 climbing almost as high as a cruising jet.",
           "scene": {
-            "mechanic": "everest-altitude-ladder",
-            "concept": "birds perch at their real recorded altitude on a ladder rising off a real Everest peak image, so their height IS the comparison",
-            "code": "mtn = subject_image('Mount Everest snowy peak')\nif mtn is not None:\n    mw = RX1 - RX0\n    mh = int(mw * 0.5)\n    paste(mtn, RX0, RBOT - mh, mw, mh)\ntop_v = 30000.0\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / top_v) * clamp(reveal)\n    y = RBOT - (RBOT - RTOP - 60) * frac\n    x = RX0 + 150 + i * 320\n    d.line([x, RBOT, x, y], fill=rgba(ACCENT, 150), width=4)\n    img = images.get(labels[i])\n    if img is not None:\n        paste(img, int(x - 65), int(y - 65), 130, 130)\n    text(str(int(v)) + \" ft\", int(x), int(y - 92), size=30, center=True, color=HIGHLIGHT)\n    text(labels[i], int(x), int(y + 78), size=22, center=True)\ntext('EVEREST = 29,029 FT', (RX0 + RX1) // 2, RTOP + 10, size=32, center=True, color=WARN)"
+            "mechanic": "sky-ladder",
+            "concept": "three birds climb a vertical altitude column next to a commercial-jet cruise reference line",
+            "code": "col_x = (RX0 + RX1) // 2\ntop_y = RTOP + 40\nbot_y = RBOT - 40\naxis_h = bot_y - top_y\nscale = max(vmax, 35000.0) * 1.08\nd.line([col_x, top_y, col_x, bot_y], fill=rgba(TEXT, 120), width=6)\njet_frac = clamp(35000.0 / scale)\njet_y = bot_y - int(axis_h * jet_frac)\nd.line([RX0 + 20, jet_y, RX1 - 20, jet_y], fill=rgba(WARN, 170), width=4)\ntext('commercial jet cruise ~35,000 ft', RX0 + 20, jet_y - 34, size=26, color=WARN)\noffsets = [-260, 0, 260]\ncols = [HIGHLIGHT, ACCENT, WARN]\nfor i in range(min(n, 3)):\n    v = values[i]\n    frac = clamp(v / scale) * reveal\n    y = bot_y - int(axis_h * frac)\n    cx = col_x + offsets[i]\n    col = cols[i]\n    d.line([col_x, bot_y, cx, y], fill=rgba(col, 150), width=4)\n    img = images.get(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 170\n        h = int(w / asp)\n        paste(img, cx - w // 2, y - h // 2, w, h)\n    text(str(int(v)) + ' ft', cx, y - 110, size=36, color=col, center=True)\n    text(labels[i], cx, y + 100, size=28, color=col, center=True)\ntext('HOW HIGH CAN THEY FLY?', col_x, RTOP + 10, size=38, center=True)"
           },
           "ascending": false
         },
@@ -11636,25 +11636,23 @@
             "file": "birds_migrate_insanely_far_longest_non_stop_flig.json"
           },
           "insight_type": "trend",
-          "role": "4 \u00b7 NO REST",
+          "role": "4 \u00b7 LONGEST NON-STOP F",
           "topic": "Longest Non-Stop Flights",
-          "say": "The great frigatebird can stay airborne for 48 hours straight \u2014 two full days without landing once. The albatross manages 36 hours, and the arctic tern pushes through 24.",
+          "say": "The great frigatebird stays airborne for 48 hours straight, the albatross for 36, and the Arctic tern for 24 \u2014 no landing, no rest, the whole time.",
           "scene": {
-            "mechanic": "endurance-daynight-bar",
-            "concept": "each bird's endurance bar fills with alternating day/night stripes counted out to its real nonstop hours, the bird riding the leading edge",
-            "code": "lane_h = 120\ntop = RTOP + 70\nmaxv = 48.0\nbar_w = RX1 - RX0 - 260\nfor i in range(n):\n    v = values[i]\n    y = top + i * (lane_h + 50)\n    x0 = RX0 + 220\n    full_w = bar_w * clamp(v / maxv)\n    w = full_w * clamp(reveal)\n    stripe = 34\n    steps = int(w / stripe) + 1\n    for s in range(steps):\n        sx = x0 + s * stripe\n        if sx > x0 + w:\n            break\n        is_day = (s % 2) == 0\n        col = (255, 200, 90) if is_day else (35, 45, 80)\n        d.rectangle([sx, y, min(sx + stripe, x0 + w), y + lane_h], fill=rgba(col, 230))\n    d.rounded_rectangle([x0, y, x0 + full_w, y + lane_h], radius=16, outline=rgba(TEXT, 220), width=4)\n    img = images.get(labels[i])\n    if img is not None and w > 40:\n        paste(img, int(x0 + w - 70), int(y + lane_h / 2 - 70), 140, 140)\n    text(labels[i], x0, y - 34, size=28, color=TEXT)\n    text(str(int(v)) + \"h nonstop\", x0 - 10, y + lane_h + 10, size=26, color=HIGHLIGHT)\ntext('NO LANDING. NO REST.', (RX0 + RX1) // 2, RTOP, size=38, center=True, color=WARN)"
+            "mechanic": "endurance-clock",
+            "concept": "birds lap a 24-hour clock dial, laps scaled to hours flown non-stop, riding the tip of their own arc",
+            "code": "cx = (RX0 + RX1) // 2\ncy = 560\nr = 300\nd.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 110), width=6)\nd.pieslice([cx - r, cy - r, cx + r, cy + r], 180, 360, fill=rgba(ACCENT, 22))\ntext('HOURS NON-STOP', cx, cy - r - 70, size=40, center=True)\ncols = [HIGHLIGHT, ACCENT, WARN]\nfor i in range(min(n, 3)):\n    v = values[i]\n    laps = v / 24.0\n    ang_total = laps * 360.0 * clamp(reveal)\n    col = cols[i]\n    rr = r - 20 - i * 70\n    steps = max(1, int(ang_total))\n    d.arc([cx - rr, cy - rr, cx + rr, cy + rr], -90, -90 + steps, fill=rgba(col, 230), width=12)\n    ang = (-90 + ang_total) * math.pi / 180.0\n    bx = cx + int(rr * math.cos(ang))\n    by = cy + int(rr * math.sin(ang))\n    img = images.get(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 100\n        h = int(w / asp)\n        paste(img, bx - w // 2, by - h // 2, w, h)\nrow_y = cy + r + 90\nfor i in range(min(n, 3)):\n    col = cols[i]\n    ly = row_y + i * 60\n    d.ellipse([RX0 + 10, ly - 12, RX0 + 34, ly + 12], fill=rgba(col, 255))\n    text(labels[i] + '  ' + str(int(values[i])) + 'h straight', RX0 + 50, ly - 18, size=34, color=col)"
           }
         }
       ],
-      "question": "Which bird's journey blew your mind more?",
-      "franchise": "World's Most Extreme Animals",
-      "search_phrase": "longest bird migration distance"
+      "question": "What's the most amazing bird migration story you've heard?"
     },
     {
       "slug": "birds-fly-nonstop",
       "title": "Birds Fly Nonstop",
-      "hook": "Birds fly thousands of miles with zero map, zero GPS \u2014 here's how they actually do it.",
-      "closing": "Which means most birds have never once needed a map.",
+      "hook": "Birds don't have GPS, fuel stops, or a map \u2014 so how do flights like these even happen?",
+      "closing": "Half of these birds are steering by Earth's own magnetic field \u2014 a built-in compass that never needs charging.",
       "hashtags": [
         "birdmigration",
         "longestflights",
@@ -11670,13 +11668,37 @@
             "file": "birds_fly_nonstop_longest_flights.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 MILES FLOWN",
+          "role": "1 \u00b7 LONGEST FLIGHTS",
           "topic": "Longest Flights",
-          "say": "The Arctic tern racks up 44,000 miles a year, the Amur falcon flies 22,000, and even the common cuckoo covers 12,000 miles \u2014 all without a single map.",
+          "say": "The Arctic tern flies 44,000 miles a year, the Amur falcon covers 22,000, and the common cuckoo logs 12,000 \u2014 nearly a 4x gap between the top and bottom flyer.",
           "scene": {
-            "mechanic": "mileage-runway",
-            "concept": "each bird's real yearly mileage unrolls as a ticked ruler with the bird riding the leading tick, ticks every 5,000 miles",
-            "code": "maxv = 44000.0\nlane_h = 150\ntop = RTOP + 40\nbar_w = RX1 - RX0 - 260\nfor i in range(n):\n    v = values[i]\n    y = top + i * (lane_h + 30)\n    x0 = RX0 + 200\n    full_w = bar_w * clamp(v / maxv)\n    w = full_w * clamp(reveal)\n    d.rounded_rectangle([x0, y, x0 + full_w, y + 14], radius=6, outline=rgba(TEXT, 120), width=2)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.rounded_rectangle([x0, y, x0 + w, y + 14], radius=6, fill=rgba(col, 255))\n    ticks = int(v / 5000)\n    for t in range(1, ticks + 1):\n        tx = x0 + bar_w * (t * 5000.0 / maxv)\n        if tx > x0 + w:\n            break\n        d.line([tx, y - 10, tx, y + 24], fill=rgba(TEXT, 200), width=3)\n    img = images.get(labels[i])\n    if img is not None and w > 40:\n        paste(img, int(x0 + w - 60), int(y - 55), 120, 120)\n    text(labels[i], x0, y - 34, size=26, color=TEXT)\n    text(str(int(v)) + \" mi/yr\", x0, y + 30, size=28, color=HIGHLIGHT)\ntext('MEASURED IN MILES FLOWN', (RX0 + RX1) // 2, RTOP, size=34, center=True)"
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bird",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bird",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bird",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
           },
           "ascending": false
         },
@@ -11687,13 +11709,13 @@
             "file": "birds_fly_nonstop_flight_speeds.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 TOP SPEED",
+          "role": "2 \u00b7 FLIGHT SPEEDS",
           "topic": "Flight Speeds",
-          "say": "The peregrine falcon tops out at 242 miles per hour, the golden eagle hits 240, and the gyrfalcon still reaches 200 \u2014 pure instinct at full throttle.",
+          "say": "The peregrine falcon dives at 242 miles per hour, the golden eagle at 240, and the gyrfalcon at 200 \u2014 three of the fastest fliers alive.",
           "scene": {
-            "mechanic": "gauge-trio-sweep",
-            "concept": "three speedometer dials sweep live to each bird's real top speed, its photo mounted at the dial's center",
-            "code": "cy = 620\nr = 190\ncols = [HIGHLIGHT, ACCENT, WARN]\ntopv = 260.0\ngap = (RX1 - RX0) / max(1, n)\nfor i in range(n):\n    v = values[i]\n    cx = RX0 + gap * (i + 0.5)\n    col = cols[i % len(cols)]\n    d.arc([cx - r, cy - r, cx + r, cy + r], 160, 380, fill=rgba(TEXT, 90), width=14)\n    sweep = 160.0 + 220.0 * clamp(v / topv) * clamp(reveal)\n    d.arc([cx - r, cy - r, cx + r, cy + r], 160, sweep, fill=rgba(col, 255), width=14)\n    ang = math.radians(sweep)\n    nx = cx + (r - 30) * math.cos(ang)\n    ny = cy + (r - 30) * math.sin(ang)\n    d.line([cx, cy, nx, ny], fill=rgba(col, 255), width=8)\n    img = images.get(labels[i])\n    if img is not None:\n        paste(img, int(cx - 70), int(cy - 70), 140, 140)\n    text(str(int(v)) + \" MPH\", int(cx), int(cy + r + 20), size=28, center=True, color=col)\n    text(labels[i], int(cx), int(cy + r + 58), size=22, center=True)"
+            "mechanic": "speedometer-trio",
+            "concept": "three speed dials sweep to each bird's top mph, photo mounted under its gauge",
+            "code": "cxs_list = [RX0 + 150, (RX0 + RX1) // 2, RX1 - 150]\ncy = 520\nr = 140\ncols = [HIGHLIGHT, ACCENT, WARN]\nfor i in range(min(n, 3)):\n    v = values[i]\n    cx = cxs_list[i]\n    col = cols[i]\n    d.arc([cx - r, cy - r, cx + r, cy + r], 150, 390, fill=rgba(TEXT, 90), width=14)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.arc([cx - r, cy - r, cx + r, cy + r], 150, int(sweep), fill=rgba(col, 255), width=14)\n    ang = sweep * math.pi / 180.0\n    nx = cx + int((r - 26) * math.cos(ang))\n    ny = cy + int((r - 26) * math.sin(ang))\n    d.line([cx, cy, nx, ny], fill=rgba(col, 255), width=8)\n    d.ellipse([cx - 13, cy - 13, cx + 13, cy + 13], fill=rgba(col, 255))\n    img = images.get(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 190\n        h = int(w / asp)\n        if h > 170:\n            h = 170\n            w = int(h * asp)\n        paste(img, cx - w // 2, cy + r + 20, w, h)\n    text(str(int(v)), cx, cy - r - 70, size=52, color=col, center=True)\n    text('mph', cx, cy - r - 24, size=26, color=col, center=True)\n    text(labels[i], cx, cy + r + 240, size=26, color=col, center=True)\ntext('FASTEST FLYERS ALIVE', (RX0 + RX1) // 2, RTOP + 20, size=40, center=True)"
           }
         },
         {
@@ -11703,13 +11725,13 @@
             "file": "birds_fly_nonstop_migration_patterns.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 ARRIVING EARLIER",
+          "role": "3 \u00b7 MIGRATION PATTERNS",
           "topic": "Migration Patterns",
-          "say": "Since the 1960s, many migrating birds have shifted their internal calendar \u2014 arriving up to 20 days earlier than their grandparents did.",
+          "say": "Since the 1960s, many species now arrive up to 20 days earlier than they used to \u2014 a climate shift written straight into their calendars.",
           "scene": {
-            "mechanic": "calendar-creep",
-            "concept": "a real calendar grid holds two markers, the 1960s arrival and today's, with today's marker dragged 20 real days earlier as a bird lands on it",
-            "code": "cx = (RX0 + RX1) // 2\ntop = RTOP + 70\ncal_w = RX1 - RX0 - 80\ncal_h = 260\nx0 = RX0 + 40\nd.rounded_rectangle([x0, top, x0 + cal_w, top + cal_h], radius=24, outline=rgba(TEXT, 200), width=4)\ndays = 30\ncell_w = cal_w / days\nfor day in range(days):\n    dx = x0 + day * cell_w\n    d.line([dx, top, dx, top + cal_h], fill=rgba(TEXT, 60), width=2)\nshift = values[1] if n > 1 else values[0]\nold_x = x0 + cal_w * 0.72\nnew_x = old_x - cell_w * shift * clamp(reveal)\nd.line([old_x, top - 20, old_x, top + cal_h + 20], fill=rgba(WARN, 200), width=6)\ntext('1960s ARRIVAL', int(old_x), top - 58, size=24, center=True, color=WARN)\nd.line([new_x, top - 20, new_x, top + cal_h + 20], fill=rgba(HIGHLIGHT, 255), width=6)\ntext('TODAY', int(new_x), top - 58, size=24, center=True, color=HIGHLIGHT)\nimg = subject_image('small songbird perched on branch')\nif img is not None:\n    paste(img, int(new_x - 70), top + cal_h - 60, 140, 140)\ntext(str(int(shift)) + \" DAYS EARLIER\", cx, top + cal_h + 80, size=42, center=True, color=WARN)"
+            "mechanic": "early-arrival-calendar",
+            "concept": "a bird slides earlier along a decade axis from the 1960s to the 2020s as the day-count climbs",
+            "code": "img = subject_image('barn swallow bird flying')\ncx0 = RX0 + 60\ncx1 = RX1 - 60\ny = 650\nd.line([cx0, y, cx1, y], fill=rgba(TEXT, 120), width=6)\nfor i in range(7):\n    tx = cx0 + int((cx1 - cx0) * i / 6.0)\n    d.line([tx, y - 14, tx, y + 14], fill=rgba(TEXT, 130), width=3)\ntext(labels[0], cx0, y + 40, size=32, center=True)\ntext(labels[-1], cx1, y + 40, size=32, center=True)\nshift = clamp(reveal)\ndelta = values[-1] - values[0]\nbx = cx1 - int((cx1 - cx0) * 0.9 * shift)\nh = 0\nif img is not None:\n    asp = img.width / img.height\n    w = 230\n    h = int(w / asp)\n    paste(img, bx - w // 2, y - h - 30, w, h)\nd.line([bx, y, cx1, y], fill=rgba(WARN, 210), width=10)\ndays = int(delta * shift)\nly = y - h - 90 if img is not None else y - 100\ntext(str(days) + ' DAYS EARLIER', bx, ly, size=44, color=WARN, center=True)\ntext('climate is rewriting the calendar', (cx0 + cx1) // 2, RTOP + 60, size=34, center=True)"
           }
         },
         {
@@ -11719,367 +11741,17 @@
             "file": "birds_fly_nonstop_bird_navigation.json"
           },
           "insight_type": "share",
-          "role": "4 \u00b7 THE INNER COMPASS",
+          "role": "4 \u00b7 BIRD NAVIGATION",
           "topic": "Bird Navigation",
-          "say": "About 50% of species read Earth's magnetic field to navigate, 30% steer by the sun and stars, and 20% follow scent trails alone.",
+          "say": "About 50% of species navigate by Earth's magnetic field, 30% by the sun and stars, and 20% by smell alone.",
           "scene": {
-            "mechanic": "instinct-dial-pie",
-            "concept": "a compass-dial pie splits into real-icon wedges sized to each navigation cue's true share, a bird silhouette at the hub",
-            "code": "cx = (RX0 + RX1) // 2\ncy = 620\nr = 260\nstart = -90.0\ntotal = sum(values) or 1.0\ncols = [HIGHLIGHT, ACCENT, WARN]\nicons = ['magnet bar icon', 'bright sun icon', 'flower scent icon']\nfor i in range(n):\n    frac = values[i] / total\n    sweep = 360.0 * frac * clamp(reveal)\n    end = start + sweep\n    col = cols[i % len(cols)]\n    d.pieslice([cx - r, cy - r, cx + r, cy + r], start, end, fill=rgba(col, 200))\n    mid = math.radians((start + end) / 2.0)\n    ix = cx + (r * 0.62) * math.cos(mid)\n    iy = cy + (r * 0.62) * math.sin(mid)\n    icon = subject_image(icons[i]) if i < len(icons) else None\n    if icon is not None:\n        paste(icon, int(ix - 45), int(iy - 45), 90, 90)\n    lx = cx + (r + 70) * math.cos(mid)\n    ly = cy + (r + 70) * math.sin(mid)\n    text(str(int(values[i])) + \"%\", int(lx), int(ly - 14), size=32, center=True, color=col)\n    text(labels[i], int(lx), int(ly + 22), size=20, center=True)\n    start = end\nbird = subject_image('small songbird flying silhouette')\nif bird is not None:\n    paste(bird, int(cx - 60), int(cy - 60), 120, 120)"
+            "mechanic": "sensory-compass",
+            "concept": "a compass rose splits into three wedges sized by navigation-cue share, a bird silhouette at the center",
+            "code": "cx = (RX0 + RX1) // 2\ncy = 620\nr = 320\nstart = -90.0\ncols = [HIGHLIGHT, ACCENT, WARN]\nfor i in range(min(n, 3)):\n    frac = values[i] / 100.0\n    sweep = 360.0 * frac * clamp(reveal)\n    d.pieslice([cx - r, cy - r, cx + r, cy + r], start, start + sweep, fill=rgba(cols[i], 150))\n    mid_ang = (start + sweep / 2.0) * math.pi / 180.0\n    lx = cx + int((r + 80) * math.cos(mid_ang))\n    ly = cy + int((r + 80) * math.sin(mid_ang))\n    text(str(int(values[i])) + '%', lx, ly, size=42, color=cols[i], center=True)\n    text(labels[i], lx, ly + 44, size=24, color=cols[i], center=True)\n    start += 360.0 * frac\nfor k in range(4):\n    rr = 60 + k * 40\n    a = int(140 * clamp(reveal))\n    d.arc([cx - rr, cy - rr, cx + rr, cy + rr], 200, 340, fill=rgba(HIGHLIGHT, a), width=5)\nimg = subject_image('small songbird flying silhouette')\nif img is not None:\n    asp = img.width / img.height\n    w = 200\n    h = int(w / asp)\n    paste(img, cx - w // 2, cy - h // 2, w, h)\ntext('HOW BIRDS NAVIGATE', cx, RTOP + 30, size=38, center=True)"
           }
         }
       ],
-      "question": "Could you navigate 12,000 miles with no map, no GPS \u2014 just instinct?",
-      "franchise": "How Animals Do It",
-      "search_phrase": "how do birds navigate without gps"
-    },
-    {
-      "slug": "elevator-speed-records",
-      "title": "Elevator Speed Records",
-      "hook": "Imagine traveling over a thousand feet in just one minute",
-      "closing": "The speed of elevators has revolutionized urban transportation",
-      "hashtags": [
-        "elevators",
-        "speed",
-        "urbanplanning",
-        "technology"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "elevator_speed_records_elevator_speed",
-          "params": {
-            "file": "elevator_speed_records_elevator_speed.json"
-          },
-          "insight_type": "rank",
-          "role": "1 \u00b7 ELEVATOR SPEED",
-          "topic": "Elevator Speed",
-          "say": "The fastest elevator in the world can travel at speeds of up to 46 miles per hour, that's like stacking 23 cars on top of each other, with each car representing 2 miles per hour",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "car",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 1.0
-                }
-              }
-            ]
-          },
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "elevator_speed_records_elevator_acceleration",
-          "params": {
-            "file": "elevator_speed_records_elevator_acceleration.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 ELEVATOR ACCELERAT",
-          "topic": "Elevator Acceleration",
-          "say": "It takes just 10 seconds for the fastest elevator to go from 0 to 30 miles per hour, that's faster than most cars on the road, with some elevators taking up to 30 seconds to reach the same speed",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "elevator_speed_records_elevator_distance",
-          "params": {
-            "file": "elevator_speed_records_elevator_distance.json"
-          },
-          "insight_type": "rank",
-          "role": "3 \u00b7 ELEVATOR DISTANCE",
-          "topic": "Elevator Distance",
-          "say": "The tallest elevator in the world can travel a whopping 1,730 feet in just 43 seconds, that's like filling up a skyscraper from bottom to top in under a minute, with some elevators traveling over 2,000 feet",
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "elevator_speed_records_elevator_technology",
-          "params": {
-            "file": "elevator_speed_records_elevator_technology.json"
-          },
-          "insight_type": "trend",
-          "role": "4 \u00b7 ELEVATOR TECHNOLOG",
-          "topic": "Elevator Technology",
-          "say": "The technology behind elevators has come a long way, with some elevators now using advanced materials and designs to increase speed and efficiency, with over 10 new technologies being developed every year"
-        }
-      ],
-      "question": "What's the fastest elevator you've ever been in?"
-    },
-    {
-      "slug": "largest-ships-ever-built",
-      "title": "Largest Ships Ever Built",
-      "hook": "Imagine a ship so big it can carry over 20,000 containers",
-      "closing": "The largest ships in the world are a marvel of modern engineering",
-      "hashtags": [
-        "ships",
-        "size",
-        "maritime",
-        "engineering"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "largest_ships_ever_built_ship_size",
-          "params": {
-            "file": "largest_ships_ever_built_ship_size.json"
-          },
-          "insight_type": "rank",
-          "role": "1 \u00b7 SHIP SIZE",
-          "topic": "Ship Size",
-          "say": "The largest ship in the world can carry an incredible 24,000 containers, that's like stacking 12,000 cars on top of each other, with each car representing 2 containers",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "container",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 1.0
-                }
-              }
-            ]
-          },
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "largest_ships_ever_built_ship_length",
-          "params": {
-            "file": "largest_ships_ever_built_ship_length.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 SHIP LENGTH",
-          "topic": "Ship Length",
-          "say": "The longest ship in the world measures an impressive 400 meters, that's longer than 4 football fields, with some ships reaching lengths of over 500 meters",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "largest_ships_ever_built_ship_weight",
-          "params": {
-            "file": "largest_ships_ever_built_ship_weight.json"
-          },
-          "insight_type": "rank",
-          "role": "3 \u00b7 SHIP WEIGHT",
-          "topic": "Ship Weight",
-          "say": "The heaviest ship in the world weighs a staggering 200,000 tons, that's like filling up a large lake with water, with some ships weighing over 300,000 tons",
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "largest_ships_ever_built_ship_speed",
-          "params": {
-            "file": "largest_ships_ever_built_ship_speed.json"
-          },
-          "insight_type": "trend",
-          "role": "4 \u00b7 SHIP SPEED",
-          "topic": "Ship Speed",
-          "say": "The fastest ship in the world can reach speeds of up to 30 knots, that's like racing across the ocean at incredible velocities, with some ships reaching speeds of over 40 knots"
-        }
-      ],
-      "question": "What's the largest ship you've ever seen?"
-    },
-    {
-      "slug": "pyramid-construction-timeline",
-      "title": "Pyramid Construction Timeline",
-      "hook": "You won't believe how long it took to build the Great Pyramid of Giza",
-      "closing": "The ancient Egyptians were true architectural pioneers",
-      "hashtags": [
-        "ancientegypt",
-        "pyramidconstruction",
-        "historybuffs",
-        "archaeology"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "pyramid_construction_timeline_pyramid_build_time",
-          "params": {
-            "file": "pyramid_construction_timeline_pyramid_build_time.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 PYRAMID BUILD TIME",
-          "topic": "Pyramid Build Time",
-          "say": "The Great Pyramid of Giza took around 20 to 30 years to build, with a workforce of around 100,000 laborers, and was finally completed around 2580 BC, during the reign of Pharaoh Khufu, with some estimates suggesting it could have been as long as 40 years",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "pyramid_construction_timeline_labor_force",
-          "params": {
-            "file": "pyramid_construction_timeline_labor_force.json"
-          },
-          "insight_type": "rank",
-          "role": "2 \u00b7 LABOR FORCE",
-          "topic": "Labor Force",
-          "say": "The massive labor force was divided into teams of skilled workers, including masons, carpenters, and engineers, with estimates suggesting around 100,000 laborers were involved, with some teams working on the pyramid's core, while others focused on the outer casing",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "ground-row",
-                "subject": "worker",
-                "data": {
-                  "value_from": "item:1",
-                  "per_value": 1000.0
-                }
-              }
-            ]
-          },
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "pyramid_construction_timeline_pyramid_size",
-          "params": {
-            "file": "pyramid_construction_timeline_pyramid_size.json"
-          },
-          "insight_type": "share",
-          "role": "3 \u00b7 PYRAMID SIZE",
-          "topic": "Pyramid Size",
-          "say": "The Great Pyramid is an astonishing 481 feet tall, and was the tallest man-made structure in the world for over 3,800 years, with a base perimeter of over 3,000 feet, and a total volume of around 2.5 million cubic meters"
-        },
-        {
-          "source": "offline",
-          "key": "pyramid_construction_timeline_construction_mater",
-          "params": {
-            "file": "pyramid_construction_timeline_construction_mater.json"
-          },
-          "insight_type": "rank",
-          "role": "4 \u00b7 CONSTRUCTION MATER",
-          "topic": "Construction Materials",
-          "say": "The pyramid is made up of around 2.3 million stone blocks, each weighing an average of 2.5 tons, with some blocks weighing as much as 80 tons, and the total weight of the pyramid is estimated to be around 5.75 million tons",
-          "ascending": false
-        }
-      ],
-      "question": "What's the most impressive ancient structure you've ever seen?"
-    },
-    {
-      "slug": "ancient-library-wonders",
-      "title": "Ancient Library Wonders",
-      "hook": "Imagine a library with over 500,000 volumes, all handwritten by scribes",
-      "closing": "The ancient world was full of incredible libraries that preserved knowledge for centuries",
-      "hashtags": [
-        "ancientlibraries",
-        "booklovers",
-        "historybuffs",
-        "knowledge"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "ancient_library_wonders_library_of_ashurbanipal",
-          "params": {
-            "file": "ancient_library_wonders_library_of_ashurbanipal.json"
-          },
-          "insight_type": "rank",
-          "role": "1 \u00b7 LIBRARY OF ASHURBA",
-          "topic": "Library of Ashurbanipal",
-          "say": "The Library of Ashurbanipal in Nineveh had over 30,000 clay tablets, containing works on mathematics, astronomy, and literature, and was one of the largest and most significant libraries of the ancient world, with some estimates suggesting it had over 100,000 volumes",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "scroll",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "ancient_library_wonders_library_of_alexandria",
-          "params": {
-            "file": "ancient_library_wonders_library_of_alexandria.json"
-          },
-          "insight_type": "rank",
-          "role": "2 \u00b7 LIBRARY OF ALEXAND",
-          "topic": "Library of Alexandria",
-          "say": "The Library of Alexandria was one of the largest and most significant libraries of the ancient world, with estimates suggesting it had over 500,000 volumes, and was a major center of learning and scholarship for centuries, with a vast collection of manuscripts and books on various subjects",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "ground-row",
-                "subject": "book",
-                "data": {
-                  "value_from": "item:1",
-                  "per_value": 1000.0
-                }
-              }
-            ]
-          },
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "ancient_library_wonders_library_of_pergamum",
-          "params": {
-            "file": "ancient_library_wonders_library_of_pergamum.json"
-          },
-          "insight_type": "share",
-          "role": "3 \u00b7 LIBRARY OF PERGAMU",
-          "topic": "Library of Pergamum",
-          "say": "The Library of Pergamum was a major library in the ancient world, with a collection of over 200,000 volumes, and was a rival to the Library of Alexandria, with a vast collection of manuscripts and books on various subjects, including philosophy, mathematics, and astronomy"
-        },
-        {
-          "source": "offline",
-          "key": "ancient_library_wonders_ancient_library_preserva",
-          "params": {
-            "file": "ancient_library_wonders_ancient_library_preserva.json"
-          },
-          "insight_type": "trend",
-          "role": "4 \u00b7 ANCIENT LIBRARY PR",
-          "topic": "Ancient Library Preservation",
-          "say": "Many of these ancient libraries were destroyed or lost over time, but their legacy lives on in the modern libraries and institutions that preserve knowledge today, with some libraries surviving for over 1,000 years, and their collections being preserved and passed down through generations",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
-          }
-        }
-      ],
-      "question": "What's the most impressive library you've ever visited?"
+      "question": "Could you find your way with nothing but Earth's magnetic field?"
     }
   ],
   "videos": [

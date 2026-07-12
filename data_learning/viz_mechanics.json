@@ -1,90 +1,41 @@
 [
-  {
-    "sig": "seed-subject-tubes",
-    "mechanic": "subject-thermometers",
-    "concept": "each data point is a glass tube that fills with the subject's own photo to its value, side by side",
-    "code": "for i in range(n):\n    frac = clamp(values[i]/vmax) * reveal\n    x = RX0 + 20 + i*300\n    w = 220; h = 600; y = 500\n    img = images.get(labels[i]) if labels[i] in images else None\n    fill_image(img, frac, x, y, w, h, direction='up', color=ACCENT)\n    d.rounded_rectangle([x,y,x+w,y+h], outline=rgba(TEXT,255), width=4)\n    text(labels[i], x+w/2, y+h+16, size=34, center=True)\n    text(str(int(values[i])), x+w/2, y-60, size=48, color=HIGHLIGHT, center=True)",
-    "topic": "seed example",
-    "starred": true
-  },
-  {
-    "sig": "shockwave-duel-v1",
-    "mechanic": "shockwave-duel",
-    "concept": "two subjects face off, each emitting expanding sound rings whose count and reach scale with its decibel value",
-    "code": "\ncy = 600\nwimg = images.get(labels[0])\njimg = images.get(labels[1])\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    col = HIGHLIGHT if i == 0 else ACCENT\n    rings = int(clamp(v / vmax) * 6.0 * reveal) + 1\n    for k in range(rings):\n        rr = 60 + k * 52\n        a = int(190.0 * (1.0 - k / (rings + 1.0)) * reveal)\n        d.ellipse([cxs - rr, cy - rr, cxs + rr, cy + rr],\n                  outline=rgba(col, a), width=6)\nimg = wimg\nfor i in range(2):\n    img = wimg if i == 0 else jimg\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    if img is not None:\n        asp = img.width / img.height\n        w = 330\n        h = int(w / asp)\n        if h > 300:\n            h = 300\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    na = clamp((reveal - 0.4) / 0.6)\n    text(str(int(values[i])) + ' dB', cxs, cy - 330, size=70, color=col, center=True)\n    text(labels[i], cxs, cy + 210, size=40, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('1.5x LOUDER', (RX0 + RX1) // 2, 950, size=54, color=WARN, center=True)\n",
-    "topic": "Loudest Animals — whale vs jet engine",
-    "starred": true
-  },
-  {
-    "sig": "epicenter-v1",
-    "mechanic": "epicenter",
-    "concept": "the single subject sits at the center of sound rings radiating to the frame edges, its value huge at the top",
-    "code": "\ncx = (RX0 + RX1) // 2\ncy = 620\nimg = images.get(labels[0])\nrings = int(9.0 * reveal) + 1\nfor k in range(rings):\n    rr = 100 + k * 95\n    a = int(170.0 * (1.0 - k / (rings + 2.0)))\n    d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr],\n              outline=rgba(HIGHLIGHT, a), width=8)\nif img is not None:\n    asp = img.width / img.height\n    w = 660\n    h = int(w / asp)\n    if h > 500:\n        h = 500\n        w = int(h * asp)\n    paste(img, cx - w // 2, cy - h // 2, w, h)\nna = clamp((reveal - 0.3) / 0.5)\ntext(str(int(values[0])) + ' dB', cx, RTOP + 40, size=120,\n     color=HIGHLIGHT, center=True)\ntext('the loudest animal EVER', cx, cy + 300, size=46, center=True)\ntext(labels[0], cx, cy + 360, size=40, color=ACCENT, center=True)\n",
-    "topic": "single record-holder + frame-filling rings",
-    "starred": true
-  },
-  {
-    "sig": "pressure-gauges-v1",
-    "mechanic": "pressure-gauges",
-    "concept": "two pressure gauges sweep to each contender's PSI, their photos mounted under the dials",
-    "code": "\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 210\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.arc([cxs - r, cy - r, cxs + r, cy + r], 150, 390,\n          fill=rgba(TEXT, 90), width=16)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.arc([cxs - r, cy - r, cxs + r, cy + r], 150, int(sweep),\n          fill=rgba(col, 255), width=16)\n    ang = sweep * math.pi / 180.0\n    nx = cxs + int((r - 30) * math.cos(ang))\n    ny = cy + int((r - 30) * math.sin(ang))\n    d.line([cxs, cy, nx, ny], fill=rgba(col, 255), width=10)\n    d.ellipse([cxs - 16, cy - 16, cxs + 16, cy + 16], fill=rgba(col, 255))\n    if i == 0:\n        img = subject_image('saltwater crocodile open jaws close up')\n    else:\n        img = subject_image('human man smiling portrait face')\n    if img is not None:\n        asp = img.width / img.height\n        w = 310\n        h = int(w / asp)\n        if h > 220:\n            h = 220\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy + r + 10, w, h)\n    text(str(int(v)) + ' PSI', cxs, cy - r - 100, size=62, color=col, center=True)\n    text(labels[i], cxs, cy + r + 240, size=38, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('23x STRONGER', (RX0 + RX1) // 2, RBOT - 80, size=56,\n         color=WARN, center=True)\n",
-    "topic": "two contenders on sweeping pressure dials",
-    "starred": true
-  },
-  {
-    "mechanic": "earth-lap-trails",
-    "concept": "each bird orbits a real Earth image, its arc trail sweeping the exact number of planet-circumferences its annual mileage covers",
-    "code": "cx = (RX0 + RX1) // 2\ncy = 560\nearth = subject_image('planet Earth from space blue marble')\ner = 140\nif earth is not None:\n    paste(earth, cx - er, cy - er, er * 2, er * 2)\ncircumference = 24901.0\nradii = [er + 100, er + 190, er + 280]\ncols = [HIGHLIGHT, ACCENT, WARN]\nfor i in range(n):\n    v = values[i]\n    revs = v / circumference\n    r = radii[i] if i < len(radii) else radii[-1] + (i - 2) * 90\n    col = cols[i % len(cols)]\n    ang_total = clamp(revs / 2.0) * 720.0 * clamp(reveal)\n    start = -90\n    end = start + ang_total\n    d.arc([cx - r, cy - r, cx + r, cy + r], start, end, fill=rgba(col, 230), width=8)\n    tip_a = math.radians(end)\n    tx = cx + r * math.cos(tip_a)\n    ty = cy + r * math.sin(tip_a)\n    img = images.get(labels[i])\n    if img is not None:\n        paste(img, int(tx - 55), int(ty - 55), 110, 110)\n    lx = cx + (r + 55) * math.cos(math.radians(start + 8))\n    ly = cy + (r + 55) * math.sin(math.radians(start + 8))\n    text(labels[i] + \" \" + str(round(revs, 1)) + \"x\", int(lx), int(ly), size=28, color=col)\ntext('LAPS AROUND EARTH EACH YEAR', cx, RTOP + 10, size=38, center=True)",
-    "topic": "Longest Migrations",
-    "starred": false
-  },
-  {
-    "mechanic": "stoop-dive-speedometer",
-    "concept": "birds stoop down a vertical mph ruler leaving a motion-blur streak, diving further the faster their real top speed",
-    "code": "ruler_x = RX1 - 90\nd.line([ruler_x, RTOP + 40, ruler_x, RBOT - 40], fill=rgba(TEXT, 160), width=6)\ntop_v = 260.0\nfor tick in range(0, 261, 50):\n    ty = RTOP + 40 + (RBOT - 40 - RTOP - 40) * (1 - tick / top_v)\n    d.line([ruler_x - 14, ty, ruler_x + 14, ty], fill=rgba(TEXT, 160), width=4)\n    text(str(tick), ruler_x + 24, ty - 16, size=24, color=TEXT)\nlane_w = (RX1 - RX0 - 200) / max(1, n)\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / top_v)\n    cx = RX0 + 40 + lane_w * (i + 0.5)\n    y_end = RTOP + 40 + (RBOT - 80) * (1 - frac) * clamp(reveal / 0.85)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    for k in range(8):\n        a = int(140 * (1 - k / 8.0) * clamp(reveal))\n        yy = RTOP + (y_end - RTOP) * (1 - k / 9.0)\n        d.line([cx, RTOP + 40, cx, yy], fill=rgba(col, a), width=10)\n    img = images.get(labels[i])\n    if img is not None:\n        paste(img, int(cx - 65), int(y_end - 65), 130, 130)\n    text(str(int(v)) + \" MPH\", int(cx), int(y_end + 76), size=30, center=True, color=col)\n    text(labels[i], int(cx), int(y_end + 112), size=22, center=True)\ntext('STOOP SPEED', RX0 + 10, RTOP, size=38, color=TEXT)",
-    "topic": "Fastest Flyers",
-    "starred": false
-  },
-  {
-    "mechanic": "everest-altitude-ladder",
-    "concept": "birds perch at their real recorded altitude on a ladder rising off a real Everest peak image, so their height IS the comparison",
-    "code": "mtn = subject_image('Mount Everest snowy peak')\nif mtn is not None:\n    mw = RX1 - RX0\n    mh = int(mw * 0.5)\n    paste(mtn, RX0, RBOT - mh, mw, mh)\ntop_v = 30000.0\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / top_v) * clamp(reveal)\n    y = RBOT - (RBOT - RTOP - 60) * frac\n    x = RX0 + 150 + i * 320\n    d.line([x, RBOT, x, y], fill=rgba(ACCENT, 150), width=4)\n    img = images.get(labels[i])\n    if img is not None:\n        paste(img, int(x - 65), int(y - 65), 130, 130)\n    text(str(int(v)) + \" ft\", int(x), int(y - 92), size=30, center=True, color=HIGHLIGHT)\n    text(labels[i], int(x), int(y + 78), size=22, center=True)\ntext('EVEREST = 29,029 FT', (RX0 + RX1) // 2, RTOP + 10, size=32, center=True, color=WARN)",
-    "topic": "Highest-Flying Birds",
-    "starred": false
-  },
-  {
-    "mechanic": "endurance-daynight-bar",
-    "concept": "each bird's endurance bar fills with alternating day/night stripes counted out to its real nonstop hours, the bird riding the leading edge",
-    "code": "lane_h = 120\ntop = RTOP + 70\nmaxv = 48.0\nbar_w = RX1 - RX0 - 260\nfor i in range(n):\n    v = values[i]\n    y = top + i * (lane_h + 50)\n    x0 = RX0 + 220\n    full_w = bar_w * clamp(v / maxv)\n    w = full_w * clamp(reveal)\n    stripe = 34\n    steps = int(w / stripe) + 1\n    for s in range(steps):\n        sx = x0 + s * stripe\n        if sx > x0 + w:\n            break\n        is_day = (s % 2) == 0\n        col = (255, 200, 90) if is_day else (35, 45, 80)\n        d.rectangle([sx, y, min(sx + stripe, x0 + w), y + lane_h], fill=rgba(col, 230))\n    d.rounded_rectangle([x0, y, x0 + full_w, y + lane_h], radius=16, outline=rgba(TEXT, 220), width=4)\n    img = images.get(labels[i])\n    if img is not None and w > 40:\n        paste(img, int(x0 + w - 70), int(y + lane_h / 2 - 70), 140, 140)\n    text(labels[i], x0, y - 34, size=28, color=TEXT)\n    text(str(int(v)) + \"h nonstop\", x0 - 10, y + lane_h + 10, size=26, color=HIGHLIGHT)\ntext('NO LANDING. NO REST.', (RX0 + RX1) // 2, RTOP, size=38, center=True, color=WARN)",
-    "topic": "Longest Non-Stop Flights",
-    "starred": false
-  },
-  {
-    "mechanic": "mileage-runway",
-    "concept": "each bird's real yearly mileage unrolls as a ticked ruler with the bird riding the leading tick, ticks every 5,000 miles",
-    "code": "maxv = 44000.0\nlane_h = 150\ntop = RTOP + 40\nbar_w = RX1 - RX0 - 260\nfor i in range(n):\n    v = values[i]\n    y = top + i * (lane_h + 30)\n    x0 = RX0 + 200\n    full_w = bar_w * clamp(v / maxv)\n    w = full_w * clamp(reveal)\n    d.rounded_rectangle([x0, y, x0 + full_w, y + 14], radius=6, outline=rgba(TEXT, 120), width=2)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.rounded_rectangle([x0, y, x0 + w, y + 14], radius=6, fill=rgba(col, 255))\n    ticks = int(v / 5000)\n    for t in range(1, ticks + 1):\n        tx = x0 + bar_w * (t * 5000.0 / maxv)\n        if tx > x0 + w:\n            break\n        d.line([tx, y - 10, tx, y + 24], fill=rgba(TEXT, 200), width=3)\n    img = images.get(labels[i])\n    if img is not None and w > 40:\n        paste(img, int(x0 + w - 60), int(y - 55), 120, 120)\n    text(labels[i], x0, y - 34, size=26, color=TEXT)\n    text(str(int(v)) + \" mi/yr\", x0, y + 30, size=28, color=HIGHLIGHT)\ntext('MEASURED IN MILES FLOWN', (RX0 + RX1) // 2, RTOP, size=34, center=True)",
-    "topic": "Bird Migration Distances",
-    "starred": false
-  },
-  {
-    "mechanic": "gauge-trio-sweep",
-    "concept": "three speedometer dials sweep live to each contender's real top speed, its photo mounted at the dial's center",
-    "code": "cy = 620\nr = 190\ncols = [HIGHLIGHT, ACCENT, WARN]\ntopv = 260.0\ngap = (RX1 - RX0) / max(1, n)\nfor i in range(n):\n    v = values[i]\n    cx = RX0 + gap * (i + 0.5)\n    col = cols[i % len(cols)]\n    d.arc([cx - r, cy - r, cx + r, cy + r], 160, 380, fill=rgba(TEXT, 90), width=14)\n    sweep = 160.0 + 220.0 * clamp(v / topv) * clamp(reveal)\n    d.arc([cx - r, cy - r, cx + r, cy + r], 160, sweep, fill=rgba(col, 255), width=14)\n    ang = math.radians(sweep)\n    nx = cx + (r - 30) * math.cos(ang)\n    ny = cy + (r - 30) * math.sin(ang)\n    d.line([cx, cy, nx, ny], fill=rgba(col, 255), width=8)\n    img = images.get(labels[i])\n    if img is not None:\n        paste(img, int(cx - 70), int(cy - 70), 140, 140)\n    text(str(int(v)) + \" MPH\", int(cx), int(cy + r + 20), size=28, center=True, color=col)\n    text(labels[i], int(cx), int(cy + r + 58), size=22, center=True)",
-    "topic": "Fastest Animals",
-    "starred": false
-  },
-  {
-    "mechanic": "calendar-creep",
-    "concept": "a real calendar grid holds two markers, an old arrival date and today's, with today's marker dragged the real number of days earlier as a subject lands on it",
-    "code": "cx = (RX0 + RX1) // 2\ntop = RTOP + 70\ncal_w = RX1 - RX0 - 80\ncal_h = 260\nx0 = RX0 + 40\nd.rounded_rectangle([x0, top, x0 + cal_w, top + cal_h], radius=24, outline=rgba(TEXT, 200), width=4)\ndays = 30\ncell_w = cal_w / days\nfor day in range(days):\n    dx = x0 + day * cell_w\n    d.line([dx, top, dx, top + cal_h], fill=rgba(TEXT, 60), width=2)\nshift = values[1] if n > 1 else values[0]\nold_x = x0 + cal_w * 0.72\nnew_x = old_x - cell_w * shift * clamp(reveal)\nd.line([old_x, top - 20, old_x, top + cal_h + 20], fill=rgba(WARN, 200), width=6)\ntext('1960s ARRIVAL', int(old_x), top - 58, size=24, center=True, color=WARN)\nd.line([new_x, top - 20, new_x, top + cal_h + 20], fill=rgba(HIGHLIGHT, 255), width=6)\ntext('TODAY', int(new_x), top - 58, size=24, center=True, color=HIGHLIGHT)\nimg = subject_image('small songbird perched on branch')\nif img is not None:\n    paste(img, int(new_x - 70), top + cal_h - 60, 140, 140)\ntext(str(int(shift)) + \" DAYS EARLIER\", cx, top + cal_h + 80, size=42, center=True, color=WARN)",
-    "topic": "Climate-Shifted Migration Timing",
-    "starred": false
-  },
-  {
-    "mechanic": "instinct-dial-pie",
-    "concept": "a compass-dial pie splits into real-icon wedges sized to each cue's true share, a subject silhouette at the hub",
-    "code": "cx = (RX0 + RX1) // 2\ncy = 620\nr = 260\nstart = -90.0\ntotal = sum(values) or 1.0\ncols = [HIGHLIGHT, ACCENT, WARN]\nicons = ['magnet bar icon', 'bright sun icon', 'flower scent icon']\nfor i in range(n):\n    frac = values[i] / total\n    sweep = 360.0 * frac * clamp(reveal)\n    end = start + sweep\n    col = cols[i % len(cols)]\n    d.pieslice([cx - r, cy - r, cx + r, cy + r], start, end, fill=rgba(col, 200))\n    mid = math.radians((start + end) / 2.0)\n    ix = cx + (r * 0.62) * math.cos(mid)\n    iy = cy + (r * 0.62) * math.sin(mid)\n    icon = subject_image(icons[i]) if i < len(icons) else None\n    if icon is not None:\n        paste(icon, int(ix - 45), int(iy - 45), 90, 90)\n    lx = cx + (r + 70) * math.cos(mid)\n    ly = cy + (r + 70) * math.sin(mid)\n    text(str(int(values[i])) + \"%\", int(lx), int(ly - 14), size=32, center=True, color=col)\n    text(labels[i], int(lx), int(ly + 22), size=20, center=True)\n    start = end\nbird = subject_image('small songbird flying silhouette')\nif bird is not None:\n    paste(bird, int(cx - 60), int(cy - 60), 120, 120)",
-    "topic": "Bird Navigation Senses",
-    "starred": false
-  }
+ {
+  "sig": "seed-subject-tubes",
+  "mechanic": "subject-thermometers",
+  "concept": "each data point is a glass tube that fills with the subject's own photo to its value, side by side",
+  "code": "for i in range(n):\n    frac = clamp(values[i]/vmax) * reveal\n    x = RX0 + 20 + i*300\n    w = 220; h = 600; y = 500\n    img = images.get(labels[i]) if labels[i] in images else None\n    fill_image(img, frac, x, y, w, h, direction='up', color=ACCENT)\n    d.rounded_rectangle([x,y,x+w,y+h], outline=rgba(TEXT,255), width=4)\n    text(labels[i], x+w/2, y+h+16, size=34, center=True)\n    text(str(int(values[i])), x+w/2, y-60, size=48, color=HIGHLIGHT, center=True)",
+  "topic": "seed example",
+  "starred": true
+ },
+ {
+  "sig": "shockwave-duel-v1",
+  "mechanic": "shockwave-duel",
+  "concept": "two subjects face off, each emitting expanding sound rings whose count and reach scale with its decibel value",
+  "code": "\ncy = 600\nwimg = images.get(labels[0])\njimg = images.get(labels[1])\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    col = HIGHLIGHT if i == 0 else ACCENT\n    rings = int(clamp(v / vmax) * 6.0 * reveal) + 1\n    for k in range(rings):\n        rr = 60 + k * 52\n        a = int(190.0 * (1.0 - k / (rings + 1.0)) * reveal)\n        d.ellipse([cxs - rr, cy - rr, cxs + rr, cy + rr],\n                  outline=rgba(col, a), width=6)\nimg = wimg\nfor i in range(2):\n    img = wimg if i == 0 else jimg\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    if img is not None:\n        asp = img.width / img.height\n        w = 330\n        h = int(w / asp)\n        if h > 300:\n            h = 300\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    na = clamp((reveal - 0.4) / 0.6)\n    text(str(int(values[i])) + ' dB', cxs, cy - 330, size=70, color=col, center=True)\n    text(labels[i], cxs, cy + 210, size=40, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('1.5x LOUDER', (RX0 + RX1) // 2, 950, size=54, color=WARN, center=True)\n",
+  "topic": "Loudest Animals — whale vs jet engine",
+  "starred": true
+ },
+ {
+  "sig": "epicenter-v1",
+  "mechanic": "epicenter",
+  "concept": "the single subject sits at the center of sound rings radiating to the frame edges, its value huge at the top",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = 620\nimg = images.get(labels[0])\nrings = int(9.0 * reveal) + 1\nfor k in range(rings):\n    rr = 100 + k * 95\n    a = int(170.0 * (1.0 - k / (rings + 2.0)))\n    d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr],\n              outline=rgba(HIGHLIGHT, a), width=8)\nif img is not None:\n    asp = img.width / img.height\n    w = 660\n    h = int(w / asp)\n    if h > 500:\n        h = 500\n        w = int(h * asp)\n    paste(img, cx - w // 2, cy - h // 2, w, h)\nna = clamp((reveal - 0.3) / 0.5)\ntext(str(int(values[0])) + ' dB', cx, RTOP + 40, size=120,\n     color=HIGHLIGHT, center=True)\ntext('the loudest animal EVER', cx, cy + 300, size=46, center=True)\ntext(labels[0], cx, cy + 360, size=40, color=ACCENT, center=True)\n",
+  "topic": "single record-holder + frame-filling rings",
+  "starred": true
+ },
+ {
+  "sig": "pressure-gauges-v1",
+  "mechanic": "pressure-gauges",
+  "concept": "two pressure gauges sweep to each contender's PSI, their photos mounted under the dials",
+  "code": "\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 210\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.arc([cxs - r, cy - r, cxs + r, cy + r], 150, 390,\n          fill=rgba(TEXT, 90), width=16)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.arc([cxs - r, cy - r, cxs + r, cy + r], 150, int(sweep),\n          fill=rgba(col, 255), width=16)\n    ang = sweep * math.pi / 180.0\n    nx = cxs + int((r - 30) * math.cos(ang))\n    ny = cy + int((r - 30) * math.sin(ang))\n    d.line([cxs, cy, nx, ny], fill=rgba(col, 255), width=10)\n    d.ellipse([cxs - 16, cy - 16, cxs + 16, cy + 16], fill=rgba(col, 255))\n    if i == 0:\n        img = subject_image('saltwater crocodile open jaws close up')\n    else:\n        img = subject_image('human man smiling portrait face')\n    if img is not None:\n        asp = img.width / img.height\n        w = 310\n        h = int(w / asp)\n        if h > 220:\n            h = 220\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy + r + 10, w, h)\n    text(str(int(v)) + ' PSI', cxs, cy - r - 100, size=62, color=col, center=True)\n    text(labels[i], cxs, cy + r + 240, size=38, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('23x STRONGER', (RX0 + RX1) // 2, RBOT - 80, size=56,\n         color=WARN, center=True)\n",
+  "topic": "two contenders on sweeping pressure dials",
+  "starred": true
+ },
+ {
+  "sig": "b837b288dcb4",
+  "mechanic": "migration-map",
+  "concept": "a stylized world map with migration paths tracing the routes of each bird species, their images and values displayed at the terminus of each path",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    label = labels[i]\n    img = subject_image(label)\n    cx = RX0 + 200 + i * 260\n    cy = RBOT - 200\n    if img is not None:\n        asp = img.width / img.height\n        w = 140\n        h = int(w / asp)\n        paste(img, cx - w // 2, cy - h, w, h)\n    path_x = [cx, cx, RX0 + 100, RX1 - 100, cx]\n    path_y = [cy, RTOP + 100, RTOP + 100, RTOP + 100, cy]\n    for j in range(len(path_x) - 1):\n        dx = path_x[j + 1] - path_x[j]\n        dy = path_y[j + 1] - path_y[j]\n        dist = math.sqrt(dx * dx + dy * dy)\n        dx /= dist\n        dy /= dist\n        steps = int(dist * reveal * 10)\n        for k in range(steps):\n            x = path_x[j] + k * dx * dist / steps\n            y = path_y[j] + k * dy * dist / steps\n            d.ellipse([x - 2, y - 2, x + 2, y + 2], fill=rgba(ACCENT, 255))\n    text(str(int(v)) + ' miles', cx, cy + 20, size=36, color=TEXT, center=True)\n    text(label, cx, cy - 40, size=32, center=True)\n",
+  "topic": "Longest Migrations"
+ }
 ]
