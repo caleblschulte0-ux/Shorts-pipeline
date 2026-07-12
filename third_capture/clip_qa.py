@@ -234,6 +234,40 @@ def _vision(sheet: Path, led: dict, dur: float) -> dict | None:
         return None
 
 
+def preflight(video: Path) -> list[str]:
+    """Validate a downloaded SOURCE before any authoring/rendering money is
+    spent on it (the cheap end of §16). A broken source caught here costs
+    ~2s; caught after the render it costs 100s+ and an upload slot.
+    Returns a list of problems (empty = good to go). Never raises."""
+    problems: list[str] = []
+    try:
+        info = _probe(video)
+    except Exception:  # noqa: BLE001
+        return ["source unreadable (corrupt download)"]
+    try:
+        have_v = have_a = False
+        w = h = 0
+        for s in info.get("streams", []):
+            if s.get("codec_type") == "video":
+                have_v = True
+                w = int(s.get("width") or 0)
+                h = int(s.get("height") or 0)
+            elif s.get("codec_type") == "audio":
+                have_a = True
+        dur = float(info["format"].get("duration") or 0)
+        if not have_v:
+            problems.append("no video stream")
+        if not have_a:
+            problems.append("no audio stream")
+        if dur < 6.0:
+            problems.append(f"source only {dur:.1f}s — too short to edit")
+        if w and h and max(w, h) < 640:
+            problems.append(f"resolution too low ({w}x{h}) for Shorts")
+    except Exception as e:  # noqa: BLE001 — fail open, the render QA backstops
+        print(f"[preflight] check error (ignored): {e}", flush=True)
+    return problems
+
+
 def review(video: Path, led: dict, work: Path) -> dict:
     """Full QA gate. Returns {"verdict": "pass"|"fail", "problems": [...],
     "vision": {...}|None, "contact_sheet": str|None}. NEVER raises; a

@@ -1,0 +1,49 @@
+name: Third Channel — Smoke
+
+# Runs the clip pipeline against synthetic tricky-input fixtures
+# (apostrophe hook, near-silent clip, no-speech clip, corrupt/tiny sources)
+# on every change to the third pipeline. Catches "worked on my one clip"
+# regressions in seconds — no network, no secrets, no upload — before they
+# reach a production render. See scripts/smoke_third.py.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'third_capture/**'
+      - 'scripts/run_third.py'
+      - 'scripts/smoke_third.py'
+      - 'assets/emoji/**'
+      - 'assets/fx/**'
+      - 'assets/sfx/**'
+      - '.github/workflows/third-smoke.yml'
+  pull_request:
+    paths:
+      - 'third_capture/**'
+      - 'scripts/run_third.py'
+      - 'scripts/smoke_third.py'
+  workflow_dispatch: {}
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        # Lean: the smoke suite passes precomputed words, so whisper/torch
+        # are never imported — only ffmpeg + the render/QA deps are needed.
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core
+          pip install -q pillow numpy "opencv-python-headless<5"
+
+      - name: Pipeline smoke test
+        run: python scripts/smoke_third.py

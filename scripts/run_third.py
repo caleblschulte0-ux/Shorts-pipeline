@@ -274,6 +274,23 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 pick = shortlist[0]
                 info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]
+
+            # PRE-FLIGHT (§16, cheap end): validate the source in ~2s before
+            # whisper/author/render spend 100s+ on it. A bad source is
+            # blocklisted exactly like a QA rejection so it can't re-eat
+            # slots this run or any future run.
+            from third_capture import clip_qa
+            pf = clip_qa.preflight(Path(REPO / info["path"])
+                                   if not Path(info["path"]).is_absolute()
+                                   else Path(info["path"]))
+            if pf:
+                log["posted"][f"rejected-{slug}"] = {
+                    "source_url": info["url"], "streamer": streamer,
+                    "title": info["title"], "qa_rejected": True,
+                    "ts": datetime.now(timezone.utc).isoformat(),
+                }
+                raise RuntimeError("preflight: " + "; ".join(pf)[:180])
+
             # transcribe once, then let the Groq author write the
             # packaging from what's actually said in the clip
             wmodel = spec.get("whisper_model", "small")

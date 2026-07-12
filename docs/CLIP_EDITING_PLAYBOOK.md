@@ -40,6 +40,25 @@ Done:
   headless Claude CLI against the §17 checklist. A fail rejects the clip
   before upload (slug stays unposted; a different clip competes next run);
   QA-internal errors fail OPEN so the gate can't lose good clips. (§16, §17)
+- **Defense in depth against bad INPUTS** — every production failure was an
+  unusual input breaking an assumption, found too late. Three layers now
+  catch them earlier and cheaper:
+  - **Pre-flight** (`clip_qa.preflight`, in `run_third` right after
+    download) validates the source in ~2s (streams present, ≥6s, ≥640px)
+    before whisper/author/render spend 100s+; a bad source is blocklisted
+    like a QA rejection.
+  - **QA-rejected blocklist** — a clip that fails QA (or pre-flight) writes
+    a `rejected-<slug>` entry to the posted log, so `posted_keys` can never
+    re-pick it — this run or any future run. (Fix for: one 2s clip ate four
+    slots back-to-back.)
+  - **Sparse-speech cut guard** — when the transcript-derived cut is <8s or
+    <4 words, keep the whole clip (front 45s); a near-silent clip's moment
+    is visual and words can't locate it.
+  - **CI smoke suite** (`scripts/smoke_third.py`, `.github/workflows/
+    third-smoke.yml`) runs the REAL `edit()` + pre-flight + QA on synthetic
+    tricky-input fixtures (apostrophe hook, 1-word clip, no-speech clip,
+    corrupt/tiny sources) on every push to the third pipeline — regressions
+    go red in CI (seconds, no network/secrets) instead of on the channel.
 - **Shot-plan layer** (`third_capture/shot_plan.py`) — analysis on the SOURCE
   cut (§3: subject tracks with presence/size/talk-activity/position-jitter,
   scored — never just the largest face), layout classification (closeup /
