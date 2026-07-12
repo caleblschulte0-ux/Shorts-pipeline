@@ -165,6 +165,63 @@ def _opening_guidance() -> str:
     return _GUIDANCE_CACHE
 
 
+def _feedback_status() -> dict:
+    """Report whether the feedback-loop brains are ALIVE or DARK, and why —
+    so we never silently build on a data source that isn't flowing. Reads the
+    same snapshot selection reads and calls the same prior/guidance helpers,
+    so the banner reflects exactly what this run will actually use. Three
+    features hang off retention data (streamer prior, opening steer) or the
+    posted log (banger); this surfaces which are live. Returns a compact dict
+    (also stored in the learning-loop stats) and prints a banner. Never
+    raises."""
+    st: dict = {"snapshot": False, "prior_streamers": 0,
+                "opening_steer": False, "retention_scope": False,
+                "videos": 0, "with_retention": 0, "with_curve": 0}
+    try:
+        if ANALYTICS_LATEST.exists():
+            snap = json.loads(ANALYTICS_LATEST.read_text())
+            st["snapshot"] = True
+            vids = snap.get("videos", [])
+            summ = snap.get("summary") or {}
+            st["videos"] = len(vids)
+            st["with_retention"] = sum(
+                1 for v in vids
+                if v.get("average_view_percentage") is not None)
+            st["with_curve"] = (summ.get("opening") or {}).get(
+                "videos_with_curve", 0)
+            st["retention_scope"] = st["with_retention"] > 0
+            st["fetched_at"] = snap.get("fetched_at")
+        # These reflect what selection will actually apply this run.
+        st["prior_streamers"] = len(_learned_prior())
+        st["opening_steer"] = bool(_opening_guidance())
+    except Exception as e:  # noqa: BLE001 — status never fails a run
+        st["error"] = f"{type(e).__name__}: {e}"
+
+    def _mark(on): return "ACTIVE" if on else "dark"
+    print("[feedback] velocity=ACTIVE (always) | "
+          f"banger=ACTIVE (brain) | "
+          f"streamer-prior={_mark(st['prior_streamers'])}"
+          f"({st['prior_streamers']} streamers) | "
+          f"opening-steer={_mark(st['opening_steer'])}", flush=True)
+    if not st["snapshot"]:
+        print("[feedback] ::warning:: no analytics_third snapshot yet — the "
+              "retention brains are DARK; selection runs on velocity+banger "
+              "only. Confirm the 'Fetch third analytics' workflow step ran.",
+              flush=True)
+    elif not st["retention_scope"]:
+        print("[feedback] ::warning:: snapshot present but 0 videos carry "
+              "retention — the token likely lacks the yt-analytics.readonly "
+              "scope (or no post has enough watch data yet). Streamer-prior "
+              "runs on views/hour; opening-steer stays DARK until curves "
+              "arrive. Re-auth via setup_youtube.py on the third account to "
+              "unlock retention.", flush=True)
+    else:
+        print(f"[feedback] retention scope ACTIVE — {st['with_retention']}/"
+              f"{st['videos']} videos with retention, {st['with_curve']} with "
+              "an opening curve.", flush=True)
+    return st
+
+
 def _clip_key(url: str) -> str:
     """Canonical clip identity for dedupe. Twitch serves one clip as both
     `clips.twitch.tv/SLUG` and `twitch.tv/<ch>/clip/SLUG`; both reduce to
@@ -637,6 +694,11 @@ def main() -> int:
                     help="publish immediately instead of next 17:00 UTC slot")
     args = ap.parse_args()
 
+    # Loop health FIRST: say plainly whether each selection brain is alive or
+    # dark before a single clip is picked, so a silently-dead data source is
+    # impossible to miss in the run log.
+    feedback = _feedback_status()
+
     day_dir = PACKAGE_DIR / args.date
     paths = sorted(day_dir.glob("*.json")) if day_dir.is_dir() else []
     packages: list[tuple[dict, Path | None]] = \
@@ -692,6 +754,7 @@ def main() -> int:
         hist.append({
             "date": args.date, "dry_run": args.dry_run,
             "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "feedback": feedback,
             "clips": [{k: r.get(k) for k in
                        ("slug", "ok", "skipped", "render_level", "layout",
                         "self_healed", "error") if r.get(k) is not None}

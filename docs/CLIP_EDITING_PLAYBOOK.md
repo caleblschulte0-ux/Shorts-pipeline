@@ -136,6 +136,17 @@ Done:
   people early. Each post also records its editorial choices (series, hook,
   cut window, director-vs-heuristic) into the posted log, so a later
   iteration can attribute retention to opening style — not just diagnose it.
+- **Feedback-loop self-report (no silent dark brains)** — three selection
+  brains hang off data that may not be flowing (streamer prior + opening
+  steer need retention from a scoped token; banger needs the posted log).
+  Every run now opens with a `[feedback]` banner (`run_third._feedback_status`,
+  also saved into `third_qa_stats.json`) that reads the SAME snapshot
+  selection reads and calls the SAME prior/guidance helpers, so it can't lie
+  about their state: it prints which brains are ACTIVE vs dark and, when a
+  brain is dark, WHY + the fix — no snapshot yet (check the fetch step), or a
+  snapshot with 0 retention rows (token lacks the yt-analytics scope →
+  re-auth via setup_youtube.py). The doctrine: never build the next feature
+  on a data source we haven't confirmed is alive.
 
 - **SFX mixing rules (§12)** — all SFX mix into one bed that is sidechain-
   DUCKED by the dialogue: a boom can never bury what the streamer says.
