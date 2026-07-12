@@ -1,0 +1,26 @@
+{
+  "key": "pyramid_construction_timeline_pyramid_size",
+  "title": "Pyramid Size",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Original height",
+      "value": 481.0
+    },
+    {
+      "label": "Current height",
+      "value": 455.0
+    }
+  ]
+}

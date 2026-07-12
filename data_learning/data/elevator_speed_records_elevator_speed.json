@@ -1,0 +1,28 @@
+{
+  "key": "elevator_speed_records_elevator_speed",
+  "title": "Elevator Speed",
+  "unit": "mph",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Fastest Elevator",
+      "value": 46.0,
+      "period": "2022"
+    },
+    {
+      "label": "Average Elevator",
+      "value": 22.0,
+      "period": "2020"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "key": "pyramid_construction_timeline_pyramid_build_time",
+  "title": "Pyramid Build Time",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Start of construction",
+      "value": 2580.0,
+      "period": "BC"
+    },
+    {
+      "label": "End of construction",
+      "value": 2560.0,
+      "period": "BC"
+    }
+  ]
+}

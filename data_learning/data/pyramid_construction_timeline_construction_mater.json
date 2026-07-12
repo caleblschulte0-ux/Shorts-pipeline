@@ -1,0 +1,26 @@
+{
+  "key": "pyramid_construction_timeline_construction_mater",
+  "title": "Construction Materials",
+  "unit": "tons",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Total stone blocks",
+      "value": 2300000.0
+    },
+    {
+      "label": "Average block weight",
+      "value": 2.5
+    }
+  ]
+}

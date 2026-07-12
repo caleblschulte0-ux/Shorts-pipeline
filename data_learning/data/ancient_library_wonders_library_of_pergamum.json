@@ -1,0 +1,26 @@
+{
+  "key": "ancient_library_wonders_library_of_pergamum",
+  "title": "Library of Pergamum",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Total volumes",
+      "value": 200000.0
+    },
+    {
+      "label": "Manuscripts",
+      "value": 50000.0
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "key": "largest_ships_ever_built_ship_length",
+  "title": "Ship Length",
+  "unit": "meters",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Longest Ship",
+      "value": 400.0,
+      "period": "2022"
+    },
+    {
+      "label": "Average Ship",
+      "value": 200.0,
+      "period": "2020"
+    }
+  ]
+}

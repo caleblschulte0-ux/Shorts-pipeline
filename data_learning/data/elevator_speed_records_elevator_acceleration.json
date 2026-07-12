@@ -1,0 +1,28 @@
+{
+  "key": "elevator_speed_records_elevator_acceleration",
+  "title": "Elevator Acceleration",
+  "unit": "seconds",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Fastest Elevator",
+      "value": 10.0,
+      "period": "2022"
+    },
+    {
+      "label": "Average Elevator",
+      "value": 30.0,
+      "period": "2020"
+    }
+  ]
+}

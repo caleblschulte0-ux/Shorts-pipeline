@@ -1,0 +1,26 @@
+{
+  "key": "pyramid_construction_timeline_labor_force",
+  "title": "Labor Force",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Total labor force",
+      "value": 100000.0
+    },
+    {
+      "label": "Skilled workers",
+      "value": 20000.0
+    }
+  ]
+}

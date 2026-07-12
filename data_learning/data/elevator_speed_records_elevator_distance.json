@@ -1,0 +1,28 @@
+{
+  "key": "elevator_speed_records_elevator_distance",
+  "title": "Elevator Distance",
+  "unit": "feet",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Tallest Elevator",
+      "value": 1730.0,
+      "period": "2022"
+    },
+    {
+      "label": "Average Elevator",
+      "value": 500.0,
+      "period": "2020"
+    }
+  ]
+}

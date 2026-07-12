@@ -1,0 +1,28 @@
+{
+  "key": "largest_ships_ever_built_ship_speed",
+  "title": "Ship Speed",
+  "unit": "knots",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-12"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Fastest Ship",
+      "value": 30.0,
+      "period": "2022"
+    },
+    {
+      "label": "Average Ship",
+      "value": 15.0,
+      "period": "2020"
+    }
+  ]
+}
