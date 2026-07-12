@@ -108,7 +108,10 @@ jobs:
       (needs.plan.outputs.new_count != '0' &&
        github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # Raised from 60: each video now renders a 3D opener+closer, so a batch
+    # needs more headroom. Paired with post_stories --max-per-run so a run
+    # still can't blow this cap.
+    timeout-minutes: 120
     concurrency:
       group: explainer-stories
       cancel-in-progress: false
@@ -398,9 +401,9 @@ jobs:
               python scripts/post_stories.py --slugs "${{ inputs.canary_slug }}" ;;
             schedule)
               python scripts/post_stories.py $SLUGFLAG $FORCEFLAG \
-                --every-hours "$EVERY" --start-in-hours "$START" ;;
+                --every-hours "$EVERY" --start-in-hours "$START" --max-per-run 4 ;;
             all)
-              python scripts/post_stories.py $SLUGFLAG ;;
+              python scripts/post_stories.py $SLUGFLAG --max-per-run 4 ;;
             unpublish)
               # Take down the given videos (public or scheduled) + prune the log.
               python scripts/unpublish_stories.py --slugs $SLUGS ;;
@@ -428,7 +431,7 @@ jobs:
               done ;;
             auto)
               # post every un-posted story (no --slugs => all, deduped), hourly
-              python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" ;;
+              python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" --max-per-run 4 ;;
           esac
 
       # Pull view/like counts for the channel's published videos so the daily

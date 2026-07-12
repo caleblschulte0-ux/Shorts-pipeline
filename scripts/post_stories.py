@@ -136,6 +136,10 @@ def main() -> int:
     ap.add_argument("--log", type=Path, default=LOG_PATH,
                     help="posted-log JSON (default: state/"
                          "explainer_posted_log.json)")
+    ap.add_argument("--max-per-run", type=int, default=0,
+                    help="render at most N new videos this run (0 = all); the "
+                         "rest wait for the next run. Guards the CI job cap now "
+                         "that each 3D render is slow.")
     args = ap.parse_args()
 
     if args.check_channel:
@@ -157,6 +161,7 @@ def main() -> int:
     log = _load_log(args.log)
     results = []
     uploader = None
+    rendered = 0
     when = datetime.now(timezone.utc) + timedelta(hours=args.start_in_hours)
 
     for slug in slugs:
@@ -165,6 +170,11 @@ def main() -> int:
             print(f"[{slug}] already posted -> {log['posted'][slug].get('url')}, "
                   f"skipping (use --force to repost)")
             continue
+        if args.max_per_run and rendered >= args.max_per_run:
+            print(f"[{slug}] deferred to next run (hit --max-per-run="
+                  f"{args.max_per_run})")
+            continue
+        rendered += 1
         out = OUTPUT_DIR / f"story_{slug}.mp4"
         print(f"[{slug}] rendering -> {out}", flush=True)
         from data_learning import studio_render       # lazy: needs Pillow etc.
