@@ -33,6 +33,38 @@
           "error": "RuntimeError: no fresh clip across the allowlist"
         }
       ]
+    },
+    {
+      "date": "20260711c",
+      "dry_run": false,
+      "ts": "2026-07-12T00:40:38+00:00",
+      "clips": [
+        {
+          "slug": "clip-20260711c-1",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        },
+        {
+          "slug": "clip-20260711c-2",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        },
+        {
+          "slug": "clip-20260711c-3",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        },
+        {
+          "slug": "clip-20260711c-4",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        },
+        {
+          "slug": "clip-20260711c-5",
+          "ok": false,
+          "error": "RuntimeError: no fresh clip across the allowlist"
+        }
+      ]
     }
   ]
 }
