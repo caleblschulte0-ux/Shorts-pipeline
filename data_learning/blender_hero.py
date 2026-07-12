@@ -658,6 +658,88 @@ def _render_settings(sc, spec):
     sc.render.image_settings.file_format = "PNG"
     sc.view_settings.view_transform = "Filmic"
     sc.view_settings.look = "Medium High Contrast"
+    # THE VELOCITY TOOLKIT (§7.5 v9) — motion blur, opt-in. It is the
+    # single biggest "this is fast" cue, but it COSTS Cycles time and can
+    # smear weak geometry, so it's a deliberate per-shot choice, never a
+    # default. shutter≈0.5 is a filmic 180° shutter.
+    if spec.get("motion_blur"):
+        sc.render.use_motion_blur = True
+        sc.cycles.motion_blur_position = "CENTER"
+        sc.render.motion_blur_shutter = float(spec.get("motion_blur", 0.5))
+
+
+# ===========================================================================
+# THE VELOCITY TOOLKIT (§7.5 v9). Craft that AMPLIFIES a physically strong
+# shot — never QUALIFIES a weak one. Each tool encodes its own restraint:
+# DOF needs a stable focus target, shake needs an event window + envelope,
+# streaks need a motion direction. Misuse (blur hiding weak geometry,
+# continuous random shake, decorative streaks) is what the ledger-blind
+# adversarial judge flags as EFFECT_OVERUSE.
+# ===========================================================================
+def _dof(cam, focus_obj, fstop=2.8):
+    """Depth of field to DIRECT ATTENTION — focus locked on one stable
+    object (the hero the camera rides), so it never focus-hunts. Use only
+    when there's real depth separation to exploit; a flat shot gains
+    nothing and just goes soft."""
+    cam.data.dof.use_dof = True
+    cam.data.dof.focus_object = focus_obj
+    cam.data.dof.aperture_fstop = float(fstop)
+
+
+def _shake(cam, f0, f1, amp=0.06, freq=6.0, seed=1):
+    """EVENT-DRIVEN camera shake over frames [f0, f1] ONLY — an impact,
+    an acceleration, a breach. A NOISE F-curve modifier on the camera's
+    location, with a restrict_frame_range envelope so it does not bleed
+    across the whole shot (continuous random shake reads as motion
+    sickness, not energy). amp in Blender units; freq in cycles/frame⁻¹
+    via scale. Requires existing location keyframes to modify."""
+    if not (cam.animation_data and cam.animation_data.action):
+        return
+    for i, fc in enumerate(cam.animation_data.action.fcurves):
+        if fc.data_path != "location":
+            continue
+        m = fc.modifiers.new(type="NOISE")
+        m.strength = amp * (1.0 if i != 2 else 0.6)   # less vertical
+        m.scale = max(1.0, 30.0 / max(freq, 0.1))
+        m.phase = seed * 10.0 + i * 3.0
+        m.use_restricted_range = True
+        m.frame_start = f0
+        m.frame_end = f1
+        m.blend_in = max(1.0, (f1 - f0) * 0.25)       # ease the shake in
+        m.blend_out = max(1.0, (f1 - f0) * 0.35)      # and out
+
+
+def _streaks(n, direction, length, spread, bright, frames,
+             f_on=1, f_full=None, color=(0.85, 0.9, 1.0), origin=(0, 0, 0)):
+    """Speed lines that EMERGE FROM MOTION. Thin emission cylinders laid
+    along `direction` (the travel/camera axis), their emission ramping
+    0→bright over [f_on, f_full] so density RISES with velocity rather
+    than sitting behind the subject as a constant anime layer. Reuses the
+    cosmic_exit streak idea, generalized to any axis. Deterministic
+    placement (resumable renders)."""
+    import mathutils
+    d = mathutils.Vector(direction).normalized()
+    up = mathutils.Vector((0, 0, 1))
+    if abs(d.dot(up)) > 0.95:
+        up = mathutils.Vector((0, 1, 0))
+    quat = d.to_track_quat("Z", "Y")
+    f_full = f_full or max(f_on + 1, int(frames * 0.5))
+    for i in range(n):
+        a = (i * 2.399963) % (2 * math.pi)          # golden angle
+        r = spread * (((i * 37) % 89) / 89.0) ** 0.5
+        off = (up * math.cos(a) + d.cross(up).normalized() * math.sin(a)) * r
+        loc = mathutils.Vector(origin) + off
+        bpy.ops.mesh.primitive_cylinder_add(
+            radius=length / 900.0, depth=length,
+            location=(loc.x, loc.y, loc.z))
+        cyl = bpy.context.object
+        cyl.rotation_euler = quat.to_euler()
+        m = _emission(f"streak{i}", color, 0.0)
+        cyl.data.materials.append(m)
+        em = m.node_tree.nodes["Emission"].inputs["Strength"]
+        for f, v in ((f_on, 0.0), (f_full, bright * (0.5 + (i % 5) / 5.0))):
+            em.default_value = v
+            em.keyframe_insert(data_path="default_value", frame=f)
 
 
 TEMPLATES = {"monoliths": build, "earth_dive": build_earth_dive,
