@@ -459,6 +459,41 @@ def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
         blob.parent = parent if parent is not None else sea
         if parent is None:
             blob.matrix_parent_inverse = sea.matrix_world.inverted()
+    # CLOUD LAYER — the single biggest 'real planet, not a toy' cue: a
+    # thin shell whose whiteness is a procedural noise threshold
+    # (transparent between clouds), so the surface breaks up instead of
+    # reading as a flat painted sphere.
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=radius * 1.018, location=loc,
+                                         segments=48, ring_count=24)
+    clouds = bpy.context.object
+    bpy.ops.object.shade_smooth()
+    cm = bpy.data.materials.new("clouds")
+    cm.use_nodes = True
+    nt = cm.node_tree
+    nt.nodes.clear()
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 2.6
+    noise.inputs["Detail"].default_value = 8.0
+    ramp = nt.nodes.new("ShaderNodeValToRGB")       # threshold into clumps
+    ramp.color_ramp.elements[0].position = 0.52
+    ramp.color_ramp.elements[1].position = 0.66
+    diff = nt.nodes.new("ShaderNodeBsdfDiffuse")
+    diff.inputs["Color"].default_value = (1.0, 1.0, 1.0, 1.0)
+    tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+    mix = nt.nodes.new("ShaderNodeMixShader")
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    nt.links.new(tc.outputs["Object"], noise.inputs["Vector"])
+    nt.links.new(noise.outputs["Fac"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], mix.inputs["Fac"])
+    nt.links.new(tr.outputs["BSDF"], mix.inputs[1])
+    nt.links.new(diff.outputs["BSDF"], mix.inputs[2])
+    nt.links.new(mix.outputs["Shader"], out.inputs["Surface"])
+    cm.blend_method = "BLEND"
+    clouds.data.materials.append(cm)
+    clouds.parent = parent if parent is not None else sea
+    if parent is None:
+        clouds.matrix_parent_inverse = sea.matrix_world.inverted()
     halo = _atmo_halo(radius * 1.06, loc)
     halo.parent = parent if parent is not None else sea
     if parent is None:
@@ -825,35 +860,28 @@ def build_scale_chase(spec: dict):
     # Scale is FAKED for legibility (a real orbit makes Earth an invisible
     # speck): a compact system so Earth, the orbit arc, and the Sun all
     # frame together with Earth still a visible glowing point.
+    # THE STAR (not a diagram): a real luminous sun — a bright core, a
+    # warm corona shell, and a soft outer glow so Filmic blooms it into a
+    # presence, not a flat white disc. Scale is FAKED for legibility so
+    # Earth is still a visible crescent beside it at the end. NO orbit
+    # ring — a clean geometric ring reads as an orbital-mechanics chart;
+    # 'you fall around THAT' is sold by the star itself.
     SUN = (0.0, 0.0, -120.0)
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=14, location=SUN,
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=13, location=SUN,
                                          segments=48, ring_count=24)
     bpy.context.object.data.materials.append(
-        _emission("sun", (1.0, 0.80, 0.42), 55.0))
+        _emission("sun_core", (1.0, 0.86, 0.55), 60.0))
+    _atmo_halo(19.0, SUN, color=(1.0, 0.6, 0.26), strength=9.0)  # corona
     bpy.ops.object.light_add(type="SUN", location=(8, -24, -8))
     key = bpy.context.object                        # rakes Earth from Sun dir
     key.data.energy = 5.0
     key.data.angle = 0.09
-    # Earth's orbit — a bright ring in the X-Z plane, centred on the Sun,
-    # passing through the origin; lit strongest late (Earth 'racing' it)
-    bpy.ops.mesh.primitive_torus_add(major_radius=120.0, minor_radius=0.35,
-                                     location=SUN, major_segments=192,
-                                     minor_segments=8)
-    orbit_obj = bpy.context.object
-    orbit_obj.rotation_euler = (math.radians(90), 0, 0)          # stand up
-    orbit_m = _emission("orbit", accent, 3.4)
-    orbit_obj.data.materials.append(orbit_m)
-    # HIDDEN through beats 1-2 (the ring passes through Earth and renders
-    # as an opaque bar up close, lit or not); it only appears for the
-    # wide solar-system beat — a hard visibility toggle, not a dim ramp
-    orbit_obj.hide_render = True
-    orbit_obj.keyframe_insert(data_path="hide_render", frame=1)
-    orbit_obj.keyframe_insert(data_path="hide_render", frame=max(2, f2 - 1))
-    orbit_obj.hide_render = False
-    orbit_obj.keyframe_insert(data_path="hide_render", frame=f2)
-    # Earth revolves along the orbit (empty at the Sun, spun about Y) — a
-    # small CREEP so it stays framed near the top of the ring; the scale
-    # of the ring, not Earth's travel, is what sells 'you race all of this'
+    bpy.ops.object.light_add(type="SUN", location=(-14, -26, 10))
+    fill = bpy.context.object                        # keep the night side a
+    fill.data.energy = 0.5                           # form, not a black void
+    fill.data.color = (0.5, 0.62, 0.95)
+    # Earth revolves (empty at the Sun, spun about Y) — a small CREEP so
+    # it stays framed; the star's scale, not Earth's travel, is the point
     bpy.ops.object.empty_add(location=SUN)
     eorb = bpy.context.object
     eorb.rotation_euler = (0, 0, 0)
@@ -919,15 +947,22 @@ def build_scale_chase(spec: dict):
     cam.data.clip_end = 20000
     cam.constraints.new(type="TRACK_TO").target = target
     # HOLD at two legible scales, then a smooth continuous pull that
-    # RESOLVES on the solar system (no gimmick warp — the composition is
-    # the payoff): Sun glowing, the bright orbit arc, Earth a lit speck.
+    # RESOLVES on the star: the Sun glowing huge with Earth a lit crescent
+    # beside it — 'you fall around THAT'. The composition is the payoff.
     keys = ((1, (2.0, -13.0, 3.0)),                 # close beside the bullet
             (f1, (2.5, -17.0, 3.2)),                # Earth fills, bullet frozen
             (int(frames * 0.55), (3.0, -40.0, 6.0)),  # Earth+Moon, moon whips
-            (frames, (25.0, -380.0, -60.0)))       # Sun + orbit arc + Earth
+            (frames, (35.0, -200.0, -60.0)))        # the Sun + Earth-crescent
     for f, loc in keys:
         cam.location = loc
         cam.keyframe_insert(data_path="location", frame=f)
+    # widen the lens over the finale so both Earth and the Sun frame
+    # together (a real orbit's span defeats a fixed narrow FOV)
+    cam.data.lens = 50.0
+    cam.data.keyframe_insert(data_path="lens", frame=1)
+    cam.data.keyframe_insert(data_path="lens", frame=int(frames * 0.55))
+    cam.data.lens = 30.0
+    cam.data.keyframe_insert(data_path="lens", frame=frames)
     _bezier(cam)
     _dof(cam, target, fstop=2.8)
     _shake(cam, 1, max(2, f1), amp=0.05, freq=7.0)  # the bullet-pass jolt only
