@@ -649,8 +649,10 @@ def _hero_clip(template: str, seg_cfg: dict, theme: dict, dur: float,
     _run(["ffmpeg", "-y", "-loglevel", "error",
           "-framerate", str(hero_fps), "-i", str(frames_dir / "hero_%04d.png"),
           "-vf",
+          # hqdn3d cleans the Cycles speckle the Ubuntu build can't denoise
+          # (no OIDN) — the grain reads as a cheap render otherwise.
           f"setpts={factor:.4f}*PTS,minterpolate=fps={FPS}:mi_mode=mci,"
-          f"scale={W}:{H},"
+          f"hqdn3d=2:1.5:5:4,scale={W}:{H},"
           f"fade=t=in:st=0:d=0.3,fade=t=out:st={fade_out_st:.3f}:d=0.3,"
           f"format=yuv420p",
           "-t", f"{dur:.3f}", "-r", str(FPS),

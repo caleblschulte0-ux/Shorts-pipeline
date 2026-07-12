@@ -433,7 +433,7 @@ def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
                                          segments=64, ring_count=32)
     sea = bpy.context.object
     bpy.ops.object.shade_smooth()
-    sea.data.materials.append(_pbr("earth_sea", (0.008, 0.035, 0.15), 0.20))
+    sea.data.materials.append(_pbr("earth_sea", (0.008, 0.035, 0.15), 0.32))
     k = radius / 5.0
     if continents:
         lands = [_continent_shell(n, o, radius * 1.012, loc)
@@ -815,104 +815,124 @@ def build_scale_chase(spec: dict):
         bpy.data.objects.remove(o, do_unlink=True)
     accent = _hex(spec.get("accent", "#4FD1C5"))
     frames = _frames(sc, spec)
-    f1, f2, f3 = (int(frames * x) for x in (0.28, 0.58, 0.82))
+    f1, f2 = int(frames * 0.36), int(frames * 0.70)
 
-    # --- the nested world, all in the XY ecliptic plane ---
-    # the Sun at the orbit's centre
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=9, location=(0, 0, 0),
-                                         segments=32, ring_count=16)
+    # Camera convention (matches build_earth_spin, which frames cleanly):
+    # the camera sits in -Y looking toward +Y at the origin, up = +Z, and
+    # pulls BACK along -Y. So the orbit is stood up in the X-Z plane
+    # (facing the camera) and the Sun sits BELOW in -Z; pulling back
+    # reveals Earth (origin) is a dot on a bright ring racing the Sun.
+    SUN = (0.0, 0.0, -560.0)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=34, location=SUN,
+                                         segments=48, ring_count=24)
     bpy.context.object.data.materials.append(
-        _emission("sun", (1.0, 0.83, 0.45), 45.0))
-    bpy.ops.object.light_add(type="SUN", location=(0, 0, 60))
-    bpy.context.object.data.energy = 2.2
-    R = 62.0                                        # orbit radius
-    # the orbit path + tangential streaks (lit only once Earth is racing)
-    bpy.ops.mesh.primitive_torus_add(major_radius=R, minor_radius=0.06,
-                                     location=(0, 0, 0), major_segments=128,
+        _emission("sun", (1.0, 0.80, 0.42), 60.0))
+    bpy.ops.object.light_add(type="SUN", location=(8, -30, -18))
+    key = bpy.context.object                        # rakes Earth from Sun dir
+    key.data.energy = 5.0
+    key.data.angle = 0.09
+    # Earth's orbit — a bright ring in the X-Z plane, centred on the Sun,
+    # passing through the origin; lit strongest late (Earth 'racing' it)
+    bpy.ops.mesh.primitive_torus_add(major_radius=560.0, minor_radius=0.5,
+                                     location=SUN, major_segments=256,
                                      minor_segments=8)
-    bpy.context.object.data.materials.append(_emission("orbit", accent, 2.4))
-    # Earth revolves on its own empty; spins on a nested one
-    bpy.ops.object.empty_add(location=(0, 0, 0))
-    eorb = bpy.context.object                       # revolution
+    orbit_obj = bpy.context.object
+    orbit_obj.rotation_euler = (math.radians(90), 0, 0)          # stand up
+    orbit_m = _emission("orbit", accent, 3.4)
+    orbit_obj.data.materials.append(orbit_m)
+    # HIDDEN through beats 1-2 (the ring passes through Earth and renders
+    # as an opaque bar up close, lit or not); it only appears for the
+    # wide solar-system beat — a hard visibility toggle, not a dim ramp
+    orbit_obj.hide_render = True
+    orbit_obj.keyframe_insert(data_path="hide_render", frame=1)
+    orbit_obj.keyframe_insert(data_path="hide_render", frame=max(2, f2 - 1))
+    orbit_obj.hide_render = False
+    orbit_obj.keyframe_insert(data_path="hide_render", frame=f2)
+    # Earth revolves along the orbit (empty at the Sun, spun about Y) — a
+    # small CREEP so it stays framed near the top of the ring; the scale
+    # of the ring, not Earth's travel, is what sells 'you race all of this'
+    bpy.ops.object.empty_add(location=SUN)
+    eorb = bpy.context.object
     eorb.rotation_euler = (0, 0, 0)
     eorb.keyframe_insert(data_path="rotation_euler", frame=1)
-    eorb.rotation_euler = (0, 0, 1.15)              # sweeps ~66° of orbit
+    eorb.rotation_euler = (0, 0.05, 0)
     eorb.keyframe_insert(data_path="rotation_euler", frame=frames)
-    bpy.ops.object.empty_add(location=(R, 0, 0))
-    espin = bpy.context.object                      # rotation
+    bpy.ops.object.empty_add(location=(0, 0, 0))    # world origin = Earth
+    espin = bpy.context.object
     espin.parent = eorb
+    espin.matrix_parent_inverse = eorb.matrix_world.inverted()
     espin.rotation_euler = (0, 0, 0)
     espin.keyframe_insert(data_path="rotation_euler", frame=1)
-    espin.rotation_euler = (0, 0, 3.4)              # visible turning
+    espin.rotation_euler = (0, 0, 2.8)              # visible turning
     espin.keyframe_insert(data_path="rotation_euler", frame=frames)
-    _the_earth(3.0, (R, 0, 0), parent=espin,
+    _the_earth(3.2, (0, 0, 0), parent=espin,
                continents=spec.get("continents"))
-    # a bullet streaking past the near limb of Earth (stage 1)
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.09, depth=1.1,
-                                        location=(R + 3.2, -6.0, 0.6))
-    bullet = bpy.context.object
-    bullet.rotation_euler = (math.radians(90), 0, 0)   # points along Y
-    bullet.parent = espin
-    bullet.data.materials.append(_emission("bullet", (1.0, 0.9, 0.7), 4.0))
-    bullet.location = (R + 3.2, -7.5, 0.6)
-    bullet.keyframe_insert(data_path="location", frame=1)
-    bullet.location = (R + 3.2, 7.5, 0.6)
-    bullet.keyframe_insert(data_path="location", frame=max(2, f1))
-    # bullet-speed streaks along its travel axis (+Y), near Earth
-    _streaks(10, (0, 1, 0), 6.0, 3.0, 5.0, frames, f_on=1, f_full=max(2, f1),
-             color=(1.0, 0.95, 0.8), origin=(R + 3.2, 0, 0.6))
-    # the galaxy: a big spiral of emission points, slowly turning
+    # the MOON — a small grey world whipping around Earth, filling the
+    # scale BETWEEN the planet and the solar system so the pull-back is
+    # never empty, and giving a second reference-frame hand-off (a moon
+    # that looked fast around Earth is nothing against the orbit)
     bpy.ops.object.empty_add(location=(0, 0, 0))
-    gal = bpy.context.object
-    gal.rotation_euler = (0, 0, 0)
-    gal.keyframe_insert(data_path="rotation_euler", frame=1)
-    gal.rotation_euler = (0, 0, 0.5)
-    gal.keyframe_insert(data_path="rotation_euler", frame=frames)
-    for i in range(150):
-        th = 0.30 * i
-        rr = 120 + 12.0 * th
-        for arm in (0.0, math.pi):
-            x = (rr) * math.cos(th + arm)
-            y = (rr) * math.sin(th + arm)
-            z = (((i * 7) % 11) - 5) * 6.0
-            bpy.ops.mesh.primitive_uv_sphere_add(
-                radius=6.0, location=(x, y, z), segments=6, ring_count=3)
-            g = bpy.context.object
-            g.parent = gal
-            g.data.materials.append(_emission(
-                f"g{i}_{arm:.0f}",
-                (0.72, 0.8, 1.0) if i % 4 else (1.0, 0.9, 0.75), 3.0))
-    _stars(120, spread=3600.0, exclude=900.0, bright=4.0)
+    morb = bpy.context.object
+    morb.parent = eorb
+    morb.matrix_parent_inverse = eorb.matrix_world.inverted()
+    morb.rotation_euler = (0, 0, 0)
+    morb.keyframe_insert(data_path="rotation_euler", frame=1)
+    morb.rotation_euler = (0, 4.2, 0)               # whips around fast
+    morb.keyframe_insert(data_path="rotation_euler", frame=frames)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.85, location=(0, 0, 20),
+                                         segments=32, ring_count=16)
+    moon = bpy.context.object
+    bpy.ops.object.shade_smooth()
+    moon.parent = morb
+    moon.matrix_parent_inverse = morb.matrix_world.inverted()
+    moon.data.materials.append(_pbr("moon", (0.42, 0.43, 0.48), 0.95))
+    # BEAT 1: a bullet screams past Earth's near limb (travels +X) — its
+    # own motion blur makes the streak; the 'fast thing' that will look
+    # frozen once we pull back
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.11, location=(-9.0, 3.4, 1.2),
+                                         segments=16, ring_count=8)
+    bullet = bpy.context.object
+    bullet.data.materials.append(_emission("bullet", (1.0, 0.94, 0.75), 8.0))
+    bullet.keyframe_insert(data_path="location", frame=1)
+    bullet.location = (9.0, 3.4, 1.2)
+    bullet.keyframe_insert(data_path="location", frame=max(2, f1))
+    _stars(140, spread=2200.0, exclude=680.0, bright=3.6)
+    # WARP streaks: during the fast pull-out (f2->end) stars smear toward
+    # the camera so the big scale jump reads as HURTLING away, not empty
+    # dead air. Aligned to the -Y pull direction, ramping on at f2.
+    _streaks(60, (0, 1, 0), 340.0, 520.0, 5.0, frames, f_on=f2,
+             f_full=int(frames * 0.9), color=(0.8, 0.86, 1.0),
+             origin=(0, -260, 0))
     _dark_world(sc)
 
-    # --- the accelerating pull-out; TRACK_TO target moves Earth -> Sun ---
-    bpy.ops.object.empty_add(location=(R, 0, 0))
+    # --- the pull-BACK along -Y: Earth fills -> bullet freezes -> Earth a
+    #     dot on a bright ring racing the Sun. The TRACK_TO target sinks
+    #     toward the Earth-Sun midpoint so the last frame holds the whole
+    #     solar system, not empty space. ---
+    bpy.ops.object.empty_add(location=(0, 0, 0))
     target = bpy.context.object
-    target.parent = eorb                            # rides with Earth early
+    target.location = (0, 0, 0)                     # locked on Earth for
+    target.keyframe_insert(data_path="location", frame=1)  # both holds
+    target.keyframe_insert(data_path="location", frame=int(frames * 0.55))
+    target.location = (0, 0, -560)                  # sink to the Sun on warp
+    target.keyframe_insert(data_path="location", frame=frames)
     bpy.ops.object.camera_add()
     cam = bpy.context.object
     sc.camera = cam
     cam.data.clip_end = 20000
-    tc = cam.constraints.new(type="TRACK_TO")
-    tc.target = target
-    # the camera un-parents from Earth after stage 1 by animating its own
-    # world position through the nested scales (exponential = acceleration)
-    keys = ((1, (R + 2.0, -13.0, 4.0)),
-            (f1, (R + 6.0, -34.0, 12.0)),
-            (f2, (18.0, -230.0, 120.0)),
-            (f3, (0.0, -1500.0, 800.0)),
-            (frames, (0.0, -5200.0, 2600.0)))
+    cam.constraints.new(type="TRACK_TO").target = target
+    # HOLD at two legible scales, then a fast streaking WARP out:
+    keys = ((1, (2.0, -13.0, 3.0)),                 # close beside the bullet
+            (f1, (2.5, -17.0, 3.2)),                # Earth fills, bullet frozen
+            (int(frames * 0.55), (3.0, -40.0, 6.0)),  # Earth+Moon, moon whips
+            (frames, (0.0, -1320.0, -120.0)))       # WARP to the solar system
     for f, loc in keys:
         cam.location = loc
         cam.keyframe_insert(data_path="location", frame=f)
-    # let the track hand off from Earth to the system centre as we recede
-    tc.influence = 1.0
     _bezier(cam)
-    for fc in cam.animation_data.action.fcurves:    # ease OUT of the dolly
-        for kp in fc.keyframe_points:
-            kp.handle_right_type = kp.handle_left_type = "AUTO_CLAMPED"
-    _dof(cam, target, fstop=2.2)                    # hold focus on the subject
-    spec.setdefault("motion_blur", 0.55)            # sell the streak
+    _dof(cam, target, fstop=2.8)
+    _shake(cam, 1, max(2, f1), amp=0.05, freq=7.0)  # the bullet-pass jolt only
+    spec.setdefault("motion_blur", 0.55)
     _render_settings(sc, spec)
 
 
