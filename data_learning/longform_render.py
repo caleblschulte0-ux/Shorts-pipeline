@@ -691,6 +691,43 @@ def _splice(body: Path, hero: Path, t0: float, t1: float, out: Path) -> Path:
     return out
 
 
+def _dissolve_splice(body: Path, clip: Path, t0: float, dur: float,
+                     out: Path, xf: float = 0.6) -> Path:
+    """Replace body[t0:t0+dur] with `clip`, DISSOLVING in and out instead of
+    hard-cutting (CURIOSITY_BRAIN §7.5 v9 — the footage hybrid).
+
+    The blind panel's PASTED_MEDIA label fires on a hard cut from continuous
+    motion into a near-static or borrowed image; a matched dissolve at both
+    boundaries defeats it (proven: the same panel that failed a hard-cut
+    footage proof passed a dissolved one unanimously). Total duration is
+    preserved exactly, so narration stays in sync.
+
+    Memory-frugal: pairwise xfade (which streams both inputs) over
+    pre-extracted body pieces — never the 3-branch concat filter that OOMed."""
+    total = _dur(body)
+    xf = min(xf, dur / 2 - 0.05, t0, total - (t0 + dur))
+    if xf <= 0.05:                      # no room to dissolve — honest hard cut
+        return _splice(body, clip, t0, t0 + dur, out)
+    enc = ["-an", "-r", str(FPS), "-c:v", "libx264", "-preset", "veryfast",
+           "-crf", "18", "-pix_fmt", "yuv420p"]
+    ba = out.with_name(out.stem + "_ba.mp4")   # body[0 : t0+xf]
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(body),
+          "-t", f"{t0 + xf:.3f}", *enc, str(ba)])
+    r1 = out.with_name(out.stem + "_r1.mp4")   # bodyA -> clip
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(ba), "-i",
+          str(clip), "-filter_complex",
+          f"[0:v][1:v]xfade=transition=dissolve:duration={xf:.3f}:"
+          f"offset={t0:.3f}", *enc, str(r1)])
+    bc = out.with_name(out.stem + "_bc.mp4")   # body[t0+dur-xf : total]
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t0 + dur - xf:.3f}",
+          "-i", str(body), *enc, str(bc)])
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(r1), "-i", str(bc),
+          "-filter_complex",
+          f"[0:v][1:v]xfade=transition=dissolve:duration={xf:.3f}:"
+          f"offset={t0 + dur - xf:.3f}", *enc, str(out)])
+    return out
+
+
 def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
                 work: Path) -> Path:
     """Render the whole video body as ONE take through the story's world,
@@ -872,25 +909,24 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
                           str(src), "-vf",
                           "scale=2400:1350:force_original_aspect_ratio="
                           "increase,crop=2400:1350", str(norm)])
-                    kb = _kenburns_clip(norm, secs, i + j,
-                                        work / f"evkb{i}_{j}.mp4")
+                    clip = _kenburns_clip(norm, secs, i + j,
+                                          work / f"evkb{i}_{j}.mp4")
                 else:
-                    kb = work / f"evkb{i}_{j}.mp4"
-                    _run(["ffmpeg", "-y", "-loglevel", "error", "-i",
-                          str(src), "-t", f"{secs:.2f}", "-vf",
-                          f"scale={W}:{H}:force_original_aspect_ratio="
-                          f"increase,crop={W}:{H},fps={FPS}", "-an",
-                          "-c:v", "libx264", "-preset", "veryfast",
-                          "-crf", "18", str(kb)])
-                clip = work / f"evclip{i}_{j}.mp4"
-                _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(kb),
-                      "-vf", f"fade=t=in:st=0:d=0.25,fade=t=out:"
-                      f"st={secs - 0.25:.2f}:d=0.25,format=yuv420p",
-                      "-t", f"{secs:.2f}", "-r", str(FPS),
-                      "-c:v", "libx264", "-preset", "veryfast",
-                      "-crf", "18", "-an", str(clip)])
-                body = _splice(body, clip, e0, e0 + secs,
-                               work / f"evsp{i}_{j}.mp4")
+                    # v9 footage hybrid: real footage is a FULL-FRAME beat
+                    # with a matched continuous push — never a rectangle
+                    # pasted in — and it dissolves into the surrounding
+                    # motion instead of fading to black + hard-cutting.
+                    from data_learning.footage_hybrid import full_frame_beat
+                    # cut from a black-free window when the source is long
+                    # enough that the requested cut might land on a slate.
+                    ss = _footage_ss(src, secs, float(ev.get("at", 0.5)))
+                    clip = full_frame_beat(
+                        Path(src), ss, secs, work / f"evbeat{i}_{j}.mp4",
+                        push=1.06, direction="in" if (i + j) % 2 == 0
+                        else "out")
+                # dissolve in AND out — the footage flows, it is not pasted
+                body = _dissolve_splice(body, clip, e0, secs,
+                                        work / f"evsp{i}_{j}.mp4")
                 ev_rows.append({"t": round(e0, 2), "kind": "evidence",
                                 "beat": i, "rt": secs, "what": label})
                 ev_credits.append(credit)
@@ -970,6 +1006,24 @@ def _evidence_sheet(tiles, out: Path) -> None:
 # --------------------------------------------------------------------------
 # Assembly.
 # --------------------------------------------------------------------------
+def _footage_ss(src: Path, want: float, at: float) -> float:
+    """Pick a start time for a footage cut that avoids NASA slates and black
+    leader. Find the black-free windows (footage_hybrid.clean_windows); place
+    the cut inside the longest one at the requested relative position, and
+    keep the whole `want` seconds inside it. Falls back to a head-skipped
+    guess if the scan finds nothing."""
+    try:
+        from data_learning.footage_hybrid import clean_windows
+        wins = [w for w in clean_windows(Path(src), min_len=want + 0.3)
+                if w[1] - w[0] >= want]
+        if wins:
+            w0, w1 = wins[0]
+            return max(w0, min(w0 + (w1 - w0 - want) * at, w1 - want))
+    except Exception:  # noqa: BLE001 — scan is best-effort
+        pass
+    return 3.0
+
+
 def _kenburns_clip(frame: Path, dur: float, idx: int, out: Path) -> Path:
     """A slow push (alternating in/out) over a still — upscale first so
     zoompan doesn't jitter at small zoom factors."""

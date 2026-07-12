@@ -102,3 +102,54 @@ The judge is NEVER given code, ledger, spec, template name, or stated intent.
   Adversarial judge not raising a critical failure.
 - Any critical failure from any judge → the clip FAILS and is iterated or the
   approach is replaced. The average score never rescues a critical failure.
+
+---
+
+## PROVEN GRAMMAR — the footage hybrid (v9, certified on pixels)
+Ten rounds of pure procedural + 4-core CPU Cycles renders (no denoiser) never
+cleared this panel: it correctly called them GENERIC_CG / EMPTY_COMPOSITION /
+WEAK_TRANSFORMATION. The substrate has a real ceiling below photoreal cosmic
+objects (the Sun especially), and each judge cycle is ~30 min — so we stopped
+trying to out-render the ceiling and changed the material.
+
+**Real NASA footage clears the panel.** The *same* panel that failed Preview #7
+(viewer/editor/adversarial = 2/3/2 FAIL) and failed a sloppily-cut footage
+proof (adversarial 4, viewer 2, FAIL — burned-in slate, black frames, incoherent
+cut) returned a **UNANIMOUS PASS** (viewer 90 / editor 79 / adversarial 84, zero
+critical failures from any role) on footage assembled with three rules:
+
+1. **REAL footage only.** NASA hosts data-visualizations and artist animations
+   next to camera footage; the animations read as GENERIC_CG (and we already
+   make our own CG — borrowed CG is the worst of both). `footage_hybrid.
+   is_real_footage()` rejects them from metadata before download.
+2. **Full-frame, with a matched continuous move.** The footage IS the beat —
+   scaled/cropped to fill 1920×1080 plus a slow zoompan push so a real still or
+   slow orbit reads as continuous motion. NEVER a small rectangle pasted into an
+   animation. `footage_hybrid.full_frame_beat()`.
+3. **A motion-matched dissolve between beats / at every splice boundary.** Never
+   a hard cut from motion to a near-static image (the PASTED_MEDIA tell), never a
+   fade to black. In the flagship path this is `_dissolve_splice()`; standalone
+   it is `footage_hybrid.dissolve_join()`. The single variable that turned the
+   failed footage proof into the unanimous pass was replacing the hard cut with
+   a dissolve.
+
+Plus a **slate/black-frame guard** (`clean_windows()` / `_footage_ss()`): NASA
+broadcast clips carry burned-in production slates and black leader — skip the
+head, refuse spans containing black frames. This is what killed the first proof.
+
+The panel remains the gate. This grammar makes footage-primary assembly
+*possible*; a clip is certified only by the three-role blind panel.
+
+## RETIRED GRAMMARS (removed from the flagship path — the panel killed each)
+- **Spinning globe held as a shot** → WEAK_TRANSFORMATION ("a spinning globe is
+  not a shot"). A decorative loop is not a beat.
+- **Warp-streak / speed-line ending** → EFFECT_OVERUSE. Streaks as decoration
+  behind a weak subject.
+- **Chart-in-3D** (orbit rings, bars, slabs, gauges, lanes, tiny objects in
+  black) → CHART_GRAMMAR / EMPTY_COMPOSITION. Re-materialing a chart does not
+  make it not-a-chart.
+- **Rectangular photo/footage insert + hard cut + fade-to-black** → PASTED_MEDIA.
+  Replaced by rule 2 + rule 3 above (full-frame footage that dissolves).
+- **Photoreal cosmic CG on 4-core CPU Cycles** (esp. the Sun) → GENERIC_CG. The
+  substrate can't reach it; use real footage for photoreal beats and reserve 3D
+  for impossible-camera moments the footage can't provide.

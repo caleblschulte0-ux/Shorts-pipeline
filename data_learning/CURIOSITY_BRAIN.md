@@ -184,7 +184,25 @@ view); build reusable scene templates before reaching for it.
   Checked in eye-QA on every video; below the bar → rebuild the visuals,
   not the words.
 
-## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-11, v8)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-11, v8/v9)
+
+**THE FOOTAGE HYBRID (v9, proven on pixels, 2026-07-12) — the round-10 verdict.**
+Ten rounds of pure procedural + 4-core CPU Cycles never cleared the ledger-blind
+judge panel (§ below). The substrate has a real ceiling below photoreal cosmic
+objects and each judge cycle is ~30 min, so we stopped out-rendering the ceiling
+and changed the material: **real NASA footage carries photoreal beats; 3D is
+reserved for impossible-camera moments footage can't give.** The *same* panel
+that failed Preview #7 (2/3/2) returned a **UNANIMOUS PASS** (viewer 90 / editor
+79 / adversarial 84, zero critical failures) on footage assembled with three
+rules — real footage only (animations rejected), full-frame with a matched
+push (never a pasted rectangle), and a motion-matched dissolve at every seam
+(never a hard cut to a static image / never fade-to-black). Code:
+`data_learning/footage_hybrid.py` (`is_real_footage` / `full_frame_beat` /
+`dissolve_join` / `clean_windows`) + `_dissolve_splice` / `_footage_ss` in
+`longform_render.py`. Full grammar + retired-grammar list:
+`data_learning/VISUAL_STANDARD.md`. **The blind panel remains the gate — nothing
+is "cinematic" because a ledger says so; it is cinematic only when three
+role-blind judges seeing pixels-only agree.**
 
 **THE DIRECTOR'S CUT (v8) — the round-8 verdict:** the engine can make
 premium shots; it doesn't yet know *which moments deserve them, how long
