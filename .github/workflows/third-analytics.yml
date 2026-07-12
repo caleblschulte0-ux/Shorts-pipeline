@@ -1,0 +1,62 @@
+name: Third Channel — Analytics
+
+# Pull the third channel's own YouTube performance (views/hour + retention
+# when the token carries the yt-analytics.readonly scope) into
+# state/analytics_third/, decoupled from rendering: retention should refresh
+# every day and feed the selection brains (streamer prior + opening steer)
+# EVEN on days we don't post, and we should never need a full render batch
+# just to learn. run_third._feedback_status reports what this produces.
+
+on:
+  workflow_dispatch: {}
+  # Daily, after the morning post window, so each snapshot captures the
+  # latest accumulating retention on every live Short.
+  schedule:
+    - cron: '30 8 * * *'
+
+permissions:
+  contents: write   # commit state/analytics_third
+
+concurrency:
+  group: third-analytics
+  cancel-in-progress: false
+
+jobs:
+  analytics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pre-flight — secrets
+        run: |
+          [ -z "${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}" ] && {
+            echo "::error::missing secret YOUTUBE_TOKEN_JSON_THIRD — mint it with setup_youtube.py signed into the third channel's account (include the yt-analytics.readonly scope to unlock retention)"; exit 1; }
+          [ -z "${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}" ] && {
+            echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; exit 1; }
+          echo "secrets present"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install python deps
+        # Lean: analytics only needs the Google API client + auth libs.
+        run: pip install -q google-api-python-client google-auth google-auth-oauthlib
+
+      - name: Fetch third analytics
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+        run: |
+          python3 scripts/fetch_analytics.py --channel third --max-age-days 30
+
+      - name: Commit analytics
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "third: analytics snapshot [skip ci]" \
+            state/analytics_third
