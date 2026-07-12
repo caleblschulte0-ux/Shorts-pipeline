@@ -870,6 +870,109 @@ def _piecewise(kfs, axis: int) -> str:
 
 
 # --------------------------------------------------------------------------
+# Blender 3D bookends (VIZ_BRAIN hard rule: scene 1 + the payoff are 3D).
+# --------------------------------------------------------------------------
+BLENDER_HERO = REPO / "data_learning" / "blender_hero.py"
+
+
+def _seg_points(story_cfg: dict, idx: int) -> list[dict]:
+    """Load a segment's data points as blender_hero spec points, or []."""
+    try:
+        seg = story_cfg["segments"][idx]
+        fn = (seg.get("params") or {}).get("file") or f"{seg.get('key','')}.json"
+        data = json.loads((REPO / "data_learning" / "data" / fn).read_text())
+        unit = (data.get("unit") or "").strip()
+        pts = []
+        for p in data.get("points", [])[:5]:
+            v = float(p["value"])
+            disp = f"{v:,.0f}" if abs(v) >= 100 else f"{v:g}"
+            if unit:
+                disp = f"{disp}{unit}" if unit in ("%",) else f"{disp} {unit}"
+            pts.append({"label": str(p["label"])[:22], "value": v, "display": disp})
+        # need distinct values for a meaningful 3D reveal
+        return pts if len({p["value"] for p in pts}) >= 2 else []
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def _hero_clip(points: list[dict], title: str, work: Path, kind: str,
+               accent: str, seconds: float) -> Path | None:
+    """Render a Blender 3D monolith-reveal clip (W x H, 30fps, silent) or None.
+    Best-effort: missing binary / any failure returns None so the caller ships
+    the normal 2D video instead of dying."""
+    import shutil
+    import subprocess
+    if not shutil.which("blender") or not BLENDER_HERO.exists() or len(points) < 2:
+        return None
+    spec = {"points": points[:5], "title": title, "accent": accent,
+            "seconds": seconds, "fps": 12, "grow": True,
+            "res_x": W, "res_y": H, "samples": 16}
+    sf = work / f"hero_{kind}.json"
+    sf.write_text(json.dumps(spec))
+    od = work / f"hero_{kind}"
+    od.mkdir(exist_ok=True)
+    try:
+        subprocess.run(["blender", "-b", "--factory-startup", "--python",
+                        str(BLENDER_HERO), "--", str(sf), str(od)],
+                       check=True, capture_output=True, timeout=900)
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] blender {kind} skipped: {str(e)[:160]}", file=sys.stderr)
+        return None
+    frames = sorted(od.glob("hero_*.png"))
+    if len(frames) < 2:
+        return None
+    clip = work / f"hero_{kind}.mp4"
+    try:
+        _run(["ffmpeg", "-y", "-loglevel", "error",
+              "-framerate", "12", "-i", str(od / "hero_%04d.png"),
+              "-f", "lavfi", "-t", f"{seconds:.2f}",
+              "-i", "anullsrc=channel_layout=stereo:sample_rate=48000",
+              "-vf", f"minterpolate=fps=30,scale={W}:{H},setsar=1,format=yuv420p",
+              "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac",
+              "-b:a", "160k", "-shortest", str(clip)])
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] hero encode {kind} skipped: {str(e)[:160]}", file=sys.stderr)
+        return None
+    return clip if clip.exists() else None
+
+
+def _add_3d_bookends(story_cfg: dict, st, work: Path, theme: dict,
+                     out_path: Path) -> None:
+    """Prepend a 3D opener + append a 3D closer to the finished body video.
+    Guarded end-to-end: if Blender or ffmpeg fail, the body video is left
+    untouched so a render never dies over the 3D layer."""
+    accent = theme.get("accent") or "#4FD1C5"
+    opener = _hero_clip(_seg_points(story_cfg, 0), st.title, work, "open", accent, 3.5)
+    closer = _hero_clip(_seg_points(story_cfg, -1), st.title, work, "close", accent, 3.0)
+    if not opener and not closer:
+        return
+    body = work / "body_core.mp4"
+    try:
+        out_path.replace(body)
+        parts = [p for p in (opener, body, closer) if p]
+        inp = []
+        for p in parts:
+            inp += ["-i", str(p)]
+        n = len(parts)
+        fc = ""
+        for i in range(n):
+            fc += (f"[{i}:v]scale={W}:{H},fps=30,setsar=1,format=yuv420p[v{i}];"
+                   f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo[a{i}];")
+        fc += "".join(f"[v{i}][a{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=1[v][a]"
+        _run(["ffmpeg", "-y", "-loglevel", "error", *inp,
+              "-filter_complex", fc, "-map", "[v]", "-map", "[a]",
+              "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22",
+              "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart",
+              str(out_path)])
+        print(f"[studio] 3D bookends stitched (open={bool(opener)} close={bool(closer)})")
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] bookend stitch failed ({str(e)[:160]}); shipping 2D body",
+              file=sys.stderr)
+        if not out_path.exists() and body.exists():
+            body.replace(out_path)
+
+
+# --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
 def render(slug: str, out_path: Path, voice: str | None = None,
@@ -1094,6 +1197,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # Advance the rotation so the next render uses the next style.
         if use_broll:
             _advance_broll(total)
+
+        # 3D bookends — open on a Blender hero and close on one (VIZ_BRAIN hard
+        # rule). Guarded: any failure leaves the finished 2D body in place.
+        try:
+            _add_3d_bookends(story_cfg, st, work, theme, out_path)
+        except Exception as e:  # noqa: BLE001
+            print(f"[studio] 3D bookends skipped: {str(e)[:160]}", file=sys.stderr)
 
     print(f"[studio] story '{slug}': {len(st.segments)} charts, "
           f"{len(sentences)} beats, {total:.1f}s -> {out_path}")
