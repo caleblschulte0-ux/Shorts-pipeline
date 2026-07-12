@@ -147,6 +147,46 @@
           "self_healed": false
         }
       ]
+    },
+    {
+      "date": "20260712",
+      "dry_run": false,
+      "ts": "2026-07-12T11:53:06+00:00",
+      "clips": [
+        {
+          "slug": "clip-20260712-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260712-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260712-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: gameplay/webcam content is a tiny letterboxed rectangle occupying ~15% of frame, rest is black or blurred padding; vision: streamer webcam is a small thumbnail, not the clear visible subject; "
+        },
+        {
+          "slug": "clip-20260712-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260712-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Frames at ~13-17s are heavily pixelated/glitched (compression corruption, not just motion blur); vision: Multiple frames are near-empty blurry ceiling/nothing shots with no visible subject (7."
+        }
+      ]
     }
   ]
 }
