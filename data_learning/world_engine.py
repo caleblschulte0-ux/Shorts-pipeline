@@ -331,6 +331,11 @@ class WorldScene(MovingCameraScene):
                 base = {id(m): (m.get_fill_opacity(), m.get_stroke_opacity(),
                                 m.get_stroke_width())
                         for m in g.family_members_with_points()}
+                # late members (hero consequences) register their designed
+                # opacities here — the unknown-member default of fill 1.0
+                # (right for become-counter glyphs) conjures a SOLID FILL
+                # onto a designed-hollow ring otherwise
+                g._gate_base = base
 
                 def vis(_b, g=g, fw=fw, base=base):
                     ratio = frame.width / fw

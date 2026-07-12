@@ -402,6 +402,12 @@ def _adopt(scene, ctx, m):
     g = ctx.get("group")
     if g is not None:
         g.add(m)                     # ride the exhibit; obey the zoom gate
+        gate = getattr(g, "_gate_base", None)
+        if gate is not None:         # tell the zoom gate our DESIGNED
+            for sub in m.family_members_with_points():   # opacities
+                gate[id(sub)] = (sub.get_fill_opacity(),
+                                 sub.get_stroke_opacity(),
+                                 sub.get_stroke_width())
     else:
         scene.add(m)
 
