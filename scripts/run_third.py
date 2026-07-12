@@ -182,44 +182,17 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # run — the other platforms carry the day.
                 sources = spec.get("sources") \
                     or {"twitch": spec.get("channels", [])}
-                # SUPPLY LADDER: start with the hot 24h window; when every
-                # candidate in it is already posted (the never-repeat law is
-                # enforced by posted_keys, not the window), widen to 7 days.
-                # A 3-day-old clip we never used is still brand-new content
-                # to this channel — velocity ranking below handles the age.
-                windows = [spec.get("range")] if spec.get("range") else \
-                    ["24hr", "7d"]
-                cands, fresh = [], []
-                for window in windows:
-                    cands = []
-                    for platform, chans in sources.items():
-                        for ch in chans:
-                            try:
-                                cands += clip_edit.discover(
-                                    platform, ch, top=spec.get("top", 8),
-                                    range_=window)
-                            except Exception as e:  # noqa: BLE001
-                                print(f"::warning::discover {platform}:{ch} "
-                                      f"failed ({type(e).__name__}) — "
-                                      "skipped", flush=True)
-                    fresh = [c for c in cands
-                             if _clip_key(c["url"]) not in posted_keys]
-                    if fresh:
-                        break
-                    if window != windows[-1]:
-                        print(f"::warning::window {window} exhausted "
-                              "(everything already posted) — widening",
-                              flush=True)
-                # views are comparable on twitch, best-effort elsewhere;
-                # min_views gates only candidates that report views. On a
-                # thin day, relax to the hard floor instead of losing the
-                # slot — a 1.5k-view core-cluster clip still beats nothing.
+                # SUPPLY LADDER: try the hot window first, then widen to 7
+                # days. The spec's range is the FIRST RUNG, never a pin —
+                # and the ladder widens when the FULLY-FILTERED pool comes
+                # up empty (dedupe + variety + views), not merely when the
+                # window has unposted dregs: a batch of never-posted 300-view
+                # clips must not block reaching a 50k clip from 3 days ago.
+                # The never-repeat law lives in posted_keys, window-agnostic.
+
                 # VARIETY (operator law): cap clips PER STREAMER per day
                 # (default 2) and hard-limit 1 clip of the same EVENT per
-                # day. The event cap is the important one — it stops one
-                # hot moment (Streamer University) flooding every channel;
-                # the streamer cap just trims monotony, so 2 is fine and
-                # lets us actually fill the daily slate.
+                # day, so one hot moment can't flood the channel.
                 per_streamer = spec.get("max_per_streamer", 2)
                 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
                 posted_today = [v for v in log["posted"].values()
@@ -236,23 +209,48 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     return any(len(toks & set(re.findall(r"[a-z]{5,}", u)))
                                >= 2 for u in used_titles)
 
-                varied = [c for c in fresh
-                          if streamer_counts[c["channel"]] < per_streamer
-                          and not _same_event(c["title"])]
-                if varied:
-                    fresh = varied
-                else:
-                    print("::warning::variety rules exhausted the pool — "
-                          "allowing repeats", flush=True)
                 min_v = spec.get("min_views", 2500)
                 floor = spec.get("min_views_floor", 800)
-                cands = [c for c in fresh
-                         if c["views"] == 0 or c["views"] >= min_v]
-                if not cands:
-                    cands = [c for c in fresh if c["views"] >= floor]
+                windows = []
+                for w in (spec.get("range") or "24hr", "7d"):
+                    if w not in windows:
+                        windows.append(w)
+                cands = []
+                for window in windows:
+                    pool = []
+                    for platform, chans in sources.items():
+                        for ch in chans:
+                            try:
+                                pool += clip_edit.discover(
+                                    platform, ch, top=spec.get("top", 8),
+                                    range_=window)
+                            except Exception as e:  # noqa: BLE001
+                                print(f"::warning::discover {platform}:{ch} "
+                                      f"failed ({type(e).__name__}) — "
+                                      "skipped", flush=True)
+                    fresh = [c for c in pool
+                             if _clip_key(c["url"]) not in posted_keys]
+                    varied = [c for c in fresh
+                              if streamer_counts[c["channel"]] < per_streamer
+                              and not _same_event(c["title"])]
+                    if varied:
+                        fresh = varied
+                    elif fresh:
+                        print("::warning::variety rules exhausted the pool "
+                              "— allowing repeats", flush=True)
+                    cands = [c for c in fresh
+                             if c["views"] == 0 or c["views"] >= min_v]
+                    if not cands:
+                        cands = [c for c in fresh if c["views"] >= floor]
+                        if cands:
+                            print(f"::warning::thin day — relaxed min_views "
+                                  f"{min_v} -> floor {floor}", flush=True)
                     if cands:
-                        print(f"::warning::thin day — relaxed min_views "
-                              f"{min_v} -> floor {floor}", flush=True)
+                        break
+                    if window != windows[-1]:
+                        print(f"::warning::window {window} yielded no "
+                              "postable clip after all filters — widening",
+                              flush=True)
                 cands.sort(key=lambda c: -c["views"])
                 if not cands:
                     raise RuntimeError("no fresh clip across the allowlist")
