@@ -65,6 +65,47 @@
           "error": "RuntimeError: no fresh clip across the allowlist"
         }
       ]
+    },
+    {
+      "date": "20260712",
+      "dry_run": false,
+      "ts": "2026-07-12T01:17:48+00:00",
+      "clips": [
+        {
+          "slug": "clip-20260712-1",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260712-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: duration 1.5s outside 4.0-62.0s; vision: subject/gameplay occupies only a tiny strip in the middle of the vertical frame with huge black letterbox bars above and; vision: streamer's face is reduced to"
+        },
+        {
+          "slug": "clip-20260712-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: duration 1.5s outside 4.0-62.0s"
+        },
+        {
+          "slug": "clip-20260712-4",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: duration 1.5s outside 4.0-62.0s; vision: Streamer/subject occupies only a tiny sliver of the frame (small embedded window in upper third); most of the vertical f; vision: Framing is inconsistent with "
+        },
+        {
+          "slug": "clip-20260712-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: duration 1.5s outside 4.0-62.0s; vision: Video content is squeezed into a tiny box in the top ~20% of the frame; the remaining ~80% is dead black empty space wit; vision: Streamer's webcam/face is too"
+        }
+      ]
     }
   ]
 }
