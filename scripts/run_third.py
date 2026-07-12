@@ -182,23 +182,38 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # run — the other platforms carry the day.
                 sources = spec.get("sources") \
                     or {"twitch": spec.get("channels", [])}
-                cands = []
-                for platform, chans in sources.items():
-                    for ch in chans:
-                        try:
-                            cands += clip_edit.discover(
-                                platform, ch, top=spec.get("top", 8),
-                                range_=spec.get("range", "24hr"))
-                        except Exception as e:  # noqa: BLE001
-                            print(f"::warning::discover {platform}:{ch} "
-                                  f"failed ({type(e).__name__}) — skipped",
-                                  flush=True)
+                # SUPPLY LADDER: start with the hot 24h window; when every
+                # candidate in it is already posted (the never-repeat law is
+                # enforced by posted_keys, not the window), widen to 7 days.
+                # A 3-day-old clip we never used is still brand-new content
+                # to this channel — velocity ranking below handles the age.
+                windows = [spec.get("range")] if spec.get("range") else \
+                    ["24hr", "7d"]
+                cands, fresh = [], []
+                for window in windows:
+                    cands = []
+                    for platform, chans in sources.items():
+                        for ch in chans:
+                            try:
+                                cands += clip_edit.discover(
+                                    platform, ch, top=spec.get("top", 8),
+                                    range_=window)
+                            except Exception as e:  # noqa: BLE001
+                                print(f"::warning::discover {platform}:{ch} "
+                                      f"failed ({type(e).__name__}) — "
+                                      "skipped", flush=True)
+                    fresh = [c for c in cands
+                             if _clip_key(c["url"]) not in posted_keys]
+                    if fresh:
+                        break
+                    if window != windows[-1]:
+                        print(f"::warning::window {window} exhausted "
+                              "(everything already posted) — widening",
+                              flush=True)
                 # views are comparable on twitch, best-effort elsewhere;
                 # min_views gates only candidates that report views. On a
                 # thin day, relax to the hard floor instead of losing the
                 # slot — a 1.5k-view core-cluster clip still beats nothing.
-                fresh = [c for c in cands
-                         if _clip_key(c["url"]) not in posted_keys]
                 # VARIETY (operator law): cap clips PER STREAMER per day
                 # (default 2) and hard-limit 1 clip of the same EVENT per
                 # day. The event cap is the important one — it stops one

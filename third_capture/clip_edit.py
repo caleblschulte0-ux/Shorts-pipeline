@@ -145,7 +145,8 @@ def discover(platform: str, channel: str, *, top: int = 8,
     if platform == "twitch":
         if _helix_creds():
             try:
-                return _discover_helix(channel, top)
+                hours = {"24hr": 24, "7d": 168, "30d": 720}.get(range_, 24)
+                return _discover_helix(channel, top, hours=hours)
             except Exception as e:  # noqa: BLE001 — fall back to yt-dlp
                 print(f"[helix] {channel}: {e} — falling back to yt-dlp",
                       flush=True)
