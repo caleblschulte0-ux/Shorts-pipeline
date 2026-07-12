@@ -94,7 +94,11 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'schedule' && needs.plan.outputs.new_count != '0')
     runs-on: ubuntu-latest
-    timeout-minutes: 150   # one-take manim body + Cycles hero need headroom
+    # preview renders the PREMIUM cut (all Cycles heroes) on GitHub's own
+    # infra — independent of any local session. 335 min sits safely under
+    # GitHub's 6-hour hard job cap; the director self-limits Cycles frames
+    # (CURIO_PREMIUM_FRAMES) so the whole render finishes with headroom.
+    timeout-minutes: 335
     concurrency:
       group: curiosity-longform
       cancel-in-progress: false
@@ -221,16 +225,36 @@ jobs:
             all)
               python scripts/post_curiosity.py $SLUGFLAG $FORCEFLAG ;;
             preview)
-              # Render to a file and commit it back to THIS branch so it can
-              # be eyeballed before anything posts. No upload.
+              # Render the PREMIUM cut, dress the deliverables, run every
+              # gate (non-fatal — the eyeball decides), and hand it all to
+              # an uploaded artifact. Runs on GitHub's infra, so it finishes
+              # even if the local session that dispatched it is gone.
               mkdir -p preview
               for s in $SLUGS; do
                 python -m data_learning.longform_render --slug "$s" \
                   --out "preview/$s.mp4"
+                # mobile-friendly viewing copy (small, streams on a phone)
+                ffmpeg -y -loglevel error -i "preview/$s.mp4" \
+                  -vf scale=1280:720 -c:v libx264 -preset slow -crf 26 \
+                  -c:a aac -b:a 128k "preview/${s}_720p.mp4" || true
+                # frame sheet + interpolation samples inside the hero splices
+                python3 scripts/qa_frames.py "preview/$s.mp4" \
+                  --ledger "preview/$s.ledger.json" \
+                  --out "preview/${s}_frames.png" || true
+                # gate verdicts into the run log (non-blocking)
+                echo "=== gates: $s ==="
+                python3 scripts/qa_motion.py "preview/$s.mp4" || true
+                python3 scripts/qa_escalation.py "preview/$s.ledger.json" \
+                  --director "preview/$s.director.json" || true
+                python3 scripts/qa_semantics.py "preview/$s.ledger.json" || true
               done
+              # Commit the LIGHT record (sheets/meta/report) to the branch;
+              # the heavy mp4s ride the artifact, not git history.
               git config user.name "github-actions[bot]"
               git config user.email "github-actions[bot]@users.noreply.github.com"
-              git add -f preview/*.mp4 preview/*.jpg preview/*.meta.json 2>/dev/null || git add -f preview/*.mp4
+              git add -f preview/*.jpg preview/*_frames.png \
+                preview/*.evidence.png preview/*.meta.json \
+                preview/*.director.json 2>/dev/null || true
               git commit -m "curiosity preview render: $SLUGS [skip ci]" || echo "nothing to commit"
               for i in 1 2 3 4 5; do
                 git push origin "HEAD:${GITHUB_REF_NAME}" && { echo "pushed on attempt $i"; break; }
@@ -243,6 +267,28 @@ jobs:
               # weekly cron: post exactly one un-posted story
               python scripts/post_curiosity.py --max 1 ;;
           esac
+
+      # THE GUARANTEE: the finished preview (full 1080p + 720p viewing copy
+      # + frame/evidence sheets + ledger + director report) is uploaded as
+      # a downloadable artifact, kept 90 days. always() so a partial render
+      # still hands back whatever it produced. This is what makes "a video
+      # in ~6 hours no matter what" true — it does not depend on any local
+      # session surviving.
+      - name: Upload preview artifact
+        if: always() && inputs.mode == 'preview'
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-preview
+          path: |
+            preview/*.mp4
+            preview/*.png
+            preview/*.jpg
+            preview/*.srt
+            preview/*.ledger.json
+            preview/*.director.json
+            preview/*.meta.json
+          retention-days: 90
+          if-no-files-found: warn
 
       # Pull view/like counts so the daily routine learns which pillars and
       # hooks land (state/analytics_curiosity/latest.json).
