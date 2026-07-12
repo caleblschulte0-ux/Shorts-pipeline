@@ -134,7 +134,22 @@ jobs:
           [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="--dry-run"
           python scripts/run_third.py --date "$DATE" $FLAGS
 
-      - name: Commit posted log
+      # Feedback loop: pull each posted Short's views-per-hour + (when the
+      # token carries the yt-analytics scope) retention, so run_third's
+      # learned prior can favour the streamers that actually retain on OUR
+      # channel — not just spread on Twitch. Best-effort: a missing scope or
+      # a quota blip degrades to velocity+banger, never fails the run.
+      - name: Fetch third analytics
+        if: ${{ always() && inputs.dry_run != true }}
+        continue-on-error: true
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+        run: |
+          python3 scripts/fetch_analytics.py --channel third --max-age-days 30 \
+            || { echo "analytics fetch skipped"; exit 0; }
+
+      - name: Commit posted log + analytics
         # always() so the log lands even when the render step fails —
         # losing dedupe state causes re-uploads (batch-3 incident). Uses the
         # shared hardened persist (audit Ticket 1): retry + union-merge on a
@@ -142,5 +157,6 @@ jobs:
         if: ${{ always() && inputs.dry_run != true }}
         run: |
           bash scripts/ci_commit_state.sh \
-            "third: update posted log [skip ci]" \
-            state/third_posted_log.json state/third_qa_stats.json
+            "third: update posted log + analytics [skip ci]" \
+            state/third_posted_log.json state/third_qa_stats.json \
+            state/analytics_third

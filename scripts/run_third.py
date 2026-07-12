@@ -44,6 +44,85 @@ OUTPUT_DIR = REPO / "output"
 # previous slot's (same board minus what we just posted).
 _BANGER_CACHE: dict = {}
 
+ANALYTICS_LATEST = REPO / "state" / "analytics_third" / "latest.json"
+
+# Cache the learned prior for the whole run (the snapshot doesn't change
+# mid-run). None = not yet computed; {} = computed, nothing usable.
+_PRIOR_CACHE: dict | None = None
+
+
+def _learned_prior() -> dict:
+    """Per-streamer performance multiplier learned from THIS channel's own
+    YouTube results (state/analytics_third/latest.json, written by
+    fetch_analytics.py --channel third). Velocity + banger judge a clip
+    before we post it; this is the only signal that knows what actually
+    RETAINED once it was a Short on our channel.
+
+    Metric per posted video: retention (average_view_percentage) when the
+    token carries the analytics scope, else views-per-hour — each expressed
+    as a ratio to the channel baseline so 'good' means 'beat our own median'.
+    Per streamer we average those ratios, shrink hard toward 1.0 by sample
+    size (a lucky single clip barely moves it), and clamp to a GENTLE
+    [0.70, 1.40] band: the prior breaks ties and buries a consistent flop,
+    but can never by itself override a big fresh banger, and never starves a
+    streamer we have too little data on. Returns {} (neutral) when there's
+    no snapshot yet — the channel just runs on velocity+banger until data
+    accrues. Never raises."""
+    global _PRIOR_CACHE
+    if _PRIOR_CACHE is not None:
+        return _PRIOR_CACHE
+    _PRIOR_CACHE = {}
+    try:
+        if not ANALYTICS_LATEST.exists():
+            return _PRIOR_CACHE
+        snap = json.loads(ANALYTICS_LATEST.read_text())
+        vids = [v for v in snap.get("videos", [])
+                # <6h-old clips have too-noisy vph and no retention yet.
+                if v.get("streamer") and (v.get("age_hours") or 0) >= 6]
+        if not vids:
+            return _PRIOR_CACHE
+        # Channel baselines.
+        vph = sorted(v["views_per_hour"] for v in vids
+                     if v.get("views_per_hour", 0) > 0)
+        vph_med = vph[len(vph) // 2] if vph else 0.0
+        rets = [v["average_view_percentage"] for v in vids
+                if v.get("average_view_percentage") is not None]
+        ret_mean = (sum(rets) / len(rets)) if rets else 0.0
+
+        def _ratio(v) -> float | None:
+            if v.get("average_view_percentage") is not None and ret_mean > 0:
+                r = v["average_view_percentage"] / ret_mean
+            elif vph_med > 0 and v.get("views_per_hour", 0) >= 0:
+                r = v["views_per_hour"] / vph_med
+            else:
+                return None
+            return max(0.3, min(3.0, r))  # cap outliers before averaging
+
+        from collections import defaultdict
+        buckets: dict = defaultdict(list)
+        for v in vids:
+            r = _ratio(v)
+            if r is not None:
+                buckets[str(v["streamer"]).lower()].append(r)
+
+        K = 4.0  # shrinkage strength: n/(n+K) weight on observed deviation
+        prior = {}
+        for streamer, ratios in buckets.items():
+            n = len(ratios)
+            if n < 2:  # one clip is not evidence about a streamer
+                continue
+            mean_r = sum(ratios) / n
+            eff = 1.0 + (mean_r - 1.0) * (n / (n + K))
+            mult = max(0.70, min(1.40, eff))
+            if abs(mult - 1.0) >= 0.02:  # skip no-op entries
+                prior[streamer] = round(mult, 3)
+        _PRIOR_CACHE = prior
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[prior] learned prior unavailable ({e})",
+              flush=True)
+        _PRIOR_CACHE = {}
+    return _PRIOR_CACHE
+
 
 def _clip_key(url: str) -> str:
     """Canonical clip identity for dedupe. Twitch serves one clip as both
@@ -292,6 +371,11 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     except Exception as e:  # noqa: BLE001
                         print(f"::warning::[banger] rank failed ({e}) — "
                               "velocity only", flush=True)
+                # LEARNED PRIOR (feedback loop): nudge by how this streamer's
+                # clips have actually retained on OUR channel, not just how
+                # they spread on Twitch. Neutral (1.0) until analytics_third
+                # accrues data, so a cold start runs pure velocity+banger.
+                prior = _learned_prior()
                 for c in shortlist:
                     c["banger"], c["banger_why"] = \
                         _BANGER_CACHE.get(c["url"], (0.5, ""))
@@ -299,12 +383,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     # velocity weight, so the brain deprioritizes but never
                     # single-handedly vetoes a hugely viral clip.
                     c["score"] = c["score"] * (0.25 + 0.75 * c["banger"])
+                    c["prior"] = prior.get(str(c["channel"]).lower(), 1.0)
+                    c["score"] = c["score"] * c["prior"]
                 shortlist.sort(key=lambda c: -c["score"])
                 for c in shortlist[:5]:
                     print(f"[pick] {c['channel']:>14} {c['views']:>7}v "
                           f"{c['vph']:>8.0f}v/h b={c['banger']:.2f} "
-                          f"score={c['score']:>7.0f} {c['title'][:40]!r} "
-                          f"{c.get('banger_why','')!r}", flush=True)
+                          f"p={c['prior']:.2f} score={c['score']:>7.0f} "
+                          f"{c['title'][:38]!r} {c.get('banger_why','')!r}",
+                          flush=True)
                 pick = shortlist[0]
                 info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]

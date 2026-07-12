@@ -232,13 +232,24 @@ def _entries(log: dict) -> list[dict]:
     explainer log is a dict {slug: {url, at, publish_at, title}}."""
     posted = log.get("posted", [])
     out: list[dict] = []
-    if isinstance(posted, dict):                 # explainer channel
+    if isinstance(posted, dict):                 # explainer / third channel
         for slug, e in posted.items():
             if not e or e.get("skipped"):
                 continue
+            # Third's QA/pre-flight rejections park a `rejected-<slug>`
+            # entry (no upload) in the same log so posted_keys can't re-pick
+            # them — they have no video URL and must not enter analytics.
+            if slug.startswith("rejected-") or e.get("qa_rejected"):
+                continue
             out.append({"url": e.get("url"), "ident": slug,
-                        "posted_at": e.get("publish_at") or e.get("at"),
-                        "title": e.get("title")})
+                        # third stamps `ts`; explainer uses publish_at/at.
+                        "posted_at": e.get("publish_at") or e.get("at")
+                        or e.get("ts"),
+                        "title": e.get("title"),
+                        # carried through so the learned selection prior can
+                        # aggregate channel performance BY streamer/series.
+                        "streamer": e.get("streamer"),
+                        "series": e.get("series")})
     else:                                         # trending channel
         for e in posted:
             out.append({"url": e.get("video_url"),
@@ -348,6 +359,8 @@ def build_snapshot(posted_log: Path, channel: str = "",
             "video_id": vid,
             "url": entry.get("url"),
             "catalog_id": entry.get("ident"),
+            "streamer": entry.get("streamer"),
+            "series": entry.get("series"),
             "title": s["title"],
             "published_at": s["published_at"],
             "age_hours": round(age, 1),

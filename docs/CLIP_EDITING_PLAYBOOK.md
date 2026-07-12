@@ -104,6 +104,22 @@ Done:
   (`_BANGER_CACHE`) so overlapping shortlists don't re-pay the call; pure
   velocity is the fallback when the brain is unreachable (rank returns {}),
   so a token outage never blocks a post.
+- **Learned selection prior (feedback loop)** — velocity + banger both judge
+  a clip BEFORE it posts; neither knows what actually retained once it was a
+  Short on our channel. `fetch_analytics.py --channel third` now pulls each
+  posted Short's views-per-hour + (when the token has the yt-analytics
+  scope) average-view-% into `state/analytics_third/`, run nightly from
+  `third.yml` and committed like the posted log. `run_third._learned_prior`
+  turns that into a per-streamer multiplier: each video scored as a ratio to
+  the channel baseline (retention preferred, else vph), averaged per
+  streamer, shrunk hard toward 1.0 by sample size (a single lucky clip
+  barely moves it; <2 clips ignored) and clamped to a GENTLE **[0.70, 1.40]**
+  band. Applied as `score *= prior` after the banger blend. So a streamer
+  whose clips consistently retain wins ties and a consistent flop gets
+  buried — but the prior can never by itself override a big fresh banger, and
+  never starves a streamer we have too little data on. Cold start (no
+  snapshot yet) is neutral: the channel runs pure velocity+banger until data
+  accrues. The `[pick]` log prints `p=<prior>` alongside `b=<banger>`.
 
 - **SFX mixing rules (§12)** — all SFX mix into one bed that is sidechain-
   DUCKED by the dialogue: a boom can never bury what the streamer says.
