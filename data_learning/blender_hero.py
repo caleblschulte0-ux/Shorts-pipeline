@@ -822,19 +822,22 @@ def build_scale_chase(spec: dict):
     # pulls BACK along -Y. So the orbit is stood up in the X-Z plane
     # (facing the camera) and the Sun sits BELOW in -Z; pulling back
     # reveals Earth (origin) is a dot on a bright ring racing the Sun.
-    SUN = (0.0, 0.0, -560.0)
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=34, location=SUN,
+    # Scale is FAKED for legibility (a real orbit makes Earth an invisible
+    # speck): a compact system so Earth, the orbit arc, and the Sun all
+    # frame together with Earth still a visible glowing point.
+    SUN = (0.0, 0.0, -120.0)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=14, location=SUN,
                                          segments=48, ring_count=24)
     bpy.context.object.data.materials.append(
-        _emission("sun", (1.0, 0.80, 0.42), 60.0))
-    bpy.ops.object.light_add(type="SUN", location=(8, -30, -18))
+        _emission("sun", (1.0, 0.80, 0.42), 55.0))
+    bpy.ops.object.light_add(type="SUN", location=(8, -24, -8))
     key = bpy.context.object                        # rakes Earth from Sun dir
     key.data.energy = 5.0
     key.data.angle = 0.09
     # Earth's orbit — a bright ring in the X-Z plane, centred on the Sun,
     # passing through the origin; lit strongest late (Earth 'racing' it)
-    bpy.ops.mesh.primitive_torus_add(major_radius=560.0, minor_radius=0.5,
-                                     location=SUN, major_segments=256,
+    bpy.ops.mesh.primitive_torus_add(major_radius=120.0, minor_radius=0.35,
+                                     location=SUN, major_segments=192,
                                      minor_segments=8)
     orbit_obj = bpy.context.object
     orbit_obj.rotation_euler = (math.radians(90), 0, 0)          # stand up
@@ -896,13 +899,7 @@ def build_scale_chase(spec: dict):
     bullet.keyframe_insert(data_path="location", frame=1)
     bullet.location = (9.0, 3.4, 1.2)
     bullet.keyframe_insert(data_path="location", frame=max(2, f1))
-    _stars(140, spread=2200.0, exclude=680.0, bright=3.6)
-    # WARP streaks: during the fast pull-out (f2->end) stars smear toward
-    # the camera so the big scale jump reads as HURTLING away, not empty
-    # dead air. Aligned to the -Y pull direction, ramping on at f2.
-    _streaks(60, (0, 1, 0), 340.0, 520.0, 5.0, frames, f_on=f2,
-             f_full=int(frames * 0.9), color=(0.8, 0.86, 1.0),
-             origin=(0, -260, 0))
+    _stars(140, spread=1400.0, exclude=430.0, bright=3.6)
     _dark_world(sc)
 
     # --- the pull-BACK along -Y: Earth fills -> bullet freezes -> Earth a
@@ -914,18 +911,20 @@ def build_scale_chase(spec: dict):
     target.location = (0, 0, 0)                     # locked on Earth for
     target.keyframe_insert(data_path="location", frame=1)  # both holds
     target.keyframe_insert(data_path="location", frame=int(frames * 0.55))
-    target.location = (0, 0, -560)                  # sink to the Sun on warp
+    target.location = (0, 0, -60)                   # Earth-Sun midpoint late
     target.keyframe_insert(data_path="location", frame=frames)
     bpy.ops.object.camera_add()
     cam = bpy.context.object
     sc.camera = cam
     cam.data.clip_end = 20000
     cam.constraints.new(type="TRACK_TO").target = target
-    # HOLD at two legible scales, then a fast streaking WARP out:
+    # HOLD at two legible scales, then a smooth continuous pull that
+    # RESOLVES on the solar system (no gimmick warp — the composition is
+    # the payoff): Sun glowing, the bright orbit arc, Earth a lit speck.
     keys = ((1, (2.0, -13.0, 3.0)),                 # close beside the bullet
             (f1, (2.5, -17.0, 3.2)),                # Earth fills, bullet frozen
             (int(frames * 0.55), (3.0, -40.0, 6.0)),  # Earth+Moon, moon whips
-            (frames, (0.0, -1320.0, -120.0)))       # WARP to the solar system
+            (frames, (25.0, -380.0, -60.0)))       # Sun + orbit arc + Earth
     for f, loc in keys:
         cam.location = loc
         cam.keyframe_insert(data_path="location", frame=f)
