@@ -485,6 +485,14 @@ def _coerce_story(raw: dict, used_slugs: set[str], used_keys: set[str]) -> dict 
             points.append(pt)
         if len(points) < 2:
             return None
+        # Reject broken ranking data — duplicate labels or no spread. This is the
+        # "242 Peregrine Falcon x3" bug: a rank/comparison MUST have distinct rows
+        # with a real spread, or it renders as three identical rows.
+        labels_lc = [p["label"].lower() for p in points]
+        if len(set(labels_lc)) < len(labels_lc):
+            return None
+        if len({p["value"] for p in points}) < 2:
+            return None
         itype = str(seg.get("insight_type", "rank")).strip().lower()
         if itype not in _VALID_INSIGHT:
             itype = "rank"
