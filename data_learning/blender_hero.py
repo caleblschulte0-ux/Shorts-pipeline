@@ -215,16 +215,35 @@ def build(spec: dict):
                         for kp in fc.keyframe_points:
                             kp.interpolation = "BEZIER"
 
-    # Render settings — CPU Cycles tuned for a CI budget: adaptive sampling,
-    # short bounce depth (emission-lit scene needs few), persistent data so
-    # the scene isn't rebuilt per frame.
-    sc.render.engine = "CYCLES"
-    sc.cycles.samples = int(spec.get("samples", 32))
-    sc.cycles.use_adaptive_sampling = True
-    sc.cycles.adaptive_threshold = 0.05
-    sc.cycles.max_bounces = 3
+    # Render engine. EEVEE (real-time rasteriser) is ~10-50x faster than CPU
+    # Cycles and still nails this emission-lit, glossy-floor look via screen-
+    # space reflections + bloom — so the daily pipeline can afford a 3D beat per
+    # video. spec {"engine":"eevee"} opts in; Cycles stays the default for the
+    # slower, physically-accurate hero.
+    engine = str(spec.get("engine", "cycles")).lower()
+    if engine == "eevee":
+        # Blender 4.0 = BLENDER_EEVEE; 4.2+ renamed it to BLENDER_EEVEE_NEXT.
+        try:
+            sc.render.engine = "BLENDER_EEVEE"
+        except Exception:  # noqa: BLE001
+            sc.render.engine = "BLENDER_EEVEE_NEXT"
+        ee = sc.eevee
+        for attr, val in (("use_ssr", True), ("use_ssr_refraction", True),
+                          ("use_bloom", True), ("bloom_intensity", 0.04),
+                          ("use_gtao", True),
+                          ("taa_render_samples", int(spec.get("samples", 32)))):
+            try:
+                setattr(ee, attr, val)               # attrs vary across versions
+            except Exception:  # noqa: BLE001
+                pass
+    else:
+        sc.render.engine = "CYCLES"
+        sc.cycles.samples = int(spec.get("samples", 32))
+        sc.cycles.use_adaptive_sampling = True
+        sc.cycles.adaptive_threshold = 0.05
+        sc.cycles.max_bounces = 3
+        sc.cycles.use_denoising = False    # Ubuntu build ships without OIDN
     sc.render.use_persistent_data = True
-    sc.cycles.use_denoising = False        # Ubuntu build ships without OIDN
     sc.render.resolution_x = int(spec.get("res_x", 1920))
     sc.render.resolution_y = int(spec.get("res_y", 1080))
     sc.render.image_settings.file_format = "PNG"

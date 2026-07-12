@@ -143,7 +143,12 @@ jobs:
           # (VIZ_BRAIN hard rule) — headless Cycles, same build the cinematic
           # workflow uses. Best-effort: studio_render falls back to a 2D hero if
           # the binary is missing so a Blender hiccup never drops the video.
-          sudo apt-get install -y -q ffmpeg blender
+          # blender + the headless GL stack EEVEE needs (libEGL + Mesa software
+          # rasteriser) so the 3D hero renders on a GPU-less runner. EEVEE is
+          # ~25x faster than Cycles here, which is what makes a 3D beat per video
+          # affordable inside the job cap.
+          sudo apt-get install -y -q ffmpeg blender \
+            libegl1 libgl1 libglx-mesa0 libgl1-mesa-dri libgles2
 
       - name: Install Python deps
         run: |

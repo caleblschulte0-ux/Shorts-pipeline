@@ -905,16 +905,18 @@ def _hero_clip(points: list[dict], title: str, work: Path, kind: str,
     if not shutil.which("blender") or not BLENDER_HERO.exists() or len(points) < 2:
         return None
     spec = {"points": points[:5], "title": title, "accent": accent,
-            "seconds": seconds, "fps": 12, "grow": True,
-            "res_x": W, "res_y": H, "samples": 16}
+            "seconds": seconds, "fps": 12, "grow": True, "engine": "eevee",
+            "res_x": 540, "res_y": 960, "samples": 8}
     sf = work / f"hero_{kind}.json"
     sf.write_text(json.dumps(spec))
     od = work / f"hero_{kind}"
     od.mkdir(exist_ok=True)
+    import os
+    env = {**os.environ, "LIBGL_ALWAYS_SOFTWARE": "1", "EGL_PLATFORM": "surfaceless"}
     try:
         subprocess.run(["blender", "-b", "--factory-startup", "--python",
                         str(BLENDER_HERO), "--", str(sf), str(od)],
-                       check=True, capture_output=True, timeout=900)
+                       check=True, capture_output=True, timeout=600, env=env)
     except Exception as e:  # noqa: BLE001
         print(f"[studio] blender {kind} skipped: {str(e)[:160]}", file=sys.stderr)
         return None
