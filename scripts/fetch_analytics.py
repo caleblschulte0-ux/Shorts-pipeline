@@ -299,9 +299,12 @@ def _early_retention(curve: list) -> float | None:
     try:
         base = float(curve[0][1]) or 1.0
         target = None
-        for elapsed, watch in curve:
-            if float(elapsed) >= 0.12:
-                target = float(watch)
+        # rows are [elapsed, watch] OR [elapsed, watch, relative_perf] — index
+        # rather than unpack, so the optional 3rd column can't ValueError us
+        # into a silent None (which zeroed early_retention on every real curve).
+        for row in curve:
+            if float(row[0]) >= 0.12:
+                target = float(row[1])
                 break
         if target is None:                  # never reaches 0.12 — use last
             target = float(curve[-1][1])
