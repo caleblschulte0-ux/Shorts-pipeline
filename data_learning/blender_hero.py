@@ -434,6 +434,9 @@ def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
     sea = bpy.context.object
     bpy.ops.object.shade_smooth()
     sea.data.materials.append(_pbr("earth_sea", (0.008, 0.035, 0.15), 0.32))
+    if parent is not None:                          # keep the whole planet
+        sea.parent = parent                         # rigid to its parent
+        sea.matrix_parent_inverse = parent.matrix_world.inverted()
     k = radius / 5.0
     if continents:
         lands = [_continent_shell(n, o, radius * 1.012, loc)
@@ -453,12 +456,15 @@ def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
             blob.scale = (1.0, 0.35, 1.0)
             lands.append(blob)
     land_mat = _pbr("land", (0.06, 0.26, 0.11), 0.9)
+    par = parent if parent is not None else sea
     for blob in lands:
         if not blob.data.materials:
             blob.data.materials.append(land_mat)
-        blob.parent = parent if parent is not None else sea
-        if parent is None:
-            blob.matrix_parent_inverse = sea.matrix_world.inverted()
+        blob.parent = par
+        # ALWAYS compensate the parent's baked transform, or a parent that
+        # carries an offset (e.g. an orbit empty) drags the shells off the
+        # sea sphere — the 'two separated planets' bug
+        blob.matrix_parent_inverse = par.matrix_world.inverted()
     # CLOUD LAYER — the single biggest 'real planet, not a toy' cue: a
     # thin shell whose whiteness is a procedural noise threshold
     # (transparent between clouds), so the surface breaks up instead of
@@ -473,11 +479,11 @@ def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
     nt.nodes.clear()
     tc = nt.nodes.new("ShaderNodeTexCoord")
     noise = nt.nodes.new("ShaderNodeTexNoise")
-    noise.inputs["Scale"].default_value = 2.6
+    noise.inputs["Scale"].default_value = 4.5       # smaller, wispier clumps
     noise.inputs["Detail"].default_value = 8.0
-    ramp = nt.nodes.new("ShaderNodeValToRGB")       # threshold into clumps
-    ramp.color_ramp.elements[0].position = 0.52
-    ramp.color_ramp.elements[1].position = 0.66
+    ramp = nt.nodes.new("ShaderNodeValToRGB")       # high threshold = sparse
+    ramp.color_ramp.elements[0].position = 0.60     # cloud only on the peaks,
+    ramp.color_ramp.elements[1].position = 0.72     # never a solid shell
     diff = nt.nodes.new("ShaderNodeBsdfDiffuse")
     diff.inputs["Color"].default_value = (1.0, 1.0, 1.0, 1.0)
     tr = nt.nodes.new("ShaderNodeBsdfTransparent")
@@ -491,13 +497,11 @@ def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
     nt.links.new(mix.outputs["Shader"], out.inputs["Surface"])
     cm.blend_method = "BLEND"
     clouds.data.materials.append(cm)
-    clouds.parent = parent if parent is not None else sea
-    if parent is None:
-        clouds.matrix_parent_inverse = sea.matrix_world.inverted()
+    clouds.parent = par
+    clouds.matrix_parent_inverse = par.matrix_world.inverted()
     halo = _atmo_halo(radius * 1.06, loc)
-    halo.parent = parent if parent is not None else sea
-    if parent is None:
-        halo.matrix_parent_inverse = sea.matrix_world.inverted()
+    halo.parent = par
+    halo.matrix_parent_inverse = par.matrix_world.inverted()
     return sea
 
 
@@ -939,7 +943,7 @@ def build_scale_chase(spec: dict):
     target.location = (0, 0, 0)                     # locked on Earth for
     target.keyframe_insert(data_path="location", frame=1)  # both holds
     target.keyframe_insert(data_path="location", frame=int(frames * 0.55))
-    target.location = (0, 0, -60)                   # Earth-Sun midpoint late
+    target.location = (0, 0, -108)                  # centre on the STAR late
     target.keyframe_insert(data_path="location", frame=frames)
     bpy.ops.object.camera_add()
     cam = bpy.context.object
@@ -952,7 +956,7 @@ def build_scale_chase(spec: dict):
     keys = ((1, (2.0, -13.0, 3.0)),                 # close beside the bullet
             (f1, (2.5, -17.0, 3.2)),                # Earth fills, bullet frozen
             (int(frames * 0.55), (3.0, -40.0, 6.0)),  # Earth+Moon, moon whips
-            (frames, (35.0, -200.0, -60.0)))        # the Sun + Earth-crescent
+            (frames, (26.0, -78.0, -92.0)))         # the STAR fills, Earth a jewel
     for f, loc in keys:
         cam.location = loc
         cam.keyframe_insert(data_path="location", frame=f)
