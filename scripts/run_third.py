@@ -124,6 +124,47 @@ def _learned_prior() -> dict:
     return _PRIOR_CACHE
 
 
+_GUIDANCE_CACHE: str | None = None
+
+
+def _opening_guidance() -> str:
+    """A directive for the director brain, learned from our own retention
+    CURVES: if recent Shorts systematically bleed viewers in the first ~2s
+    (the swipe-away happens in the hook, never the payoff), tell the brain to
+    open tighter. Empty when openings are healthy or there's no curve data
+    yet — so the brain's normal 'include the setup' rule stands unchanged
+    until the channel proves it's losing people early. Never raises."""
+    global _GUIDANCE_CACHE
+    if _GUIDANCE_CACHE is not None:
+        return _GUIDANCE_CACHE
+    _GUIDANCE_CACHE = ""
+    try:
+        if not ANALYTICS_LATEST.exists():
+            return _GUIDANCE_CACHE
+        snap = json.loads(ANALYTICS_LATEST.read_text())
+        op = (snap.get("summary") or {}).get("opening") or {}
+        med = op.get("median_early_retention")
+        n = op.get("videos_with_curve", 0)
+        # Need a real sample and a real problem. 0.80 = a fifth of the
+        # audience already gone before the moment even lands.
+        if med is None or n < 3 or med >= 0.80:
+            return _GUIDANCE_CACHE
+        lost = round((1.0 - med) * 100)
+        _GUIDANCE_CACHE = (
+            f"Our recent Shorts lost ~{lost}% of viewers in the first 2 "
+            "seconds. Open TIGHTER: set edit.cut.start at the first genuinely "
+            "engaging beat — trim slow lead-in, dead air, and throat-clearing "
+            "BEFORE the setup. Keep only the minimum context needed to "
+            "understand the moment, then get to it fast. Make the hook land "
+            "in the first second. Do NOT open on a calm/quiet ramp.")
+        print(f"[guidance] opening steer active (median early retention "
+              f"{med:.2f} over {n} clips): tighten openings", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[guidance] unavailable ({e})", flush=True)
+        _GUIDANCE_CACHE = ""
+    return _GUIDANCE_CACHE
+
+
 def _clip_key(url: str) -> str:
     """Canonical clip identity for dedupe. Twitch serves one clip as both
     `clips.twitch.tv/SLUG` and `twitch.tv/<ch>/clip/SLUG`; both reduce to
@@ -431,7 +472,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 meta = author.author_package(
                     streamer, info["title"],
                     " ".join(w["w"] for w in words), info["views"],
-                    words=words, clip_dur=clip_dur)
+                    words=words, clip_dur=clip_dur,
+                    guidance=_opening_guidance())
             hook = (meta or {}).get("hook") or pkg.get("hook", "")
             series = (meta or {}).get("series", "chaos")
 
@@ -566,6 +608,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
             if led.get("kind") == "twitch_clip":
                 entry["source_url"] = led["source_url"]
                 entry["streamer"] = led["streamer"]
+                # Instrumentation for the retention feedback loop: record the
+                # editorial choices so a later run can correlate opening style
+                # against this video's measured early-retention curve.
+                entry["series"] = led.get("series") or series
+                entry["hook"] = hook
+                _cut = (meta or {}).get("edit", {}).get("cut")
+                if _cut:
+                    entry["cut"] = _cut
+                    entry["director_cut"] = True
             elif "files" in led:
                 entry["ledger_sha_input"] = \
                     led["files"]["input"]["sha256"][:16]

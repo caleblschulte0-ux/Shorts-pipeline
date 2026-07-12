@@ -120,6 +120,22 @@ Done:
   never starves a streamer we have too little data on. Cold start (no
   snapshot yet) is neutral: the channel runs pure velocity+banger until data
   accrues. The `[pick]` log prints `p=<prior>` alongside `b=<banger>`.
+- **Retention-curve opening steer (first-2s optimization)** — a Short is won
+  or lost in the hook, not the payoff: viewers swipe away in the first two
+  seconds. `fetch_analytics` reads each posted Short's audience-retention
+  CURVE and derives `early_retention` (audience still watching at ~2s,
+  normalized to the curve's own start) plus a channel `opening` summary
+  (median/worst/best). `run_third._opening_guidance` turns a systematic
+  early-drop into a directive INJECTED into the director-brain prompt: when
+  the median early-retention over ≥3 clips falls below 0.80 (a fifth of the
+  audience already gone), the brain is told to set `edit.cut.start` at the
+  first genuinely engaging beat — trim slow lead-in / dead air before the
+  setup, keep only the minimum context, land the hook in the first second.
+  Healthy openings (or no curve data) inject nothing, so the normal
+  "include the setup" rule stands until the channel proves it's bleeding
+  people early. Each post also records its editorial choices (series, hook,
+  cut window, director-vs-heuristic) into the posted log, so a later
+  iteration can attribute retention to opening style — not just diagnose it.
 
 - **SFX mixing rules (§12)** — all SFX mix into one bed that is sidechain-
   DUCKED by the dialogue: a boom can never bury what the streamer says.

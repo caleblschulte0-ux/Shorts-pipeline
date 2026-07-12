@@ -287,6 +287,29 @@ def _fetch_stats(service, video_ids: list[str]) -> dict[str, dict]:
     return out
 
 
+def _early_retention(curve: list) -> float | None:
+    """From a [[elapsed_ratio, watch_ratio], ...] curve, the fraction of the
+    opening audience still watching at ~the first two seconds — the single
+    number that decides a Short's fate (the swipe-away happens in the hook,
+    not the payoff). For a ~15s clip elapsed 0.12 ≈ 1.8s; we take the watch
+    ratio at the first sample past that, normalized so the curve's own start
+    (~1.0) is the 100% baseline. None when the curve is too short to tell."""
+    if not curve or len(curve) < 2:
+        return None
+    try:
+        base = float(curve[0][1]) or 1.0
+        target = None
+        for elapsed, watch in curve:
+            if float(elapsed) >= 0.12:
+                target = float(watch)
+                break
+        if target is None:                  # never reaches 0.12 — use last
+            target = float(curve[-1][1])
+        return round(max(0.0, min(1.0, target / base)), 3)
+    except (TypeError, ValueError, IndexError):
+        return None
+
+
 def _hours_since(iso_ts: str | None) -> float | None:
     if not iso_ts:
         return None
@@ -375,6 +398,9 @@ def build_snapshot(posted_log: Path, channel: str = "",
         v.update(retention.get(vid, {}))   # retention keys when available
         if vid in curves:
             v["retention_curve"] = curves[vid]   # [[elapsed_ratio, watch_ratio]]
+            er = _early_retention(curves[vid])
+            if er is not None:
+                v["early_retention"] = er        # first-~2s audience survival
         videos.append(v)
 
     videos.sort(key=lambda v: v["views_per_hour"], reverse=True)
@@ -411,6 +437,18 @@ def build_snapshot(posted_log: Path, channel: str = "",
                 for v in by_vph[-5:][::-1]
             ],
     }
+    # OPENING HEALTH: how the channel is doing at surviving the first ~2s,
+    # the number the director brain steers cut.start against. Median over the
+    # videos that have a curve (top-view videos — the ones with enough data).
+    early = sorted(v["early_retention"] for v in videos
+                   if v.get("early_retention") is not None)
+    if early:
+        summary["opening"] = {
+            "median_early_retention": early[len(early) // 2],
+            "videos_with_curve": len(early),
+            "worst": round(early[0], 3),
+            "best": round(early[-1], 3),
+        }
     if by_ret:
         summary["videos_with_retention"] = len(by_ret)
         summary["avg_view_percentage"] = round(

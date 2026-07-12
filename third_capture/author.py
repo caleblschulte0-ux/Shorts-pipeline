@@ -116,16 +116,21 @@ def _timestamped(words: list[dict]) -> str:
 
 def _build_user_prompt(streamer: str, clip_title: str, transcript: str,
                        views: int, words: list[dict] | None = None,
-                       clip_dur: float = 0.0) -> str:
+                       clip_dur: float = 0.0, guidance: str = "") -> str:
     sparse = len(transcript.split()) < 8
     body = (_timestamped(words) if words else transcript)[:1800]
     dur_note = (f"Clip length: {clip_dur:.1f}s. The transcript below is "
                 f"time-stamped [start-end] in seconds — use it to choose "
                 f"edit.cut.\n" if words and clip_dur else "")
+    # Channel-learned steer (retention feedback): only present when our own
+    # analytics say openings are bleeding viewers. Shapes edit.cut + hook.
+    guide_note = (f"CHANNEL FEEDBACK (obey for edit.cut and hook): {guidance}\n"
+                  if guidance else "")
     return (f"Streamer: {streamer}\n"
             f"Original clip title: {clip_title!r}\n"
             f"Twitch views in <24h: {views}\n"
             + dur_note
+            + guide_note
             + ("NOTE: the clip has almost no dialogue (screaming/"
                "crowd moment) — build the title from the original "
                "clip title and the streamer, do NOT guess events.\n"
@@ -310,12 +315,13 @@ def rank_clips(clips: list[dict]) -> dict:
 
 def author_package(streamer: str, clip_title: str, transcript: str,
                    views: int, words: list[dict] | None = None,
-                   clip_dur: float = 0.0) -> dict | None:
+                   clip_dur: float = 0.0, guidance: str = "") -> dict | None:
     """Claude-first (the brain), Groq fallback (LOUD, per repo doctrine),
     None (raw clip title) last. Authoring never blocks a post. `words`
-    (timestamped) + `clip_dur` let the director choose the narrative cut."""
+    (timestamped) + `clip_dur` let the director choose the narrative cut;
+    `guidance` is the channel's own retention feedback (empty until data)."""
     user = _build_user_prompt(streamer, clip_title, transcript, views,
-                              words=words, clip_dur=clip_dur)
+                              words=words, clip_dur=clip_dur, guidance=guidance)
     context = f"{clip_title} {transcript}"
     try:
         out = _call_claude(user)
