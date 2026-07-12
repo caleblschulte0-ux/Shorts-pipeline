@@ -93,7 +93,11 @@ def build(spec: dict):
     heights = [0.8 + 3.6 * h / hmax for h in hs]
     vmax = max(vals)
     invert = bool(spec.get("invert"))
-    gap = 2.6
+    # Portrait (9:16) has a much narrower horizontal view than the original
+    # 16:9 tuning, so a wide lineup clips at the edges. Pack the monoliths
+    # tighter when the frame is tall so all bars + their numbers stay in shot.
+    portrait = int(spec.get("res_y", 1080)) > int(spec.get("res_x", 1920))
+    gap = (1.55 if len(pts) >= 4 else 1.8) if portrait else 2.6
     x0 = -gap * (len(pts) - 1) / 2
 
     # Floor.
@@ -112,12 +116,12 @@ def build(spec: dict):
             _body(f"bar{i}", accent if star else cool))
         # Value text floats above (or below, inverted) the monolith tip —
         # staggered heights so neighbouring long numbers can't collide.
-        lift = 0.55 + (0.62 if i % 2 else 0.0)
+        lift = (0.55 + (1.35 if i % 2 else 0.15)) if portrait else (0.55 + (0.62 if i % 2 else 0.0))
         tip = (-h - lift) if invert else (h + lift)
         bpy.ops.object.text_add(location=(x, -0.05, tip))
         t = bpy.context.object
         t.data.body = p.get("display", str(p["value"]))
-        t.data.size = 0.46
+        t.data.size = 0.40 if portrait else 0.46
         t.data.align_x = "CENTER"
         t.data.extrude = 0.02
         t.rotation_euler = (math.radians(80), 0, 0)
@@ -128,7 +132,7 @@ def build(spec: dict):
         bpy.ops.object.text_add(location=(x, -1.25, base))
         lb = bpy.context.object
         lb.data.body = p["label"]
-        lb.data.size = 0.30
+        lb.data.size = 0.22 if portrait else 0.30
         lb.data.align_x = "CENTER"
         lb.data.extrude = 0.01
         lb.rotation_euler = (math.radians(80), 0, 0)
@@ -169,8 +173,12 @@ def build(spec: dict):
     sc.render.fps = fps
     sc.frame_start, sc.frame_end = 1, frames
     z0, z1 = (6.5, 4.6) if not invert else (8.0, 5.2)
-    for f, (y, z) in ((1, (-19.0, z0)), (frames, (-14.0, z1))):
-        cam.location = (3.2, y, z)
+    # Portrait: centre the camera (so the champion on the left isn't cut) and
+    # pull it back so the whole narrow lineup + its floating numbers fit.
+    cam_x = 0.6 if portrait else 3.2
+    y0, y1 = (-24.0, -20.0) if portrait else (-19.0, -14.0)
+    for f, (y, z) in ((1, (y0, z0)), (frames, (y1, z1))):
+        cam.location = (cam_x, y, z)
         cam.keyframe_insert(data_path="location", frame=f)
     for fc in cam.animation_data.action.fcurves:
         for kp in fc.keyframe_points:
