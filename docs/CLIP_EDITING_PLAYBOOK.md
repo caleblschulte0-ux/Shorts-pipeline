@@ -85,6 +85,18 @@ Done:
   last word that fully fits (+1.0s) instead of slicing mid-word; captions
   only for words entirely inside the cut; 0.25s audio fade-out so no clip
   ends on an abrupt chop.
+- **Opening-frame guard (opening visual craft)** — the audio "never open on
+  dead air" rule extended to VIDEO: a scroller decides in the first glimpse,
+  and QA only flags black >0.7s / frozen >2.5s ANYWHERE, so a clip could open
+  on a black scene-transition, a loading screen, an alt-tab, or a stuck frame
+  and pass. `clip_edit._opening_guard` probes just the first ~0.6s from the
+  chosen cut and, when it opens on black/near-black or a genuine stall (≥0.3s
+  freeze), advances the start past it — bounded to ≤0.5s and never past
+  t1−3.0s so the moment is untouched, and BEFORE the caption rebase so word
+  times stay aligned. Runs on every cut (auto/director/explicit/whole-clip),
+  fails open (a probe error or healthy opening changes nothing), and logs the
+  trim to the ledger (`opening_trim_s`). Compounds the retention opening-steer
+  from the visual side.
 - **Spatial safe-zones (§15)** — the shot plan exports face bands in output
   coordinates; the emoji burst and word slam pick a vertical position that
   avoids faces and the caption zone from a candidate list (no hardcoded y).

@@ -44,6 +44,56 @@ def _run(cmd: list[str], timeout: int = _RUN_TIMEOUT) -> str:
                                    timeout=timeout)
 
 
+def _opening_guard(raw: Path, t0: float, t1: float) -> tuple[float, float]:
+    """Never let a scroller's FIRST glimpse be a dead frame. The cut chooses
+    t0 for narrative/audio reasons and never checks what is actually ON SCREEN
+    there — a Twitch clip can open on a black scene-transition, a loading
+    screen, an alt-tab, or a stuck/frozen frame, and QA (which only flags
+    black >0.7s / frozen >2.5s ANYWHERE) waves it through. This probes just
+    the first ~0.6s from t0 and, when it opens on black/near-black or a
+    freeze, advances t0 past it — bounded to <=0.5s and never past t1-3.0s,
+    so the moment itself is untouched. This is the audio 'never open on dead
+    air' rule extended to VIDEO, and it compounds the retention opening-steer
+    from the visual side. Returns (t0, advanced_by). Fail-open: any error or
+    a healthy opening returns the original t0 unchanged."""
+    MAX_ADV = 0.5
+    headroom = (t1 - t0) - 3.0            # keep >=3s of real clip after t0
+    if headroom <= 0.1:
+        return t0, 0.0
+    win = min(0.6, headroom)
+    if win < 0.15:
+        return t0, 0.0
+    try:
+        p = subprocess.run(
+            ["ffmpeg", "-v", "info", "-ss", f"{t0}", "-t", f"{win}",
+             "-i", str(raw), "-an", "-vf",
+             # lenient pic_th catches dark/low-detail, not just pure black;
+             # freezedetect d=0.3 catches a genuinely STUCK opening frame
+             # (paused clip) while ignoring the 1-2 near-identical frames any
+             # normal video opens with — those tripped a false trim at d=0.05.
+             "blackdetect=d=0.05:pic_th=0.90,"
+             "freezedetect=n=-55dB:d=0.3",
+             "-f", "null", "-"],
+            capture_output=True, text=True, timeout=30)
+        err = (p.stderr or "") + (p.stdout or "")
+    except Exception:  # noqa: BLE001 — a probe must never break a render
+        return t0, 0.0
+    adv = 0.0
+    # black lead-in that STARTS at the very opening (within ~0.12s)
+    for m in re.finditer(r"black_start:([\d.]+).*?black_duration:([\d.]+)",
+                         err):
+        if float(m.group(1)) <= 0.12:
+            adv = max(adv, min(float(m.group(2)), MAX_ADV))
+    # frozen opening frame (stuck at the start)
+    if re.search(r"freeze_start:\s*0(\.0\d*)?\b", err):
+        fe = re.search(r"freeze_end:\s*([\d.]+)", err)
+        adv = max(adv, min(float(fe.group(1)) if fe else 0.3, MAX_ADV))
+    if adv <= 0.02:
+        return t0, 0.0
+    adv = min(adv, MAX_ADV, headroom)
+    return round(t0 + adv, 2), round(adv, 2)
+
+
 # ---------- 1. discover ----------
 
 # Twitch Helix path — used automatically when TWITCH_CLIENT_ID/SECRET are
@@ -371,6 +421,15 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             # keep the whole clip (front 45s) instead of a cut from nothing.
             if t1 - t0 < 8.0 or len(words) < 4:
                 t0, t1 = 0.0, min(src_dur, 45.0)
+    # OPENING GUARD (opening visual craft): never open on a dead frame —
+    # nudge t0 past a black/near-black/frozen lead-in. Runs for EVERY cut
+    # (auto, director, explicit, whole-clip) and BEFORE the caption rebase so
+    # the burned-in word times stay aligned to the guarded start.
+    t0, opening_adv = _opening_guard(raw, t0, t1)
+    if opening_adv:
+        print(f"[opening] trimmed {opening_adv:.2f}s of dead lead-in "
+              f"(t0 -> {t0:.2f}s)", flush=True)
+    if not start and not end and words:
         # captions: only words that fit ENTIRELY inside the cut — a caption
         # for a half-sliced word reads as a broken edit
         words = [{"w": w["w"], "s": w["s"] - t0, "e": w["e"] - t0}
@@ -609,6 +668,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
     return {"kind": "twitch_clip", "credit": credit,
             "render_level": render_level,
             "cut": [t0, t1], "duration_s": round(dur, 2),
+            "opening_trim_s": opening_adv,
             "caption_words": len(words), "hook": hook,
             "reframe": "face" if reframed is not None else "blur",
             **ledger_ae}
