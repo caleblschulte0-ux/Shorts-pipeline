@@ -906,7 +906,7 @@ def _hero_clip(points: list[dict], title: str, work: Path, kind: str,
         return None
     spec = {"points": points[:5], "title": title, "accent": accent,
             "seconds": seconds, "fps": 12, "grow": True, "engine": "eevee",
-            "res_x": 540, "res_y": 960, "samples": 8}
+            "res_x": 720, "res_y": 1280, "samples": 10}
     sf = work / f"hero_{kind}.json"
     sf.write_text(json.dumps(spec))
     od = work / f"hero_{kind}"
