@@ -378,17 +378,62 @@ def _continent_shell(name, outline, radius, loc):
     return ob
 
 
-def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
-    """THE Earth (sea sphere + continent shells + atmosphere), reused by
-    every space template. Returns the sea sphere. `continents` is the
-    {name: [(lon, lat), ...]} silhouette set carried in the spec (v8 —
-    THE same recognizable landmasses the 2D disc shows); without it we
-    fall back to the legacy squashed-blob shells."""
+def _pbr(name, rgb, rough, metal=0.0):
+    """A Principled material set via only version-stable input names
+    (Base Color / Roughness / Metallic exist in Blender 3.x and 4.x).
+    Real surface response — a glossy ocean catching a sun-glint next to
+    matte land is what stops THE Earth reading as a flat cartoon."""
+    m = bpy.data.materials.new(name)
+    m.use_nodes = True
+    b = m.node_tree.nodes["Principled BSDF"]
+    b.inputs["Base Color"].default_value = (*rgb, 1.0)
+    b.inputs["Roughness"].default_value = rough
+    b.inputs["Metallic"].default_value = metal
+    return m
+
+
+def _atmo_halo(radius, loc, color=(0.30, 0.55, 1.0), strength=3.4):
+    """The blue atmospheric limb glow — the single biggest 'premium
+    Earth' cue. A slightly larger sphere whose emission is driven by
+    FRESNEL: transparent facing the camera (we see the planet through
+    it), glowing at grazing angles (the halo rings the limb)."""
     bpy.ops.mesh.primitive_uv_sphere_add(radius=radius, location=loc,
                                          segments=48, ring_count=24)
+    atmo = bpy.context.object
+    bpy.ops.object.shade_smooth()
+    m = bpy.data.materials.new("atmo")
+    m.use_nodes = True
+    nt = m.node_tree
+    nt.nodes.clear()
+    fres = nt.nodes.new("ShaderNodeFresnel")
+    fres.inputs["IOR"].default_value = 1.22       # tighter rim, less veil
+    em = nt.nodes.new("ShaderNodeEmission")
+    em.inputs["Color"].default_value = (*color, 1.0)
+    em.inputs["Strength"].default_value = strength
+    tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+    mix = nt.nodes.new("ShaderNodeMixShader")
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    nt.links.new(fres.outputs["Fac"], mix.inputs["Fac"])
+    nt.links.new(tr.outputs["BSDF"], mix.inputs[1])
+    nt.links.new(em.outputs["Emission"], mix.inputs[2])
+    nt.links.new(mix.outputs["Shader"], out.inputs["Surface"])
+    m.blend_method = "BLEND"
+    m.show_transparent_back = False
+    atmo.data.materials.append(m)
+    return atmo
+
+
+def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
+    """THE Earth — premium (§7.5 v9): a glossy deep-ocean sphere (catches
+    a sun glint), matte raised continent shells, and a fresnel atmosphere
+    halo. Reused by every space template; returns the sea sphere.
+    `continents` is the {name:[(lon,lat)...]} silhouette set; without it
+    the legacy squashed-blob shells are used."""
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=radius, location=loc,
+                                         segments=64, ring_count=32)
     sea = bpy.context.object
     bpy.ops.object.shade_smooth()
-    sea.data.materials.append(_body("earth_sea", (0.05, 0.18, 0.42)))
+    sea.data.materials.append(_pbr("earth_sea", (0.008, 0.035, 0.15), 0.20))
     k = radius / 5.0
     if continents:
         lands = [_continent_shell(n, o, radius * 1.012, loc)
@@ -407,23 +452,17 @@ def _the_earth(radius=5.0, loc=(0, 0, 0), parent=None, continents=None):
             bpy.ops.object.shade_smooth()
             blob.scale = (1.0, 0.35, 1.0)
             lands.append(blob)
-    land_mat = _body("land", (0.10, 0.34, 0.18))
+    land_mat = _pbr("land", (0.06, 0.26, 0.11), 0.9)
     for blob in lands:
         if not blob.data.materials:
             blob.data.materials.append(land_mat)
         blob.parent = parent if parent is not None else sea
         if parent is None:
             blob.matrix_parent_inverse = sea.matrix_world.inverted()
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=radius * 1.05, location=loc,
-                                         segments=32, ring_count=16)
-    atmo = bpy.context.object
-    m = bpy.data.materials.new("atmo")
-    m.use_nodes = True
-    bsdf = m.node_tree.nodes["Principled BSDF"]
-    bsdf.inputs["Base Color"].default_value = (0.3, 0.55, 1.0, 1)
-    bsdf.inputs["Alpha"].default_value = 0.08
-    m.blend_method = "BLEND"
-    atmo.data.materials.append(m)
+    halo = _atmo_halo(radius * 1.06, loc)
+    halo.parent = parent if parent is not None else sea
+    if parent is None:
+        halo.matrix_parent_inverse = sea.matrix_world.inverted()
     return sea
 
 
@@ -465,19 +504,29 @@ def build_earth_spin(spec: dict):
                continents=spec.get("continents"))
     spin.rotation_euler = (0, 0, 0)
     spin.keyframe_insert(data_path="rotation_euler", frame=1)
-    spin.rotation_euler = (0, 0, 1.0)            # ~57 deg of visible spin
+    spin.rotation_euler = (0, 0, 0.6)            # continents sweep, stay on face
     spin.keyframe_insert(data_path="rotation_euler", frame=frames)
-    # equatorial speed band
-    bpy.ops.mesh.primitive_torus_add(major_segments=96, minor_segments=12, major_radius=5.14, minor_radius=0.015,
+    # a whisper of an equatorial band — a hint of the motion's edge, kept
+    # dim so it reads as light on the atmosphere, not a neon UI ring
+    bpy.ops.mesh.primitive_torus_add(major_segments=96, minor_segments=12, major_radius=5.32, minor_radius=0.012,
                                      location=(0, 0, 0))
-    belt_m = _emission("belt", accent, 1.8)
+    belt_m = _emission("belt", accent, 0.8)
     bpy.context.object.data.materials.append(belt_m)
-    bpy.ops.object.light_add(type="SUN", location=(24, -20, 12))
-    bpy.context.object.data.energy = 4.5
-    _stars(110, spread=420.0, exclude=90.0, bright=4.0)
+    # THE TERMINATOR: a strong key sun rakes across the visible face so
+    # there's a real day/night gradient (a flatly-lit globe is the tell
+    # of cheap CG), plus a dim fill so the night side keeps its form
+    # against black instead of vanishing.
+    bpy.ops.object.light_add(type="SUN", location=(34, -10, 8))
+    key = bpy.context.object
+    key.data.energy = 6.5
+    key.data.angle = 0.09                          # soft terminator edge
+    bpy.ops.object.light_add(type="SUN", location=(-10, -30, 5))
+    bpy.context.object.data.energy = 0.28          # cool fill from cam side
+    bpy.context.object.data.color = (0.55, 0.68, 1.0)
+    _stars(150, spread=440.0, exclude=95.0, bright=3.2)
     _dark_world(sc)
 
-    bpy.ops.object.empty_add(location=(0, 0, 0.4))
+    bpy.ops.object.empty_add(location=(0, 0, 0))
     target = bpy.context.object
     bpy.ops.object.camera_add()
     cam = bpy.context.object
@@ -493,11 +542,14 @@ def build_earth_spin(spec: dict):
                 (max(2, int(frames * 0.45)), (6.5, -27.0, 7.5)),
                 (frames, (-6.0, -24.0, 6.0)))
         em = belt_m.node_tree.nodes["Emission"].inputs["Strength"]
-        for f, v in ((max(2, int(frames * 0.72)), 1.8), (frames, 4.5)):
+        for f, v in ((max(2, int(frames * 0.72)), 0.8), (frames, 3.0)):
             em.default_value = v
             em.keyframe_insert(data_path="default_value", frame=f)
     else:
-        keys = ((1, (6.0, -30.0, 8.0)), (frames, (-6.0, -21.0, 4.5)))
+        # a slow PUSH-IN that keeps the globe centered and ends STRONGER:
+        # the planet grows and the halo blooms at the limb — the last
+        # frame is the hero frame, not a cropped dome.
+        keys = ((1, (2.4, -32.0, 4.0)), (frames, (0.6, -20.5, 2.6)))
     for f, loc in keys:
         cam.location = loc
         cam.keyframe_insert(data_path="location", frame=f)
