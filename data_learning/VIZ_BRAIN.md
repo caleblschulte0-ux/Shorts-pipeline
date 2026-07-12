@@ -15,6 +15,25 @@ if nothing new fits, compose from the element kit (option A).
 
 ---
 
+## VIDEO STRUCTURE — HARD RULES (operator-set, 2026-07-11)
+
+These are mandatory. A video that breaks them is wrong, no exceptions:
+
+1. **Scene 1 MUST be a Blender 3D hero shot.** The opening is a cinematic 3D
+   reveal (glowing forms rising from a reflective floor, dramatic camera move) —
+   this is the scroll-stopper. Never open on a flat card.
+2. **The LAST scene MUST also be a Blender 3D shot** — the payoff lands in 3D.
+3. **Use Blender liberally**, not just the bookends — reach for a 3D beat any
+   time it makes a value hit harder. 2D scenes are the exception, not the default.
+4. **Hooks must not over-hold.** The opening beat reveals fast and moves on — no
+   long static dwell on one frame (the #1 swipe-away).
+5. **No duplicate rows.** A ranking/comparison with two identical labels or
+   values is broken output — reject and re-author it.
+6. **Captions never cover the data.** Spoken captions sit at the very bottom,
+   one short line — never across the numbers, subject, or mascot.
+
+---
+
 ## Where the data lives
 
 `data_learning/niche.config.json` → `stories[]` → each has `segments[]`. Each

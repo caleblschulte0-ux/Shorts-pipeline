@@ -139,7 +139,11 @@ jobs:
       - name: Install system deps
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -q ffmpeg
+          # blender: the daily pipeline now opens AND closes on a 3D hero shot
+          # (VIZ_BRAIN hard rule) — headless Cycles, same build the cinematic
+          # workflow uses. Best-effort: studio_render falls back to a 2D hero if
+          # the binary is missing so a Blender hiccup never drops the video.
+          sudo apt-get install -y -q ffmpeg blender
 
       - name: Install Python deps
         run: |
