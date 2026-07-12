@@ -1,0 +1,58 @@
+{
+  "slug": "sitting-still-speed",
+  "duration": 275.25,
+  "chapters": [
+    {
+      "t": 0.0,
+      "label": "Intro"
+    },
+    {
+      "t": 15.48,
+      "label": "What Fast Means"
+    },
+    {
+      "t": 47.57,
+      "label": "The Sky"
+    },
+    {
+      "t": 71.43,
+      "label": "The Spin"
+    },
+    {
+      "t": 110.45,
+      "label": "The Orbit"
+    },
+    {
+      "t": 150.36,
+      "label": "The Galaxy"
+    },
+    {
+      "t": 189.45,
+      "label": "You Vs The Machines"
+    },
+    {
+      "t": 233.67,
+      "label": "The Final Speedometer"
+    },
+    {
+      "t": 266.94,
+      "label": "Takeaway"
+    }
+  ],
+  "sources": [
+    "Source: NASA / IAAF records / standard references (Benchmark speeds: sprinter, jet, bullet, ISS), accessed 2026-07-08",
+    "Source: ICAO / IAAF Berlin 2009 split data (Typical airliner cruise speed vs Usain Bolt peak), accessed 2026-07-09",
+    "Source: NASA (Equatorial rotation speed vs airliner cruise), accessed 2026-07-08",
+    "Source: NASA / standard ballistics references (Orbital speed vs typical rifle muzzle velocity), accessed 2026-07-08",
+    "Source: NASA (Earth rotation, orbital and galactic speeds), accessed 2026-07-08",
+    "Source: NASA (Parker Solar Probe record speed vs galactic ride), accessed 2026-07-08",
+    "Source: NASA (COBE/WMAP cosmic microwave background dipole) (CMB dipole velocity of the Sun), accessed 2026-07-08",
+    "Image: NASA: The International Space Station orbits into a sunset above China (public domain)",
+    "Image: Stock footage: airplane contrail sky (Pexels)",
+    "Image: NASA: Most Amazing High Definition Image of Earth - Blue Marble 2012 (public domain)",
+    "Image: NASA image iss023e057948 (public domain)",
+    "Image: NASA image iss073e0982823 (public domain)",
+    "Image: NASA image NHQ201808120012 (public domain)",
+    "Image: NASA image PIA17449 (public domain)"
+  ]
+}

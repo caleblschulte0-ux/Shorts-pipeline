@@ -1,0 +1,56 @@
+{
+ "budget_frames": 720,
+ "fixed": [
+  {
+   "window": "cold_open",
+   "template": "orbit_fly",
+   "frames": 75
+  },
+  {
+   "window": "ending",
+   "template": "cosmic_exit",
+   "frames": 210
+  }
+ ],
+ "beat_frames": 435,
+ "candidates": [
+  {
+   "beat": 2,
+   "id": "h2",
+   "template": "earth_spin",
+   "value": 9,
+   "scores": {
+    "mental_model": 3,
+    "emotion": 2,
+    "impossible_camera": 2,
+    "flat_2d": 1
+   },
+   "seconds": 13.0,
+   "splice": 16.9,
+   "reason": "flagship reveal \u2014 floored at 12s"
+  },
+  {
+   "beat": 5,
+   "id": "h5",
+   "template": "monoliths",
+   "value": 5,
+   "scores": {
+    "mental_model": 2,
+    "emotion": 2,
+    "impossible_camera": 1,
+    "flat_2d": 2
+   },
+   "seconds": 9.0,
+   "splice": 11.7,
+   "reason": "value-weighted fill"
+  }
+ ],
+ "plan": [
+  "h2",
+  "h5"
+ ],
+ "in_world_beats": [
+  5
+ ],
+ "frames_spent": 505
+}
