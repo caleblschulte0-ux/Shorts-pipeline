@@ -106,6 +106,47 @@
           "error": "RuntimeError: qa_rejected: duration 1.5s outside 4.0-62.0s; vision: Video content is squeezed into a tiny box in the top ~20% of the frame; the remaining ~80% is dead black empty space wit; vision: Streamer's webcam/face is too"
         }
       ]
+    },
+    {
+      "date": "20260712b",
+      "dry_run": false,
+      "ts": "2026-07-12T02:00:59+00:00",
+      "clips": [
+        {
+          "slug": "clip-20260712b-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260712b-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: frozen video at 5.1s; vision: massive black dead space fills most of each frame \u2014 actual stream content squeezed into a small box at the top; vision: large empty/broken layout looks like a rendering f"
+        },
+        {
+          "slug": "clip-20260712b-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260712b-4",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260712b-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        }
+      ]
     }
   ]
 }
