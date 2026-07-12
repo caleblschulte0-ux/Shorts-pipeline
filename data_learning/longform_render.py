@@ -560,12 +560,21 @@ def _hero_spec(template: str, seg_cfg: dict, theme: dict,
     # Interpolation-suitability triage (§7.5 v8): fps class per template
     # — crossing objects and fast edges warp at 10fps minterpolate.
     from data_learning.render_director import FPS_CLASS
+    # Cycles cost knobs (§7.5 v8) — the render is upscaled to 1080p by the
+    # minterpolate pass, and toon shading (flat emission + diffuse, no
+    # textures) upscales cleanly, so a slower host (a 4-core CI runner
+    # under a hard job cap) can trade a little hero sharpness for FINISHING
+    # inside its window. Defaults keep full quality; env overrides let CI
+    # fit the 6h GitHub cap. "960x540" heroes render ~3x faster than 1440.
+    _res = os.environ.get("CURIO_HERO_RES", "1440x810")
+    _rx, _ry = (int(v) for v in _res.lower().split("x"))
+    _samples = int(os.environ.get("CURIO_HERO_SAMPLES", "32"))
     spec = {
         "template": template,
         "accent": theme.get("highlight", "#4FD1C5"),
         "seconds": seconds, "fps": int(FPS_CLASS.get(template, HERO_FPS)),
-        "samples": 32,
-        "res_x": 1440, "res_y": 810,
+        "samples": _samples,
+        "res_x": _rx, "res_y": _ry,
         "style": 3,     # visual language version — busts the hero
     }                   # cache when the brand look changes
     if breach:

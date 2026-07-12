@@ -200,6 +200,13 @@ jobs:
           YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # CI runs on a 4-core runner under a 6h cap: render the Cycles
+          # heroes at 960x540/24 (upscaled to 1080p by minterpolate; flat
+          # toon shading upscales cleanly) so the full premium cut finishes
+          # in ~2.5h with margin. A faster host leaves these unset for full
+          # 1440x810/32 quality.
+          CURIO_HERO_RES: '960x540'
+          CURIO_HERO_SAMPLES: '24'
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
