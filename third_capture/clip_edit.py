@@ -355,6 +355,13 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             last_e = max((w["e"] for w in words if w["e"] <= cap - 1.0),
                          default=None)
             t1 = (last_e + 1.0) if last_e is not None else cap
+        # SPARSE-SPEECH GUARD: on a near-silent reaction clip whisper hears
+        # a word or two and the transcript cut collapses to seconds (live
+        # incident: a 2.0s render, QA-rejected 4x). The moment on a quiet
+        # clip is VISUAL — words can't locate it, so keep the whole clip
+        # (front 45s) instead of trusting a cut built from nothing.
+        if t1 - t0 < 8.0 or len(words) < 4:
+            t0, t1 = 0.0, min(src_dur, 45.0)
         # captions: only words that fit ENTIRELY inside the cut — a caption
         # for a half-sliced word reads as a broken edit
         words = [{"w": w["w"], "s": w["s"] - t0, "e": w["e"] - t0}

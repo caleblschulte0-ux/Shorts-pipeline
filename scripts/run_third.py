@@ -337,6 +337,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 result["qa"] = led["qa"]
                 result["video_path"] = str(out_mp4.relative_to(REPO))
                 result["ledger"] = str(ledger_path.relative_to(REPO))
+                # BLOCKLIST the broken clip: without this, the next slot
+                # re-picks the exact same clip and breaks the same way
+                # (live incident: one 2s clip ate four slots back to back).
+                # Rides log["posted"] so posted_keys excludes it for the
+                # rest of this run and — once any later slot saves the log
+                # — for every future run too.
+                log["posted"][f"rejected-{slug}"] = {
+                    "source_url": led["source_url"],
+                    "streamer": led["streamer"],
+                    "title": (led.get("authored_title")
+                              or led["clip_title"]),
+                    "qa_rejected": True,
+                    "ts": datetime.now(timezone.utc).isoformat(),
+                }
                 raise RuntimeError(
                     "qa_rejected: " + "; ".join(qa["problems"])[:200])
         elif pkg["capture"]["kind"] == "sim":
