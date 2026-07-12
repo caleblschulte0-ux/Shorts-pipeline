@@ -38,6 +38,12 @@ PACKAGE_DIR = REPO / "state" / "third_packages"
 LOG_PATH = REPO / "state" / "third_posted_log.json"
 OUTPUT_DIR = REPO / "output"
 
+# Run-level banger cache: {clip_url: (banger 0-1, why)}. The brain scores a
+# clip's shareability once per process; later slots reuse it instead of
+# paying another brain call on a shortlist that overlaps heavily with the
+# previous slot's (same board minus what we just posted).
+_BANGER_CACHE: dict = {}
+
 
 def _clip_key(url: str) -> str:
     """Canonical clip identity for dedupe. Twitch serves one clip as both
@@ -267,11 +273,38 @@ def process(pkg: dict, pkg_path: Path | None, *,
                         c["views"] / 24.0
                     c["score"] = c["vph"] * \
                         (1.0 if not core or c["channel"] in core else 0.45)
+                # BANGER PRE-SCORER (playbook §banger): velocity says a clip
+                # is spreading, not that a stranger will watch it to the end.
+                # The brain reads the titles and rates shareability 0-1; we
+                # blend it multiplicatively so a genuinely funny/shocking clip
+                # can beat a boring viral one, obvious duds (giveaway/subathon
+                # spam, sponsor reads, "just chatting") get buried, and an
+                # unknown/garbage title stays neutral (0.5) instead of killed.
+                # Cached run-wide; pure-velocity fallback when the brain is
+                # unreachable (returns {}), so a token outage never blocks a
+                # post.
+                from third_capture import author
+                to_score = [c for c in shortlist
+                            if c["url"] not in _BANGER_CACHE]
+                if to_score:
+                    try:
+                        _BANGER_CACHE.update(author.rank_clips(to_score))
+                    except Exception as e:  # noqa: BLE001
+                        print(f"::warning::[banger] rank failed ({e}) — "
+                              "velocity only", flush=True)
+                for c in shortlist:
+                    c["banger"], c["banger_why"] = \
+                        _BANGER_CACHE.get(c["url"], (0.5, ""))
+                    # 0.25 floor: even a low-banger clip keeps a quarter of its
+                    # velocity weight, so the brain deprioritizes but never
+                    # single-handedly vetoes a hugely viral clip.
+                    c["score"] = c["score"] * (0.25 + 0.75 * c["banger"])
                 shortlist.sort(key=lambda c: -c["score"])
                 for c in shortlist[:5]:
                     print(f"[pick] {c['channel']:>14} {c['views']:>7}v "
-                          f"{c['vph']:>8.0f}v/h score={c['score']:>7.0f} "
-                          f"{c['title'][:45]!r}", flush=True)
+                          f"{c['vph']:>8.0f}v/h b={c['banger']:.2f} "
+                          f"score={c['score']:>7.0f} {c['title'][:40]!r} "
+                          f"{c.get('banger_why','')!r}", flush=True)
                 pick = shortlist[0]
                 info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]

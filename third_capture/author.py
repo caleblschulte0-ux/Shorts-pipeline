@@ -208,7 +208,7 @@ def _postprocess(out: dict, streamer: str, context: str,
             "hashtags": tags, "series": series or "chaos", "edit": edit}
 
 
-def _call_claude(user: str) -> dict | None:
+def _call_claude(user: str, system: str = SYSTEM) -> dict | None:
     """Headless Claude via the claude-code CLI (CLAUDE_CODE_OAUTH_TOKEN —
     the same brain the daily channel uses). Returns parsed JSON or None."""
     import shutil
@@ -219,7 +219,7 @@ def _call_claude(user: str) -> dict | None:
         print("::warning::[author] claude CLI not installed — "
               "falling to Groq", flush=True)
         return None
-    prompt = (SYSTEM + "\n\n" + user
+    prompt = (system + "\n\n" + user
               + "\n\nReturn ONLY the JSON object, nothing else.")
     r = subprocess.run(["claude", "-p", prompt], capture_output=True,
                        text=True, timeout=240)
@@ -230,7 +230,7 @@ def _call_claude(user: str) -> dict | None:
     return json.loads(m.group(0))
 
 
-def _call_groq(user: str) -> dict | None:
+def _call_groq(user: str, system: str = SYSTEM) -> dict | None:
     key = os.environ.get("GROQ_API_KEY", "").strip()
     if not key:
         return None
@@ -239,13 +239,73 @@ def _call_groq(user: str) -> dict | None:
         "https://api.groq.com/openai/v1/chat/completions",
         headers={"Authorization": f"Bearer {key}"},
         json={"model": MODEL,
-              "messages": [{"role": "system", "content": SYSTEM},
+              "messages": [{"role": "system", "content": system},
                            {"role": "user", "content": user}],
-              "temperature": 0.7,
+              "temperature": 0.5,
               "response_format": {"type": "json_object"}},
         timeout=45)
     resp.raise_for_status()
     return json.loads(resp.json()["choices"][0]["message"]["content"])
+
+
+# ---------------------------------------------- clip selection ("banger") brain
+
+_RANK_SYSTEM = """You are a viral-Shorts curator for a Twitch/Kick clip
+channel with a mass general audience (a 16-year-old scrolling Shorts). You are
+given candidate clips (streamer, title, Twitch views, velocity). Score each
+for how likely a GENERAL audience would WATCH TO THE END and SHARE it as a
+vertical Short.
+
+Score 0.0-1.0:
+- HIGH (0.8-1.0): a clear funny / shocking / heated / wholesome / dramatic
+  MOMENT that reads instantly — a fail, a rage, a clutch, a betrayal, a
+  jumpscare, a wild reaction.
+- MEDIUM (0.4-0.6): probably fine but generic, or the title is vague/garbage
+  so you can't tell (unknown = 0.5, NEVER 0 — a bad title often hides a great
+  clip; don't punish it, just don't boost it).
+- LOW (0.0-0.3): actively bad for a Short — giveaway/drops/subathon/"gifted"
+  spam, sponsor/ad reads, pure technical/setup talk, "just chatting" with
+  nothing happening, or clearly boring/insider content a stranger won't get.
+
+Return ONLY JSON: {"scores": [{"i": <index int>, "banger": <0-1>,
+"why": "<=6 words"}]}. One entry per candidate, same indices given."""
+
+
+def rank_clips(clips: list[dict]) -> dict:
+    """Banger score per clip -> {clip_key_or_url: (banger, why)}. One brain
+    call (Claude, Groq fallback). Empty dict when no brain/parse fails — the
+    caller then keeps pure-velocity ranking. Never raises."""
+    if not clips:
+        return {}
+    lines = []
+    for i, c in enumerate(clips):
+        lines.append(f"{i}. streamer={c.get('channel','?')} "
+                     f"views={c.get('views',0)} vph={c.get('vph',0):.0f} "
+                     f"title={str(c.get('title',''))[:90]!r}")
+    user = "Candidates:\n" + "\n".join(lines)
+    out = None
+    try:
+        out = _call_claude(user, system=_RANK_SYSTEM)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[rank] claude failed ({e}) — groq", flush=True)
+    if out is None:
+        try:
+            out = _call_groq(user, system=_RANK_SYSTEM)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[rank] groq failed ({e})", flush=True)
+    if not out:
+        return {}
+    result = {}
+    for s in (out.get("scores") or []):
+        try:
+            i = int(s["i"])
+            b = max(0.0, min(1.0, float(s.get("banger", 0.5))))
+            if 0 <= i < len(clips):
+                key = clips[i].get("url", "")
+                result[key] = (b, str(s.get("why", ""))[:40])
+        except (TypeError, ValueError, KeyError):
+            continue
+    return result
 
 
 def author_package(streamer: str, clip_title: str, transcript: str,

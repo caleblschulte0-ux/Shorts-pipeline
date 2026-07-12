@@ -91,6 +91,19 @@ Done:
 - **Dimensional emoji set (§11)** — Microsoft Fluent UI Emoji 3D (MIT):
   one cohesive glossy/dimensional iOS-style set; the flat Noto generator
   remains as an offline fallback only.
+- **Banger pre-scorer (selection)** — velocity (views/hour) says a clip is
+  SPREADING, not that a stranger will watch it to the end. Before a render
+  slot is committed, the author brain (`author.rank_clips`) reads the
+  shortlist titles and rates shareability 0-1; `run_third` blends it
+  multiplicatively (`score *= 0.25 + 0.75*banger`) so a genuinely
+  funny/shocking clip can beat a boring viral one, obvious duds
+  (giveaway/drops/subathon spam, sponsor reads, pure "just chatting") get
+  buried, and an unknown/garbage title stays neutral (0.5, never killed — a
+  bad title often hides a great clip). The 0.25 floor keeps the brain a
+  deprioritizer, not a hard vetoer of a hugely viral clip. Cached run-wide
+  (`_BANGER_CACHE`) so overlapping shortlists don't re-pay the call; pure
+  velocity is the fallback when the brain is unreachable (rank returns {}),
+  so a token outage never blocks a post.
 
 - **SFX mixing rules (§12)** — all SFX mix into one bed that is sidechain-
   DUCKED by the dialogue: a boom can never bury what the streamer says.
