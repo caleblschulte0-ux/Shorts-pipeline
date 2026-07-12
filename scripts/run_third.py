@@ -22,6 +22,7 @@ import argparse
 import importlib
 import json
 import re
+import subprocess
 import sys
 import time
 from datetime import datetime, timezone, timedelta
@@ -300,11 +301,32 @@ def process(pkg: dict, pkg_path: Path | None, *,
             meta = None
             if words is not None:
                 from third_capture import author
+                try:
+                    clip_dur = float(subprocess.check_output(
+                        ["ffprobe", "-v", "quiet", "-show_entries",
+                         "format=duration", "-of", "csv=p=0",
+                         str(info["path"])], text=True, timeout=30).strip())
+                except Exception:  # noqa: BLE001
+                    clip_dur = words[-1]["e"] if words else 0.0
                 meta = author.author_package(
                     streamer, info["title"],
-                    " ".join(w["w"] for w in words), info["views"])
+                    " ".join(w["w"] for w in words), info["views"],
+                    words=words, clip_dur=clip_dur)
             hook = (meta or {}).get("hook") or pkg.get("hook", "")
             series = (meta or {}).get("series", "chaos")
+
+            # DIRECTOR COMPLETENESS GATE (§9): if the brain judges the clip
+            # starts mid-action with no context OR its payoff is cut off,
+            # skip it — a confusing clip is worse than a lost slot. Blocklist
+            # so it can't be re-picked (same as a QA rejection).
+            if meta and meta.get("edit", {}).get("complete") is False:
+                log["posted"][f"rejected-{slug}"] = {
+                    "source_url": info["url"], "streamer": streamer,
+                    "title": info["title"], "qa_rejected": True,
+                    "ts": datetime.now(timezone.utc).isoformat(),
+                }
+                raise RuntimeError(
+                    "director: clip incomplete (no setup / payoff cut off)")
 
             # Render + QA gate (playbook §16-18), with SELF-HEAL: if the
             # full auto-edit fails QA, re-render once as the plain simple

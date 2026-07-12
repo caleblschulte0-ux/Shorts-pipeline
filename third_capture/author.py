@@ -29,7 +29,8 @@ Twitch, and the transcript of what is said in the clip.
 Return STRICT JSON:
 {"title": str, "hook": str, "caption": str, "hashtags": [str, ...],
  "series": str,
- "edit": {"slam": str, "emoji": str, "replay_worthy": bool}}
+ "edit": {"slam": str, "emoji": str, "replay_worthy": bool,
+          "cut": {"start": number, "end": number}, "complete": bool}}
 
 Rules:
 - title: the formula is [Streamer name] + [emotional event] + [specific
@@ -63,6 +64,20 @@ Rules:
   - replay_worthy: true ONLY if the peak moment genuinely rewards seeing
     twice (a visible event, a wild line). Talking with nothing visual
     happening = false.
+  - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
+    first-time viewer instantly understands the moment. Use the [t.t-t.t]
+    timestamps in the transcript. start early enough to include the SETUP
+    (what's happening / the question / the stakes) — never open in the
+    middle of a sentence or reaction with no context. end AFTER the full
+    payoff AND its reaction lands (the laugh, the stunned pause, the
+    "bro"). It is better to keep a little extra than to clip the payoff.
+    If the whole clip is needed, use start 0 and end = the clip length.
+  - complete: true if this clip CONTAINS both an understandable beginning
+    and the payoff. false if it starts mid-action with no way to tell
+    what's going on, OR the payoff is clearly cut off (the clip ends right
+    as the key thing is happening, before you see the result/reaction). A
+    false clip confuses the viewer, so we skip it — only mark false when
+    you are genuinely sure the clip is broken this way; when unsure, true.
 
 HONESTY (hard rules):
 - If the transcript is noisy, thin, or ambiguous, DO NOT infer what the
@@ -82,25 +97,48 @@ _SENSITIVE = ("gender", "feminin", "masculin", "trans", "race", "racis",
               "abortion", "immigra")
 
 
+def _timestamped(words: list[dict]) -> str:
+    """Compact [start-end] transcript so the director can reason about WHEN
+    the setup and payoff happen (for the cut boundaries)."""
+    lines, cur, cs, ce = [], [], None, None
+    for w in words:
+        if cs is None:
+            cs = w["s"]
+        cur.append(w["w"])
+        ce = w["e"]
+        if len(cur) >= 8:
+            lines.append(f"[{cs:.1f}-{ce:.1f}] {' '.join(cur)}")
+            cur, cs = [], None
+    if cur:
+        lines.append(f"[{cs:.1f}-{ce:.1f}] {' '.join(cur)}")
+    return "\n".join(lines)
+
+
 def _build_user_prompt(streamer: str, clip_title: str, transcript: str,
-                       views: int) -> str:
+                       views: int, words: list[dict] | None = None,
+                       clip_dur: float = 0.0) -> str:
     sparse = len(transcript.split()) < 8
+    body = (_timestamped(words) if words else transcript)[:1800]
+    dur_note = (f"Clip length: {clip_dur:.1f}s. The transcript below is "
+                f"time-stamped [start-end] in seconds — use it to choose "
+                f"edit.cut.\n" if words and clip_dur else "")
     return (f"Streamer: {streamer}\n"
             f"Original clip title: {clip_title!r}\n"
             f"Twitch views in <24h: {views}\n"
+            + dur_note
             + ("NOTE: the clip has almost no dialogue (screaming/"
                "crowd moment) — build the title from the original "
                "clip title and the streamer, do NOT guess events.\n"
                if sparse else "")
-            + f"Transcript (whisper, may have small errors):\n"
-              f"{transcript[:1800]}")
+            + f"Transcript (whisper, may have small errors):\n{body}")
 
 
 def _norm(s: str) -> str:
     return re.sub(r"[^a-z0-9]", "", s.lower())
 
 
-def _postprocess(out: dict, streamer: str, context: str) -> dict | None:
+def _postprocess(out: dict, streamer: str, context: str,
+                 clip_dur: float = 0.0) -> dict | None:
     import difflib
     title = str(out.get("title", "")).strip()
     hook = str(out.get("hook", "")).strip().upper()
@@ -150,7 +188,21 @@ def _postprocess(out: dict, streamer: str, context: str) -> dict | None:
     if emoji not in _EMOJI_OK:
         emoji = ""
     edit = {"slam": slam, "emoji": emoji,
-            "replay_worthy": bool(edit_raw.get("replay_worthy", True))}
+            "replay_worthy": bool(edit_raw.get("replay_worthy", True)),
+            "complete": bool(edit_raw.get("complete", True))}
+
+    # Narrative cut window (§9): trusted only when it's sane against the
+    # known clip length — a >=3s span inside [0, clip_dur]. Anything off
+    # falls back to the heuristic tight-cut (no cut key).
+    cut_raw = edit_raw.get("cut") or {}
+    try:
+        cs, ce = float(cut_raw.get("start")), float(cut_raw.get("end"))
+        lo, hi = max(0.0, cs), (min(ce, clip_dur) if clip_dur else ce)
+        if hi - lo >= 3.0 and lo >= 0.0 and (not clip_dur or hi <= clip_dur
+                                             + 0.5):
+            edit["cut"] = {"start": round(lo, 2), "end": round(hi, 2)}
+    except (TypeError, ValueError):
+        pass
 
     return {"title": title[:95], "hook": hook[:60], "caption": caption,
             "hashtags": tags, "series": series or "chaos", "edit": edit}
@@ -197,15 +249,18 @@ def _call_groq(user: str) -> dict | None:
 
 
 def author_package(streamer: str, clip_title: str, transcript: str,
-                   views: int) -> dict | None:
+                   views: int, words: list[dict] | None = None,
+                   clip_dur: float = 0.0) -> dict | None:
     """Claude-first (the brain), Groq fallback (LOUD, per repo doctrine),
-    None (raw clip title) last. Authoring never blocks a post."""
-    user = _build_user_prompt(streamer, clip_title, transcript, views)
+    None (raw clip title) last. Authoring never blocks a post. `words`
+    (timestamped) + `clip_dur` let the director choose the narrative cut."""
+    user = _build_user_prompt(streamer, clip_title, transcript, views,
+                              words=words, clip_dur=clip_dur)
     context = f"{clip_title} {transcript}"
     try:
         out = _call_claude(user)
         if out is not None:
-            meta = _postprocess(out, streamer, context)
+            meta = _postprocess(out, streamer, context, clip_dur=clip_dur)
             if meta:
                 print(f"[author] Claude authored: {meta['title']!r}",
                       flush=True)
@@ -216,7 +271,7 @@ def author_package(streamer: str, clip_title: str, transcript: str,
     try:
         out = _call_groq(user)
         if out is not None:
-            meta = _postprocess(out, streamer, context)
+            meta = _postprocess(out, streamer, context, clip_dur=clip_dur)
             if meta:
                 print(f"::warning::[author] GROQ FALLBACK authored: "
                       f"{meta['title']!r}", flush=True)

@@ -70,8 +70,18 @@ Done:
   midpoint, no ping-pong cuts). The plan + reasons land in the ledger
   (`shot_plan`). Wide/uncertain → blur-fill whole frame. (§3-§8)
 
-- **Clip boundaries (§9)** — never open on dead air; 2.2s reaction tail after
-  the last word (the reaction IS the payoff); the 45s cap snaps back to the
+- **Director-chosen cut boundaries (§4-5, §9)** — the author brain reads the
+  TIME-STAMPED transcript and picks `edit.cut {start,end}`: begin at the
+  setup (never mid-story), end after the full payoff AND its reaction. That
+  window drives the render, replacing the blind first-word/last-word trim
+  when the brain is confident. It also returns `edit.complete` — false when
+  a clip starts mid-action with no context or its payoff is cut off; such
+  clips are skipped + blocklisted (a confusing clip is worse than a lost
+  slot). Both are validated against the real clip length; bad/absent values
+  fall back to the heuristic tight-cut. (Directly targets: "cuts off before
+  the payoff" / "starts in the middle so the viewer is lost".)
+- **Clip boundaries (§9, heuristic fallback)** — never open on dead air; 2.2s
+  reaction tail after the last word (the reaction IS the payoff); the 45s cap snaps back to the
   last word that fully fits (+1.0s) instead of slicing mid-word; captions
   only for words entirely inside the cut; 0.25s audio fade-out so no clip
   ends on an abrupt chop.
