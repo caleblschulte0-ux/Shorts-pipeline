@@ -794,9 +794,131 @@ def _streaks(n, direction, length, spread, bright, frames,
             em.keyframe_insert(data_path="default_value", frame=f)
 
 
+def build_scale_chase(spec: dict):
+    """FIXTURE 2 (§7.5 v9) — the REFERENCE-FRAME comparison. Not four
+    objects in a corridor with numbers (a chart without axes). A single
+    continuous, accelerating pull-out through NESTED scales where each
+    'fast thing' becomes the next scale's 'almost stationary thing':
+
+      a bullet streaks past Earth  →  pull back: the bullet is a still
+      speck, now the whole EARTH is turning under it  →  pull back: Earth
+      is a still dot, now it is racing along its ORBIT  →  pull back: the
+      orbit is a tiny ring, now the whole system streaks through the
+      GALAXY.
+
+    The viewer keeps discovering 'the thing that looked fast is now
+    barely moving' — a mental-model transformation, not a magnitude
+    readout. Velocity is FELT (motion blur + direction-aligned streaks +
+    an accelerating dolly), never labelled."""
+    sc = bpy.context.scene
+    for o in list(sc.objects):
+        bpy.data.objects.remove(o, do_unlink=True)
+    accent = _hex(spec.get("accent", "#4FD1C5"))
+    frames = _frames(sc, spec)
+    f1, f2, f3 = (int(frames * x) for x in (0.28, 0.58, 0.82))
+
+    # --- the nested world, all in the XY ecliptic plane ---
+    # the Sun at the orbit's centre
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=9, location=(0, 0, 0),
+                                         segments=32, ring_count=16)
+    bpy.context.object.data.materials.append(
+        _emission("sun", (1.0, 0.83, 0.45), 45.0))
+    bpy.ops.object.light_add(type="SUN", location=(0, 0, 60))
+    bpy.context.object.data.energy = 2.2
+    R = 62.0                                        # orbit radius
+    # the orbit path + tangential streaks (lit only once Earth is racing)
+    bpy.ops.mesh.primitive_torus_add(major_radius=R, minor_radius=0.06,
+                                     location=(0, 0, 0), major_segments=128,
+                                     minor_segments=8)
+    bpy.context.object.data.materials.append(_emission("orbit", accent, 2.4))
+    # Earth revolves on its own empty; spins on a nested one
+    bpy.ops.object.empty_add(location=(0, 0, 0))
+    eorb = bpy.context.object                       # revolution
+    eorb.rotation_euler = (0, 0, 0)
+    eorb.keyframe_insert(data_path="rotation_euler", frame=1)
+    eorb.rotation_euler = (0, 0, 1.15)              # sweeps ~66° of orbit
+    eorb.keyframe_insert(data_path="rotation_euler", frame=frames)
+    bpy.ops.object.empty_add(location=(R, 0, 0))
+    espin = bpy.context.object                      # rotation
+    espin.parent = eorb
+    espin.rotation_euler = (0, 0, 0)
+    espin.keyframe_insert(data_path="rotation_euler", frame=1)
+    espin.rotation_euler = (0, 0, 3.4)              # visible turning
+    espin.keyframe_insert(data_path="rotation_euler", frame=frames)
+    _the_earth(3.0, (R, 0, 0), parent=espin,
+               continents=spec.get("continents"))
+    # a bullet streaking past the near limb of Earth (stage 1)
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.09, depth=1.1,
+                                        location=(R + 3.2, -6.0, 0.6))
+    bullet = bpy.context.object
+    bullet.rotation_euler = (math.radians(90), 0, 0)   # points along Y
+    bullet.parent = espin
+    bullet.data.materials.append(_emission("bullet", (1.0, 0.9, 0.7), 4.0))
+    bullet.location = (R + 3.2, -7.5, 0.6)
+    bullet.keyframe_insert(data_path="location", frame=1)
+    bullet.location = (R + 3.2, 7.5, 0.6)
+    bullet.keyframe_insert(data_path="location", frame=max(2, f1))
+    # bullet-speed streaks along its travel axis (+Y), near Earth
+    _streaks(10, (0, 1, 0), 6.0, 3.0, 5.0, frames, f_on=1, f_full=max(2, f1),
+             color=(1.0, 0.95, 0.8), origin=(R + 3.2, 0, 0.6))
+    # the galaxy: a big spiral of emission points, slowly turning
+    bpy.ops.object.empty_add(location=(0, 0, 0))
+    gal = bpy.context.object
+    gal.rotation_euler = (0, 0, 0)
+    gal.keyframe_insert(data_path="rotation_euler", frame=1)
+    gal.rotation_euler = (0, 0, 0.5)
+    gal.keyframe_insert(data_path="rotation_euler", frame=frames)
+    for i in range(150):
+        th = 0.30 * i
+        rr = 120 + 12.0 * th
+        for arm in (0.0, math.pi):
+            x = (rr) * math.cos(th + arm)
+            y = (rr) * math.sin(th + arm)
+            z = (((i * 7) % 11) - 5) * 6.0
+            bpy.ops.mesh.primitive_uv_sphere_add(
+                radius=6.0, location=(x, y, z), segments=6, ring_count=3)
+            g = bpy.context.object
+            g.parent = gal
+            g.data.materials.append(_emission(
+                f"g{i}_{arm:.0f}",
+                (0.72, 0.8, 1.0) if i % 4 else (1.0, 0.9, 0.75), 3.0))
+    _stars(120, spread=3600.0, exclude=900.0, bright=4.0)
+    _dark_world(sc)
+
+    # --- the accelerating pull-out; TRACK_TO target moves Earth -> Sun ---
+    bpy.ops.object.empty_add(location=(R, 0, 0))
+    target = bpy.context.object
+    target.parent = eorb                            # rides with Earth early
+    bpy.ops.object.camera_add()
+    cam = bpy.context.object
+    sc.camera = cam
+    cam.data.clip_end = 20000
+    tc = cam.constraints.new(type="TRACK_TO")
+    tc.target = target
+    # the camera un-parents from Earth after stage 1 by animating its own
+    # world position through the nested scales (exponential = acceleration)
+    keys = ((1, (R + 2.0, -13.0, 4.0)),
+            (f1, (R + 6.0, -34.0, 12.0)),
+            (f2, (18.0, -230.0, 120.0)),
+            (f3, (0.0, -1500.0, 800.0)),
+            (frames, (0.0, -5200.0, 2600.0)))
+    for f, loc in keys:
+        cam.location = loc
+        cam.keyframe_insert(data_path="location", frame=f)
+    # let the track hand off from Earth to the system centre as we recede
+    tc.influence = 1.0
+    _bezier(cam)
+    for fc in cam.animation_data.action.fcurves:    # ease OUT of the dolly
+        for kp in fc.keyframe_points:
+            kp.handle_right_type = kp.handle_left_type = "AUTO_CLAMPED"
+    _dof(cam, target, fstop=2.2)                    # hold focus on the subject
+    spec.setdefault("motion_blur", 0.55)            # sell the streak
+    _render_settings(sc, spec)
+
+
 TEMPLATES = {"monoliths": build, "earth_dive": build_earth_dive,
              "earth_spin": build_earth_spin, "orbit_fly": build_orbit_fly,
-             "cosmic_exit": build_cosmic_exit}
+             "cosmic_exit": build_cosmic_exit, "scale_chase": build_scale_chase}
 
 
 def main():
