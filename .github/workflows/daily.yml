@@ -239,22 +239,26 @@ jobs:
           - state/posted_log.json                  (do NOT reuse a subject/title posted recently)
 
           CHANNEL RESET v2 (2026-07) — this REPLACES all older doctrine. Enforce exactly:
-          - FORMAT (locked): viral Reddit-style DRAMA STORY. First-person, high-stakes, emotionally charged. Buckets: AITA (am I the a-hole), relationship betrayal / cheating, entitled family / in-laws, weddings gone wrong, petty revenge, "malicious compliance", workplace blowups. Original story written in authentic Reddit voice — NOT a real copied post.
-          - HOOK (open loop — for stories this is CORRECT): sentence 1 drops the reader into the most shocking moment or the jaw-dropping premise so they NEED to know what happens. Example: "My fiance's mother stood up at our rehearsal dinner and read my private diary out loud." Name the drama, withhold the resolution.
-          - VOICE: real, specific, first-person ("I", "my"). Concrete details (names, ages, texts, exact quotes). Rising tension. It must feel like a real person venting, not a summary.
-          - LENGTH: ~130-170 words, ONE paragraph. Renders ~45-60s (a Short). Too short kills the drama; too long overflows 60s.
-          - ENDING: land on the TWIST or a cliffhanger gut-punch. NO question, NO "what would you do?", NO "part 2?" call-to-action.
+          - FORMAT (locked): viral Reddit-style DRAMA STORY. First-person, high-stakes, emotionally charged. Original story in authentic Reddit voice — NOT a copied post.
+          - SUBREDDIT: pick ONE that fits and set the "subreddit" field: AmItheAsshole, relationship_advice, pettyrevenge, TrueOffMyChest, entitledparents, MaliciousCompliance. Do NOT reuse the same subreddit or premise as the last 3 posts (check state/posted_log.json).
+          - TITLE = THE HOOK: it is read aloud FIRST over the Reddit card, so it must be a jaw-dropping open loop that names the drama and withholds the payoff (e.g. "AITA for reading my sister's texts out loud at my wedding after what I found?").
+          - SCRIPT HOOK: sentence 1 drops straight into the shocking moment (no throat-clearing). Every sentence escalates.
+          - VOICE: real, specific, first-person ("I", "my"). Concrete details (names, ages, exact texts/quotes). Rising tension. Feels like a real person venting, not a summary.
+          - LENGTH: ~130-170 words, ONE paragraph. Renders ~45-60s (a Short).
+          - ENDING: land on a TWIST gut-punch, OR a genuine cliffhanger that makes them rewatch/follow for the rest (a real unresolved reveal — "...and that's when I saw the second bank account." — NOT a lazy "what would you do?" or "like for part 2"). One or the other; make it land.
+          - TOS-SAFE (keeps us monetizable, off age-restriction): NO slurs, NO explicit sexual detail, NO graphic violence. Soften hard profanity ("freaking", "screwed", "a-hole") — the drama comes from the situation, not the words.
 
           WRITE EXACTLY 1 file named 01_<slug>.json, EXACT schema:
-          {"version":1,"slug":"kebab-unique","title":"dramatic first-person clickbait title (AITA / 'My X did Y') <=90 chars","hashtags":["10-12 lowercase no #, e.g. reddit aita storytime drama"],"script":"~130-170 words, one paragraph, first-person, opens on the shock, ends on the twist (NOT a question)","shots":[{"phrase":"EXACT substring of script","query":"mood b-roll search, e.g. woman crying, phone text messages, wedding, couple arguing","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"EXACT substring of script","text":"SHORT CAPS","color":"#ff3030"}],"music_vibe":"dark|hiphop|cinematic (use dark for drama)"}
-          6-8 shots (mood b-roll matching each beat — NO Commons hero image needed, these are stock mood shots) and 3-5 punches on the most shocking phrases.
+          {"version":1,"slug":"kebab-unique","subreddit":"AmItheAsshole","title":"dramatic first-person clickbait title read over the card <=100 chars","hashtags":["10-12 lowercase no #, e.g. reddit aita storytime redditstories drama"],"script":"~130-170 words, one paragraph, first-person, opens on the shock, ends on a twist or true cliffhanger (NOT a question)","shots":[{"phrase":"EXACT substring of script","query":"mood b-roll search, e.g. woman crying, phone text messages, wedding, couple arguing","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"EXACT substring of script","text":"SHORT CAPS","color":"#ff3030"}],"music_vibe":"dark|hiphop|cinematic (use dark for drama)"}
+          Set "subreddit". 6-8 shots (mood b-roll matching each beat) and 3-5 punches on the most shocking phrases. (username, upvotes, comments are auto-generated for the card — do not set them.)
 
           HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
           1. Every shot.phrase and punch.phrase MUST be an exact substring of that file's script (exact, case-sensitive).
-          2. The file parses as valid JSON. Script is 120-180 words, first-person, and does NOT end in a question. Exactly 1 file.
-          3. Do NOT copy a real Reddit post verbatim — write an ORIGINAL story in that voice (avoids copyright + "reused content").
+          2. The file parses as valid JSON, sets "subreddit", is first-person, 120-180 words, and does NOT end in a question. Exactly 1 file.
+          3. ORIGINAL story (never a copied post). TOS-safe: no slurs, no explicit sexual/violent detail, hard profanity softened.
+          4. Premise + subreddit differ from the last 3 entries in state/posted_log.json.
 
-          Finish by printing the title and confirming substring + word-count + first-person + no-end-question checks passed.
+          Finish by printing the title + subreddit and confirming substring + word-count + first-person + no-end-question + TOS + non-repeat checks passed.
           EOF
           echo "brain: authoring into $DIR ..."
           claude -p "$(cat "$RUNNER_TEMP/brain_prompt.txt")" \
@@ -269,6 +273,11 @@ jobs:
 
       - name: Run daily orchestrator
         id: run
+        # Gate on the kill switch: without this the orchestrator uploaded even
+        # while PAUSED_DAILY / auto-pause were set, and because the logging
+        # step IS gated the post never got recorded (re-post risk). Now a
+        # paused run uploads nothing, so upload and logging stay in lockstep.
+        if: steps.preflight.outputs.skip == ''
         continue-on-error: true
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
