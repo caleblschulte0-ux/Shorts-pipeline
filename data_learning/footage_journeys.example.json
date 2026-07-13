@@ -1,12 +1,13 @@
 {
   "_comment": "Panel-certified footage-primary journeys (CURIOSITY_BRAIN §7.5 v9). Each 'beats' list feeds scripts/footage_preview.py. ss/seconds are tuned to clean, real-footage windows (no NASA slates, no title cards, no black leader). Lesson from the panel: ONE coherent journey (causally connected shots) passes; a scale-montage of unrelated shots (rocket->earth->sun) FAILS as auto-assembled. Match dissolve brightness (a blown-out shot into a dark starfield sparkles). End on the peak, not a decrescendo.",
   "leaving_earth": {
-    "verdict": "UNANIMOUS PASS (viewer 88 / editor 76 / adversarial 80, zero critical failures)",
+    "verdict": "UNANIMOUS PASS x2 (v5 crescendo cut: viewer 88 / editor PASS / adversarial 80; earlier v4 pull-out cut also passed 88/76/80). Zero critical failures either way. Panel note: end on the peak (v5) not a decrescendo (v4).",
     "xfade": 0.7,
     "beats": [
       {"nasa_id": "KSC-20240525-MH-RKL0", "ss": 23.4, "seconds": 3.9, "push": 1.05, "direction": "in", "_note": "liftoff; ENDS 27.3 before the black leader at 27.4"},
-      {"nasa_id": "GSFC_20181022_ICON_m12902_Airglow", "ss": 73.0, "seconds": 5.5, "push": 1.06, "direction": "in", "_note": "night-Earth city-lights pass"},
-      {"nasa_id": "GSFC_20181022_ICON_m12902_Airglow", "ss": 66.0, "seconds": 6.5, "push": 1.07, "direction": "out", "_note": "climactic reveal: Milky Way + airglow limb + stars"}
-    ]
+      {"nasa_id": "GSFC_20181022_ICON_m12902_Airglow", "ss": 66.0, "seconds": 5.0, "push": 1.06, "direction": "out", "_note": "cosmic reveal MIDDLE: Milky Way + airglow limb + stars"},
+      {"nasa_id": "GSFC_20181022_ICON_m12902_Airglow", "ss": 74.0, "seconds": 6.0, "push": 1.09, "direction": "in", "_note": "crescendo FINISH: push into bright green-airglow + dense city lights (strongest frame last)"}
+    ],
+    "_known_soft_spot": "the launch->orbit dissolve frame (~3s) is dark/near-empty because the liftoff beat ends approaching the black leader; not a critical failure but the thinnest composition. Fixable by starting the orbit beat on a brighter frame or shortening xfade."
   }
 }
