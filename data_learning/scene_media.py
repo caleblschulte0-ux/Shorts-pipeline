@@ -443,11 +443,14 @@ def subject_photo_cutout(subject: str, slug: str, tag: str, *, context: str = ""
 
 
 def fetch_hook_image(story, *, cache_dir: Path = CACHE_DIR) -> Path | None:
-    """AI-first cinematic hook image for a story; stock then designed fallback."""
+    """A REAL full-bleed photo of the story's subject for the hook — a genuine
+    picture of the thing (Wikipedia/Commons), NEVER an AI still. Falls back to
+    None (designed background) if no relevant photo is found. No AI generation:
+    the AI mood-image was generic and tanked the first-second retention."""
     if getattr(story, "hook_image", None) is False:
         return None
     cands = hook_media._candidates(story)
     subject = (getattr(story, "hook_query", "") or " ".join(cands[:2])
                or getattr(story, "title", "")).strip()
-    return scene_image(subject, getattr(story, "slug", "story"), "hook",
-                       context=getattr(story, "hook", "") or "", cache_dir=cache_dir)
+    return subject_photo(subject, getattr(story, "slug", "story"), "hookbg",
+                         context=getattr(story, "hook", "") or "")

@@ -1171,9 +1171,9 @@ def _add_3d_bookends(story_cfg: dict, st, work: Path, theme: dict,
     payoff. Guarded end-to-end: if anything fails, the body video is left
     untouched so a render never dies over this layer."""
     accent = theme.get("accent") or "#4FD1C5"
-    # Opener = the hook (NOT a chart — a chart is a retention killer up front).
-    opener = _hook_clip(story_cfg, st, work, theme, 2.8)
-    # 3D stays as the PAYOFF reveal at the end.
+    # No prepended card — the hook is the body's FIRST beat (full-bleed real
+    # photo + hard zoom + the VO hook + bold caption). 3D is the payoff closer.
+    opener = None
     closer = _hero_clip(_seg_points(story_cfg, -1), st.title, work, "close", accent, 3.0,
                         grow=True)
     if not opener and not closer:
@@ -1299,20 +1299,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         broll_path, off = _pick_broll(total)
         use_broll = broll_path is not None
 
-        # NO AI mood-image on the hook. The generated cinematic image that used
-        # to fill the first ~4s was generic and is a prime suspect for the ~69%
-        # first-second swipe (retention data 2026-07-12). The 3D Blender hero is
-        # the visual opener now; the hook beat rides the designed background so
-        # the first frames are data/motion, never a stock-looking AI still.
-        # Opt back in per-render with HOOK_AI_IMAGE=1 if ever needed.
+        # HOOK = full-bleed REAL subject photo (never AI) behind the VO hook,
+        # pushed hard with Ken Burns so frame 1 is motion + a real image. This is
+        # the pro open: full-frame visual + the spoken hook + a bold caption, no
+        # black cards, no charts, no stock-looking AI still.
         hook_img = None
-        import os as _os
-        if _os.environ.get("HOOK_AI_IMAGE") == "1":
-            try:
-                from data_learning import scene_media
-                hook_img = scene_media.fetch_hook_image(st)
-            except Exception as e:  # noqa: BLE001 — never block a render on this
-                print(f"[studio] hook image skipped: {e}", flush=True)
+        try:
+            from data_learning import scene_media
+            hook_img = scene_media.fetch_hook_image(st)   # real photo
+        except Exception as e:  # noqa: BLE001 — never block a render on this
+            print(f"[studio] hook image skipped: {e}", flush=True)
 
         # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, [hook img], charts, mascots, audio
         inputs = ["-f", "lavfi", "-i",
@@ -1371,12 +1367,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # whole hook window is the #1 swipe-away trigger. Push in slowly
             # (zoompan) so the first frame is ALWAYS moving — never a frozen photo.
             zframes = max(1, int((he + 0.6) * FPS))
+            # HARD, fast push-in (1.12 -> ~1.6) so frame 1 is already moving with
+            # energy — a slow drift reads as a static slide and gets swiped.
             fc.append(
-                f"[{hook_idx}:v]scale={int(W*1.35)}:{int(H*1.35)}:"
-                f"force_original_aspect_ratio=increase,crop={int(W*1.35)}:{int(H*1.35)},"
-                f"zoompan=z='min(zoom+0.0012,1.30)':d={zframes}:"
-                f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS},"
-                f"eq=brightness=-0.16:saturation=1.05,format=rgba,"
+                f"[{hook_idx}:v]scale={int(W*1.6)}:{int(H*1.6)}:"
+                f"force_original_aspect_ratio=increase,crop={int(W*1.6)}:{int(H*1.6)},"
+                f"zoompan=z='min(zoom+0.0032,1.6)':d={zframes}:fps={FPS}:"
+                f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H},"
+                f"eq=brightness=-0.14:saturation=1.12:contrast=1.06,format=rgba,"
                 f"fade=t=out:st={max(0.1, he - 0.5):.2f}:d=0.5:alpha=1[hookimg]")
             fc.append(
                 f"[{prev}][hookimg]overlay=0:0:"
