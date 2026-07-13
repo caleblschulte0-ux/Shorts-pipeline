@@ -157,6 +157,77 @@ def build_card(out: str | Path, *, subreddit: str, username: str, title: str,
     return Path(out)
 
 
+# ---------- realism + variety (#11) ----------
+
+# Subreddits we author for, weighted toward the highest-drama / highest-view
+# lanes. Kept in sync with the Brain's allowed buckets.
+SUBREDDITS = [
+    "AmItheAsshole", "AmItheAsshole", "relationship_advice",
+    "relationship_advice", "pettyrevenge", "TrueOffMyChest",
+    "entitledparents", "MaliciousCompliance",
+]
+
+_USER_ADJ = ["throwaway", "confused", "anon", "tired", "sad", "furious",
+             "conflicted", "done", "petty", "hopeful", "lost", "shook"]
+_USER_NOUN = ["bride", "sister", "mom", "wife", "husband", "dad", "aunt",
+              "friend", "roomie", "coworker", "user", "account", "person"]
+
+
+def _seed_from(text: str) -> int:
+    h = 0
+    for c in text:
+        h = (h * 131 + ord(c)) & 0x7FFFFFFF
+    return h
+
+
+def gen_username(seed_text: str) -> str:
+    """Deterministic realistic throwaway username from a story slug/title."""
+    s = _seed_from(seed_text)
+    adj = _USER_ADJ[s % len(_USER_ADJ)]
+    noun = _USER_NOUN[(s // 7) % len(_USER_NOUN)]
+    num = (s // 13) % 900 + 20
+    return f"{adj}_{noun}{num}"
+
+
+def pick_subreddit(seed_text: str) -> str:
+    return SUBREDDITS[_seed_from(seed_text) % len(SUBREDDITS)]
+
+
+def _fmt_count(n: int) -> str:
+    if n >= 1000:
+        v = n / 1000.0
+        return f"{v:.1f}k".replace(".0k", "k")
+    return str(n)
+
+
+def scale_counts(seed_text: str) -> tuple[str, str]:
+    """Realistic, viral-but-plausible upvote + comment counts. Upvotes land
+    12k-58k; comments ~8-16% of upvotes — the ratio real front-page posts show."""
+    s = _seed_from(seed_text)
+    up = 12000 + (s % 46000)
+    up = int(round(up / 100.0) * 100)
+    com = int(up * (0.08 + (s % 80) / 1000.0))
+    com = int(round(com / 100.0) * 100)
+    return _fmt_count(up), _fmt_count(com)
+
+
+def card_fields(pkg: dict) -> dict:
+    """Fill card fields from a package: honor any the author set, else
+    auto-generate deterministically from the slug so a card looks real without
+    the writer having to invent usernames/counts."""
+    seed = pkg.get("slug") or pkg.get("title") or "reddit"
+    sub = pkg.get("subreddit") or pick_subreddit(seed)
+    user = pkg.get("username") or gen_username(seed)
+    up, com = scale_counts(seed)
+    return {
+        "subreddit": sub,
+        "username": user,
+        "upvotes": pkg.get("upvotes") or up,
+        "comments": pkg.get("comments") or com,
+        "avatar_seed": _seed_from(seed),
+    }
+
+
 if __name__ == "__main__":
     import sys
     out = sys.argv[1] if len(sys.argv) > 1 else "reddit_card_sample.png"
