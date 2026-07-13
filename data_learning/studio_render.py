@@ -395,22 +395,16 @@ def _tts_text(text: str) -> str:
     return _spell_numbers(text)
 
 
-def _speechify_wav(text: str, out_wav: Path) -> bool:
-    """Synthesize ONE line with Speechify's cloud TTS -> WAV. Returns False on
-    any error (no key, quota/429, bad voice), so the caller falls back to the
-    local Kokoro voice. Model + voice come from env (defaults: simba-3.2)."""
+_SPEECHIFY_MODEL_OK = None            # cache the model that actually worked
+
+
+def _speechify_try(text: str, out_wav: Path, key: str, voice: str, model: str):
+    """One request. Returns (True, None) on success or (False, err_detail)."""
     import base64
-    import os
+    import urllib.error
     import urllib.request
-    key = os.environ.get("SPEECHIFY_API_KEY")
-    if not key:
-        return False
-    body = json.dumps({
-        "input": text,
-        "voice_id": os.environ.get("SPEECHIFY_VOICE", "henry"),
-        "audio_format": "wav",
-        "model": os.environ.get("SPEECHIFY_MODEL", "simba-3.2"),
-    }).encode()
+    body = json.dumps({"input": text, "voice_id": voice,
+                       "audio_format": "wav", "model": model}).encode()
     req = urllib.request.Request(
         "https://api.speechify.ai/v1/audio/speech", data=body,
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
@@ -419,12 +413,49 @@ def _speechify_wav(text: str, out_wav: Path) -> bool:
         with urllib.request.urlopen(req, timeout=60) as r:
             data = json.loads(r.read())
         out_wav.write_bytes(base64.b64decode(data["audio_data"]))
-        return out_wav.exists() and out_wav.stat().st_size > 1000
+        return (out_wav.exists() and out_wav.stat().st_size > 1000), None
+    except urllib.error.HTTPError as he:
+        detail = ""
+        try:
+            detail = he.read().decode()[:220]
+        except Exception:  # noqa: BLE001
+            pass
+        return False, f"HTTP {he.code}: {detail}"
     except Exception as e:  # noqa: BLE001
-        print(f"[tts] speechify failed ({str(e)[:140]}) — falling back to Kokoro",
-              file=sys.stderr)
-        _speechify_list_voices_once(key)
+        return False, str(e)[:180]
+
+
+def _speechify_wav(text: str, out_wav: Path) -> bool:
+    """Synthesize ONE line with Speechify -> WAV. Tries the requested model
+    (default simba-3.2), then falls back through valid API models so a bad model
+    string still lets Speechify win before we drop to the local Kokoro voice."""
+    global _SPEECHIFY_MODEL_OK
+    import os
+    key = os.environ.get("SPEECHIFY_API_KEY")
+    if not key:
         return False
+    voice = os.environ.get("SPEECHIFY_VOICE", "henry")
+    # Requested model first (honour SPEECHIFY_MODEL / "3.2"), then known-valid
+    # API models. Once one works, stick with it for the rest of the video.
+    order = [_SPEECHIFY_MODEL_OK] if _SPEECHIFY_MODEL_OK else []
+    for m in [os.environ.get("SPEECHIFY_MODEL", "simba-3.2"),
+              "simba-english", "simba-multilingual", "simba-turbo"]:
+        if m and m not in order:
+            order.append(m)
+    last = None
+    for model in order:
+        ok, err = _speechify_try(text, out_wav, key, voice, model)
+        if ok:
+            if _SPEECHIFY_MODEL_OK != model:
+                print(f"[tts] speechify OK on model={model!r} voice={voice!r}",
+                      flush=True)
+                _SPEECHIFY_MODEL_OK = model
+            return True
+        last = err
+    print(f"[tts] speechify failed ({last}) — falling back to Kokoro",
+          file=sys.stderr)
+    _speechify_list_voices_once(key)
+    return False
 
 
 _VOICES_LOGGED = False
@@ -443,8 +474,14 @@ def _speechify_list_voices_once(key: str) -> None:
                                      headers={"Authorization": f"Bearer {key}"})
         with urllib.request.urlopen(req, timeout=30) as r:
             voices = json.loads(r.read())
-        ids = [v.get("id") or v.get("voice_id") for v in (voices or [])][:25]
-        print(f"[tts] speechify available voice_ids: {ids}", file=sys.stderr)
+        items = voices.get("voices", voices) if isinstance(voices, dict) else voices
+        ids = []
+        for v in (items or []):
+            if isinstance(v, dict):
+                ids.append(v.get("id") or v.get("voice_id") or v.get("name"))
+            else:
+                ids.append(v)
+        print(f"[tts] speechify voice_ids: {ids[:30]}", file=sys.stderr)
     except Exception as e:  # noqa: BLE001
         print(f"[tts] speechify voices list failed: {str(e)[:140]}", file=sys.stderr)
 
