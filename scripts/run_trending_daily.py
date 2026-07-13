@@ -53,6 +53,21 @@ import script_generator  # noqa: E402
 import make_explainer_stacked  # noqa: E402
 
 STATE_DIR = REPO / "state"
+
+
+def _render_package(pkg: dict, out_path) -> None:
+    """Route to the right renderer. Reddit-drama packages (they carry a
+    `subreddit`) get the genre renderer — full-screen gameplay, post card,
+    karaoke captions. Everything else keeps the explainer stack."""
+    if pkg.get("subreddit") or os.environ.get("REDDIT_FORMAT"):
+        import make_reddit_story
+        make_reddit_story.build_reddit_story(
+            pkg, out_path,
+            gameplay_tag=pkg.get("_gameplay_tag", "minecraft"))
+    else:
+        make_explainer_stacked.build_from_package(pkg, out_path)
+
+
 OUTPUT_DIR = REPO / "output"
 PACKAGE_DIR = STATE_DIR / "trending_packages"
 LOG_PATH = STATE_DIR / "posted_log.json"
@@ -396,7 +411,7 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         slug = _slug(result["topic"])
         out_path = OUTPUT_DIR / f"daily_{ts}_{slug}.mp4"
         print(f"[{result['topic']!r}] rendering -> {out_path}", flush=True)
-        make_explainer_stacked.build_from_package(pkg, out_path)
+        _render_package(pkg, out_path)
         result["video_path"] = str(out_path.relative_to(REPO))
 
         # Features 1 + 3: custom thumbnail + vision QA on the finished mp4.
@@ -490,7 +505,7 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
         # 2. Render to mp4.
         out_path = OUTPUT_DIR / f"daily_{ts}_{slug}.mp4"
         print(f"[{topic.query!r}] rendering -> {out_path}", flush=True)
-        make_explainer_stacked.build_from_package(pkg, out_path)
+        _render_package(pkg, out_path)
         result["video_path"] = str(out_path.relative_to(REPO))
 
         # Features 1 + 3: custom thumbnail + vision QA on the finished mp4.
