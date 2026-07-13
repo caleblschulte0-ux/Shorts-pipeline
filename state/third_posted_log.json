@@ -386,6 +386,73 @@
       "ts": "2026-07-12T12:16:25.688411+00:00",
       "source_url": "https://www.twitch.tv/plaqueboymax/clip/SneakyGeniusRavenThisIsSparta-HHHCpU3ELWx08U55",
       "streamer": "plaqueboymax"
+    },
+    "rejected-clip-20260713-1": {
+      "source_url": "https://www.twitch.tv/xqc/clip/EnergeticEmpathicElephantJKanStyle-0sOlvgAod9mDhCw4",
+      "streamer": "xqc",
+      "title": "the word",
+      "qa_rejected": true,
+      "ts": "2026-07-13T11:11:22.182866+00:00"
+    },
+    "clip-20260713-2": {
+      "url": "https://youtube.com/shorts/EO-NAo-Txic",
+      "title": "Stableronaldo Gets The Most Awkward Apology After His Ship Gets Sold",
+      "kind": "twitch_clip",
+      "ts": "2026-07-13T11:15:30.823980+00:00",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/KathishCooperativeCoyoteArsonNoSexy-Lb72J59C2oL9Nit7",
+      "streamer": "stableronaldo",
+      "series": "fail",
+      "hook": "HE ACCIDENTALLY SOLD HIS SHIP",
+      "cut": {
+        "start": 0.0,
+        "end": 16.48
+      },
+      "director_cut": true
+    },
+    "clip-20260713-3": {
+      "url": "https://youtube.com/shorts/1hLvAKngaoE",
+      "title": "Xqc Gets Sick of Chat's Debunking Attempts",
+      "kind": "twitch_clip",
+      "ts": "2026-07-13T11:19:30.536547+00:00",
+      "source_url": "https://www.twitch.tv/xqc/clip/SourOpenRavenOMGScoots-pE9TgaRXzdDlUofv",
+      "streamer": "xqc",
+      "series": "argument",
+      "hook": "XQC FED UP WITH CHAT'S DEBUNKING",
+      "cut": {
+        "start": 0.0,
+        "end": 37.88
+      },
+      "director_cut": true
+    },
+    "clip-20260713-4": {
+      "url": "https://youtube.com/shorts/jI3valh_pkI",
+      "title": "Jynxzi Takes Out Queasy In The Fortnite Pro-Am",
+      "kind": "twitch_clip",
+      "ts": "2026-07-13T11:26:28.184841+00:00",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CogentAttractiveMochaPeteZarollTie-gxmr_QWfxMQAl3dA",
+      "streamer": "jynxzi",
+      "series": "win",
+      "hook": "JYNXZI ELIMINATES QUEASY IN THE PRO-AM",
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20260713-5": {
+      "url": "https://youtube.com/shorts/6PepF5Y46g4",
+      "title": "Sodapoppin Gets Greedy Spamming Low-Level Heals",
+      "kind": "twitch_clip",
+      "ts": "2026-07-13T11:29:12.048478+00:00",
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/TriangularFilthyHamsterRitzMitz-Rl0b68pArRNZK2mI",
+      "streamer": "sodapoppin",
+      "series": "fail",
+      "hook": "HE ADMITS HE GOT GREEDY",
+      "cut": {
+        "start": 0.0,
+        "end": 6.8
+      },
+      "director_cut": true
     }
   }
 }

@@ -185,6 +185,55 @@
           "self_healed": true
         }
       ]
+    },
+    {
+      "date": "20260713",
+      "dry_run": false,
+      "ts": "2026-07-13T11:29:12+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 6,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 39,
+        "with_retention": 23,
+        "with_curve": 4,
+        "fetched_at": "2026-07-12T23:58:22.175946+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260713-1",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)"
+        },
+        {
+          "slug": "clip-20260713-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260713-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "two_shot",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260713-4",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260713-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        }
+      ]
     }
   ]
 }
