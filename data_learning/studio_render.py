@@ -396,6 +396,7 @@ def _tts_text(text: str) -> str:
 
 
 _SPEECHIFY_MODEL_OK = None            # cache the model that actually worked
+_SPEECHIFY_DEAD = False               # set on 429/401 so we stop hammering the API
 
 
 def _speechify_try(text: str, out_wav: Path, key: str, voice: str, model: str):
@@ -429,19 +430,22 @@ def _speechify_wav(text: str, out_wav: Path) -> bool:
     """Synthesize ONE line with Speechify -> WAV. Tries the requested model
     (default simba-3.2), then falls back through valid API models so a bad model
     string still lets Speechify win before we drop to the local Kokoro voice."""
-    global _SPEECHIFY_MODEL_OK
+    global _SPEECHIFY_MODEL_OK, _SPEECHIFY_DEAD
     import os
     key = os.environ.get("SPEECHIFY_API_KEY")
-    if not key:
+    if not key or _SPEECHIFY_DEAD:
         return False
     voice = os.environ.get("SPEECHIFY_VOICE", "henry")
-    # Requested model first (honour SPEECHIFY_MODEL / "3.2"), then known-valid
-    # API models. Once one works, stick with it for the rest of the video.
-    order = [_SPEECHIFY_MODEL_OK] if _SPEECHIFY_MODEL_OK else []
-    for m in [os.environ.get("SPEECHIFY_MODEL", "simba-3.2"),
-              "simba-english", "simba-multilingual", "simba-turbo"]:
-        if m and m not in order:
-            order.append(m)
+    # Known good model first (once one works, reuse it — no re-probing). Only
+    # explore other models before we've found one, to avoid hammering the API.
+    if _SPEECHIFY_MODEL_OK:
+        order = [_SPEECHIFY_MODEL_OK]
+    else:
+        order = []
+        for m in [os.environ.get("SPEECHIFY_MODEL", "simba-3.2"),
+                  "simba-english", "simba-multilingual", "simba-turbo"]:
+            if m and m not in order:
+                order.append(m)
     last = None
     for model in order:
         ok, err = _speechify_try(text, out_wav, key, voice, model)
@@ -452,9 +456,14 @@ def _speechify_wav(text: str, out_wav: Path) -> bool:
                 _SPEECHIFY_MODEL_OK = model
             return True
         last = err
-    print(f"[tts] speechify failed ({last}) — falling back to Kokoro",
+        # Rate-limited or unauthorized -> stop for the whole run (don't hammer).
+        if err and ("HTTP 429" in err or "HTTP 401" in err or "HTTP 403" in err):
+            _SPEECHIFY_DEAD = True
+            break
+    print(f"[tts] speechify unavailable ({last}) — using Kokoro for this batch",
           file=sys.stderr)
-    _speechify_list_voices_once(key)
+    if last and "HTTP 429" not in last:
+        _speechify_list_voices_once(key)
     return False
 
 
