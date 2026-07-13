@@ -17,6 +17,7 @@ timings, music) so only the composition is new.
 """
 from __future__ import annotations
 
+import json
 import os
 import random
 import shutil
@@ -246,6 +247,17 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
         ]
         print("[6/6] compose")
         _run(cmd)
+        # Audit sidecar (parity with the explainer renderer). The preview
+        # publish + downstream tooling glob for *.audit.json, so a render
+        # that omits it silently breaks that step.
+        try:
+            Path(str(out_path) + ".audit.json").write_text(json.dumps({
+                "out": str(out_path), "format": "reddit_story",
+                "subreddit": cf["subreddit"], "title_end_s": round(title_end, 2),
+                "duration_s": round(total, 2),
+            }, indent=2) + "\n")
+        except Exception as e:  # noqa: BLE001
+            print(f"      [audit write fail] {e}")
         print(f"done -> {out_path}")
     finally:
         shutil.rmtree(workdir, ignore_errors=True)
