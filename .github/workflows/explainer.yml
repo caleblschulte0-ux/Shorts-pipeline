@@ -351,6 +351,13 @@ jobs:
           # doesn't hit the free-tier 429s that were dropping the invention. If the
           # secret is unset this is empty -> the director falls over to Gemini/Groq.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Speechify cloud TTS for the narration (trial): studio_render uses it
+          # when the key is present and falls back to the local Kokoro voice the
+          # moment it errors/quota-limits. Voice + model overridable via repo
+          # vars; default model simba-3.2 ("3.2").
+          SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
+          SPEECHIFY_VOICE: ${{ vars.SPEECHIFY_VOICE || 'henry' }}
+          SPEECHIFY_MODEL: ${{ vars.SPEECHIFY_MODEL || 'simba-3.2' }}
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"

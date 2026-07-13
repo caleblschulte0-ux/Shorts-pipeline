@@ -395,27 +395,101 @@ def _tts_text(text: str) -> str:
     return _spell_numbers(text)
 
 
-def synth_narration(sentences, workdir: Path, voice: str):
-    import soundfile as sf
-    from kokoro_onnx import Kokoro
-
-    k = Kokoro(str(KOKORO_MODEL), str(KOKORO_VOICES))
-    # Validate the themed voice once; fall back to the house voice if the id
-    # isn't in this Kokoro build, so a theme can never break a render.
+def _speechify_wav(text: str, out_wav: Path) -> bool:
+    """Synthesize ONE line with Speechify's cloud TTS -> WAV. Returns False on
+    any error (no key, quota/429, bad voice), so the caller falls back to the
+    local Kokoro voice. Model + voice come from env (defaults: simba-3.2)."""
+    import base64
+    import os
+    import urllib.request
+    key = os.environ.get("SPEECHIFY_API_KEY")
+    if not key:
+        return False
+    body = json.dumps({
+        "input": text,
+        "voice_id": os.environ.get("SPEECHIFY_VOICE", "henry"),
+        "audio_format": "wav",
+        "model": os.environ.get("SPEECHIFY_MODEL", "simba-3.2"),
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.speechify.ai/v1/audio/speech", data=body,
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        method="POST")
     try:
-        k.create("test", voice=voice, lang="en-us")
-    except Exception:  # noqa: BLE001
-        voice = "am_fenrir"
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = json.loads(r.read())
+        out_wav.write_bytes(base64.b64decode(data["audio_data"]))
+        return out_wav.exists() and out_wav.stat().st_size > 1000
+    except Exception as e:  # noqa: BLE001
+        print(f"[tts] speechify failed ({str(e)[:140]}) — falling back to Kokoro",
+              file=sys.stderr)
+        _speechify_list_voices_once(key)
+        return False
+
+
+_VOICES_LOGGED = False
+
+
+def _speechify_list_voices_once(key: str) -> None:
+    """On first failure, log the account's real voice_ids so a bad SPEECHIFY_VOICE
+    can be corrected from the CI log (the /v1/audio/speech error doesn't name them)."""
+    global _VOICES_LOGGED
+    if _VOICES_LOGGED:
+        return
+    _VOICES_LOGGED = True
+    import urllib.request
+    try:
+        req = urllib.request.Request("https://api.speechify.ai/v1/voices",
+                                     headers={"Authorization": f"Bearer {key}"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            voices = json.loads(r.read())
+        ids = [v.get("id") or v.get("voice_id") for v in (voices or [])][:25]
+        print(f"[tts] speechify available voice_ids: {ids}", file=sys.stderr)
+    except Exception as e:  # noqa: BLE001
+        print(f"[tts] speechify voices list failed: {str(e)[:140]}", file=sys.stderr)
+
+
+def synth_narration(sentences, workdir: Path, voice: str):
+    import os
+    import soundfile as sf
+
+    # Speechify first (if a key is set) — whole-video, so the voice never
+    # switches mid-clip: if ANY line fails (quota/error) we throw the batch away
+    # and re-synth everything on the local Kokoro voice.
     wavs, windows, t = [], [], 0.0
-    for i, sent in enumerate(sentences):
-        samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.10,
-                               lang="en-us")
-        w = workdir / f"s{i}.wav"
-        sf.write(str(w), samples, sr)
-        d = _dur(w) + 0.12           # tight breath between lines (pace = retention)
-        windows.append((t, t + d))
-        t += d
-        wavs.append(w)
+    if os.environ.get("SPEECHIFY_API_KEY"):
+        ok = True
+        for i, sent in enumerate(sentences):
+            w = workdir / f"s{i}.wav"
+            if not _speechify_wav(_tts_text(sent), w):
+                ok = False
+                break
+            d = _dur(w) + 0.12
+            windows.append((t, t + d)); t += d; wavs.append(w)
+        if ok and wavs:
+            print(f"[tts] speechify {os.environ.get('SPEECHIFY_MODEL','simba-3.2')} "
+                  f"({len(wavs)} lines)", flush=True)
+        else:
+            wavs, windows, t = [], [], 0.0          # reset -> Kokoro below
+
+    if not wavs:
+        from kokoro_onnx import Kokoro
+        k = Kokoro(str(KOKORO_MODEL), str(KOKORO_VOICES))
+        # Validate the themed voice once; fall back to the house voice if the id
+        # isn't in this Kokoro build, so a theme can never break a render.
+        try:
+            k.create("test", voice=voice, lang="en-us")
+        except Exception:  # noqa: BLE001
+            voice = "am_fenrir"
+        for i, sent in enumerate(sentences):
+            samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.10,
+                                   lang="en-us")
+            w = workdir / f"s{i}.wav"
+            sf.write(str(w), samples, sr)
+            d = _dur(w) + 0.12       # tight breath between lines (pace = retention)
+            windows.append((t, t + d))
+            t += d
+            wavs.append(w)
     listf = workdir / "list.txt"
     listf.write_text("\n".join(f"file '{w}'" for w in wavs) + "\n")
     raw = workdir / "raw.wav"
