@@ -15,11 +15,11 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'verify | canary | schedule | all | preview'
+        description: 'verify | canary | schedule | all | preview | pro'
         required: true
         default: 'verify'
         type: choice
-        options: [verify, canary, schedule, all, preview]
+        options: [verify, canary, schedule, all, preview, pro]
       canary_slug:
         description: 'slug to post in canary mode'
         required: false
@@ -128,8 +128,8 @@ jobs:
         run: |
           [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
           MODE="${{ inputs.mode }}"; [ -z "$MODE" ] && MODE="auto"
-          # verify/preview never upload, so they may run without upload wiring
-          if [ "$MODE" != "verify" ] && [ "$MODE" != "preview" ]; then
+          # verify/preview/pro never upload, so they may run without upload wiring
+          if [ "$MODE" != "verify" ] && [ "$MODE" != "preview" ] && [ "$MODE" != "pro" ]; then
             missing=0
             [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
             [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON_CURIOSITY (or its alias YOUTUBE_TOKEN_JSON_ORI) — mint it with setup_youtube.py signed into the OpenRangeInteractive account"; missing=1; }
@@ -278,6 +278,27 @@ jobs:
                   || git rebase --abort || true
                 sleep 2
               done ;;
+            pro)
+              # THE PRO RENDERER (§7.5 v10): footage + flat2d + rare 3D,
+              # narration + music, built from scratch (no world_engine spine).
+              # Commits the 720p + contact sheet to the branch so it can be
+              # delivered in chat, and uploads the full artifact.
+              mkdir -p preview
+              S="${SLUGS:-sitting-still-speed}"
+              python -m data_learning.pro_render \
+                "data_learning/pro_stories/${S}.json" "preview/${S}.mp4"
+              git config user.name "github-actions[bot]"
+              git config user.email "github-actions[bot]@users.noreply.github.com"
+              git add -f "preview/${S}_720p.mp4" \
+                "preview/${S}_pkg/contact_sheet.png" 2>/dev/null || true
+              git commit -m "curiosity pro render: ${S} [skip ci]" \
+                || echo "nothing to commit"
+              for i in 1 2 3 4 5; do
+                git push origin "HEAD:${GITHUB_REF_NAME}" && break
+                git pull --rebase --autostash -X ours origin \
+                  "${GITHUB_REF_NAME}" || git rebase --abort || true
+                sleep 2
+              done ;;
             auto)
               # weekly cron: post exactly one un-posted story
               python scripts/post_curiosity.py --max 1 ;;
@@ -290,7 +311,7 @@ jobs:
       # in ~6 hours no matter what" true — it does not depend on any local
       # session surviving.
       - name: Upload preview artifact
-        if: always() && inputs.mode == 'preview'
+        if: always() && (inputs.mode == 'preview' || inputs.mode == 'pro')
         uses: actions/upload-artifact@v4
         with:
           name: curiosity-preview
@@ -302,6 +323,7 @@ jobs:
             preview/*.ledger.json
             preview/*.director.json
             preview/*.meta.json
+            preview/*_pkg/*.png
           retention-days: 90
           if-no-files-found: warn
 

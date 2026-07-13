@@ -1,0 +1,276 @@
+#!/usr/bin/env python3
+"""THE PRO RENDERER (CURIOSITY_BRAIN §7.5 v10 — built from scratch).
+
+The old spine — world_engine's cartoon Earth, the 3D bar slabs (monoliths), the
+comparison lanes, the counters — is gone. This renderer assembles a video from
+only the three grammars the operator picked on pixels:
+
+    footage   real NASA footage, full-frame + matched move (footage_hybrid)
+    flat2d    designed 2D motion graphics for numbers/ideas (flat2d)
+    hero3d    rare stylized Blender showpieces, used 2-3x to POP (blender_hero)
+
+A story is a SHOT LIST — an ordered list of shots, each with a narration line:
+
+    {"kind": "footage",  "footage_nasa_id": "...", "push": 1.06, "line": "..."}
+    {"kind": "flat_title","kicker": "...","title": "...", "line": "..."}
+    {"kind": "flat_number","text":"828,000","sub":"KM / H","label":"...",
+        "entity":"THE SUN","line":"..."}
+    {"kind": "flat_compare","title":"...","rows":[{name,value,display},...],"line":...}
+    {"kind": "flat_statement","statement":"...","line":"..."}
+    {"kind": "hero3d","template":"earth_spin","line":"..."}
+
+Each shot's on-screen length is derived from its narration (so the voice never
+gets cut off), clips dissolve into each other, a music bed sits ducked under the
+voice, and the whole thing is handed to the blind judge panel before anyone
+sees it.
+
+    python3 -m data_learning.pro_render <story.json> <out.mp4> [--work DIR]
+"""
+from __future__ import annotations
+
+import argparse
+import asyncio
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from data_learning import flat2d                         # noqa: E402
+from data_learning import footage_hybrid as fh           # noqa: E402
+
+W, H, FPS = 1920, 1080, 30
+XFADE = 0.6
+LEAD = 0.45          # silence before a line starts inside its shot
+TAIL = 0.9           # breathing room after a line ends
+MIN_SHOT = 2.8
+VOICE = "en-US-GuyNeural"
+
+
+def _run(cmd):
+    subprocess.run(cmd, check=True)
+
+
+def _dur(p: Path) -> float:
+    out = subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+         "-of", "csv=p=0", str(p)], capture_output=True, text=True)
+    return float(out.stdout.strip() or 0.0)
+
+
+# --- narration ------------------------------------------------------------
+def _synth(line: str, dest: Path, voice: str) -> float:
+    """edge-tts a single line; returns its audio duration. Falls back to a
+    short silence if TTS is unavailable so the render never dies on a line."""
+    if not line.strip():
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i",
+              "anullsrc=r=48000:cl=mono", "-t", "0.4", str(dest)])
+        return 0.0
+    try:
+        import edge_tts
+
+        async def go():
+            c = edge_tts.Communicate(line, voice, rate="-6%")
+            await c.save(str(dest))
+        asyncio.run(go())
+        return _dur(dest)
+    except Exception as e:  # noqa: BLE001
+        print(f"[pro] TTS failed for {line[:40]!r} ({e}) — silent gap",
+              file=sys.stderr)
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i",
+              "anullsrc=r=48000:cl=mono", "-t", "1.5", str(dest)])
+        return 0.0
+
+
+# --- per-shot visual ------------------------------------------------------
+def _footage_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
+    # cache sources by id — a story often reuses one long clip across beats,
+    # and these downloads are hundreds of MB.
+    nid = shot.get("footage_nasa_id")
+    if not nid:
+        hits = fh.search_footage(str(shot.get("footage_query", "")), limit=6)
+        if not hits:
+            raise RuntimeError(f"no footage for {shot.get('footage_query')!r}")
+        nid = hits[0]["nasa_id"]
+    safe = "".join(c if c.isalnum() else "_" for c in str(nid))[:60]
+    src = work / f"srccache_{safe}.mp4"
+    if not src.exists():
+        fh.download_video(str(nid), src)
+    wins = [w for w in fh.clean_windows(src, min_len=seconds + 0.3)
+            if w[1] - w[0] >= seconds]
+    if shot.get("ss") is not None:
+        ss = float(shot["ss"])
+    elif wins:
+        w0, w1 = wins[0]
+        ss = max(w0, min(w0 + (w1 - w0 - seconds) * float(shot.get("at", 0.5)),
+                         w1 - seconds))
+    else:
+        ss = 3.0
+    fh.full_frame_beat(src, ss, seconds, out,
+                       push=float(shot.get("push", 1.05)),
+                       direction=shot.get("direction", "in"))
+    return out  # keep src cached; the story reuses it across beats
+
+
+def _hero_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
+    """Render a Blender showpiece via blender_hero, dressed to 1080p. Kept for
+    the 2-3 pop moments; falls back to a flat statement if Blender is absent."""
+    import shutil
+    if shutil.which("blender") is None:
+        return flat2d.statement(shot.get("line", ""), out, seconds)
+    rfps = int(shot.get("render_fps", 10))
+    spec = dict(shot.get("spec", {}))
+    spec.setdefault("template", shot.get("template", "earth_spin"))
+    spec["seconds"] = seconds
+    spec["fps"] = rfps
+    spec.setdefault("continents", _continents())
+    sj = work / f"hero_{idx}.json"
+    sj.write_text(json.dumps(spec))
+    raw = work / f"hero_{idx}_raw"
+    raw.mkdir(exist_ok=True)
+    _run(["blender", "-b", "--factory-startup", "--python",
+          str(REPO / "data_learning" / "blender_hero.py"), "--",
+          str(sj), str(raw)])
+    frames = sorted(raw.glob("hero_*.png"))
+    if not frames:
+        return flat2d.statement(shot.get("line", ""), out, seconds)
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(rfps),
+          "-start_number", "1", "-i", str(raw / "hero_%04d.png"),
+          "-vf", (f"minterpolate=fps={FPS}:mi_mode=mci,"
+                  f"scale={W}:{H}:force_original_aspect_ratio=increase,"
+                  f"crop={W}:{H},format=yuv420p"),
+          "-c:v", "libx264", "-crf", "18", "-preset", "medium", str(out)])
+    return out
+
+
+def _continents():
+    try:
+        from data_learning.continents import LANDMASSES
+        return LANDMASSES
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
+    k = shot["kind"]
+    if k == "footage":
+        return _footage_shot(shot, seconds, out, work, idx)
+    if k == "flat_number":
+        return flat2d.number_reveal(
+            shot["text"], shot.get("sub", ""), out, seconds,
+            label=shot.get("label", ""), entity=shot.get("entity", ""))
+    if k == "flat_compare":
+        return flat2d.comparison(shot["rows"], out, seconds,
+                                 title=shot.get("title", ""))
+    if k == "flat_title":
+        return flat2d.title_card(shot.get("kicker", ""), shot["title"], out,
+                                 seconds)
+    if k == "flat_statement":
+        return flat2d.statement(shot["statement"], out, seconds)
+    if k == "hero3d":
+        return _hero_shot(shot, seconds, out, work, idx)
+    raise RuntimeError(f"unknown shot kind {k!r}")
+
+
+# --- assembly -------------------------------------------------------------
+def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
+    work.mkdir(parents=True, exist_ok=True)
+    shots = story["shots"]
+    # 1) narration first — durations drive shot lengths
+    vo_files, durs, seconds = [], [], []
+    for i, sh in enumerate(shots):
+        vf = work / f"vo_{i}.mp3"
+        d = _synth(sh.get("line", ""), vf, voice)
+        vo_files.append(vf)
+        durs.append(d)
+        seconds.append(max(MIN_SHOT, (LEAD + d + TAIL) if d else
+                           float(sh.get("seconds", 4.0))))
+        print(f"[pro] shot {i} {sh['kind']}: line {d:.1f}s -> "
+              f"{seconds[-1]:.1f}s")
+    # 2) render each shot's visual to its length
+    clips = []
+    for i, sh in enumerate(shots):
+        c = work / f"shot_{i:02d}.mp4"
+        _render_shot(sh, seconds[i], c, work, i)
+        clips.append(c)
+        print(f"[pro] shot {i} rendered -> {c.name}")
+    # 3) dissolve-join the visuals
+    silent = work / "silent.mp4"
+    fh.dissolve_join(clips, silent, xfade=XFADE)
+    total = _dur(silent)
+    # 4) lay the voice at each shot's start offset (accounting for xfades)
+    offset, delays = 0.0, []
+    for i in range(len(shots)):
+        delays.append(offset + LEAD)
+        offset += seconds[i] - XFADE
+    amix_in, filt = [], []
+    for i, vf in enumerate(vo_files):
+        if durs[i] <= 0:
+            continue
+        amix_in += ["-i", str(vf)]
+        filt.append(f"[{len(amix_in)//2 - 1}]adelay={int(delays[i]*1000)}|"
+                    f"{int(delays[i]*1000)}[v{i}]")
+    voice_lbls = "".join(f"[v{i}]" for i in range(len(shots)) if durs[i] > 0)
+    vo_mix = work / "vo.m4a"
+    _run(["ffmpeg", "-y", "-loglevel", "error", *amix_in, "-filter_complex",
+          ";".join(filt) + f";{voice_lbls}amix=inputs="
+          f"{voice_lbls.count('[')}:normalize=0,volume=2.0,"
+          f"aresample=48000[vo]", "-map", "[vo]", "-t", f"{total:.2f}",
+          str(vo_mix)])
+    # 5) music bed, ducked under the voice
+    music = _music_track()
+    final_audio = work / "mix.m4a"
+    if music:
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(vo_mix),
+              "-stream_loop", "-1", "-i", str(music), "-filter_complex",
+              "[1:a]volume=0.18,aresample=48000[m];"
+              "[m][0:a]sidechaincompress=threshold=0.03:ratio=6:release=800"
+              "[duck];[duck][0:a]amix=inputs=2:normalize=0[a]",
+              "-map", "[a]", "-t", f"{total:.2f}", str(final_audio)])
+    else:
+        final_audio = vo_mix
+    # 6) mux
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i",
+          str(final_audio), "-map", "0:v", "-map", "1:a", "-c:v", "libx264",
+          "-crf", "18", "-preset", "medium", "-c:a", "aac", "-b:a", "160k",
+          "-shortest", str(out)])
+    print(f"[pro] built {out}  ({_dur(out):.1f}s, {len(clips)} shots)")
+    # 7) blind-judge package + 720p viewing copy
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(out), "-vf",
+          "scale=1280:720", "-c:v", "libx264", "-preset", "slow", "-crf",
+          "26", "-c:a", "aac", "-b:a", "128k",
+          str(out.with_name(out.stem + "_720p.mp4"))])
+    try:
+        pkg = out.with_name(out.stem + "_pkg")
+        _run([sys.executable, str(REPO / "scripts" / "visual_judge.py"),
+              str(out), "--out", str(pkg), "--grid", "6x4"])
+    except Exception as e:  # noqa: BLE001
+        print(f"[pro] judge package skipped ({e})", file=sys.stderr)
+    return out
+
+
+def _music_track():
+    for p in sorted((REPO / "data_learning" / "music").glob("*.mp3")) \
+            if (REPO / "data_learning" / "music").exists() else []:
+        return p
+    return None
+
+
+def main(argv):
+    ap = argparse.ArgumentParser()
+    ap.add_argument("story", type=Path)
+    ap.add_argument("out", type=Path)
+    ap.add_argument("--work", type=Path, default=None)
+    ap.add_argument("--voice", default=VOICE)
+    a = ap.parse_args(argv)
+    story = json.loads(a.story.read_text())
+    work = a.work or a.out.with_name(a.out.stem + "_work")
+    build(story, a.out, work, voice=a.voice)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))
