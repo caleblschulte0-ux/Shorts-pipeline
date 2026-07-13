@@ -970,16 +970,17 @@ def _seg_points(story_cfg: dict, idx: int) -> list[dict]:
 
 
 def _hero_clip(points: list[dict], title: str, work: Path, kind: str,
-               accent: str, seconds: float) -> Path | None:
+               accent: str, seconds: float, grow: bool = True) -> Path | None:
     """Render a Blender 3D monolith-reveal clip (W x H, 30fps, silent) or None.
     Best-effort: missing binary / any failure returns None so the caller ships
-    the normal 2D video instead of dying."""
+    the normal 2D video instead of dying. grow=False = full chart from frame 1
+    (a punchy OPENER — the first second must grip, not build from black)."""
     import shutil
     import subprocess
     if not shutil.which("blender") or not BLENDER_HERO.exists() or len(points) < 2:
         return None
     spec = {"points": points[:5], "title": title, "accent": accent,
-            "seconds": seconds, "fps": 12, "grow": True, "engine": "eevee",
+            "seconds": seconds, "fps": 12, "grow": grow, "engine": "eevee",
             "res_x": 720, "res_y": 1280, "samples": 10}
     sf = work / f"hero_{kind}.json"
     sf.write_text(json.dumps(spec))
@@ -1018,8 +1019,12 @@ def _add_3d_bookends(story_cfg: dict, st, work: Path, theme: dict,
     Guarded end-to-end: if Blender or ffmpeg fail, the body video is left
     untouched so a render never dies over the 3D layer."""
     accent = theme.get("accent") or "#4FD1C5"
-    opener = _hero_clip(_seg_points(story_cfg, 0), st.title, work, "open", accent, 3.5)
-    closer = _hero_clip(_seg_points(story_cfg, -1), st.title, work, "close", accent, 3.0)
+    # Opener: grow=False so frame 1 is the FULL 3D chart (grip immediately, the
+    # first second is everything). Closer keeps the rising reveal for the payoff.
+    opener = _hero_clip(_seg_points(story_cfg, 0), st.title, work, "open", accent, 3.5,
+                        grow=False)
+    closer = _hero_clip(_seg_points(story_cfg, -1), st.title, work, "close", accent, 3.0,
+                        grow=True)
     if not opener and not closer:
         return
     body = work / "body_core.mp4"
@@ -1143,14 +1148,20 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         broll_path, off = _pick_broll(total)
         use_broll = broll_path is not None
 
-        # Image-led hook: a relevant photo of the subject behind the hook number
-        # (best-effort; abstract topics return None and keep the designed bg).
+        # NO AI mood-image on the hook. The generated cinematic image that used
+        # to fill the first ~4s was generic and is a prime suspect for the ~69%
+        # first-second swipe (retention data 2026-07-12). The 3D Blender hero is
+        # the visual opener now; the hook beat rides the designed background so
+        # the first frames are data/motion, never a stock-looking AI still.
+        # Opt back in per-render with HOOK_AI_IMAGE=1 if ever needed.
         hook_img = None
-        try:
-            from data_learning import scene_media
-            hook_img = scene_media.fetch_hook_image(st)
-        except Exception as e:  # noqa: BLE001 — never block a render on this
-            print(f"[studio] hook image skipped: {e}", flush=True)
+        import os as _os
+        if _os.environ.get("HOOK_AI_IMAGE") == "1":
+            try:
+                from data_learning import scene_media
+                hook_img = scene_media.fetch_hook_image(st)
+            except Exception as e:  # noqa: BLE001 — never block a render on this
+                print(f"[studio] hook image skipped: {e}", flush=True)
 
         # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, [hook img], charts, mascots, audio
         inputs = ["-f", "lavfi", "-i",
