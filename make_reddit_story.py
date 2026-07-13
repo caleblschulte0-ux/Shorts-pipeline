@@ -30,14 +30,17 @@ import reddit_card
 
 W, H, FPS = base.W, base.H, base.FPS
 GAMEPLAY_DIR = base.GAMEPLAY_DIR
-FONT_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-
-# Caption safe zone: centered, but nudged up so it never collides with the
-# Shorts bottom UI (like/comment rail + title chrome ≈ bottom 15%).
-CAP_FONT_SIZE = 92
-CAP_MARGIN_V = 620          # px from bottom (Alignment=2) → sits ~mid-screen
-CAP_MAX_CHARS = 20          # per caption chunk
+# Pro caption look: Anton (the iconic Shorts display face), big, heavy black
+# stroke + drop shadow, dead-center, with the CURRENTLY-SPOKEN word popping to
+# yellow (the Submagic/CapCut karaoke style every top channel uses).
+FONT_DIR = str(Path(__file__).resolve().parent / "assets" / "fonts")
+CAP_FONT = "Anton"
+CAP_FONT_SIZE = 120
+CAP_MAX_CHARS = 22          # per caption chunk
 CAP_MAX_WORDS = 3
+# ASS colours are &HBBGGRR&. White base, gold-yellow active word.
+CAP_WHITE = "&HFFFFFF&"
+CAP_HILITE = "&H00E8FF&"    # bright gold-yellow
 
 
 def _run(cmd: list[str]) -> None:
@@ -88,31 +91,33 @@ def _ass_t(t: float) -> str:
     return f"{h:d}:{m:02d}:{s:05.2f}"
 
 
-def _chunk_words(words: list[base.Word]) -> list[tuple[float, float, str]]:
-    """Group Whisper words into short caption chunks (word-by-word feel)."""
-    chunks, cur, start = [], [], None
+def _chunk_words(words: list[base.Word]) -> list[list[base.Word]]:
+    """Group Whisper words into short caption chunks (2-3 words)."""
+    chunks: list[list[base.Word]] = []
+    cur: list[base.Word] = []
     for w in words:
-        t = w.text.strip()
-        if not t:
+        if not w.text.strip():
             continue
-        if start is None:
-            start = w.start
         cur.append(w)
         joined = " ".join(x.text.strip() for x in cur)
-        ends_sentence = t[-1] in ".!?"
+        ends_sentence = w.text.strip()[-1] in ".!?,"
         if len(cur) >= CAP_MAX_WORDS or len(joined) >= CAP_MAX_CHARS \
                 or ends_sentence:
-            chunks.append((start, w.end, joined.upper()))
-            cur, start = [], None
+            chunks.append(cur)
+            cur = []
     if cur:
-        chunks.append((start, cur[-1].end, " ".join(
-            x.text.strip() for x in cur).upper()))
+        chunks.append(cur)
     return chunks
+
+
+def _clean(t: str) -> str:
+    return t.strip().replace("{", "(").replace("}", ")").upper()
 
 
 def _karaoke_ass(words: list[base.Word], path: Path, start_after: float,
                  total: float) -> None:
-    """Bold centered word-by-word captions with a quick pop-in."""
+    """Anton karaoke captions: the chunk stays on screen while the currently
+    spoken word pops to gold-yellow (one event per word within the chunk)."""
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -122,24 +127,35 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,DejaVu Sans,{CAP_FONT_SIZE},&H00FFFFFF,&H0000FFFF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,7,3,2,80,80,{CAP_MARGIN_V},1
+Style: Cap,{CAP_FONT},{CAP_FONT_SIZE},{CAP_WHITE},&H000000FF,&H00101010,&H90000000,0,0,0,0,100,100,1,0,1,9,4,5,90,90,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     lines = [head]
-    for start, end, text in _chunk_words(words):
-        if end <= start_after:
+    for chunk in _chunk_words(words):
+        if chunk[-1].end <= start_after:
             continue
-        start = max(start, start_after)
-        end = min(end, total)
-        if end <= start:
-            continue
-        # pop-in: scale 70->100 over 90ms, tiny fade
-        eff = (r"{\fad(40,40)\t(0,90,\fscx100\fscy100)\fscx82\fscy82}")
-        txt = text.replace("{", "(").replace("}", ")")
-        lines.append(
-            f"Dialogue: 0,{_ass_t(start)},{_ass_t(end)},Cap,,0,0,0,,{eff}{txt}")
+        n = len(chunk)
+        for i, w in enumerate(chunk):
+            st = max(w.start, start_after)
+            en = min(w.end if i < n - 1 else w.end + 0.05, total)
+            if en <= st:
+                continue
+            # rebuild the chunk text with word i highlighted gold
+            parts = []
+            for j, x in enumerate(chunk):
+                word = _clean(x.text)
+                if j == i:
+                    parts.append(f"{{\\c{CAP_HILITE}}}{word}{{\\c{CAP_WHITE}}}")
+                else:
+                    parts.append(word)
+            text = " ".join(parts)
+            # subtle pop only on the first word of a chunk
+            eff = (r"{\fad(50,0)\t(0,110,\fscx100\fscy100)\fscx88\fscy88}"
+                   if i == 0 else "")
+            lines.append(
+                f"Dialogue: 0,{_ass_t(st)},{_ass_t(en)},Cap,,0,0,0,,{eff}{text}")
     path.write_text("\n".join(lines))
 
 
@@ -212,7 +228,7 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
             f"[3:v]scale={card_w}:-1,format=rgba,"
             f"fade=t=out:st={fade_st:.2f}:d=0.4:alpha=1,setpts=PTS-STARTPTS[card];"
             f"[bg][card]overlay=(W-w)/2:220:enable='lt(t,{title_end:.2f})'[bv];"
-            f"[bv]subtitles='{_esc(caps)}'[v]"
+            f"[bv]subtitles='{_esc(caps)}':fontsdir='{_esc(Path(FONT_DIR))}'[v]"
         )
 
         cmd = [
