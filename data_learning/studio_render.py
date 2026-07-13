@@ -1059,16 +1059,121 @@ def _hero_clip(points: list[dict], title: str, work: Path, kind: str,
     return clip if clip.exists() else None
 
 
+def _hook_clip(story_cfg: dict, st, work: Path, theme: dict,
+               seconds: float = 2.8) -> Path | None:
+    """A real attention-grab HOOK for the first ~3s: a short lead, the SHOCK
+    number slamming in, a real subject photo, and the curiosity kicker — motion
+    from frame 1. NOT a chart. Retention data: ~69% swipe in the first second,
+    so this beat is everything. Best-effort -> None (caller keeps the 2D hook)."""
+    from PIL import Image, ImageDraw
+    pts = _seg_points(story_cfg, 0)
+    if not pts:
+        return None
+    champ = max(pts, key=lambda p: p["value"])
+    disp = champ.get("display") or str(champ["value"])
+    num, unit = (disp.rsplit(" ", 1) if " " in disp else (disp, ""))
+    # short lead = the hook's first clause (before a comma/dash), capped — reads
+    # as a clean punch, not a dangling fragment.
+    import re as _re
+    head = _re.split(r"[—–,;:.]", st.hook or "")[0].strip()
+    lead = " ".join(head.split()[:5]) or champ["label"]
+    lead = lead.upper()[:26]
+    kicker = (getattr(st, "question", "") or "HOW?").strip()[:34]
+    accent = tuple(int((theme.get("accent") or "#4FD1C5").lstrip("#")[i:i+2], 16)
+                   for i in (0, 2, 4))
+    # real subject photo cut-out (never AI); fall through to no subject
+    subj = None
+    try:
+        from data_learning import scene_media
+        p = scene_media.subject_photo_cutout(champ["label"], st.slug, "hookc",
+                                             context=st.hook or "")
+        if p and Path(p).exists():
+            subj = Image.open(p).convert("RGBA")
+    except Exception:  # noqa: BLE001
+        subj = None
+
+    def grad():
+        top, bot = (11, 14, 26), (20, 26, 48)
+        g = Image.new("RGB", (1, H))
+        for y in range(H):
+            f = y / H
+            g.putpixel((0, y), tuple(int(top[i] + (bot[i]-top[i]) * f) for i in range(3)))
+        return g.resize((W, H)).convert("RGBA")
+    bg = grad()
+
+    def ease(x):
+        return 0 if x < 0 else (1 if x > 1 else 1 - (1-x)**3)
+    # Auto-fit the hero number to ~880px so it never runs off-frame, ONCE, so the
+    # layout below it (unit, subject) is stable across frames (no jitter).
+    _m = ImageDraw.Draw(bg)
+    nsz = 220
+    nf = _font(nsz)
+    nb0 = _m.textbbox((0, 0), num, font=nf)
+    if nb0[2] - nb0[0] > 880:
+        nsz = max(60, int(nsz * 880 / (nb0[2]-nb0[0])))
+        nf = _font(nsz)
+        nb0 = _m.textbbox((0, 0), num, font=nf)
+    NUM_Y = 430
+    num_h = nb0[3]                      # full box incl. comma descender
+    UNIT_Y = NUM_Y + num_h + 40
+    SUBJ_Y = UNIT_Y + (120 if unit else 30)
+    fr = work / "hookf"
+    fr.mkdir(exist_ok=True)
+    n = int(seconds * FPS)
+    for i in range(n):
+        t = i / FPS
+        img = bg.copy()
+        dr = ImageDraw.Draw(img)
+
+        def ctext(txt, size, y, fill, bold=True):
+            f = _font(size, bold)
+            b = dr.textbbox((0, 0), txt, font=f)
+            dr.text((W//2 - (b[2]-b[0])//2, y), txt, font=f, fill=fill)
+        # subject photo (real, never AI) rises + scales in from below
+        if subj is not None:
+            a = ease(t / 0.55)
+            s = subj.copy(); s.thumbnail((820, 820), Image.LANCZOS)
+            img.alpha_composite(s, ((W-s.width)//2, SUBJ_Y + int((1-a)*130)))
+        # lead line, top
+        ctext(lead, 58, 250, (205, 214, 232))
+        # HERO number: slide down + fade in over the first 0.35s (fixed size)
+        na = ease(min(1, t / 0.35))
+        nx = W//2 - (nb0[2]-nb0[0])//2
+        ny = NUM_Y - int((1-na)*40)
+        col = tuple(int(c*na) for c in accent)          # fade from black
+        dr.text((nx, ny), num, font=nf, fill=col)
+        if unit and t > 0.22:
+            ua = ease((t-0.22)/0.3)
+            ctext(unit.upper(), 74, UNIT_Y, tuple(int(v*ua) for v in (240, 244, 255)))
+        # curiosity kicker punches up near the end
+        if t > seconds - 1.0:
+            ka = ease((t - (seconds-1.0)) / 0.4)
+            ctext(kicker, 62, 1640 - int((1-ka)*24), accent)
+        img.convert("RGB").save(fr / f"h{i:04d}.png")
+    clip = work / "hook_open.mp4"
+    try:
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS),
+              "-i", str(fr / "h%04d.png"),
+              "-f", "lavfi", "-t", f"{seconds:.2f}",
+              "-i", "anullsrc=channel_layout=stereo:sample_rate=48000",
+              "-vf", f"scale={W}:{H},setsar=1,format=yuv420p",
+              "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac",
+              "-b:a", "160k", "-shortest", str(clip)])
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] hook clip skipped: {str(e)[:160]}", file=sys.stderr)
+        return None
+    return clip if clip.exists() else None
+
+
 def _add_3d_bookends(story_cfg: dict, st, work: Path, theme: dict,
                      out_path: Path) -> None:
-    """Prepend a 3D opener + append a 3D closer to the finished body video.
-    Guarded end-to-end: if Blender or ffmpeg fail, the body video is left
-    untouched so a render never dies over the 3D layer."""
+    """Open on a real HOOK card (attention-grab, not a chart) and close on a 3D
+    payoff. Guarded end-to-end: if anything fails, the body video is left
+    untouched so a render never dies over this layer."""
     accent = theme.get("accent") or "#4FD1C5"
-    # Opener: grow=False so frame 1 is the FULL 3D chart (grip immediately, the
-    # first second is everything). Closer keeps the rising reveal for the payoff.
-    opener = _hero_clip(_seg_points(story_cfg, 0), st.title, work, "open", accent, 3.5,
-                        grow=False)
+    # Opener = the hook (NOT a chart — a chart is a retention killer up front).
+    opener = _hook_clip(story_cfg, st, work, theme, 2.8)
+    # 3D stays as the PAYOFF reveal at the end.
     closer = _hero_clip(_seg_points(story_cfg, -1), st.title, work, "close", accent, 3.0,
                         grow=True)
     if not opener and not closer:
