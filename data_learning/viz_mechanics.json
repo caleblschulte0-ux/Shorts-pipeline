@@ -37,5 +37,12 @@
   "concept": "a stylized world map with migration paths tracing the routes of each bird species, their images and values displayed at the terminus of each path",
   "code": "\nfor i in range(n):\n    v = values[i]\n    label = labels[i]\n    img = subject_image(label)\n    cx = RX0 + 200 + i * 260\n    cy = RBOT - 200\n    if img is not None:\n        asp = img.width / img.height\n        w = 140\n        h = int(w / asp)\n        paste(img, cx - w // 2, cy - h, w, h)\n    path_x = [cx, cx, RX0 + 100, RX1 - 100, cx]\n    path_y = [cy, RTOP + 100, RTOP + 100, RTOP + 100, cy]\n    for j in range(len(path_x) - 1):\n        dx = path_x[j + 1] - path_x[j]\n        dy = path_y[j + 1] - path_y[j]\n        dist = math.sqrt(dx * dx + dy * dy)\n        dx /= dist\n        dy /= dist\n        steps = int(dist * reveal * 10)\n        for k in range(steps):\n            x = path_x[j] + k * dx * dist / steps\n            y = path_y[j] + k * dy * dist / steps\n            d.ellipse([x - 2, y - 2, x + 2, y + 2], fill=rgba(ACCENT, 255))\n    text(str(int(v)) + ' miles', cx, cy + 20, size=36, color=TEXT, center=True)\n    text(label, cx, cy - 40, size=32, center=True)\n",
   "topic": "Longest Migrations"
+ },
+ {
+  "sig": "7f3a9ec7ae51",
+  "mechanic": "cargo-crane",
+  "concept": "a cargo crane lifts shipping containers filled to each ship's cargo capacity, with the ship's photo and label displayed alongside",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = RTOP + 200\n    r = 80\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], fill=rgba(TEXT, 90))\n    fill_image(subject_image('shipping container'), clamp(v / vmax) * reveal, cxs - r, cy - r, r * 2, r * 2)\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 200\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy + r + 20, w, h)\n    text(str(int(v)) + ' TEU', cxs, cy + r + 150, size=46, color=col, center=True)\n    text(labels[i], cxs, cy + r + 220, size=38, center=True)\n    crane_y = lerp(cy + r + 20, cy + r + 150, reveal)\n    d.line([cxs, crane_y, cxs, cy + r + 150], fill=rgba(col, 255), width=8)\n",
+  "topic": "Cargo Capacity"
  }
 ]

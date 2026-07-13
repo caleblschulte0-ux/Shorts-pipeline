@@ -1,7 +1,7 @@
 {
-  "key": "elevator_speed_records_elevator_speed",
-  "title": "Elevator Speed",
-  "unit": "mph",
+  "key": "crane_heights_comparison_tallest_cranes",
+  "title": "Tallest Cranes",
+  "unit": "meters",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Fastest Elevator",
-      "value": 46.0,
-      "period": "2022"
+      "label": "Liebherr LR 13000",
+      "value": 248.0,
+      "period": "2013"
     },
     {
-      "label": "Average Car Speed",
-      "value": 40.0,
-      "period": "2020"
+      "label": "Manitowoc 31000",
+      "value": 230.0,
+      "period": "2011"
     }
   ]
 }

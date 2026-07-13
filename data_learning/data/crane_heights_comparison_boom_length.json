@@ -1,7 +1,7 @@
 {
-  "key": "elevator_speed_records_elevator_speed",
-  "title": "Elevator Speed",
-  "unit": "mph",
+  "key": "crane_heights_comparison_boom_length",
+  "title": "Boom Length",
+  "unit": "meters",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -15,13 +15,13 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Fastest Elevator",
-      "value": 46.0,
-      "period": "2022"
+      "label": "Large Crane",
+      "value": 100.0,
+      "period": "2020"
     },
     {
-      "label": "Average Car Speed",
-      "value": 40.0,
+      "label": "Small Crane",
+      "value": 20.0,
       "period": "2020"
     }
   ]

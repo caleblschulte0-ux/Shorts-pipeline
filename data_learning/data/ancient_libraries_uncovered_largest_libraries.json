@@ -1,0 +1,33 @@
+{
+  "key": "ancient_libraries_uncovered_largest_libraries",
+  "title": "Largest Libraries",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-13"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Library of Ashurbanipal",
+      "value": 30000.0,
+      "period": "7th century BC"
+    },
+    {
+      "label": "Library of Pergamum",
+      "value": 20000.0,
+      "period": "2nd century BC"
+    },
+    {
+      "label": "Great Library of Alexandria",
+      "value": 700000.0,
+      "period": "3rd century BC"
+    }
+  ]
+}

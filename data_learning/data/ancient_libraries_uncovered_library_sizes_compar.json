@@ -1,7 +1,7 @@
 {
-  "key": "elevator_speed_records_elevator_speed",
-  "title": "Elevator Speed",
-  "unit": "mph",
+  "key": "ancient_libraries_uncovered_library_sizes_compar",
+  "title": "Library Sizes Compared",
+  "unit": "",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -15,13 +15,18 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Fastest Elevator",
-      "value": 46.0,
-      "period": "2022"
+      "label": "Library of Congress",
+      "value": 170000000.0,
+      "period": "2020"
     },
     {
-      "label": "Average Car Speed",
-      "value": 40.0,
+      "label": "British Library",
+      "value": 150000000.0,
+      "period": "2020"
+    },
+    {
+      "label": "Bodleian Library",
+      "value": 12000000.0,
       "period": "2020"
     }
   ]

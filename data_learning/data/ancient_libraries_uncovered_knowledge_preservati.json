@@ -1,7 +1,7 @@
 {
-  "key": "elevator_speed_records_elevator_technology",
-  "title": "Elevator Technology",
-  "unit": "years",
+  "key": "ancient_libraries_uncovered_knowledge_preservati",
+  "title": "Knowledge Preservation",
+  "unit": "percent",
   "geography": "",
   "time_coverage": "",
   "insight_type": "trend",
@@ -15,14 +15,19 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "2000",
+      "label": "Great Library of Alexandria",
       "value": 10.0,
-      "period": "2000"
+      "period": "present day"
     },
     {
-      "label": "2020",
-      "value": 5.0,
-      "period": "2020"
+      "label": "Library of Ashurbanipal",
+      "value": 50.0,
+      "period": "present day"
+    },
+    {
+      "label": "Library of Pergamum",
+      "value": 20.0,
+      "period": "present day"
     }
   ]
 }

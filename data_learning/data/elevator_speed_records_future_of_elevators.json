@@ -1,10 +1,10 @@
 {
-  "key": "elevator_speed_records_elevator_speed",
-  "title": "Elevator Speed",
-  "unit": "mph",
+  "key": "elevator_speed_records_future_of_elevators",
+  "title": "Future of Elevators",
+  "unit": "percent",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "comparison",
+  "insight_type": "share",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,13 +15,13 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Fastest Elevator",
-      "value": 46.0,
-      "period": "2022"
+      "label": "2025 Prediction",
+      "value": 70.0,
+      "period": "2025"
     },
     {
-      "label": "Average Car Speed",
-      "value": 40.0,
+      "label": "Current Adoption",
+      "value": 30.0,
       "period": "2020"
     }
   ]

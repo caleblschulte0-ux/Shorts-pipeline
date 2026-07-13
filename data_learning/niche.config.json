@@ -11752,6 +11752,489 @@
         }
       ],
       "question": "Could you find your way with nothing but Earth's magnetic field?"
+    },
+    {
+      "slug": "elevator-speed-records",
+      "title": "Elevator Speed Records",
+      "hook": "Imagine traveling over a hundred floors in less than a minute",
+      "closing": "The future of transportation is getting a whole lot faster",
+      "hashtags": [
+        "elevators",
+        "speedrecords",
+        "transportation",
+        "innovation",
+        "citylife"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "elevator_speed_records_elevator_speed",
+          "params": {
+            "file": "elevator_speed_records_elevator_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 ELEVATOR SPEED",
+          "topic": "Elevator Speed",
+          "say": "The fastest elevator can travel at speeds of up to 46 miles per hour, that's almost as fast as a car on the highway, with some elevators reaching speeds of 30 miles per hour in just a few seconds.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "elevator",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "car",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "elevator_speed_records_elevator_technology",
+          "params": {
+            "file": "elevator_speed_records_elevator_technology.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ELEVATOR TECHNOLOG",
+          "topic": "Elevator Technology",
+          "say": "In the past 20 years, elevator technology has improved significantly, with the introduction of new materials and designs, such as linear synchronous motors and advanced control systems, reducing travel time by up to 50%.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "elevator_speed_records_tallest_buildings",
+          "params": {
+            "file": "elevator_speed_records_tallest_buildings.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 TALLEST BUILDINGS",
+          "topic": "Tallest Buildings",
+          "say": "The tallest building in the world, the Burj Khalifa, stands at over 2,700 feet tall, with the fastest elevator traveling at speeds of up to 46 miles per hour, making it possible to reach the top in just over a minute, that's equivalent to stacking over 27 skyscrapers on top of each other.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "skyscraper",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 100.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "elevator_speed_records_future_of_elevators",
+          "params": {
+            "file": "elevator_speed_records_future_of_elevators.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 FUTURE OF ELEVATOR",
+          "topic": "Future of Elevators",
+          "say": "By 2025, it's estimated that over 70% of new elevators will be using advanced technologies such as artificial intelligence and the Internet of Things, making them more efficient and safer, with some buildings already using these technologies to reduce energy consumption by up to 30%.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "elevator shaft",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the fastest elevator you've ever been in?"
+    },
+    {
+      "slug": "mega-ships-size-comparison",
+      "title": "Mega Ships Size Comparison",
+      "hook": "Can you believe the biggest ships are longer than 4 football fields?",
+      "closing": "The largest ships ever built are a marvel of human engineering",
+      "hashtags": [
+        "megaships",
+        "largestships",
+        "shipcomparison",
+        "maritimeengineering"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "mega_ships_size_comparison_largest_ships",
+          "params": {
+            "file": "mega_ships_size_comparison_largest_ships.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST SHIPS",
+          "topic": "Largest Ships",
+          "say": "The largest ship, the Seawise Giant, measures 458 meters in length, while the second largest, the Batillus, measures 414 meters",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "ship",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "ship",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "mega_ships_size_comparison_ship_size_increase",
+          "params": {
+            "file": "mega_ships_size_comparison_ship_size_increase.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 SHIP SIZE INCREASE",
+          "topic": "Ship Size Increase",
+          "say": "Over the past 50 years, the size of the largest ships has increased by 25%",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "mega_ships_size_comparison_cargo_capacity",
+          "params": {
+            "file": "mega_ships_size_comparison_cargo_capacity.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 CARGO CAPACITY",
+          "topic": "Cargo Capacity",
+          "say": "The largest ships can carry over 20,000 TEU, while smaller ships can carry around 5,000 TEU",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "container",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "mega_ships_size_comparison_engine_power",
+          "params": {
+            "file": "mega_ships_size_comparison_engine_power.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 ENGINE POWER",
+          "topic": "Engine Power",
+          "say": "The engines of the largest ships produce over 100,000 horsepower, while smaller ships produce around 20,000 horsepower",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "engine",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's the most impressive mega ship you've ever seen?"
+    },
+    {
+      "slug": "crane-heights-comparison",
+      "title": "Crane Heights Comparison",
+      "hook": "Did you know cranes can reach higher than the Eiffel Tower?",
+      "closing": "The tallest cranes are a testament to human engineering and construction capabilities",
+      "hashtags": [
+        "craneheights",
+        "constructionequipment",
+        "cranes"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "crane_heights_comparison_tallest_cranes",
+          "params": {
+            "file": "crane_heights_comparison_tallest_cranes.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 TALLEST CRANES",
+          "topic": "Tallest Cranes",
+          "say": "The tallest crane, the Liebherr LR 13000, reaches a height of 248 meters, while the second tallest, the Manitowoc 31000, reaches 230 meters",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crane",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crane",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "crane_heights_comparison_crane_height_increase",
+          "params": {
+            "file": "crane_heights_comparison_crane_height_increase.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 CRANE HEIGHT INCRE",
+          "topic": "Crane Height Increase",
+          "say": "Over the past 20 years, the height of the tallest cranes has increased by 50%",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "crane_heights_comparison_lifting_capacity",
+          "params": {
+            "file": "crane_heights_comparison_lifting_capacity.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 LIFTING CAPACITY",
+          "topic": "Lifting Capacity",
+          "say": "The largest cranes can lift over 3,000 tons, while smaller cranes can lift around 100 tons",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "weight",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "crane_heights_comparison_boom_length",
+          "params": {
+            "file": "crane_heights_comparison_boom_length.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 BOOM LENGTH",
+          "topic": "Boom Length",
+          "say": "The longest boom of the largest cranes can reach over 100 meters, while smaller cranes have booms around 20 meters long",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "boom",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's the tallest crane you've ever seen?"
+    },
+    {
+      "slug": "ancient-libraries-uncovered",
+      "title": "Ancient Libraries Uncovered",
+      "hook": "Imagine a place where knowledge from centuries ago still exists",
+      "closing": "The ancient world's biggest libraries held the key to our modern understanding",
+      "hashtags": [
+        "ancientlibraries",
+        "history",
+        "knowledge",
+        "books",
+        "learning"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ancient_libraries_uncovered_largest_libraries",
+          "params": {
+            "file": "ancient_libraries_uncovered_largest_libraries.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST LIBRARIES",
+          "topic": "Largest Libraries",
+          "say": "The Library of Ashurbanipal had over 30,000 clay tablets, while the Library of Pergamum had around 20,000 volumes, and the Great Library of Alexandria is said to have had up to 700,000 scrolls",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "scroll",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "scroll",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "scroll",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "ancient_libraries_uncovered_oldest_surviving_tex",
+          "params": {
+            "file": "ancient_libraries_uncovered_oldest_surviving_tex.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 OLDEST SURVIVING T",
+          "topic": "Oldest Surviving Texts",
+          "say": "The Epic of Gilgamesh is over 4,000 years old, while the Iliad and the Odyssey are around 2,800 years old, and the oldest surviving copy of the Mahabharata is approximately 2,000 years old",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "ancient_libraries_uncovered_library_sizes_compar",
+          "params": {
+            "file": "ancient_libraries_uncovered_library_sizes_compar.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 LIBRARY SIZES COMP",
+          "topic": "Library Sizes Compared",
+          "say": "The Library of Congress has over 170 million items, while the British Library has around 150 million items, and the Bodleian Library has approximately 12 million items",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "book",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "ancient_libraries_uncovered_knowledge_preservati",
+          "params": {
+            "file": "ancient_libraries_uncovered_knowledge_preservati.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 KNOWLEDGE PRESERVA",
+          "topic": "Knowledge Preservation",
+          "say": "Only about 10% of the original texts from the Great Library of Alexandria have survived to the present day, while around 50% of the texts from the Library of Ashurbanipal have been preserved, and approximately 20% of the texts from the Library of Pergamum still exist",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most interesting ancient text you've come across?"
     }
   ],
   "videos": [

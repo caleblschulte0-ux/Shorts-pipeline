@@ -1,10 +1,10 @@
 {
-  "key": "elevator_speed_records_elevator_speed",
-  "title": "Elevator Speed",
-  "unit": "mph",
+  "key": "elevator_speed_records_tallest_buildings",
+  "title": "Tallest Buildings",
+  "unit": "feet",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "comparison",
+  "insight_type": "rank",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,13 +15,13 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Fastest Elevator",
-      "value": 46.0,
-      "period": "2022"
+      "label": "Burj Khalifa",
+      "value": 2722.0,
+      "period": "2010"
     },
     {
-      "label": "Average Car Speed",
-      "value": 40.0,
+      "label": "Average Skyscraper",
+      "value": 100.0,
       "period": "2020"
     }
   ]
