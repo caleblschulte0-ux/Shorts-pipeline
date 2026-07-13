@@ -96,11 +96,48 @@ def fetch_nasa(spec: dict, dest: Path):
         f"no NASA result passed the on-topic gate for {query!r}")
 
 
+def fetch_footage(spec: dict, work: Path, tag: str):
+    """Real NASA VIDEO footage for a B-roll beat (CURIOSITY_BRAIN §7.5 v9 —
+    the footage hybrid). Honors a pinned {"footage_nasa_id": ...}; otherwise
+    searches with {"footage_query": ...} (or falls back to "query"), keeping
+    only clips that read as real camera footage (animations/viz rejected).
+    Returns (path, credit). The assembler cuts it full-frame from a black-free
+    window and dissolves it in — never a pasted rectangle."""
+    from data_learning.footage_hybrid import (
+        download_video, is_real_footage, search_footage)
+    dest = work / f"footage_{tag}.mp4"
+    pinned = spec.get("footage_nasa_id")
+    if pinned:
+        download_video(str(pinned), dest)
+        return dest, f"NASA video {pinned} (public domain)"
+    q = str(spec.get("footage_query") or spec.get("query") or "").strip()
+    if not q:
+        raise RuntimeError("footage needs footage_nasa_id or a query")
+    hits = search_footage(q, limit=6)
+    if not hits:
+        raise RuntimeError(f"no real NASA footage passed the gate for {q!r}")
+    download_video(hits[0]["nasa_id"], dest)
+    return dest, (f"NASA: {hits[0]['title'][:70]} (public domain)")
+
+
 def fetch_evidence(spec: dict, work: Path, tag: str):
     """NASA first; Pexels fallback only when the spec allows it
     (earthly generics). Returns (kind, path, credit): kind is
     'image' or 'video'. Raises when nothing passes — the beat then
-    keeps its animation."""
+    keeps its animation.
+
+    When the spec asks for footage ({"footage": true} or a
+    footage_nasa_id/footage_query), real NASA VIDEO is tried FIRST — the
+    photoreal beats the CG substrate can't reach, panel-certified as
+    full-frame dissolved B-roll, not pasted stills (§7.5 v9)."""
+    if spec.get("footage") or spec.get("footage_nasa_id") \
+            or spec.get("footage_query"):
+        try:
+            p, credit = fetch_footage(spec, work, tag)
+            return "video", p, credit
+        except Exception as foot_err:  # noqa: BLE001 — fall through to stills
+            print(f"[evidence] footage gate failed ({foot_err}); "
+                  "trying NASA still", file=__import__("sys").stderr)
     dest = work / f"evidence_{tag}.jpg"
     try:
         p, credit = fetch_nasa(spec, dest)

@@ -896,7 +896,11 @@ def _body_world(story_cfg: dict, cfg: dict, st, theme: dict, windows,
     for i, wp in enumerate(wps):
         for j, ev in enumerate((wp.get("evidence") or [])[:2]):
             t0w, t1w = windows[i + 1]
-            secs = min(4.0, max(2.0, float(ev.get("seconds", 3.0))))
+            # footage breathes (5-7s, the panel-proven length); a pasted
+            # still must stay short (<=4s) so it never overstays as B-roll.
+            _cap = 7.0 if (ev.get("footage") or ev.get("footage_nasa_id")
+                           or ev.get("footage_query")) else 4.0
+            secs = min(_cap, max(2.0, float(ev.get("seconds", 3.0))))
             e0 = max(t0w + 1.0,
                      min(t0w + (t1w - t0w) * float(ev.get("at", 0.5)),
                          t1w - secs - 1.0))
