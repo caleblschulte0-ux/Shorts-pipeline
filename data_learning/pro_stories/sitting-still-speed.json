@@ -18,7 +18,7 @@
   {"kind":"flat_number","text":"1,670","sub":"KM / H","label":"the earth's spin","entity":"EARTH",
    "line":"That is half the speed of a bullet. And you never feel a thing."},
 
-  {"kind":"hero3d","template":"earth_spin","render_fps":10,
+  {"kind":"flat_orbit","center":"THE SUN","satellite":"EARTH",
    "line":"Now pull back, and watch what our whole planet is really doing."},
 
   {"kind":"flat_number","text":"107,000","sub":"KM / H","label":"earth around the sun","entity":"EARTH",
@@ -30,13 +30,13 @@
   {"kind":"flat_number","text":"828,000","sub":"KM / H","label":"our speed through the galaxy","entity":"THE SUN",
    "line":"Eight hundred and twenty-eight thousand kilometers an hour."},
 
-  {"kind":"hero3d","template":"cosmic_exit","render_fps":10,
+  {"kind":"flat_zoom","highlight":"THE SUN","stages":["OUR SOLAR SYSTEM","THE MILKY WAY"],
    "line":"A tiny world, riding a star, around a galaxy that is itself racing through the universe."},
 
   {"kind":"flat_statement","statement":"You have never been still — not for one single second of your life.",
    "line":"You have never been still. Not for one single second of your life."},
 
-  {"kind":"footage","footage_nasa_id":"GSFC_20181022_ICON_m12902_Airglow","ss":76.0,"push":1.06,"direction":"out",
+  {"kind":"footage","footage_nasa_id":"GSFC_20181022_ICON_m12902_Airglow","ss":72.0,"push":1.06,"direction":"out",
    "line":"The stillness you feel isn't stillness at all. It is just the speed of everything, moving together."}
  ]
 }

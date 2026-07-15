@@ -99,16 +99,25 @@ def _footage_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     src = work / f"srccache_{safe}.mp4"
     if not src.exists():
         fh.download_video(str(nid), src)
-    wins = [w for w in fh.clean_windows(src, min_len=seconds + 0.3)
-            if w[1] - w[0] >= seconds]
+    # Operator spec §1: inspect the EXACT window and reject black / card /
+    # diagram / cut segments — never pick a clip just because the id matched.
     if shot.get("ss") is not None:
         ss = float(shot["ss"])
-    elif wins:
-        w0, w1 = wins[0]
-        ss = max(w0, min(w0 + (w1 - w0 - seconds) * float(shot.get("at", 0.5)),
-                         w1 - seconds))
+        rep = fh.analyze_window(src, ss, seconds)
+        if not rep["ok"]:
+            print(f"[pro] pinned ss={ss} flagged {rep['flags']}; "
+                  "re-picking a clean window", file=sys.stderr)
+            ss = None
     else:
-        ss = 3.0
+        ss = None
+    if ss is None:
+        picked, reports = fh.pick_window(src, seconds,
+                                         at=float(shot.get("at", 0.5)))
+        if picked is None:
+            raise RuntimeError(
+                f"no clean window in {nid} for a {seconds:.1f}s beat "
+                f"(inspected {len(reports)})")
+        ss = picked
     fh.full_frame_beat(src, ss, seconds, out,
                        push=float(shot.get("push", 1.05)),
                        direction=shot.get("direction", "in"))
@@ -170,6 +179,15 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
                                  seconds)
     if k == "flat_statement":
         return flat2d.statement(shot["statement"], out, seconds)
+    if k == "flat_orbit":
+        return flat2d.orbit_reveal(shot.get("center", "THE SUN"),
+                                   shot.get("satellite", "EARTH"), out,
+                                   seconds)
+    if k == "flat_zoom":
+        return flat2d.cosmic_zoom(
+            out, seconds, highlight=shot.get("highlight", "THE SUN"),
+            stages=tuple(shot.get("stages",
+                                  ["OUR SOLAR SYSTEM", "THE MILKY WAY"])))
     if k == "hero3d":
         return _hero_shot(shot, seconds, out, work, idx)
     raise RuntimeError(f"unknown shot kind {k!r}")

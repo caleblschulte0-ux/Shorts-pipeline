@@ -276,6 +276,130 @@ def statement(line: str, out: Path, seconds: float = 4.0) -> Path:
     return _render(draw, out, seconds)
 
 
+def orbit_reveal(center_label: str, sat_label: str, out: Path,
+                 seconds: float = 6.0) -> Path:
+    """Editorial motion (movement): a body orbits a glowing center while the
+    camera pulls back to reveal the whole orbit — 'watch what the planet is
+    really doing.' A designed replacement for a cartoon 3D globe."""
+    cf = _font(_DEJAVU, 26)
+    lf = _font(_DEJAVU, 22)
+    cx, cy = W // 2, int(H * 0.52)
+
+    def draw(i, n, im):
+        d = ImageDraw.Draw(im, "RGBA")
+        p = _ease(min(i / (n * 0.85), 1.0))
+        rad = int((H * 0.10) + (H * 0.26) * p)     # orbit grows as we pull back
+        # sun glow at centre
+        glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(glow).ellipse(
+            [cx - 60, cy - 60, cx + 60, cy + 60], fill=(*PALETTE["gold"], 130))
+        glow = glow.filter(ImageFilter.GaussianBlur(24))
+        im = Image.alpha_composite(im.convert("RGBA"), glow).convert("RGB")
+        d = ImageDraw.Draw(im, "RGBA")
+        d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22],
+                  fill=(255, 238, 200, 255))
+        d.text((cx + 30, cy - 12), _spaced(center_label), font=lf,
+               fill=(*PALETTE["muted"], 220))
+        # the faint orbit ring
+        d.ellipse([cx - rad, cy - int(rad * 0.55), cx + rad,
+                   cy + int(rad * 0.55)], outline=(*PALETTE["blue"], 120),
+                  width=2)
+        # the orbiting body (2.5 laps across the shot) + comet trail
+        import math
+        for k in range(0, 14):
+            aa = 2 * math.pi * (2.4 * (i - k * 1.4) / n)
+            bx = cx + rad * math.cos(aa)
+            by = cy + int(rad * 0.55) * math.sin(aa)
+            d.ellipse([bx - 7, by - 7, bx + 7, by + 7],
+                      fill=(*PALETTE["blue"], max(0, 200 - k * 15)))
+        ang = 2 * math.pi * (2.4 * i / n)
+        bx = cx + rad * math.cos(ang)
+        by = cy + int(rad * 0.55) * math.sin(ang)
+        d.ellipse([bx - 11, by - 11, bx + 11, by + 11],
+                  fill=(150, 200, 255, 255))
+        a = min(max(i - 20, 0) / 12, 1.0)
+        d.text((bx + 16, by - 8), sat_label, font=lf,
+               fill=(*PALETTE["ink"], int(235 * a)))
+        return im
+
+    return _render(draw, out, seconds)
+
+
+def cosmic_zoom(out: Path, seconds: float = 7.0,
+                highlight: str = "THE SUN",
+                stages=("OUR SOLAR SYSTEM", "THE MILKY WAY")) -> Path:
+    """Editorial motion (relative scale): the camera pulls back from one
+    glowing dot to reveal a whole spiral galaxy, our star a single mote in it —
+    the money shot, designed, in place of a cartoon 3D cosmos. Stage labels
+    fade in as the scale escalates."""
+    import math
+    rnd = random.Random(21)
+    # spiral-arm galaxy in WORLD coords (unit ~ galaxy radius = 1.0)
+    stars = []
+    for _ in range(1400):
+        arm = rnd.choice([0, 1])
+        t = rnd.random()
+        r = 0.06 + 0.92 * t
+        theta = arm * math.pi + t * 5.2 + rnd.gauss(0, 0.22)
+        jit = rnd.gauss(0, 0.02)
+        stars.append((r * math.cos(theta) + jit, r * math.sin(theta) + jit,
+                      rnd.choice([1, 1, 2])))
+    us = (0.42, 0.16)     # our star's world position
+    cx, cy = W // 2, H // 2
+    lf = _font(_DEJAVU, 30)
+    hf = _font(_DEJAVU, 24)
+
+    def draw(i, n, im):
+        d = ImageDraw.Draw(im, "RGBA")
+        # view scale: start tight on 'us', end framing the whole galaxy
+        z = 1.0 + (_ease(i / n)) * 1.0            # 0..1 ease
+        span = 0.16 + z * 1.05                    # world half-width shown
+        scale = (W * 0.5) / span
+
+        def to_screen(wx, wy):
+            return (cx + (wx - us[0] * (1 - _ease(i / n))) * scale,
+                    cy + (wy - us[1] * (1 - _ease(i / n))) * scale)
+        # galaxy core glow
+        gx, gy = to_screen(0, 0)
+        glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(glow).ellipse(
+            [gx - 120, gy - 120, gx + 120, gy + 120],
+            fill=(*PALETTE["gold"], 70))
+        glow = glow.filter(ImageFilter.GaussianBlur(40))
+        im = Image.alpha_composite(im.convert("RGBA"), glow).convert("RGB")
+        d = ImageDraw.Draw(im, "RGBA")
+        for wx, wy, sr in stars:
+            sx, sy = to_screen(wx, wy)
+            if -20 < sx < W + 20 and -20 < sy < H + 20:
+                c = 150 + int(80 * (1 - (wx * wx + wy * wy)))
+                d.ellipse([sx - sr, sy - sr, sx + sr, sy + sr],
+                          fill=(c, c, min(255, int(c * 1.15))))
+        # our star — a gold dot that stays highlighted as it shrinks
+        ux, uy = to_screen(*us)
+        pulse = 6 + 2 * math.sin(i / 3.0)
+        gl = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(gl).ellipse([ux - 22, uy - 22, ux + 22, uy + 22],
+                                   fill=(*PALETTE["gold"], 160))
+        gl = gl.filter(ImageFilter.GaussianBlur(10))
+        im = Image.alpha_composite(im.convert("RGBA"), gl).convert("RGB")
+        d = ImageDraw.Draw(im, "RGBA")
+        d.ellipse([ux - pulse, uy - pulse, ux + pulse, uy + pulse],
+                  fill=(255, 240, 205, 255))
+        if i < n * 0.55:
+            d.text((ux + 16, uy - 8), highlight, font=hf,
+                   fill=(*PALETTE["ink"], 235))
+        # stage labels escalate
+        allst = [highlight] + list(stages)
+        idx = min(len(allst) - 1, int((i / n) * len(allst)))
+        lbl = _spaced(allst[idx])
+        a = 0.8
+        d.text((_center_x(d, lbl, lf), int(H * 0.86)), lbl, font=lf,
+               fill=(*PALETTE["muted"], int(235 * a)))
+        return im
+
+    return _render(draw, out, seconds)
+
+
 if __name__ == "__main__":
     # smoke: render one of each into ./flat2d_smoke/
     out = REPO / "flat2d_smoke"

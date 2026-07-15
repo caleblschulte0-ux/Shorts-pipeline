@@ -155,6 +155,119 @@ def _black_spans(clip: Path) -> list[tuple[float, float]]:
     return spans
 
 
+def _sample_frames(clip: Path, ss: float, dur: float, n: int = 8):
+    """Grab n evenly-spaced small frames from the EXACT window [ss, ss+dur]."""
+    import numpy as np
+    from PIL import Image
+    tmp = clip.parent / f"_win_{int(ss * 100)}.png"
+    frames = []
+    for k in range(n):
+        t = ss + dur * (k + 0.5) / n
+        subprocess.run(
+            ["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t:.3f}",
+             "-i", str(clip), "-frames:v", "1", "-vf", "scale=192:-1",
+             str(tmp)], check=True)
+        frames.append(np.asarray(Image.open(tmp).convert("RGB"),
+                                 dtype="float32"))
+    tmp.unlink(missing_ok=True)
+    return frames
+
+
+def analyze_window(clip: Path, ss: float, dur: float) -> dict:
+    """Inspect the EXACT time range the renderer plans to use (operator spec
+    §1) — not a general sample of the source. Returns {ok, flags, ...}.
+
+    Heuristic backstop that runs inside the render; the vision pass
+    (window_contact_sheet + a judge) is the authoritative check. Catches the
+    cheap, unambiguous failures: black frames, flat title-card/diagram frames
+    (bright + desaturated + low detail — the 'nitrogen molecule on grey paper'
+    tell), and a hard cut / sudden visual change inside the window."""
+    import numpy as np
+    fr = _sample_frames(clip, ss, dur)
+    flags, black, cardish = [], 0, 0
+    grays = []
+    for a in fr:
+        g = a.mean(2)
+        grays.append(g)
+        bright = float(g.mean())
+        sat = float((a.max(2) - a.min(2)).mean())
+        detail = float(g.std())
+        if bright < 12:
+            black += 1
+        # a produced card/diagram/title: light, flat, desaturated, low detail
+        if bright > 125 and sat < 34 and detail < 58:
+            cardish += 1
+    n = len(fr)
+    # sudden change: biggest frame-to-frame jump across the window
+    jumps = [float(np.abs(grays[i] - grays[i - 1]).mean())
+             for i in range(1, n)]
+    maxjump = max(jumps) if jumps else 0.0
+    if black:
+        flags.append("black_frames")
+    if cardish >= 2:
+        flags.append("graphic_or_title_card")
+    if maxjump > 34:
+        flags.append("sudden_change")
+    return {"ok": not flags, "flags": flags,
+            "black": black, "cardish": cardish,
+            "maxjump": round(maxjump, 1)}
+
+
+def pick_window(clip: Path, dur: float, at: float = 0.5,
+                head_skip: float = 3.0):
+    """Choose the best usable window for a `dur`-second beat: scan the
+    black-free windows, slide a `dur` sub-window through each, and return the
+    first that passes analyze_window (subject-bearing, no card/cut/black).
+    Returns (ss, report) or (None, report) if nothing in the source is clean."""
+    reports = []
+    for w0, w1 in clean_windows(clip, min_len=dur + 0.3, head_skip=head_skip):
+        span = w1 - w0
+        # candidate starts: the requested position first, then a sweep
+        cands = [w0 + (span - dur) * at]
+        steps = max(1, int(span // dur))
+        cands += [w0 + i * (span - dur) / max(1, steps) for i in range(steps + 1)]
+        for ss in cands:
+            ss = max(w0, min(ss, w1 - dur))
+            rep = analyze_window(clip, ss, dur)
+            reports.append({"ss": round(ss, 1), **rep})
+            if rep["ok"]:
+                return round(ss, 2), reports
+    return None, reports
+
+
+def window_contact_sheet(clip: Path, ss: float, dur: float, out: Path,
+                         cols: int = 5):
+    """A dense contact sheet of ONLY the [ss, ss+dur] window — the artifact a
+    vision judge (or the orchestrator) reads to confirm a segment is clean
+    live-action footage before it is committed."""
+    from PIL import Image, ImageDraw, ImageFont
+    tiles, tw = [], 384
+    tmp = out.parent / "_wct.png"
+    for k in range(cols * 2):
+        t = ss + dur * (k + 0.5) / (cols * 2)
+        subprocess.run(
+            ["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t:.3f}",
+             "-i", str(clip), "-frames:v", "1", "-vf", f"scale={tw}:-1",
+             str(tmp)], check=True)
+        im = Image.open(tmp).convert("RGB")
+        d = ImageDraw.Draw(im)
+        try:
+            f = ImageFont.truetype(
+                "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 16)
+        except Exception:  # noqa: BLE001
+            f = ImageFont.load_default()
+        d.text((5, 5), f"{t:0.1f}s", font=f, fill=(255, 235, 120))
+        tiles.append(im)
+    tmp.unlink(missing_ok=True)
+    th = tiles[0].height
+    rows = (len(tiles) + cols - 1) // cols
+    sheet = Image.new("RGB", (cols * tw, rows * th), (10, 10, 16))
+    for i, im in enumerate(tiles):
+        sheet.paste(im, ((i % cols) * tw, (i // cols) * th))
+    sheet.save(out)
+    return out
+
+
 def clean_windows(clip: Path, min_len: float = 4.0,
                   head_skip: float = 3.0) -> list[tuple[float, float]]:
     """Spans of at least `min_len` seconds that contain no black frames and
