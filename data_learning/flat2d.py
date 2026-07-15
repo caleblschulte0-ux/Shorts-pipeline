@@ -164,10 +164,11 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
         if half > 2:
             d.rectangle([W // 2 - half, rule_y, W // 2 + half, rule_y + 3],
                         fill=(*PALETTE["gold"], 230))
-        # unit BELOW the rule, never touching the number
+        # unit BELOW the rule, never touching the number (rendered as-given
+        # so the km/h style stays consistent with footage-number beats)
         if sub:
             uy = rule_y + 20
-            d.text((_center_x(d, _spaced(sub), unit), uy), _spaced(sub),
+            d.text((_center_x(d, sub, unit), uy), sub,
                    font=unit, fill=(*PALETTE["gold"], 255))
         return im2
 
@@ -200,16 +201,28 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
             y = top + k * gap
             d.text((x0, y - 44), str(r["name"]), font=namef,
                    fill=(*PALETTE["ink"], 235))
+            # staggered race — each bar launches a beat after the one above,
+            # so they GROW at their own speed. NO empty full-width track rail
+            # behind them (that reads as a dashboard/progress bar); the bars
+            # race on open space, a cinematic comparison, not a chart.
+            g = _ease(min(max(i - k * 6, 0) / (n * 0.55), 1.0))
             full = (x1 - x0) * (float(r["value"]) / vmax)
-            w = max(4.0, full * grow)
-            d.rounded_rectangle([x0, y, x0 + (x1 - x0), y + barh], radius=13,
-                                fill=(*PALETTE["blue"], 40))
-            d.rounded_rectangle([x0, y, x0 + w, y + barh], radius=13,
+            w = max(4.0, full * g)
+            # a soft leading-edge glow so the fastest bar reads as speed
+            glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
+            ImageDraw.Draw(glow).ellipse(
+                [x0 + w - 26, y - 6, x0 + w + 26, y + barh + 6],
+                fill=(*PALETTE["gold"], 150))
+            im.paste(Image.alpha_composite(
+                im.convert("RGBA"),
+                glow.filter(ImageFilter.GaussianBlur(11))).convert("RGB"),
+                (0, 0))
+            d = ImageDraw.Draw(im, "RGBA")
+            d.rounded_rectangle([x0, y, x0 + w, y + barh], radius=barh // 2,
                                 fill=(*PALETTE["gold"], 255))
             disp = str(r.get("display", r["value"]))
-            av = min(max((i - n * 0.5) / (n * 0.3), 0), 1)
-            d.text((x0 + w + 18, y - 12), disp, font=valf,
-                   fill=(*PALETTE["ink"], int(255 * av)))
+            d.text((x0 + w + 20, y - 11), disp, font=valf,
+                   fill=(*PALETTE["ink"], int(255 * min(g * 1.4, 1))))
         return im
 
     return _render(draw, out, seconds)
@@ -316,7 +329,7 @@ def orbit_reveal(center_label: str, sat_label: str, out: Path,
 
 def cosmic_zoom(out: Path, seconds: float = 7.0,
                 highlight: str = "THE SUN",
-                stages=("OUR SOLAR SYSTEM", "THE MILKY WAY")) -> Path:
+                stages=("THE MILKY WAY",)) -> Path:
     """Editorial motion (relative scale): the camera pulls back from one
     glowing dot to reveal a whole spiral galaxy, our star a single mote in it —
     the money shot, designed, in place of a cartoon 3D cosmos. Stage labels

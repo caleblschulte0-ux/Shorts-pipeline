@@ -1,42 +1,104 @@
 {
- "slug": "sitting-still-speed",
- "title": "You're Moving 828,000 km/h Right Now",
- "voice": "en-US-GuyNeural",
- "shots": [
-  {"kind":"footage","footage_nasa_id":"KSC-20240525-MH-RKL01-0001-Rocket_Lab_PREFIRE_1_Launch_1080p-M6988","ss":10.8,"push":1.05,"direction":"in",
-   "line":"Right now, sitting perfectly still, you feel like nothing is moving at all. That feeling is the greatest illusion of your life."},
-
-  {"kind":"flat_compare","title":"how fast is fast",
-   "rows":[{"name":"Usain Bolt","value":44,"display":"44 km/h"},
-           {"name":"Passenger jet","value":900,"display":"900 km/h"},
-           {"name":"Rifle bullet","value":3400,"display":"3,400 km/h"}],
-   "line":"We think we know what fast means. A sprinter hits forty-four kilometers an hour. A jet, nine hundred. A rifle bullet, three thousand four hundred."},
-
-  {"kind":"footage","footage_nasa_id":"GSFC_20181022_ICON_m12902_Airglow","ss":70.0,"push":1.06,"direction":"in",
-   "line":"But the ground beneath your feet is not still either. Our planet is spinning, and at the equator it turns at sixteen hundred and seventy kilometers an hour."},
-
-  {"kind":"flat_number","text":"1,670","sub":"KM / H","label":"the earth's spin","entity":"EARTH",
-   "line":"That is half the speed of a bullet. And you never feel a thing."},
-
-  {"kind":"flat_orbit","center":"THE SUN","satellite":"EARTH",
-   "line":"Now pull back, and watch what our whole planet is really doing."},
-
-  {"kind":"flat_number","text":"107,000","sub":"KM / H","label":"earth around the sun","entity":"EARTH",
-   "line":"Earth is falling around the Sun at one hundred and seven thousand kilometers an hour. Thirty kilometers every single second."},
-
-  {"kind":"flat_statement","statement":"And the Sun itself is not still — it falls around the heart of the galaxy, dragging every planet with it.",
-   "line":"And the Sun itself is not still. It falls around the center of the galaxy, dragging every planet with it."},
-
-  {"kind":"footage_number","footage_nasa_id":"GSFC_20181022_ICON_m12902_Airglow","ss":66.0,"push":1.05,"direction":"in","text":"828,000","sub":"km / h","label":"our speed through the galaxy",
-   "line":"Eight hundred and twenty-eight thousand kilometers an hour."},
-
-  {"kind":"flat_zoom","highlight":"THE SUN","stages":["OUR SOLAR SYSTEM","THE MILKY WAY"],
-   "line":"A tiny world, riding a star, around a galaxy that is itself racing through the universe."},
-
-  {"kind":"flat_statement","statement":"You have never been still — not for one single second of your life.",
-   "line":"You have never been still. Not for one single second of your life."},
-
-  {"kind":"footage","footage_nasa_id":"GSFC_20181022_ICON_m12902_Airglow","ss":72.0,"push":1.06,"direction":"out",
-   "line":"The stillness you feel isn't stillness at all. It is just the speed of everything, moving together."}
- ]
+  "slug": "sitting-still-speed",
+  "title": "You're Moving 828,000 km/h Right Now",
+  "voice": "en-US-GuyNeural",
+  "shots": [
+    {
+      "kind": "footage",
+      "footage_nasa_id": "KSC-20240525-MH-RKL01-0001-Rocket_Lab_PREFIRE_1_Launch_1080p-M6988",
+      "ss": 10.8,
+      "push": 1.05,
+      "direction": "in",
+      "line": "Right now, sitting perfectly still, you feel like nothing is moving at all. That feeling is the greatest illusion of your life."
+    },
+    {
+      "kind": "flat_compare",
+      "title": "how fast is fast",
+      "rows": [
+        {
+          "name": "Usain Bolt",
+          "value": 44,
+          "display": "44 km/h"
+        },
+        {
+          "name": "Passenger jet",
+          "value": 900,
+          "display": "900 km/h"
+        },
+        {
+          "name": "Rifle bullet",
+          "value": 3400,
+          "display": "3,400 km/h"
+        }
+      ],
+      "line": "We think we know what fast means. A sprinter hits forty-four kilometers an hour. A jet, nine hundred. A rifle bullet, three thousand four hundred."
+    },
+    {
+      "kind": "footage",
+      "footage_nasa_id": "GSFC_20181022_ICON_m12902_Airglow",
+      "ss": 70.0,
+      "push": 1.06,
+      "direction": "in",
+      "line": "But the ground beneath your feet is not still either. Our planet is spinning, and at the equator it turns at sixteen hundred and seventy kilometers an hour."
+    },
+    {
+      "kind": "flat_number",
+      "text": "1,670",
+      "sub": "km/h",
+      "label": "the earth's spin",
+      "entity": "EARTH",
+      "line": "That is half the speed of a bullet. And you never feel a thing."
+    },
+    {
+      "kind": "flat_orbit",
+      "center": "THE SUN",
+      "satellite": "EARTH",
+      "line": "Now pull back, and watch what our whole planet is really doing."
+    },
+    {
+      "kind": "flat_number",
+      "text": "107,000",
+      "sub": "km/h",
+      "label": "earth around the sun",
+      "entity": "EARTH",
+      "line": "Earth is falling around the Sun at one hundred and seven thousand kilometers an hour. Thirty kilometers every single second."
+    },
+    {
+      "kind": "flat_statement",
+      "statement": "And the Sun itself is not still — it falls around the heart of the galaxy, dragging every planet with it.",
+      "line": "And the Sun itself is not still. It falls around the center of the galaxy, dragging every planet with it."
+    },
+    {
+      "kind": "footage_number",
+      "footage_nasa_id": "GSFC_20181022_ICON_m12902_Airglow",
+      "ss": 66.0,
+      "push": 1.05,
+      "direction": "in",
+      "text": "828,000",
+      "sub": "km/h",
+      "label": "our speed through the galaxy",
+      "line": "Eight hundred and twenty-eight thousand kilometers an hour."
+    },
+    {
+      "kind": "flat_zoom",
+      "highlight": "THE SUN",
+      "stages": [
+        "THE MILKY WAY"
+      ],
+      "line": "A tiny world, riding a star, around a galaxy that is itself racing through the universe."
+    },
+    {
+      "kind": "flat_statement",
+      "statement": "You have never been still — not for one single second of your life.",
+      "line": "You have never been still. Not for one single second of your life."
+    },
+    {
+      "kind": "footage",
+      "footage_nasa_id": "GSFC_20181022_ICON_m12902_Airglow",
+      "ss": 72.0,
+      "push": 1.06,
+      "direction": "out",
+      "line": "The stillness you feel isn't stillness at all. It is just the speed of everything, moving together."
+    }
+  ]
 }
