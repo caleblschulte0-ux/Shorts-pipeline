@@ -1,18 +1,18 @@
 [
   {
-    "topic": "My maid of honor grabbed the mic at my rehearsal dinner and read my fiance's texts out loud",
-    "title": "My maid of honor grabbed the mic at my rehearsal dinner and read my fiance's texts out loud",
-    "publish_at": "2026-07-13T13:00:00Z",
+    "topic": "My landlord kept 'checking the smoke detector' while I was at work, so I hid a camera",
+    "title": "My landlord kept 'checking the smoke detector' while I was at work, so I hid a camera",
+    "publish_at": "2026-07-15T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/E0BAr8RkN6c",
+    "video_url": "https://youtube.com/shorts/7HFejgtqZRY",
     "error": null,
-    "elapsed_seconds": 307.1,
-    "package_path": "state/trending_packages/20260713/01_rehearsal-dinner-mic-affair-texts.json",
-    "video_path": "output/daily_20260713-111311_my_maid_of_honor_grabbed_the_mic_at_my_r.mp4",
+    "elapsed_seconds": 602.0,
+    "package_path": "state/trending_packages/20260715/01_landlord-hidden-camera-tenants.json",
+    "video_path": "output/daily_20260715-111206_my_landlord_kept__checking_the_smoke_det.mp4",
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "short"
+      "reason": "None"
     },
     "channel": "default"
   }

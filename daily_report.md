@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-07-13
+# Daily Trending Shorts — 2026-07-15
 
 - queued: **1**
 - succeeded: **1**
@@ -6,9 +6,9 @@
 - failed: **0**
 
 ## Posted
-- **My maid of honor grabbed the mic at my rehearsal dinner and read my fiance's texts out loud**
-  - topic: My maid of honor grabbed the mic at my rehearsal dinner and read my fiance's texts out loud
-  - publishes: `2026-07-13T13:00:00Z`
-  - https://youtube.com/shorts/E0BAr8RkN6c
-  - took: 307.1s
+- **My landlord kept 'checking the smoke detector' while I was at work, so I hid a camera**
+  - topic: My landlord kept 'checking the smoke detector' while I was at work, so I hid a camera
+  - publishes: `2026-07-15T13:00:00Z`
+  - https://youtube.com/shorts/7HFejgtqZRY
+  - took: 602.0s
 

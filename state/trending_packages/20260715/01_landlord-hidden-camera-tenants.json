@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "slug": "landlord-hidden-camera-tenants",
+  "subreddit": "pettyrevenge",
+  "title": "My landlord kept 'checking the smoke detector' while I was at work, so I hid a camera",
+  "hashtags": ["reddit", "pettyrevenge", "storytime", "redditstories", "landlord", "drama", "creepy", "hiddencamera", "reddittok", "revenge"],
+  "script": "My landlord swore he only entered my apartment to check the smoke detector, but every time I got home from a shift, my dresser drawers were open and my perfume bottles had been moved. So on Tuesday I hid my phone inside a stuffed animal on the shelf and left for work like normal. Four hours later I sat in the parking lot with my hands shaking and watched the footage. He let himself in at 1:47, walked straight to my closet, and started going through my laundry basket, taking pictures of my things with his phone. I called the police right there in the lot. When they pulled his rental records, they found seventeen other tenants across three of his buildings who had filed the exact same complaint and were told there was no evidence. Then the officer turned his laptop around and showed me a folder labeled with all our names. Mine was the only one still empty.",
+  "shots": [
+    {"phrase": "My landlord swore he only entered my apartment to check the smoke detector", "query": "landlord unlocking apartment door", "mascot_pose": "point"},
+    {"phrase": "my dresser drawers were open and my perfume bottles had been moved", "query": "open drawer messy bedroom", "mascot_pose": "shock"},
+    {"phrase": "I hid my phone inside a stuffed animal on the shelf", "query": "hidden camera stuffed animal shelf", "mascot_pose": "point"},
+    {"phrase": "I sat in the parking lot with my hands shaking and watched the footage", "query": "woman sitting in car shaking phone", "mascot_pose": "shock"},
+    {"phrase": "He let himself in at 1:47", "query": "door unlocking key close up", "mascot_pose": "shock"},
+    {"phrase": "I called the police right there in the lot", "query": "police car lights night", "mascot_pose": "point"},
+    {"phrase": "they found seventeen other tenants across three of his buildings", "query": "apartment building exterior night", "mascot_pose": "shock"},
+    {"phrase": "Mine was the only one still empty.", "query": "laptop screen folder close up", "mascot_pose": "shock"}
+  ],
+  "punches": [
+    {"phrase": "I hid my phone inside a stuffed animal", "text": "SET A TRAP", "color": "#ff3030"},
+    {"phrase": "1:47", "text": "1:47 AM", "color": "#ff3030"},
+    {"phrase": "seventeen other tenants", "text": "17 OTHER VICTIMS", "color": "#ff3030"},
+    {"phrase": "a folder labeled with all our names", "text": "A FOLDER OF NAMES", "color": "#ff3030"},
+    {"phrase": "Mine was the only one still empty.", "text": "STILL EMPTY", "color": "#ff3030"}
+  ],
+  "music_vibe": "dark"
+}
