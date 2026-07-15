@@ -1,0 +1,28 @@
+{
+  "key": "longest_lasting_dynasties_dynasty_length",
+  "title": "Dynasty Length",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Solomon Dynasty",
+      "value": 3000.0,
+      "period": "1000 BC"
+    },
+    {
+      "label": "Qin Dynasty",
+      "value": 15.0,
+      "period": "221 BC"
+    }
+  ]
+}

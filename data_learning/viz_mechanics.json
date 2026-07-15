@@ -44,5 +44,19 @@
   "concept": "a cargo crane lifts shipping containers filled to each ship's cargo capacity, with the ship's photo and label displayed alongside",
   "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = RTOP + 200\n    r = 80\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], fill=rgba(TEXT, 90))\n    fill_image(subject_image('shipping container'), clamp(v / vmax) * reveal, cxs - r, cy - r, r * 2, r * 2)\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 200\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy + r + 20, w, h)\n    text(str(int(v)) + ' TEU', cxs, cy + r + 150, size=46, color=col, center=True)\n    text(labels[i], cxs, cy + r + 220, size=38, center=True)\n    crane_y = lerp(cy + r + 20, cy + r + 150, reveal)\n    d.line([cxs, crane_y, cxs, cy + r + 150], fill=rgba(col, 255), width=8)\n",
   "topic": "Cargo Capacity"
+ },
+ {
+  "sig": "5f0c4600df0d",
+  "mechanic": "ancient-scrolls",
+  "concept": "two ancient scrolls with images of food unroll to reveal the year and recipe name, the length of the unrolled portion representing the time period",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = RTOP + 200\n    img = subject_image('ancient scroll')\n    if img is not None:\n        asp = img.width / img.height\n        w = 200\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    scroll_w = 20\n    scroll_h = 600 * clamp(v / vmax) * reveal\n    d.rectangle([cxs - scroll_w // 2, cy + h // 2, cxs + scroll_w // 2, cy + h // 2 + scroll_h], fill=rgba(ACCENT, 200))\n    text(labels[i], cxs, cy + h // 2 + scroll_h + 20, size=38, color=TEXT, center=True)\n    text(str(int(v)) + ' years ago', cxs, cy + h // 2 + scroll_h + 60, size=38, color=TEXT, center=True)\n    recipe_img = subject_image('recipe book page')\n    if recipe_img is not None:\n        asp = recipe_img.width / recipe_img.height\n        rw = 150\n        rh = int(rw / asp)\n        paste(recipe_img, cxs - rw // 2, cy + h // 2 + scroll_h + 100, rw, rh)\n",
+  "topic": "Ancient Recipes"
+ },
+ {
+  "sig": "38b22b817824",
+  "mechanic": "ingredient-shelves",
+  "concept": "a set of shelves where each data point is represented by a jar filled with its corresponding ingredient, with the jar size and filling level indicating its value",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = RTOP + 200\nn = len(values)\nshelf_h = 120\nshelf_gap = 40\nfor i in range(n):\n    v = values[i]\n    label = labels[i]\n    img = subject_image(label)\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        if h > 100:\n            h = 100\n            w = int(h * asp)\n        shelf_y = cy + i * (shelf_h + shelf_gap)\n        jar_w = 100\n        jar_h = 150\n        fill_h = int(jar_h * clamp(v / vmax) * reveal)\n        d.rectangle([cx - jar_w // 2, shelf_y, cx + jar_w // 2, shelf_y + shelf_h], fill=rgba(ACCENT, 10))\n        d.rectangle([cx - jar_w // 2, shelf_y + shelf_h - fill_h, cx + jar_w // 2, shelf_y + shelf_h], fill=rgba(HIGHLIGHT, 255))\n        paste(img, cx - w // 2, shelf_y + shelf_h + 10, w, h)\n        text(str(int(v)), cx, shelf_y + shelf_h + 120, size=36, color=TEXT, center=True)\n        text(label, cx, shelf_y - 30, size=30, color=TEXT, center=True)\n",
+  "topic": "Ingredient Variety"
  }
 ]

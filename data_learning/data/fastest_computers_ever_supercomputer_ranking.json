@@ -1,0 +1,30 @@
+{
+  "key": "fastest_computers_ever_supercomputer_ranking",
+  "title": "Supercomputer Ranking",
+  "unit": "petaflops",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Frontier",
+      "value": 1000000.0
+    },
+    {
+      "label": "Sierra",
+      "value": 150000.0
+    },
+    {
+      "label": "Summit",
+      "value": 200000.0
+    }
+  ]
+}

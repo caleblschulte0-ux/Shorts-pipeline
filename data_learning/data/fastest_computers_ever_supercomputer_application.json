@@ -1,0 +1,30 @@
+{
+  "key": "fastest_computers_ever_supercomputer_application",
+  "title": "Supercomputer Applications",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Weather Forecasting",
+      "value": 20.0
+    },
+    {
+      "label": "Scientific Research",
+      "value": 30.0
+    },
+    {
+      "label": "Cryptography",
+      "value": 15.0
+    }
+  ]
+}

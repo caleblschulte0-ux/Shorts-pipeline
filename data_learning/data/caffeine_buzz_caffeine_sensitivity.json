@@ -1,0 +1,28 @@
+{
+  "key": "caffeine_buzz_caffeine_sensitivity",
+  "title": "Caffeine Sensitivity",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Low Sensitivity",
+      "value": 10.0,
+      "period": "2020"
+    },
+    {
+      "label": "Medium Sensitivity",
+      "value": 50.0,
+      "period": "2019"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "key": "fastest_computers_ever_supercomputer_speed",
+  "title": "Supercomputer Speed",
+  "unit": "petaflops",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "First Supercomputer",
+      "value": 80.0,
+      "period": "1960s"
+    },
+    {
+      "label": "Current Supercomputer",
+      "value": 1000000.0,
+      "period": "2020s"
+    }
+  ]
+}

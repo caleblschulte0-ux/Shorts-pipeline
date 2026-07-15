@@ -1,0 +1,28 @@
+{
+  "key": "oldest_recipes_ever_found_culinary_legacy",
+  "title": "Culinary Legacy",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Ancient Influence",
+      "value": 50.0,
+      "period": "2022"
+    },
+    {
+      "label": "Modern Twist",
+      "value": 30.0,
+      "period": "2022"
+    }
+  ]
+}

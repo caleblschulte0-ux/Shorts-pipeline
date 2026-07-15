@@ -1,0 +1,26 @@
+{
+  "key": "extreme_food_calories_donut_calories",
+  "title": "Donut Calories",
+  "unit": "calories",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Regular Donut",
+      "value": 250.0
+    },
+    {
+      "label": "Extreme Donut",
+      "value": 1200.0
+    }
+  ]
+}

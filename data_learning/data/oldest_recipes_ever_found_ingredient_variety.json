@@ -1,0 +1,28 @@
+{
+  "key": "oldest_recipes_ever_found_ingredient_variety",
+  "title": "Ingredient Variety",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Top 5 Ingredients",
+      "value": 5.0,
+      "period": "2022"
+    },
+    {
+      "label": "Top 10 Ingredients",
+      "value": 10.0,
+      "period": "2022"
+    }
+  ]
+}

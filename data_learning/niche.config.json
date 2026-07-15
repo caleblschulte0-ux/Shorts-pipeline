@@ -12235,6 +12235,686 @@
         }
       ],
       "question": "What's the most interesting ancient text you've come across?"
+    },
+    {
+      "slug": "longest-lasting-dynasties",
+      "title": "Longest Lasting Dynasties",
+      "hook": "Dynasties have shaped human history, but which ones lasted the longest?",
+      "closing": "The longest lasting dynasty in history, a testament to enduring power.",
+      "hashtags": [
+        "history",
+        "dynasties",
+        "power",
+        "longevity"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "longest_lasting_dynasties_dynasty_length",
+          "params": {
+            "file": "longest_lasting_dynasties_dynasty_length.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DYNASTY LENGTH",
+          "topic": "Dynasty Length",
+          "say": "The longest lasting dynasty, the Solomon dynasty, lasted for over 3000 years, while the shortest, the Qin dynasty, lasted only 15 years. The average length of a dynasty is around 200 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "longest_lasting_dynasties_top_5_dynasties",
+          "params": {
+            "file": "longest_lasting_dynasties_top_5_dynasties.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 TOP 5 DYNASTIES",
+          "topic": "Top 5 Dynasties",
+          "say": "The top 5 longest lasting dynasties are the Solomon, Egyptian, Chinese, Roman, and British dynasties, with lengths of 3000, 2500, 2000, 1500, and 1000 years respectively. The average length of these dynasties is around 2000 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crown",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crown",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crown",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crown",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crown",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "longest_lasting_dynasties_dynasty_decline",
+          "params": {
+            "file": "longest_lasting_dynasties_dynasty_decline.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 DYNASTY DECLINE",
+          "topic": "Dynasty Decline",
+          "say": "The length of dynasties has been declining over time, with the average length of a dynasty in the 20th century being around 50 years. The longest lasting dynasty in the 20th century was the British monarchy, which has lasted for over 1000 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "longest_lasting_dynasties_dynasty_legacy",
+          "params": {
+            "file": "longest_lasting_dynasties_dynasty_legacy.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 DYNASTY LEGACY",
+          "topic": "Dynasty Legacy",
+          "say": "The legacy of a dynasty can be seen in the buildings and monuments they leave behind, with some dynasties leaving a lasting impact on the world. The Egyptian pyramids, for example, are still standing after 4500 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "building",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "building",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What do you think contributed to the longevity of these dynasties?"
+    },
+    {
+      "slug": "scorching-hot-peppers",
+      "title": "Scorching Hot Peppers",
+      "hook": "Get ready to ignite your taste buds",
+      "closing": "The world's hottest peppers will leave you breathless",
+      "hashtags": [
+        "hottestpeppers",
+        "spicyfood",
+        "chilipeppers"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "scorching_hot_peppers_hottest_peppers",
+          "params": {
+            "file": "scorching_hot_peppers_hottest_peppers.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 HOTTEST PEPPERS",
+          "topic": "Hottest Peppers",
+          "say": "The top three hottest peppers in the world are the Carolina Reaper, the Trinidad Moruga Scorpion, and the Naga Viper, with Scoville heat units of 1,569,300, 1,469,000, and 1,382,118 respectively",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "pepper",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "pepper",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "pepper",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "scorching_hot_peppers_pepper_heat",
+          "params": {
+            "file": "scorching_hot_peppers_pepper_heat.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 PEPPER HEAT",
+          "topic": "Pepper Heat",
+          "say": "The Carolina Reaper is 400 times hotter than the jalapeno pepper, with a Scoville heat unit rating of 1,569,300 compared to the jalapeno's 3,500",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "pepper",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 100000.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "scorching_hot_peppers_pepper_popularity",
+          "params": {
+            "file": "scorching_hot_peppers_pepper_popularity.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 PEPPER POPULARITY",
+          "topic": "Pepper Popularity",
+          "say": "The popularity of hot peppers has been increasing over the years, with Google searches for 'hottest peppers' increasing by 20% each year since 2018",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "scorching_hot_peppers_pepper_cultivation",
+          "params": {
+            "file": "scorching_hot_peppers_pepper_cultivation.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 PEPPER CULTIVATION",
+          "topic": "Pepper Cultivation",
+          "say": "Hot peppers are cultivated in over 70% of the world's countries, with the top producers being China, Mexico, and the United States",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the hottest pepper you've ever tried?"
+    },
+    {
+      "slug": "caffeine-buzz",
+      "title": "Caffeine Buzz",
+      "hook": "How much caffeine is hiding in your favorite drink?",
+      "closing": "Be aware of your caffeine intake to avoid the crash",
+      "hashtags": [
+        "caffeine",
+        "coffee",
+        "energydrinks"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "caffeine_buzz_caffeine_content",
+          "params": {
+            "file": "caffeine_buzz_caffeine_content.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 CAFFEINE CONTENT",
+          "topic": "Caffeine Content",
+          "say": "A typical 8-ounce cup of coffee contains around 95 milligrams of caffeine, while a 12-ounce can of energy drink can have up to 200 milligrams",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cup",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "can",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bottle",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "caffeine_buzz_caffeine_intake",
+          "params": {
+            "file": "caffeine_buzz_caffeine_intake.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 CAFFEINE INTAKE",
+          "topic": "Caffeine Intake",
+          "say": "The average American consumes around 200 milligrams of caffeine per day, with intake increasing by 10% each year since 2015",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "caffeine_buzz_caffeine_limits",
+          "params": {
+            "file": "caffeine_buzz_caffeine_limits.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 CAFFEINE LIMITS",
+          "topic": "Caffeine Limits",
+          "say": "Exceeding the daily recommended caffeine limit of 400 milligrams can lead to negative effects in up to 80% of people, including jitteriness and anxiety",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "brain",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "caffeine_buzz_caffeine_sensitivity",
+          "params": {
+            "file": "caffeine_buzz_caffeine_sensitivity.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 CAFFEINE SENSITIVI",
+          "topic": "Caffeine Sensitivity",
+          "say": "People who are sensitive to caffeine may experience negative effects at much lower doses, with some individuals reacting to as little as 10 milligrams"
+        }
+      ],
+      "question": "What's your go-to caffeinated drink?"
+    },
+    {
+      "slug": "oldest-recipes-ever-found",
+      "title": "Oldest Recipes Ever Found",
+      "hook": "Let's travel back in time to the earliest kitchens!",
+      "closing": "The art of cooking has come a long way, but the basics remain the same.",
+      "hashtags": [
+        "ancientrecipes",
+        "foodhistory",
+        "cooking"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "oldest_recipes_ever_found_ancient_recipes",
+          "params": {
+            "file": "oldest_recipes_ever_found_ancient_recipes.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 ANCIENT RECIPES",
+          "topic": "Ancient Recipes",
+          "say": "The oldest known recipes date back over 4,000 years, to the ancient civilizations of Mesopotamia.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "oldest_recipes_ever_found_recipe_evolution",
+          "params": {
+            "file": "oldest_recipes_ever_found_recipe_evolution.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 RECIPE EVOLUTION",
+          "topic": "Recipe Evolution",
+          "say": "From clay ovens to modern appliances, the way we cook has changed dramatically over time.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "clay oven",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "modern oven",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "oldest_recipes_ever_found_ingredient_variety",
+          "params": {
+            "file": "oldest_recipes_ever_found_ingredient_variety.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 INGREDIENT VARIETY",
+          "topic": "Ingredient Variety",
+          "say": "The variety of ingredients used in ancient recipes was surprisingly limited, with most dishes relying on just a few staple ingredients.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "spice jar",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "oldest_recipes_ever_found_culinary_legacy",
+          "params": {
+            "file": "oldest_recipes_ever_found_culinary_legacy.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 CULINARY LEGACY",
+          "topic": "Culinary Legacy",
+          "say": "Over 50% of modern recipes have their roots in ancient cooking techniques, a testament to the enduring power of culinary tradition.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "cookbook",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the oldest recipe you've ever tried to recreate?"
+    },
+    {
+      "slug": "extreme-food-calories",
+      "title": "Extreme Food Calories",
+      "hook": "You won't believe the calorie bomb in this donut",
+      "closing": "The most extreme foods will shock your diet",
+      "hashtags": [
+        "foodie",
+        "calories",
+        "extremefood",
+        "diet",
+        "nutrition"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "extreme_food_calories_donut_calories",
+          "params": {
+            "file": "extreme_food_calories_donut_calories.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DONUT CALORIES",
+          "topic": "Donut Calories",
+          "say": "A typical donut can have around 250 calories, but some extreme donuts pack over 1,200 calories, that's roughly the same as 5-6 regular donuts.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "donut",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "extreme_food_calories_pizza_calories",
+          "params": {
+            "file": "extreme_food_calories_pizza_calories.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 PIZZA CALORIES",
+          "topic": "Pizza Calories",
+          "say": "A single slice of pizza can range from 200 to 400 calories, but some gourmet pizzas can have slices with over 700 calories, that's almost as much as a whole meal.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "pizza slice",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "extreme_food_calories_burger_calories",
+          "params": {
+            "file": "extreme_food_calories_burger_calories.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 BURGER CALORIES",
+          "topic": "Burger Calories",
+          "say": "A classic cheeseburger can have around 500 calories, but some extreme burgers can pack over 2,000 calories, that's equivalent to eating 20 small snacks.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "extreme_food_calories_food_calories_ranking",
+          "params": {
+            "file": "extreme_food_calories_food_calories_ranking.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 FOOD CALORIES RANK",
+          "topic": "Food Calories Ranking",
+          "say": "When it comes to calorie-dense foods, fries can have around 300 calories per serving, while nuggets can have over 400 calories, but some desserts can take the cake with over 1,500 calories per slice."
+        }
+      ],
+      "question": "What's the craziest calorie-dense food you've tried?"
+    },
+    {
+      "slug": "fastest-computers-ever",
+      "title": "Fastest Computers Ever",
+      "hook": "The fastest computer in the world will blow your mind",
+      "closing": "The speed of these computers will change everything",
+      "hashtags": [
+        "supercomputer",
+        "fastest",
+        "technology",
+        "innovation",
+        "computing"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "fastest_computers_ever_supercomputer_speed",
+          "params": {
+            "file": "fastest_computers_ever_supercomputer_speed.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 SUPERCOMPUTER SPEE",
+          "topic": "Supercomputer Speed",
+          "say": "The fastest supercomputer in the world, Frontier, can perform over 1 exaflop, that's 1 billion billion calculations per second, a huge leap from the first supercomputer which could only do 80 megaflops.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "fastest_computers_ever_computer_processors",
+          "params": {
+            "file": "fastest_computers_ever_computer_processors.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 COMPUTER PROCESSOR",
+          "topic": "Computer Processors",
+          "say": "A typical computer processor can have a clock speed of around 2-3 ghz, but some high-end processors can have speeds of over 5 ghz, making them much faster for demanding tasks.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "processor",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "fastest_computers_ever_supercomputer_application",
+          "params": {
+            "file": "fastest_computers_ever_supercomputer_application.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 SUPERCOMPUTER APPL",
+          "topic": "Supercomputer Applications",
+          "say": "Supercomputers are used in a wide range of applications, including weather forecasting, which accounts for around 20% of their usage, followed by scientific research at 30%, and cryptography at 15%.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "fastest_computers_ever_supercomputer_ranking",
+          "params": {
+            "file": "fastest_computers_ever_supercomputer_ranking.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 SUPERCOMPUTER RANK",
+          "topic": "Supercomputer Ranking",
+          "say": "The top 3 fastest supercomputers in the world are Frontier, Sierra, and Summit, with speeds of over 1 exaflop, 150 petaflops, and 200 petaflops respectively, leaving all other computers in the dust."
+        }
+      ],
+      "question": "What do you think is the most exciting application of supercomputing?"
     }
   ],
   "videos": [

@@ -1,0 +1,33 @@
+{
+  "key": "scorching_hot_peppers_hottest_peppers",
+  "title": "Hottest Peppers",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Carolina Reaper",
+      "value": 1569300.0,
+      "period": "2020"
+    },
+    {
+      "label": "Trinidad Moruga Scorpion",
+      "value": 1469000.0,
+      "period": "2019"
+    },
+    {
+      "label": "Naga Viper",
+      "value": 1382118.0,
+      "period": "2018"
+    }
+  ]
+}

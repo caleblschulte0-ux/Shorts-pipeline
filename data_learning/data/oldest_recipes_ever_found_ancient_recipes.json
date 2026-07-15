@@ -1,0 +1,28 @@
+{
+  "key": "oldest_recipes_ever_found_ancient_recipes",
+  "title": "Ancient Recipes",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "4000 BCE",
+      "value": 4000.0,
+      "period": "4000 BCE"
+    },
+    {
+      "label": "3000 BCE",
+      "value": 3000.0,
+      "period": "3000 BCE"
+    }
+  ]
+}

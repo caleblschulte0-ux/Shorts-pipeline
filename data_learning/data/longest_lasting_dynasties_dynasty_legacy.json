@@ -1,0 +1,28 @@
+{
+  "key": "longest_lasting_dynasties_dynasty_legacy",
+  "title": "Dynasty Legacy",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Egyptian Pyramids",
+      "value": 4500.0,
+      "period": "2580 BC"
+    },
+    {
+      "label": "Roman Colosseum",
+      "value": 2000.0,
+      "period": "80 AD"
+    }
+  ]
+}

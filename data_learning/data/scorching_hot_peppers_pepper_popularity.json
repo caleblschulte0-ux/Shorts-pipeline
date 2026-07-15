@@ -1,0 +1,33 @@
+{
+  "key": "scorching_hot_peppers_pepper_popularity",
+  "title": "Pepper Popularity",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 100.0,
+      "period": "2018"
+    },
+    {
+      "label": "2019",
+      "value": 120.0,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 144.0,
+      "period": "2020"
+    }
+  ]
+}

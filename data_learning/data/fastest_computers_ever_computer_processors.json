@@ -1,0 +1,26 @@
+{
+  "key": "fastest_computers_ever_computer_processors",
+  "title": "Computer Processors",
+  "unit": "ghz",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Regular Processor",
+      "value": 2.0
+    },
+    {
+      "label": "High-End Processor",
+      "value": 5.0
+    }
+  ]
+}

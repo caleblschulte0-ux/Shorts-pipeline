@@ -1,0 +1,33 @@
+{
+  "key": "longest_lasting_dynasties_dynasty_decline",
+  "title": "Dynasty Decline",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "20th Century",
+      "value": 50.0,
+      "period": "1900 AD"
+    },
+    {
+      "label": "19th Century",
+      "value": 100.0,
+      "period": "1800 AD"
+    },
+    {
+      "label": "18th Century",
+      "value": 150.0,
+      "period": "1700 AD"
+    }
+  ]
+}

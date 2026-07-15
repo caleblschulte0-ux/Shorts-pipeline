@@ -1,0 +1,28 @@
+{
+  "key": "scorching_hot_peppers_pepper_heat",
+  "title": "Pepper Heat",
+  "unit": "Scoville heat units",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Carolina Reaper",
+      "value": 1569300.0,
+      "period": "2020"
+    },
+    {
+      "label": "Jalapeno",
+      "value": 3500.0,
+      "period": "2019"
+    }
+  ]
+}

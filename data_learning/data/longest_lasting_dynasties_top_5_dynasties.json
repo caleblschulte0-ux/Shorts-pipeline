@@ -1,0 +1,43 @@
+{
+  "key": "longest_lasting_dynasties_top_5_dynasties",
+  "title": "Top 5 Dynasties",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-15"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Solomon Dynasty",
+      "value": 3000.0,
+      "period": "1000 BC"
+    },
+    {
+      "label": "Egyptian Dynasty",
+      "value": 2500.0,
+      "period": "3100 BC"
+    },
+    {
+      "label": "Chinese Dynasty",
+      "value": 2000.0,
+      "period": "1600 BC"
+    },
+    {
+      "label": "Roman Dynasty",
+      "value": 1500.0,
+      "period": "27 BC"
+    },
+    {
+      "label": "British Dynasty",
+      "value": 1000.0,
+      "period": "927 AD"
+    }
+  ]
+}
