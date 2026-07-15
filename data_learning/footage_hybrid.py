@@ -185,32 +185,42 @@ def analyze_window(clip: Path, ss: float, dur: float) -> dict:
     import numpy as np
     fr = _sample_frames(clip, ss, dur)
     flags, black, cardish = [], 0, 0
-    grays = []
+    grays, is_card, is_black = [], [], []
     for a in fr:
         g = a.mean(2)
         grays.append(g)
         bright = float(g.mean())
         sat = float((a.max(2) - a.min(2)).mean())
         detail = float(g.std())
-        if bright < 12:
-            black += 1
-        # a produced card/diagram/title: light, flat, desaturated, low detail
-        if bright > 125 and sat < 34 and detail < 58:
-            cardish += 1
+        lit = float((g > 55).mean())
+        blk = bright < 12
+        # a produced card / diagram / title / logo:
+        #  - a LIGHT flat desaturated card (the 'nitrogen on grey paper' tell), or
+        #  - a near-empty frame carrying only a small centred logo/watermark
+        #    (mostly dark, very little lit content, low overall detail).
+        card = (bright > 125 and sat < 34 and detail < 58) or \
+               (lit < 0.05 and detail < 34 and not blk)
+        is_black.append(blk)
+        is_card.append(card)
+        black += int(blk)
+        cardish += int(card)
     n = len(fr)
-    # sudden change: biggest frame-to-frame jump across the window
-    jumps = [float(np.abs(grays[i] - grays[i - 1]).mean())
-             for i in range(1, n)]
-    maxjump = max(jumps) if jumps else 0.0
-    if black:
+    # A cut is only a defect when it lands ON a graphic/black frame
+    # (footage -> card, the nitrogen transition). Cuts between two real shots
+    # — a normal multi-camera launch montage — are fine and must be allowed.
+    cut_to_graphic = False
+    for i in range(1, n):
+        jump = float(np.abs(grays[i] - grays[i - 1]).mean())
+        if jump > 34 and (is_card[i] or is_black[i] or is_card[i - 1]):
+            cut_to_graphic = True
+    if black >= 2:
         flags.append("black_frames")
     if cardish >= 2:
         flags.append("graphic_or_title_card")
-    if maxjump > 34:
-        flags.append("sudden_change")
+    if cut_to_graphic:
+        flags.append("cut_to_graphic")
     return {"ok": not flags, "flags": flags,
-            "black": black, "cardish": cardish,
-            "maxjump": round(maxjump, 1)}
+            "black": black, "cardish": cardish}
 
 
 def pick_window(clip: Path, dur: float, at: float = 0.5,

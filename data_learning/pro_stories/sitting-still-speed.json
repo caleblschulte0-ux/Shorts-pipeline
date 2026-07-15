@@ -3,7 +3,7 @@
  "title": "You're Moving 828,000 km/h Right Now",
  "voice": "en-US-GuyNeural",
  "shots": [
-  {"kind":"footage","footage_nasa_id":"KSC-20240525-MH-RKL01-0001-Rocket_Lab_PREFIRE_1_Launch_1080p-M6988","push":1.05,"direction":"in",
+  {"kind":"footage","footage_nasa_id":"KSC-20240525-MH-RKL01-0001-Rocket_Lab_PREFIRE_1_Launch_1080p-M6988","ss":10.8,"push":1.05,"direction":"in",
    "line":"Right now, sitting perfectly still, you feel like nothing is moving at all. That feeling is the greatest illusion of your life."},
 
   {"kind":"flat_compare","title":"how fast is fast",
