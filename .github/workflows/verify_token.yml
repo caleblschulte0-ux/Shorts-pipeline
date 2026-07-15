@@ -1,0 +1,77 @@
+name: verify_token
+
+# One-off diagnostic: reads the YOUTUBE_TOKEN_JSON secret, uses its
+# refresh_token to mint a fresh access token, and asks YouTube which
+# channel it's authorized for. Publishes NOTHING. Safe to delete
+# after the secret is confirmed good.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify YOUTUBE_TOKEN_JSON
+        env:
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+        run: |
+          python3 <<'EOF'
+          import json, os, sys, urllib.request, urllib.parse
+
+          raw = os.environ.get("YOUTUBE_TOKEN_JSON", "")
+          if not raw.strip():
+              print("::error::YOUTUBE_TOKEN_JSON secret is EMPTY")
+              sys.exit(1)
+          try:
+              tok = json.loads(raw)
+          except json.JSONDecodeError as e:
+              print(f"::error::secret is not valid JSON: {e}")
+              print(f"first 80 chars: {raw[:80]!r}")
+              sys.exit(1)
+
+          missing = [k for k in ("refresh_token", "client_id", "client_secret")
+                     if not tok.get(k)]
+          if missing:
+              print(f"::error::secret JSON missing fields: {missing}")
+              sys.exit(1)
+          print("secret parses OK, refresh_token present")
+
+          # Mint a fresh access token from the refresh token — this is
+          # exactly what the uploader does at run time.
+          body = urllib.parse.urlencode({
+              "client_id": tok["client_id"],
+              "client_secret": tok["client_secret"],
+              "refresh_token": tok["refresh_token"],
+              "grant_type": "refresh_token",
+          }).encode()
+          try:
+              with urllib.request.urlopen(urllib.request.Request(
+                      "https://oauth2.googleapis.com/token", data=body,
+                      headers={"Content-Type": "application/x-www-form-urlencoded"}),
+                      timeout=20) as r:
+                  fresh = json.loads(r.read())
+          except urllib.error.HTTPError as e:
+              print(f"::error::refresh failed HTTP {e.code}: "
+                    f"{e.read()[:300].decode('utf-8', 'ignore')}")
+              sys.exit(1)
+          access = fresh["access_token"]
+          print("refresh_token exchanged for a fresh access token OK")
+
+          req = urllib.request.Request(
+              "https://www.googleapis.com/youtube/v3/channels"
+              "?part=snippet,statistics&mine=true",
+              headers={"Authorization": f"Bearer {access}"})
+          with urllib.request.urlopen(req, timeout=20) as r:
+              data = json.loads(r.read())
+          items = data.get("items") or []
+          if not items:
+              print("::error::token valid but no channel attached to this account")
+              sys.exit(1)
+          sn = items[0]["snippet"]; st = items[0].get("statistics", {})
+          print(f"AUTHORIZED CHANNEL: {sn['title']!r}")
+          print(f"  videos: {st.get('videoCount')}  subs: {st.get('subscriberCount')}")
+          if sn["title"].lower().replace(" ", "") not in ("ballerbro2.0",):
+              print("::warning::channel is not 'baller bro 2.0' — wrong account?")
+          EOF
