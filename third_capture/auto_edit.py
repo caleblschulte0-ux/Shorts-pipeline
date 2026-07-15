@@ -379,7 +379,15 @@ def _render_segment(cut: Path, seg: Segment, wh: tuple[int, int],
         # ---- video filter chain (single linear chain from [0:v] to [v]) ----
         steps = []
         if seg.minterp:
-            steps.append("minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc")
+            # mi_mode=BLEND, not mci. Motion-compensated interpolation
+            # (mci:aobmc) invents in-between frames from motion vectors and
+            # MELTS on real streamer footage (faces, hands, busy scenes) — the
+            # "heavily glitched / corrupted-looking motion blur" the vision QA
+            # kept rejecting at the replay's end-of-clip time range. blend
+            # cross-dissolves adjacent real frames: smooth, and it can never
+            # warp geometry. On any failure the ladder still drops to clean
+            # setpts (frame-duplication) via _render_plain.
+            steps.append("minterpolate=fps=60:mi_mode=blend")
         if seg.zoom_to > 1.001:
             # Animated crop-zoom (NOT zoompan — zoompan's d= multiplies each
             # input frame and balloons a video segment). zt ramps 1→zoom_to
@@ -441,6 +449,16 @@ def _render_plain(cut: Path, seg: Segment, out: Path) -> Path:
           "-c:a", "aac", "-ar", "48000", "-b:a", "160k", str(out)],
          timeout=_SEG_TIMEOUT)
     return out
+
+
+def _probe_dur(path: Path) -> float:
+    """Actual container duration in seconds, 0.0 on any failure."""
+    try:
+        return float(_run(["ffprobe", "-v", "error", "-show_entries",
+                           "format=duration", "-of", "csv=p=0", str(path)],
+                          timeout=30).strip())
+    except Exception:  # noqa: BLE001
+        return 0.0
 
 
 def _concat(parts: list[Path], out: Path) -> None:
@@ -557,10 +575,27 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
             overlays.append({"type": "word", "text": word,
                              "s": m, "e": round(m + 1.2, 3)})
 
+        # The concat's REAL duration drifts ~1% from the predicted
+        # edl.out_dur() (minterpolate/setpts frame rounding). Rescale every
+        # overlay cue + the caption times to the actual timeline so the
+        # REPLAY stamp and emoji/word land on-frame, and report the real
+        # duration so Stage-2's afade-out isn't a silent no-op.
+        pred = edl.out_dur()
+        rwords = remap_words(words, edl)
+        actual = _probe_dur(program) or pred
+        if pred > 0 and abs(actual - pred) > 0.02:
+            sc = actual / pred
+            for o in overlays:
+                o["s"] = round(o["s"] * sc, 3)
+                o["e"] = round(o["e"] * sc, 3)
+            for w in rwords:
+                w["s"] = round(w["s"] * sc, 3)
+                w["e"] = round(w["e"] * sc, 3)
+
         result.update(
             program=program,
-            words=remap_words(words, edl),
-            dur=edl.out_dur(),
+            words=rwords,
+            dur=actual,
             overlays=overlays,
             auto_edit=True,
             effects=sorted({s.kind for s in edl.segments if s.kind != "normal"}),

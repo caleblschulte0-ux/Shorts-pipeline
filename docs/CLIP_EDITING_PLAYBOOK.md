@@ -29,6 +29,17 @@ Done:
 - **Audio preserved through the money moment** — slow-mo + replay are no longer
   muted; audio is time-stretched so sound never cuts off under the overlays.
   (§9 audio-cut rules, §13)
+- **Slow-mo / replay never melts** — the money slow-mo and instant replay use
+  `minterpolate=mi_mode=blend`, NOT `mci:aobmc`. Motion-compensated
+  interpolation invents in-between frames from motion vectors and warps/melts
+  on real streamer footage (faces, hands, busy scenes) — the "heavily
+  glitched / corrupted-looking motion blur" the vision QA kept rejecting at
+  the replay's end-of-clip time range. blend cross-dissolves real adjacent
+  frames: smooth, and geometry can never warp; the ladder still drops to
+  clean setpts frame-duplication on any failure. Overlay + caption cue times
+  are also rescaled to the concat's REAL duration (it drifts ~1% from the
+  predicted EDL length via frame rounding), so the REPLAY stamp and the
+  audio fade-out land on-frame instead of ~0.25s late.
 - **Overlay layer** — reaction emoji burst, word slam, anime speed-lines, all
   land on the money moment; degrade safely in the render ladder. (§11, §14)
 - **Ironclad render ladder** — full → text-only → captions → plain → raw; a
