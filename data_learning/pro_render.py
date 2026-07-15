@@ -124,6 +124,43 @@ def _footage_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     return out  # keep src cached; the story reuses it across beats
 
 
+def _footage_number_shot(shot: dict, seconds: float, out: Path, work: Path,
+                         idx: int):
+    """A hero number rendered OVER real footage (PRO_DOCTRINE §2 — numbers
+    interact with the world, not float as isolated dashboard cards). Cut the
+    footage beat, then burn in the number + unit + caption with clean type,
+    lower-third so it never blocks the subject."""
+    base = work / f"fn_base_{idx}.mp4"
+    _footage_shot(shot, seconds, base, work, idx)
+    anton = str(REPO / "assets" / "fonts" / "Anton-Regular.ttf")
+    dj = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+    num = str(shot["text"])
+    sub = str(shot.get("sub", ""))
+    label = str(shot.get("label", "")).upper()
+    esc = lambda s: s.replace(",", r"\,").replace(":", r"\:").replace("'", "")
+    vf = [
+        f"drawtext=fontfile={anton}:text='{esc(num)}':fontcolor=white:"
+        f"fontsize=170:x=(w-tw)/2:y=h*0.60:"
+        "shadowcolor=black@0.6:shadowx=3:shadowy=3:"
+        "alpha='if(lt(t,0.5),0,min((t-0.5)/0.5,1))'",
+        f"drawtext=fontfile={anton}:text='{esc(sub)}':fontcolor=0xFFD37A:"
+        f"fontsize=52:x=(w-tw)/2:y=h*0.82:"
+        "shadowcolor=black@0.6:shadowx=2:shadowy=2:"
+        "alpha='if(lt(t,0.8),0,min((t-0.8)/0.5,1))'",
+    ]
+    if label:
+        lbl = " ".join(label)
+        vf.insert(0,
+                  f"drawtext=fontfile={dj}:text='{esc(lbl)}':fontcolor=0xB9C4E0:"
+                  f"fontsize=32:x=(w-tw)/2:y=h*0.50:"
+                  "shadowcolor=black@0.7:shadowx=2:shadowy=2:"
+                  "alpha='if(lt(t,0.3),0,min((t-0.3)/0.5,1))'")
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(base),
+          "-vf", ",".join(vf), "-c:v", "libx264", "-crf", "18",
+          "-preset", "medium", "-pix_fmt", "yuv420p", str(out)])
+    return out
+
+
 def _hero_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     """Render a Blender showpiece via blender_hero, dressed to 1080p. Kept for
     the 2-3 pop moments; falls back to a flat statement if Blender is absent."""
@@ -167,6 +204,8 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     k = shot["kind"]
     if k == "footage":
         return _footage_shot(shot, seconds, out, work, idx)
+    if k == "footage_number":
+        return _footage_number_shot(shot, seconds, out, work, idx)
     if k == "flat_number":
         return flat2d.number_reveal(
             shot["text"], shot.get("sub", ""), out, seconds,

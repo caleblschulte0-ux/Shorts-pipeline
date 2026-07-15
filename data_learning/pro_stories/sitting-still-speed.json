@@ -24,10 +24,10 @@
   {"kind":"flat_number","text":"107,000","sub":"KM / H","label":"earth around the sun","entity":"EARTH",
    "line":"Earth is falling around the Sun at one hundred and seven thousand kilometers an hour. Thirty kilometers every single second."},
 
-  {"kind":"footage","footage_nasa_id":"GSFC_20181022_ICON_m12902_Airglow","ss":66.0,"push":1.05,"direction":"in",
+  {"kind":"flat_statement","statement":"And the Sun itself is not still — it falls around the heart of the galaxy, dragging every planet with it.",
    "line":"And the Sun itself is not still. It falls around the center of the galaxy, dragging every planet with it."},
 
-  {"kind":"flat_number","text":"828,000","sub":"KM / H","label":"our speed through the galaxy","entity":"THE SUN",
+  {"kind":"footage_number","footage_nasa_id":"GSFC_20181022_ICON_m12902_Airglow","ss":66.0,"push":1.05,"direction":"in","text":"828,000","sub":"km / h","label":"our speed through the galaxy",
    "line":"Eight hundred and twenty-eight thousand kilometers an hour."},
 
   {"kind":"flat_zoom","highlight":"THE SUN","stages":["OUR SOLAR SYSTEM","THE MILKY WAY"],

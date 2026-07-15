@@ -137,49 +137,38 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
         target = int("".join(ch for ch in text if ch.isdigit()) or "0")
     except ValueError:
         target = 0
-    big = _font(ANTON, 200)
-    unit = _font(ANTON, 66)
-    capf = _font(_DEJAVU, 34)
-    lblf = _font(_DEJAVU, 24)
-    cx, cy, rad = W // 2, int(H * 1.9), int(H * 1.55)
+    big = _font(ANTON, 158)
+    unit = _font(_DEJAVU, 40)
+    capf = _font(_DEJAVU, 32)
+    ny = int(H * 0.34)          # number baseline (top of glyphs)
 
     def draw(i, n, im):
         d = ImageDraw.Draw(im, "RGBA")
-        d.arc([cx - rad, cy - rad, cx + rad, cy + rad], 250, 290,
-              fill=(*PALETTE["blue"], 90), width=3)
-        p = _ease(min(i / (n * 0.75), 1.0))
-        ang = math.radians(250 + 40 * p)
-        px, py = cx + rad * math.cos(ang), cy + rad * math.sin(ang)
-        for k in range(1, 10):
-            pa = _ease(min((i - k * 1.5) / (n * 0.75), 1.0))
-            a2 = math.radians(250 + 40 * pa)
-            tx, ty = cx + rad * math.cos(a2), cy + rad * math.sin(a2)
-            d.ellipse([tx - 4, ty - 4, tx + 4, ty + 4],
-                      fill=(*PALETTE["gold"], max(0, 120 - k * 12)))
-        glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
-        ImageDraw.Draw(glow).ellipse([px - 26, py - 26, px + 26, py + 26],
-                                     fill=(*PALETTE["gold"], 150))
-        glow = glow.filter(ImageFilter.GaussianBlur(12))
-        im2 = Image.alpha_composite(im.convert("RGBA"), glow).convert("RGB")
-        d = ImageDraw.Draw(im2, "RGBA")
-        d.ellipse([px - 9, py - 9, px + 9, py + 9], fill=(255, 238, 200, 255))
-        if entity:
-            d.text((px + 16, py - 10), entity, font=lblf,
-                   fill=(230, 235, 255, 220))
-        cnt = int(target * _ease(min(max(i - 18, 0) / (FPS * 1.8), 1.0)))
-        s = f"{cnt:,}"
-        nx, ny = _center_x(d, s, big), int(H * 0.30)
-        im2 = _glow_text(im2, (nx, ny), s, big, (*PALETTE["ink"], 255),
-                         (*PALETTE["gold"], 120), blur=12)
-        d = ImageDraw.Draw(im2, "RGBA")
-        if sub:
-            d.text((_center_x(d, sub, unit), ny + 172), sub, font=unit,
-                   fill=(*PALETTE["gold"], 255))
+        # caption ABOVE the number
         if label:
-            a = min(max(i - 30, 0) / 12, 1.0)
+            a = min(max(i - 8, 0) / 12, 1.0)
             cap = _spaced(label)
-            d.text((_center_x(d, cap, capf), ny - 58), cap, font=capf,
+            d.text((_center_x(d, cap, capf), ny - 70), cap, font=capf,
                    fill=(*PALETTE["muted"], int(230 * a)))
+        # the hero number (count-up settles by ~1.8s, then holds clean)
+        cnt = int(target * _ease(min(max(i - 8, 0) / (FPS * 1.5), 1.0)))
+        s = f"{cnt:,}"
+        im2 = _glow_text(im, (_center_x(d, s, big), ny), s, big,
+                         (*PALETTE["ink"], 255), (*PALETTE["gold"], 120),
+                         blur=12)
+        d = ImageDraw.Draw(im2, "RGBA")
+        # a thin gold accent rule that grows in under the number — the
+        # designed element, well clear of the glyphs
+        rule_y = ny + 182
+        half = int(min(i / (n * 0.4), 1.0) * W * 0.16)
+        if half > 2:
+            d.rectangle([W // 2 - half, rule_y, W // 2 + half, rule_y + 3],
+                        fill=(*PALETTE["gold"], 230))
+        # unit BELOW the rule, never touching the number
+        if sub:
+            uy = rule_y + 20
+            d.text((_center_x(d, _spaced(sub), unit), uy), _spaced(sub),
+                   font=unit, fill=(*PALETTE["gold"], 255))
         return im2
 
     return _render(draw, out, seconds)
@@ -385,16 +374,16 @@ def cosmic_zoom(out: Path, seconds: float = 7.0,
         d = ImageDraw.Draw(im, "RGBA")
         d.ellipse([ux - pulse, uy - pulse, ux + pulse, uy + pulse],
                   fill=(255, 240, 205, 255))
-        if i < n * 0.55:
+        # the dot names our star early; the bottom caption names the SCALE —
+        # never the same word twice on screen (no double 'THE SUN').
+        if i < n * 0.45:
             d.text((ux + 16, uy - 8), highlight, font=hf,
                    fill=(*PALETTE["ink"], 235))
-        # stage labels escalate
-        allst = [highlight] + list(stages)
+        allst = list(stages)
         idx = min(len(allst) - 1, int((i / n) * len(allst)))
         lbl = _spaced(allst[idx])
-        a = 0.8
         d.text((_center_x(d, lbl, lf), int(H * 0.86)), lbl, font=lf,
-               fill=(*PALETTE["muted"], int(235 * a)))
+               fill=(*PALETTE["muted"], 188))
         return im
 
     return _render(draw, out, seconds)
