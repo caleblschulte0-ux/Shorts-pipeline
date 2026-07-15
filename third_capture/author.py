@@ -47,9 +47,9 @@ Rules:
   chars) — how a fan would describe the moment to a friend. Plain human
   wording, no jargon, no "clip from the allowlist" robot-speak, one
   emoji max.
-- hashtags: EXACTLY 3-4 lowercase tags, no '#', no spaces. The streamer,
-  the game/activity if clear, one broad tag (clips / streamer / gaming).
-  Few and relevant beats many — over-tagging reduces relevance.
+- hashtags: 5-7 lowercase tags, no '#', no spaces. The streamer, the
+  game/activity if clear, the emotional beat (rage/fail/clutch/…), and broad
+  tags (streamerclips / twitchclips / clips / gaming). Relevant first.
 - series: one of "rage" | "chat-betrayal" | "jumpscare" | "clutch" |
   "fail" | "win" | "wholesome" | "argument" | "chaos" — the recurring
   shelf this moment belongs to.
@@ -155,7 +155,7 @@ def _postprocess(out: dict, streamer: str, context: str,
     hook = str(out.get("hook", "")).strip().upper()
     tags = [re.sub(r"[^a-z0-9]", "", str(t).lower())
             for t in out.get("hashtags", [])]
-    tags = [t for t in tags if 2 <= len(t) <= 30][:4]
+    tags = [t for t in tags if 2 <= len(t) <= 30][:7]
     series = re.sub(r"[^a-z-]", "", str(out.get("series", "")).lower())
     if not title or len(title) > 100:
         return None

@@ -292,16 +292,34 @@ def _fmt_from_ledger(led: dict) -> dict:
 
 
 def _hashtags(pkg: dict, led: dict) -> list[str]:
-    """Description hashtags: 3-4, sparse and relevant (over-tagging
-    reduces relevance; YouTube surfaces at most 3 by the title)."""
+    """Description hashtags: the brain's relevant tags first, PADDED to a
+    hard minimum of 5 (operator requirement) from an evergreen, streamer-
+    aware fallback pool, capped at 7. Deduped, lowercase, alnum-only."""
+    def _n(t: str) -> str:
+        return re.sub(r"[^a-z0-9]", "", str(t).lower())
+
     tags = list(led.get("authored_tags") or []) or \
         list(pkg.get("hashtags") or [])
     seen, out = set(), []
     for t in tags:
-        if t not in seen:
+        n = _n(t)
+        if n and 2 <= len(n) <= 30 and n not in seen:
+            seen.add(n)
+            out.append(n)
+    # pad to the 5-tag floor from an evergreen pool (streamer name variants
+    # first for clip posts, then broad tags) so a thin/failed author never
+    # drops us below the minimum.
+    s = _n(led.get("streamer") or "")
+    pool = ([s, f"{s}clips", f"{s}clip"] if s else []) + [
+        _n(led.get("series") or ""), "streamerclips", "twitchclips",
+        "clips", "gaming", "livestream", "shorts", "twitch"]
+    for t in pool:
+        if len(out) >= 5:
+            break
+        if t and 2 <= len(t) <= 30 and t not in seen:
             seen.add(t)
             out.append(t)
-    return out[:4]
+    return out[:7]
 
 
 def _yt_tags(pkg: dict, led: dict) -> list[str]:
