@@ -13,10 +13,10 @@ on:
         type: boolean
         default: false
       no_schedule:
-        description: 'Publish immediately, skip scheduling (--no-schedule)'
+        description: 'Publish immediately, skip scheduling (--no-schedule). Default ON so the daily video goes public the moment it renders — no more scheduled-private confusion. Uncheck to schedule.'
         required: false
         type: boolean
-        default: false
+        default: true
       dry_run:
         description: 'Render only, do NOT upload (--dry-run). For testing.'
         required: false
@@ -364,7 +364,11 @@ jobs:
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           COUNT: ${{ github.event.inputs.count || '6' }}
           FORCE: ${{ github.event.inputs.force }}
-          NO_SCHEDULE: ${{ github.event.inputs.no_schedule }}
+          # Default to immediate publish for EVERY trigger (dispatch, push,
+          # workflow_run). On non-dispatch triggers inputs.* is empty, so the
+          # `|| 'true'` makes those publish immediately too. A human can still
+          # dispatch with the box unchecked ('false') to schedule.
+          NO_SCHEDULE: ${{ github.event.inputs.no_schedule || 'true' }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: |
           ARGS="--count $COUNT"
