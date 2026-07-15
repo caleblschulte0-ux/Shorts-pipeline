@@ -179,6 +179,60 @@ def _ytdlp(args: list[str], *, impersonate: bool = False) -> str:
     return _run(cmd + args)
 
 
+def _discover_kick(channel: str, top: int, range_: str) -> list[dict]:
+    """Kick has NO working yt-dlp channel-clips extractor — kick.com/<ch>/
+    clips misroutes to the live-stream extractor (`kick:live`) and dies, so
+    the old path returned nothing on every run. Hit Kick's public clips API
+    directly with the same TLS impersonation yt-dlp uses for single Kick
+    clips (curl_cffi chrome), and hand the resulting clip PAGE urls to the
+    normal download() path (yt-dlp's KickClipIE handles those). Best-effort:
+    returns [] on any failure so a Kick outage never blocks the run."""
+    from datetime import datetime, timezone
+    period = {"24hr": "day", "7d": "week", "30d": "month"}.get(range_, "day")
+    url = (f"https://kick.com/api/v2/channels/{channel}/clips"
+           f"?sort=view&time={period}")
+    try:
+        from curl_cffi import requests as _creq
+        r = _creq.get(url, impersonate="chrome", timeout=25)
+        if r.status_code != 200:
+            print(f"::warning::[kick] {channel}: HTTP {r.status_code}",
+                  flush=True)
+            return []
+        items = r.json().get("clips") or r.json().get("data") or []
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[kick] {channel}: {type(e).__name__} {e}",
+              flush=True)
+        return []
+    out = []
+    for c in items:
+        cid = str(c.get("id") or "")
+        if not cid:
+            continue
+        views = int(c.get("view_count") or c.get("views") or 0)
+        dur = float(c.get("duration") or 0)
+        title = (str(c.get("title") or "").strip() or f"{channel} clip")
+        # exact age → real velocity (like Helix), when the API gives it
+        age_h = None
+        created = c.get("created_at") or c.get("clipped_at")
+        if created:
+            try:
+                dt = datetime.fromisoformat(
+                    str(created).replace("Z", "+00:00"))
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                age_h = max(0.5, (datetime.now(timezone.utc) - dt)
+                            .total_seconds() / 3600.0)
+            except (ValueError, TypeError):
+                pass
+        d = {"url": f"https://kick.com/{channel}/clips/{cid}",
+             "views": views, "duration": dur, "title": title,
+             "channel": channel, "platform": "kick"}
+        if age_h is not None:
+            d["age_h"] = round(age_h, 2)
+        out.append(d)
+    return out[:top]
+
+
 def credit_label(platform: str, channel: str) -> str:
     return {"twitch": f"twitch.tv/{channel}",
             "kick": f"kick.com/{channel}",
@@ -203,11 +257,31 @@ def discover(platform: str, channel: str, *, top: int = 8,
         url = (f"https://www.twitch.tv/{channel}/clips"
                f"?filter=clips&range={range_}")
     elif platform == "kick":
-        url = f"https://kick.com/{channel}/clips"
+        # Kick has no yt-dlp channel-clips extractor — use the API adapter.
+        return _discover_kick(channel, top, range_)
     elif platform == "rumble":
-        url = f"https://rumble.com/c/{channel}"
+        # Rumble has no clip system; streamers post highlights as short
+        # videos on their channel. The handle can live under /c/ (brand
+        # channel) OR /user/ (user page) — try both, first that yields wins.
+        rumble_urls = [f"https://rumble.com/c/{channel}",
+                       f"https://rumble.com/user/{channel}"]
+        for i, ru in enumerate(rumble_urls):
+            try:
+                return _discover_ytdlp(ru, channel, "rumble", top)
+            except Exception as e:  # noqa: BLE001
+                if i == len(rumble_urls) - 1:
+                    raise
+                print(f"[rumble] {channel}: /c/ failed ({type(e).__name__}) "
+                      "— trying /user/", flush=True)
     else:
         raise ValueError(f"unknown platform {platform!r}")
+    return _discover_ytdlp(url, channel, platform, top)
+
+
+def _discover_ytdlp(url: str, channel: str, platform: str,
+                    top: int) -> list[dict]:
+    """Flat-playlist scrape of a channel/clips page via yt-dlp (Twitch
+    non-Helix + Rumble). Kick/Rumble get TLS impersonation."""
     out = _ytdlp(
         ["--flat-playlist", "--playlist-items", f"1-{max(top, 12)}",
          "--print", "%(url)s\t%(view_count|0)s\t%(duration|0)s\t%(title)s",

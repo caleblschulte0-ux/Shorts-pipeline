@@ -116,6 +116,37 @@ Done:
   (`_BANGER_CACHE`) so overlapping shortlists don't re-pay the call; pure
   velocity is the fallback when the brain is unreachable (rank returns {}),
   so a token outage never blocks a post.
+- **Quality floor — post fewer, never post a dud** — velocity/banger RANK a
+  slate but on a starved day the top of a bad board is still bad (live
+  incident 2026-07-13: a `b=0.20` "insider WoW mechanic" clip shipped because
+  it was the only thing left). `run_third` now refuses to post any clip the
+  banger brain bucketed into the LOW band (`banger < min_banger`, default
+  0.35 — giveaway/subathon/sponsor/insider/"just chatting"); if nothing on
+  the shortlist clears it, the slot is SKIPPED (clean `_SkipSlot`, no error,
+  no blocklist). Three good clips beat five with two duds; an empty slot
+  beats a bad upload. Unknown/garbage titles sit at 0.5 and still pass.
+- **Thin-supply widening** — the supply ladder used to stop at the first
+  window with ANY postable clip, so a handful of low-view 24h clips blocked
+  reaching the fuller 7d board (a root cause of the 2026-07-13 starve). It
+  now widens when the window is THIN (`< min_pool`, default 8), keeps the
+  LARGEST pool seen so a failing wider window never regresses a good narrower
+  one, and only then ranks.
+- **Cut length discipline** — the director prompt now targets a 12-30s keep
+  window (setup + payoff + reaction, short enough to finish), only exceeding
+  ~35s when the payoff needs the buildup and never cutting <8s. Directly
+  targets the 38s ramble / 6.8s fragment that shipped 2026-07-13.
+- **Kick + Rumble discovery, fixed** — Kick has NO yt-dlp channel-clips
+  extractor: `kick.com/<ch>/clips` silently misroutes to the live-stream
+  extractor and died on every run, so Kick supply was always zero.
+  `clip_edit._discover_kick` now hits Kick's public clips API directly
+  (curl_cffi chrome impersonation, the same bot-protection bypass yt-dlp uses
+  for single Kick clips), ages each clip from `created_at` for real velocity,
+  and hands clip-page urls to the normal download path. Rumble now tries both
+  `/c/<ch>` and `/user/<ch>` handles. Both fail open (a platform outage logs
+  a warning and the others carry the run). NOTE: the template lists only ONE
+  Kick (`adinross`) and ONE Rumble (`AdinLive`) channel — add more Kick-
+  primary streamers and verify the Rumble handles to get real supply from
+  them; Twitch (24 channels, Helix) remains the workhorse.
 - **Learned selection prior (feedback loop)** — velocity + banger both judge
   a clip BEFORE it posts; neither knows what actually retained once it was a
   Short on our channel. `fetch_analytics.py --channel third` now pulls each

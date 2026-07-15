@@ -72,6 +72,12 @@ Rules:
     payoff AND its reaction lands (the laugh, the stunned pause, the
     "bro"). It is better to keep a little extra than to clip the payoff.
     If the whole clip is needed, use start 0 and end = the clip length.
+    LENGTH: aim for a 12-30s keep window — long enough for the setup +
+    payoff + reaction, short enough that a scroller actually finishes it.
+    Only exceed ~35s when the payoff genuinely needs the buildup; never pad
+    with rambling/dead time (a 38s "he explains his reasoning" clip loses
+    the audience). And do not cut so tight (<8s) that the moment has no
+    room to breathe.
   - complete: true if this clip CONTAINS both an understandable beginning
     and the payoff. false if it starts mid-action with no way to tell
     what's going on, OR the payoff is clearly cut off (the clip ends right

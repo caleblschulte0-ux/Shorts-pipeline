@@ -46,6 +46,11 @@ _BANGER_CACHE: dict = {}
 
 ANALYTICS_LATEST = REPO / "state" / "analytics_third" / "latest.json"
 
+
+class _SkipSlot(Exception):
+    """Raised to abandon a slot on purpose (e.g. nothing clears the quality
+    floor) — caught as a clean skip, never an error or a blocklist entry."""
+
 # Cache the learned prior for the whole run (the snapshot doesn't change
 # mid-run). None = not yet computed; {} = computed, nothing usable.
 _PRIOR_CACHE: dict | None = None
@@ -399,7 +404,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 for w in (spec.get("range") or "24hr", "7d"):
                     if w not in windows:
                         windows.append(w)
+                # widen not just when the window is EMPTY but when it's THIN:
+                # a handful of low-view 24h clips must not block reaching the
+                # fuller 7d board (the thin-Twitch day that starved the slate
+                # on 2026-07-13 and forced b=0.20 duds through). Keep the
+                # LARGEST pool seen so a failing wider window never regresses
+                # a good narrower one.
+                min_pool = spec.get("min_pool", 8)
                 cands = []
+                best = []
                 for window in windows:
                     pool = []
                     for platform, chans in sources.items():
@@ -429,12 +442,14 @@ def process(pkg: dict, pkg_path: Path | None, *,
                         if cands:
                             print(f"::warning::thin day — relaxed min_views "
                                   f"{min_v} -> floor {floor}", flush=True)
-                    if cands:
+                    if len(cands) > len(best):
+                        best = cands
+                    if len(best) >= min_pool or window == windows[-1]:
                         break
-                    if window != windows[-1]:
-                        print(f"::warning::window {window} yielded no "
-                              "postable clip after all filters — widening",
-                              flush=True)
+                    print(f"::warning::window {window}: only {len(best)} "
+                          f"postable clip(s) (<{min_pool}) — widening",
+                          flush=True)
+                cands = best
                 cands.sort(key=lambda c: -c["views"])
                 if not cands:
                     raise RuntimeError("no fresh clip across the allowlist")
@@ -490,7 +505,23 @@ def process(pkg: dict, pkg_path: Path | None, *,
                           f"p={c['prior']:.2f} score={c['score']:>7.0f} "
                           f"{c['title'][:38]!r} {c.get('banger_why','')!r}",
                           flush=True)
-                pick = shortlist[0]
+                # QUALITY FLOOR (post fewer > post duds): the banger scorer
+                # explicitly buckets giveaway / subathon / sponsor / insider /
+                # "just chatting" clips into the LOW band (<0.35). On a starved
+                # day those can be all that's left — but a b=0.20 "insider WoW"
+                # clip should never ship (live incident 2026-07-13). Skip the
+                # slot: three good clips beat five with two duds, and an empty
+                # slot beats a bad upload. Unknown/garbage titles sit at 0.5
+                # and still pass — a bad title often hides a great clip.
+                min_banger = spec.get("min_banger", 0.35)
+                postable = [c for c in shortlist if c["banger"] >= min_banger]
+                if not postable:
+                    best_b = max((c["banger"] for c in shortlist), default=0.0)
+                    raise _SkipSlot(
+                        f"quality floor: best banger {best_b:.2f} < "
+                        f"{min_banger} across {len(shortlist)} candidates — "
+                        "posting fewer, not a dud")
+                pick = postable[0]
                 info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]
 
@@ -679,6 +710,11 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     led["files"]["input"]["sha256"][:16]
             log["posted"][slug] = entry
             _save_log(log)
+    except _SkipSlot as e:
+        # a deliberate "post nothing here" — NOT a failure and NOT a
+        # blocklist (no specific bad clip; the whole slate was too weak).
+        result.update(ok=False, skipped=str(e))
+        print(f"[skip] {slug}: {e}", flush=True)
     except Exception as e:  # noqa: BLE001
         result["error"] = f"{type(e).__name__}: {e}"
     result["took_s"] = round(time.time() - t0, 1)

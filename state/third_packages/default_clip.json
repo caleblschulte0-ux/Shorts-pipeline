@@ -54,6 +54,8 @@
     "range": "24hr",
     "top": 8,
     "min_views": 1500,
+    "min_pool": 8,
+    "min_banger": 0.35,
     "max_per_streamer": 2
   },
   "hashtags": [
