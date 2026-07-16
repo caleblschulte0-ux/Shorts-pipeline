@@ -46,6 +46,15 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
     first phase of a beat (later phases are silent visual development)."""
     shots: list[dict] = []
     n = len(beats)
+
+    def emit(sh: dict) -> None:
+        """append a shot, tagged with the BEAT it came from so the assembler
+        can emit a real beat->time map (the editorial package measures the
+        render's true boundaries, not a hand-estimated guess)."""
+        sh = dict(sh)
+        sh["_beat"] = bi
+        shots.append(sh)
+
     for bi, (b, dur) in enumerate(zip(beats, durs)):
         secs = _beat_seconds(dur)
         maxu = float(b.get("max_unchanged", MAX_UNCHANGED))
@@ -60,11 +69,11 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
             # a long comparison must not carry the whole beat: cap it, then let
             # a footage development phase (if provided) finish the idea.
             if sh["kind"] == "flat_compare" and secs > maxu and foot:
-                shots.append({**sh, "seconds": maxu - 0.4, "line": line})
-                shots.append(_footage(foot, secs - (maxu - 0.4), b,
+                emit({**sh, "seconds": maxu - 0.4, "line": line})
+                emit(_footage(foot, secs - (maxu - 0.4), b,
                                       phase="development"))
             else:
-                shots.append({**sh, "seconds": secs, "line": line})
+                emit({**sh, "seconds": secs, "line": line})
             continue
 
         # ---- number beat: the value rides MOVING footage (not a static card).
@@ -76,20 +85,20 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                 # the subject can't be filmed (tier C: the galaxy) -> the
                 # number rides the DESIGNED base, a distinct image that escapes
                 # the footage ladder.
-                shots.append({"kind": "composite", "base": b["flat"], **num,
+                emit({"kind": "composite", "base": b["flat"], **num,
                               "seconds": secs, "line": line})
             elif foot:
                 if secs > maxu and not is_last:
-                    shots.append({"kind": "footage_number", **_foot(foot),
+                    emit({"kind": "footage_number", **_foot(foot),
                                   **num, "seconds": maxu, "line": line,
                                   "intent": foot.get("intent")})
-                    shots.append(_dev(foot, secs - maxu))
+                    emit(_dev(foot, secs - maxu))
                 else:
-                    shots.append({"kind": "footage_number", **_foot(foot),
+                    emit({"kind": "footage_number", **_foot(foot),
                                   **num, "seconds": secs, "line": line,
                                   "intent": foot.get("intent")})
             else:
-                shots.append({"kind": "flat_number", **num, "seconds": secs,
+                emit({"kind": "flat_number", **num, "seconds": secs,
                               "line": line})
             continue
 
@@ -97,32 +106,32 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         if b.get("text"):
             role = b.get("text_role", "thesis")
             if b.get("flat"):
-                shots.append({"kind": "composite", "base": b["flat"],
+                emit({"kind": "composite", "base": b["flat"],
                               "text": b["text"], "text_role": role,
                               "seconds": secs, "line": line})
             elif foot:
                 if secs > maxu and not is_last:
-                    shots.append({"kind": "footage_text", **_foot(foot),
+                    emit({"kind": "footage_text", **_foot(foot),
                                   "text": b["text"], "text_role": role,
                                   "seconds": maxu, "line": line,
                                   "intent": foot.get("intent")})
-                    shots.append(_dev(foot, secs - maxu))
+                    emit(_dev(foot, secs - maxu))
                 else:
-                    shots.append({"kind": "footage_text", **_foot(foot),
+                    emit({"kind": "footage_text", **_foot(foot),
                                   "text": b["text"], "text_role": role,
                                   "seconds": secs, "line": line,
                                   "intent": foot.get("intent")})
             else:
                 # no footage available -> a designed statement card is the
                 # honest fallback (declared, not a media-search miss)
-                shots.append({"kind": "flat_statement", "statement": b["text"],
+                emit({"kind": "flat_statement", "statement": b["text"],
                               "seconds": secs, "line": line})
             continue
 
         # ---- plain footage beat: one shot, or setup+development if long -----
         if foot:
             if secs > maxu and not is_last:
-                shots.append(_footage(foot, secs - DEV_PHASE, b,
+                emit(_footage(foot, secs - DEV_PHASE, b,
                                       phase="setup", line=line))
                 # development phase: a push/pull the other direction so the
                 # frame keeps evolving instead of holding (real development,
@@ -131,14 +140,14 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                 dev["direction"] = "out" if foot.get("direction") != "out" \
                     else "in"
                 dev["at"] = min(1.0, float(foot.get("at", 0.5)) + 0.18)
-                shots.append({"kind": "footage", **dev, "seconds": DEV_PHASE,
+                emit({"kind": "footage", **dev, "seconds": DEV_PHASE,
                               "intent": foot.get("intent")})
             else:
-                shots.append(_footage(foot, secs, b, line=line))
+                emit(_footage(foot, secs, b, line=line))
             continue
 
         # nothing declared -> a titled statement so the render never stalls
-        shots.append({"kind": "flat_statement",
+        emit({"kind": "flat_statement",
                       "statement": b.get("understand", line),
                       "seconds": secs, "line": line})
     return shots

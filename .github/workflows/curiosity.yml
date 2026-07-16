@@ -294,7 +294,8 @@ jobs:
               git config user.name "github-actions[bot]"
               git config user.email "github-actions[bot]@users.noreply.github.com"
               git add -f "preview/${S}_720p.mp4" \
-                "preview/${S}_pkg/contact_sheet.png" 2>/dev/null || true
+                "preview/${S}_pkg/contact_sheet.png" \
+                "preview/${S}_pkg/beatmap.json" 2>/dev/null || true
               git commit -m "curiosity pro render: ${S} [skip ci]" \
                 || echo "nothing to commit"
               for i in 1 2 3 4 5; do

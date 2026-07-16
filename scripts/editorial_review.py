@@ -76,9 +76,20 @@ def _dur(p: Path) -> float:
     return float(out.stdout.strip() or 0.0)
 
 
+STRIP = 4   # frames sampled across each beat window (begin -> end)
+
+
 def build_package(render: Path, beatmap: Path, out: Path) -> Path:
-    """Build the editorial review package: a beat-aligned contact sheet (one
-    labeled tile per beat midpoint) + the beat map, for the judges to read."""
+    """Build the editorial review package: a beat-aligned contact sheet where
+    each beat is a horizontal TEMPORAL STRIP — STRIP frames sampled evenly
+    across the beat's time window (left = beat start, right = beat end) — plus
+    the beat map, for the judges to read.
+
+    One frame per beat cannot show whether a shot keeps developing or freezes,
+    so the visual-exhaustion judge is blind to SHOT_TOO_LONG. The strip makes
+    the sheet MOTION-AWARE: a beat whose last frames are identical to each other
+    is a static hold; a beat whose frames keep changing left-to-right is
+    developing. Every beat row is one strip; the sheet stacks the beats."""
     out.mkdir(parents=True, exist_ok=True)
     bm = json.loads(beatmap.read_text())
     beats = bm["beats"]
@@ -86,35 +97,58 @@ def build_package(render: Path, beatmap: Path, out: Path) -> Path:
     from PIL import Image, ImageDraw, ImageFont
     try:
         font = ImageFont.truetype(
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 22)
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 20)
+        small = ImageFont.truetype(
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 15)
     except Exception:  # noqa: BLE001
-        font = ImageFont.load_default()
-    tw, cols = 480, 3
-    tiles, tmp = [], out / "_t.png"
+        font = small = ImageFont.load_default()
+    fw = 360                      # per-frame width in a strip
+    label_w = 150                 # left label column
+    tmp = out / "_t.png"
+    rows = []                     # one composited strip (PIL image) per beat
     for b in beats:
         a, z = (float(x) for x in str(b["t"]).split("-"))
-        t = min(dur - 0.05, (a + z) / 2)
-        subprocess.run(
-            ["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t:.2f}",
-             "-i", str(render), "-frames:v", "1", "-vf", f"scale={tw}:-1",
-             str(tmp)], check=True)
-        im = Image.open(tmp).convert("RGB")
-        d = ImageDraw.Draw(im)
-        d.rectangle([0, 0, tw, 30], fill=(8, 8, 14))
-        d.text((6, 5), f"{b['t']}s  {b.get('job', '')}", font=font,
-               fill=(255, 235, 120))
-        tiles.append(im)
+        span = max(0.0, z - a)
+        # sample begin..end; pull the endpoints just inside the window so we
+        # capture the true first/last state of the shot (a freeze shows up as
+        # the final 2 frames being identical).
+        ts = [min(dur - 0.05, a + 0.12 + span * k / (STRIP - 1))
+              for k in range(STRIP)]
+        frames = []
+        for t in ts:
+            subprocess.run(
+                ["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t:.2f}",
+                 "-i", str(render), "-frames:v", "1", "-vf", f"scale={fw}:-1",
+                 str(tmp)], check=True)
+            frames.append(Image.open(tmp).convert("RGB"))
+        fh = frames[0].height
+        strip = Image.new("RGB", (label_w + STRIP * fw, fh), (10, 10, 16))
+        d = ImageDraw.Draw(strip)
+        # left label column: the beat time range + job
+        d.text((8, 10), f"{b['t']}s", font=font, fill=(255, 235, 120))
+        d.text((8, 36), str(b.get("job", "")), font=small, fill=(210, 210, 225))
+        d.text((8, fh - 26), "start → end", font=small, fill=(120, 120, 140))
+        for k, fr in enumerate(frames):
+            x = label_w + k * fw
+            strip.paste(fr, (x, 0))
+            # per-frame within-beat timestamp so a judge can name the hold
+            d.rectangle([x, 0, x + 74, 22], fill=(8, 8, 14))
+            d.text((x + 5, 3), f"{ts[k]:.1f}s", font=small, fill=(255, 235, 120))
+        rows.append(strip)
     tmp.unlink(missing_ok=True)
-    th = tiles[0].height
-    rows = (len(tiles) + cols - 1) // cols
-    sheet = Image.new("RGB", (cols * tw, rows * th), (10, 10, 16))
-    for i, im in enumerate(tiles):
-        sheet.paste(im, ((i % cols) * tw, (i // cols) * th))
+    W = rows[0].width
+    H = sum(r.height for r in rows) + 4 * (len(rows) - 1)
+    sheet = Image.new("RGB", (W, H), (4, 4, 8))
+    y = 0
+    for r in rows:
+        sheet.paste(r, (0, y))
+        y += r.height + 4
     sheet.save(out / "beat_sheet.png")
     shutil.copy(beatmap, out / "beat_map.json")
     (out / "labels.json").write_text(json.dumps(REPAIRABLE_LABELS, indent=1))
     print(f"editorial review package -> {out}")
-    print(f"beats={len(beats)} duration={dur:.1f}s roles={list(ROLES)}")
+    print(f"beats={len(beats)} duration={dur:.1f}s strip={STRIP} "
+          f"roles={list(ROLES)}")
     return out
 
 

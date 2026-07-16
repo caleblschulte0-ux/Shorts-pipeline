@@ -319,8 +319,9 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
     fh.dissolve_join(clips, silent, xfade=XFADE)
     total = _dur(silent)
     # 4) lay the voice at each shot's start offset (accounting for xfades)
-    offset, delays = 0.0, []
+    offset, delays, shot_start = 0.0, [], []
     for i in range(len(shots)):
+        shot_start.append(offset)
         delays.append(offset + LEAD)
         offset += seconds[i] - XFADE
     amix_in, filt = [], []
@@ -377,7 +378,44 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
               str(out), "--out", str(pkg), "--grid", "6x4"])
     except Exception as e:  # noqa: BLE001
         print(f"[pro] judge package skipped ({e})", file=sys.stderr)
+    # 8) the REAL beat->time map (editorial package measures true boundaries,
+    # not a hand-estimated guess). Only for planned stories, where each shot
+    # carries `_beat`.
+    if planned:
+        try:
+            _emit_beatmap(story, shots, shot_start, seconds,
+                          out.with_name(out.stem + "_pkg"))
+        except Exception as e:  # noqa: BLE001
+            print(f"[pro] beatmap emission skipped ({e})", file=sys.stderr)
     return out
+
+
+def _emit_beatmap(story, shots, shot_start, seconds, pkg):
+    """Write pkg/beatmap.json: for each declared BEAT, the render's true
+    [start,end] (from the first to the last of that beat's phased shots),
+    plus the beat's job/narration/intended-understanding. This is the exact
+    input scripts/editorial_review.py needs — no more guessing time ranges."""
+    beats = story["beats"]
+    ends = [shot_start[i] + seconds[i] for i in range(len(shots))]
+    entries = []
+    for bi, b in enumerate(beats):
+        idxs = [i for i, sh in enumerate(shots) if sh.get("_beat") == bi]
+        if not idxs:
+            continue
+        a = shot_start[idxs[0]]
+        z = ends[idxs[-1]]
+        entries.append({
+            "t": f"{a:.1f}-{z:.1f}",
+            "job": b.get("job", ""),
+            "narration": b.get("narration", ""),
+            "intended_understanding": b.get("understand", ""),
+            "visual": b.get("mode", "") or b.get("function", ""),
+        })
+    pkg.mkdir(parents=True, exist_ok=True)
+    bmap = {"topic": story.get("title", story.get("slug", "")),
+            "beats": entries}
+    (pkg / "beatmap.json").write_text(json.dumps(bmap, indent=2))
+    print(f"[pro] beatmap -> {pkg / 'beatmap.json'} ({len(entries)} beats)")
 
 
 def _music_track():
