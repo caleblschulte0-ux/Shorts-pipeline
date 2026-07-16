@@ -71,6 +71,7 @@
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "thesis",
+      "callback": true,
       "max_unchanged": 8.0,
       "text": "You have never been still.",
       "footage": {"nasa_id": "NHQ_2020_1221_Earth Views", "ss": 55.0, "push": 1.05, "direction": "in", "intent": "return to the calm Earth of the opening — the payoff lands on the strongest image (callback)"}

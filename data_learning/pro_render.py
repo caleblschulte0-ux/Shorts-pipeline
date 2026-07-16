@@ -387,7 +387,40 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
                           out.with_name(out.stem + "_pkg"))
         except Exception as e:  # noqa: BLE001
             print(f"[pro] beatmap emission skipped ({e})", file=sys.stderr)
+        # 9) CONTINUITY DIRECTOR: catch accidental footage reuse ourselves
+        # (perceptual hash per beat) instead of relying on a reviewer.
+        try:
+            _check_continuity(story, shots, clips,
+                              out.with_name(out.stem + "_pkg"))
+        except Exception as e:  # noqa: BLE001
+            print(f"[pro] continuity check skipped ({e})", file=sys.stderr)
     return out
+
+
+def _check_continuity(story, shots, clips, pkg):
+    """One representative clip per BEAT -> continuity.analyze -> pkg report.
+    A beat may declare ``"callback": true`` to permit a deliberate return to an
+    earlier image (the payoff); those matches are never flagged."""
+    from data_learning import continuity
+    beats = story["beats"]
+    by_beat = []
+    for bi, b in enumerate(beats):
+        idxs = [i for i, sh in enumerate(shots) if sh.get("_beat") == bi]
+        # only footage-bearing beats can accidentally reuse a clip; designed-2D
+        # beats (galaxy/orbit/comparison) are distinct by construction, but we
+        # hash every beat so an accidental designed-2D repeat is caught too.
+        if not idxs:
+            continue
+        by_beat.append({"idx": bi, "job": b.get("job", str(bi)),
+                        "callback": bool(b.get("callback")),
+                        "clip": clips[idxs[0]]})
+    report = continuity.analyze(by_beat, pkg)
+    if report["findings"]:
+        for f in report["findings"]:
+            print(f"[pro] CONTINUITY {f['label']}: {f['reason']}",
+                  file=sys.stderr)
+    else:
+        print(f"[pro] continuity OK — {len(by_beat)} beats, no reuse")
 
 
 def _emit_beatmap(story, shots, shot_start, seconds, pkg):
