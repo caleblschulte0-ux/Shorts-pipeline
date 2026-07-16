@@ -420,6 +420,73 @@
           "self_healed": true
         }
       ]
+    },
+    {
+      "date": "20260716",
+      "dry_run": false,
+      "ts": "2026-07-16T14:54:38+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 7,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 49,
+        "with_retention": 40,
+        "with_curve": 11,
+        "fetched_at": "2026-07-16T12:04:13.845622+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260716-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260716-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Caption text garbled/overlapping at ~5.3s reads 'T,YOURSELF:K' instead of clean text; vision: Multiple frames (0.9s-1.6s, 3.4s, 4.1s-5.3s) are extreme blurry close-ups of ears/foreheads/skin r"
+        },
+        {
+          "slug": "clip-20260716-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Roughly half the frames (6.9s, 8.9s, 10.9s, 12.8s, 16.8s, 18.8s, 20.7s) are near-black/empty shots of a wall, door, or f; vision: Extended dead visual time between the intro and the payoff mak"
+        },
+        {
+          "slug": "clip-20260716-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260716-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260716-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260716-7",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Multiple frames (7.5s, 22.5s, 27.5s, 32.6s, 37.6s, 42.6s) are almost entirely black/blue blur with no visible subject; vision: Caption at 57.6s reads 'COUCHE ON TE' which looks garbled/broken,"
+        },
+        {
+          "slug": "clip-20260716-8",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Every frame in the contact sheet shows a heavily blurred, garbled, zoomed-in smear occupying roughly half of the frame a; vision: Looks like a rendering artifact/bug (motion blur or bad zoom) "
+        }
+      ]
     }
   ]
 }

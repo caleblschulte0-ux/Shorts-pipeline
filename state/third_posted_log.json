@@ -545,18 +545,18 @@
       "director_cut": true
     },
     "rejected-clip-20260716-2": {
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/ClumsyDarkPassionfruitBCouch-IAtE_BZ87kE7PQSG",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/RockySaltyGnatRedCoat-wQQKFYHwseCtzZft",
       "streamer": "stableronaldo",
-      "title": "Stableronaldo Freaks Out As Kai Beats Someone Up And Rips Clothes \ud83d\udc80",
+      "title": "Stableronaldo Trolls Campus Security With Fake Directions",
       "qa_rejected": true,
-      "ts": "2026-07-16T11:46:56.076632+00:00"
+      "ts": "2026-07-16T14:32:59.831853+00:00"
     },
     "rejected-clip-20260716-3": {
-      "source_url": "https://www.twitch.tv/lacy/clip/ChillyOriginalSquidFailFish-mSEMVcy1Z7rX9WX5",
-      "streamer": "lacy",
-      "title": "Lacy Snaps, Screams Someone 'Smells Like That'",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ClumsyDarkPassionfruitBCouch-IAtE_BZ87kE7PQSG",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Watches Kai Snap and Rip Someone's Clothes Off",
       "qa_rejected": true,
-      "ts": "2026-07-16T11:50:42.769694+00:00"
+      "ts": "2026-07-16T14:37:52.125252+00:00"
     },
     "clip-20260716-4": {
       "url": "https://youtube.com/shorts/2fxAJb8nyLc",
@@ -585,6 +585,21 @@
       "cut": {
         "start": 0.0,
         "end": 20.0
+      },
+      "director_cut": true
+    },
+    "clip-20260716-6": {
+      "url": "https://youtube.com/shorts/WNzMwUSE00k",
+      "title": "Lacy Roasts Someone For Smelling Like Shit",
+      "kind": "twitch_clip",
+      "ts": "2026-07-16T14:41:59.444248+00:00",
+      "source_url": "https://www.twitch.tv/lacy/clip/ChillyOriginalSquidFailFish-mSEMVcy1Z7rX9WX5",
+      "streamer": "lacy",
+      "series": "rage",
+      "hook": "SHE SAYS HE SMELLS LIKE SHIT",
+      "cut": {
+        "start": 0.0,
+        "end": 19.16
       },
       "director_cut": true
     }
