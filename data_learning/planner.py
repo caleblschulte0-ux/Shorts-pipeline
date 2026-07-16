@@ -53,8 +53,9 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         is_last = bi == n - 1
         foot = b.get("footage")
 
-        # ---- pure designed-2D beat (orbit, galaxy, comparison, title) -------
-        if b.get("flat"):
+        # ---- pure designed-2D beat (orbit, galaxy, comparison, title) —
+        # only when NO number/text rides it (those route to composite below).
+        if b.get("flat") and not b.get("number") and not b.get("text"):
             sh = dict(b["flat"])
             # a long comparison must not carry the whole beat: cap it, then let
             # a footage development phase (if provided) finish the idea.
@@ -71,7 +72,13 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         # lands and then the FOOTAGE keeps developing (enforces max_unchanged).
         if b.get("number"):
             num = b["number"]
-            if foot:
+            if b.get("flat"):
+                # the subject can't be filmed (tier C: the galaxy) -> the
+                # number rides the DESIGNED base, a distinct image that escapes
+                # the footage ladder.
+                shots.append({"kind": "composite", "base": b["flat"], **num,
+                              "seconds": secs, "line": line})
+            elif foot:
                 if secs > maxu and not is_last:
                     shots.append({"kind": "footage_number", **_foot(foot),
                                   **num, "seconds": maxu, "line": line,
@@ -89,7 +96,11 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         # ---- text beat: thesis / annotation OVER footage, never on black ----
         if b.get("text"):
             role = b.get("text_role", "thesis")
-            if foot:
+            if b.get("flat"):
+                shots.append({"kind": "composite", "base": b["flat"],
+                              "text": b["text"], "text_role": role,
+                              "seconds": secs, "line": line})
+            elif foot:
                 if secs > maxu and not is_last:
                     shots.append({"kind": "footage_text", **_foot(foot),
                                   "text": b["text"], "text_role": role,

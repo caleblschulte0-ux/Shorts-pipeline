@@ -124,73 +124,79 @@ def _footage_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     return out  # keep src cached; the story reuses it across beats
 
 
-def _footage_number_shot(shot: dict, seconds: float, out: Path, work: Path,
-                         idx: int):
-    """A hero number rendered OVER real footage (PRO_DOCTRINE §2 — numbers
-    interact with the world, not float as isolated dashboard cards). Cut the
-    footage beat, then burn in the number + unit + caption with clean type,
-    lower-third so it never blocks the subject."""
-    base = work / f"fn_base_{idx}.mp4"
-    _footage_shot(shot, seconds, base, work, idx)
+def _overlay_number(base: Path, shot: dict, out: Path):
+    """Burn a hero number + unit + caption onto ANY base clip (footage OR a
+    designed 2D clip). The number interacts with a moving world, never a static
+    dashboard card."""
     anton = str(REPO / "assets" / "fonts" / "Anton-Regular.ttf")
     dj = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-    num = str(shot["text"])
-    sub = str(shot.get("sub", ""))
+    num, sub = str(shot["text"]), str(shot.get("sub", ""))
     label = str(shot.get("label", "")).upper()
     esc = lambda s: s.replace(",", r"\,").replace(":", r"\:").replace("'", "")
     vf = [
         f"drawtext=fontfile={anton}:text='{esc(num)}':fontcolor=white:"
-        f"fontsize=170:x=(w-tw)/2:y=h*0.60:"
-        "shadowcolor=black@0.6:shadowx=3:shadowy=3:"
-        "alpha='if(lt(t,0.5),0,min((t-0.5)/0.5,1))'",
+        f"fontsize=170:x=(w-tw)/2:y=h*0.60:shadowcolor=black@0.6:shadowx=3:"
+        "shadowy=3:alpha='if(lt(t,0.5),0,min((t-0.5)/0.5,1))'",
         f"drawtext=fontfile={anton}:text='{esc(sub)}':fontcolor=0xFFD37A:"
-        f"fontsize=52:x=(w-tw)/2:y=h*0.82:"
-        "shadowcolor=black@0.6:shadowx=2:shadowy=2:"
-        "alpha='if(lt(t,0.8),0,min((t-0.8)/0.5,1))'",
+        f"fontsize=52:x=(w-tw)/2:y=h*0.82:shadowcolor=black@0.6:shadowx=2:"
+        "shadowy=2:alpha='if(lt(t,0.8),0,min((t-0.8)/0.5,1))'",
     ]
     if label:
-        lbl = " ".join(label)
-        vf.insert(0,
-                  f"drawtext=fontfile={dj}:text='{esc(lbl)}':fontcolor=0xB9C4E0:"
-                  f"fontsize=32:x=(w-tw)/2:y=h*0.50:"
+        vf.insert(0, f"drawtext=fontfile={dj}:text='{esc(' '.join(label))}':"
+                  "fontcolor=0xB9C4E0:fontsize=32:x=(w-tw)/2:y=h*0.50:"
                   "shadowcolor=black@0.7:shadowx=2:shadowy=2:"
                   "alpha='if(lt(t,0.3),0,min((t-0.3)/0.5,1))'")
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(base),
-          "-vf", ",".join(vf), "-c:v", "libx264", "-crf", "18",
-          "-preset", "medium", "-pix_fmt", "yuv420p", str(out)])
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(base), "-vf",
+          ",".join(vf), "-c:v", "libx264", "-crf", "18", "-preset", "medium",
+          "-pix_fmt", "yuv420p", str(out)])
     return out
 
 
-def _footage_text_shot(shot: dict, seconds: float, out: Path, work: Path,
-                       idx: int):
-    """A line of text rendered OVER real footage (PRO_DOCTRINE — text control +
-    footage/graphics compositing). Kills TEXT_AS_FALLBACK (no sentence on black)
-    and PAYOFF_SPLIT_FROM_IMAGE (the payoff line lands ON the strongest image).
-
-    role 'thesis' -> larger, centered, the emotional payoff.
-    role 'annotation' -> smaller, lower third, attached to the subject."""
-    base = work / f"ft_base_{idx}.mp4"
-    _footage_shot(shot, seconds, base, work, idx)
+def _overlay_text(base: Path, shot: dict, out: Path):
+    """Burn a thesis/annotation line onto ANY base clip. role 'thesis' ->
+    larger, centered; 'annotation' -> smaller, lower third."""
+    import textwrap
     dj = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
     role = shot.get("text_role", "thesis")
     text = str(shot.get("text", "")).strip()
-    # wrap to ~28 chars/line for a centered thesis, ~34 for annotation
-    import textwrap
     fs = 60 if role == "thesis" else 40
     y0 = 0.40 if role == "thesis" else 0.72
     wrapped = textwrap.wrap(text, 30 if role == "thesis" else 40)
     esc = lambda s: s.replace(",", r"\,").replace(":", r"\:").replace("'", "’")
-    vf = []
-    for li, ln in enumerate(wrapped):
-        vf.append(
-            f"drawtext=fontfile={dj}:text='{esc(ln)}':fontcolor=white:"
-            f"fontsize={fs}:x=(w-tw)/2:y=h*{y0}+{li * int(fs * 1.35)}:"
-            "shadowcolor=black@0.7:shadowx=2:shadowy=3:"
-            "alpha='if(lt(t,0.6),0,min((t-0.6)/0.7,1))'")
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(base),
-          "-vf", ",".join(vf), "-c:v", "libx264", "-crf", "18",
-          "-preset", "medium", "-pix_fmt", "yuv420p", str(out)])
+    vf = [f"drawtext=fontfile={dj}:text='{esc(ln)}':fontcolor=white:"
+          f"fontsize={fs}:x=(w-tw)/2:y=h*{y0}+{li * int(fs * 1.35)}:"
+          "shadowcolor=black@0.7:shadowx=2:shadowy=3:"
+          "alpha='if(lt(t,0.6),0,min((t-0.6)/0.7,1))'"
+          for li, ln in enumerate(wrapped)]
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(base), "-vf",
+          ",".join(vf), "-c:v", "libx264", "-crf", "18", "-preset", "medium",
+          "-pix_fmt", "yuv420p", str(out)])
     return out
+
+
+def _footage_number_shot(shot, seconds, out, work, idx):
+    base = work / f"fn_base_{idx}.mp4"
+    _footage_shot(shot, seconds, base, work, idx)
+    return _overlay_number(base, shot, out)
+
+
+def _footage_text_shot(shot, seconds, out, work, idx):
+    base = work / f"ft_base_{idx}.mp4"
+    _footage_shot(shot, seconds, base, work, idx)
+    return _overlay_text(base, shot, out)
+
+
+def _composite_shot(shot, seconds, out, work, idx):
+    """Render the beat's designed-2D base (e.g. the galaxy pull-back), then
+    overlay a number or text on it — for beats whose subject cannot be filmed
+    (the galaxy: tier C). Kills FOOTAGE_MISMATCH (no Earth footage under a
+    galaxy line) and gives the climax a DISTINCT image."""
+    base_spec = dict(shot["base"])
+    base = work / f"co_base_{idx}.mp4"
+    _render_shot(base_spec, seconds, base, work, idx)
+    if shot.get("text") is not None:
+        return _overlay_text(base, shot, out)
+    return _overlay_number(base, shot, out)
 
 
 def _hero_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
@@ -240,6 +246,8 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         return _footage_number_shot(shot, seconds, out, work, idx)
     if k == "footage_text":
         return _footage_text_shot(shot, seconds, out, work, idx)
+    if k == "composite":
+        return _composite_shot(shot, seconds, out, work, idx)
     if k == "flat_number":
         return flat2d.number_reveal(
             shot["text"], shot.get("sub", ""), out, seconds,
