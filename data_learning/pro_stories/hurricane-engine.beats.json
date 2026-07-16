@@ -11,7 +11,13 @@
       "mode": "footage",
       "text_role": "none",
       "max_unchanged": 8.0,
-      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 130.0, "push": 1.05, "direction": "in", "intent": "a broad hurricane spiral seen from the ISS, calm and slow-turning"}
+      "footage": {
+        "nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station",
+        "ss": 90.0,
+        "push": 1.05,
+        "direction": "in",
+        "intent": "a broad hurricane spiral seen from the ISS, calm and slow-turning"
+      }
     },
     {
       "job": "INGREDIENT",
@@ -20,8 +26,18 @@
       "function": "evidence",
       "mode": "footage+annotation",
       "max_unchanged": 8.0,
-      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 40.0, "push": 1.05, "direction": "in", "intent": "warm tropical ocean under broken cloud, distinct from the spiral"},
-      "number": {"text": "26", "sub": "°C", "label": "the ocean it needs"}
+      "footage": {
+        "nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station",
+        "ss": 40.0,
+        "push": 1.05,
+        "direction": "in",
+        "intent": "warm tropical ocean under broken cloud, distinct from the spiral"
+      },
+      "number": {
+        "text": "26",
+        "sub": "°C",
+        "label": "the ocean it needs"
+      }
     },
     {
       "job": "MECHANISM",
@@ -30,7 +46,13 @@
       "function": "explanation",
       "mode": "footage",
       "max_unchanged": 8.0,
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1260.0, "push": 1.06, "direction": "in", "intent": "the churning storm from orbit, cloud tops boiling upward — the engine at work"}
+      "footage": {
+        "nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903",
+        "ss": 1260.0,
+        "push": 1.06,
+        "direction": "in",
+        "intent": "the churning storm from orbit, cloud tops boiling upward — the engine at work"
+      }
     },
     {
       "job": "SETUP_COMPARISON",
@@ -39,10 +61,27 @@
       "function": "comparison",
       "mode": "designed_2d",
       "max_unchanged": 8.0,
-      "flat": {"kind": "flat_compare", "title": "measured by the wind",
-        "rows": [{"name": "Category 1", "value": 119, "display": "119 km/h"},
-                 {"name": "Category 3", "value": 178, "display": "178 km/h"},
-                 {"name": "Category 5", "value": 252, "display": "252+ km/h"}]}
+      "flat": {
+        "kind": "flat_compare",
+        "title": "measured by the wind",
+        "rows": [
+          {
+            "name": "Category 1",
+            "value": 119,
+            "display": "119 km/h"
+          },
+          {
+            "name": "Category 3",
+            "value": 178,
+            "display": "178 km/h"
+          },
+          {
+            "name": "Category 5",
+            "value": 252,
+            "display": "252+ km/h"
+          }
+        ]
+      }
     },
     {
       "job": "REVEAL",
@@ -53,7 +92,13 @@
       "text_role": "annotation",
       "max_unchanged": 9.0,
       "text": "the eye",
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1050.0, "push": 1.06, "direction": "in", "intent": "the clear eye of the hurricane from orbit, ringed by cloud — the money shot"}
+      "footage": {
+        "nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903",
+        "ss": 1050.0,
+        "push": 1.06,
+        "direction": "in",
+        "intent": "the clear eye of the hurricane from orbit, ringed by cloud — the money shot"
+      }
     },
     {
       "job": "PAYOFF",
@@ -65,7 +110,13 @@
       "callback": true,
       "max_unchanged": 8.0,
       "text": "Nothing on Earth can stop it.",
-      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 155.0, "push": 1.05, "direction": "in", "intent": "return to the calm Helene spiral of the opening — the thesis lands on the storm that opened the film (callback)"}
+      "footage": {
+        "nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station",
+        "ss": 100.0,
+        "push": 1.05,
+        "direction": "in",
+        "intent": "return to the calm Helene spiral of the opening — the thesis lands on the storm that opened the film (callback)"
+      }
     }
   ]
 }
