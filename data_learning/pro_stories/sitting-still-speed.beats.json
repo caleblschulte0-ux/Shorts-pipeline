@@ -56,22 +56,13 @@
     },
     {
       "job": "REVEAL",
-      "narration": "And the Sun itself is not still. It drags us around the galaxy at eight hundred and twenty-eight thousand kilometers an hour.",
-      "understand": "the headline number — our galactic speed — on the galaxy itself (the galaxy cannot be filmed from inside it: designed 2D, tier C)",
+      "narration": "And the Sun itself is not still. It drags us around the galaxy at eight hundred and twenty-eight thousand kilometers an hour — a tiny world, riding a star, around a galaxy that is itself racing through the universe.",
+      "understand": "the headline number — our galactic speed — rides the galaxy as it pulls back continuously into the full spiral (one climax, not two identical zooms). The galaxy cannot be filmed from inside it: designed 2D, tier C.",
       "function": "evidence",
       "mode": "designed_2d",
-      "max_unchanged": 9.0,
+      "max_unchanged": 12.0,
       "flat": {"kind": "flat_zoom", "highlight": "THE SUN", "stages": ["THE MILKY WAY"]},
       "number": {"text": "828,000", "sub": "km/h", "label": "our speed through the galaxy"}
-    },
-    {
-      "job": "EXPERIENCE",
-      "narration": "A tiny world, riding a star, around a galaxy that is itself racing through the universe.",
-      "understand": "our smallness / the scale of the galaxy",
-      "function": "experience",
-      "mode": "designed_2d",
-      "max_unchanged": 8.0,
-      "flat": {"kind": "flat_zoom", "highlight": "THE SUN", "stages": ["THE MILKY WAY"]}
     },
     {
       "job": "PAYOFF",

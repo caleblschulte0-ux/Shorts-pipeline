@@ -202,10 +202,10 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
             d.text((x0, y - 44), str(r["name"]), font=namef,
                    fill=(*PALETTE["ink"], 235))
             # staggered race — each bar launches a beat after the one above,
-            # so they GROW at their own speed. NO empty full-width track rail
-            # behind them (that reads as a dashboard/progress bar); the bars
-            # race on open space, a cinematic comparison, not a chart.
-            g = _ease(min(max(i - k * 6, 0) / (n * 0.55), 1.0))
+            # so they GROW at their own speed across most of the shot (no long
+            # static hold at the end — kills SHOT_TOO_LONG). NO empty track
+            # rail behind them; the bars race on open space.
+            g = _ease(min(max(i - k * 8, 0) / (n * 0.82), 1.0))
             full = (x1 - x0) * (float(r["value"]) / vmax)
             w = max(4.0, full * g)
             # a soft leading-edge glow so the fastest bar reads as speed
