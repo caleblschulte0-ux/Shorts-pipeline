@@ -370,6 +370,58 @@
           "skipped": "already posted"
         }
       ]
+    },
+    {
+      "date": "20260716",
+      "dry_run": false,
+      "ts": "2026-07-16T11:34:28+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 7,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 46,
+        "with_retention": 40,
+        "with_curve": 11,
+        "fetched_at": "2026-07-16T10:27:36.398534+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260716-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260716-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: many frames are black/blank or heavily blurred with no visible subject (8.8s, 11.3s, 16.3s, 18.8s, 23.8s, 26.3s, 28.8s a; vision: camera whip-pans away from the subject for large stretches, le"
+        },
+        {
+          "slug": "clip-20260716-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Roughly half the frames (0.8s, 2.4s, 5.6s, 7.2s, 8.8s, 10.4s, 12.0s, 13.6s, 15.2s, 16.8s, 18.4s, and several caption fra; vision: Multiple caption frames show only black/empty frame instead of"
+        },
+        {
+          "slug": "clip-20260716-4",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Nearly all 12 sampled frames (0.9s\u201321.7s) are heavily motion-blurred with no clear subject visible \u2014 just streaks of whi; vision: Subject (Kai Cenat / student) is not identifiable in the sampl"
+        },
+        {
+          "slug": "clip-20260716-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: opening frames at 3.8s and 6.3s are almost entirely black/empty, looking like a broken or glitched video right at the st; vision: subject/action barely visible for first ~6 seconds, risking vi"
+        }
+      ]
     }
   ]
 }
