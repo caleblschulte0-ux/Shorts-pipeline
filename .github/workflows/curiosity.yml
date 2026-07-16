@@ -285,8 +285,12 @@ jobs:
               # delivered in chat, and uploads the full artifact.
               mkdir -p preview
               S="${SLUGS:-sitting-still-speed}"
-              python -m data_learning.pro_render \
-                "data_learning/pro_stories/${S}.json" "preview/${S}.mp4"
+              # prefer the BEAT-INTENT story (planner-driven); fall back to the
+              # legacy flat shot list.
+              STORY="data_learning/pro_stories/${S}.beats.json"
+              [ -f "$STORY" ] || STORY="data_learning/pro_stories/${S}.json"
+              echo "rendering $STORY"
+              python -m data_learning.pro_render "$STORY" "preview/${S}.mp4"
               git config user.name "github-actions[bot]"
               git config user.email "github-actions[bot]@users.noreply.github.com"
               git add -f "preview/${S}_720p.mp4" \

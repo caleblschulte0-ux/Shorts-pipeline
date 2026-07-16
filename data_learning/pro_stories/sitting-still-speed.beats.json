@@ -1,0 +1,99 @@
+{
+  "slug": "sitting-still-speed",
+  "title": "You're Moving 828,000 km/h Right Now",
+  "voice": "en-US-GuyNeural",
+  "beats": [
+    {
+      "job": "HOOK",
+      "narration": "Right now, sitting perfectly still, you feel like nothing around you is moving. That stillness is the greatest illusion of your life.",
+      "understand": "YOU, apparently motionless, are the subject — establish calm apparent stillness before the hidden-motion reveal.",
+      "function": "experience",
+      "mode": "footage",
+      "text_role": "none",
+      "max_unchanged": 8.0,
+      "footage": {"nasa_id": "NHQ_2020_1221_Earth Views", "ss": 40.0, "push": 1.04, "direction": "in", "intent": "a calm, serene, apparently motionless view of Earth from orbit — stillness, not action"}
+    },
+    {
+      "job": "SETUP_COMPARISON",
+      "narration": "We think we know what fast is. A sprinter, forty-four kilometers an hour. A jet, nine hundred. A rifle bullet, three thousand four hundred.",
+      "understand": "anchor everyday 'fast' so the reveal later dwarfs it",
+      "function": "comparison",
+      "mode": "designed_2d",
+      "max_unchanged": 9.0,
+      "flat": {"kind": "flat_compare", "title": "how fast is fast",
+        "rows": [{"name": "Usain Bolt", "value": 44, "display": "44 km/h"},
+                 {"name": "Passenger jet", "value": 900, "display": "900 km/h"},
+                 {"name": "Rifle bullet", "value": 3400, "display": "3,400 km/h"}]}
+    },
+    {
+      "job": "PROOF",
+      "narration": "But the ground beneath your feet is not still. The Earth spins, and at the equator it turns at sixteen hundred and seventy kilometers an hour — half the speed of that bullet, and you never feel it.",
+      "understand": "the ground you stand on is itself moving faster than a bullet",
+      "function": "evidence",
+      "mode": "footage+annotation",
+      "max_unchanged": 9.0,
+      "footage": {"nasa_id": "GSFC_20181022_ICON_m12902_Airglow", "ss": 70.0, "push": 1.06, "direction": "in", "intent": "Earth's surface moving beneath the camera — city lights drifting past"},
+      "number": {"text": "1,670", "sub": "km/h", "label": "the earth's spin"}
+    },
+    {
+      "job": "DEVELOP",
+      "narration": "Now pull back, and watch what our whole planet is really doing.",
+      "understand": "zoom out from the spin to the orbit",
+      "function": "explanation",
+      "mode": "designed_2d",
+      "max_unchanged": 6.0,
+      "flat": {"kind": "flat_orbit", "center": "THE SUN", "satellite": "EARTH"}
+    },
+    {
+      "job": "ESCALATE",
+      "narration": "Earth is falling around the Sun at a hundred and seven thousand kilometers an hour. Thirty kilometers every single second.",
+      "understand": "orbital speed dwarfs the spin",
+      "function": "evidence",
+      "mode": "footage+annotation",
+      "max_unchanged": 9.0,
+      "footage": {"nasa_id": "GSFC_20181022_ICON_m12902_Airglow", "ss": 72.0, "push": 1.06, "direction": "out", "intent": "Earth's limb against the black of space"},
+      "number": {"text": "107,000", "sub": "km/h", "label": "earth around the sun"}
+    },
+    {
+      "job": "ESCALATE",
+      "narration": "And the Sun itself is not still. It falls around the heart of the galaxy, dragging every planet with it.",
+      "understand": "even the Sun/solar system is moving",
+      "function": "explanation",
+      "mode": "footage+annotation",
+      "text_role": "annotation",
+      "max_unchanged": 8.0,
+      "text": "the Sun drags us around the galaxy",
+      "footage": {"nasa_id": "GSFC_20181022_ICON_m12902_Airglow", "ss": 68.0, "push": 1.05, "direction": "in", "intent": "the Milky Way band over Earth's dark limb"}
+    },
+    {
+      "job": "REVEAL",
+      "narration": "Eight hundred and twenty-eight thousand kilometers an hour.",
+      "understand": "the headline number — our galactic speed",
+      "function": "evidence",
+      "mode": "footage+annotation",
+      "max_unchanged": 7.0,
+      "footage": {"nasa_id": "GSFC_20181022_ICON_m12902_Airglow", "ss": 66.0, "push": 1.05, "direction": "in", "intent": "the Milky Way arcing over the limb — the cosmos we move through"},
+      "number": {"text": "828,000", "sub": "km/h", "label": "our speed through the galaxy"}
+    },
+    {
+      "job": "EXPERIENCE",
+      "narration": "A tiny world, riding a star, around a galaxy that is itself racing through the universe.",
+      "understand": "our smallness / the scale of the galaxy",
+      "function": "experience",
+      "mode": "designed_2d",
+      "max_unchanged": 8.0,
+      "flat": {"kind": "flat_zoom", "highlight": "THE SUN", "stages": ["THE MILKY WAY"]}
+    },
+    {
+      "job": "PAYOFF",
+      "narration": "You have never been still. Not for one single second of your life.",
+      "understand": "THE thesis lands — over the calm Earth from the opening, now reinterpreted",
+      "function": "experience",
+      "mode": "footage+annotation",
+      "text_role": "thesis",
+      "max_unchanged": 8.0,
+      "text": "You have never been still.",
+      "footage": {"nasa_id": "NHQ_2020_1221_Earth Views", "ss": 55.0, "push": 1.05, "direction": "in", "intent": "return to the calm Earth of the opening — the payoff lands on the strongest image (intentional callback)"}
+    }
+  ]
+}

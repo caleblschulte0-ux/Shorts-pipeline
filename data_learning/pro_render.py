@@ -161,6 +161,38 @@ def _footage_number_shot(shot: dict, seconds: float, out: Path, work: Path,
     return out
 
 
+def _footage_text_shot(shot: dict, seconds: float, out: Path, work: Path,
+                       idx: int):
+    """A line of text rendered OVER real footage (PRO_DOCTRINE — text control +
+    footage/graphics compositing). Kills TEXT_AS_FALLBACK (no sentence on black)
+    and PAYOFF_SPLIT_FROM_IMAGE (the payoff line lands ON the strongest image).
+
+    role 'thesis' -> larger, centered, the emotional payoff.
+    role 'annotation' -> smaller, lower third, attached to the subject."""
+    base = work / f"ft_base_{idx}.mp4"
+    _footage_shot(shot, seconds, base, work, idx)
+    dj = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+    role = shot.get("text_role", "thesis")
+    text = str(shot.get("text", "")).strip()
+    # wrap to ~28 chars/line for a centered thesis, ~34 for annotation
+    import textwrap
+    fs = 60 if role == "thesis" else 40
+    y0 = 0.40 if role == "thesis" else 0.72
+    wrapped = textwrap.wrap(text, 30 if role == "thesis" else 40)
+    esc = lambda s: s.replace(",", r"\,").replace(":", r"\:").replace("'", "’")
+    vf = []
+    for li, ln in enumerate(wrapped):
+        vf.append(
+            f"drawtext=fontfile={dj}:text='{esc(ln)}':fontcolor=white:"
+            f"fontsize={fs}:x=(w-tw)/2:y=h*{y0}+{li * int(fs * 1.35)}:"
+            "shadowcolor=black@0.7:shadowx=2:shadowy=3:"
+            "alpha='if(lt(t,0.6),0,min((t-0.6)/0.7,1))'")
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(base),
+          "-vf", ",".join(vf), "-c:v", "libx264", "-crf", "18",
+          "-preset", "medium", "-pix_fmt", "yuv420p", str(out)])
+    return out
+
+
 def _hero_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     """Render a Blender showpiece via blender_hero, dressed to 1080p. Kept for
     the 2-3 pop moments; falls back to a flat statement if Blender is absent."""
@@ -206,6 +238,8 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         return _footage_shot(shot, seconds, out, work, idx)
     if k == "footage_number":
         return _footage_number_shot(shot, seconds, out, work, idx)
+    if k == "footage_text":
+        return _footage_text_shot(shot, seconds, out, work, idx)
     if k == "flat_number":
         return flat2d.number_reveal(
             shot["text"], shot.get("sub", ""), out, seconds,
@@ -235,15 +269,33 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
 # --- assembly -------------------------------------------------------------
 def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
     work.mkdir(parents=True, exist_ok=True)
-    shots = story["shots"]
-    # 1) narration first — durations drive shot lengths
+    planned = "beats" in story
+    if planned:
+        # BEAT INTENT PLANNER: synth each beat's narration, then expand the
+        # declared beats into a phased shot list (planner.py is the director).
+        from data_learning.planner import plan_story
+        beats = story["beats"]
+        beat_durs = []
+        for bi, b in enumerate(beats):
+            bvf = work / f"beatvo_{bi}.mp3"
+            beat_durs.append(_synth(b.get("narration", ""), bvf, voice))
+        shots = plan_story(beats, beat_durs)
+        print(f"[pro] planned {len(beats)} beats -> {len(shots)} shots")
+    else:
+        shots = story["shots"]
+    # 1) narration per shot — the line rides only the phase that carries it.
+    # For planned shots `seconds` is set by the planner; legacy shots derive it.
     vo_files, durs, seconds = [], [], []
     for i, sh in enumerate(shots):
         vf = work / f"vo_{i}.mp3"
         d = _synth(sh.get("line", ""), vf, voice)
         vo_files.append(vf)
         durs.append(d)
-        seconds.append(max(MIN_SHOT, (LEAD + d + TAIL) if d else
+        if planned:
+            seconds.append(float(sh.get("seconds", max(MIN_SHOT,
+                           LEAD + d + TAIL))))
+        else:
+            seconds.append(max(MIN_SHOT, (LEAD + d + TAIL) if d else
                            float(sh.get("seconds", 4.0))))
         print(f"[pro] shot {i} {sh['kind']}: line {d:.1f}s -> "
               f"{seconds[-1]:.1f}s")

@@ -83,6 +83,14 @@ def is_real_footage(title: str, desc: str, keywords) -> bool:
 
 # --- NASA video search + download ----------------------------------------
 def _get(url: str, timeout: int = 40) -> bytes:
+    # NASA asset hrefs can contain spaces/control chars (ids like
+    # "NHQ_2020_1221_Earth Views"); urllib rejects them raw. Encode the path
+    # while preserving the URL structure.
+    if " " in url or any(ord(c) < 33 for c in url):
+        from urllib.parse import quote, urlsplit, urlunsplit
+        p = urlsplit(url)
+        url = urlunsplit((p.scheme, p.netloc, quote(p.path),
+                          quote(p.query, safe="=&?"), p.fragment))
     req = urllib.request.Request(
         url, headers={"User-Agent": "curiosity-pipeline/1.0"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
