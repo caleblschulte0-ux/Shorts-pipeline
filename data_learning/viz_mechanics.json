@@ -58,5 +58,33 @@
   "concept": "a set of shelves where each data point is represented by a jar filled with its corresponding ingredient, with the jar size and filling level indicating its value",
   "code": "\ncx = (RX0 + RX1) // 2\ncy = RTOP + 200\nn = len(values)\nshelf_h = 120\nshelf_gap = 40\nfor i in range(n):\n    v = values[i]\n    label = labels[i]\n    img = subject_image(label)\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        if h > 100:\n            h = 100\n            w = int(h * asp)\n        shelf_y = cy + i * (shelf_h + shelf_gap)\n        jar_w = 100\n        jar_h = 150\n        fill_h = int(jar_h * clamp(v / vmax) * reveal)\n        d.rectangle([cx - jar_w // 2, shelf_y, cx + jar_w // 2, shelf_y + shelf_h], fill=rgba(ACCENT, 10))\n        d.rectangle([cx - jar_w // 2, shelf_y + shelf_h - fill_h, cx + jar_w // 2, shelf_y + shelf_h], fill=rgba(HIGHLIGHT, 255))\n        paste(img, cx - w // 2, shelf_y + shelf_h + 10, w, h)\n        text(str(int(v)), cx, shelf_y + shelf_h + 120, size=36, color=TEXT, center=True)\n        text(label, cx, shelf_y - 30, size=30, color=TEXT, center=True)\n",
   "topic": "Ingredient Variety"
+ },
+ {
+  "sig": "89167b878b43",
+  "mechanic": "microscope",
+  "concept": "a microscope zooms in on a subject image, with a scale bar and labels showing the data points",
+  "code": "\n# get subject images\nhair_img = subject_image('human hair')\ngraphene_img = subject_image('graphene sheet')\n\n# zoom level based on reveal progress\nzoom = lerp(1, 100, reveal)\n\n# center of the screen\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\n\n# draw microscope view\nd.rectangle([cx - 300, cy - 300, cx + 300, cy + 300], fill=rgba((0, 0, 0), 150))\n\n# draw subject images\nif hair_img is not None:\n    asp = hair_img.width / hair_img.height\n    w = 200\n    h = int(w / asp)\n    paste(hair_img, cx - 250, cy - 150, w, h)\nif graphene_img is not None:\n    asp = graphene_img.width / graphene_img.height\n    w = 50\n    h = int(w / asp)\n    paste(graphene_img, cx + 100, cy - 25, w, h)\n\n# draw scale bar\nd.line([cx - 200, cy + 200, cx + 200, cy + 200], fill=rgba(TEXT, 255), width=5)\ntext(str(int(values[0])) + ' nm', cx - 200, cy + 220, size=30, color=TEXT, center=False)\ntext(str(int(values[1])) + ' nm', cx + 180, cy + 220, size=30, color=TEXT, center=False)\n\n# draw labels\ntext(labels[0], cx - 250, cy - 250, size=30, color=TEXT, center=False)\ntext(labels[1], cx + 100, cy - 50, size=30, color=TEXT, center=False)\n\n# zoom text\ntext('Zoom: ' + str(int(zoom)) + 'x', cx, cy + 280, size=30, color=TEXT, center=True)\n",
+  "topic": "Graphene"
+ },
+ {
+  "sig": "0a52db06065c",
+  "mechanic": "nano-membranes",
+  "concept": "a nano-membrane model is built from hexagonal cells filled with subject images, with each cell's size and fill amount representing the corresponding data point's value and label",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\ncell_size = 80\nn = len(values)\nfor i in range(n):\n    v = values[i]\n    x = cx + (i - n // 2) * (cell_size * 1.5)\n    y = cy\n    d.ellipse([x - cell_size // 2, y - cell_size // 2, x + cell_size // 2, y + cell_size // 2],\n               outline=rgba(HIGHLIGHT, 150), width=4)\n    fill_frac = clamp(v / vmax) * reveal\n    fill_image(subject_image('nano-particles'), fill_frac, x - cell_size // 2, y - cell_size // 2, cell_size, cell_size, 'up', rgba(ACCENT, 150))\n    text(str(int(v)) + ' nm', x, y + cell_size // 2 + 20, size=32, color=TEXT, center=True)\n    text(labels[i], x, y - cell_size // 2 - 30, size=28, color=TEXT, center=True)\n",
+  "topic": "Nano membranes"
+ },
+ {
+  "sig": "9023009f0c92",
+  "mechanic": "thin-materials-scale",
+  "concept": "a scale with two plates, one for companies investing in thin materials and the other for companies using them, each plate's weight and label rising as the reveal progresses",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nd.line([cx, RTOP, cx, RBOT], fill=rgba(TEXT, 90), width=4)\nfor i in range(n):\n    v = values[i]\n    label = labels[i]\n    if i == 0:\n        px = cx - 200\n    else:\n        px = cx + 200\n    py = cy + (v / vmax) * (RBOT - cy) * reveal\n    d.ellipse([px - 20, py - 20, px + 20, py + 20], fill=rgba(ACCENT if i == 0 else HIGHLIGHT, 255))\n    img = subject_image('microchip' if i == 0 else 'solar panel')\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h = int(w / asp)\n        paste(img, px - w // 2, py + 30, w, h)\n    text(label, px, py + 160, size=36, center=True)\n    text(str(int(v)) + '%', px, py - 100, size=48, center=True)\n",
+  "topic": "Future applications"
+ },
+ {
+  "sig": "0d4e5a30d0ac",
+  "mechanic": "magnetic-orbs",
+  "concept": "Each magnetic material is represented by a colored orb that rises and fills with a photo of the material as its ranking value increases",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 200 + i * 300\n    cy = RBOT - 100\n    r = 120\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], fill=rgba(TEXT, 90))\n    fill_frac = clamp(v / vmax) * reveal\n    fill_image(subject_image(labels[i]), fill_frac, cxs - r, cy - r, r * 2, r * 2, 'up', col)\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], outline=rgba(col, 255), width=8)\n    text(str(int(v)) + ' units', cxs, cy - r - 80, size=48, color=col, center=True)\n    text(labels[i], cxs, cy + r + 20, size=32, color=TEXT, center=True)\n    if reveal > 0.5:\n        rise = lerp(RBOT, RTOP + 200, reveal * 0.5)\n        d.line([cxs, rise, cxs, cy], fill=rgba(col, 128), width=4)",
+  "topic": "Magnetic materials ranking"
  }
 ]

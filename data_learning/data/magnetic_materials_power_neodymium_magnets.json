@@ -1,0 +1,28 @@
+{
+  "key": "magnetic_materials_power_neodymium_magnets",
+  "title": "Neodymium magnets",
+  "unit": "tesla",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Neodymium magnet strength",
+      "value": 1.4,
+      "period": "2010"
+    },
+    {
+      "label": "Ferrite magnet strength",
+      "value": 0.5,
+      "period": "2010"
+    }
+  ]
+}

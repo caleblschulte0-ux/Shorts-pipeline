@@ -1,0 +1,28 @@
+{
+  "key": "thinnest_materials_ever_made_nano_membranes",
+  "title": "Nano membranes",
+  "unit": "nanometers",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Nano membrane thickness",
+      "value": 10.0,
+      "period": "2015"
+    },
+    {
+      "label": "Thinnest nano membrane",
+      "value": 1.0,
+      "period": "2020"
+    }
+  ]
+}

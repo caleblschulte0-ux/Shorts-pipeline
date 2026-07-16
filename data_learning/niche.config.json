@@ -12734,8 +12734,8 @@
     {
       "slug": "extreme-food-calories",
       "title": "Extreme Food Calories",
-      "hook": "You won't believe the calorie bomb in this donut",
-      "closing": "The most extreme foods will shock your diet",
+      "hook": "This ONE donut has as many calories as 5 regular donuts stacked together",
+      "closing": "That 'extreme' burger alone could be your entire day's calories in a single sitting",
       "hashtags": [
         "foodie",
         "calories",
@@ -12753,19 +12753,11 @@
           "insight_type": "rank",
           "role": "1 \u00b7 DONUT CALORIES",
           "topic": "Donut Calories",
-          "say": "A typical donut can have around 250 calories, but some extreme donuts pack over 1,200 calories, that's roughly the same as 5-6 regular donuts.",
+          "say": "A typical donut can have around 250 calories, but some extreme donuts pack over 1,200 calories, that's roughly the same as 5 regular donuts on one side of the scale.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "donut",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "mechanic": "calorie-seesaw",
+            "concept": "a fulcrum beam tips hard toward the extreme donut while a stack of regular-donut photos piles up underneath it to show the calorie-equivalent count",
+            "code": "cx = (RX0 + RX1) // 2\nfy = 760\nd.polygon([(cx - 40, fy + 40), (cx + 40, fy + 40), (cx, fy - 40)], fill=rgba(TEXT, 220))\nheavy = 0 if values[0] >= values[1] else 1\nlight = 1 - heavy\ntilt = 20.0 * reveal\nang = math.radians(tilt if heavy == 1 else -tilt)\nhalf = 320\nlx = cx - half * math.cos(ang)\nly = fy - 40 - half * math.sin(ang)\nrx = cx + half * math.cos(ang)\nry = fy - 40 + half * math.sin(ang)\nd.line([lx, ly, rx, ry], fill=rgba(HIGHLIGHT, 255), width=14)\nd.ellipse([cx - 14, fy - 54, cx + 14, fy - 26], fill=rgba(HIGHLIGHT, 255))\npans = [(lx, ly), (rx, ry)]\nfor i in range(n):\n    px, py = pans[i]\n    img = images.get(labels[i])\n    w = 190 if i == light else 250\n    h = w\n    if img is not None:\n        paste(img, px - w / 2, py - h + 10, w, h)\n    text(str(int(values[i])), px, py - h - 30, size=50, color=HIGHLIGHT if i == heavy else ACCENT, center=True)\n    text(labels[i], px, py + 30, size=30, center=True)\ncount = int(round(values[heavy] / max(1.0, values[light])))\nstackn = int(clamp(count, 1, 6) * reveal)\nhx, hy = pans[heavy]\nlimg = images.get(labels[light])\nfor k in range(stackn):\n    sx = hx - 90 + (k % 3) * 70\n    sy = hy + 70 - (k // 3) * 60\n    if limg is not None:\n        paste(limg, sx, sy, 60, 60)\nmid = clamp((reveal - 0.6) / 0.4)\nif mid > 0:\n    text(str(count) + 'x THE CALORIES', cx, RBOT - 70, size=48, color=WARN, center=True)"
           },
           "ascending": false
         },
@@ -12778,19 +12770,11 @@
           "insight_type": "rank",
           "role": "2 \u00b7 PIZZA CALORIES",
           "topic": "Pizza Calories",
-          "say": "A single slice of pizza can range from 200 to 400 calories, but some gourmet pizzas can have slices with over 700 calories, that's almost as much as a whole meal.",
+          "say": "A regular slice runs about 250 calories, but a gourmet slice pours in nearly 700, almost as much as a whole meal.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "pizza slice",
-                "data": {
-                  "value_from": "item:1"
-                }
-              }
-            ]
+            "mechanic": "grease-drip-gauge",
+            "concept": "grease drips off each pizza slice into a beaker below it, filling the beaker to the calorie level in real time",
+            "code": "gap = (RX1 - RX0) // 2\nfor i in range(n):\n    bx = RX0 + gap * i + 140\n    bw = 220\n    by = 560\n    bh = 460\n    d.rounded_rectangle([bx, by, bx + bw, by + bh], radius=24, outline=rgba(TEXT, 255), width=6)\n    frac = clamp(values[i] / vmax) * reveal\n    fill_image(None, frac, bx + 6, by + 6, bw - 12, bh - 12, direction='up', color=WARN)\n    img = images.get(labels[i])\n    sw = 240\n    sh = 190\n    sx = bx + bw / 2 - sw / 2\n    sy = by - sh - 40\n    if img is not None:\n        paste(img, sx, sy, sw, sh)\n    dropn = int(clamp(frac, 0, 1) * 5) + 1\n    for k in range(dropn):\n        dy = by - 20 - ((k * 47 + int(reveal * 300)) % 260)\n        d.ellipse([bx + bw / 2 - 10, dy, bx + bw / 2 + 10, dy + 22], fill=rgba(WARN, 220))\n    text(str(int(values[i])) + ' cal', bx + bw / 2, by - 70, size=42, color=HIGHLIGHT if values[i] == vmax else ACCENT, center=True)\n    text(labels[i], bx + bw / 2, by + bh + 20, size=30, center=True)\nmid = clamp((reveal - 0.6) / 0.4)\nif mid > 0:\n    text('3x THE GREASE', (RX0 + RX1) // 2, RTOP + 20, size=44, color=WARN, center=True)"
           },
           "ascending": false
         },
@@ -12803,7 +12787,12 @@
           "insight_type": "rank",
           "role": "3 \u00b7 BURGER CALORIES",
           "topic": "Burger Calories",
-          "say": "A classic cheeseburger can have around 500 calories, but some extreme burgers can pack over 2,000 calories, that's equivalent to eating 20 small snacks.",
+          "say": "A classic cheeseburger sits around 500 calories, but some extreme burgers stack up over 2,000, four times the calories in one meal.",
+          "scene": {
+            "mechanic": "burger-tower-build",
+            "concept": "two burgers build upward layer by layer, the extreme burger's tower climbing four times as tall as the classic one",
+            "code": "gap = (RX1 - RX0) // 2\nmaxh = 760\nlayerh = 70\nbaseY = RBOT - 40\nfor i in range(n):\n    cx = RX0 + gap * i + gap // 2\n    frac = clamp(values[i] / vmax)\n    towerh = maxh * frac * reveal\n    layers = int(towerh / layerh) + 1\n    img = images.get(labels[i])\n    for k in range(layers):\n        ly = baseY - (k + 1) * layerh\n        if ly < RTOP:\n            break\n        w = 250\n        h = layerh + 10\n        if img is not None:\n            paste(img, cx - w / 2, ly, w, h)\n        else:\n            d.rounded_rectangle([cx - w / 2, ly, cx + w / 2, ly + h], radius=14, fill=rgba(ACCENT, 230))\n    text(str(int(values[i])) + ' cal', cx, baseY - towerh - 70, size=44, color=HIGHLIGHT if values[i] == vmax else ACCENT, center=True)\n    text(labels[i], cx, baseY + 30, size=30, center=True)\nmid = clamp((reveal - 0.65) / 0.35)\nif mid > 0:\n    text('4x THE STACK', (RX0 + RX1) // 2, RTOP + 10, size=46, color=WARN, center=True)"
+          },
           "ascending": false
         },
         {
@@ -12815,7 +12804,36 @@
           "insight_type": "rank",
           "role": "4 \u00b7 FOOD CALORIES RANK",
           "topic": "Food Calories Ranking",
-          "say": "When it comes to calorie-dense foods, fries can have around 300 calories per serving, while nuggets can have over 400 calories, but some desserts can take the cake with over 1,500 calories per slice."
+          "say": "When it comes to calorie-dense foods, fries run around 300 calories, nuggets push past 400, but dessert takes the cake at over 1,500 calories a slice.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "french fries carton",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "chicken nuggets box",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "decadent chocolate cake slice",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
         }
       ],
       "question": "What's the craziest calorie-dense food you've tried?"
@@ -12823,8 +12841,8 @@
     {
       "slug": "fastest-computers-ever",
       "title": "Fastest Computers Ever",
-      "hook": "The fastest computer in the world will blow your mind",
-      "closing": "The speed of these computers will change everything",
+      "hook": "From 80 calculations a second to over a billion billion, watch how insane computer speed got",
+      "closing": "At this rate, the 'fastest computer ever' record gets broken again before you finish scrolling",
       "hashtags": [
         "supercomputer",
         "fastest",
@@ -12842,15 +12860,11 @@
           "insight_type": "trend",
           "role": "1 \u00b7 SUPERCOMPUTER SPEE",
           "topic": "Supercomputer Speed",
-          "say": "The fastest supercomputer in the world, Frontier, can perform over 1 exaflop, that's 1 billion billion calculations per second, a huge leap from the first supercomputer which could only do 80 megaflops.",
+          "say": "The first supercomputer could only manage 80 flops, but today's fastest, Frontier, blazes past 1,000,000, over 1 exaflop, that's 1 billion billion calculations a second.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
+            "mechanic": "compute-leap",
+            "concept": "a light trail launches on a log scale from a small vintage computer at the bottom left up to a glowing modern supercomputer at the top right, tracing the 12,500x jump",
+            "code": "lo = min(values)\nhi = max(values)\nloglo = math.log10(max(lo, 1.0))\nloghi = math.log10(max(hi, 1.0))\nspan = loghi - loglo if loghi > loglo else 1.0\nx0 = 190\nx1 = 860\ny0 = RBOT - 120\ny1 = RTOP + 140\npts = []\nfor i in range(n):\n    t = i / max(1, n - 1)\n    lx = x0 + (x1 - x0) * t\n    frac = (math.log10(max(values[i], 1.0)) - loglo) / span\n    ly = y0 + (y1 - y0) * frac\n    pts.append((lx, ly))\nfor i in range(n - 1):\n    ax, ay = pts[i]\n    bx, by = pts[i + 1]\n    tfrac = clamp((reveal * (n - 1)) - i)\n    tx = lerp(ax, bx, tfrac)\n    ty = lerp(ay, by, tfrac)\n    d.line([ax, ay, tx, ty], fill=rgba(HIGHLIGHT, 255), width=10)\nfor i in range(n):\n    lx, ly = pts[i]\n    na = clamp((reveal - i * 0.35) / 0.4)\n    if na <= 0:\n        continue\n    img = images.get(labels[i])\n    w = 230\n    h = 170\n    above = ly > (y0 + y1) / 2\n    iy = ly - h - 30 if above else ly + 30\n    if img is not None:\n        paste(img, lx - w / 2, iy, w, h)\n    d.ellipse([lx - 14, ly - 14, lx + 14, ly + 14], fill=rgba(HIGHLIGHT, int(255 * na)))\n    ny = iy - 40 if above else iy + h + 10\n    text(str(int(values[i])) + ' pf', lx, ny, size=38, color=HIGHLIGHT, center=True)\n    text(labels[i], lx, ny + 44, size=26, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('12,500x FASTER', (RX0 + RX1) // 2, RTOP + 20, size=48, color=WARN, center=True)"
           }
         },
         {
@@ -12862,19 +12876,11 @@
           "insight_type": "rank",
           "role": "2 \u00b7 COMPUTER PROCESSOR",
           "topic": "Computer Processors",
-          "say": "A typical computer processor can have a clock speed of around 2-3 ghz, but some high-end processors can have speeds of over 5 ghz, making them much faster for demanding tasks.",
+          "say": "A typical processor runs around 2 ghz, but high-end chips race past 5 ghz, two and a half times the speed for the most demanding tasks.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "processor",
-                "data": {
-                  "value_from": "item:1"
-                }
-              }
-            ]
+            "mechanic": "chip-race",
+            "concept": "two processor chips race down a drag strip, position proportional to clock speed, the high-end chip pulling ahead trailing motion-blur lines",
+            "code": "laney = [RTOP + 260, RTOP + 640]\ntrackx0 = RX0 + 40\ntrackx1 = RX1 - 140\nfor i in range(n):\n    ly = laney[i] if i < 2 else laney[-1] + i * 200\n    d.line([trackx0, ly + 90, trackx1 + 100, ly + 90], fill=rgba(TEXT, 140), width=6)\n    frac = clamp(values[i] / vmax) * reveal\n    cx = trackx0 + (trackx1 - trackx0) * frac\n    img = images.get(labels[i])\n    w = 200\n    h = 160\n    trail = int(frac * 5)\n    for k in range(trail):\n        tx = cx - 60 - k * 40\n        ta = int(200 * (1.0 - k / 6.0))\n        d.line([tx, ly + 90, tx - 30, ly + 90], fill=rgba(ACCENT if i == 0 else HIGHLIGHT, ta), width=8)\n    if img is not None:\n        paste(img, cx - w / 2, ly - h / 2, w, h)\n    else:\n        d.rounded_rectangle([cx - w / 2, ly - h / 2, cx + w / 2, ly + h / 2], radius=20, fill=rgba(ACCENT, 230))\n    text(str(values[i]) + ' GHz', cx, ly - h / 2 - 50, size=42, color=HIGHLIGHT if values[i] == vmax else ACCENT, center=True)\n    text(labels[i], cx, ly + h / 2 + 30, size=28, center=True)\nd.line([trackx1 + 100, RTOP + 200, trackx1 + 100, RTOP + 780], fill=rgba(WARN, 220), width=8)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('2.5x FASTER', (RX0 + RX1) // 2, RBOT - 60, size=46, color=WARN, center=True)"
           },
           "ascending": false
         },
@@ -12887,19 +12893,11 @@
           "insight_type": "share",
           "role": "3 \u00b7 SUPERCOMPUTER APPL",
           "topic": "Supercomputer Applications",
-          "say": "Supercomputers are used in a wide range of applications, including weather forecasting, which accounts for around 20% of their usage, followed by scientific research at 30%, and cryptography at 15%.",
+          "say": "Supercomputers spend around 20% of their time on weather forecasting, 30% on scientific research, and 15% on cryptography.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:2"
-                }
-              }
-            ]
+            "mechanic": "workload-satellites",
+            "concept": "weather, research, and cryptography icons orbit a glowing supercomputer core, each icon sized by its share of workload",
+            "code": "cx = (RX0 + RX1) // 2\ncy = 640\ncore = subject_image('supercomputer server room glowing blue lights')\nif core is not None:\n    paste(core, cx - 170, cy - 170, 340, 340)\nd.ellipse([cx - 150, cy - 150, cx + 150, cy + 150], outline=rgba(TEXT, 140), width=4)\nrbase = 350\nfor i in range(n):\n    frac = clamp(values[i] / vmax)\n    ang = math.radians(-90 + i * (360.0 / n) + reveal * 140.0)\n    bx = cx + rbase * math.cos(ang)\n    by = cy + rbase * math.sin(ang) * 0.62\n    d.line([cx, cy, bx, by], fill=rgba(ACCENT, 90), width=3)\n    img = images.get(labels[i])\n    size = 120 + int(120 * frac)\n    na = clamp((reveal - i * 0.15) / 0.5)\n    if img is not None and na > 0:\n        paste(img, bx - size / 2, by - size / 2, size, size)\n    if na > 0:\n        text(str(int(values[i])) + '%', bx, by - size / 2 - 40, size=38, color=HIGHLIGHT, center=True)\n        text(labels[i], bx, by + size / 2 + 16, size=24, center=True)\ntext('WHAT RUNS THE FASTEST MACHINES ON EARTH', cx, RTOP + 30, size=30, color=TEXT, center=True)"
           }
         },
         {
@@ -12911,10 +12909,340 @@
           "insight_type": "rank",
           "role": "4 \u00b7 SUPERCOMPUTER RANK",
           "topic": "Supercomputer Ranking",
-          "say": "The top 3 fastest supercomputers in the world are Frontier, Sierra, and Summit, with speeds of over 1 exaflop, 150 petaflops, and 200 petaflops respectively, leaving all other computers in the dust."
+          "say": "The top 3 fastest supercomputers ever are Frontier, Sierra, and Summit, Frontier alone hits 1,000,000 petaflops, dwarfing Sierra's 150,000 and Summit's 200,000.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Frontier supercomputer server racks",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Sierra supercomputer server racks",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Summit supercomputer server racks",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
         }
       ],
       "question": "What do you think is the most exciting application of supercomputing?"
+    },
+    {
+      "slug": "thinnest-materials-ever-made",
+      "title": "Thinnest Materials Ever Made",
+      "hook": "Imagine a material so thin it's almost invisible",
+      "closing": "The boundaries of thinness are being pushed to new extremes",
+      "hashtags": [
+        "materials",
+        "science",
+        "innovation",
+        "technology",
+        "future"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "thinnest_materials_ever_made_graphene",
+          "params": {
+            "file": "thinnest_materials_ever_made_graphene.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 GRAPHENE",
+          "topic": "Graphene",
+          "say": "Graphene is just one atom thick, with a thickness of about 0.3 nanometers, compared to a human hair which is around 80,000 nanometers thick",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "graphene sheet",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "thinnest_materials_ever_made_nano_membranes",
+          "params": {
+            "file": "thinnest_materials_ever_made_nano_membranes.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 NANO MEMBRANES",
+          "topic": "Nano membranes",
+          "say": "Nano membranes can be as thin as 10 nanometers, making them ideal for filtering and separation applications, with some membranes reaching thicknesses of 5, 3, and even 1 nanometer",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "nano membrane",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "thinnest_materials_ever_made_thin_films",
+          "params": {
+            "file": "thinnest_materials_ever_made_thin_films.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 THIN FILMS",
+          "topic": "Thin films",
+          "say": "The thickness of thin films has been decreasing over the years, from 100 nanometers in 2000 to 10 nanometers in 2010, and now even reaching 1 nanometer in some cases",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "thinnest_materials_ever_made_future_applications",
+          "params": {
+            "file": "thinnest_materials_ever_made_future_applications.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 FUTURE APPLICATION",
+          "topic": "Future applications",
+          "say": "These ultra-thin materials have the potential to revolutionize various industries, with 80% of companies investing in research and development of thin materials, and 20% already implementing them in their products"
+        }
+      ],
+      "question": "What do you think is the most exciting application of ultra-thin materials?"
+    },
+    {
+      "slug": "magnetic-materials-power",
+      "title": "Magnetic Materials Power",
+      "hook": "Magnets are all around us, but which materials are the most magnetic?",
+      "closing": "The strength of magnetic materials is crucial for many modern technologies",
+      "hashtags": [
+        "magnets",
+        "materials",
+        "science",
+        "technology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "magnetic_materials_power_neodymium_magnets",
+          "params": {
+            "file": "magnetic_materials_power_neodymium_magnets.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 NEODYMIUM MAGNETS",
+          "topic": "Neodymium magnets",
+          "say": "Neodymium magnets have a magnetic field strength of up to 1.4 tesla, which is significantly stronger than other types of magnets, such as ferrite magnets which have a strength of around 0.5 tesla",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "neodymium magnet",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "magnetic_materials_power_magnetic_materials_rank",
+          "params": {
+            "file": "magnetic_materials_power_magnetic_materials_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 MAGNETIC MATERIALS",
+          "topic": "Magnetic materials ranking",
+          "say": "The top 5 most magnetic materials are neodymium, dysprosium, samarium, gadolinium, and terbium, with neodymium being the strongest, followed closely by dysprosium",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "magnet",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "magnetic_materials_power_magnetic_field_strength",
+          "params": {
+            "file": "magnetic_materials_power_magnetic_field_strength.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 MAGNETIC FIELD STR",
+          "topic": "Magnetic field strength trend",
+          "say": "The magnetic field strength of materials has been increasing over the years, from 0.1 tesla in 1960 to 1 tesla in 2000, and now even reaching 1.5 tesla in some cases",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "magnetic_materials_power_applications_of_magneti",
+          "params": {
+            "file": "magnetic_materials_power_applications_of_magneti.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 APPLICATIONS OF MA",
+          "topic": "Applications of magnetic materials",
+          "say": "Magnetic materials are used in 90% of all electric motors, 80% of all generators, and 70% of all magnetic resonance imaging (MRI) machines, with the remaining 10% being used in other applications such as magnetic storage devices"
+        }
+      ],
+      "question": "What do you think is the most important application of magnetic materials?"
+    },
+    {
+      "slug": "probability-in-daily-life",
+      "title": "Probability in Daily Life",
+      "hook": "Did you know that probability plays a huge role in your everyday decisions?",
+      "closing": "So, the next time you make a decision, remember that probability is at play!",
+      "hashtags": [
+        "probability",
+        "statistics",
+        "decisionmaking",
+        "dailylife",
+        "math"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "probability_in_daily_life_coin_flip",
+          "params": {
+            "file": "probability_in_daily_life_coin_flip.json"
+          },
+          "insight_type": "share",
+          "role": "1 \u00b7 COIN FLIP",
+          "topic": "Coin Flip",
+          "say": "The probability of getting heads in a coin flip is around 50%, but did you know that in a row of 10 flips, the chances of getting exactly 5 heads is approximately 24.6%, and the probability of getting all heads is about 0.1%?",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "coin",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "probability_in_daily_life_rolling_dice",
+          "params": {
+            "file": "probability_in_daily_life_rolling_dice.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 ROLLING DICE",
+          "topic": "Rolling Dice",
+          "say": "When rolling two dice, the probability of getting a sum of 7 is about 16.7%, which is the highest probability among all possible sums, while getting a sum of 2 or 12 has a probability of around 2.8% each",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "dice",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 6.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "probability_in_daily_life_probability_in_sports",
+          "params": {
+            "file": "probability_in_daily_life_probability_in_sports.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 PROBABILITY IN SPO",
+          "topic": "Probability in Sports",
+          "say": "In the NFL, the probability of a team winning after being down by 10 points at halftime is around 13.4%, but this number has been increasing over the years, with a peak of around 18.5% in 2015",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "probability_in_daily_life_insurance_probability",
+          "params": {
+            "file": "probability_in_daily_life_insurance_probability.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 INSURANCE PROBABIL",
+          "topic": "Insurance Probability",
+          "say": "The probability of a house fire is around 0.35%, and for a car accident, it's about 2.5%, but with insurance, the financial risk can be greatly reduced, with around 95% of insured homes and 85% of insured cars being able to recover from such events",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "house",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most surprising way probability has affected your life?"
     }
   ],
   "videos": [

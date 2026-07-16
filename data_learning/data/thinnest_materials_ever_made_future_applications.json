@@ -1,0 +1,28 @@
+{
+  "key": "thinnest_materials_ever_made_future_applications",
+  "title": "Future applications",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Companies investing in thin materials",
+      "value": 80.0,
+      "period": "2022"
+    },
+    {
+      "label": "Companies using thin materials",
+      "value": 20.0,
+      "period": "2022"
+    }
+  ]
+}

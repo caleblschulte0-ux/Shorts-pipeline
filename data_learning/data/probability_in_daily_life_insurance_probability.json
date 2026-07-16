@@ -1,0 +1,26 @@
+{
+  "key": "probability_in_daily_life_insurance_probability",
+  "title": "Insurance Probability",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "house fire",
+      "value": 0.35
+    },
+    {
+      "label": "car accident",
+      "value": 2.5
+    }
+  ]
+}

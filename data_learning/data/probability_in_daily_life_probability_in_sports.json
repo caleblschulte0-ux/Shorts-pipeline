@@ -1,0 +1,28 @@
+{
+  "key": "probability_in_daily_life_probability_in_sports",
+  "title": "Probability in Sports",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 10.2,
+      "period": "2010"
+    },
+    {
+      "label": "2015",
+      "value": 18.5,
+      "period": "2015"
+    }
+  ]
+}
