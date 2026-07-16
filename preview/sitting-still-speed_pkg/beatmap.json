@@ -1,0 +1,54 @@
+{
+  "topic": "You're Moving 828,000 km/h Right Now",
+  "beats": [
+    {
+      "t": "0.0-10.0",
+      "job": "HOOK",
+      "narration": "Right now, sitting perfectly still, you feel like nothing around you is moving. That stillness is the greatest illusion of your life.",
+      "intended_understanding": "YOU, apparently motionless \u2014 establish calm stillness before the hidden-motion reveal",
+      "visual": "footage"
+    },
+    {
+      "t": "9.4-23.1",
+      "job": "SETUP_COMPARISON",
+      "narration": "We think we know what fast is. A sprinter, forty-four. A jet, nine hundred. A bullet, three thousand four hundred kilometers an hour.",
+      "intended_understanding": "anchor everyday 'fast' so the reveal later dwarfs it",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "22.5-33.6",
+      "job": "PROOF",
+      "narration": "But the ground beneath your feet is not still. The Earth spins at sixteen hundred and seventy kilometers an hour \u2014 half the speed of that bullet, and you never feel it.",
+      "intended_understanding": "the ground you stand on is itself moving faster than a bullet",
+      "visual": "footage+annotation"
+    },
+    {
+      "t": "33.0-38.7",
+      "job": "DEVELOP",
+      "narration": "Now pull back, and watch what our whole planet is really doing.",
+      "intended_understanding": "zoom out from the spin to the orbit",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "38.1-47.6",
+      "job": "ESCALATE",
+      "narration": "Earth is falling around the Sun at a hundred and seven thousand kilometers an hour. Thirty kilometers every single second.",
+      "intended_understanding": "orbital speed dwarfs the spin",
+      "visual": "footage+annotation"
+    },
+    {
+      "t": "47.0-61.7",
+      "job": "REVEAL",
+      "narration": "And the Sun itself is not still. It drags us around the galaxy at eight hundred and twenty-eight thousand kilometers an hour \u2014 a tiny world, riding a star, around a galaxy that is itself racing through the universe.",
+      "intended_understanding": "the headline number \u2014 our galactic speed \u2014 rides the galaxy as it pulls back continuously into the full spiral (one climax, not two identical zooms). The galaxy cannot be filmed from inside it: designed 2D, tier C.",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "61.1-68.3",
+      "job": "PAYOFF",
+      "narration": "You have never been still. Not for one single second of your life.",
+      "intended_understanding": "THE thesis lands over the calm Earth from the opening, reinterpreted (intentional callback); the film ENDS here",
+      "visual": "footage+annotation"
+    }
+  ]
+}
