@@ -103,7 +103,7 @@
     {
       "job": "PAYOFF",
       "narration": "Warm water and air. That is all it is. And once it begins to turn, nothing on Earth can stop it.",
-      "understand": "thesis — the storm is a simple machine of overwhelming power; return to the opening spiral (callback); the film ENDS here",
+      "understand": "thesis — the storm is a simple machine of overwhelming power; a true bookend that returns to the exact opening frame (callback); the film ENDS here",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "thesis",
@@ -112,7 +112,7 @@
       "text": "Nothing on Earth can stop it.",
       "footage": {
         "nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station",
-        "ss": 94.0,
+        "ss": 90.0,
         "push": 1.05,
         "direction": "in",
         "intent": "return to the calm Helene spiral of the opening — the thesis lands on the storm that opened the film (callback)"
