@@ -209,12 +209,24 @@ def analyze_window(clip: Path, ss: float, dur: float) -> dict:
         detail = float(g.std())
         lit = float((g > 55).mean())
         blk = bright < 12
+        # EDGE DENSITY (sharp marks): fraction of pixels with a strong
+        # Laplacian response. Text / diagram lines / logos produce many sharp
+        # edges; a smooth natural surface (cloud, fog, a hurricane's eye) does
+        # not. This is what separates a produced card from bright-but-soft
+        # FOOTAGE — without it, a full-frame white storm reads as 'a card'
+        # (bright + desaturated + low global detail) and gets wrongly rejected.
+        lap = np.abs(4 * g[1:-1, 1:-1] - g[:-2, 1:-1] - g[2:, 1:-1]
+                     - g[1:-1, :-2] - g[1:-1, 2:])
+        edgep = float((lap > 25).mean())
         # a produced card / diagram / title / logo:
-        #  - a LIGHT flat desaturated card (the 'nitrogen on grey paper' tell), or
+        #  - a LIGHT flat desaturated card WITH sharp marks (the 'nitrogen on
+        #    grey paper' tell — a diagram/text on a pale ground), or
         #  - a near-empty frame carrying only a small centred logo/watermark
         #    (mostly dark, very little lit content, low overall detail).
-        card = (bright > 125 and sat < 34 and detail < 58) or \
-               (lit < 0.05 and detail < 34 and not blk)
+        # The edge-density gate lets a soft, mark-free cloud/eye through as the
+        # real footage it is.
+        card = (bright > 125 and sat < 34 and detail < 58 and edgep > 0.055) \
+            or (lit < 0.05 and detail < 34 and not blk)
         is_black.append(blk)
         is_card.append(card)
         black += int(blk)
