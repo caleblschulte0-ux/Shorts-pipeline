@@ -530,17 +530,61 @@
       "director_cut": true
     },
     "clip-20260716-1": {
-      "url": "https://youtube.com/shorts/nQPDeGKbJKw",
-      "title": "Kaicenat: Kai Cenat Panics When Anime Girl Calls Him 'Master'",
+      "url": "https://youtube.com/shorts/31GfPFK5D1w",
+      "title": "Kaicenat: Kai Cenat Turns Into The Cringiest Anime Girl",
       "kind": "twitch_clip",
-      "ts": "2026-07-16T11:14:42.515730+00:00",
+      "ts": "2026-07-16T11:40:59.764191+00:00",
       "source_url": "https://www.twitch.tv/kaicenat/clip/TawdryEncouragingLadiesDoritosChip-4ZKoqIAzZ3bzKPUv",
       "streamer": "kaicenat",
       "series": "chaos",
-      "hook": "ANIME GIRL CALLS KAI 'MASTER'",
+      "hook": "HE BECOMES THE CRINGIEST ANIME GIRL",
       "cut": {
-        "start": 4.4,
+        "start": 0.0,
         "end": 27.1
+      },
+      "director_cut": true
+    },
+    "rejected-clip-20260716-2": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ClumsyDarkPassionfruitBCouch-IAtE_BZ87kE7PQSG",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Freaks Out As Kai Beats Someone Up And Rips Clothes \ud83d\udc80",
+      "qa_rejected": true,
+      "ts": "2026-07-16T11:46:56.076632+00:00"
+    },
+    "rejected-clip-20260716-3": {
+      "source_url": "https://www.twitch.tv/lacy/clip/ChillyOriginalSquidFailFish-mSEMVcy1Z7rX9WX5",
+      "streamer": "lacy",
+      "title": "Lacy Snaps, Screams Someone 'Smells Like That'",
+      "qa_rejected": true,
+      "ts": "2026-07-16T11:50:42.769694+00:00"
+    },
+    "clip-20260716-4": {
+      "url": "https://youtube.com/shorts/2fxAJb8nyLc",
+      "title": "Kaicenat: Kai Cenat Finds Out a Student Is Jackie Chan's Niece",
+      "kind": "twitch_clip",
+      "ts": "2026-07-16T11:58:19.001803+00:00",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/TenuousGloriousPartridgeSpicyBoy-ugcNWnlx60iqNNpZ",
+      "streamer": "kaicenat",
+      "series": "wholesome",
+      "hook": "SHE SAYS JACKIE CHAN IS HER UNCLE",
+      "cut": {
+        "start": 9.4,
+        "end": 33.2
+      },
+      "director_cut": true
+    },
+    "clip-20260716-5": {
+      "url": "https://youtube.com/shorts/bCJ2y_MWT2M",
+      "title": "Jasontheween Steals A Car On Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-07-16T12:04:08.613583+00:00",
+      "source_url": "https://www.twitch.tv/jasontheween/clip/AdventurousHumbleDiscRiPepperonis-07Vh4rtGaA-frOQ8",
+      "streamer": "jasontheween",
+      "series": "chaos",
+      "hook": "JASON STEALS A CAR ON STREAM",
+      "cut": {
+        "start": 0.0,
+        "end": 20.0
       },
       "director_cut": true
     }
