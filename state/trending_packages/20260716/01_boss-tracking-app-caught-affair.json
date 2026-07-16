@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "slug": "boss-tracking-app-caught-affair",
+  "subreddit": "MaliciousCompliance",
+  "title": "My manager made me log every minute of my day in a tracking app. So I logged his too.",
+  "hashtags": [
+    "reddit",
+    "maliciouscompliance",
+    "redditstories",
+    "storytime",
+    "workplace",
+    "officedrama",
+    "corporatelife",
+    "karen",
+    "hrstories",
+    "boss",
+    "redditreadings",
+    "drama"
+  ],
+  "script": "My manager Todd installed tracking software on every laptop on my team last month, screenshots every ten minutes, keystrokes logged, minute-by-minute time sheets, because he said we were \"wasting company hours.\" Fine. Malicious compliance mode: activated. I logged everything, every bathroom break, every coffee refill, the four minutes I spent laughing at his out-of-office reply. Three weeks in, IT accidentally emailed the whole department the raw screenshot archive, every laptop, including Todd's. His screen was open eleven hours a day to a browser tab labeled \"Sandra Vacation Home Listings, Cancun.\" Sandra is not his wife. Sandra is the VP he reports to. HR pulled both of their logs by Friday morning. Todd tried to blame a software glitch. The glitch had his laptop's serial number stamped on every single screenshot.",
+  "shots": [
+    {
+      "phrase": "My manager Todd installed tracking software on every laptop",
+      "query": "boss installing surveillance software on office laptop",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "screenshots every ten minutes, keystrokes logged",
+      "query": "computer screen capturing screenshot notification",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "I logged everything, every bathroom break, every coffee refill",
+      "query": "woman typing detailed spreadsheet log at desk",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "IT accidentally emailed the whole department the raw screenshot archive",
+      "query": "email inbox notification popup office",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "His screen was open eleven hours a day to a browser tab labeled \"Sandra Vacation Home Listings, Cancun.\"",
+      "query": "laptop browser tab vacation home listings",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "Sandra is not his wife. Sandra is the VP he reports to.",
+      "query": "serious businesswoman walking office hallway",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "HR pulled both of their logs by Friday morning.",
+      "query": "HR office meeting tense conversation",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "The glitch had his laptop's serial number stamped on every single screenshot.",
+      "query": "laptop serial number sticker closeup",
+      "mascot_pose": "shock"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Malicious compliance mode: activated.",
+      "text": "MODE: ACTIVATED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Sandra is not his wife.",
+      "text": "NOT HIS WIFE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the VP he reports to",
+      "text": "HIS BOSS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "stamped on every single screenshot",
+      "text": "CAUGHT ON CAMERA",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark"
+}

@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-07-15
+# Daily Trending Shorts — 2026-07-16
 
 - queued: **1**
 - succeeded: **1**
@@ -6,9 +6,9 @@
 - failed: **0**
 
 ## Posted
-- **My landlord kept 'checking the smoke detector' while I was at work, so I hid a camera**
-  - topic: My landlord kept 'checking the smoke detector' while I was at work, so I hid a camera
-  - publishes: `2026-07-15T13:00:00Z`
-  - https://youtube.com/shorts/7HFejgtqZRY
-  - took: 602.0s
+- **My manager made me log every minute of my day in a tracking app. So I logged his too.**
+  - topic: My manager made me log every minute of my day in a tracking app. So I logged his too.
+  - publishes: `2026-07-16T13:00:00Z`
+  - https://youtube.com/shorts/XQjXRtFva0c
+  - took: 169.9s
 
