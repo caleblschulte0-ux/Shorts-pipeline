@@ -102,7 +102,10 @@ def build_package(render: Path, beatmap: Path, out: Path) -> Path:
             "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 15)
     except Exception:  # noqa: BLE001
         font = small = ImageFont.load_default()
-    fw = 360                      # per-frame width in a strip
+    fw = 480                      # per-frame width in a strip — large enough
+                                  # that a growing bar / creeping zoom reads at
+                                  # thumbnail size (a judge misjudged bar length
+                                  # on smaller frames and false-flagged a hold)
     label_w = 150                 # left label column
     tmp = out / "_t.png"
     rows = []                     # one composited strip (PIL image) per beat
