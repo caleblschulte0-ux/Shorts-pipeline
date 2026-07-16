@@ -772,14 +772,18 @@ def main() -> int:
         else:
             print(f"no packages under {day_dir}")
             return 0
+    # Slot cadence: with a higher daily count we tighten spacing so the extra
+    # volume concentrates in US prime time (17:00 UTC = 1pm ET) instead of
+    # spilling into dead overnight hours. 90 min × 8 slots ≈ 17:00→03:30 UTC.
+    slot_gap = timedelta(minutes=90)
     publish_base = None
     if not args.no_schedule and not args.dry_run:
         now = datetime.now(timezone.utc)
         publish_base = now.replace(hour=17, minute=0, second=0,
                                    microsecond=0)
-        # next slot at least 30 min out; extra packages 2h apart
+        # start at least 30 min out (roll forward a slot at a time if late)
         while publish_base < now + timedelta(minutes=30):
-            publish_base += timedelta(hours=2)
+            publish_base += slot_gap
 
     log = _load_log()
     # uploaders.upload wants publish_at as an RFC3339 string, not datetime.
@@ -789,7 +793,7 @@ def main() -> int:
     for pkg, path in packages:
         publish_at = None
         if publish_base and pkg["slug"] not in log["posted"]:
-            publish_at = (publish_base + timedelta(hours=2 * slot)) \
+            publish_at = (publish_base + slot_gap * slot) \
                 .strftime("%Y-%m-%dT%H:%M:%SZ")
             slot += 1
         results.append(process(pkg, path, dry_run=args.dry_run,
