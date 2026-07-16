@@ -1,0 +1,28 @@
+{
+  "key": "thinnest_materials_ever_made_graphene_thickness",
+  "title": "Graphene Thickness",
+  "unit": "nanometers",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Single-layer graphene",
+      "value": 0.34,
+      "period": "2020"
+    },
+    {
+      "label": "Few-layer graphene",
+      "value": 1.1,
+      "period": "2019"
+    }
+  ]
+}

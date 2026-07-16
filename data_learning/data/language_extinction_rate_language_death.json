@@ -1,0 +1,33 @@
+{
+  "key": "language_extinction_rate_language_death",
+  "title": "Language Death",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Language Death Rate",
+      "value": 14.0,
+      "period": "2022"
+    },
+    {
+      "label": "Endangered Languages",
+      "value": 43.0,
+      "period": "2022"
+    },
+    {
+      "label": "Top 5 Languages",
+      "value": 50.0,
+      "period": "2022"
+    }
+  ]
+}

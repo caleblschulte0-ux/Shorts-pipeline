@@ -1,0 +1,33 @@
+{
+  "key": "language_extinction_rate_language_distribution",
+  "title": "Language Distribution",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Mandarin",
+      "value": 1.3,
+      "period": "2022"
+    },
+    {
+      "label": "Spanish",
+      "value": 460.0,
+      "period": "2022"
+    },
+    {
+      "label": "English",
+      "value": 379.0,
+      "period": "2022"
+    }
+  ]
+}

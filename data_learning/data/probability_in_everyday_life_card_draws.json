@@ -1,0 +1,28 @@
+{
+  "key": "probability_in_everyday_life_card_draws",
+  "title": "Card Draws",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "First Draw",
+      "value": 2.0,
+      "period": "2022"
+    },
+    {
+      "label": "Second Draw",
+      "value": 2.2,
+      "period": "2022"
+    }
+  ]
+}

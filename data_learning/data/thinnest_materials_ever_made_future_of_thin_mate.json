@@ -1,0 +1,28 @@
+{
+  "key": "thinnest_materials_ever_made_future_of_thin_mate",
+  "title": "Future of Thin Materials",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Current research",
+      "value": 5.0,
+      "period": "2025"
+    },
+    {
+      "label": "Expected breakthrough",
+      "value": 10.0,
+      "period": "2030"
+    }
+  ]
+}

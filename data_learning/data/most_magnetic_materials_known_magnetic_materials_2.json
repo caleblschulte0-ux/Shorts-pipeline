@@ -1,0 +1,28 @@
+{
+  "key": "most_magnetic_materials_known_magnetic_materials_2",
+  "title": "Magnetic Materials Applications",
+  "unit": "dollars",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-16"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2020",
+      "value": 10.0,
+      "period": "2020"
+    },
+    {
+      "label": "2025",
+      "value": 50.0,
+      "period": "2025"
+    }
+  ]
+}
