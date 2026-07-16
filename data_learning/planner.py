@@ -67,14 +67,20 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
             continue
 
         # ---- number beat: the value rides MOVING footage (not a static card).
-        # The footage motion under the number is the development, so no split;
-        # the number arrives as it is spoken (kills STATIC_NUMBER_CARD).
+        # The number arrives as it is spoken; if the beat runs long, the number
+        # lands and then the FOOTAGE keeps developing (enforces max_unchanged).
         if b.get("number"):
             num = b["number"]
             if foot:
-                shots.append({"kind": "footage_number", **_foot(foot), **num,
-                              "seconds": secs, "line": line,
-                              "intent": foot.get("intent")})
+                if secs > maxu and not is_last:
+                    shots.append({"kind": "footage_number", **_foot(foot),
+                                  **num, "seconds": maxu, "line": line,
+                                  "intent": foot.get("intent")})
+                    shots.append(_dev(foot, secs - maxu))
+                else:
+                    shots.append({"kind": "footage_number", **_foot(foot),
+                                  **num, "seconds": secs, "line": line,
+                                  "intent": foot.get("intent")})
             else:
                 shots.append({"kind": "flat_number", **num, "seconds": secs,
                               "line": line})
@@ -84,10 +90,17 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         if b.get("text"):
             role = b.get("text_role", "thesis")
             if foot:
-                shots.append({"kind": "footage_text", **_foot(foot),
-                              "text": b["text"], "text_role": role,
-                              "seconds": secs, "line": line,
-                              "intent": foot.get("intent")})
+                if secs > maxu and not is_last:
+                    shots.append({"kind": "footage_text", **_foot(foot),
+                                  "text": b["text"], "text_role": role,
+                                  "seconds": maxu, "line": line,
+                                  "intent": foot.get("intent")})
+                    shots.append(_dev(foot, secs - maxu))
+                else:
+                    shots.append({"kind": "footage_text", **_foot(foot),
+                                  "text": b["text"], "text_role": role,
+                                  "seconds": secs, "line": line,
+                                  "intent": foot.get("intent")})
             else:
                 # no footage available -> a designed statement card is the
                 # honest fallback (declared, not a media-search miss)
@@ -131,6 +144,17 @@ def _foot(foot: dict) -> dict:
         if foot.get(k) is not None:
             out[k] = foot[k]
     return out
+
+
+def _dev(foot: dict, seconds: float) -> dict:
+    """A silent footage DEVELOPMENT phase: same source, pushed the other way,
+    so after a number/text lands the world keeps evolving instead of holding
+    (enforces max_unchanged for composited beats)."""
+    d = _foot(foot)
+    d["direction"] = "out" if foot.get("direction") != "out" else "in"
+    d["at"] = min(1.0, float(foot.get("at", 0.5)) + 0.2)
+    return {"kind": "footage", **d, "seconds": max(1.6, seconds),
+            "intent": foot.get("intent"), "phase": "development"}
 
 
 def _footage(foot: dict, seconds: float, beat: dict, phase: str = "",

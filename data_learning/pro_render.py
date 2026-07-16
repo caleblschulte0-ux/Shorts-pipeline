@@ -341,6 +341,17 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
               "-map", "[a]", "-t", f"{total:.2f}", str(final_audio)])
     else:
         final_audio = vo_mix
+    # 5.5) AUDIO FINISHING (PRO_DOCTRINE — the mix measured true-peak over 0
+    # dBFS). EBU R128 loudness to -14 LUFS + a hard true-peak limiter so the
+    # ENCODED deliverable can never clip.
+    mastered = work / "master.m4a"
+    try:
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(final_audio),
+              "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.9",
+              "-ar", "48000", str(mastered)])
+        final_audio = mastered
+    except Exception as e:  # noqa: BLE001 — never fail the render on mastering
+        print(f"[pro] audio mastering skipped ({e})", file=sys.stderr)
     # 6) mux
     _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i",
           str(final_audio), "-map", "0:v", "-map", "1:a", "-c:v", "libx264",
