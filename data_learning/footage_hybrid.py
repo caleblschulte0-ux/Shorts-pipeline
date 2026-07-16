@@ -120,22 +120,29 @@ def search_footage(query: str, limit: int = 12) -> list[dict]:
 
 
 def download_video(nasa_id: str, dest: Path) -> Path:
-    """Largest reasonable mp4 from a NASA asset manifest (~orig / 1080p)."""
+    """A 1080p-sufficient mp4 from a NASA asset manifest. The pipeline renders
+    at 1080p, so ~orig is usually a wasteful choice: for these ISS clips every
+    rendition is the SAME resolution (720p) and ~orig is just a bloated-bitrate
+    copy (6 GB vs 1.7 GB for ~large). Prefer an explicit 1080/~large rendition
+    so downloads stay CI-disk-safe (three multi-GB ~orig clips overflow a
+    GitHub runner) with no resolution loss; fall back to ~orig only if nothing
+    smaller-but-adequate exists."""
     man = json.loads(_get(
         f"https://images-api.nasa.gov/asset/{urllib.parse.quote(nasa_id)}"))
     hrefs = [i.get("href", "") for i in man["collection"]["items"]]
     mp4s = [h for h in hrefs if h.lower().endswith(".mp4")]
     if not mp4s:
         raise RuntimeError(f"no mp4 asset for {nasa_id}")
-    # prefer an explicit large/orig/1080 rendition, else the biggest by a
-    # crude filename heuristic (NASA names them ~orig, ~large, -1080, -720)
+    # lower rank = preferred. A true 1080 rendition wins; else ~large (1080p or
+    # a right-sized 720p); ~orig sits BELOW ~large so we never pull the bloated
+    # copy when an adequate one exists; the small tiers are last resorts.
     def rank(h: str) -> int:
         h = h.lower()
-        for i, tag in enumerate(("~orig", "1080", "~large", "720",
-                                 "~medium", "480")):
+        for i, tag in enumerate(("1080", "~large", "720", "~orig",
+                                 "~medium", "480", "~small", "~mobile")):
             if tag in h:
                 return i
-        return 9
+        return 99
     pick = sorted(mp4s, key=rank)[0]
     dest.write_bytes(_get(pick))
     return dest

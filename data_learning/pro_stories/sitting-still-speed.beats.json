@@ -51,7 +51,7 @@
       "function": "evidence",
       "mode": "footage+annotation",
       "max_unchanged": 8.0,
-      "footage": {"nasa_id": "NHQ_2020_1221_Earth Views", "ss": 18.0, "push": 1.05, "direction": "out", "intent": "the whole Earth from orbit — a distinct daylight view from the spin's night side"},
+      "footage": {"nasa_id": "jsc2023m000111_Earth_in_4K_Space_Station_Expedition_67_68_Edition", "ss": 998.0, "push": 1.05, "direction": "out", "intent": "a daylight Earth limb with the atmosphere arc and space below — a DISTINCT clip (JSC 4K ISS views, no caption), so the NHQ_2020 callback Earth stays exclusive to the open and close"},
       "number": {"text": "107,000", "sub": "km/h", "label": "earth around the sun"}
     },
     {
