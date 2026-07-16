@@ -204,8 +204,11 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
             # staggered race — each bar launches a beat after the one above,
             # so they GROW at their own speed across most of the shot (no long
             # static hold at the end — kills SHOT_TOO_LONG). NO empty track
-            # rail behind them; the bars race on open space.
-            g = _ease(min(max(i - k * 8, 0) / (n * 0.82), 1.0))
+            # rail behind them; the bars race on open space. LINEAR growth
+            # completing at ~0.94 of the beat: an ease-OUT decelerates the bar
+            # to a crawl and it reads as frozen for its final seconds; a steady
+            # race that finishes just before the dissolve keeps moving to the end.
+            g = min(max(i - k * 5, 0) / (n * 0.9), 1.0)
             full = (x1 - x0) * (float(r["value"]) / vmax)
             w = max(4.0, full * g)
             # a soft leading-edge glow so the fastest bar reads as speed
@@ -353,14 +356,20 @@ def cosmic_zoom(out: Path, seconds: float = 7.0,
 
     def draw(i, n, im):
         d = ImageDraw.Draw(im, "RGBA")
-        # view scale: start tight on 'us', end framing the whole galaxy
-        z = 1.0 + (_ease(i / n)) * 1.0            # 0..1 ease
+        # view scale: start tight on 'us', end framing the whole galaxy.
+        # LINEAR pull-back (constant velocity) — an ease-OUT here decelerates
+        # to a near-stop and the climax holds static for its final seconds
+        # (SHOT_TOO_LONG). A steady pull-back keeps developing to the last frame;
+        # a tiny ease-in over the first ~8% avoids a hard start.
+        p = i / n
+        prog = (p / 0.08) ** 2 * 0.08 if p < 0.08 else p
+        z = 1.0 + prog * 1.0
         span = 0.16 + z * 1.05                    # world half-width shown
         scale = (W * 0.5) / span
 
         def to_screen(wx, wy):
-            return (cx + (wx - us[0] * (1 - _ease(i / n))) * scale,
-                    cy + (wy - us[1] * (1 - _ease(i / n))) * scale)
+            return (cx + (wx - us[0] * (1 - prog)) * scale,
+                    cy + (wy - us[1] * (1 - prog)) * scale)
         # galaxy core glow
         gx, gy = to_screen(0, 0)
         glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
