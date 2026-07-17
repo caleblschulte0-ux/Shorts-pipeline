@@ -487,6 +487,78 @@
           "error": "RuntimeError: qa_rejected: vision: Every frame in the contact sheet shows a heavily blurred, garbled, zoomed-in smear occupying roughly half of the frame a; vision: Looks like a rendering artifact/bug (motion blur or bad zoom) "
         }
       ]
+    },
+    {
+      "date": "20260717",
+      "dry_run": false,
+      "ts": "2026-07-17T11:50:50+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 50,
+        "with_retention": 40,
+        "with_curve": 12,
+        "fetched_at": "2026-07-17T10:18:01.606943+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260717-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260717-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260717-3",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260717-4",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Every frame has a large blown-out white/blank band (top third) obscuring most of the frame; vision: Footage is heavily blurred/soft with no clear subject in most frames; vision: Captions/word "
+        },
+        {
+          "slug": "clip-20260717-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: frames at ~7-9s show a completely unrelated glitchy tiled/checkered texture instead of the subjects, looks like a broken; vision: 11.5s frame is solid black; vision: several frames are just bl"
+        },
+        {
+          "slug": "clip-20260717-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260717-7",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260717-8",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        }
+      ]
     }
   ]
 }
