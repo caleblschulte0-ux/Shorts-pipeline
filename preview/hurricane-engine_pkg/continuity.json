@@ -1,0 +1,37 @@
+{
+  "threshold": 16,
+  "beats": [
+    {
+      "idx": 0,
+      "job": "HOOK",
+      "callback": false
+    },
+    {
+      "idx": 1,
+      "job": "INGREDIENT",
+      "callback": false
+    },
+    {
+      "idx": 2,
+      "job": "MECHANISM",
+      "callback": false
+    },
+    {
+      "idx": 3,
+      "job": "SETUP_COMPARISON",
+      "callback": false
+    },
+    {
+      "idx": 4,
+      "job": "REVEAL",
+      "callback": false
+    },
+    {
+      "idx": 5,
+      "job": "PAYOFF",
+      "callback": true
+    }
+  ],
+  "findings": [],
+  "ok": true
+}

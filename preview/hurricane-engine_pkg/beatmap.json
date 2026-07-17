@@ -1,0 +1,47 @@
+{
+  "topic": "The Most Powerful Engine on Earth",
+  "beats": [
+    {
+      "t": "0.0-11.5",
+      "job": "HOOK",
+      "narration": "From two hundred miles up, it looks almost gentle. A slow white pinwheel, turning over the sea. It is the most powerful engine on Earth.",
+      "intended_understanding": "establish the storm as deceptively serene from orbit before the mechanism reveal",
+      "visual": "footage"
+    },
+    {
+      "t": "10.9-20.5",
+      "job": "INGREDIENT",
+      "narration": "It is born from a single thing. Warm ocean, above twenty-six degrees Celsius, breathing heat and water into the sky.",
+      "intended_understanding": "the one ingredient a hurricane needs \u2014 a warm sea surface",
+      "visual": "footage+annotation"
+    },
+    {
+      "t": "19.9-34.2",
+      "job": "MECHANISM",
+      "narration": "That warm, wet air rises. High up it cools and rains, and every drop that condenses releases heat, pulling more air upward behind it. The storm becomes its own engine, feeding on the sea.",
+      "intended_understanding": "the self-feeding heat-engine feedback loop \u2014 the mechanism at the heart of the film",
+      "visual": "footage"
+    },
+    {
+      "t": "33.6-49.2",
+      "job": "SETUP_COMPARISON",
+      "narration": "We measure them by their winds. A category one bends the trees at a hundred and nineteen. A three tears off roofs. A five, past two hundred and fifty, erases whole coastlines.",
+      "intended_understanding": "anchor the destructive scale by wind speed so the reveal lands",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "48.6-60.6",
+      "job": "REVEAL",
+      "narration": "And at the very center, calm. A ring of towering cloud around an eye of perfect stillness, circled by winds strong enough to release the energy of ten thousand bombs a day.",
+      "intended_understanding": "the showpiece \u2014 the eye, the emotional and visual peak, carrying the power number",
+      "visual": "footage+annotation"
+    },
+    {
+      "t": "60.0-70.0",
+      "job": "PAYOFF",
+      "narration": "Warm water and air. That is all it is. And once it begins to turn, nothing on Earth can stop it.",
+      "intended_understanding": "thesis \u2014 the storm is a simple machine of overwhelming power; a true bookend that returns to the exact opening frame (callback); the film ENDS here",
+      "visual": "footage+annotation"
+    }
+  ]
+}
