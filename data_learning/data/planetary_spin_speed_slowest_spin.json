@@ -1,0 +1,28 @@
+{
+  "key": "planetary_spin_speed_slowest_spin",
+  "title": "Slowest Spin",
+  "unit": "days",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-17"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Venus",
+      "value": 243.0,
+      "period": "2023"
+    },
+    {
+      "label": "Earth",
+      "value": 1.0,
+      "period": "2023"
+    }
+  ]
+}

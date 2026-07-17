@@ -1,7 +1,7 @@
 {
   "key": "language_extinction_rate_language_distribution",
   "title": "Language Distribution",
-  "unit": "",
+  "unit": "million native speakers",
   "geography": "",
   "time_coverage": "",
   "insight_type": "rank",
@@ -12,11 +12,11 @@
     "officiality": "illustrative",
     "access_date": "2026-07-16"
   },
-  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling. Mandarin corrected to 1300 (1.3 billion) to match its rank as the top native language by speaker count.",
   "points": [
     {
       "label": "Mandarin",
-      "value": 1.3,
+      "value": 1300.0,
       "period": "2022"
     },
     {
@@ -27,6 +27,16 @@
     {
       "label": "English",
       "value": 379.0,
+      "period": "2022"
+    },
+    {
+      "label": "Hindi",
+      "value": 341.0,
+      "period": "2022"
+    },
+    {
+      "label": "Arabic",
+      "value": 315.0,
       "period": "2022"
     }
   ]

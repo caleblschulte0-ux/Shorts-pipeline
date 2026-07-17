@@ -1,6 +1,6 @@
 {
-  "key": "language_extinction_rate_language_preservation",
-  "title": "Language Preservation",
+  "key": "stalactite_growth_rate_cave_environment",
+  "title": "Cave Environment",
   "unit": "percent",
   "geography": "",
   "time_coverage": "",
@@ -10,19 +10,19 @@
     "publisher": "Illustrative",
     "url": "",
     "officiality": "illustrative",
-    "access_date": "2026-07-16"
+    "access_date": "2026-07-17"
   },
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Internet Presence",
-      "value": 10.0,
-      "period": "2022"
+      "label": "Temperature",
+      "value": 50.0,
+      "period": "year"
     },
     {
-      "label": "No Online Presence",
-      "value": 90.0,
-      "period": "2022"
+      "label": "Humidity",
+      "value": 80.0,
+      "period": "year"
     }
   ]
 }

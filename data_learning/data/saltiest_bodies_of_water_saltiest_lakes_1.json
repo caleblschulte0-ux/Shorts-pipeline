@@ -1,0 +1,33 @@
+{
+  "key": "saltiest_bodies_of_water_saltiest_lakes_1",
+  "title": "Saltiest Lakes",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-17"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Dead Sea",
+      "value": 33.7,
+      "period": "now"
+    },
+    {
+      "label": "Assal Lake",
+      "value": 34.8,
+      "period": "now"
+    },
+    {
+      "label": "Lake Magadi",
+      "value": 33.2,
+      "period": "now"
+    }
+  ]
+}

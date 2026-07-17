@@ -1,0 +1,28 @@
+{
+  "key": "volcanic_lava_production_lava_flow_distance",
+  "title": "Lava Flow Distance",
+  "unit": "kilometers",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-17"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Short Lava Flow",
+      "value": 1.0,
+      "period": "year"
+    },
+    {
+      "label": "Long Lava Flow",
+      "value": 500.0,
+      "period": "year"
+    }
+  ]
+}

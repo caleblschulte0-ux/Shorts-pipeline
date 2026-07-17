@@ -1,7 +1,7 @@
 {
-  "key": "language_extinction_rate_language_preservation",
-  "title": "Language Preservation",
-  "unit": "percent",
+  "key": "volcanic_lava_production_lava_temperature",
+  "title": "Lava Temperature",
+  "unit": "degrees Celsius",
   "geography": "",
   "time_coverage": "",
   "insight_type": "share",
@@ -10,19 +10,19 @@
     "publisher": "Illustrative",
     "url": "",
     "officiality": "illustrative",
-    "access_date": "2026-07-16"
+    "access_date": "2026-07-17"
   },
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Internet Presence",
-      "value": 10.0,
-      "period": "2022"
+      "label": "Low-Temperature Lava",
+      "value": 700.0,
+      "period": "year"
     },
     {
-      "label": "No Online Presence",
-      "value": 90.0,
-      "period": "2022"
+      "label": "High-Temperature Lava",
+      "value": 1500.0,
+      "period": "year"
     }
   ]
 }

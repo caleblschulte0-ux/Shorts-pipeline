@@ -1,0 +1,28 @@
+{
+  "key": "stalactite_growth_rate_growth_rate",
+  "title": "Growth Rate",
+  "unit": "inches",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-17"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Slow Growth",
+      "value": 0.01,
+      "period": "year"
+    },
+    {
+      "label": "Fast Growth",
+      "value": 1.0,
+      "period": "year"
+    }
+  ]
+}

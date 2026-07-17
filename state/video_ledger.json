@@ -1,1 +1,106 @@
-{"videos": []}
+{
+  "videos": [
+    {
+      "slug": "probability-in-everyday-life",
+      "directed_at": "2026-07-17",
+      "video_id": null,
+      "topic_category": "math",
+      "hook_type": "question",
+      "hook_text": "Flip a coin 10 times in a row -- what are the odds you get ALL heads?",
+      "words_first_10s": 22,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:narrowing-odds-gates",
+        "mechanic:dice-probability-tower",
+        "mechanic:shrinking-deck-fan",
+        "mechanic:growth-line-photo"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Probability In Everyday Life",
+      "notes": "First ledger entry for this slug -- no prior analytics to retrieve, so bet is pure variety: every segment gets its own new mechanic (narrowing gates, dice tower, shrinking card fan, growth line) instead of repeating the bar/bubble kit defaults that were previously on 2 of 4 segments.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "coin flip curiosity question over narrowing-odds-gates build-in"
+        },
+        {
+          "t": 9,
+          "event": "visual_swap",
+          "detail": "dice-probability-tower: sum-7 tower rises tall vs matching short 2/12 towers"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "shrinking-deck-fan: card fan loses a card, target card glows, odds tick up"
+        },
+        {
+          "t": 27,
+          "event": "visual_swap",
+          "detail": "growth-line-photo: seedling rides the rising application-index line"
+        },
+        {
+          "t": 34,
+          "event": "payoff",
+          "detail": "closing line: luck was math nobody calculated"
+        },
+        {
+          "t": 37,
+          "event": "cta",
+          "detail": "comment-the-number question"
+        }
+      ]
+    },
+    {
+      "slug": "language-extinction-rate",
+      "directed_at": "2026-07-17",
+      "video_id": null,
+      "topic_category": "history",
+      "hook_type": "shock_stat",
+      "hook_text": "Somewhere right now, a language is taking its last breath -- and it happens every 14 days.",
+      "words_first_10s": 20,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:urgency-dials",
+        "scene:ground-row-flags",
+        "mechanic:digital-silence-globe",
+        "mechanic:seedling-revival-meter"
+      ],
+      "ending_type": "escalation",
+      "franchise": "Language Extinction Rate",
+      "notes": "Fixed a real data bug while authoring: language_distribution's Mandarin point was 1.3 (should be 1300, i.e. 1.3 billion) which made the top language render as the smallest bar -- corrected the unit and added the missing Hindi/Arabic points so the say line's 5-language claim actually matches the data. Kept exactly one photo+number layout (the flag ground-row) per house variety rule; the other 3 segments are fresh procedural mechanics.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "a language dies every 14 days, over urgency-dials build-in"
+        },
+        {
+          "t": 9,
+          "event": "visual_swap",
+          "detail": "flag ground-row: Mandarin/Spanish/English/Hindi/Arabic sized by native speakers"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "digital-silence-globe: globe lit only 10% up, dark zone dotted with fading languages"
+        },
+        {
+          "t": 27,
+          "event": "visual_swap",
+          "detail": "seedling-revival-meter: revival dial + sprouting leaves for the 15%/yr learner growth"
+        },
+        {
+          "t": 34,
+          "event": "payoff",
+          "detail": "closing line: half of today's 7,000 languages could go silent"
+        },
+        {
+          "t": 37,
+          "event": "cta",
+          "detail": "what-can-we-do question"
+        }
+      ]
+    }
+  ]
+}

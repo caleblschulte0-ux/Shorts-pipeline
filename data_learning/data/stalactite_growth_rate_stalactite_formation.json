@@ -1,0 +1,28 @@
+{
+  "key": "stalactite_growth_rate_stalactite_formation",
+  "title": "Stalactite Formation",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-17"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Initial Formation",
+      "value": 100.0,
+      "period": "year"
+    },
+    {
+      "label": "Full Growth",
+      "value": 10000.0,
+      "period": "year"
+    }
+  ]
+}

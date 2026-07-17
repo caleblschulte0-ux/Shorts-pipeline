@@ -1,0 +1,28 @@
+{
+  "key": "stalactite_growth_rate_unique_formations",
+  "title": "Unique Formations",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-17"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Longest Formation",
+      "value": 36.0,
+      "period": "year"
+    },
+    {
+      "label": "Heaviest Formation",
+      "value": 15.0,
+      "period": "year"
+    }
+  ]
+}

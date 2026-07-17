@@ -13130,8 +13130,8 @@
     {
       "slug": "probability-in-everyday-life",
       "title": "Probability In Everyday Life",
-      "hook": "Did you know that probability is all around us?",
-      "closing": "Probability is the hidden force that shapes our lives",
+      "hook": "Flip a coin 10 times in a row -- what are the odds you get ALL heads?",
+      "closing": "Every 'lucky' moment you've ever had was just math nobody bothered to calculate.",
       "hashtags": [
         "probability",
         "statistics",
@@ -13148,8 +13148,14 @@
           "insight_type": "rank",
           "role": "1 \u00b7 COIN FLIP",
           "topic": "Coin Flip",
-          "say": "The probability of flipping heads is 50%, but did you know that in a row of 10 flips, the chances of getting exactly 5 heads is around 25%, and the chances of getting all heads is less than 1%",
-          "ascending": false
+          "say": "Flip a coin ten times in a row -- what are the odds you land ALL heads? A single flip is a coin-toss 50-50. Get exactly 5 heads in 10 flips and that's already down to 25%. Go for all 10? Under 1%.",
+          "ascending": false,
+          "scene": {
+            "mechanic": "narrowing-odds-gates",
+            "concept": "three real coins squeeze through narrowing goalpost gates sized to each odds value -- the gap (and the coin) shrinks from a wide 50% gate to a sliver at 1%",
+            "code": "gap_max = 260.0\ngap_min = 26.0\ncols = max(n, 1)\ncol_w = (RX1 - RX0) / cols\ntop = RTOP + 150\nbot = RBOT - 170\ncoin = subject_image(\"gold coin\")\nd.line([(RX0, top - 40), (RX1, top - 40)], fill=rgba(TEXT, 60), width=2)\nfor i in range(n):\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0.0:\n        continue\n    cx = RX0 + col_w * (i + 0.5)\n    frac = clamp(values[i] / vmax, 0.0, 1.0)\n    gap = lerp(gap_min, gap_max, frac) * stage\n    post_top = top\n    post_bot = lerp(top, bot, stage)\n    d.rounded_rectangle([cx - gap / 2 - 14, post_top, cx - gap / 2, post_bot],\n                         radius=8, fill=rgba(ACCENT, 220))\n    d.rounded_rectangle([cx + gap / 2, post_top, cx + gap / 2 + 14, post_bot],\n                         radius=8, fill=rgba(ACCENT, 220))\n    mid_y = lerp(post_top, post_bot, 0.42)\n    size = clamp(gap - 16, 30, 170) * stage\n    if coin is not None:\n        paste(coin, cx - size / 2, mid_y - size / 2, size, size)\n    else:\n        d.ellipse([cx - size / 2, mid_y - size / 2, cx + size / 2, mid_y + size / 2],\n                   fill=rgba(HIGHLIGHT, 230))\n    text(f\"{values[i]:.0f}%\", cx, post_bot + 14, size=46, color=HIGHLIGHT, center=True)\n    text(labels[i].upper(), cx, post_bot + 66, size=24, color=TEXT, center=True)",
+            "title": true
+          }
         },
         {
           "source": "offline",
@@ -13160,19 +13166,12 @@
           "insight_type": "rank",
           "role": "2 \u00b7 ROLLING DICE",
           "topic": "Rolling Dice",
-          "say": "When rolling two dice, the probability of getting a sum of 7 is around 17%, while the probability of getting a sum of 2 or 12 is less than 3%",
+          "say": "Roll two dice and a sum of 7 hits 17% of the time -- more than any other total. Land on 2 or 12 instead and you're each stuck at just 3%.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "dice",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "mechanic": "dice-probability-tower",
+            "concept": "real dice photos stack into three towers, tower height = probability -- a tall stack for the common sum-7, two short matching stacks for the rare 2 and 12",
+            "code": "cols = max(n, 1)\ncol_w = (RX1 - RX0) / cols\nbase_y = RBOT - 70\ndie_size = 96\ndie = subject_image(\"red dice\")\nfor i in range(n):\n    cx = RX0 + col_w * (i + 0.5)\n    count = max(1, int(round(values[i] / 2)))\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    shown = int(round(count * stage))\n    for k in range(shown):\n        wob = 10 * math.sin(k * 1.4 + reveal * 3)\n        y = base_y - k * (die_size * 0.82)\n        x = cx - die_size / 2 + wob\n        if die is not None:\n            paste(die, x, y - die_size, die_size, die_size)\n        else:\n            d.rounded_rectangle([x, y - die_size, x + die_size, y], radius=14,\n                                 fill=rgba(ACCENT, 220))\n    d.rounded_rectangle([cx - col_w * 0.42, base_y, cx + col_w * 0.42, base_y + 10],\n                         radius=4, fill=rgba(TEXT, 60))\n    text(f\"{values[i]:.0f}%\", cx, base_y + 26, size=46, color=HIGHLIGHT, center=True)\n    text(labels[i].upper(), cx, base_y + 80, size=24, color=TEXT, center=True)",
+            "title": true
           }
         },
         {
@@ -13184,19 +13183,12 @@
           "insight_type": "share",
           "role": "3 \u00b7 CARD DRAWS",
           "topic": "Card Draws",
-          "say": "The probability of drawing a specific card from a deck is around 2%, but after drawing one card, the probability of drawing a specific card from the remaining deck is around 2.2%",
+          "say": "Pull one exact card from a full deck and you've got a 2% shot. Someone already drew a card before you? Your odds actually creep up to 2.2%.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "deck",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "mechanic": "shrinking-deck-fan",
+            "concept": "a fanned arc of real card-back photos shrinks by one card per draw, the glowing target card highlighted in the fan, odds ticking up as the deck thins",
+            "code": "cx = (RX0 + RX1) / 2\nrow_h = (RBOT - RTOP - 220) / max(n, 1)\ncard = subject_image(\"playing card back\")\nfor i in range(n):\n    cy = RTOP + 220 + row_h * i\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0.0:\n        continue\n    count = max(6, 14 - i)\n    shown = max(1, int(round(count * stage)))\n    radius = 250.0\n    spread = math.radians(150)\n    start = -spread / 2\n    card_w, card_h = 58, 84\n    target_k = shown // 2\n    for k in range(shown):\n        ang = start + spread * (k / max(1, count - 1))\n        x = cx + radius * math.sin(ang)\n        y = cy - radius * math.cos(ang) * 0.5\n        is_target = (k == target_k)\n        w = card_w * (1.35 if is_target else 1.0)\n        h = card_h * (1.35 if is_target else 1.0)\n        if is_target:\n            d.ellipse([x - w, y - h, x + w, y + h], fill=rgba(HIGHLIGHT, 90))\n        if card is not None:\n            paste(card, x - w / 2, y - h / 2, w, h)\n        else:\n            d.rounded_rectangle([x - w / 2, y - h / 2, x + w / 2, y + h / 2], radius=8,\n                                 fill=rgba(HIGHLIGHT if is_target else ACCENT, 230))\n    text(f\"{values[i]:.1f}%\", cx, cy + row_h * 0.36, size=46, color=HIGHLIGHT, center=True)\n    text(f\"{labels[i].upper()} \u00b7 {count} LEFT\", cx, cy + row_h * 0.36 + 54, size=24,\n         color=TEXT, center=True)",
+            "title": true
           }
         },
         {
@@ -13208,25 +13200,22 @@
           "insight_type": "trend",
           "role": "4 \u00b7 REAL-LIFE APPLICAT",
           "topic": "Real-Life Applications",
-          "say": "Probability is used in various real-life applications such as insurance, finance, and medicine, with the global probability and statistics market expected to grow by around 10% annually from 2022 to 2025",
+          "say": "Probability quietly runs insurance, finance, and medicine behind the scenes. Its real-world application index climbed from 10 in 2022, to 10.5 in 2023, to 11 in 2024 -- and it's still climbing.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
+            "mechanic": "growth-line-photo",
+            "concept": "a rising line connects three years, a real seedling photo growing at the line's tip as the probability-and-stats application index climbs",
+            "code": "pts_x = [RX0 + 120 + i * (RX1 - RX0 - 240) / max(n - 1, 1) for i in range(n)]\nvmin = min(values) if values else 0.0\nvspan = max(vmax - vmin, 1e-6)\npts_y = [lerp(RBOT - 200, RTOP + 240, (v - vmin) / vspan) for v in values]\nstage_total = clamp(reveal * (n + 1), 0.0, float(n + 1))\nd.line([(RX0, RBOT - 200), (RX1, RBOT - 200)], fill=rgba(TEXT, 55), width=2)\nicon = subject_image(\"growing plant seedling\")\nfor i in range(n - 1):\n    seg_stage = clamp(stage_total - i, 0.0, 1.0)\n    if seg_stage <= 0.0:\n        continue\n    x0, y0 = pts_x[i], pts_y[i]\n    x1 = lerp(x0, pts_x[i + 1], seg_stage)\n    y1 = lerp(y0, pts_y[i + 1], seg_stage)\n    d.line([(x0, y0), (x1, y1)], fill=rgba(ACCENT, 230), width=10)\nfor i in range(n):\n    node_stage = clamp(stage_total - i, 0.0, 1.0)\n    if node_stage <= 0.0:\n        continue\n    x, y = pts_x[i], pts_y[i]\n    r = 10 + 8 * node_stage\n    d.ellipse([x - r, y - r, x + r, y + r], fill=rgba(HIGHLIGHT, 240))\n    text(f\"{values[i]:.1f}%\", x, y - 56, size=34, color=TEXT, center=True)\n    text(labels[i], x, y + 20, size=24, color=TEXT, center=True)\ntip_stage = clamp(stage_total - (n - 1), 0.0, 1.0)\nif tip_stage > 0.0 and icon is not None:\n    size = 90 + 46 * tip_stage\n    paste(icon, pts_x[-1] - size / 2, pts_y[-1] - size - 24, size, size)",
+            "title": true
           }
         }
       ],
-      "question": "What's the most surprising way probability has affected your life?"
+      "question": "Which of these odds shocked you most -- comment the number."
     },
     {
       "slug": "language-extinction-rate",
       "title": "Language Extinction Rate",
-      "hook": "Did you know that languages are disappearing at an alarming rate?",
-      "closing": "Language extinction is a pressing issue that requires immediate attention",
+      "hook": "Somewhere right now, a language is taking its last breath -- and it happens every 14 days.",
+      "closing": "By the time you're old, half of the 7,000 languages spoken today could be silent forever.",
       "hashtags": [
         "languageextinction",
         "endangeredlanguages",
@@ -13242,15 +13231,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 LANGUAGE DEATH",
           "topic": "Language Death",
-          "say": "It's estimated that a language goes extinct every 14 days, with around 43% of languages being at risk of extinction, and the top 5 languages with the most native speakers being responsible for around 50% of all languages spoken",
+          "say": "A language dies every 14 days. Right now, 43% of all languages left are endangered. And just the top 5 languages are spoken natively by half of everyone on Earth.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
+            "mechanic": "urgency-dials",
+            "concept": "three urgency dials sweep to their own value -- an hourglass for the 14-day death clock, a warning flag for the 43% endangered, a megaphone for the top-5 languages dominating half of humanity",
+            "code": "icon_names = [\"hourglass\", \"warning flag\", \"megaphone\"]\ncols = max(n, 1)\ncol_w = (RX1 - RX0) / cols\ncy = RTOP + 330\nradius = 150.0\nfor i in range(n):\n    cx = RX0 + col_w * (i + 0.5)\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0.0:\n        continue\n    frac = clamp(values[i] / vmax, 0.0, 1.0) * stage\n    start_ang, end_ang = -210.0, 30.0\n    sweep = start_ang + (end_ang - start_ang) * frac\n    d.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, end_ang,\n          fill=rgba(TEXT, 50), width=18)\n    d.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, sweep,\n          fill=rgba(WARN if values[i] >= vmax * 0.6 else HIGHLIGHT, 240), width=18)\n    icon = subject_image(icon_names[i % len(icon_names)])\n    isize = 128 * stage\n    if icon is not None:\n        paste(icon, cx - isize / 2, cy - isize / 2, isize, isize)\n    else:\n        d.ellipse([cx - isize / 2, cy - isize / 2, cx + isize / 2, cy + isize / 2],\n                   fill=rgba(ACCENT, 200))\n    text(f\"{values[i]:.0f}\", cx, cy + radius + 26, size=50, color=TEXT, center=True)\n    text(labels[i].upper(), cx, cy + radius + 84, size=22, color=TEXT, center=True)",
+            "title": true
           }
         },
         {
@@ -13262,16 +13248,48 @@
           "insight_type": "rank",
           "role": "2 \u00b7 LANGUAGE DISTRIBUT",
           "topic": "Language Distribution",
-          "say": "The top 5 languages with the most native speakers are Mandarin, Spanish, English, Hindi, and Arabic, with around 1.3 billion, 460 million, 379 million, 341 million, and 315 million native speakers respectively",
+          "say": "Mandarin leads with 1.3 billion native speakers, then Spanish at 460 million, English at 379 million, Hindi at 341 million, and Arabic at 315 million.",
           "scene": {
             "title": true,
             "elements": [
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "globe",
+                "subject": "Chinese flag",
                 "data": {
                   "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Spanish flag",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "British flag",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Indian flag",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Saudi Arabian flag",
+                "data": {
+                  "value_from": "item:4"
                 }
               }
             ]
@@ -13286,19 +13304,12 @@
           "insight_type": "share",
           "role": "3 \u00b7 LANGUAGE PRESERVAT",
           "topic": "Language Preservation",
-          "say": "Around 90% of languages are not represented on the internet, and only around 10% of languages have a strong online presence, with the remaining 90% being at risk of disappearing",
+          "say": "Only 10% of the world's languages have a real presence online. The other 90%? Digitally silent -- and going quiet for good.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "book",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "mechanic": "digital-silence-globe",
+            "concept": "a real Earth photo is lit at the bottom only 10% up, the rest washed dark with fading dots -- pulsing signal rings mark the sliver of languages with an online voice",
+            "code": "cx = (RX0 + RX1) / 2\ngw, gh = 520.0, 520.0\ngx, gy = cx - gw / 2, RTOP + 150\nglobe = subject_image(\"planet earth from space\")\nfrac_lit = clamp(values[0] / 100.0, 0.0, 1.0) * clamp(reveal * 1.6, 0.0, 1.0)\nif globe is not None:\n    paste(globe, gx, gy, gw, gh)\nelse:\n    d.ellipse([gx, gy, gx + gw, gy + gh], fill=rgba(ACCENT, 200))\ndark_h = gh * (1.0 - frac_lit)\nd.rectangle([gx, gy, gx + gw, gy + dark_h], fill=rgba((8, 10, 18), 175))\nfor k in range(9):\n    kx = gx + gw * (0.12 + 0.11 * k)\n    ky = gy + dark_h * (0.2 + 0.6 * ((k * 37) % 10) / 10.0)\n    dstage = clamp(reveal * 9 - k, 0.0, 1.0)\n    r = 5 * dstage\n    if dstage > 0.0 and ky < gy + dark_h - 6:\n        d.ellipse([kx - r, ky - r, kx + r, ky + r], fill=rgba(TEXT, 130))\nring_cy = gy + gh - 6\nfor ring in range(3):\n    rp = clamp(reveal - ring * 0.15, 0.0, 1.0)\n    if rp <= 0.0:\n        continue\n    rr = 20 + rp * 140\n    alpha = int(160 * (1 - rp))\n    d.ellipse([cx - rr, ring_cy - rr * 0.35, cx + rr, ring_cy + rr * 0.35],\n              outline=rgba(HIGHLIGHT, alpha), width=6)\ntext(f\"{values[0]:.0f}%\", cx, gy + gh - 90, size=54, color=HIGHLIGHT, center=True)\ntext(labels[0].upper(), cx, gy + gh - 40, size=24, color=TEXT, center=True)\ntext(f\"{values[1]:.0f}%\", cx, gy + 40, size=46, color=WARN, center=True)\ntext(labels[1].upper(), cx, gy + 88, size=22, color=TEXT, center=True)",
+            "title": true
           }
         },
         {
@@ -13310,11 +13321,456 @@
           "insight_type": "rank",
           "role": "4 \u00b7 LANGUAGE REVITALIZ",
           "topic": "Language Revitalization",
-          "say": "Language revitalization efforts have been successful in some cases, with around 20% of languages being considered 'revitalized', and the number of language learners increasing by around 15% annually from 2022 to 2025",
-          "ascending": false
+          "say": "But it's not hopeless -- about 20% of endangered languages have been pulled back from the brink, and learner numbers for them are climbing 15% every year.",
+          "ascending": false,
+          "scene": {
+            "mechanic": "seedling-revival-meter",
+            "concept": "a revival dial sweeps to the 20% of languages pulled back from the brink, a real seedling glowing at its center, while real leaf photos sprout one by one showing the 15%-a-year rise in learners",
+            "code": "cx1 = RX0 + (RX1 - RX0) * 0.28\ncy = RTOP + 330\nradius = 160.0\nfrac = clamp(values[0] / 100.0, 0.0, 1.0) * clamp(reveal * 1.4, 0.0, 1.0)\nstart_ang, end_ang = -220.0, 40.0\nsweep = start_ang + (end_ang - start_ang) * frac\nd.arc([cx1 - radius, cy - radius, cx1 + radius, cy + radius], start_ang, end_ang,\n      fill=rgba(TEXT, 50), width=20)\nd.arc([cx1 - radius, cy - radius, cx1 + radius, cy + radius], start_ang, sweep,\n      fill=rgba(HIGHLIGHT, 240), width=20)\nplant = subject_image(\"seedling sprout in soil\")\npsize = 190.0\nif plant is not None:\n    paste(plant, cx1 - psize / 2, cy - psize / 2, psize, psize)\ntext(f\"{values[0]:.0f}%\", cx1, cy + radius + 26, size=48, color=TEXT, center=True)\ntext(labels[0].upper(), cx1, cy + radius + 80, size=22, color=TEXT, center=True)\n\ncx2 = RX0 + (RX1 - RX0) * 0.74\nleaf_count = max(1, int(round(values[1] / 3)))\nleaf = subject_image(\"green leaf\")\ntop_y = RTOP + 220\nfor k in range(leaf_count):\n    lstage = clamp(reveal * leaf_count - k, 0.0, 1.0)\n    if lstage <= 0.0:\n        continue\n    ly = top_y + k * 60\n    lx = cx2 + 46 * math.sin(k * 1.7)\n    lsize = 68 * lstage\n    if leaf is not None:\n        paste(leaf, lx - lsize / 2, ly - lsize / 2, lsize, lsize)\n    else:\n        d.ellipse([lx - lsize / 2, ly - lsize / 2, lx + lsize / 2, ly + lsize / 2],\n                   fill=rgba(HIGHLIGHT, 220))\ntext(f\"+{values[1]:.0f}%/YR\", cx2, top_y + leaf_count * 60 + 36, size=40,\n     color=HIGHLIGHT, center=True)\ntext(labels[1].upper(), cx2, top_y + leaf_count * 60 + 84, size=22, color=TEXT, center=True)",
+            "title": true
+          }
         }
       ],
       "question": "What can we do to preserve endangered languages?"
+    },
+    {
+      "slug": "saltiest-bodies-of-water",
+      "title": "Saltiest Bodies of Water",
+      "hook": "Which lakes and seas are the saltiest on Earth?",
+      "closing": "The saltiest bodies of water are a wonder to behold",
+      "hashtags": [
+        "saltiest",
+        "lakes",
+        "seas",
+        "salinity",
+        "water"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "saltiest_bodies_of_water_salinity_levels",
+          "params": {
+            "file": "saltiest_bodies_of_water_salinity_levels.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SALINITY LEVELS",
+          "topic": "Salinity Levels",
+          "say": "The salinity levels of the world's lakes and seas vary greatly, with the Dead Sea being the saltiest, with a salinity of over 33.7% compared to the average ocean salinity of around 3.5%, and the Caspian Sea, with a salinity of around 12.8%.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "lake",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "saltiest_bodies_of_water_saltiest_lakes_1",
+          "params": {
+            "file": "saltiest_bodies_of_water_saltiest_lakes_1.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 SALTIEST LAKES",
+          "topic": "Saltiest Lakes",
+          "say": "The top 5 saltiest lakes in the world are the Dead Sea, with a salinity of 33.7%, Assal Lake, with a salinity of 34.8%, Lake Magadi, with a salinity of 33.2%, Don Juan Pond, with a salinity of 44.2%, and Lake Vanda, with a salinity of 35.3%.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Dead Sea",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Assal Lake",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "saltiest_bodies_of_water_salinity_effects",
+          "params": {
+            "file": "saltiest_bodies_of_water_salinity_effects.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SALINITY EFFECTS",
+          "topic": "Salinity Effects",
+          "say": "The high salinity levels in these lakes and seas have a significant impact on the environment and the creatures that live there, with many species adapting to the high salt levels, and some even using the salt to their advantage, such as the saltwater fish that can survive in these environments.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the saltiest body of water you've ever visited?"
+    },
+    {
+      "slug": "stalactite-growth-rate",
+      "title": "Stalactite Growth Rate",
+      "hook": "Have you ever wondered how long it takes for stalactites to form?",
+      "closing": "Stalactites are a testament to the power of patience in nature.",
+      "hashtags": [
+        "stalactites",
+        "caveformations",
+        "geology",
+        "nature",
+        "patience"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "stalactite_growth_rate_stalactite_formation",
+          "params": {
+            "file": "stalactite_growth_rate_stalactite_formation.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 STALACTITE FORMATI",
+          "topic": "Stalactite Formation",
+          "say": "It takes around 100 to 200 years for a stalactite to grow just one inch, with some formations taking up to 10,000 years to reach their full size.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "stalactite_growth_rate_growth_rate",
+          "params": {
+            "file": "stalactite_growth_rate_growth_rate.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 GROWTH RATE",
+          "topic": "Growth Rate",
+          "say": "The growth rate of stalactites is incredibly slow, with some formations growing only 0.01 inches per year, while others can grow up to 1 inch per year.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "ruler",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "stalactite_growth_rate_cave_environment",
+          "params": {
+            "file": "stalactite_growth_rate_cave_environment.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 CAVE ENVIRONMENT",
+          "topic": "Cave Environment",
+          "say": "The temperature and humidity in caves remain relatively constant, with a stable temperature of around 50-60 degrees Fahrenheit and humidity levels of 80-90 percent, allowing stalactites to grow steadily over time.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "cave",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "stalactite_growth_rate_unique_formations",
+          "params": {
+            "file": "stalactite_growth_rate_unique_formations.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 UNIQUE FORMATIONS",
+          "topic": "Unique Formations",
+          "say": "Some of the most impressive stalactite formations can be found in caves around the world, with the longest formation reaching over 36 feet in length and weighing over 15 tons.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "stalactite",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1.0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most impressive cave formation you've ever seen?"
+    },
+    {
+      "slug": "volcanic-lava-production",
+      "title": "Volcanic Lava Production",
+      "hook": "What happens when a volcano erupts and spews out lava?",
+      "closing": "Volcanoes are a reminder of the awe-inspiring power of geological forces.",
+      "hashtags": [
+        "volcanoes",
+        "lava",
+        "geology",
+        "nature",
+        "eruptions"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "volcanic_lava_production_lava_production",
+          "params": {
+            "file": "volcanic_lava_production_lava_production.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 LAVA PRODUCTION",
+          "topic": "Lava Production",
+          "say": "A typical volcanic eruption can produce between 10,000 to 100,000 cubic meters of lava per hour, with some eruptions releasing as much as 1 million cubic meters per hour.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "volcanic_lava_production_eruption_frequency",
+          "params": {
+            "file": "volcanic_lava_production_eruption_frequency.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 ERUPTION FREQUENCY",
+          "topic": "Eruption Frequency",
+          "say": "Some volcanoes can erupt as frequently as every 2-3 years, while others may remain dormant for hundreds or even thousands of years, with the longest recorded dormancy period being over 4,000 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "calendar",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "volcanic_lava_production_lava_temperature",
+          "params": {
+            "file": "volcanic_lava_production_lava_temperature.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 LAVA TEMPERATURE",
+          "topic": "Lava Temperature",
+          "say": "The temperature of lava can range from 700 to 1,300 degrees Celsius, which is hot enough to melt metal and vaporize water, with some lava flows reaching temperatures of up to 1,500 degrees Celsius.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "thermometer",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "volcanic_lava_production_lava_flow_distance",
+          "params": {
+            "file": "volcanic_lava_production_lava_flow_distance.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 LAVA FLOW DISTANCE",
+          "topic": "Lava Flow Distance",
+          "say": "Some lava flows can travel as far as 100 kilometers or more, with the longest recorded lava flow reaching over 500 kilometers in length, while others may only flow a few kilometers before solidifying.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "lava flow",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1.0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most impressive volcanic eruption you've ever seen?"
+    },
+    {
+      "slug": "planetary-spin-speed",
+      "title": "Planetary Spin Speed",
+      "hook": "You won't believe how fast some planets rotate",
+      "closing": "The universe is full of mysterious spinning worlds",
+      "hashtags": [
+        "space",
+        "planets",
+        "astronomy",
+        "spin",
+        "speed"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "planetary_spin_speed_fastest_spin",
+          "params": {
+            "file": "planetary_spin_speed_fastest_spin.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 FASTEST SPIN",
+          "topic": "Fastest Spin",
+          "say": "The fastest spinning planet is Jupiter, with a speed of 27,000 miles per hour, followed by Saturn at 22,000 miles per hour, and Earth at 1,000 miles per hour.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "planetary_spin_speed_slowest_spin",
+          "params": {
+            "file": "planetary_spin_speed_slowest_spin.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 SLOWEST SPIN",
+          "topic": "Slowest Spin",
+          "say": "The planet with the slowest spin is Venus, which takes 243 Earth days to complete one rotation, compared to Earth's 24 hours.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "planetary_spin_speed_spin_speed_trend",
+          "params": {
+            "file": "planetary_spin_speed_spin_speed_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SPIN SPEED TREND",
+          "topic": "Spin Speed Trend",
+          "say": "The spin speed of planets has been trending downwards over the past few billion years, with some planets slowing down more than others.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "planetary_spin_speed_spin_speed_ranking",
+          "params": {
+            "file": "planetary_spin_speed_spin_speed_ranking.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 SPIN SPEED RANKING",
+          "topic": "Spin Speed Ranking",
+          "say": "The top 5 fastest spinning planets are Jupiter, Saturn, Uranus, Neptune, and Earth, with speeds of 27,000, 22,000, 17,000, 12,000, and 1,000 miles per hour respectively.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "planet",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "Which planet do you think spins the fastest?"
     }
   ],
   "videos": [

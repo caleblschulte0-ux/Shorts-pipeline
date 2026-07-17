@@ -1,6 +1,6 @@
 {
-  "key": "language_extinction_rate_language_death",
-  "title": "Language Death",
+  "key": "planetary_spin_speed_spin_speed_trend",
+  "title": "Spin Speed Trend",
   "unit": "",
   "geography": "",
   "time_coverage": "",
@@ -10,24 +10,24 @@
     "publisher": "Illustrative",
     "url": "",
     "officiality": "illustrative",
-    "access_date": "2026-07-16"
+    "access_date": "2026-07-17"
   },
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Language Death Rate",
-      "value": 14.0,
-      "period": "2022"
+      "label": "4 billion years ago",
+      "value": 100.0,
+      "period": "2023"
     },
     {
-      "label": "Endangered Languages",
-      "value": 43.0,
-      "period": "2022"
-    },
-    {
-      "label": "Top-5 Speaker Share",
+      "label": "2 billion years ago",
       "value": 50.0,
-      "period": "2022"
+      "period": "2023"
+    },
+    {
+      "label": "Present day",
+      "value": 10.0,
+      "period": "2023"
     }
   ]
 }
