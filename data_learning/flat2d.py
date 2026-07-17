@@ -183,12 +183,18 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
     Anton at the bar's end. This is a *chart done with taste*, used briefly."""
     rows = rows[:4]
     vmax = max((float(r["value"]) for r in rows), default=1.0) or 1.0
-    namef = _font(_DEJAVU, 34)
-    valf = _font(ANTON, 46)
-    titlef = _font(_DEJAVU, 30)
-    x0, x1 = int(W * 0.16), int(W * 0.82)
-    top, gap = int(H * 0.34), int(H * 0.135)
-    barh = 26
+    namef = _font(_DEJAVU, 40)
+    valf = _font(ANTON, 64)
+    titlef = _font(_DEJAVU, 34)
+    x0, x1 = int(W * 0.13), int(W * 0.80)
+    # spread the bars across most of the frame height (not a tight band in the
+    # middle with dead space above and below) and make them BOLD — a brief,
+    # full-frame scale-check, not a sparse spreadsheet chart (kills
+    # EMPTY_COMPOSITION). rows here span ~28%..70% of the height.
+    n_rows = max(1, len(rows))
+    top = int(H * 0.30)
+    gap = int(H * 0.40 / (n_rows - 1)) if n_rows > 1 else 0
+    barh = 46
 
     def draw(i, n, im):
         d = ImageDraw.Draw(im, "RGBA")
