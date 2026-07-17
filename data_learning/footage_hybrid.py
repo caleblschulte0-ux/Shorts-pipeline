@@ -383,8 +383,12 @@ def dissolve_join(clips: list[Path], out: Path,
     for i in range(1, len(clips)):
         offset += durs[i - 1] - xfade
         label = f"[v{i}]" if i < len(clips) - 1 else "[vout]"
+        # transition=FADE, a smooth alpha crossfade — NOT ffmpeg's "dissolve",
+        # which blends via a random per-pixel noise threshold and reads as TV
+        # static during the overlap (glaring where a bright shot crossfades into
+        # dark space, e.g. the eye of the storm into the black sky of the next).
         filt.append(
-            f"{prev}[{i}:v]xfade=transition=dissolve:duration={xfade}:"
+            f"{prev}[{i}:v]xfade=transition=fade:duration={xfade}:"
             f"offset={offset:.3f}{label}")
         prev = label
     subprocess.run(
