@@ -1,0 +1,56 @@
+{
+  "threshold": 16,
+  "beats": [
+    {
+      "idx": 0,
+      "job": "HOOK",
+      "callback": false
+    },
+    {
+      "idx": 1,
+      "job": "SETUP_COMPARISON",
+      "callback": false
+    },
+    {
+      "idx": 2,
+      "job": "PROOF",
+      "callback": false
+    },
+    {
+      "idx": 3,
+      "job": "DEVELOP",
+      "callback": false
+    },
+    {
+      "idx": 4,
+      "job": "ESCALATE",
+      "callback": false
+    },
+    {
+      "idx": 5,
+      "job": "REVEAL",
+      "callback": false
+    },
+    {
+      "idx": 6,
+      "job": "PAYOFF",
+      "callback": true
+    }
+  ],
+  "findings": [
+    {
+      "label": "ACCIDENTAL_REUSE",
+      "beats": [
+        "DEVELOP",
+        "REVEAL"
+      ],
+      "beat_idx": [
+        3,
+        5
+      ],
+      "distance": 16,
+      "reason": "beats DEVELOP and REVEAL render a near-identical frame (dHash distance 16 <= 16) with no declared callback \u2014 the same shot is reused. Re-source one of them or mark the intended one as a callback."
+    }
+  ],
+  "ok": false
+}
