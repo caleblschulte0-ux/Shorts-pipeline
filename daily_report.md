@@ -1,14 +1,11 @@
-# Daily Trending Shorts — 2026-07-16
+# Daily Trending Shorts — 2026-07-17
 
 - queued: **1**
-- succeeded: **1**
-- quarantined (off-topic imagery): **0**
+- succeeded: **0**
+- quarantined (off-topic imagery): **1**
 - failed: **0**
 
-## Posted
-- **My manager made me log every minute of my day in a tracking app. So I logged his too.**
-  - topic: My manager made me log every minute of my day in a tracking app. So I logged his too.
-  - publishes: `2026-07-16T13:00:00Z`
-  - https://youtube.com/shorts/XQjXRtFva0c
-  - took: 169.9s
+## Quarantined (off-topic imagery — fix & re-author)
+- **My mother-in-law used our spare key to gut my baby's nursery while we were on our babymoon**
+  - quarantined: vision QA: broken — The top half of each frame, which is expected to be a news/stock photo according to the instructions, is instead an abstract game animation. This indicates an error in the expected composite structure
 

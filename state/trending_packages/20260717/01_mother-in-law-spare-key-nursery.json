@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "slug": "mother-in-law-spare-key-nursery",
+  "subreddit": "entitledparents",
+  "title": "My mother-in-law used our spare key to gut my baby's nursery while we were on our babymoon",
+  "hashtags": [
+    "reddit",
+    "aita",
+    "storytime",
+    "redditstories",
+    "drama",
+    "entitledparents",
+    "momsofreddit",
+    "familydrama",
+    "pregnancy",
+    "inlaws",
+    "redditreadings",
+    "toxicfamily"
+  ],
+  "script": "My mother-in-law Diane used the spare key we gave her for emergencies to let herself into our house while my husband Mark and I were away on our babymoon, and when we walked in three days later, the nursery was completely gone. The crib we picked out, the yellow paint, the little shelf my dad built, all of it replaced with beige walls, a daybed, and a stack of towels folded with a note that said Diane's room. In the garage I found five moving boxes labeled with her name, and on Mark's old laptop a text thread between her and a moving company, dated two full months before we had even announced the pregnancy, that said once the baby comes they'll need help, so I'm just moving the timeline up. She never asked us. She never told Mark. She had been planning to move into our house before we even knew we were having a baby.",
+  "shots": [
+    {
+      "phrase": "used the spare key we gave her for emergencies to let herself into our house",
+      "query": "house front door key lock closeup",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "the nursery was completely gone",
+      "query": "empty room bare walls",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The crib we picked out, the yellow paint, the little shelf my dad built",
+      "query": "baby nursery crib yellow room",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "replaced with beige walls, a daybed, and a stack of towels folded with a note",
+      "query": "beige guest room daybed folded towels",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "In the garage I found five moving boxes labeled with her name",
+      "query": "garage moving boxes stacked",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "a text thread between her and a moving company",
+      "query": "phone text messages screen closeup",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "before we had even announced the pregnancy",
+      "query": "pregnant woman ultrasound photo",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "She had been planning to move into our house before we even knew we were having a baby",
+      "query": "woman staring shocked disbelief",
+      "mascot_pose": "shock"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "the nursery was completely gone",
+      "text": "GONE.",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a note that said Diane's room",
+      "text": "\"DIANE'S ROOM\"",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "five moving boxes labeled with her name",
+      "text": "5 MOVING BOXES",
+      "color": "#ffcc00"
+    },
+    {
+      "phrase": "so I'm just moving the timeline up",
+      "text": "MOVING THE TIMELINE UP",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "before we even knew we were having a baby",
+      "text": "BEFORE WE EVEN KNEW",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark"
+}
