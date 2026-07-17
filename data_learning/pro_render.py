@@ -142,9 +142,13 @@ def _overlay_number(base: Path, shot: dict, out: Path):
         "shadowy=2:alpha='if(lt(t,0.8),0,min((t-0.8)/0.5,1))'",
     ]
     if label:
+        # the context caption above the number — brighter + stronger shadow so
+        # it reads against bright footage (a faint caption leaves a bare number
+        # like "26" cryptic; the caption is what says what the number MEANS).
         vf.insert(0, f"drawtext=fontfile={dj}:text='{esc(' '.join(label))}':"
-                  "fontcolor=0xB9C4E0:fontsize=32:x=(w-tw)/2:y=h*0.50:"
-                  "shadowcolor=black@0.7:shadowx=2:shadowy=2:"
+                  "fontcolor=0xEAF0FF:fontsize=34:x=(w-tw)/2:y=h*0.50:"
+                  "shadowcolor=black@0.9:shadowx=2:shadowy=2:borderw=1:"
+                  "bordercolor=black@0.5:"
                   "alpha='if(lt(t,0.3),0,min((t-0.3)/0.5,1))'")
     _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(base), "-vf",
           ",".join(vf), "-c:v", "libx264", "-crf", "18", "-preset", "medium",
