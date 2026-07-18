@@ -417,6 +417,91 @@ def cosmic_zoom(out: Path, seconds: float = 7.0,
     return _render(draw, out, seconds)
 
 
+def heat_engine(out: Path, seconds: float = 6.0,
+                stages=("WARM OCEAN", "RISING, COOLING AIR",
+                        "HEAT RELEASED")) -> Path:
+    """A LIVING mechanism diagram — the storm as a self-feeding heat engine:
+    warm air rises off the sea in spiralling updrafts, cools into a cloud
+    canopy, releases a pulse of heat where it condenses, and rains back down,
+    driving more air up. Every frame changes (rising particles, falling rain,
+    a pulsing heat band) — a designed beat that is constantly ALIVE, the
+    opposite of a held cloud plate. Stage caption escalates through `stages`."""
+    import math
+    rnd = random.Random(31)
+    sea_y = int(H * 0.82)
+    cloud_y = int(H * 0.30)
+    cx = W // 2
+    # each rising particle: a column phase + horizontal home, converging inward
+    ups = [(rnd.uniform(0, 1), rnd.uniform(-1, 1), rnd.uniform(0.6, 1.4))
+           for _ in range(150)]
+    rains = [(rnd.uniform(0, 1), rnd.uniform(-1, 1)) for _ in range(60)]
+    clouds = [(rnd.uniform(-1, 1), rnd.uniform(0, 1), rnd.uniform(60, 150))
+              for _ in range(14)]
+    lf = _font(_DEJAVU, 34)
+
+    def draw(i, n, im):
+        t = i / n
+        d = ImageDraw.Draw(im, "RGBA")
+        # --- warm ocean band with a glowing horizon ---
+        d.rectangle([0, sea_y, W, H], fill=(10, 26, 40, 255))
+        glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(glow).rectangle([0, sea_y - 26, W, sea_y + 10],
+                                       fill=(*PALETTE["gold"], 120))
+        im = Image.alpha_composite(im.convert("RGBA"),
+                                   glow.filter(ImageFilter.GaussianBlur(18)))
+        d = ImageDraw.Draw(im, "RGBA")
+        # subtle wave line
+        for x in range(0, W, 8):
+            wy = sea_y + int(4 * math.sin(x * 0.02 + i * 0.15))
+            d.line([x, wy, x + 8, wy], fill=(*PALETTE["gold"], 60), width=2)
+        # --- cloud canopy at the top (soft drifting blobs, substantial) ---
+        cl = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        cd = ImageDraw.Draw(cl)
+        for hx, hy, r in clouds:
+            x = int(cx + hx * W * 0.44 + 26 * math.sin(i * 0.03 + hx * 4))
+            y = int(cloud_y + hy * 70)
+            cd.ellipse([x - r * 1.3, y - r * 0.6, x + r * 1.3, y + r * 0.6],
+                       fill=(214, 222, 240, 120))
+        im = Image.alpha_composite(im, cl.filter(ImageFilter.GaussianBlur(26)))
+        d = ImageDraw.Draw(im, "RGBA")
+        # --- pulsing HEAT band where the air condenses (mid-height) — a big,
+        # clear brightness swing (also the frame's main novelty source) ---
+        pulse = 0.5 + 0.5 * math.sin(i * 0.28)
+        hb = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(hb).ellipse(
+            [cx - 440, int(H * 0.42) - 80, cx + 440, int(H * 0.42) + 80],
+            fill=(255, 150, 70, int(70 + 130 * pulse)))
+        im = Image.alpha_composite(im, hb.filter(ImageFilter.GaussianBlur(48)))
+        d = ImageDraw.Draw(im, "RGBA")
+        # --- rising warm air: bright STREAKS spiral up from sea to cloud
+        # (reads as air currents, not a starfield) ---
+        span = sea_y - cloud_y
+        for ph0, home, spd in ups:
+            ph = (ph0 + t * spd * 1.5) % 1.0
+            y = sea_y - ph * span
+            sway = math.sin(i * 0.05 + home * 6) * 46 * (1 - ph)
+            x = cx + home * W * 0.44 * (1 - 0.55 * ph) + sway
+            k = int(255 - 80 * ph)
+            a = int(235 * min(1, (1 - ph) * 1.7 + 0.18))
+            ln = 7 + int(9 * (1 - ph))          # longer, brighter near the sea
+            d.line([x, y, x - sway * 0.15, y + ln],
+                   fill=(255, k, max(120, k - 50), a), width=2)
+        # --- rain falling back down (the loop closes) ---
+        for ph0, home in rains:
+            ph = (ph0 + t * 1.1) % 1.0
+            y = cloud_y + ph * span
+            x = cx + home * W * 0.40
+            d.line([x, y, x, y + 16], fill=(150, 190, 255, 170), width=2)
+        # --- stage caption escalates ---
+        idx = min(len(stages) - 1, int(t * len(stages)))
+        lbl = _spaced(stages[idx])
+        d.text((_center_x(d, lbl, lf), int(H * 0.88)), lbl, font=lf,
+               fill=(*PALETTE["ink"], 220))
+        return im.convert("RGB")
+
+    return _render(draw, out, seconds)
+
+
 if __name__ == "__main__":
     # smoke: render one of each into ./flat2d_smoke/
     out = REPO / "flat2d_smoke"

@@ -331,14 +331,26 @@ def clean_windows(clip: Path, min_len: float = 4.0,
 
 
 # --- the three rules as ffmpeg -------------------------------------------
+# PACING: a shot must visibly CHANGE, not just drift. Slow orbital footage has
+# near-zero content novelty, so a gentle 5% push over 9s reads as a frozen
+# postcard (the interest judge's "movement is not interest"). Enforce a floor on
+# the zoom RATE so the framing keeps moving fast enough to feel alive, capped so
+# it never over-crops.
+PUSH_RATE = 0.045     # >= this much zoom per second of the shot
+PUSH_CAP = 1.42       # never zoom more than this total (crop limit)
+
+
 def full_frame_beat(src: Path, ss: float, dur: float, out: Path,
                     push: float = 1.06, direction: str = "in") -> Path:
     """Rule 2: the footage IS the beat. Scale/crop to fill the whole 16:9
-    frame (no letterbox, no rectangle) and add a slow matched push so a real
-    still or slow orbit reads as continuous motion, not a frozen photo.
+    frame (no letterbox, no rectangle) and add a matched push so a real still or
+    slow orbit reads as continuous MOTION with visible framing change — not a
+    frozen photo.
 
-    `push` is the total zoom factor over the beat; `direction` in/out chooses
-    push-in (default, into the subject) or pull-out."""
+    `push` is the requested total zoom; the effective push is floored at
+    PUSH_RATE/second so short shots still move perceptibly, and capped at
+    PUSH_CAP. `direction` in/out chooses push-in (default) or pull-out."""
+    push = min(PUSH_CAP, max(push, 1.0 + PUSH_RATE * dur))
     frames = max(2, int(round(dur * FPS)))
     step = (push - 1.0) / frames
     if direction == "in":

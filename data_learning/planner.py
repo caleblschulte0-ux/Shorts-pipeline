@@ -32,7 +32,7 @@ explicit `seconds` and a `line` only on the phase that carries the narration.
 from __future__ import annotations
 
 LEAD, TAIL, MIN_SHOT = 0.45, 0.9, 2.8
-MAX_UNCHANGED = 7.0        # default: a visual may not hold longer than this
+MAX_UNCHANGED = 4.5        # default: a visual may not hold longer than this
 DEV_PHASE = 2.6           # silent development tail when a beat splits
 
 
@@ -128,28 +128,53 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                               "seconds": secs, "line": line})
             continue
 
-        # ---- plain footage beat: one shot, or setup+development if long -----
+        # ---- plain footage beat: CHUNK a long beat into several short shots,
+        # each capped at max_unchanged and each jumping to a DIFFERENT window /
+        # framing of the clip, so the picture keeps changing instead of one slow
+        # 10-second drift (the interest judge's dead stretch). The narration
+        # line rides the first chunk; the rest are silent visual development.
         if foot:
-            if secs > maxu and not is_last:
-                emit(_footage(foot, secs - DEV_PHASE, b,
-                                      phase="setup", line=line))
-                # development phase: a push/pull the other direction so the
-                # frame keeps evolving instead of holding (real development,
-                # not the same static plate).
-                dev = _foot(foot)
-                dev["direction"] = "out" if foot.get("direction") != "out" \
-                    else "in"
-                dev["at"] = min(1.0, float(foot.get("at", 0.5)) + 0.18)
-                emit({"kind": "footage", **dev, "seconds": DEV_PHASE,
-                              "intent": foot.get("intent")})
-            else:
-                emit(_footage(foot, secs, b, line=line))
+            for k, sh in enumerate(_chunk_footage(foot, secs, maxu, b)):
+                if k == 0 and line:
+                    sh["line"] = line
+                emit(sh)
             continue
 
         # nothing declared -> a titled statement so the render never stalls
         emit({"kind": "flat_statement",
                       "statement": b.get("understand", line),
                       "seconds": secs, "line": line})
+    return shots
+
+
+def _chunk_footage(foot: dict, secs: float, maxu: float,
+                   beat: dict) -> list[dict]:
+    """Split `secs` of a footage beat into ceil(secs/maxu) short shots. Each
+    chunk steps its window (`ss` forward, `at` across) and alternates push
+    direction, so consecutive chunks look DIFFERENT — the picture keeps changing
+    instead of one long slow drift. A short beat stays a single shot."""
+    import math
+    n = max(1, math.ceil(secs / maxu)) if secs > maxu + 0.4 else 1
+    if n == 1:
+        return [_footage(foot, secs, beat)]
+    each = secs / n
+    base_ss = foot.get("ss")
+    base_at = float(foot.get("at", 0.5))
+    base_dir = foot.get("direction", "in")
+    shots = []
+    for k in range(n):
+        f = dict(foot)
+        # walk deeper into the clip so each chunk shows a new part of the shot
+        if base_ss is not None:
+            f["ss"] = float(base_ss) + k * (each + 0.6)
+        f["at"] = min(0.92, base_at + k * 0.12)
+        f["direction"] = base_dir if k % 2 == 0 else \
+            ("out" if base_dir != "out" else "in")
+        sh = {"kind": "footage", **_foot(f), "seconds": each,
+              "intent": foot.get("intent")}
+        if k:
+            sh["phase"] = "development"
+        shots.append(sh)
     return shots
 
 

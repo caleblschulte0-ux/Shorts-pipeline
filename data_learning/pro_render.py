@@ -273,6 +273,12 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
             out, seconds, highlight=shot.get("highlight", "THE SUN"),
             stages=tuple(shot.get("stages",
                                   ["OUR SOLAR SYSTEM", "THE MILKY WAY"])))
+    if k == "flat_engine":
+        return flat2d.heat_engine(
+            out, seconds,
+            stages=tuple(shot.get("stages",
+                         ["WARM OCEAN", "RISING, COOLING AIR",
+                          "HEAT RELEASED"])))
     if k == "hero3d":
         return _hero_shot(shot, seconds, out, work, idx)
     raise RuntimeError(f"unknown shot kind {k!r}")

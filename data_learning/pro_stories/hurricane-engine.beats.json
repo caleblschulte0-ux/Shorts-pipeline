@@ -5,118 +5,66 @@
   "beats": [
     {
       "job": "HOOK",
-      "narration": "From two hundred miles up, it looks almost gentle. A slow white pinwheel, turning over the sea. It is the most powerful engine on Earth.",
-      "understand": "establish the storm as deceptively serene from orbit before the mechanism reveal",
+      "narration": "From orbit, it looks almost gentle. It is the most powerful engine on Earth — and it builds itself.",
+      "understand": "open on the storm with real motion and a promise (it BUILDS ITSELF) — a hook, not a static postcard",
       "function": "experience",
       "mode": "footage",
       "text_role": "none",
-      "max_unchanged": 8.0,
-      "footage": {
-        "nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station",
-        "ss": 90.0,
-        "push": 1.05,
-        "direction": "in",
-        "intent": "a broad hurricane spiral seen from the ISS, calm and slow-turning"
-      }
+      "max_unchanged": 4.0,
+      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 90.0, "push": 1.16, "direction": "in", "intent": "a hurricane spiral from the ISS, pushing in fast so the frame is alive from the first second"}
     },
     {
       "job": "INGREDIENT",
-      "narration": "It is born from a single thing. Warm ocean, above twenty-six degrees Celsius, breathing heat and water into the sky.",
-      "understand": "the one ingredient a hurricane needs — a warm sea surface",
+      "narration": "It starts with warm ocean — water above twenty-six degrees, pouring heat and moisture into the sky.",
+      "understand": "the one ingredient — warm sea — landed fast",
       "function": "evidence",
       "mode": "footage+annotation",
-      "max_unchanged": 8.0,
-      "footage": {
-        "nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station",
-        "ss": 40.0,
-        "push": 1.05,
-        "direction": "in",
-        "intent": "warm tropical ocean under broken cloud, distinct from the spiral"
-      },
-      "number": {
-        "text": "26",
-        "sub": "°C",
-        "label": "the ocean it needs"
-      }
+      "max_unchanged": 4.0,
+      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 40.0, "push": 1.15, "direction": "in", "intent": "warm tropical ocean under broken cloud"},
+      "number": {"text": "26", "sub": "°C", "label": "the ocean it needs"}
     },
     {
       "job": "MECHANISM",
-      "narration": "That warm, wet air rises. High up it cools and rains, and every drop that condenses releases heat, pulling more air upward behind it. The storm becomes its own engine, feeding on the sea.",
-      "understand": "the self-feeding heat-engine feedback loop — the mechanism at the heart of the film",
+      "narration": "That warm, wet air rushes upward. It cools, it rains, and every drop releases heat that pulls up even more. The storm becomes its own engine, feeding on the sea.",
+      "understand": "the self-feeding heat-engine loop, shown as a LIVING animated diagram (constant motion, non-cloud variety) instead of a held cloud plate",
       "function": "explanation",
-      "mode": "footage",
-      "max_unchanged": 8.0,
-      "footage": {
-        "nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903",
-        "ss": 1260.0,
-        "push": 1.06,
-        "direction": "in",
-        "intent": "the churning storm from orbit, cloud tops boiling upward — the engine at work"
-      }
+      "mode": "designed_2d",
+      "max_unchanged": 12.0,
+      "flat": {"kind": "flat_engine", "stages": ["WARM OCEAN", "RISING, COOLING AIR", "HEAT RELEASED", "IT FEEDS ITSELF"]}
     },
     {
       "job": "SETUP_COMPARISON",
       "narration": "We rank them by their winds — from a category one, to a five past two hundred and fifty, strong enough to erase a coastline.",
-      "understand": "a BRIEF wind-scale check (kept short so it never becomes an infographic beat), landing the top-of-scale number before the reveal",
+      "understand": "a brief, bold wind-scale check landing the top-of-scale number",
       "function": "comparison",
       "mode": "designed_2d",
       "max_unchanged": 8.0,
-      "flat": {
-        "kind": "flat_compare",
-        "title": "measured by the wind",
-        "rows": [
-          {
-            "name": "Category 1",
-            "value": 119,
-            "display": "119 km/h"
-          },
-          {
-            "name": "Category 3",
-            "value": 178,
-            "display": "178 km/h"
-          },
-          {
-            "name": "Category 5",
-            "value": 252,
-            "display": "252+ km/h"
-          }
-        ]
-      }
+      "flat": {"kind": "flat_compare", "title": "measured by the wind",
+        "rows": [{"name": "Category 1", "value": 119, "display": "119 km/h"},
+                 {"name": "Category 3", "value": 178, "display": "178 km/h"},
+                 {"name": "Category 5", "value": 252, "display": "252+ km/h"}]}
     },
     {
       "job": "REVEAL",
-      "narration": "And at the very center, calm. A ring of towering cloud around an eye of perfect stillness, circled by winds strong enough to release the energy of ten thousand bombs a day.",
-      "understand": "the showpiece — the eye, the emotional and visual peak, carrying the power number",
+      "narration": "And at its heart, the eye. Dead calm, ringed by the strongest winds on the planet.",
+      "understand": "the showpiece — the eye — on the most dynamic storm window, pushed in fast so it lands as a reveal",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "annotation",
-      "max_unchanged": 9.0,
+      "max_unchanged": 4.0,
       "text": "the eye",
-      "footage": {
-        "nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903",
-        "ss": 1050.0,
-        "push": 1.06,
-        "direction": "in",
-        "intent": "the clear eye of the hurricane from orbit, ringed by cloud — the money shot"
-      }
+      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1071.0, "push": 1.18, "direction": "in", "intent": "the churning heart of the storm from orbit, a fast push into the eye — the peak"}
     },
     {
       "job": "PAYOFF",
       "narration": "Warm water and air. That is all it is. And once it begins to turn, nothing on Earth can stop it.",
-      "understand": "thesis — the storm is a simple machine of overwhelming power; a true bookend that returns to the exact opening frame (callback); the film ENDS here",
+      "understand": "the thesis, ESCALATING — pull OUT to reveal the full storm (open up, don't loop back to the static opening frame)",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "thesis",
-      "callback": true,
-      "max_unchanged": 8.0,
+      "max_unchanged": 6.0,
       "text": "Nothing on Earth can stop it.",
-      "footage": {
-        "nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station",
-        "ss": 90.0,
-        "push": 1.05,
-        "direction": "in",
-        "intent": "return to the calm Helene spiral of the opening — the thesis lands on the storm that opened the film (callback)"
-      }
+      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1149.0, "push": 1.2, "direction": "out", "intent": "pull back from the storm to reveal its full scale as the thesis lands — an ending that opens up, not a return to the opening"}
     }
   ]
 }
