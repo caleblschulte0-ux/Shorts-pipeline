@@ -51,7 +51,7 @@ SCALE_Y = CHART_H / CHART_PNG_H
 FOOT_Y = CHART_Y + CHART_H + 10
 FOOT_H = (H - FOOT_Y) & ~1       # keep even (yuv420p / filter sizing)
 
-MASCOT_SIZE = 176                # slightly bigger
+MASCOT_SIZE = 300                # the brand's face — a real, central presence
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
 UP_ANGLE = 90                    # points up (hook / closing / fallback)
 MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 520)   # hook / closing rest spot
@@ -1277,16 +1277,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         seq = filled
 
         import os as _os2
-        # REHAUL (clean, professional look): no cartoon mascot, no glowing b-roll
-        # strip — the two biggest "AI slop" signals. Set LEGACY_LOOK=1 to revert.
+        # REHAUL: keep the CLEAN look (flat dark bg, no glowing b-roll strip, real
+        # photos) BUT keep the MASCOT — he's the brand's face and gets a bigger,
+        # central role. LEGACY_LOOK=1 restores the old bokeh + b-roll strip.
         CLEAN = _os2.environ.get("LEGACY_LOOK") != "1"
         mascot_movs = []
-        if not CLEAN:
-            for k, (_x, _y, _w0, _w1, angle, flip) in enumerate(seq):
-                mv = work / f"masc_{k}.mov"
-                mascot.build_mascot_loop(mv, size=S, seconds=2.2,
-                                         point_angle=float(angle), flip=flip)
-                mascot_movs.append(mv)
+        for k, (_x, _y, _w0, _w1, angle, flip) in enumerate(seq):
+            mv = work / f"masc_{k}.mov"
+            mascot.build_mascot_loop(mv, size=S, seconds=2.2,
+                                     point_angle=float(angle), flip=flip)
+            mascot_movs.append(mv)
 
         # Bottom footage: round-robin through the per-style b-roll clips so
         # each video gets a different vibe and never obviously repeats (falls
@@ -1415,18 +1415,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
         # Mascots — each slides in from the previous spot (feels like it walks).
-        if not CLEAN:
-            prev_tl = home
-            for k, (tlx, tly, w0, w1, _a, _f) in enumerate(seq):
-                gi = masc_input[k]
-                # Calmer: a slower glide (0.55s) and a gentle bob.
-                xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.55, tlx)], 1)
-                ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.55, tly)], 1)})+3*sin(1.3*t)"
-                fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
-                fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
-                          f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
-                prev = f"mb{k}"
-                prev_tl = (tlx, tly)
+        prev_tl = home
+        for k, (tlx, tly, w0, w1, _a, _f) in enumerate(seq):
+            gi = masc_input[k]
+            # Calmer: a slower glide (0.55s) and a gentle bob.
+            xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.55, tlx)], 1)
+            ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.55, tly)], 1)})+3*sin(1.3*t)"
+            fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
+            fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
+                      f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
+            prev = f"mb{k}"
+            prev_tl = (tlx, tly)
         fc.append(f"[{prev}]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
