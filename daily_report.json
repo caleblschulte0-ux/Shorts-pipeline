@@ -1,19 +1,19 @@
 [
   {
-    "topic": "My mother-in-law used our spare key to gut my baby's nursery while we were on our babymoon",
-    "title": "My mother-in-law used our spare key to gut my baby's nursery while we were on our babymoon",
-    "publish_at": "2026-07-17T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: vision QA: broken \u2014 The top half of each frame, which is expected to be a news/stock photo according to the instructions, is instead an abstract game animation. This indicates an error in the expected composite structure",
-    "elapsed_seconds": 137.1,
-    "package_path": "state/trending_packages/20260717/01_mother-in-law-spare-key-nursery.json",
-    "video_path": "output/daily_20260717-111113_my_mother_in_law_used_our_spare_key_to_g.mp4",
+    "topic": "A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married",
+    "title": "A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married",
+    "publish_at": "2026-07-18T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/rqnDNHEhvgI",
+    "error": null,
+    "elapsed_seconds": 164.3,
+    "package_path": "state/trending_packages/20260718/01_rehearsal-dinner-secret-wife-envelope.json",
+    "video_path": "output/daily_20260718-111317_a_stranger_handed_me_an_envelope_at_my_r.mp4",
     "qa": {
-      "ok": false,
-      "verdict": "broken",
-      "reason": "The top half of each frame, which is expected to be a news/stock photo according to the instructions, is instead an abstract game animation. This indicates an error in the expected composite structure"
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
     },
-    "quarantined": true
+    "channel": "default"
   }
 ]
