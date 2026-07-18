@@ -563,7 +563,7 @@
     {
       "date": "20260718",
       "dry_run": false,
-      "ts": "2026-07-18T11:55:18+00:00",
+      "ts": "2026-07-18T12:36:58+00:00",
       "feedback": {
         "snapshot": true,
         "prior_streamers": 9,
@@ -598,33 +598,33 @@
           "slug": "clip-20260718-4",
           "ok": true,
           "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
+          "self_healed": true
         },
         {
           "slug": "clip-20260718-5",
           "ok": false,
           "render_level": "full",
           "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Roughly half the frames (4.0s-14.8s block, 25.6s-31s+ block) are black or an out-of-focus close-up of a door/wall with n; vision: Long stretch with no person or action on screen breaks continu"
+          "error": "RuntimeError: qa_rejected: vision: Frames from 4.3s-7.6s are heavily dark/near-black or blurred with the subject barely or not visible; vision: Opening frames (0.3-1.6s) are an extreme close-up on shirt fabric, no face/subject "
         },
         {
           "slug": "clip-20260718-6",
-          "ok": false,
-          "error": "RuntimeError: preflight: source only 5.5s \u2014 too short to edit"
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
         },
         {
           "slug": "clip-20260718-7",
           "ok": false,
           "render_level": "full",
           "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Many frames are extreme close-up blur with no discernible subject (6.6s-10.4s, several others); vision: Multiple near-black/broken-looking frames (row with 'ON,' caption, 16.0s frame is blank "
+          "error": "RuntimeError: qa_rejected: vision: frames from ~4.0s-14.8s (roughly a third of the clip) are near-black/out-of-focus blur on a door with no visible subject; vision: extended dead footage makes it look like the person disappeare"
         },
         {
           "slug": "clip-20260718-8",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.5s \u2014 too short to edit"
         }
       ]
     }
