@@ -1,0 +1,28 @@
+{
+  "key": "fastest_growing_plants_growth_factors",
+  "title": "Growth Factors",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-18"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Soil quality",
+      "value": 100.0,
+      "period": "normal"
+    },
+    {
+      "label": "Optimal soil",
+      "value": 500.0,
+      "period": "maximum"
+    }
+  ]
+}

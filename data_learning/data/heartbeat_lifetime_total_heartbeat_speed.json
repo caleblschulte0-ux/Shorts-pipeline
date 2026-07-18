@@ -1,0 +1,28 @@
+{
+  "key": "heartbeat_lifetime_total_heartbeat_speed",
+  "title": "Heartbeat Speed",
+  "unit": "beats per second",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-18"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Resting Heart Rate",
+      "value": 1.2,
+      "period": "2024"
+    },
+    {
+      "label": "Exercise Heart Rate",
+      "value": 2.5,
+      "period": "2024"
+    }
+  ]
+}

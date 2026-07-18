@@ -1,0 +1,26 @@
+{
+  "key": "moon_counts_in_our_solar_system_solar_system_moo",
+  "title": "Solar System Moons",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-18"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Gas Giants",
+      "value": 70.0
+    },
+    {
+      "label": "Other Planets",
+      "value": 30.0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "key": "moon_counts_in_our_solar_system_moon_distributio",
+  "title": "Moon Distribution",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-18"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Mercury",
+      "value": 0.0
+    },
+    {
+      "label": "Venus",
+      "value": 0.0
+    },
+    {
+      "label": "Earth",
+      "value": 1.0
+    }
+  ]
+}

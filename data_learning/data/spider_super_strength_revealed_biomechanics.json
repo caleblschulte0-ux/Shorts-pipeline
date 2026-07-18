@@ -1,0 +1,28 @@
+{
+  "key": "spider_super_strength_revealed_biomechanics",
+  "title": "Biomechanics",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-18"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Evolution start",
+      "value": 0.0,
+      "period": "300 million years ago"
+    },
+    {
+      "label": "Evolution end",
+      "value": 100.0,
+      "period": "present day"
+    }
+  ]
+}

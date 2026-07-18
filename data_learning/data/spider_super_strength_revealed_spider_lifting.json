@@ -1,0 +1,28 @@
+{
+  "key": "spider_super_strength_revealed_spider_lifting",
+  "title": "Spider Lifting",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-18"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Spider weight",
+      "value": 0.05,
+      "period": "average"
+    },
+    {
+      "label": "Lifted weight",
+      "value": 2.5,
+      "period": "maximum"
+    }
+  ]
+}

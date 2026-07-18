@@ -1,0 +1,28 @@
+{
+  "key": "spider_super_strength_revealed_spider_strength",
+  "title": "Spider Strength",
+  "unit": "x",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-18"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Human strength",
+      "value": 1.0,
+      "period": "average"
+    },
+    {
+      "label": "Spider strength",
+      "value": 50.0,
+      "period": "maximum"
+    }
+  ]
+}

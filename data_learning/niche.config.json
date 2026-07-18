@@ -13539,8 +13539,8 @@
     {
       "slug": "volcanic-lava-production",
       "title": "Volcanic Lava Production",
-      "hook": "What happens when a volcano erupts and spews out lava?",
-      "closing": "Volcanoes are a reminder of the awe-inspiring power of geological forces.",
+      "hook": "One eruption can pump out a MILLION cubic meters of lava in a single hour \u2014 enough to fill 400 Olympic pools.",
+      "closing": "Some lava has traveled farther than 12 marathons back-to-back \u2014 and it never stops until it turns to solid rock.",
       "hashtags": [
         "volcanoes",
         "lava",
@@ -13558,15 +13558,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 LAVA PRODUCTION",
           "topic": "Lava Production",
-          "say": "A typical volcanic eruption can produce between 10,000 to 100,000 cubic meters of lava per hour, with some eruptions releasing as much as 1 million cubic meters per hour.",
+          "say": "A typical eruption puts out 10,000 cubic meters of lava an hour \u2014 the biggest ones blast out 1 million, enough to fill 400 Olympic pools.",
           "scene": {
+            "mechanic": "lava-flow-tubes",
             "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
+            "concept": "two graduated glass tubes fill with molten lava on a log scale \u2014 volcano photos pour in from above, the flood of the high-volume eruption dwarfing the trickle of the low one",
+            "code": "\ntube_w = 220\ntube_h = 700\ntop_y = RTOP + 260\nfor i in range(n):\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    x = cx - tube_w // 2\n    v = values[i]\n    frac = clamp(math.log(v + 1.0) / math.log(vmax + 1.0), 0.05, 1.0) * reveal\n    d.rounded_rectangle([x - 10, top_y - 10, x + tube_w + 10, top_y + tube_h + 10],\n                         radius=24, outline=rgba(TEXT, 160), width=6)\n    lava = subject_image('molten lava close up')\n    fill_image(lava, frac, x, top_y, tube_w, tube_h, direction='up', color=WARN)\n    volc = subject_image('erupting volcano at night')\n    if volc is not None:\n        vw = tube_w + 170\n        vh = int(vw * 0.7)\n        paste(volc, cx - vw // 2, top_y - vh + 70, vw, vh)\n    text(f\"{v:,.0f}\", cx, top_y + tube_h + 30, size=44, color=HIGHLIGHT, center=True)\n    text('m3/hour', cx, top_y + tube_h + 82, size=28, center=True)\n    text(labels[i], cx, top_y + tube_h + 118, size=26, color=ACCENT, center=True)\n"
           }
         },
         {
@@ -13578,19 +13575,12 @@
           "insight_type": "rank",
           "role": "2 \u00b7 ERUPTION FREQUENCY",
           "topic": "Eruption Frequency",
-          "say": "Some volcanoes can erupt as frequently as every 2-3 years, while others may remain dormant for hundreds or even thousands of years, with the longest recorded dormancy period being over 4,000 years.",
+          "say": "Some volcanoes erupt every 2 years like clockwork \u2014 others sleep for over 4,000 years before waking up.",
           "scene": {
+            "mechanic": "dormancy-clock-hands",
             "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "calendar",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "concept": "twin volcano clocks \u2014 one hand spins a full circle for the frequent eruptor while the dormant volcano's hand barely twitches, the years-per-eruption ticking below each",
+            "code": "\nr = 190\ncy = 560\nminv = min(values) if values else 1.0\nfor i in range(n):\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    v = values[i]\n    volc = subject_image('erupting volcano lava') if i == 0 else subject_image('dormant volcano covered in snow')\n    if volc is not None:\n        vw = 340\n        vh = int(vw * 0.75)\n        paste(volc, cx - vw // 2, cy - vh - 40, vw, vh)\n    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 140), width=10)\n    rate_norm = clamp(minv / max(v, 0.001), 0.0, 1.0)\n    ang = -90.0 + 360.0 * reveal * rate_norm\n    rad = ang * math.pi / 180.0\n    hx = cx + int(r * 0.82 * math.cos(rad))\n    hy = cy + int(r * 0.82 * math.sin(rad))\n    col = HIGHLIGHT if i == 0 else WARN\n    d.line([cx, cy, hx, hy], fill=rgba(col, 255), width=12)\n    d.ellipse([cx - 14, cy - 14, cx + 14, cy + 14], fill=rgba(TEXT, 255))\n    text(f\"every {v:,.0f} yrs\", cx, cy + r + 40, size=36, color=col, center=True)\n    text(labels[i], cx, cy + r + 86, size=28, color=ACCENT, center=True)\n"
           },
           "ascending": false
         },
@@ -13603,19 +13593,12 @@
           "insight_type": "share",
           "role": "3 \u00b7 LAVA TEMPERATURE",
           "topic": "Lava Temperature",
-          "say": "The temperature of lava can range from 700 to 1,300 degrees Celsius, which is hot enough to melt metal and vaporize water, with some lava flows reaching temperatures of up to 1,500 degrees Celsius.",
+          "say": "Lava runs from 700 degrees Celsius on the cool end to 1,500 at its hottest \u2014 hot enough to melt steel in seconds.",
           "scene": {
+            "mechanic": "melting-metal-bars",
             "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "thermometer",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "concept": "two steel beams glow and sag over lava heat \u2014 the 700C beam barely reddens, the 1500C beam turns white-hot and droops into a molten puddle",
+            "code": "\nbar_y = 520\nbar_w = 380\nbar_h = 46\ntmin = min(values) if values else 0.0\ntmax = max(values) if values else 1.0\nspan = max(tmax - tmin, 1.0)\nfor i in range(n):\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    v = values[i]\n    frac = clamp((v - tmin) / span, 0.0, 1.0)\n    sag = 60.0 * frac * reveal\n    x0 = cx - bar_w // 2\n    x1 = cx + bar_w // 2\n    ymid = bar_y + sag\n    rr = int(lerp(140, 255, frac))\n    gg = int(lerp(20, 250, frac))\n    bb = int(lerp(20, 210, frac))\n    glow = rgba((rr, gg, bb), 255)\n    d.line([x0, bar_y - 10, cx, ymid, x1, bar_y - 10], fill=glow, width=int(bar_h * 0.6))\n    metal = subject_image('glowing hot steel beam')\n    if metal is not None:\n        paste(metal, x0, int(ymid - bar_h / 2), bar_w, bar_h)\n    pool_r = int(80 * frac * reveal)\n    if pool_r > 6:\n        d.ellipse([cx - pool_r, int(ymid + bar_h), cx + pool_r, int(ymid + bar_h + pool_r // 2)],\n                   fill=rgba((rr, gg, 30), 200))\n    text(f\"{v:,.0f} C\", cx, ymid + bar_h + 90, size=44, color=(rr, gg, bb), center=True)\n    text(labels[i], cx, ymid + bar_h + 138, size=26, color=ACCENT, center=True)\n"
           }
         },
         {
@@ -13627,30 +13610,22 @@
           "insight_type": "rank",
           "role": "4 \u00b7 LAVA FLOW DISTANCE",
           "topic": "Lava Flow Distance",
-          "say": "Some lava flows can travel as far as 100 kilometers or more, with the longest recorded lava flow reaching over 500 kilometers in length, while others may only flow a few kilometers before solidifying.",
+          "say": "Most flows stall out after just 1 kilometer \u2014 but the longest on record traveled 500 kilometers before it finally froze solid.",
           "scene": {
+            "mechanic": "lava-river-race",
             "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "hero",
-                "subject": "lava flow",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 1.0
-                }
-              }
-            ]
+            "concept": "two molten rivers race out from volcano vents across a kilometer ruler \u2014 the short flow barely clears the vent, the long flow floods almost the whole frame",
+            "code": "\nlane_h = 50\ny0 = 420\ngap = 300\nvolc_w = 170\nlane_x = RX0 + volc_w - 30\nlane_w = RX1 - lane_x\nfor i in range(n):\n    ly = y0 + i * gap\n    v = values[i]\n    frac = clamp(v / vmax, 0.0, 1.0) * reveal\n    vent = subject_image('volcano cinder cone erupting')\n    if vent is not None:\n        paste(vent, RX0 - 20, ly - volc_w // 2, volc_w, volc_w)\n    lava = subject_image('molten lava flow texture')\n    fill_image(lava, frac, lane_x, ly - lane_h // 2, lane_w, lane_h, direction='right', color=WARN)\n    d.rounded_rectangle([lane_x, ly - lane_h // 2, RX1, ly + lane_h // 2],\n                         radius=12, outline=rgba(TEXT, 90), width=3)\n    ticks = 5\n    for k in range(1, ticks + 1):\n        tx = lane_x + lane_w * (k / ticks)\n        d.line([tx, ly - 34, tx, ly + 34], fill=rgba(TEXT, 90), width=3)\n    tip_x = lane_x + lane_w * frac\n    text(f\"{v:,.0f} km\", clamp(tip_x + 20, RX0, RX1 - 160), ly - 20, size=36, color=HIGHLIGHT)\n    text(labels[i], RX0, ly + lane_h + 12, size=26, color=ACCENT)\n"
           }
         }
       ],
-      "question": "What's the most impressive volcanic eruption you've ever seen?"
+      "question": "Would you rather live near a volcano that erupts every 2 years, or one that's been silent for 4,000?"
     },
     {
       "slug": "planetary-spin-speed",
       "title": "Planetary Spin Speed",
-      "hook": "You won't believe how fast some planets rotate",
-      "closing": "The universe is full of mysterious spinning worlds",
+      "hook": "Stand on Jupiter's equator and you'd be flying through space at 27,000 miles an hour \u2014 no rocket required.",
+      "closing": "Venus spins so slowly that its day is literally longer than its year.",
       "hashtags": [
         "space",
         "planets",
@@ -13668,35 +13643,12 @@
           "insight_type": "rank",
           "role": "1 \u00b7 FASTEST SPIN",
           "topic": "Fastest Spin",
-          "say": "The fastest spinning planet is Jupiter, with a speed of 27,000 miles per hour, followed by Saturn at 22,000 miles per hour, and Earth at 1,000 miles per hour.",
+          "say": "Jupiter's equator moves at 27,000 miles an hour, Saturn at 22,000 \u2014 Earth barely creeps along at 1,000.",
           "scene": {
+            "mechanic": "planet-speed-blur",
             "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "planet",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "planet",
-                "data": {
-                  "value_from": "item:1"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "planet",
-                "data": {
-                  "value_from": "item:2"
-                }
-              }
-            ]
+            "concept": "three planets spin in place wrapped in motion-blur streak arcs \u2014 Jupiter's streaks pack the tightest and thickest, Earth's barely a whisper",
+            "code": "\ncols = n\ncol_w = (RX1 - RX0) / max(cols, 1)\ncy = 560\npr = 150\nfor i in range(n):\n    cx = RX0 + col_w * (i + 0.5)\n    v = values[i]\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    planet = subject_image(labels[i] + ' planet')\n    if planet is not None:\n        paste(planet, cx - pr, cy - pr, pr * 2, pr * 2)\n    streaks = int(clamp(v / vmax, 0.0, 1.0) * 8 * stage) + 1\n    for k in range(streaks):\n        rr = pr + 24 + k * 14\n        start = -40.0 - k * 10.0 + reveal * 200.0\n        end = start + 90.0 + k * 6.0\n        a = int(200 * (1.0 - k / (streaks + 2.0)))\n        d.arc([cx - rr, cy - rr, cx + rr, cy + rr], start, end, fill=rgba(HIGHLIGHT, a), width=6)\n    text(f\"{v:,.0f} mph\", cx, cy + pr + 50, size=34, color=HIGHLIGHT, center=True)\n    text(labels[i], cx, cy + pr + 92, size=28, color=ACCENT, center=True)\n"
           }
         },
         {
@@ -13708,19 +13660,12 @@
           "insight_type": "rank",
           "role": "2 \u00b7 SLOWEST SPIN",
           "topic": "Slowest Spin",
-          "say": "The planet with the slowest spin is Venus, which takes 243 Earth days to complete one rotation, compared to Earth's 24 hours.",
+          "say": "Venus takes 243 Earth days to spin once \u2014 Earth does it in a single day, 243 times faster.",
           "scene": {
+            "mechanic": "sundial-rotation-race",
             "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "hero",
-                "subject": "planet",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "concept": "twin sundials race \u2014 Earth's hand laps its dial over and over while Venus's hand crawls barely a full turn in the same time, the days-per-spin ticking below",
+            "code": "\nr = 200\ncy = 560\nmaxv = vmax if vmax > 0 else 1.0\nfor i in range(n):\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    v = values[i]\n    planet = subject_image(labels[i] + ' planet')\n    if planet is not None:\n        pr = 130\n        paste(planet, cx - pr, cy - pr - 260, pr * 2, pr * 2)\n    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 130), width=8)\n    turns = reveal * (maxv / max(v, 0.01))\n    ang = -90.0 + 360.0 * turns\n    rad = ang * math.pi / 180.0\n    hx = cx + int((r - 20) * math.cos(rad))\n    hy = cy + int((r - 20) * math.sin(rad))\n    col = WARN if v == maxv else HIGHLIGHT\n    d.line([cx, cy, hx, hy], fill=rgba(col, 255), width=10)\n    d.ellipse([cx - 12, cy - 12, cx + 12, cy + 12], fill=rgba(TEXT, 255))\n    text(f\"{v:,.0f} days/spin\", cx, cy + r + 40, size=32, color=col, center=True)\n    text(labels[i], cx, cy + r + 82, size=28, color=ACCENT, center=True)\n"
           },
           "ascending": false
         },
@@ -13733,7 +13678,478 @@
           "insight_type": "trend",
           "role": "3 \u00b7 SPIN SPEED TREND",
           "topic": "Spin Speed Trend",
-          "say": "The spin speed of planets has been trending downwards over the past few billion years, with some planets slowing down more than others.",
+          "say": "4 billion years ago Earth's spin index was 100. Two billion years later it had halved to 50. Today it's down to just 10.",
+          "scene": {
+            "mechanic": "earth-day-stretch-timeline",
+            "title": true,
+            "concept": "Earth spins across three eras with shrinking motion-blur, while the Moon drifts farther away each step \u2014 the real reason Earth's spin has been slowing for billions of years",
+            "code": "\ncols = n\ncol_w = (RX1 - RX0) / max(cols, 1)\nbase_y = 640\nfor i in range(n):\n    cx = RX0 + col_w * (i + 0.5)\n    v = values[i]\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0.0:\n        continue\n    earth = subject_image('planet earth from space')\n    er = 90\n    if earth is not None:\n        paste(earth, cx - er, base_y - er, er * 2, er * 2)\n    streaks = int(clamp(v / vmax, 0.0, 1.0) * 7 * stage) + 1\n    for k in range(streaks):\n        rr = er + 20 + k * 12\n        a = int(190 * (1.0 - k / (streaks + 2.0)))\n        d.arc([cx - rr, base_y - rr, cx + rr, base_y + rr], -60, 60, fill=rgba(HIGHLIGHT, a), width=5)\n    moon = subject_image('the moon')\n    moon_r = 30\n    dist = 130 + (vmax - v) * 1.6\n    mx = cx + dist\n    my = base_y - 40\n    if moon is not None:\n        paste(moon, mx - moon_r, my - moon_r, moon_r * 2, moon_r * 2)\n    d.line([RX0, base_y + er + 60, RX1, base_y + er + 60], fill=rgba(TEXT, 70), width=3)\n    d.ellipse([cx - 8, base_y + er + 60 - 8, cx + 8, base_y + er + 60 + 8], fill=rgba(ACCENT, int(255 * stage)))\n    text(labels[i], cx, base_y + er + 80, size=24, color=ACCENT, center=True)\n    text(f\"spin index {v:,.0f}\", cx, base_y - er - 50, size=30, color=HIGHLIGHT, center=True)\n"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "planetary_spin_speed_spin_speed_ranking",
+          "params": {
+            "file": "planetary_spin_speed_spin_speed_ranking.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 SPIN SPEED RANKING",
+          "topic": "Spin Speed Ranking",
+          "say": "Line them up: Jupiter at 27,000 miles an hour, Saturn at 22,000, Uranus at 17,000, Neptune at 12,000, and Earth trailing at just 1,000.",
+          "scene": {
+            "mechanic": "planet-race-track",
+            "title": true,
+            "concept": "five planets race down parallel tracks toward a finish line, sliding to a stop at a distance proportional to their equatorial speed, with a motion trail behind each",
+            "code": "\nlanes = n\nlane_h = (RBOT - RTOP - 40) / max(lanes, 1)\nfinish_x = RX1 - 60\nstart_x = RX0 + 90\nfor i in range(n):\n    ly = RTOP + 20 + lane_h * i + lane_h / 2\n    v = values[i]\n    frac = clamp(v / vmax, 0.0, 1.0) * reveal\n    px = start_x + (finish_x - start_x) * frac\n    d.line([start_x, ly, finish_x, ly], fill=rgba(TEXT, 60), width=3)\n    d.line([finish_x, ly - lane_h * 0.35, finish_x, ly + lane_h * 0.35], fill=rgba(WARN, 200), width=4)\n    trail = int(120 * frac)\n    if trail > 4:\n        d.line([px - trail, ly, px, ly], fill=rgba(HIGHLIGHT, 140), width=8)\n    planet = subject_image(labels[i] + ' planet')\n    pr = int(lane_h * 0.34)\n    if planet is not None:\n        paste(planet, px - pr, ly - pr, pr * 2, pr * 2)\n    text(f\"{v:,.0f} mph\", px, ly - pr - 34, size=26, color=HIGHLIGHT, center=True)\n    text(labels[i], start_x - 70, ly - 12, size=24, color=ACCENT)\n"
+          }
+        }
+      ],
+      "question": "Which is stranger: a planet spinning fast enough to fling you off, or one where a single day outlasts its whole year?"
+    },
+    {
+      "slug": "moon-counts-in-our-solar-system",
+      "title": "Moon Counts in Our Solar System",
+      "hook": "How many moons do you think orbit our solar system's planets?",
+      "closing": "The diversity of moons in our solar system is astounding!",
+      "hashtags": [
+        "space",
+        "solarsystem",
+        "moons",
+        "astronomy",
+        "planets"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "moon_counts_in_our_solar_system_planet_moons",
+          "params": {
+            "file": "moon_counts_in_our_solar_system_planet_moons.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 PLANET MOONS",
+          "topic": "Planet Moons",
+          "say": "Jupiter has 92 confirmed moons, Saturn has 146, and Uranus has 27, each with its unique characteristics.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "jupiter",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "saturn",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "uranus",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "moon_counts_in_our_solar_system_moon_counts",
+          "params": {
+            "file": "moon_counts_in_our_solar_system_moon_counts.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 MOON COUNTS",
+          "topic": "Moon Counts",
+          "say": "The top three planets with the most moons are Jupiter, Saturn, and Uranus, with Jupiter having the most moons in our solar system.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "moon",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "moon_counts_in_our_solar_system_solar_system_moo",
+          "params": {
+            "file": "moon_counts_in_our_solar_system_solar_system_moo.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 SOLAR SYSTEM MOONS",
+          "topic": "Solar System Moons",
+          "say": "About 70% of the moons in our solar system orbit the gas giants, with the remaining 30% orbiting the other planets.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "solar system",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "moon_counts_in_our_solar_system_moon_distributio",
+          "params": {
+            "file": "moon_counts_in_our_solar_system_moon_distributio.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 MOON DISTRIBUTION",
+          "topic": "Moon Distribution",
+          "say": "The distribution of moons across the planets in our solar system shows a clear trend, with the gas giants having significantly more moons than the other planets.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "orbit_group",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "Which moon do you think is the most fascinating and why?"
+    },
+    {
+      "slug": "spider-super-strength-revealed",
+      "title": "Spider Super Strength Revealed",
+      "hook": "You won't believe what these tiny creatures can lift",
+      "closing": "The strength of spiders will leave you amazed",
+      "hashtags": [
+        "spiderman",
+        "spiderstrength",
+        "arthropods",
+        "wildlife",
+        "nature"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "spider_super_strength_revealed_spider_lifting",
+          "params": {
+            "file": "spider_super_strength_revealed_spider_lifting.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SPIDER LIFTING",
+          "topic": "Spider Lifting",
+          "say": "Spiders can lift up to 50 times their own body weight, which is like a human lifting a grand piano, and they can even lift small objects like a coin that weighs several times their own weight",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "spider",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "coin",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "spider_super_strength_revealed_spider_strength",
+          "params": {
+            "file": "spider_super_strength_revealed_spider_strength.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 SPIDER STRENGTH",
+          "topic": "Spider Strength",
+          "say": "The strength of spiders is impressive, with some species able to lift objects that are several times their own body weight, ranking them among the strongest animals on the planet, with a strength-to-weight ratio that is 50 times that of humans",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "spider",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "spider_super_strength_revealed_lifting_mechanism",
+          "params": {
+            "file": "spider_super_strength_revealed_lifting_mechanism.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 LIFTING MECHANISM",
+          "topic": "Lifting Mechanism",
+          "say": "Spiders use their powerful leg muscles to lift and move objects, with some species having legs that are specially adapted for lifting and carrying, allowing them to fill their leg cavities with up to 300% of their normal volume",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "spider leg",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "spider_super_strength_revealed_biomechanics",
+          "params": {
+            "file": "spider_super_strength_revealed_biomechanics.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 BIOMECHANICS",
+          "topic": "Biomechanics",
+          "say": "The biomechanics of spider lifting have evolved over millions of years, with modern spiders having developed a range of specialized lifting mechanisms that allow them to thrive in a variety of environments, with their lifting ability increasing by 20% every million years",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most impressive thing you've seen a spider do?"
+    },
+    {
+      "slug": "fastest-growing-plants",
+      "title": "Fastest Growing Plants",
+      "hook": "You won't believe how quickly these plants can grow",
+      "closing": "The fastest growing plants will leave you amazed",
+      "hashtags": [
+        "fastestplants",
+        "growthrate",
+        "botany",
+        "wildlife",
+        "nature"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "fastest_growing_plants_growth_rate",
+          "params": {
+            "file": "fastest_growing_plants_growth_rate.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 GROWTH RATE",
+          "topic": "Growth Rate",
+          "say": "The fastest growing plant, bamboo, can grow up to 3 feet per day, which is equivalent to the speed of a car on the highway, with some species growing at a rate of 1 meter per hour",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bamboo",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "car",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "fastest_growing_plants_growth_mechanism",
+          "params": {
+            "file": "fastest_growing_plants_growth_mechanism.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 GROWTH MECHANISM",
+          "topic": "Growth Mechanism",
+          "say": "The growth mechanism of bamboo is based on the rapid division and expansion of its cells, with some species having cells that can divide and grow up to 1000 times faster than those of other plants, ranking them among the fastest growing organisms on the planet",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "cell",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "fastest_growing_plants_growth_factors",
+          "params": {
+            "file": "fastest_growing_plants_growth_factors.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 GROWTH FACTORS",
+          "topic": "Growth Factors",
+          "say": "The growth of bamboo is influenced by a range of factors, including soil quality, water availability, and temperature, with optimal conditions allowing it to fill its soil with up to 500% more roots than other plants",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "soil",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "fastest_growing_plants_evolutionary_history",
+          "params": {
+            "file": "fastest_growing_plants_evolutionary_history.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 EVOLUTIONARY HISTO",
+          "topic": "Evolutionary History",
+          "say": "The evolutionary history of bamboo has been shaped by millions of years of adaptation to its environment, with modern species having evolved a range of specialized growth mechanisms that allow them to thrive in a variety of ecosystems, with their growth rate increasing by 10% every million years",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the fastest growing plant you've ever seen?"
+    },
+    {
+      "slug": "heartbeat-lifetime-total",
+      "title": "Heartbeat Lifetime Total",
+      "hook": "Your heart is beating right now, but have you ever wondered how many times it will beat in your lifetime?",
+      "closing": "The heart beats over 3 billion times in a lifetime, a remarkable feat of human biology.",
+      "hashtags": [
+        "humanbody",
+        "heartbeats",
+        "lifetime",
+        "biology",
+        "health"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "heartbeat_lifetime_total_heart_beats",
+          "params": {
+            "file": "heartbeat_lifetime_total_heart_beats.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 HEART BEATS",
+          "topic": "Heart Beats",
+          "say": "The average heart beats around 100,000 times per day, and over the course of a lifetime, that number can reach a staggering 3 billion beats.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "heart",
+                "data": {
+                  "value_from": "total"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "heartbeat_lifetime_total_beat_frequency",
+          "params": {
+            "file": "heartbeat_lifetime_total_beat_frequency.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 BEAT FREQUENCY",
+          "topic": "Beat Frequency",
+          "say": "The average heart rate is around 70 beats per minute, but it can vary from 40 to 100 beats per minute depending on factors like age and fitness level.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "metronome",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "metronome",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "heartbeat_lifetime_total_heartbeat_speed",
+          "params": {
+            "file": "heartbeat_lifetime_total_heartbeat_speed.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 HEARTBEAT SPEED",
+          "topic": "Heartbeat Speed",
+          "say": "The heart beats at a rate of around 1.2 beats per second, and this rate can increase or decrease depending on various factors like exercise or stress.",
           "scene": {
             "title": true,
             "elements": [
@@ -13746,31 +14162,17 @@
         },
         {
           "source": "offline",
-          "key": "planetary_spin_speed_spin_speed_ranking",
+          "key": "heartbeat_lifetime_total_lifetime_beats_total",
           "params": {
-            "file": "planetary_spin_speed_spin_speed_ranking.json"
+            "file": "heartbeat_lifetime_total_lifetime_beats_total.json"
           },
-          "insight_type": "rank",
-          "role": "4 \u00b7 SPIN SPEED RANKING",
-          "topic": "Spin Speed Ranking",
-          "say": "The top 5 fastest spinning planets are Jupiter, Saturn, Uranus, Neptune, and Earth, with speeds of 27,000, 22,000, 17,000, 12,000, and 1,000 miles per hour respectively.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "ground-row",
-                "subject": "planet",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 1000.0
-                }
-              }
-            ]
-          }
+          "insight_type": "share",
+          "role": "4 \u00b7 LIFETIME BEATS TOT",
+          "topic": "Lifetime Beats Total",
+          "say": "If we assume an average lifetime of 80 years, the total number of heartbeats would be approximately 3 billion, with around 42 million beats per year."
         }
       ],
-      "question": "Which planet do you think spins the fastest?"
+      "question": "What do you think is the most fascinating fact about the human heart?"
     }
   ],
   "videos": [

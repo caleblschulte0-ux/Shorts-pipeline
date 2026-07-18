@@ -1,0 +1,28 @@
+{
+  "key": "fastest_growing_plants_evolutionary_history",
+  "title": "Evolutionary History",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-18"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Evolution start",
+      "value": 0.0,
+      "period": "60 million years ago"
+    },
+    {
+      "label": "Evolution end",
+      "value": 100.0,
+      "period": "present day"
+    }
+  ]
+}
