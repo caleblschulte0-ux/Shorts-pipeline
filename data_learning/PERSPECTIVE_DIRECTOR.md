@@ -53,19 +53,43 @@ storm making landfall (bending palms / horizontal rain / surge). source_hint:
 stock/CC (Pexels, Pixabay, Wikimedia, archive.org); terms: 'hurricane wind palm
 trees ground', 'storm surge street', 'tropical storm making landfall'."
 
-## Sourcing (the DOING)
+## Sourcing (the DOING) — THE MEDIA GATEWAY
 
-The director's ideal-shot spec drives a **multi-source** fetch, not NASA-only:
-- **NASA** — space/orbital/Earth-science (what we had).
-- **Wikimedia Commons** — open, PD/CC, government + user footage.
-- **archive.org** — large PD/CC film/news library (filter to PD/CC licence).
-- **Pexels / Pixabay** — the best CLEAN CC0 ground-level b-roll; needs a free API
-  key (set `PEXELS_API_KEY` / `PIXABAY_API_KEY`). This is the enabler for the
-  visceral human-scale shots free sources lack; without a key the director still
-  reasons and specs the shot, and falls back to the best free source.
+The director's ideal-shot spec drives the **media gateway** (`data_learning/
+media.py`) — one front-of-pipeline entry point that reaches many sources for an
+IMAGE *or* a VIDEO at a given perspective, honours commercial CC licensing, and
+DECLARES the access it can't reach instead of silently shipping a worse shot:
 
-Every fetched clip still passes the exact-window analyzer, the interest/appeal
-metric (a bland clip is rejected even if on-topic), and the continuity director.
+- **Openverse** — 800M+ CC/PD images; free, no key. Real photos of real events
+  (a street drowned by surge), commercial-filterable. The default for "get a real
+  photo of X." **This is the enabler the free video pools never were.**
+- **Wikimedia Commons** — PD/CC images + video.
+- **Google Images (Apify)** — broadest / most RECENT news photos; the operator's
+  preferred "just google a recent hurricane" path. Premium (Apify credits) and
+  currently blocked on interactive paid-actor approval in the headless remote
+  environment — `media.access_report()` DECLARES this need rather than faking it.
+- **NASA** — space/orbital/Earth-science video.
+- **Pexels / Pixabay** — CC0 ground-level video b-roll; needs a free key.
+
+Images become motion via a **Ken Burns** shot (`image_beat` — a still gets a pan
+PLUS a zoom, more move than footage, so a real photo reads as a live camera move,
+never a frozen slide). Every image writes a CC credit to the package.
+
+### The lesson the free pool taught (appeal ≠ point-conveyance)
+
+`best_image` ranks on appeal × relevance, drops orbital/satellite titles for a
+ground beat, and gates on a topical anchor — but that still isn't enough. For the
+"Nothing on Earth can stop it" payoff those filters picked a bright-red FDNY fire
+truck being *washed* (topical to Sandy, high appeal, correct perspective) — the
+exact OPPOSITE of unstoppable devastation. **Whether an image conveys the POINT is
+a semantic/vision judgment a pixel metric can't make.** So the gateway does the
+automatable filtering; a **vision judge** (a subagent, or the operator's Google
+Images path returning devastation on the first hits) makes the final point-
+conveyance pick. The Katrina drowning-street payoff was chosen exactly this way.
+
+Every fetched image/clip still passes the exact-window analyzer, the interest/
+appeal metric (a bland clip is rejected even if on-topic), and the continuity
+director.
 
 ## Where it sits
 
