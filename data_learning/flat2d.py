@@ -466,11 +466,12 @@ def heat_engine(out: Path, seconds: float = 6.0,
         d = ImageDraw.Draw(im, "RGBA")
         # --- pulsing HEAT band where the air condenses (mid-height) — a big,
         # clear brightness swing (also the frame's main novelty source) ---
-        pulse = 0.5 + 0.5 * math.sin(i * 0.28)
+        pulse = 0.5 + 0.5 * math.sin(i * 0.42)
+        hw = 380 + 90 * pulse                 # the heat band breathes in width too
         hb = Image.new("RGBA", im.size, (0, 0, 0, 0))
         ImageDraw.Draw(hb).ellipse(
-            [cx - 440, int(H * 0.42) - 80, cx + 440, int(H * 0.42) + 80],
-            fill=(255, 150, 70, int(70 + 130 * pulse)))
+            [cx - hw, int(H * 0.42) - 80, cx + hw, int(H * 0.42) + 80],
+            fill=(255, 150, 70, int(60 + 150 * pulse)))
         im = Image.alpha_composite(im, hb.filter(ImageFilter.GaussianBlur(48)))
         d = ImageDraw.Draw(im, "RGBA")
         # --- rising warm air: bright STREAKS spiral up from sea to cloud

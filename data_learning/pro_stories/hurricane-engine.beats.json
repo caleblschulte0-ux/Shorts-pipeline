@@ -34,8 +34,8 @@
     },
     {
       "job": "SETUP_COMPARISON",
-      "narration": "Ranked by wind, a category five runs past two hundred and fifty — enough to erase a coastline.",
-      "understand": "a fast, bold wind-scale check landing the top-of-scale number",
+      "narration": "Ranked by wind, a category five runs past two hundred and fifty.",
+      "understand": "a FAST, bold wind-scale check — kept short so the bars grow and cut before they can hold",
       "function": "comparison",
       "mode": "designed_2d",
       "max_unchanged": 8.0,
@@ -46,25 +46,25 @@
     },
     {
       "job": "REVEAL",
-      "narration": "And at its heart, the eye. Dead calm, ringed by the strongest winds on the planet.",
-      "understand": "the showpiece — the eye — on the most dynamic storm window, fast push, lands as a reveal",
+      "narration": "Enough to erase a coastline. And at its heart, the eye — dead calm, ringed by the strongest winds on the planet.",
+      "understand": "the showpiece — a fast push into the eye, the peak",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "annotation",
       "max_unchanged": 4.0,
       "text": "the eye",
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1071.0, "push": 1.2, "direction": "in", "intent": "a fast push into the churning heart of the storm — the peak"}
+      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1071.0, "push": 1.22, "direction": "in", "intent": "a fast push into the churning heart of the storm — the peak"}
     },
     {
       "job": "PAYOFF",
-      "narration": "Warm water and air. That is all it is. And once it turns, nothing on Earth can stop it.",
-      "understand": "the thesis lands ON intensity — a fast push into the storm at full power (NOT a pull-out into calm fog); end on the peak",
+      "narration": "Warm water and air — and nothing on Earth can stop it.",
+      "understand": "the thesis lands short and hard ON a fast push into the storm; the film ENDS on that motion (no held caption card, no soft outro)",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "thesis",
-      "max_unchanged": 4.0,
+      "max_unchanged": 3.2,
       "text": "Nothing on Earth can stop it.",
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1146.0, "push": 1.2, "direction": "in", "intent": "push into the storm's spiral bands at full intensity as the thesis lands — end ON power, not fog"}
+      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1146.0, "push": 1.24, "direction": "in", "intent": "a hard, fast push into the storm's spiral bands as the thesis hits — end ON accelerating motion"}
     }
   ]
 }
