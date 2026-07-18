@@ -149,19 +149,5 @@
   "concept": "growing stalactites hang from the top, each with a label and value, as they form over time",
   "code": "\ncx = (RX0 + RX1) // 2\ncy = RTOP + 200\nfor i in range(n):\n    v = values[i]\n    vx = RX0 + (RX1 - RX0) * i / (n - 1)\n    vy = RBOT - 100\n    img = subject_image('icicle')\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        if h > 150:\n            h = 150\n            w = int(h * asp)\n        paste(img, vx - w // 2, cy + (vy - cy) * reveal - h, w, h)\n    text(labels[i], vx, cy + (vy - cy) * reveal + 20, size=30, color=TEXT, center=True)\n    text(str(int(v)) + ' years', vx, cy + (vy - cy) * reveal + 60, size=30, color=TEXT, center=True)\n    d.line([vx, RTOP, vx, cy + (vy - cy) * reveal], fill=rgba(ACCENT, 255), width=5)\n",
   "topic": "Stalactite Formation"
- },
- {
-  "sig": "4c963bce0514",
-  "mechanic": "evolution-timeline",
-  "concept": "A timeline of evolution is depicted as a ladder with each rung representing a data point, the subject images of fossils or creatures are placed on the rungs and the value is shown as a label next to the image",
-  "code": "\ncx = (RX0 + RX1) // 2\nry = RTOP + 200\nfor i in range(n):\n    v = values[i]\n    label = labels[i]\n    rung_y = ry + i * 100\n    d.line([RX0, rung_y, RX1, rung_y], fill=rgba(TEXT, 128), width=4)\n    img = subject_image(label.lower().replace(' ', '_') + ' fossil')\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h = int(w / asp)\n        paste(img, cx - w // 2, rung_y - h // 2, w, h)\n    text(label + ': ' + str(int(v)), cx + 150, rung_y - 20, size=34, center=False)\n    frac = clamp(v / vmax)\n    fill_image(img, frac, cx + 300, rung_y - 20, 20, 40, direction='right', color=ACCENT)\n    if reveal > 0.5:\n        d.line([cx, RTOP, cx, RBOT], fill=rgba(HIGHLIGHT, 255), width=8)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('EVOLUTION OVER TIME', (RX0 + RX1) // 2, RBOT - 80, size=56, color=WARN, center=True)",
-  "topic": "Biomechanics"
- },
- {
-  "sig": "8cb36c6ec35c",
-  "mechanic": "spider-lift",
-  "concept": "A spider lifts weights in a pulley system, with the weight and spider images filling up as the reveal progresses",
-  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nimg_spider = subject_image('spider')\nimg_weight = subject_image('weight')\nif img_spider is not None and img_weight is not None:\n    asp_spider = img_spider.width / img_spider.height\n    asp_weight = img_weight.width / img_weight.height\n    w_spider = 200\n    h_spider = int(w_spider / asp_spider)\n    w_weight = 150\n    h_weight = int(w_weight / asp_weight)\n    spider_x = cx - 250\n    spider_y = cy - 200\n    weight_x = cx + 100\n    weight_y = cy + 50\n    d.line([spider_x + w_spider // 2, spider_y + h_spider, weight_x + w_weight // 2, weight_y + h_weight], fill=rgba(HIGHLIGHT, 255), width=8)\n    fill_image(img_spider, reveal, spider_x, spider_y, w_spider, h_spider, direction='up', color=None)\n    fill_image(img_weight, reveal * (values[0] / vmax), weight_x, weight_y, w_weight, h_weight, direction='up', color=None)\n    text(str(int(values[0])) + ' kg', weight_x, weight_y - 20, size=36, color=TEXT, center=True)\n    text(labels[0], spider_x, spider_y - 20, size=36, color=TEXT, center=True)\n    text(str(int(values[1])) + ' kg', spider_x, spider_y + h_spider + 20, size=36, color=TEXT, center=True)\n    text(labels[1], weight_x, weight_y + h_weight + 20, size=36, color=TEXT, center=True)\n",
-  "topic": "Spider Lifting"
  }
 ]
