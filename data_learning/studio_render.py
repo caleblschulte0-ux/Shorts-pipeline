@@ -1244,20 +1244,29 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # Ordered mascot sequence: hook (up, centred), one per number (tucked
         # beside it, pointing at it, never covering a number), then closing.
         S = MASCOT_SIZE
-        home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
-        seq = [(home[0], home[1], windows[0][0], windows[0][1], UP_ANGLE, False)]
-        for e in events:
-            if e["anchor"]:
-                bcx, bcy, variant = _place_mascot(
-                    e["anchor"], st.segments[e["seg"]].anchors)
-            else:
-                bcx, bcy, variant = home[0] + S / 2, home[1] + S / 2, "U"
-            tlx = min(max(bcx - S / 2, 2), W - S - 2)
-            tly = min(max(bcy - S / 2, 2), H - S - 2)
-            seq.append((tlx, tly, e["w0"], e["w1"],
-                        UP_ANGLE if variant == "U" else SIDE_ANGLE,
-                        variant == "R"))
-        seq.append((home[0], home[1], windows[-1][0], windows[-1][1], UP_ANGLE, False))
+        import os as _osm
+        _clean = _osm.environ.get("LEGACY_LOOK") != "1"
+        if _clean:
+            # HOST mode: one big mascot planted in the lower third (fills the
+            # space the b-roll used to, gestures up at the data, never covers a
+            # number). Consistent brand presence, no jumping around.
+            home = (float((W - S) // 2), float(H - S - 250))
+            seq = [(home[0], home[1], 0.0, total, UP_ANGLE, False)]
+        else:
+            home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
+            seq = [(home[0], home[1], windows[0][0], windows[0][1], UP_ANGLE, False)]
+            for e in events:
+                if e["anchor"]:
+                    bcx, bcy, variant = _place_mascot(
+                        e["anchor"], st.segments[e["seg"]].anchors)
+                else:
+                    bcx, bcy, variant = home[0] + S / 2, home[1] + S / 2, "U"
+                tlx = min(max(bcx - S / 2, 2), W - S - 2)
+                tly = min(max(bcy - S / 2, 2), H - S - 2)
+                seq.append((tlx, tly, e["w0"], e["w1"],
+                            UP_ANGLE if variant == "U" else SIDE_ANGLE,
+                            variant == "R"))
+            seq.append((home[0], home[1], windows[-1][0], windows[-1][1], UP_ANGLE, False))
 
         # Guarantee the host is on-screen for EVERY frame. Any beat whose line
         # names no on-chart number produces no events, which left a hole in the
