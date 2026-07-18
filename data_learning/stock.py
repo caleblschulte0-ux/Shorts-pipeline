@@ -114,6 +114,69 @@ def search_archive(query: str, limit: int = 8) -> list[dict]:
     return out
 
 
+# What each source is GOOD FOR — so the director reaches for the right one and
+# declares the access it needs when the ideal source is out of reach.
+SOURCE_CAPABILITY = {
+    "nasa":    {"key": None, "good_for": "space / orbital / Earth-science"},
+    "commons": {"key": None, "good_for": "PD/CC satellite viz, gov, some user"},
+    "archive": {"key": None, "good_for": "PD/CC archival film & news"},
+    "pexels":  {"key": "PEXELS_API_KEY",
+                "good_for": "CC0 ground-level / human-scale / cinematic b-roll"},
+    "pixabay": {"key": "PIXABAY_API_KEY",
+                "good_for": "CC0 ground-level / human-scale b-roll"},
+}
+# perspective -> the sources that can actually DELIVER that shot, best-first.
+# Ground / human-scale / POV / consequence footage genuinely only exists on the
+# CC0 stock sites — free PD/CC pools carry satellite viz and advisories, not a
+# palm bent in the wind. So those perspectives list ONLY pexels/pixabay: if we
+# lack the key the system DECLARES the access need, it does not fall back to a
+# worse shot and pretend it's fine.
+PERSPECTIVE_SOURCE = {
+    "orbital": ["nasa", "commons"],
+    "satellite": ["nasa", "commons"],
+    "space": ["nasa"],
+    "ground": ["pexels", "pixabay"],
+    "human-scale": ["pexels", "pixabay"],
+    "pov": ["pexels", "pixabay"],
+    "consequence": ["pexels", "pixabay"],
+    "aerial": ["pexels", "pixabay", "nasa"],
+    "close": ["pexels", "pixabay"],
+}
+
+
+def access_report() -> dict:
+    """The system's own statement of which sources it can reach and which it
+    NEEDS credentials for — so it can declare 'I need access to X' instead of
+    silently falling back to boring footage."""
+    reachable, needs = [], []
+    for name, cap in SOURCE_CAPABILITY.items():
+        if cap["key"] is None or os.environ.get(cap["key"]):
+            reachable.append(name)
+        else:
+            needs.append({"source": name, "env": cap["key"],
+                          "good_for": cap["good_for"]})
+    return {"reachable": reachable, "needs_access": needs}
+
+
+def source_for(perspective: str) -> dict:
+    """Given a desired PERSPECTIVE (ground / orbital / ...), name the source that
+    can deliver it and whether we currently have access. If not, this is a
+    declared ACCESS NEED, not a reason to fall back to a worse shot."""
+    p = (perspective or "").lower().strip()
+    prefs = next((v for k, v in PERSPECTIVE_SOURCE.items() if k in p),
+                 ["pexels", "pixabay"])
+    rep = access_report()
+    for s in prefs:
+        if s in rep["reachable"]:
+            return {"perspective": perspective, "use": s, "have_access": True}
+    need = SOURCE_CAPABILITY[prefs[0]]
+    return {"perspective": perspective, "use": prefs[0], "have_access": False,
+            "access_needed": need["key"], "good_for": need["good_for"],
+            "reason": f"the '{perspective}' shot this beat needs lives on "
+                      f"{prefs[0]} ({need['good_for']}); free sources can't "
+                      "deliver it — grant access to source it."}
+
+
 def stock_search(query: str, limit: int = 8) -> list[dict]:
     """All sources, best-first: Pexels/Pixabay (if keyed) -> Commons -> archive."""
     out: list[dict] = []
