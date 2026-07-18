@@ -214,7 +214,7 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
             # completing at ~0.94 of the beat: an ease-OUT decelerates the bar
             # to a crawl and it reads as frozen for its final seconds; a steady
             # race that finishes just before the dissolve keeps moving to the end.
-            g = min(max(i - k * 5, 0) / (n * 0.9), 1.0)
+            g = min(max(i - k * 4, 0) / (n * 0.96), 1.0)
             full = (x1 - x0) * (float(r["value"]) / vmax)
             w = max(4.0, full * g)
             # a soft leading-edge glow so the fastest bar reads as speed

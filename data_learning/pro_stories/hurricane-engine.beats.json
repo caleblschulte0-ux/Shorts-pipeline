@@ -5,28 +5,28 @@
   "beats": [
     {
       "job": "HOOK",
-      "narration": "From orbit, it looks almost gentle. It is the most powerful engine on Earth — and it builds itself.",
-      "understand": "open on the storm with real motion and a promise (it BUILDS ITSELF) — a hook, not a static postcard",
+      "narration": "This is the most powerful engine on Earth. And it builds itself.",
+      "understand": "cold-open ON the churning storm with a fast push and a short, punchy promise — the make-or-break hook",
       "function": "experience",
       "mode": "footage",
       "text_role": "none",
       "max_unchanged": 4.0,
-      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 90.0, "push": 1.16, "direction": "in", "intent": "a hurricane spiral from the ISS, pushing in fast so the frame is alive from the first second"}
+      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1113.0, "push": 1.2, "direction": "in", "intent": "the churning spiral bands of the storm from orbit, a fast push so the very first second is alive"}
     },
     {
       "job": "INGREDIENT",
-      "narration": "It starts with warm ocean — water above twenty-six degrees, pouring heat and moisture into the sky.",
-      "understand": "the one ingredient — warm sea — landed fast",
+      "narration": "It builds from warm ocean — water above twenty-six degrees, pouring heat into the sky.",
+      "understand": "the one ingredient, warm sea, landed fast",
       "function": "evidence",
       "mode": "footage+annotation",
       "max_unchanged": 4.0,
-      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 40.0, "push": 1.15, "direction": "in", "intent": "warm tropical ocean under broken cloud"},
+      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 40.0, "push": 1.16, "direction": "in", "intent": "warm tropical ocean under broken cloud"},
       "number": {"text": "26", "sub": "°C", "label": "the ocean it needs"}
     },
     {
       "job": "MECHANISM",
       "narration": "That warm, wet air rushes upward. It cools, it rains, and every drop releases heat that pulls up even more. The storm becomes its own engine, feeding on the sea.",
-      "understand": "the self-feeding heat-engine loop, shown as a LIVING animated diagram (constant motion, non-cloud variety) instead of a held cloud plate",
+      "understand": "the self-feeding heat-engine loop as a LIVING animated diagram — constant motion, non-cloud variety",
       "function": "explanation",
       "mode": "designed_2d",
       "max_unchanged": 12.0,
@@ -34,8 +34,8 @@
     },
     {
       "job": "SETUP_COMPARISON",
-      "narration": "We rank them by their winds — from a category one, to a five past two hundred and fifty, strong enough to erase a coastline.",
-      "understand": "a brief, bold wind-scale check landing the top-of-scale number",
+      "narration": "Ranked by wind, a category five runs past two hundred and fifty — enough to erase a coastline.",
+      "understand": "a fast, bold wind-scale check landing the top-of-scale number",
       "function": "comparison",
       "mode": "designed_2d",
       "max_unchanged": 8.0,
@@ -47,24 +47,24 @@
     {
       "job": "REVEAL",
       "narration": "And at its heart, the eye. Dead calm, ringed by the strongest winds on the planet.",
-      "understand": "the showpiece — the eye — on the most dynamic storm window, pushed in fast so it lands as a reveal",
+      "understand": "the showpiece — the eye — on the most dynamic storm window, fast push, lands as a reveal",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "annotation",
       "max_unchanged": 4.0,
       "text": "the eye",
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1071.0, "push": 1.18, "direction": "in", "intent": "the churning heart of the storm from orbit, a fast push into the eye — the peak"}
+      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1071.0, "push": 1.2, "direction": "in", "intent": "a fast push into the churning heart of the storm — the peak"}
     },
     {
       "job": "PAYOFF",
-      "narration": "Warm water and air. That is all it is. And once it begins to turn, nothing on Earth can stop it.",
-      "understand": "the thesis, ESCALATING — pull OUT to reveal the full storm (open up, don't loop back to the static opening frame)",
+      "narration": "Warm water and air. That is all it is. And once it turns, nothing on Earth can stop it.",
+      "understand": "the thesis lands ON intensity — a fast push into the storm at full power (NOT a pull-out into calm fog); end on the peak",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "thesis",
-      "max_unchanged": 6.0,
+      "max_unchanged": 4.0,
       "text": "Nothing on Earth can stop it.",
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1149.0, "push": 1.2, "direction": "out", "intent": "pull back from the storm to reveal its full scale as the thesis lands — an ending that opens up, not a return to the opening"}
+      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1146.0, "push": 1.2, "direction": "in", "intent": "push into the storm's spiral bands at full intensity as the thesis lands — end ON power, not fog"}
     }
   ]
 }
