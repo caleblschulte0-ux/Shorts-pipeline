@@ -1303,8 +1303,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             print(f"[studio] hook image skipped: {e}", flush=True)
 
         # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, [hook img], charts, mascots, audio
+        _grad = (("0x0C0E13", "0x0E1118", "0x12161F", "0x0A0C11")
+                 if CLEAN else theme["grad"])       # CLEAN = flat dark editorial
         inputs = ["-f", "lavfi", "-i",
-                  ambient.gradient_lavfi(total, colors=theme["grad"])]
+                  ambient.gradient_lavfi(total, colors=_grad)]
         inputs += ["-loop", "1", "-i", str(bokeh)]
         if use_broll:
             inputs += ["-stream_loop", "-1", "-i", str(broll_path)]
@@ -1335,7 +1337,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         inputs += ["-i", str(soundtrack)]
         audio_idx = idx
 
-        fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]
+        if CLEAN:
+            # Flat dark editorial bg + a thin brand accent bar at the very top,
+            # a soft vignette to settle the eye. No orbs, no blur haze.
+            _ac = (theme.get("accent") or "#4FD1C5").lstrip("#")
+            fc = [f"[0:v]format=rgba,vignette=PI/6,"
+                  f"drawbox=x=0:y=0:w={W}:h=8:color=0x{_ac}@1.0:t=fill[bg]"]
+        else:
+            fc = ambient.bg_filter(1, fps=FPS)    # -> [bg]
         if CLEAN:
             prev = "bg"                           # no bottom footage strip
         else:
