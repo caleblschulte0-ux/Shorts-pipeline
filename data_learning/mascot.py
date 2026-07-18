@@ -21,7 +21,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 # Palette (matches the chart house style).
 BODY = (79, 209, 197, 255)        # #4FD1C5 teal
@@ -30,6 +30,7 @@ LIMB = (60, 185, 175, 255)        # arms / legs
 SKIN = BODY
 WHITE = (248, 250, 252, 255)
 DARK = (11, 16, 32, 255)          # #0B1020 pupils + hat
+OUTLINE = (13, 17, 24, 255)       # clean dark sticker outline around the char
 BLUSH = (249, 168, 212, 220)
 GOLD = (245, 158, 11, 255)        # glasses + tassel
 HORN = (124, 92, 196, 255)        # little monster horns (violet)
@@ -69,7 +70,7 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
     torso_w = int(S * 0.30)
     hip_y = torso_bot
     foot_y = int(S * 0.90) + oy
-    limb_w = max(2, int(S * 0.055))
+    limb_w = max(2, int(S * 0.082))     # thicker, rounder limbs = polished, not sticky
 
     # Legs.
     for sgn in (-1, 1):
@@ -204,7 +205,19 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
            width=max(2, S // 160))
     _circle(d, tx, by + int(head_r * 0.5), max(2, SS * 3), GOLD)
 
-    return img.resize((size, size), Image.LANCZOS)
+    img = img.resize((size, size), Image.LANCZOS)
+    # Clean vector-sticker OUTLINE: a dark silhouette, dilated behind the
+    # character — the single biggest "professional brand mascot" upgrade.
+    try:
+        alpha = img.split()[-1]
+        k = max(3, int(size * 0.028)) | 1          # odd kernel
+        dil = alpha.filter(ImageFilter.MaxFilter(k))
+        sil = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        sil.paste(Image.new("RGBA", img.size, OUTLINE), (0, 0), dil)
+        img = Image.alpha_composite(sil, img)
+    except Exception:  # noqa: BLE001
+        pass
+    return img
 
 
 def build_mascot_loop(out_path: Path, *, size: int = 360, fps: int = 30,
