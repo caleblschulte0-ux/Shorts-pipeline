@@ -77,8 +77,9 @@ def grade_visual(render: Path) -> dict:
     """0-5 visual score + gates from the render's opening ~2.5s (appeal+motion)."""
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from interest_judge import _appeal, _dhash, _ham
+    from interest_judge import _appeal
     import subprocess
+    import numpy as np
     from io import BytesIO
     from PIL import Image
 
@@ -88,22 +89,26 @@ def grade_visual(render: Path) -> dict:
              "-frames:v", "1", "-f", "image2pipe", "-vcodec", "png", "-"],
             capture_output=True)
         return Image.open(BytesIO(r.stdout)).convert("RGB")
-    ts = [0.2, 0.9, 1.6, 2.3]
-    ims = [frame(t) for t in ts]
-    aps = [_appeal(im) for im in ims]
+    # appeal over the opening ~2.5s
+    aps = [_appeal(frame(t)) for t in (0.2, 0.9, 1.6, 2.3)]
     hook_appeal = round(sum(aps) / len(aps), 3)
-    hs = [_dhash(im) for im in ims]
-    opening_motion = max(_ham(hs[i], hs[i - 1]) for i in range(1, len(hs)))
+    # MOTION via real per-pixel change (dense, first ~1.6s) — catches a slam, a
+    # pulsing glow, streaks, a push or a cut that a coarse hash misses.
+    small = [np.asarray(frame(t).resize((96, 54)).convert("L"), dtype="float32")
+             for t in (0.1, 0.4, 0.7, 1.0, 1.3, 1.6)]
+    diffs = [float(np.abs(small[i] - small[i - 1]).mean())
+             for i in range(1, len(small))]
+    opening_motion = round(max(diffs), 1)          # peak frame-to-frame change
     gates, score = [], 0
     if hook_appeal < 0.42:              # calm/bland/ambiguous open
         gates.append("CALM_OPENER")
-    if opening_motion < 6:              # first ~2s barely moves
+    if opening_motion < 4.0:            # first ~1.6s barely moves
         gates.append("STATIC_FIRST_FRAME")
-    score += 1 if opening_motion >= 6 else 0        # motion in the open
+    score += 1 if opening_motion >= 4.0 else 0      # motion in the open
     score += 1 if hook_appeal >= 0.42 else 0        # a legible, rich subject
     score += 1 if hook_appeal >= 0.60 else 0        # genuinely striking image
-    score += 1 if opening_motion >= 14 else 0       # strong camera move / cut
-    score += 1 if (hook_appeal >= 0.50 and opening_motion >= 10) else 0
+    score += 1 if opening_motion >= 9.0 else 0      # strong move / slam / cut
+    score += 1 if (hook_appeal >= 0.50 and opening_motion >= 6.0) else 0
     return {"score": min(5, score), "gates": gates,
             "hook_appeal": hook_appeal, "opening_motion": opening_motion}
 

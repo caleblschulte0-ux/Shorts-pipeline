@@ -417,6 +417,66 @@ def cosmic_zoom(out: Path, seconds: float = 7.0,
     return _render(draw, out, seconds)
 
 
+def hook_card(number: str, sub: str, out: Path, seconds: float = 3.0,
+              line: str = "") -> Path:
+    """A HIGH-IMPACT opening hook — a big number SLAMS in over a hot radial glow
+    with energy streaks. Built to score high on the hook rubric where the calm
+    dark palette can't: warm colour, bold edges, hard contrast, and real motion
+    (a scale-overshoot slam + a pulsing burst) from the very first frame. Used
+    to open on a shock stat instead of a calm cloud."""
+    import math
+    rnd = random.Random(5)
+    cx, cy = W // 2, int(H * 0.46)
+    numf = _font(ANTON, 300)
+    subf = _font(ANTON, 74)
+    linef = _font(_DEJAVU, 40)
+    streaks = [(rnd.uniform(0, 2 * math.pi), rnd.uniform(0.3, 1.0)) for _ in range(70)]
+    # radial hot-glow base (warm -> black), precomputed once
+    yy, xx = np.mgrid[0:H, 0:W].astype("float32")
+    dist = np.hypot(xx - cx, yy - cy) / (W * 0.6)
+    glowbase = np.clip(1.0 - dist, 0, 1) ** 1.6
+
+    def draw(i, n, im):
+        t = i / n
+        pulse = 0.6 + 0.4 * math.sin(i * 0.5)
+        # hot radial glow (deep red -> orange), pulsing — colour + contrast
+        g = glowbase * (0.55 + 0.45 * pulse)
+        arr = np.zeros((H, W, 3), "float32")
+        arr[..., 0] = g * 255
+        arr[..., 1] = g * g * 150
+        arr[..., 2] = g * g * 40
+        im = Image.fromarray(np.clip(arr, 0, 255).astype("uint8"), "RGB")
+        d = ImageDraw.Draw(im, "RGBA")
+        # energy streaks radiating out (edges + motion)
+        for ang, spd in streaks:
+            r0 = ((i * spd * 14) % (W * 0.6)) + 40
+            x0 = cx + math.cos(ang) * r0
+            y0 = cy + math.sin(ang) * r0
+            x1 = cx + math.cos(ang) * (r0 + 34)
+            y1 = cy + math.sin(ang) * (r0 + 34)
+            a = int(150 * (1 - r0 / (W * 0.6)))
+            d.line([x0, y0, x1, y1], fill=(255, 210, 150, max(0, a)), width=2)
+        # the number SLAMS in: scale overshoot in the first ~0.35s
+        s = min(1.0, t / 0.35)
+        scale = 1.35 - 0.35 * _ease(s) if s < 1 else 1.0 + 0.02 * math.sin(i * 0.4)
+        nf = numf.font_variant(size=max(10, int(300 * scale)))
+        im2 = _glow_text(im, (_center_x(ImageDraw.Draw(im), number, nf),
+                              cy - int(150 * scale)),
+                         number, nf, (255, 255, 255, 255),
+                         (255, 120, 40, 200), blur=16)
+        d = ImageDraw.Draw(im2, "RGBA")
+        su = _spaced(sub.upper())
+        d.text((_center_x(d, su, subf), int(H * 0.70)), su, font=subf,
+               fill=(255, 225, 190, 255))
+        if line:
+            l0 = _spaced(line.upper())
+            d.text((_center_x(d, lo := l0, linef), int(H * 0.86)), lo,
+                   font=linef, fill=(255, 235, 210, 230))
+        return im2
+
+    return _render(draw, out, seconds)
+
+
 def heat_engine(out: Path, seconds: float = 6.0,
                 stages=("WARM OCEAN", "RISING, COOLING AIR",
                         "HEAT RELEASED")) -> Path:

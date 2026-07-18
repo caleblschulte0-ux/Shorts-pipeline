@@ -273,6 +273,9 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
             out, seconds, highlight=shot.get("highlight", "THE SUN"),
             stages=tuple(shot.get("stages",
                                   ["OUR SOLAR SYSTEM", "THE MILKY WAY"])))
+    if k == "flat_hook":
+        return flat2d.hook_card(shot["text"], shot.get("sub", ""), out, seconds,
+                                line=shot.get("label", ""))
     if k == "flat_engine":
         return flat2d.heat_engine(
             out, seconds,

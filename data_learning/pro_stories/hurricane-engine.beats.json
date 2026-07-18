@@ -10,7 +10,7 @@
       "function": "evidence",
       "mode": "designed_2d",
       "max_unchanged": 4.0,
-      "flat": {"kind": "flat_number", "text": "10,000", "sub": "nuclear bombs", "label": "the energy it unleashes in a day"}
+      "flat": {"kind": "flat_hook", "text": "10,000", "sub": "nuclear bombs", "label": "unleashed every single day"}
     },
     {
       "job": "INGREDIENT",
