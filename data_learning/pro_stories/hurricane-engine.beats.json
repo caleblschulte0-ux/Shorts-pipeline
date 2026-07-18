@@ -24,7 +24,7 @@
     },
     {
       "job": "MECHANISM",
-      "narration": "That warm, wet air rushes upward. It cools, it rains, and every drop releases heat that pulls up even more. The storm becomes its own engine, feeding on the sea.",
+      "narration": "That warm, wet air rushes up. It cools, it rains, and every drop releases heat that pulls up even more — the storm becomes its own engine, feeding on the sea.",
       "understand": "the self-feeding heat-engine loop as a LIVING animated diagram — constant motion, non-cloud variety",
       "function": "explanation",
       "mode": "designed_2d",
@@ -45,14 +45,14 @@
     },
     {
       "job": "REVEAL",
-      "narration": "Enough to erase a coastline. And at its heart, the eye — dead calm, ringed by the strongest winds on the planet.",
-      "understand": "the showpiece — a fast push into the eye, the peak",
+      "narration": "At its heart, the eye — dead calm, ringed by the fastest winds on Earth.",
+      "understand": "the ONE earned orbital beauty shot: a single fast push into the calm eye. Kept SHORT so it never chunks into two near-identical grey clouds — one punchy eye, then straight to the ground-level payoff (perspective director: leave orbit after this).",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "annotation",
-      "max_unchanged": 4.0,
+      "max_unchanged": 5.5,
       "text": "the eye",
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1071.0, "push": 1.22, "direction": "in", "intent": "a fast push into the churning heart of the storm — the peak"}
+      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1071.0, "push": 1.32, "direction": "in", "intent": "a fast push into the churning heart of the storm — the peak"}
     },
     {
       "job": "PAYOFF",
