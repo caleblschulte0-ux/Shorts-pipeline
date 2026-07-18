@@ -559,6 +559,74 @@
           "self_healed": false
         }
       ]
+    },
+    {
+      "date": "20260718",
+      "dry_run": false,
+      "ts": "2026-07-18T11:55:18+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 56,
+        "with_retention": 45,
+        "with_curve": 10,
+        "fetched_at": "2026-07-18T09:57:00.564292+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260718-1",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260718-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260718-3",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260718-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260718-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Roughly half the frames (4.0s-14.8s block, 25.6s-31s+ block) are black or an out-of-focus close-up of a door/wall with n; vision: Long stretch with no person or action on screen breaks continu"
+        },
+        {
+          "slug": "clip-20260718-6",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.5s \u2014 too short to edit"
+        },
+        {
+          "slug": "clip-20260718-7",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Many frames are extreme close-up blur with no discernible subject (6.6s-10.4s, several others); vision: Multiple near-black/broken-looking frames (row with 'ON,' caption, 16.0s frame is blank "
+        },
+        {
+          "slug": "clip-20260718-8",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        }
+      ]
     }
   ]
 }
