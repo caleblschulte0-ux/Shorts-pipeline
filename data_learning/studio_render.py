@@ -814,10 +814,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Hook,,0,0,0,,"
                          f"{pop}{ch.strip()}")
 
-    # Per segment: step chip + kinetic captions.
+    # Per segment: step chip + kinetic captions. In CLEAN mode the chart draws
+    # its own title, so the studio role chip is dropped (it was overlapping it).
+    import os as _osc
+    _clean = _osc.environ.get("LEGACY_LOOK") != "1"
     for i, seg in enumerate(st.segments):
         s0, s1 = windows[1 + i]
-        if seg.role:
+        if seg.role and not _clean:
             chip = "{\\fad(150,150)} " + seg.role + " "
             lines.append(f"Dialogue: 2,{_ass_time(s0)},{_ass_time(s1)},Chip,,0,0,0,,"
                          f"{chip}")
