@@ -56,6 +56,44 @@ def openverse_images(query: str, limit: int = 12,
     return [c for c in out if c["url"]]
 
 
+def google_images(query: str, limit: int = 12, commercial: bool = True,
+                  recent: bool = False, wide: bool = True) -> list[dict]:
+    """Google Images via Apify — the operator's preferred 'just google a recent
+    hurricane' path: broadest coverage and the most RECENT news photos, filtered
+    to photo / wide / CC usage rights. Ready the instant an APIFY_TOKEN is
+    granted; without one it returns nothing and access_report() DECLARES the need
+    (it does NOT silently fall back to a worse source and pretend it's fine)."""
+    token = os.environ.get("APIFY_TOKEN")
+    if not token:
+        return []
+    import json as _json
+    import urllib.request
+    actor = os.environ.get("APIFY_GOOGLE_IMAGES_ACTOR",
+                           "solidcode~google-images-scraper")
+    payload = {"queries": [query], "maxResultsPerQuery": limit,
+               "imageType": "photo", "safeSearch": "off",
+               "aspectRatio": "wide" if wide else "any",
+               "usageRights": "creativeCommons" if commercial else "any",
+               "timePeriod": "pastYear" if recent else "anytime"}
+    url = (f"https://api.apify.com/v2/acts/{actor}/run-sync-get-dataset-items"
+           f"?token={token}")
+    req = urllib.request.Request(
+        url, data=_json.dumps(payload).encode(),
+        headers={"Content-Type": "application/json"})
+    d = _json.loads(urllib.request.urlopen(req, timeout=180).read())
+    out = []
+    for r in d if isinstance(d, list) else d.get("items", []):
+        u = r.get("imageUrl") or r.get("image") or r.get("url") or ""
+        if not u:
+            continue
+        out.append({"source": "google", "kind": "image", "url": u,
+                    "title": r.get("title") or r.get("source") or "",
+                    "license": "google/CC (verify at source)",
+                    "attribution": r.get("sourcePage") or r.get("source") or "",
+                    "w": r.get("width"), "h": r.get("height")})
+    return out
+
+
 def commons_images(query: str, limit: int = 10) -> list[dict]:
     url = ("https://commons.wikimedia.org/w/api.php?action=query&format=json"
            f"&generator=search&gsrsearch={quote(query)}%20filetype:bitmap"
@@ -85,6 +123,12 @@ def find(query: str, kind: str = "image", perspective: str = "",
     commercial = usage == "commercial"
     out: list[dict] = []
     if kind == "image":
+        # Google Images (Apify) FIRST when enabled — broadest + most recent news
+        # photos, precisely what the operator asked for; then the free CC pools.
+        try:
+            out += google_images(query, limit, commercial)
+        except Exception as e:  # noqa: BLE001
+            print(f"[media] google_images: {str(e)[:70]}")
         for fn in (openverse_images, commons_images):
             try:
                 out += (fn(query, limit, commercial)
@@ -233,12 +277,22 @@ def access_report() -> dict:
     (Apify) and Pexels/Pixabay are the premium reaches — declared, not faked."""
     have = ["openverse", "commons", "nasa"]
     needs = []
+    if os.environ.get("APIFY_TOKEN"):
+        have.append("google_images")
+    else:
+        needs.append({"source": "google_images", "env": "APIFY_TOKEN",
+                      "via": "Apify (solidcode/google-images-scraper)",
+                      "good_for": "broadest / most RECENT news photos of real "
+                      "events — the operator's preferred 'just google it' path; "
+                      "the free CC pools give small, old, and often off-point "
+                      "images (a fire truck being washed, a 2005 500px Katrina "
+                      "photo). Grant APIFY_TOKEN to unlock it.",
+                      "note": "code is wired (media.google_images); the paid-"
+                      "actor MCP call is blocked on interactive approval in the "
+                      "headless remote env — a direct APIFY_TOKEN bypasses that."})
     if not os.environ.get("PEXELS_API_KEY"):
         needs.append({"source": "pexels", "env": "PEXELS_API_KEY",
                       "good_for": "CC0 ground-level / cinematic video b-roll"})
-    if not os.environ.get("APIFY_ENABLE_GOOGLE_IMAGES"):
-        needs.append({"source": "google_images", "via": "Apify actor",
-                      "good_for": "broadest / most RECENT news photos of events"})
     return {"reachable": have, "needs_access": needs}
 
 
