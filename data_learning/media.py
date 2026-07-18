@@ -23,6 +23,12 @@ Sources (each tagged with what it delivers + what it needs):
 Everything the gateway returns still passes the downstream gates (exact-window /
 appeal / interest / continuity). A viewer never sees a clip just because it was
 on-topic; it has to be point-conveying and view-worthy.
+
+TOP OF THE PIPELINE, SHARED BY EVERY CHANNEL. This gateway is not owned by any
+one channel — curiosity, niche, and any future channel all call the SAME find()/
+best_image()/acquire(). New media sources are declared ONCE in the SOURCES
+registry below (+ a fetch fn); every channel inherits them for free. Do not add a
+way to get media inside a channel's config or render path — add it here.
 """
 from __future__ import annotations
 
@@ -35,6 +41,47 @@ from data_learning.footage_hybrid import _get
 
 # commercial-safe CC licences (default: monetised channel). 'nc' excluded.
 _COMMERCIAL = {"cc0", "pdm", "by", "by-sa"}
+
+
+# ── THE MEDIA SOURCE REGISTRY ────────────────────────────────────────────
+# The ONE top-of-pipeline declaration of every way the pipeline can get media.
+# It lives here, not inside any channel — so a new source is added ONCE, here,
+# and EVERY channel (curiosity, niche, and any future one) inherits it for free.
+# find()/best_image()/access_report() all read from this registry; to teach the
+# whole pipeline a new source, add an entry (+ its fetch fn) and nothing else.
+#   kind:        "image" | "video"
+#   env:         env var that unlocks it (None = always reachable, free/no key)
+#   commercial:  safe for a monetised channel by default
+#   good_for:    when the directors should reach for it
+SOURCES: dict[str, dict] = {
+    "google":    {"kind": "image", "env": "APIFY_TOKEN", "commercial": True,
+                  "good_for": "broadest + most RECENT news photos of real "
+                  "events — the 'just google it' path"},
+    "openverse": {"kind": "image", "env": None, "commercial": True,
+                  "good_for": "real CC/PD photos of real events (ground-level); "
+                  "the free default for a real photo of X"},
+    "commons":   {"kind": "image", "env": None, "commercial": True,
+                  "good_for": "Wikimedia PD/CC images"},
+    "nasa":      {"kind": "video", "env": None, "commercial": True,
+                  "good_for": "space / orbital / Earth-science footage"},
+    "pexels":    {"kind": "video", "env": "PEXELS_API_KEY", "commercial": True,
+                  "good_for": "CC0 ground-level / cinematic video b-roll"},
+    "pixabay":   {"kind": "video", "env": "PIXABAY_API_KEY", "commercial": True,
+                  "good_for": "CC0 ground-level / human-scale video b-roll"},
+}
+
+
+def sources(kind: str | None = None, reachable_only: bool = False) -> list[str]:
+    """The registered media sources (optionally filtered by kind / reachability).
+    Every channel calls the same gateway, so this list is the same everywhere."""
+    out = []
+    for name, s in SOURCES.items():
+        if kind and s["kind"] != kind:
+            continue
+        if reachable_only and s["env"] and not os.environ.get(s["env"]):
+            continue
+        out.append(name)
+    return out
 
 
 # ---- IMAGE sources -------------------------------------------------------
@@ -275,24 +322,13 @@ def best_image(query: str, dest: Path, perspective: str = "",
 def access_report() -> dict:
     """What the gateway can reach now, and what it needs granted. Google Images
     (Apify) and Pexels/Pixabay are the premium reaches — declared, not faked."""
-    have = ["openverse", "commons", "nasa"]
-    needs = []
-    if os.environ.get("APIFY_TOKEN"):
-        have.append("google_images")
-    else:
-        needs.append({"source": "google_images", "env": "APIFY_TOKEN",
-                      "via": "Apify (solidcode/google-images-scraper)",
-                      "good_for": "broadest / most RECENT news photos of real "
-                      "events — the operator's preferred 'just google it' path; "
-                      "the free CC pools give small, old, and often off-point "
-                      "images (a fire truck being washed, a 2005 500px Katrina "
-                      "photo). Grant APIFY_TOKEN to unlock it.",
-                      "note": "code is wired (media.google_images); the paid-"
-                      "actor MCP call is blocked on interactive approval in the "
-                      "headless remote env — a direct APIFY_TOKEN bypasses that."})
-    if not os.environ.get("PEXELS_API_KEY"):
-        needs.append({"source": "pexels", "env": "PEXELS_API_KEY",
-                      "good_for": "CC0 ground-level / cinematic video b-roll"})
+    have, needs = [], []
+    for name, s in SOURCES.items():
+        if s["env"] is None or os.environ.get(s["env"]):
+            have.append(name)
+        else:
+            needs.append({"source": name, "env": s["env"], "kind": s["kind"],
+                          "good_for": s["good_for"]})
     return {"reachable": have, "needs_access": needs}
 
 
