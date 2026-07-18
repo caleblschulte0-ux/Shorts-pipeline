@@ -48,6 +48,8 @@ SAMPLE = 1.0          # seconds between sampled frames
 NOVELTY_LAG = 2       # compare each frame to the one ~NOVELTY_LAG*SAMPLE ago
 DEAD = 12             # dHash distance below which two frames are "the same look"
 BORING_RUN = 5.0      # seconds of sustained low novelty = a boring stretch
+BLAND = 0.34          # subject-appeal below this = dull to look at (grey cloud)
+HOOK_MIN = 0.42       # the opening ~3s must clear this appeal or it's a weak hook
 
 
 def _dur(p: Path) -> float:
@@ -68,6 +70,34 @@ def _dhash(img, size: int = 8) -> int:
     return bits
 
 
+def _appeal(img) -> float:
+    """SUBJECT APPEAL 0..1 — is this frame visually COMPELLING to look at, or
+    bland wallpaper? Novelty measures whether the picture CHANGES; appeal
+    measures whether it's worth looking at in the first place. A grey cloud / fog
+    / haze / flat gradient is bland even while it drifts (low colour, low edge
+    structure, low contrast). A striking image — a vivid scene, a bold graphic,
+    a high-contrast anomaly — is rich in all three. This is what catches
+    'relevant but boring' footage (clouds) that pure novelty misses."""
+    import numpy as np
+    a = np.asarray(img.convert("RGB").resize((160, 90)), dtype="float32")
+    R, G, B = a[..., 0], a[..., 1], a[..., 2]
+    # colourfulness (Hasler-Susstrunk): grey clouds ~ 0, a vivid scene is high
+    rg, yb = R - G, 0.5 * (R + G) - B
+    colour = float(np.hypot(rg.std(), yb.std())
+                   + 0.3 * np.hypot(rg.mean(), yb.mean()))
+    g = a.mean(2)
+    # edge/structure density (Laplacian): flat cloud ~ low, detailed scene high
+    lap = np.abs(4 * g[1:-1, 1:-1] - g[:-2, 1:-1] - g[2:, 1:-1]
+                 - g[1:-1, :-2] - g[1:-1, 2:])
+    edge = float((lap > 18).mean())
+    contrast = float(g.std())
+    # normalise each to ~0..1 against "interesting" thresholds and combine
+    c = min(1.0, colour / 45.0)
+    e = min(1.0, edge / 0.16)
+    k = min(1.0, contrast / 55.0)
+    return round(0.45 * c + 0.35 * e + 0.20 * k, 3)
+
+
 def _ham(a: int, b: int) -> int:
     return bin(a ^ b).count("1")
 
@@ -79,7 +109,7 @@ def build_package(render: Path, out: Path) -> dict:
     out.mkdir(parents=True, exist_ok=True)
     dur = _dur(render)
     times = [t for t in _frange(0.4, dur - 0.2, SAMPLE)]
-    frames, hashes = [], []
+    frames, hashes, appeal = [], [], []
     for t in times:
         r = subprocess.run(
             ["ffmpeg", "-v", "error", "-ss", f"{t:.2f}", "-i", str(render),
@@ -88,6 +118,7 @@ def build_package(render: Path, out: Path) -> dict:
         im = Image.open(BytesIO(r.stdout)).convert("RGB")
         frames.append(im)
         hashes.append(_dhash(im))
+        appeal.append(_appeal(im))
 
     # NOVELTY: how much the picture changed vs ~2s ago (content change, not motion)
     novelty = []
@@ -114,6 +145,22 @@ def build_package(render: Path, out: Path) -> dict:
             reps.append(h)
     variety = len(reps)
 
+    # BLAND (boring-subject) STRETCHES: runs where the subject appeal stays low
+    # — footage that is dull to look at (grey cloud/haze/flat), however much it
+    # drifts. This is the 'clouds are boring even if relevant' check.
+    bland, bstart = [], None
+    for i, ap in enumerate(appeal):
+        low = ap < BLAND
+        if low and bstart is None:
+            bstart = times[i]
+        if (not low or i == len(appeal) - 1) and bstart is not None:
+            end = times[i]
+            if end - bstart >= BORING_RUN:
+                bland.append([round(bstart, 1), round(end, 1)])
+            bstart = None
+    # the HOOK: appeal of the opening ~3s — the frames that decide the scroll
+    hook_ap = round(sum(appeal[:3]) / max(1, len(appeal[:3])), 3)
+
     # render the dense filmstrip (frames left->right, top->bottom) with the
     # per-frame novelty printed, so the judge sees where the picture goes flat.
     try:
@@ -123,13 +170,16 @@ def build_package(render: Path, out: Path) -> dict:
         font = ImageFont.load_default()
     fw, cols = 300, 6
     thumbs = []
-    for t, im, nv in zip(times, frames, novelty):
+    for t, im, nv, ap in zip(times, frames, novelty, appeal):
         th = im.resize((fw, int(fw * im.height / im.width)))
         d = ImageDraw.Draw(th)
         d.rectangle([0, 0, fw, 22], fill=(8, 8, 14))
-        # novelty flagged red when the picture is barely changing
-        col = (255, 90, 90) if nv < DEAD else (150, 235, 150)
-        d.text((4, 3), f"{t:4.1f}s  new:{nv}", font=font, fill=col)
+        # novelty red when the picture is barely changing; appeal red when the
+        # subject is dull to look at (bland wallpaper) even if it moves.
+        ncol = (255, 90, 90) if nv < DEAD else (150, 235, 150)
+        acol = (255, 90, 90) if ap < BLAND else (150, 235, 150)
+        d.text((4, 3), f"{t:4.1f}s new:{nv}", font=font, fill=ncol)
+        d.text((int(fw * 0.62), 3), f"look:{ap:.2f}", font=font, fill=acol)
         thumbs.append(th)
     rowh = thumbs[0].height
     rows = (len(thumbs) + cols - 1) // cols
@@ -139,6 +189,7 @@ def build_package(render: Path, out: Path) -> dict:
     sheet.save(out / "interest_strip.png")
 
     dead_secs = sum(b[1] - b[0] for b in boring)
+    bland_secs = sum(b[1] - b[0] for b in bland)
     report = {
         "duration": round(dur, 1),
         "variety_scenes": variety,
@@ -146,6 +197,13 @@ def build_package(render: Path, out: Path) -> dict:
         "boring_stretches": boring,
         "dead_seconds": round(dead_secs, 1),
         "dead_fraction": round(dead_secs / max(1.0, dur), 2),
+        # SUBJECT APPEAL — is it worth looking at, not just moving
+        "mean_appeal": round(sum(appeal) / max(1, len(appeal)), 3),
+        "hook_appeal": hook_ap,
+        "hook_weak": hook_ap < HOOK_MIN,
+        "bland_stretches": bland,
+        "bland_seconds": round(bland_secs, 1),
+        "bland_fraction": round(bland_secs / max(1.0, dur), 2),
     }
     (out / "interest.json").write_text(json.dumps(report, indent=2))
     print(f"interest package -> {out}")
