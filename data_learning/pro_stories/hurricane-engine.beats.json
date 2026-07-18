@@ -57,13 +57,18 @@
     {
       "job": "PAYOFF",
       "narration": "Warm water and air — and nothing on Earth can stop it.",
-      "understand": "the thesis lands short and hard ON a fast push into the storm; the film ENDS on that motion (no held caption card, no soft outro)",
+      "understand": "PERSPECTIVE DIRECTOR: leave orbit for the payoff. The whole film has watched from space; the thesis lands hardest at HUMAN SCALE — a real street drowned by the surge, the way people actually live it. End on a hard Ken Burns push into the floodwater (motion, not a held card).",
       "function": "experience",
-      "mode": "footage+annotation",
+      "mode": "image",
       "text_role": "thesis",
-      "max_unchanged": 3.2,
+      "max_unchanged": 3.4,
       "text": "Nothing on Earth can stop it.",
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1146.0, "push": 1.24, "direction": "in", "intent": "a hard, fast push into the storm's spiral bands as the thesis hits — end ON accelerating motion"}
+      "image": {"url": "https://live.staticflickr.com/44/110282454_170ad44c29_b.jpg",
+        "query": "hurricane storm surge flooded street", "must_match": ["hurricane", "katrina", "sandy", "harvey", "ike", "surge"],
+        "perspective": "ground consequence", "source": "openverse / Flickr",
+        "license": "CC BY 2.0", "attribution": "\"HURRICANE KATRINA\" by au_tiger01, CC BY 2.0 (creativecommons.org/licenses/by/2.0/)",
+        "title": "Hurricane Katrina — a street drowned by storm surge",
+        "push": 1.2, "direction": "in", "pan": "auto"}
     }
   ]
 }

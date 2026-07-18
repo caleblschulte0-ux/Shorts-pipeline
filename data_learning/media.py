@@ -123,6 +123,111 @@ def acquire(candidate: dict, dest: Path) -> Path:
     return dest
 
 
+_RASTER = (".jpg", ".jpeg", ".png", ".webp")
+
+# When a beat asks for a GROUND / human-scale photo, an orbital/satellite image
+# is not just off-perspective — it is the exact boring 'cloud from the sky' the
+# perspective director exists to reject. Drop those titles outright.
+_ORBITAL_TELLS = ("satellite", "modis", "goes-", "viirs", "landsat", "sentinel",
+                  "from space", "from orbit", "orbital", "aerial view",
+                  "seen from", "iss", "space station", "nasa earth")
+_GROUND_PERSP = ("ground", "human", "street", "pov", "consequence", "close",
+                 "surge", "landfall", "damage", "aftermath")
+_STOP = {"the", "a", "an", "of", "and", "in", "on", "at", "from", "to", "with",
+         "over", "into", "storm", "view", "photo", "image"}
+
+
+def _tokens(s: str) -> set[str]:
+    return {w for w in "".join(c if c.isalnum() else " "
+                              for c in s.lower()).split()
+            if len(w) > 3 and w not in _STOP}
+
+
+def _relevance(title: str, query: str) -> float:
+    """Fraction of the query's content words that appear (prefix-matched) in the
+    title — so an off-topic high-appeal image (a scenic river flood under a
+    hurricane query) ranks below a real, on-topic one."""
+    qt, tt = _tokens(query), _tokens(title)
+    if not qt:
+        return 0.0
+    hit = sum(1 for q in qt if any(t.startswith(q[:4]) or q.startswith(t[:4])
+                                   for t in tt))
+    return hit / len(qt)
+
+
+def best_image(query: str, dest: Path, perspective: str = "",
+               min_appeal: float = 0.42, tries: int = 6,
+               usage: str = "commercial",
+               must_match: list[str] | None = None) -> dict | None:
+    """Search the gateway for a real photo, download candidates, and return the
+    highest-APPEAL one (Hasler-Süsstrunk colour + edge + contrast) — so a beat
+    gets a view-worthy image, never merely an on-topic one. Downloads to `dest`.
+    Returns {path, source, license, attribution, title, appeal} or None if no
+    candidate clears `min_appeal`. Records attribution for CC credit."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+    from interest_judge import _appeal
+    from PIL import Image
+    want_ground = any(g in perspective.lower() for g in _GROUND_PERSP)
+    cands = [c for c in find(query, kind="image", perspective=perspective,
+                             usage=usage, limit=max(tries * 3, 18))
+             if c["url"].lower().split("?")[0].endswith(_RASTER)]
+    # PERSPECTIVE gate: for a ground beat, drop orbital/satellite titles — they
+    # are the 'boring cloud from the sky' the perspective director rejects.
+    if want_ground:
+        cands = [c for c in cands
+                 if not any(t in (c.get("title") or "").lower()
+                            for t in _ORBITAL_TELLS)] or cands
+    # TOPICAL ANCHOR gate: a candidate must name the actual subject (or a known
+    # instance of it) — otherwise a scenic, high-appeal but OFF-TOPIC image (a
+    # river flood under a hurricane query) wins on looks alone. If nothing is
+    # anchored, we return None and let the gateway DECLARE the access need rather
+    # than ship a pretty lie.
+    if must_match:
+        ml = [m.lower() for m in must_match]
+        anchored = [c for c in cands
+                    if any(m in (c.get("title") or "").lower() for m in ml)]
+        if not anchored:
+            print(f"[media] no on-topic photo for {query!r} in the free pool "
+                  f"(anchors {must_match}) — declaring the access need")
+            return None
+        cands = anchored
+    # RELEVANCE-first ordering: probe the most on-topic candidates first, so a
+    # thin free pool doesn't spend its budget on scenic-but-off-topic images.
+    cands.sort(key=lambda c: _relevance(c.get("title", ""), query), reverse=True)
+    best, best_score = None, 0.0
+    tmp = dest.with_suffix(".probe.tmp")
+    for c in cands[:tries]:
+        rel = _relevance(c.get("title", ""), query)
+        try:
+            acquire(c, tmp)
+            ap = _appeal(Image.open(tmp).convert("RGB"))
+        except Exception as e:  # noqa: BLE001
+            print(f"[media] probe {c['source']}: {str(e)[:60]}")
+            continue
+        if ap < min_appeal:
+            tmp.unlink(missing_ok=True)
+            continue
+        # a view-worthy AND on-topic photo: appeal weighted, relevance as a
+        # strong multiplier so an on-topic 0.5 beats an off-topic 0.75.
+        score = ap * (0.55 + 0.45 * min(1.0, rel * 1.5))
+        if score >= best_score:
+            best = dict(c, appeal=round(ap, 3), relevance=round(rel, 2))
+            best_score = score
+            tmp.replace(dest)
+        else:
+            tmp.unlink(missing_ok=True)
+    if best is None:
+        return None
+    if not dest.exists():                      # winner wasn't the last probed
+        acquire(best, dest)
+    best["path"] = str(dest)
+    print(f"[media] best_image {query!r}: {best['source']} appeal="
+          f"{best['appeal']} rel={best['relevance']} "
+          f"{best.get('title', '')[:40]!r}")
+    return best
+
+
 def access_report() -> dict:
     """What the gateway can reach now, and what it needs granted. Google Images
     (Apify) and Pexels/Pixabay are the premium reaches — declared, not faked."""

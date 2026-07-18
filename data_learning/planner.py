@@ -102,13 +102,29 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                               "line": line})
             continue
 
-        # ---- text beat: thesis / annotation OVER footage, never on black ----
+        img = b.get("image")
+
+        # ---- text beat: thesis / annotation OVER footage or a real PHOTO,
+        # never on black ----
         if b.get("text"):
             role = b.get("text_role", "thesis")
             if b.get("flat"):
                 emit({"kind": "composite", "base": b["flat"],
                               "text": b["text"], "text_role": role,
                               "seconds": secs, "line": line})
+            elif img:
+                # a ground-truth / human-scale PHOTO carries the point footage
+                # can't (the perspective director's consequence shot). The line
+                # lands ON the photo; a long beat keeps the Ken Burns move alive.
+                if secs > maxu and not is_last:
+                    emit({"kind": "image_text", **_img(img),
+                                  "text": b["text"], "text_role": role,
+                                  "seconds": maxu, "line": line})
+                    emit(_img_dev(img, secs - maxu))
+                else:
+                    emit({"kind": "image_text", **_img(img),
+                                  "text": b["text"], "text_role": role,
+                                  "seconds": secs, "line": line})
             elif foot:
                 if secs > maxu and not is_last:
                     emit({"kind": "footage_text", **_foot(foot),
@@ -126,6 +142,16 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                 # honest fallback (declared, not a media-search miss)
                 emit({"kind": "flat_statement", "statement": b["text"],
                               "seconds": secs, "line": line})
+            continue
+
+        # ---- plain image beat: a real PHOTO as the beat, Ken-Burns'd. A long
+        # image beat splits into several moves (each a different pan/push) so a
+        # still never freezes into a slideshow.
+        if img:
+            for k, sh in enumerate(_chunk_image(img, secs, maxu)):
+                if k == 0 and line:
+                    sh["line"] = line
+                emit(sh)
             continue
 
         # ---- plain footage beat: CHUNK a long beat into several short shots,
@@ -172,6 +198,58 @@ def _chunk_footage(foot: dict, secs: float, maxu: float,
             ("out" if base_dir != "out" else "in")
         sh = {"kind": "footage", **_foot(f), "seconds": each,
               "intent": foot.get("intent")}
+        if k:
+            sh["phase"] = "development"
+        shots.append(sh)
+    return shots
+
+
+def _img(image: dict) -> dict:
+    """The image-source fields a shot needs, from a beat's image block. Either a
+    pinned ``url`` (+ optional credit) or a ``query`` the gateway resolves to the
+    highest-appeal commercial photo, plus Ken-Burns controls."""
+    out: dict = {}
+    if image.get("url"):
+        out["image_url"] = image["url"]
+        for k in ("source", "license", "attribution", "title"):
+            if image.get(k) is not None:
+                out["image_" + k] = image[k]
+    if image.get("query"):
+        out["image_query"] = image["query"]
+    for k in ("perspective", "push", "direction", "pan", "min_appeal",
+              "must_match"):
+        if image.get(k) is not None:
+            out[k] = image[k]
+    return out
+
+
+def _img_dev(image: dict, seconds: float) -> dict:
+    """A silent image DEVELOPMENT phase: same photo, pan/push flipped so the
+    second half of a long image beat reframes instead of holding."""
+    d = _img(image)
+    d["direction"] = "out" if image.get("direction") != "out" else "in"
+    d["pan"] = "left" if image.get("pan") != "left" else "right"
+    return {"kind": "image", **d, "seconds": max(1.6, seconds),
+            "phase": "development"}
+
+
+def _chunk_image(image: dict, secs: float, maxu: float) -> list[dict]:
+    """Split a long image beat into ceil(secs/maxu) Ken-Burns moves, each with a
+    different pan/push, so the framing keeps changing. A short beat stays one."""
+    import math
+    n = max(1, math.ceil(secs / maxu)) if secs > maxu + 0.4 else 1
+    if n == 1:
+        return [{"kind": "image", **_img(image), "seconds": secs}]
+    each = secs / n
+    base_dir = image.get("direction", "in")
+    pans = ["auto", "right", "left", "up", "down"]
+    shots = []
+    for k in range(n):
+        im = dict(image)
+        im["direction"] = base_dir if k % 2 == 0 else \
+            ("out" if base_dir != "out" else "in")
+        im["pan"] = pans[k % len(pans)]
+        sh = {"kind": "image", **_img(im), "seconds": each}
         if k:
             sh["phase"] = "development"
         shots.append(sh)

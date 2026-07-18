@@ -371,6 +371,57 @@ def full_frame_beat(src: Path, ss: float, dur: float, out: Path,
     return out
 
 
+def image_beat(src: Path, dur: float, out: Path,
+               push: float = 1.14, direction: str = "in",
+               pan: str = "auto") -> Path:
+    """A STILL is the beat — Ken Burns. A real event photo (a flooded street, a
+    bent palm) carries the point footage can't reach, but a frozen photo is the
+    canonical PASTED_MEDIA / boring tell. So a still gets MORE motion than
+    footage: a zoom push PLUS a slow pan across the frame, so the framing is
+    always changing and it reads as a live camera move, not a slideshow.
+
+    `push` total zoom (floored at PUSH_RATE/s, capped at PUSH_CAP), `direction`
+    in/out, `pan` one of left/right/up/down/auto (auto derives a gentle diagonal
+    drift from the shot index parity via the direction)."""
+    push = min(PUSH_CAP, max(push, 1.0 + PUSH_RATE * dur))
+    frames = max(2, int(round(dur * FPS)))
+    step = (push - 1.0) / frames
+    if direction == "in":
+        z = f"min(1.0+{step:.7f}*on,{push:.4f})"
+    else:
+        z = f"max({push:.4f}-{step:.7f}*on,1.0)"
+    # pan: drift the crop centre a fraction of the slack (iw-iw/zoom) across the
+    # shot. A diagonal drift gives the most life; keep it inside frame bounds.
+    cx = "iw/2-(iw/zoom/2)"
+    cy = "ih/2-(ih/zoom/2)"
+    amp = f"(iw-iw/zoom)*0.5"      # available horizontal slack at current zoom
+    ay = f"(ih-ih/zoom)*0.5"
+    prog = f"(on/{frames})"
+    if pan in ("left", "auto"):
+        x = f"{cx}+{amp}*(1-2*{prog})*0.6"
+    elif pan == "right":
+        x = f"{cx}-{amp}*(1-2*{prog})*0.6"
+    else:
+        x = cx
+    if pan in ("up", "auto"):
+        y = f"{cy}+{ay}*(1-2*{prog})*0.5"
+    elif pan == "down":
+        y = f"{cy}-{ay}*(1-2*{prog})*0.5"
+    else:
+        y = cy
+    # upscale so sub-pixel zoom/pan doesn't jitter, fill 16:9, then zoompan.
+    vf = (f"scale={W * 2}:{H * 2}:force_original_aspect_ratio=increase,"
+          f"crop={W * 2}:{H * 2},setsar=1,"
+          f"zoompan=z='{z}':x='{x}':y='{y}':"
+          f"d={frames}:s={W}x{H}:fps={FPS},format=yuv420p")
+    subprocess.run(
+        ["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-i", str(src),
+         "-t", f"{dur:.3f}", "-vf", vf, "-an", "-r", str(FPS),
+         "-c:v", "libx264", "-preset", "medium", "-crf", "18", str(out)],
+        check=True)
+    return out
+
+
 def dissolve_join(clips: list[Path], out: Path,
                   xfade: float = 0.7) -> Path:
     """Rule 3: motion-matched dissolve between beats — never a hard cut from

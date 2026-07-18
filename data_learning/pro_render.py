@@ -50,6 +50,12 @@ MIN_SHOT = 2.8
 VOICE = "en-US-GuyNeural"
 
 
+# Attribution ledger — CC BY / BY-SA imagery pulled through the media gateway
+# needs credit. Every image shot appends its source here; build() writes it to
+# the package as credits.json / CREDITS.txt so the operator can attribute.
+_ATTRIB: list[dict] = []
+
+
 def _run(cmd):
     subprocess.run(cmd, check=True)
 
@@ -190,6 +196,65 @@ def _footage_text_shot(shot, seconds, out, work, idx):
     return _overlay_text(base, shot, out)
 
 
+def _image_source(shot: dict, work: Path, idx: int) -> dict:
+    """Resolve an image shot to a real photo on disk via the MEDIA GATEWAY.
+    A shot may pin a direct ``image_url`` (+ optional attribution) or declare an
+    ``image_query`` (+ perspective) and let the gateway pick the highest-appeal
+    commercial-licensed photo. The chosen image's attribution is recorded for
+    the CC credits sidecar."""
+    from data_learning import media
+    safe = "".join(c if c.isalnum() else "_"
+                   for c in str(shot.get("image_query", idx)))[:50]
+    dest = work / f"img_{idx}_{safe}.jpg"
+    if shot.get("image_url"):
+        cand = {"source": shot.get("image_source", "pinned"),
+                "url": shot["image_url"], "kind": "image",
+                "license": shot.get("image_license", ""),
+                "attribution": shot.get("image_attribution", ""),
+                "title": shot.get("image_title", "")}
+        try:
+            if not dest.exists():
+                media.acquire(cand, dest)
+            cand["path"] = str(dest)
+            return cand
+        except Exception as e:  # noqa: BLE001 — a rotted hotlink falls back to
+            print(f"[pro] pinned image failed ({str(e)[:60]}); "  # a live search
+                  "falling back to the media gateway", file=sys.stderr)
+            if not shot.get("image_query"):
+                raise
+    picked = media.best_image(
+        str(shot["image_query"]), dest,
+        perspective=shot.get("perspective", ""),
+        min_appeal=float(shot.get("min_appeal", 0.42)),
+        must_match=shot.get("must_match"))
+    if picked is None:
+        raise RuntimeError(
+            f"media gateway found no view-worthy photo for "
+            f"{shot.get('image_query')!r} (appeal floor "
+            f"{shot.get('min_appeal', 0.42)}) — perspective "
+            f"{shot.get('perspective', '')!r}")
+    return picked
+
+
+def _image_shot(shot, seconds, out, work, idx):
+    src = _image_source(shot, work, idx)
+    _ATTRIB.append({"idx": idx, "source": src.get("source"),
+                    "license": src.get("license"),
+                    "attribution": src.get("attribution"),
+                    "title": src.get("title")})
+    fh.image_beat(Path(src["path"]), seconds, out,
+                  push=float(shot.get("push", 1.14)),
+                  direction=shot.get("direction", "in"),
+                  pan=shot.get("pan", "auto"))
+    return out
+
+
+def _image_text_shot(shot, seconds, out, work, idx):
+    base = work / f"imt_base_{idx}.mp4"
+    _image_shot(shot, seconds, base, work, idx)
+    return _overlay_text(base, shot, out)
+
+
 def _composite_shot(shot, seconds, out, work, idx):
     """Render the beat's designed-2D base (e.g. the galaxy pull-back), then
     overlay a number or text on it — for beats whose subject cannot be filmed
@@ -250,6 +315,10 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         return _footage_number_shot(shot, seconds, out, work, idx)
     if k == "footage_text":
         return _footage_text_shot(shot, seconds, out, work, idx)
+    if k == "image":
+        return _image_shot(shot, seconds, out, work, idx)
+    if k == "image_text":
+        return _image_text_shot(shot, seconds, out, work, idx)
     if k == "composite":
         return _composite_shot(shot, seconds, out, work, idx)
     if k == "flat_number":
@@ -290,6 +359,7 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
 # --- assembly -------------------------------------------------------------
 def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
     work.mkdir(parents=True, exist_ok=True)
+    _ATTRIB.clear()
     planned = "beats" in story
     if planned:
         # BEAT INTENT PLANNER: synth each beat's narration, then expand the
@@ -407,7 +477,27 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
                               out.with_name(out.stem + "_pkg"))
         except Exception as e:  # noqa: BLE001
             print(f"[pro] continuity check skipped ({e})", file=sys.stderr)
+    # 10) CC ATTRIBUTION — credit every image the gateway pulled (BY/BY-SA
+    # require it). Written to the package next to the render.
+    if _ATTRIB:
+        try:
+            _emit_credits(out.with_name(out.stem + "_pkg"))
+        except Exception as e:  # noqa: BLE001
+            print(f"[pro] credits emission skipped ({e})", file=sys.stderr)
     return out
+
+
+def _emit_credits(pkg: Path):
+    pkg.mkdir(parents=True, exist_ok=True)
+    (pkg / "credits.json").write_text(json.dumps(_ATTRIB, indent=2))
+    lines = ["IMAGE CREDITS (Creative Commons — attribution required for "
+             "BY / BY-SA)", ""]
+    for a in _ATTRIB:
+        cred = a.get("attribution") or a.get("title") or "(unknown)"
+        lines.append(f"- {cred}  [{a.get('source', '')} / "
+                     f"{a.get('license', '')}]")
+    (pkg / "CREDITS.txt").write_text("\n".join(lines) + "\n")
+    print(f"[pro] credits -> {pkg / 'CREDITS.txt'} ({len(_ATTRIB)} images)")
 
 
 def _check_continuity(story, shots, clips, pkg):
