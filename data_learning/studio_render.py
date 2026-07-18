@@ -1273,12 +1273,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             filled.append((home[0], home[1], cursor, total, UP_ANGLE, False))
         seq = filled
 
+        import os as _os2
+        # REHAUL (clean, professional look): no cartoon mascot, no glowing b-roll
+        # strip — the two biggest "AI slop" signals. Set LEGACY_LOOK=1 to revert.
+        CLEAN = _os2.environ.get("LEGACY_LOOK") != "1"
         mascot_movs = []
-        for k, (_x, _y, _w0, _w1, angle, flip) in enumerate(seq):
-            mv = work / f"masc_{k}.mov"
-            mascot.build_mascot_loop(mv, size=S, seconds=2.2,
-                                     point_angle=float(angle), flip=flip)
-            mascot_movs.append(mv)
+        if not CLEAN:
+            for k, (_x, _y, _w0, _w1, angle, flip) in enumerate(seq):
+                mv = work / f"masc_{k}.mov"
+                mascot.build_mascot_loop(mv, size=S, seconds=2.2,
+                                         point_angle=float(angle), flip=flip)
+                mascot_movs.append(mv)
 
         # Bottom footage: round-robin through the per-style b-roll clips so
         # each video gets a different vibe and never obviously repeats (falls
@@ -1331,20 +1336,23 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         audio_idx = idx
 
         fc = ambient.bg_filter(1, fps=FPS)        # -> [bg]
-        # Footage strip in the bottom (feathered into the ambient).
-        if use_broll:
-            fc.append(
-                f"[{foot_idx}:v]trim=start={off:.2f},setpts=PTS-STARTPTS,"
-                f"scale={W}:{FOOT_H}:force_original_aspect_ratio=increase,"
-                f"crop={W}:{FOOT_H},eq=saturation=0.96:brightness=-0.04,"
-                f"format=rgba[ftex]")
+        if CLEAN:
+            prev = "bg"                           # no bottom footage strip
         else:
-            fc.append(f"[{foot_idx}:v]scale={W}:{FOOT_H},"
-                      f"eq=saturation=0.4:brightness=-0.06,format=rgba[ftex]")
-        fc.append(f"[{mask_idx}:v]format=gray,scale={W}:{FOOT_H}[fmask]")
-        fc.append("[ftex][fmask]alphamerge[foot]")
-        fc.append(f"[bg][foot]overlay=0:{FOOT_Y}[bg2]")
-        prev = "bg2"
+            # Footage strip in the bottom (feathered into the ambient).
+            if use_broll:
+                fc.append(
+                    f"[{foot_idx}:v]trim=start={off:.2f},setpts=PTS-STARTPTS,"
+                    f"scale={W}:{FOOT_H}:force_original_aspect_ratio=increase,"
+                    f"crop={W}:{FOOT_H},eq=saturation=0.96:brightness=-0.04,"
+                    f"format=rgba[ftex]")
+            else:
+                fc.append(f"[{foot_idx}:v]scale={W}:{FOOT_H},"
+                          f"eq=saturation=0.4:brightness=-0.06,format=rgba[ftex]")
+            fc.append(f"[{mask_idx}:v]format=gray,scale={W}:{FOOT_H}[fmask]")
+            fc.append("[ftex][fmask]alphamerge[foot]")
+            fc.append(f"[bg][foot]overlay=0:{FOOT_Y}[bg2]")
+            prev = "bg2"
         # Image-led hook: full-frame subject photo during the hook window only,
         # darkened so the white hero number/claim stay legible, fading out as the
         # first chart arrives. The hero number + claim are ASS, drawn last on top.
@@ -1395,17 +1403,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
         # Mascots — each slides in from the previous spot (feels like it walks).
-        prev_tl = home
-        for k, (tlx, tly, w0, w1, _a, _f) in enumerate(seq):
-            gi = masc_input[k]
-            # Calmer: a slower glide (0.55s) and a gentle bob, not a frantic one.
-            xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.55, tlx)], 1)
-            ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.55, tly)], 1)})+3*sin(1.3*t)"
-            fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
-            fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
-                      f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
-            prev = f"mb{k}"
-            prev_tl = (tlx, tly)
+        if not CLEAN:
+            prev_tl = home
+            for k, (tlx, tly, w0, w1, _a, _f) in enumerate(seq):
+                gi = masc_input[k]
+                # Calmer: a slower glide (0.55s) and a gentle bob.
+                xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.55, tlx)], 1)
+                ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.55, tly)], 1)})+3*sin(1.3*t)"
+                fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
+                fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
+                          f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
+                prev = f"mb{k}"
+                prev_tl = (tlx, tly)
         fc.append(f"[{prev}]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
