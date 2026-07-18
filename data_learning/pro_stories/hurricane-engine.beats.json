@@ -5,18 +5,17 @@
   "beats": [
     {
       "job": "HOOK",
-      "narration": "This is the most powerful engine on Earth. And it builds itself.",
-      "understand": "cold-open ON the churning storm with a fast push and a short, punchy promise — the make-or-break hook",
-      "function": "experience",
-      "mode": "footage",
-      "text_role": "none",
+      "narration": "In a single day, one hurricane unleashes more energy than ten thousand nuclear bombs.",
+      "understand": "HOOK DIRECTOR: open on a high-appeal designed number-slam (bold number + shock + on-screen text), NOT a calm cloud — the shock stat is the scroll-stopper. Cut to the storm right after.",
+      "function": "evidence",
+      "mode": "designed_2d",
       "max_unchanged": 4.0,
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1113.0, "push": 1.2, "direction": "in", "intent": "the churning spiral bands of the storm from orbit, a fast push so the very first second is alive"}
+      "flat": {"kind": "flat_number", "text": "10,000", "sub": "nuclear bombs", "label": "the energy it unleashes in a day"}
     },
     {
       "job": "INGREDIENT",
-      "narration": "It builds from warm ocean — water above twenty-six degrees, pouring heat into the sky.",
-      "understand": "the one ingredient, warm sea, landed fast",
+      "narration": "And it builds itself — from nothing but warm ocean, water above twenty-six degrees.",
+      "understand": "the storm from orbit + the one ingredient, warm sea, landed fast",
       "function": "evidence",
       "mode": "footage+annotation",
       "max_unchanged": 4.0,
