@@ -14,5 +14,7 @@
 [facepalm] all hosts failed: HTTP 403 from https://www.reddit.com
 [WTF] all hosts failed: HTTP 403 from https://www.reddit.com
 [youtube/refresh] using client_id=808431681548-v3q2f1dkgif... secret_len=35 refresh_prefix=1//04fp1bU... refresh_len=103
+[rss_nasa] HTTPError: HTTP Error 429: Too Many Requests
+[wiki_top] HTTPError: HTTP Error 404: Not Found
 [youtube/refresh] using client_id=808431681548-v3q2f1dkgif... secret_len=35 refresh_prefix=1//04fp1bU... refresh_len=103
 [youtube/cat/education] HTTPError: HTTP Error 404: Not Found
