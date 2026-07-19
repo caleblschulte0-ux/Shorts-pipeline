@@ -159,7 +159,7 @@ SERIES_EMOJI = {
     "fail": "skull", "rage": "rage", "jumpscare": "scream",
     "clutch": "fire", "win": "fire", "wholesome": "pleading",
     "argument": "eyes", "chat-betrayal": "eyes", "funny": "joy",
-    "chaos": "mindblown",
+    "chaos": "mindblown", "drama": "eyes", "beef": "rage",
 }
 
 # series -> big word that SLAMS on screen at the money moment (generic hype
@@ -168,7 +168,7 @@ SERIES_WORD = {
     "fail": "BROOO", "rage": "NO WAY", "jumpscare": "AHHH",
     "clutch": "INSANE", "win": "LETS GO", "wholesome": "AWW",
     "argument": "OHHH", "chat-betrayal": "SNAKE", "funny": "LMAOO",
-    "chaos": "WAIT",
+    "chaos": "WAIT", "drama": "OHHH", "beef": "NAHH",
 }
 
 

@@ -32,27 +32,42 @@ Return STRICT JSON:
  "edit": {"slam": str, "emoji": str, "replay_worthy": bool,
           "cut": {"start": number, "end": number}, "complete": bool}}
 
+This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
+crying, betrayal, breakups, getting caught / kicked / exposed / humbled,
+shocking reactions — not game mechanics. The clips that reach millions are
+framed as a STORY a stranger will tap to see, and they lead with the
+person's NAME (a name earns the swipe from fans AND captures the search).
+Package every clip that way.
+
 Rules:
-- title: the formula is [Streamer name] + [emotional event] + [specific
-  object/context]. Examples: "Kai Cenat Realizes Chat Set Him Up",
-  "CaseOh Gets Jump-Scared So Hard He Leaves", "xQc Thinks He Won — Then
-  This Happens". <= 85 chars, present tense, clarity first, emotion second.
-  Max 1 emoji, no ALL-CAPS words except a single emphasis. NEVER invent
-  something unsupported by the transcript/original title — curiosity is
-  fine, lying is not.
-- hook: 4-8 words, ALL CAPS, on screen for the first 3 seconds. Compressed
-  conflict — one emotional label, one subject, one implied consequence
-  ("CHAT SET HIM UP SO BADLY") without spoiling the payoff. Honest only.
+- title: sell the MOMENT as a story someone must tap. Shape:
+  [WHO — streamer/person by name] + [the dramatic/emotional thing that
+  happens] + [a curiosity gap or consequence that makes you need to watch].
+  The winning shape (real top performers): "Kai Cenat Starts Crying And Ends
+  The Stream After This", "Crystal Was So Done After This Girl Kept
+  Disrespecting Her", "Stableronaldo Can't Believe What Kai Just Did". Lead
+  with the name; present tense; real emotional stakes; exactly one curiosity
+  gap. <= 90 chars, max 1 emoji, at most one ALL-CAPS emphasis word. NEVER
+  invent an event the transcript/original title doesn't support — tease
+  honestly, do not lie or clickbait a payoff that isn't there.
+- hook: 4-8 words, ALL CAPS, on screen the first 3 seconds. The dramatic
+  stakes in one breath — a curiosity gap that stops the swipe ("SHE KEPT
+  DISRESPECTING HER", "THEN IT ALL WENT WRONG") without spoiling the payoff.
+  Honest only.
 - caption: ONE natural sentence for the video description (max ~140
   chars) — how a fan would describe the moment to a friend. Plain human
   wording, no jargon, no "clip from the allowlist" robot-speak, one
   emoji max.
-- hashtags: 5-7 lowercase tags, no '#', no spaces. The streamer, the
-  game/activity if clear, the emotional beat (rage/fail/clutch/…), and broad
-  tags (streamerclips / twitchclips / clips / gaming). Relevant first.
-- series: one of "rage" | "chat-betrayal" | "jumpscare" | "clutch" |
-  "fail" | "win" | "wholesome" | "argument" | "chaos" — the recurring
-  shelf this moment belongs to.
+- hashtags: 5-7 lowercase tags, no '#', no spaces. LEAD with the specific
+  pull — the streamer/person's name AND the live event or storyline if there
+  is one (e.g. streameruniversity) — then the game/activity and the emotional
+  beat, then ONE broad tag (streamerclips / clips). Names + the event are
+  what people search and what the feed clusters; put them FIRST, generic tags
+  last.
+- series: one of "drama" | "beef" | "rage" | "chat-betrayal" | "jumpscare" |
+  "clutch" | "fail" | "win" | "wholesome" | "argument" | "chaos" — the
+  recurring shelf this moment belongs to (favor the human-drama labels when
+  they fit; that is what travels).
 - edit: you also DIRECT the edit (a human editor's judgement):
   - slam: the punchline word(s) that slam on screen at the peak — 1-2
     words, <= 12 chars, taken VERBATIM from the transcript (the funniest/
@@ -267,16 +282,25 @@ given candidate clips (streamer, title, Twitch views, velocity). Score each
 for how likely a GENERAL audience would WATCH TO THE END and SHARE it as a
 vertical Short.
 
+This niche is REALITY TV: the clips that reach MILLIONS are human DRAMA —
+fights, beef, crying, betrayal, breakups, someone getting caught / kicked /
+exposed / humbled / disrespected, and shocking emotional reactions between
+named people. Gameplay mechanics and inside-baseball rarely travel. Score for
+what the Shorts/TikTok FEED actually pushes, not just what's watchable.
+
 Score 0.0-1.0:
-- HIGH (0.8-1.0): a clear funny / shocking / heated / wholesome / dramatic
-  MOMENT that reads instantly — a fail, a rage, a clutch, a betrayal, a
-  jumpscare, a wild reaction.
+- HIGH (0.8-1.0): instant human drama a stranger gets in one second — a
+  fight/beef, a betrayal, someone crying or losing it, getting caught/kicked/
+  exposed, a shocking reaction, a wild wholesome or heated moment between
+  recognizable people. Bonus if it's part of a live storyline/event people
+  are already following.
 - MEDIUM (0.4-0.6): probably fine but generic, or the title is vague/garbage
   so you can't tell (unknown = 0.5, NEVER 0 — a bad title often hides a great
   clip; don't punish it, just don't boost it).
-- LOW (0.0-0.3): actively bad for a Short — giveaway/drops/subathon/"gifted"
-  spam, sponsor/ad reads, pure technical/setup talk, "just chatting" with
-  nothing happening, or clearly boring/insider content a stranger won't get.
+- LOW (0.0-0.3): won't travel — giveaway/drops/subathon/"gifted" spam,
+  sponsor/ad reads, pure technical/setup talk, "just chatting" with nothing
+  happening, or gameplay/insider content a stranger won't understand or care
+  about.
 
 Return ONLY JSON: {"scores": [{"i": <index int>, "banger": <0-1>,
 "why": "<=6 words"}]}. One entry per candidate, same indices given."""
