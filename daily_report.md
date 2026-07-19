@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-07-18
+# Daily Trending Shorts — 2026-07-19
 
 - queued: **1**
 - succeeded: **1**
@@ -6,9 +6,9 @@
 - failed: **0**
 
 ## Posted
-- **A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married**
-  - topic: A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married
-  - publishes: `2026-07-18T13:00:00Z`
-  - https://youtube.com/shorts/rqnDNHEhvgI
-  - took: 164.3s
+- **An entitled mom cut a hole in my bounce house's safety net with kitchen scissors**
+  - topic: An entitled mom cut a hole in my bounce house's safety net with kitchen scissors
+  - publishes: `2026-07-19T13:00:00Z`
+  - https://youtube.com/shorts/v3mLwsRClCw
+  - took: 169.3s
 
