@@ -974,9 +974,125 @@ def build_scale_chase(spec: dict):
     _render_settings(sc, spec)
 
 
+def build_storm_engine(spec: dict):
+    """THE MECHANISM as a 3D cutaway that pops: a hurricane is a heat engine.
+    A cumulonimbus TOWER spirals up off a warm sea, flaring into the classic
+    anvil canopy; a latent-heat core PULSES in its trunk — the storm feeding on
+    the ocean, becoming its own engine. Camera cranes up the tower to reveal the
+    whole thing. Replaces the flat heat_engine doodle (appeal ~0.55) with real
+    depth, dramatic key/rim light, and warm/cool contrast (high appeal)."""
+    sc = bpy.context.scene
+    for o in list(sc.objects):
+        bpy.data.objects.remove(o, do_unlink=True)
+    frames = _frames(sc, spec)
+    accent = _hex(spec.get("accent", "#FF7A2F"))       # heat-core warm
+    HEIGHT = 11.0
+    turns = 2.35
+
+    # --- warm sea: a glossy dark plane with a glowing heat patch beneath the
+    # tower (the ocean the engine draws its fuel from) ---
+    bpy.ops.mesh.primitive_plane_add(size=140, location=(0, 0, 0))
+    bpy.context.object.data.materials.append(
+        _pbr("sea", (0.015, 0.05, 0.11), rough=0.12, metal=0.6))
+    bpy.ops.mesh.primitive_circle_add(radius=7.5, fill_type="NGON",
+                                      location=(0, 0, 0.02))
+    bpy.context.object.data.materials.append(_emission("seaheat", (1.0, 0.5, 0.2), 1.6))
+
+    # --- spin parent: the whole storm turns slowly (a hurricane rotates) ---
+    bpy.ops.object.empty_add(location=(0, 0, 0))
+    spin = bpy.context.object
+    spin.rotation_euler = (0, 0, 0)
+    spin.keyframe_insert(data_path="rotation_euler", frame=1)
+    spin.rotation_euler = (0, 0, 0.85)
+    spin.keyframe_insert(data_path="rotation_euler", frame=frames)
+
+    cloud = _pbr("cloud", (0.88, 0.90, 0.95), rough=1.0, metal=0.0)
+    core_m = _emission("heatcore", _hex(spec.get("accent", "#FF7A2F")), 5.0)
+
+    # --- the TOWER: a golden-angle helix of cloud puffs rising + widening,
+    # flaring into an anvil near the top. Deterministic (resumable renders) ---
+    N = int(spec.get("puffs", 84))
+    for i in range(N):
+        frac = i / (N - 1)
+        z = 0.4 + frac * HEIGHT
+        ang = frac * turns * 2 * math.pi + (i * 0.6)
+        if frac < 0.82:                         # the trunk: narrow, swelling
+            r = 1.1 + 2.4 * frac
+            pr = 0.9 + 1.1 * frac
+        else:                                   # the ANVIL: flare wide + flat
+            spread = (frac - 0.82) / 0.18
+            r = 3.2 + 6.5 * spread
+            pr = 1.4 + 0.6 * spread
+            z = 0.4 + 0.82 * HEIGHT + spread * 1.4
+        x, y = r * math.cos(ang), r * math.sin(ang)
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=pr, location=(x, y, z),
+                                             segments=16, ring_count=10)
+        o = bpy.context.object
+        o.data.materials.append(cloud)
+        o.parent = spin
+    # a couple of extra anvil caps so the top reads as one spreading canopy
+    for k in range(6):
+        a = k / 6 * 2 * math.pi
+        bpy.ops.mesh.primitive_uv_sphere_add(
+            radius=2.2, location=(6.2 * math.cos(a), 6.2 * math.sin(a),
+                                  0.4 + HEIGHT * 0.82 + 1.2),
+            segments=16, ring_count=10)
+        bpy.context.object.data.materials.append(cloud)
+        bpy.context.object.parent = spin
+
+    # --- latent-heat CORE: emissive puffs in the trunk that PULSE (the engine
+    # firing as water vapour condenses and dumps heat) ---
+    cores = []
+    for j in range(5):
+        frac = 0.10 + j * 0.09
+        z = 0.4 + frac * HEIGHT
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.9 + 0.15 * j,
+                                             location=(0, 0, z),
+                                             segments=16, ring_count=10)
+        o = bpy.context.object
+        o.data.materials.append(core_m)
+        o.parent = spin
+        cores.append(o)
+    st = core_m.node_tree.nodes["Emission"].inputs["Strength"]
+    for f in range(1, frames + 1, max(1, frames // 8)):
+        st.default_value = 3.0 + 4.0 * (0.5 + 0.5 * math.sin(f * 0.9))
+        st.keyframe_insert(data_path="default_value", frame=f)
+
+    # --- dramatic light: warm low key off the sea + cool rim from behind ---
+    bpy.ops.object.light_add(type="SUN", location=(22, -16, 7))
+    key = bpy.context.object
+    key.data.energy = 4.6
+    key.data.color = (1.0, 0.82, 0.58)
+    key.data.angle = 0.12
+    bpy.ops.object.light_add(type="SUN", location=(-18, 15, 12))
+    rim = bpy.context.object
+    rim.data.energy = 3.0
+    rim.data.color = (0.5, 0.7, 1.0)
+    _dark_world(sc)
+
+    # --- camera cranes UP the tower and pulls back to reveal the anvil ---
+    bpy.ops.object.empty_add(location=(0, 0, HEIGHT * 0.48))
+    target = bpy.context.object
+    bpy.ops.object.camera_add()
+    cam = bpy.context.object
+    sc.camera = cam
+    cam.data.clip_end = 800
+    cam.constraints.new(type="TRACK_TO").target = target
+    keys = ((1, (0.0, -15.0, 1.6)),
+            (frames, (5.5, -22.0, HEIGHT * 0.62)))
+    for f, loc in keys:
+        cam.location = loc
+        cam.keyframe_insert(data_path="location", frame=f)
+    _bezier(cam)
+    if spec.get("dof", True):
+        _dof(cam, target, fstop=3.4)
+    _render_settings(sc, spec)
+
+
 TEMPLATES = {"monoliths": build, "earth_dive": build_earth_dive,
              "earth_spin": build_earth_spin, "orbit_fly": build_orbit_fly,
-             "cosmic_exit": build_cosmic_exit, "scale_chase": build_scale_chase}
+             "cosmic_exit": build_cosmic_exit, "scale_chase": build_scale_chase,
+             "storm_engine": build_storm_engine}
 
 
 def main():
