@@ -1,19 +1,19 @@
 {
-  "generated_from_n_renders": 4,
+  "generated_from_n_renders": 5,
   "rules": [],
   "access_needs": [],
   "trend": {
     "dead_fraction": {
       "first": 0.18,
-      "latest": 0.13,
+      "latest": 0.39,
       "want": "down",
-      "direction": "improving"
+      "direction": "regressing"
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.651,
+      "latest": 0.743,
       "want": "up",
-      "direction": "regressing"
+      "direction": "improving"
     },
     "bland_fraction": {
       "first": 0.0,
