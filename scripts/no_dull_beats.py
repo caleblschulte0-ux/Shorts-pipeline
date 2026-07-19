@@ -83,25 +83,56 @@ def _in_boring(t: str, boring: list) -> bool:
     return any(not (z < bs[0] or a > bs[1]) for bs in boring)
 
 
-def dull_beats(interest: dict, cool: list[dict]) -> list[dict]:
-    """Return the cool rows that are dull, each with a WHY."""
+def _is_designed(beat: dict) -> bool:
+    """A deliberate motion-graphic beat (comparison, orbit, number, zoom, title).
+    These are CLEAN by design — dark background, legible type — so they score low
+    on photographic-richness appeal even when they animate beautifully. They are a
+    DESIRED treatment, not a grey-cloud snooze; the dullness rule must not condemn
+    them for not looking like a photo."""
+    if beat.get("mode") == "designed_2d" or beat.get("flat"):
+        return True
+    return str(beat.get("mode", "")).startswith("flat")
+
+
+# a designed card only ACTUALLY reads dull if the picture literally sits still —
+# these are the flags that mean "not animating," as opposed to "not photographic".
+STATIC_FLAGS = {"LOW_MOTION", "STILL_WHEN_MOTION_EXISTS", "LONG_HOLD"}
+
+
+def dull_beats(interest: dict, cool: list[dict],
+               beats: list[dict] | None = None) -> list[dict]:
+    """Return the cool rows that are dull, each with a WHY and a fix KIND.
+    A DESIGNED motion-graphic is dull only if it is genuinely static (STATIC_FLAGS)
+    — never for low photographic appeal — and its fix is `animate`, never footage.
+    A footage/photo beat is dull on low appeal or a dead stretch; its fix is
+    `motion`."""
     boring = interest.get("boring_stretches", [])
+    beats = beats or []
     out = []
     for r in cool:
         job = str(r.get("job", "")).upper()
         appeal = r.get("appeal", 1.0)
         suspects = set(r.get("suspect", []))
-        why = None
+        bi = r.get("beat")
+        designed = _is_designed(beats[bi]) if isinstance(bi, int) and \
+            bi < len(beats) else False
+        why, kind = None, "motion"
         if "HOOK" in job and appeal >= 0.72:
             continue                                  # a bright hook may hold
-        if appeal < DULL_APPEAL:
+        if designed:
+            # a clean graphic is dull ONLY if it isn't moving; polish (animate)
+            # it — do NOT replace the explainer the viewer needs with footage.
+            if suspects & STATIC_FLAGS:
+                why, kind = "static designed card (" + "+".join(
+                    sorted(suspects & STATIC_FLAGS)) + ")", "animate"
+        elif appeal < DULL_APPEAL:
             why = f"appeal {appeal} < {DULL_APPEAL}"
         elif suspects & DULL_FLAGS:
             why = "+".join(sorted(suspects & DULL_FLAGS))
         elif _in_boring(r.get("t", ""), boring) and appeal < SOFT_APPEAL:
             why = f"dead stretch, appeal {appeal}"
         if why:
-            out.append({"beat": r["beat"], "job": job, "why": why})
+            out.append({"beat": bi, "job": job, "why": why, "kind": kind})
     return out
 
 
@@ -238,21 +269,31 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
                 print(f"[ndb] HOOK LINE weak {hv['line'].get('gates')} — needs a "
                       "re-authored opening line (cannot auto-fix a line).")
         interest, cool = _judge(out, beatmap, work / f"judge_r{rnd}")
-        dull = dull_beats(interest, cool)
+        dull = dull_beats(interest, cool, beats)
         print(f"[ndb] round {rnd}: dead={interest.get('dead_fraction')} "
               f"appeal={interest.get('mean_appeal')} — {len(dull)} dull beat(s)")
         for d in dull:
-            print(f"      beat {d['beat']} {d['job']}: {d['why']}")
+            print(f"      beat {d['beat']} {d['job']}: {d['why']} [fix={d['kind']}]")
         if not dull and (not hv or hv["pass"]):
             _record_memory(story_path.stem, work, rnd, proc.stderr or "")
             _gate_report("CLEAN — hook passes, no dull beats", hv, interest,
                          dull, escalated, beats)
             return 0
-        # escalate each dull beat we haven't already escalated
+        # fix each dull beat we haven't already handled — by the RIGHT method:
+        #  designed card (kind=animate) -> make it more fluid, NEVER footage
+        #  footage/photo   (kind=motion) -> escalate to motion of its subject
         progressed = False
         for d in dull:
             i = d["beat"]
-            if i in escalated or i >= len(beats):
+            if i in escalated or not isinstance(i, int) or i >= len(beats):
+                continue
+            if d.get("kind") == "animate":
+                if not beats[i].get("_animate_more"):
+                    beats[i]["_animate_more"] = True   # boost the card's motion
+                    escalated.add(i)
+                    progressed = True
+                    print(f"[ndb] animate beat {i}: designed card too static — "
+                          "boosting its motion (keeping the graphic, NOT footage)")
                 continue
             subj = _subject(beats[i])
             if not subj:
