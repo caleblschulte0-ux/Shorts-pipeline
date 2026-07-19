@@ -221,6 +221,71 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
     return _render(draw, out, seconds)
 
 
+def hidden_motion(number: str, out: Path, seconds: float = 6.0,
+                  sub: str = "MPH", label: str = "YOU'RE MOVING AT") -> Path:
+    """HOOK animation where the IDEA is the image: a person stands perfectly still
+    while the whole world screams past them. Speed streaks blast horizontally, the
+    ground races by underfoot, and a number climbs to reveal the hidden velocity —
+    but the figure never moves. The visual argues against 'sitting still'."""
+    try:
+        target = int("".join(ch for ch in number if ch.isdigit()) or "0")
+    except ValueError:
+        target = 0
+    big = _font(ANTON, 150)
+    unitf = _font(_DEJAVU, 44)
+    capf = _font(_DEJAVU, 34)
+    fx, fy = W // 2, int(H * 0.52)              # figure anchor (shoulders)
+    gy = fy + 250                               # ground the figure stands on
+
+    def figure(im):
+        # a calm human pictogram, dead still — drawn with a soft drop shadow so it
+        # sits cleanly above the racing ground.
+        sh = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(sh).ellipse([fx - 90, gy - 18, fx + 90, gy + 26],
+                                   fill=(0, 0, 0, 120))
+        im = Image.alpha_composite(im.convert("RGBA"),
+                                   sh.filter(ImageFilter.GaussianBlur(12)))
+        d = ImageDraw.Draw(im, "RGBA")
+        col = (232, 238, 250, 255)
+        d.ellipse([fx - 42, fy - 150, fx + 42, fy - 66], fill=col)          # head
+        d.rounded_rectangle([fx - 62, fy - 54, fx + 62, fy + 150],
+                            radius=46, fill=col)                            # torso
+        d.rounded_rectangle([fx - 54, fy + 120, fx - 8, gy], radius=22, fill=col)
+        d.rounded_rectangle([fx + 8, fy + 120, fx + 54, gy], radius=22, fill=col)
+        return im
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        im = _drift_stars(im, i)
+        # streaks intensify — the hidden motion revealing itself around the figure
+        im = _speed_streaks(im, i, alpha=int(30 + 120 * min(t / 0.5, 1.0)),
+                            count=28)
+        d = ImageDraw.Draw(im, "RGBA")
+        # the ground, with motion chevrons racing underfoot (the Earth moving)
+        d.line([0, gy, W, gy], fill=(*PALETTE["muted"], 90), width=3)
+        for k in range(11):
+            x = W - ((i * 46 + k * 210) % (W + 210))
+            d.polygon([(x, gy + 34), (x + 40, gy + 54), (x, gy + 74)],
+                      fill=(*PALETTE["blue"], 140))
+        im = figure(im)                          # the STILL figure, above it all
+        # the climbing number, top third
+        cnt = int(target * _ease(min(max(i - 6, 0) / (FPS * 1.6), 1.0)))
+        s = f"{cnt:,}"
+        ny = int(H * 0.16)
+        cap = _spaced(label)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.text((_center_x(d, cap, capf), ny - 52), cap, font=capf,
+               fill=(*PALETTE["muted"], 235))
+        im = _glow_text(im, (_center_x(d, s, big), ny), s, big,
+                        (*PALETTE["ink"], 255), (*PALETTE["gold"], 150), blur=14)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.text((_center_x(d, sub, unitf), ny + 150), sub, font=unitf,
+               fill=(*PALETTE["gold"], 255))
+        return im
+
+    return _render(draw, out, seconds, seed=11)
+
+
 def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
                title: str = "") -> Path:
     """2-4 entities compared by a value, drawn as clean left-aligned bars that
