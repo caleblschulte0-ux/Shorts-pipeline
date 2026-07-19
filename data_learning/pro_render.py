@@ -506,13 +506,19 @@ def _check_continuity(story, shots, clips, pkg):
     earlier image (the payoff); those matches are never flagged."""
     from data_learning import continuity
     beats = story["beats"]
+    # Only beats that pull EXTERNAL media (footage / images) can accidentally
+    # reuse a source clip. Designed-2D cards (flat_hook, flat_engine, galaxy…)
+    # are distinct by construction, so hashing them against footage only yields
+    # coarse-dHash false positives — e.g. a fiery number card and a storm in
+    # space both read as "bright centre on dark". Exclude designed beats.
+    _SOURCED = {"footage", "footage_number", "footage_text",
+                "image", "image_text"}
     by_beat = []
     for bi, b in enumerate(beats):
         idxs = [i for i, sh in enumerate(shots) if sh.get("_beat") == bi]
-        # only footage-bearing beats can accidentally reuse a clip; designed-2D
-        # beats (galaxy/orbit/comparison) are distinct by construction, but we
-        # hash every beat so an accidental designed-2D repeat is caught too.
         if not idxs:
+            continue
+        if shots[idxs[0]].get("kind") not in _SOURCED:
             continue
         by_beat.append({"idx": bi, "job": b.get("job", str(bi)),
                         "callback": bool(b.get("callback")),
