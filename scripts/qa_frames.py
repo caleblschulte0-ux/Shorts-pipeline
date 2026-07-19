@@ -50,6 +50,11 @@ def main() -> int:
     args = ap.parse_args()
 
     out = args.out or args.video.with_name(args.video.stem + "_frames.png")
+    # Tolerate a directory or an extensionless --out: ffmpeg needs an image
+    # filename to infer the format (a bare path exits 234 cryptically).
+    if out.is_dir() or out.suffix.lower() not in (".png", ".jpg", ".jpeg"):
+        out = out / "frames.png" if out.is_dir() else out.with_suffix(".png")
+    out.parent.mkdir(parents=True, exist_ok=True)
     total = _dur(args.video)
     step = 60.0 / max(1, args.per_minute)
     # Sample mid-window so the frame represents its minute, not its cut.
