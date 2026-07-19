@@ -213,8 +213,8 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
                 "attribution": shot.get("image_attribution", ""),
                 "title": shot.get("image_title", "")}
         try:
-            if not dest.exists():
-                media.acquire(cand, dest)
+            if not dest.exists() or dest.stat().st_size < 1024:
+                media.acquire(cand, dest)      # re-fetch if missing/truncated
             cand["path"] = str(dest)
             return cand
         except Exception as e:  # noqa: BLE001 — a rotted hotlink falls back to
