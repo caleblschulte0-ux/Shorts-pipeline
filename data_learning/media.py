@@ -275,8 +275,38 @@ def _clip_motion(clip: Path, ss: float, dur: float) -> float:
 #   subject clears the bar (clean window + genuine movement + on-topic), or when
 #   the still carries information a clip can't (a chart, a map, a document) — and
 #   that case never reaches this gate (it is authored `still: true`).
-MOTION_FLOOR = 2.2        # mean frame-diff below this = a functionally frozen clip
+MOTION_FLOOR = 5.0        # mean frame-diff below this = too sleepy to beat a card.
+# Not merely "moving" — DYNAMIC. A slow orbital drift (~3) reads as dead once it
+# replaces a designed card; only a genuinely kinetic window (a spinning storm, a
+# solar flare, city lights racing past) earns the swap. Matches the cool judge's
+# LOW_MOTION line so an escalated clip can never re-introduce a dead beat.
 MOTION_REL_FLOOR = 0.08   # a clip must actually name the subject to count as "it"
+
+
+def _best_dynamic_window(clip: Path, seconds: float, max_probe: int = 6):
+    """Scan a source's clean windows and return the MOST DYNAMIC (ss, motion) —
+    not the first clean one. Picking first-clean is how a sleepy orbital pan gets
+    chosen and then reads as dead; this samples several candidate starts and keeps
+    the highest-motion clean window (bounded to `max_probe` samples for cost)."""
+    from data_learning import footage_hybrid as fh
+    best_ss, best_mv, probes = None, -1.0, 0
+    for w0, w1 in fh.clean_windows(clip, min_len=seconds + 0.3):
+        span = w1 - w0
+        steps = max(1, min(3, int(span // max(1.0, seconds))))
+        for k in range(steps + 1):
+            if probes >= max_probe:
+                break
+            ss = max(w0, min(w0 + (span - seconds) * (k / max(1, steps)),
+                             w1 - seconds))
+            if not fh.analyze_window(clip, ss, seconds)["ok"]:
+                continue
+            probes += 1
+            mv = _clip_motion(clip, ss, seconds)
+            if mv > best_mv:
+                best_mv, best_ss = mv, ss
+        if probes >= max_probe:
+            break
+    return best_ss, best_mv
 
 
 def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
@@ -326,16 +356,15 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
         try:
             if not dest.exists() or dest.stat().st_size < 1024:
                 acquire(c, dest)
-            ss, _reports = fh.pick_window(dest, seconds, at=0.5)
+            ss, mv = _best_dynamic_window(dest, seconds)
             if ss is None:
                 log(f"[motion-first] {str(c.get('title',''))[:38]!r}: no clean "
                     f"{seconds:.1f}s window — skipping")
                 continue
-            mv = _clip_motion(dest, ss, seconds)
             if mv < min_motion:
-                log(f"[motion-first] {str(c.get('title',''))[:38]!r}: window "
-                    f"barely moves ({mv} < {min_motion}) — not cooler than a "
-                    "still, skipping")
+                log(f"[motion-first] {str(c.get('title',''))[:38]!r}: best window "
+                    f"only moves {mv} (< {min_motion}) — too sleepy to beat a "
+                    "card, skipping")
                 continue
             log(f"[motion-first] MOTION WINS for {query!r}: "
                 f"{c.get('source')} {str(c.get('title',''))[:38]!r} "
