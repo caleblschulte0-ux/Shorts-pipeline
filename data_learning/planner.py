@@ -119,6 +119,23 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
 
         img = b.get("image")
 
+        # VARIETY — the dullness director flagged this beat a visual look-alike of
+        # an earlier one (the '5 clouds' monotony). Re-render it as a DESIGNED
+        # number/statement card instead of yet another near-identical clip: it
+        # breaks the repetition AND adds one of the animated number graphics we
+        # want more of. Only fires when the beat carries a number/text to build on.
+        if b.get("_prefer_designed"):
+            num = b.get("number") or {}
+            if num.get("text"):
+                emit({"kind": "flat_number", "text": num["text"],
+                      "sub": num.get("sub", ""),
+                      "label": num.get("label", "") or line, "seconds": secs})
+                continue
+            if b.get("text"):
+                emit({"kind": "flat_statement", "statement": b["text"],
+                      "seconds": secs})
+                continue
+
         # ---- text beat: thesis / annotation OVER footage or a real PHOTO,
         # never on black ----
         if b.get("text"):

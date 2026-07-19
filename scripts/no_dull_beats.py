@@ -150,6 +150,107 @@ def _subject(beat: dict) -> str:
     return ""
 
 
+def _beat_sig(render: Path, t: str):
+    """A small perceptual signature of a beat — the mid-beat frame downscaled to
+    12x12 grayscale. Two beats that LOOK alike (five Earth-from-orbit clips) have
+    near-identical signatures no matter what their subject labels say."""
+    import subprocess
+    import numpy as np
+    from io import BytesIO
+    from PIL import Image
+    try:
+        a, z = (float(x) for x in str(t).split("-"))
+        mid = (a + z) / 2.0
+    except (ValueError, IndexError):
+        mid = 1.0
+    r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{mid:.2f}", "-i",
+                        str(render), "-frames:v", "1", "-f", "image2pipe",
+                        "-vcodec", "png", "-"], capture_output=True)
+    if not r.stdout:
+        return None
+    im = Image.open(BytesIO(r.stdout)).resize((12, 12)).convert("L")
+    return np.asarray(im, dtype="float32")
+
+
+# subject FAMILIES — the coarse "what am I looking at" bucket. Five different
+# Earth-from-orbit clips are five members of one family; that is the monotony the
+# owner means by "a bunch of cloud videos," not pixel-identical frames.
+_FAMILIES = {
+    "earth_space": ("earth", "orbit", "space station", "iss", "planet",
+                    "continent", "city lights", "aurora", "night surface",
+                    "atmosphere", "limb", "globe"),
+    "sky_clouds": ("cloud", "sky", "sunrise", "sunset", "haze", "horizon"),
+    "sun": ("sun", "solar", "sunspot", "corona", "flare"),
+    "sea": ("ocean", "sea", "wave", "water", "coast"),
+    "storm": ("hurricane", "storm", "cyclone", "typhoon"),
+}
+
+
+def _family(beat: dict) -> str:
+    """Which coarse subject family a beat's footage/subject belongs to."""
+    txt = " ".join(str(x) for x in (
+        beat.get("subject", ""), (beat.get("footage") or {}).get("intent", ""),
+        (beat.get("footage") or {}).get("query", ""),
+        (beat.get("image") or {}).get("query", ""))).lower()
+    for fam, keys in _FAMILIES.items():
+        if any(k in txt for k in keys):
+            return fam
+    return ""
+
+
+def variety_check(beats: list, beatmap: Path, render: Path,
+                  sim_thresh: float = 7.0, family_cap: int = 2) -> list[int]:
+    """The '5 clouds' catch. The cool judge grades each beat ALONE, so a reel of
+    space clips passes — each one moves. This looks ACROSS beats two ways:
+      1. SUBJECT FAMILY: > family_cap footage beats in the same family (all Earth,
+         all sky) is monotony — the primary, label-based signal.
+      2. PERCEPTUAL: near-identical mid-beat frames (a backstop for un-labelled
+         look-alikes).
+    Returns the EXCESS beat indices (keep the first `family_cap` of each group,
+    diversify the rest). Designed cards are exempt — variety across footage is the
+    point; more designed graphics is the cure, not the disease."""
+    import numpy as np
+    try:
+        bm = json.loads(Path(beatmap).read_text())
+        rows = bm if isinstance(bm, list) else bm.get("beats", [])
+    except Exception:
+        return []
+    # the HOOK and the PAYOFF are the bookends — the opening and its return-to-
+    # opening callback. They carry the footage on purpose; never convert them.
+    bookend = {"HOOK", "PAYOFF", "ENDING", "COLD_OPEN"}
+    excess = set()
+    # 1. subject-family monotony (footage beats only; designed cards don't count)
+    seen: dict[str, int] = {}
+    for i in range(min(len(beats), len(rows))):
+        if _is_designed(beats[i]) or beats[i].get("_prefer_designed"):
+            continue
+        fam = _family(beats[i])
+        if not fam:
+            continue
+        seen[fam] = seen.get(fam, 0) + 1               # bookends still COUNT ...
+        if seen[fam] > family_cap and \
+                str(beats[i].get("job", "")).upper() not in bookend:
+            excess.add(i)                              # ... but are never converted
+    # 2. perceptual backstop for look-alikes the labels missed
+    sigs = [(_beat_sig(render, r.get("t", "")), i) for i, r in enumerate(rows)
+            if not (_is_designed(beats[i]) if i < len(beats) else False)]
+    sigs = [(s, i) for s, i in sigs if s is not None]
+    used = set()
+    for a in range(len(sigs)):
+        if sigs[a][1] in used:
+            continue
+        cluster = [sigs[a][1]]
+        for b in range(a + 1, len(sigs)):
+            if sigs[b][1] not in used and \
+                    float(np.abs(sigs[a][0] - sigs[b][0]).mean()) < sim_thresh:
+                cluster.append(sigs[b][1])
+        if len(cluster) >= 3:
+            used.update(cluster)
+            excess.update(j for j in sorted(cluster)[2:]
+                          if str(beats[j].get("job", "")).upper() not in bookend)
+    return sorted(excess)
+
+
 def _hook_gate(beats: list, beatmap: Path, render: Path):
     """Grade the opening with the hook director (metric pre-screen). Uses the
     hook beat's true duration so the sustained-motion / HELD_STATIC check spans
@@ -174,7 +275,8 @@ def _hook_gate(beats: list, beatmap: Path, render: Path):
         return None
 
 
-def _gate_report(verdict: str, hv, interest, dull, escalated, beats) -> None:
+def _gate_report(verdict: str, hv, interest, dull, escalated, beats,
+                 excess=None) -> None:
     """The DIRECTOR's ordered scorecard — proves every gate RAN, in order of
     importance, and shows what each did (passed / fixed / stuck). No gate can be
     silently skipped: if it isn't on this list, it wasn't run."""
@@ -200,6 +302,12 @@ def _gate_report(verdict: str, hv, interest, dull, escalated, beats) -> None:
     fixed = sorted(i for i in escalated if beats[i].get("_force_motion"))
     print(f" 3. FIXES      : {len(fixed)} beat(s) escalated to motion: {fixed}"
           if fixed else " 3. FIXES      : none needed")
+    # 3b. VARIETY (the 5-clouds catch) + designed-animation count
+    designed = sorted(i for i, b in enumerate(beats)
+                      if _is_designed(b) or b.get("_prefer_designed"))
+    ex = excess or []
+    print(f" 3b. VARIETY   : {len(ex)} look-alike beat(s) remain {ex}; "
+          f"{len(designed)} designed animation(s): {designed}")
     print(f" VERDICT: {verdict}")
     print("   (cool/visual TASTE verdicts are the vision judges' call — the "
           "orchestrator spawns them; this loop runs the metric pre-screens.)")
@@ -268,6 +376,26 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
             if not vg:                  # visual ok but LINE weak — author must fix
                 print(f"[ndb] HOOK LINE weak {hv['line'].get('gates')} — needs a "
                       "re-authored opening line (cannot auto-fix a line).")
+        # VARIETY GATE — the '5 clouds' catch. Look ACROSS beats for a cluster
+        # that all look alike; convert the excess (numbered) beats to designed
+        # number cards so the video isn't a reel of near-identical clips.
+        excess = variety_check(beats, beatmap, out)
+        diversified = 0
+        for i in excess:
+            if (i < len(beats) and not beats[i].get("_prefer_designed")
+                    and not _is_designed(beats[i])
+                    and ((beats[i].get("number") or {}).get("text")
+                         or beats[i].get("text"))):
+                beats[i]["_prefer_designed"] = True
+                beats[i].pop("_force_motion", None)   # designed beats aren't footage
+                diversified += 1
+                print(f"[ndb] VARIETY: beat {i} looks like earlier beats — "
+                      "converting to a designed number card (breaks the monotony)")
+        if excess:
+            print(f"[ndb] variety: {len(excess)} look-alike beat(s) {excess}; "
+                  f"diversified {diversified}")
+        if diversified:
+            continue                       # re-render with the monotony broken up
         interest, cool = _judge(out, beatmap, work / f"judge_r{rnd}")
         dull = dull_beats(interest, cool, beats)
         print(f"[ndb] round {rnd}: dead={interest.get('dead_fraction')} "
@@ -277,7 +405,7 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
         if not dull and (not hv or hv["pass"]):
             _record_memory(story_path.stem, work, rnd, proc.stderr or "")
             _gate_report("CLEAN — hook passes, no dull beats", hv, interest,
-                         dull, escalated, beats)
+                         dull, escalated, beats, excess=excess)
             return 0
         # fix each dull beat we haven't already handled — by the RIGHT method:
         #  designed card (kind=animate) -> make it more fluid, NEVER footage
@@ -307,11 +435,11 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
             _record_memory(story_path.stem, work, rnd, proc.stderr or "")
             _gate_report("STUCK — unfixable flags remain (likely stock/motion "
                          "access-gated). Reported, not hidden.",
-                         hv, interest, dull, escalated, beats)
+                         hv, interest, dull, escalated, beats, excess=excess)
             return 2
     _record_memory(story_path.stem, work, rnd, proc.stderr or "")
     _gate_report(f"ROUND-LIMIT ({rounds}) — some beats may remain dull",
-                 hv, interest, dull, escalated, beats)
+                 hv, interest, dull, escalated, beats, excess=excess)
     return 1
 
 
