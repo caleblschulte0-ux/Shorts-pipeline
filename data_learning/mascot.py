@@ -31,6 +31,7 @@ SKIN = BODY
 WHITE = (248, 250, 252, 255)
 DARK = (11, 16, 32, 255)          # #0B1020 pupils + hat
 OUTLINE = (13, 17, 24, 255)       # clean dark sticker outline around the char
+BELLY = (198, 240, 232, 255)      # lighter teal belly patch (dimension)
 BLUSH = (249, 168, 212, 220)
 GOLD = (245, 158, 11, 255)        # glasses + tassel
 HORN = (124, 92, 196, 255)        # little monster horns (violet)
@@ -72,49 +73,43 @@ def _draw(size: int, bob: float, blink: float, point_angle: float,
     foot_y = int(S * 0.90) + oy
     limb_w = max(2, int(S * 0.082))     # thicker, rounder limbs = polished, not sticky
 
-    # Legs.
+    # --- CHUNKY rounded body (a friendly egg-blob) — no stick limbs. ---
+    body_top = head_cy + int(head_r * 0.60)
+    body_bot = int(S * 0.87) + oy
+    body_w = int(S * 0.50)
+    arm_w = int(body_w * 0.30)                      # stubby rounded arms
+
+    # Stubby feet first (behind the body).
+    fw = int(body_w * 0.34)
     for sgn in (-1, 1):
-        lx = cx + sgn * int(torso_w * 0.30)
-        _thick_line(d, (lx, hip_y - int(S * 0.02)), (lx, foot_y), limb_w, LIMB)
-        # foot
-        d.ellipse([lx - int(limb_w * 0.9), foot_y - int(limb_w * 0.5),
-                   lx + int(limb_w * 1.1), foot_y + int(limb_w * 0.6)],
-                  fill=BODY_DK)
+        fxc = cx + sgn * int(body_w * 0.24)
+        d.ellipse([fxc - fw // 2, body_bot - int(fw * 0.30),
+                   fxc + fw // 2, body_bot + int(fw * 0.62)], fill=BODY_DK)
 
-    # Torso (rounded).
-    d.rounded_rectangle(
-        [cx - torso_w // 2, torso_top, cx + torso_w // 2, torso_bot],
-        radius=int(torso_w * 0.45), fill=BODY)
-    # subtle belly shading
-    d.ellipse([cx - int(torso_w * 0.30), torso_bot - int(torso_w * 0.55),
-               cx + int(torso_w * 0.30), torso_bot - int(torso_w * 0.02)],
-              fill=BODY_DK)
+    # Resting arm (viewer-left): a short capsule tucked at the side.
+    ax0 = cx - body_w // 2
+    ay0 = body_top + int(body_w * 0.42)
+    d.rounded_rectangle([ax0 - int(arm_w * 0.7), ay0,
+                         ax0 + int(arm_w * 0.5), ay0 + int(arm_w * 2.0)],
+                        radius=arm_w // 2, fill=BODY)
 
-    # Resting arm (left, viewer-left): hangs with a slight bend.
-    rest_sx = cx - torso_w // 2
-    _thick_line(d, (rest_sx, shoulder_y),
-                (rest_sx - int(S * 0.02), shoulder_y + int(S * 0.16)),
-                limb_w, LIMB)
-    _circle(d, rest_sx - int(S * 0.02), shoulder_y + int(S * 0.16),
-            int(limb_w * 0.75), SKIN)
+    # Body.
+    d.rounded_rectangle([cx - body_w // 2, body_top, cx + body_w // 2, body_bot],
+                        radius=int(body_w * 0.48), fill=BODY)
+    # Lighter belly patch for dimension.
+    d.ellipse([cx - int(body_w * 0.30), body_bot - int(body_w * 0.66),
+               cx + int(body_w * 0.30), body_bot - int(body_w * 0.06)], fill=BELLY)
 
-    # Pointing arm (right): a clean, nearly-straight raised arm toward the
-    # chart, ending in a hand with an extended pointing finger.
-    point_sx = cx + torso_w // 2
+    # Pointing arm (viewer-right): a stubby capsule aimed by point_angle,
+    # ending in a clean round hand (NO fingers — nothing to mangle).
+    psx = cx + body_w // 2 - int(arm_w * 0.2)
+    psy = body_top + int(body_w * 0.30)
     ang = math.radians(point_angle + wiggle * 5)
-    arm_len = int(S * 0.30)
-    # slight elbow bend (8 deg) keeps it characterful but still clearly points
-    ex = int(point_sx + math.cos(ang - math.radians(8)) * arm_len * 0.52)
-    ey = int(shoulder_y - math.sin(ang - math.radians(8)) * arm_len * 0.52)
-    hx = int(point_sx + math.cos(ang) * arm_len)
-    hy = int(shoulder_y - math.sin(ang) * arm_len)
-    _thick_line(d, (point_sx, shoulder_y), (ex, ey), limb_w, LIMB)
-    _thick_line(d, (ex, ey), (hx, hy), limb_w, LIMB)
-    # hand + a longer pointing finger in the aim direction
-    _circle(d, hx, hy, int(limb_w * 0.85), SKIN)
-    fx = int(hx + math.cos(ang) * limb_w * 2.2)
-    fy = int(hy - math.sin(ang) * limb_w * 2.2)
-    _thick_line(d, (hx, hy), (fx, fy), max(2, int(limb_w * 0.65)), SKIN)
+    arm_len = int(S * 0.26)
+    hx = int(psx + math.cos(ang) * arm_len)
+    hy = int(psy - math.sin(ang) * arm_len)
+    _thick_line(d, (psx, psy), (hx, hy), arm_w, BODY)
+    _circle(d, hx, hy, int(arm_w * 0.62), BODY)
 
     # Sharp little monster horns (behind the head).
     for sgn in (-1, 1):
