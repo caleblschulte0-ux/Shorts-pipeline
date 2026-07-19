@@ -43,6 +43,22 @@ def _run(cmd, **kw):
     return subprocess.run(cmd, check=True, **kw)
 
 
+# the render logs subjects via repr(): single-quoted normally, but DOUBLE-quoted
+# when the subject itself contains an apostrophe ("Earth's night ..."). Match both.
+_WON_RE = re.compile(r"""MOTION WINS for (['"])(.+?)\1""")
+_MISS_RE = re.compile(r"""no moving clip cleared the bar for (['"])(.+?)\1""")
+
+
+def _motion_outcomes(render_stderr: str) -> tuple[set[str], set[str]]:
+    """From a render's log, which escalation subjects actually GOT motion vs fell
+    back. An escalation that missed must revert to the beat's ORIGINAL treatment
+    (a designed card with real motion), never a dead still — that would be a
+    downgrade, not a repair."""
+    won = {m.group(2) for m in _WON_RE.finditer(render_stderr)}
+    missed = {m.group(2) for m in _MISS_RE.finditer(render_stderr)}
+    return won, missed
+
+
 def _judge(render: Path, beatmap: Path, out: Path) -> tuple[dict, list[dict]]:
     out.mkdir(parents=True, exist_ok=True)
     _run([sys.executable, str(REPO / "scripts" / "interest_judge.py"),
@@ -108,8 +124,23 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
         work.mkdir(parents=True, exist_ok=True)
         tmp_story.write_text(json.dumps(story))
         print(f"\n=== NO-DULL-BEATS round {rnd} — render ===")
-        _run([sys.executable, "-m", "data_learning.pro_render",
-              str(tmp_story), str(out), "--work", str(work)])
+        proc = _run([sys.executable, "-m", "data_learning.pro_render",
+                     str(tmp_story), str(out), "--work", str(work)],
+                    capture_output=True, text=True)
+        # REVERT-ON-MISS: any beat we escalated whose motion probe FELL BACK to a
+        # still keeps a designed card that had motion — reverting is a repair, a
+        # dead still is a downgrade. Restore its original treatment.
+        _, missed = _motion_outcomes(proc.stderr or "")
+        reverted = 0
+        for i in list(escalated):
+            if (i < len(beats) and beats[i].get("_force_motion")
+                    and beats[i].get("subject", "") in missed):
+                beats[i].pop("_force_motion", None)
+                reverted += 1
+                print(f"[ndb] revert beat {i}: no dynamic clip for "
+                      f"{beats[i].get('subject')!r} — keeping its designed card")
+        if reverted:                        # a revert changed the story: re-render
+            continue
         beatmap = out.parent / f"{out.stem}_pkg" / "beatmap.json"
         interest, cool = _judge(out, beatmap, work / f"judge_r{rnd}")
         dull = dull_beats(interest, cool)
