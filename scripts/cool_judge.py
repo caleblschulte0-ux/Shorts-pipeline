@@ -16,6 +16,13 @@ high-motion beat can still be a boring fragment — it only focuses the eyes.
     python3 scripts/cool_judge.py <render.mp4> --beatmap <beatmap.json> \
         --out <pkgdir>
 
+`hold_s` is the TRUE hold — the longest genuinely FROZEN stretch inside the beat
+(via _longest_hold), not the beat's duration. A 6s beat that pushes / cuts /
+moves throughout has a near-zero hold; only a picture that actually sits still
+trips LONG_HOLD. (This corrected a false alarm the Showrunner caught: the old
+proxy used the whole beat length, so every normal 5-6s beat looked like a long
+hold.)
+
 Emits <pkg>/beat_<i>.png (+ _clip.mp4) per beat and cool_prescreen.json:
   [{beat, job, t, motion, appeal, hold_s, suspect:[LOW_MOTION|DULL|LONG_HOLD]}]
 The judge prompt lives in the orchestrator/doctrine, not here (no intent leak
@@ -80,6 +87,34 @@ def _motion(clip: Path, a: float, b: float) -> float:
     return round(max(diffs), 1) if diffs else 0.0
 
 
+STATIC = 2.0        # frame-to-frame change below this = the picture is unchanged
+
+
+def _longest_hold(clip: Path, a: float, b: float, fps: float = 3.0) -> float:
+    """The TRUE hold: the longest stretch where the picture does not change — not
+    the beat's full duration. A beat that develops mid-way (a Ken Burns push, a
+    footage move, a cut to a new framing) is NOT a long hold even if the beat
+    runs 6s; only a genuinely frozen span counts. Samples the window at `fps` and
+    returns the longest consecutive run (in seconds) of sub-STATIC frame diffs."""
+    import numpy as np
+    span = max(0.0, b - a)
+    if span < 0.4:
+        return round(span, 1)
+    n = max(3, int(span * fps))
+    step = span / (n - 1)
+    ts = [a + i * step for i in range(n)]
+    small = [np.asarray(_frame(clip, t).resize((96, 54)).convert("L"),
+                        dtype="float32") for t in ts]
+    diffs = [float(np.abs(small[i] - small[i - 1]).mean())
+             for i in range(1, len(small))]
+    # longest consecutive run of "unchanged" intervals, measured in time
+    best = cur = 0
+    for d in diffs:
+        cur = cur + 1 if d < STATIC else 0
+        best = max(best, cur)
+    return round(best * step, 1)
+
+
 def build_package(render: Path, beatmap: dict, out: Path) -> list[dict]:
     from interest_judge import _appeal
     out.mkdir(parents=True, exist_ok=True)
@@ -108,7 +143,9 @@ def build_package(render: Path, beatmap: dict, out: Path) -> list[dict]:
              "-vf", "scale=640:-1", "-an", str(clip)], check=True)
         motion = _motion(render, a + 0.2, z - 0.2)
         appeal = round(_appeal(_frame(render, mid)), 3)
-        hold = round(z - a, 1)
+        # TRUE hold: the longest FROZEN stretch inside the beat, not the beat's
+        # length. A beat that changes framing mid-way is not a long hold.
+        hold = _longest_hold(render, a + 0.1, z - 0.1)
         suspect = []
         if motion < LOW_MOTION:
             suspect.append("LOW_MOTION")
