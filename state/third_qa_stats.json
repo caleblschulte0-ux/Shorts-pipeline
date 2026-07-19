@@ -631,7 +631,7 @@
     {
       "date": "20260719",
       "dry_run": false,
-      "ts": "2026-07-19T11:43:20+00:00",
+      "ts": "2026-07-19T12:23:20+00:00",
       "feedback": {
         "snapshot": true,
         "prior_streamers": 9,
@@ -652,17 +652,16 @@
         },
         {
           "slug": "clip-20260719-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260719-3",
           "ok": false,
           "render_level": "full",
           "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Roughly half of all sampled frames (between nearly every labeled timestamp) are severely blurry, extreme close-up/out-of; vision: Multiple frames are almost entirely black/underexposed with on"
+          "error": "RuntimeError: qa_rejected: vision: multiple consecutive frames (12.4s-30.0s and 33.5s-40.6s) show only blurry brick wall/black with no visible subject; vision: heavy motion blur/out-of-focus frames make several segments look br"
+        },
+        {
+          "slug": "clip-20260719-3",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
         },
         {
           "slug": "clip-20260719-4",
@@ -681,19 +680,21 @@
           "ok": false,
           "render_level": "full",
           "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: frame at 2.7s and 6.5s are essentially fully black/empty; vision: extreme motion blur/smearing across most frames makes subject unrecognizable; vision: video appears letterboxed with large blu"
+          "error": "RuntimeError: qa_rejected: vision: Video content crammed into a small letterboxed strip at the top of the frame with a huge dead black area below; vision: A blurred/darkened duplicate crop of the same footage repeats beneath th"
         },
         {
           "slug": "clip-20260719-7",
           "ok": false,
           "render_level": "full",
           "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Many frames are extreme blurry close-up crops of skin/hands with no visible subject or context \u2014 reads as a broken/glitc; vision: Several timestamped frames (5.1s, 6.5s, 7.9s, 9.4s, 10.8s, 12."
+          "error": "RuntimeError: qa_rejected: vision: No cat visible in any of the 12 frames despite title/hook 'THIS CAT WON'T LOOK STRAIGHT' \u2014 footage shows only a nighttim; vision: Multiple frames (11.3s, 18.8s) are near-fully black/blank, loo"
         },
         {
           "slug": "clip-20260719-8",
-          "ok": false,
-          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit"
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
         }
       ]
     }
