@@ -70,6 +70,39 @@ def _bg(seed: int = 7) -> Image.Image:
     return im
 
 
+def _drift_stars(im, i, seed=31, n_stars=110):
+    """Parallax starfield that keeps drifting every frame — the baseline motion
+    that stops a designed card ever freezing to a dead frame. Cheap: ellipses on
+    the already-built background."""
+    d = ImageDraw.Draw(im, "RGBA")
+    rnd = random.Random(seed)
+    for _ in range(n_stars):
+        bx, by = rnd.uniform(0, W), rnd.uniform(0, H)
+        sp = rnd.uniform(5, 30)                 # parallax layers move at diff speeds
+        x = (bx - sp * i * 0.15) % W
+        r = rnd.choice([1, 1, 2])
+        tw = 0.6 + 0.4 * math.sin(i * 0.2 + bx)  # gentle twinkle
+        c = int(rnd.randint(70, 150) * tw)
+        d.ellipse([x - r, by - r, x + r, by + r], fill=(c, c, int(c * 1.1), 220))
+    return im
+
+
+def _speed_streaks(im, i, alpha=60, count=16, seed=99):
+    """Horizontal light streaks racing across — reads as VELOCITY, on-theme for a
+    speed film, and always moving. A meaningful motion layer, not jitter."""
+    d = ImageDraw.Draw(im, "RGBA")
+    rnd = random.Random(seed)
+    for _ in range(count):
+        y = rnd.uniform(0, H)
+        ln = rnd.uniform(90, 260)
+        sp = rnd.uniform(34, 90)
+        x = (rnd.uniform(0, W) + sp * i) % (W + 320) - 160
+        a = int(alpha * (0.35 + 0.65 * rnd.random()))
+        col = PALETTE["blue"] if rnd.random() < 0.7 else PALETTE["gold"]
+        d.line([x, y, x + ln, y], fill=(*col, a), width=rnd.choice([1, 1, 2]))
+    return im
+
+
 def _glow_text(base: Image.Image, xy, text, font, fill, glow, blur=10):
     """Draw text with a soft colored glow underneath — the premium tell that
     separates designed type from a default template. Glow is blurred at half
@@ -143,32 +176,45 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
     ny = int(H * 0.34)          # number baseline (top of glyphs)
 
     def draw(i, n, im):
+        t = i / max(1, n - 1)
+        # ALWAYS-MOVING layers first: drifting stars + speed streaks that build as
+        # the number lands, so the card keeps developing for its whole life.
+        im = _drift_stars(im, i)
+        im = _speed_streaks(im, i, alpha=int(35 + 70 * min(t / 0.4, 1.0)))
         d = ImageDraw.Draw(im, "RGBA")
-        # caption ABOVE the number
+        # caption ABOVE the number, fading in
         if label:
             a = min(max(i - 8, 0) / 12, 1.0)
             cap = _spaced(label)
             d.text((_center_x(d, cap, capf), ny - 70), cap, font=capf,
                    fill=(*PALETTE["muted"], int(230 * a)))
-        # the hero number (count-up settles by ~1.8s, then holds clean)
-        cnt = int(target * _ease(min(max(i - 8, 0) / (FPS * 1.5), 1.0)))
+        # the hero number counts up (0→~1.6s) then BREATHES — a gentle bob + a
+        # glow that pulses, so it never settles into a dead frame.
+        prog = _ease(min(max(i - 6, 0) / (FPS * 1.5), 1.0))
+        cnt = int(target * prog)
+        bob = int(round(6 * math.sin(i * 0.18))) if prog >= 1.0 else 0
+        glow_a = 120 + (int(70 * (0.5 + 0.5 * math.sin(i * 0.16)))
+                        if prog >= 1.0 else 0)
         s = f"{cnt:,}"
-        im2 = _glow_text(im, (_center_x(d, s, big), ny), s, big,
-                         (*PALETTE["ink"], 255), (*PALETTE["gold"], 120),
+        im2 = _glow_text(im, (_center_x(d, s, big), ny + bob), s, big,
+                         (*PALETTE["ink"], 255), (*PALETTE["gold"], glow_a),
                          blur=12)
         d = ImageDraw.Draw(im2, "RGBA")
-        # a thin gold accent rule that grows in under the number — the
-        # designed element, well clear of the glyphs
+        # a bright SWEEP crosses the number when it lands (~1.6–2.4s) to punctuate
+        land = (i - (6 + FPS * 1.5)) / (FPS * 0.8)
+        if 0.0 <= land <= 1.0:
+            sx = int((-0.2 + 1.4 * land) * W)
+            for w, aa in ((90, 60), (40, 120), (14, 220)):
+                d.line([sx, ny - 40, sx, ny + 190], fill=(*PALETTE["ink"], aa),
+                       width=w)
+        # a thin gold accent rule that grows in under the number
         rule_y = ny + 182
         half = int(min(i / (n * 0.4), 1.0) * W * 0.16)
         if half > 2:
             d.rectangle([W // 2 - half, rule_y, W // 2 + half, rule_y + 3],
                         fill=(*PALETTE["gold"], 230))
-        # unit BELOW the rule, never touching the number (rendered as-given
-        # so the km/h style stays consistent with footage-number beats)
-        if sub:
-            uy = rule_y + 20
-            d.text((_center_x(d, sub, unit), uy), sub,
+        if sub:                              # unit BELOW the rule
+            d.text((_center_x(d, sub, unit), rule_y + 20), sub,
                    font=unit, fill=(*PALETTE["gold"], 255))
         return im2
 
@@ -197,12 +243,16 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
     barh = 46
 
     def draw(i, n, im):
+        im = _drift_stars(im, i)
+        im = _speed_streaks(im, i, alpha=40)         # baseline life behind the chart
         d = ImageDraw.Draw(im, "RGBA")
         if title:
             t = _spaced(title)
             d.text((_center_x(d, t, titlef), int(H * 0.18)), t, font=titlef,
                    fill=(*PALETTE["muted"], 235))
         grow = _ease(min(i / (n * 0.6), 1.0))
+        # which row is fastest — it gets a travelling pulse once all bars are in
+        maxk = max(range(len(rows)), key=lambda j: float(rows[j]["value"]))
         for k, r in enumerate(rows):
             y = top + k * gap
             d.text((x0, y - 44), str(r["name"]), font=namef,
@@ -217,11 +267,15 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
             g = min(max(i - k * 4, 0) / (n * 0.96), 1.0)
             full = (x1 - x0) * (float(r["value"]) / vmax)
             w = max(4.0, full * g)
-            # a soft leading-edge glow so the fastest bar reads as speed
+            # a soft leading-edge glow so the fastest bar reads as speed; the
+            # winning bar keeps PULSING after it lands so the chart stays alive
+            ga = 150
+            if k == maxk and g >= 1.0:
+                ga = 150 + int(90 * (0.5 + 0.5 * math.sin(i * 0.22)))
             glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
             ImageDraw.Draw(glow).ellipse(
                 [x0 + w - 26, y - 6, x0 + w + 26, y + barh + 6],
-                fill=(*PALETTE["gold"], 150))
+                fill=(*PALETTE["gold"], min(255, ga)))
             im.paste(Image.alpha_composite(
                 im.convert("RGBA"),
                 glow.filter(ImageFilter.GaussianBlur(11))).convert("RGB"),
@@ -297,39 +351,49 @@ def orbit_reveal(center_label: str, sat_label: str, out: Path,
     cx, cy = W // 2, int(H * 0.52)
 
     def draw(i, n, im):
+        im = _drift_stars(im, i)                    # living space behind the orbit
         d = ImageDraw.Draw(im, "RGBA")
-        p = _ease(min(i / (n * 0.85), 1.0))
-        rad = int((H * 0.10) + (H * 0.26) * p)     # orbit grows as we pull back
-        # sun glow at centre
+        p = _ease(min(i / (n * 0.9), 1.0))
+        rad = int((H * 0.11) + (H * 0.30) * p)     # orbit grows as we pull back
+        # sun glow at centre — pulses so the star reads as alive
+        pr = 60 + int(10 * math.sin(i * 0.16))
         glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
         ImageDraw.Draw(glow).ellipse(
-            [cx - 60, cy - 60, cx + 60, cy + 60], fill=(*PALETTE["gold"], 130))
+            [cx - pr, cy - pr, cx + pr, cy + pr], fill=(*PALETTE["gold"], 140))
         glow = glow.filter(ImageFilter.GaussianBlur(24))
         im = Image.alpha_composite(im.convert("RGBA"), glow).convert("RGB")
         d = ImageDraw.Draw(im, "RGBA")
-        d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22],
+        d.ellipse([cx - 26, cy - 26, cx + 26, cy + 26],
                   fill=(255, 238, 200, 255))
-        d.text((cx + 30, cy - 12), _spaced(center_label), font=lf,
+        d.text((cx + 34, cy - 12), _spaced(center_label), font=lf,
                fill=(*PALETTE["muted"], 220))
         # the faint orbit ring
         d.ellipse([cx - rad, cy - int(rad * 0.55), cx + rad,
                    cy + int(rad * 0.55)], outline=(*PALETTE["blue"], 120),
                   width=2)
-        # the orbiting body (2.5 laps across the shot) + comet trail
-        import math
-        for k in range(0, 14):
-            aa = 2 * math.pi * (2.4 * (i - k * 1.4) / n)
+        # the orbiting body — BOLD (reads at a glance) with a long comet trail,
+        # 2.4 laps across the shot so it is always visibly moving.
+        for k in range(0, 20):
+            aa = 2 * math.pi * (2.4 * (i - k * 1.3) / n)
             bx = cx + rad * math.cos(aa)
             by = cy + int(rad * 0.55) * math.sin(aa)
-            d.ellipse([bx - 7, by - 7, bx + 7, by + 7],
-                      fill=(*PALETTE["blue"], max(0, 200 - k * 15)))
+            rr = max(3, 12 - k // 2)
+            d.ellipse([bx - rr, by - rr, bx + rr, by + rr],
+                      fill=(*PALETTE["blue"], max(0, 210 - k * 11)))
         ang = 2 * math.pi * (2.4 * i / n)
         bx = cx + rad * math.cos(ang)
         by = cy + int(rad * 0.55) * math.sin(ang)
-        d.ellipse([bx - 11, by - 11, bx + 11, by + 11],
-                  fill=(150, 200, 255, 255))
+        bglow = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(bglow).ellipse([bx - 30, by - 30, bx + 30, by + 30],
+                                      fill=(120, 190, 255, 150))
+        im = Image.alpha_composite(
+            im.convert("RGBA"), bglow.filter(ImageFilter.GaussianBlur(12))
+        ).convert("RGB")
+        d = ImageDraw.Draw(im, "RGBA")
+        d.ellipse([bx - 17, by - 17, bx + 17, by + 17],
+                  fill=(170, 210, 255, 255))
         a = min(max(i - 20, 0) / 12, 1.0)
-        d.text((bx + 16, by - 8), sat_label, font=lf,
+        d.text((bx + 22, by - 8), sat_label, font=lf,
                fill=(*PALETTE["ink"], int(235 * a)))
         return im
 
