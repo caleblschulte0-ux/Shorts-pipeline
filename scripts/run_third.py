@@ -51,6 +51,33 @@ class _SkipSlot(Exception):
     """Raised to abandon a slot on purpose (e.g. nothing clears the quality
     floor) — caught as a clean skip, never an error or a blocklist entry."""
 
+
+def _audit_dupes(log: dict) -> list:
+    """Permanent tripwire on the channel's core law: scan the posted log for
+    any source clip that's been posted under more than one slug and surface
+    it LOUDLY every run. The upload guard + log-freshness sync prevent new
+    dupes; this makes any that slip through (or already exist) impossible to
+    miss instead of silently living on the channel. Returns the dup groups."""
+    from collections import defaultdict
+    by_key = defaultdict(list)
+    for slug, v in log.get("posted", {}).items():
+        if slug.startswith("rejected-") or v.get("qa_rejected"):
+            continue
+        k = _clip_key(v.get("source_url", ""))
+        if k:
+            by_key[k].append(slug)
+    dups = [(k, s) for k, s in by_key.items() if len(s) > 1]
+    if dups:
+        print(f"::warning::[dedupe] {len(dups)} DUPLICATE clip(s) live in the "
+              "posted log (same source, multiple posts):", flush=True)
+        for k, slugs in dups:
+            print(f"::warning::[dedupe]   {k} -> {', '.join(sorted(slugs))}",
+                  flush=True)
+    else:
+        print("[dedupe] audit clean — no duplicate clips in the posted log",
+              flush=True)
+    return dups
+
 # Cache the learned prior for the whole run (the snapshot doesn't change
 # mid-run). None = not yet computed; {} = computed, nothing usable.
 _PRIOR_CACHE: dict | None = None
@@ -794,6 +821,7 @@ def main() -> int:
             publish_base += slot_gap
 
     log = _load_log()
+    _audit_dupes(log)   # loud tripwire — surfaces any dup every run
     # uploaders.upload wants publish_at as an RFC3339 string, not datetime.
     # Slot index only advances for packages that will actually post, so
     # already-posted slugs don't leave gaps in the schedule.
