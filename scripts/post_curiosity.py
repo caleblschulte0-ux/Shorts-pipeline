@@ -98,6 +98,40 @@ def _description(sc: dict, meta: dict) -> str:
     return "\n\n".join(p for p in parts if p)[:5000]
 
 
+def _prepublish_gate(out: Path, sc: dict) -> tuple[bool, list[str]]:
+    """A flagged video MUST NOT ship (data_learning/DIRECTOR.md). The production
+    renderer (longform) can't run the full auto-fix loop, but the publish boundary
+    still enforces the law: run the renderer-agnostic judges — the HOOK director
+    (opening) and the INTEREST judge (dead time) — on the finished mp4 and BLOCK
+    the upload if either fails. Reported, never silently published."""
+    import subprocess
+    import tempfile
+    sys.path.insert(0, str(REPO / "scripts"))
+    reasons: list[str] = []
+    try:
+        import hook_director
+        with tempfile.TemporaryDirectory() as td:
+            subprocess.run([sys.executable, str(REPO / "scripts" /
+                            "interest_judge.py"), str(out), "--out", td],
+                           check=True, capture_output=True)
+            interest = json.loads(
+                (Path(td) / "interest" / "interest.json").read_text())
+        if interest.get("dead_fraction", 0) > 0.5:
+            reasons.append(f"dead-time {interest['dead_fraction']} > 0.5 "
+                           "(too many boring stretches)")
+        line = str(sc.get("hook") or sc.get("headline")
+                   or sc.get("title") or "").strip()
+        hv = hook_director.grade(line, out, hook_seconds=8.0)
+        if not hv["pass"]:
+            reasons.append(f"weak hook {hv['total']}/10 "
+                           f"visual={hv['visual'].get('gates')} "
+                           f"line={hv['line'].get('gates')}")
+    except Exception as e:  # noqa: BLE001 — a gate error must FAIL CLOSED, not
+        reasons.append(f"gate could not run ({str(e)[:60]}) — refusing to "
+                       "publish unjudged")            # publish something unjudged
+    return (not reasons, reasons)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slugs", nargs="*",
@@ -165,6 +199,19 @@ def main() -> int:
                   file=sys.stderr)
             results.append({"slug": slug, "ok": False, "error": "too short"})
             continue
+
+        # QUALITY GATE — a flagged video must not ship (DIRECTOR.md). Blocks the
+        # upload on a weak hook or too much dead time unless --force overrides.
+        gate_ok, gate_reasons = _prepublish_gate(out, sc)
+        if not gate_ok:
+            print(f"[{slug}] QUALITY GATE FAILED: {'; '.join(gate_reasons)}",
+                  file=sys.stderr)
+            if not args.force:
+                results.append({"slug": slug, "ok": False,
+                                "error": "quality gate: " + "; ".join(gate_reasons)})
+                continue
+            print(f"[{slug}] --force: publishing despite gate failure",
+                  file=sys.stderr)
 
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered {dur:.0f}s, not uploading")
