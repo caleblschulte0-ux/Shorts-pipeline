@@ -817,6 +817,65 @@
         "end": 55.3
       },
       "director_cut": true
+    },
+    "clip-20260719-1": {
+      "url": "https://youtube.com/shorts/f5Lx4PfoiNU",
+      "title": "Poor Lacy \u2014 Chat Watches It All Go Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-07-19T11:17:30.897357+00:00",
+      "source_url": "https://www.twitch.tv/lacy/clip/SavageCredulousMagpieFunRun-2YMh3ItBhfIcusG_",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "CHAOS HITS AND EVERYONE LOSES IT",
+      "cut": {
+        "start": 0.0,
+        "end": 35.97
+      },
+      "director_cut": true
+    },
+    "clip-20260719-2": {
+      "url": "https://youtube.com/shorts/_wczfq_o1GM",
+      "title": "Lacy Panics Over A Wheelchair, Then Everyone Checks On Her",
+      "kind": "twitch_clip",
+      "ts": "2026-07-19T11:24:32.839843+00:00",
+      "source_url": "https://www.twitch.tv/lacy/clip/ZanyGlamorousBorkDxAbomb-eMDS8rOWRvGXDB-n",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "LACY PANICS OVER A WHEELCHAIR",
+      "cut": {
+        "start": 4.6,
+        "end": 41.7
+      },
+      "director_cut": true
+    },
+    "rejected-clip-20260719-3": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/PeacefulModernHerringBibleThump-3NAuErLQg4jiD7fI",
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Crashes Out Over Chat's Love",
+      "qa_rejected": true,
+      "ts": "2026-07-19T11:29:39.323864+00:00"
+    },
+    "rejected-clip-20260719-4": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ColdbloodedCourteousCheesecakeLitFam-89bOfEN04Y8kJbKR",
+      "streamer": "stableronaldo",
+      "title": "ron says n",
+      "qa_rejected": true,
+      "ts": "2026-07-19T11:29:49.013722+00:00"
+    },
+    "clip-20260719-5": {
+      "url": "https://youtube.com/shorts/w_IWIia6xvM",
+      "title": "Plaqueboymax Admits He's Not Perfect, Then Says He's Done",
+      "kind": "twitch_clip",
+      "ts": "2026-07-19T11:34:31.048547+00:00",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/PunchyTubularUdonDBstyle-Z_V_d8YBtFMVfUye",
+      "streamer": "plaqueboymax",
+      "series": "wholesome",
+      "hook": "HE SAYS HE'S DONE FOREVER",
+      "cut": {
+        "start": 29.6,
+        "end": 44.2
+      },
+      "director_cut": true
     }
   }
 }
