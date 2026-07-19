@@ -34,7 +34,11 @@ sys.path.insert(0, str(REPO))
 
 DULL_APPEAL = 0.55        # below this a beat is dull on looks alone
 SOFT_APPEAL = 0.68        # inside a boring stretch, below this counts as dull
-DULL_FLAGS = {"DULL", "LOW_MOTION", "STILL_WHEN_MOTION_EXISTS"}
+# EVERY cool-judge hand that means "this beat is not carrying its weight" drives a
+# fix (escalate to motion of the subject). Nothing gets flagged and then ignored:
+# a fragment of the spectacle and a too-long hold are as fixable as a dull card.
+DULL_FLAGS = {"DULL", "LOW_MOTION", "STILL_WHEN_MOTION_EXISTS",
+              "FRAGMENT_OF_THE_SPECTACLE", "LONG_HOLD"}
 _STOP = {"the", "a", "an", "of", "and", "in", "on", "at", "from", "to", "with",
          "it", "its", "is", "are", "that", "this", "as", "by", "for", "into",
          "every", "you", "your", "they", "their", "— ", "even", "more", "own"}
@@ -139,6 +143,54 @@ def _hook_gate(beats: list, beatmap: Path, render: Path):
         return None
 
 
+def _gate_report(verdict: str, hv, interest, dull, escalated, beats) -> None:
+    """The DIRECTOR's ordered scorecard — proves every gate RAN, in order of
+    importance, and shows what each did (passed / fixed / stuck). No gate can be
+    silently skipped: if it isn't on this list, it wasn't run."""
+    print("\n=== DIRECTOR — gate report (order of importance) ===")
+    # 1. HOOK (the opening decides retention — nothing matters more)
+    if hv is None:
+        print(" 1. HOOK       : (not graded)")
+    elif hv["pass"]:
+        print(f" 1. HOOK       : PASS ({hv['total']}/10)"
+              + ("  [fixed: opened on motion]" if 0 in escalated else ""))
+    else:
+        print(f" 1. HOOK       : WEAK ({hv['total']}/10) "
+              f"visual_gates={hv['visual'].get('gates')} "
+              f"line_gates={hv['line'].get('gates')}")
+    # 2. DEAD-TIME / DULL beats (interest + cool)
+    nd = len(dull) if dull is not None else "?"
+    if interest:
+        print(f" 2. DEAD-TIME  : dead={interest.get('dead_fraction')} "
+              f"appeal={interest.get('mean_appeal')} — {nd} dull beat(s) remain")
+    for d in (dull or []):
+        print(f"      · beat {d['beat']} {d['job']}: {d['why']}")
+    # 3. FIXES the director applied this run
+    fixed = sorted(i for i in escalated if beats[i].get("_force_motion"))
+    print(f" 3. FIXES      : {len(fixed)} beat(s) escalated to motion: {fixed}"
+          if fixed else " 3. FIXES      : none needed")
+    print(f" VERDICT: {verdict}")
+    print("   (cool/visual TASTE verdicts are the vision judges' call — the "
+          "orchestrator spawns them; this loop runs the metric pre-screens.)")
+
+
+def _record_memory(slug: str, work: Path, rnd: int, stderr: str) -> None:
+    """Feed this render's verdicts into the showrunner memory so lessons compound
+    (ledger.jsonl -> rules.json). Best-effort: never fail the run over telemetry."""
+    jd = work / f"judge_r{rnd}"
+    if not (jd / "interest").exists():
+        return
+    log = work / f"render_r{rnd}.log"
+    try:
+        log.write_text(stderr or "")
+        _run([sys.executable, "-m", "data_learning.showrunner", "record",
+              "--slug", slug, "--label", "director",
+              "--interest", str(jd / "interest"), "--cool", str(jd / "cool"),
+              "--log", str(log)])
+    except Exception as e:  # noqa: BLE001
+        print(f"[ndb] memory record skipped ({str(e)[:50]})")
+
+
 def run(story_path: Path, out: Path, rounds: int = 3) -> int:
     story = json.loads(story_path.read_text())
     beats = story["beats"]
@@ -192,7 +244,9 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
         for d in dull:
             print(f"      beat {d['beat']} {d['job']}: {d['why']}")
         if not dull and (not hv or hv["pass"]):
-            print(f"[ndb] CLEAN — no dull beats, hook passes, after {rnd} round(s).")
+            _record_memory(story_path.stem, work, rnd, proc.stderr or "")
+            _gate_report("CLEAN — hook passes, no dull beats", hv, interest,
+                         dull, escalated, beats)
             return 0
         # escalate each dull beat we haven't already escalated
         progressed = False
@@ -209,10 +263,14 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
             progressed = True
             print(f"[ndb] escalate beat {i} -> motion of {subj!r}")
         if not progressed:
-            print(f"[ndb] STUCK — {len(dull)} dull beat(s) with no escalation "
-                  "left (likely motion access-gated). Reported, not hidden.")
+            _record_memory(story_path.stem, work, rnd, proc.stderr or "")
+            _gate_report("STUCK — unfixable flags remain (likely stock/motion "
+                         "access-gated). Reported, not hidden.",
+                         hv, interest, dull, escalated, beats)
             return 2
-    print(f"[ndb] reached round limit ({rounds}); some beats may remain dull.")
+    _record_memory(story_path.stem, work, rnd, proc.stderr or "")
+    _gate_report(f"ROUND-LIMIT ({rounds}) — some beats may remain dull",
+                 hv, interest, dull, escalated, beats)
     return 1
 
 
