@@ -33,12 +33,31 @@ every round. Each line is a gate that RAN:
 | # | Gate | Judge | Fix when flagged |
 |---|------|-------|------------------|
 | 1 | **HOOK** — the opening ~3–8s | `hook_director` (metric pre-screen) + vision hook judge | recut beat 0: force a dynamic window, stamp hook text that contradicts the setup, pick a non-generic subject |
-| 2 | **DEAD-TIME / DULL** — appeal, dead fraction, novelty | `interest_judge` + `cool_judge` prescreen | escalate the dull beat to motion of its subject (motion-first, dynamic window); revert-on-miss |
-| 3 | **COOL / FRAGMENT** — a boring crop of something spectacular, a held shot | `cool_judge` (FRAGMENT_OF_THE_SPECTACLE, LONG_HOLD, STILL_WHEN_MOTION_EXISTS) | escalate to the whole spectacle / a moving window |
-| 4 | **VISUAL / LEGIBILITY / MOTION QA** | `visual_judge`, `editorial_review`, `qa_motion/frames/semantics` | fix or report |
+| 2 | **SYNC** — the picture matches the words under it | `pacing_check` (+ vision judge) | a ground/human subject over Earth-from-orbit → route to the designed explainer that illustrates the words |
+| 3 | **VARIETY** — no reel of look-alikes (the "5 clouds") | `variety_check` (subject-family + perceptual) | convert the excess footage beats to designed number cards; keep the bookends |
+| 4 | **DEAD-TIME / DULL** — appeal, dead fraction, novelty | `interest_judge` + `cool_judge` prescreen | designed card → animate it (never footage); footage/photo → escalate to motion, revert-on-miss |
+| 5 | **COOL / FRAGMENT** — a boring crop, a held shot | `cool_judge` (FRAGMENT_OF_THE_SPECTACLE, LONG_HOLD, STILL_WHEN_MOTION_EXISTS) | escalate to the whole spectacle / a moving window |
+| 6 | **VISUAL / LEGIBILITY / MOTION QA** | `visual_judge`, `editorial_review`, `qa_motion/frames` | fix or report |
 | — | **RECORD** | `showrunner` memory | ledger → rules; the lessons compound |
 
 Higher number never runs before a lower one is settled in the same round.
+
+## Designed animations are a DESIRED treatment, not a failure
+
+The clean motion-graphics — a comparison chart, an orbit diagram, a counting-up
+number, a cosmic zoom — are a first-class treatment the channel wants MORE of
+(1–2+ per video, always carrying their numbers). They are the opposite of a
+"grey cloud," yet they score low on *photographic* appeal because they are clean
+by design. Two hard rules follow, both learned the hard way (the director once
+replaced every liked animation with Earth footage and produced a cloud reel):
+
+- **A designed beat is dull ONLY if it is genuinely static** (LOW_MOTION /
+  LONG_HOLD) — never for low photographic appeal. Its fix is to *animate it more*,
+  **never** to replace it with footage.
+- **Footage monotony is cured with designed cards, not more footage.** When the
+  variety gate finds too many same-family clips, the excess numbered beats become
+  animated number cards — which simultaneously fixes the monotony and raises the
+  designed-animation count.
 
 ## Metric pre-screen vs. vision taste-judge
 
