@@ -11,6 +11,14 @@ was written, tested, and correct — and imported **nowhere**. A 10-second calm
 Earth open reached preview because nothing graded the opening. "We have a hook
 judge" is a lie if the render loop never calls it.
 
+## House style (hard rules for every story)
+
+- **American units, always.** Miles per hour, miles, feet, pounds, Fahrenheit —
+  never metric. Convert at authoring time so the on-screen number AND the
+  narration (which becomes the voice-over) match. km/h → mph ×0.621, °C → °F, etc.
+- **Say every term correctly.** Numbers spoken in the narration must equal the
+  numbers on screen; names and comparisons must be factually right.
+
 ## The law
 
 1. **Every gate runs on every render.** If a gate is not in the DIRECTOR's

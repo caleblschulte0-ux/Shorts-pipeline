@@ -9,7 +9,7 @@
    "understand": "the VISUAL contradicts the words: you feel still, but the screen proves you are hurtling through space",
    "function": "experience",
    "mode": "footage",
-   "text": "YOU'RE MOVING AT 30 KM/S",
+   "text": "YOU'RE MOVING AT 66,000 MPH",
    "text_role": "thesis",
    "_force_motion": true,
    "subject": "aurora from the international space station",
@@ -22,7 +22,7 @@
   },
   {
    "job": "SETUP_COMPARISON",
-   "narration": "We think we know what fast is. A sprinter, forty-four. A jet, nine hundred. A bullet, three thousand four hundred kilometers an hour.",
+   "narration": "We think we know what fast is. A sprinter, twenty-seven. A jet, five hundred sixty. A rifle bullet, two thousand one hundred miles an hour.",
    "understand": "anchor everyday 'fast' so the reveal later dwarfs it",
    "function": "comparison",
    "mode": "designed_2d",
@@ -33,25 +33,25 @@
     "rows": [
      {
       "name": "Usain Bolt",
-      "value": 44,
-      "display": "44 km/h"
+      "value": 27,
+      "display": "27 mph"
      },
      {
       "name": "Passenger jet",
-      "value": 900,
-      "display": "900 km/h"
+      "value": 560,
+      "display": "560 mph"
      },
      {
       "name": "Rifle bullet",
-      "value": 3400,
-      "display": "3,400 km/h"
+      "value": 2100,
+      "display": "2,100 mph"
      }
     ]
    }
   },
   {
    "job": "PROOF",
-   "narration": "But the ground beneath your feet is not still. The Earth spins at sixteen hundred and seventy kilometers an hour \u2014 half the speed of that bullet, and you never feel it.",
+   "narration": "But the ground beneath your feet is not still. The Earth spins at over a thousand miles an hour \u2014 about half the speed of that bullet, and you never feel it.",
    "understand": "the ground you stand on is itself moving faster than a bullet",
    "function": "evidence",
    "mode": "footage+annotation",
@@ -64,8 +64,8 @@
     "intent": "Earth's night surface and city lights drifting past beneath the camera"
    },
    "number": {
-    "text": "1,670",
-    "sub": "km/h",
+    "text": "1,037",
+    "sub": "mph",
     "label": "the earth's spin"
    }
   },
@@ -85,7 +85,7 @@
   },
   {
    "job": "ESCALATE",
-   "narration": "Earth is falling around the Sun at a hundred and seven thousand kilometers an hour. Thirty kilometers every single second.",
+   "narration": "Earth is falling around the Sun at sixty-six thousand miles an hour. Eighteen miles every single second.",
    "understand": "orbital speed dwarfs the spin",
    "function": "evidence",
    "mode": "footage+annotation",
@@ -98,14 +98,14 @@
     "intent": "a daylight Earth limb with the atmosphere arc and space below \u2014 a DISTINCT clip (JSC 4K ISS views, no caption), so the NHQ_2020 callback Earth stays exclusive to the open and close"
    },
    "number": {
-    "text": "107,000",
-    "sub": "km/h",
+    "text": "66,600",
+    "sub": "mph",
     "label": "earth around the sun"
    }
   },
   {
    "job": "REVEAL",
-   "narration": "And the Sun itself is not still. It drags us around the galaxy at eight hundred and twenty-eight thousand kilometers an hour \u2014 a tiny world, riding a star, around a galaxy that is itself racing through the universe.",
+   "narration": "And the Sun itself is not still. It drags us around the galaxy at half a million miles an hour \u2014 a tiny world, riding a star, around a galaxy that is itself racing through the universe.",
    "understand": "the headline number \u2014 our galactic speed \u2014 rides the galaxy as it pulls back continuously into the full spiral (one climax, not two identical zooms). The galaxy cannot be filmed from inside it: designed 2D, tier C.",
    "function": "evidence",
    "mode": "designed_2d",
@@ -118,8 +118,8 @@
     ]
    },
    "number": {
-    "text": "828,000",
-    "sub": "km/h",
+    "text": "514,000",
+    "sub": "mph",
     "label": "our speed through the galaxy"
    },
    "subject": "the sun solar activity"
