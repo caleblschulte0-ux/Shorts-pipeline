@@ -1,47 +1,6 @@
 {
   "generated_from_n_renders": 4,
-  "rules": [
-    {
-      "scope": "job",
-      "job": "HOOK",
-      "flag": "LONG_HOLD",
-      "severity": "soft",
-      "rate": "2/4",
-      "guidance": "HOOK beats keep holding too long \u2014 cap max_unchanged and split into develop phases, or cut the beat shorter."
-    },
-    {
-      "scope": "job",
-      "job": "INGREDIENT",
-      "flag": "LONG_HOLD",
-      "severity": "hard",
-      "rate": "4/4",
-      "guidance": "INGREDIENT beats keep holding too long \u2014 cap max_unchanged and split into develop phases, or cut the beat shorter."
-    },
-    {
-      "scope": "job",
-      "job": "MECHANISM",
-      "flag": "LONG_HOLD",
-      "severity": "hard",
-      "rate": "4/4",
-      "guidance": "MECHANISM beats keep holding too long \u2014 cap max_unchanged and split into develop phases, or cut the beat shorter."
-    },
-    {
-      "scope": "job",
-      "job": "REVEAL",
-      "flag": "LONG_HOLD",
-      "severity": "hard",
-      "rate": "4/4",
-      "guidance": "REVEAL beats keep holding too long \u2014 cap max_unchanged and split into develop phases, or cut the beat shorter."
-    },
-    {
-      "scope": "job",
-      "job": "SETUP_COMPARISON",
-      "flag": "LONG_HOLD",
-      "severity": "hard",
-      "rate": "4/4",
-      "guidance": "SETUP_COMPARISON beats keep holding too long \u2014 cap max_unchanged and split into develop phases, or cut the beat shorter."
-    }
-  ],
+  "rules": [],
   "access_needs": [],
   "trend": {
     "dead_fraction": {
