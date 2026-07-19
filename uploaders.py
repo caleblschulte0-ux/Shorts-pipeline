@@ -374,12 +374,25 @@ class TikTokUploader(Uploader):
     name = "tiktok"
     INIT_URL = "https://open.tiktokapis.com/v2/post/publish/video/init/"
 
+    def __init__(self, channel: str = ""):
+        """`channel` routes to a per-channel access token, mirroring
+        YouTubeUploader: channel="third" reads TIKTOK_ACCESS_TOKEN_THIRD and
+        falls back to the shared TIKTOK_ACCESS_TOKEN."""
+        self.channel = (channel or "").strip().lower()
+
+    def _token(self) -> str:
+        if self.channel:
+            scoped = os.environ.get(f"TIKTOK_ACCESS_TOKEN_{self.channel.upper()}")
+            if scoped:
+                return scoped.strip(" \t\r\n<>\"'")
+        return _env("TIKTOK_ACCESS_TOKEN")
+
     def upload(self, file_path, *, title, description, tags=None, publish_at=None):
         import requests
 
         # TikTok's Content Posting API doesn't expose scheduled publish via
         # the Direct Post endpoint yet; publish_at is ignored.
-        token = _env("TIKTOK_ACCESS_TOKEN")
+        token = self._token()
         size = file_path.stat().st_size
         chunk_size = min(size, 64 * 1024 * 1024)
         chunks = (size + chunk_size - 1) // chunk_size

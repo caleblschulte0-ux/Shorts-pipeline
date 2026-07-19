@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import importlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -357,6 +358,49 @@ def _yt_tags(pkg: dict, led: dict) -> list[str]:
     s = led["streamer"]
     return [s, f"{s} clips", f"{s} stream", "streamer clips",
             *(led.get("authored_tags") or [])][:10]
+
+
+def _crosspost(mp4: Path, title: str, description: str,
+               tags: list[str]) -> dict:
+    """Cross-post the SAME rendered clip to the feed-first platforms where a
+    small channel can actually break out. Our own scrape of this exact niche
+    shows sub-10k-follower accounts hitting MILLIONS on the TikTok FYP, while
+    YouTube's Shorts feed structurally starves a cold channel (79% of our
+    views are search, <10% is the feed). YouTube stays the primary upload;
+    this is pure additive reach.
+
+    Guarded + best-effort: a platform is attempted ONLY if its token is
+    configured, and ANY failure is logged and swallowed so cross-posting can
+    never break the YouTube post. Returns {platform: url} for whatever landed.
+    TikTok needs only TIKTOK_ACCESS_TOKEN_THIRD (chunked file upload); IG
+    Reels additionally needs META_ACCESS_TOKEN + IG_USER_ID + REELS_PUBLIC_HOST
+    (a public URL Meta can fetch the file from)."""
+    out: dict = {}
+    if os.environ.get("TIKTOK_ACCESS_TOKEN_THIRD") or \
+            os.environ.get("TIKTOK_ACCESS_TOKEN"):
+        try:
+            from uploaders import TikTokUploader
+            up = TikTokUploader(channel="third").upload(
+                file_path=mp4, title=title, description=description, tags=tags)
+            out["tiktok"] = getattr(up, "url", str(up))
+            print(f"[crosspost] tiktok -> {out['tiktok']}", flush=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[crosspost] tiktok failed ({e})", flush=True)
+    if all(os.environ.get(k) for k in
+           ("META_ACCESS_TOKEN", "IG_USER_ID", "REELS_PUBLIC_HOST")):
+        try:
+            from uploaders import InstagramUploader
+            up = InstagramUploader().upload(
+                file_path=mp4, title=title, description=description, tags=tags)
+            out["instagram"] = getattr(up, "url", str(up))
+            print(f"[crosspost] instagram -> {out['instagram']}", flush=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[crosspost] instagram failed ({e})", flush=True)
+    if not out:
+        print("[crosspost] no TikTok/Reels token set — YouTube only. Set "
+              "TIKTOK_ACCESS_TOKEN_THIRD to reach the FYP where small accounts "
+              "break out (the deep dive's #1 lever).", flush=True)
+    return out
 
 
 def _description(pkg: dict, led: dict) -> str:
@@ -741,11 +785,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 localizations=localizations,
             )
             result.update(ok=True, video_url=getattr(up, "url", str(up)))
+            # ADDITIVE REACH: same clip → TikTok FYP (+ Reels if configured),
+            # where a small channel can actually get distributed. Never breaks
+            # the YouTube post.
+            xposts = _crosspost(out_mp4, title, description,
+                                _hashtags(pkg, led))
+            if xposts:
+                result["crossposts"] = xposts
             entry = {
                 "url": result["video_url"], "title": title,
                 "kind": led.get("kind", "cli"),
                 "ts": datetime.now(timezone.utc).isoformat(),
             }
+            if xposts:
+                entry["crossposts"] = xposts
             if led.get("kind") == "twitch_clip":
                 entry["source_url"] = led["source_url"]
                 entry["streamer"] = led["streamer"]
