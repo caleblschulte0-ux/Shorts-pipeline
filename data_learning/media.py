@@ -246,6 +246,103 @@ def _relevance(title: str, query: str) -> float:
     return hit / len(qt)
 
 
+def _clip_motion(clip: Path, ss: float, dur: float) -> float:
+    """Mean frame-to-frame change across the window — how much the picture
+    actually MOVES. A time-lapse / spinning storm / flooding street scores high;
+    a video that is functionally a frozen plate scores near zero (and so does not
+    earn the 'motion beats a still' win — a dead clip is no better than a photo)."""
+    import numpy as np
+    from data_learning import footage_hybrid as fh
+    fr = fh._sample_frames(clip, ss, dur, n=6)
+    if len(fr) < 2:
+        return 0.0
+    g = [a.mean(2) for a in fr]
+    diffs = [float(np.abs(g[i] - g[i - 1]).mean()) for i in range(1, len(g))]
+    return round(sum(diffs) / len(diffs), 2)
+
+
+# THE MOTION-FIRST LAW (see data_learning/MOTION_FIRST.md)
+#   When a beat's job is to DEPICT a real subject, a MOVING clip of that subject
+#   always beats a still of it. A still is earned only when no clip of the
+#   subject clears the bar (clean window + genuine movement + on-topic), or when
+#   the still carries information a clip can't (a chart, a map, a document) — and
+#   that case never reaches this gate (it is authored `still: true`).
+MOTION_FLOOR = 2.2        # mean frame-diff below this = a functionally frozen clip
+MOTION_REL_FLOOR = 0.08   # a clip must actually name the subject to count as "it"
+
+
+def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
+                 *, min_motion: float = MOTION_FLOOR,
+                 min_rel: float = MOTION_REL_FLOOR, max_probe: int = 3,
+                 log=print) -> dict | None:
+    """The decision gate. Given a subject a beat wants to DEPICT and how long the
+    beat runs, return a MOVING clip of that subject when one clears the bar —
+    because motion is more view-worthy than a still of the same thing. Probes the
+    most on-topic video candidates (NASA + stock), confirms each has a clean,
+    genuinely moving window, and returns the first winner:
+
+        {source, nasa_id|url, path, ss, title, license, motion, relevance}
+
+    Returns None when NO clip clears the bar — the honest signal for the caller to
+    fall back to a still (and to log WHY: nothing moving was available, not that a
+    still was preferred). Never ships a frozen or off-topic clip just to avoid a
+    photo."""
+    from data_learning import footage_hybrid as fh
+    cands = find(query, kind="video", perspective=perspective)
+    # PERSPECTIVE gate (mirrors best_image): a GROUND / human-scale beat must not
+    # be "upgraded" to an orbital clip — that swaps one boring-from-space shot for
+    # another and defeats the perspective director. Drop orbital-tell titles; if
+    # that empties the pool, there is no ground MOTION available and we correctly
+    # fall through to the still (which at least holds the right perspective).
+    if any(g in perspective.lower() for g in _GROUND_PERSP):
+        ground = [c for c in cands
+                  if not any(t in (c.get("title") or "").lower()
+                             for t in _ORBITAL_TELLS)]
+        if not ground:
+            log(f"[motion-first] {query!r} is a ground beat but only orbital "
+                "clips exist — keeping the ground still (perspective wins)")
+            return None
+        cands = ground
+    cands.sort(key=lambda c: _relevance(c.get("title", ""), query), reverse=True)
+    probed = 0
+    for c in cands:
+        if probed >= max_probe:
+            break
+        rel = _relevance(c.get("title", ""), query)
+        if rel < min_rel:            # an off-topic clip is not "the same subject"
+            continue
+        probed += 1
+        tag = c.get("nasa_id") or c.get("url", "")
+        safe = "".join(ch if ch.isalnum() else "_" for ch in str(tag))[:56]
+        dest = work / f"mfcache_{safe}.mp4"
+        try:
+            if not dest.exists() or dest.stat().st_size < 1024:
+                acquire(c, dest)
+            ss, _reports = fh.pick_window(dest, seconds, at=0.5)
+            if ss is None:
+                log(f"[motion-first] {str(c.get('title',''))[:38]!r}: no clean "
+                    f"{seconds:.1f}s window — skipping")
+                continue
+            mv = _clip_motion(dest, ss, seconds)
+            if mv < min_motion:
+                log(f"[motion-first] {str(c.get('title',''))[:38]!r}: window "
+                    f"barely moves ({mv} < {min_motion}) — not cooler than a "
+                    "still, skipping")
+                continue
+            log(f"[motion-first] MOTION WINS for {query!r}: "
+                f"{c.get('source')} {str(c.get('title',''))[:38]!r} "
+                f"motion={mv} rel={rel:.2f} ss={ss:.1f}")
+            return {"source": c.get("source"), "nasa_id": c.get("nasa_id"),
+                    "url": c.get("url"), "path": str(dest), "ss": round(ss, 2),
+                    "title": c.get("title", ""), "license": c.get("license", ""),
+                    "motion": mv, "relevance": round(rel, 2)}
+        except Exception as e:  # noqa: BLE001 — a bad candidate must not abort
+            log(f"[motion-first] probe failed ({str(e)[:56]}) — next candidate")
+    log(f"[motion-first] no moving clip cleared the bar for {query!r} "
+        f"(probed {probed}) — a still is the honest fallback")
+    return None
+
+
 def best_image(query: str, dest: Path, perspective: str = "",
                min_appeal: float = 0.42, tries: int = 6,
                usage: str = "commercial",

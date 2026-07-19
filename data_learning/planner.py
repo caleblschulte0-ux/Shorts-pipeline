@@ -113,10 +113,22 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                               "text": b["text"], "text_role": role,
                               "seconds": secs, "line": line})
             elif img:
+                # MOTION-FIRST: a DEPICTION beat that declared a still is probed
+                # for a moving clip of the same subject at render (motion beats a
+                # still of the same thing). The still rides along as the fallback.
+                subject = _motion_eligible(b, img)
+                if subject:
+                    if secs > maxu and not is_last:
+                        emit(_depict(b, img, maxu, subject, text=b["text"],
+                                     text_role=role, line=line))
+                        emit(_img_dev(img, secs - maxu))
+                    else:
+                        emit(_depict(b, img, secs, subject, text=b["text"],
+                                     text_role=role, line=line))
                 # a ground-truth / human-scale PHOTO carries the point footage
                 # can't (the perspective director's consequence shot). The line
                 # lands ON the photo; a long beat keeps the Ken Burns move alive.
-                if secs > maxu and not is_last:
+                elif secs > maxu and not is_last:
                     emit({"kind": "image_text", **_img(img),
                                   "text": b["text"], "text_role": role,
                                   "seconds": maxu, "line": line})
@@ -148,6 +160,12 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         # image beat splits into several moves (each a different pan/push) so a
         # still never freezes into a slideshow.
         if img:
+            # MOTION-FIRST: probe a moving version of the subject; a single
+            # depict shot resolves to a clip (or the still fallback) at render.
+            subject = _motion_eligible(b, img)
+            if subject:
+                emit(_depict(b, img, secs, subject, line=line))
+                continue
             for k, sh in enumerate(_chunk_image(img, secs, maxu)):
                 if k == 0 and line:
                     sh["line"] = line
@@ -202,6 +220,55 @@ def _chunk_footage(foot: dict, secs: float, maxu: float,
             sh["phase"] = "development"
         shots.append(sh)
     return shots
+
+
+def _motion_subject(beat: dict, image: dict) -> str:
+    """What to search MOVING footage of, for a depiction beat that declared a
+    still. Prefer an explicit motion query, then the image's own search query,
+    then the beat's SUBJECT (the schema's 'what this beat is about') — never the
+    narration prose, which is a sentence, not a search."""
+    for q in (image.get("motion_query"), beat.get("motion_query"),
+              image.get("query"), beat.get("subject")):
+        if q:
+            return str(q)
+    return ""
+
+
+def _motion_eligible(beat: dict, image: dict) -> str | None:
+    """MOTION-FIRST LAW gate (authoring side): should this still be PROBED for a
+    moving version? Returns the subject query to probe with, or None to keep the
+    still as authored. A still is kept as-is only when:
+      - the beat EXPLAINS rather than DEPICTS (a chart/diagram/map — function
+        other than 'experience'), or
+      - the author pinned `still: true` (a specific document/photo a clip can't
+        replace), or
+      - there is no subject to search motion with.
+    Every other still-declared DEPICTION is motion-first: we look for a clip and
+    only fall back to the still if none clears the bar (resolved at render)."""
+    if image.get("still") or beat.get("still"):
+        return None
+    if str(beat.get("function", "experience")).lower() != "experience":
+        return None
+    return _motion_subject(beat, image) or None
+
+
+def _depict(beat: dict, image: dict, secs: float, subject: str,
+            *, text: str = "", text_role: str = "", line: str = "",
+            phase: str = "") -> dict:
+    """A DEPICTION shot: 'show this subject, motion-first'. The renderer resolves
+    it — a moving clip of the subject if one clears the bar, else the declared
+    still (carried here as the fallback). Text rides whichever wins."""
+    sh: dict = {"kind": "depict_text" if text else "depict",
+                "motion_query": subject, "seconds": secs, **_img(image)}
+    if image.get("perspective"):
+        sh["perspective"] = image["perspective"]
+    if text:
+        sh["text"], sh["text_role"] = text, text_role or "thesis"
+    if line:
+        sh["line"] = line
+    if phase:
+        sh["phase"] = phase
+    return sh
 
 
 def _img(image: dict) -> dict:

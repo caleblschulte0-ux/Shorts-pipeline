@@ -95,16 +95,20 @@ def _synth(line: str, dest: Path, voice: str) -> float:
 def _footage_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     # cache sources by id — a story often reuses one long clip across beats,
     # and these downloads are hundreds of MB.
-    nid = shot.get("footage_nasa_id")
-    if not nid:
-        hits = fh.search_footage(str(shot.get("footage_query", "")), limit=6)
-        if not hits:
-            raise RuntimeError(f"no footage for {shot.get('footage_query')!r}")
-        nid = hits[0]["nasa_id"]
-    safe = "".join(c if c.isalnum() else "_" for c in str(nid))[:60]
-    src = work / f"srccache_{safe}.mp4"
-    if not src.exists():
-        fh.download_video(str(nid), src)
+    local = shot.get("_local_src")     # a clip the MOTION-FIRST gate already got
+    if local:
+        src = Path(local)
+    else:
+        nid = shot.get("footage_nasa_id")
+        if not nid:
+            hits = fh.search_footage(str(shot.get("footage_query", "")), limit=6)
+            if not hits:
+                raise RuntimeError(f"no footage for {shot.get('footage_query')!r}")
+            nid = hits[0]["nasa_id"]
+        safe = "".join(c if c.isalnum() else "_" for c in str(nid))[:60]
+        src = work / f"srccache_{safe}.mp4"
+        if not src.exists():
+            fh.download_video(str(nid), src)
     # Operator spec §1: inspect the EXACT window and reject black / card /
     # diagram / cut segments — never pick a clip just because the id matched.
     if shot.get("ss") is not None:
@@ -121,7 +125,7 @@ def _footage_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
                                          at=float(shot.get("at", 0.5)))
         if picked is None:
             raise RuntimeError(
-                f"no clean window in {nid} for a {seconds:.1f}s beat "
+                f"no clean window in {src.name} for a {seconds:.1f}s beat "
                 f"(inspected {len(reports)})")
         ss = picked
     fh.full_frame_beat(src, ss, seconds, out,
@@ -236,6 +240,52 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
     return picked
 
 
+def _depict_source(shot: dict, seconds: float, work: Path, idx: int):
+    """MOTION-FIRST resolution for a DEPICTION shot. Ask the gate for a moving
+    clip of the subject; on a hit, return ('video', footage_shot_dict); on a
+    miss, fall back to the declared still and return ('image', None). The
+    decision (and WHY, when it falls back) is logged so a still is never a silent
+    default — only an earned one."""
+    from data_learning import media
+    q = str(shot.get("motion_query", "")).strip()
+    if q:
+        hit = media.motion_first(
+            q, seconds, work, perspective=str(shot.get("perspective", "")),
+            log=lambda m: print(m, file=sys.stderr))
+        if hit:
+            # hand the resolved clip to the normal footage path: a local file
+            # (already downloaded by the gate) pinned to its clean window.
+            foot = {"kind": "footage", "seconds": seconds,
+                    "ss": hit["ss"], "push": float(shot.get("push", 1.06)),
+                    "direction": shot.get("direction", "in"),
+                    "_local_src": hit["path"],
+                    "footage_nasa_id": hit.get("nasa_id") or f"mf_{idx}"}
+            _ATTRIB.append({"idx": idx, "source": hit.get("source"),
+                            "license": hit.get("license"),
+                            "attribution": hit.get("title"),
+                            "title": hit.get("title")})
+            return "video", foot
+    print(f"[pro] depict {q!r}: no moving clip — using the still fallback",
+          file=sys.stderr)
+    return "image", None
+
+
+def _depict_shot(shot, seconds, out, work, idx):
+    mode, foot = _depict_source(shot, seconds, work, idx)
+    if mode == "video":
+        return _footage_shot(foot, seconds, out, work, idx)
+    return _image_shot(shot, seconds, out, work, idx)
+
+
+def _depict_text_shot(shot, seconds, out, work, idx):
+    mode, foot = _depict_source(shot, seconds, work, idx)
+    if mode == "video":
+        base = work / f"dt_base_{idx}.mp4"
+        _footage_shot(foot, seconds, base, work, idx)
+        return _overlay_text(base, shot, out)
+    return _image_text_shot(shot, seconds, out, work, idx)
+
+
 def _image_shot(shot, seconds, out, work, idx):
     src = _image_source(shot, work, idx)
     _ATTRIB.append({"idx": idx, "source": src.get("source"),
@@ -319,6 +369,10 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         return _image_shot(shot, seconds, out, work, idx)
     if k == "image_text":
         return _image_text_shot(shot, seconds, out, work, idx)
+    if k == "depict":
+        return _depict_shot(shot, seconds, out, work, idx)
+    if k == "depict_text":
+        return _depict_text_shot(shot, seconds, out, work, idx)
     if k == "composite":
         return _composite_shot(shot, seconds, out, work, idx)
     if k == "flat_number":
@@ -512,7 +566,7 @@ def _check_continuity(story, shots, clips, pkg):
     # coarse-dHash false positives — e.g. a fiery number card and a storm in
     # space both read as "bright centre on dark". Exclude designed beats.
     _SOURCED = {"footage", "footage_number", "footage_text",
-                "image", "image_text"}
+                "image", "image_text", "depict", "depict_text"}
     by_beat = []
     for bi, b in enumerate(beats):
         idxs = [i for i, sh in enumerate(shots) if sh.get("_beat") == bi]

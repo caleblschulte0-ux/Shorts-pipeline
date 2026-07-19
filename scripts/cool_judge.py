@@ -37,6 +37,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 LOW_MOTION = 4.0
 DULL = 0.42
 LONG_HOLD = 6.0
+STILL_LIKE = 2.2       # below this a beat reads as a frozen photo, not footage
+# beats whose JOB is to DEPICT/EXPERIENCE a subject — a near-frozen frame here is
+# a candidate MOTION-FIRST violation (a still where a clip should have been).
+_DEPICTION_JOBS = ("HOOK", "REVEAL", "PAYOFF", "EXPERIENCE", "CONSEQUENCE",
+                   "GROUND", "LANDFALL", "AFTERMATH")
 
 
 def _dur(p: Path) -> float:
@@ -111,6 +116,11 @@ def build_package(render: Path, beatmap: dict, out: Path) -> list[dict]:
             suspect.append("DULL")
         if hold >= LONG_HOLD:
             suspect.append("LONG_HOLD")
+        # MOTION-FIRST audit: a depiction beat frozen like a photo may be a still
+        # that should have been a moving clip (see data_learning/MOTION_FIRST.md).
+        job = str(b.get("job", "")).upper()
+        if motion < STILL_LIKE and any(d in job for d in _DEPICTION_JOBS):
+            suspect.append("STILL_WHEN_MOTION_EXISTS")
         rows.append({"beat": i, "job": b.get("job", ""), "t": b.get("t", ""),
                      "motion": motion, "appeal": appeal, "hold_s": hold,
                      "suspect": suspect, "card": card.name,
