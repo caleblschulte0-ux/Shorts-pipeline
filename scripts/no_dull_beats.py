@@ -251,46 +251,41 @@ def variety_check(beats: list, beatmap: Path, render: Path,
     return sorted(excess)
 
 
-# concrete subjects the NARRATION can be "about", and the visual family each one
-# belongs on. A beat whose words are about a sprinter must not show Earth-from-
-# orbit — that's the "talking about Usain Bolt over a picture of the planet" bug.
-_NARR_SUBJECTS = {
-    "ground_human": ("sprinter", "usain", "bolt", "runner", "running", "car",
-                     "jet", "plane", "bus", "bullet", "person", "people", "human",
-                     "athlete", "cheetah", "train", "motorcycle", "highway"),
-    "sun": ("the sun", "solar", "sunspot", "corona"),
-    "storm": ("hurricane", "storm", "cyclone", "eye of the"),
-}
-# which VISUAL families are ACCEPTABLE for each narration subject
-_OK_VISUAL = {
-    "ground_human": {"", "sky_clouds"},   # ground words want ground/designed, NOT space
-    "sun": {"sun", ""},
-    "storm": {"storm", ""},
-}
+# a ground / human-scale SUBJECT named in the narration must not play over Earth-
+# from-orbit — the "talking about Usain Bolt over a picture of the planet" bug.
+_GROUND_SUBJECTS = ("sprinter", "usain", "bolt", "runner", "car", "jet", "plane",
+                    "bus", "person", "people", "athlete", "cheetah", "train",
+                    "motorcycle", "highway", "crowd", "stadium", "street")
+_SPACE_FAMS = {"earth_space", "sun"}
+# comparison / relation clauses — a subject named HERE is a yardstick, not the
+# beat's topic ("faster THAN a bullet", "AROUND the sun"). Strip before judging.
+_COMPARE_RE = re.compile(
+    r"\b(than|like|as fast as|compared to|around the|orbit\w*|beyond)\b[^.,;]*",
+    re.I)
 
 
 def pacing_check(beats: list) -> list[dict]:
-    """The pacing / sync director. Catches the beat whose PICTURE doesn't match
-    the WORDS under it: narration about a sprinter/jet playing over Earth-from-
-    orbit. For each beat, find what the narration is concretely ABOUT and confirm
-    the on-screen visual family is compatible. A designed card (a comparison chart
-    of those very speeds) is always compatible — it illustrates the words. Returns
-    mismatches with a fix hint (usually: make it the designed explainer)."""
+    """The pacing / sync director. Catches the beat whose PICTURE doesn't match the
+    WORDS under it: narration whose SUBJECT is a sprinter/jet playing over Earth-
+    from-orbit. Conservative on purpose — a subject named inside a comparison
+    ('faster than a bullet') or a relation ('around the Sun') is a yardstick, not
+    the topic, so those clauses are stripped first (they were false positives that
+    would wrongly convert a correct Earth-spin beat). A designed card always
+    illustrates the words, so it is exempt. The definitive 'does the picture match'
+    call is the vision judge; this is the cheap, high-precision pre-screen."""
     out = []
     for i, b in enumerate(beats):
         if _is_designed(b) or b.get("_prefer_designed"):
-            continue                       # a designed explainer illustrates the words
-        narr = str(b.get("narration", "")).lower()
-        fam = _family(b)                    # the visual's family (footage subject)
-        if not fam:
             continue
-        for subj, keys in _NARR_SUBJECTS.items():
-            if any(k in narr for k in keys) and fam not in _OK_VISUAL.get(subj, set()):
-                out.append({"beat": i, "job": str(b.get("job", "")).upper(),
-                            "why": f"narration is about {subj} but the visual is "
-                            f"{fam} — wrong picture for the words",
-                            "narr_subject": subj})
-                break
+        fam = _family(b)
+        if fam not in _SPACE_FAMS:         # only the space-over-ground case here
+            continue
+        narr = _COMPARE_RE.sub("", str(b.get("narration", "")).lower())
+        hits = [k for k in _GROUND_SUBJECTS if re.search(rf"\b{k}\b", narr)]
+        if hits:
+            out.append({"beat": i, "job": str(b.get("job", "")).upper(),
+                        "why": f"narration subject is {hits[0]!r} (ground/human) "
+                        f"but the visual is {fam} — wrong picture for the words"})
     return out
 
 
