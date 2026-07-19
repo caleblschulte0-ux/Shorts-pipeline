@@ -402,6 +402,14 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
                                  seconds)
     if k == "flat_statement":
         return flat2d.statement(shot["statement"], out, seconds)
+    if k == "flat_hidden_motion":
+        return flat2d.hidden_motion(
+            shot.get("text", "0"), out, seconds, sub=shot.get("sub", "MPH"),
+            label=shot.get("label", "YOU'RE MOVING AT"))
+    if k == "flat_spin":
+        return flat2d.spinning_world(
+            shot.get("text", "0"), out, seconds, sub=shot.get("sub", "MPH"),
+            label=shot.get("label", "THE EARTH'S SPIN"))
     if k == "flat_orbit":
         return flat2d.orbit_reveal(shot.get("center", "THE SUN"),
                                    shot.get("satellite", "EARTH"), out,

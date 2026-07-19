@@ -286,6 +286,87 @@ def hidden_motion(number: str, out: Path, seconds: float = 6.0,
     return _render(draw, out, seconds, seed=11)
 
 
+def spinning_world(number: str, out: Path, seconds: float = 6.0,
+                   sub: str = "MPH", label: str = "THE EARTH'S SPIN") -> Path:
+    """A stylised Earth actually SPINS, with a glowing 'you are here' point carried
+    around the equator — the specific idea 'you are standing on a ball turning at
+    over a thousand miles an hour'. Real sphere projection so continents wrap round
+    the limb; a terminator shades the far side. Purpose-built, always moving."""
+    try:
+        target = int("".join(ch for ch in number if ch.isdigit()) or "0")
+    except ValueError:
+        target = 0
+    cx, cy, R = W // 2, int(H * 0.56), int(H * 0.30)
+    big = _font(ANTON, 118)
+    unitf = _font(_DEJAVU, 40)
+    capf = _font(_DEJAVU, 32)
+    rnd = random.Random(5)
+    # blobby "continents" as clusters of points in (lat, lon) radians
+    blobs = []
+    for _ in range(7):
+        clat = rnd.uniform(-1.0, 1.0)
+        clon = rnd.uniform(-math.pi, math.pi)
+        for _ in range(rnd.randint(26, 46)):
+            blobs.append((clat + rnd.gauss(0, 0.16), clon + rnd.gauss(0, 0.18),
+                          rnd.uniform(9, 20)))
+
+    def draw(i, n, im):
+        im = _drift_stars(im, i)
+        d = ImageDraw.Draw(im, "RGBA")
+        theta = 2 * math.pi * (0.6 * i / n)          # slow, readable rotation
+        # ocean disc with a soft rim glow
+        glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(glow).ellipse([cx - R - 26, cy - R - 26, cx + R + 26,
+                                      cy + R + 26], fill=(60, 120, 220, 90))
+        im = Image.alpha_composite(im.convert("RGBA"),
+                                   glow.filter(ImageFilter.GaussianBlur(26)))
+        d = ImageDraw.Draw(im, "RGBA")
+        d.ellipse([cx - R, cy - R, cx + R, cy + R], fill=(24, 54, 104, 255))
+        # continents projected onto the front hemisphere
+        for lat, lon, sz in blobs:
+            ll = lon - theta
+            cph = math.cos(ll)
+            if cph <= 0.02:
+                continue                              # on the far side
+            x = cx + R * math.sin(ll) * math.cos(lat)
+            y = cy - R * math.sin(lat)
+            r = max(2, sz * cph)
+            d.ellipse([x - r, y - r, x + r, y + r], fill=(46, 120, 74, 255))
+        # terminator: shade the trailing limb for a lit-from-left sphere
+        sh = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(sh).ellipse([cx - R + int(R * 0.55), cy - R, cx + R,
+                                    cy + R], fill=(0, 0, 10, 120))
+        im = Image.alpha_composite(im, sh.filter(ImageFilter.GaussianBlur(30)))
+        d = ImageDraw.Draw(im, "RGBA")
+        d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=(120, 170, 255, 90),
+                  width=2)
+        # the 'you are here' point on the equator, carried around
+        ll = 0.0 - theta
+        if math.cos(ll) > 0:
+            x = cx + R * math.sin(ll)
+            pg = Image.new("RGBA", im.size, (0, 0, 0, 0))
+            ImageDraw.Draw(pg).ellipse([x - 26, cy - 26, x + 26, cy + 26],
+                                       fill=(255, 210, 120, 160))
+            im = Image.alpha_composite(im, pg.filter(ImageFilter.GaussianBlur(10)))
+            d = ImageDraw.Draw(im, "RGBA")
+            d.ellipse([x - 9, cy - 9, x + 9, cy + 9], fill=(255, 235, 180, 255))
+        # the number, top of frame
+        cnt = int(target * _ease(min(max(i - 6, 0) / (FPS * 1.5), 1.0)))
+        s = f"{cnt:,}"
+        ny = int(H * 0.07)
+        cap = _spaced(label)
+        d.text((_center_x(d, cap, capf), ny - 44), cap, font=capf,
+               fill=(*PALETTE["muted"], 235))
+        im = _glow_text(im, (_center_x(d, s, big), ny), s, big,
+                        (*PALETTE["ink"], 255), (*PALETTE["gold"], 140), blur=12)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.text((_center_x(d, sub, unitf), ny + 120), sub, font=unitf,
+               fill=(*PALETTE["gold"], 255))
+        return im
+
+    return _render(draw, out, seconds, seed=11)
+
+
 def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
                title: str = "") -> Path:
     """2-4 entities compared by a value, drawn as clean left-aligned bars that
