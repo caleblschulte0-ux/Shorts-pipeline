@@ -61,6 +61,20 @@ jobs:
         with:
           fetch-depth: 1
 
+      # DEDUPE FRESHNESS (fix for duplicate uploads): actions/checkout pins to
+      # the TRIGGERING commit SHA. Under the `third-shorts` concurrency queue a
+      # run can be triggered early but execute late — after another run already
+      # committed new posts — so its checked-out posted log is STALE and it
+      # re-picks a clip that's already up (union-merge on commit then keeps
+      # both). Pull the newest committed dedupe state from origin/main BEFORE
+      # run_third selects, so posted_keys always reflects every prior post.
+      - name: Sync dedupe state from main
+        run: |
+          git fetch origin main --depth=1 || true
+          git checkout origin/main -- \
+            state/third_posted_log.json state/third_qa_stats.json 2>/dev/null \
+            || echo "no committed dedupe state yet — first run"
+
       - name: Pre-flight — secrets + kill switch
         run: |
           set -e

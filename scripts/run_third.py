@@ -540,6 +540,14 @@ def process(pkg: dict, pkg_path: Path | None, *,
                         f"{min_banger} across {len(shortlist)} candidates — "
                         "posting fewer, not a dud")
                 pick = postable[0]
+                # FINAL DEDUPE GUARD (never post the same clip twice): the
+                # shortlist was already filtered by posted_keys, so this only
+                # fires if a future refactor lets a posted clip slip through —
+                # a loud, cheap backstop on the channel's core law.
+                if _clip_key(pick["url"]) in posted_keys:
+                    raise _SkipSlot(
+                        f"dedupe guard: {_clip_key(pick['url'])} already "
+                        "posted — refusing a duplicate")
                 info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]
 
