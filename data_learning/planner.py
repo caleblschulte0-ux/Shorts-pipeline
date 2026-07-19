@@ -96,6 +96,13 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         # lands and then the FOOTAGE keeps developing (enforces max_unchanged).
         if b.get("number"):
             num = b["number"]
+            if b.get("_prefer_designed") and not b.get("flat"):
+                # VARIETY: the director flagged this footage-number beat a visual
+                # look-alike of an earlier clip. Land the number on a DESIGNED card
+                # (an animated count-up) instead of yet another near-identical shot
+                # — breaks the monotony AND adds an animation we want more of.
+                emit({"kind": "flat_number", **num, "seconds": secs, "line": line})
+                continue
             if b.get("flat"):
                 # the subject can't be filmed (tier C: the galaxy) -> the
                 # number rides the DESIGNED base, a distinct image that escapes
