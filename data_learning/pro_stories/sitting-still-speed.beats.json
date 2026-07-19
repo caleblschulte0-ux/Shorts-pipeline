@@ -9,13 +9,13 @@
    "understand": "the VISUAL contradicts the words: you feel still, but the screen proves you are hurtling through space",
    "function": "experience",
    "mode": "footage",
-   "text": "YOU ARE NOT SITTING STILL",
+   "text": "YOU'RE MOVING AT 30 KM/S",
    "text_role": "thesis",
    "_force_motion": true,
    "subject": "aurora from the international space station",
    "max_unchanged": 6.0,
    "footage": {
-    "push": 1.12,
+    "push": 1.18,
     "direction": "in",
     "intent": "a fast, dynamic aurora and Earth racing past beneath the space station \u2014 motion that argues against stillness"
    }
