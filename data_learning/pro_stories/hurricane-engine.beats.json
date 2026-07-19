@@ -5,11 +5,11 @@
   "beats": [
     {
       "job": "HOOK",
-      "narration": "In a single day, one hurricane unleashes more energy than ten thousand nuclear bombs.",
-      "understand": "HOOK DIRECTOR: open on a high-appeal designed number-slam (bold number + shock + on-screen text), NOT a calm cloud — the shock stat is the scroll-stopper. Cut to the storm right after.",
+      "narration": "One hurricane unleashes more energy than ten thousand nuclear bombs — a day.",
+      "understand": "HOOK DIRECTOR + COOL JUDGE: slam the shock number, then GET OFF IT — a held card after ~2s reads as 'okay, fine' and gets scrolled. Keep the line short so the slam cuts fast to the spinning storm. NOT a calm cloud; the shock stat is the scroll-stopper.",
       "function": "evidence",
       "mode": "designed_2d",
-      "max_unchanged": 4.0,
+      "max_unchanged": 3.0,
       "flat": {"kind": "flat_hook", "text": "10,000", "sub": "nuclear bombs", "label": "unleashed every single day"}
     },
     {
@@ -46,13 +46,13 @@
     {
       "job": "REVEAL",
       "narration": "At its heart, the eye — dead calm, ringed by the fastest winds on Earth.",
-      "understand": "the ONE earned orbital beauty shot: a single fast push into the calm eye. Kept SHORT so it never chunks into two near-identical grey clouds — one punchy eye, then straight to the ground-level payoff (perspective director: leave orbit after this).",
+      "understand": "COOL JUDGE: show the WHOLE spinning storm, not a zoomed-in cloud. The sickest way to show a hurricane is the entire spiral turning from the ISS — a thousand-mile pinwheel with the eye at its center. A slow push toward that central eye reveals the whole storm AND lands the 'eye' line. One shot, no cropping to a fragment.",
       "function": "experience",
       "mode": "footage+annotation",
       "text_role": "annotation",
-      "max_unchanged": 5.5,
+      "max_unchanged": 6.6,
       "text": "the eye",
-      "footage": {"nasa_id": "iss060m262461429_Expedition_60_ISS_Hurricane_Dorian_Live_Views_2019_0903", "ss": 1071.0, "push": 1.32, "direction": "in", "intent": "a fast push into the churning heart of the storm — the peak"}
+      "footage": {"nasa_id": "jsc2019m000806_Hurricane_Dorian_190902", "ss": 42.0, "push": 1.16, "direction": "in", "intent": "the WHOLE hurricane spinning from the ISS — full spiral, eye at center; a slow push toward the calm eye, the whole storm in frame"}
     },
     {
       "job": "PAYOFF",
