@@ -62,6 +62,21 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         is_last = bi == n - 1
         foot = b.get("footage")
 
+        # NO DULL BEATS — auto-repair escalation. When the dullness director has
+        # marked a beat `_force_motion` (its designed/still treatment scored dull),
+        # override it: land the beat's text/number ON motion of the subject
+        # (motion-first at render, still fallback). A dull flat card becomes a
+        # moving shot. See scripts/no_dull_beats.py.
+        subj = _motion_subject(b, b.get("image") or {})
+        if b.get("_force_motion") and subj:
+            txt = b.get("text") or (b.get("number") or {}).get("label", "")
+            role = b.get("text_role", "annotation")
+            img = b.get("image") or {"query": subj, "perspective":
+                                     b.get("perspective", "")}
+            emit(_depict(b, img, secs, subj, text=txt, text_role=role,
+                         line=line))
+            continue
+
         # ---- pure designed-2D beat (orbit, galaxy, comparison, title) —
         # only when NO number/text rides it (those route to composite below).
         if b.get("flat") and not b.get("number") and not b.get("text"):

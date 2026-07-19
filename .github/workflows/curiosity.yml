@@ -208,6 +208,14 @@ jobs:
           YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # STOCK VIDEO — top of the media pipeline. Without these the
+          # motion-first gate can never reach ground / human-scale footage
+          # (NASA is orbital-only) and depiction beats fall back to stills.
+          # The secrets already exist (daily.yml uses them); this channel
+          # simply was not forwarding them to the render.
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
           # CI runs on a 4-core runner under a 6h cap: render the Cycles
           # heroes at 960x540/24 (upscaled to 1080p by minterpolate; flat
           # toon shading upscales cleanly) so the full premium cut finishes

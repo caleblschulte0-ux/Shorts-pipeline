@@ -187,15 +187,23 @@ def find(query: str, kind: str = "image", perspective: str = "",
                    if any(t in c["license"] for t in _COMMERCIAL)
                    or "public" in c["license"]] or out
     else:  # video
+        nasa: list[dict] = []
         try:
             for h in __import__("data_learning.footage_hybrid",
                                 fromlist=["x"]).search_footage(query, limit):
-                out.append({"source": "nasa", "kind": "video",
-                            "nasa_id": h.get("nasa_id"), "title":
-                            h.get("title", ""), "license": "PD (NASA)"})
+                nasa.append({"source": "nasa", "kind": "video",
+                             "nasa_id": h.get("nasa_id"), "title":
+                             h.get("title", ""), "license": "PD (NASA)"})
         except Exception as e:  # noqa: BLE001
             print(f"[media] nasa: {str(e)[:70]}")
-        out += stock.stock_search(query, limit)
+        stock_hits = stock.stock_search(query, limit)
+        # STOCK-FIRST for ground / human-scale beats: NASA is orbital-only, so a
+        # 'ground consequence' or 'pov' beat wants Pexels/Pixabay at the TOP of
+        # the list; space beats keep NASA first.
+        if any(g in perspective.lower() for g in _GROUND_PERSP):
+            out += stock_hits + nasa
+        else:
+            out += nasa + stock_hits
     return out
 
 
