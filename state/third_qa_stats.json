@@ -697,6 +697,65 @@
           "self_healed": false
         }
       ]
+    },
+    {
+      "date": "20260719",
+      "dry_run": false,
+      "ts": "2026-07-19T17:26:21+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 66,
+        "with_retention": 48,
+        "with_curve": 10,
+        "fetched_at": "2026-07-19T12:23:24.974721+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260719-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260719-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260719-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260719-4",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit"
+        },
+        {
+          "slug": "clip-20260719-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260719-6",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.1s \u2014 too short to edit"
+        },
+        {
+          "slug": "clip-20260719-7",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Every frame is dominated by a large black dead-zone in the lower half/two-thirds of the frame, with the actual subject s; vision: Subject is tiny and often nearly cropped out even within that "
+        },
+        {
+          "slug": "clip-20260719-8",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
     }
   ]
 }
