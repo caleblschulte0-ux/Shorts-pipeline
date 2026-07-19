@@ -13705,6 +13705,675 @@
         }
       ],
       "question": "Would you rather live on Jupiter's blink-of-an-eye day, or Venus's endless one?"
+    },
+    {
+      "slug": "moons-in-our-solar-system",
+      "title": "Moons In Our Solar System",
+      "hook": "Have you ever wondered how many moons are orbiting the planets in our solar system?",
+      "closing": "The diversity of moons in our solar system is a fascinating area of study.",
+      "hashtags": [
+        "space",
+        "solarsystem",
+        "moons",
+        "planets"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "moons_in_our_solar_system_moon_counts",
+          "params": {
+            "file": "moons_in_our_solar_system_moon_counts.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 MOON COUNTS",
+          "topic": "Moon Counts",
+          "say": "The gas giants have significantly more moons than the rocky planets, with Jupiter having 92 confirmed moons and Saturn having 83.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "moon",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "moon",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "moon",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "moons_in_our_solar_system_largest_moons",
+          "params": {
+            "file": "moons_in_our_solar_system_largest_moons.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 LARGEST MOONS",
+          "topic": "Largest Moons",
+          "say": "Ganymede, orbiting Jupiter, is the largest moon in the solar system, with a diameter of approximately 3,275 miles.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "moon",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "moons_in_our_solar_system_moon_orbits",
+          "params": {
+            "file": "moons_in_our_solar_system_moon_orbits.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 MOON ORBITS",
+          "topic": "Moon Orbits",
+          "say": "The orbital periods of moons vary significantly, ranging from less than a day for some of Jupiter's moons to over 1,000 days for Neptune's moon, Nereid.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "moons_in_our_solar_system_moon_discovery",
+          "params": {
+            "file": "moons_in_our_solar_system_moon_discovery.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 MOON DISCOVERY",
+          "topic": "Moon Discovery",
+          "say": "The discovery of moons has been an ongoing process, with the first moon discovered in 1610 and many more discovered in the 20th and 21st centuries using advanced telescopes.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "orbit_group",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "Which planet do you think has the most moons and why?"
+    },
+    {
+      "slug": "biggest-craters-in-solar-system",
+      "title": "Biggest Craters In Solar System",
+      "hook": "The largest craters in our solar system are a testament to the violent history of our cosmos.",
+      "closing": "These massive craters remind us of the awe-inspiring scale and power of celestial impacts.",
+      "hashtags": [
+        "space",
+        "craters",
+        "solarsystem",
+        "impacts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "biggest_craters_in_solar_system_largest_craters",
+          "params": {
+            "file": "biggest_craters_in_solar_system_largest_craters.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST CRATERS",
+          "topic": "Largest Craters",
+          "say": "The largest crater in our solar system is the Aitken Basin on the Moon, with a diameter of approximately 1,550 miles.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crater",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crater",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crater",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "biggest_craters_in_solar_system_crater_formation",
+          "params": {
+            "file": "biggest_craters_in_solar_system_crater_formation.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 CRATER FORMATION",
+          "topic": "Crater Formation",
+          "say": "The formation of these massive craters occurred over billions of years, with the most significant impacts happening during the early days of the solar system.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "biggest_craters_in_solar_system_crater_depth",
+          "params": {
+            "file": "biggest_craters_in_solar_system_crater_depth.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 CRATER DEPTH",
+          "topic": "Crater Depth",
+          "say": "The depth of these craters can be staggering, with some extending as deep as 2 miles below the surrounding terrain.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "crater",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "biggest_craters_in_solar_system_crater_explorati",
+          "params": {
+            "file": "biggest_craters_in_solar_system_crater_explorati.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 CRATER EXPLORATION",
+          "topic": "Crater Exploration",
+          "say": "The exploration of these craters has been an ongoing process, with spacecraft providing valuable insights into their formation and composition.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "orbit_group",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What do you think is the most significant factor in determining the size of a crater?"
+    },
+    {
+      "slug": "tree-oxygen-production",
+      "title": "Tree Oxygen Production",
+      "hook": "Did you know that trees are the ultimate oxygen factories?",
+      "closing": "Trees are the unsung heroes of our planet's oxygen supply.",
+      "hashtags": [
+        "oxygen",
+        "trees",
+        "nature",
+        "sustainability",
+        "ecology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "tree_oxygen_production_tree_oxygen",
+          "params": {
+            "file": "tree_oxygen_production_tree_oxygen.json"
+          },
+          "insight_type": "share",
+          "role": "1 \u00b7 TREE OXYGEN",
+          "topic": "Tree Oxygen",
+          "say": "A single tree can produce up to 20 percent of the oxygen that one person needs in a year, with some trees producing as much as 100 pounds of oxygen per year.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "tree_oxygen_production_forest_oxygen",
+          "params": {
+            "file": "tree_oxygen_production_forest_oxygen.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 FOREST OXYGEN",
+          "topic": "Forest Oxygen",
+          "say": "While a single tree can produce a significant amount of oxygen, an entire forest can produce enough oxygen for thousands of people, making them far more effective than urban areas at producing oxygen.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "tree_oxygen_production_global_tree_cover",
+          "params": {
+            "file": "tree_oxygen_production_global_tree_cover.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 GLOBAL TREE COVER",
+          "topic": "Global Tree Cover",
+          "say": "Unfortunately, global tree cover has been declining over the past few decades, with some estimates suggesting that up to 15 percent of the world's tree cover has been lost since the 1990s.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "tree_oxygen_production_tree_planting_initiatives",
+          "params": {
+            "file": "tree_oxygen_production_tree_planting_initiatives.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 TREE PLANTING INIT",
+          "topic": "Tree Planting Initiatives",
+          "say": "However, there are many initiatives underway to plant millions of new trees and restore the world's tree cover, with some organizations aiming to plant as many as 1 trillion trees over the next few decades."
+        }
+      ],
+      "question": "How many trees do you think are needed to produce enough oxygen for one person?"
+    },
+    {
+      "slug": "poisonous-plants",
+      "title": "Poisonous Plants",
+      "hook": "Some plants are so toxic that they can kill you in a matter of minutes.",
+      "closing": "So, the next time you're out for a hike, be sure to steer clear of these deadly plants.",
+      "hashtags": [
+        "poisonous",
+        "plants",
+        "nature",
+        "danger",
+        "outdoors"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "poisonous_plants_deadly_plants",
+          "params": {
+            "file": "poisonous_plants_deadly_plants.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DEADLY PLANTS",
+          "topic": "Deadly Plants",
+          "say": "The castor bean is considered one of the most poisonous plants in the world, with its seeds containing a toxin that can kill an adult human being in a matter of minutes, while tobacco plants contain a toxin that can be fatal if ingested in large quantities.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "castor bean",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tobacco",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "poisonous_plants_plant_toxins",
+          "params": {
+            "file": "poisonous_plants_plant_toxins.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 PLANT TOXINS",
+          "topic": "Plant Toxins",
+          "say": "Some plants contain toxins that are so potent that they can kill an adult human being with as little as 1-2 grams of the toxin, while others may require much larger quantities to be fatal.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "poisonous_plants_poisonous_plant_distribution",
+          "params": {
+            "file": "poisonous_plants_poisonous_plant_distribution.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 POISONOUS PLANT DI",
+          "topic": "Poisonous Plant Distribution",
+          "say": "Unfortunately, many of these poisonous plants are found in areas where people like to hike and camp, with some estimates suggesting that up to 10 percent of all plant species in certain regions are toxic to humans.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "poisonous_plants_plant_toxin_research",
+          "params": {
+            "file": "poisonous_plants_plant_toxin_research.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 PLANT TOXIN RESEAR",
+          "topic": "Plant Toxin Research",
+          "say": "Despite the dangers posed by these plants, researchers are still working to learn more about the toxins they contain and how they can be used to develop new medicines, with some estimates suggesting that up to 50 percent of all new medicines are derived from plant-based compounds."
+        }
+      ],
+      "question": "What's the most poisonous plant you've ever heard of?"
+    },
+    {
+      "slug": "heart-beats-in-lifetime",
+      "title": "Heart Beats In Lifetime",
+      "hook": "The heart is one of the most vital organs in the human body, but have you ever wondered how many times it beats in a lifetime?",
+      "closing": "The heart beats over 3 billion times in a lifetime, a remarkable feat of endurance and efficiency.",
+      "hashtags": [
+        "hearthealth",
+        "humanbody",
+        "lifetime",
+        "beats",
+        "organs"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "heart_beats_in_lifetime_heart_beats",
+          "params": {
+            "file": "heart_beats_in_lifetime_heart_beats.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 HEART BEATS",
+          "topic": "Heart Beats",
+          "say": "The heart beats over 100,000 times per day, which translates to over 3 billion beats in a lifetime, with an average of 70 to 80 beats per minute.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "full",
+                "subject": "heart",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000000.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "heart_beats_in_lifetime_beats_per_minute",
+          "params": {
+            "file": "heart_beats_in_lifetime_beats_per_minute.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 BEATS PER MINUTE",
+          "topic": "Beats Per Minute",
+          "say": "The average heart beats 70 to 80 times per minute, which is faster than a typical metronome setting of 60 beats per minute.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "heart",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "metronome",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "heart_beats_in_lifetime_lifetime_beats",
+          "params": {
+            "file": "heart_beats_in_lifetime_lifetime_beats.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 LIFETIME BEATS",
+          "topic": "Lifetime Beats",
+          "say": "Over the course of a lifetime, the heart beats over 3 billion times, with the average person living around 80 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "heart_beats_in_lifetime_heart_efficiency",
+          "params": {
+            "file": "heart_beats_in_lifetime_heart_efficiency.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 HEART EFFICIENCY",
+          "topic": "Heart Efficiency",
+          "say": "The heart is incredibly efficient, with it pumping around 2,000 gallons of blood per day, which is around 25% of the total blood in the body.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "heart",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What do you think is the most fascinating fact about the human heart?"
+    },
+    {
+      "slug": "loudest-body-sounds",
+      "title": "Loudest Body Sounds",
+      "hook": "The human body is capable of producing a wide range of sounds, but which ones are the loudest?",
+      "closing": "The loudest sound the body can make is the noise of a fart, which can reach levels of up to 80 decibels.",
+      "hashtags": [
+        "bodynoises",
+        "loudestsounds",
+        "fart",
+        "burp",
+        "sneeze"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "loudest_body_sounds_fart_noise",
+          "params": {
+            "file": "loudest_body_sounds_fart_noise.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 FART NOISE",
+          "topic": "Fart Noise",
+          "say": "The noise of a fart can reach levels of up to 80 decibels, which is comparable to the sound of a vacuum cleaner.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fart",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "vacuum",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "loudest_body_sounds_burp_noise",
+          "params": {
+            "file": "loudest_body_sounds_burp_noise.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 BURP NOISE",
+          "topic": "Burp Noise",
+          "say": "The noise of a burp can reach levels of up to 60 decibels, which is comparable to the sound of a dog barking.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "burp",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "dog bark",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "loudest_body_sounds_sneeze_noise",
+          "params": {
+            "file": "loudest_body_sounds_sneeze_noise.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 SNEEZE NOISE",
+          "topic": "Sneeze Noise",
+          "say": "The noise of a sneeze can reach levels of up to 100 decibels, which is comparable to the sound of a car horn.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "sneeze",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "car horn",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "loudest_body_sounds_body_noises",
+          "params": {
+            "file": "loudest_body_sounds_body_noises.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 BODY NOISES",
+          "topic": "Body Noises",
+          "say": "The loudest sounds the body can make are a sneeze at 100 decibels, a fart at 80 decibels, and a burp at 60 decibels.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "orbit_group",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What do you think is the loudest sound the human body can make?"
     }
   ],
   "videos": [

@@ -1,0 +1,28 @@
+{
+  "key": "heart_beats_in_lifetime_beats_per_minute",
+  "title": "Beats Per Minute",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "average beats per minute",
+      "value": 75.0,
+      "period": "2023"
+    },
+    {
+      "label": "typical metronome setting",
+      "value": 60.0,
+      "period": "2023"
+    }
+  ]
+}

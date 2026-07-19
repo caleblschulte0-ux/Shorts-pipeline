@@ -149,5 +149,33 @@
   "concept": "growing stalactites hang from the top, each with a label and value, as they form over time",
   "code": "\ncx = (RX0 + RX1) // 2\ncy = RTOP + 200\nfor i in range(n):\n    v = values[i]\n    vx = RX0 + (RX1 - RX0) * i / (n - 1)\n    vy = RBOT - 100\n    img = subject_image('icicle')\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        if h > 150:\n            h = 150\n            w = int(h * asp)\n        paste(img, vx - w // 2, cy + (vy - cy) * reveal - h, w, h)\n    text(labels[i], vx, cy + (vy - cy) * reveal + 20, size=30, color=TEXT, center=True)\n    text(str(int(v)) + ' years', vx, cy + (vy - cy) * reveal + 60, size=30, color=TEXT, center=True)\n    d.line([vx, RTOP, vx, cy + (vy - cy) * reveal], fill=rgba(ACCENT, 255), width=5)\n",
   "topic": "Stalactite Formation"
+ },
+ {
+  "sig": "8b10b77c4c93",
+  "mechanic": "tree-growth",
+  "concept": "two tree trunks grow from the bottom of the frame, with rings filling in to represent the total trees planted and the rate of planting per year",
+  "code": "\ncx1 = RX0 + 200\ncx2 = RX1 - 200\ncy = RBOT\nr = 80\ncol1 = HIGHLIGHT\ncol2 = ACCENT\nd.rectangle([cx1 - r, cy - 600 * reveal, cx1 + r, cy], fill=rgba(col1, 255))\nd.rectangle([cx2 - r, cy - 600 * reveal, cx2 + r, cy], fill=rgba(col2, 255))\nfor i in range(2):\n    cxs = cx1 if i == 0 else cx2\n    v = values[i]\n    label = labels[i]\n    img = subject_image('tree trunk')\n    if img is not None:\n        asp = img.width / img.height\n        w = 160\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h, w, h)\n    text(label, cxs, cy + 20, size=36, color=TEXT, center=True)\n    text(str(int(v)), cxs, cy - 100 * reveal, size=56, color=TEXT, center=True)\n",
+  "topic": "Tree Planting Initiatives"
+ },
+ {
+  "sig": "68de4bb1ac69",
+  "mechanic": "oxygen-trees",
+  "concept": "Two trees with trunks that grow and leaves that fill according to Forest Oxygen Production and City Oxygen Production, with their labels and values displayed",
+  "code": "\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 920\n    trunk_height = 200\n    leaf_radius = 150\n    col = HIGHLIGHT if i == 0 else ACCENT\n    label = labels[i]\n    value = v\n    d.rectangle([cxs - 10, cy - trunk_height * clamp(v / vmax) * reveal, cxs + 10, cy], fill=rgba(col, 255))\n    leaf_fill = int(leaf_radius * clamp(v / vmax) * reveal)\n    d.ellipse([cxs - leaf_radius, cy - leaf_radius - trunk_height, cxs + leaf_radius, cy - leaf_radius - trunk_height + leaf_fill * 2], fill=rgba(col, 128))\n    img = subject_image('tree' if i == 0 else 'cityscape')\n    if img is not None:\n        asp = img.width / img.height\n        w = 200\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - trunk_height - leaf_radius - h, w, h)\n    text(str(int(value)) + ' oxygen', cxs, cy + 40, size=38, color=col, center=True)\n    text(label, cxs, cy + 90, size=30, color=TEXT, center=True)\n",
+  "topic": "Forest Oxygen"
+ },
+ {
+  "sig": "172f69baf686",
+  "mechanic": "petalometer",
+  "concept": "a stylized flower blooms in sync with the data, each petal representing a research paper, with the center filling to show the proportion of plant-based medicines",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    col = HIGHLIGHT if i == 0 else ACCENT\n    cx = RX0 + 200 if i == 0 else RX1 - 200\n    cy = RTOP + 500\n    r = 150\n    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 90), width=4)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.arc([cx - r, cy - r, cx + r, cy + r], 150, int(sweep), fill=rgba(col, 255), width=16)\n    img = subject_image('plant cell')\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        paste(img, cx - w // 2, cy - h // 2, w, h)\n    text(labels[i], cx, cy - r - 100, size=38, color=col, center=True)\n    text(str(int(v)) + ' ' + 'percent' if i == 0 else 'percent', cx, cy + r + 100, size=38, color=col, center=True)\nmid = clamp((reveal - 0.4) / 0.6)\nif mid > 0:\n    fill_image(subject_image('flower'), mid, RX0 + 500, RTOP + 200, 400, 600, 'up', ACCENT)\n    text('Plant Toxin Research', RX0 + 500, RTOP + 50, size=46, color=TEXT, center=True)\n",
+  "topic": "Plant Toxin Research"
+ },
+ {
+  "sig": "1f9340d9b99d",
+  "mechanic": "toxin-vials",
+  "concept": "Two toxin-filled vials rise from the bottom, their fill levels and labels indicating the potency and quantity of the toxins.",
+  "code": "\nfor i, (label, value) in enumerate(zip(labels, values)):\n    x = RX0 + 200 if i == 0 else RX1 - 200\n    y = RBOT + 100 * (1.0 - reveal)\n    w = 80\n    h = 400\n    d.rectangle([x, y, x + w, y + h], outline=rgba(TEXT, 120), width=6)\n    fill_image(subject_image('poisonous liquid'), clamp(value / vmax), x, y, w, h)\n    text(label, x + w // 2, y - 60, size=38, color=TEXT, center=True)\n    text(str(int(value)), x + w // 2, y + h + 40, size=46, color=TEXT, center=True)\n    if i == 0:\n        text('Toxin Potency', x + w // 2, y + h + 90, size=32, color=TEXT, center=True)\n    else:\n        text('Toxin Quantity', x + w // 2, y + h + 90, size=32, color=TEXT, center=True)\n",
+  "topic": "Plant Toxins"
  }
 ]

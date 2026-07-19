@@ -1,0 +1,33 @@
+{
+  "key": "biggest_craters_in_solar_system_crater_formation",
+  "title": "Crater Formation",
+  "unit": "million years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "4 billion years ago",
+      "value": 4000.0,
+      "period": "2022"
+    },
+    {
+      "label": "3 billion years ago",
+      "value": 3000.0,
+      "period": "2022"
+    },
+    {
+      "label": "2 billion years ago",
+      "value": 2000.0,
+      "period": "2022"
+    }
+  ]
+}

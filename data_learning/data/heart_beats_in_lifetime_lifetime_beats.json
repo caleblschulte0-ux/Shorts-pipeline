@@ -1,0 +1,28 @@
+{
+  "key": "heart_beats_in_lifetime_lifetime_beats",
+  "title": "Lifetime Beats",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "average lifetime",
+      "value": 80.0,
+      "period": "2023"
+    },
+    {
+      "label": "total beats in lifetime",
+      "value": 3000000000.0,
+      "period": "2023"
+    }
+  ]
+}

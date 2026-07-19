@@ -1,0 +1,28 @@
+{
+  "key": "tree_oxygen_production_global_tree_cover",
+  "title": "Global Tree Cover",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Tree Cover Loss",
+      "value": 15.0,
+      "period": "1990-2020"
+    },
+    {
+      "label": "Tree Cover Remaining",
+      "value": 85.0,
+      "period": "2020"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "key": "moons_in_our_solar_system_largest_moons",
+  "title": "Largest Moons",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Ganymede",
+      "value": 3275.0,
+      "period": "2022"
+    },
+    {
+      "label": "Titan",
+      "value": 3200.0,
+      "period": "2022"
+    },
+    {
+      "label": "Callisto",
+      "value": 2900.0,
+      "period": "2022"
+    }
+  ]
+}

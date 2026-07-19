@@ -1,0 +1,33 @@
+{
+  "key": "biggest_craters_in_solar_system_largest_craters",
+  "title": "Largest Craters",
+  "unit": "miles",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Aitken Basin",
+      "value": 1550.0,
+      "period": "2022"
+    },
+    {
+      "label": "Hellas Basin",
+      "value": 1100.0,
+      "period": "2022"
+    },
+    {
+      "label": "Argyre Basin",
+      "value": 870.0,
+      "period": "2022"
+    }
+  ]
+}

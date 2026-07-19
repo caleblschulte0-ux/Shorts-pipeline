@@ -1,0 +1,26 @@
+{
+  "key": "poisonous_plants_poisonous_plant_distribution",
+  "title": "Poisonous Plant Distribution",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Poisonous Plant Prevalence",
+      "value": 10.0
+    },
+    {
+      "label": "Plant Species Diversity",
+      "value": 1000.0
+    }
+  ]
+}
