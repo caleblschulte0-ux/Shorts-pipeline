@@ -251,6 +251,49 @@ def variety_check(beats: list, beatmap: Path, render: Path,
     return sorted(excess)
 
 
+# concrete subjects the NARRATION can be "about", and the visual family each one
+# belongs on. A beat whose words are about a sprinter must not show Earth-from-
+# orbit — that's the "talking about Usain Bolt over a picture of the planet" bug.
+_NARR_SUBJECTS = {
+    "ground_human": ("sprinter", "usain", "bolt", "runner", "running", "car",
+                     "jet", "plane", "bus", "bullet", "person", "people", "human",
+                     "athlete", "cheetah", "train", "motorcycle", "highway"),
+    "sun": ("the sun", "solar", "sunspot", "corona"),
+    "storm": ("hurricane", "storm", "cyclone", "eye of the"),
+}
+# which VISUAL families are ACCEPTABLE for each narration subject
+_OK_VISUAL = {
+    "ground_human": {"", "sky_clouds"},   # ground words want ground/designed, NOT space
+    "sun": {"sun", ""},
+    "storm": {"storm", ""},
+}
+
+
+def pacing_check(beats: list) -> list[dict]:
+    """The pacing / sync director. Catches the beat whose PICTURE doesn't match
+    the WORDS under it: narration about a sprinter/jet playing over Earth-from-
+    orbit. For each beat, find what the narration is concretely ABOUT and confirm
+    the on-screen visual family is compatible. A designed card (a comparison chart
+    of those very speeds) is always compatible — it illustrates the words. Returns
+    mismatches with a fix hint (usually: make it the designed explainer)."""
+    out = []
+    for i, b in enumerate(beats):
+        if _is_designed(b) or b.get("_prefer_designed"):
+            continue                       # a designed explainer illustrates the words
+        narr = str(b.get("narration", "")).lower()
+        fam = _family(b)                    # the visual's family (footage subject)
+        if not fam:
+            continue
+        for subj, keys in _NARR_SUBJECTS.items():
+            if any(k in narr for k in keys) and fam not in _OK_VISUAL.get(subj, set()):
+                out.append({"beat": i, "job": str(b.get("job", "")).upper(),
+                            "why": f"narration is about {subj} but the visual is "
+                            f"{fam} — wrong picture for the words",
+                            "narr_subject": subj})
+                break
+    return out
+
+
 def _hook_gate(beats: list, beatmap: Path, render: Path):
     """Grade the opening with the hook director (metric pre-screen). Uses the
     hook beat's true duration so the sustained-motion / HELD_STATIC check spans
@@ -308,6 +351,10 @@ def _gate_report(verdict: str, hv, interest, dull, escalated, beats,
     ex = excess or []
     print(f" 3b. VARIETY   : {len(ex)} look-alike beat(s) remain {ex}; "
           f"{len(designed)} designed animation(s): {designed}")
+    mism = pacing_check(beats)
+    sync_msg = ("all visuals match their narration" if not mism
+                else f"{len(mism)} mismatch(es): {[m['beat'] for m in mism]}")
+    print(f" 3c. SYNC      : {sync_msg}")
     print(f" VERDICT: {verdict}")
     print("   (cool/visual TASTE verdicts are the vision judges' call — the "
           "orchestrator spawns them; this loop runs the metric pre-screens.)")
@@ -376,6 +423,23 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
             if not vg:                  # visual ok but LINE weak — author must fix
                 print(f"[ndb] HOOK LINE weak {hv['line'].get('gates')} — needs a "
                       "re-authored opening line (cannot auto-fix a line).")
+        # PACING / SYNC GATE — the picture must match the words under it. A beat
+        # narrating a sprinter over Earth-from-orbit is fixed by making it the
+        # designed explainer that actually illustrates the words.
+        synced = 0
+        for m in pacing_check(beats):
+            i = m["beat"]
+            if not beats[i].get("_prefer_designed") and (
+                    (beats[i].get("number") or {}).get("text")
+                    or beats[i].get("text") or beats[i].get("flat")):
+                beats[i]["_prefer_designed"] = True
+                beats[i].pop("_force_motion", None)
+                synced += 1
+                print(f"[ndb] SYNC: beat {i} {m['why']} -> designed explainer")
+            else:
+                print(f"[ndb] SYNC (report only): beat {i} {m['why']}")
+        if synced:
+            continue                       # re-render with the visuals matched to VO
         # VARIETY GATE — the '5 clouds' catch. Look ACROSS beats for a cluster
         # that all look alike; convert the excess (numbered) beats to designed
         # number cards so the video isn't a reel of near-identical clips.
