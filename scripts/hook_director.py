@@ -73,8 +73,12 @@ def grade_line(line: str) -> dict:
     return {"score": min(5, score), "gates": gates, "hits": hits}
 
 
-def grade_visual(render: Path) -> dict:
-    """0-5 visual score + gates from the render's opening ~2.5s (appeal+motion)."""
+def grade_visual(render: Path, hook_seconds: float = 6.0) -> dict:
+    """0-5 visual score + gates from the render's opening. Grades TWO things a
+    hook lives or dies by: the first ~1.6s (does it SLAM in) AND whether it keeps
+    moving across its whole length (a gorgeous frame HELD static for 10s is the
+    single most common retention killer — 'ten seconds of clouds'). Sampling only
+    the first frames is how a held shot sneaks through; we sample the whole hook."""
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from interest_judge import _appeal
@@ -99,24 +103,39 @@ def grade_visual(render: Path) -> dict:
     diffs = [float(np.abs(small[i] - small[i - 1]).mean())
              for i in range(1, len(small))]
     opening_motion = round(max(diffs), 1)          # peak frame-to-frame change
+    # SUSTAINED motion across the whole hook — samples every ~0.7s to the end of
+    # the hook window (capped ~8s). Mean change over the span: a shot that just
+    # sits there scores near zero even if its first frame is a hair-mover.
+    span = max(2.0, min(hook_seconds, 8.0))
+    ts = [round(0.3 + 0.7 * k, 2) for k in range(int((span - 0.3) / 0.7) + 1)]
+    wide = [np.asarray(frame(t).resize((96, 54)).convert("L"), dtype="float32")
+            for t in ts]
+    wdiffs = [float(np.abs(wide[i] - wide[i - 1]).mean())
+              for i in range(1, len(wide))] or [0.0]
+    sustained_motion = round(sum(wdiffs) / len(wdiffs), 1)  # mean over the hook
     gates, score = [], 0
     if hook_appeal < 0.42:              # calm/bland/ambiguous open
         gates.append("CALM_OPENER")
     if opening_motion < 4.0:            # first ~1.6s barely moves
         gates.append("STATIC_FIRST_FRAME")
+    if sustained_motion < 2.5:          # a HELD shot — pretty, but it just sits
+        gates.append("HELD_STATIC")     # (the 'ten seconds of clouds' gate)
     score += 1 if opening_motion >= 4.0 else 0      # motion in the open
     score += 1 if hook_appeal >= 0.42 else 0        # a legible, rich subject
     score += 1 if hook_appeal >= 0.60 else 0        # genuinely striking image
     score += 1 if opening_motion >= 9.0 else 0      # strong move / slam / cut
-    score += 1 if (hook_appeal >= 0.50 and opening_motion >= 6.0) else 0
-    return {"score": min(5, score), "gates": gates,
-            "hook_appeal": hook_appeal, "opening_motion": opening_motion}
+    score += 1 if sustained_motion >= 4.0 else 0    # KEEPS moving, not a held frame
+    if sustained_motion < 2.5:          # a held shot cannot score above a floor
+        score = min(score, 2)
+    return {"score": min(5, score), "gates": gates, "hook_appeal": hook_appeal,
+            "opening_motion": opening_motion, "sustained_motion": sustained_motion}
 
 
-def grade(line: str, render: Path | None = None) -> dict:
+def grade(line: str, render: Path | None = None,
+          hook_seconds: float = 6.0) -> dict:
     ln = grade_line(line)
-    vis = grade_visual(render) if render else {"score": 0, "gates": [],
-                                               "note": "no render supplied"}
+    vis = grade_visual(render, hook_seconds) if render else {
+        "score": 0, "gates": [], "note": "no render supplied"}
     gates = ln["gates"] + vis.get("gates", [])
     total = ln["score"] + vis["score"]
     ok = (not gates and ln["score"] >= 3 and vis["score"] >= 3 and total >= 7)

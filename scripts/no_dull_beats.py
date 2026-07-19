@@ -115,6 +115,30 @@ def _subject(beat: dict) -> str:
     return ""
 
 
+def _hook_gate(beats: list, beatmap: Path, render: Path):
+    """Grade the opening with the hook director (metric pre-screen). Uses the
+    hook beat's true duration so the sustained-motion / HELD_STATIC check spans
+    the whole hook, not just the first frames."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import hook_director
+    except Exception:
+        return None
+    line = str(beats[0].get("narration", "")).split(".")[0]
+    secs = 6.0
+    try:
+        bm = json.loads(Path(beatmap).read_text())
+        b0 = bm[0] if isinstance(bm, list) else bm.get("beats", [{}])[0]
+        a, b = str(b0.get("t", "0-6")).split("-")
+        secs = max(2.0, float(b) - float(a))
+    except Exception:
+        pass
+    try:
+        return hook_director.grade(line, Path(render), hook_seconds=secs)
+    except Exception:
+        return None
+
+
 def run(story_path: Path, out: Path, rounds: int = 3) -> int:
     story = json.loads(story_path.read_text())
     beats = story["beats"]
@@ -143,14 +167,32 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
         if reverted:                        # a revert changed the story: re-render
             continue
         beatmap = out.parent / f"{out.stem}_pkg" / "beatmap.json"
+        # HOOK GATE — the opening is the whole ballgame. Grade it EVERY round and
+        # never let a weak hook ship silently. (This judge existed but was never
+        # wired into the loop — the reason a 10s calm Earth open reached preview.)
+        hv = _hook_gate(beats, beatmap, out)
+        if hv and not hv["pass"]:
+            vg = set(hv["visual"].get("gates", []))
+            print(f"[ndb] HOOK WEAK ({hv['total']}/10) visual={hv['visual']} "
+                  f"line_gates={hv['line'].get('gates')}")
+            if vg and 0 not in escalated and _subject(beats[0]):
+                beats[0]["_force_motion"] = True
+                beats[0]["subject"] = _subject(beats[0])
+                escalated.add(0)
+                print(f"[ndb] escalate HOOK (beat 0) -> dynamic motion of "
+                      f"{beats[0]['subject']!r} ({'+'.join(sorted(vg))})")
+                continue                # re-render with a moving hook, then re-grade
+            if not vg:                  # visual ok but LINE weak — author must fix
+                print(f"[ndb] HOOK LINE weak {hv['line'].get('gates')} — needs a "
+                      "re-authored opening line (cannot auto-fix a line).")
         interest, cool = _judge(out, beatmap, work / f"judge_r{rnd}")
         dull = dull_beats(interest, cool)
         print(f"[ndb] round {rnd}: dead={interest.get('dead_fraction')} "
               f"appeal={interest.get('mean_appeal')} — {len(dull)} dull beat(s)")
         for d in dull:
             print(f"      beat {d['beat']} {d['job']}: {d['why']}")
-        if not dull:
-            print(f"[ndb] CLEAN — no dull beats after {rnd} round(s).")
+        if not dull and (not hv or hv["pass"]):
+            print(f"[ndb] CLEAN — no dull beats, hook passes, after {rnd} round(s).")
             return 0
         # escalate each dull beat we haven't already escalated
         progressed = False
