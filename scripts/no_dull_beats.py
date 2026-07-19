@@ -85,22 +85,17 @@ def dull_beats(interest: dict, cool: list[dict]) -> list[dict]:
 
 
 def _subject(beat: dict) -> str:
+    """A REAL subject to search motion for — declared by the author, never a
+    keyword-salad guessed from prose (that just fetches off-topic junk). A beat
+    with no declared subject cannot be auto-escalated to footage; the director
+    reports it instead of shipping a bad clip."""
     for q in (beat.get("motion_query"), beat.get("subject"),
               (beat.get("image") or {}).get("query"),
-              (beat.get("footage") or {}).get("query")):
-        if q:
+              (beat.get("footage") or {}).get("query"),
+              (beat.get("footage") or {}).get("intent")):
+        if q and len(str(q).split()) >= 2:
             return str(q)
-    # derive from the beat's own words — the longest content tokens
-    text = f"{beat.get('understand','')} {beat.get('narration','')}".lower()
-    words = [w for w in "".join(c if c.isalnum() else " " for c in text).split()
-             if len(w) > 3 and w not in _STOP]
-    seen, picked = set(), []
-    for w in sorted(words, key=len, reverse=True):
-        if w not in seen:
-            seen.add(w); picked.append(w)
-        if len(picked) >= 4:
-            break
-    return " ".join(picked)
+    return ""
 
 
 def run(story_path: Path, out: Path, rounds: int = 3) -> int:

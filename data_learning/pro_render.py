@@ -274,7 +274,14 @@ def _depict_shot(shot, seconds, out, work, idx):
     mode, foot = _depict_source(shot, seconds, work, idx)
     if mode == "video":
         return _footage_shot(foot, seconds, out, work, idx)
-    return _image_shot(shot, seconds, out, work, idx)
+    try:
+        return _image_shot(shot, seconds, out, work, idx)
+    except Exception as e:  # noqa: BLE001 — escalation must NEVER kill a render:
+        # motion missed AND no usable still -> keep the beat's designed treatment.
+        print(f"[pro] depict {shot.get('motion_query')!r}: no motion, no still "
+              f"({str(e)[:50]}) — designed statement fallback", file=sys.stderr)
+        return flat2d.statement(shot.get("line", "") or shot.get("text", ""),
+                                out, seconds)
 
 
 def _depict_text_shot(shot, seconds, out, work, idx):
@@ -283,7 +290,15 @@ def _depict_text_shot(shot, seconds, out, work, idx):
         base = work / f"dt_base_{idx}.mp4"
         _footage_shot(foot, seconds, base, work, idx)
         return _overlay_text(base, shot, out)
-    return _image_text_shot(shot, seconds, out, work, idx)
+    try:
+        return _image_text_shot(shot, seconds, out, work, idx)
+    except Exception as e:  # noqa: BLE001 — see _depict_shot: never crash.
+        print(f"[pro] depict_text {shot.get('motion_query')!r}: no motion, no "
+              f"still ({str(e)[:50]}) — designed statement fallback",
+              file=sys.stderr)
+        base = work / f"dt_fallback_{idx}.mp4"
+        flat2d.statement(shot.get("line", ""), base, seconds)
+        return _overlay_text(base, shot, out)
 
 
 def _image_shot(shot, seconds, out, work, idx):
