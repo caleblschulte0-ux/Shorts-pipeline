@@ -1,0 +1,28 @@
+{
+  "key": "deadliest_events_mitigating_disaster_impact",
+  "title": "Mitigating Disaster Impact",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Disaster relief funding",
+      "value": 0.5,
+      "period": "2020"
+    },
+    {
+      "label": "Sustainable practices",
+      "value": 0.2,
+      "period": "2020"
+    }
+  ]
+}

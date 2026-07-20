@@ -1,0 +1,28 @@
+{
+  "key": "massive_relocations_massive_moves",
+  "title": "Massive Moves",
+  "unit": "tons",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1960s",
+      "value": 10000.0,
+      "period": "1965"
+    },
+    {
+      "label": "2020s",
+      "value": 100000.0,
+      "period": "2020"
+    }
+  ]
+}

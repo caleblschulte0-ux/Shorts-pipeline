@@ -1,0 +1,33 @@
+{
+  "key": "ancient_wonders_architectural_marvels",
+  "title": "Architectural Marvels",
+  "unit": "height",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Great Pyramid",
+      "value": 146.0,
+      "period": "2580 BC"
+    },
+    {
+      "label": "Pyramid of Khafre",
+      "value": 136.0,
+      "period": "2520 BC"
+    },
+    {
+      "label": "Red Pyramid",
+      "value": 105.0,
+      "period": "2580 BC"
+    }
+  ]
+}

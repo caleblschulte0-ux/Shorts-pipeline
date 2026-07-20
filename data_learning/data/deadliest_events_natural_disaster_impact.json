@@ -1,0 +1,28 @@
+{
+  "key": "deadliest_events_natural_disaster_impact",
+  "title": "Natural Disaster Impact",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Earthquakes",
+      "value": 5000000.0,
+      "period": "20th century"
+    },
+    {
+      "label": "Floods",
+      "value": 10000000.0,
+      "period": "20th century"
+    }
+  ]
+}

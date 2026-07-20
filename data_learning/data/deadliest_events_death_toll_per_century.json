@@ -1,0 +1,28 @@
+{
+  "key": "deadliest_events_death_toll_per_century",
+  "title": "Death Toll Per Century",
+  "unit": "deaths",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "14th century",
+      "value": 40000000.0,
+      "period": "14th century"
+    },
+    {
+      "label": "20th century",
+      "value": 100000000.0,
+      "period": "20th century"
+    }
+  ]
+}
