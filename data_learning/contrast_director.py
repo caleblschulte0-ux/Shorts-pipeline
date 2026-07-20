@@ -61,13 +61,17 @@ def _to_footage(beat: dict) -> None:
     num = (beat.get("flat") or {}).get("text")
     numlabel = (beat.get("flat") or {}).get("label", "")
     numsub = (beat.get("flat") or {}).get("sub", "")
+    subj = _subject_for(beat)
     beat.pop("flat", None)
     beat["mode"] = "footage"
     beat["_contrast_cut"] = True
-    beat["footage"] = {"intent": _subject_for(beat),
-                       "subject": _subject_for(beat), "push": 1.08,
+    # route through motion-first so the clip is RELEVANCE-GATED and lands on a
+    # DYNAMIC window — a plain footage fetch grabbed an off-topic clip (a rocket on
+    # a truck) because it doesn't rank by relevance; motion-first does.
+    beat["_force_motion"] = True
+    beat["subject"] = subj
+    beat["footage"] = {"intent": subj, "subject": subj, "push": 1.08,
                        "direction": "in"}
-    beat["subject"] = _subject_for(beat)
     if num:
         beat["number"] = {"text": num, "sub": numsub or "MPH",
                           "label": numlabel or ""}
