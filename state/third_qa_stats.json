@@ -829,6 +829,68 @@
           "error": "RuntimeError: qa_rejected: vision: Subject completely absent from frame for a long stretch (~4.0s\u201313.5s, over half the clip) \u2014 just a blank wall and furnit; vision: Excited captions like \"ALL RIGHT!\" and \"THE RUN!\" are overlaid"
         }
       ]
+    },
+    {
+      "date": "20260720",
+      "dry_run": false,
+      "ts": "2026-07-20T12:06:15+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 67,
+        "with_retention": 48,
+        "with_curve": 10,
+        "fetched_at": "2026-07-19T17:26:28.496126+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260720-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260720-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260720-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260720-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260720-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260720-6",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260720-7",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: subject/person absent for ~10s (roughly 4s-15s) of the 19s clip \u2014 camera appears knocked down, frames just show a desk/t; vision: captions like 'RUN!' and 'ALL RIGHT!' play over an empty table"
+        },
+        {
+          "slug": "clip-20260720-8",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit"
+        }
+      ]
     }
   ]
 }
