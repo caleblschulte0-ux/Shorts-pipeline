@@ -24,6 +24,21 @@ from __future__ import annotations
 
 MAX_ANIM_RUN = 3          # animations in a row before a real-world cut is forced
 
+# CURATED breather clips. Footage search ranks by TITLE keywords, which can't tell
+# "Earth seen from the ISS" from "astronauts inside the ISS" — so a contrast cut
+# PINS a known-good NASA clip by id instead of searching. A small, reliable
+# library beats an unreliable search for the one real shot per video.
+KNOWN_GOOD = {
+    "earth": {"nasa_id": "NHQ_2020_1221_Earth Views", "ss": 40.0},
+    "sun":   {"nasa_id": "GSFC_20170623_Sun_m12240_ChromosphereFlare", "ss": 2.0},
+    "moon":  {"nasa_id": "GSFC_20200622_moon_m13098", "ss": 1.0},
+}
+_FAMILY_KEYS = (
+    ("sun", "sun"), ("solar", "sun"), ("moon", "moon"),
+    ("galaxy", "earth"), ("planet", "earth"), ("earth", "earth"),
+    ("ground", "earth"), ("orbit", "earth"),
+)
+
 # derive a filmable subject for the breather from the beat's own words, so the
 # real cut is ABOUT the beat, not a random stock clip.
 _SUBJECT_HINTS = (
@@ -54,24 +69,43 @@ def _subject_for(beat: dict) -> str:
     return _DEFAULT_SUBJECT
 
 
+def _family_key(beat: dict) -> str:
+    low = f"{beat.get('narration', '')} " \
+          f"{(beat.get('flat') or {}).get('label', '')}".lower()
+    for key, fam in _FAMILY_KEYS:
+        if key in low:
+            return fam
+    return "earth"
+
+
 def _to_footage(beat: dict) -> None:
-    """Turn an animation beat into a real-world cut. Keep its number as an
-    annotation ON the footage (footage+annotation) so the fact still lands; a beat
-    with no number becomes a pure establishing breather."""
+    """Turn an animation beat into a real-world cut, PINNING a curated known-good
+    clip by id. Title-keyword search kept grabbing off-topic clips (a rocket on a
+    truck, ISS interiors) because it can't tell 'Earth from the ISS' from 'people
+    inside the ISS'. A small reliable library beats an unreliable search for the
+    one real shot per video. Keeps the beat's number as an annotation on the
+    footage; a number-less beat becomes a pure establishing breather. Falls back to
+    a relevance-gated search only when no curated clip exists for the theme."""
     num = (beat.get("flat") or {}).get("text")
     numlabel = (beat.get("flat") or {}).get("label", "")
     numsub = (beat.get("flat") or {}).get("sub", "")
-    subj = _subject_for(beat)
+    fam = _family_key(beat)
+    pin = KNOWN_GOOD.get(fam)
     beat.pop("flat", None)
+    beat.pop("_force_motion", None)
+    beat.pop("subject", None)
     beat["mode"] = "footage"
     beat["_contrast_cut"] = True
-    # route through motion-first so the clip is RELEVANCE-GATED and lands on a
-    # DYNAMIC window — a plain footage fetch grabbed an off-topic clip (a rocket on
-    # a truck) because it doesn't rank by relevance; motion-first does.
-    beat["_force_motion"] = True
-    beat["subject"] = subj
-    beat["footage"] = {"intent": subj, "subject": subj, "push": 1.08,
-                       "direction": "in"}
+    if pin:
+        beat["footage"] = {"nasa_id": pin["nasa_id"], "ss": pin["ss"],
+                           "push": 1.08, "direction": "in",
+                           "intent": f"a real filmed {fam} shot — the breather"}
+    else:
+        subj = _DEFAULT_SUBJECT
+        beat["_force_motion"] = True
+        beat["subject"] = subj
+        beat["footage"] = {"intent": subj, "subject": subj, "push": 1.08,
+                           "direction": "in"}
     if num:
         beat["number"] = {"text": num, "sub": numsub or "MPH",
                           "label": numlabel or ""}
