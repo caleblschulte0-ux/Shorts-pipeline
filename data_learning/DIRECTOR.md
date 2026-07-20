@@ -50,6 +50,26 @@ every round. Each line is a gate that RAN:
 
 Higher number never runs before a lower one is settled in the same round.
 
+## The EXTRA director — be extra
+
+Animations are footage's replacement (see below), and a *clean* animation is only
+half the job. The EXTRA director (`data_learning/extra_director.py`) runs after
+the planner and, for every animation, asks one question: **"this is fine — but
+what if we did MORE?"** It attaches an escalating character/physics spec the
+flat2d builders act on, so the thing on screen *reacts* and has personality:
+
+- the hidden-motion figure **stumbles** back and catches its balance as the ground
+  accelerates ("stuff's getting so fast");
+- a hero number **overshoots** its target on a spring and **shakes** on impact;
+- the spinning globe **spins up** and **flings** the 'you are here' marker;
+- (repertoire grows per builder — bars bounce, orbits and zooms accelerate).
+
+This is animation-principle charm — anticipation, overshoot, follow-through,
+secondary action, exaggeration — **not** random jitter. Intensity **ramps across
+the video** (a gentle open, the wildest payoff) so energy builds. Every animation
+that ships should have earned a "what did we escalate here?" answer; a flat,
+reaction-less animation is an unfinished one.
+
 ## Designed animations are a DESIRED treatment, not a failure
 
 The clean motion-graphics — a comparison chart, an orbit diagram, a counting-up
