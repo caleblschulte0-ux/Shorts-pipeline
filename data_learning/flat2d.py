@@ -196,21 +196,23 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
                    fill=(*PALETTE["muted"], int(230 * a)))
         # the hero number counts up then settles. EXTRA: a damped-spring OVERSHOOT
         # (springs past the target and back) + an IMPACT SHAKE the instant it lands.
+        inten = ex.get("intensity", 0.7)
         tau = max(0.0, (i - 6) / FPS)               # seconds since count start
         if ex.get("overshoot"):
-            val = max(0.0, 1 - math.exp(-4.2 * tau) * math.cos(7.0 * tau))
-            prog = 1.0 if tau > 1.6 else val
+            damp = 4.4 - 1.7 * inten                # less damping = bigger overshoot
+            val = max(0.0, 1 - math.exp(-damp * tau) * math.cos(7.2 * tau))
+            prog = 1.0 if tau > 2.0 else val
         else:
             prog = _ease(min(max(i - 6, 0) / (FPS * 1.5), 1.0))
         cnt = int(target * prog)
         bob = int(round(6 * math.sin(i * 0.18))) if prog >= 0.99 else 0
         sxk = syk = 0
         if ex.get("impact_shake"):
-            stk = (tau - 0.42) / 0.22               # shake as it first hits target
+            stk = (tau - 0.42) / 0.24               # shake as it first hits target
             if 0 <= stk <= 1:
-                amp = 16 * (1 - stk)
-                sxk = int(amp * math.sin(stk * 44))
-                syk = int(amp * 0.5 * math.cos(stk * 40))
+                amp = (14 + 16 * inten) * (1 - stk)
+                sxk = int(amp * math.sin(stk * 46))
+                syk = int(amp * 0.5 * math.cos(stk * 42))
         glow_a = 120 + (int(70 * (0.5 + 0.5 * math.sin(i * 0.16)))
                         if prog >= 0.99 else 0)
         s = f"{cnt:,}"
@@ -295,16 +297,28 @@ def hidden_motion(number: str, out: Path, seconds: float = 6.0,
             x = W - ((i * csp + k * 210) % (W + 210))
             d.polygon([(x, gy + 34), (x + 40, gy + 54), (x, gy + 74)],
                       fill=(*PALETTE["blue"], 140))
-        # character: lean back as it accelerates, then a STUMBLE (lurch + recover)
+        # character: lean back as it accelerates, then a STUMBLE (lurch + recover).
+        # Amplitudes scale with the extra director's intensity (dial it up), and a
+        # FRONT-LOADED hook jolts in the first ~0.5s so it grabs instantly.
         lean, flail = 0.0, 0.0
         if ex.get("stumble"):
-            ramp = _ease(max(0.0, min((t - 0.35) / 0.4, 1.0)))
-            lean = -9 * ramp + 2.5 * ramp * math.sin(i * 0.8)
-            st = (t - 0.62) / 0.14              # a quick lurch back, then catch it
+            amp = 0.9 + 0.9 * ex.get("intensity", 0.7)
+            fl = ex.get("front_load")
+            r0 = 0.10 if fl else 0.35
+            ramp = _ease(max(0.0, min((t - r0) / 0.4, 1.0)))
+            lean = -12 * amp * ramp + 3 * ramp * math.sin(i * 0.8)
+            sc = 0.22 if fl else 0.62           # stumble centre (hook = early)
+            st = (t - sc) / 0.13
             if 0 <= st <= 1:
                 lurch = math.sin(st * math.pi)
-                lean += -13 * lurch
+                lean += -18 * amp * lurch
                 flail = lurch
+            if fl:                              # INSTANT jolt to win the first sec
+                jt = (t - 0.04) / 0.10
+                if 0 <= jt <= 1:
+                    j = math.sin(jt * math.pi)
+                    lean += -20 * amp * j
+                    flail = max(flail, j)
         im = figure_layer(im, lean, flail)
         # the climbing number, top third
         cnt = int(target * _ease(min(max(i - 6, 0) / (FPS * 1.6), 1.0)))
@@ -358,7 +372,8 @@ def spinning_world(number: str, out: Path, seconds: float = 6.0,
         # EXTRA: the spin ACCELERATES — starts readable, whips up as the number
         # climbs, so 'a thousand miles an hour' is felt, not just stated.
         if ex.get("spin_accelerate"):
-            theta = 2 * math.pi * (0.35 * u + 1.15 * u * u)
+            inten = ex.get("intensity", 0.7)
+            theta = 2 * math.pi * (0.3 * u + (0.9 + 1.2 * inten) * u * u)
         else:
             theta = 2 * math.pi * (0.6 * u)          # slow, readable rotation
         # ocean disc with a soft rim glow

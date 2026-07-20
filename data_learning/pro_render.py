@@ -443,8 +443,10 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
         # BEAT INTENT PLANNER: synth each beat's narration, then expand the
         # declared beats into a phased shot list (planner.py is the director).
         from data_learning.planner import plan_story
+        from data_learning import contrast_director   # medium variety
         beats = story["beats"]
-        beat_durs = []
+        contrast_director.contrast_pass(beats)         # cut real footage into
+        beat_durs = []                                 # long animation runs
         for bi, b in enumerate(beats):
             bvf = work / f"beatvo_{bi}.mp3"
             beat_durs.append(_synth(b.get("narration", ""), bvf, voice))

@@ -45,8 +45,13 @@ def extra_for(kind: str, beat_index: int = 0, total: int = 1) -> dict:
     animations."""
     moves = dict(EXTRA_MOVES.get(kind, {}))
     if moves:
-        moves["intensity"] = round(0.55 + 0.45 * (beat_index / max(1, total - 1)),
+        # a stronger floor so even the opening is lively; ramps to a wild payoff.
+        moves["intensity"] = round(0.8 + 0.5 * (beat_index / max(1, total - 1)),
                                    2)
+        # FRONT-LOAD the very first animation: a hook wins attention in the first
+        # second, so its character must react INSTANTLY, not 6s in.
+        if beat_index == 0:
+            moves["front_load"] = True
     return moves
 
 
