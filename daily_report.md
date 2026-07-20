@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-07-19
+# Daily Trending Shorts — 2026-07-20
 
 - queued: **1**
 - succeeded: **1**
@@ -6,9 +6,9 @@
 - failed: **0**
 
 ## Posted
-- **An entitled mom cut a hole in my bounce house's safety net with kitchen scissors**
-  - topic: An entitled mom cut a hole in my bounce house's safety net with kitchen scissors
-  - publishes: `2026-07-19T13:00:00Z`
-  - https://youtube.com/shorts/v3mLwsRClCw
-  - took: 169.3s
+- **3 days after my dad's funeral I found a second will, and the name on it wasn't anyone in our family**
+  - topic: 3 days after my dad's funeral I found a second will, and the name on it wasn't anyone in our family
+  - publishes: `2026-07-20T13:00:00Z`
+  - https://youtube.com/shorts/9HNdYmsMYkk
+  - took: 140.6s
 

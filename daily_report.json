@@ -1,18 +1,18 @@
 [
   {
-    "topic": "An entitled mom cut a hole in my bounce house's safety net with kitchen scissors",
-    "title": "An entitled mom cut a hole in my bounce house's safety net with kitchen scissors",
-    "publish_at": "2026-07-19T13:00:00Z",
+    "topic": "3 days after my dad's funeral I found a second will, and the name on it wasn't anyone in our family",
+    "title": "3 days after my dad's funeral I found a second will, and the name on it wasn't anyone in our family",
+    "publish_at": "2026-07-20T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/v3mLwsRClCw",
+    "video_url": "https://youtube.com/shorts/9HNdYmsMYkk",
     "error": null,
-    "elapsed_seconds": 169.3,
-    "package_path": "state/trending_packages/20260719/01_bounce-house-mom-cut-safety-net.json",
-    "video_path": "output/daily_20260719-111423_an_entitled_mom_cut_a_hole_in_my_bounce_.mp4",
+    "elapsed_seconds": 140.6,
+    "package_path": "state/trending_packages/20260720/01_second-will-secret-sister-lake-house.json",
+    "video_path": "output/daily_20260720-111333_3_days_after_my_dad_s_funeral_i_found_a_.mp4",
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "channel": "default"
   }
