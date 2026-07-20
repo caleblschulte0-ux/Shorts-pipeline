@@ -1,10 +1,10 @@
 {
-  "key": "pyramid_construction_timeline_labor_force",
-  "title": "Labor Force",
-  "unit": "",
+  "key": "pyramid_construction_timeline_construction_speed",
+  "title": "Construction Speed",
+  "unit": "blocks per day",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "share",
+  "insight_type": "trend",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,13 +15,13 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Labor Force",
-      "value": 100000.0,
+      "label": "Blocks per Day",
+      "value": 10.0,
       "period": "2580 BC"
     },
     {
-      "label": "Population",
-      "value": 1000000.0,
+      "label": "Total Blocks",
+      "value": 2300000.0,
       "period": "2580 BC"
     }
   ]

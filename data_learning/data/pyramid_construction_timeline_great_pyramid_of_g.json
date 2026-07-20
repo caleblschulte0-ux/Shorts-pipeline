@@ -1,10 +1,10 @@
 {
-  "key": "pyramid_construction_timeline_labor_force",
-  "title": "Labor Force",
-  "unit": "",
+  "key": "pyramid_construction_timeline_great_pyramid_of_g",
+  "title": "Great Pyramid of Giza",
+  "unit": "years",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "share",
+  "insight_type": "trend",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Labor Force",
-      "value": 100000.0,
+      "label": "Construction Start",
+      "value": 2580.0,
       "period": "2580 BC"
     },
     {
-      "label": "Population",
-      "value": 1000000.0,
-      "period": "2580 BC"
+      "label": "Construction End",
+      "value": 2560.0,
+      "period": "2560 BC"
     }
   ]
 }

@@ -1,10 +1,10 @@
 {
-  "key": "pyramid_construction_timeline_labor_force",
-  "title": "Labor Force",
+  "key": "heaviest_things_ever_moved_massive_monuments",
+  "title": "Massive Monuments",
   "unit": "",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "share",
+  "insight_type": "comparison",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Labor Force",
-      "value": 100000.0,
-      "period": "2580 BC"
+      "label": "Egyptian Pyramid Blocks",
+      "value": 2.5,
+      "period": "2500 BC"
     },
     {
-      "label": "Population",
-      "value": 1000000.0,
-      "period": "2580 BC"
+      "label": "Roman Statue of Apollo",
+      "value": 1000.0,
+      "period": "100 BC"
     }
   ]
 }

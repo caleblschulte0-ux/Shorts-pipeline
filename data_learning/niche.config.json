@@ -14125,8 +14125,8 @@
     {
       "slug": "heart-beats-in-lifetime",
       "title": "Heart Beats In Lifetime",
-      "hook": "Right now, your heart is racing toward 3 billion beats -- but is it already beating faster than you think?",
-      "closing": "3 billion beats, 2,000 gallons of blood a day, and it never once clocks out -- your heart outworks any machine you own.",
+      "hook": "Your heart is racing toward a number so big it barely makes sense -- and it's never once stopped to rest.",
+      "closing": "Your heart never clocks out: 100,000 beats today, 3 billion across a lifetime, and it's already pumped a quarter of your blood since this video started.",
       "hashtags": [
         "hearthealth",
         "humanbody",
@@ -14144,11 +14144,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 HEART BEATS",
           "topic": "Heart Beats",
-          "say": "Your heart beats 100,000 times a day -- already racing toward 3 billion beats over a lifetime.",
+          "say": "Your heart beats over 100,000 times today alone -- and it's already stacking up toward 3 billion beats across your lifetime.",
           "scene": {
-            "mechanic": "heartbeat-ecg-surge",
-            "concept": "an ECG line sweeps across the frame synced to a pulsing heart at center, a counter racing from the daily beat count up toward the lifetime total",
-            "code": "cy = 620\nimg = subject_image('anatomical heart illustration')\npulse = 1.0 + 0.12 * math.sin(reveal * math.pi * 10)\nw = int(260 * pulse)\nh = int(260 * pulse)\ncx = (RX0 + RX1) // 2\nif img is not None:\n    paste(img, cx - w // 2, cy - h // 2, w, h)\npts = []\nn_pts = 60\nfor i in range(n_pts):\n    t = i / (n_pts - 1)\n    if t > reveal:\n        break\n    x = RX0 + t * (RX1 - RX0)\n    local = (t * 6.0) % 1.0\n    spike = 0.0\n    if 0.42 < local < 0.5:\n        spike = 150.0 * (1 - abs(local - 0.46) / 0.04)\n    y = cy + 340 - spike\n    pts.append((x, y))\nif len(pts) > 1:\n    d.line(pts, fill=rgba(WARN, 255), width=8)\ncount = lerp(values[0], values[1], clamp((reveal - 0.15) / 0.85))\ntext('{:,}'.format(int(count)), cx, cy - h // 2 - 90, size=60, color=HIGHLIGHT, center=True)\ntext('beats and counting', cx, cy - h // 2 - 34, size=32, color=TEXT, center=True)\ntext(labels[0] + ' -> ' + labels[1], cx, RBOT - 60, size=32, color=TEXT, center=True)"
+            "mechanic": "ecg-heartbeat-counter",
+            "concept": "a real ECG line spikes across the top in sync with a pulsing heart photo that thumps bigger on every beat, a today-counter racing to 100,000, then a second smaller heart pulls back to reveal the lifetime counter climbing toward 3 billion",
+            "title": true,
+            "code": "cy = RTOP + 260\nheart_img = subject_image('anatomical heart')\necg_y = RTOP + 60\nstep = (RX1 - RX0) / 40.0\nprev = None\nfor i in range(41):\n    show = clamp(reveal * 44 - i, 0.0, 1.0)\n    x = RX0 + step * i\n    local = ((i / 40.0) * 8) % 1.0\n    spike = (0.5 - abs(local - 0.5)) * 220 if 0.42 < local < 0.58 else 0.0\n    y = ecg_y - spike\n    if show > 0.0 and prev is not None:\n        d.line([prev, (x, y)], fill=rgba(WARN, int(255 * show)), width=6)\n    prev = (x, y)\npulse = 1.0 + 0.12 * abs(math.sin(reveal * 26))\nhsize = 300 * pulse\nhx = RX0 + 260\nif heart_img is not None:\n    paste(heart_img, hx - hsize / 2, cy - hsize / 2, hsize, hsize)\nelse:\n    d.ellipse([hx - hsize / 2, cy - hsize / 2, hx + hsize / 2, cy + hsize / 2], fill=rgba(WARN, 230))\nday_count = values[0] * clamp(reveal * 1.3, 0.0, 1.0)\ntext(f'{day_count:,.0f}', hx, cy + hsize / 2 + 40, size=44, color=TEXT, center=True)\ntext('BEATS TODAY', hx, cy + hsize / 2 + 90, size=24, color=TEXT, center=True)\nstage2 = clamp((reveal - 0.45) / 0.55, 0.0, 1.0)\nif stage2 > 0:\n    life_count = values[1] * stage2\n    small_size = 140\n    sx, sy = RX1 - 220, RTOP + 520\n    if heart_img is not None:\n        paste(heart_img, sx - small_size / 2, sy - small_size / 2, small_size, small_size)\n    text(f'{life_count / 1e9:.1f}B', sx, sy + small_size / 2 + 50, size=64, color=HIGHLIGHT, center=True)\n    text('BEATS IN A LIFETIME', sx, sy + small_size / 2 + 104, size=26, color=TEXT, center=True)\n"
           }
         },
         {
@@ -14160,11 +14161,27 @@
           "insight_type": "rank",
           "role": "2 \u00b7 BEATS PER MINUTE",
           "topic": "Beats Per Minute",
-          "say": "At 75 beats a minute, your heart is already outpacing a 60-beat metronome tick for tick.",
+          "say": "The average heart beats 70 to 80 times per minute, which is faster than a typical metronome setting of 60 beats per minute.",
           "scene": {
-            "mechanic": "tempo-race-dots",
-            "concept": "two tempo lanes fill with tick dots at each contender's pace -- the heart lane visibly denser and faster than the metronome lane",
-            "code": "top_y = 420\nbot_y = 700\nheart_img = subject_image('anatomical heart illustration')\nmet_img = subject_image('metronome')\nif heart_img is not None:\n    paste(heart_img, RX0, top_y - 10, 150, 150)\nif met_img is not None:\n    paste(met_img, RX0, bot_y - 10, 150, 150)\nlane_x0 = RX0 + 180\nlane_x1 = RX1\nd.rounded_rectangle([lane_x0, top_y + 30, lane_x1, top_y + 90], radius=30, fill=rgba(TEXT, 40))\nd.rounded_rectangle([lane_x0, bot_y + 30, lane_x1, bot_y + 90], radius=30, fill=rgba(TEXT, 40))\nn_top = max(2, int(values[0] / 4))\nn_bot = max(2, int(values[1] / 4))\nfor i in range(n_top):\n    t = i / (n_top - 1)\n    if t <= reveal:\n        x = lane_x0 + t * (lane_x1 - lane_x0 - 40)\n        d.ellipse([x, top_y + 35, x + 34, top_y + 85], fill=rgba(WARN, 255))\nfor i in range(n_bot):\n    t = i / (n_bot - 1)\n    if t <= reveal:\n        x = lane_x0 + t * (lane_x1 - lane_x0 - 40)\n        d.ellipse([x, bot_y + 35, x + 34, bot_y + 85], fill=rgba(ACCENT, 255))\ntext(str(int(values[0])) + ' BPM', lane_x0, top_y - 40, size=46, color=WARN)\ntext(labels[0], lane_x0, top_y + 100, size=26, color=TEXT)\ntext(str(int(values[1])) + ' BPM', lane_x0, bot_y - 40, size=46, color=ACCENT)\ntext(labels[1], lane_x0, bot_y + 100, size=26, color=TEXT)\nif reveal > 0.85:\n    text('HEART OUT-TICKS THE METRONOME', (RX0 + RX1) // 2, RBOT - 60, size=38, color=HIGHLIGHT, center=True)"
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "heart",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "metronome",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
           },
           "ascending": false
         },
@@ -14177,11 +14194,12 @@
           "insight_type": "trend",
           "role": "3 \u00b7 LIFETIME BEATS",
           "topic": "Lifetime Beats",
-          "say": "Across an 80-year life, those beats spiral up past 3 billion -- one relentless heartbeat at a time.",
+          "say": "Live to 80 and your heart will have logged over 3 billion beats -- an odometer that never stops rolling.",
           "scene": {
-            "mechanic": "spiral-lifeclock",
-            "concept": "a heart-centered spiral unwinds outward across 80 years of life while a lifetime beat counter spins up to 3 billion",
-            "code": "cx = (RX0 + RX1) // 2\ncy = 640\nimg = subject_image('anatomical heart illustration')\nif img is not None:\n    paste(img, cx - 90, cy - 90, 180, 180)\nn_turns = 8\nn_pts = 240\npts = []\nfor i in range(n_pts):\n    t = i / (n_pts - 1)\n    if t > reveal:\n        break\n    ang = t * n_turns * 2 * math.pi\n    rad = 40 + t * 420\n    x = cx + rad * math.cos(ang)\n    y = cy + rad * math.sin(ang)\n    pts.append((x, y))\nif len(pts) > 1:\n    d.line(pts, fill=rgba(HIGHLIGHT, 255), width=7)\nyears = int(values[0] * clamp(reveal))\ntext(str(years) + ' years', cx, cy - 210, size=42, color=TEXT, center=True)\nbeats = int(values[1] * clamp(reveal))\ntext('{:,}'.format(beats), cx, RBOT - 140, size=56, color=WARN, center=True)\ntext('lifetime heartbeats', cx, RBOT - 82, size=30, color=TEXT, center=True)"
+            "mechanic": "life-odometer",
+            "concept": "a life-year dial sweeps 0 to 80 with a tiny heart riding the needle tip, while a rolling odometer band on the right counts up the lifetime total toward 3 billion beats",
+            "title": true,
+            "code": "cx = RX0 + (RX1 - RX0) * 0.28\ncy = RTOP + 340\nradius = 170.0\nheart_img = subject_image('small red heart icon')\nfrac = clamp(values[0] / 90.0, 0.0, 1.0) * clamp(reveal * 1.3, 0.0, 1.0)\nstart_ang, end_ang = -220.0, 40.0\nsweep = start_ang + (end_ang - start_ang) * frac\nd.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, end_ang, fill=rgba(TEXT, 50), width=20)\nd.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, sweep, fill=rgba(ACCENT, 240), width=20)\nneedle_ang = math.radians(sweep)\nnx = cx + radius * 0.9 * math.cos(needle_ang)\nny = cy + radius * 0.9 * math.sin(needle_ang)\nhs = 70\nif heart_img is not None:\n    paste(heart_img, nx - hs / 2, ny - hs / 2, hs, hs)\nelse:\n    d.ellipse([nx - hs / 2, ny - hs / 2, nx + hs / 2, ny + hs / 2], fill=rgba(WARN, 230))\ntext(f'{values[0]:.0f} YRS', cx, cy + radius + 30, size=46, color=TEXT, center=True)\ntext(labels[0].upper(), cx, cy + radius + 80, size=22, color=TEXT, center=True)\ncx2 = RX0 + (RX1 - RX0) * 0.74\nband_w, band_h = 380, 100\nby = RTOP + 300\nd.rounded_rectangle([cx2 - band_w / 2, by, cx2 + band_w / 2, by + band_h], radius=16, fill=rgba(TEXT, 26))\ntotal = values[1] * clamp(reveal * 1.2, 0.0, 1.0)\ntext(f'{total:,.0f}', cx2, by + 18, size=40, color=HIGHLIGHT, center=True)\ntext('TOTAL BEATS', cx2, by + band_h + 20, size=26, color=TEXT, center=True)\nheart_img2 = subject_image('small red heart icon')\nhs2 = 60\nif heart_img2 is not None:\n    paste(heart_img2, cx2 - hs2 / 2, by - hs2 - 10, hs2, hs2)\n"
           }
         },
         {
@@ -14193,21 +14211,22 @@
           "insight_type": "share",
           "role": "4 \u00b7 HEART EFFICIENCY",
           "topic": "Heart Efficiency",
-          "say": "Every day it pumps 2,000 gallons of blood -- a full quarter of all the blood in your body, cycling nonstop.",
+          "say": "It pumps 2,000 gallons of blood every single day, and right now a quarter of all the blood in your body is passing through it.",
           "scene": {
-            "mechanic": "blood-tanker-fill",
-            "concept": "a heart-shaped vessel fills with blood to the day's gallon count beside a body silhouette filling to its 25% blood share",
-            "code": "heart_img = subject_image('anatomical heart illustration')\nbody_img = subject_image('human body silhouette anatomy')\nfrac_gal = clamp(reveal)\nif heart_img is not None:\n    fill_image(heart_img, frac_gal, RX0 + 40, RTOP + 140, 380, 440, direction='up', color=WARN)\ntext(str(int(values[0])) + ' gal/day', RX0 + 40, RTOP + 90, size=38, color=WARN)\nfrac_blood = clamp(values[1] / 100.0) * clamp(reveal)\nif body_img is not None:\n    fill_image(body_img, frac_blood, RX1 - 360, RTOP + 140, 320, 440, direction='up', color=ACCENT)\ntext(str(int(values[1])) + '%', RX1 - 360, RTOP + 90, size=38, color=ACCENT)\ntext('of body blood', RX1 - 360, RTOP + 590, size=26, color=TEXT)\ntext('pumped daily', RX0 + 40, RTOP + 590, size=26, color=TEXT)\nif reveal > 0.8:\n    text('2,000 GALLONS A DAY', (RX0 + RX1) // 2, RBOT - 60, size=38, color=HIGHLIGHT, center=True)"
+            "mechanic": "daily-pump-vs-blood-share",
+            "concept": "a stack of water-jug photos builds up the 2,000 gallons pumped per day on the left, while a real human-body silhouette fills bottom-up in red to show the 25% share of total blood on the right",
+            "title": true,
+            "code": "cx1 = RX0 + (RX1 - RX0) * 0.26\njug_img = subject_image('water jug icon')\nn_jugs = 5\njug_w, jug_h, gap = 90, 90, 16\nbase_y = RTOP + 780\nfor i in range(n_jugs):\n    stage = clamp(reveal * n_jugs - i, 0.0, 1.0)\n    if stage <= 0.0:\n        continue\n    jy = base_y - i * (jug_h + gap)\n    jw, jh = jug_w * stage, jug_h * stage\n    if jug_img is not None:\n        paste(jug_img, cx1 - jw / 2, jy - jh, jw, jh)\n    else:\n        d.rounded_rectangle([cx1 - jw / 2, jy - jh, cx1 + jw / 2, jy], radius=10, fill=rgba(ACCENT, 220))\ntext(f'{values[0]:.0f} GAL/DAY', cx1, base_y + 26, size=34, color=TEXT, center=True)\ntext('BLOOD PUMPED', cx1, base_y + 68, size=22, color=TEXT, center=True)\ncx2 = RX0 + (RX1 - RX0) * 0.72\nbody_img = subject_image('human body silhouette')\nbw, bh = 220, 520\nby0 = RTOP + 180\nfrac = clamp(values[1] / 100.0, 0.0, 1.0) * clamp(reveal * 1.3, 0.0, 1.0)\nif body_img is not None:\n    fill_image(body_img, frac, cx2 - bw / 2, by0, bw, bh, 'up', WARN)\nelse:\n    fh = bh * frac\n    d.rounded_rectangle([cx2 - bw / 2, by0 + bh - fh, cx2 + bw / 2, by0 + bh], radius=20, fill=rgba(WARN, 220))\ntext(f'{values[1]:.0f}%', cx2, by0 + bh + 20, size=48, color=WARN, center=True)\ntext('OF ALL YOUR BLOOD', cx2, by0 + bh + 74, size=22, color=TEXT, center=True)\n"
           }
         }
       ],
-      "question": "Which stat shocked you more -- 3 billion beats, or 2,000 gallons of blood a day?"
+      "question": "Do the math -- how many times has YOUR heart already beaten today?"
     },
     {
       "slug": "loudest-body-sounds",
       "title": "Loudest Body Sounds",
-      "hook": "Everyone jokes that a fart is the loudest thing your body makes -- it isn't even close.",
-      "closing": "It's not the fart -- a sneeze can blast out at 100 decibels, loud enough to rival a jackhammer.",
+      "hook": "One sound your body makes is louder than a car horn -- and it's not the one you're picturing.",
+      "closing": "Turns out the fart doesn't even win: a sneeze can blast out at 100 decibels, louder than every other sound your body can make.",
       "hashtags": [
         "bodynoises",
         "loudestsounds",
@@ -14225,11 +14244,27 @@
           "insight_type": "rank",
           "role": "1 \u00b7 FART NOISE",
           "topic": "Fart Noise",
-          "say": "A fart can hit 80 decibels -- 10 decibels louder than a running vacuum cleaner.",
+          "say": "The noise of a fart can reach levels of up to 80 decibels, which is comparable to the sound of a vacuum cleaner.",
           "scene": {
-            "mechanic": "decibel-shockwave-duel",
-            "concept": "two subjects pulse concentric shockwave rings sized and paced by their decibel value -- the fart's rings blast further and faster than the vacuum's",
-            "code": "cx1 = RX0 + 240\ncx2 = RX1 - 240\ncy = 640\nimg1 = subject_image('whoopee cushion')\nimg2 = subject_image('vacuum cleaner appliance')\nif img1 is not None:\n    paste(img1, cx1 - 110, cy - 110, 220, 220)\nif img2 is not None:\n    paste(img2, cx2 - 110, cy - 110, 220, 220)\nn_rings = 4\nfor i in range(n_rings):\n    t = clamp(reveal * 1.4 - i * 0.22)\n    if t <= 0:\n        continue\n    r1 = 120 + t * (values[0] * 3.0)\n    a1 = int(220 * (1 - t))\n    d.ellipse([cx1 - r1, cy - r1, cx1 + r1, cy + r1], outline=rgba(WARN, a1), width=7)\n    r2 = 120 + t * (values[1] * 3.0)\n    a2 = int(220 * (1 - t))\n    d.ellipse([cx2 - r2, cy - r2, cx2 + r2, cy + r2], outline=rgba(ACCENT, a2), width=7)\ntext(str(int(values[0])) + ' dB', cx1, cy + 150, size=50, color=WARN, center=True)\ntext(labels[0], cx1, cy + 202, size=28, color=TEXT, center=True)\ntext(str(int(values[1])) + ' dB', cx2, cy + 150, size=50, color=ACCENT, center=True)\ntext(labels[1], cx2, cy + 202, size=28, color=TEXT, center=True)\nif reveal > 0.85:\n    text('10 dB LOUDER', (RX0 + RX1) // 2, RTOP + 60, size=42, color=HIGHLIGHT, center=True)"
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fart",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "vacuum",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
           },
           "ascending": false
         },
@@ -14242,11 +14277,12 @@
           "insight_type": "rank",
           "role": "2 \u00b7 BURP NOISE",
           "topic": "Burp Noise",
-          "say": "A burp only reaches 60 decibels -- a dog's bark actually beats it, at 65.",
+          "say": "A burp hits 60 decibels -- but a dog's bark blasts past it at 65.",
           "scene": {
-            "mechanic": "sound-meter-duel",
-            "concept": "two vertical decibel columns rise to each contender's loudness, subject photos riding their tips -- the dog bark column edges out the burp",
-            "code": "mh = 560\nx1 = RX0 + 160\nx2 = RX1 - 360\ncol_w = 200\nbase_y = RBOT - 120\nimg1 = subject_image('person burping cartoon')\nimg2 = subject_image('dog barking')\nh1 = int(mh * clamp(values[0] / vmax) * clamp(reveal))\nh2 = int(mh * clamp(values[1] / vmax) * clamp(reveal))\nd.rounded_rectangle([x1, base_y - h1, x1 + col_w, base_y], radius=24, fill=rgba(ACCENT, 255))\nd.rounded_rectangle([x2, base_y - h2, x2 + col_w, base_y], radius=24, fill=rgba(WARN, 255))\nif img1 is not None:\n    paste(img1, x1 + 10, base_y - h1 - 180, col_w - 20, 140)\nif img2 is not None:\n    paste(img2, x2 + 10, base_y - h2 - 180, col_w - 20, 140)\ntext(str(int(values[0])) + ' dB', x1 + col_w // 2, base_y - h1 - 226, size=42, color=ACCENT, center=True)\ntext(labels[0], x1 + col_w // 2, base_y + 20, size=26, color=TEXT, center=True)\ntext(str(int(values[1])) + ' dB', x2 + col_w // 2, base_y - h2 - 226, size=42, color=WARN, center=True)\ntext(labels[1], x2 + col_w // 2, base_y + 20, size=26, color=TEXT, center=True)\nif reveal > 0.85:\n    text('THE DOG BARK WINS', (RX0 + RX1) // 2, RTOP + 80, size=40, color=HIGHLIGHT, center=True)"
+            "mechanic": "sound-wave-rings",
+            "concept": "concentric sound-wave rings pulse outward from a burping-person photo and a barking-dog photo side by side, ring count and glow scaled to each source's decibel level",
+            "title": true,
+            "code": "cx1 = RX0 + (RX1 - RX0) * 0.27\ncx2 = RX0 + (RX1 - RX0) * 0.73\ncy = RTOP + 420\nfor cx, i in ((cx1, 0), (cx2, 1)):\n    v = values[i]\n    img = images.get(labels[i]) or subject_image(labels[i])\n    ring_count = max(2, int(v / 12))\n    for k in range(ring_count):\n        stage = clamp(reveal * ring_count - k, 0.0, 1.0)\n        if stage <= 0.0:\n            continue\n        r = (40 + k * 34) * stage\n        alpha = int(200 * (1.0 - k / ring_count))\n        col = WARN if v >= vmax * 0.9 else HIGHLIGHT\n        d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(col, alpha), width=6)\n    isize = 150\n    if img is not None:\n        paste(img, cx - isize / 2, cy - isize / 2, isize, isize)\n    else:\n        d.ellipse([cx - isize / 2, cy - isize / 2, cx + isize / 2, cy + isize / 2], fill=rgba(ACCENT, 220))\n    text(f'{v:.0f} dB', cx, cy + 240, size=44, color=TEXT, center=True)\n    text(labels[i].upper(), cx, cy + 288, size=22, color=TEXT, center=True)\n"
           },
           "ascending": false
         },
@@ -14259,11 +14295,12 @@
           "insight_type": "rank",
           "role": "3 \u00b7 SNEEZE NOISE",
           "topic": "Sneeze Noise",
-          "say": "A sneeze can blast out at 100 decibels -- but a car horn still tops it, at 110.",
+          "say": "A sneeze can rocket past 100 decibels -- almost as loud as a car horn blaring at 110.",
           "scene": {
-            "mechanic": "megaphone-cone-blast",
-            "concept": "two sound cones flare open to their decibel spread with particles blasting from the tip -- the car horn's cone flares wider than the sneeze's",
-            "code": "cx1 = RX0 + 260\ncx2 = RX1 - 260\ncy = 620\ntip_len = 240\nimg1 = subject_image('person sneezing face')\nimg2 = subject_image('car horn close up')\nspread1 = clamp(values[0] / vmax) * 70 * clamp(reveal)\nspread2 = clamp(values[1] / vmax) * 70 * clamp(reveal)\nd.polygon([(cx1, cy), (cx1 - tip_len, cy - spread1), (cx1 - tip_len, cy + spread1)], fill=rgba(WARN, 150))\nd.polygon([(cx2, cy), (cx2 + tip_len, cy - spread2), (cx2 + tip_len, cy + spread2)], fill=rgba(ACCENT, 150))\nif img1 is not None:\n    paste(img1, cx1 - 30, cy - 110, 210, 210)\nif img2 is not None:\n    paste(img2, cx2 - 180, cy - 110, 210, 210)\nn_particles = 6\nfor i in range(n_particles):\n    t = clamp(reveal * 1.3 - i * 0.15)\n    if t <= 0:\n        continue\n    px1 = cx1 - tip_len - t * 80\n    py1 = cy - spread1 + (i / n_particles) * spread1 * 2\n    d.ellipse([px1 - 8, py1 - 8, px1 + 8, py1 + 8], fill=rgba(WARN, int(255 * (1 - t))))\n    px2 = cx2 + tip_len + t * 80\n    py2 = cy - spread2 + (i / n_particles) * spread2 * 2\n    d.ellipse([px2 - 8, py2 - 8, px2 + 8, py2 + 8], fill=rgba(ACCENT, int(255 * (1 - t))))\ntext(str(int(values[0])) + ' dB', cx1, cy + 178, size=46, color=WARN, center=True)\ntext(labels[0], cx1, cy + 228, size=26, color=TEXT, center=True)\ntext(str(int(values[1])) + ' dB', cx2, cy + 178, size=46, color=ACCENT, center=True)\ntext(labels[1], cx2, cy + 228, size=26, color=TEXT, center=True)\nif reveal > 0.85:\n    text('CAR HORN OUT-BLASTS A SNEEZE', (RX0 + RX1) // 2, RTOP + 60, size=34, color=HIGHLIGHT, center=True)"
+            "mechanic": "decibel-gauge-duel",
+            "concept": "two speedometer-style gauges sweep to their decibel value with a red zone above 90dB, a real sneeze photo and car-horn photo riding each needle tip",
+            "title": true,
+            "code": "cx1 = RX0 + (RX1 - RX0) * 0.27\ncx2 = RX0 + (RX1 - RX0) * 0.73\ncy = RTOP + 380\nradius = 160.0\nscale_max = 130.0\nfor cx, i in ((cx1, 0), (cx2, 1)):\n    v = values[i]\n    start_ang, end_ang = -210.0, 30.0\n    frac = clamp(v / scale_max, 0.0, 1.0) * clamp(reveal * 1.3, 0.0, 1.0)\n    sweep = start_ang + (end_ang - start_ang) * frac\n    redzone_ang = start_ang + (end_ang - start_ang) * clamp(90.0 / scale_max, 0.0, 1.0)\n    d.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, end_ang, fill=rgba(TEXT, 50), width=18)\n    d.arc([cx - radius, cy - radius, cx + radius, cy + radius], redzone_ang, end_ang, fill=rgba(WARN, 120), width=18)\n    d.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, sweep, fill=rgba(HIGHLIGHT, 240), width=18)\n    needle_ang = math.radians(sweep)\n    nx = cx + radius * 0.92 * math.cos(needle_ang)\n    ny = cy + radius * 0.92 * math.sin(needle_ang)\n    img = images.get(labels[i]) or subject_image(labels[i])\n    isz = 90\n    if img is not None:\n        paste(img, nx - isz / 2, ny - isz / 2, isz, isz)\n    else:\n        d.ellipse([nx - isz / 2, ny - isz / 2, nx + isz / 2, ny + isz / 2], fill=rgba(WARN, 230))\n    text(f'{v:.0f} dB', cx, cy + radius + 30, size=42, color=TEXT, center=True)\n    text(labels[i].upper(), cx, cy + radius + 78, size=22, color=TEXT, center=True)\n"
           },
           "ascending": false
         },
@@ -14276,323 +14313,48 @@
           "insight_type": "rank",
           "role": "4 \u00b7 BODY NOISES",
           "topic": "Body Noises",
-          "say": "Stack the body's own sounds against each other and the sneeze crushes the fart by 20 decibels -- the loudest noise you make yourself.",
+          "say": "Line them all up and the fart doesn't even win: sneeze at 100 decibels, fart at 80, burp at 60.",
           "scene": {
-            "mechanic": "loudness-crown-blast",
-            "concept": "the body's own sounds erupt as stacked shockwave rings sized by decibel value -- the sneeze's ring dwarfs the fart's in the final showdown",
-            "code": "cx = (RX0 + RX1) // 2\ncy1 = RTOP + 320\ncy2 = RTOP + 780\nimg1 = subject_image('person sneezing face')\nimg2 = subject_image('whoopee cushion')\nr1 = 90 + clamp(values[0] / vmax) * 220 * clamp(reveal)\nr2 = 90 + clamp(values[1] / vmax) * 220 * clamp(reveal)\nd.ellipse([cx - r1, cy1 - r1, cx + r1, cy1 + r1], outline=rgba(WARN, 200), width=10)\nd.ellipse([cx - r1 * 0.6, cy1 - r1 * 0.6, cx + r1 * 0.6, cy1 + r1 * 0.6], outline=rgba(WARN, 130), width=6)\nd.ellipse([cx - r2, cy2 - r2, cx + r2, cy2 + r2], outline=rgba(ACCENT, 200), width=10)\nd.ellipse([cx - r2 * 0.6, cy2 - r2 * 0.6, cx + r2 * 0.6, cy2 + r2 * 0.6], outline=rgba(ACCENT, 130), width=6)\nif img1 is not None:\n    paste(img1, cx - 90, cy1 - 90, 180, 180)\nif img2 is not None:\n    paste(img2, cx - 90, cy2 - 90, 180, 180)\ntext(str(int(values[0])) + ' dB', cx, cy1 - 160, size=50, color=WARN, center=True)\ntext(labels[0], cx, cy1 + 140, size=30, color=TEXT, center=True)\ntext(str(int(values[1])) + ' dB', cx, cy2 - 160, size=50, color=ACCENT, center=True)\ntext(labels[1], cx, cy2 + 140, size=30, color=TEXT, center=True)\nif reveal > 0.85:\n    text('THE SNEEZE WINS', cx, RTOP + 40, size=44, color=HIGHLIGHT, center=True)"
+            "title": true,
+            "elements": [
+              {
+                "type": "orbit_group",
+                "region": "full"
+              }
+            ]
           }
         }
       ],
-      "question": "Did you expect the sneeze to win, or were you rooting for the fart?"
+      "question": "Did you expect the sneeze to win? Drop your loudest body-noise story below."
     },
     {
-      "slug": "massive-relocations",
-      "title": "Massive Relocations",
-      "hook": "Imagine moving a mountain, literally!",
-      "closing": "The heaviest things ever moved will blow your mind!",
+      "slug": "heaviest-things-ever-moved",
+      "title": "Heaviest Things Ever Moved",
+      "hook": "Imagine shifting a mountain, literally!",
+      "closing": "The power of human ingenuity is mind-boggling!",
       "hashtags": [
         "engineering",
-        "heavy",
-        "relocation",
-        "massive",
-        "construction"
+        "heavyhaulage",
+        "recordbreakers"
       ],
       "segments": [
         {
           "source": "offline",
-          "key": "massive_relocations_heaviest_moves",
+          "key": "heaviest_things_ever_moved_massive_monuments",
           "params": {
-            "file": "massive_relocations_heaviest_moves.json"
+            "file": "heaviest_things_ever_moved_massive_monuments.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 HEAVIEST MOVES",
-          "topic": "Heaviest Moves",
-          "say": "The heaviest move ever recorded was the USS Iowa, weighing over 45,000 tons, while the largest building relocation was the Bell Tower in China, weighing around 25,000 tons.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "ground-row",
-                "subject": "truck",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 1000.0
-                }
-              },
-              {
-                "type": "stack",
-                "region": "ground-row",
-                "subject": "ship",
-                "data": {
-                  "value_from": "item:1",
-                  "per_value": 5000.0
-                }
-              }
-            ]
-          },
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "massive_relocations_heavy_lifting",
-          "params": {
-            "file": "massive_relocations_heavy_lifting.json"
-          },
-          "insight_type": "rank",
-          "role": "2 \u00b7 HEAVY LIFTING",
-          "topic": "Heavy Lifting",
-          "say": "The world's largest crane can lift over 3,000 tons, while the strongest magnet can lift around 20,000 tons of metal.",
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "massive_relocations_massive_moves",
-          "params": {
-            "file": "massive_relocations_massive_moves.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 MASSIVE MOVES",
-          "topic": "Massive Moves",
-          "say": "Over the years, the weight of the heaviest moves has been increasing, from 10,000 tons in the 1960s to over 100,000 tons in the 2020s.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "massive_relocations_relocation_records",
-          "params": {
-            "file": "massive_relocations_relocation_records.json"
-          },
-          "insight_type": "rank",
-          "role": "4 \u00b7 RELOCATION RECORDS",
-          "topic": "Relocation Records",
-          "say": "The top 5 heaviest moves ever recorded are the USS Iowa, the Bell Tower, the Golden Gate Bridge, the Eiffel Tower, and the Statue of Liberty, with weights ranging from 25,000 to 45,000 tons.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:4"
-                }
-              }
-            ]
-          }
-        }
-      ],
-      "question": "What's the largest thing you've ever had to move?"
-    },
-    {
-      "slug": "ancient-wonders",
-      "title": "Ancient Wonders",
-      "hook": "The pyramids are one of the most impressive architectural achievements in history!",
-      "closing": "The construction of the pyramids is a testament to human ingenuity and perseverance!",
-      "hashtags": [
-        "pyramids",
-        "ancient",
-        "wonders",
-        "egypt",
-        "history"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "ancient_wonders_pyramid_construction",
-          "params": {
-            "file": "ancient_wonders_pyramid_construction.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 PYRAMID CONSTRUCTI",
-          "topic": "Pyramid Construction",
-          "say": "The construction of the Great Pyramid of Giza took around 20 years, from 2580 to 2560 BC, while the Pyramid of Khafre took around 15 years to build.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "ancient_wonders_labor_force",
-          "params": {
-            "file": "ancient_wonders_labor_force.json"
-          },
-          "insight_type": "rank",
-          "role": "2 \u00b7 LABOR FORCE",
-          "topic": "Labor Force",
-          "say": "It's estimated that around 100,000 workers were involved in the construction of the Great Pyramid, while the Pyramid of Khafre required around 50,000 workers.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "ground-row",
-                "subject": "worker",
-                "data": {
-                  "value_from": "item:1",
-                  "per_value": 1000.0
-                }
-              }
-            ]
-          },
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "ancient_wonders_stone_blocks",
-          "params": {
-            "file": "ancient_wonders_stone_blocks.json"
-          },
-          "insight_type": "rank",
-          "role": "3 \u00b7 STONE BLOCKS",
-          "topic": "Stone Blocks",
-          "say": "The Great Pyramid is made up of around 2.3 million stone blocks, each weighing around 2.5 tons, while the Pyramid of Khafre has around 1.6 million blocks, each weighing around 2 tons.",
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "ancient_wonders_architectural_marvels",
-          "params": {
-            "file": "ancient_wonders_architectural_marvels.json"
-          },
-          "insight_type": "rank",
-          "role": "4 \u00b7 ARCHITECTURAL MARV",
-          "topic": "Architectural Marvels",
-          "say": "The Great Pyramid of Giza stands at a height of around 146 meters, making it one of the tallest man-made structures in the world for over 3,800 years."
-        }
-      ],
-      "question": "What's the most impressive ancient wonder you've visited?"
-    },
-    {
-      "slug": "roman-roads-reach",
-      "title": "Roman Roads Reach",
-      "hook": "The Romans built an incredible network of roads that stretched across their vast empire",
-      "closing": "The Roman road network was a marvel of engineering that still influences modern transportation systems",
-      "hashtags": [
-        "romanempire",
-        "ancientroads",
-        "history",
-        "engineering",
-        "transportation"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "roman_roads_reach_roman_road_length",
-          "params": {
-            "file": "roman_roads_reach_roman_road_length.json"
-          },
-          "insight_type": "rank",
-          "role": "1 \u00b7 ROMAN ROAD LENGTH",
-          "topic": "Roman Road Length",
-          "say": "The Roman road network spanned over 250,000 miles, with some roads stretching as far as 1,500 miles",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "full",
-                "subject": "mile marker",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 1000.0
-                }
-              }
-            ]
-          },
-          "ascending": false
-        },
-        {
-          "source": "offline",
-          "key": "roman_roads_reach_roads_per_region",
-          "params": {
-            "file": "roman_roads_reach_roads_per_region.json"
-          },
-          "insight_type": "rank",
-          "role": "2 \u00b7 ROADS PER REGION",
-          "topic": "Roads Per Region",
-          "say": "Some regions had over 10,000 miles of roads, while others had as few as 1,000 miles"
-        },
-        {
-          "source": "offline",
-          "key": "roman_roads_reach_road_network_growth",
-          "params": {
-            "file": "roman_roads_reach_road_network_growth.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 ROAD NETWORK GROWT",
-          "topic": "Road Network Growth",
-          "say": "The Roman road network grew steadily over the centuries, with a significant expansion during the 2nd century",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "roman_roads_reach_roman_road_legacy",
-          "params": {
-            "file": "roman_roads_reach_roman_road_legacy.json"
-          },
-          "insight_type": "rank",
-          "role": "4 \u00b7 ROMAN ROAD LEGACY",
-          "topic": "Roman Road Legacy",
-          "say": "The Roman road network has had a lasting impact on modern transportation systems, with many modern roads following the same routes",
-          "ascending": false
-        }
-      ],
-      "question": "What other ancient civilizations had impressive road networks?"
-    },
-    {
-      "slug": "deadliest-events",
-      "title": "Deadliest Events",
-      "hook": "Some of the deadliest events in history have had a profound impact on human populations",
-      "closing": "Understanding the deadliest events in history can help us prepare for and prevent similar disasters in the future",
-      "hashtags": [
-        "deadliestevents",
-        "history",
-        "naturaldisasters",
-        "disasterrelief",
-        "sustainability"
-      ],
-      "segments": [
-        {
-          "source": "offline",
-          "key": "deadliest_events_top_5_deadliest_events",
-          "params": {
-            "file": "deadliest_events_top_5_deadliest_events.json"
-          },
-          "insight_type": "rank",
-          "role": "1 \u00b7 TOP 5 DEADLIEST EV",
-          "topic": "Top 5 Deadliest Events",
-          "say": "The top 5 deadliest events in history have resulted in over 100 million deaths, with the worst event causing over 40 million deaths",
+          "role": "1 \u00b7 MASSIVE MONUMENTS",
+          "topic": "Massive Monuments",
+          "say": "The ancient Egyptians moved blocks weighing up to 2.5 tons to build the pyramids, while the Romans relocated a 1,000-ton statue of Apollo.",
           "scene": {
             "title": true,
             "elements": [
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "skull",
+                "subject": "stone block",
                 "data": {
                   "value_from": "item:0"
                 }
@@ -14600,24 +14362,109 @@
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "skull",
+                "subject": "stone block",
                 "data": {
                   "value_from": "item:1"
                 }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "heaviest_things_ever_moved_modern_marvels",
+          "params": {
+            "file": "heaviest_things_ever_moved_modern_marvels.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 MODERN MARVELS",
+          "topic": "Modern Marvels",
+          "say": "Today, we can move massive oil rigs weighing over 100,000 tons and ships that displace more than 200,000 tons of water.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "shipping container",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "heaviest_things_ever_moved_historic_heavy_lifts",
+          "params": {
+            "file": "heaviest_things_ever_moved_historic_heavy_lifts.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 HISTORIC HEAVY LIF",
+          "topic": "Historic Heavy Lifts",
+          "say": "Throughout history, the heaviest lifts include the 6,000-ton USS Illinois, the 12,000-ton London Bridge, and the 50,000-ton Yucca Mountain nuclear waste repository tunnel boring machine.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "orbit_group",
+                "region": "full"
               }
             ]
           }
         },
         {
           "source": "offline",
-          "key": "deadliest_events_death_toll_per_century",
+          "key": "heaviest_things_ever_moved_engineering_feats",
           "params": {
-            "file": "deadliest_events_death_toll_per_century.json"
+            "file": "heaviest_things_ever_moved_engineering_feats.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 ENGINEERING FEATS",
+          "topic": "Engineering Feats",
+          "say": "These massive moves are made possible by advanced engineering, with cranes capable of lifting up to 20% of their own weight, and specialized transporters that can handle up to 50% of the cargo's weight.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "crane",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the heaviest thing you think could be moved?"
+    },
+    {
+      "slug": "pyramid-construction-timeline",
+      "title": "Pyramid Construction Timeline",
+      "hook": "The ancient pyramids were built in a remarkably short time!",
+      "closing": "The ingenuity and labor that went into these structures are a testament to human determination!",
+      "hashtags": [
+        "ancientegypt",
+        "pyramidconstruction",
+        "history"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "pyramid_construction_timeline_great_pyramid_of_g",
+          "params": {
+            "file": "pyramid_construction_timeline_great_pyramid_of_g.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 DEATH TOLL PER CEN",
-          "topic": "Death Toll Per Century",
-          "say": "The death toll from the deadliest events has varied significantly over the centuries, with some centuries experiencing much higher death tolls than others",
+          "role": "1 \u00b7 GREAT PYRAMID OF G",
+          "topic": "Great Pyramid of Giza",
+          "say": "The Great Pyramid of Giza, the largest of the three, is believed to have taken around 20 to 30 years to construct, with a workforce of around 100,000 laborers.",
           "scene": {
             "title": true,
             "elements": [
@@ -14630,29 +14477,75 @@
         },
         {
           "source": "offline",
-          "key": "deadliest_events_natural_disaster_impact",
+          "key": "pyramid_construction_timeline_pyramid_of_khafre",
           "params": {
-            "file": "deadliest_events_natural_disaster_impact.json"
+            "file": "pyramid_construction_timeline_pyramid_of_khafre.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 NATURAL DISASTER I",
-          "topic": "Natural Disaster Impact",
-          "say": "Natural disasters have been responsible for some of the deadliest events in history, with earthquakes, floods, and storms causing widespread destruction and loss of life",
+          "role": "2 \u00b7 PYRAMID OF KHAFRE",
+          "topic": "Pyramid of Khafre",
+          "say": "The Pyramid of Khafre, the second-largest pyramid, is thought to have taken around 15 to 20 years to build, while the Pyramid of Menkaure, the smallest of the three, took around 10 to 15 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "pyramid",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
           "ascending": false
         },
         {
           "source": "offline",
-          "key": "deadliest_events_mitigating_disaster_impact",
+          "key": "pyramid_construction_timeline_labor_force",
           "params": {
-            "file": "deadliest_events_mitigating_disaster_impact.json"
+            "file": "pyramid_construction_timeline_labor_force.json"
           },
           "insight_type": "share",
-          "role": "4 \u00b7 MITIGATING DISASTE",
-          "topic": "Mitigating Disaster Impact",
-          "say": "By taking proactive steps to mitigate the impact of natural disasters, such as investing in disaster relief efforts and implementing sustainable practices, we can reduce the number of deaths and minimize the damage caused by these events"
+          "role": "3 \u00b7 LABOR FORCE",
+          "topic": "Labor Force",
+          "say": "It's estimated that the labor force for the Great Pyramid of Giza was around 100,000 workers, which is roughly 10% of the Egyptian population at the time.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "worker",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "pyramid_construction_timeline_construction_speed",
+          "params": {
+            "file": "pyramid_construction_timeline_construction_speed.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 CONSTRUCTION SPEED",
+          "topic": "Construction Speed",
+          "say": "The construction speed of the pyramids is estimated to be around 10 blocks per day, with the Great Pyramid of Giza requiring around 2.3 million blocks to complete.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
         }
       ],
-      "question": "What are some of the most effective ways to mitigate the impact of natural disasters?"
+      "question": "How do you think the pyramids could have been built so quickly?"
     }
   ],
   "videos": [

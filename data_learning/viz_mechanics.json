@@ -177,47 +177,5 @@
   "concept": "Two toxin-filled vials rise from the bottom, their fill levels and labels indicating the potency and quantity of the toxins.",
   "code": "\nfor i, (label, value) in enumerate(zip(labels, values)):\n    x = RX0 + 200 if i == 0 else RX1 - 200\n    y = RBOT + 100 * (1.0 - reveal)\n    w = 80\n    h = 400\n    d.rectangle([x, y, x + w, y + h], outline=rgba(TEXT, 120), width=6)\n    fill_image(subject_image('poisonous liquid'), clamp(value / vmax), x, y, w, h)\n    text(label, x + w // 2, y - 60, size=38, color=TEXT, center=True)\n    text(str(int(value)), x + w // 2, y + h + 40, size=46, color=TEXT, center=True)\n    if i == 0:\n        text('Toxin Potency', x + w // 2, y + h + 90, size=32, color=TEXT, center=True)\n    else:\n        text('Toxin Quantity', x + w // 2, y + h + 90, size=32, color=TEXT, center=True)\n",
   "topic": "Plant Toxins"
- },
- {
-  "sig": "362c39278203",
-  "mechanic": "soundwaves",
-  "concept": "Each body noise is depicted as a wave emanating from its source, with the wave's amplitude and label reflecting the noise's decibel level",
-  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 200 + i * 300\n    cy = RTOP + 200\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 150\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    text(labels[i], cxs, cy - 100, size=38, center=True)\n    text(str(int(v)) + ' dB', cxs, cy + 100, size=38, center=True)\n    amp = 100 * clamp(v / vmax)\n    freq = 5\n    points = []\n    for j in range(100):\n        x = cxs + j * 10 - 500\n        y = cy + int(amp * math.sin(2 * math.pi * freq * j / 100))\n        points.append((x, y))\n    d.line(points, fill=rgba(HIGHLIGHT, 255), width=4)\n    fill_image(subject_image('sound wave'), reveal, cxs - 500, cy - 200, 1000, 400, direction='right', color=rgba(ACCENT, 128))",
-  "topic": "Body Noises"
- },
- {
-  "sig": "a4f189351cd0",
-  "mechanic": "massive-moves",
-  "concept": "a giant cargo ship rises with its cargo holds filling to represent the massive moves in tons over the decades",
-  "code": "\ncx = (RX0 + RX1) // 2\ncy = RTOP + 200\nimg = subject_image('cargo ship')\nif img is not None:\n    asp = img.width / img.height\n    w = 900\n    h = int(w / asp)\n    paste(img, cx - w // 2, cy - h // 2, w, h)\nfor i in range(n):\n    v = values[i]\n    vy = RTOP + 500 + i * 150\n    d.rectangle([RX0, vy, RX1, vy + 50], fill=rgba(ACCENT, 100))\n    fill_image(subject_image('cargo'), clamp(v / vmax) * reveal, RX0, vy, RX1 - RX0, 50, 'right', ACCENT)\n    text(labels[i], RX0 + 10, vy + 20, size=36, color=TEXT)\n    text(str(int(v)) + ' tons', RX0 + 10, vy + 70, size=36, color=TEXT)\nreveal_y = lerp(RBOT, cy, reveal)\nd.line([cx, cy, cx, reveal_y], fill=rgba(HIGHLIGHT, 255), width=10)\ntext('Massive Moves', cx, reveal_y + 20, size=48, color=HIGHLIGHT, center=True)\n",
-  "topic": "Massive Moves"
- },
- {
-  "sig": "612e57701ec1",
-  "mechanic": "weight-balance",
-  "concept": "Two industrial cranes balance a massive tonnage on either side of a fulcrum, with each crane's load and label displayed on a hanging weight",
-  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nfor i in range(n):\n    if i == 0:\n        x = cx - 300\n        col = HIGHLIGHT\n    else:\n        x = cx + 300\n        col = ACCENT\n    v = values[i]\n    r = 120\n    d.line([x, cy, x, cy + 200], fill=rgba(TEXT, 90), width=16)\n    w = 80\n    h = int(lerp(0, 400, clamp(v / vmax)) * reveal)\n    fill_image(subject_image('industrial crane'), h / 400.0, x - w // 2, cy + 200 - h, w, h, direction='up', color=None)\n    text(labels[i], x, cy + 250, size=38, color=col, center=True)\n    text(str(int(v)) + ' tons', x, cy + 300, size=56, color=col, center=True)\n    d.line([cx, cy, x, cy], fill=rgba(col, 255), width=10)\n    d.ellipse([x - 16, cy - 16, x + 16, cy + 16], fill=rgba(col, 255))\nd.line([cx, cy, cx, RTOP], fill=rgba(TEXT, 90), width=16)\nd.ellipse([cx - 16, cy - 16, cx + 16, cy + 16], fill=rgba(TEXT, 90))\n",
-  "topic": "Heavy Lifting"
- },
- {
-  "sig": "d9817fca2b72",
-  "mechanic": "pyramidbuilders",
-  "concept": "Ancient Egyptian pyramid builders' silhouettes rise from the desert sand, their heights and labels revealed as the reveal progresses",
-  "code": "\nfor i in range(n):\n    v = values[i]\n    x = lerp(RX0, RX1, i / (n - 1))\n    y = RBOT\n    base = 80\n    h = int(lerp(0, 600, v / vmax))\n    d.rectangle([x - base // 2, y - h, x + base // 2, y], fill=rgba(ACCENT, 128))\n    d.line([x, y, x, y - h], fill=rgba(HIGHLIGHT, 255), width=4)\n    img = subject_image('ancient egyptian pyramid builder')\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h_img = int(w / asp)\n        paste(img, x - w // 2, y - h - h_img, w, h_img)\n    text(labels[i], x, y + 40, size=38, color=TEXT, center=True)\n    text(str(int(v)) + ' m', x, y - h - 80, size=48, color=HIGHLIGHT, center=True)\n    rise = lerp(0, 1, reveal)\n    y_rise = y - int(h * rise)\n    d.line([x, y_rise, x, y], fill=rgba(HIGHLIGHT, 255), width=4)\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h_img = int(w / asp)\n        paste(img, x - w // 2, y_rise - h_img, w, h_img)",
-  "topic": "Architectural Marvels"
- },
- {
-  "sig": "8588acc42984",
-  "mechanic": "pyramid.builders",
-  "concept": "Ancient pyramid builders are shown constructing pyramids, with the construction progress and builder count changing based on the data points",
-  "code": "\nfor i in range(n):\n    v = values[i]\n    pyr_y = RTOP + 200 + i * 200\n    pyr_x = (RX0 + RX1) // 2\n    builder_count = int(lerp(1, 10, clamp(v / vmax)))\n    for j in range(builder_count):\n        bx = pyr_x + (j - builder_count // 2) * 30\n        by = pyr_y + 50\n        img = subject_image('ancient egyptian worker')\n        if img is not None:\n            asp = img.width / img.height\n            w = 50\n            h = int(w / asp)\n            paste(img, bx - w // 2, by - h // 2, w, h)\n    pyr_h = int(lerp(50, 300, reveal * clamp(v / vmax)))\n    d.polygon([(pyr_x - pyr_h // 2, pyr_y), (pyr_x + pyr_h // 2, pyr_y), (pyr_x, pyr_y - pyr_h)], fill=rgba(HIGHLIGHT, 128))\n    text(labels[i], pyr_x, pyr_y + 100, size=40, color=ACCENT, center=True)\n    text(str(int(v)) + ' years', pyr_x, pyr_y + 150, size=40, color=TEXT, center=True)\n",
-  "topic": "Pyramid Construction"
- },
- {
-  "sig": "1a4c1a8ced2e",
-  "mechanic": "stone-blocks",
-  "concept": "ancient pyramids rise from the ground, their stone block counts and labels displayed as the structure grows",
-  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 200 if i == 0 else RX1 - 200\n    cy = RBOT - 100\n    col = HIGHLIGHT if i == 0 else ACCENT\n    img = subject_image('stone block')\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        count = int(v * reveal)\n        for j in range(count):\n            paste(img, cxs - w // 2 + (j % 5) * (w + 10), cy - h // 2 - (j // 5) * (h + 10), w, h)\n        text(labels[i], cxs, cy + h // 2 + 20, size=36, color=col, center=True)\n        text(str(int(v)) + ' tons', cxs, cy + h // 2 + 60, size=36, color=col, center=True)\n    if reveal > 0.5:\n        text('Ancient Wonders', (RX0 + RX1) // 2, RTOP + 40, size=56, color=TEXT, center=True)\n",
-  "topic": "Stone Blocks"
  }
 ]
