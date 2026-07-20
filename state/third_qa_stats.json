@@ -756,6 +756,79 @@
           "skipped": "already posted"
         }
       ]
+    },
+    {
+      "date": "20260720",
+      "dry_run": false,
+      "ts": "2026-07-20T11:48:02+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 67,
+        "with_retention": 48,
+        "with_curve": 10,
+        "fetched_at": "2026-07-19T17:26:28.496126+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260720-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260720-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260720-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: subject/action is only visible in roughly a third of frames \u2014 most frames are solid black or heavy motion-blur with no v; vision: captions render over empty black frames disconnected from the "
+        },
+        {
+          "slug": "clip-20260720-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260720-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260720-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Caption text is garbled/broken \u2014 reads 'HELLO ?UMPY' with a literal '?' glyph where a character should be, clearly visib; vision: For a large stretch of the clip (roughly 7s\u201319s) the subject i"
+        },
+        {
+          "slug": "clip-20260720-7",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Multiple frames (3.7s-5.9s, 6.9s-9.1s, 10.1s-12.3s) are black, empty, or unrecognizable blur with no visible subject; vision: Camera whip-pans/shake leave long stretches with no person in fram"
+        },
+        {
+          "slug": "clip-20260720-8",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Subject completely absent from frame for a long stretch (~4.0s\u201313.5s, over half the clip) \u2014 just a blank wall and furnit; vision: Excited captions like \"ALL RIGHT!\" and \"THE RUN!\" are overlaid"
+        }
+      ]
     }
   ]
 }
