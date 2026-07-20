@@ -50,6 +50,19 @@ every round. Each line is a gate that RAN:
 
 Higher number never runs before a lower one is settled in the same round.
 
+## The CONTRAST director — change the medium
+
+The variety gate catches beats that LOOK alike. The CONTRAST director
+(`data_learning/contrast_director.py`) catches beats that are the same KIND of
+thing: four animated space diagrams in a row each look different, yet the video
+is still "animation, animation, animation." It enforces MEDIUM variety — after a
+run of more than `MAX_ANIM_RUN` animations it cuts in a real-world breather (a
+VIDEO, or a photo) so the eye gets texture and the real shot lands with impact.
+Footage returns here as a **deliberate, occasional contrast cut, never the
+default**. It converts a *transitional* beat (no number to lose) where possible,
+keeps a number-carrying beat's number as an annotation on the footage, and never
+touches the HOOK/PAYOFF bookends.
+
 ## The EXTRA director — be extra
 
 Animations are footage's replacement (see below), and a *clean* animation is only
