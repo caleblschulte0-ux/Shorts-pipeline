@@ -161,15 +161,21 @@ def _render(draw_fn, out: Path, seconds: float, seed: int = 7):
 # Templates
 # --------------------------------------------------------------------------
 def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
-                  label: str = "", entity: str = "") -> Path:
+                  label: str = "", entity: str = "",
+                  extra: dict | None = None) -> Path:
     """One hero number counting up, riding a soft orbital arc with a glowing
     particle (sample v2 — the look the operator picked). `text` is the final
     number string (commas ok); `sub` the unit; `label` the caption above;
-    `entity` names the moving particle (e.g. 'THE SUN')."""
+    `entity` names the moving particle (e.g. 'THE SUN').
+
+    The EXTRA director can escalate: `overshoot` makes the count spring PAST its
+    target and settle back; `impact_shake` gives the number a quick shake + flash
+    on the moment it lands."""
     try:
         target = int("".join(ch for ch in text if ch.isdigit()) or "0")
     except ValueError:
         target = 0
+    ex = extra or {}
     big = _font(ANTON, 158)
     unit = _font(_DEJAVU, 40)
     capf = _font(_DEJAVU, 32)
@@ -188,15 +194,27 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
             cap = _spaced(label)
             d.text((_center_x(d, cap, capf), ny - 70), cap, font=capf,
                    fill=(*PALETTE["muted"], int(230 * a)))
-        # the hero number counts up (0→~1.6s) then BREATHES — a gentle bob + a
-        # glow that pulses, so it never settles into a dead frame.
-        prog = _ease(min(max(i - 6, 0) / (FPS * 1.5), 1.0))
+        # the hero number counts up then settles. EXTRA: a damped-spring OVERSHOOT
+        # (springs past the target and back) + an IMPACT SHAKE the instant it lands.
+        tau = max(0.0, (i - 6) / FPS)               # seconds since count start
+        if ex.get("overshoot"):
+            val = max(0.0, 1 - math.exp(-4.2 * tau) * math.cos(7.0 * tau))
+            prog = 1.0 if tau > 1.6 else val
+        else:
+            prog = _ease(min(max(i - 6, 0) / (FPS * 1.5), 1.0))
         cnt = int(target * prog)
-        bob = int(round(6 * math.sin(i * 0.18))) if prog >= 1.0 else 0
+        bob = int(round(6 * math.sin(i * 0.18))) if prog >= 0.99 else 0
+        sxk = syk = 0
+        if ex.get("impact_shake"):
+            stk = (tau - 0.42) / 0.22               # shake as it first hits target
+            if 0 <= stk <= 1:
+                amp = 16 * (1 - stk)
+                sxk = int(amp * math.sin(stk * 44))
+                syk = int(amp * 0.5 * math.cos(stk * 40))
         glow_a = 120 + (int(70 * (0.5 + 0.5 * math.sin(i * 0.16)))
-                        if prog >= 1.0 else 0)
+                        if prog >= 0.99 else 0)
         s = f"{cnt:,}"
-        im2 = _glow_text(im, (_center_x(d, s, big), ny + bob), s, big,
+        im2 = _glow_text(im, (_center_x(d, s, big) + sxk, ny + bob + syk), s, big,
                          (*PALETTE["ink"], 255), (*PALETTE["gold"], glow_a),
                          blur=12)
         d = ImageDraw.Draw(im2, "RGBA")
@@ -222,52 +240,72 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
 
 
 def hidden_motion(number: str, out: Path, seconds: float = 6.0,
-                  sub: str = "MPH", label: str = "YOU'RE MOVING AT") -> Path:
+                  sub: str = "MPH", label: str = "YOU'RE MOVING AT",
+                  extra: dict | None = None) -> Path:
     """HOOK animation where the IDEA is the image: a person stands perfectly still
     while the whole world screams past them. Speed streaks blast horizontally, the
-    ground races by underfoot, and a number climbs to reveal the hidden velocity —
-    but the figure never moves. The visual argues against 'sitting still'."""
+    ground races by underfoot, and a number climbs to reveal the hidden velocity.
+
+    The EXTRA director (scripts/extra_director.py) can escalate it: `extra` turns
+    on character/physics — the ground ACCELERATES and the figure STUMBLES back and
+    catches its balance as things get too fast, arms flailing. Charm, not jitter."""
     try:
         target = int("".join(ch for ch in number if ch.isdigit()) or "0")
     except ValueError:
         target = 0
+    ex = extra or {}
     big = _font(ANTON, 150)
     unitf = _font(_DEJAVU, 44)
     capf = _font(_DEJAVU, 34)
     fx, fy = W // 2, int(H * 0.52)              # figure anchor (shoulders)
     gy = fy + 250                               # ground the figure stands on
 
-    def figure(im):
-        # a calm human pictogram, dead still — drawn with a soft drop shadow so it
-        # sits cleanly above the racing ground.
-        sh = Image.new("RGBA", im.size, (0, 0, 0, 0))
-        ImageDraw.Draw(sh).ellipse([fx - 90, gy - 18, fx + 90, gy + 26],
-                                   fill=(0, 0, 0, 120))
-        im = Image.alpha_composite(im.convert("RGBA"),
-                                   sh.filter(ImageFilter.GaussianBlur(12)))
-        d = ImageDraw.Draw(im, "RGBA")
+    def figure_layer(im, lean, flail):
+        # the pictogram drawn on its own layer so it can LEAN as a whole; arms
+        # swing out (flail) when it stumbles. Rotated about the feet.
+        lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        d = ImageDraw.Draw(lay, "RGBA")
         col = (232, 238, 250, 255)
         d.ellipse([fx - 42, fy - 150, fx + 42, fy - 66], fill=col)          # head
         d.rounded_rectangle([fx - 62, fy - 54, fx + 62, fy + 150],
                             radius=46, fill=col)                            # torso
+        if abs(flail) > 0.5:                    # arms fling out to catch balance
+            aw = int(70 * flail)
+            d.line([fx - 40, fy - 20, fx - 40 - aw, fy - 80 - abs(aw) // 2],
+                   fill=col, width=26)
+            d.line([fx + 40, fy - 20, fx + 40 + aw, fy - 80 - abs(aw) // 2],
+                   fill=col, width=26)
         d.rounded_rectangle([fx - 54, fy + 120, fx - 8, gy], radius=22, fill=col)
         d.rounded_rectangle([fx + 8, fy + 120, fx + 54, gy], radius=22, fill=col)
-        return im
+        if abs(lean) > 0.05:
+            lay = lay.rotate(lean, resample=Image.BICUBIC, center=(fx, gy))
+        return Image.alpha_composite(im.convert("RGBA"), lay)
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
+        # EXTRA: ground + streaks ACCELERATE over the beat; the figure reacts.
+        accel = (1.0 + 2.4 * _ease(t)) if ex.get("accelerate_ground") else 1.0
         im = _drift_stars(im, i)
-        # streaks intensify — the hidden motion revealing itself around the figure
         im = _speed_streaks(im, i, alpha=int(30 + 120 * min(t / 0.5, 1.0)),
-                            count=28)
+                            count=int(28 * (accel if ex else 1)))
         d = ImageDraw.Draw(im, "RGBA")
-        # the ground, with motion chevrons racing underfoot (the Earth moving)
         d.line([0, gy, W, gy], fill=(*PALETTE["muted"], 90), width=3)
+        csp = 46 * accel                        # chevrons race faster as speed ramps
         for k in range(11):
-            x = W - ((i * 46 + k * 210) % (W + 210))
+            x = W - ((i * csp + k * 210) % (W + 210))
             d.polygon([(x, gy + 34), (x + 40, gy + 54), (x, gy + 74)],
                       fill=(*PALETTE["blue"], 140))
-        im = figure(im)                          # the STILL figure, above it all
+        # character: lean back as it accelerates, then a STUMBLE (lurch + recover)
+        lean, flail = 0.0, 0.0
+        if ex.get("stumble"):
+            ramp = _ease(max(0.0, min((t - 0.35) / 0.4, 1.0)))
+            lean = -9 * ramp + 2.5 * ramp * math.sin(i * 0.8)
+            st = (t - 0.62) / 0.14              # a quick lurch back, then catch it
+            if 0 <= st <= 1:
+                lurch = math.sin(st * math.pi)
+                lean += -13 * lurch
+                flail = lurch
+        im = figure_layer(im, lean, flail)
         # the climbing number, top third
         cnt = int(target * _ease(min(max(i - 6, 0) / (FPS * 1.6), 1.0)))
         s = f"{cnt:,}"
@@ -287,7 +325,8 @@ def hidden_motion(number: str, out: Path, seconds: float = 6.0,
 
 
 def spinning_world(number: str, out: Path, seconds: float = 6.0,
-                   sub: str = "MPH", label: str = "THE EARTH'S SPIN") -> Path:
+                   sub: str = "MPH", label: str = "THE EARTH'S SPIN",
+                   extra: dict | None = None) -> Path:
     """A stylised Earth actually SPINS, with a glowing 'you are here' point carried
     around the equator — the specific idea 'you are standing on a ball turning at
     over a thousand miles an hour'. Real sphere projection so continents wrap round
@@ -310,10 +349,18 @@ def spinning_world(number: str, out: Path, seconds: float = 6.0,
             blobs.append((clat + rnd.gauss(0, 0.16), clon + rnd.gauss(0, 0.18),
                           rnd.uniform(9, 20)))
 
+    ex = extra or {}
+
     def draw(i, n, im):
         im = _drift_stars(im, i)
         d = ImageDraw.Draw(im, "RGBA")
-        theta = 2 * math.pi * (0.6 * i / n)          # slow, readable rotation
+        u = i / n
+        # EXTRA: the spin ACCELERATES — starts readable, whips up as the number
+        # climbs, so 'a thousand miles an hour' is felt, not just stated.
+        if ex.get("spin_accelerate"):
+            theta = 2 * math.pi * (0.35 * u + 1.15 * u * u)
+        else:
+            theta = 2 * math.pi * (0.6 * u)          # slow, readable rotation
         # ocean disc with a soft rim glow
         glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
         ImageDraw.Draw(glow).ellipse([cx - R - 26, cy - R - 26, cx + R + 26,
@@ -340,10 +387,19 @@ def spinning_world(number: str, out: Path, seconds: float = 6.0,
         d = ImageDraw.Draw(im, "RGBA")
         d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=(120, 170, 255, 90),
                   width=2)
-        # the 'you are here' point on the equator, carried around
+        # the 'you are here' point on the equator, carried around — with a comet
+        # trail when the EXTRA director flings it (spin sped up).
         ll = 0.0 - theta
         if math.cos(ll) > 0:
             x = cx + R * math.sin(ll)
+            if ex.get("marker_fling"):
+                for tk in range(1, 7):
+                    tl = 0.0 - (theta - tk * 0.16)
+                    if math.cos(tl) > 0:
+                        tx = cx + R * math.sin(tl)
+                        rr = max(2, 9 - tk)
+                        d.ellipse([tx - rr, cy - rr, tx + rr, cy + rr],
+                                  fill=(255, 220, 150, max(0, 150 - tk * 22)))
             pg = Image.new("RGBA", im.size, (0, 0, 0, 0))
             ImageDraw.Draw(pg).ellipse([x - 26, cy - 26, x + 26, cy + 26],
                                        fill=(255, 210, 120, 160))

@@ -393,7 +393,8 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     if k == "flat_number":
         return flat2d.number_reveal(
             shot["text"], shot.get("sub", ""), out, seconds,
-            label=shot.get("label", ""), entity=shot.get("entity", ""))
+            label=shot.get("label", ""), entity=shot.get("entity", ""),
+            extra=shot.get("extra"))
     if k == "flat_compare":
         return flat2d.comparison(shot["rows"], out, seconds,
                                  title=shot.get("title", ""))
@@ -405,11 +406,11 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     if k == "flat_hidden_motion":
         return flat2d.hidden_motion(
             shot.get("text", "0"), out, seconds, sub=shot.get("sub", "MPH"),
-            label=shot.get("label", "YOU'RE MOVING AT"))
+            label=shot.get("label", "YOU'RE MOVING AT"), extra=shot.get("extra"))
     if k == "flat_spin":
         return flat2d.spinning_world(
             shot.get("text", "0"), out, seconds, sub=shot.get("sub", "MPH"),
-            label=shot.get("label", "THE EARTH'S SPIN"))
+            label=shot.get("label", "THE EARTH'S SPIN"), extra=shot.get("extra"))
     if k == "flat_orbit":
         return flat2d.orbit_reveal(shot.get("center", "THE SUN"),
                                    shot.get("satellite", "EARTH"), out,
@@ -448,6 +449,8 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
             bvf = work / f"beatvo_{bi}.mp3"
             beat_durs.append(_synth(b.get("narration", ""), bvf, voice))
         shots = plan_story(beats, beat_durs)
+        from data_learning import extra_director   # the "be extra" pass
+        extra_director.apply(shots)                # attach escalating character
         print(f"[pro] planned {len(beats)} beats -> {len(shots)} shots")
     else:
         shots = story["shots"]
