@@ -34,6 +34,7 @@ EXTRA_MOVES = {
     "flat_spin":          {"spin_accelerate": True, "marker_fling": True},
     "flat_orbit":         {"orbit_accelerate": True},
     "flat_zoom":          {"zoom_accelerate": True},
+    "flat_shrinking_years": {"bar_overshoot": True},
     "composite":          {"impact_shake": True},
 }
 

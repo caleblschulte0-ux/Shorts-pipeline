@@ -70,12 +70,16 @@ def _subject_for(beat: dict) -> str:
 
 
 def _family_key(beat: dict) -> str:
+    """The curated footage family for a beat, or '' if none fits. Returning '' is
+    important: on a topic with no good real footage (time, the body, an abstract
+    idea) we must NOT force an off-topic Earth clip — the run just stays all
+    animation, which is the honest answer for a footage-poor subject."""
     low = f"{beat.get('narration', '')} " \
           f"{(beat.get('flat') or {}).get('label', '')}".lower()
     for key, fam in _FAMILY_KEYS:
         if key in low:
             return fam
-    return "earth"
+    return ""
 
 
 def _to_footage(beat: dict) -> None:
@@ -141,7 +145,9 @@ def contrast_pass(beats: list[dict], max_run: int = MAX_ANIM_RUN) -> list[dict]:
                 pick = min(transitional, key=lambda k: abs(k - (i + max_run)))
             elif inner:
                 pick = inner[min(max_run, len(inner) - 1)]
-            if pick is not None:
+            # only cut real footage in if this topic HAS a good real shot; on a
+            # footage-poor subject (time, the body, an idea) leave it all-animation.
+            if pick is not None and _family_key(beats[pick]) in KNOWN_GOOD:
                 _to_footage(beats[pick])
         i = j
     return beats

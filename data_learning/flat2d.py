@@ -338,6 +338,67 @@ def hidden_motion(number: str, out: Path, seconds: float = 6.0,
     return _render(draw, out, seconds, seed=11)
 
 
+def shrinking_years(out: Path, seconds: float = 6.0,
+                    label: str = "HOW LONG EACH YEAR FEELS",
+                    you_age: int = 25, max_age: int = 60,
+                    extra: dict | None = None) -> Path:
+    """The idea IS the image: one bar per year of a life, each bar's height the
+    fraction 1/age — how large that year looms against everything you've lived. The
+    first years tower; by your twenties the bars are slivers. Shows, at a glance,
+    why every year feels faster than the last. A 'you are here' marker lands on
+    your age. Purpose-built, no footage."""
+    ex = extra or {}
+    titlef = _font(_DEJAVU, 34)
+    smallf = _font(_DEJAVU, 26)
+    youf = _font(ANTON, 40)
+    x0, x1 = int(W * 0.10), int(W * 0.90)
+    base_y = int(H * 0.74)
+    top_y = int(H * 0.24)
+    ages = list(range(1, max_age + 1))
+    bw = (x1 - x0) / len(ages)
+    hmax = base_y - top_y                       # the age-1 bar fills the height
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        im = _drift_stars(im, i)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.text((_center_x(d, _spaced(label), titlef), int(H * 0.13)),
+               _spaced(label), font=titlef, fill=(*PALETTE["muted"], 235))
+        # bars draw in left -> right; a little overshoot pop as each lands (extra)
+        drawn = t / 0.72 * len(ages)
+        pop = 1.0 + (0.12 if ex.get("bar_overshoot") else 0.0)
+        for k, age in enumerate(ages):
+            prog = max(0.0, min(drawn - k, 1.0))
+            if prog <= 0:
+                continue
+            h = hmax * (1.0 / age)                    # the fraction 1/age
+            hh = h * (prog * pop if prog < 1 else 1.0)
+            x = x0 + k * bw
+            warm = k / len(ages)                      # young = gold, old = blue
+            col = (int(255 - 135 * warm), int(211 - 41 * warm), int(122 + 133 * warm))
+            d.rounded_rectangle([x + 2, base_y - hh, x + bw - 2, base_y],
+                                radius=min(6, int(bw / 2)), fill=(*col, 240))
+        d.line([x0 - 6, base_y, x1, base_y], fill=(*PALETTE["muted"], 120), width=3)
+        # decade ticks + labels
+        for dec in range(10, max_age + 1, 10):
+            xx = x0 + (dec - 1) * bw + bw / 2
+            d.text((xx - 12, base_y + 12), str(dec), font=smallf,
+                   fill=(*PALETTE["muted"], 200))
+        # the 'you are here' marker drops onto your age once its bar is in
+        if drawn >= you_age and 1 <= you_age <= max_age:
+            mx = x0 + (you_age - 1) * bw + bw / 2
+            my = base_y - hmax * (1.0 / you_age)
+            d.line([mx, my - 60, mx, my - 12], fill=(*PALETTE["ink"], 230), width=3)
+            d.polygon([(mx - 10, my - 12), (mx + 10, my - 12), (mx, my)],
+                      fill=(*PALETTE["ink"], 255))
+            tag = f"AGE {you_age}"
+            d.text((mx - _center_x(d, tag, youf) // 1 * 0 - 44, my - 108), tag,
+                   font=youf, fill=(*PALETTE["ink"], 255))
+        return im
+
+    return _render(draw, out, seconds, seed=13)
+
+
 def spinning_world(number: str, out: Path, seconds: float = 6.0,
                    sub: str = "MPH", label: str = "THE EARTH'S SPIN",
                    extra: dict | None = None) -> Path:
