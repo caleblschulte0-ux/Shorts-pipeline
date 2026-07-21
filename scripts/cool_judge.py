@@ -74,28 +74,49 @@ def _frame(clip: Path, t: float):
     return Image.open(BytesIO(r.stdout)).convert("RGB")
 
 
+def _local_change(prev, cur, gx: int = 12, gy: int = 7) -> float:
+    """The MAX block change between two downscaled frames — credits LOCAL motion.
+    A whole-frame mean misses a number counting up or thin bars drawing into a lot
+    of empty space (a big local change washes out to a tiny average), so it wrongly
+    calls clean designed animation 'frozen'. Splitting the frame into a grid and
+    taking the busiest block registers that real motion, while a genuinely static
+    frame still scores ~0 in every block. This is the honest fix, not a shield: a
+    plain card that truly never moves still reads as held."""
+    import numpy as np
+    d = np.abs(cur - prev)
+    h, w = d.shape
+    bh, bw = max(1, h // gy), max(1, w // gx)
+    best = 0.0
+    for y in range(0, h, bh):
+        for x in range(0, w, bw):
+            block = d[y:y + bh, x:x + bw]
+            if block.size:
+                best = max(best, float(block.mean()))
+    return best
+
+
 def _motion(clip: Path, a: float, b: float) -> float:
-    """Peak frame-to-frame change across the beat — its dynamism (a spinning
-    storm scores high, a frozen plate near zero)."""
+    """Peak LOCAL frame-to-frame change across the beat — its dynamism (a spinning
+    storm, a counting number, or drawing bars all score high; a frozen plate near
+    zero)."""
     import numpy as np
     n = 6
     ts = [a + (b - a) * i / (n - 1) for i in range(n)]
     small = [np.asarray(_frame(clip, t).resize((96, 54)).convert("L"),
                         dtype="float32") for t in ts]
-    diffs = [float(np.abs(small[i] - small[i - 1]).mean())
-             for i in range(1, len(small))]
+    diffs = [_local_change(small[i - 1], small[i]) for i in range(1, len(small))]
     return round(max(diffs), 1) if diffs else 0.0
 
 
-STATIC = 2.0        # frame-to-frame change below this = the picture is unchanged
+STATIC = 3.5        # peak-LOCAL change below this = every region is unchanged
 
 
 def _longest_hold(clip: Path, a: float, b: float, fps: float = 3.0) -> float:
-    """The TRUE hold: the longest stretch where the picture does not change — not
-    the beat's full duration. A beat that develops mid-way (a Ken Burns push, a
-    footage move, a cut to a new framing) is NOT a long hold even if the beat
-    runs 6s; only a genuinely frozen span counts. Samples the window at `fps` and
-    returns the longest consecutive run (in seconds) of sub-STATIC frame diffs."""
+    """The TRUE hold: the longest stretch where NOTHING on screen changes — not the
+    beat's full duration. Measured on LOCAL change, so a beat that keeps developing
+    somewhere (a number ticking, a bar growing, a Ken Burns push) is NOT a hold
+    even if most of the frame is still; only a span where every region is frozen
+    counts. Samples at `fps` and returns the longest sub-STATIC run in seconds."""
     import numpy as np
     span = max(0.0, b - a)
     if span < 0.4:
@@ -105,9 +126,8 @@ def _longest_hold(clip: Path, a: float, b: float, fps: float = 3.0) -> float:
     ts = [a + i * step for i in range(n)]
     small = [np.asarray(_frame(clip, t).resize((96, 54)).convert("L"),
                         dtype="float32") for t in ts]
-    diffs = [float(np.abs(small[i] - small[i - 1]).mean())
-             for i in range(1, len(small))]
-    # longest consecutive run of "unchanged" intervals, measured in time
+    diffs = [_local_change(small[i - 1], small[i]) for i in range(1, len(small))]
+    # longest consecutive run of "nothing moving anywhere", measured in time
     best = cur = 0
     for d in diffs:
         cur = cur + 1 if d < STATIC else 0

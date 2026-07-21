@@ -1,0 +1,45 @@
+{
+ "slug": "spend-your-life",
+ "title": "How You Actually Spend Your Life",
+ "beats": [
+  {
+   "job": "HOOK",
+   "mode": "designed_2d",
+   "narration": "You are going to spend twenty-six years of your life asleep. And that is just the beginning of where it all goes.",
+   "understand": "a shocking number to open — 26 years asleep",
+   "flat": {"kind": "flat_number", "text": "26", "sub": "YEARS ASLEEP", "label": "in one lifetime, you will spend"}
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Here is where the rest of it actually goes. Thirteen years at work. Eleven years staring at a screen. Years more just eating, cleaning, and commuting.",
+   "understand": "the hero breakdown — a comparison of life's big time-sinks",
+   "flat": {"kind": "flat_compare", "title": "where your life goes",
+            "rows": [{"name": "Work", "value": 13, "display": "13 yrs"},
+                     {"name": "On your phone", "value": 11, "display": "11 yrs"},
+                     {"name": "Eating", "value": 4, "display": "4 yrs"},
+                     {"name": "Chores", "value": 3, "display": "3 yrs"}]}
+  },
+  {
+   "job": "REVEAL",
+   "mode": "designed_2d",
+   "narration": "Look at that phone number again. Eleven years. More than a decade of your one life, gone into a screen in your hand.",
+   "understand": "the gut-punch — 11 years on a phone",
+   "flat": {"kind": "flat_number", "text": "11", "sub": "YEARS ON A SCREEN", "label": "more than a decade of your life"}
+  },
+  {
+   "job": "PROOF",
+   "mode": "designed_2d",
+   "narration": "So after everything you have to do, everything that is already spoken for, you are left with roughly nine years of truly free time. That is all you get.",
+   "understand": "the scarcity reveal — only ~9 years of free time",
+   "flat": {"kind": "flat_number", "text": "9", "sub": "YEARS OF FREE TIME", "label": "after the rest is subtracted, you have"}
+  },
+  {
+   "job": "PAYOFF",
+   "mode": "designed_2d",
+   "narration": "Nine years. That is the part of your life that is actually yours to choose. Spend it on something that matters.",
+   "understand": "the actionable close",
+   "flat": {"kind": "flat_statement", "statement": "Nine years are yours. Spend them well."}
+  }
+ ]
+}
