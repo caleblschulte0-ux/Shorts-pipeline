@@ -185,7 +185,8 @@ class Style:
     shake_intensity: float = 0.35
 
 
-def choose_style(series: str, dur: float, peak_strength: float) -> Style:
+def choose_style(series: str, dur: float, peak_strength: float,
+                 calm: bool = False) -> Style:
     """Discretion: pick effects that fit the clip. `series` is the author's
     label (rage/fail/clutch/win/wholesome/argument/jumpscare/chaos).
 
@@ -220,6 +221,14 @@ def choose_style(series: str, dur: float, peak_strength: float) -> Style:
     # very short clips can't spare a replay
     if dur < 8.0:
         st.replay = False
+    # CALM MODE — chaotic / no-stable-subject footage (IRL, party, crowd).
+    # Slow-mo blend smears on fast unanchored motion, replay + impact make it
+    # worse, and a punch-in on a wide crowd frame lands on nothing. Kill every
+    # time/camera effect and let the clip play straight (captions + overlays
+    # still carry it). This is the fix for the IRL QA-rejects.
+    if calm:
+        st.slowmo = st.replay = st.shake = False
+        st.zoom_to = 1.0
     return st
 
 
@@ -506,7 +515,7 @@ def _mix_sfx(program: Path, cues, out: Path) -> Path:
 
 
 def build(cut: Path, words: list[dict], dur: float, series: str,
-          work: Path, direct: dict | None = None) -> dict:
+          work: Path, direct: dict | None = None, calm: bool = False) -> dict:
     """Stage-1 entry. Returns a dict with program path, remapped words, new
     duration, and a ledger. NEVER raises — on any failure returns the
     untouched cut so the simple render still ships.
@@ -527,7 +536,7 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
         _tp, ws, we = money_moment(motion, speech, dur)
         mvals = _norm([v for _t, v in motion]) if motion else [0.0]
         peak_strength = max(mvals) if mvals else 0.0
-        style = choose_style(series, dur, peak_strength)
+        style = choose_style(series, dur, peak_strength, calm=calm)
         # the director can veto a replay (talking head, nothing visual) —
         # it can only remove drama, never force it onto a weak clip
         if direct.get("replay_worthy") is False:

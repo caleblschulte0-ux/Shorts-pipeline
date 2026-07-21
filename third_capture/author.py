@@ -117,6 +117,19 @@ _SENSITIVE = ("gender", "feminin", "masculin", "trans", "race", "racis",
               "politic", "religio", "sexual", "sexist", "gay", "lesbian",
               "abortion", "immigra")
 
+# HARD title/hook safety gate: slurs and demeaning "calls him/her X" insult
+# framings must NEVER go in our public title, even if the word is said in the
+# clip (unlike _SENSITIVE, which only blocks INVENTED themes). A match rejects
+# the authored packaging and we fall back to the streamer's own clip title.
+# (Live incident: a Groq-fallback title "Silky Calls Him Gay".)
+_TITLE_UNSAFE = re.compile(
+    r"\b(f[a@4]gg?[o0]t?s?|n[i1]gg[ae]?r?s?|r[e3]t[a@4]rds?|tr[a@4]nn(y|ies)"
+    r"|dyke|kike|spic|chink|coon"
+    r"|calls?\s+(him|her|them|\w+)\s+(gay|a\s+\w+)"
+    r"|is\s+(gay|a\s+(fag|retard))"
+    r"|gay\s+for)\b",
+    re.I)
+
 
 def _timestamped(words: list[dict]) -> str:
     """Compact [start-end] transcript so the director can reason about WHEN
@@ -173,6 +186,13 @@ def _postprocess(out: dict, streamer: str, context: str,
     tags = [t for t in tags if 2 <= len(t) <= 30][:7]
     series = re.sub(r"[^a-z-]", "", str(out.get("series", "")).lower())
     if not title or len(title) > 100:
+        return None
+    # hard safety gate: a slur or demeaning insult-framing in the title/hook
+    # is off-brand + gets demonetized/suppressed — reject regardless of what
+    # was said, fall back to the streamer's own clip title.
+    if _TITLE_UNSAFE.search(title) or _TITLE_UNSAFE.search(hook):
+        print("::warning::[author] rejected — unsafe title/hook phrasing "
+              f"({title!r}) — falling back to raw clip title", flush=True)
         return None
     # honesty gate: a sensitive theme in the title/hook that never
     # appears in the source material means the author guessed — reject

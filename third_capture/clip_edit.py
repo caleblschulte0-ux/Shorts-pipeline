@@ -536,6 +536,25 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         if words is None:
             words = transcribe_words(cut, whisper_model)
 
+        # Detect chaotic / no-stable-subject footage (IRL, party, crowd) up
+        # front: shot_plan classifies "wide" when nothing trackable persists.
+        # Such clips get a CALM Stage 1 (no slow-mo/replay/impact — those smear
+        # on unanchored motion) and the whole-frame reframe. This is the fix
+        # for the IRL QA-rejects. Best-effort: no cv2/analysis → normal path.
+        calm = False
+        if auto:
+            try:
+                from third_capture import shot_plan as _spn
+                _an = _spn.analyze(cut)
+                if _an is not None:
+                    _layout, _, _ = _spn.classify(_an)
+                    calm = (_layout == "wide")
+                    if calm:
+                        print("[edit] chaotic/no-subject footage — calm "
+                              "treatment (no slow-mo/replay/impact)", flush=True)
+            except Exception:  # noqa: BLE001 — default to the normal path
+                calm = False
+
         # ---- Stage 1: time-domain auto-edit (retime into a program) ----
         # Punch-in zooms, slow-mo + instant replay of the money moment,
         # dead-air speed-up, impact shake/flash, SFX. Never raises — on any
@@ -548,7 +567,8 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         if auto:
             try:
                 from third_capture import auto_edit as ae
-                st1 = ae.build(cut, words, dur, series, tmp, direct=direct)
+                st1 = ae.build(cut, words, dur, series, tmp, direct=direct,
+                               calm=calm)
                 program, words, dur = st1["program"], st1["words"], st1["dur"]
                 overlays = st1.get("overlays", [])
                 ledger_ae = {k: st1[k] for k in
