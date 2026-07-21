@@ -219,6 +219,44 @@ def novelty_check(render: Path, max_stale: float = NOVELTY_MAX_STALE):
     return [s for s in stale if s[1] - s[0] > max_stale]
 
 
+# clean DATA-CARDS — counters, charts, box grids, stat plates, title/quote cards.
+# These are the seasoning, not the meal (data_learning/TASTE_JUDGE.md): they must
+# stay a MINORITY of runtime. Character scenes (scene_*), footage, and depict shots
+# do not count. Purpose-built animated scenes (orbit/zoom/engine) are not cards.
+CARD_KINDS = {"flat_number", "flat_compare", "flat_statement", "flat_title",
+              "flat_life_grid", "flat_hook"}
+CARD_BUDGET = 0.42        # data-cards may occupy at most this fraction of runtime
+
+
+def _beat_kind(beat: dict) -> str:
+    return str((beat.get("flat") or {}).get("kind")
+               or beat.get("kind") or "")
+
+
+def composition_budget(beats: list, beatmap: Path):
+    """THE CARD BUDGET (TASTE_JUDGE.md). Clean data-cards must be a MINORITY of the
+    video — the soul is carried by character scenes / footage. Returns
+    (fraction, over) where `over` is True if cards exceed CARD_BUDGET. Weighted by
+    each beat's real on-screen duration (from the beatmap)."""
+    try:
+        bm = json.loads(Path(beatmap).read_text())
+        rows = bm if isinstance(bm, list) else bm.get("beats", [])
+    except Exception:
+        return (0.0, False)
+    total = card = 0.0
+    for i, r in enumerate(rows):
+        try:
+            a, z = (float(x) for x in str(r.get("t", "")).split("-"))
+        except (ValueError, IndexError):
+            continue
+        dur = max(0.0, z - a)
+        total += dur
+        if i < len(beats) and _beat_kind(beats[i]) in CARD_KINDS:
+            card += dur
+    frac = (card / total) if total else 0.0
+    return (round(frac, 3), frac > CARD_BUDGET)
+
+
 def _beat_sig(render: Path, t: str):
     """A small perceptual signature of a beat — the mid-beat frame downscaled to
     12x12 grayscale. Two beats that LOOK alike (five Earth-from-orbit clips) have
@@ -530,17 +568,36 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
         # is a BLOCKER (motion is not novelty): a held card or a slow single-idea
         # reveal fails here even if it 'moves'.
         stale = novelty_check(out)
+        card_frac, cards_over = composition_budget(beats, beatmap)
         print(f"[ndb] round {rnd}: dead={interest.get('dead_fraction')} "
               f"appeal={interest.get('mean_appeal')} — {len(dull)} dull beat(s), "
-              f"{len(stale)} stale span(s)")
+              f"{len(stale)} stale span(s), cards={card_frac:.0%}")
         for d in dull:
             print(f"      beat {d['beat']} {d['job']}: {d['why']} [fix={d['kind']}]")
         for s in stale:
             print(f"      STALE {s[0]:.1f}-{s[1]:.1f}s: nothing new for "
                   f"{s[1]-s[0]:.1f}s — needs a cut / a genuinely new element")
-        if not dull and (not hv or hv["pass"]) and not stale:
+        if cards_over:
+            print(f"      CARDS OVER BUDGET: data-cards are {card_frac:.0%} of the "
+                  f"video (max {CARD_BUDGET:.0%}). Carry beats with character "
+                  "scenes / footage; cards are the minority.")
+        # THE CARD BUDGET — soul is carried by scenes, not charts. Over budget is
+        # an authoring failure the loop can't auto-fix (it can't invent a scene):
+        # hard-FAIL so a chart reel can never ship again.
+        if cards_over and not dull:
             _record_memory(story_path.stem, work, rnd, proc.stderr or "")
-            _gate_report("CLEAN — hook passes, no dull beats, new every 5s", hv,
+            _gate_report(f"REJECTED — data-cards are {card_frac:.0%} of the video "
+                         f"(max {CARD_BUDGET:.0%}). It reads as an infographic reel. "
+                         "Carry the beats with character scenes / footage; keep "
+                         "cards a minority. Soul first.", hv, interest, dull,
+                         escalated, beats, excess=excess)
+            return 4
+        if not dull and (not hv or hv["pass"]) and not stale and not cards_over:
+            _record_memory(story_path.stem, work, rnd, proc.stderr or "")
+            _gate_report(f"CLEAN — hook passes, no dull beats, new every 5s, "
+                         f"cards {card_frac:.0%} (a minority). RUN THE TASTE JUDGE "
+                         "(data_learning/TASTE_JUDGE.md) on the blind package before "
+                         "publishing — metrics are necessary, not sufficient.", hv,
                          interest, dull, escalated, beats, excess=excess)
             return 0
         if stale and not dull:

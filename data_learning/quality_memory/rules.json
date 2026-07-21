@@ -1,5 +1,5 @@
 {
-  "generated_from_n_renders": 12,
+  "generated_from_n_renders": 13,
   "rules": [
     {
       "scope": "job",
@@ -14,15 +14,15 @@
   "trend": {
     "dead_fraction": {
       "first": 0.18,
-      "latest": 0.0,
+      "latest": 0.19,
       "want": "down",
-      "direction": "improving"
+      "direction": "regressing"
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.691,
+      "latest": 0.635,
       "want": "up",
-      "direction": "improving"
+      "direction": "regressing"
     },
     "bland_fraction": {
       "first": 0.0,

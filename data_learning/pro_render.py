@@ -40,6 +40,7 @@ if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
 from data_learning import flat2d                         # noqa: E402
+from data_learning import scenes                          # noqa: E402
 from data_learning import footage_hybrid as fh           # noqa: E402
 
 W, H, FPS = 1920, 1080, 30
@@ -411,6 +412,12 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         return flat2d.spinning_world(
             shot.get("text", "0"), out, seconds, sub=shot.get("sub", "MPH"),
             label=shot.get("label", "THE EARTH'S SPIN"), extra=shot.get("extra"))
+    if k in ("scene_sleep", "scene_work", "scene_screen", "scene_free"):
+        fn = {"scene_sleep": scenes.sleep_scene, "scene_work": scenes.work_scene,
+              "scene_screen": scenes.screen_scene,
+              "scene_free": scenes.free_scene}[k]
+        return fn(out, seconds, number=str(shot.get("number", "")),
+                  label=str(shot.get("label", "")))
     if k == "flat_life_grid":
         return flat2d.life_grid(
             out, seconds, segments=shot.get("segments"),

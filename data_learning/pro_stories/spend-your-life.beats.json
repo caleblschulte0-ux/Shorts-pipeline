@@ -6,20 +6,28 @@
    "job": "HOOK",
    "mode": "designed_2d",
    "narration": "One number should stop you cold — 26 years of your life, gone to sleep.",
-   "understand": "a shocking number to open — 26 years asleep",
-   "flat": {
-    "kind": "flat_number",
-    "text": "26",
-    "sub": "YEARS ASLEEP",
-    "label": "in one lifetime, you will spend",
-    "extra": {"hero": true, "overshoot": true, "impact_shake": true}
-   }
+   "understand": "open on a person asleep as the years fly by — 26 years asleep",
+   "flat": {"kind": "scene_sleep", "number": "26", "label": "YEARS ASLEEP"}
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "So where does the rest go? Thirteen years at work. Eleven — more than a decade — lost to a screen. Eight more to eating and chores. Add growing up, and almost none of it is left.",
-   "understand": "the staged breakdown — a whole lifetime of boxes filling category by category, revealing how little is left",
+   "narration": "Another thirteen years vanish at work — the same desk, day after day after day.",
+   "understand": "a person hunched at a desk while days blur past — 13 years at work",
+   "flat": {"kind": "scene_work", "number": "13", "label": "YEARS AT WORK"}
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Eleven more — more than a decade — lost staring into a screen.",
+   "understand": "a person curled around a glowing phone as the world dims — 11 years on a screen",
+   "flat": {"kind": "scene_screen", "number": "11", "label": "YEARS ON A SCREEN"}
+  },
+  {
+   "job": "REVEAL",
+   "mode": "designed_2d",
+   "narration": "Add it all up, and almost none of your life is actually left.",
+   "understand": "the single data moment: the whole life as a grid, filling until only a sliver is yours",
    "flat": {
     "kind": "flat_life_grid",
     "total_years": 76,
@@ -34,28 +42,11 @@
    }
   },
   {
-   "job": "REVEAL",
-   "mode": "designed_2d",
-   "narration": "Put it side by side. Eleven years on a screen. Only nine that are truly yours.",
-   "understand": "the gut-punch — screen time out-weighs your free time, shown as two bars",
-   "flat": {
-    "kind": "flat_compare",
-    "title": "screen time vs your own time",
-    "rows": [
-     {"name": "On a screen", "value": 11, "display": "11 yrs"},
-     {"name": "Actually yours", "value": 9, "display": "9 yrs"}
-    ]
-   }
-  },
-  {
    "job": "PAYOFF",
    "mode": "designed_2d",
-   "narration": "Only about nine years are actually yours. Nine. Spend them on something that matters.",
-   "understand": "the actionable close",
-   "flat": {
-    "kind": "flat_statement",
-    "statement": "Nine years are yours. Spend them well."
-   }
+   "narration": "Only about nine years are truly yours. Nine. Spend them on something that matters.",
+   "understand": "a person walks out into a sunrise, arms rising — 9 years are yours",
+   "flat": {"kind": "scene_free", "number": "9", "label": "YEARS ARE YOURS"}
   }
  ]
 }
