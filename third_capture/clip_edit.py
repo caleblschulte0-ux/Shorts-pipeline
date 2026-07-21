@@ -10,9 +10,13 @@ Pipeline per clip:
      banner, optional hook card over the first seconds, loudness
      normalize. One ffmpeg pass for the visual chain.
 
-Credit doctrine (THIRD_BRAIN.md): streamer name burned on screen the
-whole video + source link in the description. Only channels on the
-allowlist in the package are used.
+Credit doctrine (THIRD_BRAIN.md): the streamer is credited + source-linked
+in every platform's CAPTION/description, and any clip is taken down on
+request. Credit is NO LONGER burned on screen by default (edit(burn_credit)
+opts back in): a full-video third-party watermark is the single loudest
+"reposted / unoriginal" signal to TikTok's originality filter and caps a
+clip at ~300 views on the FYP. Attribution in the caption honors the doctrine
+without the watermark that strangles reach. Only allowlisted channels used.
 """
 from __future__ import annotations
 
@@ -392,11 +396,18 @@ def _clean(token: str) -> str:
 
 
 def build_ass(words: list[dict], credit: str, dur: float, out: Path,
-              max_group: int = 3) -> Path:
+              max_group: int = 3, burn_credit: bool = False) -> Path:
     """Word-pop subtitles (ALL-CAPS Anton, one yellow-emphasized word per
-    group, pop-in) plus a permanent credit line. Groups split on gaps
-    > 0.6s or punctuation. Groups containing blocklisted tokens are
-    dropped entirely — no caption beats a catastrophic caption."""
+    group, pop-in). Groups split on gaps > 0.6s or punctuation. Groups
+    containing blocklisted tokens are dropped entirely — no caption beats a
+    catastrophic caption.
+
+    burn_credit: draw a PERMANENT on-screen credit line. Default OFF — a
+    full-video third-party watermark is the loudest "reposted / unoriginal"
+    signal to TikTok's originality filter (the thing that caps a clip at
+    ~300 views on the FYP). Credit is preserved in every platform's caption/
+    description instead, which honors the credit+takedown doctrine without
+    the watermark that strangles reach."""
     lines = [_ASS_HEADER]
     group: list[dict] = []
 
@@ -422,8 +433,9 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
             flush()
         group.append(w)
     flush()
-    lines.append(
-        f"Dialogue: 0,{_ts(0)},{_ts(dur)},Credit,{credit}\n")
+    if burn_credit and credit:
+        lines.append(
+            f"Dialogue: 0,{_ts(0)},{_ts(dur)},Credit,{credit}\n")
     out.write_text("".join(lines))
     return out
 

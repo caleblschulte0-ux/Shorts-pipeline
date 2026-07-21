@@ -397,7 +397,16 @@ class TikTokUploader(Uploader):
         chunk_size = min(size, 64 * 1024 * 1024)
         chunks = (size + chunk_size - 1) // chunk_size
 
-        caption = (title + " " + " ".join(f"#{t}" for t in (tags or [])))[:2200]
+        # The description carries the streamer credit + source link (the
+        # credit+takedown doctrine now lives in the caption, not an on-screen
+        # watermark). Lead with the title, then the full description (which
+        # already includes the hashtags); fall back to title + tags when no
+        # description is supplied.
+        if description:
+            caption = (title + "\n\n" + description)[:2200]
+        else:
+            caption = (title + " "
+                       + " ".join(f"#{t}" for t in (tags or [])))[:2200]
         init_payload = {
             "post_info": {
                 "title": caption,
