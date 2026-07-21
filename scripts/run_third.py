@@ -34,6 +34,7 @@ sys.path.insert(0, str(REPO))
 
 from third_capture import capture_cli  # noqa: E402
 from third_capture import compose as composer  # noqa: E402
+from third_capture import author  # noqa: E402  (title safety choke)
 
 PACKAGE_DIR = REPO / "state" / "third_packages"
 LOG_PATH = REPO / "state" / "third_posted_log.json"
@@ -698,11 +699,18 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 if meta:
                     led["authored_title"] = meta["title"]
                     led["authored_tags"] = meta["hashtags"]
-                    led["authored_caption"] = meta.get("caption", "")
+                    led["authored_caption"] = author.scrub_text(
+                        meta.get("caption", ""))
                     led["series"] = meta.get("series", "chaos")
                 led["source_url"] = info["url"]
                 led["source_views"] = info["views"]
-                led["clip_title"] = info["title"]
+                # The raw Twitch clip title is the fallback the public title,
+                # description, and posted-log all reach for when authoring is
+                # rejected — and it's streamer-authored text we don't control.
+                # Sanitise it HERE, at the one place it enters the ledger, so
+                # an unsafe raw title can NEVER reach any public surface (live
+                # incident: "Silky Calls Him Gay" shipped via this path).
+                led["clip_title"] = author.safe_title(info["title"], streamer)
                 led["clipper"] = info["clipper"]
                 led["streamer"] = streamer
                 led["platform"] = platform
@@ -754,7 +762,12 @@ def process(pkg: dict, pkg_path: Path | None, *,
             composer.compose(pkg_path, ledger_path, out_mp4)
         result["video_path"] = str(out_mp4.relative_to(REPO))
         result["ledger"] = str(ledger_path.relative_to(REPO))
-        title = pkg["title"].format(**_fmt_from_ledger(led))[:100]
+        # Final safety choke: no matter which path produced it (authored,
+        # raw fallback, sim/cli template), the public title is scrubbed one
+        # last time before it can reach an uploader.
+        title = author.safe_title(
+            pkg["title"].format(**_fmt_from_ledger(led)),
+            led.get("streamer", ""))[:100]
         result["title"] = title
         if dry_run:
             result.update(ok=True, video_url="(dry-run)")

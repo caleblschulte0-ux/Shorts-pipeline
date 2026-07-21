@@ -130,6 +130,60 @@ _TITLE_UNSAFE = re.compile(
     r"|gay\s+for)\b",
     re.I)
 
+# The removal counterpart of _TITLE_UNSAFE: the exact fragments to excise
+# when we must SANITISE rather than reject. Used for the raw-clip-title
+# fallback path — that text is the streamer's own Twitch title, which we do
+# not control, so rejecting it isn't an option (it would lose the slot). We
+# strip the offending phrase instead and, if nothing usable is left, build a
+# clean streamer-based drama title. (Live incident: raw title "Silky Calls
+# Him Gay" published because the authored-title reject fell back to the raw
+# title verbatim — this closes that path.)
+_UNSAFE_FRAG = re.compile(
+    r"\bcalls?\s+(?:him|her|them|\w+)\s+(?:gay|a\s+\w+)\b"
+    r"|\bis\s+(?:gay|a\s+(?:fag\w*|retard\w*))\b"
+    r"|\bgay\s+for\b"
+    r"|\b(?:f[a@4]gg?[o0]t?s?|n[i1]gg[ae]?r?s?|r[e3]t[a@4]rds?"
+    r"|tr[a@4]nn(?:y|ies)|dyke|kike|spic|chink|coon)\b",
+    re.I)
+
+
+def title_is_unsafe(s: str) -> bool:
+    """True if a slur or demeaning insult-framing is present. The single
+    source of truth for the safety gate (used by both the authored-title
+    reject and the raw-title sanitiser)."""
+    return bool(_TITLE_UNSAFE.search(s or ""))
+
+
+def scrub_text(s: str) -> str:
+    """Excise unsafe fragments from free text (captions, descriptions)
+    without any title-shaped fallback — returns whatever clean text remains,
+    which may be shorter. Safe to call on any public-facing string."""
+    if not title_is_unsafe(s):
+        return s
+    out = _UNSAFE_FRAG.sub("", s)
+    out = re.sub(r"\s{2,}", " ", out).strip(" -:—,")
+    return out
+
+
+def safe_title(raw: str, streamer: str = "") -> str:
+    """Guarantee a publishable title. Authored titles already pass the gate
+    in _postprocess; THIS protects the raw-clip-title fallback path, whose
+    text we don't control. It never rejects (that would lose the slot) — it
+    strips the unsafe fragment and, if too little remains, returns a clean
+    streamer-based drama title so a slot always ships a safe title."""
+    t = (raw or "").strip()
+    if not title_is_unsafe(t):
+        return t
+    cleaned = scrub_text(t)
+    # a residual match (nested phrasing) or too little left → neutral title
+    if title_is_unsafe(cleaned) or len(cleaned.split()) < 2:
+        pretty = (streamer or "").strip("_").title()
+        cleaned = (f"{pretty} Has The Whole Stream Reacting" if pretty
+                   else "The Clip Everyone's Talking About")
+    print(f"::warning::[author] sanitised unsafe raw title "
+          f"{raw!r} -> {cleaned!r}", flush=True)
+    return cleaned
+
 
 def _timestamped(words: list[dict]) -> str:
     """Compact [start-end] transcript so the director can reason about WHEN
@@ -190,7 +244,7 @@ def _postprocess(out: dict, streamer: str, context: str,
     # hard safety gate: a slur or demeaning insult-framing in the title/hook
     # is off-brand + gets demonetized/suppressed — reject regardless of what
     # was said, fall back to the streamer's own clip title.
-    if _TITLE_UNSAFE.search(title) or _TITLE_UNSAFE.search(hook):
+    if title_is_unsafe(title) or title_is_unsafe(hook):
         print("::warning::[author] rejected — unsafe title/hook phrasing "
               f"({title!r}) — falling back to raw clip title", flush=True)
         return None
