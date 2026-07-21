@@ -605,10 +605,14 @@ def title_card(kicker: str, title: str, out: Path,
 
 
 def statement(line: str, out: Path, seconds: float = 4.0) -> Path:
-    """A single calm sentence, wrapped and centered — the reflective beat."""
-    f = _font(_DEJAVU, 52)
-    words, lines, cur = line.split(), [], ""
+    """A single sentence that WRITES itself in, word by word, over a living
+    starfield — the reflective close, but never a frozen text plate. The words
+    keep landing across most of the beat, so the frame is always developing; the
+    last word gets a soft gold underline that draws under it."""
+    f = _font(_DEJAVU, 54)
     tmp = ImageDraw.Draw(Image.new("RGB", (10, 10)))
+    # wrap to lines, remembering each word's (line, x) so it can fade in on cue
+    words, lines, cur = line.split(), [], ""
     for wd in words:
         t = (cur + " " + wd).strip()
         if tmp.textbbox((0, 0), t, font=f)[2] > W * 0.72 and cur:
@@ -618,16 +622,37 @@ def statement(line: str, out: Path, seconds: float = 4.0) -> Path:
             cur = t
     if cur:
         lines.append(cur)
+    placed, gi = [], 0                          # (global_idx, word, x, y)
+    total_h = len(lines) * 74
+    yy = (H - total_h) // 2
+    for ln in lines:
+        lw = tmp.textbbox((0, 0), ln, font=f)[2]
+        x = (W - lw) // 2
+        for wd in ln.split():
+            placed.append((gi, wd, x, yy))
+            x += tmp.textbbox((0, 0), wd + " ", font=f)[2]
+            gi += 1
+        yy += 74
+    nwords = max(1, len(placed))
 
     def draw(i, n, im):
+        t = i / max(1, n - 1)
+        im = _drift_stars(im, i)
         d = ImageDraw.Draw(im, "RGBA")
-        a = min(i / (n * 0.3), 1.0)
-        total = len(lines) * 68
-        y = (H - total) // 2
-        for ln in lines:
-            d.text((_center_x(d, ln, f), y), ln, font=f,
-                   fill=(*PALETTE["ink"], int(240 * a)))
-            y += 68
+        revealed = t / 0.78 * nwords            # words land across ~78% of the beat
+        lastx = lasty = None
+        for idx, wd, x, y in placed:
+            a = max(0.0, min(revealed - idx, 1.0))
+            if a <= 0:
+                continue
+            rise = int((1 - a) * 14)            # each word lifts up as it fades in
+            d.text((x, y - rise), wd, font=f, fill=(*PALETTE["ink"], int(240 * a)))
+            if a > 0.2:
+                lastx, lasty = x + tmp.textbbox((0, 0), wd, font=f)[2], y
+        if lastx is not None:                   # a gold underline chases the words
+            uw = int(min(revealed / nwords, 1.0) * W * 0.3)
+            d.rounded_rectangle([W // 2 - uw, lasty + 68, W // 2 + uw, lasty + 73],
+                                radius=2, fill=(*PALETTE["gold"], 230))
         return im
 
     return _render(draw, out, seconds)
