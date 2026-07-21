@@ -631,7 +631,9 @@ def process(pkg: dict, pkg_path: Path | None, *,
                                    if not Path(info["path"]).is_absolute()
                                    else Path(info["path"]))
             if pf:
-                log["posted"][f"rejected-{slug}"] = {
+                # blocklist by CLIP KEY (not slug) so a slot's retries each
+                # exclude a distinct failed clip instead of overwriting.
+                log["posted"][f"rejected-{_clip_key(info['url']) or slug}"] = {
                     "source_url": info["url"], "streamer": streamer,
                     "title": info["title"], "qa_rejected": True,
                     "ts": datetime.now(timezone.utc).isoformat(),
@@ -667,7 +669,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # skip it — a confusing clip is worse than a lost slot. Blocklist
             # so it can't be re-picked (same as a QA rejection).
             if meta and meta.get("edit", {}).get("complete") is False:
-                log["posted"][f"rejected-{slug}"] = {
+                log["posted"][f"rejected-{_clip_key(info['url']) or slug}"] = {
                     "source_url": info["url"], "streamer": streamer,
                     "title": info["title"], "qa_rejected": True,
                     "ts": datetime.now(timezone.utc).isoformat(),
@@ -729,7 +731,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # Rides log["posted"] so posted_keys excludes it for the
                 # rest of this run and — once any later slot saves the log
                 # — for every future run too.
-                log["posted"][f"rejected-{slug}"] = {
+                log["posted"][f"rejected-{_clip_key(led['source_url']) or slug}"] = {
                     "source_url": led["source_url"],
                     "streamer": led["streamer"],
                     "title": (led.get("authored_title")
@@ -879,14 +881,31 @@ def main() -> int:
     # Slot index only advances for packages that will actually post, so
     # already-posted slugs don't leave gaps in the schedule.
     results, slot = [], 0
+    # RESILIENCE: one bad clip must NEVER kill a slot. When a candidate fails
+    # (preflight / render / QA), it's blocklisted (by clip key, so it can't be
+    # re-picked) and the slot RETRIES — re-selecting the next-best fresh clip —
+    # until one ships or we run dry. A deliberate skip (quality floor / dedupe
+    # guard) is not a failure and does not retry. Failures fail fast (the dark
+    # gate + preflight reject bad sources in ~2s), so retries are cheap.
+    MAX_SLOT_ATTEMPTS = 3
     for pkg, path in packages:
         publish_at = None
         if publish_base and pkg["slug"] not in log["posted"]:
             publish_at = (publish_base + slot_gap * slot) \
                 .strftime("%Y-%m-%dT%H:%M:%SZ")
             slot += 1
-        results.append(process(pkg, path, dry_run=args.dry_run,
-                               publish_at=publish_at, log=log))
+        r = None
+        for attempt in range(1, MAX_SLOT_ATTEMPTS + 1):
+            r = process(pkg, path, dry_run=args.dry_run,
+                        publish_at=publish_at, log=log)
+            if r.get("ok") or r.get("skipped"):
+                break
+            r["attempts"] = attempt
+            if attempt < MAX_SLOT_ATTEMPTS:
+                print(f"::warning::[slot] {pkg['slug']} attempt {attempt} "
+                      f"failed ({str(r.get('error',''))[:70]}) — retrying "
+                      "with a fresh clip", flush=True)
+        results.append(r)
     print(json.dumps(results, indent=2))
 
     # Learning loop (playbook §20): persist a compact per-run record —

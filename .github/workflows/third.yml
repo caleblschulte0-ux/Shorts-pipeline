@@ -45,7 +45,7 @@ env:
 jobs:
   third:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120   # slot-retries can render extra clips per slot
     # On a chain fire (workflow_run) only run when Daily Shorts actually
     # succeeded; all other triggers (dispatch, schedule, push) always run.
     if: >-
