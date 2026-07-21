@@ -1,25 +1,34 @@
 {
-  "generated_from_n_renders": 7,
-  "rules": [],
+  "generated_from_n_renders": 8,
+  "rules": [
+    {
+      "scope": "job",
+      "job": "PROOF",
+      "flag": "DULL",
+      "severity": "hard",
+      "rate": "2/2",
+      "guidance": "PROOF beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
+    }
+  ],
   "access_needs": [],
   "trend": {
     "dead_fraction": {
       "first": 0.18,
-      "latest": 0.61,
+      "latest": 0.56,
       "want": "down",
       "direction": "regressing"
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.472,
+      "latest": 0.439,
       "want": "up",
       "direction": "regressing"
     },
     "bland_fraction": {
       "first": 0.0,
-      "latest": 0.0,
+      "latest": 0.13,
       "want": "down",
-      "direction": "holding"
+      "direction": "regressing"
     }
   },
   "motion_wins": []
