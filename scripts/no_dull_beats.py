@@ -150,6 +150,75 @@ def _subject(beat: dict) -> str:
     return ""
 
 
+NOVELTY_MAX_STALE = 5.0     # HARD RULE: show something new at least this often
+NOVELTY_PIX_DELTA = 26.0    # a 48x27 gray pixel must move this much to count "new"
+NOVELTY_MIN_NEW = 0.055     # < this fraction of the frame changed in 5s = HELD
+
+
+def _frame_sig(render: Path, t: float):
+    import subprocess
+    import numpy as np
+    from io import BytesIO
+    from PIL import Image
+    r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.2f}", "-i",
+                        str(render), "-frames:v", "1", "-f", "image2pipe",
+                        "-vcodec", "png", "-"], capture_output=True)
+    if not r.stdout:
+        return None
+    im = Image.open(BytesIO(r.stdout)).resize((48, 27)).convert("L")
+    return np.asarray(im, dtype="float32")
+
+
+def novelty_check(render: Path, max_stale: float = NOVELTY_MAX_STALE):
+    """THE HARD PACING RULE — something NEW every `max_stale` seconds, or it does
+    not ship. 'New' is measured as the FRACTION of the frame that actually changed
+    since `max_stale` seconds ago (per-pixel, on a 48x27 gray). This deliberately
+    separates NOVELTY from MOTION:
+      - a chart that finished sliding, a settled number, a card drifting on its
+        starfield  ->  almost no pixels differ from 5s ago  ->  HELD (flagged);
+      - a number merely ticking / a bar merely growing in place  ->  only a few
+        percent of pixels move  ->  still HELD (motion is NOT novelty);
+      - a CUT, a new element landing, a grid filling in new cells, words writing
+        on  ->  a big fraction of the frame is new  ->  passes.
+    Unlike a whole-frame MEAN (which a bold graphic on negative space fools by
+    averaging out), a changed-fraction count credits a real new element without
+    blessing in-place motion. Returns the [start,end] spans held longer than the
+    limit; any span means the video sat on one idea and must cut / reveal."""
+    import subprocess
+    import numpy as np
+    try:
+        dur = float(subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "csv=p=0", str(render)], capture_output=True,
+            text=True).stdout.strip())
+    except Exception:
+        return []
+    fps = 2.0
+    ts = [round(i / fps, 2) for i in range(int(dur * fps))]
+    sigs = [_frame_sig(render, t) for t in ts]
+    lag = int(max_stale * fps)
+    stale, run0 = [], None
+    for i in range(len(sigs)):
+        if i < lag or sigs[i] is None or sigs[i - lag] is None:
+            continue
+        # what FRACTION of the frame is genuinely new vs `max_stale` seconds ago?
+        new_frac = float((np.abs(sigs[i] - sigs[i - lag]) > NOVELTY_PIX_DELTA
+                          ).mean())
+        held = new_frac < NOVELTY_MIN_NEW              # nothing new landed
+        if held:
+            run0 = ts[i - lag] if run0 is None else run0
+        elif run0 is not None:
+            stale.append([run0, ts[i]])
+            run0 = None
+    if run0 is not None:
+        stale.append([run0, ts[-1]])
+    # keep spans that EXCEED the limit. Strictly greater: a lone designed card that
+    # reveals then holds for the rest of a ~5s beat yields a single held sample (a
+    # span of exactly max_stale) and is fine — the rule is "new every 5s", and it
+    # cut within 5s. Only a hold that runs PAST 5s is a violation.
+    return [s for s in stale if s[1] - s[0] > max_stale]
+
+
 def _beat_sig(render: Path, t: str):
     """A small perceptual signature of a beat — the mid-beat frame downscaled to
     12x12 grayscale. Two beats that LOOK alike (five Earth-from-orbit clips) have
@@ -457,15 +526,32 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
             continue                       # re-render with the monotony broken up
         interest, cool = _judge(out, beatmap, work / f"judge_r{rnd}")
         dull = dull_beats(interest, cool, beats)
+        # THE HARD PACING RULE — something new every 5s, or it does not ship. This
+        # is a BLOCKER (motion is not novelty): a held card or a slow single-idea
+        # reveal fails here even if it 'moves'.
+        stale = novelty_check(out)
         print(f"[ndb] round {rnd}: dead={interest.get('dead_fraction')} "
-              f"appeal={interest.get('mean_appeal')} — {len(dull)} dull beat(s)")
+              f"appeal={interest.get('mean_appeal')} — {len(dull)} dull beat(s), "
+              f"{len(stale)} stale span(s)")
         for d in dull:
             print(f"      beat {d['beat']} {d['job']}: {d['why']} [fix={d['kind']}]")
-        if not dull and (not hv or hv["pass"]):
+        for s in stale:
+            print(f"      STALE {s[0]:.1f}-{s[1]:.1f}s: nothing new for "
+                  f"{s[1]-s[0]:.1f}s — needs a cut / a genuinely new element")
+        if not dull and (not hv or hv["pass"]) and not stale:
             _record_memory(story_path.stem, work, rnd, proc.stderr or "")
-            _gate_report("CLEAN — hook passes, no dull beats", hv, interest,
-                         dull, escalated, beats, excess=excess)
+            _gate_report("CLEAN — hook passes, no dull beats, new every 5s", hv,
+                         interest, dull, escalated, beats, excess=excess)
             return 0
+        if stale and not dull:
+            # a stale span is a length/editing problem the loop can't auto-fix
+            # (it can't rewrite narration or split a beat) — hard-FAIL, never bless.
+            _record_memory(story_path.stem, work, rnd, proc.stderr or "")
+            _gate_report(f"REJECTED — {len(stale)} stale span(s): the video holds "
+                         "one idea too long. Shorter beats / more cuts / a new "
+                         "element every 5s. Motion is not novelty.",
+                         hv, interest, dull, escalated, beats, excess=excess)
+            return 3
         # fix each dull beat we haven't already handled — by the RIGHT method:
         #  designed card (kind=animate) -> make it more fluid, NEVER footage
         #  footage/photo   (kind=motion) -> escalate to motion of its subject

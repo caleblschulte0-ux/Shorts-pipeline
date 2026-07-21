@@ -63,5 +63,11 @@ def apply(shots: list[dict]) -> list[dict]:
     for i, s in enumerate(shots):
         moves = extra_for(str(s.get("kind", "")), i, n)
         if moves:
-            s["extra"] = moves
+            # MERGE, don't clobber: an author may have set deliberate keys on the
+            # shot (e.g. a full-frame `hero` opening) that the director must keep.
+            merged = dict(moves)
+            merged.update(s.get("extra") or {})
+            s["extra"] = merged
+        elif s.get("extra"):
+            pass                              # leave author extra as-is
     return shots

@@ -5,75 +5,52 @@
   {
    "job": "HOOK",
    "mode": "designed_2d",
-   "narration": "Add up your whole life, and one part of it should stop you cold \u2014 you will spend twenty-six years of it doing nothing but sleeping.",
-   "understand": "a shocking number to open \u2014 26 years asleep",
+   "narration": "One number should stop you cold — 26 years of your life, gone to sleep.",
+   "understand": "a shocking number to open — 26 years asleep",
    "flat": {
     "kind": "flat_number",
     "text": "26",
     "sub": "YEARS ASLEEP",
-    "label": "in one lifetime, you will spend"
+    "label": "in one lifetime, you will spend",
+    "extra": {"hero": true, "overshoot": true, "impact_shake": true}
    }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Here is where the rest of it actually goes. Thirteen years at work. Eleven years staring at a screen. Years more just eating, cleaning, and commuting.",
-   "understand": "the hero breakdown \u2014 a comparison of life's big time-sinks",
+   "narration": "So where does the rest go? Thirteen years at work. Eleven — more than a decade — lost to a screen. Eight more to eating and chores. Add growing up, and almost none of it is left.",
+   "understand": "the staged breakdown — a whole lifetime of boxes filling category by category, revealing how little is left",
    "flat": {
-    "kind": "flat_compare",
-    "title": "where your life goes",
-    "rows": [
-     {
-      "name": "Work",
-      "value": 13,
-      "display": "13 yrs"
-     },
-     {
-      "name": "On your phone",
-      "value": 11,
-      "display": "11 yrs"
-     },
-     {
-      "name": "Eating",
-      "value": 4,
-      "display": "4 yrs"
-     },
-     {
-      "name": "Chores",
-      "value": 3,
-      "display": "3 yrs"
-     }
+    "kind": "flat_life_grid",
+    "total_years": 76,
+    "final_label": "ACTUALLY YOURS",
+    "segments": [
+     {"label": "ASLEEP", "years": 26, "color": [120, 170, 255]},
+     {"label": "AT WORK", "years": 13, "color": [90, 185, 170]},
+     {"label": "ON A SCREEN", "years": 11, "color": [240, 130, 110]},
+     {"label": "EATING & CHORES", "years": 8, "color": [160, 125, 205]},
+     {"label": "GROWING UP", "years": 9, "color": [150, 160, 190]}
     ]
    }
   },
   {
    "job": "REVEAL",
    "mode": "designed_2d",
-   "narration": "Look at that phone number again. Eleven years. More than a decade of your one life, gone into a screen in your hand.",
-   "understand": "the gut-punch \u2014 11 years on a phone",
+   "narration": "Put it side by side. Eleven years on a screen. Only nine that are truly yours.",
+   "understand": "the gut-punch — screen time out-weighs your free time, shown as two bars",
    "flat": {
-    "kind": "flat_number",
-    "text": "11",
-    "sub": "YEARS ON A SCREEN",
-    "label": "more than a decade of your life"
-   }
-  },
-  {
-   "job": "PROOF",
-   "mode": "designed_2d",
-   "narration": "So after everything you have to do, everything that is already spoken for, you are left with roughly nine years of truly free time. That is all you get.",
-   "understand": "the scarcity reveal \u2014 only ~9 years of free time",
-   "flat": {
-    "kind": "flat_number",
-    "text": "9",
-    "sub": "YEARS OF FREE TIME",
-    "label": "after the rest is subtracted, you have"
+    "kind": "flat_compare",
+    "title": "screen time vs your own time",
+    "rows": [
+     {"name": "On a screen", "value": 11, "display": "11 yrs"},
+     {"name": "Actually yours", "value": 9, "display": "9 yrs"}
+    ]
    }
   },
   {
    "job": "PAYOFF",
    "mode": "designed_2d",
-   "narration": "Nine years. That is the part of your life that is actually yours to choose. Spend it on something that matters.",
+   "narration": "Only about nine years are actually yours. Nine. Spend them on something that matters.",
    "understand": "the actionable close",
    "flat": {
     "kind": "flat_statement",

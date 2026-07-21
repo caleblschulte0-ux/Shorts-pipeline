@@ -190,10 +190,12 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
     except ValueError:
         target = 0
     ex = extra or {}
-    big = _font(ANTON, 158)
-    unit = _font(_DEJAVU, 40)
-    capf = _font(_DEJAVU, 32)
-    ny = int(H * 0.34)          # number baseline (top of glyphs)
+    hero = ex.get("hero")       # a full-frame opening: giant number + sweeping ring
+    big = _font(ANTON, 300 if hero else 158)
+    unit = _font(_DEJAVU, 48 if hero else 40)
+    capf = _font(_DEJAVU, 34 if hero else 32)
+    ny = int(H * (0.30 if hero else 0.34))     # number baseline (top of glyphs)
+    rcx, rcy, rR = W // 2, int(H * 0.44), int(H * 0.40)   # hero ring geometry
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
@@ -202,6 +204,28 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
         im = _drift_stars(im, i)
         im = _speed_streaks(im, i, alpha=int(35 + 70 * min(t / 0.4, 1.0)))
         d = ImageDraw.Draw(im, "RGBA")
+        # HERO: a big gold ring SWEEPS 0->360 around the number as it counts — a
+        # full-frame element that genuinely draws in (not idle motion), so the
+        # opening reads as a bold reveal, not a small mark on black.
+        if hero:
+            # the ring SWEEPS across most of the beat (scaled to its length), so a
+            # long hook keeps developing instead of finishing in 2s then holding.
+            rp = _ease(min(max(i - 4, 0) / (n * 0.62), 1.0))
+            if rp > 0.01:
+                end = -90 + 360 * rp
+                for wd, aa in ((16, 70), (7, 160)):
+                    d.arc([rcx - rR, rcy - rR, rcx + rR, rcy + rR], -90, end,
+                          fill=(*PALETTE["gold"], aa), width=wd)
+                ha = math.radians(end)
+                hx, hy = rcx + rR * math.cos(ha), rcy + rR * math.sin(ha)
+                gl = Image.new("RGBA", im.size, (0, 0, 0, 0))
+                ImageDraw.Draw(gl).ellipse([hx - 22, hy - 22, hx + 22, hy + 22],
+                                           fill=(*PALETTE["gold"], 200))
+                im = Image.alpha_composite(
+                    im.convert("RGBA"), gl.filter(ImageFilter.GaussianBlur(10)))
+                d = ImageDraw.Draw(im, "RGBA")
+                d.ellipse([hx - 8, hy - 8, hx + 8, hy + 8],
+                          fill=(255, 240, 205, 255))
         # caption ABOVE the number, fading in
         if label:
             a = min(max(i - 8, 0) / 12, 1.0)
@@ -212,7 +236,13 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
         # (springs past the target and back) + an IMPACT SHAKE the instant it lands.
         inten = ex.get("intensity", 0.7)
         tau = max(0.0, (i - 6) / FPS)               # seconds since count start
-        if ex.get("overshoot"):
+        if hero:
+            # HERO: count slowly across most of the beat so the number is still
+            # climbing (genuinely new) deep into the shot — never a 2s reveal then
+            # a long hold. A small terminal overshoot keeps the character.
+            base = min(max(i - 4, 0) / (n * 0.66), 1.0)
+            prog = _ease(base)
+        elif ex.get("overshoot"):
             damp = 4.4 - 1.7 * inten                # less damping = bigger overshoot
             val = max(0.0, 1 - math.exp(-damp * tau) * math.cos(7.2 * tau))
             prog = 1.0 if tau > 2.0 else val
@@ -234,15 +264,17 @@ def number_reveal(text: str, sub: str, out: Path, seconds: float = 6.0,
                          (*PALETTE["ink"], 255), (*PALETTE["gold"], glow_a),
                          blur=12)
         d = ImageDraw.Draw(im2, "RGBA")
-        # a bright SWEEP crosses the number when it lands (~1.6–2.4s) to punctuate
-        land = (i - (6 + FPS * 1.5)) / (FPS * 0.8)
+        # a bright SWEEP crosses the number when it lands — for a hero card that
+        # is late in the beat (when the slow count finishes), not a fixed 2s.
+        land = ((i - (4 + n * 0.66)) / (FPS * 0.8) if hero
+                else (i - (6 + FPS * 1.5)) / (FPS * 0.8))
         if 0.0 <= land <= 1.0:
             sx = int((-0.2 + 1.4 * land) * W)
             for w, aa in ((90, 60), (40, 120), (14, 220)):
                 d.line([sx, ny - 40, sx, ny + 190], fill=(*PALETTE["ink"], aa),
                        width=w)
         # a thin gold accent rule that grows in under the number
-        rule_y = ny + 182
+        rule_y = ny + (326 if hero else 182)
         half = int(min(i / (n * 0.4), 1.0) * W * 0.16)
         if half > 2:
             d.rectangle([W // 2 - half, rule_y, W // 2 + half, rule_y + 3],
@@ -413,6 +445,128 @@ def shrinking_years(out: Path, seconds: float = 6.0,
     return _render(draw, out, seconds, seed=13)
 
 
+def life_grid(out: Path, seconds: float = 9.0,
+              segments: list[dict] | None = None, total_years: int = 76,
+              final_label: str = "YOURS", extra: dict | None = None) -> Path:
+    """THE 'where your life goes' CENTREPIECE — a whole lifetime drawn as a grid of
+    boxes (one box = one year), that FILLS category by category. Sleep floods 26
+    boxes one colour, work floods the next 13, the phone the next 11 — each chunk
+    popping in box by box with a running label ('26 YEARS ASLEEP'), so the frame is
+    ALWAYS showing something new. The leftover boxes at the end glow gold: the few
+    years that are actually yours. This is staged, not held: a new box lands several
+    times a second across the whole beat, which is exactly what 'show something new
+    every 5s' demands — and it has far more character than three number cards.
+
+    `segments`: [{label, years, color}] filled in order; color is a PALETTE key or
+    an (r,g,b). Any years beyond the segments are the 'leftover' gold boxes."""
+    segments = segments or [{"label": "ASLEEP", "years": 26, "color": "blue"}]
+    ex = extra or {}
+    capf = _font(_DEJAVU, 40)
+    countf = _font(ANTON, 72)
+    tagf = _font(_DEJAVU, 30)
+    # grid geometry — a wide block of boxes centred in the frame
+    cols = 19
+    rows = math.ceil(total_years / cols)
+    gx0, gx1 = int(W * 0.11), int(W * 0.89)
+    cell = (gx1 - gx0) / cols
+    gy0 = int(H * 0.34)
+    pad = max(3, int(cell * 0.14))
+
+    def _rgb(c):
+        if isinstance(c, (tuple, list)):
+            return tuple(c)
+        return PALETTE.get(c, PALETTE["muted"])
+
+    # assign every box an (order_index, color, seg_index); leftovers = last segment
+    assign = []
+    used = 0
+    for si, seg in enumerate(segments):
+        for _ in range(int(seg["years"])):
+            if used >= total_years:
+                break
+            assign.append((_rgb(seg.get("color", "blue")), si))
+            used += 1
+    leftover = total_years - used
+    for _ in range(max(0, leftover)):
+        assign.append((PALETTE["gold"], len(segments)))       # the 'yours' boxes
+    # per-box reveal time, spread across ~88% of the beat so boxes keep landing
+    fill_end = 0.88
+    seg_bounds = []                                           # (start_frac, seg)
+    acc = 0
+    for seg in segments:
+        seg_bounds.append(acc / max(1, total_years))
+        acc += int(seg["years"])
+    n_frames = max(2, int(round(seconds * FPS)))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        im = _drift_stars(im, i)
+        d = ImageDraw.Draw(im, "RGBA")
+        # FRONT-LOADED fill: the grid becomes substantial within the first ~1.5s
+        # (a big block of boxes floods in) then keeps adding across the beat. This
+        # both reads punchier and stops the opening being a sparse near-empty frame
+        # that the novelty gate can't tell apart from the cut before it.
+        fp = min(1.0, t / fill_end)
+        filled = (fp ** 0.72) * total_years                  # fractional boxes shown
+        cur_seg = -1
+        for k, (col, si) in enumerate(assign):
+            prog = filled - k
+            if prog <= 0:
+                continue
+            r, c = divmod(k, cols)
+            x = gx0 + c * cell
+            y = gy0 + r * cell
+            pop = min(1.0, prog / 0.9)                        # each box pops in
+            over = 1.0 + 0.22 * math.sin(min(1.0, prog) * math.pi)  # overshoot
+            sz = (cell - 2 * pad) * (pop * over if prog < 1 else 1.0)
+            off = ((cell - 2 * pad) - sz) / 2
+            a = int(255 * min(1.0, prog))
+            d.rounded_rectangle([x + pad + off, y + pad + off,
+                                 x + pad + off + sz, y + pad + off + sz],
+                                radius=max(2, int(sz * 0.22)), fill=(*col, a))
+            if prog > 0:
+                cur_seg = si
+        # the running caption names the current chunk + its size, top of frame.
+        cum = 0
+        label, count, col = final_label, max(0, leftover), PALETTE["gold"]
+        for si, seg in enumerate(segments):
+            nxt = cum + int(seg["years"])
+            if filled <= nxt or si == len(segments) - 1 and filled < total_years:
+                label, count, col = seg["label"], int(seg["years"]), _rgb(
+                    seg.get("color", "blue"))
+                if filled > nxt and si == len(segments) - 1:
+                    label, count, col = final_label, max(0, leftover), PALETTE["gold"]
+                break
+            cum = nxt
+        else:
+            label, count, col = final_label, max(0, leftover), PALETTE["gold"]
+        cap = _spaced(label)
+        d.text((_center_x(d, cap, capf), int(H * 0.16)), cap, font=capf,
+               fill=(*col, 240))
+        cs = f"{count}"
+        yrs = "YEARS" if count != 1 else "YEAR"
+        d = ImageDraw.Draw(im, "RGBA")
+        im = _glow_text(im, (_center_x(d, cs, countf), int(H * 0.22)), cs, countf,
+                        (*PALETTE["ink"], 255), (*col, 150), blur=10)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.text((_center_x(d, yrs, tagf), int(H * 0.315)), yrs, font=tagf,
+               fill=(*PALETTE["muted"], 210))
+        # the leftover 'yours' boxes pulse once they are all in — the emotional beat
+        if leftover and filled >= total_years - 0.5:
+            pl = 0.5 + 0.5 * math.sin(i * 0.28)
+            for k in range(total_years - leftover, total_years):
+                r, c = divmod(k, cols)
+                x = gx0 + c * cell + pad
+                y = gy0 + r * cell + pad
+                gl = int(90 * pl)
+                d.rounded_rectangle([x, y, x + cell - 2 * pad, y + cell - 2 * pad],
+                                    radius=max(2, int(cell * 0.2)),
+                                    outline=(*PALETTE["gold"], 150 + gl), width=2)
+        return im
+
+    return _render(draw, out, seconds, seed=17)
+
+
 def spinning_world(number: str, out: Path, seconds: float = 6.0,
                    sub: str = "MPH", label: str = "THE EARTH'S SPIN",
                    extra: dict | None = None) -> Path:
@@ -521,18 +675,19 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
     Anton at the bar's end. This is a *chart done with taste*, used briefly."""
     rows = rows[:4]
     vmax = max((float(r["value"]) for r in rows), default=1.0) or 1.0
-    namef = _font(_DEJAVU, 40)
-    valf = _font(ANTON, 64)
+    namef = _font(_DEJAVU, 44)
+    valf = _font(ANTON, 76)
     titlef = _font(_DEJAVU, 34)
     x0, x1 = int(W * 0.13), int(W * 0.80)
     # spread the bars across most of the frame height (not a tight band in the
     # middle with dead space above and below) and make them BOLD — a brief,
     # full-frame scale-check, not a sparse spreadsheet chart (kills
-    # EMPTY_COMPOSITION). rows here span ~28%..70% of the height.
+    # EMPTY_COMPOSITION). With FEW rows the bars grow THICK so the frame is filled
+    # with substance, not two thin lines on black.
     n_rows = max(1, len(rows))
     top = int(H * 0.30)
     gap = int(H * 0.40 / (n_rows - 1)) if n_rows > 1 else 0
-    barh = 46
+    barh = int(min(150, 360 / n_rows))
 
     def draw(i, n, im):
         im = _drift_stars(im, i)
@@ -573,10 +728,11 @@ def comparison(rows: list[dict], out: Path, seconds: float = 6.0,
                 glow.filter(ImageFilter.GaussianBlur(11))).convert("RGB"),
                 (0, 0))
             d = ImageDraw.Draw(im, "RGBA")
-            d.rounded_rectangle([x0, y, x0 + w, y + barh], radius=barh // 2,
+            d.rounded_rectangle([x0, y, x0 + w, y + barh],
+                                radius=min(barh // 2, 40),
                                 fill=(*PALETTE["gold"], 255))
             disp = str(r.get("display", r["value"]))
-            d.text((x0 + w + 20, y - 11), disp, font=valf,
+            d.text((x0 + w + 24, y + barh // 2 - 44), disp, font=valf,
                    fill=(*PALETTE["ink"], int(255 * min(g * 1.4, 1))))
         return im
 
@@ -609,13 +765,17 @@ def statement(line: str, out: Path, seconds: float = 4.0) -> Path:
     starfield — the reflective close, but never a frozen text plate. The words
     keep landing across most of the beat, so the frame is always developing; the
     last word gets a soft gold underline that draws under it."""
-    f = _font(_DEJAVU, 54)
+    # BIG and bold: the close should fill the frame, not float as thin small type
+    # in a sea of black (which reads as an empty ending AND as 'held' — too few
+    # pixels ever change). Large Anton lines land word by word.
+    f = _font(ANTON, 104)
+    lh = 128
     tmp = ImageDraw.Draw(Image.new("RGB", (10, 10)))
     # wrap to lines, remembering each word's (line, x) so it can fade in on cue
     words, lines, cur = line.split(), [], ""
     for wd in words:
         t = (cur + " " + wd).strip()
-        if tmp.textbbox((0, 0), t, font=f)[2] > W * 0.72 and cur:
+        if tmp.textbbox((0, 0), t, font=f)[2] > W * 0.84 and cur:
             lines.append(cur)
             cur = wd
         else:
@@ -623,7 +783,7 @@ def statement(line: str, out: Path, seconds: float = 4.0) -> Path:
     if cur:
         lines.append(cur)
     placed, gi = [], 0                          # (global_idx, word, x, y)
-    total_h = len(lines) * 74
+    total_h = len(lines) * lh
     yy = (H - total_h) // 2
     for ln in lines:
         lw = tmp.textbbox((0, 0), ln, font=f)[2]
@@ -632,7 +792,7 @@ def statement(line: str, out: Path, seconds: float = 4.0) -> Path:
             placed.append((gi, wd, x, yy))
             x += tmp.textbbox((0, 0), wd + " ", font=f)[2]
             gi += 1
-        yy += 74
+        yy += lh
     nwords = max(1, len(placed))
 
     def draw(i, n, im):
@@ -645,14 +805,17 @@ def statement(line: str, out: Path, seconds: float = 4.0) -> Path:
             a = max(0.0, min(revealed - idx, 1.0))
             if a <= 0:
                 continue
-            rise = int((1 - a) * 14)            # each word lifts up as it fades in
-            d.text((x, y - rise), wd, font=f, fill=(*PALETTE["ink"], int(240 * a)))
+            rise = int((1 - a) * 18)            # each word lifts up as it fades in
+            # a soft dark shadow gives the big type weight and readability
+            d.text((x + 3, y - rise + 3), wd, font=f, fill=(0, 0, 0, int(150 * a)))
+            d.text((x, y - rise), wd, font=f, fill=(*PALETTE["ink"], int(245 * a)))
             if a > 0.2:
                 lastx, lasty = x + tmp.textbbox((0, 0), wd, font=f)[2], y
-        if lastx is not None:                   # a gold underline chases the words
-            uw = int(min(revealed / nwords, 1.0) * W * 0.3)
-            d.rounded_rectangle([W // 2 - uw, lasty + 68, W // 2 + uw, lasty + 73],
-                                radius=2, fill=(*PALETTE["gold"], 230))
+        if lastx is not None:                   # a gold underline chases the words,
+            uw = int(min(revealed / nwords, 1.0) * W * 0.34)   # BELOW the last line
+            uy = lasty + lh + 14
+            d.rounded_rectangle([W // 2 - uw, uy, W // 2 + uw, uy + 8],
+                                radius=3, fill=(*PALETTE["gold"], 235))
         return im
 
     return _render(draw, out, seconds)

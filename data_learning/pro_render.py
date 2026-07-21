@@ -411,6 +411,12 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         return flat2d.spinning_world(
             shot.get("text", "0"), out, seconds, sub=shot.get("sub", "MPH"),
             label=shot.get("label", "THE EARTH'S SPIN"), extra=shot.get("extra"))
+    if k == "flat_life_grid":
+        return flat2d.life_grid(
+            out, seconds, segments=shot.get("segments"),
+            total_years=int(shot.get("total_years", 76)),
+            final_label=shot.get("final_label", "YOURS"),
+            extra=shot.get("extra"))
     if k == "flat_shrinking_years":
         return flat2d.shrinking_years(
             out, seconds, label=shot.get("label", "HOW LONG EACH YEAR FEELS"),
