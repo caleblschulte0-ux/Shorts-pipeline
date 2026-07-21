@@ -244,12 +244,13 @@ jobs:
           - ANGLE: the scroll-stopping, slightly outrageous TRUTH or hidden detail about that hot thing — the part nobody says out loud. Opinionated and confident, never a neutral summary.
           - HOOK: sentence 1 is a hard, specific claim that stops the scroll (name the thing + the shocking angle). No throat-clearing.
           - TEXT: 60-100 words, 2-3 SHORT paragraphs (blank line between). Concrete numbers and specifics. Land the last paragraph on a punchy one-line kicker.
+          - TOP CLIP: set "broll_query" — a 1-3 word CONCRETE stock-video search that shows the topic so the looping clip matches the story (chips story -> "potato chips"; Apple story -> "iphone"; gas prices -> "gas pump"). Must be a physical, filmable thing, never abstract.
           - HIGHLIGHTS: 8-12 key phrases (the numbers, the shocking claims, the kicker) that each appear VERBATIM in the text — these render gold.
           - ACCURACY: it is a REAL current topic. Do NOT fabricate statistics or quotes. If unsure of a number, phrase it as a claim you can stand behind.
           - TOS-SAFE: no slurs, no explicit sexual/graphic content; keep it monetizable.
 
           WRITE EXACTLY 1 file named 01_<slug>.json, EXACT schema:
-          {"version":1,"format":"text_card","slug":"kebab-unique","title":"clickbait YouTube title <=100 chars","duration":6,"hashtags":["10-12 lowercase no #, topical + reach, e.g. news trending facts money tech viral fyp shorts"],"text":"para 1\\n\\npara 2\\n\\npara 3 (60-100 words total)","highlights":["verbatim phrase from text","another verbatim phrase"],"music_vibe":"dark"}
+          {"version":1,"format":"text_card","slug":"kebab-unique","title":"clickbait YouTube title <=100 chars","duration":6,"broll_query":"potato chips","hashtags":["10-12 lowercase no #, topical + reach, e.g. news trending facts money tech viral fyp shorts"],"text":"para 1\\n\\npara 2\\n\\npara 3 (60-100 words total)","highlights":["verbatim phrase from text","another verbatim phrase"],"music_vibe":"dark"}
           Do NOT include shots, punches, subreddit, or script — this format has none.
 
           HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
