@@ -958,6 +958,77 @@
           "self_healed": true
         }
       ]
+    },
+    {
+      "date": "20260719b",
+      "dry_run": false,
+      "ts": "2026-07-21T16:43:10+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 77,
+        "with_retention": 59,
+        "with_curve": 12,
+        "fetched_at": "2026-07-21T11:45:00.035211+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260719b-1",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260719b-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260719b-3",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260719b-4",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Many frames (4.3s, 5.6s, 6.8s, 8.0s, 10.5s, 11.7s, 13.0s) show no clear subject \u2014 just blurry motion smears, near-black ; vision: Roughly half the contact sheet reads as broken/empty rather th"
+        },
+        {
+          "slug": "clip-20260719b-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: black screen 3.3s at 10.6s; black screen 1.6s at 15.8s; black screen 1.9s at 18.3s; black screen 0.8s at 25.5s; black screen 1.5s at 26.3s; black screen 2.8s at 32.7s; black screen 1.2s at 39.7s; blac"
+        },
+        {
+          "slug": "clip-20260719b-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Frames at 9.5s, 12.2s, and 14.9s show no visible subject at all \u2014 just a blurred/near-black background with only bold ca; vision: Frames around 25.8s-31.2s also drop into heavily blurred/subje"
+        },
+        {
+          "slug": "clip-20260719b-7",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260719b-8",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: subject/person missing or barely visible from frames at 6.0s-9.4s (empty room shot, no face); vision: subject's head cropped out of frame for 11.2s-14.6s (only torso visible); vision: framing "
+        }
+      ]
     }
   ]
 }
