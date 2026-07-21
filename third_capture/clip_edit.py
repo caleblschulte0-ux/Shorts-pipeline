@@ -592,7 +592,11 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 "[0:v]split=2[bg][fg];"
                 f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
                 "increase,crop=1080:1920,gblur=sigma=24,"
-                "eq=brightness=-0.12:saturation=1.15[bgd];"
+                # was brightness=-0.12 — darkening an already-dark IRL clip
+                # crushed the whole frame to near-black (the top QA-reject on
+                # Streamer University footage). A hair of darken keeps the
+                # centered clip popping without swallowing dim sources.
+                "eq=brightness=-0.03:saturation=1.15[bgd];"
                 "[fg]scale=1080:-2[fgs];"
                 "[bgd][fgs]overlay=(W-w)/2:(H-h)/2[base]"
             )

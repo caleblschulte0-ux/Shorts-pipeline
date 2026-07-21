@@ -263,6 +263,28 @@ def preflight(video: Path) -> list[str]:
             problems.append(f"source only {dur:.1f}s — too short to edit")
         if w and h and max(w, h) < 640:
             problems.append(f"resolution too low ({w}x{h}) for Shorts")
+        # DARKNESS GATE (IRL/party footage): a genuinely dark source renders
+        # to near-black frames the blur-fill can't save — the #1 QA-reject on
+        # Streamer University IRL clips. Sample average luma (YAVG 0-255) over
+        # the first ~20s; reject in ~2s instead of after a 5-min render. Very
+        # conservative threshold so only truly-unwatchable clips are cut.
+        if have_v:
+            try:
+                p = subprocess.run(
+                    ["ffmpeg", "-v", "error", "-t", "20", "-i", str(video),
+                     "-vf", "fps=2,scale=48:27,signalstats,"
+                     "metadata=print:file=-", "-f", "null", "-"],
+                    capture_output=True, text=True, timeout=30)
+                yavgs = [float(m) for m in re.findall(
+                    r"lavfi\.signalstats\.YAVG=([\d.]+)",
+                    (p.stdout or "") + (p.stderr or ""))]
+                if yavgs and (sum(yavgs) / len(yavgs)) < 28.0:
+                    problems.append(
+                        f"source too dark (avg luma "
+                        f"{sum(yavgs)/len(yavgs):.0f}/255) — unwatchable IRL/"
+                        "night footage")
+            except Exception as e:  # noqa: BLE001 — darkness check is best-effort
+                print(f"[preflight] darkness check skipped ({e})", flush=True)
     except Exception as e:  # noqa: BLE001 — fail open, the render QA backstops
         print(f"[preflight] check error (ignored): {e}", flush=True)
     return problems
