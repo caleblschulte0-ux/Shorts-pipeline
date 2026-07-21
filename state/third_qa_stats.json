@@ -891,6 +891,73 @@
           "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit"
         }
       ]
+    },
+    {
+      "date": "20260721",
+      "dry_run": false,
+      "ts": "2026-07-21T11:44:53+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 73,
+        "with_retention": 59,
+        "with_curve": 12,
+        "fetched_at": "2026-07-21T10:38:22.131571+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260721-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260721-2",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit"
+        },
+        {
+          "slug": "clip-20260721-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: multiple frames (7.3s, 9.4s, 13.5s, 15.6s, 17.7s, 19.8s, 21.9s, 24.0s) are black/near-black or heavily motion-blurred wi; vision: large stretches of the clip show only light-flare blobs or ind"
+        },
+        {
+          "slug": "clip-20260721-4",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        },
+        {
+          "slug": "clip-20260721-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260721-6",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit"
+        },
+        {
+          "slug": "clip-20260721-7",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Subject (streamer) is completely absent from roughly half the clip (~4s\u201314s): frames at 5.5s, 7.1s, 8.7s, 10.3s, 11.9s, ; vision: During that stretch only text captions (GET CAMERA DOWN!, NO!,"
+        },
+        {
+          "slug": "clip-20260721-8",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true
+        }
+      ]
     }
   ]
 }
