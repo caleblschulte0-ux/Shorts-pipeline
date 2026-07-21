@@ -1,0 +1,28 @@
+{
+  "key": "language_disappearance_rate_causes_of_extinction",
+  "title": "Causes of Extinction",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Globalization",
+      "value": 60.0,
+      "period": "2010s"
+    },
+    {
+      "label": "Urbanization",
+      "value": 30.0,
+      "period": "2010s"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "key": "language_disappearance_rate_language_loss",
+  "title": "Language Loss",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Endangered Languages",
+      "value": 40.0,
+      "period": "2020s"
+    },
+    {
+      "label": "Extinct Languages",
+      "value": 10.0,
+      "period": "2010s"
+    }
+  ]
+}

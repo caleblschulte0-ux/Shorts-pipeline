@@ -1,0 +1,28 @@
+{
+  "key": "lava_production_of_volcanoes_effects_of_lava_pro",
+  "title": "Effects of Lava Production",
+  "unit": "''",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Surtsey Island",
+      "value": 20.0,
+      "period": "2020"
+    },
+    {
+      "label": "Hawaii Islands",
+      "value": 30.0,
+      "period": "2020"
+    }
+  ]
+}

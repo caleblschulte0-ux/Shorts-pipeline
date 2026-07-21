@@ -177,5 +177,26 @@
   "concept": "Two toxin-filled vials rise from the bottom, their fill levels and labels indicating the potency and quantity of the toxins.",
   "code": "\nfor i, (label, value) in enumerate(zip(labels, values)):\n    x = RX0 + 200 if i == 0 else RX1 - 200\n    y = RBOT + 100 * (1.0 - reveal)\n    w = 80\n    h = 400\n    d.rectangle([x, y, x + w, y + h], outline=rgba(TEXT, 120), width=6)\n    fill_image(subject_image('poisonous liquid'), clamp(value / vmax), x, y, w, h)\n    text(label, x + w // 2, y - 60, size=38, color=TEXT, center=True)\n    text(str(int(value)), x + w // 2, y + h + 40, size=46, color=TEXT, center=True)\n    if i == 0:\n        text('Toxin Potency', x + w // 2, y + h + 90, size=32, color=TEXT, center=True)\n    else:\n        text('Toxin Quantity', x + w // 2, y + h + 90, size=32, color=TEXT, center=True)\n",
   "topic": "Plant Toxins"
+ },
+ {
+  "sig": "4e6b0ad05c4b",
+  "mechanic": "speedometer",
+  "concept": "A stylized speedometer with a sweeping needle and a subject image in the center, representing the speed of data transmission through different mediums",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 210\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.arc([cxs - r, cy - r, cxs + r, cy + r], 150, 390,\n          fill=rgba(TEXT, 90), width=16)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.arc([cxs - r, cy - r, cxs + r, cy + r], 150, int(sweep),\n          fill=rgba(col, 255), width=16)\n    ang = sweep * math.pi / 180.0\n    nx = cxs + int((r - 30) * math.cos(ang))\n    ny = cy + int((r - 30) * math.sin(ang))\n    d.line([cxs, cy, nx, ny], fill=rgba(col, 255), width=10)\n    d.ellipse([cxs - 16, cy - 16, cxs + 16, cy + 16], fill=rgba(col, 255))\n    img = subject_image(labels[i].lower().replace(' ', '_') + '_icon')\n    if img is not None:\n        asp = img.width / img.height\n        w = 140\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    text(str(int(v)) + ' s', cxs, cy - r - 100, size=62, color=col, center=True)\n    text(labels[i], cxs, cy + r + 240, size=38, center=True)\n",
+  "topic": "Internet Age"
+ },
+ {
+  "sig": "5aa2c7e969ff",
+  "mechanic": "number-towers",
+  "concept": "towers of blocks rise with each data point's value, topped with a photo and label",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 + i * 350\n    cy = RBOT\n    b = 50\n    h = int(400.0 * clamp(v / vmax) * reveal)\n    d.rectangle([cxs - b // 2, cy - h, cxs + b // 2, cy], fill=rgba(ACCENT, 255))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - 160, w, h)\n    text(labels[i], cxs, cy - 200, size=38, color=TEXT, center=True)\n    text(str(int(v)), cxs, cy - 120, size=48, color=TEXT, center=True)\n    if i == 0:\n        text('Googolplex', cxs, cy - 80, size=34, color=TEXT, center=True)\n    else:\n        text('Grahams Number', cxs, cy - 80, size=34, color=TEXT, center=True)\n",
+  "topic": "Biggest Numbers"
+ },
+ {
+  "sig": "cc9d462c0316",
+  "mechanic": "mathematical-compass",
+  "concept": "A compass with sweeping needles and a rising gauge for each data point, filled with a subject image and labeled with its value and name",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 210\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], outline=rgba(TEXT, 90), width=16)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.line([cxs, cy, cxs + int((r - 30) * math.cos(math.radians(sweep))), cy + int((r - 30) * math.sin(math.radians(sweep)))], fill=rgba(col, 255), width=10)\n    d.ellipse([cxs - 16, cy - 16, cxs + 16, cy + 16], fill=rgba(col, 255))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 310\n        h = int(w / asp)\n        if h > 220:\n            h = 220\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy + r + 10, w, h)\n    text(str(int(v)), cxs, cy - r - 100, size=62, color=col, center=True)\n    text(labels[i], cxs, cy + r + 240, size=38, center=True)\n    gauge_h = 120\n    gauge_y = cy + r + 280\n    fill_image(img, clamp(v / vmax) * reveal, cxs - 120, gauge_y, 240, gauge_h, 'left', color=None)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('Mathematical Context', (RX0 + RX1) // 2, RBOT - 80, size=56, color=WARN, center=True)\n",
+  "topic": "Mathematical Context"
  }
 ]

@@ -1,0 +1,28 @@
+{
+  "key": "lava_production_of_volcanoes_lava_production_ove",
+  "title": "Lava Production Over Time",
+  "unit": "m3/s",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 50.0,
+      "period": "2018"
+    },
+    {
+      "label": "2020",
+      "value": 100.0,
+      "period": "2020"
+    }
+  ]
+}

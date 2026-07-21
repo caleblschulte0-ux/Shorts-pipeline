@@ -1,0 +1,28 @@
+{
+  "key": "speed_of_news_internet_age",
+  "title": "Internet Age",
+  "unit": "seconds",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Satellite",
+      "value": 5.0,
+      "period": "2000s"
+    },
+    {
+      "label": "Fiber Optic",
+      "value": 1.0,
+      "period": "2010s"
+    }
+  ]
+}

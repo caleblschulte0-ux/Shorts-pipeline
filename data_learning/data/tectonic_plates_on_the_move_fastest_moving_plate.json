@@ -1,0 +1,28 @@
+{
+  "key": "tectonic_plates_on_the_move_fastest_moving_plate",
+  "title": "Fastest Moving Plates",
+  "unit": "cm/yr",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Arabian Plate",
+      "value": 5.0,
+      "period": "2020"
+    },
+    {
+      "label": "Pacific Plate",
+      "value": 3.0,
+      "period": "2020"
+    }
+  ]
+}

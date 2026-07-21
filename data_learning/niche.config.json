@@ -14546,6 +14546,679 @@
         }
       ],
       "question": "How do you think the pyramids could have been built so quickly?"
+    },
+    {
+      "slug": "oldest-written-languages",
+      "title": "Oldest Written Languages",
+      "hook": "What's the oldest language still spoken today?",
+      "closing": "The history of language is a story of human connection.",
+      "hashtags": [
+        "language",
+        "history",
+        "linguistics",
+        "ancientcivilizations"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "oldest_written_languages_language_age",
+          "params": {
+            "file": "oldest_written_languages_language_age.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LANGUAGE AGE",
+          "topic": "Language Age",
+          "say": "The oldest written language, Sumerian, is over 4,500 years old, while Ancient Egyptian hieroglyphs are around 3,300 years old.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "scroll",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tablet",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "oldest_written_languages_language_spread",
+          "params": {
+            "file": "oldest_written_languages_language_spread.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 LANGUAGE SPREAD",
+          "topic": "Language Spread",
+          "say": "As civilizations rose and fell, languages spread across the globe, with Latin influencing many European languages.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "oldest_written_languages_language_endurance",
+          "params": {
+            "file": "oldest_written_languages_language_endurance.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 LANGUAGE ENDURANCE",
+          "topic": "Language Endurance",
+          "say": "Some languages, like Chinese, have been continuously written for over 3,000 years, while others, like Ancient Greek, have had a resurgence in popularity.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "book",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "manuscript",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "oldest_written_languages_language_evolution",
+          "params": {
+            "file": "oldest_written_languages_language_evolution.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 LANGUAGE EVOLUTION",
+          "topic": "Language Evolution",
+          "say": "The evolution of language is a continuous process, with new languages emerging and old ones adapting to the changing world, like the rise of pidgins and creoles.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's your favorite ancient language?"
+    },
+    {
+      "slug": "speed-of-news",
+      "title": "Speed of News",
+      "hook": "How fast did news travel in the past?",
+      "closing": "The speed of news has come a long way.",
+      "hashtags": [
+        "news",
+        "history",
+        "communication",
+        "technology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "speed_of_news_news_travel",
+          "params": {
+            "file": "speed_of_news_news_travel.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 NEWS TRAVEL",
+          "topic": "News Travel",
+          "say": "In the past, news traveled at the speed of horses, taking around 10 days to cross the United States, while trains reduced this time to just 3 days.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "horse",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "train",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "speed_of_news_telegraphy",
+          "params": {
+            "file": "speed_of_news_telegraphy.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 TELEGRAPHY",
+          "topic": "Telegraphy",
+          "say": "The invention of the telegraph revolutionized news travel, allowing messages to be sent across the country in just 10 minutes.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "speed_of_news_internet_age",
+          "params": {
+            "file": "speed_of_news_internet_age.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 INTERNET AGE",
+          "topic": "Internet Age",
+          "say": "Today, news travels at the speed of light, with information being transmitted around the world in just a few seconds.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "satellite",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fiber optic",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "speed_of_news_social_media",
+          "params": {
+            "file": "speed_of_news_social_media.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 SOCIAL MEDIA",
+          "topic": "Social Media",
+          "say": "Social media has further accelerated the spread of news, with information going viral in a matter of minutes.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "smartphone",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's the fastest way you've ever received news?"
+    },
+    {
+      "slug": "largest-numbers-named",
+      "title": "Largest Numbers Named",
+      "hook": "You won't believe the names behind the biggest numbers in maths",
+      "closing": "The named numbers that shape our understanding of scale",
+      "hashtags": [
+        "maths",
+        "largenumbers",
+        "scale",
+        "names",
+        "curious"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "largest_numbers_named_biggest_numbers",
+          "params": {
+            "file": "largest_numbers_named_biggest_numbers.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 BIGGEST NUMBERS",
+          "topic": "Biggest Numbers",
+          "say": "The largest named numbers include Graham's number and googolplex, with values that are almost unimaginable, like 10 to the power of 100 and a 1 followed by a googol of zeros.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "book",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "book",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "largest_numbers_named_number_scale",
+          "params": {
+            "file": "largest_numbers_named_number_scale.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 NUMBER SCALE",
+          "topic": "Number Scale",
+          "say": "To put these numbers into perspective, consider that a googol is a 1 followed by 100 zeros, and a googolplex is a 1 followed by a googol of zeros, making them almost incomprehensibly large.",
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "largest_numbers_named_mathematical_context",
+          "params": {
+            "file": "largest_numbers_named_mathematical_context.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 MATHEMATICAL CONTE",
+          "topic": "Mathematical Context",
+          "say": "These enormous numbers have practical applications in mathematics, such as combinatorics and number theory, helping us understand complex problems and patterns."
+        },
+        {
+          "source": "offline",
+          "key": "largest_numbers_named_real_world_impact",
+          "params": {
+            "file": "largest_numbers_named_real_world_impact.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 REAL WORLD IMPACT",
+          "topic": "Real World Impact",
+          "say": "The study and naming of large numbers have evolved over time, reflecting advancements in mathematical understanding and the need for new terms to describe the vastness of the universe and its phenomena.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the largest named number you've ever come across?"
+    },
+    {
+      "slug": "language-disappearance-rate",
+      "title": "Language Disappearance Rate",
+      "hook": "Languages are disappearing at an alarming rate, but what's behind this trend?",
+      "closing": "The urgent need to preserve linguistic diversity",
+      "hashtags": [
+        "language",
+        "extinction",
+        "linguisticdiversity",
+        "culturalheritage"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "language_disappearance_rate_language_loss",
+          "params": {
+            "file": "language_disappearance_rate_language_loss.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 LANGUAGE LOSS",
+          "topic": "Language Loss",
+          "say": "It's estimated that a language goes extinct every 14 days, with over 40% of languages at risk, highlighting the urgent need for preservation efforts.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tombstone",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "language_disappearance_rate_language_distributio",
+          "params": {
+            "file": "language_disappearance_rate_language_distributio.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 LANGUAGE DISTRIBUT",
+          "topic": "Language Distribution",
+          "say": "The majority of languages are spoken by small communities, with over 50% of languages having fewer than 10,000 speakers, making them vulnerable to extinction.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "book",
+                "data": {
+                  "value_from": "item:1",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "language_disappearance_rate_causes_of_extinction",
+          "params": {
+            "file": "language_disappearance_rate_causes_of_extinction.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 CAUSES OF EXTINCTI",
+          "topic": "Causes of Extinction",
+          "say": "Globalization, urbanization, and lack of documentation are major factors contributing to language extinction, as younger generations shift towards dominant languages."
+        },
+        {
+          "source": "offline",
+          "key": "language_disappearance_rate_preservation_efforts",
+          "params": {
+            "file": "language_disappearance_rate_preservation_efforts.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 PRESERVATION EFFOR",
+          "topic": "Preservation Efforts",
+          "say": "Efforts to document and preserve languages are underway, including language education programs, linguistic research, and community engagement, offering hope for the future of linguistic diversity.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What can be done to prevent language extinction?"
+    },
+    {
+      "slug": "tectonic-plates-on-the-move",
+      "title": "Tectonic Plates on the Move",
+      "hook": "The Earth's surface is constantly shifting, but have you ever wondered how fast?",
+      "closing": "The Earth's surface is moving faster than you think!",
+      "hashtags": [
+        "earthscience",
+        "geology",
+        "tectonicplates"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "tectonic_plates_on_the_move_plate_movement_speed",
+          "params": {
+            "file": "tectonic_plates_on_the_move_plate_movement_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 PLATE MOVEMENT SPE",
+          "topic": "Plate Movement Speed",
+          "say": "The Pacific plate is moving at a speed of 3 centimeters per year, while the North American plate is moving at a speed of 2 centimeters per year.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "tectonic_plates_on_the_move_fastest_moving_plate",
+          "params": {
+            "file": "tectonic_plates_on_the_move_fastest_moving_plate.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 FASTEST MOVING PLA",
+          "topic": "Fastest Moving Plates",
+          "say": "The Arabian plate is moving at a speed of 5 centimeters per year, making it one of the fastest moving plates in the world.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "arrow",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "tectonic_plates_on_the_move_plate_movement_over_",
+          "params": {
+            "file": "tectonic_plates_on_the_move_plate_movement_over_.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 PLATE MOVEMENT OVE",
+          "topic": "Plate Movement Over Time",
+          "say": "The movement of the tectonic plates has been increasing over the past few million years, with the Pacific plate moving at a speed of 2 centimeters per year 10 million years ago.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "tectonic_plates_on_the_move_effects_of_plate_mov",
+          "params": {
+            "file": "tectonic_plates_on_the_move_effects_of_plate_mov.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 EFFECTS OF PLATE M",
+          "topic": "Effects of Plate Movement",
+          "say": "The movement of the tectonic plates can cause earthquakes, volcanic eruptions, and the creation of mountain ranges, with 80% of the world's volcanoes located at the boundaries of the tectonic plates.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "volcano",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What do you think is the most significant effect of tectonic plate movement?"
+    },
+    {
+      "slug": "lava-production-of-volcanoes",
+      "title": "Lava Production of Volcanoes",
+      "hook": "Volcanoes are capable of producing massive amounts of lava, but just how much?",
+      "closing": "The amount of lava produced by volcanoes is staggering!",
+      "hashtags": [
+        "volcanology",
+        "geology",
+        "lavaproduction"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "lava_production_of_volcanoes_lava_production_rat",
+          "params": {
+            "file": "lava_production_of_volcanoes_lava_production_rat.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LAVA PRODUCTION RA",
+          "topic": "Lava Production Rate",
+          "say": "The Kilauea volcano in Hawaii produces lava at a rate of 100 cubic meters per second, while the Mount Etna volcano in Italy produces lava at a rate of 50 cubic meters per second.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "volcano",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "volcano",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "lava_production_of_volcanoes_total_lava_producti",
+          "params": {
+            "file": "lava_production_of_volcanoes_total_lava_producti.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 TOTAL LAVA PRODUCT",
+          "topic": "Total Lava Production",
+          "say": "The Kilauea volcano has produced a total of 1 cubic kilometer of lava since its eruption in 2018, while the Mount Etna volcano has produced a total of 0.5 cubic kilometers of lava since its eruption in 2011.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "lava",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "lava_production_of_volcanoes_lava_production_ove",
+          "params": {
+            "file": "lava_production_of_volcanoes_lava_production_ove.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 LAVA PRODUCTION OV",
+          "topic": "Lava Production Over Time",
+          "say": "The lava production rate of the Kilauea volcano has been increasing over the past few years, with a rate of 50 cubic meters per second in 2018 and a rate of 100 cubic meters per second in 2020.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "lava_production_of_volcanoes_effects_of_lava_pro",
+          "params": {
+            "file": "lava_production_of_volcanoes_effects_of_lava_pro.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 EFFECTS OF LAVA PR",
+          "topic": "Effects of Lava Production",
+          "say": "The lava produced by volcanoes can create new land, with the island of Surtsey off the coast of Iceland being formed entirely by volcanic eruptions, and 20% of the island's surface being covered in lava.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "island",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What do you think is the most significant factor in determining the amount of lava produced by a volcano?"
     }
   ],
   "videos": [

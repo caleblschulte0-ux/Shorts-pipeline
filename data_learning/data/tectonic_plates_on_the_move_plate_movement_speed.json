@@ -1,0 +1,28 @@
+{
+  "key": "tectonic_plates_on_the_move_plate_movement_speed",
+  "title": "Plate Movement Speed",
+  "unit": "cm/yr",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Pacific Plate",
+      "value": 3.0,
+      "period": "2020"
+    },
+    {
+      "label": "North American Plate",
+      "value": 2.0,
+      "period": "2020"
+    }
+  ]
+}

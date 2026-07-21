@@ -1,0 +1,28 @@
+{
+  "key": "speed_of_news_telegraphy",
+  "title": "Telegraphy",
+  "unit": "minutes",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Telegraph",
+      "value": 10.0,
+      "period": "1860s"
+    },
+    {
+      "label": "Telephone",
+      "value": 1.0,
+      "period": "1920s"
+    }
+  ]
+}

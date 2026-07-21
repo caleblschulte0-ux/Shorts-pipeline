@@ -1,0 +1,28 @@
+{
+  "key": "oldest_written_languages_language_endurance",
+  "title": "Language Endurance",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Chinese",
+      "value": 3000.0,
+      "period": "1000 BC"
+    },
+    {
+      "label": "Ancient Greek",
+      "value": 2000.0,
+      "period": "500 BC"
+    }
+  ]
+}
