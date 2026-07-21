@@ -299,9 +299,13 @@ def choose(subject: str = "", label: str = "", value: str = "",
             if prop == "price_tag":
                 spec["text"] = value or "$$$"
             return spec
-    # never-float fallback: on a data/chart/number beat, ride the chart bird;
-    # otherwise present the number on a price tag.
-    if re.search(r"chart|data|percent|%|trend|rate|number|graph", hay) or value:
+    # never-float fallback: on ANY data / chart / timeline / number beat, do
+    # the EXTRA thing — ride the chart bird (per brand rule, even pure-data
+    # beats get motion, not a standing host). Otherwise present the number
+    # on a price tag.
+    if (value or re.search(r"chart|data|percent|%|trend|rate|number|graph|"
+                           r"timeline|year|since|over time|per\b|share|ratio",
+                           hay)):
         return {"prop": "chart_bird", "action": "ride", "expr": "happy"}
     return {"prop": "price_tag", "action": "carry", "expr": "shock",
             "text": value or "?"}

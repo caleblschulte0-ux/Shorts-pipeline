@@ -51,7 +51,7 @@ SCALE_Y = CHART_H / CHART_PNG_H
 FOOT_Y = CHART_Y + CHART_H + 10
 FOOT_H = (H - FOOT_Y) & ~1       # keep even (yuv420p / filter sizing)
 
-MASCOT_SIZE = 360                # the brand's face — the lead, a big central presence
+MASCOT_SIZE = 440                # the brand's face — the lead, a big central presence
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
 UP_ANGLE = 90                    # points up (hook / closing / fallback)
 MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 520)   # hook / closing rest spot
@@ -1256,16 +1256,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         except Exception:  # noqa: BLE001
             _director = None
 
-        def _beat_spec(e, ri):
-            """A director spec for this number beat, or a fallback pose name."""
+        def _seg_spec(i):
+            """A director spec for segment i (its whole beat), or a pose name."""
             if not _director:
-                return ("point", "shock", "point", "think")[ri % 4]
+                return ("point", "shock", "point", "think")[i % 4]
             try:
-                seg = st.segments[e["seg"]]
+                seg = st.segments[i]
                 val = ""
-                a = e.get("anchor") or {}
-                if a.get("value") is not None:
-                    val = story._fmtnum(a["value"])
+                if getattr(seg, "anchors", None):
+                    v = seg.anchors[0].get("value")
+                    if v is not None:
+                        val = story._fmtnum(v)
                 return _director.choose(
                     subject=f"{seg.topic} {seg.sentence}", label=seg.topic,
                     value=val, kind=getattr(seg, "kind", ""))
@@ -1273,25 +1274,29 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 return "shock"
 
         if _clean:
-            # HOST mode: Data planted centrally in the lower third, doing a
-            # scene-specific action on every number beat and celebrating to
-            # close. Main character, present every frame, never floating. seq
-            # entries carry a 7th field = a director spec dict OR a pose name.
+            # HOST mode: Data planted centrally, doing a scene-specific action
+            # for EVERY beat — a topic prop when the beat has a subject (eggs ->
+            # juggle, cart -> push) and RIDING THE CHART on pure-data/timeline
+            # beats (the extra thing, never a standing host). Present every
+            # frame, never floating. seq's 7th field = director spec OR pose.
             home = (float((W - S) // 2), float(H - S - 250))
             gap_fill = _director.default_host() if _director else "idle"
+            nseg = len(st.segments)
             seq = []
-            last_end = 0.0
-            for ri, e in enumerate(events):
-                seq.append((home[0], home[1], e["w0"], e["w1"],
-                            UP_ANGLE, False, _beat_spec(e, ri)))
-                last_end = max(last_end, e["w1"])
-            # celebrate over the closing window (never overlapping a reaction,
-            # so exactly one host is composited at a time)
-            close_w0 = max(windows[-1][0], last_end)
-            if windows[-1][1] - close_w0 > 0.05:
-                close_act = _director.celebrate() if _director else "cheer"
-                seq.append((home[0], home[1], close_w0, windows[-1][1],
-                            UP_ANGLE, False, close_act))
+            # hook window -> host presenting on set
+            seq.append((home[0], home[1], windows[0][0], windows[0][1],
+                        UP_ANGLE, False, gap_fill))
+            # one action per segment, spanning that segment's spoken window
+            for i in range(nseg):
+                wi = windows[1 + i] if 1 + i < len(windows) else None
+                if not wi:
+                    continue
+                seq.append((home[0], home[1], wi[0], wi[1],
+                            UP_ANGLE, False, _seg_spec(i)))
+            # celebrate over the closing window
+            close_act = _director.celebrate() if _director else "cheer"
+            seq.append((home[0], home[1], windows[-1][0], windows[-1][1],
+                        UP_ANGLE, False, close_act))
         else:
             gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
