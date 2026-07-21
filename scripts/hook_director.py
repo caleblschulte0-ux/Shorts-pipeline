@@ -96,36 +96,48 @@ def grade_visual(render: Path, hook_seconds: float = 6.0) -> dict:
     # appeal over the opening ~2.5s
     aps = [_appeal(frame(t)) for t in (0.2, 0.9, 1.6, 2.3)]
     hook_appeal = round(sum(aps) / len(aps), 3)
-    # MOTION via real per-pixel change (dense, first ~1.6s) — catches a slam, a
-    # pulsing glow, streaks, a push or a cut that a coarse hash misses.
+    # MOTION via LOCAL (peak-block) per-pixel change — a whole-frame mean misses a
+    # counting number or a slam in a clean frame (big local change, tiny average),
+    # so it wrongly called clean animation static. Peak block credits real motion;
+    # a truly frozen frame still scores ~0. (Same fix as the cool judge.)
+    def _local(prev, cur, gx=12, gy=7):
+        d = np.abs(cur - prev)
+        h, w = d.shape
+        bh, bw = max(1, h // gy), max(1, w // gx)
+        best = 0.0
+        for y in range(0, h, bh):
+            for x in range(0, w, bw):
+                blk = d[y:y + bh, x:x + bw]
+                if blk.size:
+                    best = max(best, float(blk.mean()))
+        return best
     small = [np.asarray(frame(t).resize((96, 54)).convert("L"), dtype="float32")
              for t in (0.1, 0.4, 0.7, 1.0, 1.3, 1.6)]
-    diffs = [float(np.abs(small[i] - small[i - 1]).mean())
-             for i in range(1, len(small))]
-    opening_motion = round(max(diffs), 1)          # peak frame-to-frame change
-    # SUSTAINED motion across the whole hook — samples every ~0.7s to the end of
-    # the hook window (capped ~8s). Mean change over the span: a shot that just
-    # sits there scores near zero even if its first frame is a hair-mover.
+    opening_motion = round(max(_local(small[i - 1], small[i])
+                               for i in range(1, len(small))), 1)
     span = max(2.0, min(hook_seconds, 8.0))
     ts = [round(0.3 + 0.7 * k, 2) for k in range(int((span - 0.3) / 0.7) + 1)]
     wide = [np.asarray(frame(t).resize((96, 54)).convert("L"), dtype="float32")
             for t in ts]
-    wdiffs = [float(np.abs(wide[i] - wide[i - 1]).mean())
-              for i in range(1, len(wide))] or [0.0]
-    sustained_motion = round(sum(wdiffs) / len(wdiffs), 1)  # mean over the hook
+    wdiffs = [_local(wide[i - 1], wide[i]) for i in range(1, len(wide))] or [0.0]
+    sustained_motion = round(sum(wdiffs) / len(wdiffs), 1)   # mean local, over hook
+    # local scale is bigger than a whole-frame mean, so retune the floors.
+    OPEN_FLOOR, HELD_FLOOR = 6.0, 4.0
     gates, score = [], 0
-    if hook_appeal < 0.42:              # calm/bland/ambiguous open
+    # CALM is low appeal AND low motion — a bold moving graphic is not 'calm' even
+    # if it isn't photographic; only a bland, still opener trips this.
+    if hook_appeal < 0.42 and opening_motion < 12.0:
         gates.append("CALM_OPENER")
-    if opening_motion < 4.0:            # first ~1.6s barely moves
+    if opening_motion < OPEN_FLOOR:     # first ~1.6s genuinely barely moves
         gates.append("STATIC_FIRST_FRAME")
-    if sustained_motion < 2.5:          # a HELD shot — pretty, but it just sits
-        gates.append("HELD_STATIC")     # (the 'ten seconds of clouds' gate)
-    score += 1 if opening_motion >= 4.0 else 0      # motion in the open
-    score += 1 if hook_appeal >= 0.42 else 0        # a legible, rich subject
-    score += 1 if hook_appeal >= 0.60 else 0        # genuinely striking image
-    score += 1 if opening_motion >= 9.0 else 0      # strong move / slam / cut
-    score += 1 if sustained_motion >= 4.0 else 0    # KEEPS moving, not a held frame
-    if sustained_motion < 2.5:          # a held shot cannot score above a floor
+    if sustained_motion < HELD_FLOOR:   # a HELD shot — it just sits there
+        gates.append("HELD_STATIC")
+    score += 1 if opening_motion >= OPEN_FLOOR else 0
+    score += 1 if hook_appeal >= 0.42 else 0
+    score += 1 if (hook_appeal >= 0.60 or opening_motion >= 40) else 0
+    score += 1 if opening_motion >= 18 else 0        # a strong slam / cut
+    score += 1 if sustained_motion >= HELD_FLOOR else 0
+    if sustained_motion < HELD_FLOOR:   # a held shot cannot score above a floor
         score = min(score, 2)
     return {"score": min(5, score), "gates": gates, "hook_appeal": hook_appeal,
             "opening_motion": opening_motion, "sustained_motion": sustained_motion}
