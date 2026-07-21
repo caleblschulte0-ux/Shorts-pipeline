@@ -97,7 +97,9 @@ jobs:
           SLUG="${{ github.event.inputs.slug }}"
           [ -z "$SLUG" ] && SLUG="grocery-squeeze"
           echo "Rendering explainer story '$SLUG' (dry-run, no upload)"
-          python scripts/post_stories.py --dry-run --slugs "$SLUG"
+          # --force: preview must render even if the slug is already in the
+          # posted log (dry-run never uploads, so this can't cause a re-post).
+          python scripts/post_stories.py --dry-run --force --slugs "$SLUG"
 
       - name: List rendered output
         if: always()
