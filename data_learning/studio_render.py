@@ -1246,28 +1246,54 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         S = MASCOT_SIZE
         import os as _osm
         _clean = _osm.environ.get("LEGACY_LOOK") != "1"
+        # The action DIRECTOR puts Data INTO each scene doing a topic-specific
+        # thing (juggling eggs, on the soup cans, shoving the cart, riding the
+        # chart) instead of a generic reaction. Optional — if it or its SVG
+        # rasteriser is unavailable the seq carries plain pose names and the
+        # host still renders, just without props.
+        try:
+            from data_learning import mascot_director as _director
+        except Exception:  # noqa: BLE001
+            _director = None
+
+        def _beat_spec(e, ri):
+            """A director spec for this number beat, or a fallback pose name."""
+            if not _director:
+                return ("point", "shock", "point", "think")[ri % 4]
+            try:
+                seg = st.segments[e["seg"]]
+                val = ""
+                a = e.get("anchor") or {}
+                if a.get("value") is not None:
+                    val = story._fmtnum(a["value"])
+                return _director.choose(
+                    subject=f"{seg.topic} {seg.sentence}", label=seg.topic,
+                    value=val, kind=getattr(seg, "kind", ""))
+            except Exception:  # noqa: BLE001
+                return "shock"
+
         if _clean:
-            # HOST mode: one big mascot planted centrally in the lower third,
-            # but he REACTS to the beat — idle by default, a reaction on each
-            # number, and a celebratory beat to close. He's the main character:
-            # present every frame, never parked on one expression, never jumping
-            # around. seq entries carry a 7th field = pose name.
+            # HOST mode: Data planted centrally in the lower third, doing a
+            # scene-specific action on every number beat and celebrating to
+            # close. Main character, present every frame, never floating. seq
+            # entries carry a 7th field = a director spec dict OR a pose name.
             home = (float((W - S) // 2), float(H - S - 250))
-            react_cycle = ("point", "shock", "point", "think")
+            gap_fill = _director.default_host() if _director else "idle"
             seq = []
             last_end = 0.0
             for ri, e in enumerate(events):
-                pz = react_cycle[ri % len(react_cycle)]
                 seq.append((home[0], home[1], e["w0"], e["w1"],
-                            UP_ANGLE, False, pz))
+                            UP_ANGLE, False, _beat_spec(e, ri)))
                 last_end = max(last_end, e["w1"])
             # celebrate over the closing window (never overlapping a reaction,
             # so exactly one host is composited at a time)
             close_w0 = max(windows[-1][0], last_end)
             if windows[-1][1] - close_w0 > 0.05:
+                close_act = _director.celebrate() if _director else "cheer"
                 seq.append((home[0], home[1], close_w0, windows[-1][1],
-                            UP_ANGLE, False, "cheer"))
+                            UP_ANGLE, False, close_act))
         else:
+            gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
             seq = [(home[0], home[1], windows[0][0], windows[0][1],
                     UP_ANGLE, False, "idle")]
@@ -1297,12 +1323,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             w0, w1 = entry[2], entry[3]
             if w0 - cursor > 0.05:
                 filled.append((home[0], home[1], cursor, w0,
-                               UP_ANGLE, False, "idle"))
+                               UP_ANGLE, False, gap_fill))
             filled.append(entry)
             cursor = max(cursor, w1)
         if total - cursor > 0.05:
             filled.append((home[0], home[1], cursor, total,
-                           UP_ANGLE, False, "idle"))
+                           UP_ANGLE, False, gap_fill))
         seq = filled
 
         import os as _os2
@@ -1311,11 +1337,15 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # central role. LEGACY_LOOK=1 restores the old bokeh + b-roll strip.
         CLEAN = _os2.environ.get("LEGACY_LOOK") != "1"
         mascot_movs = []
-        for k, (_x, _y, _w0, _w1, angle, flip, pz) in enumerate(seq):
+        for k, (_x, _y, _w0, _w1, angle, flip, act) in enumerate(seq):
             mv = work / f"masc_{k}.mov"
-            mascot.build_mascot_loop(mv, size=S, seconds=2.2,
-                                     point_angle=float(angle), flip=flip,
-                                     pose=pz)
+            if isinstance(act, dict):
+                # director spec → Data doing a scene-specific action with a prop
+                mascot.build_scene_loop(mv, act, size=S, seconds=2.2, flip=flip)
+            else:
+                mascot.build_mascot_loop(mv, size=S, seconds=2.2,
+                                         point_angle=float(angle), flip=flip,
+                                         pose=act)
             mascot_movs.append(mv)
 
         # Bottom footage: round-robin through the per-style b-roll clips so

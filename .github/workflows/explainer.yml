@@ -150,8 +150,10 @@ jobs:
           # rasteriser) so the 3D hero renders on a GPU-less runner. EEVEE is
           # ~25x faster than Cycles here, which is what makes a 3D beat per video
           # affordable inside the job cap.
+          # libcairo2: cairosvg rasterises the mascot action director's
+          # per-scene SVG (Data + prop) to PNG at render time.
           sudo apt-get install -y -q ffmpeg blender \
-            libegl1 libgl1 libglx-mesa0 libgl1-mesa-dri libgles2
+            libegl1 libgl1 libglx-mesa0 libgl1-mesa-dri libgles2 libcairo2
 
       - name: Install Python deps
         run: |

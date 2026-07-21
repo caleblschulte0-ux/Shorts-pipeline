@@ -62,6 +62,30 @@ def _frame(size: int, pose: str, bob: float, flip: bool) -> Image.Image:
     return canvas
 
 
+def _bob_loop(out_path: Path, base: Image.Image, size: int, fps: int,
+              seconds: float, flip: bool) -> Path:
+    """Loop a single mascot frame with a gentle seamless breathing bob."""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    base = base.resize((size, size), Image.LANCZOS)
+    if flip:
+        base = base.transpose(Image.FLIP_LEFT_RIGHT)
+    n = max(1, int(fps * seconds))
+    with tempfile.TemporaryDirectory() as td:
+        td = Path(td)
+        for i in range(n):
+            t = i / n
+            bob = (1 - math.cos(t * 2 * math.pi)) * 0.5 * (size * 0.022)
+            canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+            canvas.alpha_composite(base, (0, max(0, int(bob))))
+            canvas.save(td / f"m{i:04d}.png")
+        subprocess.run(
+            ["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(fps),
+             "-i", str(td / "m%04d.png"),
+             "-c:v", "qtrle", "-pix_fmt", "argb", str(out_path)],
+            check=True)
+    return out_path
+
+
 def build_mascot_loop(out_path: Path, *, size: int = 360, fps: int = 30,
                       seconds: float = 3.0, point_angle: float = 90.0,
                       flip: bool = False, pose: str | None = None) -> Path:
@@ -69,21 +93,24 @@ def build_mascot_loop(out_path: Path, *, size: int = 360, fps: int = 30,
     ``pose`` selects the expression; if omitted it is derived from
     ``point_angle`` for backward compatibility. ``flip`` mirrors horizontally."""
     pose = pose or _pose_for_angle(point_angle)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    n = max(1, int(fps * seconds))
-    with tempfile.TemporaryDirectory() as td:
-        td = Path(td)
-        for i in range(n):
-            t = i / n
-            # small, seamless vertical breath (0..size*0.02, sine)
-            bob = (1 - math.cos(t * 2 * math.pi)) * 0.5 * (size * 0.022)
-            _frame(size, pose, bob, flip).save(td / f"m{i:04d}.png")
-        subprocess.run(
-            ["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(fps),
-             "-i", str(td / "m%04d.png"),
-             "-c:v", "qtrle", "-pix_fmt", "argb", str(out_path)],
-            check=True)
-    return out_path
+    return _bob_loop(out_path, _load(pose), size, fps, seconds, flip)
+
+
+def build_scene_loop(out_path: Path, spec: dict, *, size: int = 360,
+                     fps: int = 30, seconds: float = 2.2,
+                     flip: bool = False) -> Path:
+    """Render Data performing a director-chosen scene ACTION (in the scene,
+    holding a prop) and loop it. Falls back to the idle host if the director
+    or its rasteriser is unavailable, so a render never dies over a prop."""
+    try:
+        from data_learning import mascot_director as director
+        frame = out_path.parent / f"{out_path.stem}_frame.png"
+        director.render_png(spec, size, frame)
+        base = Image.open(frame).convert("RGBA")
+    except Exception as e:  # noqa: BLE001
+        print(f"[mascot] scene compose failed ({e}); idle host", flush=True)
+        base = _load(DEFAULT_POSE)
+    return _bob_loop(out_path, base, size, fps, seconds, flip)
 
 
 def save_static(out_path: Path, size: int = 360, point_angle: float = 90.0,

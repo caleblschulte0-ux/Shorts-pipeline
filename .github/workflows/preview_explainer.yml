@@ -58,7 +58,8 @@ jobs:
           sudo rm -f /etc/apt/sources.list.d/microsoft*.list \
                      /etc/apt/sources.list.d/*microsoft* 2>/dev/null || true
           sudo apt-get update -qq || sudo apt-get update -qq || true
-          sudo apt-get install -y -q ffmpeg
+          # libcairo2: cairosvg rasterises the mascot director's per-scene SVG.
+          sudo apt-get install -y -q ffmpeg libcairo2
 
       - name: Install Python deps
         run: |

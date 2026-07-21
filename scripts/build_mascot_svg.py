@@ -242,6 +242,57 @@ def pose_svg(pose: str) -> str:
             f'{defs}{ground}{inner}</svg>')
 
 
+# ---- arbitrary-pose API for the action director ----------------------
+# The rig can be posed into ANY action, not just the 8 presets: arms/eyes/
+# mouth are passed in, legs can be swapped for seated / straddle variants,
+# and props can be layered behind or in front. This is what lets a per-scene
+# director place Data INTO the scene (on the cans, pushing the cart, riding
+# the chart) instead of parking a fixed pose.
+LEG_W = (36, 27)
+
+
+def lower_stand():
+    return legs() + feet()
+
+
+def lower_seated():
+    """Bent-knee sitting posture (for sitting ON a prop)."""
+    s = (limb(152, 300, 126, 328, 0, *LEG_W, 0) +
+         limb(126, 328, 150, 356, 0, *LEG_W, 0) +
+         limb(188, 300, 214, 328, 0, *LEG_W, 0) +
+         limb(214, 328, 190, 356, 0, *LEG_W, 0))
+    return s + (f'<ellipse cx="150" cy="358" rx="26" ry="13" fill="{TEAL}" '
+                f'stroke="{OUTLINE}" stroke-width="{SW}"/>'
+                f'<ellipse cx="190" cy="358" rx="26" ry="13" fill="{TEAL}" '
+                f'stroke="{OUTLINE}" stroke-width="{SW}"/>')
+
+
+def lower_ride():
+    """Straddle posture (for riding a mount)."""
+    s = (limb(152, 300, 116, 360, 0, *LEG_W, 0) +
+         limb(188, 300, 224, 360, 0, *LEG_W, 0))
+    return s + (f'<ellipse cx="112" cy="362" rx="26" ry="13" fill="{TEAL}" '
+                f'stroke="{OUTLINE}" stroke-width="{SW}"/>'
+                f'<ellipse cx="228" cy="362" rx="26" ry="13" fill="{TEAL}" '
+                f'stroke="{OUTLINE}" stroke-width="{SW}"/>')
+
+
+def assemble(arms: str, eyes: str, mouth: str, lower: str | None = None,
+             extra_back: str = "", extra_front: str = "") -> str:
+    """Full mascot in rig coords (0..340 x 0..388). ``extra_back`` draws
+    behind the body (a mount, a chair), ``extra_front`` in front (a held
+    prop). Colours stay flat here; the caller can gradient-swap if wanted."""
+    low = lower if lower is not None else lower_stand()
+    return (extra_back + horns() + low + torso() + coat() + neck() + head() +
+            cheeks() + eyes + glasses() + mouth + tie() + arms + extra_front)
+
+
+def wrap(inner: str, view: str = "-60 -40 460 470", extra_defs: str = "",
+         label: str = "Data mascot") -> str:
+    return (f'<svg viewBox="{view}" xmlns="http://www.w3.org/2000/svg" '
+            f'role="img" aria-label="{label}">{extra_defs}{inner}</svg>')
+
+
 def write_svgs() -> list[Path]:
     OUT.mkdir(parents=True, exist_ok=True)
     out = []
