@@ -138,9 +138,17 @@ def _encode(frames_dir: Path, out: Path):
         check=True)
 
 
-def _render(draw_fn, out: Path, seconds: float, seed: int = 7):
+def _render(draw_fn, out: Path, seconds: float, seed: int = 7,
+            push: float = 0.06):
     """Render `seconds` of frames with draw_fn(i, n, im)->im, piping raw RGB
-    straight into ffmpeg — no per-frame PNG I/O (the old bottleneck)."""
+    straight into ffmpeg — no per-frame PNG I/O (the old bottleneck).
+
+    A slow continuous PUSH (a gentle Ken-Burns zoom, `push` = total zoom over the
+    beat) rides on EVERY designed card. This is not decoration: after a card's move
+    lands it used to coast on faint stars, which the cool judge reads as a frozen
+    hold (LONG_HOLD) for 8-14s. A continuous push means no frame ever equals the
+    last, so a card is never 'held' — and it reads more cinematic. Set push=0 to
+    disable for a card that must stay locked."""
     import subprocess
     n = max(2, int(round(seconds * FPS)))
     bg = _bg(seed)
@@ -150,8 +158,14 @@ def _render(draw_fn, out: Path, seconds: float, seed: int = 7):
          "-c:v", "libx264", "-crf", "18", "-preset", "medium",
          "-pix_fmt", "yuv420p", str(out)], stdin=subprocess.PIPE)
     for i in range(n):
-        im = draw_fn(i, n, bg.copy())
-        proc.stdin.write(im.convert("RGB").tobytes())
+        im = draw_fn(i, n, bg.copy()).convert("RGB")
+        if push > 0:                              # continuous zoom so nothing freezes
+            z = 1.0 + push * (i / max(1, n - 1))
+            nw, nh = int(round(W * z)), int(round(H * z))
+            im = im.resize((nw, nh), Image.BILINEAR)
+            ox, oy = (nw - W) // 2, (nh - H) // 2
+            im = im.crop((ox, oy, ox + W, oy + H))
+        proc.stdin.write(im.tobytes())
     proc.stdin.close()
     proc.wait()
     return out
