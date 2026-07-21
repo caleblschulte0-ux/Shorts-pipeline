@@ -51,7 +51,7 @@ SCALE_Y = CHART_H / CHART_PNG_H
 FOOT_Y = CHART_Y + CHART_H + 10
 FOOT_H = (H - FOOT_Y) & ~1       # keep even (yuv420p / filter sizing)
 
-MASCOT_SIZE = 300                # the brand's face — a real, central presence
+MASCOT_SIZE = 360                # the brand's face — the lead, a big central presence
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
 UP_ANGLE = 90                    # points up (hook / closing / fallback)
 MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 520)   # hook / closing rest spot
@@ -1247,14 +1247,30 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         import os as _osm
         _clean = _osm.environ.get("LEGACY_LOOK") != "1"
         if _clean:
-            # HOST mode: one big mascot planted in the lower third (fills the
-            # space the b-roll used to, gestures up at the data, never covers a
-            # number). Consistent brand presence, no jumping around.
+            # HOST mode: one big mascot planted centrally in the lower third,
+            # but he REACTS to the beat — idle by default, a reaction on each
+            # number, and a celebratory beat to close. He's the main character:
+            # present every frame, never parked on one expression, never jumping
+            # around. seq entries carry a 7th field = pose name.
             home = (float((W - S) // 2), float(H - S - 250))
-            seq = [(home[0], home[1], 0.0, total, UP_ANGLE, False)]
+            react_cycle = ("point", "shock", "point", "think")
+            seq = []
+            last_end = 0.0
+            for ri, e in enumerate(events):
+                pz = react_cycle[ri % len(react_cycle)]
+                seq.append((home[0], home[1], e["w0"], e["w1"],
+                            UP_ANGLE, False, pz))
+                last_end = max(last_end, e["w1"])
+            # celebrate over the closing window (never overlapping a reaction,
+            # so exactly one host is composited at a time)
+            close_w0 = max(windows[-1][0], last_end)
+            if windows[-1][1] - close_w0 > 0.05:
+                seq.append((home[0], home[1], close_w0, windows[-1][1],
+                            UP_ANGLE, False, "cheer"))
         else:
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
-            seq = [(home[0], home[1], windows[0][0], windows[0][1], UP_ANGLE, False)]
+            seq = [(home[0], home[1], windows[0][0], windows[0][1],
+                    UP_ANGLE, False, "idle")]
             for e in events:
                 if e["anchor"]:
                     bcx, bcy, variant = _place_mascot(
@@ -1265,8 +1281,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 tly = min(max(bcy - S / 2, 2), H - S - 2)
                 seq.append((tlx, tly, e["w0"], e["w1"],
                             UP_ANGLE if variant == "U" else SIDE_ANGLE,
-                            variant == "R"))
-            seq.append((home[0], home[1], windows[-1][0], windows[-1][1], UP_ANGLE, False))
+                            variant == "R",
+                            "idle" if variant == "U" else "point"))
+            seq.append((home[0], home[1], windows[-1][0], windows[-1][1],
+                        UP_ANGLE, False, "idle"))
 
         # Guarantee the host is on-screen for EVERY frame. Any beat whose line
         # names no on-chart number produces no events, which left a hole in the
@@ -1278,11 +1296,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         for entry in seq:
             w0, w1 = entry[2], entry[3]
             if w0 - cursor > 0.05:
-                filled.append((home[0], home[1], cursor, w0, UP_ANGLE, False))
+                filled.append((home[0], home[1], cursor, w0,
+                               UP_ANGLE, False, "idle"))
             filled.append(entry)
             cursor = max(cursor, w1)
         if total - cursor > 0.05:
-            filled.append((home[0], home[1], cursor, total, UP_ANGLE, False))
+            filled.append((home[0], home[1], cursor, total,
+                           UP_ANGLE, False, "idle"))
         seq = filled
 
         import os as _os2
@@ -1291,10 +1311,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # central role. LEGACY_LOOK=1 restores the old bokeh + b-roll strip.
         CLEAN = _os2.environ.get("LEGACY_LOOK") != "1"
         mascot_movs = []
-        for k, (_x, _y, _w0, _w1, angle, flip) in enumerate(seq):
+        for k, (_x, _y, _w0, _w1, angle, flip, pz) in enumerate(seq):
             mv = work / f"masc_{k}.mov"
             mascot.build_mascot_loop(mv, size=S, seconds=2.2,
-                                     point_angle=float(angle), flip=flip)
+                                     point_angle=float(angle), flip=flip,
+                                     pose=pz)
             mascot_movs.append(mv)
 
         # Bottom footage: round-robin through the per-style b-roll clips so
@@ -1425,7 +1446,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             prev = f"b{i}"
         # Mascots — each slides in from the previous spot (feels like it walks).
         prev_tl = home
-        for k, (tlx, tly, w0, w1, _a, _f) in enumerate(seq):
+        for k, (tlx, tly, w0, w1, _a, _f, _p) in enumerate(seq):
             gi = masc_input[k]
             # Calmer: a slower glide (0.55s) and a gentle bob.
             xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.55, tlx)], 1)
