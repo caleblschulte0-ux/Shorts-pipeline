@@ -59,7 +59,12 @@ def _render_package(pkg: dict, out_path) -> None:
     """Route to the right renderer. Reddit-drama packages (they carry a
     `subreddit`) get the genre renderer — full-screen gameplay, post card,
     karaoke captions. Everything else keeps the explainer stack."""
-    if pkg.get("subreddit") or os.environ.get("REDDIT_FORMAT"):
+    if pkg.get("format") == "text_card":
+        import make_text_card
+        make_text_card.build_text_card(
+            pkg, out_path,
+            gameplay_tag=pkg.get("_gameplay_tag", "minecraft"))
+    elif pkg.get("subreddit") or os.environ.get("REDDIT_FORMAT"):
         import make_reddit_story
         make_reddit_story.build_reddit_story(
             pkg, out_path,
@@ -294,6 +299,11 @@ def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | No
     """Features 1 + 3. Returns (thumbnail_path_or_None, qa_block_reason_or_None).
     A non-None block reason means vision QA flagged the video as
     broken/unsafe and the caller should skip the upload."""
+    # text_card videos are a clip + a text block by design — the relevance/
+    # imagery QA doesn't apply and would false-flag them. Skip QA entirely;
+    # YouTube auto-generates a thumbnail.
+    if pkg.get("format") == "text_card":
+        return None, None
     block: str | None = None
     thumb: str | None = None
     try:
@@ -390,12 +400,17 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         "package_path": pkg.get("_path"),
     }
     t_start = time.time()
+    # text_card packages carry no shots — the payload is the text block, not
+    # illustrated beats — so the shot-based backfill + illustration gate don't
+    # apply and would wrongly quarantine them. Skip both for that format.
+    _is_text_card = pkg.get("format") == "text_card"
     # Feature 2: backfill thin beats with generated imagery so a good
     # story isn't quarantined for stock-only shots (no-op without a key).
-    _backfill_illustrations(pkg)
+    if not _is_text_card:
+        _backfill_illustrations(pkg)
     # Pre-render illustration gate. Quarantine (don't render) a package
     # that would ship off-topic stock; the batch continues without it.
-    reason = _illustration_quarantine(pkg)
+    reason = None if _is_text_card else _illustration_quarantine(pkg)
     if reason is not None:
         result["error"] = f"quarantined: {reason}"
         result["quarantined"] = True
