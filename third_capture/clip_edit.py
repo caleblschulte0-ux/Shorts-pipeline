@@ -339,9 +339,15 @@ def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
     import whisper
     model = whisper.load_model(model_name)
     # condition_on_previous_text=False stops the music/crowd-noise
-    # hallucination loops stream audio triggers
+    # hallucination loops stream audio triggers.
+    # language="en" is REQUIRED: without it whisper auto-detects language on
+    # noisy/music/crowd audio and hallucinates foreign-script warning text
+    # ("CẨN TRỌNG", Vietnamese for CAUTION, burned into a live batch) that then
+    # gets burned into the captions. Our channel is English streamer content —
+    # pin the decode to English so a mishear is at worst an English word the
+    # blocklist/low-probability filters can catch, never foreign glyphs.
     res = model.transcribe(str(video), word_timestamps=True, fp16=False,
-                           condition_on_previous_text=False)
+                           condition_on_previous_text=False, language="en")
     words = []
     for seg in res["segments"]:
         if seg.get("no_speech_prob", 0) > 0.66:
@@ -373,7 +379,15 @@ Format: Layer, Start, End, Style, Text
 # ASS colors are &HAABBGGRR
 _YELLOW = r"\c&H00FFFF&"
 _WHITE = r"\c&HFFFFFF&"
-_POP_FX = r"{\pos(540,1350)\fscx72\fscy72\t(0,70,\fscx100\fscy100)}"
+# Kinetic word-pop (the "someone edited this" caption): the word snaps in
+# small, OVERSHOOTS past full size, then settles — the bounce every TikTok/
+# Shorts editor uses, instead of a flat scale. Two chained \t transforms:
+# 0-80ms grow 50%→114% (the snap), 80-150ms ease 114%→100% (the settle).
+# A soft drop-shadow (\shad, \4c black) lifts it off busy footage. This is
+# the biggest universal look upgrade — it renders on every caption in BOTH
+# A/B arms, calm or not, so it improves clips the edit effects can't touch.
+_POP_FX = (r"{\pos(540,1350)\shad3\4c&H000000&\fscx50\fscy50"
+           r"\t(0,80,\fscx114\fscy114)\t(80,150,\fscx100\fscy100)}")
 
 # Caption safety: whisper mishears crowd noise into words we must never
 # burn on screen ("higger" was a real incident). Any group containing a
