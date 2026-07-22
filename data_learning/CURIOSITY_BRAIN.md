@@ -90,9 +90,11 @@ exist (LEARNING_LOOP.md) — pillars earn their slate share, taste doesn't.
 - First seconds = **proof, not setup**. No branding/throat-clearing; the
   hook states the premise, the tension, and the promised payoff inside
   the first 15–20 seconds.
-- New information OR a new visual state every **1–3 seconds** (camera,
-  object, label, scale, crop, or motion — the 50% frame must not equal the
-  100% frame).
+- **Something genuinely NEW every ≤5 seconds** (a cut, a new element landing,
+  a reveal, a reframe — not the same idea still animating). This is the ONE
+  cadence authority, enforced by `novelty_check` (see `DIRECTOR.md` "MOTION IS
+  NOT NOVELTY") plus each beat's own `max_unchanged`. Motion for its own sake
+  is not novelty.
 - **Context never before intrigue** — context sentences come after the
   hook earns the stay.
 - The final line must **escalate, invert, or resolve** — never restate a
@@ -108,17 +110,24 @@ exist (LEARNING_LOOP.md) — pillars earn their slate share, taste doesn't.
 
 ## 7. Production rules — the house style
 
+> **The authorities for visual grammar are `DIRECTOR.md`, `TASTE_JUDGE.md`,
+> `VISUAL_STANDARD.md`, and `PRO_DOCTRINE.md`.** Where this playbook and those
+> documents ever disagree, THEY win — this §7 sets format and story shape, not
+> visual grammar.
+
 **Format: 1920×1080 16:9, 30fps, MP4/H.264, AAC-LC 48kHz, −14 LUFS,
-4–5 minutes, ~550–800 spoken words** — the source playbook's spec, rendered
-by the channel's own long-form renderer
-(`python -m data_learning.longform_render --slug <slug>`). Documentary
-pacing: calm narration (no Shorts-speed voice), one "exhibit" frame per
-beat with a slow Ken Burns push, a ducked music bed, a title card open and
-a takeaway card close.
+4–5 minutes, ~550–800 spoken words** — rendered by the **Visual Sequence
+Director / shot-list path** (`python -m data_learning.pro_render
+<story>.beats.json <out>`; `data_learning/longform_render.py` is the legacy
+fallback only). Documentary pacing = calm narration (no Shorts-speed voice)
+and a ducked music bed. **A beat is a mini-sequence** (setup → development →
+proof → payoff → bridge), never one "exhibit" frame held with a slow Ken
+Burns push. There is **no universal title-card open or takeaway-card close** —
+open on the hook (a static title open is a hook failure, see `HOOK_DIRECTOR`),
+and end on the payoff image, not a restated-fact card.
 
 **Chapters are mandatory** (auto-emitted to `<out>.meta.json` and written
-into the description): first at 00:00, at least 3, each ≥10 seconds —
-beats run 20–40s so this holds by construction. **Thumbnail** is
+into the description): first at 00:00, at least 3, each ≥10 seconds. **Thumbnail** is
 auto-emitted at 1920×1080 (claim + biggest on-chart number in the video's
 theme palette); once the channel earns advanced features, A/B test
 titles/thumbnails on the back catalog.
@@ -163,20 +172,30 @@ view); build reusable scene templates before reaching for it.
 - **Numbers must SPEAK cleanly** — digits + unit in every `say` line, the way
   they should be heard ("12,262 meters", "180 degrees Celsius", "828,000
   km/h"). [same tenant as the explainer channel]
-- **Vary chart types** within a story (≥2 of rank/comparison/trend/share) and
-  prefer VIZ-scene depictions (fill_object / stack / timeline / orbit over
-  real photos) once the viz director runs on this config — a bare chart is a
-  fallback, not the goal.
-- **B-roll between the payoffs (documentary grammar).** Real stock footage
-  plays while the narration sets each beat up, then the cut lands on the
-  chart/hero exactly when the number does. Every segment carries a
-  `"broll": ["query one", "query two"]` list — 1–2 queries of 2–4 concrete
-  nouns naming ONE recognizable thing (same Rule-E discipline as the news
-  channel: `"mount everest aerial"`, never keyword soup). Footage is
-  capped at 45% of the beat so the data payoff always dominates; providers
-  are Pexels/Pixabay (keys) with keyless Mixkit as the always-on net, and
-  a failed fetch silently yields the beat back to the payoff — b-roll is
-  a bonus, never a blocker.
+- **Organize visuals by explanatory FUNCTION, not chart type** (see
+  `PRO_DOCTRINE.md`): relative_motion · scale · accumulation · cause_and_effect ·
+  mechanism · transformation · spatial_relationship · hierarchy · uncertainty ·
+  chronology · annotation. A beat first asks *"what must the viewer understand?"*
+  and only then picks a form. **Bars/lines/gauges are supporting tools** — a
+  chart may not carry a major beat without transforming into another mode
+  (`VISUAL_STANDARD.md` makes a beat-carrying chart a CRITICAL failure).
+- **The five co-equal storytelling engines** (no garnish tier):
+  - **REAL FOOTAGE** — reality, evidence, place, people, texture. Full-frame with
+    a matched move IS the beat (`VISUAL_STANDARD.md` certifies footage-primary);
+    never a pasted rectangle hard-cut into motion.
+  - **DESIGNED 2D** (`flat2d`) — invisible systems, numbers, relationships,
+    mechanisms, transformations.
+  - **CHARACTER SCENES** (`scenes`, the pictogram) — human POV and soul
+    (TASTE_JUDGE palette #1).
+  - **COMPOSITING** — combine reality + explanation into one shot (a number
+    attached to a moving world, not a dashboard card).
+  - **3D** (`blender_hero`) — only for a viewpoint or transformation footage and
+    2D cannot give; it must earn its place.
+  The only **minority cap is on clean data-cards** (`composition_budget`,
+  ≤~40% of runtime) — never on footage. Media providers: NASA/Pexels/Pixabay/
+  Openverse/Commons via the `media.py` gateway with license discipline; a failed
+  fetch degrades gracefully (motion-first → still → designed fallback), never
+  crashes a render.
 - **THE MUTE TEST [permanent law, operator-set]:** with narration off, a
   viewer must follow **~70% of the story from visuals alone** — the
   defining trait of elite visual explainers. Visuals do the explanatory
@@ -436,11 +455,14 @@ creating animations; live numbers anchor to sibling objects.
 
 **Backends behind the IR** — Manim's moving camera is the 2.5D
 compositor (an implementation detail, not the identity); Blender
-renders hero waypoints (`monoliths`, `earth_dive`) spliced over their
+renders hero waypoints (`earth_dive`; the `monoliths` bar template is
+retired — see `VISUAL_STANDARD.md` CHART_GRAMMAR) spliced over their
 windows behind a luminance dip (the SIMPLE splice — no motion-matched
-portals, by operator ruling); footage appears only on in-world screens
-or ≤1–2 act-break inserts. **Ken Burns/drift is legal ONLY on footage**
-— everywhere else motion is the real camera.
+portals, by operator ruling). *(This §7.5 describes the legacy
+world_engine/simulation path, now the fallback; the production path is the
+Visual Sequence Director / shot-list — see §7.)* In the production path
+**real footage is a co-equal primary engine, not a capped insert**, and
+Ken Burns is a per-shot camera choice, never a beat's only source of motion.
 
 **Story templates** (pick per story, don't force one shape):
 `mystery-reveal` (question → clues → reveal → twist),
