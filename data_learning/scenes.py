@@ -1181,50 +1181,78 @@ def grocery_scene(out: Path, seconds: float = 6.0, number: str = "",
         return _vgrad((int(24 + 104 * k), int(28 + 96 * k), int(40 + 74 * k)),
                       (12, 14, 22))
 
+    def _product(dd, x, base, kind, col):
+        """A single grocery item drawn to READ as an object, not a bar: a can, a
+        box, a bottle, or a piece of produce."""
+        if kind == 0:      # can
+            dd.rounded_rectangle([x - 16, base - 46, x + 16, base], radius=8, fill=(*col, 255))
+            dd.ellipse([x - 16, base - 52, x + 16, base - 40], fill=(*[min(255, c + 30) for c in col], 255))
+        elif kind == 1:    # box
+            dd.rounded_rectangle([x - 20, base - 50, x + 20, base], radius=4, fill=(*col, 255))
+            dd.line([x - 20, base - 30, x + 20, base - 30], fill=(255, 255, 255, 90), width=3)
+        elif kind == 2:    # bottle
+            dd.rounded_rectangle([x - 12, base - 40, x + 12, base], radius=6, fill=(*col, 255))
+            dd.rectangle([x - 5, base - 58, x + 5, base - 40], fill=(*col, 255))
+            dd.ellipse([x - 6, base - 64, x + 6, base - 54], fill=(220, 220, 230, 255))
+        else:              # produce (round)
+            dd.ellipse([x - 18, base - 36, x + 18, base], fill=(*col, 255))
+            dd.line([x, base - 36, x + 3, base - 44], fill=(90, 140, 90, 255), width=4)
+
+    PALS = [(196, 96, 84), (86, 150, 196), (120, 188, 132), (214, 176, 92),
+            (170, 120, 200), (210, 130, 150)]
+
     def draw(i, n, im):
         t = i / max(1, n - 1)
         floor_y = int(H * 0.82)
         d = ImageDraw.Draw(im, "RGBA")
         d.rectangle([0, floor_y, W, H], fill=(20, 22, 32, 255))
-        # shelves behind, stocked with faint product blocks
+        # shelves behind, stocked with VARIED products (cans/boxes/bottles/produce)
         for row in range(3):
-            sy = int(H * 0.14) + row * int(H * 0.14)
-            d.rectangle([int(W * 0.06), sy, int(W * 0.60), sy + 12], fill=(46, 50, 68, 255))
-            for c in range(9):
-                bxx = int(W * 0.07) + c * int(W * 0.058)
-                col = [(120, 150, 200), (200, 140, 120), (140, 190, 140),
-                       (210, 190, 120)][(row + c) % 4]
-                d.rounded_rectangle([bxx, sy - 40, bxx + 42, sy - 4], radius=5,
-                                    fill=(*col, 255))
-        # the checkout counter + a conveyor with items sliding to the scanner
+            sy = int(H * 0.16) + row * int(H * 0.15)
+            d.rectangle([int(W * 0.05), sy, int(W * 0.62), sy + 12], fill=(52, 44, 38, 255))
+            for c in range(11):
+                bxx = int(W * 0.07) + c * int(W * 0.05)
+                _product(d, bxx, sy, (row * 2 + c) % 4, PALS[(row * 3 + c) % len(PALS)])
+        # the checkout counter + a conveyor of REAL-looking items sliding in
         cy = floor_y - 40
         d.rectangle([0, cy, W, cy + 16], fill=(56, 60, 80, 255))
         for k in range(5):
             ph = (t * 0.9 + k * 0.2) % 1.0
-            ix = int(W * 0.10) + ph * int(W * 0.42)
-            col = [(120, 150, 200), (200, 140, 120), (140, 190, 140),
-                   (210, 190, 120), (180, 150, 210)][k % 5]
-            d.rounded_rectangle([ix, cy - 42, ix + 46, cy - 2], radius=6, fill=(*col, 255))
+            ix = int(W * 0.06) + ph * int(W * 0.34)
+            _product(d, ix, cy, k % 4, PALS[k % len(PALS)])
+        # a shopping cart beside the figure, loaded with groceries (character prop)
+        cxx = int(W * 0.26)
+        d.line([cxx - 70, floor_y - 150, cxx - 56, floor_y - 30], fill=(150, 156, 176), width=6)  # handle
+        d.polygon([(cxx - 56, floor_y - 96), (cxx + 60, floor_y - 96),
+                   (cxx + 44, floor_y - 30), (cxx - 40, floor_y - 30)],
+                  fill=(60, 66, 86, 220), outline=(150, 156, 176, 255))
+        for gx in range(-4, 5):                             # basket wires
+            d.line([cxx + gx * 12, floor_y - 96, cxx + gx * 10, floor_y - 30],
+                   fill=(120, 126, 146, 160), width=2)
+        for j, kx in enumerate((-30, 4, 34)):               # items poking out
+            _product(d, cxx + kx, floor_y - 92, j % 4, PALS[(j + 2) % len(PALS)])
+        d.ellipse([cxx - 44, floor_y - 34, cxx - 20, floor_y - 10], fill=(28, 30, 42, 255))
+        d.ellipse([cxx + 26, floor_y - 34, cxx + 50, floor_y - 10], fill=(28, 30, 42, 255))
         # the scanner glow at the register
-        rxc = int(W * 0.60)
+        rxc = int(W * 0.46)
         im = _glow(im, lambda dd: dd.ellipse([rxc - 40, cy - 30, rxc + 40, cy + 30],
                    fill=(120, 200, 255, 150)), 20)
         d = ImageDraw.Draw(im, "RGBA")
         d.rounded_rectangle([rxc - 20, cy - 60, rxc + 20, cy], radius=8, fill=(40, 46, 64, 255))
-        # a register total board climbing
+        # the figure at the register, reaching to scan an item
+        reach = 0.30 + 0.14 * (0.5 + 0.5 * math.sin(i * 0.6))
+        _stand(d, int(W * 0.62), floor_y + 6, h=420, col=FIG, arms_up=reach)
+        # a register total board climbing + the receipt printing longer
         total = 40 + t * 118
-        d.rounded_rectangle([int(W * 0.66), int(H * 0.30), int(W * 0.82), int(H * 0.40)],
+        d.rounded_rectangle([int(W * 0.70), int(H * 0.28), int(W * 0.88), int(H * 0.39)],
                             radius=8, fill=(14, 20, 26, 255), outline=(60, 120, 90, 255), width=4)
         ts = f"${total:5.2f}"
-        d.text((int(W * 0.665), int(H * 0.31)), ts, font=_font(ANTON, 48), fill=(140, 240, 170, 255))
-        # the receipt printing longer under the register
+        d.text((int(W * 0.71), int(H * 0.29)), ts, font=_font(ANTON, 52), fill=(140, 240, 170, 255))
         rl = int(30 + t * 220)
-        d.rectangle([int(W * 0.74), int(H * 0.40), int(W * 0.74) + 46, int(H * 0.40) + rl],
+        d.rectangle([int(W * 0.80), int(H * 0.39), int(W * 0.80) + 46, int(H * 0.39) + rl],
                     fill=(236, 238, 246, 255))
-        for ry in range(int(H * 0.42), int(H * 0.40) + rl, 18):
-            d.line([int(W * 0.745), ry, int(W * 0.74) + 40, ry], fill=(150, 154, 168), width=2)
-        # the figure at the register, arm out to the reader
-        _stand(d, int(W * 0.40), floor_y + 6, h=330, col=FIG, arms_up=0.22)
+        for ry in range(int(H * 0.41), int(H * 0.39) + rl, 18):
+            d.line([int(W * 0.805), ry, int(W * 0.80) + 40, ry], fill=(150, 154, 168), width=2)
         im = _label(im, number, label, col=(120, 188, 132))
         return im
 
