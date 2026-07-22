@@ -84,6 +84,36 @@ def renderable(kind: str) -> bool:
             or kind in CARD_KINDS)
 
 
+def _images_on() -> bool:
+    """Whether AI/photo image SCENES are enabled. Default OFF — the channel is
+    moving away from AI-image 'slop' (which, without a clean cutout, renders as
+    a blob) to clean DETERMINISTIC charts + the mascot performing on them.
+    Re-enable the image-first scenes/mechanics with VIZ_IMAGES=on."""
+    return os.environ.get("VIZ_IMAGES", "off").lower() in ("on", "1", "true")
+
+
+def _deterministic_candidates(f: dict) -> list[str]:
+    """Clean, image-free depictions that always render well: a trend line for a
+    time series, a donut/waffle for a share, the GAUGE for a lone stat, ranked
+    rounded bars for a comparison — bubbles as the terminal guarantee."""
+    det: list[str] = []
+    if f["has_period"]:
+        det += ["trend", "timeline"]
+    if f["is_share"]:
+        det += ["waffle_grid", "share"]
+    if f["n"] == 1:
+        det += ["fill_vessel"]          # the radial gauge (Data rides it)
+    else:
+        det += ["pictorial_race"]       # ranked rounded bars w/ icon caps
+    seen, out = set(), []
+    for k in det:
+        if k not in seen and renderable(k):
+            seen.add(k)
+            out.append(k)
+    out.append("bubbles")
+    return out
+
+
 # --- Feature extraction ------------------------------------------------------
 def _features(ins) -> dict:
     vals = [p.value for p in ins.items if p.value is not None]
@@ -128,6 +158,10 @@ def _candidates(ins, f: dict) -> list[str]:
     # Place data always maps.
     if f["place"]:
         return [f["place"]]
+    # Default path: clean deterministic charts (no AI image scenes). Image-first
+    # depictions return only when VIZ_IMAGES=on and a real cutout is viable.
+    if not _images_on():
+        return _deterministic_candidates(f)
     ranked: list[str] = []
     # Speeds / velocities -> a RACE (real photos moving on a highway / in water).
     if f["speed"] and f["n"] >= 2:
@@ -439,7 +473,7 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     # Only if that can't be produced does it fall to composing from the kit. This
     # is the "make something new first, then get creative with the kit" path; it
     # OVERRIDES any baked choice and falls through silently if the LLM is down.
-    if os.environ.get("VIZ_INVENT", "1") != "0":
+    if os.environ.get("VIZ_INVENT", "1") != "0" and _images_on():
         for i in order:
             if feats[i]["place"]:
                 continue
