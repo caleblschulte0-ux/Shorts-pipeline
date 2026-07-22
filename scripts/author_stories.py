@@ -748,7 +748,26 @@ def main() -> int:
                     help="print what would be added; don't write files")
     ap.add_argument("--max-attempts", type=int, default=5,
                     help="LLM batches to try before giving up")
+    ap.add_argument("--i-understand-this-writes-illustrative-numbers",
+                    action="store_true", dest="override",
+                    help="required override: this tool authors LLM 'illustrative' "
+                         "numbers, which the editorial gate BANS from publishing. "
+                         "It exists only for local experimentation now.")
     args = ap.parse_args()
+
+    # EDITORIAL RESET: authoring synthetic stories to keep the queue full is
+    # disabled by default. Invented "illustrative" numbers can never publish
+    # (scripts/editorial_gate.py), so filling the queue with them only creates
+    # the illusion of a stocked channel. A real data channel starts from one
+    # verifiable fact, added by hand — not from "we need four more videos".
+    if not getattr(args, "override", False) and not args.dry_run:
+        print("author_stories is disabled by the editorial reset.\n"
+              "It writes LLM 'illustrative' numbers, which the editorial gate "
+              "bans from publishing. Add REAL, cited datasets by hand instead.\n"
+              "For local experimentation only, re-run with --dry-run, or "
+              "--i-understand-this-writes-illustrative-numbers.",
+              file=sys.stderr)
+        return 1
 
     cfg = json.loads(CONFIG.read_text())
     if args.backfill:

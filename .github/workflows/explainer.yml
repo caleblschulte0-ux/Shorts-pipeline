@@ -288,9 +288,12 @@ jobs:
           and quality gate in one. FIRST read data_learning/VIZ_BRAIN.md — it is
           your complete playbook (toolkit, hard rules, QA checklist, schemas).
           Work on ONLY these story slugs: ${BRAIN_SLUGS}. Be FAST and efficient —
-          this runs in CI on a tight time budget. Do NOT render frames or images
-          and do NOT run any visual "look" loop; the renderer handles all visuals
-          at render time. Steps:
+          this runs in CI on a tight time budget. This is a PRE-render direction
+          pass only; skip frame-rendering here for time. The AUTHORITATIVE visual
+          review happens AFTER render, on the finished video, in the fail-closed
+          showrunner gate (scripts/showrunner_review.py) — that is what actually
+          looks at the output and can block a publish, so nothing ships un-seen.
+          Steps:
           1. Skim state/brain_context.json (obey its guardrails) and read each
              target story's segment data files. Keep this quick — no deep ledger
              or analytics trawl.
@@ -385,21 +388,18 @@ jobs:
           # on a bad authoring day (2026-07-11: queue hit 0, only 1 posted).
           TOPUP="${{ inputs.topup }}";               [ -z "$TOPUP" ] && TOPUP="8"
           export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
-          # Keep the queue full: AUTHOR brand-new, non-duplicate stories (with
-          # illustrative data) so the channel never runs dry and has to re-post
-          # duplicates. Runs for queue-driven modes and the manual 'author' mode.
-          # Soft-fails (no LLM key / transient error) so posting still proceeds.
-          case "$MODE" in
-            author|schedule|auto|all)
-              python scripts/author_stories.py --top-up "$TOPUP" --max-attempts 6 \
-                || echo "author step skipped (no LLM key or transient error)" ;;
-          esac
-          # Manual 'author' mode also CREATIVE-DIRECTS the whole back catalogue:
-          # the LLM picks the most entertaining depiction for every existing
-          # story's segments (viz + params). One-shot level-up; soft-fails.
+          # RESET (editorial control system): the automatic queue-filler is GONE.
+          # Authoring brand-new stories with LLM "illustrative" numbers to keep
+          # the queue full is the opposite of a data channel — zero videos on a
+          # weak day beats four invented ones. Synthetic stories can no longer
+          # publish anyway (editorial_gate rejects officiality=illustrative), so
+          # topping up the queue with them is pure waste. The manual 'author'
+          # mode is intentionally a NO-OP now; real stories are added by hand
+          # from a real, cited dataset.
           if [ "$MODE" = "author" ]; then
-            python scripts/author_stories.py --backfill \
-              || echo "backfill skipped (no LLM key or transient error)"
+            echo "author mode is disabled by the editorial reset: add real, "
+            echo "sourced datasets by hand instead of authoring illustrative "
+            echo "numbers to fill the queue. Nothing authored."
           fi
           # Self-heal any un-renderable chart specs (single-point "comparison"
           # charts the package generator sometimes emits) before we render, so
@@ -408,12 +408,20 @@ jobs:
           echo "mode=$MODE expected=$EXPECTED every=$EVERY start=$START slugs='${SLUGS:-<all un-posted>}'"
           case "$MODE" in
             author)
-              echo "author-only mode: queue topped up to >=$TOPUP un-posted, not posting." ;;
+              echo "author mode disabled by the editorial reset (see above)." ;;
             verify)
               python scripts/post_stories.py --check-channel ;;
             canary)
-              python scripts/post_stories.py --slugs "${{ inputs.canary_slug }}" ;;
+              # A canary is a REAL publish of one video — the only way to learn.
+              # It still has to clear the fail-closed editorial + review gates,
+              # and only uploads because PUBLISH_ENABLED is set explicitly here.
+              PUBLISH_ENABLED=1 python scripts/post_stories.py \
+                --slugs "${{ inputs.canary_slug }}" --publish ;;
             schedule)
+              # PUBLISH FROZEN by default: post_stories renders + reviews but
+              # does NOT upload unless PUBLISH_ENABLED=1. The reset holds the
+              # channel closed until real, cited stories exist and a human opts
+              # in. (Kept wired so previews/reviews still run.)
               python scripts/post_stories.py $SLUGFLAG $FORCEFLAG \
                 --every-hours "$EVERY" --start-in-hours "$START" --max-per-run 4 ;;
             all)

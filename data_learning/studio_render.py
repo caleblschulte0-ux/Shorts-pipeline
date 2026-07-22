@@ -1028,8 +1028,15 @@ def _hero_clip(points: list[dict], title: str, work: Path, kind: str,
     Best-effort: missing binary / any failure returns None so the caller ships
     the normal 2D video instead of dying. grow=False = full chart from frame 1
     (a punchy OPENER — the first second must grip, not build from black)."""
+    import os
     import shutil
     import subprocess
+    # RESET (one controlled format): Blender 3D bookends are an optional layer,
+    # OFF by default. The channel ships ONE intentional 2D format (flat dark bg,
+    # one real sourced chart, Data the host, narration, captions) rather than
+    # stacking every capability at once. Opt in with EXPLAINER_3D=1.
+    if os.environ.get("EXPLAINER_3D", "0") not in ("1", "true", "on"):
+        return None
     if not shutil.which("blender") or not BLENDER_HERO.exists() or len(points) < 2:
         return None
     spec = {"points": points[:5], "title": title, "accent": accent,
