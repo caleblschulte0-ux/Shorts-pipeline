@@ -1496,19 +1496,28 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
 
 @_fullframe("fill_vessel")
 def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
-    """A jar/beaker that FILLS from the bottom while the number counts up in
-    sync — the depicted replacement for a lone shock stat. Fill height encodes a
-    percentage (or animates full while the count-up carries a raw magnitude)."""
+    """Premium single-stat DEMONSTRATION: a radial GAUGE that sweeps to the
+    value while the number counts up in its centre. Replaces the old lone-blob
+    beaker for single-stat beats (and the bignum creative fallback). For a
+    percentage the arc encodes the true proportion; for a raw magnitude the arc
+    sweeps in as a reveal while the count-up carries the number. Deterministic,
+    full-frame, no network."""
+    import math
     from PIL import Image, ImageDraw
     out_dir.mkdir(parents=True, exist_ok=True)
     W, H = 1080, 1920
     star = max(insight.items, key=lambda p: p.value)
     unit = (insight.unit or "").lower()
     is_pct = unit in ("percent", "%", "rate", "pct")
-    target_frac = max(0.06, min(1.0, star.value / 100.0)) if is_pct else 1.0
-    num_font, lab_font, title_font = _pil_font(118), _pil_font(48), _pil_font(54)
-    vw, vh, vy = 440, 640, 460
-    vx = (W - vw) // 2
+    val_frac = (max(0.02, min(1.0, abs(star.value) / 100.0)) if is_pct else 1.0)
+
+    cx, cy, R, wdt = 540, 940, 300, 52
+    a0, sweep = 135.0, 270.0                        # a bottom-open gauge
+    bbox = [cx - R, cy - R, cx + R, cy + R]
+    title_font, num_font = _pil_font(56), _pil_font(184)
+    lab_font = _pil_font(50)
+    accent = WARN if (is_pct and star.value < 0) else HIGHLIGHT
+    track = "#22314C"
 
     def fmt(v):
         s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
@@ -1519,36 +1528,51 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
             return "$" + s
         return s
 
+    def _cap(d, angle, color):
+        rad = math.radians(angle)
+        px, py = cx + R * math.cos(rad), cy + R * math.sin(rad)
+        d.ellipse([px - wdt / 2, py - wdt / 2, px + wdt / 2, py + wdt / 2],
+                  fill=color)
+
     pattern = str(out_dir / f"{slug}_build%02d.png")
     for f in range(1, frames + 1):
         r = 1.0 if f == frames else f / frames
         eased = 1.0 - (1.0 - r) ** 3
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
-        title = (insight.topic or "").strip()
+        # topic, above the gauge
+        title = (insight.topic or "").strip().upper()
         tb = d.textbbox((0, 0), title, font=title_font)
-        d.text(((W - (tb[2] - tb[0])) // 2, 285), title, font=title_font,
-               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
-        d.rounded_rectangle([vx, vy, vx + vw, vy + vh], radius=64,
-                            outline=(150, 170, 200, 255), width=10)
-        fill_h = int((vh - 20) * target_frac * eased)
-        if fill_h > 8:
-            ly = vy + vh - 10 - fill_h
-            d.rounded_rectangle([vx + 12, ly, vx + vw - 12, vy + vh - 10],
-                                radius=54, fill=_rgba(HIGHLIGHT, 235))
-            d.ellipse([vx + 12, ly - 15, vx + vw - 12, ly + 15],
-                      fill=_rgba("#7FE3DC", 235))
+        d.text(((W - (tb[2] - tb[0])) // 2, 470), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4,
+               stroke_fill=(5, 8, 15, 255))
+        # gauge track (full sweep, faint) with rounded caps
+        tc = _rgba(track, 255)
+        d.arc(bbox, a0, a0 + sweep, fill=tc, width=wdt)
+        _cap(d, a0, tc); _cap(d, a0 + sweep, tc)
+        # value arc
+        cur = (val_frac * eased) if is_pct else eased
+        if cur > 0.004:
+            ac = _rgba(accent, 255)
+            end = a0 + sweep * cur
+            d.arc(bbox, a0, end, fill=ac, width=wdt)
+            _cap(d, a0, ac); _cap(d, end, ac)
+        # counting number in the centre
         num = fmt(star.value * eased)
         nb = d.textbbox((0, 0), num, font=num_font)
-        d.text(((W - (nb[2] - nb[0])) // 2, vy + vh // 2 - 74), num,
-               font=num_font, fill=(255, 255, 255, 255),
-               stroke_width=7, stroke_fill=(5, 8, 15, 255))
-        lb = d.textbbox((0, 0), star.label, font=lab_font)
-        d.text(((W - (lb[2] - lb[0])) // 2, vy + vh + 34), star.label,
-               font=lab_font, fill=(248, 250, 252, 255),
-               stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        d.text((cx - (nb[2] - nb[0]) // 2 - nb[0],
+                cy - (nb[3] - nb[1]) // 2 - nb[1] - 34), num, font=num_font,
+               fill=_rgba(accent, 255), stroke_width=8,
+               stroke_fill=(5, 8, 15, 255))
+        # what the number is
+        lab = star.label
+        lb = d.textbbox((0, 0), lab, font=lab_font)
+        d.text(((W - (lb[2] - lb[0])) // 2, cy + 96), lab, font=lab_font,
+               fill=(226, 232, 240, 255), stroke_width=3,
+               stroke_fill=(5, 8, 15, 255))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
-    return pattern, []
+    return pattern, [{"value": star.value, "cx": cx, "cy": cy,
+                      "w": 2 * R, "h": 2 * R}]
 
 
 @_fullframe("scale_stack")
