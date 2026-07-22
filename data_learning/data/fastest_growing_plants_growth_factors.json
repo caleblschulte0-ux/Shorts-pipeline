@@ -1,7 +1,7 @@
 {
   "key": "fastest_growing_plants_growth_factors",
   "title": "Growth Factors",
-  "unit": "percent",
+  "unit": "",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -10,19 +10,19 @@
     "publisher": "Illustrative",
     "url": "",
     "officiality": "illustrative",
-    "access_date": "2026-07-22"
+    "access_date": "2026-07-18"
   },
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "Soil quality",
+      "value": 100.0,
+      "period": "normal"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "Optimal soil",
+      "value": 500.0,
+      "period": "maximum"
     }
   ]
 }
