@@ -51,6 +51,10 @@ SCALE_Y = CHART_H / CHART_PNG_H
 FOOT_Y = CHART_Y + CHART_H + 10
 FOOT_H = (H - FOOT_Y) & ~1       # keep even (yuv420p / filter sizing)
 
+# Chart kinds that composite the host directly into the chart PNG (Data rides
+# the animated element). The travelling overlay is hidden on these beats.
+HOST_BAKED_KINDS = ("fill_vessel", "bignum", "timeline")
+
 MASCOT_SIZE = 440                # the brand's face — the lead, a big central presence
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
 UP_ANGLE = 90                    # points up (hook / closing / fallback)
@@ -1260,7 +1264,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             """A director spec for segment i (its whole beat), or a pose name.
             Gauge beats bake Data INTO the chart (he rides the arc), so the
             travelling overlay is hidden there to avoid a duplicate mascot."""
-            if getattr(st.segments[i], "kind", "") in ("fill_vessel", "bignum"):
+            # Kinds that composite Data straight INTO the chart (he rides the
+            # gauge arc / walks the timeline dot): suppress the traveling
+            # overlay so there's exactly one host on the beat.
+            if getattr(st.segments[i], "kind", "") in HOST_BAKED_KINDS:
                 return {"hidden": True}
             if not _director:
                 return ("point", "shock", "point", "think")[i % 4]

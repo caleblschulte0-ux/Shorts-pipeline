@@ -1478,11 +1478,22 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
         for rad, alpha in ((48, 60), (34, 120), (23, 255)):
             d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad],
                       fill=_rgba(HIGHLIGHT, alpha))
+        # Data PERFORMS: he WALKS the timeline, standing on the traveling dot
+        # and carrying the value up with him as it slides to its year — so the
+        # host demonstrates the data instead of floating below it. (Composited
+        # in; the traveling overlay is suppressed for this beat.)
+        host = _host_pose("cheer")
+        if host is not None:
+            mh = 250
+            mw = int(host.width * mh / host.height)
+            hx = int(min(max(mx - mw / 2, 8), W - mw - 8))
+            canvas.alpha_composite(host.resize((mw, mh), Image.LANCZOS),
+                                   (hx, int(axis_y - mh + 18)))
         na = max(0.0, min(1.0, (r - 0.35) / 0.65))
         val_txt = _sci(target) + unit_suffix
         vb = d.textbbox((0, 0), val_txt, font=num_font)
         vx = min(max(mx - (vb[2] - vb[0]) / 2, 20), W - 20 - (vb[2] - vb[0]))
-        d.text((vx, axis_y - 170), val_txt, font=num_font,
+        d.text((vx, axis_y - 320), val_txt, font=num_font,
                fill=_rgba(HIGHLIGHT, int(255 * na)),
                stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
         sb = d.textbbox((0, 0), star.label, font=lab_font)
@@ -1749,9 +1760,6 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     # Full-frame renderers (diorama, timeline, fill_vessel, ...) author their own
     # 1080x1920 sequence. If one can't produce (image gen failed), degrade to the
     # next DEPICTED kind — never to bare numbers — and try again (cap the hops).
-    print(f"[chart] '{slug}' kind={insight.kind!r} n={len(insight.items)} "
-          f"vals={[round(float(p.value), 2) for p in insight.items][:4]}",
-          flush=True)
     hops = 0
     while insight.kind in FULLFRAME_RENDERERS and hops < 3:
         res = FULLFRAME_RENDERERS[insight.kind](insight, out_dir, slug, frames)
