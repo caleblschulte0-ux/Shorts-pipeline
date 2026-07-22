@@ -570,8 +570,11 @@ def draw_orbit(d, box, insight, reveal):
                stroke_fill=(5, 8, 15, int(255 * na)))
 
 
-def draw_timeline(d, box, insight, reveal):
-    """A marker travels a time/number axis to its point (the loved timeline)."""
+def draw_timeline(d, canvas, box, insight, reveal):
+    """A marker travels a time/number axis to its point (the loved timeline).
+    Data PERFORMS: he stands on the traveling dot and WALKS it to its year,
+    carrying the value up above his head — so the host demonstrates the data
+    instead of floating below it (the travelling overlay is hidden this beat)."""
     items = _ordered_items(insight)
     vp = getattr(insight, "viz_params", {}) or {}
     star = max(items, key=lambda p: p.value)
@@ -580,16 +583,22 @@ def draw_timeline(d, box, insight, reveal):
     lo = charts._num_or_none(vp.get("timeline_start"))
     hi = charts._num_or_none(vp.get("timeline_end"))
     if have_p:
+        # Time series: the dot travels the YEAR axis, but the hero number is the
+        # METRIC VALUE at that point (e.g. $1,030 / 11.8%) — not the year — with
+        # the year shown small beneath the dot. (Showing the year as the headline
+        # was a real bug: "the grocery bill" read "2,026" instead of "$1,030".)
         lo = min(periods) if lo is None else lo
         hi = max(periods) if hi is None else hi
-        target, suffix = periods[items.index(star)], ""
+        pos = periods[items.index(star)]
+        foot = str(int(pos)) if float(pos).is_integer() else _sci(pos)
     else:
         lo = 0.0 if lo is None else lo
         hi = (star.value * 1.12 or 1.0) if hi is None else hi
-        target, suffix = star.value, (f" {insight.unit}" if insight.unit else "")
+        pos = star.value
+        foot = star.label
     if hi <= lo:
         hi = lo + 1.0
-    frac = max(0.0, min(1.0, (target - lo) / (hi - lo)))
+    frac = max(0.0, min(1.0, (pos - lo) / (hi - lo)))
     axis_y = (box[1] + box[3]) // 2
     x0, x1 = box[0] + 70, box[2] - 70
     num_font, tick_font, lab_font = _pil_font(72), _pil_font(30), _pil_font(46)
@@ -597,7 +606,8 @@ def draw_timeline(d, box, insight, reveal):
     for k in range(5):
         tx = x0 + (x1 - x0) * k / 4
         d.line([(tx, axis_y - 14), (tx, axis_y + 14)], fill=(120, 140, 170, 255), width=4)
-        lbl = _sci(lo + (hi - lo) * k / 4)
+        tv = lo + (hi - lo) * k / 4
+        lbl = str(int(round(tv))) if have_p else _sci(tv)   # years: no comma
         lb = d.textbbox((0, 0), lbl, font=tick_font)
         d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl, font=tick_font,
                fill=(165, 180, 199, 255))
@@ -605,15 +615,26 @@ def draw_timeline(d, box, insight, reveal):
     d.line([(x0, axis_y), (mx, axis_y)], fill=_rgba(HIGHLIGHT, 255), width=12)
     for rad, alpha in ((48, 60), (34, 120), (23, 255)):
         d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(HIGHLIGHT, alpha))
+    # Data rides the dot along the axis (composited straight into the beat).
+    host = charts._host_pose("cheer")
+    if host is not None:
+        from PIL import Image as _Im
+        mh = 250
+        mw = int(host.width * mh / host.height)
+        hx = int(min(max(mx - mw / 2, box[0]), box[2] - mw))
+        canvas.alpha_composite(host.resize((mw, mh), _Im.LANCZOS),
+                               (hx, int(axis_y - mh + 18)))
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.65))
-    val = _sci(target) + suffix
+    val = _fmt_stat(star.value, insight.unit)
     vb = d.textbbox((0, 0), val, font=num_font)
     vx = min(max(mx - (vb[2] - vb[0]) / 2, box[0]), box[2] - (vb[2] - vb[0]))
-    d.text((vx, axis_y - 170), val, font=num_font, fill=_rgba(HIGHLIGHT, int(255 * na)),
+    # Value floats above Data's head (clear of the host so both read cleanly).
+    vy = max(box[1] + 6, axis_y - 320)
+    d.text((vx, vy), val, font=num_font, fill=_rgba(HIGHLIGHT, int(255 * na)),
            stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
-    sb = d.textbbox((0, 0), star.label, font=lab_font)
+    sb = d.textbbox((0, 0), foot, font=lab_font)
     sx = min(max(mx - (sb[2] - sb[0]) / 2, box[0]), box[2] - (sb[2] - sb[0]))
-    d.text((sx, axis_y + 78), star.label, font=lab_font,
+    d.text((sx, axis_y + 78), foot, font=lab_font,
            fill=(248, 250, 252, int(255 * na)), stroke_width=3,
            stroke_fill=(5, 8, 15, int(255 * na)))
 
@@ -693,6 +714,10 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     if not validate(spec, insight):
         return None
     els = spec["elements"]
+    # Mechanics that composite Data straight into the beat (he rides the element)
+    # so the travelling overlay must be suppressed to avoid a duplicate host.
+    if any(el.get("type") == "timeline_axis" for el in els):
+        insight.host_baked = True
     out_dir.mkdir(parents=True, exist_ok=True)
     # A ranking of illustrated things -> big vertical rows (picture + number)
     # that FILL the frame, instead of a cramped bottom row with a dead top third.
@@ -753,7 +778,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             if t == "orbit_group":
                 draw_orbit(d, box, insight, r)
             elif t == "timeline_axis":
-                draw_timeline(d, box, insight, r)
+                draw_timeline(d, canvas, box, insight, r)
             elif t == "caption":
                 draw_caption(d, box, str(el.get("text", "")), lr)
             elif t == "number":

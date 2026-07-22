@@ -37,6 +37,8 @@ class Segment:
     topic: str
     role: str = ""
     kind: str = ""                      # viz kind; "diorama" renders full-frame
+    host_baked: bool = False            # Data is composited INTO the chart this
+                                        # beat (hide the travelling overlay)
     # Every data point's pixel within the chart PNG: [{value, px, py}, ...].
     anchors: list = field(default_factory=list)
 
@@ -247,7 +249,8 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
             sources.append(footer)
         segments.append(Segment(
             sentence, str(cpath) if cpath else None, punches, footer,
-            ins.topic, role=seg_cfg.get("role", ""), kind=ins.kind, anchors=anchors))
+            ins.topic, role=seg_cfg.get("role", ""), kind=ins.kind,
+            host_baked=getattr(ins, "host_baked", False), anchors=anchors))
 
     return Story(
         slug=story_cfg["slug"],

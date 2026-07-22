@@ -1264,10 +1264,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             """A director spec for segment i (its whole beat), or a pose name.
             Gauge beats bake Data INTO the chart (he rides the arc), so the
             travelling overlay is hidden there to avoid a duplicate mascot."""
-            # Kinds that composite Data straight INTO the chart (he rides the
+            # Beats that composite Data straight INTO the chart (he rides the
             # gauge arc / walks the timeline dot): suppress the traveling
-            # overlay so there's exactly one host on the beat.
-            if getattr(st.segments[i], "kind", "") in HOST_BAKED_KINDS:
+            # overlay so there's exactly one host on the beat. Covered either by
+            # a baked chart kind or a scene mechanic that flagged host_baked.
+            if (getattr(st.segments[i], "kind", "") in HOST_BAKED_KINDS
+                    or getattr(st.segments[i], "host_baked", False)):
                 return {"hidden": True}
             if not _director:
                 return ("point", "shock", "point", "think")[i % 4]

@@ -1437,18 +1437,31 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
     lo = _num_or_none(vp.get("timeline_start"))
     hi = _num_or_none(vp.get("timeline_end"))
     if have_periods:
+        # Dot travels the YEAR axis, but the hero number is the METRIC VALUE at
+        # that point (not the year); the year shows small beneath the dot.
         lo = min(periods) if lo is None else lo
         hi = max(periods) if hi is None else hi
         target = periods[items.index(star)]
-        unit_suffix = ""
+        foot = str(int(target)) if float(target).is_integer() else _sci(target)
     else:
         lo = 0.0 if lo is None else lo
         hi = (star.value * 1.12 or 1.0) if hi is None else hi
         target = star.value
-        unit_suffix = f" {insight.unit}" if insight.unit else ""
+        foot = star.label
     if hi <= lo:
         hi = lo + 1.0
     frac = max(0.0, min(1.0, (target - lo) / (hi - lo)))
+    _u = (insight.unit or "").lower()
+
+    def _fmtv(v):
+        s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
+             else f"{v:,.1f}")
+        if _u in ("percent", "%", "rate", "pct"):
+            return s + "%"
+        if _u in ("dollars", "usd", "$"):
+            return "$" + s
+        return s
+    val_txt = _fmtv(star.value)
 
     title_font, num_font = _pil_font(56), _pil_font(72)
     tick_font, lab_font = _pil_font(30), _pil_font(46)
@@ -1469,7 +1482,7 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
             tv = lo + (hi - lo) * k / 4
             d.line([(tx, axis_y - 14), (tx, axis_y + 14)],
                    fill=(120, 140, 170, 255), width=4)
-            lbl = _sci(tv)
+            lbl = str(int(round(tv))) if have_periods else _sci(tv)
             lb = d.textbbox((0, 0), lbl, font=tick_font)
             d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl,
                    font=tick_font, fill=(165, 180, 199, 255))
@@ -1490,15 +1503,14 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
             canvas.alpha_composite(host.resize((mw, mh), Image.LANCZOS),
                                    (hx, int(axis_y - mh + 18)))
         na = max(0.0, min(1.0, (r - 0.35) / 0.65))
-        val_txt = _sci(target) + unit_suffix
         vb = d.textbbox((0, 0), val_txt, font=num_font)
         vx = min(max(mx - (vb[2] - vb[0]) / 2, 20), W - 20 - (vb[2] - vb[0]))
         d.text((vx, axis_y - 320), val_txt, font=num_font,
                fill=_rgba(HIGHLIGHT, int(255 * na)),
                stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
-        sb = d.textbbox((0, 0), star.label, font=lab_font)
+        sb = d.textbbox((0, 0), foot, font=lab_font)
         sx = min(max(mx - (sb[2] - sb[0]) / 2, 20), W - 20 - (sb[2] - sb[0]))
-        d.text((sx, axis_y + 78), star.label, font=lab_font,
+        d.text((sx, axis_y + 78), foot, font=lab_font,
                fill=(248, 250, 252, int(255 * na)),
                stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
