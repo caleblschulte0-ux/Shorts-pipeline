@@ -1,7 +1,7 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
-  "unit": "percent",
+  "key": "lightning_travel_distance_lightning_distance",
+  "title": "Lightning Distance",
+  "unit": "km",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "Shortest distance",
+      "value": 5.0,
+      "period": "2010"
     },
     {
-      "label": "Temperature",
+      "label": "Longest distance",
       "value": 20.0,
-      "period": "percent"
+      "period": "2015"
     }
   ]
 }

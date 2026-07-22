@@ -1,10 +1,10 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
+  "key": "deadliest_venoms_ranked_venom_delivery",
+  "title": "Venom Delivery",
   "unit": "percent",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "comparison",
+  "insight_type": "share",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "Inland Taipan",
+      "value": 70.0,
+      "period": "2020"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "Eastern Brown Snake",
+      "value": 50.0,
+      "period": "2020"
     }
   ]
 }

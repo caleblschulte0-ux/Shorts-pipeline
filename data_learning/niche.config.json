@@ -14988,8 +14988,8 @@
     {
       "slug": "tectonic-plates-on-the-move",
       "title": "Tectonic Plates on the Move",
-      "hook": "The Earth's surface is constantly shifting, but have you ever wondered how fast?",
-      "closing": "The Earth's surface is moving faster than you think!",
+      "hook": "Right now, giant slabs of Earth are racing each other -- but which one is actually winning?",
+      "closing": "Keep that pace up for 10 million years, and the map you know today won't exist anymore.",
       "hashtags": [
         "earthscience",
         "geology",
@@ -15003,29 +15003,13 @@
             "file": "tectonic_plates_on_the_move_plate_movement_speed.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 PLATE MOVEMENT SPE",
-          "topic": "Plate Movement Speed",
-          "say": "The Pacific plate is moving at a speed of 3 centimeters per year, while the North American plate is moving at a speed of 2 centimeters per year.",
+          "role": "1 \u00b7 THE RACE",
+          "topic": "The Great Plate Race",
+          "say": "The Pacific plate drifts three centimeters a year -- the North American plate, only two. Same planet, two different speeds.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:1"
-                }
-              }
-            ]
+            "mechanic": "plate-drift-race",
+            "concept": "Two continents drift across a splitting globe; the distance each slides is scaled to its real speed in centimeters per year.",
+            "code": "cx, cy, r = (RX0 + RX1) // 2, RTOP + 260, 220\nd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba(\"#123a5e\", 230))\nglobe = subject_image(\"planet Earth\")\nif globe:\n    fill_image(globe, 1.0, cx - r, cy - r, r * 2, r * 2, direction='up')\nd.arc([cx - r - 14, cy - r - 14, cx + r + 14, cy + r + 14], 200, 340, fill=rgba(ACCENT, 220), width=10)\nlane_y = cy + r + 60\nlane_h = 200\nmaxv = vmax if vmax > 0 else 1.0\nfor i in range(min(n, 2)):\n    ly = lane_y + i * (lane_h + 50)\n    d.rounded_rectangle([RX0, ly, RX1, ly + lane_h], radius=26, fill=rgba(\"#16233a\", 210))\n    d.line([RX0 + 30, ly + lane_h - 26, RX1 - 30, ly + lane_h - 26], fill=rgba(HIGHLIGHT, 160), width=6)\n    frac = values[i] / maxv\n    travel = (RX1 - RX0 - 240) * frac * reveal\n    chip = images.get(labels[i]) or subject_image(\"tectonic plate rock\")\n    sz = 160\n    px, py = RX0 + 30 + travel, ly + (lane_h - sz) / 2 - 6\n    paste(chip, px, py, sz, sz)\n    text(labels[i], RX0 + 30, ly + 12, size=36)\n    text(f\"{values[i]:.0f} cm/yr\", RX1 - 260, ly + lane_h - 66, size=52, color=HIGHLIGHT)"
           },
           "ascending": false
         },
@@ -15036,22 +15020,13 @@
             "file": "tectonic_plates_on_the_move_fastest_moving_plate.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 FASTEST MOVING PLA",
-          "topic": "Fastest Moving Plates",
-          "say": "The Arabian plate is moving at a speed of 5 centimeters per year, making it one of the fastest moving plates in the world.",
+          "role": "2 \u00b7 FASTEST PLATE",
+          "topic": "Fastest Plate on Earth",
+          "say": "The Arabian plate rips open at five centimeters a year -- nearly double the Pacific's three, making it the fastest split on the planet.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "arrow",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 1.0
-                }
-              }
-            ]
+            "mechanic": "fault-chasm-split",
+            "concept": "The ground splits into a widening chasm; the gap between the two plate faces stretches open exactly as fast as each plate really moves.",
+            "code": "midx = (RX0 + RX1) // 2\nmaxv = vmax if vmax > 0 else 1.0\ngap = 30 + 260 * reveal * (values[0] / maxv if n else 0)\ngroundtop = RTOP + 60\ngroundbot = RBOT - 90\nlh = groundbot - groundtop\nleft_img = images.get(labels[0]) or subject_image(\"cracked rock ground\")\nright_img = (images.get(labels[1]) if n > 1 else None) or subject_image(\"cracked rock ground\")\nfill_image(left_img, 1.0, RX0, groundtop, midx - int(gap / 2) - RX0, lh, direction='right')\nif n > 1:\n    fill_image(right_img, 1.0, midx + int(gap / 2), groundtop, RX1 - (midx + int(gap / 2)), lh, direction='left')\nglow = int(80 + 100 * reveal)\nd.rectangle([midx - int(gap / 2), groundtop, midx + int(gap / 2), groundbot], fill=rgba(WARN, glow))\nfor k in range(6):\n    yy = groundtop + k * (lh / 6)\n    d.line([midx - int(gap / 2), yy, midx + int(gap / 2), yy], fill=rgba(HIGHLIGHT, 200), width=3)\ntext(labels[0], RX0 + 20, groundtop + 20, size=38)\ntext(f\"{values[0]:.0f} cm/yr\", RX0 + 20, groundtop + 70, size=54, color=HIGHLIGHT)\nif n > 1:\n    text(labels[1], RX1 - 320, groundtop + 20, size=38)\n    text(f\"{values[1]:.0f} cm/yr\", RX1 - 320, groundtop + 70, size=54, color=HIGHLIGHT)\ntext(\"splitting wider every year\", midx - 200, groundbot - 46, size=30, color=TEXT)"
           }
         },
         {
@@ -15061,17 +15036,13 @@
             "file": "tectonic_plates_on_the_move_plate_movement_over_.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 PLATE MOVEMENT OVE",
-          "topic": "Plate Movement Over Time",
-          "say": "The movement of the tectonic plates has been increasing over the past few million years, with the Pacific plate moving at a speed of 2 centimeters per year 10 million years ago.",
+          "role": "3 \u00b7 SPEEDING UP",
+          "topic": "Speeding Up Over Time",
+          "say": "Ten million years ago plates crept at just two centimeters a year. Today they've sped up to three -- and they're still accelerating.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
+            "mechanic": "drift-trail-timeline",
+            "concept": "A plate drifts left to right across a millions-of-years timeline, leaving a trail whose thickness is literally the speed at that era.",
+            "code": "axis_y = RBOT - 160\nd.line([RX0 + 20, axis_y, RX1 - 20, axis_y], fill=rgba(TEXT, 160), width=4)\nmaxv = vmax if vmax > 0 else 1.0\nplate_img = (images.get(labels[-1]) if n else None) or subject_image(\"tectonic plate continent\")\nstep = (RX1 - RX0 - 300) / max(1, n - 1) if n > 1 else 0\nfor i in range(n):\n    x = RX0 + 150 + step * i\n    thick = 18 + 90 * (values[i] / maxv)\n    if i > 0:\n        prevx = RX0 + 150 + step * (i - 1)\n        prevthick = 18 + 90 * (values[i - 1] / maxv)\n        seg_reveal = clamp(reveal * n - i, 0, 1)\n        cx = lerp(prevx, x, seg_reveal)\n        d.line([prevx, axis_y, cx, axis_y], fill=rgba(ACCENT, 220), width=int(lerp(prevthick, thick, seg_reveal)))\n    d.ellipse([x - 10, axis_y - 10, x + 10, axis_y + 10], fill=rgba(HIGHLIGHT, 255))\n    text(labels[i], x - 90, axis_y + 24, size=28)\n    text(f\"{values[i]:.0f} cm/yr\", x - 70, axis_y - 70, size=44, color=HIGHLIGHT)\nsz = 210\npaste(plate_img, RX0 + 150 + step * (n - 1) - sz / 2, axis_y - 250, sz, sz)"
           }
         },
         {
@@ -15081,32 +15052,24 @@
             "file": "tectonic_plates_on_the_move_effects_of_plate_mov.json"
           },
           "insight_type": "rank",
-          "role": "4 \u00b7 EFFECTS OF PLATE M",
-          "topic": "Effects of Plate Movement",
-          "say": "The movement of the tectonic plates can cause earthquakes, volcanic eruptions, and the creation of mountain ranges, with 80% of the world's volcanoes located at the boundaries of the tectonic plates.",
+          "role": "4 \u00b7 THE FALLOUT",
+          "topic": "Where It All Erupts",
+          "say": "Eighty percent of the world's volcanoes and ninety percent of its earthquakes happen exactly where these plates meet.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "hero",
-                "subject": "volcano",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "mechanic": "twin-effect-gauges",
+            "concept": "Two rising gauges -- one erupting with a volcano, one cracking with a fault line -- fill to the exact share of global activity plate boundaries cause.",
+            "code": "maxv = 100.0\ngw = 280\ngx0 = RX0 + 40\ngx1 = RX1 - gw - 40\ngtop = RTOP + 60\ngbot = RBOT - 110\ngh = gbot - gtop\nsubs = [\"volcano erupting\", \"earthquake crack\"]\nfor i in range(min(n, 2)):\n    gx = gx0 if i == 0 else gx1\n    d.rounded_rectangle([gx, gtop, gx + gw, gbot], radius=30, outline=rgba(TEXT, 160), width=4)\n    frac = clamp(values[i] / maxv, 0, 1) * reveal\n    img = images.get(labels[i]) or subject_image(subs[i] if i < len(subs) else labels[i])\n    fill_image(img, frac, gx + 8, gtop + 8, gw - 16, gh - 16, direction='up', color=WARN if i == 0 else ACCENT)\n    text(labels[i], gx + 10, gtop - 46, size=32)\n    text(f\"{values[i]:.0f}%\", gx + gw / 2, gtop + gh - 70, size=56, color=HIGHLIGHT, center=True)\ntext(\"caused at plate boundaries\", RX0 + 20, RBOT - 56, size=28)"
           },
           "ascending": false
         }
       ],
-      "question": "What do you think is the most significant effect of tectonic plate movement?"
+      "question": "Which would scare you more to live near: the fault line, or the volcano?"
     },
     {
       "slug": "lava-production-of-volcanoes",
       "title": "Lava Production of Volcanoes",
-      "hook": "Volcanoes are capable of producing massive amounts of lava, but just how much?",
-      "closing": "The amount of lava produced by volcanoes is staggering!",
+      "hook": "Two of the world's most famous volcanoes are pouring out lava right now -- but one is erupting twice as fast. Which one?",
+      "closing": "Surtsey Island didn't exist 80 years ago -- it was ALL born from lava like this. Give it enough time, and any patch of ocean could become new land.",
       "hashtags": [
         "volcanology",
         "geology",
@@ -15120,29 +15083,13 @@
             "file": "lava_production_of_volcanoes_lava_production_rat.json"
           },
           "insight_type": "rank",
-          "role": "1 \u00b7 LAVA PRODUCTION RA",
-          "topic": "Lava Production Rate",
-          "say": "The Kilauea volcano in Hawaii produces lava at a rate of 100 cubic meters per second, while the Mount Etna volcano in Italy produces lava at a rate of 50 cubic meters per second.",
+          "role": "1 \u00b7 FLOW RATE",
+          "topic": "Lava Flow Rate",
+          "say": "Kilauea pours out 100 cubic meters of lava every second -- Mount Etna, half that at 50. Same planet, double the flow.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "volcano",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "volcano",
-                "data": {
-                  "value_from": "item:1"
-                }
-              }
-            ]
+            "mechanic": "lava-river-race",
+            "concept": "Two real volcanoes each pour a lava river across the frame; the river's reach is literally how many cubic meters per second they erupt.",
+            "code": "maxv = vmax if vmax > 0 else 1.0\nlane_h = 260\ny0 = RTOP + 60\nfor i in range(min(n, 2)):\n    ly = y0 + i * (lane_h + 60)\n    volc = images.get(labels[i]) or subject_image(\"volcano erupting\")\n    paste(volc, RX0, ly, 210, lane_h)\n    frac = values[i] / maxv\n    river_len = (RX1 - RX0 - 250) * frac * reveal\n    steps = 10\n    for k in range(steps):\n        seg_x = RX0 + 220 + river_len * k / steps\n        seg_w = river_len / steps + 4\n        wob = 10 * math.sin(reveal * 6 + k)\n        d.rounded_rectangle([seg_x, ly + lane_h / 2 - 30 + wob, seg_x + seg_w, ly + lane_h / 2 + 30 + wob],\n                             radius=16, fill=rgba(WARN, 220))\n    text(labels[i], RX0 + 10, ly - 8, size=32)\n    text(f\"{values[i]:.0f} m3/s\", RX0 + 220, ly + lane_h - 10, size=48, color=HIGHLIGHT)"
           },
           "ascending": false
         },
@@ -15153,22 +15100,13 @@
             "file": "lava_production_of_volcanoes_total_lava_producti.json"
           },
           "insight_type": "rank",
-          "role": "2 \u00b7 TOTAL LAVA PRODUCT",
-          "topic": "Total Lava Production",
-          "say": "The Kilauea volcano has produced a total of 1 cubic kilometer of lava since its eruption in 2018, while the Mount Etna volcano has produced a total of 0.5 cubic kilometers of lava since its eruption in 2011.",
+          "role": "2 \u00b7 TOTAL POURED",
+          "topic": "Total Lava Poured",
+          "say": "Since 2018, Kilauea has produced a full cubic kilometer of lava. Etna's taken since 2011 just to reach half that.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "lava",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 1.0
-                }
-              }
-            ]
+            "mechanic": "molten-shaft-fill",
+            "concept": "Two volcanic core shafts fill with glowing lava to the total cubic kilometers each has produced since it last erupted.",
+            "code": "maxv = vmax if vmax > 0 else 1.0\nsw = 200\nsx0 = RX0 + 60\nsx1 = RX1 - sw - 60\nstop = RTOP + 190\nsbot = RBOT - 130\nsh = sbot - stop\nlava_img = subject_image(\"molten lava glowing\")\nfor i in range(min(n, 2)):\n    sx = sx0 if i == 0 else sx1\n    d.rounded_rectangle([sx, stop, sx + sw, sbot], radius=26, outline=rgba(TEXT, 150), width=5)\n    frac = clamp(values[i] / maxv, 0, 1) * reveal\n    fill_image(lava_img, frac, sx + 6, stop + 6, sw - 12, sh - 12, direction='up', color=WARN)\n    volc = images.get(labels[i]) or subject_image(\"volcano\")\n    paste(volc, sx - 10, stop - 150, sw + 20, 150)\n    text(labels[i], sx, sbot + 16, size=30)\n    text(f\"{values[i]:.1f} km3\", sx, sbot + 54, size=42, color=HIGHLIGHT)"
           },
           "ascending": false
         },
@@ -15179,9 +15117,107 @@
             "file": "lava_production_of_volcanoes_lava_production_ove.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 LAVA PRODUCTION OV",
-          "topic": "Lava Production Over Time",
-          "say": "The lava production rate of the Kilauea volcano has been increasing over the past few years, with a rate of 50 cubic meters per second in 2018 and a rate of 100 cubic meters per second in 2020.",
+          "role": "3 \u00b7 SPEEDING UP",
+          "topic": "Eruption Rate Rising",
+          "say": "In 2018, Kilauea erupted at 50 cubic meters a second. By 2020, that rate had doubled to 100 -- and it's still climbing.",
+          "scene": {
+            "mechanic": "eruption-plume-timeline",
+            "concept": "A volcano's fountain grows taller year by year, its plume height literally the eruption rate.",
+            "code": "axis_y = RBOT - 120\nd.line([RX0 + 20, axis_y, RX1 - 20, axis_y], fill=rgba(TEXT, 160), width=4)\nmaxv = vmax if vmax > 0 else 1.0\nvolc = (images.get(labels[-1]) if n else None) or subject_image(\"volcano\")\npaste(volc, RX0 + 20, axis_y - 160, 210, 190)\nstep = (RX1 - RX0 - 320) / max(1, n - 1) if n > 1 else 0\nfor i in range(n):\n    x = RX0 + 300 + step * i\n    seg_reveal = clamp(reveal * n - i, 0, 1)\n    hgt = (RBOT - RTOP - 280) * (values[i] / maxv) * seg_reveal\n    for k in range(int(hgt // 14)):\n        yy = axis_y - k * 14\n        wob = 8 * math.sin(reveal * 8 + k + i)\n        d.ellipse([x - 16 + wob, yy - 16, x + 16 + wob, yy + 16], fill=rgba(WARN, 200))\n    text(labels[i], x - 40, axis_y + 20, size=28)\n    text(f\"{values[i]:.0f} m3/s\", x - 60, axis_y - hgt - 50, size=40, color=HIGHLIGHT)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "lava_production_of_volcanoes_effects_of_lava_pro",
+          "params": {
+            "file": "lava_production_of_volcanoes_effects_of_lava_pro.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 NEW LAND",
+          "topic": "Born From Lava",
+          "say": "Twenty percent of Surtsey Island is solid cooled lava -- and Hawaii's islands are thirty percent lava rock, still growing today.",
+          "scene": {
+            "mechanic": "island-rising-from-sea",
+            "concept": "Two islands emerge from the ocean; their lava-crust cover creeps up the shoreline exactly as far as the percent of surface it actually coats.",
+            "code": "maxv = 100.0\nsea_top = RTOP + 480\nd.rectangle([RX0, sea_top, RX1, RBOT], fill=rgba(\"#0b3654\", 220))\nfor k in range(8):\n    yy = sea_top + k * ((RBOT - sea_top) / 8)\n    d.line([RX0, yy, RX1, yy], fill=rgba(HIGHLIGHT, 60), width=2)\nhalf = (RX1 - RX0) // 2\nfor i in range(min(n, 2)):\n    ix0 = RX0 + i * half\n    ix1 = ix0 + half - 20\n    isl = images.get(labels[i]) or subject_image(\"volcanic island\")\n    paste(isl, ix0, RTOP + 60, ix1 - ix0, 420)\n    frac = clamp(values[i] / maxv, 0, 1) * reveal\n    crust_h = int((RBOT - sea_top) * 0.6 * frac)\n    d.rounded_rectangle([ix0 + 10, RBOT - crust_h - 20, ix1 - 10, RBOT - 20], radius=20, fill=rgba(WARN, 200))\n    text(labels[i], ix0 + 10, RTOP + 20, size=30)\n    text(f\"{values[i]:.0f}% lava-covered\", ix0 + 10, RBOT - crust_h - 66, size=28, color=HIGHLIGHT)"
+          },
+          "ascending": false
+        }
+      ],
+      "question": "Which do you think is scarier: fast lava you can outrun, or slow lava that never stops?"
+    },
+    {
+      "slug": "tornado-wind-speed-records",
+      "title": "Tornado Wind Speed Records",
+      "hook": "You won't believe the speeds inside a tornado",
+      "closing": "Nature's fury is beyond human control",
+      "hashtags": [
+        "tornado",
+        "weather",
+        "extremeweather",
+        "naturespower"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "tornado_wind_speed_records_wind_speed",
+          "params": {
+            "file": "tornado_wind_speed_records_wind_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 WIND SPEED",
+          "topic": "Wind Speed",
+          "say": "Wind speeds inside a tornado can reach up to 300 miles per hour, which is equivalent to stacking 3 cars on top of each other for every single mile.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "car",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 100.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "tornado_wind_speed_records_tornado_categories",
+          "params": {
+            "file": "tornado_wind_speed_records_tornado_categories.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 TORNADO CATEGORIES",
+          "topic": "Tornado Categories",
+          "say": "Tornadoes are ranked from 0 to 5, with the most destructive ones being categorized as EF5, which can cause catastrophic damage.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tornado",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "tornado_wind_speed_records_wind_speed_records",
+          "params": {
+            "file": "tornado_wind_speed_records_wind_speed_records.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 WIND SPEED RECORDS",
+          "topic": "Wind Speed Records",
+          "say": "The wind speed records inside tornadoes have been increasing over the years, with the highest speed recorded at 318 miles per hour in 1999.",
           "scene": {
             "title": true,
             "elements": [
@@ -15194,21 +15230,21 @@
         },
         {
           "source": "offline",
-          "key": "lava_production_of_volcanoes_effects_of_lava_pro",
+          "key": "tornado_wind_speed_records_tornado_formation",
           "params": {
-            "file": "lava_production_of_volcanoes_effects_of_lava_pro.json"
+            "file": "tornado_wind_speed_records_tornado_formation.json"
           },
           "insight_type": "rank",
-          "role": "4 \u00b7 EFFECTS OF LAVA PR",
-          "topic": "Effects of Lava Production",
-          "say": "The lava produced by volcanoes can create new land, with the island of Surtsey off the coast of Iceland being formed entirely by volcanic eruptions, and 20% of the island's surface being covered in lava.",
+          "role": "4 \u00b7 TORNADO FORMATION",
+          "topic": "Tornado Formation",
+          "say": "Tornadoes form when a combination of moisture, warm air, and cool air come together, creating a rotating updraft known as a mesocyclone.",
           "scene": {
             "title": true,
             "elements": [
               {
                 "type": "fill_object",
-                "region": "hero",
-                "subject": "island",
+                "region": "center",
+                "subject": "cloud",
                 "data": {
                   "value_from": "item:0"
                 }
@@ -15218,7 +15254,363 @@
           "ascending": false
         }
       ],
-      "question": "What do you think is the most significant factor in determining the amount of lava produced by a volcano?"
+      "question": "What's the most extreme weather you've experienced?"
+    },
+    {
+      "slug": "lightning-travel-distance",
+      "title": "Lightning Travel Distance",
+      "hook": "Lightning can travel an incredible distance in a split second",
+      "closing": "The power of lightning is awe-inspiring",
+      "hashtags": [
+        "lightning",
+        "weather",
+        "electricity",
+        "naturespower"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "lightning_travel_distance_lightning_speed",
+          "params": {
+            "file": "lightning_travel_distance_lightning_speed.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LIGHTNING SPEED",
+          "topic": "Lightning Speed",
+          "say": "Lightning can travel at speeds of up to 270,000 kilometers per hour, which is equivalent to stacking 27 cars on top of each other for every single mile.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "car",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 100.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "lightning_travel_distance_lightning_distance",
+          "params": {
+            "file": "lightning_travel_distance_lightning_distance.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 LIGHTNING DISTANCE",
+          "topic": "Lightning Distance",
+          "say": "The average distance that lightning can travel is around 10 kilometers, but it can reach distances of up to 20 kilometers in some cases.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightning bolt",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "lightning_travel_distance_lightning_formation",
+          "params": {
+            "file": "lightning_travel_distance_lightning_formation.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 LIGHTNING FORMATIO",
+          "topic": "Lightning Formation",
+          "say": "The formation of lightning is a complex process that involves the interaction of electrical charges in the atmosphere, and it can occur in a matter of milliseconds.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "lightning_travel_distance_lightning_strike",
+          "params": {
+            "file": "lightning_travel_distance_lightning_strike.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 LIGHTNING STRIKE",
+          "topic": "Lightning Strike",
+          "say": "When lightning strikes, it can reach temperatures of up to 30,000 Kelvin, which is five times hotter than the surface of the sun.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "Have you ever witnessed a lightning storm up close?"
+    },
+    {
+      "slug": "deadliest-venoms-ranked",
+      "title": "Deadliest Venoms Ranked",
+      "hook": "Which animal's venom can kill you in under a minute?",
+      "closing": "Venom can be a powerful defense mechanism, but also a deadly threat to humans.",
+      "hashtags": [
+        "venom",
+        "animals",
+        "deadly",
+        "wildlife",
+        "nature"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "deadliest_venoms_ranked_venom_ranking",
+          "params": {
+            "file": "deadliest_venoms_ranked_venom_ranking.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 VENOM RANKING",
+          "topic": "Venom Ranking",
+          "say": "The top three deadliest venoms belong to the inland taipan snake, the eastern brown snake, and the black mamba, with a mortality rate of 100%, 60%, and 100% respectively.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "snake",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "spider",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "scorpion",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "deadliest_venoms_ranked_venom_potency",
+          "params": {
+            "file": "deadliest_venoms_ranked_venom_potency.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 VENOM POTENCY",
+          "topic": "Venom Potency",
+          "say": "The inland taipan snake's venom is so potent that just 45 milligrams can kill a human being, while the eastern brown snake's venom requires 53 milligrams to be lethal.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "vial",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "deadliest_venoms_ranked_venom_delivery",
+          "params": {
+            "file": "deadliest_venoms_ranked_venom_delivery.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 VENOM DELIVERY",
+          "topic": "Venom Delivery",
+          "say": "About 70% of the inland taipan snake's venom is delivered through its sharp fangs, while the eastern brown snake delivers about 50% of its venom through its fangs.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "snake head",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "deadliest_venoms_ranked_venom_resistance",
+          "params": {
+            "file": "deadliest_venoms_ranked_venom_resistance.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 VENOM RESISTANCE",
+          "topic": "Venom Resistance",
+          "say": "Over the past 20 years, scientists have been studying the venom of the inland taipan snake and have developed a resistance to it, reducing the mortality rate from 100% to 50%.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What do you think is the most venomous animal in the world?"
+    },
+    {
+      "slug": "fastest-growing-plants",
+      "title": "Fastest Growing Plants",
+      "hook": "You won't believe how quickly some plants can grow",
+      "closing": "Nature's speedsters are truly astonishing",
+      "hashtags": [
+        "plants",
+        "growth",
+        "nature",
+        "botany",
+        "gardening"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "fastest_growing_plants_bamboo_growth",
+          "params": {
+            "file": "fastest_growing_plants_bamboo_growth.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 BAMBOO GROWTH",
+          "topic": "Bamboo Growth",
+          "say": "Bamboo can grow up to 35 inches in just 24 hours, while other fast growers like wheat grass can reach 10 inches in the same time",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bamboo",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bamboo",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "fastest_growing_plants_plant_growth_rate",
+          "params": {
+            "file": "fastest_growing_plants_plant_growth_rate.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 PLANT GROWTH RATE",
+          "topic": "Plant Growth Rate",
+          "say": "The top 5 fastest growing plants can grow at rates of up to 10 inches per day, with some plants growing as much as 5 times faster than others",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "plant",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "fastest_growing_plants_growth_period",
+          "params": {
+            "file": "fastest_growing_plants_growth_period.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 GROWTH PERIOD",
+          "topic": "Growth Period",
+          "say": "Most plants have a growth period of around 30 to 60 days, but some can grow for up to 120 days or more",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "fastest_growing_plants_growth_factors",
+          "params": {
+            "file": "fastest_growing_plants_growth_factors.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 GROWTH FACTORS",
+          "topic": "Growth Factors",
+          "say": "Light, water, and nutrients can increase plant growth by up to 50 percent, while temperature can affect growth by up to 20 percent",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "plant",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's the fastest growing plant you've ever seen?"
     }
   ],
   "videos": [

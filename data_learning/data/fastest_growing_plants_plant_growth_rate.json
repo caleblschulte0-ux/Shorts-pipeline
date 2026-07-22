@@ -1,10 +1,10 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
-  "unit": "percent",
+  "key": "fastest_growing_plants_plant_growth_rate",
+  "title": "Plant Growth Rate",
+  "unit": "inches per day",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "comparison",
+  "insight_type": "rank",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "Fastest",
+      "value": 10.0,
+      "period": "day"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "Average",
+      "value": 2.0,
+      "period": "day"
     }
   ]
 }

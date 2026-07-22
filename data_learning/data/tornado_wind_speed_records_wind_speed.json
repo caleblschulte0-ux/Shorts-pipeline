@@ -1,7 +1,7 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
-  "unit": "percent",
+  "key": "tornado_wind_speed_records_wind_speed",
+  "title": "Wind Speed",
+  "unit": "mph",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "Lowest wind speed",
+      "value": 100.0,
+      "period": "2020"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "Highest wind speed",
+      "value": 300.0,
+      "period": "2022"
     }
   ]
 }

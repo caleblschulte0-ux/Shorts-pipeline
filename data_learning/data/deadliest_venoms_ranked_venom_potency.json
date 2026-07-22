@@ -1,7 +1,7 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
-  "unit": "percent",
+  "key": "deadliest_venoms_ranked_venom_potency",
+  "title": "Venom Potency",
+  "unit": "mg",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "Inland Taipan",
+      "value": 45.0,
+      "period": "2020"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "Eastern Brown Snake",
+      "value": 53.0,
+      "period": "2020"
     }
   ]
 }

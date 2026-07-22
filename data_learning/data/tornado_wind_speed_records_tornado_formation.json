@@ -1,7 +1,7 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
-  "unit": "percent",
+  "key": "tornado_wind_speed_records_tornado_formation",
+  "title": "Tornado Formation",
+  "unit": "",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
+      "label": "Moisture",
       "value": 50.0,
-      "period": "percent"
+      "period": "2010"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "Warm air",
+      "value": 70.0,
+      "period": "2015"
     }
   ]
 }

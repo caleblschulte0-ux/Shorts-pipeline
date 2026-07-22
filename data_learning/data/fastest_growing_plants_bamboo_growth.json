@@ -1,7 +1,7 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
-  "unit": "percent",
+  "key": "fastest_growing_plants_bamboo_growth",
+  "title": "Bamboo Growth",
+  "unit": "inches",
   "geography": "",
   "time_coverage": "",
   "insight_type": "comparison",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "Bamboo",
+      "value": 35.0,
+      "period": "24 hours"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "Wheat Grass",
+      "value": 10.0,
+      "period": "24 hours"
     }
   ]
 }

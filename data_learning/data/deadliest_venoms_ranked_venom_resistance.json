@@ -1,10 +1,10 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
-  "unit": "percent",
+  "key": "deadliest_venoms_ranked_venom_resistance",
+  "title": "Venom Resistance",
+  "unit": "years",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "comparison",
+  "insight_type": "trend",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "2000",
+      "value": 100.0,
+      "period": "2000"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "2020",
+      "value": 50.0,
+      "period": "2020"
     }
   ]
 }

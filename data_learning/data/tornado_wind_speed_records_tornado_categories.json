@@ -1,10 +1,10 @@
 {
-  "key": "fastest_growing_plants_growth_factors",
-  "title": "Growth Factors",
-  "unit": "percent",
+  "key": "tornado_wind_speed_records_tornado_categories",
+  "title": "Tornado Categories",
+  "unit": "",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "comparison",
+  "insight_type": "rank",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
@@ -15,14 +15,14 @@
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Light",
-      "value": 50.0,
-      "period": "percent"
+      "label": "EF0",
+      "value": 0.0,
+      "period": "2010"
     },
     {
-      "label": "Temperature",
-      "value": 20.0,
-      "period": "percent"
+      "label": "EF5",
+      "value": 5.0,
+      "period": "2015"
     }
   ]
 }
