@@ -1,0 +1,139 @@
+{
+ "slug": "money-goes-weak",
+ "title": "Where All Your Money Goes (weak control)",
+ "require_provenance": true,
+ "beats": [
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "You'Ll Earn. That leaves $2M.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "$2M",
+    "label": "YOU'LL EARN"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Taxes. That leaves minus $500K.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "-$500K",
+    "label": "TAXES"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Left. That leaves $1.5M.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "$1.5M",
+    "label": "LEFT"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Housing. That leaves minus $500K.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "-$500K",
+    "label": "HOUSING"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Left. That leaves $1M.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "$1M",
+    "label": "LEFT"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Cars. That leaves minus $250K.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "-$250K",
+    "label": "CARS"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Left. That leaves $750K.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "$750K",
+    "label": "LEFT"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Food. That leaves minus $300K.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "-$300K",
+    "label": "FOOD"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Left. That leaves $450K.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "$450K",
+    "label": "LEFT"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Leaks. That leaves minus $150K.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "-$150K",
+    "label": "LEAKS"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Left. That leaves $300K.",
+   "understand": "money meter card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "$300K",
+    "label": "LEFT"
+   }
+  },
+  {
+   "job": "PAYOFF",
+   "mode": "designed_2d",
+   "narration": "So fifteen cents of every dollar is yours. That's the whole story.",
+   "understand": "payoff replaced by a bare statement card",
+   "flat": {
+    "kind": "flat_number",
+    "number": "15%",
+    "label": "YOURS"
+   }
+  }
+ ]
+}
