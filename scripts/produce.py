@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+"""THE PRODUCER — the single canonical path from a beat story to a publishable
+(or quarantined) film. This replaces the split the audit found — "the pro engine
+makes previews, the legacy engine publishes" — with ONE enforced pipeline that
+every mode (canary / schedule / all / auto / dry-run) goes through:
+
+    data_learning/pro_stories/<slug>.beats.json
+      -> no_dull_beats.run   (render via pro_render + deterministic director gates
+                              + auto-repair + re-render; renderer already emits the
+                              publishing sidecars + a fallback verdict)
+      -> fallback verdict     (pro_render _pkg/fallbacks.json: 'unacceptable' quarantines)
+      -> publishing package    (meta.json / .srt / .jpg present, or fail closed)
+      -> VISION taste verdict  (VISUAL_STANDARD / TASTE_JUDGE, blind panel)
+      -> PASS (package ready) or QUARANTINE (reasons)
+
+The vision verdict is a blind-panel call the orchestrator writes to
+``<out>_pkg/verdict.json`` as ``{"pass": bool, "reject_labels": [...], ...}``.
+When it is ABSENT the producer FAILS CLOSED — a film is never published unjudged
+(audit: "a missing judge or failed package must fail closed"). In the interactive
+session the orchestrator (this agent) renders the verdict; in headless CI nothing
+publishes until a verdict exists, which is exactly the intended safety.
+
+    python3 scripts/produce.py <slug> <out.mp4> [--rounds N]
+    exit 0 = PASS (ready to publish), 5 = QUARANTINE.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+for p in (REPO, REPO / "scripts"):
+    if str(p) not in sys.path:
+        sys.path.insert(0, str(p))
+
+PRO_STORIES = REPO / "data_learning" / "pro_stories"
+_RC = {3: "stale span — the video holds one idea too long (novelty)",
+       4: "data-cards over budget — reads as an infographic reel"}
+
+
+def resolve_story(slug: str) -> Path:
+    for cand in (PRO_STORIES / f"{slug}.beats.json", PRO_STORIES / f"{slug}.json"):
+        if cand.exists():
+            return cand
+    raise FileNotFoundError(f"no pro story for slug {slug!r} under {PRO_STORIES}")
+
+
+def _read_json(p: Path):
+    try:
+        return json.loads(p.read_text())
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def evaluate(out: Path, director_rc: int) -> dict:
+    """Given a finished render at `out` and the director's return code, decide
+    PASS vs QUARANTINE from the packaged evidence (no rendering here — pure,
+    unit-testable)."""
+    pkg = out.with_name(out.stem + "_pkg")
+    reasons: list[str] = []
+
+    if director_rc != 0:
+        reasons.append("director gates failed "
+                       f"(rc={director_rc}: {_RC.get(director_rc, 'reject')})")
+
+    fb = _read_json(pkg / "fallbacks.json") or {}
+    if fb.get("verdict") == "unacceptable":
+        bad = [f.get("kind") for f in fb.get("fallbacks", [])
+               if f.get("severity") == "unacceptable"]
+        reasons.append(f"unacceptable render fallback: {bad}")
+
+    for side, why in ((out.with_suffix(".meta.json"), "meta.json"),
+                      (out.with_suffix(".srt"), "captions .srt"),
+                      (out.with_suffix(".jpg"), "thumbnail .jpg")):
+        if not side.exists():
+            reasons.append(f"missing publishing sidecar: {why}")
+
+    verdict = _read_json(pkg / "verdict.json")
+    if verdict is None:
+        reasons.append("no vision taste verdict (pkg/verdict.json) — FAILS CLOSED; "
+                       "judge the blind package before publishing")
+    elif not verdict.get("pass"):
+        reasons.append(f"vision taste REJECT: labels={verdict.get('reject_labels')} "
+                       f"personality={verdict.get('personality')}")
+
+    status = "pass" if not reasons else "quarantine"
+    result = {"out": str(out), "status": status, "reasons": reasons,
+              "director_rc": director_rc, "pkg": str(pkg),
+              "fallback_verdict": fb.get("verdict", "unknown")}
+    if pkg.exists():
+        (pkg / "produce_report.json").write_text(json.dumps(result, indent=2))
+    return result
+
+
+def produce(slug: str, out: Path, rounds: int = 3) -> dict:
+    """Render + gate + repair the story, then evaluate it. Returns the evaluate()
+    result with the slug attached."""
+    import no_dull_beats
+    story_path = resolve_story(slug)
+    print(f"[produce] {slug}: render + director loop ({story_path.name})")
+    director_rc = no_dull_beats.run(story_path, out, rounds=rounds)
+    result = evaluate(out, director_rc)
+    result["slug"] = slug
+    if result["status"] == "pass":
+        print(f"[produce] {slug}: PASS — publishing package ready")
+    else:
+        print(f"[produce] {slug}: QUARANTINE — " + "; ".join(result["reasons"]))
+    return result
+
+
+def main(argv) -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("slug")
+    ap.add_argument("out", type=Path)
+    ap.add_argument("--rounds", type=int, default=3)
+    a = ap.parse_args(argv)
+    res = produce(a.slug, a.out, rounds=a.rounds)
+    return 0 if res["status"] == "pass" else 5
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))
