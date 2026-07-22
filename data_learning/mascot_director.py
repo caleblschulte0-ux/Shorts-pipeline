@@ -24,6 +24,7 @@ the heuristic guarantees the never-float rule even before the brain is tuned.
 """
 from __future__ import annotations
 
+import math
 import re
 import sys
 from pathlib import Path
@@ -378,3 +379,219 @@ def _rasterise(svg: str, size: int) -> bytes:
         sq = sq.resize((size, size), Image.LANCZOS)
     buf = io.BytesIO(); sq.save(buf, "PNG")
     return buf.getvalue()
+
+
+# =====================================================================
+# ANIMATION + ENVIRONMENT ENGINE
+# Data must MOVE (keyframed rig, not a bobbing still) and live IN a place
+# (a floor/shadow + a light setting behind him). These render a seamless
+# per-action loop; the studio overlay composites it over the scene, so the
+# environment is drawn on transparency (no bg fill) — just grounding + a
+# little set that travels with him.
+# =====================================================================
+ANIM_VIEW = "-90 -60 520 520"       # square; stable scale across every beat
+
+
+def _s(t, ph=0.0):
+    return math.sin(2 * math.pi * (t + ph))
+
+
+def _shadow():
+    return ('<ellipse cx="170" cy="366" rx="116" ry="18" fill="#000000" '
+            'opacity="0.26"/>')
+
+
+# ---- environments (transparent; drawn behind Data) ----
+def _env_kitchen():
+    return (_shadow() +
+            f'<rect x="-84" y="300" width="150" height="60" rx="6" '
+            f'fill="#243642" stroke="{OUT}" stroke-width="5"/>'
+            f'<rect x="-64" y="286" width="66" height="18" rx="4" fill="#C98A3C" '
+            f'stroke="{OUT}" stroke-width="4"/>')
+
+
+def _env_store():
+    s = _shadow()
+    for row in (150, 214, 278):
+        s += f'<rect x="250" y="{row}" width="170" height="9" fill="#31485a"/>'
+        for i, cx in enumerate((262, 300, 338, 376)):
+            col = ("#E2433A", "#D8862F", "#8CC152", "#5AA9F0")[i]
+            s += (f'<rect x="{cx}" y="{row-30}" width="22" height="30" rx="3" '
+                  f'fill="{col}" stroke="{OUT}" stroke-width="3"/>')
+    return s
+
+
+def _env_chart():
+    pts = [(-46, 330), (40, 302), (120, 250), (204, 214), (286, 150), (372, 92)]
+    line = "M" + " L".join(f"{x},{y}" for x, y in pts)
+    dots = "".join(f'<circle cx="{x}" cy="{y}" r="7" fill="#4FD1C5" '
+                   f'stroke="{OUT}" stroke-width="3"/>' for x, y in pts)
+    return (_shadow() + f'<path d="{line}" fill="none" stroke="#4FD1C5" '
+            f'stroke-width="7" stroke-linecap="round" opacity="0.85"/>' + dots)
+
+
+def _env_curb():
+    return (_shadow() + f'<rect x="-90" y="360" width="520" height="10" '
+            f'fill="#2b3a42" opacity="0.7"/>')
+
+
+ENVS = {
+    "eggs": _env_kitchen, "soup_cans": _env_store, "soup_can": _env_store,
+    "cart": _env_store, "chart_bird": _env_chart, "gas_pump": _env_curb,
+    "house": _env_curb,
+}
+
+
+def _egg_a(cx, cy, rot=0):
+    return (f'<g transform="rotate({rot:.0f} {cx:.0f} {cy:.0f})">'
+            f'<ellipse cx="{cx:.0f}" cy="{cy:.0f}" rx="20" ry="26" '
+            f'fill="#FDF6E9" stroke="{OUT}" stroke-width="5"/></g>')
+
+
+def _wheel(cx, cy, rot):
+    return (f'<circle cx="{cx}" cy="{cy}" r="16" fill="#2B3A42" stroke="{OUT}" '
+            f'stroke-width="5"/><g transform="rotate({rot:.0f} {cx} {cy})" '
+            f'stroke="#8FA6AD" stroke-width="3"><line x1="{cx-12}" y1="{cy}" '
+            f'x2="{cx+12}" y2="{cy}"/><line x1="{cx}" y1="{cy-12}" x2="{cx}" '
+            f'y2="{cy+12}"/></g>')
+
+
+def _talk_mouth(t):
+    return R.mouth_open_smile() if int(t * 4) % 2 else R.mouth_smile()
+
+
+# ---- animators: t in [0,1) -> (arms, lower, back, front, eyes, mouth, bob)
+def _a_juggle(t, prop):
+    lh = (120, 150 + _s(t) * 16)
+    rh = (220, 150 + _s(t, 0.5) * 16)
+    arms = R.arm(*R.SHL, lh[0], int(lh[1]), -10) + R.arm(*R.SHR, rh[0], int(rh[1]), 10)
+    eggs = ""
+    for k in range(3):
+        a = 2 * math.pi * (t + k / 3.0)
+        eggs += _egg_a(170 + 52 * math.sin(a), 96 - 34 * math.cos(a), math.degrees(a))
+    return (arms, None, "", eggs, R.eye_open(R.LEX, 0, -6) + R.eye_open(R.REX, 0, -6),
+            R.mouth_o(), _s(t) * 3)
+
+
+def _a_push(t, prop):
+    sw = _s(t) * 16
+    lower = (R.limb(152, 300, int(138 + sw), 352, 0, 36, 27, 0) +
+             R.limb(188, 300, int(202 - sw), 352, 0, 36, 27, 0) +
+             f'<ellipse cx="{136+sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
+             f'stroke="{OUT}" stroke-width="6"/>'
+             f'<ellipse cx="{204-sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
+             f'stroke="{OUT}" stroke-width="6"/>')
+    arms = R.arm(*R.SHL, 250, 250, -6) + R.arm(*R.SHR, 258, 288, 6)
+    cx, cy, rot = 330, 250, t * 360
+    cart = (f'<circle cx="{cx-38}" cy="{cy-84}" r="24" fill="#EF5C46" stroke="{OUT}" stroke-width="6"/>'
+            f'<circle cx="{cx+6}" cy="{cy-96}" r="28" fill="#F2A23C" stroke="{OUT}" stroke-width="6"/>'
+            f'<path d="M{cx-88},{cy-64} L{cx+88},{cy-64} L{cx+64},{cy+28} L{cx-64},{cy+28} Z" '
+            f'fill="#7FD9CD" stroke="{OUT}" stroke-width="8" stroke-linejoin="round"/>'
+            + _wheel(cx - 46, cy + 62, rot) + _wheel(cx + 46, cy + 62, rot))
+    return (arms, lower, "", cart, R.eye_open(R.LEX, 3, 2) + R.eye_open(R.REX, 3, 2),
+            R.mouth_line(), abs(_s(t)) * 4)
+
+
+def _a_ride(t, prop):
+    flap = _s(t) * 14
+    cx, cy = 170, 384
+    bird = (f'<ellipse cx="{cx}" cy="{cy}" rx="62" ry="32" fill="#5AA9F0" stroke="{OUT}" stroke-width="7"/>'
+            f'<path d="M{cx-42},{cy-4} q-36,{-4-flap:.0f} -62,{14-flap:.0f} q32,6 62,0 Z" '
+            f'fill="#4A96DB" stroke="{OUT}" stroke-width="6" stroke-linejoin="round"/>'
+            f'<circle cx="{cx+44}" cy="{cy-16}" r="16" fill="#5AA9F0" stroke="{OUT}" stroke-width="6"/>'
+            f'<circle cx="{cx+48}" cy="{cy-18}" r="4" fill="{OUT}"/>'
+            f'<path d="M{cx+60},{cy-14} l20,6 l-20,7 Z" fill="#F2A23C" stroke="{OUT}" stroke-width="4"/>')
+    arms = R.arm(*R.SHL, 150, 244, -18) + R.arm(*R.SHR, 190, 244, 18)
+    return (arms, R.lower_ride(), bird, "",
+            R.eye_open(R.LEX, 0, 2) + R.eye_open(R.REX, 0, 2),
+            R.mouth_open_smile(), _s(t) * 5)
+
+
+def _a_stagger(t, prop):
+    wob = _s(t, 0) * 6
+    arms = R.arm(*R.SHL, int(120 + wob), 70, -14) + R.arm(*R.SHR, int(220 + wob), 70, 14)
+    front = prop(int(170 + wob), 40)
+    return (arms, R.lower_seated(), "", front,
+            R.eye_closed(R.LEX) + R.eye_closed(R.REX), R.mouth_line(), abs(_s(t)) * 2)
+
+
+def _a_carry(t, prop):
+    sway = _s(t) * 4
+    arms = R.arm(*R.SHL, 150, 252, -8) + R.arm(*R.SHR, 190, 252, 8)
+    return (arms, None, "", prop(int(170 + sway), int(250 + _s(t, .25) * 4)),
+            R.eye_open(R.LEX, 0, 1) + R.eye_open(R.REX, 0, 1), R.mouth_smile(), _s(t) * 3)
+
+
+def _a_hold_up(t, prop):
+    arms = R.arm(*R.SHL, 116, 300, -4) + R.arm(*R.SHR, 250, int(150 + _s(t) * 8), 10)
+    return (arms, None, "", prop(258, int(150 + _s(t) * 8)),
+            R.eye_open(R.LEX, 2, -4) + R.eye_open(R.REX, 2, -4),
+            R.mouth_pursed(), _s(t) * 3)
+
+
+def _a_sit(t, prop):
+    arms = R.arm(*R.SHL, 150, 252, -8) + R.arm(*R.SHR, 214, 176, 20)
+    return (arms, R.lower_seated(), prop(170, 372), "",
+            R.eye_open(R.LEX, 0, 3) + R.eye_open(R.REX, 0, 3),
+            R.mouth_open_smile(), _s(t) * 2)
+
+
+def _a_lean(t, prop):
+    arms = R.arm(*R.SHL, 116, 300, -4) + R.arm(*R.SHR, 286, 200, 12)
+    return (arms, None, prop(320, 250), "",
+            R.eye_open(R.LEX, 4, 1) + R.eye_open(R.REX, 4, 1),
+            R.mouth_smile(), _s(t) * 3)
+
+
+def _a_present(t, prop):
+    ga = int(300 + _s(t) * 20)                    # gesturing arm sweeps
+    arms = R.arm(*R.SHL, 150, 250, -8) + R.arm(*R.SHR, ga, int(210 + _s(t) * 12), 12)
+    return (arms, None, "", prop(150, 250),
+            R.eye_open(R.LEX, 0, 0) + R.eye_open(R.REX, 0, 0), _talk_mouth(t), _s(t) * 3)
+
+
+def _a_cheer(t, prop):
+    up = abs(_s(t)) * 16
+    arms = R.arm(*R.SHL, 116, int(82 - up), -12) + R.arm(*R.SHR, 224, int(82 - up), 12)
+    return (arms, None, "", "", R.eye_closed(R.LEX) + R.eye_closed(R.REX),
+            R.mouth_grin(), -abs(_s(t)) * 10)
+
+
+def _a_point(t, prop):
+    arms = R.arm(*R.SHL, 116, 300, -4) + R.arm(*R.SHR, int(300 + _s(t) * 8), 150, 10)
+    return (arms, None, prop(330, 150), "",
+            R.eye_open(R.LEX, 5, 0) + R.eye_open(R.REX, 5, 0),
+            _talk_mouth(t), _s(t) * 3)
+
+
+ANIMATORS = {
+    "juggle": _a_juggle, "push": _a_push, "ride": _a_ride,
+    "stagger_under": _a_stagger, "carry": _a_carry, "hold_up": _a_hold_up,
+    "sit_on": _a_sit, "lean_on": _a_lean, "present": _a_present,
+    "cheer": _a_cheer, "point_at": _a_point,
+}
+
+
+def compose_anim(spec: dict, t: float) -> str:
+    """Animated scene-mascot SVG at phase t in [0,1): Data moving + a grounded
+    environment. Seamless because every animator is periodic in t."""
+    prop_name = spec.get("prop", "price_tag")
+    action = spec.get("action", "present")
+    text = spec.get("text", "")
+    draw = PROPS.get(prop_name, price_tag)
+    if prop_name == "price_tag":
+        def prop(cx, cy, s=1.0): return draw(cx, cy, s, text=text)
+    else:
+        prop = draw
+    arms, lower, back, front, eyes, mouth, bob = \
+        ANIMATORS.get(action, _a_carry)(t, prop)
+    env = ENVS.get(prop_name, _shadow)()
+    masc = R.assemble(arms, eyes, mouth, lower=lower,
+                      extra_back=back, extra_front=front)
+    inner = env + f'<g transform="translate(0,{bob:.1f})">{masc}</g>'
+    return R.wrap(inner, view=ANIM_VIEW, label=f"Data {action} {prop_name}")
+
+
+def render_frames(spec: dict, size: int, n: int = 20) -> list[bytes]:
+    """Rasterise a seamless animation loop -> n square transparent PNGs."""
+    return [_rasterise(compose_anim(spec, i / n), size) for i in range(n)]

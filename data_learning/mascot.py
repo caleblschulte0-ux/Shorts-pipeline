@@ -97,20 +97,35 @@ def build_mascot_loop(out_path: Path, *, size: int = 360, fps: int = 30,
 
 
 def build_scene_loop(out_path: Path, spec: dict, *, size: int = 360,
-                     fps: int = 30, seconds: float = 2.2,
+                     fps: int = 20, seconds: float = 1.0,
                      flip: bool = False) -> Path:
-    """Render Data performing a director-chosen scene ACTION (in the scene,
-    holding a prop) and loop it. Falls back to the idle host if the director
-    or its rasteriser is unavailable, so a render never dies over a prop."""
+    """Render Data ANIMATED — performing a director-chosen scene action (moving,
+    with props, grounded in a little environment) — as a seamless alpha loop.
+    Every animator is periodic so frame N wraps to frame 0. Falls back to the
+    idle host (bobbed still) if the director/rasteriser is unavailable, so a
+    render never dies over a prop."""
+    import io
+    n = max(2, int(fps * seconds))
     try:
         from data_learning import mascot_director as director
-        frame = out_path.parent / f"{out_path.stem}_frame.png"
-        director.render_png(spec, size, frame)
-        base = Image.open(frame).convert("RGBA")
+        frames = director.render_frames(spec, size, n=n)
     except Exception as e:  # noqa: BLE001
-        print(f"[mascot] scene compose failed ({e}); idle host", flush=True)
-        base = _load(DEFAULT_POSE)
-    return _bob_loop(out_path, base, size, fps, seconds, flip)
+        print(f"[mascot] scene anim failed ({e}); idle host", flush=True)
+        return _bob_loop(out_path, _load(DEFAULT_POSE), size, fps, seconds, flip)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as td:
+        td = Path(td)
+        for i, b in enumerate(frames):
+            im = Image.open(io.BytesIO(b)).convert("RGBA")
+            if flip:
+                im = im.transpose(Image.FLIP_LEFT_RIGHT)
+            im.save(td / f"m{i:04d}.png")
+        subprocess.run(
+            ["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(fps),
+             "-i", str(td / "m%04d.png"),
+             "-c:v", "qtrle", "-pix_fmt", "argb", str(out_path)],
+            check=True)
+    return out_path
 
 
 def save_static(out_path: Path, size: int = 360, point_angle: float = 90.0,
