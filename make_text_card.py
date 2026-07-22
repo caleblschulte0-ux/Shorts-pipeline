@@ -152,17 +152,42 @@ def _dur(p: Path) -> float:
         return 0.0
 
 
-def _top_clip(tag: str, target: float, workdir: Path) -> Path:
+def _resolve_top_source(query: str | None, workdir: Path,
+                        gameplay_tag: str) -> tuple[Path, bool]:
+    """Get the source clip for the top pane. Prefer TOPIC-RELEVANT stock
+    footage (chips story -> chips clip) so viewers can picture it; only fall
+    back to a gameplay clip if stock sourcing is unavailable/fails. Returns
+    (path, is_stock)."""
+    if query:
+        try:
+            import stock_search
+            c = stock_search.fetch_top(query, workdir / "stock")
+            p = Path(c["path"])
+            if p.exists() and _dur(p) > 0.5:
+                print(f"      [top] topic stock: {query!r} -> "
+                      f"{c.get('provider')}#{c.get('id')}")
+                return p, True
+        except Exception as e:  # noqa: BLE001
+            print(f"      [top] stock {query!r} failed ({type(e).__name__}: "
+                  f"{e}); falling back to gameplay")
     clips = [p for p in GAMEPLAY_DIR.iterdir()
              if p.suffix.lower() in (".mp4", ".mov", ".mkv", ".webm")] \
         if GAMEPLAY_DIR.exists() else []
-    pool = [p for p in clips if tag.lower() in p.stem.lower()] or clips
+    pool = [p for p in clips if gameplay_tag.lower() in p.stem.lower()] or clips
     if not pool:
-        raise RuntimeError(f"no clips in {GAMEPLAY_DIR}")
-    src = random.choice(pool)
+        raise RuntimeError(f"no top clip: stock failed and no gameplay in "
+                           f"{GAMEPLAY_DIR}")
+    return random.choice(pool), False
+
+
+def _top_clip(query: str | None, target: float, workdir: Path,
+              gameplay_tag: str) -> Path:
+    src, is_stock = _resolve_top_source(query, workdir, gameplay_tag)
     sdur = _dur(src)
-    seek = random.uniform(5, max(5, sdur - target - 20)) if sdur > target + 30 \
-        else 0.0
+    # stock clips are short & topical — start at 0; gameplay we seek in.
+    seek = 0.0 if is_stock else (
+        random.uniform(5, max(5, sdur - target - 20)) if sdur > target + 30
+        else 0.0)
     out = workdir / "top.mp4"
     _run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1",
           "-ss", f"{seek:.2f}", "-i", str(src), "-t", f"{target:.2f}",
@@ -188,7 +213,8 @@ def build_text_card(pkg: dict, out_path: Path, *, duration: float = 7.0,
         ty = TEXT_TOP + max(0, (avail - th) // 2)
 
         print(f"[2/4] top clip ({duration:.1f}s loop)")
-        top = _top_clip(gameplay_tag, duration, workdir)
+        top = _top_clip(pkg.get("broll_query"), duration, workdir,
+                        gameplay_tag)
 
         print("[3/4] music bed")
         music = workdir / "music.wav"
