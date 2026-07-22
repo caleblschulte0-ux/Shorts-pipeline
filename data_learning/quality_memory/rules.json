@@ -1,12 +1,12 @@
 {
-  "generated_from_n_renders": 22,
+  "generated_from_n_renders": 23,
   "rules": [
     {
       "scope": "job",
       "job": "DEVELOP",
       "flag": "DULL",
       "severity": "soft",
-      "rate": "8/16",
+      "rate": "9/17",
       "guidance": "DEVELOP beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
     },
     {
@@ -28,7 +28,7 @@
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.522,
+      "latest": 0.525,
       "want": "up",
       "direction": "regressing"
     },
