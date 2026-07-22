@@ -780,111 +780,139 @@ def _coin_fall(d, seed, t, x0, x1, y0, count=10, spread=260):
             _coin(d, int(cx), int(cy), r, a=a, face=r > 13)
 
 
+def _cash_pile(d, cx, base_y, frac, seed, glow_coin=False):
+    """A physical HEAP of banknotes + coins whose size encodes `frac` (0..1) of a
+    life's money. Not a chart — a pile you can see shrink. Deterministic layout,
+    drawn back-to-front so it reads as a mound; overlap gives the heap depth."""
+    frac = max(0.02, min(1.0, frac))
+    pw = int(W * 0.30 * math.sqrt(frac)) + 40          # heap half-spread
+    ph = int(H * 0.30 * math.sqrt(frac)) + 24          # heap height
+    rnd = random.Random(seed)
+    bills = int(18 + 90 * frac)
+    items = []
+    for _ in range(bills):
+        u = rnd.uniform(-1, 1)
+        rise = rnd.random()                            # 0 base .. 1 top
+        y = base_y - rise * ph
+        x = cx + u * pw * (1 - 0.5 * rise)             # narrower toward the top
+        skew = rnd.uniform(-0.5, 0.5)                  # a little lean per bill
+        items.append((x, y, skew))
+    items.sort(key=lambda p: p[1])                     # back (high) to front (low)
+    bw2, bh2 = 60, 30
+    for (x, y, skew) in items:
+        dx = skew * 10
+        # a banknote as a leaning parallelogram-ish rounded slab + inner oval
+        d.polygon([(x - bw2 / 2 + dx, y - bh2 / 2), (x + bw2 / 2 + dx, y - bh2 / 2),
+                   (x + bw2 / 2 - dx, y + bh2 / 2), (x - bw2 / 2 - dx, y + bh2 / 2)],
+                  fill=(*GREEN, 255))
+        d.ellipse([x - 10, y - 9, x + 10, y + 9], outline=(*GREEN_D, 255), width=2)
+    # gold coins glinting across the heap
+    for _ in range(int(4 + 16 * frac)):
+        u = rnd.uniform(-1, 1)
+        rise = rnd.random()
+        x = cx + u * pw * (1 - 0.5 * rise)
+        y = base_y - rise * ph
+        _coin(d, int(x), int(y), int(12 + rnd.random() * 6), face=False)
+    if glow_coin:
+        _coin(d, cx, base_y - ph - 24, 30)
+
+
 def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
                 final: bool = False, number: str = "", label: str = "") -> Path:
-    """THE RECURRING MOTIF. The lifetime-pay bar with segment `upto` draining this
-    beat (or, if final, the last 'actually yours' sliver glowing as the survivor).
-    Segments before `upto` are already-spent hollow slots; segments after stay
-    bright — the money you still have, visibly shrinking chapter to chapter."""
-    x0, x1 = int(W * 0.11), int(W * 0.89)
-    bw = x1 - x0
-    by = int(H * 0.52)
-    bh = 104
-    # segment pixel spans
-    spans, cx = [], x0
-    for (lab, amt, col) in LIFETIME:
-        w = bw * amt / LIFE_TOTAL
-        spans.append((cx, cx + w, lab, amt, col))
-        cx += w
+    """THE RECURRING MOTIF — physical, not a chart. The figure stands beside a
+    HEAP of a life's money that visibly shrinks chapter to chapter. This beat the
+    named chunk blows off the top of the pile and away; the pile is smaller than
+    last time and smaller again when it's over. A hanging tag reads what's left."""
     spent_before = sum(LIFETIME[k][1] for k in range(upto))
-    active_amt = LIFETIME[upto][1]
+    active_amt = 0 if final else LIFETIME[upto][1]
+    cat = LIFETIME[min(upto, len(LIFETIME) - 1)][0]
+    start_frac = (LIFE_TOTAL - spent_before) / LIFE_TOTAL
+    end_frac = (LIFE_TOTAL - spent_before - active_amt) / LIFE_TOTAL
+    pcx, base_y = int(W * 0.62), int(H * 0.80)
 
     def bg(i, n):
-        return _slate_bg()
+        # a big MONOTONIC vault-light swing (dim -> lit, or the reverse on the
+        # payoff) so a large fraction of the frame changes every few seconds. On
+        # the payoff the WHOLE frame warms (top AND bottom) to a golden dawn.
+        t = i / max(1, n - 1)
+        k = (1.0 - 0.85 * t) if not final else (0.15 + 0.85 * t)
+        top = (int(20 + 96 * k), int(24 + 74 * k), int(40 + 44 * k))
+        bot = (int(10 + 54 * k), int(12 + 40 * k), int(20 + 24 * k)) if final else (10, 12, 20)
+        return _vgrad(top, bot)
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
+        drain = _ease(min(1.0, t / 0.85))
+        frac = start_frac + (end_frac - start_frac) * drain
         d = ImageDraw.Draw(im, "RGBA")
-        # a faint ledger grid so the frame is designed, never empty black
-        for gx in range(x0, x1 + 1, 84):
-            d.line([gx, by - 200, gx, by + 220], fill=(255, 255, 255, 10), width=2)
-        # heading
-        hf, sf = _font(ANTON, 62), _font(DEJAVU, 30)
-        head = "A LIFETIME OF PAY"
-        d.text((_center_x(d, head, hf), int(H * 0.16)), head, font=hf, fill=(*FIG, 255))
-        # drain progress of the active chunk (0->1 across the beat, eased)
-        drain = _ease(min(1.0, t / 0.82)) if not final else 1.0
-        # remaining $ counter ticks down as the active chunk drains
-        remaining = LIFE_TOTAL - spent_before - (0 if final else active_amt * drain)
-        cf = _font(ANTON, 92)
-        cs = _money_str(remaining) + ("  LEFT" if not final else "  YOURS")
-        cs_col = GREEN if not final else GOLD
-        d.text((_center_x(d, cs, cf), int(H * 0.26)), cs, font=cf, fill=(*cs_col, 255))
-        # the bar
-        rr = bh // 2
-        for si, (sx0, sx1, lab, amt, col) in enumerate(spans):
-            gone = si < upto or (si == upto and not final)
-            slot = si == upto and not final
-            if si < upto:
-                # already spent — hollow dark slot
-                _rrect(d, sx0 + 3, by, sx1 - 3, by + bh, (26, 30, 44, 255), r=rr)
-                d.rounded_rectangle([sx0 + 3, by, sx1 - 3, by + bh], radius=rr,
-                                    outline=(70, 78, 100, 255), width=3)
-            elif slot:
-                # draining NOW: colour recedes right->left, leaving a hollow slot
-                edge = sx1 - (sx1 - sx0) * drain
-                _rrect(d, sx0 + 3, by, sx1 - 3, by + bh, (26, 30, 44, 255), r=rr)
-                if edge - sx0 > 6:
-                    _rrect(d, sx0 + 3, by, edge, by + bh, col + (255,), r=rr)
-                # coins spill off the receding edge
-                _coin_fall(d, si * 7 + 1, t, edge - 30, edge + 30, by + bh - 10,
-                           count=12, spread=230)
-            else:
-                # still yours — bright (the final sliver gets a glow pass below)
-                _rrect(d, sx0 + 3, by, sx1 - 3, by + bh, col + (255,), r=rr)
-            # labels: inactive segments below the bar; the ACTIVE / final one
-            # ABOVE the bar (so a wide label on a narrow chunk never collides
-            # with its neighbours below).
-            on = slot or (final and si == len(spans) - 1)
-            lf = _font(DEJAVU, 24 if on else 22)
-            af = _font(ANTON, 32 if on else 24)
-            lc = (*FIG, 255) if on else (170, 178, 200, 210)
-            lw = lf.getlength(lab)
-            a_s = _money_str(amt)
-            mid = (sx0 + sx1) / 2
-            if on:
-                d.text((mid - lw / 2, by - 44), lab, font=lf, fill=lc)
-                d.text((mid - af.getlength(a_s) / 2, by - 74), a_s, font=af, fill=lc)
-            elif sx1 - sx0 > lw + 6:
-                d.text((mid - lw / 2, by + bh + 16), lab, font=lf, fill=lc)
-                d.text((mid - af.getlength(a_s) / 2, by + bh + 44), a_s, font=af, fill=lc)
-        # the payoff sliver: a soft glow + coins raining IN and collecting (the
-        # bit you keep), and a shimmer sweep travelling the empty bar — so the
-        # reveal keeps moving for its whole hold instead of freezing.
-        if final:
-            sx0, sx1, *_ = spans[-1]
-            im = _glow(im, lambda dd: dd.rounded_rectangle(
-                [sx0, by - 6, sx1, by + bh + 6], radius=rr,
-                fill=(255, 226, 170, 160)), 26)
+        # floor
+        d.rectangle([0, base_y + 8, W, H], fill=(16, 18, 28, 255))
+        # the figure stands to the left, turned toward the money, arm out
+        _stand(d, int(W * 0.24), base_y + 12, h=430, col=FIG,
+               arms_up=0.22 + 0.06 * math.sin(i * 0.25))
+        # the pile of money (shrinking), a soft warm glow beneath it
+        im = _glow(im, lambda dd: dd.ellipse(
+            [pcx - int(W * 0.22 * math.sqrt(max(0.04, frac))), base_y - 30,
+             pcx + int(W * 0.22 * math.sqrt(max(0.04, frac))), base_y + 40],
+            fill=(255, 205, 108, 70)), 40)
+        d = ImageDraw.Draw(im, "RGBA")
+        _cash_pile(d, pcx, base_y, frac, seed=upto * 13 + 7, glow_coin=final)
+        # this chapter's chunk BLOWS off the top of the pile and away (up-right),
+        # stamped with what's taking it — a physical leak, not a bar segment.
+        if not final:
+            rnd = random.Random(upto * 3 + 5)
+            topy = base_y - int(H * 0.30 * math.sqrt(max(0.04, start_frac)))
+            for _k in range(14):
+                ph = (t * 1.15 + rnd.random()) % 1.0
+                bx = pcx + ph * (W * 0.32) + math.sin(ph * 5) * 20
+                by = topy - ph * (H * 0.22) + rnd.uniform(-14, 14)
+                a = int(230 * (1 - ph))
+                if a > 14:
+                    _rrect(d, bx, by, bx + 52, by + 28, (*GREEN, a), r=6)
+                    d.ellipse([bx + 17, by + 5, bx + 35, by + 23], outline=(*GREEN_D, a), width=2)
+            # the category taking the money, as a stamp riding the stream
+            stf = _font(ANTON, 40)
+            d.text((int(W * 0.80), int(H * 0.30)), "— " + cat, font=stf,
+                   fill=(238, 128, 108, 235))
+        else:
+            # PAYOFF: coins rain down across a WIDE band and settle onto the little
+            # pile that's yours to keep — the moving element the drain gave the rest.
+            rnd = random.Random(77)
+            for _k in range(22):
+                ph = (t * 0.85 + rnd.random()) % 1.0
+                cxp = rnd.uniform(int(W * 0.20), int(W * 0.92))
+                cyp = (base_y - int(H * 0.40)) + ph * int(H * 0.40)
+                a = int(240 * (1 - ph) ** 0.6)
+                if a > 16:
+                    _coin(d, int(cxp), int(cyp), int(12 + rnd.random() * 6), a=a,
+                          face=False)
+            # a soft golden light-shaft sweeps the full frame — a whole-frame moving
+            # element so the long payoff never sits still.
+            sweep = (t * 1.15) % 1.15
+            sx = int(sweep * W * 1.2) - int(W * 0.1)
+            band = Image.new("RGBA", im.size, (0, 0, 0, 0))
+            ImageDraw.Draw(band).polygon(
+                [(sx, 0), (sx + 150, 0), (sx + 40, H), (sx - 110, H)],
+                fill=(255, 226, 160, 46))
+            im = Image.alpha_composite(im.convert("RGBA"),
+                                       band.filter(ImageFilter.GaussianBlur(28)))
             d = ImageDraw.Draw(im, "RGBA")
-            # coins fall from above into the sliver, over and over
-            rnd = random.Random(99)
-            for _k in range(10):
-                ph = (t * 0.9 + rnd.random()) % 1.0
-                cxp = rnd.uniform(sx0 + 8, sx1 - 8)
-                cyp = (by - 150) + ph * 150
-                a = int(240 * (1 - abs(ph - 0.5)))
-                if a > 20:
-                    _coin(d, int(cxp), int(cyp), 15, a=a)
-            # a highlight sweep across the whole (mostly hollow) bar
-            sweep = (t * 1.3) % 1.3
-            hxp = x0 + sweep * bw
-            for off, aa in ((0, 60), (14, 34), (28, 16)):
-                d.line([hxp + off, by + 4, hxp + off, by + bh - 4],
-                       fill=(255, 255, 255, aa), width=6)
+        # a hanging tag on the pile: what's actually LEFT (physical price-tag feel)
+        remaining = (LIFE_TOTAL - spent_before - active_amt * drain)
+        tag = _money_str(remaining)
+        tf, tg = _font(ANTON, 96), _font(DEJAVU, 30)
+        tcol = GOLD if final else GREEN
+        tw = tf.getlength(tag)
+        tx = pcx - tw / 2
+        ty = int(H * 0.12)
+        d.line([pcx, ty + 96, pcx, base_y - int(H * 0.30 * math.sqrt(max(0.04, frac)))],
+               fill=(120, 128, 150, 120), width=3)
+        d.text((tx, ty), tag, font=tf, fill=(*tcol, 255))
+        cap = "STILL YOURS" if final else "LEFT"
+        d.text((pcx - tg.getlength(cap) / 2, ty + 100), cap, font=tg, fill=(*FIG, 220))
+        im = _label(im, number, label, col=(GOLD if final else (238, 128, 108)))
         return im
 
-    im2 = None  # noqa: F841 (kept for the nonlocal glow branch above)
     return _render(draw, out, seconds, bg)
 
 
@@ -897,9 +925,9 @@ def paycheck_scene(out: Path, seconds: float = 6.0, number: str = "",
     def bg(i, n):
         t = i / max(1, n - 1)
         # a bright payday morning that cools as the money leaves (one-way)
-        k = 1.0 - 0.7 * t
-        return _vgrad((int(30 + 70 * k), int(34 + 60 * k), int(52 + 40 * k)),
-                      (12, 14, 24))
+        k = 1.0 - 0.94 * t
+        return _vgrad((int(22 + 100 * k), int(26 + 78 * k), int(46 + 46 * k)),
+                      (10, 12, 22))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
@@ -954,9 +982,9 @@ def tax_scene(out: Path, seconds: float = 6.0, number: str = "",
               label: str = "THE GOVERNMENT'S CUT") -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
-        k = 0.2 + 0.5 * t                       # cold hall brightens a touch
-        return _vgrad((int(24 + 40 * k), int(30 + 46 * k), int(44 + 54 * k)),
-                      (10, 12, 22))
+        k = 0.08 + 0.9 * t                      # cold hall opens up into light
+        return _vgrad((int(18 + 96 * k), int(24 + 80 * k), int(40 + 70 * k)),
+                      (8, 10, 20))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
@@ -1010,9 +1038,9 @@ def rent_scene(out: Path, seconds: float = 6.0, number: str = "",
                label: str = "A ROOF OVER YOUR HEAD") -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
-        k = 1.0 - 0.6 * t                       # evening deepens
-        return _vgrad((int(28 + 46 * k), int(30 + 40 * k), int(50 + 44 * k)),
-                      (10, 11, 20))
+        k = 1.0 - 0.92 * t                      # day sinks into deep evening
+        return _vgrad((int(24 + 98 * k), int(28 + 80 * k), int(48 + 52 * k)),
+                      (9, 10, 18))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
@@ -1069,9 +1097,9 @@ def gas_scene(out: Path, seconds: float = 6.0, number: str = "",
               label: str = "GETTING AROUND") -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
-        k = 0.3 + 0.5 * t                       # dusk station light warming
-        return _vgrad((int(22 + 40 * k), int(26 + 44 * k), int(40 + 40 * k)),
-                      (10, 12, 20))
+        k = 0.05 + 0.92 * t                     # night falls over the station
+        return _vgrad((int(20 + 92 * (1 - k)), int(24 + 78 * (1 - k)), int(46 + 60 * (1 - k))),
+                      (8, 10, 18))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
@@ -1128,9 +1156,9 @@ def grocery_scene(out: Path, seconds: float = 6.0, number: str = "",
                   label: str = "STAYING ALIVE") -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
-        k = 0.5 + 0.3 * t                       # bright store, slight warm drift
-        return _vgrad((int(30 + 40 * k), int(34 + 40 * k), int(44 + 36 * k)),
-                      (14, 16, 24))
+        k = 0.05 + 0.92 * t                     # store lights ramp up bright
+        return _vgrad((int(24 + 104 * k), int(28 + 96 * k), int(40 + 74 * k)),
+                      (12, 14, 22))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
@@ -1194,9 +1222,9 @@ def subs_scene(out: Path, seconds: float = 6.0, number: str = "",
 
     def bg(i, n):
         t = i / max(1, n - 1)
-        k = 1.0 - 0.5 * t
-        return _vgrad((int(20 + 26 * k), int(22 + 26 * k), int(34 + 30 * k)),
-                      (10, 11, 20))
+        k = 1.0 - 0.92 * t                      # the room sinks toward dark
+        return _vgrad((int(18 + 96 * k), int(20 + 80 * k), int(34 + 60 * k)),
+                      (9, 10, 18))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
@@ -1292,9 +1320,9 @@ def treadmill_scene(out: Path, seconds: float = 6.0, number: str = "",
                     label: str = "RUNNING TO STAND STILL") -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
-        k = 0.3 + 0.4 * t
-        return _vgrad((int(24 + 30 * k), int(26 + 34 * k), int(40 + 40 * k)),
-                      (12, 13, 22))
+        k = 0.05 + 0.92 * t                     # the gym lights climb
+        return _vgrad((int(20 + 100 * k), int(24 + 86 * k), int(40 + 66 * k)),
+                      (10, 12, 20))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)

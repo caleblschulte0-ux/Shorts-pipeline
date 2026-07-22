@@ -16,7 +16,7 @@
   {
    "job": "TEASE",
    "mode": "designed_2d",
-   "narration": "By the time it reaches you, most of it already has somewhere else to be. In the end, only about fifteen cents of every dollar is ever truly yours.",
+   "narration": "In the end, only about fifteen cents of every dollar you earn is ever really yours.",
    "understand": "a stark stat card teasing the punchline of the whole video",
    "flat": {
     "kind": "flat_hook",
@@ -34,7 +34,8 @@
     "query": "stacks of cash money hundred dollar bills",
     "perspective": "close overhead flat lay",
     "still": true,
-    "min_appeal": 0.35
+    "min_appeal": 0.35,
+    "push": 1.34
    }
   },
   {
@@ -68,7 +69,8 @@
     "query": "united states capitol government building",
     "perspective": "wide daylight",
     "still": true,
-    "min_appeal": 0.35
+    "min_appeal": 0.35,
+    "push": 1.34
    }
   },
   {
@@ -113,7 +115,8 @@
     "query": "suburban houses neighborhood street",
     "perspective": "wide aerial daylight",
     "still": true,
-    "min_appeal": 0.35
+    "min_appeal": 0.35,
+    "push": 1.34
    }
   },
   {
@@ -158,7 +161,8 @@
     "query": "highway traffic cars rush hour",
     "perspective": "wide aerial",
     "still": true,
-    "min_appeal": 0.35
+    "min_appeal": 0.35,
+    "push": 1.34
    }
   },
   {
@@ -203,7 +207,8 @@
     "query": "supermarket grocery aisle shelves",
     "perspective": "wide bright",
     "still": true,
-    "min_appeal": 0.35
+    "min_appeal": 0.35,
+    "push": 1.34
    }
   },
   {
@@ -281,7 +286,8 @@
     "query": "crowd of people walking city street",
     "perspective": "wide street level",
     "still": true,
-    "min_appeal": 0.35
+    "min_appeal": 0.35,
+    "push": 1.34
    }
   },
   {
