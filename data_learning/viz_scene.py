@@ -599,7 +599,10 @@ def draw_timeline(d, canvas, box, insight, reveal):
     if hi <= lo:
         hi = lo + 1.0
     frac = max(0.0, min(1.0, (pos - lo) / (hi - lo)))
-    axis_y = (box[1] + box[3]) // 2
+    # Centre the axis in the FULL frame (not the legacy top-biased safe box that
+    # reserved a bottom strip CLEAN mode no longer draws) so the host + line sit
+    # balanced in the middle instead of jammed into the top third over a void.
+    axis_y = min(box[3] - 90, max((box[1] + box[3]) // 2, int(H * 0.50)))
     x0, x1 = box[0] + 70, box[2] - 70
     num_font, tick_font, lab_font = _pil_font(72), _pil_font(30), _pil_font(46)
     d.line([(x0, axis_y), (x1, axis_y)], fill=(120, 140, 170, 255), width=6)
