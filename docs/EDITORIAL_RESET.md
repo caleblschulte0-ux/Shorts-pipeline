@@ -53,12 +53,14 @@ good. Only previews/frozen runs fail open (so iteration isn't blocked by
 infra). `SHOWRUNNER=off` is refused on a publish run.
 
 ### 6. One controlled format
-`studio_render.py`. Optional layers are no longer all mandatory at once.
-Blender 3D bookends are OFF by default (`EXPLAINER_3D=1` to opt in); the
-b-roll filler strip and AI/stock cutouts are already off in the CLEAN path;
-AI-invented procedural mechanics are gated behind `VIZ_IMAGES=on`. The default
-production look is one intentional 2D format: flat dark editorial background,
-one real sourced chart, Data (the mascot host), narration, burned captions.
+`studio_render.py`. The video is now a **single render pass**. The 3D Blender
+bookends and the separately-stitched kinetic cold-open were an extra layer
+stapled around the body — redundant with the body's own hero-number hook and
+outro — so they're **removed** (≈210 lines of dead template code deleted, incl.
+`_add_3d_bookends` / `_hook_clip` / `_hero_clip`). AI/stock cutouts are off
+(`VIZ_IMAGES` default off) and AI-invented procedural mechanics are gated
+behind it. The one production look: flat dark editorial background, one real
+sourced chart, Data (the mascot host), narration, burned captions.
 
 ### 7. One experiment at a time
 `state/brain_context.json`. `max_concurrent_experiments: 1`. Dozens of
@@ -83,8 +85,13 @@ reactions. Retention is not interest.
 5. Measure the predetermined metric before changing anything else.
 
 ## Not done here (follow-ups)
-- A full renderer teardown (deleting the unused Blender / b-roll / procedural
-  subsystems rather than gating them) — left reversible on purpose.
+- The `LEGACY_LOOK` bokeh + b-roll-strip branches remain in `studio_render.py`
+  as unreachable dead paths (CLEAN is the only production look). Excising them
+  touches the ffmpeg filter graph, which can't be verified without a render, so
+  it's left for a pass that runs a preview — not blind-edited here.
+- `data_learning/blender_hero.py` is now unreferenced from the explainer
+  renderer (the third/long-form channel still has its own 3D path); safe to
+  delete once that's confirmed.
 - Backfilling real datasets to replace the ~519 illustrative ones.
 - Wiring the premise judge into the authoring UX so new stories are graded as
   they're written.
