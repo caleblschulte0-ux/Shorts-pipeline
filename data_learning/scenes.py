@@ -118,8 +118,12 @@ POSE_ARMS_UP = {"torso": -90, "thigh_f": 80, "shin_f": 92, "thigh_b": 100,
                 "shin_b": 92, "ua_f": -55, "fa_f": -35, "ua_b": -125, "fa_b": -145}
 POSE_DESK = {"torso": -68, "thigh_f": 6, "shin_f": 92, "thigh_b": 12, "shin_b": 92,
              "ua_f": 26, "fa_f": 40, "ua_b": 34, "fa_b": 46}
-POSE_PHONE = {"torso": -104, "thigh_f": -24, "shin_f": 66, "thigh_b": -14,
-              "shin_b": 74, "ua_f": -46, "fa_f": -18, "ua_b": -60, "fa_b": -30}
+# seated on the floor, knees up, back upright but shoulders rounded, both hands
+# holding a phone up in front of a downward-tilted head — a grounded doomscroller,
+# NOT tilted/falling.
+POSE_PHONE = {"torso": -86, "neck": -66, "thigh_f": -34, "shin_f": 72,
+              "thigh_b": -20, "shin_b": 80, "ua_f": -52, "fa_f": -20,
+              "ua_b": -64, "fa_b": -30}
 
 
 def _glow(im, draw_fn, blur, ):
@@ -341,34 +345,39 @@ def screen_scene(out: Path, seconds: float = 6.0, number: str = "11",
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
-        floor_y = int(H * 0.86)
+        floor_y = int(H * 0.82)
         d = ImageDraw.Draw(im, "RGBA")
-        d.rectangle([0, floor_y, W, H], fill=(12, 14, 26, 255))
-        # the FIGURE sits on the floor (blue-lit by the phone), holding it up.
+        # a dim room with a couch behind — context so it isn't an empty void
+        d.rectangle([0, floor_y, W, H], fill=(14, 16, 28, 255))
+        d.rounded_rectangle([int(W * 0.20), int(H * 0.52), int(W * 0.66), floor_y + 10],
+                            radius=30, fill=(26, 28, 44, 255))          # couch base
+        d.rounded_rectangle([int(W * 0.20), int(H * 0.44), int(W * 0.28), floor_y],
+                            radius=24, fill=(32, 34, 52, 255))          # couch arm
+        # the FIGURE sits on the floor against the couch (blue-lit), holding a phone
+        # up to a downward-tilted face. Grounded, upright — absorbed, not falling.
         lit = (150, 185, 235)
-        hip = (int(W * 0.44), floor_y - 6)
+        hip = (int(W * 0.40), floor_y + 8)
         pose = dict(POSE_PHONE)
-        pose["fa_f"] += 3 * math.sin(i * 0.25)        # tiny scroll-thumb motion
-        joints = _person(d, hip, pose, col=lit, s=0.95)
-        # the phone in front of the face — held between the hand and the head,
-        # a bright feed scrolling (big motion), casting a glow on the figure.
-        hd = joints["head"]
-        pcx, pcy = (hd[0] + 150), (hd[1] + 10)
-        pw, ph = 150, 300
+        pose["fa_f"] += 3 * math.sin(i * 0.3)        # tiny scroll-thumb motion
+        joints = _person(d, hip, pose, col=lit, s=1.05)
+        # the phone in the hands, tilted up toward the face, feed scrolling.
+        hf = joints["hand_f"]
+        pcx, pcy = hf[0] + 4, hf[1] - 30
+        pw, ph = 132, 250
         phone = Image.new("RGBA", im.size, (0, 0, 0, 0))
         pd = ImageDraw.Draw(phone)
         px0, py0 = int(pcx - pw / 2), int(pcy - ph / 2)
-        pd.rounded_rectangle([px0, py0, px0 + pw, py0 + ph], radius=26,
-                             fill=(18, 22, 36, 255), outline=(70, 82, 120, 255), width=5)
+        pd.rounded_rectangle([px0, py0, px0 + pw, py0 + ph], radius=22,
+                             fill=(18, 22, 36, 255), outline=(80, 92, 130, 255), width=5)
         for r in range(4):
-            ry = py0 + 18 + ((r * 74 + int(t * 300)) % (ph - 54))
-            pd.rounded_rectangle([px0 + 14, ry, px0 + pw - 14, ry + 40], radius=9,
-                                 fill=(160, 198, 250, 255))
-            pd.ellipse([px0 + 20, ry + 6, px0 + 48, ry + 34], fill=(255, 224, 150, 255))
-        phone = phone.rotate(-16, resample=Image.BICUBIC, center=(pcx, pcy))
-        # glow from the phone onto the face/room, before compositing the phone
-        im2 = _glow(im, lambda dd: dd.ellipse([pcx - 220, pcy - 220, pcx + 160, pcy + 200],
-                                              fill=(90, 150, 230, 150)), 55)
+            ry = py0 + 16 + ((r * 66 + int(t * 300)) % (ph - 48))
+            pd.rounded_rectangle([px0 + 12, ry, px0 + pw - 12, ry + 36], radius=8,
+                                 fill=(170, 205, 252, 255))
+            pd.ellipse([px0 + 18, ry + 5, px0 + 42, ry + 29], fill=(255, 224, 150, 255))
+        phone = phone.rotate(18, resample=Image.BICUBIC, center=(pcx, pcy))
+        # phone glow onto the face/room before compositing the phone over the hands
+        im2 = _glow(im, lambda dd: dd.ellipse([pcx - 240, pcy - 220, pcx + 200, pcy + 220],
+                                              fill=(90, 150, 230, 160)), 60)
         im2 = Image.alpha_composite(im2.convert("RGBA"), phone)
         im = _label(im2, number, label)
         return im
