@@ -1215,6 +1215,43 @@
           "self_healed": true
         }
       ]
+    },
+    {
+      "date": "20260722",
+      "dry_run": false,
+      "ts": "2026-07-22T18:05:37+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 97,
+        "with_retention": 65,
+        "with_curve": 12,
+        "fetched_at": "2026-07-22T16:59:00.227467+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260722-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-4",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
     }
   ]
 }
