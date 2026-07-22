@@ -111,6 +111,14 @@ jobs:
           # --force: preview must render even if the slug is already in the
           # posted log (dry-run never uploads, so this can't cause a re-post).
           python scripts/post_stories.py --dry-run --force --slugs "$SLUG"
+          # Surface the SHOWRUNNER's actual verdict — the vision gate that WATCHED
+          # the finished video. This is the quality judgment of record, not a
+          # human eyeballing stills. (dry-run fails open, so a verdict with no
+          # score means the gate couldn't run — that is itself the honest state.)
+          echo "======== SHOWRUNNER VERDICT ($SLUG) ========"
+          cat "output/story_$SLUG.showrunner.json" 2>/dev/null \
+            || echo '{"note":"no verdict written — the review gate did not run (no vision backend / infra error)"}'
+          echo "============================================="
 
       - name: List rendered output
         if: always()
@@ -134,23 +142,28 @@ jobs:
               cp "$mp4" "$tmp"/ || true
             fi
           done
-          # Grab a few frames so the host can be eyeballed as stills too.
+          # Grab MORE frames, evenly across the whole clip, so the composition can
+          # be judged end-to-end (the old 5-frame sample hid dead space and
+          # overlaps between the sampled moments).
           for mp4 in "$tmp"/*.mp4; do
             fbase=$(basename "$mp4" .mp4)
             DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$mp4" 2>/dev/null | cut -d. -f1)
             [ -z "$DUR" ] && DUR=40
-            for pct in 8 30 55 80 96; do
+            for pct in 4 12 20 30 40 50 60 70 80 88 96; do
               ts=$(( DUR * pct / 100 ))
               ffmpeg -y -loglevel error -ss "$ts" -i "$mp4" -frames:v 1 \
-                "$tmp/${fbase}.frame${pct}.png" 2>/dev/null || true
+                "$tmp/${fbase}.frame$(printf '%02d' $pct).png" 2>/dev/null || true
             done
           done
+          # Carry the showrunner verdict onto the branch so the gate's judgment
+          # travels with the video, not just my say-so.
+          cp output/*.showrunner.json "$tmp"/ 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout --orphan preview-renders
           git reset
           cp "$tmp"/* .
-          git add -f *.mp4 *.png 2>/dev/null || true
+          git add -f *.mp4 *.png *.json 2>/dev/null || true
           git commit -m "explainer preview render $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
           git push -f origin preview-renders
 
