@@ -4,7 +4,9 @@ name: Curiosity Long-form
 # main watch feed — NOT Shorts) to the OpenRangeInteractive channel.
 # CURIOSITY_BRAIN.md is the doctrine. Fully separate from daily.yml /
 # explainer.yml / third.yml: own config (data_learning/curiosity.config.json),
-# own renderer (data_learning/longform_render.py), own posted-log
+# own renderer (canonical: the pro producer scripts/produce.py -> pro_render +
+# the full director loop; longform_render is the legacy except-branch fallback),
+# own posted-log
 # (state/curiosity_posted_log.json), own token secret, own concurrency group.
 #
 # Cadence: 1/week (Saturdays 15:00 UTC) — the cron posts at most ONE un-posted

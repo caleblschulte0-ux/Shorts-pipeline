@@ -98,6 +98,30 @@ def _description(sc: dict, meta: dict) -> str:
     return "\n\n".join(p for p in parts if p)[:5000]
 
 
+def _render_story(slug: str, out: Path, config: Path) -> dict:
+    """Render through the CANONICAL pro pipeline (produce.py: pro_render + the full
+    director loop + gates + repair + publishing package + fallback/vision verdict).
+    Legacy ``longform_render`` is the EXPLICIT fallback, used only when there is no
+    pro beat story for the slug or the pro build itself cannot run — never as the
+    default publisher (audit #1: "make the pro renderer the publishing renderer").
+
+    Returns {"engine": "pro"|"legacy", "produce": <produce result or None>}.
+    """
+    sys.path.insert(0, str(REPO / "scripts"))
+    try:
+        import produce
+        produce.resolve_story(slug)          # raises FileNotFoundError if no pro story
+    except Exception as e:  # noqa: BLE001 — no pro story: fall back to legacy engine
+        print(f"[{slug}] no pro story ({str(e)[:70]}) — LEGACY longform fallback",
+              flush=True)
+        from data_learning import longform_render
+        longform_render.render(slug, out, config_path=config)
+        return {"engine": "legacy", "produce": None}
+    print(f"[{slug}] rendering through PRO producer (canonical path)", flush=True)
+    result = produce.produce(slug, out)
+    return {"engine": "pro", "produce": result}
+
+
 def _prepublish_gate(out: Path, sc: dict) -> tuple[bool, list[str]]:
     """A flagged video MUST NOT ship (data_learning/DIRECTOR.md). The production
     renderer (longform) can't run the full auto-fix loop, but the publish boundary
@@ -148,7 +172,9 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true",
                     help="render but do not upload")
     ap.add_argument("--force", action="store_true",
-                    help="re-post even if the slug is in the posted log")
+                    help="re-post even if the slug is in the posted log "
+                         "(dedup/scheduling only — NEVER bypasses a quality, "
+                         "factual, legal, or technical gate)")
     ap.add_argument("--publish-in-hours", type=float, default=0.0,
                     help="schedule the upload this many hours from now "
                          "(private until publishAt); 0 = public now")
@@ -189,8 +215,7 @@ def main() -> int:
             continue
         out = OUTPUT_DIR / f"curiosity_{slug}.mp4"
         print(f"[{slug}] rendering long-form -> {out}", flush=True)
-        from data_learning import longform_render   # lazy: needs Pillow etc.
-        longform_render.render(slug, out, config_path=args.config)
+        render_report = _render_story(slug, out, args.config)
         meta = json.loads(out.with_suffix(".meta.json").read_text())
         dur = meta.get("duration", 0)
         if dur < 120:
@@ -200,18 +225,27 @@ def main() -> int:
             results.append({"slug": slug, "ok": False, "error": "too short"})
             continue
 
-        # QUALITY GATE — a flagged video must not ship (DIRECTOR.md). Blocks the
-        # upload on a weak hook or too much dead time unless --force overrides.
-        gate_ok, gate_reasons = _prepublish_gate(out, sc)
-        if not gate_ok:
+        # QUALITY GATE — a flagged video must not ship (DIRECTOR.md). TWO layers:
+        # (1) the producer's own verdict — the full director loop + honest fallback
+        #     classifier + vision taste verdict. A QUARANTINE here is non-bypassable:
+        #     an unacceptable fallback / missing judge / failed package must NOT
+        #     publish, and --force must never override a quality/factual/legal gate
+        #     (audit #5). --force covers only dedup + scheduling.
+        # (2) the renderer-agnostic hook + dead-time judges on the finished mp4.
+        gate_reasons: list[str] = []
+        prod = render_report.get("produce")
+        if prod is not None and prod.get("status") != "pass":
+            gate_reasons.append("producer QUARANTINE: " + "; ".join(prod["reasons"]))
+        gate_ok, judge_reasons = _prepublish_gate(out, sc)
+        gate_reasons.extend(judge_reasons)
+        if gate_reasons:
             print(f"[{slug}] QUALITY GATE FAILED: {'; '.join(gate_reasons)}",
                   file=sys.stderr)
-            if not args.force:
-                results.append({"slug": slug, "ok": False,
-                                "error": "quality gate: " + "; ".join(gate_reasons)})
-                continue
-            print(f"[{slug}] --force: publishing despite gate failure",
-                  file=sys.stderr)
+            print(f"[{slug}] refusing to publish (--force cannot bypass quality "
+                  "gates; it only overrides dedup/scheduling)", file=sys.stderr)
+            results.append({"slug": slug, "ok": False,
+                            "error": "quality gate: " + "; ".join(gate_reasons)})
+            continue
 
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered {dur:.0f}s, not uploading")
