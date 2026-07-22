@@ -1749,12 +1749,16 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     # Full-frame renderers (diorama, timeline, fill_vessel, ...) author their own
     # 1080x1920 sequence. If one can't produce (image gen failed), degrade to the
     # next DEPICTED kind — never to bare numbers — and try again (cap the hops).
+    print(f"[chart] '{slug}' kind={insight.kind!r} n={len(insight.items)} "
+          f"vals={[round(float(p.value), 2) for p in insight.items][:4]}",
+          flush=True)
     hops = 0
     while insight.kind in FULLFRAME_RENDERERS and hops < 3:
         res = FULLFRAME_RENDERERS[insight.kind](insight, out_dir, slug, frames)
         if res is not None:
             return res
         insight.kind = FALLBACK.get(insight.kind, "bubbles")
+        print(f"[chart] '{slug}' fell back -> {insight.kind!r}", flush=True)
         hops += 1
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
