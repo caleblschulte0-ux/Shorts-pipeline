@@ -1029,6 +1029,65 @@
           "error": "RuntimeError: qa_rejected: vision: subject/person missing or barely visible from frames at 6.0s-9.4s (empty room shot, no face); vision: subject's head cropped out of frame for 11.2s-14.6s (only torso visible); vision: framing "
         }
       ]
+    },
+    {
+      "date": "20260722",
+      "dry_run": false,
+      "ts": "2026-07-22T11:21:55+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 88,
+        "with_retention": 65,
+        "with_curve": 12,
+        "fetched_at": "2026-07-22T10:38:37.657247+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260722-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-6",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-7",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260722-8",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        }
+      ]
     }
   ]
 }
