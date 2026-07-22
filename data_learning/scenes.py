@@ -828,7 +828,18 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
     cat = LIFETIME[min(upto, len(LIFETIME) - 1)][0]
     start_frac = (LIFE_TOTAL - spent_before) / LIFE_TOTAL
     end_frac = (LIFE_TOTAL - spent_before - active_amt) / LIFE_TOTAL
-    pcx, base_y = int(W * 0.62), int(H * 0.80)
+    # STAGING VARIES each appearance so the motif never reads as one repeated
+    # template: the camera/figure/pile swap sides and scale, and the figure ACTS
+    # (steps after the money, throws up its arms) instead of just standing.
+    layout = upto % 3
+    if layout == 0:
+        figx, figh, pcx, dirx = int(W * 0.20), 440, int(W * 0.60), 1
+    elif layout == 1:                                   # mirrored
+        figx, figh, pcx, dirx = int(W * 0.80), 470, int(W * 0.40), -1
+    else:                                               # closer + lower
+        figx, figh, pcx, dirx = int(W * 0.30), 520, int(W * 0.66), 1
+    base_y = int(H * (0.80 if layout != 2 else 0.86))
+    tagx = pcx + dirx * int(W * 0.13)
 
     def bg(i, n):
         # a big MONOTONIC vault-light swing (dim -> lit, or the reverse on the
@@ -847,9 +858,16 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
         d = ImageDraw.Draw(im, "RGBA")
         # floor
         d.rectangle([0, base_y + 8, W, H], fill=(16, 18, 28, 255))
-        # the figure stands to the left, turned toward the money, arm out
-        _stand(d, int(W * 0.24), base_y + 12, h=430, col=FIG,
-               arms_up=0.22 + 0.06 * math.sin(i * 0.25))
+        # the figure ACTS: on a drain beat it throws its arms up and steps after
+        # the leaving money (alarm/grab-back); on the payoff it lifts the last of
+        # it. Arms + stride swing so it reads as a reacting character, not an icon.
+        if final:
+            armsu = 0.30 + 0.10 * math.sin(i * 0.3)
+            strd = 6 * math.sin(i * 0.3)
+        else:
+            armsu = 0.44 + 0.20 * (0.5 + 0.5 * math.sin(i * 0.7))   # grabbing up
+            strd = dirx * (10 + 6 * math.sin(i * 0.7))              # stepping after it
+        _stand(d, figx, base_y + 12, h=figh, col=FIG, arms_up=armsu, stride=strd)
         # the pile of money (shrinking), a soft warm glow beneath it
         im = _glow(im, lambda dd: dd.ellipse(
             [pcx - int(W * 0.22 * math.sqrt(max(0.04, frac))), base_y - 30,
@@ -857,14 +875,14 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
             fill=(255, 205, 108, 70)), 40)
         d = ImageDraw.Draw(im, "RGBA")
         _cash_pile(d, pcx, base_y, frac, seed=upto * 13 + 7, glow_coin=final)
-        # this chapter's chunk BLOWS off the top of the pile and away (up-right),
-        # stamped with what's taking it — a physical leak, not a bar segment.
+        # this chapter's chunk BLOWS off the top of the pile and away (in the
+        # layout's direction), stamped with what's taking it — a physical leak.
         if not final:
             rnd = random.Random(upto * 3 + 5)
             topy = base_y - int(H * 0.30 * math.sqrt(max(0.04, start_frac)))
             for _k in range(14):
                 ph = (t * 1.15 + rnd.random()) % 1.0
-                bx = pcx + ph * (W * 0.32) + math.sin(ph * 5) * 20
+                bx = pcx + dirx * (ph * (W * 0.30)) + math.sin(ph * 5) * 20
                 by = topy - ph * (H * 0.22) + rnd.uniform(-14, 14)
                 a = int(230 * (1 - ph))
                 if a > 14:
@@ -872,7 +890,8 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
                     d.ellipse([bx + 17, by + 5, bx + 35, by + 23], outline=(*GREEN_D, a), width=2)
             # the category taking the money, as a stamp riding the stream
             stf = _font(ANTON, 40)
-            d.text((int(W * 0.80), int(H * 0.30)), "— " + cat, font=stf,
+            sxp = (pcx + dirx * int(W * 0.24)) if dirx > 0 else (pcx + dirx * int(W * 0.24) - int(stf.getlength("— " + cat)))
+            d.text((sxp, int(H * 0.28)), "— " + cat, font=stf,
                    fill=(238, 128, 108, 235))
         else:
             # PAYOFF: coins rain down across a WIDE band and settle onto the little
@@ -897,19 +916,21 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
             im = Image.alpha_composite(im.convert("RGBA"),
                                        band.filter(ImageFilter.GaussianBlur(28)))
             d = ImageDraw.Draw(im, "RGBA")
-        # a hanging tag on the pile: what's actually LEFT (physical price-tag feel)
+        # a small price-tag on a string above the pile: what's actually LEFT — a
+        # physical tag, not a centred dashboard readout.
         remaining = (LIFE_TOTAL - spent_before - active_amt * drain)
         tag = _money_str(remaining)
-        tf, tg = _font(ANTON, 96), _font(DEJAVU, 30)
+        tf, tg = _font(ANTON, 60), _font(DEJAVU, 24)
         tcol = GOLD if final else GREEN
         tw = tf.getlength(tag)
-        tx = pcx - tw / 2
-        ty = int(H * 0.12)
-        d.line([pcx, ty + 96, pcx, base_y - int(H * 0.30 * math.sqrt(max(0.04, frac)))],
-               fill=(120, 128, 150, 120), width=3)
-        d.text((tx, ty), tag, font=tf, fill=(*tcol, 255))
+        ty = int(H * 0.20)
+        piletop = base_y - int(H * 0.30 * math.sqrt(max(0.04, frac)))
+        d.line([tagx, ty + 60, tagx, piletop], fill=(120, 128, 150, 110), width=2)
         cap = "STILL YOURS" if final else "LEFT"
-        d.text((pcx - tg.getlength(cap) / 2, ty + 100), cap, font=tg, fill=(*FIG, 220))
+        _rrect(d, tagx - tw / 2 - 16, ty - 8, tagx + tw / 2 + 16, ty + 92,
+               (22, 26, 40, 210), r=14)
+        d.text((tagx - tw / 2, ty), tag, font=tf, fill=(*tcol, 255))
+        d.text((tagx - tg.getlength(cap) / 2, ty + 62), cap, font=tg, fill=(*FIG, 220))
         im = _label(im, number, label, col=(GOLD if final else (238, 128, 108)))
         return im
 
