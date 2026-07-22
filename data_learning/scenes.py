@@ -71,6 +71,57 @@ def _capsule(d, x0, y0, x1, y1, w, col):
         d.ellipse([x - r, y - r, x + r, y + r], fill=col)
 
 
+# --------------------------------------------------------------------------
+# THE CHARACTER — one clean, consistently-proportioned pictogram, posed by real
+# forward-kinematics joints (never hand-placed blobs). Angles are degrees, y-down:
+# 0=right, 90=down, -90=up, 180=left. Every scene draws the SAME figure so the
+# desk/phone poses read as deliberate, not clunky.
+# --------------------------------------------------------------------------
+def _pt(base, deg, length):
+    a = math.radians(deg)
+    return (base[0] + math.cos(a) * length, base[1] + math.sin(a) * length)
+
+
+def _chain(d, pts, w, col):
+    for a, b in zip(pts, pts[1:]):
+        _capsule(d, a[0], a[1], b[0], b[1], w, col)
+
+
+def _person(d, hip, pose, col=FIG, s=1.0):
+    """Draw the figure from a hip anchor + a pose (joint angles). Returns key
+    joints (head, hands) so a scene can attach props (a phone, a keyboard)."""
+    L = {"torso": 150 * s, "ua": 82 * s, "fa": 78 * s, "th": 96 * s, "sh": 96 * s}
+    hr = int(44 * s)
+    tw, lw = int(58 * s), int(28 * s)
+    back = tuple(int(c * 0.82) for c in col)          # far-side limbs, shaded
+    shoulder = _pt(hip, pose["torso"], L["torso"])
+    head_c = _pt(shoulder, pose.get("neck", pose["torso"]), hr + int(20 * s))
+    knee_f = _pt(hip, pose["thigh_f"], L["th"]); foot_f = _pt(knee_f, pose["shin_f"], L["sh"])
+    knee_b = _pt(hip, pose["thigh_b"], L["th"]); foot_b = _pt(knee_b, pose["shin_b"], L["sh"])
+    el_f = _pt(shoulder, pose["ua_f"], L["ua"]); ha_f = _pt(el_f, pose["fa_f"], L["fa"])
+    el_b = _pt(shoulder, pose["ua_b"], L["ua"]); ha_b = _pt(el_b, pose["fa_b"], L["fa"])
+    # far side first (behind torso), then torso, then near side, then head
+    _chain(d, [hip, knee_b, foot_b], lw, back)
+    _chain(d, [shoulder, el_b, ha_b], lw, back)
+    _chain(d, [hip, shoulder], tw, col)
+    _chain(d, [hip, knee_f, foot_f], lw, col)
+    _chain(d, [shoulder, el_f, ha_f], lw, col)
+    d.ellipse([head_c[0] - hr, head_c[1] - hr, head_c[0] + hr, head_c[1] + hr], fill=col)
+    return {"head": head_c, "hr": hr, "hand_f": ha_f, "hand_b": ha_b,
+            "shoulder": shoulder, "hip": hip}
+
+
+# clean named poses (front/back limb angles). Small sways are added per-scene.
+POSE_STAND = {"torso": -90, "thigh_f": 78, "shin_f": 90, "thigh_b": 102,
+              "shin_b": 90, "ua_f": 60, "fa_f": 80, "ua_b": 120, "fa_b": 100}
+POSE_ARMS_UP = {"torso": -90, "thigh_f": 80, "shin_f": 92, "thigh_b": 100,
+                "shin_b": 92, "ua_f": -55, "fa_f": -35, "ua_b": -125, "fa_b": -145}
+POSE_DESK = {"torso": -68, "thigh_f": 6, "shin_f": 92, "thigh_b": 12, "shin_b": 92,
+             "ua_f": 26, "fa_f": 40, "ua_b": 34, "fa_b": 46}
+POSE_PHONE = {"torso": -104, "thigh_f": -24, "shin_f": 66, "thigh_b": -14,
+              "shin_b": 74, "ua_f": -46, "fa_f": -18, "ua_b": -60, "fa_b": -30}
+
+
 def _glow(im, draw_fn, blur, ):
     """Composite a blurred glow layer under the frame."""
     lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
@@ -259,24 +310,21 @@ def work_scene(out: Path, seconds: float = 6.0, number: str = "13",
             d.rounded_rectangle([int(W * 0.20), py - 8, int(W * 0.30), py + 4],
                                 radius=3, fill=(230, 232, 240, 255),
                                 outline=(150, 150, 160, 255))
-        # the FIGURE — clearly seated on a chair, hunched toward the monitor
-        cx = int(W * 0.42)
-        hips_y = desk_y - 40
-        bob = 4 * math.sin(i * 0.5)
-        # chair back behind
-        d.rounded_rectangle([cx - 70, hips_y - 190, cx - 46, hips_y + 10], radius=12,
-                            fill=(44, 40, 52, 255))
-        d.rounded_rectangle([cx - 72, hips_y - 6, cx + 40, hips_y + 18], radius=10,
+        # chair (seat + back) behind the figure
+        cx = int(W * 0.40)
+        hip = (cx, desk_y + 8)
+        d.rounded_rectangle([cx - 96, hip[1] - 8, cx + 30, hip[1] + 14], radius=10,
                             fill=(44, 40, 52, 255))                        # seat
-        # hunched spine: hips -> shoulders leaning toward the screen
-        sh_x, sh_y = cx + 40, hips_y - 150 + bob
-        _capsule(d, cx - 18, hips_y, sh_x, sh_y, 60, FIG)                  # back/torso
-        d.ellipse([sh_x - 4, sh_y - 78, sh_x + 68, sh_y - 6], fill=FIG)    # head, tipped forward
-        _capsule(d, sh_x + 24, sh_y - 20, int(W * 0.52), desk_y - 12, 24, FIG)  # arm to keyboard
-        _capsule(d, cx - 12, hips_y + 8, cx + 30, desk_y + 40, 26, (210, 214, 226))  # thigh/leg
-        # keyboard
-        d.rounded_rectangle([int(W * 0.49), desk_y - 16, int(W * 0.60), desk_y - 4],
+        d.rounded_rectangle([cx - 96, hip[1] - 150, cx - 74, hip[1] + 8], radius=12,
+                            fill=(44, 40, 52, 255))                        # back
+        # keyboard on the desk in front of him
+        d.rounded_rectangle([int(W * 0.50), desk_y - 14, int(W * 0.61), desk_y - 2],
                             radius=4, fill=(60, 64, 82, 255))
+        # the FIGURE — one clean rig, seated at the desk, reaching to the keyboard.
+        # a tiny typing bob keeps it alive.
+        pose = dict(POSE_DESK)
+        pose["fa_f"] += 6 * math.sin(i * 0.6)        # near forearm taps
+        joints = _person(d, hip, pose, col=FIG, s=0.95)
         im = _label(im, number, label)
         return im
 
@@ -293,42 +341,36 @@ def screen_scene(out: Path, seconds: float = 6.0, number: str = "11",
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
-        cx, cy = int(W * 0.52), int(H * 0.56)
-        # the phone — big, tilted, a bright feed scrolling; it lights the figure
-        pw, ph = 300, 560
+        floor_y = int(H * 0.86)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(12, 14, 26, 255))
+        # the FIGURE sits on the floor (blue-lit by the phone), holding it up.
+        lit = (150, 185, 235)
+        hip = (int(W * 0.44), floor_y - 6)
+        pose = dict(POSE_PHONE)
+        pose["fa_f"] += 3 * math.sin(i * 0.25)        # tiny scroll-thumb motion
+        joints = _person(d, hip, pose, col=lit, s=0.95)
+        # the phone in front of the face — held between the hand and the head,
+        # a bright feed scrolling (big motion), casting a glow on the figure.
+        hd = joints["head"]
+        pcx, pcy = (hd[0] + 150), (hd[1] + 10)
+        pw, ph = 150, 300
         phone = Image.new("RGBA", im.size, (0, 0, 0, 0))
         pd = ImageDraw.Draw(phone)
-        px0, py0 = cx - pw // 2, cy - ph // 2
-        pd.rounded_rectangle([px0, py0, px0 + pw, py0 + ph], radius=44,
-                             fill=(20, 24, 40, 255), outline=(60, 70, 100, 255), width=6)
-        # bright scrolling feed
-        for r in range(7):
-            ry = py0 + 30 + ((r * 90 + int(t * 420)) % (ph - 120))
-            pd.rounded_rectangle([px0 + 24, ry, px0 + pw - 24, ry + 60], radius=12,
-                                 fill=(150, 190, 245, 255))
-            pd.ellipse([px0 + 34, ry + 8, px0 + 74, ry + 48], fill=(255, 224, 150, 255))
-        phone = phone.rotate(-12, resample=Image.BICUBIC, center=(cx, cy))
-        # cast the phone's glow onto the scene BEFORE compositing the phone
-        im = _glow(im, lambda dd: dd.ellipse([cx - 260, cy - 300, cx + 200, cy + 260],
-                                             fill=(90, 150, 230, 150)), 60)
-        # the FIGURE curled toward the phone, face lit
-        d = ImageDraw.Draw(im, "RGBA")
-        fx, fy = int(W * 0.30), int(H * 0.60)
-        lit = (150, 185, 235)
-        d.ellipse([fx - 40, fy - 210, fx + 40, fy - 130], fill=lit)         # head (lit blue)
-        _capsule(d, fx, fy - 140, fx + 60, fy + 10, 62, lit)                # curled torso
-        _capsule(d, fx + 40, fy - 60, cx - 90, cy - 20, 26, lit)           # arm reaching phone
-        _capsule(d, fx + 30, fy + 6, fx + 150, fy + 40, 30, lit)           # legs tucked
-        im = Image.alpha_composite(im.convert("RGBA"), phone)
-        # a faint pull — motion lines from the figure into the phone
-        d = ImageDraw.Draw(im, "RGBA")
-        for k in range(5):
-            ph2 = (t * 1.4 + k * 0.2) % 1.0
-            ax = fx + 60 + ph2 * (cx - fx - 100)
-            ay = fy - 90 + ph2 * (cy - fy + 40)
-            d.ellipse([ax - 4, ay - 4, ax + 4, ay + 4],
-                      fill=(150, 190, 245, int(200 * (1 - ph2))))
-        im = _label(im, number, label)
+        px0, py0 = int(pcx - pw / 2), int(pcy - ph / 2)
+        pd.rounded_rectangle([px0, py0, px0 + pw, py0 + ph], radius=26,
+                             fill=(18, 22, 36, 255), outline=(70, 82, 120, 255), width=5)
+        for r in range(4):
+            ry = py0 + 18 + ((r * 74 + int(t * 300)) % (ph - 54))
+            pd.rounded_rectangle([px0 + 14, ry, px0 + pw - 14, ry + 40], radius=9,
+                                 fill=(160, 198, 250, 255))
+            pd.ellipse([px0 + 20, ry + 6, px0 + 48, ry + 34], fill=(255, 224, 150, 255))
+        phone = phone.rotate(-16, resample=Image.BICUBIC, center=(pcx, pcy))
+        # glow from the phone onto the face/room, before compositing the phone
+        im2 = _glow(im, lambda dd: dd.ellipse([pcx - 220, pcy - 220, pcx + 160, pcy + 200],
+                                              fill=(90, 150, 230, 150)), 55)
+        im2 = Image.alpha_composite(im2.convert("RGBA"), phone)
+        im = _label(im2, number, label)
         return im
 
     return _render(draw, out, seconds, bg)
@@ -361,18 +403,18 @@ def free_scene(out: Path, seconds: float = 6.0, number: str = "9",
         for gx in range(0, W, 90):                          # ground texture streaks
             d.line([gx + int(t * 30) % 90, hz + 20, gx + 40 + int(t * 30) % 90, hz + 20],
                    fill=(40, 34, 48, 200), width=3)
-        # the FIGURE walking toward the light, arms rising as it frees up
+        # the FIGURE walks toward the light; arms rise from its sides to overhead
+        # as it frees up (the clean rig, interpolating stand -> arms-up).
         cx = int(W * 0.30 + t * W * 0.16)
-        feet = hz + 30
-        rise = _ease(max(0.0, (t - 0.4) / 0.6))
-        d.ellipse([cx - 34, feet - 250, cx + 34, feet - 182], fill=FIG)     # head
-        _capsule(d, cx, feet - 186, cx, feet - 70, 58, FIG)                 # torso
-        arm = -1.2 * rise
-        _capsule(d, cx - 4, feet - 160, cx - 70, feet - 160 + int(90 * arm), 22, FIG)
-        _capsule(d, cx + 4, feet - 160, cx + 70, feet - 160 + int(90 * arm), 22, FIG)
-        stride = 26 * math.sin(i * 0.4)
-        _capsule(d, cx - 4, feet - 74, cx - 24 - stride, feet, 26, FIG)
-        _capsule(d, cx + 4, feet - 74, cx + 24 + stride, feet, 26, FIG)
+        hip = (cx, hz + 6)
+        rise = _ease(max(0.0, (t - 0.35) / 0.65))
+        stride = 10 * math.sin(i * 0.4)
+        pose = dict(POSE_STAND)
+        for key in ("ua_f", "fa_f", "ua_b", "fa_b"):
+            pose[key] = POSE_STAND[key] + (POSE_ARMS_UP[key] - POSE_STAND[key]) * rise
+        pose["thigh_f"] = 78 + stride
+        pose["thigh_b"] = 102 - stride
+        _person(d, hip, pose, col=FIG, s=1.0)
         im = _label(im, number, label, col=(255, 224, 168))
         return im
 
