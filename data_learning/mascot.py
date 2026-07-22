@@ -96,6 +96,15 @@ def build_mascot_loop(out_path: Path, *, size: int = 360, fps: int = 30,
     return _bob_loop(out_path, _load(pose), size, fps, seconds, flip)
 
 
+def build_blank_loop(out_path: Path, *, size: int = 360, fps: int = 20,
+                     seconds: float = 1.0) -> Path:
+    """A fully transparent alpha loop — used to HIDE the travelling host on
+    beats where Data is already composited into the chart (e.g. riding the
+    gauge), without disturbing the overlay's index alignment."""
+    return _bob_loop(out_path, Image.new("RGBA", (size, size), (0, 0, 0, 0)),
+                     size, fps, seconds, False)
+
+
 def build_scene_loop(out_path: Path, spec: dict, *, size: int = 360,
                      fps: int = 20, seconds: float = 1.0,
                      flip: bool = False) -> Path:

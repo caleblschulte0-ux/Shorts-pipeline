@@ -1257,7 +1257,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             _director = None
 
         def _seg_spec(i):
-            """A director spec for segment i (its whole beat), or a pose name."""
+            """A director spec for segment i (its whole beat), or a pose name.
+            Gauge beats bake Data INTO the chart (he rides the arc), so the
+            travelling overlay is hidden there to avoid a duplicate mascot."""
+            if getattr(st.segments[i], "kind", "") in ("fill_vessel", "bignum"):
+                return {"hidden": True}
             if not _director:
                 return ("point", "shock", "point", "think")[i % 4]
             try:
@@ -1357,7 +1361,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         mascot_movs = []
         for k, (_x, _y, _w0, _w1, angle, flip, act) in enumerate(seq):
             mv = work / f"masc_{k}.mov"
-            if isinstance(act, dict):
+            if isinstance(act, dict) and act.get("hidden"):
+                # Data is baked into the chart this beat (e.g. riding the gauge)
+                # — overlay nothing, but keep the index aligned with a blank mov.
+                mascot.build_blank_loop(mv, size=S)
+            elif isinstance(act, dict):
                 # director spec → Data doing a scene-specific action with a prop
                 mascot.build_scene_loop(mv, act, size=S, seconds=2.2, flip=flip)
             else:

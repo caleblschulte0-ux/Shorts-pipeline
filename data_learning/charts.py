@@ -1552,11 +1552,23 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
         _cap(d, a0, tc); _cap(d, a0 + sweep, tc)
         # value arc
         cur = (val_frac * eased) if is_pct else eased
+        end = a0
         if cur > 0.004:
             ac = _rgba(accent, 255)
             end = a0 + sweep * cur
             d.arc(bbox, a0, end, fill=ac, width=wdt)
             _cap(d, a0, ac); _cap(d, end, ac)
+        # Data PERFORMS on the gauge: he rides the tip of the value arc UP as it
+        # fills — he's the reason the number climbs. (Composited straight into
+        # the demonstration; the traveling overlay is suppressed for this beat.)
+        host = _host_pose("cheer")
+        if host is not None:
+            mh = 210
+            mw = int(host.width * mh / host.height)
+            m = host.resize((mw, mh), Image.LANCZOS)
+            rad = math.radians(end)
+            tx, ty = cx + R * math.cos(rad), cy + R * math.sin(rad)
+            canvas.alpha_composite(m, (int(tx - mw / 2), int(ty - mh + 24)))
         # counting number in the centre
         num = fmt(star.value * eased)
         nb = d.textbbox((0, 0), num, font=num_font)
@@ -1690,6 +1702,24 @@ def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
 def _rgba(hex_color: str, alpha: int = 255):
     h = hex_color.lstrip("#")
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), alpha)
+
+
+_HOST_CACHE: dict = {}
+
+
+def _host_pose(pose: str = "cheer"):
+    """Load a committed mascot pose PNG (RGBA) so Data can be composited
+    directly INTO a demonstration (e.g. riding the gauge). Cached; returns
+    None if the asset set isn't present."""
+    if pose not in _HOST_CACHE:
+        try:
+            from PIL import Image
+            p = (Path(__file__).resolve().parent.parent / "assets" / "mascot" /
+                 "host" / f"{pose}.png")
+            _HOST_CACHE[pose] = Image.open(p).convert("RGBA") if p.exists() else None
+        except Exception:  # noqa: BLE001
+            _HOST_CACHE[pose] = None
+    return _HOST_CACHE[pose]
 
 
 def render_story_chart(insight: Insight, out_path: Path):
