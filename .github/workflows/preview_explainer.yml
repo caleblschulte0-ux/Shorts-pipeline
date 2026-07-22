@@ -94,9 +94,13 @@ jobs:
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-          # SHOWRUNNER: the headless-Claude taste gate reviews the render (dry
-          # run logs the verdict; it never uploads here).
+          # SHOWRUNNER: the headless taste gate reviews the render (dry run
+          # logs the verdict; it never uploads here). Uses whichever vision
+          # backend has a key — Anthropic if set, else free Gemini. GROQ lets
+          # the viz brain invent mechanics during the preview render too.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           SLUG="${{ github.event.inputs.slug }}"
           [ -z "$SLUG" ] && SLUG="grocery-squeeze"

@@ -107,30 +107,74 @@ def _rubric() -> str:
         return "Be an exacting creative director. Block boring or sloppy videos."
 
 
-def _call(system: str, content: list) -> dict:
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
-        raise RuntimeError("ANTHROPIC_API_KEY not set")
-    body = json.dumps({
-        "model": MODEL,
-        "max_tokens": 2000,
-        "system": system,
+GEMINI_API = ("https://generativelanguage.googleapis.com/v1beta/models/"
+              "{model}:generateContent?key={key}")
+GEMINI_MODEL = os.environ.get("SHOWRUNNER_GEMINI_MODEL", "gemini-2.5-flash")
+
+
+def _post_json(url: str, body: dict, headers: dict) -> dict:
+    req = urllib.request.Request(url, data=json.dumps(body).encode(),
+                                 method="POST", headers=headers)
+    with urllib.request.urlopen(req, timeout=180) as r:
+        return json.loads(r.read().decode())
+
+
+def _anthropic_judge(system: str, frames: list[str], ask: str) -> dict:
+    content: list = []
+    for i, b in enumerate(frames):
+        content.append({"type": "text",
+                        "text": f"Frame {i + 1}/{len(frames)} (in order):"})
+        content.append({"type": "image", "source": {
+            "type": "base64", "media_type": "image/jpeg", "data": b}})
+    content.append({"type": "text", "text": ask})
+    resp = _post_json(ANTHROPIC_API, {
+        "model": MODEL, "max_tokens": 2000, "system": system,
         "messages": [{"role": "user", "content": content}],
         "output_config": {
             "format": {"type": "json_schema", "schema": VERDICT_SCHEMA},
-            "effort": "high",
-        },
-    }).encode()
-    req = urllib.request.Request(
-        ANTHROPIC_API, data=body, method="POST",
-        headers={"x-api-key": key, "anthropic-version": "2023-06-01",
-                 "content-type": "application/json"})
-    with urllib.request.urlopen(req, timeout=180) as r:
-        resp = json.loads(r.read().decode())
+            "effort": "high"}},
+        {"x-api-key": os.environ["ANTHROPIC_API_KEY"],
+         "anthropic-version": "2023-06-01", "content-type": "application/json"})
     for block in resp.get("content", []):
         if block.get("type") == "text":
             return json.loads(block["text"])
-    raise RuntimeError("no text block in showrunner response")
+    raise RuntimeError("no text block in Anthropic response")
+
+
+def _gemini_judge(system: str, frames: list[str], ask: str) -> dict:
+    parts: list = []
+    for i, b in enumerate(frames):
+        parts.append({"text": f"Frame {i + 1}/{len(frames)} (in order):"})
+        parts.append({"inline_data": {"mime_type": "image/jpeg", "data": b}})
+    parts.append({"text": ask + "\n\nReturn ONLY the JSON object, no prose."})
+    url = GEMINI_API.format(model=GEMINI_MODEL,
+                            key=os.environ["GEMINI_API_KEY"])
+    resp = _post_json(url, {
+        "system_instruction": {"parts": [{"text": system}]},
+        "contents": [{"role": "user", "parts": parts}],
+        "generationConfig": {"responseMimeType": "application/json",
+                             "temperature": 0.35, "maxOutputTokens": 2000}},
+        {"content-type": "application/json"})
+    txt = resp["candidates"][0]["content"]["parts"][0]["text"]
+    return json.loads(txt)
+
+
+def _judge(system: str, frames: list[str], ask: str) -> dict:
+    """Try whichever brain the channel actually has a key for — Anthropic
+    (best vision judgment) first, else Gemini (free, vision-capable)."""
+    errs = []
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        try:
+            return _anthropic_judge(system, frames, ask)
+        except Exception as e:  # noqa: BLE001
+            errs.append(f"anthropic: {e}")
+    if os.environ.get("GEMINI_API_KEY"):
+        try:
+            return _gemini_judge(system, frames, ask)
+        except Exception as e:  # noqa: BLE001
+            errs.append(f"gemini: {e}")
+    raise RuntimeError("no vision LLM backend available "
+                       f"(set ANTHROPIC_API_KEY or GEMINI_API_KEY). {errs}")
 
 
 def review_video(mp4: Path, context: dict | None = None) -> dict:
@@ -139,26 +183,23 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
     mp4 = Path(mp4)
     ctx = context or {}
     with tempfile.TemporaryDirectory() as td:
-        frames = _extract_frames(mp4, Path(td), N_FRAMES)
-        if not frames:
+        frame_files = _extract_frames(mp4, Path(td), N_FRAMES)
+        if not frame_files:
             raise RuntimeError("no frames extracted (ffmpeg?)")
-        content: list = []
-        for i, f in enumerate(frames):
-            content.append({"type": "text",
-                            "text": f"Frame {i + 1}/{len(frames)} "
-                                    f"(in order across the video):"})
-            content.append({"type": "image", "source": {
-                "type": "base64", "media_type": "image/jpeg", "data": _b64(f)}})
+        frames = [_b64(f) for f in frame_files]
         ask = (
-            "You are the SHOWRUNNER for this channel. Score the video above "
-            "against the rubric using the exact JSON schema. Be exacting — you "
-            "are the editor with a veto, and a boring or sloppy video must be "
-            "BLOCKED (it is better to block a mediocre video than to let it "
-            "ship). Judge what you SEE in the frames, not what was intended.\n\n"
-            f"Scene plan / script for context:\n{json.dumps(ctx, indent=2)[:4000]}"
+            "You are the SHOWRUNNER for this channel. Score the video (the "
+            "frames above, in order) against the rubric using the exact JSON "
+            "schema fields. Be exacting — you are the editor with a veto, and a "
+            "boring or sloppy video must be BLOCKED (better to block a mediocre "
+            "video than let it ship). Judge what you SEE, not what was "
+            "intended.\n\nJSON fields: score (0-100 int), verdict "
+            "('ship'|'block'), one_line, auto_fails (list), dimensions "
+            "{hook,data_demo,mascot,craft,pace,payoff ints}, problems (list), "
+            "fixes (list).\n\nScene plan / script for context:\n"
+            f"{json.dumps(ctx, indent=2)[:4000]}"
         )
-        content.append({"type": "text", "text": ask})
-        verdict = _call(_rubric(), content)
+        verdict = _judge(_rubric(), frames, ask)
     # Enforce the bar in code too (belt and suspenders): block on low score or
     # any auto-fail even if the model hedged the verdict field.
     score = int(verdict.get("score", 0))
