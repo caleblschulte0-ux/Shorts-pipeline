@@ -275,16 +275,49 @@ def preflight(video: Path) -> list[str]:
                      "-vf", "fps=2,scale=48:27,signalstats,"
                      "metadata=print:file=-", "-f", "null", "-"],
                     capture_output=True, text=True, timeout=30)
+                blob = (p.stdout or "") + (p.stderr or "")
                 yavgs = [float(m) for m in re.findall(
-                    r"lavfi\.signalstats\.YAVG=([\d.]+)",
-                    (p.stdout or "") + (p.stderr or ""))]
+                    r"lavfi\.signalstats\.YAVG=([\d.]+)", blob)]
                 if yavgs and (sum(yavgs) / len(yavgs)) < 28.0:
                     problems.append(
                         f"source too dark (avg luma "
                         f"{sum(yavgs)/len(yavgs):.0f}/255) — unwatchable IRL/"
                         "night footage")
-            except Exception as e:  # noqa: BLE001 — darkness check is best-effort
-                print(f"[preflight] darkness check skipped ({e})", flush=True)
+                # STILL/FROZEN SOURCE GATE (diagnosis #5): a source that
+                # barely moves (a paused screen, a static "starting soon"
+                # card, a screenshot re-encoded as video) makes a dead Short.
+                # signalstats YDIF is the frame-to-frame luma delta; a whole
+                # sampled clip averaging near-zero motion is a still, not a
+                # moment. Conservative floor so only genuinely static footage
+                # is cut — real clips (even calm talking) sit well above it.
+                ydifs = [float(m) for m in re.findall(
+                    r"lavfi\.signalstats\.YDIF=([\d.]+)", blob)]
+                if len(ydifs) >= 6 and (sum(ydifs) / len(ydifs)) < 0.6:
+                    problems.append(
+                        f"source barely moves (avg frame delta "
+                        f"{sum(ydifs)/len(ydifs):.2f}) — static image/paused "
+                        "screen, not a clip")
+            except Exception as e:  # noqa: BLE001 — motion/luma check best-effort
+                print(f"[preflight] luma/motion check skipped ({e})",
+                      flush=True)
+            # SOURCE BLACK-FRAME GATE (diagnosis #5): a long black stretch in
+            # the SOURCE (a scene-transition fade, a dropped-feed gap, a clip
+            # that opens on black) is caught here in ~2s instead of after a
+            # full render fails QA on it. Reuses the same blackdetect the
+            # post-render mechanical gate runs, just on the raw download.
+            try:
+                err = subprocess.run(
+                    ["ffmpeg", "-v", "info", "-t", "30", "-an", "-i",
+                     str(video), "-vf", "blackdetect=d=1.0:pic_th=0.98",
+                     "-f", "null", "-"],
+                    capture_output=True, text=True, timeout=45).stderr
+                m = re.search(r"black_duration:([\d.]+)", err or "")
+                if m and float(m.group(1)) >= 1.5:
+                    problems.append(
+                        f"source has {float(m.group(1)):.1f}s of black frames "
+                        "— dropped feed / hard fade")
+            except Exception as e:  # noqa: BLE001 — black check best-effort
+                print(f"[preflight] black check skipped ({e})", flush=True)
     except Exception as e:  # noqa: BLE001 — fail open, the render QA backstops
         print(f"[preflight] check error (ignored): {e}", flush=True)
     return problems

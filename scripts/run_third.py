@@ -567,18 +567,38 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 cands.sort(key=lambda c: -c["views"])
                 if not cands:
                     raise RuntimeError("no fresh clip across the allowlist")
-                # viral signal = velocity, not raw views: probe ages for
-                # the top of the board and re-rank by views/hour, weighted
-                # by franchise fit (core cluster > fallback supply)
+                # VELOCITY-FIRST SHORTLIST (diagnosis #4): the viral/feed
+                # signal is views/HOUR, not raw views. The old code shortlisted
+                # the top 8 by raw views and only THEN measured velocity within
+                # them — so a clip climbing fast from a lower view count (the
+                # exact thing the Shorts feed rewards) was buried before it
+                # could compete. Now probe age across a WIDE pool (top
+                # `age_probe` by views: helix carries age for free, yt-dlp costs
+                # one metadata call each so it's capped), score everything by
+                # velocity, and only then take the top 8 into banger scoring.
                 core = set(spec.get("core", []))
-                shortlist = cands[:8]
-                for c in shortlist:
+                # softened from the old hard 0.45: a non-core streamer's clip
+                # is a mild deprioritization, not a near-veto — feed reach comes
+                # from broad-appeal MOMENTS, not just our proven search names.
+                non_core = float(spec.get("non_core_penalty", 0.75))
+                age_probe = int(spec.get("age_probe", 20))
+
+                def _fit(ch):
+                    return 1.0 if not core or ch in core else non_core
+                for c in cands[:age_probe]:
                     # helix candidates carry exact age; yt-dlp ones probe
                     age = c.get("age_h") or clip_edit.fetch_age_hours(c["url"])
                     c["vph"] = c["views"] / max(age, 0.5) if age else \
                         c["views"] / 24.0
-                    c["score"] = c["vph"] * \
-                        (1.0 if not core or c["channel"] in core else 0.45)
+                    c["score"] = c["vph"] * _fit(c["channel"])
+                # candidates past the probe window keep a raw-view proxy (age
+                # unknown -> assume ~24h) so a thin day can still surface them,
+                # but a measured fast-climber always outranks the proxy.
+                for c in cands[age_probe:]:
+                    c["vph"] = c["views"] / 24.0
+                    c["score"] = c["vph"] * _fit(c["channel"])
+                cands.sort(key=lambda c: -c["score"])
+                shortlist = cands[:8]
                 # BANGER PRE-SCORER (playbook §banger): velocity says a clip
                 # is spreading, not that a stranger will watch it to the end.
                 # The brain reads the titles and rates shareability 0-1; we
