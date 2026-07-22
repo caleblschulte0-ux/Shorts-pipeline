@@ -109,43 +109,61 @@ def _learned_prior() -> dict:
     try:
         if not ANALYTICS_LATEST.exists():
             return _PRIOR_CACHE
+        import math
+        AVP_CAP = 200.0   # a looped 5-view clip reports 1500% — cap it
+        MIN_PUBLIC_AGE = 24.0     # judge on 24h+ maturity, not 6h noise
+        MIN_STREAMER_VIDS = 3     # 1-2 clips is not evidence about a streamer
         snap = json.loads(ANALYTICS_LATEST.read_text())
+        # ELIGIBILITY: public, aged >=24h, and — for the retention signal —
+        # enough views that AVP means something (usable_for_retention, the
+        # views>=50 gate set in fetch_analytics). Scheduled/private videos
+        # never carry usable_for_retention or is_public, so they're excluded
+        # automatically.
         vids = [v for v in snap.get("videos", [])
-                # <6h-old clips have too-noisy vph and no retention yet.
-                if v.get("streamer") and (v.get("age_hours") or 0) >= 6]
+                if v.get("streamer")
+                and v.get("is_public", True)
+                and (v.get("age_hours") or 0) >= MIN_PUBLIC_AGE]
         if not vids:
             return _PRIOR_CACHE
-        # Channel baselines.
+        # Channel baselines (capped AVP; velocity from aged videos only).
         vph = sorted(v["views_per_hour"] for v in vids
                      if v.get("views_per_hour", 0) > 0)
         vph_med = vph[len(vph) // 2] if vph else 0.0
-        rets = [v["average_view_percentage"] for v in vids
-                if v.get("average_view_percentage") is not None]
+        rets = [min(v["average_view_percentage"], AVP_CAP) for v in vids
+                if v.get("usable_for_retention")
+                and v.get("average_view_percentage") is not None]
         ret_mean = (sum(rets) / len(rets)) if rets else 0.0
 
-        def _ratio(v) -> float | None:
-            if v.get("average_view_percentage") is not None and ret_mean > 0:
-                r = v["average_view_percentage"] / ret_mean
+        def _ratio(v):
+            """Return (ratio, weight) or None. Retention only counts with a
+            usable sample; weight by sqrt(engaged_views) so a 500-view result
+            outweighs a 50-view one."""
+            w = math.sqrt(max(1.0, v.get("engaged_views") or v.get("views", 0)))
+            if (v.get("usable_for_retention")
+                    and v.get("average_view_percentage") is not None
+                    and ret_mean > 0):
+                r = min(v["average_view_percentage"], AVP_CAP) / ret_mean
             elif vph_med > 0 and v.get("views_per_hour", 0) >= 0:
                 r = v["views_per_hour"] / vph_med
             else:
                 return None
-            return max(0.3, min(3.0, r))  # cap outliers before averaging
+            return max(0.3, min(3.0, r)), w
 
         from collections import defaultdict
         buckets: dict = defaultdict(list)
         for v in vids:
-            r = _ratio(v)
-            if r is not None:
-                buckets[str(v["streamer"]).lower()].append(r)
+            rw = _ratio(v)
+            if rw is not None:
+                buckets[str(v["streamer"]).lower()].append(rw)
 
         K = 4.0  # shrinkage strength: n/(n+K) weight on observed deviation
         prior = {}
-        for streamer, ratios in buckets.items():
-            n = len(ratios)
-            if n < 2:  # one clip is not evidence about a streamer
+        for streamer, rws in buckets.items():
+            n = len(rws)
+            if n < MIN_STREAMER_VIDS:   # too few clips to trust a prior
                 continue
-            mean_r = sum(ratios) / n
+            wsum = sum(w for _, w in rws) or 1.0
+            mean_r = sum(r * w for r, w in rws) / wsum   # engagement-weighted
             eff = 1.0 + (mean_r - 1.0) * (n / (n + K))
             mult = max(0.70, min(1.40, eff))
             if abs(mult - 1.0) >= 0.02:  # skip no-op entries
@@ -726,13 +744,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 led["clipper"] = info["clipper"]
                 led["streamer"] = streamer
                 led["platform"] = platform
-                # A/B tag: which structural arm produced this upload, so
-                # fetch_analytics can split reach clip-vs-edit.
-                led["structure"] = "edit" if edit_mode else "clip"
+                led["self_healed"] = (auto_first and not auto_flag)
+                # A/B tag — ASSIGNMENT vs ACTUAL OUTPUT. `experiment_arm` is
+                # what the slot was assigned; `structure` is what actually
+                # rendered. A self-healed slot ships the SIMPLE render even
+                # though edit_mode was on — labelling that "edit" corrupts the
+                # comparison, so it becomes "simple_fallback".
+                led["experiment_arm"] = "edit" if edit_mode else "clip"
+                led["structure"] = (
+                    "simple_fallback" if led["self_healed"]
+                    else "edit" if (edit_mode and led.get("auto_edit"))
+                    else "clip")
                 qa = clip_qa.review(out_mp4, led, work)
                 led["qa"] = {k: qa[k] for k in
                              ("verdict", "problems", "vision")}
-                led["self_healed"] = (auto_first and not auto_flag)
                 ledger_path = work / f"{slug}.ledger.json"
                 ledger_path.write_text(json.dumps(led, indent=2) + "\n")
                 if qa["verdict"] != "fail":
@@ -744,6 +769,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
             result["render_level"] = led.get("render_level")
             result["layout"] = (led.get("shot_plan") or {}).get("layout")
             result["self_healed"] = led["self_healed"]
+            result["experiment_arm"] = led.get("experiment_arm", "clip")
             result["structure"] = led.get("structure", "clip")
             if qa["verdict"] == "fail":
                 result["qa"] = led["qa"]
@@ -827,6 +853,12 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 "url": result["video_url"], "title": title,
                 "kind": led.get("kind", "cli"),
                 "ts": datetime.now(timezone.utc).isoformat(),
+                # SCHEDULED-ANALYTICS FIX: record BOTH the upload moment and
+                # the scheduled go-live. fetch_analytics ages a video from its
+                # real public publish time, never the upload stamp, so a clip
+                # scheduled hours out is not mistaken for an old zero-view flop.
+                "uploaded_at": datetime.now(timezone.utc).isoformat(),
+                "publish_at": publish_at,
             }
             if xposts:
                 entry["crossposts"] = xposts
@@ -838,8 +870,14 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # against this video's measured early-retention curve.
                 entry["series"] = led.get("series") or series
                 entry["hook"] = hook
-                # A/B arm tag → fetch_analytics splits reach clip-vs-edit.
+                # A/B: assigned arm + what ACTUALLY rendered (self-heal ships
+                # the simple clip even under edit_mode → "simple_fallback").
+                entry["experiment_arm"] = led.get("experiment_arm", "clip")
                 entry["structure"] = led.get("structure", "clip")
+                entry["actual_structure"] = led.get("structure", "clip")
+                entry["self_healed"] = led.get("self_healed", False)
+                entry["source_views"] = led.get("source_views")
+                entry["banger"] = (locals().get("pick") or {}).get("banger")
                 _cut = (meta or {}).get("edit", {}).get("cut")
                 if _cut:
                     entry["cut"] = _cut
@@ -887,14 +925,16 @@ def main() -> int:
             n = int(base.pop("count", 3))
             # A/B STRUCTURE SPLIT: `edit_count` of the n daily slots render in
             # the new montage "edit" arm; the rest stay the current "clip"
-            # structure (with every recent change intact). Same selection +
-            # packaging on both — only the render style differs, so the test
-            # isolates STRUCTURE. Edit slots are spread across the batch (not
-            # bunched at the end) so both arms post across the same dayparts.
+            # structure. Same selection + packaging on both — only the render
+            # style differs, so the test isolates STRUCTURE. The edit slots are
+            # chosen by a DATE-SEEDED shuffle (not a fixed 2/5/8 every day) so
+            # the edit arm isn't permanently correlated with the same posting
+            # times — otherwise "edit vs clip" is confounded with daypart.
+            import random as _rnd
             edit_count = min(int(base.pop("edit_count", 3)), n)
-            step = n / edit_count if edit_count else n + 1
-            edit_slots = {int(round((k + 0.5) * step)) + 1
-                          for k in range(edit_count)}
+            _slots = list(range(1, n + 1))
+            _rnd.Random(f"third-ab-{args.date}").shuffle(_slots)
+            edit_slots = set(_slots[:edit_count])
             for i in range(1, n + 1):
                 pkg = json.loads(json.dumps(base))
                 pkg["slug"] = f"clip-{args.date}-{i}"

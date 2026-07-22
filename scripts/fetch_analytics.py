@@ -244,12 +244,28 @@ def _entries(log: dict) -> list[dict]:
             out.append({"url": e.get("url"), "ident": slug,
                         # third stamps `ts`; explainer uses publish_at/at.
                         "posted_at": e.get("publish_at") or e.get("at")
-                        or e.get("ts"),
+                        or e.get("uploaded_at") or e.get("ts"),
+                        "uploaded_at": e.get("uploaded_at") or e.get("ts"),
+                        "publish_at": e.get("publish_at"),
                         "title": e.get("title"),
                         # carried through so the learned selection prior can
                         # aggregate channel performance BY streamer/series.
                         "streamer": e.get("streamer"),
-                        "series": e.get("series")})
+                        "series": e.get("series"),
+                        # A/B EXPERIMENT: which arm was ASSIGNED, and what
+                        # actually rendered (a self-healed edit ships the
+                        # simple clip render — labelling it "edit" corrupts
+                        # the comparison). Both carried so analysis can split
+                        # by real output, not intent.
+                        "experiment_arm": e.get("experiment_arm")
+                        or e.get("structure"),
+                        "actual_structure": e.get("actual_structure")
+                        or e.get("structure"),
+                        # richer per-clip signals for correlation.
+                        "hook": e.get("hook"),
+                        "cut": e.get("cut"),
+                        "source_views": e.get("source_views"),
+                        "banger": e.get("banger")})
     else:                                         # trending channel
         for e in posted:
             out.append({"url": e.get("video_url"),
@@ -266,23 +282,34 @@ def _chunked(seq, n):
 
 def _fetch_stats(service, video_ids: list[str]) -> dict[str, dict]:
     """videos.list takes up to 50 IDs per call. Returns a map of
-    video_id -> {viewCount, likeCount, commentCount, title, publishedAt}."""
+    video_id -> stats. Requests `status` too so a SCHEDULED upload (private
+    until its publishAt) is never mistaken for a public video with zero
+    views — the bug that had eight scheduled clips dragging every average to
+    the floor. `is_public` gates whether a video counts toward performance;
+    `scheduled_publish_at` is the real go-live time for age math."""
     out: dict[str, dict] = {}
     for batch in _chunked(video_ids, 50):
         resp = service.videos().list(
-            part="statistics,snippet",
+            part="statistics,snippet,status,contentDetails",
             id=",".join(batch),
             maxResults=50,
         ).execute()
         for item in resp.get("items", []):
             stats = item.get("statistics") or {}
             snip = item.get("snippet") or {}
+            status = item.get("status") or {}
+            privacy = status.get("privacyStatus")
             out[item["id"]] = {
                 "views": int(stats.get("viewCount", 0)),
                 "likes": int(stats.get("likeCount", 0)),
                 "comments": int(stats.get("commentCount", 0)),
                 "title": snip.get("title"),
                 "published_at": snip.get("publishedAt"),
+                "privacy_status": privacy,
+                # a still-scheduled Short reports privacyStatus=private +
+                # a future publishAt; it is NOT a public post yet.
+                "scheduled_publish_at": status.get("publishAt"),
+                "is_public": privacy == "public",
             }
     return out
 
@@ -372,44 +399,91 @@ def build_snapshot(posted_log: Path, channel: str = "",
     curves = _retention_curves(an, top_ids, start_date, limit=15)
     discovery = _search_and_traffic(an, start_date)
 
+    # MIN_VIEWS_RETENTION: below this, average-view-% is noise — a single
+    # viewer looping a 10s clip yields 1500% AVP off 5 views. Such a video
+    # is real (it exists, it has views) but it must NOT drive retention
+    # ranking or streamer priors. Gate ranking/priors on it, keep the row.
+    MIN_VIEWS_RETENTION = 50
     videos: list[dict] = []
+    pending: list[dict] = []       # scheduled/private — excluded from stats
     for vid, entry in candidates:
         s = stats.get(vid)
         if not s:
-            # Video was uploaded but YouTube's API doesn't have it yet
-            # (rare; usually means scheduled and not live). Skip rather
-            # than emit zeros that would skew the summary.
+            # Uploaded but the API doesn't have it yet — treat as pending,
+            # never as a public zero-view failure.
+            pending.append({"video_id": vid, "url": entry.get("url"),
+                            "reason": "not_in_api",
+                            "streamer": entry.get("streamer")})
             continue
-        age = _hours_since(s.get("published_at")) or _hours_since(entry.get("posted_at")) or 0.01
+        # SCHEDULED/PRIVATE FIX: a still-private scheduled Short is not a
+        # public post. Park it in `pending` so it never lands in an average,
+        # a bottom-performer list, a prior, or an A/B result.
+        if not s.get("is_public", True):
+            pending.append({
+                "video_id": vid, "url": entry.get("url"),
+                "streamer": entry.get("streamer"),
+                "privacy_status": s.get("privacy_status"),
+                "scheduled_publish_at": s.get("scheduled_publish_at"),
+                "experiment_arm": entry.get("experiment_arm"),
+            })
+            continue
+        # Age from the actual PUBLIC publication time (published_at), never
+        # the upload/schedule stamp — a video scheduled 2 days out that just
+        # went live is 1 hour old, not 2 days.
+        age = (_hours_since(s.get("published_at"))
+               or _hours_since(entry.get("publish_at"))
+               or _hours_since(entry.get("posted_at")) or 0.01)
+        avp = retention.get(vid, {}).get("average_view_percentage")
+        # engaged_views proxy: without the Analytics engagedViews metric we
+        # approximate it from views (Shorts "views" already imply a watch);
+        # the real gate below is the raw-view floor, which kills the loop
+        # outliers regardless.
+        engaged = s["views"]
+        usable_ret = (s["views"] >= MIN_VIEWS_RETENTION and engaged >= 25)
         v = {
             "video_id": vid,
             "url": entry.get("url"),
             "catalog_id": entry.get("ident"),
             "streamer": entry.get("streamer"),
             "series": entry.get("series"),
+            # A/B: what was assigned vs what actually rendered.
+            "experiment_arm": entry.get("experiment_arm"),
+            "actual_structure": entry.get("actual_structure"),
+            "hook": entry.get("hook"),
+            "source_views": entry.get("source_views"),
+            "banger": entry.get("banger"),
             "title": s["title"],
             "published_at": s["published_at"],
             "age_hours": round(age, 1),
             "views": s["views"],
+            "engaged_views": engaged,
             "likes": s["likes"],
             "comments": s["comments"],
-            # Views-per-hour is the only fair comparison when ages differ
-            # by orders of magnitude. A 2-day-old video at 500 views and a
-            # 1-hour-old video at 50 views are the SAME quality signal.
+            "is_public": True,
+            "usable_for_retention": usable_ret,
+            # Views-per-hour is the only fair comparison when ages differ by
+            # orders of magnitude — but only meaningful once a video has aged
+            # a little; brand-new rows still report it for the snapshot.
             "views_per_hour": round(s["views"] / age, 2),
         }
         v.update(retention.get(vid, {}))   # retention keys when available
+        # scrub retention from the ranking metric when the sample is too
+        # small (keep the raw number for the record, drop the usable flag).
+        if avp is not None and not usable_ret:
+            v["retention_insufficient_data"] = True
         if vid in curves:
             v["retention_curve"] = curves[vid]   # [[elapsed_ratio, watch_ratio]]
             er = _early_retention(curves[vid])
-            if er is not None:
+            if er is not None and usable_ret:
                 v["early_retention"] = er        # first-~2s audience survival
         videos.append(v)
 
     videos.sort(key=lambda v: v["views_per_hour"], reverse=True)
     by_vph = sorted(videos, key=lambda v: v["views_per_hour"], reverse=True)
-    # Retention leaderboard — only over videos that actually have the metric.
-    retained = [v for v in videos if "average_view_percentage" in v]
+    # Retention leaderboard — ONLY videos with enough views for AVP to mean
+    # something (usable_for_retention), so a 5-view loop can't top the board.
+    retained = [v for v in videos if v.get("usable_for_retention")
+                and "average_view_percentage" in v]
     by_ret = sorted(retained, key=lambda v: v["average_view_percentage"],
                     reverse=True)
 
@@ -459,9 +533,35 @@ def build_snapshot(posted_log: Path, channel: str = "",
         summary["top_5_by_retention"] = [_ret_card(v) for v in by_ret[:5]]
         summary["bottom_5_by_retention"] = [_ret_card(v) for v in by_ret[-5:][::-1]]
 
+    # A/B RESULT: edit vs clip, split by what ACTUALLY rendered
+    # (actual_structure), over public videos only, reporting sample size so
+    # the honest answer is usually "not enough data yet". Never draw a
+    # conclusion from a handful of clips.
+    def _arm_stats(arm: str) -> dict:
+        g = [v for v in videos if v.get("actual_structure") == arm]
+        mature = [v for v in g if v.get("age_hours", 0) >= 24]
+        if not g:
+            return {"n": 0}
+        vphs = sorted(v["views_per_hour"] for v in g)
+        return {
+            "n": len(g),
+            "n_mature_24h": len(mature),
+            "median_vph": round(vphs[len(vphs) // 2], 2),
+            "avg_views": round(sum(v["views"] for v in g) / len(g), 1),
+            "enough_data": len(mature) >= 25,   # per the review's threshold
+        }
+    summary["ab_experiment"] = {
+        "edit": _arm_stats("edit"),
+        "clip": _arm_stats("clip"),
+        "simple_fallback": _arm_stats("simple_fallback"),
+        "note": "compare only when each arm's n_mature_24h >= 25",
+    }
+    summary["pending_scheduled"] = len(pending)
+
     snap = {
         "fetched_at": datetime.now(timezone.utc).isoformat(),
         "videos": videos,
+        "pending_videos": pending,
         "summary": summary,
     }
     if discovery.get("traffic_sources"):
