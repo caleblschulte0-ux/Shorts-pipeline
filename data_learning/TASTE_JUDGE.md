@@ -62,9 +62,10 @@ Show the contact sheet to someone with no context. If their honest reaction is
 
 ## How it runs
 
-`scripts/taste_judge.py <render.mp4> --out <pkg>` builds the blind package. The
-verdict is rendered by a **fresh vision subagent** given ONLY the package and
-this rubric (no code, no intent). It returns:
+`scripts/visual_judge.py <render.mp4> --out <pkg>` builds the blind package (this
+also runs automatically inside `pro_render`, writing to `<out>_pkg/`). The verdict
+is rendered by a **fresh vision subagent** given ONLY the package and this rubric
+(no code, no intent). It returns:
 
     {"pass": bool, "reject_labels": [...], "card_fraction_estimate": 0.0-1.0,
      "personality": 0-5, "one_line": "...", "worst_beat": "…", "fix": "…"}
@@ -72,6 +73,12 @@ this rubric (no code, no intent). It returns:
 `pass` is true only with **no reject label** and **personality ≥ 3**. The director
 loop treats a REJECT as a hard stop (like a stale span): it is an **authoring**
 failure — re-author the beats toward the palette above, do not tweak a metric.
+
+The subagent's object is serialized by **`scripts/judge_verdict.py <out.mp4> -`**,
+which validates it against this contract (known labels only; personality 0-5; a
+supplied `pass` must agree with the rule) and writes `<out>_pkg/verdict.json`.
+`scripts/produce.py` reads that file and **fails closed** when it is absent — a
+film is never promoted unjudged.
 
 ## Why this is the top gate
 
