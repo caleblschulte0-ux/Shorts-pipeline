@@ -148,7 +148,13 @@ def _candidates(ins, f: dict) -> list[str]:
     # never an abstract bar/trend. Checked before the ranking branch so a single
     # value shows the TOPIC's photo, not a stray item label.
     if f["n"] <= 2:
-        ranked += ["fill_scene", "diorama"]
+        # A lone shock stat: the premium GAUGE (a radial dial that sweeps to
+        # the value, Data riding the arc up) is the reliable, image-free
+        # demonstration and the right default now that auto-photos are gated.
+        # The image-first fill_scene stays as the next option for when a real
+        # subject photo is available (vision-gated re-entry, later).
+        ranked += (["fill_vessel"] if f["n"] == 1 else []) + \
+            ["fill_scene", "diorama"]
     # One value dwarfs the rest of a real (3+) list -> real photos of each.
     elif f["dominance"] >= 2.0:
         ranked += ["rank_scene", "diorama", "fill_scene"]
