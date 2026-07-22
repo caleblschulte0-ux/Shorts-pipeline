@@ -208,9 +208,20 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
     commercial-licensed photo. The chosen image's attribution is recorded for
     the CC credits sidecar."""
     from data_learning import media
-    safe = "".join(c if c.isalnum() else "_"
-                   for c in str(shot.get("image_query", idx)))[:50]
-    dest = work / f"img_{idx}_{safe}.jpg"
+    # cache key by QUERY (not shot idx) so every chunk of one image beat — and any
+    # later re-render — reuses a single download instead of re-hitting the (flaky,
+    # rate-limited) media API. A sidecar .json carries the attribution across reuse.
+    key = str(shot.get("image_query") or shot.get("image_url") or idx)
+    safe = "".join(c if c.isalnum() else "_" for c in key)[:60]
+    dest = work / f"img_{safe}.jpg"
+    side = dest.with_suffix(".json")
+    if dest.exists() and dest.stat().st_size > 4096 and side.exists():
+        try:
+            cand = json.loads(side.read_text())
+            cand["path"] = str(dest)
+            return cand
+        except Exception:  # noqa: BLE001 — a corrupt sidecar just re-resolves
+            pass
     if shot.get("image_url"):
         cand = {"source": shot.get("image_source", "pinned"),
                 "url": shot["image_url"], "kind": "image",
@@ -221,6 +232,7 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
             if not dest.exists() or dest.stat().st_size < 1024:
                 media.acquire(cand, dest)      # re-fetch if missing/truncated
             cand["path"] = str(dest)
+            side.write_text(json.dumps(cand))
             return cand
         except Exception as e:  # noqa: BLE001 — a rotted hotlink falls back to
             print(f"[pro] pinned image failed ({str(e)[:60]}); "  # a live search
@@ -243,6 +255,10 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
                 print(f"[pro] image {shot.get('image_query')!r}: nothing at "
                       f"appeal {floor0}, took best at floor {floor}",
                       file=sys.stderr)
+            try:
+                side.write_text(json.dumps(picked))
+            except Exception:  # noqa: BLE001
+                pass
             return picked
     raise RuntimeError(
         f"media gateway found NO photo at all for "
@@ -439,7 +455,8 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
               "scene_paycheck": scenes.paycheck_scene, "scene_tax": scenes.tax_scene,
               "scene_rent": scenes.rent_scene, "scene_gas": scenes.gas_scene,
               "scene_grocery": scenes.grocery_scene, "scene_subs": scenes.subs_scene,
-              "scene_savings": scenes.savings_scene}[k]
+              "scene_savings": scenes.savings_scene,
+              "scene_treadmill": scenes.treadmill_scene}[k]
         return fn(out, seconds, number=str(shot.get("number", "")),
                   label=str(shot.get("label", "")))
     if k == "scene_money":
