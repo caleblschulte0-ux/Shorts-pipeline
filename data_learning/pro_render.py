@@ -56,6 +56,28 @@ VOICE = "en-US-GuyNeural"
 # the package as credits.json / CREDITS.txt so the operator can attribute.
 _ATTRIB: list[dict] = []
 
+# FALLBACK ledger — every time the render degrades (TTS→silence, motion→still,
+# a missing image, a swallowed sidecar), it is recorded here with a SEVERITY so
+# the producer can decide pass / quarantine / fail instead of pretending the
+# render "succeeded" (audit: "render completed ≠ quality preserved"). Severities:
+#   equivalent   — an acceptable substitution; publish normally.
+#   degraded     — reviewable; the producer should re-judge before publishing.
+#   unacceptable — the video FAILS: never ship this render.
+_FALLBACKS: list[dict] = []
+
+
+def _fallback(kind: str, severity: str, detail: str = "", beat=None) -> None:
+    _FALLBACKS.append({"kind": kind, "severity": severity, "detail": detail,
+                       "beat": beat})
+    print(f"[pro] FALLBACK[{severity}] {kind}: {detail}", file=sys.stderr)
+
+
+def _fallback_verdict() -> str:
+    """Worst severity across the ledger: ok < degraded < unacceptable."""
+    order = {"equivalent": 0, "degraded": 1, "unacceptable": 2}
+    worst = max((order.get(f["severity"], 1) for f in _FALLBACKS), default=0)
+    return {0: "ok", 1: "degraded", 2: "unacceptable"}[worst]
+
 
 def _run(cmd):
     subprocess.run(cmd, check=True)
@@ -85,8 +107,11 @@ def _synth(line: str, dest: Path, voice: str) -> float:
         asyncio.run(go())
         return _dur(dest)
     except Exception as e:  # noqa: BLE001
-        print(f"[pro] TTS failed for {line[:40]!r} ({e}) — silent gap",
-              file=sys.stderr)
+        # a real narration line lost to silence is UNACCEPTABLE (audit) — the
+        # render must not pass. Keep the silent gap so assembly still completes
+        # and the producer can quarantine, but flag it hard.
+        _fallback("tts_silence", "unacceptable",
+                  f"narration lost to silence: {line[:50]!r} ({e})")
         _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i",
               "anullsrc=r=48000:cl=mono", "-t", "1.5", str(dest)])
         return 0.0
@@ -252,9 +277,13 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
             min_appeal=floor, must_match=shot.get("must_match"))
         if picked is not None:
             if floor < floor0:
-                print(f"[pro] image {shot.get('image_query')!r}: nothing at "
-                      f"appeal {floor0}, took best at floor {floor}",
-                      file=sys.stderr)
+                # a photo taken well below the requested appeal floor is a
+                # DEGRADED beat; below ~0.12 it is effectively "any image" and
+                # unacceptable for a flagship shot.
+                _fallback("image_low_appeal",
+                          "unacceptable" if floor < 0.12 else "degraded",
+                          f"{shot.get('image_query')!r} took best at floor "
+                          f"{floor} (wanted {floor0})")
             try:
                 side.write_text(json.dumps(picked))
             except Exception:  # noqa: BLE001
@@ -303,9 +332,11 @@ def _depict_shot(shot, seconds, out, work, idx):
     try:
         return _image_shot(shot, seconds, out, work, idx)
     except Exception as e:  # noqa: BLE001 — escalation must NEVER kill a render:
-        # motion missed AND no usable still -> keep the beat's designed treatment.
-        print(f"[pro] depict {shot.get('motion_query')!r}: no motion, no still "
-              f"({str(e)[:50]}) — designed statement fallback", file=sys.stderr)
+        # motion missed AND no usable still -> keep the beat's designed treatment,
+        # but flag it: a statement card standing in for intended media is DEGRADED.
+        _fallback("depict_to_statement", "degraded",
+                  f"{shot.get('motion_query')!r}: no motion, no still "
+                  f"({str(e)[:50]})", beat=shot.get("_beat"))
         return flat2d.statement(shot.get("line", "") or shot.get("text", ""),
                                 out, seconds)
 
@@ -319,9 +350,9 @@ def _depict_text_shot(shot, seconds, out, work, idx):
     try:
         return _image_text_shot(shot, seconds, out, work, idx)
     except Exception as e:  # noqa: BLE001 — see _depict_shot: never crash.
-        print(f"[pro] depict_text {shot.get('motion_query')!r}: no motion, no "
-              f"still ({str(e)[:50]}) — designed statement fallback",
-              file=sys.stderr)
+        _fallback("depict_to_statement", "degraded",
+                  f"{shot.get('motion_query')!r}: no motion, no still "
+                  f"({str(e)[:50]})", beat=shot.get("_beat"))
         base = work / f"dt_fallback_{idx}.mp4"
         flat2d.statement(shot.get("line", ""), base, seconds)
         return _overlay_text(base, shot, out)
@@ -331,9 +362,10 @@ def _image_shot(shot, seconds, out, work, idx):
     try:
         src = _image_source(shot, work, idx)
     except Exception as e:  # noqa: BLE001 — a missing ACCENT never kills a render:
-        # degrade to a designed statement of the beat's own line.
-        print(f"[pro] image {shot.get('image_query')!r}: no photo "
-              f"({str(e)[:60]}) — designed statement fallback", file=sys.stderr)
+        # degrade to a designed statement of the beat's own line, and flag it.
+        _fallback("image_to_statement", "degraded",
+                  f"{shot.get('image_query')!r}: no photo ({str(e)[:60]})",
+                  beat=shot.get("_beat"))
         return flat2d.statement(shot.get("line", "") or
                                 str(shot.get("image_query", "")), out, seconds)
     _ATTRIB.append({"idx": idx, "source": src.get("source"),
@@ -371,6 +403,9 @@ def _hero_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     the 2-3 pop moments; falls back to a flat statement if Blender is absent."""
     import shutil
     if shutil.which("blender") is None:
+        _fallback("blender_missing", "degraded",
+                  "Blender absent — hero beat became a statement card",
+                  beat=shot.get("_beat"))
         return flat2d.statement(shot.get("line", ""), out, seconds)
     rfps = int(shot.get("render_fps", 10))
     spec = dict(shot.get("spec", {}))
@@ -387,6 +422,9 @@ def _hero_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
           str(sj), str(raw)])
     frames = sorted(raw.glob("hero_*.png"))
     if not frames:
+        _fallback("blender_no_frames", "degraded",
+                  "Blender produced no frames — hero beat became a statement",
+                  beat=shot.get("_beat"))
         return flat2d.statement(shot.get("line", ""), out, seconds)
     _run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(rfps),
           "-start_number", "1", "-i", str(raw / "hero_%04d.png"),
@@ -499,9 +537,15 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
 
 
 # --- assembly -------------------------------------------------------------
-def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
+def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
+    """Render a story and RETURN A STRUCTURED RESULT (not just a path), so the
+    producer can decide pass / quarantine / fail instead of trusting that a
+    completed file means a good film. Result:
+        {"out", "duration", "shots", "pkg", "fallbacks", "verdict"}
+    where verdict is ok / degraded / unacceptable (worst fallback severity)."""
     work.mkdir(parents=True, exist_ok=True)
     _ATTRIB.clear()
+    _FALLBACKS.clear()
     planned = "beats" in story
     if planned:
         # BEAT INTENT PLANNER: synth each beat's narration, then expand the
@@ -589,48 +633,66 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> Path:
               "-ar", "48000", str(mastered)])
         final_audio = mastered
     except Exception as e:  # noqa: BLE001 — never fail the render on mastering
-        print(f"[pro] audio mastering skipped ({e})", file=sys.stderr)
+        _fallback("audio_mastering", "degraded", f"mastering skipped ({e})")
     # 6) mux
     _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i",
           str(final_audio), "-map", "0:v", "-map", "1:a", "-c:v", "libx264",
           "-crf", "18", "-preset", "medium", "-c:a", "aac", "-b:a", "160k",
           "-shortest", str(out)])
-    print(f"[pro] built {out}  ({_dur(out):.1f}s, {len(clips)} shots)")
-    # 7) blind-judge package + 720p viewing copy
+    total = _dur(out)
+    print(f"[pro] built {out}  ({total:.1f}s, {len(clips)} shots)")
+    pkg = out.with_name(out.stem + "_pkg")
+    beats = story.get("beats", [])
+    # 7) 720p viewing copy
     _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(out), "-vf",
           "scale=1280:720", "-c:v", "libx264", "-preset", "slow", "-crf",
           "26", "-c:a", "aac", "-b:a", "128k",
           str(out.with_name(out.stem + "_720p.mp4"))])
+    # 8) blind-judge EVIDENCE package (verdicts are enforced by the producer,
+    # scripts/produce.py — a missing package is DEGRADED, not silently fine).
     try:
-        pkg = out.with_name(out.stem + "_pkg")
         _run([sys.executable, str(REPO / "scripts" / "visual_judge.py"),
               str(out), "--out", str(pkg), "--grid", "6x4"])
     except Exception as e:  # noqa: BLE001
-        print(f"[pro] judge package skipped ({e})", file=sys.stderr)
-    # 8) the REAL beat->time map (editorial package measures true boundaries,
-    # not a hand-estimated guess). Only for planned stories, where each shot
-    # carries `_beat`.
+        _fallback("judge_package", "degraded", f"visual_judge package failed ({e})")
+    # 9) the REAL beat->time map + continuity — required inputs for the judges.
     if planned:
         try:
-            _emit_beatmap(story, shots, shot_start, seconds,
-                          out.with_name(out.stem + "_pkg"))
+            _emit_beatmap(story, shots, shot_start, seconds, pkg)
         except Exception as e:  # noqa: BLE001
-            print(f"[pro] beatmap emission skipped ({e})", file=sys.stderr)
-        # 9) CONTINUITY DIRECTOR: catch accidental footage reuse ourselves
-        # (perceptual hash per beat) instead of relying on a reviewer.
+            _fallback("beatmap", "degraded", f"beatmap emission failed ({e})")
         try:
-            _check_continuity(story, shots, clips,
-                              out.with_name(out.stem + "_pkg"))
+            _check_continuity(story, shots, clips, pkg)
         except Exception as e:  # noqa: BLE001
-            print(f"[pro] continuity check skipped ({e})", file=sys.stderr)
-    # 10) CC ATTRIBUTION — credit every image the gateway pulled (BY/BY-SA
-    # require it). Written to the package next to the render.
+            _fallback("continuity", "degraded", f"continuity check failed ({e})")
+    # 10) PUBLISHING PACKAGE — the sidecars the publisher consumes (parity with
+    # the legacy renderer): chapters/duration/sources, captions, thumbnail.
+    try:
+        _emit_meta(story, beats, shots, shot_start, total, out)
+    except Exception as e:  # noqa: BLE001
+        _fallback("meta", "unacceptable", f"meta.json emission failed ({e})")
+    try:
+        _emit_srt(shots, shot_start, durs, out)
+    except Exception as e:  # noqa: BLE001
+        _fallback("captions", "unacceptable", f"srt emission failed ({e})")
+    try:
+        _emit_thumbnail(out, total, story.get("title", ""))
+    except Exception as e:  # noqa: BLE001
+        _fallback("thumbnail", "degraded", f"thumbnail failed ({e})")
+    # 11) CC attribution
     if _ATTRIB:
         try:
-            _emit_credits(out.with_name(out.stem + "_pkg"))
+            _emit_credits(pkg)
         except Exception as e:  # noqa: BLE001
-            print(f"[pro] credits emission skipped ({e})", file=sys.stderr)
-    return out
+            _fallback("credits", "degraded", f"credits emission failed ({e})")
+    # 12) fallback report + structured verdict
+    pkg.mkdir(parents=True, exist_ok=True)
+    verdict = _fallback_verdict()
+    (pkg / "fallbacks.json").write_text(json.dumps(
+        {"verdict": verdict, "fallbacks": list(_FALLBACKS)}, indent=2))
+    print(f"[pro] fallback verdict = {verdict} ({len(_FALLBACKS)} recorded)")
+    return {"out": out, "duration": total, "shots": len(shots), "pkg": pkg,
+            "fallbacks": list(_FALLBACKS), "verdict": verdict}
 
 
 def _emit_credits(pkg: Path):
@@ -706,6 +768,99 @@ def _emit_beatmap(story, shots, shot_start, seconds, pkg):
     print(f"[pro] beatmap -> {pkg / 'beatmap.json'} ({len(entries)} beats)")
 
 
+# --- publishing package (parity with the legacy publisher's expectations) ---
+def _chapters_from_beats(beats, shots, shot_start):
+    """YouTube chapters (first at 0:00, >=3, each >=10s) from CHAPTER beats."""
+    chapters = [{"t": 0.0, "label": "Intro"}]
+    for bi, b in enumerate(beats):
+        if str(b.get("job", "")).upper() != "CHAPTER":
+            continue
+        idxs = [i for i, sh in enumerate(shots) if sh.get("_beat") == bi]
+        if not idxs:
+            continue
+        lab = (b.get("flat") or {}).get("title") or b.get("understand", "Chapter")
+        chapters.append({"t": round(shot_start[idxs[0]], 2), "label": str(lab)[:60]})
+    clean, last = [], -100.0
+    for c in chapters:                       # enforce the >=10s spacing rule
+        if c["t"] - last >= 10.0:
+            clean.append(c)
+            last = c["t"]
+    return clean if len(clean) >= 3 else chapters
+
+
+def _collect_sources(beats):
+    """Fact sources (from a beat's `facts[]`) + media credits, de-duped."""
+    src = []
+    for b in beats:
+        for f in (b.get("facts") or []):
+            if f.get("source"):
+                src.append(str(f["source"]))
+    for a in _ATTRIB:
+        cred = a.get("attribution") or a.get("title")
+        if cred:
+            src.append(f"{cred} ({a.get('source', '')}/{a.get('license', '')})")
+    seen, uniq = set(), []
+    for s in src:
+        if s not in seen:
+            seen.add(s)
+            uniq.append(s)
+    return uniq
+
+
+def _emit_meta(story, beats, shots, shot_start, total, out):
+    meta = {"title": story.get("title", story.get("slug", "")),
+            "slug": story.get("slug", ""), "duration": round(total, 1),
+            "chapters": _chapters_from_beats(beats, shots, shot_start),
+            "sources": _collect_sources(beats),
+            "hook": (beats[0].get("narration", "") if beats else "")[:150]}
+    out.with_suffix(".meta.json").write_text(json.dumps(meta, indent=2))
+    print(f"[pro] meta -> {out.with_suffix('.meta.json').name} "
+          f"({len(meta['chapters'])} chapters, {len(meta['sources'])} sources)")
+
+
+def _emit_srt(shots, shot_start, durs, out):
+    def ts(t):
+        return (f"{int(t//3600):02d}:{int(t%3600//60):02d}:{t%60:06.3f}"
+                ).replace(".", ",")
+    cues, n = [], 0
+    for i, sh in enumerate(shots):
+        line = str(sh.get("line", "")).strip()
+        if not line or durs[i] <= 0:
+            continue
+        a, span = shot_start[i] + LEAD, max(durs[i], 1.0)
+        words = line.split()
+        chunks = [" ".join(words[j:j + 8]) for j in range(0, len(words), 8)] or [line]
+        each = span / len(chunks)
+        for k, ch in enumerate(chunks):
+            n += 1
+            cues.append(f"{n}\n{ts(a + k*each)} --> {ts(a + (k+1)*each)}\n{ch}\n")
+    out.with_suffix(".srt").write_text("\n".join(cues), encoding="utf-8")
+    print(f"[pro] srt -> {out.with_suffix('.srt').name} ({n} cues)")
+
+
+def _emit_thumbnail(out, total, title):
+    from PIL import Image, ImageDraw, ImageFont
+    import textwrap
+    frame = out.with_name(out.stem + "_thumbsrc.png")
+    try:
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{total*0.35:.1f}",
+              "-i", str(out), "-frames:v", "1", str(frame)])
+        im = Image.open(frame).convert("RGB").resize((1920, 1080))
+    except Exception:  # noqa: BLE001
+        im = Image.new("RGB", (1920, 1080), (14, 16, 26))
+    d = ImageDraw.Draw(im, "RGBA")
+    d.rectangle([0, 740, 1920, 1080], fill=(0, 0, 0, 150))
+    try:
+        f = ImageFont.truetype(
+            str(REPO / "assets" / "fonts" / "Anton-Regular.ttf"), 96)
+    except Exception:  # noqa: BLE001
+        f = ImageFont.load_default()
+    for li, ln in enumerate(textwrap.wrap(str(title).upper(), 26)[:2]):
+        d.text((70, 780 + li * 110), ln, font=f, fill=(255, 255, 255))
+    im.save(out.with_suffix(".jpg"), quality=90)
+    print(f"[pro] thumbnail -> {out.with_suffix('.jpg').name}")
+
+
 def _music_track():
     for p in sorted((REPO / "data_learning" / "music").glob("*.mp3")) \
             if (REPO / "data_learning" / "music").exists() else []:
@@ -722,7 +877,14 @@ def main(argv):
     a = ap.parse_args(argv)
     story = json.loads(a.story.read_text())
     work = a.work or a.out.with_name(a.out.stem + "_work")
-    build(story, a.out, work, voice=a.voice)
+    result = build(story, a.out, work, voice=a.voice)
+    # an unacceptable fallback (lost narration, no-image floor, missing sidecar)
+    # means this render must NOT be trusted — exit non-zero so callers quarantine.
+    if isinstance(result, dict) and result.get("verdict") == "unacceptable":
+        print(f"[pro] UNACCEPTABLE render: "
+              f"{[f['kind'] for f in result['fallbacks'] if f['severity']=='unacceptable']}",
+              file=sys.stderr)
+        return 1
     return 0
 
 
