@@ -1,0 +1,49 @@
+{
+ "slug": "spend-waiting",
+ "title": "How Much of Your Life You Spend Waiting",
+ "beats": [
+  {
+   "job": "HOOK",
+   "mode": "designed_2d",
+   "narration": "One thing quietly eats years of your life — waiting. About 3 years of it, just gone.",
+   "understand": "open on a person stuck in a slow line as the clock spins — 3 years waiting",
+   "flat": {"kind": "scene_queue", "number": "3", "label": "YEARS WAITING"}
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Six months of it vanish at red lights that never turn green fast enough.",
+   "understand": "a person stuck in a car at a red light as traffic piles up — 6 months at red lights",
+   "flat": {"kind": "scene_traffic", "number": "6", "label": "MONTHS AT RED LIGHTS"}
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Another forty-three days stuck on hold, listening to the same looping music.",
+   "understand": "a person slumping on the couch, phone to the ear, hold music looping — 43 days on hold",
+   "flat": {"kind": "scene_hold", "number": "43", "label": "DAYS ON HOLD"}
+  },
+  {
+   "job": "REVEAL",
+   "mode": "designed_2d",
+   "narration": "Line after line, light after light, it quietly adds up to years you never get back.",
+   "understand": "the single data moment: the biggest waiting time-sinks side by side",
+   "flat": {
+    "kind": "flat_compare",
+    "title": "where the waiting goes",
+    "rows": [
+     {"name": "In line", "value": 6, "display": "6 mo"},
+     {"name": "At red lights", "value": 6, "display": "6 mo"},
+     {"name": "On hold", "value": 1.5, "display": "43 days"}
+    ]
+   }
+  },
+  {
+   "job": "PAYOFF",
+   "mode": "designed_2d",
+   "narration": "So stop waiting for your life to start. Get up, and go live it.",
+   "understand": "the person walks out into a sunrise, arms rising — stop waiting",
+   "flat": {"kind": "scene_free", "number": "", "label": "STOP WAITING"}
+  }
+ ]
+}

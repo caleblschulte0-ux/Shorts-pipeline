@@ -412,10 +412,12 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         return flat2d.spinning_world(
             shot.get("text", "0"), out, seconds, sub=shot.get("sub", "MPH"),
             label=shot.get("label", "THE EARTH'S SPIN"), extra=shot.get("extra"))
-    if k in ("scene_sleep", "scene_work", "scene_screen", "scene_free"):
+    if k in ("scene_sleep", "scene_work", "scene_screen", "scene_free",
+             "scene_queue", "scene_traffic", "scene_hold"):
         fn = {"scene_sleep": scenes.sleep_scene, "scene_work": scenes.work_scene,
-              "scene_screen": scenes.screen_scene,
-              "scene_free": scenes.free_scene}[k]
+              "scene_screen": scenes.screen_scene, "scene_free": scenes.free_scene,
+              "scene_queue": scenes.queue_scene, "scene_traffic": scenes.traffic_scene,
+              "scene_hold": scenes.hold_scene}[k]
         return fn(out, seconds, number=str(shot.get("number", "")),
                   label=str(shot.get("label", "")))
     if k == "flat_life_grid":

@@ -97,30 +97,32 @@ def _limb(d, x0, y0, x1, y1, w, col):
 def _stand(d, cx, feet_y, h, col, arms_up=0.0, stride=0.0):
     """The iconic standing pictogram — chunky, symmetric, door-sign clean.
     arms_up 0=at sides, 1=raised in a wide V. Returns (cx, head_cy, r)."""
-    r = h * 0.115                                    # head radius
+    r = h * 0.105                                    # head radius (a touch smaller)
     head_cy = feet_y - h + r
-    sh_y = head_cy + r + h * 0.045                   # shoulder line
-    hip_y = feet_y - h * 0.44
-    tw = h * 0.30                                    # SHOULDER width (chunky torso)
-    lw = h * 0.135                                   # leg width
-    gap = lw * 0.28
-    # legs (subtle stride)
-    _limb(d, cx - gap - lw / 2, hip_y, cx - gap - lw / 2 - stride, feet_y, lw, col)
-    _limb(d, cx + gap + lw / 2, hip_y, cx + gap + lw / 2 + stride, feet_y, lw, col)
-    # torso — one solid rounded body, shoulders wider than waist
+    sh_y = head_cy + r + h * 0.02                    # shoulders high -> LONGER torso
+    hip_y = feet_y - h * 0.42
+    tw = h * 0.26                                    # slim shoulders (less stocky)
+    lw = h * 0.105                                   # slim legs (lankier)
+    aw = h * 0.09                                    # arm width
+    leg_dx = lw * 0.5 + h * 0.012                    # legs drop from the BOTTOM,
+    hipw = leg_dx * 2 + lw                           # torso base = the two legs' span
+    # legs (subtle stride) — come straight out of the bottom of the torso
+    _limb(d, cx - leg_dx, hip_y - lw * 0.2, cx - leg_dx - stride, feet_y, lw, col)
+    _limb(d, cx + leg_dx, hip_y - lw * 0.2, cx + leg_dx + stride, feet_y, lw, col)
+    # torso — a solid body that tapers only slightly to the hips (NO wide flare)
     d.polygon([(cx - tw / 2, sh_y), (cx + tw / 2, sh_y),
-               (cx + tw * 0.34, hip_y), (cx - tw * 0.34, hip_y)], fill=col)
-    _rrect(d, cx - tw / 2, sh_y - lw * 0.3, cx + tw / 2, sh_y + lw * 0.4, col, r=lw * 0.4)
-    _rrect(d, cx - tw * 0.34, hip_y - lw * 0.3, cx + tw * 0.34, hip_y + lw * 0.4, col, r=lw * 0.4)
-    # arms — symmetric, from the shoulders; hands go from the sides to a wide V
-    aw = h * 0.115
-    shx = tw * 0.42
-    hxd, hyd = tw * 0.52, hip_y - sh_y - h * 0.02    # hand at the side (arms down)
-    hxu, hyu = h * 0.26, -(sh_y - head_cy) - h * 0.10  # hand high + WIDE (a V)
+               (cx + hipw / 2, hip_y), (cx - hipw / 2, hip_y)], fill=col)
+    _rrect(d, cx - tw / 2, sh_y - lw * 0.25, cx + tw / 2, sh_y + lw * 0.35, col, r=lw * 0.35)
+    _rrect(d, cx - hipw / 2, hip_y - lw * 0.2, cx + hipw / 2, hip_y + lw * 0.15, col, r=lw * 0.3)
+    # arms — attach at the shoulder and SPLAY OUT so a clear gap (the armpit notch)
+    # opens between arm and torso; otherwise he looks armless and fat.
+    shx = tw * 0.44
+    hxd, hyd = tw * 0.92, hip_y - sh_y - h * 0.04    # DOWN: hand well OUTSIDE the body
+    hxu, hyu = h * 0.27, -(sh_y - head_cy) - h * 0.10  # UP: hand high + WIDE (a V)
     hx = hxd + (hxu - hxd) * arms_up
     hy = hyd + (hyu - hyd) * arms_up
     for sgn in (-1, 1):
-        _limb(d, cx + sgn * shx, sh_y + aw * 0.1, cx + sgn * hx, sh_y + hy, aw, col)
+        _limb(d, cx + sgn * shx, sh_y + aw * 0.15, cx + sgn * hx, sh_y + hy, aw, col)
     # head last, on top
     d.ellipse([cx - r, head_cy - r, cx + r, head_cy + r], fill=col)
     return (cx, head_cy, r)
@@ -448,6 +450,184 @@ def free_scene(out: Path, seconds: float = 6.0, number: str = "9",
         stride = 12 * math.sin(i * 0.4)
         _stand(d, cx, feet, h=360, col=FIG, arms_up=rise, stride=stride)
         im = _label(im, number, label, col=(255, 224, 168))
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+def _clock(d, cx, cy, cr, t, spin=26.0):
+    """A little wall clock with fast-spinning hands — time flying, always moving."""
+    d.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], fill=(28, 34, 66, 255),
+              outline=(*FIG, 220), width=6)
+    for hh in range(12):
+        a = hh / 12 * 2 * math.pi
+        d.line([cx + math.cos(a) * (cr - 12), cy + math.sin(a) * (cr - 12),
+                cx + math.cos(a) * (cr - 4), cy + math.sin(a) * (cr - 4)],
+               fill=(*FIG, 200), width=3)
+    sp = t * spin
+    d.line([cx, cy, cx + math.cos(sp) * (cr - 20), cy + math.sin(sp) * (cr - 20)],
+           fill=(*FIG, 255), width=5)
+    d.line([cx, cy, cx + math.cos(sp * 12) * (cr - 30), cy + math.sin(sp * 12) * (cr - 30)],
+           fill=(255, 211, 122, 255), width=3)
+
+
+# --------------------------------------------------------------------------
+# QUEUE — the figure stuck in a slow line; the people ahead shuffle off, but the
+# wait never seems to end. ("years in line")
+# --------------------------------------------------------------------------
+def queue_scene(out: Path, seconds: float = 6.0, number: str = "6",
+                label: str = "MONTHS IN LINE") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = 1.0 - 0.4 * t                             # the endless afternoon dims
+        return _vgrad((int(20 + 44 * k), int(22 + 44 * k), int(28 + 46 * k)),
+                      (18, 20, 28))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        floor_y = int(H * 0.82)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(24, 26, 36, 255))
+        # a service counter on the right with a glowing "please wait" panel
+        d.rounded_rectangle([int(W * 0.82), int(H * 0.5), W + 10, floor_y], radius=12,
+                            fill=(42, 44, 60, 255))
+        im = _glow(im, lambda dd: dd.rounded_rectangle(
+            [int(W * 0.845), int(H * 0.55), int(W * 0.965), int(H * 0.66)], radius=10,
+            fill=(230, 120, 90, 160)), 24)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rounded_rectangle([int(W * 0.845), int(H * 0.55), int(W * 0.965), int(H * 0.66)],
+                            radius=10, fill=(228, 120, 92, 255))
+        # a floor rope-line
+        d.line([int(W * 0.14), floor_y + 30, int(W * 0.80), floor_y + 30],
+               fill=(70, 74, 96, 200), width=5)
+        # the line advances monotonically to the right; grey people ahead peel off
+        adv = t * W * 0.16
+        spacing = int(W * 0.135)
+        for k in range(3):
+            gx = int(W * 0.34) + k * spacing + int(adv)
+            fade = 1.0 - max(0.0, min(1.0, (t * 2.4) - k))    # front leaves first
+            if fade <= 0.02:
+                continue
+            g = int(96 * fade + 24)
+            _stand(d, gx, floor_y + 20, 300, (g, g, int(g * 1.1)))
+        # OUR figure (bright) at the back, shifting weight impatiently
+        sway = 7 * math.sin(i * 0.32)
+        ox = int(W * 0.20) + int(adv) + sway
+        _stand(d, ox, floor_y + 20, 320, FIG,
+               stride=6 * math.sin(i * 0.32 + 1))
+        _clock(d, int(W * 0.10), int(H * 0.20), 60, t)
+        im = _label(im, number, label)
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# TRAFFIC — the figure stuck at a red light that never turns green; cars pile up
+# behind. ("months at red lights")
+# --------------------------------------------------------------------------
+def traffic_scene(out: Path, seconds: float = 6.0, number: str = "5",
+                  label: str = "MONTHS AT RED LIGHTS") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        return _vgrad((int(26 + 10 * (1 - t)), 28, 44), (10, 11, 20))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        road_y = int(H * 0.78)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, road_y, W, H], fill=(20, 21, 30, 255))
+        for gx in range(0, W, 160):                   # lane dashes
+            d.rounded_rectangle([gx + 40, road_y + 80, gx + 120, road_y + 92],
+                                radius=6, fill=(60, 62, 78, 200))
+        # a traffic light on the right, stuck RED (it glows, pulsing)
+        lx, ly = int(W * 0.86), int(H * 0.20)
+        d.rounded_rectangle([lx - 34, ly - 20, lx + 34, ly + 220], radius=20,
+                            fill=(26, 28, 40, 255))
+        pr = 0.6 + 0.4 * math.sin(i * 0.4)
+        im = _glow(im, lambda dd: dd.ellipse([lx - 40, ly, lx + 40, ly + 80],
+                                             fill=(235, 70, 60, int(120 + 90 * pr))), 26)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.ellipse([lx - 26, ly + 4, lx + 26, ly + 56], fill=(240, 80, 70, 255))     # red on
+        d.ellipse([lx - 26, ly + 70, lx + 26, ly + 122], fill=(70, 60, 30, 255))    # amber off
+        d.ellipse([lx - 26, ly + 136, lx + 26, ly + 188], fill=(40, 70, 50, 255))   # green off
+        # cars PILE UP behind over the beat (one-way): our car in front + more behind
+        def car(cx, col, lit=False):
+            cy = road_y - 4
+            d.rounded_rectangle([cx - 150, cy - 70, cx + 150, cy - 4], radius=26, fill=col)
+            d.rounded_rectangle([cx - 96, cy - 118, cx + 74, cy - 58], radius=30, fill=col)
+            d.rounded_rectangle([cx - 80, cy - 108, cx + 58, cy - 66], radius=18,
+                                fill=(150, 180, 220, 255))       # windshield
+            d.ellipse([cx - 110, cy - 30, cx - 50, cy + 30], fill=(18, 18, 24, 255))
+            d.ellipse([cx + 50, cy - 30, cx + 110, cy + 30], fill=(18, 18, 24, 255))
+            if lit:
+                for bx in (cx - 148, cx + 130):
+                    d.rounded_rectangle([bx, cy - 54, bx + 18, cy - 30], radius=6,
+                                        fill=(255, 90, 70, 255))
+        ncars = int(t * 3.2)                          # cars accumulate behind
+        for k in range(ncars):
+            car(int(W * 0.10) - k * int(W * 0.20), (34, 36, 52, 255))
+        # our car in front (brake lights on)
+        shake = 1.5 * math.sin(i * 0.9)
+        car(int(W * 0.44) + shake, (58, 92, 150, 255), lit=True)
+        # a little driver head in the window
+        d.ellipse([int(W * 0.44) - 26, road_y - 118, int(W * 0.44) + 26, road_y - 66],
+                  fill=FIG)
+        _clock(d, int(W * 0.12), int(H * 0.20), 58, t)
+        im = _label(im, number, label)
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# HOLD — the figure sits on hold, phone to the ear, slowly slumping as the same
+# music loops. ("days on hold")
+# --------------------------------------------------------------------------
+def hold_scene(out: Path, seconds: float = 6.0, number: str = "43",
+               label: str = "DAYS ON HOLD") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = 1.0 - 0.35 * t
+        return _vgrad((int(30 + 26 * k), int(30 + 22 * k), int(46 + 24 * k)),
+                      (14, 15, 24))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        floor_y = int(H * 0.84)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(18, 19, 30, 255))
+        # a couch/chair
+        d.rounded_rectangle([int(W * 0.28), int(H * 0.50), int(W * 0.66), floor_y + 8],
+                            radius=30, fill=(30, 32, 50, 255))
+        d.rounded_rectangle([int(W * 0.60), int(H * 0.40), int(W * 0.68), floor_y],
+                            radius=24, fill=(36, 38, 58, 255))
+        # the figure sits and SLUMPS more as time drags (one-way droop)
+        droop = _ease(t) * 16
+        joints = _sit(d, int(W * 0.42), floor_y + 2, h=430, col=FIG,
+                      lean=10 + droop, reach=0.0, on_ground=False)
+        # arm bent up to the ear, holding a phone against the head
+        hd = joints["head"]
+        sh = joints["shoulder"]
+        ear = (hd[0] - joints["hr"] * 0.7, hd[1])
+        _limb(d, sh[0], sh[1], ear[0], ear[1], 430 * 0.10, FIG)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rounded_rectangle([ear[0] - 22, ear[1] - 40, ear[0] + 14, ear[1] + 40],
+                            radius=12, fill=(22, 26, 40, 255), outline=(80, 92, 130), width=4)
+        # hold music — little notes (drawn as shapes) drift up and fade, endlessly
+        for k in range(4):
+            ph = (t * 1.5 + k * 0.25) % 1.0
+            nx = ear[0] - 40 - ph * 120
+            ny = ear[1] - 20 - ph * 200
+            a = int(230 * (1 - ph))
+            s = 12
+            col = (150, 190, 245, a)
+            d.ellipse([nx - s, ny - s * 0.7, nx + s, ny + s * 0.7], fill=col)  # head
+            d.line([nx + s - 1, ny, nx + s - 1, ny - s * 3], fill=col, width=4)  # stem
+            d.line([nx + s - 1, ny - s * 3, nx + s + s, ny - s * 2.3],
+                   fill=col, width=4)                                          # flag
+        _clock(d, int(W * 0.12), int(H * 0.22), 58, t)
+        im = _label(im, number, label)
         return im
 
     return _render(draw, out, seconds, bg)
