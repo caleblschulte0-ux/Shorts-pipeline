@@ -519,7 +519,15 @@ def queue_scene(out: Path, seconds: float = 6.0, number: str = "6",
         ox = int(W * 0.20) + int(adv) + sway
         _stand(d, ox, floor_y + 20, 320, FIG,
                stride=6 * math.sin(i * 0.32 + 1))
-        _clock(d, int(W * 0.10), int(H * 0.20), 60, t)
+        # scene-specific device (NOT the shared clock): a NOW-SERVING ticket that
+        # crawls up while our number stays far away.
+        px0, py0, px1, py1 = int(W * 0.845), int(H * 0.55), int(W * 0.965), int(H * 0.66)
+        nsf, sf = _font(DEJAVU, 22), _font(ANTON, 64)
+        d.text((px0 + 8, py0 - 34), "N O W   S E R V I N G", font=nsf, fill=(*FIG, 210))
+        serve = 38 + int(t * 6)
+        s = f"{serve}"
+        d.text(((px0 + px1) // 2 - sf.getlength(s) // 2, py0 + 6), s, font=sf,
+               fill=(20, 22, 30, 255))
         im = _label(im, number, label)
         return im
 
@@ -578,10 +586,13 @@ def traffic_scene(out: Path, seconds: float = 6.0, number: str = "5",
         # our car in front (brake lights on)
         shake = 1.5 * math.sin(i * 0.9)
         car(int(W * 0.44) + shake, (58, 92, 150, 255), lit=True)
-        # a little driver head in the window
-        d.ellipse([int(W * 0.44) - 26, road_y - 118, int(W * 0.44) + 26, road_y - 66],
-                  fill=FIG)
-        _clock(d, int(W * 0.12), int(H * 0.20), 58, t)
+        # a little driver head in the window (drums the wheel — impatient)
+        drum = 3 * math.sin(i * 0.8)
+        d.ellipse([int(W * 0.44) - 26, road_y - 118 + drum,
+                   int(W * 0.44) + 26, road_y - 66 + drum], fill=FIG)
+        # the traffic light's own device: a WALK/countdown that's stuck (no clock)
+        d.text((lx - 30, ly + 232), "0:00", font=_font(ANTON, 40),
+               fill=(235, 80, 70, 255))
         im = _label(im, number, label)
         return im
 
@@ -634,8 +645,62 @@ def hold_scene(out: Path, seconds: float = 6.0, number: str = "43",
             d.line([nx + s - 1, ny, nx + s - 1, ny - s * 3], fill=col, width=4)  # stem
             d.line([nx + s - 1, ny - s * 3, nx + s + s, ny - s * 2.3],
                    fill=col, width=4)                                          # flag
-        _clock(d, int(W * 0.12), int(H * 0.22), 58, t)
+        # this scene's own device (NOT the shared clock): a hold-time counter that
+        # keeps climbing, mm:ss, under a small "ON HOLD" tag.
+        d = ImageDraw.Draw(im, "RGBA")
+        mm = 40 + int(t * 3)
+        ss = int((t * 220) % 60)
+        tm = f"{mm}:{ss:02d}"
+        tf, tg = _font(ANTON, 60), _font(DEJAVU, 24)
+        tx = int(W * 0.16)
+        d.text((tx, int(H * 0.20)), "O N   H O L D", font=tg, fill=(*FIG, 210))
+        d.text((tx, int(H * 0.20) + 34), tm, font=tf, fill=(150, 190, 245, 255))
         im = _label(im, number, label)
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+def walkout_scene(out: Path, seconds: float = 6.0, number: str = "",
+                  label: str = "STOP WAITING") -> Path:
+    """A DISTINCT payoff (not the recycled sunrise): the figure walks out of a
+    dim room through a bright open doorway — leaving the waiting behind."""
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = t
+        return _vgrad((int(18 + 34 * k), int(18 + 28 * k), int(26 + 32 * k)),
+                      (10, 11, 16))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        floor_y = int(H * 0.80)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(14, 15, 22, 255))
+        # a bright open doorway on the right; its light grows as the door opens
+        dx0, dy0, dx1, dy1 = int(W * 0.66), int(H * 0.18), int(W * 0.84), floor_y
+        openk = _ease(t)
+        im = _glow(im, lambda dd: dd.rectangle(
+            [dx0 - 40, dy0 - 30, dx1 + 40, dy1],
+            fill=(255, 236, 190, int(110 + 130 * openk))), 80)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([dx0, dy0, dx1, dy1], fill=(255, 240, 208, int(170 + 80 * openk)))
+        # light spills across the floor toward the figure
+        spill = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        ImageDraw.Draw(spill).polygon(
+            [(dx0, floor_y), (dx1, floor_y), (int(W * 0.30), H), (0, H)],
+            fill=(255, 236, 190, int(40 + 40 * openk)))
+        im = Image.alpha_composite(im.convert("RGBA"),
+                                   spill.filter(ImageFilter.GaussianBlur(30)))
+        d = ImageDraw.Draw(im, "RGBA")
+        # door frame
+        d.rectangle([dx0 - 16, dy0 - 16, dx0, dy1], fill=(40, 42, 58, 255))
+        d.rectangle([dx1, dy0 - 16, dx1 + 16, dy1], fill=(40, 42, 58, 255))
+        d.rectangle([dx0 - 16, dy0 - 16, dx1 + 16, dy0], fill=(40, 42, 58, 255))
+        # the figure strides from the dim room toward the light
+        cx = int(W * 0.20 + t * W * 0.34)
+        stride = 13 * math.sin(i * 0.45)
+        _stand(d, cx, floor_y + 6, h=360, col=FIG, stride=stride)
+        im = _label(im, number, label, col=(255, 224, 168))
         return im
 
     return _render(draw, out, seconds, bg)
