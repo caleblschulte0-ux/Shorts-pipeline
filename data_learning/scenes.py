@@ -97,36 +97,41 @@ def _limb(d, x0, y0, x1, y1, w, col):
 def _stand(d, cx, feet_y, h, col, arms_up=0.0, stride=0.0):
     """The iconic standing pictogram — chunky, symmetric, door-sign clean.
     arms_up 0=at sides, 1=raised in a wide V. Returns (cx, head_cy, r)."""
-    # SLIM average build (matches the seated figure the operator likes): narrow
-    # torso, legs pulled in (small hips), and arms drawn OUTSIDE the body with a
-    # real gap so he never reads as a fat armless blob.
-    r = h * 0.10                                     # head radius
+    # THE ADA / AIGA bathroom-sign proportions (reference-matched): broad ROUNDED
+    # shoulders, a torso that tapers to the waist, arms hanging CLOSE to the body
+    # (near-vertical) with a thin slit, ending mid-thigh, and two thick legs with a
+    # thin inseam slit. An average solid build — not skinny, not fat.
+    r = h * 0.11                                     # head
     head_cy = feet_y - h + r
-    sh_y = head_cy + r + h * 0.015
-    hip_y = feet_y - h * 0.44
-    tw = h * 0.185                                   # SLIM shoulders
-    waist = h * 0.15                                 # slim waist/hip (small hips)
-    lw = h * 0.092                                   # slim legs
-    aw = h * 0.075                                   # slim arms
-    leg_dx = lw * 0.6                                # legs close together (narrow hips)
-    # legs — drop from the bottom of the torso, close together
-    _limb(d, cx - leg_dx, hip_y - lw * 0.2, cx - leg_dx - stride, feet_y, lw, col)
-    _limb(d, cx + leg_dx, hip_y - lw * 0.2, cx + leg_dx + stride, feet_y, lw, col)
-    # torso — a slim body, only a slight taper
-    d.polygon([(cx - tw / 2, sh_y), (cx + tw / 2, sh_y),
-               (cx + waist / 2, hip_y), (cx - waist / 2, hip_y)], fill=col)
-    _rrect(d, cx - tw / 2, sh_y - lw * 0.2, cx + tw / 2, sh_y + lw * 0.3, col, r=lw * 0.3)
-    _rrect(d, cx - waist / 2, hip_y - lw * 0.15, cx + waist / 2, hip_y + lw * 0.1, col, r=lw * 0.25)
-    # arms — start at the shoulder corner and hang DOWN-and-out, sitting OUTSIDE
-    # the torso so a clear triangular gap (the armpit) shows. Up -> a wide V.
-    shx = tw * 0.46
-    hxd = tw / 2 + aw * 0.5 + h * 0.035              # DOWN: hand outside body (gap)
-    hyd = hip_y - sh_y - h * 0.03
-    hxu, hyu = h * 0.24, -(sh_y - head_cy) - h * 0.09  # UP: high + wide V
+    sh_y = head_cy + r + h * 0.012                   # tiny neck
+    hip_y = feet_y - h * 0.46                        # where the legs split
+    SW = h * 0.34                                    # broad shoulders
+    WW = h * 0.185                                   # waist (clear taper)
+    aw = h * 0.088                                   # arm thickness
+    lw = h * 0.125                                   # thick legs
+    shr = h * 0.055                                  # shoulder round
+    # LEGS first (behind), thick with a thin inseam slit
+    slit = h * 0.022
+    lx = slit / 2 + lw / 2
+    _limb(d, cx - lx, hip_y - lw * 0.1, cx - lx - stride, feet_y, lw, col)
+    _limb(d, cx + lx, hip_y - lw * 0.1, cx + lx + stride, feet_y, lw, col)
+    hipw = 2 * lx + lw
+    # TORSO — rounded broad shoulders tapering to the waist, blending into the hips
+    d.polygon([(cx - SW / 2, sh_y + shr), (cx + SW / 2, sh_y + shr),
+               (cx + WW / 2, hip_y), (cx - WW / 2, hip_y)], fill=col)
+    _rrect(d, cx - SW / 2, sh_y, cx + SW / 2, sh_y + 2 * shr, col, r=shr)   # shoulders
+    _rrect(d, cx - hipw / 2, hip_y - lw * 0.3, cx + hipw / 2, hip_y + lw * 0.2,
+           col, r=lw * 0.35)                                                # hips
+    # ARMS — from the shoulder, hanging close & near-vertical with a thin gap to
+    # mid-thigh; arms_up lifts them to a wide V.
+    shx = SW / 2 - aw * 0.42
+    hxd = WW / 2 + aw * 0.5 + h * 0.02              # DOWN: just outside the waist
+    hyd = hip_y - sh_y + h * 0.02                   # ends mid-thigh (short arms)
+    hxu, hyu = h * 0.23, -(sh_y - head_cy) - h * 0.09   # UP: high + wide V
     hx = hxd + (hxu - hxd) * arms_up
     hy = hyd + (hyu - hyd) * arms_up
     for sgn in (-1, 1):
-        _limb(d, cx + sgn * shx, sh_y + aw * 0.2, cx + sgn * hx, sh_y + hy, aw, col)
+        _limb(d, cx + sgn * shx, sh_y + shr * 0.7, cx + sgn * hx, sh_y + hy, aw, col)
     # head last, on top
     d.ellipse([cx - r, head_cy - r, cx + r, head_cy + r], fill=col)
     return (cx, head_cy, r)
