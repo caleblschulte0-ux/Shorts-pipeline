@@ -1,5 +1,5 @@
 {
-  "generated_from_n_renders": 20,
+  "generated_from_n_renders": 21,
   "rules": [
     {
       "scope": "job",
@@ -20,7 +20,7 @@
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.518,
+      "latest": 0.51,
       "want": "up",
       "direction": "regressing"
     },
