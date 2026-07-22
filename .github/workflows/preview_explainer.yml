@@ -94,6 +94,9 @@ jobs:
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # SHOWRUNNER: the headless-Claude taste gate reviews the render (dry
+          # run logs the verdict; it never uploads here).
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           SLUG="${{ github.event.inputs.slug }}"
           [ -z "$SLUG" ] && SLUG="grocery-squeeze"

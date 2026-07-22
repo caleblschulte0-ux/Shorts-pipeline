@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -180,9 +181,46 @@ def main() -> int:
         from data_learning import studio_render       # lazy: needs Pillow etc.
         studio_render.render(slug, out, config_path=args.config)
 
+        # SHOWRUNNER gate — the editor with a veto. A headless Claude watches
+        # the finished video against docs/DIRECTOR.md and BLOCKS anything
+        # boring or sloppy from posting. Fail-OPEN on infra problems (no key,
+        # API error) so a hiccup can't halt the channel; fail-CLOSED only on a
+        # real reviewed BLOCK. Set SHOWRUNNER=off to disable.
+        blocked = False
+        if os.environ.get("SHOWRUNNER", "on").lower() not in ("off", "0",
+                                                              "false"):
+            try:
+                from scripts import showrunner_review as _sr
+                ctx = {"slug": slug, "title": sc.get("title"),
+                       "hook": sc.get("hook"), "closing": sc.get("closing"),
+                       "segments": [s.get("say") or s.get("topic")
+                                    for s in sc.get("segments", [])][:8]}
+                verdict = _sr.review_video(out, context=ctx)
+                out.with_suffix(".showrunner.json").write_text(
+                    json.dumps(verdict, indent=2))
+                tag = "BLOCK" if _sr.should_block(verdict) else "SHIP"
+                print(f"[{slug}] showrunner {tag} score={verdict.get('score')}"
+                      f" — {verdict.get('one_line')}", flush=True)
+                for fx in verdict.get("fixes", [])[:5]:
+                    print(f"   fix: {fx}", flush=True)
+                blocked = _sr.should_block(verdict)
+            except Exception as e:  # noqa: BLE001 — never let review halt posting
+                print(f"[{slug}] showrunner skipped (not blocking): {e}",
+                      flush=True)
+
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered, not uploading")
-            results.append({"slug": slug, "ok": True, "url": "(dry-run)"})
+            results.append({"slug": slug, "ok": True,
+                            "url": "(dry-run)" if not blocked
+                                   else "(dry-run, showrunner BLOCK)"})
+            continue
+
+        if blocked:
+            print(f"[{slug}] NOT POSTING — showrunner blocked this video as "
+                  f"not up to standard. See {out.name}.showrunner.json.",
+                  flush=True)
+            results.append({"slug": slug, "ok": False,
+                            "error": "showrunner_block"})
             continue
 
         publish_at = None
