@@ -151,8 +151,12 @@ def _subject(beat: dict) -> str:
 
 
 NOVELTY_MAX_STALE = 5.0     # HARD RULE: show something new at least this often
-NOVELTY_PIX_DELTA = 26.0    # a 48x27 gray pixel must move this much to count "new"
-NOVELTY_MIN_NEW = 0.055     # < this fraction of the frame changed in 5s = HELD
+NOVELTY_PIX_DELTA = 22.0    # a 48x27 gray pixel must move this much to count "new"
+# < this fraction of the frame changed in 5s = HELD. A genuinely boring hold (a
+# frozen card / a chart that stopped) sits at 0-2%; a calm scene that keeps
+# developing (a clock, drifting elements, a lighting shift, a character moving)
+# clears ~4%. Set the bar between them: catch the holds, pass the living scenes.
+NOVELTY_MIN_NEW = 0.038
 
 
 def _frame_sig(render: Path, t: float):

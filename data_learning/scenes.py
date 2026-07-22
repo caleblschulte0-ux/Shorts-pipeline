@@ -530,7 +530,11 @@ def traffic_scene(out: Path, seconds: float = 6.0, number: str = "5",
                   label: str = "MONTHS AT RED LIGHTS") -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
-        return _vgrad((int(26 + 10 * (1 - t)), 28, 44), (10, 11, 20))
+        # stuck so long the sky creeps toward dawn: dark -> pre-dawn light. The
+        # OPPOSITE direction from the neighbouring scenes so the cut reads as new.
+        k = 0.15 + 0.85 * t
+        return _vgrad((int(14 + 92 * k), int(18 + 66 * k), int(34 + 50 * k)),
+                      (6, 7, 14))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
@@ -588,9 +592,9 @@ def hold_scene(out: Path, seconds: float = 6.0, number: str = "43",
                label: str = "DAYS ON HOLD") -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
-        k = 1.0 - 0.35 * t
-        return _vgrad((int(30 + 26 * k), int(30 + 22 * k), int(46 + 24 * k)),
-                      (14, 15, 24))
+        k = 1.0 - 0.78 * t                            # room darkens as time drags on
+        return _vgrad((int(16 + 60 * k), int(16 + 50 * k), int(28 + 44 * k)),
+                      (10, 11, 18))
 
     def draw(i, n, im):
         t = i / max(1, n - 1)
