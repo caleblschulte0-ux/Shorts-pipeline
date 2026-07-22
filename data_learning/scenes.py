@@ -72,58 +72,89 @@ def _capsule(d, x0, y0, x1, y1, w, col):
 
 
 # --------------------------------------------------------------------------
-# THE CHARACTER — one clean, consistently-proportioned pictogram, posed by real
-# forward-kinematics joints (never hand-placed blobs). Angles are degrees, y-down:
-# 0=right, 90=down, -90=up, 180=left. Every scene draws the SAME figure so the
-# desk/phone poses read as deliberate, not clunky.
+# THE CHARACTER — the universal bathroom-sign pictogram. DEAD SIMPLE iconic
+# silhouettes: a circle head + clean, symmetric rounded shapes. No articulated
+# capsule rig, no shaded back-limbs — that made lumpy "cryptids". Each pose is a
+# small set of deliberate shapes that reads instantly, like a real door sign.
 # --------------------------------------------------------------------------
-def _pt(base, deg, length):
-    a = math.radians(deg)
-    return (base[0] + math.cos(a) * length, base[1] + math.sin(a) * length)
+def _rrect(d, x0, y0, x1, y1, col, r=None):
+    if x1 < x0:
+        x0, x1 = x1, x0
+    if y1 < y0:
+        y0, y1 = y1, y0
+    r = r if r is not None else min(x1 - x0, y1 - y0) / 2
+    d.rounded_rectangle([x0, y0, x1, y1], radius=max(1, r), fill=col)
 
 
-def _chain(d, pts, w, col):
-    for a, b in zip(pts, pts[1:]):
-        _capsule(d, a[0], a[1], b[0], b[1], w, col)
+def _limb(d, x0, y0, x1, y1, w, col):
+    """A clean straight limb — rounded rectangle drawn as a thick capsule line."""
+    d.line([x0, y0, x1, y1], fill=col, width=int(w))
+    r = w / 2
+    for (x, y) in ((x0, y0), (x1, y1)):
+        d.ellipse([x - r, y - r, x + r, y + r], fill=col)
 
 
-def _person(d, hip, pose, col=FIG, s=1.0):
-    """Draw the figure from a hip anchor + a pose (joint angles). Returns key
-    joints (head, hands) so a scene can attach props (a phone, a keyboard)."""
-    L = {"torso": 150 * s, "ua": 82 * s, "fa": 78 * s, "th": 96 * s, "sh": 96 * s}
-    hr = int(44 * s)
-    tw, lw = int(58 * s), int(28 * s)
-    back = tuple(int(c * 0.82) for c in col)          # far-side limbs, shaded
-    shoulder = _pt(hip, pose["torso"], L["torso"])
-    head_c = _pt(shoulder, pose.get("neck", pose["torso"]), hr + int(20 * s))
-    knee_f = _pt(hip, pose["thigh_f"], L["th"]); foot_f = _pt(knee_f, pose["shin_f"], L["sh"])
-    knee_b = _pt(hip, pose["thigh_b"], L["th"]); foot_b = _pt(knee_b, pose["shin_b"], L["sh"])
-    el_f = _pt(shoulder, pose["ua_f"], L["ua"]); ha_f = _pt(el_f, pose["fa_f"], L["fa"])
-    el_b = _pt(shoulder, pose["ua_b"], L["ua"]); ha_b = _pt(el_b, pose["fa_b"], L["fa"])
-    # far side first (behind torso), then torso, then near side, then head
-    _chain(d, [hip, knee_b, foot_b], lw, back)
-    _chain(d, [shoulder, el_b, ha_b], lw, back)
-    _chain(d, [hip, shoulder], tw, col)
-    _chain(d, [hip, knee_f, foot_f], lw, col)
-    _chain(d, [shoulder, el_f, ha_f], lw, col)
-    d.ellipse([head_c[0] - hr, head_c[1] - hr, head_c[0] + hr, head_c[1] + hr], fill=col)
-    return {"head": head_c, "hr": hr, "hand_f": ha_f, "hand_b": ha_b,
-            "shoulder": shoulder, "hip": hip}
+def _stand(d, cx, feet_y, h, col, arms_up=0.0, stride=0.0):
+    """The iconic standing pictogram — chunky, symmetric, door-sign clean.
+    arms_up 0=at sides, 1=raised in a wide V. Returns (cx, head_cy, r)."""
+    r = h * 0.115                                    # head radius
+    head_cy = feet_y - h + r
+    sh_y = head_cy + r + h * 0.045                   # shoulder line
+    hip_y = feet_y - h * 0.44
+    tw = h * 0.30                                    # SHOULDER width (chunky torso)
+    lw = h * 0.135                                   # leg width
+    gap = lw * 0.28
+    # legs (subtle stride)
+    _limb(d, cx - gap - lw / 2, hip_y, cx - gap - lw / 2 - stride, feet_y, lw, col)
+    _limb(d, cx + gap + lw / 2, hip_y, cx + gap + lw / 2 + stride, feet_y, lw, col)
+    # torso — one solid rounded body, shoulders wider than waist
+    d.polygon([(cx - tw / 2, sh_y), (cx + tw / 2, sh_y),
+               (cx + tw * 0.34, hip_y), (cx - tw * 0.34, hip_y)], fill=col)
+    _rrect(d, cx - tw / 2, sh_y - lw * 0.3, cx + tw / 2, sh_y + lw * 0.4, col, r=lw * 0.4)
+    _rrect(d, cx - tw * 0.34, hip_y - lw * 0.3, cx + tw * 0.34, hip_y + lw * 0.4, col, r=lw * 0.4)
+    # arms — symmetric, from the shoulders; hands go from the sides to a wide V
+    aw = h * 0.115
+    shx = tw * 0.42
+    hxd, hyd = tw * 0.52, hip_y - sh_y - h * 0.02    # hand at the side (arms down)
+    hxu, hyu = h * 0.26, -(sh_y - head_cy) - h * 0.10  # hand high + WIDE (a V)
+    hx = hxd + (hxu - hxd) * arms_up
+    hy = hyd + (hyu - hyd) * arms_up
+    for sgn in (-1, 1):
+        _limb(d, cx + sgn * shx, sh_y + aw * 0.1, cx + sgn * hx, sh_y + hy, aw, col)
+    # head last, on top
+    d.ellipse([cx - r, head_cy - r, cx + r, head_cy + r], fill=col)
+    return (cx, head_cy, r)
 
 
-# clean named poses (front/back limb angles). Small sways are added per-scene.
-POSE_STAND = {"torso": -90, "thigh_f": 78, "shin_f": 90, "thigh_b": 102,
-              "shin_b": 90, "ua_f": 60, "fa_f": 80, "ua_b": 120, "fa_b": 100}
-POSE_ARMS_UP = {"torso": -90, "thigh_f": 80, "shin_f": 92, "thigh_b": 100,
-                "shin_b": 92, "ua_f": -55, "fa_f": -35, "ua_b": -125, "fa_b": -145}
-POSE_DESK = {"torso": -68, "thigh_f": 6, "shin_f": 92, "thigh_b": 12, "shin_b": 92,
-             "ua_f": 26, "fa_f": 40, "ua_b": 34, "fa_b": 46}
-# seated on the floor, knees up, back upright but shoulders rounded, both hands
-# holding a phone up in front of a downward-tilted head — a grounded doomscroller,
-# NOT tilted/falling.
-POSE_PHONE = {"torso": -86, "neck": -66, "thigh_f": -34, "shin_f": 72,
-              "thigh_b": -20, "shin_b": 80, "ua_f": -52, "fa_f": -20,
-              "ua_b": -64, "fa_b": -30}
+def _sit(d, hipx, hipy, h, col, lean=14, reach=0.0, on_ground=False):
+    """The iconic SEATED pictogram, side-on, facing right. Clean rounded shapes:
+    torso (leaning `lean` deg toward the right), a bent leg (thigh forward, shin
+    down), a head, and one arm reaching forward by `reach` (0..1). If on_ground,
+    the knee is raised (sitting on the floor); else seated on a chair."""
+    r = h * 0.135
+    lw = h * 0.12
+    tw = h * 0.20
+    la = math.radians(lean)
+    # torso from hip up to shoulder, leaning forward-right
+    sh = (hipx + math.sin(la) * h * 0.44, hipy - math.cos(la) * h * 0.44)
+    _limb(d, hipx, hipy, sh[0], sh[1], tw, col)
+    # leg
+    if on_ground:
+        knee = (hipx + h * 0.30, hipy - h * 0.16)          # knee raised in front
+        foot = (knee[0] + h * 0.06, hipy + h * 0.04)
+    else:
+        knee = (hipx + h * 0.34, hipy + h * 0.01)          # thigh ~horizontal
+        foot = (knee[0] + h * 0.02, hipy + h * 0.40)       # shin down to floor
+    _limb(d, hipx, hipy, knee[0], knee[1], lw, col)
+    _limb(d, knee[0], knee[1], foot[0], foot[1], lw, col)
+    # head just forward of the shoulders
+    hc = (sh[0] + math.sin(la) * r * 1.3, sh[1] - math.cos(la) * (r * 1.3) + r * 0.2)
+    # arm reaches forward-down from the shoulder
+    aw = h * 0.10
+    hand = (sh[0] + h * (0.10 + 0.22 * reach), sh[1] + h * (0.16 - 0.04 * reach))
+    _limb(d, sh[0], sh[1] + aw * 0.1, hand[0], hand[1], aw, col)
+    d.ellipse([hc[0] - r, hc[1] - r, hc[0] + r, hc[1] + r], fill=col)
+    return {"head": hc, "hand": hand, "hr": r, "shoulder": sh}
 
 
 def _glow(im, draw_fn, blur, ):
@@ -324,11 +355,10 @@ def work_scene(out: Path, seconds: float = 6.0, number: str = "13",
         # keyboard on the desk in front of him
         d.rounded_rectangle([int(W * 0.50), desk_y - 14, int(W * 0.61), desk_y - 2],
                             radius=4, fill=(60, 64, 82, 255))
-        # the FIGURE — one clean rig, seated at the desk, reaching to the keyboard.
-        # a tiny typing bob keeps it alive.
-        pose = dict(POSE_DESK)
-        pose["fa_f"] += 6 * math.sin(i * 0.6)        # near forearm taps
-        joints = _person(d, hip, pose, col=FIG, s=0.95)
+        # the FIGURE — the clean seated pictogram at the desk, arm reaching to the
+        # keyboard with a tiny typing bob.
+        reach = 0.55 + 0.08 * math.sin(i * 0.6)
+        _sit(d, cx, desk_y + 4, h=420, col=FIG, lean=16, reach=reach, on_ground=False)
         im = _label(im, number, label)
         return im
 
@@ -354,15 +384,14 @@ def screen_scene(out: Path, seconds: float = 6.0, number: str = "11",
         d.rounded_rectangle([int(W * 0.20), int(H * 0.44), int(W * 0.28), floor_y],
                             radius=24, fill=(32, 34, 52, 255))          # couch arm
         # the FIGURE sits on the floor against the couch (blue-lit), holding a phone
-        # up to a downward-tilted face. Grounded, upright — absorbed, not falling.
+        # up toward the face. The clean seated pictogram — grounded, absorbed.
         lit = (150, 185, 235)
-        hip = (int(W * 0.40), floor_y + 8)
-        pose = dict(POSE_PHONE)
-        pose["fa_f"] += 3 * math.sin(i * 0.3)        # tiny scroll-thumb motion
-        joints = _person(d, hip, pose, col=lit, s=1.05)
-        # the phone in the hands, tilted up toward the face, feed scrolling.
-        hf = joints["hand_f"]
-        pcx, pcy = hf[0] + 4, hf[1] - 30
+        reach = 0.42 + 0.05 * math.sin(i * 0.3)
+        joints = _sit(d, int(W * 0.40), floor_y + 6, h=430, col=lit, lean=8,
+                      reach=reach, on_ground=True)
+        # the phone in the reaching hand, tilted up toward the face, feed scrolling.
+        hf = joints["hand"]
+        pcx, pcy = hf[0] + 6, hf[1] - 34
         pw, ph = 132, 250
         phone = Image.new("RGBA", im.size, (0, 0, 0, 0))
         pd = ImageDraw.Draw(phone)
@@ -412,18 +441,12 @@ def free_scene(out: Path, seconds: float = 6.0, number: str = "9",
         for gx in range(0, W, 90):                          # ground texture streaks
             d.line([gx + int(t * 30) % 90, hz + 20, gx + 40 + int(t * 30) % 90, hz + 20],
                    fill=(40, 34, 48, 200), width=3)
-        # the FIGURE walks toward the light; arms rise from its sides to overhead
-        # as it frees up (the clean rig, interpolating stand -> arms-up).
+        # the FIGURE walks toward the light; arms rise to a V as it frees up.
         cx = int(W * 0.30 + t * W * 0.16)
-        hip = (cx, hz + 6)
+        feet = hz + 34
         rise = _ease(max(0.0, (t - 0.35) / 0.65))
-        stride = 10 * math.sin(i * 0.4)
-        pose = dict(POSE_STAND)
-        for key in ("ua_f", "fa_f", "ua_b", "fa_b"):
-            pose[key] = POSE_STAND[key] + (POSE_ARMS_UP[key] - POSE_STAND[key]) * rise
-        pose["thigh_f"] = 78 + stride
-        pose["thigh_b"] = 102 - stride
-        _person(d, hip, pose, col=FIG, s=1.0)
+        stride = 12 * math.sin(i * 0.4)
+        _stand(d, cx, feet, h=360, col=FIG, arms_up=rise, stride=stride)
         im = _label(im, number, label, col=(255, 224, 168))
         return im
 
