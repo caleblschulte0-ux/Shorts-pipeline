@@ -27,7 +27,7 @@ You are given the streamer name, the clip's original title, its view count on
 Twitch, and the transcript of what is said in the clip.
 
 Return STRICT JSON:
-{"title": str, "hook": str, "caption": str, "hashtags": [str, ...],
+{"title": str, "hook": str, "caption": str, "cta": str, "hashtags": [str, ...],
  "series": str,
  "edit": {"slam": str, "emoji": str, "replay_worthy": bool,
           "cut": {"start": number, "end": number}, "complete": bool}}
@@ -58,6 +58,15 @@ Rules:
   chars) — how a fan would describe the moment to a friend. Plain human
   wording, no jargon, no "clip from the allowlist" robot-speak, one
   emoji max.
+- cta: ONE short comment-baiting question (<= 70 chars) that makes a viewer
+  want to reply with a TAKE — the single biggest lever for the Shorts feed,
+  which promotes videos that spark comments. Provoke a SIDE or an opinion on
+  the drama: "Was Jason overreacting or was that fair? 👇", "Who's actually
+  in the wrong here?", "Team Lacy or team coach?". Tie it to THIS clip's
+  conflict, never generic ("comment below!"). End with the question. If the
+  clip has no opinion-worthy conflict (pure wholesome/hype), use a lighter
+  prompt ("Rate that reaction 1-10 👇"). Honest — never invent a conflict
+  that isn't in the clip.
 - hashtags: 5-7 lowercase tags, no '#', no spaces. LEAD with the specific
   pull — the streamer/person's name AND the live event or storyline if there
   is one (e.g. streameruniversity) — then the game/activity and the emotional
@@ -272,7 +281,11 @@ def _postprocess(out: dict, streamer: str, context: str,
     title = " ".join(fixed_words)
     if not matched:
         title = f"{pretty}: {title}"
-    caption = str(out.get("caption", "")).strip()[:180]
+    caption = scrub_text(str(out.get("caption", "")).strip()[:180])
+    # Comment-bait CTA (feed-engagement lever): a take-provoking question,
+    # scrubbed and length-capped. Empty when the model omits it — the
+    # description simply carries no prompt then.
+    cta = scrub_text(str(out.get("cta", "")).strip())[:90]
 
     # Edit direction (validated hard — the renderer must never trust raw
     # model output): slam must be words actually present in the source
@@ -305,7 +318,8 @@ def _postprocess(out: dict, streamer: str, context: str,
         pass
 
     return {"title": title[:95], "hook": hook[:60], "caption": caption,
-            "hashtags": tags, "series": series or "chaos", "edit": edit}
+            "cta": cta, "hashtags": tags, "series": series or "chaos",
+            "edit": edit}
 
 
 def _call_claude(user: str, system: str = SYSTEM) -> dict | None:

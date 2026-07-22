@@ -412,10 +412,16 @@ def _description(pkg: dict, led: dict) -> str:
         # internal pipeline jargon
         lead = led.get("authored_caption") \
             or led.get("authored_title") or led["clip_title"]
+        # Comment-bait CTA leads the description (feed-engagement lever): the
+        # Shorts feed promotes on comments, and our analytics show ~0 per
+        # video. A take-provoking question up top is the cheapest way to
+        # earn that signal. Falls away cleanly when the author omits it.
+        cta = led.get("authored_cta", "")
+        head = f"{cta}\n\n{lead}" if cta else lead
         credit = (f"Clip from {led['credit']} — full credit to the "
                   f"streamer.\nSource: {led['source_url']}\n"
                   f"Clipped by {led['clipper']}.")
-        return f"{lead}\n\n{credit}\n\n{tags}"
+        return f"{head}\n\n{credit}\n\n{tags}"
     if led.get("kind") == "sim":
         detail = (f"Simulation: {led['theme']}, one continuous speed ramp "
                   f"to x{led['peak_multiplier']} — the on-screen speed "
@@ -701,6 +707,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     led["authored_tags"] = meta["hashtags"]
                     led["authored_caption"] = author.scrub_text(
                         meta.get("caption", ""))
+                    led["authored_cta"] = author.scrub_text(
+                        meta.get("cta", ""))
                     led["series"] = meta.get("series", "chaos")
                 led["source_url"] = info["url"]
                 led["source_views"] = info["views"]
