@@ -435,11 +435,11 @@ def _env_curb():
             f'fill="#2b3a42" opacity="0.7"/>')
 
 
-ENVS = {
-    "eggs": _env_kitchen, "soup_cans": _env_store, "soup_can": _env_store,
-    "cart": _env_store, "chart_bird": _env_chart, "gas_pump": _env_curb,
-    "house": _env_curb,
-}
+# Environments are just a grounding contact shadow for now: Data TRAVELS
+# around the frame, so a full attached set (shelves, counter) would slide with
+# him and read wrong. "He's in a place" returns later as a proper scene-wide
+# background layer behind everything, not a sprite that moves with him.
+ENVS: dict = {}
 
 
 def _egg_a(cx, cy, rot=0):

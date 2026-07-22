@@ -1274,28 +1274,41 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 return "shock"
 
         if _clean:
-            # HOST mode: Data planted centrally, doing a scene-specific action
-            # for EVERY beat — a topic prop when the beat has a subject (eggs ->
-            # juggle, cart -> push) and RIDING THE CHART on pure-data/timeline
-            # beats (the extra thing, never a standing host). Present every
-            # frame, never floating. seq's 7th field = director spec OR pose.
-            home = (float((W - S) // 2), float(H - S - 250))
+            # MASCOT-FIRST composition. Data is the camera: the video is built
+            # around WHERE HE IS and WHAT HE'S DOING. He is NEVER parked — each
+            # beat sends him to a different spot and he TRAVELS there across the
+            # whole beat (see the overlay glide below), so his x/y is always
+            # changing (never static >4s): he paces side to side, rides UP into
+            # the chart on data beats, walks the cart across. Action per beat
+            # comes from the director; position comes from this trajectory.
             gap_fill = _director.default_host() if _director else "idle"
             nseg = len(st.segments)
+            Lx, Rx = 50.0, float(W - S - 50)
+            Cx = float((W - S) // 2)
+            yband = [float(H * 0.30), float(H * 0.52), float(H * 0.60),
+                     float(H * 0.40)]
+
+            def _spot(i, action):
+                if action == "ride":                 # ride UP into the chart
+                    return Rx if i % 2 else Lx, float(H * 0.24)
+                x = Lx if i % 2 == 0 else Rx          # pace across, sides
+                y = min(max(yband[i % len(yband)], 2.0), float(H - S - 2))
+                return x, y
+
+            home = (Cx, float(H * 0.52))              # gap-fill rest spot
             seq = []
-            # hook window -> host presenting on set
-            seq.append((home[0], home[1], windows[0][0], windows[0][1],
+            seq.append((Cx, float(H * 0.52), windows[0][0], windows[0][1],
                         UP_ANGLE, False, gap_fill))
-            # one action per segment, spanning that segment's spoken window
             for i in range(nseg):
                 wi = windows[1 + i] if 1 + i < len(windows) else None
                 if not wi:
                     continue
-                seq.append((home[0], home[1], wi[0], wi[1],
-                            UP_ANGLE, False, _seg_spec(i)))
-            # celebrate over the closing window
+                spec = _seg_spec(i)
+                act = spec.get("action") if isinstance(spec, dict) else ""
+                x, y = _spot(i, act)
+                seq.append((x, y, wi[0], wi[1], UP_ANGLE, False, spec))
             close_act = _director.celebrate() if _director else "cheer"
-            seq.append((home[0], home[1], windows[-1][0], windows[-1][1],
+            seq.append((Cx, float(H * 0.50), windows[-1][0], windows[-1][1],
                         UP_ANGLE, False, close_act))
         else:
             gap_fill = "idle"
@@ -1479,13 +1492,19 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"[{prev}][g{i}]overlay=x={vx}:y={vy}:"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
-        # Mascots — each slides in from the previous spot (feels like it walks).
+        # Mascots — Data TRAVELS. He glides from his previous spot to this
+        # beat's spot across the WHOLE beat (not a quick slide-then-park), so
+        # his x/y is always changing — he's never static in one place. A gentle
+        # bob rides on top. In CLEAN this traces a path around the frame; in
+        # legacy it still walks between numbers.
         prev_tl = home
         for k, (tlx, tly, w0, w1, _a, _f, _p) in enumerate(seq):
             gi = masc_input[k]
-            # Calmer: a slower glide (0.55s) and a gentle bob.
-            xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.55, tlx)], 1)
-            ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.55, tly)], 1)})+3*sin(1.3*t)"
+            # Glide over most of the beat, easing in the last bit so he settles
+            # only briefly before the next move — motion fills the whole window.
+            arrive = w0 + max(0.5, (w1 - w0) * 0.82)
+            xe = _piecewise([(w0, prev_tl[0]), (arrive, tlx)], 1)
+            ye = f"({_piecewise([(w0, prev_tl[1]), (arrive, tly)], 1)})+5*sin(1.7*t)"
             fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
             fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
                       f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
