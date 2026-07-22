@@ -858,12 +858,30 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
             elif sx1 - sx0 > lw + 6:
                 d.text((mid - lw / 2, by + bh + 16), lab, font=lf, fill=lc)
                 d.text((mid - af.getlength(a_s) / 2, by + bh + 44), a_s, font=af, fill=lc)
-        # the payoff sliver gets a soft glow
+        # the payoff sliver: a soft glow + coins raining IN and collecting (the
+        # bit you keep), and a shimmer sweep travelling the empty bar — so the
+        # reveal keeps moving for its whole hold instead of freezing.
         if final:
             sx0, sx1, *_ = spans[-1]
             im = _glow(im, lambda dd: dd.rounded_rectangle(
                 [sx0, by - 6, sx1, by + bh + 6], radius=rr,
-                fill=(255, 226, 170, 150)), 26)
+                fill=(255, 226, 170, 160)), 26)
+            d = ImageDraw.Draw(im, "RGBA")
+            # coins fall from above into the sliver, over and over
+            rnd = random.Random(99)
+            for _k in range(10):
+                ph = (t * 0.9 + rnd.random()) % 1.0
+                cxp = rnd.uniform(sx0 + 8, sx1 - 8)
+                cyp = (by - 150) + ph * 150
+                a = int(240 * (1 - abs(ph - 0.5)))
+                if a > 20:
+                    _coin(d, int(cxp), int(cyp), 15, a=a)
+            # a highlight sweep across the whole (mostly hollow) bar
+            sweep = (t * 1.3) % 1.3
+            hxp = x0 + sweep * bw
+            for off, aa in ((0, 60), (14, 34), (28, 16)):
+                d.line([hxp + off, by + 4, hxp + off, by + bh - 4],
+                       fill=(255, 255, 255, aa), width=6)
         return im
 
     im2 = None  # noqa: F841 (kept for the nonlocal glow branch above)

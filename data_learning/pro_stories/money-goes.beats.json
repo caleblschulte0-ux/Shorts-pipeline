@@ -5,205 +5,318 @@
   {
    "job": "HOOK",
    "mode": "designed_2d",
-   "narration": "Over your whole working life, you'll earn about two million dollars. It sounds like freedom. A mansion, a boat, a life of never checking a price tag. So why does it never feel like enough? Watch where almost all of it quietly disappears.",
+   "narration": "You'll earn about two million dollars in your life. So why does it never feel like enough? Watch where almost all of it quietly disappears.",
    "understand": "cold open: a paycheck lands and the money instantly starts leaking away",
-   "flat": {"kind": "scene_paycheck", "number": "$2M", "label": "YOU'LL EARN"}
+   "flat": {
+    "kind": "scene_paycheck",
+    "number": "$2M",
+    "label": "YOU'LL EARN"
+   }
   },
   {
    "job": "TEASE",
    "mode": "designed_2d",
-   "narration": "Because by the time it reaches you, most of it already has somewhere else to be. In the end, only about fifteen cents of every dollar is ever truly yours.",
+   "narration": "By the time it reaches you, most of it already has somewhere else to be. In the end, only about fifteen cents of every dollar is ever truly yours.",
    "understand": "a stark stat card teasing the punchline of the whole video",
-   "flat": {"kind": "flat_hook", "text": "15¢", "sub": "OF EVERY DOLLAR IS YOURS", "label": "OUT OF $2,000,000"}
+   "flat": {
+    "kind": "flat_hook",
+    "text": "15¢",
+    "sub": "OF EVERY DOLLAR IS YOURS",
+    "label": "OUT OF $2,000,000"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "footage",
-   "narration": "Two million dollars. On paper, it's a fortune. In reality, you never really hold it, because it's spoken for long before it ever lands in your account.",
+   "narration": "Two million dollars. On paper, it's a fortune. A mansion, a boat, a life of never checking a price tag. But in reality you never really hold it, because it's spoken for long before it ever lands in your account.",
    "understand": "a real photo of cash — the raw number, before reality takes its cut",
-   "image": {"query": "stacks of cash money hundred dollar bills", "perspective": "close overhead flat lay", "still": true, "min_appeal": 0.4}
+   "image": {
+    "query": "stacks of cash money hundred dollar bills",
+    "perspective": "close overhead flat lay",
+    "still": true,
+    "min_appeal": 0.35
+   }
   },
-
   {
    "job": "CHAPTER",
    "mode": "designed_2d",
    "narration": "Chapter one. The government's cut.",
    "understand": "chapter title card",
-   "flat": {"kind": "flat_title", "kicker": "CHAPTER ONE", "title": "The Government's Cut"}
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER ONE",
+    "title": "The Government's Cut"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Before you ever hold a single dollar, a share is already gone. Income tax comes straight off the top. Payroll tax on top of that. And then sales tax again, on nearly everything you buy with what's left.",
+   "narration": "Before you hold a single dollar, a share is already gone. Income tax, payroll tax, and sales tax on almost everything you buy with what's left.",
    "understand": "the figure hands a stack of cash through a cold government window",
-   "flat": {"kind": "scene_tax", "number": "25%", "label": "THE GOVERNMENT'S CUT"}
+   "flat": {
+    "kind": "scene_tax",
+    "number": "25%",
+    "label": "THE GOVERNMENT'S CUT"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "footage",
    "narration": "Across a lifetime, that adds up to roughly five hundred thousand dollars, handed over a little at a time. A full quarter of everything you will ever make, gone before you can even decide what to do with it.",
    "understand": "a real photo grounding the tax point — a government building",
-   "image": {"query": "united states capitol government building", "perspective": "wide daylight", "still": true, "min_appeal": 0.4}
+   "image": {
+    "query": "united states capitol government building",
+    "perspective": "wide daylight",
+    "still": true,
+    "min_appeal": 0.35
+   }
   },
   {
    "job": "DATA",
    "mode": "designed_2d",
    "narration": "Two million, minus taxes. One and a half million left.",
    "understand": "the recurring money bar: taxes drain out",
-   "flat": {"kind": "scene_money", "upto": 0, "label": "TAXES"}
+   "flat": {
+    "kind": "scene_money",
+    "upto": 0,
+    "label": "TAXES"
+   }
   },
-
   {
    "job": "CHAPTER",
    "mode": "designed_2d",
    "narration": "Chapter two. A roof over your head.",
    "understand": "chapter title card",
-   "flat": {"kind": "flat_title", "kicker": "CHAPTER TWO", "title": "A Roof Over Your Head"}
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER TWO",
+    "title": "A Roof Over Your Head"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Now the biggest bite of all. Rent or a mortgage takes about a third of every paycheck, month after month, for decades. You don't really buy a home. For most of your life, you rent it — from a landlord, or from a bank.",
+   "narration": "Now the biggest bite of all. Rent or a mortgage takes about a third of every paycheck, month after month, for decades.",
    "understand": "the figure stands small in a lit doorway; rent floats out the chimney each month",
-   "flat": {"kind": "scene_rent", "number": "33%", "label": "A ROOF OVER YOUR HEAD"}
+   "flat": {
+    "kind": "scene_rent",
+    "number": "33%",
+    "label": "A ROOF OVER YOUR HEAD"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "footage",
-   "narration": "Add up every payment, every year, every repair and property tax. Just having somewhere to sleep swallows another half a million dollars.",
+   "narration": "You don't really buy a home. For most of your life you rent it, from a landlord or from a bank. And when you add up every payment, every repair, and every year of property tax, just having somewhere to sleep swallows another half a million dollars.",
    "understand": "a real photo of houses grounding the housing point",
-   "image": {"query": "suburban houses neighborhood street", "perspective": "wide aerial daylight", "still": true, "min_appeal": 0.4}
+   "image": {
+    "query": "suburban houses neighborhood street",
+    "perspective": "wide aerial daylight",
+    "still": true,
+    "min_appeal": 0.35
+   }
   },
   {
    "job": "DATA",
    "mode": "designed_2d",
    "narration": "And just like that, we're down to one million dollars.",
    "understand": "the money bar: housing drains out",
-   "flat": {"kind": "scene_money", "upto": 1, "label": "HOUSING"}
+   "flat": {
+    "kind": "scene_money",
+    "upto": 1,
+    "label": "HOUSING"
+   }
   },
-
   {
    "job": "CHAPTER",
    "mode": "designed_2d",
    "narration": "Chapter three. Getting around.",
    "understand": "chapter title card",
-   "flat": {"kind": "flat_title", "kicker": "CHAPTER THREE", "title": "Getting Around"}
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER THREE",
+    "title": "Getting Around"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Then there's simply getting from one place to another. Car payments, insurance, gas, repairs. The machine that carries you to work quietly eats the money you go to work for.",
+   "narration": "Then there's simply getting from place to place. Car payments, insurance, gas, and repairs — the machine that carries you to work quietly eats the money you go to work for.",
    "understand": "the figure at a gas pump, the dollar meter racing up",
-   "flat": {"kind": "scene_gas", "number": "", "label": "GETTING AROUND"}
+   "flat": {
+    "kind": "scene_gas",
+    "number": "",
+    "label": "GETTING AROUND"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "footage",
-   "narration": "And a car spends most of its life parked, losing value, while you keep paying for it. Over a lifetime of commutes, getting around costs about a quarter of a million dollars.",
+   "narration": "A car spends most of its life parked, losing value, while you keep paying for it. Over a lifetime of commutes, getting around costs about a quarter of a million dollars.",
    "understand": "a real photo of traffic grounding the transport point",
-   "image": {"query": "highway traffic jam cars rush hour", "perspective": "wide aerial", "still": true, "min_appeal": 0.4}
+   "image": {
+    "query": "highway traffic cars rush hour",
+    "perspective": "wide aerial",
+    "still": true,
+    "min_appeal": 0.35
+   }
   },
   {
    "job": "DATA",
    "mode": "designed_2d",
    "narration": "Seven hundred and fifty thousand left.",
    "understand": "the money bar: getting around drains out",
-   "flat": {"kind": "scene_money", "upto": 2, "label": "GETTING AROUND"}
+   "flat": {
+    "kind": "scene_money",
+    "upto": 2,
+    "label": "GETTING AROUND"
+   }
   },
-
   {
    "job": "CHAPTER",
    "mode": "designed_2d",
    "narration": "Chapter four. Staying alive.",
    "understand": "chapter title card",
-   "flat": {"kind": "flat_title", "kicker": "CHAPTER FOUR", "title": "Staying Alive"}
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER FOUR",
+    "title": "Staying Alive"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Now the one you can't skip. Groceries, restaurants, the coffee on the way in. It never feels like much at the register. It quietly becomes a fortune.",
+   "narration": "Now the one you can't skip. Groceries, restaurants, the coffee on the way in. It never feels like much at the register, but it quietly becomes a fortune.",
    "understand": "the figure at a checkout, the total climbing, the receipt printing longer",
-   "flat": {"kind": "scene_grocery", "number": "", "label": "STAYING ALIVE"}
+   "flat": {
+    "kind": "scene_grocery",
+    "number": "",
+    "label": "STAYING ALIVE"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "footage",
-   "narration": "Three meals a day, every day, for eighty years. Feeding yourself for a lifetime runs around three hundred thousand dollars.",
+   "narration": "Three meals a day, every day, for a whole lifetime. Feeding yourself alone runs around three hundred thousand dollars over the years.",
    "understand": "a real photo of groceries grounding the food point",
-   "image": {"query": "grocery store produce aisle fresh vegetables", "perspective": "wide bright", "still": true, "min_appeal": 0.4}
+   "image": {
+    "query": "supermarket grocery aisle shelves",
+    "perspective": "wide bright",
+    "still": true,
+    "min_appeal": 0.35
+   }
   },
   {
    "job": "DATA",
    "mode": "designed_2d",
    "narration": "Four hundred and fifty thousand now.",
    "understand": "the money bar: food drains out",
-   "flat": {"kind": "scene_money", "upto": 3, "label": "FOOD"}
+   "flat": {
+    "kind": "scene_money",
+    "upto": 3,
+    "label": "FOOD"
+   }
   },
-
   {
    "job": "CHAPTER",
    "mode": "designed_2d",
    "narration": "Chapter five. The little leaks.",
    "understand": "chapter title card",
-   "flat": {"kind": "flat_title", "kicker": "CHAPTER FIVE", "title": "The Little Leaks"}
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER FIVE",
+    "title": "The Little Leaks"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "And then there are the leaks you barely notice. Streaming, subscriptions, app fees, the free trial you forgot to cancel. Five dollars here, ten there, draining every single month whether you use them or not.",
+   "narration": "And then the leaks you barely notice. Streaming, subscriptions, fees, the free trial you forgot to cancel — draining every month whether you use them or not.",
    "understand": "the figure on a couch ringed by subscription tiles, each siphoning a coin",
-   "flat": {"kind": "scene_subs", "number": "", "label": "THE LITTLE LEAKS"}
+   "flat": {
+    "kind": "scene_subs",
+    "number": "",
+    "label": "THE LITTLE LEAKS"
+   }
   },
   {
    "job": "DATA",
    "mode": "designed_2d",
-   "narration": "Alone, each one is nothing. Together, they siphon off a hundred and fifty thousand dollars, which leaves just three hundred thousand.",
+   "narration": "Alone, each one is nothing. Together, they siphon off a hundred and fifty thousand dollars, leaving just three hundred thousand.",
    "understand": "the money bar: the little leaks drain out",
-   "flat": {"kind": "scene_money", "upto": 4, "label": "LITTLE LEAKS"}
+   "flat": {
+    "kind": "scene_money",
+    "upto": 4,
+    "label": "LITTLE LEAKS"
+   }
   },
-
   {
    "job": "CHAPTER",
    "mode": "designed_2d",
    "narration": "Chapter six. The trap.",
    "understand": "chapter title card",
-   "flat": {"kind": "flat_title", "kicker": "CHAPTER SIX", "title": "The Trap"}
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER SIX",
+    "title": "The Trap"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Here's the cruel part. When you finally earn more, you don't keep more. A raise buys a nicer car, a bigger place, a longer list of subscriptions. The bar refills, and it drains right back out. You run faster and faster just to stay in exactly the same place.",
+   "narration": "Here's the cruel part. When you finally earn more, you don't keep more. You just buy a nicer car and a bigger place, and the money drains right back out.",
    "understand": "the figure runs on a treadmill going nowhere as money pours in and drains out",
-   "flat": {"kind": "scene_treadmill", "number": "", "label": "RUNNING TO STAND STILL"}
+   "flat": {
+    "kind": "scene_treadmill",
+    "number": "",
+    "label": "RUNNING TO STAND STILL"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "footage",
-   "narration": "It's why so many people who earn a lot still feel like they have nothing. The trap isn't how much you make. It's that the spending grows to match it, every single time.",
+   "narration": "It's why so many people who earn a lot still feel like they have nothing. The trap isn't how much you make — it's that the spending quietly grows to match it, every single time you get ahead.",
    "understand": "a real photo grounding the trap — a busy city of workers",
-   "image": {"query": "busy city street crowd commuters people walking", "perspective": "wide street level", "still": true, "min_appeal": 0.4}
+   "image": {
+    "query": "crowd of people walking city street",
+    "perspective": "wide street level",
+    "still": true,
+    "min_appeal": 0.35
+   }
   },
-
   {
    "job": "CHAPTER",
    "mode": "designed_2d",
    "narration": "Chapter seven. What's actually left.",
    "understand": "chapter title card",
-   "flat": {"kind": "flat_title", "kicker": "CHAPTER SEVEN", "title": "What's Actually Left"}
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER SEVEN",
+    "title": "What's Actually Left"
+   }
   },
   {
    "job": "REVEAL",
    "mode": "designed_2d",
    "narration": "So out of two million dollars, this is the part that's actually yours. Three hundred thousand. Fifteen cents of every dollar you will ever earn, free to spend however you choose.",
    "understand": "the money bar resolves on the small glowing 'actually yours' sliver",
-   "flat": {"kind": "scene_money", "upto": 5, "final": true, "label": "ACTUALLY YOURS"}
+   "flat": {
+    "kind": "scene_money",
+    "upto": 5,
+    "final": true,
+    "label": "ACTUALLY YOURS"
+   }
   },
   {
    "job": "PAYOFF",
    "mode": "designed_2d",
-   "narration": "It isn't much. But it's the piece that's truly yours. So notice it. Protect it. And spend it on something that actually matters, because you paid for every last cent of it with your life.",
+   "narration": "It isn't much. But it's the piece that's truly yours. So notice it, protect it, and spend it on something that actually matters — because you paid for every last cent of it with your life.",
    "understand": "the figure walks toward a warm sunrise holding the single coin that's theirs",
-   "flat": {"kind": "scene_savings", "number": "$300K", "label": "ACTUALLY YOURS"}
+   "flat": {
+    "kind": "scene_savings",
+    "number": "$300K",
+    "label": "ACTUALLY YOURS"
+   }
   }
  ]
 }

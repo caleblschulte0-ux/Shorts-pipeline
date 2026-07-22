@@ -227,18 +227,27 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
                   "falling back to the media gateway", file=sys.stderr)
             if not shot.get("image_query"):
                 raise
-    picked = media.best_image(
-        str(shot["image_query"]), dest,
-        perspective=shot.get("perspective", ""),
-        min_appeal=float(shot.get("min_appeal", 0.42)),
-        must_match=shot.get("must_match"))
-    if picked is None:
-        raise RuntimeError(
-            f"media gateway found no view-worthy photo for "
-            f"{shot.get('image_query')!r} (appeal floor "
-            f"{shot.get('min_appeal', 0.42)}) — perspective "
-            f"{shot.get('perspective', '')!r}")
-    return picked
+    # ROBUST: an ACCENT photo missing must never kill a whole render. Try the
+    # requested appeal floor, then progressively lower floors (take the best the
+    # gateway can find) before giving up. Only a total gateway miss raises.
+    floor0 = float(shot.get("min_appeal", 0.42))
+    for floor in (floor0, 0.25, 0.12, 0.0):
+        if floor > floor0:
+            continue
+        picked = media.best_image(
+            str(shot["image_query"]), dest,
+            perspective=shot.get("perspective", ""),
+            min_appeal=floor, must_match=shot.get("must_match"))
+        if picked is not None:
+            if floor < floor0:
+                print(f"[pro] image {shot.get('image_query')!r}: nothing at "
+                      f"appeal {floor0}, took best at floor {floor}",
+                      file=sys.stderr)
+            return picked
+    raise RuntimeError(
+        f"media gateway found NO photo at all for "
+        f"{shot.get('image_query')!r} — perspective "
+        f"{shot.get('perspective', '')!r}")
 
 
 def _depict_source(shot: dict, seconds: float, work: Path, idx: int):
@@ -303,7 +312,14 @@ def _depict_text_shot(shot, seconds, out, work, idx):
 
 
 def _image_shot(shot, seconds, out, work, idx):
-    src = _image_source(shot, work, idx)
+    try:
+        src = _image_source(shot, work, idx)
+    except Exception as e:  # noqa: BLE001 — a missing ACCENT never kills a render:
+        # degrade to a designed statement of the beat's own line.
+        print(f"[pro] image {shot.get('image_query')!r}: no photo "
+              f"({str(e)[:60]}) — designed statement fallback", file=sys.stderr)
+        return flat2d.statement(shot.get("line", "") or
+                                str(shot.get("image_query", "")), out, seconds)
     _ATTRIB.append({"idx": idx, "source": src.get("source"),
                     "license": src.get("license"),
                     "attribution": src.get("attribution"),
