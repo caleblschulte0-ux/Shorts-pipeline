@@ -54,16 +54,36 @@ def _read_json(p: Path):
         return None
 
 
-def evaluate(out: Path, director_rc: int) -> dict:
+def _provenance_gap(story: dict) -> str | None:
+    """Flagship factual-provenance gate (audit #11). A story that OPTS IN with
+    top-level ``"require_provenance": true`` must carry `facts[]` provenance for
+    its numeric claims; a spoken number with no source must not publish. Scoped
+    to opt-in stories so non-financial stories (speeds, scales) are unaffected —
+    provenance is authored per story, not guessed from narration."""
+    if not story or not story.get("require_provenance"):
+        return None
+    sourced = sum(1 for b in story.get("beats", []) if b.get("facts"))
+    if sourced == 0:
+        return ("require_provenance is set but no beat carries facts[] — refusing "
+                "to publish financial claims with no source (audit #11)")
+    return None
+
+
+def evaluate(out: Path, director_rc: int, story: dict | None = None) -> dict:
     """Given a finished render at `out` and the director's return code, decide
     PASS vs QUARANTINE from the packaged evidence (no rendering here — pure,
-    unit-testable)."""
+    unit-testable). `story` (the loaded beats) enables the opt-in provenance
+    gate; omitted in unit tests that only exercise the package decision."""
     pkg = out.with_name(out.stem + "_pkg")
     reasons: list[str] = []
 
     if director_rc != 0:
         reasons.append("director gates failed "
                        f"(rc={director_rc}: {_RC.get(director_rc, 'reject')})")
+
+    prov = _provenance_gap(story or {})
+    if prov:
+        reasons.append(prov)
 
     fb = _read_json(pkg / "fallbacks.json") or {}
     if fb.get("verdict") == "unacceptable":
@@ -99,9 +119,10 @@ def produce(slug: str, out: Path, rounds: int = 3) -> dict:
     result with the slug attached."""
     import no_dull_beats
     story_path = resolve_story(slug)
+    story = json.loads(story_path.read_text())
     print(f"[produce] {slug}: render + director loop ({story_path.name})")
     director_rc = no_dull_beats.run(story_path, out, rounds=rounds)
-    result = evaluate(out, director_rc)
+    result = evaluate(out, director_rc, story=story)
     result["slug"] = slug
     if result["status"] == "pass":
         print(f"[produce] {slug}: PASS — publishing package ready")

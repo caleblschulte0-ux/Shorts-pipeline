@@ -1,6 +1,7 @@
 {
  "slug": "money-goes",
  "title": "Where All Your Money Actually Goes",
+ "require_provenance": true,
  "beats": [
   {
    "job": "HOOK",
@@ -11,7 +12,15 @@
     "kind": "scene_paycheck",
     "number": "$2M",
     "label": "YOU'LL EARN"
-   }
+   },
+   "facts": [
+    {
+     "claim": "A typical worker earns about $2 million over a lifetime",
+     "source": "U.S. Census Bureau / Social Security Administration lifetime-earnings estimates",
+     "year": 2023,
+     "assumptions": "Rounded illustrative figure; full-time worker over a ~40-year career in nominal dollars. Median lifetime earnings are ~$1.7M and higher with a bachelor's degree."
+    }
+   ]
   },
   {
    "job": "TEASE",
@@ -71,7 +80,15 @@
     "still": true,
     "min_appeal": 0.35,
     "push": 1.5
-   }
+   },
+   "facts": [
+    {
+     "claim": "Lifetime taxes total roughly $500,000 — about a quarter of earnings",
+     "source": "Bureau of Labor Statistics & Tax Foundation effective-tax-burden estimates",
+     "year": 2023,
+     "assumptions": "Combined federal income, payroll, state, and sales tax; ~25% average effective burden applied to the $2M lifetime baseline."
+    }
+   ]
   },
   {
    "job": "DATA",
@@ -117,7 +134,15 @@
     "still": true,
     "min_appeal": 0.35,
     "push": 1.5
-   }
+   },
+   "facts": [
+    {
+     "claim": "Housing takes about a third of spending — roughly $500,000 over a lifetime",
+     "source": "BLS Consumer Expenditure Survey (housing ~33% of average annual expenditures)",
+     "year": 2023,
+     "assumptions": "National-average spending share applied to lifetime income net of tax; rent or mortgage plus repairs, insurance, and property tax."
+    }
+   ]
   },
   {
    "job": "DATA",
@@ -163,7 +188,15 @@
     "still": true,
     "min_appeal": 0.35,
     "push": 1.5
-   }
+   },
+   "facts": [
+    {
+     "claim": "Getting around costs about a quarter of a million dollars over a lifetime",
+     "source": "BLS Consumer Expenditure Survey (transportation ~16% of spending)",
+     "year": 2023,
+     "assumptions": "National-average share; car payments, insurance, fuel, and repairs; illustrative rounded total."
+    }
+   ]
   },
   {
    "job": "DATA",
@@ -209,7 +242,15 @@
     "still": true,
     "min_appeal": 0.35,
     "push": 1.5
-   }
+   },
+   "facts": [
+    {
+     "claim": "Feeding yourself runs about $300,000 over a lifetime",
+     "source": "BLS Consumer Expenditure Survey (food at home + away ~12–13% of spending)",
+     "year": 2023,
+     "assumptions": "National-average share for a single person; groceries and restaurants; illustrative rounded total."
+    }
+   ]
   },
   {
    "job": "DATA",
@@ -253,7 +294,15 @@
     "kind": "scene_money",
     "upto": 4,
     "label": "LITTLE LEAKS"
-   }
+   },
+   "facts": [
+    {
+     "claim": "Subscriptions and recurring fees siphon off about $150,000 over a lifetime",
+     "source": "Consumer subscription-spending surveys (C+R Research; West Monroe)",
+     "year": 2023,
+     "assumptions": "Illustrative aggregate of streaming, memberships, and auto-renewing fees compounded over a working life."
+    }
+   ]
   },
   {
    "job": "CHAPTER",
@@ -311,7 +360,15 @@
     "upto": 5,
     "final": true,
     "label": "ACTUALLY YOURS"
-   }
+   },
+   "facts": [
+    {
+     "claim": "About 15 cents of every dollar (~$300,000) remains as discretionary",
+     "source": "Derived residual: $2M earnings minus taxes, housing, transport, food, and recurring costs",
+     "year": 2023,
+     "assumptions": "Arithmetic residual of the figures above; an illustrative teaching device, not a measured personal savings rate."
+    }
+   ]
   },
   {
    "job": "PAYOFF",
