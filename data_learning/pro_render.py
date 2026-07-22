@@ -413,13 +413,24 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
             shot.get("text", "0"), out, seconds, sub=shot.get("sub", "MPH"),
             label=shot.get("label", "THE EARTH'S SPIN"), extra=shot.get("extra"))
     if k in ("scene_sleep", "scene_work", "scene_screen", "scene_free",
-             "scene_queue", "scene_traffic", "scene_hold", "scene_walkout"):
+             "scene_queue", "scene_traffic", "scene_hold", "scene_walkout",
+             "scene_paycheck", "scene_tax", "scene_rent", "scene_gas",
+             "scene_grocery", "scene_subs", "scene_savings", "scene_treadmill"):
         fn = {"scene_sleep": scenes.sleep_scene, "scene_work": scenes.work_scene,
               "scene_screen": scenes.screen_scene, "scene_free": scenes.free_scene,
               "scene_queue": scenes.queue_scene, "scene_traffic": scenes.traffic_scene,
-              "scene_hold": scenes.hold_scene, "scene_walkout": scenes.walkout_scene}[k]
+              "scene_hold": scenes.hold_scene, "scene_walkout": scenes.walkout_scene,
+              "scene_paycheck": scenes.paycheck_scene, "scene_tax": scenes.tax_scene,
+              "scene_rent": scenes.rent_scene, "scene_gas": scenes.gas_scene,
+              "scene_grocery": scenes.grocery_scene, "scene_subs": scenes.subs_scene,
+              "scene_savings": scenes.savings_scene}[k]
         return fn(out, seconds, number=str(shot.get("number", "")),
                   label=str(shot.get("label", "")))
+    if k == "scene_money":
+        return scenes.money_scene(out, seconds, upto=int(shot.get("upto", 0)),
+                                  final=bool(shot.get("final", False)),
+                                  number=str(shot.get("number", "")),
+                                  label=str(shot.get("label", "")))
     if k == "flat_life_grid":
         return flat2d.life_grid(
             out, seconds, segments=shot.get("segments"),

@@ -711,6 +711,619 @@ def walkout_scene(out: Path, seconds: float = 6.0, number: str = "",
     return _render(draw, out, seconds, bg)
 
 
+# ==========================================================================
+# MONEY — a lifetime of pay, chapter by chapter, draining away.
+#
+# The recurring MOTIF (money_scene) is the spine of the long-form piece: one
+# horizontal bar = a whole life's take-home pay. Each chapter it drains another
+# labelled chunk, the bright "still yours" part shrinks, coins spill off, and a
+# running total ticks down — so the viewer FEELS the money leaving. Around it the
+# character LIVES each cut in a bespoke scene (payday, the tax window, rent, the
+# gas pump, the checkout, the little subscriptions), ending on the tiny sliver
+# that's actually theirs. Palette: cool slate rooms, warm gold money.
+# ==========================================================================
+GOLD = (255, 205, 108)
+GOLD_D = (196, 148, 66)
+GREEN = (120, 196, 140)
+GREEN_D = (70, 138, 100)
+SLATE_T = (34, 40, 58)
+SLATE_B = (13, 16, 26)
+
+# A life's gross pay, in $thousands (2000 = $2.0M) and where it goes. The order
+# is the chapter order; money_scene(upto=k) drains segment k this beat.
+LIFETIME = [
+    ("TAXES", 500, (150, 122, 236)),
+    ("HOUSING", 500, (238, 128, 108)),
+    ("GETTING AROUND", 250, (86, 186, 206)),
+    ("FOOD", 300, (120, 188, 132)),
+    ("LITTLE LEAKS", 150, (240, 178, 92)),
+    ("ACTUALLY YOURS", 300, (255, 226, 170)),
+]
+LIFE_TOTAL = sum(a for _, a, _ in LIFETIME)
+
+
+def _money_str(k_thousands: float) -> str:
+    """$1.2M / $500K from a value in $thousands."""
+    v = k_thousands * 1000
+    if v >= 1_000_000:
+        return f"${v / 1_000_000:.1f}M".replace(".0M", "M")
+    return f"${int(round(v / 1000))}K"
+
+
+def _slate_bg(top=SLATE_T, bot=SLATE_B):
+    return _vgrad(top, bot)
+
+
+def _coin(d, cx, cy, r, a=255, face=True):
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(*GOLD, a),
+              outline=(*GOLD_D, a), width=max(2, int(r / 6)))
+    d.ellipse([cx - r * 0.62, cy - r * 0.62, cx + r * 0.62, cy + r * 0.62],
+              outline=(*GOLD_D, a), width=max(1, int(r / 9)))
+    if face and r > 11:
+        f = _font(ANTON, int(r * 1.25))
+        d.text((cx - f.getlength("$") / 2, cy - r * 0.74), "$", font=f,
+               fill=(*GOLD_D, a))
+
+
+def _coin_fall(d, seed, t, x0, x1, y0, count=10, spread=260):
+    """A deterministic spray of coins spilling down from a source edge, gravity +
+    fade, looping — the money leaving. Cheap circles, readable at a glance."""
+    rnd = random.Random(seed)
+    for _ in range(count):
+        ph = (t * (0.7 + rnd.random() * 0.7) + rnd.random()) % 1.0
+        sx = rnd.uniform(x0, x1)
+        cx = sx + math.sin(ph * 3 + rnd.random() * 6) * 24
+        cy = y0 + ph * spread
+        r = int(12 + rnd.random() * 10)
+        a = int(240 * (1 - ph) ** 0.7)
+        if a > 12:
+            _coin(d, int(cx), int(cy), r, a=a, face=r > 13)
+
+
+def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
+                final: bool = False, number: str = "", label: str = "") -> Path:
+    """THE RECURRING MOTIF. The lifetime-pay bar with segment `upto` draining this
+    beat (or, if final, the last 'actually yours' sliver glowing as the survivor).
+    Segments before `upto` are already-spent hollow slots; segments after stay
+    bright — the money you still have, visibly shrinking chapter to chapter."""
+    x0, x1 = int(W * 0.11), int(W * 0.89)
+    bw = x1 - x0
+    by = int(H * 0.52)
+    bh = 104
+    # segment pixel spans
+    spans, cx = [], x0
+    for (lab, amt, col) in LIFETIME:
+        w = bw * amt / LIFE_TOTAL
+        spans.append((cx, cx + w, lab, amt, col))
+        cx += w
+    spent_before = sum(LIFETIME[k][1] for k in range(upto))
+    active_amt = LIFETIME[upto][1]
+
+    def bg(i, n):
+        return _slate_bg()
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        d = ImageDraw.Draw(im, "RGBA")
+        # a faint ledger grid so the frame is designed, never empty black
+        for gx in range(x0, x1 + 1, 84):
+            d.line([gx, by - 200, gx, by + 220], fill=(255, 255, 255, 10), width=2)
+        # heading
+        hf, sf = _font(ANTON, 62), _font(DEJAVU, 30)
+        head = "A LIFETIME OF PAY"
+        d.text((_center_x(d, head, hf), int(H * 0.16)), head, font=hf, fill=(*FIG, 255))
+        # drain progress of the active chunk (0->1 across the beat, eased)
+        drain = _ease(min(1.0, t / 0.82)) if not final else 1.0
+        # remaining $ counter ticks down as the active chunk drains
+        remaining = LIFE_TOTAL - spent_before - (0 if final else active_amt * drain)
+        cf = _font(ANTON, 92)
+        cs = _money_str(remaining) + ("  LEFT" if not final else "  YOURS")
+        cs_col = GREEN if not final else GOLD
+        d.text((_center_x(d, cs, cf), int(H * 0.26)), cs, font=cf, fill=(*cs_col, 255))
+        # the bar
+        rr = bh // 2
+        for si, (sx0, sx1, lab, amt, col) in enumerate(spans):
+            gone = si < upto or (si == upto and not final)
+            slot = si == upto and not final
+            if si < upto:
+                # already spent — hollow dark slot
+                _rrect(d, sx0 + 3, by, sx1 - 3, by + bh, (26, 30, 44, 255), r=rr)
+                d.rounded_rectangle([sx0 + 3, by, sx1 - 3, by + bh], radius=rr,
+                                    outline=(70, 78, 100, 255), width=3)
+            elif slot:
+                # draining NOW: colour recedes right->left, leaving a hollow slot
+                edge = sx1 - (sx1 - sx0) * drain
+                _rrect(d, sx0 + 3, by, sx1 - 3, by + bh, (26, 30, 44, 255), r=rr)
+                if edge - sx0 > 6:
+                    _rrect(d, sx0 + 3, by, edge, by + bh, col + (255,), r=rr)
+                # coins spill off the receding edge
+                _coin_fall(d, si * 7 + 1, t, edge - 30, edge + 30, by + bh - 10,
+                           count=12, spread=230)
+            else:
+                # still yours — bright (the final sliver gets a glow pass below)
+                _rrect(d, sx0 + 3, by, sx1 - 3, by + bh, col + (255,), r=rr)
+            # labels: inactive segments below the bar; the ACTIVE / final one
+            # ABOVE the bar (so a wide label on a narrow chunk never collides
+            # with its neighbours below).
+            on = slot or (final and si == len(spans) - 1)
+            lf = _font(DEJAVU, 24 if on else 22)
+            af = _font(ANTON, 32 if on else 24)
+            lc = (*FIG, 255) if on else (170, 178, 200, 210)
+            lw = lf.getlength(lab)
+            a_s = _money_str(amt)
+            mid = (sx0 + sx1) / 2
+            if on:
+                d.text((mid - lw / 2, by - 44), lab, font=lf, fill=lc)
+                d.text((mid - af.getlength(a_s) / 2, by - 74), a_s, font=af, fill=lc)
+            elif sx1 - sx0 > lw + 6:
+                d.text((mid - lw / 2, by + bh + 16), lab, font=lf, fill=lc)
+                d.text((mid - af.getlength(a_s) / 2, by + bh + 44), a_s, font=af, fill=lc)
+        # the payoff sliver gets a soft glow
+        if final:
+            sx0, sx1, *_ = spans[-1]
+            im = _glow(im, lambda dd: dd.rounded_rectangle(
+                [sx0, by - 6, sx1, by + bh + 6], radius=rr,
+                fill=(255, 226, 170, 150)), 26)
+        return im
+
+    im2 = None  # noqa: F841 (kept for the nonlocal glow branch above)
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# PAYDAY — the cold open. A paycheck lands in the figure's hands and the money
+# immediately starts leaking away. Sets up the whole piece.
+# --------------------------------------------------------------------------
+def paycheck_scene(out: Path, seconds: float = 6.0, number: str = "",
+                   label: str = "EVERY PAYCHECK") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        # a bright payday morning that cools as the money leaves (one-way)
+        k = 1.0 - 0.7 * t
+        return _vgrad((int(30 + 70 * k), int(34 + 60 * k), int(52 + 40 * k)),
+                      (12, 14, 24))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        floor_y = int(H * 0.80)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(16, 18, 28, 255))
+        # a window of morning light behind
+        wx0, wy0, wx1, wy1 = int(W * 0.60), int(H * 0.10), int(W * 0.90), int(H * 0.44)
+        k = 1.0 - 0.6 * t
+        im = _glow(im, lambda dd: dd.rectangle([wx0, wy0, wx1, wy1],
+                   fill=(255, 224, 150, int(120 * k))), 60)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([wx0, wy0, wx1, wy1], fill=(int(60 + 120 * k), int(70 + 90 * k),
+                    int(90 + 40 * k), 255), outline=(90, 100, 140, 255), width=6)
+        d.line([(wx0 + wx1) // 2, wy0, (wx0 + wx1) // 2, wy1], fill=(90, 100, 140), width=4)
+        # the figure, centre-left, holding a paycheck up in one hand
+        cx = int(W * 0.36)
+        _stand(d, cx, floor_y + 6, h=380, col=FIG)
+        # the paycheck (a slip) held at the raised hand
+        px, py = cx + 96, int(H * 0.40)
+        d.rounded_rectangle([px, py, px + 190, py + 96], radius=10,
+                            fill=(238, 240, 248, 255), outline=(150, 155, 172, 255), width=3)
+        d.line([px + 16, py + 26, px + 174, py + 26], fill=(120, 128, 150), width=4)
+        d.text((px + 16, py + 40), "PAY", font=_font(ANTON, 34), fill=(60, 120, 90, 255))
+        chk = _font(ANTON, 40)
+        amt = "$3,200"
+        d.text((px + 174 - chk.getlength(amt), py + 40), amt, font=chk, fill=(40, 100, 70, 255))
+        # money immediately streams OUT of the check toward the left and off-frame
+        _coin_fall(d, 91, t, px - 40, px + 40, py + 60, count=14, spread=460)
+        for _ in range(0):
+            pass
+        rnd = random.Random(5)
+        for _k in range(9):
+            ph = (t * 1.1 + rnd.random()) % 1.0
+            bx = px - ph * (W * 0.42)
+            byy = py + 30 + math.sin(ph * 5 + rnd.random() * 6) * 40
+            a = int(230 * (1 - ph))
+            if a > 14:
+                _rrect(d, bx, byy, bx + 54, byy + 30, (*GREEN, a), r=6)
+                d.ellipse([bx + 18, byy + 6, bx + 36, byy + 24], outline=(*GREEN_D, a), width=2)
+        im = _label(im, number, label, col=GOLD)
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# TAXES — the figure at a cold official window, handing a thick stack of cash
+# through the slot. A stamp thuds down.
+# --------------------------------------------------------------------------
+def tax_scene(out: Path, seconds: float = 6.0, number: str = "",
+              label: str = "THE GOVERNMENT'S CUT") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = 0.2 + 0.5 * t                       # cold hall brightens a touch
+        return _vgrad((int(24 + 40 * k), int(30 + 46 * k), int(44 + 54 * k)),
+                      (10, 12, 22))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        floor_y = int(H * 0.82)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(18, 20, 32, 255))
+        # official building: columns + a pediment, a service window glowing
+        for col_x in (int(W * 0.60), int(W * 0.72), int(W * 0.84), int(W * 0.96)):
+            d.rounded_rectangle([col_x - 22, int(H * 0.20), col_x + 22, floor_y],
+                                radius=8, fill=(52, 58, 78, 255))
+        d.polygon([(int(W * 0.54), int(H * 0.20)), (int(W * 1.02), int(H * 0.20)),
+                   (int(W * 0.78), int(H * 0.08))], fill=(60, 66, 88, 255))
+        # the teller window with a warm glow + a "TAX" sign
+        wx0, wy0, wx1, wy1 = int(W * 0.62), int(H * 0.34), int(W * 0.80), int(H * 0.56)
+        im = _glow(im, lambda dd: dd.rectangle([wx0, wy0, wx1, wy1],
+                   fill=(255, 210, 130, 150)), 30)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([wx0, wy0, wx1, wy1], fill=(255, 224, 168, 255),
+                    outline=(120, 100, 60, 255), width=5)
+        d.text((wx0 + 8, wy0 - 40), "T A X", font=_font(ANTON, 40), fill=(*FIG, 230))
+        # the figure at the window, arm reaching to push cash through
+        cx = int(W * 0.34)
+        reach = 0.5 + 0.4 * (0.5 + 0.5 * math.sin(i * 0.5))
+        _stand(d, cx, floor_y + 6, h=380, col=FIG,
+               arms_up=0.28 + 0.12 * (0.5 + 0.5 * math.sin(i * 0.5)))
+        # a stack of cash travelling from the figure into the window slot, repeating
+        ph = (t * 1.6) % 1.0
+        sx = cx + 90 + ph * (wx0 - (cx + 90))
+        sy = int(H * 0.46)
+        for b in range(4):
+            _rrect(d, sx, sy - b * 6, sx + 74, sy + 36 - b * 6, (*GREEN, 255), r=6)
+        d.ellipse([sx + 26, sy + 6, sx + 48, sy + 28], outline=(*GREEN_D, 255), width=3)
+        # a red "PAID" stamp thuds down onto the window periodically
+        stph = (t * 2.0) % 1.0
+        if stph < 0.5:
+            sc = 1.0 + (0.5 - stph) * 1.2
+            sf = _font(ANTON, int(46 * sc))
+            a = int(255 * min(1.0, (0.5 - stph) * 4))
+            d.text((wx0 + 10, wy0 + 40), "PAID", font=sf, fill=(230, 70, 60, a))
+        im = _label(im, number, label, col=(150, 122, 236))
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# HOUSING — the figure small in a doorway of a lit home; each month a chunk of
+# money floats out the window and drifts away.
+# --------------------------------------------------------------------------
+def rent_scene(out: Path, seconds: float = 6.0, number: str = "",
+               label: str = "A ROOF OVER YOUR HEAD") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = 1.0 - 0.6 * t                       # evening deepens
+        return _vgrad((int(28 + 46 * k), int(30 + 40 * k), int(50 + 44 * k)),
+                      (10, 11, 20))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        ground_y = int(H * 0.82)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, ground_y, W, H], fill=(16, 17, 26, 255))
+        # a house silhouette centre-right: body + pitched roof + a warm window
+        hx0, hx1 = int(W * 0.44), int(W * 0.80)
+        hy0 = int(H * 0.40)
+        d.rectangle([hx0, hy0, hx1, ground_y], fill=(40, 44, 62, 255))
+        d.polygon([(hx0 - 30, hy0), (hx1 + 30, hy0),
+                   ((hx0 + hx1) // 2, int(H * 0.24))], fill=(52, 56, 76, 255))
+        # a door the figure stands in, and a lit window
+        dxc = int(W * 0.52)
+        d.rounded_rectangle([dxc - 34, ground_y - 150, dxc + 34, ground_y],
+                            radius=8, fill=(26, 28, 42, 255))
+        wx0, wy0 = int(W * 0.64), int(H * 0.50)
+        im = _glow(im, lambda dd: dd.rectangle([wx0, wy0, wx0 + 90, wy0 + 90],
+                   fill=(255, 214, 140, 170)), 26)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([wx0, wy0, wx0 + 90, wy0 + 90], fill=(255, 220, 150, 255),
+                    outline=(120, 100, 60, 255), width=4)
+        d.line([wx0 + 45, wy0, wx0 + 45, wy0 + 90], fill=(120, 100, 60), width=3)
+        d.line([wx0, wy0 + 45, wx0 + 90, wy0 + 45], fill=(120, 100, 60), width=3)
+        # the figure standing small in the doorway
+        _stand(d, dxc, ground_y, h=150, col=FIG)
+        # RENT DUE — money floats up out of the chimney/window and drifts off
+        chx, chy = int(W * 0.70), int(H * 0.28)
+        d.rectangle([chx, chy, chx + 34, chy + 70], fill=(36, 40, 56, 255))
+        rnd = random.Random(12)
+        for _k in range(7):
+            ph = (t * 0.9 + rnd.random()) % 1.0
+            bx = chx + 8 + math.sin(ph * 5 + rnd.random() * 6) * 60
+            byy = chy - ph * (H * 0.22)
+            a = int(230 * (1 - ph))
+            if a > 12:
+                _rrect(d, bx, byy, bx + 52, byy + 28, (*GREEN, a), r=6)
+                d.ellipse([bx + 17, byy + 5, bx + 35, byy + 23], outline=(*GREEN_D, a), width=2)
+        # a small "RENT DUE" mailbox tag, lower-left
+        d.text((int(W * 0.10), int(H * 0.70)), "RENT DUE", font=_font(DEJAVU, 26),
+               fill=(238, 128, 108, 255))
+        d.text((int(W * 0.10), int(H * 0.74)), "$1,800 / mo", font=_font(ANTON, 44),
+               fill=(*FIG, 255))
+        im = _label(im, number, label, col=(238, 128, 108))
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# TRANSPORT — the figure at a gas pump, the dollar meter spinning up fast.
+# --------------------------------------------------------------------------
+def gas_scene(out: Path, seconds: float = 6.0, number: str = "",
+              label: str = "GETTING AROUND") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = 0.3 + 0.5 * t                       # dusk station light warming
+        return _vgrad((int(22 + 40 * k), int(26 + 44 * k), int(40 + 40 * k)),
+                      (10, 12, 20))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        ground_y = int(H * 0.80)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, ground_y, W, H], fill=(18, 19, 28, 255))
+        # a station canopy overhead, glowing
+        im = _glow(im, lambda dd: dd.rectangle([int(W * 0.30), int(H * 0.12),
+                   int(W * 0.98), int(H * 0.20)], fill=(150, 200, 240, 120)), 30)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([int(W * 0.30), int(H * 0.12), int(W * 0.98), int(H * 0.20)],
+                    fill=(44, 52, 74, 255))
+        # the pump on the right: body + a bright digital price board
+        pxc = int(W * 0.72)
+        d.rounded_rectangle([pxc - 70, int(H * 0.30), pxc + 70, ground_y], radius=14,
+                            fill=(48, 52, 70, 255))
+        bx0, by0 = pxc - 54, int(H * 0.34)
+        im = _glow(im, lambda dd: dd.rectangle([bx0, by0, bx0 + 108, by0 + 90],
+                   fill=(120, 235, 150, 120)), 20)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([bx0, by0, bx0 + 108, by0 + 90], fill=(14, 26, 18, 255),
+                    outline=(60, 120, 80, 255), width=4)
+        d.text((bx0 + 8, by0 + 6), "TOTAL", font=_font(DEJAVU, 18), fill=(120, 200, 140, 255))
+        total = 18.0 + t * 62.0                 # the meter races up
+        ds = f"${total:.2f}"
+        d.text((bx0 + 8, by0 + 30), ds, font=_font(ANTON, 48), fill=(140, 250, 170, 255))
+        # a hose from the pump to a car, and the figure holding the nozzle
+        cxc = int(W * 0.40)
+        d.rounded_rectangle([cxc - 150, ground_y - 70, cxc + 150, ground_y - 4],
+                            radius=24, fill=(58, 92, 150, 255))
+        d.rounded_rectangle([cxc - 96, ground_y - 116, cxc + 74, ground_y - 58],
+                            radius=28, fill=(58, 92, 150, 255))
+        d.rounded_rectangle([cxc - 80, ground_y - 106, cxc + 58, ground_y - 66],
+                            radius=16, fill=(150, 180, 220, 255))
+        d.ellipse([cxc - 110, ground_y - 28, cxc - 50, ground_y + 32], fill=(18, 18, 24, 255))
+        d.ellipse([cxc + 50, ground_y - 28, cxc + 110, ground_y + 32], fill=(18, 18, 24, 255))
+        d.line([pxc - 40, int(H * 0.52), cxc + 120, ground_y - 40],
+               fill=(30, 32, 44, 255), width=8)
+        # the figure between car and pump, arm up holding the nozzle
+        _stand(d, int(W * 0.58), ground_y + 6, h=300, col=FIG, arms_up=0.30)
+        # coins drain out of the pump base — fuel = money burning
+        _coin_fall(d, 44, t, pxc - 30, pxc + 30, ground_y - 30, count=9, spread=140)
+        im = _label(im, number, label, col=(86, 186, 206))
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# FOOD — the figure at a checkout, items beeping across a scanner, the total
+# climbing, the receipt printing longer and longer.
+# --------------------------------------------------------------------------
+def grocery_scene(out: Path, seconds: float = 6.0, number: str = "",
+                  label: str = "STAYING ALIVE") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = 0.5 + 0.3 * t                       # bright store, slight warm drift
+        return _vgrad((int(30 + 40 * k), int(34 + 40 * k), int(44 + 36 * k)),
+                      (14, 16, 24))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        floor_y = int(H * 0.82)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(20, 22, 32, 255))
+        # shelves behind, stocked with faint product blocks
+        for row in range(3):
+            sy = int(H * 0.14) + row * int(H * 0.14)
+            d.rectangle([int(W * 0.06), sy, int(W * 0.60), sy + 12], fill=(46, 50, 68, 255))
+            for c in range(9):
+                bxx = int(W * 0.07) + c * int(W * 0.058)
+                col = [(120, 150, 200), (200, 140, 120), (140, 190, 140),
+                       (210, 190, 120)][(row + c) % 4]
+                d.rounded_rectangle([bxx, sy - 40, bxx + 42, sy - 4], radius=5,
+                                    fill=(*col, 255))
+        # the checkout counter + a conveyor with items sliding to the scanner
+        cy = floor_y - 40
+        d.rectangle([0, cy, W, cy + 16], fill=(56, 60, 80, 255))
+        for k in range(5):
+            ph = (t * 0.9 + k * 0.2) % 1.0
+            ix = int(W * 0.10) + ph * int(W * 0.42)
+            col = [(120, 150, 200), (200, 140, 120), (140, 190, 140),
+                   (210, 190, 120), (180, 150, 210)][k % 5]
+            d.rounded_rectangle([ix, cy - 42, ix + 46, cy - 2], radius=6, fill=(*col, 255))
+        # the scanner glow at the register
+        rxc = int(W * 0.60)
+        im = _glow(im, lambda dd: dd.ellipse([rxc - 40, cy - 30, rxc + 40, cy + 30],
+                   fill=(120, 200, 255, 150)), 20)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rounded_rectangle([rxc - 20, cy - 60, rxc + 20, cy], radius=8, fill=(40, 46, 64, 255))
+        # a register total board climbing
+        total = 40 + t * 118
+        d.rounded_rectangle([int(W * 0.66), int(H * 0.30), int(W * 0.82), int(H * 0.40)],
+                            radius=8, fill=(14, 20, 26, 255), outline=(60, 120, 90, 255), width=4)
+        ts = f"${total:5.2f}"
+        d.text((int(W * 0.665), int(H * 0.31)), ts, font=_font(ANTON, 48), fill=(140, 240, 170, 255))
+        # the receipt printing longer under the register
+        rl = int(30 + t * 220)
+        d.rectangle([int(W * 0.74), int(H * 0.40), int(W * 0.74) + 46, int(H * 0.40) + rl],
+                    fill=(236, 238, 246, 255))
+        for ry in range(int(H * 0.42), int(H * 0.40) + rl, 18):
+            d.line([int(W * 0.745), ry, int(W * 0.74) + 40, ry], fill=(150, 154, 168), width=2)
+        # the figure at the register, arm out to the reader
+        _stand(d, int(W * 0.40), floor_y + 6, h=330, col=FIG, arms_up=0.22)
+        im = _label(im, number, label, col=(120, 188, 132))
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# LITTLE LEAKS — the figure on the couch, phone in hand, ringed by little
+# subscription tiles each quietly siphoning a coin every month.
+# --------------------------------------------------------------------------
+def subs_scene(out: Path, seconds: float = 6.0, number: str = "",
+               label: str = "THE LITTLE LEAKS") -> Path:
+    tiles = [("STREAM", (230, 80, 70)), ("MUSIC", (120, 200, 140)),
+             ("CLOUD", (120, 170, 240)), ("GAME", (200, 150, 240)),
+             ("NEWS", (240, 180, 90)), ("GYM", (240, 120, 160))]
+
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = 1.0 - 0.5 * t
+        return _vgrad((int(20 + 26 * k), int(22 + 26 * k), int(34 + 30 * k)),
+                      (10, 11, 20))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        floor_y = int(H * 0.84)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(16, 17, 27, 255))
+        # a couch
+        d.rounded_rectangle([int(W * 0.22), int(H * 0.52), int(W * 0.56), floor_y + 8],
+                            radius=30, fill=(30, 32, 50, 255))
+        d.rounded_rectangle([int(W * 0.20), int(H * 0.44), int(W * 0.28), floor_y],
+                            radius=24, fill=(36, 38, 58, 255))
+        # the figure sits, phone-lit, scrolling
+        joints = _sit(d, int(W * 0.36), floor_y + 4, h=420, col=(150, 178, 228),
+                      lean=10, reach=0.4, on_ground=False)
+        hf = joints["hand"]
+        px, py = hf[0] + 4, hf[1] - 30
+        im = _glow(im, lambda dd: dd.ellipse([px - 150, py - 140, px + 150, py + 160],
+                   fill=(90, 150, 230, 130)), 44)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rounded_rectangle([px - 28, py - 52, px + 28, py + 52], radius=12,
+                            fill=(18, 22, 36, 255), outline=(80, 92, 130, 255), width=4)
+        # the subscription tiles floating around, each pulling a coin to itself
+        cxc, cyc = int(W * 0.66), int(H * 0.46)
+        for k, (name, col) in enumerate(tiles):
+            ang = k / len(tiles) * 2 * math.pi + t * 0.6
+            tx = cxc + math.cos(ang) * int(W * 0.20)
+            ty = cyc + math.sin(ang) * int(H * 0.26)
+            pulse = 0.5 + 0.5 * math.sin(i * 0.3 + k)
+            _rrect(d, tx - 54, ty - 40, tx + 54, ty + 40, (*col, 255), r=16)
+            nf = _font(DEJAVU, 22)
+            d.text((tx - nf.getlength(name) / 2, ty - 30), name, font=nf, fill=(20, 22, 30, 255))
+            d.text((tx - 26, ty + 2), f"${5 + k}/mo", font=_font(ANTON, 30), fill=(20, 22, 30, 255))
+            # a coin siphons from the figure toward this tile
+            ph = (t * 1.3 + k / len(tiles)) % 1.0
+            mx = joints["shoulder"][0] + (tx - joints["shoulder"][0]) * ph
+            my = joints["shoulder"][1] - 40 + (ty - (joints["shoulder"][1] - 40)) * ph
+            a = int(230 * (1 - abs(ph - 0.5) * 2))
+            if a > 20:
+                _coin(d, int(mx), int(my), 14, a=a)
+        im = _label(im, number, label, col=(240, 178, 92))
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# WHAT'S LEFT — the payoff. The figure holds the small glowing amount that's
+# actually theirs and walks toward a warm horizon: little, but yours to choose.
+# --------------------------------------------------------------------------
+def savings_scene(out: Path, seconds: float = 6.0, number: str = "",
+                  label: str = "ACTUALLY YOURS") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        warm = _ease(t)
+        return _vgrad((int(28 + 58 * warm), int(32 + 70 * warm), int(64 + 44 * warm)),
+                      (18, 16 + int(20 * warm), 30))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        hz = int(H * 0.72)
+        sx, sy = int(W * 0.62), hz - int(_ease(t) * H * 0.20)
+        im = _glow(im, lambda dd: dd.ellipse([sx - 150, sy - 150, sx + 150, sy + 150],
+                   fill=(255, 200, 120, 200)), 80)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.ellipse([sx - 90, sy - 90, sx + 90, sy + 90], fill=(255, 224, 168, 255))
+        d.rectangle([0, hz, W, H], fill=(26, 22, 34, 255))
+        for gx in range(0, W, 90):
+            d.line([gx + int(t * 30) % 90, hz + 20, gx + 40 + int(t * 30) % 90, hz + 20],
+                   fill=(40, 34, 48, 200), width=3)
+        # the figure walks toward the light, one arm raised holding a small coin
+        cx = int(W * 0.30 + t * W * 0.10)
+        feet = hz + 30
+        rise = _ease(max(0.0, (t - 0.3) / 0.7))
+        stride = 11 * math.sin(i * 0.4)
+        top = _stand(d, cx, feet, h=340, col=FIG, arms_up=0.5 * rise, stride=stride)
+        # a single warm coin glowing in the raised hand
+        hx = cx + int(70 * (0.5 + 0.5 * rise))
+        hy = top[1] - int(60 * rise) - 30
+        im = _glow(im, lambda dd: _coin(dd, hx, hy, 30, a=200), 16)
+        d = ImageDraw.Draw(im, "RGBA")
+        _coin(d, hx, hy, 26)
+        im = _label(im, number, label, col=(255, 224, 168))
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
+# --------------------------------------------------------------------------
+# THE TRAP — the figure runs on a treadmill going nowhere: every raise gets
+# spent, so more money in just means more money out. Running to stand still.
+# --------------------------------------------------------------------------
+def treadmill_scene(out: Path, seconds: float = 6.0, number: str = "",
+                    label: str = "RUNNING TO STAND STILL") -> Path:
+    def bg(i, n):
+        t = i / max(1, n - 1)
+        k = 0.3 + 0.4 * t
+        return _vgrad((int(24 + 30 * k), int(26 + 34 * k), int(40 + 40 * k)),
+                      (12, 13, 22))
+
+    def draw(i, n, im):
+        t = i / max(1, n - 1)
+        floor_y = int(H * 0.80)
+        d = ImageDraw.Draw(im, "RGBA")
+        d.rectangle([0, floor_y, W, H], fill=(16, 18, 28, 255))
+        # the treadmill: a slanted deck + a scrolling belt + an upright console
+        cx = int(W * 0.40)
+        deck_y = floor_y - 6
+        d.rounded_rectangle([cx - 210, deck_y, cx + 150, deck_y + 34], radius=14,
+                            fill=(40, 44, 62, 255))
+        # belt scroll lines racing backward (motion under the runner)
+        for k in range(9):
+            bxp = (cx + 150) - ((k * 44 + int(t * 520)) % 360)
+            d.line([bxp, deck_y + 8, bxp - 22, deck_y + 8], fill=(70, 76, 100, 255), width=5)
+        # the console with a speed readout climbing
+        d.rounded_rectangle([cx + 150, deck_y - 150, cx + 176, deck_y + 20],
+                            radius=8, fill=(46, 50, 68, 255))
+        d.rounded_rectangle([cx + 120, deck_y - 200, cx + 206, deck_y - 150],
+                            radius=8, fill=(14, 22, 26, 255), outline=(60, 120, 90, 255), width=3)
+        spd = 4.0 + t * 8.0
+        d.text((cx + 128, deck_y - 194), f"{spd:0.1f}", font=_font(ANTON, 40),
+               fill=(140, 240, 170, 255))
+        d.text((cx + 128, deck_y - 150), "MPH", font=_font(DEJAVU, 16), fill=(120, 200, 140, 255))
+        # the figure runs IN PLACE — legs swing but it never moves forward
+        stride = 34 * math.sin(i * 0.9)
+        bob = int(6 * abs(math.sin(i * 0.9)))
+        _stand(d, cx - 30, deck_y - bob, h=360, col=FIG, arms_up=0.14, stride=stride)
+        # money pours IN from the top-right and immediately drains OUT bottom-left:
+        # every raise you earn is instantly spent — net zero, forever.
+        _coin_fall(d, 71, t, int(W * 0.66), int(W * 0.72), int(H * 0.14),
+                   count=8, spread=int(H * 0.30))
+        rnd = random.Random(23)
+        for _k in range(8):
+            ph = (t * 1.2 + rnd.random()) % 1.0
+            bx = int(W * 0.36) - ph * (W * 0.34)
+            byy = int(H * 0.44) + ph * (H * 0.30)
+            a = int(220 * (1 - ph))
+            if a > 14:
+                _rrect(d, bx, byy, bx + 50, byy + 27, (*GREEN, a), r=6)
+                d.ellipse([bx + 16, byy + 5, bx + 34, byy + 22], outline=(*GREEN_D, a), width=2)
+        im = _label(im, number, label, col=(240, 178, 92))
+        return im
+
+    return _render(draw, out, seconds, bg)
+
+
 if __name__ == "__main__":
     out = REPO / "scene_smoke"
     out.mkdir(exist_ok=True)
