@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-07-21
+# Daily Trending Shorts — 2026-07-22
 
 - queued: **1**
 - succeeded: **1**
@@ -6,9 +6,9 @@
 - failed: **0**
 
 ## Posted
-- **Your groceries didn't get more expensive - they got smaller**
-  - topic: Your groceries didn't get more expensive - they got smaller
-  - publishes: `2026-07-21T21:00:00Z`
-  - https://youtube.com/shorts/H6c1FYV_nl0
-  - took: 18.1s
+- **Robert Downey Jr. spent 11 years saving the universe. Now he's trying to end it.**
+  - topic: Robert Downey Jr. spent 11 years saving the universe. Now he's trying to end it.
+  - publishes: `2026-07-22T13:00:00Z`
+  - https://youtube.com/shorts/OxE0ZabTJL0
+  - took: 20.8s
 
