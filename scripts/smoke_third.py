@@ -61,7 +61,8 @@ CASES = [
 ]
 
 
-def run_case(name, words, hook, series, work: Path) -> list[str]:
+def run_case(name, words, hook, series, work: Path,
+             edit_mode: bool = False) -> list[str]:
     fails = []
     src = work / f"{name}_src.mp4"
     out = work / f"{name}_out.mp4"
@@ -72,7 +73,8 @@ def run_case(name, words, hook, series, work: Path) -> list[str]:
 
     try:
         led = clip_edit.edit(src, out, credit="twitch.tv/test", hook=hook,
-                             words=list(words), auto=True, series=series)
+                             words=list(words), auto=True, series=series,
+                             edit_mode=edit_mode)
     except Exception as e:  # noqa: BLE001
         return [f"{name}: edit() RAISED {type(e).__name__}: {e}"]
 
@@ -107,6 +109,12 @@ def main() -> int:
             all_fails.append("preflight: 3s/320p passed (should fail)")
         for name, words, hook, series in CASES:
             all_fails += run_case(name, words, hook, series, work)
+        # A/B EDIT ARM: the montage render path must also survive the tricky
+        # inputs (it's what the 3 daily edit-arm slots use). Re-run the base
+        # case with edit_mode=True and hold it to the same mechanical bar.
+        base = CASES[0]
+        all_fails += run_case("edit_" + base[0], base[1], base[2], base[3],
+                              work, edit_mode=True)
     if all_fails:
         print("\nSMOKE FAILED:")
         for f in all_fails:

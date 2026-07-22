@@ -458,7 +458,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
          whisper_model: str = "small", words: list[dict] | None = None,
          auto: bool = True, series: str = "chaos",
-         direct: dict | None = None) -> dict:
+         direct: dict | None = None, edit_mode: bool = False) -> dict:
     """Compose the 9:16 edit. `credit` is the full on-screen label
     (e.g. "twitch.tv/xqc", "kick.com/adinross"). Pass precomputed `words`
     (from transcribe_words on the SAME uncut file) to skip re-transcribing —
@@ -563,16 +563,17 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         program = cut
         overlays: list[dict] = []
         ledger_ae = {"auto_edit": False, "fallback_reason": None,
-                     "effects": [], "edl": None}
+                     "effects": [], "edl": None, "edit_mode": bool(edit_mode)}
         if auto:
             try:
                 from third_capture import auto_edit as ae
                 st1 = ae.build(cut, words, dur, series, tmp, direct=direct,
-                               calm=calm)
+                               calm=calm, edit_mode=edit_mode)
                 program, words, dur = st1["program"], st1["words"], st1["dur"]
                 overlays = st1.get("overlays", [])
                 ledger_ae = {k: st1[k] for k in
-                             ("auto_edit", "fallback_reason", "effects", "edl")}
+                             ("auto_edit", "fallback_reason", "effects", "edl",
+                              "edit_mode")}
             except Exception as e:  # noqa: BLE001
                 ledger_ae["fallback_reason"] = f"stage1:{type(e).__name__}"
 

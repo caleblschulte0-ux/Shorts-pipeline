@@ -122,6 +122,47 @@ def money_moment(motion, speech, dur) -> tuple[float, float, float]:
     return t_peak, max(0.0, ws), min(dur, we)
 
 
+def energy_peaks(motion, speech, dur, n: int = 3,
+                 min_gap: float = 2.5) -> list[tuple[float, float, float]]:
+    """Top-`n` well-separated (t_peak, ws, we) energy peaks, chronological.
+    Generalizes `money_moment` for the montage "edit" arm: same fused
+    motion+speech curve, but greedily picks several non-overlapping peaks
+    (each suppresses a ±`min_gap`s window) so the edit can cut+hit on more
+    than one moment. Empty/flat clip → []. Pure function (unit-tested)."""
+    grid_step = 0.25
+    ncells = max(1, int(dur / grid_step))
+    m = _resample(motion, ncells, grid_step)
+    s = _resample(speech, ncells, grid_step)
+    mn, sn = _norm(m), _norm(s)
+    fused = [0.6 * a + 0.4 * b for a, b in zip(mn, sn)]
+    if not fused:
+        return []
+    gap = max(1, int(min_gap / grid_step))
+    taken = [False] * len(fused)
+    peaks: list[tuple[float, float, float]] = []
+    for i in sorted(range(len(fused)), key=lambda i: -fused[i]):
+        if len(peaks) >= n:
+            break
+        if taken[i] or fused[i] <= 0.0:
+            continue
+        for j in range(max(0, i - gap), min(len(fused), i + gap + 1)):
+            taken[j] = True
+        t_peak = i * grid_step
+        thresh = 0.55 * fused[i]
+        lo = hi = i
+        while lo > 0 and fused[lo - 1] >= thresh:
+            lo -= 1
+        while hi < len(fused) - 1 and fused[hi + 1] >= thresh:
+            hi += 1
+        ws, we = lo * grid_step, (hi + 1) * grid_step
+        we = max(we, ws + 0.8)
+        if we - ws > 3.0:
+            ws = max(0.0, t_peak - 1.5)
+            we = min(dur, ws + 3.0)
+        peaks.append((t_peak, max(0.0, ws), min(dur, we)))
+    return sorted(peaks, key=lambda p: p[0])
+
+
 def _resample(samples: list[tuple[float, float]], n: int, step: float) -> \
         list[float]:
     """Nearest-value resample of (t,v) onto an n-point grid of spacing step."""
@@ -183,6 +224,11 @@ class Style:
     zoom_to: float = 1.08
     slow_speed: float = 0.5
     shake_intensity: float = 0.35
+    # --- montage "edit" arm (A/B): only consulted when edit_mode is True.
+    # Purely additive — default False leaves every existing clip untouched.
+    edit_mode: bool = False     # punch+hit on MULTIPLE peaks, graded, snappy
+    edit_pace: float = 1.22     # connective-tissue speed-up (montage feel)
+    grade: str = ""             # global color-grade filter string (edit look)
 
 
 def choose_style(series: str, dur: float, peak_strength: float,
@@ -245,6 +291,7 @@ class Segment:
     impact_t: float | None = None   # rel time in the OUTPUT segment for the hit
     stamp: str = ""
     mute: bool = False
+    grade: str = ""             # optional per-segment color-grade filter (edit)
 
     def out_dur(self) -> float:
         return (self.src_e - self.src_s) / self.speed
@@ -349,6 +396,78 @@ def build_edl(words, dur, style: Style, motion) -> EDL:
     return edl
 
 
+# Punchy but safe color-grade for the montage "edit" look: lifted contrast +
+# saturation and a light sharpen. Global, cheap, commercial-safe (no LUT
+# asset). Applied to every segment in edit mode; never in the default arm.
+EDIT_GRADE = "eq=contrast=1.10:saturation=1.28:brightness=0.005,unsharp=3:3:0.35"
+
+
+def build_edl_edit(words, dur, style: Style, motion) -> EDL:
+    """Montage "edit" EDL (the A/B experiment arm). Cuts + a punch-zoom +
+    impact hit (RGB-split/flash/shake — the proven `impact` render path) on
+    EACH of the top energy peaks, connective tissue sped up for pace, and a
+    global color grade. Snappy: no slow-mo, no replay. Purely additive — only
+    reached when style.edit_mode; the default `build_edl` is never touched."""
+    speech = speech_curve(words, dur)
+    npeaks = 4 if dur >= 24 else (3 if dur >= 14 else 2)
+    peaks = energy_peaks(motion, speech, dur, n=npeaks, min_gap=2.5)
+    dead = dead_air(words, dur) if style.speedup_dead else []
+    t0 = peaks[0][0] if peaks else dur * 0.5
+    money0 = (peaks[0][1], peaks[0][2]) if peaks else (0.0, min(dur, 2.0))
+    edl = EDL(src_dur=dur, t_peak=t0, money=money0, style=style)
+
+    def is_dead(a, b):
+        return any(a >= d0 - 0.05 and b <= d1 + 0.05 for d0, d1 in dead)
+
+    # Boundaries: a tight hit window [peak-0.25, peak+0.9] and a short punch
+    # lead-in [peak-1.1, peak-0.25] per peak (keeps the shake brief, exactly
+    # like the tested single-peak path), plus dead-air edges.
+    cuts = {0.0, dur}
+    for tp, ws, we in peaks:
+        cuts.add(max(0.0, tp - 1.1))
+        cuts.add(max(0.0, tp - 0.25))
+        cuts.add(min(dur, tp + 0.9))
+    for d0, d1 in dead:
+        cuts.add(max(0.0, d0)); cuts.add(min(dur, d1))
+    bounds = sorted(b for b in cuts if 0.0 <= b <= dur)
+    peak_ts = [p[0] for p in peaks]
+    out_t = 0.0
+    for a, b in zip(bounds, bounds[1:]):
+        if b - a < 0.15:
+            continue
+        seg = Segment(src_s=a, src_e=b, grade=style.grade)
+        has_hit = next((tp for tp in peak_ts if a - 0.05 <= tp < b), None)
+        in_leadin = any(tp - 1.15 <= a and b <= tp - 0.2 for tp in peak_ts)
+        if has_hit is not None:
+            seg.kind = "money"        # reuse the hit render (impact + zoom)
+            seg.zoom_to = style.zoom_to
+            if style.shake and style.shake_intensity > 0:
+                seg.impact_t = max(0.0, has_hit - a)
+                edl.sfx_cues.append((out_t + seg.impact_t, "boom"))
+        elif in_leadin:
+            seg.kind = "punch"
+            seg.zoom_to = style.zoom_to
+            if style.sfx:
+                edl.sfx_cues.append((out_t, "whoosh"))
+        elif is_dead(a, b):
+            seg.kind = "deadair"
+            seg.speed = 1.9
+        else:
+            seg.kind = "normal"       # connective tissue — tighten the pace
+            seg.speed = style.edit_pace
+        edl.segments.append(seg)
+        out_t += seg.out_dur()
+
+    # Length cap: ease the connective speed up until under the montage cap.
+    max_out = 55.0
+    while edl.out_dur() > max_out and any(
+            s.kind == "normal" and s.speed < 1.9 for s in edl.segments):
+        for s in edl.segments:
+            if s.kind == "normal" and s.speed < 1.9:
+                s.speed = min(1.9, s.speed + 0.15)
+    return edl
+
+
 def remap_words(words, edl: EDL) -> list[dict]:
     """Rebuild caption timings on the edited timeline. Replay/stamped
     segments contribute no captions."""
@@ -417,6 +536,10 @@ def _render_segment(cut: Path, seg: Segment, wh: tuple[int, int],
             steps.append(
                 f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.5:t=fill:"
                 f"enable='between(t,{it:.2f},{it+0.05:.2f})'")
+        if seg.grade:
+            # global color grade (edit arm only) — applied last so it colours
+            # the composited zoom/impact result uniformly.
+            steps.append(seg.grade)
         steps.append(f"setpts=PTS/{seg.speed:.5f}")
         # NB: the segment's stamp (e.g. REPLAY) is deliberately NOT burned
         # here — a source-centered overlay gets cropped away by the Stage-2
@@ -515,7 +638,8 @@ def _mix_sfx(program: Path, cues, out: Path) -> Path:
 
 
 def build(cut: Path, words: list[dict], dur: float, series: str,
-          work: Path, direct: dict | None = None, calm: bool = False) -> dict:
+          work: Path, direct: dict | None = None, calm: bool = False,
+          edit_mode: bool = False) -> dict:
     """Stage-1 entry. Returns a dict with program path, remapped words, new
     duration, and a ledger. NEVER raises — on any failure returns the
     untouched cut so the simple render still ships.
@@ -526,7 +650,8 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
     signal heuristics — absent/empty fields fall back to the heuristics."""
     result = {"program": cut, "words": words, "dur": dur,
               "auto_edit": False, "fallback_reason": None,
-              "effects": [], "edl": None, "overlays": []}
+              "effects": [], "edl": None, "overlays": [],
+              "edit_mode": bool(edit_mode)}
     direct = direct or {}
     try:
         wh = _probe_wh(cut)
@@ -541,7 +666,21 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
         # it can only remove drama, never force it onto a weak clip
         if direct.get("replay_worthy") is False:
             style.replay = False
-        edl = build_edl(words, dur, style, motion)
+        if edit_mode:
+            # A/B EDIT ARM: montage treatment on the SAME selection/packaging.
+            # Graded, multi-peak cut+hit, snappy. On chaotic footage (calm) we
+            # keep the cuts+grade+pace but drop the punch-zoom/shake (they land
+            # on nothing without a stable subject) — it degrades more gracefully
+            # than the slow-mo path, which is why edit can run where clip goes
+            # calm.
+            style.edit_mode = True
+            style.grade = EDIT_GRADE
+            if not calm:
+                style.zoom_to = max(style.zoom_to, 1.10)
+                style.shake = True
+            edl = build_edl_edit(words, dur, style, motion)
+        else:
+            edl = build_edl(words, dur, style, motion)
         if not edl.segments:
             raise RuntimeError("empty EDL")
 

@@ -692,6 +692,9 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # clip competes next run).
             from third_capture import clip_qa
             auto_first = spec.get("auto_edit", True)
+            # A/B arm for this slot: the montage "edit" render vs the current
+            # "clip" render. Selection + packaging are identical either way.
+            edit_mode = bool(pkg.get("edit_mode"))
             attempts = [True, False] if auto_first else [False]
             for auto_flag in attempts:
                 led = clip_edit.edit(
@@ -701,7 +704,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     start=spec.get("start", 0.0), end=spec.get("end", 0.0),
                     whisper_model=wmodel,
                     auto=auto_flag, series=series,
-                    direct=(meta or {}).get("edit"))
+                    direct=(meta or {}).get("edit"),
+                    edit_mode=edit_mode)
                 if meta:
                     led["authored_title"] = meta["title"]
                     led["authored_tags"] = meta["hashtags"]
@@ -722,6 +726,9 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 led["clipper"] = info["clipper"]
                 led["streamer"] = streamer
                 led["platform"] = platform
+                # A/B tag: which structural arm produced this upload, so
+                # fetch_analytics can split reach clip-vs-edit.
+                led["structure"] = "edit" if edit_mode else "clip"
                 qa = clip_qa.review(out_mp4, led, work)
                 led["qa"] = {k: qa[k] for k in
                              ("verdict", "problems", "vision")}
@@ -737,6 +744,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
             result["render_level"] = led.get("render_level")
             result["layout"] = (led.get("shot_plan") or {}).get("layout")
             result["self_healed"] = led["self_healed"]
+            result["structure"] = led.get("structure", "clip")
             if qa["verdict"] == "fail":
                 result["qa"] = led["qa"]
                 result["video_path"] = str(out_mp4.relative_to(REPO))
@@ -830,6 +838,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # against this video's measured early-retention curve.
                 entry["series"] = led.get("series") or series
                 entry["hook"] = hook
+                # A/B arm tag → fetch_analytics splits reach clip-vs-edit.
+                entry["structure"] = led.get("structure", "clip")
                 _cut = (meta or {}).get("edit", {}).get("cut")
                 if _cut:
                     entry["cut"] = _cut
@@ -875,11 +885,24 @@ def main() -> int:
         if template.exists():
             base = json.loads(template.read_text())
             n = int(base.pop("count", 3))
+            # A/B STRUCTURE SPLIT: `edit_count` of the n daily slots render in
+            # the new montage "edit" arm; the rest stay the current "clip"
+            # structure (with every recent change intact). Same selection +
+            # packaging on both — only the render style differs, so the test
+            # isolates STRUCTURE. Edit slots are spread across the batch (not
+            # bunched at the end) so both arms post across the same dayparts.
+            edit_count = min(int(base.pop("edit_count", 3)), n)
+            step = n / edit_count if edit_count else n + 1
+            edit_slots = {int(round((k + 0.5) * step)) + 1
+                          for k in range(edit_count)}
             for i in range(1, n + 1):
                 pkg = json.loads(json.dumps(base))
                 pkg["slug"] = f"clip-{args.date}-{i}"
+                pkg["edit_mode"] = i in edit_slots
                 packages.append((pkg, None))
-            print(f"no authored packages — synthesized {n} from template")
+            print(f"no authored packages — synthesized {n} from template "
+                  f"({edit_count} edit-arm slots: "
+                  f"{sorted(s for s in edit_slots if s <= n)})")
         else:
             print(f"no packages under {day_dir}")
             return 0
