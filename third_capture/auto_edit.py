@@ -292,6 +292,7 @@ class Segment:
     stamp: str = ""
     mute: bool = False
     grade: str = ""             # optional per-segment color-grade filter (edit)
+    trans_in: bool = False      # punch-cut flourish at the head (edit arm)
 
     def out_dur(self) -> float:
         return (self.src_e - self.src_s) / self.speed
@@ -439,10 +440,19 @@ def build_edl_edit(words, dur, style: Style, motion) -> EDL:
     bounds = sorted(b for b in cuts if 0.0 <= b <= dur)
     peak_ts = [p[0] for p in peaks]
     out_t = 0.0
+    first_emitted = False
     for a, b in zip(bounds, bounds[1:]):
         if b - a < 0.15:
             continue
         seg = Segment(src_s=a, src_e=b, grade=style.grade)
+        # PUNCH-CUT transition on every cut except the opening — the flash +
+        # chromatic hit that makes a jump cut read as a deliberate edit. A
+        # whoosh rides each one so the cut is heard as well as seen.
+        if first_emitted:
+            seg.trans_in = True
+            if style.sfx:
+                edl.sfx_cues.append((out_t, "whoosh"))
+        first_emitted = True
         has_hit = next((tp for tp in peak_ts if a - 0.05 <= tp < b), None)
         in_leadin = any(tp - 1.15 <= a and b <= tp - 0.2 for tp in peak_ts)
         if has_hit is not None:
@@ -547,6 +557,17 @@ def _render_segment(cut: Path, seg: Segment, wh: tuple[int, int],
             # global color grade (edit arm only) — applied last so it colours
             # the composited zoom/impact result uniformly.
             steps.append(seg.grade)
+        if seg.trans_in:
+            # PUNCH-CUT transition at the segment head (edit arm): a 1-frame
+            # white flash + a brief chromatic-aberration (RGB-split) hit on the
+            # first ~80ms. These are OVERLAYS (no crop), so they never conflict
+            # with the zoom/impact crops on the same segment — the classic
+            # "pro editor" hard-cut punch that reads as an intentional edit
+            # instead of a raw jump cut. Rendered in the segment's own local
+            # time, so concat placement is automatic.
+            steps.append(r"rgbashift=rh=6:bh=-6:enable='lt(t,0.08)'")
+            steps.append(r"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.30:t=fill:"
+                         r"enable='lt(t,0.045)'")
         steps.append(f"setpts=PTS/{seg.speed:.5f}")
         # NB: the segment's stamp (e.g. REPLAY) is deliberately NOT burned
         # here — a source-centered overlay gets cropped away by the Stage-2
