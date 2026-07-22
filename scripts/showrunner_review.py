@@ -119,7 +119,28 @@ def _post_json(url: str, body: dict, headers: dict) -> dict:
         return json.loads(r.read().decode())
 
 
+def _anthropic_headers() -> dict | None:
+    """Auth for the Claude Messages API. Prefer a plain API key; otherwise use
+    the Claude headless-brain OAuth token (CLAUDE_CODE_OAUTH_TOKEN / _API_KEY)
+    the way the pipeline's brain is already authenticated — Bearer + the oauth
+    beta header. Returns None if no Claude credential is available."""
+    base = {"anthropic-version": "2023-06-01", "content-type": "application/json"}
+    key = os.environ.get("ANTHROPIC_API_KEY")
+    if key:
+        return {**base, "x-api-key": key}
+    oauth = (os.environ.get("CLAUDE_CODE_OAUTH_TOKEN")
+             or os.environ.get("ANTHROPIC_AUTH_TOKEN"))
+    if oauth:
+        return {**base, "authorization": f"Bearer {oauth}",
+                "anthropic-beta": "oauth-2025-04-20"}
+    return None
+
+
 def _anthropic_judge(system: str, frames: list[str], ask: str) -> dict:
+    headers = _anthropic_headers()
+    if headers is None:
+        raise RuntimeError("no Claude credential (ANTHROPIC_API_KEY or "
+                           "CLAUDE_CODE_OAUTH_TOKEN)")
     content: list = []
     for i, b in enumerate(frames):
         content.append({"type": "text",
@@ -133,8 +154,7 @@ def _anthropic_judge(system: str, frames: list[str], ask: str) -> dict:
         "output_config": {
             "format": {"type": "json_schema", "schema": VERDICT_SCHEMA},
             "effort": "high"}},
-        {"x-api-key": os.environ["ANTHROPIC_API_KEY"],
-         "anthropic-version": "2023-06-01", "content-type": "application/json"})
+        headers)
     for block in resp.get("content", []):
         if block.get("type") == "text":
             return json.loads(block["text"])
@@ -160,21 +180,23 @@ def _gemini_judge(system: str, frames: list[str], ask: str) -> dict:
 
 
 def _judge(system: str, frames: list[str], ask: str) -> dict:
-    """Try whichever brain the channel actually has a key for — Anthropic
-    (best vision judgment) first, else Gemini (free, vision-capable)."""
+    """Prefer the Claude headless brain (API key OR the CLAUDE_CODE_OAUTH_TOKEN
+    the pipeline already uses) — it's the strongest judge. Fall back to free
+    Gemini vision only if Claude isn't available or errors."""
     errs = []
-    if os.environ.get("ANTHROPIC_API_KEY"):
+    if _anthropic_headers() is not None:
         try:
             return _anthropic_judge(system, frames, ask)
         except Exception as e:  # noqa: BLE001
-            errs.append(f"anthropic: {e}")
+            errs.append(f"claude: {e}")
     if os.environ.get("GEMINI_API_KEY"):
         try:
             return _gemini_judge(system, frames, ask)
         except Exception as e:  # noqa: BLE001
             errs.append(f"gemini: {e}")
-    raise RuntimeError("no vision LLM backend available "
-                       f"(set ANTHROPIC_API_KEY or GEMINI_API_KEY). {errs}")
+    raise RuntimeError("no vision LLM backend available (set "
+                       "CLAUDE_CODE_OAUTH_TOKEN / ANTHROPIC_API_KEY, or "
+                       f"GEMINI_API_KEY). {errs}")
 
 
 def review_video(mp4: Path, context: dict | None = None) -> dict:

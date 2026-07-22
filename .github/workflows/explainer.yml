@@ -353,6 +353,11 @@ jobs:
           # doesn't hit the free-tier 429s that were dropping the invention. If the
           # secret is unset this is empty -> the director falls over to Gemini/Groq.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # The Claude HEADLESS BRAIN (Claude subscription OAuth token, not an API
+          # key). The SHOWRUNNER taste gate (scripts/showrunner_review.py) uses it
+          # to WATCH each render and block boring/sloppy videos — Bearer + the
+          # oauth beta header, no separate ANTHROPIC_API_KEY needed.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # Speechify cloud TTS for the narration (trial): studio_render uses it
           # when the key is present and falls back to the local Kokoro voice the
           # moment it errors/quota-limits. Voice + model overridable via repo
