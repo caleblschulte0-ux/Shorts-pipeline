@@ -396,10 +396,17 @@ def build_edl(words, dur, style: Style, motion) -> EDL:
     return edl
 
 
-# Punchy but safe color-grade for the montage "edit" look: lifted contrast +
-# saturation and a light sharpen. Global, cheap, commercial-safe (no LUT
-# asset). Applied to every segment in edit mode; never in the default arm.
-EDIT_GRADE = "eq=contrast=1.10:saturation=1.28:brightness=0.005,unsharp=3:3:0.35"
+# Cinematic "designed" grade for the montage "edit" look — the part of the
+# edit arm that lands even on chaotic/no-subject footage (it needs no stable
+# subject, so calm mode keeps it while dropping the punch/shake). Lifted
+# contrast + saturation, a warm lift, fine film grain, and a soft vignette to
+# frame the subject and give the flat stream capture a graded, intentional
+# feel. All cheap, headless, commercial-safe (no LUT asset). The `unsharp`
+# pass was dropped — it was the expensive filter behind the slow batch, and
+# grain+vignette carry the look better. Applied to every segment in edit mode
+# only; the default clip arm is never graded (keeps the A/B a clean control).
+EDIT_GRADE = ("eq=contrast=1.12:saturation=1.30:brightness=0.010:gamma_r=1.03,"
+              "noise=alls=7:allf=t,vignette=PI/4.2")
 
 
 def build_edl_edit(words, dur, style: Style, motion) -> EDL:
