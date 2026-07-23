@@ -1526,6 +1526,112 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "clip-20260723-1": {
+      "url": "https://youtube.com/shorts/dU7mbBHGnCk",
+      "title": "Kaicenat: Kai Cenat Gives Out The First Detention In Stream History",
+      "kind": "twitch_clip",
+      "ts": "2026-07-23T11:13:52.793426+00:00",
+      "uploaded_at": "2026-07-23T11:13:52.793448+00:00",
+      "publish_at": "2026-07-23T17:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/StrongOriginalTitanAsianGlow-tbeO2ffjoyWNmcWy",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "KAI GIVES OUT THE FIRST DETENTION",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 25917,
+      "banger": 0.6,
+      "cut": {
+        "start": 0.0,
+        "end": 18.55
+      },
+      "director_cut": true
+    },
+    "rejected-hyperconsideratepotatopanicvis-poxtd8zvmm-tpopj": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/HyperConsideratePotatoPanicVis-PoXtd8ZVMM-TpOPJ",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat's Dean Character Snaps On The Guidance Counselor",
+      "qa_rejected": true,
+      "ts": "2026-07-23T11:22:22.876008+00:00"
+    },
+    "clip-20260723-2": {
+      "url": "https://youtube.com/shorts/SUaxzZLBsqc",
+      "title": "Stableronaldo And Cudi Finally Make Up During This Hug",
+      "kind": "twitch_clip",
+      "ts": "2026-07-23T11:31:17.993961+00:00",
+      "uploaded_at": "2026-07-23T11:31:17.993978+00:00",
+      "publish_at": "2026-07-23T18:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/WittyRudeTigerPipeHype-5YE0-zT6EQPyuRui",
+      "streamer": "stableronaldo",
+      "series": "wholesome",
+      "hook": "THEY FINALLY SQUASHED THE BEEF",
+      "experiment_arm": "edit",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 10205,
+      "banger": 0.6,
+      "cut": {
+        "start": 0.0,
+        "end": 34.8
+      },
+      "director_cut": true
+    },
+    "rejected-moistlittlelettucepastathat-p9ebykl3aqijyovz": {
+      "source_url": "https://www.twitch.tv/fanum/clip/MoistLittleLettucePastaThat-p9EBykL3AqIJYOVz",
+      "streamer": "fanum",
+      "title": "Fanum Loses It After Travis Scott Gets Picked For Streamer University",
+      "qa_rejected": true,
+      "ts": "2026-07-23T11:38:12.621149+00:00"
+    },
+    "clip-20260723-3": {
+      "url": "https://youtube.com/shorts/T85kgqqYGXA",
+      "title": "Fanum Already WARNING Everyone Before Alumni Day",
+      "kind": "twitch_clip",
+      "ts": "2026-07-23T11:44:03.486307+00:00",
+      "uploaded_at": "2026-07-23T11:44:03.486325+00:00",
+      "publish_at": "2026-07-23T20:00:00Z",
+      "source_url": "https://www.twitch.tv/fanum/clip/BlazingKathishChickpeaFUNgineer-tt4AjeCYEHbVc_iN",
+      "streamer": "fanum",
+      "series": "chaos",
+      "hook": "HE'S ALREADY PLANNING ALUMNI DAY TRADES",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2898,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 29.6
+      },
+      "director_cut": true
+    },
+    "clip-20260723-4": {
+      "url": "https://youtube.com/shorts/yd21k5cPd5w",
+      "title": "Plaqueboymax Reveals The One Kind Of Hate That Actually Hurts Him",
+      "kind": "twitch_clip",
+      "ts": "2026-07-23T11:50:18.329687+00:00",
+      "uploaded_at": "2026-07-23T11:50:18.329698+00:00",
+      "publish_at": "2026-07-23T21:30:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/AmorphousYawningBisonCopyThis-vL3Wd57T6unHUW_O",
+      "streamer": "plaqueboymax",
+      "series": "wholesome",
+      "hook": "THIS KIND OF HATE ACTUALLY HURTS HIM",
+      "experiment_arm": "edit",
+      "structure": "edit",
+      "actual_structure": "edit",
+      "self_healed": false,
+      "source_views": 8278,
+      "banger": 0.85,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
     }
   }
 }
