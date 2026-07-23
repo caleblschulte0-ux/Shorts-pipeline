@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "06_graph-netflix-cable",
+  "title": "Netflix vs Cable TV Subscribers (US, millions)",
+  "y_label": "US subscribers (millions)",
+  "duration": 13,
+  "music_vibe": "dark",
+  "source": "Sources: company filings, Leichtman Research, industry reports",
+  "hashtags": [
+    "netflix",
+    "cable",
+    "cordcutting",
+    "data",
+    "chart",
+    "streaming",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral",
+    "money",
+    "tech"
+  ],
+  "years": [
+    2010,
+    2013,
+    2016,
+    2019,
+    2021,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Cable TV",
+      "color": "#e2585b",
+      "values": [
+        105,
+        100,
+        92,
+        83,
+        74,
+        64
+      ]
+    },
+    {
+      "name": "Netflix",
+      "color": "#4a90e2",
+      "values": [
+        20,
+        33,
+        47,
+        60,
+        68,
+        74
+      ]
+    }
+  ]
+}
