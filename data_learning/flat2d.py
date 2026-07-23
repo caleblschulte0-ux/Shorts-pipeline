@@ -1010,7 +1010,10 @@ def hook_card(number: str, sub: str, out: Path, seconds: float = 3.0,
                          (255, 120, 40, 200), blur=16)
         d = ImageDraw.Draw(im2, "RGBA")
         su = _spaced(sub.upper())
-        d.text((_center_x(d, su, subf), int(H * 0.70)), su, font=subf,
+        sf = subf                            # auto-shrink so a long sub never clips
+        while sf.getlength(su) > W * 0.9 and sf.size > 22:
+            sf = subf.font_variant(size=sf.size - 4)
+        d.text((_center_x(d, su, sf), int(H * 0.70)), su, font=sf,
                fill=(255, 225, 190, 255))
         if line:
             l0 = _spaced(line.upper())
