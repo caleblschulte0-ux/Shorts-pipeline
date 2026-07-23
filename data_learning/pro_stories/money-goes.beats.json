@@ -153,7 +153,7 @@
     "push": 1.5,
     "queries": [
      "living room interior",
-     "bank building"
+     "brick townhouse exterior"
     ]
    },
    "facts": [
@@ -410,7 +410,7 @@
   {
    "job": "REVEAL",
    "mode": "designed_2d",
-   "narration": "So out of two million dollars, this is the part that's actually yours. Three hundred thousand. Fifteen cents of every dollar you will ever earn, free to spend however you choose.",
+   "narration": "So out of two million dollars, this is the part that's actually yours. Three hundred thousand.",
    "understand": "the money bar resolves on the small glowing 'actually yours' sliver",
    "flat": {
     "kind": "scene_money",
@@ -430,14 +430,19 @@
   },
   {
    "job": "PAYOFF",
-   "mode": "designed_2d",
-   "narration": "It isn't much. But it's the piece that's truly yours. So notice it, protect it, and spend it on something that actually matters — because you paid for every last cent of it with your life.",
-   "understand": "the figure walks toward a warm sunrise holding the single coin that's theirs",
-   "flat": {
-    "kind": "scene_savings",
-    "number": "$300K",
-    "label": "ACTUALLY YOURS",
-    "mood": "payoff"
+   "mode": "footage",
+   "narration": "Fifteen cents of every dollar you will ever earn, free to spend however you choose. It isn't much, but it's truly yours. So spend it on something that actually matters, because you paid for every last cent of it with your life.",
+   "understand": "close on real human moments — a life well spent",
+   "image": {
+    "query": "family watching sunset together",
+    "perspective": "cinematic",
+    "still": true,
+    "min_appeal": 0.3,
+    "push": 1.1,
+    "queries": [
+     "friends laughing outdoors",
+     "hiker on a mountain summit at sunrise"
+    ]
    }
   }
  ]
