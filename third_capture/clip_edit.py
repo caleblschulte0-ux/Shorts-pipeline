@@ -335,7 +335,31 @@ def download(url: str, work: Path) -> dict:
 _JUNK = re.compile(r"^[\W_]+$|♪|^\[.*\]$|^\(.*\)$")
 
 
+def _transcript_cache_path(video: Path, model_name: str) -> Path | None:
+    """Content-addressed transcript cache key: sha1 of the media bytes +
+    model name, under cache/ (gitignored; persisted by actions/cache).
+    Whisper-small on CPU costs 30-60s per clip and a story build transcribes
+    every beat — the same clip re-picked across runs (or reused as a story
+    member) should never pay that twice. None on any hashing error (cache
+    silently disabled for that call)."""
+    try:
+        h = hashlib.sha1()
+        with open(video, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+        return (REPO / "cache" / "transcripts"
+                / f"{h.hexdigest()[:24]}-{model_name}.json")
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
+    cpath = _transcript_cache_path(Path(video), model_name)
+    if cpath is not None and cpath.exists():
+        try:
+            return json.loads(cpath.read_text())
+        except Exception:  # noqa: BLE001 — corrupt cache entry: re-transcribe
+            pass
     import whisper
     model = whisper.load_model(model_name)
     # condition_on_previous_text=False stops the music/crowd-noise

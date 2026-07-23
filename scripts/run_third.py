@@ -435,15 +435,18 @@ def _description(pkg: dict, led: dict) -> str:
     tags = " ".join(f"#{t}" for t in _hashtags(pkg, led))
     note = pkg.get("description_note", "")
     if led.get("kind") == "story":
-        # multi-clip compilation: one human line, then credit EVERY member
-        # source (each beat is someone's clip — full attribution, always)
+        # multi-clip compilation: CTA up top (the feed promotes on
+        # comments), one human line, then credit EVERY member source (each
+        # beat is someone's clip — full attribution, always)
         lead = led.get("authored_caption") \
             or led.get("authored_title") or led.get("clip_title", "")
+        cta = led.get("authored_cta", "")
+        head = f"{cta}\n\n{lead}" if cta else lead
         srcs = "\n".join(f"Source: {b['source_url']}"
                          for b in led.get("beats", []) if b.get("source_url"))
         credit = ("Every moment belongs to the streamers — full credit.\n"
                   + srcs)
-        return f"{lead}\n\n{credit}\n\n{tags}"
+        return f"{head}\n\n{credit}\n\n{tags}"
     if led.get("kind") == "twitch_clip":
         # the public caption: one human sentence, credit, tags — never
         # internal pipeline jargon
@@ -487,7 +490,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
     unreachable, build/QA failure — so the slot falls back to a normal
     clip. Never raises: a story is a bonus, never a lost slot."""
     try:
-        from third_capture import author, clip_edit, clip_qa, storyline
+        from third_capture import clip_edit, clip_qa, storyline
         from third_capture import story as story_mod
         spec = pkg["capture"]
         sources = spec.get("sources") or {"twitch": spec.get("channels", [])}
@@ -566,6 +569,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 "authored_title": arc["title"], "clip_title": arc["title"],
                 "authored_caption": author.scrub_text(
                     f"The full story, beginning to end: {arc['why']}"),
+                # light, honest comment-bait (playbook §9: never manufacture
+                # a conflict; "rate it" is the sanctioned neutral prompt)
+                "authored_cta": "Rate this arc 1-10 👇",
                 "streamer": lead, "series": "story", "who": cluster["who"],
                 "story_key": skey, "experiment_arm": "story",
                 "structure": "story", "self_healed": False,
@@ -592,6 +598,11 @@ def process(pkg: dict, pkg_path: Path | None, *,
     work = OUTPUT_DIR / "third"
     work.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
+    # SCOPING LAW (live incident 2026-07-23): `author` is the MODULE-LEVEL
+    # import — never re-import it inside this function. A function-local
+    # `from ... import author` anywhere in the body makes the name local to
+    # the WHOLE function, so any path that skips that statement (the story
+    # branch did) dies with UnboundLocalError at the final safe_title choke.
     try:
         out_mp4 = work / f"third_{slug}.mp4"
         # STORY ARM: a story slot tries to compile a detected narrative arc.
@@ -753,7 +764,6 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # Cached run-wide; pure-velocity fallback when the brain is
                 # unreachable (returns {}), so a token outage never blocks a
                 # post.
-                from third_capture import author
                 to_score = [c for c in shortlist
                             if c["url"] not in _BANGER_CACHE]
                 if to_score:
@@ -837,7 +847,6 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 clip_edit.transcribe_words(info["path"], wmodel)
             meta = None
             if words is not None:
-                from third_capture import author
                 try:
                     clip_dur = float(subprocess.check_output(
                         ["ffprobe", "-v", "quiet", "-show_entries",

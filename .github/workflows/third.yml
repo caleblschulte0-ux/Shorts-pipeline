@@ -118,6 +118,7 @@ jobs:
           path: |
             cache/translation/
             cache/funnel/
+            cache/transcripts/
           key: translation-cache-v1-${{ github.run_id }}
           restore-keys: |
             translation-cache-v1-

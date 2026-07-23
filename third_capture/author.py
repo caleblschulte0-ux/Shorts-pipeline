@@ -528,9 +528,14 @@ def order_story(clips: list[dict]) -> dict | None:
                       "card": scrub_text(str(b.get("card", ""))[:32]).upper()})
     if len(beats) < 2:
         return None           # a story needs at least two distinct beats
+    # YouTube titles cap at 100 chars; a run-on showrunner title (live: 114
+    # chars from the canary) gets clamped at a word boundary, not mid-word
+    title = str(out.get("title", "")).strip()
+    if len(title) > 95:
+        title = title[:95].rsplit(" ", 1)[0]
     return {"is_story": True,
-            "title": safe_title(str(out.get("title", "")),
-                                 beats[0]["clip"].get("channel", "")),
+            "title": safe_title(title,
+                                beats[0]["clip"].get("channel", "")),
             "hook": scrub_text(str(out.get("hook", ""))[:60]).upper(),
             "why": str(out.get("why", ""))[:60],
             "beats": beats[:5]}

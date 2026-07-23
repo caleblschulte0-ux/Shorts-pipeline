@@ -34,6 +34,15 @@ Rules:
   contract). One at a time, each earning its slot with a better video.
 - Models/caches live in `cache/` (gitignored) — never commit binaries.
 
+## Third channel: story arc system (docs/STORY_ARC_SYSTEM.md)
+
+The third channel's `story_count` daily slots auto-detect narrative arcs
+(clips clustered by shared people across days) and compile them into
+multi-clip stories — quality-gated by a showrunner brain, falling back to
+a normal clip when no genuine arc exists. Compilation dedupe rides
+`story_key` (member-set hash), never member `source_url`s. Content
+standard: docs/THIRD_INTERNET_PLAYBOOK.md.
+
 ## Media acquisition (docs/MEDIA_ACQUISITION.md)
 
 Every visual carries a `source_class` + license (recorded in the audit

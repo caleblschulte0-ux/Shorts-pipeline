@@ -21,7 +21,6 @@ just a clip, so it should fall back to the normal single-clip path.
 """
 from __future__ import annotations
 
-import json
 import subprocess
 from pathlib import Path
 
@@ -148,13 +147,11 @@ def build_story(beats: list[dict], out_mp4: Path, work: Path, *,
     parts: list[Path] = []
     used: list[dict] = []
 
-    # An opening title card sets up the whole story (the "hook" beat).
-    if hook:
-        opener = work / "card_open.mp4"
-        _card(hook, beats[0]["clip"].get("channel")
-              or beats[0]["clip"].get("streamer", ""),
-              opener, work, "open", dur=2.0)
-        parts.append(opener)
+    # PLAYBOOK §5: never open on a title card that delays the actual clip.
+    # The hook is burned as an OVERLAY on the first beat's opening seconds
+    # (clip_edit.edit's own hook-card mechanic — text over the video, the
+    # clip playing underneath immediately). Chapter cards appear only
+    # BETWEEN beats, where they're act breaks, not a delayed start.
 
     for idx, beat in enumerate(beats[:MAX_BEATS]):
         clip = beat.get("clip", {})
@@ -179,11 +176,13 @@ def build_story(beats: list[dict], out_mp4: Path, work: Path, *,
                     or info.get("clipper") or "")
         platform = clip.get("platform", "twitch")
         beat_out = work / f"beat_{idx}.mp4"
+        opens_video = not used     # first SURVIVING beat opens the story
         try:
             led = clip_edit.edit(
                 src, beat_out,
                 credit=clip_edit.credit_label(platform, streamer),
-                hook="", whisper_model=whisper_model, auto=True,
+                hook=(hook if opens_video else ""),
+                whisper_model=whisper_model, auto=True,
                 series=clip.get("series", "chaos"))
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[story] beat {idx} render failed "
@@ -191,9 +190,6 @@ def build_story(beats: list[dict], out_mp4: Path, work: Path, *,
             continue
         if not beat_out.exists():
             continue
-        card_mp4 = work / f"card_{idx}.mp4"
-        _card(beat.get("card", ""), _subtitle(streamer, clip),
-              card_mp4, work, str(idx))
         beat_norm = work / f"beat_{idx}_n.mp4"
         try:
             _normalize(beat_out, beat_norm)
@@ -201,7 +197,13 @@ def build_story(beats: list[dict], out_mp4: Path, work: Path, *,
             print(f"::warning::[story] beat {idx} normalize failed "
                   f"({type(e).__name__}) — skipped", flush=True)
             continue
-        parts += [card_mp4, beat_norm]
+        if opens_video:
+            parts.append(beat_norm)
+        else:
+            card_mp4 = work / f"card_{idx}.mp4"
+            _card(beat.get("card", ""), _subtitle(streamer, clip),
+                  card_mp4, work, str(idx))
+            parts += [card_mp4, beat_norm]
         used.append({
             "source_url": url, "streamer": streamer, "platform": platform,
             "role": beat.get("role", ""), "card": beat.get("card", ""),
