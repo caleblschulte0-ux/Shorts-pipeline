@@ -571,10 +571,110 @@ def draw_orbit(d, box, insight, reveal):
 
 
 def draw_timeline(d, canvas, box, insight, reveal):
-    """A marker travels a time/number axis to its point (the loved timeline).
-    Data PERFORMS: he stands on the traveling dot and WALKS it to its year,
-    carrying the value up above his head — so the host demonstrates the data
-    instead of floating below it (the travelling overlay is hidden this beat)."""
+    """Depict 'X over time'. When we have a real value series across years, plot
+    it as a RISING FILLED AREA that climbs the frame (value on Y, year on X) with
+    Data riding the leading edge UP and the number counting — so the beat
+    DEMONSTRATES the climb and fills the frame, instead of a lone number floating
+    over a flat line in a void. Falls back to the flat time-axis for a single
+    value / no periods."""
+    items = _ordered_items(insight)
+    periods = [charts._num_or_none(getattr(p, "period", None)) for p in items]
+    have_p = len(periods) >= 2 and all(v is not None for v in periods)
+    vals = [p.value for p in items]
+    if have_p and len({round(v, 4) for v in vals}) >= 2:
+        _draw_climb(d, canvas, insight, items, periods, reveal)
+        return
+    _draw_flat_timeline(d, canvas, box, insight, reveal)
+
+
+def _draw_climb(d, canvas, insight, items, periods, reveal):
+    """Rising filled-area chart of a value series over years, revealed L→R, with
+    Data climbing the leading edge and the value counting up. Fills the frame."""
+    from PIL import Image as _Im
+    order = sorted(range(len(items)), key=lambda i: periods[i])
+    yrs = [float(periods[i]) for i in order]
+    vals = [float(items[i].value) for i in order]
+    y0v, y1v = yrs[0], yrs[-1]
+    span_x = (y1v - y0v) or 1.0
+    vmax = (max(vals) * 1.12) or 1.0            # honest 0-based axis
+    px0, px1 = 120, W - 100
+    pb, pt = int(H * 0.72), int(H * 0.30)       # baseline / ceiling
+    unit = insight.unit
+
+    def X(yr):
+        return px0 + (yr - y0v) / span_x * (px1 - px0)
+
+    def Y(v):
+        return pb - (v / vmax) * (pb - pt)
+
+    r = 1.0 - (1.0 - reveal) ** 2               # ease-out reveal
+    # title
+    tf = _pil_font(52)
+    title = (insight.topic or "").strip()
+    tb = d.textbbox((0, 0), title, font=tf)
+    d.text(((W - (tb[2] - tb[0])) // 2, 150), title, font=tf,
+           fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+    # polyline up to the revealed head (interpolated between year points)
+    n = len(yrs)
+    seg = r * (n - 1)
+    hi = min(int(seg), n - 1)
+    fr = seg - hi
+    pts = [(X(yrs[i]), Y(vals[i])) for i in range(hi + 1)]
+    if hi < n - 1:
+        hx = X(yrs[hi]) + fr * (X(yrs[hi + 1]) - X(yrs[hi]))
+        hy = Y(vals[hi]) + fr * (Y(vals[hi + 1]) - Y(vals[hi]))
+        pts.append((hx, hy))
+    hx, hy = pts[-1]
+    # filled area under the revealed line (translucent teal), then the line
+    if len(pts) >= 2:
+        d.polygon(pts + [(hx, pb), (pts[0][0], pb)], fill=_rgba(HIGHLIGHT, 66))
+    d.line([(px0, pb), (px1, pb)], fill=(90, 105, 130, 255), width=5)  # baseline
+    tick_font = _pil_font(30)
+    for i in range(n):
+        tx = X(yrs[i])
+        d.line([(tx, pb - 8), (tx, pb + 10)], fill=(120, 140, 170, 255), width=3)
+        lbl = str(int(yrs[i]))
+        lb = d.textbbox((0, 0), lbl, font=tick_font)
+        d.text((tx - (lb[2] - lb[0]) // 2, pb + 18), lbl, font=tick_font,
+               fill=(165, 180, 199, 255))
+    if len(pts) >= 2:
+        d.line(pts, fill=_rgba(HIGHLIGHT, 255), width=11, joint="curve")
+    for rad, a in ((40, 55), (28, 120), (18, 255)):
+        d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(HIGHLIGHT, a))
+    # Data climbs the leading edge (baked in; travelling overlay hidden)
+    host = charts._host_pose("cheer")
+    mh = 230
+    if host is not None:
+        mw = int(host.width * mh / host.height)
+        px = int(min(max(hx - mw / 2, 8), W - mw - 8))
+        canvas.alpha_composite(host.resize((mw, mh), _Im.LANCZOS),
+                               (px, int(hy - mh + 12)))
+    # counting hero value at the head
+    na = max(0.0, min(1.0, (r - 0.15) / 0.85))
+    cur = vals[0] + r * (vals[-1] - vals[0])
+    nf = _pil_font(78)
+    val = _fmt_stat(cur, unit)
+    vb = d.textbbox((0, 0), val, font=nf)
+    vx = int(min(max(hx - (vb[2] - vb[0]) / 2, 20), W - 20 - (vb[2] - vb[0])))
+    vy = int(max(210, hy - mh - 76))
+    d.text((vx, vy), val, font=nf, fill=_rgba(HIGHLIGHT, int(255 * na)),
+           stroke_width=6, stroke_fill=(5, 8, 15, 255))
+    # start value + the delta gap (physical +$X since the first year)
+    sf = _pil_font(34)
+    d.text((px0 - 6, int(Y(vals[0])) - 46), _fmt_stat(vals[0], unit), font=sf,
+           fill=(170, 185, 205, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
+    if r > 0.55:
+        dv = vals[-1] - vals[0]
+        dtxt = ("+" if dv >= 0 else "−") + _fmt_stat(abs(dv), unit) \
+            + f" since {int(yrs[0])}"
+        db = d.textbbox((0, 0), dtxt, font=sf)
+        d.text(((W - (db[2] - db[0])) // 2, pt - 6), dtxt, font=sf,
+               fill=_rgba(HIGHLIGHT, int(255 * na)), stroke_width=3,
+               stroke_fill=(5, 8, 15, 255))
+
+
+def _draw_flat_timeline(d, canvas, box, insight, reveal):
+    """The original flat time-axis: a marker travels to a single value's year."""
     items = _ordered_items(insight)
     vp = getattr(insight, "viz_params", {}) or {}
     star = max(items, key=lambda p: p.value)
