@@ -919,12 +919,11 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # Engagement CTA — ask the question + nudge a comment (drives the algorithm).
     question = getattr(st, "question", "")
     if question:
-        q = ("{\\an5\\pos(540,1120)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
+        q = ("{\\an5\\pos(540,1330)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
              "\\shad0\\fad(300,0)}" + _wrap(question, 24))
         lines.append(f"Dialogue: 5,{_ass_time(qs)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
-        # CTA pops in late and KEEPS bobbing (a continuous move) so the tail of
-        # the closing is never a still frame.
-        cta = ("{\\an5\\move(540,1244,540,1232,0,900)\\fs54\\c&H" + acc
+        # CTA pops in late (below the big central mascot) with a bounce.
+        cta = ("{\\an5\\move(540,1454,540,1442,0,900)\\fs54\\c&H" + acc
                + "&\\b1\\bord5\\3c&H000000&\\shad0\\fad(300,0)"
                "\\fscx82\\fscy82\\t(0,300,\\fscx100\\fscy100)}COMMENT BELOW ▼")
         lines.append(f"Dialogue: 5,{_ass_time(cs)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
@@ -1189,8 +1188,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 except Exception:  # noqa: BLE001
                     hook_perf = gap_fill
             seq = []
+            # 8th tuple field = per-beat SCALE. Hook + closing get a BIG mascot
+            # (fills the frame, and his looping animation is large-area continuous
+            # motion — the reliable way to kill a frozen 'dead card' run and the
+            # empty void the gate flags on those beats).
             seq.append((Cx, hook_y, windows[0][0], windows[0][1],
-                        UP_ANGLE, False, hook_perf))
+                        UP_ANGLE, False, hook_perf, 1.2))
             for i in range(nseg):
                 wi = windows[1 + i] if 1 + i < len(windows) else None
                 if not wi:
@@ -1198,18 +1201,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 spec = _seg_spec(i)
                 act = spec.get("action") if isinstance(spec, dict) else ""
                 x, y = _spot(i, act)
-                seq.append((x, y, wi[0], wi[1], UP_ANGLE, False, spec))
-            # CLOSING: Data is the SPEAKER — he sits directly under the quip
-            # bubble so its tail points at him (not at empty space), and the CTA
-            # sits below him.
+                seq.append((x, y, wi[0], wi[1], UP_ANGLE, False, spec, 1.0))
+            # CLOSING: Data is the SPEAKER — big and central so his celebration
+            # is the payoff and nothing sits frozen.
             close_act = _director.celebrate() if _director else "cheer"
-            seq.append((Cx, float(H * 0.26), windows[-1][0], windows[-1][1],
-                        UP_ANGLE, False, close_act))
+            seq.append((Cx, float(H * 0.30), windows[-1][0], windows[-1][1],
+                        UP_ANGLE, False, close_act, 1.35))
         else:
             gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
             seq = [(home[0], home[1], windows[0][0], windows[0][1],
-                    UP_ANGLE, False, "idle")]
+                    UP_ANGLE, False, "idle", 1.0)]
             for e in events:
                 if e["anchor"]:
                     bcx, bcy, variant = _place_mascot(
@@ -1221,9 +1223,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 seq.append((tlx, tly, e["w0"], e["w1"],
                             UP_ANGLE if variant == "U" else SIDE_ANGLE,
                             variant == "R",
-                            "idle" if variant == "U" else "point"))
+                            "idle" if variant == "U" else "point", 1.0))
             seq.append((home[0], home[1], windows[-1][0], windows[-1][1],
-                        UP_ANGLE, False, "idle"))
+                        UP_ANGLE, False, "idle", 1.0))
 
         # Guarantee the host is on-screen for EVERY frame. Any beat whose line
         # names no on-chart number produces no events, which left a hole in the
@@ -1236,12 +1238,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             w0, w1 = entry[2], entry[3]
             if w0 - cursor > 0.05:
                 filled.append((home[0], home[1], cursor, w0,
-                               UP_ANGLE, False, gap_fill))
+                               UP_ANGLE, False, gap_fill, 1.0))
             filled.append(entry)
             cursor = max(cursor, w1)
         if total - cursor > 0.05:
             filled.append((home[0], home[1], cursor, total,
-                           UP_ANGLE, False, gap_fill))
+                           UP_ANGLE, False, gap_fill, 1.0))
         seq = filled
 
         import os as _os2
@@ -1250,17 +1252,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # central role. LEGACY_LOOK=1 restores the old bokeh + b-roll strip.
         CLEAN = _os2.environ.get("LEGACY_LOOK") != "1"
         mascot_movs = []
-        for k, (_x, _y, _w0, _w1, angle, flip, act) in enumerate(seq):
+        for k, (_x, _y, _w0, _w1, angle, flip, act, sc) in enumerate(seq):
             mv = work / f"masc_{k}.mov"
+            Sk = int(round(S * sc))              # per-beat mascot size
             if isinstance(act, dict) and act.get("hidden"):
                 # Data is baked into the chart this beat (e.g. riding the gauge)
                 # — overlay nothing, but keep the index aligned with a blank mov.
-                mascot.build_blank_loop(mv, size=S)
+                mascot.build_blank_loop(mv, size=Sk)
             elif isinstance(act, dict):
                 # director spec → Data doing a scene-specific action with a prop
-                mascot.build_scene_loop(mv, act, size=S, seconds=2.2, flip=flip)
+                mascot.build_scene_loop(mv, act, size=Sk, seconds=2.2, flip=flip)
             else:
-                mascot.build_mascot_loop(mv, size=S, seconds=2.2,
+                mascot.build_mascot_loop(mv, size=Sk, seconds=2.2,
                                          point_angle=float(angle), flip=flip,
                                          pose=act)
             mascot_movs.append(mv)
@@ -1425,16 +1428,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # bob rides on top. In CLEAN this traces a path around the frame; in
         # legacy it still walks between numbers.
         prev_tl = home
-        for k, (tlx, tly, w0, w1, _a, _f, _p) in enumerate(seq):
+        for k, (tlx, tly, w0, w1, _a, _f, _p, sc) in enumerate(seq):
             gi = masc_input[k]
             # Glide over most of the beat, easing in the last bit so he settles
             # only briefly before the next move — motion fills the whole window.
             arrive = w0 + max(0.5, (w1 - w0) * 0.82)
             xe = _piecewise([(w0, prev_tl[0]), (arrive, tlx)], 1)
             ye = f"({_piecewise([(w0, prev_tl[1]), (arrive, tly)], 1)})+5*sin(1.7*t)"
-            fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
-            fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
-                      f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
+            Sk = int(round(S * sc))
+            off = (Sk - S) // 2            # keep the bigger sprite centred on target
+            fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
+            fc.append(f"[{prev}][mk{k}]overlay=x='({xe})-{off}':y='({ye})-{off}':"
+                      f"eval=frame:enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
             prev = f"mb{k}"
             prev_tl = (tlx, tly)
         fc.append(f"[{prev}]ass='{ass_esc}'[v]")
