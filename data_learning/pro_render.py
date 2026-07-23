@@ -495,9 +495,11 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
               "scene_grocery": scenes.grocery_scene, "scene_subs": scenes.subs_scene,
               "scene_savings": scenes.savings_scene,
               "scene_treadmill": scenes.treadmill_scene}[k]
+        scenes.set_mood(shot.get("mood"))       # per-chapter color world
         return fn(out, seconds, number=str(shot.get("number", "")),
                   label=str(shot.get("label", "")))
     if k == "scene_money":
+        scenes.set_mood(shot.get("mood"))       # per-chapter color world
         return scenes.money_scene(out, seconds, upto=int(shot.get("upto", 0)),
                                   final=bool(shot.get("final", False)),
                                   number=str(shot.get("number", "")),

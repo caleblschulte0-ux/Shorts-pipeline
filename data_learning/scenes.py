@@ -189,9 +189,48 @@ def _label(im, number, label, y=0.12, col=(255, 211, 122)):
     return im
 
 
+# --------------------------------------------------------------------------
+# COLOR MOODS — the film travels through distinct color WORLDS instead of one
+# navy wash. The single biggest cure for "every scene looks the same": each
+# chapter sets a mood (scenes.set_mood(...)) and a gentle final grade is applied
+# to EVERY frame of that chapter's scenes in _render, so taxes read cold-steel,
+# housing warm-amber, the trap red-alarm, the payoff golden. Kept moderate so it
+# is a lighting mood, not a cheap Instagram filter.
+# --------------------------------------------------------------------------
+_MOOD = None
+MOODS = {                       # (r_mult, g_mult, b_mult, r_add, g_add, b_add)
+    "cash":      (1.04, 1.03, 0.93,  4,  3, -5),   # opening — warm greenback
+    "tax":       (0.90, 0.97, 1.15, -6, -2, 16),   # cold steel blue — the state
+    "housing":   (1.13, 1.02, 0.82, 12,  3, -8),   # warm amber — home light
+    "transport": (0.91, 1.05, 1.12, -5,  2, 10),   # teal dusk — the commute
+    "food":      (1.02, 1.11, 0.86,  2,  9, -8),   # warm green — the table
+    "leaks":     (1.09, 0.92, 1.15,  9, -6, 12),   # violet — invisible drains
+    "trap":      (1.18, 0.85, 0.85, 16,-11,-11),   # red alarm — lifestyle creep
+    "payoff":    (1.15, 1.06, 0.80, 15,  9,-10),   # golden dawn — what's yours
+}
+
+
+def set_mood(m):
+    """Set the color world for the scenes that follow (None = neutral)."""
+    global _MOOD
+    _MOOD = m if m in MOODS else None
+
+
+def _grade(im):
+    if _MOOD is None:
+        return im
+    r, g, b, ra, ga, ba = MOODS[_MOOD]
+    a = np.asarray(im, np.float32)
+    a[..., 0] = np.clip(a[..., 0] * r + ra, 0, 255)
+    a[..., 1] = np.clip(a[..., 1] * g + ga, 0, 255)
+    a[..., 2] = np.clip(a[..., 2] * b + ba, 0, 255)
+    return Image.fromarray(a.astype(np.uint8), "RGB")
+
+
 def _render(draw_fn, out: Path, seconds: float, bg_fn):
     """Pipe raw RGB straight to ffmpeg. bg_fn(i,n)->Image builds the per-frame
-    environment; draw_fn(i,n,im)->Image adds the character + props + accent."""
+    environment; draw_fn(i,n,im)->Image adds the character + props + accent.
+    A per-chapter color grade (set_mood) is applied to every finished frame."""
     n = max(2, int(round(seconds * FPS)))
     proc = subprocess.Popen(
         ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo",
@@ -199,7 +238,7 @@ def _render(draw_fn, out: Path, seconds: float, bg_fn):
          "-c:v", "libx264", "-crf", "18", "-preset", "medium",
          "-pix_fmt", "yuv420p", str(out)], stdin=subprocess.PIPE)
     for i in range(n):
-        im = draw_fn(i, n, bg_fn(i, n)).convert("RGB")
+        im = _grade(draw_fn(i, n, bg_fn(i, n)).convert("RGB"))
         proc.stdin.write(im.tobytes())
     proc.stdin.close()
     proc.wait()

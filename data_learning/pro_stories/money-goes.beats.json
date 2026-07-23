@@ -11,7 +11,8 @@
    "flat": {
     "kind": "scene_paycheck",
     "number": "$2M",
-    "label": "YOU'LL EARN"
+    "label": "YOU'LL EARN",
+    "mood": "cash"
    },
    "facts": [
     {
@@ -66,7 +67,8 @@
    "flat": {
     "kind": "scene_tax",
     "number": "25%",
-    "label": "THE GOVERNMENT'S CUT"
+    "label": "THE GOVERNMENT'S CUT",
+    "mood": "tax"
    }
   },
   {
@@ -98,7 +100,8 @@
    "flat": {
     "kind": "scene_money",
     "upto": 0,
-    "label": "TAXES"
+    "label": "TAXES",
+    "mood": "tax"
    }
   },
   {
@@ -120,7 +123,8 @@
    "flat": {
     "kind": "scene_rent",
     "number": "33%",
-    "label": "A ROOF OVER YOUR HEAD"
+    "label": "A ROOF OVER YOUR HEAD",
+    "mood": "housing"
    }
   },
   {
@@ -152,7 +156,8 @@
    "flat": {
     "kind": "scene_money",
     "upto": 1,
-    "label": "HOUSING"
+    "label": "HOUSING",
+    "mood": "housing"
    }
   },
   {
@@ -174,7 +179,8 @@
    "flat": {
     "kind": "scene_gas",
     "number": "",
-    "label": "GETTING AROUND"
+    "label": "GETTING AROUND",
+    "mood": "transport"
    }
   },
   {
@@ -206,7 +212,8 @@
    "flat": {
     "kind": "scene_money",
     "upto": 2,
-    "label": "GETTING AROUND"
+    "label": "GETTING AROUND",
+    "mood": "transport"
    }
   },
   {
@@ -228,7 +235,8 @@
    "flat": {
     "kind": "scene_grocery",
     "number": "",
-    "label": "STAYING ALIVE"
+    "label": "STAYING ALIVE",
+    "mood": "food"
    }
   },
   {
@@ -237,12 +245,11 @@
    "narration": "Three meals a day, every day, for a whole lifetime. Feeding yourself alone runs around three hundred thousand dollars over the years.",
    "understand": "a real photo of groceries grounding the food point",
    "image": {
-    "query": "person eating a meal at a kitchen table warm home light",
+    "query": "cup of coffee on a cafe table morning",
     "perspective": "close warm",
     "still": true,
-    "min_appeal": 0.3,
-    "push": 1.9,
-    "pan": "lr"
+    "min_appeal": 0.28,
+    "push": 1.7
    },
    "facts": [
     {
@@ -261,7 +268,8 @@
    "flat": {
     "kind": "scene_money",
     "upto": 3,
-    "label": "FOOD"
+    "label": "FOOD",
+    "mood": "food"
    }
   },
   {
@@ -283,7 +291,8 @@
    "flat": {
     "kind": "scene_subs",
     "number": "",
-    "label": "THE LITTLE LEAKS"
+    "label": "THE LITTLE LEAKS",
+    "mood": "leaks"
    }
   },
   {
@@ -294,7 +303,8 @@
    "flat": {
     "kind": "scene_money",
     "upto": 4,
-    "label": "LITTLE LEAKS"
+    "label": "LITTLE LEAKS",
+    "mood": "leaks"
    },
    "facts": [
     {
@@ -324,7 +334,8 @@
    "flat": {
     "kind": "scene_treadmill",
     "number": "",
-    "label": "RUNNING TO STAND STILL"
+    "label": "RUNNING TO STAND STILL",
+    "mood": "trap"
    }
   },
   {
@@ -360,7 +371,8 @@
     "kind": "scene_money",
     "upto": 5,
     "final": true,
-    "label": "ACTUALLY YOURS"
+    "label": "ACTUALLY YOURS",
+    "mood": "payoff"
    },
    "facts": [
     {
@@ -379,7 +391,8 @@
    "flat": {
     "kind": "scene_savings",
     "number": "$300K",
-    "label": "ACTUALLY YOURS"
+    "label": "ACTUALLY YOURS",
+    "mood": "payoff"
    }
   }
  ]
