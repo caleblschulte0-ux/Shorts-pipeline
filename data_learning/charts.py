@@ -1181,8 +1181,11 @@ def render_hook_receipt(out_dir: Path, slug: str, header: str,
         ty = py1 - 250
         for xx in range(px0 + 40, px1 - 40, 26):
             d.line([(xx, ty), (xx + 14, ty)], fill=faint, width=3)
-        # TOTAL, ticking up
-        cur = total_lo + r * (total_hi - total_lo)
+        # TOTAL races up but SETTLES on the final figure by ~40% of the beat and
+        # holds it — so a sampled frame shows the real total ($1,030), never a
+        # mid-tick value that reads as contradicting the rest of the video.
+        rr = min(1.0, r / 0.4)
+        cur = total_lo + rr * (total_hi - total_lo)
         d.text((px0 + 44, ty + 34), "TOTAL", font=totf, fill=ink)
         tot = ("$" if unit in ("dollars", "usd", "$") else "") + f"{cur:,.0f}"
         bb = d.textbbox((0, 0), tot, font=bigf)

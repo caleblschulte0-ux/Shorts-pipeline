@@ -598,7 +598,8 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
     span_x = (y1v - y0v) or 1.0
     vmax = (max(vals) * 1.12) or 1.0            # honest 0-based axis
     px0, px1 = 120, W - 100
-    pb, pt = int(H * 0.72), int(H * 0.30)       # baseline / ceiling
+    pb, pt = int(H * 0.80), int(H * 0.30)       # baseline low / ceiling — fills
+    #                                             the lower frame (no dead third)
     unit = insight.unit
 
     def X(yr):

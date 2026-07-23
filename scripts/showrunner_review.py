@@ -179,10 +179,16 @@ def _judge(system: str, frame_files: list[Path], ask: str) -> dict:
     subscription OAuth token) — not the paid API. Falls back to free Gemini
     vision only if the headless brain is unavailable or errors."""
     errs = []
-    try:
-        return _headless_claude_judge(system, frame_files, ask)
-    except Exception as e:  # noqa: BLE001
-        errs.append(f"headless-claude: {e}")
+    # The headless brain is the judge of record; retry a couple times so a
+    # transient CLI timeout / 429 doesn't fail-open and lose the verdict (the
+    # intermittent no-verdict renders were exactly this).
+    import time
+    for attempt in range(int(os.environ.get("SHOWRUNNER_RETRIES", "3"))):
+        try:
+            return _headless_claude_judge(system, frame_files, ask)
+        except Exception as e:  # noqa: BLE001
+            errs.append(f"headless-claude[{attempt}]: {e}")
+            time.sleep(3 * (attempt + 1))
     if os.environ.get("GEMINI_API_KEY"):
         try:
             frames_b64 = [_b64(f) for f in frame_files]
