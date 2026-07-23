@@ -148,17 +148,30 @@ def _anthropic_judge(system: str, frames: list[str], ask: str) -> dict:
         content.append({"type": "image", "source": {
             "type": "base64", "media_type": "image/jpeg", "data": b}})
     content.append({"type": "text", "text": ask})
+    # Structured output the CORRECT Anthropic-Messages way: define a tool whose
+    # input_schema IS the verdict schema and force it. (The old body used
+    # output_config/json_schema/effort — none of which are Messages API fields —
+    # so every call 400'd and the gate silently fell open. That is why nothing
+    # was ever actually reviewed.)
     resp = _post_json(ANTHROPIC_API, {
         "model": MODEL, "max_tokens": 2000, "system": system,
         "messages": [{"role": "user", "content": content}],
-        "output_config": {
-            "format": {"type": "json_schema", "schema": VERDICT_SCHEMA},
-            "effort": "high"}},
+        "tools": [{"name": "submit_verdict",
+                   "description": "Submit the showrunner's scored verdict.",
+                   "input_schema": VERDICT_SCHEMA}],
+        "tool_choice": {"type": "tool", "name": "submit_verdict"}},
         headers)
     for block in resp.get("content", []):
+        if block.get("type") == "tool_use":
+            return block["input"]
+    # Fallback: some gateways return the JSON as text.
+    for block in resp.get("content", []):
         if block.get("type") == "text":
-            return json.loads(block["text"])
-    raise RuntimeError("no text block in Anthropic response")
+            import re
+            m = re.search(r"\{.*\}", block["text"], re.S)
+            if m:
+                return json.loads(m.group(0))
+    raise RuntimeError(f"no verdict in Anthropic response: {str(resp)[:300]}")
 
 
 def _gemini_judge(system: str, frames: list[str], ask: str) -> dict:

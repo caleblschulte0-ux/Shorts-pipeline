@@ -55,7 +55,7 @@ FOOT_H = (H - FOOT_Y) & ~1       # keep even (yuv420p / filter sizing)
 # the animated element). The travelling overlay is hidden on these beats.
 HOST_BAKED_KINDS = ("fill_vessel", "bignum", "timeline")
 
-MASCOT_SIZE = 440                # the brand's face — the lead, a big central presence
+MASCOT_SIZE = 520                # the brand's face — the lead, a big central presence
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
 UP_ANGLE = 90                    # points up (hook / closing / fallback)
 MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 520)   # hook / closing rest spot
@@ -854,7 +854,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     c0, c1 = windows[-1]
     bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&H" + acc + "&\\bord4\\shad0"
               "\\fad(250,0)\\p1}"
-              + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 524))
+              + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 588))
               + "{\\p0}")
     lines.append(f"Dialogue: 4,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{bubble}")
     quip = ("{\\an5\\pos(540,308)\\fs54\\c&HFFFFFF&\\b1\\bord0\\shad2"
@@ -863,10 +863,10 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # Engagement CTA — ask the question + nudge a comment (drives the algorithm).
     question = getattr(st, "question", "")
     if question:
-        q = ("{\\an5\\pos(540,842)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
+        q = ("{\\an5\\pos(540,1120)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
              "\\shad0\\fad(450,0)}" + _wrap(question, 24))
         lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
-        cta = ("{\\an5\\pos(540,952)\\fs54\\c&H" + acc + "&\\b1\\bord5\\3c&H000000&"
+        cta = ("{\\an5\\pos(540,1240)\\fs54\\c&H" + acc + "&\\b1\\bord5\\3c&H000000&"
                "\\shad0\\fad(450,0)\\fscx82\\fscy82\\t(450,780,\\fscx100\\fscy100)}"
                "COMMENT BELOW ▼")
         lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
@@ -1094,21 +1094,25 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # comes from the director; position comes from this trajectory.
             gap_fill = _director.default_host() if _director else "idle"
             nseg = len(st.segments)
-            Lx, Rx = 50.0, float(W - S - 50)
             Cx = float((W - S) // 2)
-            yband = [float(H * 0.30), float(H * 0.52), float(H * 0.60),
-                     float(H * 0.40)]
+            # A card chart lives in the TOP region; the space BELOW it used to be
+            # dead black. Data works that lower "stage" — he never stands on the
+            # chart (covering the data), he fills the bottom and presents it from
+            # below. He paces across the stage (x alternates) so he keeps moving.
+            stage_y = min(float(CHART_Y + CHART_H + 8), float(H - S - 120))
+            Lx, Rx = 60.0, float(W - S - 60)
 
             def _spot(i, action):
                 if action == "ride":                 # ride UP into the chart
                     return Rx if i % 2 else Lx, float(H * 0.24)
-                x = Lx if i % 2 == 0 else Rx          # pace across, sides
-                y = min(max(yband[i % len(yband)], 2.0), float(H - S - 2))
-                return x, y
+                x = Lx if i % 2 == 0 else Rx          # pace across the stage
+                return x, stage_y
 
-            home = (Cx, float(H * 0.52))              # gap-fill rest spot
+            # HOOK: no chart yet, so Data IS the visual — big and central, filling
+            # the frame instead of a tiny sprite marooned in black.
+            home = (Cx, float(H * 0.40))
             seq = []
-            seq.append((Cx, float(H * 0.52), windows[0][0], windows[0][1],
+            seq.append((Cx, float(H * 0.40), windows[0][0], windows[0][1],
                         UP_ANGLE, False, gap_fill))
             for i in range(nseg):
                 wi = windows[1 + i] if 1 + i < len(windows) else None
@@ -1118,8 +1122,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 act = spec.get("action") if isinstance(spec, dict) else ""
                 x, y = _spot(i, act)
                 seq.append((x, y, wi[0], wi[1], UP_ANGLE, False, spec))
+            # CLOSING: Data is the SPEAKER — he sits directly under the quip
+            # bubble so its tail points at him (not at empty space), and the CTA
+            # sits below him.
             close_act = _director.celebrate() if _director else "cheer"
-            seq.append((Cx, float(H * 0.50), windows[-1][0], windows[-1][1],
+            seq.append((Cx, float(H * 0.26), windows[-1][0], windows[-1][1],
                         UP_ANGLE, False, close_act))
         else:
             gap_fill = "idle"
