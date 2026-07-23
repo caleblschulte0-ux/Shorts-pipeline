@@ -992,7 +992,8 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
 # immediately starts leaking away. Sets up the whole piece.
 # --------------------------------------------------------------------------
 def paycheck_scene(out: Path, seconds: float = 6.0, number: str = "",
-                   label: str = "EVERY PAYCHECK") -> Path:
+                   label: str = "EVERY PAYCHECK", extra: dict | None = None) -> Path:
+    ex = extra or {}
     def bg(i, n):
         t = i / max(1, n - 1)
         # a bright payday morning that cools as the money leaves (one-way)
@@ -1014,9 +1015,12 @@ def paycheck_scene(out: Path, seconds: float = 6.0, number: str = "",
         d.rectangle([wx0, wy0, wx1, wy1], fill=(int(60 + 120 * k), int(70 + 90 * k),
                     int(90 + 40 * k), 255), outline=(90, 100, 140, 255), width=6)
         d.line([(wx0 + wx1) // 2, wy0, (wx0 + wx1) // 2, wy1], fill=(90, 100, 140), width=4)
-        # the figure, centre-left, holding a paycheck up in one hand
+        # the figure, centre-left, holding a paycheck up in one hand; if express, joy fades to resignation
         cx = int(W * 0.36)
-        _stand(d, cx, floor_y + 6, h=380, col=FIG)
+        arms = 0.0
+        if ex.get("express"):
+            arms = 0.5 - 0.4 * t                # arm drops as money drains (joy fades)
+        _stand(d, cx, floor_y + 6, h=380, col=FIG, arms_up=arms)
         # the paycheck (a slip) held at the raised hand
         px, py = cx + 96, int(H * 0.40)
         d.rounded_rectangle([px, py, px + 190, py + 96], radius=10,
@@ -1050,7 +1054,8 @@ def paycheck_scene(out: Path, seconds: float = 6.0, number: str = "",
 # through the slot. A stamp thuds down.
 # --------------------------------------------------------------------------
 def tax_scene(out: Path, seconds: float = 6.0, number: str = "",
-              label: str = "THE GOVERNMENT'S CUT") -> Path:
+              label: str = "THE GOVERNMENT'S CUT", extra: dict | None = None) -> Path:
+    ex = extra or {}
     def bg(i, n):
         t = i / max(1, n - 1)
         k = 0.08 + 0.9 * t                      # cold hall opens up into light
@@ -1079,8 +1084,12 @@ def tax_scene(out: Path, seconds: float = 6.0, number: str = "",
         # the figure at the window, arm reaching to push cash through
         cx = int(W * 0.34)
         reach = 0.5 + 0.4 * (0.5 + 0.5 * math.sin(i * 0.5))
+        # emotional reaction: if express=true, arms lift higher in shock/resignation as t progresses
+        base_arms = 0.28 + 0.12 * (0.5 + 0.5 * math.sin(i * 0.5))
+        if ex.get("express"):
+            base_arms = 0.28 + 0.4 * t           # arms lift higher over time = shock/resignation
         _stand(d, cx, floor_y + 6, h=380, col=FIG,
-               arms_up=0.28 + 0.12 * (0.5 + 0.5 * math.sin(i * 0.5)))
+               arms_up=base_arms)
         # a stack of cash travelling from the figure into the window slot, repeating
         ph = (t * 1.6) % 1.0
         sx = cx + 90 + ph * (wx0 - (cx + 90))
@@ -1106,7 +1115,8 @@ def tax_scene(out: Path, seconds: float = 6.0, number: str = "",
 # money floats out the window and drifts away.
 # --------------------------------------------------------------------------
 def rent_scene(out: Path, seconds: float = 6.0, number: str = "",
-               label: str = "A ROOF OVER YOUR HEAD") -> Path:
+               label: str = "A ROOF OVER YOUR HEAD", extra: dict | None = None) -> Path:
+    ex = extra or {}
     def bg(i, n):
         t = i / max(1, n - 1)
         k = 1.0 - 0.92 * t                      # day sinks into deep evening
@@ -1136,8 +1146,11 @@ def rent_scene(out: Path, seconds: float = 6.0, number: str = "",
                     outline=(120, 100, 60, 255), width=4)
         d.line([wx0 + 45, wy0, wx0 + 45, wy0 + 90], fill=(120, 100, 60), width=3)
         d.line([wx0, wy0 + 45, wx0 + 90, wy0 + 45], fill=(120, 100, 60), width=3)
-        # the figure standing small in the doorway
-        _stand(d, dxc, ground_y, h=150, col=FIG)
+        # the figure standing small in the doorway; if express, show the weight/burden
+        stride = 0.0
+        if ex.get("express"):
+            stride = 0.3 * t                    # figure leans forward under weight, gets more tired
+        _stand(d, dxc, ground_y, h=150, col=FIG, stride=stride)
         # RENT DUE — money floats up out of the chimney/window and drifts off
         chx, chy = int(W * 0.70), int(H * 0.28)
         d.rectangle([chx, chy, chx + 34, chy + 70], fill=(36, 40, 56, 255))
@@ -1165,7 +1178,8 @@ def rent_scene(out: Path, seconds: float = 6.0, number: str = "",
 # TRANSPORT — the figure at a gas pump, the dollar meter spinning up fast.
 # --------------------------------------------------------------------------
 def gas_scene(out: Path, seconds: float = 6.0, number: str = "",
-              label: str = "GETTING AROUND") -> Path:
+              label: str = "GETTING AROUND", extra: dict | None = None) -> Path:
+    ex = extra or {}
     def bg(i, n):
         t = i / max(1, n - 1)
         k = 0.05 + 0.92 * t                     # night falls over the station
@@ -1209,8 +1223,11 @@ def gas_scene(out: Path, seconds: float = 6.0, number: str = "",
         d.ellipse([cxc + 50, ground_y - 28, cxc + 110, ground_y + 32], fill=(18, 18, 24, 255))
         d.line([pxc - 40, int(H * 0.52), cxc + 120, ground_y - 40],
                fill=(30, 32, 44, 255), width=8)
-        # the figure between car and pump, arm up holding the nozzle
-        _stand(d, int(W * 0.58), ground_y + 6, h=300, col=FIG, arms_up=0.30)
+        # the figure between car and pump, arm up holding the nozzle; if express, show frustration
+        arms = 0.30
+        if ex.get("express"):
+            arms = 0.30 + 0.2 * t               # arm lifts higher = frustration at rising price
+        _stand(d, int(W * 0.58), ground_y + 6, h=300, col=FIG, arms_up=arms)
         # coins drain out of the pump base — fuel = money burning
         _coin_fall(d, 44, t, pxc - 30, pxc + 30, ground_y - 30, count=9, spread=140)
         im = _label(im, number, label, col=(86, 186, 206))
@@ -1416,7 +1433,8 @@ def savings_scene(out: Path, seconds: float = 6.0, number: str = "",
 # spent, so more money in just means more money out. Running to stand still.
 # --------------------------------------------------------------------------
 def treadmill_scene(out: Path, seconds: float = 6.0, number: str = "",
-                    label: str = "RUNNING TO STAND STILL") -> Path:
+                    label: str = "RUNNING TO STAND STILL", extra: dict | None = None) -> Path:
+    ex = extra or {}
     def bg(i, n):
         t = i / max(1, n - 1)
         k = 0.05 + 0.92 * t                     # the gym lights climb
@@ -1446,10 +1464,13 @@ def treadmill_scene(out: Path, seconds: float = 6.0, number: str = "",
         d.text((cx + 128, deck_y - 194), f"{spd:0.1f}", font=_font(ANTON, 40),
                fill=(140, 240, 170, 255))
         d.text((cx + 128, deck_y - 150), "MPH", font=_font(DEJAVU, 16), fill=(120, 200, 140, 255))
-        # the figure runs IN PLACE — legs swing but it never moves forward
+        # the figure runs IN PLACE — legs swing but it never moves forward; if express, show exhaustion
         stride = 34 * math.sin(i * 0.9)
         bob = int(6 * abs(math.sin(i * 0.9)))
-        _stand(d, cx - 30, deck_y - bob, h=360, col=FIG, arms_up=0.14, stride=stride)
+        arms = 0.14
+        if ex.get("express"):
+            arms = 0.14 + 0.25 * t              # arms lift higher = exhaustion/struggle
+        _stand(d, cx - 30, deck_y - bob, h=360, col=FIG, arms_up=arms, stride=stride)
         # money pours IN from the top-right and immediately drains OUT bottom-left:
         # every raise you earn is instantly spent — net zero, forever.
         _coin_fall(d, 71, t, int(W * 0.66), int(W * 0.72), int(H * 0.14),

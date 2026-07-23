@@ -73,7 +73,8 @@
     "number": "25%",
     "label": "THE GOVERNMENT'S CUT",
     "mood": "tax"
-   }
+   },
+   "extra": {"express": true}
   },
   {
    "job": "DEVELOP",
@@ -377,7 +378,8 @@
     "number": "",
     "label": "RUNNING TO STAND STILL",
     "mood": "trap"
-   }
+   },
+   "extra": {"express": true}
   },
   {
    "job": "DEVELOP",
