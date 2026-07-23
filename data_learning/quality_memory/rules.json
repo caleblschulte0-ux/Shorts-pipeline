@@ -1,5 +1,5 @@
 {
-  "generated_from_n_renders": 25,
+  "generated_from_n_renders": 26,
   "rules": [
     {
       "scope": "job",
@@ -26,19 +26,24 @@
       "guidance": "PROOF beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
     }
   ],
-  "access_needs": [],
+  "access_needs": [
+    {
+      "subject": "hurricane storm surge flooded street",
+      "renders": 2
+    }
+  ],
   "trend": {
     "dead_fraction": {
       "first": 0.18,
-      "latest": 0.29,
+      "latest": 0.13,
       "want": "down",
-      "direction": "regressing"
+      "direction": "improving"
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.636,
+      "latest": 0.777,
       "want": "up",
-      "direction": "regressing"
+      "direction": "improving"
     },
     "bland_fraction": {
       "first": 0.0,
