@@ -91,7 +91,7 @@ def validate(v: dict) -> dict:
         if not 0 <= cfe <= 1:
             raise InvalidVerdict(f"card_fraction_estimate {cfe} out of range 0-1")
 
-    return {
+    clean = {
         "pass": rule_pass,
         "reject_labels": labels,
         "personality": personality,
@@ -102,6 +102,17 @@ def validate(v: dict) -> dict:
         "judge": "taste",            # provenance of which rubric produced this
         "source": "vision_subagent",
     }
+    # The owner-facing SHOW BAR (TASTE_JUDGE.md): 0-10 vs professional work;
+    # the orchestrator shows the owner nothing under 9.5.
+    if v.get("overall_10") is not None:
+        try:
+            o = float(v["overall_10"])
+        except (TypeError, ValueError):
+            raise InvalidVerdict(f"overall_10 must be numeric, got {v['overall_10']!r}")
+        if not 0 <= o <= 10:
+            raise InvalidVerdict(f"overall_10 {o} out of range 0-10")
+        clean["overall_10"] = o
+    return clean
 
 
 def pkg_dir(out: Path) -> Path:

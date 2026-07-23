@@ -80,6 +80,18 @@ supplied `pass` must agree with the rule) and writes `<out>_pkg/verdict.json`.
 `scripts/produce.py` reads that file and **fails closed** when it is absent — a
 film is never promoted unjudged.
 
+## The SHOW BAR (owner-facing, stricter than the publish gate)
+
+The verdict may also carry **`overall_10`** — a 0-10 score judged against the
+best professionally-edited YouTube documentaries (Vox / Johnny Harris tier), not
+against other automated videos. The rule for showing the OWNER a cut:
+**`overall_10 >= 9.5` or they never see it.** A merely-passing film (no reject
+labels, personality ≥ 3) may publish-gate as acceptable, but it is NOT worth a
+human's attention until the pixels would survive next to professional work:
+real moving footage carrying the nouns, one authored color grade, zero filler
+holds, zero template tells. Judge `overall_10` ruthlessly — a 9.5 means "I would
+believe a professional editor shipped this."
+
 ## Why this is the top gate
 
 Retention and reputation are decided by whether the thing has a soul, before any

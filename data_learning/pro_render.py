@@ -359,6 +359,23 @@ def _depict_text_shot(shot, seconds, out, work, idx):
 
 
 def _image_shot(shot, seconds, out, work, idx):
+    # VIDEO-FIRST: a real MOVING clip of the noun beats a still of it, every
+    # time. The keyless video gateway (Commons + Internet Archive) is tried
+    # before the photo path; a miss falls through silently to the photo.
+    q = shot.get("image_query")
+    if q and not shot.get("photo_only"):
+        try:
+            from data_learning import media_video
+            vid = media_video.best_video(q, work / "vids")
+            if vid:
+                _ATTRIB.append({"idx": idx, "source": vid["source"],
+                                "license": vid["license"],
+                                "attribution": vid["attribution"],
+                                "title": vid["title"]})
+                media_video.pick_window(Path(vid["path"]), seconds, out)
+                return out
+        except Exception as e:  # noqa: BLE001 — video is an upgrade, not a gate
+            print(f"[pro] video miss for {q!r}: {str(e)[:60]}")
     try:
         src = _image_source(shot, work, idx)
     except Exception as e:  # noqa: BLE001 — a missing ACCENT never kills a render:
@@ -644,9 +661,17 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
         final_audio = mastered
     except Exception as e:  # noqa: BLE001 — never fail the render on mastering
         _fallback("audio_mastering", "degraded", f"mastering skipped ({e})")
-    # 6) mux
+    # 6) mux + THE FILM GRADE — one cinematic finish over every frame so photos,
+    # clips, scenes and cards read as ONE authored film, not assembled parts:
+    # gentle S-curve contrast, cool shadows / warm highlights split-tone, a touch
+    # of saturation, a subtle vignette, and fine animated grain. Kept restrained
+    # so type stays crisp.
+    grade = ("curves=master='0/0 0.25/0.22 0.75/0.78 1/1',"
+             "colorbalance=rs=-0.03:bs=0.04:rm=0.03:bm=-0.02,"
+             "eq=saturation=1.07,vignette=angle=PI/6,noise=alls=5:allf=t+u")
     _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i",
-          str(final_audio), "-map", "0:v", "-map", "1:a", "-c:v", "libx264",
+          str(final_audio), "-map", "0:v", "-map", "1:a", "-vf", grade,
+          "-c:v", "libx264",
           "-crf", "18", "-preset", "medium", "-c:a", "aac", "-b:a", "160k",
           "-shortest", str(out)])
     total = _dur(out)
