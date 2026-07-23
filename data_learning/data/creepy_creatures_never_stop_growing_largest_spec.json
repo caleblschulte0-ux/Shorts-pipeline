@@ -1,0 +1,28 @@
+{
+  "key": "creepy_creatures_never_stop_growing_largest_spec",
+  "title": "Largest Species",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Whale Shark",
+      "value": 40.0,
+      "period": "2020"
+    },
+    {
+      "label": "Basking Shark",
+      "value": 35.0,
+      "period": "2019"
+    }
+  ]
+}

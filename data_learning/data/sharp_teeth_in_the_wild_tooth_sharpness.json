@@ -1,0 +1,28 @@
+{
+  "key": "sharp_teeth_in_the_wild_tooth_sharpness",
+  "title": "Tooth Sharpness",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Great White Shark",
+      "value": 100.0,
+      "period": "2020"
+    },
+    {
+      "label": "Saltwater Crocodile",
+      "value": 3700.0,
+      "period": "2019"
+    }
+  ]
+}

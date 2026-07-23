@@ -1,0 +1,33 @@
+{
+  "key": "longest_rivers_on_earth_river_lengths_0",
+  "title": "River Lengths",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Nile River",
+      "value": 6695.0,
+      "period": "2020"
+    },
+    {
+      "label": "Amazon River",
+      "value": 6400.0,
+      "period": "2020"
+    },
+    {
+      "label": "Yangtze River",
+      "value": 6300.0,
+      "period": "2020"
+    }
+  ]
+}

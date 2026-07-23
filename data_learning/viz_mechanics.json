@@ -198,5 +198,19 @@
   "concept": "A compass with sweeping needles and a rising gauge for each data point, filled with a subject image and labeled with its value and name",
   "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 210\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], outline=rgba(TEXT, 90), width=16)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.line([cxs, cy, cxs + int((r - 30) * math.cos(math.radians(sweep))), cy + int((r - 30) * math.sin(math.radians(sweep)))], fill=rgba(col, 255), width=10)\n    d.ellipse([cxs - 16, cy - 16, cxs + 16, cy + 16], fill=rgba(col, 255))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 310\n        h = int(w / asp)\n        if h > 220:\n            h = 220\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy + r + 10, w, h)\n    text(str(int(v)), cxs, cy - r - 100, size=62, color=col, center=True)\n    text(labels[i], cxs, cy + r + 240, size=38, center=True)\n    gauge_h = 120\n    gauge_y = cy + r + 280\n    fill_image(img, clamp(v / vmax) * reveal, cxs - 120, gauge_y, 240, gauge_h, 'left', color=None)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('Mathematical Context', (RX0 + RX1) // 2, RBOT - 80, size=56, color=WARN, center=True)\n",
   "topic": "Mathematical Context"
+ },
+ {
+  "sig": "d9333911a1fc",
+  "mechanic": "growth-vessels",
+  "concept": "two glass vessels fill with a liquid to represent growth, each containing a subject image and labelled with its value",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    vx = RX0 + 250 if i == 0 else RX1 - 250\n    vy = RTOP + 200\n    d.rectangle([vx - 50, vy - 300, vx + 50, vy + 50], fill=rgba(TEXT, 90))\n    fill_h = int(250.0 * clamp(v / vmax) * reveal)\n    d.rectangle([vx - 40, vy - fill_h, vx + 40, vy], fill=rgba(HIGHLIGHT if i == 0 else ACCENT, 255))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        if h > 120:\n            h = 120\n            w = int(h * asp)\n        paste(img, vx - w // 2, vy - 140, w, h)\n    text(str(int(v)), vx, vy + 60, size=48, color=HIGHLIGHT if i == 0 else ACCENT, center=True)\n    text(labels[i], vx, vy - 250, size=38, center=True)\n",
+  "topic": "Growth Limit"
+ },
+ {
+  "sig": "d68fb8b50259",
+  "mechanic": "tooth-factory",
+  "concept": "gears and conveyor belts show the production of teeth, with images of sharks and snakes on the belts",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 200 if i == 0 else RX1 - 200\n    cy = RTOP + 200 + i * 300\n    r = 80\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], fill=rgba(TEXT, 90))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    text(str(int(v)) + ' teeth', cxs, cy + r + 50, size=36, color=col, center=True)\n    text(labels[i], cxs, cy + r + 100, size=32, center=True)\n    if reveal > 0.5:\n        d.line([cxs, cy - r, cxs, cy + r], fill=rgba(col, 255), width=5)\n        for j in range(int((reveal - 0.5) * 10)):\n            x = cxs + (j % 2 == 0 and 1 or -1) * (j // 2) * 20\n            y = cy + (j % 2 == 0 and 1 or -1) * 20\n            d.ellipse([x - 10, y - 10, x + 10, y + 10], fill=rgba(col, 255))\n",
+  "topic": "Tooth Replacement"
  }
 ]

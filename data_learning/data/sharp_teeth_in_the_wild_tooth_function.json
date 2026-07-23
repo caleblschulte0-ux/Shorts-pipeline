@@ -1,0 +1,28 @@
+{
+  "key": "sharp_teeth_in_the_wild_tooth_function",
+  "title": "Tooth Function",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Porcupine",
+      "value": 10.0,
+      "period": "2020"
+    },
+    {
+      "label": "Armadillo",
+      "value": 5.0,
+      "period": "2019"
+    }
+  ]
+}

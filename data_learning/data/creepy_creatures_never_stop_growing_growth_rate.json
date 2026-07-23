@@ -1,0 +1,28 @@
+{
+  "key": "creepy_creatures_never_stop_growing_growth_rate",
+  "title": "Growth Rate",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Python",
+      "value": 10.0,
+      "period": "2020"
+    },
+    {
+      "label": "Alligator",
+      "value": 5.0,
+      "period": "2019"
+    }
+  ]
+}

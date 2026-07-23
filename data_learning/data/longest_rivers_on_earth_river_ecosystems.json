@@ -1,0 +1,28 @@
+{
+  "key": "longest_rivers_on_earth_river_ecosystems",
+  "title": "River Ecosystems",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Global Fish Species",
+      "value": 10.0,
+      "period": "2020"
+    },
+    {
+      "label": "Amazon River Fish Species",
+      "value": 2000.0,
+      "period": "2020"
+    }
+  ]
+}

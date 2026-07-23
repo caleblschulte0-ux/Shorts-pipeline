@@ -15145,6 +15145,373 @@
         }
       ],
       "question": "Which do you think shapes the Earth faster -- a volcano's daily flow, or its total legacy over decades?"
+    },
+    {
+      "slug": "longest-rivers-on-earth",
+      "title": "Longest Rivers On Earth",
+      "hook": "Have you ever wondered where the longest rivers in the world are located?",
+      "closing": "The world's longest rivers support a vast array of ecosystems and human populations.",
+      "hashtags": [
+        "rivers",
+        "geography",
+        "nature",
+        "earth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "longest_rivers_on_earth_river_lengths_0",
+          "params": {
+            "file": "longest_rivers_on_earth_river_lengths_0.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 RIVER LENGTHS",
+          "topic": "River Lengths",
+          "say": "The Nile, Amazon, and Yangtze rivers are the longest, with lengths of 6,695, 6,400, and 6,300 kilometers respectively.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "river",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "river",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "river",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "longest_rivers_on_earth_river_basin_size",
+          "params": {
+            "file": "longest_rivers_on_earth_river_basin_size.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 RIVER BASIN SIZE",
+          "topic": "River Basin Size",
+          "say": "The Amazon River basin covers an area of approximately 7 million square kilometers, while the Nile River basin covers around 3.4 million square kilometers.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "basin",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "longest_rivers_on_earth_river_discharge",
+          "params": {
+            "file": "longest_rivers_on_earth_river_discharge.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 RIVER DISCHARGE",
+          "topic": "River Discharge",
+          "say": "The Amazon River has the highest discharge volume, with an average of 209,000 cubic meters per second, followed by the Congo River with 48,000 cubic meters per second.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "water droplet",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "longest_rivers_on_earth_river_ecosystems",
+          "params": {
+            "file": "longest_rivers_on_earth_river_ecosystems.json"
+          },
+          "insight_type": "share",
+          "role": "4 \u00b7 RIVER ECOSYSTEMS",
+          "topic": "River Ecosystems",
+          "say": "Rivers support around 10% of all fish species, with the Amazon River alone being home to over 2,000 species.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's your favorite river and why?"
+    },
+    {
+      "slug": "creepy-creatures-never-stop-growing",
+      "title": "Creepy Creatures Never Stop Growing",
+      "hook": "What if some animals just keep getting bigger and bigger?",
+      "closing": "These creatures will keep on growing, and it's mind-blowing!",
+      "hashtags": [
+        "animalfacts",
+        "wildlife",
+        "growth",
+        "nature",
+        "creepy"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "creepy_creatures_never_stop_growing_animal_growt",
+          "params": {
+            "file": "creepy_creatures_never_stop_growing_animal_growt.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 ANIMAL GROWTH",
+          "topic": "Animal Growth",
+          "say": "Some fish can grow up to 10 times their original size, while others can increase their weight by 50 times, like the gigantic whale shark, which can weigh over 20 tons.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "creepy_creatures_never_stop_growing_growth_rate",
+          "params": {
+            "file": "creepy_creatures_never_stop_growing_growth_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 GROWTH RATE",
+          "topic": "Growth Rate",
+          "say": "The growth rate of these creatures can be staggering, with some increasing their size by 50% in just a few months, like the python, which can grow up to 10 feet in a year.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "creepy_creatures_never_stop_growing_largest_spec",
+          "params": {
+            "file": "creepy_creatures_never_stop_growing_largest_spec.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 LARGEST SPECIES",
+          "topic": "Largest Species",
+          "say": "The largest species of fish, like the whale shark and the basking shark, can grow up to 40 feet in length, while the largest squid can weigh over 1,000 pounds.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "squid",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "shark",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "creepy_creatures_never_stop_growing_growth_limit",
+          "params": {
+            "file": "creepy_creatures_never_stop_growing_growth_limit.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 GROWTH LIMIT",
+          "topic": "Growth Limit",
+          "say": "While some creatures can grow indefinitely, others have a growth limit, like the green anole lizard, which can grow up to 5 inches in length, but no more, and the axolotl, which can regrow its limbs, but only up to a certain point.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "blocks",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's the weirdest creature you've ever heard of that keeps growing?"
+    },
+    {
+      "slug": "sharp-teeth-in-the-wild",
+      "title": "Sharp Teeth In The Wild",
+      "hook": "What's the sharpest tooth in the animal kingdom?",
+      "closing": "These sharp teeth will leave you in awe!",
+      "hashtags": [
+        "sharpteeth",
+        "wildlife",
+        "animals",
+        "nature",
+        "teeth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sharp_teeth_in_the_wild_tooth_sharpness",
+          "params": {
+            "file": "sharp_teeth_in_the_wild_tooth_sharpness.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 TOOTH SHARPNESS",
+          "topic": "Tooth Sharpness",
+          "say": "The great white shark has the sharpest teeth in the ocean, with some teeth reaching a sharpness of 100 times that of human teeth, and the saltwater crocodile has the sharpest teeth on land, with a bite force of over 3,700 pounds per square inch.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "shark",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "sharp_teeth_in_the_wild_tooth_length",
+          "params": {
+            "file": "sharp_teeth_in_the_wild_tooth_length.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 TOOTH LENGTH",
+          "topic": "Tooth Length",
+          "say": "The length of the teeth can also be impressive, with the walrus having tusks that can reach up to 3 feet in length, and the narwhal having a tusk that can reach up to 10 feet in length.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sharp_teeth_in_the_wild_tooth_replacement",
+          "params": {
+            "file": "sharp_teeth_in_the_wild_tooth_replacement.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 TOOTH REPLACEMENT",
+          "topic": "Tooth Replacement",
+          "say": "Some animals, like sharks and snakes, can replace their teeth throughout their lifetime, with some sharks going through thousands of teeth in a single year, and the snake shedding its skin, including its teeth, every few weeks.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "shark",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "snake",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sharp_teeth_in_the_wild_tooth_function",
+          "params": {
+            "file": "sharp_teeth_in_the_wild_tooth_function.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 TOOTH FUNCTION",
+          "topic": "Tooth Function",
+          "say": "The function of the teeth can also be fascinating, with some animals using their teeth for defense, like the porcupine, which has quills that can deter predators, and the armadillo, which has a shell that can protect it from predators.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "hero",
+                "subject": "blocks",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          },
+          "ascending": false
+        }
+      ],
+      "question": "What's the sharpest tooth you've ever seen in person?"
     }
   ],
   "videos": [
