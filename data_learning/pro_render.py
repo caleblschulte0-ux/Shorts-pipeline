@@ -366,14 +366,16 @@ def _image_shot(shot, seconds, out, work, idx):
         _fallback("image_to_statement", "degraded",
                   f"{shot.get('image_query')!r}: no photo ({str(e)[:60]})",
                   beat=shot.get("_beat"))
-        # A degraded beat must NOT dump the whole narration as a wall of text.
-        # Show a SHORT clean caption — the first clause of the line, capped — so
-        # the statement card reads as a deliberate title, not a script overflow.
-        raw = (shot.get("line", "") or str(shot.get("image_query", ""))).strip()
-        short = raw.split(".")[0].strip()
+        # A degraded beat must NOT dump the narration as a wall of text — and it
+        # must NEVER burn the raw search QUERY on screen (a stock-descriptor like
+        # "friends laughing outdoors" reads as an unfinished artifact). Show only a
+        # short clause of the actual narration line; a silent development cut with
+        # no line falls back to a clean drifting field (no text at all).
+        line = (shot.get("line", "") or "").strip()
+        short = line.split(".")[0].strip()
         if len(short.split()) > 6:
             short = " ".join(short.split()[:6])
-        return flat2d.statement(short or raw[:40], out, seconds)
+        return flat2d.statement(short, out, seconds)
     _ATTRIB.append({"idx": idx, "source": src.get("source"),
                     "license": src.get("license"),
                     "attribution": src.get("attribution"),
