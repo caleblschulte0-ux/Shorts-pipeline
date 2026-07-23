@@ -121,7 +121,7 @@
    "narration": "Now the biggest bite of all. Rent or a mortgage takes about a third of every paycheck, month after month, for decades.",
    "understand": "the figure stands small in a lit doorway; rent floats out the chimney each month",
    "image": {
-    "query": "aerial view suburban neighborhood homes rooftops",
+    "query": "apartment buildings in a city",
     "perspective": "cinematic",
     "still": true,
     "min_appeal": 0.3,
@@ -151,15 +151,13 @@
   },
   {
    "job": "DATA",
-   "mode": "footage",
    "narration": "And just like that, we're down to one million dollars.",
    "understand": "the money bar: housing drains out",
-   "image": {
-    "query": "hand holding keys to a new house",
-    "perspective": "cinematic",
-    "still": true,
-    "min_appeal": 0.3,
-    "push": 1.6
+   "flat": {
+    "kind": "scene_money",
+    "upto": 1,
+    "label": "HOUSING",
+    "mood": "housing"
    }
   },
   {
@@ -294,7 +292,7 @@
    "narration": "And then the leaks you barely notice. Streaming, subscriptions, fees, the free trial you forgot to cancel — draining every month whether you use them or not.",
    "understand": "the figure on a couch ringed by subscription tiles, each siphoning a coin",
    "image": {
-    "query": "close up hand holding smartphone with apps",
+    "query": "person using a smartphone",
     "perspective": "cinematic",
     "still": true,
     "min_appeal": 0.3,

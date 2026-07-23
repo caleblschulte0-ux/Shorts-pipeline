@@ -366,8 +366,14 @@ def _image_shot(shot, seconds, out, work, idx):
         _fallback("image_to_statement", "degraded",
                   f"{shot.get('image_query')!r}: no photo ({str(e)[:60]})",
                   beat=shot.get("_beat"))
-        return flat2d.statement(shot.get("line", "") or
-                                str(shot.get("image_query", "")), out, seconds)
+        # A degraded beat must NOT dump the whole narration as a wall of text.
+        # Show a SHORT clean caption — the first clause of the line, capped — so
+        # the statement card reads as a deliberate title, not a script overflow.
+        raw = (shot.get("line", "") or str(shot.get("image_query", ""))).strip()
+        short = raw.split(".")[0].strip()
+        if len(short.split()) > 6:
+            short = " ".join(short.split()[:6])
+        return flat2d.statement(short or raw[:40], out, seconds)
     _ATTRIB.append({"idx": idx, "source": src.get("source"),
                     "license": src.get("license"),
                     "attribution": src.get("attribution"),
