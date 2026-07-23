@@ -1111,12 +1111,22 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 x = Lx if i % 2 == 0 else Rx          # pace across the stage
                 return x, stage_y
 
-            # HOOK: no chart yet, so Data IS the visual — big and central, filling
-            # the frame instead of a tiny sprite marooned in black.
+            # HOOK: no chart yet, so Data IS the visual — big, central, and
+            # REACTING with a bespoke bit (bracing under / hoisting the shock
+            # number) so he isn't a static sprite marooned in black.
             home = (Cx, float(H * 0.40))
+            hook_perf = gap_fill
+            if _director:
+                try:
+                    hnum = _headline_number(st) or ""
+                    hook_perf = _director.author_performance(
+                        subject=f"{st.hook} {st.title}", label="",
+                        value=hnum, kind="hook", index=nseg + 1)
+                except Exception:  # noqa: BLE001
+                    hook_perf = gap_fill
             seq = []
             seq.append((Cx, float(H * 0.40), windows[0][0], windows[0][1],
-                        UP_ANGLE, False, gap_fill))
+                        UP_ANGLE, False, hook_perf))
             for i in range(nseg):
                 wi = windows[1 + i] if 1 + i < len(windows) else None
                 if not wi:
@@ -1299,7 +1309,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 continue
             gi = seg_idx[i]
             s0, s1 = windows[1 + i]
-            fd = 0.3
+            fd = 0.14        # short cross-fade so no frame lands on near-black
             hold = max(0.5, (s1 - s0)) + 1.0
             # Full-frame viz (diorama, timeline, fill_vessel, ...) are authored
             # at 1080x1920 and fill the whole frame; card charts/maps stay in the
@@ -1311,7 +1321,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                 f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
                 f"scale={vw}:{vh},format=rgba,"
-                f"fade=t=in:st={s0:.2f}:d=0.18:alpha=1,"
+                f"fade=t=in:st={s0:.2f}:d=0.12:alpha=1,"
                 f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
             fc.append(
                 f"[{prev}][g{i}]overlay=x={vx}:y={vy}:"

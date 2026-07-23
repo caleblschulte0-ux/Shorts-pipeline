@@ -608,12 +608,8 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
         return pb - (v / vmax) * (pb - pt)
 
     r = 1.0 - (1.0 - reveal) ** 2               # ease-out reveal
-    # title
-    tf = _pil_font(52)
-    title = (insight.topic or "").strip()
-    tb = d.textbbox((0, 0), title, font=tf)
-    d.text(((W - (tb[2] - tb[0])) // 2, 150), title, font=tf,
-           fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
+    # (title is drawn once by render_scene's show_title — do NOT draw it here or
+    # it stacks twice, which reads as a broken render.)
     # polyline up to the revealed head (interpolated between year points)
     n = len(yrs)
     seg = r * (n - 1)
