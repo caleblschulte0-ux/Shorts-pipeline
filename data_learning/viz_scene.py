@@ -608,7 +608,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
     def Y(v):
         return pb - (v / vmax) * (pb - pt)
 
-    r = 1.0 - (1.0 - reveal) ** 2               # ease-out reveal
+    r = reveal                                  # already linear from render_scene
     # (title is drawn once by render_scene's show_title — do NOT draw it here or
     # it stacks twice, which reads as a broken render.)
     n = len(yrs)
@@ -887,8 +887,10 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     anchors: list = []
     pattern = str(out_dir / f"{slug}_build%02d.png")
     for f in range(1, frames + 1):
+        # LINEAR reveal (was ease-out, and _draw_climb eased AGAIN) — the double
+        # ease front-loaded the build so the last ~40% barely moved, which read
+        # as a ~4s dead hold. Steady growth keeps visible motion the whole beat.
         r = 1.0 if f == frames else f / frames
-        r = 1.0 - (1.0 - r) ** 2
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
         if show_title:
