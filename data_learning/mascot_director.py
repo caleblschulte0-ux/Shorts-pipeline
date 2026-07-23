@@ -24,8 +24,12 @@ the heuristic guarantees the never-float rule even before the brain is tuned.
 """
 from __future__ import annotations
 
+import json
 import math
+import os
 import re
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -311,6 +315,176 @@ def choose(subject: str = "", label: str = "", value: str = "",
     return {"prop": "price_tag", "action": "carry", "expr": "shock",
             "text": value or "?"}
 
+
+# ==========================================================================
+# PER-SCENE PERFORMANCE GENERATION — regenerate what Data is DOING per scene,
+# on the fly. The rig can render ANY pose (see _a_pose); these produce the pose
+# specs. Two sources, in order: (1) the Claude HEADLESS BRAIN authors a bespoke
+# pose for the exact beat when MASCOT_BRAIN is on; (2) a deterministic library
+# of distinct bespoke acts keyed to the beat. Both guarantee the never-float
+# rule and never reuse an identical body across differing beats.
+# ==========================================================================
+
+# Rig coordinate cheatsheet (view is roughly x:60..400, y:40..470; shoulders at
+# ~(128,206)/(212,206), face/mouth ~ (170,150), lap ~ (170,300)). Hand target =
+# [wrist_x, wrist_y, bend]. lower ∈ stand|seated|ride.
+POSE_PRESETS: dict[str, dict] = {
+    # Sitting on a can, spooning soup to his mouth (one hand up at the face).
+    "eat_soup": {"action": "pose", "prop": "soup_can", "pose": {
+        "lower": "seated", "back": "soup_can", "back_at": [168, 372],
+        "lh": [150, 300, -6], "rh": [214, 176, 22], "expr": "happy",
+        "motion": {"limb": "r", "amp": 12}, "bob": 2}},
+    # Riding a bird, BOTH hands down gripping it for dear life.
+    "ride_bird_grip": {"action": "pose", "prop": "chart_bird", "pose": {
+        "lower": "ride", "back": "chart_bird", "back_at": [170, 384],
+        "lh": [150, 244, -18], "rh": [190, 244, 18], "expr": "strain",
+        "motion": {"limb": "bob", "amp": 4}, "bob": 6}},
+    # Straining to LIFT a stack of bills overhead — setup→action→payoff.
+    "lift_bills": {"action": "pose", "prop": "dollar", "pose": {
+        "lower": "stand", "front": "dollar", "front_at": [170, 96],
+        "lh": [120, 150, -12], "rh": [220, 150, 12], "expr": "strain",
+        "motion": {"limb": "both", "amp": 7}, "bob": 2}},
+    # Getting crushed / buried under a falling receipt (arms up bracing).
+    "brace_overhead": {"action": "pose", "prop": "price_tag", "pose": {
+        "lower": "stand", "front": "price_tag", "front_at": [170, 70],
+        "lh": [128, 120, -8], "rh": [212, 120, 8], "expr": "shock",
+        "motion": {"limb": "both", "amp": 5}, "bob": 1}},
+    # Shoving an overflowing cart (both hands forward on the handle).
+    "shove_cart": {"action": "pose", "prop": "cart", "pose": {
+        "lower": "stand", "front": "cart", "front_at": [250, 250],
+        "lh": [210, 250, 8], "rh": [230, 250, 10], "expr": "strain",
+        "motion": {"limb": "both", "amp": 4}, "bob": 3}},
+    # Presenting / gesturing UP at the chart above him (one hand raised).
+    "present_up": {"action": "pose", "prop": "clipboard", "pose": {
+        "lower": "stand", "front": "clipboard", "front_at": [130, 250],
+        "lh": [126, 250, -6], "rh": [236, 150, 14], "expr": "happy",
+        "motion": {"limb": "r", "amp": 8}, "bob": 3}},
+}
+
+# Keyword -> preset. First match wins; distinct beats get distinct acts.
+_PERF_RULES: list[tuple[str, str]] = [
+    (r"soup|can|grocer|food|meal|eat|pantry", "eat_soup"),
+    (r"bird|fly|soar|rise|rising|climb|takeoff|launch|up\b|surge", "ride_bird_grip"),
+    (r"dollar|\$|wage|pay|income|salary|raise|cost|price|bill|expensive", "lift_bills"),
+    (r"rent|receipt|debt|crush|burden|weight|heav|tax", "brace_overhead"),
+    (r"cart|shop|spend|checkout|store", "shove_cart"),
+    (r"chart|data|percent|%|trend|rate|share|ratio|graph|timeline", "present_up"),
+]
+
+_VIEW = (60.0, 40.0, 400.0, 470.0)   # x0,y0,x1,y1 sane bounds for hands/props
+
+
+def validate_pose(spec: dict) -> bool:
+    """Structural + bounds check on a 'pose' spec so a bad brain output can't
+    throw or fling a limb off-canvas. Clamps hand/prop coords in place."""
+    if not isinstance(spec, dict) or spec.get("action") != "pose":
+        return False
+    p = spec.get("pose")
+    if not isinstance(p, dict):
+        return False
+    x0, y0, x1, y1 = _VIEW
+    for key in ("lh", "rh"):
+        v = p.get(key)
+        if not (isinstance(v, list) and len(v) == 3):
+            return False
+        v[0] = float(min(max(v[0], x0), x1))
+        v[1] = float(min(max(v[1], y0), y1))
+        v[2] = float(min(max(v[2], -40), 40))
+    for key in ("back_at", "front_at"):
+        v = p.get(key)
+        if isinstance(v, list) and len(v) == 2:
+            v[0] = float(min(max(v[0], x0), x1))
+            v[1] = float(min(max(v[1], y0), y1))
+    if p.get("lower") not in ("stand", "seated", "ride"):
+        p["lower"] = "stand"
+    for key in ("back", "front"):
+        if p.get(key) and p[key] not in PROPS:
+            p[key] = None
+    return True
+
+
+_PERF_GUIDE = (
+    "You choreograph a mascot named Data — a teal monster-professor in a lab "
+    "coat — INTO one video beat. He must never just stand there; he ACTS on the "
+    "beat's subject with a setup->action->payoff. Output ONE JSON pose spec the "
+    "rig renders directly. Rig coords: view x 60..400, y 40..470; shoulders "
+    "~(128,206)/(212,206); face/mouth ~(170,150); lap ~(170,300); feet ~(170,"
+    "430). A hand target is [wrist_x, wrist_y, bend(-40..40)]. Fields: "
+    "{\"action\":\"pose\",\"prop\":<name>,\"pose\":{\"lower\":\"stand|seated|"
+    "ride\",\"lh\":[x,y,b],\"rh\":[x,y,b],\"back\":<prop|null>,\"back_at\":[x,"
+    "y],\"front\":<prop|null>,\"front_at\":[x,y],\"expr\":\"happy|shock|laugh|"
+    "think|strain|neutral\",\"motion\":{\"limb\":\"l|r|both|bob\",\"amp\":0-14},"
+    "\"bob\":0-8}}. Props available: " + ", ".join(sorted(PROPS)) + ". Make the "
+    "pose SPECIFIC to the subject (e.g. spooning soup off a can = seated + a "
+    "hand at the face; gripping a bird mid-flight = ride + both hands down). "
+    "Return ONLY the JSON."
+)
+
+
+def _brain_author(subject: str, label: str, value: str, kind: str) -> dict | None:
+    """Ask the Claude HEADLESS BRAIN (the `claude` CLI, subscription token) to
+    author a bespoke pose for THIS beat. Best-effort: returns None if the CLI is
+    absent/errors so the caller falls back to the deterministic library."""
+    if not shutil.which("claude"):
+        return None
+    ask = (_PERF_GUIDE + f"\n\nBEAT: subject={subject!r} label={label!r} "
+           f"value={value!r} kind={kind!r}. Author Data's performance.")
+    model = os.environ.get("MASCOT_BRAIN_MODEL", "sonnet")
+    try:
+        proc = subprocess.run(
+            ["claude", "-p", ask, "--model", model, "--output-format", "text"],
+            capture_output=True, text=True,
+            timeout=int(os.environ.get("MASCOT_BRAIN_TIMEOUT", "120")))
+        if proc.returncode != 0:
+            return None
+        m = re.search(r"\{.*\}", proc.stdout or "", re.S)
+        if not m:
+            return None
+        spec = json.loads(m.group(0))
+        if value and spec.get("prop") == "price_tag":
+            spec["text"] = value
+        return spec if validate_pose(spec) else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+# A diverse rotation so consecutive beats never reuse the same act, even when
+# their keywords overlap (three grocery beats must still differ).
+_DIVERSE = ["ride_bird_grip", "lift_bills", "present_up", "shove_cart",
+            "brace_overhead", "eat_soup"]
+
+
+def author_performance(subject: str = "", label: str = "", value: str = "",
+                       kind: str = "", *, index: int = 0,
+                       use_brain: bool | None = None) -> dict:
+    """The per-scene performance generator. Order: (1) headless-brain bespoke
+    pose when MASCOT_BRAIN is on; (2) a distinct preset act, rotated by scene
+    ``index`` so beats never repeat, biased toward a keyword match; (3) the
+    classic :func:`choose` heuristic. Always returns a renderable, never-float
+    spec."""
+    if use_brain is None:
+        use_brain = os.environ.get("MASCOT_BRAIN", "0").lower() in (
+            "1", "true", "on", "yes")
+    if use_brain:
+        spec = _brain_author(subject, label, value, kind)
+        if spec:
+            return spec
+    hay = " ".join((subject, label, kind)).lower()
+    # Bias the rotation so a strong keyword match LEADS for this beat, then pick
+    # by index so each beat in the video lands on a different act.
+    order = list(_DIVERSE)
+    for pat, preset in _PERF_RULES:
+        if re.search(pat, hay) and preset in order:
+            order.remove(preset)
+            order.insert(0, preset)
+            break
+    preset = order[index % len(order)]
+    spec = json.loads(json.dumps(POSE_PRESETS[preset]))       # deep copy
+    if value and spec.get("prop") == "price_tag":
+        spec["text"] = value
+    validate_pose(spec)
+    return spec
+
 # -------------------------------------------------------------- composition
 def compose_svg(spec: dict) -> str:
     """Build the full scene-mascot SVG (Data + prop, posed to interact)."""
@@ -571,6 +745,44 @@ ANIMATORS = {
     "cheer": _a_cheer, "point_at": _a_point,
 }
 
+# --------------------------------------------------------------------------
+# GENERIC per-scene animator — the "regenerate the performance per scene"
+# engine. Instead of reusing one of the fixed named actions, a beat can carry a
+# full bespoke POSE: where each HAND goes (wrist x,y + bend), which lower body,
+# a prop behind and/or in front at chosen spots, the expression, and which limb
+# oscillates. Data performs ANY such pose with the SAME rig — nothing about HOW
+# he's drawn changes — so two "sitting" beats can be totally different acts
+# (spooning soup off a can vs. gripping a bird's feathers mid-flight). The brain
+# authors these on the fly (author_performance); choose() is the fallback.
+# --------------------------------------------------------------------------
+_LOWER = {"stand": R.lower_stand, "seated": R.lower_seated, "ride": R.lower_ride}
+
+
+def _a_pose(t, spec):
+    p = spec.get("pose", {}) or {}
+    lh = list(p.get("lh", [150, 252, -8]))     # left  wrist [x, y, bend]
+    rh = list(p.get("rh", [190, 252, 8]))      # right wrist [x, y, bend]
+    m = p.get("motion", {}) or {}
+    osc = _s(t) * float(m.get("amp", 5))
+    limb = m.get("limb", "bob")
+    if limb in ("l", "both"):
+        lh[1] = lh[1] + osc
+    if limb in ("r", "both"):
+        rh[1] = rh[1] + osc
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    lower = _LOWER.get(p.get("lower", "stand"), R.lower_stand)()
+
+    def _draw(name, at):
+        d = PROPS.get(name)
+        return d(int(at[0]), int(at[1])) if d else ""
+    back = _draw(p["back"], p.get("back_at", [170, 372])) if p.get("back") else ""
+    front = _draw(p["front"], p.get("front_at", [200, 250])) if p.get("front") else ""
+    look = (0, 3) if p.get("lower") in ("seated", "ride") else (0, 0)
+    eyes, mouth = _expr(p.get("expr", "happy"), look=look)
+    bob = _s(t) * float(p.get("bob", 3))
+    return (arms, lower, back, front, eyes, mouth, bob)
+
 
 def compose_anim(spec: dict, t: float) -> str:
     """Animated scene-mascot SVG at phase t in [0,1): Data moving + a grounded
@@ -583,8 +795,12 @@ def compose_anim(spec: dict, t: float) -> str:
         def prop(cx, cy, s=1.0): return draw(cx, cy, s, text=text)
     else:
         prop = draw
-    arms, lower, back, front, eyes, mouth, bob = \
-        ANIMATORS.get(action, _a_carry)(t, prop)
+    if action == "pose":
+        # bespoke per-scene performance authored for THIS beat
+        arms, lower, back, front, eyes, mouth, bob = _a_pose(t, spec)
+    else:
+        arms, lower, back, front, eyes, mouth, bob = \
+            ANIMATORS.get(action, _a_carry)(t, prop)
     env = ENVS.get(prop_name, _shadow)()
     masc = R.assemble(arms, eyes, mouth, lower=lower,
                       extra_back=back, extra_front=front)

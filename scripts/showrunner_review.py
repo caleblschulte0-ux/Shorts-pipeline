@@ -227,6 +227,29 @@ def should_block(verdict: dict) -> bool:
     return verdict.get("verdict") == "block"
 
 
+LEDGER = REPO / "state" / "showrunner_verdicts.jsonl"
+
+
+def append_ledger(slug: str, verdict: dict) -> None:
+    """Append a compact, durable record of the gate's verdict. This is the
+    showrunner's memory — a permanent trail of what it judged and why, so its
+    authority is concrete and auditable, not a one-off print in a CI log."""
+    from datetime import datetime, timezone
+    try:
+        LEDGER.parent.mkdir(parents=True, exist_ok=True)
+        rec = {"ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+               "slug": slug,
+               "score": verdict.get("score"),
+               "verdict": verdict.get("verdict"),
+               "one_line": verdict.get("one_line"),
+               "auto_fails": verdict.get("auto_fails", []),
+               "judge": "headless-claude"}
+        with LEDGER.open("a") as fh:
+            fh.write(json.dumps(rec) + "\n")
+    except Exception:  # noqa: BLE001 — the ledger must never break a run
+        pass
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("mp4")
@@ -256,6 +279,7 @@ def main() -> int:
         out.write_text(json.dumps(verdict, indent=2))
     except Exception:  # noqa: BLE001
         pass
+    append_ledger(Path(args.mp4).stem, verdict)
     tag = "BLOCK ⛔" if should_block(verdict) else "SHIP ✅"
     print(f"[showrunner] {tag}  score={verdict.get('score')}  "
           f"— {verdict.get('one_line')}", flush=True)

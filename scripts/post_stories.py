@@ -232,6 +232,7 @@ def main() -> int:
                 verdict = _sr.review_video(out, context=ctx)
                 out.with_suffix(".showrunner.json").write_text(
                     json.dumps(verdict, indent=2))
+                _sr.append_ledger(slug, verdict)   # durable record of record
                 tag = "BLOCK" if _sr.should_block(verdict) else "SHIP"
                 print(f"[{slug}] showrunner {tag} score={verdict.get('score')}"
                       f" — {verdict.get('one_line')}", flush=True)

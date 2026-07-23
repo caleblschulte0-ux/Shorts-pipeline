@@ -1078,9 +1078,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     v = seg.anchors[0].get("value")
                     if v is not None:
                         val = story._fmtnum(v)
-                return _director.choose(
+                # Per-scene performance: a bespoke pose generated for THIS beat
+                # (brain-authored when MASCOT_BRAIN is on, else a distinct preset
+                # rotated by scene index so no two beats reuse the same act).
+                return _director.author_performance(
                     subject=f"{seg.topic} {seg.sentence}", label=seg.topic,
-                    value=val, kind=getattr(seg, "kind", ""))
+                    value=val, kind=getattr(seg, "kind", ""), index=i)
             except Exception:  # noqa: BLE001
                 return "shock"
 
