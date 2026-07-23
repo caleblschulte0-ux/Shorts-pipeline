@@ -43,6 +43,11 @@ BLACK_MAX = 0.7                          # black screen that long = broken
 FREEZE_MAX = 2.5                         # frozen frame that long = broken
 AV_DRIFT_MAX = 0.6                       # |video_dur - audio_dur|
 FACE_MIN_RATE = 0.35                     # face-crop must still show a face
+# median variance-of-Laplacian (512px-wide grayscale) below this = the whole
+# source is out-of-focus / motion-blurred / blank. Calibrated: sharp footage
+# ~550, heavy blur ~2, solid gray ~0 — 8.0 sits ~68x under real content, so it
+# only cuts the genuinely unwatchable and never a valid soft clip.
+BLUR_MIN = 8.0
 
 
 def _run(cmd: list[str]) -> str:
@@ -143,6 +148,42 @@ def _face_rate(video: Path, dur: float) -> float | None:
                 hits += 1
         cap.release()
         return hits / seen if seen else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _sharpness(video: Path, n_samples: int = 12) -> float | None:
+    """Median variance-of-Laplacian across `n_samples` evenly-spaced frames
+    (the classic focus measure) on a 512px-wide grayscale downscale so the
+    metric is resolution-independent. High = sharp, ~0 = blank/blurred. The
+    MEDIAN makes it robust to a few fast-motion frames — only a clip that is
+    soft/blank THROUGHOUT scores low. None when OpenCV is unavailable or the
+    source can't be read (check skipped, never blocks)."""
+    try:
+        import cv2
+        cap = cv2.VideoCapture(str(video))
+        total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        if total <= 0:
+            cap.release()
+            return None
+        vals = []
+        for k in range(n_samples):
+            cap.set(cv2.CAP_PROP_POS_FRAMES,
+                    int(total * (k + 0.5) / n_samples))
+            ok, frame = cap.read()
+            if not ok:
+                continue
+            w = 512
+            h = max(1, int(frame.shape[0] * w / max(1, frame.shape[1])))
+            frame = cv2.resize(frame, (w, h))
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            vals.append(float(cv2.Laplacian(gray, cv2.CV_64F).var()))
+        cap.release()
+        if not vals:
+            return None
+        vals.sort()
+        mid = len(vals) // 2
+        return vals[mid] if len(vals) % 2 else (vals[mid - 1] + vals[mid]) / 2
     except Exception:  # noqa: BLE001
         return None
 
@@ -318,6 +359,18 @@ def preflight(video: Path) -> list[str]:
                         "— dropped feed / hard fade")
             except Exception as e:  # noqa: BLE001 — black check best-effort
                 print(f"[preflight] black check skipped ({e})", flush=True)
+            # BLUR / OUT-OF-FOCUS GATE (diagnosis #5): out-of-focus and
+            # motion-blurred sources were the #1 post-render vision-QA reject
+            # this week — they render to a mushy Short with no discernible
+            # subject, wasting a full render + a self-heal before the slot
+            # gives up. Catch them here in ~1-2s. A blank/solid-gray frame
+            # also scores near-zero, so this doubles as a blank-frame gate.
+            if have_v:
+                sharp = _sharpness(video)
+                if sharp is not None and sharp < BLUR_MIN:
+                    problems.append(
+                        f"source out-of-focus / motion-blurred (sharpness "
+                        f"{sharp:.1f} < {BLUR_MIN}) — no discernible subject")
     except Exception as e:  # noqa: BLE001 — fail open, the render QA backstops
         print(f"[preflight] check error (ignored): {e}", flush=True)
     return problems
