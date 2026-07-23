@@ -901,6 +901,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # CLOSING — the mascot delivers its quip in a speech bubble (the focus),
     # with the sources shrunk to tiny text at the very bottom.
     c0, c1 = windows[-1]
+    cd = max(1.2, c1 - c0)
+    # STAGGER the closing reveals across the WHOLE window so content keeps
+    # appearing (no long frozen 'read the card' hold — the dead-air the gate
+    # measures). Bubble+quip land first, the question ~40% in, the CTA ~62% in
+    # with a bounce, so nothing sits static for 4s.
+    qs = c0 + 0.40 * cd
+    cs = c0 + 0.62 * cd
     bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&H" + acc + "&\\bord4\\shad0"
               "\\fad(250,0)\\p1}"
               + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 588))
@@ -913,12 +920,14 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     question = getattr(st, "question", "")
     if question:
         q = ("{\\an5\\pos(540,1120)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
-             "\\shad0\\fad(450,0)}" + _wrap(question, 24))
-        lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
-        cta = ("{\\an5\\pos(540,1240)\\fs54\\c&H" + acc + "&\\b1\\bord5\\3c&H000000&"
-               "\\shad0\\fad(450,0)\\fscx82\\fscy82\\t(450,780,\\fscx100\\fscy100)}"
-               "COMMENT BELOW ▼")
-        lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
+             "\\shad0\\fad(300,0)}" + _wrap(question, 24))
+        lines.append(f"Dialogue: 5,{_ass_time(qs)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
+        # CTA pops in late and KEEPS bobbing (a continuous move) so the tail of
+        # the closing is never a still frame.
+        cta = ("{\\an5\\move(540,1244,540,1232,0,900)\\fs54\\c&H" + acc
+               + "&\\b1\\bord5\\3c&H000000&\\shad0\\fad(300,0)"
+               "\\fscx82\\fscy82\\t(0,300,\\fscx100\\fscy100)}COMMENT BELOW ▼")
+        lines.append(f"Dialogue: 5,{_ass_time(cs)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
     src = " · ".join(st.sources)
     src_txt = ("{\\an2\\pos(540,1898)\\fs15\\c&HA5B4C7&\\b0\\bord1\\shad0"
                "\\fad(200,0)}Sources: " + src)
