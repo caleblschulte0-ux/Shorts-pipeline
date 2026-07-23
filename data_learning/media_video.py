@@ -123,7 +123,7 @@ def _ia_resolve(cand: dict) -> dict | None:
             if not name.lower().endswith((".mp4", ".mpg", ".m4v")):
                 continue
             size = float(f.get("size", 0) or 0)
-            if size <= 0 or size > 500e6:
+            if size <= 0 or size > 250e6:
                 continue
             width = float(f.get("width", 0) or 0)
             # RESOLUTION FIRST (the 320x240 "512kb" derivative looks mushy at
@@ -213,10 +213,14 @@ def best_video(query: str, work: Path, *, want_seconds: float = 6.0,
         raw = work / f"vidraw_{safe}{Path(urllib.parse.urlparse(res['url']).path).suffix.lower()}"
         try:
             print(f"[video] fetching {res['provider']}: {res['title'][:70]!r} rel={cand['rel']:.2f}")
-            data = _get(res["url"], timeout=180)
-            raw.write_bytes(data)
+            req = urllib.request.Request(res["url"], headers=UA)
+            with urllib.request.urlopen(req, timeout=60) as r_in, \
+                    open(raw, "wb") as f_out:      # stream: no whole-file in RAM
+                while chunk := r_in.read(1 << 20):
+                    f_out.write(chunk)
         except Exception as e:  # noqa: BLE001
             print(f"[video]   download failed ({str(e)[:60]})")
+            raw.unlink(missing_ok=True)
             continue
         info = _probe(raw)
         if not info or info["duration"] < want_seconds + 1 or info["w"] < 480:
@@ -229,13 +233,20 @@ def best_video(query: str, work: Path, *, want_seconds: float = 6.0,
             raw.unlink(missing_ok=True)
             continue
         norm = work / f"vid_{safe}.mp4"
-        # normalize: 1920x1080 cover-crop, 30fps, clean h264 (fast to cut later)
+        # normalize ONLY A WINDOW, never the whole source: a 6s cutaway does not
+        # need a 30-minute archival reel transcoded (that blew the timeout and
+        # ~600MB of disk per query). Long reels contribute a mid-film segment —
+        # past the titles, where the actual footage lives.
+        seg = min(info["duration"], max(75.0, want_seconds * 4))
+        start = 0.0 if info["duration"] <= seg + 2 else \
+            max(0.0, info["duration"] * 0.45 - seg / 2)
         r = subprocess.run(
-            ["ffmpeg", "-y", "-loglevel", "error", "-i", str(raw),
+            ["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{start:.1f}",
+             "-t", f"{seg:.1f}", "-i", str(raw),
              "-vf", "scale=1920:1080:force_original_aspect_ratio=increase,"
                     "crop=1920:1080,fps=30", "-an",
              "-c:v", "libx264", "-preset", "fast", "-crf", "19", str(norm)],
-            capture_output=True, timeout=900)
+            capture_output=True, timeout=600)
         raw.unlink(missing_ok=True)
         if r.returncode != 0 or not norm.exists():
             continue
