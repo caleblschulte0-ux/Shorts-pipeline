@@ -261,6 +261,69 @@ def composition_budget(beats: list, beatmap: Path):
     return (round(frac, 3), frac > CARD_BUDGET)
 
 
+def visual_family(beat: dict) -> str:
+    """The coarse "what does this beat LOOK like" bucket across the WHOLE video —
+    designed AND real. The card budget misses this: scene_money and chapter cards
+    recur all video yet count as neither cards nor a footage family, so a
+    predictable backbone (chapter card -> scene -> money meter, x7) passes every
+    gate. This is what lets the director see a repeated look (audit P1 #9)."""
+    k = _beat_kind(beat)
+    if k == "scene_money":
+        return "money_meter"
+    if k == "flat_title":
+        return "chapter_card"
+    if k in CARD_KINDS:
+        return "stat_card"
+    if k.startswith("scene_"):
+        return "character_scene"
+    if beat.get("image") or beat.get("footage") or k in (
+            "image", "footage", "depict", "composite", "image_text", "depict_text"):
+        return "real_media"
+    if k.startswith("flat_"):
+        return "designed_motion"
+    return k or "other"
+
+
+def family_balance(beats: list, beatmap: Path, share_cap: float = 0.45,
+                   run_cap: int = 2):
+    """No single VISUAL family may quietly become the backbone. Returns
+    (dist, issues): `dist` maps family -> fraction of runtime; `issues` flags
+    ('dominant', fam, frac) when a non-scene/non-media family exceeds `share_cap`,
+    and ('streak', fam, start, length) when more than `run_cap` beats of the same
+    family run back-to-back. The systemic catch the card budget can't make."""
+    try:
+        bm = json.loads(Path(beatmap).read_text())
+        rows = bm if isinstance(bm, list) else bm.get("beats", [])
+    except Exception:
+        return ({}, [])
+    durs, fams, total = [], [], 0.0
+    for i, r in enumerate(rows):
+        try:
+            a, z = (float(x) for x in str(r.get("t", "")).split("-"))
+        except (ValueError, IndexError):
+            a, z = 0.0, 0.0
+        durs.append(max(0.0, z - a))
+        total += durs[-1]
+        fams.append(visual_family(beats[i]) if i < len(beats) else "other")
+    dist = {}
+    for f, dur in zip(fams, durs):
+        dist[f] = dist.get(f, 0.0) + dur
+    dist = {f: round(v / total, 3) for f, v in dist.items()} if total else {}
+    issues = []
+    for f, frac in dist.items():
+        if f not in ("real_media", "character_scene") and frac > share_cap:
+            issues.append(("dominant", f, frac))
+    i = 0
+    while i < len(fams):
+        j = i
+        while j + 1 < len(fams) and fams[j + 1] == fams[i]:
+            j += 1
+        if j - i + 1 > run_cap and fams[i] != "other":
+            issues.append(("streak", fams[i], i, j - i + 1))
+        i = j + 1
+    return (dist, issues)
+
+
 def _beat_sig(render: Path, t: str):
     """A small perceptual signature of a beat — the mid-beat frame downscaled to
     12x12 grayscale. Two beats that LOOK alike (five Earth-from-orbit clips) have
@@ -425,7 +488,7 @@ def _hook_gate(beats: list, beatmap: Path, render: Path):
 
 
 def _gate_report(verdict: str, hv, interest, dull, escalated, beats,
-                 excess=None) -> None:
+                 excess=None, beatmap=None) -> None:
     """The DIRECTOR's ordered scorecard — proves every gate RAN, in order of
     importance, and shows what each did (passed / fixed / stuck). No gate can be
     silently skipped: if it isn't on this list, it wasn't run."""
@@ -457,6 +520,21 @@ def _gate_report(verdict: str, hv, interest, dull, escalated, beats,
     ex = excess or []
     print(f" 3b. VARIETY   : {len(ex)} look-alike beat(s) remain {ex}; "
           f"{len(designed)} designed animation(s): {designed}")
+    # 3d. FAMILY BALANCE — no single LOOK may become the backbone (audit P1 #9).
+    if beatmap is not None:
+        dist, fissues = family_balance(beats, beatmap)
+        top = sorted(dist.items(), key=lambda kv: -kv[1])[:4]
+        shape = ", ".join(f"{f} {p:.0%}" for f, p in top)
+        flags = []
+        for it in fissues:
+            if it[0] == "dominant":
+                flags.append(f"{it[1]} is {it[2]:.0%} of runtime")
+            else:                                   # ("streak", fam, start, length)
+                flags.append(f"{it[3]}x {it[1]} back-to-back @beat {it[2]}")
+        if flags:
+            print(f" 3d. FAMILY    : REPEAT — {'; '.join(flags)} | mix: {shape}")
+        else:
+            print(f" 3d. FAMILY    : balanced | mix: {shape}")
     mism = pacing_check(beats)
     sync_msg = ("all visuals match their narration" if not mism
                 else f"{len(mism)} mismatch(es): {[m['beat'] for m in mism]}")
@@ -594,7 +672,7 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
                          f"(max {CARD_BUDGET:.0%}). It reads as an infographic reel. "
                          "Carry the beats with character scenes / footage; keep "
                          "cards a minority. Soul first.", hv, interest, dull,
-                         escalated, beats, excess=excess)
+                         escalated, beats, excess=excess, beatmap=beatmap)
             return 4
         if not dull and (not hv or hv["pass"]) and not stale and not cards_over:
             _record_memory(story_path.stem, work, rnd, proc.stderr or "")
@@ -602,7 +680,7 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
                          f"cards {card_frac:.0%} (a minority). RUN THE TASTE JUDGE "
                          "(data_learning/TASTE_JUDGE.md) on the blind package before "
                          "publishing — metrics are necessary, not sufficient.", hv,
-                         interest, dull, escalated, beats, excess=excess)
+                         interest, dull, escalated, beats, excess=excess, beatmap=beatmap)
             return 0
         if stale and not dull:
             # a stale span is a length/editing problem the loop can't auto-fix
@@ -611,7 +689,7 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
             _gate_report(f"REJECTED — {len(stale)} stale span(s): the video holds "
                          "one idea too long. Shorter beats / more cuts / a new "
                          "element every 5s. Motion is not novelty.",
-                         hv, interest, dull, escalated, beats, excess=excess)
+                         hv, interest, dull, escalated, beats, excess=excess, beatmap=beatmap)
             return 3
         # fix each dull beat we haven't already handled — by the RIGHT method:
         #  designed card (kind=animate) -> make it more fluid, NEVER footage
@@ -641,11 +719,11 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
             _record_memory(story_path.stem, work, rnd, proc.stderr or "")
             _gate_report("STUCK — unfixable flags remain (likely stock/motion "
                          "access-gated). Reported, not hidden.",
-                         hv, interest, dull, escalated, beats, excess=excess)
+                         hv, interest, dull, escalated, beats, excess=excess, beatmap=beatmap)
             return 2
     _record_memory(story_path.stem, work, rnd, proc.stderr or "")
     _gate_report(f"ROUND-LIMIT ({rounds}) — some beats may remain dull",
-                 hv, interest, dull, escalated, beats, excess=excess)
+                 hv, interest, dull, escalated, beats, excess=excess, beatmap=beatmap)
     return 1
 
 
