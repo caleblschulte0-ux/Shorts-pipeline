@@ -820,40 +820,51 @@ def _coin_fall(d, seed, t, x0, x1, y0, count=10, spread=260):
 
 
 def _cash_pile(d, cx, base_y, frac, seed, glow_coin=False):
-    """A physical HEAP of banknotes + coins whose size encodes `frac` (0..1) of a
-    life's money. Not a chart — a pile you can see shrink. Deterministic layout,
-    drawn back-to-front so it reads as a mound; overlap gives the heap depth."""
+    """A dense, DIMENSIONAL heap of banknotes + coins whose size encodes `frac`
+    (0..1) of a life's money — a physical pile you can see shrink, not a chart.
+    Bills are packed into a real mound (half-width narrows with height), shaded by
+    depth (dark, cool at the shadowed base; bright, warm at the lit crown), grounded
+    by a soft contact shadow and finished with lit top edges so it reads as money
+    catching light. Systemic: every money_scene in every video uses this."""
     frac = max(0.02, min(1.0, frac))
-    pw = int(W * 0.30 * math.sqrt(frac)) + 40          # heap half-spread
-    ph = int(H * 0.30 * math.sqrt(frac)) + 24          # heap height
+    pw = int(W * 0.32 * math.sqrt(frac)) + 46          # heap half-spread
+    ph = int(H * 0.34 * math.sqrt(frac)) + 30          # heap height
     rnd = random.Random(seed)
-    bills = int(18 + 90 * frac)
+    # soft contact shadow grounding the heap on the floor
+    d.ellipse([cx - pw * 1.08, base_y - 10, cx + pw * 1.08, base_y + 50],
+              fill=(0, 0, 0, 95))
     items = []
-    for _ in range(bills):
-        u = rnd.uniform(-1, 1)
-        rise = rnd.random()                            # 0 base .. 1 top
+    for _ in range(int(46 + 240 * frac)):              # DENSE — a real mound
+        rise = rnd.random() ** 1.25                    # bias to the base
+        halfw = pw * (1 - rise) ** 0.7                 # mound profile
+        x = cx + rnd.uniform(-1, 1) * halfw
+        y = base_y - rise * ph + rnd.uniform(-6, 6)
+        items.append((x, y, rnd.uniform(-0.6, 0.6), rise))
+    items.sort(key=lambda p: p[1])                     # back (top) to front (base)
+    bw2, bh2 = 66, 31
+    for (x, y, skew, rise) in items:
+        lit = 0.5 + 0.55 * rise                        # crown catches the light
+        g = (min(255, int(GREEN[0] * lit) + 10), min(255, int(GREEN[1] * lit) + 14),
+             min(255, int(GREEN[2] * lit) + 8))
+        gd = (int(GREEN_D[0] * lit * 0.9), int(GREEN_D[1] * lit * 0.9),
+              int(GREEN_D[2] * lit * 0.9))
+        dx = skew * 12
+        top = [(x - bw2 / 2 + dx, y - bh2 / 2), (x + bw2 / 2 + dx, y - bh2 / 2)]
+        d.polygon([top[0], top[1], (x + bw2 / 2 - dx, y + bh2 / 2),
+                   (x - bw2 / 2 - dx, y + bh2 / 2)], fill=(*g, 255))
+        d.line([top[0], top[1]],                       # lit leading edge
+               fill=(min(255, g[0] + 46), min(255, g[1] + 46), min(255, g[2] + 40), 255),
+               width=2)
+        d.ellipse([x - 9, y - 8, x + 9, y + 8], outline=(*gd, 255), width=2)  # seal
+    # gold coins glinting across the mound (more toward the lit crown)
+    for _ in range(int(6 + 22 * frac)):
+        rise = rnd.random() ** 0.8
+        halfw = pw * (1 - rise) ** 0.7
+        x = cx + rnd.uniform(-1, 1) * halfw
         y = base_y - rise * ph
-        x = cx + u * pw * (1 - 0.5 * rise)             # narrower toward the top
-        skew = rnd.uniform(-0.5, 0.5)                  # a little lean per bill
-        items.append((x, y, skew))
-    items.sort(key=lambda p: p[1])                     # back (high) to front (low)
-    bw2, bh2 = 60, 30
-    for (x, y, skew) in items:
-        dx = skew * 10
-        # a banknote as a leaning parallelogram-ish rounded slab + inner oval
-        d.polygon([(x - bw2 / 2 + dx, y - bh2 / 2), (x + bw2 / 2 + dx, y - bh2 / 2),
-                   (x + bw2 / 2 - dx, y + bh2 / 2), (x - bw2 / 2 - dx, y + bh2 / 2)],
-                  fill=(*GREEN, 255))
-        d.ellipse([x - 10, y - 9, x + 10, y + 9], outline=(*GREEN_D, 255), width=2)
-    # gold coins glinting across the heap
-    for _ in range(int(4 + 16 * frac)):
-        u = rnd.uniform(-1, 1)
-        rise = rnd.random()
-        x = cx + u * pw * (1 - 0.5 * rise)
-        y = base_y - rise * ph
-        _coin(d, int(x), int(y), int(12 + rnd.random() * 6), face=False)
+        _coin(d, int(x), int(y), int(11 + rnd.random() * 7), face=False)
     if glow_coin:
-        _coin(d, cx, base_y - ph - 24, 30)
+        _coin(d, cx, base_y - ph - 26, 32)
 
 
 def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
