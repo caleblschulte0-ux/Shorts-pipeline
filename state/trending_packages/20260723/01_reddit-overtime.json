@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "subreddit": "MaliciousCompliance",
+  "slug": "01_reddit-overtime",
+  "title": "My manager said overtime 'isn't tracked' - so I tracked it myself",
+  "hashtags": [
+    "reddit",
+    "maliciouscompliance",
+    "revenge",
+    "storytime",
+    "justice",
+    "karma",
+    "fyp",
+    "shorts",
+    "story",
+    "viral",
+    "satisfying",
+    "workplace"
+  ],
+  "script": "My manager denied my overtime for three months straight, said the system just doesn't track it. So I started tracking it myself. Every late night, every weekend, screenshots of my badge scans and timestamped emails he sent me at 11pm. Ninety hours. When I had a full folder, I didn't go to him. I went straight to HR and the labor board. Turns out he had been shaving hours off the whole team to hit his budget bonus. They audited two years of payroll. Fourteen of us got back pay. He got walked out by security on a Tuesday. My check alone was over four thousand dollars. He never thought the quiet guy in the corner was keeping receipts.",
+  "shots": [
+    {
+      "phrase": "denied my overtime for three months",
+      "query": "office worker late night desk",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "the system just doesn't track it",
+      "query": "manager talking in office",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "I started tracking it myself",
+      "query": "person typing spreadsheet",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "screenshots of my badge scans",
+      "query": "office keycard scanner",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "I went straight to HR and the labor board",
+      "query": "hr meeting office",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "audited two years of payroll",
+      "query": "accountant reviewing documents",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "walked out by security",
+      "query": "security escorting man from office",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "keeping receipts",
+      "query": "folder full of documents",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "the system just doesn't track it",
+      "text": "SURE IT DOESN'T",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Ninety hours",
+      "text": "90 HOURS",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Fourteen of us got back pay",
+      "text": "14 GOT PAID",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "walked out by security",
+      "text": "ESCORTED OUT",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark"
+}
