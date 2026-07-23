@@ -59,7 +59,10 @@ def _render_package(pkg: dict, out_path) -> None:
     """Route to the right renderer. Reddit-drama packages (they carry a
     `subreddit`) get the genre renderer — full-screen gameplay, post card,
     karaoke captions. Everything else keeps the explainer stack."""
-    if pkg.get("format") == "text_card":
+    if pkg.get("format") == "graph_race":
+        import make_graph_race
+        make_graph_race.build_graph_race(pkg, out_path)
+    elif pkg.get("format") == "text_card":
         import make_text_card
         make_text_card.build_text_card(
             pkg, out_path,
@@ -302,7 +305,7 @@ def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | No
     # text_card videos are a clip + a text block by design — the relevance/
     # imagery QA doesn't apply and would false-flag them. Skip QA entirely;
     # YouTube auto-generates a thumbnail.
-    if pkg.get("format") == "text_card":
+    if pkg.get("format") in ("text_card", "graph_race"):
         return None, None
     block: str | None = None
     thumb: str | None = None
@@ -403,7 +406,7 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     # text_card packages carry no shots — the payload is the text block, not
     # illustrated beats — so the shot-based backfill + illustration gate don't
     # apply and would wrongly quarantine them. Skip both for that format.
-    _is_text_card = pkg.get("format") == "text_card"
+    _is_text_card = pkg.get("format") in ("text_card", "graph_race")
     # Feature 2: backfill thin beats with generated imagery so a good
     # story isn't quarantined for stock-only shots (no-op without a key).
     if not _is_text_card:
