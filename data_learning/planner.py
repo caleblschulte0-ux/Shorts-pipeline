@@ -339,22 +339,37 @@ def _img_dev(image: dict, seconds: float) -> dict:
             "phase": "development"}
 
 
+IMG_HOLD = 3.6        # a photo is a BRIEF noun cutaway, not a held slideshow
+
+
 def _chunk_image(image: dict, secs: float, maxu: float) -> list[dict]:
-    """Split a long image beat into ceil(secs/maxu) Ken-Burns moves, each with a
-    different pan/push, so the framing keeps changing. A short beat stays one."""
+    """A photo illustrates a NOUN, briefly — never a single still zoomed in and
+    out for the whole beat. A long image beat CUTS between the beat's distinct
+    noun images (`image.queries`: extra subjects named in the narration), a new
+    one every ~IMG_HOLD seconds, with a gentle drift (not a weird aggressive
+    zoom). If only one subject is given, the beat is capped short and holds once
+    rather than re-zooming to pad the runtime."""
     import math
-    n = max(1, math.ceil(secs / maxu)) if secs > maxu + 0.4 else 1
-    if n == 1:
-        return [{"kind": "image", **_img(image), "seconds": secs}]
+    hold = min(maxu, IMG_HOLD)
+    # the subjects to cut between: the main query + any extra nouns the beat lists
+    variants = [image.get("query")] + list(image.get("queries") or [])
+    variants = [v for v in variants if v] or [image.get("query")]
+    if secs <= hold + 0.4 or len(variants) == 1:
+        # one subject: a single GENTLE hold covering the beat — no re-zoom padding.
+        # (A long beat should carry multiple nouns to cut between; see `queries`.)
+        im = dict(image)
+        im.setdefault("push", 1.10)
+        return [{"kind": "image", **_img(im), "seconds": secs}]
+    n = min(len(variants), max(2, math.ceil(secs / hold)))
     each = secs / n
-    base_dir = image.get("direction", "in")
     pans = ["auto", "right", "left", "up", "down"]
     shots = []
     for k in range(n):
         im = dict(image)
-        im["direction"] = base_dir if k % 2 == 0 else \
-            ("out" if base_dir != "out" else "in")
+        im["query"] = variants[k % len(variants)]   # CUT to a DIFFERENT noun
+        im.pop("url", None)                          # extra nouns resolve by query
         im["pan"] = pans[k % len(pans)]
+        im["push"] = 1.10                            # gentle drift, not a zoom
         sh = {"kind": "image", **_img(im), "seconds": each}
         if k:
             sh["phase"] = "development"
