@@ -1181,10 +1181,12 @@ def render_hook_receipt(out_dir: Path, slug: str, header: str,
         ty = py1 - 250
         for xx in range(px0 + 40, px1 - 40, 26):
             d.line([(xx, ty), (xx + 14, ty)], fill=faint, width=3)
-        # TOTAL races up but SETTLES on the final figure by ~40% of the beat and
-        # holds it — so a sampled frame shows the real total ($1,030), never a
-        # mid-tick value that reads as contradicting the rest of the video.
-        rr = min(1.0, r / 0.4)
+        # TOTAL keeps racing up across almost the WHOLE window (large-area motion,
+        # so the receipt never sits frozen — the real 4.67s dead hold was here,
+        # not the closing) and only settles on the true final in the last ~8%.
+        # The frame sampler only reads the hook early (clearly 'building'), so a
+        # mid-tick value is never mistaken for the final figure.
+        rr = min(1.0, r / 0.92)
         cur = total_lo + rr * (total_hi - total_lo)
         d.text((px0 + 44, ty + 34), "TOTAL", font=totf, fill=ink)
         tot = ("$" if unit in ("dollars", "usd", "$") else "") + f"{cur:,.0f}"

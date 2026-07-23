@@ -147,14 +147,20 @@ def _motion_evidence(mp4: Path, td: Path) -> dict:
         if len(imgs) < 2:
             return ev
         px = [list(Image.open(p).getdata()) for p in imgs]
+        n = len(px)
         # dark fraction
         dark = sum(1 for p in px if (sum(p) / len(p)) < 22)
-        ev["dark_fraction"] = round(dark / len(px), 3)
-        # longest run of near-identical consecutive frames
+        ev["dark_fraction"] = round(dark / n, 3)
+        # DEAD AIR = a stretch where nothing meaningfully changes over ~1s. Use a
+        # 1s LOOKBACK (not consecutive frames) so a SMOOTH build (a waffle filling
+        # a few cells per frame, a total ticking) is correctly read as motion —
+        # only a genuinely static hold registers as frozen.
+        lb = fps                              # ~1.0s lookback
         run = best = 0
-        for a, b in zip(px, px[1:]):
+        for i in range(lb, n):
+            a, b = px[i], px[i - lb]
             diff = sum(abs(x - y) for x, y in zip(a, b)) / len(a)
-            if diff < 2.2:            # near-frozen
+            if diff < 3.0:            # no meaningful change across a full second
                 run += 1
                 best = max(best, run)
             else:
