@@ -1,4 +1,84 @@
-{
-  "skipped": true,
-  "recent_posts": 1
-}
+[
+  {
+    "topic": "My manager said overtime 'isn't tracked' - so I tracked it myself",
+    "title": "My manager said overtime 'isn't tracked' - so I tracked it myself",
+    "publish_at": "2026-07-23T15:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/w9SMF1TQhvk",
+    "error": null,
+    "elapsed_seconds": 137.1,
+    "package_path": "state/trending_packages/20260723/01_reddit-overtime.json",
+    "video_path": "output/daily_20260723-134221_my_manager_said_overtime__isn_t_tracked_.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "My noisy neighbor said 'good luck proving it' - so I did",
+    "title": "My noisy neighbor said 'good luck proving it' - so I did",
+    "publish_at": "2026-07-23T17:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/23GggSJNkHY",
+    "error": null,
+    "elapsed_seconds": 111.7,
+    "package_path": "state/trending_packages/20260723/02_reddit-neighbor.json",
+    "video_path": "output/daily_20260723-134437_my_noisy_neighbor_said__good_luck_provin.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Your groceries didn't get more expensive - they got smaller",
+    "title": "Your groceries didn't get more expensive - they got smaller",
+    "publish_at": "2026-07-23T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/OMINBBLt3qw",
+    "error": null,
+    "elapsed_seconds": 18.2,
+    "package_path": "state/trending_packages/20260723/03_textcard-shrinkflation.json",
+    "video_path": "output/daily_20260723-134603_your_groceries_didn_t_get_more_expensive.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Printer ink is one of the most expensive liquids you can buy",
+    "title": "Printer ink is one of the most expensive liquids you can buy",
+    "publish_at": "2026-07-23T21:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/8ePacheA_fI",
+    "error": null,
+    "elapsed_seconds": 13.0,
+    "package_path": "state/trending_packages/20260723/04_textcard-printer-ink.json",
+    "video_path": "output/daily_20260723-134621_printer_ink_is_one_of_the_most_expensive.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Staffed Lighthouses by Country Since 1900",
+    "title": "Staffed Lighthouses by Country Since 1900",
+    "publish_at": "2026-07-23T23:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/WNJc5HG6PtU",
+    "error": null,
+    "elapsed_seconds": 71.7,
+    "package_path": "state/trending_packages/20260723/05_graph-lighthouses.json",
+    "video_path": "output/daily_20260723-134634_staffed_lighthouses_by_country_since_190.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Netflix vs Cable TV Subscribers (US, millions)",
+    "title": "Netflix vs Cable TV Subscribers (US, millions)",
+    "publish_at": "2026-07-24T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/LnyCoEzR6KI",
+    "error": null,
+    "elapsed_seconds": 64.3,
+    "package_path": "state/trending_packages/20260723/06_graph-netflix-cable.json",
+    "video_path": "output/daily_20260723-134746_netflix_vs_cable_tv_subscribers__us__mil.mp4",
+    "channel": "default"
+  }
+]

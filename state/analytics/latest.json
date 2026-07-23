@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-07-23T11:53:42.544336+00:00",
+  "fetched_at": "2026-07-23T13:48:57.545342+00:00",
   "videos": [
     {
       "video_id": "H6c1FYV_nl0",
@@ -14,14 +14,14 @@
       "banger": null,
       "title": "Your groceries didn't get more expensive - they got smaller",
       "published_at": "2026-07-21T20:11:49Z",
-      "age_hours": 39.7,
+      "age_hours": 41.6,
       "views": 7,
       "engaged_views": 7,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.18
+      "views_per_hour": 0.17
     },
     {
       "video_id": "4ao_CPZ82_4",
@@ -36,7 +36,7 @@
       "banger": null,
       "title": "A Family Found an Alligator in Their Pool",
       "published_at": "2026-07-07T13:00:06Z",
-      "age_hours": 382.9,
+      "age_hours": 384.8,
       "views": 37,
       "engaged_views": 18,
       "likes": 0,
@@ -566,7 +566,7 @@
       "banger": null,
       "title": "Two Tornadoes Touched Down at the Exact Same Time",
       "published_at": "2026-07-03T15:00:25Z",
-      "age_hours": 476.9,
+      "age_hours": 478.8,
       "views": 41,
       "engaged_views": 22,
       "likes": 0,
@@ -1096,7 +1096,7 @@
       "banger": null,
       "title": "Robert Downey Jr. spent 11 years saving the universe. Now he's trying to end it.",
       "published_at": "2026-07-22T11:12:51Z",
-      "age_hours": 24.7,
+      "age_hours": 26.6,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -1104,536 +1104,6 @@
       "is_public": true,
       "usable_for_retention": false,
       "views_per_hour": 0.08
-    },
-    {
-      "video_id": "b_TxrT4mD0c",
-      "url": "https://youtube.com/shorts/b_TxrT4mD0c",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "title": "Bingo the Golden Retriever Brought Home a Live Armadillo",
-      "published_at": "2026-06-23T17:00:07Z",
-      "age_hours": 714.9,
-      "views": 40,
-      "engaged_views": 24,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.06,
-      "average_view_percentage": 71.0,
-      "average_view_duration_s": 29.0,
-      "estimated_minutes_watched": 12.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true,
-      "retention_curve": [
-        [
-          0.01,
-          1.375,
-          0.669
-        ],
-        [
-          0.02,
-          1.333,
-          0.653
-        ],
-        [
-          0.03,
-          1.292,
-          0.635
-        ],
-        [
-          0.04,
-          1.208,
-          0.615
-        ],
-        [
-          0.05,
-          1.167,
-          0.594
-        ],
-        [
-          0.06,
-          1.083,
-          0.571
-        ],
-        [
-          0.07,
-          1.083,
-          0.547
-        ],
-        [
-          0.08,
-          1.083,
-          0.524
-        ],
-        [
-          0.09,
-          1.042,
-          0.502
-        ],
-        [
-          0.1,
-          1.042,
-          0.482
-        ],
-        [
-          0.11,
-          1.042,
-          0.465
-        ],
-        [
-          0.12,
-          1.0,
-          0.452
-        ],
-        [
-          0.13,
-          1.0,
-          0.442
-        ],
-        [
-          0.14,
-          1.0,
-          0.435
-        ],
-        [
-          0.15,
-          1.0,
-          0.431
-        ],
-        [
-          0.16,
-          1.0,
-          0.428
-        ],
-        [
-          0.17,
-          1.042,
-          0.426
-        ],
-        [
-          0.18,
-          1.042,
-          0.424
-        ],
-        [
-          0.19,
-          1.0,
-          0.421
-        ],
-        [
-          0.2,
-          1.0,
-          0.419
-        ],
-        [
-          0.21,
-          1.0,
-          0.415
-        ],
-        [
-          0.22,
-          1.0,
-          0.412
-        ],
-        [
-          0.23,
-          0.958,
-          0.409
-        ],
-        [
-          0.24,
-          0.958,
-          0.406
-        ],
-        [
-          0.25,
-          0.917,
-          0.403
-        ],
-        [
-          0.26,
-          0.917,
-          0.4
-        ],
-        [
-          0.27,
-          0.917,
-          0.398
-        ],
-        [
-          0.28,
-          0.917,
-          0.396
-        ],
-        [
-          0.29,
-          0.917,
-          0.394
-        ],
-        [
-          0.3,
-          0.917,
-          0.392
-        ],
-        [
-          0.31,
-          0.917,
-          0.39
-        ],
-        [
-          0.32,
-          0.833,
-          0.387
-        ],
-        [
-          0.33,
-          0.833,
-          0.384
-        ],
-        [
-          0.34,
-          0.833,
-          0.379
-        ],
-        [
-          0.35,
-          0.833,
-          0.374
-        ],
-        [
-          0.36,
-          0.792,
-          0.367
-        ],
-        [
-          0.37,
-          0.792,
-          0.359
-        ],
-        [
-          0.38,
-          0.792,
-          0.35
-        ],
-        [
-          0.39,
-          0.792,
-          0.34
-        ],
-        [
-          0.4,
-          0.75,
-          0.33
-        ],
-        [
-          0.41,
-          0.708,
-          0.32
-        ],
-        [
-          0.42,
-          0.708,
-          0.312
-        ],
-        [
-          0.43,
-          0.708,
-          0.304
-        ],
-        [
-          0.44,
-          0.708,
-          0.299
-        ],
-        [
-          0.45,
-          0.708,
-          0.295
-        ],
-        [
-          0.46,
-          0.708,
-          0.292
-        ],
-        [
-          0.47,
-          0.708,
-          0.292
-        ],
-        [
-          0.48,
-          0.667,
-          0.292
-        ],
-        [
-          0.49,
-          0.667,
-          0.294
-        ],
-        [
-          0.5,
-          0.667,
-          0.296
-        ],
-        [
-          0.51,
-          0.625,
-          0.299
-        ],
-        [
-          0.52,
-          0.625,
-          0.303
-        ],
-        [
-          0.53,
-          0.625,
-          0.307
-        ],
-        [
-          0.54,
-          0.625,
-          0.312
-        ],
-        [
-          0.55,
-          0.625,
-          0.317
-        ],
-        [
-          0.56,
-          0.625,
-          0.323
-        ],
-        [
-          0.57,
-          0.625,
-          0.33
-        ],
-        [
-          0.58,
-          0.625,
-          0.338
-        ],
-        [
-          0.59,
-          0.625,
-          0.346
-        ],
-        [
-          0.6,
-          0.625,
-          0.355
-        ],
-        [
-          0.61,
-          0.625,
-          0.364
-        ],
-        [
-          0.62,
-          0.625,
-          0.375
-        ],
-        [
-          0.63,
-          0.583,
-          0.386
-        ],
-        [
-          0.64,
-          0.583,
-          0.397
-        ],
-        [
-          0.65,
-          0.583,
-          0.409
-        ],
-        [
-          0.66,
-          0.583,
-          0.421
-        ],
-        [
-          0.67,
-          0.583,
-          0.433
-        ],
-        [
-          0.68,
-          0.542,
-          0.446
-        ],
-        [
-          0.69,
-          0.542,
-          0.46
-        ],
-        [
-          0.7,
-          0.542,
-          0.473
-        ],
-        [
-          0.71,
-          0.542,
-          0.487
-        ],
-        [
-          0.72,
-          0.542,
-          0.501
-        ],
-        [
-          0.73,
-          0.542,
-          0.514
-        ],
-        [
-          0.74,
-          0.5,
-          0.527
-        ],
-        [
-          0.75,
-          0.5,
-          0.538
-        ],
-        [
-          0.76,
-          0.5,
-          0.549
-        ],
-        [
-          0.77,
-          0.5,
-          0.558
-        ],
-        [
-          0.78,
-          0.5,
-          0.567
-        ],
-        [
-          0.79,
-          0.5,
-          0.574
-        ],
-        [
-          0.8,
-          0.5,
-          0.58
-        ],
-        [
-          0.81,
-          0.5,
-          0.586
-        ],
-        [
-          0.82,
-          0.5,
-          0.591
-        ],
-        [
-          0.83,
-          0.5,
-          0.595
-        ],
-        [
-          0.84,
-          0.5,
-          0.598
-        ],
-        [
-          0.85,
-          0.5,
-          0.602
-        ],
-        [
-          0.86,
-          0.5,
-          0.605
-        ],
-        [
-          0.87,
-          0.5,
-          0.608
-        ],
-        [
-          0.88,
-          0.5,
-          0.611
-        ],
-        [
-          0.89,
-          0.5,
-          0.614
-        ],
-        [
-          0.9,
-          0.5,
-          0.617
-        ],
-        [
-          0.91,
-          0.5,
-          0.622
-        ],
-        [
-          0.92,
-          0.458,
-          0.627
-        ],
-        [
-          0.93,
-          0.458,
-          0.634
-        ],
-        [
-          0.94,
-          0.375,
-          0.642
-        ],
-        [
-          0.95,
-          0.375,
-          0.651
-        ],
-        [
-          0.96,
-          0.375,
-          0.662
-        ],
-        [
-          0.97,
-          0.375,
-          0.672
-        ],
-        [
-          0.98,
-          0.375,
-          0.683
-        ],
-        [
-          0.99,
-          0.333,
-          0.692
-        ],
-        [
-          1.0,
-          0.333,
-          0.699
-        ]
-      ]
     },
     {
       "video_id": "k8VtGfnuZA0",
@@ -1648,7 +1118,7 @@
       "banger": null,
       "title": "His Parachute Failed at 12,000 Feet. He Lived.",
       "published_at": "2026-07-06T23:00:21Z",
-      "age_hours": 396.9,
+      "age_hours": 398.8,
       "views": 23,
       "engaged_views": 9,
       "likes": 0,
@@ -1676,7 +1146,7 @@
       "banger": null,
       "title": "Montana Highway Patrol Pulled Over a Giant Banana Car",
       "published_at": "2026-06-25T19:00:24Z",
-      "age_hours": 664.9,
+      "age_hours": 666.8,
       "views": 34,
       "engaged_views": 20,
       "likes": 0,
@@ -2206,7 +1676,7 @@
       "banger": null,
       "title": "DC Is Shooting Off 851,000 Fireworks This July 4",
       "published_at": "2026-06-29T17:00:37Z",
-      "age_hours": 570.9,
+      "age_hours": 572.8,
       "views": 31,
       "engaged_views": 20,
       "likes": 0,
@@ -2736,7 +2206,7 @@
       "banger": null,
       "title": "A Giraffe Named Gracie Escaped a Texas Ranch \u2014 and Vanished",
       "published_at": "2026-06-25T21:00:07Z",
-      "age_hours": 662.9,
+      "age_hours": 664.8,
       "views": 27,
       "engaged_views": 14,
       "likes": 0,
@@ -3266,7 +2736,7 @@
       "banger": null,
       "title": "He Skateboarded From California to Florida in 39 Days",
       "published_at": "2026-06-26T13:00:27Z",
-      "age_hours": 646.9,
+      "age_hours": 648.8,
       "views": 25,
       "engaged_views": 18,
       "likes": 0,
@@ -3796,7 +3266,7 @@
       "banger": null,
       "title": "This Couple Got Married on a 60-Foot Water Slide at Wisconsin Dells",
       "published_at": "2026-06-26T17:00:03Z",
-      "age_hours": 642.9,
+      "age_hours": 644.8,
       "views": 25,
       "engaged_views": 15,
       "likes": 0,
@@ -4326,7 +3796,7 @@
       "banger": null,
       "title": "Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.",
       "published_at": "2026-06-28T21:00:10Z",
-      "age_hours": 590.9,
+      "age_hours": 592.8,
       "views": 21,
       "engaged_views": 11,
       "likes": 0,
@@ -4856,7 +4326,7 @@
       "banger": null,
       "title": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
       "published_at": "2026-06-30T17:00:01Z",
-      "age_hours": 546.9,
+      "age_hours": 548.8,
       "views": 24,
       "engaged_views": 11,
       "likes": 0,
@@ -5386,7 +4856,7 @@
       "banger": null,
       "title": "Texas Lost a Giraffe Named Gracie",
       "published_at": "2026-06-24T13:00:11Z",
-      "age_hours": 694.9,
+      "age_hours": 696.8,
       "views": 22,
       "engaged_views": 12,
       "likes": 0,
@@ -5916,7 +5386,7 @@
       "banger": null,
       "title": "Snake AND Spider Found in the Same Australian Bedroom",
       "published_at": "2026-06-26T13:00:10Z",
-      "age_hours": 646.9,
+      "age_hours": 648.8,
       "views": 17,
       "engaged_views": 8,
       "likes": 0,
@@ -5944,7 +5414,7 @@
       "banger": null,
       "title": "Utah Just Banned July 4th Fireworks Statewide",
       "published_at": "2026-06-27T19:00:22Z",
-      "age_hours": 616.9,
+      "age_hours": 618.8,
       "views": 16,
       "engaged_views": 10,
       "likes": 0,
@@ -6474,7 +5944,7 @@
       "banger": null,
       "title": "This Guy Made 3 Domino's Pizzas in 31 Seconds Flat",
       "published_at": "2026-06-30T19:00:18Z",
-      "age_hours": 544.9,
+      "age_hours": 546.8,
       "views": 15,
       "engaged_views": 4,
       "likes": 0,
@@ -6502,7 +5972,7 @@
       "banger": null,
       "title": "Wolves Won't Touch a Herd That Forms This Shape",
       "published_at": "2026-07-08T19:00:02Z",
-      "age_hours": 352.9,
+      "age_hours": 354.8,
       "views": 10,
       "engaged_views": 4,
       "likes": 0,
@@ -6530,7 +6000,7 @@
       "banger": null,
       "title": "Toxic Caterpillars Just Shut Berlin's Parks",
       "published_at": "2026-06-24T15:00:17Z",
-      "age_hours": 692.9,
+      "age_hours": 694.8,
       "views": 17,
       "engaged_views": 10,
       "likes": 0,
@@ -7060,7 +6530,7 @@
       "banger": null,
       "title": "Scientists Found a 400-Year-Old Sea Giant in Fiordland",
       "published_at": "2026-06-28T19:00:16Z",
-      "age_hours": 592.9,
+      "age_hours": 594.8,
       "views": 12,
       "engaged_views": 7,
       "likes": 1,
@@ -7088,7 +6558,7 @@
       "banger": null,
       "title": "A Parcel Bomb Just Went Off in Monaco. First Time Ever.",
       "published_at": "2026-06-30T21:00:06Z",
-      "age_hours": 542.9,
+      "age_hours": 544.8,
       "views": 10,
       "engaged_views": 4,
       "likes": 0,
@@ -7116,7 +6586,7 @@
       "banger": null,
       "title": "A Wild Seal Just Turned Completely Purple",
       "published_at": "2026-07-01T19:00:13Z",
-      "age_hours": 520.9,
+      "age_hours": 522.8,
       "views": 12,
       "engaged_views": 10,
       "likes": 0,
@@ -7144,7 +6614,7 @@
       "banger": null,
       "title": "Someone Went Over Niagara Falls and Lived",
       "published_at": "2026-07-07T15:00:08Z",
-      "age_hours": 380.9,
+      "age_hours": 382.8,
       "views": 8,
       "engaged_views": 5,
       "likes": 0,
@@ -7172,7 +6642,7 @@
       "banger": null,
       "title": "A Mom Spent $9,500 to Barbie-fy Her House in Scotland",
       "published_at": "2026-06-24T17:00:29Z",
-      "age_hours": 690.9,
+      "age_hours": 692.8,
       "views": 5,
       "engaged_views": 2,
       "likes": 0,
@@ -7200,7 +6670,7 @@
       "banger": null,
       "title": "France Just Broke Its All-Time Heat Record. 40 Drowned.",
       "published_at": "2026-06-24T19:00:30Z",
-      "age_hours": 688.9,
+      "age_hours": 690.8,
       "views": 8,
       "engaged_views": 3,
       "likes": 0,
@@ -7228,7 +6698,7 @@
       "banger": null,
       "title": "A Gunman Killed a Montreal Officer at the Hilton",
       "published_at": "2026-06-24T21:00:27Z",
-      "age_hours": 686.9,
+      "age_hours": 688.8,
       "views": 6,
       "engaged_views": 2,
       "likes": 0,
@@ -7256,7 +6726,7 @@
       "banger": null,
       "title": "He Stole a Kayak and Used a Snow Shovel as a Paddle",
       "published_at": "2026-06-25T23:00:21Z",
-      "age_hours": 660.9,
+      "age_hours": 662.8,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -7284,7 +6754,7 @@
       "banger": null,
       "title": "A Truck Flipped and Released 2 Million Bees Onto a Texas Road",
       "published_at": "2026-06-25T23:00:17Z",
-      "age_hours": 660.9,
+      "age_hours": 662.8,
       "views": 8,
       "engaged_views": 5,
       "likes": 0,
@@ -7312,7 +6782,7 @@
       "banger": null,
       "title": "Camp Mystic Files for Bankruptcy After 28 Died in the Texas Flood",
       "published_at": "2026-06-26T21:00:02Z",
-      "age_hours": 638.9,
+      "age_hours": 640.8,
       "views": 6,
       "engaged_views": 3,
       "likes": 0,
@@ -7340,7 +6810,7 @@
       "banger": null,
       "title": "FIFA Banned Merl\u00edn the Duck From Mexico's Match",
       "published_at": "2026-06-27T13:00:27Z",
-      "age_hours": 622.9,
+      "age_hours": 624.8,
       "views": 4,
       "engaged_views": 4,
       "likes": 0,
@@ -7368,7 +6838,7 @@
       "banger": null,
       "title": "Guernsey Has a Tortoise Escape Epidemic Right Now",
       "published_at": "2026-06-27T17:00:08Z",
-      "age_hours": 618.9,
+      "age_hours": 620.8,
       "views": 5,
       "engaged_views": 3,
       "likes": 0,
@@ -7396,7 +6866,7 @@
       "banger": null,
       "title": "They Used a Stolen Backhoe to Rob an ATM. It Went Wrong.",
       "published_at": "2026-06-27T21:00:17Z",
-      "age_hours": 614.9,
+      "age_hours": 616.8,
       "views": 5,
       "engaged_views": 3,
       "likes": 0,
@@ -7424,7 +6894,7 @@
       "banger": null,
       "title": "$6.5 Billion Healthcare Fraud Bust \u2014 90 Doctors Charged",
       "published_at": "2026-06-27T23:00:17Z",
-      "age_hours": 612.9,
+      "age_hours": 614.8,
       "views": 5,
       "engaged_views": 2,
       "likes": 0,
@@ -7434,34 +6904,6 @@
       "views_per_hour": 0.01,
       "average_view_percentage": 57.1,
       "average_view_duration_s": 28.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "ZIQ2YDCwhP8",
-      "url": "https://youtube.com/shorts/ZIQ2YDCwhP8",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "title": "Monkeys Started Kidnapping Other Monkeys' Babies",
-      "published_at": "2026-06-28T13:00:38Z",
-      "age_hours": 598.9,
-      "views": 3,
-      "engaged_views": 0,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.01,
-      "average_view_percentage": 0.0,
-      "average_view_duration_s": 0.0,
       "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -7480,7 +6922,7 @@
       "banger": null,
       "title": "They Built the Tallest Waterslide Ever",
       "published_at": "2026-06-28T15:00:36Z",
-      "age_hours": 596.9,
+      "age_hours": 598.8,
       "views": 6,
       "engaged_views": 3,
       "likes": 0,
@@ -7508,7 +6950,7 @@
       "banger": null,
       "title": "Kilauea Is Shooting Lava 1,000 Feet Into the Sky",
       "published_at": "2026-06-28T17:00:11Z",
-      "age_hours": 594.9,
+      "age_hours": 596.8,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -7536,7 +6978,7 @@
       "banger": null,
       "title": "Utah's Biggest Fire Just Made Weather History",
       "published_at": "2026-06-28T15:00:11Z",
-      "age_hours": 596.9,
+      "age_hours": 598.8,
       "views": 4,
       "engaged_views": 2,
       "likes": 0,
@@ -7564,7 +7006,7 @@
       "banger": null,
       "title": "Iran Just Bombed an American Ally's Backyard",
       "published_at": "2026-06-28T15:50:29Z",
-      "age_hours": 596.1,
+      "age_hours": 598.0,
       "views": 5,
       "engaged_views": 5,
       "likes": 0,
@@ -7592,7 +7034,7 @@
       "banger": null,
       "title": "A Plane Full of Nurses Never Left the Runway",
       "published_at": "2026-06-29T13:00:24Z",
-      "age_hours": 574.9,
+      "age_hours": 576.8,
       "views": 5,
       "engaged_views": 5,
       "likes": 0,
@@ -7620,7 +7062,7 @@
       "banger": null,
       "title": "Supreme Court Rules: You Can't Sue Roundup for Cancer",
       "published_at": "2026-06-29T15:00:36Z",
-      "age_hours": 572.9,
+      "age_hours": 574.8,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -7648,7 +7090,7 @@
       "banger": null,
       "title": "A Raccoon Got Its Head Stuck in a Jar. CPR Was on Standby.",
       "published_at": "2026-06-29T19:00:39Z",
-      "age_hours": 568.9,
+      "age_hours": 570.8,
       "views": 4,
       "engaged_views": 2,
       "likes": 0,
@@ -7676,7 +7118,7 @@
       "banger": null,
       "title": "Gracie the Giraffe Was Missing 2 Weeks in Texas",
       "published_at": "2026-06-30T13:00:33Z",
-      "age_hours": 550.9,
+      "age_hours": 552.8,
       "views": 7,
       "engaged_views": 2,
       "likes": 0,
@@ -7704,7 +7146,7 @@
       "banger": null,
       "title": "DC Hits 105\u00b0F on July 4th. No One Is Ready.",
       "published_at": "2026-06-30T15:00:39Z",
-      "age_hours": 548.9,
+      "age_hours": 550.8,
       "views": 5,
       "engaged_views": 4,
       "likes": 0,
@@ -7732,7 +7174,7 @@
       "banger": null,
       "title": "Guernsey Is Having a Tortoise Escape Epidemic Right Now",
       "published_at": "2026-06-30T23:00:05Z",
-      "age_hours": 540.9,
+      "age_hours": 542.8,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -7760,7 +7202,7 @@
       "banger": null,
       "title": "100 Monkeys Just Broke Out of Their Enclosure",
       "published_at": "2026-07-01T13:00:13Z",
-      "age_hours": 526.9,
+      "age_hours": 528.8,
       "views": 4,
       "engaged_views": 2,
       "likes": 0,
@@ -7788,7 +7230,7 @@
       "banger": null,
       "title": "A Herd of Goats Took Over an Entire Neighborhood",
       "published_at": "2026-07-02T13:00:08Z",
-      "age_hours": 502.9,
+      "age_hours": 504.8,
       "views": 4,
       "engaged_views": 2,
       "likes": 0,
@@ -7816,7 +7258,7 @@
       "banger": null,
       "title": "A Sinkhole Swallowed an Entire Street Overnight",
       "published_at": "2026-07-02T15:00:10Z",
-      "age_hours": 500.9,
+      "age_hours": 502.8,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -7844,7 +7286,7 @@
       "banger": null,
       "title": "An Asteroid Is About to Pass Closer Than the Moon",
       "published_at": "2026-07-02T17:00:21Z",
-      "age_hours": 498.9,
+      "age_hours": 500.8,
       "views": 5,
       "engaged_views": 2,
       "likes": 0,
@@ -7872,7 +7314,7 @@
       "banger": null,
       "title": "They Built the Tallest Sandcastle in History",
       "published_at": "2026-07-02T19:00:01Z",
-      "age_hours": 496.9,
+      "age_hours": 498.8,
       "views": 3,
       "engaged_views": 0,
       "likes": 0,
@@ -7900,7 +7342,7 @@
       "banger": null,
       "title": "A Great White Circled Their Boat for Hours",
       "published_at": "2026-07-02T23:00:06Z",
-      "age_hours": 492.9,
+      "age_hours": 494.8,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -7928,7 +7370,7 @@
       "banger": null,
       "title": "A Bald Eagle Swooped In and Stole His Fish",
       "published_at": "2026-07-03T13:00:05Z",
-      "age_hours": 478.9,
+      "age_hours": 480.8,
       "views": 5,
       "engaged_views": 2,
       "likes": 0,
@@ -7956,7 +7398,7 @@
       "banger": null,
       "title": "A Humpback Whale Breached Right Next to a Kayaker",
       "published_at": "2026-07-03T17:00:05Z",
-      "age_hours": 474.9,
+      "age_hours": 476.8,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -7984,7 +7426,7 @@
       "banger": null,
       "title": "A Diver Swam Next to the Biggest Fish on Earth",
       "published_at": "2026-07-06T17:00:16Z",
-      "age_hours": 402.9,
+      "age_hours": 404.8,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -8012,7 +7454,7 @@
       "banger": null,
       "title": "A Volcano That's Been Erupting for 2,000 Years",
       "published_at": "2026-07-06T19:00:06Z",
-      "age_hours": 400.9,
+      "age_hours": 402.8,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -8040,7 +7482,7 @@
       "banger": null,
       "title": "A Tourist Got Way Too Close to a Bison",
       "published_at": "2026-07-06T21:00:03Z",
-      "age_hours": 398.9,
+      "age_hours": 400.8,
       "views": 5,
       "engaged_views": 3,
       "likes": 0,
@@ -8068,7 +7510,7 @@
       "banger": null,
       "title": "This 'Cute' Animal Is a Ruthless Killer",
       "published_at": "2026-07-07T15:00:32Z",
-      "age_hours": 380.9,
+      "age_hours": 382.8,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -8096,7 +7538,7 @@
       "banger": null,
       "title": "The Bird That Can Kill You With One Kick",
       "published_at": "2026-07-07T19:00:36Z",
-      "age_hours": 376.9,
+      "age_hours": 378.8,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -8124,7 +7566,7 @@
       "banger": null,
       "title": "The Snake That Almost Never Wins This Fight",
       "published_at": "2026-07-08T13:00:18Z",
-      "age_hours": 358.9,
+      "age_hours": 360.8,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -8152,7 +7594,7 @@
       "banger": null,
       "title": "This Shrimp Can Crack Aquarium Glass With One Punch",
       "published_at": "2026-07-08T17:00:06Z",
-      "age_hours": 354.9,
+      "age_hours": 356.8,
       "views": 4,
       "engaged_views": 3,
       "likes": 0,
@@ -8180,7 +7622,7 @@
       "banger": null,
       "title": "This Bird's Talons Are Bigger Than a Grizzly Bear's Claws",
       "published_at": "2026-07-08T21:00:18Z",
-      "age_hours": 350.9,
+      "age_hours": 352.8,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -8208,7 +7650,7 @@
       "banger": null,
       "title": "This Fish Can Leap Out of the Water to Shock You",
       "published_at": "2026-07-08T23:00:28Z",
-      "age_hours": 348.9,
+      "age_hours": 350.8,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -8236,7 +7678,7 @@
       "banger": null,
       "title": "This Dog-Sized Animal Steals Food From Bears",
       "published_at": "2026-07-09T19:00:19Z",
-      "age_hours": 328.9,
+      "age_hours": 330.8,
       "views": 4,
       "engaged_views": 3,
       "likes": 0,
@@ -8264,7 +7706,7 @@
       "banger": null,
       "title": "The Lizard That Literally Runs on Water",
       "published_at": "2026-07-10T13:00:11Z",
-      "age_hours": 310.9,
+      "age_hours": 312.8,
       "views": 3,
       "engaged_views": 1,
       "likes": 1,
@@ -8292,7 +7734,7 @@
       "banger": null,
       "title": "My maid of honor grabbed the mic at my rehearsal dinner and read my fiance's texts out loud",
       "published_at": "2026-07-13T13:00:21Z",
-      "age_hours": 238.9,
+      "age_hours": 240.8,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -8320,7 +7762,7 @@
       "banger": null,
       "title": "My landlord kept 'checking the smoke detector' while I was at work, so I hid a camera",
       "published_at": "2026-07-15T13:00:30Z",
-      "age_hours": 190.9,
+      "age_hours": 192.8,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -8348,7 +7790,7 @@
       "banger": null,
       "title": "My manager made me log every minute of my day in a tracking app. So I logged his too.",
       "published_at": "2026-07-16T11:15:27Z",
-      "age_hours": 168.6,
+      "age_hours": 170.6,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -8358,140 +7800,6 @@
       "views_per_hour": 0.01,
       "average_view_percentage": 21.5,
       "average_view_duration_s": 10.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "MNDY2vNRmJo",
-      "url": "https://youtube.com/shorts/MNDY2vNRmJo",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "title": "2 Million Bees Escaped a Texas Semi. It Was Chaos.",
-      "published_at": "2026-06-23T13:00:23Z",
-      "age_hours": 718.9,
-      "views": 1,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.0,
-      "average_view_percentage": 42.5,
-      "average_view_duration_s": 20.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "sJ4Ba8dcIhk",
-      "url": "https://youtube.com/shorts/sJ4Ba8dcIhk",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "title": "A Snake Was Hiding Behind This Family's TV",
-      "published_at": "2026-06-23T15:00:24Z",
-      "age_hours": 716.9,
-      "views": 3,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.0,
-      "average_view_percentage": 104.8,
-      "average_view_duration_s": 41.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "ul4_-Lnu19I",
-      "url": "https://youtube.com/shorts/ul4_-Lnu19I",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "title": "A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.",
-      "published_at": "2026-06-23T19:00:37Z",
-      "age_hours": 712.9,
-      "views": 1,
-      "engaged_views": 0,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.0,
-      "average_view_percentage": 0.0,
-      "average_view_duration_s": 0.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "jZpRNqvn4k4",
-      "url": "https://youtube.com/shorts/jZpRNqvn4k4",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "title": "A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.",
-      "published_at": "2026-06-23T21:00:38Z",
-      "age_hours": 710.9,
-      "views": 0,
-      "engaged_views": 0,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.0
-    },
-    {
-      "video_id": "If7Ut6TVJl4",
-      "url": "https://youtube.com/shorts/If7Ut6TVJl4",
-      "catalog_id": null,
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "title": "Seattle Just Broke a World Record With 830 People Eating Dim Sum",
-      "published_at": "2026-06-23T23:00:07Z",
-      "age_hours": 708.9,
-      "views": 1,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.0,
-      "average_view_percentage": 17.1,
-      "average_view_duration_s": 8.0,
       "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -8510,7 +7818,7 @@
       "banger": null,
       "title": "A Raccoon Nearly Suffocated Inside a Glass Jar",
       "published_at": "2026-06-25T13:00:09Z",
-      "age_hours": 670.9,
+      "age_hours": 672.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8532,7 +7840,7 @@
       "banger": null,
       "title": "A Teen Was Stalked by a Great White \u2014 She Had No Idea",
       "published_at": "2026-06-25T15:00:28Z",
-      "age_hours": 668.9,
+      "age_hours": 670.8,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -8560,7 +7868,7 @@
       "banger": null,
       "title": "Florida Firefighters Rescued a 'Dog.' It Was a Coyote.",
       "published_at": "2026-06-25T17:00:17Z",
-      "age_hours": 666.9,
+      "age_hours": 668.8,
       "views": 3,
       "engaged_views": 3,
       "likes": 0,
@@ -8588,7 +7896,7 @@
       "banger": null,
       "title": "Venezuela Just Had Its Worst Earthquake in Over a Century",
       "published_at": "2026-06-25T21:00:29Z",
-      "age_hours": 662.9,
+      "age_hours": 664.8,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -8616,7 +7924,7 @@
       "banger": null,
       "title": "Ohio Spent a Week Chasing a White Peacock Through the Suburbs",
       "published_at": "2026-06-26T15:00:05Z",
-      "age_hours": 644.9,
+      "age_hours": 646.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8638,7 +7946,7 @@
       "banger": null,
       "title": "NC Siblings Used Family Birthdays to Win $390,000 in the Lottery",
       "published_at": "2026-06-26T19:00:01Z",
-      "age_hours": 640.9,
+      "age_hours": 642.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8660,7 +7968,7 @@
       "banger": null,
       "title": "Iran Hit a Cargo Ship in the Strait of Hormuz Days After Signing Peace",
       "published_at": "2026-06-26T23:00:17Z",
-      "age_hours": 636.9,
+      "age_hours": 638.8,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -8688,7 +7996,7 @@
       "banger": null,
       "title": "Virginia Man Makes 3 Pizzas in 31 Seconds Flat",
       "published_at": "2026-06-27T15:00:32Z",
-      "age_hours": 620.9,
+      "age_hours": 622.8,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -8698,6 +8006,34 @@
       "views_per_hour": 0.0,
       "average_view_percentage": 35.2,
       "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "ZIQ2YDCwhP8",
+      "url": "https://youtube.com/shorts/ZIQ2YDCwhP8",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "title": "Monkeys Started Kidnapping Other Monkeys' Babies",
+      "published_at": "2026-06-28T13:00:38Z",
+      "age_hours": 600.8,
+      "views": 3,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.0,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
       "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -8716,7 +8052,7 @@
       "banger": null,
       "title": "We're About to Lose Control of Earth's Orbit",
       "published_at": "2026-06-28T19:00:08Z",
-      "age_hours": 592.9,
+      "age_hours": 594.8,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -8744,7 +8080,7 @@
       "banger": null,
       "title": "Iran Just Bombed an American Ally's Backyard",
       "published_at": "2026-06-28T13:00:10Z",
-      "age_hours": 598.9,
+      "age_hours": 600.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8766,7 +8102,7 @@
       "banger": null,
       "title": "Europe Just Shattered 150 Years of Heat Records",
       "published_at": "2026-06-28T17:00:10Z",
-      "age_hours": 594.9,
+      "age_hours": 596.8,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -8794,7 +8130,7 @@
       "banger": null,
       "title": "Police Just Had the World's Slowest Chase",
       "published_at": "2026-07-01T15:00:14Z",
-      "age_hours": 524.9,
+      "age_hours": 526.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8816,7 +8152,7 @@
       "banger": null,
       "title": "A Highway Just Turned Into a River of Beer",
       "published_at": "2026-07-01T17:00:36Z",
-      "age_hours": 522.9,
+      "age_hours": 524.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8838,7 +8174,7 @@
       "banger": null,
       "title": "155 Homes Were Gone by Morning",
       "published_at": "2026-07-01T21:00:30Z",
-      "age_hours": 518.9,
+      "age_hours": 520.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8860,7 +8196,7 @@
       "banger": null,
       "title": "Scientists Found How Alzheimer's Actually Spreads",
       "published_at": "2026-07-01T23:00:31Z",
-      "age_hours": 516.9,
+      "age_hours": 518.8,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -8888,7 +8224,7 @@
       "banger": null,
       "title": "Someone Stole a Tractor and Led a Slow-Speed Chase",
       "published_at": "2026-07-02T15:00:00Z",
-      "age_hours": 500.9,
+      "age_hours": 502.8,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -8916,7 +8252,7 @@
       "banger": null,
       "title": "A Pod of Killer Whales Showed Up Right Off the Beach",
       "published_at": "2026-07-02T17:00:22Z",
-      "age_hours": 498.9,
+      "age_hours": 500.8,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -8944,7 +8280,7 @@
       "banger": null,
       "title": "A Meteor Lit Up the Sky Like It Was Daytime",
       "published_at": "2026-07-02T21:00:07Z",
-      "age_hours": 494.9,
+      "age_hours": 496.8,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -8972,7 +8308,7 @@
       "banger": null,
       "title": "The One Animal a Great White Shark Runs From",
       "published_at": "2026-07-07T13:00:37Z",
-      "age_hours": 382.9,
+      "age_hours": 384.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8994,7 +8330,7 @@
       "banger": null,
       "title": "The Deadliest Big Animal in Africa Isn't the Lion",
       "published_at": "2026-07-07T17:00:00Z",
-      "age_hours": 378.9,
+      "age_hours": 380.8,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -9022,7 +8358,7 @@
       "banger": null,
       "title": "The Biggest Animal on Land Is Scared of Something Tiny",
       "published_at": "2026-07-07T21:00:28Z",
-      "age_hours": 374.9,
+      "age_hours": 376.8,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -9050,7 +8386,7 @@
       "banger": null,
       "title": "The Animal Too Fearless to Have Predators",
       "published_at": "2026-07-07T23:00:31Z",
-      "age_hours": 372.9,
+      "age_hours": 374.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9072,7 +8408,7 @@
       "banger": null,
       "title": "This Bird Hunts the Deadliest Snakes on Foot",
       "published_at": "2026-07-08T15:00:19Z",
-      "age_hours": 356.9,
+      "age_hours": 358.8,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -9100,7 +8436,7 @@
       "banger": null,
       "title": "The Fastest Animal Alive Isn't the Cheetah",
       "published_at": "2026-07-09T15:00:32Z",
-      "age_hours": 332.9,
+      "age_hours": 334.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9122,7 +8458,7 @@
       "banger": null,
       "title": "This Lizard Only Needs to Bite You Once",
       "published_at": "2026-07-09T17:00:11Z",
-      "age_hours": 330.9,
+      "age_hours": 332.8,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -9150,7 +8486,7 @@
       "banger": null,
       "title": "The Bug With a Sting So Bad You Just Lie Down",
       "published_at": "2026-07-09T21:00:15Z",
-      "age_hours": 326.9,
+      "age_hours": 328.8,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9172,7 +8508,7 @@
       "banger": null,
       "title": "The Weirdest Face in Nature Is the Fastest Eater Alive",
       "published_at": "2026-07-09T23:00:25Z",
-      "age_hours": 324.9,
+      "age_hours": 326.8,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -9200,7 +8536,7 @@
       "banger": null,
       "title": "A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married",
       "published_at": "2026-07-18T11:15:50Z",
-      "age_hours": 120.6,
+      "age_hours": 122.6,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9222,7 +8558,7 @@
       "banger": null,
       "title": "An entitled mom cut a hole in my bounce house's safety net with kitchen scissors",
       "published_at": "2026-07-19T11:17:03Z",
-      "age_hours": 96.6,
+      "age_hours": 98.5,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9244,7 +8580,7 @@
       "banger": null,
       "title": "3 days after my dad's funeral I found a second will, and the name on it wasn't anyone in our family",
       "published_at": "2026-07-20T11:15:53Z",
-      "age_hours": 72.6,
+      "age_hours": 74.6,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9266,7 +8602,139 @@
       "banger": null,
       "title": "Oil just hit $98 a barrel and it has nothing to do with how much gas you're buying",
       "published_at": "2026-07-23T11:11:57Z",
-      "age_hours": 0.7,
+      "age_hours": 2.6,
+      "views": 0,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "w9SMF1TQhvk",
+      "url": "https://youtube.com/shorts/w9SMF1TQhvk",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "title": "My manager said overtime 'isn't tracked' - so I tracked it myself",
+      "published_at": "2026-07-23T13:44:43Z",
+      "age_hours": 0.1,
+      "views": 0,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "23GggSJNkHY",
+      "url": "https://youtube.com/shorts/23GggSJNkHY",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "title": "My noisy neighbor said 'good luck proving it' - so I did",
+      "published_at": "2026-07-23T13:46:24Z",
+      "age_hours": 0.0,
+      "views": 0,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "OMINBBLt3qw",
+      "url": "https://youtube.com/shorts/OMINBBLt3qw",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "title": "Your groceries didn't get more expensive - they got smaller",
+      "published_at": "2026-07-23T13:46:39Z",
+      "age_hours": 0.0,
+      "views": 0,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "8ePacheA_fI",
+      "url": "https://youtube.com/shorts/8ePacheA_fI",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "title": "Printer ink is one of the most expensive liquids you can buy",
+      "published_at": "2026-07-23T13:46:57Z",
+      "age_hours": 0.0,
+      "views": 0,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "WNJc5HG6PtU",
+      "url": "https://youtube.com/shorts/WNJc5HG6PtU",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "title": "Staffed Lighthouses by Country Since 1900",
+      "published_at": "2026-07-23T13:48:07Z",
+      "age_hours": 0.0,
+      "views": 0,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.0
+    },
+    {
+      "video_id": "LnyCoEzR6KI",
+      "url": "https://youtube.com/shorts/LnyCoEzR6KI",
+      "catalog_id": null,
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "title": "Netflix vs Cable TV Subscribers (US, millions)",
+      "published_at": "2026-07-23T13:48:49Z",
+      "age_hours": 0.0,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9279,81 +8747,81 @@
   "pending_videos": [],
   "summary": {
     "total_videos": 102,
-    "total_views": 681,
-    "avg_views_per_video": 6.7,
+    "total_views": 635,
+    "avg_views_per_video": 6.2,
     "median_views_per_hour": 0.01,
     "top_5_by_vph": [
       {
         "title": "Your groceries didn't get more expensive - they got smaller",
-        "views_per_hour": 0.18,
+        "views_per_hour": 0.17,
         "views": 7,
-        "age_hours": 39.7,
+        "age_hours": 41.6,
         "url": "https://youtube.com/shorts/H6c1FYV_nl0"
       },
       {
         "title": "A Family Found an Alligator in Their Pool",
         "views_per_hour": 0.1,
         "views": 37,
-        "age_hours": 382.9,
+        "age_hours": 384.8,
         "url": "https://youtube.com/shorts/4ao_CPZ82_4"
       },
       {
         "title": "Two Tornadoes Touched Down at the Exact Same Time",
         "views_per_hour": 0.09,
         "views": 41,
-        "age_hours": 476.9,
+        "age_hours": 478.8,
         "url": "https://youtube.com/shorts/iujoHGlJtmY"
       },
       {
         "title": "Robert Downey Jr. spent 11 years saving the universe. Now he's trying to end it.",
         "views_per_hour": 0.08,
         "views": 2,
-        "age_hours": 24.7,
+        "age_hours": 26.6,
         "url": "https://youtube.com/shorts/OxE0ZabTJL0"
       },
       {
-        "title": "Bingo the Golden Retriever Brought Home a Live Armadillo",
+        "title": "His Parachute Failed at 12,000 Feet. He Lived.",
         "views_per_hour": 0.06,
-        "views": 40,
-        "age_hours": 714.9,
-        "url": "https://youtube.com/shorts/b_TxrT4mD0c"
+        "views": 23,
+        "age_hours": 398.8,
+        "url": "https://youtube.com/shorts/k8VtGfnuZA0"
       }
     ],
     "bottom_5_by_vph": [
       {
-        "title": "Oil just hit $98 a barrel and it has nothing to do with how much gas you're buying",
+        "title": "Netflix vs Cable TV Subscribers (US, millions)",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 0.7,
-        "url": "https://youtube.com/shorts/H8Wt3s3oyIc"
+        "age_hours": 0.0,
+        "url": "https://youtube.com/shorts/LnyCoEzR6KI"
       },
       {
-        "title": "3 days after my dad's funeral I found a second will, and the name on it wasn't anyone in our family",
+        "title": "Staffed Lighthouses by Country Since 1900",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 72.6,
-        "url": "https://youtube.com/shorts/9HNdYmsMYkk"
+        "age_hours": 0.0,
+        "url": "https://youtube.com/shorts/WNJc5HG6PtU"
       },
       {
-        "title": "An entitled mom cut a hole in my bounce house's safety net with kitchen scissors",
+        "title": "Printer ink is one of the most expensive liquids you can buy",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 96.6,
-        "url": "https://youtube.com/shorts/v3mLwsRClCw"
+        "age_hours": 0.0,
+        "url": "https://youtube.com/shorts/8ePacheA_fI"
       },
       {
-        "title": "A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married",
+        "title": "Your groceries didn't get more expensive - they got smaller",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 120.6,
-        "url": "https://youtube.com/shorts/rqnDNHEhvgI"
+        "age_hours": 0.0,
+        "url": "https://youtube.com/shorts/OMINBBLt3qw"
       },
       {
-        "title": "The Weirdest Face in Nature Is the Fastest Eater Alive",
+        "title": "My noisy neighbor said 'good luck proving it' - so I did",
         "views_per_hour": 0.0,
-        "views": 1,
-        "age_hours": 324.9,
-        "url": "https://youtube.com/shorts/wETwVyzAMH8"
+        "views": 0,
+        "age_hours": 0.0,
+        "url": "https://youtube.com/shorts/23GggSJNkHY"
       }
     ],
     "ab_experiment": {
@@ -9371,28 +8839,24 @@
     "pending_scheduled": 0
   },
   "traffic_sources": {
-    "YT_SEARCH": 809,
-    "SHORTS": 89,
-    "YT_CHANNEL": 77,
-    "EXT_URL": 49,
+    "YT_SEARCH": 740,
+    "SHORTS": 81,
+    "YT_CHANNEL": 74,
+    "EXT_URL": 32,
     "YT_OTHER_PAGE": 7,
     "SUBSCRIBER": 5,
-    "NO_LINK_OTHER": 3,
     "HASHTAGS": 1,
+    "NO_LINK_OTHER": 0,
     "RELATED_VIDEO": 0
   },
   "search_terms": [
     {
       "term": "joseph mcgrail-bateup",
-      "views": 42
+      "views": 33
     },
     {
       "term": "ticket banana",
       "views": 8
-    },
-    {
-      "term": "bingo armadillo",
-      "views": 7
     },
     {
       "term": "land of natura wisconsin dells",
@@ -9408,14 +8872,6 @@
     },
     {
       "term": "banana car",
-      "views": 3
-    },
-    {
-      "term": "bingo and armadillo",
-      "views": 3
-    },
-    {
-      "term": "canberra town crier",
       "views": 3
     },
     {
@@ -9443,15 +8899,15 @@
       "views": 2
     },
     {
-      "term": "bingo",
-      "views": 2
-    },
-    {
       "term": "bird 2",
       "views": 2
     },
     {
       "term": "black hole barrage firework",
+      "views": 2
+    },
+    {
+      "term": "canberra town crier",
       "views": 2
     },
     {
@@ -9480,6 +8936,18 @@
     },
     {
       "term": "guernsey",
+      "views": 2
+    },
+    {
+      "term": "jet blue 292",
+      "views": 2
+    },
+    {
+      "term": "longboarding",
+      "views": 2
+    },
+    {
+      "term": "longest waterslide in the world",
       "views": 2
     }
   ]
