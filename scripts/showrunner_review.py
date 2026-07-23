@@ -90,7 +90,10 @@ def _frame_plan(dur: float, manifest: dict | None):
     wins = (manifest or {}).get("segment_windows")
     if wins:
         for i, (s0, s1) in enumerate(wins):
-            for f, tag in ((0.08, "start"), (0.5, "mid"), (0.92, "end")):
+            # Sample SETTLED moments, not the transition-in (mascot still gliding,
+            # elements still fading) — judging a beat by its 8%-in frame is unfair
+            # and was misreading composed beats as empty.
+            for f, tag in ((0.25, "start"), (0.55, "mid"), (0.85, "end")):
                 plan.append((s0 + f * (s1 - s0), f"seg{i}:{tag}"))
     else:
         for k in range(6):
@@ -132,15 +135,18 @@ def _motion_evidence(mp4: Path, td: Path) -> dict:
     clip at ~3fps and reports the longest near-frozen run (seconds) and the
     fraction of near-black frames. Vision judges whether motion is *meaningful*;
     this decides whether motion *exists* — so 'dead air' can't be averaged away."""
-    ev = {"longest_static_s": 0.0, "dark_fraction": 0.0, "sampled": 0}
+    ev = {"longest_static_s": 0.0, "static_at_s": None, "dark_fraction": 0.0,
+          "sampled": 0}
     try:
         from PIL import Image
         fps = 3
         seq = td / "mv"
         seq.mkdir(exist_ok=True)
+        # 160px (was 96) so a moving mascot registers as motion the way a human
+        # sees it — 96px was too coarse and false-flagged a moving closing.
         subprocess.run(
             ["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4),
-             "-vf", f"fps={fps},scale=96:-1,format=gray", str(seq / "m%04d.png")],
+             "-vf", f"fps={fps},scale=160:-1,format=gray", str(seq / "m%04d.png")],
             check=True)
         imgs = sorted(seq.glob("m*.png"))
         ev["sampled"] = len(imgs)
@@ -148,24 +154,25 @@ def _motion_evidence(mp4: Path, td: Path) -> dict:
             return ev
         px = [list(Image.open(p).getdata()) for p in imgs]
         n = len(px)
-        # dark fraction
         dark = sum(1 for p in px if (sum(p) / len(p)) < 22)
         ev["dark_fraction"] = round(dark / n, 3)
-        # DEAD AIR = a stretch where nothing meaningfully changes over ~1s. Use a
-        # 1s LOOKBACK (not consecutive frames) so a SMOOTH build (a waffle filling
-        # a few cells per frame, a total ticking) is correctly read as motion —
-        # only a genuinely static hold registers as frozen.
-        lb = fps                              # ~1.0s lookback
-        run = best = 0
+        # DEAD AIR = a stretch where nothing meaningfully changes over ~1s (1s
+        # LOOKBACK, not consecutive frames) so a SMOOTH build reads as motion;
+        # only a genuine static hold registers. Also report WHERE it starts.
+        lb = fps
+        run = best = best_end = 0
         for i in range(lb, n):
             a, b = px[i], px[i - lb]
             diff = sum(abs(x - y) for x, y in zip(a, b)) / len(a)
-            if diff < 3.0:            # no meaningful change across a full second
+            if diff < 3.0:
                 run += 1
-                best = max(best, run)
+                if run > best:
+                    best, best_end = run, i
             else:
                 run = 0
         ev["longest_static_s"] = round(best / fps, 2)
+        if best:
+            ev["static_at_s"] = round((best_end - best) / fps, 2)   # run start
     except Exception as e:  # noqa: BLE001
         ev["error"] = str(e)[:120]
     return ev
