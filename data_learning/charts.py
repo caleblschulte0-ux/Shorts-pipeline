@@ -1122,6 +1122,91 @@ def _pil_font(size: int, bold: bool = True):
         return ImageFont.load_default()
 
 
+def _pil_mono(size: int, bold: bool = True):
+    from matplotlib import font_manager
+    from PIL import ImageFont
+    try:
+        fp = font_manager.findfont(font_manager.FontProperties(
+            family="DejaVu Sans Mono", weight="bold" if bold else "normal"))
+        return ImageFont.truetype(fp, size)
+    except Exception:  # noqa: BLE001
+        return _pil_font(size, bold)
+
+
+def render_hook_receipt(out_dir: Path, slug: str, header: str,
+                        lines: list, total_lo: float, total_hi: float,
+                        unit: str = "dollars", stamp: str = "",
+                        frames: int = 30):
+    """A grocery RECEIPT whose TOTAL races upward — the cold-open metaphor for
+    'same groceries, way bigger receipt'. Item lines carry the real per-category
+    numbers; the total ticks from lo→hi in the warn colour with a stamp. Full
+    frame, fills the top; Data reacts below. Returns (printf_pattern, [])."""
+    from PIL import Image, ImageDraw
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    paper = (244, 241, 233, 255)
+    ink = (28, 32, 38, 255)
+    faint = (120, 124, 130, 255)
+    warn = _rgba(WARN, 255)
+    px0, px1 = 210, 870                 # receipt paper x-span
+    py0, py1 = 250, 1180                # receipt paper y-span
+    hf = _pil_mono(52)
+    itf = _pil_mono(40)
+    totf = _pil_mono(58)
+    bigf = _pil_font(150)
+    stampf = _pil_font(64)
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        r = 1.0 - (1.0 - r) ** 2
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        # paper with a soft shadow + torn top edge feel
+        d.rounded_rectangle([px0 + 8, py0 + 12, px1 + 8, py1 + 12], radius=18,
+                            fill=(0, 0, 0, 90))
+        d.rounded_rectangle([px0, py0, px1, py1], radius=18, fill=paper)
+        # header
+        hb = d.textbbox((0, 0), header, font=hf)
+        d.text(((W - (hb[2] - hb[0])) // 2, py0 + 40), header, font=hf, fill=ink)
+        d.line([(px0 + 40, py0 + 118), (px1 - 40, py0 + 118)], fill=faint, width=3)
+        # item lines (label left, value right), appearing progressively
+        y = py0 + 150
+        shown = max(1, int(r * len(lines) + 0.5)) if lines else 0
+        for i, (lab, valtxt) in enumerate(lines[:shown]):
+            d.text((px0 + 44, y), str(lab)[:14], font=itf, fill=ink)
+            vb = d.textbbox((0, 0), str(valtxt), font=itf)
+            d.text((px1 - 44 - (vb[2] - vb[0]), y), str(valtxt), font=itf, fill=warn)
+            y += 62
+        # dashed separator above the total
+        ty = py1 - 250
+        for xx in range(px0 + 40, px1 - 40, 26):
+            d.line([(xx, ty), (xx + 14, ty)], fill=faint, width=3)
+        # TOTAL, ticking up
+        cur = total_lo + r * (total_hi - total_lo)
+        d.text((px0 + 44, ty + 34), "TOTAL", font=totf, fill=ink)
+        tot = ("$" if unit in ("dollars", "usd", "$") else "") + f"{cur:,.0f}"
+        bb = d.textbbox((0, 0), tot, font=bigf)
+        d.text((W // 2 - (bb[2] - bb[0]) // 2, ty + 96), tot, font=bigf,
+               fill=warn, stroke_width=3, stroke_fill=(60, 20, 10, 255))
+        # red stamp (e.g. "+86%") angled in the corner, pops near the end
+        if stamp and r > 0.45:
+            sa = min(1.0, (r - 0.45) / 0.4)
+            stmp = Image.new("RGBA", (360, 150), (0, 0, 0, 0))
+            sd = ImageDraw.Draw(stmp)
+            sd.rounded_rectangle([6, 6, 354, 144], radius=18, outline=warn, width=8)
+            sbb = sd.textbbox((0, 0), stamp, font=stampf)
+            sd.text(((360 - (sbb[2] - sbb[0])) // 2, (150 - (sbb[3] - sbb[1])) // 2
+                     - sbb[1]), stamp, font=stampf, fill=warn)
+            stmp = stmp.rotate(11, expand=True,
+                               resample=Image.BICUBIC)
+            stmp.putalpha(stmp.getchannel("A").point(lambda a: int(a * sa)))
+            # placed in the empty band below the item lines, above the dashed
+            # total rule — clear of the numbers.
+            canvas.alpha_composite(stmp, ((W - stmp.width) // 2, ty - 260))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
 @_fullframe("diorama")
 def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     """Illustrated proportional SCENE: each ranked item is a relevant cut-out

@@ -755,8 +755,54 @@ def _round_rect_tail(x0, y0, x1, y1, r=30, tail_x=540, tip=(540, 520)) -> str:
     return " ".join(p)
 
 
+def _build_hook_receipt(story_cfg: dict, work: Path, slug: str):
+    """Assemble a RECEIPT cold-open from the story's OWN data: category jumps as
+    line items + a dollar total that races from its first year to its last.
+    Returns (printf_pattern, nframes) or None if the story lacks the pieces
+    (then the plain hero-number hook is used)."""
+    try:
+        cats = dollars = None
+        for seg in story_cfg.get("segments", []):
+            fn = (seg.get("params") or {}).get("file") or f"{seg.get('key', '')}.json"
+            p = REPO / "data_learning" / "data" / fn
+            if not p.exists():
+                continue
+            data = json.loads(p.read_text())
+            pts = data.get("points", [])
+            unit = (data.get("unit") or "").lower()
+            has_period = len([1 for q in pts if q.get("period")]) >= 2
+            if not has_period and len(pts) >= 3 and cats is None:
+                cats = data
+            if unit in ("dollars", "usd") and has_period and dollars is None:
+                sp = sorted(pts, key=lambda q: float(q["period"]))
+                dollars = (float(sp[0]["value"]), float(sp[-1]["value"]))
+        if not cats or not dollars:
+            return None
+        cu = (cats.get("unit") or "").lower()
+
+        def _fmt(v):
+            s = f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer() else f"{v:,.1f}"
+            if cu in ("percent", "%", "pct"):
+                return "+" + s + "%"
+            if cu in ("dollars", "usd"):
+                return "$" + s
+            return s
+        lines = [(str(q["label"])[:12], _fmt(float(q["value"])))
+                 for q in cats.get("points", [])[:5]]
+        lo, hi = dollars
+        pct = int(round((hi / lo - 1) * 100)) if lo else 0
+        pat, _ = charts.render_hook_receipt(
+            work / "receipt", slug, "RECEIPT", lines, lo, hi, "dollars",
+            stamp=(f"+{pct}%" if pct else ""), frames=30)
+        import glob as _glob
+        return pat, len(_glob.glob(pat.replace("%02d", "*")))
+    except Exception as e:  # noqa: BLE001 — never let the cold-open kill a render
+        print(f"[studio] hook receipt skipped: {e}", flush=True)
+        return None
+
+
 def build_story_ass(st: story.Story, windows, events, out: Path,
-                    accent: str = "&H4FD1F5&") -> None:
+                    accent: str = "&H4FD1F5&", hook_visual: bool = False) -> None:
     acc = accent.strip("&H").rstrip("&")          # bare BBGGRR for inline tags
     head = f"""[Script Info]
 ScriptType: v4.00+
@@ -796,13 +842,16 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # at t=0, which is the only moment that decides whether they keep watching.
     h0, h1 = windows[0]
     headline = _headline_number(st)
-    if headline:
+    # When a full-frame HOOK VISUAL (the receipt) is on screen it IS the hero —
+    # the big number + claim would just collide with it, so they're suppressed
+    # and the receipt + VO captions carry the open.
+    if headline and not hook_visual:
         # Hero number: huge, accent-filled, punches in hard on the first frame.
         num = ("{\\an5\\pos(540,235)\\fs240\\1c" + accent + "\\3c&H101010&"
                "\\bord7\\shad0\\fad(0,90)\\fscx150\\fscy150"
                "\\t(0,150,\\fscx100\\fscy100)\\blur1.2}" + headline)
         lines.append(f"Dialogue: 1,{_ass_time(h0)},{_ass_time(h1)},Hook,,0,0,0,,{num}")
-    hchunks = _chunks(st.hook, 2)          # 2-word bursts = faster, bigger words
+    hchunks = _chunks(st.hook, 2) if not hook_visual else []
     if hchunks:
         hstep = (h1 - h0) / len(hchunks)
         for j, ch in enumerate(hchunks):
@@ -1039,8 +1088,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # Full soundtrack: narration + ducked theme music + visual-synced SFX.
         soundtrack = _build_soundtrack(narration, windows, events, total,
                                        theme.get("vibe", "calm"), work, slug)
+        # HOOK VISUAL: a receipt whose total races up (built from the story's own
+        # data). When present it becomes the cold-open and the ASS hero number is
+        # suppressed so they don't collide.
+        receipt = _build_hook_receipt(story_cfg, work, slug)
         ass = work / "cap.ass"
-        build_story_ass(st, windows, events, ass, accent=accent_ass)
+        build_story_ass(st, windows, events, ass, accent=accent_ass,
+                        hook_visual=bool(receipt))
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
         # Ordered mascot sequence: hook (up, centred), one per number (tucked
@@ -1111,10 +1165,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 x = Lx if i % 2 == 0 else Rx          # pace across the stage
                 return x, stage_y
 
-            # HOOK: no chart yet, so Data IS the visual — big, central, and
-            # REACTING with a bespoke bit (bracing under / hoisting the shock
-            # number) so he isn't a static sprite marooned in black.
-            home = (Cx, float(H * 0.40))
+            # HOOK: Data REACTS with a bespoke bit. If the receipt visual is up
+            # (it fills the top ~60%), he sits BELOW it reacting up; otherwise he
+            # is the central visual himself.
+            hook_y = float(H * 0.62) if receipt else float(H * 0.40)
+            home = (Cx, hook_y)
             hook_perf = gap_fill
             if _director:
                 try:
@@ -1125,7 +1180,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 except Exception:  # noqa: BLE001
                     hook_perf = gap_fill
             seq = []
-            seq.append((Cx, float(H * 0.40), windows[0][0], windows[0][1],
+            seq.append((Cx, hook_y, windows[0][0], windows[0][1],
                         UP_ANGLE, False, hook_perf))
             for i in range(nseg):
                 wi = windows[1 + i] if 1 + i < len(windows) else None
@@ -1237,6 +1292,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             inputs += ["-loop", "1", "-i", str(hook_img)]
             hook_idx = idx
             idx += 1
+        receipt_idx = None
+        if receipt:
+            rpat, rnfr = receipt
+            hw = windows[0][1] - windows[0][0]
+            rfps = max(6.0, min(30.0, rnfr / max(0.8, hw - 0.2)))
+            inputs += ["-framerate", f"{rfps:.2f}", "-i", rpat]
+            receipt_idx = idx
+            idx += 1
         seg_idx = {}
         import glob as _glob
         for i, seg in enumerate(st.segments):
@@ -1308,6 +1371,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"[{prev}][hookimg]overlay=0:0:"
                 f"enable='between(t,0,{he:.2f})'[hk]")
             prev = "hk"
+        # HOOK RECEIPT: the total races up over the hook window, then holds
+        # briefly and fades as the first chart arrives. Full-frame; Data reacts
+        # below it (mascot overlay is drawn after this).
+        if receipt_idx is not None:
+            he = windows[0][1]
+            fc.append(
+                f"[{receipt_idx}:v]tpad=stop_mode=clone:stop_duration={he + 0.5:.2f},"
+                f"setpts=PTS-STARTPTS,scale={W}:{H},format=rgba,"
+                f"fade=t=out:st={max(0.1, he - 0.3):.2f}:d=0.3:alpha=1[rcpt]")
+            fc.append(
+                f"[{prev}][rcpt]overlay=0:0:enable='between(t,0,{he:.2f})'[rk]")
+            prev = "rk"
         # Charts DRAW ON: the build sequence plays (~0.7s) then tpad holds the
         # final frame for the rest of the beat. setpts shifts the clip so its
         # frame 0 lands at s0; the final frame is the exact static chart, so the
