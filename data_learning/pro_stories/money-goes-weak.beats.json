@@ -10,8 +10,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "$2M",
-    "label": "YOU'LL EARN"
+    "label": "YOU'LL EARN",
+    "text": "$2M",
+    "sub": ""
    }
   },
   {
@@ -21,8 +22,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "-$500K",
-    "label": "TAXES"
+    "label": "TAXES",
+    "text": "-$500K",
+    "sub": ""
    }
   },
   {
@@ -32,8 +34,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "$1.5M",
-    "label": "LEFT"
+    "label": "LEFT",
+    "text": "$1.5M",
+    "sub": ""
    }
   },
   {
@@ -43,8 +46,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "-$500K",
-    "label": "HOUSING"
+    "label": "HOUSING",
+    "text": "-$500K",
+    "sub": ""
    }
   },
   {
@@ -54,8 +58,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "$1M",
-    "label": "LEFT"
+    "label": "LEFT",
+    "text": "$1M",
+    "sub": ""
    }
   },
   {
@@ -65,8 +70,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "-$250K",
-    "label": "CARS"
+    "label": "CARS",
+    "text": "-$250K",
+    "sub": ""
    }
   },
   {
@@ -76,8 +82,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "$750K",
-    "label": "LEFT"
+    "label": "LEFT",
+    "text": "$750K",
+    "sub": ""
    }
   },
   {
@@ -87,8 +94,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "-$300K",
-    "label": "FOOD"
+    "label": "FOOD",
+    "text": "-$300K",
+    "sub": ""
    }
   },
   {
@@ -98,8 +106,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "$450K",
-    "label": "LEFT"
+    "label": "LEFT",
+    "text": "$450K",
+    "sub": ""
    }
   },
   {
@@ -109,8 +118,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "-$150K",
-    "label": "LEAKS"
+    "label": "LEAKS",
+    "text": "-$150K",
+    "sub": ""
    }
   },
   {
@@ -120,8 +130,9 @@
    "understand": "money meter card",
    "flat": {
     "kind": "flat_number",
-    "number": "$300K",
-    "label": "LEFT"
+    "label": "LEFT",
+    "text": "$300K",
+    "sub": ""
    }
   },
   {
@@ -131,8 +142,9 @@
    "understand": "payoff replaced by a bare statement card",
    "flat": {
     "kind": "flat_number",
-    "number": "15%",
-    "label": "YOURS"
+    "label": "YOURS",
+    "text": "15%",
+    "sub": ""
    }
   }
  ]

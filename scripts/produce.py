@@ -131,7 +131,22 @@ def produce(slug: str, out: Path, rounds: int = 3) -> dict:
     story_path = resolve_story(slug)
     story = json.loads(story_path.read_text())
     print(f"[produce] {slug}: render + director loop ({story_path.name})")
-    director_rc = no_dull_beats.run(story_path, out, rounds=rounds)
+    try:
+        director_rc = no_dull_beats.run(story_path, out, rounds=rounds)
+    except Exception as e:  # noqa: BLE001 — a render that DIES must FAIL CLOSED,
+        # never crash the producer (a malformed beat, a TTS death, a builder bug).
+        # No render => no publishable film: quarantine with the failure recorded.
+        detail = str(e)
+        if hasattr(e, "stderr") and e.stderr:
+            tail = e.stderr if isinstance(e.stderr, str) else e.stderr.decode(errors="replace")
+            detail = tail.strip().splitlines()[-1] if tail.strip() else detail
+        print(f"[produce] {slug}: render FAILED — {detail[:200]}", file=sys.stderr)
+        result = {"out": str(out), "status": "quarantine",
+                  "reasons": [f"render failed (fail-closed): {detail[:200]}"],
+                  "director_rc": None, "pkg": str(out.with_name(out.stem + "_pkg")),
+                  "fallback_verdict": "render_error", "slug": slug}
+        print(f"[produce] {slug}: QUARANTINE — render failed (fail-closed)")
+        return result
     result = evaluate(out, director_rc, story=story)
     result["slug"] = slug
     if result["status"] == "pass":
