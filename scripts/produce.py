@@ -98,7 +98,17 @@ def evaluate(out: Path, director_rc: int, story: dict | None = None) -> dict:
             reasons.append(f"missing publishing sidecar: {why}")
 
     verdict = _read_json(pkg / "verdict.json")
-    if verdict is None:
+    # A verdict is only valid for the render it judged. A re-render rebuilds the
+    # blind package but does not delete an old verdict, so a verdict that predates
+    # the current mp4 is STALE — treat it as absent and fail closed, or we would
+    # promote a new cut on last cut's judgment.
+    vpath = pkg / "verdict.json"
+    if verdict is not None and out.exists() and \
+            vpath.stat().st_mtime < out.stat().st_mtime:
+        reasons.append("stale vision verdict (pkg/verdict.json predates this "
+                       "render) — FAILS CLOSED; re-judge the current blind package")
+        verdict = None
+    elif verdict is None:
         reasons.append("no vision taste verdict (pkg/verdict.json) — FAILS CLOSED; "
                        "judge the blind package before publishing")
     elif not verdict.get("pass"):
