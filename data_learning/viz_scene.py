@@ -659,7 +659,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
     # Data's act varies with the demonstration: he POINTS OUT the stacking bill
     # (bars) vs. CHEERS/rides the climbing line (area) — a distinct bit per beat.
     host = charts._host_pose("point" if bars else "cheer")
-    mh = 300        # bigger — he's the performer, not a decorative sticker
+    mh = 268        # a strong presence, but not so big it collides with text
     if host is not None:
         mw = int(host.width * mh / host.height)
         px = int(min(max(hx - mw / 2, 8), W - mw - 8))
@@ -671,8 +671,11 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
     nf = _pil_font(78)
     val = _fmt_stat(cur, unit)
     vb = d.textbbox((0, 0), val, font=nf)
-    vx = int(min(max(hx - (vb[2] - vb[0]) / 2, 20), W - 20 - (vb[2] - vb[0])))
-    vy = int(max(210, hy - mh - 76))
+    # Hero number sits in a FIXED slot centred just under the title — decoupled
+    # from the (moving, now-larger) mascot so it never collides with the title or
+    # clips off the right edge.
+    vx = int((W - (vb[2] - vb[0])) / 2)
+    vy = 352
     d.text((vx, vy), val, font=nf, fill=_rgba(HIGHLIGHT, int(255 * na)),
            stroke_width=6, stroke_fill=(5, 8, 15, 255))
     # start value + the delta gap (physical +$X since the first year)
