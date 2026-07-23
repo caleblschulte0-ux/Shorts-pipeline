@@ -523,15 +523,50 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             return None
         shipped = {v.get("story_key") for v in log["posted"].values()
                    if v.get("story_key")}
-        for cluster in clusters[:int(spec.get("story_max_clusters", 4))]:
+        # member sets of every shipped story, for NEAR-duplicate detection:
+        # the exact-hash law misses {A,B,C} -> {A,B,C,D} retells
+        shipped_members = [v.get("member_keys") or []
+                           for v in log["posted"].values()
+                           if v.get("story_key")]
+        wmodel = spec.get("whisper_model", "small")
+        for cluster in clusters[:int(spec.get("story_max_clusters", 3))]:
             who = "+".join(cluster["who"])
             # cheap pre-check: if even the FULL cluster's key already
             # shipped, the arc is stale — don't spend a brain call on it
             if storyline.story_key(
                     [c["source_url"] for c in cluster["clips"]]) in shipped:
                 continue
+            if storyline.near_dup([c["source_url"]
+                                   for c in cluster["clips"]],
+                                  shipped_members):
+                print(f"[story] {who}: near-duplicate of a shipped story "
+                      "— skipped", flush=True)
+                continue
+            # GROUND THE SHOWRUNNER IN WHAT'S ACTUALLY SAID (reviewer rail
+            # #1): titles lie — download + transcribe the cluster's clips
+            # so the brain judges the arc from real transcript snips, not
+            # narrative-sounding titles that could stitch unrelated
+            # moments. Content-addressed transcript cache makes repeats
+            # free; failures leave snip empty (the brain treats missing
+            # snips as lower-confidence, and order_story stays strict).
+            snip_dir = work / "story_snips"
+            snip_dir.mkdir(parents=True, exist_ok=True)
+            for c in cluster["clips"][:6]:
+                if c.get("snip"):
+                    continue
+                try:
+                    info = clip_edit.download(c["source_url"], snip_dir)
+                    src = Path(info["path"])
+                    if not src.is_absolute():
+                        src = REPO / src
+                    words = clip_edit.transcribe_words(src, wmodel)
+                    c["snip"] = " ".join(w["w"] for w in words[:40])
+                except Exception as e:  # noqa: BLE001
+                    print(f"::warning::[story] snip failed for "
+                          f"{c.get('title','?')[:40]!r} "
+                          f"({type(e).__name__})", flush=True)
             arc = author.order_story(cluster["clips"])
-            if not arc:
+            if not arc or len(arc.get("beats") or []) < 2:
                 print(f"[story] {who}: showrunner says not a story",
                       flush=True)
                 continue
@@ -539,6 +574,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                     for b in arc["beats"]]) in shipped:
                 print(f"[story] {who}: this exact arc already shipped",
                       flush=True)
+                continue
+            if storyline.near_dup([b["clip"]["source_url"]
+                                   for b in arc["beats"]], shipped_members):
+                print(f"[story] {who}: arc near-duplicates a shipped story "
+                      "— skipped", flush=True)
                 continue
             try:
                 led = story_mod.build_story(
@@ -553,11 +593,24 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             if skey in shipped:
                 continue    # beats dropped during render collapsed it into
                             # an arc that already shipped — don't repost
+            # EXPLICIT STORY DURATION RANGE (reviewer rail #7): stories
+            # aren't exempt from length judgment — they just have their own
+            # band. Under 25s isn't a multi-beat story; over 90s loses the
+            # scroller (revisit the cap once story retention data exists).
+            s_min = float(spec.get("story_dur_min", 25.0))
+            s_max = float(spec.get("story_dur_max", 90.0))
+            s_dur = float(led.get("duration_s") or 0)
+            if not (s_min <= s_dur <= s_max):
+                print(f"::warning::[story] {who}: {s_dur:.0f}s outside the "
+                      f"{s_min:.0f}-{s_max:.0f}s story range — next cluster",
+                      flush=True)
+                continue
             qa = clip_qa.review(out_mp4, {
                 "authored_title": arc["title"], "hook": arc["hook"],
                 "series": "story"}, work)
-            # a story legally exceeds the 62s single-clip duration cap —
-            # only NON-duration problems fail it
+            # the mechanical 4-62s SINGLE-CLIP bound doesn't apply (the
+            # story range above already judged length) — only non-duration
+            # problems fail it
             hard = [p for p in qa["problems"] if "duration" not in p]
             if qa["verdict"] == "fail" and hard:
                 print(f"::warning::[story] {who}: QA failed "
@@ -801,7 +854,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # slot: three good clips beat five with two duds, and an empty
                 # slot beats a bad upload. Unknown/garbage titles sit at 0.5
                 # and still pass — a bad title often hides a great clip.
-                min_banger = spec.get("min_banger", 0.35)
+                min_banger = spec.get("min_banger", 0.50)
                 postable = [c for c in shortlist if c["banger"] >= min_banger]
                 if not postable:
                     best_b = max((c["banger"] for c in shortlist), default=0.0)
@@ -861,6 +914,35 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     guidance=_opening_guidance())
             hook = (meta or {}).get("hook") or pkg.get("hook", "")
             series = (meta or {}).get("series", "chaos")
+
+            # CONTENT-AWARE QUALITY GATE (reviewer rail #5, second stage):
+            # the shortlist floor judged a TITLE; now the transcript exists,
+            # re-score with what's actually said — a lying title gets
+            # caught here, a great clip behind a garbage title gets
+            # confirmed. Playbook-aligned floor (post at ~0.70+). Fails
+            # OPEN: no transcript, no brain, or no score for this clip
+            # never blocks a post — this gate only acts on real evidence.
+            if words:
+                snip = " ".join(w["w"] for w in words[:40])
+                try:
+                    rescore = author.rank_clips([{
+                        "url": info["url"], "channel": streamer,
+                        "views": info.get("views", 0),
+                        "title": info["title"], "snip": snip}])
+                except Exception:  # noqa: BLE001
+                    rescore = {}
+                cb, cwhy = rescore.get(info["url"], (None, ""))
+                content_floor = float(spec.get("min_banger_content", 0.70))
+                if cb is not None and cb < content_floor:
+                    log["posted"][
+                        f"rejected-{_clip_key(info['url']) or slug}"] = {
+                        "source_url": info["url"], "streamer": streamer,
+                        "title": info["title"], "qa_rejected": True,
+                        "ts": datetime.now(timezone.utc).isoformat(),
+                    }
+                    raise RuntimeError(
+                        f"content gate: transcript-aware score {cb:.2f} < "
+                        f"{content_floor} ({cwhy or 'no reason'})")
 
             # DIRECTOR COMPLETENESS GATE (§9): if the brain judges the clip
             # starts mid-action with no context OR its payoff is cut off,

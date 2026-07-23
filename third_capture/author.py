@@ -393,10 +393,18 @@ real emotion, a clear payoff, freshness, search/fan pull, commentability):
   genuinely can't tell (unknown = 0.5, NEVER 0 — a bad title often hides a
   great clip; don't punish it, just don't boost it).
 - LOW (0.0-0.3): fails the one-sentence test or hits an AUTOMATIC-REJECT — a
-  giveaway/drops/subathon/"gifted" spam, sponsor/ad read, menu/setup/technical
-  talk, routine gameplay, ordinary conversation with no change, or insider
-  content a stranger can't follow. Also LOW if the title has to exaggerate or
-  invent an event to sound interesting.
+  ROUTINE giveaway/drops/subathon/gifted-sub ALERT with no real reaction,
+  sponsor/ad read, menu/setup/technical talk, routine gameplay, ordinary
+  conversation with no change, or insider content a stranger can't follow.
+  Also LOW if the title has to exaggerate or invent an event to sound
+  interesting. (A gifted-sub moment is NOT auto-low when the person's genuine
+  reaction, the amount, or the surrounding event makes it an emotionally
+  complete, searchable moment — our own data shows those retain.)
+
+Some candidates carry a transcript snippet (snip=...) — actual words said in
+the clip. When present, judge from the SNIP over the title: titles lie, the
+transcript doesn't. A snip revealing routine/no-change talk overrides an
+exciting title; a snip revealing real conflict/emotion rescues a vague title.
 
 Return ONLY JSON: {"scores": [{"i": <index int>, "banger": <0-1>,
 "why": "<=6 words"}]}. One entry per candidate, same indices given."""
@@ -410,9 +418,12 @@ def rank_clips(clips: list[dict]) -> dict:
         return {}
     lines = []
     for i, c in enumerate(clips):
-        lines.append(f"{i}. streamer={c.get('channel','?')} "
-                     f"views={c.get('views',0)} vph={c.get('vph',0):.0f} "
-                     f"title={str(c.get('title',''))[:90]!r}")
+        line = (f"{i}. streamer={c.get('channel','?')} "
+                f"views={c.get('views',0)} vph={c.get('vph',0):.0f} "
+                f"title={str(c.get('title',''))[:90]!r}")
+        if c.get("snip"):
+            line += f" snip={str(c['snip'])[:160]!r}"
+        lines.append(line)
     user = "Candidates:\n" + "\n".join(lines)
     out = None
     try:

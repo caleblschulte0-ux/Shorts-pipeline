@@ -58,7 +58,30 @@ everyone everybody someone somebody anyone nobody people guy girl man woman
 dude bro
 day days night morning today yesterday tomorrow week hour minute second
 thing things stuff way ways time times
+coach professor teacher student students security guard office detention
+class hallway campus school party house room door car ticket phone monitor
+necklace shirt wheelchair tornado launchpad goal post match soccer football
+game games win loss fight chant homecoming date excuse fan fans friend
+friends team crowd money
 """.split())
+
+# Known person aliases -> canonical identity. Person detection is
+# title-token based, so "Kai", "Cenat" and "kaicenat" would otherwise read
+# as three different people and spawn near-duplicate clusters. Extend as
+# the allowlist grows; unknown names simply stay themselves.
+ALIASES = {
+    "kai": "kaicenat", "cenat": "kaicenat", "kaicenat": "kaicenat",
+    "ron": "stableronaldo", "stable": "stableronaldo",
+    "stableronaldo": "stableronaldo",
+    "case": "caseoh", "caseoh": "caseoh",
+    "asmon": "zackrawrr", "asmongold": "zackrawrr", "zackrawrr": "zackrawrr",
+    "tyler1": "loltyler1", "loltyler1": "loltyler1",
+    "moist": "moistcr1tikal", "cr1tikal": "moistcr1tikal",
+    "critikal": "moistcr1tikal", "moistcr1tikal": "moistcr1tikal",
+    "adin": "adinross", "adinross": "adinross",
+    "jason": "jasontheween", "jasontheween": "jasontheween",
+    "tpain": "tpain", "pain": "tpain",
+}
 
 
 def clip_key(url: str) -> str:
@@ -77,6 +100,23 @@ def story_key(member_urls: list[str]) -> str:
     return "story-" + hashlib.sha1("|".join(keys).encode()).hexdigest()[:16]
 
 
+def near_dup(member_urls: list[str], shipped_member_lists: list[list[str]],
+             thresh: float = 0.6) -> bool:
+    """True when a candidate story substantially retells one that already
+    shipped. The exact-hash law only catches identical member SETS — a
+    shipped {A,B,C} plus one new clip D hashes differently but is the same
+    story. Jaccard overlap on canonical member keys >= `thresh` against ANY
+    shipped story blocks the retell."""
+    keys = {clip_key(u) for u in member_urls if u}
+    if not keys:
+        return False
+    for prev in shipped_member_lists:
+        pk = {clip_key(u) for u in (prev or []) if u}
+        if pk and len(keys & pk) / len(keys | pk) >= thresh:
+            return True
+    return False
+
+
 def _entities(title: str, streamer: str, known: set[str]) -> set[str]:
     """People a clip is about: its own streamer, any KNOWN streamer named in
     the title (matched case-insensitively anywhere), and capitalized
@@ -88,15 +128,17 @@ def _entities(title: str, streamer: str, known: set[str]) -> set[str]:
 
     ents = set()
     if streamer:
-        ents.add(_norm(streamer))
+        n = _norm(streamer)
+        ents.add(ALIASES.get(n, n))
     low = f" {str(title).lower()} "
     for k in known:
         if k and re.search(rf"\b{re.escape(k)}\b", low):
-            ents.add(_norm(k))
+            n = _norm(k)
+            ents.add(ALIASES.get(n, n))
     for tok in re.findall(r"\b[A-Z][a-zA-Z]{2,15}\b", str(title)):
         t = _norm(tok)
         if t and t not in _STOP and not t.isdigit():
-            ents.add(t)
+            ents.add(ALIASES.get(t, t))
     ents.discard("")
     return ents
 

@@ -32,7 +32,7 @@ CANVAS_W, CANVAS_H = 1080, 1920
 FPS = 30
 CARD_DUR = 1.5            # seconds per chapter card
 MIN_BEATS = 2            # fewer than this isn't a story — fall back to a clip
-MAX_BEATS = 5
+MAX_BEATS = 4            # 3-4 beats lands the 25-90s story range reliably
 _T = 300                 # per-ffmpeg ceiling (s)
 
 
@@ -153,17 +153,19 @@ def build_story(beats: list[dict], out_mp4: Path, work: Path, *,
     # clip playing underneath immediately). Chapter cards appear only
     # BETWEEN beats, where they're act breaks, not a delayed start.
 
-    for idx, beat in enumerate(beats[:MAX_BEATS]):
+    def _render_beat(idx: int, beat: dict) -> dict | None:
+        """Download + render + normalize one beat, appending its parts.
+        Returns the used-record, or None when the beat fails any step."""
         clip = beat.get("clip", {})
         url = clip.get("source_url") or clip.get("url")
         if not url:
-            continue
+            return None
         try:
             info = clip_edit.download(url, work)
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[story] beat {idx} download failed "
                   f"({type(e).__name__}) — skipped", flush=True)
-            continue
+            return None
         src = Path(info["path"])
         if not src.is_absolute():
             src = REPO / src
@@ -171,12 +173,12 @@ def build_story(beats: list[dict], out_mp4: Path, work: Path, *,
         if pf:
             print(f"::warning::[story] beat {idx} preflight: "
                   f"{'; '.join(pf)[:120]} — skipped", flush=True)
-            continue
+            return None
         streamer = (clip.get("channel") or clip.get("streamer")
                     or info.get("clipper") or "")
         platform = clip.get("platform", "twitch")
         beat_out = work / f"beat_{idx}.mp4"
-        opens_video = not used     # first SURVIVING beat opens the story
+        opens_video = not used     # first surviving beat opens the story
         try:
             led = clip_edit.edit(
                 src, beat_out,
@@ -187,29 +189,53 @@ def build_story(beats: list[dict], out_mp4: Path, work: Path, *,
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[story] beat {idx} render failed "
                   f"({type(e).__name__}: {e}) — skipped", flush=True)
-            continue
+            return None
         if not beat_out.exists():
-            continue
+            return None
         beat_norm = work / f"beat_{idx}_n.mp4"
         try:
             _normalize(beat_out, beat_norm)
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[story] beat {idx} normalize failed "
                   f"({type(e).__name__}) — skipped", flush=True)
-            continue
+            return None
         if opens_video:
             parts.append(beat_norm)
         else:
             card_mp4 = work / f"card_{idx}.mp4"
             _card(beat.get("card", ""), _subtitle(streamer, clip),
                   card_mp4, work, str(idx))
-            parts += [card_mp4, beat_norm]
-        used.append({
+            # extend(), never `+=`: augmented assignment on a closed-over
+            # name makes it local to this nested function (UnboundLocal —
+            # the same scoping class as the 2026-07-23 canary crash)
+            parts.extend([card_mp4, beat_norm])
+        return {
             "source_url": url, "streamer": streamer, "platform": platform,
             "role": beat.get("role", ""), "card": beat.get("card", ""),
             "render_level": led.get("render_level"),
             "duration_s": led.get("duration_s"),
-        })
+        }
+
+    # ARC INTEGRITY (reviewer rail): the showrunner ordered setup ->
+    # ... -> payoff. Dropping a MIDDLE beat still tells a coherent story;
+    # losing the SETUP (the hook no longer matches what opens the video)
+    # or the PAYOFF (a "full story" with no ending) invalidates the arc —
+    # abort so the slot falls back to a normal clip instead of publishing
+    # a broken story.
+    planned = beats[:MAX_BEATS]
+    for idx, beat in enumerate(planned):
+        rec = _render_beat(idx, beat)
+        if rec is None:
+            if idx == 0:
+                raise RuntimeError(
+                    "story: SETUP beat failed — arc invalid without its "
+                    "opening; fall back to a single clip")
+            if idx == len(planned) - 1:
+                raise RuntimeError(
+                    "story: PAYOFF beat failed — a story with no ending "
+                    "doesn't ship; fall back to a single clip")
+            continue
+        used.append(rec)
 
     if len(used) < MIN_BEATS:
         raise RuntimeError(

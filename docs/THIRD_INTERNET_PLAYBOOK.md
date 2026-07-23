@@ -81,8 +81,12 @@ Reject regardless of score when any of these is true:
 - No person or clear action is visible for a meaningful stretch.
 - The source is dark, blurry, frozen, boxed into a tiny area, or mostly empty.
 - The moment depends on an inside joke that cannot be explained naturally.
-- It is a sponsor read, giveaway, gifted-sub notification, menu/setup screen,
-  routine gameplay, or ordinary conversation with no change.
+- It is a sponsor read, giveaway, a ROUTINE gifted-sub alert with no real
+  reaction, menu/setup screen, routine gameplay, or ordinary conversation
+  with no change. (A gifted-sub moment is NOT auto-rejected when the
+  person's genuine reaction, the amount, or the surrounding event makes it
+  an emotionally complete, searchable moment — channel data shows those
+  retain and get searched by exact phrase.)
 - The title needs to exaggerate or invent an event to sound interesting.
 - It is materially the same event or emotional beat as another post that day.
 

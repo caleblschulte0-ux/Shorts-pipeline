@@ -383,6 +383,15 @@ def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
             if (token and not _JUNK.match(token)
                     and w.get("probability", 1.0) >= 0.35):
                 words.append({"w": token, "s": w["start"], "e": w["end"]})
+    # WRITE the cache (reviewer-caught bug: the original cache read but
+    # never wrote, so it stayed empty forever). Best-effort — a failed
+    # write must never lose the transcription we just paid for.
+    if cpath is not None:
+        try:
+            cpath.parent.mkdir(parents=True, exist_ok=True)
+            cpath.write_text(json.dumps(words))
+        except Exception:  # noqa: BLE001
+            pass
     return words
 
 
