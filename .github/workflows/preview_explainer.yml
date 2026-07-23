@@ -85,6 +85,12 @@ jobs:
             "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
           ls -lh kokoro_models/
 
+      - name: Install Claude Code CLI (headless showrunner brain)
+        run: |
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            && echo "claude CLI installed" \
+            || echo "::warning::claude CLI install failed — showrunner falls back to Gemini"
+
       - name: Render one story (dry-run, no upload)
         id: render
         env:

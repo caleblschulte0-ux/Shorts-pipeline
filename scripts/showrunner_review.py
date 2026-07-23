@@ -11,12 +11,13 @@ junk image or a floating do-nothing mascot), the verdict is BLOCK and the
 uploader skips it.
 
 Design notes:
-- Mirrors the pipeline's existing raw-HTTP Anthropic pattern (script_generator),
-  adding vision — no new dependency. Uses ANTHROPIC_API_KEY.
-- FAIL-OPEN on infrastructure problems (no key, API/ffmpeg error): a hiccup must
-  not halt the whole channel. FAIL-CLOSED only on a real reviewed BLOCK verdict.
-- Model: claude-opus-4-8 (the judgment quality IS the point). Override with
-  SHOWRUNNER_MODEL.
+- Judges via the Claude HEADLESS BRAIN — the `claude` CLI in print mode on the
+  CLAUDE_CODE_OAUTH_TOKEN subscription, the SAME mechanism the pipeline's brain
+  step already uses. NOT the paid Anthropic API. The CLI Reads the sampled
+  frame images itself (vision). Free Gemini vision is the only fallback.
+- FAIL-OPEN on infrastructure problems (CLI missing, timeout, ffmpeg error) on a
+  preview run; the caller (post_stories) fails CLOSED on a real publish run.
+- Model: the CLI 'opus' alias (override with SHOWRUNNER_MODEL).
 
 CLI:
     python scripts/showrunner_review.py output/story_x.mp4 [--context ctx.json]
@@ -28,6 +29,8 @@ import argparse
 import base64
 import json
 import os
+import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -36,8 +39,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 RUBRIC_PATH = REPO / "docs" / "DIRECTOR.md"
-ANTHROPIC_API = "https://api.anthropic.com/v1/messages"
-MODEL = os.environ.get("SHOWRUNNER_MODEL", "claude-opus-4-8")
+MODEL = os.environ.get("SHOWRUNNER_MODEL", "opus")
 MIN_SCORE = int(os.environ.get("SHOWRUNNER_MIN_SCORE", "70"))
 N_FRAMES = int(os.environ.get("SHOWRUNNER_FRAMES", "6"))
 
@@ -119,59 +121,39 @@ def _post_json(url: str, body: dict, headers: dict) -> dict:
         return json.loads(r.read().decode())
 
 
-def _anthropic_headers() -> dict | None:
-    """Auth for the Claude Messages API. Prefer a plain API key; otherwise use
-    the Claude headless-brain OAuth token (CLAUDE_CODE_OAUTH_TOKEN / _API_KEY)
-    the way the pipeline's brain is already authenticated — Bearer + the oauth
-    beta header. Returns None if no Claude credential is available."""
-    base = {"anthropic-version": "2023-06-01", "content-type": "application/json"}
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    if key:
-        return {**base, "x-api-key": key}
-    oauth = (os.environ.get("CLAUDE_CODE_OAUTH_TOKEN")
-             or os.environ.get("ANTHROPIC_AUTH_TOKEN"))
-    if oauth:
-        return {**base, "authorization": f"Bearer {oauth}",
-                "anthropic-beta": "oauth-2025-04-20"}
-    return None
+def _headless_claude_judge(system: str, frame_files: list[Path], ask: str) -> dict:
+    """Judge via the Claude HEADLESS BRAIN — the `claude` CLI in print mode,
+    authenticated by the CLAUDE_CODE_OAUTH_TOKEN subscription (same mechanism the
+    pipeline's brain step uses). NOT the paid Anthropic API. The CLI Reads the
+    frame image files itself (vision) and returns the verdict JSON.
 
-
-def _anthropic_judge(system: str, frames: list[str], ask: str) -> dict:
-    headers = _anthropic_headers()
-    if headers is None:
-        raise RuntimeError("no Claude credential (ANTHROPIC_API_KEY or "
-                           "CLAUDE_CODE_OAUTH_TOKEN)")
-    content: list = []
-    for i, b in enumerate(frames):
-        content.append({"type": "text",
-                        "text": f"Frame {i + 1}/{len(frames)} (in order):"})
-        content.append({"type": "image", "source": {
-            "type": "base64", "media_type": "image/jpeg", "data": b}})
-    content.append({"type": "text", "text": ask})
-    # Structured output the CORRECT Anthropic-Messages way: define a tool whose
-    # input_schema IS the verdict schema and force it. (The old body used
-    # output_config/json_schema/effort — none of which are Messages API fields —
-    # so every call 400'd and the gate silently fell open. That is why nothing
-    # was ever actually reviewed.)
-    resp = _post_json(ANTHROPIC_API, {
-        "model": MODEL, "max_tokens": 2000, "system": system,
-        "messages": [{"role": "user", "content": content}],
-        "tools": [{"name": "submit_verdict",
-                   "description": "Submit the showrunner's scored verdict.",
-                   "input_schema": VERDICT_SCHEMA}],
-        "tool_choice": {"type": "tool", "name": "submit_verdict"}},
-        headers)
-    for block in resp.get("content", []):
-        if block.get("type") == "tool_use":
-            return block["input"]
-    # Fallback: some gateways return the JSON as text.
-    for block in resp.get("content", []):
-        if block.get("type") == "text":
-            import re
-            m = re.search(r"\{.*\}", block["text"], re.S)
-            if m:
-                return json.loads(m.group(0))
-    raise RuntimeError(f"no verdict in Anthropic response: {str(resp)[:300]}")
+    Raises on any failure so the caller can fall back / fail-open on infra."""
+    if not shutil.which("claude"):
+        raise RuntimeError("claude CLI not installed (npm i -g @anthropic-ai/claude-code)")
+    listing = "\n".join(f"- {p}" for p in frame_files)
+    prompt = (
+        system + "\n\n" + ask +
+        "\n\nThe video frames are these image files, IN ORDER. Use the Read "
+        "tool to actually VIEW each one before scoring — do not guess:\n"
+        + listing +
+        "\n\nReturn ONLY the JSON verdict object with exactly these fields: "
+        "score (0-100 int), verdict ('ship'|'block'), one_line, auto_fails "
+        "(list), dimensions {hook,data_demo,mascot,craft,pace,payoff ints}, "
+        "problems (list), fixes (list). No prose, no code fence.")
+    model = os.environ.get("SHOWRUNNER_MODEL", "opus")
+    timeout = int(os.environ.get("SHOWRUNNER_TIMEOUT", "480"))
+    proc = subprocess.run(
+        ["claude", "-p", prompt, "--model", model,
+         "--allowedTools", "Read", "--output-format", "text"],
+        capture_output=True, text=True, timeout=timeout)
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"claude CLI rc={proc.returncode}: {(proc.stderr or proc.stdout)[:200]}")
+    out = (proc.stdout or "").strip()
+    m = re.search(r"\{.*\}", out, re.S)
+    if not m:
+        raise RuntimeError(f"no JSON verdict in claude output: {out[:200]}")
+    return json.loads(m.group(0))
 
 
 def _gemini_judge(system: str, frames: list[str], ask: str) -> dict:
@@ -192,24 +174,23 @@ def _gemini_judge(system: str, frames: list[str], ask: str) -> dict:
     return json.loads(txt)
 
 
-def _judge(system: str, frames: list[str], ask: str) -> dict:
-    """Prefer the Claude headless brain (API key OR the CLAUDE_CODE_OAUTH_TOKEN
-    the pipeline already uses) — it's the strongest judge. Fall back to free
-    Gemini vision only if Claude isn't available or errors."""
+def _judge(system: str, frame_files: list[Path], ask: str) -> dict:
+    """Judge of record: the Claude HEADLESS BRAIN (the `claude` CLI on the
+    subscription OAuth token) — not the paid API. Falls back to free Gemini
+    vision only if the headless brain is unavailable or errors."""
     errs = []
-    if _anthropic_headers() is not None:
-        try:
-            return _anthropic_judge(system, frames, ask)
-        except Exception as e:  # noqa: BLE001
-            errs.append(f"claude: {e}")
+    try:
+        return _headless_claude_judge(system, frame_files, ask)
+    except Exception as e:  # noqa: BLE001
+        errs.append(f"headless-claude: {e}")
     if os.environ.get("GEMINI_API_KEY"):
         try:
-            return _gemini_judge(system, frames, ask)
+            frames_b64 = [_b64(f) for f in frame_files]
+            return _gemini_judge(system, frames_b64, ask)
         except Exception as e:  # noqa: BLE001
             errs.append(f"gemini: {e}")
-    raise RuntimeError("no vision LLM backend available (set "
-                       "CLAUDE_CODE_OAUTH_TOKEN / ANTHROPIC_API_KEY, or "
-                       f"GEMINI_API_KEY). {errs}")
+    raise RuntimeError("no vision judge available (headless `claude` CLI, or "
+                       f"GEMINI_API_KEY fallback). {errs}")
 
 
 def review_video(mp4: Path, context: dict | None = None) -> dict:
@@ -221,7 +202,6 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
         frame_files = _extract_frames(mp4, Path(td), N_FRAMES)
         if not frame_files:
             raise RuntimeError("no frames extracted (ffmpeg?)")
-        frames = [_b64(f) for f in frame_files]
         ask = (
             "You are the SHOWRUNNER for this channel. Score the video (the "
             "frames above, in order) against the rubric using the exact JSON "
@@ -234,7 +214,7 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
             "fixes (list).\n\nScene plan / script for context:\n"
             f"{json.dumps(ctx, indent=2)[:4000]}"
         )
-        verdict = _judge(_rubric(), frames, ask)
+        verdict = _judge(_rubric(), frame_files, ask)
     # Enforce the bar in code too (belt and suspenders): block on low score or
     # any auto-fail even if the model hedged the verdict field.
     score = int(verdict.get("score", 0))
