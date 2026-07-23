@@ -41,30 +41,32 @@ REPO = Path(__file__).resolve().parent.parent
 RUBRIC_PATH = REPO / "docs" / "DIRECTOR.md"
 MODEL = os.environ.get("SHOWRUNNER_MODEL", "opus")
 MIN_SCORE = int(os.environ.get("SHOWRUNNER_MIN_SCORE", "70"))
-N_FRAMES = int(os.environ.get("SHOWRUNNER_FRAMES", "6"))
+N_FRAMES = int(os.environ.get("SHOWRUNNER_FRAMES", "14"))
 
-VERDICT_SCHEMA = {
-    "type": "object",
-    "additionalProperties": False,
-    "properties": {
-        "score": {"type": "integer"},
-        "verdict": {"type": "string", "enum": ["ship", "block"]},
-        "one_line": {"type": "string"},
-        "auto_fails": {"type": "array", "items": {"type": "string"}},
-        "dimensions": {
-            "type": "object", "additionalProperties": False,
-            "properties": {k: {"type": "integer"} for k in
-                           ("hook", "data_demo", "mascot", "craft", "pace",
-                            "payoff")},
-            "required": ["hook", "data_demo", "mascot", "craft", "pace",
-                         "payoff"],
-        },
-        "problems": {"type": "array", "items": {"type": "string"}},
-        "fixes": {"type": "array", "items": {"type": "string"}},
-    },
-    "required": ["score", "verdict", "one_line", "auto_fails", "dimensions",
-                 "problems", "fixes"],
+# Rubric weights (docs/DIRECTOR.md) as (weight_out_of_100, grade_ceiling). The
+# MODEL grades observable quality on the small anchored ceiling; the CODE turns
+# those grades into the 100-pt score and decides pass/fail. The model is NEVER
+# told the passing threshold — that is what stops the score compressing to a
+# safe ~72 every time.
+WEIGHTS = {
+    "hook": (20, 4), "data_demo": (25, 5), "mascot": (20, 4),
+    "craft": (15, 3), "pace": (10, 2), "payoff": (10, 2),
 }
+# Hard auto-fail checks. The model must answer EVERY one (present + evidence);
+# code BLOCKS if any is present, regardless of the numeric score. These are the
+# rubric's hard rules — they are not suggestions.
+AUTOFAIL_CHECKS = ["junk_imagery", "decorative_mascot", "bare_number_card",
+                   "dead_air", "empty_void"]
+
+
+def compute_score(dims: dict) -> int:
+    """Turn anchored dimension grades into the weighted 100-pt score. In CODE,
+    not by asking the model for the total."""
+    total = 0.0
+    for k, (w, ceil) in WEIGHTS.items():
+        g = max(0, min(ceil, int(dims.get(k, 0))))
+        total += w * g / ceil
+    return round(total)
 
 
 def _duration(mp4: Path) -> float:
@@ -78,13 +80,40 @@ def _duration(mp4: Path) -> float:
         return 40.0
 
 
-def _extract_frames(mp4: Path, td: Path, n: int) -> list[Path]:
-    """Evenly-spaced frames across the video, scaled down to keep tokens sane."""
+def _frame_plan(dur: float, manifest: dict | None):
+    """(timestamp, label) samples that actually cover the beats — a burst in the
+    first 2s (hook motion), the start/mid/end of every segment, and the payoff
+    tail — instead of 6 blind evenly-spaced stills. Uses the render manifest's
+    segment windows when present; falls back to a dense even sweep otherwise."""
+    plan = [(0.3, "hook@0.3"), (0.8, "hook@0.8"), (1.5, "hook@1.5"),
+            (2.2, "hook@2.2")]
+    wins = (manifest or {}).get("segment_windows")
+    if wins:
+        for i, (s0, s1) in enumerate(wins):
+            for f, tag in ((0.08, "start"), (0.5, "mid"), (0.92, "end")):
+                plan.append((s0 + f * (s1 - s0), f"seg{i}:{tag}"))
+    else:
+        for k in range(6):
+            t = 2.5 + (dur - 4.5) * k / 5
+            plan.append((t, f"mid{k}"))
+    plan.append((max(0.0, dur - 1.8), "payoff@-1.8"))
+    plan.append((max(0.0, dur - 0.4), "payoff@-0.4"))
+    # de-dup / clamp / sort
+    seen, out = set(), []
+    for t, lab in sorted(plan):
+        ts = round(min(max(t, 0.0), max(0.0, dur - 0.05)), 2)
+        if ts in seen:
+            continue
+        seen.add(ts)
+        out.append((ts, lab))
+    return out
+
+
+def _extract_frames(mp4: Path, td: Path, manifest: dict | None = None):
+    """Extract the planned frames. Returns [(path, label, ts), ...]."""
     dur = _duration(mp4)
     frames = []
-    for i in range(n):
-        # sample from ~4% to ~96% so we catch the hook and the payoff
-        t = dur * (0.04 + 0.92 * (i / max(1, n - 1)))
+    for i, (t, lab) in enumerate(_frame_plan(dur, manifest)):
         out = td / f"f{i:02d}.jpg"
         try:
             subprocess.run(
@@ -92,10 +121,48 @@ def _extract_frames(mp4: Path, td: Path, n: int) -> list[Path]:
                  "-i", str(mp4), "-frames:v", "1", "-vf", "scale=430:-1",
                  str(out)], check=True)
             if out.exists():
-                frames.append(out)
+                frames.append((out, lab, t))
         except Exception:  # noqa: BLE001
             continue
     return frames
+
+
+def _motion_evidence(mp4: Path, td: Path) -> dict:
+    """Objective, code-measured motion facts (NOT a judgement). Samples the whole
+    clip at ~3fps and reports the longest near-frozen run (seconds) and the
+    fraction of near-black frames. Vision judges whether motion is *meaningful*;
+    this decides whether motion *exists* — so 'dead air' can't be averaged away."""
+    ev = {"longest_static_s": 0.0, "dark_fraction": 0.0, "sampled": 0}
+    try:
+        from PIL import Image
+        fps = 3
+        seq = td / "mv"
+        seq.mkdir(exist_ok=True)
+        subprocess.run(
+            ["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4),
+             "-vf", f"fps={fps},scale=96:-1,format=gray", str(seq / "m%04d.png")],
+            check=True)
+        imgs = sorted(seq.glob("m*.png"))
+        ev["sampled"] = len(imgs)
+        if len(imgs) < 2:
+            return ev
+        px = [list(Image.open(p).getdata()) for p in imgs]
+        # dark fraction
+        dark = sum(1 for p in px if (sum(p) / len(p)) < 22)
+        ev["dark_fraction"] = round(dark / len(px), 3)
+        # longest run of near-identical consecutive frames
+        run = best = 0
+        for a, b in zip(px, px[1:]):
+            diff = sum(abs(x - y) for x, y in zip(a, b)) / len(a)
+            if diff < 2.2:            # near-frozen
+                run += 1
+                best = max(best, run)
+            else:
+                run = 0
+        ev["longest_static_s"] = round(best / fps, 2)
+    except Exception as e:  # noqa: BLE001
+        ev["error"] = str(e)[:120]
+    return ev
 
 
 def _b64(p: Path) -> str:
@@ -107,6 +174,14 @@ def _rubric() -> str:
         return RUBRIC_PATH.read_text()
     except Exception:  # noqa: BLE001
         return "Be an exacting creative director. Block boring or sloppy videos."
+
+
+def _rubric_sha() -> str:
+    import hashlib
+    try:
+        return hashlib.sha1(RUBRIC_PATH.read_bytes()).hexdigest()[:10]
+    except Exception:  # noqa: BLE001
+        return "?"
 
 
 GEMINI_API = ("https://generativelanguage.googleapis.com/v1beta/models/"
@@ -121,112 +196,150 @@ def _post_json(url: str, body: dict, headers: dict) -> dict:
         return json.loads(r.read().decode())
 
 
-def _headless_claude_judge(system: str, frame_files: list[Path], ask: str) -> dict:
-    """Judge via the Claude HEADLESS BRAIN — the `claude` CLI in print mode,
-    authenticated by the CLAUDE_CODE_OAUTH_TOKEN subscription (same mechanism the
-    pipeline's brain step uses). NOT the paid Anthropic API. The CLI Reads the
-    frame image files itself (vision) and returns the verdict JSON.
-
-    Raises on any failure so the caller can fall back / fail-open on infra."""
+def _headless_claude_judge(prompt: str, labeled) -> dict:
+    """Deliver the grade prompt + labelled frames to the Claude HEADLESS BRAIN
+    (the `claude` CLI on the CLAUDE_CODE_OAUTH_TOKEN subscription — NOT the API).
+    The CLI Reads each frame image itself. Raises on any failure."""
     if not shutil.which("claude"):
         raise RuntimeError("claude CLI not installed (npm i -g @anthropic-ai/claude-code)")
-    listing = "\n".join(f"- {p}" for p in frame_files)
-    prompt = (
-        system + "\n\n" + ask +
-        "\n\nThe video frames are these image files, IN ORDER. Use the Read "
-        "tool to actually VIEW each one before scoring — do not guess:\n"
-        + listing +
-        "\n\nReturn ONLY the JSON verdict object with exactly these fields: "
-        "score (0-100 int), verdict ('ship'|'block'), one_line, auto_fails "
-        "(list), dimensions {hook,data_demo,mascot,craft,pace,payoff ints}, "
-        "problems (list), fixes (list). No prose, no code fence.")
+    listing = "\n".join(f"- {lab} (t={ts:.2f}s): {p}" for p, lab, ts in labeled)
+    full = (prompt + "\n\nThe frames are these image files — READ each one with "
+            "the Read tool before grading; the label says WHERE in the video it "
+            "is:\n" + listing + "\n\nReturn ONLY the JSON object, no prose.")
     model = os.environ.get("SHOWRUNNER_MODEL", "opus")
     timeout = int(os.environ.get("SHOWRUNNER_TIMEOUT", "480"))
     proc = subprocess.run(
-        ["claude", "-p", prompt, "--model", model,
+        ["claude", "-p", full, "--model", model,
          "--allowedTools", "Read", "--output-format", "text"],
         capture_output=True, text=True, timeout=timeout)
     if proc.returncode != 0:
         raise RuntimeError(
             f"claude CLI rc={proc.returncode}: {(proc.stderr or proc.stdout)[:200]}")
-    out = (proc.stdout or "").strip()
-    m = re.search(r"\{.*\}", out, re.S)
+    m = re.search(r"\{.*\}", (proc.stdout or "").strip(), re.S)
     if not m:
-        raise RuntimeError(f"no JSON verdict in claude output: {out[:200]}")
+        raise RuntimeError(f"no JSON in claude output: {(proc.stdout or '')[:200]}")
     return json.loads(m.group(0))
 
 
-def _gemini_judge(system: str, frames: list[str], ask: str) -> dict:
+def _gemini_judge(prompt: str, labeled) -> dict:
     parts: list = []
-    for i, b in enumerate(frames):
-        parts.append({"text": f"Frame {i + 1}/{len(frames)} (in order):"})
-        parts.append({"inline_data": {"mime_type": "image/jpeg", "data": b}})
-    parts.append({"text": ask + "\n\nReturn ONLY the JSON object, no prose."})
-    url = GEMINI_API.format(model=GEMINI_MODEL,
-                            key=os.environ["GEMINI_API_KEY"])
+    for p, lab, ts in labeled:
+        parts.append({"text": f"Frame {lab} (t={ts:.2f}s):"})
+        parts.append({"inline_data": {"mime_type": "image/jpeg", "data": _b64(p)}})
+    parts.append({"text": prompt + "\n\nReturn ONLY the JSON object, no prose."})
+    url = GEMINI_API.format(model=GEMINI_MODEL, key=os.environ["GEMINI_API_KEY"])
     resp = _post_json(url, {
-        "system_instruction": {"parts": [{"text": system}]},
         "contents": [{"role": "user", "parts": parts}],
         "generationConfig": {"responseMimeType": "application/json",
-                             "temperature": 0.35, "maxOutputTokens": 2000}},
+                             "temperature": 0.2, "maxOutputTokens": 2000}},
         {"content-type": "application/json"})
-    txt = resp["candidates"][0]["content"]["parts"][0]["text"]
-    return json.loads(txt)
+    return json.loads(resp["candidates"][0]["content"]["parts"][0]["text"])
 
 
-def _judge(system: str, frame_files: list[Path], ask: str) -> dict:
-    """Judge of record: the Claude HEADLESS BRAIN (the `claude` CLI on the
-    subscription OAuth token) — not the paid API. Falls back to free Gemini
-    vision only if the headless brain is unavailable or errors."""
-    errs = []
-    # The headless brain is the judge of record; retry a couple times so a
-    # transient CLI timeout / 429 doesn't fail-open and lose the verdict (the
-    # intermittent no-verdict renders were exactly this).
+def _judge(prompt: str, labeled):
+    """Returns (grades_dict, backend_used). Headless brain is the judge of
+    record (retried); free Gemini is the only fallback. The backend that
+    actually produced the grades is reported (no more mislabelling)."""
     import time
+    errs = []
     for attempt in range(int(os.environ.get("SHOWRUNNER_RETRIES", "3"))):
         try:
-            return _headless_claude_judge(system, frame_files, ask)
+            return _headless_claude_judge(prompt, labeled), "headless-claude"
         except Exception as e:  # noqa: BLE001
             errs.append(f"headless-claude[{attempt}]: {e}")
             time.sleep(3 * (attempt + 1))
     if os.environ.get("GEMINI_API_KEY"):
         try:
-            frames_b64 = [_b64(f) for f in frame_files]
-            return _gemini_judge(system, frames_b64, ask)
+            return _gemini_judge(prompt, labeled), "gemini-fallback"
         except Exception as e:  # noqa: BLE001
             errs.append(f"gemini: {e}")
-    raise RuntimeError("no vision judge available (headless `claude` CLI, or "
-                       f"GEMINI_API_KEY fallback). {errs}")
+    raise RuntimeError(f"no vision judge available. {errs}")
+
+
+_GRADE_PROMPT = """You are the SHOWRUNNER — the channel's editor with a veto. \
+GRADE what you actually SEE in the frames (labels say where in the timeline each \
+sits), against the rubric below. Do NOT output an overall score or a pass/fail — \
+you only grade the anchors and answer the hard checks; the code decides.
+
+Grade each dimension on its anchor (0 = absent/broken, top = exemplary):
+  hook 0-4, data_demo 0-5, mascot 0-4, craft 0-3, pace 0-2, payoff 0-2
+
+Answer EVERY hard check with present (true/false) + one-line evidence citing a \
+frame label. Be strict — these are hard rules, not vibes:
+  junk_imagery        an AI/stock image or garbled cutout that doesn't belong
+  decorative_mascot   the mascot merely stands/slides/perches, no real bit tied
+                      to the stat (a setup->action->payoff)
+  bare_number_card    a beat that is just a big number on a background, not a
+                      demonstration
+  dead_air            >= ~4s where nothing meaningful moves / two beats identical
+  empty_void          large dead/black areas; the frame's space is wasted
+
+MOTION FACTS (measured in code, not opinion) — use them, especially for dead_air \
+and empty_void:
+{motion}
+
+Return ONLY this JSON:
+{{"dimensions":{{"hook":int,"data_demo":int,"mascot":int,"craft":int,"pace":int,"payoff":int}},
+ "checks":{{"junk_imagery":{{"present":bool,"evidence":str}},"decorative_mascot":{{"present":bool,"evidence":str}},
+ "bare_number_card":{{"present":bool,"evidence":str}},"dead_air":{{"present":bool,"evidence":str}},
+ "empty_void":{{"present":bool,"evidence":str}}}},
+ "one_line":str,"problems":[str],"fixes":[str]}}
+
+RUBRIC:
+{rubric}
+
+SCRIPT / SCENE CONTEXT:
+{ctx}"""
 
 
 def review_video(mp4: Path, context: dict | None = None) -> dict:
-    """Return a verdict dict (see docs/DIRECTOR.md). Raises only on a genuine
-    infra failure (caller should fail-open on that)."""
+    """Grade the finished video and COMPUTE the verdict in code. The model
+    supplies anchored dimension grades + hard-check answers; this function turns
+    them into the 100-pt score, folds in objective motion evidence, and decides
+    ship/block. Raises only on genuine infra failure (caller fails open on that)."""
     mp4 = Path(mp4)
-    ctx = context or {}
+    ctx = dict(context or {})
+    manifest = ctx.get("manifest")
+    if manifest is None:
+        mpath = mp4.with_suffix(".manifest.json")
+        if mpath.exists():
+            try:
+                manifest = json.loads(mpath.read_text())
+            except Exception:  # noqa: BLE001
+                manifest = None
     with tempfile.TemporaryDirectory() as td:
-        frame_files = _extract_frames(mp4, Path(td), N_FRAMES)
-        if not frame_files:
+        tdp = Path(td)
+        labeled = _extract_frames(mp4, tdp, manifest)
+        if not labeled:
             raise RuntimeError("no frames extracted (ffmpeg?)")
-        ask = (
-            "You are the SHOWRUNNER for this channel. Score the video (the "
-            "frames above, in order) against the rubric using the exact JSON "
-            "schema fields. Be exacting — you are the editor with a veto, and a "
-            "boring or sloppy video must be BLOCKED (better to block a mediocre "
-            "video than let it ship). Judge what you SEE, not what was "
-            "intended.\n\nJSON fields: score (0-100 int), verdict "
-            "('ship'|'block'), one_line, auto_fails (list), dimensions "
-            "{hook,data_demo,mascot,craft,pace,payoff ints}, problems (list), "
-            "fixes (list).\n\nScene plan / script for context:\n"
-            f"{json.dumps(ctx, indent=2)[:4000]}"
-        )
-        verdict = _judge(_rubric(), frame_files, ask)
-    # Enforce the bar in code too (belt and suspenders): block on low score or
-    # any auto-fail even if the model hedged the verdict field.
-    score = int(verdict.get("score", 0))
-    if score < MIN_SCORE or verdict.get("auto_fails"):
-        verdict["verdict"] = "block"
-    return verdict
+        motion = _motion_evidence(mp4, tdp)
+        prompt = _GRADE_PROMPT.format(
+            motion=json.dumps(motion),
+            rubric=_rubric()[:6000],
+            ctx=json.dumps(ctx, indent=0)[:3000])
+        grades, backend = _judge(prompt, labeled)
+
+    dims = grades.get("dimensions", {}) or {}
+    score = compute_score(dims)
+    checks = grades.get("checks", {}) or {}
+    # Objective override: code measures whether motion EXISTS; the model can't
+    # average a real dead hold away.
+    if motion.get("longest_static_s", 0) >= 4.0:
+        checks.setdefault("dead_air", {})
+        checks["dead_air"] = {"present": True,
+                              "evidence": f"code: {motion['longest_static_s']}s frozen"}
+    failed = [k for k in AUTOFAIL_CHECKS
+              if isinstance(checks.get(k), dict) and checks[k].get("present")]
+    verdict = "block" if (failed or score < MIN_SCORE) else "ship"
+    return {
+        "score": score, "verdict": verdict,
+        "dimensions": {k: int(dims.get(k, 0)) for k in WEIGHTS},
+        "auto_fails": [f"{k}: {checks[k].get('evidence', '')}" for k in failed],
+        "checks": checks, "motion": motion, "judge": backend,
+        "one_line": grades.get("one_line", ""),
+        "problems": grades.get("problems", []),
+        "fixes": grades.get("fixes", []),
+    }
 
 
 def should_block(verdict: dict) -> bool:
@@ -247,9 +360,13 @@ def append_ledger(slug: str, verdict: dict) -> None:
                "slug": slug,
                "score": verdict.get("score"),
                "verdict": verdict.get("verdict"),
+               "dimensions": verdict.get("dimensions"),
                "one_line": verdict.get("one_line"),
                "auto_fails": verdict.get("auto_fails", []),
-               "judge": "headless-claude"}
+               "motion": verdict.get("motion"),
+               "judge": verdict.get("judge", "unknown"),   # ACTUAL backend used
+               "model": os.environ.get("SHOWRUNNER_MODEL", "opus"),
+               "rubric_sha": _rubric_sha()}
         with LEDGER.open("a") as fh:
             fh.write(json.dumps(rec) + "\n")
     except Exception:  # noqa: BLE001 — the ledger must never break a run

@@ -112,6 +112,14 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           SLUG="${{ github.event.inputs.slug }}"
+          # On a push preview there's no input slug — take it from the FIRST LINE
+          # of the trigger file when that line is a bare slug token (so pushes can
+          # target different stories instead of every push re-scoring the same
+          # grocery-squeeze). A note/timestamp first line falls through to default.
+          if [ -z "$SLUG" ]; then
+            CAND=$(head -n1 .github/triggers/preview_explainer 2>/dev/null | tr -d '\r')
+            if printf '%s' "$CAND" | grep -qE '^[a-z0-9][a-z0-9-]+$'; then SLUG="$CAND"; fi
+          fi
           [ -z "$SLUG" ] && SLUG="grocery-squeeze"
           echo "Rendering explainer story '$SLUG' (dry-run, no upload)"
           # --force: preview must render even if the slug is already in the

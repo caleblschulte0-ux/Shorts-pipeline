@@ -1449,6 +1449,20 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # own hero-number hook and outro. Removed, so there is exactly one
         # format: flat dark bg, one real chart, Data, narration, captions.
 
+    # Render manifest: the actual beat windows so the showrunner samples frames
+    # at real scene boundaries (hook / each segment / payoff) instead of blind
+    # evenly-spaced stills.
+    try:
+        manifest = {
+            "slug": slug, "total": round(total, 2),
+            "hook_window": [round(windows[0][0], 2), round(windows[0][1], 2)],
+            "segment_windows": [[round(a, 2), round(b, 2)] for a, b in windows],
+            "kinds": [getattr(s, "kind", "") for s in st.segments],
+        }
+        out_path.with_suffix(".manifest.json").write_text(json.dumps(manifest))
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] manifest skipped: {e}", file=sys.stderr)
+
     print(f"[studio] story '{slug}': {len(st.segments)} charts, "
           f"{len(sentences)} beats, {total:.1f}s -> {out_path}")
     print(f"[studio] title: {st.title}")
