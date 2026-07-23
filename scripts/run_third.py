@@ -83,6 +83,7 @@ def _audit_dupes(log: dict) -> list:
 # Cache the learned prior for the whole run (the snapshot doesn't change
 # mid-run). None = not yet computed; {} = computed, nothing usable.
 _PRIOR_CACHE: dict | None = None
+_STORY_POOL: list | None = None   # run-wide wide-sweep discovery cache
 
 
 def _learned_prior() -> dict:
@@ -122,7 +123,11 @@ def _learned_prior() -> dict:
         vids = [v for v in snap.get("videos", [])
                 if v.get("streamer")
                 and v.get("is_public", True)
-                and (v.get("age_hours") or 0) >= MIN_PUBLIC_AGE]
+                and (v.get("age_hours") or 0) >= MIN_PUBLIC_AGE
+                # story compilations are a different FORMAT (60-120s multi
+                # clip): their retention says nothing about how this
+                # streamer's single clips perform — keep the prior clean
+                and v.get("actual_structure") != "story"]
         if not vids:
             return _PRIOR_CACHE
         # Channel baselines (capped AVP; velocity from aged videos only).
@@ -326,8 +331,8 @@ def run_capture(pkg: dict, work: Path) -> Path:
 
 
 def _fmt_from_ledger(led: dict) -> dict:
-    if led.get("kind") == "twitch_clip":
-        # the Groq author's title beats the raw clip title ("v", "W"...)
+    if led.get("kind") in ("twitch_clip", "story"):
+        # the authored title beats the raw clip title ("v", "W"...)
         return {"clip_title": led.get("authored_title") or led["clip_title"],
                 "streamer": led["streamer"]}
     if led.get("kind") == "sim":
@@ -372,6 +377,10 @@ def _hashtags(pkg: dict, led: dict) -> list[str]:
 def _yt_tags(pkg: dict, led: dict) -> list[str]:
     """The tags FIELD (not hashtags): sparse, mostly name variants —
     YouTube says tags play a minimal role beyond misspellings."""
+    if led.get("kind") == "story":
+        s = led.get("streamer", "")
+        return [*led.get("who", []), f"{s} clips", "streamer clips",
+                "full story", "streamer drama"][:10]
     if led.get("kind") != "twitch_clip":
         return list(pkg.get("hashtags") or [])[:10]
     s = led["streamer"]
@@ -425,6 +434,16 @@ def _crosspost(mp4: Path, title: str, description: str,
 def _description(pkg: dict, led: dict) -> str:
     tags = " ".join(f"#{t}" for t in _hashtags(pkg, led))
     note = pkg.get("description_note", "")
+    if led.get("kind") == "story":
+        # multi-clip compilation: one human line, then credit EVERY member
+        # source (each beat is someone's clip — full attribution, always)
+        lead = led.get("authored_caption") \
+            or led.get("authored_title") or led.get("clip_title", "")
+        srcs = "\n".join(f"Source: {b['source_url']}"
+                         for b in led.get("beats", []) if b.get("source_url"))
+        credit = ("Every moment belongs to the streamers — full credit.\n"
+                  + srcs)
+        return f"{lead}\n\n{credit}\n\n{tags}"
     if led.get("kind") == "twitch_clip":
         # the public caption: one human sentence, credit, tags — never
         # internal pipeline jargon
@@ -451,6 +470,118 @@ def _description(pkg: dict, led: dict) -> str:
     return f"{pkg['proof_plan']}\n\n{note}\n\n{detail}\n\n{tags}"
 
 
+def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
+                   slug: str) -> dict | None:
+    """AUTO-STORY ARM: detect a storyline in the corpus and compile it.
+
+    Corpus = posted log (members may already have shipped as singles — the
+    compilation is the NEW artifact telling the whole arc) + a wide
+    multi-window discovery sweep across the allowlist. Clusters are proposed
+    by heuristics (storyline.find_clusters), judged by the showrunner brain
+    (author.order_story — strict: most piles are NOT stories), rendered by
+    story.build_story, and QA'd. Dedupe is by story_key (hash of the member
+    set), so the same arc can never ship twice while member clips stay
+    legal for single-slot use.
+
+    Returns a ledger dict, or None on ANY miss — no arc found, brain
+    unreachable, build/QA failure — so the slot falls back to a normal
+    clip. Never raises: a story is a bonus, never a lost slot."""
+    try:
+        from third_capture import author, clip_edit, clip_qa, storyline
+        from third_capture import story as story_mod
+        spec = pkg["capture"]
+        sources = spec.get("sources") or {"twitch": spec.get("channels", [])}
+        known = [ch for chans in sources.values() for ch in chans]
+        corpus = storyline.corpus_from_log(
+            log, days=int(spec.get("story_lookback_days", 30)))
+        # the wide sweep (2 windows x every allowlist channel) is identical
+        # for every story slot in a run — sweep once, reuse (like the
+        # run-wide banger cache)
+        global _STORY_POOL
+        if _STORY_POOL is None:
+            pool: list[dict] = []
+            for window in ("7d", "30d"):
+                for platform, chans in sources.items():
+                    for ch in chans:
+                        try:
+                            pool += clip_edit.discover(
+                                platform, ch,
+                                top=int(spec.get("story_top", 6)),
+                                range_=window)
+                        except Exception as e:  # noqa: BLE001
+                            print(f"::warning::[story] discover "
+                                  f"{platform}:{ch} {window} failed "
+                                  f"({type(e).__name__})", flush=True)
+            _STORY_POOL = pool
+        corpus += storyline.from_discovery(_STORY_POOL)
+        clusters = storyline.find_clusters(corpus, known)
+        if not clusters:
+            print("[story] no candidate storylines in the corpus", flush=True)
+            return None
+        shipped = {v.get("story_key") for v in log["posted"].values()
+                   if v.get("story_key")}
+        for cluster in clusters[:int(spec.get("story_max_clusters", 4))]:
+            who = "+".join(cluster["who"])
+            # cheap pre-check: if even the FULL cluster's key already
+            # shipped, the arc is stale — don't spend a brain call on it
+            if storyline.story_key(
+                    [c["source_url"] for c in cluster["clips"]]) in shipped:
+                continue
+            arc = author.order_story(cluster["clips"])
+            if not arc:
+                print(f"[story] {who}: showrunner says not a story",
+                      flush=True)
+                continue
+            if storyline.story_key([b["clip"]["source_url"]
+                                    for b in arc["beats"]]) in shipped:
+                print(f"[story] {who}: this exact arc already shipped",
+                      flush=True)
+                continue
+            try:
+                led = story_mod.build_story(
+                    arc["beats"], out_mp4, work / f"story_{slug}",
+                    hook=arc["hook"],
+                    whisper_model=spec.get("whisper_model", "small"))
+            except Exception as e:  # noqa: BLE001
+                print(f"::warning::[story] {who}: build failed ({e}) — "
+                      "next cluster", flush=True)
+                continue
+            skey = storyline.story_key(led["member_keys"])
+            if skey in shipped:
+                continue    # beats dropped during render collapsed it into
+                            # an arc that already shipped — don't repost
+            qa = clip_qa.review(out_mp4, {
+                "authored_title": arc["title"], "hook": arc["hook"],
+                "series": "story"}, work)
+            # a story legally exceeds the 62s single-clip duration cap —
+            # only NON-duration problems fail it
+            hard = [p for p in qa["problems"] if "duration" not in p]
+            if qa["verdict"] == "fail" and hard:
+                print(f"::warning::[story] {who}: QA failed "
+                      f"({'; '.join(hard)[:140]}) — next cluster", flush=True)
+                continue
+            lead = (arc["beats"][0]["clip"].get("channel")
+                    or arc["beats"][0]["clip"].get("streamer", ""))
+            led.update({
+                "authored_title": arc["title"], "clip_title": arc["title"],
+                "authored_caption": author.scrub_text(
+                    f"The full story, beginning to end: {arc['why']}"),
+                "streamer": lead, "series": "story", "who": cluster["who"],
+                "story_key": skey, "experiment_arm": "story",
+                "structure": "story", "self_healed": False,
+                "qa": {k: qa[k] for k in ("verdict", "problems", "vision")},
+            })
+            print(f"[story] built {who} arc: {led['n_beats']} beats, "
+                  f"{led['duration_s']}s — {arc['title']!r}", flush=True)
+            return led
+        print("[story] no cluster passed the showrunner gate", flush=True)
+        return None
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[story] attempt failed ({type(e).__name__}: {e})"
+              " — clip fallback", flush=True)
+        return None
+
+
 def process(pkg: dict, pkg_path: Path | None, *,
             dry_run: bool, publish_at, log: dict) -> dict:
     slug = pkg["slug"]
@@ -463,7 +594,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
     t0 = time.time()
     try:
         out_mp4 = work / f"third_{slug}.mp4"
-        if pkg["capture"]["kind"] == "twitch_clip":
+        # STORY ARM: a story slot tries to compile a detected narrative arc.
+        # The walrus makes fallback automatic — when no genuine story exists
+        # (or the build/QA misses), _story_attempt returns None and this
+        # branch doesn't take, so the slot flows into the normal single-clip
+        # path below. Event-driven and quality-gated by design: a forced
+        # story on thin material is worse than a good clip.
+        if pkg["capture"]["kind"] == "twitch_clip" and pkg.get("story_mode") \
+                and (led := _story_attempt(pkg, log, work, out_mp4,
+                                           slug)) is not None:
+            ledger_path = work / f"{slug}.ledger.json"
+            ledger_path.write_text(json.dumps(led, indent=2) + "\n")
+            result["experiment_arm"] = result["structure"] = "story"
+            result["n_beats"] = led.get("n_beats")
+        elif pkg["capture"]["kind"] == "twitch_clip":
             from third_capture import clip_edit
             spec = pkg["capture"]
             if spec.get("clip_url"):
@@ -842,6 +986,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     "title": led.get("authored_title") or led["clip_title"],
                     "ts": datetime.now(timezone.utc).isoformat(),
                 }
+            elif led.get("kind") == "story":
+                # same in-memory guard for stories: a second story slot in
+                # this run must not rebuild the exact same arc
+                log["posted"][slug] = {
+                    "story_key": led.get("story_key"),
+                    "streamer": led.get("streamer"),
+                    "title": led.get("authored_title", ""),
+                    "ts": datetime.now(timezone.utc).isoformat(),
+                }
         else:
             from uploaders import YouTubeUploader
             description = _description(pkg, led)
@@ -902,6 +1055,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 if _cut:
                     entry["cut"] = _cut
                     entry["director_cut"] = True
+            elif led.get("kind") == "story":
+                # NOTE: no `source_url` on a story entry — that's what keeps
+                # member clips out of posted_keys, so a clip inside a
+                # compilation stays legal for single-slot use (and vice
+                # versa). The story's own never-repeat law rides story_key.
+                entry["story_key"] = led.get("story_key")
+                entry["member_keys"] = led.get("member_keys")
+                entry["streamer"] = led.get("streamer")
+                entry["who"] = led.get("who")
+                entry["series"] = "story"
+                entry["experiment_arm"] = "story"
+                entry["structure"] = "story"
+                entry["actual_structure"] = "story"
+                entry["n_beats"] = led.get("n_beats")
             elif "files" in led:
                 entry["ledger_sha_input"] = \
                     led["files"]["input"]["sha256"][:16]
@@ -943,26 +1110,31 @@ def main() -> int:
         if template.exists():
             base = json.loads(template.read_text())
             n = int(base.pop("count", 3))
-            # A/B STRUCTURE SPLIT: `edit_count` of the n daily slots render in
-            # the new montage "edit" arm; the rest stay the current "clip"
-            # structure. Same selection + packaging on both — only the render
-            # style differs, so the test isolates STRUCTURE. The edit slots are
-            # chosen by a DATE-SEEDED shuffle (not a fixed 2/5/8 every day) so
-            # the edit arm isn't permanently correlated with the same posting
-            # times — otherwise "edit vs clip" is confounded with daypart.
+            # A/B STRUCTURE SPLIT: `story_count` of the n daily slots try the
+            # multi-clip STORY arm (auto-detected narrative arcs — the format
+            # the deep dive says the feed actually rewards); the rest stay the
+            # "clip" structure. A story slot that finds no genuine arc falls
+            # back to a normal clip (event-driven, quality-gated — a forced
+            # story on thin material is worse than none). Slots are chosen by
+            # a DATE-SEEDED shuffle so the story arm isn't permanently
+            # correlated with the same posting times (arm vs daypart
+            # confound). `story_count` supersedes the earlier `edit_count`
+            # montage arm, per the operator's call to replace it.
             import random as _rnd
-            edit_count = min(int(base.pop("edit_count", 3)), n)
+            story_count = min(int(base.pop("story_count",
+                                           base.pop("edit_count", 0))), n)
+            base.pop("edit_count", None)
             _slots = list(range(1, n + 1))
             _rnd.Random(f"third-ab-{args.date}").shuffle(_slots)
-            edit_slots = set(_slots[:edit_count])
+            story_slots = set(_slots[:story_count])
             for i in range(1, n + 1):
                 pkg = json.loads(json.dumps(base))
                 pkg["slug"] = f"clip-{args.date}-{i}"
-                pkg["edit_mode"] = i in edit_slots
+                pkg["story_mode"] = i in story_slots
                 packages.append((pkg, None))
             print(f"no authored packages — synthesized {n} from template "
-                  f"({edit_count} edit-arm slots: "
-                  f"{sorted(s for s in edit_slots if s <= n)})")
+                  f"({story_count} story-arm slots: "
+                  f"{sorted(s for s in story_slots if s <= n)})")
         else:
             print(f"no packages under {day_dir}")
             return 0

@@ -23,7 +23,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
-from third_capture import clip_edit, clip_qa  # noqa: E402
+from third_capture import clip_edit, clip_qa, story  # noqa: E402
 
 
 def _fixture(path: Path, dur: int = 12, w: int = 1280, h: int = 720) -> None:
@@ -95,6 +95,50 @@ def run_case(name, words, hook, series, work: Path,
     return fails
 
 
+def run_story_case(work: Path) -> list[str]:
+    """The multi-clip story stitch on two synthetic beats. Mocks only
+    clip_edit.download so the real render/card/normalize/concat path runs."""
+    fails: list[str] = []
+    b1, b2 = work / "story_b1.mp4", work / "story_b2.mp4"
+    _fixture(b1)
+    _fixture(b2)
+    files = {"http://x/beef": b1, "http://x/makeup": b2}
+    real_dl = clip_edit.download
+
+    def fake_dl(url, w):  # noqa: ANN001
+        p = files[url]
+        return {"path": str(p), "clip_id": url[-6:], "title": "t",
+                "clipper": "tester", "views": 1000, "duration": 12.0,
+                "url": url}
+    clip_edit.download = fake_dl
+    try:
+        beats = [
+            {"clip": {"source_url": "http://x/beef", "channel": "stableronaldo",
+                      "series": "beef", "date": "2026-07-17"},
+             "role": "setup", "card": "IT STARTS"},
+            {"clip": {"source_url": "http://x/makeup", "channel": "cudi",
+                      "series": "wholesome", "date": "2026-07-23"},
+             "role": "resolution", "card": "THEY MAKE UP"},
+        ]
+        out = work / "story_out.mp4"
+        led = story.build_story(beats, out, work / "story_work",
+                                hook="THE STABLERONALDO x CUDI BEEF")
+        if not out.exists():
+            return ["story: no output produced"]
+        d = _dur(out)
+        if not (8.0 <= d <= 180.0):
+            fails.append(f"story: duration {d:.1f}s out of bounds")
+        if led.get("n_beats") != 2:
+            fails.append(f"story: expected 2 beats, got {led.get('n_beats')}")
+        print(f"  [story] dur={d:.1f}s beats={led.get('n_beats')} "
+              f"members={len(led.get('member_keys', []))}", flush=True)
+    except Exception as e:  # noqa: BLE001
+        fails.append(f"story: build_story RAISED {type(e).__name__}: {e}")
+    finally:
+        clip_edit.download = real_dl
+    return fails
+
+
 def main() -> int:
     print("smoke_third: pipeline self-test on synthetic tricky inputs")
     all_fails: list[str] = []
@@ -115,6 +159,11 @@ def main() -> int:
         base = CASES[0]
         all_fails += run_case("edit_" + base[0], base[1], base[2], base[3],
                               work, edit_mode=True)
+        # STORY COMPILATION: the multi-clip stitch must survive the tricky
+        # inputs too. Mock only the network download (hand back local
+        # fixtures); the real per-beat render + chapter cards + normalize +
+        # concat run, and the stitched output is held to the same bounds.
+        all_fails += run_story_case(work)
     if all_fails:
         print("\nSMOKE FAILED:")
         for f in all_fails:

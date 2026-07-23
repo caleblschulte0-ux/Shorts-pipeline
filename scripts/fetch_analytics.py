@@ -553,6 +553,7 @@ def build_snapshot(posted_log: Path, channel: str = "",
     summary["ab_experiment"] = {
         "edit": _arm_stats("edit"),
         "clip": _arm_stats("clip"),
+        "story": _arm_stats("story"),
         "simple_fallback": _arm_stats("simple_fallback"),
         "note": "compare only when each arm's n_mature_24h >= 25",
     }

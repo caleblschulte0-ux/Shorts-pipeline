@@ -439,6 +439,103 @@ def rank_clips(clips: list[dict]) -> dict:
     return result
 
 
+# ---------------------------------------------- story "showrunner" brain
+# Turns a CLUSTER of clips about the same people/event into an ordered
+# narrative arc (beginning -> middle -> end). This is what powers the
+# multi-clip "story" compilation — the reality-TV recap format that travels
+# far better than a single decontextualized moment.
+
+_STORY_SYSTEM = """You are the SHOWRUNNER for a Twitch/Kick clip channel. You
+are given a set of candidate clips that MAY be about the same people or the
+same unfolding event (a beef, a challenge, a friendship arc, an event
+storyline like Streamer University). Your job: decide whether they form a real
+STORY a stranger would watch beginning-to-end, and if so, order them into a
+narrative arc.
+
+A real story has a CHANGE across it — it starts one way and ends another:
+- a beef that starts, escalates, and resolves (or explodes),
+- a challenge/bet that is set up, attempted, and won or lost,
+- a friendship/rivalry that shifts,
+- an event storyline that builds to a payoff.
+
+A pile of unrelated clips of the same streamer is NOT a story. Neither is the
+same moment clipped twice. If there is no genuine beginning-to-end arc across
+DISTINCT moments, say so honestly.
+
+You will get numbered candidates, each with: streamer, date, title, and a
+short transcript snippet. Return ONLY JSON:
+{"is_story": true|false,
+ "title": "<the story as one tappable line, name-first, present tense, honest>",
+ "hook": "<4-8 word ALL-CAPS hook for the first card>",
+ "why": "<=8 words: the arc in a phrase>",
+ "beats": [{"i": <candidate index int>, "role": "setup|escalation|climax|resolution",
+            "card": "<=4 word chapter card shown before this beat>"}]}
+
+Rules:
+- Order beats to TELL THE STORY (chronological / causal), not by views.
+- Use 2-5 beats. Each beat = a DISTINCT moment (never the same clip twice).
+- card: a tiny chapter title a viewer reads in half a second — "IT STARTS",
+  "IT GETS WORSE", "TWO DAYS LATER", "THEY MAKE UP". No period.
+- title: name the people; tease the arc; ONE honest curiosity gap. Never
+  invent an event the clips don't support.
+- is_story=false (and beats=[]) when the candidates don't form a real arc —
+  an empty slot beats a fake story. Be strict: most piles are NOT stories."""
+
+
+def order_story(clips: list[dict]) -> dict | None:
+    """Showrunner over a candidate cluster -> ordered narrative arc, or None.
+
+    `clips`: list of dicts with keys streamer/channel, date, title, and
+    optional transcript snippet ('snip'). Returns
+    {is_story, title, hook, why, beats:[{clip, role, card}]} where each beat's
+    `clip` is the ORIGINAL clip dict (in narrative order), or None when no
+    brain is reachable / parse fails / it's judged not-a-story. Never raises.
+    """
+    if len(clips) < 2:
+        return None
+    lines = []
+    for i, c in enumerate(clips):
+        lines.append(
+            f"{i}. streamer={c.get('channel') or c.get('streamer','?')} "
+            f"date={c.get('date') or c.get('ts','?')} "
+            f"title={str(c.get('title',''))[:90]!r} "
+            f"snip={str(c.get('snip',''))[:140]!r}")
+    user = "Candidate clips:\n" + "\n".join(lines)
+    out = None
+    try:
+        out = _call_claude(user, system=_STORY_SYSTEM)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[story] claude failed ({e}) — groq", flush=True)
+    if out is None:
+        try:
+            out = _call_groq(user, system=_STORY_SYSTEM)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[story] groq failed ({e})", flush=True)
+    if not out or not out.get("is_story"):
+        return None
+    beats = []
+    seen = set()
+    for b in (out.get("beats") or []):
+        try:
+            i = int(b["i"])
+        except (TypeError, ValueError, KeyError):
+            continue
+        if not (0 <= i < len(clips)) or i in seen:
+            continue          # in-range, and never the same clip twice
+        seen.add(i)
+        beats.append({"clip": clips[i],
+                      "role": str(b.get("role", ""))[:20],
+                      "card": scrub_text(str(b.get("card", ""))[:32]).upper()})
+    if len(beats) < 2:
+        return None           # a story needs at least two distinct beats
+    return {"is_story": True,
+            "title": safe_title(str(out.get("title", "")),
+                                 beats[0]["clip"].get("channel", "")),
+            "hook": scrub_text(str(out.get("hook", ""))[:60]).upper(),
+            "why": str(out.get("why", ""))[:60],
+            "beats": beats[:5]}
+
+
 def author_package(streamer: str, clip_title: str, transcript: str,
                    views: int, words: list[dict] | None = None,
                    clip_dur: float = 0.0, guidance: str = "") -> dict | None:
