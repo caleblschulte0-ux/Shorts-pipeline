@@ -1238,11 +1238,19 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             hook_idx = idx
             idx += 1
         seg_idx = {}
+        import glob as _glob
         for i, seg in enumerate(st.segments):
             if seg.chart_path:
-                # chart_path is a printf build sequence (..._build%02d.png);
-                # read it at 24fps so the bars/line draw on.
-                inputs += ["-framerate", "24", "-i", seg.chart_path]
+                # chart_path is a printf build sequence (..._build%02d.png). Play
+                # it at a framerate that spans MOST of the beat instead of a fixed
+                # 24fps that finishes in <1s and then freezes — that static hold
+                # is what tanks pace / reads as dead air. tpad below covers only a
+                # short tail.
+                nfr = len(_glob.glob(seg.chart_path.replace("%02d", "*"))) or 24
+                wi = windows[1 + i] if 1 + i < len(windows) else None
+                beat = (wi[1] - wi[0]) if wi else 2.0
+                cfps = max(6.0, min(30.0, nfr / max(0.8, beat - 0.25)))
+                inputs += ["-framerate", f"{cfps:.2f}", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
         masc_input = []
