@@ -610,20 +610,39 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
     r = 1.0 - (1.0 - reveal) ** 2               # ease-out reveal
     # (title is drawn once by render_scene's show_title — do NOT draw it here or
     # it stacks twice, which reads as a broken render.)
-    # polyline up to the revealed head (interpolated between year points)
     n = len(yrs)
     seg = r * (n - 1)
     hi = min(int(seg), n - 1)
     fr = seg - hi
-    pts = [(X(yrs[i]), Y(vals[i])) for i in range(hi + 1)]
-    if hi < n - 1:
-        hx = X(yrs[hi]) + fr * (X(yrs[hi + 1]) - X(yrs[hi]))
-        hy = Y(vals[hi]) + fr * (Y(vals[hi + 1]) - Y(vals[hi]))
-        pts.append((hx, hy))
-    hx, hy = pts[-1]
-    # filled area under the revealed line (translucent teal), then the line
-    if len(pts) >= 2:
-        d.polygon(pts + [(hx, pb), (pts[0][0], pb)], fill=_rgba(HIGHLIGHT, 66))
+    # DIFFERENTIATE demonstrations so two time-series beats don't look identical:
+    # a money magnitude STACKS UP as growing columns; anything else CLIMBS as a
+    # filled area. (Data's act is varied to match — see pose below.)
+    u = (unit or "").lower()
+    bars = u in ("dollars", "usd", "$")
+    pts = []
+    if bars:
+        bw = (px1 - px0) / n * 0.60
+        hx = hy = None
+        for i in range(n):
+            grow = max(0.0, min(1.0, seg - i + 1))     # column i rises 0→1
+            if grow <= 0:
+                continue
+            top = pb - (vals[i] / vmax) * (pb - pt) * grow
+            cx = X(yrs[i])
+            d.rounded_rectangle([cx - bw / 2, top, cx + bw / 2, pb],
+                                radius=10, fill=_rgba(HIGHLIGHT, 220))
+            hx, hy = cx, top
+        if hx is None:
+            hx, hy = X(yrs[0]), pb
+    else:
+        pts = [(X(yrs[i]), Y(vals[i])) for i in range(hi + 1)]
+        if hi < n - 1:
+            hx = X(yrs[hi]) + fr * (X(yrs[hi + 1]) - X(yrs[hi]))
+            hy = Y(vals[hi]) + fr * (Y(vals[hi + 1]) - Y(vals[hi]))
+            pts.append((hx, hy))
+        hx, hy = pts[-1]
+        if len(pts) >= 2:
+            d.polygon(pts + [(hx, pb), (pts[0][0], pb)], fill=_rgba(HIGHLIGHT, 66))
     d.line([(px0, pb), (px1, pb)], fill=(90, 105, 130, 255), width=5)  # baseline
     tick_font = _pil_font(30)
     for i in range(n):
@@ -633,12 +652,13 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
         lb = d.textbbox((0, 0), lbl, font=tick_font)
         d.text((tx - (lb[2] - lb[0]) // 2, pb + 18), lbl, font=tick_font,
                fill=(165, 180, 199, 255))
-    if len(pts) >= 2:
+    if not bars and len(pts) >= 2:
         d.line(pts, fill=_rgba(HIGHLIGHT, 255), width=11, joint="curve")
     for rad, a in ((40, 55), (28, 120), (18, 255)):
         d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(HIGHLIGHT, a))
-    # Data climbs the leading edge (baked in; travelling overlay hidden)
-    host = charts._host_pose("cheer")
+    # Data's act varies with the demonstration: he POINTS OUT the stacking bill
+    # (bars) vs. CHEERS/rides the climbing line (area) — a distinct bit per beat.
+    host = charts._host_pose("point" if bars else "cheer")
     mh = 230
     if host is not None:
         mw = int(host.width * mh / host.height)
