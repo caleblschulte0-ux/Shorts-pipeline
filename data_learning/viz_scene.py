@@ -665,11 +665,12 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
         px = int(min(max(hx - mw / 2, 8), W - mw - 8))
         canvas.alpha_composite(host.resize((mw, mh), _Im.LANCZOS),
                                (px, int(hy - mh + 12)))
-    # counting hero value at the head
+    # Hero value shows the FINAL figure (fading in) — NOT a mid-count that could
+    # read as e.g. "11.3%" when the script says 11.8% (a data-consistency flag).
+    # The chart itself carries the motion; the number stays truthful throughout.
     na = max(0.0, min(1.0, (r - 0.15) / 0.85))
-    cur = vals[0] + r * (vals[-1] - vals[0])
     nf = _pil_font(78)
-    val = _fmt_stat(cur, unit)
+    val = _fmt_stat(vals[-1], unit)
     vb = d.textbbox((0, 0), val, font=nf)
     # Hero number sits in a FIXED slot centred just under the title — decoupled
     # from the (moving, now-larger) mascot so it never collides with the title or
