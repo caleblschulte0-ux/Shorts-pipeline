@@ -21,7 +21,10 @@
      "year": 2023,
      "assumptions": "Rounded illustrative figure; full-time worker over a ~40-year career in nominal dollars. Median lifetime earnings are ~$1.7M and higher with a bachelor's degree."
     }
-   ]
+   ],
+   "extra": {
+    "express": true
+   }
   },
   {
    "job": "TEASE",
@@ -101,6 +104,9 @@
     "upto": 0,
     "label": "TAXES",
     "mood": "tax"
+   },
+   "extra": {
+    "express": true
    }
   },
   {
@@ -153,6 +159,9 @@
     "upto": 1,
     "label": "HOUSING",
     "mood": "housing"
+   },
+   "extra": {
+    "express": true
    }
   },
   {
@@ -206,6 +215,9 @@
     "upto": 2,
     "label": "GETTING AROUND",
     "mood": "transport"
+   },
+   "extra": {
+    "express": true
    }
   },
   {
@@ -368,7 +380,10 @@
      "year": 2023,
      "assumptions": "Arithmetic residual of the figures above; an illustrative teaching device, not a measured personal savings rate."
     }
-   ]
+   ],
+   "extra": {
+    "express": true
+   }
   },
   {
    "job": "PAYOFF",
