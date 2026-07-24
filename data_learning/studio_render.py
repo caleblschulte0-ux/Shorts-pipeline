@@ -1605,8 +1605,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # Flat dark editorial bg + a thin brand accent bar at the very top,
             # a soft vignette to settle the eye. No orbs, no blur haze.
             _ac = (theme.get("accent") or "#4FD1C5").lstrip("#")
+            # LOWER-THIRD PANEL: the band below the chart card used to be bare
+            # gradient — the gate's 'dead navy strip / empty_void'. Fill it with a
+            # subtle raised panel + an accent divider so it reads as an
+            # intentional caption zone (a pro lower-third), not wasted space.
             fc = [f"[0:v]format=rgba,vignette=PI/6,"
-                  f"drawbox=x=0:y=0:w={W}:h=8:color=0x{_ac}@1.0:t=fill[bg]"]
+                  f"drawbox=x=0:y=0:w={W}:h=8:color=0x{_ac}@1.0:t=fill,"
+                  f"drawbox=x=0:y={FOOT_Y}:w={W}:h={FOOT_H}:color=0x161D2E@0.62:t=fill,"
+                  f"drawbox=x=0:y={FOOT_Y}:w={W}:h=5:color=0x{_ac}@0.55:t=fill[bg]"]
         else:
             fc = ambient.bg_filter(1, fps=FPS)    # -> [bg]
         if CLEAN:

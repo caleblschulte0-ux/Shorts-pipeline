@@ -559,8 +559,14 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     ax.set_xticklabels([p.label for p in pts], fontsize=22, color=SUBTLE)
     ax.set_yticks([])
     ax.set_xlim(-0.35, (len(pts) - 1) + 0.85)
-    ax.set_ylim(lo - span * 0.18, max(values) * 1.22)
-    ax.grid(axis="y", color="#18223c", linewidth=1, zorder=0)
+    _ylo, _yhi = lo - span * 0.18, max(values) * 1.22
+    ax.set_ylim(_ylo, _yhi)
+    # Faint horizontal reference lines across the FULL card width so the upper
+    # area reads as chart space, not empty navy. set_yticks([]) meant the old
+    # grid drew nothing, leaving the top two-thirds a void (empty_void).
+    for _f in (0.22, 0.42, 0.62, 0.82):
+        ax.axhline(_ylo + (_yhi - _ylo) * _f, color="#1E2A44",
+                   linewidth=1.3, zorder=0, alpha=0.8)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
