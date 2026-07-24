@@ -142,15 +142,20 @@ def run_story_case(work: Path) -> list[str]:
     if not edl:
         return ["story: smoke EDL failed validation"]
     sources = {
+        # words include speech INSIDE the J/L bridge windows so the speech
+        # gate (#11) is satisfied: beef's l_cut post-roll [8.0,8.4] and
+        # makeup's j_cut pre-roll [1.6,2.0] both carry a real word.
         "http://x/beef": {"path": str(b1), "duration_s": 12.0,
                           "channel": "stableronaldo",
                           "source_url": "http://x/beef",
                           "words": [{"w": "SQUARE", "s": 2.0, "e": 2.4},
-                                    {"w": "UP", "s": 2.5, "e": 2.8}]},
+                                    {"w": "UP", "s": 2.5, "e": 2.8},
+                                    {"w": "listen", "s": 7.9, "e": 8.4}]},
         "http://x/makeup": {"path": str(b2), "duration_s": 12.0,
                             "channel": "cudi",
                             "source_url": "http://x/makeup",
-                            "words": [{"w": "my", "s": 3.0, "e": 3.2},
+                            "words": [{"w": "okay", "s": 1.6, "e": 2.0},
+                                      {"w": "my", "s": 3.0, "e": 3.2},
                                       {"w": "bad", "s": 3.3, "e": 3.6}]},
     }
     out = work / "story_out.mp4"

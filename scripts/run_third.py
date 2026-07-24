@@ -515,7 +515,29 @@ def _load_events() -> dict:
 _EVENT_STOP = set(
     "the a an and or but to of in on at is was are get gets got this that "
     "his her him them they he she it for with his was were be been being "
-    "after before then now his her".split())
+    "after before then now his her "
+    # generic streamer/reaction vocabulary (reviewer #11): these are the
+    # words that FALSELY merge unrelated same-people clips — every streamer
+    # clip is a 'reaction' on 'stream' from a 'video'. Stored as STEMS
+    # because tokens are stemmed before this lookup (react == reacts ==
+    # reaction == reacting).
+    "react stream clip live video watch chat guy today moment thing "
+    "play game talk show tell said say make made take back time going "
+    "know think want look come went".split())
+
+# suffix stems, longest first, so react/reacts/reaction/reacting collapse to
+# one token — this cuts the "same event, different wording" false SEPARATION
+# the lexical approach suffers (reviewer #11). Conservative: never stems a
+# token below 4 chars, so short words are left intact.
+_STEM_SUF = ("ations", "ation", "ings", "ing", "ers", "ion", "ed", "es",
+             "er", "s")
+
+
+def _stem(w: str) -> str:
+    for suf in _STEM_SUF:
+        if w.endswith(suf) and len(w) - len(suf) >= 4:
+            return w[:-len(suf)]
+    return w
 
 
 def _event_fingerprint(who: list[str], reports: list[dict]) -> tuple:
@@ -531,6 +553,7 @@ def _event_fingerprint(who: list[str], reports: list[dict]) -> tuple:
         text = (str(r.get("summary", "")) + " "
                 + str(r.get("title", ""))).lower()
         for t in re.findall(r"[a-z]{4,}", text):
+            t = _stem(t)
             if t not in _EVENT_STOP:
                 toks[t] = toks.get(t, 0) + 1
     salient = sorted(sorted(toks), key=lambda t: -toks[t])[:4]
@@ -574,6 +597,7 @@ def _report_tokens(rep: dict) -> set:
     text = (str(rep.get("summary", "")) + " "
             + str(rep.get("title", ""))).lower()
     for t in re.findall(r"[a-z]{4,}", text):
+        t = _stem(t)                     # react == reacts == reaction
         if t not in _EVENT_STOP:
             toks[t] = toks.get(t, 0) + 1
     return set(sorted(sorted(toks), key=lambda t: -toks[t])[:6])
@@ -709,7 +733,6 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # expansion (§6) for sources the analysis marks incomplete
             snip_dir = work / "story_scenes"
             reports = []
-            used_vod = False
             for c in cluster["clips"][:6]:
                 try:
                     info = clip_edit.download(c["source_url"], snip_dir)
@@ -747,7 +770,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         if rep2:
                             rep = rep2
                             rep["path"] = vod["path"]
-                            used_vod = True
+                            rep["used_vod"] = True     # per-SOURCE, not per-pile
                 rep["date"] = c.get("date", "")
                 reports.append(rep)
             if len(reports) < 2:
@@ -865,7 +888,10 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     "who": cluster["who"], "event_id": event["event_id"],
                     "story_key": skey, "experiment_arm": "story",
                     "structure": "story", "self_healed": False,
-                    "used_vod_expansion": used_vod,
+                    # per-SUBCLUSTER (reviewer #11): only True when a source in
+                    # THIS event was VOD-expanded, not when some unrelated
+                    # source elsewhere in the original people-pile was
+                    "used_vod_expansion": any(r.get("used_vod") for r in sub),
                     "revision_count": revision_count,
                     "narrative_score": review["story_score"],
                     "qa": {k: qa[k] for k in ("verdict", "problems",

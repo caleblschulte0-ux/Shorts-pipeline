@@ -180,6 +180,21 @@ def main() -> int:  # noqa: C901
     check("critic runs text-only (no Read grant) when no sheet (#8)",
           seen.get("read_files") is False)
 
+    # ---- reviewer #11: with a sheet, a VISION verdict is REQUIRED — the
+    # text-only Groq fallback must not be able to publish a cut it never saw
+    story_director._call_claude = \
+        lambda u, system=None, read_files=False: None      # vision unavailable
+    story_director._call_groq = \
+        lambda u, system=None: {"publish": True, "story_score": 90,
+                                "problems": []}             # would rubber-stamp
+    r = story_director.review_rough_cut(edl, "words", str(td / "s.jpg"), 40.0)
+    check("sheet + no vision model => FAIL CLOSED, not groq's publish (#11)",
+          r["publish"] is False and r["story_score"] == -1)
+    # but with NO sheet there's nothing to see, so text-only groq is allowed
+    r2 = story_director.review_rough_cut(edl, "words", None, 40.0)
+    check("no sheet => text-only groq verdict is accepted (#11)",
+          r2["publish"] is True and r2["story_score"] == 90)
+
     # ---- Phase Two: transitions, framing, replay, narration ------------
     e = dict(base)
     e["beats"] = [dict(base["beats"][0], transition="j_cut",
@@ -257,11 +272,16 @@ def main() -> int:  # noqa: C901
                      "context_overlay": "", "effects": [],
                      "framing": "wide"}]}
 
-    def _ab_sources(dur_a=30.0, dur_b=40.0):
-        return {"a": {"path": str(td / "a.mp4"), "words": [],
+    def _ab_sources(dur_a=30.0, dur_b=40.0, speech=True):
+        # words placed INSIDE the bridge windows so the speech-gate (#11) is
+        # satisfied on the happy path: a's post-roll [10.0,10.4], b's
+        # pre-roll [4.6,5.0]. `speech=False` empties them to test degradation.
+        aw = [{"w": "so", "s": 10.0, "e": 10.4}] if speech else []
+        bw = [{"w": "wait", "s": 4.6, "e": 5.0}] if speech else []
+        return {"a": {"path": str(td / "a.mp4"), "words": aw,
                       "duration_s": dur_a, "channel": "s",
                       "source_url": "http://t/a"},
-                "b": {"path": str(td / "b.mp4"), "words": [],
+                "b": {"path": str(td / "b.mp4"), "words": bw,
                       "duration_s": dur_b, "channel": "s",
                       "source_url": "http://t/b"}}
 
@@ -312,6 +332,54 @@ def main() -> int:  # noqa: C901
                        td / "jc2.mp4", td / "wjc2")
     check("J-cut with no real pre-roll degrades to a hard cut (#8)",
           asm["joins"] == ["hard_cut"] and not asm["bridges"])
+
+    # reviewer #11 — SPEECH gate: enough source duration exists, but the
+    # bridge window is SILENT (no transcribed words) → degrade, don't
+    # fabricate a bridge from silence/noise
+    ax.clear(); asm.clear()
+    story.render_story(_jl_edl("l_cut"), _ab_sources(speech=False),
+                       td / "lc3.mp4", td / "wlc3")
+    check("L-cut over SILENT post-roll degrades to hard cut (#11)",
+          asm["joins"] == ["hard_cut"] and not asm["bridges"])
+    ax.clear(); asm.clear()
+    story.render_story(_jl_edl("j_cut"), _ab_sources(speech=False),
+                       td / "jc3.mp4", td / "wjc3")
+    check("J-cut over SILENT pre-roll degrades to hard cut (#11)",
+          asm["joins"] == ["hard_cut"] and not asm["bridges"])
+
+    # reviewer #11 — _speech_secs measures transcribed coverage in a window
+    ws = [{"w": "hey", "s": 4.7, "e": 5.0}, {"w": "x", "s": 9.0, "e": 9.1}]
+    check("_speech_secs counts only words inside the window",
+          abs(story._speech_secs(ws, 4.6, 5.0) - 0.3) < 1e-6
+          and story._speech_secs(ws, 20.0, 21.0) == 0.0)
+
+    # reviewer #11 — ducking: an L-cut bridge ducks the incoming segment over
+    # its window so the carried line stays intelligible (not two equal voices)
+    ran.clear()
+    orig_assemble([Path("/tmp/a.mp4"), Path("/tmp/b.mp4")],
+                  Path("/tmp/o.mp4"), ["l_cut"],
+                  bridges=[(1, "tail", Path("/tmp/br.m4a"))])
+    fcd = " ".join(str(c) for c in ran["cmd"])
+    # tail bridge into part 1 → duck part 1's audio over [O_1, O_1+lead] =
+    # [8.0, 8.4]; segment audio stays synced (adelay=8000) and dips there
+    check("L-cut ducks the incoming segment over the bridge window (#11)",
+          f"volume={story.DUCK_GAIN}" in fcd and "enable=" in fcd
+          and "between(t,8.000,8.400)" in fcd)
+
+    # reviewer #11 — the ledger reports the REALIZED transition, so a degraded
+    # j/l cut is not attributed to the learning loop as one that happened
+    led_j = story.render_story(_jl_edl("j_cut"), _ab_sources(),
+                               td / "le1.mp4", td / "wle1")
+    check("ledger logs a realized j_cut when the bridge is built (#11)",
+          led_j["transitions"] == ["j_cut"]
+          and led_j["j_l_cuts_realized"] == 1
+          and led_j["transitions_requested"] == ["j_cut"])
+    led_h = story.render_story(_jl_edl("j_cut"), _ab_sources(speech=False),
+                               td / "le2.mp4", td / "wle2")
+    check("ledger logs a DEGRADED j_cut as a hard cut, not a j_cut (#11)",
+          led_h["transitions"] == ["hard_cut"]
+          and led_h["j_l_cuts_realized"] == 0
+          and led_h["transitions_requested"] == ["j_cut"])
 
     # restore the segment/probe mocks the later phases rely on
     story._extract_segment = lambda src, out, work, tag, **k: (
@@ -456,6 +524,32 @@ def main() -> int:  # noqa: C901
     sizes = sorted(len(s) for s in solo)
     check("an unrelated source is not merged into an event (#8)",
           sizes == [1, 2])
+
+    # ---- reviewer #11: stemming + generic-word stopping --------------------
+    check("stemming collapses react/reacts/reaction/reacting",
+          rt2._stem("reacts") == rt2._stem("reaction")
+          == rt2._stem("reacting") == "react")
+    check("stemming leaves short words intact",
+          rt2._stem("game") == "game" and rt2._stem("goes") == "goes")
+    # same event described with DIFFERENT wording (evicted/eviction, owed/owes)
+    # now merges because the stems match — the false-SEPARATION the reviewer
+    # flagged. Different ISO-safe same week + shared >=2 stems.
+    same_diff_words = [
+        {"summary": "Landlord evicts Kai over unpaid rent owed",
+         "title": "eviction", "date": "2026-07-03", "source_id": "s1"},
+        {"summary": "Kai reacts to the eviction, still owes the rent",
+         "title": "evicted", "date": "2026-07-04", "source_id": "s2"}]
+    check("same event, different wording now merges via stems (#11)",
+          len(rt2._semantic_subclusters(same_diff_words)) == 1)
+    # two UNRELATED clips whose only overlap is generic streamer words
+    # ('reacts', 'stream') must NOT be merged into a fake event
+    generic_only = [
+        {"summary": "Kai reacts on stream to a funny cat video",
+         "title": "reaction", "date": "2026-07-03", "source_id": "g1"},
+        {"summary": "Kai reacts on stream to a scary game trailer",
+         "title": "reaction", "date": "2026-07-04", "source_id": "g2"}]
+    check("generic streamer words alone do NOT merge unrelated clips (#11)",
+          len(rt2._semantic_subclusters(generic_only)) == 2)
 
     # ---- reviewer #1: vision provenance --------------------------------
     from third_capture import scene_analysis

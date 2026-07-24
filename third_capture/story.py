@@ -55,6 +55,13 @@ _T = 300
 # §13: how far real audio leads/tails its picture on a J/L cut. A bridge is
 # only built when the source actually holds this much pre-/post-roll dialogue.
 LEAD = 0.4
+# During a bridge the overlapping segment is ducked to this gain so the
+# carried-over line stays intelligible instead of two voices at equal volume
+# (reviewer #11). The limiter still guards peaks; ducking guards clarity.
+DUCK_GAIN = 0.35
+# A bridge window must contain at least this many seconds of transcribed
+# speech, or it is silence/noise and the cut degrades to a hard cut.
+BRIDGE_MIN_SPEECH = 0.15
 
 # §14: one consistent mix — every segment normalized to the same target
 _LOUDNORM = "highpass=f=60,loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=limit=0.95"
@@ -224,6 +231,24 @@ def _extract_audio(src: Path, out: Path, s: float, e: float) -> None:
           str(out)])
 
 
+def _speech_secs(words: list[dict], s: float, e: float) -> float:
+    """Seconds of TRANSCRIBED speech inside [s, e]. A J/L bridge is only
+    honest when the pre-/post-roll window it pulls actually contains dialogue
+    (reviewer #11) — enough source DURATION existing does not mean the source
+    was TALKING there (it may be silence, music, or crowd noise). Best-effort;
+    no words → 0.0 → the cut degrades to a hard cut."""
+    tot = 0.0
+    for w in words or []:
+        try:
+            a = max(s, float(w["s"]))
+            b = min(e, float(w["e"]))
+        except (KeyError, TypeError, ValueError):
+            continue
+        if b > a:
+            tot += b - a
+    return tot
+
+
 def _assemble(parts: list[Path], out: Path,
               joins: list[str] | None = None,
               bridges: list[tuple] | None = None, lead: float = LEAD) -> None:
@@ -274,12 +299,33 @@ def _assemble(parts: list[Path], out: Path,
     # video: plain hard-cut concat, full length
     fc = "".join(f"[{i}:v]" for i in range(n)) + f"concat=n={n}:v=1:a=0[v];"
     labels = []
+    # Per-part DUCK windows (output seconds): during a bridge the OTHER
+    # segment is dipped so the carried line stays intelligible (reviewer #11).
+    #   lead (j_cut into p): the incoming line leads UNDER the previous
+    #     picture → duck the OUTGOING (part p-1) audio over [O_p-lead, O_p].
+    #   tail (l_cut into p): the previous line carries OVER the new picture →
+    #     duck the INCOMING (part p) audio over [O_p, O_p+lead].
+    duck: dict[int, list[tuple[float, float]]] = {}
+    for (p, kind, _bp) in bridges:
+        p = max(0, min(int(p), n - 1))
+        if kind == "lead":
+            tgt, w0, w1 = p - 1, video_off[p] - lead, video_off[p]
+        else:
+            tgt, w0, w1 = p, video_off[p], video_off[p] + lead
+        if 0 <= tgt < n:
+            duck.setdefault(tgt, []).append((max(0.0, w0), w1))
     # each segment's audio stays SYNCED to its own picture — no whole-clip
     # shift (that was the lip-sync bug); the J/L lead/lag is a bridge below
     for i in range(n):
         off = int(video_off[i] * 1000)
         lbl = f"[a{i}]"
-        fc += f"[{i}:a]adelay={off}|{off}{lbl};"
+        chain = f"[{i}:a]adelay={off}|{off}"
+        if duck.get(i):
+            # after adelay, `t` is the OUTPUT timeline, so the window is
+            # absolute; enable is truthy inside ANY of this part's windows
+            expr = "+".join(f"between(t,{a:.3f},{b:.3f})" for a, b in duck[i])
+            chain += f",volume=enable='{expr}':volume={DUCK_GAIN}"
+        fc += chain + lbl + ";"
         labels.append(lbl)
     # bridges: real source audio placed in the overlap region around O_p
     for j, (p, kind, _bp) in enumerate(bridges):
@@ -351,6 +397,11 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
     hold = float((edl.get("ending") or {}).get("duration", 1.0) or 1.0)
     parts: list[Path] = []
     joins: list[str] = []        # transition INTO each part after the first
+    # REALIZED transitions between rendered BEATS (excludes replay part-gaps).
+    # The ledger reports THIS, not the EDL's requested transitions, so a
+    # j/l cut that degraded to a hard cut is not attributed to the learning
+    # loop as a j/l cut that happened (reviewer #11).
+    realized_joins: list[str] = []
     # per-part source anchor (parallel to `parts`, replays included) so a
     # J/L bridge can reach real dialogue outside the visible window
     part_meta: list[dict] = []
@@ -414,9 +465,11 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             tr = beat.get("transition", "hard_cut")
             p = len(parts)               # index this segment will occupy
             src_dur = float(srcinfo.get("duration_s") or end)
-            if tr == "j_cut" and start >= LEAD:
-                # 0.4s of THIS source's dialogue from before the visible
-                # start, heard under the previous picture
+            my_words = srcinfo.get("words") or []
+            if tr == "j_cut" and start >= LEAD and _speech_secs(
+                    my_words, start - LEAD, start) >= BRIDGE_MIN_SPEECH:
+                # 0.4s of THIS source's real DIALOGUE from before the visible
+                # start (confirmed present above), heard under the prev picture
                 bp = work / f"bridge_j_{idx}.m4a"
                 try:
                     _extract_audio(src, bp, start - LEAD, start)
@@ -425,9 +478,12 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                     tr = "hard_cut"
             elif tr == "l_cut":
                 prev = part_meta[-1] if part_meta else None
-                # only from a real beat (not a replay) that has post-roll
+                # only from a real beat (not a replay) with post-roll that is
+                # actually SPEECH, not just enough duration (reviewer #11)
                 if (prev and not prev.get("replay")
-                        and prev["end"] + LEAD <= prev["src_dur"]):
+                        and prev["end"] + LEAD <= prev["src_dur"]
+                        and _speech_secs(prev.get("words"), prev["end"],
+                                         prev["end"] + LEAD) >= BRIDGE_MIN_SPEECH):
                     bp = work / f"bridge_l_{idx}.m4a"
                     try:
                         _extract_audio(prev["src"], bp, prev["end"],
@@ -440,9 +496,11 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             elif tr in ("j_cut", "l_cut"):
                 tr = "hard_cut"            # requested but no pre-/post-roll
             joins.append(tr)
+            realized_joins.append(tr)     # what was ACTUALLY rendered
         parts.append(seg)
         part_meta.append({"src": src, "start": start, "end": end,
-                          "src_dur": float(srcinfo.get("duration_s") or end)})
+                          "src_dur": float(srcinfo.get("duration_s") or end),
+                          "words": srcinfo.get("words") or []})
         if beat.get("context_overlay"):
             n_overlays += 1
         # this beat's caption words are placed at the CURRENT timeline
@@ -466,7 +524,8 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                     # replay is not a bridge source (slowed re-show) — mark
                     # it so a following l_cut won't tail from it
                     part_meta.append({"src": src, "start": 0.0, "end": 0.0,
-                                      "src_dur": 0.0, "replay": True})
+                                      "src_dur": 0.0, "words": [],
+                                      "replay": True})
                     timeline += _probe_dur(rp)
                 except Exception:  # noqa: BLE001
                     print(f"::warning::[story] replay render failed — "
@@ -500,8 +559,15 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             "member_keys": [u["source_url"] for u in used],
             "final_words": final_words,
             "used_narration": used_narration,
-            "transitions": [b.get("transition", "hard_cut")
-                            for b in beats],
+            # REALIZED transitions (reviewer #11): what the renderer actually
+            # produced, so a degraded j/l→hard cut is not logged as a j/l cut
+            # that happened. `transitions_requested` keeps the EDL's intent for
+            # debugging the gap between asked-for and delivered.
+            "transitions": realized_joins,
+            "transitions_requested": [b.get("transition", "hard_cut")
+                                      for b in beats[1:]],
+            "j_l_cuts_realized": sum(1 for t in realized_joins
+                                     if t in ("j_cut", "l_cut")),
             "context_overlay_count": n_overlays,
             "replay_count": sum(1 for b in beats for f in
                                 (b.get("effects") or [])
