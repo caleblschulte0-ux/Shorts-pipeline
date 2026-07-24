@@ -793,7 +793,7 @@ def _build_hook_receipt(story_cfg: dict, work: Path, slug: str):
         pct = int(round((hi / lo - 1) * 100)) if lo else 0
         pat, _ = charts.render_hook_receipt(
             work / "receipt", slug, "RECEIPT", lines, lo, hi, "dollars",
-            stamp=(f"+{pct}%" if pct else ""), frames=30)
+            stamp=(f"+{pct}%" if pct else ""), frames=64)
         import glob as _glob
         return pat, len(_glob.glob(pat.replace("%02d", "*")))
     except Exception as e:  # noqa: BLE001 — never let the cold-open kill a render
@@ -1260,8 +1260,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # — overlay nothing, but keep the index aligned with a blank mov.
                 mascot.build_blank_loop(mv, size=Sk)
             elif isinstance(act, dict):
-                # director spec → Data doing a scene-specific action with a prop
-                mascot.build_scene_loop(mv, act, size=Sk, seconds=2.2, flip=flip)
+                # director spec → Data doing a scene-specific action with a prop.
+                # 30fps so his body/prop motion matches the smooth ffmpeg glide
+                # (was 20fps → he slid smoothly but his pose stuttered).
+                mascot.build_scene_loop(mv, act, size=Sk, seconds=2.2,
+                                        flip=flip, fps=30)
             else:
                 mascot.build_mascot_loop(mv, size=Sk, seconds=2.2,
                                          point_angle=float(angle), flip=flip,
@@ -1308,7 +1311,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         if receipt:
             rpat, rnfr = receipt
             hw = windows[0][1] - windows[0][0]
-            rfps = max(6.0, min(30.0, rnfr / max(0.8, hw - 0.2)))
+            rfps = max(18.0, min(30.0, rnfr / max(0.8, hw - 0.2)))
             inputs += ["-framerate", f"{rfps:.2f}", "-i", rpat]
             receipt_idx = idx
             idx += 1
@@ -1324,7 +1327,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 nfr = len(_glob.glob(seg.chart_path.replace("%02d", "*"))) or 24
                 wi = windows[1 + i] if 1 + i < len(windows) else None
                 beat = (wi[1] - wi[0]) if wi else 2.0
-                cfps = max(6.0, min(30.0, nfr / max(0.8, beat - 0.25)))
+                # Play at a smooth framerate (>=18fps) so growth doesn't step in
+                # visible jumps; with ~60 build frames this spans typical beats,
+                # and a short settle tail on longer beats stays under dead-air.
+                cfps = max(18.0, min(30.0, nfr / max(0.8, beat - 0.2)))
                 inputs += ["-framerate", f"{cfps:.2f}", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1

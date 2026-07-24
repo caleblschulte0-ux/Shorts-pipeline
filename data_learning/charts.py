@@ -1852,12 +1852,13 @@ def render_story_chart(insight: Insight, out_path: Path):
 
 
 def render_story_build(insight: Insight, out_dir: Path, slug: str,
-                       frames: int = 30):
+                       frames: int = 60):
     """Render a 'build' frame sequence (bars grow / line draws in) that ends on
-    the EXACT static chart, so the rings still anchor. ~30 frames so the studio
-    renderer can stretch the animation across the whole beat (continuous motion,
-    no static hold) without looking choppy. Returns ``(printf_pattern, anchors)``
-    with anchors from the final frame, or ``(None, [])`` if matplotlib absent."""
+    the EXACT static chart, so the rings still anchor. ~60 frames so the studio
+    renderer can stretch the animation across the whole beat AND keep it smooth
+    (a lower count played over a multi-second beat drops to ~5fps and looks
+    laggy). Returns ``(printf_pattern, anchors)`` or ``(None, [])`` if mpl
+    absent."""
     if not _have_mpl():
         return None, []
     # Full-frame renderers (diorama, timeline, fill_vessel, ...) author their own

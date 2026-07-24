@@ -49,8 +49,12 @@ N_FRAMES = int(os.environ.get("SHOWRUNNER_FRAMES", "14"))
 # told the passing threshold — that is what stops the score compressing to a
 # safe ~72 every time.
 WEIGHTS = {
-    "hook": (20, 4), "data_demo": (25, 5), "mascot": (20, 4),
-    "craft": (15, 3), "pace": (10, 2), "payoff": (10, 2),
+    "hook": (18, 4), "data_demo": (22, 5), "mascot": (18, 4),
+    "craft": (12, 3), "pace": (8, 2), "payoff": (8, 2),
+    # temporal_craft is graded IN CODE from measured cadence (effective fps /
+    # duplicate-frame ratio), NOT by the model — so choppy motion materially
+    # costs points and a laggy video can't score 90 on pretty stills.
+    "temporal_craft": (14, 3),
 }
 # Hard auto-fail checks. The model must answer EVERY one (present + evidence);
 # code BLOCKS if any is present, regardless of the numeric score. These are the
@@ -176,6 +180,60 @@ def _motion_evidence(mp4: Path, td: Path) -> dict:
     except Exception as e:  # noqa: BLE001
         ev["error"] = str(e)[:120]
     return ev
+
+
+def _temporal_evidence(mp4: Path, td: Path) -> dict:
+    """CADENCE facts: does the video actually move at its export rate, or is a
+    low-fps source animation duplicated into a 30fps timeline (visible judder)?
+    Samples at 24fps and reports the duplicate-frame ratio, the EFFECTIVE unique
+    frame rate, and the longest duplicate run. Objective — this is what a 90 on
+    pretty stills was hiding."""
+    ev = {"sample_fps": 24, "duplicate_ratio": None, "effective_fps": None,
+          "max_dup_run": None}
+    try:
+        from PIL import Image
+        sf = 24
+        seq = td / "tc"
+        seq.mkdir(exist_ok=True)
+        subprocess.run(
+            ["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4),
+             "-vf", f"fps={sf},scale=192:-1,format=gray", str(seq / "t%05d.png")],
+            check=True)
+        imgs = sorted(seq.glob("t*.png"))
+        if len(imgs) < 3:
+            return ev
+        px = [list(Image.open(p).getdata()) for p in imgs]
+        n = len(px)
+        dup = run = maxrun = 0
+        for a, b in zip(px, px[1:]):
+            diff = sum(abs(x - y) for x, y in zip(a, b)) / len(a)
+            if diff < 0.8:                    # a duplicated (held) frame
+                dup += 1
+                run += 1
+                maxrun = max(maxrun, run)
+            else:
+                run = 0
+        pairs = n - 1
+        ev["duplicate_ratio"] = round(dup / pairs, 3)
+        ev["effective_fps"] = round(sf * (1 - dup / pairs), 1)
+        ev["max_dup_run"] = maxrun + 1        # frames
+    except Exception as e:  # noqa: BLE001
+        ev["error"] = str(e)[:120]
+    return ev
+
+
+def temporal_grade(ev: dict) -> int:
+    """0-3 temporal-craft grade from measured effective fps (30 = buttery)."""
+    fps = ev.get("effective_fps")
+    if fps is None:
+        return 2                              # unknown -> neutral, don't punish blind
+    if fps >= 24:
+        return 3
+    if fps >= 17:
+        return 2
+    if fps >= 11:
+        return 1
+    return 0
 
 
 def _b64(p: Path) -> str:
@@ -326,13 +384,17 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
         if not labeled:
             raise RuntimeError("no frames extracted (ffmpeg?)")
         motion = _motion_evidence(mp4, tdp)
+        temporal = _temporal_evidence(mp4, tdp)
         prompt = _GRADE_PROMPT.format(
-            motion=json.dumps(motion),
+            motion=json.dumps({**motion, "temporal": temporal}),
             rubric=_rubric()[:6000],
             ctx=json.dumps(ctx, indent=0)[:3000])
         grades, backend = _judge(prompt, labeled)
 
     dims = grades.get("dimensions", {}) or {}
+    # temporal_craft is CODE-graded from measured cadence — the model doesn't
+    # get to call a choppy video smooth.
+    dims["temporal_craft"] = temporal_grade(temporal)
     score = compute_score(dims)
     checks = grades.get("checks", {}) or {}
     # Objective override: code measures whether motion EXISTS; the model can't
@@ -348,7 +410,8 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
         "score": score, "verdict": verdict,
         "dimensions": {k: int(dims.get(k, 0)) for k in WEIGHTS},
         "auto_fails": [f"{k}: {checks[k].get('evidence', '')}" for k in failed],
-        "checks": checks, "motion": motion, "judge": backend,
+        "checks": checks, "motion": motion, "temporal": temporal,
+        "judge": backend,
         "one_line": grades.get("one_line", ""),
         "problems": grades.get("problems", []),
         "fixes": grades.get("fixes", []),
