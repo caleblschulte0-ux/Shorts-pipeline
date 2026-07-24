@@ -852,10 +852,15 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     top = 0.70
     for lbl, val, col in labels[:5]:
         yy = top
+        # A waffle depicts SHARE — so the legend shows each item's % of the
+        # total shown, not its raw value with a spurious '%' (that printed
+        # '1425.9%' for absolute counts). For data already in percent that sums
+        # to ~100 this is unchanged; for counts it normalises correctly.
+        _share = abs(val) / tot * 100.0
         fig.text(0.635, yy, "■", color=col, fontsize=26, va="center")
         fig.text(0.675, yy + 0.005, lbl, color=TEXT, fontsize=23,
                  fontweight="bold", va="center")
-        t2 = fig.text(0.675, yy - 0.045, _vfmt(val) + "%", color=col, fontsize=30,
+        t2 = fig.text(0.675, yy - 0.045, f"{_share:.0f}%", color=col, fontsize=30,
                       fontweight="bold", va="center", alpha=la)
         specs.append((val, "art", t2, None))
         top -= 0.135
@@ -1188,7 +1193,8 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
     elif insight.kind == "waffle_grid":
-        subtitle = f"{star.label} is {_vfmt(star.value)}% of the whole"
+        _tot = sum(abs(p.value) for p in insight.items) or 1.0
+        subtitle = f"{star.label} is {abs(star.value) / _tot * 100:.0f}% of the whole"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_waffle(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "pictorial_race":
