@@ -118,28 +118,30 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          SLUG="${{ github.event.inputs.slug }}"
-          # On a push preview there's no input slug — take it from the FIRST LINE
-          # of the trigger file when that line is a bare slug token (so pushes can
-          # target different stories instead of every push re-scoring the same
-          # grocery-squeeze). A note/timestamp first line falls through to default.
-          if [ -z "$SLUG" ]; then
-            CAND=$(head -n1 .github/triggers/preview_explainer 2>/dev/null | tr -d '\r')
-            if printf '%s' "$CAND" | grep -qE '^[a-z0-9][a-z0-9-]+$'; then SLUG="$CAND"; fi
+          SLUGS="${{ github.event.inputs.slug }}"
+          # On a push preview there's no input slug — take the FIRST LINE of the
+          # trigger file when it is one or more bare slug tokens (space/comma
+          # separated), so a push can batch several stories in one render job.
+          # A note/timestamp first line falls through to the default.
+          if [ -z "$SLUGS" ]; then
+            CAND=$(head -n1 .github/triggers/preview_explainer 2>/dev/null | tr ',' ' ' | tr -d '\r')
+            if printf '%s' "$CAND" | grep -qE '^[a-z0-9][a-z0-9 -]+$'; then SLUGS="$CAND"; fi
           fi
-          [ -z "$SLUG" ] && SLUG="grocery-squeeze"
-          echo "Rendering explainer story '$SLUG' (dry-run, no upload)"
+          [ -z "$SLUGS" ] && SLUGS="grocery-squeeze"
+          echo "Rendering explainer stories: $SLUGS (dry-run, no upload)"
           # --force: preview must render even if the slug is already in the
           # posted log (dry-run never uploads, so this can't cause a re-post).
-          python scripts/post_stories.py --dry-run --force --slugs "$SLUG"
+          python scripts/post_stories.py --dry-run --force --slugs $SLUGS
           # Surface the SHOWRUNNER's actual verdict — the vision gate that WATCHED
-          # the finished video. This is the quality judgment of record, not a
+          # each finished video. This is the quality judgment of record, not a
           # human eyeballing stills. (dry-run fails open, so a verdict with no
           # score means the gate couldn't run — that is itself the honest state.)
-          echo "======== SHOWRUNNER VERDICT ($SLUG) ========"
-          cat "output/story_$SLUG.showrunner.json" 2>/dev/null \
-            || echo '{"note":"no verdict written — the review gate did not run (no vision backend / infra error)"}'
-          echo "============================================="
+          for S in $SLUGS; do
+            echo "======== SHOWRUNNER VERDICT ($S) ========"
+            cat "output/story_$S.showrunner.json" 2>/dev/null \
+              || echo '{"note":"no verdict written — the review gate did not run (no vision backend / infra error)"}'
+            echo "============================================="
+          done
 
       - name: List rendered output
         if: always()
