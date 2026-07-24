@@ -470,11 +470,16 @@ def author_performance(subject: str = "", label: str = "", value: str = "",
         if spec:
             return spec
     hay = " ".join((subject, label, kind)).lower()
-    # Some viz kinds have a fitting ACTIVE bit — e.g. a waffle/share (part of a
-    # whole) reads best with Data presenting UP at the filling grid rather than
-    # a seated/decorative pose the gate flags. Kind wins over the keyword.
-    _KIND_POSE = {"waffle_grid": "present_up", "share": "present_up",
-                  "pictorial_race": "shove_cart"}
+    # DATA-CHART kinds read best with Data PRESENTING the chart (arms up at the
+    # data he's narrating) — on-topic for ANY subject. The whimsical prop presets
+    # (soup can, bird, money, cart) were authored for grocery's tone; handing one
+    # to a CO2 / population / electricity story is exactly the off-topic
+    # 'decorative mascot' the gate blocks. So when the brain is off, these kinds
+    # fall back to the NEUTRAL presenting pose, not a themed prop. Genuine
+    # per-scene variety + relevance comes from MASCOT_BRAIN, not the preset shelf.
+    _KIND_POSE = {k: "present_up" for k in (
+        "waffle_grid", "share", "pictorial_race", "bubbles", "geo_world",
+        "geo_city", "trend", "rank", "comparison", "bars", "versus")}
     if kind in _KIND_POSE:
         preset = _KIND_POSE[kind]
     else:
