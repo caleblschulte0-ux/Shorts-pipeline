@@ -751,12 +751,95 @@ def _a_point(t, prop):
             _talk_mouth(t), _s(t) * 3)
 
 
+# -------------------------------------------------------------------------
+# DATA ACTIONS — prop-less animated performances Data does ON a chart element
+# (he's POSITIONED on the bar / line / slice, so 'push' reads as pushing the
+# BAR, not a cart). Authored in code: deterministic (no per-render variance),
+# free (no brain call), and they genuinely ANIMATE (a named still pose renders
+# the identical frame every time — a frozen sticker — these move).
+# -------------------------------------------------------------------------
+def _a_push_bar(t, _prop):
+    """Braced stance, both arms shoving RIGHT into the bar he stands against;
+    a strain sway drives the effort. (This is _a_push with the cart removed.)"""
+    sw = _s(t) * 16
+    lower = (R.limb(152, 300, int(138 + sw), 352, 0, 36, 27, 0) +
+             R.limb(188, 300, int(202 - sw), 352, 0, 36, 27, 0) +
+             f'<ellipse cx="{136+sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
+             f'stroke="{OUT}" stroke-width="6"/>'
+             f'<ellipse cx="{204-sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
+             f'stroke="{OUT}" stroke-width="6"/>')
+    arms = R.arm(*R.SHL, int(250 + sw), 250, -6) + R.arm(*R.SHR, int(258 + sw), 288, 6)
+    return (arms, lower, "", "",
+            R.eye_open(R.LEX, 3, 2) + R.eye_open(R.REX, 3, 2),
+            R.mouth_line(), abs(_s(t)) * 4)
+
+
+def _a_ride_line(t, _prop):
+    """Surfing stance, arms out for balance, leaning into the climb; bobs as he
+    rides. (This is _a_ride with the bird removed — he rides the LINE.)"""
+    lean = _s(t) * 6
+    arms = (R.arm(*R.SHL, int(150 - lean), 244, -18)
+            + R.arm(*R.SHR, int(190 + lean), 244, 18))
+    return (arms, R.lower_ride(), "", "",
+            R.eye_open(R.LEX, 0, 2) + R.eye_open(R.REX, 0, 2),
+            R.mouth_open_smile(), _s(t) * 5)
+
+
+def _a_climb(t, _prop):
+    """Hand-over-hand climb: arms reach up in alternation, legs cycle — he
+    scales the chart element he's on."""
+    up = _s(t) * 22
+    arms = (R.arm(*R.SHL, 120, int(120 + up), -14)
+            + R.arm(*R.SHR, 216, int(120 - up), 14))
+    ll, rl = int(150 + up * 0.5), int(202 - up * 0.5)
+    lower = (R.limb(152, 300, ll, 352, 0, 36, 27, 0) +
+             R.limb(188, 300, rl, 352, 0, 36, 27, 0) +
+             f'<ellipse cx="{ll}" cy="356" rx="24" ry="12" fill="{R.TEAL}" '
+             f'stroke="{OUT}" stroke-width="6"/>'
+             f'<ellipse cx="{rl}" cy="356" rx="24" ry="12" fill="{R.TEAL}" '
+             f'stroke="{OUT}" stroke-width="6"/>')
+    return (arms, lower, "", "",
+            R.eye_open(R.LEX, 2, -2) + R.eye_open(R.REX, 2, -2),
+            R.mouth_line(), 0.0)
+
+
+def _a_lift(t, _prop):
+    """Both arms straining OVERHEAD, hoisting the number/slice; a heave bob."""
+    up = abs(_s(t)) * 10
+    arms = (R.arm(*R.SHL, 120, int(100 + up), -8)
+            + R.arm(*R.SHR, 216, int(100 + up), 8))
+    return (arms, R.lower_stand(), "", "",
+            R.eye_open(R.LEX, 0, -4) + R.eye_open(R.REX, 0, -4),
+            R.mouth_o(), _s(t) * 3)
+
+
 ANIMATORS = {
     "juggle": _a_juggle, "push": _a_push, "ride": _a_ride,
     "stagger_under": _a_stagger, "carry": _a_carry, "hold_up": _a_hold_up,
     "sit_on": _a_sit, "lean_on": _a_lean, "present": _a_present,
     "cheer": _a_cheer, "point_at": _a_point,
+    # prop-less DATA actions (Data performs ON the chart element):
+    "push_bar": _a_push_bar, "ride_line": _a_ride_line,
+    "climb": _a_climb, "lift": _a_lift,
 }
+
+# Chart KIND -> the data action Data performs on it (deterministic, on-topic).
+DATA_ACTION = {
+    "trend": "ride_line", "timeline": "ride_line",
+    "pictorial_race": "push_bar", "rank": "push_bar", "bars": "push_bar",
+    "comparison": "push_bar",
+    "waffle_grid": "lift", "share": "lift", "pictograph": "lift",
+    "bubbles": "climb", "geo_world": "climb", "geo_us": "climb",
+    "geo_city": "climb",
+}
+
+
+def data_action_spec(kind: str, phase: str = "action") -> dict:
+    """A deterministic ANIMATED action spec for a chart kind. phase 'payoff'
+    swaps to a celebration so the beat lands setup->action->PAYOFF."""
+    if phase == "payoff":
+        return {"action": "cheer", "prop": "none"}
+    return {"action": DATA_ACTION.get(kind, "push_bar"), "prop": "none"}
 
 # --------------------------------------------------------------------------
 # GENERIC per-scene animator — the "regenerate the performance per scene"

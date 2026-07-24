@@ -124,7 +124,11 @@ jobs:
           # cart on a CO2 story is the 'decorative mascot' the gate blocks). Falls
           # back to a neutral 'presenting the chart' pose if the brain is
           # unreachable — never an off-topic prop.
-          MASCOT_BRAIN: '1'
+          # Mascot performances are now AUTHORED IN CODE (deterministic animated
+          # data-actions: push the bar / ride the line / hoist the slice) — no
+          # brain call, so the mascot is free and identical every render (the
+          # run-to-run pose variance is gone). MASCOT_BRAIN stays off.
+          MASCOT_BRAIN: '0'
         run: |
           SLUGS="${{ github.event.inputs.slug }}"
           # On a push preview there's no input slug — take the FIRST LINE of the

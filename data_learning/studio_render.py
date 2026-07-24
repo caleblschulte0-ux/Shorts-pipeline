@@ -1090,45 +1090,36 @@ def _hero_anchor(seg):
 
 
 def _stage_on_data(seg, w0, w1, pose, prev_tl):
-    """Stage Data ON this beat's star datum and give him a MOVING bit: he sweeps
-    from an entry point (the line's start, or below the element) up TO the datum
-    across the beat — a real setup->action->payoff on the data, and the travel
-    keeps his cadence smooth. Returns (seq_tuple, entry_xy) — entry_xy is where
-    his glide STARTS — or None if the beat has no usable anchor."""
-    hero = _hero_anchor(seg)
-    if hero is None:
+    """Stage Data ON this beat's winning datum, performing an ANIMATED action on
+    it: he SWEEPS in from the smallest datum (setup travel) up onto the winner
+    (tallest bar / line peak / biggest slice), where his authored data-action
+    (push the bar / ride the line / hoist the slice) loops in place. Feet on the
+    element, right edge just LEFT of the tip so he never covers the value number
+    (collision rule). ``pose`` is the animated action spec. Returns (seq_tuple,
+    entry_xy) or None if the beat has no anchors."""
+    anchors = getattr(seg, "anchors", None)
+    if not anchors:
         return None
-    bit, _default_pose = _DATA_BIT.get(getattr(seg, "kind", ""),
-                                       ("beside_hero", "point"))
-    isc = IN_CHART_SCALE
+    isc = 0.62
     S = MASCOT_SIZE
+    Sk = S * isc
 
     def _tl(cx, cy):                    # centre -> full-size top-left, clamped
         return (min(max(cx - S / 2, 2.0), float(W - S - 2)),
                 min(max(cy - S / 2, 2.0), float(H - S - 2)))
 
-    bcx, bcy, variant = _place_mascot(hero, seg.anchors, scale=isc)
-    Sisc = S * isc
-    # RIDE_PEAK: for a climbing line he starts at the FIRST point (low-left) and
-    # rides UP to the PEAK — the glide literally traces the climb.
-    entry = None
-    if bit == "ride_peak":
-        peak = max(seg.anchors, key=lambda a: a.get("value", 0.0))
-        pcx, pcy, _pw, _ph = _screen_box(peak)
-        bcx, bcy, variant = pcx, pcy - Sisc * 0.30, "R"
-        start = seg.anchors[0] if seg.anchors else peak
-        scx, scy, _sw, _sh = _screen_box(start)
-        entry = _tl(scx, scy)
-    # Positions in `seq` are the TOP-LEFT as if full-size S; the overlay's `off`
-    # correction re-centres the scaled sprite on this centre.
-    tlx, tly = _tl(bcx, bcy)
-    if entry is None:
-        # SWEEP UP into the datum from below — guarantees real travel (cadence)
-        # and reads as Data rushing in to work the number, not parked beside it.
-        entry = (tlx, min(tly + 460.0, float(H - S - 2)))
-    angle = UP_ANGLE if variant == "U" else SIDE_ANGLE
-    flip = (variant == "L")            # face the number he's beside
-    return (tlx, tly, w0, w1, angle, flip, pose, isc), entry
+    def _onto(a):                       # stand ON element a (feet on top, off #)
+        cx, cy, _w, _h = _screen_box(a)
+        cxc = max(cx - Sk * 0.5 - 15.0, float(CHART_X) + Sk * 0.5 + 6.0)
+        return _tl(cxc, cy - Sk * 0.40)
+
+    peak = max(anchors, key=lambda a: a.get("value", 0.0))
+    low = min(anchors, key=lambda a: a.get("value", 0.0))
+    tlx, tly = _onto(peak)
+    entry = _onto(low)                  # sweep up from the smallest datum
+    # The authored actions face right/up (push -> extends the bar, ride -> up the
+    # slope), so no mirroring.
+    return (tlx, tly, w0, w1, SIDE_ANGLE, False, pose, isc), entry
 
 
 def _piecewise(kfs, axis: int) -> str:
@@ -1336,9 +1327,19 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # When the opening chart leads the hook, Data performs ON it from
             # frame 1 (sweeping onto its star datum) instead of standing below it.
             staged_hook = None
+            def _act(seg, phase="action"):
+                # Deterministic, on-topic, ANIMATED action for this chart kind
+                # (push the bar / ride the line / hoist the slice; a celebration
+                # on the payoff). No brain call -> free + no run-to-run variance.
+                kind = getattr(seg, "kind", "")
+                if _director and hasattr(_director, "data_action_spec"):
+                    return _director.data_action_spec(kind, phase)
+                return "cheer" if phase == "payoff" else "point"
+
             if lead_hook and st.segments:
                 staged_hook = _stage_on_data(st.segments[0], windows[0][0],
-                                             windows[0][1], hook_perf, None)
+                                             windows[0][1], _act(st.segments[0]),
+                                             None)
             if staged_hook is not None:
                 _add(staged_hook[0], staged_hook[1])
             else:
@@ -1351,10 +1352,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 spec = _seg_spec(i)
                 if isinstance(spec, dict) and spec.get("hidden"):
                     continue                       # host baked into the chart
-                # Data sweeps up onto THIS beat's datum with his ANIMATED scene
-                # pose (a dict spec -> the moving scene loop; a string pose would
-                # render as a frozen bobbing sticker).
-                staged = _stage_on_data(st.segments[i], wi[0], wi[1], spec, None)
+                # Data sweeps up onto THIS beat's winning datum and performs his
+                # authored ANIMATED action ON it (push / ride / hoist) — moves in
+                # place (not a frozen sticker), on-topic (no random prop).
+                staged = _stage_on_data(st.segments[i], wi[0], wi[1],
+                                        _act(st.segments[i]), None)
                 if staged is not None:
                     _add(staged[0], staged[1])
                 else:                              # no anchor -> fall to the stage
@@ -1374,7 +1376,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             staged_close = None
             if lead_payoff and st.segments:
                 staged_close = _stage_on_data(st.segments[-1], windows[-1][0],
-                                              windows[-1][1], close_act, None)
+                                              windows[-1][1],
+                                              _act(st.segments[-1], "payoff"),
+                                              None)
             if staged_close is not None:
                 _add(staged_close[0], staged_close[1])
             else:
