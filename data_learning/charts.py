@@ -166,8 +166,10 @@ def _draw_trend(ax, insight: Insight):
 
 CARD = "#0B1020"
 CARD_EDGE = "#1f2a44"
-# Taller card so the chart can dominate the frame (data is the focus).
-SERIES_W, SERIES_H, SERIES_DPI = 10.0, 11.2, 110   # -> 1100x1232 px
+# Taller card so the chart DOMINATES the frame (~80% tall): fills the vertical
+# space (kills the empty lower band the gate consistently flags) and drops each
+# element low enough for Data to perform ON it.
+SERIES_W, SERIES_H, SERIES_DPI = 10.0, 14.5, 110   # -> 1100x1595 px
 
 
 def _vfmt(v: float) -> str:

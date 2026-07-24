@@ -1337,8 +1337,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # frame 1 (sweeping onto its star datum) instead of standing below it.
             staged_hook = None
             if lead_hook and st.segments:
+                # Clean POINT pose (reaching at the datum he sweeps onto) — the
+                # brain's clipboard/canister props read as a decorative sticker.
                 staged_hook = _stage_on_data(st.segments[0], windows[0][0],
-                                             windows[0][1], hook_perf, None)
+                                             windows[0][1], "point", None)
             if staged_hook is not None:
                 _add(staged_hook[0], staged_hook[1])
             else:
@@ -1352,8 +1354,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 if isinstance(spec, dict) and spec.get("hidden"):
                     continue                       # host baked into the chart
                 # Data PERFORMS ON THE DATA: he sweeps up onto THIS beat's star
-                # datum (a new spot every beat), not parked at the bottom stage.
-                staged = _stage_on_data(st.segments[i], wi[0], wi[1], spec, None)
+                # datum (a new spot every beat), pointing at the number — a clean
+                # pose, no random brain prop that reads as a decorative sticker.
+                staged = _stage_on_data(st.segments[i], wi[0], wi[1], "point", None)
                 if staged is not None:
                     _add(staged[0], staged[1])
                 else:                              # no anchor -> fall to the stage
