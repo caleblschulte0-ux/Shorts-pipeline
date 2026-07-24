@@ -167,8 +167,45 @@ def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
                       "title": c["title"], "channel": channel,
                       "platform": "twitch",
                       "age_h": max(0.05, (now - created) / 3600),
-                      "vod_offset": c.get("vod_offset")})
+                      "vod_offset": c.get("vod_offset"),
+                      "video_id": c.get("video_id")})
     return clips
+
+
+def maybe_vod_window(clip: dict, work: Path, *, before: float = 60.0,
+                     after: float = 60.0) -> dict | None:
+    """VOD context expansion (STORY_DIRECTOR_PLAYBOOK §6): a Twitch clip
+    often starts after the setup or ends before the reaction. When helix
+    gave us the source VOD id + offset, pull the surrounding window so the
+    story director can recover the missing context. Returns
+    {"path", "vod_start_s", "clip_offset_s"} or None (sub-only VODs,
+    deleted VODs, non-helix sources) — callers must REJECT a story whose
+    essential context can't be recovered, never invent it."""
+    vid = clip.get("video_id")
+    off = clip.get("vod_offset")
+    if not vid or off is None:
+        return None
+    try:
+        start = max(0.0, float(off) - before)
+        end = float(off) + float(clip.get("duration") or 30.0) + after
+        work = Path(work)
+        work.mkdir(parents=True, exist_ok=True)
+        stem = f"vod_{vid}_{int(start)}_{int(end)}"
+        out = work / f"{stem}.mp4"
+        if not out.exists():
+            _ytdlp(["--download-sections", f"*{start:.0f}-{end:.0f}",
+                    "-f", "b[height<=720]/b",
+                    "--force-keyframes-at-cuts",
+                    "-o", str(out), "--recode-video", "mp4",
+                    f"https://www.twitch.tv/videos/{vid}"])
+        if not out.exists() or out.stat().st_size < 10_000:
+            return None
+        return {"path": str(out), "vod_start_s": start,
+                "clip_offset_s": float(off) - start}
+    except Exception as e:  # noqa: BLE001
+        print(f"[vod] expansion failed for video {vid} "
+              f"({type(e).__name__}) — context unrecoverable", flush=True)
+        return None
 
 
 # Kick and Rumble sit behind bot protection; yt-dlp's TLS impersonation

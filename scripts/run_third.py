@@ -47,6 +47,7 @@ OUTPUT_DIR = REPO / "output"
 _BANGER_CACHE: dict = {}
 
 ANALYTICS_LATEST = REPO / "state" / "analytics_third" / "latest.json"
+EVENTS_FILE = REPO / "state" / "third_events.json"
 
 
 class _SkipSlot(Exception):
@@ -473,38 +474,63 @@ def _description(pkg: dict, led: dict) -> str:
     return f"{pkg['proof_plan']}\n\n{note}\n\n{detail}\n\n{tags}"
 
 
+def _load_events() -> dict:
+    """Event records (STORY_DIRECTOR_PLAYBOOK §5): a developing story
+    survives between runs so new developments extend it instead of being
+    rediscovered from scratch. Small JSON in state/, committed with the
+    posted log."""
+    try:
+        if EVENTS_FILE.exists():
+            return json.loads(EVENTS_FILE.read_text())
+    except Exception:  # noqa: BLE001
+        pass
+    return {"events": {}}
+
+
+def _upsert_event(events: dict, who: list[str], urls: list[str]) -> dict:
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    eid = "-".join(sorted(who)) + "-" + today[:7].replace("-", "")
+    ev = events["events"].setdefault(eid, {
+        "event_id": eid, "people": sorted(who),
+        "event_type": "storyline", "first_seen": today,
+        "known_claims": [], "candidate_sources": [],
+        "published_versions": []})
+    ev["last_updated"] = today
+    seen = set(ev["candidate_sources"])
+    ev["candidate_sources"] = (ev["candidate_sources"]
+                               + [u for u in urls if u not in seen])[-40:]
+    return ev
+
+
 def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                    slug: str) -> dict | None:
-    """AUTO-STORY ARM: detect a storyline in the corpus and compile it.
+    """STORY DIRECTOR pipeline (STORY_DIRECTOR_PLAYBOOK §4):
 
-    Corpus = posted log (members may already have shipped as singles — the
-    compilation is the NEW artifact telling the whole arc) + a wide
-    multi-window discovery sweep across the allowlist. Clusters are proposed
-    by heuristics (storyline.find_clusters), judged by the showrunner brain
-    (author.order_story — strict: most piles are NOT stories), rendered by
-    story.build_story, and QA'd. Dedupe is by story_key (hash of the member
-    set), so the same arc can never ship twice while member clips stay
-    legal for single-slot use.
+    discovery/cluster -> event record -> multimodal scene analysis (full
+    transcripts + frames, with VOD context expansion for incomplete
+    sources) -> eligibility + structure + story EDL (the director owns the
+    timeline) -> dedicated rough-cut render (no cards, overlays on
+    footage) -> narrative review -> ONE revision -> mechanical QA.
 
-    Returns a ledger dict, or None on ANY miss — no arc found, brain
-    unreachable, build/QA failure — so the slot falls back to a normal
-    clip. Never raises: a story is a bonus, never a lost slot."""
+    Returns a ledger dict, or None on ANY miss so the slot falls back to a
+    normal clip. A good standalone clip beats a fake narrative (§21).
+    Never raises."""
     try:
         from third_capture import clip_edit, clip_qa, storyline
+        from third_capture import scene_analysis, story_director
         from third_capture import story as story_mod
+        from fsutil import atomic_write_json
         spec = pkg["capture"]
-        sources = spec.get("sources") or {"twitch": spec.get("channels", [])}
-        known = [ch for chans in sources.values() for ch in chans]
+        sources_cfg = spec.get("sources") or \
+            {"twitch": spec.get("channels", [])}
+        known = [ch for chans in sources_cfg.values() for ch in chans]
         corpus = storyline.corpus_from_log(
             log, days=int(spec.get("story_lookback_days", 30)))
-        # the wide sweep (2 windows x every allowlist channel) is identical
-        # for every story slot in a run — sweep once, reuse (like the
-        # run-wide banger cache)
         global _STORY_POOL
         if _STORY_POOL is None:
             pool: list[dict] = []
             for window in ("7d", "30d"):
-                for platform, chans in sources.items():
+                for platform, chans in sources_cfg.items():
                     for ch in chans:
                         try:
                             pool += clip_edit.discover(
@@ -516,124 +542,198 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                   f"{platform}:{ch} {window} failed "
                                   f"({type(e).__name__})", flush=True)
             _STORY_POOL = pool
+        pool_by_url = {c.get("url"): c for c in _STORY_POOL}
         corpus += storyline.from_discovery(_STORY_POOL)
         clusters = storyline.find_clusters(corpus, known)
         if not clusters:
-            print("[story] no candidate storylines in the corpus", flush=True)
+            print("[story] no candidate storylines in the corpus",
+                  flush=True)
             return None
         shipped = {v.get("story_key") for v in log["posted"].values()
                    if v.get("story_key")}
-        # member sets of every shipped story, for NEAR-duplicate detection:
-        # the exact-hash law misses {A,B,C} -> {A,B,C,D} retells
         shipped_members = [v.get("member_keys") or []
                            for v in log["posted"].values()
                            if v.get("story_key")]
         wmodel = spec.get("whisper_model", "small")
+        events = _load_events()
+        s_min = float(spec.get("story_dur_min", 25.0))
+        s_max = float(spec.get("story_dur_max", 90.0))
+
         for cluster in clusters[:int(spec.get("story_max_clusters", 3))]:
             who = "+".join(cluster["who"])
-            # cheap pre-check: if even the FULL cluster's key already
-            # shipped, the arc is stale — don't spend a brain call on it
-            if storyline.story_key(
-                    [c["source_url"] for c in cluster["clips"]]) in shipped:
+            urls = [c["source_url"] for c in cluster["clips"]]
+            if storyline.story_key(urls) in shipped:
                 continue
-            if storyline.near_dup([c["source_url"]
-                                   for c in cluster["clips"]],
-                                  shipped_members):
-                print(f"[story] {who}: near-duplicate of a shipped story "
-                      "— skipped", flush=True)
+            if storyline.near_dup(urls, shipped_members):
+                print(f"[story] {who}: near-duplicate of a shipped story"
+                      " — skipped", flush=True)
                 continue
-            # GROUND THE SHOWRUNNER IN WHAT'S ACTUALLY SAID (reviewer rail
-            # #1): titles lie — download + transcribe the cluster's clips
-            # so the brain judges the arc from real transcript snips, not
-            # narrative-sounding titles that could stitch unrelated
-            # moments. Content-addressed transcript cache makes repeats
-            # free; failures leave snip empty (the brain treats missing
-            # snips as lower-confidence, and order_story stays strict).
-            snip_dir = work / "story_snips"
-            snip_dir.mkdir(parents=True, exist_ok=True)
+            event = _upsert_event(events, cluster["who"], urls)
+
+            # ---- multimodal scene analysis (§7), with VOD context
+            # expansion (§6) for sources the analysis marks incomplete
+            snip_dir = work / "story_scenes"
+            reports = []
+            used_vod = False
             for c in cluster["clips"][:6]:
-                if c.get("snip"):
-                    continue
                 try:
                     info = clip_edit.download(c["source_url"], snip_dir)
-                    src = Path(info["path"])
-                    if not src.is_absolute():
-                        src = REPO / src
-                    words = clip_edit.transcribe_words(src, wmodel)
-                    c["snip"] = " ".join(w["w"] for w in words[:40])
                 except Exception as e:  # noqa: BLE001
-                    print(f"::warning::[story] snip failed for "
-                          f"{c.get('title','?')[:40]!r} "
+                    print(f"::warning::[story] download failed "
+                          f"{c.get('title', '?')[:40]!r} "
                           f"({type(e).__name__})", flush=True)
-            arc = author.order_story(cluster["clips"])
-            if not arc or len(arc.get("beats") or []) < 2:
-                print(f"[story] {who}: showrunner says not a story",
+                    continue
+                src = Path(info["path"])
+                if not src.is_absolute():
+                    src = REPO / src
+                if clip_qa.preflight(src):
+                    continue
+                rep = scene_analysis.analyze_source(
+                    src, {**c, "source_url": c["source_url"]},
+                    snip_dir, whisper_model=wmodel)
+                if not rep:
+                    continue
+                # §6 expansion triggers: mid-sentence start, missing
+                # payoff, or flagged missing context — and helix gave us
+                # the VOD coordinates
+                helix = pool_by_url.get(c["source_url"], {})
+                if (rep.get("opens_mid_sentence")
+                        or not rep.get("payoff_shown")
+                        or rep.get("missing_context")) and \
+                        helix.get("video_id"):
+                    vod = clip_edit.maybe_vod_window(
+                        {**helix, "duration": rep["duration_s"]},
+                        snip_dir)
+                    if vod:
+                        rep2 = scene_analysis.analyze_source(
+                            Path(vod["path"]),
+                            {**c, "source_url": c["source_url"]},
+                            snip_dir, whisper_model=wmodel)
+                        if rep2:
+                            rep = rep2
+                            rep["path"] = vod["path"]
+                            used_vod = True
+                rep["date"] = c.get("date", "")
+                reports.append(rep)
+            if len(reports) < 2:
+                print(f"[story] {who}: <2 analyzable sources", flush=True)
+                continue
+
+            # ---- eligibility + structure + story EDL (§8-10)
+            edl = story_director.plan_story(reports, event)
+            if not edl:
+                print(f"[story] {who}: director says not a story",
                       flush=True)
                 continue
-            if storyline.story_key([b["clip"]["source_url"]
-                                    for b in arc["beats"]]) in shipped:
-                print(f"[story] {who}: this exact arc already shipped",
-                      flush=True)
+            plan_urls = [b["source_id"] for b in edl["beats"]]
+            if storyline.story_key(plan_urls) in shipped or \
+                    storyline.near_dup(plan_urls, shipped_members):
+                print(f"[story] {who}: planned arc already shipped/near-"
+                      "dup — skipped", flush=True)
                 continue
-            if storyline.near_dup([b["clip"]["source_url"]
-                                   for b in arc["beats"]], shipped_members):
-                print(f"[story] {who}: arc near-duplicates a shipped story "
-                      "— skipped", flush=True)
-                continue
+
+            # ---- rough cut via the dedicated renderer (§11)
+            src_map = {r["source_id"]: r for r in reports}
+            story_work = work / f"story_{slug}"
+            revision_count = 0
             try:
-                led = story_mod.build_story(
-                    arc["beats"], out_mp4, work / f"story_{slug}",
-                    hook=arc["hook"],
-                    whisper_model=spec.get("whisper_model", "small"))
+                led = story_mod.render_story(edl, src_map, out_mp4,
+                                             story_work)
             except Exception as e:  # noqa: BLE001
-                print(f"::warning::[story] {who}: build failed ({e}) — "
+                print(f"::warning::[story] {who}: render failed ({e}) — "
                       "next cluster", flush=True)
                 continue
-            skey = storyline.story_key(led["member_keys"])
-            if skey in shipped:
-                continue    # beats dropped during render collapsed it into
-                            # an arc that already shipped — don't repost
-            # EXPLICIT STORY DURATION RANGE (reviewer rail #7): stories
-            # aren't exempt from length judgment — they just have their own
-            # band. Under 25s isn't a multi-beat story; over 90s loses the
-            # scroller (revisit the cap once story retention data exists).
-            s_min = float(spec.get("story_dur_min", 25.0))
-            s_max = float(spec.get("story_dur_max", 90.0))
-            s_dur = float(led.get("duration_s") or 0)
-            if not (s_min <= s_dur <= s_max):
-                print(f"::warning::[story] {who}: {s_dur:.0f}s outside the "
-                      f"{s_min:.0f}-{s_max:.0f}s story range — next cluster",
+
+            # ---- narrative review + ONE revision (§18-19)
+            sheet = story_work / "rough.qa.jpg"
+            sheet_ok = clip_qa.contact_sheet(out_mp4, sheet) is not None
+            tlines = scene_analysis._dialogue_lines(led["final_words"])
+            review = story_director.review_rough_cut(
+                edl, tlines, str(sheet) if sheet_ok else None,
+                led["duration_s"])
+            if not review["publish"] and review["problems"]:
+                edl2 = story_director.revise_edl(edl, review["problems"],
+                                                 reports)
+                if edl2:
+                    revision_count = 1
+                    try:
+                        led = story_mod.render_story(
+                            edl2, src_map, out_mp4, story_work)
+                        edl = edl2
+                        tlines = scene_analysis._dialogue_lines(
+                            led["final_words"])
+                        sheet_ok = clip_qa.contact_sheet(
+                            out_mp4, sheet) is not None
+                        review = story_director.review_rough_cut(
+                            edl, tlines,
+                            str(sheet) if sheet_ok else None,
+                            led["duration_s"])
+                    except Exception as e:  # noqa: BLE001
+                        print(f"::warning::[story] {who}: revision render "
+                              f"failed ({e})", flush=True)
+                        continue
+            if not review["publish"]:
+                print(f"[story] {who}: narrative review failed after "
+                      f"{revision_count} revision(s) "
+                      f"(score={review['story_score']}) — abandoned",
                       flush=True)
                 continue
+
+            # ---- dedupe on the ACTUAL rendered members + duration band
+            skey = storyline.story_key(led["member_keys"])
+            if skey in shipped or \
+                    storyline.near_dup(led["member_keys"],
+                                       shipped_members):
+                continue
+            if not (s_min <= led["duration_s"] <= s_max):
+                print(f"::warning::[story] {who}: {led['duration_s']:.0f}s"
+                      f" outside {s_min:.0f}-{s_max:.0f}s — next cluster",
+                      flush=True)
+                continue
+
+            # ---- mechanical QA (§20 floor; coherence was judged above)
             qa = clip_qa.review(out_mp4, {
-                "authored_title": arc["title"], "hook": arc["hook"],
+                "authored_title": edl["title"], "hook": edl["hook_overlay"],
                 "series": "story"}, work)
-            # the mechanical 4-62s SINGLE-CLIP bound doesn't apply (the
-            # story range above already judged length) — only non-duration
-            # problems fail it
             hard = [p for p in qa["problems"] if "duration" not in p]
             if qa["verdict"] == "fail" and hard:
                 print(f"::warning::[story] {who}: QA failed "
-                      f"({'; '.join(hard)[:140]}) — next cluster", flush=True)
+                      f"({'; '.join(hard)[:140]}) — next cluster",
+                      flush=True)
                 continue
-            lead = (arc["beats"][0]["clip"].get("channel")
-                    or arc["beats"][0]["clip"].get("streamer", ""))
+
+            lead = led["beats"][0].get("streamer") or cluster["who"][0]
             led.update({
-                "authored_title": arc["title"], "clip_title": arc["title"],
+                "authored_title": edl["title"] or
+                f"The Full {who.title()} Story",
+                "clip_title": edl["title"] or who,
                 "authored_caption": author.scrub_text(
-                    f"The full story, beginning to end: {arc['why']}"),
-                # light, honest comment-bait (playbook §9: never manufacture
-                # a conflict; "rate it" is the sanctioned neutral prompt)
-                "authored_cta": "Rate this arc 1-10 👇",
+                    f"The full story, beginning to end: {edl['premise']}"),
+                "authored_cta": "Rate this arc 1-10",
                 "streamer": lead, "series": "story", "who": cluster["who"],
                 "story_key": skey, "experiment_arm": "story",
                 "structure": "story", "self_healed": False,
-                "qa": {k: qa[k] for k in ("verdict", "problems", "vision")},
+                "used_vod_expansion": used_vod,
+                "revision_count": revision_count,
+                "narrative_score": review["story_score"],
+                "qa": {k: qa[k] for k in ("verdict", "problems",
+                                          "vision")},
             })
-            print(f"[story] built {who} arc: {led['n_beats']} beats, "
-                  f"{led['duration_s']}s — {arc['title']!r}", flush=True)
+            event["published_versions"].append(skey)
+            try:
+                atomic_write_json(EVENTS_FILE, events)
+            except Exception:  # noqa: BLE001
+                pass
+            print(f"[story] built {who} {edl['structure']} story: "
+                  f"{led['n_beats']} beats, {led['duration_s']}s, "
+                  f"narrative={review['story_score']} — "
+                  f"{edl['title']!r}", flush=True)
             return led
-        print("[story] no cluster passed the showrunner gate", flush=True)
+        print("[story] no cluster passed the director", flush=True)
+        try:
+            atomic_write_json(EVENTS_FILE, events)
+        except Exception:  # noqa: BLE001
+            pass
         return None
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[story] attempt failed ({type(e).__name__}: {e})"

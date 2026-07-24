@@ -96,46 +96,72 @@ def run_case(name, words, hook, series, work: Path,
 
 
 def run_story_case(work: Path) -> list[str]:
-    """The multi-clip story stitch on two synthetic beats. Mocks only
-    clip_edit.download so the real render/card/normalize/concat path runs."""
+    """The story DIRECTOR render path on two synthetic sources: a real
+    validated EDL through the real dedicated renderer (extract + reframe +
+    captions + overlays + loudnorm + concat). Also enforces the §2 card
+    prohibition at the artifact level: no card files may exist."""
+    from third_capture import story_director
     fails: list[str] = []
     b1, b2 = work / "story_b1.mp4", work / "story_b2.mp4"
     _fixture(b1)
     _fixture(b2)
-    files = {"http://x/beef": b1, "http://x/makeup": b2}
-    real_dl = clip_edit.download
-
-    def fake_dl(url, w):  # noqa: ANN001
-        p = files[url]
-        return {"path": str(p), "clip_id": url[-6:], "title": "t",
-                "clipper": "tester", "views": 1000, "duration": 12.0,
-                "url": url}
-    clip_edit.download = fake_dl
+    edl = story_director.validate_edl({
+        "is_story": True,
+        "premise": "The beef starts, then they make up.",
+        "central_question": "Do they squash it?",
+        "ending_emotion": "relief",
+        "structure": "chronological",
+        "structure_reason": "the natural timeline compels",
+        "title": "The Beef Ends In A Hug",
+        "hook_overlay": "IT ENDED IN A HUG",
+        "target_duration": 20,
+        "beats": [
+            {"source_id": "http://x/beef", "start": 1.0, "end": 8.0,
+             "role": "setup", "purpose": "show the beef start",
+             "transition": "hard_cut", "context_overlay": "", "effects": []},
+            {"source_id": "http://x/makeup", "start": 2.0, "end": 10.0,
+             "role": "payoff", "purpose": "show the makeup",
+             "transition": "hard_cut",
+             "context_overlay": "SIX DAYS LATER",
+             "effects": [{"type": "subtle_punch", "at": 5.0}]},
+        ],
+        "ending": {"type": "reaction_hold", "duration": 1.0},
+    }, {"http://x/beef": 12.0, "http://x/makeup": 12.0})
+    if not edl:
+        return ["story: smoke EDL failed validation"]
+    sources = {
+        "http://x/beef": {"path": str(b1), "duration_s": 12.0,
+                          "channel": "stableronaldo",
+                          "source_url": "http://x/beef",
+                          "words": [{"w": "SQUARE", "s": 2.0, "e": 2.4},
+                                    {"w": "UP", "s": 2.5, "e": 2.8}]},
+        "http://x/makeup": {"path": str(b2), "duration_s": 12.0,
+                            "channel": "cudi",
+                            "source_url": "http://x/makeup",
+                            "words": [{"w": "my", "s": 3.0, "e": 3.2},
+                                      {"w": "bad", "s": 3.3, "e": 3.6}]},
+    }
+    out = work / "story_out.mp4"
+    story_work = work / "story_work"
     try:
-        beats = [
-            {"clip": {"source_url": "http://x/beef", "channel": "stableronaldo",
-                      "series": "beef", "date": "2026-07-17"},
-             "role": "setup", "card": "IT STARTS"},
-            {"clip": {"source_url": "http://x/makeup", "channel": "cudi",
-                      "series": "wholesome", "date": "2026-07-23"},
-             "role": "resolution", "card": "THEY MAKE UP"},
-        ]
-        out = work / "story_out.mp4"
-        led = story.build_story(beats, out, work / "story_work",
-                                hook="THE STABLERONALDO x CUDI BEEF")
+        led = story.render_story(edl, sources, out, story_work)
         if not out.exists():
             return ["story: no output produced"]
         d = _dur(out)
-        if not (8.0 <= d <= 180.0):
+        if not (8.0 <= d <= 60.0):
             fails.append(f"story: duration {d:.1f}s out of bounds")
         if led.get("n_beats") != 2:
             fails.append(f"story: expected 2 beats, got {led.get('n_beats')}")
+        # §2 card prohibition, artifact level
+        cards = list(story_work.glob("card_*.mp4"))
+        if cards:
+            fails.append(f"story: CARD FILES GENERATED: {cards}")
         print(f"  [story] dur={d:.1f}s beats={led.get('n_beats')} "
-              f"members={len(led.get('member_keys', []))}", flush=True)
+              f"structure={led.get('story_structure')} "
+              f"overlays={led.get('context_overlay_count')} cards=0",
+              flush=True)
     except Exception as e:  # noqa: BLE001
-        fails.append(f"story: build_story RAISED {type(e).__name__}: {e}")
-    finally:
-        clip_edit.download = real_dl
+        fails.append(f"story: render_story RAISED {type(e).__name__}: {e}")
     return fails
 
 

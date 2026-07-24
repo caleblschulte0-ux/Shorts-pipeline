@@ -183,4 +183,5 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "third: update posted log + analytics [skip ci]" \
             state/third_posted_log.json state/third_qa_stats.json \
+            state/third_events.json \
             state/analytics_third

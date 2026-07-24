@@ -1,99 +1,81 @@
-# The Story Arc System (third channel)
+# The Story Arc System (third channel) — v2: Story Director
 
-Auto-detected multi-clip narrative compilations — the "whole story,
-beginning to end" format (e.g. a beef that starts, escalates, and ends in
-a makeup hug), stitched from clips across streamers and days. Shipped
-2026-07-23; first proven live in the `20260723b` dry-run canary (built the
-Kai Cenat SU dean arc and the stableronaldo→Cudi makeup arc unaided).
+Auto-detected multi-clip narrative stories. **Governing specification:
+docs/STORY_DIRECTOR_PLAYBOOK.md** — this file is the implementation map.
 
-## Architecture (three layers + wiring)
+v1 (2026-07-23) was a compilation generator: each beat rendered as its own
+mini-production with chapter cards between. v2 inverts it: **the story
+director owns one timeline; clips are raw material inside it.** Cards are
+deleted from the architecture (spec §2/§11); context lives as brief
+overlays ON moving footage.
+
+## Pipeline (scripts/run_third.py `_story_attempt`)
 
 ```
-posted log + wide 7d/30d discovery sweep          (corpus)
-        │
-        ▼
-third_capture/storyline.py     find_clusters(): group clips by shared
-        │                      PEOPLE (ALIASES map: kai/cenat/kaicenat =
-        │                      one person); jaccard-deduped; a cluster must
-        │                      span >=2 moments on >=2 dates
-        ▼
-snip transcription             top 6 cluster clips are downloaded +
-        │                      whisper-transcribed (content-addressed
-        │                      cache) so the showrunner judges from REAL
-        │                      WORDS, never titles alone — titles lie
-        ▼
-author.order_story()           the showrunner brain (claude→groq): STRICT
-        │                      is-this-a-story gate; orders 2-4 beats
-        │                      (setup/escalation/climax/resolution), writes
-        │                      chapter cards + hook + <=95-char title
-        ▼
-third_capture/story.py         build_story(): each beat rendered through
-        │                      the normal single-clip path (clip_edit.edit);
-        │                      hook OVERLAYS beat 1 (playbook §5 — never
-        │                      open on a card); chapter cards only BETWEEN
-        │                      beats; normalize -> concat -c copy
-        ▼
-scripts/run_third.py           _story_attempt(): orchestrates + QA
-                               (story-length durations allowed, any hard
-                               problem rejects) + falls back to a normal
-                               clip on ANY miss. Slots: `story_count` of
-                               the daily `count`, date-seeded.
+corpus (posted log + wide 7d/30d sweep)
+  -> storyline.find_clusters      people-clustering, ALIASES, jaccard dedupe
+  -> event records                state/third_events.json survives runs
+  -> scene_analysis.analyze_source   FULL transcript + frames -> people,
+       |                             dialogue/visual beats, missing context
+       +-> clip_edit.maybe_vod_window  §6 expansion when a source opens
+                                       mid-sentence / lacks its payoff
+  -> story_director.plan_story    eligibility (meaningful CHANGE or reject)
+       |                          + explicit structure (6 approved) + full
+       |                          EDL: exact in/out, per-segment purpose,
+       |                          context overlays, global effect budget
+  -> story.render_story           dedicated renderer: extract exact cuts,
+       |                          uniform 9:16 reframe, captions, hook over
+       |                          the OPENING FOOTAGE, overlays over motion,
+       |                          loudnorm mix, hard-cut assemble. NO CARDS.
+  -> story_director.review_rough_cut   12-question narrative critic
+  -> story_director.revise_edl    exactly ONE revision, then re-review
+  -> mechanical QA + duration band (25-90s) + story_key/near_dup dedupe
+  -> publish, else clip fallback  (§21: never force a story)
 ```
 
-## The laws
+## Laws (acceptance-tested: scripts/test_story_acceptance.py + smoke)
 
-- **Event-driven, quality-gated**: a story ships only when a genuine arc
-  exists. No arc → the slot silently becomes a normal clip. A forced story
-  is worse than a good clip.
-- **story_key dedupe + near-dup law**: a compilation's identity = hash of
-  its member set (`storyline.story_key`). The posted-log entry carries
-  `story_key` + `member_keys` and **no `source_url`** — so the same arc
-  can never ship twice, while member clips stay legal for single-slot
-  posts. `storyline.near_dup` additionally blocks retells: >=60% member
-  overlap (jaccard) with ANY shipped story is a duplicate even though the
-  exact hash differs ({A,B,C} then {A,B,C,D} is the same story).
-- **Arc integrity**: if the SETUP or PAYOFF beat fails to render, the
-  whole story aborts to the clip fallback — escalation+climax alone is
-  not a "full story", and the hook must describe what actually opens the
-  video. Only middle beats may drop.
-- **Story duration range**: 25-90s (`story_dur_min`/`story_dur_max`) —
-  stories aren't exempt from length judgment, they have their own band.
-- **Measurement isolation**: analytics tracks a `story` arm
-  (`fetch_analytics`), and `_learned_prior` EXCLUDES story-format
-  retention so single-clip streamer priors stay clean. Judge the arm only
-  at >=25 mature videos (playbook §11).
-- **Attribution**: the description credits every member source.
+- **No cards, ever**: no `_card`, no `CARD_DUR`, no card mp4s, no blank
+  canvas, no fade-from-black. First frame = moving source footage.
+- **Director controls the timeline**: renderer executes the EDL only;
+  beats cannot add their own replays/slow-mo; effect budget global
+  (<=1 replay, <=2 subtle_punch), validated in `validate_edl`.
+- **Every segment has a stated purpose** or the EDL is rejected.
+- **Context recovery, never invention**: incomplete sources trigger VOD
+  expansion via helix video_id+vod_offset; unrecoverable context means
+  the director simply lacks it and the eligibility gate rejects.
+- **Arc integrity**: failed opening or payoff beat aborts to clip
+  fallback; only middle beats may drop.
+- **Overlay hygiene**: 2-6 words, upper-third, ~1.3s, banned meta-labels
+  ("PART TWO", "THE CLIMAX"...) stripped at validation.
+- **One revision maximum**, then abandon (§19/§21).
+- **Dedupe**: story_key (member-set hash) + near_dup (>=60% jaccard vs
+  ANY shipped story) at cluster, plan, and rendered-member level.
+- **Measurement isolation**: `story` arm in analytics; streamer prior
+  excludes story retention; ledger carries story_structure, n_beats,
+  duration, used_vod_expansion, context_overlay_count, replay_count,
+  revision_count, narrative_score (§22).
 
 ## Knobs (capture spec, `state/third_packages/default_clip.json`)
 
 | key | default | meaning |
 |---|---|---|
-| `story_count` (top level) | 1 | story slots per day (raise to 2 only after ~20-25 mature story posts prove the format) |
+| `story_count` | 1 | story slots/day (raise only after ~20-25 mature story posts) |
 | `story_lookback_days` | 30 | posted-log corpus window |
 | `story_top` | 6 | clips per channel per window in the wide sweep |
-| `story_max_clusters` | 3 | clusters offered to the showrunner per slot |
-| `story_dur_min` / `story_dur_max` | 25 / 90 | acceptable story length (s) |
+| `story_max_clusters` | 3 | clusters offered to the director per slot |
+| `story_dur_min/max` | 25 / 90 | story length band (s) |
 
-Constants in `story.py`: `MIN_BEATS=2`, `MAX_BEATS=4`, `CARD_DUR=1.5`.
-
-Quality floors (capture spec): `min_banger` 0.5 = the TITLE-based early
-filter (unknown titles sit at exactly 0.5 and pass — a bad title often
-hides a great clip); `min_banger_content` 0.7 = the transcript-aware
-publish floor, applied after Whisper when the brain can judge what's
-actually said. The content gate FAILS OPEN (no transcript / no brain =
-no block).
+Quality floors for normal clips: `min_banger` 0.5 (title-stage, unknown
+=0.5 passes), `min_banger_content` 0.7 (transcript-aware, fails open).
 
 ## Ops notes
 
-- The wide sweep is cached run-wide (`_STORY_POOL`); transcripts are
-  content-addressed in `cache/transcripts/` (persisted by actions/cache) —
-  a re-picked clip never pays Whisper twice.
-- A story build is expensive (~10-20 min: N downloads + N full renders).
-  The slot-retry loop re-attempts on failure, so keep `_story_attempt`
-  failure-paths returning None (fallback) rather than raising.
-- Known scoping trap (live incident 2026-07-23): `process()` imports
-  `author` at the top of its try-block ON PURPOSE — later in-branch
-  imports make `author` local to the whole function, and any path that
-  skips them dies at the final safe_title choke with UnboundLocalError.
-- Smoke coverage: `scripts/smoke_third.py` renders a 2-beat story on
-  synthetic fixtures every CI run.
+- Whisper transcripts are content-addressed in `cache/transcripts/`
+  (persisted by actions/cache) — scene analysis pre-warms nothing twice.
+- A story slot is expensive (downloads + scene analysis + 1-2 renders +
+  2-3 brain calls). One slot/day; `_STORY_POOL` caches the wide sweep.
+- Event records commit with the posted log via ci_commit_state.
+- SCOPING LAWS (two live incidents): never re-import a module-level name
+  inside `process()`; never use `+=` on a closed-over list in a nested
+  function (use `.extend`).
