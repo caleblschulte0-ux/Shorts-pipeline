@@ -1686,6 +1686,66 @@
       "used_narration": false,
       "context_overlay_count": 4,
       "replay_count": 0
+    },
+    "rejected-muddytsunderekimchimvgame-uniiqqt9lrinvkyi": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/MuddyTsundereKimchiMVGame-uNiIQQT9LrINVKYI",
+      "streamer": "stableronaldo",
+      "title": "ron clapped chris\ud83d\udc80",
+      "qa_rejected": true,
+      "ts": "2026-07-24T19:08:01.493438+00:00"
+    },
+    "clip-20260724-1": {
+      "url": "https://youtube.com/shorts/Ap-9XDj81z4",
+      "title": "Xqc Just Hit The Biggest Win In This Game's History",
+      "kind": "twitch_clip",
+      "ts": "2026-07-24T19:12:11.043768+00:00",
+      "uploaded_at": "2026-07-24T19:12:11.043787+00:00",
+      "publish_at": "2026-07-24T20:00:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/StupidFrailSharkTBTacoRight-TMfB3ioEUW8CvNLb",
+      "streamer": "xqc",
+      "series": "win",
+      "hook": "THAT'S THE BIGGEST WIN EVER",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4085,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 27.57
+      },
+      "director_cut": true
+    },
+    "rejected-miniatureroughsoybeantbtacoleft-nbmokknohiie8y0c": {
+      "source_url": "https://www.twitch.tv/agent00/clip/MiniatureRoughSoybeanTBTacoLeft-nBmOKKnOHIIE8y0C",
+      "streamer": "agent00",
+      "title": "Ben threatens Agent about Emily",
+      "qa_rejected": true,
+      "ts": "2026-07-24T19:13:12.233152+00:00"
+    },
+    "clip-20260724-3": {
+      "url": "https://youtube.com/shorts/BTKG7zifI0k",
+      "title": "Caseoh Had To Handle Business And The Whole Stream Erupted",
+      "kind": "twitch_clip",
+      "ts": "2026-07-24T19:19:39.449848+00:00",
+      "uploaded_at": "2026-07-24T19:19:39.449867+00:00",
+      "publish_at": "2026-07-24T21:30:00Z",
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BadCheerfulNostrilCoolStoryBro-uvdvmY1wY2WDtHr2",
+      "streamer": "caseoh_",
+      "series": "win",
+      "hook": "HE HAD TO HANDLE BUSINESS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3631,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 20.0
+      },
+      "director_cut": true
     }
   }
 }

@@ -1479,6 +1479,47 @@
           "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.7 (routine friendly intro, no stakes)"
         }
       ]
+    },
+    {
+      "date": "20260724",
+      "dry_run": false,
+      "ts": "2026-07-24T19:19:59+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 13,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 101,
+        "with_retention": 85,
+        "with_curve": 15,
+        "fetched_at": "2026-07-24T13:31:29.577660+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260724-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260724-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260724-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260724-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.40 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
+        }
+      ]
     }
   ]
 }
