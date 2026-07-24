@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "05_graph-ev-sales",
+  "title": "Global EV Sales by Region (millions/year)",
+  "y_label": "EVs sold (millions)",
+  "duration": 13,
+  "source": "Sources: IEA Global EV Outlook (approx.)",
+  "hashtags": [
+    "ev",
+    "electricvehicles",
+    "china",
+    "climate",
+    "data",
+    "chart",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral",
+    "tesla",
+    "automotive"
+  ],
+  "years": [
+    2016,
+    2018,
+    2020,
+    2022,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "China",
+      "color": "#ff3030",
+      "values": [
+        0.35,
+        1.1,
+        1.2,
+        5.9,
+        9.9,
+        11.5
+      ]
+    },
+    {
+      "name": "Europe",
+      "color": "#4a90e2",
+      "values": [
+        0.2,
+        0.39,
+        1.4,
+        2.7,
+        3.2,
+        3.5
+      ]
+    },
+    {
+      "name": "United States",
+      "color": "#50ff80",
+      "values": [
+        0.16,
+        0.36,
+        0.3,
+        0.99,
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "music_vibe": "dark"
+}

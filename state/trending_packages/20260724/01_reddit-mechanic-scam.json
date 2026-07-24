@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "subreddit": "ProRevenge",
+  "slug": "01_reddit-mechanic-scam",
+  "title": "The mechanic said my transmission was shot. I'd already marked the old one.",
+  "hashtags": [
+    "reddit",
+    "prorevenge",
+    "revenge",
+    "storytime",
+    "justice",
+    "karma",
+    "fyp",
+    "shorts",
+    "story",
+    "viral",
+    "satisfying",
+    "consumerprotection"
+  ],
+  "script": "The mechanic swore my transmission was completely shot and quoted me forty two hundred dollars for a full replacement, so before I dropped the car off I scratched a tiny X into the housing with a nail file where nobody would think to look. Three days later he called to say the new transmission was installed, and handed me an invoice listing a brand new part with its own serial number. I opened the hood myself before paying a cent and found my X still scratched into the same metal. He had charged me full price to swap nothing at all. I paid in cash, smiled, and drove straight to the state attorney general's consumer fraud office with photos, the invoice, and my scratch mark as proof. Two weeks later a certified letter arrived: full refund, and the shop was under active investigation after three other customers came forward with the exact same scam. He never once saw the X coming.",
+  "shots": [
+    {
+      "phrase": "quoted me forty two hundred dollars",
+      "query": "car mechanic garage repair estimate",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "scratched a tiny X into the housing",
+      "query": "hand marking car engine part closeup",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "handed me an invoice listing a brand new part",
+      "query": "invoice receipt paperwork desk",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "I opened the hood myself",
+      "query": "man opening car hood inspecting",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "found my X still scratched into the same metal",
+      "query": "scratched metal part closeup",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "drove straight to the state attorney general's consumer fraud office",
+      "query": "government office building exterior",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a certified letter arrived",
+      "query": "certified mail envelope opening",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the shop was under active investigation",
+      "query": "police tape auto shop investigation",
+      "mascot_pose": "shock"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "scratched a tiny X into the housing",
+      "text": "MARKED IT FIRST",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "charged me full price to swap nothing at all",
+      "text": "SWAPPED NOTHING",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "full refund, and the shop was under active investigation",
+      "text": "BUSTED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "He never once saw the X coming",
+      "text": "GOTCHA",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark"
+}

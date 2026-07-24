@@ -1,84 +1,84 @@
 [
   {
-    "topic": "My manager said overtime 'isn't tracked' - so I tracked it myself",
-    "title": "My manager said overtime 'isn't tracked' - so I tracked it myself",
-    "publish_at": "2026-07-23T15:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/w9SMF1TQhvk",
-    "error": null,
-    "elapsed_seconds": 137.1,
-    "package_path": "state/trending_packages/20260723/01_reddit-overtime.json",
-    "video_path": "output/daily_20260723-134221_my_manager_said_overtime__isn_t_tracked_.mp4",
+    "topic": "The mechanic said my transmission was shot. I'd already marked the old one.",
+    "title": "The mechanic said my transmission was shot. I'd already marked the old one.",
+    "publish_at": "2026-07-24T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 The top half of each frame is specified to be a 'news/stock photo', but instead, it displays abstract game animation, which is the same type of content as the bottom half. This indicates an obvious re",
+    "elapsed_seconds": 158.4,
+    "package_path": "state/trending_packages/20260724/01_reddit-mechanic-scam.json",
+    "video_path": "output/daily_20260724-111439_the_mechanic_said_my_transmission_was_sh.mp4",
     "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The top half of each frame is specified to be a 'news/stock photo', but instead, it displays abstract game animation, which is the same type of content as the bottom half. This indicates an obvious re"
     },
-    "channel": "default"
+    "quarantined": true
   },
   {
-    "topic": "My noisy neighbor said 'good luck proving it' - so I did",
-    "title": "My noisy neighbor said 'good luck proving it' - so I did",
-    "publish_at": "2026-07-23T17:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/23GggSJNkHY",
-    "error": null,
-    "elapsed_seconds": 111.7,
-    "package_path": "state/trending_packages/20260723/02_reddit-neighbor.json",
-    "video_path": "output/daily_20260723-134437_my_noisy_neighbor_said__good_luck_provin.mp4",
+    "topic": "Someone kept stealing my lunch, so I labeled the ghost pepper one 'diet special'",
+    "title": "Someone kept stealing my lunch, so I labeled the ghost pepper one 'diet special'",
+    "publish_at": "2026-07-24T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 short",
+    "elapsed_seconds": 110.1,
+    "package_path": "state/trending_packages/20260724/02_reddit-lunch-thief.json",
+    "video_path": "output/daily_20260724-111715_someone_kept_stealing_my_lunch__so_i_lab.mp4",
     "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "ok": false,
+      "verdict": "broken",
+      "reason": "short"
     },
-    "channel": "default"
+    "quarantined": true
   },
   {
-    "topic": "Your groceries didn't get more expensive - they got smaller",
-    "title": "Your groceries didn't get more expensive - they got smaller",
-    "publish_at": "2026-07-23T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/OMINBBLt3qw",
-    "error": null,
-    "elapsed_seconds": 18.2,
-    "package_path": "state/trending_packages/20260723/03_textcard-shrinkflation.json",
-    "video_path": "output/daily_20260723-134603_your_groceries_didn_t_get_more_expensive.mp4",
-    "channel": "default"
-  },
-  {
-    "topic": "Printer ink is one of the most expensive liquids you can buy",
-    "title": "Printer ink is one of the most expensive liquids you can buy",
-    "publish_at": "2026-07-23T21:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/8ePacheA_fI",
-    "error": null,
-    "elapsed_seconds": 13.0,
-    "package_path": "state/trending_packages/20260723/04_textcard-printer-ink.json",
-    "video_path": "output/daily_20260723-134621_printer_ink_is_one_of_the_most_expensive.mp4",
-    "channel": "default"
-  },
-  {
-    "topic": "Staffed Lighthouses by Country Since 1900",
-    "title": "Staffed Lighthouses by Country Since 1900",
-    "publish_at": "2026-07-23T23:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/WNJc5HG6PtU",
-    "error": null,
-    "elapsed_seconds": 71.7,
-    "package_path": "state/trending_packages/20260723/05_graph-lighthouses.json",
-    "video_path": "output/daily_20260723-134634_staffed_lighthouses_by_country_since_190.mp4",
-    "channel": "default"
-  },
-  {
-    "topic": "Netflix vs Cable TV Subscribers (US, millions)",
-    "title": "Netflix vs Cable TV Subscribers (US, millions)",
+    "topic": "Orcas were just filmed destroying a sunfish for no reason at all",
+    "title": "Orcas were just filmed destroying a sunfish for no reason at all",
     "publish_at": "2026-07-24T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/LnyCoEzR6KI",
+    "video_url": "https://youtube.com/shorts/jmd7Snj58dc",
     "error": null,
-    "elapsed_seconds": 64.3,
-    "package_path": "state/trending_packages/20260723/06_graph-netflix-cable.json",
-    "video_path": "output/daily_20260723-134746_netflix_vs_cable_tv_subscribers__us__mil.mp4",
+    "elapsed_seconds": 23.1,
+    "package_path": "state/trending_packages/20260724/03_textcard-orca-sunfish.json",
+    "video_path": "output/daily_20260724-111840_orcas_were_just_filmed_destroying_a_sunf.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Tens of thousands just got evacuated from one of Europe's top tourist spots",
+    "title": "Tens of thousands just got evacuated from one of Europe's top tourist spots",
+    "publish_at": "2026-07-24T15:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/TN3b8BpYpws",
+    "error": null,
+    "elapsed_seconds": 21.6,
+    "package_path": "state/trending_packages/20260724/04_textcard-europe-wildfires.json",
+    "video_path": "output/daily_20260724-111903_tens_of_thousands_just_got_evacuated_fro.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Global EV Sales by Region (millions/year)",
+    "title": "Global EV Sales by Region (millions/year)",
+    "publish_at": "2026-07-24T17:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/lTg4rFXQMII",
+    "error": null,
+    "elapsed_seconds": 67.1,
+    "package_path": "state/trending_packages/20260724/05_graph-ev-sales.json",
+    "video_path": "output/daily_20260724-111925_global_ev_sales_by_region__millions_year.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Renewable Share of Electricity: US vs China vs Germany",
+    "title": "Renewable Share of Electricity: US vs China vs Germany",
+    "publish_at": "2026-07-24T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/TroBXJ8bczo",
+    "error": null,
+    "elapsed_seconds": 69.6,
+    "package_path": "state/trending_packages/20260724/06_graph-renewable-share.json",
+    "video_path": "output/daily_20260724-112032_renewable_share_of_electricity__us_vs_ch.mp4",
     "channel": "default"
   }
 ]
