@@ -835,8 +835,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         step = (s1 - s0) / len(chunks)
         for j, ch in enumerate(chunks):
             cs, ce = s0 + j * step, s0 + (j + 1) * step
+            # Pin narration to a CONSISTENT lower-band plate (below the tall
+            # chart) with a heavy outline — so it never lands on the chart or
+            # collides with the host performing inside it.
+            cap = ("{\\an2\\pos(540,1734)\\fs62\\c&HFFFFFF&\\b1\\bord7"
+                   "\\3c&H0A0C12&\\shad0\\fad(70,70)}" + ch.strip())
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Cap,,0,0,0,,"
-                         f"{ch.strip()}")
+                         f"{cap}")
 
     # 0: HOOK — LEAD WITH THE PUNCHLINE. The single biggest shock-number slams
     # onto frame 1 as the hero (the same gut-punch the thumbnail promises),
