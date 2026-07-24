@@ -1442,18 +1442,45 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # tiling above and made the mascot briefly vanish. Sort by start time
         # and patch every gap (and the head/tail) with the home/up mascot so
         # coverage runs unbroken from 0 to the end of the video.
+        # BAKED spans: time ranges where a chart already draws the host INSIDE it
+        # (charts._bake_host). The gap-filler must NOT drop a second standing host
+        # over these — that was the duplicate 'clipboard Data' welded to the frame.
+        baked_spans = []
+        for _bi, _bseg in enumerate(st.segments):
+            if _seg_is_baked(_bseg) and _bi in disp_start:
+                baked_spans.append((disp_start[_bi], disp_end[_bi]))
+
+        def _baked_at(t):
+            return any(a - 0.06 <= t <= b + 0.06 for a, b in baked_spans)
+
         seq.sort(key=lambda s: s[2])
         filled, cursor = [], 0.0
+
+        def _fill_gap(a, b):                 # add a home host over [a,b] MINUS baked spans
+            segs = [(a, b)]
+            for (ba, bb) in baked_spans:
+                nxt = []
+                for (sa, sb) in segs:
+                    if bb <= sa or ba >= sb:
+                        nxt.append((sa, sb)); continue
+                    if ba > sa:
+                        nxt.append((sa, min(ba, sb)))
+                    if bb < sb:
+                        nxt.append((max(bb, sa), sb))
+                segs = nxt
+            for (sa, sb) in segs:
+                if sb - sa > 0.15:
+                    filled.append((home[0], home[1], sa, sb,
+                                   UP_ANGLE, False, gap_fill, 1.0))
+
         for entry in seq:
             w0, w1 = entry[2], entry[3]
             if w0 - cursor > 0.05:
-                filled.append((home[0], home[1], cursor, w0,
-                               UP_ANGLE, False, gap_fill, 1.0))
+                _fill_gap(cursor, w0)
             filled.append(entry)
             cursor = max(cursor, w1)
         if total - cursor > 0.05:
-            filled.append((home[0], home[1], cursor, total,
-                           UP_ANGLE, False, gap_fill, 1.0))
+            _fill_gap(cursor, total)
         seq = filled
 
         import os as _os2
