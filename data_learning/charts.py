@@ -200,8 +200,12 @@ _HOST_IMG_CACHE: dict = {}
 
 
 def _host_img(action: str, phase: float):
-    """One mascot action frame as an RGBA numpy array (cached by action+phase)."""
-    key = (action, round(phase * 10) / 10)
+    """One mascot action frame as an RGBA numpy array (cached by action+phase).
+    Granularity 0.025 (40 buckets): coarse 0.1 held each pose ~1/11 of the beat
+    (~1.2s = a stack of duplicate frames that aliased the effort reps and tanked
+    effective_fps); 40 buckets keep the arc's pushes SMOOTH and the mascot moving
+    nearly every frame, while still caching (≤40 rasterises per action)."""
+    key = (action, round(phase * 40) / 40)
     if key in _HOST_IMG_CACHE:
         return _HOST_IMG_CACHE[key]
     val = None
