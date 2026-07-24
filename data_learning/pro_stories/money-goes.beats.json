@@ -1,0 +1,400 @@
+{
+ "slug": "money-goes",
+ "title": "Where All Your Money Actually Goes",
+ "require_provenance": true,
+ "beats": [
+  {
+   "job": "HOOK",
+   "mode": "designed_2d",
+   "narration": "You'll earn about two million dollars in your life. So why does it never feel like enough? Watch where almost all of it quietly disappears.",
+   "understand": "cold open: a paycheck lands and the money instantly starts leaking away",
+   "flat": {
+    "kind": "scene_paycheck",
+    "number": "$2M",
+    "label": "YOU'LL EARN",
+    "mood": "cash"
+   },
+   "facts": [
+    {
+     "claim": "A typical worker earns about $2 million over a lifetime",
+     "source": "U.S. Census Bureau / Social Security Administration lifetime-earnings estimates",
+     "year": 2023,
+     "assumptions": "Rounded illustrative figure; full-time worker over a ~40-year career in nominal dollars. Median lifetime earnings are ~$1.7M and higher with a bachelor's degree."
+    }
+   ],
+   "extra": {
+    "express": true
+   }
+  },
+  {
+   "job": "TEASE",
+   "mode": "designed_2d",
+   "narration": "In the end, only about fifteen cents of every dollar you earn is ever really yours.",
+   "understand": "a stark stat card teasing the punchline of the whole video",
+   "flat": {
+    "kind": "flat_hook",
+    "text": "15\u00a2",
+    "sub": "OF EVERY DOLLAR IS YOURS",
+    "label": "OUT OF $2,000,000"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Two million dollars. On paper, it's a fortune. A mansion, a boat, a life of never checking a price tag. But in reality you never really hold it, because it's spoken for long before it ever lands in your account.",
+   "understand": "a real photo of cash \u2014 the raw number, before reality takes its cut",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo of cash \u2014 the raw number, before reality takes its cut"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter one. The government's cut.",
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER ONE",
+    "title": "The Government's Cut"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Before you hold a single dollar, a share is already gone. Income tax, payroll tax, and sales tax on almost everything you buy with what's left.",
+   "understand": "the figure hands a stack of cash through a cold government window",
+   "flat": {
+    "kind": "scene_tax",
+    "number": "25%",
+    "label": "THE GOVERNMENT'S CUT",
+    "mood": "tax"
+   },
+   "extra": {
+    "express": true
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Across a lifetime, that adds up to roughly five hundred thousand dollars, handed over a little at a time. A full quarter of everything you will ever make, gone before you can even decide what to do with it.",
+   "understand": "a real photo grounding the tax point \u2014 a government building",
+   "facts": [
+    {
+     "claim": "Lifetime taxes total roughly $500,000 \u2014 about a quarter of earnings",
+     "source": "Bureau of Labor Statistics & Tax Foundation effective-tax-burden estimates",
+     "year": 2023,
+     "assumptions": "Combined federal income, payroll, state, and sales tax; ~25% average effective burden applied to the $2M lifetime baseline."
+    }
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo grounding the tax point \u2014 a government building"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Two million, minus taxes. One and a half million left.",
+   "understand": "the recurring money bar: taxes drain out",
+   "flat": {
+    "kind": "scene_money",
+    "upto": 0,
+    "label": "TAXES",
+    "mood": "tax"
+   },
+   "extra": {
+    "express": true
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter two. A roof over your head.",
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER TWO",
+    "title": "A Roof Over Your Head"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Now the biggest bite of all. Rent or a mortgage takes about a third of every paycheck, month after month, for decades.",
+   "understand": "the figure stands small in a lit doorway; rent floats out the chimney each month",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the figure stands small in a lit doorway; rent floats out the chimney each month"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "You don't really buy a home. For most of your life you rent it, from a landlord or from a bank. And when you add up every payment, every repair, and every year of property tax, just having somewhere to sleep swallows another half a million dollars.",
+   "understand": "a real photo of houses grounding the housing point",
+   "facts": [
+    {
+     "claim": "Housing takes about a third of spending \u2014 roughly $500,000 over a lifetime",
+     "source": "BLS Consumer Expenditure Survey (housing ~33% of average annual expenditures)",
+     "year": 2023,
+     "assumptions": "National-average spending share applied to lifetime income net of tax; rent or mortgage plus repairs, insurance, and property tax."
+    }
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo of houses grounding the housing point"
+   }
+  },
+  {
+   "job": "DATA",
+   "narration": "And just like that, we're down to one million dollars.",
+   "understand": "the money bar: housing drains out",
+   "flat": {
+    "kind": "scene_money",
+    "upto": 1,
+    "label": "HOUSING",
+    "mood": "housing"
+   },
+   "extra": {
+    "express": true
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter three. Getting around.",
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER THREE",
+    "title": "Getting Around"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Then there's simply getting from place to place. Car payments, insurance, gas, and repairs \u2014 the machine that carries you to work quietly eats the money you go to work for.",
+   "understand": "the figure at a gas pump, the dollar meter racing up",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the figure at a gas pump, the dollar meter racing up"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "A car spends most of its life parked, losing value, while you keep paying for it. Over a lifetime of commutes, getting around costs about a quarter of a million dollars.",
+   "understand": "a real photo of traffic grounding the transport point",
+   "facts": [
+    {
+     "claim": "Getting around costs about a quarter of a million dollars over a lifetime",
+     "source": "BLS Consumer Expenditure Survey (transportation ~16% of spending)",
+     "year": 2023,
+     "assumptions": "National-average share; car payments, insurance, fuel, and repairs; illustrative rounded total."
+    }
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo of traffic grounding the transport point"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Seven hundred and fifty thousand left.",
+   "understand": "the money bar: getting around drains out",
+   "flat": {
+    "kind": "scene_money",
+    "upto": 2,
+    "label": "GETTING AROUND",
+    "mood": "transport"
+   },
+   "extra": {
+    "express": true
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter four. Staying alive.",
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER FOUR",
+    "title": "Staying Alive"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Now the one you can't skip. Groceries, restaurants, the coffee on the way in. It never feels like much at the register, but it quietly becomes a fortune.",
+   "understand": "the figure at a checkout, the total climbing, the receipt printing longer",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the figure at a checkout, the total climbing, the receipt printing longer"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Three meals a day, every day, for a whole lifetime. Feeding yourself alone runs around three hundred thousand dollars over the years.",
+   "understand": "a real photo of groceries grounding the food point",
+   "facts": [
+    {
+     "claim": "Feeding yourself runs about $300,000 over a lifetime",
+     "source": "BLS Consumer Expenditure Survey (food at home + away ~12\u201313% of spending)",
+     "year": 2023,
+     "assumptions": "National-average share for a single person; groceries and restaurants; illustrative rounded total."
+    }
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo of groceries grounding the food point"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Four hundred and fifty thousand now.",
+   "understand": "the money bar: food drains out",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the money bar: food drains out"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter five. The little leaks.",
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER FIVE",
+    "title": "The Little Leaks"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "And then the leaks you barely notice. Streaming, subscriptions, fees, the free trial you forgot to cancel \u2014 draining every month whether you use them or not.",
+   "understand": "the figure on a couch ringed by subscription tiles, each siphoning a coin",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the figure on a couch ringed by subscription tiles, each siphoning a coin"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "designed_2d",
+   "narration": "Alone, each one is nothing. Together, they siphon off a hundred and fifty thousand dollars, leaving just three hundred thousand.",
+   "understand": "the money bar: the little leaks drain out",
+   "facts": [
+    {
+     "claim": "Subscriptions and recurring fees siphon off about $150,000 over a lifetime",
+     "source": "Consumer subscription-spending surveys (C+R Research; West Monroe)",
+     "year": 2023,
+     "assumptions": "Illustrative aggregate of streaming, memberships, and auto-renewing fees compounded over a working life."
+    }
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the money bar: the little leaks drain out"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter six. The trap.",
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER SIX",
+    "title": "The Trap"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Here's the cruel part. When you finally earn more, you don't keep more. You just buy a nicer car and a bigger place, and the money drains right back out.",
+   "understand": "the figure runs on a treadmill going nowhere as money pours in and drains out",
+   "flat": {
+    "kind": "scene_treadmill",
+    "number": "",
+    "label": "RUNNING TO STAND STILL",
+    "mood": "trap"
+   },
+   "extra": {
+    "express": true
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "It's why so many people who earn a lot still feel like they have nothing. The trap isn't how much you make \u2014 it's that the spending quietly grows to match it, every single time you get ahead.",
+   "understand": "a real photo grounding the trap \u2014 a busy city of workers",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo grounding the trap \u2014 a busy city of workers"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter seven. What's actually left.",
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER SEVEN",
+    "title": "What's Actually Left"
+   }
+  },
+  {
+   "job": "REVEAL",
+   "mode": "designed_2d",
+   "narration": "So out of two million dollars, this is the part that's actually yours. Three hundred thousand.",
+   "understand": "the money bar resolves on the small glowing 'actually yours' sliver",
+   "flat": {
+    "kind": "scene_money",
+    "upto": 5,
+    "final": true,
+    "label": "ACTUALLY YOURS",
+    "mood": "payoff"
+   },
+   "facts": [
+    {
+     "claim": "About 15 cents of every dollar (~$300,000) remains as discretionary",
+     "source": "Derived residual: $2M earnings minus taxes, housing, transport, food, and recurring costs",
+     "year": 2023,
+     "assumptions": "Arithmetic residual of the figures above; an illustrative teaching device, not a measured personal savings rate."
+    }
+   ],
+   "extra": {
+    "express": true
+   }
+  },
+  {
+   "job": "PAYOFF",
+   "mode": "designed_2d",
+   "narration": "Fifteen cents of every dollar you will ever earn, free to spend however you choose. It isn't much, but it's truly yours. So spend it on something that actually matters, because you paid for every last cent of it with your life.",
+   "understand": "close on real human moments \u2014 a life well spent",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "close on real human moments \u2014 a life well spent"
+   }
+  }
+ ]
+}
