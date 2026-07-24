@@ -77,3 +77,9 @@ state/subject_photos/
 
 # Proof Mode (third channel) generated fixtures — deterministic, rebuilt each run
 third_capture/fixtures/
+
+# Expression test artifacts (render outputs, frames, temporary files)
+tests/expression_tests/*.mp4
+tests/expression_tests/*.png
+tests/expression_tests/*.json
+media/texts/
