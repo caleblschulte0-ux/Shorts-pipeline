@@ -1072,7 +1072,7 @@ _DATA_BIT = {
     "geo_us":         ("beside_hero", "point"),
     "geo_city":       ("beside_hero", "point"),
 }
-IN_CHART_SCALE = 0.66     # smaller so he fits beside a bar without covering it
+IN_CHART_SCALE = 0.74     # fits beside a bar but still a real presence in-frame
 
 
 def _hero_anchor(seg):
@@ -1089,12 +1089,14 @@ def _hero_anchor(seg):
     return max(anchors, key=lambda a: a.get("value", 0.0))
 
 
-def _stage_on_data(seg, w0, w1, pose, prev_tl):
+def _stage_on_data(seg, w0, w1, pose, prev_tl, sweep: bool = True):
     """Stage Data ON this beat's star datum and give him a MOVING bit: he sweeps
     from an entry point (the line's start, or below the element) up TO the datum
     across the beat — a real setup->action->payoff on the data, and the travel
-    keeps his cadence smooth. Returns (seq_tuple, entry_xy) — entry_xy is where
-    his glide STARTS — or None if the beat has no usable anchor."""
+    keeps his cadence smooth. ``sweep=False`` returns no entry (he glides on from
+    where he already is) — used when this beat CONTINUES the previous chart (the
+    seg that leads the hook, the payoff recap) so he doesn't jump back down and
+    re-sweep. Returns (seq_tuple, entry_xy) or None if the beat has no anchor."""
     hero = _hero_anchor(seg)
     if hero is None:
         return None
@@ -1122,10 +1124,12 @@ def _stage_on_data(seg, w0, w1, pose, prev_tl):
     # Positions in `seq` are the TOP-LEFT as if full-size S; the overlay's `off`
     # correction re-centres the scaled sprite on this centre.
     tlx, tly = _tl(bcx, bcy)
-    if entry is None:
+    if entry is None and sweep:
         # SWEEP UP into the datum from below — guarantees real travel (cadence)
         # and reads as Data rushing in to work the number, not parked beside it.
         entry = (tlx, min(tly + 460.0, float(H - S - 2)))
+    if not sweep:
+        entry = None                   # continue on from his current spot
     angle = UP_ANGLE if variant == "U" else SIDE_ANGLE
     flip = (variant == "L")            # face the number he's beside
     return (tlx, tly, w0, w1, angle, flip, pose, isc), entry
@@ -1213,9 +1217,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             disp_start[i] = start
             disp_end[i] = end
             nfr = int(max(30, min(300, round((end - start) * 30))))
+            # A hook-leading chart finishes drawing by the END OF THE HOOK (then
+            # holds through seg0) so the cold open shows a real, fast build — not
+            # a near-empty box crawling for seconds. hook_frac = hook / whole span.
+            full_by = 1.0
+            if i == 0 and lead_hook and end > start:
+                full_by = max(0.2, min(1.0, (windows[1][0] - start) / (end - start)))
             try:
                 cpath, _a = charts.render_story_build(
-                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr)
+                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr,
+                    full_by=full_by)
                 if cpath:
                     seg.chart_path = str(cpath)
             except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure
@@ -1353,7 +1364,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     continue                       # host baked into the chart
                 # Data PERFORMS ON THE DATA: he sweeps up onto THIS beat's star
                 # datum (a new spot every beat), not parked at the bottom stage.
-                staged = _stage_on_data(st.segments[i], wi[0], wi[1], spec, None)
+                # seg0 that led the hook CONTINUES from there (no re-sweep).
+                staged = _stage_on_data(st.segments[i], wi[0], wi[1], spec, None,
+                                        sweep=not (i == 0 and lead_hook))
                 if staged is not None:
                     _add(staged[0], staged[1])
                 else:                              # no anchor -> fall to the stage
@@ -1372,8 +1385,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # central celebration.
             staged_close = None
             if lead_payoff and st.segments:
+                # The recap is the last seg's chart he's already on — continue,
+                # don't re-sweep.
                 staged_close = _stage_on_data(st.segments[-1], windows[-1][0],
-                                              windows[-1][1], close_act, None)
+                                              windows[-1][1], close_act, None,
+                                              sweep=False)
             if staged_close is not None:
                 _add(staged_close[0], staged_close[1])
             else:
