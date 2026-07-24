@@ -178,14 +178,7 @@ jobs:
           git show origin/preview-renders:verdicts-log.jsonl > "$tmp/verdicts-log.jsonl" 2>/dev/null || true
           for j in output/*.showrunner.json; do
             [ -f "$j" ] || continue
-            python3 - "$j" >> "$tmp/verdicts-log.jsonl" <<'PYEOF'
-import json,sys,datetime
-v=json.load(open(sys.argv[1]))
-print(json.dumps({"ts":datetime.datetime.utcnow().isoformat(timespec="seconds")+"Z",
-  "slug":sys.argv[1].split("/")[-1].replace(".showrunner.json","").replace("story_",""),
-  "score":v.get("score"),"verdict":v.get("verdict"),"dimensions":v.get("dimensions"),
-  "temporal":v.get("temporal"),"auto_fails":v.get("auto_fails"),"judge":v.get("judge")}))
-PYEOF
+            python3 scripts/append_verdict_log.py "$j" >> "$tmp/verdicts-log.jsonl" || true
           done
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
