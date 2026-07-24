@@ -1014,13 +1014,15 @@ def _screen_box(a):
     return cx, cy, a["w"] * SCALE_X, a["h"] * SCALE_Y
 
 
-def _place_mascot(active, seg_anchors):
+def _place_mascot(active, seg_anchors, scale: float = 1.0):
     """Stand the mascot right beside the active number, inside the chart, in
     empty space that doesn't cover ANY number. Returns (body_cx, body_cy,
     variant) where variant is 'L' (left of number, points right), 'R' (right
-    of number, points left) or 'U' (fallback below the card, points up)."""
+    of number, points left) or 'U' (fallback below the card, points up).
+    ``scale`` sizes his footprint so a smaller in-chart host fits beside a bar
+    where a full-size one would be pushed out to the 'U' fallback."""
     S = MASCOT_SIZE
-    bw, bh = 0.52 * S, 0.78 * S
+    bw, bh = 0.52 * S * scale, 0.78 * S * scale
     acx, acy, aw, ah = _screen_box(active)
     obox = []
     for o in seg_anchors:
@@ -1048,6 +1050,73 @@ def _place_mascot(active, seg_anchors):
             if fits(bcx, acy + dy):
                 return bcx, acy + dy, variant
     return acx, CHART_Y + CHART_H + bh * 0.55, "U"
+
+
+# Data is the MAIN CHARACTER and he PERFORMS ON THE DATA. For each beat he is
+# staged beside that beat's star data point and given a stat-tied bit that
+# matches the depiction — he rides the climbing line to its peak, shoves the
+# tallest bar, presents the filling grid. Not parked at the bottom. (Poses come
+# from the director; this maps the KIND to the bit + how big he is in-chart.)
+_DATA_BIT = {
+    "trend":          ("ride_peak", "point"),      # ride up to the line's top
+    "timeline":       ("ride_peak", "point"),
+    "pictorial_race": ("shove_top", "present_up"), # push the winning bar
+    "rank":           ("shove_top", "present_up"),
+    "bars":           ("shove_top", "present_up"),
+    "comparison":     ("shove_top", "present_up"), # push the bigger column
+    "waffle_grid":    ("present_fill", "present_up"),
+    "share":          ("present_fill", "present_up"),
+    "pictograph":     ("present_fill", "present_up"),
+    "bubbles":        ("beside_hero", "point"),
+    "geo_world":      ("beside_hero", "point"),
+    "geo_us":         ("beside_hero", "point"),
+    "geo_city":       ("beside_hero", "point"),
+}
+IN_CHART_SCALE = 0.66     # smaller so he fits beside a bar without covering it
+
+
+def _hero_anchor(seg):
+    """The STAR data point of a beat — the one Data performs on. The point the
+    spoken line names if we can find it, else the peak value (tallest bar /
+    highest point / biggest slice)."""
+    anchors = getattr(seg, "anchors", None)
+    if not anchors:
+        return None
+    for p in getattr(seg, "punches", []) or []:
+        a = _anchor_for_punch(seg, p)
+        if a is not None:
+            return a
+    return max(anchors, key=lambda a: a.get("value", 0.0))
+
+
+def _stage_on_data(seg, w0, w1, pose, prev_tl):
+    """Stage Data ON this beat's star datum: stand him beside it (inside the
+    chart, never covering a number), scaled to fit, facing it. Returns a seq
+    tuple (tlx, tly, w0, w1, angle, flip, pose, scale) or None if the beat has
+    no usable anchor (caller falls back to the stage)."""
+    hero = _hero_anchor(seg)
+    if hero is None:
+        return None
+    bit, _default_pose = _DATA_BIT.get(getattr(seg, "kind", ""),
+                                       ("beside_hero", "point"))
+    isc = IN_CHART_SCALE
+    S = MASCOT_SIZE
+    bcx, bcy, variant = _place_mascot(hero, seg.anchors, scale=isc)
+    Sisc = S * isc
+    # RIDE_PEAK: for a climbing line, target the PEAK point so his glide from the
+    # previous (lower) spot traces the rise — he gets carried UP the line.
+    if bit == "ride_peak":
+        peak = max(seg.anchors, key=lambda a: a.get("value", 0.0))
+        pcx, pcy, _pw, _ph = _screen_box(peak)
+        bcx, bcy, variant = pcx, pcy - Sisc * 0.30, "R"
+    # Positions in `seq` are the TOP-LEFT as if full-size S; the overlay's `off`
+    # correction re-centres the scaled sprite on this centre. So place the CENTRE
+    # (bcx,bcy) via a full-size top-left and let the scale field do the resizing.
+    tlx = min(max(bcx - S / 2, 2.0), float(W - S - 2))
+    tly = min(max(bcy - S / 2, 2.0), float(H - S - 2))
+    angle = UP_ANGLE if variant == "U" else SIDE_ANGLE
+    flip = (variant == "L")            # face the number he's beside
+    return (tlx, tly, w0, w1, angle, flip, pose, isc)
 
 
 def _piecewise(kfs, axis: int) -> str:
@@ -1245,16 +1314,29 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # (fills the frame, and his looping animation is large-area continuous
             # motion — the reliable way to kill a frozen 'dead card' run and the
             # empty void the gate flags on those beats).
-            seq.append((Cx, hook_y, windows[0][0], windows[0][1],
-                        UP_ANGLE, False, hook_perf, hook_scale))
+            # When the opening chart leads the hook, Data performs ON it from
+            # frame 1 (beside its star datum) instead of standing below it.
+            hook_entry = None
+            if lead_hook and st.segments:
+                hook_entry = _stage_on_data(st.segments[0], windows[0][0],
+                                            windows[0][1], hook_perf, None)
+            seq.append(hook_entry or (Cx, hook_y, windows[0][0], windows[0][1],
+                                      UP_ANGLE, False, hook_perf, hook_scale))
             for i in range(nseg):
                 wi = windows[1 + i] if 1 + i < len(windows) else None
                 if not wi:
                     continue
                 spec = _seg_spec(i)
-                act = spec.get("action") if isinstance(spec, dict) else ""
-                x, y = _spot(i, act)
-                seq.append((x, y, wi[0], wi[1], UP_ANGLE, False, spec, 1.0))
+                if isinstance(spec, dict) and spec.get("hidden"):
+                    continue                       # host baked into the chart
+                # Data PERFORMS ON THE DATA: stand him beside THIS beat's star
+                # datum (a new spot every beat), not parked at the bottom stage.
+                staged = _stage_on_data(st.segments[i], wi[0], wi[1], spec, None)
+                if staged is not None:
+                    seq.append(staged)
+                else:                              # no anchor -> fall to the stage
+                    x, y = _spot(i, "")
+                    seq.append((x, y, wi[0], wi[1], UP_ANGLE, False, spec, 1.0))
             # CLOSING: Data is the SPEAKER — big and central so his celebration
             # is the payoff and nothing sits frozen.
             close_act = _director.celebrate() if _director else "cheer"
@@ -1263,8 +1345,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # he is the big central celebration that lands the takeaway.
             close_y = stage_y if lead_payoff else float(H * 0.30)
             close_scale = 1.0 if lead_payoff else 1.55
-            seq.append((Cx, close_y, windows[-1][0], windows[-1][1],
-                        UP_ANGLE, False, close_act, close_scale))
+            # With a recap chart behind the payoff, Data presents ON it (beside
+            # its star datum) rather than standing below; otherwise he is the big
+            # central celebration.
+            close_entry = None
+            if lead_payoff and st.segments:
+                close_entry = _stage_on_data(st.segments[-1], windows[-1][0],
+                                             windows[-1][1], close_act, None)
+            seq.append(close_entry or (Cx, close_y, windows[-1][0],
+                                       windows[-1][1], UP_ANGLE, False,
+                                       close_act, close_scale))
         else:
             gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))

@@ -162,33 +162,40 @@ jobs:
         run: |
           ls output/*.mp4 >/dev/null 2>&1 || { echo "no mp4s rendered — skipping"; exit 0; }
           tmp=$(mktemp -d)
+          mkdir -p "$tmp/blocked"
+          # THE GATE ACTUALLY GATES: only a SHIP-verdict video is published as a
+          # watchable mp4. A blocked video keeps its frames + verdict (under
+          # blocked/, for debugging WHY it blocked) but NO mp4 — so a video the
+          # showrunner rejected can never be surfaced as something to watch.
           for mp4 in output/*.mp4; do
             base=$(basename "$mp4")
-            if ffmpeg -y -loglevel error -i "$mp4" \
-                 -vf "scale=720:-2" -c:v libx264 -preset veryfast -crf 30 \
-                 -c:a aac -b:a 96k -movflags +faststart "$tmp/$base"; then
-              echo "compressed $base -> $(du -h "$tmp/$base" | cut -f1)"
-            else
-              echo "compress failed for $base, copying original"
-              cp "$mp4" "$tmp"/ || true
-            fi
-          done
-          # Grab MORE frames, evenly across the whole clip, so the composition can
-          # be judged end-to-end (the old 5-frame sample hid dead space and
-          # overlaps between the sampled moments).
-          for mp4 in "$tmp"/*.mp4; do
-            fbase=$(basename "$mp4" .mp4)
+            slug=$(basename "$mp4" .mp4); slug="${slug#story_}"
+            vj="output/story_${slug}.showrunner.json"
+            verdict=$(python3 -c "import json;print(json.load(open('$vj')).get('verdict',''))" 2>/dev/null || echo "")
+            # Frames (from the original) travel for BOTH ship and block so the
+            # composition is always debuggable end-to-end.
             DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$mp4" 2>/dev/null | cut -d. -f1)
             [ -z "$DUR" ] && DUR=40
+            if [ "$verdict" = "ship" ]; then
+              fdir="$tmp"
+              if ffmpeg -y -loglevel error -i "$mp4" \
+                   -vf "scale=720:-2" -c:v libx264 -preset veryfast -crf 30 \
+                   -c:a aac -b:a 96k -movflags +faststart "$tmp/$base"; then
+                echo "SHIP  $slug -> published watchable ($(du -h "$tmp/$base" | cut -f1))"
+              else
+                cp "$mp4" "$tmp"/ || true
+              fi
+            else
+              fdir="$tmp/blocked"
+              echo "BLOCK $slug ($verdict) -> mp4 WITHHELD; frames+verdict only"
+            fi
             for pct in 4 12 20 30 40 50 60 70 80 88 96; do
               ts=$(( DUR * pct / 100 ))
               ffmpeg -y -loglevel error -ss "$ts" -i "$mp4" -frames:v 1 \
-                "$tmp/${fbase}.frame$(printf '%02d' $pct).png" 2>/dev/null || true
+                "$fdir/story_${slug}.frame$(printf '%02d' $pct).png" 2>/dev/null || true
             done
+            cp "$vj" "$fdir"/ 2>/dev/null || true
           done
-          # Carry the showrunner verdict onto the branch so the gate's judgment
-          # travels with the video, not just my say-so.
-          cp output/*.showrunner.json "$tmp"/ 2>/dev/null || true
           # PRESERVE the score HISTORY across force-pushes: fetch the running
           # verdict log, append this run's compact record, keep it in the commit.
           git fetch -q origin preview-renders 2>/dev/null || true
@@ -201,8 +208,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout --orphan preview-renders
           git reset
-          cp "$tmp"/* .
-          git add -f *.mp4 *.png *.json *.jsonl 2>/dev/null || true
+          cp -r "$tmp"/* .
+          git add -f *.mp4 *.png *.json *.jsonl blocked 2>/dev/null || true
           git commit -m "explainer preview render $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
           git push -f origin preview-renders
 
