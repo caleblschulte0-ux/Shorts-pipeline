@@ -33,6 +33,7 @@ import asyncio
 import json
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -42,6 +43,7 @@ if str(REPO) not in sys.path:
 from data_learning import flat2d                         # noqa: E402
 from data_learning import scenes                          # noqa: E402
 from data_learning import footage_hybrid as fh           # noqa: E402
+from data_learning import perf_instrument as perf        # noqa: E402
 
 W, H, FPS = 1920, 1080, 30
 XFADE = 0.6
@@ -574,6 +576,10 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
     work.mkdir(parents=True, exist_ok=True)
     _ATTRIB.clear()
     _FALLBACKS.clear()
+
+    slug = story.get("slug", Path(out).stem)
+    perf.init_render(slug, len(story.get("beats", [])), len(story.get("shots", [])))
+
     planned = "beats" in story
     if planned:
         # BEAT INTENT PLANNER: synth each beat's narration, then expand the
@@ -583,42 +589,50 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
         beats = story["beats"]
         contrast_director.contrast_pass(beats)         # cut real footage into
         beat_durs = []                                 # long animation runs
-        for bi, b in enumerate(beats):
-            bvf = work / f"beatvo_{bi}.mp3"
-            beat_durs.append(_synth(b.get("narration", ""), bvf, voice))
-        shots = plan_story(beats, beat_durs)
+        with perf.stage("narration_synthesis"):
+            for bi, b in enumerate(beats):
+                bvf = work / f"beatvo_{bi}.mp3"
+                beat_durs.append(_synth(b.get("narration", ""), bvf, voice))
+        with perf.stage("beat_planning"):
+            shots = plan_story(beats, beat_durs)
         from data_learning import extra_director   # the "be extra" pass
-        extra_director.apply(shots)                # attach escalating character
+        with perf.stage("extra_director"):
+            extra_director.apply(shots)                # attach escalating character
         print(f"[pro] planned {len(beats)} beats -> {len(shots)} shots")
     else:
         shots = story["shots"]
     # 1) narration per shot — the line rides only the phase that carries it.
     # For planned shots `seconds` is set by the planner; legacy shots derive it.
     vo_files, durs, seconds = [], [], []
-    for i, sh in enumerate(shots):
-        vf = work / f"vo_{i}.mp3"
-        d = _synth(sh.get("line", ""), vf, voice)
-        vo_files.append(vf)
-        durs.append(d)
-        if planned:
-            seconds.append(float(sh.get("seconds", max(MIN_SHOT,
-                           LEAD + d + TAIL))))
-        else:
-            seconds.append(max(MIN_SHOT, (LEAD + d + TAIL) if d else
-                           float(sh.get("seconds", 4.0))))
-        print(f"[pro] shot {i} {sh['kind']}: line {d:.1f}s -> "
-              f"{seconds[-1]:.1f}s")
+    with perf.stage("shot_narration"):
+        for i, sh in enumerate(shots):
+            vf = work / f"vo_{i}.mp3"
+            d = _synth(sh.get("line", ""), vf, voice)
+            vo_files.append(vf)
+            durs.append(d)
+            if planned:
+                seconds.append(float(sh.get("seconds", max(MIN_SHOT,
+                               LEAD + d + TAIL))))
+            else:
+                seconds.append(max(MIN_SHOT, (LEAD + d + TAIL) if d else
+                               float(sh.get("seconds", 4.0))))
+            print(f"[pro] shot {i} {sh['kind']}: line {d:.1f}s -> "
+                  f"{seconds[-1]:.1f}s")
     # 2) render each shot's visual to its length
     clips = []
-    for i, sh in enumerate(shots):
-        c = work / f"shot_{i:02d}.mp4"
-        _render_shot(sh, seconds[i], c, work, i)
-        clips.append(c)
-        print(f"[pro] shot {i} rendered -> {c.name}")
+    with perf.stage("shot_rendering"):
+        for i, sh in enumerate(shots):
+            c = work / f"shot_{i:02d}.mp4"
+            perf.start_shot(i, sh.get("kind", "unknown"), seconds[i])
+            _render_shot(sh, seconds[i], c, work, i)
+            perf.end_shot()
+            clips.append(c)
+            print(f"[pro] shot {i} rendered -> {c.name}")
     # 3) dissolve-join the visuals
     silent = work / "silent.mp4"
-    fh.dissolve_join(clips, silent, xfade=XFADE)
-    total = _dur(silent)
+    with perf.stage("video_assembly"):
+        fh.dissolve_join(clips, silent, xfade=XFADE)
+        total = _dur(silent)
     # 4) lay the voice at each shot's start offset (accounting for xfades)
     offset, delays, shot_start = 0.0, [], []
     for i in range(len(shots)):
@@ -634,21 +648,23 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
                     f"{int(delays[i]*1000)}[v{i}]")
     voice_lbls = "".join(f"[v{i}]" for i in range(len(shots)) if durs[i] > 0)
     vo_mix = work / "vo.m4a"
-    _run(["ffmpeg", "-y", "-loglevel", "error", *amix_in, "-filter_complex",
-          ";".join(filt) + f";{voice_lbls}amix=inputs="
-          f"{voice_lbls.count('[')}:normalize=0,volume=2.0,"
-          f"aresample=48000[vo]", "-map", "[vo]", "-t", f"{total:.2f}",
-          str(vo_mix)])
+    with perf.stage("voice_mix"):
+        _run(["ffmpeg", "-y", "-loglevel", "error", *amix_in, "-filter_complex",
+              ";".join(filt) + f";{voice_lbls}amix=inputs="
+              f"{voice_lbls.count('[')}:normalize=0,volume=2.0,"
+              f"aresample=48000[vo]", "-map", "[vo]", "-t", f"{total:.2f}",
+              str(vo_mix)])
     # 5) music bed, ducked under the voice
     music = _music_track()
     final_audio = work / "mix.m4a"
     if music:
-        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(vo_mix),
-              "-stream_loop", "-1", "-i", str(music), "-filter_complex",
-              "[1:a]volume=0.18,aresample=48000[m];"
-              "[m][0:a]sidechaincompress=threshold=0.03:ratio=6:release=800"
-              "[duck];[duck][0:a]amix=inputs=2:normalize=0[a]",
-              "-map", "[a]", "-t", f"{total:.2f}", str(final_audio)])
+        with perf.stage("music_ducking"):
+            _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(vo_mix),
+                  "-stream_loop", "-1", "-i", str(music), "-filter_complex",
+                  "[1:a]volume=0.18,aresample=48000[m];"
+                  "[m][0:a]sidechaincompress=threshold=0.03:ratio=6:release=800"
+                  "[duck];[duck][0:a]amix=inputs=2:normalize=0[a]",
+                  "-map", "[a]", "-t", f"{total:.2f}", str(final_audio)])
     else:
         final_audio = vo_mix
     # 5.5) AUDIO FINISHING (PRO_DOCTRINE — the mix measured true-peak over 0
@@ -656,10 +672,11 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
     # ENCODED deliverable can never clip.
     mastered = work / "master.m4a"
     try:
-        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(final_audio),
-              "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.9",
-              "-ar", "48000", str(mastered)])
-        final_audio = mastered
+        with perf.stage("audio_mastering"):
+            _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(final_audio),
+                  "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.9",
+                  "-ar", "48000", str(mastered)])
+            final_audio = mastered
     except Exception as e:  # noqa: BLE001 — never fail the render on mastering
         _fallback("audio_mastering", "degraded", f"mastering skipped ({e})")
     # 6) mux + THE FILM GRADE — one cinematic finish over every frame so photos,
@@ -670,55 +687,64 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
     grade = ("curves=master='0/0 0.25/0.22 0.75/0.78 1/1',"
              "colorbalance=rs=-0.03:bs=0.04:rm=0.03:bm=-0.02,"
              "eq=saturation=1.07,vignette=angle=PI/6,noise=alls=5:allf=t+u")
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i",
-          str(final_audio), "-map", "0:v", "-map", "1:a", "-vf", grade,
-          "-c:v", "libx264",
-          "-crf", "18", "-preset", "medium", "-c:a", "aac", "-b:a", "160k",
-          "-shortest", str(out)])
-    total = _dur(out)
+    with perf.stage("final_mux_and_grade"):
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i",
+              str(final_audio), "-map", "0:v", "-map", "1:a", "-vf", grade,
+              "-c:v", "libx264",
+              "-crf", "18", "-preset", "medium", "-c:a", "aac", "-b:a", "160k",
+              "-shortest", str(out)])
+        total = _dur(out)
     print(f"[pro] built {out}  ({total:.1f}s, {len(clips)} shots)")
     pkg = out.with_name(out.stem + "_pkg")
     beats = story.get("beats", [])
     # 7) 720p viewing copy
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(out), "-vf",
-          "scale=1280:720", "-c:v", "libx264", "-preset", "slow", "-crf",
-          "26", "-c:a", "aac", "-b:a", "128k",
-          str(out.with_name(out.stem + "_720p.mp4"))])
+    with perf.stage("downscale_720p"):
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(out), "-vf",
+              "scale=1280:720", "-c:v", "libx264", "-preset", "slow", "-crf",
+              "26", "-c:a", "aac", "-b:a", "128k",
+              str(out.with_name(out.stem + "_720p.mp4"))])
     # 8) blind-judge EVIDENCE package (verdicts are enforced by the producer,
     # scripts/produce.py — a missing package is DEGRADED, not silently fine).
     try:
-        _run([sys.executable, str(REPO / "scripts" / "visual_judge.py"),
-              str(out), "--out", str(pkg), "--grid", "6x4"])
+        with perf.stage("judge_evidence_package"):
+            _run([sys.executable, str(REPO / "scripts" / "visual_judge.py"),
+                  str(out), "--out", str(pkg), "--grid", "6x4"])
     except Exception as e:  # noqa: BLE001
         _fallback("judge_package", "degraded", f"visual_judge package failed ({e})")
     # 9) the REAL beat->time map + continuity — required inputs for the judges.
     if planned:
         try:
-            _emit_beatmap(story, shots, shot_start, seconds, pkg)
+            with perf.stage("beatmap_emission"):
+                _emit_beatmap(story, shots, shot_start, seconds, pkg)
         except Exception as e:  # noqa: BLE001
             _fallback("beatmap", "degraded", f"beatmap emission failed ({e})")
         try:
-            _check_continuity(story, shots, clips, pkg)
+            with perf.stage("continuity_check"):
+                _check_continuity(story, shots, clips, pkg)
         except Exception as e:  # noqa: BLE001
             _fallback("continuity", "degraded", f"continuity check failed ({e})")
     # 10) PUBLISHING PACKAGE — the sidecars the publisher consumes (parity with
     # the legacy renderer): chapters/duration/sources, captions, thumbnail.
     try:
-        _emit_meta(story, beats, shots, shot_start, total, out)
+        with perf.stage("meta_json"):
+            _emit_meta(story, beats, shots, shot_start, total, out)
     except Exception as e:  # noqa: BLE001
         _fallback("meta", "unacceptable", f"meta.json emission failed ({e})")
     try:
-        _emit_srt(shots, shot_start, durs, out)
+        with perf.stage("srt_captions"):
+            _emit_srt(shots, shot_start, durs, out)
     except Exception as e:  # noqa: BLE001
         _fallback("captions", "unacceptable", f"srt emission failed ({e})")
     try:
-        _emit_thumbnail(out, total, story.get("title", ""))
+        with perf.stage("thumbnail_generation"):
+            _emit_thumbnail(out, total, story.get("title", ""))
     except Exception as e:  # noqa: BLE001
         _fallback("thumbnail", "degraded", f"thumbnail failed ({e})")
     # 11) CC attribution
     if _ATTRIB:
         try:
-            _emit_credits(pkg)
+            with perf.stage("credits_emission"):
+                _emit_credits(pkg)
         except Exception as e:  # noqa: BLE001
             _fallback("credits", "degraded", f"credits emission failed ({e})")
     # 12) fallback report + structured verdict
@@ -727,6 +753,15 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
     (pkg / "fallbacks.json").write_text(json.dumps(
         {"verdict": verdict, "fallbacks": list(_FALLBACKS)}, indent=2))
     print(f"[pro] fallback verdict = {verdict} ({len(_FALLBACKS)} recorded)")
+
+    # Finalize performance metrics and save report
+    planned_total = sum(seconds)
+    metrics = perf.end_render(total, planned_total)
+    if metrics:
+        metrics_file = pkg / "performance.json"
+        perf.save_metrics(metrics, metrics_file)
+        print(perf.report_summary(metrics), file=sys.stderr)
+
     return {"out": out, "duration": total, "shots": len(shots), "pkg": pkg,
             "fallbacks": list(_FALLBACKS), "verdict": verdict}
 
@@ -910,6 +945,8 @@ def main(argv):
     ap.add_argument("out", type=Path)
     ap.add_argument("--work", type=Path, default=None)
     ap.add_argument("--voice", default=VOICE)
+    ap.add_argument("--perf-report", action="store_true",
+                    help="Save detailed performance report to _pkg/performance.json")
     a = ap.parse_args(argv)
     story = json.loads(a.story.read_text())
     work = a.work or a.out.with_name(a.out.stem + "_work")
