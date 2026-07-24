@@ -490,6 +490,14 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     if kf < n - 1 and frac > 0:
         xd = xd + [x[kf] + frac]
         yd = yd + [values[kf] + (values[kf + 1] - values[kf]) * frac]
+    # GHOST the WHOLE trajectory (dim) under the revealed portion, so from frame
+    # one the frame carries the full chart SHAPE instead of a knee-high stub over
+    # dead navy (the empty_void the gate flagged). The bright line sketches in
+    # over this faint preview; the fill/line below draw on top at full strength.
+    ax.fill_between(x, values, lo - span * 0.15,
+                    color=HIGHLIGHT, alpha=0.05, zorder=1)
+    ax.plot(x, values, color=HIGHLIGHT, lw=3, alpha=0.16,
+            solid_capstyle="round", zorder=1)
     ax.fill_between(xd, yd, lo - span * 0.15,
                     color=HIGHLIGHT, alpha=0.16, zorder=2)
     ax.plot(xd, yd, color=HIGHLIGHT, lw=6, solid_capstyle="round", zorder=3)
@@ -525,10 +533,10 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
-    # BAKE THE HOST: Data rides the growing line's TIP — he climbs with the data,
-    # his surf pose pumping (phase cycles a few times across the draw).
-    _bake_host(ax, xd[-1], yd[-1],
-               "ride_line" if reveal < 0.82 else "cheer", (reveal * 3) % 1.0,
+    # BAKE THE HOST: Data rides the growing line's TIP — a full SETUP->ACTION->
+    # PAYOFF arc across the beat (mount the line -> surf it up arms-wide ->
+    # summit cheer), driven by beat-progress so start/mid/end are distinct poses.
+    _bake_host(ax, xd[-1], yd[-1], "ride_line_arc", reveal,
                zoom=0.62, align=(0.5, 0.02))
     insight.host_baked = True
     return ax, arts
@@ -789,8 +797,7 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         _mfull = max(1, int(round((values[_mr] / vmax) * cols)))
         _mshown = max(1, min(_mfull, int(round(_mfull * t + 0.5)))) if t < 1 else _mfull
         _bake_host(ax, float(_mshown - 1), float(n - 1 - _mr),
-                   "lift" if reveal < 0.85 else "cheer",
-                   (reveal * 4) % 1.0, zoom=0.5, align=(0.5, 0.0))
+                   "lift_arc", reveal, zoom=0.5, align=(0.5, 0.0))
     insight.host_baked = True
     return ax, specs
 
@@ -858,8 +865,7 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     _fi = max(0, min(99, lit - 1))
     _fr, _fc = divmod(_fi, 10)
     _bake_host(ax, float(_fc), float(9 - _fr),
-               "lift" if reveal < 0.9 else "cheer", (reveal * 5) % 1.0,
-               zoom=0.4, align=(0.5, 0.0))
+               "lift_arc", reveal, zoom=0.4, align=(0.5, 0.0))
     insight.host_baked = True
     return ax, specs
 
@@ -918,11 +924,25 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
         ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=lblfs,
                 color=(color if p.label == insight.highlight_label else TEXT),
                 fontweight="bold", zorder=4)
-        tt = ax.text(tip + cap_w + vmax * 0.03, y, _vfmt(v), va="center",
-                     ha="left", fontsize=28, color=color, fontweight="bold",
-                     zorder=6, alpha=_lblalpha(reveal))
+        # Value label WITH its unit (%/$/…). It sits INSIDE the coloured bar
+        # (white, left-aligned on the fill) so the TIP stays clear for the mascot
+        # pushing it — no tip collision (his shove-arm used to cover the leading
+        # digit), and it can never be clipped by xlim ('59.1%' -> '9.1%'). A bar
+        # too short to hold the number gets it just past the tip instead.
+        _lab = _ulabel(v, insight.unit)
+        if tip > vmax * 0.30:            # bar long enough -> number INSIDE the fill
+            tt = ax.text(vmax * 0.035, y, _lab, va="center", ha="left",
+                         fontsize=30, color="white", fontweight="bold", zorder=7,
+                         alpha=_lblalpha(reveal))
+        else:                            # short bar -> value just past the tip
+            tt = ax.text(tip + cap_w + vmax * 0.03, y, _lab, va="center",
+                         ha="left", fontsize=30, color=color, fontweight="bold",
+                         zorder=7, alpha=_lblalpha(reveal))
         specs.append((p.value, "art", tt, None))
-    ax.set_xlim(0, vmax * 1.34); ax.set_ylim(-0.6, n - 0.4)
+    # Tighter xlim (was 1.5) now the value lives inside the bar: the bars fill
+    # more of the card width (less dead navy on the right), leaving just enough
+    # room for the mascot riding the winning tip.
+    ax.set_xlim(0, vmax * 1.28); ax.set_ylim(-0.6, n - 0.4)
     ax.set_xticks([]); ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
@@ -930,8 +950,7 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # it out — he moves right WITH the bar as it grows (top row = highest value).
     _ttip = max(max(values) * t, vmax * 0.02)
     _bake_host(ax, _ttip, n - 1,
-               "push_bar" if reveal < 0.82 else "cheer", (reveal * 3) % 1.0,
-               zoom=0.5, align=(0.92, 0.12))
+               "push_bar_arc", reveal, zoom=0.5, align=(0.92, 0.12))
     insight.host_baked = True
     return ax, specs
 

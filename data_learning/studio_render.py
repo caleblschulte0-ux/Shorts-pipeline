@@ -1457,6 +1457,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         def _baked_at(t):
             return any(a - 0.06 <= t <= b + 0.06 for a, b in baked_spans)
 
+        # FULLY-BAKED story: Data lives entirely INSIDE the charts every beat, so
+        # the traveling/gap-fill overlay must add NOTHING — otherwise the home
+        # host parks at bottom-centre through the hook/payoff windows (when
+        # lead_hook/lead_payoff are off those windows aren't in baked_spans),
+        # which the gate reads as a SECOND, pixel-identical, decorative Data.
+        if st.segments and all(_seg_is_baked(s) for s in st.segments):
+            gap_fill = {"hidden": True}
+
         seq.sort(key=lambda s: s[2])
         filled, cursor = [], 0.0
 

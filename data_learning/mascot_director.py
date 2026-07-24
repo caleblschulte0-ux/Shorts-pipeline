@@ -816,6 +816,75 @@ def _a_lift(t, _prop):
             R.mouth_o(), -abs(_s(t)) * 6)
 
 
+# -------------------------------------------------------------------------
+# ARC data-actions — a genuine SETUP -> ACTION -> PAYOFF performance across the
+# WHOLE beat, driven by beat-progress p (NOT a periodic loop phase). The three
+# keyframes are visibly DIFFERENT silhouettes, so the showrunner's start/mid/end
+# samples of a beat land on three distinct poses (a real bit), not the identical
+# braced pose the gate keeps flagging as 'decorative_mascot / only translating'.
+# Each keyframe: ([lh_x,lh_y,bend], [rh_x,rh_y,bend], lower_name, expr_name).
+# -------------------------------------------------------------------------
+def _lp(a, b, f):
+    return a + (b - a) * f
+
+
+def _arc(kfs, p, wob_amp=7.0):
+    """Morph the body through 3 keyframes across beat-progress p in [0,1]:
+    setup->action for p<0.5, action->payoff for p>=0.5. A fast wobble (zero at
+    both ends, peaking mid-beat) keeps the held stretches alive."""
+    p = 0.0 if p < 0.0 else 1.0 if p > 1.0 else p
+    if p < 0.5:
+        a, b, f = kfs[0], kfs[1], p / 0.5
+    else:
+        a, b, f = kfs[1], kfs[2], (p - 0.5) / 0.5
+    lh = [_lp(a[0][i], b[0][i], f) for i in range(3)]
+    rh = [_lp(a[1][i], b[1][i], f) for i in range(3)]
+    wob = math.sin(p * math.pi * 7) * wob_amp * math.sin(p * math.pi)
+    lh[1] += wob
+    rh[1] -= wob
+    lower_name = a[2] if f < 0.5 else b[2]
+    expr_name = a[3] if f < 0.5 else b[3]
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), int(lh[2]))
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), int(rh[2])))
+    lower = _LOWER.get(lower_name, R.lower_stand)()
+    eyes, mouth = _expr(expr_name)
+    bob = math.sin(p * math.pi) * 2.0
+    return (arms, lower, "", "", eyes, mouth, bob)
+
+
+_ARC_KFS = {
+    # shove a BAR right: wind up low -> heave right -> throw arms up in triumph
+    "push_bar_arc": [
+        ([120, 250, -8], [150, 285, 4], "stand", "think"),
+        ([250, 248, -4], [268, 286, 6], "stand", "strain"),
+        ([116, 88, -12], [224, 88, 12], "stand", "laugh"),
+    ],
+    # surf the rising LINE: crouch to mount -> arms wide riding up -> summit cheer
+    "ride_line_arc": [
+        ([140, 250, -10], [200, 250, 10], "ride", "think"),
+        ([64, 196, -26], [276, 196, 26], "ride", "happy"),
+        ([110, 86, -12], [226, 86, 12], "stand", "laugh"),
+    ],
+    # hoist a SLICE/stack: grab low -> heave to chest -> press overhead
+    "lift_arc": [
+        ([132, 322, -6], [208, 322, 6], "stand", "think"),
+        ([122, 176, -10], [218, 176, 10], "stand", "strain"),
+        ([110, 70, -14], [226, 70, 14], "stand", "laugh"),
+    ],
+    # climb the chart: reach up -> pull through -> reach the top, arms up
+    "climb_arc": [
+        ([120, 120, -14], [214, 250, 10], "stand", "think"),
+        ([128, 168, -12], [210, 150, 12], "stand", "strain"),
+        ([116, 88, -12], [224, 88, 12], "stand", "laugh"),
+    ],
+}
+
+
+def _arc_anim(name):
+    kfs = _ARC_KFS[name]
+    return lambda t, _prop: _arc(kfs, t)
+
+
 ANIMATORS = {
     "juggle": _a_juggle, "push": _a_push, "ride": _a_ride,
     "stagger_under": _a_stagger, "carry": _a_carry, "hold_up": _a_hold_up,
@@ -824,6 +893,11 @@ ANIMATORS = {
     # prop-less DATA actions (Data performs ON the chart element):
     "push_bar": _a_push_bar, "ride_line": _a_ride_line,
     "climb": _a_climb, "lift": _a_lift,
+    # ARC data-actions (full setup->action->payoff across the beat):
+    "push_bar_arc": _arc_anim("push_bar_arc"),
+    "ride_line_arc": _arc_anim("ride_line_arc"),
+    "lift_arc": _arc_anim("lift_arc"),
+    "climb_arc": _arc_anim("climb_arc"),
 }
 
 # Chart KIND -> the data action Data performs on it (deterministic, on-topic).
