@@ -210,7 +210,12 @@ def _host_img(action: str, phase: float):
         import numpy as np
         from PIL import Image
         from . import mascot_director as _md
-        svg = _md.compose_anim({"action": action, "prop": "none"}, key[1] % 1.0)
+        # CLAMP (do NOT modulo) — the arc actions are non-periodic beat-progress
+        # in [0,1] where phase 1.0 is the PAYOFF climax. `% 1.0` wrapped 1.0 back
+        # to 0.0, so the final frame snapped to the setup pose (no overhead cheer
+        # ever landed). Clamp keeps 1.0 -> payoff.
+        _t = min(1.0, max(0.0, key[1]))
+        svg = _md.compose_anim({"action": action, "prop": "none"}, _t)
         png = _md._rasterise(svg, 300)
         val = np.asarray(Image.open(io.BytesIO(png)).convert("RGBA")) / 255.0
     except Exception:  # noqa: BLE001 — a chart must never die over the host
@@ -405,10 +410,18 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
         else:
             color = ACCENT
         _round_barh(ax, i, vmax, lw, BAR_BASE, zorder=2)          # track
-        _round_barh(ax, i, max(v * reveal, vmax * 0.012), lw, color, zorder=3)
-        t = ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
-                    color=TEXT, fontweight="bold", zorder=4,
-                    alpha=_lblalpha(reveal))
+        tip = max(v * reveal, vmax * 0.012)
+        _round_barh(ax, i, tip, lw, color, zorder=3)
+        # Winner (i==0) carries the mascot on its tip, so its number lives INSIDE
+        # the bar (white) — clear of the pushing host; the rest label outside.
+        if i == 0 and tip > vmax * 0.30:
+            t = ax.text(vmax * 0.03, i, _vfmt(v), va="center", ha="left",
+                        fontsize=30, color="white", fontweight="bold", zorder=6,
+                        alpha=_lblalpha(reveal))
+        else:
+            t = ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
+                        color=TEXT, fontweight="bold", zorder=4,
+                        alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
     ax.set_yticks(range(n))
     ax.set_yticklabels([p.label for p in items], fontsize=27, color=TEXT)
@@ -421,13 +434,18 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
             lbl.set_fontweight("bold")
     ax.invert_yaxis()
     ax.set_xticks([])
-    ax.set_xlim(0, vmax * 1.22)
+    ax.set_xlim(0, vmax * 1.28)
     ax.set_ylim(n - 0.5, -0.5)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
-    # Anchor each value at its number label so the marker encircles the whole
-    # number (and the mascot walks to it).
+    # BAKE THE HOST: Data shoves the WINNING bar (i==0, top row) out along its
+    # growing tip — a full setup->action->payoff arc across the beat. Without
+    # this a rank/bars beat (kind is in BAKED_CHART_KINDS, overlay suppressed)
+    # would show NO mascot at all.
+    _wtip = max(values[0] * max(0.0, min(1.0, reveal)), vmax * 0.02)
+    _bake_host(ax, _wtip, 0, "push_bar_arc", reveal, zoom=0.5, align=(0.92, 0.12))
+    insight.host_baked = True
     return ax, arts
 
 
@@ -442,12 +460,20 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     xs = [0.30, 0.70]
     colors = [HIGHLIGHT, ACCENT]
     arts = []
-    for (p, color), x in zip(pair, xs):
+    for j, ((p, color), x) in enumerate(zip(pair, xs)):
         _round_barv(ax, x, vmax, lw, BAR_BASE, zorder=2)
         _round_barv(ax, x, max(p.value * reveal, vmax * 0.02), lw, color, zorder=3)
-        t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
-                    ha="center", fontsize=46, color=TEXT, fontweight="bold",
-                    zorder=4, alpha=_lblalpha(reveal))
+        # Winner (j==0) carries the mascot on its tip, so its big number sits
+        # just INSIDE the column top (white); the other keeps its number above.
+        if j == 0:
+            t = ax.text(x, max(p.value * reveal - vmax * 0.06, vmax * 0.10),
+                        _vfmt(p.value) + "%", ha="center", va="top", fontsize=42,
+                        color="white", fontweight="bold", zorder=6,
+                        alpha=_lblalpha(reveal))
+        else:
+            t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
+                        ha="center", fontsize=46, color=TEXT, fontweight="bold",
+                        zorder=4, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
         ax.text(x, -vmax * 0.30, p.label, ha="center", fontsize=28,
                 color=color, fontweight="bold", zorder=4)
@@ -468,7 +494,12 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
-    # Anchor each column at its big number label.
+    # BAKE THE HOST: Data rides the WINNING column's growing tip, hoisted UP as it
+    # rises (setup->action->payoff). Feet at the tip; his body fills the space
+    # above the column where the number used to sit (now moved inside).
+    _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
+    _bake_host(ax, xs[0], _htip, "lift_arc", reveal, zoom=0.42, align=(0.5, 0.0))
+    insight.host_baked = True
     return ax, arts
 
 
@@ -588,6 +619,13 @@ def _story_pie(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     ax.text(0, 0, _ulabel(total, insight.unit), ha="center", va="center",
             fontsize=30, color=SUBTLE, fontweight="bold", zorder=4,
             alpha=_lblalpha(reveal))
+    # BAKE THE HOST on a side axes in the empty right third — Data hoists the
+    # composition (lift arc, setup->action->payoff) so a share beat isn't
+    # mascot-less (kind is in BAKED_CHART_KINDS, so the overlay is suppressed).
+    _max = fig.add_axes([0.66, 0.14, 0.32, 0.56])
+    _max.set_axis_off(); _max.set_xlim(0, 1); _max.set_ylim(0, 1)
+    _bake_host(_max, 0.5, 0.12, "lift_arc", reveal, zoom=0.55, align=(0.5, 0.0))
+    insight.host_baked = True
     return ax, arts
 
 
