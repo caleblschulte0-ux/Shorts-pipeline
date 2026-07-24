@@ -70,3 +70,6 @@ third_capture/fixtures/
 
 # manim render/text cache (in-process sanity builds spill this)
 media/
+
+# Expression test artifacts (rendered clips, extracted frames, results)
+tests/expression_tests/
