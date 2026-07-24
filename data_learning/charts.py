@@ -662,7 +662,9 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
     """Proportional icon array: each item is a row of icons whose count scales
     with its value (top item ~10 icons). Reads as 'X is N times Y' at a glance —
     the creative replacement for a plain ranking bar chart."""
-    items = _ordered_items(insight)[:4]
+    # Show up to 6 rows — capping at 4 dropped the payoff data (e.g. the 2000s /
+    # 2010s decades the script's 'nearly triple' punchline depends on).
+    items = _ordered_items(insight)[:6]
     values = [p.value for p in items]
     vmax = max(values) if values else 1.0
     n = len(items)

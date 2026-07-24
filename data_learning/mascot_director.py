@@ -778,9 +778,10 @@ def _a_push_bar(t, _prop):
 def _a_ride_line(t, _prop):
     """Surfing stance, arms out for balance, leaning into the climb; bobs as he
     rides. (This is _a_ride with the bird removed — he rides the LINE.)"""
-    lean = _s(t) * 16
-    arms = (R.arm(*R.SHL, int(150 - lean), int(244 - lean), -18)
-            + R.arm(*R.SHR, int(190 + lean), int(244 + lean), 18))
+    lean = _s(t) * 18
+    # arms flung OUT WIDE for balance (surfing the line), pumping with the ride
+    arms = (R.arm(*R.SHL, int(64 - lean), int(196 - lean), -26)
+            + R.arm(*R.SHR, int(276 + lean), int(196 + lean), 26))
     return (arms, R.lower_ride(), "", "",
             R.eye_open(R.LEX, 0, 2) + R.eye_open(R.REX, 0, 2),
             R.mouth_open_smile(), _s(t) * 12)
@@ -806,9 +807,10 @@ def _a_climb(t, _prop):
 
 def _a_lift(t, _prop):
     """Both arms straining OVERHEAD, hoisting the number/slice; a heave bob."""
-    up = abs(_s(t)) * 26
-    arms = (R.arm(*R.SHL, 120, int(104 + up), -8)
-            + R.arm(*R.SHR, 216, int(104 + up), 8))
+    up = abs(_s(t)) * 20
+    # both arms straight UP overhead, hoisting — wrists high above the head
+    arms = (R.arm(*R.SHL, 110, int(70 - up), -14)
+            + R.arm(*R.SHR, 226, int(70 - up), 14))
     return (arms, R.lower_stand(), "", "",
             R.eye_open(R.LEX, 0, -4) + R.eye_open(R.REX, 0, -4),
             R.mouth_o(), -abs(_s(t)) * 6)

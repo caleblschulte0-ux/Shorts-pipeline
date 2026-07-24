@@ -938,7 +938,17 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                + "&\\b1\\bord5\\3c&H000000&\\shad0\\fad(300,0)"
                "\\fscx82\\fscy82\\t(0,300,\\fscx100\\fscy100)}COMMENT BELOW ▼")
         lines.append(f"Dialogue: 5,{_ass_time(cs)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
-    src = " · ".join(st.sources)
+    # Dedupe + strip the 'Source:' prefix each footer already carries, so the
+    # line reads 'Sources: NOAA ...' ONCE — not 'Sources: Source: X · Source: X'
+    # (the duplicate the gate flagged when both segments share a publisher).
+    _uniq = []
+    for _f in st.sources:
+        _f = _f.strip()
+        if _f.lower().startswith("source:"):
+            _f = _f[len("source:"):].strip()
+        if _f and _f not in _uniq:
+            _uniq.append(_f)
+    src = " · ".join(_uniq)
     src_txt = ("{\\an2\\pos(540,1898)\\fs15\\c&HA5B4C7&\\b0\\bord1\\shad0"
                "\\fad(200,0)}Sources: " + src)
     lines.append(f"Dialogue: 0,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{src_txt}")
