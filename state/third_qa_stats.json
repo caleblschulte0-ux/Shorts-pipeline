@@ -1406,6 +1406,43 @@
           "skipped": "already posted"
         }
       ]
+    },
+    {
+      "date": "20260724",
+      "dry_run": false,
+      "ts": "2026-07-24T12:08:23+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 13,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 101,
+        "with_retention": 85,
+        "with_curve": 15,
+        "fetched_at": "2026-07-24T10:33:55.179794+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260724-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.35 < 0.7 (title claims clash, snip garbled/unclear)"
+        },
+        {
+          "slug": "clip-20260724-2",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.35 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
+        },
+        {
+          "slug": "clip-20260724-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.35 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
+        },
+        {
+          "slug": "clip-20260724-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.35 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
+        }
+      ]
     }
   ]
 }
