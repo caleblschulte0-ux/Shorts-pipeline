@@ -1,0 +1,28 @@
+{
+  "key": "driest_places_on_earth_dryness_trend",
+  "title": "Dryness Trend",
+  "unit": "millimeters per year",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 0.01,
+      "period": "2018"
+    },
+    {
+      "label": "2022",
+      "value": 0.005,
+      "period": "2022"
+    }
+  ]
+}

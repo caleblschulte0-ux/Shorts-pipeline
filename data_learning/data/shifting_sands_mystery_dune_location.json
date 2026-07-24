@@ -1,0 +1,28 @@
+{
+  "key": "shifting_sands_mystery_dune_location",
+  "title": "Dune Location",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Gobi Desert",
+      "value": 1.0,
+      "period": "2020"
+    },
+    {
+      "label": "Sahara Desert",
+      "value": 2.0,
+      "period": "2019"
+    }
+  ]
+}

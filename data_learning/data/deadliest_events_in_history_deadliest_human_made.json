@@ -1,0 +1,28 @@
+{
+  "key": "deadliest_events_in_history_deadliest_human_made",
+  "title": "Deadliest Human-Made Disasters",
+  "unit": "deaths",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Chernobyl Immediate Deaths",
+      "value": 28.0,
+      "period": "1986"
+    },
+    {
+      "label": "9/11 Deaths",
+      "value": 3000.0,
+      "period": "2001"
+    }
+  ]
+}

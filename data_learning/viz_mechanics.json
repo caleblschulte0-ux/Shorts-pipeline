@@ -212,5 +212,47 @@
   "concept": "gears and conveyor belts show the production of teeth, with images of sharks and snakes on the belts",
   "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 200 if i == 0 else RX1 - 200\n    cy = RTOP + 200 + i * 300\n    r = 80\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], fill=rgba(TEXT, 90))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    text(str(int(v)) + ' teeth', cxs, cy + r + 50, size=36, color=col, center=True)\n    text(labels[i], cxs, cy + r + 100, size=32, center=True)\n    if reveal > 0.5:\n        d.line([cxs, cy - r, cxs, cy + r], fill=rgba(col, 255), width=5)\n        for j in range(int((reveal - 0.5) * 10)):\n            x = cxs + (j % 2 == 0 and 1 or -1) * (j // 2) * 20\n            y = cy + (j % 2 == 0 and 1 or -1) * 20\n            d.ellipse([x - 10, y - 10, x + 10, y + 10], fill=rgba(col, 255))\n",
   "topic": "Tooth Replacement"
+ },
+ {
+  "sig": "d72fb2b9f2a8",
+  "mechanic": "hairgrowth",
+  "concept": "two hair follicles with growing strands, each with a label and value displayed",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    d.ellipse([cxs - 50, cy - 50, cxs + 50, cy + 50], fill=rgba(TEXT, 90))\n    strand_length = 100 * clamp(v / vmax) * reveal\n    d.line([cxs, cy, cxs, cy - strand_length], fill=rgba(HIGHLIGHT if i == 0 else ACCENT, 255), width=10)\n    img = subject_image('human hair')\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - 50 - h, w, h)\n    text(labels[i], cxs, cy + 70, size=38, center=True)\n    text(str(int(v)) + ' years', cxs, cy - 120, size=40, color=HIGHLIGHT if i == 0 else ACCENT, center=True)\n",
+  "topic": "Hair Care"
+ },
+ {
+  "sig": "790d055a3306",
+  "mechanic": "energy-meters",
+  "concept": "Two energy meters fill up with oil and water, representing fossil fuels and renewable sources, with photos of a factory and a wind turbine in the background",
+  "code": "\nv0 = values[0]\nv1 = values[1]\ncx0 = RX0 + 200\ncx1 = RX1 - 200\ncy = RTOP + 500\nw = 200\nh = 400\nd.rectangle([cx0, cy, cx0 + w, cy + h], fill=rgba((128, 128, 128), 100))\nd.rectangle([cx1, cy, cx1 + w, cy + h], fill=rgba((128, 128, 128), 100))\noil_level = int(h * clamp(v0 / vmax) * reveal)\nd.rectangle([cx0, cy + h - oil_level, cx0 + w, cy + h], fill=rgba((255, 0, 0), 200))\nwater_level = int(h * clamp(v1 / vmax) * reveal)\nd.rectangle([cx1, cy + h - water_level, cx1 + w, cy + h], fill=rgba((0, 0, 255), 200))\nimg0 = subject_image('factory')\nimg1 = subject_image('wind turbine')\nif img0 is not None:\n    asp = img0.width / img0.height\n    w0 = 300\n    h0 = int(w0 / asp)\n    paste(img0, cx0 - w0 // 2, cy - h0 - 20, w0, h0)\nif img1 is not None:\n    asp = img1.width / img1.height\n    w1 = 300\n    h1 = int(w1 / asp)\n    paste(img1, cx1 - w1 // 2, cy - h1 - 20, w1, h1)\ntext(str(int(v0)) + '%', cx0 + w // 2, cy + h // 2, size=48, color=(255, 255, 255), center=True)\ntext(str(int(v1)) + '%', cx1 + w // 2, cy + h // 2, size=48, color=(255, 255, 255), center=True)\ntext(labels[0], cx0 + w // 2, cy - 50, size=30, color=(255, 255, 255), center=True)\ntext(labels[1], cx1 + w // 2, cy - 50, size=30, color=(255, 255, 255), center=True)\n",
+  "topic": "Energy Sources"
+ },
+ {
+  "sig": "a8bf6ec390cf",
+  "mechanic": "eco-flames",
+  "concept": "two flames rise in tandem with the values, with the subject images of a factory and a house placed at the base of each flame",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = RBOT\n    r = 50\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.rectangle([cxs - r, cy - int(600 * clamp(v / vmax) * reveal), cxs + r, cy], fill=rgba(col, 128))\n    img = subject_image('factory' if i == 0 else 'house')\n    if img is not None:\n        asp = img.width / img.height\n        w = 200\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h - 20, w, h)\n    text(labels[i], cxs, cy - h - 100, size=40, color=col, center=True)\n    text(str(int(v)), cxs, cy - 400, size=60, color=TEXT, center=True)\n    if i == 0:\n        text('2010', cxs, cy - 500, size=40, color=TEXT, center=True)\n    else:\n        text('2020', cxs, cy - 500, size=40, color=TEXT, center=True)\n",
+  "topic": "Energy Efficiency"
+ },
+ {
+  "sig": "1d9a75b53db6",
+  "mechanic": "growth-rings",
+  "concept": "data points are represented as tree rings, with their values shown as a filled fraction of each ring and their labels at the ring's center",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 200 + i * 280\n    cy = RTOP + 500\n    r = 120\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], outline=rgba(TEXT, 150), width=8)\n    fill_image(subject_image('tree cross-section'), clamp(v / vmax) * reveal, cxs - r, cy - r, r * 2, r * 2, 'center')\n    text(labels[i], cxs, cy + r + 40, size=38, color=col, center=True)\n    text(str(int(v)), cxs, cy - r - 40, size=38, color=col, center=True)\n",
+  "topic": "Innovative Applications"
+ },
+ {
+  "sig": "83dae1005d21",
+  "mechanic": "gemstone-scales",
+  "concept": "a balance scale with gemstones of varying sizes representing the data points, filling up as the reveal progresses",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    label = labels[i]\n    cx = RX0 + 220 if i == 0 else RX1 - 220\n    cy = (RTOP + RBOT) // 2\n    d.line([cx, RTOP, cx, RBOT], fill=rgba(TEXT, 90), width=4)\n    img = subject_image(label.lower())\n    if img is not None:\n        asp = img.width / img.height\n        w = 180\n        h = int(w / asp)\n        if h > 150:\n            h = 150\n            w = int(h * asp)\n        paste(img, cx - w // 2, cy - h // 2, w, h)\n    gem_size = int(lerp(20, 100, v / vmax))\n    gem_y = cy - gem_size // 2\n    fill_image(subject_image('diamond'), clamp(v / vmax * reveal), cx - gem_size // 2, gem_y, gem_size, gem_size, 'down', rgba(ACCENT, 255))\n    text(str(int(v)), cx, cy + 100, size=48, color=TEXT, center=True)\n    text(label, cx, cy + 160, size=36, color=ACCENT, center=True)\nmid = clamp((reveal - 0.5) / 0.5)\nif mid > 0:\n    text('The Hardest Gemstones', (RX0 + RX1) // 2, RTOP + 20, size=52, color=WARN, center=True)\n",
+  "topic": "Diamonds"
+ },
+ {
+  "sig": "f01db2ca7bce",
+  "mechanic": "web_of_strength",
+  "concept": "spider silk threads weave a web of strength, with each data point represented as a node with its label and value",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nfor i in range(n):\n    v = values[i]\n    a = 2 * math.pi * i / n\n    nx = cx + int(300 * math.cos(a))\n    ny = cy + int(300 * math.sin(a))\n    d.line([cx, cy, nx, ny], fill=rgba(HIGHLIGHT, 255), width=4)\n    img = subject_image(labels[i].lower())\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h = int(w / asp)\n        if h > 150:\n            h = 150\n            w = int(h * asp)\n        paste(img, nx - w // 2, ny - h // 2, w, h)\n    text(str(int(v)) + ' MPa', nx, ny + 20, size=32, color=TEXT, center=True)\n    text(labels[i], nx, ny + 60, size=28, center=True)\nfor i in range(n):\n    v = values[i]\n    a = 2 * math.pi * i / n\n    nx = cx + int(300 * math.cos(a))\n    ny = cy + int(300 * math.sin(a))\n    for j in range(n):\n        if i != j:\n            v2 = values[j]\n            a2 = 2 * math.pi * j / n\n            nx2 = cx + int(300 * math.cos(a2))\n            ny2 = cy + int(300 * math.sin(a2))\n            d.line([nx, ny, nx2, ny2], fill=rgba(ACCENT, int(128 * reveal)), width=2)\n",
+  "topic": "Natural Materials"
  }
 ]
