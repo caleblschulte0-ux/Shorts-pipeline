@@ -84,6 +84,44 @@ corpus (posted log + wide 7d/30d sweep)
   director plans blind, per §23: never optimize creative decisions
   before coherence is proven.
 
+## Review hardening (2nd external review) — implemented
+
+Fixes to places where the implementation claimed more than it did:
+
+1. **Genuine multimodal vision**: `author._call_claude(read_files=True)`
+   grants `--allowedTools Read` so the scene analyst can actually open the
+   contact sheet. Vision provenance is tracked — `visual_beats` are kept
+   ONLY when a vision-capable model (Claude with Read) inspected the
+   frames; the text-only Groq fallback's visual claims are discarded, so
+   "visual events are never invented" is now enforced, not hoped.
+2. **Semantic event identity**: event ids fingerprint people + salient
+   action tokens (from scene summaries) + ISO week, not people+month — so
+   an argument on the 3rd and a gift on the 15th between the same pair get
+   distinct records.
+3. **Complete evidence**: transcript caps raised (16k report / 8k director)
+   so a VOD-expanded 2-3 min window's later reaction reaches the director;
+   the identified dialogue/visual beats always survive intact regardless.
+4. **Real J/L cuts + A/V lock**: J-cut = next audio LEADS its video,
+   L-cut = previous audio TAILS past its video, via absolute adelay
+   offsets + amix; the mix is trimmed/padded to the exact video length so
+   audio never drifts (the old code did an identical acrossfade for both
+   and lost 0.3s per join). Smoke asserts A/V duration alignment.
+5. **Subject-aware tight framing**: `tight` crops around the shot_plan
+   face-tracked subject centroid, not a blind centre.
+6/7. **Replay from raw + timeline repair**: the replay renders from the
+   RAW source at its source timestamp (no vertical-in-vertical, no
+   duplicated captions, no replayed hook), and its rendered duration
+   advances the caption timeline so the critic's timestamps don't drift.
+8. **Narrative EDL validation**: last beat must be a payoff/climax/
+   reaction (no trailing off on context), central_question + 3-7-word hook
+   required, first beat must fit the structure, cuts must land on real
+   dialogue/visual windows, target_duration clamped 25-90, reaction hold
+   floored to 0.8s.
+9. **Story QA fails CLOSED**: an unreachable critic abandons the story to
+   the clip fallback (incoherence is the story format's core risk).
+10. **Narration key `over_beat`** matches the ducked-over-that-beat
+   behavior (`after_beat` still read for compat).
+
 ## Knobs (capture spec, `state/third_packages/default_clip.json`)
 
 | key | default | meaning |

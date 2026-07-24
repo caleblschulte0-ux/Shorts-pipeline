@@ -322,9 +322,18 @@ def _postprocess(out: dict, streamer: str, context: str,
             "edit": edit}
 
 
-def _call_claude(user: str, system: str = SYSTEM) -> dict | None:
+def _call_claude(user: str, system: str = SYSTEM,
+                 read_files: bool = False) -> dict | None:
     """Headless Claude via the claude-code CLI (CLAUDE_CODE_OAUTH_TOKEN —
-    the same brain the daily channel uses). Returns parsed JSON or None."""
+    the same brain the daily channel uses). Returns parsed JSON or None.
+
+    `read_files=True` grants the Read tool (`--allowedTools Read`) so the
+    prompt can inspect a local image (the contact sheet) — without it the
+    CLI's default permissions may refuse the read and the model answers
+    BLIND. Vision callers MUST pass read_files=True (a text-only model like
+    the Groq fallback can never see frames — that's why scene analysis
+    records vision provenance and refuses to trust visual_beats from a
+    model that didn't actually look)."""
     import shutil
     import subprocess
     if not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN", "").strip():
@@ -335,8 +344,10 @@ def _call_claude(user: str, system: str = SYSTEM) -> dict | None:
         return None
     prompt = (system + "\n\n" + user
               + "\n\nReturn ONLY the JSON object, nothing else.")
-    r = subprocess.run(["claude", "-p", prompt], capture_output=True,
-                       text=True, timeout=240)
+    cmd = ["claude", "-p", prompt]
+    if read_files:
+        cmd += ["--allowedTools", "Read"]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
     m = re.search(r"\{.*\}", r.stdout, re.DOTALL)
     if not m:
         raise RuntimeError(f"no JSON in claude output "

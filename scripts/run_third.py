@@ -512,11 +512,49 @@ def _load_events() -> dict:
     return {"events": {}}
 
 
-def _upsert_event(events: dict, who: list[str], urls: list[str]) -> dict:
+_EVENT_STOP = set(
+    "the a an and or but to of in on at is was are get gets got this that "
+    "his her him them they he she it for with his was were be been being "
+    "after before then now his her".split())
+
+
+def _event_fingerprint(who: list[str], reports: list[dict]) -> tuple:
+    """Semantic event identity (reviewer #2): people are ONE feature, not
+    the whole key. Distinct incidents between the same pair in the same
+    month (an argument on the 3rd, a gift on the 15th) must NOT collapse
+    into one record. Fingerprint = sorted people + the salient ACTION
+    tokens shared across the cluster's scene summaries + an ISO-week bucket,
+    so a different incident (different actions and/or a different week) gets
+    its own event id."""
+    toks: dict[str, int] = {}
+    for r in reports:
+        text = (str(r.get("summary", "")) + " "
+                + str(r.get("title", ""))).lower()
+        for t in re.findall(r"[a-z]{4,}", text):
+            if t not in _EVENT_STOP:
+                toks[t] = toks.get(t, 0) + 1
+    salient = sorted(sorted(toks), key=lambda t: -toks[t])[:4]
+    # ISO week groups a developing incident's clips while separating a
+    # fresh incident weeks later
+    dates = sorted(str(r.get("date", "")) for r in reports if r.get("date"))
+    wk = ""
+    if dates and dates[-1][:10].count("-") == 2:
+        try:
+            y, m, d = (int(x) for x in dates[-1][:10].split("-"))
+            wk = f"{y}w{datetime(y, m, d).isocalendar().week:02d}"
+        except Exception:  # noqa: BLE001
+            wk = dates[-1][:7]
+    return (tuple(sorted(w.lower() for w in who)), tuple(sorted(salient)), wk)
+
+
+def _upsert_event(events: dict, who: list[str], reports: list[dict],
+                  urls: list[str]) -> dict:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    eid = "-".join(sorted(who)) + "-" + today[:7].replace("-", "")
+    people, actions, wk = _event_fingerprint(who, reports)
+    eid = ("-".join(people) + "-" + "-".join(actions[:2]) + "-" + wk).strip("-")
+    eid = re.sub(r"[^a-z0-9-]", "", eid.lower()) or "event"
     ev = events["events"].setdefault(eid, {
-        "event_id": eid, "people": sorted(who),
+        "event_id": eid, "people": sorted(who), "actions": list(actions),
         "event_type": "storyline", "first_seen": today,
         "known_claims": [], "candidate_sources": [],
         "published_versions": []})
@@ -593,7 +631,6 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 print(f"[story] {who}: near-duplicate of a shipped story"
                       " — skipped", flush=True)
                 continue
-            event = _upsert_event(events, cluster["who"], urls)
 
             # ---- multimodal scene analysis (§7), with VOD context
             # expansion (§6) for sources the analysis marks incomplete
@@ -643,6 +680,10 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             if len(reports) < 2:
                 print(f"[story] {who}: <2 analyzable sources", flush=True)
                 continue
+
+            # event record keyed on a SEMANTIC fingerprint (people +
+            # actions + week), computed now that scene summaries exist
+            event = _upsert_event(events, cluster["who"], reports, urls)
 
             # ---- eligibility + structure + story EDL (§8-10)
             edl = story_director.plan_story(

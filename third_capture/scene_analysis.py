@@ -100,13 +100,23 @@ def analyze_source(video: Path, meta: dict, work: Path, *,
                 + (f"Contact sheet image (12 frames, timestamped labels): "
                    f"{sheet}\n" if have_sheet else "No frames available.\n")
                 + f"FULL TRANSCRIPT (timestamped):\n{tlines}")
+        # VISION PROVENANCE (reviewer #1): a text-only model can never see
+        # the frames, so visual_beats are trustworthy ONLY when a
+        # vision-capable model (Claude WITH the Read grant) actually
+        # inspected the contact sheet. Track which model answered; the Groq
+        # fallback is text-only and its visual_beats are DISCARDED, so the
+        # module's "visual events are never invented" promise holds.
         out = None
+        vision_ok = False
         if have_sheet:
             try:
-                out = _call_claude(user, system=_SCENE_SYSTEM)
+                out = _call_claude(user, system=_SCENE_SYSTEM,
+                                   read_files=True)
+                if out is not None:
+                    vision_ok = True     # Claude saw the frames
             except Exception as e:  # noqa: BLE001
-                print(f"::warning::[scene] claude failed ({e}) — groq",
-                      flush=True)
+                print(f"::warning::[scene] claude vision failed ({e}) — "
+                      "groq (text-only, no visual_beats)", flush=True)
         if out is None:
             try:
                 out = _call_groq(user, system=_SCENE_SYSTEM)
@@ -140,8 +150,12 @@ def analyze_source(video: Path, meta: dict, work: Path, *,
             "summary": str(out.get("summary", ""))[:200],
             "dialogue_beats": _beats("dialogue_beats",
                                      ("speaker", "purpose")),
+            # only a model that ACTUALLY SAW the frames may contribute
+            # visual beats — a text-only fallback's "visual" claims are
+            # invented and discarded
             "visual_beats": (_beats("visual_beats", ("event",))
-                             if have_sheet else []),
+                             if vision_ok else []),
+            "vision_ok": vision_ok,
             "emotional_state": [str(e)[:30] for e in
                                 (out.get("emotional_state") or [])][:5],
             "opens_mid_sentence": bool(out.get("opens_mid_sentence")),
@@ -149,7 +163,11 @@ def analyze_source(video: Path, meta: dict, work: Path, *,
             "missing_context": [str(m)[:100] for m in
                                 (out.get("missing_context") or [])][:6],
             "candidate_windows": _beats("candidate_windows", ("purpose",)),
-            "transcript_lines": tlines[:4000],
+            # keep the WHOLE transcript (reviewer #3): a VOD-expanded window
+            # can be 2-3 min, and the later reaction/resolution the system
+            # expanded to FIND must not be truncated away. 16k chars covers
+            # a ~3-min clip's timestamped lines with headroom.
+            "transcript_lines": tlines[:16000],
             "words": words,
             "path": str(video),
         }

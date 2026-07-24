@@ -7,9 +7,11 @@ pacing, own effects) and glued full-screen chapter cards between them.
 That made compilations. This renderer is the inverse: the story director
 owns the timeline; this module only executes it with low-level primitives:
 
-    _extract_segment()   exact in/out cut + uniform 9:16 reframe +
+    _extract_segment()   exact in/out cut + uniform 9:16 reframe (subject-
+                         aware tight punch-in when the director asks) +
                          captions + overlays + loudness, one ffmpeg pass
-    _assemble()          hard-cut concat of pre-normalized segments
+    _assemble()          video hard-cut concat; audio rebuilt with real
+                         J/L-cut offsets and locked to the video duration
 
 LAWS (acceptance-tested):
 - NO CARDS. There is no card function, no card mp4, no blank frame. Every
@@ -17,10 +19,14 @@ LAWS (acceptance-tested):
   overlay ON the moving footage (upper third, 0.7-1.5s), the hook overlays
   the opening footage which starts at second zero.
 - The renderer adds NO uncontrolled effects: only what the EDL budgeted.
-- Uniform reframe (blur-fill center crop) across all sources — visual
-  continuity beats per-beat cleverness (§15); per-beat layouts are a
-  Phase Two decision for the DIRECTOR, not the renderer.
-- One consistent audio mix: per-segment loudnorm to a shared target.
+  The ONE budgeted replay is rendered from the RAW source at its source
+  timestamp (never the reframed beat) and advances the caption timeline.
+- Uniform blur-fill reframe for continuity; a `tight` beat crops around
+  the shot_plan-tracked subject, not a blind centre.
+- Real J-cuts (audio leads its video) and L-cuts (audio tails past its
+  video) via absolute adelay offsets + amix, trimmed/padded to the exact
+  video length so audio and video never drift.
+- One consistent audio mix: per-segment highpass+loudnorm+limiter.
 
 Contract: `render_story()` raises RuntimeError on an unrenderable story
 (caller falls back to a normal clip); individual segment failure of a
@@ -76,6 +82,30 @@ def _overlay_draw(text: str, work: Path, tag: str, *, y: int,
             f"{start + dur:.2f})'")
 
 
+def _tight_crop(src: Path) -> str:
+    """Subject-aware tight-crop filter (reviewer #5): crop a 1/1.28 window
+    centred on the DOMINANT subject (shot_plan's face-tracked centroid),
+    not a blind centre crop that can cut the actual action out of frame.
+    Falls back to a centred crop when analysis is unavailable."""
+    default = "crop=iw/1.28:ih/1.28"
+    try:
+        from third_capture import shot_plan
+        an = shot_plan.analyze(src)
+        if not an or not an.get("subjects"):
+            return default
+        sw, sh = an["sw"], an["sh"]
+        top = max(an["subjects"],
+                  key=lambda s: getattr(s, "presence", 0.0)
+                  + getattr(s, "talk", 0.0) / 1000.0)
+        cw, ch = sw / 1.28, sh / 1.28
+        # clamp the crop window so it stays inside the frame
+        x = min(max(top.cx - cw / 2.0, 0.0), sw - cw)
+        y = min(max(top.cy - ch / 2.0, 0.0), sh - ch)
+        return f"crop=iw/1.28:ih/1.28:{x:.0f}:{y:.0f}"
+    except Exception:  # noqa: BLE001
+        return default
+
+
 def _seg_words(words: list[dict], start: float, end: float) -> list[dict]:
     """Caption words inside [start, end], rebased to the segment clock."""
     out = []
@@ -98,9 +128,9 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
     dur = end - start
     vf = ""
     if framing == "tight":
-        # a modest centered punch-in for response/reaction beats — closer
-        # without breaking continuity with the wide beats around it
-        vf = "crop=iw/1.28:ih/1.28,"
+        # subject-aware punch-in for response/reaction beats (§15) — crop
+        # centred on the tracked subject, computed once per source
+        vf = _tight_crop(src) + ","
     # uniform reframe: blurred cover background + contained foreground
     vf += (f"split=2[bg][fg];"
           f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
@@ -141,8 +171,11 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
 def _render_replay(src: Path, out: Path, *, at: float,
                    span: float = 2.0) -> None:
     """§12: ONE budgeted replay — a slowed re-show of ~2s around `at`,
-    labeled REPLAY, appended after its beat. Only when the director
-    judged the action genuinely hard to see."""
+    labeled REPLAY. `src` is the RAW source and `at` is a SOURCE-relative
+    timestamp (reviewer #6): rendering from the raw footage — not the
+    already-reframed+captioned+overlaid beat — avoids a vertical-in-vertical
+    double reframe, duplicated captions, and (for a first beat) replaying
+    the opening hook. Only the final reframe + REPLAY label are applied."""
     s0 = max(0.0, at - span * 0.6)
     vf = (f"split=2[bg][fg];"
           f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
@@ -162,13 +195,32 @@ def _render_replay(src: Path, out: Path, *, at: float,
           str(out)])
 
 
+def _probe_dur(p: Path) -> float:
+    try:
+        return float(subprocess.check_output(
+            ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
+             "-of", "csv=p=0", str(p)], text=True, timeout=30).strip() or 0)
+    except Exception:  # noqa: BLE001
+        return 0.0
+
+
 def _assemble(parts: list[Path], out: Path,
-              joins: list[str] | None = None) -> None:
-    """Assemble pre-normalized segments. Hard cuts use lossless concat.
-    When any join is a j_cut/l_cut (§13), the audio BLENDS across that
-    boundary (0.3s acrossfade — the next line enters over the cut / the
-    previous line tails over the next visual) while video stays a hard
-    cut; abrupt audio starts/stops disappear (§14)."""
+              joins: list[str] | None = None, lead: float = 0.4) -> None:
+    """Assemble pre-normalized segments. Video is ALWAYS a plain hard-cut
+    concat (full duration V = sum of segment durations). Hard-cut-only
+    stories take the lossless demuxer path.
+
+    Real J/L cuts (reviewer #4 — genuinely distinct, not the old identical
+    acrossfade): the audio track is rebuilt by placing each segment's audio
+    at an absolute offset with adelay, then amix.
+      - j_cut INTO a beat: that beat's audio STARTS `lead`s before its
+        video (the next line is heard over the previous picture).
+      - l_cut INTO a beat: the PREVIOUS beat's audio is padded to TAIL
+        `lead`s past its video end (the previous line carries over the next
+        picture).
+    The mixed audio is then atrim+apad to EXACTLY V, so final audio and
+    video durations stay aligned regardless of how many j/l joins there
+    are (the old acrossfade shortened audio 0.3s per join → A/V drift)."""
     joins = joins or []
     if not any(j in ("j_cut", "l_cut") for j in joins):
         lst = out.parent / f"{out.stem}.concat.txt"
@@ -177,25 +229,36 @@ def _assemble(parts: list[Path], out: Path,
               "-i", str(lst), "-c", "copy", "-movflags", "+faststart",
               str(out)])
         return
-    # filter_complex path: video hard-concat; audio pairwise acrossfade
-    # on j/l joins, plain concat elsewhere
+    n = len(parts)
+    durs = [_probe_dur(p) for p in parts]
+    video_off = [sum(durs[:i]) for i in range(n)]   # each seg's video start
+    total = sum(durs)
     cmd = ["ffmpeg", "-y", "-v", "error"]
     for pp in parts:
         cmd += ["-i", str(pp)]
-    n = len(parts)
-    fc = "".join(f"[{i}:v]" for i in range(n)) + \
-         f"concat=n={n}:v=1:a=0[v];"
-    acur = "[0:a]"
-    for i in range(1, n):
-        j = joins[i - 1] if i - 1 < len(joins) else "hard_cut"
-        nxt = f"[a{i}]"
-        if j in ("j_cut", "l_cut"):
-            fc += f"{acur}[{i}:a]acrossfade=d=0.3:c1=tri:c2=tri{nxt};"
-        else:
-            fc += f"{acur}[{i}:a]concat=n=2:v=0:a=1{nxt};"
-        acur = nxt
-    fc = fc.rstrip(";")
-    cmd += ["-filter_complex", fc, "-map", "[v]", "-map", acur.strip(),
+    # video: plain hard-cut concat, full length
+    fc = "".join(f"[{i}:v]" for i in range(n)) + f"concat=n={n}:v=1:a=0[v];"
+    labels = []
+    for i in range(n):
+        join_in = joins[i - 1] if 1 <= i <= len(joins) else "hard_cut"
+        join_out = joins[i] if i < len(joins) else "hard_cut"
+        start = video_off[i]
+        if join_in == "j_cut":
+            start = max(0.0, start - lead)     # this audio leads its video
+        pad = lead if join_out == "l_cut" else 0.0   # tail into next video
+        lbl = f"[a{i}]"
+        chain = f"[{i}:a]"
+        if pad > 0:
+            chain += f"apad=pad_dur={pad:.3f},"
+        chain += f"adelay={int(start * 1000)}|{int(start * 1000)}{lbl}"
+        fc += chain + ";"
+        labels.append(lbl)
+    mix = "".join(labels) + (
+        f"amix=inputs={n}:normalize=0:dropout_transition=0,"
+        # lock audio to the video length exactly (A/V alignment guarantee)
+        f"atrim=0:{total:.3f},apad=whole_dur={total:.3f}[a]")
+    fc += mix
+    cmd += ["-filter_complex", fc, "-map", "[v]", "-map", "[a]",
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
             "-pix_fmt", "yuv420p", "-r", str(FPS),
             "-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "160k",
@@ -289,7 +352,8 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             continue
         # §14 narration: mixed onto its beat, ducked, best-effort
         if narr and not used_narration and \
-                int(narr.get("after_beat", -1)) == idx:
+                int(narr.get("over_beat",
+                             narr.get("after_beat", -1))) == idx:
             voice = _maybe_narration(narr["text"], work)
             if voice:
                 seg_n = work / f"seg_{idx}_narr.mp4"
@@ -302,26 +366,30 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
         if parts:
             joins.append(beat.get("transition", "hard_cut"))
         parts.append(seg)
-        # §12: the ONE budgeted replay appends a slowed re-show after
-        # its beat (the director, not the beat, made this call)
-        for fx in (beat.get("effects") or []):
-            if fx.get("type") == "replay":
-                rp = work / f"replay_{idx}.mp4"
-                try:
-                    _render_replay(seg, rp,
-                                   at=max(0.0, float(fx.get("at", 0))
-                                          - start))
-                    joins.append("hard_cut")
-                    parts.append(rp)
-                except Exception:  # noqa: BLE001
-                    print(f"::warning::[story] replay render failed — "
-                          "skipped", flush=True)
         if beat.get("context_overlay"):
             n_overlays += 1
+        # this beat's caption words are placed at the CURRENT timeline
+        # offset (before any replay that follows it)
         for w in _seg_words(srcinfo.get("words") or [], start, end):
             final_words.append({"w": w["w"], "s": w["s"] + timeline,
                                 "e": w["e"] + timeline})
         timeline += end - start
+        # §12: the ONE budgeted replay appends a slowed re-show after its
+        # beat — rendered from the RAW source at the SOURCE timestamp
+        # (reviewer #6), and its rendered duration ADVANCES the timeline
+        # (reviewer #7) so later beats' transcript timestamps stay aligned
+        # with the assembled video (else the critic's "problem at Xs" drifts)
+        for fx in (beat.get("effects") or []):
+            if fx.get("type") == "replay":
+                rp = work / f"replay_{idx}.mp4"
+                try:
+                    _render_replay(src, rp, at=max(0.0, float(fx.get("at", 0))))
+                    joins.append("hard_cut")
+                    parts.append(rp)
+                    timeline += _probe_dur(rp)
+                except Exception:  # noqa: BLE001
+                    print(f"::warning::[story] replay render failed — "
+                          "skipped", flush=True)
         used.append({"source_id": beat["source_id"],
                      "streamer": srcinfo.get("channel", ""),
                      "role": beat["role"], "purpose": beat["purpose"],

@@ -78,8 +78,9 @@ Then emit the COMPLETE timeline. Segment rules:
   re-shows ~2s around `at` slowed, ONLY when the action was genuinely
   hard to see), at most 2 subtle_punch; spend emphasis on the payoff,
   not the first beat. Usually [].
-- narration: OPTIONAL top-level {"text": <=15 words, "after_beat": idx,
-  "essential_because": str} — ONLY when essential context cannot be
+- narration: OPTIONAL top-level {"text": <=15 words, "over_beat": idx,
+  "essential_because": str} — spoken OVER that beat (ducked). ONLY when
+  essential context cannot be
   shown by footage + a short overlay. Verified facts only, never
   motives, never drama ("Two days later, he finally responded." — good;
   "He was furious and planning revenge." — forbidden). Usually omit.
@@ -97,7 +98,7 @@ Return STRICT JSON:
             "framing": "wide|tight",
             "context_overlay": str,
             "effects": [{"type": "subtle_punch", "at": s}, ...]}, ...],
- "narration": {"text": str, "after_beat": int,
+ "narration": {"text": str, "over_beat": int,
                "essential_because": str} | omitted,
  "ending": {"type": "reaction_hold", "duration": 0.8-2.0}}
 
@@ -153,13 +154,46 @@ def _fmt_reports(reports: list[dict]) -> str:
             f"  missing_context: {'; '.join(r.get('missing_context', []))}\n"
             f"  opens_mid_sentence={r.get('opens_mid_sentence')} "
             f"payoff_shown={r.get('payoff_shown')}\n"
-            f"  transcript:\n{r.get('transcript_lines', '')[:1500]}")
+            # full transcript (reviewer #3): the identified dialogue/visual
+            # beats above already survive intact; give the director the
+            # complete words too so a late reaction isn't cut off
+            f"  transcript:\n{r.get('transcript_lines', '')[:8000]}")
     return "\n\n".join(out)
 
 
-def validate_edl(edl: dict, durations: dict[str, float]) -> dict | None:
-    """Hard-validate a director EDL against the playbook's laws. Returns
-    the cleaned EDL or None. `durations` maps source_id -> clip length."""
+def _windows(reports: list[dict]) -> dict[str, list]:
+    """source_id -> [(start,end)] evidence windows a cut may land on:
+    every dialogue beat, visual beat, and candidate window from analysis."""
+    out: dict[str, list] = {}
+    for r in reports:
+        w = []
+        for key in ("dialogue_beats", "visual_beats", "candidate_windows"):
+            for b in r.get(key, []):
+                try:
+                    w.append((float(b["start"]), float(b["end"])))
+                except (TypeError, ValueError, KeyError):
+                    continue
+        if w:
+            out[r["source_id"]] = w
+    return out
+
+
+def _overlaps(s: float, e: float, windows: list) -> bool:
+    """True if [s,e] intersects any (ws,we) evidence window (>=0.5s)."""
+    for ws, we in windows:
+        if min(e, we) - max(s, ws) >= 0.5:
+            return True
+    return False
+
+
+def validate_edl(edl: dict, durations: dict[str, float],
+                 windows: dict[str, list] | None = None) -> dict | None:
+    """Hard-validate a director EDL against the playbook's NARRATIVE laws,
+    not just syntax (reviewer #8). Returns the cleaned EDL or None.
+    `durations` maps source_id -> clip length; `windows` maps source_id ->
+    [(start,end)] evidence windows (dialogue/visual/candidate beats) so a
+    cut can be required to land on something that actually happens."""
+    windows = windows or {}
     try:
         if not edl or not edl.get("is_story"):
             return None
@@ -167,10 +201,15 @@ def validate_edl(edl: dict, durations: dict[str, float]) -> dict | None:
         if structure not in STRUCTURES:
             return None
         premise = str(edl.get("premise", "")).strip()
+        central_q = str(edl.get("central_question", "")).strip()
         payoffish = [b for b in (edl.get("beats") or [])
                      if str(b.get("role")) in ("payoff", "climax")]
-        if not premise or not payoffish:
-            return None          # §8: no stated premise/payoff = no story
+        if not premise or not central_q or not payoffish:
+            return None          # §8: premise + question + payoff required
+        # hook must be a real 3-7 word curiosity line
+        hook_raw = scrub_text(str(edl.get("hook_overlay", "")).strip())
+        if not (3 <= len(hook_raw.split()) <= 7):
+            return None
         beats = []
         n_punch = n_replay = n_overlay = 0
         for b in (edl.get("beats") or [])[:MAX_BEATS]:
@@ -182,6 +221,12 @@ def validate_edl(edl: dict, durations: dict[str, float]) -> dict | None:
             e = min(float(dur), float(b.get("end", 0)))
             if e - s < 1.5:
                 return None      # sub-1.5s segments are noise, not beats
+            # the cut must land on something that actually happens — a
+            # dialogue/visual/candidate window in that source (skipped only
+            # when analysis produced no windows for it, to avoid over-reject)
+            w = windows.get(sid)
+            if w and not _overlaps(s, e, w):
+                return None
             role = str(b.get("role", ""))
             if role not in ROLES:
                 return None
@@ -224,31 +269,51 @@ def validate_edl(edl: dict, durations: dict[str, float]) -> dict | None:
             return None
         if n_overlay > max(0, len(beats) - 1):
             return None          # an overlay on every beat = decoration
-        # §14 narration: optional, justified, verified-voice only
+        # §8/§20: the story must END on its payoff — not trail off on a
+        # context/setup beat (reviewer #8: "could validate while ending on
+        # an irrelevant context beat")
+        if beats[-1]["role"] not in ("payoff", "climax", "reaction"):
+            return None
+        # first beat must fit the chosen structure: a cold_open / mystery
+        # opens on the strong moment; the timeline structures open on setup
+        first_role = beats[0]["role"]
+        if structure in ("cold_open", "mystery_reveal"):
+            if first_role not in ("climax", "payoff", "reaction"):
+                return None
+        elif structure in ("chronological", "escalation", "before_after"):
+            if first_role not in ("setup", "context", "escalation"):
+                return None
+        # §14 narration: optional, justified, verified-voice only. Key is
+        # `over_beat` (reviewer #10) — narration is DUCKED OVER that beat,
+        # which is what the renderer does; `after_beat` still read for compat
         narration = None
         n_in = edl.get("narration")
         if isinstance(n_in, dict):
             text = scrub_text(str(n_in.get("text", "")).strip())[:90]
             why = str(n_in.get("essential_because", "")).strip()
-            after = int(n_in.get("after_beat", -1) or -1)
-            if (text and why and 0 <= after < len(beats)
+            over = int(n_in.get("over_beat",
+                                n_in.get("after_beat", -1)) or -1)
+            if (text and why and 0 <= over < len(beats)
                     and len(text.split()) <= 15
                     and not _BAD_NARRATION.search(text)):
-                narration = {"text": text, "after_beat": after,
+                narration = {"text": text, "over_beat": over,
                              "essential_because": why[:120]}
-        hook = scrub_text(str(edl.get("hook_overlay", "")).strip())[:60]
+        # target_duration is advisory; clamp into the 25-90s band (§6)
+        target = int(edl.get("target_duration", 45) or 45)
+        target = min(90, max(25, target))
         end = edl.get("ending") or {}
-        hold = min(2.0, max(0.0, float(end.get("duration", 1.0) or 1.0)))
+        # reaction hold is a real hold — at least 0.8s (§12)
+        hold = min(2.0, max(0.8, float(end.get("duration", 1.0) or 1.0)))
         return {
             "is_story": True,
             "premise": premise[:200],
-            "central_question": str(edl.get("central_question", ""))[:150],
+            "central_question": central_q[:150],
             "ending_emotion": str(edl.get("ending_emotion", ""))[:40],
             "structure": structure,
             "structure_reason": str(edl.get("structure_reason", ""))[:200],
             "title": str(edl.get("title", "")).strip()[:95],
-            "hook_overlay": hook.upper(),
-            "target_duration": int(edl.get("target_duration", 45) or 45),
+            "hook_overlay": hook_raw[:60].upper(),
+            "target_duration": target,
             "beats": beats,
             "narration": narration,
             "ending": {"type": "reaction_hold", "duration": hold},
@@ -294,7 +359,7 @@ def plan_story(reports: list[dict], event: dict | None = None,
         return None
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    return validate_edl(out, durations)
+    return validate_edl(out, durations, _windows(reports))
 
 
 def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
@@ -315,7 +380,11 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
             + f"FINAL TRANSCRIPT:\n{transcript_lines[:3000]}")
     out = _brain(user, _REVIEW_SYSTEM)
     if not out:
-        return {"publish": True, "story_score": -1, "problems": []}
+        # FAIL CLOSED for stories (reviewer #9): the story format's primary
+        # risk is incoherence, so an UNREVIEWED story must not publish — the
+        # caller abandons it and the slot falls back to a normal clip. (This
+        # is the opposite of the single-clip vision QA, which fails open.)
+        return {"publish": False, "story_score": -1, "problems": []}
     problems = []
     for p in (out.get("problems") or [])[:8]:
         try:
@@ -344,4 +413,4 @@ def revise_edl(edl: dict, problems: list[dict],
     out = _brain(user, _REVISE_SYSTEM)
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    return validate_edl(out or {}, durations)
+    return validate_edl(out or {}, durations, _windows(reports))

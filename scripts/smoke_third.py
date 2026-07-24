@@ -44,6 +44,18 @@ def _dur(path: Path) -> float:
     return float(out.strip() or 0)
 
 
+def _stream_dur(path: Path, kind: str) -> float:
+    """Duration of the first video ('v') or audio ('a') stream."""
+    try:
+        out = subprocess.check_output(
+            ["ffprobe", "-v", "quiet", "-select_streams", kind,
+             "-show_entries", "stream=duration", "-of", "csv=p=0",
+             str(path)], text=True, timeout=30)
+        return float((out.strip().splitlines() or ["0"])[0] or 0)
+    except Exception:  # noqa: BLE001
+        return 0.0
+
+
 CASES = [
     # (name, words, hook, series) — words are cut-relative {w,s,e}
     ("apostrophe_hook",
@@ -156,9 +168,18 @@ def run_story_case(work: Path) -> list[str]:
         cards = list(story_work.glob("card_*.mp4"))
         if cards:
             fails.append(f"story: CARD FILES GENERATED: {cards}")
+        # reviewer #4: the j_cut path must keep audio and video aligned
+        # (the old acrossfade drifted 0.3s per join). Assert real A/V
+        # durations match after the genuine J-cut render.
+        vdur = _stream_dur(out, "v")
+        adur = _stream_dur(out, "a")
+        if vdur and adur and abs(vdur - adur) > 0.35:
+            fails.append(f"story: A/V drift {abs(vdur - adur):.2f}s "
+                         f"(v={vdur:.2f} a={adur:.2f}) after j_cut")
         print(f"  [story] dur={d:.1f}s beats={led.get('n_beats')} "
               f"structure={led.get('story_structure')} "
-              f"overlays={led.get('context_overlay_count')} cards=0",
+              f"overlays={led.get('context_overlay_count')} cards=0 "
+              f"av_drift={abs((vdur or 0) - (adur or 0)):.2f}s",
               flush=True)
     except Exception as e:  # noqa: BLE001
         fails.append(f"story: render_story RAISED {type(e).__name__}: {e}")

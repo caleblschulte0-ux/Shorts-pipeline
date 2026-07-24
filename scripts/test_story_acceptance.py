@@ -157,8 +157,8 @@ def main() -> int:  # noqa: C901
         _ for _ in ()).throw(RuntimeError("down"))
     story_director._call_groq = lambda u, system=None: None
     r = story_director.review_rough_cut(edl, "words", None, 40.0)
-    check("critic fails OPEN when brains unreachable",
-          r["publish"] is True and r["story_score"] == -1)
+    check("story critic fails CLOSED when brains unreachable (#9)",
+          r["publish"] is False and r["story_score"] == -1)
     check("reviser refuses without problems",
           story_director.revise_edl(edl, [], []) is None)
 
@@ -180,17 +180,17 @@ def main() -> int:  # noqa: C901
           v["beats"][1]["effects"][0].get("at") == 12.0)
 
     e = dict(base, narration={"text": "Two days later he responded",
-                              "after_beat": 1,
+                              "over_beat": 1,
                               "essential_because": "time jump unclear"})
     v = story_director.validate_edl(e, durs)
-    check("justified factual narration kept",
-          v["narration"] and v["narration"]["after_beat"] == 1)
+    check("justified factual narration kept (over_beat #10)",
+          v["narration"] and v["narration"]["over_beat"] == 1)
     e = dict(base, narration={"text": "He was furious and planning revenge",
-                              "after_beat": 1,
+                              "over_beat": 1,
                               "essential_because": "drama"})
     v = story_director.validate_edl(e, durs)
     check("motive-claiming narration rejected", v["narration"] is None)
-    e = dict(base, narration={"text": "Two days later", "after_beat": 1,
+    e = dict(base, narration={"text": "Two days later", "over_beat": 1,
                               "essential_because": ""})
     v = story_director.validate_edl(e, durs)
     check("unjustified narration rejected", v["narration"] is None)
@@ -198,16 +198,25 @@ def main() -> int:  # noqa: C901
     # renderer: j_cut join routes to the blended-audio assemble
     ran = {}
     story._run = lambda cmd: ran.update(cmd=cmd)
+    story._probe_dur = lambda p: 8.0     # deterministic seg durations
+    # real J-cut: audio is OFFSET (adelay) and mixed, video hard-concats;
+    # the mix is trimmed/padded to the exact video length (A/V alignment #4)
     orig_assemble([Path("/tmp/a.mp4"), Path("/tmp/b.mp4")],
                   Path("/tmp/o.mp4"), ["j_cut"])
-    check("j_cut join uses audio acrossfade assemble",
-          any("acrossfade" in str(c) for c in ran["cmd"]))
+    fc = " ".join(str(c) for c in ran["cmd"])
+    check("j_cut offsets audio via adelay (real J-cut, not acrossfade #4)",
+          "adelay" in fc and "amix" in fc and "acrossfade" not in fc)
+    check("assemble locks audio to video duration (A/V align #4)",
+          "atrim=0:16" in fc and "apad=whole_dur=16" in fc)
+    # j_cut audio leads its video: seg[1] audio delayed by (8.0 - 0.4)=7.6s
+    check("j_cut audio leads its video by the lead",
+          "adelay=7600|7600" in fc)
     ran.clear()
     orig_assemble([Path("/tmp/a.mp4"), Path("/tmp/b.mp4")],
                   Path("/tmp/o.mp4"), ["hard_cut"])
     check("hard-cut-only joins stay lossless concat",
           any("concat" in str(c) for c in ran["cmd"])
-          and not any("acrossfade" in str(c) for c in ran["cmd"]))
+          and not any("adelay" in str(c) for c in ran["cmd"]))
 
     # renderer follows framing + appends the budgeted replay
     calls.clear()
@@ -231,7 +240,7 @@ def main() -> int:  # noqa: C901
     # narration is best-effort: TTS failure ships the story clean
     story._maybe_narration = lambda text, work: None
     e = dict(base, narration={"text": "Two days later he responded",
-                              "after_beat": 0,
+                              "over_beat": 0,
                               "essential_because": "time jump"})
     edl3 = story_director.validate_edl(e, durs)
     led3 = story.render_story(edl3, sources, td / "p3.mp4", td / "wp3")
@@ -258,6 +267,77 @@ def main() -> int:  # noqa: C901
     g = rt._story_guidance()
     check("mature data -> structure guidance emitted",
           "cold_open" in g and "chronological" in g)
+
+    # ---- reviewer #8: stronger narrative validation --------------------
+    e = dict(base, hook_overlay="GO")            # 1 word
+    check("hook <3 words rejected (#8)",
+          story_director.validate_edl(e, durs) is None)
+    e = dict(base, hook_overlay="one two three four five six seven eight")
+    check("hook >7 words rejected (#8)",
+          story_director.validate_edl(e, durs) is None)
+    e = dict(base, central_question="")
+    check("empty central_question rejected (#8)",
+          story_director.validate_edl(e, durs) is None)
+    e = dict(base)
+    e["beats"] = [dict(base["beats"][0], role="setup"),
+                  dict(base["beats"][1], role="payoff"),
+                  {"source_id": "c", "start": 2, "end": 8, "role": "context",
+                   "purpose": "trailing context", "transition": "hard_cut",
+                   "context_overlay": "", "effects": []}]
+    check("story ending on a context beat rejected (#8)",
+          story_director.validate_edl(e, durs) is None)
+    e = dict(base, structure="cold_open")        # opens on setup — wrong
+    check("cold_open that opens on setup rejected (#8)",
+          story_director.validate_edl(e, durs) is None)
+    e = dict(base, ending={"type": "reaction_hold", "duration": 0.2})
+    v = story_director.validate_edl(e, durs)
+    check("reaction hold floored to >=0.8s (#8)",
+          v["ending"]["duration"] >= 0.8)
+    e = dict(base, target_duration=300)
+    v = story_director.validate_edl(e, durs)
+    check("target_duration clamped into 25-90 (#8)",
+          25 <= v["target_duration"] <= 90)
+    # cut-window overlap: a beat outside all evidence windows is rejected
+    wins = {"a": [(2.0, 10.0)], "b": [(5.0, 20.0)]}
+    e = dict(base)
+    e["beats"] = [dict(base["beats"][0]),
+                  dict(base["beats"][1], start=21.5, end=24.0)]  # b past 20
+    check("cut off the evidence windows rejected (#8)",
+          story_director.validate_edl(e, durs, wins) is None)
+    check("cut inside evidence windows accepted (#8)",
+          story_director.validate_edl(dict(base), durs, wins) is not None)
+
+    # ---- reviewer #2: semantic event fingerprint separates incidents ---
+    import run_third as rt2
+    r_argue = [{"summary": "Kai and Ron argue about the room",
+                "title": "argument", "date": "2026-07-03",
+                "source_id": "u1"},
+               {"summary": "Ron argues back at Kai loudly",
+                "title": "argument", "date": "2026-07-04",
+                "source_id": "u2"}]
+    r_gift = [{"summary": "Kai surprises Ron with a generous gift",
+               "title": "gift surprise", "date": "2026-07-20",
+               "source_id": "u3"},
+              {"summary": "Ron thanks Kai for the gift, emotional",
+               "title": "gift", "date": "2026-07-21", "source_id": "u4"}]
+    fp_a = rt2._event_fingerprint(["kai", "ron"], r_argue)
+    fp_g = rt2._event_fingerprint(["kai", "ron"], r_gift)
+    check("same people, different incident -> different event id (#2)",
+          fp_a != fp_g and fp_a[0] == fp_g[0])
+    evs = {"events": {}}
+    rt2._upsert_event(evs, ["kai", "ron"], r_argue, ["u1", "u2"])
+    rt2._upsert_event(evs, ["kai", "ron"], r_gift, ["u3", "u4"])
+    check("distinct incidents get distinct event records (#2)",
+          len(evs["events"]) == 2)
+
+    # ---- reviewer #1: vision provenance --------------------------------
+    from third_capture import scene_analysis
+    import inspect
+    sa_src = inspect.getsource(scene_analysis.analyze_source)
+    check("scene analyst grants Read for vision (#1)",
+          "read_files=True" in sa_src)
+    check("visual_beats gated on vision_ok, not sheet existence (#1)",
+          "if vision_ok else []" in sa_src)
 
     print()
     if FAILS:
