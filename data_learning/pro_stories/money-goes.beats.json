@@ -30,26 +30,20 @@
    "understand": "a stark stat card teasing the punchline of the whole video",
    "flat": {
     "kind": "flat_hook",
-    "text": "15¢",
+    "text": "15\u00a2",
     "sub": "OF EVERY DOLLAR IS YOURS",
     "label": "OUT OF $2,000,000"
    }
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Two million dollars. On paper, it's a fortune. A mansion, a boat, a life of never checking a price tag. But in reality you never really hold it, because it's spoken for long before it ever lands in your account.",
-   "understand": "a real photo of cash — the raw number, before reality takes its cut",
-   "image": {
-    "query": "stacks of cash money hundred dollar bills",
-    "perspective": "close overhead flat lay",
-    "still": true,
-    "min_appeal": 0.35,
-    "push": 1.5,
-    "queries": [
-     "luxury mansion house",
-     "yacht on the ocean"
-    ]
+   "understand": "a real photo of cash \u2014 the raw number, before reality takes its cut",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo of cash \u2014 the raw number, before reality takes its cut"
    }
   },
   {
@@ -74,32 +68,28 @@
     "label": "THE GOVERNMENT'S CUT",
     "mood": "tax"
    },
-   "extra": {"express": true}
+   "extra": {
+    "express": true
+   }
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Across a lifetime, that adds up to roughly five hundred thousand dollars, handed over a little at a time. A full quarter of everything you will ever make, gone before you can even decide what to do with it.",
-   "understand": "a real photo grounding the tax point — a government building",
-   "image": {
-    "query": "united states capitol government building",
-    "perspective": "wide daylight",
-    "still": true,
-    "min_appeal": 0.35,
-    "push": 1.5,
-    "queries": [
-     "tax paperwork documents",
-     "hands counting money"
-    ]
-   },
+   "understand": "a real photo grounding the tax point \u2014 a government building",
    "facts": [
     {
-     "claim": "Lifetime taxes total roughly $500,000 — about a quarter of earnings",
+     "claim": "Lifetime taxes total roughly $500,000 \u2014 about a quarter of earnings",
      "source": "Bureau of Labor Statistics & Tax Foundation effective-tax-burden estimates",
      "year": 2023,
      "assumptions": "Combined federal income, payroll, state, and sales tax; ~25% average effective burden applied to the $2M lifetime baseline."
     }
-   ]
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo grounding the tax point \u2014 a government building"
+   }
   },
   {
    "job": "DATA",
@@ -126,45 +116,33 @@
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Now the biggest bite of all. Rent or a mortgage takes about a third of every paycheck, month after month, for decades.",
    "understand": "the figure stands small in a lit doorway; rent floats out the chimney each month",
-   "image": {
-    "query": "apartment buildings in a city",
-    "perspective": "cinematic",
-    "still": true,
-    "min_appeal": 0.3,
-    "push": 1.6,
-    "queries": [
-     "for rent sign",
-     "suburban house"
-    ]
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the figure stands small in a lit doorway; rent floats out the chimney each month"
    }
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "You don't really buy a home. For most of your life you rent it, from a landlord or from a bank. And when you add up every payment, every repair, and every year of property tax, just having somewhere to sleep swallows another half a million dollars.",
    "understand": "a real photo of houses grounding the housing point",
-   "image": {
-    "query": "suburban houses neighborhood street",
-    "perspective": "wide aerial daylight",
-    "still": true,
-    "min_appeal": 0.35,
-    "push": 1.5,
-    "queries": [
-     "living room interior",
-     "brick townhouse exterior"
-    ]
-   },
    "facts": [
     {
-     "claim": "Housing takes about a third of spending — roughly $500,000 over a lifetime",
+     "claim": "Housing takes about a third of spending \u2014 roughly $500,000 over a lifetime",
      "source": "BLS Consumer Expenditure Survey (housing ~33% of average annual expenditures)",
      "year": 2023,
      "assumptions": "National-average spending share applied to lifetime income net of tax; rent or mortgage plus repairs, insurance, and property tax."
     }
-   ]
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo of houses grounding the housing point"
+   }
   },
   {
    "job": "DATA",
@@ -190,37 +168,20 @@
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
-   "narration": "Then there's simply getting from place to place. Car payments, insurance, gas, and repairs — the machine that carries you to work quietly eats the money you go to work for.",
+   "mode": "designed_2d",
+   "narration": "Then there's simply getting from place to place. Car payments, insurance, gas, and repairs \u2014 the machine that carries you to work quietly eats the money you go to work for.",
    "understand": "the figure at a gas pump, the dollar meter racing up",
-   "image": {
-    "query": "highway traffic cars rush hour aerial",
-    "perspective": "cinematic",
-    "still": true,
-    "min_appeal": 0.3,
-    "push": 1.6,
-    "queries": [
-     "cars in traffic",
-     "gas station"
-    ]
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the figure at a gas pump, the dollar meter racing up"
    }
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "A car spends most of its life parked, losing value, while you keep paying for it. Over a lifetime of commutes, getting around costs about a quarter of a million dollars.",
    "understand": "a real photo of traffic grounding the transport point",
-   "image": {
-    "query": "highway traffic cars rush hour",
-    "perspective": "wide aerial",
-    "still": true,
-    "min_appeal": 0.35,
-    "push": 1.5,
-    "queries": [
-     "parked cars in a lot",
-     "empty parking garage"
-    ]
-   },
    "facts": [
     {
      "claim": "Getting around costs about a quarter of a million dollars over a lifetime",
@@ -228,7 +189,12 @@
      "year": 2023,
      "assumptions": "National-average share; car payments, insurance, fuel, and repairs; illustrative rounded total."
     }
-   ]
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo of traffic grounding the transport point"
+   }
   },
   {
    "job": "DATA",
@@ -255,57 +221,43 @@
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Now the one you can't skip. Groceries, restaurants, the coffee on the way in. It never feels like much at the register, but it quietly becomes a fortune.",
    "understand": "the figure at a checkout, the total climbing, the receipt printing longer",
-   "image": {
-    "query": "grocery cart in a supermarket aisle",
-    "perspective": "cinematic",
-    "still": true,
-    "min_appeal": 0.3,
-    "push": 1.6,
-    "queries": [
-     "fresh vegetables market",
-     "restaurant interior"
-    ]
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the figure at a checkout, the total climbing, the receipt printing longer"
    }
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Three meals a day, every day, for a whole lifetime. Feeding yourself alone runs around three hundred thousand dollars over the years.",
    "understand": "a real photo of groceries grounding the food point",
-   "image": {
-    "query": "cup of coffee on a cafe table morning",
-    "perspective": "close warm",
-    "still": true,
-    "min_appeal": 0.28,
-    "push": 1.7,
-    "queries": [
-     "plate of food dinner",
-     "family dinner table"
-    ]
-   },
    "facts": [
     {
      "claim": "Feeding yourself runs about $300,000 over a lifetime",
-     "source": "BLS Consumer Expenditure Survey (food at home + away ~12–13% of spending)",
+     "source": "BLS Consumer Expenditure Survey (food at home + away ~12\u201313% of spending)",
      "year": 2023,
      "assumptions": "National-average share for a single person; groceries and restaurants; illustrative rounded total."
     }
-   ]
+   ],
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo of groceries grounding the food point"
+   }
   },
   {
    "job": "DATA",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Four hundred and fifty thousand now.",
    "understand": "the money bar: food drains out",
-   "image": {
-    "query": "friends eating at a restaurant table",
-    "perspective": "cinematic",
-    "still": true,
-    "min_appeal": 0.3,
-    "push": 1.6
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the money bar: food drains out"
    }
   },
   {
@@ -321,24 +273,18 @@
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
-   "narration": "And then the leaks you barely notice. Streaming, subscriptions, fees, the free trial you forgot to cancel — draining every month whether you use them or not.",
+   "mode": "designed_2d",
+   "narration": "And then the leaks you barely notice. Streaming, subscriptions, fees, the free trial you forgot to cancel \u2014 draining every month whether you use them or not.",
    "understand": "the figure on a couch ringed by subscription tiles, each siphoning a coin",
-   "image": {
-    "query": "person using a smartphone",
-    "perspective": "cinematic",
-    "still": true,
-    "min_appeal": 0.3,
-    "push": 1.6,
-    "queries": [
-     "laptop computer screen",
-     "television screen"
-    ]
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the figure on a couch ringed by subscription tiles, each siphoning a coin"
    }
   },
   {
    "job": "DATA",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Alone, each one is nothing. Together, they siphon off a hundred and fifty thousand dollars, leaving just three hundred thousand.",
    "understand": "the money bar: the little leaks drain out",
    "facts": [
@@ -349,12 +295,10 @@
      "assumptions": "Illustrative aggregate of streaming, memberships, and auto-renewing fees compounded over a working life."
     }
    ],
-   "image": {
-    "query": "credit card and smartphone online payment",
-    "perspective": "cinematic",
-    "still": true,
-    "min_appeal": 0.3,
-    "push": 1.6
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "the money bar: the little leaks drain out"
    }
   },
   {
@@ -379,23 +323,19 @@
     "label": "RUNNING TO STAND STILL",
     "mood": "trap"
    },
-   "extra": {"express": true}
+   "extra": {
+    "express": true
+   }
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
-   "narration": "It's why so many people who earn a lot still feel like they have nothing. The trap isn't how much you make — it's that the spending quietly grows to match it, every single time you get ahead.",
-   "understand": "a real photo grounding the trap — a busy city of workers",
-   "image": {
-    "query": "crowd of people walking city street",
-    "perspective": "wide street level",
-    "still": true,
-    "min_appeal": 0.35,
-    "push": 1.5,
-    "queries": [
-     "luxury sports car",
-     "big mansion house"
-    ]
+   "mode": "designed_2d",
+   "narration": "It's why so many people who earn a lot still feel like they have nothing. The trap isn't how much you make \u2014 it's that the spending quietly grows to match it, every single time you get ahead.",
+   "understand": "a real photo grounding the trap \u2014 a busy city of workers",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "a real photo grounding the trap \u2014 a busy city of workers"
    }
   },
   {
@@ -432,19 +372,13 @@
   },
   {
    "job": "PAYOFF",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Fifteen cents of every dollar you will ever earn, free to spend however you choose. It isn't much, but it's truly yours. So spend it on something that actually matters, because you paid for every last cent of it with your life.",
-   "understand": "close on real human moments — a life well spent",
-   "image": {
-    "query": "family watching sunset together",
-    "perspective": "cinematic",
-    "still": true,
-    "min_appeal": 0.3,
-    "push": 1.1,
-    "queries": [
-     "people celebrating together",
-     "hiker on a mountain summit at sunrise"
-    ]
+   "understand": "close on real human moments \u2014 a life well spent",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "",
+    "title": "close on real human moments \u2014 a life well spent"
    }
   }
  ]
