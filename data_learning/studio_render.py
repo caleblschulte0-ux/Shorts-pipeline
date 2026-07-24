@@ -1631,7 +1631,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # horizontal sway — so Data is NEVER globally static, even when he's
             # "parked". A static host is what the temporal grade reads as a held
             # frame (the payoff's static pose). Keep him alive every frame.
-            arrive = w0 + max(0.5, (w1 - w0) * 0.92)
+            # Sweep in FAST (arrive by ~30% of the beat), then hold position and
+            # PERFORM the animated action for the rest — so the sampled frames
+            # catch him ACTING on the data, not endlessly sliding across it.
+            arrive = w0 + max(0.4, (w1 - w0) * 0.30)
             # A data beat sweeps in from its own entry point (onto the datum);
             # otherwise Data glides from where he last was.
             start = entries.get(k, prev_tl)

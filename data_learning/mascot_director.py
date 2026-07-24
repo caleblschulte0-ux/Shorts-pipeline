@@ -760,35 +760,36 @@ def _a_point(t, prop):
 # -------------------------------------------------------------------------
 def _a_push_bar(t, _prop):
     """Braced stance, both arms shoving RIGHT into the bar he stands against;
-    a strain sway drives the effort. (This is _a_push with the cart removed.)"""
-    sw = _s(t) * 16
+    a big strain sway drives the effort. (This is _a_push with the cart removed.)"""
+    sw = _s(t) * 30
     lower = (R.limb(152, 300, int(138 + sw), 352, 0, 36, 27, 0) +
              R.limb(188, 300, int(202 - sw), 352, 0, 36, 27, 0) +
              f'<ellipse cx="{136+sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
              f'stroke="{OUT}" stroke-width="6"/>'
              f'<ellipse cx="{204-sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
              f'stroke="{OUT}" stroke-width="6"/>')
-    arms = R.arm(*R.SHL, int(250 + sw), 250, -6) + R.arm(*R.SHR, int(258 + sw), 288, 6)
+    px = int(250 + sw)                    # arms swing far as he heaves
+    arms = R.arm(*R.SHL, px, 250, -6) + R.arm(*R.SHR, px + 8, 288, 6)
     return (arms, lower, "", "",
             R.eye_open(R.LEX, 3, 2) + R.eye_open(R.REX, 3, 2),
-            R.mouth_line(), abs(_s(t)) * 4)
+            R.mouth_line(), abs(_s(t)) * 6)
 
 
 def _a_ride_line(t, _prop):
     """Surfing stance, arms out for balance, leaning into the climb; bobs as he
     rides. (This is _a_ride with the bird removed — he rides the LINE.)"""
-    lean = _s(t) * 6
-    arms = (R.arm(*R.SHL, int(150 - lean), 244, -18)
-            + R.arm(*R.SHR, int(190 + lean), 244, 18))
+    lean = _s(t) * 16
+    arms = (R.arm(*R.SHL, int(150 - lean), int(244 - lean), -18)
+            + R.arm(*R.SHR, int(190 + lean), int(244 + lean), 18))
     return (arms, R.lower_ride(), "", "",
             R.eye_open(R.LEX, 0, 2) + R.eye_open(R.REX, 0, 2),
-            R.mouth_open_smile(), _s(t) * 5)
+            R.mouth_open_smile(), _s(t) * 12)
 
 
 def _a_climb(t, _prop):
     """Hand-over-hand climb: arms reach up in alternation, legs cycle — he
     scales the chart element he's on."""
-    up = _s(t) * 22
+    up = _s(t) * 34
     arms = (R.arm(*R.SHL, 120, int(120 + up), -14)
             + R.arm(*R.SHR, 216, int(120 - up), 14))
     ll, rl = int(150 + up * 0.5), int(202 - up * 0.5)
@@ -805,12 +806,12 @@ def _a_climb(t, _prop):
 
 def _a_lift(t, _prop):
     """Both arms straining OVERHEAD, hoisting the number/slice; a heave bob."""
-    up = abs(_s(t)) * 10
-    arms = (R.arm(*R.SHL, 120, int(100 + up), -8)
-            + R.arm(*R.SHR, 216, int(100 + up), 8))
+    up = abs(_s(t)) * 26
+    arms = (R.arm(*R.SHL, 120, int(104 + up), -8)
+            + R.arm(*R.SHR, 216, int(104 + up), 8))
     return (arms, R.lower_stand(), "", "",
             R.eye_open(R.LEX, 0, -4) + R.eye_open(R.REX, 0, -4),
-            R.mouth_o(), _s(t) * 3)
+            R.mouth_o(), -abs(_s(t)) * 6)
 
 
 ANIMATORS = {
