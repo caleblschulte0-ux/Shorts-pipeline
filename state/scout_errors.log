@@ -14,5 +14,14 @@
 [facepalm] all hosts failed: HTTP 403 from https://www.reddit.com
 [WTF] all hosts failed: HTTP 403 from https://www.reddit.com
 [youtube/refresh] using client_id=808431681548-v3q2f1dkgif... secret_len=35 refresh_prefix=1//04fp1bU... refresh_len=103
+[google_news_world] HTTPError: HTTP Error 503: Service Unavailable
+[google_news_nation] HTTPError: HTTP Error 503: Service Unavailable
+[google_news_science] HTTPError: HTTP Error 503: Service Unavailable
+[google_news_technology] HTTPError: HTTP Error 503: Service Unavailable
+[google_news_health] HTTPError: HTTP Error 503: Service Unavailable
+[google_news_sports] HTTPError: HTTP Error 503: Service Unavailable
+[google_news_entertainment] HTTPError: HTTP Error 503: Service Unavailable
+[google_news_business] HTTPError: HTTP Error 503: Service Unavailable
+[rss_nasa] HTTPError: HTTP Error 429: Too Many Requests
 [youtube/refresh] using client_id=808431681548-v3q2f1dkgif... secret_len=35 refresh_prefix=1//04fp1bU... refresh_len=103
 [youtube/cat/education] HTTPError: HTTP Error 404: Not Found
