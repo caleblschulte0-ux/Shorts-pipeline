@@ -183,6 +183,49 @@ def run_story_case(work: Path) -> list[str]:
               flush=True)
     except Exception as e:  # noqa: BLE001
         fails.append(f"story: render_story RAISED {type(e).__name__}: {e}")
+
+    # reviewer #8: prove the L-cut path renders end to end, builds a REAL
+    # audio bridge from the previous source's post-roll (not apad silence),
+    # and stays A/V aligned. beat1 ends at 8.0 in a 12s source → the
+    # [8.0, 8.4] post-roll genuinely exists, so a bridge file must appear.
+    l_edl = story_director.validate_edl({
+        "is_story": True, "premise": "The beef starts, then they make up.",
+        "central_question": "Do they squash it?", "ending_emotion": "relief",
+        "structure": "chronological",
+        "structure_reason": "the natural timeline compels",
+        "title": "The Beef Ends In A Hug", "hook_overlay": "IT ENDED IN A HUG",
+        "target_duration": 20,
+        "beats": [
+            {"source_id": "http://x/beef", "start": 1.0, "end": 8.0,
+             "role": "setup", "purpose": "show the beef start",
+             "transition": "hard_cut", "context_overlay": "", "effects": []},
+            {"source_id": "http://x/makeup", "start": 2.0, "end": 10.0,
+             "role": "payoff", "purpose": "show the makeup",
+             "transition": "l_cut", "context_overlay": "SIX DAYS LATER",
+             "effects": []},
+        ],
+        "ending": {"type": "reaction_hold", "duration": 1.0},
+    }, {"http://x/beef": 12.0, "http://x/makeup": 12.0})
+    l_out = work / "story_lcut.mp4"
+    l_work = work / "story_lcut_work"
+    try:
+        led_l = story.render_story(l_edl, sources, l_out, l_work)
+        bridges = list(l_work.glob("bridge_l_*.m4a"))
+        if not bridges:
+            fails.append("story: l_cut built NO real audio bridge "
+                         "(silence regression)")
+        elif not all(b.stat().st_size > 200 for b in bridges):
+            fails.append("story: l_cut bridge is empty/near-empty")
+        vdur = _stream_dur(l_out, "v")
+        adur = _stream_dur(l_out, "a")
+        if vdur and adur and abs(vdur - adur) > 0.35:
+            fails.append(f"story: A/V drift {abs(vdur - adur):.2f}s after "
+                         "l_cut")
+        print(f"  [story-lcut] dur={_dur(l_out):.1f}s "
+              f"beats={led_l.get('n_beats')} bridges={len(bridges)} "
+              f"av_drift={abs((vdur or 0) - (adur or 0)):.2f}s", flush=True)
+    except Exception as e:  # noqa: BLE001
+        fails.append(f"story: l_cut render RAISED {type(e).__name__}: {e}")
     return fails
 
 

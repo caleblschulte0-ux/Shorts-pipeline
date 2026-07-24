@@ -58,10 +58,11 @@ corpus (posted log + wide 7d/30d sweep)
 
 ## Phase Two (editing quality) — implemented
 
-- **J/L cuts** (§13/§14): a beat may carry `transition: "j_cut"|"l_cut"`;
-  the assemble blends audio 0.3s across that join (video stays a hard
-  cut) — abrupt audio starts/stops disappear. Hard-cut-only stories keep
-  the lossless concat path.
+- **J/L cuts** (§13/§14): a beat may carry `transition: "j_cut"|"l_cut"`.
+  Each segment's own audio stays locked to its own picture; the lead/lag
+  is a SEPARATE bridge of real source dialogue placed in the overlap (see
+  the third-review fix below). Hard-cut-only stories keep the lossless
+  concat path.
 - **Framing continuity** (§15): per-beat `framing: "wide"|"tight"` —
   the DIRECTOR chooses (wide for the incident, tight punch-in for the
   response); renderer applies a modest centered crop.
@@ -121,6 +122,44 @@ Fixes to places where the implementation claimed more than it did:
    the clip fallback (incoherence is the story format's core risk).
 10. **Narration key `over_beat`** matches the ducked-over-that-beat
    behavior (`after_beat` still read for compat).
+
+## Review hardening (3rd external review) — implemented
+
+The third review confirmed the architecture and caught three fixes that
+had claimed more than they delivered:
+
+A. **Real J/L cuts (no desync, no silence)**: the prior version shifted a
+   whole segment's audio 0.4s early — a j_cut therefore desynced the
+   visible speaker for the *entire* shot — and an l_cut just `apad`ded
+   silence (recovering no real dialogue). Now every segment's audio stays
+   lip-synced to its own picture (`adelay=video_off[i]`), and the lead/lag
+   is a **separate bridge of genuine source audio** placed in the overlap:
+   a j_cut extracts ~0.4s of the *incoming* source's dialogue from before
+   its visible start (`_extract_audio(src, [start-lead, start])`); an l_cut
+   extracts ~0.4s of the *previous* source's real dialogue after its
+   visible end (`[end_prev, end_prev+lead]`). A cut is only honored when
+   that pre-/post-roll actually exists in the source — otherwise it
+   silently degrades to a hard cut. `alimiter` caps the brief overlap sum;
+   the mix is still trimmed/padded to the exact video length. Acceptance
+   asserts the real extraction windows and the honesty degradation; smoke
+   renders both a j_cut and an l_cut and asserts a real bridge file plus
+   A/V alignment.
+B. **The rough-cut critic can see**: `review_rough_cut()` handed the critic
+   a contact-sheet path but `_brain()` called Claude without the Read
+   grant, so the critic was blind to the assembled frames. `_brain()` now
+   accepts `read_files` and `review_rough_cut()` passes it whenever the
+   rough-cut sheet exists — the narrative critic actually inspects the
+   picture it is judging (Groq fallback stays text-only).
+C. **Semantic subclustering, not just naming**: `find_clusters()` groups by
+   shared people, so distinct incidents between the same streamers landed
+   in one pile; the fingerprint only *named* that pile. Now, after scene
+   analysis, `_semantic_subclusters()` single-links sources that share ≥2
+   salient action tokens within the same ISO week (±1 week for a
+   boundary-crossing incident) and the director is called **once per
+   semantic event**, not once per mixed pile. Deliberately split-happy:
+   sources with no shared action vocabulary form separate groups (dropped
+   if <2 sources), because compiling unrelated same-people clips into a
+   fake story is the worse error (§21).
 
 ## Knobs (capture spec, `state/third_packages/default_clip.json`)
 

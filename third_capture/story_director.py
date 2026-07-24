@@ -322,10 +322,15 @@ def validate_edl(edl: dict, durations: dict[str, float],
         return None
 
 
-def _brain(user: str, system: str) -> dict | None:
+def _brain(user: str, system: str,
+           read_files: bool = False) -> dict | None:
+    """The director's model call. `read_files=True` grants Claude the Read
+    tool so it can actually OPEN a contact-sheet image referenced in `user`
+    — without it the critic is blind to the rendered frames and can only
+    reason about text. The Groq fallback is always text-only."""
     out = None
     try:
-        out = _call_claude(user, system=system)
+        out = _call_claude(user, system=system, read_files=read_files)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[director] claude failed ({e}) — groq",
               flush=True)
@@ -364,10 +369,15 @@ def plan_story(reports: list[dict], event: dict | None = None,
 
 def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                      duration_s: float) -> dict:
-    """§18 narrative review of the assembled rough cut. Fails OPEN on
-    brain unreachability (publish=True, score -1) — the mechanical QA
-    still stands behind it; the critic exists to catch incoherence, not to
-    become a new way to lose stories."""
+    """§18 narrative review of the assembled rough cut. Fails CLOSED on
+    brain unreachability (publish=False, score -1): the story format's
+    primary risk is incoherence, so an UNREVIEWED story must not ship.
+
+    When a contact sheet of the rough cut exists, the critic is given the
+    Read grant (reviewer #8) so it actually SEES the assembled frames —
+    a text-only critic cannot judge whether the picture matches the beat,
+    which is exactly what a rough-cut review is for."""
+    have_sheet = bool(sheet)
     user = (f"PREMISE: {edl.get('premise')}\n"
             f"CENTRAL QUESTION: {edl.get('central_question')}\n"
             f"STRUCTURE: {edl.get('structure')}\n"
@@ -376,9 +386,11 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                              ('source_id', 'start', 'end', 'role',
                               'purpose', 'context_overlay')}
                             for b in edl.get('beats', [])]) + "\n"
-            + (f"Contact sheet: {sheet}\n" if sheet else "")
+            + (f"Contact sheet image (sampled frames of the ASSEMBLED rough "
+               f"cut, timestamped labels) — read this image file: {sheet}\n"
+               if have_sheet else "")
             + f"FINAL TRANSCRIPT:\n{transcript_lines[:3000]}")
-    out = _brain(user, _REVIEW_SYSTEM)
+    out = _brain(user, _REVIEW_SYSTEM, read_files=have_sheet)
     if not out:
         # FAIL CLOSED for stories (reviewer #9): the story format's primary
         # risk is incoherence, so an UNREVIEWED story must not publish — the

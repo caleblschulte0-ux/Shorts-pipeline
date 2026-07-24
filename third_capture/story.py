@@ -10,8 +10,10 @@ owns the timeline; this module only executes it with low-level primitives:
     _extract_segment()   exact in/out cut + uniform 9:16 reframe (subject-
                          aware tight punch-in when the director asks) +
                          captions + overlays + loudness, one ffmpeg pass
-    _assemble()          video hard-cut concat; audio rebuilt with real
-                         J/L-cut offsets and locked to the video duration
+    _assemble()          video hard-cut concat; every segment's audio stays
+                         locked to its own picture, and a J/L cut adds a
+                         SEPARATE bridge of real source dialogue in the
+                         overlap — audio locked to the video duration
 
 LAWS (acceptance-tested):
 - NO CARDS. There is no card function, no card mp4, no blank frame. Every
@@ -23,9 +25,12 @@ LAWS (acceptance-tested):
   timestamp (never the reframed beat) and advances the caption timeline.
 - Uniform blur-fill reframe for continuity; a `tight` beat crops around
   the shot_plan-tracked subject, not a blind centre.
-- Real J-cuts (audio leads its video) and L-cuts (audio tails past its
-  video) via absolute adelay offsets + amix, trimmed/padded to the exact
-  video length so audio and video never drift.
+- Real J-cuts (the next line's actual audio leads its picture) and L-cuts
+  (the previous line's actual audio tails over the next picture) built from
+  genuine source pre-/post-roll — each segment's own audio stays lip-synced,
+  the lead/lag is a separate bridge, and a cut degrades to a hard cut when
+  the source has no real dialogue to lead/tail with. Audio trimmed/padded to
+  the exact video length so audio and video never drift.
 - One consistent audio mix: per-segment highpass+loudnorm+limiter.
 
 Contract: `render_story()` raises RuntimeError on an unrenderable story
@@ -47,6 +52,9 @@ CANVAS_W, CANVAS_H = 1080, 1920
 FPS = 30
 MIN_BEATS = 2
 _T = 300
+# §13: how far real audio leads/tails its picture on a J/L cut. A bridge is
+# only built when the source actually holds this much pre-/post-roll dialogue.
+LEAD = 0.4
 
 # §14: one consistent mix — every segment normalized to the same target
 _LOUDNORM = "highpass=f=60,loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=limit=0.95"
@@ -204,25 +212,50 @@ def _probe_dur(p: Path) -> float:
         return 0.0
 
 
-def _assemble(parts: list[Path], out: Path,
-              joins: list[str] | None = None, lead: float = 0.4) -> None:
-    """Assemble pre-normalized segments. Video is ALWAYS a plain hard-cut
-    concat (full duration V = sum of segment durations). Hard-cut-only
-    stories take the lossless demuxer path.
+def _extract_audio(src: Path, out: Path, s: float, e: float) -> None:
+    """Pull a real, loudness-matched audio snippet [s, e] from a RAW source.
+    Used to build J/L-cut bridges: the actual dialogue outside a beat's
+    visible video window (never silence, never a shifted copy of the beat's
+    own track)."""
+    _run(["ffmpeg", "-y", "-v", "error",
+          "-ss", f"{s:.2f}", "-to", f"{e:.2f}", "-i", str(src), "-vn",
+          "-af", _LOUDNORM,
+          "-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "160k",
+          str(out)])
 
-    Real J/L cuts (reviewer #4 — genuinely distinct, not the old identical
-    acrossfade): the audio track is rebuilt by placing each segment's audio
-    at an absolute offset with adelay, then amix.
-      - j_cut INTO a beat: that beat's audio STARTS `lead`s before its
-        video (the next line is heard over the previous picture).
-      - l_cut INTO a beat: the PREVIOUS beat's audio is padded to TAIL
-        `lead`s past its video end (the previous line carries over the next
-        picture).
-    The mixed audio is then atrim+apad to EXACTLY V, so final audio and
-    video durations stay aligned regardless of how many j/l joins there
-    are (the old acrossfade shortened audio 0.3s per join → A/V drift)."""
+
+def _assemble(parts: list[Path], out: Path,
+              joins: list[str] | None = None,
+              bridges: list[tuple] | None = None, lead: float = LEAD) -> None:
+    """Assemble pre-normalized segments. Video is ALWAYS a plain hard-cut
+    concat (full duration V = sum of segment durations). Stories with no
+    J/L bridge take the lossless demuxer path, and — crucially — every
+    segment keeps its OWN audio locked to its OWN picture.
+
+    Real J/L cuts (reviewer #8): the old code shifted a whole segment's
+    audio 0.4s early (a j_cut desynced the visible speaker for the ENTIRE
+    shot) and l_cut just apad'd silence (recovering no real dialogue). Now
+    each segment's audio stays at its true offset (adelay=video_off[i]), and
+    the lead/lag is a SEPARATE bridge of genuine source audio placed in the
+    overlap region:
+      - "lead" (j_cut INTO part p): ~`lead`s of part p's source dialogue
+        from BEFORE its visible start, ending at O_p — the next line is
+        heard under the previous picture, then picture+sound resync.
+      - "tail" (l_cut INTO part p): ~`lead`s of the PREVIOUS beat's real
+        source dialogue AFTER its visible end, starting at O_p — the
+        previous line genuinely continues over the next picture.
+    Bridges are inputs n..n+k; each is placed with adelay and amixed with
+    the (synced) segment tracks, limited, then atrim+apad to EXACTLY V so
+    final audio and video never drift regardless of join count.
+
+    `bridges` entries are (part_index, "lead"|"tail", audio_path). render_
+    story only emits a bridge when the source actually holds the pre-/post-
+    roll, so an L-cut here always carries continuing speech, not padding."""
     joins = joins or []
-    if not any(j in ("j_cut", "l_cut") for j in joins):
+    bridges = bridges or []
+    if not bridges:
+        # no real J/L bridge survived the pre-/post-roll test → hard cuts
+        # only → lossless demuxer concat (each part's audio untouched)
         lst = out.parent / f"{out.stem}.concat.txt"
         lst.write_text("\n".join(f"file '{p.resolve()}'" for p in parts))
         _run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0",
@@ -236,28 +269,36 @@ def _assemble(parts: list[Path], out: Path,
     cmd = ["ffmpeg", "-y", "-v", "error"]
     for pp in parts:
         cmd += ["-i", str(pp)]
+    for (_p, _kind, bpath) in bridges:
+        cmd += ["-i", str(bpath)]
     # video: plain hard-cut concat, full length
     fc = "".join(f"[{i}:v]" for i in range(n)) + f"concat=n={n}:v=1:a=0[v];"
     labels = []
+    # each segment's audio stays SYNCED to its own picture — no whole-clip
+    # shift (that was the lip-sync bug); the J/L lead/lag is a bridge below
     for i in range(n):
-        join_in = joins[i - 1] if 1 <= i <= len(joins) else "hard_cut"
-        join_out = joins[i] if i < len(joins) else "hard_cut"
-        start = video_off[i]
-        if join_in == "j_cut":
-            start = max(0.0, start - lead)     # this audio leads its video
-        pad = lead if join_out == "l_cut" else 0.0   # tail into next video
+        off = int(video_off[i] * 1000)
         lbl = f"[a{i}]"
-        chain = f"[{i}:a]"
-        if pad > 0:
-            chain += f"apad=pad_dur={pad:.3f},"
-        chain += f"adelay={int(start * 1000)}|{int(start * 1000)}{lbl}"
-        fc += chain + ";"
+        fc += f"[{i}:a]adelay={off}|{off}{lbl};"
         labels.append(lbl)
-    mix = "".join(labels) + (
-        f"amix=inputs={n}:normalize=0:dropout_transition=0,"
-        # lock audio to the video length exactly (A/V alignment guarantee)
-        f"atrim=0:{total:.3f},apad=whole_dur={total:.3f}[a]")
-    fc += mix
+    # bridges: real source audio placed in the overlap region around O_p
+    for j, (p, kind, _bp) in enumerate(bridges):
+        inp = n + j
+        p = max(0, min(int(p), n - 1))
+        if kind == "lead":       # j_cut: ends at O_p, under the prev picture
+            off = int(max(0.0, video_off[p] - lead) * 1000)
+        else:                    # tail (l_cut): starts at O_p, over next pic
+            off = int(video_off[p] * 1000)
+        lbl = f"[b{j}]"
+        fc += f"[{inp}:a]adelay={off}|{off}{lbl};"
+        labels.append(lbl)
+    ninputs = n + len(bridges)
+    fc += "".join(labels) + (
+        f"amix=inputs={ninputs}:normalize=0:dropout_transition=0,"
+        # two dialogues briefly sum in the overlap — cap peaks, then lock
+        # audio to the video length exactly (A/V alignment guarantee)
+        f"alimiter=limit=0.95,atrim=0:{total:.3f},"
+        f"apad=whole_dur={total:.3f}[a]")
     cmd += ["-filter_complex", fc, "-map", "[v]", "-map", "[a]",
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
             "-pix_fmt", "yuv420p", "-r", str(FPS),
@@ -310,6 +351,10 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
     hold = float((edl.get("ending") or {}).get("duration", 1.0) or 1.0)
     parts: list[Path] = []
     joins: list[str] = []        # transition INTO each part after the first
+    # per-part source anchor (parallel to `parts`, replays included) so a
+    # J/L bridge can reach real dialogue outside the visible window
+    part_meta: list[dict] = []
+    bridges: list[tuple] = []    # (part_index, "lead"|"tail", audio_path)
     used: list[dict] = []
     final_words: list[dict] = []
     timeline = 0.0
@@ -364,8 +409,40 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                 except Exception:  # noqa: BLE001
                     pass
         if parts:
-            joins.append(beat.get("transition", "hard_cut"))
+            # build a REAL J/L bridge (reviewer #8) or fall back to a hard
+            # cut when the source lacks the pre-/post-roll to do it honestly
+            tr = beat.get("transition", "hard_cut")
+            p = len(parts)               # index this segment will occupy
+            src_dur = float(srcinfo.get("duration_s") or end)
+            if tr == "j_cut" and start >= LEAD:
+                # 0.4s of THIS source's dialogue from before the visible
+                # start, heard under the previous picture
+                bp = work / f"bridge_j_{idx}.m4a"
+                try:
+                    _extract_audio(src, bp, start - LEAD, start)
+                    bridges.append((p, "lead", bp))
+                except Exception:  # noqa: BLE001
+                    tr = "hard_cut"
+            elif tr == "l_cut":
+                prev = part_meta[-1] if part_meta else None
+                # only from a real beat (not a replay) that has post-roll
+                if (prev and not prev.get("replay")
+                        and prev["end"] + LEAD <= prev["src_dur"]):
+                    bp = work / f"bridge_l_{idx}.m4a"
+                    try:
+                        _extract_audio(prev["src"], bp, prev["end"],
+                                       prev["end"] + LEAD)
+                        bridges.append((p, "tail", bp))
+                    except Exception:  # noqa: BLE001
+                        tr = "hard_cut"
+                else:
+                    tr = "hard_cut"        # no honest post-roll dialogue
+            elif tr in ("j_cut", "l_cut"):
+                tr = "hard_cut"            # requested but no pre-/post-roll
+            joins.append(tr)
         parts.append(seg)
+        part_meta.append({"src": src, "start": start, "end": end,
+                          "src_dur": float(srcinfo.get("duration_s") or end)})
         if beat.get("context_overlay"):
             n_overlays += 1
         # this beat's caption words are placed at the CURRENT timeline
@@ -386,6 +463,10 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                     _render_replay(src, rp, at=max(0.0, float(fx.get("at", 0))))
                     joins.append("hard_cut")
                     parts.append(rp)
+                    # replay is not a bridge source (slowed re-show) — mark
+                    # it so a following l_cut won't tail from it
+                    part_meta.append({"src": src, "start": 0.0, "end": 0.0,
+                                      "src_dur": 0.0, "replay": True})
                     timeline += _probe_dur(rp)
                 except Exception:  # noqa: BLE001
                     print(f"::warning::[story] replay render failed — "
@@ -400,7 +481,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
     if len(used) < MIN_BEATS:
         raise RuntimeError(
             f"story: only {len(used)} beat(s) rendered — not a story")
-    _assemble(parts, out_mp4, joins)
+    _assemble(parts, out_mp4, joins, bridges)
     dur = 0.0
     try:
         dur = float(subprocess.check_output(

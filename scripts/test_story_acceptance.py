@@ -111,7 +111,8 @@ def main() -> int:  # noqa: C901
     calls = []
     story._extract_segment = lambda src, out, work, tag, **k: (
         calls.append({"tag": tag, **k}), Path(out).write_bytes(b"x"))[-1]
-    story._assemble = lambda parts, out, joins=None: Path(out).write_bytes(b"cat")
+    story._assemble = lambda parts, out, joins=None, bridges=None: \
+        Path(out).write_bytes(b"cat")
     edl = story_director.validate_edl(dict(base), durs)
     sources = {sid: {"path": str(td / f"{sid}.mp4"), "words": [
         {"w": "hey", "s": 3.0, "e": 3.4}], "duration_s": durs[sid],
@@ -146,14 +147,14 @@ def main() -> int:  # noqa: C901
 
     # ---- §18/§19 critic + single revision ------------------------------
     # patch the names story_director actually calls (bound at its import)
-    story_director._call_claude = lambda u, system=None: {
+    story_director._call_claude = lambda u, system=None, read_files=False: {
         "publish": False, "story_score": 55,
         "problems": [{"type": "weak_payoff", "at": 30.1,
                       "fix": "keep 1.4s more reaction"}]}
     r = story_director.review_rough_cut(edl, "words", None, 40.0)
     check("critic verdict parsed",
           r["publish"] is False and r["problems"][0]["at"] == 30.1)
-    story_director._call_claude = lambda u, system=None: (
+    story_director._call_claude = lambda u, system=None, read_files=False: (
         _ for _ in ()).throw(RuntimeError("down"))
     story_director._call_groq = lambda u, system=None: None
     r = story_director.review_rough_cut(edl, "words", None, 40.0)
@@ -161,6 +162,23 @@ def main() -> int:  # noqa: C901
           r["publish"] is False and r["story_score"] == -1)
     check("reviser refuses without problems",
           story_director.revise_edl(edl, [], []) is None)
+
+    # ---- reviewer #8: the rough-cut critic actually SEES the frames -----
+    # a contact-sheet path in the prompt is worthless unless the model is
+    # granted Read to open it; verify the grant is passed iff a sheet exists
+    seen: dict = {}
+    story_director._call_claude = \
+        lambda u, system=None, read_files=False: (
+            seen.update(read_files=read_files,
+                        has_sheet="contact sheet image" in u.lower()),
+            {"publish": True, "story_score": 80, "problems": []})[-1]
+    story_director.review_rough_cut(edl, "words", str(td / "sheet.jpg"), 40.0)
+    check("critic gets the Read grant when a rough-cut sheet exists (#8)",
+          seen.get("read_files") is True and seen.get("has_sheet") is True)
+    seen.clear()
+    story_director.review_rough_cut(edl, "words", None, 40.0)
+    check("critic runs text-only (no Read grant) when no sheet (#8)",
+          seen.get("read_files") is False)
 
     # ---- Phase Two: transitions, framing, replay, narration ------------
     e = dict(base)
@@ -195,28 +213,110 @@ def main() -> int:  # noqa: C901
     v = story_director.validate_edl(e, durs)
     check("unjustified narration rejected", v["narration"] is None)
 
-    # renderer: j_cut join routes to the blended-audio assemble
+    # renderer: real J/L cut assembly (reviewer #8). The old code shifted a
+    # whole segment's audio 0.4s early (desyncing the visible speaker for the
+    # ENTIRE shot) and padded L-cuts with silence. Now each segment's audio
+    # stays LOCKED to its own picture and the lead/lag is a SEPARATE bridge
+    # of genuine source audio placed in the overlap.
     ran = {}
     story._run = lambda cmd: ran.update(cmd=cmd)
     story._probe_dur = lambda p: 8.0     # deterministic seg durations
-    # real J-cut: audio is OFFSET (adelay) and mixed, video hard-concats;
-    # the mix is trimmed/padded to the exact video length (A/V alignment #4)
     orig_assemble([Path("/tmp/a.mp4"), Path("/tmp/b.mp4")],
-                  Path("/tmp/o.mp4"), ["j_cut"])
+                  Path("/tmp/o.mp4"), ["j_cut"],
+                  bridges=[(1, "lead", Path("/tmp/br.m4a"))])
     fc = " ".join(str(c) for c in ran["cmd"])
-    check("j_cut offsets audio via adelay (real J-cut, not acrossfade #4)",
-          "adelay" in fc and "amix" in fc and "acrossfade" not in fc)
-    check("assemble locks audio to video duration (A/V align #4)",
-          "atrim=0:16" in fc and "apad=whole_dur=16" in fc)
-    # j_cut audio leads its video: seg[1] audio delayed by (8.0 - 0.4)=7.6s
-    check("j_cut audio leads its video by the lead",
-          "adelay=7600|7600" in fc)
+    # seg[1]'s OWN audio stays at its true 8.0s offset — NOT shifted to 7.6
+    check("segment audio stays LIP-SYNCED to its own video (#8)",
+          "adelay=8000|8000" in fc and "acrossfade" not in fc)
+    # the bridge (input #3) leads the picture by the lead: 8.0-0.4 = 7.6s
+    check("J-cut bridge is a separate handle leading by the lead (#8)",
+          "adelay=7600|7600" in fc and "amix=inputs=3" in fc)
+    check("assemble caps overlap peaks + locks audio to video length (#8)",
+          "alimiter" in fc and "atrim=0:16" in fc
+          and "apad=whole_dur=16" in fc)
     ran.clear()
+    # no bridge survived the pre-/post-roll test → lossless hard-cut concat
     orig_assemble([Path("/tmp/a.mp4"), Path("/tmp/b.mp4")],
-                  Path("/tmp/o.mp4"), ["hard_cut"])
-    check("hard-cut-only joins stay lossless concat",
+                  Path("/tmp/o.mp4"), ["j_cut"], bridges=[])
+    check("no-bridge assembly stays lossless concat (no fake offsets) (#8)",
           any("concat" in str(c) for c in ran["cmd"])
           and not any("adelay" in str(c) for c in ran["cmd"]))
+
+    # render-level: bridges carry REAL dialogue from OUTSIDE the visible
+    # window, and a cut degrades to hard when the source can't do it honestly
+    def _jl_edl(t_into_b, b_start=5):
+        return {"structure": "chronological", "premise": "p q r",
+                "hook_overlay": "HE CALLED HIM OUT", "title": "T",
+                "ending": {"type": "reaction_hold", "duration": 1.0},
+                "beats": [
+                    {"source_id": "a", "start": 2, "end": 10, "role": "setup",
+                     "purpose": "x", "transition": "hard_cut",
+                     "context_overlay": "", "effects": [], "framing": "wide"},
+                    {"source_id": "b", "start": b_start, "end": 20,
+                     "role": "payoff", "purpose": "y", "transition": t_into_b,
+                     "context_overlay": "", "effects": [],
+                     "framing": "wide"}]}
+
+    def _ab_sources(dur_a=30.0, dur_b=40.0):
+        return {"a": {"path": str(td / "a.mp4"), "words": [],
+                      "duration_s": dur_a, "channel": "s",
+                      "source_url": "http://t/a"},
+                "b": {"path": str(td / "b.mp4"), "words": [],
+                      "duration_s": dur_b, "channel": "s",
+                      "source_url": "http://t/b"}}
+
+    story._extract_segment = lambda src, out, work, tag, **k: \
+        Path(out).write_bytes(b"x")
+    story._probe_dur = lambda p: 8.0
+    ax: list = []
+    story._extract_audio = lambda s_, o_, s, e: (
+        ax.append({"src": Path(s_).name, "s": round(s, 2), "e": round(e, 2)}),
+        Path(o_).write_bytes(b"a"))[-1]
+    asm: dict = {}
+    story._assemble = lambda parts, out, joins=None, bridges=None: (
+        asm.update(joins=list(joins or []), bridges=list(bridges or [])),
+        Path(out).write_bytes(b"c"))[-1]
+
+    # J-cut: pull ~0.4s of the NEXT source's dialogue from BEFORE its visible
+    # start (source pre-roll [4.6, 5.0]) — heard under the previous picture
+    ax.clear(); asm.clear()
+    story.render_story(_jl_edl("j_cut"), _ab_sources(), td / "jc.mp4",
+                       td / "wjc")
+    check("J-cut extracts real pre-roll from the incoming source (#8)",
+          {"src": "b.mp4", "s": 4.6, "e": 5.0} in ax
+          and asm["joins"] == ["j_cut"]
+          and any(b[1] == "lead" for b in asm["bridges"]))
+
+    # L-cut: pull ~0.4s of the PREVIOUS source's REAL continuing dialogue
+    # AFTER its visible end (post-roll [10.0, 10.4]) — not apad silence
+    ax.clear(); asm.clear()
+    story.render_story(_jl_edl("l_cut"), _ab_sources(), td / "lc.mp4",
+                       td / "wlc")
+    check("L-cut carries REAL continuing speech, not silence (#8)",
+          {"src": "a.mp4", "s": 10.0, "e": 10.4} in ax
+          and asm["joins"] == ["l_cut"]
+          and any(b[1] == "tail" for b in asm["bridges"]))
+
+    # honesty gate: no post-roll (prev source ends at 10.2) → hard cut, no
+    # fabricated bridge
+    ax.clear(); asm.clear()
+    story.render_story(_jl_edl("l_cut"), _ab_sources(dur_a=10.2),
+                       td / "lc2.mp4", td / "wlc2")
+    check("L-cut with no real post-roll degrades to a hard cut (#8)",
+          asm["joins"] == ["hard_cut"] and not asm["bridges"]
+          and not any(a["src"] == "a.mp4" for a in ax))
+
+    # honesty gate: no pre-roll (visible start at 0.2 < lead) → hard cut
+    ax.clear(); asm.clear()
+    story.render_story(_jl_edl("j_cut", b_start=0.2), _ab_sources(),
+                       td / "jc2.mp4", td / "wjc2")
+    check("J-cut with no real pre-roll degrades to a hard cut (#8)",
+          asm["joins"] == ["hard_cut"] and not asm["bridges"])
+
+    # restore the segment/probe mocks the later phases rely on
+    story._extract_segment = lambda src, out, work, tag, **k: (
+        calls.append(k), Path(out).write_bytes(b"x"))[-1]
+    story._probe_dur = lambda p: 8.0
 
     # renderer follows framing + appends the budgeted replay
     calls.clear()
@@ -230,7 +330,8 @@ def main() -> int:  # noqa: C901
     replays = []
     story._render_replay = lambda src, out, **k: (
         replays.append(k), Path(out).write_bytes(b"r"))[-1]
-    story._assemble = lambda parts, out, joins=None: Path(out).write_bytes(b"c")
+    story._assemble = lambda parts, out, joins=None, bridges=None: \
+        Path(out).write_bytes(b"c")
     led2 = story.render_story(edl2, sources, td / "p2.mp4", td / "wp2")
     check("framing reaches the renderer",
           calls[0]["framing"] == "tight" and calls[1]["framing"] == "wide")
@@ -309,17 +410,17 @@ def main() -> int:  # noqa: C901
 
     # ---- reviewer #2: semantic event fingerprint separates incidents ---
     import run_third as rt2
-    r_argue = [{"summary": "Kai and Ron argue about the room",
-                "title": "argument", "date": "2026-07-03",
+    r_argue = [{"summary": "Kai and Ron argue about rent money owed",
+                "title": "rent argument", "date": "2026-07-03",
                 "source_id": "u1"},
-               {"summary": "Ron argues back at Kai loudly",
-                "title": "argument", "date": "2026-07-04",
+               {"summary": "Ron argues the rent money was already paid",
+                "title": "rent dispute", "date": "2026-07-04",
                 "source_id": "u2"}]
-    r_gift = [{"summary": "Kai surprises Ron with a generous gift",
-               "title": "gift surprise", "date": "2026-07-20",
+    r_gift = [{"summary": "Kai surprises Ron with a huge donation gift",
+               "title": "donation gift", "date": "2026-07-20",
                "source_id": "u3"},
-              {"summary": "Ron thanks Kai for the gift, emotional",
-               "title": "gift", "date": "2026-07-21", "source_id": "u4"}]
+              {"summary": "Ron thanks Kai for the donation gift on stream",
+               "title": "gift thanks", "date": "2026-07-21", "source_id": "u4"}]
     fp_a = rt2._event_fingerprint(["kai", "ron"], r_argue)
     fp_g = rt2._event_fingerprint(["kai", "ron"], r_gift)
     check("same people, different incident -> different event id (#2)",
@@ -329,6 +430,32 @@ def main() -> int:  # noqa: C901
     rt2._upsert_event(evs, ["kai", "ron"], r_gift, ["u3", "u4"])
     check("distinct incidents get distinct event records (#2)",
           len(evs["events"]) == 2)
+
+    # ---- reviewer #8: semantic subclustering splits the people pile ------
+    # find_clusters groups by shared PEOPLE; two distinct incidents between
+    # the same streamers must be split into separate events (each with its
+    # own director call), not compiled into one fake story.
+    mixed = r_argue + r_gift
+    subs = rt2._semantic_subclusters(mixed)
+    check("people pile split into 2 semantic events (#8)", len(subs) == 2,
+          f"got {len(subs)} groups")
+    check("each split event keeps exactly its own sources (#8)",
+          sorted(len(s) for s in subs) == [2, 2])
+    ids = [{r["source_id"] for r in s} for s in subs]
+    check("split groups do not mix incidents (#8)",
+          {"u1", "u2"} in ids and {"u3", "u4"} in ids)
+    # same incident (shared action vocabulary, same ISO week) stays whole
+    one = rt2._semantic_subclusters(r_argue)
+    check("same-incident clips stay one event (#8)",
+          len(one) == 1 and len(one[0]) == 2)
+    # a lone unrelated source becomes its own (sub-story-size) group
+    solo = rt2._semantic_subclusters(
+        r_argue + [{"summary": "Mara plays a calm cooking game alone",
+                    "title": "cooking", "date": "2026-07-03",
+                    "source_id": "u9"}])
+    sizes = sorted(len(s) for s in solo)
+    check("an unrelated source is not merged into an event (#8)",
+          sizes == [1, 2])
 
     # ---- reviewer #1: vision provenance --------------------------------
     from third_capture import scene_analysis

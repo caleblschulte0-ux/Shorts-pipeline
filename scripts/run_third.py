@@ -565,6 +565,79 @@ def _upsert_event(events: dict, who: list[str], reports: list[dict],
     return ev
 
 
+def _report_tokens(rep: dict) -> set:
+    """The salient ACTION vocabulary of ONE source, from its own scene
+    summary+title (stop-words removed, top 6). Per-source — unlike a whole-
+    pile fingerprint it does NOT drift as other sources are added, which is
+    what made the pile fingerprint unstable (reviewer #8)."""
+    toks: dict[str, int] = {}
+    text = (str(rep.get("summary", "")) + " "
+            + str(rep.get("title", ""))).lower()
+    for t in re.findall(r"[a-z]{4,}", text):
+        if t not in _EVENT_STOP:
+            toks[t] = toks.get(t, 0) + 1
+    return set(sorted(sorted(toks), key=lambda t: -toks[t])[:6])
+
+
+def _report_week(rep: dict):
+    """A monotone ISO-week ordinal (year*53 + week) for one source, or None.
+    Monotone so an incident straddling a Sun/Mon boundary is one week apart,
+    not a wraparound of ~51."""
+    d = str(rep.get("date", ""))[:10]
+    if d.count("-") != 2:
+        return None
+    try:
+        y, m, dd = (int(x) for x in d.split("-"))
+        iso = datetime(y, m, dd).isocalendar()
+        return iso[0] * 53 + iso[1]
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _semantic_subclusters(reports: list[dict]) -> list[list[dict]]:
+    """Split a PEOPLE cluster into ACTUAL events (reviewer #8).
+
+    storyline.find_clusters() groups clips by shared people, so an argument
+    on the 3rd and a reconciliation on the 15th between the same streamers
+    land in ONE pile. Naming that pile with a fingerprint does not split it.
+    Now that every source has a scene report, we can: single-linkage group
+    sources that share >=2 salient action tokens AND fall within the same
+    ISO week (+-1 week, so a boundary-crossing incident stays whole). Each
+    component is one semantic event → one event record → one director call.
+
+    Deliberately split-happy: sources with no shared action vocabulary form
+    separate components (dropped if <2), because compiling two unrelated
+    same-people clips into a fake 'story' is the worse error (spec §21)."""
+    n = len(reports)
+    if n <= 1:
+        return [list(reports)] if reports else []
+    toks = [_report_tokens(r) for r in reports]
+    weeks = [_report_week(r) for r in reports]
+    parent = list(range(n))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            wi, wj = weeks[i], weeks[j]
+            week_ok = wi is None or wj is None or abs(wi - wj) <= 1
+            shared = len(toks[i] & toks[j])
+            if week_ok and shared >= 2:
+                parent[find(j)] = find(i)
+
+    groups: dict[int, list[dict]] = {}
+    for i in range(n):
+        groups.setdefault(find(i), []).append(reports[i])
+    # largest event first, ties broken by earliest date (deterministic)
+    return sorted(groups.values(),
+                  key=lambda g: (-len(g),
+                                 min(str(r.get("date", "")) for r in g)))
+
+
 def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                    slug: str) -> dict | None:
     """STORY DIRECTOR pipeline (STORY_DIRECTOR_PLAYBOOK §4):
@@ -681,121 +754,133 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 print(f"[story] {who}: <2 analyzable sources", flush=True)
                 continue
 
-            # event record keyed on a SEMANTIC fingerprint (people +
-            # actions + week), computed now that scene summaries exist
-            event = _upsert_event(events, cluster["who"], reports, urls)
+            # ---- semantic subclustering (reviewer #8): the people cluster
+            # may hold several DISTINCT events. Split it into real events and
+            # try each independently — one event record + one director call
+            # per event, not one call over a mixed pile.
+            for sub in _semantic_subclusters(reports):
+                if len(sub) < 2:
+                    continue      # a lone source is not a story
+                sub_urls = [r["source_id"] for r in sub]
+                # event record keyed on a SEMANTIC fingerprint (people +
+                # actions + week) of THIS event's sources only
+                event = _upsert_event(events, cluster["who"], sub, sub_urls)
+                elbl = f"{who}/{event['event_id']}"
 
-            # ---- eligibility + structure + story EDL (§8-10)
-            edl = story_director.plan_story(
-                reports, event, guidance=_story_guidance())
-            if not edl:
-                print(f"[story] {who}: director says not a story",
-                      flush=True)
-                continue
-            plan_urls = [b["source_id"] for b in edl["beats"]]
-            if storyline.story_key(plan_urls) in shipped or \
-                    storyline.near_dup(plan_urls, shipped_members):
-                print(f"[story] {who}: planned arc already shipped/near-"
-                      "dup — skipped", flush=True)
-                continue
+                # ---- eligibility + structure + story EDL (§8-10)
+                edl = story_director.plan_story(
+                    sub, event, guidance=_story_guidance())
+                if not edl:
+                    print(f"[story] {elbl}: director says not a story",
+                          flush=True)
+                    continue
+                plan_urls = [b["source_id"] for b in edl["beats"]]
+                if storyline.story_key(plan_urls) in shipped or \
+                        storyline.near_dup(plan_urls, shipped_members):
+                    print(f"[story] {elbl}: planned arc already shipped/"
+                          "near-dup — skipped", flush=True)
+                    continue
 
-            # ---- rough cut via the dedicated renderer (§11)
-            src_map = {r["source_id"]: r for r in reports}
-            story_work = work / f"story_{slug}"
-            revision_count = 0
-            try:
-                led = story_mod.render_story(edl, src_map, out_mp4,
-                                             story_work)
-            except Exception as e:  # noqa: BLE001
-                print(f"::warning::[story] {who}: render failed ({e}) — "
-                      "next cluster", flush=True)
-                continue
+                # ---- rough cut via the dedicated renderer (§11)
+                src_map = {r["source_id"]: r for r in sub}
+                story_work = work / f"story_{slug}"
+                revision_count = 0
+                try:
+                    led = story_mod.render_story(edl, src_map, out_mp4,
+                                                 story_work)
+                except Exception as e:  # noqa: BLE001
+                    print(f"::warning::[story] {elbl}: render failed ({e})"
+                          " — next event", flush=True)
+                    continue
 
-            # ---- narrative review + ONE revision (§18-19)
-            sheet = story_work / "rough.qa.jpg"
-            sheet_ok = clip_qa.contact_sheet(out_mp4, sheet) is not None
-            tlines = scene_analysis._dialogue_lines(led["final_words"])
-            review = story_director.review_rough_cut(
-                edl, tlines, str(sheet) if sheet_ok else None,
-                led["duration_s"])
-            if not review["publish"] and review["problems"]:
-                edl2 = story_director.revise_edl(edl, review["problems"],
-                                                 reports)
-                if edl2:
-                    revision_count = 1
-                    try:
-                        led = story_mod.render_story(
-                            edl2, src_map, out_mp4, story_work)
-                        edl = edl2
-                        tlines = scene_analysis._dialogue_lines(
-                            led["final_words"])
-                        sheet_ok = clip_qa.contact_sheet(
-                            out_mp4, sheet) is not None
-                        review = story_director.review_rough_cut(
-                            edl, tlines,
-                            str(sheet) if sheet_ok else None,
-                            led["duration_s"])
-                    except Exception as e:  # noqa: BLE001
-                        print(f"::warning::[story] {who}: revision render "
-                              f"failed ({e})", flush=True)
-                        continue
-            if not review["publish"]:
-                print(f"[story] {who}: narrative review failed after "
-                      f"{revision_count} revision(s) "
-                      f"(score={review['story_score']}) — abandoned",
-                      flush=True)
-                continue
+                # ---- narrative review + ONE revision (§18-19)
+                sheet = story_work / "rough.qa.jpg"
+                sheet_ok = clip_qa.contact_sheet(out_mp4, sheet) is not None
+                tlines = scene_analysis._dialogue_lines(led["final_words"])
+                review = story_director.review_rough_cut(
+                    edl, tlines, str(sheet) if sheet_ok else None,
+                    led["duration_s"])
+                if not review["publish"] and review["problems"]:
+                    edl2 = story_director.revise_edl(
+                        edl, review["problems"], sub)
+                    if edl2:
+                        revision_count = 1
+                        try:
+                            led = story_mod.render_story(
+                                edl2, src_map, out_mp4, story_work)
+                            edl = edl2
+                            tlines = scene_analysis._dialogue_lines(
+                                led["final_words"])
+                            sheet_ok = clip_qa.contact_sheet(
+                                out_mp4, sheet) is not None
+                            review = story_director.review_rough_cut(
+                                edl, tlines,
+                                str(sheet) if sheet_ok else None,
+                                led["duration_s"])
+                        except Exception as e:  # noqa: BLE001
+                            print(f"::warning::[story] {elbl}: revision "
+                                  f"render failed ({e})", flush=True)
+                            continue
+                if not review["publish"]:
+                    print(f"[story] {elbl}: narrative review failed after "
+                          f"{revision_count} revision(s) "
+                          f"(score={review['story_score']}) — abandoned",
+                          flush=True)
+                    continue
 
-            # ---- dedupe on the ACTUAL rendered members + duration band
-            skey = storyline.story_key(led["member_keys"])
-            if skey in shipped or \
-                    storyline.near_dup(led["member_keys"],
-                                       shipped_members):
-                continue
-            if not (s_min <= led["duration_s"] <= s_max):
-                print(f"::warning::[story] {who}: {led['duration_s']:.0f}s"
-                      f" outside {s_min:.0f}-{s_max:.0f}s — next cluster",
-                      flush=True)
-                continue
+                # ---- dedupe on the ACTUAL rendered members + duration band
+                skey = storyline.story_key(led["member_keys"])
+                if skey in shipped or \
+                        storyline.near_dup(led["member_keys"],
+                                           shipped_members):
+                    continue
+                if not (s_min <= led["duration_s"] <= s_max):
+                    print(f"::warning::[story] {elbl}: "
+                          f"{led['duration_s']:.0f}s outside "
+                          f"{s_min:.0f}-{s_max:.0f}s — next event",
+                          flush=True)
+                    continue
 
-            # ---- mechanical QA (§20 floor; coherence was judged above)
-            qa = clip_qa.review(out_mp4, {
-                "authored_title": edl["title"], "hook": edl["hook_overlay"],
-                "series": "story"}, work)
-            hard = [p for p in qa["problems"] if "duration" not in p]
-            if qa["verdict"] == "fail" and hard:
-                print(f"::warning::[story] {who}: QA failed "
-                      f"({'; '.join(hard)[:140]}) — next cluster",
-                      flush=True)
-                continue
+                # ---- mechanical QA (§20 floor; coherence judged above)
+                qa = clip_qa.review(out_mp4, {
+                    "authored_title": edl["title"],
+                    "hook": edl["hook_overlay"], "series": "story"}, work)
+                hard = [p for p in qa["problems"] if "duration" not in p]
+                if qa["verdict"] == "fail" and hard:
+                    print(f"::warning::[story] {elbl}: QA failed "
+                          f"({'; '.join(hard)[:140]}) — next event",
+                          flush=True)
+                    continue
 
-            lead = led["beats"][0].get("streamer") or cluster["who"][0]
-            led.update({
-                "authored_title": edl["title"] or
-                f"The Full {who.title()} Story",
-                "clip_title": edl["title"] or who,
-                "authored_caption": author.scrub_text(
-                    f"The full story, beginning to end: {edl['premise']}"),
-                "authored_cta": "Rate this arc 1-10",
-                "streamer": lead, "series": "story", "who": cluster["who"],
-                "story_key": skey, "experiment_arm": "story",
-                "structure": "story", "self_healed": False,
-                "used_vod_expansion": used_vod,
-                "revision_count": revision_count,
-                "narrative_score": review["story_score"],
-                "qa": {k: qa[k] for k in ("verdict", "problems",
-                                          "vision")},
-            })
-            event["published_versions"].append(skey)
-            try:
-                atomic_write_json(EVENTS_FILE, events)
-            except Exception:  # noqa: BLE001
-                pass
-            print(f"[story] built {who} {edl['structure']} story: "
-                  f"{led['n_beats']} beats, {led['duration_s']}s, "
-                  f"narrative={review['story_score']} — "
-                  f"{edl['title']!r}", flush=True)
-            return led
+                lead = led["beats"][0].get("streamer") or cluster["who"][0]
+                led.update({
+                    "authored_title": edl["title"] or
+                    f"The Full {who.title()} Story",
+                    "clip_title": edl["title"] or who,
+                    "authored_caption": author.scrub_text(
+                        f"The full story, beginning to end: "
+                        f"{edl['premise']}"),
+                    "authored_cta": "Rate this arc 1-10",
+                    "streamer": lead, "series": "story",
+                    "who": cluster["who"], "event_id": event["event_id"],
+                    "story_key": skey, "experiment_arm": "story",
+                    "structure": "story", "self_healed": False,
+                    "used_vod_expansion": used_vod,
+                    "revision_count": revision_count,
+                    "narrative_score": review["story_score"],
+                    "qa": {k: qa[k] for k in ("verdict", "problems",
+                                              "vision")},
+                })
+                event["published_versions"].append(skey)
+                try:
+                    atomic_write_json(EVENTS_FILE, events)
+                except Exception:  # noqa: BLE001
+                    pass
+                print(f"[story] built {elbl} {edl['structure']} story: "
+                      f"{led['n_beats']} beats, {led['duration_s']}s, "
+                      f"narrative={review['story_score']} — "
+                      f"{edl['title']!r}", flush=True)
+                return led
         print("[story] no cluster passed the director", flush=True)
         try:
             atomic_write_json(EVENTS_FILE, events)
