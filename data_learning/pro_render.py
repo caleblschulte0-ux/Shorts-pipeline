@@ -528,7 +528,8 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         return scenes.money_scene(out, seconds, upto=int(shot.get("upto", 0)),
                                   final=bool(shot.get("final", False)),
                                   number=str(shot.get("number", "")),
-                                  label=str(shot.get("label", "")))
+                                  label=str(shot.get("label", "")),
+                                  extra=shot.get("extra"))
     if k == "flat_life_grid":
         return flat2d.life_grid(
             out, seconds, segments=shot.get("segments"),
