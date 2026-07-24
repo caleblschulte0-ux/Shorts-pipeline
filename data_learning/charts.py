@@ -772,6 +772,14 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
     if values:
         top_icons = max(1, int(round((values[0] / vmax) * cols)))
         specs = [(values[0], "pt", float(top_icons - 1), float(n - 1))]
+        # BAKE THE HOST on the BIGGEST row's growing edge (the payoff row), hoisting
+        # icons in as it fills — he ends on the longest row.
+        _mr = max(range(len(values)), key=lambda k: values[k])
+        _mfull = max(1, int(round((values[_mr] / vmax) * cols)))
+        _mshown = max(1, min(_mfull, int(round(_mfull * t + 0.5)))) if t < 1 else _mfull
+        _bake_host(ax, float(_mshown - 1), float(n - 1 - _mr), "lift",
+                   (reveal * 4) % 1.0, zoom=0.5, align=(0.5, 0.0))
+    insight.host_baked = True
     return ax, specs
 
 

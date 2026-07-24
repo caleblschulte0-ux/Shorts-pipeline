@@ -54,6 +54,20 @@ FOOT_H = (H - FOOT_Y) & ~1       # keep even (yuv420p / filter sizing)
 # Chart kinds that composite the host directly into the chart PNG (Data rides
 # the animated element). The travelling overlay is hidden on these beats.
 HOST_BAKED_KINDS = ("fill_vessel", "bignum", "timeline")
+# Card chart kinds that now BAKE the host into their frames (charts._bake_host):
+# Data is drawn inside the chart riding/pushing/building the data, so the
+# travelling overlay must be suppressed for these beats — keyed by KIND so it's
+# robust regardless of when the host_baked flag propagates.
+BAKED_CHART_KINDS = frozenset({
+    "trend", "timeline", "pictorial_race", "rank", "comparison", "bars",
+    "waffle_grid", "share", "pictograph"})
+
+
+def _seg_is_baked(seg) -> bool:
+    return (getattr(seg, "kind", "") in BAKED_CHART_KINDS
+            or getattr(seg, "kind", "") in HOST_BAKED_KINDS
+            or getattr(seg, "host_baked", False)
+            or getattr(getattr(seg, "insight", None), "host_baked", False))
 
 MASCOT_SIZE = 520                # the brand's face — the lead, a big central presence
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
@@ -1265,8 +1279,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # gauge arc / walks the timeline dot): suppress the traveling
             # overlay so there's exactly one host on the beat. Covered either by
             # a baked chart kind or a scene mechanic that flagged host_baked.
-            if (getattr(st.segments[i], "kind", "") in HOST_BAKED_KINDS
-                    or getattr(st.segments[i], "host_baked", False)):
+            if _seg_is_baked(st.segments[i]):
                 return {"hidden": True}
             if not _director:
                 return ("point", "shock", "point", "think")[i % 4]
@@ -1353,8 +1366,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
 
             # If the opening chart BAKES the host in (Data rides the drawing
             # line/bar), add NO overlay for the hook — he's already in the chart.
-            _hook_baked = bool(st.segments) and getattr(st.segments[0],
-                                                        "host_baked", False)
+            _hook_baked = bool(st.segments) and _seg_is_baked(st.segments[0])
             if lead_hook and st.segments and not _hook_baked:
                 staged_hook = _stage_on_data(st.segments[0], windows[0][0],
                                              windows[0][1], _act(st.segments[0]),
@@ -1393,8 +1405,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # star datum) rather than standing below; otherwise he is the big
             # central celebration.
             # If the recap chart bakes the host in, add NO closing overlay.
-            _close_baked = bool(st.segments) and getattr(st.segments[-1],
-                                                         "host_baked", False)
+            _close_baked = bool(st.segments) and _seg_is_baked(st.segments[-1])
             staged_close = None
             if lead_payoff and st.segments and not _close_baked:
                 staged_close = _stage_on_data(st.segments[-1], windows[-1][0],
