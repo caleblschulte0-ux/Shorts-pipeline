@@ -1097,52 +1097,32 @@ def _stage_on_data(seg, w0, w1, pose, prev_tl, sweep: bool = True):
     where he already is) — used when this beat CONTINUES the previous chart (the
     seg that leads the hook, the payoff recap) so he doesn't jump back down and
     re-sweep. Returns (seq_tuple, entry_xy) or None if the beat has no anchor."""
-    hero = _hero_anchor(seg)
-    if hero is None:
+    anchors = getattr(seg, "anchors", None)
+    if not anchors:
         return None
-    bit, _default_pose = _DATA_BIT.get(getattr(seg, "kind", ""),
-                                       ("beside_hero", "point"))
     S = MASCOT_SIZE
 
     def _tl(cx, cy):                    # centre -> full-size top-left, clamped
         return (min(max(cx - S / 2, 2.0), float(W - S - 2)),
                 min(max(cy - S / 2, 2.0), float(H - S - 2)))
 
-    hcx, hcy, _hw, _hh = _screen_box(hero)
-    entry = None
-    if bit == "ride_peak":
-        # A climbing line: Data starts at the FIRST point (low-left) and rides UP
-        # to the PEAK — small enough to sit ON the line, the glide traces the
-        # climb. This bit shipped, so keep it in-chart.
-        isc = 0.62
-        peak = max(seg.anchors, key=lambda a: a.get("value", 0.0))
-        pcx, pcy, _pw, _ph = _screen_box(peak)
-        bcx, bcy, variant = pcx, pcy - S * isc * 0.30, "R"
-        start = seg.anchors[0] if seg.anchors else peak
-        scx, scy, _sw, _sh = _screen_box(start)
-        entry = _tl(scx, scy)
-    else:
-        # Every other chart lives in the top ~60%, leaving the lower frame empty
-        # when Data is tucked inside it (the gate's 'lower 40% wasted' void). So
-        # stand him BIG in the lower-mid frame, directly UNDER this beat's hero
-        # number, pointing UP at it — he bridges the chart-to-bottom gap AND
-        # works that specific datum. His x tracks the number (a new spot every
-        # beat); he sweeps up into place.
-        isc = 0.98
-        chart_bottom = CHART_Y + CHART_H
-        bcy = max(float(chart_bottom) + S * isc * 0.10, float(H) * 0.60)
-        bcx = min(max(hcx, CHART_X + S * isc * 0.4),
-                  float(CHART_X + CHART_W) - S * isc * 0.4)
-        variant = "U"
-    tlx, tly = _tl(bcx, bcy)
-    if entry is None and sweep:
-        # SWEEP UP into place from below — real travel (cadence) + reads as Data
-        # rushing in to work the number, not parked.
-        entry = (tlx, min(tly + 520.0, float(H - S - 2)))
-    if not sweep:
-        entry = None                   # continue on from his current spot
-    angle = UP_ANGLE if variant == "U" else SIDE_ANGLE
-    flip = (variant == "L")
+    # UNIVERSAL BIT: Data CLIMBS the data. The thing that ships is him moving
+    # ALONG the data (he "literally climbs the CO2 curve"), not standing at it —
+    # standing reads as a decorative prop-hold however well he's positioned. So
+    # for EVERY chart he travels from the smallest datum UP to the peak: he
+    # climbs the bar-ranking, rides the line to its top, scales up to the biggest
+    # slice. Different data shape + different peak each beat = the variety.
+    isc = 0.64
+    peak = max(anchors, key=lambda a: a.get("value", 0.0))
+    low = min(anchors, key=lambda a: a.get("value", 0.0))
+    pcx, pcy, _pw, _ph = _screen_box(peak)
+    lcx, lcy, _lw, _lh = _screen_box(low)
+    # End just above/beside the peak so he tops out ON the winning datum; start
+    # down at the smallest so the glide traces the whole climb.
+    tlx, tly = _tl(pcx, pcy - S * isc * 0.28)
+    entry = _tl(lcx, lcy + S * isc * 0.10) if sweep else None
+    angle = UP_ANGLE
+    flip = (lcx > pcx)                  # face the direction he climbs
     return (tlx, tly, w0, w1, angle, flip, pose, isc), entry
 
 
@@ -1360,7 +1340,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             staged_hook = None
             if lead_hook and st.segments:
                 staged_hook = _stage_on_data(st.segments[0], windows[0][0],
-                                             windows[0][1], hook_perf, None)
+                                             windows[0][1], "point", None)
             if staged_hook is not None:
                 _add(staged_hook[0], staged_hook[1])
             else:
@@ -1373,11 +1353,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 spec = _seg_spec(i)
                 if isinstance(spec, dict) and spec.get("hidden"):
                     continue                       # host baked into the chart
-                # Data PERFORMS ON THE DATA: he sweeps up onto THIS beat's star
-                # datum (a new spot every beat), not parked at the bottom stage.
+                # Data PERFORMS ON THE DATA: he CLIMBS this beat's data to the
+                # peak (a moving bit, a new climb every beat). A clean pointing
+                # pose (no random off-topic prop — the gate blocked a bird / $$$
+                # bottle) so the CLIMB is the bit, not a gadget he's holding.
                 # seg0 that led the hook CONTINUES from there (no re-sweep).
-                staged = _stage_on_data(st.segments[i], wi[0], wi[1], spec, None,
-                                        sweep=not (i == 0 and lead_hook))
+                staged = _stage_on_data(st.segments[i], wi[0], wi[1], "point",
+                                        None, sweep=not (i == 0 and lead_hook))
                 if staged is not None:
                     _add(staged[0], staged[1])
                 else:                              # no anchor -> fall to the stage
