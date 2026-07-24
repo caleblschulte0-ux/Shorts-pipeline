@@ -804,7 +804,8 @@ def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
 
 
 def build_story_ass(st: story.Story, windows, events, out: Path,
-                    accent: str = "&H4FD1F5&", hook_visual: bool = False) -> None:
+                    accent: str = "&H4FD1F5&", hook_visual: bool = False,
+                    chart_hook: bool = False) -> None:
     acc = accent.strip("&H").rstrip("&")          # bare BBGGRR for inline tags
     head = f"""[Script Info]
 ScriptType: v4.00+
@@ -853,8 +854,9 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                    ("share", "waffle_grid", "pie", "donut", "pictorial_pie"))
     # When a full-frame HOOK VISUAL (the receipt) is on screen it IS the hero —
     # the big number + claim would just collide with it, so they're suppressed
-    # and the receipt + VO captions carry the open.
-    if headline and not hook_visual and not _share_lead:
+    # and the receipt + VO captions carry the open. A chart-led hook (chart_hook)
+    # or a share-led open likewise drops the giant number (the chart carries it).
+    if headline and not hook_visual and not _share_lead and not chart_hook:
         # Hero number: huge, accent-filled, punches in hard on the first frame.
         num = ("{\\an5\\pos(540,235)\\fs240\\1c" + accent + "\\3c&H101010&"
                "\\bord7\\shad0\\fad(0,90)\\fscx150\\fscy150"
@@ -1098,15 +1100,30 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         narration, windows = synth_narration(sentences, work, voice)
         total = _dur(narration) + 0.3
 
-        # TRUE 30fps: re-render each chart at frames = beat*30 now that the beat
-        # length is known, so the build animates smoothly across the WHOLE beat
+        # HOOK VISUAL: a receipt cold-open (built from the story's own data) when
+        # the data supports it. Computed HERE (before the 30fps re-render) so the
+        # opening chart can LEAD the hook when there is no receipt — otherwise the
+        # hook is ~3s of a mascot on the gradient with no data on screen, which is
+        # the empty_void / decorative_mascot the gate blocks. The data
+        # demonstration should be the star from frame 1.
+        receipt = _build_hook_receipt(story_cfg, work, slug,
+                                      hook_dur=windows[0][1] - windows[0][0])
+        lead_hook = receipt is None          # seg0's chart carries the cold-open
+
+        # TRUE 30fps: re-render each chart at frames = span*30 now that the beat
+        # length is known, so the build animates smoothly across the WHOLE window
         # (no held/duplicate frames — the choppiness the temporal grade caught).
+        # seg0 spans hook+seg0 when it leads the hook, so it builds continuously
+        # from frame 1 with no frozen hook.
         chart_dir = work / "charts"
+        disp_start: dict = {}                 # per-seg chart DISPLAY start (s0)
         for i, seg in enumerate(st.segments):
             wi = windows[1 + i] if 1 + i < len(windows) else None
             if not (wi and getattr(seg, "insight", None) and seg.chart_path):
                 continue
-            nfr = int(max(30, min(150, round((wi[1] - wi[0]) * 30))))
+            start = windows[0][0] if (i == 0 and lead_hook) else wi[0]
+            disp_start[i] = start
+            nfr = int(max(30, min(240, round((wi[1] - start) * 30))))
             try:
                 cpath, _a = charts.render_story_build(
                     seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr)
@@ -1122,14 +1139,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # Full soundtrack: narration + ducked theme music + visual-synced SFX.
         soundtrack = _build_soundtrack(narration, windows, events, total,
                                        theme.get("vibe", "calm"), work, slug)
-        # HOOK VISUAL: a receipt whose total races up (built from the story's own
-        # data). When present it becomes the cold-open and the ASS hero number is
-        # suppressed so they don't collide.
-        receipt = _build_hook_receipt(story_cfg, work, slug,
-                                      hook_dur=windows[0][1] - windows[0][0])
+        # A full-frame receipt suppresses BOTH the hero number and the hook text
+        # (it IS the open). A chart-led hook keeps the punchy hook TEXT but drops
+        # the giant hero number so it doesn't collide with the chart.
         ass = work / "cap.ass"
         build_story_ass(st, windows, events, ass, accent=accent_ass,
-                        hook_visual=bool(receipt))
+                        hook_visual=bool(receipt), chart_hook=lead_hook)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
         # Ordered mascot sequence: hook (up, centred), one per number (tucked
@@ -1200,10 +1215,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 x = Lx if i % 2 == 0 else Rx          # pace across the stage
                 return x, stage_y
 
-            # HOOK: Data REACTS with a bespoke bit. If the receipt visual is up
-            # (it fills the top ~60%), he sits BELOW it reacting up; otherwise he
-            # is the central visual himself.
-            hook_y = float(H * 0.62) if receipt else float(H * 0.40)
+            # HOOK: Data REACTS with a bespoke bit. When a visual fills the top
+            # (the receipt, OR the opening chart leading the hook) he presents it
+            # from the lower stage at normal size — big enough to read, not so big
+            # he covers the data. With NO top visual he is the central hero, large.
+            hook_leads = bool(receipt) or lead_hook
+            hook_y = stage_y if hook_leads else float(H * 0.40)
+            hook_scale = 1.0 if hook_leads else 1.45
             home = (Cx, hook_y)
             hook_perf = gap_fill
             if _director:
@@ -1220,7 +1238,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # motion — the reliable way to kill a frozen 'dead card' run and the
             # empty void the gate flags on those beats).
             seq.append((Cx, hook_y, windows[0][0], windows[0][1],
-                        UP_ANGLE, False, hook_perf, 1.45))
+                        UP_ANGLE, False, hook_perf, hook_scale))
             for i in range(nseg):
                 wi = windows[1 + i] if 1 + i < len(windows) else None
                 if not wi:
@@ -1358,7 +1376,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # short tail.
                 nfr = len(_glob.glob(seg.chart_path.replace("%02d", "*"))) or 24
                 wi = windows[1 + i] if 1 + i < len(windows) else None
-                beat = (wi[1] - wi[0]) if wi else 2.0
+                # Span the DISPLAY window (for seg0 leading the hook this includes
+                # the hook), so the build's framerate matches how long it's shown.
+                _s0 = disp_start.get(i, wi[0] if wi else 0.0)
+                beat = (wi[1] - _s0) if wi else 2.0
                 # Play at a smooth framerate (>=18fps) so growth doesn't step in
                 # visible jumps; with ~60 build frames this spans typical beats,
                 # and a short settle tail on longer beats stays under dead-air.
@@ -1441,7 +1462,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             if i not in seg_idx:
                 continue
             gi = seg_idx[i]
-            s0, s1 = windows[1 + i]
+            # s0 is the DISPLAY start — for the opening chart leading the hook this
+            # is the hook start, so the build fills the cold-open instead of a void.
+            s0 = disp_start.get(i, windows[1 + i][0])
+            s1 = windows[1 + i][1]
             fd = 0.14        # short cross-fade so no frame lands on near-black
             hold = max(0.5, (s1 - s0)) + 1.0
             # Full-frame viz (diorama, timeline, fill_vessel, ...) are authored
