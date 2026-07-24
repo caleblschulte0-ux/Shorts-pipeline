@@ -1115,15 +1115,23 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # (no held/duplicate frames — the choppiness the temporal grade caught).
         # seg0 spans hook+seg0 when it leads the hook, so it builds continuously
         # from frame 1 with no frozen hook.
+        # The LAST chart likewise spans its beat + the CLOSING when there's no
+        # receipt, so the payoff isn't a mascot-on-void either — a data recap
+        # holds the frame while Data lands the takeaway.
+        lead_payoff = receipt is None
+        last_i = len(st.segments) - 1
         chart_dir = work / "charts"
         disp_start: dict = {}                 # per-seg chart DISPLAY start (s0)
+        disp_end: dict = {}                   # per-seg chart DISPLAY end (s1)
         for i, seg in enumerate(st.segments):
             wi = windows[1 + i] if 1 + i < len(windows) else None
             if not (wi and getattr(seg, "insight", None) and seg.chart_path):
                 continue
             start = windows[0][0] if (i == 0 and lead_hook) else wi[0]
+            end = windows[-1][1] if (i == last_i and lead_payoff) else wi[1]
             disp_start[i] = start
-            nfr = int(max(30, min(240, round((wi[1] - start) * 30))))
+            disp_end[i] = end
+            nfr = int(max(30, min(300, round((end - start) * 30))))
             try:
                 cpath, _a = charts.render_story_build(
                     seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr)
@@ -1250,8 +1258,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # CLOSING: Data is the SPEAKER — big and central so his celebration
             # is the payoff and nothing sits frozen.
             close_act = _director.celebrate() if _director else "cheer"
-            seq.append((Cx, float(H * 0.30), windows[-1][0], windows[-1][1],
-                        UP_ANGLE, False, close_act, 1.55))
+            # With a recap chart behind the payoff, Data presents from the lower
+            # stage at normal size (so he doesn't cover it); with an empty payoff
+            # he is the big central celebration that lands the takeaway.
+            close_y = stage_y if lead_payoff else float(H * 0.30)
+            close_scale = 1.0 if lead_payoff else 1.55
+            seq.append((Cx, close_y, windows[-1][0], windows[-1][1],
+                        UP_ANGLE, False, close_act, close_scale))
         else:
             gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
@@ -1376,10 +1389,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # short tail.
                 nfr = len(_glob.glob(seg.chart_path.replace("%02d", "*"))) or 24
                 wi = windows[1 + i] if 1 + i < len(windows) else None
-                # Span the DISPLAY window (for seg0 leading the hook this includes
-                # the hook), so the build's framerate matches how long it's shown.
+                # Span the DISPLAY window (seg0 includes the hook, the last chart
+                # includes the closing) so the build's framerate matches how long
+                # it's shown.
                 _s0 = disp_start.get(i, wi[0] if wi else 0.0)
-                beat = (wi[1] - _s0) if wi else 2.0
+                _s1 = disp_end.get(i, wi[1] if wi else 2.0)
+                beat = (_s1 - _s0)
                 # Play at a smooth framerate (>=18fps) so growth doesn't step in
                 # visible jumps; with ~60 build frames this spans typical beats,
                 # and a short settle tail on longer beats stays under dead-air.
@@ -1462,10 +1477,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             if i not in seg_idx:
                 continue
             gi = seg_idx[i]
-            # s0 is the DISPLAY start — for the opening chart leading the hook this
-            # is the hook start, so the build fills the cold-open instead of a void.
+            # s0/s1 are the DISPLAY window — the opening chart leads the hook and
+            # the last chart trails into the closing, so neither bookend is a void.
             s0 = disp_start.get(i, windows[1 + i][0])
-            s1 = windows[1 + i][1]
+            s1 = disp_end.get(i, windows[1 + i][1])
             fd = 0.14        # short cross-fade so no frame lands on near-black
             hold = max(0.5, (s1 - s0)) + 1.0
             # Full-frame viz (diorama, timeline, fill_vessel, ...) are authored
