@@ -750,19 +750,29 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         else:
             color = ACCENT
         full = max(1, int(round((v / vmax) * cols)))
-        shown = max(0, min(full, int(round(full * t + 0.5)))) if t < 1 else full
+        # CONTINUOUS reveal: the frontier icon FADES in (no cell-by-cell stepping
+        # that judders / reads as dead air on the cadence metric).
+        shownf = (full * t) if t < 1 else float(full)
+        shown = int(shownf)
+        frac = shownf - shown
         img = _icon_img(p.label)
         for c in range(full):
-            on = c < shown
+            if c < shown:
+                on_a = 1.0
+            elif c == shown and frac > 0.0:
+                on_a = 0.28 + 0.72 * frac      # frontier fading in
+            else:
+                on_a = 0.0
             if img is not None:
-                oi = OffsetImage(img, zoom=0.62, alpha=1.0 if on else 0.28)
+                oi = OffsetImage(img, zoom=0.62, alpha=max(0.28, on_a))
                 ab = AnnotationBbox(oi, (c, y), frameon=False, zorder=3,
                                     box_alignment=(0.5, 0.5))
                 ax.add_artist(ab)
             else:
                 ax.scatter(c, y, s=290, marker="o",
-                           color=color if on else BAR_BASE,
-                           edgecolors="none", zorder=3, alpha=1.0 if on else 0.9)
+                           color=color if on_a > 0 else BAR_BASE,
+                           edgecolors="none", zorder=3,
+                           alpha=on_a if on_a > 0 else 0.9)
         # label above the row, value at the end of the row
         ax.text(-0.4, y + 0.40, p.label, ha="left", va="center", fontsize=24,
                 color=(color if p.label == insight.highlight_label else TEXT),
@@ -808,19 +818,28 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         labels.append((p.label, p.value, col))
     band = (band + [BAR_BASE] * 100)[:100]
     t = max(0.0, min(1.0, reveal))
-    lit = int(round(t * 100))
+    # CONTINUOUS fill: the frontier cell FADES in (alpha tracks the fractional
+    # part) so the grid changes every frame instead of stepping cell-by-cell —
+    # that stepping read as judder / near-dead-air on the cadence metric.
+    litf = t * 100.0
+    lit = int(litf)
+    frac = litf - lit
     ax = fig.add_axes([0.07, 0.12, 0.52, 0.66])
     ax.set_xlim(-0.5, 10.0); ax.set_ylim(-0.5, 10.0)
     ax.set_aspect("equal"); ax.set_axis_off()
     for idx in range(100):
         r, cN = divmod(idx, 10)
         y = 9 - r                              # fill top-to-bottom, left-to-right
-        on = idx < lit
-        fc = band[idx] if on else BAR_BASE
+        if idx < lit:
+            fc, a = band[idx], 1.0
+        elif idx == lit and frac > 0.0:
+            fc, a = band[idx], 0.30 + 0.70 * frac   # frontier fading in
+        else:
+            fc, a = BAR_BASE, 0.55
         ax.add_patch(FancyBboxPatch(
             (cN - 0.42, y - 0.42), 0.84, 0.84,
             boxstyle="round,pad=0.02,rounding_size=0.18",
-            linewidth=0, facecolor=fc, alpha=1.0 if on else 0.55, zorder=3))
+            linewidth=0, facecolor=fc, alpha=a, zorder=3))
     # Legend chips (label + value) on the right, fading in with the fill.
     specs, la = [], _lblalpha(reveal)
     top = 0.70
