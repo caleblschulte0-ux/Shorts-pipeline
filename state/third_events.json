@@ -9,35 +9,14 @@
       "first_seen": "2026-07-24",
       "known_claims": [],
       "candidate_sources": [
+        "https://www.twitch.tv/jasontheween/clip/CourageousPleasantDiamondSSSsss-cb0E6NrmD1CD-zEp",
         "https://www.twitch.tv/stableronaldo/clip/FilthyNaiveSalamanderSeemsGood-3ah8WzcVjpUOK91V",
         "https://www.twitch.tv/stableronaldo/clip/FitMushySandpiperCclamChamp-WPjeKJRDC3Y1EehK",
         "https://www.twitch.tv/kaicenat/clip/RichShakingHawkMingLee-Szia-MtqT8YamHHG",
         "https://www.twitch.tv/stableronaldo/clip/LovelyFrigidPizzaChefFrank-XiUhCBsTsN7RcoMW",
         "https://www.twitch.tv/stableronaldo/clip/EvilConsiderateRedpandaHassaanChop-oR6L3Nya3ureK-aB",
         "https://www.twitch.tv/silky/clip/WildFurtiveJayFeelsBadMan-6WpXqnDEY_UKGCqq",
-        "https://www.twitch.tv/stableronaldo/clip/WittyRudeTigerPipeHype-5YE0-zT6EQPyuRui",
-        "https://www.twitch.tv/stableronaldo/clip/MuddyTsundereKimchiMVGame-uNiIQQT9LrINVKYI"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-07-24"
-    },
-    "kaicenat-202607": {
-      "event_id": "kaicenat-202607",
-      "people": [
-        "kaicenat"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-07-24",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/kaicenat/clip/SweetThankfulEndivePeteZarollTie-yuGLm1y19dZCD2OI",
-        "https://www.twitch.tv/kaicenat/clip/DepressedNimbleStorkTinyFace-4soP_t3t8jsauLeu",
-        "https://www.twitch.tv/kaicenat/clip/RichShakingHawkMingLee-Szia-MtqT8YamHHG",
-        "https://www.twitch.tv/fanum/clip/MuddyProtectiveHerringTakeNRG-f-aAyfzYB7xDrf8R",
-        "https://www.twitch.tv/kaicenat/clip/StrongOriginalTitanAsianGlow-tbeO2ffjoyWNmcWy",
-        "https://www.twitch.tv/kaicenat/clip/HyperConsideratePotatoPanicVis-PoXtd8ZVMM-TpOPJ",
-        "https://www.twitch.tv/kaicenat/clip/TangentialDeterminedAlmondSpicyBoy-oeitzoU0UBXPhjHW",
-        "https://www.twitch.tv/jasontheween/clip/PrettiestCorrectSwallowDuDudu-0Otz2VBangRlGoes"
+        "https://www.twitch.tv/stableronaldo/clip/WittyRudeTigerPipeHype-5YE0-zT6EQPyuRui"
       ],
       "published_versions": [],
       "last_updated": "2026-07-24"
@@ -60,7 +39,9 @@
         "https://www.twitch.tv/jynxzi/clip/GrotesqueYummyPlumberBlargNaut-3Ug8h4PdOD-6_yT8",
         "https://www.twitch.tv/jynxzi/clip/AntsyCrepuscularRedpandaPRChase-JjQz25a7DY9v1ZiM"
       ],
-      "published_versions": [],
+      "published_versions": [
+        "story-1140e37d4986aaac"
+      ],
       "last_updated": "2026-07-24"
     }
   }

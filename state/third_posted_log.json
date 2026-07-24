@@ -1632,6 +1632,60 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "rejected-carefuldeafbunnyjoncarnage-zjmfmikz0zt0r_au": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/CarefulDeafBunnyJonCarnage-zJmfmiKz0ZT0r_aU",
+      "streamer": "sodapoppin",
+      "title": "Yak",
+      "qa_rejected": true,
+      "ts": "2026-07-24T12:13:15.177935+00:00"
+    },
+    "rejected-spunkypeppysandpiperomgscoots-r-i-kg_s9kiiwnw5": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/SpunkyPeppySandpiperOMGScoots-r-i-kg_S9kIIWNw5",
+      "streamer": "sodapoppin",
+      "title": "lol",
+      "qa_rejected": true,
+      "ts": "2026-07-24T12:15:02.849413+00:00"
+    },
+    "rejected-tacitblitheeyeballoskomodo-nn43jxgvpqx8ag66": {
+      "source_url": "https://www.twitch.tv/xqc/clip/TacitBlitheEyeballOSkomodo-Nn43JxgVPqx8ag66",
+      "streamer": "xqc",
+      "title": "20 min",
+      "qa_rejected": true,
+      "ts": "2026-07-24T12:16:10.295708+00:00"
+    },
+    "clip-20260724-2": {
+      "url": "https://youtube.com/shorts/P98xnIgpZs4",
+      "title": "Argentina's Final Unravels",
+      "kind": "story",
+      "ts": "2026-07-24T13:17:51.206324+00:00",
+      "uploaded_at": "2026-07-24T13:17:51.206344+00:00",
+      "publish_at": "2026-07-24T18:30:00Z",
+      "story_key": "story-1140e37d4986aaac",
+      "member_keys": [
+        "https://www.twitch.tv/jynxzi/clip/PreciousCrazyCakeCorgiDerp-auPfqh5C6thxQJ2A",
+        "https://www.twitch.tv/jynxzi/clip/PreciousCrazyCakeCorgiDerp-auPfqh5C6thxQJ2A",
+        "https://www.twitch.tv/jynxzi/clip/PreciousCrazyCakeCorgiDerp-auPfqh5C6thxQJ2A",
+        "https://www.twitch.tv/jynxzi/clip/EnchantingSteamyOctopusGrammarKing--Js3H_TH-52CFxNR",
+        "https://www.twitch.tv/jynxzi/clip/EnchantingSteamyOctopusGrammarKing--Js3H_TH-52CFxNR"
+      ],
+      "streamer": "jynxzi",
+      "who": [
+        "jynxzi"
+      ],
+      "series": "story",
+      "experiment_arm": "story",
+      "structure": "story",
+      "actual_structure": "story",
+      "n_beats": 5,
+      "story_structure": "escalation",
+      "duration_s": 70.2,
+      "narrative_score": 73,
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 4,
+      "replay_count": 0
     }
   }
 }
