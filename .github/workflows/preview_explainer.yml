@@ -53,6 +53,13 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
 
+      - name: Scoring calibration (fail fast if the instrument lost separation)
+        run: |
+          # The score is only trustworthy if it still SEPARATES weak < baseline
+          # < strong with the ship/block line in the gap. Pure-function check,
+          # no deps — runs before we spend minutes rendering.
+          python3 data_learning/tests/test_showrunner_scoring.py
+
       - name: Install system deps (ffmpeg only — no Blender for a fast preview)
         run: |
           sudo rm -f /etc/apt/sources.list.d/microsoft*.list \

@@ -73,6 +73,30 @@ def compute_score(dims: dict) -> int:
     return round(total)
 
 
+def apply_motion_override(checks: dict, motion: dict) -> dict:
+    """Objective override: code measures whether motion EXISTS; the model can't
+    average a real dead hold away. Returns a NEW checks dict (never mutates)."""
+    checks = dict(checks or {})
+    if (motion or {}).get("longest_static_s", 0) >= 4.0:
+        checks["dead_air"] = {
+            "present": True,
+            "evidence": f"code: {motion['longest_static_s']}s frozen"}
+    return checks
+
+
+def failed_autofails(checks: dict) -> list:
+    """Which hard auto-fail checks are PRESENT — code BLOCKS on any of these
+    regardless of the numeric score. The rubric's hard rules, not suggestions."""
+    return [k for k in AUTOFAIL_CHECKS
+            if isinstance((checks or {}).get(k), dict) and checks[k].get("present")]
+
+
+def decide_verdict(score: int, checks: dict) -> str:
+    """The single ship/block rule: block on ANY auto-fail OR a sub-threshold
+    score. Pure so the calibration fixtures can pin it in CI."""
+    return "block" if (failed_autofails(checks) or score < MIN_SCORE) else "ship"
+
+
 def _duration(mp4: Path) -> float:
     try:
         out = subprocess.run(
@@ -396,16 +420,9 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
     # get to call a choppy video smooth.
     dims["temporal_craft"] = temporal_grade(temporal)
     score = compute_score(dims)
-    checks = grades.get("checks", {}) or {}
-    # Objective override: code measures whether motion EXISTS; the model can't
-    # average a real dead hold away.
-    if motion.get("longest_static_s", 0) >= 4.0:
-        checks.setdefault("dead_air", {})
-        checks["dead_air"] = {"present": True,
-                              "evidence": f"code: {motion['longest_static_s']}s frozen"}
-    failed = [k for k in AUTOFAIL_CHECKS
-              if isinstance(checks.get(k), dict) and checks[k].get("present")]
-    verdict = "block" if (failed or score < MIN_SCORE) else "ship"
+    checks = apply_motion_override(grades.get("checks", {}) or {}, motion)
+    failed = failed_autofails(checks)
+    verdict = decide_verdict(score, checks)
     return {
         "score": score, "verdict": verdict,
         "dimensions": {k: int(dims.get(k, 0)) for k in WEIGHTS},
