@@ -868,7 +868,8 @@ def _cash_pile(d, cx, base_y, frac, seed, glow_coin=False):
 
 
 def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
-                final: bool = False, number: str = "", label: str = "") -> Path:
+                final: bool = False, number: str = "", label: str = "",
+                extra: dict | None = None) -> Path:
     """THE RECURRING MOTIF — physical, not a chart. The figure stands beside a
     HEAP of a life's money that visibly shrinks chapter to chapter. This beat the
     named chunk blows off the top of the pile and away; the pile is smaller than
@@ -917,6 +918,9 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
         else:
             armsu = 0.44 + 0.20 * (0.5 + 0.5 * math.sin(i * 0.7))   # grabbing up
             strd = dirx * (10 + 6 * math.sin(i * 0.7))              # stepping after it
+        ex = extra or {}
+        if ex.get("express"):
+            armsu = armsu + 0.15 * t  # intensify arm reactions as beat progresses
         _stand(d, figx, base_y + 12, h=figh, col=FIG, arms_up=armsu, stride=strd)
         # the pile of money (shrinking), a soft warm glow beneath it
         im = _glow(im, lambda dd: dd.ellipse(
