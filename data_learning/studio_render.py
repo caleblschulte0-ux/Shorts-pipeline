@@ -1228,12 +1228,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             disp_start[i] = start
             disp_end[i] = end
             nfr = int(max(30, min(300, round((end - start) * 30))))
-            # Build LINEARLY across the whole window (continuous chart motion =
-            # smooth cadence). The hook isn't empty even early on because Data is
-            # climbing the chart on screen the whole time (a subject in frame).
+            # A hook-leading chart draws FAST — it's ~complete within the first
+            # ~0.8s so the cold open shows the DATA immediately (playbook Phase 2:
+            # show the interesting thing at once, not a slow build), then holds
+            # while Data performs on it. Other charts build linearly across their
+            # beat (continuous motion, no frozen tail).
+            full_by = 1.0
+            if i == 0 and lead_hook and end > start:
+                full_by = max(0.08, min(1.0, 0.8 / (end - start)))
             try:
                 cpath, _a = charts.render_story_build(
-                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr)
+                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr,
+                    full_by=full_by)
                 if cpath:
                     seg.chart_path = str(cpath)
             except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure
