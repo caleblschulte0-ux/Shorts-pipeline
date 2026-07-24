@@ -1,0 +1,21 @@
+{
+  "key": "population_world_share",
+  "title": "Share of world population",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "World Population Prospects 2022",
+    "publisher": "United Nations, Department of Economic and Social Affairs",
+    "url": "https://population.un.org/wpp/",
+    "officiality": "official",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Each country's share of the ~8.05 billion mid-2023 world population.",
+  "points": [
+    {"label": "China", "value": 17.7},
+    {"label": "India", "value": 17.6},
+    {"label": "United States", "value": 4.2},
+    {"label": "Rest of world", "value": 60.5}
+  ]
+}

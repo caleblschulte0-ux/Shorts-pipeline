@@ -13705,6 +13705,143 @@
         }
       ],
       "question": "Would you rather live on Jupiter's blink-of-an-eye day, or Venus's endless one?"
+    },
+    {
+      "slug": "carbon-climb",
+      "title": "The Line That Only Goes Up",
+      "hook": "The air itself is changing, and we have the receipt.",
+      "closing": "Every year, the line climbs higher. That's the story in the data.",
+      "question": "Did you realize it was accelerating? Tell me below.",
+      "keep_order": true,
+      "hashtags": [
+        "climate",
+        "co2",
+        "noaa",
+        "science",
+        "data",
+        "emissions",
+        "carbon",
+        "atmosphere",
+        "climatechange",
+        "earth",
+        "environment",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "co2_mauna_loa_annual",
+          "params": {
+            "file": "co2_mauna_loa_annual.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE CLIMB",
+          "topic": "atmospheric CO2",
+          "say": "In 1960 the air held about 317 parts of CO2 per million. By 2025 it's 427 \u2014 a line that has only ever climbed."
+        },
+        {
+          "source": "offline",
+          "key": "co2_decadal_rise",
+          "params": {
+            "file": "co2_decadal_rise.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE ACCELERATION",
+          "topic": "CO2 added each decade",
+          "say": "And it's speeding up. The 1960s added under 9 parts per million. The 2010s added over 24 \u2014 nearly triple the pace."
+        }
+      ]
+    },
+    {
+      "slug": "population-giants",
+      "title": "Half the Planet, Eight Countries",
+      "hook": "Two countries hold more than a third of all humanity.",
+      "closing": "Eight countries, over half the planet. Wild, right?",
+      "question": "Which of these surprised you most? Comment below.",
+      "hashtags": [
+        "population",
+        "world",
+        "geography",
+        "un",
+        "data",
+        "countries",
+        "demographics",
+        "china",
+        "india",
+        "earth",
+        "didyouknow",
+        "facts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "population_top_countries",
+          "params": {
+            "file": "population_top_countries.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 \u00b7 THE GIANTS",
+          "topic": "most populous countries",
+          "say": "China and India each pack over 1.4 billion people. The United States, in third, isn't even 340 million."
+        },
+        {
+          "source": "offline",
+          "key": "population_world_share",
+          "params": {
+            "file": "population_world_share.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 THE SHARE",
+          "topic": "share of world population",
+          "say": "Put it another way: China and India alone are more than 35 percent of everyone alive. The other 190-plus countries split the rest."
+        }
+      ]
+    },
+    {
+      "slug": "world-power-mix",
+      "title": "How the World Keeps Its Lights On",
+      "hook": "Here's how the entire planet made its electricity last year.",
+      "closing": "The mix is tipping \u2014 slowly, then all at once.",
+      "question": "Is your country ahead or behind on this? Let me know.",
+      "hashtags": [
+        "energy",
+        "electricity",
+        "climate",
+        "renewables",
+        "solar",
+        "wind",
+        "coal",
+        "data",
+        "ember",
+        "power",
+        "science",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "electricity_mix_2024",
+          "params": {
+            "file": "electricity_mix_2024.json"
+          },
+          "insight_type": "share",
+          "role": "1 \u00b7 THE MIX",
+          "topic": "world electricity by source",
+          "say": "Coal still leads at 34 percent, gas adds 22. But hydro, nuclear, wind and solar are closing in fast."
+        },
+        {
+          "source": "offline",
+          "key": "electricity_clean_vs_fossil_2024",
+          "params": {
+            "file": "electricity_clean_vs_fossil_2024.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 THE TIPPING POINT",
+          "topic": "fossil vs clean power",
+          "say": "In 2024 fossil fuels fell to 59 percent of the world's power \u2014 under 60 for the first time since the 1940s."
+        }
+      ]
     }
   ],
   "videos": [

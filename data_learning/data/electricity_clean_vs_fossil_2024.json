@@ -1,0 +1,19 @@
+{
+  "key": "electricity_clean_vs_fossil_2024",
+  "title": "Fossil vs clean electricity, 2024",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Global Electricity Review 2025",
+    "publisher": "Ember",
+    "url": "https://ember-energy.org/latest-insights/global-electricity-review-2025/",
+    "officiality": "secondary",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Fossil fuels fell below 60% of global electricity for the first time since the 1940s.",
+  "points": [
+    {"label": "Fossil fuels", "value": 59.1},
+    {"label": "Clean power", "value": 40.9}
+  ]
+}

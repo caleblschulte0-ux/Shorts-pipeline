@@ -1,0 +1,23 @@
+{
+  "key": "co2_decadal_rise",
+  "title": "CO2 added each decade",
+  "unit": "ppm",
+  "geography": "Global background (Mauna Loa Observatory)",
+  "time_coverage": "1960-2019",
+  "source": {
+    "name": "Annual mean CO2 (Mauna Loa), decadal differences",
+    "publisher": "NOAA Global Monitoring Laboratory",
+    "url": "https://gml.noaa.gov/ccgg/trends/",
+    "officiality": "primary",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Parts per million added over each decade, computed from NOAA annual means.",
+  "points": [
+    {"label": "1960s", "value": 8.77},
+    {"label": "1970s", "value": 13.08},
+    {"label": "1980s", "value": 15.69},
+    {"label": "1990s", "value": 15.26},
+    {"label": "2000s", "value": 20.39},
+    {"label": "2010s", "value": 24.11}
+  ]
+}

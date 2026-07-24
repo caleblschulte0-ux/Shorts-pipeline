@@ -113,6 +113,26 @@ def test_dead_air_override_forces_block():
     assert sr.decide_verdict(sr.compute_score(STRONG), checks) == "block"
 
 
+def test_block_max_diff_separates_held_from_motion():
+    """The cadence detector must call a HELD frame a duplicate and a smoothly-
+    but-locally animating frame MOTION — the whole-frame mean could not."""
+    w, h = 192, 341
+    flat = [100] * (w * h)
+    # identical -> zero, well under the threshold (a real hold)
+    assert sr._max_block_diff(flat, flat, w) == 0.0
+    assert sr._max_block_diff(flat, flat, w) < sr.BLOCK_MOTION_THRESH
+    # sparse per-pixel noise (encoder-ish) stays a duplicate
+    noisy = [v + (1 if i % 97 == 0 else 0) for i, v in enumerate(flat)]
+    assert sr._max_block_diff(flat, noisy, w) < sr.BLOCK_MOTION_THRESH
+    # one fully-changed block (a chart cell / mascot edge) reads as MOTION even
+    # though it is a tiny fraction of the whole frame
+    moved = list(flat)
+    for yy in range(h // 12):
+        for xx in range(w // 12):
+            moved[yy * w + xx] = 240
+    assert sr._max_block_diff(flat, moved, w) >= sr.BLOCK_MOTION_THRESH
+
+
 def _main() -> int:
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

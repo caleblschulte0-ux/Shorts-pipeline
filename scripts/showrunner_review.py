@@ -158,6 +158,41 @@ def _extract_frames(mp4: Path, td: Path, manifest: dict | None = None):
     return frames
 
 
+def _max_block_diff(a, b, w: int, grid: int = 12) -> float:
+    """Max, over a GRID of blocks, of the mean absolute gray difference in that
+    block. This is the honest 'did anything move?' signal: a held/duplicated
+    frame reads ~0 in EVERY block, while a smoothly-but-locally animating region
+    (a chart filling, the mascot gliding) spikes the one block it lives in — even
+    when it's a small slice of the frame. A whole-frame MEAN can't tell those
+    apart (it dilutes localized motion below any sane threshold and then calls a
+    smooth build 'frozen'), which is exactly what pinned temporal_craft at 0."""
+    h = len(a) // w if w else 0
+    if h < grid:
+        # too small to block — fall back to whole-frame mean
+        return sum(abs(x - y) for x, y in zip(a, b)) / max(1, len(a))
+    bw = max(1, w // grid)
+    bh = max(1, h // grid)
+    best = 0.0
+    for by in range(0, h - bh + 1, bh):
+        for bx in range(0, w - bw + 1, bw):
+            s = 0
+            for yy in range(bh):
+                base = (by + yy) * w + bx
+                for xx in range(bw):
+                    s += abs(a[base + xx] - b[base + xx])
+            m = s / (bw * bh)
+            if m > best:
+                best = m
+    return best
+
+
+# A block whose mean gray shifts by more than this HAS motion; below it the
+# frame is a genuine hold (encoder noise on a static frame stays ~0-2). Chosen
+# above the noise floor and far below real motion (measured 10-60 on live
+# builds) — see data_learning/tests/test_showrunner_scoring.py.
+BLOCK_MOTION_THRESH = 6.0
+
+
 def _motion_evidence(mp4: Path, td: Path) -> dict:
     """Objective, code-measured motion facts (NOT a judgement). Samples the whole
     clip at ~3fps and reports the longest near-frozen run (seconds) and the
@@ -184,15 +219,16 @@ def _motion_evidence(mp4: Path, td: Path) -> dict:
         n = len(px)
         dark = sum(1 for p in px if (sum(p) / len(p)) < 22)
         ev["dark_fraction"] = round(dark / n, 3)
-        # DEAD AIR = a stretch where nothing meaningfully changes over ~1s (1s
-        # LOOKBACK, not consecutive frames) so a SMOOTH build reads as motion;
-        # only a genuine static hold registers. Also report WHERE it starts.
+        # DEAD AIR = a stretch where NO block changes over ~1s (1s LOOKBACK, not
+        # consecutive frames) so a SMOOTH build reads as motion; only a genuine
+        # static hold registers. Block-max (not a whole-frame mean) so a small
+        # animating region still counts as motion. Also report WHERE it starts.
         lb = fps
         run = best = best_end = 0
         for i in range(lb, n):
             a, b = px[i], px[i - lb]
-            diff = sum(abs(x - y) for x, y in zip(a, b)) / len(a)
-            if diff < 3.0:
+            diff = _max_block_diff(a, b, 160)
+            if diff < BLOCK_MOTION_THRESH:
                 run += 1
                 if run > best:
                     best, best_end = run, i
@@ -230,8 +266,12 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
         n = len(px)
         dup = run = maxrun = 0
         for a, b in zip(px, px[1:]):
-            diff = sum(abs(x - y) for x, y in zip(a, b)) / len(a)
-            if diff < 0.8:                    # a duplicated (held) frame
+            # Block-max, not a whole-frame mean: a frame is a DUPLICATE only if
+            # NO block moved. A whole-frame mean diluted a chart that fills part
+            # of the frame down below 0.8 and mislabelled smooth builds as held
+            # (effective_fps ~10 on a genuinely-30fps render). Choppy low-fps
+            # source dup still shows identical blocks -> still caught.
+            if _max_block_diff(a, b, 192) < BLOCK_MOTION_THRESH:
                 dup += 1
                 run += 1
                 maxrun = max(maxrun, run)

@@ -1,0 +1,25 @@
+{
+  "key": "co2_mauna_loa_annual",
+  "title": "Atmospheric CO2 at Mauna Loa",
+  "unit": "ppm",
+  "geography": "Global background (Mauna Loa Observatory, Hawaii)",
+  "time_coverage": "1960-2025",
+  "source": {
+    "name": "Annual mean CO2 (Mauna Loa)",
+    "publisher": "NOAA Global Monitoring Laboratory",
+    "url": "https://gml.noaa.gov/ccgg/trends/",
+    "officiality": "primary",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Annual mean atmospheric carbon dioxide, parts per million, direct in-situ measurement.",
+  "points": [
+    {"label": "1960", "value": 316.91},
+    {"label": "1970", "value": 325.68},
+    {"label": "1980", "value": 338.76},
+    {"label": "1990", "value": 354.45},
+    {"label": "2000", "value": 369.71},
+    {"label": "2010", "value": 390.10},
+    {"label": "2020", "value": 414.21},
+    {"label": "2025", "value": 427.35}
+  ]
+}
