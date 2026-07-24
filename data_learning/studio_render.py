@@ -1232,7 +1232,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             end = windows[-1][1] if (i == last_i and lead_payoff) else wi[1]
             disp_start[i] = start
             disp_end[i] = end
-            nfr = int(max(30, min(300, round((end - start) * 30))))
+            # Enough frames to play the WHOLE beat at ~30fps (cap 480 = up to 16s).
+            # The old 300 cap meant a ~13s beat could only reach ~23fps, which the
+            # temporal grader saw as a low-fps source duplicated into the 30fps
+            # timeline (effective_fps ~12, temporal_craft floored at 1).
+            nfr = int(max(30, min(480, round((end - start) * 30))))
             # Build LINEARLY across the WHOLE window (no early completion): the
             # chart + Data keep moving the entire beat, so there is never a
             # finished-and-held stretch (that was the dead_air / 5fps). Data
@@ -1589,7 +1593,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # Play at a smooth framerate (>=18fps) so growth doesn't step in
                 # visible jumps; with ~60 build frames this spans typical beats,
                 # and a short settle tail on longer beats stays under dead-air.
-                cfps = max(18.0, min(30.0, nfr / max(0.8, beat - 0.2)))
+                # Target 24-30fps: below 24 the source is duplicated into the
+                # 30fps export (judder / low effective_fps). With the 480-frame
+                # cap this holds for beats up to ~20s.
+                cfps = max(24.0, min(30.0, nfr / max(0.8, beat - 0.2)))
                 inputs += ["-framerate", f"{cfps:.2f}", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
