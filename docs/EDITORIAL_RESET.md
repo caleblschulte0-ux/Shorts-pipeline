@@ -70,6 +70,33 @@ scoring now weights `reaction_rate` (comments + shares + subs per view)
 heavily — the analytics showed videos that held attention still generated zero
 reactions. Retention is not interest.
 
+### 8. The measurement instrument is honest and self-checking
+The gate is only as good as its ruler. Three upgrades keep the ruler true:
+
+- **Code-computed score from anchored grades.** The model grades each dimension
+  on a small ceiling and never sees the passing threshold; the 0–100 total is
+  computed in code (`showrunner_review.compute_score`). This stopped the score
+  compressing to a safe ~72 on everything.
+- **Temporal craft (cadence), measured not guessed.** A 90 on pretty stills was
+  hiding judder. `temporal_craft` is graded in code from the effective unique
+  frame rate. The detector is **block-max**, not a whole-frame mean: a frame is
+  a duplicate only if NO block moved, so a chart that smoothly fills part of the
+  frame reads as motion while a genuine held frame (or low-fps source
+  duplicated into 30fps) is caught. Charts also re-render at `frames = beat*30`
+  so playback is true 30fps with no held tails.
+- **Calibration pinned in CI.** `data_learning/tests/test_showrunner_scoring.py`
+  fixes weak < baseline < strong separation with the 70 bar in the gap, the
+  cadence threshold, and the auto-fail/dead-air overrides. It runs (with the
+  repair-loop control-flow test) as a fast pre-render step — if a re-weighting
+  ever collapses the separation, CI fails before a single frame renders.
+
+### 9. Bounded self-repair
+`scripts/repair_loop.py`. Render → judge → make ONE whitelisted render-time
+nudge at the weakest dimension (or a hard auto-fail) → re-render → **keep the
+better cut** → stop after 2 attempts. It is monotone in quality (never keeps a
+worse cut), never edits code, and stops honestly when the weakest thing has no
+whitelisted remedy. The showrunner stays the sovereign veto; this only drives it.
+
 ## How to publish a real video again
 
 1. Add a **real, cited dataset** by hand under `data_learning/data/` with a
@@ -92,6 +119,10 @@ reactions. Retention is not interest.
 - `data_learning/blender_hero.py` is now unreferenced from the explainer
   renderer (the third/long-form channel still has its own 3D path); safe to
   delete once that's confirmed.
-- Backfilling real datasets to replace the ~519 illustrative ones.
+- Backfilling real datasets to replace the ~519 illustrative ones. **Started:**
+  three fully-cited stories added as a generalization set (one per data shape) —
+  `carbon-climb` (NOAA Mauna Loa CO2, time-series), `population-giants` (UN WPP,
+  ranking), `world-power-mix` (Ember 2025, share) — each rendered through the
+  unchanged renderer to prove the format holds across shapes.
 - Wiring the premise judge into the authoring UX so new stories are graded as
   they're written.
