@@ -190,6 +190,48 @@ def _ulabel(v: float, unit: str) -> str:
     return n
 
 
+# ---- HOST BAKED INTO THE CHART ------------------------------------------
+# Data drawn INSIDE each chart frame at the GROWING data tip, so he rides the
+# line / the bar as it draws — mascot and data move together, frame by frame. A
+# looping sprite composited on top can only slide around; baked in, he actually
+# performs ON the data (the architecture the showrunner keeps asking for). His
+# pose animates with the reveal phase, so he's acting, not a held sticker.
+_HOST_IMG_CACHE: dict = {}
+
+
+def _host_img(action: str, phase: float):
+    """One mascot action frame as an RGBA numpy array (cached by action+phase)."""
+    key = (action, round(phase * 10) / 10)
+    if key in _HOST_IMG_CACHE:
+        return _HOST_IMG_CACHE[key]
+    val = None
+    try:
+        import io
+        import numpy as np
+        from PIL import Image
+        from . import mascot_director as _md
+        svg = _md.compose_anim({"action": action, "prop": "none"}, key[1] % 1.0)
+        png = _md._rasterise(svg, 300)
+        val = np.asarray(Image.open(io.BytesIO(png)).convert("RGBA")) / 255.0
+    except Exception:  # noqa: BLE001 — a chart must never die over the host
+        val = None
+    _HOST_IMG_CACHE[key] = val
+    return val
+
+
+def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
+    """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
+    pose animates with ``phase``; ``align`` (0.5, ~0) puts his FEET at the point
+    so he stands ON the datum."""
+    img = _host_img(action, phase)
+    if img is None:
+        return
+    from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+    ab = AnnotationBbox(OffsetImage(img, zoom=zoom), (x, y), frameon=False,
+                        box_alignment=align, zorder=8, pad=0, annotation_clip=False)
+    ax.add_artist(ab)
+
+
 def _ordered_items(insight: Insight) -> list:
     """The reveal order for an insight, baseline last when present."""
     items = list(insight.items)
@@ -483,6 +525,11 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
+    # BAKE THE HOST: Data rides the growing line's TIP — he climbs with the data,
+    # his surf pose pumping (phase cycles a few times across the draw).
+    _bake_host(ax, xd[-1], yd[-1], "ride_line", (reveal * 3) % 1.0,
+               zoom=0.62, align=(0.5, 0.02))
+    insight.host_baked = True
     return ax, arts
 
 
@@ -776,6 +823,14 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
                       fontweight="bold", va="center", alpha=la)
         specs.append((val, "art", t2, None))
         top -= 0.135
+    # BAKE THE HOST: Data works the fill FRONTIER — he walks the grid stamping in
+    # the next tile, so the waffle reads as HIS build (his x/y jumps to the last
+    # lit cell each frame).
+    _fi = max(0, min(99, lit - 1))
+    _fr, _fc = divmod(_fi, 10)
+    _bake_host(ax, float(_fc), float(9 - _fr), "lift", (reveal * 5) % 1.0,
+               zoom=0.4, align=(0.5, 0.0))
+    insight.host_baked = True
     return ax, specs
 
 
@@ -841,6 +896,12 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     ax.set_xticks([]); ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
+    # BAKE THE HOST: Data braces against the WINNING bar's growing tip, shoving
+    # it out — he moves right WITH the bar as it grows (top row = highest value).
+    _ttip = max(max(values) * t, vmax * 0.02)
+    _bake_host(ax, _ttip, n - 1, "push_bar", (reveal * 3) % 1.0,
+               zoom=0.5, align=(0.92, 0.12))
+    insight.host_baked = True
     return ax, specs
 
 

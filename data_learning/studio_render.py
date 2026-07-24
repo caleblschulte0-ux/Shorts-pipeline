@@ -1346,13 +1346,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     return _director.data_action_spec(kind, phase)
                 return "cheer" if phase == "payoff" else "point"
 
-            if lead_hook and st.segments:
+            # If the opening chart BAKES the host in (Data rides the drawing
+            # line/bar), add NO overlay for the hook — he's already in the chart.
+            _hook_baked = bool(st.segments) and getattr(st.segments[0],
+                                                        "host_baked", False)
+            if lead_hook and st.segments and not _hook_baked:
                 staged_hook = _stage_on_data(st.segments[0], windows[0][0],
                                              windows[0][1], _act(st.segments[0]),
                                              None)
             if staged_hook is not None:
                 _add(staged_hook[0], staged_hook[1])
-            else:
+            elif not _hook_baked:
                 _add((Cx, hook_y, windows[0][0], windows[0][1],
                       UP_ANGLE, False, hook_perf, hook_scale))
             for i in range(nseg):
@@ -1383,15 +1387,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # With a recap chart behind the payoff, Data sweeps ON it (beside its
             # star datum) rather than standing below; otherwise he is the big
             # central celebration.
+            # If the recap chart bakes the host in, add NO closing overlay.
+            _close_baked = bool(st.segments) and getattr(st.segments[-1],
+                                                         "host_baked", False)
             staged_close = None
-            if lead_payoff and st.segments:
+            if lead_payoff and st.segments and not _close_baked:
                 staged_close = _stage_on_data(st.segments[-1], windows[-1][0],
                                               windows[-1][1],
                                               _act(st.segments[-1], "payoff"),
                                               None)
             if staged_close is not None:
                 _add(staged_close[0], staged_close[1])
-            else:
+            elif not _close_baked:
                 _add((Cx, close_y, windows[-1][0], windows[-1][1],
                       UP_ANGLE, False, close_act, close_scale))
         else:
