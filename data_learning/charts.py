@@ -166,10 +166,8 @@ def _draw_trend(ax, insight: Insight):
 
 CARD = "#0B1020"
 CARD_EDGE = "#1f2a44"
-# Taller card so the chart DOMINATES the frame (~80% tall): the data is the
-# focus, it fills the vertical space (killing the empty lower band), and its
-# elements span the height so Data can perform ON them at a natural size.
-SERIES_W, SERIES_H, SERIES_DPI = 10.0, 14.5, 110   # -> 1100x1595 px
+# Taller card so the chart can dominate the frame (data is the focus).
+SERIES_W, SERIES_H, SERIES_DPI = 10.0, 11.2, 110   # -> 1100x1232 px
 
 
 def _vfmt(v: float) -> str:
@@ -1863,21 +1861,13 @@ def render_story_chart(insight: Insight, out_path: Path):
 
 
 def render_story_build(insight: Insight, out_dir: Path, slug: str,
-                       frames: int = 60, full_by: float = 1.0):
+                       frames: int = 60):
     """Render a 'build' frame sequence (bars grow / line draws in) that ends on
     the EXACT static chart, so the rings still anchor. ~60 frames so the studio
     renderer can stretch the animation across the whole beat AND keep it smooth
     (a lower count played over a multi-second beat drops to ~5fps and looks
     laggy). Returns ``(printf_pattern, anchors)`` or ``(None, [])`` if mpl
-    absent.
-
-    ``full_by`` (0<f<=1) is the fraction of the frame span by which the reveal
-    reaches 100%; the remaining frames hold the finished chart. Default 1.0 =
-    build across the whole span (linear, no frozen tail). A hook-LEADING chart
-    passes e.g. 0.5 so it finishes drawing by the END OF THE HOOK — the cold
-    open shows a real build that completes fast instead of a near-empty box
-    crawling for seconds; the mascot's motion carries the held remainder.
-    """
+    absent."""
     if not _have_mpl():
         return None, []
     # Full-frame renderers (diorama, timeline, fill_vessel, ...) author their own
@@ -1894,12 +1884,12 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
     for f in range(1, frames + 1):
-        # LINEAR reveal (constant velocity) is the default — no frozen tail, best
-        # cadence. WHIP front-loads it (draws most of the chart in the first
-        # ~third) ONLY for a hook-leading chart, so frame 1 of the cold open is a
-        # jolt of motion filling the box instead of a near-empty crawl; the
-        # mascot's motion carries cadence through the eased tail.
-        r = min(1.0, (f / frames) / max(0.05, full_by))
+        # LINEAR reveal (constant velocity). The old ease-out front-loaded the
+        # growth and left the last ~1s of every card build near-frozen — that
+        # frozen tail is what the temporal grade caught as duplicate frames /
+        # low effective fps. Linear keeps the chart MOVING to the final frame,
+        # which lands on the exact static chart so the rings still anchor.
+        r = f / frames
         if f == frames:
             r = 1.0                         # final frame == static chart
         fig, plt = _card_base()

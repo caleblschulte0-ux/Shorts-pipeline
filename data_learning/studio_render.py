@@ -1072,7 +1072,7 @@ _DATA_BIT = {
     "geo_us":         ("beside_hero", "point"),
     "geo_city":       ("beside_hero", "point"),
 }
-IN_CHART_SCALE = 0.74     # fits beside a bar but still a real presence in-frame
+IN_CHART_SCALE = 0.66     # smaller so he fits beside a bar without covering it
 
 
 def _hero_anchor(seg):
@@ -1089,61 +1089,46 @@ def _hero_anchor(seg):
     return max(anchors, key=lambda a: a.get("value", 0.0))
 
 
-# PAYOFF emotion rotates so no two beats land the same way (playbook: different
-# acting per beat). Each is a real host pose.
-_PAYOFF_EMOTION = ("cheer", "laugh", "shock", "point")
-
-IN_CHART_PERF = 0.62      # size while performing ON the data
-
-
-def _perform_beat(seg, w0, w1, index=0, sweep_in=True):
-    """A three-state PERFORMANCE on the data — SETUP -> ACTION -> PAYOFF — not a
-    single pose. Data NOTICES the data (setup, at the base), RIDES/CLIMBS it
-    (action, travelling from the smallest datum up to the peak), then REACTS on
-    top of the winner (payoff). He physically moves ALONG the visualization and
-    his pose changes through the arc, so every beat is a tiny 3-second story with
-    constant motion. Returns a list of (seq_tuple, entry_xy) — one per state — or
-    None if the beat has no usable anchors."""
-    anchors = getattr(seg, "anchors", None)
-    if not anchors:
+def _stage_on_data(seg, w0, w1, pose, prev_tl):
+    """Stage Data ON this beat's star datum and give him a MOVING bit: he sweeps
+    from an entry point (the line's start, or below the element) up TO the datum
+    across the beat — a real setup->action->payoff on the data, and the travel
+    keeps his cadence smooth. Returns (seq_tuple, entry_xy) — entry_xy is where
+    his glide STARTS — or None if the beat has no usable anchor."""
+    hero = _hero_anchor(seg)
+    if hero is None:
         return None
+    bit, _default_pose = _DATA_BIT.get(getattr(seg, "kind", ""),
+                                       ("beside_hero", "point"))
+    isc = IN_CHART_SCALE
     S = MASCOT_SIZE
-    isc = IN_CHART_PERF
 
-    def _tl(cx, cy):
+    def _tl(cx, cy):                    # centre -> full-size top-left, clamped
         return (min(max(cx - S / 2, 2.0), float(W - S - 2)),
                 min(max(cy - S / 2, 2.0), float(H - S - 2)))
 
-    Sk = S * isc
-
-    def _foot(a):                       # centre a mascot standing ON element a
-        # The value number sits at the element's TIP; stand him so his RIGHT edge
-        # is just LEFT of that tip — on the element, never covering the number
-        # (collision rule). Clamp inside the chart card.
-        cx, cy, _w, _h = _screen_box(a)
-        cxc = max(cx - Sk * 0.5 - 15.0, float(CHART_X) + Sk * 0.5 + 6.0)
-        return _tl(cxc, cy - Sk * 0.40)
-
-    peak = max(anchors, key=lambda a: a.get("value", 0.0))
-    low = min(anchors, key=lambda a: a.get("value", 0.0))
-    base_x, base_y = _foot(low)
-    peak_x, peak_y = _foot(peak)
-    flip = base_x > peak_x              # face the way he climbs
-    ang = SIDE_ANGLE
-    d = max(0.6, w1 - w0)
-    s1 = w0 + 0.30 * d                  # setup -> action
-    s2 = w0 + 0.68 * d                  # action -> payoff
-    emo = _PAYOFF_EMOTION[index % len(_PAYOFF_EMOTION)]
-    entry = (base_x, min(base_y + 300.0, float(H - S - 2))) if sweep_in else None
-    return [
-        # SETUP: he arrives at the SMALLEST datum and notices the data.
-        ((base_x, base_y, w0, s1, ang, flip, "think", isc), entry),
-        # ACTION: he RIDES/climbs from there up to the peak (the glide travels).
-        ((peak_x, peak_y, s1, s2, ang, flip, "ride", isc), None),
-        # PAYOFF: he reacts on top of the winner — a different beat, a different
-        # emotion each time.
-        ((peak_x, peak_y, s2, w1, UP_ANGLE, flip, emo, isc), None),
-    ]
+    bcx, bcy, variant = _place_mascot(hero, seg.anchors, scale=isc)
+    Sisc = S * isc
+    # RIDE_PEAK: for a climbing line he starts at the FIRST point (low-left) and
+    # rides UP to the PEAK — the glide literally traces the climb.
+    entry = None
+    if bit == "ride_peak":
+        peak = max(seg.anchors, key=lambda a: a.get("value", 0.0))
+        pcx, pcy, _pw, _ph = _screen_box(peak)
+        bcx, bcy, variant = pcx, pcy - Sisc * 0.30, "R"
+        start = seg.anchors[0] if seg.anchors else peak
+        scx, scy, _sw, _sh = _screen_box(start)
+        entry = _tl(scx, scy)
+    # Positions in `seq` are the TOP-LEFT as if full-size S; the overlay's `off`
+    # correction re-centres the scaled sprite on this centre.
+    tlx, tly = _tl(bcx, bcy)
+    if entry is None:
+        # SWEEP UP into the datum from below — guarantees real travel (cadence)
+        # and reads as Data rushing in to work the number, not parked beside it.
+        entry = (tlx, min(tly + 460.0, float(H - S - 2)))
+    angle = UP_ANGLE if variant == "U" else SIDE_ANGLE
+    flip = (variant == "L")            # face the number he's beside
+    return (tlx, tly, w0, w1, angle, flip, pose, isc), entry
 
 
 def _piecewise(kfs, axis: int) -> str:
@@ -1228,18 +1213,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             disp_start[i] = start
             disp_end[i] = end
             nfr = int(max(30, min(300, round((end - start) * 30))))
-            # A hook-leading chart draws FAST — it's ~complete within the first
-            # ~0.8s so the cold open shows the DATA immediately (playbook Phase 2:
-            # show the interesting thing at once, not a slow build), then holds
-            # while Data performs on it. Other charts build linearly across their
-            # beat (continuous motion, no frozen tail).
-            full_by = 1.0
-            if i == 0 and lead_hook and end > start:
-                full_by = max(0.08, min(1.0, 0.8 / (end - start)))
             try:
                 cpath, _a = charts.render_story_build(
-                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr,
-                    full_by=full_by)
+                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr)
                 if cpath:
                     seg.chart_path = str(cpath)
             except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure
@@ -1357,47 +1333,52 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     entries[len(seq)] = entry_xy
                 seq.append(entry_tuple)
 
-            def _add_perf(perf):
-                for tup, ent in perf:
-                    _add(tup, ent)
-
-            # Build the PERFORMANCE beat list covering the WHOLE video with no
-            # gaps: each beat is (segment, w0, w1). When the opening chart leads
-            # the hook, seg0's beat spans hook+seg0 as ONE performance (Data
-            # climbs in sync with the chart building). When the payoff shows a
-            # recap, the LAST seg's beat extends through the closing. Every beat
-            # is a 3-state SETUP->ACTION->PAYOFF performance on its data.
-            perf_beats = []                    # (seg_index, w0, w1)
-            for i in range(nseg):
-                w0 = windows[1 + i][0] if 1 + i < len(windows) else None
-                w1 = windows[1 + i][1] if 1 + i < len(windows) else None
-                if w0 is None:
-                    continue
-                if i == 0 and lead_hook:
-                    w0 = windows[0][0]         # start at the hook
-                if i == nseg - 1 and lead_payoff:
-                    w1 = windows[-1][1]        # run through the closing
-                perf_beats.append((i, w0, w1))
-
-            if not lead_hook:
-                # No chart leads the hook: a fallback central host carries it.
+            # When the opening chart leads the hook, Data performs ON it from
+            # frame 1 (sweeping onto its star datum) instead of standing below it.
+            staged_hook = None
+            if lead_hook and st.segments:
+                staged_hook = _stage_on_data(st.segments[0], windows[0][0],
+                                             windows[0][1], hook_perf, None)
+            if staged_hook is not None:
+                _add(staged_hook[0], staged_hook[1])
+            else:
                 _add((Cx, hook_y, windows[0][0], windows[0][1],
                       UP_ANGLE, False, hook_perf, hook_scale))
-            for i, w0, w1 in perf_beats:
+            for i in range(nseg):
+                wi = windows[1 + i] if 1 + i < len(windows) else None
+                if not wi:
+                    continue
                 spec = _seg_spec(i)
                 if isinstance(spec, dict) and spec.get("hidden"):
-                    continue                   # host baked into the chart
-                perf = _perform_beat(st.segments[i], w0, w1, index=i)
-                if perf is not None:
-                    _add_perf(perf)
-                else:
+                    continue                       # host baked into the chart
+                # Data PERFORMS ON THE DATA: he sweeps up onto THIS beat's star
+                # datum (a new spot every beat), not parked at the bottom stage.
+                staged = _stage_on_data(st.segments[i], wi[0], wi[1], spec, None)
+                if staged is not None:
+                    _add(staged[0], staged[1])
+                else:                              # no anchor -> fall to the stage
                     x, y = _spot(i, "")
-                    _add((x, y, w0, w1, UP_ANGLE, False, spec, 1.0))
-            if not lead_payoff:
-                # No recap chart: a final central celebration lands the ending.
-                close_act = _director.celebrate() if _director else "cheer"
-                _add((Cx, float(H * 0.30), windows[-1][0], windows[-1][1],
-                      UP_ANGLE, False, close_act, 1.55))
+                    _add((x, y, wi[0], wi[1], UP_ANGLE, False, spec, 1.0))
+            # CLOSING: Data is the SPEAKER — big and central so his celebration
+            # is the payoff and nothing sits frozen.
+            close_act = _director.celebrate() if _director else "cheer"
+            # With a recap chart behind the payoff, Data presents from the lower
+            # stage at normal size (so he doesn't cover it); with an empty payoff
+            # he is the big central celebration that lands the takeaway.
+            close_y = stage_y if lead_payoff else float(H * 0.30)
+            close_scale = 1.0 if lead_payoff else 1.55
+            # With a recap chart behind the payoff, Data sweeps ON it (beside its
+            # star datum) rather than standing below; otherwise he is the big
+            # central celebration.
+            staged_close = None
+            if lead_payoff and st.segments:
+                staged_close = _stage_on_data(st.segments[-1], windows[-1][0],
+                                              windows[-1][1], close_act, None)
+            if staged_close is not None:
+                _add(staged_close[0], staged_close[1])
+            else:
+                _add((Cx, close_y, windows[-1][0], windows[-1][1],
+                      UP_ANGLE, False, close_act, close_scale))
         else:
             gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
@@ -1645,16 +1626,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # horizontal sway — so Data is NEVER globally static, even when he's
             # "parked". A static host is what the temporal grade reads as a held
             # frame (the payoff's static pose). Keep him alive every frame.
-            arrive = w0 + max(0.5, (w1 - w0) * 0.98)
+            arrive = w0 + max(0.5, (w1 - w0) * 0.92)
             # A data beat sweeps in from its own entry point (onto the datum);
-            # otherwise Data glides from where he last was. He travels almost the
-            # WHOLE beat (settle only the last ~2%) and rides a lively 2D idle so
-            # some block is always moving — this is what keeps cadence smooth.
+            # otherwise Data glides from where he last was.
             start = entries.get(k, prev_tl)
             xe = (f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
-                  f"+9*sin(1.3*t)")
+                  f"+6*sin(1.3*t)")
             ye = (f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
-                  f"+12*sin(2.1*t)")
+                  f"+9*sin(2.1*t)")
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
             fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
