@@ -28,6 +28,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
+from data_learning.expression import parse_expression_config, apply_expression, CharacterPose
+
 W, H, FPS = 1920, 1080, 30
 REPO = Path(__file__).resolve().parent.parent
 ANTON = str(REPO / "assets" / "fonts" / "Anton-Regular.ttf")
@@ -94,9 +96,12 @@ def _limb(d, x0, y0, x1, y1, w, col):
         d.ellipse([x - r, y - r, x + r, y + r], fill=col)
 
 
-def _stand(d, cx, feet_y, h, col, arms_up=0.0, stride=0.0):
+def _stand(d, cx, feet_y, h, col, arms_up=0.0, stride=0.0, lean=0.0,
+           head_drop=0.0):
     """The iconic standing pictogram — chunky, symmetric, door-sign clean.
-    arms_up 0=at sides, 1=raised in a wide V. Returns (cx, head_cy, r)."""
+    arms_up 0=at sides, 1=raised in a wide V; stride is a leg offset in PIXELS;
+    lean [-1,1] tips the head off-axis; head_drop [0,1] slumps the head toward
+    the chest. Returns (cx, head_cy, r)."""
     # THE ADA / AIGA bathroom-sign proportions (reference-matched): broad ROUNDED
     # shoulders, a torso that tapers to the waist, arms hanging CLOSE to the body
     # (near-vertical) with a thin slit, ending mid-thigh, and two thick legs with a
@@ -132,9 +137,34 @@ def _stand(d, cx, feet_y, h, col, arms_up=0.0, stride=0.0):
     hy = hyd + (hyu - hyd) * arms_up
     for sgn in (-1, 1):
         _limb(d, cx + sgn * shx, sh_y + shr * 0.7, cx + sgn * hx, sh_y + hy, aw, col)
-    # head last, on top
-    d.ellipse([cx - r, head_cy - r, cx + r, head_cy + r], fill=col)
+    # head last, on top — lean tips it sideways, head_drop slumps it down
+    hcx = cx + lean * h * 0.07
+    hcy = head_cy + head_drop * r * 0.9
+    d.ellipse([hcx - r, hcy - r, hcx + r, hcy + r], fill=col)
     return (cx, head_cy, r)
+
+
+def _expr_delta(extra, t, emotion):
+    """Resolve a beat's expression config into pose DELTAS at progress t.
+
+    The structured {"expression": {...}} form carries its own emotion/timing;
+    the legacy {"express": true} flag maps to the scene's default `emotion`
+    at the default intensity. Returns None when the beat has no expression,
+    so a baseline render is bit-identical to the pre-expression code path.
+    """
+    cfg = parse_expression_config(extra)
+    if cfg is None:
+        return None
+    if not (extra or {}).get("expression"):
+        cfg.emotion = emotion            # legacy flag: the scene picks the mood
+    neutral = CharacterPose()
+    pose = apply_expression(neutral, cfg, t)
+    return {"arms": pose.arms_up - neutral.arms_up,
+            "stride": pose.stride - neutral.stride,
+            "lean": pose.lean - neutral.lean,
+            "head_drop": pose.head_drop - neutral.head_drop,
+            "sway": pose.body_sway - neutral.body_sway,
+            "speed": pose.gesture_speed}
 
 
 def _sit(d, hipx, hipy, h, col, lean=14, reach=0.0, on_ground=False):
@@ -919,9 +949,14 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
             armsu = 0.44 + 0.20 * (0.5 + 0.5 * math.sin(i * 0.7))   # grabbing up
             strd = dirx * (10 + 6 * math.sin(i * 0.7))              # stepping after it
         ex = extra or {}
-        if ex.get("express"):
-            armsu = armsu + 0.15 * t  # intensify arm reactions as beat progresses
-        _stand(d, figx, base_y + 12, h=figh, col=FIG, arms_up=armsu, stride=strd)
+        dd = _expr_delta(ex, t, "frustration")   # money leaving = agitation
+        hd = ln = 0.0
+        if dd:
+            armsu += dd["arms"]
+            strd += dd["sway"] * 6
+            hd, ln = dd["head_drop"], dd["lean"]
+        _stand(d, figx, base_y + 12, h=figh, col=FIG, arms_up=armsu, stride=strd,
+               lean=ln, head_drop=hd)
         # the pile of money (shrinking), a soft warm glow beneath it
         im = _glow(im, lambda dd: dd.ellipse(
             [pcx - int(W * 0.22 * math.sqrt(max(0.04, frac))), base_y - 30,
@@ -1019,12 +1054,17 @@ def paycheck_scene(out: Path, seconds: float = 6.0, number: str = "",
         d.rectangle([wx0, wy0, wx1, wy1], fill=(int(60 + 120 * k), int(70 + 90 * k),
                     int(90 + 40 * k), 255), outline=(90, 100, 140, 255), width=6)
         d.line([(wx0 + wx1) // 2, wy0, (wx0 + wx1) // 2, wy1], fill=(90, 100, 140), width=4)
-        # the figure, centre-left, holding a paycheck up in one hand; if express, joy fades to resignation
+        # the figure, centre-left, holding a paycheck up in one hand. The scene's
+        # emotional grammar is a FADE-OUT (joy drains with the money), so the
+        # expression is evaluated at reversed progress — full at t=0, gone at t=1.
         cx = int(W * 0.36)
-        arms = 0.0
-        if ex.get("express"):
-            arms = 0.5 - 0.4 * t                # arm drops as money drains (joy fades)
-        _stand(d, cx, floor_y + 6, h=380, col=FIG, arms_up=arms)
+        arms, hd, ln = 0.0, 0.0, 0.0
+        dd = _expr_delta(ex, 1.0 - t, "joy")
+        if dd:
+            arms = 1.6 * dd["arms"]             # scene gain: raised-arm joy reads at ~0.45
+            hd, ln = dd["head_drop"], dd["lean"]
+        _stand(d, cx, floor_y + 6, h=380, col=FIG, arms_up=arms, lean=ln,
+               head_drop=hd)
         # the paycheck (a slip) held at the raised hand
         px, py = cx + 96, int(H * 0.40)
         d.rounded_rectangle([px, py, px + 190, py + 96], radius=10,
@@ -1088,12 +1128,16 @@ def tax_scene(out: Path, seconds: float = 6.0, number: str = "",
         # the figure at the window, arm reaching to push cash through
         cx = int(W * 0.34)
         reach = 0.5 + 0.4 * (0.5 + 0.5 * math.sin(i * 0.5))
-        # emotional reaction: if express=true, arms lift higher in shock/resignation as t progresses
+        # emotional reaction: shock builds as the cut sinks in — arms lift, head
+        # tips back slightly (shock's negative head_drop reads as a recoil).
         base_arms = 0.28 + 0.12 * (0.5 + 0.5 * math.sin(i * 0.5))
-        if ex.get("express"):
-            base_arms = 0.28 + 0.4 * t           # arms lift higher over time = shock/resignation
+        hd = ln = 0.0
+        dd = _expr_delta(ex, t, "shock")
+        if dd:
+            base_arms = 0.28 + dd["arms"]
+            hd, ln = dd["head_drop"], dd["lean"]
         _stand(d, cx, floor_y + 6, h=380, col=FIG,
-               arms_up=base_arms)
+               arms_up=base_arms, lean=ln, head_drop=hd)
         # a stack of cash travelling from the figure into the window slot, repeating
         ph = (t * 1.6) % 1.0
         sx = cx + 90 + ph * (wx0 - (cx + 90))
@@ -1150,11 +1194,19 @@ def rent_scene(out: Path, seconds: float = 6.0, number: str = "",
                     outline=(120, 100, 60, 255), width=4)
         d.line([wx0 + 45, wy0, wx0 + 45, wy0 + 90], fill=(120, 100, 60), width=3)
         d.line([wx0, wy0 + 45, wx0 + 90, wy0 + 45], fill=(120, 100, 60), width=3)
-        # the figure standing small in the doorway; if express, show the weight/burden
-        stride = 0.0
-        if ex.get("express"):
-            stride = 0.3 * t                    # figure leans forward under weight, gets more tired
-        _stand(d, dxc, ground_y, h=150, col=FIG, stride=stride)
+        # the figure standing small in the doorway — the burden of the roof
+        # settles on it: a forward lean, a slumping head, feet planting wider.
+        # (The old express path passed stride=0.3, which is PIXELS — invisible.)
+        stride, hd, ln = 0.0, 0.0, 0.0
+        dd = _expr_delta(ex, t, "burden")
+        if dd:
+            stride = dd["stride"] * 30          # pose units -> visible pixels at h=150
+            # burden carries no head_drop of its own; on a 150px figure the
+            # slump IS the read, so the scene adds it, scaled by the lean ramp
+            hd = max(dd["head_drop"], dd["lean"] * 5.0)
+            ln = dd["lean"]
+        _stand(d, dxc, ground_y, h=150, col=FIG, stride=stride, lean=ln,
+               head_drop=hd)
         # RENT DUE — money floats up out of the chimney/window and drifts off
         chx, chy = int(W * 0.70), int(H * 0.28)
         d.rectangle([chx, chy, chx + 34, chy + 70], fill=(36, 40, 56, 255))
@@ -1227,11 +1279,16 @@ def gas_scene(out: Path, seconds: float = 6.0, number: str = "",
         d.ellipse([cxc + 50, ground_y - 28, cxc + 110, ground_y + 32], fill=(18, 18, 24, 255))
         d.line([pxc - 40, int(H * 0.52), cxc + 120, ground_y - 40],
                fill=(30, 32, 44, 255), width=8)
-        # the figure between car and pump, arm up holding the nozzle; if express, show frustration
-        arms = 0.30
-        if ex.get("express"):
-            arms = 0.30 + 0.2 * t               # arm lifts higher = frustration at rising price
-        _stand(d, int(W * 0.58), ground_y + 6, h=300, col=FIG, arms_up=arms)
+        # the figure between car and pump, arm up holding the nozzle —
+        # frustration at the climbing price: arms rise, weight shifts.
+        arms, hd, ln = 0.30, 0.0, 0.0
+        dd = _expr_delta(ex, t, "frustration")
+        if dd:
+            arms = 0.30 + dd["arms"]
+            ln = dd["lean"] + dd["sway"] * 0.5
+            hd = dd["head_drop"]
+        _stand(d, int(W * 0.58), ground_y + 6, h=300, col=FIG, arms_up=arms,
+               lean=ln, head_drop=hd)
         # coins drain out of the pump base — fuel = money burning
         _coin_fall(d, 44, t, pxc - 30, pxc + 30, ground_y - 30, count=9, spread=140)
         im = _label(im, number, label, col=(86, 186, 206))
@@ -1468,13 +1525,19 @@ def treadmill_scene(out: Path, seconds: float = 6.0, number: str = "",
         d.text((cx + 128, deck_y - 194), f"{spd:0.1f}", font=_font(ANTON, 40),
                fill=(140, 240, 170, 255))
         d.text((cx + 128, deck_y - 150), "MPH", font=_font(DEJAVU, 16), fill=(120, 200, 140, 255))
-        # the figure runs IN PLACE — legs swing but it never moves forward; if express, show exhaustion
+        # the figure runs IN PLACE — legs swing but it never moves forward.
+        # Exhaustion builds through the beat: the head slumps, the arms sag,
+        # the leg swing shortens — running harder while visibly fading.
         stride = 34 * math.sin(i * 0.9)
         bob = int(6 * abs(math.sin(i * 0.9)))
-        arms = 0.14
-        if ex.get("express"):
-            arms = 0.14 + 0.25 * t              # arms lift higher = exhaustion/struggle
-        _stand(d, cx - 30, deck_y - bob, h=360, col=FIG, arms_up=arms, stride=stride)
+        arms, hd, ln = 0.14, 0.0, 0.0
+        dd = _expr_delta(ex, t, "exhaustion")
+        if dd:
+            arms = max(0.04, 0.14 + dd["arms"])
+            stride *= max(0.55, 1.0 + dd["stride"])   # fatigue shortens the swing
+            hd, ln = dd["head_drop"], dd["lean"]
+        _stand(d, cx - 30, deck_y - bob, h=360, col=FIG, arms_up=arms,
+               stride=stride, lean=ln, head_drop=hd)
         # money pours IN from the top-right and immediately drains OUT bottom-left:
         # every raise you earn is instantly spent — net zero, forever.
         _coin_fall(d, 71, t, int(W * 0.66), int(W * 0.72), int(H * 0.14),
