@@ -789,6 +789,10 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     lw = _bar_lw(n)
     ax = fig.add_axes([0.24, 0.16, 0.62, 0.60])
     ax.set_facecolor("none")
+    # Scale the row-label font to the longest label so a long name ("United
+    # States") doesn't run off the left edge — fixed fs24 clipped them.
+    _maxlbl = max((len(str(p.label)) for p in items), default=6)
+    lblfs = 24 if _maxlbl <= 9 else 20 if _maxlbl <= 12 else 17
     t = max(0.0, min(1.0, reveal))
     _cache: dict = {}
 
@@ -822,7 +826,7 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
         else:
             ax.scatter([tip], [y], s=340, color=color, edgecolors="white",
                        linewidths=1.5, zorder=5)
-        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=24,
+        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=lblfs,
                 color=(color if p.label == insight.highlight_label else TEXT),
                 fontweight="bold", zorder=4)
         tt = ax.text(tip + cap_w + vmax * 0.03, y, _vfmt(v), va="center",
