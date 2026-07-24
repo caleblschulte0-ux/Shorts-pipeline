@@ -831,6 +831,24 @@ def _lp(a, b, f):
 _ARC_REPS = 3          # effort cycles during the action zone (visible reps)
 
 
+def _braced_legs(crouch=0.0, sway=0.0):
+    """Braced stance whose knees BEND with ``crouch`` (0=tall .. 1=deep squat) so
+    the whole body drives, not just the arms. Feet stay planted (~y356) so he
+    doesn't float off the datum. ``sway`` widens/shifts the stance a touch."""
+    ky = 300 + 12 + crouch * 26                 # knees drop as he squats
+    kx_l, kx_r = 138 - crouch * 8, 202 + crouch * 8
+    fl, fr = 138 - sway, 202 + sway
+    legs = (R.limb(152, 300, int(kx_l), int(ky), 0, 36, 27, 0) +
+            R.limb(int(kx_l), int(ky), int(fl), 352, 0, 36, 27, 0) +
+            R.limb(188, 300, int(kx_r), int(ky), 0, 36, 27, 0) +
+            R.limb(int(kx_r), int(ky), int(fr), 352, 0, 36, 27, 0))
+    feet = (f'<ellipse cx="{fl-2:.0f}" cy="356" rx="27" ry="13" fill="{R.TEAL}" '
+            f'stroke="{OUT}" stroke-width="6"/>'
+            f'<ellipse cx="{fr+2:.0f}" cy="356" rx="27" ry="13" fill="{R.TEAL}" '
+            f'stroke="{OUT}" stroke-width="6"/>')
+    return legs + feet
+
+
 def _arc(kfs, p, wob_amp=7.0):
     """Perform kfs=[SETUP, ACTION, PAYOFF] across beat-progress p in [0,1] with a
     THREE-ZONE structure so even a long (~13s) beat reads as a bit, not a perch:
@@ -845,29 +863,35 @@ def _arc(kfs, p, wob_amp=7.0):
     gate read 'Data just rides/stands'. Repeated reps fix that."""
     p = 0.0 if p < 0.0 else 1.0 if p > 1.0 else p
     _windup, _heave, _cheer = kfs[0], kfs[1], kfs[2]
-    if p < 0.18:                                   # SETUP: settle into wind-up
+    _ride = _heave[2] == "ride"                    # surfing bit keeps its straddle
+    if p < 0.18:                                   # SETUP: settle into a crouch
+        s = p / 0.18
         lh = list(_windup[0]); rh = list(_windup[1])
-        lower_name, expr_name = _windup[2], _windup[3]
-        bob = math.sin(p / 0.18 * math.pi * 0.5) * 3.0
-    elif p < 0.74:                                 # ACTION: repeated effort reps
+        lower = R.lower_ride() if _ride else _braced_legs(crouch=0.8)
+        expr_name = _windup[3]
+        bob = 10.0 - s * 10.0                        # drop into the crouch
+    elif p < 0.74:                                 # ACTION: whole-body effort reps
         u = (p - 0.18) / 0.56                       # 0..1 across the action zone
-        # (1-cos)/2 sweeps windup->heave->windup; _ARC_REPS full pushes.
+        # (1-cos)/2 sweeps crouch/wind-up -> drive/heave -> crouch; _ARC_REPS reps.
         e = (1.0 - math.cos(u * math.pi * 2.0 * _ARC_REPS)) * 0.5
         lh = [_lp(_windup[0][i], _heave[0][i], e) for i in range(3)]
         rh = [_lp(_windup[1][i], _heave[1][i], e) for i in range(3)]
-        lower_name = _heave[2]
+        # legs DRIVE with the heave: deep crouch at wind-up (e=0), tall on the
+        # drive (e=1) — the whole silhouette pumps, so no sampled frame reads as
+        # merely 'standing on the bar'.
+        lower = R.lower_ride() if _ride else _braced_legs(crouch=0.9 * (1.0 - e),
+                                                          sway=e * 7.0)
         expr_name = "strain" if e > 0.5 else _heave[3]
-        bob = -e * 4.0                              # dip with each heave
-    else:                                          # PAYOFF: heave -> cheer, hold
+        bob = 9.0 - e * 20.0                        # rise up onto the drive
+    else:                                          # PAYOFF: heave -> leaping cheer
         f = (p - 0.74) / 0.26
         lh = [_lp(_heave[0][i], _cheer[0][i], f) for i in range(3)]
         rh = [_lp(_heave[1][i], _cheer[1][i], f) for i in range(3)]
-        lower_name = _cheer[2]
+        lower = _braced_legs(crouch=0.0)            # spring tall
         expr_name = _cheer[3]
-        bob = -math.sin(f * math.pi) * 6.0          # a little hop on the cheer
+        bob = -math.sin(f * math.pi) * 10.0         # a clear victory hop
     arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), int(lh[2]))
             + R.arm(*R.SHR, int(rh[0]), int(rh[1]), int(rh[2])))
-    lower = _LOWER.get(lower_name, R.lower_stand)()
     eyes, mouth = _expr(expr_name)
     return (arms, lower, "", "", eyes, mouth, bob)
 
