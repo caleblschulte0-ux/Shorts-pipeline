@@ -1193,21 +1193,26 @@ def render_hook_receipt(out_dir: Path, slug: str, header: str,
         bb = d.textbbox((0, 0), tot, font=bigf)
         d.text((W // 2 - (bb[2] - bb[0]) // 2, ty + 96), tot, font=bigf,
                fill=warn, stroke_width=3, stroke_fill=(60, 20, 10, 255))
-        # red stamp (e.g. "+86%") angled in the corner, pops near the end
-        if stamp and r > 0.45:
-            sa = min(1.0, (r - 0.45) / 0.4)
+        # Red stamp SLAMS onto the receipt exactly when the total reaches its
+        # final value (rr hits 1.0 at ~0.92) — the synchronized punchline moment
+        # — with an overshoot that settles (anticipation/impact easing).
+        if stamp and r > 0.80:
+            prog = min(1.0, (r - 0.80) / 0.12)
+            sa = prog
+            over = 1.0 + 0.4 * (1.0 - prog)          # 1.4x slam -> settle to 1.0
             stmp = Image.new("RGBA", (360, 150), (0, 0, 0, 0))
             sd = ImageDraw.Draw(stmp)
             sd.rounded_rectangle([6, 6, 354, 144], radius=18, outline=warn, width=8)
             sbb = sd.textbbox((0, 0), stamp, font=stampf)
             sd.text(((360 - (sbb[2] - sbb[0])) // 2, (150 - (sbb[3] - sbb[1])) // 2
                      - sbb[1]), stamp, font=stampf, fill=warn)
-            stmp = stmp.rotate(11, expand=True,
-                               resample=Image.BICUBIC)
+            stmp = stmp.rotate(11, expand=True, resample=Image.BICUBIC)
+            if over != 1.0:
+                stmp = stmp.resize((int(stmp.width * over), int(stmp.height * over)),
+                                   Image.BICUBIC)
             stmp.putalpha(stmp.getchannel("A").point(lambda a: int(a * sa)))
-            # placed in the empty band below the item lines, above the dashed
-            # total rule — clear of the numbers.
-            canvas.alpha_composite(stmp, ((W - stmp.width) // 2, ty - 260))
+            canvas.alpha_composite(stmp, ((W - stmp.width) // 2, ty - 260
+                                          - (stmp.height - 150) // 2))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
     return pattern, []
 

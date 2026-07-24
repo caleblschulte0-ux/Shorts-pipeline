@@ -755,7 +755,8 @@ def _round_rect_tail(x0, y0, x1, y1, r=30, tail_x=540, tip=(540, 520)) -> str:
     return " ".join(p)
 
 
-def _build_hook_receipt(story_cfg: dict, work: Path, slug: str):
+def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
+                        hook_dur: float = 3.0):
     """Assemble a RECEIPT cold-open from the story's OWN data: category jumps as
     line items + a dollar total that races from its first year to its last.
     Returns (printf_pattern, nframes) or None if the story lacks the pieces
@@ -793,7 +794,8 @@ def _build_hook_receipt(story_cfg: dict, work: Path, slug: str):
         pct = int(round((hi / lo - 1) * 100)) if lo else 0
         pat, _ = charts.render_hook_receipt(
             work / "receipt", slug, "RECEIPT", lines, lo, hi, "dollars",
-            stamp=(f"+{pct}%" if pct else ""), frames=64)
+            stamp=(f"+{pct}%" if pct else ""),
+            frames=int(max(24, min(180, round(hook_dur * 30)))))
         import glob as _glob
         return pat, len(_glob.glob(pat.replace("%02d", "*")))
     except Exception as e:  # noqa: BLE001 — never let the cold-open kill a render
@@ -1089,6 +1091,23 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         narration, windows = synth_narration(sentences, work, voice)
         total = _dur(narration) + 0.3
 
+        # TRUE 30fps: re-render each chart at frames = beat*30 now that the beat
+        # length is known, so the build animates smoothly across the WHOLE beat
+        # (no held/duplicate frames — the choppiness the temporal grade caught).
+        chart_dir = work / "charts"
+        for i, seg in enumerate(st.segments):
+            wi = windows[1 + i] if 1 + i < len(windows) else None
+            if not (wi and getattr(seg, "insight", None) and seg.chart_path):
+                continue
+            nfr = int(max(30, min(150, round((wi[1] - wi[0]) * 30))))
+            try:
+                cpath, _a = charts.render_story_build(
+                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr)
+                if cpath:
+                    seg.chart_path = str(cpath)
+            except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure
+                print(f"[studio] 30fps re-render seg{i} skipped: {e}", flush=True)
+
         bokeh = ambient.make_bokeh_strip(work / "bokeh.png", seed=theme["seed"])
         footmask = work / "foot_mask.png"
         _make_mandel_mask(footmask, W, FOOT_H, feather=130, bottom=70)
@@ -1099,7 +1118,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # HOOK VISUAL: a receipt whose total races up (built from the story's own
         # data). When present it becomes the cold-open and the ASS hero number is
         # suppressed so they don't collide.
-        receipt = _build_hook_receipt(story_cfg, work, slug)
+        receipt = _build_hook_receipt(story_cfg, work, slug,
+                                      hook_dur=windows[0][1] - windows[0][0])
         ass = work / "cap.ass"
         build_story_ass(st, windows, events, ass, accent=accent_ass,
                         hook_visual=bool(receipt))
