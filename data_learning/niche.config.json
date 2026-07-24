@@ -13737,7 +13737,8 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE CLIMB",
           "topic": "atmospheric CO2",
-          "say": "In 1960 the air held about 317 parts of CO2 per million. By 2025 it's 427 \u2014 a line that has only ever climbed."
+          "say": "In 1960 the air held about 317 parts of CO2 per million. By 2025 it's 427 \u2014 a line that has only ever climbed.",
+          "viz": "trend"
         },
         {
           "source": "offline",
@@ -13748,7 +13749,8 @@
           "insight_type": "trend",
           "role": "2 \u00b7 THE ACCELERATION",
           "topic": "CO2 added each decade",
-          "say": "And it's speeding up. The 1960s added under 9 parts per million. The 2010s added over 24 \u2014 nearly triple the pace."
+          "say": "And it's speeding up. The 1960s added under 9 parts per million. The 2010s added over 24 \u2014 nearly triple the pace.",
+          "viz": "pictograph"
         }
       ]
     },
@@ -13783,7 +13785,8 @@
           "ascending": false,
           "role": "1 \u00b7 THE GIANTS",
           "topic": "most populous countries",
-          "say": "China and India each pack over 1.4 billion people. The United States, in third, isn't even 340 million."
+          "say": "China and India each pack over 1.4 billion people. The United States, in third, isn't even 340 million.",
+          "viz": "pictorial_race"
         },
         {
           "source": "offline",
@@ -13794,7 +13797,8 @@
           "insight_type": "share",
           "role": "2 \u00b7 THE SHARE",
           "topic": "share of world population",
-          "say": "Put it another way: China and India alone are more than 35 percent of everyone alive. The other 190-plus countries split the rest."
+          "say": "Put it another way: China and India alone are more than 35 percent of everyone alive. The other 190-plus countries split the rest.",
+          "viz": "waffle_grid"
         }
       ]
     },
@@ -13828,7 +13832,8 @@
           "insight_type": "share",
           "role": "1 \u00b7 THE MIX",
           "topic": "world electricity by source",
-          "say": "Coal still leads at 34 percent, gas adds 22. But hydro, nuclear, wind and solar are closing in fast."
+          "say": "Coal still leads at 34 percent, gas adds 22. But hydro, nuclear, wind and solar are closing in fast.",
+          "viz": "waffle_grid"
         },
         {
           "source": "offline",
@@ -13839,7 +13844,8 @@
           "insight_type": "comparison",
           "role": "2 \u00b7 THE TIPPING POINT",
           "topic": "fossil vs clean power",
-          "say": "In 2024 fossil fuels fell to 59 percent of the world's power \u2014 under 60 for the first time since the 1940s."
+          "say": "In 2024 fossil fuels fell to 59 percent of the world's power \u2014 under 60 for the first time since the 1940s.",
+          "viz": "pictorial_race"
         }
       ]
     }
