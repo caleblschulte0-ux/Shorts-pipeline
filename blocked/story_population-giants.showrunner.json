@@ -1,0 +1,72 @@
+{
+  "score": 43,
+  "verdict": "block",
+  "dimensions": {
+    "hook": 1,
+    "data_demo": 3,
+    "mascot": 2,
+    "craft": 1,
+    "pace": 1,
+    "payoff": 1,
+    "temporal_craft": 1
+  },
+  "auto_fails": [
+    "decorative_mascot: Data holds one identical standing pose the whole runtime, just perched on China's bar tip (hook@0.3 \u2192 seg1:end) then parked on the waffle fill edge (seg2:start \u2192 payoff@-0.4) \u2014 position tracks the data but there is no setup\u2192action\u2192payoff bit."
+  ],
+  "checks": {
+    "junk_imagery": {
+      "present": false,
+      "evidence": "No photos or AI cutouts anywhere \u2014 every frame is native vector chart/waffle art (hook@0.3, seg2:mid)."
+    },
+    "decorative_mascot": {
+      "present": true,
+      "evidence": "Data holds one identical standing pose the whole runtime, just perched on China's bar tip (hook@0.3 \u2192 seg1:end) then parked on the waffle fill edge (seg2:start \u2192 payoff@-0.4) \u2014 position tracks the data but there is no setup\u2192action\u2192payoff bit."
+    },
+    "bare_number_card": {
+      "present": false,
+      "evidence": "Numbers always sit inside a demonstration \u2014 values ride inside the bars at seg1:end (1425.9 / 1417.2 / 338.3) and percentages annotate the filling waffle at seg3:mid."
+    },
+    "dead_air": {
+      "present": false,
+      "evidence": "longest_static_s=0.0 and bars/waffle cells are advancing in every sampled frame (hook@0.8 \u2192 hook@2.2 shows continuous bar growth); max_dup_run 8 \u2248 0.33s."
+    },
+    "empty_void": {
+      "present": false,
+      "evidence": "dark_fraction=0.0; the card is populated with five labelled bar tracks plus legend even at the emptiest moment (hook@0.3), though the lower band there is unused."
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 84
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.465,
+    "effective_fps": 12.8,
+    "max_dup_run": 8
+  },
+  "judge": "headless-claude",
+  "one_line": "This is a competent chart export with a mascot sticker riding the bar \u2014 the hook is the single worst thing: 2.8 seconds of an empty five-bar template slowly filling while the caption sits on top of the chart.",
+  "problems": [
+    "Hook fails outright: at hook@0.3 the frame is a titled but EMPTY bar template ('most populous countries' + five zero-length tracks) \u2014 the rubric explicitly forbids opening on a slow chart build; nothing has happened by hook@0.8.",
+    "Caption text is mispositioned over the artwork for the entire first beat \u2014 'Two countries' at hook@0.3 and 'hold more' at hook@0.8/seg0:start crash straight through Data and China's bar, while the dedicated caption band at the bottom of the frame sits empty; from seg1:start onward the caption correctly moves down to that band, so beat 1 is a layout bug.",
+    "Data is decoration with a coordinate: identical standing pose from hook@0.3 all the way to payoff@-0.4. He never gestures, reacts, or does a bit \u2014 he is a marker glued to the fill front.",
+    "Legend color integrity is broken at seg2:start\u2013payoff@-0.4: the 'United States' swatch is the same purple as 'Rest of world', and in the bar beat China renders purple while its legend swatch is pink \u2014 a viewer cannot map color to country.",
+    "The callout bubble at seg3:start\u2013payoff@-0.4 permanently occludes the 'Rest of world' legend row, and the source credit is clipped off the left edge in every frame ('ource: United Nations\u2026').",
+    "Only two visual ideas across 28s \u2014 one bar race (0\u201311s) and one waffle fill (14\u201328s) \u2014 with the bar chart holding the same composition for roughly eleven seconds.",
+    "Effective cadence is 12.8fps with a 0.465 duplicate ratio: the motion that exists will read as judder, not as smooth animation.",
+    "Payoff is a text bubble, not a visual landing \u2014 'Eight countries, over half the planet' arrives at seg3:start as a paragraph while the waffle keeps filling underneath, so the punchline and the demonstration don't hit together."
+  ],
+  "fixes": [
+    "Replace the first 2s: open on the waffle grid already slamming shut \u2014 36 of 100 cells snapping to China+India color in one hard beat with Data bracing against the impact \u2014 and let the ranked bar chart come second as the breakdown.",
+    "Move the beat-1 captions into the lower caption band used from seg1:start onward, and never let caption text render over the chart card or the mascot.",
+    "Give Data one real bit per beat: have him try to hold back the China bar and get shoved to the right edge by it in the bar beat, then physically stack/kick the last few waffle tiles into place on the 35% line at seg2:end.",
+    "Fix the legend palette so each series has a unique color matching its rendered geometry (China pink everywhere or purple everywhere; give the US its own hue distinct from 'Rest of world').",
+    "Reposition the closing callout so it doesn't cover the legend \u2014 dock it to the empty lower band and shrink it to one line ('8 countries. Half the planet.').",
+    "Raise the render/interpolation rate so unique-frame cadence approaches the export fps; the 0.465 duplicate ratio must come down before this passes on smoothness.",
+    "Split the 11s bar beat into two distinct staged visuals (top-2 vs the field, then the US dropping in at a quarter the height) so no composition holds longer than ~4s.",
+    "Land the payoff visually: hold the final 36-vs-190 waffle split with the rest-of-world cells scattering into 190 tiny fragments on 'Wild, right?', with Data reacting to it."
+  ]
+}

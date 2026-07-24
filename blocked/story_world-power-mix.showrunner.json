@@ -1,0 +1,72 @@
+{
+  "score": 43,
+  "verdict": "block",
+  "dimensions": {
+    "hook": 2,
+    "data_demo": 3,
+    "mascot": 1,
+    "craft": 1,
+    "pace": 1,
+    "payoff": 1,
+    "temporal_craft": 1
+  },
+  "auto_fails": [
+    "decorative_mascot: Data only perches: he slides along the top edge of the filling waffle (hook@0.3 \u2192 seg1:end) then stands on the fossil bar unchanged from seg2:start through payoff@-0.4 \u2014 no setup\u2192action\u2192payoff, no prop, he is a position marker."
+  ],
+  "checks": {
+    "junk_imagery": {
+      "present": false,
+      "evidence": "No photos or AI cutouts anywhere \u2014 every beat is vector chart art (waffle grid at seg0:mid, bars at seg2:start); the only foreign object is an empty cyan ellipse annotation at seg1:mid, a graphic bug not stock imagery."
+    },
+    "decorative_mascot": {
+      "present": true,
+      "evidence": "Data only perches: he slides along the top edge of the filling waffle (hook@0.3 \u2192 seg1:end) then stands on the fossil bar unchanged from seg2:start through payoff@-0.4 \u2014 no setup\u2192action\u2192payoff, no prop, he is a position marker."
+    },
+    "bare_number_card": {
+      "present": false,
+      "evidence": "Every stat is embodied \u2014 100 squares filling by source at seg1:end, and two racing fill-bars at seg2:mid; the 59.1%/40.9% numerals at payoff@-1.8 sit inside the bars they describe."
+    },
+    "dead_air": {
+      "present": false,
+      "evidence": "Measured longest_static_s = 0.0; frames keep changing (bars grow seg2:start \u2192 seg2:end), though payoff@-1.8 \u2192 seg3:end \u2192 payoff@-0.4 are near-identical apart from a mascot twitch."
+    },
+    "empty_void": {
+      "present": false,
+      "evidence": "dark_fraction = 0.0 and the frame carries multiple large elements (grid + legend column at seg0:end; two full-width bars at seg2:mid), but the band above the bars and below them at seg2:start is unused space."
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 80
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.513,
+    "effective_fps": 11.7,
+    "max_dup_run": 9
+  },
+  "judge": "headless-claude",
+  "one_line": "A sound 100-square waffle metaphor is undermined by broken text/legend collisions and a mascot who does nothing but ride the fill line.",
+  "problems": [
+    "Hook is corrupted by overlapping type: hook@0.3 renders 'Here's how' on top of a leftover 'al', and hook@0.8/seg0:start show 'the entire' colliding with ghost glyphs \u2014 the first two seconds look like a rendering bug, not a hook.",
+    "Kicker text collides with the legend column: seg0:end reads 'last year:Coal' as one mashed string, and at hook@1.5 the 'Coal' legend label sits directly on top of the fading headline.",
+    "The 'Coal' legend entry is missing entirely for the first ~1s (hook@0.3 lists only Gas/Hydro/Nuclear/Wind) while purple coal squares are already filling \u2014 the legend contradicts the chart.",
+    "A stray empty cyan ellipse floats beside the 'Gas' legend at seg1:mid, and the '22%' callout lands on top of the caption 'But hydro, nuclear' \u2014 two unrelated overlays fighting for the same space.",
+    "Data is decoration: he perches on the waffle frontier for scenes 1\u20132 and stands motionless on the fossil bar from seg2:start to payoff@-0.4 with no bit tied to the tipping-point stat.",
+    "Scene 2's fossil-vs-clean bars are a generic two-progress-bar layout \u2014 the 'under 60 percent for the first time since the 1940s' punchline gets no visual event, the bars simply stop.",
+    "Payoff is flat: payoff@-1.8, seg3:end and payoff@-0.4 are the same frame with a micro mascot shift, so the closing line lands on a still image.",
+    "Measured cadence is laggy \u2014 duplicate_ratio 0.513 and effective_fps 11.7 with a 9-frame duplicate run means the fill animations judder rather than flow."
+  ],
+  "fixes": [
+    "Fix the title-card crossfade so outgoing and incoming words never co-exist (hook@0.3, hook@0.8) \u2014 hard-cut the kicker or offset it, and clear the previous string's glyph buffer.",
+    "Reserve a right-hand gutter for the legend column and clamp the kicker text width so 'last year' can never overprint 'Coal' (seg0:end); render the legend above the kicker in z-order.",
+    "Populate all five legend rows (including Coal) at t=0 so the key matches the squares that are already filling at hook@0.3.",
+    "Delete the empty ellipse annotation at seg1:mid, or attach it to the block it is meant to circle, and move the '22%' badge into the chart area so it stops colliding with the subtitle.",
+    "Give Data a real bit in scene 1: have him try to carry/stack the coal squares, get buried as the purple block reaches 34, then climb out \u2014 setup, action, payoff, tied to the stat.",
+    "Replace the static bar stop in scene 2 with an event at 60 percent: put a physical 60% line on the fossil track and have the bar visibly fall short of it while Data pushes against it \u2014 that is the '1940s' punchline made visible.",
+    "Animate the final reveal: count the 59.1 / 40.9 numerals up as the bars settle and have Data tip or slide with the crossover, so payoff@-1.8 \u2192 payoff@-0.4 is a move, not a held frame.",
+    "Raise the source animation rate to the export fps (or interpolate) so the waffle fill and bar growth stop duplicating frames \u2014 target an effective unique-frame rate near 24, not 11.7."
+  ]
+}

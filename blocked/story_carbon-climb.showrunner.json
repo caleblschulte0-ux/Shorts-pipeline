@@ -1,0 +1,68 @@
+{
+  "score": 48,
+  "verdict": "block",
+  "dimensions": {
+    "hook": 1,
+    "data_demo": 3,
+    "mascot": 3,
+    "craft": 1,
+    "pace": 1,
+    "payoff": 1,
+    "temporal_craft": 1
+  },
+  "auto_fails": [],
+  "checks": {
+    "junk_imagery": {
+      "present": false,
+      "evidence": "Every frame is native vector work \u2014 line chart (seg0:mid f04) and decade dot-matrix (seg2:mid f11); no photos, stock, or AI cutouts anywhere."
+    },
+    "decorative_mascot": {
+      "present": false,
+      "evidence": "Data climbs the CO2 curve with it as it draws \u2014 bottom-left at 1962 (hook@0.3), mid-slope at 1990 (seg1:start), arms thrown up at the 427.4 peak (seg1:end) \u2014 then walks down the decade rows (seg2:start\u2192seg3:start); his position is the data value."
+    },
+    "bare_number_card": {
+      "present": false,
+      "evidence": "No beat is a number on a blob \u2014 427.4 arrives as the endpoint label of the drawn line (seg1:end) and the decade values arrive attached to their dot rows (payoff@-1.8)."
+    },
+    "dead_air": {
+      "present": false,
+      "evidence": "longest_static_s=0.0 and max_dup_run=35@24fps (~1.5s); the slowest stretch, hook@0.8\u2192hook@1.5, still advances the mascot and the growing 1960s block."
+    },
+    "empty_void": {
+      "present": false,
+      "evidence": "dark_fraction=0.0; frames like seg1:start carry chart, gridlines, title block, mascot and caption band \u2014 the upper card area is underused but not a void with one tiny element."
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 86
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.451,
+    "effective_fps": 13.2,
+    "max_dup_run": 35
+  },
+  "judge": "headless-claude",
+  "one_line": "The first two seconds are a title card over a pre-ghosted chart \u2014 nothing happens at frame 1 \u2014 and the payoff numbers land underneath the mascot instead of beside him.",
+  "problems": [
+    "Hook (hook@0.3\u2013hook@2.2): plain title card 'atmospheric CO2 / 1960 \u2192 2025' plus the full curve already drawn as a faint ghost, so the reveal is spoiled before it starts; the only motion in 2 seconds is a mascot inching a few pixels and a thumbnail-sized blue block.",
+    "Payoff collision (payoff@-1.8, seg3:end, payoff@-0.4): the mascot sits directly on top of the '20.4' label, rendering it as an unreadable '2\u25ef4' in the three most important frames of the video.",
+    "Text collision (seg3:mid onward): 'Did you realize it was accelerating? Tell me below.' is stamped across the 2010s dot row, and the closing speech bubble's tail points into the 1970s label \u2014 two text layers fighting the graphic.",
+    "Wasted canvas (seg1:start, seg1:mid): the top ~40% of the card is empty while the chart, mascot and the 427.4 payoff are all crushed into the lower third.",
+    "Judder (measured): duplicate_ratio 0.451 / effective_fps 13.2 \u2014 roughly half the exported frames are repeats, so the line-draw and dot-fill read as steppy rather than smooth.",
+    "Payoff undersold (payoff@-1.8): the whole point \u2014 13.1 \u2192 24.1, nearly triple \u2014 appears as five small grey numerals popping on at once with no emphasis, no comparison, no beat held on the tripling.",
+    "Second act repeats the first structurally (seg2:start\u2192seg3:start): another left-to-right fill with the mascot walking along it; the two segments have the same rhythm and the same mascot bit."
+  ],
+  "fixes": [
+    "Open on motion: drop the ghosted curve and the static title, and start at t=0 with the 1960 dot already whipping upward \u2014 or Data getting shoved up-frame by the rising line \u2014 then let the title fade in over it at ~0.8s.",
+    "Give the mascot a hard no-overlap zone against value labels: offset him 40\u201360px opposite the label side (or flip labels to the left of the line) so 20.4 and 24.1 are never occluded at the payoff.",
+    "Move the 'Did you realize\u2026' CTA into the empty upper card region or delay it until the dot rows have finished, so it never sits on the 2010s row.",
+    "Compose into the top third: raise the chart baseline and let the curve fill the frame vertically so the 427.4 peak lands near the top rather than mid-card.",
+    "Render at the export frame rate \u2014 the tween is producing ~13 unique fps; interpolate the line-draw and dot-fill per output frame instead of per source step.",
+    "Land the acceleration: hold on 1960s (8.x) vs 2010s (24.1) side by side, scale the two dot rows against each other so the 2010s row is visibly ~3\u00d7 the length, and let Data physically fail to carry the 2010s pile.",
+    "Vary the second bit: give Data a different act on the decade grid \u2014 stacking or being buried by the accumulating dots \u2014 instead of a second left-to-right walk."
+  ]
+}
