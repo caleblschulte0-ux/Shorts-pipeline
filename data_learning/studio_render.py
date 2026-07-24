@@ -1456,11 +1456,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         prev_tl = home
         for k, (tlx, tly, w0, w1, _a, _f, _p, sc) in enumerate(seq):
             gi = masc_input[k]
-            # Glide over most of the beat, easing in the last bit so he settles
-            # only briefly before the next move — motion fills the whole window.
-            arrive = w0 + max(0.5, (w1 - w0) * 0.82)
-            xe = _piecewise([(w0, prev_tl[0]), (arrive, tlx)], 1)
-            ye = f"({_piecewise([(w0, prev_tl[1]), (arrive, tly)], 1)})+5*sin(1.7*t)"
+            # Glide across nearly the WHOLE beat (settle only the last ~8%), and
+            # ride a continuous 2D idle on top — a vertical bob plus a small
+            # horizontal sway — so Data is NEVER globally static, even when he's
+            # "parked". A static host is what the temporal grade reads as a held
+            # frame (the payoff's static pose). Keep him alive every frame.
+            arrive = w0 + max(0.5, (w1 - w0) * 0.92)
+            xe = (f"({_piecewise([(w0, prev_tl[0]), (arrive, tlx)], 1)})"
+                  f"+6*sin(1.3*t)")
+            ye = (f"({_piecewise([(w0, prev_tl[1]), (arrive, tly)], 1)})"
+                  f"+9*sin(2.1*t)")
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
             fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")

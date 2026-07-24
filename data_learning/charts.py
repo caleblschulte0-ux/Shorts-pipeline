@@ -1880,8 +1880,12 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
     for f in range(1, frames + 1):
+        # LINEAR reveal (constant velocity). The old ease-out front-loaded the
+        # growth and left the last ~1s of every card build near-frozen — that
+        # frozen tail is what the temporal grade caught as duplicate frames /
+        # low effective fps. Linear keeps the chart MOVING to the final frame,
+        # which lands on the exact static chart so the rings still anchor.
         r = f / frames
-        r = 1.0 - (1.0 - r) ** 2            # ease-out
         if f == frames:
             r = 1.0                         # final frame == static chart
         fig, plt = _card_base()
