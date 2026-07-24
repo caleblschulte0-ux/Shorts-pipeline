@@ -56,6 +56,34 @@ corpus (posted log + wide 7d/30d sweep)
   duration, used_vod_expansion, context_overlay_count, replay_count,
   revision_count, narrative_score (§22).
 
+## Phase Two (editing quality) — implemented
+
+- **J/L cuts** (§13/§14): a beat may carry `transition: "j_cut"|"l_cut"`;
+  the assemble blends audio 0.3s across that join (video stays a hard
+  cut) — abrupt audio starts/stops disappear. Hard-cut-only stories keep
+  the lossless concat path.
+- **Framing continuity** (§15): per-beat `framing: "wide"|"tight"` —
+  the DIRECTOR chooses (wide for the incident, tight punch-in for the
+  response); renderer applies a modest centered crop.
+- **Replay** (§12/§16): `{"type":"replay","at":s}` renders ONE slowed
+  labeled re-show appended after its beat; budget enforced at validation.
+- **Dialogue chain** (§14): highpass 60Hz + loudnorm + limiter per
+  segment to one mix target.
+- **Narration** (§14): optional top-level
+  `{"text", "after_beat", "essential_because"}` — requires a stated
+  justification, <=15 words, motive/drama words rejected at validation
+  ("furious", "planning", "secretly"...). Synthesized via edge-tts,
+  ducked under with sidechain; best-effort (TTS failure ships clean).
+
+## Phase Three (learning) — plumbing live, evidence-gated
+
+- Analytics entries carry the §22 fields; `summary["story_structures"]`
+  aggregates per-structure mature performance.
+- `_story_guidance()` feeds the director real channel evidence ONLY when
+  >=25 mature story posts exist (`enough_data`) — before that the
+  director plans blind, per §23: never optimize creative decisions
+  before coherence is proven.
+
 ## Knobs (capture spec, `state/third_packages/default_clip.json`)
 
 | key | default | meaning |

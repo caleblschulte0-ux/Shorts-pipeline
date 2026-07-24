@@ -474,6 +474,31 @@ def _description(pkg: dict, led: dict) -> str:
     return f"{pkg['proof_plan']}\n\n{note}\n\n{detail}\n\n{tags}"
 
 
+def _story_guidance() -> str:
+    """Channel evidence for the story director (spec §22/Phase Three) —
+    which structures/lengths actually retain ON OUR CHANNEL. Empty until
+    the story arm has >=25 mature posts: creative decisions are never
+    optimized before coherence is proven (§23). Never raises."""
+    try:
+        if not ANALYTICS_LATEST.exists():
+            return ""
+        snap = json.loads(ANALYTICS_LATEST.read_text())
+        ss = (snap.get("summary") or {}).get("story_structures") or {}
+        if not ss.get("enough_data"):
+            return ""
+        parts = []
+        for st, x in sorted((ss.get("structures") or {}).items(),
+                            key=lambda kv: -(kv[1].get("median_vph") or 0)):
+            parts.append(
+                f"{st}: n={x['n_mature']}, median_vph={x['median_vph']}"
+                + (f", avg_retention={x['avg_retention']}%"
+                   if x.get("avg_retention") is not None else ""))
+        return ("structure performance on this channel (mature posts): "
+                + "; ".join(parts)) if parts else ""
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def _load_events() -> dict:
     """Event records (STORY_DIRECTOR_PLAYBOOK §5): a developing story
     survives between runs so new developments extend it instead of being
@@ -620,7 +645,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 continue
 
             # ---- eligibility + structure + story EDL (§8-10)
-            edl = story_director.plan_story(reports, event)
+            edl = story_director.plan_story(
+                reports, event, guidance=_story_guidance())
             if not edl:
                 print(f"[story] {who}: director says not a story",
                       flush=True)
@@ -1260,6 +1286,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 entry["structure"] = "story"
                 entry["actual_structure"] = "story"
                 entry["n_beats"] = led.get("n_beats")
+                entry["story_structure"] = led.get("story_structure")
+                entry["duration_s"] = led.get("duration_s")
+                entry["narrative_score"] = led.get("narrative_score")
+                entry["revision_count"] = led.get("revision_count")
+                entry["used_vod_expansion"] = led.get("used_vod_expansion")
+                entry["used_narration"] = led.get("used_narration")
+                entry["context_overlay_count"] = \
+                    led.get("context_overlay_count")
+                entry["replay_count"] = led.get("replay_count")
             elif "files" in led:
                 entry["ledger_sha_input"] = \
                     led["files"]["input"]["sha256"][:16]

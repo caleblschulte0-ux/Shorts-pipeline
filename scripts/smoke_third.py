@@ -121,7 +121,7 @@ def run_story_case(work: Path) -> list[str]:
              "transition": "hard_cut", "context_overlay": "", "effects": []},
             {"source_id": "http://x/makeup", "start": 2.0, "end": 10.0,
              "role": "payoff", "purpose": "show the makeup",
-             "transition": "hard_cut",
+             "transition": "j_cut",
              "context_overlay": "SIX DAYS LATER",
              "effects": [{"type": "subtle_punch", "at": 5.0}]},
         ],

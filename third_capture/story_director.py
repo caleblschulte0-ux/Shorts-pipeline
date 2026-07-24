@@ -22,6 +22,12 @@ from third_capture.author import _call_claude, _call_groq, scrub_text
 STRUCTURES = {"chronological", "cold_open", "mystery_reveal",
               "two_perspectives", "escalation", "before_after"}
 ROLES = {"setup", "escalation", "climax", "payoff", "context", "reaction"}
+TRANSITIONS = {"hard_cut", "j_cut", "l_cut"}
+FRAMINGS = {"wide", "tight"}
+# §14: narration never speculates — motive/drama words reject the line
+_BAD_NARRATION = re.compile(
+    r"\b(furious|revenge|secretly|plotting|planning to|must have|probably"
+    r"|devastated|terrified|humiliated)\b", re.I)
 MAX_BEATS = 5
 # banned overlay phrases (§17): overlays prevent confusion, never narrate
 # the edit. Meta-labels are prohibited.
@@ -62,8 +68,21 @@ Then emit the COMPLETE timeline. Segment rules:
   otherwise be confused (time jump, new speaker, new place) — e.g.
   "EARLIER THAT DAY", "THEN HIS FRIEND RESPONDED". NEVER meta-labels like
   "IT GETS WORSE" or "PART TWO". "" when the cut is already obvious.
-- effects: a GLOBAL budget — at most 1 replay, at most 2 subtle_punch;
-  spend emphasis on the payoff, not the first beat. Usually [].
+- transition per beat: "hard_cut" (default) | "j_cut" (next beat's audio
+  blends in over the cut — use when the next line naturally answers or
+  interrupts) | "l_cut" (previous audio tails briefly over the next
+  visual — use when showing the person/evidence being discussed)
+- framing per beat: "wide" (default — full scene, use for the incident)
+  | "tight" (closer punch-in — use for a response/reaction beat)
+- effects: a GLOBAL budget — at most 1 replay ({"type":"replay","at":s}
+  re-shows ~2s around `at` slowed, ONLY when the action was genuinely
+  hard to see), at most 2 subtle_punch; spend emphasis on the payoff,
+  not the first beat. Usually [].
+- narration: OPTIONAL top-level {"text": <=15 words, "after_beat": idx,
+  "essential_because": str} — ONLY when essential context cannot be
+  shown by footage + a short overlay. Verified facts only, never
+  motives, never drama ("Two days later, he finally responded." — good;
+  "He was furious and planning revenge." — forbidden). Usually omit.
 
 Return STRICT JSON:
 {"is_story": true,
@@ -73,9 +92,13 @@ Return STRICT JSON:
  "target_duration": int,                      // seconds, 25-90
  "beats": [{"source_id": str, "start": s, "end": s,
             "role": "setup|escalation|climax|payoff|context|reaction",
-            "purpose": str, "transition": "hard_cut",
+            "purpose": str,
+            "transition": "hard_cut|j_cut|l_cut",
+            "framing": "wide|tight",
             "context_overlay": str,
             "effects": [{"type": "subtle_punch", "at": s}, ...]}, ...],
+ "narration": {"text": str, "after_beat": int,
+               "essential_because": str} | omitted,
  "ending": {"type": "reaction_hold", "duration": 0.8-2.0}}
 
 The FIRST beat is the opening — moving footage from second zero, hook
@@ -182,17 +205,37 @@ def validate_edl(edl: dict, durations: dict[str, float]) -> dict | None:
                                     "at": max(0.0, float(fx.get("at", 0)))})
                 elif ft == "replay" and n_replay < 1:
                     n_replay += 1
-                    effects.append({"type": ft})
+                    effects.append({"type": ft,
+                                    "at": max(0.0, float(fx.get("at", 0)))})
+            trans = str(b.get("transition", "hard_cut"))
+            if trans not in TRANSITIONS:
+                trans = "hard_cut"
+            framing = str(b.get("framing", "wide"))
+            if framing not in FRAMINGS:
+                framing = "wide"
             beats.append({"source_id": sid, "start": round(s, 2),
                           "end": round(e, 2), "role": role,
                           "purpose": purpose[:120],
-                          "transition": "hard_cut",
+                          "transition": trans,
+                          "framing": framing,
                           "context_overlay": overlay,
                           "effects": effects})
         if len(beats) < 2:
             return None
         if n_overlay > max(0, len(beats) - 1):
             return None          # an overlay on every beat = decoration
+        # §14 narration: optional, justified, verified-voice only
+        narration = None
+        n_in = edl.get("narration")
+        if isinstance(n_in, dict):
+            text = scrub_text(str(n_in.get("text", "")).strip())[:90]
+            why = str(n_in.get("essential_because", "")).strip()
+            after = int(n_in.get("after_beat", -1) or -1)
+            if (text and why and 0 <= after < len(beats)
+                    and len(text.split()) <= 15
+                    and not _BAD_NARRATION.search(text)):
+                narration = {"text": text, "after_beat": after,
+                             "essential_because": why[:120]}
         hook = scrub_text(str(edl.get("hook_overlay", "")).strip())[:60]
         end = edl.get("ending") or {}
         hold = min(2.0, max(0.0, float(end.get("duration", 1.0) or 1.0)))
@@ -207,6 +250,7 @@ def validate_edl(edl: dict, durations: dict[str, float]) -> dict | None:
             "hook_overlay": hook.upper(),
             "target_duration": int(edl.get("target_duration", 45) or 45),
             "beats": beats,
+            "narration": narration,
             "ending": {"type": "reaction_hold", "duration": hold},
         }
     except (TypeError, ValueError, KeyError):
@@ -228,12 +272,18 @@ def _brain(user: str, system: str) -> dict | None:
     return out
 
 
-def plan_story(reports: list[dict], event: dict | None = None) -> dict | None:
+def plan_story(reports: list[dict], event: dict | None = None,
+               guidance: str = "") -> dict | None:
     """Eligibility gate + structure choice + full story EDL, validated.
+    `guidance` is the channel's own evidence about which structures/
+    lengths retain (empty until >=25 mature stories exist — creative
+    decisions are never optimized before coherence is proven, spec §23).
     None = not a story / director unreachable / plan invalid."""
     if len(reports) < 2:
         return None
     user = ""
+    if guidance:
+        user += f"CHANNEL EVIDENCE (from our own analytics): {guidance}\n\n"
     if event:
         user += (f"EVENT: {event.get('event_id', '?')} "
                  f"people={event.get('people')} "

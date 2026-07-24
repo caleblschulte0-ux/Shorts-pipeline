@@ -265,7 +265,13 @@ def _entries(log: dict) -> list[dict]:
                         "hook": e.get("hook"),
                         "cut": e.get("cut"),
                         "source_views": e.get("source_views"),
-                        "banger": e.get("banger")})
+                        "banger": e.get("banger"),
+                        # story-director measurement (spec §22)
+                        "story_structure": e.get("story_structure"),
+                        "narrative_score": e.get("narrative_score"),
+                        "revision_count": e.get("revision_count"),
+                        "used_vod_expansion": e.get("used_vod_expansion"),
+                        "n_beats": e.get("n_beats")})
     else:                                         # trending channel
         for e in posted:
             out.append({"url": e.get("video_url"),
@@ -452,6 +458,11 @@ def build_snapshot(posted_log: Path, channel: str = "",
             "hook": entry.get("hook"),
             "source_views": entry.get("source_views"),
             "banger": entry.get("banger"),
+            "story_structure": entry.get("story_structure"),
+            "narrative_score": entry.get("narrative_score"),
+            "revision_count": entry.get("revision_count"),
+            "used_vod_expansion": entry.get("used_vod_expansion"),
+            "n_beats": entry.get("n_beats"),
             "title": s["title"],
             "published_at": s["published_at"],
             "age_hours": round(age, 1),
@@ -556,6 +567,37 @@ def build_snapshot(posted_log: Path, channel: str = "",
         "story": _arm_stats("story"),
         "simple_fallback": _arm_stats("simple_fallback"),
         "note": "compare only when each arm's n_mature_24h >= 25",
+    }
+    # STORY STRUCTURE LEARNING (spec §22/Phase Three): per-structure
+    # performance over mature public stories. The director only receives
+    # this as guidance once the story arm has >=25 mature posts overall —
+    # creative decisions are never optimized before coherence is proven.
+    stories = [v for v in videos if v.get("actual_structure") == "story"
+               and v.get("story_structure")]
+    by_struct = {}
+    for st in sorted({v["story_structure"] for v in stories}):
+        g = [v for v in stories if v["story_structure"] == st
+             and v.get("age_hours", 0) >= 24]
+        if not g:
+            continue
+        vphs = sorted(v["views_per_hour"] for v in g)
+        rets = [v["average_view_percentage"] for v in g
+                if v.get("usable_for_retention")
+                and v.get("average_view_percentage") is not None]
+        by_struct[st] = {
+            "n_mature": len(g),
+            "median_vph": round(vphs[len(vphs) // 2], 2),
+            "median_duration": round(sorted(
+                v.get("duration_s") or 0 for v in g)[len(g) // 2], 1)
+            if any(v.get("duration_s") for v in g) else None,
+            "avg_retention": round(sum(rets) / len(rets), 1)
+            if rets else None,
+        }
+    summary["story_structures"] = {
+        "structures": by_struct,
+        "n_mature_total": sum(x["n_mature"] for x in by_struct.values()),
+        "enough_data": sum(x["n_mature"]
+                           for x in by_struct.values()) >= 25,
     }
     summary["pending_scheduled"] = len(pending)
 
