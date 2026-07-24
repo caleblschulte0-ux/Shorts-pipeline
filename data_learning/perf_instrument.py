@@ -75,6 +75,7 @@ class RenderMetrics:
 
 _current_render = None
 _current_shot = None
+_shot_wall_start = 0.0
 _process_pids = {}
 
 
@@ -91,7 +92,8 @@ def init_render(story_slug: str, total_beats: int, total_shots: int):
 
 def start_shot(shot_idx: int, shot_kind: str, planned_duration_s: float):
     """Begin tracking a shot."""
-    global _current_shot
+    global _current_shot, _shot_wall_start
+    _shot_wall_start = time.time()
     _current_shot = ShotMetrics(
         shot_idx=shot_idx,
         shot_kind=shot_kind,
@@ -101,17 +103,12 @@ def start_shot(shot_idx: int, shot_kind: str, planned_duration_s: float):
 
 
 def end_shot():
-    """Finalize the current shot."""
-    global _current_shot
+    """Finalize the current shot. total_s is WALL time for the whole shot,
+    so unattributed cost (total - sum of phases) is visible, never hidden."""
+    global _current_shot, _shot_wall_start
     if _current_shot:
         _current_shot.mem_end = _capture_memory()
-        _current_shot.total_s = sum([
-            _current_shot.asset_resolution_s,
-            _current_shot.scene_construction_s,
-            _current_shot.frame_render_s,
-            _current_shot.encoding_s,
-            _current_shot.cleanup_s,
-        ])
+        _current_shot.total_s = time.time() - _shot_wall_start
         if _current_render:
             _current_render.shots.append(_current_shot)
         _current_shot = None
@@ -140,7 +137,9 @@ def stage(name: str, shot_phase: str = None):
         if _current_shot and shot_phase:
             attr = f"{shot_phase}_s"
             if hasattr(_current_shot, attr):
-                setattr(_current_shot, attr, elapsed)
+                # ACCUMULATE — one shot can resolve several assets
+                setattr(_current_shot, attr,
+                        getattr(_current_shot, attr) + elapsed)
 
         print(f"[perf] {name}: {elapsed:.2f}s", file=sys.stderr)
 

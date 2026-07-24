@@ -129,14 +129,17 @@ def _footage_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     else:
         nid = shot.get("footage_nasa_id")
         if not nid:
-            hits = fh.search_footage(str(shot.get("footage_query", "")), limit=6)
+            with perf.stage("footage_search", "asset_resolution"):
+                hits = fh.search_footage(str(shot.get("footage_query", "")),
+                                         limit=6)
             if not hits:
                 raise RuntimeError(f"no footage for {shot.get('footage_query')!r}")
             nid = hits[0]["nasa_id"]
         safe = "".join(c if c.isalnum() else "_" for c in str(nid))[:60]
         src = work / f"srccache_{safe}.mp4"
         if not src.exists():
-            fh.download_video(str(nid), src)
+            with perf.stage("footage_download", "asset_resolution"):
+                fh.download_video(str(nid), src)
     # Operator spec §1: inspect the EXACT window and reject black / card /
     # diagram / cut segments — never pick a clip just because the id matched.
     if shot.get("ss") is not None:
@@ -257,7 +260,8 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
                 "title": shot.get("image_title", "")}
         try:
             if not dest.exists() or dest.stat().st_size < 1024:
-                media.acquire(cand, dest)      # re-fetch if missing/truncated
+                with perf.stage("image_acquire", "asset_resolution"):
+                    media.acquire(cand, dest)  # re-fetch if missing/truncated
             cand["path"] = str(dest)
             side.write_text(json.dumps(cand))
             return cand
@@ -273,10 +277,11 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
     for floor in (floor0, 0.25, 0.12, 0.0):
         if floor > floor0:
             continue
-        picked = media.best_image(
-            str(shot["image_query"]), dest,
-            perspective=shot.get("perspective", ""),
-            min_appeal=floor, must_match=shot.get("must_match"))
+        with perf.stage("image_search", "asset_resolution"):
+            picked = media.best_image(
+                str(shot["image_query"]), dest,
+                perspective=shot.get("perspective", ""),
+                min_appeal=floor, must_match=shot.get("must_match"))
         if picked is not None:
             if floor < floor0:
                 # a photo taken well below the requested appeal floor is a
@@ -306,9 +311,11 @@ def _depict_source(shot: dict, seconds: float, work: Path, idx: int):
     from data_learning import media
     q = str(shot.get("motion_query", "")).strip()
     if q:
-        hit = media.motion_first(
-            q, seconds, work, perspective=str(shot.get("perspective", "")),
-            log=lambda m: print(m, file=sys.stderr))
+        with perf.stage("motion_first", "asset_resolution"):
+            hit = media.motion_first(
+                q, seconds, work,
+                perspective=str(shot.get("perspective", "")),
+                log=lambda m: print(m, file=sys.stderr))
         if hit:
             # hand the resolved clip to the normal footage path: a local file
             # (already downloaded by the gate) pinned to its clean window.
@@ -624,7 +631,8 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
         for i, sh in enumerate(shots):
             c = work / f"shot_{i:02d}.mp4"
             perf.start_shot(i, sh.get("kind", "unknown"), seconds[i])
-            _render_shot(sh, seconds[i], c, work, i)
+            with perf.stage("shot_visual", "frame_render"):
+                _render_shot(sh, seconds[i], c, work, i)
             perf.end_shot()
             clips.append(c)
             print(f"[pro] shot {i} rendered -> {c.name}")
