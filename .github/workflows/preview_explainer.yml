@@ -172,12 +172,27 @@ jobs:
           # Carry the showrunner verdict onto the branch so the gate's judgment
           # travels with the video, not just my say-so.
           cp output/*.showrunner.json "$tmp"/ 2>/dev/null || true
+          # PRESERVE the score HISTORY across force-pushes: fetch the running
+          # verdict log, append this run's compact record, keep it in the commit.
+          git fetch -q origin preview-renders 2>/dev/null || true
+          git show origin/preview-renders:verdicts-log.jsonl > "$tmp/verdicts-log.jsonl" 2>/dev/null || true
+          for j in output/*.showrunner.json; do
+            [ -f "$j" ] || continue
+            python3 - "$j" >> "$tmp/verdicts-log.jsonl" <<'PYEOF'
+import json,sys,datetime
+v=json.load(open(sys.argv[1]))
+print(json.dumps({"ts":datetime.datetime.utcnow().isoformat(timespec="seconds")+"Z",
+  "slug":sys.argv[1].split("/")[-1].replace(".showrunner.json","").replace("story_",""),
+  "score":v.get("score"),"verdict":v.get("verdict"),"dimensions":v.get("dimensions"),
+  "temporal":v.get("temporal"),"auto_fails":v.get("auto_fails"),"judge":v.get("judge")}))
+PYEOF
+          done
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout --orphan preview-renders
           git reset
           cp "$tmp"/* .
-          git add -f *.mp4 *.png *.json 2>/dev/null || true
+          git add -f *.mp4 *.png *.json *.jsonl 2>/dev/null || true
           git commit -m "explainer preview render $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
           git push -f origin preview-renders
 

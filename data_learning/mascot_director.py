@@ -470,15 +470,23 @@ def author_performance(subject: str = "", label: str = "", value: str = "",
         if spec:
             return spec
     hay = " ".join((subject, label, kind)).lower()
-    # Bias the rotation so a strong keyword match LEADS for this beat, then pick
-    # by index so each beat in the video lands on a different act.
-    order = list(_DIVERSE)
-    for pat, preset in _PERF_RULES:
-        if re.search(pat, hay) and preset in order:
-            order.remove(preset)
-            order.insert(0, preset)
-            break
-    preset = order[index % len(order)]
+    # Some viz kinds have a fitting ACTIVE bit — e.g. a waffle/share (part of a
+    # whole) reads best with Data presenting UP at the filling grid rather than
+    # a seated/decorative pose the gate flags. Kind wins over the keyword.
+    _KIND_POSE = {"waffle_grid": "present_up", "share": "present_up",
+                  "pictorial_race": "shove_cart"}
+    if kind in _KIND_POSE:
+        preset = _KIND_POSE[kind]
+    else:
+        # Bias the rotation so a strong keyword match LEADS for this beat, then
+        # pick by index so each beat lands on a different act.
+        order = list(_DIVERSE)
+        for pat, p in _PERF_RULES:
+            if re.search(pat, hay) and p in order:
+                order.remove(p)
+                order.insert(0, p)
+                break
+        preset = order[index % len(order)]
     spec = json.loads(json.dumps(POSE_PRESETS[preset]))       # deep copy
     if value and spec.get("prop") == "price_tag":
         spec["text"] = value
