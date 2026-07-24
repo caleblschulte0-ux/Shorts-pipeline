@@ -1102,36 +1102,47 @@ def _stage_on_data(seg, w0, w1, pose, prev_tl, sweep: bool = True):
         return None
     bit, _default_pose = _DATA_BIT.get(getattr(seg, "kind", ""),
                                        ("beside_hero", "point"))
-    isc = IN_CHART_SCALE
     S = MASCOT_SIZE
 
     def _tl(cx, cy):                    # centre -> full-size top-left, clamped
         return (min(max(cx - S / 2, 2.0), float(W - S - 2)),
                 min(max(cy - S / 2, 2.0), float(H - S - 2)))
 
-    bcx, bcy, variant = _place_mascot(hero, seg.anchors, scale=isc)
-    Sisc = S * isc
-    # RIDE_PEAK: for a climbing line he starts at the FIRST point (low-left) and
-    # rides UP to the PEAK — the glide literally traces the climb.
+    hcx, hcy, _hw, _hh = _screen_box(hero)
     entry = None
     if bit == "ride_peak":
+        # A climbing line: Data starts at the FIRST point (low-left) and rides UP
+        # to the PEAK — small enough to sit ON the line, the glide traces the
+        # climb. This bit shipped, so keep it in-chart.
+        isc = 0.62
         peak = max(seg.anchors, key=lambda a: a.get("value", 0.0))
         pcx, pcy, _pw, _ph = _screen_box(peak)
-        bcx, bcy, variant = pcx, pcy - Sisc * 0.30, "R"
+        bcx, bcy, variant = pcx, pcy - S * isc * 0.30, "R"
         start = seg.anchors[0] if seg.anchors else peak
         scx, scy, _sw, _sh = _screen_box(start)
         entry = _tl(scx, scy)
-    # Positions in `seq` are the TOP-LEFT as if full-size S; the overlay's `off`
-    # correction re-centres the scaled sprite on this centre.
+    else:
+        # Every other chart lives in the top ~60%, leaving the lower frame empty
+        # when Data is tucked inside it (the gate's 'lower 40% wasted' void). So
+        # stand him BIG in the lower-mid frame, directly UNDER this beat's hero
+        # number, pointing UP at it — he bridges the chart-to-bottom gap AND
+        # works that specific datum. His x tracks the number (a new spot every
+        # beat); he sweeps up into place.
+        isc = 0.98
+        chart_bottom = CHART_Y + CHART_H
+        bcy = max(float(chart_bottom) + S * isc * 0.10, float(H) * 0.60)
+        bcx = min(max(hcx, CHART_X + S * isc * 0.4),
+                  float(CHART_X + CHART_W) - S * isc * 0.4)
+        variant = "U"
     tlx, tly = _tl(bcx, bcy)
     if entry is None and sweep:
-        # SWEEP UP into the datum from below — guarantees real travel (cadence)
-        # and reads as Data rushing in to work the number, not parked beside it.
-        entry = (tlx, min(tly + 460.0, float(H - S - 2)))
+        # SWEEP UP into place from below — real travel (cadence) + reads as Data
+        # rushing in to work the number, not parked.
+        entry = (tlx, min(tly + 520.0, float(H - S - 2)))
     if not sweep:
         entry = None                   # continue on from his current spot
     angle = UP_ANGLE if variant == "U" else SIDE_ANGLE
-    flip = (variant == "L")            # face the number he's beside
+    flip = (variant == "L")
     return (tlx, tly, w0, w1, angle, flip, pose, isc), entry
 
 
@@ -1642,14 +1653,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # horizontal sway — so Data is NEVER globally static, even when he's
             # "parked". A static host is what the temporal grade reads as a held
             # frame (the payoff's static pose). Keep him alive every frame.
-            arrive = w0 + max(0.5, (w1 - w0) * 0.92)
+            arrive = w0 + max(0.5, (w1 - w0) * 0.98)
             # A data beat sweeps in from its own entry point (onto the datum);
-            # otherwise Data glides from where he last was.
+            # otherwise Data glides from where he last was. He travels almost the
+            # WHOLE beat (settle only the last ~2%) and rides a lively 2D idle so
+            # some block is always moving — this is what keeps cadence smooth.
             start = entries.get(k, prev_tl)
             xe = (f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
-                  f"+6*sin(1.3*t)")
+                  f"+9*sin(1.3*t)")
             ye = (f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
-                  f"+9*sin(2.1*t)")
+                  f"+12*sin(2.1*t)")
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
             fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
