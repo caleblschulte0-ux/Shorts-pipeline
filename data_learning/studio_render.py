@@ -1089,43 +1089,61 @@ def _hero_anchor(seg):
     return max(anchors, key=lambda a: a.get("value", 0.0))
 
 
-def _stage_on_data(seg, w0, w1, pose, prev_tl, sweep: bool = True):
-    """Stage Data ON this beat's star datum and give him a MOVING bit: he sweeps
-    from an entry point (the line's start, or below the element) up TO the datum
-    across the beat — a real setup->action->payoff on the data, and the travel
-    keeps his cadence smooth. ``sweep=False`` returns no entry (he glides on from
-    where he already is) — used when this beat CONTINUES the previous chart (the
-    seg that leads the hook, the payoff recap) so he doesn't jump back down and
-    re-sweep. Returns (seq_tuple, entry_xy) or None if the beat has no anchor."""
+# PAYOFF emotion rotates so no two beats land the same way (playbook: different
+# acting per beat). Each is a real host pose.
+_PAYOFF_EMOTION = ("cheer", "laugh", "shock", "point")
+
+IN_CHART_PERF = 0.62      # size while performing ON the data
+
+
+def _perform_beat(seg, w0, w1, index=0, sweep_in=True):
+    """A three-state PERFORMANCE on the data — SETUP -> ACTION -> PAYOFF — not a
+    single pose. Data NOTICES the data (setup, at the base), RIDES/CLIMBS it
+    (action, travelling from the smallest datum up to the peak), then REACTS on
+    top of the winner (payoff). He physically moves ALONG the visualization and
+    his pose changes through the arc, so every beat is a tiny 3-second story with
+    constant motion. Returns a list of (seq_tuple, entry_xy) — one per state — or
+    None if the beat has no usable anchors."""
     anchors = getattr(seg, "anchors", None)
     if not anchors:
         return None
     S = MASCOT_SIZE
+    isc = IN_CHART_PERF
 
-    def _tl(cx, cy):                    # centre -> full-size top-left, clamped
+    def _tl(cx, cy):
         return (min(max(cx - S / 2, 2.0), float(W - S - 2)),
                 min(max(cy - S / 2, 2.0), float(H - S - 2)))
 
-    # UNIVERSAL BIT: Data CLIMBS the data and STANDS ON the winner. In a STILL
-    # (what the gate samples) proximity reads as a decorative wave, but FEET ON a
-    # data element reads as interaction — he stands on the tallest bar, tops out
-    # on the line's peak, perches on the biggest slice. He climbs there from the
-    # smallest datum (the glide traces the ascent). With the tall chart filling
-    # ~80%% of the frame, the winning element sits low enough that he clears the
-    # title. Different data shape + peak each beat = the variety.
-    isc = 0.60
+    Sk = S * isc
+
+    def _foot(a):                       # centre a mascot standing ON element a
+        # The value number sits at the element's TIP; stand him so his RIGHT edge
+        # is just LEFT of that tip — on the element, never covering the number
+        # (collision rule). Clamp inside the chart card.
+        cx, cy, _w, _h = _screen_box(a)
+        cxc = max(cx - Sk * 0.5 - 15.0, float(CHART_X) + Sk * 0.5 + 6.0)
+        return _tl(cxc, cy - Sk * 0.40)
+
     peak = max(anchors, key=lambda a: a.get("value", 0.0))
     low = min(anchors, key=lambda a: a.get("value", 0.0))
-    pcx, pcy, pw, _ph = _screen_box(peak)
-    lcx, lcy, _lw, _lh = _screen_box(low)
-    # Stand him ON the winning element: feet at its top edge, nudged a little
-    # onto it (off the number to its right so he doesn't cover it).
-    fx = pcx - pw * 0.16
-    tlx, tly = _tl(fx, pcy - S * isc * 0.40)
-    entry = _tl(lcx, lcy - S * isc * 0.40) if sweep else None
-    angle = UP_ANGLE
-    flip = (lcx > pcx)                  # face the direction he climbed from
-    return (tlx, tly, w0, w1, angle, flip, pose, isc), entry
+    base_x, base_y = _foot(low)
+    peak_x, peak_y = _foot(peak)
+    flip = base_x > peak_x              # face the way he climbs
+    ang = SIDE_ANGLE
+    d = max(0.6, w1 - w0)
+    s1 = w0 + 0.30 * d                  # setup -> action
+    s2 = w0 + 0.68 * d                  # action -> payoff
+    emo = _PAYOFF_EMOTION[index % len(_PAYOFF_EMOTION)]
+    entry = (base_x, min(base_y + 300.0, float(H - S - 2))) if sweep_in else None
+    return [
+        # SETUP: he arrives at the SMALLEST datum and notices the data.
+        ((base_x, base_y, w0, s1, ang, flip, "think", isc), entry),
+        # ACTION: he RIDES/climbs from there up to the peak (the glide travels).
+        ((peak_x, peak_y, s1, s2, ang, flip, "ride", isc), None),
+        # PAYOFF: he reacts on top of the winner — a different beat, a different
+        # emotion each time.
+        ((peak_x, peak_y, s2, w1, UP_ANGLE, flip, emo, isc), None),
+    ]
 
 
 def _piecewise(kfs, axis: int) -> str:
@@ -1333,64 +1351,47 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     entries[len(seq)] = entry_xy
                 seq.append(entry_tuple)
 
-            # When the opening chart leads the hook, Data performs ON it from
-            # frame 1 (sweeping onto its star datum) instead of standing below it.
-            staged_hook = None
-            if lead_hook and st.segments:
-                # Span hook+seg0 as ONE climb so Data ascends IN SYNC with the
-                # line building underneath him (both linear over the same window)
-                # instead of reaching the peak before the line does.
-                staged_hook = _stage_on_data(st.segments[0], windows[0][0],
-                                             windows[1][1], "ride", None)
-            if staged_hook is not None:
-                _add(staged_hook[0], staged_hook[1])
-            else:
-                _add((Cx, hook_y, windows[0][0], windows[0][1],
-                      UP_ANGLE, False, hook_perf, hook_scale))
+            def _add_perf(perf):
+                for tup, ent in perf:
+                    _add(tup, ent)
+
+            # Build the PERFORMANCE beat list covering the WHOLE video with no
+            # gaps: each beat is (segment, w0, w1). When the opening chart leads
+            # the hook, seg0's beat spans hook+seg0 as ONE performance (Data
+            # climbs in sync with the chart building). When the payoff shows a
+            # recap, the LAST seg's beat extends through the closing. Every beat
+            # is a 3-state SETUP->ACTION->PAYOFF performance on its data.
+            perf_beats = []                    # (seg_index, w0, w1)
             for i in range(nseg):
-                wi = windows[1 + i] if 1 + i < len(windows) else None
-                if not wi:
+                w0 = windows[1 + i][0] if 1 + i < len(windows) else None
+                w1 = windows[1 + i][1] if 1 + i < len(windows) else None
+                if w0 is None:
                     continue
                 if i == 0 and lead_hook:
-                    continue                       # covered by the hook beat
+                    w0 = windows[0][0]         # start at the hook
+                if i == nseg - 1 and lead_payoff:
+                    w1 = windows[-1][1]        # run through the closing
+                perf_beats.append((i, w0, w1))
+
+            if not lead_hook:
+                # No chart leads the hook: a fallback central host carries it.
+                _add((Cx, hook_y, windows[0][0], windows[0][1],
+                      UP_ANGLE, False, hook_perf, hook_scale))
+            for i, w0, w1 in perf_beats:
                 spec = _seg_spec(i)
                 if isinstance(spec, dict) and spec.get("hidden"):
-                    continue                       # host baked into the chart
-                # Data PERFORMS ON THE DATA: he CLIMBS this beat's data to the
-                # peak (a moving bit, a new climb every beat). A clean pointing
-                # pose (no random off-topic prop — the gate blocked a bird / $$$
-                # bottle) so the CLIMB is the bit, not a gadget he's holding.
-                # seg0 that led the hook CONTINUES from there (no re-sweep).
-                staged = _stage_on_data(st.segments[i], wi[0], wi[1], "ride",
-                                        None, sweep=not (i == 0 and lead_hook))
-                if staged is not None:
-                    _add(staged[0], staged[1])
-                else:                              # no anchor -> fall to the stage
+                    continue                   # host baked into the chart
+                perf = _perform_beat(st.segments[i], w0, w1, index=i)
+                if perf is not None:
+                    _add_perf(perf)
+                else:
                     x, y = _spot(i, "")
-                    _add((x, y, wi[0], wi[1], UP_ANGLE, False, spec, 1.0))
-            # CLOSING: Data is the SPEAKER — big and central so his celebration
-            # is the payoff and nothing sits frozen.
-            close_act = _director.celebrate() if _director else "cheer"
-            # With a recap chart behind the payoff, Data presents from the lower
-            # stage at normal size (so he doesn't cover it); with an empty payoff
-            # he is the big central celebration that lands the takeaway.
-            close_y = stage_y if lead_payoff else float(H * 0.30)
-            close_scale = 1.0 if lead_payoff else 1.55
-            # With a recap chart behind the payoff, Data sweeps ON it (beside its
-            # star datum) rather than standing below; otherwise he is the big
-            # central celebration.
-            staged_close = None
-            if lead_payoff and st.segments:
-                # The recap is the last seg's chart he's already on — continue,
-                # don't re-sweep.
-                staged_close = _stage_on_data(st.segments[-1], windows[-1][0],
-                                              windows[-1][1], close_act, None,
-                                              sweep=False)
-            if staged_close is not None:
-                _add(staged_close[0], staged_close[1])
-            else:
-                _add((Cx, close_y, windows[-1][0], windows[-1][1],
-                      UP_ANGLE, False, close_act, close_scale))
+                    _add((x, y, w0, w1, UP_ANGLE, False, spec, 1.0))
+            if not lead_payoff:
+                # No recap chart: a final central celebration lands the ending.
+                close_act = _director.celebrate() if _director else "cheer"
+                _add((Cx, float(H * 0.30), windows[-1][0], windows[-1][1],
+                      UP_ANGLE, False, close_act, 1.55))
         else:
             gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
