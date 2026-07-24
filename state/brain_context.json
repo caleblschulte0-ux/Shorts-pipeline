@@ -1,28 +1,43 @@
 {
-  "version": 1,
-  "updated_at": "2026-07-07",
+  "version": 2,
+  "updated_at": "2026-07-22",
   "channel": "explainer",
+  "mode": "EDITORIAL_FREEZE",
+  "freeze_note": "Publishing is frozen (fail-closed). The queue was ~95% synthetic 'illustrative' data (519/546 datasets) and premises had collapsed into searchable noun phrases. Nothing publishes until real, cited stories exist AND a human opts in (PUBLISH_ENABLED=1 / --publish / canary mode). See scripts/editorial_gate.py and docs/EDITORIAL_RESET.md.",
   "flags": {
-    "adaptive_enabled": true,
-    "force_exploration": false
+    "adaptive_enabled": false,
+    "force_exploration": false,
+    "publish_frozen": true,
+    "real_data_only": true,
+    "one_experiment_at_a_time": true
   },
   "guardrails": {
     "min_views_for_adaptation": 100,
     "max_daily_allocation_shift_pct": 20,
-    "canary_videos_per_new_rule": 2
+    "canary_videos_per_new_rule": 2,
+    "max_concurrent_experiments": 1,
+    "publish_requires_explicit_optin": true,
+    "ban_illustrative_sources": true,
+    "premise_bar": "one real expectation-reversal + one consequential, verifiable number; a searchable noun phrase is an auto-reject"
   },
   "metric_versions": {
     "shorts_view_count": "post-2025-03-31 definition"
   },
   "scoring_weights": {
-    "hook_hold": 0.3,
-    "body_retention": 0.3,
-    "ending_retention": 0.15,
+    "hook_hold": 0.25,
+    "body_retention": 0.2,
+    "ending_retention": 0.1,
     "satisfaction_per_engaged_view": 0.15,
+    "reaction_rate": 0.2,
     "expansion_vph_vs_baseline": 0.1
   },
+  "scoring_note": "reaction_rate (comments + shares + subs per view) is now weighted heavily. The 2026-07 analytics showed videos that HELD attention (e.g. Hottest Planets: 412 views, 117% avg-viewed) still produced ~0 comments, shares, or subscribers. Retention without reaction = the content held the eye but generated no genuine interest. Optimize for 'would someone send this to a friend', not just watch-time.",
   "current_directives": [
-    "Sample sizes are below the 100-view adaptation floor for most videos; use judgment + the obvious sort, no weight changes yet."
+    "PUBLISHING IS FROZEN. Do not chase volume. Zero videos on a weak day beats four generic ones.",
+    "Every published claim needs a real source: publisher, retrieval date, unit, and a direct source-value -> narration mapping.",
+    "Reject weak premises at the title stage. 'Tectonic Plates on the Move' dies before render.",
+    "Run ONE experiment at a time: two canaries, one changed variable, a predetermined success metric, then keep or revert.",
+    "Argue AGAINST publishing. The default answer is 'not good enough'; a video must prove it deserves to ship."
   ],
   "active_experiments": [],
   "last_known_good": {
@@ -31,6 +46,8 @@
   },
   "rules_of_thumb": [
     "Action-framed topics beat passive-fact topics within the same category.",
-    "Body-facts and cost-shock topics outperform space on views/hour so far."
+    "Body-facts and cost-shock topics outperform space on views/hour so far.",
+    "High average-view-duration with zero reactions means the premise was watchable but not interesting enough to act on. Fix the premise, not the polish.",
+    "A title that is a plain noun phrase (no verb, no number, no tension) is a reject regardless of how the video looks."
   ]
 }

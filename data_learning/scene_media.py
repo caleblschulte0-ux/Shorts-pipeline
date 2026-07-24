@@ -347,7 +347,15 @@ def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
     Commons via topic_media), downloaded + cached. This is what viewers want —
     an actual picture of the thing being discussed, not an illustration. Returns
     a local image Path, or None if nothing relevant was found."""
+    import os
     import shutil
+    # Channel doctrine: a wrong photo is worse than none. Filename-token
+    # relevance is too noisy to reliably tell an on-topic photo from an off-
+    # topic one (it put a CAR behind an egg-price stat), so auto-fetched photos
+    # are OFF by default. Re-enable with SCENE_PHOTOS=on — the relevance gate
+    # below still filters — or (later) behind a vision relevance check.
+    if os.environ.get("SCENE_PHOTOS", "off").lower() in ("off", "0", "false"):
+        return None
     cache_dir.mkdir(parents=True, exist_ok=True)
     safe = "".join(c if c.isalnum() or c in "-_" else "-" for c in f"{slug}__{tag}")
     dest = cache_dir / f"{safe}.jpg"
@@ -383,10 +391,28 @@ def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
             seen_u.add(url)
             cands.append(url)
     subj_tokens = _tok(subject)
+    # RELEVANCE GATE: a filename-token overlap of 1-2 is noise (it's how a photo
+    # of a CAR ended up behind an 'egg prices' stat). Require the photo to
+    # actually contain the PRIMARY subject word (the longest, most specific
+    # content token) AND clear a score floor. If nothing qualifies, return None
+    # and let the scene use its designed look — no junk image.
+    import urllib.parse
+    min_score = int(os.environ.get("SCENE_PHOTO_MIN_SCORE", "2"))
+    primary = max(subj_tokens, key=len) if subj_tokens else None
+
+    def _name_tokens(u: str) -> set:
+        return _tok(urllib.parse.unquote((u or "").rsplit("/", 1)[-1]))
+
     ranked = sorted(range(len(cands)),
                     key=lambda i: (-_photo_relevance(cands[i], subj_tokens), i))
     for i in ranked:
         url = cands[i]
+        ntok = _name_tokens(url)
+        score = len(ntok & subj_tokens)
+        # strong = contains the primary subject word, or clears the score floor
+        strong = (primary in ntok) or (score >= min_score)
+        if not strong:
+            continue
         try:
             if not entity_media.url_is_image(url):
                 continue
@@ -394,12 +420,14 @@ def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
             if p and Path(p).stat().st_size > 2048:
                 if Path(p) != dest:
                     shutil.copyfile(p, dest)
-                score = _photo_relevance(url, subj_tokens)
-                print(f"[scene] subject photo OK (score {score}) -> {dest.name}",
-                      flush=True)
+                print(f"[scene] subject photo OK (score {score}, "
+                      f"'{primary}' matched) -> {dest.name}", flush=True)
                 return dest
         except Exception:  # noqa: BLE001
             continue
+    print(f"[scene] no on-topic photo for '{subject}' "
+          f"(primary='{primary}') — using designed look, no junk image",
+          flush=True)
     return None
 
 

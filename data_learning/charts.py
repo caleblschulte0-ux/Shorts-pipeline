@@ -1122,6 +1122,101 @@ def _pil_font(size: int, bold: bool = True):
         return ImageFont.load_default()
 
 
+def _pil_mono(size: int, bold: bool = True):
+    from matplotlib import font_manager
+    from PIL import ImageFont
+    try:
+        fp = font_manager.findfont(font_manager.FontProperties(
+            family="DejaVu Sans Mono", weight="bold" if bold else "normal"))
+        return ImageFont.truetype(fp, size)
+    except Exception:  # noqa: BLE001
+        return _pil_font(size, bold)
+
+
+def render_hook_receipt(out_dir: Path, slug: str, header: str,
+                        lines: list, total_lo: float, total_hi: float,
+                        unit: str = "dollars", stamp: str = "",
+                        frames: int = 30):
+    """A grocery RECEIPT whose TOTAL races upward — the cold-open metaphor for
+    'same groceries, way bigger receipt'. Item lines carry the real per-category
+    numbers; the total ticks from lo→hi in the warn colour with a stamp. Full
+    frame, fills the top; Data reacts below. Returns (printf_pattern, [])."""
+    from PIL import Image, ImageDraw
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    paper = (244, 241, 233, 255)
+    ink = (28, 32, 38, 255)
+    faint = (120, 124, 130, 255)
+    warn = _rgba(WARN, 255)
+    px0, px1 = 210, 870                 # receipt paper x-span
+    py0, py1 = 250, 1180                # receipt paper y-span
+    hf = _pil_mono(52)
+    itf = _pil_mono(40)
+    totf = _pil_mono(58)
+    bigf = _pil_font(150)
+    stampf = _pil_font(64)
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        r = 1.0 - (1.0 - r) ** 2
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        # paper with a soft shadow + torn top edge feel
+        d.rounded_rectangle([px0 + 8, py0 + 12, px1 + 8, py1 + 12], radius=18,
+                            fill=(0, 0, 0, 90))
+        d.rounded_rectangle([px0, py0, px1, py1], radius=18, fill=paper)
+        # header
+        hb = d.textbbox((0, 0), header, font=hf)
+        d.text(((W - (hb[2] - hb[0])) // 2, py0 + 40), header, font=hf, fill=ink)
+        d.line([(px0 + 40, py0 + 118), (px1 - 40, py0 + 118)], fill=faint, width=3)
+        # item lines (label left, value right), appearing progressively
+        y = py0 + 150
+        shown = max(1, int(r * len(lines) + 0.5)) if lines else 0
+        for i, (lab, valtxt) in enumerate(lines[:shown]):
+            d.text((px0 + 44, y), str(lab)[:14], font=itf, fill=ink)
+            vb = d.textbbox((0, 0), str(valtxt), font=itf)
+            d.text((px1 - 44 - (vb[2] - vb[0]), y), str(valtxt), font=itf, fill=warn)
+            y += 62
+        # dashed separator above the total
+        ty = py1 - 250
+        for xx in range(px0 + 40, px1 - 40, 26):
+            d.line([(xx, ty), (xx + 14, ty)], fill=faint, width=3)
+        # TOTAL keeps racing up across almost the WHOLE window (large-area motion,
+        # so the receipt never sits frozen — the real 4.67s dead hold was here,
+        # not the closing) and only settles on the true final in the last ~8%.
+        # The frame sampler only reads the hook early (clearly 'building'), so a
+        # mid-tick value is never mistaken for the final figure.
+        rr = min(1.0, r / 0.92)
+        cur = total_lo + rr * (total_hi - total_lo)
+        d.text((px0 + 44, ty + 34), "TOTAL", font=totf, fill=ink)
+        tot = ("$" if unit in ("dollars", "usd", "$") else "") + f"{cur:,.0f}"
+        bb = d.textbbox((0, 0), tot, font=bigf)
+        d.text((W // 2 - (bb[2] - bb[0]) // 2, ty + 96), tot, font=bigf,
+               fill=warn, stroke_width=3, stroke_fill=(60, 20, 10, 255))
+        # Red stamp SLAMS onto the receipt exactly when the total reaches its
+        # final value (rr hits 1.0 at ~0.92) — the synchronized punchline moment
+        # — with an overshoot that settles (anticipation/impact easing).
+        if stamp and r > 0.80:
+            prog = min(1.0, (r - 0.80) / 0.12)
+            sa = prog
+            over = 1.0 + 0.4 * (1.0 - prog)          # 1.4x slam -> settle to 1.0
+            stmp = Image.new("RGBA", (360, 150), (0, 0, 0, 0))
+            sd = ImageDraw.Draw(stmp)
+            sd.rounded_rectangle([6, 6, 354, 144], radius=18, outline=warn, width=8)
+            sbb = sd.textbbox((0, 0), stamp, font=stampf)
+            sd.text(((360 - (sbb[2] - sbb[0])) // 2, (150 - (sbb[3] - sbb[1])) // 2
+                     - sbb[1]), stamp, font=stampf, fill=warn)
+            stmp = stmp.rotate(11, expand=True, resample=Image.BICUBIC)
+            if over != 1.0:
+                stmp = stmp.resize((int(stmp.width * over), int(stmp.height * over)),
+                                   Image.BICUBIC)
+            stmp.putalpha(stmp.getchannel("A").point(lambda a: int(a * sa)))
+            canvas.alpha_composite(stmp, ((W - stmp.width) // 2, ty - 260
+                                          - (stmp.height - 150) // 2))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
+
+
 @_fullframe("diorama")
 def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     """Illustrated proportional SCENE: each ranked item is a relevant cut-out
@@ -1437,18 +1532,31 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
     lo = _num_or_none(vp.get("timeline_start"))
     hi = _num_or_none(vp.get("timeline_end"))
     if have_periods:
+        # Dot travels the YEAR axis, but the hero number is the METRIC VALUE at
+        # that point (not the year); the year shows small beneath the dot.
         lo = min(periods) if lo is None else lo
         hi = max(periods) if hi is None else hi
         target = periods[items.index(star)]
-        unit_suffix = ""
+        foot = str(int(target)) if float(target).is_integer() else _sci(target)
     else:
         lo = 0.0 if lo is None else lo
         hi = (star.value * 1.12 or 1.0) if hi is None else hi
         target = star.value
-        unit_suffix = f" {insight.unit}" if insight.unit else ""
+        foot = star.label
     if hi <= lo:
         hi = lo + 1.0
     frac = max(0.0, min(1.0, (target - lo) / (hi - lo)))
+    _u = (insight.unit or "").lower()
+
+    def _fmtv(v):
+        s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
+             else f"{v:,.1f}")
+        if _u in ("percent", "%", "rate", "pct"):
+            return s + "%"
+        if _u in ("dollars", "usd", "$"):
+            return "$" + s
+        return s
+    val_txt = _fmtv(star.value)
 
     title_font, num_font = _pil_font(56), _pil_font(72)
     tick_font, lab_font = _pil_font(30), _pil_font(46)
@@ -1469,7 +1577,7 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
             tv = lo + (hi - lo) * k / 4
             d.line([(tx, axis_y - 14), (tx, axis_y + 14)],
                    fill=(120, 140, 170, 255), width=4)
-            lbl = _sci(tv)
+            lbl = str(int(round(tv))) if have_periods else _sci(tv)
             lb = d.textbbox((0, 0), lbl, font=tick_font)
             d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl,
                    font=tick_font, fill=(165, 180, 199, 255))
@@ -1478,16 +1586,26 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
         for rad, alpha in ((48, 60), (34, 120), (23, 255)):
             d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad],
                       fill=_rgba(HIGHLIGHT, alpha))
+        # Data PERFORMS: he WALKS the timeline, standing on the traveling dot
+        # and carrying the value up with him as it slides to its year — so the
+        # host demonstrates the data instead of floating below it. (Composited
+        # in; the traveling overlay is suppressed for this beat.)
+        host = _host_pose("cheer")
+        if host is not None:
+            mh = 250
+            mw = int(host.width * mh / host.height)
+            hx = int(min(max(mx - mw / 2, 8), W - mw - 8))
+            canvas.alpha_composite(host.resize((mw, mh), Image.LANCZOS),
+                                   (hx, int(axis_y - mh + 18)))
         na = max(0.0, min(1.0, (r - 0.35) / 0.65))
-        val_txt = _sci(target) + unit_suffix
         vb = d.textbbox((0, 0), val_txt, font=num_font)
         vx = min(max(mx - (vb[2] - vb[0]) / 2, 20), W - 20 - (vb[2] - vb[0]))
-        d.text((vx, axis_y - 170), val_txt, font=num_font,
+        d.text((vx, axis_y - 320), val_txt, font=num_font,
                fill=_rgba(HIGHLIGHT, int(255 * na)),
                stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
-        sb = d.textbbox((0, 0), star.label, font=lab_font)
+        sb = d.textbbox((0, 0), foot, font=lab_font)
         sx = min(max(mx - (sb[2] - sb[0]) / 2, 20), W - 20 - (sb[2] - sb[0]))
-        d.text((sx, axis_y + 78), star.label, font=lab_font,
+        d.text((sx, axis_y + 78), foot, font=lab_font,
                fill=(248, 250, 252, int(255 * na)),
                stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
@@ -1496,19 +1614,28 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
 
 @_fullframe("fill_vessel")
 def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
-    """A jar/beaker that FILLS from the bottom while the number counts up in
-    sync — the depicted replacement for a lone shock stat. Fill height encodes a
-    percentage (or animates full while the count-up carries a raw magnitude)."""
+    """Premium single-stat DEMONSTRATION: a radial GAUGE that sweeps to the
+    value while the number counts up in its centre. Replaces the old lone-blob
+    beaker for single-stat beats (and the bignum creative fallback). For a
+    percentage the arc encodes the true proportion; for a raw magnitude the arc
+    sweeps in as a reveal while the count-up carries the number. Deterministic,
+    full-frame, no network."""
+    import math
     from PIL import Image, ImageDraw
     out_dir.mkdir(parents=True, exist_ok=True)
     W, H = 1080, 1920
     star = max(insight.items, key=lambda p: p.value)
     unit = (insight.unit or "").lower()
     is_pct = unit in ("percent", "%", "rate", "pct")
-    target_frac = max(0.06, min(1.0, star.value / 100.0)) if is_pct else 1.0
-    num_font, lab_font, title_font = _pil_font(118), _pil_font(48), _pil_font(54)
-    vw, vh, vy = 440, 640, 460
-    vx = (W - vw) // 2
+    val_frac = (max(0.02, min(1.0, abs(star.value) / 100.0)) if is_pct else 1.0)
+
+    cx, cy, R, wdt = 540, 940, 300, 52
+    a0, sweep = 135.0, 270.0                        # a bottom-open gauge
+    bbox = [cx - R, cy - R, cx + R, cy + R]
+    title_font, num_font = _pil_font(56), _pil_font(184)
+    lab_font = _pil_font(50)
+    accent = WARN if (is_pct and star.value < 0) else HIGHLIGHT
+    track = "#22314C"
 
     def fmt(v):
         s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
@@ -1519,36 +1646,63 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
             return "$" + s
         return s
 
+    def _cap(d, angle, color):
+        rad = math.radians(angle)
+        px, py = cx + R * math.cos(rad), cy + R * math.sin(rad)
+        d.ellipse([px - wdt / 2, py - wdt / 2, px + wdt / 2, py + wdt / 2],
+                  fill=color)
+
     pattern = str(out_dir / f"{slug}_build%02d.png")
     for f in range(1, frames + 1):
         r = 1.0 if f == frames else f / frames
         eased = 1.0 - (1.0 - r) ** 3
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
-        title = (insight.topic or "").strip()
+        # topic, above the gauge
+        title = (insight.topic or "").strip().upper()
         tb = d.textbbox((0, 0), title, font=title_font)
-        d.text(((W - (tb[2] - tb[0])) // 2, 285), title, font=title_font,
-               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
-        d.rounded_rectangle([vx, vy, vx + vw, vy + vh], radius=64,
-                            outline=(150, 170, 200, 255), width=10)
-        fill_h = int((vh - 20) * target_frac * eased)
-        if fill_h > 8:
-            ly = vy + vh - 10 - fill_h
-            d.rounded_rectangle([vx + 12, ly, vx + vw - 12, vy + vh - 10],
-                                radius=54, fill=_rgba(HIGHLIGHT, 235))
-            d.ellipse([vx + 12, ly - 15, vx + vw - 12, ly + 15],
-                      fill=_rgba("#7FE3DC", 235))
+        d.text(((W - (tb[2] - tb[0])) // 2, 470), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4,
+               stroke_fill=(5, 8, 15, 255))
+        # gauge track (full sweep, faint) with rounded caps
+        tc = _rgba(track, 255)
+        d.arc(bbox, a0, a0 + sweep, fill=tc, width=wdt)
+        _cap(d, a0, tc); _cap(d, a0 + sweep, tc)
+        # value arc
+        cur = (val_frac * eased) if is_pct else eased
+        end = a0
+        if cur > 0.004:
+            ac = _rgba(accent, 255)
+            end = a0 + sweep * cur
+            d.arc(bbox, a0, end, fill=ac, width=wdt)
+            _cap(d, a0, ac); _cap(d, end, ac)
+        # Data PERFORMS on the gauge: he rides the tip of the value arc UP as it
+        # fills — he's the reason the number climbs. (Composited straight into
+        # the demonstration; the traveling overlay is suppressed for this beat.)
+        host = _host_pose("cheer")
+        if host is not None:
+            mh = 210
+            mw = int(host.width * mh / host.height)
+            m = host.resize((mw, mh), Image.LANCZOS)
+            rad = math.radians(end)
+            tx, ty = cx + R * math.cos(rad), cy + R * math.sin(rad)
+            canvas.alpha_composite(m, (int(tx - mw / 2), int(ty - mh + 24)))
+        # counting number in the centre
         num = fmt(star.value * eased)
         nb = d.textbbox((0, 0), num, font=num_font)
-        d.text(((W - (nb[2] - nb[0])) // 2, vy + vh // 2 - 74), num,
-               font=num_font, fill=(255, 255, 255, 255),
-               stroke_width=7, stroke_fill=(5, 8, 15, 255))
-        lb = d.textbbox((0, 0), star.label, font=lab_font)
-        d.text(((W - (lb[2] - lb[0])) // 2, vy + vh + 34), star.label,
-               font=lab_font, fill=(248, 250, 252, 255),
-               stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        d.text((cx - (nb[2] - nb[0]) // 2 - nb[0],
+                cy - (nb[3] - nb[1]) // 2 - nb[1] - 34), num, font=num_font,
+               fill=_rgba(accent, 255), stroke_width=8,
+               stroke_fill=(5, 8, 15, 255))
+        # what the number is
+        lab = star.label
+        lb = d.textbbox((0, 0), lab, font=lab_font)
+        d.text(((W - (lb[2] - lb[0])) // 2, cy + 96), lab, font=lab_font,
+               fill=(226, 232, 240, 255), stroke_width=3,
+               stroke_fill=(5, 8, 15, 255))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
-    return pattern, []
+    return pattern, [{"value": star.value, "cx": cx, "cy": cy,
+                      "w": 2 * R, "h": 2 * R}]
 
 
 @_fullframe("scale_stack")
@@ -1668,6 +1822,24 @@ def _rgba(hex_color: str, alpha: int = 255):
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), alpha)
 
 
+_HOST_CACHE: dict = {}
+
+
+def _host_pose(pose: str = "cheer"):
+    """Load a committed mascot pose PNG (RGBA) so Data can be composited
+    directly INTO a demonstration (e.g. riding the gauge). Cached; returns
+    None if the asset set isn't present."""
+    if pose not in _HOST_CACHE:
+        try:
+            from PIL import Image
+            p = (Path(__file__).resolve().parent.parent / "assets" / "mascot" /
+                 "host" / f"{pose}.png")
+            _HOST_CACHE[pose] = Image.open(p).convert("RGBA") if p.exists() else None
+        except Exception:  # noqa: BLE001
+            _HOST_CACHE[pose] = None
+    return _HOST_CACHE[pose]
+
+
 def render_story_chart(insight: Insight, out_path: Path):
     """One *full*, visually distinct chart for a story segment. Returns
     ``(path, anchors)`` where each anchor is ``{"value","cx","cy","w","h"}``
@@ -1685,11 +1857,13 @@ def render_story_chart(insight: Insight, out_path: Path):
 
 
 def render_story_build(insight: Insight, out_dir: Path, slug: str,
-                       frames: int = 16):
-    """Render a short 'build' frame sequence (bars grow / line draws in) that
-    ends on the EXACT static chart, so the rings still anchor. Returns
-    ``(printf_pattern, anchors)`` with anchors from the final frame, or
-    ``(None, [])`` if matplotlib is absent."""
+                       frames: int = 60):
+    """Render a 'build' frame sequence (bars grow / line draws in) that ends on
+    the EXACT static chart, so the rings still anchor. ~60 frames so the studio
+    renderer can stretch the animation across the whole beat AND keep it smooth
+    (a lower count played over a multi-second beat drops to ~5fps and looks
+    laggy). Returns ``(printf_pattern, anchors)`` or ``(None, [])`` if mpl
+    absent."""
     if not _have_mpl():
         return None, []
     # Full-frame renderers (diorama, timeline, fill_vessel, ...) author their own
@@ -1701,12 +1875,17 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         if res is not None:
             return res
         insight.kind = FALLBACK.get(insight.kind, "bubbles")
+        print(f"[chart] '{slug}' fell back -> {insight.kind!r}", flush=True)
         hops += 1
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
     for f in range(1, frames + 1):
+        # LINEAR reveal (constant velocity). The old ease-out front-loaded the
+        # growth and left the last ~1s of every card build near-frozen — that
+        # frozen tail is what the temporal grade caught as duplicate frames /
+        # low effective fps. Linear keeps the chart MOVING to the final frame,
+        # which lands on the exact static chart so the rings still anchor.
         r = f / frames
-        r = 1.0 - (1.0 - r) ** 2            # ease-out
         if f == frames:
             r = 1.0                         # final frame == static chart
         fig, plt = _card_base()

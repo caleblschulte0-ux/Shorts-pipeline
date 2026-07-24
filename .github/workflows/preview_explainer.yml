@@ -1,0 +1,201 @@
+name: Preview Explainer Render (mascot, no upload)
+
+# Renders ONE committed explainer story with the real studio renderer
+# (studio_render.py — the path that draws the mascot host) to a downloadable
+# mp4, WITHOUT uploading to YouTube. This is how you actually watch the host
+# 'Data' animate in a finished video before anything ships.
+#
+# Fire from Actions -> "Preview Explainer Render" -> Run workflow, pick the
+# branch, optionally set a story slug (default: grocery-squeeze).
+#
+# Blender is intentionally NOT installed: the 3D opener/closer bookends are
+# guarded and fall back to the 2D body, and the mascot lives in the 2D body —
+# so skipping Blender keeps the preview fast and robust. TTS runs on local
+# Kokoro (no keys needed); Speechify is used instead if its secret is set.
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Story slug to render'
+        required: false
+        default: 'grocery-squeeze'
+  # Push trigger so this workflow can run from a feature branch before it ever
+  # lands on the default branch: bump .github/triggers/preview_explainer (e.g.
+  # `date > .github/triggers/preview_explainer`) to fire a fresh render.
+  push:
+    paths:
+      - '.github/triggers/preview_explainer'
+
+permissions:
+  contents: write   # push the rendered mp4 to the preview-renders branch
+
+concurrency:
+  group: preview-explainer-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install system deps (ffmpeg only — no Blender for a fast preview)
+        run: |
+          sudo rm -f /etc/apt/sources.list.d/microsoft*.list \
+                     /etc/apt/sources.list.d/*microsoft* 2>/dev/null || true
+          sudo apt-get update -qq || sudo apt-get update -qq || true
+          # libcairo2: cairosvg rasterises the mascot director's per-scene SVG.
+          sudo apt-get install -y -q ffmpeg libcairo2
+
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt -r data_learning/requirements.txt
+
+      - name: Cache Kokoro TTS models (~350MB)
+        id: cache-kokoro
+        uses: actions/cache@v4
+        with:
+          path: kokoro_models/
+          key: kokoro-onnx-v1.0
+          restore-keys: |
+            kokoro-onnx-
+
+      - name: Download Kokoro TTS models if cache miss
+        if: steps.cache-kokoro.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p kokoro_models
+          curl -fsSL -o kokoro_models/kokoro-v1.0.onnx \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx"
+          curl -fsSL -o kokoro_models/voices-v1.0.bin \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
+          ls -lh kokoro_models/
+
+      - name: Install Claude Code CLI (headless showrunner brain)
+        run: |
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            && echo "claude CLI installed" \
+            || echo "::warning::claude CLI install failed — showrunner falls back to Gemini"
+
+      - name: Render one story (dry-run, no upload)
+        id: render
+        env:
+          # Optional media keys (hook photo / b-roll) — each provider stays
+          # silent if unset; the render still works. No YouTube secrets.
+          SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
+          KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # SHOWRUNNER: the headless taste gate reviews the render (dry run
+          # logs the verdict; it never uploads here). Uses whichever vision
+          # backend has a key — Anthropic if set, else free Gemini. GROQ lets
+          # the viz brain invent mechanics during the preview render too.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # The Claude headless brain (OAuth token) — the showrunner's preferred
+          # judge, same credential the pipeline's brain already runs on.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          SLUG="${{ github.event.inputs.slug }}"
+          # On a push preview there's no input slug — take it from the FIRST LINE
+          # of the trigger file when that line is a bare slug token (so pushes can
+          # target different stories instead of every push re-scoring the same
+          # grocery-squeeze). A note/timestamp first line falls through to default.
+          if [ -z "$SLUG" ]; then
+            CAND=$(head -n1 .github/triggers/preview_explainer 2>/dev/null | tr -d '\r')
+            if printf '%s' "$CAND" | grep -qE '^[a-z0-9][a-z0-9-]+$'; then SLUG="$CAND"; fi
+          fi
+          [ -z "$SLUG" ] && SLUG="grocery-squeeze"
+          echo "Rendering explainer story '$SLUG' (dry-run, no upload)"
+          # --force: preview must render even if the slug is already in the
+          # posted log (dry-run never uploads, so this can't cause a re-post).
+          python scripts/post_stories.py --dry-run --force --slugs "$SLUG"
+          # Surface the SHOWRUNNER's actual verdict — the vision gate that WATCHED
+          # the finished video. This is the quality judgment of record, not a
+          # human eyeballing stills. (dry-run fails open, so a verdict with no
+          # score means the gate couldn't run — that is itself the honest state.)
+          echo "======== SHOWRUNNER VERDICT ($SLUG) ========"
+          cat "output/story_$SLUG.showrunner.json" 2>/dev/null \
+            || echo '{"note":"no verdict written — the review gate did not run (no vision backend / infra error)"}'
+          echo "============================================="
+
+      - name: List rendered output
+        if: always()
+        run: |
+          echo "=== output/ ==="
+          ls -lh output/ 2>/dev/null || echo "(no output dir)"
+
+      - name: Publish render to preview-renders branch
+        if: always()
+        run: |
+          ls output/*.mp4 >/dev/null 2>&1 || { echo "no mp4s rendered — skipping"; exit 0; }
+          tmp=$(mktemp -d)
+          for mp4 in output/*.mp4; do
+            base=$(basename "$mp4")
+            if ffmpeg -y -loglevel error -i "$mp4" \
+                 -vf "scale=720:-2" -c:v libx264 -preset veryfast -crf 30 \
+                 -c:a aac -b:a 96k -movflags +faststart "$tmp/$base"; then
+              echo "compressed $base -> $(du -h "$tmp/$base" | cut -f1)"
+            else
+              echo "compress failed for $base, copying original"
+              cp "$mp4" "$tmp"/ || true
+            fi
+          done
+          # Grab MORE frames, evenly across the whole clip, so the composition can
+          # be judged end-to-end (the old 5-frame sample hid dead space and
+          # overlaps between the sampled moments).
+          for mp4 in "$tmp"/*.mp4; do
+            fbase=$(basename "$mp4" .mp4)
+            DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$mp4" 2>/dev/null | cut -d. -f1)
+            [ -z "$DUR" ] && DUR=40
+            for pct in 4 12 20 30 40 50 60 70 80 88 96; do
+              ts=$(( DUR * pct / 100 ))
+              ffmpeg -y -loglevel error -ss "$ts" -i "$mp4" -frames:v 1 \
+                "$tmp/${fbase}.frame$(printf '%02d' $pct).png" 2>/dev/null || true
+            done
+          done
+          # Carry the showrunner verdict onto the branch so the gate's judgment
+          # travels with the video, not just my say-so.
+          cp output/*.showrunner.json "$tmp"/ 2>/dev/null || true
+          # PRESERVE the score HISTORY across force-pushes: fetch the running
+          # verdict log, append this run's compact record, keep it in the commit.
+          git fetch -q origin preview-renders 2>/dev/null || true
+          git show origin/preview-renders:verdicts-log.jsonl > "$tmp/verdicts-log.jsonl" 2>/dev/null || true
+          for j in output/*.showrunner.json; do
+            [ -f "$j" ] || continue
+            python3 scripts/append_verdict_log.py "$j" >> "$tmp/verdicts-log.jsonl" || true
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan preview-renders
+          git reset
+          cp "$tmp"/* .
+          git add -f *.mp4 *.png *.json *.jsonl 2>/dev/null || true
+          git commit -m "explainer preview render $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
+          git push -f origin preview-renders
+
+      - name: Upload rendered video
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: explainer-preview
+          path: |
+            output/*.mp4
+            output/*.jpg
+          if-no-files-found: warn
+          retention-days: 14

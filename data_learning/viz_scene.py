@@ -570,8 +570,132 @@ def draw_orbit(d, box, insight, reveal):
                stroke_fill=(5, 8, 15, int(255 * na)))
 
 
-def draw_timeline(d, box, insight, reveal):
-    """A marker travels a time/number axis to its point (the loved timeline)."""
+def draw_timeline(d, canvas, box, insight, reveal):
+    """Depict 'X over time'. When we have a real value series across years, plot
+    it as a RISING FILLED AREA that climbs the frame (value on Y, year on X) with
+    Data riding the leading edge UP and the number counting — so the beat
+    DEMONSTRATES the climb and fills the frame, instead of a lone number floating
+    over a flat line in a void. Falls back to the flat time-axis for a single
+    value / no periods."""
+    items = _ordered_items(insight)
+    periods = [charts._num_or_none(getattr(p, "period", None)) for p in items]
+    have_p = len(periods) >= 2 and all(v is not None for v in periods)
+    vals = [p.value for p in items]
+    if have_p and len({round(v, 4) for v in vals}) >= 2:
+        _draw_climb(d, canvas, insight, items, periods, reveal)
+        return
+    _draw_flat_timeline(d, canvas, box, insight, reveal)
+
+
+def _draw_climb(d, canvas, insight, items, periods, reveal):
+    """Rising filled-area chart of a value series over years, revealed L→R, with
+    Data climbing the leading edge and the value counting up. Fills the frame."""
+    from PIL import Image as _Im
+    order = sorted(range(len(items)), key=lambda i: periods[i])
+    yrs = [float(periods[i]) for i in order]
+    vals = [float(items[i].value) for i in order]
+    y0v, y1v = yrs[0], yrs[-1]
+    span_x = (y1v - y0v) or 1.0
+    vmax = (max(vals) * 1.12) or 1.0            # honest 0-based axis
+    px0, px1 = 120, W - 100
+    pb, pt = int(H * 0.80), int(H * 0.30)       # baseline low / ceiling — fills
+    #                                             the lower frame (no dead third)
+    unit = insight.unit
+
+    def X(yr):
+        return px0 + (yr - y0v) / span_x * (px1 - px0)
+
+    def Y(v):
+        return pb - (v / vmax) * (pb - pt)
+
+    r = reveal                                  # already linear from render_scene
+    # (title is drawn once by render_scene's show_title — do NOT draw it here or
+    # it stacks twice, which reads as a broken render.)
+    n = len(yrs)
+    seg = r * (n - 1)
+    hi = min(int(seg), n - 1)
+    fr = seg - hi
+    # DIFFERENTIATE demonstrations so two time-series beats don't look identical:
+    # a money magnitude STACKS UP as growing columns; anything else CLIMBS as a
+    # filled area. (Data's act is varied to match — see pose below.)
+    u = (unit or "").lower()
+    bars = u in ("dollars", "usd", "$")
+    pts = []
+    if bars:
+        bw = (px1 - px0) / n * 0.60
+        hx = hy = None
+        for i in range(n):
+            grow = max(0.0, min(1.0, seg - i + 1))     # column i rises 0→1
+            if grow <= 0:
+                continue
+            top = pb - (vals[i] / vmax) * (pb - pt) * grow
+            cx = X(yrs[i])
+            d.rounded_rectangle([cx - bw / 2, top, cx + bw / 2, pb],
+                                radius=10, fill=_rgba(HIGHLIGHT, 220))
+            hx, hy = cx, top
+        if hx is None:
+            hx, hy = X(yrs[0]), pb
+    else:
+        pts = [(X(yrs[i]), Y(vals[i])) for i in range(hi + 1)]
+        if hi < n - 1:
+            hx = X(yrs[hi]) + fr * (X(yrs[hi + 1]) - X(yrs[hi]))
+            hy = Y(vals[hi]) + fr * (Y(vals[hi + 1]) - Y(vals[hi]))
+            pts.append((hx, hy))
+        hx, hy = pts[-1]
+        if len(pts) >= 2:
+            d.polygon(pts + [(hx, pb), (pts[0][0], pb)], fill=_rgba(HIGHLIGHT, 66))
+    d.line([(px0, pb), (px1, pb)], fill=(90, 105, 130, 255), width=5)  # baseline
+    tick_font = _pil_font(30)
+    for i in range(n):
+        tx = X(yrs[i])
+        d.line([(tx, pb - 8), (tx, pb + 10)], fill=(120, 140, 170, 255), width=3)
+        lbl = str(int(yrs[i]))
+        lb = d.textbbox((0, 0), lbl, font=tick_font)
+        d.text((tx - (lb[2] - lb[0]) // 2, pb + 18), lbl, font=tick_font,
+               fill=(165, 180, 199, 255))
+    if not bars and len(pts) >= 2:
+        d.line(pts, fill=_rgba(HIGHLIGHT, 255), width=11, joint="curve")
+    for rad, a in ((40, 55), (28, 120), (18, 255)):
+        d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(HIGHLIGHT, a))
+    # Data's act varies with the demonstration: he POINTS OUT the stacking bill
+    # (bars) vs. CHEERS/rides the climbing line (area) — a distinct bit per beat.
+    host = charts._host_pose("point" if bars else "cheer")
+    mh = 268        # a strong presence, but not so big it collides with text
+    if host is not None:
+        mw = int(host.width * mh / host.height)
+        px = int(min(max(hx - mw / 2, 8), W - mw - 8))
+        canvas.alpha_composite(host.resize((mw, mh), _Im.LANCZOS),
+                               (px, int(hy - mh + 12)))
+    # Hero value shows the FINAL figure (fading in) — NOT a mid-count that could
+    # read as e.g. "11.3%" when the script says 11.8% (a data-consistency flag).
+    # The chart itself carries the motion; the number stays truthful throughout.
+    na = max(0.0, min(1.0, (r - 0.15) / 0.85))
+    nf = _pil_font(78)
+    val = _fmt_stat(vals[-1], unit)
+    vb = d.textbbox((0, 0), val, font=nf)
+    # Hero number sits in a FIXED slot centred just under the title — decoupled
+    # from the (moving, now-larger) mascot so it never collides with the title or
+    # clips off the right edge.
+    vx = int((W - (vb[2] - vb[0])) / 2)
+    vy = 352
+    d.text((vx, vy), val, font=nf, fill=_rgba(HIGHLIGHT, int(255 * na)),
+           stroke_width=6, stroke_fill=(5, 8, 15, 255))
+    # start value + the delta gap (physical +$X since the first year)
+    sf = _pil_font(34)
+    d.text((px0 - 6, int(Y(vals[0])) - 46), _fmt_stat(vals[0], unit), font=sf,
+           fill=(170, 185, 205, 255), stroke_width=3, stroke_fill=(5, 8, 15, 255))
+    if r > 0.55:
+        dv = vals[-1] - vals[0]
+        dtxt = ("+" if dv >= 0 else "−") + _fmt_stat(abs(dv), unit) \
+            + f" since {int(yrs[0])}"
+        db = d.textbbox((0, 0), dtxt, font=sf)
+        d.text(((W - (db[2] - db[0])) // 2, pt - 6), dtxt, font=sf,
+               fill=_rgba(HIGHLIGHT, int(255 * na)), stroke_width=3,
+               stroke_fill=(5, 8, 15, 255))
+
+
+def _draw_flat_timeline(d, canvas, box, insight, reveal):
+    """The original flat time-axis: a marker travels to a single value's year."""
     items = _ordered_items(insight)
     vp = getattr(insight, "viz_params", {}) or {}
     star = max(items, key=lambda p: p.value)
@@ -580,24 +704,34 @@ def draw_timeline(d, box, insight, reveal):
     lo = charts._num_or_none(vp.get("timeline_start"))
     hi = charts._num_or_none(vp.get("timeline_end"))
     if have_p:
+        # Time series: the dot travels the YEAR axis, but the hero number is the
+        # METRIC VALUE at that point (e.g. $1,030 / 11.8%) — not the year — with
+        # the year shown small beneath the dot. (Showing the year as the headline
+        # was a real bug: "the grocery bill" read "2,026" instead of "$1,030".)
         lo = min(periods) if lo is None else lo
         hi = max(periods) if hi is None else hi
-        target, suffix = periods[items.index(star)], ""
+        pos = periods[items.index(star)]
+        foot = str(int(pos)) if float(pos).is_integer() else _sci(pos)
     else:
         lo = 0.0 if lo is None else lo
         hi = (star.value * 1.12 or 1.0) if hi is None else hi
-        target, suffix = star.value, (f" {insight.unit}" if insight.unit else "")
+        pos = star.value
+        foot = star.label
     if hi <= lo:
         hi = lo + 1.0
-    frac = max(0.0, min(1.0, (target - lo) / (hi - lo)))
-    axis_y = (box[1] + box[3]) // 2
+    frac = max(0.0, min(1.0, (pos - lo) / (hi - lo)))
+    # Centre the axis in the FULL frame (not the legacy top-biased safe box that
+    # reserved a bottom strip CLEAN mode no longer draws) so the host + line sit
+    # balanced in the middle instead of jammed into the top third over a void.
+    axis_y = min(box[3] - 90, max((box[1] + box[3]) // 2, int(H * 0.50)))
     x0, x1 = box[0] + 70, box[2] - 70
     num_font, tick_font, lab_font = _pil_font(72), _pil_font(30), _pil_font(46)
     d.line([(x0, axis_y), (x1, axis_y)], fill=(120, 140, 170, 255), width=6)
     for k in range(5):
         tx = x0 + (x1 - x0) * k / 4
         d.line([(tx, axis_y - 14), (tx, axis_y + 14)], fill=(120, 140, 170, 255), width=4)
-        lbl = _sci(lo + (hi - lo) * k / 4)
+        tv = lo + (hi - lo) * k / 4
+        lbl = str(int(round(tv))) if have_p else _sci(tv)   # years: no comma
         lb = d.textbbox((0, 0), lbl, font=tick_font)
         d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl, font=tick_font,
                fill=(165, 180, 199, 255))
@@ -605,15 +739,26 @@ def draw_timeline(d, box, insight, reveal):
     d.line([(x0, axis_y), (mx, axis_y)], fill=_rgba(HIGHLIGHT, 255), width=12)
     for rad, alpha in ((48, 60), (34, 120), (23, 255)):
         d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(HIGHLIGHT, alpha))
+    # Data rides the dot along the axis (composited straight into the beat).
+    host = charts._host_pose("cheer")
+    if host is not None:
+        from PIL import Image as _Im
+        mh = 250
+        mw = int(host.width * mh / host.height)
+        hx = int(min(max(mx - mw / 2, box[0]), box[2] - mw))
+        canvas.alpha_composite(host.resize((mw, mh), _Im.LANCZOS),
+                               (hx, int(axis_y - mh + 18)))
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.65))
-    val = _sci(target) + suffix
+    val = _fmt_stat(star.value, insight.unit)
     vb = d.textbbox((0, 0), val, font=num_font)
     vx = min(max(mx - (vb[2] - vb[0]) / 2, box[0]), box[2] - (vb[2] - vb[0]))
-    d.text((vx, axis_y - 170), val, font=num_font, fill=_rgba(HIGHLIGHT, int(255 * na)),
+    # Value floats above Data's head (clear of the host so both read cleanly).
+    vy = max(box[1] + 6, axis_y - 320)
+    d.text((vx, vy), val, font=num_font, fill=_rgba(HIGHLIGHT, int(255 * na)),
            stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
-    sb = d.textbbox((0, 0), star.label, font=lab_font)
+    sb = d.textbbox((0, 0), foot, font=lab_font)
     sx = min(max(mx - (sb[2] - sb[0]) / 2, box[0]), box[2] - (sb[2] - sb[0]))
-    d.text((sx, axis_y + 78), star.label, font=lab_font,
+    d.text((sx, axis_y + 78), foot, font=lab_font,
            fill=(248, 250, 252, int(255 * na)), stroke_width=3,
            stroke_fill=(5, 8, 15, int(255 * na)))
 
@@ -693,6 +838,10 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     if not validate(spec, insight):
         return None
     els = spec["elements"]
+    # Mechanics that composite Data straight into the beat (he rides the element)
+    # so the travelling overlay must be suppressed to avoid a duplicate host.
+    if any(el.get("type") == "timeline_axis" for el in els):
+        insight.host_baked = True
     out_dir.mkdir(parents=True, exist_ok=True)
     # A ranking of illustrated things -> big vertical rows (picture + number)
     # that FILL the frame, instead of a cramped bottom row with a dead top third.
@@ -738,8 +887,10 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     anchors: list = []
     pattern = str(out_dir / f"{slug}_build%02d.png")
     for f in range(1, frames + 1):
+        # LINEAR reveal (was ease-out, and _draw_climb eased AGAIN) — the double
+        # ease front-loaded the build so the last ~40% barely moved, which read
+        # as a ~4s dead hold. Steady growth keeps visible motion the whole beat.
         r = 1.0 if f == frames else f / frames
-        r = 1.0 - (1.0 - r) ** 2
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
         if show_title:
@@ -753,7 +904,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             if t == "orbit_group":
                 draw_orbit(d, box, insight, r)
             elif t == "timeline_axis":
-                draw_timeline(d, box, insight, r)
+                draw_timeline(d, canvas, box, insight, r)
             elif t == "caption":
                 draw_caption(d, box, str(el.get("text", "")), lr)
             elif t == "number":
