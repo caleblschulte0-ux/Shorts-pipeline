@@ -13,10 +13,10 @@ on:
         type: boolean
         default: false
       no_schedule:
-        description: 'Publish immediately, skip scheduling (--no-schedule). Default ON so the daily video goes public the moment it renders — no more scheduled-private confusion. Uncheck to schedule.'
+        description: 'Publish all at once immediately (--no-schedule). Default OFF: the daily batch is SPACED across the day (2h apart) so 6 videos never dump at once. Check only for a one-off instant publish.'
         required: false
         type: boolean
-        default: true
+        default: false
       dry_run:
         description: 'Render only, do NOT upload (--dry-run). For testing.'
         required: false
@@ -370,7 +370,9 @@ jobs:
           # goes public the moment it renders. Only schedule if explicitly
           # asked via a manual dispatch with the box unchecked (NO_SCHEDULE
           # resolves to the literal 'false').
-          if [ "$NO_SCHEDULE" != "false" ]; then ARGS="$ARGS --no-schedule"; fi
+          # Default = SPACED scheduling (drip 6 across the day). Only skip
+          # scheduling for an explicit one-off instant publish.
+          if [ "$NO_SCHEDULE" = "true" ]; then ARGS="$ARGS --no-schedule"; fi
           if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           echo "Running: python scripts/run_trending_daily.py $ARGS"
           python scripts/run_trending_daily.py $ARGS
