@@ -844,10 +844,17 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # at t=0, which is the only moment that decides whether they keep watching.
     h0, h1 = windows[0]
     headline = _headline_number(st)
+    # A bare share % ("22%") slammed on frame 1 is meaningless without its whole
+    # and reads as the 'bare number card' the gate blocks — so when the OPENING
+    # beat is a part-of-whole depiction (waffle / pie / share), suppress the hero
+    # number and let the mascot + the share chart carry the hook. A striking
+    # standalone value (427 ppm, 1.4 billion) still leads.
+    _share_lead = (st.segments and getattr(st.segments[0], "kind", "") in
+                   ("share", "waffle_grid", "pie", "donut", "pictorial_pie"))
     # When a full-frame HOOK VISUAL (the receipt) is on screen it IS the hero —
     # the big number + claim would just collide with it, so they're suppressed
     # and the receipt + VO captions carry the open.
-    if headline and not hook_visual:
+    if headline and not hook_visual and not _share_lead:
         # Hero number: huge, accent-filled, punches in hard on the first frame.
         num = ("{\\an5\\pos(540,235)\\fs240\\1c" + accent + "\\3c&H101010&"
                "\\bord7\\shad0\\fad(0,90)\\fscx150\\fscy150"
@@ -1213,7 +1220,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # motion — the reliable way to kill a frozen 'dead card' run and the
             # empty void the gate flags on those beats).
             seq.append((Cx, hook_y, windows[0][0], windows[0][1],
-                        UP_ANGLE, False, hook_perf, 1.2))
+                        UP_ANGLE, False, hook_perf, 1.45))
             for i in range(nseg):
                 wi = windows[1 + i] if 1 + i < len(windows) else None
                 if not wi:
@@ -1226,7 +1233,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # is the payoff and nothing sits frozen.
             close_act = _director.celebrate() if _director else "cheer"
             seq.append((Cx, float(H * 0.30), windows[-1][0], windows[-1][1],
-                        UP_ANGLE, False, close_act, 1.35))
+                        UP_ANGLE, False, close_act, 1.55))
         else:
             gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
@@ -1309,8 +1316,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             print(f"[studio] hook image skipped: {e}", flush=True)
 
         # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, [hook img], charts, mascots, audio
-        _grad = (("0x0C0E13", "0x0E1118", "0x12161F", "0x0A0C11")
-                 if CLEAN else theme["grad"])       # CLEAN = flat dark editorial
+        # CLEAN = dark EDITORIAL gradient with genuine depth: a lifted blue/slate
+        # diagonal (mean well above the dark threshold) fading to near-black
+        # corners. The old palette sat so dark the whole frame read as a black
+        # VOID on beats without a chart (hook/payoff) — the gate's empty_void
+        # flag. This keeps the professional dark look but gives the frame body.
+        _grad = (("0x10131C", "0x1E2740", "0x243141", "0x0D0F16")
+                 if CLEAN else theme["grad"])
         inputs = ["-f", "lavfi", "-i",
                   ambient.gradient_lavfi(total, colors=_grad)]
         inputs += ["-loop", "1", "-i", str(bokeh)]
