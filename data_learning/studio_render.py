@@ -1233,9 +1233,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             disp_start[i] = start
             disp_end[i] = end
             nfr = int(max(30, min(300, round((end - start) * 30))))
+            # Hook-leading chart draws across the HOOK window (not the whole
+            # hook+seg0 span) so Data actively CLIMBS the line through the entire
+            # cold open and tops out cheering by the end of the hook — no empty
+            # 'title card waiting for a stub', and continuous motion, not a burst.
+            full_by = 1.0
+            if i == 0 and lead_hook and end > start and len(windows) > 1:
+                full_by = max(0.18, min(1.0, (windows[1][0] - start) / (end - start)))
             try:
                 cpath, _a = charts.render_story_build(
-                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr)
+                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr,
+                    full_by=full_by)
                 if cpath:
                     seg.chart_path = str(cpath)
             except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure

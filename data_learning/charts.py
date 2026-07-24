@@ -527,7 +527,8 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     ax.tick_params(length=0)
     # BAKE THE HOST: Data rides the growing line's TIP — he climbs with the data,
     # his surf pose pumping (phase cycles a few times across the draw).
-    _bake_host(ax, xd[-1], yd[-1], "ride_line", (reveal * 3) % 1.0,
+    _bake_host(ax, xd[-1], yd[-1],
+               "ride_line" if reveal < 0.82 else "cheer", (reveal * 3) % 1.0,
                zoom=0.62, align=(0.5, 0.02))
     insight.host_baked = True
     return ax, arts
@@ -777,7 +778,8 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         _mr = max(range(len(values)), key=lambda k: values[k])
         _mfull = max(1, int(round((values[_mr] / vmax) * cols)))
         _mshown = max(1, min(_mfull, int(round(_mfull * t + 0.5)))) if t < 1 else _mfull
-        _bake_host(ax, float(_mshown - 1), float(n - 1 - _mr), "lift",
+        _bake_host(ax, float(_mshown - 1), float(n - 1 - _mr),
+                   "lift" if reveal < 0.85 else "cheer",
                    (reveal * 4) % 1.0, zoom=0.5, align=(0.5, 0.0))
     insight.host_baked = True
     return ax, specs
@@ -836,7 +838,8 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # lit cell each frame).
     _fi = max(0, min(99, lit - 1))
     _fr, _fc = divmod(_fi, 10)
-    _bake_host(ax, float(_fc), float(9 - _fr), "lift", (reveal * 5) % 1.0,
+    _bake_host(ax, float(_fc), float(9 - _fr),
+               "lift" if reveal < 0.9 else "cheer", (reveal * 5) % 1.0,
                zoom=0.4, align=(0.5, 0.0))
     insight.host_baked = True
     return ax, specs
@@ -907,7 +910,8 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # BAKE THE HOST: Data braces against the WINNING bar's growing tip, shoving
     # it out — he moves right WITH the bar as it grows (top row = highest value).
     _ttip = max(max(values) * t, vmax * 0.02)
-    _bake_host(ax, _ttip, n - 1, "push_bar", (reveal * 3) % 1.0,
+    _bake_host(ax, _ttip, n - 1,
+               "push_bar" if reveal < 0.82 else "cheer", (reveal * 3) % 1.0,
                zoom=0.5, align=(0.92, 0.12))
     insight.host_baked = True
     return ax, specs
@@ -1934,7 +1938,7 @@ def render_story_chart(insight: Insight, out_path: Path):
 
 
 def render_story_build(insight: Insight, out_dir: Path, slug: str,
-                       frames: int = 60):
+                       frames: int = 60, full_by: float = 1.0):
     """Render a 'build' frame sequence (bars grow / line draws in) that ends on
     the EXACT static chart, so the rings still anchor. ~60 frames so the studio
     renderer can stretch the animation across the whole beat AND keep it smooth
@@ -1962,7 +1966,7 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         # frozen tail is what the temporal grade caught as duplicate frames /
         # low effective fps. Linear keeps the chart MOVING to the final frame,
         # which lands on the exact static chart so the rings still anchor.
-        r = f / frames
+        r = min(1.0, (f / frames) / max(0.05, full_by))
         if f == frames:
             r = 1.0                         # final frame == static chart
         fig, plt = _card_base()
