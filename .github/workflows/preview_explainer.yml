@@ -53,12 +53,14 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
 
-      - name: Scoring calibration (fail fast if the instrument lost separation)
+      - name: Scoring calibration + repair-loop logic (fail fast, no deps)
         run: |
           # The score is only trustworthy if it still SEPARATES weak < baseline
-          # < strong with the ship/block line in the gap. Pure-function check,
-          # no deps — runs before we spend minutes rendering.
+          # < strong with the ship/block line in the gap, and the self-repair
+          # loop's keep-best/bounded control flow must hold. Pure-function
+          # checks, no deps — run before we spend minutes rendering.
           python3 data_learning/tests/test_showrunner_scoring.py
+          python3 data_learning/tests/test_repair_loop.py
 
       - name: Install system deps (ffmpeg only — no Blender for a fast preview)
         run: |
