@@ -28,6 +28,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
+from data_learning.expression import parse_expression_config, apply_expression, CharacterPose
+
 W, H, FPS = 1920, 1080, 30
 REPO = Path(__file__).resolve().parent.parent
 ANTON = str(REPO / "assets" / "fonts" / "Anton-Regular.ttf")
