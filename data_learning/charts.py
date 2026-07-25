@@ -467,11 +467,17 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     hi, lo = insight.items[0], insight.items[1]
     pair = [(hi, HIGHLIGHT), (lo, ACCENT)]
     vmax = max(hi.value, lo.value)
-    ax = fig.add_axes([0.10, 0.22, 0.82, 0.50])
+    # Tall axes + WIDE columns so two bars actually fill the 9:16 card (they used
+    # to read as 'two short capsules in a narrow band' = empty_void).
+    ax = fig.add_axes([0.08, 0.11, 0.84, 0.74])
     ax.set_facecolor("none")
-    lw = 100
-    xs = [0.30, 0.70]
+    lw = 165
+    xs = [0.28, 0.72]
     colors = [HIGHLIGHT, ACCENT]
+    # Faint horizontal reference lines so the space above the shorter column reads
+    # as chart, not void.
+    for _gf in (0.25, 0.5, 0.75, 1.0):
+        ax.axhline(vmax * _gf, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
     arts = []
     for j, ((p, color), x) in enumerate(zip(pair, xs)):
         _round_barv(ax, x, vmax, lw, BAR_BASE, zorder=2)
@@ -501,7 +507,7 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
                 va="bottom", fontsize=19, color=WARN, fontweight="bold",
                 zorder=4)
     ax.set_xlim(0, 1)
-    ax.set_ylim(-vmax * 0.44, vmax * 1.30)
+    ax.set_ylim(-vmax * 0.20, vmax * 1.12)   # winning column nearly fills the card
     ax.set_xticks([])
     ax.set_yticks([])
     for s in ax.spines.values():
@@ -1312,13 +1318,12 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     # the shoved_bar coupling. Route it there.
     if insight.kind == "pictograph":
         insight.kind = "pictorial_race"
-    # A 2-value split fills a 9:16 frame badly as a horizontal race (mascot
-    # slides) OR as two side-by-side columns (two short capsules = empty_void).
-    # A 2-segment STACKED TOWER fills the frame, shows the part-to-whole, and
-    # couples vertically (Data hauled up). Route every 2-value comparison there.
-    if insight.kind in ("pictorial_race", "rank", "comparison") and \
-            len(insight.items) == 2:
-        insight.kind = "stack"
+    # A 2-value split reads badly as a horizontal race (mascot slides). Send it to
+    # VERTICAL versus columns (now widened to fill the frame) where Data is hauled
+    # UP the winning column — a distinct vertical bit that keeps a story from
+    # becoming stack+stack (the monotony that reads as 'same pose twice').
+    if insight.kind in ("pictorial_race", "rank") and len(insight.items) == 2:
+        insight.kind = "comparison"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
