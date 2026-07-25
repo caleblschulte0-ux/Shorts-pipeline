@@ -54,19 +54,33 @@ def _read_json(p: Path):
         return None
 
 
-def _provenance_gap(story: dict) -> str | None:
-    """Flagship factual-provenance gate (audit #11). A story that OPTS IN with
-    top-level ``"require_provenance": true`` must carry `facts[]` provenance for
-    its numeric claims; a spoken number with no source must not publish. Scoped
-    to opt-in stories so non-financial stories (speeds, scales) are unaffected —
-    provenance is authored per story, not guessed from narration."""
+def _provenance_gap(story: dict, out: Path | None = None) -> str | None:
+    """Flagship factual-provenance gate (Phase 9 / audit #11). A story that
+    OPTS IN with top-level ``"require_provenance": true`` runs the full FACTS
+    GATE (scripts/facts_gate.py): claim-registry schema validation + numeric-
+    narration coverage. Any failure blocks publish; the machine-readable
+    verdict is written to ``<out>.facts-report.json``. Scoped to opt-in
+    stories so non-financial stories (speeds, scales) are unaffected."""
     if not story or not story.get("require_provenance"):
         return None
-    sourced = sum(1 for b in story.get("beats", []) if b.get("facts"))
-    if sourced == 0:
-        return ("require_provenance is set but no beat carries facts[] — refusing "
-                "to publish financial claims with no source (audit #11)")
-    return None
+    slug = story.get("slug")
+    if not slug:
+        return "require_provenance set but story has no slug for the facts gate"
+    try:
+        import facts_gate
+        report = facts_gate.evaluate(slug)
+        if out is not None:
+            dest = out.with_suffix(".facts-report.json")
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_text(json.dumps(report, indent=2) + "\n")
+        if not report.get("pass"):
+            heads = "; ".join(report.get("errors", [])[:3])
+            more = len(report.get("errors", [])) - 3
+            return ("FACTS GATE blocked: " + heads
+                    + (f" (+{more} more)" if more > 0 else ""))
+        return None
+    except Exception as e:  # noqa: BLE001 — a gate that cannot run FAILS CLOSED
+        return f"facts gate could not run ({str(e)[:80]}) — refusing to publish unverified claims"
 
 
 def evaluate(out: Path, director_rc: int, story: dict | None = None) -> dict:
@@ -81,7 +95,7 @@ def evaluate(out: Path, director_rc: int, story: dict | None = None) -> dict:
         reasons.append("director gates failed "
                        f"(rc={director_rc}: {_RC.get(director_rc, 'reject')})")
 
-    prov = _provenance_gap(story or {})
+    prov = _provenance_gap(story or {}, out=out)
     if prov:
         reasons.append(prov)
 
