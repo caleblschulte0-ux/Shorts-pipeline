@@ -184,9 +184,14 @@ def _prepublish_gate(out: Path, sc: dict) -> tuple[bool, list[str]]:
     try:
         import hook_director
         with tempfile.TemporaryDirectory() as td:
+            # interest_judge writes <--out>/interest.json — pass the subdir
+            # explicitly (same convention as no_dull_beats._judge); the old
+            # call passed td and read td/interest/... which never existed, so
+            # the gate could only ever fail closed.
             subprocess.run([sys.executable, str(REPO / "scripts" /
-                            "interest_judge.py"), str(out), "--out", td],
-                           check=True, capture_output=True)
+                            "interest_judge.py"), str(out),
+                            "--out", str(Path(td) / "interest")],
+                           check=True, capture_output=True, timeout=900)
             interest = json.loads(
                 (Path(td) / "interest" / "interest.json").read_text())
         if interest.get("dead_fraction", 0) > 0.5:
