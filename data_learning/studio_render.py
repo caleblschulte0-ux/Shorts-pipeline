@@ -60,7 +60,7 @@ HOST_BAKED_KINDS = ("fill_vessel", "bignum", "timeline")
 # robust regardless of when the host_baked flag propagates.
 BAKED_CHART_KINDS = frozenset({
     "trend", "timeline", "pictorial_race", "rank", "comparison", "bars",
-    "waffle_grid", "share", "pictograph"})
+    "waffle_grid", "share", "pictograph", "stack"})
 
 
 def _seg_is_baked(seg) -> bool:

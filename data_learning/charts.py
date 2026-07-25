@@ -1032,6 +1032,53 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     return ax, specs
 
 
+def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
+    """A single 100% STACKED COLUMN that grows bottom->top, each source a coloured
+    segment sized to its share. Fills the tall 9:16 card (a vertical tower), and
+    Data grips the TOP of the growing stack and is hauled UP as it rises — a
+    vertical, clearly data-driven bit (the part-to-whole answer to the waffle)."""
+    from matplotlib.patches import FancyBboxPatch
+    items = _ordered_items(insight)[:6]
+    vals = [max(0.0, p.value) for p in items]
+    tot = sum(max(0.0, p.value) for p in insight.items) or 1.0   # of the WHOLE
+    shares = [v / tot * 100.0 for v in vals]                     # (tail = a top gap)
+    ax = fig.add_axes([0.10, 0.07, 0.80, 0.70])   # tops out below the heading so
+    ax.set_xlim(0, 1); ax.set_ylim(0, 100)         # the top-gripping host clears it
+    ax.set_axis_off()
+    t = max(0.0, min(1.0, reveal))
+    filled = t * 100.0
+    palette = [HIGHLIGHT, ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399"]
+    cx0, cx1 = 0.30, 0.66                       # column x-extent (left-of-centre)
+    # Track (full unfilled tower) so the frame carries the whole shape from frame 1.
+    ax.add_patch(FancyBboxPatch((cx0, 0), cx1 - cx0, 100,
+                 boxstyle="round,pad=0,rounding_size=1.4",
+                 facecolor=BAR_BASE, edgecolor="none", alpha=0.5, zorder=1))
+    specs, la = [], _lblalpha(reveal)
+    y0, top_y = 0.0, 0.0
+    for i, (p, sh) in enumerate(zip(items, shares)):
+        col = (HIGHLIGHT if p.label == insight.highlight_label
+               else palette[i % len(palette)])
+        vis_top = min(y0 + sh, filled)
+        if vis_top > y0 + 0.4:
+            ax.add_patch(FancyBboxPatch((cx0, y0), cx1 - cx0, vis_top - y0,
+                         boxstyle="round,pad=0,rounding_size=1.4",
+                         facecolor=col, edgecolor=CARD, linewidth=2, zorder=3))
+            top_y = vis_top
+            if vis_top >= y0 + sh * 0.55:       # label once the segment is mostly in
+                tt = ax.text(cx1 + 0.03, y0 + sh / 2.0,
+                             f"{p.label}  {sh:.0f}%", ha="left", va="center",
+                             fontsize=23, color=col, fontweight="bold",
+                             zorder=5, alpha=la, path_effects=_shadow())
+                specs.append((p.value, "art", tt, None))
+        y0 += sh
+    # COUPLE THE HOST: Data grips the top of the growing tower and is hauled up as
+    # it stacks (vertical drag — a real bit, not a horizontal slide).
+    _bake_host(ax, (cx0 + cx1) / 2.0, top_y, "drag_line", reveal,
+               zoom=0.92, align=(0.5, 0.80))
+    insight.host_baked = True
+    return ax, specs
+
+
 def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """Proportional bubbles: each item a circle whose AREA scales with its value,
     packed in a row, value inside + label below. A clean, fast, creative
@@ -1236,13 +1283,17 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     # the same values with % labels (matches 'coal still leads at 34%'), and
     # carries the proven bar coupling — route every waffle there. A 2-value
     # donut/share has the same tall-frame problem, so route those too.
-    if insight.kind == "waffle_grid" or (
-            insight.kind == "share" and len(insight.items) <= 2):
-        insight.kind = "pictorial_race"
-    # A pictograph reveals icons one cell at a time — a discrete, low-motion fill
-    # that the cadence grader measured at ~3fps (it dragged carbon's whole video
-    # to tcraft=1). A race shows the same ranking with a smooth continuous grow +
-    # the shoved_bar coupling. Route it there too.
+    # A square waffle can't fill the tall 9:16 card (empty_void) and its zig-zag
+    # frontier gives the mascot no clean travel. A vertical STACKED COLUMN fills
+    # the tower, shows the same part-to-whole, and couples VERTICALLY (Data hauled
+    # up the stack) — a real bit, unlike a horizontal race where he reads as
+    # 'sliding along the bar'. Route waffle + donut there; it also keeps stories
+    # from becoming race+race (the monotony that re-triggered decorative_mascot).
+    if insight.kind in ("waffle_grid", "share"):
+        insight.kind = "stack"
+    # A pictograph reveals icons one cell at a time — a discrete ~3fps fill that
+    # dragged carbon to tcraft=1. A race shows the same ranking with smooth grow +
+    # the shoved_bar coupling. Route it there.
     if insight.kind == "pictograph":
         insight.kind = "pictorial_race"
     star = insight.items[0]
@@ -1279,6 +1330,11 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{star.label} {'sits lowest' if low else 'leads the map'}"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
+    elif insight.kind == "stack":
+        _tot = sum(abs(p.value) for p in insight.items) or 1.0
+        subtitle = f"{star.label} is {abs(star.value) / _tot * 100:.0f}% of the whole"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_stack(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "waffle_grid":
         _tot = sum(abs(p.value) for p in insight.items) or 1.0
         subtitle = f"{star.label} is {abs(star.value) / _tot * 100:.0f}% of the whole"
