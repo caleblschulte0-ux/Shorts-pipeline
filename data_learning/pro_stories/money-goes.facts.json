@@ -46,12 +46,13 @@
       "confidence": "medium",
       "presentation": "illustrative_model",
       "echo_beats": [
-        6
+        6,
+        7
       ]
     },
     {
       "id": "claim-housing-03",
-      "beat_index": 9,
+      "beat_index": 10,
       "claim": "Housing takes about a third of spending — roughly $500,000 over a lifetime.",
       "source_title": "Consumer Expenditure Survey — housing ≈33% of average annual expenditures",
       "publisher": "U.S. Bureau of Labor Statistics",
@@ -69,13 +70,13 @@
       "confidence": "medium",
       "presentation": "illustrative_model",
       "echo_beats": [
-        8,
-        10
+        9,
+        11
       ]
     },
     {
       "id": "claim-transport-04",
-      "beat_index": 13,
+      "beat_index": 14,
       "claim": "Getting around costs about a quarter of a million dollars over a lifetime.",
       "source_title": "Consumer Expenditure Survey — transportation ≈16% of spending",
       "publisher": "U.S. Bureau of Labor Statistics",
@@ -93,12 +94,12 @@
       "confidence": "medium",
       "presentation": "illustrative_model",
       "echo_beats": [
-        14
+        15
       ]
     },
     {
       "id": "claim-food-05",
-      "beat_index": 17,
+      "beat_index": 18,
       "claim": "Feeding yourself runs about $300,000 over a lifetime.",
       "source_title": "Consumer Expenditure Survey — food at home + away ≈12-13% of spending",
       "publisher": "U.S. Bureau of Labor Statistics",
@@ -116,12 +117,12 @@
       "confidence": "medium",
       "presentation": "illustrative_model",
       "echo_beats": [
-        18
+        19
       ]
     },
     {
       "id": "claim-subscriptions-06",
-      "beat_index": 21,
+      "beat_index": 22,
       "claim": "Subscriptions and recurring fees siphon off about $150,000 over a lifetime.",
       "source_title": "Consumer subscription-spending surveys",
       "publisher": "C+R Research; West Monroe",
@@ -141,7 +142,7 @@
     },
     {
       "id": "claim-residual-07",
-      "beat_index": 26,
+      "beat_index": 27,
       "claim": "About 15 cents of every dollar (~$300,000) remains as discretionary.",
       "source_title": "Derived residual of the preceding claims",
       "publisher": "This story's model (arithmetic on claims 01-06)",
@@ -160,7 +161,7 @@
       "presentation": "illustrative_model",
       "echo_beats": [
         1,
-        27
+        28
       ]
     }
   ]

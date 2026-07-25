@@ -90,8 +90,8 @@
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Across a lifetime, that adds up to roughly five hundred thousand dollars, handed over a little at a time. A full quarter of everything you will ever make, gone before you can even decide what to do with it.",
-   "understand": "the quarter made VISIBLE: lifetime earnings vs the tax bite as one animated proportional pair — new information on screen, not a held government-building still (repair: the 12.5-18.0s dead stretch; a static-subject photo cannot carry 5.5s)",
+   "narration": "Across a lifetime, that adds up to roughly five hundred thousand dollars, handed over a little at a time.",
+   "understand": "the quarter made VISIBLE: earnings vs the tax bite as an animated proportional pair",
    "function": "comparison",
    "flat": {
     "kind": "flat_compare",
@@ -117,6 +117,22 @@
      "assumptions": "Combined federal income, payroll, state, and sales tax; ~25% average effective burden applied to the $2M lifetime baseline."
     }
    ]
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "footage",
+   "narration": "A full quarter of everything you will ever make, gone before you can even decide what to do with it.",
+   "understand": "a real close-up grounding the loss — hands counting away dollar bills (brief noun cutaway; the cut itself breaks the 5s novelty ceiling the single 5.5s beat kept tripping)",
+   "image": {
+    "query": "hands counting dollar bills close up",
+    "perspective": "close up",
+    "still": true,
+    "min_appeal": 0.35,
+    "push": 1.3,
+    "queries": [
+     "wallet cash money open"
+    ]
+   }
   },
   {
    "job": "DATA",
