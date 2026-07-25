@@ -1,0 +1,77 @@
+name: Expression Tests
+
+# Regression gate for the character emotional-expression system.
+# Runs on every push/PR touching the expression module, the scenes that
+# consume it, or the tests themselves. Everything here is LOCAL and
+# deterministic — no media gateway, no TTS, no network beyond pip.
+#
+# Three layers:
+#   1. unit gates      — config parsing/clamping, per-emotion pose deltas,
+#                        no-expression backward compat (fast renders, ~1.5s clips)
+#   2. visual proof    — baseline-vs-expression clips for all six scenes,
+#                        changed-pixel measurement (a pose change must sweep
+#                        >600 px; identical renders measure exactly 0)
+#   3. perf sanity     — instrumentation unit tests + the same-scene x10 loop
+#                        must stay flat (catches leaks before they reach a
+#                        4-minute production render)
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - 'data_learning/expression.py'
+      - 'data_learning/scenes.py'
+      - 'data_learning/perf_instrument.py'
+      - 'data_learning/pro_render.py'
+      - 'scripts/test_expressions.py'
+      - 'scripts/verify_expressions.py'
+      - 'scripts/verify_expression_gates.py'
+      - 'scripts/perf_experiments.py'
+      - '.github/workflows/expression-tests.yml'
+  pull_request:
+    paths:
+      - 'data_learning/expression.py'
+      - 'data_learning/scenes.py'
+      - 'data_learning/perf_instrument.py'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: System deps
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+      - name: Python deps
+        run: pip install --quiet pillow numpy
+      - name: Unit gates (config, clamping, pose deltas, backward compat)
+        run: python scripts/verify_expression_gates.py
+      - name: Perf instrumentation unit tests
+        run: python scripts/test_perf_instrument.py
+      - name: Render baseline vs expression clips (all six scenes)
+        run: python scripts/test_expressions.py
+      - name: Measured visual proof (changed-pixel count per scene)
+        run: python scripts/verify_expressions.py
+      - name: Leak check — same scene x10 stays flat
+        run: |
+          python scripts/perf_experiments.py > /tmp/exp.log 2>&1 || { cat /tmp/exp.log; exit 1; }
+          grep "A same-scene loop" /tmp/exp.log
+          if grep "A same-scene loop" /tmp/exp.log | grep -q RISING; then
+            echo "::error::render loop timing is RISING across identical runs"
+            exit 1
+          fi
+      - name: Upload contact sheet + reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: expression-test-evidence
+          path: |
+            tests/expression_tests/contact_sheet.png
+            tests/expression_tests/results.json
+          if-no-files-found: ignore

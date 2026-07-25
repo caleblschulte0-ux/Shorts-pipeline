@@ -1,0 +1,16 @@
+{
+ "topic": "You are moving ~828,000 km/h through the galaxy while apparently sitting perfectly still.",
+ "beats": [
+  {"t":"0-10","job":"HOOK","narration":"Right now, sitting perfectly still, you feel like nothing is moving. That feeling is the greatest illusion of your life.","intended_understanding":"YOU, right now, apparently motionless, are the subject — establish apparent stillness before revealing hidden motion.","visual":"rocket launch footage montage"},
+  {"t":"10-24","job":"SETUP/COMPARISON","narration":"We think we know what fast means. Sprinter 44, jet 900, bullet 3,400 km/h.","intended_understanding":"anchor everyday 'fast' speeds so the reveal later dwarfs them","visual":"horizontal bar comparison (Bolt/jet/bullet), held ~14s"},
+  {"t":"24-35","job":"PROOF","narration":"But the ground beneath your feet is not still. Earth spins at 1,670 km/h at the equator.","intended_understanding":"the ground you stand on is itself moving fast","visual":"ISS night-Earth footage"},
+  {"t":"35-41","job":"INFO","narration":"Half the speed of a bullet, and you never feel it.","intended_understanding":"the spin speed vs the bullet","visual":"full-screen 1,670 km/h number card"},
+  {"t":"41-46","job":"DEVELOP","narration":"Now pull back and watch what our whole planet is doing.","intended_understanding":"zoom out from the spin to the orbit","visual":"designed orbit diagram (Earth around Sun)"},
+  {"t":"46-56","job":"INFO","narration":"Earth falls around the Sun at 107,000 km/h, 30 km every second.","intended_understanding":"orbital speed","visual":"full-screen 107,000 km/h number card, held ~10s"},
+  {"t":"56-64","job":"ESCALATE","narration":"And the Sun itself is not still; it falls around the galaxy dragging every planet.","intended_understanding":"even the Sun/solar system is moving","visual":"full narration sentence on empty background"},
+  {"t":"64-69","job":"REVEAL","narration":"828,000 kilometers an hour.","intended_understanding":"the headline number — our galactic speed","visual":"828,000 number burned over Milky Way footage"},
+  {"t":"69-76","job":"EXPERIENCE","narration":"A tiny world, riding a star, around a galaxy itself racing through the universe.","intended_understanding":"our smallness / scale of the galaxy","visual":"designed spiral-galaxy pull-back"},
+  {"t":"76-83","job":"PAYOFF","narration":"You have never been still, not for one single second of your life.","intended_understanding":"THE conceptual payoff — the whole thesis lands","visual":"full narration sentence on empty background"},
+  {"t":"83-90","job":"BRIDGE/END","narration":"The stillness you feel isn't stillness at all; it's the speed of everything moving together.","intended_understanding":"resolve","visual":"ISS night-Earth footage again (similar to 24-35)"}
+ ]
+}

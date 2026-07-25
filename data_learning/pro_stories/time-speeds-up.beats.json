@@ -1,0 +1,51 @@
+{
+ "slug": "time-speeds-up",
+ "title": "Why Time Feels Faster As You Get Older",
+ "beats": [
+  {
+   "job": "HOOK",
+   "mode": "designed_2d",
+   "narration": "Have you noticed that every year of your life feels faster than the one before it? That is not just in your head. There is a real reason.",
+   "understand": "the years of a life as bars that shrink — the whole idea, teased instantly",
+   "flat": {"kind": "flat_shrinking_years", "label": "how long a year feels", "you_age": 30, "max_age": 60}
+  },
+  {
+   "job": "SETUP",
+   "mode": "designed_2d",
+   "narration": "Think about it this way. To a one-year-old, a single year is their entire life. One hundred percent of everything they have ever known.",
+   "understand": "one year = 100% of a 1-year-old's life",
+   "flat": {"kind": "flat_number", "text": "100", "sub": "% OF THEIR LIFE", "label": "one year, to a one-year-old"}
+  },
+  {
+   "job": "PROOF",
+   "mode": "designed_2d",
+   "narration": "But to a ten-year-old, that same year is only a tenth of their life. And to a fifty-year-old, it is a tiny two percent.",
+   "understand": "the same year is a smaller and smaller fraction as you age",
+   "flat": {"kind": "flat_compare", "title": "a year, as a slice of your life",
+            "rows": [{"name": "Age 5", "value": 20, "display": "20%"},
+                     {"name": "Age 10", "value": 10, "display": "10%"},
+                     {"name": "Age 50", "value": 2, "display": "2%"}]}
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "So every single birthday, that slice gets thinner. Each new year is a smaller piece of everything you have lived, which is exactly why they start to blur together.",
+   "understand": "the hero visual — each year a thinner bar, decades becoming slivers",
+   "flat": {"kind": "flat_shrinking_years", "label": "each year is a thinner slice", "you_age": 30, "max_age": 70}
+  },
+  {
+   "job": "REVEAL",
+   "mode": "designed_2d",
+   "narration": "It goes further than that. By the time you are in your early twenties, in the way your brain actually experiences it, you may have already lived half of your entire life.",
+   "understand": "the gut-punch number — half your PERCEIVED life is gone by ~20",
+   "flat": {"kind": "flat_number", "text": "50", "sub": "% ALREADY LIVED", "label": "your perceived life, by age 20"}
+  },
+  {
+   "job": "PAYOFF",
+   "mode": "designed_2d",
+   "narration": "But here is the fix. Novelty. New places, new skills, new people. They pack a year with memories and stretch it back out. Time only flies when nothing new is happening.",
+   "understand": "the actionable, hopeful close — novelty stretches time",
+   "flat": {"kind": "flat_statement", "statement": "New things stretch time back out."}
+  }
+ ]
+}
