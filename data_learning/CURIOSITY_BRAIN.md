@@ -116,10 +116,16 @@ exist (LEARNING_LOOP.md) — pillars earn their slate share, taste doesn't.
 > visual grammar.
 
 **Format: 1920×1080 16:9, 30fps, MP4/H.264, AAC-LC 48kHz, −14 LUFS,
-4–5 minutes, ~550–800 spoken words** — rendered by the **Visual Sequence
-Director / shot-list path** (`python -m data_learning.pro_render
-<story>.beats.json <out>`; `data_learning/longform_render.py` is the legacy
-fallback only). Documentary pacing = calm narration (no Shorts-speed voice)
+4–5 minutes, ~550–800 spoken words** — produced ONLY through the **canonical
+producer** (`python scripts/produce.py <slug> <out>`: pro_render + the full
+director loop + facts gate + fallback ledger + blind vision verdict). THE
+ROUTING LAW (Phase 3, docs/CURIOSITY_RECOVERY_MANIFEST.md): the publisher
+defaults to `CURIOSITY_RENDERER=pro`; a slug with no pro beat story FAILS
+CLOSED — it is never silently rendered by `data_learning/longform_render.py`,
+which is reachable only via an operator explicitly exporting
+`CURIOSITY_RENDERER=legacy`. Uploading additionally requires
+`CURIOSITY_PUBLISH_ENABLED=1`; the default for every mode is
+render → review → package → HOLD. Documentary pacing = calm narration (no Shorts-speed voice)
 and a ducked music bed. **A beat is a mini-sequence** (setup → development →
 proof → payoff → bridge), never one "exhibit" frame held with a slow Ken
 Burns push. There is **no universal title-card open or takeaway-card close** —
