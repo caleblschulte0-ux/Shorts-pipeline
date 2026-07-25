@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import sys
 import unittest
 
 
@@ -19,6 +20,7 @@ SPEC = importlib.util.spec_from_file_location(
 )
 MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
+sys.modules[SPEC.name] = MODULE
 SPEC.loader.exec_module(MODULE)
 
 
@@ -133,7 +135,10 @@ class QualityStateMachineTests(unittest.TestCase):
         assessment = MODULE.assess_phase(runs, 3)
         self.assertFalse(assessment.passed)
         self.assertTrue(
-            any("dominant performance family share" in reason for reason in assessment.reasons)
+            any(
+                "dominant performance family share" in reason
+                for reason in assessment.reasons
+            )
         )
 
     def test_two_diverse_90_runs_reach_phase_three(self) -> None:
@@ -173,7 +178,9 @@ class QualityStateMachineTests(unittest.TestCase):
         )
         report = MODULE.compare_regression(baseline, challenger)
         self.assertFalse(report.passed)
-        self.assertTrue(any("two-americas-cost" in reason for reason in report.reasons))
+        self.assertTrue(
+            any("two-americas-cost" in reason for reason in report.reasons)
+        )
 
 
 if __name__ == "__main__":
