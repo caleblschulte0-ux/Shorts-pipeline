@@ -120,3 +120,22 @@ idle container — re-measures this under clean conditions; its
 The remaining ⚠ is closed by the fresh canary's `performance.json` (Canary 3),
 which runs on an idle container with the fixed `image_beat` and the honest
 gate.
+
+## 6. RESOLVED — the fresh canary (2026-07-25, idle container)
+
+Same story, same canonical path, idle machine, warm media cache:
+
+| Metric | July-24 (contended session) | July-25 (idle) |
+|---|---|---|
+| wall for 240 s of video | 2904 s | **2048 s** |
+| image-kind median cost | 3.3× | **1.59×** |
+| image-kind worst shot | 42.2× (137.8 s) | **3.72×** |
+| image outliers >3× kind median | 12 | **0** |
+| memory peak | 71 MB | 120 MB (flat, no climb) |
+| slowest shots | Ken-Burns images (96–145 s) | character scenes (51–56 s for 9–12 s beats — inherent PIL frame animation, ~4–6×) |
+
+**Conclusion (measured):** the July-24 image-shot blowups were CPU contention
+from that session's concurrent background renders, not a renderer defect and
+not the media path. On a clean machine the per-kind distribution is tight and
+unimodal, every assignment target passes, and the per-kind outlier gate that
+would catch a recurrence is armed in `scripts/render_gates.py`.
