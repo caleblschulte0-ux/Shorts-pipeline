@@ -1243,7 +1243,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # climbing the line the whole time IS the hook's motion.
             try:
                 cpath, _a = charts.render_story_build(
-                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr)
+                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr,
+                    hook_lead=(i == 0 and lead_hook))   # opening chart bursts up
                 if cpath:
                     seg.chart_path = str(cpath)
             except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure

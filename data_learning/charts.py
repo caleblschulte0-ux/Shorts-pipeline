@@ -2141,7 +2141,8 @@ def render_story_chart(insight: Insight, out_path: Path):
 
 
 def render_story_build(insight: Insight, out_dir: Path, slug: str,
-                       frames: int = 60, full_by: float = 1.0):
+                       frames: int = 60, full_by: float = 1.0,
+                       hook_lead: bool = False):
     """Render a 'build' frame sequence (bars grow / line draws in) that ends on
     the EXACT static chart, so the rings still anchor. ~60 frames so the studio
     renderer can stretch the animation across the whole beat AND keep it smooth
@@ -2170,6 +2171,13 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         # low effective fps. Linear keeps the chart MOVING to the final frame,
         # which lands on the exact static chart so the rings still anchor.
         r = min(1.0, (f / frames) / max(0.05, full_by))
+        if hook_lead:
+            # HOOK BURST: the opening chart shoots up FAST in the first ~22% of the
+            # beat (frame 1 is already big motion + the coupled mascot in action —
+            # not a slow build the gate dings), then eases to a steady draw. Still
+            # ends on the exact static chart; still never freezes (0.7x tail moves).
+            hf = f / frames
+            r = (hf / 0.22) * 0.46 if hf < 0.22 else 0.46 + (hf - 0.22) / 0.78 * 0.54
         if f == frames:
             r = 1.0                         # final frame == static chart
         fig, plt = _card_base()
