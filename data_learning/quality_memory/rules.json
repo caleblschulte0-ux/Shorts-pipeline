@@ -1,12 +1,12 @@
 {
-  "generated_from_n_renders": 27,
+  "generated_from_n_renders": 28,
   "rules": [
     {
       "scope": "job",
       "job": "CHAPTER",
       "flag": "DULL",
       "severity": "hard",
-      "rate": "2/2",
+      "rate": "3/3",
       "guidance": "CHAPTER beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
     },
     {
@@ -14,7 +14,7 @@
       "job": "DEVELOP",
       "flag": "DULL",
       "severity": "soft",
-      "rate": "11/19",
+      "rate": "11/20",
       "guidance": "DEVELOP beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
     },
     {
@@ -35,22 +35,24 @@
   "trend": {
     "dead_fraction": {
       "first": 0.18,
-      "latest": 0.82,
+      "latest": 0.17,
       "want": "down",
-      "direction": "regressing"
+      "direction": "improving"
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.301,
+      "latest": 0.74,
       "want": "up",
-      "direction": "regressing"
+      "direction": "improving"
     },
     "bland_fraction": {
       "first": 0.0,
-      "latest": 0.95,
+      "latest": 0.0,
       "want": "down",
-      "direction": "regressing"
+      "direction": "holding"
     }
   },
-  "motion_wins": []
+  "motion_wins": [
+    "united states capitol government building"
+  ]
 }
