@@ -657,8 +657,23 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
         for d in dull:
             print(f"      beat {d['beat']} {d['job']}: {d['why']} [fix={d['kind']}]")
         for s in stale:
+            # NAME THE BEAT (attribution fix): the raw span alone sent repairs
+            # to the wrong beat — the span midpoint is resolved against the
+            # beatmap so the author fixes the visual that actually held.
+            who = ""
+            try:
+                mid = (s[0] + s[1]) / 2
+                bmap = json.loads(beatmap.read_text()).get("beats", [])
+                for k, be in enumerate(bmap):
+                    a, b = (float(x) for x in str(be.get("t", "0-0")).split("-"))
+                    if a <= mid <= b:
+                        who = (f" [beat {k} {be.get('job', '?')}: "
+                               f"{str(be.get('visual', ''))[:40]}]")
+                        break
+            except Exception:  # noqa: BLE001 — attribution is best-effort
+                pass
             print(f"      STALE {s[0]:.1f}-{s[1]:.1f}s: nothing new for "
-                  f"{s[1]-s[0]:.1f}s — needs a cut / a genuinely new element")
+                  f"{s[1]-s[0]:.1f}s — needs a cut / a genuinely new element{who}")
         if cards_over:
             print(f"      CARDS OVER BUDGET: data-cards are {card_frac:.0%} of the "
                   f"video (max {CARD_BUDGET:.0%}). Carry beats with character "

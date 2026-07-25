@@ -1,12 +1,12 @@
 {
-  "generated_from_n_renders": 29,
+  "generated_from_n_renders": 30,
   "rules": [
     {
       "scope": "job",
       "job": "CHAPTER",
       "flag": "DULL",
       "severity": "hard",
-      "rate": "4/4",
+      "rate": "5/5",
       "guidance": "CHAPTER beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
     },
     {
@@ -14,7 +14,7 @@
       "job": "DEVELOP",
       "flag": "DULL",
       "severity": "soft",
-      "rate": "11/21",
+      "rate": "11/22",
       "guidance": "DEVELOP beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
     },
     {
@@ -35,21 +35,21 @@
   "trend": {
     "dead_fraction": {
       "first": 0.18,
-      "latest": 0.22,
+      "latest": 0.18,
       "want": "down",
-      "direction": "regressing"
+      "direction": "holding"
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.743,
+      "latest": 0.742,
       "want": "up",
       "direction": "improving"
     },
     "bland_fraction": {
       "first": 0.0,
-      "latest": 0.0,
+      "latest": 0.02,
       "want": "down",
-      "direction": "holding"
+      "direction": "regressing"
     }
   },
   "motion_wins": [

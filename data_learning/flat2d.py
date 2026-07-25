@@ -980,6 +980,16 @@ def hook_card(number: str, sub: str, out: Path, seconds: float = 3.0,
     dist = np.hypot(xx - cx, yy - cy) / (W * 0.6)
     glowbase = np.clip(1.0 - dist, 0, 1) ** 1.6
 
+    # A hook held past the 5s novelty ceiling needs a SECOND ACT — a genuine
+    # composition change, not just pulse/streak motion ("motion is not
+    # novelty", DIRECTOR.md). For long teases (seconds >= SECOND_ACT_FROM) the
+    # number glides up and hands the frame to a wide segmented strip that
+    # drains down to the remainder — a large-area layout shift that keeps the
+    # back half of the beat visually NEW. Short hooks (<4.5s) are unchanged.
+    SECOND_ACT_FROM = 4.5
+    two_act = seconds >= SECOND_ACT_FROM
+    act_t = 0.52                     # phase boundary as a fraction of the beat
+
     def draw(i, n, im):
         t = i / n
         pulse = 0.6 + 0.4 * math.sin(i * 0.5)
@@ -1000,20 +1010,51 @@ def hook_card(number: str, sub: str, out: Path, seconds: float = 3.0,
             y1 = cy + math.sin(ang) * (r0 + 34)
             a = int(150 * (1 - r0 / (W * 0.6)))
             d.line([x0, y0, x1, y1], fill=(255, 210, 150, max(0, a)), width=2)
-        # the number SLAMS in: scale overshoot in the first ~0.35s
+        # act 2 progress (0 -> 1 across the back half of a long beat)
+        p2 = 0.0
+        if two_act and t > act_t:
+            p2 = _ease(min(1.0, (t - act_t) / 0.22))
+        # the number SLAMS in: scale overshoot in the first ~0.35s; in act 2 it
+        # glides UP and shrinks, surrendering the centre of the frame.
         s = min(1.0, t / 0.35)
         scale = 1.35 - 0.35 * _ease(s) if s < 1 else 1.0 + 0.02 * math.sin(i * 0.4)
+        scale *= (1.0 - 0.34 * p2)
+        ny = cy - int(150 * scale) - int(H * 0.20 * p2)
         nf = numf.font_variant(size=max(10, int(300 * scale)))
-        im2 = _glow_text(im, (_center_x(ImageDraw.Draw(im), number, nf),
-                              cy - int(150 * scale)),
+        im2 = _glow_text(im, (_center_x(ImageDraw.Draw(im), number, nf), ny),
                          number, nf, (255, 255, 255, 255),
                          (255, 120, 40, 200), blur=16)
         d = ImageDraw.Draw(im2, "RGBA")
+        if p2 > 0:
+            # THE STRIP: 20 bright segments spanning the frame drain away
+            # left->right until only the remainder stays lit — the tease's own
+            # arithmetic, performed on screen.
+            segs, keep = 20, 3           # 3/20 = the ~15% that stays yours
+            sw = int(W * 0.80)
+            x0s = (W - sw) // 2
+            sy = int(H * 0.52)
+            sh = int(H * 0.085)
+            gap = 8
+            seg_w = (sw - gap * (segs - 1)) / segs
+            drained = (segs - keep) * min(1.0, p2 * 1.15)
+            for k in range(segs):
+                sx = x0s + k * (seg_w + gap)
+                gone = k < drained
+                if gone:
+                    fade = min(1.0, drained - k)
+                    a = int(210 * (1 - fade) + 26)
+                    col = (120, 90, 70, a)
+                else:
+                    col = (255, 208, 96, 235) if k >= segs - keep else \
+                          (255, 236, 200, 235)
+                d.rounded_rectangle([sx, sy, sx + seg_w, sy + sh], radius=8,
+                                    fill=col)
         su = _spaced(sub.upper())
         sf = subf                            # auto-shrink so a long sub never clips
         while sf.getlength(su) > W * 0.9 and sf.size > 22:
             sf = subf.font_variant(size=sf.size - 4)
-        d.text((_center_x(d, su, sf), int(H * 0.70)), su, font=sf,
+        sub_y = int(H * (0.70 + 0.03 * p2))
+        d.text((_center_x(d, su, sf), sub_y), su, font=sf,
                fill=(255, 225, 190, 255))
         if line:
             l0 = _spaced(line.upper())
