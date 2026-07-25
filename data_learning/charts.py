@@ -1312,12 +1312,13 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     # the shoved_bar coupling. Route it there.
     if insight.kind == "pictograph":
         insight.kind = "pictorial_race"
-    # A 2-value split as a HORIZONTAL race makes the mascot slide along the bar
-    # tip (reads as 'translated', not a bit). As VERTICAL columns (versus) he is
-    # hauled UP the winning column — a clear vertical bit. Route 2-value
-    # race/rank there.
-    if insight.kind in ("pictorial_race", "rank") and len(insight.items) == 2:
-        insight.kind = "comparison"
+    # A 2-value split fills a 9:16 frame badly as a horizontal race (mascot
+    # slides) OR as two side-by-side columns (two short capsules = empty_void).
+    # A 2-segment STACKED TOWER fills the frame, shows the part-to-whole, and
+    # couples vertically (Data hauled up). Route every 2-value comparison there.
+    if insight.kind in ("pictorial_race", "rank", "comparison") and \
+            len(insight.items) == 2:
+        insight.kind = "stack"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
