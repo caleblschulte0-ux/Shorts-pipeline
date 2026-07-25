@@ -1,0 +1,164 @@
+# Layered CI for the curiosity pro pipeline (Phase 12 of the recovery —
+# docs/CURIOSITY_RECOVERY_MANIFEST.md). Six layers, cheap to expensive:
+#   1 static    — compile, JSON/YAML validity, import closure
+#   2 unit      — routing law, verdict contract, producer decisions, facts
+#                 gate, expression gates, perf instrumentation
+#   3 scene     — expression frames at 0/50/100% intensity, on/off, manifest
+#   4 smoke     — the canonical producer on an offline all-designed fixture;
+#                 asserts FAIL-CLOSED honesty (quarantine-without-verdict is
+#                 the correct outcome, silent success is the failure)
+#   5 perf      — controlled render-loop experiments (flat-trend assertion)
+#   6 canary    — manual dispatch only: a FULL story through produce.py with
+#                 every artifact uploaded; never uploads to YouTube.
+name: curiosity-ci
+
+on:
+  pull_request:
+    paths:
+      - 'data_learning/**'
+      - 'scripts/**'
+      - '.github/workflows/curiosity-ci.yml'
+  push:
+    branches: [feature/curiosity-pro-integration]
+    paths:
+      - 'data_learning/**'
+      - 'scripts/**'
+      - '.github/workflows/curiosity-ci.yml'
+  workflow_dispatch:
+    inputs:
+      run_canary:
+        description: 'also run the FULL canary render (slow, ~1h)'
+        required: false
+        default: false
+        type: boolean
+      canary_slug:
+        description: 'slug for the full canary'
+        required: false
+        default: 'money-goes'
+
+concurrency:
+  group: curiosity-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install deps
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -q pillow numpy edge-tts requests psutil
+
+      - name: "Layer 1 — static: compile + JSON + import closure"
+        run: |
+          python -m compileall -q data_learning scripts
+          python - <<'PY'
+          import json, sys
+          from pathlib import Path
+          bad = []
+          for p in list(Path('data_learning').rglob('*.json')) + \
+                   list(Path('data_learning/pro_stories').rglob('*.json')):
+              try:
+                  json.loads(p.read_text())
+              except Exception as e:
+                  bad.append(f"{p}: {e}")
+          if bad:
+              print("\n".join(bad)); sys.exit(1)
+          print("all JSON valid")
+          sys.path[:0] = ['.', 'scripts']
+          for m in ["data_learning.expression", "data_learning.perf_instrument",
+                    "data_learning.flat2d", "data_learning.scenes",
+                    "data_learning.planner", "data_learning.media",
+                    "data_learning.footage_hybrid", "data_learning.pro_render",
+                    "judge_verdict", "produce", "no_dull_beats", "facts_gate"]:
+              __import__(m)
+          print("import closure OK")
+          PY
+
+      - name: "Layer 2 — unit: routing / verdict / producer / facts / perf-instr"
+        run: |
+          python scripts/test_routing.py
+          python scripts/test_judge_verdict.py
+          python scripts/test_produce_evaluate.py
+          python scripts/test_facts_gate.py
+          python scripts/test_perf_instrument.py
+          python scripts/verify_expression_gates.py
+          python scripts/facts_gate.py money-goes --out /tmp/fg/curiosity_money-goes.mp4
+
+      - name: "Layer 3 — scene: expression frames + manifest"
+        run: python scripts/test_expressions.py
+
+      - name: "Layer 4 — producer smoke (fail-closed honesty, offline-safe)"
+        run: python scripts/producer_smoke.py
+
+      - name: "Layer 5 — perf sanity: flat render-loop trend"
+        run: |
+          python scripts/perf_experiments.py > /tmp/exp.log 2>&1 \
+            || { cat /tmp/exp.log; exit 1; }
+          tail -20 /tmp/exp.log
+
+      - name: Upload gate artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-ci-gates
+          path: |
+            tests/expression_tests/**/*.png
+            tests/expression_tests/**/*.json
+            /tmp/fg/*.facts-report.json
+          retention-days: 30
+          if-no-files-found: ignore
+
+  full-canary:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_canary
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    needs: gates
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install deps
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -q pillow numpy edge-tts requests psutil
+      - name: Full canary through the canonical producer (NO upload)
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: |
+          set +e
+          python scripts/produce.py "${{ inputs.canary_slug }}" \
+            "output/curiosity_${{ inputs.canary_slug }}.mp4"
+          rc=$?
+          set -e
+          # exit 5 (quarantine pending the blind vision verdict) is the
+          # EXPECTED headless outcome — nothing publishes unjudged. Any other
+          # nonzero code is a real failure.
+          if [ "$rc" != "0" ] && [ "$rc" != "5" ]; then exit "$rc"; fi
+          python scripts/render_gates.py \
+            "output/curiosity_${{ inputs.canary_slug }}.mp4" || true
+      - name: Upload the COMPLETE canary package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-full-canary-${{ inputs.canary_slug }}
+          path: |
+            output/curiosity_*.mp4
+            output/curiosity_*_720p.mp4
+            output/curiosity_*.jpg
+            output/curiosity_*.srt
+            output/curiosity_*.meta.json
+            output/curiosity_*.produce.json
+            output/curiosity_*.facts-report.json
+            output/curiosity_*_pkg/**
+          retention-days: 90
+          if-no-files-found: warn

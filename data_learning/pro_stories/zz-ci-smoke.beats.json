@@ -1,0 +1,62 @@
+{
+  "slug": "zz-ci-smoke",
+  "title": "CI Smoke Fixture (never published)",
+  "voice": "en-US-GuyNeural",
+  "beats": [
+    {
+      "job": "HOOK",
+      "narration": "Three beats, all designed, no external media. This fixture proves the producer machinery offline.",
+      "understand": "the smoke story exercises render, package, ledger, and gates without network media",
+      "function": "hook",
+      "mode": "designed_2d",
+      "max_unchanged": 8.0,
+      "flat": {
+        "kind": "flat_title",
+        "title": "producer smoke",
+        "sub": "render \u2192 package \u2192 gates"
+      }
+    },
+    {
+      "job": "SETUP_COMPARISON",
+      "narration": "A comparison card renders rows deterministically, so frame output is stable across CI runs.",
+      "understand": "designed cards need no media gateway",
+      "function": "comparison",
+      "mode": "designed_2d",
+      "max_unchanged": 8.0,
+      "flat": {
+        "kind": "flat_compare",
+        "title": "three layers",
+        "rows": [
+          {
+            "name": "render",
+            "value": 3,
+            "display": "3 beats"
+          },
+          {
+            "name": "package",
+            "value": 7,
+            "display": "7 sidecars"
+          },
+          {
+            "name": "gates",
+            "value": 5,
+            "display": "5 checks"
+          }
+        ]
+      }
+    },
+    {
+      "job": "PAYOFF",
+      "narration": "If narration synthesis is unavailable offline, the fallback ledger must say so honestly and the producer must quarantine.",
+      "understand": "the smoke asserts fail-closed honesty, not a green light",
+      "function": "payoff",
+      "mode": "designed_2d",
+      "max_unchanged": 8.0,
+      "flat": {
+        "kind": "flat_title",
+        "title": "fail closed",
+        "sub": "no silent success"
+      }
+    }
+  ]
+}
