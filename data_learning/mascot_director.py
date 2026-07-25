@@ -949,6 +949,36 @@ def _dangle_legs(kick=0.0, spread=1.0):
     return legs + feet
 
 
+def _a_hoist_stack(t, _prop):
+    """Data stands UNDER the growing fill (waffle/stack) with both arms pressed
+    overhead against its underside, holding it up:
+      TAKE IT [0,0.3]  arms locked up, taking the load, standing.
+      BUCKLE [0.3,0.7] the pile keeps growing heavier — knees give, he sinks
+                       into a deep strain squat, trembling.
+      HEAVE  [0.7,1]   one last desperate press — legs drive, arms lock out, a
+                       wide-eyed 'it's huge' as he barely holds the full amount.
+    His hands (sprite top) are baked onto the fill frontier, so the growing data
+    presses down ON him."""
+    p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
+    tremble = math.sin(t * math.pi * 14) * 3.0
+    lh = [150, 58, 16]; rh = [190, 58, -16]           # fists pressed up overhead
+    lh[0] += tremble; rh[0] += tremble
+    if p < 0.3:                                        # TAKE IT
+        lower = _braced_legs(crouch=0.2); expr = "strain"; bob = 2.0
+    elif p < 0.7:                                       # BUCKLE (sink under load)
+        s = (p - 0.3) / 0.4
+        lower = _braced_legs(crouch=0.2 + s * 0.7, sway=6); expr = "strain"
+        bob = 2.0 + s * 10.0                           # sinks down
+    else:                                              # HEAVE it back up
+        s = (p - 0.7) / 0.3
+        lower = _braced_legs(crouch=0.9 - s * 0.85); expr = "shock"
+        bob = 12.0 - s * 12.0                          # drives back up
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, 0.0)
+
+
 def _a_shoved_bar(t, _prop):
     """Data braces both hands against the WINNING bar's advancing right FACE and
     pushes back to hold it — but it outgrows him and shoves him along:
@@ -1042,6 +1072,7 @@ ANIMATORS = {
     # COUPLED (mechanically tied to the chart object):
     "drag_line": _a_drag_line,
     "shoved_bar": _a_shoved_bar,
+    "hoist_stack": _a_hoist_stack,
 }
 
 # Chart KIND -> the data action Data performs on it (deterministic, on-topic).

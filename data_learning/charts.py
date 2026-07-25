@@ -199,7 +199,7 @@ def _ulabel(v: float, unit: str) -> str:
 _HOST_IMG_CACHE: dict = {}
 # Actions where Data is mechanically ATTACHED to the chart object (his grip
 # point is baked onto the datum, he has no floor contact).
-_COUPLED_ACTIONS = frozenset({"drag_line", "shoved_bar"})
+_COUPLED_ACTIONS = frozenset({"drag_line", "shoved_bar", "hoist_stack"})
 
 
 def _host_img(action: str, phase: float):
@@ -853,8 +853,10 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         _mr = max(range(len(values)), key=lambda k: values[k])
         _mfull = max(1, int(round((values[_mr] / vmax) * cols)))
         _mshown = max(1, min(_mfull, int(round(_mfull * t + 0.5)))) if t < 1 else _mfull
+        # COUPLE THE HOST: Data braces against the biggest row's advancing edge
+        # and is shoved along as the row of icons outgrows him.
         _bake_host(ax, float(_mshown - 1), float(n - 1 - _mr),
-                   "lift_arc", reveal, zoom=0.5, align=(0.5, 0.0))
+                   "shoved_bar", reveal, zoom=0.5, align=(0.28, 0.5))
     insight.host_baked = True
     return ax, specs
 
@@ -926,8 +928,10 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # lit cell each frame).
     _fi = max(0, min(99, lit - 1))
     _fr, _fc = divmod(_fi, 10)
+    # COUPLE THE HOST: Data stands under the growing fill with arms pressed up on
+    # its underside — the pile presses DOWN on him (buckle -> heave) as it fills.
     _bake_host(ax, float(_fc), float(9 - _fr),
-               "lift_arc", reveal, zoom=0.4, align=(0.5, 0.0))
+               "hoist_stack", reveal, zoom=0.4, align=(0.5, 0.80))
     insight.host_baked = True
     return ax, specs
 
