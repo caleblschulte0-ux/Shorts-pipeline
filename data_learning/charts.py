@@ -1233,6 +1233,12 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     if insight.kind == "waffle_grid" or (
             insight.kind == "share" and len(insight.items) <= 2):
         insight.kind = "pictorial_race"
+    # A pictograph reveals icons one cell at a time — a discrete, low-motion fill
+    # that the cadence grader measured at ~3fps (it dragged carbon's whole video
+    # to tcraft=1). A race shows the same ranking with a smooth continuous grow +
+    # the shoved_bar coupling. Route it there too.
+    if insight.kind == "pictograph":
+        insight.kind = "pictorial_race"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
