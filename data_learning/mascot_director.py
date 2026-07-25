@@ -991,22 +991,22 @@ def _a_shoved_bar(t, _prop):
     growth visibly drives him."""
     p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
     tremble = math.sin(t * math.pi * 12) * 2.5
-    if p < 0.35:                                       # DIG IN
+    if p < 0.35:                                       # DIG IN — deep crouch, back arched
         s = p / 0.35
-        lh = [70 - tremble, 214, -22]; rh = [96 - tremble, 250, -16]
-        lower = _braced_legs(crouch=0.62, sway=14)
-        expr = "strain"; tilt = 12 - s * 3; bob = 3.0
-    elif p < 0.70:                                      # SKID
-        s = (p - 0.35) / 0.35
-        lh = [78 + s * 10, 214, -18]; rh = [104 + s * 10, 250, -12]
-        lower = _braced_legs(crouch=0.35 - s * 0.2, sway=18 + s * 8)
-        expr = "strain"; tilt = 9 - s * 12; bob = 3.0 - s * 2
-    else:                                               # SHOVED back
-        s = (p - 0.70) / 0.30
-        fl = math.sin(s * math.pi * 3) * 12
-        lh = [110 + fl, 120 - s * 30, -8]; rh = [150 + fl, 96 - s * 30, 8]
-        lower = _dangle_legs(kick=fl, spread=1.2)
-        expr = "shock"; tilt = -8 - s * 6; bob = -s * 6
+        lh = [66 - tremble, 210, -24]; rh = [92 - tremble, 252, -18]
+        lower = _braced_legs(crouch=0.85, sway=16)
+        expr = "strain"; tilt = 16 - s * 4; bob = 6.0
+    elif p < 0.66:                                      # SKID — up on the toes, sliding
+        s = (p - 0.35) / 0.31
+        lh = [80 + s * 14, 206, -16]; rh = [108 + s * 14, 250, -10]
+        lower = _braced_legs(crouch=0.30 - s * 0.25, sway=22 + s * 10)
+        expr = "strain"; tilt = 10 - s * 14; bob = 2.0 - s * 4
+    else:                                               # LAUNCHED — flung UP off the bar
+        s = (p - 0.66) / 0.34
+        fl = math.sin(s * math.pi * 2.5) * 16
+        lh = [116 + fl, int(96 - s * 42), 8]; rh = [150 + fl, int(70 - s * 42), -8]
+        lower = _dangle_legs(kick=fl + s * 10, spread=1.3)
+        expr = "shock"; tilt = -10 + fl * 0.6; bob = -s * 26      # big upward launch
     arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
             + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
     eyes, mouth = _expr(expr)

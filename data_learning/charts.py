@@ -392,9 +392,9 @@ def _round_barv(ax, x, value, lw, color, zorder=3):
             zorder=zorder)
 
 
-def _bar_lw(n: int) -> float:
-    """Bar thickness (points) so rounded bars fill the (now taller) axes."""
-    plot_px = SERIES_H * 0.58 * SERIES_DPI       # bars axes is ~58% tall
+def _bar_lw(n: int, frac: float = 0.58) -> float:
+    """Bar thickness (points) so rounded bars fill the axes (``frac`` of card)."""
+    plot_px = SERIES_H * frac * SERIES_DPI
     row_px = plot_px / max(1, n)
     return max(40.0, row_px * 0.5 * 72.0 / SERIES_DPI)
 
@@ -949,9 +949,15 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     values = [p.value for p in items]
     vmax = max(values) if values else 1.0
     n = len(items)
-    lw = _bar_lw(n)
-    ax = fig.add_axes([0.24, 0.16, 0.62, 0.60])
+    lw = _bar_lw(n, frac=0.72)
+    # Taller axes that FILL the card so a few short bars don't leave the bottom
+    # ~40% dead (empty_void). Thick bars (frac above) keep them from looking thin.
+    ax = fig.add_axes([0.24, 0.10, 0.62, 0.72])
     ax.set_facecolor("none")
+    # Faint vertical reference lines across the card so the space to the right of
+    # short bars reads as chart, not void.
+    for _gx in (0.25, 0.5, 0.75, 1.0):
+        ax.axvline(vmax * _gx, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
     # Scale the row-label font to the longest label so a long name ("United
     # States") doesn't run off the left edge — fixed fs24 clipped them.
     _maxlbl = max((len(str(p.label)) for p in items), default=6)
