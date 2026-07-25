@@ -1,35 +1,38 @@
-# Daily Trending Shorts — 2026-07-24
+# Daily Trending Shorts — 2026-07-25
 
 - queued: **6**
-- succeeded: **4**
-- quarantined (off-topic imagery): **2**
+- succeeded: **5**
+- quarantined (off-topic imagery): **1**
 - failed: **0**
 
 ## Posted
-- **Orcas were just filmed destroying a sunfish for no reason at all**
-  - topic: Orcas were just filmed destroying a sunfish for no reason at all
-  - publishes: `2026-07-24T13:00:00Z`
-  - https://youtube.com/shorts/jmd7Snj58dc
-  - took: 23.1s
-- **Tens of thousands just got evacuated from one of Europe's top tourist spots**
-  - topic: Tens of thousands just got evacuated from one of Europe's top tourist spots
-  - publishes: `2026-07-24T15:00:00Z`
-  - https://youtube.com/shorts/TN3b8BpYpws
-  - took: 21.6s
-- **Global EV Sales by Region (millions/year)**
-  - topic: Global EV Sales by Region (millions/year)
-  - publishes: `2026-07-24T17:00:00Z`
-  - https://youtube.com/shorts/lTg4rFXQMII
-  - took: 67.1s
-- **Renewable Share of Electricity: US vs China vs Germany**
-  - topic: Renewable Share of Electricity: US vs China vs Germany
-  - publishes: `2026-07-24T19:00:00Z`
-  - https://youtube.com/shorts/TroBXJ8bczo
-  - took: 69.6s
+- **My manager said enforce the return policy exactly. I didn't know he wrote it.**
+  - topic: My manager said enforce the return policy exactly. I didn't know he wrote it.
+  - publishes: `2026-07-25T13:00:00Z`
+  - https://youtube.com/shorts/k20Oxy6Tdqw
+  - took: 147.9s
+- **There's a parasite hiding in your salad bag right now**
+  - topic: There's a parasite hiding in your salad bag right now
+  - publishes: `2026-07-25T15:00:00Z`
+  - https://youtube.com/shorts/c3OS0LHYNe0
+  - took: 23.3s
+- **Sperm whales sleep standing straight up**
+  - topic: Sperm whales sleep standing straight up
+  - publishes: `2026-07-25T17:00:00Z`
+  - https://youtube.com/shorts/Wbv_RG8NHLk
+  - took: 25.5s
+- **Orbital Rocket Launches per Year by Provider**
+  - topic: Orbital Rocket Launches per Year by Provider
+  - publishes: `2026-07-25T19:00:00Z`
+  - https://youtube.com/shorts/CtXWKP8RIe0
+  - took: 76.9s
+- **Biggest Lottery Jackpots Ever: Mega Millions vs Powerball**
+  - topic: Biggest Lottery Jackpots Ever: Mega Millions vs Powerball
+  - publishes: `2026-07-25T21:00:00Z`
+  - https://youtube.com/shorts/nNDmpmFZOBA
+  - took: 64.6s
 
 ## Quarantined (off-topic imagery — fix & re-author)
-- **The mechanic said my transmission was shot. I'd already marked the old one.**
-  - quarantined: vision QA: broken — The top half of each frame is specified to be a 'news/stock photo', but instead, it displays abstract game animation, which is the same type of content as the bottom half. This indicates an obvious re
-- **Someone kept stealing my lunch, so I labeled the ghost pepper one 'diet special'**
-  - quarantined: vision QA: broken — short
+- **My neighbor blocked my driveway every night. The cones exposed something else.**
+  - quarantined: vision QA: broken — The top half of the frames, which is described as being a news/stock photo, consistently displays the abstract game animation instead of a photo. This is a consistent deviation from the expected conte
 
