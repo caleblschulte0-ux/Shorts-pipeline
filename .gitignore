@@ -83,3 +83,6 @@ media/
 
 # Expression test artifacts (rendered clips, extracted frames, results)
 tests/expression_tests/
+
+# producer_smoke.py runtime fixture copy (created + deleted per run)
+data_learning/pro_stories/zz-ci-smoke.beats.json
