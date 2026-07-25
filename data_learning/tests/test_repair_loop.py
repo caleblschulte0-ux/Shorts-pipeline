@@ -41,7 +41,7 @@ def test_pick_remedy_prioritises_autofail():
     v = _v("block", 80, dims={"mascot": 1}, auto_fails=["dead_air: 4.6s frozen"])
     r = rl.pick_remedy(v, set())
     assert r["target"] == "dead_air"
-    assert r["env"] == {"MASCOT_BRAIN": "1"}
+    assert r["env"] == {"scene_repair": True}    # structural, not an env nudge
 
 
 def test_pick_remedy_falls_back_to_weakest_dim():
@@ -93,8 +93,11 @@ def test_loop_keeps_best_and_is_bounded():
     def fake(slug, env):
         return next(steps)
 
-    out = rl.repair("x", max_iters=2, render_fn=fake)
+    repairs = []
+    out = rl.repair("x", max_iters=2, render_fn=fake,
+                    scene_repair_fn=lambda s, v: repairs.append(s))
     assert len(out["attempts"]) == 3             # baseline + 2 repairs, bounded
+    assert len(repairs) == 2                     # each repair was scene-addressed
     assert out["best"]["score"] == 68            # kept the best, not the last
     assert out["shipped"] is False
     assert out["stopped"] == "budget_exhausted"
@@ -109,12 +112,15 @@ def test_loop_recovers_to_ship_and_keeps_it():
                               "craft": 3, "pace": 2, "payoff": 2,
                               "temporal_craft": 3})
 
-    out = rl.repair("x", max_iters=2, render_fn=fake)
+    repairs = []
+    out = rl.repair("x", max_iters=2, render_fn=fake,
+                    scene_repair_fn=lambda s, v: repairs.append(s))
     assert out["shipped"] is True
     assert out["best"]["score"] == 74
     assert len(out["attempts"]) == 2             # stopped as soon as it shipped
-    # the repair render got the whitelisted mascot-brain nudge
-    assert out["attempts"][1]["env"].get("MASCOT_BRAIN") == "1"
+    # the repair pass was a SCENE repair (structural), not an env nudge
+    assert len(repairs) == 1
+    assert out["attempts"][1]["env"] == {}
 
 
 def _main() -> int:

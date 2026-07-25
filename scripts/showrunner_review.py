@@ -300,6 +300,41 @@ def temporal_grade(ev: dict) -> int:
     return 0
 
 
+def temporal_hard_fail(ev: dict) -> str | None:
+    """CODE hard-fail on measured cadence, evaluated BEFORE the vision review
+    (ChatGPT: 'add a hard build failure ... do this before the expensive vision
+    review'). Thresholds come from the active quality phase (milestones), so the
+    floor RISES phase by phase instead of jumping straight to a bar that blocks
+    everything. Returns the failure reason, or None when the render passes.
+    Unknown evidence (no ffmpeg / probe error) returns None — this gate only
+    ADDS blocks on measured badness, it never blocks blind."""
+    fps = ev.get("effective_fps")
+    dup = ev.get("duplicate_ratio")
+    run = ev.get("max_dup_run")
+    if fps is None or dup is None:
+        return None
+    try:
+        try:
+            from data_learning.quality_milestones import active_phase
+        except ImportError:
+            sys.path.insert(0, str(REPO))
+            from data_learning.quality_milestones import active_phase
+        ph = active_phase()
+    except Exception:  # noqa: BLE001 — gate must not die over an import
+        return None
+    if fps < ph.min_effective_fps:
+        return (f"effective_fps {fps} < {ph.min_effective_fps} "
+                f"({ph.name} floor) — low-fps source in a 30fps master")
+    if dup > ph.max_duplicate_ratio:
+        return (f"duplicate_ratio {dup} > {ph.max_duplicate_ratio} "
+                f"({ph.name} ceiling) — too many held frames")
+    if run is not None and run > ph.max_dup_run_frames:
+        return (f"max_dup_run {run} frames > {ph.max_dup_run_frames} "
+                f"({ph.name} ceiling) — a frozen stretch outside any "
+                f"intentional hold")
+    return None
+
+
 def _b64(p: Path) -> str:
     return base64.standard_b64encode(p.read_bytes()).decode()
 
@@ -449,6 +484,25 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
             raise RuntimeError("no frames extracted (ffmpeg?)")
         motion = _motion_evidence(mp4, tdp)
         temporal = _temporal_evidence(mp4, tdp)
+        # BUILD-TIME TEMPORAL GATE (code, BEFORE the expensive vision review):
+        # a render whose measured cadence is below the active quality phase's
+        # hard floor is invalid — block it outright without spending a vision
+        # call. This only ever ADDS a block (never overrides a brain BLOCK).
+        gate = temporal_hard_fail(temporal)
+        if gate:
+            dims = {k: 0 for k in WEIGHTS}
+            dims["temporal_craft"] = temporal_grade(temporal)
+            return {
+                "score": compute_score(dims), "verdict": "block",
+                "dimensions": dims,
+                "auto_fails": [f"temporal_gate: {gate}"],
+                "checks": {"temporal_gate": {"fail": True, "evidence": gate}},
+                "motion": motion, "temporal": temporal,
+                "judge": "code-temporal-pregate",
+                "one_line": f"blocked before vision review: {gate}",
+                "problems": [gate], "fixes": ["raise real motion per output "
+                                              "frame (see temporal thresholds)"],
+            }
         prompt = _GRADE_PROMPT.format(
             motion=json.dumps({**motion, "temporal": temporal}),
             rubric=_rubric()[:6000],

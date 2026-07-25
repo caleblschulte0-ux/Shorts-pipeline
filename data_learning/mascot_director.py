@@ -830,6 +830,16 @@ def _lp(a, b, f):
 
 _ARC_REPS = 3          # effort cycles during the action zone (visible reps)
 
+# Phase boundaries come from the ONE scene-timeline owner (scene_timeline.py) so
+# the mascot, the chart reveal, and the manifest all agree on when setup ends
+# and the payoff starts — no animator guesses its own timing.
+try:
+    from data_learning.scene_timeline import SETUP_END as _T_SETUP
+    from data_learning.scene_timeline import EFFORT_END as _T_EFFORT
+except Exception:  # noqa: BLE001 — standalone use keeps the canonical values
+    _T_SETUP, _T_EFFORT = 0.18, 0.74
+_T_RESIST = 2.0 * _T_SETUP      # coupled bits: end of the winning-for-a-moment zone
+
 
 def _braced_legs(crouch=0.0, sway=0.0):
     """Braced stance whose knees BEND with ``crouch`` (0=tall .. 1=deep squat) so
@@ -864,14 +874,14 @@ def _arc(kfs, p, wob_amp=7.0):
     p = 0.0 if p < 0.0 else 1.0 if p > 1.0 else p
     _windup, _heave, _cheer = kfs[0], kfs[1], kfs[2]
     _ride = _heave[2] == "ride"                    # surfing bit keeps its straddle
-    if p < 0.18:                                   # SETUP: settle into a crouch
-        s = p / 0.18
+    if p < _T_SETUP:                               # SETUP: settle into a crouch
+        s = p / _T_SETUP
         lh = list(_windup[0]); rh = list(_windup[1])
         lower = R.lower_ride() if _ride else _braced_legs(crouch=0.8)
         expr_name = _windup[3]
         bob = 10.0 - s * 10.0                        # drop into the crouch
-    elif p < 0.74:                                 # ACTION: whole-body effort reps
-        u = (p - 0.18) / 0.56                       # 0..1 across the action zone
+    elif p < _T_EFFORT:                            # ACTION: whole-body effort reps
+        u = (p - _T_SETUP) / (_T_EFFORT - _T_SETUP)  # 0..1 across the action zone
         # (1-cos)/2 sweeps crouch/wind-up -> drive/heave -> crouch; _ARC_REPS reps.
         e = (1.0 - math.cos(u * math.pi * 2.0 * _ARC_REPS)) * 0.5
         lh = [_lp(_windup[0][i], _heave[0][i], e) for i in range(3)]
@@ -884,7 +894,7 @@ def _arc(kfs, p, wob_amp=7.0):
         expr_name = "strain" if e > 0.5 else _heave[3]
         bob = 9.0 - e * 20.0                        # rise up onto the drive
     else:                                          # PAYOFF: heave -> leaping cheer
-        f = (p - 0.74) / 0.26
+        f = (p - _T_EFFORT) / (1.0 - _T_EFFORT)
         lh = [_lp(_heave[0][i], _cheer[0][i], f) for i in range(3)]
         rh = [_lp(_heave[1][i], _cheer[1][i], f) for i in range(3)]
         lower = _braced_legs(crouch=0.0)            # spring tall
@@ -963,14 +973,14 @@ def _a_hoist_stack(t, _prop):
     tremble = math.sin(t * math.pi * 14) * 3.0
     lh = [150, 58, 16]; rh = [190, 58, -16]           # fists pressed up overhead
     lh[0] += tremble; rh[0] += tremble
-    if p < 0.3:                                        # TAKE IT
+    if p < _T_RESIST:                                  # TAKE IT
         lower = _braced_legs(crouch=0.2); expr = "strain"; bob = 2.0
-    elif p < 0.7:                                       # BUCKLE (sink under load)
-        s = (p - 0.3) / 0.4
+    elif p < _T_EFFORT:                                 # BUCKLE (sink under load)
+        s = (p - _T_RESIST) / (_T_EFFORT - _T_RESIST)
         lower = _braced_legs(crouch=0.2 + s * 0.7, sway=6); expr = "strain"
         bob = 2.0 + s * 10.0                           # sinks down
     else:                                              # HEAVE it back up
-        s = (p - 0.7) / 0.3
+        s = (p - _T_EFFORT) / (1.0 - _T_EFFORT)
         lower = _braced_legs(crouch=0.9 - s * 0.85); expr = "shock"
         bob = 12.0 - s * 12.0                          # drives back up
     arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
@@ -991,18 +1001,18 @@ def _a_shoved_bar(t, _prop):
     growth visibly drives him."""
     p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
     tremble = math.sin(t * math.pi * 12) * 2.5
-    if p < 0.35:                                       # DIG IN — deep crouch, back arched
-        s = p / 0.35
+    if p < _T_RESIST:                                  # DIG IN — deep crouch, back arched
+        s = p / _T_RESIST
         lh = [66 - tremble, 210, -24]; rh = [92 - tremble, 252, -18]
         lower = _braced_legs(crouch=0.85, sway=16)
         expr = "strain"; tilt = 16 - s * 4; bob = 6.0
-    elif p < 0.66:                                      # SKID — up on the toes, sliding
-        s = (p - 0.35) / 0.31
+    elif p < _T_EFFORT:                                 # SKID — up on the toes, sliding
+        s = (p - _T_RESIST) / (_T_EFFORT - _T_RESIST)
         lh = [80 + s * 14, 206, -16]; rh = [108 + s * 14, 250, -10]
         lower = _braced_legs(crouch=0.30 - s * 0.25, sway=22 + s * 10)
         expr = "strain"; tilt = 10 - s * 14; bob = 2.0 - s * 4
     else:                                               # LAUNCHED — flung UP off the bar
-        s = (p - 0.66) / 0.34
+        s = (p - _T_EFFORT) / (1.0 - _T_EFFORT)
         fl = math.sin(s * math.pi * 2.5) * 16
         lh = [116 + fl, int(96 - s * 42), 8]; rh = [150 + fl, int(70 - s * 42), -8]
         lower = _dangle_legs(kick=fl + s * 10, spread=1.3)
@@ -1030,26 +1040,58 @@ def _a_drag_line(t, _prop):
     rh = [184, grip_y, -18]
     strain = math.sin(t * math.pi * 12) * 3.0          # trembling effort
     lh[0] += strain; rh[0] += strain
-    if p < 0.35:                                        # RESIST: heels dug in
-        s = p / 0.35
+    if p < _T_RESIST:                                   # RESIST: heels dug in
+        s = p / _T_RESIST
         lower = _braced_legs(crouch=0.7 - s * 0.2, sway=12)
         expr = "strain"
         tilt = -16 + s * 6                             # leaning back, hauling down
         bob = 4.0
-    elif p < 0.70:                                      # LOSING: lifted off
-        s = (p - 0.35) / 0.35
+    elif p < _T_EFFORT:                                 # LOSING: lifted off
+        s = (p - _T_RESIST) / (_T_EFFORT - _T_RESIST)
         # legs transition from braced to dangling as he leaves the floor
         lower = _dangle_legs(kick=s * 6, spread=1.0 - s * 0.4)
         expr = "shock"
         tilt = -10 + s * 10
         bob = 4.0 - s * 6.0
     else:                                               # DRAGGED: airborne swing
-        s = (p - 0.70) / 0.30
+        s = (p - _T_EFFORT) / (1.0 - _T_EFFORT)
         sw = math.sin(s * math.pi * 3) * 14             # swinging under the line
         lower = _dangle_legs(kick=sw, spread=0.6)
         expr = "shock"
         tilt = sw                                       # swings side to side
         bob = -2.0
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_pull_down_win(t, _prop):
+    """The FALLING-claim mirror of drag_line: Data grips the descending value's
+    tip and hauls DOWN — and this time the data YIELDS. He wins:
+      BRACE  heels dug in, fists clamped overhead, hauling (strain).
+      YIELD  the value gives way — he sinks with it, still gripping, surprised.
+      LANDED grounded, fists thrown up, a big win grin (payoff = victory)."""
+    p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
+    tremble = math.sin(t * math.pi * 12) * 3.0
+    if p < _T_RESIST:                                  # BRACE + haul (pumping)
+        s = p / _T_RESIST
+        tug = (1.0 - math.cos(s * math.pi * 2 * 2)) * 0.5   # 2 downward tugs
+        lh = [156 + tremble, int(46 + tug * 26), 18]
+        rh = [184 + tremble, int(46 + tug * 26), -18]
+        lower = _braced_legs(crouch=0.75 - tug * 0.25, sway=14)
+        expr = "strain"; tilt = -14 + tug * 5; bob = 6.0 - tug * 5.0
+    elif p < _T_EFFORT:                                 # YIELD: it comes down
+        s = (p - _T_RESIST) / (_T_EFFORT - _T_RESIST)
+        lh = [152, int(46 + s * 40), 14]; rh = [188, int(46 + s * 40), -14]
+        lower = _braced_legs(crouch=0.75 - s * 0.55, sway=10)
+        expr = "shock"; tilt = -14 + s * 14; bob = 4.0 - s * 4.0
+    else:                                               # LANDED: victory
+        s = (p - _T_EFFORT) / (1.0 - _T_EFFORT)
+        up = abs(math.sin(s * math.pi)) * 10
+        lh = [116, int(86 - up), -12]; rh = [224, int(86 - up), 12]
+        lower = _braced_legs(crouch=0.0)
+        expr = "laugh"; tilt = 0.0; bob = -up
     arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
             + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
     eyes, mouth = _expr(expr)
@@ -1073,7 +1115,97 @@ ANIMATORS = {
     "drag_line": _a_drag_line,
     "shoved_bar": _a_shoved_bar,
     "hoist_stack": _a_hoist_stack,
+    "pull_down_win": _a_pull_down_win,
 }
+
+# =========================================================================
+# PERFORMANCES — "generate a performance, not an action name" (ChatGPT §).
+# A constrained library of VERIFIED performances (each animator above passed the
+# primitive approval gate). The director SELECTS and PARAMETERISES one from the
+# story's actual CLAIM — rising vs falling vs contest vs part-of-whole — it does
+# not invent arbitrary hand coordinates, and it is not a chart-kind lookup.
+# Every entry states contact, cause and consequence plus its 3-beat structure.
+# =========================================================================
+VERIFIED_PERFORMANCES = {
+    "drag_line": {
+        "contact": "both fists clamped on the object's tip",
+        "cause": "hauls DOWN trying to stop the rise",
+        "consequence": "the data keeps rising and DRAGS HIM airborne",
+        "beats": [
+            {"phase": "setup", "pose": "brace", "contact": "both_hands"},
+            {"phase": "effort", "pose": "haul_down", "repetitions": 2},
+            {"phase": "reversal", "pose": "feet_leave_ground"},
+            {"phase": "payoff", "pose": "dragged_swinging"},
+        ],
+    },
+    "pull_down_win": {
+        "contact": "both fists clamped on the object's tip",
+        "cause": "hauls DOWN on the falling value",
+        "consequence": "the value yields — he lands it and celebrates",
+        "beats": [
+            {"phase": "setup", "pose": "brace", "contact": "both_hands"},
+            {"phase": "effort", "pose": "haul_down", "repetitions": 2},
+            {"phase": "reversal", "pose": "object_yields"},
+            {"phase": "payoff", "pose": "grounded_cheer"},
+        ],
+    },
+    "shoved_bar": {
+        "contact": "both hands braced on the bar's advancing face",
+        "cause": "pushes back to hold the leader",
+        "consequence": "the bar outgrows him — skids, then LAUNCHED off it",
+        "beats": [
+            {"phase": "setup", "pose": "dig_in", "contact": "both_hands"},
+            {"phase": "effort", "pose": "push", "repetitions": 2},
+            {"phase": "reversal", "pose": "skid"},
+            {"phase": "payoff", "pose": "launched"},
+        ],
+    },
+    "hoist_stack": {
+        "contact": "arms pressed overhead on the fill's underside",
+        "cause": "holds the growing pile up",
+        "consequence": "the load buckles him, he barely heaves it",
+        "beats": [
+            {"phase": "setup", "pose": "take_load", "contact": "both_hands"},
+            {"phase": "effort", "pose": "buckle", "repetitions": 1},
+            {"phase": "reversal", "pose": "knees_give"},
+            {"phase": "payoff", "pose": "last_heave"},
+        ],
+    },
+}
+
+_FALLING = ("fell", "fall", "drop", "dropp", "declin", "below", "under",
+            "shrink", "shrank", "down to", "lowest", "sank", "slid")
+_RISING = ("rise", "rising", "climb", "grew", "grow", "surge", "accelerat",
+           "record", "tripl", "doubl", "up to", "added", "highest", "only ever")
+
+
+def performance_for(kind: str, claim: str = "", target: str = "",
+                    phase: str = "action") -> dict:
+    """Select + parameterise a VERIFIED performance from the story's actual
+    CLAIM (the narrative meaning), not merely the chart type. Returns the full
+    spec — goal, target, action, beats — the renderer executes and the manifest
+    records. 'payoff' phase returns the celebration (used by non-baked closers)."""
+    if phase == "payoff":
+        return {"action": "cheer", "goal": "land the takeaway",
+                "target": target, "beats": [
+                    {"phase": "payoff", "pose": "cheer"}]}
+    low = (claim or "").lower()
+    falling = any(w in low for w in _FALLING) and not any(
+        w in low for w in _RISING)
+    if kind in ("trend", "timeline"):
+        act = "pull_down_win" if falling else "drag_line"
+        goal = (f"pull {target or 'the line'} down — and win" if falling else
+                f"hold {target or 'the line'} down as it climbs")
+    elif kind in ("stack", "share", "waffle_grid"):
+        act, goal = "drag_line", f"keep the {target or 'total'} stack down"
+    elif kind == "comparison":
+        act, goal = "drag_line", f"hold {target or 'the leader'} below its rival"
+    else:                                  # pictorial_race / rank / bars / ...
+        act, goal = "shoved_bar", f"hold {target or 'the leader'} back"
+    spec = VERIFIED_PERFORMANCES.get(act, VERIFIED_PERFORMANCES["shoved_bar"])
+    return {"action": act, "goal": goal, "target": target,
+            "contact": spec["contact"], "cause": spec["cause"],
+            "consequence": spec["consequence"], "beats": spec["beats"]}
 
 # Chart KIND -> the data action Data performs on it (deterministic, on-topic).
 DATA_ACTION = {

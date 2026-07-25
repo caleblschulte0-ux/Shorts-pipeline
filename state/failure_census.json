@@ -1,0 +1,107 @@
+{
+ "n_verdicts": 20,
+ "classes": {
+  "decorative_mascot": {
+   "count": 9,
+   "stories": {
+    "population-giants": 3,
+    "world-power-mix": 5,
+    "carbon-climb": 1
+   },
+   "timestamps": [
+    "2026-07-25T02:58:26Z",
+    "2026-07-25T02:58:26Z",
+    "2026-07-25T03:20:57Z",
+    "2026-07-25T03:20:57Z",
+    "2026-07-25T03:20:57Z",
+    "2026-07-25T04:06:22Z",
+    "2026-07-25T04:06:22Z",
+    "2026-07-25T04:06:22Z",
+    "2026-07-25T04:47:01Z"
+   ],
+   "examples": [
+    "decorative_mascot: Data perches on the leading bar and slides right with it for the entire runtime (hook@0.3 through payoff@-0.4) \u2014 pose wobbles but there is no setup->action->payoff bit tied to any n",
+    "decorative_mascot: Data is perched on the leading bar's tip in every frame from hook@0.3 through payoff@-0.4 \u2014 arms/legs jitter but there is no setup\u2192action\u2192payoff bit tied to 34% coal or the 59/41 fl",
+    "decorative_mascot: Data holds the identical arms-out standing pose from hook@0.3 through payoff@-0.4, only translated along the bar tip \u2014 no setup/action/payoff bit, and at hook@0.8 he sits on top of "
+   ],
+   "recurred_after_fix": true
+  },
+  "empty_void": {
+   "count": 3,
+   "stories": {
+    "population-giants": 2,
+    "world-power-mix": 1
+   },
+   "timestamps": [
+    "2026-07-25T03:20:57Z",
+    "2026-07-25T04:06:22Z",
+    "2026-07-25T04:27:25Z"
+   ],
+   "examples": [
+    "empty_void: At seg2:start and seg2:mid the top ~60% of the card is featureless near-black with a barely-visible grey column and one small purple block at the bottom; the wide empty band under the card",
+    "empty_void: seg2:start\u2013seg2:end put the whole chart in a narrow center column (~a quarter of frame width) with the entire right and upper-right of the card empty, plus the permanent unused bands above",
+    "empty_void: seg2:start through seg2:end holds ~5s where two short capsules occupy a narrow middle band \u2014 the whole area under the subtitle and the entire lower third below 'Fossil fuels / Clean power'"
+   ],
+   "recurred_after_fix": true
+  }
+ },
+ "weak_dims": {
+  "hook": {
+   "median": 1,
+   "min": 1,
+   "max": 2
+  },
+  "data_demo": {
+   "median": 3,
+   "min": 2,
+   "max": 3
+  },
+  "mascot": {
+   "median": 2,
+   "min": 1,
+   "max": 3
+  },
+  "craft": {
+   "median": 1,
+   "min": 1,
+   "max": 2
+  },
+  "pace": {
+   "median": 1,
+   "min": 1,
+   "max": 2
+  },
+  "payoff": {
+   "median": 1,
+   "min": 1,
+   "max": 1
+  },
+  "temporal_craft": {
+   "median": 2,
+   "min": 1,
+   "max": 2
+  }
+ },
+ "scores": [
+  39,
+  39,
+  48,
+  44,
+  48,
+  48,
+  52,
+  52,
+  53,
+  44,
+  48,
+  57,
+  48,
+  56,
+  61,
+  61,
+  53,
+  52,
+  48,
+  53
+ ]
+}

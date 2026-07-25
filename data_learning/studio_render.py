@@ -1168,6 +1168,69 @@ def _piecewise(kfs, axis: int) -> str:
 # --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
+def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
+    """Encode each scene's chart build alone (tiny 540x960 proxy) and measure it
+    with the SAME temporal detector + hard gate the reviewer uses. One JSON per
+    scene under output/scenes/ — the scene-level metrics + verdict that make
+    repair scene-addressable (fix the failing scene, not the whole video)."""
+    import glob as _g
+    import json as _sj
+    import subprocess as _sp
+    import tempfile as _tf
+    sdir = out_path.parent / "scenes"
+    sdir.mkdir(parents=True, exist_ok=True)
+    sys.path.insert(0, str(REPO))
+    try:
+        from scripts.showrunner_review import _temporal_evidence, \
+            temporal_hard_fail
+    except Exception:  # noqa: BLE001
+        return
+    for i, seg in enumerate(st.segments):
+        if not seg.chart_path:
+            continue
+        pat = seg.chart_path
+        n = len(_g.glob(pat.replace("%02d", "*")))
+        if n < 2:
+            continue
+        mp4 = work / f"scene_{i:02d}.mp4"
+        import shutil as _sh
+        _ff = _sh.which("ffmpeg")
+        if not _ff:
+            try:
+                import imageio_ffmpeg
+                _ff = imageio_ffmpeg.get_ffmpeg_exe()
+            except Exception:  # noqa: BLE001
+                return
+        try:
+            _sp.run(
+                [_ff, "-y", "-loglevel", "error",
+                 "-f", "lavfi", "-i", "color=c=0x10131C:s=540x960:r=30",
+                 "-framerate", "30", "-i", pat,
+                 "-filter_complex",
+                 "[1:v]scale=540:-1,format=rgba[c];"
+                 "[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
+                 "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=180)
+            with _tf.TemporaryDirectory() as td:
+                ev = _temporal_evidence(mp4, Path(td))
+            gate = temporal_hard_fail(ev)
+            attach_p = Path(pat.replace("_build%02d.png", "_attach.json"))
+            attach = (_sj.loads(attach_p.read_text())
+                      if attach_p.exists() else {})
+            rec = {"slug": slug, "scene": i,
+                   "kind": getattr(seg, "kind", ""),
+                   "frames": n, "temporal": ev,
+                   "gate": gate or "pass",
+                   "verdict": "fail" if gate else "pass",
+                   "performance": attach.get("performance"),
+                   "contact_frames": attach.get("contact_frames"),
+                   "timeline": attach.get("timeline")}
+            (sdir / f"{slug}_scene{i:02d}.json").write_text(_sj.dumps(rec))
+            print(f"[studio] scene{i} metrics: fps="
+                  f"{ev.get('effective_fps')} gate={rec['gate']}", flush=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"[studio] scene{i} metrics failed: {e}", flush=True)
+
+
 def render(slug: str, out_path: Path, voice: str | None = None,
            config_path: Path | None = None) -> Path:
     """`config_path` lets a sibling channel (e.g. curiosity) render from its
@@ -1191,6 +1254,26 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
         st = story.build(story_cfg, cfg, work, REPO)
+        # SCENE PLAN: apply any repaired scene choices (state/scene_plans/{slug}
+        # .json, written by scripts/scene_repair.py keep-best selection). A plan
+        # LOCKS that segment's kind + performance — scene-addressable repair,
+        # not a whole-video reroll.
+        try:
+            _pf = REPO / "state" / "scene_plans" / f"{slug}.json"
+            if _pf.exists():
+                import json as _pj
+                _plan = _pj.loads(_pf.read_text())
+                for _i, _seg in enumerate(st.segments):
+                    _p = _plan.get(str(_i))
+                    if _p and getattr(_seg, "insight", None):
+                        _seg.insight.kind = _p["viz"]
+                        _seg.insight.plan_locked = True
+                        _seg.insight.perf_override = _p.get("perf")
+                        _seg.kind = _p["viz"]
+                        print(f"[studio] scene plan seg{_i}: "
+                              f"{_p['viz']}+{_p.get('perf')}", flush=True)
+        except Exception as e:  # noqa: BLE001 — a bad plan never kills a render
+            print(f"[studio] scene plan skipped: {e}", flush=True)
         # Custom thumbnail next to the video (title-aligned packaging). Cheap —
         # reuses the already-built story; the uploader picks it up by path.
         try:
@@ -1232,11 +1315,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             end = windows[-1][1] if (i == last_i and lead_payoff) else wi[1]
             disp_start[i] = start
             disp_end[i] = end
-            # Enough frames to play the WHOLE beat at ~30fps (cap 480 = up to 16s).
-            # The old 300 cap meant a ~13s beat could only reach ~23fps, which the
-            # temporal grader saw as a low-fps source duplicated into the 30fps
-            # timeline (effective_fps ~12, temporal_craft floored at 1).
-            nfr = int(max(30, min(480, round((end - start) * 30))))
+            # EXACTLY ceil(dur*30) frames so the build spans the beat 1:1 at 30fps
+            # (played at cfps=30 below) — no low-fps source resampled into the
+            # 30fps master. Cap 600 (=20s) is a safety bound, not a rate limiter.
+            import math as _mfr
+            nfr = int(max(30, min(600, _mfr.ceil((end - start) * 30))))
             # Build LINEARLY across the WHOLE window (no early completion): the
             # chart + Data keep moving the entire beat, so there is never a
             # finished-and-held stretch (that was the dead_air / 5fps). Data
@@ -1249,6 +1332,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     seg.chart_path = str(cpath)
             except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure
                 print(f"[studio] 30fps re-render seg{i} skipped: {e}", flush=True)
+
+        # SCENE-ADDRESSABLE METRICS: encode each scene's build alone and run the
+        # reviewer's own cadence detector + the build-time temporal gate on it,
+        # writing output/scenes/{slug}_sceneN.json. When a video fails, the
+        # repair loop reads these to target the failing SCENE instead of
+        # re-rolling the whole video; they also make every scene debuggable.
+        try:
+            _scene_metrics(st, slug, work, out_path)
+        except Exception as e:  # noqa: BLE001 — metrics never fail a render
+            print(f"[studio] scene metrics skipped: {e}", flush=True)
 
         bokeh = ambient.make_bokeh_strip(work / "bokeh.png", seed=theme["seed"])
         footmask = work / "foot_mask.png"
@@ -1594,10 +1687,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # Play at a smooth framerate (>=18fps) so growth doesn't step in
                 # visible jumps; with ~60 build frames this spans typical beats,
                 # and a short settle tail on longer beats stays under dead-air.
-                # Target 24-30fps: below 24 the source is duplicated into the
-                # 30fps export (judder / low effective_fps). With the 480-frame
-                # cap this holds for beats up to ~20s.
-                cfps = max(24.0, min(30.0, nfr / max(0.8, beat - 0.2)))
+                # EXACTLY 30fps (== the export rate) so no source frame is ever
+                # duplicated/dropped into the master timeline (ChatGPT: "remove
+                # dynamic source FPS completely"). nfr is ceil(beat*30) so the
+                # build spans the beat 1:1 at 30fps; a short settle tail (tpad)
+                # covers rounding. No 18-30 range, no resampling judder.
+                cfps = 30.0
                 inputs += ["-framerate", f"{cfps:.2f}", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1

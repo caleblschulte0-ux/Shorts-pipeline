@@ -201,7 +201,42 @@ def _ulabel(v: float, unit: str) -> str:
 _HOST_IMG_CACHE: dict = {}
 # Actions where Data is mechanically ATTACHED to the chart object (his grip
 # point is baked onto the datum, he has no floor contact).
-_COUPLED_ACTIONS = frozenset({"drag_line", "shoved_bar", "hoist_stack"})
+_COUPLED_ACTIONS = frozenset({"drag_line", "shoved_bar", "hoist_stack",
+                              "pull_down_win"})
+
+# ---- attachment contract (charts emit anchors; the mascot attaches) --------
+# Every _bake_host call records its grip point here; render_story_build collects
+# one entry per frame and writes `{slug}_attach.json` — the scene's attachment
+# record: which object Data grips, the full grip motion path, and the selected
+# performance. Downstream (manifest, benchmark validator, repair loop) read it.
+_ATTACH_FRAME: list = []           # grips recorded while drawing ONE frame
+_LAST_PERF: dict = {}              # the performance spec chosen for this build
+
+
+def _perf_action(insight: Insight, kind: str) -> str:
+    """The DIRECTED action for this beat: an explicit scene-plan override wins;
+    otherwise the director selects a VERIFIED performance from the story's
+    actual CLAIM (insight.main_insight), not merely the chart kind."""
+    global _LAST_PERF
+    ov = getattr(insight, "perf_override", None)
+    if ov:
+        _LAST_PERF = {"action": ov, "goal": "scene-plan override",
+                      "target": getattr(insight, "highlight_label", "") or ""}
+        return ov
+    try:
+        from . import mascot_director as _md
+        # the object he fights: the line's latest point for a trend, else the
+        # star (leading) item
+        star = ""
+        if insight.items:
+            star = (insight.items[-1].label if kind in ("trend", "timeline")
+                    else insight.items[0].label)
+        spec = _md.performance_for(kind, insight.main_insight or "", star)
+        _LAST_PERF = spec
+        return spec["action"]
+    except Exception:  # noqa: BLE001 — never lose a render over direction
+        _LAST_PERF = {"action": "shoved_bar", "goal": "", "target": ""}
+        return "shoved_bar"
 
 
 def _host_img(action: str, phase: float):
@@ -240,7 +275,11 @@ def _host_img(action: str, phase: float):
 def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
     """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
     pose animates with ``phase``; ``align`` (0.5, ~0) puts his FEET at the point
-    so he stands ON the datum."""
+    so he stands ON the datum. Records the grip into the attachment log
+    (`_ATTACH_FRAME`) — the contract that the mascot is ATTACHED to a chart
+    object, not floating near it."""
+    _ATTACH_FRAME.append({"action": action, "x": float(x), "y": float(y),
+                          "phase": round(float(min(1.0, max(0.0, phase))), 3)})
     img = _host_img(action, phase)
     if img is None:
         return
@@ -457,7 +496,8 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     # this a rank/bars beat (kind is in BAKED_CHART_KINDS, overlay suppressed)
     # would show NO mascot at all.
     _wtip = max(values[0] * max(0.0, min(1.0, reveal)), vmax * 0.02)
-    _bake_host(ax, _wtip, 0, "push_bar_arc", reveal, zoom=0.5, align=(0.92, 0.12))
+    _bake_host(ax, _wtip, 0, _perf_action(insight, "rank"), reveal,
+               zoom=0.9, align=(0.28, 0.5))
     insight.host_baked = True
     return ax, arts
 
@@ -519,7 +559,8 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # of the winning column and is hauled UP as it grows — reads as data-driven,
     # unlike lift_arc which the gate read as 'perches on top, swallowed'.
     _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
-    _bake_host(ax, xs[0], _htip, "drag_line", reveal, zoom=0.8, align=(0.5, 0.78))
+    _bake_host(ax, xs[0], _htip, _perf_action(insight, "comparison"), reveal,
+               zoom=0.8, align=(0.5, 0.78))
     insight.host_baked = True
     return ax, arts
 
@@ -596,7 +637,7 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # dug in -> feet break contact -> airborne swing). His grip point (top of the
     # sprite, ~0.80 up) is baked ONTO the tip, so the line visibly acts on him —
     # contact + cause + consequence, not a sprite surfing above the line.
-    _bake_host(ax, xd[-1], yd[-1], "drag_line", reveal,
+    _bake_host(ax, xd[-1], yd[-1], _perf_action(insight, "trend"), reveal,
                zoom=1.15, align=(0.5, 0.80))
     insight.host_baked = True
     return ax, arts
@@ -778,6 +819,12 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
         t2 = leg.text(0.69, y - 0.024, _vfmt(v), fontsize=30, color=col,
                       fontweight="bold", va="center", alpha=la, zorder=6)
         specs.append((v, "art", t2, None))
+    # COUPLE THE HOST on the legend axes beside the map: Data hoists the ranked
+    # column as it fills in (contact on the leaderboard the map is building) —
+    # a geo beat is no longer mascot-less.
+    _bake_host(leg, 0.30, 0.10, _perf_action(insight, "rank"), reveal,
+               zoom=0.72, align=(0.5, 0.0))
+    insight.host_baked = True
     return ax, specs
 
 
@@ -1035,7 +1082,8 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # and is shoved along as it outgrows him (his left-side hands baked onto the
     # bar tip) — the bar drives him, not a sprite perched on the cap.
     _bake_host(ax, _ttip, n - 1,
-               "shoved_bar", reveal, zoom=1.0, align=(0.28, 0.5))
+               _perf_action(insight, "pictorial_race"), reveal,
+               zoom=1.0, align=(0.28, 0.5))
     insight.host_baked = True
     return ax, specs
 
@@ -1095,8 +1143,8 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
         y0 += sh
     # COUPLE THE HOST: Data grips the top of the growing tower and is hauled up as
     # it stacks (vertical drag — a real bit, not a horizontal slide).
-    _bake_host(ax, (cx0 + cx1) / 2.0, top_y, "drag_line", reveal,
-               zoom=0.92, align=(0.5, 0.80))
+    _bake_host(ax, (cx0 + cx1) / 2.0, top_y, _perf_action(insight, "stack"),
+               reveal, zoom=0.92, align=(0.5, 0.80))
     insight.host_baked = True
     return ax, specs
 
@@ -1146,6 +1194,13 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
                 fontsize=22, fontweight="bold", zorder=4, alpha=_lblalpha(reveal),
                 path_effects=_shadow())
         specs.append((p.value, "art", tt, None))
+        if i == 0:
+            _star_top = (cx, cy + r * t)
+    # COUPLE THE HOST: Data grips the TOP of the star (biggest) bubble and is
+    # pushed UP as it inflates — contact + cause + consequence on the bubble.
+    _bake_host(ax, _star_top[0], _star_top[1], _perf_action(insight, "trend"),
+               reveal, zoom=0.8, align=(0.5, 0.80))
+    insight.host_baked = True
     return ax, specs
 
 
@@ -1299,31 +1354,29 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     # Never render bare numbers: any stray number-only kind depicts as bubbles.
     if insight.kind in ("callouts", "bignum"):
         insight.kind = "bubbles"
-    # A square waffle can't fill the tall 9:16 card (its grid leaves a third of
-    # the card dead = empty_void) and its zig-zag frontier gives the mascot no
-    # clean travel (decorative_mascot). A pictorial RACE fills the frame, ranks
-    # the same values with % labels (matches 'coal still leads at 34%'), and
-    # carries the proven bar coupling — route every waffle there. A 2-value
-    # donut/share has the same tall-frame problem, so route those too.
-    # A square waffle can't fill the tall 9:16 card (empty_void) and its zig-zag
-    # frontier gives the mascot no clean travel. A vertical STACKED COLUMN fills
-    # the tower, shows the same part-to-whole, and couples VERTICALLY (Data hauled
-    # up the stack) — a real bit, unlike a horizontal race where he reads as
-    # 'sliding along the bar'. Route waffle + donut there; it also keeps stories
-    # from becoming race+race (the monotony that re-triggered decorative_mascot).
-    if insight.kind in ("waffle_grid", "share"):
-        insight.kind = "stack"
-    # A pictograph reveals icons one cell at a time — a discrete ~3fps fill that
-    # dragged carbon to tcraft=1. A race shows the same ranking with smooth grow +
-    # the shoved_bar coupling. Route it there.
-    if insight.kind == "pictograph":
-        insight.kind = "pictorial_race"
-    # A 2-value split reads badly as a horizontal race (mascot slides). Send it to
-    # VERTICAL versus columns (now widened to fill the frame) where Data is hauled
-    # UP the winning column — a distinct vertical bit that keeps a story from
-    # becoming stack+stack (the monotony that reads as 'same pose twice').
-    if insight.kind in ("pictorial_race", "rank") and len(insight.items) == 2:
-        insight.kind = "comparison"
+    # AUTO-ROUTING to frame-filling, mascot-coupled kinds. A scene-plan override
+    # (state/scene_plans/{slug}.json, written by the scene repair loop) sets
+    # plan_locked and SKIPS this — a deliberately chosen scene variant renders
+    # exactly as planned.
+    if not getattr(insight, "plan_locked", False):
+        # A square waffle can't fill the tall 9:16 card (empty_void) and its
+        # zig-zag frontier gives the mascot no clean travel. A vertical STACKED
+        # COLUMN fills the tower, shows the same part-to-whole, and couples
+        # VERTICALLY (Data hauled up the stack).
+        if insight.kind in ("waffle_grid", "share"):
+            insight.kind = "stack"          # any item count — stack takes 6
+        # A pictograph reveals icons one cell at a time — a discrete ~3fps fill
+        # that dragged carbon to tcraft=1. A race shows the same ranking with
+        # smooth grow + the shoved_bar coupling.
+        if insight.kind == "pictograph":
+            insight.kind = "pictorial_race"
+        # A 2-value split reads badly as a horizontal race (mascot slides). Send
+        # it to VERTICAL versus columns where Data is hauled UP the winning
+        # column — a distinct vertical bit that keeps a story from becoming
+        # stack+stack (the monotony that reads as 'same pose twice').
+        if insight.kind in ("pictorial_race", "rank") and \
+                len(insight.items) == 2:
+            insight.kind = "comparison"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
@@ -2176,6 +2229,7 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         hops += 1
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
+    grip_path: list = []               # attachment record, one entry per frame
     for f in range(1, frames + 1):
         # LINEAR reveal (constant velocity). The old ease-out front-loaded the
         # growth and left the last ~1s of every card build near-frozen — that
@@ -2192,12 +2246,33 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
             r = (hf / 0.22) * 0.46 if hf < 0.22 else 0.46 + (hf - 0.22) / 0.78 * 0.54
         if f == frames:
             r = 1.0                         # final frame == static chart
+        _ATTACH_FRAME.clear()
         fig, plt = _card_base()
         ax, specs = _compose_story(fig, plt, insight, r)
+        if _ATTACH_FRAME:
+            grip_path.append({"f": f, **_ATTACH_FRAME[-1]})
         if f == frames:
             anchors = _anchors_from(fig, ax, specs)
         fig.savefig(out_dir / f"{slug}_build{f:02d}.png", transparent=True)
         plt.close(fig)
+    # ATTACHMENT SIDECAR: which object Data grips, his full grip motion path,
+    # the directed performance, and the scene timeline — the scene's plan-of-
+    # record for the manifest, benchmark validator and repair loop.
+    try:
+        import json as _json
+        from . import scene_timeline as _tl
+        perf = dict(_LAST_PERF)
+        attach = {"slug": slug, "kind": insight.kind,
+                  "performance": perf, "grip_path": grip_path,
+                  "contact_frames": len(grip_path), "frames": frames,
+                  "timeline": _tl.plan_scene(insight.kind,
+                                             perf.get("action", ""),
+                                             frames / 30.0,
+                                             perf.get("target", ""),
+                                             perf.get("goal", ""))}
+        (out_dir / f"{slug}_attach.json").write_text(_json.dumps(attach))
+    except Exception:  # noqa: BLE001 — sidecar must never kill a render
+        pass
     return str(out_dir / f"{slug}_build%02d.png"), anchors
 
 

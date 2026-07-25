@@ -84,6 +84,16 @@ def renderable(kind: str) -> bool:
             or kind in CARD_KINDS)
 
 
+# Depictions whose renderer BAKES a mechanically-coupled host (charts._bake_host
+# with an attachment record): the contact-verified set. Kinds that auto-route to
+# one of these (waffle_grid/share -> stack, pictograph -> race, timeline ->
+# trend) count too.
+_CONTACT_OK = frozenset({
+    "trend", "timeline", "pictorial_race", "rank", "bars", "comparison",
+    "stack", "share", "waffle_grid", "pictograph", "bubbles",
+    "geo_us", "geo_world"})
+
+
 def _images_on() -> bool:
     """Whether AI/photo image SCENES are enabled. Default OFF — the channel is
     moving away from AI-image 'slop' (which, without a clean cutout, renders as
@@ -448,8 +458,16 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     chosen: list[str | None] = [None] * n
     used: set[str] = set()
     images = 0
+    # STRICT_CONTACT=1: only depictions with a VERIFIED mascot coupling (Data
+    # mechanically attached to the data object — contact + cause + consequence)
+    # may be chosen. Scene/mechanic inventions are skipped until they can
+    # guarantee contact. The benchmark validator and the preview pipeline run in
+    # this mode; production opts in via env.
+    strict = os.environ.get("STRICT_CONTACT", "0") == "1"
 
     def _take(i: int, kind: str) -> bool:
+        if strict and kind not in _CONTACT_OK:
+            return False
         nonlocal images
         meta = KINDS.get(kind, {})
         # place/trend/real-photo depictions may repeat (all good); the lazy shape
@@ -498,6 +516,8 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     for i in order:
         if chosen[i]:
             continue
+        if strict:
+            continue          # scenes/mechanics are not contact-verified yet
         sc = getattr(inss[i], "scene", None)
         if isinstance(sc, dict) and ("code" in sc or "mechanic" in sc):
             if viz_scene.validate_mechanic(sc) and images + 2 <= image_budget \

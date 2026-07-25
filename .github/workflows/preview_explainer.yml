@@ -75,6 +75,22 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt -r data_learning/requirements.txt
 
+      - name: Mascot primitive approval gate (fail fast, pre-render)
+        run: |
+          # Every performance primitive the director can select must pass in
+          # ISOLATION (body present, distinct start/mid/end silhouettes, visible
+          # progression, no clipping) BEFORE we spend minutes rendering. A
+          # primitive that regresses here never reaches production.
+          python3 data_learning/tests/test_mascot_primitives.py
+
+      - name: Benchmark suite structural gate (fail fast, pre-render)
+        run: |
+          # The 6-archetype benchmark suite's STRUCTURAL requirements (hook
+          # motion by 0.4s, mascot contact EVERY frame, >=3 performance beats,
+          # cause+consequence, ending payoff) must hold across the WHOLE suite
+          # — a renderer change must not rescue one slug by breaking another.
+          python3 scripts/benchmark_validate.py --frames 10
+
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
         uses: actions/cache@v4
@@ -129,6 +145,16 @@ jobs:
           # brain call, so the mascot is free and identical every render (the
           # run-to-run pose variance is gone). MASCOT_BRAIN stays off.
           MASCOT_BRAIN: '0'
+          # Staged quality milestones (data_learning/quality_milestones.py):
+          # phase 1 = median >= 70 + no hard failures. Raising this tightens the
+          # BUILD-TIME temporal hard-fail thresholds (checked in code before the
+          # vision review) — the floor rises phase by phase, never a blind jump
+          # to a bar that blocks everything.
+          QUALITY_PHASE: '1'
+          # Only contact-VERIFIED depictions (mascot mechanically coupled to the
+          # data object) may be selected. Scene/mechanic inventions rejoin once
+          # they can guarantee contact (see viz_director._CONTACT_OK).
+          STRICT_CONTACT: '1'
         run: |
           SLUGS="${{ github.event.inputs.slug }}"
           # On a push preview there's no input slug — take the FIRST LINE of the
@@ -153,7 +179,13 @@ jobs:
             cat "output/story_$S.showrunner.json" 2>/dev/null \
               || echo '{"note":"no verdict written — the review gate did not run (no vision backend / infra error)"}'
             echo "============================================="
+            echo "-------- per-scene metrics ($S) --------"
+            cat output/scenes/${S}_scene*.json 2>/dev/null || echo "(none)"
+            echo
           done
+          # FAILURE CENSUS (informational): classify this run's failures into
+          # recurring engineering classes against the running verdict history.
+          python3 scripts/failure_census.py --last 20 || true
 
       - name: List rendered output
         if: always()
@@ -225,5 +257,7 @@ jobs:
           path: |
             output/*.mp4
             output/*.jpg
+            output/scenes/*.json
+            state/failure_census.json
           if-no-files-found: warn
           retention-days: 14

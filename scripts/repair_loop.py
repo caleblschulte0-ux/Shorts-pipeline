@@ -47,19 +47,20 @@ def _load_showrunner():
 SR = _load_showrunner()
 
 # WHITELIST of remedies: weakest dimension / auto-fail -> env knobs to try next
-# render. ONLY render-time environment variables the pipeline already honours —
-# never a code edit. Each is a plausible, bounded nudge, not a guaranteed fix;
-# the keep-best rule protects against a nudge that backfires.
+# render. Remedies are SCENE-ADDRESSABLE STRUCTURAL CHANGES (scripts/
+# scene_repair.py): three structurally different plans for the failing scene,
+# blind-scored, keep-best, persisted to state/scene_plans/{slug}.json which the
+# renderer applies. NO variance rerolls, NO env nudges, NO MASCOT_BRAIN=1 —
+# every attempt renders a deliberately different scene, deterministically.
 REMEDIES = {
-    # A flat/decorative mascot or a weak mascot grade: let the brain re-author a
-    # richer, scene-specific performance instead of a rotated preset.
-    "mascot": {"MASCOT_BRAIN": "1"},
-    "decorative_mascot": {"MASCOT_BRAIN": "1"},
-    # Choppy cadence / dead air: re-author the mascot too (more continuous
-    # motion) — the renderer already targets true 30fps, so the remaining lever
-    # here is a livelier host, not a frame-count hack.
-    "temporal_craft": {"MASCOT_BRAIN": "1"},
-    "dead_air": {"MASCOT_BRAIN": "1"},
+    "mascot": {"scene_repair": True},
+    "decorative_mascot": {"scene_repair": True},
+    "empty_void": {"scene_repair": True},
+    "temporal_craft": {"scene_repair": True},
+    "temporal_gate": {"scene_repair": True},
+    "dead_air": {"scene_repair": True},
+    "craft": {"scene_repair": True},
+    "pace": {"scene_repair": True},
 }
 
 
@@ -79,9 +80,11 @@ def weakest_dimension(dims: dict) -> str | None:
 
 
 def pick_remedy(verdict: dict, already: set) -> dict | None:
-    """Choose the next render-time env nudge from the whitelist: address a hard
-    auto-fail first, else the weakest dimension. Returns None when there is no
-    un-tried whitelisted remedy left (the loop then stops, honestly)."""
+    """Choose the next STRUCTURAL remedy: address a hard auto-fail first, else
+    the weakest dimension. The remedy is a scene-repair pass (a deliberately
+    different scene plan for the failing scene), never an env nudge or a reroll.
+    Returns None when there is no un-tried remedy class left (the loop then
+    stops, honestly)."""
     # auto_fails look like ["dead_air: <evidence>", ...]; take the check name.
     for af in verdict.get("auto_fails", []) or []:
         name = af.split(":", 1)[0].strip()
@@ -120,7 +123,16 @@ def _default_render(slug: str, env: dict) -> dict:
     return json.loads(vpath.read_text())
 
 
-def repair(slug: str, max_iters: int = 2, render_fn=_default_render) -> dict:
+def _default_scene_repair(slug: str, verdict: dict) -> None:
+    """Run the real scene-addressable repair (3 structural candidates for the
+    failing scene, keep-best, plan persisted for the next render)."""
+    sys.path.insert(0, str(REPO / "scripts"))
+    import scene_repair as _sr
+    _sr.propose(slug, verdict, apply_plan=True)
+
+
+def repair(slug: str, max_iters: int = 2, render_fn=_default_render,
+           scene_repair_fn=_default_scene_repair) -> dict:
     """Drive render -> judge -> fix-weakest -> re-render, keeping the best cut.
 
     render_fn(slug, env) -> verdict dict is injected so the control flow is
@@ -148,7 +160,18 @@ def repair(slug: str, max_iters: int = 2, render_fn=_default_render) -> dict:
             stop = "no_remedy_left"
             break
         tried_remedies.add(remedy["target"])
-        env = {**env, **remedy["env"]}
+        if remedy["env"].get("scene_repair"):
+            # SCENE-ADDRESSABLE: pick the failing scene, render 3 structurally
+            # different candidates, keep-best, persist the plan — the next
+            # render applies it. Never a reroll of the same video.
+            try:
+                scene_repair_fn(slug, verdict)
+            except Exception as e:  # noqa: BLE001 — a failed proposal just
+                print(f"[repair] scene repair failed: {e}")   # ends the loop
+                stop = "scene_repair_failed"
+                break
+        else:
+            env = {**env, **remedy["env"]}
     return {"slug": slug, "best": best, "attempts": trail, "stopped": stop,
             "shipped": (best or {}).get("verdict") == "ship"}
 
