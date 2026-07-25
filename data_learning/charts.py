@@ -169,7 +169,9 @@ CARD_EDGE = "#1f2a44"
 # Taller card so the chart DOMINATES the frame (~80% tall): fills the vertical
 # space (kills the empty lower band the gate consistently flags) and drops each
 # element low enough for Data to perform ON it.
-SERIES_W, SERIES_H, SERIES_DPI = 10.0, 14.5, 110   # -> 1100x1595 px
+SERIES_W, SERIES_H, SERIES_DPI = 10.0, 15.6, 110   # taller card -> fills more
+# of the 9:16 frame so the dead 'letterbox' band below it (the gate's empty_void)
+# shrinks; the caption band still clears the chart's bottom axis.
 
 
 def _vfmt(v: float) -> str:
@@ -587,7 +589,7 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # sprite, ~0.80 up) is baked ONTO the tip, so the line visibly acts on him —
     # contact + cause + consequence, not a sprite surfing above the line.
     _bake_host(ax, xd[-1], yd[-1], "drag_line", reveal,
-               zoom=0.60, align=(0.5, 0.80))
+               zoom=1.15, align=(0.5, 0.80))
     insight.host_baked = True
     return ax, arts
 
@@ -856,7 +858,7 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         # COUPLE THE HOST: Data braces against the biggest row's advancing edge
         # and is shoved along as the row of icons outgrows him.
         _bake_host(ax, float(_mshown - 1), float(n - 1 - _mr),
-                   "shoved_bar", reveal, zoom=0.5, align=(0.28, 0.5))
+                   "shoved_bar", reveal, zoom=1.0, align=(0.28, 0.5))
     insight.host_baked = True
     return ax, specs
 
@@ -931,7 +933,7 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # COUPLE THE HOST: Data stands under the growing fill with arms pressed up on
     # its underside — the pile presses DOWN on him (buckle -> heave) as it fills.
     _bake_host(ax, float(_fc), float(9 - _fr),
-               "hoist_stack", reveal, zoom=0.4, align=(0.5, 0.80))
+               "hoist_stack", reveal, zoom=0.85, align=(0.5, 0.80))
     insight.host_baked = True
     return ax, specs
 
@@ -1019,7 +1021,7 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # and is shoved along as it outgrows him (his left-side hands baked onto the
     # bar tip) — the bar drives him, not a sprite perched on the cap.
     _bake_host(ax, _ttip, n - 1,
-               "shoved_bar", reveal, zoom=0.5, align=(0.28, 0.5))
+               "shoved_bar", reveal, zoom=1.0, align=(0.28, 0.5))
     insight.host_baked = True
     return ax, specs
 
