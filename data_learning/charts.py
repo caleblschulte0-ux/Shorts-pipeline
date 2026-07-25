@@ -511,7 +511,7 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # rises (setup->action->payoff). Feet at the tip; his body fills the space
     # above the column where the number used to sit (now moved inside).
     _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
-    _bake_host(ax, xs[0], _htip, "lift_arc", reveal, zoom=0.42, align=(0.5, 0.0))
+    _bake_host(ax, xs[0], _htip, "lift_arc", reveal, zoom=0.85, align=(0.5, 0.0))
     insight.host_baked = True
     return ax, arts
 
@@ -1049,10 +1049,20 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     filled = t * 100.0
     palette = [HIGHLIGHT, ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399"]
     cx0, cx1 = 0.30, 0.66                       # column x-extent (left-of-centre)
-    # Track (full unfilled tower) so the frame carries the whole shape from frame 1.
-    ax.add_patch(FancyBboxPatch((cx0, 0), cx1 - cx0, 100,
-                 boxstyle="round,pad=0,rounding_size=1.4",
-                 facecolor=BAR_BASE, edgecolor="none", alpha=0.5, zorder=1))
+    # GHOST the WHOLE tower (every segment, dim) from frame 1 so the early frames
+    # carry the full shape instead of a near-empty column over dead navy
+    # (empty_void). The bright fill rises over this preview.
+    _gy = 0.0
+    for i, (p, sh) in enumerate(zip(items, shares)):
+        gcol = (HIGHLIGHT if p.label == insight.highlight_label
+                else palette[i % len(palette)])
+        ax.add_patch(FancyBboxPatch((cx0, _gy), cx1 - cx0, sh,
+                     boxstyle="round,pad=0,rounding_size=1.4",
+                     facecolor=gcol, edgecolor="none", alpha=0.16, zorder=1))
+        gt = ax.text(cx1 + 0.03, _gy + sh / 2.0, f"{p.label}  {sh:.0f}%",
+                     ha="left", va="center", fontsize=23, color=gcol,
+                     fontweight="bold", zorder=2, alpha=0.22)
+        _gy += sh
     specs, la = [], _lblalpha(reveal)
     y0, top_y = 0.0, 0.0
     for i, (p, sh) in enumerate(zip(items, shares)):
@@ -1296,6 +1306,12 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     # the shoved_bar coupling. Route it there.
     if insight.kind == "pictograph":
         insight.kind = "pictorial_race"
+    # A 2-value split as a HORIZONTAL race makes the mascot slide along the bar
+    # tip (reads as 'translated', not a bit). As VERTICAL columns (versus) he is
+    # hauled UP the winning column — a clear vertical bit. Route 2-value
+    # race/rank there.
+    if insight.kind in ("pictorial_race", "rank") and len(insight.items) == 2:
+        insight.kind = "comparison"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
