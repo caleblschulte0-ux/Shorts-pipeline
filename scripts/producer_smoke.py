@@ -39,8 +39,13 @@ def main() -> int:
 
     # produce.resolve_story looks in pro_stories/; point it at the fixture by
     # copying it in under a slug that can never collide with a real story.
+    # Self-heal first: a SIGTERM'd previous run (e.g. a wrapper timeout) skips
+    # the finally-cleanup, so stale fixture copies are removed on entry.
     slug = "zz-ci-smoke"
     dest_story = REPO / "data_learning" / "pro_stories" / f"{slug}.beats.json"
+    dest_story.unlink(missing_ok=True)
+    for stale in Path(tempfile.gettempdir()).glob("curio_smoke_*"):
+        shutil.rmtree(stale, ignore_errors=True)
     story = json.loads(fixture.read_text())
     story["slug"] = slug
     dest_story.write_text(json.dumps(story, indent=2))
