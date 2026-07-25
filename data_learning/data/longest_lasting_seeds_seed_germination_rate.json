@@ -1,0 +1,28 @@
+{
+  "key": "longest_lasting_seeds_seed_germination_rate",
+  "title": "Seed Germination Rate",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Highest Germination Rate",
+      "value": 90.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Average Germination Rate",
+      "value": 50.0,
+      "period": "present day"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "key": "gigantic_fruits_and_veggies_largest_broccoli",
+  "title": "Largest Broccoli",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 10.0,
+      "period": "2010"
+    },
+    {
+      "label": "2020",
+      "value": 20.0,
+      "period": "2020"
+    },
+    {
+      "label": "2022",
+      "value": 35.0,
+      "period": "2022"
+    }
+  ]
+}

@@ -15916,8 +15916,8 @@
     {
       "slug": "shifting-sands-mystery",
       "title": "Shifting Sands Mystery",
-      "hook": "Have you ever wondered how fast the sand dunes in the desert move?",
-      "closing": "Sand dunes are on the move, and it's faster than you think!",
+      "hook": "Some sand dunes crawl less than a football field a year -- others race ten times faster and swallow roads whole.",
+      "closing": "By 2022 the fastest dunes were creeping 150 meters a year -- triple their pace just four years earlier, and they are not slowing down.",
       "hashtags": [
         "desertmysteries",
         "sanddunes",
@@ -15933,20 +15933,12 @@
           },
           "insight_type": "rank",
           "role": "1 \u00b7 DUNE MOVEMENT",
-          "topic": "Dune Movement",
-          "say": "The sand dunes in the desert can move up to 50 meters per year, which is equivalent to the length of a standard football field. Some dunes have even been recorded moving at a rate of 100 meters per year.",
+          "topic": "Dune Speed Duel",
+          "say": "The slowest desert dunes creep just 10 meters a year. The fastest ones race ten times faster, up to 100 meters a year, swallowing roads and outrunning fences.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "sand dune",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "mechanic": "dune-speed-race",
+            "concept": "two real sand dune photos race along parallel tracks toward a finish line, trailed by sand streaks whose density scales with speed",
+            "code": "text(\"DUNE SPEED RACE\", (RX0 + RX1) // 2, RTOP + 10, size=42, color=WARN, center=True)\ntrack_h = 220\ngap = 60\ntop = RTOP + 140\nw_track = RX1 - RX0 - 220\nfor i in range(n):\n    v = values[i]\n    ty = top + i * (track_h + gap)\n    d.rounded_rectangle([RX0, ty, RX1, ty + track_h], radius=22, fill=rgba((50, 38, 24), 150))\n    finish_x = RX0 + w_track + 140\n    d.line([finish_x, ty, finish_x, ty + track_h], fill=rgba(WARN, 220), width=6)\n    frac = clamp(v / vmax, 0.0, 1.0) * clamp(reveal * 1.2, 0.0, 1.0)\n    dune_x = RX0 + 60 + frac * w_track\n    trail_n = int(2 + frac * 12)\n    for k in range(trail_n):\n        tx = dune_x - 26 - k * 12\n        if tx > RX0 + 10:\n            a = int(150 * (1 - k / max(trail_n, 1)))\n            d.ellipse([tx - 5, ty + track_h * 0.6 - 5, tx + 5, ty + track_h * 0.6 + 5], fill=rgba(HIGHLIGHT, a))\n    img = subject_image(\"sand dune\")\n    size = 170\n    if img is not None:\n        paste(img, dune_x - size / 2, ty + track_h / 2 - size / 2, size, size)\n    text(f\"{v:.0f} m/yr\", dune_x, ty - 34, size=38, color=TEXT, center=True)\n    text(labels[i].upper(), RX0 + 16, ty + 14, size=24, color=ACCENT)\n"
           },
           "ascending": false
         },
@@ -15958,20 +15950,12 @@
           },
           "insight_type": "share",
           "role": "2 \u00b7 DUNE SIZE",
-          "topic": "Dune Size",
-          "say": "Some sand dunes can be as large as 100 meters high, which is roughly the height of a 30-story building. The largest dunes can cover up to 50% of the desert surface.",
+          "topic": "Dune Sea Coverage",
+          "say": "Small dune fields cover only 20% of the desert surface. Sprawling dune seas of large dunes take over a full 50% of the ground -- more than double.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "hero",
-                "subject": "sand dune",
-                "data": {
-                  "value_from": "item:1"
-                }
-              }
-            ]
+            "mechanic": "dune-sea-fill",
+            "concept": "two mapped desert panels fill bottom-up with a real dune photo to each point's share of the desert surface",
+            "code": "text(\"HOW MUCH DESERT DO DUNES COVER?\", (RX0 + RX1) // 2, RTOP + 10, size=32, color=WARN, center=True)\npanel_w = (RX1 - RX0 - 60) / 2\npanel_h = 640\npy = RTOP + 120\nfor i in range(n):\n    v = values[i]\n    px = RX0 + i * (panel_w + 60)\n    d.rounded_rectangle([px, py, px + panel_w, py + panel_h], radius=20, outline=rgba(TEXT, 180), width=4)\n    frac = clamp(v / 100.0, 0.0, 1.0) * clamp(reveal * 1.2, 0.0, 1.0)\n    img = subject_image(\"sand dune\")\n    if img is not None:\n        fill_image(img, frac, px + 8, py + 8, panel_w - 16, panel_h - 16, 'up', rgba(ACCENT, 255))\n    text(f\"{v:.0f}%\", px + panel_w / 2, py + panel_h + 40, size=50, color=TEXT, center=True)\n    text(labels[i].upper(), px + panel_w / 2, py + panel_h + 94, size=26, color=ACCENT, center=True)\n"
           }
         },
         {
@@ -15982,8 +15966,29 @@
           },
           "insight_type": "rank",
           "role": "3 \u00b7 DUNE LOCATION",
-          "topic": "Dune Location",
-          "say": "The largest sand dunes in the world can be found in the Gobi Desert in Asia, which covers over 1.3 million square kilometers. The Sahara Desert in Africa is home to some of the tallest dunes, reaching heights of up to 180 meters."
+          "topic": "Tallest Dune Giants",
+          "say": "Gobi Desert dunes rise up to 80 meters. The Sahara's dunes tower even higher -- up to 180 meters, more than twice as tall.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Gobi Desert sand dune",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Sahara Desert sand dune",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -15993,26 +15998,22 @@
           },
           "insight_type": "trend",
           "role": "4 \u00b7 DUNE MOVEMENT SPEE",
-          "topic": "Dune Movement Speed",
-          "say": "The speed of sand dune movement has been increasing over the years, with some dunes moving at a rate of 150 meters per year in 2022. This is likely due to changes in climate and wind patterns.",
+          "topic": "Dunes Accelerating",
+          "say": "In 2018 the fastest dunes moved 50 meters a year. By 2022 that speed had tripled to 150 meters a year -- and it is still accelerating.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              }
-            ]
+            "mechanic": "storm-march",
+            "concept": "a real dune photo travels a rising path from 2018 to 2022 while sandstorm particles thicken around it as its speed climbs",
+            "code": "text(\"DUNES ARE SPEEDING UP\", (RX0 + RX1) // 2, RTOP + 10, size=38, color=WARN, center=True)\npath_x0, path_y0 = RX0 + 60, RBOT - 140\npath_x1, path_y1 = RX1 - 60, RTOP + 180\nt = clamp(reveal * 1.1, 0.0, 1.0)\ncx = lerp(path_x0, path_x1, t)\ncy = lerp(path_y0, path_y1, t)\nd.line([path_x0, path_y0, path_x1, path_y1], fill=rgba(TEXT, 60), width=6)\nstorm_n = int(6 + t * 30)\nfor k in range(storm_n):\n    a = (k * 47) % 360\n    rad = 30 + (k % 7) * 14 * t\n    sx = cx + rad * math.cos(math.radians(a))\n    sy = cy + rad * math.sin(math.radians(a)) * 0.5\n    d.ellipse([sx - 4, sy - 4, sx + 4, sy + 4], fill=rgba(HIGHLIGHT, int(120 * t)))\nimg = subject_image(\"sand dune\")\nsize = 150 + 60 * t\nif img is not None:\n    paste(img, cx - size / 2, cy - size / 2, size, size)\ncur_v = lerp(values[0], values[1], t)\ntext(f\"{cur_v:.0f} m/yr\", cx, cy - size / 2 - 40, size=44, color=TEXT, center=True)\ntext(labels[0], path_x0, path_y0 + 40, size=30, color=ACCENT, center=True)\ntext(labels[1], path_x1, path_y1 - 30, size=30, color=ACCENT, center=True)\n"
           }
         }
       ],
-      "question": "What do you think is the main reason for the movement of sand dunes?"
+      "question": "If a dune were headed for your town, would you notice before it arrived?"
     },
     {
       "slug": "driest-places-on-earth",
       "title": "Driest Places on Earth",
-      "hook": "Which places on Earth are the driest, and how dry are they?",
-      "closing": "These places are so dry that they make the Sahara Desert look like a tropical paradise!",
+      "hook": "One desert gets a single drop of rain a decade -- how dry can a place actually get?",
+      "closing": "Since 2018 the driest patches of the Atacama have gotten even drier -- the driest place on Earth is still drying out.",
       "hashtags": [
         "driestplaces",
         "deserts",
@@ -16028,20 +16029,12 @@
           },
           "insight_type": "rank",
           "role": "1 \u00b7 DESERT DRYNESS",
-          "topic": "Desert Dryness",
-          "say": "The Atacama Desert in Chile is the driest non-polar desert in the world, with some areas receiving as little as 0.01 millimeters of rainfall per year. This is equivalent to the amount of rain that falls on a typical day in a humid climate.",
+          "topic": "Drop vs Puddle",
+          "say": "The Atacama Desert gets a barely-there 0.01 millimeters of rain a year. The Sahara gets 25 millimeters -- 2,500 times more.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "cactus",
-                "data": {
-                  "value_from": "item:0"
-                }
-              }
-            ]
+            "mechanic": "drop-vs-puddle",
+            "concept": "two desert panels each hold a real cactus photo; a tiny single droplet marks the Atacama's near-zero rainfall while a pool grows at the Sahara's base",
+            "code": "text(\"HOW LITTLE RAIN FALLS HERE?\", (RX0 + RX1) // 2, RTOP + 10, size=32, color=WARN, center=True)\npanel_w = (RX1 - RX0 - 60) / 2\npy = RTOP + 120\npanel_h = 700\nfor i in range(n):\n    v = values[i]\n    px = RX0 + i * (panel_w + 60)\n    d.rounded_rectangle([px, py, px + panel_w, py + panel_h], radius=20, fill=rgba((30, 26, 20), 150))\n    cactus = subject_image(\"cactus\")\n    csize = 220\n    if cactus is not None:\n        paste(cactus, px + panel_w / 2 - csize / 2, py + panel_h - csize - 30, csize, csize)\n    frac = clamp(math.sqrt(v / vmax), 0.0, 1.0) * clamp(reveal * 1.2, 0.0, 1.0)\n    pool_h = frac * 90\n    d.rounded_rectangle([px + 30, py + panel_h - 30 - pool_h, px + panel_w - 30, py + panel_h - 30], radius=10, fill=rgba(HIGHLIGHT, 180))\n    if v < 1:\n        dy = py + 80 + (panel_h - 200) * clamp(reveal, 0.0, 1.0)\n        if reveal > 0.3:\n            d.ellipse([px + panel_w / 2 - 8, dy - 8, px + panel_w / 2 + 8, dy + 8], fill=rgba(ACCENT, 220))\n    text(f\"{v:g} mm/yr\", px + panel_w / 2, py + panel_h + 40, size=42, color=TEXT, center=True)\n    text(labels[i].upper(), px + panel_w / 2, py + panel_h + 90, size=24, color=ACCENT, center=True)\n"
           },
           "ascending": false
         },
@@ -16053,17 +16046,49 @@
           },
           "insight_type": "rank",
           "role": "2 \u00b7 DRYNESS RANKING",
-          "topic": "Dryness Ranking",
-          "say": "The top 5 driest places on Earth are the Atacama Desert, the Sahara Desert, the Gobi Desert, the Mojave Desert, and the Australian Outback. These places are so dry that they support very little vegetation and are often referred to as 'death zones'.",
+          "topic": "Top 5 Driest",
+          "say": "The five driest deserts on Earth, from driest to wettest: Atacama, Sahara, Gobi, Mojave, and the Australian Outback.",
           "scene": {
             "title": true,
             "elements": [
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "desert",
+                "subject": "Atacama Desert",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Sahara Desert",
                 "data": {
                   "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Gobi Desert",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Mojave Desert",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "Australian Outback",
+                "data": {
+                  "value_from": "item:4"
                 }
               }
             ]
@@ -16077,9 +16102,14 @@
           },
           "insight_type": "rank",
           "role": "3 \u00b7 DRYNESS COMPARISON",
-          "topic": "Dryness Comparison",
-          "say": "The Atacama Desert is so dry that it has been compared to the surface of Mars, with some areas receiving less than 0.001% of the average annual rainfall of the Amazon rainforest. This is due to its unique geography and climate.",
-          "ascending": false
+          "topic": "Desert vs Rainforest",
+          "say": "The Atacama gets just 0.001% of the rainfall the Amazon rainforest gets in a year. The wettest place on Earth versus the driest.",
+          "ascending": false,
+          "scene": {
+            "mechanic": "flood-vs-drought",
+            "concept": "a split-screen where a real rainforest photo floods with water to 100% while a real cracked-desert photo holds a single droplet for 0.001%",
+            "code": "text(\"VS THE WETTEST PLACE ON EARTH\", (RX0 + RX1) // 2, RTOP + 10, size=30, color=WARN, center=True)\nhalf_w = (RX1 - RX0) / 2\npy = RTOP + 100\nph = 800\nax = RX0 + half_w\nimg_rain = subject_image(\"rainforest\")\nif img_rain is not None:\n    paste(img_rain, ax, py, half_w, ph)\nfrac_rain = clamp(values[1] / 100.0, 0.0, 1.0) * clamp(reveal * 1.3, 0.0, 1.0)\nd.rectangle([ax, py + ph * (1 - frac_rain), ax + half_w, py + ph], fill=rgba((40, 120, 200), 140))\ntext(f\"{values[1]:.0f}%\", ax + half_w / 2, py + ph + 30, size=42, color=TEXT, center=True)\ntext(labels[1].upper(), ax + half_w / 2, py + ph + 78, size=22, color=ACCENT, center=True)\nimg_desert = subject_image(\"cracked desert ground\")\nif img_desert is not None:\n    paste(img_desert, RX0, py, half_w, ph)\nif reveal > 0.6:\n    dx, dy = RX0 + half_w / 2, py + ph * 0.3\n    d.ellipse([dx - 6, dy - 6, dx + 6, dy + 6], fill=rgba(HIGHLIGHT, 220))\ntext(f\"{values[0]:.3f}%\", RX0 + half_w / 2, py + ph + 30, size=42, color=TEXT, center=True)\ntext(labels[0].upper(), RX0 + half_w / 2, py + ph + 78, size=22, color=ACCENT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -16089,8 +16119,324 @@
           },
           "insight_type": "trend",
           "role": "4 \u00b7 DRYNESS TREND",
-          "topic": "Dryness Trend",
-          "say": "The dryness of the Atacama Desert has been increasing over the years, with some areas receiving as little as 0.005 millimeters of rainfall per year in 2022. This is likely due to changes in climate and weather patterns.",
+          "topic": "Still Drying Out",
+          "say": "In 2018 the driest patches of the Atacama got 0.01 millimeters of rain a year. By 2022 that was cut in half to just 0.005 millimeters.",
+          "scene": {
+            "mechanic": "shrinking-oasis",
+            "concept": "an oasis pool with a real cactus photo shrinks year over year as the Atacama's already-tiny rainfall is cut in half",
+            "code": "text(\"GETTING EVEN DRIER\", (RX0 + RX1) // 2, RTOP + 10, size=40, color=WARN, center=True)\ncx = (RX0 + RX1) // 2\ncy = RTOP + 420\nt = clamp(reveal * 1.15, 0.0, 1.0)\nr0 = 260.0\nr1 = 90.0\nr = lerp(r0, r1, t)\nd.ellipse([cx - r, cy - r * 0.4, cx + r, cy + r * 0.4], fill=rgba((40, 110, 190), 160))\ncactus = subject_image(\"cactus\")\ncsize = 200\nif cactus is not None:\n    paste(cactus, cx - csize / 2, cy - r * 0.4 - csize + 30, csize, csize)\ncur_v = lerp(values[0], values[1], t)\ntext(f\"{cur_v:.3f} mm/yr\", cx, cy + r * 0.4 + 50, size=46, color=TEXT, center=True)\ntext(labels[0] + \" -> \" + labels[1], cx, cy + r * 0.4 + 102, size=28, color=ACCENT, center=True)\n"
+          }
+        }
+      ],
+      "question": "Could anything actually survive somewhere this dry?"
+    },
+    {
+      "slug": "tree-roots-depth-uncovered",
+      "title": "Tree Roots Depth Uncovered",
+      "hook": "Did you know trees have secret underground networks?",
+      "closing": "Tree roots are the unsung heroes of our ecosystem",
+      "hashtags": [
+        "treefacts",
+        "roots",
+        "nature",
+        "ecosystem",
+        "forest"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "tree_roots_depth_uncovered_tree_root_depth",
+          "params": {
+            "file": "tree_roots_depth_uncovered_tree_root_depth.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 TREE ROOT DEPTH",
+          "topic": "Tree Root Depth",
+          "say": "Some tree roots can extend as far as 100 feet underground, while others only reach 10 feet, but the average root depth is around 40 feet.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "tree_roots_depth_uncovered_root_system_size",
+          "params": {
+            "file": "tree_roots_depth_uncovered_root_system_size.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 ROOT SYSTEM SIZE",
+          "topic": "Root System Size",
+          "say": "The root system of a single tree can cover an area of over 1 acre, with some roots accounting for up to 30% of the tree's biomass.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tree root",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "tree_roots_depth_uncovered_root_growth_rate",
+          "params": {
+            "file": "tree_roots_depth_uncovered_root_growth_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ROOT GROWTH RATE",
+          "topic": "Root Growth Rate",
+          "say": "Tree roots can grow up to 1 inch per day, but the average growth rate is around 0.5 inches per day, with some roots growing as fast as 2 inches per day.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "tree_roots_depth_uncovered_deepest_root_record",
+          "params": {
+            "file": "tree_roots_depth_uncovered_deepest_root_record.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 DEEPEST ROOT RECOR",
+          "topic": "Deepest Root Record",
+          "say": "The deepest tree root on record reached a staggering 236 feet underground, while the average tree root only reaches around 40 feet.",
+          "ascending": false
+        }
+      ],
+      "question": "What's the deepest tree root you've ever seen?"
+    },
+    {
+      "slug": "longest-lasting-seeds",
+      "title": "Longest Lasting Seeds",
+      "hook": "Seeds can survive for thousands of years, but which ones last the longest?",
+      "closing": "Seeds are the ultimate survivors of the plant kingdom",
+      "hashtags": [
+        "seedfacts",
+        "plantkingdom",
+        "survival",
+        "nature",
+        "botany"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "longest_lasting_seeds_seed_longevity_0",
+          "params": {
+            "file": "longest_lasting_seeds_seed_longevity_0.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SEED LONGEVITY",
+          "topic": "Seed Longevity",
+          "say": "The longest lasting seed on record is the date palm seed, which can survive for up to 2,000 years, while the average seed only lasts around 10 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "seed",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "longest_lasting_seeds_seed_storage",
+          "params": {
+            "file": "longest_lasting_seeds_seed_storage.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 SEED STORAGE",
+          "topic": "Seed Storage",
+          "say": "Seeds can be stored at temperatures as low as -20 degrees Celsius, with some seeds requiring as high as 20 degrees Celsius to survive.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "seed bank",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "longest_lasting_seeds_seed_germination_rate",
+          "params": {
+            "file": "longest_lasting_seeds_seed_germination_rate.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SEED GERMINATION R",
+          "topic": "Seed Germination Rate",
+          "say": "The germination rate of seeds can be as high as 90% under ideal conditions, but the average germination rate is around 50%.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "longest_lasting_seeds_oldest_seed_ever_planted",
+          "params": {
+            "file": "longest_lasting_seeds_oldest_seed_ever_planted.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 OLDEST SEED EVER P",
+          "topic": "Oldest Seed Ever Planted",
+          "say": "The oldest seed ever planted was a 2,000-year-old date palm seed, which was able to grow into a healthy tree, while the average seed only lasts around 10 years.",
+          "ascending": false
+        }
+      ],
+      "question": "What's the oldest seed you've ever planted?"
+    },
+    {
+      "slug": "caffeine-content-revealed",
+      "title": "Caffeine Content Revealed",
+      "hook": "What's really in your morning coffee?",
+      "closing": "Be aware of your caffeine intake to avoid the crash.",
+      "hashtags": [
+        "coffee",
+        "caffeine",
+        "energy",
+        "health",
+        "wellness"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "caffeine_content_revealed_coffee_caffeine",
+          "params": {
+            "file": "caffeine_content_revealed_coffee_caffeine.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 COFFEE CAFFEINE",
+          "topic": "Coffee Caffeine",
+          "say": "From 60 milligrams in a standard cup of coffee to 200 milligrams in some energy drinks, caffeine content varies greatly.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "coffee cup",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tea cup",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "energy drink can",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "caffeine_content_revealed_soda_caffeine",
+          "params": {
+            "file": "caffeine_content_revealed_soda_caffeine.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 SODA CAFFEINE",
+          "topic": "Soda Caffeine",
+          "say": "Some sodas pack a significant caffeine punch, with up to 70 milligrams per 12 oz can.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "soda can",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "caffeine_content_revealed_chocolate_caffeine",
+          "params": {
+            "file": "caffeine_content_revealed_chocolate_caffeine.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 CHOCOLATE CAFFEINE",
+          "topic": "Chocolate Caffeine",
+          "say": "Dark chocolate contains a surprising amount of caffeine, with some bars having as much as 30 milligrams.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "chocolate bar",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "caffeine_content_revealed_caffeine_limits",
+          "params": {
+            "file": "caffeine_content_revealed_caffeine_limits.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 CAFFEINE LIMITS",
+          "topic": "Caffeine Limits",
+          "say": "The American Academy of Sleep Medicine recommends no more than 400 milligrams of caffeine per day for adults.",
           "scene": {
             "title": true,
             "elements": [
@@ -16102,7 +16448,127 @@
           }
         }
       ],
-      "question": "What do you think is the main reason for the dryness of these places?"
+      "question": "What's your favorite way to get a caffeine boost?"
+    },
+    {
+      "slug": "gigantic-fruits-and-veggies",
+      "title": "Gigantic Fruits And Veggies",
+      "hook": "Imagine a pumpkin so big it needs a forklift to move",
+      "closing": "The world's largest fruits and veggies will blow your mind",
+      "hashtags": [
+        "gardening",
+        "fruitlover",
+        "veggies",
+        "guinnessworldrecords",
+        "foodie",
+        "agriculture"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "gigantic_fruits_and_veggies_largest_pumpkins",
+          "params": {
+            "file": "gigantic_fruits_and_veggies_largest_pumpkins.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LARGEST PUMPKINS",
+          "topic": "Largest Pumpkins",
+          "say": "The largest pumpkin on record weighed over 2,600 pounds, while the average pumpkin weighs around 10 pounds, that's a massive difference of 260 times",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "pumpkin",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "pumpkin",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "gigantic_fruits_and_veggies_longest_carrots",
+          "params": {
+            "file": "gigantic_fruits_and_veggies_longest_carrots.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 LONGEST CARROTS",
+          "topic": "Longest Carrots",
+          "say": "The longest carrot ever recorded measured over 19 feet long, while the top 5 longest carrots all measured over 10 feet, with the shortest being 9 feet 5 inches",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "carrot",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "gigantic_fruits_and_veggies_heaviest_watermelons",
+          "params": {
+            "file": "gigantic_fruits_and_veggies_heaviest_watermelons.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 HEAVIEST WATERMELO",
+          "topic": "Heaviest Watermelons",
+          "say": "The heaviest watermelon on record weighed 350 pounds, while the average watermelon weighs around 20 pounds, that's a massive 17.5 times heavier",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "hero",
+                "subject": "watermelon",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "gigantic_fruits_and_veggies_largest_broccoli",
+          "params": {
+            "file": "gigantic_fruits_and_veggies_largest_broccoli.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 LARGEST BROCCOLI",
+          "topic": "Largest Broccoli",
+          "say": "The largest broccoli on record has been increasing in size over the years, from 10 pounds in 2010 to 20 pounds in 2020, with the current record holder weighing 35 pounds",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the biggest fruit or veggie you've ever grown or seen?"
     }
   ],
   "videos": [

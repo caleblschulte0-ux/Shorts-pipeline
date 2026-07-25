@@ -1,0 +1,33 @@
+{
+  "key": "tree_roots_depth_uncovered_root_growth_rate",
+  "title": "Root Growth Rate",
+  "unit": "inches",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Fastest Root Growth",
+      "value": 2.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Average Root Growth",
+      "value": 0.5,
+      "period": "present day"
+    },
+    {
+      "label": "Slowest Root Growth",
+      "value": 0.1,
+      "period": "recorded"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "key": "driest_places_on_earth_dryness_ranking",
   "title": "Dryness Ranking",
-  "unit": "",
+  "unit": "millimeters per year",
   "geography": "",
   "time_coverage": "",
   "insight_type": "rank",
@@ -16,13 +16,28 @@
   "points": [
     {
       "label": "Atacama Desert",
-      "value": 1.0,
+      "value": 15.0,
       "period": "2020"
     },
     {
       "label": "Sahara Desert",
-      "value": 2.0,
+      "value": 50.0,
       "period": "2019"
+    },
+    {
+      "label": "Gobi Desert",
+      "value": 100.0,
+      "period": "2018"
+    },
+    {
+      "label": "Mojave Desert",
+      "value": 150.0,
+      "period": "2018"
+    },
+    {
+      "label": "Australian Outback",
+      "value": 200.0,
+      "period": "2018"
     }
   ]
 }
