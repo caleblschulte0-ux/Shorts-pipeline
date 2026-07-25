@@ -1224,6 +1224,15 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     # Never render bare numbers: any stray number-only kind depicts as bubbles.
     if insight.kind in ("callouts", "bignum"):
         insight.kind = "bubbles"
+    # A square waffle can't fill the tall 9:16 card (its grid leaves a third of
+    # the card dead = empty_void) and its zig-zag frontier gives the mascot no
+    # clean travel (decorative_mascot). A pictorial RACE fills the frame, ranks
+    # the same values with % labels (matches 'coal still leads at 34%'), and
+    # carries the proven bar coupling — route every waffle there. A 2-value
+    # donut/share has the same tall-frame problem, so route those too.
+    if insight.kind == "waffle_grid" or (
+            insight.kind == "share" and len(insight.items) <= 2):
+        insight.kind = "pictorial_race"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
