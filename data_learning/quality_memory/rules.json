@@ -1,5 +1,5 @@
 {
-  "generated_from_n_renders": 31,
+  "generated_from_n_renders": 32,
   "rules": [
     {
       "scope": "job",
@@ -27,21 +27,21 @@
   "trend": {
     "dead_fraction": {
       "first": 0.18,
-      "latest": 0.18,
+      "latest": 0.56,
       "want": "down",
-      "direction": "holding"
+      "direction": "regressing"
     },
     "mean_appeal": {
       "first": 0.682,
-      "latest": 0.741,
+      "latest": 0.508,
       "want": "up",
-      "direction": "improving"
+      "direction": "regressing"
     },
     "bland_fraction": {
       "first": 0.0,
-      "latest": 0.02,
+      "latest": 0.0,
       "want": "down",
-      "direction": "regressing"
+      "direction": "holding"
     }
   },
   "motion_wins": [
