@@ -73,21 +73,57 @@ def gate_performance(pkg: Path) -> tuple[bool, list[str]]:
              f"{m.get('actual_duration_s', 0):.0f}s of video, "
              f"{len(shots)} shots"]
     if len(shots) >= 6:
-        # trend on LOCAL render time (frame_render) — media waits excluded
+        # DEGRADATION trend, compared WITHIN each shot kind. Comparing the
+        # first-3 vs last-3 shots of the whole timeline mixes shot KINDS with
+        # different intrinsic costs (an image/Ken-Burns beat is inherently
+        # pricier than a flat card) and misreads composition as slowdown —
+        # exactly the misdiagnosis this gate produced on money-goes shot 48
+        # (Phase 6, docs/CURIOSITY_PERFORMANCE_DIAGNOSIS.md). The honest test:
+        # for every kind with enough samples, does the SAME work get slower as
+        # the render progresses?
         loc = [s.get("frame_render_s", 0) - s.get("asset_resolution_s", 0)
                for s in shots]
         per = [t / max(s.get("planned_duration_s", 1), 0.1)
                for t, s in zip(loc, shots)]
-        first = sum(per[:3]) / 3
-        last = sum(per[-3:]) / 3
-        ratio = last / first if first > 0 else 1.0
-        notes.append(f"local render cost first->last: {ratio:.2f}x "
-                     f"({'RISING' if ratio > 1.5 else 'flat'})")
+        by_kind: dict[str, list[float]] = {}
+        for s, cost in zip(shots, per):
+            by_kind.setdefault(s.get("shot_kind", "?"), []).append(cost)
+        rising = []
+        for kind, costs in sorted(by_kind.items()):
+            if len(costs) < 4:
+                continue
+            k = max(2, len(costs) // 3)
+            first = sum(costs[:k]) / k
+            last = sum(costs[-k:]) / k
+            ratio = last / first if first > 0.05 else 1.0
+            notes.append(f"kind {kind}: n={len(costs)} median-cost "
+                         f"{sorted(costs)[len(costs)//2]:.1f}x "
+                         f"first->last {ratio:.2f}x")
+            if ratio > 1.5:
+                rising.append(f"{kind} {ratio:.2f}x")
         media = sum(s.get("asset_resolution_s", 0) for s in shots)
         render = sum(loc)
         notes.append(f"media resolution {media:.0f}s vs local render "
                      f"{render:.0f}s")
-        if ratio > 1.5:
+        if rising:
+            notes.append("FAIL: within-kind rising render cost: "
+                         + ", ".join(rising))
+            return False, notes
+        # ABSOLUTE outlier budget: any single shot >3x its own kind's median
+        # (min 5 samples) is flagged as unexplained — a stall, not composition.
+        outliers = []
+        for kind, costs in by_kind.items():
+            if len(costs) < 5:
+                continue
+            med = sorted(costs)[len(costs) // 2]
+            if med > 0.2:
+                bad = [c for c in costs if c > 3 * med]
+                if bad:
+                    outliers.append(f"{kind}: {len(bad)} shot(s) >3x the "
+                                    f"kind median {med:.1f}x")
+        if outliers:
+            notes.append("FAIL: unexplained per-shot outliers: "
+                         + "; ".join(outliers))
             return False, notes
     # memory across shots
     if shots:

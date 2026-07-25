@@ -410,13 +410,18 @@ def image_beat(src: Path, dur: float, out: Path,
     else:
         y = cy
     # upscale so sub-pixel zoom/pan doesn't jitter, fill 16:9, then zoompan.
+    # PERF (Phase 6): feed the still ONCE — no `-loop 1`. With a looped input
+    # the scale/crop chain re-processes a duplicate 4K frame for every input
+    # tick and zoompan buffers them all; from a single input frame zoompan
+    # itself expands to exactly `frames` output frames, so the decode+scale
+    # cost is paid once and `-t` truncation is unnecessary.
     vf = (f"scale={W * 2}:{H * 2}:force_original_aspect_ratio=increase,"
           f"crop={W * 2}:{H * 2},setsar=1,"
           f"zoompan=z='{z}':x='{x}':y='{y}':"
           f"d={frames}:s={W}x{H}:fps={FPS},format=yuv420p")
     subprocess.run(
-        ["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-i", str(src),
-         "-t", f"{dur:.3f}", "-vf", vf, "-an", "-r", str(FPS),
+        ["ffmpeg", "-y", "-loglevel", "error", "-i", str(src),
+         "-vf", vf, "-an", "-frames:v", str(frames), "-r", str(FPS),
          "-c:v", "libx264", "-preset", "medium", "-crf", "18", str(out)],
         check=True)
     return out
