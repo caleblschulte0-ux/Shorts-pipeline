@@ -929,6 +929,103 @@ def _arc_anim(name):
     return lambda t, _prop: _arc(kfs, t)
 
 
+# =========================================================================
+# COUPLED performances — Data is MECHANICALLY tied to the chart object, not a
+# sprite posed near it. Contact (hands ON the object) -> cause (he pulls/pushes)
+# -> consequence (the data wins and moves HIM). Baked so his grip point sits on
+# the datum; the chart's motion visibly acts on his body. Returns an 8th value:
+# a whole-body tilt (deg). Rendered with ground=False (he leaves the floor).
+# =========================================================================
+def _dangle_legs(kick=0.0, spread=1.0):
+    """Legs hanging in the air (feet OFF the ground), kicking by ``kick``."""
+    lx = int(150 - 14 * spread - kick)
+    rx = int(190 + 14 * spread - kick)
+    legs = (R.limb(152, 300, lx, 360, 0, 34, 25, 0) +
+            R.limb(188, 300, rx, 362, 0, 34, 25, 0))
+    feet = (f'<ellipse cx="{lx-2}" cy="366" rx="25" ry="12" fill="{R.TEAL}" '
+            f'stroke="{OUT}" stroke-width="6"/>'
+            f'<ellipse cx="{rx+2}" cy="368" rx="25" ry="12" fill="{R.TEAL}" '
+            f'stroke="{OUT}" stroke-width="6"/>')
+    return legs + feet
+
+
+def _a_shoved_bar(t, _prop):
+    """Data braces both hands against the WINNING bar's advancing right FACE and
+    pushes back to hold it — but it outgrows him and shoves him along:
+      DIG IN [0,0.35]  hands flat on the bar face, heels planted, leaning HARD
+                       into it (winning for a beat).
+      SKID  [0.35,0.7] boots skidding, still pushing but sliding back.
+      SHOVED [0.7,1]   overpowered — knocked upright, arms flailing, a startled
+                       look as the bar wins.
+    His hands (left side of the sprite) are baked onto the bar tip, so the bar's
+    growth visibly drives him."""
+    p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
+    tremble = math.sin(t * math.pi * 12) * 2.5
+    if p < 0.35:                                       # DIG IN
+        s = p / 0.35
+        lh = [70 - tremble, 214, -22]; rh = [96 - tremble, 250, -16]
+        lower = _braced_legs(crouch=0.62, sway=14)
+        expr = "strain"; tilt = 12 - s * 3; bob = 3.0
+    elif p < 0.70:                                      # SKID
+        s = (p - 0.35) / 0.35
+        lh = [78 + s * 10, 214, -18]; rh = [104 + s * 10, 250, -12]
+        lower = _braced_legs(crouch=0.35 - s * 0.2, sway=18 + s * 8)
+        expr = "strain"; tilt = 9 - s * 12; bob = 3.0 - s * 2
+    else:                                               # SHOVED back
+        s = (p - 0.70) / 0.30
+        fl = math.sin(s * math.pi * 3) * 12
+        lh = [110 + fl, 120 - s * 30, -8]; rh = [150 + fl, 96 - s * 30, 8]
+        lower = _dangle_legs(kick=fl, spread=1.2)
+        expr = "shock"; tilt = -8 - s * 6; bob = -s * 6
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_drag_line(t, _prop):
+    """Data GRIPS the rising line's tip overhead and tries to hold it down, but
+    the line keeps climbing and DRAGS him up:
+      RESIST [0,0.35]  heels dug in, both fists clamped on the line overhead,
+                       leaning back hauling down — he's winning for a moment.
+      LOSING [0.35,0.7] feet break contact, body straightens, pulled upward.
+      DRAGGED [0.7,1]  fully airborne, legs kicking, swinging from the line,
+                       a startled 'whoa' — the data beat him.
+    Hands stay clamped overhead the whole time (the contact point baked to the
+    line tip); what changes is his BODY losing the fight."""
+    p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
+    # fists clamped together overhead — the grip point (baked onto the line tip)
+    grip_y = 46
+    lh = [156, grip_y, 18]
+    rh = [184, grip_y, -18]
+    strain = math.sin(t * math.pi * 12) * 3.0          # trembling effort
+    lh[0] += strain; rh[0] += strain
+    if p < 0.35:                                        # RESIST: heels dug in
+        s = p / 0.35
+        lower = _braced_legs(crouch=0.7 - s * 0.2, sway=12)
+        expr = "strain"
+        tilt = -16 + s * 6                             # leaning back, hauling down
+        bob = 4.0
+    elif p < 0.70:                                      # LOSING: lifted off
+        s = (p - 0.35) / 0.35
+        # legs transition from braced to dangling as he leaves the floor
+        lower = _dangle_legs(kick=s * 6, spread=1.0 - s * 0.4)
+        expr = "shock"
+        tilt = -10 + s * 10
+        bob = 4.0 - s * 6.0
+    else:                                               # DRAGGED: airborne swing
+        s = (p - 0.70) / 0.30
+        sw = math.sin(s * math.pi * 3) * 14             # swinging under the line
+        lower = _dangle_legs(kick=sw, spread=0.6)
+        expr = "shock"
+        tilt = sw                                       # swings side to side
+        bob = -2.0
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
 ANIMATORS = {
     "juggle": _a_juggle, "push": _a_push, "ride": _a_ride,
     "stagger_under": _a_stagger, "carry": _a_carry, "hold_up": _a_hold_up,
@@ -942,6 +1039,9 @@ ANIMATORS = {
     "ride_line_arc": _arc_anim("ride_line_arc"),
     "lift_arc": _arc_anim("lift_arc"),
     "climb_arc": _arc_anim("climb_arc"),
+    # COUPLED (mechanically tied to the chart object):
+    "drag_line": _a_drag_line,
+    "shoved_bar": _a_shoved_bar,
 }
 
 # Chart KIND -> the data action Data performs on it (deterministic, on-topic).
@@ -1014,14 +1114,21 @@ def compose_anim(spec: dict, t: float) -> str:
         prop = draw
     if action == "pose":
         # bespoke per-scene performance authored for THIS beat
-        arms, lower, back, front, eyes, mouth, bob = _a_pose(t, spec)
+        res = _a_pose(t, spec)
     else:
-        arms, lower, back, front, eyes, mouth, bob = \
-            ANIMATORS.get(action, _a_carry)(t, prop)
-    env = ENVS.get(prop_name, _shadow)()
+        res = ANIMATORS.get(action, _a_carry)(t, prop)
+    arms, lower, back, front, eyes, mouth, bob = res[:7]
+    # COUPLED performances (Data attached to a chart object) return an 8th value:
+    # a whole-body TILT (deg) so he leans/swings with the data's pull. They also
+    # skip the ground shadow — a shadow under a mascot hanging off a rising line
+    # reads as 'floating sprite', the very thing we're fixing.
+    tilt = float(res[7]) if len(res) > 7 else 0.0
+    grounded = spec.get("ground", True)
+    env = ENVS.get(prop_name, _shadow)() if grounded else ""
     masc = R.assemble(arms, eyes, mouth, lower=lower,
                       extra_back=back, extra_front=front)
-    inner = env + f'<g transform="translate(0,{bob:.1f})">{masc}</g>'
+    inner = env + (f'<g transform="translate(0,{bob:.1f}) '
+                   f'rotate({tilt:.1f},170,210)">{masc}</g>')
     return R.wrap(inner, view=ANIM_VIEW, label=f"Data {action} {prop_name}")
 
 

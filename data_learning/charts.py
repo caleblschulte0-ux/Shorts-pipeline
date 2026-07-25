@@ -197,6 +197,9 @@ def _ulabel(v: float, unit: str) -> str:
 # performs ON the data (the architecture the showrunner keeps asking for). His
 # pose animates with the reveal phase, so he's acting, not a held sticker.
 _HOST_IMG_CACHE: dict = {}
+# Actions where Data is mechanically ATTACHED to the chart object (his grip
+# point is baked onto the datum, he has no floor contact).
+_COUPLED_ACTIONS = frozenset({"drag_line", "shoved_bar"})
 
 
 def _host_img(action: str, phase: float):
@@ -219,7 +222,11 @@ def _host_img(action: str, phase: float):
         # to 0.0, so the final frame snapped to the setup pose (no overhead cheer
         # ever landed). Clamp keeps 1.0 -> payoff.
         _t = min(1.0, max(0.0, key[1]))
-        svg = _md.compose_anim({"action": action, "prop": "none"}, _t)
+        # COUPLED actions (Data mechanically attached to a chart object) render
+        # groundless — no floor shadow, since he leaves the floor.
+        _ground = action not in _COUPLED_ACTIONS
+        svg = _md.compose_anim({"action": action, "prop": "none",
+                                "ground": _ground}, _t)
         png = _md._rasterise(svg, 300)
         val = np.asarray(Image.open(io.BytesIO(png)).convert("RGBA")) / 255.0
     except Exception:  # noqa: BLE001 — a chart must never die over the host
@@ -574,11 +581,13 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
-    # BAKE THE HOST: Data rides the growing line's TIP — a full SETUP->ACTION->
-    # PAYOFF arc across the beat (mount the line -> surf it up arms-wide ->
-    # summit cheer), driven by beat-progress so start/mid/end are distinct poses.
-    _bake_host(ax, xd[-1], yd[-1], "ride_line_arc", reveal,
-               zoom=0.62, align=(0.5, 0.02))
+    # COUPLE THE HOST: Data clamps both fists onto the line's advancing TIP and
+    # tries to haul it down — but the line keeps climbing and drags him up (heels
+    # dug in -> feet break contact -> airborne swing). His grip point (top of the
+    # sprite, ~0.80 up) is baked ONTO the tip, so the line visibly acts on him —
+    # contact + cause + consequence, not a sprite surfing above the line.
+    _bake_host(ax, xd[-1], yd[-1], "drag_line", reveal,
+               zoom=0.60, align=(0.5, 0.80))
     insight.host_baked = True
     return ax, arts
 
@@ -1002,8 +1011,11 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # BAKE THE HOST: Data braces against the WINNING bar's growing tip, shoving
     # it out — he moves right WITH the bar as it grows (top row = highest value).
     _ttip = max(max(values) * t, vmax * 0.02)
+    # COUPLE THE HOST: Data braces against the winning bar's advancing right face
+    # and is shoved along as it outgrows him (his left-side hands baked onto the
+    # bar tip) — the bar drives him, not a sprite perched on the cap.
     _bake_host(ax, _ttip, n - 1,
-               "push_bar_arc", reveal, zoom=0.5, align=(0.92, 0.12))
+               "shoved_bar", reveal, zoom=0.5, align=(0.28, 0.5))
     insight.host_baked = True
     return ax, specs
 
