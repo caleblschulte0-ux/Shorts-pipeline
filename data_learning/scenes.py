@@ -977,10 +977,15 @@ def money_scene(out: Path, seconds: float = 4.0, upto: int = 0,
                 if a > 14:
                     _rrect(d, bx, by, bx + 52, by + 28, (*GREEN, a), r=6)
                     d.ellipse([bx + 17, by + 5, bx + 35, by + 23], outline=(*GREEN_D, a), width=2)
-            # the category taking the money, as a stamp riding the stream
+            # the category taking the money, as a stamp riding the stream.
+            # Clamped inside the frame: a long label ("GETTING AROUND") riding
+            # right used to run off the edge and read as clipped garbage.
             stf = _font(ANTON, 40)
-            sxp = (pcx + dirx * int(W * 0.24)) if dirx > 0 else (pcx + dirx * int(W * 0.24) - int(stf.getlength("— " + cat)))
-            d.text((sxp, int(H * 0.28)), "— " + cat, font=stf,
+            stxt = "— " + cat
+            stw = int(stf.getlength(stxt))
+            sxp = (pcx + dirx * int(W * 0.24)) if dirx > 0 else (pcx + dirx * int(W * 0.24) - stw)
+            sxp = max(24, min(sxp, W - stw - 24))
+            d.text((sxp, int(H * 0.28)), stxt, font=stf,
                    fill=(238, 128, 108, 235))
         else:
             # PAYOFF: coins rain down across a WIDE band and settle onto the little
@@ -1065,15 +1070,19 @@ def paycheck_scene(out: Path, seconds: float = 6.0, number: str = "",
             hd, ln = dd["head_drop"], dd["lean"]
         _stand(d, cx, floor_y + 6, h=380, col=FIG, arms_up=arms, lean=ln,
                head_drop=hd)
-        # the paycheck (a slip) held at the raised hand
-        px, py = cx + 96, int(H * 0.40)
-        d.rounded_rectangle([px, py, px + 190, py + 96], radius=10,
-                            fill=(238, 240, 248, 255), outline=(150, 155, 172, 255), width=3)
-        d.line([px + 16, py + 26, px + 174, py + 26], fill=(120, 128, 150), width=4)
-        d.text((px + 16, py + 40), "PAY", font=_font(ANTON, 34), fill=(60, 120, 90, 255))
-        chk = _font(ANTON, 40)
+        # the paycheck (a slip) held at the raised hand. Sized to READ at
+        # phone scale — the old 190px slip shrank to an unreadable beige
+        # rectangle in the low-res viewing copy (blind-judge finding).
+        px, py = cx + 96, int(H * 0.36)
+        pw, ph2 = 300, 150
+        d.rounded_rectangle([px, py, px + pw, py + ph2], radius=14,
+                            fill=(238, 240, 248, 255), outline=(150, 155, 172, 255), width=4)
+        d.line([px + 24, py + 40, px + pw - 24, py + 40], fill=(120, 128, 150), width=5)
+        d.text((px + 24, py + 58), "PAY", font=_font(ANTON, 52), fill=(60, 120, 90, 255))
+        chk = _font(ANTON, 60)
         amt = "$3,200"
-        d.text((px + 174 - chk.getlength(amt), py + 40), amt, font=chk, fill=(40, 100, 70, 255))
+        d.text((px + pw - 24 - chk.getlength(amt), py + 56), amt, font=chk,
+               fill=(40, 100, 70, 255))
         # money immediately streams OUT of the check toward the left and off-frame
         _coin_fall(d, 91, t, px - 40, px + 40, py + 60, count=14, spread=460)
         for _ in range(0):
