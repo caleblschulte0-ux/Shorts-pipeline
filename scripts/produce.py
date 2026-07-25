@@ -124,7 +124,7 @@ def evaluate(out: Path, director_rc: int, story: dict | None = None) -> dict:
     return result
 
 
-def produce(slug: str, out: Path, rounds: int = 3) -> dict:
+def produce(slug: str, out: Path, rounds: int = 2) -> dict:
     """Render + gate + repair the story, then evaluate it. Returns the evaluate()
     result with the slug attached."""
     import no_dull_beats
@@ -160,7 +160,7 @@ def main(argv) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("slug")
     ap.add_argument("out", type=Path)
-    ap.add_argument("--rounds", type=int, default=3)
+    ap.add_argument("--rounds", type=int, default=2)  # Phase 10: max 2 automated repair passes, then quarantine
     a = ap.parse_args(argv)
     res = produce(a.slug, a.out, rounds=a.rounds)
     return 0 if res["status"] == "pass" else 5

@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -101,25 +102,73 @@ def _description(sc: dict, meta: dict) -> str:
 def _render_story(slug: str, out: Path, config: Path) -> dict:
     """Render through the CANONICAL pro pipeline (produce.py: pro_render + the full
     director loop + gates + repair + publishing package + fallback/vision verdict).
-    Legacy ``longform_render`` is the EXPLICIT fallback, used only when there is no
-    pro beat story for the slug or the pro build itself cannot run — never as the
-    default publisher (audit #1: "make the pro renderer the publishing renderer").
+
+    Renderer selection is an EXPLICIT env switch, never a silent fallback:
+        CURIOSITY_RENDERER=pro     (default) — the canonical producer. A slug with
+                                   no pro beat story FAILS CLOSED (quarantined with
+                                   the reason); it does NOT quietly run legacy.
+        CURIOSITY_RENDERER=legacy  — emergency mode only: the operator explicitly
+                                   opts into data_learning/longform_render.
 
     Returns {"engine": "pro"|"legacy", "produce": <produce result or None>}.
     """
     sys.path.insert(0, str(REPO / "scripts"))
-    try:
-        import produce
-        produce.resolve_story(slug)          # raises FileNotFoundError if no pro story
-    except Exception as e:  # noqa: BLE001 — no pro story: fall back to legacy engine
-        print(f"[{slug}] no pro story ({str(e)[:70]}) — LEGACY longform fallback",
-              flush=True)
+    renderer = os.environ.get("CURIOSITY_RENDERER", "pro").strip().lower() or "pro"
+    if renderer == "legacy":
+        print(f"[{slug}] CURIOSITY_RENDERER=legacy — EXPLICIT legacy longform "
+              "render (emergency mode; no director loop, no pro gates)", flush=True)
         from data_learning import longform_render
         longform_render.render(slug, out, config_path=config)
         return {"engine": "legacy", "produce": None}
+    if renderer != "pro":
+        raise SystemExit(f"CURIOSITY_RENDERER={renderer!r} is not a renderer "
+                         "(expected 'pro' or 'legacy')")
+    import produce
+    try:
+        produce.resolve_story(slug)          # raises FileNotFoundError if no pro story
+    except FileNotFoundError as e:
+        # FAIL CLOSED (Phase 3): a missing pro story is an authoring gap, not a
+        # license to publish through the ungated legacy renderer.
+        reason = (f"no pro beat story for slug (fail-closed): {e}. Author "
+                  f"data_learning/pro_stories/{slug}.beats.json, or set "
+                  "CURIOSITY_RENDERER=legacy to explicitly use the emergency "
+                  "legacy renderer")
+        print(f"[{slug}] {reason}", file=sys.stderr)
+        return {"engine": "pro",
+                "produce": {"out": str(out), "slug": slug,
+                            "status": "quarantine", "reasons": [reason],
+                            "director_rc": None,
+                            "fallback_verdict": "no_story"}}
     print(f"[{slug}] rendering through PRO producer (canonical path)", flush=True)
     result = produce.produce(slug, out)
     return {"engine": "pro", "produce": result}
+
+
+def _structured_result(slug: str, out: Path, render_report: dict,
+                       duration: float, blocking: list[str]) -> dict:
+    """The producer's machine-readable outcome (Phase 3 §8.4) — written beside
+    the video as ``output/curiosity_<slug>.produce.json`` so every claim about a
+    run is auditable from artifacts, not printed logs. Sidecar paths are included
+    only when the file actually exists on disk (a missing report is honest)."""
+    pkg = out.with_name(out.stem + "_pkg")
+
+    def _p(path: Path) -> str | None:
+        return str(path.relative_to(REPO)) if path.exists() else None
+
+    return {
+        "ok": not blocking,
+        "slug": slug,
+        "engine": render_report.get("engine"),
+        "video_path": _p(out),
+        "duration_seconds": round(duration, 1),
+        "render_report": _p(pkg / "produce_report.json"),
+        "performance_report": _p(pkg / "performance.json"),
+        "fallback_report": _p(pkg / "fallbacks.json"),
+        "facts_report": _p(out.with_suffix(".facts-report.json")),
+        "visual_verdict": _p(pkg / "verdict.json"),
+        "publish_eligible": not blocking,
+        "blocking_reasons": blocking,
+    }
 
 
 def _prepublish_gate(out: Path, sc: dict) -> tuple[bool, list[str]]:
@@ -216,28 +265,40 @@ def main() -> int:
         out = OUTPUT_DIR / f"curiosity_{slug}.mp4"
         print(f"[{slug}] rendering long-form -> {out}", flush=True)
         render_report = _render_story(slug, out, args.config)
-        meta = json.loads(out.with_suffix(".meta.json").read_text())
-        dur = meta.get("duration", 0)
-        if dur < 120:
-            print(f"[{slug}] REJECTED: {dur:.0f}s is too short for the "
-                  "watch-page format (target 4-5 min) — expand the story",
-                  file=sys.stderr)
-            results.append({"slug": slug, "ok": False, "error": "too short"})
-            continue
 
-        # QUALITY GATE — a flagged video must not ship (DIRECTOR.md). TWO layers:
+        # QUALITY GATE — a flagged video must not ship (DIRECTOR.md). Layers:
         # (1) the producer's own verdict — the full director loop + honest fallback
         #     classifier + vision taste verdict. A QUARANTINE here is non-bypassable:
         #     an unacceptable fallback / missing judge / failed package must NOT
         #     publish, and --force must never override a quality/factual/legal gate
         #     (audit #5). --force covers only dedup + scheduling.
-        # (2) the renderer-agnostic hook + dead-time judges on the finished mp4.
+        # (2) technical floor: the video exists and clears the watch-page length.
+        # (3) the renderer-agnostic hook + dead-time judges on the finished mp4.
         gate_reasons: list[str] = []
         prod = render_report.get("produce")
         if prod is not None and prod.get("status") != "pass":
             gate_reasons.append("producer QUARANTINE: " + "; ".join(prod["reasons"]))
-        gate_ok, judge_reasons = _prepublish_gate(out, sc)
-        gate_reasons.extend(judge_reasons)
+        dur = 0.0
+        if not out.exists():
+            gate_reasons.append("no rendered video on disk (render failed closed)")
+        else:
+            meta_path = out.with_suffix(".meta.json")
+            meta = json.loads(meta_path.read_text()) if meta_path.exists() else {}
+            dur = meta.get("duration", 0)
+            if dur < 120:
+                gate_reasons.append(f"{dur:.0f}s is too short for the watch-page "
+                                    "format (target 4-5 min) — expand the story")
+            _, judge_reasons = _prepublish_gate(out, sc)
+            gate_reasons.extend(judge_reasons)
+
+        # The machine-readable outcome is ALWAYS written — pass or fail — so the
+        # run is auditable from artifacts (Phase 3 §8.4), not from printed logs.
+        result_obj = _structured_result(slug, out, render_report, dur, gate_reasons)
+        produce_json = OUTPUT_DIR / f"curiosity_{slug}.produce.json"
+        produce_json.parent.mkdir(parents=True, exist_ok=True)
+        produce_json.write_text(json.dumps(result_obj, indent=2) + "\n")
+        print(f"[{slug}] structured result -> {produce_json}", flush=True)
+
         if gate_reasons:
             print(f"[{slug}] QUALITY GATE FAILED: {'; '.join(gate_reasons)}",
                   file=sys.stderr)
@@ -247,9 +308,17 @@ def main() -> int:
                             "error": "quality gate: " + "; ".join(gate_reasons)})
             continue
 
-        if args.dry_run:
-            print(f"[{slug}] dry-run: rendered {dur:.0f}s, not uploading")
-            results.append({"slug": slug, "ok": True, "url": "(dry-run)"})
+        # EXPLICIT PUBLISH GATE (Phase 0 freeze): uploading requires the operator
+        # to set CURIOSITY_PUBLISH_ENABLED=1. Default behavior is
+        # render -> review -> package -> HOLD, even without --dry-run.
+        publish_enabled = os.environ.get("CURIOSITY_PUBLISH_ENABLED") == "1"
+        if args.dry_run or not publish_enabled:
+            why = ("dry-run" if args.dry_run
+                   else "CURIOSITY_PUBLISH_ENABLED != 1 (publish frozen: "
+                        "render/review/package/HOLD)")
+            print(f"[{slug}] {why}: rendered {dur:.0f}s, publish-eligible, "
+                  "NOT uploading")
+            results.append({"slug": slug, "ok": True, "url": f"(held: {why})"})
             posted_this_run += 1
             continue
 
@@ -310,8 +379,8 @@ def main() -> int:
             "at": datetime.now(timezone.utc).isoformat(),
             "publish_at": publish_at, "duration": dur,
         }
-        args.log.parent.mkdir(parents=True, exist_ok=True)
-        args.log.write_text(json.dumps(log, indent=2) + "\n")
+        from fsutil import atomic_write_json
+        atomic_write_json(args.log, log)
         results.append({"slug": slug, "ok": True, "url": url})
         posted_this_run += 1
 
