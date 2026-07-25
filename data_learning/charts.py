@@ -476,13 +476,12 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     for j, ((p, color), x) in enumerate(zip(pair, xs)):
         _round_barv(ax, x, vmax, lw, BAR_BASE, zorder=2)
         _round_barv(ax, x, max(p.value * reveal, vmax * 0.02), lw, color, zorder=3)
-        # Winner (j==0) carries the mascot on its tip, so its big number sits
-        # just INSIDE the column top (white); the other keeps its number above.
+        # Winner (j==0) carries the mascot gripping its TOP, so its big number
+        # sits LOW inside the column (white) — clear of the top-gripping host.
         if j == 0:
-            t = ax.text(x, max(p.value * reveal - vmax * 0.06, vmax * 0.10),
-                        _vfmt(p.value) + "%", ha="center", va="top", fontsize=42,
-                        color="white", fontweight="bold", zorder=6,
-                        alpha=_lblalpha(reveal))
+            t = ax.text(x, vmax * 0.16, _vfmt(p.value) + "%", ha="center",
+                        va="center", fontsize=42, color="white",
+                        fontweight="bold", zorder=6, alpha=_lblalpha(reveal))
         else:
             t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
                         ha="center", fontsize=46, color=TEXT, fontweight="bold",
@@ -510,8 +509,11 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # BAKE THE HOST: Data rides the WINNING column's growing tip, hoisted UP as it
     # rises (setup->action->payoff). Feet at the tip; his body fills the space
     # above the column where the number used to sit (now moved inside).
+    # COUPLE (vertical DRAG, like the trend/stack that pass): Data grips the top
+    # of the winning column and is hauled UP as it grows — reads as data-driven,
+    # unlike lift_arc which the gate read as 'perches on top, swallowed'.
     _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
-    _bake_host(ax, xs[0], _htip, "lift_arc", reveal, zoom=0.85, align=(0.5, 0.0))
+    _bake_host(ax, xs[0], _htip, "drag_line", reveal, zoom=0.8, align=(0.5, 0.78))
     insight.host_baked = True
     return ax, arts
 
@@ -1048,7 +1050,11 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     t = max(0.0, min(1.0, reveal))
     filled = t * 100.0
     palette = [HIGHLIGHT, ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399"]
-    cx0, cx1 = 0.30, 0.66                       # column x-extent (left-of-centre)
+    cx0, cx1 = 0.20, 0.62                       # wider column (was a narrow strip)
+    # Faint horizontal reference lines across the FULL card so the space beside
+    # the tower reads as chart, not empty (empty_void).
+    for _gy in (20, 40, 60, 80):
+        ax.axhline(_gy, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
     # GHOST the WHOLE tower (every segment, dim) from frame 1 so the early frames
     # carry the full shape instead of a near-empty column over dead navy
     # (empty_void). The bright fill rises over this preview.
