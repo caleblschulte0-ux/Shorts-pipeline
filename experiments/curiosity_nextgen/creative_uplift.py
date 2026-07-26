@@ -16,6 +16,33 @@ class CreativeArea(str, Enum):
 
 
 @dataclass(frozen=True)
+class CreativeSignal:
+    signal_id: str
+    area: CreativeArea
+    description: str
+    recommended_action: str
+    severity: float
+    expected_score_gain: float
+    confidence: float
+    estimated_effort: float
+    target_ids: tuple[str, ...] = ()
+    depends_on: tuple[str, ...] = ()
+    acceptance_checks: tuple[str, ...] = ()
+
+    def __post_init__(self) -> None:
+        if not self.signal_id.strip() or not self.description.strip() or not self.recommended_action.strip():
+            raise ValueError("signal_id, description, and recommended_action are required")
+        if not 0 <= self.severity <= 10:
+            raise ValueError("severity must be between 0 and 10")
+        if not 0 <= self.expected_score_gain <= 10:
+            raise ValueError("expected_score_gain must be between 0 and 10")
+        if not 0 <= self.confidence <= 1:
+            raise ValueError("confidence must be between 0 and 1")
+        if self.estimated_effort <= 0:
+            raise ValueError("estimated_effort must be positive")
+
+
+@dataclass(frozen=True)
 class CreativeTask:
     task_id: str
     area: CreativeArea
@@ -51,6 +78,50 @@ class UpliftPlan:
     coverage: dict[str, int]
 
 
+def tasks_from_signals(
+    signals: Iterable[CreativeSignal],
+    *,
+    minimum_severity: float = 0.0,
+) -> tuple[CreativeTask, ...]:
+    """Convert arbitrary story-analysis findings into story-agnostic repair tasks."""
+    if not 0 <= minimum_severity <= 10:
+        raise ValueError("minimum_severity must be between 0 and 10")
+
+    by_id: dict[str, CreativeSignal] = {}
+    for signal in signals:
+        if signal.signal_id in by_id:
+            raise ValueError(f"duplicate signal_id: {signal.signal_id}")
+        by_id[signal.signal_id] = signal
+
+    unknown_dependencies = sorted(
+        dependency
+        for signal in by_id.values()
+        for dependency in signal.depends_on
+        if dependency not in by_id
+    )
+    if unknown_dependencies:
+        raise ValueError("unknown signal dependencies: " + ", ".join(unknown_dependencies))
+
+    tasks = []
+    for signal in by_id.values():
+        if signal.severity < minimum_severity:
+            continue
+        tasks.append(
+            CreativeTask(
+                task_id=signal.signal_id,
+                area=signal.area,
+                description=signal.recommended_action,
+                expected_score_gain=signal.expected_score_gain,
+                confidence=signal.confidence,
+                estimated_effort=signal.estimated_effort,
+                target_beats=signal.target_ids,
+                depends_on=signal.depends_on,
+                acceptance_checks=signal.acceptance_checks,
+            )
+        )
+    return tuple(sorted(tasks, key=lambda task: task.task_id))
+
+
 def plan_uplift(
     tasks: Iterable[CreativeTask],
     *,
@@ -68,7 +139,12 @@ def plan_uplift(
             raise ValueError(f"duplicate task_id: {task.task_id}")
         by_id[task.task_id] = task
 
-    unknown_dependencies = sorted({dependency for task in by_id.values() for dependency in task.depends_on if dependency not in by_id})
+    unknown_dependencies = sorted(
+        dependency
+        for task in by_id.values()
+        for dependency in task.depends_on
+        if dependency not in by_id
+    )
     if unknown_dependencies:
         raise ValueError("unknown dependencies: " + ", ".join(unknown_dependencies))
 
@@ -111,78 +187,4 @@ def plan_uplift(
         projected_overall_score=round(min(10.0, current_score + projected_gain), 3),
         blocked_tasks=tuple(sorted(remaining)),
         coverage=dict(sorted(coverage.items())),
-    )
-
-
-def money_goes_reference_tasks() -> tuple[CreativeTask, ...]:
-    """Known, evidence-backed dormant repair blueprint from the recovery report."""
-    return (
-        CreativeTask(
-            task_id="restore_hook_composition",
-            area=CreativeArea.HOOK,
-            description="Compare the earlier 8/10 paycheck opening with the current 7/10 version and restore the strongest scale, contrast, readability, and motion without reintroducing clipping.",
-            expected_score_gain=0.55,
-            confidence=0.78,
-            estimated_effort=2.0,
-            target_beats=("hook", "paycheck_open"),
-            acceptance_checks=("hook_score>=8", "first_visual<=1s", "no_text_clipping"),
-        ),
-        CreativeTask(
-            task_id="replace_transport_media",
-            area=CreativeArea.MEDIA,
-            description="Replace the Japanese gas-station image with geographically neutral or narratively correct transport media and retain the candidate/rejection trail.",
-            expected_score_gain=0.45,
-            confidence=0.95,
-            estimated_effort=1.0,
-            target_beats=("transport",),
-            acceptance_checks=("no_wrong_region_asset", "media_relevance>=8"),
-        ),
-        CreativeTask(
-            task_id="upgrade_bill_counting_fallback",
-            area=CreativeArea.MEDIA,
-            description="Replace the hands-counting-bills statement card with licensed footage, a designed mechanism, or a character interaction that visibly communicates money changing hands.",
-            expected_score_gain=0.5,
-            confidence=0.85,
-            estimated_effort=1.75,
-            target_beats=("beat_6",),
-            acceptance_checks=("fallback!=degraded", "visible_action", "no_text_only_substitution"),
-        ),
-        CreativeTask(
-            task_id="design_transition_families",
-            area=CreativeArea.VISUAL_VARIETY,
-            description="Create at least three chapter-transition families tied to chapter meaning rather than repeating the same dark-starfield card.",
-            expected_score_gain=0.7,
-            confidence=0.9,
-            estimated_effort=2.5,
-            acceptance_checks=("transition_families>=3", "dominant_family_share<=0.4", "no_consecutive_duplicate_family"),
-        ),
-        CreativeTask(
-            task_id="break_real_media_run",
-            area=CreativeArea.PACING,
-            description="Break the three-beat real-media run with a meaningful mechanism, comparison, evidence transformation, or character consequence.",
-            expected_score_gain=0.35,
-            confidence=0.8,
-            estimated_effort=1.2,
-            target_beats=("beat_17",),
-            acceptance_checks=("same_family_run<=2", "novelty_delta>=1.25"),
-        ),
-        CreativeTask(
-            task_id="build_character_attempt_failure_payoff",
-            area=CreativeArea.PERSONALITY,
-            description="Give the central character a concrete attempt, obstacle, reaction, changed strategy, and callback payoff instead of mostly explanatory staging.",
-            expected_score_gain=0.8,
-            confidence=0.72,
-            estimated_effort=3.0,
-            acceptance_checks=("personality>=4/5", "distinct_actions>=3", "state_changes>=2", "callback_resolved"),
-        ),
-        CreativeTask(
-            task_id="strengthen_final_callback",
-            area=CreativeArea.PAYOFF,
-            description="Return to the opening paycheck image in the final answer and show the exact mechanism and human consequence promised by the hook.",
-            expected_score_gain=0.55,
-            confidence=0.82,
-            estimated_effort=1.75,
-            depends_on=("restore_hook_composition",),
-            acceptance_checks=("major_question_answered", "visual_callback", "consequence_shown", "payoff>=7.5"),
-        ),
     )
