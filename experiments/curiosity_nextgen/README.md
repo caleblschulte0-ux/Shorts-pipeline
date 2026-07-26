@@ -8,10 +8,11 @@ Nothing in the active pipeline imports this package. This directory does not mod
 
 ## Current reference-surface status
 
-- **42 dormant prototype modules**
-- **158 authored contract tests** across five test files
+- **48 dormant prototype modules**
+- **196 authored contract tests** across six test files
 - **27 required structural domains** in the strict completeness rubric
-- **100% authored reference coverage** when `complete_reference_evidence()` is assessed
+- **100% authored structural reference coverage** when `complete_reference_evidence()` is assessed
+- **new dormant creative-quality surface** for hooks, pacing, chapter variety, personality, payoff, and prioritized uplift
 - **0% verified execution coverage claimed** until the isolated tests are actually run
 - **0 production imports, workflow changes, or publishing changes**
 
@@ -20,7 +21,7 @@ Nothing in the active pipeline imports this package. This directory does not mod
 1. `reference_coverage_percent` — whether every required structural domain has isolated reference code and positive/negative test references;
 2. `verified_execution_percent` — whether those contracts were actually executed successfully.
 
-The dormant structure reaches 100% on the first measure only. It cannot report 100% verified execution unless every domain is explicitly marked verified.
+The dormant structure reaches 100% on the first measure only. It cannot report 100% verified execution unless every domain is explicitly marked verified. Creative-quality modules are additional reference implementations and do not change that structural denominator.
 
 ## Included prototypes
 
@@ -48,6 +49,15 @@ The dormant structure reaches 100% on the first measure only. It cannot report 1
 - `repetition_ledger.py` — cross-video hook, closing, transition, character-action, visual-family, and asset-reuse controls.
 - `portfolio_optimizer.py` — transparent cost, readiness, diversity, novelty, and exploration-aware story portfolio selection.
 - `generalization_suite.py` — multi-archetype, multi-topic, mixed-media, positive/negative story-fixture coverage.
+
+### Direct creative-quality improvement
+
+- `hook_lab.py` — compares hook candidates on clarity, curiosity, stakes, specificity, surprise, first-image strength, payoff promise, duration, and opening delay.
+- `beat_dynamics.py` — detects flat energy, repetitive visual-family runs, dense explanation clusters, missing character action, dormant curiosity gaps, and weak beat turns.
+- `chapter_style_planner.py` — assigns diverse chapter-transition families while penalizing dominance, consecutive reuse, and topic/tone mismatch.
+- `personality_arc.py` — evaluates emotional progression, purposeful action variety, obstacles, consequences, and setup/payoff callbacks.
+- `payoff_contract.py` — binds opening questions and promises to explicit answers, visual proof, consequences, callback closure, and timing.
+- `creative_uplift.py` — prioritizes high-leverage creative repairs under an effort budget and includes a concrete `money-goes` repair blueprint for the known hook, media, chapter, pacing, personality, and payoff defects.
 
 ### Facts and media
 
@@ -100,6 +110,7 @@ The dormant structure reaches 100% on the first measure only. It cannot report 1
 - `tests/test_structural_hardening.py` — factual, evidence, judge independence, catalog, scheduling, approval, freeze, observability, and integration negative controls.
 - `tests/test_resilience_controls.py` — schema evolution, migration, lineage, deterministic replay, checkpoints, circuit breakers, workload governance, leak scanning, fault campaigns, and integrated resilience negative controls.
 - `tests/test_completeness_closure.py` — policy, adapters, audit integrity, human review, retention, disaster recovery, rollback, rollout, reproducibility, drift, portfolio diversity, generalization, and strict 100% completeness scoring.
+- `tests/test_creative_quality.py` — 38 hook, beat-rhythm, chapter-variety, personality, payoff, and prioritized-uplift contracts.
 
 ## Run locally
 
