@@ -6,6 +6,22 @@ This directory contains **real but dormant code** for Claude to inspect, test, r
 
 Nothing in the active pipeline imports this package. This directory does not modify workflows, configuration, scheduling, publishing, rendering, story data, or CI. All modules use the Python standard library only.
 
+## Current reference-surface status
+
+- **42 dormant prototype modules**
+- **158 authored contract tests** across five test files
+- **27 required structural domains** in the strict completeness rubric
+- **100% authored reference coverage** when `complete_reference_evidence()` is assessed
+- **0% verified execution coverage claimed** until the isolated tests are actually run
+- **0 production imports, workflow changes, or publishing changes**
+
+`structural_completeness.py` deliberately separates two scores:
+
+1. `reference_coverage_percent` — whether every required structural domain has isolated reference code and positive/negative test references;
+2. `verified_execution_percent` — whether those contracts were actually executed successfully.
+
+The dormant structure reaches 100% on the first measure only. It cannot report 100% verified execution unless every domain is explicitly marked verified.
+
 ## Included prototypes
 
 ### Artifact and release integrity
@@ -15,6 +31,7 @@ Nothing in the active pipeline imports this package. This directory does not mod
 - `approval_token.py` — one-time HMAC-signed approvals bound to one manifest, one channel, one expiry window, and one upload.
 - `freeze_controller.py` — fail-closed release state machine with automatic freezing and mandatory post-canary refreeze.
 - `lineage_graph.py` — artifact/report dependency graphs, missing-parent and cycle checks, manifest continuity, stale-descendant detection, and impact analysis.
+- `audit_chain.py` — tamper-evident, hash-chained operational audit records.
 
 ### Schema evolution and deterministic recovery
 
@@ -22,12 +39,15 @@ Nothing in the active pipeline imports this package. This directory does not mod
 - `migration_planner.py` — complete migration-path discovery, lossy-change blocking, reversibility warnings, and manual-review holds.
 - `replay_engine.py` — canonical run envelopes, stage digests, deterministic replay comparison, dependency/version drift, order drift, and duration regressions.
 - `checkpoint_store.py` — idempotent stage checkpoints, bounded retries, stale-input detection, quarantine handling, and resume plans.
+- `environment_lock.py` — platform, dependency, tool-version, and environment-variable reproducibility contracts.
 
 ### Editorial quality and repair
 
 - `quality.py` — weighted quality decisions with mandatory hard floors.
 - `repair_planner.py` — defect-specific repair selection, priority ordering, two-round limits, and human re-author escalation.
 - `repetition_ledger.py` — cross-video hook, closing, transition, character-action, visual-family, and asset-reuse controls.
+- `portfolio_optimizer.py` — transparent cost, readiness, diversity, novelty, and exploration-aware story portfolio selection.
+- `generalization_suite.py` — multi-archetype, multi-topic, mixed-media, positive/negative story-fixture coverage.
 
 ### Facts and media
 
@@ -35,11 +55,13 @@ Nothing in the active pipeline imports this package. This directory does not mod
 - `semantic_claims.py` — sentence-level factual assertions, confidence scoring, type compatibility, duplicate IDs, and overbroad mapping detection.
 - `media_ranker.py` — auditable candidate ranking and hard rejection rules.
 
-### Visual-judge control plane
+### Visual-judge and human-review control plane
 
 - `judge_contract.py` — hash-bound verdict validation and multi-judge consensus.
 - `judge_evidence.py` — blind judge evidence-package completeness, hash binding, duration, media-type, and information-leak checks.
 - `judge_orchestrator.py` — independent technical/editorial/tiebreaker assignment across distinct provider and model families.
+- `review_queue.py` — separation-of-duties review assignment, SLA expiry, escalation, approval, and rejection state.
+- `adapter_contracts.py` — provider capability negotiation, schema compatibility, determinism, idempotency, and judge independence.
 
 ### Performance and catalog control
 
@@ -50,18 +72,22 @@ Nothing in the active pipeline imports this package. This directory does not mod
 - `story_catalog.py` — explicit story lifecycle and scheduler eligibility.
 - `catalog_triage.py` — story readiness scoring, deterministic next actions, blocker severity, and repair-budget handling.
 
-### Resilience and security
+### Resilience, lifecycle, and security
 
 - `circuit_breaker.py` — closed/open/half-open dependency protection with bounded recovery probes.
 - `security_scanner.py` — recursive credential, private-key, bearer-token, PII, internal-instruction, and unapproved-host detection plus redaction.
 - `fault_injection.py` — critical-fault campaign coverage and expected fail-safe outcome validation.
 - `resilience_lab.py` — integrated dormant preflight across schema, security, lineage, checkpoints, dependency health, and resource admission.
+- `lifecycle_controls.py` — retention, legal hold, purge planning, RPO/RTO recovery assessment, rollback planning, and staged rollout controls.
+- `policy_snapshot.py` — canonical immutable policy snapshots, parent linkage, hash binding, and controlled runtime overrides.
+- `drift_monitor.py` — quality/performance baseline drift, watch/hold/freeze severity, and missing-observation holds.
 
 ### Orchestration and operations
 
 - `integration_lab.py` — isolated end-to-end simulation from claims and evidence through gates, package readiness, and release freeze decisions.
 - `observability.py` — append-only event ledger, duplicate detection, run summaries, pass/hold/quarantine rates, p95 duration, and reason aggregation.
 - `pipeline_status.py` — weighted implementation, evidence, readiness, blocker, and priority scoring.
+- `structural_completeness.py` — strict 27-domain meta-audit that refuses 100% for any missing, invalid, untested, or non-isolated reference domain.
 
 ### Learning
 
@@ -73,6 +99,7 @@ Nothing in the active pipeline imports this package. This directory does not mod
 - `tests/test_decision_intelligence.py` — decision-layer contracts.
 - `tests/test_structural_hardening.py` — factual, evidence, judge independence, catalog, scheduling, approval, freeze, observability, and integration negative controls.
 - `tests/test_resilience_controls.py` — schema evolution, migration, lineage, deterministic replay, checkpoints, circuit breakers, workload governance, leak scanning, fault campaigns, and integrated resilience negative controls.
+- `tests/test_completeness_closure.py` — policy, adapters, audit integrity, human review, retention, disaster recovery, rollback, rollout, reproducibility, drift, portfolio diversity, generalization, and strict 100% completeness scoring.
 
 ## Run locally
 
