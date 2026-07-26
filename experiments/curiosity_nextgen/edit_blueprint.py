@@ -82,6 +82,47 @@ class EditBlueprint:
     warnings: tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class StoryEditCandidate:
+    story_id: str
+    topic_family: str
+    format_family: str
+    issues: tuple[EditIssue, ...]
+    readiness: float
+    novelty: float
+    strategic_value: float = 5.0
+
+    def __post_init__(self) -> None:
+        if not self.story_id.strip() or not self.topic_family.strip() or not self.format_family.strip():
+            raise ValueError("story_id, topic_family, and format_family are required")
+        if not self.issues:
+            raise ValueError("each story candidate requires at least one edit issue")
+        for name in ("readiness", "novelty", "strategic_value"):
+            value = getattr(self, name)
+            if not 0.0 <= value <= 10.0:
+                raise ValueError(f"{name} must be between 0 and 10")
+
+
+@dataclass(frozen=True)
+class StoryEditPlan:
+    story_id: str
+    topic_family: str
+    format_family: str
+    priority_score: float
+    blueprint: EditBlueprint
+
+
+@dataclass(frozen=True)
+class BatchEditProgram:
+    selected_plans: tuple[StoryEditPlan, ...]
+    deferred_story_ids: tuple[str, ...]
+    quarantined_story_ids: tuple[str, ...]
+    total_effort: float
+    topic_family_counts: tuple[tuple[str, int], ...]
+    format_family_counts: tuple[tuple[str, int], ...]
+    warnings: tuple[str, ...]
+
+
 def _priority(issue: EditIssue) -> float:
     value = issue.severity * issue.confidence * max(0.2, issue.expected_uplift) / issue.effort
     if issue.start_seconds <= 15:
@@ -184,7 +225,12 @@ def build_edit_blueprint(issues: Iterable[EditIssue], effort_budget: float) -> E
     projected = round(
         min(
             10.0,
-            sum(selected_issue_map[edit.issue_id].expected_uplift * selected_issue_map[edit.issue_id].confidence / 10.0 for edit in selected),
+            sum(
+                selected_issue_map[edit.issue_id].expected_uplift
+                * selected_issue_map[edit.issue_id].confidence
+                / 10.0
+                for edit in selected
+            ),
         ),
         2,
     )
@@ -215,14 +261,103 @@ def build_edit_blueprint(issues: Iterable[EditIssue], effort_budget: float) -> E
     )
 
 
-def money_goes_retention_blueprint() -> tuple[EditIssue, ...]:
-    return (
-        EditIssue("restore_hook", EditArea.RETENTION, "opening", "The current opening underperforms the earlier cut.", "Compare hook candidates and rebuild the first 8 seconds around the strongest visual contradiction.", 8.5, 8.0, 1.0, 3.0, EditPass.STORY, 0.0, is_hook=True),
-        EditIssue("reduce_opening_load", EditArea.COGNITIVE_LOAD, "opening", "The opening introduces the mechanism before the question is fully established.", "Delay secondary explanation until after the first visible paycheck split.", 7.5, 8.0, 0.6, 1.5, EditPass.SCRIPT, 3.0, depends_on=("restore_hook",)),
-        EditIssue("replace_wrong_region_media", EditArea.CONTINUITY, "gas_station_media", "The gas-station image implies the wrong region.", "Replace it with region-correct evidence or clearly labeled illustrative media.", 9.0, 10.0, 0.7, 1.5, EditPass.MEDIA, 92.0, hard_blocker=True),
-        EditIssue("replace_statement_card", EditArea.VISUAL_READABILITY, "bill_counting", "The bill-counting fallback is a statement card instead of visible action.", "Show hands separating the paycheck into concrete destinations with one focal stack at a time.", 8.0, 9.0, 0.8, 3.0, EditPass.ANIMATION, 118.0),
-        EditIssue("caption_safe_area", EditArea.CAPTIONS, "all_captions", "Caption placement has not been audited against mobile controls and focal evidence.", "Reflow cues by phrase, enforce two lines, and reserve a protected caption zone in every shot.", 7.0, 7.5, 0.5, 2.5, EditPass.CAPTION, 0.0),
-        EditIssue("character_specific_humor", EditArea.HUMOR, "middle_character", "Personality is weak and generic.", "Add one fast character-specific reaction tied to the paycheck misunderstanding rather than a detached joke.", 5.5, 6.5, 0.35, 1.5, EditPass.SCRIPT, 70.0),
-        EditIssue("human_consequence", EditArea.EMOTION, "paycheck_consequence", "The mechanism is explained more strongly than its human consequence.", "Show what the missing amount changes for the character before resolving the flow.", 7.0, 7.0, 0.6, 2.0, EditPass.STORY, 55.0),
-        EditIssue("final_paycheck_callback", EditArea.PAYOFF, "ending", "The ending does not fully return to the opening paycheck image.", "Reassemble the same paycheck image with every destination visible and the character's consequence resolved.", 8.5, 8.5, 0.9, 3.0, EditPass.ANIMATION, 220.0, is_payoff=True, depends_on=("restore_hook", "human_consequence")),
+def _story_priority(candidate: StoryEditCandidate, blueprint: EditBlueprint) -> float:
+    readiness_factor = 0.5 + candidate.readiness / 10.0
+    novelty_factor = 0.5 + candidate.novelty / 10.0
+    strategic_factor = 0.5 + candidate.strategic_value / 10.0
+    blocker_factor = 1.25 if any(issue.hard_blocker for issue in candidate.issues) else 1.0
+    return round(
+        blueprint.projected_uplift
+        * readiness_factor
+        * novelty_factor
+        * strategic_factor
+        * blocker_factor
+        / max(0.5, blueprint.total_effort),
+        4,
+    )
+
+
+def build_batch_edit_program(
+    candidates: Iterable[StoryEditCandidate],
+    *,
+    total_effort_budget: float,
+    per_story_effort_cap: float,
+    max_stories: int = 50,
+    max_per_topic_family: int = 10,
+    max_per_format_family: int = 20,
+) -> BatchEditProgram:
+    """Plan reusable quality repairs across an autonomous multi-video portfolio."""
+    if total_effort_budget <= 0 or per_story_effort_cap <= 0:
+        raise ValueError("effort budgets must be positive")
+    if not 1 <= max_stories <= 50:
+        raise ValueError("max_stories must be between 1 and 50")
+    if max_per_topic_family <= 0 or max_per_format_family <= 0:
+        raise ValueError("family caps must be positive")
+
+    items = tuple(candidates)
+    if not items:
+        raise ValueError("at least one story candidate is required")
+    story_ids = [candidate.story_id for candidate in items]
+    if len(story_ids) != len(set(story_ids)):
+        raise ValueError("duplicate story_id")
+
+    planned: list[StoryEditPlan] = []
+    quarantined: list[str] = []
+    for candidate in items:
+        blueprint = build_edit_blueprint(candidate.issues, per_story_effort_cap)
+        if blueprint.blocked_issue_ids:
+            quarantined.append(candidate.story_id)
+            continue
+        planned.append(
+            StoryEditPlan(
+                story_id=candidate.story_id,
+                topic_family=candidate.topic_family,
+                format_family=candidate.format_family,
+                priority_score=_story_priority(candidate, blueprint),
+                blueprint=blueprint,
+            )
+        )
+
+    planned.sort(key=lambda plan: (-plan.priority_score, plan.story_id))
+    selected: list[StoryEditPlan] = []
+    deferred: list[str] = []
+    topic_counts: dict[str, int] = {}
+    format_counts: dict[str, int] = {}
+    spent = 0.0
+
+    for plan in planned:
+        if len(selected) >= max_stories:
+            deferred.append(plan.story_id)
+            continue
+        if topic_counts.get(plan.topic_family, 0) >= max_per_topic_family:
+            deferred.append(plan.story_id)
+            continue
+        if format_counts.get(plan.format_family, 0) >= max_per_format_family:
+            deferred.append(plan.story_id)
+            continue
+        if spent + plan.blueprint.total_effort > total_effort_budget:
+            deferred.append(plan.story_id)
+            continue
+
+        selected.append(plan)
+        spent += plan.blueprint.total_effort
+        topic_counts[plan.topic_family] = topic_counts.get(plan.topic_family, 0) + 1
+        format_counts[plan.format_family] = format_counts.get(plan.format_family, 0) + 1
+
+    warnings: list[str] = []
+    if quarantined:
+        warnings.append("one or more stories require quarantine before autonomous repair")
+    if deferred:
+        warnings.append("one or more stories were deferred by portfolio capacity, diversity, or effort limits")
+    if not selected:
+        warnings.append("no story repair plans were admitted")
+
+    return BatchEditProgram(
+        selected_plans=tuple(selected),
+        deferred_story_ids=tuple(sorted(deferred)),
+        quarantined_story_ids=tuple(sorted(quarantined)),
+        total_effort=round(spent, 2),
+        topic_family_counts=tuple(sorted(topic_counts.items())),
+        format_family_counts=tuple(sorted(format_counts.items())),
+        warnings=tuple(warnings),
     )
