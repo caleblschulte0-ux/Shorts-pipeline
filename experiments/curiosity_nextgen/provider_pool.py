@@ -130,13 +130,14 @@ def independent_judge_routes(
     technical_request: RoutingRequest,
     editorial_request: RoutingRequest,
 ) -> tuple[RoutingDecision, RoutingDecision]:
-    technical = route_provider(providers, technical_request)
+    provider_items = tuple(providers)
+    technical = route_provider(provider_items, technical_request)
     if not technical.selected_provider_id:
         return technical, route_provider((), editorial_request)
-    provider_by_id = {provider.provider_id: provider for provider in providers}
+    provider_by_id = {provider.provider_id: provider for provider in provider_items}
     selected = provider_by_id[technical.selected_provider_id]
     editorial = route_provider(
-        providers,
+        provider_items,
         RoutingRequest(
             stage=editorial_request.stage,
             required_capabilities=editorial_request.required_capabilities,
