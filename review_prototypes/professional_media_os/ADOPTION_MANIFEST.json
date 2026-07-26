@@ -79,7 +79,7 @@
     "demo_command": "python -m review_prototypes.professional_media_os.cli demo",
     "verified_in_this_change": false,
     "reason": "Connector write environment does not execute repository tests; Claude must run the isolated suite before adoption.",
-    "test_count_declared": 20,
+    "test_count_declared": 21,
     "synthetic_fixtures_only": true
   },
   "adoption_order": [
