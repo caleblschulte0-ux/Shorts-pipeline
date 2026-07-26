@@ -1,0 +1,66 @@
+{
+  "status": "ready_for_claude_shadow_integration",
+  "scope_boundary": {
+    "production_modified": false,
+    "publishing_enabled": false,
+    "showrunner_authority_changed": false
+  },
+  "production_contracts": {
+    "passed": true,
+    "percent": 100.0,
+    "files": [
+      {"path": "data_learning/story.py", "sha": "800749549b318c769b9d415a3adbbab7f6013788", "symbols": ["Segment", "Story", "build"]},
+      {"path": "data_learning/charts.py", "sha": "36ef92763bbf0598cb4d0c51b5d6e5c7e3572942", "symbols": ["FULLFRAME_RENDERERS", "render_story_build", "_perf_action"]},
+      {"path": "data_learning/scene_timeline.py", "sha": "2c62baa1cbc70a63fe95816729459654581c9ea0", "symbols": ["PHASES", "plan_scene", "phase_at"]},
+      {"path": "data_learning/studio_render.py", "sha": "bfd62356a9cbb7f03a17e36bea06a44849c0e013", "symbols": ["render", "_build_soundtrack", "_plan_events", "build_story_ass"]},
+      {"path": "scripts/showrunner_review.py", "sha": "c4162ea390c692cc0715a994343ae03187f7d8dd", "symbols": ["WEIGHTS", "AUTOFAIL_CHECKS", "decide_verdict", "review_video"]},
+      {"path": "scripts/repair_loop.py", "sha": "6a5ed3d7a8f8f3ad5a6948de89862c58d2092853", "symbols": ["REMEDIES", "pick_remedy", "better", "repair"]},
+      {"path": "scripts/scene_repair.py", "sha": "b16894afc66555c83c75d8ea292a5fc77f5a9a20", "symbols": ["VARIANTS", "failing_scene", "score_candidate", "propose"]},
+      {"path": "scripts/post_stories.py", "sha": "5c749b0a09eb6a433b485f65ffe2e2bed00abbd0", "symbols": ["main"]}
+    ]
+  },
+  "shadow_example": {
+    "slug": "grocery-bill-jump",
+    "version": "shadow-v1",
+    "callback_token": "grocery-bill-jump:opening",
+    "scenes": [
+      {"seg": 0, "role": "hook", "kind": "timeline", "performance": "drag_line", "target": "2026", "goal": "make the data conflict visible in the first 0.4 seconds"},
+      {"seg": 1, "role": "setup", "kind": "trend", "performance": "pull_down_win", "target": "2019", "goal": "orient the viewer while maintaining motion"},
+      {"seg": 2, "role": "explanation", "kind": "trend", "performance": "drag_line", "target": "2022", "goal": "make the causal change physically legible"},
+      {"seg": 3, "role": "consequence", "kind": "timeline", "performance": "pull_down_win", "target": "2026", "goal": "convert the number into a felt physical burden"},
+      {"seg": 4, "role": "payoff", "kind": "timeline", "performance": "drag_line", "target": "2026", "goal": "resolve the opening object and land the takeaway"}
+    ],
+    "existing_scene_plan_schema": {
+      "0": {"viz": "timeline", "perf": "drag_line"},
+      "1": {"viz": "trend", "perf": "pull_down_win"},
+      "2": {"viz": "trend", "perf": "drag_line"},
+      "3": {"viz": "timeline", "perf": "pull_down_win"},
+      "4": {"viz": "timeline", "perf": "drag_line"}
+    }
+  },
+  "migration": {
+    "readiness_percent": 54.5,
+    "next_phase": "Shadow manifest",
+    "phases": [
+      {"index": 0, "name": "Contract lock", "ready": true, "targets": ["data_learning/story.py::build"]},
+      {"index": 1, "name": "Shadow manifest", "ready": false, "targets": ["data_learning/studio_render.py::render", "scripts/post_stories.py::main"]},
+      {"index": 2, "name": "Preview application", "ready": false, "targets": ["data_learning/studio_render.py::_build_soundtrack"]},
+      {"index": 3, "name": "Repair adoption", "ready": true, "targets": ["scripts/scene_repair.py::propose", "scripts/repair_loop.py::repair"]},
+      {"index": 4, "name": "Diagnostic context", "ready": false, "targets": ["scripts/showrunner_review.py::review_video"]}
+    ],
+    "blocked_until": [
+      "baseline preview artifact exists",
+      "bridge shadow artifact exists",
+      "complete production-format MP4 has been watched",
+      "two consecutive showrunner passes succeed",
+      "real-channel holdout beats baseline without guardrail regression"
+    ]
+  },
+  "first_commands_for_claude": [
+    "python -m review_prototypes.integration_bridge.cli probe --repo .",
+    "python -m unittest review_prototypes.integration_bridge.test_integration_bridge",
+    "python -m review_prototypes.integration_bridge.cli plan --fixture money",
+    "render the same slug once with QUALITY_BRIDGE_MODE=off and once with QUALITY_BRIDGE_MODE=shadow",
+    "do not enable apply mode until both artifacts and the full MP4 have been reviewed"
+  ]
+}
