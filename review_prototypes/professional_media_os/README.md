@@ -26,13 +26,13 @@ Nothing under this directory should be wired directly into production. Claude sh
 - `research.py` — fail-closed research packets for source quality, freshness, primary evidence, and claim support.
 - `lab.py` — deterministic hard gates, independent evaluations, candidate tournament, and calibration records.
 - `counterfactual.py` — transparent, uncertainty-preserving preview comparisons that make no predictive claim.
-- `patterns.py` — versioned creative patterns with applicability, exclusions, maturity, and failure modes.
+- `patterns.py` — semantically versioned creative patterns with applicability, exclusions, maturity, and failure modes.
 - `governance.py` — learning eligibility, authority-stage transitions, canary constraints, and reversible rule proposals.
 - `portfolio.py` — bounded slate selection under diversity, channel, risk, cost, capacity, and exploration constraints.
 - `operator.py` — stage-aware diagnostics that map outcome changes to concrete creative and timeline differences.
 - `fixtures.py` — synthetic test and demo builders only.
 - `cli.py` — local demonstration commands only.
-- `test_professional_media_os.py` and `test_lineage.py` — isolated standard-library tests.
+- `test_professional_media_os.py`, `test_lineage.py`, and `test_patterns_version.py` — isolated standard-library tests.
 - `ADOPTION_MANIFEST.json` — machine-readable scope, maturity, limitations, and Claude adoption gates.
 
 ## Quick isolated checks
@@ -40,7 +40,8 @@ Nothing under this directory should be wired directly into production. Claude sh
 ```bash
 python -m unittest \
   review_prototypes.professional_media_os.test_professional_media_os \
-  review_prototypes.professional_media_os.test_lineage
+  review_prototypes.professional_media_os.test_lineage \
+  review_prototypes.professional_media_os.test_patterns_version
 python -m review_prototypes.professional_media_os.cli demo
 python -m review_prototypes.professional_media_os.cli verify-ledger --state-dir /tmp/pro-media-os
 ```
@@ -62,4 +63,4 @@ The demo writes only when `--state-dir` is provided. Without it, the package ope
 
 ## Suggested Claude use
 
-Claude should begin by reading the adoption manifest and `docs/future/CLAUDE_PROFESSIONAL_MEDIA_OS_ADOPTION.md`, then run both test modules. The safest first production adaptation is the identifier and record-contract layer only. Record-only data collection and lineage should precede ranking authority.
+Claude should begin by reading the adoption manifest and `docs/future/CLAUDE_PROFESSIONAL_MEDIA_OS_ADOPTION.md`, then run all three test modules. The safest first production adaptation is the identifier and record-contract layer only. Record-only data collection and lineage should precede ranking authority.
