@@ -1,72 +1,180 @@
-# Claude Execution Checklist — Curiosity Continuation
+# Claude Execution Checklist — Autonomous Curiosity System
 
-Documentation-only handoff. No runtime behavior is changed by this file.
+Documentation-only handoff. This file changes no runtime behavior.
 
-Base reviewed: PR #172, head `f6419ad574e140bcdd0a052f89b89304b3503e44`.
+Primary continuation document: `docs/CLAUDE_AUTONOMY_LAUNCHOFF.md`.
 
-Use `docs/CLAUDE_CONTINUATION_PLAYBOOK.md` for the full requirements.
+## Current truth
 
-## Work order
+- [x] Dormant structural reference surface authored across 27 finite domains.
+- [x] Dormant autonomy reference surface authored across 24 finite domains.
+- [x] Authored structural reference coverage: 100%.
+- [x] Authored autonomy reference coverage: 100%.
+- [x] System design supports a heterogeneous catalog of up to 50 opaque story IDs.
+- [x] Named-video dispatch and bespoke story plans are prohibited.
+- [ ] Isolated contracts verified passing in a normal checkout.
+- [ ] Generic adapters integrated into production.
+- [ ] Deterministic 50-story simulation passed with fault injection.
+- [ ] Three heterogeneous shadow batches passed.
+- [ ] Three autonomous canaries passed.
+- [ ] Formal launch-readiness gate cleared.
 
-- [ ] Reconcile PR #172 with current `main` and rerun every check on the exact merge SHA.
-- [ ] Prove scheduled runs, `--force`, defaults, and auto-merge cannot enable publishing.
-- [ ] Add a cryptographic package manifest and bind every report/verdict to the exact video and story hashes.
-- [ ] Add tamper negative controls: changed video, story, facts, thumbnail, captions, or copied verdict must quarantine.
-- [ ] Replace opt-in provenance with mandatory factual modes.
-- [ ] Expand claim coverage beyond numeric regexes to superlatives, comparisons, dates, causal, geographic, historical, scientific, and attributed claims.
-- [ ] Automate technical and editorial visual review from a blind evidence package.
-- [ ] Bind judge verdicts to manifest/video hashes and record judge version.
-- [ ] Add second-judge handling for borderline scores and quarantine disagreement.
-- [ ] Add draft, review, and production render profiles.
-- [ ] Add deterministic shot caching and selective rerender for one-beat repairs.
-- [ ] Fix `money-goes`: Japanese gas-station media, degraded bills fallback, repeated chapter cards, real-media cluster, weaker hook, and personality.
-- [ ] Raise `money-goes` to at least 7.5/10 overall and 4/5 personality without lowering thresholds.
-- [ ] Add comparative media candidate ranking with geography, signage, era, currency, licensing, duplication, and relevance checks.
-- [ ] Upgrade repair logic to use defect-specific evidence and before/after proof.
-- [ ] Add a story-status manifest; scheduler may select only `production_candidate`.
-- [ ] Complete or re-author `kola-deepest-hole`, `sitting-still-speed`, and `hurricane-engine`.
-- [ ] Prove at least three distinct stories pass facts, render, manifest, visual review, fallbacks, performance, and package gates.
-- [ ] Add cross-video repetition tracking over at least ten videos.
-- [ ] Run one owner-approved, hash-verified public canary, then disable publishing again.
-- [ ] Complete three scheduled HOLD simulations before any autonomous publishing.
-- [ ] Add automatic freeze conditions for artifact mismatch, wrong channel, invalid verdict, facts failure, media outage, performance violation, repeated quarantine, or upload verification failure.
-- [ ] Build the shot-level learning loop only after multi-story stability is demonstrated.
+Authored completion is not execution, integration, or launch completion.
+
+## Immediate work order
+
+### Phase 0 — Production base
+
+- [ ] Reconcile PR #172 with current `main`.
+- [ ] Run every existing production check on the exact proposed merge SHA.
+- [ ] Prove scheduled runs, defaults, retries, `--force`, and ordinary environment values cannot enable publishing.
+- [ ] Preserve explicit-only emergency legacy routing.
+- [ ] Merge only after the exact merge SHA is green.
+
+### Phase 1 — Execute the dormant package
+
+- [ ] Check out PR #173 in a normal repository environment.
+- [ ] Run `python -m compileall experiments/curiosity_nextgen`.
+- [ ] Run `python -m unittest discover experiments/curiosity_nextgen/tests`.
+- [ ] Fix every implementation or contract defect without weakening fail-closed behavior.
+- [ ] Record exact passing count, runtime, Python version, platform, and head SHA.
+- [ ] Confirm the strict structural and autonomy reference rubrics both report 100%.
+- [ ] Update verified execution percentages only from real successful runs.
+
+### Phase 2 — Heterogeneous validation catalog
+
+- [ ] Build exactly 50 opaque story fixtures.
+- [ ] Cover multiple topics, formats, durations, audiences, factual risks, tones, media modes, costs, and exploration roles.
+- [ ] Include positive and negative evidence cases.
+- [ ] Include provider outages, quota exhaustion, worker loss, stale artifacts, judge disagreement, factual rewinds, budget pressure, and non-repairable failures.
+- [ ] Prove changing a story ID does not change system behavior.
+- [ ] Prove no single topic, format, hook, or visual family dominates the portfolio.
+
+## Focused integration PRs
+
+### PR A — Hash-bound stage artifacts
+
+- [ ] Port only the minimum useful pieces from `artifact_manifest.py`, `stage_artifact_contract.py`, and `lineage_graph.py`.
+- [ ] Bind every output to exact input hashes and schemas.
+- [ ] Quarantine changed video, story, claims, captions, thumbnail, media, or verdict.
+- [ ] Remove mtime as final identity.
+
+### PR B — Mandatory factual contracts
+
+- [ ] Require every story to declare a factual mode.
+- [ ] Require structured claims and sources for factual stories.
+- [ ] Cover nonnumeric semantic claims.
+- [ ] Rewind or quarantine missing, stale, or mismatched factual evidence.
+
+### PR C — Provider routing and independent judges
+
+- [ ] Route by capability, health, quota, latency, cost, and determinism.
+- [ ] Require independent provider and model families for technical and editorial judges.
+- [ ] Exercise provider fallbacks and exhaustion.
+- [ ] Bind verdicts to exact artifact hashes.
+
+### PR D — Durable execution state
+
+- [ ] Add idempotent callbacks and expiring stage leases.
+- [ ] Preserve append-only tamper-evident history.
+- [ ] Resume safely after worker loss.
+- [ ] Prove replay reconstructs identical materialized state.
+- [ ] Prevent duplicate outcomes from advancing a story twice.
+
+### PR E — Autonomous batch controller
+
+- [ ] Register exactly 50 stories.
+- [ ] Run a bounded, diverse active wave.
+- [ ] Enforce topic, format, provider, attempt, repair, re-author, cost, and concurrency limits.
+- [ ] Hold incomplete evidence.
+- [ ] Quarantine exhausted or unsafe stories.
+- [ ] Prove one failed story does not stall the portfolio.
+- [ ] Keep publishing disabled.
+
+### PR F — Idea funnel and portfolio admission
+
+- [ ] Reject duplicate premises.
+- [ ] Enforce audience, evidence, visual, sensitivity, cost, and source floors.
+- [ ] Reserve exploration capacity.
+- [ ] Control topic, format, hook, and visual concentration.
+- [ ] Make every selection auditable and story-ID independent.
+
+### PR G — Deterministic 50-story shadow simulator
+
+- [ ] Run the full 50-story simulator with deterministic inputs.
+- [ ] Inject provider, factual, artifact, budget, worker, evidence, and judge faults.
+- [ ] Verify bounded retry, rewind, repair, hold, and quarantine behavior.
+- [ ] Enforce batch completion, quarantine, cost, quality, factual, hash, judge, and diversity thresholds.
+- [ ] Prove identical inputs produce identical outcome traces.
+
+### PR H — Controlled learning
+
+- [ ] Begin only after stable shadow operation.
+- [ ] Require controlled multi-story evidence and minimum samples.
+- [ ] Enforce effect-size and negative-feedback guardrails.
+- [ ] Bound every proposed parameter change.
+- [ ] Hash and version every proposal.
+- [ ] Require canary batches and tested rollback before activation.
+- [ ] Prevent one result from rewriting channel doctrine.
+
+## Shadow and canary evidence
+
+- [ ] Complete three heterogeneous shadow batches with publishing disabled.
+- [ ] Preserve hash-bound artifacts, independent verdicts, execution ledgers, fallback evidence, and batch-acceptance reports.
+- [ ] Test rollback and kill switch.
+- [ ] Activate expected-channel guard.
+- [ ] Obtain explicit owner approval for each exact manifest-bound canary.
+- [ ] Publish one canary at a time.
+- [ ] Verify remote upload identity and metadata.
+- [ ] Freeze publishing after every canary.
+- [ ] Complete at least three successful autonomous canaries before considering scheduled rollout.
 
 ## Required evidence for every implementation PR
 
-- [ ] Problem and root cause.
+- [ ] Exact base and head SHAs.
 - [ ] Exact files changed.
 - [ ] Tests and exit codes.
-- [ ] GitHub workflow run on the exact head SHA.
 - [ ] Negative controls.
-- [ ] Rendered artifacts where applicable.
-- [ ] Before/after visual evidence where applicable.
-- [ ] Rollback plan.
+- [ ] Workflow run on the exact head SHA.
+- [ ] Fixture, package, or rendered evidence where applicable.
+- [ ] Before/after behavior.
+- [ ] Resource and cost impact.
+- [ ] Rollback procedure.
 - [ ] Remaining risks.
 - [ ] Definition of done.
 
 ## Never do
 
-- [ ] Never enable scheduled publishing during development.
-- [ ] Never weaken a gate to make a story pass.
-- [ ] Never silently fall back to legacy.
-- [ ] Never use generic cards as a blanket media-failure solution.
+- [ ] Never dispatch behavior from a story slug, title, or opaque ID.
+- [ ] Never add a named-video blueprint to production-shaped code.
+- [ ] Never import the dormant package wholesale.
+- [ ] Never create one giant mixed implementation PR.
+- [ ] Never weaken a test or gate merely to make it pass.
+- [ ] Never enable scheduled publishing during development or shadow operation.
+- [ ] Never silently fall back to legacy or generic cards.
 - [ ] Never trust mtime as final artifact identity.
-- [ ] Never commit large rendered videos to Git.
-- [ ] Never call one passing story proof of catalog readiness.
-- [ ] Never create another giant mixed implementation PR.
-- [ ] Never claim completion without exact artifacts and workflow evidence.
+- [ ] Never call one video, three videos, or one topic family proof of autonomous catalog readiness.
+- [ ] Never claim executed, integrated, live, or launch readiness from authored reference coverage.
 
-## Final acceptance
+## Formal launch acceptance
 
-- [ ] Exact merge SHAs green.
-- [ ] Publishing disabled by default.
-- [ ] Hash-bound manifests and verdicts.
-- [ ] Mandatory factual modes and semantic claim coverage.
-- [ ] Autonomous blind technical/editorial review.
-- [ ] Draft/review/production profiles and shot cache.
-- [ ] Flagship at least 7.5/10 and personality at least 4/5.
-- [ ] Three distinct production candidates pass end to end.
-- [ ] One verified public canary succeeds and publishing is refrozen.
-- [ ] Three scheduled HOLD simulations succeed.
-- [ ] Learning system uses real multi-video evidence without changing doctrine from one result.
+- [ ] Authored structural reference coverage is 100%.
+- [ ] Authored autonomy reference coverage is 100%.
+- [ ] Verified isolated test execution is 100%.
+- [ ] Required adapter integration is 100%.
+- [ ] Deterministic 50-story simulation passes.
+- [ ] Three heterogeneous shadow batches pass.
+- [ ] Three autonomous canaries pass.
+- [ ] Artifact hash binding is active.
+- [ ] Factual evidence contracts are active.
+- [ ] Independent judges are active.
+- [ ] Durable execution state is active.
+- [ ] Provider fallbacks are active.
+- [ ] Bounded recovery and budget controls are active.
+- [ ] Monitoring is active.
+- [ ] Rollback and kill switch are tested.
+- [ ] Expected-channel guard is active.
+- [ ] Publishing is disabled by default.
+- [ ] Zero unresolved hard blockers remain.
+
+Use `assess_launch_readiness()` as the formal gate. Anything less is not launch-ready.
