@@ -1,0 +1,106 @@
+{
+  "money_story_variants": [
+    {
+      "name": "scale_collision",
+      "story_fit": 95,
+      "first_frame_energy": 99,
+      "physical_causality": 94,
+      "information_clarity": 90,
+      "novelty": 93,
+      "reason": "the ratio becomes a literal collision of scale",
+      "score": 94.6
+    },
+    {
+      "name": "receipt_roll",
+      "story_fit": 98,
+      "first_frame_energy": 88,
+      "physical_causality": 92,
+      "information_clarity": 96,
+      "novelty": 90,
+      "reason": "money over time becomes a growing receipt",
+      "score": 93.3
+    },
+    {
+      "name": "cart_overflow",
+      "story_fit": 93,
+      "first_frame_energy": 94,
+      "physical_causality": 98,
+      "information_clarity": 82,
+      "novelty": 95,
+      "reason": "the price increase becomes physical weight in a cart",
+      "score": 92.5
+    },
+    {
+      "name": "rank_race",
+      "story_fit": 92,
+      "first_frame_energy": 96,
+      "physical_causality": 89,
+      "information_clarity": 94,
+      "novelty": 86,
+      "reason": "ranking becomes a race and the gap becomes the finish",
+      "score": 92.0
+    }
+  ],
+  "money_story_variants_after_recent_receipt": [
+    {
+      "name": "scale_collision",
+      "score": 94.6
+    },
+    {
+      "name": "cart_overflow",
+      "score": 92.5
+    },
+    {
+      "name": "rank_race",
+      "score": 92.0
+    },
+    {
+      "name": "receipt_roll",
+      "novelty": 55,
+      "score": 89.8
+    }
+  ],
+  "share_story_variants": [
+    {
+      "name": "share_squeeze",
+      "story_fit": 99,
+      "first_frame_energy": 92,
+      "physical_causality": 96,
+      "information_clarity": 98,
+      "novelty": 91,
+      "score": 95.8
+    },
+    {
+      "name": "scale_collision",
+      "score": 94.6
+    }
+  ],
+  "transition_sequence": [
+    {
+      "kind": "object_match_cut",
+      "duration": 0.24,
+      "shared_object": "2026",
+      "outgoing_action": "push_object_to_camera",
+      "incoming_action": "pull_same_object_from_camera",
+      "sound": "short_whoosh"
+    },
+    {
+      "kind": "data_morph",
+      "duration": 0.32,
+      "shared_object": "latest_value",
+      "outgoing_action": "line_tip_expands",
+      "incoming_action": "physical_object_forms",
+      "sound": "elastic_stretch"
+    },
+    {
+      "kind": "impact_cut",
+      "duration": 0.12,
+      "shared_object": "",
+      "outgoing_action": "finish_on_impact",
+      "incoming_action": "enter_on_reaction",
+      "sound": "impact_hit"
+    }
+  ],
+  "total_local_tests_passed": 31,
+  "production_pipeline_modified": false
+}
