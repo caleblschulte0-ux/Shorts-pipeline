@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import replace
 import json
 from pathlib import Path
 from typing import Any, Mapping, Optional, Sequence
 
-from .contracts import PortfolioConstraints, canonical_json, to_primitive
+from .contracts import PortfolioConstraints, to_primitive
 from .counterfactual import (
     CounterfactualChange,
     CounterfactualRunner,
@@ -16,7 +15,7 @@ from .counterfactual import (
 )
 from .fixtures import candidate, evidence, genome
 from .lab import CandidateTournament, EvaluationContext
-from .ledger import FileLedger, MemoryLedger
+from .ledger import FileLedger
 from .portfolio import PortfolioPlanner, ScoredCandidate
 
 
@@ -84,7 +83,6 @@ def build_demo() -> Mapping[str, Any]:
             evidence_completeness=0.35,
             media_feasibility=0.30,
             rights_risk="red",
-            estimated_value=10.0 if False else 4.8,
         ),
         evidence_ids=(),
         estimated_value=4.8,
