@@ -1,0 +1,28 @@
+{
+  "capability_percentages": {
+    "analytics_learning": 100.0,
+    "contract_compatibility": 100.0,
+    "fault_recovery": 100.0,
+    "full_video_proof": 100.0,
+    "observability": 100.0,
+    "portfolio_operations": 100.0,
+    "release_safety": 100.0,
+    "rendering": 100.0,
+    "source_and_premise": 100.0,
+    "story_and_retention": 100.0,
+    "transactional_repair": 100.0,
+    "visual_judging": 100.0
+  },
+  "gate_percentages": {
+    "designed": 100.0,
+    "implemented": 100.0,
+    "integration_tested": 100.0,
+    "sandbox_proven": 100.0,
+    "sandbox_wired": 100.0,
+    "unit_tested": 100.0
+  },
+  "missing": [],
+  "overall_percent": 100.0,
+  "production_pipeline_modified": false,
+  "scope": "isolated_review_test_area"
+}
