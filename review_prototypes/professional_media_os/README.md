@@ -19,20 +19,28 @@ Nothing under this directory should be wired directly into production. Claude sh
 
 ## Modules
 
-- `contracts.py` — immutable records for evidence, genomes, candidates, evaluations, experiments, patterns, decisions, and portfolio plans.
+- `contracts.py` — immutable records for evidence, genomes, candidates, evaluations, experiments, patterns, decisions, outcomes, and portfolio plans.
 - `ledger.py` — append-only, hash-chained JSONL institutional memory with integrity verification.
-- `knowledge.py` — lightweight temporal knowledge graph with explicit observation/inference separation.
+- `knowledge.py` — lightweight temporal knowledge graph with explicit observation/inference separation and contradiction preservation.
+- `lineage.py` — exact artifact, transformation, metric-definition, and decision lineage.
+- `research.py` — fail-closed research packets for source quality, freshness, primary evidence, and claim support.
 - `lab.py` — deterministic hard gates, independent evaluations, candidate tournament, and calibration records.
-- `portfolio.py` — bounded slate selection under diversity, channel, risk, cost, and exploration constraints.
+- `counterfactual.py` — transparent, uncertainty-preserving preview comparisons that make no predictive claim.
+- `patterns.py` — versioned creative patterns with applicability, exclusions, maturity, and failure modes.
+- `governance.py` — learning eligibility, authority-stage transitions, canary constraints, and reversible rule proposals.
+- `portfolio.py` — bounded slate selection under diversity, channel, risk, cost, capacity, and exploration constraints.
 - `operator.py` — stage-aware diagnostics that map outcome changes to concrete creative and timeline differences.
+- `fixtures.py` — synthetic test and demo builders only.
 - `cli.py` — local demonstration commands only.
-- `test_professional_media_os.py` — isolated standard-library tests.
-- `ADOPTION_MANIFEST.json` — machine-readable scope, maturity, and Claude adoption gates.
+- `test_professional_media_os.py` and `test_lineage.py` — isolated standard-library tests.
+- `ADOPTION_MANIFEST.json` — machine-readable scope, maturity, limitations, and Claude adoption gates.
 
 ## Quick isolated checks
 
 ```bash
-python -m unittest review_prototypes.professional_media_os.test_professional_media_os
+python -m unittest \
+  review_prototypes.professional_media_os.test_professional_media_os \
+  review_prototypes.professional_media_os.test_lineage
 python -m review_prototypes.professional_media_os.cli demo
 python -m review_prototypes.professional_media_os.cli verify-ledger --state-dir /tmp/pro-media-os
 ```
@@ -49,7 +57,9 @@ The demo writes only when `--state-dir` is provided. Without it, the package ope
 6. **Authority grows slowly.** Record-only → benchmark → shadow → rough-cut → canary → bounded portfolio.
 7. **Channel identity remains sovereign.** The shared layer cannot rewrite channel doctrine.
 8. **All adopted learning is reversible.** Decision records include scope, exclusions, evidence, and rollback.
+9. **Lineage is exact.** Metrics and decisions retain raw artifact hashes, transform versions, filters, and policy snapshots.
+10. **Negative knowledge is valuable.** Failures, contradictions, exclusions, and deprecated patterns remain queryable.
 
 ## Suggested Claude use
 
-Claude should begin by reading the adoption manifest, then run the tests. The safest first production adaptation is the identifier and record-contract layer only. Data collection should precede ranking authority.
+Claude should begin by reading the adoption manifest and `docs/future/CLAUDE_PROFESSIONAL_MEDIA_OS_ADOPTION.md`, then run both test modules. The safest first production adaptation is the identifier and record-contract layer only. Record-only data collection and lineage should precede ranking authority.
