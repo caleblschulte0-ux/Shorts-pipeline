@@ -14,6 +14,14 @@ Nothing in the active pipeline imports this package. This directory does not mod
 - `package_readiness.py` — fail-closed aggregation of manifest, facts, judge, fallback, performance, catalog, technical, and channel gates.
 - `approval_token.py` — one-time HMAC-signed approvals bound to one manifest, one channel, one expiry window, and one upload.
 - `freeze_controller.py` — fail-closed release state machine with automatic freezing and mandatory post-canary refreeze.
+- `lineage_graph.py` — artifact/report dependency graphs, missing-parent and cycle checks, manifest continuity, stale-descendant detection, and impact analysis.
+
+### Schema evolution and deterministic recovery
+
+- `schema_registry.py` — versioned payload schemas, strict validation, sensitive-field reporting, and backward/forward/full compatibility checks.
+- `migration_planner.py` — complete migration-path discovery, lossy-change blocking, reversibility warnings, and manual-review holds.
+- `replay_engine.py` — canonical run envelopes, stage digests, deterministic replay comparison, dependency/version drift, order drift, and duration regressions.
+- `checkpoint_store.py` — idempotent stage checkpoints, bounded retries, stale-input detection, quarantine handling, and resume plans.
 
 ### Editorial quality and repair
 
@@ -38,8 +46,16 @@ Nothing in the active pipeline imports this package. This directory does not mod
 - `shot_cache.py` — deterministic cache keys and selective repair planning.
 - `render_budget.py` — draft, review, and production render estimates with time, memory, and cache-reuse budgets.
 - `render_scheduler.py` — value-per-cost queue planning with time, slot, readiness, profile, and topic-family constraints.
+- `resource_governor.py` — workload admission, provider-call quotas, memory/time limits, low-cache backpressure, and dependency-aware deferral.
 - `story_catalog.py` — explicit story lifecycle and scheduler eligibility.
 - `catalog_triage.py` — story readiness scoring, deterministic next actions, blocker severity, and repair-budget handling.
+
+### Resilience and security
+
+- `circuit_breaker.py` — closed/open/half-open dependency protection with bounded recovery probes.
+- `security_scanner.py` — recursive credential, private-key, bearer-token, PII, internal-instruction, and unapproved-host detection plus redaction.
+- `fault_injection.py` — critical-fault campaign coverage and expected fail-safe outcome validation.
+- `resilience_lab.py` — integrated dormant preflight across schema, security, lineage, checkpoints, dependency health, and resource admission.
 
 ### Orchestration and operations
 
@@ -56,6 +72,7 @@ Nothing in the active pipeline imports this package. This directory does not mod
 - `tests/test_prototypes.py` — foundational prototype contracts.
 - `tests/test_decision_intelligence.py` — decision-layer contracts.
 - `tests/test_structural_hardening.py` — factual, evidence, judge independence, catalog, scheduling, approval, freeze, observability, and integration negative controls.
+- `tests/test_resilience_controls.py` — schema evolution, migration, lineage, deterministic replay, checkpoints, circuit breakers, workload governance, leak scanning, fault campaigns, and integrated resilience negative controls.
 
 ## Run locally
 
