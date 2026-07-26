@@ -1,0 +1,63 @@
+{
+  "branch": "claude/shorts-pipeline-data-handoff-ea2zmb",
+  "verified_via_github_connector": true,
+  "note": "The executable probe must be rerun against the checkout before Claude patches; SHA drift blocks the migration.",
+  "contracts": [
+    {
+      "path": "data_learning/story.py",
+      "sha": "800749549b318c769b9d415a3adbbab7f6013788",
+      "required_symbols": ["Segment", "Story", "build"],
+      "required_literals": ["kind: str", "host_baked: bool", "insight: object", "anchors: list"],
+      "purpose": "story and segment extension points"
+    },
+    {
+      "path": "data_learning/charts.py",
+      "sha": "36ef92763bbf0598cb4d0c51b5d6e5c7e3572942",
+      "required_symbols": ["FULLFRAME_RENDERERS", "render_story_build", "_perf_action"],
+      "required_literals": ["perf_override", "host_baked", "_ATTACH_FRAME"],
+      "purpose": "renderer kind/performance and attachment hooks"
+    },
+    {
+      "path": "data_learning/scene_timeline.py",
+      "sha": "2c62baa1cbc70a63fe95816729459654581c9ea0",
+      "required_symbols": ["PHASES", "plan_scene", "phase_at"],
+      "required_literals": ["HOOK_BURST_T", "driver"],
+      "purpose": "single scene clock"
+    },
+    {
+      "path": "data_learning/studio_render.py",
+      "sha": "bfd62356a9cbb7f03a17e36bea06a44849c0e013",
+      "required_symbols": ["render", "_build_soundtrack", "_plan_events", "build_story_ass"],
+      "required_literals": ["segment_windows", "showrunner", "perf_override"],
+      "purpose": "complete-video renderer and manifest"
+    },
+    {
+      "path": "scripts/showrunner_review.py",
+      "sha": "c4162ea390c692cc0715a994343ae03187f7d8dd",
+      "required_symbols": ["WEIGHTS", "AUTOFAIL_CHECKS", "decide_verdict", "review_video"],
+      "required_literals": ["segment_windows", "block"],
+      "purpose": "sovereign quality verdict"
+    },
+    {
+      "path": "scripts/repair_loop.py",
+      "sha": "6a5ed3d7a8f8f3ad5a6948de89862c58d2092853",
+      "required_symbols": ["REMEDIES", "pick_remedy", "better", "repair"],
+      "required_literals": ["scene_repair", "never ships a worse cut"],
+      "purpose": "bounded keep-best repair driver"
+    },
+    {
+      "path": "scripts/scene_repair.py",
+      "sha": "b16894afc66555c83c75d8ea292a5fc77f5a9a20",
+      "required_symbols": ["VARIANTS", "failing_scene", "score_candidate", "propose"],
+      "required_literals": ["plan_locked", "perf_override", "won_by_margin"],
+      "purpose": "scene-addressable repair persistence"
+    },
+    {
+      "path": "scripts/post_stories.py",
+      "sha": "5c749b0a09eb6a433b485f65ffe2e2bed00abbd0",
+      "required_symbols": ["main"],
+      "required_literals": ["PUBLISH FROZEN", "review_video", "showrunner_block"],
+      "purpose": "fail-closed render/review/publish orchestration"
+    }
+  ]
+}
