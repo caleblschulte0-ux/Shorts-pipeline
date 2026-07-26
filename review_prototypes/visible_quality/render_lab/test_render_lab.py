@@ -102,6 +102,8 @@ class EffectTests(unittest.TestCase):
         self.assertIn("2019", svg)
         self.assertIn("2026", svg)
         self.assertIn("THE GAP IS THE STORY", svg)
+        self.assertIn("callback bridge", svg)
+        self.assertIn("NOW THE OPENING MAKES SENSE", svg)
 
 
 class PreviewTests(unittest.TestCase):
