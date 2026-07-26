@@ -167,12 +167,14 @@ def render_generic(progress: float, data: tuple[Mapping[str, object], ...], titl
 
 def render_event(event: str, progress: float, data: tuple[Mapping[str, object], ...], title: str) -> str:
     e = event.lower()
+    # Callback routing must win before generic split-screen routing because the
+    # closing event intentionally contains ``opening_split_screen`` in its name.
+    if any(token in e for token in ("callback", "opening_split", "full_trend_draws")):
+        return render_callback(progress, data, title)
     if any(token in e for token in ("split_screen", "two_dates", "gap_opens")):
         return render_before_after(progress, data, title)
     if any(token in e for token in ("line_", "trend", "yanks_mascot")):
         return render_trend_yank(progress, data, title)
     if any(token in e for token in ("stack", "burden", "must_hold")):
         return render_burden_stack(progress, data, title)
-    if any(token in e for token in ("callback", "opening_split", "full_trend_draws")):
-        return render_callback(progress, data, title)
     return render_generic(progress, data, title)
