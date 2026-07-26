@@ -32,6 +32,12 @@
       "production_authority": "none"
     },
     {
+      "name": "artifact_metric_decision_lineage",
+      "module": "lineage.py",
+      "maturity": "reference_implementation",
+      "production_authority": "none"
+    },
+    {
       "name": "creative_candidate_tournament",
       "module": "lab.py",
       "maturity": "uncalibrated_shadow_reference",
@@ -75,17 +81,18 @@
     }
   ],
   "verification": {
-    "test_command": "python -m unittest review_prototypes.professional_media_os.test_professional_media_os",
+    "test_command": "python -m unittest review_prototypes.professional_media_os.test_professional_media_os review_prototypes.professional_media_os.test_lineage",
     "demo_command": "python -m review_prototypes.professional_media_os.cli demo",
     "verified_in_this_change": false,
     "reason": "Connector write environment does not execute repository tests; Claude must run the isolated suite before adoption.",
-    "test_count_declared": 21,
+    "test_count_declared": 23,
     "synthetic_fixtures_only": true
   },
   "adoption_order": [
     "stable identifiers and immutable record contracts",
     "record-only content genomes and evidence references",
     "append-only observation and decision ledgers",
+    "artifact and metric lineage capture",
     "historical benchmark fixtures",
     "shadow-only evaluator outputs",
     "evaluator calibration and false-rejection measurement",
