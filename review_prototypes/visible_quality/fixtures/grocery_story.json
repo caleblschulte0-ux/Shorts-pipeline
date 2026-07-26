@@ -1,0 +1,55 @@
+{
+  "slug": "grocery_bill_jump",
+  "topic": "Grocery prices",
+  "claim": "The same grocery basket got dramatically more expensive.",
+  "unit": "$",
+  "data": [
+    {
+      "label": "2019",
+      "value": 680,
+      "period": 2019
+    },
+    {
+      "label": "2022",
+      "value": 860,
+      "period": 2022
+    },
+    {
+      "label": "2026",
+      "value": 1030,
+      "period": 2026
+    }
+  ],
+  "beats": [
+    {
+      "role": "hook",
+      "narration": "This grocery bill changed fast.",
+      "focus_label": "2026",
+      "duration": 3.2
+    },
+    {
+      "role": "setup",
+      "narration": "In 2019 the basket cost about six hundred eighty dollars.",
+      "focus_label": "2019",
+      "duration": 4.3
+    },
+    {
+      "role": "explanation",
+      "narration": "By 2022 the same basket had climbed to eight hundred sixty dollars.",
+      "focus_label": "2022",
+      "duration": 4.8
+    },
+    {
+      "role": "consequence",
+      "narration": "That means the household has to find hundreds more every year.",
+      "focus_label": "2026",
+      "duration": 4.4
+    },
+    {
+      "role": "payoff",
+      "narration": "The increase is the part families actually feel.",
+      "focus_label": "2026",
+      "duration": 3.8
+    }
+  ]
+}
