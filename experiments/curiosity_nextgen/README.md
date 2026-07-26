@@ -8,11 +8,11 @@ Nothing in the active pipeline imports this package. This directory does not mod
 
 ## Current reference-surface status
 
-- **55 dormant prototype modules**
-- **248 authored contract tests** across seven test files
+- **63 dormant prototype modules**
+- **312 authored contract tests** across eight test files
 - **27 required structural domains** in the strict completeness rubric
 - **100% authored structural reference coverage** when `complete_reference_evidence()` is assessed
-- **two dormant creative-quality layers** covering hooks, pacing, visual variety, personality, payoff, curiosity momentum, narration rhythm, motion, sound, packaging, and unified viewer experience
+- **three dormant creative-quality layers** covering story shape, viewer experience, retention risk, comprehension, captioning, continuity, frame readability, humor, emotion, and edit planning
 - **0% verified execution coverage claimed** until the isolated tests are actually run
 - **0 production imports, workflow changes, or publishing changes**
 
@@ -65,6 +65,17 @@ The dormant structure reaches 100% on the first measure only. It cannot report 1
 - `audio_dynamics.py` — evaluates narration masking, music-energy arcs, effect density, silence, and hook/payoff emphasis.
 - `promise_packaging.py` — ranks title/thumbnail combinations for specificity, credibility, focal clarity, curiosity, and honest payoff alignment.
 - `viewer_experience.py` — combines creative areas into a weighted pass/revise/reject decision with hard floors and prioritized repairs.
+
+### Retention, comprehension, and edit quality
+
+- `retention_risk.py` — heuristic moment-level retention-risk scoring, early/payoff weighting, weak-interest, overload, sensory-stasis, proof, static-hold, repetition, jargon, and loop-overload defects. It explicitly does not claim to predict real analytics.
+- `cognitive_load.py` — measures simultaneous narration, reading, concepts, numbers, entities, visual elements, jargon, context dependency, examples, and recovery pauses.
+- `caption_readability.py` — audits reading speed, line count and length, contrast, mobile safe areas, focal overlap, semantic line breaks, and emphasis hierarchy.
+- `continuity_editor.py` — detects geography, era, wardrobe, prop, time-of-day, lighting, screen-direction, and factual-context continuity breaks while allowing explained intentional transitions.
+- `visual_readability.py` — checks focal hierarchy, object clutter, tiny evidence, contrast, focal separation, competing motion, caption zones, evidence legibility, and decorative noise.
+- `humor_personality.py` — evaluates setup, surprise, relevance, tone, character specificity, punchline speed, repeated devices, factual interruption, callback closure, and harmful targeting.
+- `emotional_resonance.py` — measures human specificity, visible consequences, emotional change, relevance, authenticity, emotional range, earned stakes, and setup/payoff closure.
+- `edit_blueprint.py` — deduplicates cross-domain defects, honors dependencies, prioritizes early/hook/payoff and hard-blocking edits, respects effort budgets, orders edit passes, and includes a concrete `money-goes` retention blueprint.
 
 ### Facts and media
 
@@ -119,6 +130,7 @@ The dormant structure reaches 100% on the first measure only. It cannot report 1
 - `tests/test_completeness_closure.py` — policy, adapters, audit integrity, human review, retention, disaster recovery, rollback, rollout, reproducibility, drift, portfolio diversity, generalization, and strict 100% completeness scoring.
 - `tests/test_creative_quality.py` — 38 hook, beat-rhythm, chapter-variety, personality, payoff, and prioritized-uplift contracts.
 - `tests/test_viewer_quality.py` — 52 curiosity, narration, visual-grammar, choreography, audio, packaging, and unified viewer-experience contracts.
+- `tests/test_retention_quality.py` — 64 retention-risk, cognitive-load, caption, continuity, readability, humor, emotion, and integrated edit-blueprint contracts.
 
 ## Run locally
 
@@ -130,4 +142,4 @@ The tests are intentionally not connected to the repository's active CI. This ke
 
 ## Adoption rule
 
-Claude should not import these modules into production wholesale. Review each contract, adapt it to the real renderer and artifacts, add production-specific tests and negative controls, and integrate one capability per focused PR. For immediate creative benefit, the recommended order is curiosity curve, narration rhythm, visual grammar, choreography, audio dynamics, packaging, then the unified viewer-experience gate.
+Claude should not import these modules into production wholesale. Review each contract, adapt it to the real renderer and artifacts, add production-specific tests and negative controls, and integrate one capability per focused PR. For immediate creative benefit, the recommended order is: apply the `money-goes` edit blueprint, audit captions and continuity, simplify cognitive overload, fix high-risk retention moments, improve visual readability and human consequence, then rerender and compare blind viewer-experience scores.
