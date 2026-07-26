@@ -8,11 +8,11 @@ Nothing in the active pipeline imports this package. This directory does not mod
 
 ## Current reference-surface status
 
-- **48 dormant prototype modules**
-- **196 authored contract tests** across six test files
+- **55 dormant prototype modules**
+- **248 authored contract tests** across seven test files
 - **27 required structural domains** in the strict completeness rubric
 - **100% authored structural reference coverage** when `complete_reference_evidence()` is assessed
-- **new dormant creative-quality surface** for hooks, pacing, chapter variety, personality, payoff, and prioritized uplift
+- **two dormant creative-quality layers** covering hooks, pacing, visual variety, personality, payoff, curiosity momentum, narration rhythm, motion, sound, packaging, and unified viewer experience
 - **0% verified execution coverage claimed** until the isolated tests are actually run
 - **0 production imports, workflow changes, or publishing changes**
 
@@ -57,7 +57,14 @@ The dormant structure reaches 100% on the first measure only. It cannot report 1
 - `chapter_style_planner.py` — assigns diverse chapter-transition families while penalizing dominance, consecutive reuse, and topic/tone mismatch.
 - `personality_arc.py` — evaluates emotional progression, purposeful action variety, obstacles, consequences, and setup/payoff callbacks.
 - `payoff_contract.py` — binds opening questions and promises to explicit answers, visual proof, consequences, callback closure, and timing.
-- `creative_uplift.py` — prioritizes high-leverage creative repairs under an effort budget and includes a concrete `money-goes` repair blueprint for the known hook, media, chapter, pacing, personality, and payoff defects.
+- `creative_uplift.py` — prioritizes high-leverage creative repairs under an effort budget and includes a concrete `money-goes` repair blueprint.
+- `curiosity_curve.py` — tracks open questions, promised answer timing, revelation droughts, loop overload, stakes movement, and visual proof of major answers.
+- `narration_rhythm.py` — measures words per minute, sentence-length variation, opening density, emphasis, breathless runs, and pause budget.
+- `visual_grammar.py` — assigns scene families by intent and requirements while controlling repeated families, text-card share, and visual dominance.
+- `scene_choreography.py` — checks purposeful subject action, camera vocabulary, focal progression, screen direction, and visible cause/effect.
+- `audio_dynamics.py` — evaluates narration masking, music-energy arcs, effect density, silence, and hook/payoff emphasis.
+- `promise_packaging.py` — ranks title/thumbnail combinations for specificity, credibility, focal clarity, curiosity, and honest payoff alignment.
+- `viewer_experience.py` — combines creative areas into a weighted pass/revise/reject decision with hard floors and prioritized repairs.
 
 ### Facts and media
 
@@ -111,6 +118,7 @@ The dormant structure reaches 100% on the first measure only. It cannot report 1
 - `tests/test_resilience_controls.py` — schema evolution, migration, lineage, deterministic replay, checkpoints, circuit breakers, workload governance, leak scanning, fault campaigns, and integrated resilience negative controls.
 - `tests/test_completeness_closure.py` — policy, adapters, audit integrity, human review, retention, disaster recovery, rollback, rollout, reproducibility, drift, portfolio diversity, generalization, and strict 100% completeness scoring.
 - `tests/test_creative_quality.py` — 38 hook, beat-rhythm, chapter-variety, personality, payoff, and prioritized-uplift contracts.
+- `tests/test_viewer_quality.py` — 52 curiosity, narration, visual-grammar, choreography, audio, packaging, and unified viewer-experience contracts.
 
 ## Run locally
 
@@ -122,4 +130,4 @@ The tests are intentionally not connected to the repository's active CI. This ke
 
 ## Adoption rule
 
-Claude should not import these modules into production wholesale. Review each contract, adapt it to the real renderer and artifacts, add production-specific tests and negative controls, and integrate one capability per focused PR.
+Claude should not import these modules into production wholesale. Review each contract, adapt it to the real renderer and artifacts, add production-specific tests and negative controls, and integrate one capability per focused PR. For immediate creative benefit, the recommended order is curiosity curve, narration rhythm, visual grammar, choreography, audio dynamics, packaging, then the unified viewer-experience gate.
