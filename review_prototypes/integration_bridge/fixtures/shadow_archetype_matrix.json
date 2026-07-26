@@ -1,0 +1,138 @@
+{
+  "money": {
+    "slug": "grocery-bill-jump",
+    "kinds": ["timeline", "trend", "trend", "timeline", "timeline"],
+    "performances": ["drag_line", "pull_down_win", "drag_line", "pull_down_win", "drag_line"],
+    "transitions": [null, "impact_cut", "impact_cut", "impact_cut", "callback_return"],
+    "callback_token": "grocery-bill-jump:opening",
+    "copy_plan_locked": [true, true, true, true, true],
+    "existing_scene_plan_schema": {
+      "0": {"viz": "timeline", "perf": "drag_line"},
+      "1": {"viz": "trend", "perf": "pull_down_win"},
+      "2": {"viz": "trend", "perf": "drag_line"},
+      "3": {"viz": "timeline", "perf": "pull_down_win"},
+      "4": {"viz": "timeline", "perf": "drag_line"}
+    },
+    "manifest_preserved_segment_windows": true,
+    "repair_directive": {
+      "preserve_verdict": "block",
+      "target_segment": 3,
+      "target_reason": "showrunner auto-fail: dead_air",
+      "incumbent": {"viz": "timeline", "perf": "pull_down_win"},
+      "candidates": [
+        {"viz": "trend", "perf": "drag_line", "structurally_different": true},
+        {"viz": "timeline", "perf": "pull_down_win", "structurally_different": false},
+        {"viz": "pictorial_race", "perf": "shoved_bar", "structurally_different": true}
+      ],
+      "acceptance_rule": "render all candidates blind; keep only a candidate that beats the incumbent by >0.08 and never flip a showrunner BLOCK"
+    }
+  },
+  "share": {
+    "slug": "budget-squeeze",
+    "kinds": ["waffle_grid", "share", "stack", "waffle_grid", "waffle_grid"],
+    "performances": ["hoist_stack", "drag_line", "hoist_stack", "drag_line", "hoist_stack"],
+    "transitions": [null, "impact_cut", "impact_cut", "impact_cut", "callback_return"],
+    "callback_token": "budget-squeeze:opening",
+    "copy_plan_locked": [true, true, true, true, true],
+    "existing_scene_plan_schema": {
+      "0": {"viz": "waffle_grid", "perf": "hoist_stack"},
+      "1": {"viz": "share", "perf": "drag_line"},
+      "2": {"viz": "stack", "perf": "hoist_stack"},
+      "3": {"viz": "waffle_grid", "perf": "drag_line"},
+      "4": {"viz": "waffle_grid", "perf": "hoist_stack"}
+    },
+    "manifest_preserved_segment_windows": true,
+    "repair_directive": {
+      "preserve_verdict": "block", "target_segment": 3,
+      "target_reason": "showrunner auto-fail: dead_air",
+      "incumbent": {"viz": "waffle_grid", "perf": "drag_line"},
+      "candidates": [
+        {"viz": "waffle_grid", "perf": "hoist_stack", "structurally_different": true},
+        {"viz": "share", "perf": "hoist_stack", "structurally_different": true},
+        {"viz": "stack", "perf": "drag_line", "structurally_different": true}
+      ],
+      "acceptance_rule": "render all candidates blind; keep only a candidate that beats the incumbent by >0.08 and never flip a showrunner BLOCK"
+    }
+  },
+  "ranking": {
+    "slug": "city-growth-race",
+    "kinds": ["pictorial_race", "rank", "bubbles", "pictorial_race", "pictorial_race"],
+    "performances": ["shoved_bar", "drag_line", "hoist_stack", "shoved_bar", "shoved_bar"],
+    "transitions": [null, "impact_cut", "impact_cut", "impact_cut", "callback_return"],
+    "callback_token": "city-growth-race:opening",
+    "copy_plan_locked": [true, true, true, true, true],
+    "existing_scene_plan_schema": {
+      "0": {"viz": "pictorial_race", "perf": "shoved_bar"},
+      "1": {"viz": "rank", "perf": "drag_line"},
+      "2": {"viz": "bubbles", "perf": "hoist_stack"},
+      "3": {"viz": "pictorial_race", "perf": "shoved_bar"},
+      "4": {"viz": "pictorial_race", "perf": "shoved_bar"}
+    },
+    "manifest_preserved_segment_windows": true,
+    "repair_directive": {
+      "preserve_verdict": "block", "target_segment": 3,
+      "target_reason": "showrunner auto-fail: dead_air",
+      "incumbent": {"viz": "pictorial_race", "perf": "shoved_bar"},
+      "candidates": [
+        {"viz": "pictorial_race", "perf": "shoved_bar", "structurally_different": false},
+        {"viz": "rank", "perf": "shoved_bar", "structurally_different": true},
+        {"viz": "stack", "perf": "drag_line", "structurally_different": true}
+      ],
+      "acceptance_rule": "render all candidates blind; keep only a candidate that beats the incumbent by >0.08 and never flip a showrunner BLOCK"
+    }
+  },
+  "comparison": {
+    "slug": "adoption-gap",
+    "kinds": ["comparison", "pictorial_race", "stack", "comparison", "comparison"],
+    "performances": ["shoved_bar", "drag_line", "hoist_stack", "shoved_bar", "shoved_bar"],
+    "transitions": [null, "impact_cut", "impact_cut", "object_match", "callback_return"],
+    "callback_token": "adoption-gap:opening",
+    "copy_plan_locked": [true, true, true, true, true],
+    "existing_scene_plan_schema": {
+      "0": {"viz": "comparison", "perf": "shoved_bar"},
+      "1": {"viz": "pictorial_race", "perf": "drag_line"},
+      "2": {"viz": "stack", "perf": "hoist_stack"},
+      "3": {"viz": "comparison", "perf": "shoved_bar"},
+      "4": {"viz": "comparison", "perf": "shoved_bar"}
+    },
+    "manifest_preserved_segment_windows": true,
+    "repair_directive": {
+      "preserve_verdict": "block", "target_segment": 3,
+      "target_reason": "showrunner auto-fail: dead_air",
+      "incumbent": {"viz": "comparison", "perf": "shoved_bar"},
+      "candidates": [
+        {"viz": "comparison", "perf": "shoved_bar", "structurally_different": false},
+        {"viz": "pictorial_race", "perf": "shoved_bar", "structurally_different": true},
+        {"viz": "stack", "perf": "hoist_stack", "structurally_different": true}
+      ],
+      "acceptance_rule": "render all candidates blind; keep only a candidate that beats the incumbent by >0.08 and never flip a showrunner BLOCK"
+    }
+  },
+  "single": {
+    "slug": "screen-time-stat",
+    "kinds": ["fill_vessel", "bubbles", "fill_vessel", "bubbles", "fill_vessel"],
+    "performances": ["hoist_stack", "shoved_bar", "drag_line", "shoved_bar", "hoist_stack"],
+    "transitions": [null, "object_match", "object_match", "object_match", "callback_return"],
+    "callback_token": "screen-time-stat:opening",
+    "copy_plan_locked": [true, true, true, true, true],
+    "existing_scene_plan_schema": {
+      "0": {"viz": "fill_vessel", "perf": "hoist_stack"},
+      "1": {"viz": "bubbles", "perf": "shoved_bar"},
+      "2": {"viz": "fill_vessel", "perf": "drag_line"},
+      "3": {"viz": "bubbles", "perf": "shoved_bar"},
+      "4": {"viz": "fill_vessel", "perf": "hoist_stack"}
+    },
+    "manifest_preserved_segment_windows": true,
+    "repair_directive": {
+      "preserve_verdict": "block", "target_segment": 3,
+      "target_reason": "showrunner auto-fail: dead_air",
+      "incumbent": {"viz": "bubbles", "perf": "shoved_bar"},
+      "candidates": [
+        {"viz": "bubbles", "perf": "shoved_bar", "structurally_different": false},
+        {"viz": "bubbles", "perf": "shoved_bar", "structurally_different": false},
+        {"viz": "stack", "perf": "hoist_stack", "structurally_different": true}
+      ],
+      "acceptance_rule": "render all candidates blind; keep only a candidate that beats the incumbent by >0.08 and never flip a showrunner BLOCK"
+    }
+  }
+}
