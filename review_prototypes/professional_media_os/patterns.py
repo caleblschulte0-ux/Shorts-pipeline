@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
+import re
+from typing import Dict, List, Sequence, Tuple
 
 from .contracts import ContractError, ContentGenome, Maturity, PatternRecord
 
@@ -15,6 +16,32 @@ _MATURITY_RANK = {
     Maturity.EXPERIMENTAL: 2,
     Maturity.ESTABLISHED: 3,
 }
+_VERSION_RE = re.compile(
+    r"^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)"
+    r"(?:-(?P<prerelease>[0-9A-Za-z.-]+))?$"
+)
+
+
+def _version_key(version: str) -> Tuple[int, int, int, int, str]:
+    """Return a deterministic SemVer-like ordering key.
+
+    Stable releases sort after prereleases with the same numeric version. Build metadata is
+    intentionally unsupported because it should not decide policy precedence.
+    """
+
+    match = _VERSION_RE.fullmatch(version)
+    if match is None:
+        raise ContractError(
+            f"pattern version must use MAJOR.MINOR.PATCH with optional prerelease: {version}"
+        )
+    prerelease = match.group("prerelease")
+    return (
+        int(match.group("major")),
+        int(match.group("minor")),
+        int(match.group("patch")),
+        1 if prerelease is None else 0,
+        prerelease or "",
+    )
 
 
 @dataclass(frozen=True)
@@ -37,6 +64,7 @@ class PatternLibrary:
             self.add(record)
 
     def add(self, record: PatternRecord) -> None:
+        _version_key(record.version)
         key = (record.pattern_id, record.version)
         existing = self._records.get(key)
         if existing is not None and existing != record:
@@ -49,7 +77,7 @@ class PatternLibrary:
             for (current_id, _), record in self._records.items()
             if current_id == pattern_id
         ]
-        return tuple(sorted(values, key=lambda item: item.version))
+        return tuple(sorted(values, key=lambda item: _version_key(item.version)))
 
     def latest(self, pattern_id: str) -> PatternRecord:
         values = self.versions(pattern_id)
@@ -65,6 +93,9 @@ class PatternLibrary:
         minimum_maturity: Maturity = Maturity.DIRECTIONAL,
         minimum_confidence: float = 0.60,
     ) -> Tuple[PatternMatch, ...]:
+        if not 0.0 <= minimum_confidence <= 1.0:
+            raise ContractError("minimum_confidence must be between 0 and 1")
+
         labels = set(context_labels)
         labels.update(
             {
@@ -81,7 +112,7 @@ class PatternLibrary:
         latest_by_id: Dict[str, PatternRecord] = {}
         for record in self._records.values():
             previous = latest_by_id.get(record.pattern_id)
-            if previous is None or record.version > previous.version:
+            if previous is None or _version_key(record.version) > _version_key(previous.version):
                 latest_by_id[record.pattern_id] = record
 
         for record in latest_by_id.values():
@@ -132,10 +163,20 @@ class PatternLibrary:
             )
 
         return tuple(
-            sorted(matches, key=lambda item: (-item.score, item.pattern_id, item.version))
+            sorted(
+                matches,
+                key=lambda item: (
+                    -item.score,
+                    item.pattern_id,
+                    _version_key(item.version),
+                ),
+            )
         )
 
     def all_records(self) -> Tuple[PatternRecord, ...]:
         return tuple(
-            sorted(self._records.values(), key=lambda item: (item.pattern_id, item.version))
+            sorted(
+                self._records.values(),
+                key=lambda item: (item.pattern_id, _version_key(item.version)),
+            )
         )
