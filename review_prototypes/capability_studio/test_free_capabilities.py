@@ -28,11 +28,10 @@ class FreeResearchTests(unittest.TestCase):
         self.assertEqual(plan.secret_names, ("FRED_API_KEY",))
         self.assertEqual(plan.query["series_id"], "CPIAUCSL")
 
-    def test_census_key_is_optional(self) -> None:
-        without = self.adapters.census_acs5(year=2024, variables=("B19013_001E",), geography="state:46")
-        with_key = self.adapters.census_acs5(year=2024, variables=("B19013_001E",), geography="state:46", use_key=True)
-        self.assertEqual(without.secret_names, ())
-        self.assertEqual(with_key.secret_names, ("CENSUS_API_KEY",))
+    def test_census_key_is_required_for_census_requests(self) -> None:
+        plan = self.adapters.census_acs5(year=2024, variables=("B19013_001E",), geography="state:46")
+        self.assertEqual(plan.secret_names, ("CENSUS_API_KEY",))
+        self.assertEqual(plan.query["key"], "${CENSUS_API_KEY}")
 
     def test_discovery_bundle_contains_multiple_sources(self) -> None:
         bundle = PublicDataResearchPlanner().discovery_bundle(ResearchTopic("printer ink"))

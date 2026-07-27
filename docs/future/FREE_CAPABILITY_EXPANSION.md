@@ -72,7 +72,8 @@ The default blueprint has:
 - network execution in the review package: **false**
 
 Existing YouTube and Pexels keys remain useful. FRED, NOAA, and Census keys are
-optional free data-access enhancements.
+optional at the overall pipeline level, but each corresponding adapter requires its
+key when enabled.
 
 ## Production adoption order
 

@@ -72,7 +72,7 @@ Optional free public-data keys:
 
 - `FRED_API_KEY`
 - `NOAA_TOKEN`
-- `CENSUS_API_KEY`
+- `CENSUS_API_KEY` — required only when the Census adapter is enabled
 
 Paid providers remain registered only as optional adapters. They are not part of
 the free-first default path.

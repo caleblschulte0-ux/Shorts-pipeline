@@ -29,7 +29,7 @@ PROVIDERS: dict[str, ProviderDefinition] = {
     "our_world_in_data": ProviderDefinition("our_world_in_data", "public chart datasets", CostClass.FREE_API),
     "sec_edgar": ProviderDefinition("sec_edgar", "company filings and XBRL facts", CostClass.FREE_API),
     "fred": ProviderDefinition("fred", "Federal Reserve economic time series", CostClass.FREE_API, (SecretRequirement("FRED_API_KEY", "fred", False, "free FRED API access"),)),
-    "census": ProviderDefinition("census", "US Census and ACS datasets", CostClass.FREE_API, (SecretRequirement("CENSUS_API_KEY", "census", False, "optional higher-volume Census access"),)),
+    "census": ProviderDefinition("census", "US Census and ACS datasets", CostClass.FREE_API, (SecretRequirement("CENSUS_API_KEY", "census", False, "free Census Data API access"),)),
     "noaa": ProviderDefinition("noaa", "weather, climate, and historical event datasets", CostClass.FREE_API, (SecretRequirement("NOAA_TOKEN", "noaa", False, "free NOAA CDO access token"),)),
     "elevenlabs": ProviderDefinition("elevenlabs", "directed narration and generated sound effects", CostClass.METERED, (SecretRequirement("ELEVENLABS_API_KEY", "elevenlabs", False, "TTS and SFX"),)),
     "cartesia": ProviderDefinition("cartesia", "low-latency expressive TTS fallback", CostClass.METERED, (SecretRequirement("CARTESIA_API_KEY", "cartesia", False, "TTS"),)),

@@ -109,23 +109,18 @@ class FreeResearchAdapters:
             notes=("The key is free but required by this endpoint.", "Preserve series ID, units, frequency, and vintage date."),
         )
 
-    def census_acs5(self, *, year: int, variables: Iterable[str], geography: str, use_key: bool = False) -> RequestPlan:
+    def census_acs5(self, *, year: int, variables: Iterable[str], geography: str) -> RequestPlan:
         variables = tuple(_clean(value, "variable") for value in variables)
         if not variables:
             raise ValueError("at least one Census variable is required")
-        query = {"get": ",".join(("NAME", *variables)), "for": _clean(geography, "geography")}
-        secret_names: tuple[str, ...] = ()
-        notes = ["A Census API key is optional for light usage.", "Persist dataset vintage, variables, geography, and response snapshot."]
-        if use_key:
-            query["key"] = "${CENSUS_API_KEY}"
-            secret_names = ("CENSUS_API_KEY",)
+        query = {"get": ",".join(("NAME", *variables)), "for": _clean(geography, "geography"), "key": "${CENSUS_API_KEY}"}
         return RequestPlan(
             provider="census",
             method="GET",
             url=f"https://api.census.gov/data/{year}/acs/acs5",
             query=query,
-            secret_names=secret_names,
-            notes=tuple(notes),
+            secret_names=("CENSUS_API_KEY",),
+            notes=("Census now requires a free API key for data queries.", "Persist dataset vintage, variables, geography, and response snapshot."),
         )
 
     def noaa_cdo(self, *, dataset_id: str, location_id: str, start_date: str, end_date: str, limit: int = 1000) -> RequestPlan:
