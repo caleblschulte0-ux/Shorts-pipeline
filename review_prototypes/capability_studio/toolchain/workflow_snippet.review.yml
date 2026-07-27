@@ -1,0 +1,17 @@
+# REVIEW-ONLY EXAMPLE. Do not place under .github/workflows until Claude completes
+# the adoption gates in docs/future/CLAUDE_FREE_TOOLCHAIN_ADOPTION_ROADMAP.md.
+steps:
+  - uses: actions/checkout@v4
+  - name: Build review toolchain image
+    run: docker build -f review_prototypes/capability_studio/toolchain/Dockerfile.review -t shorts-review-toolchain .
+  - name: Probe capabilities only
+    run: >-
+      docker run --rm -v "$PWD:/workspace" shorts-review-toolchain
+      python -m review_prototypes.capability_studio.toolchain_cli doctor
+  - name: Run isolated tests
+    run: >-
+      docker run --rm -v "$PWD:/workspace" shorts-review-toolchain
+      python -m unittest
+      review_prototypes.capability_studio.test_capability_studio
+      review_prototypes.capability_studio.test_free_capabilities
+      review_prototypes.capability_studio.test_toolchain_adoption

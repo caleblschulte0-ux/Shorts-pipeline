@@ -1,0 +1,45 @@
+{
+  "name": "free_toolchain_adoption",
+  "status": "review_only",
+  "production_wiring": false,
+  "workflow_changes": 0,
+  "required_new_secrets": [],
+  "optional_existing_or_public_data_secrets": [
+    "GEMINI_API_KEY",
+    "YOUTUBE_API_KEY",
+    "PEXELS_API_KEY",
+    "FRED_API_KEY",
+    "NOAA_TOKEN",
+    "CENSUS_API_KEY"
+  ],
+  "integration_slots": [
+    "topic_discovery",
+    "research_packet",
+    "media_manifest",
+    "scene_plan",
+    "narration",
+    "timeline",
+    "rough_cut",
+    "quality_gate",
+    "run_lineage"
+  ],
+  "production_contract_files_to_reinspect_before_adoption": [
+    "data_learning/story.py",
+    "data_learning/charts.py",
+    "data_learning/scene_timeline.py",
+    "data_learning/studio_render.py",
+    "scripts/showrunner_review.py",
+    "scripts/repair_loop.py",
+    "scripts/scene_repair.py",
+    "scripts/post_stories.py"
+  ],
+  "authority_sequence": [
+    "inventory only",
+    "toolchain doctor",
+    "plan-only command compilation",
+    "shadow artifact generation",
+    "blind candidate comparison",
+    "bounded canary",
+    "minimum validated production authority"
+  ]
+}

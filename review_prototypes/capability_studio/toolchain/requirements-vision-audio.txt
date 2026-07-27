@@ -1,0 +1,8 @@
+# Optional/heavy local capabilities.
+mediapipe>=0.10
+transformers>=4.40
+torch>=2.2
+demucs>=4.0
+rembg>=2.0
+# SAM 2 is intentionally not unpinned here. Claude must select an official release
+# and checkpoint, record its license/hash, then add an exact pin.

@@ -1,0 +1,26 @@
+# Review-only reference image. Not used by production or any GitHub workflow.
+FROM python:3.12-slim
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg imagemagick libreoffice graphviz blender tesseract-ocr poppler-utils \
+    rubberband-cli audacity libcairo2-dev libpango1.0-dev pkg-config python3-dev \
+    texlive-latex-base texlive-latex-extra dvisvgm nodejs npm \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+COPY review_prototypes/capability_studio/toolchain/requirements-core.txt /tmp/requirements-core.txt
+COPY review_prototypes/capability_studio/toolchain/requirements-vision-audio.txt /tmp/requirements-vision-audio.txt
+RUN pip install --no-cache-dir -r /tmp/requirements-core.txt \
+    && pip install --no-cache-dir -r /tmp/requirements-vision-audio.txt \
+    && pip install --no-cache-dir manim
+
+COPY review_prototypes/capability_studio/toolchain/package.json /tmp/toolchain-package.json
+RUN mkdir -p /opt/toolchain-node && cd /opt/toolchain-node \
+    && cp /tmp/toolchain-package.json package.json && npm install
+ENV PATH="/opt/toolchain-node/node_modules/.bin:${PATH}"
+
+CMD ["python", "-m", "review_prototypes.capability_studio.toolchain_cli", "doctor"]
