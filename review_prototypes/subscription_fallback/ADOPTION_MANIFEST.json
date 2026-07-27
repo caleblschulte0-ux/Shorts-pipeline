@@ -1,0 +1,30 @@
+{
+  "name": "subscription_fallback",
+  "status": "review_only",
+  "production_imports": 0,
+  "workflow_changes": 0,
+  "publishing_enabled": false,
+  "network_execution_enabled": false,
+  "required_secrets": [],
+  "optional_secrets": [
+    "GEMINI_API_KEY",
+    "ANTHROPIC_API_KEY"
+  ],
+  "posting_may_generate": false,
+  "default_buffer_policy": {
+    "target_ready": 30,
+    "warning_ready": 14,
+    "emergency_ready": 7
+  },
+  "declared_test_module": "review_prototypes.subscription_fallback.test_subscription_fallback",
+  "adoption_order": [
+    "inventory current generation and upload coupling",
+    "introduce approved-package record",
+    "build queue in record-only mode",
+    "fill buffer without changing posting",
+    "make posting consume queue in shadow mode",
+    "prove idempotent upload and claim recovery",
+    "enable one channel canary",
+    "retain rollback to existing posting path"
+  ]
+}
