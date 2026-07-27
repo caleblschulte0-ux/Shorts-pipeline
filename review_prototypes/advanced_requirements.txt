@@ -1,0 +1,22 @@
+# Review-only optional dependencies. Pin exact versions before adoption.
+duckdb
+polars
+pandera
+feedparser
+trafilatura
+readability-lxml
+extruct
+warcio
+playwright
+paddleocr
+sentence-transformers
+faiss-cpu
+sqlite-vec
+vl-convert-python
+plotly
+kaleido
+geopandas
+librosa
+silero-vad
+stable-ts
+argostranslate

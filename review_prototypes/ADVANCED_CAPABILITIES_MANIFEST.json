@@ -1,0 +1,17 @@
+{
+  "name": "advanced_capabilities_wave_2",
+  "status": "review_only",
+  "production_imports": 0,
+  "workflow_changes": 0,
+  "publishing_enabled": false,
+  "network_execution_enabled": false,
+  "required_secrets": [],
+  "capability_count": 38,
+  "default_policy": {
+    "plan_only": true,
+    "local_models_enabled": false,
+    "gpu_models_enabled": false,
+    "public_web_execution_enabled": false
+  },
+  "declared_test_module": "review_prototypes.test_advanced_capabilities"
+}
