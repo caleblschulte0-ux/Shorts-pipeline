@@ -1,0 +1,36 @@
+{
+  "dimensions": {
+    "adoption_phase_definition": 100.0,
+    "canonical_playbook": 100.0,
+    "decision_route_coverage": 100.0,
+    "handoff_validator": 100.0,
+    "integrated_production_mp4_proof": 0.0,
+    "machine_readable_manifest": 100.0,
+    "production_wiring": 0.0,
+    "real_channel_performance_proof": 0.0,
+    "review_handoff_scope": 100.0,
+    "risk_and_rollback_coverage": 100.0,
+    "safety_guard_coverage": 100.0,
+    "system_catalog_coverage": 100.0
+  },
+  "evidence": {
+    "adoption_phases": 11,
+    "components_cataloged": 21,
+    "decision_routes": 6,
+    "declared_unverified_claims": 1,
+    "named_risks": 8,
+    "new_tests_passed": 28,
+    "new_tests_total": 28,
+    "not_claimed_dimensions": 2,
+    "prior_recorded_passing_tests": 208,
+    "recorded_passing_tests_including_handoff": 236,
+    "sacred_guards": 8,
+    "verified_evidence_claims": 7
+  },
+  "honest_overall_percent": 79.5,
+  "production_pipeline_modified": false,
+  "publishing_enabled": false,
+  "review_handoff_percent": 100.0,
+  "scope": "claude_master_handoff_final_touches",
+  "showrunner_authority_changed": false
+}
