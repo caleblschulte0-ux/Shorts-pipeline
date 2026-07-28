@@ -1,5 +1,7 @@
 # Curiosity Next-Generation Prototypes
 
+> **Claude entrypoint:** read `docs/00_CLAUDE_START_HERE.md`, then `docs/CLAUDE_MASTER_PLAYBOOK.md` and `docs/CLAUDE_HANDOFF_MANIFEST.json` before changing code.
+
 This directory contains **real but dormant code** for Claude to inspect, execute, repair, and selectively integrate later.
 
 ## Isolation contract
@@ -94,7 +96,7 @@ The closure sprint adds:
 
 ```bash
 python -m compileall experiments/curiosity_nextgen
-python -m unittest discover experiments/curiosity_nextgen/tests
+python -m unittest discover -v experiments/curiosity_nextgen/tests
 ```
 
 The tests are intentionally not connected to active CI. This keeps the dormant package from affecting current production checks and releases.
@@ -103,4 +105,4 @@ The tests are intentionally not connected to active CI. This keeps the dormant p
 
 The dormant architecture is closed. Do not add another subsystem unless `assess_autonomy_completeness()` proves a real domain is missing.
 
-Next work must execute and fix the suite, validate a heterogeneous 50-story catalog, and selectively integrate one generic capability per focused PR. Use `docs/CLAUDE_AUTONOMY_LAUNCHOFF.md` as the primary continuation path. Reject any change where a story slug or named video selects bespoke behavior.
+Next work must execute and fix the suite, validate a heterogeneous 50-story catalog, and selectively integrate one generic capability per focused PR. `docs/CLAUDE_MASTER_PLAYBOOK.md` is the canonical continuation path; `docs/CLAUDE_AUTONOMY_LAUNCHOFF.md` is the detailed adapter sequence. Reject any change where a story slug or named video selects bespoke behavior.
