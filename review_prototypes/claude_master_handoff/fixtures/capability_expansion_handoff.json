@@ -1,0 +1,92 @@
+{
+  "schema_version": "claude-capability-expansion-handoff/v1",
+  "name": "Claude capability expansion handoff",
+  "status": "review_only_unwired",
+  "repository": "caleblschulte0-ux/Shorts-pipeline",
+  "pull_request": 174,
+  "branch": "agent/claude-roadmap-review",
+  "entrypoint": "review_prototypes/claude_master_handoff/CAPABILITY_EXPANSION_HANDOFF.md",
+  "read_order": [
+    "review_prototypes/claude_master_handoff/PLAYBOOK.md",
+    "review_prototypes/claude_master_handoff/CAPABILITY_EXPANSION_HANDOFF.md",
+    "docs/future/ADVANCED_CAPABILITY_EXPANSION.md",
+    "review_prototypes/ADVANCED_CAPABILITIES_MANIFEST.json",
+    "review_prototypes/advanced_capabilities.py",
+    "review_prototypes/advanced_requirements.txt",
+    "review_prototypes/test_advanced_capabilities.py",
+    "docs/future/CLAUDE_FREE_TOOLCHAIN_ADOPTION_ROADMAP.md",
+    "review_prototypes/capability_studio/CLAUDE_ADOPTION_MANIFEST.json",
+    "review_prototypes/capability_studio/toolchain_catalog.py",
+    "review_prototypes/capability_studio/scene_router.py",
+    "review_prototypes/capability_studio/integration_compiler.py",
+    "review_prototypes/capability_studio/toolchain_executor.py",
+    "docs/future/CLAUDE_INDEPENDENCE_ROADMAP.md",
+    "review_prototypes/subscription_fallback/ADOPTION_MANIFEST.json"
+  ],
+  "capability_surfaces": {
+    "free_toolchain": "review_prototypes/capability_studio/",
+    "advanced_wave_2": "review_prototypes/advanced_capabilities.py",
+    "provider_independence": "review_prototypes/subscription_fallback/",
+    "institutional_learning": "review_prototypes/professional_media_os/"
+  },
+  "advanced_wave_2_declared_capability_count": 38,
+  "advanced_groups": [
+    "local_models",
+    "semantic_memory",
+    "research_and_evidence",
+    "data_and_visualization",
+    "maps",
+    "captions_audio_and_video",
+    "visual_intelligence",
+    "localization",
+    "generative_audio_plans"
+  ],
+  "required_tests": [
+    "python -m unittest -v review_prototypes.claude_master_handoff.test_master_handoff",
+    "python -m unittest -v review_prototypes.test_advanced_capabilities",
+    "python -m unittest -v review_prototypes.capability_studio.test_capability_studio review_prototypes.capability_studio.test_free_capabilities review_prototypes.capability_studio.test_toolchain_adoption",
+    "python -m unittest -v review_prototypes.subscription_fallback.test_subscription_fallback"
+  ],
+  "required_inspection_commands": [
+    "python -m review_prototypes.claude_master_handoff.cli summary",
+    "python -m review_prototypes.claude_master_handoff.cli validate --repo .",
+    "python -m review_prototypes.capability_studio.toolchain_cli catalog",
+    "python -m review_prototypes.capability_studio.toolchain_cli doctor",
+    "python -m review_prototypes.capability_studio.toolchain_cli keys"
+  ],
+  "recommended_adoption_order": [
+    "data foundation",
+    "research intake and evidence preservation",
+    "caption alignment and technical QA",
+    "Lottie and Remotion shadow graphics",
+    "maps",
+    "semantic memory",
+    "local generation",
+    "smart reframe and advanced visual ranking",
+    "heavy GPU and generative audio only after license and resource proof"
+  ],
+  "mandatory_new_secrets": [],
+  "default_execution_policy": {
+    "plan_only": true,
+    "production_imports": 0,
+    "workflow_changes": 0,
+    "publishing_enabled": false,
+    "public_web_execution_enabled": false,
+    "local_models_enabled": false,
+    "gpu_models_enabled": false
+  },
+  "acceptance_requirements": [
+    "map current production owner before coding",
+    "one capability family per bounded phase",
+    "record licensing and rights",
+    "pin versions and model hashes",
+    "enforce workspace and resource ceilings",
+    "retain a deterministic lighter fallback",
+    "generate matched shadow artifacts",
+    "keep final-video QA renderer-independent",
+    "preserve showrunner veto and publishing freeze",
+    "exercise rollback before authority increases"
+  ],
+  "production_authority_granted": "none",
+  "merge_authorized": false
+}

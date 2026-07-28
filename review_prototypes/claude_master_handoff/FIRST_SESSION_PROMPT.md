@@ -7,11 +7,15 @@ Your job is **not** to merge the PR or wire every prototype into production. You
 ## Read first
 
 1. `review_prototypes/claude_master_handoff/PLAYBOOK.md`
-2. `review_prototypes/claude_master_handoff/fixtures/master_handoff_manifest.json`
-3. `review_prototypes/launch_closure/fixtures/CLAUDE_LAUNCH.md`
-4. `review_prototypes/launch_closure/fixtures/claude_launch_manifest.json`
-5. `review_prototypes/professional_media_os/ADOPTION_MANIFEST.json`
-6. `docs/future/CLAUDE_PROFESSIONAL_MEDIA_OS_ADOPTION.md`
+2. `review_prototypes/claude_master_handoff/CAPABILITY_EXPANSION_HANDOFF.md`
+3. `review_prototypes/claude_master_handoff/fixtures/capability_expansion_handoff.json`
+4. `review_prototypes/claude_master_handoff/fixtures/master_handoff_manifest.json`
+5. `review_prototypes/launch_closure/fixtures/CLAUDE_LAUNCH.md`
+6. `review_prototypes/launch_closure/fixtures/claude_launch_manifest.json`
+7. `review_prototypes/professional_media_os/ADOPTION_MANIFEST.json`
+8. `docs/future/CLAUDE_PROFESSIONAL_MEDIA_OS_ADOPTION.md`
+
+The capability-expansion handoff is the canonical entrypoint whenever the operator asks to add tools, renderers, data sources, local models, semantic memory, extraction, maps, captions, visual intelligence, localization, audio, or provider-independent fallbacks.
 
 ## Run before changing code
 
@@ -25,7 +29,20 @@ python -m unittest -v review_prototypes.launch_closure.test_launch_closure
 python -m review_prototypes.launch_closure.cli --out /tmp/shorts-launch-rehearsal
 ```
 
-Run the selected lane's own tests too. In particular, the Professional Media OS, Capability Studio, and subscription fallback suites must be executed before any code from those packages is adopted; their presence in the PR is not production proof.
+Run the selected lane's own tests too. In particular, the Professional Media OS, Capability Studio, Advanced Capability Expansion, and subscription fallback suites must be executed before any code from those packages is adopted; their presence in the PR is not production proof.
+
+For a capability request, also run:
+
+```bash
+python -m unittest -v review_prototypes.test_advanced_capabilities
+python -m unittest -v \
+  review_prototypes.capability_studio.test_capability_studio \
+  review_prototypes.capability_studio.test_free_capabilities \
+  review_prototypes.capability_studio.test_toolchain_adoption
+python -m unittest -v review_prototypes.subscription_fallback.test_subscription_fallback
+python -m review_prototypes.capability_studio.toolchain_cli catalog
+python -m review_prototypes.capability_studio.toolchain_cli doctor
+```
 
 ## Non-negotiable rules
 
@@ -36,7 +53,7 @@ Run the selected lane's own tests too. In particular, the Professional Media OS,
 - A showrunner BLOCK remains BLOCK.
 - Use the same slug, evidence, source data, narration, and metric definitions for baseline/shadow comparisons.
 - Every phase is one commit with explicit acceptance and rollback.
-- Stop immediately on contract drift, missing evidence, regression, reviewer disagreement, or any accidental publishing enablement.
+- Stop immediately on contract drift, missing evidence, regression, reviewer disagreement, unclear licensing, unbounded model downloads, or any accidental publishing enablement.
 - Unknown is not zero. Synthetic or heuristic results are not audience proof.
 - Channel identity remains channel-owned.
 
@@ -44,7 +61,7 @@ Run the selected lane's own tests too. In particular, the Professional Media OS,
 
 - Improve current video quality now: follow the launch-closure production migration lane.
 - Make posting independent from live Claude/API availability: use the subscription fallback lane.
-- Add free research/media/audio/video capabilities: use Capability Studio, one provider at a time.
+- Add free or advanced research/media/audio/video/local-model capabilities: begin at `CAPABILITY_EXPANSION_HANDOFF.md`, then adopt one capability family at a time.
 - Build institutional learning and content intelligence: adopt Professional Media OS records and lineage first; do not grant ranking authority.
 - Improve premise/source quality: adapt the content system only after mapping its target production contract.
 
