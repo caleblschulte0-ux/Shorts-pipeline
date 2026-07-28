@@ -102,6 +102,8 @@ class Risk:
     def validate(self) -> None:
         if self.severity not in {"critical", "high", "medium", "low"}:
             raise HandoffValidationError(f"invalid risk severity: {self.severity}")
+        if not isinstance(self.mitigation, tuple) or not isinstance(self.rollback, tuple):
+            raise HandoffValidationError(f"risk {self.risk_id} mitigation and rollback must be tuples")
         if not self.mitigation or not self.rollback:
             raise HandoffValidationError(f"risk {self.risk_id} lacks mitigation/rollback")
 
