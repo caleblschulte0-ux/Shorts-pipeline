@@ -532,7 +532,7 @@ RISKS = (
         "Quality gate is altered to make more videos pass",
         "Changes touch score weights, auto-fails, threshold, verdict logic, or publish fail direction.",
         ("Permit diagnostics only.", "Compare immutable symbol hashes before and after."),
-        ("Revert immediately and retain the blocked artifact."),
+        ("Revert immediately and retain the blocked artifact.",),
         "critical",
     ),
     Risk(
@@ -540,7 +540,7 @@ RISKS = (
         "Preview work reaches upload or posted state",
         "Publishing flag, uploader, token routing, workflow permission, or posted log is touched.",
         ("Keep publishing frozen.", "Use temporary/private paths and a kill switch."),
-        ("Stop execution, disable the feature flag, and reconcile state before any rerun."),
+        ("Stop execution, disable the feature flag, and reconcile state before any rerun.",),
         "critical",
     ),
     Risk(
@@ -548,7 +548,7 @@ RISKS = (
         "Production symbols or files change before adoption",
         "Frozen SHA/symbol probe differs from the handoff snapshot.",
         ("Rerun the probe and remap the live contract.", "Update the blueprint before coding."),
-        ("Do not apply the old patch; return to read-only orientation."),
+        ("Do not apply the old patch; return to read-only orientation.",),
         "high",
     ),
     Risk(
@@ -556,7 +556,7 @@ RISKS = (
         "Synthetic or heuristic evidence is presented as audience proof",
         "A reference score, counterfactual, or synthetic fixture is used as a performance claim.",
         ("Label evidence status explicitly.", "Require mature real-channel outcomes for audience claims."),
-        ("Remove the claim and return the system to shadow/reference authority."),
+        ("Remove the claim and return the system to shadow/reference authority.",),
         "high",
     ),
     Risk(
@@ -564,7 +564,7 @@ RISKS = (
         "Incompatible metric definitions are compared",
         "Different definitions, windows, or maturity states are treated as one series.",
         ("Persist metric definition versions and eligibility.", "Refuse incompatible samples."),
-        ("Discard the comparison and recompute with eligible baselines."),
+        ("Discard the comparison and recompute with eligible baselines.",),
         "high",
     ),
     Risk(
@@ -572,7 +572,7 @@ RISKS = (
         "Fallback or replay starts a second upload",
         "An existing upload reservation is not reconciled before another upload begins.",
         ("Resume/poll existing upload first.", "Preserve upload idempotency and posted-log authority."),
-        ("Stop new upload attempts and reconcile the existing reservation."),
+        ("Stop new upload attempts and reconcile the existing reservation.",),
         "critical",
     ),
     Risk(
@@ -580,7 +580,7 @@ RISKS = (
         "Learned pattern overrides channel identity or exclusions",
         "A generic pattern applies despite channel doctrine, exclusions, or deprecation.",
         ("Channel identity remains sovereign.", "Exclusions and deprecated versions override positive matches."),
-        ("Disable the pattern version and append a reversal decision."),
+        ("Disable the pattern version and append a reversal decision.",),
         "high",
     ),
 )
