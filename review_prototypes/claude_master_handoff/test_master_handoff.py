@@ -67,6 +67,11 @@ class MasterHandoffTests(unittest.TestCase):
         self.assertEqual(first.authority_ceiling, "none")
         self.assertFalse(first.production_files)
 
+    def test_risk_collections_are_tuples(self):
+        for risk in self.handoff.risks:
+            self.assertIsInstance(risk.mitigation, tuple)
+            self.assertIsInstance(risk.rollback, tuple)
+
     def test_no_unsafe_commands(self):
         self.assertEqual(validate_commands(self.handoff), [])
 
