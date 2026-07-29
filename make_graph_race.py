@@ -11,9 +11,14 @@ Package schema:
   {"format":"graph_race","title":"Staffed Lighthouses by Country Since 1900",
    "y_label":"Staffed lighthouses","source":"Sources: ...",
    "years":[1900,1920,...,2020],
-   "series":[{"name":"USA","color":"#4a90e2","values":[600,...,1]}, ...],
+   "series":[{"name":"USA","color":"#4a90e2","icon":"US",
+               "values":[600,...,1]}, ...],
    "duration":12,"music_vibe":"dark","hook":"Wait for 1990..."}
-`color` and `hook` are optional.
+`color`, `icon` and `hook` are optional. `icon` (country code / flag emoji /
+brand name / URL) draws a badge at the line tip + in the leaderboard so
+viewers know who is who; it degrades to an initials badge. Values written in
+scaled units ("11.5" with y_label "EVs sold (millions)") are normalized by
+the engine so the chart shows the bigger number ("11.5M").
 """
 from __future__ import annotations
 
