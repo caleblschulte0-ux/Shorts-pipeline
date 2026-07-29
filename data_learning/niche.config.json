@@ -13709,8 +13709,8 @@
     {
       "slug": "carbon-climb",
       "title": "The Line That Only Goes Up",
-      "hook": "In 1960 the air was basically a different planet's atmosphere. Then this line started climbing \u2014 and it has never once gone back down.",
-      "closing": "At the pace the 2010s set, the next 25 parts per million lands in about a decade \u2014 same climb, faster clock.",
+      "hook": "The air itself is changing, and we have the receipt.",
+      "closing": "Every year, the line climbs higher. That's the story in the data.",
       "question": "Did you realize it was accelerating? Tell me below.",
       "keep_order": true,
       "hashtags": [
@@ -13738,12 +13738,7 @@
           "role": "1 \u00b7 THE CLIMB",
           "topic": "atmospheric CO2",
           "say": "In 1960 the air held about 317 parts of CO2 per million. By 2025 it's 427 \u2014 a line that has only ever climbed.",
-          "scene": {
-            "mechanic": "co2-tube",
-            "title": true,
-            "concept": "a glass tube beside a smokestack fills with haze; a tick mark and label lands for every year on record, climbing toward the top",
-            "code": "\ncx = (RX0 + RX1) // 2\ntube_w = 260\ntop = RTOP + 60\nbot = RBOT - 40\nd.rounded_rectangle([cx - tube_w // 2, top, cx + tube_w // 2, bot],\n                     radius=50, outline=rgba(TEXT, 200), width=6)\nstack = subject_image('industrial smokestack chimney')\nif stack is not None:\n    sw = 220\n    sh = int(sw * stack.height / stack.width)\n    paste(stack, cx - sw // 2, bot - 30, sw, sh)\nvmin = min(values)\nspan = max(vmax - vmin, 1.0)\nshown_n = int(reveal * n + 0.999)\ntop_y = bot - 40\nfor i in range(n):\n    if i >= shown_n:\n        break\n    v = values[i]\n    frac = (v - vmin) / span\n    y = int(lerp(bot - 40, top + 40, frac))\n    top_y = y\n    d.line([cx - tube_w // 2 - 10, y, cx + tube_w // 2 + 10, y],\n           fill=rgba(HIGHLIGHT, 220), width=4)\n    text(labels[i], cx - tube_w // 2 - 80, y - 14, size=24, color=TEXT)\n    text(str(int(v)), cx + tube_w // 2 + 20, y - 14, size=24, color=HIGHLIGHT)\nd.rectangle([cx - tube_w // 2 + 10, top_y, cx + tube_w // 2 - 10, bot - 10],\n            fill=rgba((150, 170, 140), 130))\ntext('ppm CO2', cx, top + 10, size=30, color=TEXT, center=True)\n"
-          }
+          "viz": "trend"
         },
         {
           "source": "offline",
@@ -13755,12 +13750,7 @@
           "role": "2 \u00b7 THE ACCELERATION",
           "topic": "CO2 added each decade",
           "say": "And it's speeding up. The 1960s added under 9 parts per million. The 2010s added over 24 \u2014 nearly triple the pace.",
-          "scene": {
-            "mechanic": "accelerating-puffs",
-            "title": true,
-            "concept": "smoke puffs drift left to right across the decades, each one bigger and higher than the last, showing the pace itself speeding up",
-            "code": "\ngap = (RX1 - RX0 - 160) / max(n - 1, 1)\nbase_x = RX0 + 80\npuff = subject_image('smoke puff cloud')\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax)\n    local_reveal = clamp(reveal * n - i)\n    if local_reveal <= 0:\n        continue\n    size = int((90 + 260 * frac) * local_reveal)\n    cx = int(base_x + gap * i)\n    cy = int(RBOT - 140 - frac * 480 - i * 8)\n    if puff is not None:\n        paste(puff, cx - size // 2, cy - size // 2, size, size)\n    else:\n        d.ellipse([cx - size // 2, cy - size // 2, cx + size // 2, cy + size // 2],\n                  fill=rgba((210, 210, 220), 200))\n    text(labels[i], cx, cy + size // 2 + 26, size=24, color=TEXT, center=True)\n    text(str(v), cx, cy - size // 2 - 24, size=28, color=HIGHLIGHT, center=True)\n"
-          }
+          "viz": "pictograph"
         }
       ]
     },
@@ -13768,7 +13758,7 @@
       "slug": "population-giants",
       "title": "Half the Planet, Eight Countries",
       "hook": "Two countries hold more than a third of all humanity.",
-      "closing": "The other 190-plus countries on Earth, all together, still add up to less than half of humanity.",
+      "closing": "Eight countries, over half the planet. Wild, right?",
       "question": "Which of these surprised you most? Comment below.",
       "hashtags": [
         "population",
@@ -13808,20 +13798,15 @@
           "role": "2 \u00b7 THE SHARE",
           "topic": "share of world population",
           "say": "Put it another way: China and India alone are more than 35 percent of everyone alive. The other 190-plus countries split the rest.",
-          "scene": {
-            "mechanic": "people-array",
-            "title": true,
-            "concept": "a pictogram of real people-icons, one figure per 5% of humanity, stacked into columns for China, India, the US, and everyone else",
-            "code": "\ngap = (RX1 - RX0) / n\nicon_w = 74\nicon_h = 92\nbase_y = RBOT - 60\nperson = subject_image('person icon silhouette')\nfor i in range(n):\n    v = values[i]\n    cnt = max(1, round(v / 5))\n    cx = int(RX0 + gap * i + gap / 2)\n    shown = int(reveal * cnt + 0.999)\n    for k in range(cnt):\n        if k >= shown:\n            break\n        y = base_y - (k + 1) * icon_h\n        x = cx - icon_w // 2\n        if person is not None:\n            paste(person, x, y, icon_w, icon_h - 8)\n        else:\n            d.rounded_rectangle([x, y, x + icon_w, y + icon_h - 8],\n                                 radius=12, fill=rgba(ACCENT, 220))\n    text(labels[i], cx, base_y + 20, size=24, color=TEXT, center=True)\n    text(str(v) + '%', cx, base_y - cnt * icon_h - 40, size=28, color=HIGHLIGHT, center=True)\n"
-          }
+          "viz": "waffle_grid"
         }
       ]
     },
     {
       "slug": "world-power-mix",
       "title": "How the World Keeps Its Lights On",
-      "hook": "One fuel still lights more of the planet than every wind turbine and solar panel on Earth combined \u2014 by more than double.",
-      "closing": "Fossil power just fell under 60% for the first time since the 1940s \u2014 the next line to break might be 50.",
+      "hook": "Here's how the entire planet made its electricity last year.",
+      "closing": "The mix is tipping \u2014 slowly, then all at once.",
       "question": "Is your country ahead or behind on this? Let me know.",
       "hashtags": [
         "energy",
@@ -13848,12 +13833,7 @@
           "role": "1 \u00b7 THE MIX",
           "topic": "world electricity by source",
           "say": "Coal still leads at 34 percent, gas adds 22. But hydro, nuclear, wind and solar are closing in fast.",
-          "scene": {
-            "mechanic": "energy-wheel",
-            "title": true,
-            "concept": "a wheel sweeps open wedge by wedge, each sized to its share of world electricity, with a real photo of that power source planted in its slice",
-            "code": "\ncx = (RX0 + RX1) // 2\ncy = RTOP + 520\nR = 380\nicon_names = ['coal power plant', 'natural gas power plant', 'hydroelectric dam',\n              'nuclear power plant', 'wind turbine', 'solar panel farm',\n              'oil power plant', 'biomass power plant']\ncolors = [HIGHLIGHT, ACCENT, WARN, (150, 150, 255), (250, 200, 80),\n          (120, 220, 120), (200, 120, 90), (180, 180, 80)]\ntot = sum(values)\nang = -90.0\nfor i in range(n):\n    v = values[i]\n    sweep = 360.0 * v / tot\n    local_reveal = clamp(reveal * n - i)\n    if local_reveal <= 0:\n        break\n    sw = sweep * local_reveal\n    col = colors[i % len(colors)]\n    d.pieslice([cx - R, cy - R, cx + R, cy + R], ang, ang + sw, fill=rgba(col, 220))\n    mid = ang + sw / 2\n    rad = mid * math.pi / 180.0\n    ix = cx + int((R * 0.62) * math.cos(rad))\n    iy = cy + int((R * 0.62) * math.sin(rad))\n    icon = subject_image(icon_names[i] if i < len(icon_names) else labels[i])\n    if icon is not None:\n        paste(icon, ix - 55, iy - 55, 110, 110)\n    text(labels[i], ix, iy + 70, size=22, color=TEXT, center=True)\n    text(str(v) + '%', ix, iy - 85, size=24, color=HIGHLIGHT, center=True)\n    ang += sweep\n"
-          }
+          "viz": "waffle_grid"
         },
         {
           "source": "offline",
@@ -16733,6 +16713,440 @@
         }
       ],
       "question": "What's the biggest fruit or veggie you've ever grown or seen?"
+    },
+    {
+      "slug": "malaria-fell-for-18-years-then-jumped-back-to-64-0-per-1-000",
+      "title": "Malaria Fell For 18 Years \u2014 Then Jumped Back To 64.0 Per 1,000",
+      "hook": "Malaria dropped for two decades straight \u2014 then last year it shot right back up to sixty four per thousand people at risk.",
+      "closing": "The world got more connected and more sanitary than ever \u2014 but old diseases don't always stay beaten.",
+      "hashtags": [
+        "globalhealth",
+        "datastorytelling",
+        "malaria",
+        "internetgrowth",
+        "sanitation",
+        "shorts"
+      ],
+      "question": "Which stat surprised you more: how fast we got online, or how fast malaria came back?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "it_net_user_zs_trend",
+          "params": {
+            "file": "it_net_user_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 INDIVIDUALS USING ",
+          "topic": "Individuals using the Internet",
+          "say": "Back in 2005 only fifteen point six percent of people worldwide were online; by 2025 that climbed to seventy three point six percent.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person holding a glowing smartphone",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person holding a glowing smartphone",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sh_mlr_incd_p3_trend",
+          "params": {
+            "file": "sh_mlr_incd_p3_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 INCIDENCE OF MALAR",
+          "topic": "Incidence of malaria",
+          "say": "Malaria cases per thousand fell from seventy nine point nine in 2000 to fifty eight point five by 2018, then climbed back to sixty four in 2024.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mosquito",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mosquito",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mosquito",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sh_sta_odfc_zs_trend",
+          "params": {
+            "file": "sh_sta_odfc_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 PEOPLE PRACTICING ",
+          "topic": "People practicing open defecation",
+          "say": "Open defecation dropped from twenty two percent of the world's population in 2000 to just four point three five percent by 2024.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "small wooden outhouse",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "small wooden outhouse",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "fish-catch-hit-235-million-tons-even-as-we-protected-the-pla",
+      "title": "Fish Catch Hit 235 Million Tons Even As We 'Protected' The Planet",
+      "hook": "We fenced off more ocean and land than ever before \u2014 and still hauled out more fish than any year in history.",
+      "closing": "Farms spread, catches quadrupled, and 'protected' zones grew all at the same time \u2014 humanity isn't slowing down anywhere.",
+      "hashtags": [
+        "datafacts",
+        "fishing",
+        "environment",
+        "shorts",
+        "sustainability"
+      ],
+      "question": "Which number shocked you more: the fish catch, or how little 'protected' actually protects?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ag_lnd_crop_zs_trend",
+          "params": {
+            "file": "ag_lnd_crop_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 PERMANENT CROPLAND",
+          "topic": "Permanent cropland",
+          "say": "World farmland crept from zero point seven five percent of all land in 1972 to one point four eight percent by 2023 \u2014 permanent cropland nearly doubled in fifty years."
+        },
+        {
+          "source": "offline",
+          "key": "er_fsh_prod_mt_trend",
+          "params": {
+            "file": "er_fsh_prod_mt_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 TOTAL FISHERIES PR",
+          "topic": "Total fisheries production",
+          "say": "World fish catch rose from fifty six million tons in 1972 to two hundred thirty five million tons in 2024 \u2014 more than four times as much fish pulled from the sea.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              },
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 40000000.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:2",
+                  "per_value": 40000000.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:5",
+                  "per_value": 40000000.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "World fish catch: 56M \u2192 236M tons"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "er_ptd_totl_zs_trend",
+          "params": {
+            "file": "er_ptd_totl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 TERRESTRIAL AND MA",
+          "topic": "Terrestrial and marine protected areas",
+          "say": "Protected land and ocean area climbed from eleven point one percent in 2013 to seventeen percent by 2025 \u2014 up almost six points in just twelve years.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:5"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Protected area: 11.1% \u2192 17.0%"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "alternative-and-nuclear-energy-leapt-to-16-5-by-2024",
+      "title": "Alternative And Nuclear Energy Leapt To 16.5% By 2024",
+      "hook": "Alternative and nuclear energy barely moved for decades, then it jumped to 16.5 percent of world energy use.",
+      "closing": "Three energy trends, one dataset \u2014 decide for yourself what actually changed.",
+      "hashtags": [
+        "energydata",
+        "renewableenergy",
+        "nuclearpower",
+        "electricity",
+        "datafacts",
+        "shorts"
+      ],
+      "question": "Which of these three numbers surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "eg_fec_rnew_zs_trend",
+          "params": {
+            "file": "eg_fec_rnew_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 RENEWABLE ENERGY C",
+          "topic": "Renewable energy consumption",
+          "say": "Renewable energy held between sixteen point seven and seventeen point four percent from nineteen ninety to twenty fourteen, then climbed to nineteen point seven percent by twenty twenty.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "eg_use_comm_cl_zs_trend",
+          "params": {
+            "file": "eg_use_comm_cl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ALTERNATIVE AND NU",
+          "topic": "Alternative and nuclear energy",
+          "say": "Alternative and nuclear energy stayed near eight point eight two to nine point six six percent for decades, then surged to sixteen point five percent by twenty twenty four.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "eg_elc_accs_zs_trend",
+          "params": {
+            "file": "eg_elc_accs_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ACCESS TO ELECTRIC",
+          "topic": "Access to electricity",
+          "say": "Access to electricity rose from seventy three point two percent in nineteen ninety eight to ninety one point nine percent by twenty twenty four.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        }
+      ]
     }
   ],
   "videos": [
