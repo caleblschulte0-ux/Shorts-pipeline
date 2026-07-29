@@ -1,0 +1,48 @@
+{
+  "key": "sp_ado_tfrt_trend",
+  "title": "Adolescent fertility rate",
+  "unit": "births per 1,000 women ages 15-19",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Adolescent fertility rate",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SP.ADO.TFRT",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 85.0,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 79.0,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 74.0,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 61.2,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 49.2,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 38.3,
+      "period": "2024"
+    }
+  ]
+}

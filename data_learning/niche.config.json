@@ -13710,7 +13710,7 @@
       "slug": "carbon-climb",
       "title": "The Line That Only Goes Up",
       "hook": "The air itself is changing, and we have the receipt.",
-      "closing": "The line has never once gone down \u2014 and it's still accelerating.",
+      "closing": "Every year, the line climbs higher. That's the story in the data.",
       "question": "Did you realize it was accelerating? Tell me below.",
       "keep_order": true,
       "hashtags": [
@@ -13758,7 +13758,7 @@
       "slug": "population-giants",
       "title": "Half the Planet, Eight Countries",
       "hook": "Two countries hold more than a third of all humanity.",
-      "closing": "Eight countries. Everyone else splits what's left.",
+      "closing": "Eight countries, over half the planet. Wild, right?",
       "question": "Which of these surprised you most? Comment below.",
       "hashtags": [
         "population",
@@ -16471,8 +16471,8 @@
     {
       "slug": "caffeine-content-revealed",
       "title": "Caffeine Content Revealed",
-      "hook": "One energy drink has more caffeine than 3 cups of black tea \u2014 what's really in your daily drinks?",
-      "closing": "That energy drink alone gets you halfway to your daily limit.",
+      "hook": "60 milligrams in your coffee. 200 in one energy drink can. Here's where your daily buzz really comes from.",
+      "closing": "Add it up across a day and 400 milligrams sneaks up fast \u2014 that's the line health experts say not to cross.",
       "hashtags": [
         "coffee",
         "caffeine",
@@ -16531,7 +16531,7 @@
           "insight_type": "rank",
           "role": "2 \u00b7 SODA CAFFEINE",
           "topic": "Soda Caffeine",
-          "say": "Sodas carry caffeine too \u2014 35 milligrams in a cola, up to 60 in a cherry soda.",
+          "say": "Some sodas pack a significant caffeine punch, with up to 70 milligrams per 12 oz can.",
           "scene": {
             "title": true,
             "elements": [
@@ -16556,7 +16556,7 @@
           "insight_type": "share",
           "role": "3 \u00b7 CHOCOLATE CAFFEINE",
           "topic": "Chocolate Caffeine",
-          "say": "Milk chocolate barely registers at 5 milligrams an ounce. Cocoa powder is six times that \u2014 30.",
+          "say": "Dark chocolate contains a surprising amount of caffeine, with some bars having as much as 30 milligrams.",
           "scene": {
             "title": true,
             "elements": [
@@ -16565,7 +16565,7 @@
                 "region": "hero",
                 "subject": "chocolate bar",
                 "data": {
-                  "value_from": "star"
+                  "value_from": "item:0"
                 }
               }
             ]
@@ -16597,8 +16597,8 @@
     {
       "slug": "gigantic-fruits-and-veggies",
       "title": "Gigantic Fruits And Veggies",
-      "hook": "This pumpkin weighs 2,600 pounds \u2014 imagine needing a forklift just to move dinner.",
-      "closing": "The record books get rewritten every season \u2014 someone's growing next year's giant right now.",
+      "hook": "Imagine a pumpkin so big it needs a forklift to move",
+      "closing": "From a 2,600-pound pumpkin to a 19-foot carrot \u2014 nature's records keep getting stranger every year.",
       "hashtags": [
         "gardening",
         "fruitlover",
@@ -16650,7 +16650,7 @@
           "insight_type": "rank",
           "role": "2 \u00b7 LONGEST CARROTS",
           "topic": "Longest Carrots",
-          "say": "The record carrot ran over 19 feet long. Even the fifth-longest ever grown topped 9 feet \u2014 taller than a house.",
+          "say": "The longest carrot ever recorded measured over 19 feet long, while the top 5 longest carrots all measured over 10 feet, with the shortest being 9 feet 5 inches",
           "scene": {
             "title": true,
             "elements": [
@@ -16715,166 +16715,120 @@
       "question": "What's the biggest fruit or veggie you've ever grown or seen?"
     },
     {
-      "slug": "tajikistan-beats-everyone-on-educational-attainment-by-1-9x",
-      "title": "Tajikistan Beats Everyone On Educational attainment \u2014 By 1.9x",
-      "hook": "You'd guess Luxembourg leads on educational attainment. It's Tajikistan \u2014 5.47 to 2.84.",
-      "closing": "Nobody expected a mountain nation to out-degree Europe. The numbers were public the whole time.",
+      "slug": "fewer-people-are-undernourished-at-8-5",
+      "title": "Fewer People Are Undernourished at 8.5%",
+      "hook": "You'd think a growing planet gets hungrier. It's doing the opposite.",
+      "closing": "Fewer hungry, fewer kids per household, more people living rural than ever \u2014 the planet is quietly rebalancing itself.",
       "hashtags": [
-        "data",
-        "facts",
-        "statistics",
-        "shorts",
-        "worldbank"
+        "hungerawareness",
+        "globalhealth",
+        "sustainability"
       ],
-      "question": "Which number surprised you most?",
+      "question": "Which of these three numbers surprised you most?",
       "segments": [
         {
           "source": "offline",
-          "key": "en_urb_lcty_ur_zs_trend",
+          "key": "sn_itk_defc_zs_trend",
           "params": {
-            "file": "en_urb_lcty_ur_zs_trend.json"
+            "file": "sn_itk_defc_zs_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 MEGACITY SHARE",
-          "topic": "Population in the largest city",
-          "say": "Start with the capital: in 1972 its largest city held 18.2% of the urban population. By 2025, barely moved \u2014 16.2%.",
+          "role": "1 \u00b7 THE HUNGER LINE",
+          "topic": "Global undernourishment",
+          "say": "In 2001, 12.8 percent of the world went hungry. By 2023 that's down to 8.5 percent \u2014 even as the population kept climbing.",
           "viz": "trend"
         },
         {
           "source": "offline",
-          "key": "it_net_user_fe_zs_trend",
+          "key": "sp_pop_0014_to_zs_trend",
           "params": {
-            "file": "it_net_user_fe_zs_trend.json"
+            "file": "sp_pop_0014_to_zs_trend.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 WOMEN ONLINE",
-          "topic": "Women online",
-          "say": "But get online, and it's a different story: 51.8% of women were online in 2019. By 2024, 68.2%.",
-          "viz": "fill_vessel"
-        },
-        {
-          "source": "offline",
-          "key": "se_ter_cuat_do_zs_rank",
-          "params": {
-            "file": "se_ter_cuat_do_zs_rank.json"
-          },
-          "insight_type": "rank",
-          "role": "3 \u00b7 DOCTORAL DEGREES",
-          "topic": "Doctoral or equivalent attainment",
-          "say": "And on doctoral-level education, Tajikistan leads the world \u2014 5.47%. Switzerland: 3.31. Lebanon: 2.41.",
-          "viz": "pictorial_race"
-        }
-      ]
-    },
-    {
-      "slug": "niger-beats-everyone-on-female-primary-school-age-children-o",
-      "title": "Niger Beats Everyone On Out-Of-School Girls \u2014 By 2.6x",
-      "hook": "You'd guess Pakistan leads on out-of-school girls. It's Niger \u2014 100% to 37.9%.",
-      "closing": "One country has as many out-of-school girls as the world gets. The numbers were public the whole time.",
-      "hashtags": [
-        "data",
-        "facts",
-        "statistics",
-        "shorts",
-        "worldbank"
-      ],
-      "question": "Which number surprised you most?",
-      "segments": [
-        {
-          "source": "offline",
-          "key": "se_adt_1524_lt_fe_zs_trend",
-          "params": {
-            "file": "se_adt_1524_lt_fe_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 YOUTH LITERACY",
-          "topic": "Youth female literacy",
-          "say": "Youth female literacy climbed from 67.1% in 1975 to 92% by 2024 \u2014 a real gain.",
-          "viz": "trend"
-        },
-        {
-          "source": "offline",
-          "key": "se_enr_prim_fm_zs_trend",
-          "params": {
-            "file": "se_enr_prim_fm_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 GENDER PARITY",
-          "topic": "Primary enrollment gender parity",
-          "say": "Primary school gender parity has crept toward even \u2014 0.8 girls per boy enrolled in 1972, now 0.98.",
-          "viz": "comparison"
-        },
-        {
-          "source": "offline",
-          "key": "se_lpv_prim_sd_fe_rank",
-          "params": {
-            "file": "se_lpv_prim_sd_fe_rank.json"
-          },
-          "insight_type": "rank",
-          "role": "3 \u00b7 OUT-OF-SCHOOL",
-          "topic": "Out-of-school primary-age girls",
-          "say": "Yet in Niger, 100% of primary-age girls in the poorest households are out of school. Congo: 64.1%. Chad: 35.7%.",
-          "viz": "pictorial_race"
-        }
-      ]
-    },
-    {
-      "slug": "immunization-is-5-1x-higher-than-in-1980",
-      "title": "Immunization Is 5.1x Higher Than In 1980",
-      "hook": "In 1980, only 16.7% of kids worldwide got their vaccines. Today it's 84.8% \u2014 a 5x jump nobody throws a parade for.",
-      "closing": "That's millions of children alive today who wouldn't have been in 1980. The numbers were public the whole time.",
-      "hashtags": [
-        "data",
-        "facts",
-        "statistics",
-        "shorts",
-        "worldbank"
-      ],
-      "question": "Which number surprised you most?",
-      "segments": [
-        {
-          "source": "offline",
-          "key": "sh_dyn_mort_trend",
-          "params": {
-            "file": "sh_dyn_mort_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 CHILD MORTALITY",
-          "topic": "Under-5 mortality rate",
-          "say": "In 1990, 93.5 of every 1,000 children died before age 5. By 2024: 37.4 \u2014 well under half.",
-          "viz": "trend"
-        },
-        {
-          "source": "offline",
-          "key": "sh_imm_idpt_trend",
-          "params": {
-            "file": "sh_imm_idpt_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 VACCINE COVERAGE",
-          "topic": "DPT immunization coverage",
-          "say": "DPT vaccine coverage: 16.7% in 1980. 84.8% by 2024 \u2014 5.1 times higher.",
-          "viz": "fill_vessel"
-        },
-        {
-          "source": "offline",
-          "key": "sh_med_beds_zs_trend",
-          "params": {
-            "file": "sh_med_beds_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 HOSPITAL BEDS",
-          "topic": "Hospital beds per 1,000 people",
-          "say": "Hospital beds grew too \u2014 2.4 per 1,000 people in 1975, 3.29 by 2021.",
+          "role": "2 \u00b7 THE AGING SHARE",
+          "topic": "Population under 15",
+          "say": "At the same time, the share of the world under 15 shrank from 37.5 percent in 1972 to just 24.4 percent today \u2014 fewer child mouths per capita.",
           "viz": "pictograph"
+        },
+        {
+          "source": "offline",
+          "key": "sp_rur_totl_trend",
+          "params": {
+            "file": "sp_rur_totl_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 THE GROWING COUNTRYSIDE",
+          "topic": "Rural population",
+          "say": "Yet rural population never stopped climbing \u2014 from 2.4 billion people in 1972 to 3.46 billion now.",
+          "scene": {
+            "mechanic": "village-growth",
+            "concept": "a cluster of farmhouses multiplies along a 1972-to-today axis as rural population climbs from 2.4 billion to 3.46 billion, counting up in billions",
+            "code": "x0, x1 = RX0 + 40, RX1 - 40\ngy = 1080\nd.rounded_rectangle([x0 - 20, gy, x1 + 20, gy + 50], radius=18, fill=rgba(ACCENT, 40))\nd.line([x0, gy, x1, gy], fill=rgba(TEXT, 160), width=6)\nd.line([x0, gy - 14, x0, gy + 14], fill=rgba(TEXT, 200), width=5)\nd.line([x1, gy - 14, x1, gy + 14], fill=rgba(TEXT, 200), width=5)\ntext(labels[0], x0, gy + 28, size=32, center=True)\ntext(labels[-1], x1, gy + 28, size=32, center=True)\nprog = clamp(reveal)\ngv = values[0] + (values[-1] - values[0]) * prog\nhouse = subject_image('small rural farmhouse with a red roof')\nmax_houses = 12\ncount = max(1, int(round((gv / values[-1]) * max_houses)))\nhw, hh = 84, 84\ncols = 4\ngap = 16\nrow_top = gy - hh - 20\nfor k in range(count):\n    col = k % cols\n    row = k // cols\n    cx = (x0 + x1) / 2 - (cols * (hw + gap)) / 2 + col * (hw + gap) + hw / 2\n    cy = row_top - row * (hh + gap)\n    if house is not None:\n        paste(house, cx - hw / 2, cy - hh, hw, hh)\n    else:\n        d.rounded_rectangle([cx - hw / 2, cy - hh, cx + hw / 2, cy], radius=12, fill=rgba(ACCENT, 200))\nlabel_txt = str(round(gv / 1e9, 2)) + \"B rural residents\"\ntext(label_txt, (x0 + x1) / 2, row_top - hh * 3 - 90, size=48, color=HIGHLIGHT, center=True)"
+          }
         }
       ]
     },
     {
-      "slug": "access-to-clean-fuels-and-technologies-for-coo-is-2-3x-highe",
-      "title": "Access To Clean Cooking Fuel Is 2.3x Higher Than In 2000",
-      "hook": "In 2000, fewer than 1 in 4 rural households could cook without smoke. By 2023, over half can.",
-      "closing": "Millions of families now breathe easier every time they cook. The numbers were public the whole time.",
+      "slug": "china-beats-everyone-on-capture-fisheries-production-by-2-1x",
+      "title": "China Beats Everyone On Capture fisheries production \u2014 By 2.1x",
+      "hook": "You'd guess India leads on capture fisheries production. It's China \u2014 13.3 million to 6.4 million.",
+      "closing": "The oceans are being fished harder than ever \u2014 but for once, protection is catching up too.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number shocked you more \u2014 China's catch, or how fast protection is expanding?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "en_pop_dnst_trend",
+          "params": {
+            "file": "en_pop_dnst_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE CROWDING",
+          "topic": "Population density",
+          "say": "Squeeze more people onto the same land: global population density nearly doubled, from 36.8 people per square kilometer in 1972 to 62.1 by 2023.",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "er_fsh_capt_mt_rank",
+          "params": {
+            "file": "er_fsh_capt_mt_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 THE CATCH",
+          "topic": "Capture fisheries production",
+          "say": "China lands 13.3 million metric tons of fish a year \u2014 more than double India's 6.4 million. Indonesia is actually second, at 7.8 million; Russia trails at 5.0 million.",
+          "viz": "pictorial_race"
+        },
+        {
+          "source": "offline",
+          "key": "er_mrn_ptmr_zs_trend",
+          "params": {
+            "file": "er_mrn_ptmr_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 THE PROTECTED WATERS",
+          "topic": "Marine protected areas",
+          "say": "As the pressure on oceans grew, so did the response: marine protected areas jumped from 6.8 percent of territorial waters in 2013 to 17.5 percent by 2025 \u2014 more than double.",
+          "scene": {
+            "mechanic": "tide-rising",
+            "concept": "a reef tank fills like a rising tide from 6.8% to 17.5% as marine protected waters expand from 2013 to 2025",
+            "code": "x0, x1 = RX0 + 200, RX1 - 200\ntop, bot = 480, 1100\nd.rounded_rectangle([x0, top, x1, bot], radius=26, outline=rgba(TEXT, 200), width=6, fill=rgba(ACCENT, 25))\nprog = clamp(reveal)\ngv = values[0] + (values[-1] - values[0]) * prog\nceiling = max(values[-1] * 1.15, values[0] * 1.15, 1.0)\nfrac = clamp(gv / ceiling)\nfh = int((bot - top) * frac)\nd.rounded_rectangle([x0 + 8, bot - fh, x1 - 8, bot - 8], radius=20, fill=rgba(HIGHLIGHT, 215))\nsubj = subject_image('coral reef teeming with fish')\nif subj is not None:\n    sw = x1 - x0 - 60\n    sh = min(300, int(sw * subj.height / subj.width))\n    sw = int(sh * subj.width / subj.height)\n    paste(subj, (x0 + x1) / 2 - sw / 2, top - sh - 30, sw, sh)\ntext(labels[0], x0 + 20, bot + 40, size=32, color=TEXT, center=False)\ntext(labels[-1], x1 - 20, bot + 40, size=32, color=TEXT, center=True)\nval_txt = str(round(gv, 1)) + \"% protected\"\ntext(val_txt, (x0 + x1) / 2, bot - fh - 70, size=58, color=HIGHLIGHT, center=True)"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "adolescent-fertility-rate-fell-55-since-1972",
+      "title": "Adolescent fertility rate Fell 55% Since 1972",
+      "hook": "Teen births and suicide have both been quietly falling for decades \u2014 almost nobody talks about it.",
+      "closing": "Two of the grimmest numbers on the books, falling together \u2014 while the world spent more on health than ever.",
       "hashtags": [
         "data",
         "facts",
@@ -16886,91 +16840,43 @@
       "segments": [
         {
           "source": "offline",
-          "key": "eg_cft_accs_ru_zs_trend",
+          "key": "sp_ado_tfrt_trend",
           "params": {
-            "file": "eg_cft_accs_ru_zs_trend.json"
+            "file": "sp_ado_tfrt_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 CLEAN COOKING",
-          "topic": "Clean cooking fuel access, rural",
-          "say": "Rural access to clean cooking fuel: 23.8% in 2000. 55.8% by 2023 \u2014 2.3 times higher.",
+          "role": "1 \u00b7 TEEN BIRTHS",
+          "topic": "Adolescent fertility rate",
+          "say": "In 1972, for every 1,000 teenage girls, 85 gave birth. By 2024 that's down to 38.3 \u2014 a 55 percent drop.",
           "viz": "trend"
         },
         {
           "source": "offline",
-          "key": "eg_elc_accs_ru_zs_trend",
+          "key": "sh_sta_suic_p5_trend",
           "params": {
-            "file": "eg_elc_accs_ru_zs_trend.json"
+            "file": "sh_sta_suic_p5_trend.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 RURAL ELECTRICITY",
-          "topic": "Electricity access, rural",
-          "say": "Rural electricity access moved too \u2014 66.5% in 2000, 84.9% by 2024.",
-          "viz": "fill_vessel"
+          "role": "2 \u00b7 A QUIETER TOLL",
+          "topic": "Suicide mortality rate",
+          "say": "Suicide mortality tells a similar story: 12.5 per 100,000 people in 2000, down to 9.13 by 2021 \u2014 27 percent lower.",
+          "viz": "pictograph"
         },
         {
           "source": "offline",
-          "key": "eg_fec_rnew_zs_trend",
+          "key": "sh_xpd_chex_gd_zs_trend",
           "params": {
-            "file": "eg_fec_rnew_zs_trend.json"
+            "file": "sh_xpd_chex_gd_zs_trend.json"
           },
           "insight_type": "trend",
-          "role": "3 \u00b7 RENEWABLE SHARE",
-          "topic": "Renewable energy's share of consumption",
-          "say": "Renewables' share of energy consumption crept from 16.7% in 1990 to 19.7% by 2020 \u2014 slower, but still climbing.",
-          "viz": "waffle_grid"
-        }
-      ]
-    },
-    {
-      "slug": "labor-force-is-1-6x-higher-than-in-1990",
-      "title": "Global Labor Force Is 1.6x Higher Than In 1990",
-      "hook": "In 1990 the global workforce was 2.3 billion people. Today it's 3.7 billion \u2014 1.4 billion new workers in one generation.",
-      "closing": "1.4 billion more people are earning a living than a generation ago. The numbers were public the whole time.",
-      "hashtags": [
-        "data",
-        "facts",
-        "statistics",
-        "shorts",
-        "worldbank"
-      ],
-      "question": "Which number surprised you most?",
-      "segments": [
-        {
-          "source": "offline",
-          "key": "ms_mil_totl_tf_zs_trend",
-          "params": {
-            "file": "ms_mil_totl_tf_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 ARMED FORCES",
-          "topic": "Armed forces, share of labor force",
-          "say": "Armed forces personnel shrank as a share of the labor force \u2014 1.11% in 1990, down to 0.79% by 2020.",
-          "viz": "trend"
-        },
-        {
-          "source": "offline",
-          "key": "sl_tlf_totl_in_trend",
-          "params": {
-            "file": "sl_tlf_totl_in_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 THE WORKFORCE",
-          "topic": "Global labor force, total",
-          "say": "The global labor force itself: 2.3 billion people in 1990. 3.7 billion by 2025.",
-          "viz": "fill_vessel"
-        },
-        {
-          "source": "offline",
-          "key": "sl_uem_totl_ne_zs_trend",
-          "params": {
-            "file": "sl_uem_totl_ne_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 UNEMPLOYMENT",
-          "topic": "Unemployment rate",
-          "say": "Unemployment barely shifted \u2014 4.35% in 1994, 5.08% by 2022, national estimates.",
-          "viz": "waffle_grid"
+          "role": "3 \u00b7 THE INVESTMENT BEHIND IT",
+          "topic": "Health spending",
+          "say": "Meanwhile, health spending climbed from 8.6 percent of GDP in 2000 to 10.1 percent by 2023 \u2014 the world investing more in health exactly as these numbers improved.",
+          "scene": {
+            "mechanic": "spend-gauge",
+            "concept": "a medical cross fills like a thermometer as health spending climbs from 8.6% to 10.1% of GDP between 2000 and 2023",
+            "code": "x0, x1 = RX0 + 200, RX1 - 200\ntop, bot = 480, 1100\nd.rounded_rectangle([x0, top, x1, bot], radius=26, outline=rgba(TEXT, 200), width=6, fill=rgba(ACCENT, 25))\nprog = clamp(reveal)\ngv = values[0] + (values[-1] - values[0]) * prog\nceiling = max(values[-1] * 1.15, values[0] * 1.15, 1.0)\nfrac = clamp(gv / ceiling)\nfh = int((bot - top) * frac)\nd.rounded_rectangle([x0 + 8, bot - fh, x1 - 8, bot - 8], radius=20, fill=rgba(HIGHLIGHT, 215))\nsubj = subject_image('red medical cross hospital sign')\nif subj is not None:\n    sw = x1 - x0 - 100\n    sh = min(280, int(sw * subj.height / subj.width))\n    sw = int(sh * subj.width / subj.height)\n    paste(subj, (x0 + x1) / 2 - sw / 2, top - sh - 30, sw, sh)\ntext(labels[0], x0 + 20, bot + 40, size=32, color=TEXT, center=False)\ntext(labels[-1], x1 - 20, bot + 40, size=32, color=TEXT, center=True)\nval_txt = str(round(gv, 1)) + \"% of GDP\"\ntext(val_txt, (x0 + x1) / 2, bot - fh - 70, size=58, color=HIGHLIGHT, center=True)"
+          }
         }
       ]
     }

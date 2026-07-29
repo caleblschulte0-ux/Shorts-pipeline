@@ -1,0 +1,48 @@
+{
+  "key": "en_pop_dnst_trend",
+  "title": "Population density",
+  "unit": "people per sq. km of land area",
+  "geography": "World",
+  "time_coverage": "1972-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Population density",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EN.POP.DNST",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 36.8,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 44.1,
+      "period": "1982"
+    },
+    {
+      "label": "1992",
+      "value": 43.5,
+      "period": "1992"
+    },
+    {
+      "label": "2003",
+      "value": 50.4,
+      "period": "2003"
+    },
+    {
+      "label": "2013",
+      "value": 55.9,
+      "period": "2013"
+    },
+    {
+      "label": "2023",
+      "value": 62.1,
+      "period": "2023"
+    }
+  ]
+}

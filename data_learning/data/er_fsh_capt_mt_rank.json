@@ -1,0 +1,38 @@
+{
+  "key": "er_fsh_capt_mt_rank",
+  "title": "Capture fisheries production",
+  "unit": "metric tons",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Capture fisheries production",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/ER.FSH.CAPT.MT",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "China",
+      "value": 13262322
+    },
+    {
+      "label": "Indonesia",
+      "value": 7817070
+    },
+    {
+      "label": "India",
+      "value": 6356492
+    },
+    {
+      "label": "Peru",
+      "value": 5764701
+    },
+    {
+      "label": "Russian Federation",
+      "value": 5018710
+    }
+  ]
+}
