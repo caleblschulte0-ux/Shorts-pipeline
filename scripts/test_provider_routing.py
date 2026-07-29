@@ -22,6 +22,20 @@ def main():
     assert not recs["openverse_images"].unit_cost  # free pool
     print("ok  1. records cover every real provider")
 
+    # 1b. the env var each provider's HEALTH depends on must be the same name
+    # the provider actually reads. A mismatch marks a live provider unhealthy
+    # and sinks it in the route exactly when it is available (this caught
+    # APIFY_API_TOKEN vs the real APIFY_TOKEN).
+    media_src = (REPO / "data_learning" / "media.py").read_text()
+    stock_src = (REPO / "data_learning" / "stock.py").read_text()
+    for pid, (_, _, _, _, env) in pr._PROVIDERS.items():
+        if env is None:
+            continue
+        assert env in media_src or env in stock_src, (
+            f"{pid}: routing gates health on {env!r}, which no provider "
+            f"module reads — health check is wrong")
+    print("ok  1b. health env names match what the providers really read")
+
     # keyless providers are unhealthy with zero quota
     saved = {k: os.environ.pop(k, None) for k in
              ("APIFY_API_TOKEN", "PEXELS_API_KEY", "PIXABAY_API_KEY")}

@@ -30,8 +30,11 @@ if str(REPO / "experiments") not in sys.path:
 
 # real providers -> (family, capabilities, unit_cost, latency_s, needs_env)
 _PROVIDERS: dict[str, tuple[str, frozenset, float, float, str | None]] = {
+    # env names MUST match what each provider actually reads in media.py /
+    # stock.py — a wrong name here silently marks a live provider unhealthy
+    # and sinks it in the route (test_provider_routing pins this).
     "google_images": ("apify", frozenset({"image"}), 0.02, 12.0,
-                      "APIFY_API_TOKEN"),
+                      "APIFY_TOKEN"),
     "openverse_images": ("openverse", frozenset({"image"}), 0.0, 4.0, None),
     "commons_images": ("wikimedia", frozenset({"image"}), 0.0, 4.0, None),
     "nasa": ("nasa", frozenset({"video", "image"}), 0.0, 8.0, None),

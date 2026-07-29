@@ -22,6 +22,10 @@ on:
         default: 'verify'
         type: choice
         options: [verify, canary, schedule, all, preview, pro, batch]
+      batch_max:
+        description: 'batch mode: how many stories to render (default 2)'
+        required: false
+        default: '1'
       canary_slug:
         description: 'slug to post in canary mode'
         required: false
@@ -327,7 +331,7 @@ jobs:
               # approval, kill switch, and CURIOSITY_PUBLISH_ENABLED=1.
               python scripts/batch_produce.py --plan
               python scripts/batch_produce.py --run \
-                --max-stories "${BATCH_MAX:-2}" \
+                --max-stories "${{ inputs.batch_max || '1' }}" \
                 --budget-seconds "${BATCH_BUDGET:-18000}" \
                 || echo "::warning::batch ended early — see batch_run_report"
               python scripts/pipeline_health.py || true ;;
@@ -365,6 +369,21 @@ jobs:
         if: always() && inputs.mode != 'verify'
         continue-on-error: true
         run: python3 scripts/pipeline_health.py
+
+      - name: Upload batch video + package
+        if: always() && inputs.mode == 'batch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-batch-video
+          path: |
+            output/curiosity_*.mp4
+            output/curiosity_*_720p.mp4
+            output/curiosity_*.jpg
+            output/curiosity_*.srt
+            output/curiosity_*.meta.json
+            output/curiosity_*_pkg/**
+          retention-days: 90
+          if-no-files-found: warn
 
       - name: Upload status + batch reports
         if: always() && inputs.mode != 'verify'
