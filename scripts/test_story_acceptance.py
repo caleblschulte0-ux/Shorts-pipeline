@@ -560,6 +560,51 @@ def main() -> int:  # noqa: C901
     check("visual_beats gated on vision_ok, not sheet existence (#1)",
           "if vision_ok else []" in sa_src)
 
+    # ---- public-title quality floor ------------------------------------
+    # 2026-07-29 shipped "WWWW", "w max" and "ron shaking ahh" as real
+    # YouTube titles: both author brains were down, and safe_title passed the
+    # clipper's hype through because it was SAFE. Safety is not quality.
+    from third_capture import author as _au
+    check("pure hype title is low-signal", _au.title_is_low_signal("WWWW"))
+    check("hype + one word is low-signal", _au.title_is_low_signal("w max"))
+    check("bare noun title is low-signal", _au.title_is_low_signal("SUBURB"))
+    check("short tease is low-signal", _au.title_is_low_signal("Is he back?"))
+    check("informative title is NOT low-signal",
+          not _au.title_is_low_signal(
+              "Kai Cenat Gives Out The First Streamer University Diploma"))
+    check("ugly but informative title survives",
+          not _au.title_is_low_signal(
+              "jasons camera ,an gets pass code to his room"))
+    # the floor replaces noise using ONLY what was actually said
+    _t = _au.fallback_title("stableronaldo", "WWWW",
+                            "yo what the hell is that bro he actually did it")
+    check("hype title replaced from transcript",
+          not _au.title_is_low_signal(_t) and "WWWW" not in _t)
+    check("replacement quotes the transcript, invents nothing",
+          all(w.lower() in "yo what the hell is that bro he actually did it "
+                           "stableronaldo:"
+              for w in _t.split()))
+    check("replacement names the streamer", "Stableronaldo" in _t)
+    # a good raw title is left alone
+    _good = "Kai Cenat Gives Out The First Streamer University Diploma"
+    check("good raw title passes through untouched",
+          _au.fallback_title("kaicenat", _good, "anything") == _good)
+    # no transcript to quote -> neutral channel voice, never raw hype
+    _n = _au.fallback_title("silky", "SUBURB", "uh um like yeah")
+    check("no usable transcript -> neutral title, not hype",
+          not _au.title_is_low_signal(_n) and "SUBURB" not in _n)
+    check("every fallback title is within YouTube's 100 chars",
+          all(len(_au.fallback_title(s, r, t)) <= 100 for s, r, t in [
+              ("x", "W", "a" * 400), ("y", "z" * 300, ""),
+              ("streamer", "w", " ".join(["word"] * 200))]))
+    # authoring failure must be LOUD (it silently degraded on 07-29)
+    import inspect as _i
+    check("total authoring failure logs a warning",
+          "AUTHORING FAILED" in _i.getsource(_au.author_package))
+    check("run_third routes the raw title through the quality floor",
+          "author.fallback_title" in (REPO / "scripts"
+                                      / "run_third.py").read_text())
+
     print()
     if FAILS:
         print(f"ACCEPTANCE FAILED ({len(FAILS)}): {FAILS}")
