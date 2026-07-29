@@ -327,6 +327,25 @@ def main() -> int:
             posted_this_run += 1
             continue
 
+        # HARD STOPS above every flag (PR#173 adoptions): the kill-switch file
+        # halts all uploads unconditionally, and a real upload additionally
+        # requires an owner approval BOUND to this exact package manifest — a
+        # re-render or artifact swap makes any old approval inert. Neither is
+        # bypassed by --force or CURIOSITY_PUBLISH_ENABLED.
+        import approve_publish
+        killed = approve_publish.kill_switch_engaged()
+        if killed:
+            print(f"[{slug}] {killed}", file=sys.stderr)
+            results.append({"slug": slug, "ok": False, "error": killed})
+            break                               # no slug uploads past the switch
+        approved, approval_why = approve_publish.check_approval(out)
+        if not approved:
+            print(f"[{slug}] HELD: {approval_why}", file=sys.stderr)
+            results.append({"slug": slug, "ok": False,
+                            "error": "approval: " + approval_why})
+            continue
+        print(f"[{slug}] owner approval verified ({approval_why})")
+
         publish_at = None
         if args.publish_in_hours > 0:
             when = (datetime.now(timezone.utc)
