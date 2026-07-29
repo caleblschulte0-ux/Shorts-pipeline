@@ -1,0 +1,30 @@
+{
+  "schema": "chatgpt-exchange-request/v1",
+  "request_id": "image-20260730-demo-01",
+  "date": "2026-07-30",
+  "status": "open",
+  "purpose": "BRIDGE VERIFICATION — prove the files.list -> file_id -> Drive upload_file(file_uri) path end to end, then write the verified pointer back to git. No production consumer yet.",
+  "response_path": "exchange/responses/image-20260730-demo-01.json",
+  "branch": "main",
+  "image": {
+    "prompt": "A single glowing orange funnel on a pure black background, minimal line-art style, thick clean strokes, centered, no text anywhere in the image.",
+    "style": "minimal line art, orange on black, high contrast",
+    "width": 1024,
+    "height": 1024,
+    "format": "png"
+  },
+  "steps": [
+    "read this file from the repo to get the image concept",
+    "generate the image with the image tool",
+    "call files.list and read the generated image's real file_id",
+    "pass that exact file_id as file_uri to Google_Drive.upload_file — NOT /mnt/data, NOT a sandbox URL, NOT a filename",
+    "read the file back from Drive and confirm its file id and link",
+    "write exchange/responses/image-20260730-demo-01.json per the schema in exchange/README.md and commit it to main"
+  ],
+  "required_response_fields": [
+    "drive.file_id", "drive.link", "drive.download_url", "drive.public",
+    "image.sha256", "image.bytes", "image.format",
+    "verified.read_back"
+  ],
+  "notes": "image.sha256 must be the hash of the bytes actually uploaded — the consumer recomputes it after download and rejects a mismatch. If any step fails, write the response with status unsupported/failed and name the blocking step; do NOT fabricate a pointer."
+}
