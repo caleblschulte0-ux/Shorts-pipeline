@@ -74,7 +74,10 @@ def test_loop_stops_immediately_on_ship():
         calls.append(env)
         return _v("ship", 82)
 
-    out = rl.repair("x", max_iters=2, render_fn=fake)
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        out = rl.repair("x", max_iters=2, render_fn=fake,
+                        run_root=Path(td) / "runs", repo=Path(td))
     assert out["shipped"] is True
     assert out["stopped"] == "shipped"
     assert len(calls) == 1                       # no wasted re-renders
@@ -95,8 +98,11 @@ def test_loop_keeps_best_and_is_bounded():
         return next(steps)
 
     repairs = []
-    out = rl.repair("x", max_iters=2, render_fn=fake,
-                    scene_repair_fn=lambda s, v: repairs.append(s))
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        out = rl.repair("x", max_iters=2, render_fn=fake,
+                        scene_repair_fn=lambda s, v: repairs.append(s),
+                        run_root=Path(td) / "runs", repo=Path(td))
     assert len(out["attempts"]) == 3             # baseline + 2 repairs, bounded
     assert len(repairs) == 2                     # each repair was scene-addressed
     assert out["best"]["score"] == 68            # kept the best, not the last
@@ -114,8 +120,11 @@ def test_loop_recovers_to_ship_and_keeps_it():
                               "temporal_craft": 3})
 
     repairs = []
-    out = rl.repair("x", max_iters=2, render_fn=fake,
-                    scene_repair_fn=lambda s, v: repairs.append(s))
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        out = rl.repair("x", max_iters=2, render_fn=fake,
+                        scene_repair_fn=lambda s, v: repairs.append(s),
+                        run_root=Path(td) / "runs", repo=Path(td))
     assert out["shipped"] is True
     assert out["best"]["score"] == 74
     assert len(out["attempts"]) == 2             # stopped as soon as it shipped

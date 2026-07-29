@@ -172,6 +172,8 @@ jobs:
           fi
           [ -z "$SLUGS" ] && SLUGS="grocery-squeeze"
           [ -z "$MODE" ] && MODE="repair"
+          # export for later steps (the publish step's verdict-log guard)
+          echo "SLUGS=$SLUGS" >> "$GITHUB_ENV"
           # "benchmark" = the FULL 6-archetype suite as COMPLETE videos
           # (hook + narration + captions + all scenes + ending + audio + judge).
           if [ "$SLUGS" = "benchmark" ]; then
@@ -269,7 +271,10 @@ jobs:
           # verdict log, append this run's compact record, keep it in the commit.
           git fetch -q origin preview-renders 2>/dev/null || true
           git show origin/preview-renders:verdicts-log.jsonl > "$tmp/verdicts-log.jsonl" 2>/dev/null || true
-          for j in output/*.showrunner.json; do
+          # Only THIS run's slugs are logged — stray verdict files (e.g. test
+          # artifacts) must never pollute the durable verdict history.
+          for S in $SLUGS; do
+            j="output/story_${S}.showrunner.json"
             [ -f "$j" ] || continue
             python3 scripts/append_verdict_log.py "$j" >> "$tmp/verdicts-log.jsonl" || true
           done
