@@ -6,15 +6,17 @@ clipper's raw hype as their public titles ("WWWW", "w max") because both
 author brains were down. They were scheduled, not yet public, so the titles
 were still fixable in place.
 
-Each video's new title comes from author.fallback_title() using the SAME
-transcript the pipeline recorded in the posted log's ledger, so a retitle
-can only ever quote what was actually said — it never invents a claim.
+A new title comes from the real author brain, given the clip's transcript
+(re-transcribed from source with --retranscribe when the ledger is gone).
+If the brain is unavailable it falls to author.fallback_title(), which
+makes no specific claim rather than guessing at one.
 
-    python scripts/retitle_videos.py --channel third --dry-run
+    python scripts/retitle_videos.py --channel third            # dry run
     python scripts/retitle_videos.py --channel third --apply
 
 Without --apply nothing is written: it prints the old -> new mapping so a
-human can look before anything changes on the channel.
+human can look before anything changes on the channel. On --apply it also
+records the new titles in the posted log, which must be committed.
 """
 from __future__ import annotations
 
@@ -29,6 +31,11 @@ sys.path.insert(0, str(ROOT))
 LOGS = {"third": "state/third_posted_log.json",
         "explainer": "state/explainer_posted_log.json",
         "daily": "state/posted_log.json"}
+
+
+def _now() -> str:
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 def _vid_id(url: str) -> str:
@@ -161,14 +168,49 @@ def main() -> int:
             svc.videos().update(
                 part="snippet", body={"id": r["vid"], "snippet": snip}
             ).execute()
+            r["written"] = True
+            r["at"] = _now()
             print(f"RETITLED {r['vid']} -> {r['new']!r}")
         except Exception as e:  # noqa: BLE001
             print(f"[retitle] failed for {r['vid']}: {str(e)[:160]}",
                   file=sys.stderr)
             print(f"MANUAL https://studio.youtube.com/video/{r['vid']}/edit")
             bad += 1
+            r["written"] = False
+    _sync_log(a.channel, [r for r in rows if r.get("written")])
     print(f"[retitle] done — {len(rows) - bad} updated, {bad} need a human")
     return 0
+
+
+def _sync_log(channel: str, rows: list[dict]) -> None:
+    """Record the new titles in the posted log.
+
+    Without this the log keeps the hype title while YouTube shows the new
+    one: a later run would find the entry low-signal and retitle it AGAIN
+    (churning a live title), and the analytics loop would correlate
+    retention against a title nobody ever saw. `title_original` keeps what
+    actually shipped first, so the record stays honest about the repair.
+
+    Only the title fields are touched — the log is append-only dedupe
+    state and no entry is ever removed or rekeyed."""
+    if not rows:
+        return
+    p = ROOT / LOGS[channel]
+    d = json.loads(p.read_text())
+    n = 0
+    for r in rows:
+        e = d["posted"].get(r["slug"])
+        if not e or e.get("title") == r["new"]:
+            continue
+        e.setdefault("title_original", e.get("title", ""))
+        e["title"] = r["new"]
+        e["retitled_at"] = r.get("at", "")
+        n += 1
+    # indent=2 + default ensure_ascii, matching how the pipeline writes it —
+    # anything else reformats the whole file and churns the diff.
+    p.write_text(json.dumps(d, indent=2) + "\n")
+    print(f"[retitle] posted log updated for {n} entr(ies) — commit it so "
+          f"the next run does not retitle them again")
 
 
 if __name__ == "__main__":
