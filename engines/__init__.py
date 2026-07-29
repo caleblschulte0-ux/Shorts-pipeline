@@ -176,7 +176,9 @@ REGISTRY: dict[str, dict] = {
         "status": "active",
         "problem": "Animated multi-series line-chart race (graphfather "
                    "style): eased timeline, dynamic y-camera zoom, tip dots "
-                   "+ value labels, live leaderboard, climbing year counter, "
+                   "+ de-cluttered value labels, PER-SERIES ICONS (flags / "
+                   "brand marks via funnel.series_icons, initials-badge "
+                   "fallback), live leaderboard, climbing year counter, "
                    "winner tag on the end-hold, optional hook overlay. "
                    "Renders a SILENT portrait mp4 — callers mux their own "
                    "audio. First consumer: trending channel's graph_race "
@@ -190,8 +192,13 @@ REGISTRY: dict[str, dict] = {
         "cpu_ok": True,
         "est_runtime": "~30-60 s per 12 s clip (matplotlib Agg frames)",
         "deps": ["matplotlib", "ffmpeg on PATH"],
+        "gates": "assess(spec) scores DATA DRAMA (peak magnitude + growth "
+                 "+ lead changes). Callers should refuse a spec it fails: "
+                 "small, slow, flat numbers make an unwatchable chart "
+                 "(MIN_PEAK=1000, MIN_GROWTH=3x, 1.6x with a crossover).",
         "fallback": "none — a data video without the chart is nothing; "
-                    "callers should fail the package, not degrade",
+                    "callers should fail the package, not degrade. Icons "
+                    "DO degrade: a failed lookup draws an initials badge.",
         "consumers": ["make_graph_race.py (trending daily)"],
         "failure_modes": ["malformed spec (missing years/series) raises in "
                           "render; maybe_chart_race returns None"],

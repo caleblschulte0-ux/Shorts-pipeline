@@ -416,6 +416,19 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     # Pre-render illustration gate. Quarantine (don't render) a package
     # that would ship off-topic stock; the batch continues without it.
     reason = None if _is_text_card else _illustration_quarantine(pkg)
+    # DATA DRAMA gate (graph_race only): bigger is better. Small, slow,
+    # flat numbers make a chart nobody watches, so a weak dataset never
+    # gets rendered — the batch continues without it and the report says
+    # exactly why, so the next authoring pass can pick better data.
+    if reason is None and pkg.get("format") == "graph_race":
+        try:
+            from engines import chart_race
+            verdict = chart_race.assess(pkg)
+            if not verdict["ok"]:
+                reason = "weak data: " + "; ".join(verdict["reasons"])
+        except Exception as e:  # noqa: BLE001 — never fail a run on the gate
+            print(f"  [drama gate skipped] {type(e).__name__}: {e}",
+                  flush=True)
     if reason is not None:
         result["error"] = f"quarantined: {reason}"
         result["quarantined"] = True
