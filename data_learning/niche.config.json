@@ -13707,6 +13707,150 @@
       "question": "Would you rather live on Jupiter's blink-of-an-eye day, or Venus's endless one?"
     },
     {
+      "slug": "carbon-climb",
+      "title": "The Line That Only Goes Up",
+      "hook": "The air itself is changing, and we have the receipt.",
+      "closing": "Every year, the line climbs higher. That's the story in the data.",
+      "question": "Did you realize it was accelerating? Tell me below.",
+      "keep_order": true,
+      "hashtags": [
+        "climate",
+        "co2",
+        "noaa",
+        "science",
+        "data",
+        "emissions",
+        "carbon",
+        "atmosphere",
+        "climatechange",
+        "earth",
+        "environment",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "co2_mauna_loa_annual",
+          "params": {
+            "file": "co2_mauna_loa_annual.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE CLIMB",
+          "topic": "atmospheric CO2",
+          "say": "In 1960 the air held about 317 parts of CO2 per million. By 2025 it's 427 \u2014 a line that has only ever climbed.",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "co2_decadal_rise",
+          "params": {
+            "file": "co2_decadal_rise.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE ACCELERATION",
+          "topic": "CO2 added each decade",
+          "say": "And it's speeding up. The 1960s added under 9 parts per million. The 2010s added over 24 \u2014 nearly triple the pace.",
+          "viz": "pictograph"
+        }
+      ]
+    },
+    {
+      "slug": "population-giants",
+      "title": "Half the Planet, Eight Countries",
+      "hook": "Two countries hold more than a third of all humanity.",
+      "closing": "Eight countries, over half the planet. Wild, right?",
+      "question": "Which of these surprised you most? Comment below.",
+      "hashtags": [
+        "population",
+        "world",
+        "geography",
+        "un",
+        "data",
+        "countries",
+        "demographics",
+        "china",
+        "india",
+        "earth",
+        "didyouknow",
+        "facts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "population_top_countries",
+          "params": {
+            "file": "population_top_countries.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 \u00b7 THE GIANTS",
+          "topic": "most populous countries",
+          "say": "China and India each pack over 1.4 billion people. The United States, in third, isn't even 340 million.",
+          "viz": "pictorial_race"
+        },
+        {
+          "source": "offline",
+          "key": "population_world_share",
+          "params": {
+            "file": "population_world_share.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 THE SHARE",
+          "topic": "share of world population",
+          "say": "Put it another way: China and India alone are more than 35 percent of everyone alive. The other 190-plus countries split the rest.",
+          "viz": "waffle_grid"
+        }
+      ]
+    },
+    {
+      "slug": "world-power-mix",
+      "title": "How the World Keeps Its Lights On",
+      "hook": "Here's how the entire planet made its electricity last year.",
+      "closing": "The mix is tipping \u2014 slowly, then all at once.",
+      "question": "Is your country ahead or behind on this? Let me know.",
+      "hashtags": [
+        "energy",
+        "electricity",
+        "climate",
+        "renewables",
+        "solar",
+        "wind",
+        "coal",
+        "data",
+        "ember",
+        "power",
+        "science",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "electricity_mix_2024",
+          "params": {
+            "file": "electricity_mix_2024.json"
+          },
+          "insight_type": "share",
+          "role": "1 \u00b7 THE MIX",
+          "topic": "world electricity by source",
+          "say": "Coal still leads at 34 percent, gas adds 22. But hydro, nuclear, wind and solar are closing in fast.",
+          "viz": "waffle_grid"
+        },
+        {
+          "source": "offline",
+          "key": "electricity_clean_vs_fossil_2024",
+          "params": {
+            "file": "electricity_clean_vs_fossil_2024.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 THE TIPPING POINT",
+          "topic": "fossil vs clean power",
+          "say": "In 2024 fossil fuels fell to 59 percent of the world's power \u2014 under 60 for the first time since the 1940s.",
+          "viz": "pictorial_race",
+          "ascending": false
+        }
+      ]
+    },
+    {
       "slug": "moons-in-our-solar-system",
       "title": "Moons In Our Solar System",
       "hook": "Have you ever wondered how many moons are orbiting the planets in our solar system?",
@@ -16327,8 +16471,8 @@
     {
       "slug": "caffeine-content-revealed",
       "title": "Caffeine Content Revealed",
-      "hook": "What's really in your morning coffee?",
-      "closing": "Be aware of your caffeine intake to avoid the crash.",
+      "hook": "60 milligrams in your coffee. 200 in one energy drink can. Here's where your daily buzz really comes from.",
+      "closing": "Add it up across a day and 400 milligrams sneaks up fast \u2014 that's the line health experts say not to cross.",
       "hashtags": [
         "coffee",
         "caffeine",
@@ -16454,7 +16598,7 @@
       "slug": "gigantic-fruits-and-veggies",
       "title": "Gigantic Fruits And Veggies",
       "hook": "Imagine a pumpkin so big it needs a forklift to move",
-      "closing": "The world's largest fruits and veggies will blow your mind",
+      "closing": "From a 2,600-pound pumpkin to a 19-foot carrot \u2014 nature's records keep getting stranger every year.",
       "hashtags": [
         "gardening",
         "fruitlover",
@@ -16569,6 +16713,174 @@
         }
       ],
       "question": "What's the biggest fruit or veggie you've ever grown or seen?"
+    },
+    {
+      "slug": "tajikistan-beats-everyone-on-educational-attainment-by-1-9x",
+      "title": "Tajikistan Beats Everyone On Educational attainment \u2014 By 1.9x",
+      "hook": "You'd guess Luxembourg leads on educational attainment. It's Tajikistan \u2014 5.47 to 2.84.",
+      "closing": "Tajikistan beats every one of them \u2014 Switzerland, Luxembourg, Turkiye, Lebanon \u2014 on this measure. Small country, biggest number.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which of these three numbers surprised you the most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "en_urb_lcty_ur_zs_trend",
+          "params": {
+            "file": "en_urb_lcty_ur_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 CITY POPULATION",
+          "topic": "Population in the largest city",
+          "say": "Around the world, about one in six city-dwellers lives in their country's single biggest city \u2014 18.2% in 1972, and 53 years later it's basically unchanged at 16.2%.",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "it_net_user_fe_zs_trend",
+          "params": {
+            "file": "it_net_user_fe_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 WOMEN ONLINE",
+          "topic": "Individuals using the Internet, female",
+          "say": "Meanwhile the on-ramp to the internet opened fast for women worldwide: 51.8% online in 2019, 68.2% by 2024 \u2014 nearly 17 points in five years.",
+          "scene": {
+            "mechanic": "signal-bloom",
+            "concept": "A grid of phone icons lights up as the share of women online climbs year by year toward today's 68%.",
+            "code": "icon = subject_image('smartphone')\nmidx = (RX0 + RX1) // 2\nidxf = reveal * (n - 1)\nlo = int(clamp(idxf, 0, n - 1))\nhi = min(lo + 1, n - 1)\nt = idxf - lo\nval = lerp(values[lo], values[hi], t)\nyear = labels[hi] if t > 0.5 else labels[lo]\ncols = 10\nrows = 8\ntotal = cols * rows\ngx0, gy0 = RX0 + 10, RTOP + 260\ngx1, gy1 = RX1 - 10, RBOT - 20\ncw = (gx1 - gx0) / cols\nrh = (gy1 - gy0) / rows\niw = cw * 0.7\nih = rh * 0.7\nlit = int(round(total * clamp(val / 100.0)))\nfor i in range(total):\n    col = i % cols\n    row = i // cols\n    x = gx0 + col * cw + (cw - iw) / 2\n    y = gy0 + row * rh + (rh - ih) / 2\n    if icon is not None:\n        paste(icon, x, y, iw, ih)\n    else:\n        d.rounded_rectangle([x, y, x + iw, y + ih], radius=8, fill=rgba(TEXT, 70))\n    if i >= lit:\n        d.rounded_rectangle([x, y, x + iw, y + ih], radius=8, fill=rgba((6, 8, 14), 195))\n    else:\n        d.rounded_rectangle([x - 3, y - 3, x + iw + 3, y + ih + 3], radius=10,\n                             outline=rgba(HIGHLIGHT, 220), width=3)\ntext(f\"{val:.1f}%\", midx, RTOP + 40, size=88, color=HIGHLIGHT, center=True)\ntext(year + ' \u00b7 WOMEN ONLINE', midx, RTOP + 150, size=38, color=TEXT, center=True)\n"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "se_ter_cuat_do_zs_rank",
+          "params": {
+            "file": "se_ter_cuat_do_zs_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 DOCTORATE RATE",
+          "topic": "Educational attainment, Doctoral or equi",
+          "say": "So who actually tops the world on doctoral attainment? Tajikistan, at 5.47 \u2014 beating Switzerland's 3.31, Luxembourg's 2.84, Turkiye's 2.74, and Lebanon's 2.41.",
+          "viz": "pictorial_race"
+        }
+      ]
+    },
+    {
+      "slug": "congo-dem-rep-beats-everyone-on-male-primary-school-age-chil",
+      "title": "Congo, Dem. Rep. Beats Everyone On Male primary school age children out-of-school \u2014 By 2.2x",
+      "hook": "You'd guess Mali leads on male primary school age children out-of-school. It's Congo, Dem. Rep. \u2014 62.3 to 28.3.",
+      "closing": "Congo, Dem. Rep. doesn't just top this list \u2014 it more than doubles the country in second place.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Would you have guessed a boys'-only school gap this big?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "se_adt_1524_lt_fe_zs_trend",
+          "params": {
+            "file": "se_adt_1524_lt_fe_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 YOUTH LITERACY",
+          "topic": "Literacy rate, youth female",
+          "say": "Global female youth literacy climbed from 67.1% in 1975 to 92% today \u2014 girls now read at nearly the same rate as boys almost everywhere.",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "se_enr_prim_fm_zs_trend",
+          "params": {
+            "file": "se_enr_prim_fm_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 SCHOOL PARITY",
+          "topic": "School enrollment, primary (gross), gend",
+          "say": "And primary-school gender parity followed: for every 100 boys enrolled in 1972 there were 80 girls; by 2020 it's 98 \u2014 almost dead even.",
+          "scene": {
+            "mechanic": "parity-scale",
+            "concept": "Stacks of boy and girl figures rise on a beam that levels out as school enrollment parity climbs from 0.80 to 0.98.",
+            "code": "boy = subject_image('boy student cutout')\ngirl = subject_image('girl student cutout')\nmidx = (RX0 + RX1) // 2\nidxf = reveal * (n - 1)\nlo = int(clamp(idxf, 0, n - 1))\nhi = min(lo + 1, n - 1)\nt = idxf - lo\ngpi = lerp(values[lo], values[hi], t)\nyear = labels[hi] if t > 0.5 else labels[lo]\ncols_ref = 10\ncell = 82\nbase_y = RBOT - 40\nboy_x0 = RX0 + 50\ngirl_x0 = midx + 40\ncount_girls = int(round(cols_ref * clamp(gpi, 0.0, 1.2)))\nfor i in range(cols_ref):\n    x, y = boy_x0, base_y - (i + 1) * cell\n    if boy is not None:\n        paste(boy, x, y, cell - 12, cell - 6)\n    else:\n        d.rounded_rectangle([x, y, x + cell - 12, y + cell - 6], radius=10, fill=rgba(ACCENT, 220))\nfor i in range(count_girls):\n    x, y = girl_x0, base_y - (i + 1) * cell\n    if girl is not None:\n        paste(girl, x, y, cell - 12, cell - 6)\n    else:\n        d.rounded_rectangle([x, y, x + cell - 12, y + cell - 6], radius=10, fill=rgba(HIGHLIGHT, 220))\nbeam_left_y = base_y - cols_ref * cell\nbeam_right_y = base_y - count_girls * cell\nd.line([boy_x0 + (cell - 12) / 2, beam_left_y, girl_x0 + (cell - 12) / 2, beam_right_y],\n       fill=rgba(WARN, 235), width=10)\nd.ellipse([midx - 14, min(beam_left_y, beam_right_y) - 14, midx + 14, min(beam_left_y, beam_right_y) + 14],\n          fill=rgba(TEXT, 200))\ntext(f\"{gpi:.2f} GPI\", midx, RTOP + 40, size=76, color=HIGHLIGHT, center=True)\ntext(year, midx, RTOP + 130, size=38, color=TEXT, center=True)\ntext('BOYS', boy_x0 + (cell - 12) / 2, base_y + 16, size=30, color=ACCENT, center=True)\ntext('GIRLS', girl_x0 + (cell - 12) / 2, base_y + 16, size=30, color=HIGHLIGHT, center=True)\n"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "se_lpv_prim_sd_ma_rank",
+          "params": {
+            "file": "se_lpv_prim_sd_ma_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 BOYS OUT OF SCHOOL",
+          "topic": "Male primary school age children out-of-",
+          "say": "Yet one country still leaves 62.3% of its primary-age BOYS out of school entirely: Congo, Dem. Rep. Niger is at 28.7%. Mali, 28.3%.",
+          "viz": "pictorial_race"
+        }
+      ]
+    },
+    {
+      "slug": "immunization-is-5-1x-higher-than-in-1980",
+      "title": "Immunization Is 5.1x Higher Than In 1980",
+      "hook": "In 1980 it was 16.7. Now it's 84.8, and almost nobody noticed.",
+      "closing": "More kids protected than ever \u2014 on almost the same hospital capacity their grandparents had. That's the gap nobody's talking about.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Did you know immunization jumped 5x while hospital beds barely moved?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sh_dyn_mort_trend",
+          "params": {
+            "file": "sh_dyn_mort_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 CHILD MORTALITY",
+          "topic": "Mortality rate, under-5",
+          "say": "Meanwhile child mortality collapsed \u2014 93.5 deaths per 1,000 births in 1990, down to 37.4 by 2024, less than half.",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "sh_imm_idpt_trend",
+          "params": {
+            "file": "sh_imm_idpt_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 DPT IMMUNIZATION",
+          "topic": "Immunization, DPT",
+          "say": "In 1980 just 16.7% of one-year-olds got their DPT shots. By 2015 that hit 84.8% and held through 2024 \u2014 5.1 times higher, one generation later.",
+          "scene": {
+            "mechanic": "vaccine-surge",
+            "concept": "A syringe barrel fills and a row of children light up protected as DPT immunization races from 16.7% in 1980 to 84.8% today.",
+            "code": "vial = subject_image('vaccine vial')\nchild = subject_image('child silhouette')\nmidx = (RX0 + RX1) // 2\nidxf = reveal * (n - 1)\nlo = int(clamp(idxf, 0, n - 1))\nhi = min(lo + 1, n - 1)\nt = idxf - lo\nval = lerp(values[lo], values[hi], t)\nyear = labels[hi] if t > 0.5 else labels[lo]\nbx0, by0, bx1, by1 = RX0 + 60, RTOP + 60, RX1 - 60, RTOP + 300\nd.rounded_rectangle([bx0, by0, bx1, by1], radius=34, outline=rgba(TEXT, 210), width=6)\nfrac = clamp(val / 100.0)\nif vial is not None:\n    fill_image(vial, frac, bx0 + 8, by0 + 8, bx1 - bx0 - 16, by1 - by0 - 16, direction='right', color=HIGHLIGHT)\nelse:\n    d.rounded_rectangle([bx0 + 8, by0 + 8, bx0 + 8 + (bx1 - bx0 - 16) * frac, by1 - 8], radius=24, fill=rgba(HIGHLIGHT, 230))\ntext(f\"{val:.1f}%\", midx, by1 + 30, size=80, color=HIGHLIGHT, center=True)\ntext(year + ' \u00b7 DPT IMMUNIZED', midx, by1 + 130, size=34, color=TEXT, center=True)\nrow_y = by1 + 220\ncols = 10\nlit = int(round(cols * frac))\ncw = (RX1 - RX0) / cols\nfor i in range(cols):\n    x = RX0 + i * cw + cw * 0.15\n    w = cw * 0.7\n    h = w * 1.3\n    if child is not None:\n        paste(child, x, row_y, w, h)\n    else:\n        d.rounded_rectangle([x, row_y, x + w, row_y + h], radius=10, fill=rgba(ACCENT, 210))\n    if i >= lit:\n        d.rounded_rectangle([x, row_y, x + w, row_y + h], radius=10, fill=rgba((6, 8, 14), 175))\n"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sh_med_beds_zs_trend",
+          "params": {
+            "file": "sh_med_beds_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 HOSPITAL BEDS",
+          "topic": "Hospital beds",
+          "say": "Yet hospital beds barely grew to match \u2014 2.4 per 1,000 people in 1975, only 3.29 now. The world got healthier faster than it built capacity.",
+          "viz": "scale_stack"
+        }
+      ]
     }
   ],
   "videos": [

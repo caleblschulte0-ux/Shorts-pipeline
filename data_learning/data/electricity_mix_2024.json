@@ -1,0 +1,25 @@
+{
+  "key": "electricity_mix_2024",
+  "title": "How the world made electricity in 2024",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Global Electricity Review 2025",
+    "publisher": "Ember",
+    "url": "https://ember-energy.org/latest-insights/global-electricity-review-2025/",
+    "officiality": "secondary",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Share of global electricity generation by source, 2024.",
+  "points": [
+    {"label": "Coal", "value": 34.4},
+    {"label": "Gas", "value": 22.0},
+    {"label": "Hydro", "value": 14.3},
+    {"label": "Nuclear", "value": 9.0},
+    {"label": "Wind", "value": 8.1},
+    {"label": "Solar", "value": 6.9},
+    {"label": "Other fossil", "value": 2.8},
+    {"label": "Bioenergy", "value": 2.6}
+  ]
+}

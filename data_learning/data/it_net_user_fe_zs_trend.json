@@ -1,0 +1,48 @@
+{
+  "key": "it_net_user_fe_zs_trend",
+  "title": "Individuals using the Internet, female",
+  "unit": "% of female population",
+  "geography": "World",
+  "time_coverage": "2019-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Individuals using the Internet, female",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.FE.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 51.8,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 57.5,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 61.0,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 64.1,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 66.4,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 68.2,
+      "period": "2024"
+    }
+  ]
+}
