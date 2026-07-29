@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "05_graph-nvidia-amd-datacenter",
+  "title": "Nvidia vs AMD: Data Center Revenue by Year",
+  "y_label": "Data center revenue ($ billions)",
+  "duration": 13,
+  "source": "Sources: company earnings reports, fiscal years (approx.)",
+  "hashtags": [
+    "nvidia",
+    "amd",
+    "ai",
+    "chips",
+    "tech",
+    "data",
+    "chart",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral",
+    "stocks"
+  ],
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Nvidia",
+      "color": "#76b900",
+      "values": [
+        2.98,
+        6.7,
+        10.6,
+        15.0,
+        47.5,
+        115.2
+      ]
+    },
+    {
+      "name": "AMD",
+      "color": "#ff3030",
+      "values": [
+        0.85,
+        1.69,
+        3.7,
+        6.0,
+        6.5,
+        12.6
+      ]
+    }
+  ],
+  "music_vibe": "dark"
+}
