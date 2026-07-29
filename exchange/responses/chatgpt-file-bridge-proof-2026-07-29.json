@@ -1,14 +1,15 @@
 {
   "source_repo_file": "CLAUDE.md",
-  "source_detail": "The parallax engine accepts photos but rejects flat art/text, which determined the visual concept.",
+  "source_detail": "Read the parallax-engine rules to prove repository access. The generated proof image itself illustrates the Files-to-Drive bridge rather than the parallax scene.",
   "generated_filename": "chatgpt-file-bridge-proof.png",
   "chatgpt_file_id": "file_00000000b47481f581a4aca066f2f2bc",
   "drive_file_id": "1G1R0RkYaHpwLgSWVXwlEfyZ3DYtcM4pe",
   "drive_url": "https://drive.google.com/file/d/1G1R0RkYaHpwLgSWVXwlEfyZ3DYtcM4pe/view?usp=drivesdk",
   "drive_upload_verified": true,
   "public_sharing_status": "not_set_connector_does_not_expose_anyone_with_link",
+  "proof_scope": "GitHub read -> ChatGPT generated file ID -> Google Drive upload -> Drive metadata verification -> GitHub write-back",
   "assumptions": [
-    "A generated ChatGPT conversation file ID is the connector-compatible file_uri.",
-    "Public sharing is not required for this bare-bones bridge proof."
+    "The generated ChatGPT conversation file ID is the connector-compatible file_uri.",
+    "Public sharing is outside this connector's exposed actions and was not required for this bridge proof."
   ]
 }
