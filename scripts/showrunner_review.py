@@ -400,10 +400,24 @@ def _gemini_judge(prompt: str, labeled) -> dict:
     url = GEMINI_API.format(model=GEMINI_MODEL, key=os.environ["GEMINI_API_KEY"])
     resp = _post_json(url, {
         "contents": [{"role": "user", "parts": parts}],
+        # 2000 truncated the verdict mid-string ("Unterminated string starting
+        # at line 11"), so the ONLY fallback judge died of a parse error at the
+        # exact moment the headless brain was rate-limited and the channel had
+        # nothing left to grade with. Give the verdict room to finish.
         "generationConfig": {"responseMimeType": "application/json",
-                             "temperature": 0.2, "maxOutputTokens": 2000}},
+                             "temperature": 0.2, "maxOutputTokens": 8000}},
         {"content-type": "application/json"})
-    return json.loads(resp["candidates"][0]["content"]["parts"][0]["text"])
+    txt = resp["candidates"][0]["content"]["parts"][0]["text"]
+    try:
+        return json.loads(txt)
+    except json.JSONDecodeError:
+        # A verdict cut off mid-object is still evidence. Recover the outermost
+        # complete object if one is there; otherwise raise so the caller keeps
+        # failing CLOSED rather than inventing a pass.
+        m = re.search(r"\{.*\}", txt, re.S)
+        if m:
+            return json.loads(m.group(0))
+        raise
 
 
 def _judge(prompt: str, labeled):
