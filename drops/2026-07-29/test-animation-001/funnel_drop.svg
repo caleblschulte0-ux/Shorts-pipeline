@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <rect width="1080" height="1920" fill="#000000"/>
+  <g fill="none" stroke="#ff7a00" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M250 560 H830 L650 940 V1260 L430 1370 V940 Z"/>
+    <path d="M430 1370 H650"/>
+  </g>
+  <path fill="#ff7a00" d="M540 410 C505 460 480 500 480 545 A60 60 0 0 0 600 545 C600 500 575 460 540 410 Z">
+    <animateTransform attributeName="transform" type="translate" values="0 -220;0 1080" dur="2s" repeatCount="indefinite" calcMode="linear"/>
+  </path>
+</svg>
