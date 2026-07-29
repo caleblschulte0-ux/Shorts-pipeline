@@ -1,0 +1,39 @@
+{
+  "schema": "chatgpt-media-request/v1",
+  "date": "2026-07-29",
+  "status": "open",
+  "purpose": "CONNECTIVITY TEST — proves ChatGPT can read this repo and push assets back. Not wired to any channel renderer.",
+  "drop_branch": "media-dropbox",
+  "drop_path": "drops/2026-07-29/",
+  "requests": [
+    {
+      "id": "test-image-001",
+      "kind": "image",
+      "channel": "test",
+      "slug": "landing-zone-test",
+      "prompt": "A single glowing orange funnel on a pure black background, minimal line-art style, thick clean strokes, centered, no text anywhere in the image.",
+      "style": "minimal line art, orange on black, high contrast",
+      "width": 1080,
+      "height": 1920,
+      "accepts": ["png", "jpg", "webp"],
+      "max_bytes": 4000000,
+      "notes": "Vertical 9:16. No text, no watermarks, no logos."
+    },
+    {
+      "id": "test-animation-001",
+      "kind": "animation",
+      "channel": "test",
+      "slug": "landing-zone-test",
+      "prompt": "The same orange funnel, with a single droplet falling through it from top to bottom over the course of the clip.",
+      "style": "minimal line art, orange on black, high contrast",
+      "width": 1080,
+      "height": 1920,
+      "duration_seconds": 2,
+      "accepts": ["frames_png", "svg_animated", "lottie_json", "gif", "mp4"],
+      "preferred": "frames_png",
+      "frames": { "count": 24, "fps": 12, "naming": "frame_0001.png ... frame_0024.png" },
+      "max_bytes": 8000000,
+      "notes": "PREFERRED PATH: deliver 24 numbered PNG frames — we compose them into video with ffmpeg on our side. Only use gif/mp4 if you can genuinely produce them. If you can produce NEITHER frames NOR a video file, say so explicitly in the drop manifest with status 'unsupported' — a truthful 'I cannot' is a passing test result."
+    }
+  ]
+}
