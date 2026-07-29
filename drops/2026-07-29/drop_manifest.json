@@ -1,0 +1,25 @@
+{
+  "schema": "chatgpt-media-drop/v1",
+  "date": "2026-07-29",
+  "source_request": "state/media_requests/2026-07-29-test.json",
+  "generated_by": "chatgpt-scheduled-task",
+  "generated_at": "2026-07-29T15:07:25Z",
+  "results": [
+    {
+      "request_id": "test-image-001",
+      "status": "unsupported",
+      "format": null,
+      "files": [],
+      "notes": "The connected GitHub contents writer available in this task accepts UTF-8 text only and cannot upload binary PNG, JPG, or WebP files. No asset was written to main or outside drops/."
+    },
+    {
+      "request_id": "test-animation-001",
+      "status": "fulfilled",
+      "format": "svg_animated",
+      "files": [
+        "drops/2026-07-29/test-animation-001/funnel_drop.svg"
+      ],
+      "notes": "2-second looping animated SVG at 1080x1920. A single orange droplet falls through the centered orange funnel on a pure black background."
+    }
+  ]
+}
