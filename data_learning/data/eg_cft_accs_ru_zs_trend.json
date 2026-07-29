@@ -1,0 +1,48 @@
+{
+  "key": "eg_cft_accs_ru_zs_trend",
+  "title": "Access to clean fuels and technologies for cooking, rural",
+  "unit": "% of rural population",
+  "geography": "World",
+  "time_coverage": "2000-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Access to clean fuels and technologies for cooking, rural",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EG.CFT.ACCS.RU.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 23.8,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 26.1,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 29.2,
+      "period": "2009"
+    },
+    {
+      "label": "2014",
+      "value": 36.8,
+      "period": "2014"
+    },
+    {
+      "label": "2018",
+      "value": 45.3,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 55.8,
+      "period": "2023"
+    }
+  ]
+}

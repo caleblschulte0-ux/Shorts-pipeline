@@ -1,0 +1,48 @@
+{
+  "key": "eg_fec_rnew_zs_trend",
+  "title": "Renewable energy consumption",
+  "unit": "% of total final energy consumption",
+  "geography": "World",
+  "time_coverage": "1990-2020",
+  "insight_type": "trend",
+  "source": {
+    "name": "Renewable energy consumption",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1990",
+      "value": 16.7,
+      "period": "1990"
+    },
+    {
+      "label": "1996",
+      "value": 17.4,
+      "period": "1996"
+    },
+    {
+      "label": "2002",
+      "value": 17.2,
+      "period": "2002"
+    },
+    {
+      "label": "2008",
+      "value": 16.7,
+      "period": "2008"
+    },
+    {
+      "label": "2014",
+      "value": 17.3,
+      "period": "2014"
+    },
+    {
+      "label": "2020",
+      "value": 19.7,
+      "period": "2020"
+    }
+  ]
+}

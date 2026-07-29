@@ -1,6 +1,9 @@
 {
  "indicators": [
+  "EN.POP.DNST",
   "EN.URB.LCTY.UR.ZS",
+  "ER.FSH.CAPT.MT",
+  "ER.MRN.PTMR.ZS",
   "IT.NET.USER.FE.ZS",
   "SE.ADT.1524.LT.FE.ZS",
   "SE.ENR.PRIM.FM.ZS",
@@ -8,7 +11,13 @@
   "SE.TER.CUAT.DO.ZS",
   "SH.DYN.MORT",
   "SH.IMM.IDPT",
-  "SH.MED.BEDS.ZS"
+  "SH.MED.BEDS.ZS",
+  "SH.STA.SUIC.P5",
+  "SH.XPD.CHEX.GD.ZS",
+  "SN.ITK.DEFC.ZS",
+  "SP.ADO.TFRT",
+  "SP.POP.0014.TO.ZS",
+  "SP.RUR.TOTL"
  ],
  "updated": "2026-07-29"
 }

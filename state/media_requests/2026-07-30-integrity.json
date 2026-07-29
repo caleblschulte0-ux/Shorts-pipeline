@@ -1,0 +1,48 @@
+{
+  "schema": "chatgpt-media-request/v1",
+  "date": "2026-07-30",
+  "status": "open",
+  "purpose": "INTEGRITY + SIZE CEILING TEST. The previous run executed every step but delivered a corrupt 2-colour 1-bit PNG 'derivative' (2,407B, IDAT CRC bad) instead of the generated image. This run tests whether the ORIGINAL bytes can survive the trip, and how large a text file the writer will actually accept.",
+  "drop_branch": "media-dropbox",
+  "drop_path": "drops/2026-07-30-integrity/",
+  "hard_rules": [
+    "Encode the ORIGINAL generated file, byte for byte. Do NOT resize, re-encode, reduce the palette, change bit depth, convert format, downsample, or create a 'derivative' of any kind.",
+    "A 2-colour, 1-bit, or otherwise reduced PNG is an automatic FAIL. The previous attempt did this.",
+    "Compute the SHA-256 of the original file BEFORE encoding, and report it. We recompute it after decoding; a mismatch means the payload was altered.",
+    "Report the exact byte size of the original file BEFORE encoding.",
+    "If the file is too large for your writer to commit, do NOT shrink the image to make it fit. Report the size ceiling instead — that number is more valuable than a shrunken image."
+  ],
+  "requests": [
+    {
+      "id": "integrity-001",
+      "kind": "image_raster",
+      "channel": "test",
+      "slug": "integrity-test",
+      "prompt": "A photorealistic close-up of a single ripe orange resting on a black reflective surface, dramatic side lighting, shallow depth of field.",
+      "style": "photorealistic, cinematic lighting",
+      "width": 1024,
+      "height": 1024,
+      "accepts": ["b64_png", "b64_jpg", "b64_webp"],
+      "max_bytes": 8000000,
+      "delivery": {
+        "file": "drops/2026-07-30-integrity/integrity-001/image.png.b64",
+        "format": "standard base64 of the UNMODIFIED original file bytes. Line wrapping is fine. No data: prefix, no fences, no JSON wrapper.",
+        "required_fields": {
+          "sha256": "SHA-256 hex digest of the ORIGINAL file, computed before encoding",
+          "original_bytes": "exact byte length of the original file before encoding",
+          "b64_chars": "character length of the base64 payload you wrote"
+        }
+      },
+      "notes": "Put sha256, original_bytes and b64_chars in this request's result object in the drop manifest. We verify the hash after decoding — that is how we detect substitution."
+    }
+  ],
+  "size_ceiling_probe": {
+    "why": "A real photographic 1024x1024 PNG is roughly 1-2MB, which is 1.4-2.7MB of base64. If your GitHub writer cannot commit a text file that large, base64 delivery cannot carry real images and we need to know the exact limit.",
+    "report_in_manifest": {
+      "writer_max_text_bytes": "the largest single text file you can commit, if you know it — otherwise your best estimate and how you arrived at it",
+      "hit_a_limit": "true/false — did any size limit affect what you delivered?",
+      "limit_error": "the exact error text if a write was rejected for size"
+    },
+    "if_too_large": "Split the base64 across numbered part files (image.png.b64.part01, .part02, ...) in the same directory, list them IN ORDER in the result's files array, and set \"split\": true. We concatenate them before decoding. Splitting is strongly preferred over shrinking the image."
+  }
+}
