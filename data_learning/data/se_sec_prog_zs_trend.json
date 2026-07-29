@@ -1,0 +1,48 @@
+{
+  "key": "se_sec_prog_zs_trend",
+  "title": "Progression to secondary school (%)",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "1985-2017",
+  "insight_type": "trend",
+  "source": {
+    "name": "Progression to secondary school (%)",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.SEC.PROG.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1985",
+      "value": 77.8,
+      "period": "1985"
+    },
+    {
+      "label": "1991",
+      "value": 81.1,
+      "period": "1991"
+    },
+    {
+      "label": "1998",
+      "value": 86.9,
+      "period": "1998"
+    },
+    {
+      "label": "2004",
+      "value": 89.6,
+      "period": "2004"
+    },
+    {
+      "label": "2011",
+      "value": 91.7,
+      "period": "2011"
+    },
+    {
+      "label": "2017",
+      "value": 91.3,
+      "period": "2017"
+    }
+  ]
+}

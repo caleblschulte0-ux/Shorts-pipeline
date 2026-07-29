@@ -13710,7 +13710,7 @@
       "slug": "carbon-climb",
       "title": "The Line That Only Goes Up",
       "hook": "The air itself is changing, and we have the receipt.",
-      "closing": "Every year, the line climbs higher. That's the story in the data.",
+      "closing": "The 2010s alone added nearly three times what the 1960s did -- and the 2020s are already on pace to beat that record.",
       "question": "Did you realize it was accelerating? Tell me below.",
       "keep_order": true,
       "hashtags": [
@@ -13758,7 +13758,7 @@
       "slug": "population-giants",
       "title": "Half the Planet, Eight Countries",
       "hook": "Two countries hold more than a third of all humanity.",
-      "closing": "Eight countries, over half the planet. Wild, right?",
+      "closing": "Statistically: every third person you will ever meet is Chinese or Indian.",
       "question": "Which of these surprised you most? Comment below.",
       "hashtags": [
         "population",
@@ -13805,7 +13805,7 @@
     {
       "slug": "world-power-mix",
       "title": "How the World Keeps Its Lights On",
-      "hook": "Here's how the entire planet made its electricity last year.",
+      "hook": "Guess which single fuel still out-generates solar and wind combined, worldwide.",
       "closing": "The mix is tipping \u2014 slowly, then all at once.",
       "question": "Is your country ahead or behind on this? Let me know.",
       "hashtags": [
@@ -16772,33 +16772,9 @@
           "topic": "Incidence of malaria",
           "say": "Malaria cases per thousand fell from seventy nine point nine in 2000 to fifty eight point five by 2018, then climbed back to sixty four in 2024.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "mosquito",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "mosquito",
-                "data": {
-                  "value_from": "item:4"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "mosquito",
-                "data": {
-                  "value_from": "item:5"
-                }
-              }
-            ]
+            "mechanic": "mosquito-swarm-tide",
+            "concept": "A swarm of real mosquitoes thins out then thickens back up as malaria incidence per 1,000 falls for two decades then jumps back, so the SIZE of the swarm IS the fall-then-rise story.",
+            "code": "idx = reveal * (n - 1)\nlo = int(idx)\nhi = min(lo + 1, n - 1)\nfrac = idx - lo\nval = lerp(values[lo], values[hi], frac)\nyear = labels[hi] if frac > 0.5 else labels[lo]\nvmin = min(values)\nspan = (vmax - vmin) or 1.0\ncount = max(3, int(round(4 + ((val - vmin) / span) * 12)))\nmosquito = subject_image('mosquito')\ncx, cy = 540, 620\nfor i in range(count):\n    ang = i * 2.399963\n    rad = 40 + i * 26\n    x = cx + math.cos(ang) * rad\n    y = cy + math.sin(ang) * rad * 0.7\n    size = 90\n    if mosquito is not None:\n        paste(mosquito, x - size / 2, y - size / 2, size, size)\n    else:\n        d.ellipse([x - size / 3, y - size / 3, x + size / 3, y + size / 3],\n                  fill=rgba(WARN, 220))\ntext(str(round(val, 1)) + ' per 1,000 at risk', RX0, 980, size=50, color=HIGHLIGHT)\ntext(str(year), RX0, 1040, size=38, color=TEXT)\n"
           }
         },
         {
@@ -16815,7 +16791,7 @@
             "title": true,
             "elements": [
               {
-                "type": "object",
+                "type": "fill_object",
                 "region": "ground-row",
                 "subject": "small wooden outhouse",
                 "data": {
@@ -16823,7 +16799,7 @@
                 }
               },
               {
-                "type": "object",
+                "type": "fill_object",
                 "region": "ground-row",
                 "subject": "small wooden outhouse",
                 "data": {
@@ -16858,7 +16834,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 PERMANENT CROPLAND",
           "topic": "Permanent cropland",
-          "say": "World farmland crept from zero point seven five percent of all land in 1972 to one point four eight percent by 2023 \u2014 permanent cropland nearly doubled in fifty years."
+          "say": "World farmland crept from zero point seven five percent of all land in 1972 to one point four eight percent by 2023 \u2014 permanent cropland nearly doubled in fifty years.",
+          "scene": {
+            "mechanic": "cropland-tiles",
+            "concept": "A grid of land tiles fills in with real farmland photos as reveal progresses, so the SHARE of tiles filled IS the % of world land that is permanent cropland.",
+            "code": "gx0, gy0 = RX0, 260\ncols, rows = 10, 8\ntotal = cols * rows\ngw = RX1 - RX0\ntile_w = gw / cols\ntile_h = 620 / rows\nstart_v = values[0]\nend_v = values[-1]\ncur = lerp(start_v, end_v, reveal)\nfilled = max(1, int(round((cur / vmax) * total)))\ncrop_img = subject_image('golden wheat field')\nidx = 0\nfor row in range(rows):\n    for col in range(cols):\n        x = gx0 + col * tile_w\n        y = gy0 + row * tile_h\n        if idx < filled and crop_img is not None:\n            paste(crop_img, x + 3, y + 3, tile_w - 6, tile_h - 6)\n        elif idx < filled:\n            d.rounded_rectangle([x + 3, y + 3, x + tile_w - 3, y + tile_h - 3],\n                                radius=8, fill=rgba(HIGHLIGHT, 200))\n        else:\n            d.rounded_rectangle([x + 3, y + 3, x + tile_w - 3, y + tile_h - 3],\n                                radius=8, fill=rgba((50, 70, 55), 140))\n        idx += 1\ntext(str(round(cur, 2)) + '% of all land is farmland', RX0,\n     gy0 + rows * tile_h + 40, size=44, color=HIGHLIGHT)\n"
+          }
         },
         {
           "source": "offline",
@@ -16926,37 +16907,17 @@
             "title": false,
             "elements": [
               {
-                "type": "timeline_axis",
-                "region": "full"
-              },
-              {
                 "type": "fill_object",
-                "region": "ground-row",
+                "region": "center",
                 "subject": "globe",
                 "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "ground-row",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:3"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "ground-row",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:5"
+                  "value_from": "star"
                 }
               },
               {
                 "type": "caption",
                 "region": "center",
-                "text": "Protected area: 11.1% \u2192 17.0%"
+                "text": "Protected area: 11.1% -> 17.0%"
               }
             ]
           }
@@ -16966,8 +16927,8 @@
     {
       "slug": "alternative-and-nuclear-energy-leapt-to-16-5-by-2024",
       "title": "Alternative And Nuclear Energy Leapt To 16.5% By 2024",
-      "hook": "Alternative and nuclear energy barely moved for decades, then it jumped to 16.5 percent of world energy use.",
-      "closing": "Three energy trends, one dataset \u2014 decide for yourself what actually changed.",
+      "hook": "One slice of the world's energy pie sat frozen for thirty years -- then it exploded. Guess what changed.",
+      "closing": "Three slow-moving numbers, one sudden turn -- energy is changing faster than the headlines admit.",
       "hashtags": [
         "energydata",
         "renewableenergy",
@@ -16988,51 +16949,7 @@
           "role": "1 \u00b7 RENEWABLE ENERGY C",
           "topic": "Renewable energy consumption",
           "say": "Renewable energy held between sixteen point seven and seventeen point four percent from nineteen ninety to twenty fourteen, then climbed to nineteen point seven percent by twenty twenty.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "wind turbine",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "wind turbine",
-                "data": {
-                  "value_from": "item:1"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "wind turbine",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "wind turbine",
-                "data": {
-                  "value_from": "item:3"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "wind turbine",
-                "data": {
-                  "value_from": "item:4"
-                }
-              }
-            ]
-          }
+          "viz": "trend"
         },
         {
           "source": "offline",
@@ -17101,20 +17018,45 @@
           "topic": "Access to electricity",
           "say": "Access to electricity rose from seventy three point two percent in nineteen ninety eight to ninety one point nine percent by twenty twenty four.",
           "scene": {
+            "mechanic": "bulb-chain",
+            "concept": "A grid of 20 lightbulbs lights up one by one as electricity access climbs, so the COUNT of lit bulbs IS the % electrified.",
+            "code": "start_v = values[0]\nend_v = values[-1]\ncur = lerp(start_v, end_v, reveal)\ntotal_bulbs = 20\nlit = max(1, int(round(cur / 100.0 * total_bulbs)))\nbulb_on = subject_image('glowing lightbulb')\nbulb_off = subject_image('unlit lightbulb')\ncols, rows = 5, 4\nbw = (RX1 - RX0) / cols\nbh = 200\ngx0, gy0 = RX0, 300\nidx = 0\nfor row in range(rows):\n    for col in range(cols):\n        x = gx0 + col * bw\n        y = gy0 + row * bh\n        img = bulb_on if idx < lit else bulb_off\n        if img is not None:\n            paste(img, x + 10, y + 10, bw - 20, bh - 30)\n        else:\n            col_c = HIGHLIGHT if idx < lit else (60, 65, 80)\n            d.ellipse([x + bw * 0.3, y + 20, x + bw * 0.7, y + bh * 0.6],\n                      fill=rgba(col_c, 220))\n        idx += 1\ntext(str(round(cur, 1)) + '% electrified', RX0, gy0 + rows * bh + 20,\n     size=50, color=HIGHLIGHT)\n"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "city-growth-fell-to-1-36-half-what-it-was-in-1983",
+      "title": "City Growth Fell to 1.36% \u2014 Half What It Was in 1983",
+      "hook": "Everyone assumes cities are exploding faster than ever \u2014 but urban growth just hit its slowest pace in over fifty years.",
+      "closing": "The world isn't growing the way you think \u2014 it's aging fast and spreading out slower than ever.",
+      "hashtags": [
+        "urbanization",
+        "worldpopulation",
+        "dataviz",
+        "didyouknow",
+        "population",
+        "globaltrends"
+      ],
+      "question": "Do you think city growth keeps slowing, or bounces back?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sp_urb_grow_trend",
+          "params": {
+            "file": "sp_urb_grow_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 URBAN POPULATION G",
+          "topic": "Urban population growth",
+          "say": "Urban growth peaked at two point eight two percent in 1983, dropped to two point three two by 2004, then fell to one point three six in 2025.",
+          "scene": {
             "title": true,
             "elements": [
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "lightbulb",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "lightbulb",
+                "subject": "skyscraper",
                 "data": {
                   "value_from": "item:1"
                 }
@@ -17122,15 +17064,7 @@
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "lightbulb",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "lightbulb",
+                "subject": "skyscraper",
                 "data": {
                   "value_from": "item:3"
                 }
@@ -17138,10 +17072,350 @@
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "lightbulb",
+                "subject": "skyscraper",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sp_pop_65up_to_zs_trend",
+          "params": {
+            "file": "sp_pop_65up_to_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 POPULATION AGES 65",
+          "topic": "Population ages 65 and above",
+          "say": "In 1972 just five point three seven percent of the world was over 65 \u2014 by 2025 that share nearly doubled to ten point four percent.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "person",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "person",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sp_rur_totl_zg_trend",
+          "params": {
+            "file": "sp_rur_totl_zg_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 RURAL POPULATION G",
+          "topic": "Rural population growth",
+          "say": "Rural population growth was one point six four percent back in 1972, but by 2025 it had crashed to just zero point three percent.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "house",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 0.2
+                }
+              },
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "house",
+                "data": {
+                  "value_from": "item:5",
+                  "per_value": 0.2
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "landlines-fell-to-9-9-per-100-people-in-2025-below-1993-leve",
+      "title": "Landlines Fell To 9.9 Per 100 People In 2025 \u2014 Below 1993 Levels",
+      "hook": "Landlines just fell to a number we haven't seen since before some of you were born.",
+      "closing": "The wire in the wall lost. The wire in your router won.",
+      "hashtags": [
+        "landlines",
+        "broadband",
+        "mobiledata",
+        "datafacts",
+        "techhistory"
+      ],
+      "question": "Do you even remember dialing on a landline?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "it_mlt_main_p2_trend",
+          "params": {
+            "file": "it_mlt_main_p2_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 FIXED TELEPHONE SU",
+          "topic": "Fixed telephone subscriptions",
+          "say": "In 1972 fixed telephone subscriptions stood at six point zero three per hundred people, peaked at eighteen point seven in 2004, then dropped to nine point nine by 2025.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "landline_phone",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "1972"
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "landline_phone",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "2004"
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "landline_phone",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "2025"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "it_net_bbnd_trend",
+          "params": {
+            "file": "it_net_bbnd_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 FIXED BROADBAND SU",
+          "topic": "Fixed broadband subscriptions",
+          "say": "Fixed broadband grew from two hundred nineteen million six hundred thousand subscriptions in 2005 to one billion six hundred fifty four million by 2025.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "full",
+                "subject": "wifi_router",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 200000000.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "2005"
+              },
+              {
+                "type": "stack",
+                "region": "full",
+                "subject": "wifi_router",
+                "data": {
+                  "value_from": "item:5",
+                  "per_value": 200000000.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "2025"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "it_cel_sets_rank",
+          "params": {
+            "file": "it_cel_sets_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 MOBILE CELLULAR SU",
+          "topic": "Mobile cellular subscriptions",
+          "say": "China tops the list with one billion, eight hundred seventy million, eleven thousand, five hundred ninety two mobile subscriptions, while India follows with one billion, one hundred fifty one million, three hundred fifty six thousand, six hundred twelve.",
+          "viz": "pictorial_race"
+        }
+      ]
+    },
+    {
+      "slug": "russia-grows-8-153-120-square-km-of-forest-more-than-any-oth",
+      "title": "Russia Grows 8,153,120 Square Km of Forest \u2014 More Than Any Other Country",
+      "hook": "You'd guess Brazil's rainforest is the world's biggest \u2014 it's not.",
+      "closing": "The map you learned in school undersold Russia's trees.",
+      "hashtags": [
+        "datafacts",
+        "forest",
+        "fertilizer",
+        "education",
+        "shorts"
+      ],
+      "question": "Which country do you think should be planting the most new forest?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ag_lnd_frst_k2_rank",
+          "params": {
+            "file": "ag_lnd_frst_k2_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 FOREST AREA",
+          "topic": "Forest area",
+          "say": "Russia's forest covers eight million one hundred fifty three thousand one hundred twenty square kilometers, beating Brazil's four million nine hundred twenty nine thousand seven hundred eighty eight.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tree",
                 "data": {
                   "value_from": "item:4"
                 }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Top 5 forest countries, sq km"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "ag_con_fert_zs_trend",
+          "params": {
+            "file": "ag_con_fert_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 FERTILIZER CONSUMP",
+          "topic": "Fertilizer consumption",
+          "say": "In 1972 farmers used just sixty one point eight kilograms of fertilizer per hectare \u2014 by 2023 that number climbed to one hundred thirty seven point six.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Fertilizer use, kg per hectare"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "se_sec_prog_zs_trend",
+          "params": {
+            "file": "se_sec_prog_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 PROGRESSION TO SEC",
+          "topic": "Progression to secondary school (%)",
+          "say": "Secondary school progression hit ninety one point seven percent in 2011, then actually slipped to ninety one point three percent by 2017.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "graduation-cap",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "graduation-cap",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "graduation-cap",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Secondary school progression, % of students"
               }
             ]
           }

@@ -1,0 +1,48 @@
+{
+  "key": "it_mlt_main_p2_trend",
+  "title": "Fixed telephone subscriptions",
+  "unit": "per 100 people",
+  "geography": "World",
+  "time_coverage": "1972-2025",
+  "insight_type": "trend",
+  "source": {
+    "name": "Fixed telephone subscriptions",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.MLT.MAIN.P2",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 6.03,
+      "period": "1972"
+    },
+    {
+      "label": "1983",
+      "value": 7.91,
+      "period": "1983"
+    },
+    {
+      "label": "1993",
+      "value": 10.8,
+      "period": "1993"
+    },
+    {
+      "label": "2004",
+      "value": 18.7,
+      "period": "2004"
+    },
+    {
+      "label": "2014",
+      "value": 15.1,
+      "period": "2014"
+    },
+    {
+      "label": "2025",
+      "value": 9.9,
+      "period": "2025"
+    }
+  ]
+}
