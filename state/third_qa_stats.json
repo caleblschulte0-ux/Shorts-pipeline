@@ -1,38 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260711c",
-      "dry_run": false,
-      "ts": "2026-07-12T00:40:38+00:00",
-      "clips": [
-        {
-          "slug": "clip-20260711c-1",
-          "ok": false,
-          "error": "RuntimeError: no fresh clip across the allowlist"
-        },
-        {
-          "slug": "clip-20260711c-2",
-          "ok": false,
-          "error": "RuntimeError: no fresh clip across the allowlist"
-        },
-        {
-          "slug": "clip-20260711c-3",
-          "ok": false,
-          "error": "RuntimeError: no fresh clip across the allowlist"
-        },
-        {
-          "slug": "clip-20260711c-4",
-          "ok": false,
-          "error": "RuntimeError: no fresh clip across the allowlist"
-        },
-        {
-          "slug": "clip-20260711c-5",
-          "ok": false,
-          "error": "RuntimeError: no fresh clip across the allowlist"
-        }
-      ]
-    },
-    {
       "date": "20260712",
       "dry_run": false,
       "ts": "2026-07-12T01:17:48+00:00",
@@ -1525,6 +1493,43 @@
           "slug": "clip-20260725-4",
           "ok": false,
           "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.7 (coach recruits her, no stakes)"
+        }
+      ]
+    },
+    {
+      "date": "20260729",
+      "dry_run": false,
+      "ts": "2026-07-29T12:00:18+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 104,
+        "with_retention": 98,
+        "with_curve": 15,
+        "fetched_at": "2026-07-29T11:03:00.616676+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260729-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.7 (friendly chat, no conflict or payoff)"
+        },
+        {
+          "slug": "clip-20260729-2",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit"
+        },
+        {
+          "slug": "clip-20260729-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.45 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
+        },
+        {
+          "slug": "clip-20260729-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.45 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
         }
       ]
     }
