@@ -1,0 +1,30 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "request_id": "image-20260730-demo-01",
+  "status": "unsupported",
+  "blocking_step": "step 2: generate the image with ChatGPT image generation",
+  "failure": {
+    "step": 2,
+    "name": "generate_image",
+    "reason": "This automation runtime did not expose a ChatGPT image-generation action. Because no generated image artifact existed, files.list could not return an actual file_id, and the required connector-native file_id -> Google_Drive.upload_file(file_uri) path could not be tested without fabricating a pointer."
+  },
+  "drive": {
+    "file_id": null,
+    "name": null,
+    "link": null,
+    "download_url": null,
+    "public": false
+  },
+  "image": {
+    "sha256": null,
+    "bytes": null,
+    "format": "png",
+    "width": 1024,
+    "height": 1024
+  },
+  "verified": {
+    "read_back": false,
+    "note": "No Drive upload occurred because the workflow was blocked before a real generated file_id existed. No pointer was fabricated or substituted."
+  },
+  "generated_at": "2026-07-29T23:44:20Z"
+}
