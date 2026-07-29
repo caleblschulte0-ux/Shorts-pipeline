@@ -27,7 +27,7 @@ on:
         default: false
 
 permissions:
-  contents: read
+  contents: write   # commit the posted-log title sync after an --apply
 
 jobs:
   retitle:
@@ -65,3 +65,11 @@ jobs:
             ${{ inputs.date && format('--date {0}', inputs.date) || '' }} \
             ${{ inputs.retranscribe && '--retranscribe' || '' }} \
             ${{ inputs.apply && '--apply' || '' }}
+      # Persist the title sync. Without this the log keeps the old hype
+      # title, so the next run would retitle the same videos again.
+      - name: Commit posted log
+        if: ${{ inputs.apply }}
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "third: sync posted-log titles after retitle [skip ci]" \
+            state/third_posted_log.json
