@@ -103,6 +103,18 @@ jobs:
           python -m compileall -q experiments/curiosity_nextgen
           python -m unittest discover experiments/curiosity_nextgen/tests 2>&1 | tail -3
 
+      - name: "Layer 2d — nextgen adapters: batch / advisor / security / routing / health / learning"
+        run: |
+          python scripts/test_batch_produce.py
+          python scripts/test_story_advisor.py
+          python scripts/test_publish_security.py
+          python scripts/test_provider_routing.py
+          python scripts/test_pipeline_health.py
+          python scripts/test_learning_proposals.py
+
+      - name: "Layer 2e — decision-machinery drill: deterministic 50-story fault campaign"
+        run: python scripts/simulate_pipeline.py
+
       - name: "Layer 3 — scene: expression frames + manifest"
         run: python scripts/test_expressions.py
 
