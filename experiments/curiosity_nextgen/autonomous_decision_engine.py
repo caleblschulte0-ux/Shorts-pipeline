@@ -127,6 +127,12 @@ def decide_next_action(
             rewind_to=StageName.RESEARCH,
         )
 
+    # An explicit HOLD verdict means the stage lacked a basis to decide —
+    # WAITING is the fail-closed action and outranks retry/repair/reauthor
+    # (burning a bounded recovery attempt on an undecided basis is premature).
+    if outcome.verdict is StageVerdict.HOLD:
+        return AutonomousDecision(NextAction.WAIT_FOR_EVIDENCE, "stage_held")
+
     if outcome.verdict is StageVerdict.ERROR and outcome.retryable:
         if state.stage_attempts < policy.maximum_retries_per_stage:
             return AutonomousDecision(NextAction.RETRY_STAGE, "retryable_stage_error", consumes_retry=True)
@@ -147,8 +153,5 @@ def decide_next_action(
             rewind_to=StageName.SCRIPT,
             consumes_reauthor=True,
         )
-
-    if outcome.verdict is StageVerdict.HOLD:
-        return AutonomousDecision(NextAction.WAIT_FOR_EVIDENCE, "stage_held")
 
     return AutonomousDecision(NextAction.QUARANTINE, "bounded_recovery_exhausted")

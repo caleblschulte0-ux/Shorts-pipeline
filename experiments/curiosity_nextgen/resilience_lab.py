@@ -95,7 +95,16 @@ def simulate_resilience_preflight(inputs: ResilienceInput) -> ResilienceResult:
     )
     resource_decision = resource_plan.decisions[0]
     if resource_decision.decision is ResourceDecision.REJECT:
-        blockers.extend(f"resource:{item}" for item in resource_decision.reasons)
+        # The governor is strict on principle: it REJECTS a request whose
+        # dependency is unavailable (it cannot know why). THIS layer does know:
+        # when the sole rejection cause is the open circuit, the outage is
+        # transient by definition (breakers exist so dependencies can recover)
+        # and the fail-closed action is HOLD, not quarantine.
+        reasons = set(resource_decision.reasons)
+        if not admission.allowed and reasons == {"dependency_unavailable"}:
+            warnings.extend(f"resource:{item}" for item in resource_decision.reasons)
+        else:
+            blockers.extend(f"resource:{item}" for item in resource_decision.reasons)
     elif resource_decision.decision is ResourceDecision.DEFER:
         warnings.extend(f"resource:{item}" for item in resource_decision.reasons)
 

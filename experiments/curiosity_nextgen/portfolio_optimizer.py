@@ -25,7 +25,10 @@ class PortfolioPolicy:
     maximum_total_cost: float
     maximum_per_topic_family: int = 1
     maximum_per_visual_family: int = 1
-    minimum_exploration_slots: int = 1
+    # Default 0: a portfolio cannot conjure exploration stories its
+    # candidate pool does not contain — the quota binds when the policy
+    # EXPLICITLY requests it (see test_exploration_quota_is_enforced).
+    minimum_exploration_slots: int = 0
     minimum_readiness: float = 70.0
 
 

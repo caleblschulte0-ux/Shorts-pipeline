@@ -144,7 +144,17 @@ def analyze_cognitive_load(beats: Iterable[InformationBeat]) -> CognitiveLoadRep
         raise ValueError("duplicate beat_id")
 
     results = tuple(evaluate_information_beat(beat) for beat in ordered)
-    overloaded_flags = [result.load_score >= 65.0 for result in results]
+    # A beat participates in an overload RUN when it crosses the score bar OR
+    # carries an overload-class defect: back-to-back concept/number/speech/
+    # visual stacking fatigues viewers even when each beat's aggregate score
+    # stays under the single-beat ceiling. Wider detection, never narrower.
+    _OVERLOAD_DEFECTS = {"concept_stack", "number_stack", "speech_too_dense",
+                         "visual_element_overload", "text_reading_conflict"}
+    overloaded_flags = [
+        result.load_score >= 65.0
+        or any(d.code in _OVERLOAD_DEFECTS for d in result.defects)
+        for result in results
+    ]
     overloaded = tuple(result.beat_id for result in results if result.load_score >= 65.0)
     runs = _runs(overloaded_flags, list(ordered))
     average = round(mean(result.load_score for result in results), 2)

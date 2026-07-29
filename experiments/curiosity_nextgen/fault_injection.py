@@ -98,8 +98,14 @@ def validate_campaign(scenarios: Iterable[FaultScenario]) -> CampaignReport:
     unsafe: list[str] = []
     for scenario in items:
         counts[scenario.scenario_id] = counts.get(scenario.scenario_id, 0) + 1
+        # Safe expectations for a CRITICAL fault are the non-advancing
+        # decisions. DEFER belongs here: it retries later without publishing
+        # or advancing anything — the fail-closed sibling of HOLD (a
+        # dependency timeout that must NOT quarantine, or transient outages
+        # would kill stories the breaker exists to let recover).
         if scenario.critical and scenario.expected_decision not in {
             ExpectedDecision.HOLD,
+            ExpectedDecision.DEFER,
             ExpectedDecision.QUARANTINE,
             ExpectedDecision.REJECT,
             ExpectedDecision.FREEZE,

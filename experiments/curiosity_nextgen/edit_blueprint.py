@@ -284,13 +284,18 @@ def build_batch_edit_program(
     per_story_effort_cap: float,
     max_stories: int = 50,
     max_per_topic_family: int = 10,
-    max_per_format_family: int = 20,
+    # None -> no format-family cap beyond max_stories itself: an EXPLICIT
+    # 50-story capacity request must not be silently truncated by an
+    # implicit default (the cap still binds whenever a caller sets it).
+    max_per_format_family: int | None = None,
 ) -> BatchEditProgram:
     """Plan reusable quality repairs across an autonomous multi-video portfolio."""
     if total_effort_budget <= 0 or per_story_effort_cap <= 0:
         raise ValueError("effort budgets must be positive")
     if not 1 <= max_stories <= 50:
         raise ValueError("max_stories must be between 1 and 50")
+    if max_per_format_family is None:
+        max_per_format_family = max_stories
     if max_per_topic_family <= 0 or max_per_format_family <= 0:
         raise ValueError("family caps must be positive")
 
