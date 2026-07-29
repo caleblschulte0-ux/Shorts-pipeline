@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "source_request_file": "state/media_requests/2026-07-30-integrity.json",
+  "results": [
+    {
+      "request_id": "integrity-001",
+      "status": "write_failed",
+      "sha256": "a5e54c90a0abc8bfe1dcd4c85729c48f974bf55ded21dcdb2e6f19726230bec3",
+      "original_bytes": 1554380,
+      "b64_chars": 2072508,
+      "split": false,
+      "files": [],
+      "steps": {
+        "generate": {"status": "success"},
+        "access": {"status": "success"},
+        "encode": {"status": "success"},
+        "write": {"status": "failed", "detail": "The GitHub writer requires the complete UTF-8 payload inline and provides no local-file input. The generated 2072508-character base64 payload could not be passed from the local file into the connector call."}
+      }
+    }
+  ],
+  "size_ceiling_probe": {
+    "writer_max_text_bytes": "unknown",
+    "hit_a_limit": true,
+    "limit_error": "No GitHub rejection text was produced because the connector transfer interface blocked submission before a remote write attempt."
+  }
+}
