@@ -250,46 +250,52 @@ def _titlecase(text: str) -> str:
     return " ".join(out)
 
 
-def _phrase_from_transcript(transcript: str, max_words: int = 9) -> str:
-    """The first substantive thing actually said, as a title fragment. The
-    transcript is what the streamer really uttered, so it can't invent a
-    claim the clip doesn't support (the honesty gate's whole concern)."""
-    words = _words_of(transcript)
-    while words and words[0].lower() in (_FILLER | _HYPE):
-        words.pop(0)
-    if len([w for w in words if w.lower() not in _FILLER]) < 3:
-        return ""
-    words = words[:max_words]
-    # never end on a dangling connective ("...he actually did the")
-    while words and words[-1].lower() in _SMALL:
-        words.pop()
-    return _titlecase(" ".join(words))
+# Tried and rejected: quoting the first N words of the transcript. It reads
+# well on invented examples and falls apart on real ones — the opening of a
+# clip is throat-clearing, not the payoff. On the three 07-29 clips it gave
+# "How Did They Know Isn't that Crazy Like They", "Oh My God Aloki Aloki Got
+# Some Dude Damn" and "Right Ladies and Gentlemen Hey Ej Swerver Thanks":
+# 3/3 incoherent, and worse than the hype they replaced. Picking the
+# INTERESTING span out of a transcript is the author brain's job, not a
+# heuristic's. So the floor makes no specific claim at all — it varies the
+# wording only so a multi-clip day doesn't ship the same line repeatedly.
+_NEUTRAL = (
+    "{s} Has The Whole Stream Reacting",
+    "The {s} Clip Everyone's Talking About",
+    "{s} Did Not See That Coming",
+    "Chat Could Not Handle This {s} Moment",
+    "{s} Caught It All On Stream",
+)
+
+
+def _neutral_title(pretty: str, seed: str) -> str:
+    """A safe channel-voice line, varied deterministically by `seed` so the
+    same clip always gets the same title but a day's batch doesn't repeat."""
+    if not pretty:
+        return "The Clip Everyone's Talking About"
+    import hashlib
+    # hashlib, not hash() — the builtin is salted per process, so the same
+    # clip would drift between a dry run and the apply run.
+    i = int(hashlib.sha1(seed.encode("utf-8", "replace")).hexdigest()[:8], 16)
+    return _NEUTRAL[i % len(_NEUTRAL)].format(s=pretty)
 
 
 def fallback_title(streamer: str, raw: str, transcript: str = "") -> str:
-    """The public title when authoring produced nothing. Ordered: a safe and
-    INFORMATIVE raw clip title, else a phrase from what was actually said,
-    else a neutral channel-voice line. Never returns raw hype noise, and
-    never invents a claim — the middle tier only quotes the transcript.
+    """The public title when authoring produced nothing: a safe and
+    INFORMATIVE raw clip title if there is one, else a neutral channel-voice
+    line. Never returns raw hype noise, and never invents a specific claim.
 
-    Authoring is best-effort by design (it must never block a post), so this
-    is the floor that makes that tradeoff survivable."""
+    `transcript` is accepted but only seeds the neutral variant — see the
+    note above _NEUTRAL for why quoting it directly was removed. Authoring
+    is best-effort by design (it must never block a post), so this is the
+    floor that makes that tradeoff survivable."""
     safe = safe_title(raw, streamer)
     if not title_is_low_signal(safe):
         return safe[:100]
     pretty = (streamer or "").strip("_").title()
-    phrase = _phrase_from_transcript(transcript)
-    if phrase:
-        candidate = scrub_text(f"{pretty}: {phrase}".strip(": ").strip())
-        if candidate and not title_is_unsafe(candidate) \
-                and not title_is_low_signal(candidate):
-            print(f"::warning::[author] low-signal raw title {raw!r} -> "
-                  f"transcript title {candidate!r}", flush=True)
-            return candidate[:100]
-    neutral = (f"{pretty} Has The Whole Stream Reacting" if pretty
-               else "The Clip Everyone's Talking About")
-    print(f"::warning::[author] low-signal raw title {raw!r} and no usable "
-          f"transcript -> neutral title {neutral!r}", flush=True)
+    neutral = _neutral_title(pretty, f"{streamer}|{raw}")
+    print(f"::warning::[author] low-signal raw title {raw!r} -> neutral "
+          f"title {neutral!r} (authoring produced nothing)", flush=True)
     return neutral[:100]
 
 

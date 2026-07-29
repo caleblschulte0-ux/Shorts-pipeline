@@ -575,24 +575,33 @@ def main() -> int:  # noqa: C901
     check("ugly but informative title survives",
           not _au.title_is_low_signal(
               "jasons camera ,an gets pass code to his room"))
-    # the floor replaces noise using ONLY what was actually said
+    # the floor replaces noise with a safe, coherent channel line
     _t = _au.fallback_title("stableronaldo", "WWWW",
                             "yo what the hell is that bro he actually did it")
-    check("hype title replaced from transcript",
-          not _au.title_is_low_signal(_t) and "WWWW" not in _t)
-    check("replacement quotes the transcript, invents nothing",
-          all(w.lower() in "yo what the hell is that bro he actually did it "
-                           "stableronaldo:"
-              for w in _t.split()))
+    check("hype title replaced", not _au.title_is_low_signal(_t)
+          and "WWWW" not in _t)
     check("replacement names the streamer", "Stableronaldo" in _t)
     # a good raw title is left alone
     _good = "Kai Cenat Gives Out The First Streamer University Diploma"
     check("good raw title passes through untouched",
           _au.fallback_title("kaicenat", _good, "anything") == _good)
-    # no transcript to quote -> neutral channel voice, never raw hype
     _n = _au.fallback_title("silky", "SUBURB", "uh um like yeah")
-    check("no usable transcript -> neutral title, not hype",
+    check("bare noun -> neutral title, not hype",
           not _au.title_is_low_signal(_n) and "SUBURB" not in _n)
+    # Quoting the transcript directly produced 3/3 incoherent titles on real
+    # 07-29 data ("Oh My God Aloki Aloki Got Some Dude Damn"). The floor must
+    # make NO specific claim — only the author brain picks a real moment.
+    _real = ("oh my god aloki aloki got some dude damn that was actually "
+             "insane did you see what just happened there")
+    check("floor does not quote the transcript",
+          "aloki" not in _au.fallback_title("stableronaldo", "w", _real).lower())
+    # ...but a multi-clip day must not ship the same line repeatedly
+    _batch = {_au.fallback_title(s, "W", "") for s in
+              ("kaicenat", "stableronaldo", "plaqueboymax", "xqc", "silky")}
+    check("neutral titles vary across a batch", len(_batch) >= 3)
+    check("neutral title is stable for the same clip",
+          _au.fallback_title("xqc", "W", "") ==
+          _au.fallback_title("xqc", "W", ""))
     check("every fallback title is within YouTube's 100 chars",
           all(len(_au.fallback_title(s, r, t)) <= 100 for s, r, t in [
               ("x", "W", "a" * 400), ("y", "z" * 300, ""),
