@@ -49,10 +49,17 @@ jobs:
           if [ "${{ inputs.retranscribe }}" = "true" ]; then
             pip install -q -r requirements.txt
           fi
+      - name: Install Claude CLI (the author brain)
+        run: npm install -g @anthropic-ai/claude-code
       - name: Retitle
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+          # Without these the author brain is unreachable and every title
+          # falls to the generic floor — which is exactly what the first
+          # run of this workflow did.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           python scripts/retitle_videos.py --channel third \
             ${{ inputs.date && format('--date {0}', inputs.date) || '' }} \
