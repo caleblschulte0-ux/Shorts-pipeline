@@ -2,6 +2,15 @@
  "slug": "money-goes",
  "title": "Where All Your Money Actually Goes",
  "require_provenance": true,
+ "media_context": {
+  "geography": "United States",
+  "language": "en",
+  "exclude_terms": [
+   "clipart",
+   "cartoon",
+   "logo"
+  ]
+ },
  "beats": [
   {
    "job": "HOOK",

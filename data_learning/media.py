@@ -167,20 +167,30 @@ def find(query: str, kind: str = "image", perspective: str = "",
     fallback that can't actually deliver — see access_report() for what's missing.
     """
     from data_learning import stock
+    from data_learning.media_context import BREAKER
     commercial = usage == "commercial"
     out: list[dict] = []
     if kind == "image":
         # Google Images (Apify) FIRST when enabled — broadest + most recent news
         # photos, precisely what the operator asked for; then the free CC pools.
-        try:
-            out += google_images(query, limit, commercial)
-        except Exception as e:  # noqa: BLE001
-            print(f"[media] google_images: {str(e)[:70]}")
+        # Each provider rides the CIRCUIT BREAKER: three consecutive failures
+        # open its circuit for the rest of the run (reported, not retried).
+        if BREAKER.allow("google_images"):
+            try:
+                out += google_images(query, limit, commercial)
+                BREAKER.record("google_images", True)
+            except Exception as e:  # noqa: BLE001
+                BREAKER.record("google_images", False)
+                print(f"[media] google_images: {str(e)[:70]}")
         for fn in (openverse_images, commons_images):
+            if not BREAKER.allow(fn.__name__):
+                continue
             try:
                 out += (fn(query, limit, commercial)
                         if fn is openverse_images else fn(query, limit))
+                BREAKER.record(fn.__name__, True)
             except Exception as e:  # noqa: BLE001
+                BREAKER.record(fn.__name__, False)
                 print(f"[media] {fn.__name__}: {str(e)[:70]}")
         if usage == "commercial":
             out = [c for c in out
@@ -326,7 +336,13 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
     still was preferred). Never ships a frozen or off-topic clip just to avoid a
     photo."""
     from data_learning import footage_hybrid as fh
+    from data_learning import media_context as mctx
     cands = find(query, kind="video", perspective=perspective)
+    # STORY CONTEXT gate (mirrors best_image): wrong-geography / wrong-script
+    # clips are the moving version of the same defect.
+    cands, ctx_rejected = mctx.context_filter(cands)
+    for _t, _why in ctx_rejected[:4]:
+        log(f"[motion-first] context reject {_t!r}: {_why}")
     # PERSPECTIVE gate (mirrors best_image): a GROUND / human-scale beat must not
     # be "upgraded" to an orbital clip — that swaps one boring-from-space shot for
     # another and defeats the perspective director. Drop orbital-tell titles; if
@@ -397,6 +413,13 @@ def best_image(query: str, dest: Path, perspective: str = "",
     cands = [c for c in find(query, kind="image", perspective=perspective,
                              usage=usage, limit=max(tries * 3, 18))
              if c["url"].lower().split("?")[0].endswith(_RASTER)]
+    # STORY CONTEXT gate (media_context): drop wrong-geography / wrong-script /
+    # excluded-term candidates when the story declares a media_context — the
+    # 'Japanese gas-station sign in an American money story' class of defect.
+    from data_learning import media_context as mctx
+    cands, ctx_rejected = mctx.context_filter(cands)
+    for title, why in ctx_rejected[:4]:
+        print(f"[media] context reject {title!r}: {why}")
     # PERSPECTIVE gate: for a ground beat, drop orbital/satellite titles — they
     # are the 'boring cloud from the sky' the perspective director rejects.
     if want_ground:
@@ -434,8 +457,11 @@ def best_image(query: str, dest: Path, perspective: str = "",
             tmp.unlink(missing_ok=True)
             continue
         # a view-worthy AND on-topic photo: appeal weighted, relevance as a
-        # strong multiplier so an on-topic 0.5 beats an off-topic 0.75.
-        score = ap * (0.55 + 0.45 * min(1.0, rel * 1.5))
+        # strong multiplier so an on-topic 0.5 beats an off-topic 0.75. Assets
+        # the CHANNEL already shipped in other videos take a reuse penalty so
+        # the catalog doesn't converge on the same twelve stock photos.
+        score = ap * (0.55 + 0.45 * min(1.0, rel * 1.5)) \
+            * mctx.reuse_penalty(c.get("url", ""))
         if score >= best_score:
             best = dict(c, appeal=round(ap, 3), relevance=round(rel, 2))
             best_score = score
@@ -447,6 +473,7 @@ def best_image(query: str, dest: Path, perspective: str = "",
     if not dest.exists():                      # winner wasn't the last probed
         acquire(best, dest)
     best["path"] = str(dest)
+    mctx.record_use(best.get("url", ""), best.get("title", ""))
     print(f"[media] best_image {query!r}: {best['source']} appeal="
           f"{best['appeal']} rel={best['relevance']} "
           f"{best.get('title', '')[:40]!r}")

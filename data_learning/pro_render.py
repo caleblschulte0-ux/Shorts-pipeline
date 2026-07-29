@@ -585,6 +585,10 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
     _FALLBACKS.clear()
 
     slug = story.get("slug", Path(out).stem)
+    # Story-generic media context (media_context.py): geography/language/
+    # exclude-term guards + the cross-video reuse ledger key off this.
+    from data_learning import media_context as _mctx
+    _mctx.set_story(slug, story.get("media_context"))
     perf.init_render(slug, len(story.get("beats", [])), len(story.get("shots", [])))
 
     planned = "beats" in story
