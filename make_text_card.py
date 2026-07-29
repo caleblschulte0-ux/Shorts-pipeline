@@ -160,7 +160,7 @@ def _resolve_top_source(query: str | None, workdir: Path,
     (path, is_stock)."""
     if query:
         try:
-            import stock_search
+            from funnel import stock_search as stock_search
             c = stock_search.fetch_top(query, workdir / "stock")
             p = Path(c["path"])
             if p.exists() and _dur(p) > 0.5:

@@ -324,7 +324,7 @@ jobs:
           # registration at https://www.dvidshub.net/api/. Skips
           # silently if unset.
           DVIDS_API_KEY: ${{ secrets.DVIDS_API_KEY }}
-          # News-image funnel keys (media_funnel.py). All free tiers,
+          # News-image funnel keys (funnel/media_funnel.py). All free tiers,
           # all no-credit-card required. Each provider skips silently
           # if its secret is unset, so the render still works without
           # them — but the relevance gate will start failing renders

@@ -1,5 +1,7 @@
 # VISUALIZED (curiosity channel) — brain playbook
 
+> **Repo layout (reorg 2026-07-30):** shared capabilities moved into `funnel/` (media finding/generation) and `shared/` (cross-channel utils); `engines/` unchanged. Old root imports still work via shims, but canonical paths are `funnel.X` / `shared.X` — see `docs/PIPELINE_LAYOUT.md`.
+
 Faceless, **evergreen**, AI-assisted visual-curiosity channel publishing
 **4–5 minute LONG-FORM 16:9 videos on the main YouTube watch feed — NOT
 Shorts** (operator ruling, 2026-07-08: the portfolio already has plenty of

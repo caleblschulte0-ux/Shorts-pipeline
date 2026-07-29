@@ -5,6 +5,24 @@ curiosity, third "Proof Mode"). Channels are defined by orchestrator +
 config + posted-log + token env, not by folders — see
 `docs/STORAGE_AUDIT.md` §2 for the full map.
 
+## Repo layout: the funnel (reorg 2026-07-30 — docs/PIPELINE_LAYOUT.md)
+
+Top-of-funnel media in **`funnel/`** (media_funnel, topic/entity image
+finders, stock search, gemini_images AI-gen, usage ledger, og_scrape,
+gameplay_scanner). Cross-channel utilities in **`shared/`** (fsutil,
+uploaders, localize, script_generator, themed_bottom). Render capabilities
+in **`engines/`**. Channels are thin consumers: daily renderers at root
+(`make_*.py`), explainer/curiosity in `data_learning/`, third in
+`third_capture/`, orchestrators in `scripts/`.
+
+- Import canonically: `from funnel import media_funnel`,
+  `from shared import uploaders`. The old root names (`media_funnel.py`,
+  `fsutil.py`, …) still exist as sys.modules shims — legacy imports keep
+  working and share the same module object — but write NEW code against
+  the packages.
+- New shared capability → `funnel/` (media), `engines/` (render engine),
+  `shared/` (everything else). Never copy shared logic into a channel.
+
 ## Engines: the shared capability layer — USE IT
 
 `engines/` is the top-of-pipeline capability library any channel, script,

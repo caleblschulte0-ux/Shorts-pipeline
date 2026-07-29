@@ -466,7 +466,7 @@ def _fetch_image(url_or_path: str, cache: Path) -> Path:
         # entity_media.verify_shot_urls; this is a belt-and-suspenders for
         # URLs that reach the fetcher directly (news funnel / topic media).
         try:
-            from entity_media import commons_thumb_url
+            from funnel.entity_media import commons_thumb_url
             url_or_path = commons_thumb_url(url_or_path)
         except Exception:  # noqa: BLE001
             pass
@@ -596,7 +596,7 @@ def _scan_juicy(path: str | Path) -> list[float]:
     same window.
     """
     try:
-        import gameplay_scanner
+        from funnel import gameplay_scanner as gameplay_scanner
         starts = gameplay_scanner.juicy_starts(
             Path(path), window=3.0, step=2.0, top_n=10,
             scan_mode="center")
@@ -647,7 +647,7 @@ def _supplementary_clip(shot: "Shot", existing_pool: list[dict]) -> dict | None:
     if not primary:
         return None
     try:
-        import topic_video
+        from funnel import topic_video as topic_video
     except ImportError:
         return None
     # Critical: pass *empty* context. If we passed the package title
@@ -722,7 +722,7 @@ def _build_topic_video_pool(shots: list["Shot"]) -> list[dict]:
     if not context:
         return []
     try:
-        import topic_video
+        from funnel import topic_video as topic_video
     except ImportError:
         return []
     try:
@@ -848,7 +848,7 @@ def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
     if not context:
         return []
     try:
-        import topic_media
+        from funnel import topic_media as topic_media
         urls = topic_media.search(context, "")
     except Exception as e:  # noqa: BLE001
         print(f"      [topic_image pool error] {e}")
@@ -1019,7 +1019,7 @@ def _resolve_topic_media(shot: Shot, cache: Path) -> dict | None:
     if not primary and not shot.topic_context:
         return None
     try:
-        import topic_media
+        from funnel import topic_media as topic_media
     except ImportError:
         return None
     try:
@@ -1042,7 +1042,7 @@ def _resolve_topic_media(shot: Shot, cache: Path) -> dict | None:
 def _resolve_stock(shot: Shot, cache: Path, n_target: int) -> list[dict]:
     """Just the stock-video resolution path (no image branch). Returns
     the downloaded clip metadata; always at least one, or raises."""
-    import stock_search
+    from funnel import stock_search as stock_search
     clips: list[dict] = []
     if shot.queries:
         for q in shot.queries:
@@ -1215,7 +1215,7 @@ def _higgsfield_still_into(clip: dict, dur: float, sub: Path,
     return False instantly so the existing Ken Burns path runs unchanged.
     Never raises into the render."""
     try:
-        import higgsfield
+        from funnel import higgsfield as higgsfield
         if not higgsfield.is_enabled():
             return False
         raw = sub.with_name(sub.stem + "_hf_raw.mp4")
@@ -1302,7 +1302,7 @@ def build_timed_top(
     _FUNNEL_PER_ENTITY = 8
     _FUNNEL_TOTAL_CAP = 24
     try:
-        import media_funnel
+        from funnel import media_funnel as media_funnel
         unique_queries: dict[str, str] = {}    # news_query -> news_angle
         for s in shots:
             if s.news_query and s.news_query not in unique_queries:
@@ -1327,7 +1327,7 @@ def build_timed_top(
                 # Cross-video repetition ledger: remember what aired so
                 # tomorrow's prefilter penalizes an immediate repeat.
                 try:
-                    import media_usage
+                    from funnel import media_usage as media_usage
                     media_usage.record(good[0].url, slug)
                 except Exception:  # noqa: BLE001
                     pass
@@ -1799,7 +1799,7 @@ def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
     seek = None
     if dur > 180:
         try:
-            import gameplay_scanner
+            from funnel import gameplay_scanner as gameplay_scanner
             # Fixed scan window of 35s — wide enough to cover any short
             # we'd render. Using a constant window keeps the sidecar
             # cache stable across renders with slightly different audio
@@ -2324,7 +2324,7 @@ def build_video(
         # kills a render.
         if bottom_theme:
             print(f"[5/9] bottom: themed '{bottom_theme}'", flush=True)
-            import themed_bottom
+            from shared import themed_bottom as themed_bottom
             rendered_theme = bottom_theme
             try:
                 bottom = themed_bottom.render(
@@ -2464,7 +2464,7 @@ def build_video(
         # can't be built, leaving the original render untouched.
         cover_path = None
         try:
-            import gemini_images
+            from funnel import gemini_images as gemini_images
             hook_txt = re.split(r"[.!?]", script.strip(), maxsplit=1)[0].strip()
             lead_img = next((s.image for s in shots
                              if getattr(s, "image", None)), None)
@@ -2552,7 +2552,7 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
     # See entity_media.py for the contract — it's an enforcement layer
     # on top of the routine's "specific imagery for proper nouns" rule.
     try:
-        import entity_media
+        from funnel import entity_media as entity_media
         entity_media.enrich_package(pkg)
     except Exception as e:  # noqa: BLE001 — enrichment is best-effort
         print(f"  [entity_media skip] {type(e).__name__}: {e}")
@@ -2572,7 +2572,7 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
             for ev in (s.get("evidence_urls") or
                        ([s["evidence_url"]] if s.get("evidence_url") else [])):
                 try:
-                    import og_scrape
+                    from funnel import og_scrape as og_scrape
                     hero = og_scrape.fetch(ev)
                 except Exception:  # noqa: BLE001
                     hero = None
@@ -2609,7 +2609,7 @@ def build_from_package(pkg: dict, out_path: Path, *, gameplay_tag: str = "minecr
     # (the proven faceless-shorts format). A package may opt into the
     # procedural engine with "bottom_style": "procedural". The batch
     # allocator pins a distinct `_gameplay_tag` per video for variety.
-    import themed_bottom
+    from shared import themed_bottom as themed_bottom
     bottom_style = (pkg.get("bottom_style") or "gameplay").strip().lower()
     story_key = str(pkg.get("_theme_seed") or pkg.get("slug")
                     or pkg.get("title") or pkg.get("script", "")[:40])

@@ -149,7 +149,7 @@ def main() -> int:
         print("\n[retitle] DRY RUN — pass --apply to write these to YouTube")
         return 0
 
-    from uploaders import YouTubeUploader
+    from shared.uploaders import YouTubeUploader
     svc = YouTubeUploader(channel=a.channel)._service()
     bad = 0
     for r in rows:
