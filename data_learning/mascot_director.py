@@ -662,11 +662,11 @@ def _a_juggle(t, prop):
 
 def _a_push(t, prop):
     sw = _s(t) * 16
-    lower = (R.limb(152, 300, int(138 + sw), 352, 0, 36, 27, 0) +
-             R.limb(188, 300, int(202 - sw), 352, 0, 36, 27, 0) +
-             f'<ellipse cx="{136+sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
+    lower = (R.limb(152, 300, int(138 + sw), 352, 0, 30, 22, 0) +
+             R.limb(188, 300, int(202 - sw), 352, 0, 30, 22, 0) +
+             f'<ellipse cx="{136+sw:.0f}" cy="356" rx="22" ry="11" fill="{R.TEAL}" '
              f'stroke="{OUT}" stroke-width="6"/>'
-             f'<ellipse cx="{204-sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
+             f'<ellipse cx="{204-sw:.0f}" cy="356" rx="22" ry="11" fill="{R.TEAL}" '
              f'stroke="{OUT}" stroke-width="6"/>')
     arms = R.arm(*R.SHL, 250, 250, -6) + R.arm(*R.SHR, 258, 288, 6)
     cx, cy, rot = 330, 250, t * 360
@@ -762,11 +762,11 @@ def _a_push_bar(t, _prop):
     """Braced stance, both arms shoving RIGHT into the bar he stands against;
     a big strain sway drives the effort. (This is _a_push with the cart removed.)"""
     sw = _s(t) * 30
-    lower = (R.limb(152, 300, int(138 + sw), 352, 0, 36, 27, 0) +
-             R.limb(188, 300, int(202 - sw), 352, 0, 36, 27, 0) +
-             f'<ellipse cx="{136+sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
+    lower = (R.limb(152, 300, int(138 + sw), 352, 0, 30, 22, 0) +
+             R.limb(188, 300, int(202 - sw), 352, 0, 30, 22, 0) +
+             f'<ellipse cx="{136+sw:.0f}" cy="356" rx="22" ry="11" fill="{R.TEAL}" '
              f'stroke="{OUT}" stroke-width="6"/>'
-             f'<ellipse cx="{204-sw:.0f}" cy="356" rx="26" ry="13" fill="{R.TEAL}" '
+             f'<ellipse cx="{204-sw:.0f}" cy="356" rx="22" ry="11" fill="{R.TEAL}" '
              f'stroke="{OUT}" stroke-width="6"/>')
     px = int(250 + sw)                    # arms swing far as he heaves
     arms = R.arm(*R.SHL, px, 250, -6) + R.arm(*R.SHR, px + 8, 288, 6)
@@ -794,11 +794,11 @@ def _a_climb(t, _prop):
     arms = (R.arm(*R.SHL, 120, int(120 + up), -14)
             + R.arm(*R.SHR, 216, int(120 - up), 14))
     ll, rl = int(150 + up * 0.5), int(202 - up * 0.5)
-    lower = (R.limb(152, 300, ll, 352, 0, 36, 27, 0) +
-             R.limb(188, 300, rl, 352, 0, 36, 27, 0) +
-             f'<ellipse cx="{ll}" cy="356" rx="24" ry="12" fill="{R.TEAL}" '
+    lower = (R.limb(152, 300, ll, 352, 0, 30, 22, 0) +
+             R.limb(188, 300, rl, 352, 0, 30, 22, 0) +
+             f'<ellipse cx="{ll}" cy="356" rx="21" ry="10" fill="{R.TEAL}" '
              f'stroke="{OUT}" stroke-width="6"/>'
-             f'<ellipse cx="{rl}" cy="356" rx="24" ry="12" fill="{R.TEAL}" '
+             f'<ellipse cx="{rl}" cy="356" rx="21" ry="10" fill="{R.TEAL}" '
              f'stroke="{OUT}" stroke-width="6"/>')
     return (arms, lower, "", "",
             R.eye_open(R.LEX, 2, -2) + R.eye_open(R.REX, 2, -2),
@@ -848,13 +848,13 @@ def _braced_legs(crouch=0.0, sway=0.0):
     ky = 300 + 12 + crouch * 26                 # knees drop as he squats
     kx_l, kx_r = 138 - crouch * 8, 202 + crouch * 8
     fl, fr = 138 - sway, 202 + sway
-    legs = (R.limb(152, 300, int(kx_l), int(ky), 0, 36, 27, 0) +
-            R.limb(int(kx_l), int(ky), int(fl), 352, 0, 36, 27, 0) +
-            R.limb(188, 300, int(kx_r), int(ky), 0, 36, 27, 0) +
-            R.limb(int(kx_r), int(ky), int(fr), 352, 0, 36, 27, 0))
-    feet = (f'<ellipse cx="{fl-2:.0f}" cy="356" rx="27" ry="13" fill="{R.TEAL}" '
+    legs = (R.limb(152, 300, int(kx_l), int(ky), 0, 30, 22, 0) +
+            R.limb(int(kx_l), int(ky), int(fl), 352, 0, 30, 22, 0) +
+            R.limb(188, 300, int(kx_r), int(ky), 0, 30, 22, 0) +
+            R.limb(int(kx_r), int(ky), int(fr), 352, 0, 30, 22, 0))
+    feet = (f'<ellipse cx="{fl-2:.0f}" cy="356" rx="23" ry="11" fill="{R.TEAL}" '
             f'stroke="{OUT}" stroke-width="6"/>'
-            f'<ellipse cx="{fr+2:.0f}" cy="356" rx="27" ry="13" fill="{R.TEAL}" '
+            f'<ellipse cx="{fr+2:.0f}" cy="356" rx="23" ry="11" fill="{R.TEAL}" '
             f'stroke="{OUT}" stroke-width="6"/>')
     return legs + feet
 
@@ -950,11 +950,11 @@ def _dangle_legs(kick=0.0, spread=1.0):
     """Legs hanging in the air (feet OFF the ground), kicking by ``kick``."""
     lx = int(150 - 14 * spread - kick)
     rx = int(190 + 14 * spread - kick)
-    legs = (R.limb(152, 300, lx, 360, 0, 34, 25, 0) +
-            R.limb(188, 300, rx, 362, 0, 34, 25, 0))
-    feet = (f'<ellipse cx="{lx-2}" cy="366" rx="25" ry="12" fill="{R.TEAL}" '
+    legs = (R.limb(152, 300, lx, 360, 0, 29, 21, 0) +
+            R.limb(188, 300, rx, 362, 0, 29, 21, 0))
+    feet = (f'<ellipse cx="{lx-2}" cy="366" rx="22" ry="10" fill="{R.TEAL}" '
             f'stroke="{OUT}" stroke-width="6"/>'
-            f'<ellipse cx="{rx+2}" cy="368" rx="25" ry="12" fill="{R.TEAL}" '
+            f'<ellipse cx="{rx+2}" cy="368" rx="22" ry="10" fill="{R.TEAL}" '
             f'stroke="{OUT}" stroke-width="6"/>')
     return legs + feet
 

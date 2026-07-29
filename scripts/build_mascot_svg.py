@@ -63,28 +63,34 @@ def horns():
 
 
 def legs():
-    return (limb(152, 300, 138, 352, 0, 36, 27, 0) +
-            limb(188, 300, 202, 352, 0, 36, 27, 0))
+    # Thinner shanks that stand under the narrower torso instead of splaying
+    # out past it (the old 36/27 stumps at x=138/202 widened the silhouette
+    # exactly where it already read heaviest).
+    return (limb(152, 302, 143, 352, 0, 30, 22, 0) +
+            limb(188, 302, 197, 352, 0, 30, 22, 0))
 
 
 def feet():
-    return (f'<ellipse cx="136" cy="356" rx="28" ry="14" fill="{TEAL}" '
+    return (f'<ellipse cx="141" cy="356" rx="23" ry="12" fill="{TEAL}" '
             f'stroke="{OUTLINE}" stroke-width="{SW}"/>'
-            f'<ellipse cx="204" cy="356" rx="28" ry="14" fill="{TEAL}" '
+            f'<ellipse cx="199" cy="356" rx="23" ry="12" fill="{TEAL}" '
             f'stroke="{OUTLINE}" stroke-width="{SW}"/>')
 
 
 def torso():
-    return (f'<rect x="118" y="190" width="104" height="112" rx="40" '
+    # Narrower and a touch taller than the original blob: 104x112 at rx=40
+    # read as a ball with a coat painted on it. 86x120 at rx=28 gives Data an
+    # actual torso — same silhouette language, just not spherical.
+    return (f'<rect x="126" y="187" width="88" height="121" rx="29" '
             f'fill="{TEAL}" stroke="{OUTLINE}" stroke-width="{SW}"/>')
 
 
 def coat():
-    left = ("M122,210 Q122,199 132,199 L152,199 L165,247 L165,320 "
-            "L134,320 Q122,320 122,309 Z")
-    right = ("M218,210 Q218,199 208,199 L188,199 L175,247 L175,320 "
-             "L206,320 Q218,320 218,309 Z")
-    return (f'<rect x="151" y="198" width="38" height="120" rx="14" '
+    left = ("M131,208 Q131,197 141,197 L152,197 L165,247 L165,320 "
+            "L142,320 Q131,320 131,309 Z")
+    right = ("M209,208 Q209,197 199,197 L188,197 L175,247 L175,320 "
+             "L198,320 Q209,320 209,309 Z")
+    return (f'<rect x="153" y="196" width="34" height="122" rx="13" '
             f'fill="{SHIRT}"/>'
             f'<path d="{left}" fill="{COAT}" stroke="{OUTLINE}" '
             f'stroke-width="{SW}" stroke-linejoin="round"/>'
@@ -94,9 +100,9 @@ def coat():
             f'stroke-width="4"/>'
             f'<path d="M188,199 L175,247" fill="none" stroke="{COATSH}" '
             f'stroke-width="4"/>'
-            f'<rect x="182" y="270" width="26" height="22" rx="4" fill="none" '
+            f'<rect x="180" y="270" width="24" height="22" rx="4" fill="none" '
             f'stroke="{OUTLINE}" stroke-width="4"/>'
-            f'<rect x="190" y="262" width="6" height="16" rx="2" fill="{PEN}" '
+            f'<rect x="187" y="262" width="6" height="16" rx="2" fill="{PEN}" '
             f'stroke="{OUTLINE}" stroke-width="3"/>')
 
 
@@ -106,16 +112,16 @@ def neck():
 
 
 def head():
-    return (f'<circle cx="170" cy="114" r="62" fill="{TEAL}" '
+    return (f'<circle cx="170" cy="114" r="58" fill="{TEAL}" '
             f'stroke="{OUTLINE}" stroke-width="{SW}"/>'
             f'<ellipse cx="146" cy="80" rx="22" ry="15" fill="{TEALHI}" '
             f'opacity="0.6"/>')
 
 
 def cheeks():
-    return (f'<ellipse cx="131" cy="137" rx="13" ry="8" fill="#8CE0D1" '
+    return (f'<ellipse cx="134" cy="137" rx="12" ry="8" fill="#8CE0D1" '
             f'opacity="0.55"/>'
-            f'<ellipse cx="209" cy="137" rx="13" ry="8" fill="#8CE0D1" '
+            f'<ellipse cx="206" cy="137" rx="12" ry="8" fill="#8CE0D1" '
             f'opacity="0.55"/>')
 
 
@@ -128,9 +134,9 @@ def glasses():
     return (_frame(LEX) + _frame(REX) +
             f'<path d="M{LEX+24},{EY-3} L{REX-24},{EY-3}" stroke="{OUTLINE}" '
             f'stroke-width="{SW}" stroke-linecap="round"/>'
-            f'<path d="M{LEX-24},{EY-3} L{LEX-42},{EY+3}" stroke="{OUTLINE}" '
+            f'<path d="M{LEX-24},{EY-3} L{LEX-36},{EY+4}" stroke="{OUTLINE}" '
             f'stroke-width="{SW}" stroke-linecap="round"/>'
-            f'<path d="M{REX+24},{EY-3} L{REX+42},{EY+3}" stroke="{OUTLINE}" '
+            f'<path d="M{REX+24},{EY-3} L{REX+36},{EY+4}" stroke="{OUTLINE}" '
             f'stroke-width="{SW}" stroke-linecap="round"/>')
 
 
@@ -248,7 +254,7 @@ def pose_svg(pose: str) -> str:
 # and props can be layered behind or in front. This is what lets a per-scene
 # director place Data INTO the scene (on the cans, pushing the cart, riding
 # the chart) instead of parking a fixed pose.
-LEG_W = (36, 27)
+LEG_W = (30, 22)
 
 
 def lower_stand():
@@ -261,9 +267,9 @@ def lower_seated():
          limb(126, 328, 150, 356, 0, *LEG_W, 0) +
          limb(188, 300, 214, 328, 0, *LEG_W, 0) +
          limb(214, 328, 190, 356, 0, *LEG_W, 0))
-    return s + (f'<ellipse cx="150" cy="358" rx="26" ry="13" fill="{TEAL}" '
+    return s + (f'<ellipse cx="150" cy="358" rx="22" ry="11" fill="{TEAL}" '
                 f'stroke="{OUTLINE}" stroke-width="{SW}"/>'
-                f'<ellipse cx="190" cy="358" rx="26" ry="13" fill="{TEAL}" '
+                f'<ellipse cx="190" cy="358" rx="22" ry="11" fill="{TEAL}" '
                 f'stroke="{OUTLINE}" stroke-width="{SW}"/>')
 
 
@@ -271,9 +277,9 @@ def lower_ride():
     """Straddle posture (for riding a mount)."""
     s = (limb(152, 300, 116, 360, 0, *LEG_W, 0) +
          limb(188, 300, 224, 360, 0, *LEG_W, 0))
-    return s + (f'<ellipse cx="112" cy="362" rx="26" ry="13" fill="{TEAL}" '
+    return s + (f'<ellipse cx="112" cy="362" rx="22" ry="11" fill="{TEAL}" '
                 f'stroke="{OUTLINE}" stroke-width="{SW}"/>'
-                f'<ellipse cx="228" cy="362" rx="26" ry="13" fill="{TEAL}" '
+                f'<ellipse cx="228" cy="362" rx="22" ry="11" fill="{TEAL}" '
                 f'stroke="{OUTLINE}" stroke-width="{SW}"/>')
 
 
