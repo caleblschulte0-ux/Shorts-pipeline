@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "generated_date": "2026-07-28",
+  "repository": "caleblschulte0-ux/Shorts-pipeline",
+  "canonical_playbook": "docs/CLAUDE_MASTER_PLAYBOOK.md",
+  "production_recovery": {
+    "pull_request": 172,
+    "branch": "feature/curiosity-pro-integration",
+    "known_head_sha": "f6419ad574e140bcdd0a052f89b89304b3503e44",
+    "must_reconcile_with_current_main": true,
+    "publishing_disabled_by_default": true,
+    "canonical_producer": "scripts/produce.py",
+    "canonical_entrypoint": "scripts/post_curiosity.py",
+    "legacy_renderer_explicit_only": true,
+    "documented_recovery_tests": {
+      "routing": "4/4",
+      "verdict_contract": "14/14",
+      "producer_decisions": "8/8",
+      "facts_gate": "12/12",
+      "expression_scenes": "6/6",
+      "render_gates": "4/4",
+      "live_claims": "7/7",
+      "numeric_beats": "16/16"
+    },
+    "documented_performance": {
+      "video_seconds": 242,
+      "shots": 50,
+      "render_wall_seconds": 1906,
+      "median_shot_seconds": 8.7,
+      "slowest_shot_seconds": 52.9,
+      "rss_start_mb": 57,
+      "rss_end_mb": 60,
+      "rss_peak_mb": 121,
+      "remaining_child_processes": 0
+    },
+    "documented_visual_score": {
+      "overall_out_of_10": 6,
+      "personality_out_of_5": 3,
+      "hook_out_of_10": 7,
+      "verdict": "PASS"
+    }
+  },
+  "dormant_reference_surface": {
+    "pull_request": 173,
+    "branch": "agent/curiosity-continuation-handoff",
+    "base_branch": "feature/curiosity-pro-integration",
+    "snapshot_parent_sha_before_final_polish": "831121c4f154765dc74ea3cbe0408abc302501a5",
+    "master_playbook_commit_sha": "05f0e4dba58b9a01018c7f22b15a489df6a22217",
+    "prototype_modules": 77,
+    "authored_contract_tests": 425,
+    "isolated_test_files": 12,
+    "structural_domains": 27,
+    "autonomy_domains": 24,
+    "authored_structural_reference_percent": 100,
+    "authored_autonomy_reference_percent": 100,
+    "verified_execution_percent_claimed": 0,
+    "production_integration_percent_claimed": 0,
+    "live_launch_evidence_percent_claimed": 0,
+    "active_production_imports_added": 0,
+    "workflow_changes_added": 0,
+    "renderer_changes_added": 0,
+    "publishing_changes_added": 0,
+    "allowed_changed_path_prefixes": [
+      "docs/",
+      "experiments/"
+    ]
+  },
+  "primary_documents": [
+    "docs/CLAUDE_MASTER_PLAYBOOK.md",
+    "docs/CLAUDE_HANDOFF_MANIFEST.json",
+    "docs/CURIOSITY_FINAL_REPORT.md",
+    "docs/CLAUDE_AUTONOMY_LAUNCHOFF.md",
+    "docs/CLAUDE_EXECUTION_CHECKLIST.md",
+    "experiments/curiosity_nextgen/README.md"
+  ],
+  "historical_document_with_superseded_sections": "docs/CLAUDE_CONTINUATION_PLAYBOOK.md",
+  "superseded_doctrine": [
+    "named-video-specific optimization as the system goal",
+    "three passing stories as proof of autonomous portfolio readiness",
+    "story slug, title, topic, or opaque identifier selecting behavior"
+  ],
+  "immediate_commands": [
+    "git fetch origin",
+    "gh pr checkout 173",
+    "git rev-parse HEAD",
+    "python -m compileall experiments/curiosity_nextgen",
+    "python -m unittest discover -v experiments/curiosity_nextgen/tests"
+  ],
+  "immediate_acceptance": {
+    "all_modules_import": true,
+    "all_contracts_pass": 425,
+    "tests_weakened_or_deleted_to_reach_green": 0,
+    "production_paths_modified_during_dormant_repair": 0,
+    "report_exact_exit_codes": true,
+    "report_exact_head_sha": true
+  },
+  "focused_integration_order": [
+    "A: cryptographic stage and package identity",
+    "B: mandatory factual modes and semantic claims",
+    "C: provider routing and independent headless judges",
+    "D: durable execution ledger, leases, idempotency, and replay",
+    "E: bounded autonomous batch controller",
+    "F: idea funnel and portfolio admission",
+    "G: deterministic fault-injected 50-story simulation",
+    "H: controlled learning after stable shadow operation"
+  ],
+  "launch_requirements": {
+    "authored_autonomy_reference_percent": 100,
+    "verified_isolated_execution_percent": 100,
+    "required_adapter_integration_percent": 100,
+    "deterministic_50_story_simulations": 1,
+    "heterogeneous_shadow_batches": 3,
+    "autonomous_canaries": 3,
+    "hash_bound_artifacts_active": true,
+    "factual_contracts_active": true,
+    "independent_judges_active": true,
+    "durable_execution_state_active": true,
+    "provider_fallbacks_active": true,
+    "bounded_recovery_active": true,
+    "budget_controls_active": true,
+    "monitoring_active": true,
+    "rollback_tested": true,
+    "kill_switch_tested": true,
+    "expected_channel_guard_active": true,
+    "publishing_disabled_by_default": true,
+    "unresolved_hard_blockers": 0
+  },
+  "non_negotiable_rules": [
+    "Preserve fail-closed behavior.",
+    "Keep publishing disabled by default.",
+    "Do not weaken gates to make a story pass.",
+    "Do not import the dormant package wholesale.",
+    "Do not add more dormant architecture unless the completeness rubric proves a missing domain.",
+    "Do not use story identity to select behavior.",
+    "Do not claim authored tests passed before executing them.",
+    "Do not treat one story, three stories, or one canary as portfolio proof.",
+    "Do not commit generated video artifacts to Git.",
+    "Use focused PRs with exact evidence and rollback paths."
+  ],
+  "truth_labels": {
+    "100_percent": "finite authored reference coverage only",
+    "tests": "authored but unverified on the final dormant head",
+    "production": "recovery work exists in PR #172 but dormant modules are not integrated",
+    "launch": "not launched and no scheduled autonomous publishing authorized"
+  }
+}
