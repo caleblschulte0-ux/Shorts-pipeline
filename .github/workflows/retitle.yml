@@ -1,0 +1,60 @@
+name: Retitle Videos (third)
+
+# One-shot repair: rewrite already-uploaded titles that shipped as the
+# clipper's raw hype ("WWWW", "w max") because authoring was down. Runs the
+# same author.fallback_title() floor the pipeline now applies at upload, so
+# a repaired title is identical to what a healthy run would have produced.
+#
+# Defaults to a DRY RUN — it prints old -> new and writes nothing. Set
+# apply=true only after reading that output.
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Only retitle entries from this date (YYYY-MM-DD, blank = all)'
+        required: false
+        default: ''
+      retranscribe:
+        description: 'Re-fetch sources for specific titles (slower, much better)'
+        required: false
+        type: boolean
+        default: true
+      apply:
+        description: 'WRITE to YouTube (leave false for a dry run first)'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  retitle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install system deps
+        if: ${{ inputs.retranscribe }}
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Install deps
+        run: |
+          pip install -q google-api-python-client google-auth google-auth-oauthlib
+          if [ "${{ inputs.retranscribe }}" = "true" ]; then
+            pip install -q -r requirements.txt
+          fi
+      - name: Retitle
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+        run: |
+          python scripts/retitle_videos.py --channel third \
+            ${{ inputs.date && format('--date {0}', inputs.date) || '' }} \
+            ${{ inputs.retranscribe && '--retranscribe' || '' }} \
+            ${{ inputs.apply && '--apply' || '' }}
