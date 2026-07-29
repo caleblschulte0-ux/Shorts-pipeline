@@ -69,14 +69,13 @@
   },
   {
    "job": "CHAPTER",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Chapter one. The government's cut.",
-   "understand": "The Government's Cut",
-   "text": "The Government's Cut",
-   "text_role": "thesis",
-   "image": {
-    "query": "tax paperwork calculator desk paying bills",
-    "perspective": "cinematic"
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER ONE",
+    "title": "The Government's Cut"
    }
   },
   {
@@ -164,14 +163,13 @@
   },
   {
    "job": "CHAPTER",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Chapter two. A roof over your head.",
-   "understand": "A Roof Over Your Head",
-   "text": "A Roof Over Your Head",
-   "text_role": "thesis",
-   "image": {
-    "query": "suburban neighborhood houses aerial rooftops",
-    "perspective": "cinematic"
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER TWO",
+    "title": "A Roof Over Your Head"
    }
   },
   {
@@ -235,14 +233,13 @@
   },
   {
    "job": "CHAPTER",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Chapter three. Getting around.",
-   "understand": "Getting Around",
-   "text": "Getting Around",
-   "text_role": "thesis",
-   "image": {
-    "query": "city traffic commute cars highway morning",
-    "perspective": "cinematic"
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER THREE",
+    "title": "Getting Around"
    }
   },
   {
@@ -307,14 +304,13 @@
   },
   {
    "job": "CHAPTER",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Chapter four. Staying alive.",
-   "understand": "Staying Alive",
-   "text": "Staying Alive",
-   "text_role": "thesis",
-   "image": {
-    "query": "grocery store aisle shopping food shelves",
-    "perspective": "cinematic"
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER FOUR",
+    "title": "Staying Alive"
    }
   },
   {
@@ -374,14 +370,13 @@
   },
   {
    "job": "CHAPTER",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Chapter five. The little leaks.",
-   "understand": "The Little Leaks",
-   "text": "The Little Leaks",
-   "text_role": "thesis",
-   "image": {
-    "query": "coffee shop counter card payment small purchase",
-    "perspective": "cinematic"
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER FIVE",
+    "title": "The Little Leaks"
    }
   },
   {
@@ -424,14 +419,13 @@
   },
   {
    "job": "CHAPTER",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Chapter six. The trap.",
-   "understand": "The Trap",
-   "text": "The Trap",
-   "text_role": "thesis",
-   "image": {
-    "query": "person running on treadmill gym effort",
-    "perspective": "cinematic"
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER SIX",
+    "title": "The Trap"
    }
   },
   {
@@ -472,14 +466,13 @@
   },
   {
    "job": "CHAPTER",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Chapter seven. What's actually left.",
-   "understand": "What's Actually Left",
-   "text": "What's Actually Left",
-   "text_role": "thesis",
-   "image": {
-    "query": "empty wallet on wooden table",
-    "perspective": "cinematic"
+   "understand": "chapter title card",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER SEVEN",
+    "title": "What's Actually Left"
    }
   },
   {
