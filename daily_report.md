@@ -1,4 +1,4 @@
-# Daily Trending Shorts — 2026-07-25
+# Daily Trending Shorts — 2026-07-29
 
 - queued: **6**
 - succeeded: **5**
@@ -6,33 +6,33 @@
 - failed: **0**
 
 ## Posted
-- **My manager said enforce the return policy exactly. I didn't know he wrote it.**
-  - topic: My manager said enforce the return policy exactly. I didn't know he wrote it.
-  - publishes: `2026-07-25T13:00:00Z`
-  - https://youtube.com/shorts/k20Oxy6Tdqw
-  - took: 147.9s
-- **There's a parasite hiding in your salad bag right now**
-  - topic: There's a parasite hiding in your salad bag right now
-  - publishes: `2026-07-25T15:00:00Z`
-  - https://youtube.com/shorts/c3OS0LHYNe0
-  - took: 23.3s
-- **Sperm whales sleep standing straight up**
-  - topic: Sperm whales sleep standing straight up
-  - publishes: `2026-07-25T17:00:00Z`
-  - https://youtube.com/shorts/Wbv_RG8NHLk
-  - took: 25.5s
-- **Orbital Rocket Launches per Year by Provider**
-  - topic: Orbital Rocket Launches per Year by Provider
-  - publishes: `2026-07-25T19:00:00Z`
-  - https://youtube.com/shorts/CtXWKP8RIe0
-  - took: 76.9s
-- **Biggest Lottery Jackpots Ever: Mega Millions vs Powerball**
-  - topic: Biggest Lottery Jackpots Ever: Mega Millions vs Powerball
-  - publishes: `2026-07-25T21:00:00Z`
-  - https://youtube.com/shorts/nNDmpmFZOBA
-  - took: 64.6s
+- **My landlord tried to keep my deposit for damage from my own move-in video.**
+  - topic: My landlord tried to keep my deposit for damage from my own move-in video.
+  - publishes: `2026-07-29T13:00:00Z`
+  - https://youtube.com/shorts/H73MXBeV8Mc
+  - took: 131.8s
+- **The asteroid didn't kill the dinosaurs with fire**
+  - topic: The asteroid didn't kill the dinosaurs with fire
+  - publishes: `2026-07-29T15:00:00Z`
+  - https://youtube.com/shorts/N0vo_ZHEqPk
+  - took: 23.9s
+- **A sixth person has died from an outbreak in NYC's air**
+  - topic: A sixth person has died from an outbreak in NYC's air
+  - publishes: `2026-07-29T17:00:00Z`
+  - https://youtube.com/shorts/i8yfFyCNNnE
+  - took: 21.0s
+- **Nvidia vs AMD: Data Center Revenue by Year**
+  - topic: Nvidia vs AMD: Data Center Revenue by Year
+  - publishes: `2026-07-29T19:00:00Z`
+  - https://youtube.com/shorts/m9NwLL7e-aI
+  - took: 49.7s
+- **India vs China: The Population Race**
+  - topic: India vs China: The Population Race
+  - publishes: `2026-07-29T21:00:00Z`
+  - https://youtube.com/shorts/vv_kJcu1b6w
+  - took: 52.7s
 
 ## Quarantined (off-topic imagery — fix & re-author)
-- **My neighbor blocked my driveway every night. The cones exposed something else.**
-  - quarantined: vision QA: broken — The top half of the frames, which is described as being a news/stock photo, consistently displays the abstract game animation instead of a photo. This is a consistent deviation from the expected conte
+- **A woman said she basically ran the store. The real manager was standing behind her.**
+  - quarantined: vision QA: broken — The top half of the video, which is expected to be a news/stock photo, is consistently a black background with text overlays. This functions as a blank placeholder, indicating a failure to render or f
 

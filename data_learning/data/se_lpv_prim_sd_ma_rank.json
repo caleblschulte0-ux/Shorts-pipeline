@@ -1,0 +1,38 @@
+{
+  "key": "se_lpv_prim_sd_ma_rank",
+  "title": "Male primary school age children out-of-school (%)",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Male primary school age children out-of-school (%)",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.LPV.PRIM.SD.MA",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Congo, Dem. Rep.",
+      "value": 62.3
+    },
+    {
+      "label": "Niger",
+      "value": 28.7
+    },
+    {
+      "label": "Mali",
+      "value": 28.3
+    },
+    {
+      "label": "Senegal",
+      "value": 27.7
+    },
+    {
+      "label": "Pakistan",
+      "value": 26.1
+    }
+  ]
+}

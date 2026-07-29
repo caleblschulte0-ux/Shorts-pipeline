@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "subreddit": "ProRevenge",
+  "slug": "01_reddit-landlord-deposit-video",
+  "title": "My landlord tried to keep my deposit for damage from my own move-in video.",
+  "hashtags": [
+    "reddit",
+    "storytime",
+    "prorevenge",
+    "revenge",
+    "landlord",
+    "tenant",
+    "karma",
+    "fyp",
+    "shorts",
+    "story",
+    "viral",
+    "justice"
+  ],
+  "script": "My landlord mailed me a deposit deduction notice for six hundred dollars in wall damage and carpet stains, claiming I'd trashed the place during my two years there. What he didn't know was that on move-in day I'd filmed a slow four-minute walkthrough of every room, timestamped and backed up to three different places, specifically because a friend warned me landlords in that building did this every single time. I emailed him the video link along with the itemized list of every stain and scuff he was now billing me for, all clearly visible on day one before I'd even unpacked a single box. He went quiet for eleven days, then sent a new notice reversing the entire charge and returning my full deposit with an extra fifty dollars for the delay, which state law required once I threatened small claims court. Turns out landlords hate paperwork almost as much as they hate losing.",
+  "shots": [
+    {
+      "phrase": "six hundred dollars in wall damage and carpet",
+      "query": "eviction notice letter mailbox",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "filmed a slow four-minute walkthrough of every room",
+      "query": "phone filming empty apartment room walkthrough",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "landlords in that building did this every single time",
+      "query": "apartment building exterior evening",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "emailed him the video link",
+      "query": "hand typing email laptop",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "clearly visible on day one before I'd even unpacked a single box",
+      "query": "moving boxes empty apartment",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "went quiet for eleven days",
+      "query": "phone screen no new messages",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "returning my full deposit with an extra fifty dollars",
+      "query": "bank transfer notification phone",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "threatened small claims court",
+      "query": "courthouse steps exterior",
+      "mascot_pose": "shock"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "six hundred dollars in wall damage",
+      "text": "$600 CLAIM",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "filmed a slow four-minute walkthrough",
+      "text": "ALREADY ON CAMERA",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "went quiet for eleven days",
+      "text": "11 DAYS OF SILENCE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "returning my full deposit with an extra fifty dollars",
+      "text": "FULL REFUND + $50",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "dark"
+}

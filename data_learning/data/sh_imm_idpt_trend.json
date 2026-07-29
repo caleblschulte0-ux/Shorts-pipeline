@@ -1,0 +1,48 @@
+{
+  "key": "sh_imm_idpt_trend",
+  "title": "Immunization, DPT",
+  "unit": "% of children ages 12-23 months",
+  "geography": "World",
+  "time_coverage": "1980-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Immunization, DPT",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.IMM.IDPT",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1980",
+      "value": 16.7,
+      "period": "1980"
+    },
+    {
+      "label": "1989",
+      "value": 68.4,
+      "period": "1989"
+    },
+    {
+      "label": "1998",
+      "value": 71.4,
+      "period": "1998"
+    },
+    {
+      "label": "2006",
+      "value": 78.4,
+      "period": "2006"
+    },
+    {
+      "label": "2015",
+      "value": 84.8,
+      "period": "2015"
+    },
+    {
+      "label": "2024",
+      "value": 84.8,
+      "period": "2024"
+    }
+  ]
+}

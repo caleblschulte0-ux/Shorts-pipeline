@@ -1,0 +1,38 @@
+{
+  "key": "se_ter_cuat_do_zs_rank",
+  "title": "Educational attainment, Doctoral or equivalent, population 25+, total (%)",
+  "unit": "cumulative",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Educational attainment, Doctoral or equivalent, population 25+, total (%)",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.TER.CUAT.DO.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Tajikistan",
+      "value": 5.47
+    },
+    {
+      "label": "Switzerland",
+      "value": 3.31
+    },
+    {
+      "label": "Luxembourg",
+      "value": 2.84
+    },
+    {
+      "label": "Turkiye",
+      "value": 2.74
+    },
+    {
+      "label": "Lebanon",
+      "value": 2.41
+    }
+  ]
+}

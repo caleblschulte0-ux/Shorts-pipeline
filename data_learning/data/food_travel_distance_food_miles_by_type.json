@@ -1,0 +1,28 @@
+{
+  "key": "food_travel_distance_food_miles_by_type",
+  "title": "Food Miles by Type",
+  "unit": "miles",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Apple",
+      "value": 100.0,
+      "period": "2022"
+    },
+    {
+      "label": "Banana",
+      "value": 200.0,
+      "period": "2022"
+    }
+  ]
+}

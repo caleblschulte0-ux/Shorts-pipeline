@@ -1273,7 +1273,13 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # Sanitise it HERE, at the one place it enters the ledger, so
                 # an unsafe raw title can NEVER reach any public surface (live
                 # incident: "Silky Calls Him Gay" shipped via this path).
-                led["clip_title"] = author.safe_title(info["title"], streamer)
+                # safe_title alone only blocks UNSAFE text — it happily passed
+                # "WWWW" and "w max" through as public titles on 2026-07-29.
+                # fallback_title adds the quality floor, using the transcript
+                # (what was actually said) when the clipper's title is noise.
+                led["clip_title"] = author.fallback_title(
+                    streamer, info["title"],
+                    " ".join(w["w"] for w in (words or [])))
                 led["clipper"] = info["clipper"]
                 led["streamer"] = streamer
                 led["platform"] = platform

@@ -194,6 +194,111 @@ def safe_title(raw: str, streamer: str = "") -> str:
     return cleaned
 
 
+# Streamer clip titles are written by clippers for an audience that already
+# has the context, so they collapse to pure hype ("WWWW", "w max", "wowza")
+# or a bare noun ("SUBURB", "Yak"). safe_title lets those through — they are
+# SAFE, just worthless — and on 2026-07-29 four of them shipped as the public
+# YouTube titles. These two sets are the vocabulary of that noise.
+_HYPE = {
+    "w", "ww", "www", "wwww", "wwwww", "l", "ll", "lll", "lol", "lmao",
+    "lmfao", "omg", "omfg", "wow", "wowza", "yo", "yoo", "yooo", "bruh",
+    "bro", "ahh", "ah", "aha", "ayo", "ayoo", "ez", "gg", "ggs", "pog",
+    "poggers", "sheesh", "damn", "wtf", "wth", "huh", "clip",
+    "clips", "stream", "streaming", "live", "vod", "moment", "moments",
+    "funny", "insane", "crazy", "nah", "fr", "ong", "sus", "goat", "peak",
+    "v", "vv", "real", "actually", "literally", "bruv", "man", "dude",
+}
+_FILLER = {
+    "the", "a", "an", "and", "but", "so", "then", "like", "just", "okay",
+    "ok", "uh", "um", "er", "yeah", "yea", "nah", "i", "im", "its", "it",
+    "is", "was", "you", "your", "he", "she", "they", "we", "me", "my",
+    "of", "to", "in", "on", "at", "for", "with", "that", "this", "know",
+}
+
+
+def _words_of(text: str) -> list[str]:
+    return re.findall(r"[A-Za-z][A-Za-z']*", text or "")
+
+
+def title_is_low_signal(raw: str) -> bool:
+    """True when a title carries no information a cold viewer could act on.
+
+    Deliberately conservative — it only fires when almost nothing survives
+    stripping hype. "jasons camera ,an gets pass code to his room" is ugly
+    but INFORMATIVE and passes; "w max" and "ron shaking ahh" do not."""
+    words = _words_of(raw)
+    meaty = [w for w in words if w.lower() not in _HYPE]
+    if len(meaty) < 3:
+        return True
+    # 3+ words but still tiny ("Is he back?") reads as a tease with no subject
+    return len(" ".join(meaty)) < 14
+
+
+_SMALL = {"a", "an", "the", "and", "but", "or", "of", "to", "in", "on",
+          "at", "for", "with", "is", "it", "that", "this", "his", "her"}
+
+
+def _titlecase(text: str) -> str:
+    """Channel voice: Title Case with small words lowered, first word always
+    capitalised — matches the authored titles ('Kai Cenat Gives Out The
+    First Streamer University Diploma') so the fallback isn't visibly a
+    downgrade in the feed."""
+    out = []
+    for i, w in enumerate(text.split()):
+        lw = w.lower()
+        out.append(lw if i and lw in _SMALL else lw.capitalize())
+    return " ".join(out)
+
+
+# Tried and rejected: quoting the first N words of the transcript. It reads
+# well on invented examples and falls apart on real ones — the opening of a
+# clip is throat-clearing, not the payoff. On the three 07-29 clips it gave
+# "How Did They Know Isn't that Crazy Like They", "Oh My God Aloki Aloki Got
+# Some Dude Damn" and "Right Ladies and Gentlemen Hey Ej Swerver Thanks":
+# 3/3 incoherent, and worse than the hype they replaced. Picking the
+# INTERESTING span out of a transcript is the author brain's job, not a
+# heuristic's. So the floor makes no specific claim at all — it varies the
+# wording only so a multi-clip day doesn't ship the same line repeatedly.
+_NEUTRAL = (
+    "{s} Has The Whole Stream Reacting",
+    "The {s} Clip Everyone's Talking About",
+    "{s} Did Not See That Coming",
+    "Chat Could Not Handle This {s} Moment",
+    "{s} Caught It All On Stream",
+)
+
+
+def _neutral_title(pretty: str, seed: str) -> str:
+    """A safe channel-voice line, varied deterministically by `seed` so the
+    same clip always gets the same title but a day's batch doesn't repeat."""
+    if not pretty:
+        return "The Clip Everyone's Talking About"
+    import hashlib
+    # hashlib, not hash() — the builtin is salted per process, so the same
+    # clip would drift between a dry run and the apply run.
+    i = int(hashlib.sha1(seed.encode("utf-8", "replace")).hexdigest()[:8], 16)
+    return _NEUTRAL[i % len(_NEUTRAL)].format(s=pretty)
+
+
+def fallback_title(streamer: str, raw: str, transcript: str = "") -> str:
+    """The public title when authoring produced nothing: a safe and
+    INFORMATIVE raw clip title if there is one, else a neutral channel-voice
+    line. Never returns raw hype noise, and never invents a specific claim.
+
+    `transcript` is accepted but only seeds the neutral variant — see the
+    note above _NEUTRAL for why quoting it directly was removed. Authoring
+    is best-effort by design (it must never block a post), so this is the
+    floor that makes that tradeoff survivable."""
+    safe = safe_title(raw, streamer)
+    if not title_is_low_signal(safe):
+        return safe[:100]
+    pretty = (streamer or "").strip("_").title()
+    neutral = _neutral_title(pretty, f"{streamer}|{raw}")
+    print(f"::warning::[author] low-signal raw title {raw!r} -> neutral "
+          f"title {neutral!r} (authoring produced nothing)", flush=True)
+    return neutral[:100]
+
+
 def _timestamped(words: list[dict]) -> str:
     """Compact [start-end] transcript so the director can reason about WHEN
     the setup and payoff happen (for the cut boundaries)."""
@@ -249,6 +354,8 @@ def _postprocess(out: dict, streamer: str, context: str,
     tags = [t for t in tags if 2 <= len(t) <= 30][:7]
     series = re.sub(r"[^a-z-]", "", str(out.get("series", "")).lower())
     if not title or len(title) > 100:
+        print(f"::warning::[author] rejected — title missing or >100 chars "
+              f"({title[:60]!r})", flush=True)
         return None
     # hard safety gate: a slur or demeaning insult-framing in the title/hook
     # is off-brand + gets demonetized/suppressed — reject regardless of what
@@ -337,6 +444,8 @@ def _call_claude(user: str, system: str = SYSTEM,
     import shutil
     import subprocess
     if not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN", "").strip():
+        print("::warning::[author] CLAUDE_CODE_OAUTH_TOKEN unset — the brain "
+              "is unavailable, falling to Groq", flush=True)
         return None
     if not shutil.which("claude"):
         print("::warning::[author] claude CLI not installed — "
@@ -594,4 +703,9 @@ def author_package(streamer: str, clip_title: str, transcript: str,
                 return meta
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[author] groq authoring failed: {e}", flush=True)
+    # Both brains are down. This used to return silently and the raw clip
+    # title shipped with nothing in the log to explain why — say it loudly,
+    # because the public title is now a fallback, not an authored one.
+    print("::warning::[author] AUTHORING FAILED (claude + groq) — the clip "
+          "ships on a fallback title, not an authored one", flush=True)
     return None
