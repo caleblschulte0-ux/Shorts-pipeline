@@ -329,8 +329,10 @@ jobs:
               # NEVER publishes — it ends at the gate, exactly like preview;
               # uploading still requires post_curiosity with its own gates,
               # approval, kill switch, and CURIOSITY_PUBLISH_ENABLED=1.
+              # --slugs (if given) targets specific stories; otherwise
+              # portfolio admission picks them.
               python scripts/batch_produce.py --plan
-              python scripts/batch_produce.py --run \
+              python scripts/batch_produce.py --run $SLUGFLAG \
                 --max-stories "${{ inputs.batch_max || '1' }}" \
                 --budget-seconds "${BATCH_BUDGET:-18000}" \
                 || echo "::warning::batch ended early — see batch_run_report"

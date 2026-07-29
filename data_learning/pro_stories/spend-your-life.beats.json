@@ -1,52 +1,296 @@
 {
  "slug": "spend-your-life",
- "title": "How You Actually Spend Your Life",
+ "title": "Where Your Life Actually Goes",
+ "require_provenance": true,
+ "media_context": {
+  "geography": "United States",
+  "language": "en"
+ },
  "beats": [
   {
    "job": "HOOK",
    "mode": "designed_2d",
-   "narration": "One number should stop you cold — 26 years of your life, gone to sleep.",
-   "understand": "open on a person asleep as the years fly by — 26 years asleep",
-   "flat": {"kind": "scene_sleep", "number": "26", "label": "YEARS ASLEEP"}
+   "narration": "Four thousand weeks. That is the entire thing \u2014 every morning you will ever wake up, every person you will ever love, all of it, in four thousand weeks.",
+   "understand": "the whole life, stated as one small number",
+   "flat": {
+    "kind": "flat_hook",
+    "text": "4,000 WEEKS",
+    "sub": "THAT'S THE WHOLE THING"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "footage",
+   "narration": "About seventy-seven years, if you are lucky. It sounds enormous. So let's spend it, honestly, and see what is actually left at the end.",
+   "understand": "a real pair of old hands \u2014 the number made physical",
+   "image": {
+    "query": "elderly hands",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter one. Asleep.",
+   "understand": "Asleep",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER ONE",
+    "title": "Asleep"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Another thirteen years vanish at work — the same desk, day after day after day.",
-   "understand": "a person hunched at a desk while days blur past — 13 years at work",
-   "flat": {"kind": "scene_work", "number": "13", "label": "YEARS AT WORK"}
+   "narration": "Twenty-six years of it, you are unconscious. Not resting \u2014 gone. The lights go out and the years keep moving without you.",
+   "understand": "a figure asleep while the nights fly past \u2014 26 years",
+   "flat": {
+    "kind": "scene_sleep",
+    "number": "26",
+    "label": "YEARS ASLEEP"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "footage",
+   "narration": "It does not feel like a cost. It feels like nothing at all. That is what makes it the largest bill you will ever pay.",
+   "understand": "an empty dark bedroom, the bed still holding its shape",
+   "image": {
+    "query": "dark bedroom night",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "footage",
+   "narration": "Roughly a third of everything you were given, spent lying down in the dark.",
+   "understand": "morning light arriving on an empty room \u2014 a third of a life gone",
+   "image": {
+    "query": "sunrise window light",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter two. At work.",
+   "understand": "At Work",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER TWO",
+    "title": "At Work"
+   }
   },
   {
    "job": "DEVELOP",
    "mode": "designed_2d",
-   "narration": "Eleven more — more than a decade — lost staring into a screen.",
-   "understand": "a person curled around a glowing phone as the world dims — 11 years on a screen",
-   "flat": {"kind": "scene_screen", "number": "11", "label": "YEARS ON A SCREEN"}
+   "narration": "Nine more years at work. Not nine years of workdays \u2014 nine years of solid, round-the-clock time, handed over.",
+   "understand": "a figure hunched at a desk as the days blur \u2014 9 years",
+   "flat": {
+    "kind": "scene_work",
+    "number": "9",
+    "label": "YEARS AT WORK"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "footage",
+   "narration": "The same chair. The same light. The same twenty minutes before you are allowed to leave.",
+   "understand": "a real desk, worn and specific",
+   "image": {
+    "query": "office desk computer",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "footage",
+   "narration": "About eighty thousand hours, if you work a normal life. Most people cannot name what they did with them.",
+   "understand": "a real worker mid-task \u2014 the hours made physical",
+   "image": {
+    "query": "factory worker",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter three. The screen.",
+   "understand": "The Screen",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER THREE",
+    "title": "The Screen"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Eleven years looking into a screen. This is the one nobody plans for and everybody pays.",
+   "understand": "a figure curled around a glowing phone as the room dims \u2014 11 years",
+   "flat": {
+    "kind": "scene_screen",
+    "number": "11",
+    "label": "YEARS ON A SCREEN"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "footage",
+   "narration": "It arrives in pieces small enough to feel free. Four minutes here. A queue there. A whole evening, occasionally, with nothing to show for it.",
+   "understand": "a real face lit only by a phone in the dark",
+   "image": {
+    "query": "person using phone at night",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "footage",
+   "narration": "Three hours a day is the average, and that is only the television. The number under that is worse.",
+   "understand": "a real television glowing in an empty living room",
+   "image": {
+    "query": "television living room",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter four. Getting there.",
+   "understand": "Getting There",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER FOUR",
+    "title": "Getting There"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "A full year of your life is spent in traffic. Sitting still, facing forward, going to the place that takes the nine years.",
+   "understand": "a figure motionless in a car as the road crawls \u2014 1 year",
+   "flat": {
+    "kind": "scene_traffic",
+    "number": "1",
+    "label": "YEAR IN TRAFFIC"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "footage",
+   "narration": "Twenty-seven minutes each way, on average. It is the most ordinary theft there is.",
+   "understand": "a real highway, packed and patient",
+   "image": {
+    "query": "highway traffic",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Then the lines. The waiting room. The one in front of you who has questions.",
+   "understand": "a figure standing in a queue that never advances",
+   "flat": {
+    "kind": "scene_queue",
+    "number": "",
+    "label": "STILL WAITING"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "And the hold music, which has been playing, somewhere, for your entire adult life.",
+   "understand": "a figure on the phone, on hold, going nowhere",
+   "flat": {
+    "kind": "scene_hold",
+    "number": "",
+    "label": "PLEASE HOLD"
+   }
+  },
+  {
+   "job": "CHAPTER",
+   "mode": "designed_2d",
+   "narration": "Chapter five. The upkeep.",
+   "understand": "The Upkeep",
+   "flat": {
+    "kind": "flat_title",
+    "kicker": "CHAPTER FIVE",
+    "title": "The Upkeep"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "footage",
+   "narration": "Four and a half years on the maintenance of being alive. Dishes. Laundry. The same surfaces, wiped again.",
+   "understand": "a real sink, real dishes \u2014 the unglamorous truth",
+   "image": {
+    "query": "kitchen sink dishes",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "DATA",
+   "mode": "footage",
+   "narration": "Another two and a half years simply eating. Which, to be fair, is the good part.",
+   "understand": "a real table mid-meal, plates and hands",
+   "image": {
+    "query": "family dinner table",
+    "perspective": "cinematic"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "designed_2d",
+   "narration": "Lay it all out end to end and the arithmetic gets uncomfortable.",
+   "understand": "the whole life as a grid, the spent squares filling in",
+   "flat": {
+    "kind": "flat_life_grid",
+    "years": 77,
+    "spent": 68
+   }
   },
   {
    "job": "REVEAL",
    "mode": "designed_2d",
-   "narration": "Add it all up, and almost none of your life is actually left.",
-   "understand": "the single data moment: the whole life as a grid, filling until only a sliver is yours",
+   "narration": "What is left is about nine years. Nine years of awake, unclaimed, genuinely yours time, spread thin across seventy-seven.",
+   "understand": "the figure standing in warm light \u2014 9 years are yours",
    "flat": {
-    "kind": "flat_life_grid",
-    "total_years": 76,
-    "final_label": "ACTUALLY YOURS",
-    "segments": [
-     {"label": "ASLEEP", "years": 26, "color": [120, 170, 255]},
-     {"label": "AT WORK", "years": 13, "color": [90, 185, 170]},
-     {"label": "ON A SCREEN", "years": 11, "color": [240, 130, 110]},
-     {"label": "EATING & CHORES", "years": 8, "color": [160, 125, 205]},
-     {"label": "GROWING UP", "years": 9, "color": [150, 160, 190]}
-    ]
+    "kind": "scene_free",
+    "number": "9",
+    "label": "YEARS ARE YOURS"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "mode": "footage",
+   "narration": "Nine years is not a tragedy. It is a budget. And almost nobody knows they are holding one.",
+   "understand": "a real person outdoors in late light, unhurried",
+   "image": {
+    "query": "person walking outdoors sunset",
+    "perspective": "cinematic"
    }
   },
   {
    "job": "PAYOFF",
    "mode": "designed_2d",
-   "narration": "Only about nine years are truly yours. Nine. Spend them on something that matters.",
-   "understand": "a person walks out into a sunrise, arms rising — 9 years are yours",
-   "flat": {"kind": "scene_free", "number": "9", "label": "YEARS ARE YOURS"}
+   "narration": "So the question was never where the time goes. The time goes exactly where you leave it. The question is what you do with the nine years nobody is asking you for.",
+   "understand": "the figure walking out of frame toward the light \u2014 the payoff",
+   "flat": {
+    "kind": "scene_walkout",
+    "number": "",
+    "label": ""
+   }
+  },
+  {
+   "job": "CLOSE",
+   "mode": "footage",
+   "narration": "Four thousand weeks. You have already spent some of them getting here.",
+   "understand": "a real horizon at first light \u2014 return to the opening",
+   "image": {
+    "query": "sunrise horizon field",
+    "perspective": "cinematic"
+   }
   }
  ]
 }
