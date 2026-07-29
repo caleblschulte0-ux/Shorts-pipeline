@@ -25,7 +25,13 @@ def main():
     assert "money-goes" in plan["admitted"], plan
     print(f"ok  2. plan admits {len(plan['admitted'])} real stories")
 
-    # bounded run with the producer stubbed: two stories, one pass one fail
+    # bounded run with the producer stubbed: two stories, one pass one fail.
+    # ledger writes go to a TEMP file — the real state ledger is runtime
+    # history, and tests must not write into it.
+    import run_ledger
+    real_ledger_path = run_ledger.LEDGER_PATH
+    tmp_ledger = Path(tempfile.mkdtemp()) / "ledger.jsonl"
+    run_ledger.LEDGER_PATH = tmp_ledger
     calls = []
     import produce
     real = produce.produce
@@ -51,7 +57,9 @@ def main():
                            budget_seconds=-1)
     finally:
         produce.produce = real
+        run_ledger.LEDGER_PATH = real_ledger_path
     assert not calls and all("budget" in d for d in rep["decisions"].values())
+    assert tmp_ledger.exists()   # events landed in the temp ledger, not state
     print("ok  4. exhausted budget defers every story, renders nothing")
 
     # idea funnel plumbing
