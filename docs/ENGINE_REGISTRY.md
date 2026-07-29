@@ -237,6 +237,18 @@ is NOT evaluated** — motion comes only from per-frame interpolation
   demand), Natural Earth (feeds E5), NASA open APIs. Cache under `cache/`,
   same provisioning pattern as models.
 
+- **E15 — Consolidate the two mechanical QA implementations.** Two sessions
+  shipped sibling capabilities on the same day (2026-07-29/30):
+  `shared/video_qa.py` (#185 — black/freeze/silence/loudness with a policy
+  layer) and `engines/render_qa.py` (#186 — black tail/open, freeze, A/V
+  drift, cropdetect letterbox; consumed by `third_capture.clip_qa` and the
+  story renderer). The check sets are complementary but the blackdetect/
+  freezedetect core is duplicated. One module should own the ffmpeg passes
+  — likely `engines/render_qa` absorbs the silence/loudness checks and
+  `shared/video_qa` becomes a thin policy wrapper over it (or is retired).
+  Do it as a deliberate change with both consumers' tests green, not a
+  drive-by.
+
 *Round-two rejects (asked and answered — recorded so they don't come back):*
 local diffusion image-gen (CPU-hopeless on runners; Gemini/Pollinations
 already cover it), Real-ESRGAN / RIFE upscale-interpolation (GPU-bound),
