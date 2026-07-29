@@ -106,6 +106,69 @@
       ],
       "published_versions": [],
       "last_updated": "2026-07-25"
+    },
+    "kaicenat-arriv-cenat-2026w31": {
+      "event_id": "kaicenat-arriv-cenat-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "arriv",
+        "cenat",
+        "greet",
+        "rakai"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-29",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/CoweringBelovedChowderFutureMan-pFyE-jD8vikQU8Fk",
+        "https://www.twitch.tv/kaicenat/clip/SmoothConsideratePeppermintBibleThump--wyrSFSi-Te7-q8R"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-29"
+    },
+    "jasontheween-camera-chant-2026w30": {
+      "event_id": "jasontheween-camera-chant-2026w30",
+      "people": [
+        "jasontheween"
+      ],
+      "actions": [
+        "camera",
+        "chant",
+        "crowd",
+        "free"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-29",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jasontheween/clip/PuzzledFrigidPanPJSugar-enF1BhIjgjE434x3",
+        "https://www.twitch.tv/jasontheween/clip/GrossHumbleDillCoolStoryBro-UXgcyKxNc53WiFVB"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-29"
+    },
+    "kaicenat-about-camera-2026w31": {
+      "event_id": "kaicenat-about-camera-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "camera",
+        "down",
+        "shout"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-29",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/HyperConsideratePotatoPanicVis-PoXtd8ZVMM-TpOPJ",
+        "https://www.twitch.tv/agent00/clip/FitAbnegateGrouseFeelsBadMan-nzBAHmYWRMoEzznR"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-29"
     }
   }
 }
