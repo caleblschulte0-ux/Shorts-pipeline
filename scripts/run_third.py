@@ -302,7 +302,7 @@ def _load_log() -> dict:
 
 
 def _save_log(log: dict) -> None:
-    from fsutil import atomic_write_json
+    from shared.fsutil import atomic_write_json
     atomic_write_json(LOG_PATH, log)
 
 
@@ -408,7 +408,7 @@ def _crosspost(mp4: Path, title: str, description: str,
     if os.environ.get("TIKTOK_ACCESS_TOKEN_THIRD") or \
             os.environ.get("TIKTOK_ACCESS_TOKEN"):
         try:
-            from uploaders import TikTokUploader
+            from shared.uploaders import TikTokUploader
             up = TikTokUploader(channel="third").upload(
                 file_path=mp4, title=title, description=description, tags=tags)
             out["tiktok"] = getattr(up, "url", str(up))
@@ -418,7 +418,7 @@ def _crosspost(mp4: Path, title: str, description: str,
     if all(os.environ.get(k) for k in
            ("META_ACCESS_TOKEN", "IG_USER_ID", "REELS_PUBLIC_HOST")):
         try:
-            from uploaders import InstagramUploader
+            from shared.uploaders import InstagramUploader
             up = InstagramUploader().upload(
                 file_path=mp4, title=title, description=description, tags=tags)
             out["instagram"] = getattr(up, "url", str(up))
@@ -679,7 +679,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         from third_capture import clip_edit, clip_qa, storyline
         from third_capture import scene_analysis, story_director
         from third_capture import story as story_mod
-        from fsutil import atomic_write_json
+        from shared.fsutil import atomic_write_json
         spec = pkg["capture"]
         sources_cfg = spec.get("sources") or \
             {"twitch": spec.get("channels", [])}
@@ -1371,13 +1371,13 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     "ts": datetime.now(timezone.utc).isoformat(),
                 }
         else:
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             description = _description(pkg, led)
             # every language: extended locale set (clipper content is
             # visual-first, so localized metadata travels worldwide)
             localizations = None
             try:
-                from localize import translate_metadata, ALL_LANGS
+                from shared.localize import translate_metadata, ALL_LANGS
                 localizations = translate_metadata(title, description,
                                                    langs=ALL_LANGS)
             except Exception as e:  # noqa: BLE001
@@ -1586,7 +1586,7 @@ def main() -> int:
                         "self_healed", "error") if r.get(k) is not None}
                       for r in results],
         })
-        from fsutil import atomic_write_json
+        from shared.fsutil import atomic_write_json
         atomic_write_json(stats_path, {"runs": hist[-30:]})
     except Exception as e:  # noqa: BLE001 — stats never fail the run
         print(f"[stats] skipped: {e}", flush=True)

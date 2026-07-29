@@ -139,14 +139,14 @@ def main() -> int:
         print("DRY RUN — not uploading.\n" + desc)
         return 0
 
-    from uploaders import YouTubeUploader
+    from shared.uploaders import YouTubeUploader
     up = YouTubeUploader(channel=args.channel)
     res = up.upload(file_path=final, title=title, description=desc[:5000],
                     tags=["data", "economy", "explained", "money", "charts"],
                     publish_at=args.publish_at)
     url = getattr(res, "url", None) or str(res)
     print(f"[longform] uploaded -> {url}")
-    from fsutil import atomic_write_json, load_json
+    from shared.fsutil import atomic_write_json, load_json
     log = load_json(LONGFORM_LOG, {"posted": []})
     log["posted"].append({"url": url, "title": title, "slugs": slugs,
                           "at": datetime.now(timezone.utc).isoformat()})

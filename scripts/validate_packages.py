@@ -27,7 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-import entity_media  # noqa: E402
+from funnel import entity_media as entity_media  # noqa: E402
 
 
 def main() -> int:

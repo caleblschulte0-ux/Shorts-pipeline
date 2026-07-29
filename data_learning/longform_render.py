@@ -477,7 +477,7 @@ def _broll_part(query: str, want: float, overlay: Path, work: Path,
     trimmed to `want` seconds. None on any failure — b-roll is a bonus,
     never a blocker."""
     try:
-        import stock_search
+        from funnel import stock_search as stock_search
         c = stock_search.fetch_top(query, work / f"broll_{tag}_dl",
                                    min_duration=4, max_duration=30)
         raw = Path(c["path"])          # fetch_top's dest is a DIRECTORY
