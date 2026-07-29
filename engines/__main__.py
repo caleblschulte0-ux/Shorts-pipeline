@@ -86,8 +86,15 @@ def _cmd_demo(args) -> int:
         from engines.parallax import maybe_parallax
         result = maybe_parallax(args.image, args.out, args.duration,
                                 size=(args.width, args.height))
+    elif args.engine == "lookmatch":
+        from engines.lookmatch import maybe_harmonize, plan
+        pl = plan(args.image)
+        if pl:
+            print(f"plan: {pl}")
+        result = maybe_harmonize(args.image, args.out)
     else:
-        print(f"no demo for {args.engine!r} (choices: kenburns, parallax)")
+        print(f"no demo for {args.engine!r} (choices: kenburns, parallax, "
+              "lookmatch)")
         return 2
     if result is None:
         print("demo failed (see messages above)")
@@ -108,7 +115,7 @@ def main(argv=None) -> int:
     sp = sub.add_parser("install")
     sp.add_argument("engine")
     sp = sub.add_parser("demo")
-    sp.add_argument("engine", choices=["kenburns", "parallax"])
+    sp.add_argument("engine", choices=["kenburns", "parallax", "lookmatch"])
     sp.add_argument("--image", required=True)
     sp.add_argument("--out", required=True)
     sp.add_argument("--duration", type=float, default=4.0)

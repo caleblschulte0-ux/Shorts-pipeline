@@ -25,6 +25,25 @@ Every funnel candidate carries a `source_class` (set in
 | `transformative_evidence` | Copyrighted media used AS evidence in commentary/reporting | news-API photos + og:image heroes; `TOPIC_VIDEO_ALLOW_STRIKES=1` YouTube lane |
 | `permission_granted` | Owner said yes, in writing | (workflow is ticket M8) |
 | `unverified` | Provenance unclear | Imgur, social providers — lowest base scores |
+| `generated` | AI-generated on request via the exchange mailbox (`exchange/`, served by `data_learning/exchange_media.py`) | ChatGPT→Google Drive answers to filed asks |
+
+### The generated lane (added 2026-07-29)
+
+Generated media enters through the exchange mailbox: a beat pins an answered
+asset id, or the gateway auto-files an ask when every search provider comes
+up dry (the id is a hash of the brief, so re-renders converge on one ask).
+Rules, non-negotiable:
+
+- **Illustration, never evidence.** A generated image may depict a concept
+  ("tax paperwork on a table"); it must NEVER stand in for a thing the
+  narration claims really happened, a real person, or a real place presented
+  as that place. The facts gate governs claims; this lane must not launder
+  them.
+- Provenance is stamped at serve time: `source_class: generated`, license
+  `AI-generated (exchange)`, the request brief as the attribution trail —
+  into the audit sidecar and credits like any other source.
+- Assets live in Drive + `cache/`; only the request/response paperwork is
+  committed.
 
 ## 2. Admission rules for copyrighted media (condensed)
 

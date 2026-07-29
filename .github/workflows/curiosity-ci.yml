@@ -112,6 +112,9 @@ jobs:
           python scripts/test_pipeline_health.py
           python scripts/test_learning_proposals.py
           python scripts/test_production_wiring.py
+          python scripts/test_exchange.py
+          python scripts/test_exchange_media.py
+          python scripts/test_lookmatch.py
 
       - name: "Layer 2e — decision-machinery drill: deterministic 50-story fault campaign"
         run: python scripts/simulate_pipeline.py

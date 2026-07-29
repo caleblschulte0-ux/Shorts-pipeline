@@ -322,6 +322,8 @@ def _img(image: dict) -> dict:
                 out["image_" + k] = image[k]
     if image.get("query"):
         out["image_query"] = image["query"]
+    if image.get("asset"):                    # pinned generated asset
+        out["exchange_asset"] = image["asset"]  # (exchange_media id)
     for k in ("perspective", "push", "direction", "pan", "min_appeal",
               "must_match"):
         if image.get(k) is not None:

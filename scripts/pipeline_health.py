@@ -141,8 +141,17 @@ def status() -> dict:
     caps = [CapabilityStatus(n, w, impl, ev, blocking)
             for n, w, impl, ev, blocking in CAPABILITIES]
     pipe = summarize_pipeline(caps)
+    # outstanding generated-media debts: asks the pipeline filed (or a human
+    # filed) that the other agent has not answered yet. Advisory — a debt
+    # never gates, it just stops being invisible.
+    try:
+        from data_learning import exchange_media
+        media_debts = exchange_media.open_requests()
+    except Exception:  # noqa: BLE001
+        media_debts = []
     doc = {
         "ledger": meta,
+        "media_debts": media_debts,
         "health": {
             "runs": snap.run_count,
             "pass_rate": snap.pass_rate,
@@ -179,6 +188,9 @@ def main(argv) -> int:
     print(f"[capabilities] implementation={c['implementation_score']} "
           f"evidence={c['evidence_score']} "
           f"weighted_readiness={c['weighted_readiness']}")
+    if doc.get("media_debts"):
+        print(f"[media-debts] {len(doc['media_debts'])} open exchange "
+              f"ask(s): " + ", ".join(d["id"] for d in doc["media_debts"][:5]))
     print(f"[next] {', '.join(c['next_priorities'][:3])} "
           f"-> output/pipeline_status.json")
     return 0

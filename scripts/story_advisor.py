@@ -135,7 +135,11 @@ def advise(slug: str, story_path: Path | None = None) -> dict:
     story = json.loads(Path(story_path).read_text())
     beats = story.get("beats", [])
     if not beats:
-        raise SystemExit(f"{slug}: no beats")
+        # ValueError, NOT SystemExit: callers embed this inside a render
+        # (produce.py wraps it in `except Exception`) and an advisory layer
+        # must never be able to terminate the producer. main() below still
+        # exits nonzero for the CLI.
+        raise ValueError(f"{slug}: no beats")
     load = analyze_cognitive_load(beats_to_information(beats))
     retention = analyze_retention_risk(beats_to_moments(beats))
     hook = str(beats[0].get("narration", ""))
@@ -182,7 +186,11 @@ def main(argv) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("slug")
     a = ap.parse_args(argv)
-    advise(a.slug)
+    try:
+        advise(a.slug)
+    except ValueError as e:
+        print(f"[advisor] {e}", file=sys.stderr)
+        return 1
     return 0
 
 

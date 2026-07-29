@@ -116,6 +116,26 @@ REGISTRY: dict[str, dict] = {
         "sample": "python -m engines demo parallax --image photo.jpg --out /tmp/px.mp4",
     },
     # ---- external engines (owned elsewhere; registered for doctor) --------
+    "lookmatch": {
+        "kind": "module",
+        # Born 2026-07-29 from the blind taste judge's money-goes verdict:
+        # mixed-source media "never settles into one look" — the final film
+        # grade cannot fix per-asset exposure/saturation spread. lookmatch
+        # nudges each asset toward the house band BEFORE assembly; in-band
+        # assets pass through untouched.
+        "status": "active",
+        "gated": True,
+        "problem": "Per-asset look harmonization so photos/clips from many "
+                   "sources read as one shoot, not a keyword search.",
+        "headless": True,
+        "control": "python (engines.lookmatch.maybe_harmonize) / CLI demo",
+        "reusable": True,
+        "license": "n/a (ffmpeg filters only, no models)",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "~0.3 s probe per asset; re-encode only when out of band",
+        "deps": ["ffmpeg + ffprobe on PATH"],
+    },
     "ffmpeg": {
         "kind": "external", "status": "active",
         "problem": "All video/audio encode, filter, mux.",

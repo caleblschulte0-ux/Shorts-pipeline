@@ -54,6 +54,14 @@ just produces the same JSON. Nothing here is magic.
 **"anyone with the link can view"**. If it is not, fetch says so plainly
 instead of writing a broken file.
 
+## Auto-filed asks (the pipeline writes requests too)
+
+When the media gateway finds NOTHING for a beat, the render files
+`requests/image-auto-<hash>.json` itself (hash of the brief, so repeat
+renders converge on one ask instead of spamming). Answer them exactly like
+human asks. Once answered, the next render picks the asset up
+automatically — no re-authoring needed.
+
 ## Rules
 
 - Never commit the images themselves. `cache/` is gitignored; keep it that way.

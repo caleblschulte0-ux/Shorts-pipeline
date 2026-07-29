@@ -241,6 +241,17 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
     # cache key by QUERY (not shot idx) so every chunk of one image beat — and any
     # later re-render — reuses a single download instead of re-hitting the (flaky,
     # rate-limited) media API. A sidecar .json carries the attribution across reuse.
+    # GENERATED lane (exchange_media): an explicitly pinned asset id is an
+    # AUTHORED choice and outranks every search — its license/attribution
+    # ride into the credits like any other source.
+    if shot.get("exchange_asset"):
+        from data_learning import exchange_media
+        got = exchange_media.maybe_fetch(str(shot["exchange_asset"]))
+        if got is not None:
+            return got
+        print(f"[pro] pinned exchange asset {shot['exchange_asset']!r} not "
+              "fetchable (unanswered / not link-shared) — falling back to "
+              "the gateway", file=sys.stderr)
     key = str(shot.get("image_query") or shot.get("image_url") or idx)
     safe = "".join(c if c.isalnum() else "_" for c in key)[:60]
     dest = work / f"img_{safe}.jpg"
@@ -296,6 +307,24 @@ def _image_source(shot: dict, work: Path, idx: int) -> dict:
             except Exception:  # noqa: BLE001
                 pass
             return picked
+    # TOTAL MISS. Before degrading, close the generative loop: a PREVIOUS
+    # render's auto-ask may have been answered since (use it now), and if
+    # not, file the ask so the NEXT render finds a real image where this one
+    # found nothing. Filing is best-effort and never blocks the fallback.
+    from data_learning import exchange_media
+    q = str(shot.get("image_query") or "")
+    got = exchange_media.maybe_fetch(exchange_media.auto_id(q))
+    if got is not None:
+        print(f"[pro] gateway dry for {q!r} — using the ANSWERED exchange "
+              "auto-request (generated asset)")
+        return got
+    rid = exchange_media.maybe_request(
+        q, purpose="auto-filed: the media gateway found no usable photo for "
+                   "this beat and it degraded to a designed statement")
+    if rid:
+        _fallback("image_request_filed", "degraded",
+                  f"{q!r}: no photo anywhere — exchange ask {rid} filed for "
+                  "the next render", beat=shot.get("_beat"))
     raise RuntimeError(
         f"media gateway found NO photo at all for "
         f"{shot.get('image_query')!r} — perspective "
