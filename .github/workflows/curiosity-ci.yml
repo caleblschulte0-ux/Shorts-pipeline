@@ -98,6 +98,11 @@ jobs:
           python scripts/test_media_context.py
           python scripts/test_publish_guards.py
 
+      - name: "Layer 2c — nextgen library: all 425 contracts (merged PR#173 surface)"
+        run: |
+          python -m compileall -q experiments/curiosity_nextgen
+          python -m unittest discover experiments/curiosity_nextgen/tests 2>&1 | tail -3
+
       - name: "Layer 3 — scene: expression frames + manifest"
         run: python scripts/test_expressions.py
 
