@@ -366,6 +366,24 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001 — never let i18n block a post
             print(f"[{slug}] localization skipped: {e}", flush=True)
             localizations = {}
+        # SECURITY SCAN on the exact outbound payload (PR#173 adoption:
+        # security_scanner). A secret / credential field / internal-
+        # instruction field in the title, description, tags, localizations,
+        # captions, or meta REFUSES the upload; a scanner error also refuses
+        # (nothing ships unscanned). Not bypassable by --force.
+        import publish_security
+        sec_ok, sec_reasons = publish_security.scan_upload(
+            out, sc.get("title", slug), desc,
+            _tags(sc), localizations)
+        if not sec_ok:
+            print(f"[{slug}] BLOCKED: {'; '.join(sec_reasons)}",
+                  file=sys.stderr)
+            results.append({"slug": slug, "ok": False,
+                            "error": "security: " + "; ".join(sec_reasons)})
+            continue
+        print(f"[{slug}] security scan clean "
+              f"(-> {out.with_suffix('.security.json').name})")
+
         print(f"[{slug}] uploading {dur:.0f}s video"
               + (f" (scheduled {publish_at})" if publish_at else ""),
               flush=True)
