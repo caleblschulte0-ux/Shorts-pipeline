@@ -433,7 +433,11 @@ def _brain_words(dss: list[dict]) -> dict | None:
         return None
 
 
-_VIZ = {"trend": "trend", "rank": "pictorial_race", "share": "waffle_grid"}
+# NO authored viz. Hardcoding a kind per insight_type fought the viz director
+# and lost: a forced 'pictorial_race' fell back to a static 'pictograph' and
+# the scene measured 0.8 effective fps. Leaving viz unset lets the director
+# best-fit the depiction by SHAPE and couple Data to it mechanically — the
+# path the benchmark suite actually validates.
 
 
 def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
@@ -451,8 +455,7 @@ def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
                      "insight_type": d["insight_type"],
                      "role": f"{i+1} · {d['title'].upper()[:18]}",
                      "topic": d["title"][:40],
-                     "say": say,
-                     "viz": _VIZ.get(d["insight_type"], "pictorial_race")})
+                     "say": say})
     tags = [re.sub(r"[^a-z0-9]", "", str(t).lower())
             for t in (words.get("hashtags") or [])]
     return {"slug": slug, "title": title,

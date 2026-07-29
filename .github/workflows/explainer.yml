@@ -361,6 +361,12 @@ jobs:
           # viz_director invents a varied depiction per segment at render time,
           # preferring Anthropic (reliable) over the 429-prone free tiers.
           VIZ_INVENT: '1'
+          # Only depictions with a VERIFIED mascot coupling may be chosen —
+          # the same mode the benchmark suite and the preview pipeline prove
+          # against. Production was the one path still running without it,
+          # which is how scenes reached the gate with a decorative mascot and
+          # a chart that never moved.
+          STRICT_CONTACT: '1'
           # Native multi-channel routing: post_stories uses channel "explainer",
           # so the uploader reads YOUTUBE_TOKEN_JSON_EXPLAINER. The original
           # YOUTUBE_TOKEN_JSON (other channel) is never referenced here.
