@@ -13709,8 +13709,8 @@
     {
       "slug": "carbon-climb",
       "title": "The Line That Only Goes Up",
-      "hook": "The air itself is changing, and we have the receipt.",
-      "closing": "Every year, the line climbs higher. That's the story in the data.",
+      "hook": "In 1960 the air was basically a different planet's atmosphere. Then this line started climbing \u2014 and it has never once gone back down.",
+      "closing": "At the pace the 2010s set, the next 25 parts per million lands in about a decade \u2014 same climb, faster clock.",
       "question": "Did you realize it was accelerating? Tell me below.",
       "keep_order": true,
       "hashtags": [
@@ -13738,7 +13738,12 @@
           "role": "1 \u00b7 THE CLIMB",
           "topic": "atmospheric CO2",
           "say": "In 1960 the air held about 317 parts of CO2 per million. By 2025 it's 427 \u2014 a line that has only ever climbed.",
-          "viz": "trend"
+          "scene": {
+            "mechanic": "co2-tube",
+            "title": true,
+            "concept": "a glass tube beside a smokestack fills with haze; a tick mark and label lands for every year on record, climbing toward the top",
+            "code": "\ncx = (RX0 + RX1) // 2\ntube_w = 260\ntop = RTOP + 60\nbot = RBOT - 40\nd.rounded_rectangle([cx - tube_w // 2, top, cx + tube_w // 2, bot],\n                     radius=50, outline=rgba(TEXT, 200), width=6)\nstack = subject_image('industrial smokestack chimney')\nif stack is not None:\n    sw = 220\n    sh = int(sw * stack.height / stack.width)\n    paste(stack, cx - sw // 2, bot - 30, sw, sh)\nvmin = min(values)\nspan = max(vmax - vmin, 1.0)\nshown_n = int(reveal * n + 0.999)\ntop_y = bot - 40\nfor i in range(n):\n    if i >= shown_n:\n        break\n    v = values[i]\n    frac = (v - vmin) / span\n    y = int(lerp(bot - 40, top + 40, frac))\n    top_y = y\n    d.line([cx - tube_w // 2 - 10, y, cx + tube_w // 2 + 10, y],\n           fill=rgba(HIGHLIGHT, 220), width=4)\n    text(labels[i], cx - tube_w // 2 - 80, y - 14, size=24, color=TEXT)\n    text(str(int(v)), cx + tube_w // 2 + 20, y - 14, size=24, color=HIGHLIGHT)\nd.rectangle([cx - tube_w // 2 + 10, top_y, cx + tube_w // 2 - 10, bot - 10],\n            fill=rgba((150, 170, 140), 130))\ntext('ppm CO2', cx, top + 10, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -13750,7 +13755,12 @@
           "role": "2 \u00b7 THE ACCELERATION",
           "topic": "CO2 added each decade",
           "say": "And it's speeding up. The 1960s added under 9 parts per million. The 2010s added over 24 \u2014 nearly triple the pace.",
-          "viz": "pictograph"
+          "scene": {
+            "mechanic": "accelerating-puffs",
+            "title": true,
+            "concept": "smoke puffs drift left to right across the decades, each one bigger and higher than the last, showing the pace itself speeding up",
+            "code": "\ngap = (RX1 - RX0 - 160) / max(n - 1, 1)\nbase_x = RX0 + 80\npuff = subject_image('smoke puff cloud')\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax)\n    local_reveal = clamp(reveal * n - i)\n    if local_reveal <= 0:\n        continue\n    size = int((90 + 260 * frac) * local_reveal)\n    cx = int(base_x + gap * i)\n    cy = int(RBOT - 140 - frac * 480 - i * 8)\n    if puff is not None:\n        paste(puff, cx - size // 2, cy - size // 2, size, size)\n    else:\n        d.ellipse([cx - size // 2, cy - size // 2, cx + size // 2, cy + size // 2],\n                  fill=rgba((210, 210, 220), 200))\n    text(labels[i], cx, cy + size // 2 + 26, size=24, color=TEXT, center=True)\n    text(str(v), cx, cy - size // 2 - 24, size=28, color=HIGHLIGHT, center=True)\n"
+          }
         }
       ]
     },
@@ -13758,7 +13768,7 @@
       "slug": "population-giants",
       "title": "Half the Planet, Eight Countries",
       "hook": "Two countries hold more than a third of all humanity.",
-      "closing": "Eight countries, over half the planet. Wild, right?",
+      "closing": "The other 190-plus countries on Earth, all together, still add up to less than half of humanity.",
       "question": "Which of these surprised you most? Comment below.",
       "hashtags": [
         "population",
@@ -13798,15 +13808,20 @@
           "role": "2 \u00b7 THE SHARE",
           "topic": "share of world population",
           "say": "Put it another way: China and India alone are more than 35 percent of everyone alive. The other 190-plus countries split the rest.",
-          "viz": "waffle_grid"
+          "scene": {
+            "mechanic": "people-array",
+            "title": true,
+            "concept": "a pictogram of real people-icons, one figure per 5% of humanity, stacked into columns for China, India, the US, and everyone else",
+            "code": "\ngap = (RX1 - RX0) / n\nicon_w = 74\nicon_h = 92\nbase_y = RBOT - 60\nperson = subject_image('person icon silhouette')\nfor i in range(n):\n    v = values[i]\n    cnt = max(1, round(v / 5))\n    cx = int(RX0 + gap * i + gap / 2)\n    shown = int(reveal * cnt + 0.999)\n    for k in range(cnt):\n        if k >= shown:\n            break\n        y = base_y - (k + 1) * icon_h\n        x = cx - icon_w // 2\n        if person is not None:\n            paste(person, x, y, icon_w, icon_h - 8)\n        else:\n            d.rounded_rectangle([x, y, x + icon_w, y + icon_h - 8],\n                                 radius=12, fill=rgba(ACCENT, 220))\n    text(labels[i], cx, base_y + 20, size=24, color=TEXT, center=True)\n    text(str(v) + '%', cx, base_y - cnt * icon_h - 40, size=28, color=HIGHLIGHT, center=True)\n"
+          }
         }
       ]
     },
     {
       "slug": "world-power-mix",
       "title": "How the World Keeps Its Lights On",
-      "hook": "Here's how the entire planet made its electricity last year.",
-      "closing": "The mix is tipping \u2014 slowly, then all at once.",
+      "hook": "One fuel still lights more of the planet than every wind turbine and solar panel on Earth combined \u2014 by more than double.",
+      "closing": "Fossil power just fell under 60% for the first time since the 1940s \u2014 the next line to break might be 50.",
       "question": "Is your country ahead or behind on this? Let me know.",
       "hashtags": [
         "energy",
@@ -13833,7 +13848,12 @@
           "role": "1 \u00b7 THE MIX",
           "topic": "world electricity by source",
           "say": "Coal still leads at 34 percent, gas adds 22. But hydro, nuclear, wind and solar are closing in fast.",
-          "viz": "waffle_grid"
+          "scene": {
+            "mechanic": "energy-wheel",
+            "title": true,
+            "concept": "a wheel sweeps open wedge by wedge, each sized to its share of world electricity, with a real photo of that power source planted in its slice",
+            "code": "\ncx = (RX0 + RX1) // 2\ncy = RTOP + 520\nR = 380\nicon_names = ['coal power plant', 'natural gas power plant', 'hydroelectric dam',\n              'nuclear power plant', 'wind turbine', 'solar panel farm',\n              'oil power plant', 'biomass power plant']\ncolors = [HIGHLIGHT, ACCENT, WARN, (150, 150, 255), (250, 200, 80),\n          (120, 220, 120), (200, 120, 90), (180, 180, 80)]\ntot = sum(values)\nang = -90.0\nfor i in range(n):\n    v = values[i]\n    sweep = 360.0 * v / tot\n    local_reveal = clamp(reveal * n - i)\n    if local_reveal <= 0:\n        break\n    sw = sweep * local_reveal\n    col = colors[i % len(colors)]\n    d.pieslice([cx - R, cy - R, cx + R, cy + R], ang, ang + sw, fill=rgba(col, 220))\n    mid = ang + sw / 2\n    rad = mid * math.pi / 180.0\n    ix = cx + int((R * 0.62) * math.cos(rad))\n    iy = cy + int((R * 0.62) * math.sin(rad))\n    icon = subject_image(icon_names[i] if i < len(icon_names) else labels[i])\n    if icon is not None:\n        paste(icon, ix - 55, iy - 55, 110, 110)\n    text(labels[i], ix, iy + 70, size=22, color=TEXT, center=True)\n    text(str(v) + '%', ix, iy - 85, size=24, color=HIGHLIGHT, center=True)\n    ang += sweep\n"
+          }
         },
         {
           "source": "offline",
@@ -16713,172 +16733,6 @@
         }
       ],
       "question": "What's the biggest fruit or veggie you've ever grown or seen?"
-    },
-    {
-      "slug": "fewer-people-are-undernourished-at-8-5",
-      "title": "Fewer People Are Undernourished at 8.5%",
-      "hook": "You'd think a growing planet gets hungrier. It's doing the opposite.",
-      "closing": "Fewer hungry, fewer kids per household, more people living rural than ever \u2014 the planet is quietly rebalancing itself.",
-      "hashtags": [
-        "hungerawareness",
-        "globalhealth",
-        "sustainability"
-      ],
-      "question": "Which of these three numbers surprised you most?",
-      "segments": [
-        {
-          "source": "offline",
-          "key": "sn_itk_defc_zs_trend",
-          "params": {
-            "file": "sn_itk_defc_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 THE HUNGER LINE",
-          "topic": "Global undernourishment",
-          "say": "In 2001, 12.8 percent of the world went hungry. By 2023 that's down to 8.5 percent \u2014 even as the population kept climbing.",
-          "viz": "trend"
-        },
-        {
-          "source": "offline",
-          "key": "sp_pop_0014_to_zs_trend",
-          "params": {
-            "file": "sp_pop_0014_to_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 THE AGING SHARE",
-          "topic": "Population under 15",
-          "say": "At the same time, the share of the world under 15 shrank from 37.5 percent in 1972 to just 24.4 percent today \u2014 fewer child mouths per capita.",
-          "viz": "pictograph"
-        },
-        {
-          "source": "offline",
-          "key": "sp_rur_totl_trend",
-          "params": {
-            "file": "sp_rur_totl_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 THE GROWING COUNTRYSIDE",
-          "topic": "Rural population",
-          "say": "Yet rural population never stopped climbing \u2014 from 2.4 billion people in 1972 to 3.46 billion now.",
-          "scene": {
-            "mechanic": "village-growth",
-            "concept": "a cluster of farmhouses multiplies along a 1972-to-today axis as rural population climbs from 2.4 billion to 3.46 billion, counting up in billions",
-            "code": "x0, x1 = RX0 + 40, RX1 - 40\ngy = 1080\nd.rounded_rectangle([x0 - 20, gy, x1 + 20, gy + 50], radius=18, fill=rgba(ACCENT, 40))\nd.line([x0, gy, x1, gy], fill=rgba(TEXT, 160), width=6)\nd.line([x0, gy - 14, x0, gy + 14], fill=rgba(TEXT, 200), width=5)\nd.line([x1, gy - 14, x1, gy + 14], fill=rgba(TEXT, 200), width=5)\ntext(labels[0], x0, gy + 28, size=32, center=True)\ntext(labels[-1], x1, gy + 28, size=32, center=True)\nprog = clamp(reveal)\ngv = values[0] + (values[-1] - values[0]) * prog\nhouse = subject_image('small rural farmhouse with a red roof')\nmax_houses = 12\ncount = max(1, int(round((gv / values[-1]) * max_houses)))\nhw, hh = 84, 84\ncols = 4\ngap = 16\nrow_top = gy - hh - 20\nfor k in range(count):\n    col = k % cols\n    row = k // cols\n    cx = (x0 + x1) / 2 - (cols * (hw + gap)) / 2 + col * (hw + gap) + hw / 2\n    cy = row_top - row * (hh + gap)\n    if house is not None:\n        paste(house, cx - hw / 2, cy - hh, hw, hh)\n    else:\n        d.rounded_rectangle([cx - hw / 2, cy - hh, cx + hw / 2, cy], radius=12, fill=rgba(ACCENT, 200))\nlabel_txt = str(round(gv / 1e9, 2)) + \"B rural residents\"\ntext(label_txt, (x0 + x1) / 2, row_top - hh * 3 - 90, size=48, color=HIGHLIGHT, center=True)"
-          }
-        }
-      ]
-    },
-    {
-      "slug": "china-beats-everyone-on-capture-fisheries-production-by-2-1x",
-      "title": "China Beats Everyone On Capture fisheries production \u2014 By 2.1x",
-      "hook": "You'd guess India leads on capture fisheries production. It's China \u2014 13.3 million to 6.4 million.",
-      "closing": "The oceans are being fished harder than ever \u2014 but for once, protection is catching up too.",
-      "hashtags": [
-        "data",
-        "facts",
-        "statistics",
-        "shorts",
-        "worldbank"
-      ],
-      "question": "Which number shocked you more \u2014 China's catch, or how fast protection is expanding?",
-      "segments": [
-        {
-          "source": "offline",
-          "key": "en_pop_dnst_trend",
-          "params": {
-            "file": "en_pop_dnst_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 THE CROWDING",
-          "topic": "Population density",
-          "say": "Squeeze more people onto the same land: global population density nearly doubled, from 36.8 people per square kilometer in 1972 to 62.1 by 2023.",
-          "viz": "trend"
-        },
-        {
-          "source": "offline",
-          "key": "er_fsh_capt_mt_rank",
-          "params": {
-            "file": "er_fsh_capt_mt_rank.json"
-          },
-          "insight_type": "rank",
-          "role": "2 \u00b7 THE CATCH",
-          "topic": "Capture fisheries production",
-          "say": "China lands 13.3 million metric tons of fish a year \u2014 more than double India's 6.4 million. Indonesia is actually second, at 7.8 million; Russia trails at 5.0 million.",
-          "viz": "pictorial_race"
-        },
-        {
-          "source": "offline",
-          "key": "er_mrn_ptmr_zs_trend",
-          "params": {
-            "file": "er_mrn_ptmr_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 THE PROTECTED WATERS",
-          "topic": "Marine protected areas",
-          "say": "As the pressure on oceans grew, so did the response: marine protected areas jumped from 6.8 percent of territorial waters in 2013 to 17.5 percent by 2025 \u2014 more than double.",
-          "scene": {
-            "mechanic": "tide-rising",
-            "concept": "a reef tank fills like a rising tide from 6.8% to 17.5% as marine protected waters expand from 2013 to 2025",
-            "code": "x0, x1 = RX0 + 200, RX1 - 200\ntop, bot = 480, 1100\nd.rounded_rectangle([x0, top, x1, bot], radius=26, outline=rgba(TEXT, 200), width=6, fill=rgba(ACCENT, 25))\nprog = clamp(reveal)\ngv = values[0] + (values[-1] - values[0]) * prog\nceiling = max(values[-1] * 1.15, values[0] * 1.15, 1.0)\nfrac = clamp(gv / ceiling)\nfh = int((bot - top) * frac)\nd.rounded_rectangle([x0 + 8, bot - fh, x1 - 8, bot - 8], radius=20, fill=rgba(HIGHLIGHT, 215))\nsubj = subject_image('coral reef teeming with fish')\nif subj is not None:\n    sw = x1 - x0 - 60\n    sh = min(300, int(sw * subj.height / subj.width))\n    sw = int(sh * subj.width / subj.height)\n    paste(subj, (x0 + x1) / 2 - sw / 2, top - sh - 30, sw, sh)\ntext(labels[0], x0 + 20, bot + 40, size=32, color=TEXT, center=False)\ntext(labels[-1], x1 - 20, bot + 40, size=32, color=TEXT, center=True)\nval_txt = str(round(gv, 1)) + \"% protected\"\ntext(val_txt, (x0 + x1) / 2, bot - fh - 70, size=58, color=HIGHLIGHT, center=True)"
-          }
-        }
-      ]
-    },
-    {
-      "slug": "adolescent-fertility-rate-fell-55-since-1972",
-      "title": "Adolescent fertility rate Fell 55% Since 1972",
-      "hook": "Teen births and suicide have both been quietly falling for decades \u2014 almost nobody talks about it.",
-      "closing": "Two of the grimmest numbers on the books, falling together \u2014 while the world spent more on health than ever.",
-      "hashtags": [
-        "data",
-        "facts",
-        "statistics",
-        "shorts",
-        "worldbank"
-      ],
-      "question": "Which number surprised you most?",
-      "segments": [
-        {
-          "source": "offline",
-          "key": "sp_ado_tfrt_trend",
-          "params": {
-            "file": "sp_ado_tfrt_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "1 \u00b7 TEEN BIRTHS",
-          "topic": "Adolescent fertility rate",
-          "say": "In 1972, for every 1,000 teenage girls, 85 gave birth. By 2024 that's down to 38.3 \u2014 a 55 percent drop.",
-          "viz": "trend"
-        },
-        {
-          "source": "offline",
-          "key": "sh_sta_suic_p5_trend",
-          "params": {
-            "file": "sh_sta_suic_p5_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 A QUIETER TOLL",
-          "topic": "Suicide mortality rate",
-          "say": "Suicide mortality tells a similar story: 12.5 per 100,000 people in 2000, down to 9.13 by 2021 \u2014 27 percent lower.",
-          "viz": "pictograph"
-        },
-        {
-          "source": "offline",
-          "key": "sh_xpd_chex_gd_zs_trend",
-          "params": {
-            "file": "sh_xpd_chex_gd_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 THE INVESTMENT BEHIND IT",
-          "topic": "Health spending",
-          "say": "Meanwhile, health spending climbed from 8.6 percent of GDP in 2000 to 10.1 percent by 2023 \u2014 the world investing more in health exactly as these numbers improved.",
-          "scene": {
-            "mechanic": "spend-gauge",
-            "concept": "a medical cross fills like a thermometer as health spending climbs from 8.6% to 10.1% of GDP between 2000 and 2023",
-            "code": "x0, x1 = RX0 + 200, RX1 - 200\ntop, bot = 480, 1100\nd.rounded_rectangle([x0, top, x1, bot], radius=26, outline=rgba(TEXT, 200), width=6, fill=rgba(ACCENT, 25))\nprog = clamp(reveal)\ngv = values[0] + (values[-1] - values[0]) * prog\nceiling = max(values[-1] * 1.15, values[0] * 1.15, 1.0)\nfrac = clamp(gv / ceiling)\nfh = int((bot - top) * frac)\nd.rounded_rectangle([x0 + 8, bot - fh, x1 - 8, bot - 8], radius=20, fill=rgba(HIGHLIGHT, 215))\nsubj = subject_image('red medical cross hospital sign')\nif subj is not None:\n    sw = x1 - x0 - 100\n    sh = min(280, int(sw * subj.height / subj.width))\n    sw = int(sh * subj.width / subj.height)\n    paste(subj, (x0 + x1) / 2 - sw / 2, top - sh - 30, sw, sh)\ntext(labels[0], x0 + 20, bot + 40, size=32, color=TEXT, center=False)\ntext(labels[-1], x1 - 20, bot + 40, size=32, color=TEXT, center=True)\nval_txt = str(round(gv, 1)) + \"% of GDP\"\ntext(val_txt, (x0 + x1) / 2, bot - fh - 70, size=58, color=HIGHLIGHT, center=True)"
-          }
-        }
-      ]
     }
   ],
   "videos": [
