@@ -52,6 +52,7 @@ _HOLISTIC = {"orbit_group", "timeline_axis"}       # render all items, own the b
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 _DATA_TYPES = {"object", "fill_object", "stack", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
+_JUST_NUMERIC = __import__("re").compile(r"[\d\s.,:%+\-/]+")
 _ROW_REGIONS = {"ground-row"} | {f"grid-{i}" for i in range(1, 5)}
 _VALID_REGIONS = set(REGIONS) | _ROW_REGIONS
 
@@ -267,7 +268,13 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
         # actually SEE what the thing looks like; number + label on the right.
         rise = int((1.0 - reveal) * 40)
         cy = (by0 + by1) // 2 + rise
-        ih = int(bh * 0.84)
+        # SIZE CARRIES THE VALUE. This was a flat bh*0.84 for every row, so a
+        # 15.6 and a 73.6 drew the same picture at the same size and only the
+        # numeral differed — the literal definition of data stated rather than
+        # demonstrated. sqrt keeps the smallest row recognisable while the
+        # leader is unmistakably the biggest thing on screen.
+        _vr = max(0.0, min(1.0, (value / vmax) if vmax else 1.0))
+        ih = int(bh * (0.40 + 0.44 * (_vr ** 0.5)))
         if photo is not None:
             # A REAL photo of the thing, framed as a rounded card filling the left.
             iw = int(bw * 0.48)
@@ -307,7 +314,8 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
             nfs -= 8
             nf = _pil_font(nfs)
             nb = d.textbbox((0, 0), num, font=nf)
-        d.text((nx, cy - (nb[3] - nb[1]) - 6), num, font=nf,
+        _num_top = cy - (nb[3] - nb[1]) - 6
+        d.text((nx, _num_top), num, font=nf,
                fill=_rgba(color, int(255 * na)), stroke_width=6,
                stroke_fill=(5, 8, 15, int(255 * na)))
         lfs = 46
@@ -315,12 +323,22 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
         while lfs > 24 and d.textbbox((0, 0), label, font=lf)[2] > avail:
             lfs -= 4                                    # shrink label to fit
             lf = _pil_font(lfs)
-        d.text((nx, cy + 14), label, font=lf,
+        # BELOW the number, clear of its glyph box — the two were overlapping
+        # ("2005" printed across "15.6"), which the gate reads as collided type.
+        # Anchored to the numeral's real glyph bottom. A fixed offset from the
+        # row centre printed the year straight through the value.
+        d.text((nx, _num_top + nb[3] + 10), label, font=lf,
                fill=(248, 250, 252, int(255 * na)), stroke_width=3,
                stroke_fill=(5, 8, 15, int(255 * na)))
         return {"value": float(value), "cx": float(nx + (nb[2] - nb[0]) / 2),
                 "cy": float(cy - (nb[3] - nb[1]) / 2), "w": 240.0, "h": 120.0}
-    frac = 0.55 + 0.45 * (value / vmax if vmax else 1.0)
+    # A 4.7x difference in the data compressed to 1.55x on screen under the old
+    # 0.55..1.00 mapping — the objects read as the same size and the number did
+    # all the work, which is exactly the "stated, not demonstrated" block. A
+    # sqrt mapping over a wider range keeps the small one legible while making
+    # the big one unmistakably bigger.
+    _r = (value / vmax) if vmax else 1.0
+    frac = 0.30 + 0.70 * (max(0.0, min(1.0, _r)) ** 0.5)
     avail_h = bh - 150                                 # room for number + label
     cx = _cx(box)
     ground = by1 - 60
@@ -807,9 +825,28 @@ def object_scene(insight) -> dict:
 
 
 def _load_cutout(subject, slug, tag):
-    from . import scene_media
+    """A transparent graphic for `subject`: the AI cutout when it answers, else
+    a deterministic Twemoji icon.
+
+    The fallback is the point. Pollinations returns 500/429 often enough that
+    whole scenes were losing their subjects and degrading to bare chart cards —
+    which the review gate blocks, correctly, as data that is stated rather than
+    demonstrated. An icon is a weaker picture than a bespoke illustration and a
+    far better video than an empty frame.
+    """
+    from . import icons, scene_media
     from PIL import Image
-    cp = scene_media.subject_cutout(subject, slug, tag)
+    # ICON FIRST. The generative provider is not just flaky (500/429) — when it
+    # does answer it returns off-topic slop: a malaria scene came back as two
+    # human faces on a white background, which is exactly the "composition is
+    # wrecked / mostly empty frame" the review gate blocks. A correct, clean,
+    # transparent mosquito beats a plausible-looking stranger every time, so the
+    # deterministic icon wins whenever the subject maps to one.
+    cp = icons.icon_png(subject, 512)
+    if cp:
+        print(f"[scene] icon subject {subject!r}", flush=True)
+    else:
+        cp = scene_media.subject_cutout(subject, slug, tag)
     if not cp:
         return None
     try:
@@ -863,12 +900,20 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
         # the photo for the item this row actually displays.
         if t == "object":
             lv = _resolve((el.get("data") or {}).get("value_from"), insight)
-            subj = (lv[0] if lv else str(el.get("subject", ""))).strip()
+            lab = (lv[0] if lv else "").strip()
+            authored = str(el.get("subject", "")).strip()
+            # On a TIME SERIES the row label is a year — "2005" is not a thing
+            # you can photograph, and asking for a picture of it is how a
+            # malaria scene came back as two human faces. Fall back to the
+            # authored subject whenever the label is just a number/date.
+            subj = authored if (not lab or _JUST_NUMERIC.fullmatch(lab)) else lab
             import hashlib
             sh = hashlib.sha1(subj.lower().encode()).hexdigest()[:6]  # subject-keyed cache
-            photos[i] = _load_photo(subj, slug, f"p{i}-{sh}")
-            if photos[i] is None:
-                cuts[i] = _load_cutout(subj, slug, f"s{i}-{sh}")
+            # Deterministic icon first (inside _load_cutout), real photo only
+            # when the subject maps to no icon.
+            cuts[i] = _load_cutout(subj, slug, f"s{i}-{sh}")
+            if cuts[i] is None:
+                photos[i] = _load_photo(subj, slug, f"p{i}-{sh}")
         elif t == "fill_object":
             subj = str(el.get("subject", ""))
             cuts[i] = _load_cutout(subj, slug, f"s{i}")     # silhouette mask
