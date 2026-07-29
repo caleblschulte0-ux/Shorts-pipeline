@@ -91,6 +91,13 @@ jobs:
           python scripts/verify_expression_gates.py
           python scripts/facts_gate.py money-goes --out /tmp/fg/curiosity_money-goes.mp4
 
+      - name: "Layer 2b — unit: identity / durability / media context / publish guards (PR#173 adoptions)"
+        run: |
+          python scripts/test_artifact_identity.py
+          python scripts/test_run_ledger.py
+          python scripts/test_media_context.py
+          python scripts/test_publish_guards.py
+
       - name: "Layer 3 — scene: expression frames + manifest"
         run: python scripts/test_expressions.py
 
