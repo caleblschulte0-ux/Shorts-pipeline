@@ -1,0 +1,28 @@
+{
+  "schema": "chatgpt-media-request/v1",
+  "date": "2026-07-29",
+  "status": "open",
+  "purpose": "DECISIVE TEST — the GitHub writer is UTF-8 text only, so raster images cannot be committed directly. Can a GENERATED raster image be base64-encoded into a text file instead? If yes, the image pipeline works. If no, ChatGPT is a vector/SVG engine only.",
+  "drop_branch": "media-dropbox",
+  "drop_path": "drops/2026-07-29-b64/",
+  "requests": [
+    {
+      "id": "b64-image-001",
+      "kind": "image_base64",
+      "channel": "test",
+      "slug": "b64-capability-test",
+      "prompt": "A photorealistic close-up of a single ripe orange resting on a black reflective surface, dramatic side lighting, shallow depth of field.",
+      "style": "photorealistic, cinematic lighting",
+      "width": 1024,
+      "height": 1024,
+      "accepts": ["b64_png", "b64_jpg", "b64_webp"],
+      "max_bytes": 6000000,
+      "delivery": {
+        "file": "drops/2026-07-29-b64/b64-image-001/image.png.b64",
+        "encoding": "standard base64 of the raw image bytes, UTF-8 text file",
+        "wrapping": "line breaks every 76 chars are fine; no data: URI prefix, no markdown fences, no surrounding quotes or JSON — the file must contain ONLY the base64 payload"
+      },
+      "notes": "IMPORTANT: this must be a REAL generated raster image (the kind you produce with your image tool), encoded to base64 — NOT hand-written SVG or vector code. If you cannot access the bytes of your own generated image in order to encode them, mark this 'unsupported' and say exactly which step blocked you: (a) generating the image, (b) reading its bytes, or (c) writing the encoded text file. Knowing which step fails is the entire point of this test."
+    }
+  ]
+}
