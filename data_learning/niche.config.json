@@ -13710,7 +13710,7 @@
       "slug": "carbon-climb",
       "title": "The Line That Only Goes Up",
       "hook": "The air itself is changing, and we have the receipt.",
-      "closing": "Every year, the line climbs higher. That's the story in the data.",
+      "closing": "The line has never once gone down \u2014 and it's still accelerating.",
       "question": "Did you realize it was accelerating? Tell me below.",
       "keep_order": true,
       "hashtags": [
@@ -13758,7 +13758,7 @@
       "slug": "population-giants",
       "title": "Half the Planet, Eight Countries",
       "hook": "Two countries hold more than a third of all humanity.",
-      "closing": "Eight countries, over half the planet. Wild, right?",
+      "closing": "Eight countries. Everyone else splits what's left.",
       "question": "Which of these surprised you most? Comment below.",
       "hashtags": [
         "population",
@@ -16471,8 +16471,8 @@
     {
       "slug": "caffeine-content-revealed",
       "title": "Caffeine Content Revealed",
-      "hook": "60 milligrams in your coffee. 200 in one energy drink can. Here's where your daily buzz really comes from.",
-      "closing": "Add it up across a day and 400 milligrams sneaks up fast \u2014 that's the line health experts say not to cross.",
+      "hook": "One energy drink has more caffeine than 3 cups of black tea \u2014 what's really in your daily drinks?",
+      "closing": "That energy drink alone gets you halfway to your daily limit.",
       "hashtags": [
         "coffee",
         "caffeine",
@@ -16531,7 +16531,7 @@
           "insight_type": "rank",
           "role": "2 \u00b7 SODA CAFFEINE",
           "topic": "Soda Caffeine",
-          "say": "Some sodas pack a significant caffeine punch, with up to 70 milligrams per 12 oz can.",
+          "say": "Sodas carry caffeine too \u2014 35 milligrams in a cola, up to 60 in a cherry soda.",
           "scene": {
             "title": true,
             "elements": [
@@ -16556,7 +16556,7 @@
           "insight_type": "share",
           "role": "3 \u00b7 CHOCOLATE CAFFEINE",
           "topic": "Chocolate Caffeine",
-          "say": "Dark chocolate contains a surprising amount of caffeine, with some bars having as much as 30 milligrams.",
+          "say": "Milk chocolate barely registers at 5 milligrams an ounce. Cocoa powder is six times that \u2014 30.",
           "scene": {
             "title": true,
             "elements": [
@@ -16565,7 +16565,7 @@
                 "region": "hero",
                 "subject": "chocolate bar",
                 "data": {
-                  "value_from": "item:0"
+                  "value_from": "star"
                 }
               }
             ]
@@ -16597,8 +16597,8 @@
     {
       "slug": "gigantic-fruits-and-veggies",
       "title": "Gigantic Fruits And Veggies",
-      "hook": "Imagine a pumpkin so big it needs a forklift to move",
-      "closing": "From a 2,600-pound pumpkin to a 19-foot carrot \u2014 nature's records keep getting stranger every year.",
+      "hook": "This pumpkin weighs 2,600 pounds \u2014 imagine needing a forklift just to move dinner.",
+      "closing": "The record books get rewritten every season \u2014 someone's growing next year's giant right now.",
       "hashtags": [
         "gardening",
         "fruitlover",
@@ -16650,7 +16650,7 @@
           "insight_type": "rank",
           "role": "2 \u00b7 LONGEST CARROTS",
           "topic": "Longest Carrots",
-          "say": "The longest carrot ever recorded measured over 19 feet long, while the top 5 longest carrots all measured over 10 feet, with the shortest being 9 feet 5 inches",
+          "say": "The record carrot ran over 19 feet long. Even the fifth-longest ever grown topped 9 feet \u2014 taller than a house.",
           "scene": {
             "title": true,
             "elements": [
@@ -16718,7 +16718,7 @@
       "slug": "tajikistan-beats-everyone-on-educational-attainment-by-1-9x",
       "title": "Tajikistan Beats Everyone On Educational attainment \u2014 By 1.9x",
       "hook": "You'd guess Luxembourg leads on educational attainment. It's Tajikistan \u2014 5.47 to 2.84.",
-      "closing": "Tajikistan beats every one of them \u2014 Switzerland, Luxembourg, Turkiye, Lebanon \u2014 on this measure. Small country, biggest number.",
+      "closing": "Nobody expected a mountain nation to out-degree Europe. The numbers were public the whole time.",
       "hashtags": [
         "data",
         "facts",
@@ -16726,7 +16726,7 @@
         "shorts",
         "worldbank"
       ],
-      "question": "Which of these three numbers surprised you the most?",
+      "question": "Which number surprised you most?",
       "segments": [
         {
           "source": "offline",
@@ -16735,9 +16735,9 @@
             "file": "en_urb_lcty_ur_zs_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 CITY POPULATION",
+          "role": "1 \u00b7 MEGACITY SHARE",
           "topic": "Population in the largest city",
-          "say": "Around the world, about one in six city-dwellers lives in their country's single biggest city \u2014 18.2% in 1972, and 53 years later it's basically unchanged at 16.2%.",
+          "say": "Start with the capital: in 1972 its largest city held 18.2% of the urban population. By 2025, barely moved \u2014 16.2%.",
           "viz": "trend"
         },
         {
@@ -16748,13 +16748,9 @@
           },
           "insight_type": "trend",
           "role": "2 \u00b7 WOMEN ONLINE",
-          "topic": "Individuals using the Internet, female",
-          "say": "Meanwhile the on-ramp to the internet opened fast for women worldwide: 51.8% online in 2019, 68.2% by 2024 \u2014 nearly 17 points in five years.",
-          "scene": {
-            "mechanic": "signal-bloom",
-            "concept": "A grid of phone icons lights up as the share of women online climbs year by year toward today's 68%.",
-            "code": "icon = subject_image('smartphone')\nmidx = (RX0 + RX1) // 2\nidxf = reveal * (n - 1)\nlo = int(clamp(idxf, 0, n - 1))\nhi = min(lo + 1, n - 1)\nt = idxf - lo\nval = lerp(values[lo], values[hi], t)\nyear = labels[hi] if t > 0.5 else labels[lo]\ncols = 10\nrows = 8\ntotal = cols * rows\ngx0, gy0 = RX0 + 10, RTOP + 260\ngx1, gy1 = RX1 - 10, RBOT - 20\ncw = (gx1 - gx0) / cols\nrh = (gy1 - gy0) / rows\niw = cw * 0.7\nih = rh * 0.7\nlit = int(round(total * clamp(val / 100.0)))\nfor i in range(total):\n    col = i % cols\n    row = i // cols\n    x = gx0 + col * cw + (cw - iw) / 2\n    y = gy0 + row * rh + (rh - ih) / 2\n    if icon is not None:\n        paste(icon, x, y, iw, ih)\n    else:\n        d.rounded_rectangle([x, y, x + iw, y + ih], radius=8, fill=rgba(TEXT, 70))\n    if i >= lit:\n        d.rounded_rectangle([x, y, x + iw, y + ih], radius=8, fill=rgba((6, 8, 14), 195))\n    else:\n        d.rounded_rectangle([x - 3, y - 3, x + iw + 3, y + ih + 3], radius=10,\n                             outline=rgba(HIGHLIGHT, 220), width=3)\ntext(f\"{val:.1f}%\", midx, RTOP + 40, size=88, color=HIGHLIGHT, center=True)\ntext(year + ' \u00b7 WOMEN ONLINE', midx, RTOP + 150, size=38, color=TEXT, center=True)\n"
-          }
+          "topic": "Women online",
+          "say": "But get online, and it's a different story: 51.8% of women were online in 2019. By 2024, 68.2%.",
+          "viz": "fill_vessel"
         },
         {
           "source": "offline",
@@ -16763,18 +16759,18 @@
             "file": "se_ter_cuat_do_zs_rank.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 DOCTORATE RATE",
-          "topic": "Educational attainment, Doctoral or equi",
-          "say": "So who actually tops the world on doctoral attainment? Tajikistan, at 5.47 \u2014 beating Switzerland's 3.31, Luxembourg's 2.84, Turkiye's 2.74, and Lebanon's 2.41.",
+          "role": "3 \u00b7 DOCTORAL DEGREES",
+          "topic": "Doctoral or equivalent attainment",
+          "say": "And on doctoral-level education, Tajikistan leads the world \u2014 5.47%. Switzerland: 3.31. Lebanon: 2.41.",
           "viz": "pictorial_race"
         }
       ]
     },
     {
-      "slug": "congo-dem-rep-beats-everyone-on-male-primary-school-age-chil",
-      "title": "Congo, Dem. Rep. Beats Everyone On Male primary school age children out-of-school \u2014 By 2.2x",
-      "hook": "You'd guess Mali leads on male primary school age children out-of-school. It's Congo, Dem. Rep. \u2014 62.3 to 28.3.",
-      "closing": "Congo, Dem. Rep. doesn't just top this list \u2014 it more than doubles the country in second place.",
+      "slug": "niger-beats-everyone-on-female-primary-school-age-children-o",
+      "title": "Niger Beats Everyone On Out-Of-School Girls \u2014 By 2.6x",
+      "hook": "You'd guess Pakistan leads on out-of-school girls. It's Niger \u2014 100% to 37.9%.",
+      "closing": "One country has as many out-of-school girls as the world gets. The numbers were public the whole time.",
       "hashtags": [
         "data",
         "facts",
@@ -16782,7 +16778,7 @@
         "shorts",
         "worldbank"
       ],
-      "question": "Would you have guessed a boys'-only school gap this big?",
+      "question": "Which number surprised you most?",
       "segments": [
         {
           "source": "offline",
@@ -16792,8 +16788,8 @@
           },
           "insight_type": "trend",
           "role": "1 \u00b7 YOUTH LITERACY",
-          "topic": "Literacy rate, youth female",
-          "say": "Global female youth literacy climbed from 67.1% in 1975 to 92% today \u2014 girls now read at nearly the same rate as boys almost everywhere.",
+          "topic": "Youth female literacy",
+          "say": "Youth female literacy climbed from 67.1% in 1975 to 92% by 2024 \u2014 a real gain.",
           "viz": "trend"
         },
         {
@@ -16803,25 +16799,21 @@
             "file": "se_enr_prim_fm_zs_trend.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 SCHOOL PARITY",
-          "topic": "School enrollment, primary (gross), gend",
-          "say": "And primary-school gender parity followed: for every 100 boys enrolled in 1972 there were 80 girls; by 2020 it's 98 \u2014 almost dead even.",
-          "scene": {
-            "mechanic": "parity-scale",
-            "concept": "Stacks of boy and girl figures rise on a beam that levels out as school enrollment parity climbs from 0.80 to 0.98.",
-            "code": "boy = subject_image('boy student cutout')\ngirl = subject_image('girl student cutout')\nmidx = (RX0 + RX1) // 2\nidxf = reveal * (n - 1)\nlo = int(clamp(idxf, 0, n - 1))\nhi = min(lo + 1, n - 1)\nt = idxf - lo\ngpi = lerp(values[lo], values[hi], t)\nyear = labels[hi] if t > 0.5 else labels[lo]\ncols_ref = 10\ncell = 82\nbase_y = RBOT - 40\nboy_x0 = RX0 + 50\ngirl_x0 = midx + 40\ncount_girls = int(round(cols_ref * clamp(gpi, 0.0, 1.2)))\nfor i in range(cols_ref):\n    x, y = boy_x0, base_y - (i + 1) * cell\n    if boy is not None:\n        paste(boy, x, y, cell - 12, cell - 6)\n    else:\n        d.rounded_rectangle([x, y, x + cell - 12, y + cell - 6], radius=10, fill=rgba(ACCENT, 220))\nfor i in range(count_girls):\n    x, y = girl_x0, base_y - (i + 1) * cell\n    if girl is not None:\n        paste(girl, x, y, cell - 12, cell - 6)\n    else:\n        d.rounded_rectangle([x, y, x + cell - 12, y + cell - 6], radius=10, fill=rgba(HIGHLIGHT, 220))\nbeam_left_y = base_y - cols_ref * cell\nbeam_right_y = base_y - count_girls * cell\nd.line([boy_x0 + (cell - 12) / 2, beam_left_y, girl_x0 + (cell - 12) / 2, beam_right_y],\n       fill=rgba(WARN, 235), width=10)\nd.ellipse([midx - 14, min(beam_left_y, beam_right_y) - 14, midx + 14, min(beam_left_y, beam_right_y) + 14],\n          fill=rgba(TEXT, 200))\ntext(f\"{gpi:.2f} GPI\", midx, RTOP + 40, size=76, color=HIGHLIGHT, center=True)\ntext(year, midx, RTOP + 130, size=38, color=TEXT, center=True)\ntext('BOYS', boy_x0 + (cell - 12) / 2, base_y + 16, size=30, color=ACCENT, center=True)\ntext('GIRLS', girl_x0 + (cell - 12) / 2, base_y + 16, size=30, color=HIGHLIGHT, center=True)\n"
-          }
+          "role": "2 \u00b7 GENDER PARITY",
+          "topic": "Primary enrollment gender parity",
+          "say": "Primary school gender parity has crept toward even \u2014 0.8 girls per boy enrolled in 1972, now 0.98.",
+          "viz": "comparison"
         },
         {
           "source": "offline",
-          "key": "se_lpv_prim_sd_ma_rank",
+          "key": "se_lpv_prim_sd_fe_rank",
           "params": {
-            "file": "se_lpv_prim_sd_ma_rank.json"
+            "file": "se_lpv_prim_sd_fe_rank.json"
           },
           "insight_type": "rank",
-          "role": "3 \u00b7 BOYS OUT OF SCHOOL",
-          "topic": "Male primary school age children out-of-",
-          "say": "Yet one country still leaves 62.3% of its primary-age BOYS out of school entirely: Congo, Dem. Rep. Niger is at 28.7%. Mali, 28.3%.",
+          "role": "3 \u00b7 OUT-OF-SCHOOL",
+          "topic": "Out-of-school primary-age girls",
+          "say": "Yet in Niger, 100% of primary-age girls in the poorest households are out of school. Congo: 64.1%. Chad: 35.7%.",
           "viz": "pictorial_race"
         }
       ]
@@ -16829,8 +16821,8 @@
     {
       "slug": "immunization-is-5-1x-higher-than-in-1980",
       "title": "Immunization Is 5.1x Higher Than In 1980",
-      "hook": "In 1980 it was 16.7. Now it's 84.8, and almost nobody noticed.",
-      "closing": "More kids protected than ever \u2014 on almost the same hospital capacity their grandparents had. That's the gap nobody's talking about.",
+      "hook": "In 1980, only 16.7% of kids worldwide got their vaccines. Today it's 84.8% \u2014 a 5x jump nobody throws a parade for.",
+      "closing": "That's millions of children alive today who wouldn't have been in 1980. The numbers were public the whole time.",
       "hashtags": [
         "data",
         "facts",
@@ -16838,7 +16830,7 @@
         "shorts",
         "worldbank"
       ],
-      "question": "Did you know immunization jumped 5x while hospital beds barely moved?",
+      "question": "Which number surprised you most?",
       "segments": [
         {
           "source": "offline",
@@ -16848,8 +16840,8 @@
           },
           "insight_type": "trend",
           "role": "1 \u00b7 CHILD MORTALITY",
-          "topic": "Mortality rate, under-5",
-          "say": "Meanwhile child mortality collapsed \u2014 93.5 deaths per 1,000 births in 1990, down to 37.4 by 2024, less than half.",
+          "topic": "Under-5 mortality rate",
+          "say": "In 1990, 93.5 of every 1,000 children died before age 5. By 2024: 37.4 \u2014 well under half.",
           "viz": "trend"
         },
         {
@@ -16859,14 +16851,10 @@
             "file": "sh_imm_idpt_trend.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 DPT IMMUNIZATION",
-          "topic": "Immunization, DPT",
-          "say": "In 1980 just 16.7% of one-year-olds got their DPT shots. By 2015 that hit 84.8% and held through 2024 \u2014 5.1 times higher, one generation later.",
-          "scene": {
-            "mechanic": "vaccine-surge",
-            "concept": "A syringe barrel fills and a row of children light up protected as DPT immunization races from 16.7% in 1980 to 84.8% today.",
-            "code": "vial = subject_image('vaccine vial')\nchild = subject_image('child silhouette')\nmidx = (RX0 + RX1) // 2\nidxf = reveal * (n - 1)\nlo = int(clamp(idxf, 0, n - 1))\nhi = min(lo + 1, n - 1)\nt = idxf - lo\nval = lerp(values[lo], values[hi], t)\nyear = labels[hi] if t > 0.5 else labels[lo]\nbx0, by0, bx1, by1 = RX0 + 60, RTOP + 60, RX1 - 60, RTOP + 300\nd.rounded_rectangle([bx0, by0, bx1, by1], radius=34, outline=rgba(TEXT, 210), width=6)\nfrac = clamp(val / 100.0)\nif vial is not None:\n    fill_image(vial, frac, bx0 + 8, by0 + 8, bx1 - bx0 - 16, by1 - by0 - 16, direction='right', color=HIGHLIGHT)\nelse:\n    d.rounded_rectangle([bx0 + 8, by0 + 8, bx0 + 8 + (bx1 - bx0 - 16) * frac, by1 - 8], radius=24, fill=rgba(HIGHLIGHT, 230))\ntext(f\"{val:.1f}%\", midx, by1 + 30, size=80, color=HIGHLIGHT, center=True)\ntext(year + ' \u00b7 DPT IMMUNIZED', midx, by1 + 130, size=34, color=TEXT, center=True)\nrow_y = by1 + 220\ncols = 10\nlit = int(round(cols * frac))\ncw = (RX1 - RX0) / cols\nfor i in range(cols):\n    x = RX0 + i * cw + cw * 0.15\n    w = cw * 0.7\n    h = w * 1.3\n    if child is not None:\n        paste(child, x, row_y, w, h)\n    else:\n        d.rounded_rectangle([x, row_y, x + w, row_y + h], radius=10, fill=rgba(ACCENT, 210))\n    if i >= lit:\n        d.rounded_rectangle([x, row_y, x + w, row_y + h], radius=10, fill=rgba((6, 8, 14), 175))\n"
-          }
+          "role": "2 \u00b7 VACCINE COVERAGE",
+          "topic": "DPT immunization coverage",
+          "say": "DPT vaccine coverage: 16.7% in 1980. 84.8% by 2024 \u2014 5.1 times higher.",
+          "viz": "fill_vessel"
         },
         {
           "source": "offline",
@@ -16876,9 +16864,113 @@
           },
           "insight_type": "trend",
           "role": "3 \u00b7 HOSPITAL BEDS",
-          "topic": "Hospital beds",
-          "say": "Yet hospital beds barely grew to match \u2014 2.4 per 1,000 people in 1975, only 3.29 now. The world got healthier faster than it built capacity.",
-          "viz": "scale_stack"
+          "topic": "Hospital beds per 1,000 people",
+          "say": "Hospital beds grew too \u2014 2.4 per 1,000 people in 1975, 3.29 by 2021.",
+          "viz": "pictograph"
+        }
+      ]
+    },
+    {
+      "slug": "access-to-clean-fuels-and-technologies-for-coo-is-2-3x-highe",
+      "title": "Access To Clean Cooking Fuel Is 2.3x Higher Than In 2000",
+      "hook": "In 2000, fewer than 1 in 4 rural households could cook without smoke. By 2023, over half can.",
+      "closing": "Millions of families now breathe easier every time they cook. The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "eg_cft_accs_ru_zs_trend",
+          "params": {
+            "file": "eg_cft_accs_ru_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 CLEAN COOKING",
+          "topic": "Clean cooking fuel access, rural",
+          "say": "Rural access to clean cooking fuel: 23.8% in 2000. 55.8% by 2023 \u2014 2.3 times higher.",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "eg_elc_accs_ru_zs_trend",
+          "params": {
+            "file": "eg_elc_accs_ru_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 RURAL ELECTRICITY",
+          "topic": "Electricity access, rural",
+          "say": "Rural electricity access moved too \u2014 66.5% in 2000, 84.9% by 2024.",
+          "viz": "fill_vessel"
+        },
+        {
+          "source": "offline",
+          "key": "eg_fec_rnew_zs_trend",
+          "params": {
+            "file": "eg_fec_rnew_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 RENEWABLE SHARE",
+          "topic": "Renewable energy's share of consumption",
+          "say": "Renewables' share of energy consumption crept from 16.7% in 1990 to 19.7% by 2020 \u2014 slower, but still climbing.",
+          "viz": "waffle_grid"
+        }
+      ]
+    },
+    {
+      "slug": "labor-force-is-1-6x-higher-than-in-1990",
+      "title": "Global Labor Force Is 1.6x Higher Than In 1990",
+      "hook": "In 1990 the global workforce was 2.3 billion people. Today it's 3.7 billion \u2014 1.4 billion new workers in one generation.",
+      "closing": "1.4 billion more people are earning a living than a generation ago. The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ms_mil_totl_tf_zs_trend",
+          "params": {
+            "file": "ms_mil_totl_tf_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 ARMED FORCES",
+          "topic": "Armed forces, share of labor force",
+          "say": "Armed forces personnel shrank as a share of the labor force \u2014 1.11% in 1990, down to 0.79% by 2020.",
+          "viz": "trend"
+        },
+        {
+          "source": "offline",
+          "key": "sl_tlf_totl_in_trend",
+          "params": {
+            "file": "sl_tlf_totl_in_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE WORKFORCE",
+          "topic": "Global labor force, total",
+          "say": "The global labor force itself: 2.3 billion people in 1990. 3.7 billion by 2025.",
+          "viz": "fill_vessel"
+        },
+        {
+          "source": "offline",
+          "key": "sl_uem_totl_ne_zs_trend",
+          "params": {
+            "file": "sl_uem_totl_ne_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 UNEMPLOYMENT",
+          "topic": "Unemployment rate",
+          "say": "Unemployment barely shifted \u2014 4.35% in 1994, 5.08% by 2022, national estimates.",
+          "viz": "waffle_grid"
         }
       ]
     }

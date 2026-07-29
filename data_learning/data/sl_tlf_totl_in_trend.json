@@ -1,0 +1,48 @@
+{
+  "key": "sl_tlf_totl_in_trend",
+  "title": "Labor force, total",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "1990-2025",
+  "insight_type": "trend",
+  "source": {
+    "name": "Labor force, total",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SL.TLF.TOTL.IN",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1990",
+      "value": 2322587072,
+      "period": "1990"
+    },
+    {
+      "label": "1997",
+      "value": 2616665469,
+      "period": "1997"
+    },
+    {
+      "label": "2004",
+      "value": 2947396565,
+      "period": "2004"
+    },
+    {
+      "label": "2011",
+      "value": 3220004890,
+      "period": "2011"
+    },
+    {
+      "label": "2018",
+      "value": 3471702582,
+      "period": "2018"
+    },
+    {
+      "label": "2025",
+      "value": 3736625386,
+      "period": "2025"
+    }
+  ]
+}

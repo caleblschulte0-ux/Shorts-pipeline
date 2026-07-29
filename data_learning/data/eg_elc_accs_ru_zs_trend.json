@@ -1,0 +1,48 @@
+{
+  "key": "eg_elc_accs_ru_zs_trend",
+  "title": "Access to electricity, rural",
+  "unit": "% of rural population",
+  "geography": "World",
+  "time_coverage": "2000-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Access to electricity, rural",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EG.ELC.ACCS.RU.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 66.5,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 68.4,
+      "period": "2005"
+    },
+    {
+      "label": "2010",
+      "value": 73.1,
+      "period": "2010"
+    },
+    {
+      "label": "2014",
+      "value": 76.1,
+      "period": "2014"
+    },
+    {
+      "label": "2019",
+      "value": 82.6,
+      "period": "2019"
+    },
+    {
+      "label": "2024",
+      "value": 84.9,
+      "period": "2024"
+    }
+  ]
+}

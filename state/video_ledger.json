@@ -101,6 +101,500 @@
           "detail": "what-can-we-do question"
         }
       ]
+    },
+    {
+      "slug": "carbon-climb",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "climate",
+      "hook_type": "stake",
+      "hook_text": "The air itself is changing, and we have the receipt.",
+      "words_first_10s": 10,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "viz:trend",
+        "viz:pictograph"
+      ],
+      "ending_type": "escalation",
+      "franchise": "Data Receipts",
+      "notes": "Paired a live NOAA trend line with a pictograph of decadal acceleration so the second beat visually speeds up, not just restates the first; closing ties both beats into one still-rising line instead of summarizing.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "The air itself is changing, and we have the receipt."
+        },
+        {
+          "t": 10,
+          "event": "visual_swap",
+          "detail": "1 · THE CLIMB: In 1960 the air held about 317 parts of CO2 per million. By 2025 it's 427 — a line that has only ever climbed."
+        },
+        {
+          "t": 20,
+          "event": "visual_swap",
+          "detail": "2 · THE ACCELERATION: And it's speeding up. The 1960s added under 9 parts per million. The 2010s added over 24 — nearly triple the pace."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "The line has never once gone down — and it's still accelerating."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "Did you realize it was accelerating? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "population-giants",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "records",
+      "hook_type": "shock_stat",
+      "hook_text": "Two countries hold more than a third of all humanity.",
+      "words_first_10s": 10,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "viz:pictorial_race",
+        "viz:waffle_grid"
+      ],
+      "ending_type": "consequence",
+      "franchise": "World in Numbers",
+      "notes": "pictorial_race for the raw giants, waffle_grid for the 35%-of-humanity share so the two beats depict the same fact two different ways (count vs. proportion); closing lands on the have/have-not gap instead of restating the ranking.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "Two countries hold more than a third of all humanity."
+        },
+        {
+          "t": 10,
+          "event": "visual_swap",
+          "detail": "1 · THE GIANTS: China and India each pack over 1.4 billion people. The United States, in third, isn't even 340 million."
+        },
+        {
+          "t": 20,
+          "event": "visual_swap",
+          "detail": "2 · THE SHARE: Put it another way: China and India alone are more than 35 percent of everyone alive. The other 190-plus countries split the rest."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "Eight countries. Everyone else splits what's left."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "Which of these surprised you most? Comment below."
+        }
+      ]
+    },
+    {
+      "slug": "world-power-mix",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "stake",
+      "hook_text": "Here's how the entire planet made its electricity last year.",
+      "words_first_10s": 10,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "viz:waffle_grid",
+        "viz:pictorial_race"
+      ],
+      "ending_type": "consequence",
+      "franchise": "World in Numbers",
+      "notes": "waffle_grid for the full source mix, pictorial_race for fossil-vs-clean so the second beat re-groups the same data as a head-to-head instead of repeating the donut.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "Here's how the entire planet made its electricity last year."
+        },
+        {
+          "t": 10,
+          "event": "visual_swap",
+          "detail": "1 · THE MIX: Coal still leads at 34 percent, gas adds 22. But hydro, nuclear, wind and solar are closing in fast."
+        },
+        {
+          "t": 20,
+          "event": "visual_swap",
+          "detail": "2 · THE TIPPING POINT: In 2024 fossil fuels fell to 59 percent of the world's power — under 60 for the first time since the 1940s."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "The mix is tipping — slowly, then all at once."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "Is your country ahead or behind on this? Let me know."
+        }
+      ]
+    },
+    {
+      "slug": "caffeine-content-revealed",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "body",
+      "hook_type": "shock_stat",
+      "hook_text": "One energy drink has more caffeine than 3 cups of black tea — what's really in your daily drinks?",
+      "words_first_10s": 19,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "scene:object-object-object",
+        "scene:stack",
+        "scene:fill_object",
+        "scene:timeline_axis"
+      ],
+      "ending_type": "consequence",
+      "franchise": "",
+      "notes": "Fixed two data/narration mismatches while directing: soda 'say' claimed 70mg (data tops out at 60), and the chocolate fill_object was pinned to item:0 (5mg) while the line talked about 30mg dark-chocolate figures -- repointed to the star value and rewrote both lines to match. Illustrative-sourced data: held at the editorial gate regardless of direction quality.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "One energy drink has more caffeine than 3 cups of black tea — what's really in your daily drinks?"
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "1 · COFFEE CAFFEINE: From 60 milligrams in a standard cup of coffee to 200 milligrams in some energy drinks, caffeine content varies greatly."
+        },
+        {
+          "t": 12,
+          "event": "visual_swap",
+          "detail": "2 · SODA CAFFEINE: Sodas carry caffeine too — 35 milligrams in a cola, up to 60 in a cherry soda."
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "3 · CHOCOLATE CAFFEINE: Milk chocolate barely registers at 5 milligrams an ounce. Cocoa powder is six times that — 30."
+        },
+        {
+          "t": 24,
+          "event": "visual_swap",
+          "detail": "4 · CAFFEINE LIMITS: The American Academy of Sleep Medicine recommends no more than 400 milligrams of caffeine per day for adults."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "That energy drink alone gets you halfway to your daily limit."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "What's your favorite way to get a caffeine boost?"
+        }
+      ]
+    },
+    {
+      "slug": "gigantic-fruits-and-veggies",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "records",
+      "hook_type": "shock_stat",
+      "hook_text": "This pumpkin weighs 2,600 pounds — imagine needing a forklift just to move dinner.",
+      "words_first_10s": 14,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "scene:object-object",
+        "scene:stack",
+        "scene:fill_object",
+        "scene:timeline_axis"
+      ],
+      "ending_type": "escalation",
+      "franchise": "",
+      "notes": "Fixed a say/data mismatch (carrot line claimed 'top 5 all over 10 feet' when the data's 5th-longest is 9ft5); replaced the generic hype closing ('will blow your mind') with a forward-looking escalation. Illustrative-sourced data: held at the editorial gate regardless of direction quality.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "This pumpkin weighs 2,600 pounds — imagine needing a forklift just to move dinner."
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "1 · LARGEST PUMPKINS: The largest pumpkin on record weighed over 2,600 pounds, while the average pumpkin weighs around 10 pounds, that's a massive difference of 260 times"
+        },
+        {
+          "t": 12,
+          "event": "visual_swap",
+          "detail": "2 · LONGEST CARROTS: The record carrot ran over 19 feet long. Even the fifth-longest ever grown topped 9 feet — taller than a house."
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "3 · HEAVIEST WATERMELO: The heaviest watermelon on record weighed 350 pounds, while the average watermelon weighs around 20 pounds, that's a massive 17.5 times heavier"
+        },
+        {
+          "t": 24,
+          "event": "visual_swap",
+          "detail": "4 · LARGEST BROCCOLI: The largest broccoli on record has been increasing in size over the years, from 10 pounds in 2010 to 20 pounds in 2020, with the current record holder weighing 35 pounds"
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "The record books get rewritten every season — someone's growing next year's giant right now."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "What's the biggest fruit or veggie you've ever grown or seen?"
+        }
+      ]
+    },
+    {
+      "slug": "tajikistan-beats-everyone-on-educational-attainment-by-1-9x",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "records",
+      "hook_type": "inversion",
+      "hook_text": "You'd guess Luxembourg leads on educational attainment. It's Tajikistan — 5.47 to 2.84.",
+      "words_first_10s": 13,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "viz:trend",
+        "viz:fill_vessel",
+        "viz:pictorial_race"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Beats Everyone",
+      "notes": "Repaired truncated role/topic strings ('POPULATION IN THE ', 'EDUCATIONAL ATTAIN') left by the ingestion pass; swapped the second beat from a duplicate trend line to a fill_vessel gauge so segments 1-2 don't share a layout.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "You'd guess Luxembourg leads on educational attainment. It's Tajikistan — 5.47 to 2.84."
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "1 · MEGACITY SHARE: Start with the capital: in 1972 its largest city held 18.2% of the urban population. By 2025, barely moved — 16.2%."
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "2 · WOMEN ONLINE: But get online, and it's a different story: 51.8% of women were online in 2019. By 2024, 68.2%."
+        },
+        {
+          "t": 22,
+          "event": "visual_swap",
+          "detail": "3 · DOCTORAL DEGREES: And on doctoral-level education, Tajikistan leads the world — 5.47%. Switzerland: 3.31. Lebanon: 2.41."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "Nobody expected a mountain nation to out-degree Europe. The numbers were public the whole time."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "Which number surprised you most?"
+        }
+      ]
+    },
+    {
+      "slug": "niger-beats-everyone-on-female-primary-school-age-children-o",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "records",
+      "hook_type": "inversion",
+      "hook_text": "You'd guess Pakistan leads on out-of-school girls. It's Niger — 100% to 37.9%.",
+      "words_first_10s": 13,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "viz:trend",
+        "viz:comparison",
+        "viz:pictorial_race"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Beats Everyone",
+      "notes": "Fixed the truncated title/hook noun phrase ('out-of-scho') and role labels; swapped beat 2 to a comparison chart (it's literally a boy/girl parity ratio) instead of a second trend line, clearing the no-duplicate-layout rule.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "You'd guess Pakistan leads on out-of-school girls. It's Niger — 100% to 37.9%."
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "1 · YOUTH LITERACY: Youth female literacy climbed from 67.1% in 1975 to 92% by 2024 — a real gain."
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "2 · GENDER PARITY: Primary school gender parity has crept toward even — 0.8 girls per boy enrolled in 1972, now 0.98."
+        },
+        {
+          "t": 22,
+          "event": "visual_swap",
+          "detail": "3 · OUT-OF-SCHOOL: Yet in Niger, 100% of primary-age girls in the poorest households are out of school. Congo: 64.1%. Chad: 35.7%."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "One country has as many out-of-school girls as the world gets. The numbers were public the whole time."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "Which number surprised you most?"
+        }
+      ]
+    },
+    {
+      "slug": "immunization-is-5-1x-higher-than-in-1980",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "body",
+      "hook_type": "shock_stat",
+      "hook_text": "In 1980, only 16.7% of kids worldwide got their vaccines. Today it's 84.8% — a 5x jump nobody throws a parade for.",
+      "words_first_10s": 22,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "viz:trend",
+        "viz:fill_vessel",
+        "viz:pictograph"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Nobody Noticed",
+      "notes": "Replaced the templated, unitless hook ('In 1980 it was 16.7. Now it's 84.8...') with one naming the actual metric; de-duplicated all-trend segments to trend/fill_vessel/pictograph and gave the closing a concrete human-stakes line (children alive today).",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "In 1980, only 16.7% of kids worldwide got their vaccines. Today it's 84.8% — a 5x jump nobody throws a parade for."
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "1 · CHILD MORTALITY: In 1990, 93.5 of every 1,000 children died before age 5. By 2024: 37.4 — well under half."
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "2 · VACCINE COVERAGE: DPT vaccine coverage: 16.7% in 1980. 84.8% by 2024 — 5.1 times higher."
+        },
+        {
+          "t": 22,
+          "event": "visual_swap",
+          "detail": "3 · HOSPITAL BEDS: Hospital beds grew too — 2.4 per 1,000 people in 1975, 3.29 by 2021."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "That's millions of children alive today who wouldn't have been in 1980. The numbers were public the whole time."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "Which number surprised you most?"
+        }
+      ]
+    },
+    {
+      "slug": "access-to-clean-fuels-and-technologies-for-coo-is-2-3x-highe",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "climate",
+      "hook_type": "shock_stat",
+      "hook_text": "In 2000, fewer than 1 in 4 rural households could cook without smoke. By 2023, over half can.",
+      "words_first_10s": 18,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "viz:trend",
+        "viz:fill_vessel",
+        "viz:waffle_grid"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Nobody Noticed",
+      "notes": "Fixed the truncated title ('...for coo') and role/topic strings; de-duplicated 3x trend segments to trend/fill_vessel/waffle_grid (renewables share literally is a share-of-whole, so waffle_grid fits the data best).",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "In 2000, fewer than 1 in 4 rural households could cook without smoke. By 2023, over half can."
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "1 · CLEAN COOKING: Rural access to clean cooking fuel: 23.8% in 2000. 55.8% by 2023 — 2.3 times higher."
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "2 · RURAL ELECTRICITY: Rural electricity access moved too — 66.5% in 2000, 84.9% by 2024."
+        },
+        {
+          "t": 22,
+          "event": "visual_swap",
+          "detail": "3 · RENEWABLE SHARE: Renewables' share of energy consumption crept from 16.7% in 1990 to 19.7% by 2020 — slower, but still climbing."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "Millions of families now breathe easier every time they cook. The numbers were public the whole time."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "Which number surprised you most?"
+        }
+      ]
+    },
+    {
+      "slug": "labor-force-is-1-6x-higher-than-in-1990",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "records",
+      "hook_type": "shock_stat",
+      "hook_text": "In 1990 the global workforce was 2.3 billion people. Today it's 3.7 billion — 1.4 billion new workers in one generation.",
+      "words_first_10s": 21,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "viz:trend",
+        "viz:fill_vessel",
+        "viz:waffle_grid"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Nobody Noticed",
+      "notes": "Replaced the flat '1.6x' ratio hook with the more visceral absolute (1.4 billion new workers); fixed truncated topic string ('Unemployment, total (% of total labor fo'); de-duplicated 3x trend segments to trend/fill_vessel/waffle_grid.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "In 1990 the global workforce was 2.3 billion people. Today it's 3.7 billion — 1.4 billion new workers in one generation."
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "1 · ARMED FORCES: Armed forces personnel shrank as a share of the labor force — 1.11% in 1990, down to 0.79% by 2020."
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "2 · THE WORKFORCE: The global labor force itself: 2.3 billion people in 1990. 3.7 billion by 2025."
+        },
+        {
+          "t": 22,
+          "event": "visual_swap",
+          "detail": "3 · UNEMPLOYMENT: Unemployment barely shifted — 4.35% in 1994, 5.08% by 2022, national estimates."
+        },
+        {
+          "t": 30,
+          "event": "payoff",
+          "detail": "1.4 billion more people are earning a living than a generation ago. The numbers were public the whole time."
+        },
+        {
+          "t": 33,
+          "event": "cta",
+          "detail": "Which number surprised you most?"
+        }
+      ]
     }
   ]
 }

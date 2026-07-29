@@ -1,14 +1,20 @@
 {
  "indicators": [
+  "EG.CFT.ACCS.RU.ZS",
+  "EG.ELC.ACCS.RU.ZS",
+  "EG.FEC.RNEW.ZS",
   "EN.URB.LCTY.UR.ZS",
   "IT.NET.USER.FE.ZS",
+  "MS.MIL.TOTL.TF.ZS",
   "SE.ADT.1524.LT.FE.ZS",
   "SE.ENR.PRIM.FM.ZS",
-  "SE.LPV.PRIM.SD.MA",
+  "SE.LPV.PRIM.SD.FE",
   "SE.TER.CUAT.DO.ZS",
   "SH.DYN.MORT",
   "SH.IMM.IDPT",
-  "SH.MED.BEDS.ZS"
+  "SH.MED.BEDS.ZS",
+  "SL.TLF.TOTL.IN",
+  "SL.UEM.TOTL.NE.ZS"
  ],
  "updated": "2026-07-29"
 }
