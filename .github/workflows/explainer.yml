@@ -272,7 +272,13 @@ jobs:
           # LLM writes only the words; every number comes from the source.
           TOPUP="${{ inputs.topup }}"; [ -z "$TOPUP" ] && TOPUP="8"
           rm -f state/forge_last.json
-          python3 scripts/story_forge.py --top-up "$TOPUP" || \
+          # --count, not --top-up. The queue's "un-posted" count included the
+          # three benchmark FIXTURES (carbon-climb, population-giants,
+          # world-power-mix), which are suite inputs and carry no authored
+          # scene — so a top-up decided the queue was full, forged nothing,
+          # and the run spent itself re-rendering fixtures the gate rejects.
+          # Every posting run now forges fresh, scene-authored material.
+          python3 scripts/story_forge.py --count "$TOPUP" || \
             echo "::warning::forge could not top up (network?) — using the existing queue"
           python3 scripts/editorial_gate.py 2>&1 | tail -5 || true
 
@@ -438,6 +444,14 @@ jobs:
           if [ -z "$SLUGS" ] && [ -f state/forge_last.json ]; then
             FRESH=$(python3 -c "import json;print(' '.join(json.load(open('state/forge_last.json')).get('slugs',[])))" 2>/dev/null || true)
             [ -n "$FRESH" ] && SLUGS="$FRESH" && echo "targeting freshly forged: $SLUGS"
+          fi
+          # The benchmark fixtures are suite INPUTS, not publishable stories.
+          # They are permanently un-posted by design, so a blank-slug run kept
+          # picking them up and burning the budget on a guaranteed block.
+          if [ -z "$SLUGS" ]; then
+            echo "::warning::forge produced nothing this run — no fresh "
+            echo "stories to post. Skipping rather than re-rendering fixtures."
+            exit 0
           fi
           SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
           FORCEFLAG=""; [ "${{ inputs.force }}" = "true" ] && FORCEFLAG="--force"
