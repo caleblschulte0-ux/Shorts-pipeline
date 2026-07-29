@@ -35,43 +35,88 @@ ANSWERED = {"fulfilled", "partial", "unsupported", "failed"}
 DECODE_DIR = "cache/dropbox"   # gitignored; decoded images land here
 
 
-def decode_b64(ref: str, path: str) -> tuple[str, int, str]:
-    """Decode a committed .b64 text file to a real image. -> (status, bytes, detail)"""
+def decode_b64(ref: str, paths: list[str], expect_sha: str | None) -> tuple[str, int, list[str]]:
+    """Decode committed .b64 text file(s) to a real image.
+
+    Accepts a split payload (multiple ordered part files, concatenated before
+    decoding). Verifies the SHA-256 against what the producer claimed, fully
+    decodes the pixels rather than just parsing the header, and flags reduced
+    images (low bit depth / tiny palette) — that is how a substituted
+    "derivative" gets caught instead of passing as a valid PNG.
+
+    -> (status, decoded_bytes, report_lines)
+    """
     import base64
     import binascii
+    import hashlib
 
-    rc, raw = run("git", "show", f"{ref}:{path}")
-    if rc != 0:
-        return "error", 0, "could not read from branch"
+    chunks: list[str] = []
+    for path in paths:
+        rc, raw = run("git", "show", f"{ref}:{path}")
+        if rc != 0:
+            return "error", 0, [f"could not read {path} from branch"]
+        chunks.append(raw)
 
-    payload = raw.strip()
+    payload = "".join(chunks).strip()
     if payload.startswith("data:"):          # tolerate a data: URI prefix
         payload = payload.split(",", 1)[-1]
     payload = "".join(payload.split())       # strip newlines/whitespace
     try:
         blob = base64.b64decode(payload, validate=True)
     except (binascii.Error, ValueError) as exc:
-        return "error", 0, f"not valid base64: {exc}"
+        return "error", 0, [f"not valid base64: {exc}"]
     if not blob:
-        return "error", 0, "decoded to zero bytes"
+        return "error", 0, ["decoded to zero bytes"]
 
     os.makedirs(DECODE_DIR, exist_ok=True)
-    out = os.path.join(DECODE_DIR, os.path.basename(path).removesuffix(".b64"))
+    base = os.path.basename(paths[0]).removesuffix(".b64")
+    base = base.split(".b64.part")[0] if ".b64.part" in base else base
+    out = os.path.join(DECODE_DIR, base)
     with open(out, "wb") as fh:
         fh.write(blob)
+
+    lines: list[str] = []
+    if len(paths) > 1:
+        lines.append(f"joined {len(paths)} part file(s)")
+
+    got_sha = hashlib.sha256(blob).hexdigest()
+    if expect_sha:
+        if got_sha.lower() == expect_sha.lower():
+            lines.append(f"sha256 MATCHES claim ({got_sha[:16]}…)")
+        else:
+            lines.append(f"sha256 MISMATCH — claimed {expect_sha[:16]}… got {got_sha[:16]}…")
+            return "error", len(blob), lines
+    else:
+        lines.append(f"sha256 {got_sha[:16]}… (none claimed — cannot verify substitution)")
 
     try:
         from PIL import Image
         with Image.open(out) as im:
-            return "ok", len(blob), f"{im.format} {im.width}x{im.height} -> {out}"
+            fmt, size, mode = im.format, im.size, im.mode
+            im.load()                        # force full pixel decode, not just the header
+            colors = im.convert("RGB").getcolors(maxcolors=65536)
     except Exception as exc:                  # noqa: BLE001 - any decode failure is the signal
-        return "error", len(blob), f"decoded but not a readable image: {exc}"
+        lines.append(f"HEADER PARSED BUT PIXELS FAILED: {exc}")
+        return "error", len(blob), lines
+
+    lines.append(f"{fmt} {size[0]}x{size[1]} mode={mode} -> {out}")
+
+    ncolors = len(colors) if colors is not None else "65536+"
+    lines.append(f"distinct colors: {ncolors}")
+    if isinstance(ncolors, int) and ncolors <= 8:
+        lines.append(f"REDUCED IMAGE — only {ncolors} colors; this is a placeholder, not a real render")
+        return "error", len(blob), lines
+
+    return "ok", len(blob), lines
 
 
 def probe_url(url: str) -> str:
     """HEAD/GET a handed-back image URL to see if it is actually fetchable."""
     import urllib.error
     import urllib.request
+
+    if not url.lower().startswith(("http://", "https://")):
+        return "NOT FETCHABLE — not an http(s) URL (sandbox path or file id; useless to us)"
 
     req = urllib.request.Request(url, method="GET", headers={"User-Agent": "shorts-pipeline/dropbox-check"})
     try:
@@ -175,7 +220,10 @@ def main() -> int:
 
         fmt = got.get("format")
         accepts = entry.get("accepts", [])
-        if status in {"fulfilled", "partial"} and fmt and accepts and fmt not in accepts:
+        # "png" and "b64_png" describe the same delivery; compare on the stem.
+        stems = {a.removeprefix("b64_") for a in accepts}
+        if (status in {"fulfilled", "partial"} and fmt and accepts
+                and fmt not in accepts and fmt.removeprefix("b64_") not in stems):
             problems.append(f"{rid}: format {fmt!r} not in accepts {accepts}")
 
         cap = entry.get("max_bytes")
@@ -191,12 +239,21 @@ def main() -> int:
                 problems.append(f"{rid}: {path} is {size:,}B > cap {cap:,}B")
             print(f"             {size:>9,}B  {path}{flag}")
 
-            if path.endswith(".b64"):
-                state, nbytes, detail = decode_b64(f"origin/{args.branch}", path)
-                label = "decoded" if state == "ok" else "B64 FAIL"
-                print(f"             {label}: {nbytes:,}B  {detail}")
-                if state != "ok":
-                    problems.append(f"{rid}: base64 payload unusable — {detail}")
+        b64_parts = [p for p in files if ".b64" in p]
+        if b64_parts and all(sizes.get(p) is not None for p in b64_parts):
+            state, nbytes, lines = decode_b64(
+                f"origin/{args.branch}", b64_parts, got.get("sha256"))
+            label = "decoded" if state == "ok" else "B64 FAIL"
+            print(f"             {label}: {nbytes:,}B")
+            for line in lines:
+                print(f"               {line}")
+            if state != "ok":
+                problems.append(f"{rid}: base64 payload unusable — {lines[-1]}")
+
+            claimed = got.get("original_bytes")
+            if claimed and int(claimed) != nbytes:
+                print(f"               SIZE MISMATCH — claimed {int(claimed):,}B, decoded {nbytes:,}B")
+                problems.append(f"{rid}: original_bytes {claimed} != decoded {nbytes}")
 
         for url in urls:
             print(f"             url: {url}")
@@ -211,6 +268,12 @@ def main() -> int:
 
         for step, verdict in (got.get("diagnostics") or {}).items():
             print(f"             step {step}: {verdict}")
+
+    ceiling = manifest.get("size_ceiling") or manifest.get("size_ceiling_probe")
+    if ceiling:
+        print("\n  writer size ceiling reported:")
+        for key, val in ceiling.items():
+            print(f"    {key}: {val}")
 
     claimed = {p for r in results.values() for p in r.get("files", [])}
     for stray in sorted(set(sizes) - claimed - {f"{drop_dir}drop_manifest.json"}):
