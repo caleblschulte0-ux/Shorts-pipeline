@@ -244,7 +244,7 @@ jobs:
 
           FORMAT B — TEXT CARD (2 files): "format":"text_card". Looping topic clip on top + gold-highlighted text below, NO voice. ~60-100 words in 2-3 short paragraphs, scroll-stopping first-line claim, punchy kicker. 8-12 "highlights" (each an EXACT substring of "text"). "broll_query" = 1-3 word concrete filmable thing matching the topic. Schema: {"version":1,"format":"text_card","slug":"..","title":"..","duration":6,"broll_query":"..","hashtags":[12],"text":"p1\\n\\np2\\n\\np3","highlights":[..],"music_vibe":"dark"}. No shots/punches/subreddit.
 
-          FORMAT C — GRAPH RACE (2 files): "format":"graph_race". Animated line chart over time (lines grow, dots track tips, year counter climbs, live leaderboard). Pick a topic with a clear multi-series time trend (e.g. market share, subscribers, counts by country). Schema: {"version":1,"format":"graph_race","slug":"..","title":"<=60 chars","y_label":"..","duration":13,"source":"Sources: ..","hashtags":[12],"years":[6-8 ascending ints],"series":[{"name":"..","color":"#hex","values":[same length as years]},.. 2-4 series],"music_vibe":"dark"}. Use REAL, defensible numbers — approximate is fine, fabrication is not. No shots/text.
+          FORMAT C — GRAPH RACE (2 files): "format":"graph_race". Animated line chart over time (lines grow, dots track tips, year counter climbs, live leaderboard). Pick a topic with a clear multi-series time trend (e.g. market share, subscribers, counts by country). Schema: {"version":1,"format":"graph_race","slug":"..","title":"<=60 chars","y_label":"..","duration":13,"source":"Sources: ..","hashtags":[12],"years":[6-8 ascending ints],"series":[{"name":"..","color":"#hex","values":[same length as years]},.. 2-4 series],"music_vibe":"dark","hook":"<=32 chars tease of the payoff, e.g. Wait for 2008..."}. "hook" is optional but strongly preferred — it flashes over the chart for the first ~1.5s and buys the crucial first-seconds hold. Pick data with a DRAMATIC crossover or collapse (a line overtaking another mid-video beats steady growth). Use REAL, defensible numbers — approximate is fine, fabrication is not. No shots/text.
 
           HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
           1. Exactly 6 files, valid JSON. 2 with "subreddit", 2 with "format":"text_card", 2 with "format":"graph_race".
@@ -416,6 +416,18 @@ jobs:
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
         run: |
           python3 scripts/fetch_analytics.py --max-age-days 30
+
+      - name: Format scoreboard (A/B/C rollup)
+        # Joins packages (title->format) with the fresh analytics snapshot
+        # and appends the per-format table to today's report, so the
+        # tracking issue shows which format is winning. Best-effort.
+        if: steps.preflight.outputs.skip == '' && steps.run.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python3 scripts/format_scoreboard.py || exit 0
+          if [ -f daily_report.md ] && [ -f state/format_scoreboard.md ]; then
+            { echo ""; cat state/format_scoreboard.md; } >> daily_report.md
+          fi
 
       - name: Roll up aged state (audit Ticket 6)
         if: always() && steps.preflight.outputs.skip == ''
