@@ -246,6 +246,23 @@ jobs:
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
+      - name: Top up the queue with REAL, sourced stories (story forge)
+        if: inputs.mode != 'verify' && inputs.mode != 'unpublish'
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          # The empty queue was a SOURCING problem, not a rendering one. The
+          # forge fetches live World Bank / OWID series (real publisher, real
+          # access date, officiality=official) and writes stories around them,
+          # so the queue refills with material that can actually PUBLISH. The
+          # LLM writes only the words; every number comes from the source.
+          TOPUP="${{ inputs.topup }}"; [ -z "$TOPUP" ] && TOPUP="8"
+          python3 scripts/story_forge.py --top-up "$TOPUP" || \
+            echo "::warning::forge could not top up (network?) — using the existing queue"
+          python3 scripts/editorial_gate.py 2>&1 | tail -5 || true
+
       # THE BRAIN. Runs CLAUDE (the Claude Code CLI, authed by the operator's
       # subscription via CLAUDE_CODE_OAUTH_TOKEN — NOT an API key) right before we
       # render, so Claude itself invents the depiction for every data point and
@@ -375,6 +392,12 @@ jobs:
           SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
           SPEECHIFY_VOICE: ${{ vars.SPEECHIFY_VOICE || 'henry' }}
           SPEECHIFY_MODEL: ${{ vars.SPEECHIFY_MODEL || 'simba-3.2' }}
+          # PUBLISH OPT-IN. The editorial gate's freeze (PUBLISH_ENABLED) is the
+          # operator's switch and the operator has turned it on: the channel
+          # posts again. Nothing that judges QUALITY changes — real-data
+          # provenance, the premise bar and the fail-closed showrunner veto
+          # still decide what is allowed out.
+          PUBLISH_ENABLED: '1'
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
@@ -425,10 +448,9 @@ jobs:
               PUBLISH_ENABLED=1 python scripts/post_stories.py \
                 --slugs "${{ inputs.canary_slug }}" --publish ;;
             schedule)
-              # PUBLISH FROZEN by default: post_stories renders + reviews but
-              # does NOT upload unless PUBLISH_ENABLED=1. The reset holds the
-              # channel closed until real, cited stories exist and a human opts
-              # in. (Kept wired so previews/reviews still run.)
+              # Renders, reviews and uploads (PUBLISH_ENABLED is set above).
+              # The editorial gate and the showrunner veto still govern every
+              # video — this only lifts the FREEZE, it bypasses no judgment.
               python scripts/post_stories.py $SLUGFLAG $FORCEFLAG \
                 --every-hours "$EVERY" --start-in-hours "$START" --max-per-run 4 ;;
             all)
@@ -499,6 +521,7 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "explainer: update posted log + analytics [skip ci]" \
             state/explainer_posted_log.json state/analytics_explainer \
+            state/forge_used.json \
             state/video_ledger.json state/brain_context.json \
             data_learning/niche.config.json data_learning/data \
             data_learning/viz_mechanics.json
