@@ -171,27 +171,36 @@ def find(query: str, kind: str = "image", perspective: str = "",
     commercial = usage == "commercial"
     out: list[dict] = []
     if kind == "image":
-        # Google Images (Apify) FIRST when enabled — broadest + most recent news
-        # photos, precisely what the operator asked for; then the free CC pools.
-        # Each provider rides the CIRCUIT BREAKER: three consecutive failures
-        # open its circuit for the rest of the run (reported, not retried).
-        if BREAKER.allow("google_images"):
-            try:
-                out += google_images(query, limit, commercial)
-                BREAKER.record("google_images", True)
-            except Exception as e:  # noqa: BLE001
-                BREAKER.record("google_images", False)
-                print(f"[media] google_images: {str(e)[:70]}")
-        for fn in (openverse_images, commons_images):
-            if not BREAKER.allow(fn.__name__):
+        # Provider ORDER comes from the health/cost/independence router
+        # (data_learning/provider_routing.py — PR#173 adoption): keyless and
+        # open-circuited providers sink, and the fallback never shares the
+        # leader's family. When routing abstains (None) the proven default
+        # order holds: Google Images (Apify) first — broadest + most recent
+        # news photos — then the free CC pools. Each provider still rides the
+        # CIRCUIT BREAKER: three consecutive failures open its circuit for
+        # the rest of the run (reported, not retried).
+        image_fns = {"google_images": lambda: google_images(query, limit,
+                                                            commercial),
+                     "openverse_images": lambda: openverse_images(
+                         query, limit, commercial),
+                     "commons_images": lambda: commons_images(query, limit)}
+        default_order = ["google_images", "openverse_images", "commons_images"]
+        try:
+            from data_learning.provider_routing import maybe_route
+            routed = maybe_route("image")
+        except Exception:  # noqa: BLE001 — routing must never block media
+            routed = None
+        order = ([p for p in routed if p in image_fns] or default_order) \
+            if routed else default_order
+        for name in order:
+            if not BREAKER.allow(name):
                 continue
             try:
-                out += (fn(query, limit, commercial)
-                        if fn is openverse_images else fn(query, limit))
-                BREAKER.record(fn.__name__, True)
+                out += image_fns[name]()
+                BREAKER.record(name, True)
             except Exception as e:  # noqa: BLE001
-                BREAKER.record(fn.__name__, False)
-                print(f"[media] {fn.__name__}: {str(e)[:70]}")
+                BREAKER.record(name, False)
+                print(f"[media] {name}: {str(e)[:70]}")
         if usage == "commercial":
             out = [c for c in out
                    if any(t in c["license"] for t in _COMMERCIAL)
