@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""Retitle already-uploaded YouTube videos through the channel's title floor.
+
+Built for 2026-07-29, when four third-channel clips uploaded with the
+clipper's raw hype as their public titles ("WWWW", "w max") because both
+author brains were down. They were scheduled, not yet public, so the titles
+were still fixable in place.
+
+Each video's new title comes from author.fallback_title() using the SAME
+transcript the pipeline recorded in the posted log's ledger, so a retitle
+can only ever quote what was actually said — it never invents a claim.
+
+    python scripts/retitle_videos.py --channel third --dry-run
+    python scripts/retitle_videos.py --channel third --apply
+
+Without --apply nothing is written: it prints the old -> new mapping so a
+human can look before anything changes on the channel.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+LOGS = {"third": "state/third_posted_log.json",
+        "explainer": "state/explainer_posted_log.json",
+        "daily": "state/posted_log.json"}
+
+
+def _vid_id(url: str) -> str:
+    return (url or "").rstrip("/").split("/")[-1].split("?")[0]
+
+
+def _candidates(channel: str, date_prefix: str) -> list[dict]:
+    """Posted-log entries for the day whose recorded title is low-signal."""
+    from third_capture import author
+    log = json.loads((ROOT / LOGS[channel]).read_text())["posted"]
+    out = []
+    for slug, v in log.items():
+        if v.get("qa_rejected") or not v.get("url"):
+            continue
+        if date_prefix and not str(v.get("ts", "")).startswith(date_prefix):
+            continue
+        title = v.get("title", "")
+        if not author.title_is_low_signal(title):
+            continue
+        out.append({"slug": slug, "vid": _vid_id(v["url"]),
+                    "old": title, "streamer": v.get("streamer", ""),
+                    "url": v["url"], "source_url": v.get("source_url", "")})
+    return out
+
+
+def _transcript_for(slug: str) -> str:
+    """The recorded transcript for a slug, if its ledger survived."""
+    for p in (ROOT / "output" / "third").glob(f"{slug}.ledger.json"):
+        try:
+            led = json.loads(p.read_text())
+            return " ".join(w.get("w", "") for w in (led.get("words") or []))
+        except Exception:  # noqa: BLE001
+            return ""
+    return ""
+
+
+def _transcript_from_source(url: str, work: Path, model: str = "small") -> str:
+    """Re-fetch and re-transcribe the source clip.
+
+    Renders die with the runner, so by the time anyone retitles, the ledger
+    is usually gone and every video would collapse to the same neutral line
+    — three identical titles in one day is its own kind of bad. Going back
+    to the source keeps each title specific and, as ever, quotes only what
+    was actually said. Best-effort: returns "" on any failure."""
+    from third_capture import clip_edit
+    try:
+        info = clip_edit.download(url, work)
+        words = clip_edit.transcribe_words(Path(info["path"]), model)
+        return " ".join(w.get("w", "") for w in (words or []))
+    except Exception as e:  # noqa: BLE001
+        print(f"[retitle] re-transcribe failed for {url}: {str(e)[:120]}",
+              file=sys.stderr)
+        return ""
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--channel", default="third", choices=sorted(LOGS))
+    ap.add_argument("--date", default="",
+                    help="only entries whose ts starts with this (YYYY-MM-DD)")
+    ap.add_argument("--apply", action="store_true",
+                    help="actually write to YouTube (default: dry run)")
+    ap.add_argument("--retranscribe", action="store_true",
+                    help="re-fetch the source clip when the ledger is gone, "
+                         "so titles stay specific instead of all collapsing "
+                         "to the same neutral line")
+    a = ap.parse_args()
+
+    from third_capture import author
+    rows = _candidates(a.channel, a.date)
+    if not rows:
+        print(f"[retitle] nothing low-signal on {a.channel} "
+              f"{a.date or '(all dates)'} — nothing to do")
+        return 0
+
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        for r in rows:
+            tr = _transcript_for(r["slug"])
+            if not tr and a.retranscribe and r["source_url"]:
+                tr = _transcript_from_source(r["source_url"], Path(td))
+            r["new"] = author.fallback_title(r["streamer"], r["old"], tr)
+            r["sourced"] = "transcript" if tr else "neutral"
+
+    # Three videos all called "X Has The Whole Stream Reacting" reads as
+    # spam. If the neutral line had to be used more than once, say so.
+    if sum(1 for r in rows if r["sourced"] == "neutral") > 1:
+        print("::warning::[retitle] more than one title fell back to the "
+              "neutral line — rerun with --retranscribe for specific titles",
+              flush=True)
+
+    print(f"[retitle] {len(rows)} low-signal title(s) on {a.channel}:")
+    for r in rows:
+        print(f"  {r['vid']}  {r['old']!r}\n            -> {r['new']!r}")
+    if not a.apply:
+        print("\n[retitle] DRY RUN — pass --apply to write these to YouTube")
+        return 0
+
+    from uploaders import YouTubeUploader
+    svc = YouTubeUploader(channel=a.channel)._service()
+    bad = 0
+    for r in rows:
+        try:
+            # snippet updates REPLACE the resource, so read the live snippet
+            # and change only the title — categoryId is required on write.
+            cur = svc.videos().list(part="snippet", id=r["vid"]).execute()
+            items = cur.get("items") or []
+            if not items:
+                print(f"[retitle] {r['vid']} not found — skipped",
+                      file=sys.stderr)
+                bad += 1
+                continue
+            snip = items[0]["snippet"]
+            snip["title"] = r["new"]
+            svc.videos().update(
+                part="snippet", body={"id": r["vid"], "snippet": snip}
+            ).execute()
+            print(f"RETITLED {r['vid']} -> {r['new']!r}")
+        except Exception as e:  # noqa: BLE001
+            print(f"[retitle] failed for {r['vid']}: {str(e)[:160]}",
+                  file=sys.stderr)
+            print(f"MANUAL https://studio.youtube.com/video/{r['vid']}/edit")
+            bad += 1
+    print(f"[retitle] done — {len(rows) - bad} updated, {bad} need a human")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
