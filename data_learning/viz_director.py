@@ -577,3 +577,22 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
             ins.kind = "scene"
         else:
             ins.kind = k                         # "scene" already has ins.scene set
+
+    # STORY-LEVEL PERFORMANCE DIRECTION (review Phase 5.2): choose each scene's
+    # mascot performance HERE — the one place that sees the whole story — from
+    # the scene's CLAIM, with anti-repetition across families. The charts honor
+    # ins.perf_override/perf_spec, so no two beats default to the same family
+    # and a story can never become drag/drag/drag.
+    try:
+        from . import mascot_director as _md
+        used_families: set = set()
+        for j, ins in enumerate(inss):
+            spec = _md.performance_for(
+                ins.kind, getattr(ins, "main_insight", "") or "",
+                (ins.items[0].label if getattr(ins, "items", None) else ""),
+                used_families=used_families, seed=seed + j)
+            ins.perf_override = spec["action"]
+            ins.perf_spec = spec
+            used_families.add(spec.get("family", spec["action"]))
+    except Exception:  # noqa: BLE001 — direction must never break assignment
+        pass

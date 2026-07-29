@@ -1216,17 +1216,46 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
             attach_p = Path(pat.replace("_build%02d.png", "_attach.json"))
             attach = (_sj.loads(attach_p.read_text())
                       if attach_p.exists() else {})
-            rec = {"slug": slug, "scene": i,
-                   "kind": getattr(seg, "kind", ""),
-                   "frames": n, "temporal": ev,
-                   "gate": gate or "pass",
-                   "verdict": "fail" if gate else "pass",
-                   "performance": attach.get("performance"),
-                   "contact_frames": attach.get("contact_frames"),
-                   "timeline": attach.get("timeline")}
-            (sdir / f"{slug}_scene{i:02d}.json").write_text(_sj.dumps(rec))
-            print(f"[studio] scene{i} metrics: fps="
-                  f"{ev.get('effective_fps')} gate={rec['gate']}", flush=True)
+            # SCENE PACKAGE: output/scenes/{slug}/segment_{i}/ holding the
+            # scene's own mp4, metrics and a scene-level verdict — the same
+            # scene ids the full-video judge references (segN == segment_N).
+            seg_dir = sdir / slug / f"segment_{i}"
+            seg_dir.mkdir(parents=True, exist_ok=True)
+            import shutil as _shm
+            _shm.copy2(mp4, seg_dir / "scene.mp4")
+            metrics = {"slug": slug, "scene": i, "id": f"segment_{i}",
+                       "kind": getattr(seg, "kind", ""),
+                       "frames": n, "temporal": ev,
+                       "performance": attach.get("performance"),
+                       "contact_frames": attach.get("contact_frames"),
+                       "timeline": attach.get("timeline")}
+            (seg_dir / "metrics.json").write_text(_sj.dumps(metrics))
+            # Scene VERDICT — code-graded dimensions (motion/cadence/contact).
+            # Perceptual dims (clarity, composition, narrative, payoff,
+            # caption interaction) are judged at the full-video level by the
+            # vision showrunner referencing these same segment ids; they are
+            # explicitly marked unscored here, never silently passed.
+            fps = ev.get("effective_fps") or 0.0
+            sc_verdict = {
+                "id": f"segment_{i}",
+                "verdict": "fail" if gate else "pass",
+                "gate": gate or "pass",
+                "dimensions": {
+                    "motion": 3 if fps >= 24 else 2 if fps >= 17 else
+                    1 if fps >= 11 else 0,
+                    "mascot_contact": 3 if (attach.get("contact_frames", 0)
+                                            >= n) else 0,
+                    "clarity": None, "data_demonstration": None,
+                    "composition": None, "narrative_progression": None,
+                    "payoff": None, "caption_interaction": None,
+                },
+                "unscored_note": "None dims are perceptual — graded by the "
+                                 "full-video vision judge against this same "
+                                 "segment id",
+            }
+            (seg_dir / "verdict.json").write_text(_sj.dumps(sc_verdict))
+            print(f"[studio] segment_{i} metrics: fps={fps} "
+                  f"gate={sc_verdict['gate']}", flush=True)
         except Exception as e:  # noqa: BLE001
             print(f"[studio] scene{i} metrics failed: {e}", flush=True)
 

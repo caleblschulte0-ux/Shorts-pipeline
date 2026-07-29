@@ -1098,6 +1098,329 @@ def _a_pull_down_win(t, _prop):
     return (arms, lower, "", "", eyes, mouth, bob, tilt)
 
 
+# =========================================================================
+# EXPANDED PERFORMANCE FAMILIES — a broader physical language than drag/shove
+# (review Phase 5). Each is a full 3-zone bit (setup -> effort/reversal ->
+# payoff/recovery) built on the same rig, distinct enough in silhouette to pass
+# the primitive approval gate.
+# =========================================================================
+def _zone(p):
+    """(zone, s) where zone is 0 setup / 1 effort / 2 payoff and s in [0,1]."""
+    p = 0.0 if p < 0.0 else 1.0 if p > 1.0 else p
+    if p < _T_RESIST:
+        return 0, p / _T_RESIST
+    if p < _T_EFFORT:
+        return 1, (p - _T_RESIST) / (_T_EFFORT - _T_RESIST)
+    return 2, (p - _T_EFFORT) / (1.0 - _T_EFFORT)
+
+
+def _a_balance_beam(t, _prop):
+    """BALANCE atop a narrow point: arms out, wobble grows, nearly topples,
+    recovers to a steady stand (objective: stay on the datum as it moves)."""
+    z, s = _zone(t)
+    if z == 0:                                   # arms rise out for balance
+        lh = [70 + (1 - s) * 60, 200, -20]; rh = [270 - (1 - s) * 60, 200, 20]
+        tilt = 0.0; bob = 2.0; expr = "think"
+        lower = _braced_legs(crouch=0.15, sway=2)
+    elif z == 1:                                 # wobble builds to a near-fall
+        w = math.sin(s * math.pi * 5) * (6 + s * 16)
+        lh = [70, 200 - w, -20]; rh = [270, 200 + w, 20]
+        tilt = w * 0.8; bob = 2.0 + abs(w) * 0.2; expr = "shock"
+        lower = _braced_legs(crouch=0.2 + abs(w) * 0.01, sway=4 + abs(w) * 0.5)
+    else:                                        # recovers, steady + relieved
+        lh = [116, 180 - s * 40, -14]; rh = [224, 180 - s * 40, 14]
+        tilt = (1 - s) * 6; bob = 1.0 - s; expr = "happy"
+        lower = _braced_legs(crouch=0.1)
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_catch_fall(t, _prop):
+    """CATCH a falling value: braced under it, impact squashes him into a deep
+    squat, he holds it up trembling (objective: don't let it hit the floor)."""
+    z, s = _zone(t)
+    if z == 0:                                   # arms up, tracking the fall
+        lh = [130, 90 - s * 20, -12]; rh = [210, 90 - s * 20, 12]
+        lower = _braced_legs(crouch=0.25); bob = 2.0; tilt = 0; expr = "shock"
+    elif z == 1:                                 # IMPACT: squashed to a squat
+        imp = math.sin(min(1.0, s * 2) * math.pi * 0.5)
+        lh = [126, 60 + imp * 30, -14]; rh = [214, 60 + imp * 30, 14]
+        lower = _braced_legs(crouch=0.25 + imp * 0.65, sway=8)
+        bob = 2.0 + imp * 14; tilt = math.sin(s * math.pi * 8) * 3
+        expr = "strain"
+    else:                                        # holds it aloft, trembling
+        tr = math.sin(s * math.pi * 10) * 3
+        lh = [122 + tr, 66, -14]; rh = [218 + tr, 66, 14]
+        lower = _braced_legs(crouch=0.35 - s * 0.2)
+        bob = 6.0 - s * 4; tilt = tr * 0.5; expr = "laugh"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_block_wall(t, _prop):
+    """BLOCK an advancing mass with his whole back: heels skid, he's bent
+    forward pushing backwards, finally braces it to a stop."""
+    z, s = _zone(t)
+    if z == 0:                                   # throws himself into the brace
+        lh = [110 - s * 50, 220 + s * 30, -24]; rh = [140 - s * 60, 180 + s * 20, -18]
+        lower = _braced_legs(crouch=0.2 + s * 0.3, sway=6 + s * 12)
+        tilt = s * 18; bob = 1 + s * 3
+        expr = "strain"
+    elif z == 1:
+        sk = math.sin(s * math.pi * 4) * 6
+        lh = [58 + sk, 250, -24]; rh = [78 + sk, 198, -18]
+        lower = _braced_legs(crouch=0.55 + s * 0.2, sway=20 + sk)
+        tilt = 20 + s * 4; bob = 4 + s * 4; expr = "strain"
+    else:
+        lh = [70, 240 - s * 60, -20]; rh = [90, 190 - s * 60, -12]
+        lower = _braced_legs(crouch=0.6 - s * 0.5, sway=14)
+        tilt = 22 - s * 22; bob = 8 - s * 8; expr = "happy"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_get_buried(t, _prop):
+    """GET BURIED by the accumulating amount: shields himself as it piles on,
+    is pressed down and down — then pops an arm out (still here!)."""
+    z, s = _zone(t)
+    if z == 0:                                    # sees it coming, arms shield
+        lh = [120, 110 - s * 20, -16]; rh = [220, 110 - s * 20, 16]
+        lower = _braced_legs(crouch=0.2 + s * 0.2); bob = 2 + s * 4
+        tilt = -4 * s; expr = "shock"
+    elif z == 1:                                  # pressed down under the pile
+        lh = [130, 120 + s * 60, -10]; rh = [210, 120 + s * 60, 10]
+        lower = _braced_legs(crouch=0.4 + s * 0.5, sway=6)
+        bob = 6 + s * 22; tilt = math.sin(s * math.pi * 6) * 3
+        expr = "strain"
+    else:                                         # one defiant arm punches out
+        up = math.sin(s * math.pi) * 20
+        lh = [150, 260, -6]; rh = [224, 60 - up, 14]
+        lower = _braced_legs(crouch=0.85); bob = 26 - s * 6
+        tilt = 0.0; expr = "laugh"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_overwhelmed(t, _prop):
+    """OVERWHELMED by scale: backs away shielding his face as the value keeps
+    growing, is dwarfed... then peeks through his fingers in awe."""
+    z, s = _zone(t)
+    if z == 0:
+        lh = [130, 150, -10]; rh = [216, 200, 12]
+        lower = _braced_legs(crouch=0.15); bob = 1; tilt = -3 * s
+        expr = "shock"
+    elif z == 1:
+        cower = s * 0.5
+        lh = [140 + s * 8, 120 + s * 20, -14]; rh = [206 - s * 8, 120 + s * 20, 14]
+        lower = _braced_legs(crouch=0.2 + cower, sway=8)
+        bob = 2 + s * 10; tilt = -6 - s * 8; expr = "shock"
+    else:
+        lh = [142, 128, -12]; rh = [200, 128, 12]
+        lower = _braced_legs(crouch=0.45 - s * 0.3)
+        bob = 10 - s * 8; tilt = -12 + s * 12; expr = "happy"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_race_sprint(t, _prop):
+    """RACE the advancing value: full sprint lean with pumping arms, loses
+    ground, dives across at the end (objective: beat the data to the mark)."""
+    z, s = _zone(t)
+    pump = math.sin(t * math.pi * 14) * 26
+    if z == 0:                                    # crouch start
+        lh = [110, 250 - s * 30, -18]; rh = [230, 210 + s * 30, 18]
+        lower = _braced_legs(crouch=0.6, sway=10); bob = 4; tilt = 8 * s
+        expr = "think"
+    elif z == 1:                                  # sprint: arms pump, lean hard
+        lh = [110, 190 - pump, -18]; rh = [230, 190 + pump, 18]
+        lower = _braced_legs(crouch=0.25, sway=16 + abs(pump) * 0.3)
+        bob = 2 + abs(pump) * 0.12; tilt = 14; expr = "strain"
+    else:                                         # the dive
+        lh = [70, 120 - s * 30, -22]; rh = [270, 120 - s * 30, 22]
+        lower = _dangle_legs(kick=s * 14, spread=1.3)
+        bob = -4 - s * 10; tilt = 26 + s * 30; expr = "shock"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_compressed(t, _prop):
+    """COMPRESSED between two growing masses: pushes both arms outward against
+    them, is squeezed into a crouch — then squirts free upward."""
+    z, s = _zone(t)
+    if z == 0:
+        w = s * 30
+        lh = [130 - w, 210, -20]; rh = [210 + w, 210, 20]
+        lower = _braced_legs(crouch=0.2); bob = 2; tilt = 0; expr = "think"
+    elif z == 1:
+        sq = s
+        lh = [96 + sq * 20, 210, -22]; rh = [244 - sq * 20, 210, 22]
+        lower = _braced_legs(crouch=0.2 + sq * 0.6, sway=4)
+        bob = 2 + sq * 16; tilt = math.sin(s * math.pi * 7) * 2
+        expr = "strain"
+    else:                                         # pops UP out of the squeeze
+        up = math.sin(s * math.pi) * 24
+        lh = [116, 90 - up, -14]; rh = [224, 90 - up, 14]
+        lower = _dangle_legs(kick=6, spread=0.8)
+        bob = 14 - s * 30 - up * 0.4; tilt = 0.0; expr = "laugh"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_stretched(t, _prop):
+    """STRETCHED between two diverging values: gripping both, pulled wide as
+    the gap grows, finally lets go of one and snaps to the winner."""
+    z, s = _zone(t)
+    if z == 0:
+        w = 30 + s * 30
+        lh = [170 - w, 190, -16]; rh = [170 + w, 190, 16]
+        lower = _braced_legs(crouch=0.25); bob = 2; tilt = 0; expr = "think"
+    elif z == 1:
+        w = 60 + s * 50
+        lh = [170 - w, 186, -22]; rh = [170 + w, 186, 22]
+        lower = _braced_legs(crouch=0.3, sway=10 + s * 10)
+        bob = 3 + s * 3; tilt = math.sin(s * math.pi * 5) * 4
+        expr = "strain"
+    else:                                          # released: snaps to one side
+        lh = [116, 96, -14]; rh = [200 - s * 30, 120, 10]
+        lower = _braced_legs(crouch=0.15)
+        bob = -math.sin(s * math.pi) * 8; tilt = -6 + s * 6; expr = "happy"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_discover(t, _prop):
+    """DISCOVER the number: leans in shading his eyes, peers closer and
+    closer... recoils in a double-take, then presents it, delighted."""
+    z, s = _zone(t)
+    if z == 0:
+        lh = [150, 252, -8]; rh = [206, 116 - s * 10, 16]
+        lower = _braced_legs(crouch=0.1); bob = 2; tilt = 6 * s
+        expr = "think"
+    elif z == 1:
+        lean = 8 + s * 8
+        lh = [150, 250, -8]; rh = [210, 104, 18]
+        lower = _braced_legs(crouch=0.15 + s * 0.1, sway=6)
+        bob = 2 + s * 3; tilt = lean; expr = "think"
+    else:                                          # the double-take + present
+        rec = math.sin(s * math.pi) * 14
+        lh = [116, 96 + rec, -14]; rh = [290, 190, 12]
+        lower = _braced_legs(crouch=0.1)
+        bob = -rec * 0.6; tilt = -10 + s * 10; expr = "shock" if s < 0.6 else "laugh"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_compare_scales(t, _prop):
+    """COMPARE two values with his arms as the balance beam: both held level,
+    one side sinks under the heavier value, tipping his whole body."""
+    z, s = _zone(t)
+    if z == 0:                                     # arms rise out to level
+        lh = [130 - s * 40, 230 - s * 60, -18]; rh = [210 + s * 40, 230 - s * 60, 18]
+        lower = _braced_legs(crouch=0.15); bob = 2 - s; tilt = 0; expr = "think"
+    elif z == 1:                                   # heavier side sinks
+        drop = s * 46
+        lh = [88, 170 + drop, -20]; rh = [252, 170 - drop * 0.6, 18]
+        lower = _braced_legs(crouch=0.2 + s * 0.15, sway=6)
+        bob = 2 + s * 4; tilt = -s * 14; expr = "strain"
+    else:                                          # tipped: verdict delivered
+        lh = [92, 216, -20]; rh = [254, 130, 18]
+        lower = _braced_legs(crouch=0.3 - s * 0.15, sway=8)
+        bob = 6 - s * 4; tilt = -14 + s * 4; expr = "happy"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_transform_reveal(t, _prop):
+    """TRANSFORM the picture: winds up a full-body spin and lands it arms
+    flung wide — ta-da — presenting the changed visual."""
+    z, s = _zone(t)
+    if z == 0:                                     # wind-up twist
+        lh = [190, 230, 10]; rh = [230, 150, 14]
+        lower = _braced_legs(crouch=0.3, sway=8); bob = 3
+        tilt = -10 * s; expr = "think"
+    elif z == 1:                                   # the SPIN (big tilt sweep)
+        tilt = math.sin(s * math.pi * 2) * 24
+        lh = [110 + s * 30, 180, -16]; rh = [230 - s * 30, 180, 16]
+        lower = _braced_legs(crouch=0.25, sway=12)
+        bob = 2 - math.sin(s * math.pi) * 8; expr = "happy"
+    else:                                          # TA-DA
+        w = s * 30
+        lh = [96 - w * 0.2, 120, -18]; rh = [244 + w * 0.2, 120, 18]
+        lower = _braced_legs(crouch=0.1)
+        bob = -math.sin(s * math.pi) * 6; tilt = 0.0; expr = "laugh"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_fail_recover(t, _prop):
+    """FAIL AND RECOVER: knocked flat by the datum (a real face-plant tilt),
+    pushes himself back up, dusts off, stands tall — resilience beat."""
+    z, s = _zone(t)
+    if z == 0:                                     # the hit: knocked over
+        lh = [130, 160, -14]; rh = [210, 160, 14]
+        lower = _braced_legs(crouch=0.2 + s * 0.3, sway=8)
+        bob = s * 12; tilt = s * 26; expr = "shock"
+    elif z == 1:                                   # pushing back up
+        lh = [110, 250 - s * 60, -18]; rh = [230, 250 - s * 60, 18]
+        lower = _braced_legs(crouch=0.6 - s * 0.4, sway=10 - s * 6)
+        bob = 12 - s * 10; tilt = 26 - s * 24; expr = "strain"
+    else:                                          # dust-off, stand tall
+        du = math.sin(s * math.pi * 3) * 8
+        lh = [140 + du, 240, -8]; rh = [216, 96, 14]
+        lower = _braced_legs(crouch=0.05)
+        bob = -s * 2; tilt = 0.0; expr = "happy"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
+def _a_stack_tiles(t, _prop):
+    """STACK/BUILD: places pieces onto the pile in a repeated squat-lift-place
+    cycle, pile outpaces him, final slam-place and a proud stand-back."""
+    z, s = _zone(t)
+    if z == 0:                                     # first pick-up
+        lh = [130, 250 + s * 40, -12]; rh = [210, 250 + s * 40, 12]
+        lower = _braced_legs(crouch=0.2 + s * 0.4); bob = 2 + s * 8
+        tilt = 4 * s; expr = "think"
+    elif z == 1:                                   # place cycles (squat-lift)
+        cyc = (1.0 - math.cos(s * math.pi * 2 * 3)) * 0.5
+        lh = [128, 250 - cyc * 160, -12]; rh = [212, 250 - cyc * 160, 12]
+        lower = _braced_legs(crouch=0.55 - cyc * 0.45, sway=6)
+        bob = 8 - cyc * 10; tilt = math.sin(s * math.pi * 6) * 3
+        expr = "strain"
+    else:                                          # slam the last one, step back
+        lh = [126, 96, -14]; rh = [214, 96, 14]
+        lower = _braced_legs(crouch=0.1)
+        bob = -math.sin(s * math.pi) * 8; tilt = -4 + s * 4; expr = "laugh"
+    arms = (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+    eyes, mouth = _expr(expr)
+    return (arms, lower, "", "", eyes, mouth, bob, tilt)
+
+
 ANIMATORS = {
     "juggle": _a_juggle, "push": _a_push, "ride": _a_ride,
     "stagger_under": _a_stagger, "carry": _a_carry, "hold_up": _a_hold_up,
@@ -1116,6 +1439,20 @@ ANIMATORS = {
     "shoved_bar": _a_shoved_bar,
     "hoist_stack": _a_hoist_stack,
     "pull_down_win": _a_pull_down_win,
+    # EXPANDED performance families (Phase 5):
+    "balance_beam": _a_balance_beam,
+    "catch_fall": _a_catch_fall,
+    "block_wall": _a_block_wall,
+    "get_buried": _a_get_buried,
+    "overwhelmed": _a_overwhelmed,
+    "race_sprint": _a_race_sprint,
+    "compressed": _a_compressed,
+    "stretched": _a_stretched,
+    "discover": _a_discover,
+    "compare_scales": _a_compare_scales,
+    "transform_reveal": _a_transform_reveal,
+    "fail_recover": _a_fail_recover,
+    "stack_tiles": _a_stack_tiles,
 }
 
 # =========================================================================
@@ -1131,47 +1468,180 @@ VERIFIED_PERFORMANCES = {
         "contact": "both fists clamped on the object's tip",
         "cause": "hauls DOWN trying to stop the rise",
         "consequence": "the data keeps rising and DRAGS HIM airborne",
+        "family": "pull",
+        "data_affects_mascot": True, "mascot_affects_data": False,
+        "supported_shapes": ["trend", "part_to_whole", "two_value"],
+        "supported_relationships": ["increase", "dominance", "growth"],
+        "performance_meaning": "resist a growing value and lose",
+        "requires": ["moving endpoint"],
         "beats": [
-            {"phase": "setup", "pose": "brace", "contact": "both_hands"},
-            {"phase": "effort", "pose": "haul_down", "repetitions": 2},
-            {"phase": "reversal", "pose": "feet_leave_ground"},
-            {"phase": "payoff", "pose": "dragged_swinging"},
+            {"phase": "setup", "pose": "anticipate", "contact": "approach"},
+            {"phase": "objective", "pose": "engage", "contact": "both_hands"},
+            {"phase": "effort", "pose": "work", "repetitions": 2},
+            {"phase": "reversal", "pose": "turn"},
+            {"phase": "consequence", "pose": "affected"},
+            {"phase": "payoff", "pose": "land"},
+            {"phase": "recovery", "pose": "settle"},
         ],
     },
     "pull_down_win": {
         "contact": "both fists clamped on the object's tip",
         "cause": "hauls DOWN on the falling value",
         "consequence": "the value yields — he lands it and celebrates",
+        "family": "pull",
+        "data_affects_mascot": True, "mascot_affects_data": True,
+        "supported_shapes": ["trend", "two_value"],
+        "supported_relationships": ["decrease", "decline"],
+        "performance_meaning": "pull a falling value down and win",
+        "requires": ["moving endpoint", "falling claim"],
         "beats": [
-            {"phase": "setup", "pose": "brace", "contact": "both_hands"},
-            {"phase": "effort", "pose": "haul_down", "repetitions": 2},
-            {"phase": "reversal", "pose": "object_yields"},
-            {"phase": "payoff", "pose": "grounded_cheer"},
+            {"phase": "setup", "pose": "anticipate", "contact": "approach"},
+            {"phase": "objective", "pose": "engage", "contact": "both_hands"},
+            {"phase": "effort", "pose": "work", "repetitions": 2},
+            {"phase": "reversal", "pose": "turn"},
+            {"phase": "consequence", "pose": "affected"},
+            {"phase": "payoff", "pose": "land"},
+            {"phase": "recovery", "pose": "settle"},
         ],
     },
     "shoved_bar": {
         "contact": "both hands braced on the bar's advancing face",
         "cause": "pushes back to hold the leader",
         "consequence": "the bar outgrows him — skids, then LAUNCHED off it",
+        "family": "push",
+        "data_affects_mascot": True, "mascot_affects_data": False,
+        "supported_shapes": ["ranking", "trend"],
+        "supported_relationships": ["dominance", "overtake", "increase",
+                                    "imbalance"],
+        "performance_meaning": "hold the leader back and be overpowered",
+        "requires": ["advancing edge"],
         "beats": [
-            {"phase": "setup", "pose": "dig_in", "contact": "both_hands"},
-            {"phase": "effort", "pose": "push", "repetitions": 2},
-            {"phase": "reversal", "pose": "skid"},
-            {"phase": "payoff", "pose": "launched"},
+            {"phase": "setup", "pose": "anticipate", "contact": "approach"},
+            {"phase": "objective", "pose": "engage", "contact": "both_hands"},
+            {"phase": "effort", "pose": "work", "repetitions": 2},
+            {"phase": "reversal", "pose": "turn"},
+            {"phase": "consequence", "pose": "affected"},
+            {"phase": "payoff", "pose": "land"},
+            {"phase": "recovery", "pose": "settle"},
         ],
     },
     "hoist_stack": {
         "contact": "arms pressed overhead on the fill's underside",
         "cause": "holds the growing pile up",
         "consequence": "the load buckles him, he barely heaves it",
+        "family": "carry",
+        "data_affects_mascot": True, "mascot_affects_data": False,
+        "supported_shapes": ["part_to_whole", "ranking"],
+        "supported_relationships": ["accumulation", "dominance", "share",
+                                    "imbalance"],
+        "performance_meaning": "bear the growing total's weight",
+        "requires": ["growing fill"],
         "beats": [
-            {"phase": "setup", "pose": "take_load", "contact": "both_hands"},
-            {"phase": "effort", "pose": "buckle", "repetitions": 1},
-            {"phase": "reversal", "pose": "knees_give"},
-            {"phase": "payoff", "pose": "last_heave"},
+            {"phase": "setup", "pose": "anticipate", "contact": "approach"},
+            {"phase": "objective", "pose": "engage", "contact": "both_hands"},
+            {"phase": "effort", "pose": "work", "repetitions": 2},
+            {"phase": "reversal", "pose": "turn"},
+            {"phase": "consequence", "pose": "affected"},
+            {"phase": "payoff", "pose": "land"},
+            {"phase": "recovery", "pose": "settle"},
         ],
     },
 }
+
+def _perf_entry(family, contact, cause, consequence, meaning, shapes, rels,
+                requires, dam, mad):
+    """A full performance definition: 8-part beat structure + semantics."""
+    return {
+        "family": family, "contact": contact, "cause": cause,
+        "consequence": consequence, "performance_meaning": meaning,
+        "supported_shapes": shapes, "supported_relationships": rels,
+        "requires": requires,
+        "data_affects_mascot": dam, "mascot_affects_data": mad,
+        "beats": [
+            {"phase": "setup", "pose": "anticipate", "contact": "approach"},
+            {"phase": "objective", "pose": "engage", "contact": "both_hands"},
+            {"phase": "effort", "pose": "work", "repetitions": 2},
+            {"phase": "reversal", "pose": "turn"},
+            {"phase": "consequence", "pose": "affected"},
+            {"phase": "payoff", "pose": "land"},
+            {"phase": "recovery", "pose": "settle"},
+        ],
+    }
+
+
+VERIFIED_PERFORMANCES.update({
+    "balance_beam": _perf_entry(
+        "balance", "feet planted on the datum's narrow top",
+        "fights to stay balanced as it moves", "wobbles to a near-fall, steadies",
+        "stay atop an unstable value", ["trend", "two_value"],
+        ["volatility", "instability", "stable_high"], ["perch point"],
+        True, False),
+    "catch_fall": _perf_entry(
+        "catch", "arms under the falling value", "catches the drop",
+        "impact squashes him into a squat; he holds it", "arrest a falling value",
+        ["trend", "two_value"], ["decrease", "decline", "crash"],
+        ["falling element"], True, True),
+    "block_wall": _perf_entry(
+        "block", "back and hands braced against the advancing mass",
+        "blocks its advance", "skids back, finally holds the line",
+        "hold an advancing mass", ["ranking", "part_to_whole"],
+        ["dominance", "increase", "spread"], ["advancing edge"], True, True),
+    "get_buried": _perf_entry(
+        "get_buried", "body under the accumulating pile", "shields himself",
+        "pressed down until only an arm pops out", "be buried by accumulation",
+        ["part_to_whole", "ranking", "trend"],
+        ["accumulation", "dominance", "overwhelm"], ["growing fill"],
+        True, False),
+    "overwhelmed": _perf_entry(
+        "get_overwhelmed", "dwarfed beside the towering value",
+        "backs away shielding his face", "is dwarfed, then awed",
+        "convey overwhelming scale", ["trend", "ranking", "part_to_whole"],
+        ["scale", "dominance", "overwhelm"], ["dominant element"],
+        True, False),
+    "race_sprint": _perf_entry(
+        "race", "sprinting flush with the advancing edge",
+        "races the data to the mark", "loses ground and dives across",
+        "race a fast-moving value", ["ranking", "trend"],
+        ["overtake", "speed", "increase"], ["advancing edge"], True, False),
+    "compressed": _perf_entry(
+        "compress", "arms braced on the two closing masses",
+        "pushes both back", "squeezed into a crouch, pops free",
+        "be squeezed by converging values", ["two_value", "part_to_whole"],
+        ["convergence", "imbalance", "squeeze"], ["two elements"],
+        True, False),
+    "stretched": _perf_entry(
+        "stretch", "gripping both diverging values",
+        "tries to hold them together", "stretched wide, snaps to the winner",
+        "span a widening gap", ["two_value", "ranking"],
+        ["divergence", "gap", "imbalance"], ["two elements"], True, False),
+    "discover": _perf_entry(
+        "discover", "leaning onto the datum, peering at it",
+        "investigates the number", "double-takes and presents it",
+        "reveal a surprising value", ["trend", "ranking", "two_value",
+                                      "part_to_whole"],
+        ["surprise", "outlier", "reveal"], [], False, False),
+    "compare_scales": _perf_entry(
+        "compare", "each arm holding one value like scale pans",
+        "weighs the two", "the heavier side tips his whole body",
+        "embody the comparison", ["two_value", "ranking"],
+        ["imbalance", "dominance", "comparison"], ["two elements"],
+        True, False),
+    "transform_reveal": _perf_entry(
+        "transform", "hands on the visual as it changes",
+        "spins the picture into a new form", "lands the ta-da reveal",
+        "transform the metaphor", ["part_to_whole", "trend"],
+        ["reframe", "transformation", "share"], [], False, True),
+    "fail_recover": _perf_entry(
+        "recover", "knocked flat by the datum's force",
+        "takes the hit", "gets back up, dusts off, stands tall",
+        "fail and recover", ["trend", "ranking"],
+        ["setback", "crash", "resilience"], [], True, False),
+    "stack_tiles": _perf_entry(
+        "stack", "hands placing each new piece on the pile",
+        "builds the total himself", "the pile outpaces him; final slam-place",
+        "assemble the accumulating total", ["part_to_whole", "ranking"],
+        ["accumulation", "share", "growth"], ["growing fill"], False, True),
+})
 
 _FALLING = ("fell", "fall", "drop", "dropp", "declin", "below", "under",
             "shrink", "shrank", "down to", "lowest", "sank", "slid")
@@ -1179,33 +1649,119 @@ _RISING = ("rise", "rising", "climb", "grew", "grow", "surge", "accelerat",
            "record", "tripl", "doubl", "up to", "added", "highest", "only ever")
 
 
+# Where each performance ATTACHES to the datum: sprite box_alignment so his
+# CONTACT POINT sits on the data object (top-grip actions hang from it,
+# feet-on actions stand on it, face-brace actions press against its edge).
+ACTION_ALIGN = {
+    "drag_line": (0.5, 0.80), "pull_down_win": (0.5, 0.80),
+    "hoist_stack": (0.5, 0.80), "get_buried": (0.5, 0.60),
+    "catch_fall": (0.5, 0.75), "compressed": (0.5, 0.5),
+    "shoved_bar": (0.28, 0.5), "block_wall": (0.28, 0.5),
+    "race_sprint": (0.35, 0.15), "stretched": (0.5, 0.5),
+    "balance_beam": (0.5, 0.04), "discover": (0.5, 0.04),
+    "compare_scales": (0.5, 0.04), "transform_reveal": (0.5, 0.04),
+    "fail_recover": (0.5, 0.04), "overwhelmed": (0.5, 0.04),
+    "stack_tiles": (0.5, 0.04),
+}
+
+_SHAPE_OF_KIND = {
+    "trend": "trend", "timeline": "trend",
+    "comparison": "two_value",
+    "stack": "part_to_whole", "share": "part_to_whole",
+    "waffle_grid": "part_to_whole",
+    "pictorial_race": "ranking", "rank": "ranking", "bars": "ranking",
+    "pictograph": "ranking", "bubbles": "ranking",
+    "geo_us": "ranking", "geo_world": "ranking",
+}
+
+_REL_WORDS = {
+    "decrease": ("fell", "fall", "drop", "declin", "below", "under", "shrank",
+                 "down to", "sank", "slid", "lowest"),
+    "increase": ("rise", "rising", "climb", "grew", "grow", "surge", "added",
+                 "accelerat", "tripl", "doubl", "record", "only ever",
+                 "highest"),
+    "dominance": ("leads", "leader", "dominat", "tops", "biggest", "largest",
+                  "most", "still leads", "pulls ahead", "no. 1", "number one"),
+    "overtake": ("overtak", "passes", "passed", "surpass", "closing in",
+                 "catching up", "tipping point"),
+    "imbalance": ("gap", "versus", " vs ", "twice", "half the", "imbalance",
+                  "far more", "far less"),
+    "accumulation": ("adds", "added each", "stack", "accumulat", "pile",
+                     "total", "combined"),
+    "scale": ("billion", "trillion", "million", "vast", "unexplored", "dwarf",
+              "massive", "per second"),
+    "surprise": ("actually", "surpris", "you'd never", "turns out", "hidden",
+                 "secretly"),
+}
+
+
+def analyze_claim(claim: str) -> dict:
+    """The performance-selection INPUT (review Phase 5.2): claim ->
+    relationship + direction. Selection then follows story MEANING, so the
+    same chart kind supports different performances for different claims."""
+    low = (claim or "").lower()
+    rels = [r for r, ws in _REL_WORDS.items() if any(w in low for w in ws)]
+    falling = "decrease" in rels and "increase" not in rels
+    return {"claim": claim, "relationships": rels or ["dominance"],
+            "direction": "falling" if falling else
+            ("rising" if "increase" in rels else "stable_high")}
+
+
 def performance_for(kind: str, claim: str = "", target: str = "",
-                    phase: str = "action") -> dict:
+                    phase: str = "action", used_families=None,
+                    seed: int = 0) -> dict:
     """Select + parameterise a VERIFIED performance from the story's actual
-    CLAIM (the narrative meaning), not merely the chart type. Returns the full
-    spec — goal, target, action, beats — the renderer executes and the manifest
-    records. 'payoff' phase returns the celebration (used by non-baked closers)."""
+    CLAIM — its relationship and direction — never merely the chart type.
+    ``used_families`` (families already performed in this story) drives
+    ANTI-REPETITION: the same family is not reused while a compatible
+    alternative exists. Returns the full executable spec, including the
+    selection input, for the manifest/attach record."""
     if phase == "payoff":
         return {"action": "cheer", "goal": "land the takeaway",
                 "target": target, "beats": [
                     {"phase": "payoff", "pose": "cheer"}]}
-    low = (claim or "").lower()
-    falling = any(w in low for w in _FALLING) and not any(
-        w in low for w in _RISING)
-    if kind in ("trend", "timeline"):
-        act = "pull_down_win" if falling else "drag_line"
-        goal = (f"pull {target or 'the line'} down — and win" if falling else
-                f"hold {target or 'the line'} down as it climbs")
-    elif kind in ("stack", "share", "waffle_grid"):
-        act, goal = "drag_line", f"keep the {target or 'total'} stack down"
-    elif kind == "comparison":
-        act, goal = "drag_line", f"hold {target or 'the leader'} below its rival"
-    else:                                  # pictorial_race / rank / bars / ...
-        act, goal = "shoved_bar", f"hold {target or 'the leader'} back"
-    spec = VERIFIED_PERFORMANCES.get(act, VERIFIED_PERFORMANCES["shoved_bar"])
-    return {"action": act, "goal": goal, "target": target,
+    intent = analyze_claim(claim)
+    shape = _SHAPE_OF_KIND.get(kind, "ranking")
+    used = set(used_families or ())
+    # candidates: performances that support this shape, ranked by relationship
+    # overlap with the claim (2 pts) then by structural fit (1 pt baseline)
+    scored = []
+    for name, meta in VERIFIED_PERFORMANCES.items():
+        if shape not in meta.get("supported_shapes", ()):
+            continue
+        overlap = len(set(meta.get("supported_relationships", ())) &
+                      set(intent["relationships"]))
+        # direction-specific hard preferences
+        if name == "pull_down_win" and intent["direction"] != "falling":
+            continue
+        if name == "drag_line" and intent["direction"] == "falling":
+            overlap -= 1
+        scored.append((overlap, name, meta))
+    scored.sort(key=lambda x: (-x[0], x[1]))
+    if not scored:
+        scored = [(0, "shoved_bar", VERIFIED_PERFORMANCES["shoved_bar"])]
+    # anti-repetition: first candidate whose FAMILY is unused; else best
+    pick = None
+    ordered = scored[seed % max(1, len(scored)):] + \
+        scored[:seed % max(1, len(scored))] if scored else []
+    ordered.sort(key=lambda x: -x[0])            # keep overlap dominant
+    for ov, name, meta in ordered:
+        if meta.get("family", name) not in used:
+            pick = (name, meta)
+            break
+    if pick is None:
+        pick = (scored[0][1], scored[0][2])
+    act, spec = pick
+    goal = f"{spec.get('performance_meaning', 'perform')} — {target or kind}"
+    return {"action": act, "family": spec.get("family", act),
+            "goal": goal, "target": target,
+            "selection_input": {**intent, "shape": shape,
+                                "used_families": sorted(used)},
             "contact": spec["contact"], "cause": spec["cause"],
-            "consequence": spec["consequence"], "beats": spec["beats"]}
+            "consequence": spec["consequence"],
+            "data_affects_mascot": spec.get("data_affects_mascot", True),
+            "mascot_affects_data": spec.get("mascot_affects_data", False),
+            "beats": spec["beats"]}
 
 # Chart KIND -> the data action Data performs on it (deterministic, on-topic).
 DATA_ACTION = {

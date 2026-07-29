@@ -17,9 +17,13 @@ on:
   workflow_dispatch:
     inputs:
       slug:
-        description: 'Story slug to render'
+        description: 'Story slug(s) to render (space-separated), or "benchmark" for the full 6-story suite'
         required: false
         default: 'grocery-squeeze'
+      mode:
+        description: 'repair = bounded repair loop (proving mode, default); oneshot = single render (debug only)'
+        required: false
+        default: 'repair'
   # Push trigger so this workflow can run from a feature branch before it ever
   # lands on the default branch: bump .github/triggers/preview_explainer (e.g.
   # `date > .github/triggers/preview_explainer`) to fire a fresh render.
@@ -40,7 +44,7 @@ env:
 jobs:
   preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 120   # repair mode renders up to 3 attempts per slug
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -157,6 +161,7 @@ jobs:
           STRICT_CONTACT: '1'
         run: |
           SLUGS="${{ github.event.inputs.slug }}"
+          MODE="${{ github.event.inputs.mode }}"
           # On a push preview there's no input slug — take the FIRST LINE of the
           # trigger file when it is one or more bare slug tokens (space/comma
           # separated), so a push can batch several stories in one render job.
@@ -166,10 +171,26 @@ jobs:
             if printf '%s' "$CAND" | grep -qE '^[a-z0-9][a-z0-9 -]+$'; then SLUGS="$CAND"; fi
           fi
           [ -z "$SLUGS" ] && SLUGS="grocery-squeeze"
-          echo "Rendering explainer stories: $SLUGS (dry-run, no upload)"
-          # --force: preview must render even if the slug is already in the
-          # posted log (dry-run never uploads, so this can't cause a re-post).
-          python scripts/post_stories.py --dry-run --force --slugs $SLUGS
+          [ -z "$MODE" ] && MODE="repair"
+          # "benchmark" = the FULL 6-archetype suite as COMPLETE videos
+          # (hook + narration + captions + all scenes + ending + audio + judge).
+          if [ "$SLUGS" = "benchmark" ]; then
+            SLUGS=$(python3 -c "import json;print(' '.join(s['slug'] for s in json.load(open('data_learning/benchmarks/suite.json'))['stories']))")
+          fi
+          echo "Rendering explainer stories: $SLUGS (mode=$MODE, dry-run, no upload)"
+          if [ "$MODE" = "oneshot" ]; then
+            # DEBUG ONLY: a single render, no repair. Not the proving path.
+            python scripts/post_stories.py --dry-run --force --slugs $SLUGS
+          else
+            # PROVING PATH: every slug goes through the bounded repair loop —
+            # baseline render -> judge -> structured weakest-scene -> three
+            # structural candidates -> keep-best with TRANSACTIONAL promotion/
+            # rollback (output/repair_runs/<slug>/<run_id>/attempt_N).
+            for S in $SLUGS; do
+              echo "==== repair loop: $S ===="
+              python scripts/repair_loop.py --slug "$S" --max-iters 2 || true
+            done
+          fi
           # Surface the SHOWRUNNER's actual verdict — the vision gate that WATCHED
           # each finished video. This is the quality judgment of record, not a
           # human eyeballing stills. (dry-run fails open, so a verdict with no
@@ -183,6 +204,15 @@ jobs:
             cat output/scenes/${S}_scene*.json 2>/dev/null || echo "(none)"
             echo
           done
+          # VISUAL benchmark (perceptual half of the suite): a vision judge
+          # answers what a VIEWER sees in the finished videos (contact looks
+          # real, action understandable, hook compelling, ending lands, ...).
+          # Without it the merged benchmark can never claim a full pass.
+          python3 scripts/benchmark_visual.py --slugs $SLUGS || true
+          # FULL-RUN AGGREGATE (Phase gates read this): median / lowest /
+          # hard-failures / fps across every slug in this run, appended to the
+          # consecutive-run history state/benchmark_runs.jsonl.
+          python3 scripts/benchmark_report.py --slugs $SLUGS || true
           # FAILURE CENSUS (informational): classify this run's failures into
           # recurring engineering classes against the running verdict history.
           python3 scripts/failure_census.py --last 20 || true

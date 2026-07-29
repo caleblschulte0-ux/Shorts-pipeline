@@ -24,7 +24,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 # The primitives production may select — the VERIFIED library + coupled/arc set.
 GATED = ["drag_line", "pull_down_win", "shoved_bar", "hoist_stack",
-         "push_bar_arc", "ride_line_arc", "lift_arc", "climb_arc"]
+         "push_bar_arc", "ride_line_arc", "lift_arc", "climb_arc",
+         # expanded performance families (Phase 5)
+         "balance_beam", "catch_fall", "block_wall", "get_buried",
+         "overwhelmed", "race_sprint", "compressed", "stretched",
+         "discover", "compare_scales", "transform_reveal", "fail_recover",
+         "stack_tiles"]
 SAMPLES = [0.04, 0.2, 0.35, 0.5, 0.65, 0.8, 0.96]
 SIZE = 200
 

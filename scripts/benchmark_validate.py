@@ -59,7 +59,7 @@ def _frame_diff(p1: Path, p2: Path) -> float:
 def validate_story(slug: str, story_cfg: dict, cfg: dict, req: dict,
                    frames: int) -> dict:
     """Render each segment's build into a temp dir and check the requirements."""
-    res = {"slug": slug, "checks": {}, "pass": True}
+    res = {"slug": slug, "checks": {}, "pass": True, "families": []}
 
     def _set(name, ok, detail=""):
         res["checks"][name] = {"ok": bool(ok), "detail": detail}
@@ -110,9 +110,25 @@ def validate_story(slug: str, story_cfg: dict, cfg: dict, req: dict,
                  len({b.get('phase') for b in beats}) >= 3,
                  f"{len(beats)} beats")
             perf = attach.get("performance") or {}
-            _set(f"{tag}.mascot.causes_data_change",
-                 bool(perf.get("cause") and perf.get("consequence")),
+            res["families"].append(perf.get("family") or perf.get("action")
+                                   or "?")
+            # HONEST causal labels (review 4.2) — four separate claims, not one:
+            _set(f"{tag}.mascot_contacts_data",
+                 len(gp) >= len(fs),
+                 "grip recorded every frame (metadata; visual check separate)")
+            _set(f"{tag}.data_affects_mascot",
+                 bool(perf.get("data_affects_mascot")),
                  perf.get("consequence", "")[:60])
+            # mascot_affects_data is INFORMATIONAL (not every scene needs it) —
+            # recorded, never failed on:
+            res["checks"][f"{tag}.mascot_affects_data"] = {
+                "ok": True, "informational": True,
+                "detail": str(bool(perf.get("mascot_affects_data")))}
+            # readability is PERCEPTUAL — deferred to the visual benchmark,
+            # never credited structurally:
+            res["checks"][f"{tag}.cause_consequence_readable"] = {
+                "ok": True, "deferred_to": "benchmark_visual",
+                "detail": "perceptual — graded by the vision benchmark"}
             # ENDING: labels land (anchors) + a payoff phase exists
             if i == len(segs) - 1:
                 _set("ending.new_information", bool(anchors),
@@ -148,11 +164,45 @@ def main() -> int:
         for name, c in r["checks"].items():
             print(f"   {'ok  ' if c['ok'] else 'FAIL'} {name}"
                   f"{(' — ' + c['detail']) if c['detail'] else ''}")
-    out = REPO / "state" / "benchmark_validation.json"
+    # FAMILY DIVERSITY (review Phase 5 acceptance): within a story <=50% of
+    # scenes may share a performance family; across the suite no family may
+    # exceed 25% of scenes (rounded up allowance for small suites).
+    fam_all = []
+    for r in results:
+        fams = r.get("families") or []
+        if fams:
+            top = max(fams.count(f) for f in set(fams))
+            if top > max(1, len(fams) // 2):
+                r["pass"] = False
+                r["checks"]["mascot.family_diversity"] = {
+                    "ok": False, "detail": f"{fams} (family >50% of story)"}
+            fam_all += fams
+    if fam_all:
+        import math as _m
+        cap = max(1, _m.ceil(0.25 * len(fam_all)))
+        worst = max(set(fam_all), key=fam_all.count)
+        div_ok = fam_all.count(worst) <= cap
+        if not div_ok:
+            all_ok = False
+        print(f"suite family spread: {sorted(set(fam_all))} "
+              f"(dominant '{worst}' {fam_all.count(worst)}/{len(fam_all)}, "
+              f"cap {cap}) {'ok' if div_ok else 'FAIL'}")
+    all_ok = all_ok and all(r["pass"] for r in results)
+    out = REPO / "state" / "benchmark_structural.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(
         {"results": results, "all_pass": all_ok}, indent=1))
-    print(f"\nsuite: {'ALL PASS' if all_ok else 'FAILURES'} -> {out}")
+    # merged summary: structural + (separate) visual — a story is only FULLY
+    # passing when BOTH pass; visual not-run keeps fully_passing false.
+    vis_p = REPO / "state" / "benchmark_visual.json"
+    vis = json.loads(vis_p.read_text()) if vis_p.exists() else {
+        "all_pass": False, "status": "not_run"}
+    (REPO / "state" / "benchmark_validation.json").write_text(json.dumps(
+        {"structural": {"all_pass": all_ok},
+         "visual": {"all_pass": bool(vis.get("all_pass")),
+                    "status": vis.get("status", "ran")},
+         "fully_passing": all_ok and bool(vis.get("all_pass"))}, indent=1))
+    print(f"\nstructural: {'ALL PASS' if all_ok else 'FAILURES'} -> {out}")
     return 0 if all_ok else 1
 
 

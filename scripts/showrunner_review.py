@@ -448,11 +448,19 @@ MOTION FACTS (measured in code, not opinion) — use them, especially for dead_a
 and empty_void:
 {motion}
 
+STRUCTURED DIAGNOSIS (required): identify the WEAKEST SCENE by its frame-label \
+segment id (segN as printed on the frame labels; the hook is "hook"). If you \
+would block this video you MUST name the scene that most needs repair, the \
+failure class, the visible evidence, the root cause, and a concrete repair \
+goal — the repair system targets that scene directly, it does not parse prose.
+
 Return ONLY this JSON:
 {{"dimensions":{{"hook":int,"data_demo":int,"mascot":int,"craft":int,"pace":int,"payoff":int}},
  "checks":{{"junk_imagery":{{"present":bool,"evidence":str}},"decorative_mascot":{{"present":bool,"evidence":str}},
  "bare_number_card":{{"present":bool,"evidence":str}},"dead_air":{{"present":bool,"evidence":str}},
  "empty_void":{{"present":bool,"evidence":str}}}},
+ "weakest_scene":{{"id":str,"index":int,"failure_class":str,
+ "visible_evidence":str,"root_cause":str,"repair_goal":str}},
  "one_line":str,"problems":[str],"fixes":[str]}}
 
 RUBRIC:
@@ -517,12 +525,21 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
     checks = apply_motion_override(grades.get("checks", {}) or {}, motion)
     failed = failed_autofails(checks)
     verdict = decide_verdict(score, checks)
+    # STRUCTURED weakest-scene diagnosis: pass the judge's own scene target
+    # through so repair addresses the scene the judge saw failing — never
+    # re-derived by parsing prose. A block verdict without one is an emergency
+    # (logged); the repair layer then falls back explicitly.
+    ws = grades.get("weakest_scene")
+    if verdict == "block" and not isinstance(ws, dict):
+        print("[showrunner] EMERGENCY: block verdict without a structured "
+              "weakest_scene — repair will use its logged fallback", flush=True)
+        ws = None
     return {
         "score": score, "verdict": verdict,
         "dimensions": {k: int(dims.get(k, 0)) for k in WEIGHTS},
         "auto_fails": [f"{k}: {checks[k].get('evidence', '')}" for k in failed],
         "checks": checks, "motion": motion, "temporal": temporal,
-        "judge": backend,
+        "judge": backend, "weakest_scene": ws,
         "one_line": grades.get("one_line", ""),
         "problems": grades.get("problems", []),
         "fixes": grades.get("fixes", []),

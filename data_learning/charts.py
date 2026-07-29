@@ -213,6 +213,16 @@ _ATTACH_FRAME: list = []           # grips recorded while drawing ONE frame
 _LAST_PERF: dict = {}              # the performance spec chosen for this build
 
 
+def _perf_align(action: str, default: tuple) -> tuple:
+    """Attachment alignment for the selected action (falls back to the chart
+    site's default when the action has no registered contact geometry)."""
+    try:
+        from . import mascot_director as _md
+        return _md.ACTION_ALIGN.get(action, default)
+    except Exception:  # noqa: BLE001
+        return default
+
+
 def _perf_action(insight: Insight, kind: str) -> str:
     """The DIRECTED action for this beat: an explicit scene-plan override wins;
     otherwise the director selects a VERIFIED performance from the story's
@@ -220,8 +230,11 @@ def _perf_action(insight: Insight, kind: str) -> str:
     global _LAST_PERF
     ov = getattr(insight, "perf_override", None)
     if ov:
-        _LAST_PERF = {"action": ov, "goal": "scene-plan override",
-                      "target": getattr(insight, "highlight_label", "") or ""}
+        # full spec when the story-level director (or a scene plan) chose it
+        spec = getattr(insight, "perf_spec", None)
+        _LAST_PERF = spec if isinstance(spec, dict) else {
+            "action": ov, "goal": "scene-plan override",
+            "target": getattr(insight, "highlight_label", "") or ""}
         return ov
     try:
         from . import mascot_director as _md
@@ -496,8 +509,9 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     # this a rank/bars beat (kind is in BAKED_CHART_KINDS, overlay suppressed)
     # would show NO mascot at all.
     _wtip = max(values[0] * max(0.0, min(1.0, reveal)), vmax * 0.02)
-    _bake_host(ax, _wtip, 0, _perf_action(insight, "rank"), reveal,
-               zoom=0.9, align=(0.28, 0.5))
+    _act_b = _perf_action(insight, "rank")
+    _bake_host(ax, _wtip, 0, _act_b, reveal,
+               zoom=0.9, align=_perf_align(_act_b, (0.28, 0.5)))
     insight.host_baked = True
     return ax, arts
 
@@ -559,8 +573,9 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # of the winning column and is hauled UP as it grows — reads as data-driven,
     # unlike lift_arc which the gate read as 'perches on top, swallowed'.
     _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
-    _bake_host(ax, xs[0], _htip, _perf_action(insight, "comparison"), reveal,
-               zoom=0.8, align=(0.5, 0.78))
+    _act_c = _perf_action(insight, "comparison")
+    _bake_host(ax, xs[0], _htip, _act_c, reveal,
+               zoom=0.8, align=_perf_align(_act_c, (0.5, 0.78)))
     insight.host_baked = True
     return ax, arts
 
@@ -637,8 +652,9 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # dug in -> feet break contact -> airborne swing). His grip point (top of the
     # sprite, ~0.80 up) is baked ONTO the tip, so the line visibly acts on him —
     # contact + cause + consequence, not a sprite surfing above the line.
-    _bake_host(ax, xd[-1], yd[-1], _perf_action(insight, "trend"), reveal,
-               zoom=1.15, align=(0.5, 0.80))
+    _act_t = _perf_action(insight, "trend")
+    _bake_host(ax, xd[-1], yd[-1], _act_t, reveal,
+               zoom=1.15, align=_perf_align(_act_t, (0.5, 0.80)))
     insight.host_baked = True
     return ax, arts
 
@@ -822,8 +838,9 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
     # COUPLE THE HOST on the legend axes beside the map: Data hoists the ranked
     # column as it fills in (contact on the leaderboard the map is building) —
     # a geo beat is no longer mascot-less.
-    _bake_host(leg, 0.30, 0.10, _perf_action(insight, "rank"), reveal,
-               zoom=0.72, align=(0.5, 0.0))
+    _act_g = _perf_action(insight, "rank")
+    _bake_host(leg, 0.30, 0.10, _act_g, reveal,
+               zoom=0.72, align=_perf_align(_act_g, (0.5, 0.0)))
     insight.host_baked = True
     return ax, specs
 
@@ -1081,9 +1098,9 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # COUPLE THE HOST: Data braces against the winning bar's advancing right face
     # and is shoved along as it outgrows him (his left-side hands baked onto the
     # bar tip) — the bar drives him, not a sprite perched on the cap.
-    _bake_host(ax, _ttip, n - 1,
-               _perf_action(insight, "pictorial_race"), reveal,
-               zoom=1.0, align=(0.28, 0.5))
+    _act_r = _perf_action(insight, "pictorial_race")
+    _bake_host(ax, _ttip, n - 1, _act_r, reveal,
+               zoom=1.0, align=_perf_align(_act_r, (0.28, 0.5)))
     insight.host_baked = True
     return ax, specs
 
@@ -1143,8 +1160,9 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
         y0 += sh
     # COUPLE THE HOST: Data grips the top of the growing tower and is hauled up as
     # it stacks (vertical drag — a real bit, not a horizontal slide).
-    _bake_host(ax, (cx0 + cx1) / 2.0, top_y, _perf_action(insight, "stack"),
-               reveal, zoom=0.92, align=(0.5, 0.80))
+    _act_s = _perf_action(insight, "stack")
+    _bake_host(ax, (cx0 + cx1) / 2.0, top_y, _act_s,
+               reveal, zoom=0.92, align=_perf_align(_act_s, (0.5, 0.80)))
     insight.host_baked = True
     return ax, specs
 
@@ -1198,8 +1216,9 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
             _star_top = (cx, cy + r * t)
     # COUPLE THE HOST: Data grips the TOP of the star (biggest) bubble and is
     # pushed UP as it inflates — contact + cause + consequence on the bubble.
-    _bake_host(ax, _star_top[0], _star_top[1], _perf_action(insight, "trend"),
-               reveal, zoom=0.8, align=(0.5, 0.80))
+    _act_bb = _perf_action(insight, "trend")
+    _bake_host(ax, _star_top[0], _star_top[1], _act_bb,
+               reveal, zoom=0.8, align=_perf_align(_act_bb, (0.5, 0.80)))
     insight.host_baked = True
     return ax, specs
 

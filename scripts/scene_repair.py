@@ -37,31 +37,50 @@ matplotlib.use("Agg")
 
 PLANS_DIR = REPO / "state" / "scene_plans"
 
-# Structurally different scene plans per data shape. Each candidate is a
-# (chart kind, performance) pair from the VERIFIED sets — a different scene,
-# not a re-roll of the same one.
-VARIANTS = {
-    "part_to_whole": [
-        {"viz": "stack", "perf": "drag_line"},
-        {"viz": "stack", "perf": "hoist_stack"},
-        {"viz": "pictorial_race", "perf": "shoved_bar"},
-    ],
-    "two_value": [
-        {"viz": "comparison", "perf": "drag_line"},
-        {"viz": "stack", "perf": "drag_line"},
-        {"viz": "pictorial_race", "perf": "shoved_bar"},
-    ],
-    "ranking": [
-        {"viz": "pictorial_race", "perf": "shoved_bar"},
-        {"viz": "rank", "perf": "shoved_bar"},
-        {"viz": "stack", "perf": "drag_line"},
-    ],
-    "trend": [
-        {"viz": "trend", "perf": "drag_line"},
-        {"viz": "trend", "perf": "pull_down_win"},
-        {"viz": "pictorial_race", "perf": "shoved_bar"},
-    ],
+# Chart-kind options per data shape; the PERFORMANCE for each candidate is
+# selected SEMANTICALLY from the claim (mascot_director.performance_for with a
+# rotating anti-repetition set), so the three candidates are three genuinely
+# different scenes: different depiction × different performance family, all
+# compatible with the scene's meaning.
+KIND_OPTIONS = {
+    "part_to_whole": ["stack", "stack", "pictorial_race"],
+    "two_value": ["comparison", "stack", "pictorial_race"],
+    "ranking": ["pictorial_race", "rank", "stack"],
+    "trend": ["trend", "trend", "pictorial_race"],
 }
+
+
+def semantic_candidates(insight, shape: str) -> list[dict]:
+    """Three structurally different (viz, perf) plans, each SEMANTICALLY
+    compatible with the scene's claim (review 3.2): the performance's
+    supported shapes/relationships must fit the scene intent — an incompatible
+    combination is rejected before any rendering."""
+    sys.path.insert(0, str(REPO))
+    from data_learning import mascot_director as md
+    claim = getattr(insight, "main_insight", "") or ""
+    intent = md.analyze_claim(claim)
+    target = insight.items[0].label if getattr(insight, "items", None) else ""
+    cands, used = [], set()
+    for j, viz in enumerate(KIND_OPTIONS.get(shape, KIND_OPTIONS["ranking"])):
+        spec = md.performance_for(viz, claim, target,
+                                  used_families=used, seed=j)
+        # SEMANTIC GATE: the selected performance must genuinely support this
+        # shape (performance_for enforces it) — record the declaration.
+        used.add(spec.get("family", spec["action"]))
+        cands.append({"viz": viz, "perf": spec["action"],
+                      "family": spec.get("family"),
+                      "performance_meaning": spec.get("goal", ""),
+                      "intent": {"shape": shape,
+                                 "relationships": intent["relationships"],
+                                 "direction": intent["direction"]}})
+    # dedupe identical (viz, perf) pairs while keeping order
+    seen, out = set(), []
+    for c in cands:
+        k = (c["viz"], c["perf"])
+        if k not in seen:
+            seen.add(k)
+            out.append(c)
+    return out
 
 
 def shape_of(insight) -> str:
@@ -75,14 +94,27 @@ def shape_of(insight) -> str:
 
 
 def failing_scene(verdict: dict, n_segs: int) -> int:
-    """Map the verdict's auto-fail text (seg indices appear as 'segN') or the
-    weakest visual dimension onto a segment index. Defaults to the LAST segment
-    (long final beats fail most)."""
+    """The scene to repair. PRIMARY source: the judge's STRUCTURED
+    weakest_scene diagnosis (id/index emitted directly by the showrunner).
+    Prose parsing ('segN' in auto-fail text) and the last-segment default are
+    EMERGENCY fallbacks only, and are loudly logged as such."""
+    ws = verdict.get("weakest_scene")
+    if isinstance(ws, dict):
+        idx = ws.get("index")
+        if isinstance(idx, int) and 0 <= idx < n_segs:
+            return idx
+        sid = str(ws.get("id", ""))
+        m = re.search(r"(\d+)", sid)
+        if m and int(m.group(1)) < n_segs:
+            return int(m.group(1))
     text = " ".join(verdict.get("auto_fails", []) or [])
     hits = [int(m) for m in re.findall(r"seg(\d+)", text)]
     if hits:
-        # the most-blamed segment
+        print("[scene_repair] EMERGENCY fallback: no structured weakest_scene; "
+              "parsed segment from prose", flush=True)
         return max(set(hits), key=hits.count) % max(1, n_segs)
+    print("[scene_repair] EMERGENCY fallback: no scene identified anywhere; "
+          "defaulting to the final segment", flush=True)
     return n_segs - 1
 
 
@@ -134,9 +166,64 @@ def score_candidate(build_dir: Path, tag: str, frames: int) -> dict:
             fps_score = min(1.0, fps / 24.0)
         except Exception:  # noqa: BLE001
             pass
+    # safe-margin / clipping proxy: opaque pixels crowding the canvas border of
+    # the FINAL frame (content or mascot running off the card)
+    last = Image.open(fs[-1]).convert("RGBA")
+    a = last.getchannel("A")
+    w, h = last.size
+    px = a.load()
+    border = sum((px[x, 0] > 40) + (px[x, h - 1] > 40) for x in range(w)) + \
+        sum((px[0, y] > 40) + (px[w - 1, y] > 40) for y in range(h))
+    clipping = border / max(1, 2 * (w + h))
     total = 0.45 * fps_score + 0.35 * min(1.0, fullness / 0.5) + 0.20 * contact
     return {"score": round(total, 4), "fps_score": round(fps_score, 3),
-            "fullness": round(fullness, 3), "contact": round(contact, 3)}
+            "fullness": round(fullness, 3), "contact": round(contact, 3),
+            "clipping": round(clipping, 4),
+            "objective_pass": bool(fps_score >= 0.45 and fullness >= 0.15
+                                   and contact >= 0.9 and clipping < 0.05)}
+
+
+_RANK_PROMPT = """You are the channel's strict scene-repair judge. These frames \
+show {n} CANDIDATE scenes (labelled candidate_0, candidate_1, ...) for the SAME \
+beat of a data short. The narration claim: "{claim}".
+
+Rank the candidates by which makes the best SCENE — judge what a viewer sees: \
+does the visual action EXPLAIN the claim, is the mascot's bit readable (goal, \
+effort, consequence), is the composition clean, is it interesting rather than \
+repetitive or busy? Technical smoothness is already filtered — do not reward it.
+
+Return ONLY JSON:
+{{"winner":str,"ranking":[str],"reasons":{{}},"confidence":float}}"""
+
+
+def vision_rank(bdir: Path, survivors: list[dict], claim: str) -> dict | None:
+    """Rank surviving candidates with the SHOWRUNNER's own vision judge
+    (review 3.1): creative evaluation, not alpha statistics. Returns the
+    ranking dict, or None when no vision backend is available (logged; the
+    caller then proceeds objective-only in DEGRADED mode)."""
+    try:
+        import importlib.util as _il
+        spec = _il.spec_from_file_location(
+            "showrunner_review", REPO / "scripts" / "showrunner_review.py")
+        sr = _il.module_from_spec(spec)
+        spec.loader.exec_module(sr)
+        labeled = []
+        for c in survivors:
+            tag = c["tag"]
+            fs = sorted(bdir.glob(f"{tag}_build*.png"))
+            for pick, ph in ((0, "start"), (len(fs) // 2, "mid"),
+                             (len(fs) - 1, "end")):
+                if fs:
+                    labeled.append((f"candidate_{c['index']}@{ph}", fs[pick]))
+        grades, backend = sr._judge(
+            _RANK_PROMPT.format(n=len(survivors), claim=claim[:200]), labeled)
+        if grades.get("winner"):
+            grades["judge"] = backend
+            return grades
+    except Exception as e:  # noqa: BLE001
+        print(f"[scene_repair] DEGRADED: vision ranking unavailable "
+              f"({str(e)[:90]}) — objective-only selection", flush=True)
+    return None
 
 
 def propose(slug: str, verdict: dict, frames: int = 60,
@@ -150,7 +237,8 @@ def propose(slug: str, verdict: dict, frames: int = 60,
         idx = failing_scene(verdict, len(segs))
         base = segs[idx].insight
         shape = shape_of(base)
-        cands = VARIANTS.get(shape, VARIANTS["ranking"])[:3]
+        cands = semantic_candidates(base, shape)
+        claim = getattr(base, "main_insight", "") or ""
         print(f"[scene_repair] {slug}: failing scene = seg{idx} "
               f"(shape {shape}); {len(cands)} structural candidates")
         results = []
@@ -161,21 +249,50 @@ def propose(slug: str, verdict: dict, frames: int = 60,
             ins.kind = cand["viz"]
             ins.plan_locked = True
             ins.perf_override = cand["perf"]
+            if hasattr(ins, "perf_spec"):
+                ins.perf_spec = None
             tag = f"c{ci}"
             try:
                 charts.render_story_build(ins, bdir, tag, frames=frames)
                 sc = score_candidate(bdir, tag, frames)
             except Exception as e:  # noqa: BLE001
-                sc = {"score": 0.0, "detail": str(e)[:80]}
-            results.append({**cand, **sc})
+                sc = {"score": 0.0, "objective_pass": False,
+                      "detail": str(e)[:80]}
+            results.append({**cand, **sc, "tag": tag, "index": ci})
             print(f"  cand{ci} {cand['viz']}+{cand['perf']}: {sc}")
+        # TWO-GATE selection (review 3.1): objective checks REJECT, they do not
+        # pick. Survivors go to the vision judge; the creative ranking chooses.
+        survivors = [r for r in results if r.get("objective_pass")]
+        if not survivors:
+            survivors = sorted(results, key=lambda r: -r["score"])[:1]
+            print("[scene_repair] no candidate passed the objective gate — "
+                  "keeping the least-bad for diagnosis")
+        ranking = vision_rank(bdir, survivors, claim) if len(survivors) > 1 \
+            else None
+        if ranking:
+            try:
+                w_i = int(str(ranking["winner"]).split("_")[-1])
+                chosen = next(r for r in results if r["index"] == w_i)
+                selection_mode = f"vision ({ranking.get('judge', '?')}, " \
+                                 f"conf {ranking.get('confidence')})"
+            except Exception:  # noqa: BLE001
+                chosen = max(survivors, key=lambda r: r["score"])
+                selection_mode = "objective (vision output unparseable)"
+        else:
+            chosen = max(survivors, key=lambda r: r["score"])
+            selection_mode = ("objective-only DEGRADED (no vision backend)"
+                             if len(survivors) > 1 else "single survivor")
         # incumbent = candidate matching the CURRENT (routed) kind, if present
         inc = next((r for r in results if r["viz"] == base.kind), None)
-        best = max(results, key=lambda r: r["score"])
-        margin = best["score"] - (inc["score"] if inc else 0.0)
-        chosen = best if (inc is None or margin > 0.08) else inc
+        margin = chosen["score"] - (inc["score"] if inc else 0.0)
+        if ranking is None and inc is not None and margin <= 0.08:
+            chosen = inc                # objective-only: hold without margin
         plan = {"slug": slug, "seg": idx, "shape": shape,
-                "candidates": results, "chosen": chosen,
+                "candidates": [{k: v for k, v in r.items() if k != "tag"}
+                               for r in results],
+                "chosen": {k: v for k, v in chosen.items() if k != "tag"},
+                "selection_mode": selection_mode,
+                "vision_ranking": ranking,
                 "won_by_margin": round(margin, 4)}
         if apply_plan:
             PLANS_DIR.mkdir(parents=True, exist_ok=True)
@@ -187,13 +304,118 @@ def propose(slug: str, verdict: dict, frames: int = 60,
         return plan
 
 
+# ---------------------------------------------------------------------------
+# HOOK + ENDING candidates (review Phase 7): three structurally different
+# hooks / two endings, objective-gated, vision-ranked, winner persisted through
+# the SAME scene-plan mechanism (segment 0 / last segment overrides).
+# ---------------------------------------------------------------------------
+HOOK_STRUCTURES = [
+    # immediate consequence: the value moves violently from frame 1 and Data is
+    # already being dragged by it
+    {"name": "immediate_consequence", "perf": "drag_line"},
+    # failed mascot attempt: he takes the hit and recovers — instant empathy
+    {"name": "failed_attempt", "perf": "fail_recover"},
+    # scale reveal: he is dwarfed/overwhelmed by the size of the thing
+    {"name": "scale_reveal", "perf": "overwhelmed"},
+]
+
+ENDING_STRUCTURES = [
+    # resolve with a transformation ta-da (new synthesis + visual consequence)
+    {"name": "transform_payoff", "perf": "transform_reveal"},
+    # resolve with the discovery/double-take presenting the final number
+    {"name": "discover_payoff", "perf": "discover"},
+]
+
+
+def candidate_bout(slug: str, seg_idx: int, structures: list[dict],
+                   frames: int, apply_plan: bool, label: str) -> dict:
+    """Render structurally different candidates for ONE scene (hook or ending),
+    objective-gate them, vision-rank survivors, persist the winner's plan."""
+    from data_learning import story, charts
+    cfg = json.loads((REPO / "data_learning" / "niche.config.json").read_text())
+    story_cfg = next(s for s in cfg["stories"] if s["slug"] == slug)
+    with tempfile.TemporaryDirectory() as td:
+        st = story.build(story_cfg, cfg, Path(td), REPO)
+        segs = [s for s in st.segments if getattr(s, "insight", None)]
+        idx = seg_idx if 0 <= seg_idx < len(segs) else len(segs) - 1
+        base = segs[idx].insight
+        claim = getattr(base, "main_insight", "") or ""
+        bdir = Path(td) / label
+        results = []
+        for ci, cand in enumerate(structures):
+            import copy
+            ins = copy.deepcopy(base)
+            ins.plan_locked = True
+            ins.perf_override = cand["perf"]
+            if hasattr(ins, "perf_spec"):
+                ins.perf_spec = None
+            tag = f"c{ci}"
+            try:
+                charts.render_story_build(ins, bdir, tag, frames=frames,
+                                          hook_lead=(label == "hook"))
+                sc = score_candidate(bdir, tag, frames)
+            except Exception as e:  # noqa: BLE001
+                sc = {"score": 0.0, "objective_pass": False,
+                      "detail": str(e)[:80]}
+            results.append({**cand, "viz": base.kind, **sc,
+                            "tag": tag, "index": ci})
+            print(f"  {label} cand{ci} {cand['name']}: {sc}")
+        survivors = [r for r in results if r.get("objective_pass")] or \
+            sorted(results, key=lambda r: -r["score"])[:1]
+        ranking = vision_rank(bdir, survivors, claim) \
+            if len(survivors) > 1 else None
+        if ranking:
+            try:
+                w_i = int(str(ranking["winner"]).split("_")[-1])
+                chosen = next(r for r in results if r["index"] == w_i)
+                mode = f"vision ({ranking.get('judge', '?')})"
+            except Exception:  # noqa: BLE001
+                chosen = max(survivors, key=lambda r: r["score"])
+                mode = "objective (vision unparseable)"
+        else:
+            chosen = max(survivors, key=lambda r: r["score"])
+            mode = "objective-only DEGRADED" if len(survivors) > 1 \
+                else "single survivor"
+        out = {"slug": slug, "seg": idx, "label": label,
+               "candidates": [{k: v for k, v in r.items() if k != "tag"}
+                              for r in results],
+               "chosen": {k: v for k, v in chosen.items() if k != "tag"},
+               "selection_mode": mode, "vision_ranking": ranking}
+        if apply_plan:
+            PLANS_DIR.mkdir(parents=True, exist_ok=True)
+            pf = PLANS_DIR / f"{slug}.json"
+            existing = json.loads(pf.read_text()) if pf.exists() else {}
+            existing[str(idx)] = {"viz": chosen["viz"],
+                                  "perf": chosen["perf"],
+                                  "structure": chosen.get("name")}
+            pf.write_text(json.dumps(existing, indent=1))
+            print(f"[{label}_candidates] plan applied -> {pf}")
+        return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug", required=True)
     ap.add_argument("--verdict")
     ap.add_argument("--frames", type=int, default=60)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--hooks", action="store_true",
+                    help="run the 3-way hook candidate bout instead")
+    ap.add_argument("--endings", action="store_true",
+                    help="run the ending candidate bout instead")
     args = ap.parse_args()
+    if args.hooks:
+        out = candidate_bout(args.slug, 0, HOOK_STRUCTURES, args.frames,
+                             args.apply, "hook")
+        print(json.dumps({k: out[k] for k in ("chosen", "selection_mode")},
+                         indent=1))
+        return 0
+    if args.endings:
+        out = candidate_bout(args.slug, 10 ** 6, ENDING_STRUCTURES,
+                             args.frames, args.apply, "ending")
+        print(json.dumps({k: out[k] for k in ("chosen", "selection_mode")},
+                         indent=1))
+        return 0
     verdict = {}
     vp = Path(args.verdict) if args.verdict else \
         REPO / "output" / f"story_{args.slug}.showrunner.json"
