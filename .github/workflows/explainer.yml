@@ -111,7 +111,7 @@ jobs:
     # Raised from 60: each video now renders a 3D opener+closer, so a batch
     # needs more headroom. Paired with post_stories --max-per-run so a run
     # still can't blow this cap.
-    timeout-minutes: 120
+    timeout-minutes: 300
     concurrency:
       group: explainer-stories
       cancel-in-progress: false
@@ -452,7 +452,8 @@ jobs:
               # The editorial gate and the showrunner veto still govern every
               # video — this only lifts the FREEZE, it bypasses no judgment.
               python scripts/post_stories.py $SLUGFLAG $FORCEFLAG \
-                --every-hours "$EVERY" --start-in-hours "$START" --max-per-run 4 ;;
+                --every-hours "$EVERY" --start-in-hours "$START" \
+                --max-per-run 3 --repair 1 ;;
             all)
               python scripts/post_stories.py $SLUGFLAG --max-per-run 4 ;;
             unpublish)

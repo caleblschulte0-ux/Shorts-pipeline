@@ -142,6 +142,10 @@ def main() -> int:
     ap.add_argument("--log", type=Path, default=LOG_PATH,
                     help="posted-log JSON (default: state/"
                          "explainer_posted_log.json)")
+    ap.add_argument("--repair", type=int, default=2,
+                    help="on a showrunner BLOCK, restructure the weakest scene "
+                         "and re-render this many times before giving up "
+                         "(0 = never repair)")
     ap.add_argument("--max-per-run", type=int, default=0,
                     help="render at most N new videos this run (0 = all); the "
                          "rest wait for the next run. Guards the CI job cap now "
@@ -210,7 +214,8 @@ def main() -> int:
         from data_learning import studio_render       # lazy: needs Pillow etc.
         studio_render.render(slug, out, config_path=args.config)
 
-        # SHOWRUNNER gate — the editor with a veto. A headless Claude actually
+        # SHOWRUNNER gate  (see the repair loop below: a BLOCK is a diagnosis
+        # to act on, not the end of the story) — the editor with a veto. A headless Claude actually
         # WATCHES the finished video (extracts frames + reads the transcript)
         # and grades it against docs/DIRECTOR.md. Its verdict is authoritative.
         #
@@ -221,14 +226,15 @@ def main() -> int:
         # clearly good, it does not publish."
         will_upload = not args.dry_run and not frozen
         blocked = False
+        verdict = {}
+        ctx = {"slug": slug, "title": sc.get("title"),
+               "hook": sc.get("hook"), "closing": sc.get("closing"),
+               "segments": [s.get("say") or s.get("topic")
+                            for s in sc.get("segments", [])][:8]}
         if os.environ.get("SHOWRUNNER", "on").lower() not in ("off", "0",
                                                               "false"):
             try:
                 from scripts import showrunner_review as _sr
-                ctx = {"slug": slug, "title": sc.get("title"),
-                       "hook": sc.get("hook"), "closing": sc.get("closing"),
-                       "segments": [s.get("say") or s.get("topic")
-                                    for s in sc.get("segments", [])][:8]}
                 verdict = _sr.review_video(out, context=ctx)
                 out.with_suffix(".showrunner.json").write_text(
                     json.dumps(verdict, indent=2))
@@ -259,6 +265,46 @@ def main() -> int:
             print(f"[{slug}] SHOWRUNNER=off is not allowed on a publish run — "
                   f"HOLDING.", flush=True)
             blocked = True
+
+        # ---- BOUNDED SELF-REPAIR ------------------------------------------
+        # The gate's verdict names the weakest scene and why. Rather than drop
+        # the video there, restructure that ONE scene (scene_repair picks a
+        # claim-compatible depiction, objective-gated then vision-ranked),
+        # re-render, and let the gate judge again. The gate still decides —
+        # this only gives it a better cut to judge. Bounded: a cut only ever
+        # uploads on a SHIP verdict, so a repair that lands worse simply keeps
+        # the video held, exactly as before.
+        repairs = 0
+        while (blocked and repairs < args.repair
+               and (verdict or {}).get("score") is not None):
+            repairs += 1
+            try:
+                from scripts import scene_repair as _sr2
+                plan = _sr2.propose(slug, verdict, apply_plan=True)
+                print(f"[{slug}] repair {repairs}/{args.repair}: seg "
+                      f"{plan.get('seg')} -> {plan.get('chosen')}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[{slug}] repair {repairs} could not plan a fix: "
+                      f"{str(e)[:120]}", flush=True)
+                break
+            studio_render.render(slug, out, config_path=args.config)
+            try:
+                from scripts import showrunner_review as _sr
+                verdict = _sr.review_video(out, context=ctx)
+                out.with_suffix(".showrunner.json").write_text(
+                    json.dumps(verdict, indent=2))
+                _sr.append_ledger(slug, verdict)
+                blocked = _sr.should_block(verdict)
+                if will_upload and verdict.get("score") is None:
+                    blocked = True
+                print(f"[{slug}] after repair {repairs}: "
+                      f"{'BLOCK' if blocked else 'SHIP'} "
+                      f"score={verdict.get('score')} — "
+                      f"{verdict.get('one_line')}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[{slug}] re-review failed — holding: {e}", flush=True)
+                blocked = True
+                break
 
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered, not uploading")

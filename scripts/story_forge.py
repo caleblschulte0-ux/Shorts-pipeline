@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 import urllib.request
@@ -202,6 +203,13 @@ def candidates(used: set[str], limit: int = 90) -> dict[str, list[dict]]:
         if not theme:
             continue
         topic, unit = _split_unit(name)
+        # WATCHABLE SUBJECT ONLY. An indicator can be perfectly real and still
+        # be unspeakable on a Short: "Male primary school age children
+        # out-of-school" and "Immunization, DPT" are catalogue entries, not
+        # topics. Keep short, comma-free, ungendered subjects.
+        if (len(topic.split()) > 5 or "," in topic
+                or re.match(r"^(male|female)\b", topic, re.I)):
+            continue
         by_theme.setdefault(theme, []).append(
             {"src": "wb", "id": iid, "topic": topic, "unit": unit})
     # deterministic rotation so successive runs draw DIFFERENT indicators
@@ -365,11 +373,32 @@ def _fallback_words(dss: list[dict]) -> dict:
             "hashtags": ["data", "facts", "statistics", "shorts", "worldbank"]}
 
 
-def _brain_words(dss: list[dict]) -> dict | None:
+def _claude_words(sysmsg: str, user: str) -> dict | None:
+    """The HEADLESS BRAIN (claude CLI on CLAUDE_CODE_OAUTH_TOKEN) — the same
+    credential the showrunner judges on. The free-tier API keys 429 in CI,
+    which is how a whole run shipped deterministic fallback titles like
+    'Congo, Dem. Rep. Beats Everyone On Male primary school age children
+    out-of-school'. This path is the reliable one; the API keys stay as
+    backup below it."""
+    import shutil
+    import subprocess
+    if not shutil.which("claude") or not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN"):
+        return None
     try:
-        from script_generator import _call_llm, _strip_fence
+        proc = subprocess.run(
+            ["claude", "-p", f"{sysmsg}\n\n{user}", "--model",
+             os.environ.get("FORGE_MODEL", "sonnet"),
+             "--output-format", "text"],
+            capture_output=True, text=True, timeout=180)
+        if proc.returncode != 0:
+            return None
+        m = re.search(r"\{.*\}", proc.stdout or "", re.S)
+        return json.loads(m.group(0)) if m else None
     except Exception:  # noqa: BLE001
         return None
+
+
+def _brain_words(dss: list[dict]) -> dict | None:
     brief = []
     for d in dss:
         pts = ", ".join(f"{p['label']}={p['value']}" for p in d["points"])
@@ -388,7 +417,11 @@ def _brain_words(dss: list[dict]) -> dict | None:
             "\"says\":[str]} where says has exactly "
             f"{len(dss)} lines, one per dataset in order, each speaking that "
             "dataset's actual numbers in spoken English (~22 words).")
+    out = _claude_words(sysmsg, user)
+    if out and out.get("title") and out.get("hook"):
+        return out
     try:
+        from script_generator import _call_llm, _strip_fence
         raw = _strip_fence(_call_llm(sysmsg, user))
         m = re.search(r"\{.*\}", raw, re.S)
         out = json.loads(m.group(0))
