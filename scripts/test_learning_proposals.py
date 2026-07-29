@@ -90,16 +90,45 @@ def main():
             print("ok  5. canary refuses until batches pass AND rollback is "
                   "ready")
 
-            # 6. proposals land in the run ledger (auditable trail)
+            # 6. real analytics snapshots convert honestly: usable rows map,
+            # unusable rows are DROPPED and counted (never defaulted into a
+            # variant), so a thin sample looks thin
+            snap = Path(d) / "snapshot.json"
+            snap.write_text(json.dumps({"videos": [
+                {"video_id": "v1", "catalog_id": "story-a",
+                 "experiment_arm": "edit", "views": 5000,
+                 "average_view_percentage": 42.5, "dislikes": 5},
+                {"video_id": "v2", "experiment_arm": "clip", "views": 3000,
+                 "average_view_percentage": 0.51},
+                {"video_id": "v3", "views": 900,          # no arm -> dropped
+                 "average_view_percentage": 30.0},
+                {"video_id": "v4", "experiment_arm": "edit",  # no retention
+                 "views": 400},
+                {"video_id": "v5", "experiment_arm": "edit",  # no views
+                 "views": 0, "average_view_percentage": 20.0},
+            ]}))
+            conv = lp.observations_from_analytics(snap, "exp-real")
+            assert conv["_converted"] == 2, conv
+            assert conv["_dropped"] == {"no_arm": 1, "no_retention": 1,
+                                        "no_views": 1}, conv
+            rows = {o["story_id"]: o for o in conv["observations"]}
+            # percentage and fraction inputs both normalize to 0-1
+            assert rows["story-a"]["average_watch_ratio"] == 0.425
+            assert rows["v2"]["average_watch_ratio"] == 0.51
+            assert rows["story-a"]["negative_feedback_rate"] == 0.001
+            assert rows["story-a"]["variant"] == "edit"
+            print("ok  6. real analytics snapshot converts; unusable rows drop")
+
+            # 7. proposals land in the run ledger (auditable trail)
             events = [json.loads(l) for l in
                       run_ledger.LEDGER_PATH.read_text().splitlines()]
             assert any(e["event_type"] == "learning_proposal"
                        for e in events)
-            print("ok  6. every proposal is ledgered")
+            print("ok  7. every proposal is ledgered")
         finally:
             run_ledger.LEDGER_PATH = real_ledger
 
-    print("learning proposals: 6/6 tests pass")
+    print("learning proposals: 7/7 tests pass")
 
 
 if __name__ == "__main__":

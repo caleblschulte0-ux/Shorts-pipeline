@@ -295,6 +295,18 @@ def main() -> int:
                                     "format (target 4-5 min) — expand the story")
             _, judge_reasons = _prepublish_gate(out, sc)
             gate_reasons.extend(judge_reasons)
+            # (4) SECURITY: leak-scan the public payload as a GATE, not as a
+            # last-second upload check — a dry run (today's only mode, since
+            # publishing is frozen) must surface a leak and must never call
+            # itself publish-eligible with a secret in its description. The
+            # full payload is re-scanned WITH localizations right before the
+            # wire; this early pass covers everything that exists now.
+            import publish_security
+            sec_ok, sec_reasons = publish_security.scan_upload(
+                out, sc.get("title", slug), _description(sc, meta),
+                _tags(sc))
+            if not sec_ok:
+                gate_reasons.extend(sec_reasons)
 
         # The machine-readable outcome is ALWAYS written — pass or fail — so the
         # run is auditable from artifacts (Phase 3 §8.4), not from printed logs.
@@ -366,12 +378,12 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001 — never let i18n block a post
             print(f"[{slug}] localization skipped: {e}", flush=True)
             localizations = {}
-        # SECURITY SCAN on the exact outbound payload (PR#173 adoption:
-        # security_scanner). A secret / credential field / internal-
-        # instruction field in the title, description, tags, localizations,
-        # captions, or meta REFUSES the upload; a scanner error also refuses
-        # (nothing ships unscanned). Not bypassable by --force.
-        import publish_security
+        # SECURITY RE-SCAN on the COMPLETE outbound payload — same scanner as
+        # the gate above, now including the localizations that only exist at
+        # upload time (a translation service is an outside input and can carry
+        # its own leak). A secret / credential field / internal-instruction
+        # field REFUSES the upload; a scanner error also refuses (nothing
+        # ships unscanned). Not bypassable by --force.
         sec_ok, sec_reasons = publish_security.scan_upload(
             out, sc.get("title", slug), desc,
             _tags(sc), localizations)

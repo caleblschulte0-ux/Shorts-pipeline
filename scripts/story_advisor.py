@@ -127,9 +127,12 @@ def beats_to_moments(beats: list[dict]) -> list[RetentionMoment]:
     return out
 
 
-def advise(slug: str) -> dict:
-    story_path = REPO / "data_learning" / "pro_stories" / f"{slug}.beats.json"
-    story = json.loads(story_path.read_text())
+def advise(slug: str, story_path: Path | None = None) -> dict:
+    """Advise on a story. `story_path` lets a caller that already resolved the
+    beats file (the producer) pass it in rather than re-resolving by slug."""
+    story_path = story_path or (REPO / "data_learning" / "pro_stories"
+                                / f"{slug}.beats.json")
+    story = json.loads(Path(story_path).read_text())
     beats = story.get("beats", [])
     if not beats:
         raise SystemExit(f"{slug}: no beats")

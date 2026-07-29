@@ -255,6 +255,15 @@ def run_batch(slugs: list[str] | None, max_stories: int,
               "elapsed_s": round(time.monotonic() - started, 1)}
     _write(report, "batch_run_report.json")
     acceptance_from_disk(list(results))
+    # Refresh the run-health + capability view from the ledger this batch just
+    # extended, so every batch leaves a current status artifact behind.
+    try:
+        import pipeline_health
+        h = pipeline_health.status()["health"]
+        print(f"[batch] health: {h['runs']} runs, pass={h['pass_rate']}% "
+              f"quarantine={h['quarantine_rate']}%")
+    except Exception as e:  # noqa: BLE001 — reporting must not fail a batch
+        print(f"[batch] health report skipped ({str(e)[:70]})")
     return report
 
 

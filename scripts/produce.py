@@ -235,6 +235,19 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False) -> dict:
     except Exception as e:  # noqa: BLE001 — identity failure must not lose the
         print(f"[produce] {slug}: manifest build failed ({e})",  # render itself;
               file=sys.stderr)                     # evaluate() fails closed anyway
+    # ADVISORY CRAFT REPORT (nextgen cognitive-load + retention-risk cluster):
+    # every render carries its authoring-time analysis in the package so a
+    # quarantine can be read next to WHY the story was fragile. Strictly
+    # advisory — it never gates (the director + blind judge gate on pixels,
+    # which outranks metadata) and never breaks a render.
+    try:
+        import story_advisor
+        rep = story_advisor.advise(slug, story_path=story_path)
+        pkg = out.with_name(out.stem + "_pkg")
+        pkg.mkdir(parents=True, exist_ok=True)
+        (pkg / "advisor.json").write_text(json.dumps(rep, indent=2) + "\n")
+    except Exception as e:  # noqa: BLE001 — advisory only, never fatal
+        print(f"[produce] {slug}: advisor skipped ({str(e)[:80]})")
     result = evaluate(out, director_rc, story=story)
     result["slug"] = slug
     run_ledger.append("evaluated", slug,

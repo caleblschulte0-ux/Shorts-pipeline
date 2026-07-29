@@ -17,11 +17,11 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'verify | canary | schedule | all | preview | pro'
+        description: 'verify | canary | schedule | all | preview | pro | batch'
         required: true
         default: 'verify'
         type: choice
-        options: [verify, canary, schedule, all, preview, pro]
+        options: [verify, canary, schedule, all, preview, pro, batch]
       canary_slug:
         description: 'slug to post in canary mode'
         required: false
@@ -318,6 +318,19 @@ jobs:
                   "${GITHUB_REF_NAME}" || git rebase --abort || true
                 sleep 2
               done ;;
+            batch)
+              # BOUNDED AUTONOMOUS BATCH (scripts/batch_produce.py): admit
+              # from the real catalog, then render+gate story by story under
+              # count and wall-clock budgets, deciding per story. This mode
+              # NEVER publishes — it ends at the gate, exactly like preview;
+              # uploading still requires post_curiosity with its own gates,
+              # approval, kill switch, and CURIOSITY_PUBLISH_ENABLED=1.
+              python scripts/batch_produce.py --plan
+              python scripts/batch_produce.py --run \
+                --max-stories "${BATCH_MAX:-2}" \
+                --budget-seconds "${BATCH_BUDGET:-18000}" \
+                || echo "::warning::batch ended early — see batch_run_report"
+              python scripts/pipeline_health.py || true ;;
             auto)
               # weekly cron: post exactly one un-posted story
               python scripts/post_curiosity.py --max 1 ;;
@@ -345,6 +358,28 @@ jobs:
             preview/*_pkg/*.png
           retention-days: 90
           if-no-files-found: warn
+
+      # Run-health + capability readiness from the hash-chained ledger and
+      # the artifacts this run produced. Reporting only — never gates.
+      - name: Pipeline status
+        if: always() && inputs.mode != 'verify'
+        continue-on-error: true
+        run: python3 scripts/pipeline_health.py
+
+      - name: Upload status + batch reports
+        if: always() && inputs.mode != 'verify'
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-status
+          path: |
+            output/pipeline_status.json
+            output/batch_*.json
+            output/idea_funnel_report.json
+            output/*.advisor.json
+            output/*.security.json
+            output/*.facts-report.json
+          retention-days: 90
+          if-no-files-found: ignore
 
       # Pull view/like counts so the daily routine learns which pillars and
       # hooks land (state/analytics_curiosity/latest.json).
