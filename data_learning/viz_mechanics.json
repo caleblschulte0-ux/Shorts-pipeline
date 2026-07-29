@@ -296,19 +296,5 @@
   "concept": "two thermometers with mercury columns rising to indicate the warmest and coldest storage temperatures",
   "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 30\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.rectangle([cxs - r, cy - 200, cxs + r, cy + 200], fill=rgba(TEXT, 90))\n    d.rectangle([cxs - r + 5, cy - 200 + 5, cxs + r - 5, cy - 200 + 5 + int(190 * clamp(v / vmax)) * reveal], fill=rgba(col, 255))\n    d.line([cxs, cy + 200, cxs, cy + 220], fill=rgba(TEXT, 255), width=5)\n    img = subject_image('flame') if i == 0 else subject_image('ice cube')\n    if img is not None:\n        asp = img.width / img.height\n        w = 100\n        h = int(w / asp)\n        if h > 100:\n            h = 100\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy + 220, w, h)\n    text(labels[i], cxs, cy - 250, size=38, color=col, center=True)\n    text(str(int(v)) + '°C', cxs, cy + 250, size=48, color=col, center=True)\n",
   "topic": "Seed Storage"
- },
- {
-  "sig": "0481e6dab40c",
-  "mechanic": "sugar-crystals",
-  "concept": "growing sugar crystals with photos of subjects at their bases, labeled with their respective sugar intake values",
-  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 200 + i * 300\n    cy = RBOT - 200\n    r = 50 + 100 * clamp(v / vmax) * reveal\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], fill=rgba(HIGHLIGHT, 128))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 100\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy + r + 20, w, h)\n    text(labels[i], cxs, cy + r + 140, size=36, center=True)\n    text(str(int(v)) + 'g', cxs, cy - r - 60, size=48, center=True)\n    d.line([cxs, cy - r, cxs, cy + r], fill=rgba(TEXT, 128), width=4)\n    for j in range(int(5 * clamp(v / vmax) * reveal)):\n        d.ellipse([cxs - 10 + j * 20, cy - 10 - j * 20, cxs + 10 + j * 20, cy + 10 - j * 20], fill=rgba(ACCENT, 255))",
-  "topic": "Reducing Sugar Intake"
- },
- {
-  "sig": "dc2e35e1f089",
-  "mechanic": "sugar-crystals",
-  "concept": "growing crystals with a photo of a human in the background, labeled with daily sugar intake values",
-  "code": "\nimg = subject_image('human man smiling portrait face')\nif img is not None:\n    asp = img.width / img.height\n    w = 900\n    h = int(w / asp)\n    if h > 1000:\n        h = 1000\n        w = int(h * asp)\n    paste(img, (RX0 + RX1) // 2 - w // 2, RTOP + 50, w, h)\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nfor i in range(n):\n    v = values[i]\n    ang = i * 2 * math.pi / n + math.pi / n * reveal\n    nx = cx + int(300 * math.cos(ang))\n    ny = cy + int(300 * math.sin(ang))\n    d.line([cx, cy, nx, ny], fill=rgba(ACCENT, 255), width=8)\n    crystal_w = int(lerp(20, 100, clamp(v / vmax)))\n    crystal_h = int(crystal_w * 1.5)\n    fill_image(subject_image('sugar crystal'), clamp(v / vmax), nx - crystal_w // 2, ny - crystal_h // 2, crystal_w, crystal_h, 'up', rgba(ACCENT, 255))\n    text(str(int(v)) + '%', nx, ny + crystal_h // 2 + 20, size=36, color=TEXT, center=True)\n    text(labels[i], nx, ny + crystal_h // 2 + 60, size=30, color=TEXT, center=True)\n",
-  "topic": "Daily Sugar Intake"
  }
 ]
