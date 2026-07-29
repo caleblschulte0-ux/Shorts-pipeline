@@ -1,0 +1,578 @@
+{
+ "results": [
+  {
+   "slug": "carbon-climb",
+   "checks": {
+    "builds": {
+     "ok": true,
+     "detail": "2 segments"
+    },
+    "hook.visual_present_at_frame_1": {
+     "ok": true,
+     "detail": "opaque 0.93"
+    },
+    "hook.primary_action_before_s": {
+     "ok": true,
+     "detail": "diff f1->f3 = 0.050"
+    },
+    "seg0.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg0.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg0.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "detail": "the data keeps rising and DRAGS HIM airborne"
+    },
+    "seg0.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg0.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg1.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg1.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg1.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg1.data_affects_mascot": {
+     "ok": true,
+     "detail": "skids back, finally holds the line"
+    },
+    "seg1.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
+    },
+    "seg1.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "ending.new_information": {
+     "ok": true,
+     "detail": "5 anchors"
+    },
+    "ending.payoff_action": {
+     "ok": true,
+     "detail": "[0.37, 0.5]"
+    }
+   },
+   "pass": true,
+   "families": [
+    "pull",
+    "block"
+   ]
+  },
+  {
+   "slug": "population-giants",
+   "checks": {
+    "builds": {
+     "ok": true,
+     "detail": "2 segments"
+    },
+    "hook.visual_present_at_frame_1": {
+     "ok": true,
+     "detail": "opaque 0.93"
+    },
+    "hook.primary_action_before_s": {
+     "ok": true,
+     "detail": "diff f1->f3 = 0.050"
+    },
+    "seg0.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg0.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg0.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "detail": "skids back, finally holds the line"
+    },
+    "seg0.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
+    },
+    "seg0.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg1.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg1.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg1.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg1.data_affects_mascot": {
+     "ok": true,
+     "detail": "the data keeps rising and DRAGS HIM airborne"
+    },
+    "seg1.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg1.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "ending.new_information": {
+     "ok": true,
+     "detail": "4 anchors"
+    },
+    "ending.payoff_action": {
+     "ok": true,
+     "detail": "[0.37, 0.5]"
+    }
+   },
+   "pass": true,
+   "families": [
+    "block",
+    "pull"
+   ]
+  },
+  {
+   "slug": "world-power-mix",
+   "checks": {
+    "builds": {
+     "ok": true,
+     "detail": "2 segments"
+    },
+    "hook.visual_present_at_frame_1": {
+     "ok": true,
+     "detail": "opaque 0.93"
+    },
+    "hook.primary_action_before_s": {
+     "ok": true,
+     "detail": "diff f1->f3 = 0.084"
+    },
+    "seg0.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg0.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg0.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "detail": "skids back, finally holds the line"
+    },
+    "seg0.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
+    },
+    "seg0.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg1.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg1.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg1.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg1.data_affects_mascot": {
+     "ok": true,
+     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
+    },
+    "seg1.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg1.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "ending.new_information": {
+     "ok": true,
+     "detail": "2 anchors"
+    },
+    "ending.payoff_action": {
+     "ok": true,
+     "detail": "[0.37, 0.5]"
+    }
+   },
+   "pass": true,
+   "families": [
+    "block",
+    "push"
+   ]
+  },
+  {
+   "slug": "grocery-squeeze",
+   "checks": {
+    "builds": {
+     "ok": true,
+     "detail": "3 segments"
+    },
+    "hook.visual_present_at_frame_1": {
+     "ok": true,
+     "detail": "opaque 0.93"
+    },
+    "hook.primary_action_before_s": {
+     "ok": true,
+     "detail": "diff f1->f3 = 0.082"
+    },
+    "seg0.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg0.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg0.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "detail": "the data keeps rising and DRAGS HIM airborne"
+    },
+    "seg0.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg0.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg1.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg1.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg1.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg1.data_affects_mascot": {
+     "ok": true,
+     "detail": "loses ground and dives across"
+    },
+    "seg1.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg1.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg2.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg2.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg2.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg2.data_affects_mascot": {
+     "ok": true,
+     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
+    },
+    "seg2.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg2.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "ending.new_information": {
+     "ok": true,
+     "detail": "8 anchors"
+    },
+    "ending.payoff_action": {
+     "ok": true,
+     "detail": "[0.37, 0.5]"
+    }
+   },
+   "pass": true,
+   "families": [
+    "pull",
+    "race",
+    "push"
+   ]
+  },
+  {
+   "slug": "ocean-unexplored",
+   "checks": {
+    "builds": {
+     "ok": true,
+     "detail": "3 segments"
+    },
+    "hook.visual_present_at_frame_1": {
+     "ok": true,
+     "detail": "opaque 0.93"
+    },
+    "hook.primary_action_before_s": {
+     "ok": true,
+     "detail": "diff f1->f3 = 0.083"
+    },
+    "seg0.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg0.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg0.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "detail": "skids back, finally holds the line"
+    },
+    "seg0.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
+    },
+    "seg0.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg1.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg1.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg1.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg1.data_affects_mascot": {
+     "ok": true,
+     "detail": "loses ground and dives across"
+    },
+    "seg1.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg1.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg2.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg2.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg2.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg2.data_affects_mascot": {
+     "ok": true,
+     "detail": "the load buckles him, he barely heaves it"
+    },
+    "seg2.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg2.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "ending.new_information": {
+     "ok": true,
+     "detail": "2 anchors"
+    },
+    "ending.payoff_action": {
+     "ok": true,
+     "detail": "[0.37, 0.5]"
+    }
+   },
+   "pass": true,
+   "families": [
+    "block",
+    "race",
+    "carry"
+   ]
+  },
+  {
+   "slug": "two-americas-cost",
+   "checks": {
+    "builds": {
+     "ok": true,
+     "detail": "3 segments"
+    },
+    "hook.visual_present_at_frame_1": {
+     "ok": true,
+     "detail": "opaque 0.93"
+    },
+    "hook.primary_action_before_s": {
+     "ok": true,
+     "detail": "diff f1->f3 = 0.018"
+    },
+    "seg0.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg0.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg0.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "detail": "skids back, finally holds the line"
+    },
+    "seg0.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
+    },
+    "seg0.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg1.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg1.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg1.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg1.data_affects_mascot": {
+     "ok": true,
+     "detail": "loses ground and dives across"
+    },
+    "seg1.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg1.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg2.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg2.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg2.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg2.data_affects_mascot": {
+     "ok": true,
+     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
+    },
+    "seg2.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg2.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "ending.new_information": {
+     "ok": true,
+     "detail": "5 anchors"
+    },
+    "ending.payoff_action": {
+     "ok": true,
+     "detail": "[0.37, 0.5]"
+    }
+   },
+   "pass": true,
+   "families": [
+    "block",
+    "race",
+    "push"
+   ]
+  }
+ ],
+ "all_pass": false
+}

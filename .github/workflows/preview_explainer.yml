@@ -216,6 +216,9 @@ jobs:
           # FAILURE CENSUS (informational): classify this run's failures into
           # recurring engineering classes against the running verdict history.
           python3 scripts/failure_census.py --last 20 || true
+          # 90 CLUB + REJECT LIBRARY: bank winning plans and hard-failure
+          # negative knowledge so future generation retrieves before inventing.
+          python3 scripts/exemplar_store.py harvest || true
 
       - name: List rendered output
         if: always()
@@ -287,7 +290,12 @@ jobs:
           path: |
             output/*.mp4
             output/*.jpg
-            output/scenes/*.json
+            output/scenes/**/*.json
+            output/repair_runs/**/verdict.json
+            output/repair_runs/**/scene_plan.json
+            output/repair_runs/**/winner.json
             state/failure_census.json
+            state/benchmark_full.json
+            quality/**/*.json
           if-no-files-found: warn
           retention-days: 14

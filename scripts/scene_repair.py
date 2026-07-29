@@ -61,12 +61,33 @@ def semantic_candidates(insight, shape: str) -> list[dict]:
     intent = md.analyze_claim(claim)
     target = insight.items[0].label if getattr(insight, "items", None) else ""
     cands, used = [], set()
+    # RETRIEVE BEFORE INVENTING (review Phase 9): seed with the best banked
+    # exemplar for this shape+relationships; drop pairs the reject library
+    # already saw hard-fail.
+    try:
+        import exemplar_store as _ex
+        seed_plan = _ex.retrieve(shape, intent["relationships"])
+        bad_pairs = _ex.rejected_pairs(shape)
+    except Exception:  # noqa: BLE001
+        seed_plan, bad_pairs = None, set()
+    if seed_plan and seed_plan.get("viz") and seed_plan.get("perf"):
+        cands.append({"viz": seed_plan["viz"], "perf": seed_plan["perf"],
+                      "family": "exemplar",
+                      "performance_meaning":
+                          f"banked exemplar ({seed_plan['from_exemplar']})",
+                      "intent": {"shape": shape,
+                                 "relationships": intent["relationships"],
+                                 "direction": intent["direction"]}})
     for j, viz in enumerate(KIND_OPTIONS.get(shape, KIND_OPTIONS["ranking"])):
         spec = md.performance_for(viz, claim, target,
                                   used_families=used, seed=j)
         # SEMANTIC GATE: the selected performance must genuinely support this
         # shape (performance_for enforces it) — record the declaration.
         used.add(spec.get("family", spec["action"]))
+        if (viz, spec["action"]) in bad_pairs:
+            print(f"[scene_repair] skipping rejected pair {viz}+{spec['action']}"
+                  " (reject library)", flush=True)
+            continue
         cands.append({"viz": viz, "perf": spec["action"],
                       "family": spec.get("family"),
                       "performance_meaning": spec.get("goal", ""),
