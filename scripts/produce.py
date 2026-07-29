@@ -156,15 +156,60 @@ def evaluate(out: Path, director_rc: int, story: dict | None = None) -> dict:
     return result
 
 
-def produce(slug: str, out: Path, rounds: int = 2) -> dict:
+def _try_resume(slug: str, out: Path, story_path: Path) -> int | None:
+    """RESUME (PR#173 adoption D): if the on-disk package was rendered from
+    EXACTLY this story content and nothing in it has changed since — proven by
+    recomputing every hash in pkg/manifest.json, never by mtimes — reuse the
+    recorded director verdict instead of re-rendering for an hour. Any doubt
+    (no manifest, missing rc, any changed artifact) returns None and the full
+    render runs. This is what makes a container death mid-evaluate cheap."""
+    import artifact_identity
+    import run_ledger
+    m = artifact_identity.load_manifest(out)
+    if not m or m.get("director_rc") is None:
+        return None
+    ok, reasons = artifact_identity.verify_manifest(out, story_path=story_path)
+    if not ok:
+        run_ledger.append("resume_miss", slug, {"reasons": reasons[:4]})
+        print(f"[produce] {slug}: resume refused ({'; '.join(reasons[:2])}) — "
+              "full render")
+        return None
+    rc = int(m["director_rc"])
+    run_ledger.append("resume_hit", slug, {"director_rc": rc,
+                      "manifest_sha256": m.get("manifest_sha256")})
+    print(f"[produce] {slug}: RESUME — package identity verified against the "
+          f"manifest (director rc={rc}); skipping re-render")
+    return rc
+
+
+def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False) -> dict:
     """Render + gate + repair the story, then evaluate it. Returns the evaluate()
-    result with the slug attached."""
+    result with the slug attached. `fresh=True` forces a re-render even when
+    the on-disk package proves identical (resume path)."""
     import no_dull_beats
+    import run_ledger
     story_path = resolve_story(slug)
     story = json.loads(story_path.read_text())
+    run_ledger.append("run_started", slug,
+                      {"out": str(out), "rounds": rounds, "fresh": fresh})
+    if not fresh:
+        rc = _try_resume(slug, out, story_path)
+        if rc is not None:
+            result = evaluate(out, rc, story=story)
+            result["slug"] = slug
+            result["resumed"] = True
+            run_ledger.append("evaluated", slug,
+                              {"status": result["status"], "resumed": True,
+                               "n_reasons": len(result["reasons"])})
+            tag = "PASS" if result["status"] == "pass" else "QUARANTINE"
+            print(f"[produce] {slug}: {tag} (resumed)"
+                  + ("" if result["status"] == "pass"
+                     else " — " + "; ".join(result["reasons"])))
+            return result
     print(f"[produce] {slug}: render + director loop ({story_path.name})")
     try:
         director_rc = no_dull_beats.run(story_path, out, rounds=rounds)
+        run_ledger.append("render_completed", slug, {"director_rc": director_rc})
     except Exception as e:  # noqa: BLE001 — a render that DIES must FAIL CLOSED,
         # never crash the producer (a malformed beat, a TTS death, a builder bug).
         # No render => no publishable film: quarantine with the failure recorded.
@@ -178,6 +223,7 @@ def produce(slug: str, out: Path, rounds: int = 2) -> dict:
                   "director_rc": None, "pkg": str(out.with_name(out.stem + "_pkg")),
                   "fallback_verdict": "render_error", "slug": slug}
         print(f"[produce] {slug}: QUARANTINE — render failed (fail-closed)")
+        run_ledger.append("render_failed", slug, {"detail": detail[:160]})
         return result
     # PACKAGE IDENTITY (PR#173 adoption A): hash every artifact that defines
     # this film into pkg/manifest.json. Verdicts and approvals bind to these
@@ -191,6 +237,9 @@ def produce(slug: str, out: Path, rounds: int = 2) -> dict:
               file=sys.stderr)                     # evaluate() fails closed anyway
     result = evaluate(out, director_rc, story=story)
     result["slug"] = slug
+    run_ledger.append("evaluated", slug,
+                      {"status": result["status"],
+                       "n_reasons": len(result["reasons"])})
     if result["status"] == "pass":
         print(f"[produce] {slug}: PASS — publishing package ready")
     else:
@@ -203,8 +252,11 @@ def main(argv) -> int:
     ap.add_argument("slug")
     ap.add_argument("out", type=Path)
     ap.add_argument("--rounds", type=int, default=2)  # Phase 10: max 2 automated repair passes, then quarantine
+    ap.add_argument("--fresh", action="store_true",
+                    help="force a full re-render even when the on-disk package "
+                         "verifies identical (skips the resume path)")
     a = ap.parse_args(argv)
-    res = produce(a.slug, a.out, rounds=a.rounds)
+    res = produce(a.slug, a.out, rounds=a.rounds, fresh=a.fresh)
     return 0 if res["status"] == "pass" else 5
 
 
