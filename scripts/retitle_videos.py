@@ -110,19 +110,34 @@ def main() -> int:
             tr = _transcript_for(r["slug"])
             if not tr and a.retranscribe and r["source_url"]:
                 tr = _transcript_from_source(r["source_url"], Path(td))
-            r["new"] = author.fallback_title(r["streamer"], r["old"], tr)
-            r["sourced"] = "transcript" if tr else "neutral"
+            # With a transcript in hand, ask the real author brain — that is
+            # the only thing that can pick the INTERESTING moment out of a
+            # transcript. It was down during the original upload; by the time
+            # anyone retitles it usually is not. fallback_title is the floor
+            # if it is still down.
+            meta = None
+            if tr:
+                try:
+                    meta = author.author_package(
+                        r["streamer"], r["old"], tr, 0)
+                except Exception as e:  # noqa: BLE001
+                    print(f"[retitle] authoring failed for {r['vid']}: "
+                          f"{str(e)[:120]}", file=sys.stderr)
+            if meta and meta.get("title"):
+                r["new"], r["sourced"] = meta["title"], "authored"
+            else:
+                r["new"] = author.fallback_title(r["streamer"], r["old"], tr)
+                r["sourced"] = "neutral"
 
-    # Three videos all called "X Has The Whole Stream Reacting" reads as
-    # spam. If the neutral line had to be used more than once, say so.
-    if sum(1 for r in rows if r["sourced"] == "neutral") > 1:
-        print("::warning::[retitle] more than one title fell back to the "
-              "neutral line — rerun with --retranscribe for specific titles",
+    if all(r["sourced"] == "neutral" for r in rows):
+        print("::warning::[retitle] every title is a neutral fallback — the "
+              "author brain is still down; these are safe but generic",
               flush=True)
 
     print(f"[retitle] {len(rows)} low-signal title(s) on {a.channel}:")
     for r in rows:
-        print(f"  {r['vid']}  {r['old']!r}\n            -> {r['new']!r}")
+        print(f"  {r['vid']}  {r['old']!r}\n            -> {r['new']!r} "
+              f"[{r['sourced']}]")
     if not a.apply:
         print("\n[retitle] DRY RUN — pass --apply to write these to YouTube")
         return 0
