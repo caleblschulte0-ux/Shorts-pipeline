@@ -246,9 +246,21 @@ jobs:
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
+      - name: Install Claude Code CLI (brain for the forge + showrunner)
+        run: |
+          command -v claude >/dev/null 2>&1 && { echo "claude CLI present"; exit 0; }
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            && echo "claude CLI installed" \
+            || echo "::warning::claude CLI install failed"
+
       - name: Top up the queue with REAL, sourced stories (story forge)
         if: inputs.mode != 'verify' && inputs.mode != 'unpublish'
         env:
+          # The forge writes the WORDS and the SCENE through the headless
+          # brain. Both were silently unavailable before: this step ran BEFORE
+          # the CLI was installed and without the OAuth token, so every forged
+          # story shipped deterministic fallback copy and no scene at all.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -259,6 +271,7 @@ jobs:
           # so the queue refills with material that can actually PUBLISH. The
           # LLM writes only the words; every number comes from the source.
           TOPUP="${{ inputs.topup }}"; [ -z "$TOPUP" ] && TOPUP="8"
+          rm -f state/forge_last.json
           python3 scripts/story_forge.py --top-up "$TOPUP" || \
             echo "::warning::forge could not top up (network?) — using the existing queue"
           python3 scripts/editorial_gate.py 2>&1 | tail -5 || true
@@ -418,6 +431,14 @@ jobs:
           # Blank slugs => omit --slugs entirely, so post_stories targets EVERY
           # story in config and dedupes against the posted-log (i.e. posts all
           # un-posted). No hardcoded slate to fall stale.
+          # Blank slugs: target exactly the stories THIS run forged (they
+          # carry authored element-kit scenes). Without this the run burns its
+          # budget re-rendering older scene-less stories the gate already
+          # rejected, and never reaches the new ones.
+          if [ -z "$SLUGS" ] && [ -f state/forge_last.json ]; then
+            FRESH=$(python3 -c "import json;print(' '.join(json.load(open('state/forge_last.json')).get('slugs',[])))" 2>/dev/null || true)
+            [ -n "$FRESH" ] && SLUGS="$FRESH" && echo "targeting freshly forged: $SLUGS"
+          fi
           SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
           FORCEFLAG=""; [ "${{ inputs.force }}" = "true" ] && FORCEFLAG="--force"
           # Buffer of 8 un-posted so posting 4+/day never runs the queue dry even

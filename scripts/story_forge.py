@@ -49,6 +49,7 @@ CONFIG = ROOT / "data_learning" / "niche.config.json"
 DATA_DIR = ROOT / "data_learning" / "data"
 POSTED_LOG = ROOT / "state" / "explainer_posted_log.json"
 USED = ROOT / "state" / "forge_used.json"
+LAST = ROOT / "state" / "forge_last.json"
 CACHE = ROOT / "cache" / "forge"
 UA = {"User-Agent": "Mozilla/5.0 (+data-minute-pipeline; contact via GitHub)"}
 TODAY = date.today().isoformat()
@@ -411,12 +412,29 @@ def _brain_words(dss: list[dict]) -> dict | None:
         "WORDS. The title must reverse an expectation and carry one "
         "consequential number; a bare noun phrase ('Forest Area By Country') is "
         "forbidden. The hook is one spoken line that makes scrolling stop.")
+    kit = ("  object      — a drawable SUBJECT cut-out sized by its value. "
+           "region 'ground-row' for a row of 2-5 of them. needs subject + "
+           "data.value_from ('item:0','item:1',... or 'star').\n"
+           "  stack       — N copies of a subject stacked to show a magnitude. "
+           "needs subject + data.value_from + data.per_value.\n"
+           "  fill_object — a subject silhouette filled bottom-up to a share. "
+           "needs subject + data.value_from.\n"
+           "  timeline_axis / orbit_group — region 'full', for time or "
+           "distances.\n"
+           "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
+            "\n\nEach scene must DEMONSTRATE its number with a drawable "
+            "object, not label it: a chart build with a caption is an "
+            "automatic reject. Pick a concrete, everyday subject that stands "
+            "for the quantity (rural population -> a house; fish catch -> a "
+            "fish; health spending -> a pill bottle) and let its size, count "
+            "or fill carry the value.\n\nELEMENT KIT:\n" + kit +
             "\n\nReturn STRICT JSON: {\"title\":str,\"hook\":str,"
             "\"closing\":str,\"question\":str,\"hashtags\":[str],"
-            "\"says\":[str]} where says has exactly "
-            f"{len(dss)} lines, one per dataset in order, each speaking that "
-            "dataset's actual numbers in spoken English (~22 words).")
+            "\"says\":[str],\"scenes\":[{\"title\":true,\"elements\":"
+            "[{...}]}]} where says AND scenes each have exactly "
+            f"{len(dss)} entries, one per dataset in order. Each say speaks "
+            "that dataset's actual numbers in spoken English (~22 words).")
     out = _claude_words(sysmsg, user)
     if out and out.get("title") and out.get("hook"):
         return out
@@ -447,15 +465,29 @@ def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
     if not slug or slug in used_slugs:
         slug = f"{slug}-{len(used_slugs)}"[:60]
     says = words.get("says") or []
+    scenes = words.get("scenes") or []
     segs = []
     for i, d in enumerate(dss):
         say = str(says[i]).strip() if i < len(says) and says[i] else _say(d)
-        segs.append({"source": "offline", "key": d["key"],
-                     "params": {"file": f"{d['key']}.json"},
-                     "insight_type": d["insight_type"],
-                     "role": f"{i+1} · {d['title'].upper()[:18]}",
-                     "topic": d["title"][:40],
-                     "say": say})
+        seg = {"source": "offline", "key": d["key"],
+               "params": {"file": f"{d['key']}.json"},
+               "insight_type": d["insight_type"],
+               "role": f"{i+1} · {d['title'].upper()[:18]}",
+               "topic": d["title"][:40],
+               "say": say}
+        # A SCENE, not a chart. The gate blocks "the data is stated, not
+        # demonstrated" — a scene sizes/stacks/fills a drawable subject by the
+        # value, which is what the videos that actually ship do. Validated
+        # against the element kit; an invalid scene is dropped, never shipped.
+        if i < len(scenes):
+            try:
+                from scripts.author_stories import _clean_scene
+                sc = _clean_scene({"scene": scenes[i]}, d["points"])
+                if sc:
+                    seg["scene"] = sc
+            except Exception:  # noqa: BLE001
+                pass
+        segs.append(seg)
     tags = [re.sub(r"[^a-z0-9]", "", str(t).lower())
             for t in (words.get("hashtags") or [])]
     return {"slug": slug, "title": title,
@@ -579,6 +611,17 @@ def forge(count: int, dry_run: bool = False) -> int:
                 {"indicators": sorted(used_inds), "updated": TODAY}, indent=1))
         used_slugs.add(story["slug"])
         made += 1
+        if not dry_run:
+            # What this run created, so the posting step can target exactly
+            # these instead of re-rendering older stories the gate already
+            # rejected.
+            try:
+                prev = json.loads(LAST.read_text()).get("slugs", []) \
+                    if LAST.exists() else []
+            except Exception:  # noqa: BLE001
+                prev = []
+            LAST.write_text(json.dumps(
+                {"slugs": prev + [story["slug"]], "at": TODAY}, indent=1))
         return True
 
     themes = sorted(pool, key=lambda t: -len(pool[t]))
