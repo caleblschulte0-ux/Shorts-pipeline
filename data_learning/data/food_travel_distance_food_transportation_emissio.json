@@ -1,0 +1,33 @@
+{
+  "key": "food_travel_distance_food_transportation_emissio",
+  "title": "Food Transportation Emissions",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Road Transport",
+      "value": 60.0,
+      "period": "2022"
+    },
+    {
+      "label": "Air Transport",
+      "value": 20.0,
+      "period": "2022"
+    },
+    {
+      "label": "Sea Transport",
+      "value": 20.0,
+      "period": "2022"
+    }
+  ]
+}

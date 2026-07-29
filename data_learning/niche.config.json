@@ -16569,6 +16569,326 @@
         }
       ],
       "question": "What's the biggest fruit or veggie you've ever grown or seen?"
+    },
+    {
+      "slug": "sugar-content-revealed",
+      "title": "Sugar Content Revealed",
+      "hook": "You won't believe how much sugar is hiding in your favorite foods",
+      "closing": "Check the sugar content before you take a bite",
+      "hashtags": [
+        "sugarcontent",
+        "foodfacts",
+        "healthyliving",
+        "nutrition",
+        "sugarawareness"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sugar_content_revealed_sugar_in_foods",
+          "params": {
+            "file": "sugar_content_revealed_sugar_in_foods.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 SUGAR IN FOODS",
+          "topic": "Sugar in Foods",
+          "say": "From soda to cookies, and even fruit juice, the amount of sugar in common foods is staggering, with some containing up to 40 grams per serving",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "soda can",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cookie",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "fruit juice",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "sugar_content_revealed_daily_sugar_intake",
+          "params": {
+            "file": "sugar_content_revealed_daily_sugar_intake.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 DAILY SUGAR INTAKE",
+          "topic": "Daily Sugar Intake",
+          "say": "The average person consumes up to 20% of their daily calories from added sugars, which is far exceeding the recommended daily intake",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "human body",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sugar_content_revealed_sugar_in_unexpected_foods",
+          "params": {
+            "file": "sugar_content_revealed_sugar_in_unexpected_foods.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 SUGAR IN UNEXPECTE",
+          "topic": "Sugar in Unexpected Foods",
+          "say": "Even seemingly healthy foods like bread, yogurt, and tomato sauce can contain surprisingly high amounts of sugar, with some brands containing up to 5 grams per serving",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bread",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "yogurt",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "tomato sauce",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sugar_content_revealed_reducing_sugar_intake",
+          "params": {
+            "file": "sugar_content_revealed_reducing_sugar_intake.json"
+          },
+          "insight_type": "trend",
+          "role": "4 \u00b7 REDUCING SUGAR INT",
+          "topic": "Reducing Sugar Intake",
+          "say": "As consumers become more aware of the risks of excessive sugar consumption, there is a growing trend towards reducing sugar intake, with many people opting for sugar-free or low-sugar alternatives",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ],
+      "question": "What's the most surprising sugar content you've discovered in a food product?"
+    },
+    {
+      "slug": "food-travel-distance",
+      "title": "Food Travel Distance",
+      "hook": "The journey your food takes to reach your plate is longer than you think",
+      "closing": "Next time you eat, consider the distance your food traveled",
+      "hashtags": [
+        "foodtravel",
+        "sustainability",
+        "foodmiles",
+        "carbonfootprint",
+        "localfood"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "food_travel_distance_average_food_distance",
+          "params": {
+            "file": "food_travel_distance_average_food_distance.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 AVERAGE FOOD DISTA",
+          "topic": "Average Food Distance",
+          "say": "On average, food travels over 1,500 miles to reach your plate, with some products traveling as far as 5,000 miles or more",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "truck",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "plane",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "ship",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "food_travel_distance_food_transportation_emissio",
+          "params": {
+            "file": "food_travel_distance_food_transportation_emissio.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 FOOD TRANSPORTATIO",
+          "topic": "Food Transportation Emissions",
+          "say": "Food transportation accounts for around 11% of total greenhouse gas emissions, with the majority coming from road transport",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "earth",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "food_travel_distance_food_miles_by_type",
+          "params": {
+            "file": "food_travel_distance_food_miles_by_type.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 FOOD MILES BY TYPE",
+          "topic": "Food Miles by Type",
+          "say": "Different types of food have varying transportation distances, with some products like apples and bananas traveling relatively short distances, while others like coffee travel much farther"
+        }
+      ],
+      "question": "What's the farthest distance you've ever traveled for a specific type of food?"
+    },
+    {
+      "slug": "tornado-wind-speed-secrets",
+      "title": "Tornado Wind Speed Secrets",
+      "hook": "Get ready to be blown away by the incredible forces inside a tornado",
+      "closing": "The power of nature is awe-inspiring and humbling",
+      "hashtags": [
+        "tornadoes",
+        "weather",
+        "nature",
+        "wind",
+        "extremeweather"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "tornado_wind_speed_secrets_tornado_wind_speeds",
+          "params": {
+            "file": "tornado_wind_speed_secrets_tornado_wind_speeds.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 TORNADO WIND SPEED",
+          "topic": "Tornado Wind Speeds",
+          "say": "Tornado wind speeds can reach up to 300 miles per hour, with the fastest recorded speed being 318 miles per hour in the Bridge Creek\u2013Moore tornado",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "tornado",
+                "data": {
+                  "value_from": "item:0"
+                }
+              }
+            ]
+          },
+          "ascending": false
+        },
+        {
+          "source": "offline",
+          "key": "tornado_wind_speed_secrets_tornado_damage",
+          "params": {
+            "file": "tornado_wind_speed_secrets_tornado_damage.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 TORNADO DAMAGE",
+          "topic": "Tornado Damage",
+          "say": "The cost of tornado damage has been increasing over the years, with the total damage from 2010 to 2020 being over 130 billion dollars",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "house",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "tornado_wind_speed_secrets_tornado_formation",
+          "params": {
+            "file": "tornado_wind_speed_secrets_tornado_formation.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 TORNADO FORMATION",
+          "topic": "Tornado Formation",
+          "say": "About 75 percent of the world's tornadoes occur in the United States, with the majority forming in the central and southern Plains"
+        },
+        {
+          "source": "offline",
+          "key": "tornado_wind_speed_secrets_tornado_safety",
+          "params": {
+            "file": "tornado_wind_speed_secrets_tornado_safety.json"
+          },
+          "insight_type": "rank",
+          "role": "4 \u00b7 TORNADO SAFETY",
+          "topic": "Tornado Safety",
+          "say": "The safest place to be during a tornado is in a storm shelter or basement, with the storm shelter being the top ranked safe location"
+        }
+      ],
+      "question": "What's the most extreme weather you've experienced?"
     }
   ],
   "videos": [
