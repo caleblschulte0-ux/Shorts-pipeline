@@ -4,6 +4,8 @@ that turns a finished render + its packaged evidence into PASS or QUARANTINE.
 
 Every scenario builds a synthetic package on disk (no rendering, no network):
 mp4 stub + _pkg/ + sidecars, then asserts the decision and its reasons.
+Verdicts are written through judge_verdict.write so they carry the mp4 hash
+binding the evaluate() law now requires (PR#173 adoption A).
 """
 from __future__ import annotations
 
@@ -17,55 +19,36 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "scripts"))
 
-import produce  # noqa: E402
+import judge_verdict as jv  # noqa: E402
+import produce              # noqa: E402
 
 GOOD_VERDICT = {"pass": True, "reject_labels": [], "personality": 4.0,
-                "card_fraction_estimate": 0.2, "one_line": "t", "judge": "taste",
-                "source": "vision_subagent"}
+                "card_fraction_estimate": 0.2, "one_line": "t"}
 
 
-def build_pkg(td: Path, *, verdict=GOOD_VERDICT, verdict_stale=False,
-              fallbacks=None, sidecars=True) -> Path:
+def build_pkg(td: Path, *, verdict=GOOD_VERDICT, fallbacks=None,
+              sidecars=True) -> Path:
     out = td / "film.mp4"
     pkg = td / "film_pkg"
     pkg.mkdir(exist_ok=True)
     if fallbacks is not None:
         (pkg / "fallbacks.json").write_text(json.dumps(fallbacks))
-    if verdict is not None and verdict_stale:
-        # verdict BEFORE the mp4 => stale
-        (pkg / "verdict.json").write_text(json.dumps(verdict))
-        time.sleep(0.02)
     out.write_bytes(b"x" * 2048)
     if sidecars:
         out.with_suffix(".meta.json").write_text("{}")
         out.with_suffix(".srt").write_text("1\n00:00:00,000 --> 00:00:01,000\nx\n")
         out.with_suffix(".jpg").write_bytes(b"j")
-    if verdict is not None and not verdict_stale:
-        time.sleep(0.02)
-        (pkg / "verdict.json").write_text(json.dumps(verdict))
-        os.utime(pkg / "verdict.json")
+    if verdict is not None:
+        jv.write(out, dict(verdict))      # binds mp4_sha256 to the stub video
     return out
 
 
-def scenario(name, want_status, want_substr=None, **kw):
-    with tempfile.TemporaryDirectory() as td:
-        out = build_pkg(Path(td), **kw)
-        res = produce.evaluate(out, kw.pop("rc", 0) if "rc" in kw else 0)
-        res = res  # evaluate(out, director_rc)
-    assert res["status"] == want_status, (name, res)
-    if want_substr:
-        assert any(want_substr in r for r in res["reasons"]), (name, res["reasons"])
-    print(f"ok  {name}")
-    return res
-
-
 def main():
-    # evaluate(out, director_rc, story) — vary one axis per scenario
     with tempfile.TemporaryDirectory() as td:
         out = build_pkg(Path(td), fallbacks={"verdict": "ok", "fallbacks": []})
         res = produce.evaluate(out, 0)
         assert res["status"] == "pass" and res["reasons"] == [], res
-        print("ok  1. clean package + verdict + rc=0 -> PASS")
+        print("ok  1. clean package + bound verdict + rc=0 -> PASS")
 
     with tempfile.TemporaryDirectory() as td:
         out = build_pkg(Path(td), verdict=None)
@@ -75,11 +58,15 @@ def main():
         print("ok  2. missing verdict FAILS CLOSED")
 
     with tempfile.TemporaryDirectory() as td:
-        out = build_pkg(Path(td), verdict_stale=True)
+        # belt-and-braces mtime rule: hash still matches (content unchanged)
+        # but the mp4's mtime is bumped AFTER the verdict was written.
+        out = build_pkg(Path(td))
+        time.sleep(0.02)
+        os.utime(out)
         res = produce.evaluate(out, 0)
         assert res["status"] == "quarantine"
         assert any("stale" in r.lower() for r in res["reasons"]), res
-        print("ok  3. verdict older than the mp4 is STALE -> fails closed")
+        print("ok  3. mp4 newer than verdict (secondary mtime rule) -> stale")
 
     with tempfile.TemporaryDirectory() as td:
         out = build_pkg(Path(td), verdict={**GOOD_VERDICT, "pass": False,

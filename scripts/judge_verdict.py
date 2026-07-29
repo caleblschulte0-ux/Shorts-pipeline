@@ -124,13 +124,21 @@ def pkg_dir(out: Path) -> Path:
 def write(out: Path, verdict: dict) -> Path:
     """Validate `verdict` and write it to `<out>_pkg/verdict.json` atomically.
     Returns the path written. The package dir must already exist (the render
-    built it) — we never publish a verdict for a render that never happened."""
+    built it) — we never publish a verdict for a render that never happened.
+
+    HASH BINDING (PR#173 adoption A): the verdict is stamped with the sha256
+    of the exact mp4 it judged. produce.evaluate refuses a verdict whose
+    binding does not match the current video, so a re-render can never be
+    promoted on an old cut's judgment and a copied verdict.json is inert."""
     pkg = pkg_dir(out)
     if not pkg.exists():
         raise FileNotFoundError(
             f"no evidence package at {pkg} — render the story (which builds the "
             "blind package) before writing its verdict")
     clean = validate(verdict)
+    if out.exists():
+        import artifact_identity
+        clean["mp4_sha256"] = artifact_identity.sha256_file(out)
     dest = pkg / "verdict.json"
     tmp = dest.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(clean, indent=2))
