@@ -109,6 +109,24 @@ is NOT evaluated** — motion comes only from per-frame interpolation
   initially consumed only by parallax; stabilization/motion-QA uses are E-ticket
   material. It is *not* added to any workflow requirements.
 
+### render_qa (added 2026-07-29 — first ANALYSIS engine)
+
+| Field | `render_qa` |
+|---|---|
+| status | **active** |
+| problem | Mechanical render-defect detection: black tail/open, freezes ≥2s, A/V duration drift, double-letterboxing. Catches broken output offline and for $0, before a channel burns a vision call or ships the defect. |
+| origin | Third channel, 2026-07-29, run 30459022509: a clip with a **solid-black final frame** went through the full render and reached the *paid* vision critic — which is the safety net working, but a plain ffmpeg pass detects that class of defect in seconds for free. |
+| headless / CLI / reusable | yes / yes / yes |
+| license / commercial | stdlib+ffmpeg / ✅ |
+| cpu_ok / runtime | ✅ / ~3-8 s per clip (one full decode + 3 sampled cropdetect windows) |
+| model | — (pure ffmpeg/ffprobe) |
+| health check | `python -m engines doctor render_qa` |
+| returns | `{ok, problems, metrics}` dict. **Contract note (analysis engines):** `None` from `maybe_check()` = the ANALYZER failed → fail-open, proceed as if the engine were absent. `ok=False` = a real verdict on a defective render. Never conflate the two. |
+| fallback | none needed — callers proceed unchecked on `None` |
+| consumers | `third_capture.clip_qa` (pre-vision mechanical gate) |
+| known failure modes | blurred/stylistic padding is invisible to cropdetect (near-black bars only) — aesthetic judgment stays with the vision critic; freeze detection can flag deliberate long holds ≥2s (threshold tunable per call) |
+| sample | `python -m engines demo render_qa --video output/third/clip.mp4` |
+
 ---
 
 ## Triage of the suggested engine list

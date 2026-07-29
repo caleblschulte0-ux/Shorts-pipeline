@@ -72,6 +72,35 @@ REGISTRY: dict[str, dict] = {
                           "callers wanting best-effort use maybe_kenburns)"],
         "sample": "python -m engines demo kenburns --image assets/mascot/anchor/laugh.png --out /tmp/kb.mp4",
     },
+    "render_qa": {
+        "kind": "module",
+        "status": "active",
+        "problem": "Catch BROKEN renders (black tail/open, freezes, A/V "
+                   "drift, double-letterboxing) offline and for free, "
+                   "before a channel burns a vision call or ships the "
+                   "defect. Born from third-channel run 30459022509: a "
+                   "solid-black final frame reached the PAID vision critic "
+                   "when a $0 ffmpeg pass would have caught it.",
+        "headless": True,
+        "control": "python (engines.render_qa.maybe_check) / CLI demo",
+        "reusable": True,
+        "license": "n/a (ffmpeg subprocess, stdlib only)",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "~3-8 s per clip (one full decode + 3 sampled "
+                       "cropdetect windows)",
+        "deps": ["ffmpeg on PATH", "ffprobe on PATH"],
+        "returns": "dict {ok, problems, metrics} — the first ANALYSIS "
+                   "engine; None from maybe_check means the analyzer "
+                   "failed (fail-open), ok=False is a real defect verdict",
+        "fallback": "none needed — callers proceed unchecked on None, "
+                    "exactly as if the engine did not exist",
+        "consumers": ["third_capture.clip_qa (pre-vision mechanical gate)"],
+        "failure_modes": ["blurred/stylistic padding is INVISIBLE to "
+                          "cropdetect (near-black bars only) — aesthetic "
+                          "judgment stays with the vision critic"],
+        "sample": "python -m engines demo render_qa --video output/third/clip.mp4",
+    },
     "parallax": {
         "kind": "module",
         # Promoted 2026-07-10 after the 8-category benchmark (Ticket E2):

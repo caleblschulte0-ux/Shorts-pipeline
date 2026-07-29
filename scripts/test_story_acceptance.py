@@ -610,9 +610,80 @@ def main() -> int:  # noqa: C901
     import inspect as _i
     check("total authoring failure logs a warning",
           "AUTHORING FAILED" in _i.getsource(_au.author_package))
+    _rt_src = (REPO / "scripts" / "run_third.py").read_text()
     check("run_third routes the raw title through the quality floor",
-          "author.fallback_title" in (REPO / "scripts"
-                                      / "run_third.py").read_text())
+          "author.fallback_title" in _rt_src)
+
+    # ---- brain-health gate (blind-slate incident, 07-29 morning) --------
+    # Every rank/author/scene call failed for ~90 min and the run still
+    # published 4 view-count-picked clips. The gate must trip on proven
+    # total failure, never on flakiness, and the run must consult it.
+    _saved = dict(_au._BRAIN)
+    try:
+        _au._BRAIN.update(ok=0, fail=0)
+        check("fresh state: brain not down", not _au.brain_down())
+        _au._BRAIN.update(ok=0, fail=2)
+        check("2 failures alone do not trip the gate (min 3 calls)",
+              not _au.brain_down())
+        _au._BRAIN.update(ok=0, fail=3)
+        check("3 failures, 0 ok -> brain down", _au.brain_down())
+        _au._BRAIN.update(ok=1, fail=9)
+        check("a single success proves the path — gate never trips",
+              not _au.brain_down())
+    finally:
+        _au._BRAIN.update(_saved)
+    check("rank_clips records brain outcomes",
+          "_brain_note" in _i.getsource(_au.rank_clips))
+    check("author_package records brain outcomes",
+          "_brain_note" in _i.getsource(_au.author_package))
+    check("run_third consults the gate before filling a slot",
+          "author.brain_down()" in _rt_src)
+    check("gate has an explicit operator override",
+          "THIRD_ALLOW_BLIND" in _rt_src)
+    check("gated slots are skipped, not errored (no retry churn)",
+          "brain down — blind-slate gate" in _rt_src)
+
+    # ---- engines/render_qa: shared mechanical render-QA ----------------
+    # First ANALYSIS engine in the shared layer. Logic tier only here (no
+    # ffmpeg): parsers, registry wiring, verdict semantics, consumers.
+    from engines import render_qa as _rq
+    import engines as _eng
+    check("render_qa registered in the shared engine registry",
+          _eng.REGISTRY.get("render_qa", {}).get("kind") == "module")
+    check("render_qa provisioning entry exists (pure-ffmpeg, empty deps)",
+          __import__("engines.provision", fromlist=["_PIP_DEPS"])
+          ._PIP_DEPS.get("render_qa") == [])
+    _bd = _rq._black_intervals(
+        "[blackdetect] black_start:14.1 black_end:14.72 black_duration:0.62")
+    check("blackdetect stderr parses to intervals", _bd == [(14.1, 14.72)])
+    check("freezedetect stderr parses to spans",
+          _rq._freeze_spans("lavfi.freezedetect.freeze_duration: 3.4\n"
+                            "freeze_duration: 2.1") == [3.4, 2.1])
+    check("maybe_check is fail-open when the analyzer is absent",
+          _rq.maybe_check("/nonexistent/x.mp4") is None)
+    check("verdict semantics documented: None=analyzer, ok=False=defect",
+          "None = the ANALYZER failed" in (_rq.maybe_check.__doc__ or ""))
+    check("clip_qa runs the free engine pass before the paid vision call",
+          "render_qa" in _i.getsource(__import__(
+              "third_capture.clip_qa", fromlist=["review"]).review))
+    check("story renderer fails closed on a broken stitch",
+          "render_qa rejected the stitch" in (REPO / "third_capture"
+                                              / "story.py").read_text())
+
+    # ---- closing guard + source bar-strip (simple_fallback fixes) ------
+    _ce_src = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("closing guard exists (symmetric to the opening guard)",
+          "def _closing_guard" in _ce_src)
+    check("closing guard runs in the cut flow before caption rebase",
+          _ce_src.index("_closing_guard(raw, t0, t1)")
+          < _ce_src.index('"w": w["w"], "s": w["s"] - t0'))
+    check("ledger records the closing trim", "closing_trim_s" in _ce_src)
+    check("source bar-strip exists for the blur-fill graph",
+          "def _content_crop" in _ce_src and "{bar_crop}split" in _ce_src)
+    check("blur foreground is clamped inside the canvas",
+          "force_original_aspect_ratio=decrease[fgs]" in _ce_src)
+    check("render output is capped at the cut length (-t)",
+          '"-t", f"{dur:.3f}"' in _ce_src)
 
     print()
     if FAILS:

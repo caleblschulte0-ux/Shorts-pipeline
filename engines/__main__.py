@@ -79,8 +79,25 @@ def _cmd_install(args) -> int:
 
 def _cmd_demo(args) -> int:
     t0 = time.time()
+    if args.engine == "render_qa":
+        # analysis engine: input is a VIDEO, output is a verdict, no --out
+        if not args.video:
+            print("render_qa demo needs --video <clip.mp4>")
+            return 2
+        from engines.render_qa import maybe_check
+        verdict = maybe_check(args.video)
+        if verdict is None:
+            print("demo failed (see messages above)")
+            return 1
+        import json as _json
+        print(_json.dumps(verdict, indent=2))
+        print(f"analyzed in {time.time() - t0:.1f}s")
+        return 0 if verdict["ok"] else 1
     if args.engine in ("kenburns", "parallax") and not args.image:
         print("--image is required for this engine")
+        return 2
+    if not args.out:
+        print(f"{args.engine} demo needs --out")
         return 2
     if args.engine == "kenburns":
         from engines.still_motion import maybe_kenburns
@@ -98,7 +115,8 @@ def _cmd_demo(args) -> int:
             args.out, duration=args.duration, fps=30,
             width=args.width, height=args.height)
     else:
-        print(f"no demo for {args.engine!r} (choices: kenburns, parallax, svg-motion)")
+        print(f"no demo for {args.engine!r} (choices: kenburns, parallax, "
+              f"svg-motion, render_qa)")
         return 2
     if result is None:
         print("demo failed (see messages above)")
@@ -119,9 +137,13 @@ def main(argv=None) -> int:
     sp = sub.add_parser("install")
     sp.add_argument("engine")
     sp = sub.add_parser("demo")
-    sp.add_argument("engine", choices=["kenburns", "parallax", "svg-motion"])
-    sp.add_argument("--image")  # required for kenburns/parallax, not svg-motion
-    sp.add_argument("--out", required=True)
+    sp.add_argument("engine", choices=["kenburns", "parallax", "svg-motion",
+                                       "render_qa"])
+    # render engines need --image/--out (svg-motion only --out); the
+    # analysis engine takes --video. Validated per-engine in _cmd_demo.
+    sp.add_argument("--image")
+    sp.add_argument("--out")
+    sp.add_argument("--video")
     sp.add_argument("--duration", type=float, default=4.0)
     sp.add_argument("--width", type=int, default=1080)
     sp.add_argument("--height", type=int, default=1920)

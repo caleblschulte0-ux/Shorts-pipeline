@@ -107,6 +107,69 @@ def run_case(name, words, hook, series, work: Path,
     return fails
 
 
+def _bad_fixture(path: Path, dur: int = 12) -> None:
+    """A deliberately DEFECTIVE source: pillarboxed picture (608px of
+    content inside a 1920x1080 frame — a vertical stream re-broadcast in
+    landscape) that ends in 0.8s of solid black (stream-end fade). Exactly
+    the 2026-07-29 reject class: 'tiny letterboxed rectangle' + 'last
+    frame is solid black'."""
+    subprocess.run(
+        ["ffmpeg", "-y", "-v", "error",
+         "-f", "lavfi", "-i",
+         f"testsrc2=s=608x1080:r=30:d={dur},"
+         "pad=1920:1080:(ow-iw)/2:0:black",
+         "-f", "lavfi", "-i", f"color=black:s=1920x1080:r=30:d=0.8",
+         "-f", "lavfi", "-i", f"sine=frequency=300:duration={dur + 0.8}",
+         "-filter_complex", "[0:v][1:v]concat=n=2:v=1:a=0[v]",
+         "-map", "[v]", "-map", "2:a",
+         "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac",
+         "-shortest", str(path)], check=True, timeout=120)
+
+
+def run_render_qa_case(work: Path) -> list[str]:
+    """engines/render_qa (shared layer) + the simple_fallback fixes, end to
+    end: the engine must FLAG the defective source, and the pipeline's
+    output from that same source must come out clean — bars stripped by
+    the content crop, black tail cut by the closing guard."""
+    from engines.render_qa import check as rqa_check
+    fails: list[str] = []
+    bad = work / "rqa_bad_src.mp4"
+    out = work / "rqa_out.mp4"
+    _bad_fixture(bad)
+
+    v = rqa_check(bad)
+    if v["ok"]:
+        fails.append("render_qa: defective fixture passed (black tail + "
+                     "pillarbox missed)")
+    if not any("black tail" in p for p in v["problems"]):
+        fails.append(f"render_qa: black tail not flagged ({v['problems']})")
+    if not any("letterbox" in p for p in v["problems"]):
+        fails.append(f"render_qa: pillarbox not flagged ({v['problems']})")
+
+    words = [{"w": "yo", "s": 1.0, "e": 1.3}, {"w": "that", "s": 2.0,
+              "e": 2.3}, {"w": "was", "s": 2.4, "e": 2.6},
+             {"w": "insane", "s": 2.7, "e": 3.2},
+             {"w": "bro", "s": 5.0, "e": 5.3}]
+    try:
+        led = clip_edit.edit(bad, out, credit="twitch.tv/test",
+                             hook="WAIT FOR IT", words=words, auto=False,
+                             series="chaos")
+    except Exception as e:  # noqa: BLE001
+        return fails + [f"render_qa case: edit() RAISED "
+                        f"{type(e).__name__}: {e}"]
+    if not out.exists():
+        return fails + ["render_qa case: no output produced"]
+    v_out = rqa_check(out)
+    if not v_out["ok"]:
+        fails.append(f"render_qa case: pipeline output from the bad source "
+                     f"still defective: {v_out['problems']}")
+    ratio = v_out["metrics"].get("active_area_ratio", 0)
+    print(f"  [render_qa] src_flags={len(v['problems'])} "
+          f"out_ok={v_out['ok']} active={ratio:.0%} "
+          f"closing_trim={led.get('closing_trim_s', 0):.2f}s", flush=True)
+    return fails
+
+
 def run_story_case(work: Path) -> list[str]:
     """The story DIRECTOR render path on two synthetic sources: a real
     validated EDL through the real dedicated renderer (extract + reframe +
@@ -258,6 +321,7 @@ def main() -> int:
         # inputs too. Mock only the network download (hand back local
         # fixtures); the real per-beat render + chapter cards + normalize +
         # concat run, and the stitched output is held to the same bounds.
+        all_fails += run_render_qa_case(work)
         all_fails += run_story_case(work)
     if all_fails:
         print("\nSMOKE FAILED:")
