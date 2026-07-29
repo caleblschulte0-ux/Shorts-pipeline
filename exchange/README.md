@@ -54,6 +54,17 @@ just produces the same JSON. Nothing here is magic.
 **"anyone with the link can view"**. If it is not, fetch says so plainly
 instead of writing a broken file.
 
+PROVEN LIMITATION (bridge proof, 2026-07-29): ChatGPT's Drive connector
+uploads fine but CANNOT set anyone-with-link sharing, so its uploads are
+private and plain-HTTPS fetch gets Google's sign-in page. Two working
+paths around it:
+
+1. the owner shares a single Drive folder as anyone-with-link once, and
+   ChatGPT uploads INTO that folder (children inherit sharing); or
+2. the Claude session fetches through its own authenticated Google Drive
+   connector (which reads private files) and drops the asset into
+   cache/exchange/<id>.<ext> by hand — same place fetch would put it.
+
 ## Auto-filed asks (the pipeline writes requests too)
 
 When the media gateway finds NOTHING for a beat, the render files
