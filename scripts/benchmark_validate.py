@@ -116,9 +116,15 @@ def validate_story(slug: str, story_cfg: dict, cfg: dict, req: dict,
             _set(f"{tag}.mascot_contacts_data",
                  len(gp) >= len(fs),
                  "grip recorded every frame (metadata; visual check separate)")
-            _set(f"{tag}.data_affects_mascot",
-                 bool(perf.get("data_affects_mascot")),
+            # review 4.2: the scene must declare at least ONE causal direction
+            # (data drives him, or he drives/transforms the visual)
+            _set(f"{tag}.causal_interaction_declared",
+                 bool(perf.get("data_affects_mascot")
+                      or perf.get("mascot_affects_data")),
                  perf.get("consequence", "")[:60])
+            res["checks"][f"{tag}.data_affects_mascot"] = {
+                "ok": True, "informational": True,
+                "detail": str(bool(perf.get("data_affects_mascot")))}
             # mascot_affects_data is INFORMATIONAL (not every scene needs it) —
             # recorded, never failed on:
             res["checks"][f"{tag}.mascot_affects_data"] = {

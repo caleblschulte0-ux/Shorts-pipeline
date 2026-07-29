@@ -13,7 +13,7 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.050"
+     "detail": "diff f1->f3 = 0.047"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
@@ -27,9 +27,14 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg0.causal_interaction_declared": {
+     "ok": true,
+     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
+    },
     "seg0.data_affects_mascot": {
      "ok": true,
-     "detail": "the data keeps rising and DRAGS HIM airborne"
+     "informational": true,
+     "detail": "True"
     },
     "seg0.mascot_affects_data": {
      "ok": true,
@@ -53,14 +58,19 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg1.causal_interaction_declared": {
+     "ok": true,
+     "detail": "the load buckles him, he barely heaves it"
+    },
     "seg1.data_affects_mascot": {
      "ok": true,
-     "detail": "skids back, finally holds the line"
+     "informational": true,
+     "detail": "True"
     },
     "seg1.mascot_affects_data": {
      "ok": true,
      "informational": true,
-     "detail": "True"
+     "detail": "False"
     },
     "seg1.cause_consequence_readable": {
      "ok": true,
@@ -78,8 +88,8 @@
    },
    "pass": true,
    "families": [
-    "pull",
-    "block"
+    "push",
+    "carry"
    ]
   },
   {
@@ -109,9 +119,14 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
-    "seg0.data_affects_mascot": {
+    "seg0.causal_interaction_declared": {
      "ok": true,
      "detail": "skids back, finally holds the line"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
     },
     "seg0.mascot_affects_data": {
      "ok": true,
@@ -135,9 +150,14 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg1.causal_interaction_declared": {
+     "ok": true,
+     "detail": "is dwarfed, then awed"
+    },
     "seg1.data_affects_mascot": {
      "ok": true,
-     "detail": "the data keeps rising and DRAGS HIM airborne"
+     "informational": true,
+     "detail": "True"
     },
     "seg1.mascot_affects_data": {
      "ok": true,
@@ -161,7 +181,7 @@
    "pass": true,
    "families": [
     "block",
-    "pull"
+    "get_overwhelmed"
    ]
   },
   {
@@ -170,6 +190,98 @@
     "builds": {
      "ok": true,
      "detail": "2 segments"
+    },
+    "hook.visual_present_at_frame_1": {
+     "ok": true,
+     "detail": "opaque 0.93"
+    },
+    "hook.primary_action_before_s": {
+     "ok": true,
+     "detail": "diff f1->f3 = 0.083"
+    },
+    "seg0.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg0.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg0.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg0.causal_interaction_declared": {
+     "ok": true,
+     "detail": "pressed down until only an arm pops out"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
+    },
+    "seg0.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg0.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "seg1.mascot.contact_required": {
+     "ok": true,
+     "detail": "10/10 frames gripped"
+    },
+    "seg1.mascot.state_changes": {
+     "ok": true,
+     "detail": "7 beats"
+    },
+    "seg1.mascot_contacts_data": {
+     "ok": true,
+     "detail": "grip recorded every frame (metadata; visual check separate)"
+    },
+    "seg1.causal_interaction_declared": {
+     "ok": true,
+     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
+    },
+    "seg1.data_affects_mascot": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
+    },
+    "seg1.mascot_affects_data": {
+     "ok": true,
+     "informational": true,
+     "detail": "False"
+    },
+    "seg1.cause_consequence_readable": {
+     "ok": true,
+     "deferred_to": "benchmark_visual",
+     "detail": "perceptual \u2014 graded by the vision benchmark"
+    },
+    "ending.new_information": {
+     "ok": true,
+     "detail": "2 anchors"
+    },
+    "ending.payoff_action": {
+     "ok": true,
+     "detail": "[0.37, 0.5]"
+    }
+   },
+   "pass": true,
+   "families": [
+    "get_buried",
+    "push"
+   ]
+  },
+  {
+   "slug": "grocery-squeeze",
+   "checks": {
+    "builds": {
+     "ok": true,
+     "detail": "3 segments"
     },
     "hook.visual_present_at_frame_1": {
      "ok": true,
@@ -191,9 +303,14 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
-    "seg0.data_affects_mascot": {
+    "seg0.causal_interaction_declared": {
      "ok": true,
      "detail": "skids back, finally holds the line"
+    },
+    "seg0.data_affects_mascot": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
     },
     "seg0.mascot_affects_data": {
      "ok": true,
@@ -217,91 +334,14 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
-    "seg1.data_affects_mascot": {
-     "ok": true,
-     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
-    },
-    "seg1.mascot_affects_data": {
-     "ok": true,
-     "informational": true,
-     "detail": "False"
-    },
-    "seg1.cause_consequence_readable": {
-     "ok": true,
-     "deferred_to": "benchmark_visual",
-     "detail": "perceptual \u2014 graded by the vision benchmark"
-    },
-    "ending.new_information": {
-     "ok": true,
-     "detail": "2 anchors"
-    },
-    "ending.payoff_action": {
-     "ok": true,
-     "detail": "[0.37, 0.5]"
-    }
-   },
-   "pass": true,
-   "families": [
-    "block",
-    "push"
-   ]
-  },
-  {
-   "slug": "grocery-squeeze",
-   "checks": {
-    "builds": {
-     "ok": true,
-     "detail": "3 segments"
-    },
-    "hook.visual_present_at_frame_1": {
-     "ok": true,
-     "detail": "opaque 0.93"
-    },
-    "hook.primary_action_before_s": {
-     "ok": true,
-     "detail": "diff f1->f3 = 0.082"
-    },
-    "seg0.mascot.contact_required": {
-     "ok": true,
-     "detail": "10/10 frames gripped"
-    },
-    "seg0.mascot.state_changes": {
-     "ok": true,
-     "detail": "7 beats"
-    },
-    "seg0.mascot_contacts_data": {
-     "ok": true,
-     "detail": "grip recorded every frame (metadata; visual check separate)"
-    },
-    "seg0.data_affects_mascot": {
+    "seg1.causal_interaction_declared": {
      "ok": true,
      "detail": "the data keeps rising and DRAGS HIM airborne"
     },
-    "seg0.mascot_affects_data": {
-     "ok": true,
-     "informational": true,
-     "detail": "False"
-    },
-    "seg0.cause_consequence_readable": {
-     "ok": true,
-     "deferred_to": "benchmark_visual",
-     "detail": "perceptual \u2014 graded by the vision benchmark"
-    },
-    "seg1.mascot.contact_required": {
-     "ok": true,
-     "detail": "10/10 frames gripped"
-    },
-    "seg1.mascot.state_changes": {
-     "ok": true,
-     "detail": "7 beats"
-    },
-    "seg1.mascot_contacts_data": {
-     "ok": true,
-     "detail": "grip recorded every frame (metadata; visual check separate)"
-    },
     "seg1.data_affects_mascot": {
      "ok": true,
-     "detail": "loses ground and dives across"
+     "informational": true,
+     "detail": "True"
     },
     "seg1.mascot_affects_data": {
      "ok": true,
@@ -325,9 +365,14 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg2.causal_interaction_declared": {
+     "ok": true,
+     "detail": "loses ground and dives across"
+    },
     "seg2.data_affects_mascot": {
      "ok": true,
-     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
+     "informational": true,
+     "detail": "True"
     },
     "seg2.mascot_affects_data": {
      "ok": true,
@@ -350,9 +395,9 @@
    },
    "pass": true,
    "families": [
+    "block",
     "pull",
-    "race",
-    "push"
+    "race"
    ]
   },
   {
@@ -368,7 +413,7 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.083"
+     "detail": "diff f1->f3 = 0.081"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
@@ -382,14 +427,19 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg0.causal_interaction_declared": {
+     "ok": true,
+     "detail": "the revealed value startles him into a double-take \u2014 then he"
+    },
     "seg0.data_affects_mascot": {
      "ok": true,
-     "detail": "skids back, finally holds the line"
+     "informational": true,
+     "detail": "True"
     },
     "seg0.mascot_affects_data": {
      "ok": true,
      "informational": true,
-     "detail": "True"
+     "detail": "False"
     },
     "seg0.cause_consequence_readable": {
      "ok": true,
@@ -408,14 +458,19 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg1.causal_interaction_declared": {
+     "ok": true,
+     "detail": "skids back, finally holds the line"
+    },
     "seg1.data_affects_mascot": {
      "ok": true,
-     "detail": "loses ground and dives across"
+     "informational": true,
+     "detail": "True"
     },
     "seg1.mascot_affects_data": {
      "ok": true,
      "informational": true,
-     "detail": "False"
+     "detail": "True"
     },
     "seg1.cause_consequence_readable": {
      "ok": true,
@@ -434,9 +489,14 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
-    "seg2.data_affects_mascot": {
+    "seg2.causal_interaction_declared": {
      "ok": true,
      "detail": "the load buckles him, he barely heaves it"
+    },
+    "seg2.data_affects_mascot": {
+     "ok": true,
+     "informational": true,
+     "detail": "True"
     },
     "seg2.mascot_affects_data": {
      "ok": true,
@@ -459,8 +519,8 @@
    },
    "pass": true,
    "families": [
+    "discover",
     "block",
-    "race",
     "carry"
    ]
   },
@@ -491,14 +551,19 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg0.causal_interaction_declared": {
+     "ok": true,
+     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
+    },
     "seg0.data_affects_mascot": {
      "ok": true,
-     "detail": "skids back, finally holds the line"
+     "informational": true,
+     "detail": "True"
     },
     "seg0.mascot_affects_data": {
      "ok": true,
      "informational": true,
-     "detail": "True"
+     "detail": "False"
     },
     "seg0.cause_consequence_readable": {
      "ok": true,
@@ -517,14 +582,19 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg1.causal_interaction_declared": {
+     "ok": true,
+     "detail": "skids back, finally holds the line"
+    },
     "seg1.data_affects_mascot": {
      "ok": true,
-     "detail": "loses ground and dives across"
+     "informational": true,
+     "detail": "True"
     },
     "seg1.mascot_affects_data": {
      "ok": true,
      "informational": true,
-     "detail": "False"
+     "detail": "True"
     },
     "seg1.cause_consequence_readable": {
      "ok": true,
@@ -543,9 +613,14 @@
      "ok": true,
      "detail": "grip recorded every frame (metadata; visual check separate)"
     },
+    "seg2.causal_interaction_declared": {
+     "ok": true,
+     "detail": "loses ground and dives across"
+    },
     "seg2.data_affects_mascot": {
      "ok": true,
-     "detail": "the bar outgrows him \u2014 skids, then LAUNCHED off it"
+     "informational": true,
+     "detail": "True"
     },
     "seg2.mascot_affects_data": {
      "ok": true,
@@ -568,11 +643,11 @@
    },
    "pass": true,
    "families": [
+    "push",
     "block",
-    "race",
-    "push"
+    "race"
    ]
   }
  ],
- "all_pass": false
+ "all_pass": true
 }

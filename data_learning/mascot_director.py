@@ -1616,10 +1616,11 @@ VERIFIED_PERFORMANCES.update({
         ["divergence", "gap", "imbalance"], ["two elements"], True, False),
     "discover": _perf_entry(
         "discover", "leaning onto the datum, peering at it",
-        "investigates the number", "double-takes and presents it",
+        "investigates the number", "the revealed value startles him into a "
+        "double-take — then he presents it",
         "reveal a surprising value", ["trend", "ranking", "two_value",
                                       "part_to_whole"],
-        ["surprise", "outlier", "reveal"], [], False, False),
+        ["surprise", "outlier", "reveal"], [], True, False),
     "compare_scales": _perf_entry(
         "compare", "each arm holding one value like scale pans",
         "weighs the two", "the heavier side tips his whole body",
@@ -1740,17 +1741,16 @@ def performance_for(kind: str, claim: str = "", target: str = "",
     scored.sort(key=lambda x: (-x[0], x[1]))
     if not scored:
         scored = [(0, "shoved_bar", VERIFIED_PERFORMANCES["shoved_bar"])]
-    # anti-repetition: first candidate whose FAMILY is unused; else best
-    pick = None
-    ordered = scored[seed % max(1, len(scored)):] + \
-        scored[:seed % max(1, len(scored))] if scored else []
-    ordered.sort(key=lambda x: -x[0])            # keep overlap dominant
-    for ov, name, meta in ordered:
-        if meta.get("family", name) not in used:
-            pick = (name, meta)
-            break
-    if pick is None:
-        pick = (scored[0][1], scored[0][2])
+    # anti-repetition + CROSS-STORY spread: among the unused candidates with
+    # the BEST claim overlap, rotate the pick by seed — stories with similar
+    # claims land on different (equally fitting) families instead of all
+    # converging on one dominant family across the suite.
+    unused = [c for c in scored if c[2].get("family", c[1]) not in used]
+    pool = unused or scored
+    best_ov = pool[0][0]
+    top = [c for c in pool if c[0] == best_ov]
+    pick_c = top[seed % len(top)]
+    pick = (pick_c[1], pick_c[2])
     act, spec = pick
     goal = f"{spec.get('performance_meaning', 'perform')} — {target or kind}"
     return {"action": act, "family": spec.get("family", act),

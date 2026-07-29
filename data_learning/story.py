@@ -213,7 +213,11 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     # The viz director assigns each segment's DEPICTION (honouring the LLM's
     # authored concept, else best-fit by data shape). Never bare numbers, no
     # repeated depiction in a video, >=1 novelty. Seed by slug for stable variety.
-    viz_director.assign(inss, seed=abs(hash(story_cfg["slug"])) % 997)
+    # STABLE seed: Python's str hash is randomized per process, which made viz
+    # + performance selection vary run to run. crc32 is deterministic forever.
+    import zlib as _zl
+    viz_director.assign(inss,
+                        seed=_zl.crc32(story_cfg["slug"].encode()) % 997)
     # NEVER open on a chart — viewers swipe away. Move trend (line) segments to
     # the end so the video opens on a map / diorama / scene. Stable within groups.
     # Long-form stories with a hand-authored narrative arc opt out with
