@@ -100,8 +100,8 @@ def fetch_hook_image(story, *, cache_dir: Path = CACHE_DIR) -> Path | None:
     if getattr(story, "hook_image", None) is False:   # explicit per-story opt-out
         return None
     try:
-        import topic_media          # noqa: WPS433
-        import entity_media         # noqa: WPS433
+        from funnel import topic_media as topic_media  # noqa: WPS433
+        from funnel import entity_media as entity_media  # noqa: WPS433
     except Exception:  # noqa: BLE001
         return None
     context = getattr(story, "hook", "") or ""

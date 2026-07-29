@@ -28,7 +28,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from fsutil import atomic_write_json, load_json  # noqa: E402
+from shared.fsutil import atomic_write_json, load_json  # noqa: E402
 
 _DATE_FILE = re.compile(r"^(\d{8})\.json$")
 _DATE_DIR = re.compile(r"^(\d{8})$")

@@ -48,7 +48,7 @@ def _diag_once():
         return
     _DIAG_DONE = True
     try:
-        import gemini_images
+        from funnel import gemini_images as gemini_images
         print(f"[scene][diag] gemini enabled={gemini_images.enabled()}", flush=True)
         avail = gemini_images._available_models()
         img = sorted(m for m in avail if "image" in m.lower() or "imagen" in m.lower())
@@ -95,7 +95,7 @@ def _gen_pollinations(subject: str, dest: Path, context: str = "") -> Path | Non
 
 def _gen_ai(subject: str, dest: Path, context: str = "") -> Path | None:
     try:
-        import gemini_images
+        from funnel import gemini_images as gemini_images
         _diag_once()
         if not gemini_images.enabled():
             return None
@@ -128,8 +128,8 @@ def scene_image(subject: str, slug: str, tag: str, *, context: str = "",
             return ai
     if allow_stock:
         try:
-            import topic_media
-            import entity_media
+            from funnel import topic_media as topic_media
+            from funnel import entity_media as entity_media
             cands, seen = [], set()
             for q in [subject] + [w for w in (subject or "").split() if len(w) > 3]:
                 q = q.strip()
@@ -217,7 +217,7 @@ def illustration_subjects(labels, context: str = "") -> dict:
     out = {l: f"{l} {context}".strip() for l in labels}
     try:
         import json
-        from script_generator import _call_llm, _strip_fence
+        from shared.script_generator import _call_llm, _strip_fence
         sysp = ("You turn data labels into concrete, literal single-subject "
                 "visual descriptions for standalone illustrations. JSON only.")
         user = (f"Context: {context}. For each label give a vivid, concrete "
@@ -364,8 +364,8 @@ def subject_photo(subject: str, slug: str, tag: str, *, context: str = "",
     if not (subject or "").strip():
         return None
     try:
-        import topic_media
-        import entity_media
+        from funnel import topic_media as topic_media
+        from funnel import entity_media as entity_media
     except Exception:  # noqa: BLE001
         return None
     # Try the full phrase first, then progressively simpler queries.

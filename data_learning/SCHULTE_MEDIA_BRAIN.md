@@ -1,5 +1,7 @@
 # SCHULTE MEDIA — brain playbook
 
+> **Repo layout (reorg 2026-07-30):** shared capabilities moved into `funnel/` (media finding/generation) and `shared/` (cross-channel utils); `engines/` unchanged. Old root imports still work via shims, but canonical paths are `funnel.X` / `shared.X` — see `docs/PIPELINE_LAYOUT.md`.
+
 This file is the channel. The scout, sandbox, validators, render tools, uploader
 and token are shared infrastructure; what makes Schulte Media *Schulte Media* is
 the doctrine below. The brain (headless Claude, run in CI before render) reads

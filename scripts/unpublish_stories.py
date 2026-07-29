@@ -78,7 +78,7 @@ def main() -> int:
         print("dry-run — nothing deleted")
         return 0
 
-    from uploaders import YouTubeUploader
+    from shared.uploaders import YouTubeUploader
     up = YouTubeUploader(channel=args.channel)
     svc = up._service()
     up._guard_channel(svc)          # refuse to touch the wrong account

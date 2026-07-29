@@ -53,7 +53,7 @@ def _load_log(path: Path = LOG_PATH) -> dict:
 
 
 def _save_log(log: dict, path: Path = LOG_PATH) -> None:
-    from fsutil import atomic_write_json
+    from shared.fsutil import atomic_write_json
     atomic_write_json(path, log)
 
 
@@ -153,7 +153,7 @@ def main() -> int:
     args = ap.parse_args()
 
     if args.check_channel:
-        from uploaders import YouTubeUploader
+        from shared.uploaders import YouTubeUploader
         me = YouTubeUploader(channel=args.channel).whoami()
         print(f"token maps to channel: title={me['title']!r} "
               f"handle={me['handle']!r} id={me['id']}")
@@ -333,7 +333,7 @@ def main() -> int:
             when += timedelta(hours=args.every_hours)
 
         if uploader is None:                 # lazy import → clear error if deps
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             uploader = YouTubeUploader(channel=args.channel)
         print(f"[{slug}] uploading"
               + (f" (scheduled {publish_at})" if publish_at else " (public now)"),
@@ -342,7 +342,7 @@ def main() -> int:
         thumb = out.with_suffix(".jpg")
         # Localized titles/descriptions (best-effort; English always ships).
         try:
-            from localize import localize_meta
+            from shared.localize import localize_meta
             localizations = localize_meta(
                 sc.get("title", slug), _human_body(sc), _desc_suffix(sc))
         except Exception as e:  # noqa: BLE001 — never let i18n block a post

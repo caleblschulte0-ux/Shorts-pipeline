@@ -593,7 +593,7 @@ def _seg_dataset(seg: dict) -> dict:
 def _direct_batch(stories: list, examples: list | None = None) -> dict:
     """Ask the LLM (creative director) to INVENT a depiction per segment for a
     batch of existing stories. Returns {slug: [{scene|viz, ...}, ...per segment]}."""
-    from script_generator import _call_llm, _strip_fence
+    from shared.script_generator import _call_llm, _strip_fence
     kit = "\n".join(f"  - {k}: {v}" for k, v in SCENE_ELEMENTS.items())
     menu = "\n".join(f"  - {k}: {v}" for k, v in VIZ_VOCAB.items())
     briefs = []
@@ -693,7 +693,7 @@ def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
 
 def _generate(cfg: dict, n: int) -> list[dict]:
     import os
-    from script_generator import _call_llm, _strip_fence
+    from shared.script_generator import _call_llm, _strip_fence
     # Reliability order: paid/stable backends FIRST, flaky free Groq LAST.
     # The author used to always pick Groq (free) whenever GROQ_API_KEY was set,
     # get 429-starved, and ship ~1 story instead of the whole top-up — which is

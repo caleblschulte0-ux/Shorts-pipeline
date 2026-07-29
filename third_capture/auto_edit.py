@@ -57,7 +57,7 @@ def _probe_wh(path: Path) -> tuple[int, int]:
 def motion_energy(cut: Path, fps: float = 8.0) -> list[tuple[float, float]]:
     """(t, energy) frame-diff motion samples via the existing tblend scorer."""
     try:
-        import gameplay_scanner as gs
+        from funnel import gameplay_scanner as gs
         rows = gs._scan(cut, scan_mode="full", fps=fps)
         return [(t, yavg) for (t, yavg, _ymax, _yr) in rows]
     except Exception:  # noqa: BLE001

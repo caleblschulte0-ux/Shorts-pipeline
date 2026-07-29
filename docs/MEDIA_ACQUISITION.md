@@ -84,7 +84,7 @@ operator review instead of building circumvention.
 
 ## 5. Current provider inventory (funnel, 2026-07-10)
 
-18 parallel providers in `media_funnel.py`: 5 news APIs (keyed) + Imgur +
+18 parallel providers in `funnel/media_funnel.py`: 5 news APIs (keyed) + Imgur +
 Vimeo/YouTube thumbs + **10 licensed-lane sources**: Openverse,
 iNaturalist, NASA, **Wikidata P18 (canonical entity image), Library of
 Congress, Met Museum (CC0), GBIF, Pexels-images, Pixabay-images,

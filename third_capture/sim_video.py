@@ -38,7 +38,7 @@ def F(name: str, size: int) -> ImageFont.FreeTypeFont:
 
 
 def _sim_class(theme: str):
-    import themed_bottom as tb
+    from shared import themed_bottom as tb
     return tb, tb._THEME_CLASSES[theme]
 
 

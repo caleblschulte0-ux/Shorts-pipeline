@@ -1,0 +1,48 @@
+{
+  "key": "ag_lnd_crop_zs_trend",
+  "title": "Permanent cropland",
+  "unit": "% of land area",
+  "geography": "World",
+  "time_coverage": "1972-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Permanent cropland",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.LND.CROP.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 0.75,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 0.89,
+      "period": "1982"
+    },
+    {
+      "label": "1992",
+      "value": 0.93,
+      "period": "1992"
+    },
+    {
+      "label": "2003",
+      "value": 1.09,
+      "period": "2003"
+    },
+    {
+      "label": "2013",
+      "value": 1.28,
+      "period": "2013"
+    },
+    {
+      "label": "2023",
+      "value": 1.48,
+      "period": "2023"
+    }
+  ]
+}

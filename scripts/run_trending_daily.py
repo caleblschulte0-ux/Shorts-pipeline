@@ -49,7 +49,7 @@ sys.path.insert(0, str(REPO / "scripts"))
 
 from scripts.discover_topic import discover_all  # noqa: E402
 from scripts import rank_topics  # noqa: E402
-import script_generator  # noqa: E402
+from shared import script_generator as script_generator  # noqa: E402
 import make_explainer_stacked  # noqa: E402
 
 STATE_DIR = REPO / "state"
@@ -98,7 +98,7 @@ def load_log() -> dict:
 
 
 def save_log(log: dict) -> None:
-    from fsutil import atomic_write_json
+    from shared.fsutil import atomic_write_json
     atomic_write_json(LOG_PATH, log, sort_keys=True)
 
 
@@ -146,7 +146,7 @@ def _illustration_quarantine(pkg: dict) -> str | None:
     if MIN_ILLUSTRATION_PCT <= 0:
         return None
     try:
-        import entity_media
+        from funnel import entity_media as entity_media
         report = entity_media.validate_package(pkg)
     except Exception as e:  # noqa: BLE001
         print(f"[quarantine] validator error, allowing render: "
@@ -232,8 +232,8 @@ def _backfill_illustrations(pkg: dict) -> None:
     illustration coverage so a good story isn't quarantined for thin
     imagery. Best-effort — no-ops if generation/network is unavailable."""
     try:
-        import gemini_images
-        import entity_media
+        from funnel import gemini_images as gemini_images
+        from funnel import entity_media as entity_media
     except Exception:  # noqa: BLE001
         return
     try:
@@ -310,7 +310,7 @@ def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | No
     block: str | None = None
     thumb: str | None = None
     try:
-        import gemini_images
+        from funnel import gemini_images as gemini_images
     except Exception:  # noqa: BLE001
         return None, None
     # Feature 3 — vision QA (blocks only broken/unsafe; fail-open).
@@ -444,7 +444,7 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
             result["ok"] = True
             result["video_url"] = "(dry-run)"
         else:
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             # `channel` selects which YOUTUBE_TOKEN_JSON_* secret the
             # uploader reads. Empty/missing → baller_bro_2_0 (the
             # original `YOUTUBE_TOKEN_JSON`). Set on the package by
@@ -539,7 +539,7 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
             result["ok"] = True
             result["video_url"] = "(dry-run)"
         else:
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             print(f"[{topic.query!r}] uploading...", flush=True)
             uploader = YouTubeUploader()
             upload_result = uploader.upload(
@@ -615,7 +615,7 @@ def _assign_bottom_diversity(pkgs: list[dict]) -> None:
     keep the old relevant-theme diversity. Mutates pkgs in place."""
     try:
         import make_explainer_stacked as mes
-        import themed_bottom
+        from shared import themed_bottom as themed_bottom
     except Exception:  # noqa: BLE001
         return
     tags = mes._seeded_gameplay_tags() or list(mes.GAMEPLAY_TAGS)

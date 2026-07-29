@@ -260,7 +260,7 @@ def _invent_scene(ins):
         return _invent_cache[key]
     scene = None
     try:
-        from script_generator import _strip_fence
+        from shared.script_generator import _strip_fence
         items = [{"label": p.label, "value": p.value,
                   **({"period": p.period} if getattr(p, "period", None) else {})}
                  for p in ins.items]
@@ -318,7 +318,7 @@ def _llm_try(sysp: str, user: str) -> str:
     also paid, so it doesn't hit the free-tier 429 wall that was silently dropping
     every invention. Falls over to Gemini then Groq if Claude isn't configured or
     errors. (Override the order with VIZ_INVENT_BACKENDS="gemini,groq".)"""
-    from script_generator import _call_llm
+    from shared.script_generator import _call_llm
     pref = os.environ.get("VIZ_INVENT_BACKENDS", "anthropic,gemini,groq")
     have = {"anthropic": "ANTHROPIC_API_KEY", "gemini": "GEMINI_API_KEY",
             "groq": "GROQ_API_KEY"}
@@ -416,7 +416,7 @@ def _invent_mechanic(ins):
         return _mech_cache[key]
     spec = None
     try:
-        from script_generator import _strip_fence
+        from shared.script_generator import _strip_fence
         items = [{"label": p.label, "value": p.value,
                   **({"period": p.period} if getattr(p, "period", None) else {})}
                  for p in ins.items]

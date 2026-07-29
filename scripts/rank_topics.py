@@ -205,7 +205,7 @@ def rank(topics: list[Topic], *, top_k: int = 5, backend: str | None = None,
               f"(quirky-first) to bound the LLM request payload", flush=True)
 
     # Lazy import — keeps discovery usable without the LLM dep installed.
-    from script_generator import _call_llm
+    from shared.script_generator import _call_llm
 
     # half_k = required minimum quirky/animal/disaster picks (the channel's
     # high-engagement bucket); other_k = max serious picks. Ratio shifted to

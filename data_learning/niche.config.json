@@ -16713,6 +16713,440 @@
         }
       ],
       "question": "What's the biggest fruit or veggie you've ever grown or seen?"
+    },
+    {
+      "slug": "malaria-fell-for-18-years-then-jumped-back-to-64-0-per-1-000",
+      "title": "Malaria Fell For 18 Years \u2014 Then Jumped Back To 64.0 Per 1,000",
+      "hook": "Malaria dropped for two decades straight \u2014 then last year it shot right back up to sixty four per thousand people at risk.",
+      "closing": "The world got more connected and more sanitary than ever \u2014 but old diseases don't always stay beaten.",
+      "hashtags": [
+        "globalhealth",
+        "datastorytelling",
+        "malaria",
+        "internetgrowth",
+        "sanitation",
+        "shorts"
+      ],
+      "question": "Which stat surprised you more: how fast we got online, or how fast malaria came back?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "it_net_user_zs_trend",
+          "params": {
+            "file": "it_net_user_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 INDIVIDUALS USING ",
+          "topic": "Individuals using the Internet",
+          "say": "Back in 2005 only fifteen point six percent of people worldwide were online; by 2025 that climbed to seventy three point six percent.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person holding a glowing smartphone",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "person holding a glowing smartphone",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sh_mlr_incd_p3_trend",
+          "params": {
+            "file": "sh_mlr_incd_p3_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 INCIDENCE OF MALAR",
+          "topic": "Incidence of malaria",
+          "say": "Malaria cases per thousand fell from seventy nine point nine in 2000 to fifty eight point five by 2018, then climbed back to sixty four in 2024.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mosquito",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mosquito",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "mosquito",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sh_sta_odfc_zs_trend",
+          "params": {
+            "file": "sh_sta_odfc_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 PEOPLE PRACTICING ",
+          "topic": "People practicing open defecation",
+          "say": "Open defecation dropped from twenty two percent of the world's population in 2000 to just four point three five percent by 2024.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "small wooden outhouse",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "small wooden outhouse",
+                "data": {
+                  "value_from": "item:5"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "fish-catch-hit-235-million-tons-even-as-we-protected-the-pla",
+      "title": "Fish Catch Hit 235 Million Tons Even As We 'Protected' The Planet",
+      "hook": "We fenced off more ocean and land than ever before \u2014 and still hauled out more fish than any year in history.",
+      "closing": "Farms spread, catches quadrupled, and 'protected' zones grew all at the same time \u2014 humanity isn't slowing down anywhere.",
+      "hashtags": [
+        "datafacts",
+        "fishing",
+        "environment",
+        "shorts",
+        "sustainability"
+      ],
+      "question": "Which number shocked you more: the fish catch, or how little 'protected' actually protects?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ag_lnd_crop_zs_trend",
+          "params": {
+            "file": "ag_lnd_crop_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 PERMANENT CROPLAND",
+          "topic": "Permanent cropland",
+          "say": "World farmland crept from zero point seven five percent of all land in 1972 to one point four eight percent by 2023 \u2014 permanent cropland nearly doubled in fifty years."
+        },
+        {
+          "source": "offline",
+          "key": "er_fsh_prod_mt_trend",
+          "params": {
+            "file": "er_fsh_prod_mt_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 TOTAL FISHERIES PR",
+          "topic": "Total fisheries production",
+          "say": "World fish catch rose from fifty six million tons in 1972 to two hundred thirty five million tons in 2024 \u2014 more than four times as much fish pulled from the sea.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              },
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 40000000.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:2",
+                  "per_value": 40000000.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "ground-row",
+                "subject": "fish",
+                "data": {
+                  "value_from": "item:5",
+                  "per_value": 40000000.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "World fish catch: 56M \u2192 236M tons"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "er_ptd_totl_zs_trend",
+          "params": {
+            "file": "er_ptd_totl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 TERRESTRIAL AND MA",
+          "topic": "Terrestrial and marine protected areas",
+          "say": "Protected land and ocean area climbed from eleven point one percent in 2013 to seventeen percent by 2025 \u2014 up almost six points in just twelve years.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:5"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Protected area: 11.1% \u2192 17.0%"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "alternative-and-nuclear-energy-leapt-to-16-5-by-2024",
+      "title": "Alternative And Nuclear Energy Leapt To 16.5% By 2024",
+      "hook": "Alternative and nuclear energy barely moved for decades, then it jumped to 16.5 percent of world energy use.",
+      "closing": "Three energy trends, one dataset \u2014 decide for yourself what actually changed.",
+      "hashtags": [
+        "energydata",
+        "renewableenergy",
+        "nuclearpower",
+        "electricity",
+        "datafacts",
+        "shorts"
+      ],
+      "question": "Which of these three numbers surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "eg_fec_rnew_zs_trend",
+          "params": {
+            "file": "eg_fec_rnew_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 RENEWABLE ENERGY C",
+          "topic": "Renewable energy consumption",
+          "say": "Renewable energy held between sixteen point seven and seventeen point four percent from nineteen ninety to twenty fourteen, then climbed to nineteen point seven percent by twenty twenty.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wind turbine",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "eg_use_comm_cl_zs_trend",
+          "params": {
+            "file": "eg_use_comm_cl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ALTERNATIVE AND NU",
+          "topic": "Alternative and nuclear energy",
+          "say": "Alternative and nuclear energy stayed near eight point eight two to nine point six six percent for decades, then surged to sixteen point five percent by twenty twenty four.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cooling tower",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "eg_elc_accs_zs_trend",
+          "params": {
+            "file": "eg_elc_accs_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ACCESS TO ELECTRIC",
+          "topic": "Access to electricity",
+          "say": "Access to electricity rose from seventy three point two percent in nineteen ninety eight to ninety one point nine percent by twenty twenty four.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        }
+      ]
     }
   ],
   "videos": [

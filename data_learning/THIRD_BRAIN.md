@@ -1,5 +1,7 @@
 # THIRD CHANNEL ("third" / @Thirdbraindown) — brain playbook: THE CLIP DESK
 
+> **Repo layout (reorg 2026-07-30):** shared capabilities moved into `funnel/` (media finding/generation) and `shared/` (cross-channel utils); `engines/` unchanged. Old root imports still work via shims, but canonical paths are `funnel.X` / `shared.X` — see `docs/PIPELINE_LAYOUT.md`.
+
 Operator playbook v3 (2026-07-07). **We are not a clip mirror. We are a
 mobile newsroom for one streamer universe.** Status tags: ✅ implemented in
 the pipeline · 🔜 roadmap.
