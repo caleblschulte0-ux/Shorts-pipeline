@@ -22,6 +22,11 @@ in **`engines/`**. Channels are thin consumers: daily renderers at root
   the packages.
 - New shared capability → `funnel/` (media), `engines/` (render engine),
   `shared/` (everything else). Never copy shared logic into a channel.
+- Capability sprint 2026-07-30 added: `shared/video_qa.py` (finished-render
+  QA — run it before uploads), `shared/captions.py` (karaoke ASS captions),
+  `funnel/feeds.py` + `funnel/article_extract.py` (research intake), and
+  the `svg_motion` engine (animated vector cards). All opt-in, all tested
+  via `python -m unittest tests.test_capabilities`.
 
 ## Engines: the shared capability layer — USE IT
 

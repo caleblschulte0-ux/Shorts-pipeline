@@ -115,6 +115,33 @@ REGISTRY: dict[str, dict] = {
                      "(promotion to active requires passing verdict — Ticket E2)",
         "sample": "python -m engines demo parallax --image photo.jpg --out /tmp/px.mp4",
     },
+    "svg_motion": {
+        "kind": "module",
+        "status": "active",
+        "problem": "Animated vector graphics (title cards, stat pops, "
+                   "diagrams) rendered as per-frame SVG -> PNG -> mp4. "
+                   "Born from the ChatGPT-integration finding that animated "
+                   "SVG is a strong vertical format and LLM brains author "
+                   "SVG text well — this owns the capability in-repo with "
+                   "no external service. NOTE: SMIL/CSS animation is NOT "
+                   "evaluated; motion comes from the frame_fn(t) "
+                   "interpolation contract.",
+        "headless": True,
+        "control": "python (engines.svg_motion.maybe_svg_motion; built-ins "
+                   "title_card, stat_pop; ease/interp/seg helpers) / CLI demo",
+        "reusable": True,
+        "license": "cairosvg LGPL-3 (unmodified library use, dynamic import "
+                   "— commercial OK), ffmpeg subprocess",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "~5-15 s for a 3 s 1080x1920@30fps card",
+        "deps": ["cairosvg (pip)", "ffmpeg on PATH"],
+        "fallback": "None -> caller keeps its static card / skips the beat",
+        "consumers": [],
+        "failure_modes": ["cairosvg missing -> available() False",
+                          "frame_fn returns invalid SVG -> None"],
+        "sample": "python -m engines demo svg-motion --out /tmp/card.mp4",
+    },
     # ---- external engines (owned elsewhere; registered for doctor) --------
     "ffmpeg": {
         "kind": "external", "status": "active",

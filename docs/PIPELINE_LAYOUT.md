@@ -30,6 +30,8 @@ everything above the channel line.**
 | `funnel/topic_video.py` | topic → stock video finder |
 | `funnel/gameplay_scanner.py` | gameplay library motion-scanner (bottom-half supply) |
 | `funnel/higgsfield.py` | still-image animation via external API (dormant) |
+| `funnel/feeds.py` | RSS/Atom research intake, TTL-cached (stdlib, never raises) |
+| `funnel/article_extract.py` | clean article text from a URL (trafilatura lane + dependency-free heuristic) |
 
 ## shared/ — everything else shared between all channels
 
@@ -40,6 +42,8 @@ everything above the channel line.**
 | `shared/localize.py` | translation / localized metadata |
 | `shared/script_generator.py` | LLM call helpers (Claude/Groq) + script authoring |
 | `shared/themed_bottom.py` | themed bottom-half game renderer |
+| `shared/video_qa.py` | finished-render QA: black/freeze/silence/loudness (`python -m shared.video_qa out.mp4`); `passes()` fails closed |
+| `shared/captions.py` | word-timed karaoke ASS captions from whisper words + ffmpeg burn |
 
 ## engines/ — registered render capabilities
 
