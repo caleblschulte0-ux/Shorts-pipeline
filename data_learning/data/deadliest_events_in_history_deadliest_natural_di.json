@@ -1,0 +1,28 @@
+{
+  "key": "deadliest_events_in_history_deadliest_natural_di",
+  "title": "Deadliest Natural Disasters",
+  "unit": "deaths",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1931 China Floods",
+      "value": 4000000.0,
+      "period": "1931"
+    },
+    {
+      "label": "2004 Indian Ocean Tsunami",
+      "value": 230000.0,
+      "period": "2004"
+    }
+  ]
+}

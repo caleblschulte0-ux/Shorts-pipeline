@@ -127,6 +127,17 @@ Done:
   (`_BANGER_CACHE`) so overlapping shortlists don't re-pay the call; pure
   velocity is the fallback when the brain is unreachable (rank returns {}),
   so a token outage never blocks a post.
+- **No duplicate uploads (stale-log race fix)** — the never-repeat law lives
+  in `posted_keys` (every posted clip's `_clip_key`), and the selection
+  filter is correct — but `actions/checkout` pins to the TRIGGERING commit,
+  so under the `third-shorts` concurrency queue a run triggered early but
+  executed late loaded a STALE posted log and re-picked a clip another run had
+  already put up (union-merge on commit then kept both — observed 3× on
+  07-07/07-12). `third.yml` now runs "Sync dedupe state from main"
+  (`git checkout origin/main -- state/third_posted_log.json …`) right after
+  checkout, so selection always sees every prior post; a final in-code dedupe
+  guard refuses to download/upload a pick whose key is already in
+  `posted_keys` (all Twitch URL forms + Kick clip urls collapse to one key).
 - **Quality floor — post fewer, never post a dud** — velocity/banger RANK a
   slate but on a starved day the top of a bad board is still bad (live
   incident 2026-07-13: a `b=0.20` "insider WoW mechanic" clip shipped because

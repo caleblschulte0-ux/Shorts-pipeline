@@ -1,0 +1,33 @@
+{
+  "key": "tree_roots_depth_uncovered_tree_root_depth",
+  "title": "Tree Root Depth",
+  "unit": "feet",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Average Root Depth",
+      "value": 40.0,
+      "period": "present day"
+    },
+    {
+      "label": "Longest Root Depth",
+      "value": 100.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Shallowest Root Depth",
+      "value": 10.0,
+      "period": "recorded"
+    }
+  ]
+}

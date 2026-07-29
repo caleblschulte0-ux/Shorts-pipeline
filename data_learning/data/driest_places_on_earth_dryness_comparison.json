@@ -1,0 +1,28 @@
+{
+  "key": "driest_places_on_earth_dryness_comparison",
+  "title": "Dryness Comparison",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Atacama Desert",
+      "value": 0.001,
+      "period": "2020"
+    },
+    {
+      "label": "Amazon Rainforest",
+      "value": 100.0,
+      "period": "2019"
+    }
+  ]
+}

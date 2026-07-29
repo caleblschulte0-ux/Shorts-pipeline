@@ -1,0 +1,28 @@
+{
+  "key": "pyramid_construction_timeline_construction_speed",
+  "title": "Construction Speed",
+  "unit": "blocks per day",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Blocks per Day",
+      "value": 10.0,
+      "period": "2580 BC"
+    },
+    {
+      "label": "Total Blocks",
+      "value": 2300000.0,
+      "period": "2580 BC"
+    }
+  ]
+}

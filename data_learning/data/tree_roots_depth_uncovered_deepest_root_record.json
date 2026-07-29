@@ -1,0 +1,28 @@
+{
+  "key": "tree_roots_depth_uncovered_deepest_root_record",
+  "title": "Deepest Root Record",
+  "unit": "feet",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Deepest Root Record",
+      "value": 236.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Average Root Depth",
+      "value": 40.0,
+      "period": "present day"
+    }
+  ]
+}

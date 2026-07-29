@@ -1,0 +1,28 @@
+{
+  "key": "tree_oxygen_production_forest_oxygen",
+  "title": "Forest Oxygen",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Forest Oxygen Production",
+      "value": 10000.0,
+      "period": "per year"
+    },
+    {
+      "label": "City Oxygen Production",
+      "value": 1000.0,
+      "period": "per year"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "05_graph-lighthouses",
+  "title": "Staffed Lighthouses by Country Since 1900",
+  "y_label": "Staffed lighthouses",
+  "duration": 13,
+  "music_vibe": "dark",
+  "source": "Sources: US Coast Guard, Trinity House, Northern Lighthouse Board, Wikipedia",
+  "hashtags": [
+    "history",
+    "data",
+    "chart",
+    "facts",
+    "lighthouse",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral",
+    "geography",
+    "oddlysatisfying",
+    "interesting"
+  ],
+  "years": [
+    1900,
+    1920,
+    1940,
+    1960,
+    1980,
+    2000,
+    2020
+  ],
+  "series": [
+    {
+      "name": "USA",
+      "color": "#4a90e2",
+      "values": [
+        600,
+        470,
+        300,
+        120,
+        30,
+        5,
+        1
+      ]
+    },
+    {
+      "name": "Canada",
+      "color": "#f5a623",
+      "values": [
+        250,
+        300,
+        350,
+        300,
+        150,
+        80,
+        51
+      ]
+    },
+    {
+      "name": "UK",
+      "color": "#e2585b",
+      "values": [
+        220,
+        210,
+        190,
+        150,
+        60,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "France",
+      "color": "#8b6ce8",
+      "values": [
+        180,
+        185,
+        170,
+        150,
+        50,
+        8,
+        0
+      ]
+    }
+  ]
+}

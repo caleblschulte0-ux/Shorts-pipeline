@@ -1,19 +1,84 @@
 [
   {
-    "topic": "A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married",
-    "title": "A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married",
-    "publish_at": "2026-07-18T13:00:00Z",
+    "topic": "My manager said enforce the return policy exactly. I didn't know he wrote it.",
+    "title": "My manager said enforce the return policy exactly. I didn't know he wrote it.",
+    "publish_at": "2026-07-25T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/rqnDNHEhvgI",
+    "video_url": "https://youtube.com/shorts/k20Oxy6Tdqw",
     "error": null,
-    "elapsed_seconds": 164.3,
-    "package_path": "state/trending_packages/20260718/01_rehearsal-dinner-secret-wife-envelope.json",
-    "video_path": "output/daily_20260718-111317_a_stranger_handed_me_an_envelope_at_my_r.mp4",
+    "elapsed_seconds": 147.9,
+    "package_path": "state/trending_packages/20260725/01_reddit-return-policy-test.json",
+    "video_path": "output/daily_20260725-111401_my_manager_said_enforce_the_return_polic.mp4",
     "qa": {
       "ok": true,
       "verdict": "ok",
       "reason": "short"
     },
+    "channel": "default"
+  },
+  {
+    "topic": "My neighbor blocked my driveway every night. The cones exposed something else.",
+    "title": "My neighbor blocked my driveway every night. The cones exposed something else.",
+    "publish_at": "2026-07-25T15:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 The top half of the frames, which is described as being a news/stock photo, consistently displays the abstract game animation instead of a photo. This is a consistent deviation from the expected conte",
+    "elapsed_seconds": 117.2,
+    "package_path": "state/trending_packages/20260725/02_reddit-driveway-cones.json",
+    "video_path": "output/daily_20260725-111627_my_neighbor_blocked_my_driveway_every_ni.mp4",
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The top half of the frames, which is described as being a news/stock photo, consistently displays the abstract game animation instead of a photo. This is a consistent deviation from the expected conte"
+    },
+    "quarantined": true
+  },
+  {
+    "topic": "There's a parasite hiding in your salad bag right now",
+    "title": "There's a parasite hiding in your salad bag right now",
+    "publish_at": "2026-07-25T15:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/c3OS0LHYNe0",
+    "error": null,
+    "elapsed_seconds": 23.3,
+    "package_path": "state/trending_packages/20260725/03_textcard-cyclospora-recall.json",
+    "video_path": "output/daily_20260725-111801_there_s_a_parasite_hiding_in_your_salad_.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Sperm whales sleep standing straight up",
+    "title": "Sperm whales sleep standing straight up",
+    "publish_at": "2026-07-25T17:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/Wbv_RG8NHLk",
+    "error": null,
+    "elapsed_seconds": 25.5,
+    "package_path": "state/trending_packages/20260725/04_textcard-sperm-whale-sleep.json",
+    "video_path": "output/daily_20260725-111824_sperm_whales_sleep_standing_straight_up.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Orbital Rocket Launches per Year by Provider",
+    "title": "Orbital Rocket Launches per Year by Provider",
+    "publish_at": "2026-07-25T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/CtXWKP8RIe0",
+    "error": null,
+    "elapsed_seconds": 76.9,
+    "package_path": "state/trending_packages/20260725/05_graph-rocket-launches.json",
+    "video_path": "output/daily_20260725-111849_orbital_rocket_launches_per_year_by_prov.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
+    "title": "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
+    "publish_at": "2026-07-25T21:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/nNDmpmFZOBA",
+    "error": null,
+    "elapsed_seconds": 64.6,
+    "package_path": "state/trending_packages/20260725/06_graph-lottery-jackpots.json",
+    "video_path": "output/daily_20260725-112006_biggest_lottery_jackpots_ever__mega_mill.mp4",
     "channel": "default"
   }
 ]

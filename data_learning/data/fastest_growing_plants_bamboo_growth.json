@@ -1,0 +1,28 @@
+{
+  "key": "fastest_growing_plants_bamboo_growth",
+  "title": "Bamboo Growth",
+  "unit": "inches",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-22"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Bamboo",
+      "value": 35.0,
+      "period": "24 hours"
+    },
+    {
+      "label": "Wheat Grass",
+      "value": 10.0,
+      "period": "24 hours"
+    }
+  ]
+}

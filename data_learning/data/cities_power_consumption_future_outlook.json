@@ -1,0 +1,28 @@
+{
+  "key": "cities_power_consumption_future_outlook",
+  "title": "Future Outlook",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Solar Power",
+      "value": 40.0,
+      "period": "2050"
+    },
+    {
+      "label": "Wind Power",
+      "value": 30.0,
+      "period": "2050"
+    }
+  ]
+}

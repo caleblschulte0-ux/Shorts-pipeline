@@ -45,7 +45,7 @@ env:
 jobs:
   third:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120   # slot-retries can render extra clips per slot
     # On a chain fire (workflow_run) only run when Daily Shorts actually
     # succeeded; all other triggers (dispatch, schedule, push) always run.
     if: >-
@@ -60,6 +60,20 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
+      # DEDUPE FRESHNESS (fix for duplicate uploads): actions/checkout pins to
+      # the TRIGGERING commit SHA. Under the `third-shorts` concurrency queue a
+      # run can be triggered early but execute late — after another run already
+      # committed new posts — so its checked-out posted log is STALE and it
+      # re-picks a clip that's already up (union-merge on commit then keeps
+      # both). Pull the newest committed dedupe state from origin/main BEFORE
+      # run_third selects, so posted_keys always reflects every prior post.
+      - name: Sync dedupe state from main
+        run: |
+          git fetch origin main --depth=1 || true
+          git checkout origin/main -- \
+            state/third_posted_log.json state/third_qa_stats.json 2>/dev/null \
+            || echo "no committed dedupe state yet — first run"
 
       - name: Pre-flight — secrets + kill switch
         run: |
@@ -104,6 +118,7 @@ jobs:
           path: |
             cache/translation/
             cache/funnel/
+            cache/transcripts/
           key: translation-cache-v1-${{ github.run_id }}
           restore-keys: |
             translation-cache-v1-
@@ -123,6 +138,15 @@ jobs:
           # Discovery falls back to yt-dlp when unset.
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          # ADDITIVE REACH (deep dive #1 lever): cross-post each clip to the
+          # TikTok FYP — where our niche's sub-10k-follower accounts hit
+          # millions while YouTube's feed starves a cold channel. Optional:
+          # unset = YouTube-only (today's behaviour). IG Reels also needs
+          # META_ACCESS_TOKEN + IG_USER_ID + REELS_PUBLIC_HOST.
+          TIKTOK_ACCESS_TOKEN_THIRD: ${{ secrets.TIKTOK_ACCESS_TOKEN_THIRD }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          REELS_PUBLIC_HOST: ${{ secrets.REELS_PUBLIC_HOST }}
           # Wrong-channel guard: hard default to the real third channel;
           # repo var THIRD_EXPECTED_CHANNEL can override if renamed.
           YOUTUBE_EXPECTED_CHANNEL: ${{ vars.THIRD_EXPECTED_CHANNEL || 'Thirdbraindown' }}
@@ -159,4 +183,5 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "third: update posted log + analytics [skip ci]" \
             state/third_posted_log.json state/third_qa_stats.json \
+            state/third_events.json \
             state/analytics_third

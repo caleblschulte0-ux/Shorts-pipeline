@@ -1,0 +1,28 @@
+{
+  "key": "ancient_wonders_labor_force",
+  "title": "Labor Force",
+  "unit": "workers",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Great Pyramid",
+      "value": 100000.0,
+      "period": "2580 BC"
+    },
+    {
+      "label": "Pyramid of Khafre",
+      "value": 50000.0,
+      "period": "2520 BC"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "key": "caffeine_content_revealed_soda_caffeine",
+  "title": "Soda Caffeine",
+  "unit": "milligrams",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Cola",
+      "value": 35.0,
+      "period": "per 12 oz can"
+    },
+    {
+      "label": "Lemon-Lime Soda",
+      "value": 45.0,
+      "period": "per 12 oz can"
+    },
+    {
+      "label": "Cherry Soda",
+      "value": 60.0,
+      "period": "per 12 oz can"
+    }
+  ]
+}

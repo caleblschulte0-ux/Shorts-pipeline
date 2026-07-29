@@ -1,0 +1,28 @@
+{
+  "key": "sharp_teeth_in_the_wild_tooth_length",
+  "title": "Tooth Length",
+  "unit": "inches",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Walrus",
+      "value": 3.0,
+      "period": "2020"
+    },
+    {
+      "label": "Narwhal",
+      "value": 10.0,
+      "period": "2019"
+    }
+  ]
+}

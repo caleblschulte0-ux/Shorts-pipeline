@@ -1,0 +1,28 @@
+{
+  "key": "deadliest_events_in_history_deadliest_pandemics",
+  "title": "Deadliest Pandemics",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Black Death",
+      "value": 1350.0,
+      "period": "14th century"
+    },
+    {
+      "label": "Spanish Flu",
+      "value": 1918.0,
+      "period": "early 20th century"
+    }
+  ]
+}

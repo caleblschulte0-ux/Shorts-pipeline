@@ -1,0 +1,28 @@
+{
+  "key": "lightning_travel_distance_lightning_formation",
+  "title": "Lightning Formation",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-22"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 100.0,
+      "period": "2010"
+    },
+    {
+      "label": "2015",
+      "value": 500.0,
+      "period": "2015"
+    }
+  ]
+}

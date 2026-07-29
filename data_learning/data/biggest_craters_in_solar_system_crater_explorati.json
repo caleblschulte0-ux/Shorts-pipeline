@@ -1,0 +1,33 @@
+{
+  "key": "biggest_craters_in_solar_system_crater_explorati",
+  "title": "Crater Exploration",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "1960",
+      "value": 1960.0,
+      "period": "1960"
+    },
+    {
+      "label": "2000",
+      "value": 2000.0,
+      "period": "2000"
+    },
+    {
+      "label": "2020",
+      "value": 2020.0,
+      "period": "2020"
+    }
+  ]
+}

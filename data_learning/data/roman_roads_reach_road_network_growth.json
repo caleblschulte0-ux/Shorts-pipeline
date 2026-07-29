@@ -1,0 +1,33 @@
+{
+  "key": "roman_roads_reach_road_network_growth",
+  "title": "Road Network Growth",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "100 BC",
+      "value": 10000.0,
+      "period": "100 BC"
+    },
+    {
+      "label": "100 AD",
+      "value": 50000.0,
+      "period": "100 AD"
+    },
+    {
+      "label": "500 AD",
+      "value": 250000.0,
+      "period": "500 AD"
+    }
+  ]
+}

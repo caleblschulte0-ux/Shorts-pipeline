@@ -1,0 +1,28 @@
+{
+  "key": "lava_production_of_volcanoes_total_lava_producti",
+  "title": "Total Lava Production",
+  "unit": "km3",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Kilauea Volcano",
+      "value": 1.0,
+      "period": "2018"
+    },
+    {
+      "label": "Mount Etna Volcano",
+      "value": 0.5,
+      "period": "2011"
+    }
+  ]
+}

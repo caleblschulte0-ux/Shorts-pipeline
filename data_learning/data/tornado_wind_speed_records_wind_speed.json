@@ -1,0 +1,28 @@
+{
+  "key": "tornado_wind_speed_records_wind_speed",
+  "title": "Wind Speed",
+  "unit": "mph",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-22"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Lowest wind speed",
+      "value": 100.0,
+      "period": "2020"
+    },
+    {
+      "label": "Highest wind speed",
+      "value": 300.0,
+      "period": "2022"
+    }
+  ]
+}

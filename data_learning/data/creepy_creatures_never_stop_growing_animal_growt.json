@@ -1,0 +1,28 @@
+{
+  "key": "creepy_creatures_never_stop_growing_animal_growt",
+  "title": "Animal Growth",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Whale Shark",
+      "value": 20.0,
+      "period": "2020"
+    },
+    {
+      "label": "Giant Squid",
+      "value": 13.0,
+      "period": "2019"
+    }
+  ]
+}

@@ -10,9 +10,13 @@ Pipeline per clip:
      banner, optional hook card over the first seconds, loudness
      normalize. One ffmpeg pass for the visual chain.
 
-Credit doctrine (THIRD_BRAIN.md): streamer name burned on screen the
-whole video + source link in the description. Only channels on the
-allowlist in the package are used.
+Credit doctrine (THIRD_BRAIN.md): the streamer is credited + source-linked
+in every platform's CAPTION/description, and any clip is taken down on
+request. Credit is NO LONGER burned on screen by default (edit(burn_credit)
+opts back in): a full-video third-party watermark is the single loudest
+"reposted / unoriginal" signal to TikTok's originality filter and caps a
+clip at ~300 views on the FYP. Attribution in the caption honors the doctrine
+without the watermark that strangles reach. Only allowlisted channels used.
 """
 from __future__ import annotations
 
@@ -163,8 +167,45 @@ def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
                       "title": c["title"], "channel": channel,
                       "platform": "twitch",
                       "age_h": max(0.05, (now - created) / 3600),
-                      "vod_offset": c.get("vod_offset")})
+                      "vod_offset": c.get("vod_offset"),
+                      "video_id": c.get("video_id")})
     return clips
+
+
+def maybe_vod_window(clip: dict, work: Path, *, before: float = 60.0,
+                     after: float = 60.0) -> dict | None:
+    """VOD context expansion (STORY_DIRECTOR_PLAYBOOK §6): a Twitch clip
+    often starts after the setup or ends before the reaction. When helix
+    gave us the source VOD id + offset, pull the surrounding window so the
+    story director can recover the missing context. Returns
+    {"path", "vod_start_s", "clip_offset_s"} or None (sub-only VODs,
+    deleted VODs, non-helix sources) — callers must REJECT a story whose
+    essential context can't be recovered, never invent it."""
+    vid = clip.get("video_id")
+    off = clip.get("vod_offset")
+    if not vid or off is None:
+        return None
+    try:
+        start = max(0.0, float(off) - before)
+        end = float(off) + float(clip.get("duration") or 30.0) + after
+        work = Path(work)
+        work.mkdir(parents=True, exist_ok=True)
+        stem = f"vod_{vid}_{int(start)}_{int(end)}"
+        out = work / f"{stem}.mp4"
+        if not out.exists():
+            _ytdlp(["--download-sections", f"*{start:.0f}-{end:.0f}",
+                    "-f", "b[height<=720]/b",
+                    "--force-keyframes-at-cuts",
+                    "-o", str(out), "--recode-video", "mp4",
+                    f"https://www.twitch.tv/videos/{vid}"])
+        if not out.exists() or out.stat().st_size < 10_000:
+            return None
+        return {"path": str(out), "vod_start_s": start,
+                "clip_offset_s": float(off) - start}
+    except Exception as e:  # noqa: BLE001
+        print(f"[vod] expansion failed for video {vid} "
+              f"({type(e).__name__}) — context unrecoverable", flush=True)
+        return None
 
 
 # Kick and Rumble sit behind bot protection; yt-dlp's TLS impersonation
@@ -331,13 +372,43 @@ def download(url: str, work: Path) -> dict:
 _JUNK = re.compile(r"^[\W_]+$|♪|^\[.*\]$|^\(.*\)$")
 
 
+def _transcript_cache_path(video: Path, model_name: str) -> Path | None:
+    """Content-addressed transcript cache key: sha1 of the media bytes +
+    model name, under cache/ (gitignored; persisted by actions/cache).
+    Whisper-small on CPU costs 30-60s per clip and a story build transcribes
+    every beat — the same clip re-picked across runs (or reused as a story
+    member) should never pay that twice. None on any hashing error (cache
+    silently disabled for that call)."""
+    try:
+        h = hashlib.sha1()
+        with open(video, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+        return (REPO / "cache" / "transcripts"
+                / f"{h.hexdigest()[:24]}-{model_name}.json")
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
+    cpath = _transcript_cache_path(Path(video), model_name)
+    if cpath is not None and cpath.exists():
+        try:
+            return json.loads(cpath.read_text())
+        except Exception:  # noqa: BLE001 — corrupt cache entry: re-transcribe
+            pass
     import whisper
     model = whisper.load_model(model_name)
     # condition_on_previous_text=False stops the music/crowd-noise
-    # hallucination loops stream audio triggers
+    # hallucination loops stream audio triggers.
+    # language="en" is REQUIRED: without it whisper auto-detects language on
+    # noisy/music/crowd audio and hallucinates foreign-script warning text
+    # ("CẨN TRỌNG", Vietnamese for CAUTION, burned into a live batch) that then
+    # gets burned into the captions. Our channel is English streamer content —
+    # pin the decode to English so a mishear is at worst an English word the
+    # blocklist/low-probability filters can catch, never foreign glyphs.
     res = model.transcribe(str(video), word_timestamps=True, fp16=False,
-                           condition_on_previous_text=False)
+                           condition_on_previous_text=False, language="en")
     words = []
     for seg in res["segments"]:
         if seg.get("no_speech_prob", 0) > 0.66:
@@ -349,6 +420,15 @@ def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
             if (token and not _JUNK.match(token)
                     and w.get("probability", 1.0) >= 0.35):
                 words.append({"w": token, "s": w["start"], "e": w["end"]})
+    # WRITE the cache (reviewer-caught bug: the original cache read but
+    # never wrote, so it stayed empty forever). Best-effort — a failed
+    # write must never lose the transcription we just paid for.
+    if cpath is not None:
+        try:
+            cpath.parent.mkdir(parents=True, exist_ok=True)
+            cpath.write_text(json.dumps(words))
+        except Exception:  # noqa: BLE001
+            pass
     return words
 
 
@@ -369,7 +449,15 @@ Format: Layer, Start, End, Style, Text
 # ASS colors are &HAABBGGRR
 _YELLOW = r"\c&H00FFFF&"
 _WHITE = r"\c&HFFFFFF&"
-_POP_FX = r"{\pos(540,1350)\fscx72\fscy72\t(0,70,\fscx100\fscy100)}"
+# Kinetic word-pop (the "someone edited this" caption): the word snaps in
+# small, OVERSHOOTS past full size, then settles — the bounce every TikTok/
+# Shorts editor uses, instead of a flat scale. Two chained \t transforms:
+# 0-80ms grow 50%→114% (the snap), 80-150ms ease 114%→100% (the settle).
+# A soft drop-shadow (\shad, \4c black) lifts it off busy footage. This is
+# the biggest universal look upgrade — it renders on every caption in BOTH
+# A/B arms, calm or not, so it improves clips the edit effects can't touch.
+_POP_FX = (r"{\pos(540,1350)\shad3\4c&H000000&\fscx50\fscy50"
+           r"\t(0,80,\fscx114\fscy114)\t(80,150,\fscx100\fscy100)}")
 
 # Caption safety: whisper mishears crowd noise into words we must never
 # burn on screen ("higger" was a real incident). Any group containing a
@@ -392,11 +480,18 @@ def _clean(token: str) -> str:
 
 
 def build_ass(words: list[dict], credit: str, dur: float, out: Path,
-              max_group: int = 3) -> Path:
+              max_group: int = 3, burn_credit: bool = False) -> Path:
     """Word-pop subtitles (ALL-CAPS Anton, one yellow-emphasized word per
-    group, pop-in) plus a permanent credit line. Groups split on gaps
-    > 0.6s or punctuation. Groups containing blocklisted tokens are
-    dropped entirely — no caption beats a catastrophic caption."""
+    group, pop-in). Groups split on gaps > 0.6s or punctuation. Groups
+    containing blocklisted tokens are dropped entirely — no caption beats a
+    catastrophic caption.
+
+    burn_credit: draw a PERMANENT on-screen credit line. Default OFF — a
+    full-video third-party watermark is the loudest "reposted / unoriginal"
+    signal to TikTok's originality filter (the thing that caps a clip at
+    ~300 views on the FYP). Credit is preserved in every platform's caption/
+    description instead, which honors the credit+takedown doctrine without
+    the watermark that strangles reach."""
     lines = [_ASS_HEADER]
     group: list[dict] = []
 
@@ -422,8 +517,9 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
             flush()
         group.append(w)
     flush()
-    lines.append(
-        f"Dialogue: 0,{_ts(0)},{_ts(dur)},Credit,{credit}\n")
+    if burn_credit and credit:
+        lines.append(
+            f"Dialogue: 0,{_ts(0)},{_ts(dur)},Credit,{credit}\n")
     out.write_text("".join(lines))
     return out
 
@@ -446,7 +542,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
          whisper_model: str = "small", words: list[dict] | None = None,
          auto: bool = True, series: str = "chaos",
-         direct: dict | None = None) -> dict:
+         direct: dict | None = None, edit_mode: bool = False) -> dict:
     """Compose the 9:16 edit. `credit` is the full on-screen label
     (e.g. "twitch.tv/xqc", "kick.com/adinross"). Pass precomputed `words`
     (from transcribe_words on the SAME uncut file) to skip re-transcribing —
@@ -524,6 +620,25 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         if words is None:
             words = transcribe_words(cut, whisper_model)
 
+        # Detect chaotic / no-stable-subject footage (IRL, party, crowd) up
+        # front: shot_plan classifies "wide" when nothing trackable persists.
+        # Such clips get a CALM Stage 1 (no slow-mo/replay/impact — those smear
+        # on unanchored motion) and the whole-frame reframe. This is the fix
+        # for the IRL QA-rejects. Best-effort: no cv2/analysis → normal path.
+        calm = False
+        if auto:
+            try:
+                from third_capture import shot_plan as _spn
+                _an = _spn.analyze(cut)
+                if _an is not None:
+                    _layout, _, _ = _spn.classify(_an)
+                    calm = (_layout == "wide")
+                    if calm:
+                        print("[edit] chaotic/no-subject footage — calm "
+                              "treatment (no slow-mo/replay/impact)", flush=True)
+            except Exception:  # noqa: BLE001 — default to the normal path
+                calm = False
+
         # ---- Stage 1: time-domain auto-edit (retime into a program) ----
         # Punch-in zooms, slow-mo + instant replay of the money moment,
         # dead-air speed-up, impact shake/flash, SFX. Never raises — on any
@@ -532,15 +647,17 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         program = cut
         overlays: list[dict] = []
         ledger_ae = {"auto_edit": False, "fallback_reason": None,
-                     "effects": [], "edl": None}
+                     "effects": [], "edl": None, "edit_mode": bool(edit_mode)}
         if auto:
             try:
                 from third_capture import auto_edit as ae
-                st1 = ae.build(cut, words, dur, series, tmp, direct=direct)
+                st1 = ae.build(cut, words, dur, series, tmp, direct=direct,
+                               calm=calm, edit_mode=edit_mode)
                 program, words, dur = st1["program"], st1["words"], st1["dur"]
                 overlays = st1.get("overlays", [])
                 ledger_ae = {k: st1[k] for k in
-                             ("auto_edit", "fallback_reason", "effects", "edl")}
+                             ("auto_edit", "fallback_reason", "effects", "edl",
+                              "edit_mode")}
             except Exception as e:  # noqa: BLE001
                 ledger_ae["fallback_reason"] = f"stage1:{type(e).__name__}"
 
@@ -580,7 +697,11 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 "[0:v]split=2[bg][fg];"
                 f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
                 "increase,crop=1080:1920,gblur=sigma=24,"
-                "eq=brightness=-0.12:saturation=1.15[bgd];"
+                # was brightness=-0.12 — darkening an already-dark IRL clip
+                # crushed the whole frame to near-black (the top QA-reject on
+                # Streamer University footage). A hair of darken keeps the
+                # centered clip popping without swallowing dim sources.
+                "eq=brightness=-0.03:saturation=1.15[bgd];"
                 "[fg]scale=1080:-2[fgs];"
                 "[bgd][fgs]overlay=(W-w)/2:(H-h)/2[base]"
             )

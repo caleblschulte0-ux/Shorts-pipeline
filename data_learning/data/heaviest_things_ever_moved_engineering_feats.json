@@ -1,0 +1,28 @@
+{
+  "key": "heaviest_things_ever_moved_engineering_feats",
+  "title": "Engineering Feats",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Cranes",
+      "value": 20.0,
+      "period": "2020"
+    },
+    {
+      "label": "Transporters",
+      "value": 50.0,
+      "period": "2020"
+    }
+  ]
+}

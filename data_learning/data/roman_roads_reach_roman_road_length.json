@@ -1,0 +1,28 @@
+{
+  "key": "roman_roads_reach_roman_road_length",
+  "title": "Roman Road Length",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Total length",
+      "value": 250000.0,
+      "period": "5th century"
+    },
+    {
+      "label": "Longest road",
+      "value": 1500.0,
+      "period": "5th century"
+    }
+  ]
+}

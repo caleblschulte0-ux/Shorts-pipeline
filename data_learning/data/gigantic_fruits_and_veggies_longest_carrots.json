@@ -1,0 +1,28 @@
+{
+  "key": "gigantic_fruits_and_veggies_longest_carrots",
+  "title": "Longest Carrots",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Longest Carrot",
+      "value": 19.0,
+      "period": "2020"
+    },
+    {
+      "label": "5th Longest Carrot",
+      "value": 9.0,
+      "period": "2020"
+    }
+  ]
+}

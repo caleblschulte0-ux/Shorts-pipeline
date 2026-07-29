@@ -1,0 +1,28 @@
+{
+  "key": "longest_rivers_on_earth_river_discharge",
+  "title": "River Discharge",
+  "unit": "m\u00b3/s",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-23"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Amazon River",
+      "value": 209000.0,
+      "period": "2020"
+    },
+    {
+      "label": "Congo River",
+      "value": 48000.0,
+      "period": "2020"
+    }
+  ]
+}

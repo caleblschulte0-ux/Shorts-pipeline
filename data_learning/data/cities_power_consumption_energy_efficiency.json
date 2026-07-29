@@ -1,0 +1,28 @@
+{
+  "key": "cities_power_consumption_energy_efficiency",
+  "title": "Energy Efficiency",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 10.0,
+      "period": "2010"
+    },
+    {
+      "label": "2020",
+      "value": 8.0,
+      "period": "2020"
+    }
+  ]
+}

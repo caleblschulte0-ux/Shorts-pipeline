@@ -1,0 +1,28 @@
+{
+  "key": "tornado_wind_speed_records_tornado_categories",
+  "title": "Tornado Categories",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-22"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "EF0",
+      "value": 0.0,
+      "period": "2010"
+    },
+    {
+      "label": "EF5",
+      "value": 5.0,
+      "period": "2015"
+    }
+  ]
+}

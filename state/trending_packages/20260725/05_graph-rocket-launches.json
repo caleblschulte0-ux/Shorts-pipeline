@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "05_graph-rocket-launches",
+  "title": "Orbital Rocket Launches per Year by Provider",
+  "y_label": "Launches per year",
+  "duration": 13,
+  "source": "Sources: public launch-tracking data, BryceTech/Jonathan's Space Report (approx.)",
+  "hashtags": [
+    "space",
+    "spacex",
+    "rockets",
+    "science",
+    "data",
+    "chart",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral",
+    "nasa",
+    "tech"
+  ],
+  "years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "SpaceX",
+      "color": "#4a90e2",
+      "values": [
+        26,
+        31,
+        61,
+        98,
+        134,
+        150
+      ]
+    },
+    {
+      "name": "China",
+      "color": "#ff3030",
+      "values": [
+        39,
+        55,
+        64,
+        67,
+        68,
+        70
+      ]
+    },
+    {
+      "name": "Russia",
+      "color": "#ffaa30",
+      "values": [
+        17,
+        25,
+        22,
+        19,
+        17,
+        15
+      ]
+    }
+  ],
+  "music_vibe": "dark"
+}

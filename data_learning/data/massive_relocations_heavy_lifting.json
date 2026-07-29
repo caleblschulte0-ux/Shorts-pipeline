@@ -1,0 +1,28 @@
+{
+  "key": "massive_relocations_heavy_lifting",
+  "title": "Heavy Lifting",
+  "unit": "tons",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Largest Crane",
+      "value": 3000.0,
+      "period": "2019"
+    },
+    {
+      "label": "Strongest Magnet",
+      "value": 20000.0,
+      "period": "2015"
+    }
+  ]
+}

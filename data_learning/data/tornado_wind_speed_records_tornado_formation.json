@@ -1,0 +1,28 @@
+{
+  "key": "tornado_wind_speed_records_tornado_formation",
+  "title": "Tornado Formation",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-22"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Moisture",
+      "value": 50.0,
+      "period": "2010"
+    },
+    {
+      "label": "Warm air",
+      "value": 70.0,
+      "period": "2015"
+    }
+  ]
+}

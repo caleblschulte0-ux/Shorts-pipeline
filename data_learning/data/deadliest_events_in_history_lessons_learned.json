@@ -1,0 +1,28 @@
+{
+  "key": "deadliest_events_in_history_lessons_learned",
+  "title": "Lessons Learned",
+  "unit": "percent",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Global Population Affected",
+      "value": 50.0,
+      "period": "present day"
+    },
+    {
+      "label": "Human-Caused Disasters",
+      "value": 90.0,
+      "period": "present day"
+    }
+  ]
+}

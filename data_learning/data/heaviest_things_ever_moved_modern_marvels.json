@@ -1,0 +1,28 @@
+{
+  "key": "heaviest_things_ever_moved_modern_marvels",
+  "title": "Modern Marvels",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Oil Rig",
+      "value": 100000.0,
+      "period": "2020"
+    },
+    {
+      "label": "Large Ship Displacement",
+      "value": 200000.0,
+      "period": "2020"
+    }
+  ]
+}

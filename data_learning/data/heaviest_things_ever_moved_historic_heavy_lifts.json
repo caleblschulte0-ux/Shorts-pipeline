@@ -1,0 +1,33 @@
+{
+  "key": "heaviest_things_ever_moved_historic_heavy_lifts",
+  "title": "Historic Heavy Lifts",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "USS Illinois",
+      "value": 6000.0,
+      "period": "1898"
+    },
+    {
+      "label": "London Bridge",
+      "value": 12000.0,
+      "period": "1967"
+    },
+    {
+      "label": "Yucca Mountain Tunnel Borer",
+      "value": 50000.0,
+      "period": "2007"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "key": "tree_roots_depth_uncovered_root_system_size",
+  "title": "Root System Size",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "share",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Root System Area",
+      "value": 1.0,
+      "period": "average"
+    },
+    {
+      "label": "Root Biomass Percentage",
+      "value": 30.0,
+      "period": "recorded"
+    }
+  ]
+}

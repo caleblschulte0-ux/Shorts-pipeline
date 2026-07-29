@@ -1,0 +1,28 @@
+{
+  "key": "gigantic_fruits_and_veggies_heaviest_watermelons",
+  "title": "Heaviest Watermelons",
+  "unit": "pounds",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Heaviest Watermelon",
+      "value": 350.0,
+      "period": "2019"
+    },
+    {
+      "label": "Average Watermelon",
+      "value": 20.0,
+      "period": "2019"
+    }
+  ]
+}

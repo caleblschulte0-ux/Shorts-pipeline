@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "subreddit": "pettyrevenge",
+  "slug": "02_reddit-lunch-thief",
+  "title": "Someone kept stealing my lunch, so I labeled the ghost pepper one 'diet special'",
+  "hashtags": [
+    "reddit",
+    "pettyrevenge",
+    "revenge",
+    "storytime",
+    "justice",
+    "karma",
+    "fyp",
+    "shorts",
+    "story",
+    "viral",
+    "satisfying",
+    "office"
+  ],
+  "script": "Someone in my office had been stealing lunches out of the break room fridge for weeks, and management just shrugged it off as not a big deal. So I made a container of mac and cheese, mixed in ghost pepper extract, and wrote DIET SPECIAL DO NOT EAT in giant letters on the lid, betting a thief who ignores every other label wouldn't stop at that one either. Twenty minutes later I heard someone sprinting down the hallway to the bathroom, gasping and chugging milk straight from the carton in the break room. It was our team lead, red faced and sweating, who had been eating everyone's food for months and blaming the new guy. HR pulled the fridge camera footage that same afternoon, and by Friday he was quietly moved to a different floor with a formal write up in his file. Nobody's lunch has gone missing since.",
+  "shots": [
+    {
+      "phrase": "stealing lunches out of the break room fridge",
+      "query": "office break room fridge",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "mixed in ghost pepper extract",
+      "query": "hot sauce ghost pepper bottle",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "wrote DIET SPECIAL DO NOT EAT in giant letters",
+      "query": "handwritten warning label food container",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "sprinting down the hallway to the bathroom",
+      "query": "person running office hallway",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "chugging milk straight from the carton",
+      "query": "drinking milk carton fast",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "red faced and sweating",
+      "query": "sweating red face man closeup",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "HR pulled the fridge camera footage",
+      "query": "security camera office footage",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "quietly moved to a different floor",
+      "query": "empty office cubicle desk",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "wrote DIET SPECIAL DO NOT EAT in giant letters",
+      "text": "THE TRAP",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "chugging milk straight from the carton",
+      "text": "CAUGHT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "who had been eating everyone's food for months",
+      "text": "IT WAS HIM",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "quietly moved to a different floor",
+      "text": "BUSTED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "dark"
+}

@@ -45,5 +45,8 @@ jobs:
           sudo apt-get install -y -q ffmpeg fonts-dejavu-core
           pip install -q pillow numpy "opencv-python-headless<5"
 
+      - name: Story director acceptance tests (logic tier)
+        run: python scripts/test_story_acceptance.py
+
       - name: Pipeline smoke test
         run: python scripts/smoke_third.py

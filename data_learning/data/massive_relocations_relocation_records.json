@@ -1,0 +1,43 @@
+{
+  "key": "massive_relocations_relocation_records",
+  "title": "Relocation Records",
+  "unit": "tons",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "rank",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "USS Iowa",
+      "value": 45000.0,
+      "period": "2012"
+    },
+    {
+      "label": "Bell Tower",
+      "value": 25000.0,
+      "period": "2001"
+    },
+    {
+      "label": "Golden Gate Bridge",
+      "value": 30000.0,
+      "period": "2013"
+    },
+    {
+      "label": "Eiffel Tower",
+      "value": 20000.0,
+      "period": "2014"
+    },
+    {
+      "label": "Statue of Liberty",
+      "value": 15000.0,
+      "period": "2015"
+    }
+  ]
+}

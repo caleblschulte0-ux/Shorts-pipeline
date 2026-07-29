@@ -1,0 +1,28 @@
+{
+  "key": "language_disappearance_rate_language_distributio",
+  "title": "Language Distribution",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Minority Languages",
+      "value": 50.0,
+      "period": "2020s"
+    },
+    {
+      "label": "Major Languages",
+      "value": 10.0,
+      "period": "2020s"
+    }
+  ]
+}

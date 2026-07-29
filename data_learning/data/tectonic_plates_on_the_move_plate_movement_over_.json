@@ -1,0 +1,28 @@
+{
+  "key": "tectonic_plates_on_the_move_plate_movement_over_",
+  "title": "Plate Movement Over Time",
+  "unit": "cm/yr",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-21"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "10 million years ago",
+      "value": 2.0,
+      "period": "10 million years ago"
+    },
+    {
+      "label": "Present day",
+      "value": 3.0,
+      "period": "2020"
+    }
+  ]
+}

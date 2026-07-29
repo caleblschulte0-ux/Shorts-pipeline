@@ -4,23 +4,25 @@
   "unit": "",
   "geography": "",
   "time_coverage": "",
-  "insight_type": "comparison",
+  "insight_type": "share",
   "source": {
     "name": "Illustrative dataset",
     "publisher": "Illustrative",
     "url": "",
     "officiality": "illustrative",
-    "access_date": "2026-07-12"
+    "access_date": "2026-07-20"
   },
   "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
   "points": [
     {
-      "label": "Total labor force",
-      "value": 100000.0
+      "label": "Labor Force",
+      "value": 100000.0,
+      "period": "2580 BC"
     },
     {
-      "label": "Skilled workers",
-      "value": 20000.0
+      "label": "Population",
+      "value": 1000000.0,
+      "period": "2580 BC"
     }
   ]
 }

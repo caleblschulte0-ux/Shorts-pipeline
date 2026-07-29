@@ -1,0 +1,28 @@
+{
+  "key": "pyramid_construction_timeline_great_pyramid_of_g",
+  "title": "Great Pyramid of Giza",
+  "unit": "years",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "trend",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-20"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Construction Start",
+      "value": 2580.0,
+      "period": "2580 BC"
+    },
+    {
+      "label": "Construction End",
+      "value": 2560.0,
+      "period": "2560 BC"
+    }
+  ]
+}

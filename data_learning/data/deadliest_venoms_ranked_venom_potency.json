@@ -1,0 +1,28 @@
+{
+  "key": "deadliest_venoms_ranked_venom_potency",
+  "title": "Venom Potency",
+  "unit": "mg",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-22"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Inland Taipan",
+      "value": 45.0,
+      "period": "2020"
+    },
+    {
+      "label": "Eastern Brown Snake",
+      "value": 53.0,
+      "period": "2020"
+    }
+  ]
+}

@@ -28,3 +28,4 @@ numpy>=1.24
 # frame round-trip). Pinned <5 because opencv 5.0's headless wheel dropped
 # CascadeClassifier. Import-guarded: absent → blur-fill center crop.
 opencv-python-headless<5
+matplotlib

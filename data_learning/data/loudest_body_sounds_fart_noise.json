@@ -1,0 +1,28 @@
+{
+  "key": "loudest_body_sounds_fart_noise",
+  "title": "Fart Noise",
+  "unit": "decibels",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-19"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "fart noise",
+      "value": 80.0,
+      "period": "2023"
+    },
+    {
+      "label": "vacuum noise",
+      "value": 70.0,
+      "period": "2023"
+    }
+  ]
+}
