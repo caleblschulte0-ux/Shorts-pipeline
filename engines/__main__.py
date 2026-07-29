@@ -6,6 +6,7 @@
     python -m engines install <engine>
     python -m engines demo kenburns --image X --out Y [--duration 4]
     python -m engines demo parallax --image X --out Y [--duration 4]
+    python -m engines demo svg-motion --out Y [--duration 3]
 
 `list`, `info`, and `doctor` are offline and fast — safe for any Claude
 session to run as discovery. Only `install` touches the network.
@@ -78,6 +79,9 @@ def _cmd_install(args) -> int:
 
 def _cmd_demo(args) -> int:
     t0 = time.time()
+    if args.engine in ("kenburns", "parallax") and not args.image:
+        print("--image is required for this engine")
+        return 2
     if args.engine == "kenburns":
         from engines.still_motion import maybe_kenburns
         result = maybe_kenburns(args.image, args.out, args.duration,
@@ -86,8 +90,15 @@ def _cmd_demo(args) -> int:
         from engines.parallax import maybe_parallax
         result = maybe_parallax(args.image, args.out, args.duration,
                                 size=(args.width, args.height))
+    elif args.engine == "svg-motion":
+        from engines.svg_motion import maybe_svg_motion, title_card
+        result = maybe_svg_motion(
+            title_card("SVG MOTION", "engines demo", width=args.width,
+                       height=args.height),
+            args.out, duration=args.duration, fps=30,
+            width=args.width, height=args.height)
     else:
-        print(f"no demo for {args.engine!r} (choices: kenburns, parallax)")
+        print(f"no demo for {args.engine!r} (choices: kenburns, parallax, svg-motion)")
         return 2
     if result is None:
         print("demo failed (see messages above)")
@@ -108,8 +119,8 @@ def main(argv=None) -> int:
     sp = sub.add_parser("install")
     sp.add_argument("engine")
     sp = sub.add_parser("demo")
-    sp.add_argument("engine", choices=["kenburns", "parallax"])
-    sp.add_argument("--image", required=True)
+    sp.add_argument("engine", choices=["kenburns", "parallax", "svg-motion"])
+    sp.add_argument("--image")  # required for kenburns/parallax, not svg-motion
     sp.add_argument("--out", required=True)
     sp.add_argument("--duration", type=float, default=4.0)
     sp.add_argument("--width", type=int, default=1080)

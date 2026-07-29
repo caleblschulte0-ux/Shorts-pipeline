@@ -55,7 +55,28 @@ result or `None`, never raising into a caller; engines never write outside
 | **themed_bottom** | procedural game engine (own physics/easing) | trending bottom-half | in-repo engine, self-contained |
 | **Higgsfield** | AI still→motion (paid API) | dormant (`HIGGSFIELD_ENABLE=1`) | the architectural template for `maybe_*` |
 
-### New in this change
+### svg_motion (added 2026-07-30 — capability sprint)
+
+Animated vector renders: the caller supplies `frame_fn(t) -> svg` (t∈[0,1]),
+the engine rasterizes every frame via cairosvg and assembles with ffmpeg.
+Born from the ChatGPT-integration experiments: animated SVG proved to be a
+strong vertical format and something every LLM brain here authors well —
+this owns the capability in-repo, no external service. **SMIL/CSS animation
+is NOT evaluated** — motion comes only from per-frame interpolation
+(`ease`/`interp`/`seg` helpers; built-ins `title_card`, `stat_pop`).
+
+| Field | `svg_motion` |
+|---|---|
+| status | active |
+| deps | cairosvg (pip), ffmpeg |
+| cpu_ok / est. runtime | yes / ~5–15 s per 3 s 1080×1920@30fps card |
+| license | cairosvg LGPL-3 (unmodified dynamic import — commercial OK) |
+| health check | `python -m engines doctor svg_motion` |
+| fallback | `None` → caller keeps its static card / skips the beat |
+| sample | `python -m engines demo svg-motion --out /tmp/card.mp4` |
+| tests | `python -m unittest tests.test_capabilities` (render + escape + helper coverage) |
+
+### New in the original engines change
 
 | Field | `still_motion` | `parallax` |
 |---|---|---|
