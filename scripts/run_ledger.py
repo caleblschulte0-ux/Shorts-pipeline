@@ -49,8 +49,11 @@ def _read_lines(path: Path) -> list[dict]:
 
 
 def append(event_type: str, slug: str, payload: dict | None = None,
-           path: Path = LEDGER_PATH) -> dict:
-    """Append one hash-chained event. Returns the event as written."""
+           path: Path | None = None) -> dict:
+    """Append one hash-chained event. Returns the event as written.
+    `path` resolves at CALL time (default-arg binding would freeze the module
+    constant and defeat test redirection of LEDGER_PATH)."""
+    path = path or LEDGER_PATH
     path.parent.mkdir(parents=True, exist_ok=True)
     events = _read_lines(path)
     prev = events[-1].get("event_hash", GENESIS) if events else GENESIS
@@ -70,9 +73,9 @@ def append(event_type: str, slug: str, payload: dict | None = None,
     return event
 
 
-def verify_chain(path: Path = LEDGER_PATH) -> tuple[bool, str | None]:
+def verify_chain(path: Path | None = None) -> tuple[bool, str | None]:
     """Walk the chain; returns (ok, first_problem)."""
-    events = _read_lines(path)
+    events = _read_lines(path or LEDGER_PATH)
     prev = GENESIS
     for i, e in enumerate(events):
         if "_corrupt" in e:
@@ -88,8 +91,8 @@ def verify_chain(path: Path = LEDGER_PATH) -> tuple[bool, str | None]:
 
 
 def tail(n: int = 10, slug: str | None = None,
-         path: Path = LEDGER_PATH) -> list[dict]:
-    events = _read_lines(path)
+         path: Path | None = None) -> list[dict]:
+    events = _read_lines(path or LEDGER_PATH)
     if slug:
         events = [e for e in events if e.get("slug") == slug]
     return events[-n:]

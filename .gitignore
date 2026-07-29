@@ -86,3 +86,7 @@ tests/expression_tests/
 
 # producer_smoke.py runtime fixture copy (created + deleted per run)
 data_learning/pro_stories/zz-ci-smoke.beats.json
+
+# Runtime run/media ledgers — durable operational state, not source
+state/curiosity_run_ledger.jsonl
+state/curiosity_media_ledger.json
