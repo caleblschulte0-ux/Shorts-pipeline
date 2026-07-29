@@ -82,7 +82,51 @@ def main():
         print("ok  uncovered numeric beat blocks")
     finally:
         facts_gate._load = real_load
-    print("facts gate: 12/12 tests pass")
+
+    # SEMANTIC LAYER: a non-numeric (superlative/historical) sentence with no
+    # covering claim is a WARNING by default and a hard BLOCK when the story
+    # opts in with require_semantic_provenance.
+    sem_story = {"require_provenance": True, "beats": [
+        {"narration": "It costs two million dollars."},
+        {"narration": "This is the largest building in Europe. "
+                      "It was carved from ancient stone."},
+    ]}
+    sem_reg = {"claims": [_claim(beat_index=0)]}
+    facts_gate._load = lambda slug: (sem_story, sem_reg)
+    try:
+        rep = facts_gate.evaluate("synthetic", today=TODAY)
+        assert rep["pass"], rep     # advisory: still passes
+        assert rep["semantic"]["uncovered"], rep["semantic"]
+        assert any("semantic (advisory)" in w for w in rep["warnings"]), rep
+        print("ok  uncovered semantic claim warns (advisory default)")
+
+        sem_story["require_semantic_provenance"] = True
+        rep = facts_gate.evaluate("synthetic", today=TODAY)
+        assert not rep["pass"], rep
+        assert any(e.startswith("semantic:") for e in rep["errors"]), rep
+        print("ok  require_semantic_provenance turns it into a hard block")
+
+        # a general-fact registry claim on that beat covers any type
+        sem_reg2 = {"claims": [_claim(beat_index=0),
+                               _claim(id="claim-b1", beat_index=1)]}
+        facts_gate._load = lambda slug: (sem_story, sem_reg2)
+        rep = facts_gate.evaluate("synthetic", today=TODAY)
+        assert rep["pass"], (rep["errors"], rep["semantic"])
+        assert rep["semantic"]["coverage_ratio"] == 1.0, rep["semantic"]
+        print("ok  registry claim on the beat covers its semantic claims")
+
+        # enforced + audit crash fails CLOSED
+        real_audit = facts_gate._semantic_audit
+        facts_gate._semantic_audit = lambda *a: (_ for _ in ()).throw(
+            RuntimeError("boom"))
+        rep = facts_gate.evaluate("synthetic", today=TODAY)
+        facts_gate._semantic_audit = real_audit
+        assert not rep["pass"] and any("fails closed" in e
+                                       for e in rep["errors"]), rep
+        print("ok  enforced semantic audit crash fails closed")
+    finally:
+        facts_gate._load = real_load
+    print("facts gate: 16/16 tests pass")
 
 
 if __name__ == "__main__":

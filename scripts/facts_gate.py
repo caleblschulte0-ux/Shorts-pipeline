@@ -20,6 +20,17 @@ Distinct from media credits: this gate sources the CLAIMS the narration makes,
 not the images shown. Writes ``<out>.facts-report.json`` next to the video so
 the verdict is auditable.
 
+SEMANTIC LAYER (PR#173 adoption: semantic_claims): beyond spoken numbers, a
+sentence-level detector finds historical / superlative / comparative / causal
+/ scientific / attributed claims in EVERY beat's narration and audits them
+against the same registry. Advisory by default (coverage + uncovered
+sentences land in the report as warnings); a story that opts in with
+top-level ``"require_semantic_provenance": true`` turns uncovered semantic
+claims into hard blocks. A registry claim may declare ``"claim_type"``
+(numeric/historical/superlative/comparative/causal/scientific/attributed/
+geographic); without one it counts as general-fact and covers any claim
+type on its beats.
+
     python3 scripts/facts_gate.py <slug> [--out output/curiosity_<slug>.mp4]
     exit 0 = pass, 7 = blocked, 2 = story/registry unreadable
 """
@@ -34,6 +45,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 PRO_STORIES = REPO / "data_learning" / "pro_stories"
+if str(REPO / "experiments") not in sys.path:
+    sys.path.insert(0, str(REPO / "experiments"))
 
 ACCEPTABLE_SOURCE_TYPES = {"primary", "official", "academic", "journalistic",
                            "reference", "derived"}
@@ -88,6 +101,66 @@ def _check_claim(c: dict, today: date) -> list[str]:
     except ValueError:
         errs.append(f"{cid}: publication_date not YYYY-MM-DD")
     return errs
+
+
+def _semantic_audit(beats: list[dict], claims: list[dict]) -> dict:
+    """Sentence-level claim discovery over ALL narrations, audited against
+    the registry (semantic_claims adapter). Returns a JSON-ready section;
+    raises nothing — callers decide whether its findings block."""
+    from curiosity_nextgen.claim_registry import Claim, ClaimType
+    from curiosity_nextgen.semantic_claims import (
+        audit_semantic_coverage, extract_semantic_signals)
+
+    beat_texts = {f"beat-{i}": str(b.get("narration") or b.get("line") or "")
+                  for i, b in enumerate(beats)}
+    signals = extract_semantic_signals(beat_texts, minimum_confidence=0.6)
+
+    def _ctype(raw) -> ClaimType:
+        try:
+            return ClaimType(str(raw))
+        except ValueError:
+            return ClaimType.GENERAL_FACT   # covers any type on its beats
+
+    mapped = []
+    for c in claims:
+        beat_ids = []
+        if isinstance(c.get("beat_index"), int):
+            beat_ids.append(f"beat-{c['beat_index']}")
+        beat_ids += [f"beat-{eb}" for eb in c.get("echo_beats", [])
+                     if isinstance(eb, int)]
+        if not beat_ids:
+            continue
+        mapped.append(Claim(
+            claim_id=str(c.get("id") or f"claim-{len(mapped)}"),
+            beat_ids=tuple(beat_ids),
+            claim_text=str(c.get("claim") or ""),
+            claim_type=_ctype(c.get("claim_type")),
+            geography=c.get("geography"),
+            calculation=c.get("calculation")))
+    # inline facts[] / claim_ids on a beat cover that beat as general-fact
+    for i, b in enumerate(beats):
+        if b.get("facts") or b.get("claim_ids"):
+            mapped.append(Claim(
+                claim_id=f"inline-beat-{i}",
+                beat_ids=(f"beat-{i}",),
+                claim_text="inline facts[] on the beat",
+                claim_type=ClaimType.GENERAL_FACT))
+
+    audit = audit_semantic_coverage(signals, mapped)
+    sig_by_key = {s.key: s for s in signals}
+    return {
+        "detected": audit.detected_count,
+        "covered": audit.covered_count,
+        "coverage_ratio": audit.coverage_ratio,
+        "uncovered": [
+            {"key": k,
+             "types": [t.value for t in sig_by_key[k].claim_types],
+             "sentence": sig_by_key[k].sentence[:110]}
+            for k in audit.uncovered_signals if k in sig_by_key],
+        "type_mismatches": list(audit.type_mismatches),
+        "overbroad_claims": list(audit.overbroad_claims),
+        "duplicate_claim_ids": list(audit.duplicate_claim_ids),
+    }
 
 
 def evaluate(slug: str, today: date | None = None) -> dict:
@@ -151,6 +224,43 @@ def evaluate(slug: str, today: date | None = None) -> dict:
                 f"{narration[:90]!r}")
     report["coverage"] = {"numeric_beats": len(numeric_beats),
                           "covered": len(covered), "uncovered": uncovered}
+
+    # SEMANTIC LAYER — non-numeric claims (historical/superlative/comparative/
+    # causal/scientific/attributed) audited sentence-by-sentence. Advisory by
+    # default; hard when the story opts in with require_semantic_provenance.
+    sem_required = bool(story.get("require_semantic_provenance"))
+    try:
+        sem = _semantic_audit(beats, claims)
+        sem["enforced"] = sem_required
+        report["semantic"] = sem
+        problems = []
+        if sem["uncovered"]:
+            problems.append(f"{len(sem['uncovered'])} semantic claim(s) "
+                            "with no registry coverage, e.g. "
+                            + "; ".join(f"{u['key']} [{','.join(u['types'])}] "
+                                        f"{u['sentence'][:70]!r}"
+                                        for u in sem["uncovered"][:3]))
+        if sem["type_mismatches"]:
+            problems.append(f"{len(sem['type_mismatches'])} claim-type "
+                            "mismatch(es): "
+                            + "; ".join(sem["type_mismatches"][:2]))
+        if sem["duplicate_claim_ids"]:
+            problems.append("duplicate claim ids: "
+                            + ", ".join(sem["duplicate_claim_ids"][:4]))
+        sink = report["errors"] if sem_required else report["warnings"]
+        for p in problems:
+            sink.append(("semantic: " if sem_required
+                         else "semantic (advisory): ") + p)
+    except Exception as e:  # noqa: BLE001
+        # advisory layer must not crash the gate; ENFORCED layer fails closed
+        if sem_required:
+            report["errors"].append(
+                f"semantic audit could not run ({str(e)[:70]}) — "
+                "require_semantic_provenance fails closed")
+        else:
+            report["warnings"].append(
+                f"semantic audit skipped ({str(e)[:70]})")
+
     report["pass"] = not report["errors"]
     return report
 
