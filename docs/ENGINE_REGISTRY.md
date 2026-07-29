@@ -54,6 +54,7 @@ result or `None`, never raising into a caller; engines never write outside
 | **matplotlib** | chart engine | explainer | |
 | **themed_bottom** | procedural game engine (own physics/easing) | trending bottom-half | in-repo engine, self-contained |
 | **Higgsfield** | AI still→motion (paid API) | dormant (`HIGGSFIELD_ENABLE=1`) | the architectural template for `maybe_*` |
+| **chart_race** | animated multi-series chart race (eased timeline, y-camera zoom, tip labels, leaderboard, hook overlay) — silent mp4, caller muxes audio | trending `graph_race` format (`make_graph_race.py`) | registered module engine (`engines/chart_race.py`), `maybe_chart_race` contract, matplotlib+ffmpeg only |
 
 ### svg_motion (added 2026-07-30 — capability sprint)
 

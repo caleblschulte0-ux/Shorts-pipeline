@@ -395,6 +395,8 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     result: dict = {
         "topic": pkg.get("topic", pkg.get("title", "untitled")),
         "title": pkg.get("title"),
+        "format": pkg.get("format") or (
+            "reddit" if pkg.get("subreddit") else "explainer"),
         "publish_at": publish_at,
         "ok": False,
         "video_url": None,
@@ -844,6 +846,7 @@ def main() -> int:
             log["posted"].append({
                 "topic": r["topic"],
                 "title": r.get("title"),
+                "format": r.get("format"),
                 "video_url": r["video_url"],
                 "publish_at": r.get("publish_at"),
                 "posted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

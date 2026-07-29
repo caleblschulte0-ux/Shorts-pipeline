@@ -171,6 +171,33 @@ REGISTRY: dict[str, dict] = {
                           "frame_fn returns invalid SVG -> None"],
         "sample": "python -m engines demo svg-motion --out /tmp/card.mp4",
     },
+    "chart_race": {
+        "kind": "module",
+        "status": "active",
+        "problem": "Animated multi-series line-chart race (graphfather "
+                   "style): eased timeline, dynamic y-camera zoom, tip dots "
+                   "+ value labels, live leaderboard, climbing year counter, "
+                   "winner tag on the end-hold, optional hook overlay. "
+                   "Renders a SILENT portrait mp4 — callers mux their own "
+                   "audio. First consumer: trending channel's graph_race "
+                   "format (make_graph_race.py).",
+        "headless": True,
+        "control": "python (engines.chart_race.render / maybe_chart_race) "
+                   "/ CLI demo",
+        "reusable": True,
+        "license": "n/a (matplotlib + ffmpeg, stdlib otherwise)",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "~30-60 s per 12 s clip (matplotlib Agg frames)",
+        "deps": ["matplotlib", "ffmpeg on PATH"],
+        "fallback": "none — a data video without the chart is nothing; "
+                    "callers should fail the package, not degrade",
+        "consumers": ["make_graph_race.py (trending daily)"],
+        "failure_modes": ["malformed spec (missing years/series) raises in "
+                          "render; maybe_chart_race returns None"],
+        "sample": "python -m engines demo chartrace --spec pkg.json "
+                  "--out /tmp/race.mp4",
+    },
     # ---- external engines (owned elsewhere; registered for doctor) --------
     "ffmpeg": {
         "kind": "external", "status": "active",

@@ -1,0 +1,54 @@
+{
+  "formats": [
+    {
+      "format": "graph_race",
+      "videos": 6,
+      "views": 60,
+      "views_per_video": 10.0,
+      "avg_views_per_hour": 0.11,
+      "engaged_views": 21,
+      "avg_view_pct": 81.5,
+      "likes": 0,
+      "shares": 0,
+      "subs_gained": 0
+    },
+    {
+      "format": "explainer",
+      "videos": 39,
+      "views": 281,
+      "views_per_video": 7.2,
+      "avg_views_per_hour": 0.01,
+      "engaged_views": 135,
+      "avg_view_pct": 44.8,
+      "likes": 1,
+      "shares": 1,
+      "subs_gained": 0
+    },
+    {
+      "format": "text_card",
+      "videos": 8,
+      "views": 48,
+      "views_per_video": 6.0,
+      "avg_views_per_hour": 0.05,
+      "engaged_views": 15,
+      "avg_view_pct": 227.9,
+      "likes": 0,
+      "shares": 0,
+      "subs_gained": 0
+    },
+    {
+      "format": "reddit",
+      "videos": 9,
+      "views": 7,
+      "views_per_video": 0.8,
+      "avg_views_per_hour": 0.0,
+      "engaged_views": 6,
+      "avg_view_pct": 16.8,
+      "likes": 0,
+      "shares": 0,
+      "subs_gained": 0
+    }
+  ],
+  "matched": 62,
+  "unmatched": 13
+}
