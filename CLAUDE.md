@@ -196,6 +196,37 @@ things worth knowing without opening it:
   so it can never duplicate an upload. The Routine tops it up — step 5b of
   `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
 
+## WHO MAY EDIT THIS PIPELINE — Claude, and only Claude
+
+Operator ruling. **Claude is the only agent that edits this repository.**
+ChatGPT can run quarterback when the Claude subscription is out, but it
+**never makes additions — only suggestions.**
+
+| Agent | May write | May NEVER write |
+|---|---|---|
+| **Claude** | everything, on a `claude/*` branch through a PR | — |
+| **ChatGPT** | the day's CONTENT (`exchange/bundles/<date>/response.json`, authored packages, media pointers) and retro SUGGESTIONS (`retro/<date>/proposals/*.json`) | any code, workflow, gate, doc, or contract |
+| **CI** | run output — `state/`, `data_learning/data/`, reports | anything that changes behaviour |
+
+Content authoring during a takeover is the quarterback role and is fine —
+it keeps the channel posting, and everything it writes is validated and
+quarantined on failure before it can render. Changing *how the pipeline
+works* is Claude's alone, every time, through a reviewed branch.
+
+`scripts/authorship_gate.py` enforces it from the other side, because a
+rule that lives only in a README is a rule enforced by the agent it
+constrains:
+
+- **Smuggling** — a `.py`/`.yml` inside `retro/*/proposals/` or
+  `exchange/bundles/`. Agent areas hold DATA and SUGGESTIONS only.
+- **Contract edits** — an agent editing `retro/README.md` or
+  `exchange/README.md`, i.e. its own instructions.
+- **Direct pushes** — pipeline code changed on main outside a PR, which
+  skips the sanity gate, the placement gate, and this one.
+
+It runs on every PR (`auto-merge.yml`) and on every push to main
+(`governance.yml`). CI's own state commits touch data only and pass clean.
+
 ## The retro loop — self-review that PROPOSES, never applies (retro/README.md)
 
 Daily at 23:15 UTC (`retro.yml`), `scripts/build_retro.py` writes an

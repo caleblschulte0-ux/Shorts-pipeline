@@ -66,6 +66,13 @@ jobs:
           #    never into a channel folder, channels never import each other,
           #    and shared modules are never shadowed or copied into a channel.
           python3 scripts/placement_gate.py --base "$BASE_SHA" --head "$HEAD_SHA" || fail=1
+          # 4b. Authorship gate (operator ruling): CLAUDE is the only agent
+          #     that edits this pipeline. ChatGPT may run quarterback and
+          #     suggest, never add. `--pr` because code edits ARE expected
+          #     here — this run catches code smuggled into an agent's data
+          #     drop zone, and any edit to an agent's own contract.
+          python3 scripts/authorship_gate.py --pr \
+            --base "$BASE_SHA" --head "$HEAD_SHA" || fail=1
           # 5. No credential-shaped additions (private keys, OAuth blobs).
           if git diff "$BASE_SHA" "$HEAD_SHA" -- . ':!*.md' | grep -E '^\+.*(BEGIN (RSA|EC|OPENSSH) PRIVATE KEY|"refresh_token"\s*:|AIza[0-9A-Za-z_-]{35})' >/dev/null; then
             echo "::error::diff adds credential-shaped content — refusing to auto-merge"; fail=1
