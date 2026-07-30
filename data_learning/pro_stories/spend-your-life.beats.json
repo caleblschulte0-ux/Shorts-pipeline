@@ -246,8 +246,40 @@
    "understand": "the whole life as a grid, the spent squares filling in",
    "flat": {
     "kind": "flat_life_grid",
-    "years": 77,
-    "spent": 68
+    "total_years": 77,
+    "final_label": "YOURS",
+    "segments": [
+     {
+      "label": "ASLEEP",
+      "years": 26,
+      "color": "blue"
+     },
+     {
+      "label": "AT WORK",
+      "years": 9,
+      "color": "red"
+     },
+     {
+      "label": "SCREENS",
+      "years": 11,
+      "color": "violet"
+     },
+     {
+      "label": "TRAFFIC",
+      "years": 1,
+      "color": "amber"
+     },
+     {
+      "label": "UPKEEP",
+      "years": 5,
+      "color": "teal"
+     },
+     {
+      "label": "EATING",
+      "years": 3,
+      "color": "green"
+     }
+    ]
    }
   },
   {

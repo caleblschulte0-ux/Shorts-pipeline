@@ -279,7 +279,8 @@ def _render(draw_fn, out: Path, seconds: float, bg_fn):
 # SLEEP — the figure asleep in bed, years flying past on a wall calendar/clock
 # --------------------------------------------------------------------------
 def sleep_scene(out: Path, seconds: float = 6.0, number: str = "26",
-                label: str = "YEARS ASLEEP") -> Path:
+                label: str = "YEARS ASLEEP",
+                extra: dict | None = None) -> Path:
     rnd = random.Random(3)
     stars = [(rnd.uniform(0, W), rnd.uniform(0, H * 0.44), rnd.choice([1, 1, 2]))
              for _ in range(90)]
@@ -376,7 +377,8 @@ def sleep_scene(out: Path, seconds: float = 6.0, number: str = "26",
 # WORK — hunched at a desk, monitor glow, sun arcing past the window (days)
 # --------------------------------------------------------------------------
 def work_scene(out: Path, seconds: float = 6.0, number: str = "13",
-               label: str = "YEARS AT WORK") -> Path:
+               label: str = "YEARS AT WORK",
+               extra: dict | None = None) -> Path:
     desk_y = int(H * 0.70)
 
     def bg(i, n):
@@ -438,7 +440,10 @@ def work_scene(out: Path, seconds: float = 6.0, number: str = "13",
         # the FIGURE — the clean seated pictogram at the desk, arm reaching to the
         # keyboard with a tiny typing bob.
         reach = 0.55 + 0.08 * math.sin(i * 0.6)
-        _sit(d, cx, desk_y + 4, h=420, col=FIG, lean=16, reach=reach, on_ground=False)
+        dd = _expr_delta(extra, t, "burden")   # work = weight
+        _sit(d, cx, desk_y + 4, h=420, col=FIG,
+             lean=16 + (dd["lean"] if dd else 0.0), reach=reach,
+             on_ground=False)
         im = _label(im, number, label)
         return im
 
@@ -449,7 +454,8 @@ def work_scene(out: Path, seconds: float = 6.0, number: str = "13",
 # SCREEN — curled around a huge glowing phone, the rest of the world dark
 # --------------------------------------------------------------------------
 def screen_scene(out: Path, seconds: float = 6.0, number: str = "11",
-                 label: str = "YEARS ON A SCREEN") -> Path:
+                 label: str = "YEARS ON A SCREEN",
+                 extra: dict | None = None) -> Path:
     def bg(i, n):
         return _vgrad((16, 20, 40), (4, 5, 12))
 
@@ -498,7 +504,8 @@ def screen_scene(out: Path, seconds: float = 6.0, number: str = "11",
 # FREE — the figure walks out into an open sunrise, arms rising (the payoff)
 # --------------------------------------------------------------------------
 def free_scene(out: Path, seconds: float = 6.0, number: str = "9",
-               label: str = "YEARS ARE YOURS") -> Path:
+               label: str = "YEARS ARE YOURS",
+               extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
         # dark -> warm sunrise as the payoff lands
@@ -526,7 +533,11 @@ def free_scene(out: Path, seconds: float = 6.0, number: str = "9",
         feet = hz + 34
         rise = _ease(max(0.0, (t - 0.35) / 0.65))
         stride = 12 * math.sin(i * 0.4)
-        _stand(d, cx, feet, h=360, col=FIG, arms_up=rise, stride=stride)
+        dd = _expr_delta(extra, t, "joy")      # the payoff scene = relief
+        _stand(d, cx, feet, h=360, col=FIG,
+               arms_up=rise + (1.4 * dd["arms"] if dd else 0.0),
+               stride=stride, lean=(dd["lean"] if dd else 0.0),
+               head_drop=(dd["head_drop"] if dd else 0.0))
         im = _label(im, number, label, col=(255, 224, 168))
         return im
 
@@ -554,7 +565,8 @@ def _clock(d, cx, cy, cr, t, spin=26.0):
 # wait never seems to end. ("years in line")
 # --------------------------------------------------------------------------
 def queue_scene(out: Path, seconds: float = 6.0, number: str = "6",
-                label: str = "MONTHS IN LINE") -> Path:
+                label: str = "MONTHS IN LINE",
+                extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
         k = 1.0 - 0.4 * t                             # the endless afternoon dims
@@ -613,7 +625,8 @@ def queue_scene(out: Path, seconds: float = 6.0, number: str = "6",
 # behind. ("months at red lights")
 # --------------------------------------------------------------------------
 def traffic_scene(out: Path, seconds: float = 6.0, number: str = "5",
-                  label: str = "MONTHS AT RED LIGHTS") -> Path:
+                  label: str = "MONTHS AT RED LIGHTS",
+                  extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
         # stuck so long the sky creeps toward dawn: dark -> pre-dawn light. The
@@ -678,7 +691,8 @@ def traffic_scene(out: Path, seconds: float = 6.0, number: str = "5",
 # music loops. ("days on hold")
 # --------------------------------------------------------------------------
 def hold_scene(out: Path, seconds: float = 6.0, number: str = "43",
-               label: str = "DAYS ON HOLD") -> Path:
+               label: str = "DAYS ON HOLD",
+               extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
         k = 1.0 - 0.78 * t                            # room darkens as time drags on
@@ -736,7 +750,8 @@ def hold_scene(out: Path, seconds: float = 6.0, number: str = "43",
 
 
 def walkout_scene(out: Path, seconds: float = 6.0, number: str = "",
-                  label: str = "STOP WAITING") -> Path:
+                  label: str = "STOP WAITING",
+                  extra: dict | None = None) -> Path:
     """A DISTINCT payoff (not the recycled sunrise): the figure walks out of a
     dim room through a bright open doorway — leaving the waiting behind."""
     def bg(i, n):
@@ -773,7 +788,10 @@ def walkout_scene(out: Path, seconds: float = 6.0, number: str = "",
         # the figure strides from the dim room toward the light
         cx = int(W * 0.20 + t * W * 0.34)
         stride = 13 * math.sin(i * 0.45)
-        _stand(d, cx, floor_y + 6, h=360, col=FIG, stride=stride)
+        dd = _expr_delta(extra, t, "frustration")   # walking out = release
+        _stand(d, cx, floor_y + 6, h=360, col=FIG, stride=stride,
+               lean=(dd["lean"] if dd else 0.0),
+               head_drop=(dd["head_drop"] if dd else 0.0))
         im = _label(im, number, label, col=(255, 224, 168))
         return im
 
@@ -1311,7 +1329,8 @@ def gas_scene(out: Path, seconds: float = 6.0, number: str = "",
 # climbing, the receipt printing longer and longer.
 # --------------------------------------------------------------------------
 def grocery_scene(out: Path, seconds: float = 6.0, number: str = "",
-                  label: str = "STAYING ALIVE") -> Path:
+                  label: str = "STAYING ALIVE",
+                  extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
         k = 0.05 + 0.92 * t                     # store lights ramp up bright
@@ -1401,7 +1420,8 @@ def grocery_scene(out: Path, seconds: float = 6.0, number: str = "",
 # subscription tiles each quietly siphoning a coin every month.
 # --------------------------------------------------------------------------
 def subs_scene(out: Path, seconds: float = 6.0, number: str = "",
-               label: str = "THE LITTLE LEAKS") -> Path:
+               label: str = "THE LITTLE LEAKS",
+               extra: dict | None = None) -> Path:
     tiles = [("STREAM", (230, 80, 70)), ("MUSIC", (120, 200, 140)),
              ("CLOUD", (120, 170, 240)), ("GAME", (200, 150, 240)),
              ("NEWS", (240, 180, 90)), ("GYM", (240, 120, 160))]
@@ -1461,7 +1481,8 @@ def subs_scene(out: Path, seconds: float = 6.0, number: str = "",
 # actually theirs and walks toward a warm horizon: little, but yours to choose.
 # --------------------------------------------------------------------------
 def savings_scene(out: Path, seconds: float = 6.0, number: str = "",
-                  label: str = "ACTUALLY YOURS") -> Path:
+                  label: str = "ACTUALLY YOURS",
+                  extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
         warm = _ease(t)
