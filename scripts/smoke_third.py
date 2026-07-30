@@ -95,8 +95,13 @@ def run_case(name, words, hook, series, work: Path,
     d = _dur(out)
     if not (4.0 <= d <= 62.0):
         fails.append(f"{name}: output duration {d:.1f}s out of bounds")
-    # the sparse/no-speech cases must keep a real clip, not a 2s sliver
-    if name in ("sparse_speech", "no_speech") and d < 8.0:
+    # the sparse/no-speech cases must keep a real clip, not a 2s sliver.
+    # Floor is 7.5, not 8.0: the render is now capped at the exact cut
+    # length (-t, so audio can never extend the file past the picture),
+    # which shaved the ~0.1s of audio-padding that used to nudge this case
+    # to a flattering 8.0. A 7.9s honest container is not a collapse; the
+    # guard exists to catch the 2s-sliver failure mode.
+    if name in ("sparse_speech", "no_speech") and d < 7.5:
         fails.append(f"{name}: cut collapsed to {d:.1f}s (sparse guard)")
     qa = clip_qa.review(out, led, work)
     mech = [p for p in qa["problems"] if not p.startswith("vision:")]
