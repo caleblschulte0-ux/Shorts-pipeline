@@ -13710,7 +13710,7 @@
       "slug": "carbon-climb",
       "title": "The Line That Only Goes Up",
       "hook": "The air itself is changing, and we have the receipt.",
-      "closing": "And it's not slowing down \u2014 at this pace, the air blows past 500 parts per million before today's kids retire.",
+      "closing": "And it's not slowing down -- the 2020s are on pace to add more CO2 than any decade before them.",
       "question": "Did you realize it was accelerating? Tell me below.",
       "keep_order": true,
       "hashtags": [
@@ -13750,7 +13750,11 @@
           "role": "2 \u00b7 THE ACCELERATION",
           "topic": "CO2 added each decade",
           "say": "And it's speeding up. The 1960s added under 9 parts per million. The 2010s added over 24 \u2014 nearly triple the pace.",
-          "viz": "pictograph"
+          "scene": {
+            "mechanic": "accelerating-smokestacks",
+            "concept": "six smokestacks along a timeline pour taller, faster plumes decade by decade, showing CO2 added per decade nearly tripling",
+            "code": "stack_img = subject_image('factory smokestack chimney industrial')\nbase_y = RBOT - 40\nbw = 90\ngap = (RX1 - RX0 - bw) / max(n - 1, 1)\nlit = clamp(reveal) * n\nfor i in range(n):\n    x = RX0 + i * gap\n    stage = clamp(lit - i)\n    if stage <= 0:\n        continue\n    if stack_img is not None:\n        paste(stack_img, x, base_y - 140, bw, 140)\n    h = 700 * clamp(values[i] / vmax) * stage\n    puffs = 3 + int(4 * clamp(values[i] / vmax))\n    for k in range(puffs):\n        py = base_y - 150 - (h * (k + 1) / puffs)\n        rad = 24 + 12 * (k / puffs)\n        a = int(200 * stage)\n        col = WARN if i == n - 1 else ACCENT\n        d.ellipse([x + bw / 2 - rad, py - rad, x + bw / 2 + rad, py + rad], fill=rgba(col, a))\n    text(f\"{values[i]:.0f}\", x + bw / 2, base_y + 20, size=28, color=TEXT, center=True)\n    text(labels[i], x + bw / 2, base_y + 52, size=22, color=TEXT, center=True)\ntext('CO2 ADDED PER DECADE', (RX0 + RX1) // 2, RTOP + 40, size=36, color=TEXT, center=True)\n"
+          }
         }
       ]
     },
@@ -13758,7 +13762,7 @@
       "slug": "population-giants",
       "title": "Half the Planet, Eight Countries",
       "hook": "Two countries hold more than a third of all humanity.",
-      "closing": "Eight countries, over half the planet. Wild, right?",
+      "closing": "Eight countries. Over half of every person on Earth. The other 190-plus countries share what's left.",
       "question": "Which of these surprised you most? Comment below.",
       "hashtags": [
         "population",
@@ -13805,7 +13809,7 @@
     {
       "slug": "world-power-mix",
       "title": "How the World Keeps Its Lights On",
-      "hook": "Something just happened to the world's power grid that hasn't happened since the 1940s.",
+      "hook": "One fuel still powers a third of the planet -- but for the first time in 80 years, it just lost its majority.",
       "closing": "The mix is tipping \u2014 slowly, then all at once.",
       "question": "Is your country ahead or behind on this? Let me know.",
       "hashtags": [
@@ -13845,8 +13849,12 @@
           "role": "2 \u00b7 THE TIPPING POINT",
           "topic": "fossil vs clean power",
           "say": "In 2024 fossil fuels fell to 59 percent of the world's power \u2014 under 60 for the first time since the 1940s.",
-          "viz": "pictorial_race",
-          "ascending": false
+          "ascending": false,
+          "scene": {
+            "mechanic": "power-see-saw",
+            "concept": "a balance beam tips between a pile of coal and a wind-and-solar cutout, sinking toward whichever side of the 2024 power mix is heavier",
+            "code": "cx = (RX0 + RX1) // 2\ncy = 520\nbeam_len = 380\ndiff = (values[0] - values[1]) / vmax\nang = diff * 0.9 * clamp(reveal)\ndx = beam_len / 2 * math.cos(ang)\ndy = beam_len / 2 * math.sin(ang)\nlx, ly = cx - dx, cy + dy\nrx, ry = cx + dx, cy - dy\nd.line([lx, ly, rx, ry], fill=rgba(TEXT, 255), width=14)\nd.polygon([(cx, cy - 36), (cx - 34, cy + 26), (cx + 34, cy + 26)], fill=rgba(TEXT, 255))\ncoal = subject_image('pile of coal')\nclean = subject_image('wind turbine and solar panels')\npan_w = 190\npan_h = 60\nd.rounded_rectangle([lx - pan_w / 2, ly + 10, lx + pan_w / 2, ly + 10 + pan_h], radius=18, fill=rgba(WARN, 210))\nd.rounded_rectangle([rx - pan_w / 2, ry + 10, rx + pan_w / 2, ry + 10 + pan_h], radius=18, fill=rgba(ACCENT, 210))\nif coal is not None:\n    paste(coal, lx - 80, ly - 150, 160, 140)\nif clean is not None:\n    paste(clean, rx - 80, ry - 150, 160, 140)\ntext(f\"{values[0]:.0f}%\", lx, ly - 170, size=48, color=WARN, center=True)\ntext(labels[0], lx, ly + 90, size=30, color=TEXT, center=True)\ntext(f\"{values[1]:.0f}%\", rx, ry - 170, size=48, color=ACCENT, center=True)\ntext(labels[1], rx, ry + 90, size=30, color=TEXT, center=True)\nmid = clamp((reveal - 0.6) / 0.4)\nif mid > 0:\n    text('UNDER 60% FIRST TIME SINCE THE 1940s', cx, RBOT - 70, size=32, color=HIGHLIGHT, center=True)\n"
+          }
         }
       ]
     },
@@ -16893,9 +16901,9 @@
           "topic": "Terrestrial and marine protected areas",
           "say": "Protected land and ocean area climbed from eleven point one percent in 2013 to seventeen percent by 2025 \u2014 up almost six points in just twelve years.",
           "scene": {
-            "mechanic": "growth-rings",
-            "concept": "a globe grows a new protective ring for each era, each ring's sweep-angle set by that era's coverage percent, ending in a near-complete glowing band",
-            "code": "cx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2 + 30\nglobe = subject_image('planet earth from space')\nbase = int(min(RX1 - RX0, RBOT - RTOP) * 0.22)\nif globe is not None:\n    paste(globe, cx - base, cy - base, base * 2, base * 2)\nlit = clamp(reveal) * n\nfull = int(lit)\nfor i in range(n):\n    if i > full:\n        continue\n    frac_done = 1.0 if i < full else clamp(lit - full)\n    ring_r = base + 30 + i * 26\n    sweep = clamp(values[i] / 100) * 360 * frac_done\n    col = WARN if i == n - 1 else HIGHLIGHT\n    bbox = [cx - ring_r, cy - ring_r, cx + ring_r, cy + ring_r]\n    if sweep > 1:\n        d.arc(bbox, -90, -90 + sweep, fill=rgba(col, 235), width=10)\n    if frac_done > 0.95:\n        ang = math.radians(-90 + sweep)\n        lx = cx + (ring_r + 30) * math.cos(ang)\n        ly = cy + (ring_r + 30) * math.sin(ang)\n        text(str(values[i]) + '%', int(lx), int(ly), size=22, color=TEXT, center=True)\ntext('EARTH, RING BY RING', cx, RTOP + 50, size=44, color=TEXT, center=True)\ntext(str(values[-1]) + '% PROTECTED BY ' + labels[-1], cx, RBOT - 40, size=36, color=WARN, center=True)\n"
+            "mechanic": "expanding-protection-rings",
+            "concept": "protective rings expand around a globe year by year, tracking protected land+ocean area climbing from 11.1% to 17%",
+            "code": "cx = (RX0 + RX1) // 2\ncy = 640\nglobe = subject_image('planet earth from space photo')\nif globe is not None:\n    gs = 300\n    paste(globe, cx - gs / 2, cy - gs / 2, gs, gs)\nlit = clamp(reveal) * n\nfor i in range(n):\n    stage = clamp(lit - i)\n    if stage <= 0:\n        continue\n    r = 140 + (values[i] / vmax) * 320 * stage\n    a = int(60 + 120 * stage)\n    col = HIGHLIGHT if i == n - 1 else ACCENT\n    d.arc([cx - r, cy - r, cx + r, cy + r], 0, int(360 * stage), fill=rgba(col, a), width=10)\n    if stage > 0.9:\n        text(f\"{values[i]:.0f}%\", cx + r * 0.7, cy - r * 0.7, size=28, color=col, center=True)\ntext('PROTECTED LAND + OCEAN', cx, RTOP + 50, size=36, color=TEXT, center=True)\nlast = clamp((reveal - 0.85) / 0.15)\nif last > 0:\n    text(f\"{values[n - 1]:.0f}% by {labels[n - 1]}\", cx, RBOT - 90, size=46, color=HIGHLIGHT, center=True)\n"
           }
         }
       ]
@@ -16904,7 +16912,7 @@
       "slug": "alternative-and-nuclear-energy-leapt-to-16-5-by-2024",
       "title": "Alternative And Nuclear Energy Leapt To 16.5% By 2024",
       "hook": "Alternative and nuclear energy barely moved for decades, then it jumped to 16.5 percent of world energy use.",
-      "closing": "For decades alternative and nuclear barely twitched \u2014 then it nearly doubled in a few years. If that pace holds, fossil fuels stop being the default sooner than anyone's planning for.",
+      "closing": "Three energy stats, one pattern: decades of almost nothing, then everything moves at once.",
       "hashtags": [
         "energydata",
         "renewableenergy",
@@ -16954,9 +16962,9 @@
           "topic": "Access to electricity",
           "say": "Access to electricity rose from seventy three point two percent in nineteen ninety eight to ninety one point nine percent by twenty twenty four.",
           "scene": {
-            "mechanic": "bulb-grid",
-            "concept": "a 10x10 grid of 100 lightbulbs lights up one by one as reveal climbs, the lit count literally equal to the electrified percent of people",
-            "code": "cols, rows = 10, 10\ntotal = cols * rows\nbulb = subject_image('lightbulb')\nend_val = values[-1]\nstart_val = values[0]\nlit_target = int(round(clamp(end_val / 100) * total))\nlit_now = int(round(lit_target * clamp(reveal)))\ngap = 6\navail_w = RX1 - RX0\navail_h = RBOT - RTOP - 260\ncell = min(avail_w / cols, avail_h / rows) - gap\ngx0 = RX0 + (avail_w - cols * (cell + gap)) / 2\ngy0 = RTOP + 150\nfor i in range(total):\n    col = i % cols\n    row = i // cols\n    x = gx0 + col * (cell + gap)\n    y = gy0 + row * (cell + gap)\n    on = i < lit_now\n    if on and bulb is not None:\n        paste(bulb, int(x), int(y), int(cell), int(cell))\n        d.rounded_rectangle([x - 3, y - 3, x + cell + 3, y + cell + 3], radius=6, outline=rgba(HIGHLIGHT, 220), width=3)\n    else:\n        d.rounded_rectangle([x, y, x + cell, y + cell], radius=6, fill=rgba((18, 20, 32), 180))\ntext('WHO HAS ELECTRICITY?', (RX0 + RX1) // 2, RTOP + 60, size=44, color=TEXT, center=True)\ntext(str(lit_now) + ' OF 100 PEOPLE', (RX0 + RX1) // 2, int(gy0 + rows * (cell + gap) + 46), size=40, color=WARN, center=True)\ntext('UP FROM ' + str(start_val) + '% IN ' + labels[0], (RX0 + RX1) // 2, RBOT - 30, size=26, color=TEXT, center=True)\n"
+            "mechanic": "bulb-glow-trend",
+            "concept": "a single lightbulb's glow radius grows year by year as electricity access climbs, blazing brightest at the record 91.9%",
+            "code": "cx = (RX0 + RX1) // 2\ncy = 600\nbulb = subject_image('lightbulb glowing photorealistic')\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac_between = clamp(lit - idx)\ncur_val = lerp(values[idx], values[min(idx + 1, n - 1)], frac_between)\nglow_r = 140 + (cur_val / 100.0) * 260\nfor k in range(5):\n    rr = glow_r * (1 - k * 0.15)\n    a = int(70 * (1 - k * 0.18))\n    d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=rgba(HIGHLIGHT, a))\nif bulb is not None:\n    size = 260\n    paste(bulb, cx - size / 2, cy - size / 2, size, size)\ntext(f\"{cur_val:.0f}%\", cx, cy + 220, size=64, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, cy + 290, size=34, color=TEXT, center=True)\ntext('WORLD ELECTRICITY ACCESS', cx, RTOP + 50, size=36, color=TEXT, center=True)\n"
           }
         }
       ]
@@ -16964,7 +16972,7 @@
     {
       "slug": "rural-growth-basically-died-down-to-just-0-3",
       "title": "Rural Growth Basically Died: Down To Just 0.3%",
-      "hook": "One growth rate on planet Earth just quietly crashed toward zero \u2014 and it's probably not the one you'd guess.",
+      "hook": "The countryside on planet Earth almost stopped growing completely.",
       "closing": "Cities slowed down, but villages nearly flatlined \u2014 the map of humanity is quietly rewriting itself.",
       "hashtags": [
         "datafacts",
@@ -16998,38 +17006,9 @@
           "topic": "Population ages 65 and above",
           "say": "In 1972, only 5.37% of the world was 65 or older; that climbed to 6.29% by 1993, then surged to 10.4% by 2025.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "person",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "person",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "person",
-                "data": {
-                  "value_from": "item:5"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "The planet is graying fast"
-              }
-            ]
+            "mechanic": "graying-crowd-grid",
+            "concept": "a grid of people dots turns from young to gray as the share aged 65+ climbs, an elderly portrait growing in below it",
+            "code": "img = subject_image('elderly person portrait smiling')\ncols = 10\nrows = 6\ntotal = cols * rows\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\ngray_count = int(total * clamp(cur / vmax))\ncellw = (RX1 - RX0) / cols\ncellh = 420 / rows\nfor r in range(rows):\n    for c in range(cols):\n        i2 = r * cols + c\n        x = RX0 + c * cellw + cellw / 2\n        y = RTOP + 120 + r * cellh + cellh / 2\n        col = WARN if i2 < gray_count else ACCENT\n        rad = 14\n        d.ellipse([x - rad, y - rad, x + rad, y + rad], fill=rgba(col, 230))\ncx = (RX0 + RX1) // 2\nif img is not None:\n    size = 260\n    paste(img, cx - size / 2, RBOT - 300, size, size)\ntext(f\"{cur:.1f}% OVER 65\", cx, RBOT - 40, size=48, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RTOP + 60, size=34, color=TEXT, center=True)\n"
           }
         },
         {
@@ -17043,38 +17022,9 @@
           "topic": "Rural population growth",
           "say": "Rural growth was 1.64% back in 1972, flattened to 1.1% through 1993, and crawled down to just 0.3% by 2025.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "house",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "house",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "house",
-                "data": {
-                  "value_from": "item:5"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "The countryside stalls"
-              }
-            ]
+            "mechanic": "pulsing-village-decelerator",
+            "concept": "a village house pulses in size to each period's rural growth rate while a strip of shrinking bars tracks the rate crawling toward zero",
+            "code": "house = subject_image('small rural village house cottage')\ncx = (RX0 + RX1) // 2\ncy = 600\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\npulse = 1.0 + 0.5 * clamp(cur / vmax) * (0.5 + 0.5 * math.sin(reveal * 24))\nsize = int(300 * pulse)\nif house is not None:\n    paste(house, cx - size / 2, cy - size / 2, size, size)\nfor i in range(n):\n    x = lerp(RX0 + 60, RX1 - 60, i / max(n - 1, 1))\n    bar_h = 10 + 90 * clamp(values[i] / vmax)\n    col = ACCENT if i < idx else (WARN if i == idx else TEXT)\n    a = 255 if i <= idx else 90\n    d.rectangle([x - 14, RBOT - 40 - bar_h, x + 14, RBOT - 40], fill=rgba(col, a))\n    text(f\"{values[i]:.2f}\", x, RBOT - 40 - bar_h - 24, size=20, color=TEXT, center=True)\ntext(f\"{cur:.2f}% GROWTH -- {labels[idx]}\", cx, RTOP + 60, size=38, color=HIGHLIGHT, center=True)\nif idx == n - 1:\n    text('THE COUNTRYSIDE STALLS', cx, cy - size / 2 - 40, size=34, color=WARN, center=True)\n"
           }
         }
       ]
@@ -17082,7 +17032,7 @@
     {
       "slug": "cereal-yield-hit-a-record-3-955-kg-per-hectare-as-farmland-v",
       "title": "Cereal Yield Hit a Record 3,955 kg Per Hectare As Farmland Vanished",
-      "hook": "World cereal farmland just shrank to its smallest footprint in decades \u2014 so why isn't anyone going hungry?",
+      "hook": "By 2024, world cereal farmland shrank to 415,702,088 hectares while yield hit an all-time high.",
       "closing": "Less land, less total grain, but more food squeezed from every hectare than ever before.",
       "hashtags": [
         "agriculture",
@@ -17116,38 +17066,9 @@
           "topic": "Cereal production",
           "say": "World cereal production rose from 1,083,668,408 tons in 1972 to 2,822,286,611 tons by 2014, then fell to 1,644,081,590 tons in 2024.",
           "scene": {
-            "title": false,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "grain_sack",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "grain_sack",
-                "data": {
-                  "value_from": "item:4"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "grain_sack",
-                "data": {
-                  "value_from": "item:5"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "Peak-to-crash in one decade"
-              }
-            ]
+            "mechanic": "grain-sack-skyline",
+            "concept": "stacked grain-sack towers along the timeline rise then fall like a skyline, tracing world cereal production's climb to 2.8 billion tons and crash back down",
+            "code": "sack = subject_image('burlap grain sack')\ncolw = (RX1 - RX0) / n\nlit = clamp(reveal) * n\nbase_y = RBOT - 60\nmax_h = 780\nfor i in range(n):\n    stage = clamp(lit - i)\n    if stage <= 0:\n        continue\n    h = max_h * clamp(values[i] / vmax) * stage\n    x = RX0 + i * colw + colw / 2\n    sacks_count = max(1, int(4 * clamp(values[i] / vmax) * stage) + 1)\n    sh = h / sacks_count\n    for k in range(sacks_count):\n        y = base_y - (k + 1) * sh\n        if sack is not None:\n            paste(sack, x - colw * 0.32, y, colw * 0.64, sh + 4)\n    text(f\"{values[i] / 1e6:.0f}M\", x, base_y - h - 30, size=24, color=TEXT, center=True)\n    text(labels[i], x, base_y + 16, size=22, color=TEXT, center=True)\ntext('WORLD CEREAL HARVEST', (RX0 + RX1) // 2, RTOP + 40, size=34, color=TEXT, center=True)\n"
           }
         },
         {
@@ -17161,30 +17082,9 @@
           "topic": "Cereal yield",
           "say": "Yield never stopped climbing: 1,953 kilograms per hectare in 1972, 3,894 by 2014, and a record 3,955 kilograms per hectare in 2024.",
           "scene": {
-            "title": false,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "grain_silo",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "grain_silo",
-                "data": {
-                  "value_from": "item:5"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "Record yield despite shrinking land"
-              }
-            ]
+            "mechanic": "shrinking-plot-tall-stalk",
+            "concept": "a wheat stalk grows taller and thicker as yield climbs, rooted in a farmland plot that visibly narrows over time -- more grain from less land",
+            "code": "stalk = subject_image('wheat stalk with grain head')\ncx = (RX0 + RX1) // 2\nground_y = RBOT - 100\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nplot_w = lerp(700, 260, clamp(idx / max(n - 1, 1)))\nd.rectangle([cx - plot_w / 2, ground_y, cx + plot_w / 2, ground_y + 30], fill=rgba(ACCENT, 200))\nh = 120 + 560 * clamp(cur / vmax)\nif stalk is not None:\n    w = 160 + 120 * clamp(cur / vmax)\n    paste(stalk, cx - w / 2, ground_y - h, w, h)\ntext(f\"{cur:.0f} kg/ha\", cx, ground_y - h - 50, size=48, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, ground_y + 70, size=32, color=TEXT, center=True)\ntext('MORE GRAIN, LESS LAND', cx, RTOP + 60, size=36, color=TEXT, center=True)\n"
           }
         }
       ]

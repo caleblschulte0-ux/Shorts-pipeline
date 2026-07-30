@@ -296,21 +296,5 @@
   "concept": "two thermometers with mercury columns rising to indicate the warmest and coldest storage temperatures",
   "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 30\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.rectangle([cxs - r, cy - 200, cxs + r, cy + 200], fill=rgba(TEXT, 90))\n    d.rectangle([cxs - r + 5, cy - 200 + 5, cxs + r - 5, cy - 200 + 5 + int(190 * clamp(v / vmax)) * reveal], fill=rgba(col, 255))\n    d.line([cxs, cy + 200, cxs, cy + 220], fill=rgba(TEXT, 255), width=5)\n    img = subject_image('flame') if i == 0 else subject_image('ice cube')\n    if img is not None:\n        asp = img.width / img.height\n        w = 100\n        h = int(w / asp)\n        if h > 100:\n            h = 100\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy + 220, w, h)\n    text(labels[i], cxs, cy - 250, size=38, color=col, center=True)\n    text(str(int(v)) + '°C', cxs, cy + 250, size=48, color=col, center=True)\n",
   "topic": "Seed Storage"
- },
- {
-  "sig": "c0c8d451e185",
-  "mechanic": "growth-rings",
-  "concept": "a globe grows a new protective ring for each era, each ring's sweep-angle set by that era's coverage percent, ending in a near-complete glowing band",
-  "code": "cx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2 + 30\nglobe = subject_image('planet earth from space')\nbase = int(min(RX1 - RX0, RBOT - RTOP) * 0.22)\nif globe is not None:\n    paste(globe, cx - base, cy - base, base * 2, base * 2)\nlit = clamp(reveal) * n\nfull = int(lit)\nfor i in range(n):\n    if i > full:\n        continue\n    frac_done = 1.0 if i < full else clamp(lit - full)\n    ring_r = base + 30 + i * 26\n    sweep = clamp(values[i] / 100) * 360 * frac_done\n    col = WARN if i == n - 1 else HIGHLIGHT\n    bbox = [cx - ring_r, cy - ring_r, cx + ring_r, cy + ring_r]\n    if sweep > 1:\n        d.arc(bbox, -90, -90 + sweep, fill=rgba(col, 235), width=10)\n    if frac_done > 0.95:\n        ang = math.radians(-90 + sweep)\n        lx = cx + (ring_r + 30) * math.cos(ang)\n        ly = cy + (ring_r + 30) * math.sin(ang)\n        text(str(values[i]) + '%', int(lx), int(ly), size=22, color=TEXT, center=True)\ntext('EARTH, RING BY RING', cx, RTOP + 50, size=44, color=TEXT, center=True)\ntext(str(values[-1]) + '% PROTECTED BY ' + labels[-1], cx, RBOT - 40, size=36, color=WARN, center=True)\n",
-  "topic": "protected land and ocean area",
-  "starred": false
- },
- {
-  "sig": "1bd96b82ff0c",
-  "mechanic": "bulb-grid",
-  "concept": "a 10x10 grid of 100 lightbulbs lights up one by one as reveal climbs, the lit count literally equal to the electrified percent of people",
-  "code": "cols, rows = 10, 10\ntotal = cols * rows\nbulb = subject_image('lightbulb')\nend_val = values[-1]\nstart_val = values[0]\nlit_target = int(round(clamp(end_val / 100) * total))\nlit_now = int(round(lit_target * clamp(reveal)))\ngap = 6\navail_w = RX1 - RX0\navail_h = RBOT - RTOP - 260\ncell = min(avail_w / cols, avail_h / rows) - gap\ngx0 = RX0 + (avail_w - cols * (cell + gap)) / 2\ngy0 = RTOP + 150\nfor i in range(total):\n    col = i % cols\n    row = i // cols\n    x = gx0 + col * (cell + gap)\n    y = gy0 + row * (cell + gap)\n    on = i < lit_now\n    if on and bulb is not None:\n        paste(bulb, int(x), int(y), int(cell), int(cell))\n        d.rounded_rectangle([x - 3, y - 3, x + cell + 3, y + cell + 3], radius=6, outline=rgba(HIGHLIGHT, 220), width=3)\n    else:\n        d.rounded_rectangle([x, y, x + cell, y + cell], radius=6, fill=rgba((18, 20, 32), 180))\ntext('WHO HAS ELECTRICITY?', (RX0 + RX1) // 2, RTOP + 60, size=44, color=TEXT, center=True)\ntext(str(lit_now) + ' OF 100 PEOPLE', (RX0 + RX1) // 2, int(gy0 + rows * (cell + gap) + 46), size=40, color=WARN, center=True)\ntext('UP FROM ' + str(start_val) + '% IN ' + labels[0], (RX0 + RX1) // 2, RBOT - 30, size=26, color=TEXT, center=True)\n",
-  "topic": "access to electricity",
-  "starred": false
  }
 ]
