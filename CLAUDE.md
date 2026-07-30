@@ -57,6 +57,23 @@ Rules:
   contract). One at a time, each earning its slot with a better video.
 - Models/caches live in `cache/` (gitignored) — never commit binaries.
 
+## ChatGPT exchange (docs/EXCHANGE_PIPELINE.md)
+
+The daily run splits so ChatGPT contributes BEFORE any render: Phase A finds
+media and judges every shot against its script line, writes one bundle of gap
+requests + scripts, and stops. ChatGPT answers (images to Drive, punch-ups to
+git) and writes a DONE marker, which fires Phase B: verified media pull,
+self-fill for anything unfulfilled, guarded punch-up, then render.
+
+- **Pollinations is retired as the AI-image path** — all AI images come from
+  ChatGPT; gaps it misses get filled with real media by the self-fill pass.
+- **Policy A**: a ChatGPT no-show never costs the day (self-fill + a 06:15
+  backstop cron). A weaker shot beats no video.
+- `shared/punchup_guard.py` is not advisory: a rewrite that changes any
+  number/date/entity or the beat structure is rejected and the original ships.
+- Rollout: Phase A is dispatch-only (no cron), Phase B does not auto-render.
+  Proving on `trending` first.
+
 ## Third channel: story arc system (docs/STORY_ARC_SYSTEM.md)
 
 The third channel's `story_count` daily slots auto-detect narrative arcs

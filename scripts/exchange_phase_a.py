@@ -1,0 +1,172 @@
+#!/usr/bin/env python3
+"""Phase A (4:30) — find media, judge it, write the day's ask. NO RENDER.
+
+Reads the day's authored packages, records what media each shot actually has,
+runs the script-aware judge over every shot, and writes ONE bundle describing
+the gaps plus the scripts for punch-up. Then stops: rendering waits until
+ChatGPT has answered, because both the script and the visuals are still going
+to change.
+
+    python scripts/exchange_phase_a.py --date 20260730 --channel trending
+    python scripts/exchange_phase_a.py --date 20260730 --dry-run
+
+Writes:
+    exchange/bundles/<date>/bundle.json
+    exchange/bundles/<date>/READY
+
+Exit 0 always unless the packages directory is unreadable — a day with no
+gaps is a valid, successful Phase A (it just asks for nothing).
+"""
+from __future__ import annotations
+
+import argparse
+import glob
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from funnel import media_judge                     # noqa: E402
+from shared import exchange_bundle as xb           # noqa: E402
+from shared.fsutil import atomic_write_json        # noqa: E402
+
+PACKAGE_DIRS = {
+    "trending": "state/trending_packages",
+    "third": "state/third_packages",
+}
+
+
+def load_packages(channel: str, date: str) -> list[dict]:
+    base = ROOT / PACKAGE_DIRS.get(channel, PACKAGE_DIRS["trending"])
+    # Packages live either in a per-date folder or flat with a date prefix.
+    candidates = sorted(glob.glob(str(base / str(date) / "*.json")))
+    if not candidates:
+        candidates = sorted(glob.glob(str(base / f"*{date}*.json")))
+    out = []
+    for p in candidates:
+        try:
+            pkg = json.loads(Path(p).read_text())
+            pkg.setdefault("slug", Path(p).stem)
+            pkg["_path"] = p
+            out.append(pkg)
+        except Exception:                            # noqa: BLE001
+            print(f"[phase-a] skipping unreadable package {p}")
+    return out
+
+
+def resolve_media(pkg: dict, *, verbose: bool = True) -> dict:
+    """Do the media FINDING that normally happens at render time, now — so the
+    judge scores what we would actually put on screen rather than an empty
+    package. `enrich_package` pins `image_url` onto every shot it can cover
+    (make_explainer_stacked.py:2556 does the same call at render time).
+
+    Best-effort: without a network or an LLM key this simply attaches less,
+    and those shots judge as `missing`, which is the correct answer."""
+    try:
+        from funnel import entity_media
+        return entity_media.enrich_package(pkg, verbose=verbose)
+    except Exception as exc:                         # noqa: BLE001
+        print(f"[phase-a] media resolution unavailable ({exc}) — "
+              f"judging whatever the package already carries")
+        return pkg
+
+
+def usage_penalties(pkg: dict) -> dict:
+    """Repetition penalty per shot from the cross-video ledger, if available."""
+    try:
+        from funnel import media_usage
+    except Exception:                                # noqa: BLE001
+        return {}
+    pen = {}
+    for i, shot in enumerate(pkg.get("shots") or []):
+        url = shot.get("image_url")
+        if not url:
+            continue
+        try:
+            score = media_usage.penalty(url)         # type: ignore[attr-defined]
+            if score:
+                pen[i] = float(score)
+        except Exception:                            # noqa: BLE001
+            continue
+    return pen
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--date", required=True, help="YYYYMMDD or YYYY-MM-DD")
+    ap.add_argument("--channel", default="trending",
+                    choices=sorted(PACKAGE_DIRS))
+    ap.add_argument("--dry-run", action="store_true",
+                    help="print the bundle, write nothing")
+    ap.add_argument("--no-resolve", action="store_true",
+                    help="skip media finding; judge only what is pinned "
+                         "(offline testing)")
+    ap.add_argument("--json", action="store_true")
+    args = ap.parse_args()
+
+    packages = load_packages(args.channel, args.date)
+    if not packages:
+        print(f"[phase-a] no packages for {args.channel} {args.date} — "
+              f"nothing to ask for")
+        return 0
+
+    reports = []
+    for pkg in packages:
+        if not args.no_resolve:
+            resolve_media(pkg, verbose=not args.json)
+        report = media_judge.judge_package(
+            pkg, None, usage_penalties=usage_penalties(pkg))
+        reports.append(report)
+
+    bundle = xb.build_bundle(args.date, packages, reports)
+
+    if args.json:
+        print(json.dumps(bundle, indent=2)[:4000])
+    else:
+        print(f"[phase-a] {args.channel} {args.date}: "
+              f"{len(packages)} package(s)")
+        for r in reports:
+            c = r.get("counts") or {}
+            print(f"  {r.get('slug')}: {r.get('shot_count')} shots  "
+                  f"strong={c.get('strong', 0)} weak={c.get('weak', 0)} "
+                  f"missing={c.get('missing', 0)}")
+            for g in (r.get("gaps") or [])[:4]:
+                why = "; ".join(g.get("reasons") or [])[:90]
+                print(f"     gap shot {g.get('shot_index')}: "
+                      f"{g.get('verdict')} — {why}")
+        cnt = bundle["counts"]
+        print(f"[phase-a] asking ChatGPT for {cnt['requests']} asset(s) "
+              f"({cnt['animations']} animation) + punch-up on "
+              f"{cnt['packages']} script(s)")
+
+    if args.dry_run:
+        print("[phase-a] dry run — nothing written")
+        return 0
+
+    for pkg in packages:
+        pkg_path = pkg.get("_path")
+        if not pkg_path:
+            continue
+        try:
+            saved = {k: v for k, v in pkg.items() if k != "_path"}
+            atomic_write_json(Path(pkg_path), saved)
+        except Exception as exc:                         # noqa: BLE001
+            print(f"[phase-a] WARN could not save resolved media for "
+                  f"{pkg.get('slug')}: {exc}")
+
+    path = xb.write_bundle(args.date, packages, reports)
+    if path is None:
+        print("[phase-a] ERROR: could not write bundle")
+        return 1
+    ready = xb.mark_ready(args.date)
+    print(f"[phase-a] wrote {path.relative_to(ROOT)}")
+    if ready:
+        print(f"[phase-a] wrote {ready.relative_to(ROOT)} — "
+              f"commit these; ChatGPT answers next")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

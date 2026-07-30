@@ -1,0 +1,113 @@
+name: Exchange Phase A (find media, judge, ask ChatGPT)
+
+# 4:30 — obtain the media the day's videos will need and judge it against the
+# script, then STOP. Nothing renders here: ChatGPT is about to change both the
+# scripts and the visuals, so rendering now would be thrown-away work.
+#
+# Chain: this -> ChatGPT scheduled task (reads the bundle, writes response.json
+# + DONE) -> exchange_phase_b.yml (fires on the DONE push) -> render.
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Package date (YYYYMMDD, default today UTC)'
+        required: false
+        default: ''
+      channel:
+        description: 'Channel to prepare'
+        required: false
+        default: 'trending'
+      dry_run:
+        description: 'Print the bundle, commit nothing'
+        required: false
+        type: boolean
+        default: false
+  # Deliberately NO cron yet: this lands disabled-by-default so it cannot
+  # disturb the live daily chain. Enable by adding a schedule here once a
+  # dispatch run has been reviewed (see docs/EXCHANGE_PIPELINE.md).
+
+permissions:
+  contents: write   # commit the bundle + resolved media pins
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  phase-a:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    concurrency:
+      group: exchange-${{ inputs.channel || 'trending' }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pre-flight — kill switch
+        run: |
+          set -e
+          [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
+          exit 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install python deps
+        run: pip install -q pillow requests
+
+      - name: Cache media lookups
+        uses: actions/cache@v4
+        with:
+          path: cache/funnel/
+          key: funnel-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            funnel-cache-v1-
+
+      - name: Find media, judge, write bundle
+        env:
+          # Media funnel providers (all optional — absent keys just narrow
+          # the search, and a narrower search means more gaps for ChatGPT).
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # How many of the day's gaps may be requested as ANIMATION rather
+          # than a still. 0 = stills only. Raise once animation is proven.
+          CHATGPT_ANIM_BUDGET: ${{ vars.CHATGPT_ANIM_BUDGET || '0' }}
+          # Hard cap on daily requests so one bad authoring night can't ask
+          # for 200 assets.
+          CHATGPT_MAX_REQUESTS: ${{ vars.CHATGPT_MAX_REQUESTS || '24' }}
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          FLAGS=""
+          [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="--dry-run"
+          python scripts/exchange_phase_a.py \
+            --date "$DATE" --channel "${{ inputs.channel || 'trending' }}" $FLAGS
+
+      - name: Commit the ask
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          bash scripts/ci_commit_state.sh \
+            "exchange: phase A bundle for $DATE [skip ci]" \
+            "exchange/bundles/$DATE" \
+            state/trending_packages state/third_packages
+
+      - name: What happens next
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          echo "::notice::Bundle committed at exchange/bundles/$DATE/bundle.json."
+          echo "::notice::ChatGPT's scheduled task should now answer it and write"
+          echo "::notice::exchange/bundles/$DATE/DONE, which triggers Phase B."
