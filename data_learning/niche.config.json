@@ -13710,7 +13710,7 @@
       "slug": "carbon-climb",
       "title": "The Line That Only Goes Up",
       "hook": "The air itself is changing, and we have the receipt.",
-      "closing": "Every year, the line climbs higher. That's the story in the data.",
+      "closing": "And it's not slowing down \u2014 at this pace, the air blows past 500 parts per million before today's kids retire.",
       "question": "Did you realize it was accelerating? Tell me below.",
       "keep_order": true,
       "hashtags": [
@@ -13805,7 +13805,7 @@
     {
       "slug": "world-power-mix",
       "title": "How the World Keeps Its Lights On",
-      "hook": "Here's how the entire planet made its electricity last year.",
+      "hook": "Something just happened to the world's power grid that hasn't happened since the 1940s.",
       "closing": "The mix is tipping \u2014 slowly, then all at once.",
       "question": "Is your country ahead or behind on this? Let me know.",
       "hashtags": [
@@ -16893,42 +16893,9 @@
           "topic": "Terrestrial and marine protected areas",
           "say": "Protected land and ocean area climbed from eleven point one percent in 2013 to seventeen percent by 2025 \u2014 up almost six points in just twelve years.",
           "scene": {
-            "title": false,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              },
-              {
-                "type": "fill_object",
-                "region": "ground-row",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "ground-row",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:3"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "ground-row",
-                "subject": "globe",
-                "data": {
-                  "value_from": "item:5"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "Protected area: 11.1% \u2192 17.0%"
-              }
-            ]
+            "mechanic": "growth-rings",
+            "concept": "a globe grows a new protective ring for each era, each ring's sweep-angle set by that era's coverage percent, ending in a near-complete glowing band",
+            "code": "cx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2 + 30\nglobe = subject_image('planet earth from space')\nbase = int(min(RX1 - RX0, RBOT - RTOP) * 0.22)\nif globe is not None:\n    paste(globe, cx - base, cy - base, base * 2, base * 2)\nlit = clamp(reveal) * n\nfull = int(lit)\nfor i in range(n):\n    if i > full:\n        continue\n    frac_done = 1.0 if i < full else clamp(lit - full)\n    ring_r = base + 30 + i * 26\n    sweep = clamp(values[i] / 100) * 360 * frac_done\n    col = WARN if i == n - 1 else HIGHLIGHT\n    bbox = [cx - ring_r, cy - ring_r, cx + ring_r, cy + ring_r]\n    if sweep > 1:\n        d.arc(bbox, -90, -90 + sweep, fill=rgba(col, 235), width=10)\n    if frac_done > 0.95:\n        ang = math.radians(-90 + sweep)\n        lx = cx + (ring_r + 30) * math.cos(ang)\n        ly = cy + (ring_r + 30) * math.sin(ang)\n        text(str(values[i]) + '%', int(lx), int(ly), size=22, color=TEXT, center=True)\ntext('EARTH, RING BY RING', cx, RTOP + 50, size=44, color=TEXT, center=True)\ntext(str(values[-1]) + '% PROTECTED BY ' + labels[-1], cx, RBOT - 40, size=36, color=WARN, center=True)\n"
           }
         }
       ]
@@ -16937,7 +16904,7 @@
       "slug": "alternative-and-nuclear-energy-leapt-to-16-5-by-2024",
       "title": "Alternative And Nuclear Energy Leapt To 16.5% By 2024",
       "hook": "Alternative and nuclear energy barely moved for decades, then it jumped to 16.5 percent of world energy use.",
-      "closing": "Three energy trends, one dataset \u2014 decide for yourself what actually changed.",
+      "closing": "For decades alternative and nuclear barely twitched \u2014 then it nearly doubled in a few years. If that pace holds, fossil fuels stop being the default sooner than anyone's planning for.",
       "hashtags": [
         "energydata",
         "renewableenergy",
@@ -16987,23 +16954,9 @@
           "topic": "Access to electricity",
           "say": "Access to electricity rose from seventy three point two percent in nineteen ninety eight to ninety one point nine percent by twenty twenty four.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "lightbulb",
-                "data": {
-                  "value_from": "star"
-                },
-                "anim": "fill"
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "Electricity access: 73% -> 92%"
-              }
-            ]
+            "mechanic": "bulb-grid",
+            "concept": "a 10x10 grid of 100 lightbulbs lights up one by one as reveal climbs, the lit count literally equal to the electrified percent of people",
+            "code": "cols, rows = 10, 10\ntotal = cols * rows\nbulb = subject_image('lightbulb')\nend_val = values[-1]\nstart_val = values[0]\nlit_target = int(round(clamp(end_val / 100) * total))\nlit_now = int(round(lit_target * clamp(reveal)))\ngap = 6\navail_w = RX1 - RX0\navail_h = RBOT - RTOP - 260\ncell = min(avail_w / cols, avail_h / rows) - gap\ngx0 = RX0 + (avail_w - cols * (cell + gap)) / 2\ngy0 = RTOP + 150\nfor i in range(total):\n    col = i % cols\n    row = i // cols\n    x = gx0 + col * (cell + gap)\n    y = gy0 + row * (cell + gap)\n    on = i < lit_now\n    if on and bulb is not None:\n        paste(bulb, int(x), int(y), int(cell), int(cell))\n        d.rounded_rectangle([x - 3, y - 3, x + cell + 3, y + cell + 3], radius=6, outline=rgba(HIGHLIGHT, 220), width=3)\n    else:\n        d.rounded_rectangle([x, y, x + cell, y + cell], radius=6, fill=rgba((18, 20, 32), 180))\ntext('WHO HAS ELECTRICITY?', (RX0 + RX1) // 2, RTOP + 60, size=44, color=TEXT, center=True)\ntext(str(lit_now) + ' OF 100 PEOPLE', (RX0 + RX1) // 2, int(gy0 + rows * (cell + gap) + 46), size=40, color=WARN, center=True)\ntext('UP FROM ' + str(start_val) + '% IN ' + labels[0], (RX0 + RX1) // 2, RBOT - 30, size=26, color=TEXT, center=True)\n"
           }
         }
       ]
@@ -17011,7 +16964,7 @@
     {
       "slug": "rural-growth-basically-died-down-to-just-0-3",
       "title": "Rural Growth Basically Died: Down To Just 0.3%",
-      "hook": "The countryside on planet Earth almost stopped growing completely.",
+      "hook": "One growth rate on planet Earth just quietly crashed toward zero \u2014 and it's probably not the one you'd guess.",
       "closing": "Cities slowed down, but villages nearly flatlined \u2014 the map of humanity is quietly rewriting itself.",
       "hashtags": [
         "datafacts",
@@ -17129,7 +17082,7 @@
     {
       "slug": "cereal-yield-hit-a-record-3-955-kg-per-hectare-as-farmland-v",
       "title": "Cereal Yield Hit a Record 3,955 kg Per Hectare As Farmland Vanished",
-      "hook": "By 2024, world cereal farmland shrank to 415,702,088 hectares while yield hit an all-time high.",
+      "hook": "World cereal farmland just shrank to its smallest footprint in decades \u2014 so why isn't anyone going hungry?",
       "closing": "Less land, less total grain, but more food squeezed from every hectare than ever before.",
       "hashtags": [
         "agriculture",
