@@ -255,7 +255,7 @@ def _cover_round(photo, w, h, radius=28):
 
 
 def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
-                side=False, photo=None):
+                side=False, photo=None, phase=1.0):
     """A subject cut-out with its number + label. Two modes:
       * side=True  -> a full-width RANKING ROW: a BIG recognizable picture on the
         left, a big number + label on the right (rows stack to fill the frame).
@@ -274,7 +274,17 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
         # demonstrated. sqrt keeps the smallest row recognisable while the
         # leader is unmistakably the biggest thing on screen.
         _vr = max(0.0, min(1.0, (value / vmax) if vmax else 1.0))
-        ih = int(bh * (0.40 + 0.44 * (_vr ** 0.5)))
+        _full = bh * (0.40 + 0.44 * (_vr ** 0.5))
+        # GROW IN, then keep breathing. Rows used to snap to final size and hold,
+        # so once every element had revealed the frames were byte-identical and
+        # the scene measured 1.0 effective fps against an 11.0 floor — a build
+        # that is technically 30fps and visually a still. Size now rides the
+        # reveal, and a small oscillation on the global build phase means no two
+        # frames of the beat are the same.
+        import math as _mo
+        _grow = 0.42 + 0.58 * max(0.0, min(1.0, reveal))
+        _breathe = 1.0 + 0.022 * _mo.sin(2 * _mo.pi * (phase * 2.0 + _vr))
+        ih = int(_full * _grow * _breathe)
         if photo is not None:
             # A REAL photo of the thing, framed as a rounded card filling the left.
             iw = int(bw * 0.48)
@@ -307,7 +317,9 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
         nx = bx0 + int(bw * 0.56)
         avail = bx1 - nx - 12                     # keep text inside the frame
         nfs = min(150, max(84, int(bh * 0.42)))
-        num = _vfmt(value)
+        # Count up with the reveal so the type carries motion too (it landed
+        # final-value-on-frame-one before, adding nothing between frames).
+        num = _vfmt(value * max(0.0, min(1.0, reveal * 1.06)))
         nf = _pil_font(nfs)
         nb = d.textbbox((0, 0), num, font=nf)
         while nfs > 48 and (nb[2] - nb[0]) > avail:     # shrink number to fit
@@ -976,6 +988,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 else:
                     an = draw_object(d, canvas, box, cuts.get(i), lv[1], lv[0],
                                      col, lr, vmax, side=(i in side_set),
+                                     phase=r,
                                      photo=photos.get(i))
                 if f == frames and an:
                     anchors.append(an)
