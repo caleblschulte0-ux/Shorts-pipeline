@@ -32,6 +32,7 @@ everything above the channel line.**
 | `funnel/higgsfield.py` | still-image animation via external API (dormant) |
 | `funnel/feeds.py` | RSS/Atom research intake, TTL-cached (stdlib, never raises) |
 | `funnel/article_extract.py` | clean article text from a URL (trafilatura lane + dependency-free heuristic) |
+| `funnel/media_judge.py` | script-aware per-shot scoring (strong/weak/missing) — decides when to ask ChatGPT |
 
 ## shared/ — everything else shared between all channels
 
@@ -44,6 +45,8 @@ everything above the channel line.**
 | `shared/themed_bottom.py` | themed bottom-half game renderer |
 | `shared/video_qa.py` | finished-render QA: black/freeze/silence/loudness (`python -m shared.video_qa out.mp4`); `passes()` fails closed |
 | `shared/captions.py` | word-timed karaoke ASS captions from whisper words + ffmpeg burn |
+| `shared/exchange_bundle.py` | the ChatGPT one-pass bundle protocol + READY/DONE markers (docs/EXCHANGE_PIPELINE.md) |
+| `shared/punchup_guard.py` | claim + beat-structure enforcement on externally rewritten scripts |
 
 ## engines/ — registered render capabilities
 
