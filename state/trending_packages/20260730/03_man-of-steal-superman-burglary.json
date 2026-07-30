@@ -41,11 +41,15 @@
     },
     {
       "phrase": "broke into the cabin",
-      "query": "boat cabin interior"
+      "query": "boat cabin interior",
+      "image_url": "https://pixabay.com/get/geb64731e021db3f8d0504b1f1235914525adb6930d8880aa75f349b95ff061826ef79628b53f40b4ad51465fd5cf2afec755476128b3b398b6b76783c45638e3_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a bag of power tools",
-      "query": "power tools bag"
+      "query": "power tools bag",
+      "image_url": "https://pixabay.com/get/g7fb8b72fb00ea7db6324511a38354771263b1b031cd99aed768dc5a8e4ae5098e771d7ae6747bae18389cfae5ac0f2294bc884c733a47043e7c3212374b08390_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Body camera rolls up",
@@ -62,7 +66,9 @@
       "mascot_pose": "point",
       "evidence_urls": [
         "https://www.mysuncoast.com/2026/07/29/caught-camera-hillsborough-county-man-arrested-after-ruskin-boat-burglary/"
-      ]
+      ],
+      "image_url": "https://pixabay.com/get/gf730c5522dffdf9567bab46993eef98ff471eebfa7b2b105d3501580357ca4b3ec6f4d92a7a08971d299e673ea54c7b44e58305254f073f67918ac431a4bdecb_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "His name's James Tidwell, 57",
@@ -75,20 +81,28 @@
     },
     {
       "phrase": "a convicted felon",
-      "query": "courthouse handcuffs"
+      "query": "courthouse handcuffs",
+      "image_url": "https://pixabay.com/get/g0eae59193b1acfc75f982d05c3b1d64f60f1f2c8571c8de2ea03ad093bb524dc0b44a545acfca7519181131f568bea7cee227687bb6d711f0975501cc37e8c57_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the disguise would help",
       "query": "man in costume",
-      "mascot_pose": "laugh"
+      "mascot_pose": "laugh",
+      "image_url": "https://pixabay.com/get/g926d2150405fd4fecc879fe96c66931e836aa5bea7eed70bc2f993a9589faf55e985bb14cafdb98460942c299e76a714fc0c667cf7471e2289b7b9ac61d7bb80_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "confessed on camera",
-      "query": "police interview room"
+      "query": "police interview room",
+      "image_url": "https://pixabay.com/get/gd6ff83da16f8964f95cf9e2c6464fb518180be26d763c2d4224d75a1cb930a9ebbfb8a5214651542a95f86289efc268e7b7a6765c52a4262f0ed7ec999f56f6f_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "reading him his rights",
-      "query": "police officer talking"
+      "query": "police officer talking",
+      "image_url": "https://pixabay.com/get/g966ce873af787a43cd1bcdb83dbba6ae23d847bf840d14f19b597bf23abd91be02d4a08eab664ec93fdfd4de916c4390da4ad45121bccf4d645a82b12e6db8ca_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "burglary of an unoccupied conveyance",
@@ -147,5 +161,6 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto"
+  "bottom_theme": "auto",
+  "punched_up": true
 }
