@@ -7,7 +7,7 @@
   "done_marker": "exchange/bundles/20260730/DONE",
   "counts": {
     "packages": 6,
-    "requests": 23,
+    "requests": 22,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -318,20 +318,19 @@
           "shot_index": 12,
           "phrase": "the Man of Steel",
           "query": "superman comic cape",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         }
       ],
       "media_health": {
-        "strong": 11,
+        "strong": 12,
         "weak": 0,
-        "missing": 2,
+        "missing": 1,
         "unknown": 0
       },
-      "strong_fraction": 0.846,
+      "strong_fraction": 0.923,
       "requested": [
-        "man-of-steal-superman-burglary-s11-dc8c34909c0b",
-        "man-of-steal-superman-burglary-s12-903aa40fdcbe"
+        "man-of-steal-superman-burglary-s11-dc8c34909c0b"
       ]
     },
     {
@@ -684,28 +683,6 @@
       "shot_index": 11,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: boat anchored water. It accompanies the narration: \"burglary of an unoccupied conveyance\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "man-of-steal-superman-burglary-s12-903aa40fdcbe",
-      "slug": "man-of-steal-superman-burglary",
-      "shot_index": 12,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: superman comic cape. It accompanies the narration: \"the Man of Steel\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
