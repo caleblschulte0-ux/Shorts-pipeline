@@ -169,6 +169,48 @@
       ],
       "published_versions": [],
       "last_updated": "2026-07-29"
+    },
+    "jynxzi-argentina-england-2026w30": {
+      "event_id": "jynxzi-argentina-england-2026w30",
+      "people": [
+        "jynxzi"
+      ],
+      "actions": [
+        "argentina",
+        "england",
+        "jynxzi",
+        "match"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-30",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jynxzi/clip/GrotesqueYummyPlumberBlargNaut-3Ug8h4PdOD-6_yT8",
+        "https://www.twitch.tv/jynxzi/clip/AntsyCrepuscularRedpandaPRChase-JjQz25a7DY9v1ZiM"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-30"
+    },
+    "jynxzi-argentina-audio-2026w30": {
+      "event_id": "jynxzi-argentina-audio-2026w30",
+      "people": [
+        "jynxzi"
+      ],
+      "actions": [
+        "argentina",
+        "audio",
+        "england",
+        "jynxzi"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-30",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jynxzi/clip/GrotesqueYummyPlumberBlargNaut-3Ug8h4PdOD-6_yT8",
+        "https://www.twitch.tv/jynxzi/clip/AntsyCrepuscularRedpandaPRChase-JjQz25a7DY9v1ZiM"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-30"
     }
   }
 }
