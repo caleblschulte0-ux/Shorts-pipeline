@@ -83,6 +83,36 @@ own writing brain (a Claude Routine) did not run and the reserve bank could
 not cover the day. **There is no slate. Without you the channel posts
 nothing.**
 
+### `authoring_requests` — one entry per channel that needs a brain
+
+**This is the whole signal.** If Claude did its job, `authoring_requests` is
+absent or empty. If a channel appears in it, Claude left that channel
+nothing today and you are its brain. Each channel asks for a different
+thing, and each has its own array in your `response.json`:
+
+| Channel in `authoring_requests` | `job` | You write | Return in |
+|---|---|---|---|
+| `trending` | author | 6 packages, 2+2+2 | `authored` |
+| `explainer` | `rewrite_words` | title / hook / says / closing per story | `authored_explainer` |
+| `curiosity` | `stock_queue` | whole long-form stories | `authored_curiosity` |
+
+`third` never appears — its package is a capture recipe for a Twitch clip
+that does not exist until the run happens, so there is nothing to write
+ahead of time.
+
+**`explainer` is a REWRITE, not an authoring job.** Those stories already
+carry real World Bank numbers; only the words are bad, because they came
+from a deterministic template when no brain was reachable. So:
+
+- Change the wording freely. Do **not** change, drop, or invent any number,
+  percent, year, country, or named entity. A guard compares every line
+  before and after and **rejects the entire story** if one moved — it then
+  ships with its original bad words, which helps nobody.
+- Return exactly one `says` entry per segment, in the same order.
+- The title should name the surprise. The failure this exists to fix is
+  *"Congo, Dem. Rep. Beats Everyone On Male primary school age children
+  out-of-school"* — a real title this channel shipped.
+
 ### If there is no bundle at all, author anyway
 
 The takeover exists for the day everything on the Claude side is dead. On

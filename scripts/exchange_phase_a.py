@@ -129,7 +129,19 @@ def main() -> int:
               f"asking ChatGPT to author {authoring_request['write']} "
               f"({', '.join(f'{n}x{f}' for f, n in authoring_request['mix'].items() if n)})")
 
-    if not packages and not authoring_request:
+    # EVERY channel's ask, not just trending's. The operator's rule: if a
+    # channel appears here, Claude left it nothing today and ChatGPT is its
+    # brain. Explainer asks for WORDS (its numbers are already real);
+    # curiosity asks for queue stock. Third is absent by nature — its package
+    # is a capture recipe for a clip that does not exist yet.
+    channel_requests = brief.all_requests(args.date, authoring_request)
+    for ch, req in channel_requests.items():
+        if ch == "trending":
+            continue
+        print(f"[phase-a] TAKEOVER {ch}: {req.get('job', 'author')} "
+              f"x{req.get('write', 0)} — {req.get('reason', '')[:70]}")
+
+    if not packages and not channel_requests:
         print(f"[phase-a] no packages for {args.channel} {args.date} — "
               f"nothing to ask for")
         return 0
@@ -143,7 +155,7 @@ def main() -> int:
         reports.append(report)
 
     bundle = xb.build_bundle(args.date, packages, reports,
-                             authoring_request)
+                             authoring_request, channel_requests)
 
     if args.json:
         print(json.dumps(bundle, indent=2)[:4000])
@@ -180,7 +192,7 @@ def main() -> int:
                   f"{pkg.get('slug')}: {exc}")
 
     path = xb.write_bundle(args.date, packages, reports,
-                           authoring_request)
+                           authoring_request, channel_requests)
     if path is None:
         print("[phase-a] ERROR: could not write bundle")
         return 1

@@ -76,7 +76,8 @@ def _max_requests() -> int:
 
 def build_bundle(date: str, packages: list[dict],
                  judge_reports: list[dict],
-                 authoring_request: dict | None = None) -> dict:
+                 authoring_request: dict | None = None,
+                 channel_requests: dict | None = None) -> dict:
     """Assemble the day's ask. Pure function — easy to test, no IO.
 
     `authoring_request` is the AUTHORING TAKEOVER brief (see
@@ -159,7 +160,8 @@ def build_bundle(date: str, packages: list[dict],
         "schema": SCHEMA,
         "date": str(date),
         "status": "open",
-        "mode": "author" if authoring_request else "punch_up",
+        "mode": ("author" if (authoring_request or channel_requests)
+                 else "punch_up"),
         "response_path": f"exchange/bundles/{date}/response.json",
         "done_marker": f"exchange/bundles/{date}/DONE",
         "counts": {"packages": len(items), "requests": len(requests),
@@ -282,7 +284,16 @@ def build_bundle(date: str, packages: list[dict],
         },
     }
 
-    if authoring_request:
+    if channel_requests:
+        # EVERY channel's ask in ONE file. The signal the operator asked for
+        # is exactly this: if Claude worked, these are absent; if a channel
+        # appears here, Claude left that channel nothing and ChatGPT is its
+        # brain today. `authoring_request` stays as the trending alias so
+        # nothing that already reads it breaks.
+        bundle["authoring_requests"] = channel_requests
+        bundle["counts"]["channels_needing_a_brain"] = len(channel_requests)
+
+    if authoring_request or channel_requests:
         # TAKEOVER. Front of the bundle, and the two_jobs list is rewritten
         # so the authoring job cannot read as an optional extra bolted on
         # after the media/punch-up work.
@@ -306,11 +317,12 @@ def build_bundle(date: str, packages: list[dict],
 
 def write_bundle(date: str, packages: list[dict],
                  judge_reports: list[dict],
-                 authoring_request: dict | None = None) -> Path | None:
+                 authoring_request: dict | None = None,
+                 channel_requests: dict | None = None) -> Path | None:
     """Phase A: persist the day's bundle. Returns its path, or None."""
     try:
         bundle = build_bundle(date, packages, judge_reports,
-                              authoring_request)
+                              authoring_request, channel_requests)
         d = bundle_dir(date)
         d.mkdir(parents=True, exist_ok=True)
         path = d / "bundle.json"

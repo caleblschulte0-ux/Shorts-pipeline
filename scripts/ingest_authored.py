@@ -174,9 +174,136 @@ def main() -> int:
                     choices=sorted(PACKAGE_DIRS))
     ap.add_argument("--target", type=int, default=6)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--all-channels", action="store_true",
+                    help="also apply explainer words + curiosity queue stock")
     args = ap.parse_args()
     ingest(args.date, args.channel, target=args.target, dry_run=args.dry_run)
+    if args.all_channels:
+        ingest_explainer(args.date, dry_run=args.dry_run)
+        ingest_curiosity(args.date, dry_run=args.dry_run)
     return 0
+
+
+
+# --------------------------------------------------------------------------
+# The other channels
+# --------------------------------------------------------------------------
+def ingest_explainer(date: str, *, dry_run: bool = False) -> dict:
+    """Apply ChatGPT-written WORDS to queued explainer stories.
+
+    A rewrite, not an authoring job — the numbers in these stories came from
+    the World Bank and must survive untouched. `shared.punchup_guard` is the
+    enforcement: it compares numeric claims and named entities before and
+    after and rejects the whole rewrite if any moved. A rejected story keeps
+    its deterministic words and still ships; it just ships worse."""
+    from shared import authoring_brief as brief
+    from shared import punchup_guard
+
+    response = xb.read_response(date)
+    offered = (response or {}).get("authored_explainer") or []
+    report = {"date": str(date), "channel": "explainer",
+              "offered": len(offered), "applied": [], "rejected": []}
+    if not offered:
+        return report
+
+    cfg_path = brief.NICHE_CONFIG
+    cfg = brief._load(cfg_path, None)
+    if not isinstance(cfg, dict):
+        report["rejected"].append({"slug": "*", "problems":
+                                   [f"cannot read {cfg_path.name}"]})
+        return report
+    stories = {s.get("slug"): s for s in cfg.get("stories") or []}
+
+    for entry in offered:
+        slug = (entry or {}).get("slug")
+        story = stories.get(slug)
+        if not story:
+            report["rejected"].append(
+                {"slug": slug, "problems": ["no such story in the queue"]})
+            continue
+        says = entry.get("says") or []
+        segs = story.get("segments") or []
+        if len(says) != len(segs):
+            report["rejected"].append(
+                {"slug": slug, "problems":
+                 [f"{len(says)} says for {len(segs)} segments"]})
+            continue
+
+        # Guard every rewritten line against the one it replaces.
+        problems: list[str] = []
+        for i, (new_say, seg) in enumerate(zip(says, segs)):
+            ok, why = punchup_guard.check(
+                {"script": seg.get("say") or "", "shots": []},
+                {"script": str(new_say or "")})
+            if not ok:
+                problems += [f"segment {i}: {w}" for w in why]
+        for field in ("title", "hook", "closing"):
+            new = str(entry.get(field) or "").strip()
+            if not new:
+                problems.append(f"missing {field}")
+        if problems:
+            report["rejected"].append({"slug": slug, "problems": problems})
+            print(f"[ingest:explainer] REJECT {slug}: {problems[0]}")
+            continue
+
+        for field in ("title", "hook", "closing", "question"):
+            if entry.get(field):
+                story[field] = str(entry[field]).strip()
+        for new_say, seg in zip(says, segs):
+            seg["say"] = str(new_say).strip()
+        story["words_by"] = "chatgpt-takeover"
+        report["applied"].append(slug)
+        print(f"[ingest:explainer] applied ChatGPT words to {slug}")
+
+    if report["applied"] and not dry_run:
+        atomic_write_json(cfg_path, cfg)
+    return report
+
+
+def ingest_curiosity(date: str, *, dry_run: bool = False) -> dict:
+    """Append ChatGPT-authored long-form stories to the curiosity queue."""
+    from shared import authoring_brief as brief
+
+    response = xb.read_response(date)
+    offered = (response or {}).get("authored_curiosity") or []
+    report = {"date": str(date), "channel": "curiosity",
+              "offered": len(offered), "applied": [], "rejected": []}
+    if not offered:
+        return report
+
+    cfg_path = brief.CURIOSITY_CONFIG
+    cfg = brief._load(cfg_path, None)
+    if not isinstance(cfg, dict):
+        report["rejected"].append({"slug": "*", "problems":
+                                   [f"cannot read {cfg_path.name}"]})
+        return report
+    cfg.setdefault("stories", [])
+    have = {s.get("slug") for s in cfg["stories"]}
+
+    required = ("slug", "title", "hook", "closing", "segments")
+    for entry in offered:
+        slug = brief.safe_slug((entry or {}).get("slug") or "")
+        missing = [f for f in required if not (entry or {}).get(f)]
+        problems = [f"missing {f}" for f in missing]
+        if slug in have:
+            problems.append(f"slug already queued: {slug}")
+        if not problems and not isinstance(entry.get("segments"), list):
+            problems.append("segments must be a list")
+        if problems:
+            report["rejected"].append({"slug": slug, "problems": problems})
+            print(f"[ingest:curiosity] REJECT {slug}: {problems[0]}")
+            continue
+        story = {k: v for k, v in entry.items() if not k.startswith("_")}
+        story["slug"] = slug
+        story["words_by"] = "chatgpt-takeover"
+        cfg["stories"].append(story)
+        have.add(slug)
+        report["applied"].append(slug)
+        print(f"[ingest:curiosity] queued {slug}")
+
+    if report["applied"] and not dry_run:
+        atomic_write_json(cfg_path, cfg)
+    return report
 
 
 if __name__ == "__main__":

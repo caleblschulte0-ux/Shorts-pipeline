@@ -269,3 +269,151 @@ def safe_slug(slug: str, fallback: str = "authored") -> str:
     string becomes a path."""
     s = _SAFE_SLUG.sub("-", (slug or "").lower()).strip("-")
     return (s or fallback)[:60]
+
+
+# --------------------------------------------------------------------------
+# The other channels
+# --------------------------------------------------------------------------
+# Trending is not the only channel a dark Claude hurts, it was only the
+# loudest — its floor was "nothing". The others keep posting, but on words
+# nobody wrote:
+#
+#   explainer/curiosity  story_forge fills the QUEUE from real World Bank
+#       numbers with no brain involved, but the title/hook/narration fall to
+#       a deterministic template. That template once shipped "Congo, Dem.
+#       Rep. Beats Everyone On Male primary school age children
+#       out-of-school" (scripts/story_forge.py). The numbers are fine; the
+#       WORDS are the hole, and words are exactly what ChatGPT can write.
+#   curiosity            its queue is stocked by the Claude routine, so it
+#       can run DRY — a different failure from bad words.
+#   third                genuinely cannot be pre-authored: its package is a
+#       CAPTURE RECIPE (`title: "{clip_title}"`) and the clip it will title
+#       does not exist until the run happens. Nothing to hand ChatGPT ahead
+#       of time. It self-heals to Groq, then to a safe raw clip title.
+
+NICHE_CONFIG = ROOT / "data_learning" / "niche.config.json"
+CURIOSITY_CONFIG = ROOT / "data_learning" / "curiosity.config.json"
+EXPLAINER_LOG = ROOT / "state" / "explainer_posted_log.json"
+CURIOSITY_LOG = ROOT / "state" / "curiosity_posted_log.json"
+# Below this many un-posted curiosity stories, ask ChatGPT for more.
+CURIOSITY_MIN_QUEUE = 3
+
+
+def _load(path: Path, default):
+    try:
+        return json.loads(path.read_text())
+    except Exception:                                # noqa: BLE001
+        return default
+
+
+def _posted_slugs(path: Path) -> set[str]:
+    log = _load(path, {})
+    entries = log.get("posted") if isinstance(log, dict) else log
+    out = set()
+    for e in entries or []:
+        if isinstance(e, dict) and e.get("slug"):
+            out.add(e["slug"])
+    return out
+
+
+def explainer_word_request(date: str) -> dict | None:
+    """Stories sitting in the queue whose WORDS came from the deterministic
+    fallback — i.e. no brain was reachable when story_forge composed them.
+
+    This is a rewrite job, not an authoring job: the numbers are already
+    right and must not move. Phase B runs `shared.punchup_guard` over what
+    comes back, so a rewrite that touches a number is rejected outright."""
+    cfg = _load(NICHE_CONFIG, {})
+    posted = _posted_slugs(EXPLAINER_LOG)
+    needy = [s for s in cfg.get("stories") or []
+             if s.get("words_by") == "deterministic"
+             and s.get("slug") not in posted]
+    if not needy:
+        return None
+    return {
+        "schema": SCHEMA,
+        "date": str(date),
+        "channel": "explainer",
+        "job": "rewrite_words",
+        "reason": ("these stories were composed with NO brain reachable — "
+                   "their numbers are real but their title/hook/narration "
+                   "came from a deterministic template"),
+        "write": len(needy),
+        "stories": [{
+            "slug": s.get("slug"),
+            "current_title": s.get("title"),
+            "current_hook": s.get("hook"),
+            "current_closing": s.get("closing"),
+            "current_question": s.get("question"),
+            "says": [(seg or {}).get("say") for seg in s.get("segments") or []],
+        } for s in needy],
+        "hard_rules": [
+            "You are rewriting WORDS around numbers that are already correct "
+            "and sourced. You may not change, drop, or invent ANY number, "
+            "percent, year, date, country or entity — a guard checks this "
+            "mechanically and rejects the whole rewrite if you do.",
+            "Return one `says` entry per segment, in the same order and the "
+            "same count. Each speaks that segment's actual numbers in "
+            "natural English, ~22 words.",
+            "The title must name the surprise, not describe the dataset. "
+            "'Congo, Dem. Rep. Beats Everyone On Male primary school age "
+            "children out-of-school' is the failure this exists to fix.",
+            "Hook stops the thumb in two seconds. Closing lands the point.",
+        ],
+        "where": {"preferred": "an `authored_explainer` array in "
+                               "response.json, one object per slug with "
+                               "title / hook / says / closing / question"},
+    }
+
+
+def curiosity_queue_request(date: str) -> dict | None:
+    """The curiosity queue is stocked by the Claude routine, so a dark Claude
+    drains it. Ask for long-form stories when it runs short."""
+    cfg = _load(CURIOSITY_CONFIG, {})
+    posted = _posted_slugs(CURIOSITY_LOG)
+    unposted = [s for s in cfg.get("stories") or []
+                if s.get("slug") and s["slug"] not in posted]
+    if len(unposted) >= CURIOSITY_MIN_QUEUE:
+        return None
+    return {
+        "schema": SCHEMA,
+        "date": str(date),
+        "channel": "curiosity",
+        "job": "stock_queue",
+        "reason": (f"only {len(unposted)} un-posted curiosity stories "
+                   f"remain (want >= {CURIOSITY_MIN_QUEUE}); the Claude "
+                   f"routine that normally stocks this queue did not run"),
+        "write": CURIOSITY_MIN_QUEUE - len(unposted),
+        "required": ["slug", "title", "hook", "closing", "question",
+                     "hashtags", "segments"],
+        "hard_rules": [
+            "Long-form curiosity: one genuinely surprising thing explained "
+            "properly, not a listicle. Read data_learning/CURIOSITY_BRAIN.md "
+            "for the voice and the topic bank.",
+            "Every factual claim must be real and checkable. No invented "
+            "statistics — this channel's whole premise is that the numbers "
+            "are true.",
+            "`slug` lowercase kebab-case, not already in "
+            "data_learning/curiosity.config.json.",
+        ],
+        "queued_now": [s.get("slug") for s in unposted],
+        "where": {"preferred": "an `authored_curiosity` array in "
+                               "response.json, one story object per entry"},
+    }
+
+
+def all_requests(date: str, trending: dict | None = None) -> dict:
+    """Every channel's ask for the day, keyed by channel. ONE bundle, so
+    ChatGPT reads a single file and sees everything Claude did not do."""
+    out: dict[str, dict] = {}
+    if trending:
+        out["trending"] = trending
+    for fn in (explainer_word_request, curiosity_queue_request):
+        try:
+            req = fn(date)
+        except Exception as exc:                     # noqa: BLE001
+            print(f"[brief] {fn.__name__} unavailable: {exc}")
+            continue
+        if req:
+            out[req["channel"]] = req
+    return out

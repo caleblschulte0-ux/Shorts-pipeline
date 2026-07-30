@@ -283,11 +283,27 @@ def main() -> int:
     # quarantined with reasons instead of reaching a renderer.
     authored = {"promoted": [], "rejected": []}
     if not args.no_ingest:
-        from ingest_authored import ingest          # noqa: E402
+        from ingest_authored import (ingest, ingest_curiosity,  # noqa: E402
+                                     ingest_explainer)
         authored = ingest(args.date, args.channel,
                           target=int(bundle.get("authoring_request", {})
                                      .get("target", 6)),
                           dry_run=args.dry_run)
+        # The other channels ChatGPT can stand in for. Explainer gets WORDS
+        # for stories whose numbers are already real (punch-up-guarded);
+        # curiosity gets queue stock. Both no-op when ChatGPT sent nothing
+        # for them, which is every normal day.
+        other = {
+            "explainer": ingest_explainer(args.date, dry_run=args.dry_run),
+            "curiosity": ingest_curiosity(args.date, dry_run=args.dry_run),
+        }
+        for ch, rep in other.items():
+            if rep.get("applied") or rep.get("rejected"):
+                print(f"[phase-b] {ch}: {len(rep['applied'])} applied, "
+                      f"{len(rep['rejected'])} rejected")
+        authored["other_channels"] = {k: {"applied": len(v["applied"]),
+                                          "rejected": len(v["rejected"])}
+                                      for k, v in other.items()}
 
     from exchange_phase_a import load_packages      # noqa: E402
     packages = {p.get("slug"): p for p in
