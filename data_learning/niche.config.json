@@ -17411,6 +17411,153 @@
           }
         }
       ]
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population growth Fell 54% Since 1972",
+      "hook": "In 1972 it was 2. Now it's 0.91, and almost nobody noticed.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sp_pop_grow_trend",
+          "params": {
+            "file": "sp_pop_grow_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 POPULATION GROWTH",
+          "topic": "Population growth",
+          "say": "In 1972, population growth was 2 annual %. By 2025: 0.91 annual % \u2014 down to 46 percent of that."
+        },
+        {
+          "source": "offline",
+          "key": "sp_urb_totl_in_zs_trend",
+          "params": {
+            "file": "sp_urb_totl_in_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 URBAN POPULATION",
+          "topic": "Urban population",
+          "say": "In 1972, urban population was 36.9 % of total population. By 2025: 57.8 % of total population \u2014 1.6 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "ag_lnd_totl_k2_trend",
+          "params": {
+            "file": "ag_lnd_totl_k2_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 LAND AREA",
+          "topic": "Land area",
+          "say": "In 1972, land area was 104.2 million sq. km. By 2023: 129.8 million sq. km \u2014 1.2 times higher."
+        }
+      ]
+    },
+    {
+      "slug": "tuvalu-beats-everyone-on-domestic-general-government-health-",
+      "title": "Tuvalu Beats Everyone On Domestic general government health expenditure \u2014 By 2.0x",
+      "hook": "You'd guess Marshall Islands leads on domestic general government health expenditure. It's Tuvalu \u2014 19.7 to 10.1.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sh_xpd_ghed_gd_zs_rank",
+          "params": {
+            "file": "sh_xpd_ghed_gd_zs_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DOMESTIC GENERAL G",
+          "topic": "Domestic general government health expen",
+          "say": "Tuvalu leads at 19.7 % of GDP. Naoero is 15.2 % of GDP. Germany \u2014 9.29 % of GDP."
+        },
+        {
+          "source": "offline",
+          "key": "eg_elc_nucl_zs_trend",
+          "params": {
+            "file": "eg_elc_nucl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ELECTRICITY PRODUC",
+          "topic": "Electricity production from nuclear sour",
+          "say": "In 1990, electricity production from nuclear sources was 17 % of total. By 2024: 15.5 % of total \u2014 barely moved."
+        },
+        {
+          "source": "offline",
+          "key": "eg_use_elec_kh_pc_trend",
+          "params": {
+            "file": "eg_use_elec_kh_pc_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ELECTRIC POWER CON",
+          "topic": "Electric power consumption",
+          "say": "In 1990, electric power consumption was 2,093 kWh per capita. By 2023: 3,558 kWh per capita \u2014 1.7 times higher."
+        }
+      ]
+    },
+    {
+      "slug": "f-gases-emissions-from-industrial-processes-is-8-9x-higher-t",
+      "title": "F-gases emissions from Industrial Processes Is 8.9x Higher Than In 1972",
+      "hook": "In 1972 it was 169.8. Now it's 1,510, and almost nobody noticed.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ag_prd_lvsk_xd_trend",
+          "params": {
+            "file": "ag_prd_lvsk_xd_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 LIVESTOCK PRODUCTI",
+          "topic": "Livestock production index",
+          "say": "In 1972, livestock production index was 14.3 2014-2016 = 100. By 2020: 100 2014-2016 = 100 \u2014 7.0 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "en_ghg_fgas_ip_mt_ce_ar5_trend",
+          "params": {
+            "file": "en_ghg_fgas_ip_mt_ce_ar5_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 F-GASES EMISSIONS ",
+          "topic": "F-gases emissions from Industrial Proces",
+          "say": "In 1972, f-gases emissions from industrial processes was 169.8 Mt CO2e. By 2024: 1,510 Mt CO2e \u2014 8.9 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "is_rrs_totl_km_rank",
+          "params": {
+            "file": "is_rrs_totl_km_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 RAIL LINES",
+          "topic": "Rail lines",
+          "say": "United States leads at 148,553 total route-km. China is 109,767 total route-km. Canada \u2014 48,150 total route-km."
+        }
+      ]
     }
   ],
   "videos": [
