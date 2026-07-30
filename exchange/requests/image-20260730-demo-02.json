@@ -1,0 +1,38 @@
+{
+  "schema": "chatgpt-exchange-request/v1",
+  "request_id": "image-20260730-demo-02",
+  "date": "2026-07-30",
+  "status": "open",
+  "purpose": "Bridge run 2. Run 1 proved the transport works (files.list file_id -> Drive upload -> readback, real 1,393,674-byte PNG). Two things failed: the image ignored the prompt (it drew GitHub screenshots), and the Drive folder was not link-visible. This request fixes the prompt side.",
+  "response_path": "exchange/responses/image-20260730-demo-02.json",
+  "branch": "main",
+
+  "READ_THIS_FIRST": "The prompt below is the ONLY thing to draw. Ignore everything you looked at to find this file. You are reading a code repository, so you will be tempted to generate screenshots, UI, terminals, code editors, or file listings — do NOT. Run 1 failed exactly that way: it produced 'a_screenshot_of_a_dark_themed_github_repository_page.png' instead of the requested subject. The repository is only where the instruction lives; it is not the subject.",
+
+  "image": {
+    "prompt_verbatim": "A single glowing orange funnel, centered, on a pure black background. Minimal line-art style with thick clean strokes. Nothing else in the frame.",
+    "negative": "no screenshots, no user interfaces, no browser windows, no code, no terminals, no text of any kind, no letters, no numbers, no watermarks, no logos, no GitHub imagery, no photographs of screens",
+    "width": 1024,
+    "height": 1024,
+    "aspect": "1:1 square — exactly 1024x1024. Run 1 returned 1536x1024, which is wrong. If your image tool cannot emit exactly 1024x1024, generate the closest square size and report the ACTUAL dimensions in the response; do not report the requested ones.",
+    "format": "png"
+  },
+
+  "steps": [
+    "read image.prompt_verbatim from this file — use it word for word as the image prompt, plus image.negative as the exclusions",
+    "generate the image with the image tool",
+    "call files.list and read the generated image's real file_id",
+    "pass that exact file_id as file_uri to Google_Drive.upload_file — NOT /mnt/data, NOT a sandbox URL, NOT a filename (this part worked in run 1, repeat it)",
+    "upload into a Drive folder that is link-visible ('Anyone with the link' -> Viewer). Run 1 landed in a folder with shared:false, which made the file unreachable.",
+    "read the file back from Drive; confirm the file id, size, AND the sharing state",
+    "write exchange/responses/image-20260730-demo-02.json per exchange/README.md and commit it to main"
+  ],
+
+  "required_response_fields": [
+    "drive.file_id", "drive.link", "drive.download_url", "drive.public",
+    "image.sha256", "image.bytes", "image.format", "image.width", "image.height",
+    "image.prompt_used", "verified.read_back"
+  ],
+
+  "notes": "image.prompt_used must be the exact prompt string you actually passed to the image tool — that is how we tell a prompt-following miss from a transport failure. image.sha256 must hash the bytes actually uploaded; a consumer recomputes it and rejects a mismatch. image.width/height must be the REAL dimensions of the generated file. drive.public must reflect the actual Drive sharing state, not what was requested — if the folder is not link-visible, say public:false and set status to partial, because we cannot download it. Never fabricate a pointer: an unreachable Drive link is worse than no response."
+}
