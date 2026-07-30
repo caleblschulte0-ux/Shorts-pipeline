@@ -1,0 +1,120 @@
+name: Retro (daily self-review)
+
+# 23:15 UTC = 6:15pm Central — after the last publish slot (3:30pm Central),
+# so every one of the day's videos has at least ~2.5h of data and the first
+# has ~10h. Earlier and the late slots are unjudgeable; later and the review
+# lands after the operator has stopped looking.
+#
+# This workflow ONLY builds evidence and triages what a reviewer wrote back.
+# It never applies a proposal. See retro/README.md — that separation is the
+# entire safety model of the self-review loop.
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Retro date (YYYYMMDD, default today UTC)'
+        required: false
+        default: ''
+      triage_only:
+        description: 'Skip the brief; just triage existing proposals'
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    - cron: '15 23 * * *'
+  # Triage the moment a reviewer commits proposals, so the queue is ready
+  # without waiting for tomorrow's cron.
+  push:
+    branches: [main]
+    paths:
+      - 'retro/*/proposals/**'
+
+permissions:
+  contents: write
+  issues: write
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  retro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency:
+      group: retro
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 50     # build_retro reports recent commits
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install deps
+        run: pip install -q google-api-python-client google-auth google-auth-oauthlib
+
+      - name: Resolve date
+        id: d
+        run: |
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+          echo "retro date: $DATE"
+
+      # Fresh numbers or the review argues from yesterday. Best-effort: the
+      # brief is still worth building on stale analytics, it just says so.
+      - name: Refresh analytics
+        if: ${{ inputs.triage_only != true }}
+        continue-on-error: true
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+        run: |
+          python3 scripts/fetch_analytics.py --max-age-days 30 \
+            || echo "::warning::analytics refresh failed — the brief will use the last snapshot"
+
+      - name: Build the retro brief
+        if: ${{ inputs.triage_only != true }}
+        run: python3 scripts/build_retro.py --date "${{ steps.d.outputs.date }}"
+
+      # Triage whatever the reviewer left last time (or just now, on the
+      # push trigger). No-ops cleanly when the proposals folder is empty.
+      - name: Triage proposals
+        run: python3 scripts/review_proposals.py --date "${{ steps.d.outputs.date }}"
+
+      - name: Commit brief + triage
+        run: |
+          set -e
+          D="${{ steps.d.outputs.date }}"
+          bash scripts/ci_commit_state.sh \
+            "retro: brief + triage for $D [skip ci]" \
+            "retro/$D" state/analytics state/analytics_explainer \
+            state/analytics_curiosity state/analytics_third
+
+      - name: Post the digest to the tracking issue
+        if: ${{ inputs.triage_only != true }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ vars.REPORT_ISSUE_NUMBER || '1' }}
+        run: |
+          D="${{ steps.d.outputs.date }}"
+          BODY="retro/$D/brief.md"
+          [ -f "retro/$D/triage.md" ] && BODY="$BODY retro/$D/triage.md"
+          cat $BODY > /tmp/retro_comment.md
+          gh issue comment "$ISSUE" --repo "${{ github.repository }}" \
+            --body-file /tmp/retro_comment.md \
+            || echo "::warning::could not comment on issue $ISSUE"
+
+      - name: What happens next
+        run: |
+          D="${{ steps.d.outputs.date }}"
+          echo "::notice::Brief at retro/$D/brief.json — the reviewer writes"
+          echo "::notice::proposals into retro/$D/proposals/, which are TRIAGED"
+          echo "::notice::but never applied. A human decides what ships."

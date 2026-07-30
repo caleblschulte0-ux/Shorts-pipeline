@@ -196,6 +196,31 @@ things worth knowing without opening it:
   so it can never duplicate an upload. The Routine tops it up — step 5b of
   `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
 
+## The retro loop — self-review that PROPOSES, never applies (retro/README.md)
+
+Daily at 23:15 UTC (`retro.yml`), `scripts/build_retro.py` writes an
+evidence pack to `retro/<date>/brief.json`: every video posted today scored
+as a **percentile against videos of the same age** (raw views flatter a
+2-hour-old short), 7/30-day windows, pipeline health, and recent commits.
+A reviewer (ChatGPT) reads it and writes proposals into
+`retro/<date>/proposals/`.
+
+- **Nothing in `retro/` is ever applied automatically.** No workflow reads a
+  proposal and edits code. That separation IS the safety model — a test in
+  `tests/test_retro.py` fails if a workflow ever touches proposals without
+  going through the triage.
+- `scripts/review_proposals.py` **hard-refuses** the whole class of "make
+  the numbers go up by lowering the bar": weakening the showrunner, pruning
+  a posted log, relaxing the punch-up guard / placement gate / media
+  verification, more volume via a lower bar, deleting a test, fabricating
+  data. A refusal is policy, not a score — a well-argued, well-evidenced
+  violation is still refused. Proposing STRONGER gates is always allowed.
+- Load-bearing files land in `requires_operator`; the rest are ranked by
+  evidence strength. A human decides what ships.
+- The brief is deliberately honest about noise: `thin_bands`, "too young to
+  judge", and "this channel is small — single-digit views are mostly
+  noise". A retro that launders noise into a mandate is worse than none.
+
 ## Storage rules (from the audit — docs/STORAGE_AUDIT.md)
 
 - Never commit media (mp4/png renders) or files >256KB to git; `state/` is
