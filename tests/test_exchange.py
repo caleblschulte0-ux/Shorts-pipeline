@@ -325,9 +325,16 @@ class TestPunchupBriefIsActionable(unittest.TestCase):
             self.assertIn(key, m)
         self.assertGreaterEqual(len(m["do_this"]), 5)
 
-    def test_rewrite_is_framed_as_mandatory(self):
+    def test_rewrite_is_framed_as_editorial_decision(self):
+        """Punch OR keep-with-reason — but never a silent skip. 'Always
+        rewrite' was its own failure mode (change for change's sake);
+        'no direction' produced zero rewrites. The contract is a stated
+        per-package verdict."""
         blob = json.dumps(self._instructions()).lower()
-        self.assertIn("unchanged is a failed run", blob)
+        self.assertIn("unchanged with no stated reason", blob)
+        self.assertIn("keeping is a", blob)          # keeping is legitimate
+        self.assertIn("kept", blob)                   # the response field
+        self.assertIn("editor_note", blob)
         self.assertIn("attitude is mandatory", blob)
 
     def test_worked_example_survives_its_own_guard(self):
