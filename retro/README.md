@@ -116,66 +116,79 @@ will decide, implement it properly, and tell you what it thought. A change
 you make yourself skips the review that makes the change safe, and skips
 the reply that would have taught you why.
 
-## What the brief gives you
+## How to pick up work — the mailbox
 
-`retro/<date>/brief.json`:
+**Do not compute today's UTC date.** The brief is written at ~6:15pm
+Central and you may poll after midnight UTC, so "today" is often the wrong
+folder and you would find nothing. Ask the repo instead:
 
-| Key | What |
-|---|---|
-| `channels.<name>.today` | each video posted today, with `percentile_vs_same_age` |
-| `channels.<name>.last_7d` / `last_30d` | rolling windows |
-| `channels.<name>.thin_bands` | age bands with too few samples to trust |
-| `pipeline_health` | failures, exchange result, reserve bank, showrunner |
-| `repo` | HEAD, recent commits, test files |
-
-### Read the numbers honestly or do not write the proposal
-
-- **Age-match everything.** A 2-hour-old short and a 3-week-old short are
-  not comparable. Use `percentile_vs_same_age`; ignore raw `views` for
-  rankings. Anything under ~2 hours old is marked `too young to judge` —
-  that is a real verdict, not a gap to fill with a guess.
-- **This channel is small.** Single-digit view counts are mostly noise. If
-  an explanation requires a 9-view video to mean something, it is not an
-  explanation. Say "no signal yet" — that is a useful finding.
-- **Respect `thin_bands`.** Fewer than 5 samples is not a trend.
-- **One day is never a trend.** A proposal justified only by today needs to
-  say so in `confidence`, and should usually be `watch` rather than a change.
-
-## What to write
-
-One file per proposal: `retro/<date>/proposals/NN-short-slug.json`
-
-```json
-{
-  "schema": "shorts-retro-proposal/v1",
-  "title": "Graph race hooks are dead weight below 10s",
-  "category": "content",
-  "confidence": "medium",
-  "observation": "Six graph_race videos in the 1-4w band sit at p12 median vs 47 for text_card, n=6 vs n=10.",
-  "evidence": ["channels.trending.last_30d", "state/format_scoreboard.json"],
-  "proposal": "Cut the graph_race hook overlay from 1.5s to 0.8s in make_graph_race.py.",
-  "files": ["make_graph_race.py"],
-  "expected_effect": "Higher 3-second hold on graph_race; no change to other formats.",
-  "how_we_would_know": "graph_race avg_view_pct in format_scoreboard after 10 more posts.",
-  "risks": "If the hook is what makes the payoff land, shortening it could hurt completion.",
-  "rollback": "Revert the one constant."
-}
+```
+retro/<review_date>/brief.json        exists = a review is owed
+retro/<review_date>/proposals.json    exists = that date is ANSWERED
 ```
 
-Required: `title`, `category`, `confidence`, `observation`, `proposal`,
-`expected_effect`, `how_we_would_know`, `risks`.
+The oldest date with a brief and no `proposals.json` is your job. A day
+missed on Tuesday is still open on Wednesday — take the oldest first.
+`scripts/retro_mailbox.py` prints exactly this if you can run it.
 
-- `category`: `content` | `code` | `config` | `watch`
-- `confidence`: `low` | `medium` | `high`
-- **`observation` must cite numbers that appear in the brief.** A proposal
-  whose observation cannot be checked against the brief is rejected.
-- **`how_we_would_know` must be measurable.** "It'll feel better" is not.
-- Prefer **few, specific, reversible** proposals. Three good ones beat
-  fifteen — but zero is a failure unless `what_you_owe_today.must_do` is 0.
-- Every proposal that claims an effect should name the metric and the
-  window, so Claude can register it as an experiment on adoption.
-- `watch` is for genuine "not enough signal yet, here is what would give us
-  signal" — not for hedging.
+**Write ONE file: `retro/<review_date>/proposals.json`**, an object with a
+`proposals` array. If it already exists for that date, that date is done —
+do not write it again. That is what makes re-running you safe.
+
+## The proposal schema
+
+```json
+{"proposals": [{
+  "proposal_id": "20260801-graph-hook",
+  "review_date": "20260801",
+  "channel": "trending", "format": "graph_race",
+  "category": "content", "confidence": "medium",
+  "problem_class": "packaging",
+  "observation": "graph_race median_views 0.16 at the 72h cohort vs 0.04 for text_card (n=8 vs 10)",
+  "evidence": ["channels.trending.maturity.72h.by_format.graph_race"],
+  "proposal": "Cut the graph_race hook overlay from 1.5s to 0.8s",
+  "one_variable": "hook overlay duration",
+  "files": ["make_graph_race.py"],
+  "baseline": 0.16,
+  "target_metric": "channels.trending.maturity.72h.by_format.graph_race.median_vph",
+  "success_threshold": 0.22,
+  "guardrails": ["showrunner avg_score must not drop >10%"],
+  "required_samples": 10, "minimum_runtime_days": 7,
+  "expected_effect": "better 3-second hold on graph_race",
+  "how_we_would_know": "median_vph at the 72h cohort after 10 more posts",
+  "risks": "may clip the second line",
+  "blast_radius": "graph_race only",
+  "rollback": "revert the one constant",
+  "new_evidence_since": ""
+}]}
+```
+
+`problem_class` must be one of `brief.problem_classes` — and picking it is
+not a formality. **A render that failed or an upload that never went
+public is a `pipeline_failure`, not evidence that viewers rejected the
+idea.** A null metric is `insufficient_data`, never a zero.
+
+## What gets your proposal thrown out
+
+- **Numbers that are not in the brief.** Every decimal and every large
+  integer in your `observation` is checked against `brief.json`. A
+  confident hallucination is more dangerous than a vague one, because it
+  reads like rigour and gets adopted.
+- **Evidence paths that do not exist.** Cite real fields.
+- **Re-filing something already decided.** Identity is channel + format +
+  files, so rewording does not evade it. If it was declined and you have
+  genuinely new data, set `new_evidence_since` and say what changed.
+- **A second experiment on a channel that already has one unresolved.**
+  Two concurrent changes make both unreadable — neither verdict can be
+  attributed. Wait for the readout.
+
+## Comparing fairly
+
+Use `channels.<name>.maturity` — cohorts at ~24h, ~72h and ~7d, split by
+format. Do not compare a 2-hour-old upload with a 7-day-old one, and do
+not use a graph_race baseline to judge a reddit_story unless you argue
+why that is valid. `mature_enough_to_judge` and `worst_mature` list only
+videos old enough to have been seen.
 
 ## What you may NEVER propose
 
