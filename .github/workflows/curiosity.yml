@@ -213,6 +213,20 @@ jobs:
         if: inputs.mode != 'verify' && steps.cache-music.outputs.cache-hit != 'true'
         run: python3 scripts/fetch_music.py
 
+      # MEDIA PROBE — seconds, not hours. Three renders credited zero Pexels
+      # and zero Pixabay while both secrets existed in the repo, and guessing
+      # cost a full render each time. This calls every video provider live with
+      # the same code the renderer uses and reports key presence (never the
+      # value), HTTP result and candidate counts, so the media supply can be
+      # diagnosed without burning 1h48m to find out.
+      - name: Media probe (which video providers actually answer)
+        if: always()
+        continue-on-error: true
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: python3 scripts/media_probe.py
+
       - name: Run
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
@@ -419,6 +433,7 @@ jobs:
           name: curiosity-status
           path: |
             output/pipeline_status.json
+            output/media_probe.json
             output/batch_*.json
             output/idea_funnel_report.json
             output/*.advisor.json
