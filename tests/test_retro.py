@@ -143,6 +143,11 @@ class TestTriage(unittest.TestCase):
         rp.RETRO_ROOT = self.tmp
         self.pdir = self.tmp / "20260801" / "proposals"
         self.pdir.mkdir(parents=True)
+        # Evidence is now verified against the brief, so triage needs one.
+        (self.tmp / "20260801" / "brief.json").write_text(json.dumps(
+            {"state/format_scoreboard.json": {"graph_race": 0.16,
+                                              "text_card": 0.04,
+                                              "graph_n": 8, "card_n": 10}}))
 
     def tearDown(self):
         rp.RETRO_ROOT = self._saved
@@ -197,9 +202,7 @@ class TestTriage(unittest.TestCase):
 
     def test_no_proposals_is_a_clean_empty_triage(self):
         r = rp.triage("20260801")
-        self.assertEqual(r["counts"],
-                         {"accepted": 0, "requires_operator": 0,
-                          "refused": 0, "malformed": 0})
+        self.assertEqual(sum(r["counts"].values()), 0, r["counts"])
 
     def test_missing_directory_does_not_raise(self):
         r = rp.triage("29991231")

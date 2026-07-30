@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import hashlib
 import re
 import sys
 from datetime import datetime, timezone
@@ -125,10 +126,16 @@ def check_shape(p: dict) -> list[str]:
         out.append("observation cites no numbers — it cannot be checked "
                    "against the brief")
     how = str(p.get("how_we_would_know") or "")
+    # No \b around these: a good proposal cites a metric name like
+    # `median_views` or `avg_view_pct`, and `\bmedian\b` does not match
+    # inside snake_case because `_` is a word character. That rejected
+    # exactly the well-specified proposals it was meant to reward.
     if how and not _NUM.search(how) and not re.search(
-            r"\b(scoreboard|percentile|rate|count|median|analytics|pct|"
-            r"per hour|vph)\b", how, re.I):
-        out.append("how_we_would_know is not measurable")
+            r"(scoreboard|percentile|rate|count|median|analytics|pct|"
+            r"views|duration|impressions|ctr|retention|per hour|vph)",
+            how, re.I):
+        out.append("how_we_would_know is not measurable — name the metric "
+                   "that would move, or the number it must reach")
     return out
 
 
@@ -158,25 +165,227 @@ def score(p: dict) -> float:
     return round(s, 2)
 
 
-def triage(date: str) -> dict:
+# --------------------------------------------------------------------------
+# Evidence validation — a number in prose is not evidence
+# --------------------------------------------------------------------------
+def _walk(obj, prefix=""):
+    """Every leaf in the brief, addressed by dotted path."""
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield from _walk(v, f"{prefix}.{k}" if prefix else str(k))
+    elif isinstance(obj, list):
+        for i, v in enumerate(obj):
+            yield from _walk(v, f"{prefix}[{i}]")
+    else:
+        yield prefix, obj
+
+
+def load_brief(date: str) -> dict | None:
+    try:
+        return json.loads((RETRO_ROOT / date / "brief.json").read_text())
+    except Exception:                                # noqa: BLE001
+        return None
+
+
+def _numbers_in(text: str) -> list[str]:
+    """Numeric tokens a proposal asserts. Percentages and counts both."""
+    return re.findall(r"-?\d+(?:\.\d+)?", str(text or ""))
+
+
+def check_evidence(p: dict, brief: dict | None) -> list[str]:
+    """Every number in the observation must exist in the brief.
+
+    Without this, "graph_race sits at p12 vs 47 for text_card" passes the
+    shape check purely because it contains digits — and a confident
+    hallucination is far more dangerous than a vague one, because it reads
+    like rigour and gets adopted.
+
+    Deliberately lenient about WHERE the number appears: matching an exact
+    dotted path would reject honest arithmetic like a ratio or a total. The
+    rule is that the raw values must be findable in the brief."""
+    if brief is None:
+        return ["cannot verify evidence: no brief.json for this date"]
+
+    values = set()
+    for _, v in _walk(brief):
+        if isinstance(v, bool) or v is None:
+            continue
+        if isinstance(v, (int, float)):
+            values.add(f"{float(v):g}")
+            values.add(f"{round(float(v)):g}")
+    paths = {path for path, _ in _walk(brief)}
+
+    out = []
+    refs = p.get("evidence") or []
+    if not refs:
+        out.append("no `evidence` — cite the brief fields you reasoned from")
+    for ref in refs:
+        ref = str(ref)
+        # A reference resolves if it names a path in the brief, or a file
+        # the brief itself points at.
+        if not (any(path.startswith(ref) or ref.startswith(path.split("[")[0])
+                    for path in paths)
+                or ref.startswith(("state/", "retro/", "exchange/", "docs/"))):
+            out.append(f"evidence reference {ref!r} is not a field in "
+                       f"brief.json (or a file it cites)")
+
+    # Which numbers are CLAIMS worth verifying?
+    #   decimals        always — "p12.4", "0.16 vph" is asserted precision,
+    #                   and hallucinated precision is the dangerous kind
+    #   big integers    always — "1,200 impressions" is a measurement
+    #   small integers  no — "8 videos", "3 formats" are prose counts, and
+    #                   flagging them buries the real cases in noise
+    def _is_claim(tok: str) -> bool:
+        v = float(tok)
+        return (not v.is_integer()) or abs(v) >= 100
+
+    unmatched = [n for n in _numbers_in(p.get("observation"))
+                 if _is_claim(n) and f"{float(n):g}" not in values]
+    if unmatched:
+        out.append(f"observation asserts number(s) not present anywhere in "
+                   f"brief.json: {', '.join(unmatched[:6])} — either cite a "
+                   f"real value or say the data does not exist")
+    return out
+
+
+# --------------------------------------------------------------------------
+# Thrash control — the loop must not rewrite the channel every day
+# --------------------------------------------------------------------------
+COOLDOWN_DAYS = 21
+MAX_ACTIVE_PER_CHANNEL = 1
+
+
+def signature(p: dict) -> str:
+    """Stable identity for "the same idea again".
+
+    Keyed on WHAT THE CHANGE TOUCHES — channel, format, files — not on how
+    it was worded. The same edit to the same files on the same channel is
+    the same proposal whether it arrives as "shorten the graph hook" or
+    "the graph hook should be shorter", and a dedupe that keys on title
+    words is defeated by a thesaurus.
+
+    Title words are the fallback only when no files are named (a pure
+    editorial proposal), where they are the only identity available."""
+    files = sorted(str(f) for f in p.get("files") or [])
+    parts = [str(p.get("channel") or ""), str(p.get("format") or "")]
+    if files:
+        parts.append(",".join(files))
+    else:
+        words = sorted(set(re.findall(
+            r"[a-z]{4,}", str(p.get("title") or "").lower())))
+        parts.append(",".join(words[:6]))
+    return hashlib.sha1("|".join(parts).encode()).hexdigest()[:12]
+
+
+def check_duplicates(p: dict, history: list[dict]) -> list[str]:
+    """Refuse a re-file of something already decided, unless it brings new
+    evidence. A reviewer that re-proposes yesterday's declined idea in new
+    words is not learning, and answering it again teaches it that
+    persistence works."""
+    sig = p.get("signature") or signature(p)
+    out = []
+    for h in history:
+        if h.get("signature") != sig:
+            continue
+        verdict = h.get("verdict")
+        if verdict in ("decline", "needs_evidence") and not p.get(
+                "new_evidence_since"):
+            out.append(
+                f"already {verdict}d on {h.get('date')} "
+                f"({h.get('because', '')[:80]}) — re-file only with "
+                f"`new_evidence_since` naming what changed")
+        elif verdict == "adopt":
+            out.append(f"already adopted on {h.get('date')} — if it did not "
+                       f"work, that is a readout, not a new proposal")
+    return out
+
+
+def check_capacity(p: dict, active_by_channel: dict) -> list[str]:
+    """One editorial experiment per channel at a time. Two overlapping
+    changes on one channel make both unreadable — neither verdict can be
+    attributed."""
+    ch = str(p.get("channel") or "")
+    if not ch or p.get("category") in ("watch", None):
+        return []
+    live = active_by_channel.get(ch) or []
+    if len(live) >= MAX_ACTIVE_PER_CHANNEL:
+        return [f"{ch} already has an unresolved experiment "
+                f"({live[0]}) — a second concurrent change makes both "
+                f"unreadable. Wait for the readout, or propose a `watch`."]
+    return []
+
+
+def load_proposals(date: str) -> list[tuple[str, dict]]:
+    """(name, proposal) pairs from the ONE answer file, or the legacy
+    per-file layout. `proposals.json` is canonical — a single file is what
+    makes "already answered" checkable, and therefore idempotent."""
+    out: list[tuple[str, dict]] = []
+    single = RETRO_ROOT / date / "proposals.json"
+    if single.exists():
+        try:
+            body = json.loads(single.read_text())
+            items = body.get("proposals") if isinstance(body, dict) else body
+            for i, pr in enumerate(items or []):
+                if isinstance(pr, dict):
+                    out.append((pr.get("proposal_id") or f"proposals.json[{i}]",
+                                pr))
+        except Exception as exc:                     # noqa: BLE001
+            out.append(("proposals.json", {"_unreadable": str(exc)}))
     pdir = RETRO_ROOT / date / "proposals"
+    if pdir.is_dir():
+        for f in sorted(pdir.glob("*.json")):
+            try:
+                out.append((f.name, json.loads(f.read_text())))
+            except Exception as exc:                 # noqa: BLE001
+                out.append((f.name, {"_unreadable": str(exc)}))
+    return out
+
+
+def prior_decisions() -> list[dict]:
+    """Everything Claude has already ruled on — the dedupe memory."""
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from retro_reply import read_ledger
+        return read_ledger()
+    except Exception:                                # noqa: BLE001
+        return []
+
+
+def active_experiments_by_channel() -> dict:
+    try:
+        from shared import experiments as ex
+        out: dict[str, list[str]] = {}
+        for e in ex.running():
+            out.setdefault(e.get("channel") or "", []).append(e.get("id"))
+        return out
+    except Exception:                                # noqa: BLE001
+        return {}
+
+
+def triage(date: str) -> dict:
     report = {"schema": "shorts-retro-triage/v1", "date": date,
               "reviewed_at": datetime.now(timezone.utc).strftime(
                   "%Y-%m-%dT%H:%M:%SZ"),
               "refused": [], "requires_operator": [], "accepted": [],
-              "malformed": [], "counts": {}}
-    if not pdir.is_dir():
-        report["note"] = f"no proposals directory for {date}"
+              "malformed": [], "duplicate": [], "counts": {}}
+    items = load_proposals(date)
+    if not items:
+        report["note"] = f"no proposals for {date}"
         return report
 
-    for f in sorted(pdir.glob("*.json")):
-        try:
-            p = json.loads(f.read_text())
-        except Exception as exc:                     # noqa: BLE001
+    brief = load_brief(date)
+    history = prior_decisions()
+    active = active_experiments_by_channel()
+
+    for name, p in items:
+        f = type("F", (), {"name": name})()
+        if p.get("_unreadable"):
             report["malformed"].append(
-                {"file": f.name, "problems": [f"unreadable: {exc}"]})
+                {"file": name, "problems": [f"unreadable: {p['_unreadable']}"]})
             continue
-        entry = {"file": f.name, "title": p.get("title"),
+        entry = {"file": name, "signature": signature(p),
+                 "proposal_id": p.get("proposal_id"),
+                 "channel": p.get("channel"), "title": p.get("title"),
                  "category": p.get("category"),
                  "confidence": p.get("confidence"),
                  "files": p.get("files") or []}
@@ -187,7 +396,15 @@ def triage(date: str) -> dict:
             # redeemed by being well-formed or well-evidenced.
             report["refused"].append({**entry, "violations": forbidden})
             continue
-        shape = check_shape(p)
+        dupes = check_duplicates(p, history)
+        if dupes:
+            # Not malformed and not a policy violation — just already
+            # decided. Kept as its own bucket so a reviewer re-filing the
+            # same idea sees that it was answered, not ignored.
+            report["duplicate"].append({**entry, "because": dupes})
+            continue
+        shape = check_shape(p) + check_evidence(p, brief) + check_capacity(
+            p, active)
         if shape:
             report["malformed"].append({**entry, "problems": shape})
             continue
@@ -199,11 +416,11 @@ def triage(date: str) -> dict:
         else:
             report["accepted"].append(entry)
 
-    for k in ("refused", "requires_operator", "accepted"):
+    for k in ("refused", "requires_operator", "accepted", "duplicate"):
         report[k].sort(key=lambda e: -e.get("score", 0))
     report["counts"] = {k: len(report[k]) for k in
                         ("accepted", "requires_operator", "refused",
-                         "malformed")}
+                         "malformed", "duplicate")}
     return report
 
 
@@ -212,12 +429,14 @@ def digest(r: dict) -> str:
          f"accepted {r['counts'].get('accepted', 0)} · "
          f"operator {r['counts'].get('requires_operator', 0)} · "
          f"refused {r['counts'].get('refused', 0)} · "
+         f"duplicate {r['counts'].get('duplicate', 0)} · "
          f"malformed {r['counts'].get('malformed', 0)}", ""]
     if r.get("note"):
         L += [f"_{r['note']}_", ""]
     for key, head in (("accepted", "## Worth considering"),
                       ("requires_operator", "## Operator decision required"),
                       ("refused", "## REFUSED — policy violation"),
+                      ("duplicate", "## Already decided (re-filed)"),
                       ("malformed", "## Malformed")):
         rows = r.get(key) or []
         if not rows:

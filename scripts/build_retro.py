@@ -81,18 +81,100 @@ def band_of(age_hours: float) -> str:
     return AGE_BANDS[-1][0]
 
 
+def _vid(v: dict) -> str:
+    """Stable identity for a video. Falls back to the URL, then the title —
+    never to an index, which shifts as the analytics window slides."""
+    return str(v.get("video_id") or v.get("url") or v.get("title") or "")
+
+
+def metric(v: dict, key: str):
+    """A metric, or None if the API did not report it.
+
+    MISSING IS NOT ZERO. `likes: null` means YouTube gave us nothing;
+    `likes: 0` means nobody liked it. Collapsing the two invents evidence —
+    a reviewer would read a whole cohort of unreported retention as a
+    catastrophic retention problem."""
+    val = v.get(key)
+    return None if val is None else val
+
+
 def _vph(v: dict) -> float:
     age = max(float(v.get("age_hours") or 0), 1.0)
     return round(float(v.get("views") or 0) / age, 4)
 
 
 def percentile_in(value: float, population: list[float]) -> float | None:
-    """Where `value` sits in `population`, 0-100. None if too few samples."""
+    """Where `value` sits in `population`, 0-100. None if too few samples.
+
+    Uses the MIDRANK of ties, not "strictly below". With ten zero-view
+    videos, a strictly-below count puts every one of them at p0 — reading
+    as "worst on the channel" when the honest answer is "exactly average
+    for this cohort, which is zero". Midrank gives them p50."""
     pop = sorted(p for p in population if p is not None)
     if len(pop) < MIN_SAMPLES:
         return None
     below = sum(1 for p in pop if p < value)
-    return round(100.0 * below / len(pop), 1)
+    equal = sum(1 for p in pop if p == value)
+    return round(100.0 * (below + 0.5 * equal) / len(pop), 1)
+
+
+
+# Ages at which a cohort is worth comparing. A 2-hour-old upload and a
+# 7-day-old one are different questions; reporting them together is how a
+# reviewer concludes "today was great" every single day.
+MATURITY_CHECKPOINTS = [("24h", 20, 30), ("72h", 60, 84), ("7d", 156, 192)]
+# A verdict on editorial quality needs a video old enough to have been seen.
+MATURE_HOURS = 20
+
+
+def cohort_at(videos: list[dict], lo: float, hi: float,
+              fmt: str | None = None) -> dict:
+    """Videos currently inside an age window — the only fair comparison.
+
+    `fmt` narrows to one format, because a graph_race baseline does not
+    judge a reddit_story. Cross-format comparison needs an argument, so the
+    brief makes the same-format number the easy one to reach for."""
+    sel = [v for v in videos if lo <= float(v.get("age_hours") or 0) < hi
+           and (fmt is None or v.get("_fmt") == fmt)]
+    if not sel:
+        return {"n": 0, "note": "no videos in this age window"}
+    vph = sorted(v["_vph"] for v in sel)
+    got = [v for v in sel if v.get("avg_view_pct") is not None]
+    return {
+        "n": len(sel),
+        "median_vph": round(statistics.median(vph), 4),
+        "median_views": round(statistics.median(
+            float(v.get("views") or 0) for v in sel), 1),
+        "median_view_pct": (round(statistics.median(
+            float(v["avg_view_pct"]) for v in got), 1) if got else None),
+        "view_pct_reported_for": f"{len(got)}/{len(sel)}",
+        "enough_to_judge": len(sel) >= MIN_SAMPLES,
+    }
+
+
+def format_of(v: dict) -> str:
+    """Best-effort format tag so cohorts can stay within a format."""
+    for key in ("format", "experiment_arm", "series"):
+        val = v.get(key)
+        if val:
+            return str(val)
+    return "unknown"
+
+
+# Not every bad number is an editorial failure, and treating them alike is
+# how a reviewer "learns" that viewers hated an idea the pipeline never
+# actually published. The brief separates the classes so a proposal has to
+# pick one.
+PROBLEM_CLASSES = {
+    "audience_performance": "real viewers saw it and did not stay",
+    "editorial_quality": "the idea or the writing was weak",
+    "packaging": "title, thumbnail or hook did not earn the click",
+    "media_quality": "the visuals were wrong, generic or repeated",
+    "pipeline_failure": "render, upload or gate failed — viewers never "
+                        "judged this at all",
+    "insufficient_data": "too young, too few samples, or the metric was "
+                         "not reported",
+}
 
 
 def channel_report(name: str, path: str, today: str) -> dict:
@@ -104,11 +186,17 @@ def channel_report(name: str, path: str, today: str) -> dict:
     for v in videos:
         v["_vph"] = _vph(v)
         v["_band"] = band_of(float(v.get("age_hours") or 0))
+        v["_fmt"] = format_of(v)
 
     # Historical distribution per band — the yardstick today is measured on.
-    by_band: dict[str, list[float]] = {}
+    # Keyed by (video_id, vph) so a video can be excluded from its own
+    # comparison by IDENTITY. Excluding by VALUE deleted every other video
+    # sharing that number — and on a channel where most videos sit at 0
+    # views, that removed nearly the whole population and left the survivor
+    # looking like a top performer against 1 peer.
+    by_band: dict[str, list[tuple[str, float]]] = {}
     for v in videos:
-        by_band.setdefault(v["_band"], []).append(v["_vph"])
+        by_band.setdefault(v["_band"], []).append((_vid(v), v["_vph"]))
 
     def _published_on(v: dict, day: str) -> bool:
         return str(v.get("published_at") or "")[:10].replace("-", "") == day
@@ -117,7 +205,8 @@ def channel_report(name: str, path: str, today: str) -> dict:
     rows = []
     for v in sorted(todays, key=lambda x: x.get("published_at") or ""):
         band = v["_band"]
-        peers = [p for p in by_band.get(band, []) if p != v["_vph"]]
+        me = _vid(v)
+        peers = [val for vid, val in by_band.get(band, []) if vid != me]
         pct = percentile_in(v["_vph"], peers)
         rows.append({
             "title": v.get("title"),
@@ -125,10 +214,18 @@ def channel_report(name: str, path: str, today: str) -> dict:
             "published_at": v.get("published_at"),
             "age_hours": v.get("age_hours"),
             "age_band": band,
-            "views": v.get("views"),
-            "engaged_views": v.get("engaged_views"),
-            "likes": v.get("likes"),
-            "comments": v.get("comments"),
+            "views": metric(v, "views"),
+            "engaged_views": metric(v, "engaged_views"),
+            "likes": metric(v, "likes"),
+            "comments": metric(v, "comments"),
+            "avg_view_pct": metric(v, "avg_view_pct"),
+            "avg_view_duration": metric(v, "avg_view_duration"),
+            "impressions": metric(v, "impressions"),
+            "ctr": metric(v, "ctr"),
+            "missing_metrics": [k for k in
+                                ("avg_view_pct", "avg_view_duration",
+                                 "impressions", "ctr", "likes", "comments")
+                                if v.get(k) is None],
             "views_per_hour": v["_vph"],
             "percentile_vs_same_age": pct,
             "verdict": ("too young to judge" if float(v.get("age_hours") or 0) < 2
@@ -160,6 +257,22 @@ def channel_report(name: str, path: str, today: str) -> dict:
         "all_time_summary": data.get("summary") or {},
         "band_sample_sizes": {b: len(v) for b, v in sorted(by_band.items())},
         "thin_bands": [b for b, v in by_band.items() if len(v) < MIN_SAMPLES],
+        # Age-matched cohorts — compare these, not raw totals.
+        "maturity": {
+            label: {"all_formats": cohort_at(videos, lo, hi),
+                    "by_format": {f: cohort_at(videos, lo, hi, f)
+                                  for f in sorted({v["_fmt"] for v in videos})}}
+            for label, lo, hi in MATURITY_CHECKPOINTS},
+        "mature_enough_to_judge": [
+            {"title": v.get("title"), "vph": v["_vph"], "fmt": v["_fmt"],
+             "age_hours": v.get("age_hours")}
+            for v in sorted(videos, key=lambda x: -x["_vph"])
+            if float(v.get("age_hours") or 0) >= MATURE_HOURS][:5],
+        "worst_mature": [
+            {"title": v.get("title"), "vph": v["_vph"], "fmt": v["_fmt"],
+             "age_hours": v.get("age_hours")}
+            for v in sorted(videos, key=lambda x: x["_vph"])
+            if float(v.get("age_hours") or 0) >= MATURE_HOURS][:5],
     }
 
 
@@ -323,7 +436,17 @@ def build(date: str) -> dict:
         "date": date,
         "generated_at": datetime.now(timezone.utc).strftime(
             "%Y-%m-%dT%H:%M:%SZ"),
+        "problem_classes": PROBLEM_CLASSES,
         "how_to_read_this": {
+            "classify_before_you_propose": (
+                "Pick a `problem_class` first. A render that failed or an "
+                "upload that never went public is a pipeline_failure — NOT "
+                "evidence that viewers rejected the idea. A null metric is "
+                "insufficient_data, not a zero."),
+            "compare_like_with_like": (
+                "Use `channels.<n>.maturity` — cohorts at ~24h, ~72h and "
+                "~7d, and within a format. A graph_race baseline does not "
+                "judge a reddit_story unless you argue why it does."),
             "age_matters": ("Every video is compared ONLY against videos of "
                             "the same age band. `percentile_vs_same_age` is "
                             "the honest signal; raw `views` is not, because "
@@ -353,6 +476,93 @@ def build(date: str) -> dict:
         "repo": repo_state(),
         "your_job": "retro/README.md",
     }
+
+
+def executive_summary(brief: dict) -> str:
+    """The version a human reads in 30 seconds.
+
+    Deliberately NOT the analytics dump — that is `brief.md`, and nobody
+    reads it daily. This answers: is anything broken, is anything moving,
+    and is anything waiting on me."""
+    d = brief["date"]
+    L = [f"# Daily summary — {d}", ""]
+
+    # 1. Is the machine healthy? A pipeline failure outranks every content
+    #    observation, because a video that never published was not judged.
+    h = brief.get("pipeline_health") or {}
+    fails = str(h.get("consecutive_failures", "0"))
+    broken = []
+    if fails not in ("0", "unknown"):
+        broken.append(f"{fails} consecutive daily-run failure(s)")
+    ex_ = h.get("exchange") or {}
+    if ex_.get("note"):
+        broken.append("the ChatGPT exchange did not complete")
+    if (ex_.get("media") or {}).get("unfilled"):
+        broken.append(f"{ex_['media']['unfilled']} shot(s) shipped with no media")
+    bank = h.get("reserve_bank") or {}
+    if bank.get("low_on"):
+        broken.append(f"reserve bank low on {', '.join(bank['low_on'])}")
+    L += ["## Health", ""]
+    L += [f"- {b}" for b in broken] or ["- nothing broken"]
+    L.append("")
+
+    # 2. Channels, judged only on videos old enough to judge.
+    L += ["## Channels (mature videos only)", ""]
+    for name, c in (brief.get("channels") or {}).items():
+        if not c.get("available"):
+            L.append(f"- **{name}**: no analytics")
+            continue
+        m = (c.get("maturity") or {}).get("24h", {}).get("all_formats", {})
+        n = m.get("n", 0)
+        if not n:
+            L.append(f"- **{name}**: nothing in the 24h window yet")
+            continue
+        best = (c.get("mature_enough_to_judge") or [{}])[0]
+        worst = (c.get("worst_mature") or [{}])[0]
+        L.append(f"- **{name}**: {n} video(s) at ~24h, median "
+                 f"{m.get('median_views')} views"
+                 + ("" if m.get("enough_to_judge") else " _(thin)_"))
+        if best.get("title"):
+            L.append(f"    - best: {str(best['title'])[:60]} "
+                     f"({best.get('vph')} vph)")
+        if worst.get("title") and worst.get("title") != best.get("title"):
+            L.append(f"    - worst: {str(worst['title'])[:60]} "
+                     f"({worst.get('vph')} vph)")
+    L.append("")
+
+    # 3. What is actually in flight.
+    cont = brief.get("continuity") or {}
+    live = (cont.get("experiments") or {}).get("running") or []
+    L += ["## Experiments", ""]
+    L += [f"- `{e['id']}` — {e['hypothesis'][:60]} ({e['blocked_by']})"
+          for e in live] or ["- none running"]
+    L.append("")
+
+    verdicts = cont.get("my_verdicts_on_your_last_proposals") or []
+    if verdicts:
+        L += ["## Claude's last decisions", ""]
+        for v in verdicts[-5:]:
+            L.append(f"- **{str(v.get('verdict', '?')).upper()}** "
+                     f"{v.get('title')}"
+                     + (f" (`{v['commit'][:8]}`)" if v.get("commit") else ""))
+        L.append("")
+
+    # 4. The only section Caleb has to act on.
+    owed = brief.get("what_you_owe_today") or {}
+    needs_you = [i for i in (owed.get("items") or [])
+                 if i.get("kind") == "agenda"]
+    stale = [e for e in live if "days" in str(e.get("blocked_by", ""))
+             and e.get("days", 0) > 30]
+    L += ["## Needs Caleb", ""]
+    if not needs_you and not stale and not broken:
+        L.append("- nothing")
+    else:
+        L += [f"- {i['what'][:110]}" for i in needs_you]
+        L += [f"- experiment `{e['id']}` has been open {e['days']}d with no "
+              f"verdict" for e in stale]
+        L += [f"- {b}" for b in broken]
+    L.append("")
+    return "\n".join(L)
 
 
 def to_markdown(brief: dict) -> str:
@@ -449,11 +659,13 @@ def main() -> int:
     out.mkdir(parents=True, exist_ok=True)
     (out / "brief.json").write_text(json.dumps(brief, indent=2) + "\n")
     (out / "brief.md").write_text(to_markdown(brief))
+    (out / "summary.md").write_text(executive_summary(brief))
     (out / "proposals").mkdir(exist_ok=True)
     (out / "proposals" / ".gitkeep").touch()
     print(f"\n[retro] wrote {(out / 'brief.json').relative_to(ROOT)} "
           f"({len(json.dumps(brief)):,} bytes)")
-    print(f"[retro] proposals go in {(out / 'proposals').relative_to(ROOT)}/")
+    print(f"[retro] summary at {(out / 'summary.md').relative_to(ROOT)}")
+    print(f"[retro] the reviewer writes retro/{date}/proposals.json")
     return 0
 
 

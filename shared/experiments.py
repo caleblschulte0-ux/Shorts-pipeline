@@ -104,7 +104,8 @@ def register(hypothesis: str, *, change: str, metric: str, direction: str,
              guardrail: str = "", guardrail_baseline: float | None = None,
              min_days: int = DEFAULT_MIN_DAYS,
              min_samples: int = DEFAULT_MIN_SAMPLES,
-             proposal_file: str = "", now: str = "") -> dict:
+             proposal_file: str = "", channel: str = "",
+             format: str = "", now: str = "") -> dict:
     """Start the clock on a change that just shipped."""
     if direction not in DIRECTIONS:
         raise ValueError(f"direction must be one of {DIRECTIONS}")
@@ -113,6 +114,11 @@ def register(hypothesis: str, *, change: str, metric: str, direction: str,
         "id": f"{(now or _now())[:10].replace('-', '')}-{slug(hypothesis)}",
         "hypothesis": hypothesis,
         "change": change,
+        # Scope. Without these the sample counter would credit any video on
+        # any channel, and the experiment would "finish" without ever having
+        # been tested.
+        "channel": channel,
+        "format": format,
         "files": files or [],
         "metric": metric,
         "direction": direction,
@@ -257,3 +263,92 @@ def summary() -> dict:
                           for e in exps
                           if e.get("status") in ("adopted", "reverted",
                                                  "inconclusive")][-10:]}
+
+# --------------------------------------------------------------------------
+# Sample advancement — the thing that makes an experiment finish
+# --------------------------------------------------------------------------
+def eligible_videos(exp: dict, videos: list[dict]) -> list[dict]:
+    """Videos that actually ran UNDER this experiment.
+
+    Three filters, all necessary. Counting everything would let an
+    experiment on the trending channel be concluded by explainer uploads,
+    or by videos published before the change even shipped — which is not a
+    test of anything.
+
+      published_at > started_at   the change was live when it rendered
+      channel matches             a different channel is a different world
+      format matches (if scoped)  a reddit_story does not test a graph tweak
+    """
+    started = _parse(exp.get("started_at") or "")
+    if not started:
+        return []
+    want_channel = (exp.get("channel") or "").strip()
+    want_format = (exp.get("format") or "").strip()
+    out = []
+    for v in videos or []:
+        pub = _parse(v.get("published_at") or "")
+        if not pub or pub <= started:
+            continue
+        if want_channel and str(v.get("_channel") or "") != want_channel:
+            continue
+        if want_format and str(v.get("format") or v.get("_fmt") or "") != want_format:
+            continue
+        out.append(v)
+    return out
+
+
+def advance(videos_by_channel: dict) -> list[dict]:
+    """Recount every running experiment from the analytics, then flip the
+    ones whose window has closed.
+
+    Recount rather than increment: a counter that only ever goes up drifts
+    the moment a run is retried or a video is deleted, and nobody notices
+    because the number still looks plausible. This is idempotent — running
+    it five times a day gives the same answer as running it once."""
+    data = _read()
+    changed, due = False, []
+    for e in data.get("experiments") or []:
+        if e.get("status") not in ("running", "readout_due"):
+            continue
+        pool = []
+        for chan, vids in (videos_by_channel or {}).items():
+            for v in vids or []:
+                v = dict(v)
+                v["_channel"] = chan
+                pool.append(v)
+        n = len(eligible_videos(e, pool))
+        if n != e.get("samples_seen"):
+            e["samples_seen"] = n
+            changed = True
+        ok, _ = readout_ready(e, samples=n)
+        if ok and e.get("status") == "running":
+            e["status"] = "readout_due"
+            changed = True
+        if e.get("status") == "readout_due":
+            due.append(e)
+    if changed:
+        _write(data)
+    return due
+
+
+# An experiment nobody reads out is worse than no experiment: it blocks the
+# one-active-per-channel cap forever and quietly stops the loop.
+STALE_AFTER_DAYS = 30
+
+
+def stale(now: "datetime | None" = None) -> list[dict]:
+    """Experiments that have been due for a readout far too long."""
+    return [e for e in running()
+            if days_elapsed(e, now) > STALE_AFTER_DAYS]
+
+
+def abandon(exp_id: str, reason: str) -> dict | None:
+    """Close out an experiment that will never produce a clean verdict."""
+    data = _read()
+    for e in data.get("experiments") or []:
+        if e.get("id") == exp_id:
+            e["status"] = "abandoned"
+            e["readout"] = {"at": _now(), "verdict": reason}
+            _write(data)
+            return e
+    return None

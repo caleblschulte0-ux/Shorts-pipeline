@@ -47,13 +47,35 @@ STATE = RETRO_ROOT / "state"
 LEDGER = STATE / "ledger.jsonl"
 AGENDA = STATE / "agenda.json"
 
-VERDICTS = ("adopt", "revise", "decline", "needs_evidence", "deferred")
+VERDICTS = ("adopt", "revise", "decline", "needs_evidence", "deferred",
+            "rollback")
 # Verdicts that leave something open for the reviewer to pick up tomorrow.
 KEEPS_AGENDA = ("revise", "needs_evidence", "deferred")
 
 
 def _now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _head_sha() -> str:
+    """The commit the decision was recorded at. Without this, "adopted" is
+    an assertion; with it, the change is findable."""
+    import subprocess
+    try:
+        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                              capture_output=True, text=True,
+                              timeout=10).stdout.strip()[:12]
+    except Exception:                                # noqa: BLE001
+        return ""
+
+
+def _signature(p: dict) -> str:
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from review_proposals import signature
+        return signature(p)
+    except Exception:                                # noqa: BLE001
+        return ""
 
 
 def read_ledger(limit: int | None = None) -> list[dict]:
@@ -123,13 +145,23 @@ def cmd_reply(args) -> int:
               file=sys.stderr)
         return 2
 
+    # A DURABLE DECISION RECORD, not just a verdict. Everything needed to
+    # reconstruct what was decided, what actually shipped, and how to undo
+    # it — six months from now, by someone who was not here.
     entry = {
         "at": _now(), "date": args.date, "proposal_file": args.file,
+        "proposal_id": proposal.get("proposal_id"),
+        "signature": proposal.get("signature") or _signature(proposal),
         "title": proposal.get("title") or args.file,
         "category": proposal.get("category"),
+        "channel": args.channel or proposal.get("channel"),
+        "format": args.format or proposal.get("format"),
         "verdict": args.verdict,
         "because": args.because,
         "shipped": args.shipped or [],
+        "commit": args.commit or _head_sha(),
+        "modified_from_proposal": args.modified,
+        "rollback": args.rollback or proposal.get("rollback"),
         "experiment_id": None,
     }
 
@@ -150,7 +182,9 @@ def cmd_reply(args) -> int:
             guardrail=args.guardrail or "",
             guardrail_baseline=args.guardrail_baseline,
             min_days=args.min_days, min_samples=args.min_samples,
-            proposal_file=args.file)
+            proposal_file=args.file,
+            channel=args.channel or proposal.get("channel") or "",
+            format=args.format or proposal.get("format") or "")
         entry["experiment_id"] = e["id"]
         print(f"[reply] registered experiment {e['id']} — readout in "
               f"{args.min_days}d / {args.min_samples} samples")
@@ -206,6 +240,15 @@ def main() -> int:
     ap.add_argument("--because", default="",
                     help="your reasoning — the reviewer reads this verbatim")
     ap.add_argument("--shipped", nargs="*", help="files you actually changed")
+    ap.add_argument("--commit", default="",
+                    help="implementation SHA (default: current HEAD)")
+    ap.add_argument("--modified", default="",
+                    help="how your implementation differs from what was "
+                         "proposed — the reviewer learns most from this")
+    ap.add_argument("--rollback", default="",
+                    help="how to undo it")
+    ap.add_argument("--channel", default="")
+    ap.add_argument("--format", default="")
     ap.add_argument("--force", action="store_true")
     # experiment registration
     ap.add_argument("--experiment", help="hypothesis; registers a timed test")
