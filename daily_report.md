@@ -1,38 +1,50 @@
-# Daily Trending Shorts — 2026-07-29
+# Daily Trending Shorts — 2026-07-30
 
 - queued: **6**
-- succeeded: **5**
-- quarantined (off-topic imagery): **1**
+- succeeded: **6**
+- quarantined (off-topic imagery): **0**
 - failed: **0**
 
 ## Posted
-- **My landlord tried to keep my deposit for damage from my own move-in video.**
-  - topic: My landlord tried to keep my deposit for damage from my own move-in video.
-  - publishes: `2026-07-29T13:00:00Z`
-  - https://youtube.com/shorts/H73MXBeV8Mc
-  - took: 131.8s
-- **The asteroid didn't kill the dinosaurs with fire**
-  - topic: The asteroid didn't kill the dinosaurs with fire
-  - publishes: `2026-07-29T15:00:00Z`
-  - https://youtube.com/shorts/N0vo_ZHEqPk
-  - took: 23.9s
-- **A sixth person has died from an outbreak in NYC's air**
-  - topic: A sixth person has died from an outbreak in NYC's air
-  - publishes: `2026-07-29T17:00:00Z`
-  - https://youtube.com/shorts/i8yfFyCNNnE
-  - took: 21.0s
-- **Nvidia vs AMD: Data Center Revenue by Year**
-  - topic: Nvidia vs AMD: Data Center Revenue by Year
-  - publishes: `2026-07-29T19:00:00Z`
-  - https://youtube.com/shorts/m9NwLL7e-aI
-  - took: 49.7s
-- **India vs China: The Population Race**
-  - topic: India vs China: The Population Race
-  - publishes: `2026-07-29T21:00:00Z`
-  - https://youtube.com/shorts/vv_kJcu1b6w
-  - took: 52.7s
+- **A Sinkhole Opened Right at a Funeral Home**
+  - topic: A Sinkhole Opened Right at a Funeral Home
+  - publishes: `2026-07-30T13:00:00Z`
+  - https://youtube.com/shorts/bIwRJR4NMZM
+  - took: 593.8s
+- **This Goat Cannot Be Contained**
+  - topic: This Goat Cannot Be Contained
+  - publishes: `2026-07-30T14:30:00Z`
+  - https://youtube.com/shorts/iVmtB_m7Pug
+  - took: 722.6s
+- **Superman Got Arrested in Florida**
+  - topic: Superman Got Arrested in Florida
+  - publishes: `2026-07-30T16:00:00Z`
+  - https://youtube.com/shorts/a88eaoRaJi0
+  - took: 698.3s
+- **An Entire Reservation Just Got Evacuated**
+  - topic: An Entire Reservation Just Got Evacuated
+  - publishes: `2026-07-30T17:30:00Z`
+  - https://youtube.com/shorts/5Xj2Qy6yuHQ
+  - took: 564.3s
+- **Iran Just Attacked a US Base in Jordan**
+  - topic: Iran Just Attacked a US Base in Jordan
+  - publishes: `2026-07-30T19:00:00Z`
+  - https://youtube.com/shorts/UiCH8oMdScA
+  - took: 992.0s
+- **The FCC Just Banned Humanoid Robots**
+  - topic: The FCC Just Banned Humanoid Robots
+  - publishes: `2026-07-30T20:30:00Z`
+  - https://youtube.com/shorts/D9Xu9Fvi3UU
+  - took: 621.1s
 
-## Quarantined (off-topic imagery — fix & re-author)
-- **A woman said she basically ran the store. The real manager was standing behind her.**
-  - quarantined: vision QA: broken — The top half of the video, which is expected to be a news/stock photo, is consistently a black background with text overlays. This functions as a blank placeholder, indicating a failure to render or f
 
+## Format scoreboard (A/B/C test)
+
+| format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
+|---|---|---|---|---|---|---|---|---|
+| graph_race | 8 | 73 | 9.1 | 0.17 | 81.5 | 0 | 0 | 0 |
+| explainer | 35 | 237 | 6.8 | 0.01 | 43.0 | 1 | 0 | 0 |
+| text_card | 10 | 48 | 4.8 | 0.03 | 227.9 | 0 | 0 | 0 |
+| reddit | 10 | 7 | 0.7 | 0.0 | 16.8 | 0 | 0 | 0 |
+
+matched 63 videos to packages, 13 unmatched (pre-A/B/C uploads)
