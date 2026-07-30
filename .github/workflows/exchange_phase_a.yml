@@ -23,9 +23,11 @@ on:
         required: false
         type: boolean
         default: false
-  # Deliberately NO cron yet: this lands disabled-by-default so it cannot
-  # disturb the live daily chain. Enable by adding a schedule here once a
-  # dispatch run has been reviewed (see docs/EXCHANGE_PIPELINE.md).
+  # 04:30 UTC — ahead of ChatGPT's 05:00 task. Phase A only FINDS and JUDGES
+  # media and writes the ask; it never renders, so a bad morning here costs
+  # nothing but a missing bundle (Phase B's backstop still ships the day).
+  schedule:
+    - cron: '30 4 * * *'
 
 permissions:
   contents: write   # commit the bundle + resolved media pins
