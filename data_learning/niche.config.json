@@ -17088,6 +17088,476 @@
           }
         }
       ]
+    },
+    {
+      "slug": "the-world-s-dependency-ratio-just-hit-a-record-low-of-54-5",
+      "title": "The World's Dependency Ratio Just Hit a Record Low of 54.5%",
+      "hook": "You'd think an aging world means more dependents per worker than ever \u2014 that number just fell to its lowest point in over 50 years.",
+      "closing": "In fifty years the world emptied its countryside, filled cities like China's to 933,170,560 people, and somehow ended up with fewer dependents per worker than ever.",
+      "hashtags": [
+        "dependencyratio",
+        "urbanization",
+        "dataexplainer",
+        "worldpopulation",
+        "shorts"
+      ],
+      "question": "If fewer people depend on each worker today, why does life feel busier than in 1972?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sp_pop_dpnd_trend",
+          "params": {
+            "file": "sp_pop_dpnd_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 AGE DEPENDENCY RAT",
+          "topic": "Age dependency ratio",
+          "say": "In 1972 every hundred workers supported 76.2 dependents. By 1983 that fell to 69.3, by 2004 to 58.0, by 2014 to 55.0, and by 2025 just 54.5.",
+          "scene": {
+            "mechanic": "dependency-backpack-unload",
+            "concept": "a worker carries a stack of backpacks that shrinks year by year as the dependency ratio falls to a 50-year record low",
+            "code": "worker = subject_image('warehouse worker standing side view')\nbag = subject_image('backpack')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 90\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nif worker is not None:\n    ww, wh = 220, 420\n    paste(worker, cx - 300, base_y - wh, ww, wh)\ncount = max(1, int(round(cur / 8)))\nbw, bh = 110, 46\nfor k in range(count):\n    y = base_y - 40 - k * (bh - 6)\n    if bag is not None:\n        paste(bag, cx - 30, y - bh, bw, bh)\ntext(f\"{cur:.1f} DEPENDENTS PER 100 WORKERS\", cx, RTOP + 70, size=34, color=TEXT, center=True)\ntext(labels[idx], cx, base_y + 40, size=30, color=TEXT, center=True)\nif idx == n - 1:\n    text('RECORD LOW IN 50 YEARS', cx, base_y - count * (bh - 6) - 90, size=40, color=HIGHLIGHT, center=True)\n"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sp_rur_totl_zs_trend",
+          "params": {
+            "file": "sp_rur_totl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 RURAL POPULATION",
+          "topic": "Rural population",
+          "say": "Rural population was 63.1 percent of the world in 1972, fell to 59.4 by 1983, dropped to 51.1 by 2004, then 46.1 by 2014, and just 42.2 percent by 2025.",
+          "scene": {
+            "mechanic": "village-lights-fading",
+            "concept": "a row of village houses goes dark house by house as the rural share of the world population fades to its lowest point in 50 years",
+            "code": "house = subject_image('small village house glowing window night')\ncols = 10\ncellw = (RX1 - RX0) / cols\ncy = RTOP + 260\nch = cellw * 1.15\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nlit_count = int(round(cols * clamp(cur / 100.0)))\nfor c in range(cols):\n    x = RX0 + c * cellw\n    if house is not None:\n        paste(house, x + 4, cy, cellw - 8, ch)\n    if c >= lit_count:\n        d.rounded_rectangle([x + 4, cy, x + cellw - 4, cy + ch], radius=6, fill=rgba((8, 9, 14), 175))\ntext(f\"{cur:.1f}% OF THE WORLD IS RURAL\", (RX0 + RX1) // 2, RTOP + 60, size=36, color=HIGHLIGHT, center=True)\ntext(labels[idx], (RX0 + RX1) // 2, cy + ch + 40, size=30, color=TEXT, center=True)\nif idx == n - 1:\n    text('LOWEST SHARE IN 50 YEARS', (RX0 + RX1) // 2, cy + ch + 90, size=32, color=WARN, center=True)\n"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sp_urb_totl_rank",
+          "params": {
+            "file": "sp_urb_totl_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 URBAN POPULATION",
+          "topic": "Urban population",
+          "say": "China's cities hold 933,170,560 people, dwarfing India's 522,441,248, the United States' 274,084,705, Brazil's 187,652,232, and Indonesia's 169,698,146.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "apartment-tower",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "apartment-tower",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "apartment-tower",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "apartment-tower",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "apartment-tower",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "china-still-has-166-506-532-landlines-despite-the-smartphone",
+      "title": "China Still Has 166,506,532 Landlines Despite The Smartphone Age",
+      "hook": "You'd think landlines are dead \u2014 China alone still has 166,506,532 of them plugged in.",
+      "closing": "China's landlines alone outnumber the United States' and Japan's combined \u2014 old technology doesn't die, it just goes quiet.",
+      "hashtags": [
+        "datafacts",
+        "telecom",
+        "china",
+        "didyouknow",
+        "shorts"
+      ],
+      "question": "Does your household still have a landline?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "it_net_bbnd_p2_trend",
+          "params": {
+            "file": "it_net_bbnd_p2_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 FIXED BROADBAND SU",
+          "topic": "Fixed broadband subscriptions",
+          "say": "Global home broadband climbed from 3.4 per hundred people in 2005 to 20.1 per hundred people by 2025, moving from 6.9 in 2009 to 13.5 in 2017.",
+          "scene": {
+            "mechanic": "broadband-signal-climb",
+            "concept": "a glowing router's signal bars climb year by year as home broadband subscriptions rise worldwide",
+            "code": "router = subject_image('wifi router modem device glowing')\ncx = (RX0 + RX1) // 2\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nsize = 220\nif router is not None:\n    paste(router, cx - size / 2, RBOT - 380, size, size)\nbars = 6\nbar_w = 46\ngap = 18\ntotal_w = bars * bar_w + (bars - 1) * gap\nx0 = cx - total_w / 2\nlit_bars = clamp(cur / vmax) * bars\nfor b in range(bars):\n    stage = clamp(lit_bars - b)\n    if stage <= 0:\n        continue\n    h = (70 + b * 36) * stage\n    x = x0 + b * (bar_w + gap)\n    col = HIGHLIGHT if b == bars - 1 else ACCENT\n    d.rounded_rectangle([x, RTOP + 320 - h, x + bar_w, RTOP + 320], radius=8, fill=rgba(col, 230))\ntext(f\"{cur:.1f} PER 100 PEOPLE\", cx, RTOP + 60, size=38, color=TEXT, center=True)\ntext(labels[idx], cx, RTOP + 360, size=30, color=TEXT, center=True)\ntext('HOME BROADBAND, WORLDWIDE', cx, RBOT - 40, size=30, color=TEXT, center=True)\n"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "it_cel_sets_rank",
+          "params": {
+            "file": "it_cel_sets_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 MOBILE CELLULAR SU",
+          "topic": "Mobile cellular subscriptions",
+          "say": "China counts 1,870,011,592 mobile subscriptions, India follows with 1,151,356,612, and the United States trails far behind at 390,990,000.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "smartphone",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "smartphone",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "smartphone",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "smartphone",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "smartphone",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "China \u00b7 India \u00b7 United States \u00b7 Indonesia \u00b7 Russia \u2014 mobile phones in use"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "it_mlt_main_rank",
+          "params": {
+            "file": "it_mlt_main_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 FIXED TELEPHONE SU",
+          "topic": "Fixed telephone subscriptions",
+          "say": "China still runs 166,506,532 fixed telephone lines, more than double the United States' 81,549,000, with Japan close behind at 59,326,689.",
+          "scene": {
+            "mechanic": "landline-cord-drop",
+            "concept": "coiled phone cords drop from the ceiling, length scaled to each country's landline count, a rotary phone dangling at the end",
+            "code": "cols = n\ncolw = (RX1 - RX0) / cols\nphone = subject_image('vintage rotary telephone')\nbase_y = RTOP + 120\nmax_len = 760\nfor i in range(n):\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0:\n        continue\n    x = RX0 + colw * (i + 0.5)\n    length = max_len * clamp(values[i] / vmax) * stage\n    steps = max(1, int(length / 16))\n    for s in range(steps):\n        y0 = base_y + s * 16\n        y1 = base_y + (s + 1) * 16\n        wob0 = 16 * math.sin(s * 0.9)\n        wob1 = 16 * math.sin((s + 1) * 0.9)\n        d.line([x + wob0, y0, x + wob1, y1], fill=rgba(ACCENT, 220), width=7)\n    if phone is not None:\n        psize = 110\n        paste(phone, x - psize / 2, base_y + length, psize, psize)\n    text(f\"{values[i] / 1e6:.0f}M\", x, base_y + length + 118, size=26, color=HIGHLIGHT, center=True)\n    text(labels[i], x, base_y + length + 150, size=22, color=TEXT, center=True)\ntext('LANDLINES STILL PLUGGED IN', (RX0 + RX1) // 2, RTOP + 50, size=30, color=TEXT, center=True)\n"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "slovenia-consumes-101-756-of-the-fertilizer-it-makes",
+      "title": "Slovenia 'Consumes' 101,756% Of The Fertilizer It Makes",
+      "hook": "One country uses over a thousand times more fertilizer than it actually produces at home.",
+      "closing": "Slovenia isn't self-sufficient \u2014 it's running on more than a thousand times its own fertilizer output, and nobody's counting.",
+      "hashtags": [
+        "data",
+        "agriculture",
+        "worldbank",
+        "farming",
+        "didyouknow",
+        "shorts"
+      ],
+      "question": "Which number surprised you more \u2014 the irrigation or the fertilizer gap?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ag_lnd_irig_ag_zs_rank",
+          "params": {
+            "file": "ag_lnd_irig_ag_zs_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 AGRICULTURAL IRRIG",
+          "topic": "Agricultural irrigated land",
+          "say": "Bangladesh irrigates eighty nine percent of its farmland, Suriname seventy four point four, Pakistan fifty four point two, India forty four point four, and Bahrain forty point nine.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rice_paddy",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rice_paddy",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rice_paddy",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rice_paddy",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "rice_paddy",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Share Of Farmland Under Irrigation"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "ag_prd_crop_xd_trend",
+          "params": {
+            "file": "ag_prd_crop_xd_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 CROP PRODUCTION IN",
+          "topic": "Crop production index",
+          "say": "World crop production scored just twenty point eight in nineteen seventy two, twenty five point six by ninety one, eighty nine point three by two thousand one, then one hundred by twenty twenty.",
+          "scene": {
+            "mechanic": "harvest-crate-stack",
+            "concept": "crates of harvest stack taller year by year as the world crop production index climbs to its record",
+            "code": "crate = subject_image('wooden crate stacked with vegetables harvest')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 90\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nh = 700 * clamp(cur / vmax)\ncount = max(1, int(h // 130) + 1)\nch = h / count\nfor k in range(count):\n    y = base_y - (k + 1) * ch\n    if crate is not None:\n        paste(crate, cx - 170, y, 340, ch + 6)\ntext(f\"INDEX {cur:.0f}\", cx, RTOP + 60, size=44, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, base_y + 40, size=30, color=TEXT, center=True)\nif idx == n - 1:\n    text('WORLD CROP OUTPUT AT A RECORD', cx, base_y - h - 60, size=30, color=WARN, center=True)\n"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "ag_con_fert_pt_zs_rank",
+          "params": {
+            "file": "ag_con_fert_pt_zs_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 FERTILIZER CONSUMP",
+          "topic": "Fertilizer consumption",
+          "say": "Slovenia consumes fertilizer equal to one hundred one thousand seven hundred fifty six percent of what it produces, Malawi fifty nine thousand nine hundred seventy eight percent, and Costa Rica twenty three thousand four hundred thirty five.",
+          "scene": {
+            "mechanic": "fertilizer-sack-columns",
+            "concept": "a fertilizer-sack column rises per country, sized to how many multiples of its own production it consumes",
+            "code": "sack = subject_image('fertilizer sack bag')\ncols = n\ncolw = (RX1 - RX0) / cols\nbase_y = RBOT - 80\nmax_h = 820\nfor i in range(n):\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0:\n        continue\n    x = RX0 + colw * (i + 0.5)\n    h = max_h * clamp(values[i] / vmax) * stage\n    count = max(1, int(h // 95) + 1)\n    bh = h / count\n    for k in range(count):\n        y = base_y - (k + 1) * bh\n        if sack is not None:\n            paste(sack, x - colw * 0.34, y, colw * 0.68, bh + 4)\n    text(f\"{values[i] / 1000.0:.0f}K%\", x, base_y - h - 30, size=24, color=HIGHLIGHT, center=True)\n    text(labels[i], x, base_y + 16, size=22, color=TEXT, center=True)\ntext('FERTILIZER USED VS PRODUCED AT HOME', (RX0 + RX1) // 2, RTOP + 40, size=28, color=TEXT, center=True)\n"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population growth Fell 54% Since 1972",
+      "hook": "In 1972 it was 2. Now it's 0.91, and almost nobody noticed.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sp_pop_grow_trend",
+          "params": {
+            "file": "sp_pop_grow_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 POPULATION GROWTH",
+          "topic": "Population growth",
+          "say": "In 1972, population growth was 2 annual %. By 2025: 0.91 annual % \u2014 down to 46 percent of that."
+        },
+        {
+          "source": "offline",
+          "key": "sp_urb_totl_in_zs_trend",
+          "params": {
+            "file": "sp_urb_totl_in_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 URBAN POPULATION",
+          "topic": "Urban population",
+          "say": "In 1972, urban population was 36.9 % of total population. By 2025: 57.8 % of total population \u2014 1.6 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "ag_lnd_totl_k2_trend",
+          "params": {
+            "file": "ag_lnd_totl_k2_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 LAND AREA",
+          "topic": "Land area",
+          "say": "In 1972, land area was 104.2 million sq. km. By 2023: 129.8 million sq. km \u2014 1.2 times higher."
+        }
+      ]
+    },
+    {
+      "slug": "tuvalu-beats-everyone-on-domestic-general-government-health-",
+      "title": "Tuvalu Beats Everyone On Domestic general government health expenditure \u2014 By 2.0x",
+      "hook": "You'd guess Marshall Islands leads on domestic general government health expenditure. It's Tuvalu \u2014 19.7 to 10.1.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sh_xpd_ghed_gd_zs_rank",
+          "params": {
+            "file": "sh_xpd_ghed_gd_zs_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 DOMESTIC GENERAL G",
+          "topic": "Domestic general government health expen",
+          "say": "Tuvalu leads at 19.7 % of GDP. Naoero is 15.2 % of GDP. Germany \u2014 9.29 % of GDP."
+        },
+        {
+          "source": "offline",
+          "key": "eg_elc_nucl_zs_trend",
+          "params": {
+            "file": "eg_elc_nucl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ELECTRICITY PRODUC",
+          "topic": "Electricity production from nuclear sour",
+          "say": "In 1990, electricity production from nuclear sources was 17 % of total. By 2024: 15.5 % of total \u2014 barely moved."
+        },
+        {
+          "source": "offline",
+          "key": "eg_use_elec_kh_pc_trend",
+          "params": {
+            "file": "eg_use_elec_kh_pc_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ELECTRIC POWER CON",
+          "topic": "Electric power consumption",
+          "say": "In 1990, electric power consumption was 2,093 kWh per capita. By 2023: 3,558 kWh per capita \u2014 1.7 times higher."
+        }
+      ]
+    },
+    {
+      "slug": "f-gases-emissions-from-industrial-processes-is-8-9x-higher-t",
+      "title": "F-gases emissions from Industrial Processes Is 8.9x Higher Than In 1972",
+      "hook": "In 1972 it was 169.8. Now it's 1,510, and almost nobody noticed.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ag_prd_lvsk_xd_trend",
+          "params": {
+            "file": "ag_prd_lvsk_xd_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 LIVESTOCK PRODUCTI",
+          "topic": "Livestock production index",
+          "say": "In 1972, livestock production index was 14.3 2014-2016 = 100. By 2020: 100 2014-2016 = 100 \u2014 7.0 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "en_ghg_fgas_ip_mt_ce_ar5_trend",
+          "params": {
+            "file": "en_ghg_fgas_ip_mt_ce_ar5_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 F-GASES EMISSIONS ",
+          "topic": "F-gases emissions from Industrial Proces",
+          "say": "In 1972, f-gases emissions from industrial processes was 169.8 Mt CO2e. By 2024: 1,510 Mt CO2e \u2014 8.9 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "is_rrs_totl_km_rank",
+          "params": {
+            "file": "is_rrs_totl_km_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 RAIL LINES",
+          "topic": "Rail lines",
+          "say": "United States leads at 148,553 total route-km. China is 109,767 total route-km. Canada \u2014 48,150 total route-km."
+        }
+      ]
     }
   ],
   "videos": [
