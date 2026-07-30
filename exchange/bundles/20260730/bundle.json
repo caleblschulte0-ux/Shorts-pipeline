@@ -2,12 +2,15 @@
   "schema": "chatgpt-exchange-bundle/v1",
   "date": "20260730",
   "status": "open",
+  "mode": "author",
   "response_path": "exchange/bundles/20260730/response.json",
   "done_marker": "exchange/bundles/20260730/DONE",
   "counts": {
     "packages": 6,
     "requests": 22,
-    "animations": 0
+    "animations": 0,
+    "to_author": 0,
+    "channels_needing_a_brain": 1
   },
   "packages": [
     {
@@ -1162,6 +1165,7 @@
   "instructions": {
     "read_first": "exchange/README.md",
     "two_jobs": [
+      "0. AUTHOR THE DAY \u2014 READ `authoring_request` FIRST. The channel's own writing brain did not run today and the reserve bank could not cover it, so there is no slate. You are the brain: write the missing packages per the spec in `authoring_request.formats` and return them in this response's `authored` array. Without this the channel posts NOTHING today.",
       "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
       "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
     ],
@@ -1199,6 +1203,39 @@
       "Use `prompt_verbatim` exactly; treat `negative` as exclusions."
     ],
     "finish_with": "Write exchange/bundles/<date>/response.json, then create exchange/bundles/<date>/DONE containing {\"date\": \"<date>\"}. The DONE marker is what triggers our render \u2014 write it LAST, and only after response.json is committed.",
-    "honesty": "If you cannot do something, say so in the response with the blocking step named. A fabricated pointer or an unverified hash is worse than an honest failure: our consumer recomputes every hash and rejects mismatches."
-  }
+    "honesty": "If you cannot do something, say so in the response with the blocking step named. A fabricated pointer or an unverified hash is worse than an honest failure: our consumer recomputes every hash and rejects mismatches.",
+    "takeover_note": "`packages` and `requests` cover whatever WAS authored before you \u2014 on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: write the packages AND supply the media for every shot in them, in this one pass. Nothing downstream gets a second chance to ask you for anything \u2014 the next thing that runs is the renderer. Attach each shot's image to the shot itself as `media` (same Drive + sha256 pointer shape you use in the `media` array); see `authoring_request.media_contract`. Anything you leave without media we will try to fill from stock, which is the weaker outcome this exists to avoid."
+  },
+  "authoring_requests": {
+    "curiosity": {
+      "schema": "chatgpt-authoring-request/v1",
+      "date": "20260730",
+      "channel": "curiosity",
+      "job": "stock_queue",
+      "reason": "only 2 un-posted curiosity stories remain (want >= 3); the Claude routine that normally stocks this queue did not run",
+      "write": 1,
+      "required": [
+        "slug",
+        "title",
+        "hook",
+        "closing",
+        "question",
+        "hashtags",
+        "segments"
+      ],
+      "hard_rules": [
+        "Long-form curiosity: one genuinely surprising thing explained properly, not a listicle. Read data_learning/CURIOSITY_BRAIN.md for the voice and the topic bank.",
+        "Every factual claim must be real and checkable. No invented statistics \u2014 this channel's whole premise is that the numbers are true.",
+        "`slug` lowercase kebab-case, not already in data_learning/curiosity.config.json."
+      ],
+      "queued_now": [
+        "kola-deepest-hole",
+        "sitting-still-speed"
+      ],
+      "where": {
+        "preferred": "an `authored_curiosity` array in response.json, one story object per entry"
+      }
+    }
+  },
+  "authoring_request": null
 }
