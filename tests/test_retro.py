@@ -433,74 +433,23 @@ class TestTheLoopHasMemory(unittest.TestCase):
         self.assertIn("what_you_owe_today", b)
 
 
-class TestOnlyClaudeEditsThePipeline(unittest.TestCase):
-    """Operator ruling: ChatGPT can run quarterback but never makes
-    additions. The rule is enforced from the other side because the agent it
-    constrains is the one reading the README."""
+class TestTheRuleIsWrittenDown(unittest.TestCase):
+    """No hard gate enforces this (operator's call — it is a working
+    agreement, not a security boundary). So the wording carries it, and
+    these assert the wording is actually there for an agent to read."""
 
-    def setUp(self):
-        import authorship_gate as ag
-        self.ag = ag
-
-    def test_a_script_smuggled_into_proposals_is_caught(self):
-        errs = self.ag.check_smuggling(["retro/20260801/proposals/evil.py"])
-        self.assertEqual(len(errs), 1)
-        self.assertIn("agents propose", errs[0])
-
-    def test_a_workflow_smuggled_into_the_exchange_is_caught(self):
-        self.assertTrue(self.ag.check_smuggling(
-            ["exchange/bundles/20260801/sneak.yml"]))
-
-    def test_an_agent_cannot_edit_its_own_contract(self):
-        for f in ("retro/README.md", "exchange/README.md"):
-            self.assertTrue(self.ag.check_contract_edits([f]), f)
-
-    def test_claude_CAN_edit_the_contracts_on_a_pr(self):
-        """Claude wrote these contracts and must be able to revise them —
-        the first version of this gate refused the very commit that
-        introduced it."""
-        self.assertEqual(self.ag.check_contract_edits(
-            ["retro/README.md", "exchange/README.md"], pr=True), [])
-
-    def test_json_proposals_and_responses_are_fine(self):
-        clean = ["retro/20260801/proposals/01-hook.json",
-                 "exchange/bundles/20260801/response.json",
-                 "exchange/bundles/20260801/DONE",
-                 "state/trending_packages/20260801/01_x.json"]
-        self.assertEqual(self.ag.check_smuggling(clean), [])
-        self.assertEqual(self.ag.check_contract_edits(clean), [])
-        self.assertEqual(self.ag.check_contract_edits(clean, pr=True), [])
-
-    def test_ci_data_writes_are_not_pipeline_edits(self):
-        """story_forge and the analytics fetch commit straight to main every
-        day. If the gate flags those it will be muted within a week."""
-        for f in ("state/analytics/latest.json",
-                  "data_learning/data/sp_pop_grow_trend.json",
-                  "data_learning/niche.config.json",
-                  "daily_report.json", "retro/20260801/brief.json"):
-            self.assertTrue(self.ag.is_agent_writable(f), f)
-            self.assertEqual(self.ag.claude_only([f]), [], f)
-
-    def test_pipeline_code_is_claude_only(self):
-        for f in ("shared/punchup_guard.py", ".github/workflows/daily.yml",
-                  "scripts/showrunner_review.py", "docs/FALLBACKS.md",
-                  "CLAUDE.md", "make_graph_race.py"):
-            self.assertEqual(self.ag.claude_only([f]), [f], f)
-
-    def test_code_on_a_reviewed_pr_is_allowed(self):
-        """Claude's own work must not trip the gate — a PR is where pipeline
-        edits belong, and the sanity + placement gates run there."""
-        import subprocess
-        for flag, expect in (("--pr", 0), (None, 1)):
-            cmd = [sys.executable, "scripts/authorship_gate.py",
-                   "--paths", "shared/punchup_guard.py"]
-            if flag:
-                cmd.insert(2, flag)
-            rc = subprocess.run(cmd, cwd=ROOT, capture_output=True).returncode
-            self.assertEqual(rc, expect, f"flag={flag}")
-
-    def test_the_contracts_state_the_rule(self):
-        for f in ("retro/README.md", "exchange/README.md"):
+    def test_every_contract_states_who_edits_the_pipeline(self):
+        for f in ("retro/README.md", "exchange/README.md", "CLAUDE.md"):
             text = (ROOT / f).read_text().lower()
             self.assertIn("only agent that edits", text, f)
-            self.assertIn("never write", text, f)
+
+    def test_the_agent_contracts_say_what_they_may_never_write(self):
+        for f in ("retro/README.md", "exchange/README.md"):
+            self.assertIn("never write", (ROOT / f).read_text().lower(), f)
+
+    def test_no_doc_promises_enforcement_that_does_not_exist(self):
+        """The gate was removed; nothing may still claim it runs. A doc that
+        describes a check nobody runs is worse than no doc."""
+        for f in ("retro/README.md", "exchange/README.md", "CLAUDE.md"):
+            text = (ROOT / f).read_text()
+            self.assertNotIn("authorship_gate", text, f)

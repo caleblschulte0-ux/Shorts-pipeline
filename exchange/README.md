@@ -103,12 +103,12 @@ it is CONTENT and SUGGESTIONS, never additions to the pipeline itself.
 | `retro/<date>/proposals/*.json` | `retro/README.md` or `exchange/README.md` — your own instructions |
 | | anything under `scripts/`, `shared/`, `funnel/`, `engines/`, `docs/` |
 
-This is not a formality. `scripts/authorship_gate.py` runs on every push to
-main and every PR, and it specifically looks for a code file dropped into
-one of your folders, or an edit to the contract you are reading. If you
-believe something in the pipeline should change, that is a PROPOSAL —
-write it as one and Claude will decide, implement it properly, and tell you
-what it thought.
+Nothing mechanically stops you from breaking this — it is a working
+agreement, and it holds because you keep it. If you believe something in
+the pipeline should change, that is a PROPOSAL: write it as one and Claude
+will decide, implement it properly, and tell you what it thought. A change
+you make yourself skips the review that makes the change safe, and skips
+the reply that would have taught you why.
 
 ## Mode `author` — the takeover (you are the brain today)
 
