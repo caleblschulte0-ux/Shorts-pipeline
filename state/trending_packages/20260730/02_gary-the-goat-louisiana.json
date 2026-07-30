@@ -18,7 +18,7 @@
     "weirdnews",
     "oddnews"
   ],
-  "script": "One goat, zero enclosures? This is Gary. A nonprofit in Rosepine, Louisiana bought him so kids could practice goat roping. Gary had other plans. First he broke out of the horse pen. Then a stall. Then a kennel — reinforced, extra latches, didn't matter. Every fix, Gary found the gap. So he did the only logical thing: he moved to the shoulder of U.S. Highway 171 and just... stayed. Drivers started spotting him daily. Now he's basically DeRidder's unofficial mascot, a goat nobody owns anymore because nobody can catch him. The foundation still checks on him. He still won't come home. So who's actually in charge here — the humans, or the goat?",
+  "script": "One goat, zero enclosures? This is Gary. A nonprofit in Rosepine, Louisiana bought him so kids could practice goat roping. Gary had other plans. First he broke out of the horse pen. Then a stall. Then a kennel \u2014 reinforced, extra latches, didn't matter. Every fix, Gary found the gap. So he did the only logical thing: he moved to the shoulder of U.S. Highway 171 and just... stayed. Drivers started spotting him daily. Now he's basically DeRidder's unofficial mascot, a goat nobody owns anymore because nobody can catch him. The foundation still checks on him. He still won't come home. So who's actually in charge here \u2014 the humans, or the goat?",
   "shots": [
     {
       "phrase": "One goat, zero enclosures?",
@@ -27,7 +27,12 @@
     },
     {
       "phrase": "A nonprofit in Rosepine, Louisiana bought him",
-      "query": "rural louisiana ranch"
+      "query": "rural louisiana ranch",
+      "pin_query": "Rosepine, Louisiana",
+      "pin_context": "US city location nonprofit",
+      "news_query": "Rosepine, Louisiana",
+      "news_angle": "A nonprofit in Rosepine, Louisiana buys Gary the goat for kids to practice goat roping.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vernon_Parish_Louisiana_Incorporated_and_Unincorporated_areas_Rosepine_Highlighted.svg"
     },
     {
       "phrase": "kids could practice goat roping",
@@ -35,7 +40,12 @@
     },
     {
       "phrase": "Gary had other plans",
-      "query": "goat standing alone"
+      "query": "goat standing alone",
+      "pin_query": "Gary",
+      "pin_context": "goat animal escapee",
+      "news_query": "Gary",
+      "news_angle": "Gary, a goat, breaks out of his enclosures and becomes DeRidder's unofficial mascot.",
+      "image_url": "https://live.staticflickr.com/8005/6981257390_ceb31698ef_b.jpg"
     },
     {
       "phrase": "broke out of the horse pen",
@@ -63,7 +73,12 @@
       "query": "highway road shoulder",
       "evidence_urls": [
         "https://www.kplctv.com/2026/07/28/wheres-gary-escape-artist-goat-who-united-southwest-louisiana/"
-      ]
+      ],
+      "pin_query": "U.S. Highway 171",
+      "pin_context": "road location traffic",
+      "news_query": "U.S. Highway 171",
+      "news_angle": "Gary moves to the shoulder of U.S. Highway 171 and becomes a daily spotting for drivers.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/US_171.svg"
     },
     {
       "phrase": "Drivers started spotting him daily",
@@ -71,7 +86,12 @@
     },
     {
       "phrase": "DeRidder's unofficial mascot",
-      "query": "small town main street"
+      "query": "small town main street",
+      "pin_query": "DeRidder",
+      "pin_context": "US city location mascot",
+      "news_query": "DeRidder",
+      "news_angle": "Gary becomes DeRidder's unofficial mascot after escaping his enclosures and roaming freely.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/BeauregardCourthouse.jpg"
     },
     {
       "phrase": "nobody can catch him",

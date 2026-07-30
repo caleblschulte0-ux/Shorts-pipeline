@@ -18,7 +18,7 @@
     "breakingnews",
     "climate"
   ],
-  "script": "An entire reservation, evacuated? The Bench Fire ripped through the Warm Springs Reservation in Central Oregon, and in less than a week it swallowed over 60,000 acres. Six homes are already gone. Five other buildings too. Officials issued Level 3 'Go Now' orders for the entire community — no packing, no deciding, just leaving. Nearly 600 firefighters are on it right now, and containment sits at just 3 percent. This isn't an isolated blaze either — Oregon has more than a million acres burning statewide, with thousands more under the same evacuation order. For a tribal community that's called Warm Springs home for generations, the fire didn't ask permission. So how do you rebuild a whole reservation from 3 percent contained?",
+  "script": "An entire reservation, evacuated? The Bench Fire ripped through the Warm Springs Reservation in Central Oregon, and in less than a week it swallowed over 60,000 acres. Six homes are already gone. Five other buildings too. Officials issued Level 3 'Go Now' orders for the entire community \u2014 no packing, no deciding, just leaving. Nearly 600 firefighters are on it right now, and containment sits at just 3 percent. This isn't an isolated blaze either \u2014 Oregon has more than a million acres burning statewide, with thousands more under the same evacuation order. For a tribal community that's called Warm Springs home for generations, the fire didn't ask permission. So how do you rebuild a whole reservation from 3 percent contained?",
   "shots": [
     {
       "phrase": "An entire reservation, evacuated?",
@@ -27,12 +27,22 @@
     },
     {
       "phrase": "The Bench Fire ripped through",
-      "query": "wildfire flames forest"
+      "query": "wildfire flames forest",
+      "pin_query": "Bench Fire",
+      "pin_context": "An Entire Reservation Just Got Evacuated",
+      "news_query": "Bench Fire",
+      "news_angle": "An Entire Reservation Just Got Evacuated",
+      "image_url": "https://live.staticflickr.com/65535/54975858925_8a1b686504_b.jpg"
     },
     {
       "phrase": "the Warm Springs Reservation in Central Oregon",
       "query": "oregon forest landscape",
-      "mascot_pose": "point"
+      "mascot_pose": "point",
+      "pin_query": "Warm Springs Reservation",
+      "pin_context": "An Entire Reservation Just Got Evacuated",
+      "news_query": "Warm Springs Reservation",
+      "news_angle": "An Entire Reservation Just Got Evacuated",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Map_Warm_Springs_Indian_Reservation.png"
     },
     {
       "phrase": "swallowed over 60,000 acres",
@@ -51,11 +61,21 @@
     },
     {
       "phrase": "Level 3 'Go Now' orders",
-      "query": "evacuation road cars"
+      "query": "evacuation road cars",
+      "pin_query": "Level",
+      "pin_context": "An Entire Reservation Just Got Evacuated",
+      "news_query": "Level",
+      "news_angle": "An Entire Reservation Just Got Evacuated",
+      "image_url": "https://live.staticflickr.com/2902/14089034986_54b25d7461_b.jpg"
     },
     {
       "phrase": "Nearly 600 firefighters",
-      "query": "firefighters battling wildfire"
+      "query": "firefighters battling wildfire",
+      "pin_query": "Nearly",
+      "pin_context": "An Entire Reservation Just Got Evacuated",
+      "news_query": "Nearly",
+      "news_angle": "An Entire Reservation Just Got Evacuated",
+      "image_url": "https://live.staticflickr.com/7722/17310171451_7863d41829_b.jpg"
     },
     {
       "phrase": "containment sits at just 3 percent",

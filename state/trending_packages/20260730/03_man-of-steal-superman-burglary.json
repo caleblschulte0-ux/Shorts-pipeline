@@ -18,16 +18,26 @@
     "floridacrime",
     "oddnews"
   ],
-  "script": "Superman just got arrested? Deputies in Hillsborough County, Florida got a call about a boat burglary in Ruskin — someone broke into the cabin, walked off with a bag of power tools. Body camera rolls up. And there he is: cape, full costume, the whole look. His name's James Tidwell, 57, a convicted felon who apparently thought the disguise would help. It did not. Tidwell confessed on camera before deputies even finished reading him his rights. He's now charged with burglary of an unoccupied conveyance and petit theft — dressed like the Man of Steel, booked like everybody else. Even superheroes get read their rights in Ruskin. So did the cape make it better, or just easier to spot?",
+  "script": "Superman just got arrested? Deputies in Hillsborough County, Florida got a call about a boat burglary in Ruskin \u2014 someone broke into the cabin, walked off with a bag of power tools. Body camera rolls up. And there he is: cape, full costume, the whole look. His name's James Tidwell, 57, a convicted felon who apparently thought the disguise would help. It did not. Tidwell confessed on camera before deputies even finished reading him his rights. He's now charged with burglary of an unoccupied conveyance and petit theft \u2014 dressed like the Man of Steel, booked like everybody else. Even superheroes get read their rights in Ruskin. So did the cape make it better, or just easier to spot?",
   "shots": [
     {
       "phrase": "Superman just got arrested?",
       "query": "police lights night",
-      "mascot_pose": "shock"
+      "mascot_pose": "shock",
+      "pin_query": "Superman",
+      "pin_context": "Superman Got Arrested in Florida",
+      "news_query": "Superman",
+      "news_angle": "Superman Got Arrested in Florida",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Don%27t_be_scared_Superman_graffiti_Tel_Aviv.jpg"
     },
     {
       "phrase": "a boat burglary in Ruskin",
-      "query": "boat dock marina"
+      "query": "boat dock marina",
+      "pin_query": "Ruskin",
+      "pin_context": "Superman Got Arrested in Florida",
+      "news_query": "Ruskin",
+      "news_angle": "Superman Got Arrested in Florida",
+      "image_url": "https://live.staticflickr.com/3621/3321639475_b42700ed4b_b.jpg"
     },
     {
       "phrase": "broke into the cabin",
@@ -39,7 +49,12 @@
     },
     {
       "phrase": "Body camera rolls up",
-      "query": "police body camera"
+      "query": "police body camera",
+      "pin_query": "Body",
+      "pin_context": "Superman Got Arrested in Florida",
+      "news_query": "Body",
+      "news_angle": "Superman Got Arrested in Florida",
+      "image_url": "https://live.staticflickr.com/6/6079217_7e51c53a3a.jpg"
     },
     {
       "phrase": "cape, full costume",
@@ -51,7 +66,12 @@
     },
     {
       "phrase": "His name's James Tidwell, 57",
-      "query": "police booking photo"
+      "query": "police booking photo",
+      "pin_query": "James Tidwell",
+      "pin_context": "Superman Got Arrested in Florida",
+      "news_query": "James Tidwell",
+      "news_angle": "Superman Got Arrested in Florida",
+      "image_url": "https://live.staticflickr.com/1395/5145846431_6f30c62c47_m.jpg"
     },
     {
       "phrase": "a convicted felon",
@@ -76,7 +96,12 @@
     },
     {
       "phrase": "the Man of Steel",
-      "query": "superman comic cape"
+      "query": "superman comic cape",
+      "pin_query": "Steel",
+      "pin_context": "Superman Got Arrested in Florida",
+      "news_query": "Steel",
+      "news_angle": "Superman Got Arrested in Florida",
+      "image_url": "https://live.staticflickr.com/113/364615371_f8108ed44e.jpg"
     }
   ],
   "punches": [

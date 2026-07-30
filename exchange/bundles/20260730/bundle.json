@@ -1,0 +1,1227 @@
+{
+  "schema": "chatgpt-exchange-bundle/v1",
+  "date": "20260730",
+  "status": "open",
+  "response_path": "exchange/bundles/20260730/response.json",
+  "done_marker": "exchange/bundles/20260730/DONE",
+  "counts": {
+    "packages": 6,
+    "requests": 24,
+    "animations": 0
+  },
+  "packages": [
+    {
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "title": "A Sinkhole Opened Right at a Funeral Home",
+      "script": "A sinkhole opened where? Tuesday night, severe storms tore through Madison County, North Carolina \u2014 a funnel cloud spotted right near Marshall's Foster Creek community, tornado warnings up across the whole western half of the state. Then the ground gave out. A sinkhole swallowed the pavement directly in front of Madison Funeral Home. Not a field. Not a backyard. A funeral home. County manager Rod Honeycutt confirmed nobody was hurt and the building itself is fine \u2014 the real damage was downed trees, flooded roads, and knocked-out power across Marshall. Still, out of every spot in Madison County, the earth picked the one already handling the dead. So of all places in Marshall, why the funeral home?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "A sinkhole opened where?",
+          "query": "sinkhole road pavement",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "severe storms tore through Madison County, North Carolina",
+          "query": "storm dark clouds",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "a funnel cloud spotted right near Marshall's Foster Creek community",
+          "query": "funnel cloud sky",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "tornado warnings up across the whole western half of the state",
+          "query": "tornado warning radar",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Then the ground gave out",
+          "query": "collapsed pavement hole",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "A sinkhole swallowed the pavement directly in front of Madison Funeral Home",
+          "query": "funeral home building",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Not a field",
+          "query": "empty rural field",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Not a backyard",
+          "query": "suburban backyard",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "County manager Rod Honeycutt confirmed nobody was hurt",
+          "query": "county official briefing",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "downed trees, flooded roads, and knocked-out power across Marshall",
+          "query": "flooded street storm damage",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "the earth picked the one already handling the dead",
+          "query": "sinkhole hole ground",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "why the funeral home",
+          "query": "funeral home exterior",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 4,
+        "weak": 0,
+        "missing": 8,
+        "unknown": 0
+      },
+      "strong_fraction": 0.333,
+      "requested": [
+        "sinkhole-marshall-nc-funeral-home-s0-28a1cc597ea1",
+        "sinkhole-marshall-nc-funeral-home-s3-495854cc74ef",
+        "sinkhole-marshall-nc-funeral-home-s4-6a5e620f37c3",
+        "sinkhole-marshall-nc-funeral-home-s6-e983f7a7e00a",
+        "sinkhole-marshall-nc-funeral-home-s7-4386e5ef8fd5",
+        "sinkhole-marshall-nc-funeral-home-s9-d5ca6e9f2d42",
+        "sinkhole-marshall-nc-funeral-home-s10-e12100d7a2a2",
+        "sinkhole-marshall-nc-funeral-home-s11-212e5c68482e"
+      ]
+    },
+    {
+      "slug": "gary-the-goat-louisiana",
+      "title": "This Goat Cannot Be Contained",
+      "script": "One goat, zero enclosures? This is Gary. A nonprofit in Rosepine, Louisiana bought him so kids could practice goat roping. Gary had other plans. First he broke out of the horse pen. Then a stall. Then a kennel \u2014 reinforced, extra latches, didn't matter. Every fix, Gary found the gap. So he did the only logical thing: he moved to the shoulder of U.S. Highway 171 and just... stayed. Drivers started spotting him daily. Now he's basically DeRidder's unofficial mascot, a goat nobody owns anymore because nobody can catch him. The foundation still checks on him. He still won't come home. So who's actually in charge here \u2014 the humans, or the goat?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "One goat, zero enclosures?",
+          "query": "goat pen fence",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "A nonprofit in Rosepine, Louisiana bought him",
+          "query": "rural louisiana ranch",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "kids could practice goat roping",
+          "query": "kids rodeo roping",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "Gary had other plans",
+          "query": "goat standing alone",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "broke out of the horse pen",
+          "query": "horse pen fence",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Then a stall",
+          "query": "barn stall interior",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Then a kennel",
+          "query": "dog kennel enclosure",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "reinforced, extra latches",
+          "query": "metal latch lock",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "Gary found the gap",
+          "query": "goat escaping fence",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "the shoulder of U.S. Highway 171",
+          "query": "highway road shoulder",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "Drivers started spotting him daily",
+          "query": "car dashboard highway view",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "DeRidder's unofficial mascot",
+          "query": "small town main street",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "nobody can catch him",
+          "query": "domestic goat close up",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 13,
+          "phrase": "the humans, or the goat",
+          "query": "goat face close up",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 4,
+        "weak": 0,
+        "missing": 10,
+        "unknown": 0
+      },
+      "strong_fraction": 0.286,
+      "requested": [
+        "gary-the-goat-louisiana-s0-38814efa5f9f",
+        "gary-the-goat-louisiana-s2-91f1f4d386f2",
+        "gary-the-goat-louisiana-s4-51ccd1cc7618",
+        "gary-the-goat-louisiana-s5-d7fab7bd1c52",
+        "gary-the-goat-louisiana-s6-5d88c428d9b4",
+        "gary-the-goat-louisiana-s7-c447cb9714d2",
+        "gary-the-goat-louisiana-s8-d89848034080",
+        "gary-the-goat-louisiana-s10-bc6d08e72117",
+        "gary-the-goat-louisiana-s12-32c5e2058fca",
+        "gary-the-goat-louisiana-s13-d180a51deb2a"
+      ]
+    },
+    {
+      "slug": "man-of-steal-superman-burglary",
+      "title": "Superman Got Arrested in Florida",
+      "script": "Superman just got arrested? Deputies in Hillsborough County, Florida got a call about a boat burglary in Ruskin \u2014 someone broke into the cabin, walked off with a bag of power tools. Body camera rolls up. And there he is: cape, full costume, the whole look. His name's James Tidwell, 57, a convicted felon who apparently thought the disguise would help. It did not. Tidwell confessed on camera before deputies even finished reading him his rights. He's now charged with burglary of an unoccupied conveyance and petit theft \u2014 dressed like the Man of Steel, booked like everybody else. Even superheroes get read their rights in Ruskin. So did the cape make it better, or just easier to spot?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "Superman just got arrested?",
+          "query": "police lights night",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "a boat burglary in Ruskin",
+          "query": "boat dock marina",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "broke into the cabin",
+          "query": "boat cabin interior",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "a bag of power tools",
+          "query": "power tools bag",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Body camera rolls up",
+          "query": "police body camera",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "cape, full costume",
+          "query": "superhero cape costume",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "His name's James Tidwell, 57",
+          "query": "police booking photo",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "a convicted felon",
+          "query": "courthouse handcuffs",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "the disguise would help",
+          "query": "man in costume",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "confessed on camera",
+          "query": "police interview room",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "reading him his rights",
+          "query": "police officer talking",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "burglary of an unoccupied conveyance",
+          "query": "boat anchored water",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "the Man of Steel",
+          "query": "superman comic cape",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 5,
+        "weak": 0,
+        "missing": 8,
+        "unknown": 0
+      },
+      "strong_fraction": 0.385,
+      "requested": [
+        "man-of-steal-superman-burglary-s2-299b6b3308f7",
+        "man-of-steal-superman-burglary-s3-9cc0c9e84076",
+        "man-of-steal-superman-burglary-s5-51eb05f755da",
+        "man-of-steal-superman-burglary-s7-4a8070d4ddd4",
+        "man-of-steal-superman-burglary-s8-8381ae493041",
+        "man-of-steal-superman-burglary-s9-8a123a89e6fd"
+      ]
+    },
+    {
+      "slug": "bench-fire-warm-springs-oregon",
+      "title": "An Entire Reservation Just Got Evacuated",
+      "script": "An entire reservation, evacuated? The Bench Fire ripped through the Warm Springs Reservation in Central Oregon, and in less than a week it swallowed over 60,000 acres. Six homes are already gone. Five other buildings too. Officials issued Level 3 'Go Now' orders for the entire community \u2014 no packing, no deciding, just leaving. Nearly 600 firefighters are on it right now, and containment sits at just 3 percent. This isn't an isolated blaze either \u2014 Oregon has more than a million acres burning statewide, with thousands more under the same evacuation order. For a tribal community that's called Warm Springs home for generations, the fire didn't ask permission. So how do you rebuild a whole reservation from 3 percent contained?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "An entire reservation, evacuated?",
+          "query": "wildfire smoke evacuation",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "The Bench Fire ripped through",
+          "query": "wildfire flames forest",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "the Warm Springs Reservation in Central Oregon",
+          "query": "oregon forest landscape",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "swallowed over 60,000 acres",
+          "query": "burned forest aerial",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Six homes are already gone",
+          "query": "burned house rubble",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Five other buildings too",
+          "query": "destroyed building fire",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Level 3 'Go Now' orders",
+          "query": "evacuation road cars",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Nearly 600 firefighters",
+          "query": "firefighters battling wildfire",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "containment sits at just 3 percent",
+          "query": "wildfire smoke sky",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "more than a million acres burning statewide",
+          "query": "wildfire smoke horizon",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "thousands more under the same evacuation order",
+          "query": "evacuation shelter cots",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "called Warm Springs home for generations",
+          "query": "native american community",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "the fire didn't ask permission",
+          "query": "wildfire flames night",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 4,
+        "weak": 0,
+        "missing": 9,
+        "unknown": 0
+      },
+      "strong_fraction": 0.308,
+      "requested": []
+    },
+    {
+      "slug": "iran-missile-attack-jordan",
+      "title": "Iran Just Attacked a US Base in Jordan",
+      "script": "Iran just attacked Jordan? Iran's Revolutionary Guard launched ballistic missiles at Muwaffaq Salti Air Base, a U.S.-linked site inside Jordan, along with a CENTCOM command center. Jordan's air defenses intercepted every one of them before they hit. Nobody died. But the timing is the story \u2014 this happened hours after President Trump sat down with Israeli Prime Minister Netanyahu at the White House to talk specifically about Iran. Trump's response was blunt: 'We'll be hitting them hard.' CENTCOM says American forces are now at a high state of readiness across the region. Iran calls it retaliation. The U.S. calls it an attempted surprise attack that failed. Either way, a missile just crossed into an ally's airspace and everyone's waiting on Washington's answer. So what does Trump actually do next?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "Iran just attacked Jordan?",
+          "query": "missile launch night sky",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "Revolutionary Guard launched ballistic missiles",
+          "query": "ballistic missile launch",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "Muwaffaq Salti Air Base",
+          "query": "military air base",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "a CENTCOM command center",
+          "query": "military command center",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Jordan's air defenses intercepted",
+          "query": "air defense missile intercept",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Nobody died",
+          "query": "military base exterior",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "President Trump sat down with",
+          "query": "donald trump white house",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Israeli Prime Minister Netanyahu",
+          "query": "benjamin netanyahu portrait",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "at the White House",
+          "query": "white house exterior",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "We'll be hitting them hard",
+          "query": "press conference podium",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "high state of readiness",
+          "query": "soldiers military base",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "attempted surprise attack that failed",
+          "query": "military radar screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "Washington's answer",
+          "query": "capitol building washington",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 9,
+        "weak": 0,
+        "missing": 4,
+        "unknown": 0
+      },
+      "strong_fraction": 0.692,
+      "requested": []
+    },
+    {
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "title": "The FCC Just Banned Humanoid Robots",
+      "script": "The FCC banned robots? Not the ones already in your house \u2014 new imports. The FCC just added foreign-made humanoid robots, robot dogs, and power inverters to its official 'covered list,' which means they're now banned from entering the U.S. at all. The reasoning: these devices could be remotely controlled, used for surveillance, or hijacked in a cyberattack \u2014 by a foreign government. China makes about 85 percent of the world's humanoid robots, so this is aimed almost entirely at one country. And the timing isn't subtle \u2014 this drops weeks before Chinese leader Xi Jinping is set to visit Washington in September to meet with President Trump. Your Roomba's fine. It's the humanoid ones nobody was using anyway that just became a diplomatic flashpoint. So is this about security \u2014 or about Xi's visit?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "The FCC banned robots?",
+          "query": "robot humanoid standing",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "new imports",
+          "query": "shipping cargo containers",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "foreign-made humanoid robots, robot dogs",
+          "query": "quadruped robot dog",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "covered list",
+          "query": "government document stamp",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "banned from entering the U.S.",
+          "query": "customs border checkpoint",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "remotely controlled",
+          "query": "remote control device",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "used for surveillance",
+          "query": "security camera surveillance",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "hijacked in a cyberattack",
+          "query": "computer code cyberattack",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "China makes about 85 percent",
+          "query": "factory robotics assembly line",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "Chinese leader Xi Jinping",
+          "query": "xi jinping portrait",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "visit Washington in September",
+          "query": "washington dc capitol",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "Your Roomba's fine",
+          "query": "robot vacuum cleaner home",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "a diplomatic flashpoint",
+          "query": "diplomats handshake meeting",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 5,
+        "weak": 0,
+        "missing": 8,
+        "unknown": 0
+      },
+      "strong_fraction": 0.385,
+      "requested": []
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s0-28a1cc597ea1",
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: sinkhole road pavement. It accompanies the narration: \"A sinkhole opened where?\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s3-495854cc74ef",
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: tornado warning radar. It accompanies the narration: \"tornado warnings up across the whole western half of the state\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s4-6a5e620f37c3",
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: collapsed pavement hole. It accompanies the narration: \"Then the ground gave out\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s6-e983f7a7e00a",
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: empty rural field. It accompanies the narration: \"Not a field\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s7-4386e5ef8fd5",
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: suburban backyard. It accompanies the narration: \"Not a backyard\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s9-d5ca6e9f2d42",
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "shot_index": 9,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: flooded street storm damage. It accompanies the narration: \"downed trees, flooded roads, and knocked-out power across Marshall\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s10-e12100d7a2a2",
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "shot_index": 10,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: sinkhole hole ground. It accompanies the narration: \"the earth picked the one already handling the dead\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s11-212e5c68482e",
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "shot_index": 11,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: funeral home exterior. It accompanies the narration: \"why the funeral home\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s0-38814efa5f9f",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: goat pen fence. It accompanies the narration: \"One goat, zero enclosures?\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s2-91f1f4d386f2",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: kids rodeo roping. It accompanies the narration: \"kids could practice goat roping\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s4-51ccd1cc7618",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: horse pen fence. It accompanies the narration: \"broke out of the horse pen\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s5-d7fab7bd1c52",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: barn stall interior. It accompanies the narration: \"Then a stall\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s6-5d88c428d9b4",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: dog kennel enclosure. It accompanies the narration: \"Then a kennel\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s7-c447cb9714d2",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: metal latch lock. It accompanies the narration: \"reinforced, extra latches\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s8-d89848034080",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 8,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: goat escaping fence. It accompanies the narration: \"Gary found the gap\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s10-bc6d08e72117",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 10,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: car dashboard highway view. It accompanies the narration: \"Drivers started spotting him daily\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s12-32c5e2058fca",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 12,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: domestic goat close up. It accompanies the narration: \"nobody can catch him\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s13-d180a51deb2a",
+      "slug": "gary-the-goat-louisiana",
+      "shot_index": 13,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: goat face close up. It accompanies the narration: \"the humans, or the goat\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s2-299b6b3308f7",
+      "slug": "man-of-steal-superman-burglary",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: boat cabin interior. It accompanies the narration: \"broke into the cabin\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s3-9cc0c9e84076",
+      "slug": "man-of-steal-superman-burglary",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: power tools bag. It accompanies the narration: \"a bag of power tools\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s5-51eb05f755da",
+      "slug": "man-of-steal-superman-burglary",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: superhero cape costume. It accompanies the narration: \"cape, full costume\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s7-4a8070d4ddd4",
+      "slug": "man-of-steal-superman-burglary",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: courthouse handcuffs. It accompanies the narration: \"a convicted felon\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s8-8381ae493041",
+      "slug": "man-of-steal-superman-burglary",
+      "shot_index": 8,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: man in costume. It accompanies the narration: \"the disguise would help\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s9-8a123a89e6fd",
+      "slug": "man-of-steal-superman-burglary",
+      "shot_index": 9,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: police interview room. It accompanies the narration: \"confessed on camera\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    }
+  ],
+  "instructions": {
+    "read_first": "exchange/README.md",
+    "two_jobs": [
+      "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
+      "2. PUNCH-UP \u2014 for every entry in `packages`, you may rewrite `script`, `title` and shot `phrase` text to hit harder."
+    ],
+    "punchup_rules": [
+      "NEVER change or invent a number, percentage, money amount, date or year. Every figure in the original must appear unchanged in your rewrite.",
+      "NEVER add or remove a named entity (person, company, place).",
+      "NEVER change the shot count or any shot's `query` \u2014 the media is already chosen against those.",
+      "Stay within roughly 0.5x-1.8x the original word count.",
+      "A rewrite that breaks any of these is rejected mechanically and the original ships, so the work is wasted."
+    ],
+    "prompt_rules": [
+      "You are reading a code repository. Do NOT let that leak into the imagery \u2014 never draw screenshots, terminals, editors, UI or code. The repo is where the instruction lives, never the subject.",
+      "Use `prompt_verbatim` exactly; treat `negative` as exclusions."
+    ],
+    "finish_with": "Write exchange/bundles/<date>/response.json, then create exchange/bundles/<date>/DONE containing {\"date\": \"<date>\"}. The DONE marker is what triggers our render \u2014 write it LAST, and only after response.json is committed.",
+    "honesty": "If you cannot do something, say so in the response with the blocking step named. A fabricated pointer or an unverified hash is worse than an honest failure: our consumer recomputes every hash and rejects mismatches."
+  }
+}

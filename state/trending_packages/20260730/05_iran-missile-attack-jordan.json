@@ -18,12 +18,17 @@
     "irgc",
     "worldaffairs"
   ],
-  "script": "Iran just attacked Jordan? Iran's Revolutionary Guard launched ballistic missiles at Muwaffaq Salti Air Base, a U.S.-linked site inside Jordan, along with a CENTCOM command center. Jordan's air defenses intercepted every one of them before they hit. Nobody died. But the timing is the story — this happened hours after President Trump sat down with Israeli Prime Minister Netanyahu at the White House to talk specifically about Iran. Trump's response was blunt: 'We'll be hitting them hard.' CENTCOM says American forces are now at a high state of readiness across the region. Iran calls it retaliation. The U.S. calls it an attempted surprise attack that failed. Either way, a missile just crossed into an ally's airspace and everyone's waiting on Washington's answer. So what does Trump actually do next?",
+  "script": "Iran just attacked Jordan? Iran's Revolutionary Guard launched ballistic missiles at Muwaffaq Salti Air Base, a U.S.-linked site inside Jordan, along with a CENTCOM command center. Jordan's air defenses intercepted every one of them before they hit. Nobody died. But the timing is the story \u2014 this happened hours after President Trump sat down with Israeli Prime Minister Netanyahu at the White House to talk specifically about Iran. Trump's response was blunt: 'We'll be hitting them hard.' CENTCOM says American forces are now at a high state of readiness across the region. Iran calls it retaliation. The U.S. calls it an attempted surprise attack that failed. Either way, a missile just crossed into an ally's airspace and everyone's waiting on Washington's answer. So what does Trump actually do next?",
   "shots": [
     {
       "phrase": "Iran just attacked Jordan?",
       "query": "missile launch night sky",
-      "mascot_pose": "shock"
+      "mascot_pose": "shock",
+      "pin_query": "Iran",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Iran",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Flag_of_Iran_%28official%29.svg"
     },
     {
       "phrase": "Revolutionary Guard launched ballistic missiles",
@@ -31,11 +36,21 @@
     },
     {
       "phrase": "Muwaffaq Salti Air Base",
-      "query": "military air base"
+      "query": "military air base",
+      "pin_query": "Muwaffaq Salti Air Base",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Muwaffaq Salti Air Base",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Jordanian_F-16_landing.jpg"
     },
     {
       "phrase": "a CENTCOM command center",
-      "query": "military command center"
+      "query": "military command center",
+      "pin_query": "CENTCOM",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "CENTCOM",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Seal_of_United_States_Central_Command.svg"
     },
     {
       "phrase": "Jordan's air defenses intercepted",
@@ -43,7 +58,12 @@
     },
     {
       "phrase": "Nobody died",
-      "query": "military base exterior"
+      "query": "military base exterior",
+      "pin_query": "Nobody",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Nobody",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://live.staticflickr.com/8244/8517258392_bdbd1c2d08_b.jpg"
     },
     {
       "phrase": "President Trump sat down with",
@@ -51,19 +71,39 @@
       "mascot_pose": "point",
       "evidence_urls": [
         "https://www.aljazeera.com/news/2026/7/29/iran-attacks-us-bases-in-middle-east-as-trump-meets-netanyahu"
-      ]
+      ],
+      "pin_query": "President Trump",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "President Trump",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://live.staticflickr.com/4268/34460976950_fbf384536b_b.jpg"
     },
     {
       "phrase": "Israeli Prime Minister Netanyahu",
-      "query": "benjamin netanyahu portrait"
+      "query": "benjamin netanyahu portrait",
+      "pin_query": "Israeli Prime Minister Netanyahu",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Israeli Prime Minister Netanyahu",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Ambassador_Dave_Sharma_and_Israeli_Prime_Minister_Netanyahu.jpg"
     },
     {
       "phrase": "at the White House",
-      "query": "white house exterior"
+      "query": "white house exterior",
+      "pin_query": "White House",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "White House",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/White_House_north_and_south_sides.jpg"
     },
     {
       "phrase": "We'll be hitting them hard",
-      "query": "press conference podium"
+      "query": "press conference podium",
+      "pin_query": "We'll",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "We'll",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Faryab-_village_dug_well.JPG"
     },
     {
       "phrase": "high state of readiness",
@@ -76,7 +116,12 @@
     },
     {
       "phrase": "Washington's answer",
-      "query": "capitol building washington"
+      "query": "capitol building washington",
+      "pin_query": "Washington",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Washington",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://live.staticflickr.com/3420/3213900514_03cd645c4c_b.jpg"
     }
   ],
   "punches": [
