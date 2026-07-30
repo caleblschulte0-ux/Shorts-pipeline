@@ -164,10 +164,73 @@ def build_bundle(date: str, packages: list[dict],
                 "from `prompt_verbatim` word for word, upload it to the shared "
                 "Drive folder, and report a verified pointer (drive.file_id, "
                 "download_url, image.sha256, image.bytes).",
-                "2. PUNCH-UP — for every entry in `packages`, you may rewrite "
-                "`script`, `title` and shot `phrase` text to hit harder.",
+                "2. PUNCH-UP — REWRITE every entry in `packages` so it hits "
+                "harder. This is a job, not an option: returning a script "
+                "unchanged is a failed run, not a safe one. See "
+                "`punchup_mission` for what good looks like.",
             ],
+            "punchup_mission": {
+                "the_ask": (
+                    "These scripts are RESEARCHED and TRUE but they are often "
+                    "written flat — a chronological who-did-what recap with no "
+                    "point of view and a limp ending. That flatness, not the "
+                    "imagery, is the single biggest reason a finished video "
+                    "falls flat. Your job is to keep every fact and change how "
+                    "it LANDS."),
+                "house_voice": (
+                    "A deadpan, slightly incredulous friend telling you the "
+                    "most ridiculous thing they read today. Dry wit, real "
+                    "reactions, second person, contractions. It is allowed to "
+                    "be amused, skeptical or appalled. Accuracy is "
+                    "non-negotiable; attitude is MANDATORY."),
+                "do_this": [
+                    "HOOK: first sentence must be <=5 words and end with ? or "
+                    "! — 'A kangaroo did WHAT?', 'Why fire 30,000?'. This "
+                    "earns the 3-second hold; it is the highest-leverage line "
+                    "in the video.",
+                    "KICKER: last sentence must end with ? and name something "
+                    "specific from the story — never a generic 'what do you "
+                    "think?'.",
+                    "REACT to the absurd instead of reporting it ('Cool, "
+                    "weird, whatever — until a SECOND call comes in.').",
+                    "Short punchy sentences, varied rhythm. Fragments are "
+                    "fine. Em-dashes and hard stops make the TTS breathe "
+                    "instead of drone.",
+                    "Cut corporate hedging ('officials confirmed', "
+                    "'authorities stated') and filler procedure. Use the "
+                    "strongest concrete verb available.",
+                    "Front-load the most surprising fact. If the best number "
+                    "is in sentence four, move it up — reordering facts is "
+                    "encouraged, changing them is not.",
+                    "Keep 110-140 spoken words.",
+                ],
+                "the_numbers_are_yours_to_use": (
+                    "Every number, date and name in the script was verified by "
+                    "the writer — treat them as AMMUNITION, not as landmines. "
+                    "Land them harder, put them earlier, give them a beat "
+                    "before the payoff. The only rule is that the value itself "
+                    "must survive unchanged."),
+                "why_the_rules_below_exist": (
+                    "The constraints in `punchup_rules` exist ONLY to stop "
+                    "invented facts, because an earlier audit found 519 of 546 "
+                    "datasets on a sibling channel were LLM-fabricated. They "
+                    "are not a hint that you should play it safe with the "
+                    "WRITING. Rewrite boldly; just do not manufacture."),
+                "worked_example": {
+                    "before": ("A sinkhole opened in Marshall, North Carolina "
+                               "on Tuesday. Officials confirmed severe storms "
+                               "caused the collapse."),
+                    "after": ("A sinkhole opened WHERE? Tuesday's storms tore "
+                              "through Marshall, North Carolina — and the road "
+                              "outside a funeral home just gave up."),
+                    "note": ("Same place, same day, same cause. Nothing was "
+                             "invented. Only the delivery changed."),
+                },
+            },
             "punchup_rules": [
+                "These are GUARDRAILS on the facts, not a reason to leave the "
+                "writing alone. Read `punchup_mission` first — the rewrite is "
+                "expected.",
                 "NEVER change or invent a number, percentage, money amount, "
                 "date or year. Every figure in the original must appear "
                 "unchanged in your rewrite.",

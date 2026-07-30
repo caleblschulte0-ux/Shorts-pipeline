@@ -48,7 +48,21 @@ Because While During Since Until About Over Under Into Out Up Down Off
 Nobody Everyone Someone Anyone Nothing Everything Something Anything
 Meanwhile However Instead Still Even Once Again Today Tomorrow Yesterday
 Turns Look Watch Imagine Think Meet Say Said Says Here's There's That's
+Monday Tuesday Wednesday Thursday Friday Saturday Sunday
+""".split()) | frozenset(w.lower() for w in """
+Officials Official Authorities Authority Police Officers Investigators
+Residents Neighbors Witnesses Crews Firefighters Deputies Detectives
+Researchers Scientists Experts Analysts Engineers Doctors Nurses
+Employees Workers Customers Passengers Drivers Students Teachers
+Reports Sources Records Documents Video Footage Photos Images
+Company Officials State Federal Local County City Town Department
 """.split())
+# ^ Generic ROLE nouns. They are common nouns that happen to be capitalized
+# at the start of a sentence, and cutting them ("Officials confirmed…",
+# "Authorities stated…") is EXACTLY the corporate hedging the channel's
+# writing doctrine tells punch-ups to remove. Treating them as named
+# entities made the guard reject the very rewrites we ask for — caught when
+# the worked example in the bundle instructions failed its own guard.
 
 
 def _norm_num(tok: str) -> str:
