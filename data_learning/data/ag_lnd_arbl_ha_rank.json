@@ -1,0 +1,38 @@
+{
+  "key": "ag_lnd_arbl_ha_rank",
+  "title": "Arable land",
+  "unit": "hectares",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Arable land",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.LND.ARBL.HA",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "India",
+      "value": 153868700
+    },
+    {
+      "label": "United States",
+      "value": 151563525
+    },
+    {
+      "label": "Russian Federation",
+      "value": 121649000
+    },
+    {
+      "label": "China",
+      "value": 108427100
+    },
+    {
+      "label": "Brazil",
+      "value": 55642000
+    }
+  ]
+}
