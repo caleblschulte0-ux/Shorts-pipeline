@@ -227,6 +227,19 @@ jobs:
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: python3 scripts/media_probe.py
 
+      # Its own artifact, on EVERY mode — verify skips the status upload, and
+      # the job-log API truncates, so without this the probe's answer is only
+      # visible by opening the run by hand. Same law as the judging evidence:
+      # a result that cannot be read after the runner disappears is missing.
+      - name: Upload media probe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-media-probe
+          path: output/media_probe.json
+          retention-days: 90
+          if-no-files-found: warn
+
       - name: Run
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
