@@ -39,6 +39,26 @@ PACKAGE_DIRS = {
 }
 
 
+# A package directory also accumulates config and reports. Counting those as
+# packages is not cosmetic: the slate count is what decides whether ChatGPT is
+# asked to take over, so one stray `_schedule.json` next to five real packages
+# reads as a full six and the takeover never fires.
+NON_PACKAGE_NAMES = frozenset({
+    "report.json", "manifest.json", "index.json", "meta.json",
+    "authored_report.json", "phase_b_report.json",
+})
+# Fields that only a real package carries. A report or a config has none.
+_PACKAGE_MARKERS = ("script", "text", "series", "shots", "subreddit",
+                    "broll_query", "segments")
+
+
+def is_package(obj) -> bool:
+    """True for a renderable package, False for config/report/metadata."""
+    if not isinstance(obj, dict):
+        return False
+    return any(obj.get(k) for k in _PACKAGE_MARKERS)
+
+
 def load_packages(channel: str, date: str) -> list[dict]:
     base = ROOT / PACKAGE_DIRS.get(channel, PACKAGE_DIRS["trending"])
     # Packages live either in a per-date folder or flat with a date prefix.
@@ -47,13 +67,21 @@ def load_packages(channel: str, date: str) -> list[dict]:
         candidates = sorted(glob.glob(str(base / f"*{date}*.json")))
     out = []
     for p in candidates:
+        name = Path(p).name
+        if name.startswith("_") or name in NON_PACKAGE_NAMES:
+            continue                                 # config, not content
         try:
             pkg = json.loads(Path(p).read_text())
-            pkg.setdefault("slug", Path(p).stem)
-            pkg["_path"] = p
-            out.append(pkg)
         except Exception:                            # noqa: BLE001
             print(f"[phase-a] skipping unreadable package {p}")
+            continue
+        if not is_package(pkg):
+            print(f"[phase-a] skipping non-package file {name} "
+                  f"(no script/text/series/shots)")
+            continue
+        pkg.setdefault("slug", Path(p).stem)
+        pkg["_path"] = p
+        out.append(pkg)
     return out
 
 

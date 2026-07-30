@@ -199,7 +199,14 @@ def build_bundle(date: str, packages: list[dict],
                     "either the rewritten fields, or `\"kept\": true` plus a "
                     "one-line `editor_note` saying why it already works "
                     "(e.g. 'hook already 4 words + ?, voice present, kicker "
-                    "names Gary'). An entry with neither is a skipped job."),
+                    "names Gary'). An entry with neither is a skipped job. "
+                    "MAKE A REAL DECISION PER PACKAGE: `kept` means you read "
+                    "it and it already lands, not that the guard looked "
+                    "strict. Keeping the whole slate is a red flag, not "
+                    "caution — the guard only protects numbers, entities and "
+                    "beat structure, and wording is yours to improve freely "
+                    "within them. If you keep more than half a slate, say "
+                    "why in each `editor_note`."),
                 "house_voice": (
                     "A deadpan, slightly incredulous friend telling you the "
                     "most ridiculous thing they read today. Dry wit, real "
