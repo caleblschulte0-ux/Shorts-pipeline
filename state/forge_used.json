@@ -7,19 +7,14 @@
   "AG.PRD.CREL.MT",
   "AG.YLD.CREL.KG",
   "EG.ELC.ACCS.ZS",
-  "EG.ELC.COAL.ZS",
   "EG.FEC.RNEW.ZS",
   "EG.USE.COMM.CL.ZS",
-  "EG.USE.CRNW.ZS",
   "EN.POP.DNST",
   "EN.URB.LCTY.UR.ZS",
   "ER.FSH.CAPT.MT",
   "ER.FSH.PROD.MT",
   "ER.MRN.PTMR.ZS",
   "ER.PTD.TOTL.ZS",
-  "IT.CEL.SETS",
-  "IT.MLT.MAIN.P2",
-  "IT.NET.BBND",
   "IT.NET.USER.FE.ZS",
   "IT.NET.USER.ZS",
   "SE.ADT.1524.LT.FE.ZS",
@@ -43,5 +38,5 @@
   "SP.RUR.TOTL.ZG",
   "SP.URB.GROW"
  ],
- "updated": "2026-07-29"
+ "updated": "2026-07-30"
 }
