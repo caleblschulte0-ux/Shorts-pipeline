@@ -1,6 +1,6 @@
 # data_learning — data-driven micro-learning add-on
 
-> **Daily chain changed 2026-07-30:** authoring no longer renders immediately. Packages -> auto-merge -> Exchange Phase A (media + judge) -> ChatGPT (images + punch-up) -> Phase B -> render. Do NOT dispatch `daily.yml` after authoring; it is the LAST step. A ChatGPT no-show is covered by self-fill + a 06:15 backstop. See `docs/EXCHANGE_PIPELINE.md`.
+> **Heads-up (2026-07-30): the TRENDING/DAILY channel's chain changed — THIS channel's flow did NOT.** For trending only: packages -> auto-merge -> Exchange Phase A -> ChatGPT -> Phase B -> render, so never dispatch `daily.yml` after authoring (it is the LAST step of that chain). THIS channel's authoring, triggers, and workflow are unchanged — follow this playbook exactly as written. Details: `docs/EXCHANGE_PIPELINE.md`.
 
 
 A **niche-agnostic, data-driven** short-video generator that bolts *on top of*
