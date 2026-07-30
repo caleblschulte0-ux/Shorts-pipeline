@@ -13710,7 +13710,7 @@
       "slug": "carbon-climb",
       "title": "The Line That Only Goes Up",
       "hook": "The air itself is changing, and we have the receipt.",
-      "closing": "The 2010s alone added nearly three times what the 1960s did -- and the 2020s are already on pace to beat that record.",
+      "closing": "If the last decade's pace holds, we cross 450 parts per million within a decade.",
       "question": "Did you realize it was accelerating? Tell me below.",
       "keep_order": true,
       "hashtags": [
@@ -13758,7 +13758,7 @@
       "slug": "population-giants",
       "title": "Half the Planet, Eight Countries",
       "hook": "Two countries hold more than a third of all humanity.",
-      "closing": "Statistically: every third person you will ever meet is Chinese or Indian.",
+      "closing": "Eight countries, over half the planet. Wild, right?",
       "question": "Which of these surprised you most? Comment below.",
       "hashtags": [
         "population",
@@ -13805,7 +13805,7 @@
     {
       "slug": "world-power-mix",
       "title": "How the World Keeps Its Lights On",
-      "hook": "Guess which single fuel still out-generates solar and wind combined, worldwide.",
+      "hook": "Here's how the entire planet made its electricity last year.",
       "closing": "The mix is tipping \u2014 slowly, then all at once.",
       "question": "Is your country ahead or behind on this? Let me know.",
       "hashtags": [
@@ -16739,27 +16739,7 @@
           "role": "1 \u00b7 INDIVIDUALS USING ",
           "topic": "Individuals using the Internet",
           "say": "Back in 2005 only fifteen point six percent of people worldwide were online; by 2025 that climbed to seventy three point six percent.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "person holding a glowing smartphone",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "person holding a glowing smartphone",
-                "data": {
-                  "value_from": "item:5"
-                }
-              }
-            ]
-          }
+          "viz": "trend"
         },
         {
           "source": "offline",
@@ -16772,9 +16752,9 @@
           "topic": "Incidence of malaria",
           "say": "Malaria cases per thousand fell from seventy nine point nine in 2000 to fifty eight point five by 2018, then climbed back to sixty four in 2024.",
           "scene": {
-            "mechanic": "mosquito-swarm-tide",
-            "concept": "A swarm of real mosquitoes thins out then thickens back up as malaria incidence per 1,000 falls for two decades then jumps back, so the SIZE of the swarm IS the fall-then-rise story.",
-            "code": "idx = reveal * (n - 1)\nlo = int(idx)\nhi = min(lo + 1, n - 1)\nfrac = idx - lo\nval = lerp(values[lo], values[hi], frac)\nyear = labels[hi] if frac > 0.5 else labels[lo]\nvmin = min(values)\nspan = (vmax - vmin) or 1.0\ncount = max(3, int(round(4 + ((val - vmin) / span) * 12)))\nmosquito = subject_image('mosquito')\ncx, cy = 540, 620\nfor i in range(count):\n    ang = i * 2.399963\n    rad = 40 + i * 26\n    x = cx + math.cos(ang) * rad\n    y = cy + math.sin(ang) * rad * 0.7\n    size = 90\n    if mosquito is not None:\n        paste(mosquito, x - size / 2, y - size / 2, size, size)\n    else:\n        d.ellipse([x - size / 3, y - size / 3, x + size / 3, y + size / 3],\n                  fill=rgba(WARN, 220))\ntext(str(round(val, 1)) + ' per 1,000 at risk', RX0, 980, size=50, color=HIGHLIGHT)\ntext(str(year), RX0, 1040, size=38, color=TEXT)\n"
+            "mechanic": "risk-gauge",
+            "concept": "A danger gauge needle tipped by a mosquito sweeps down across two decades of falling risk, then swings back up as malaria surges again.",
+            "code": "cx = (RX0 + RX1) // 2\ncy = RTOP + 460\nr = 340\nd.arc([cx - r, cy - r, cx + r, cy + r], 180, 270, fill=rgba(ACCENT, 200), width=40)\nd.arc([cx - r, cy - r, cx + r, cy + r], 270, 360, fill=rgba(WARN, 200), width=40)\nseg = clamp(reveal * (n - 1), 0, n - 1)\ni0 = int(seg)\ni1 = min(i0 + 1, n - 1)\nfrac = seg - i0\nv = lerp(values[i0], values[i1], frac)\nfor j in range(i0 + 1):\n    vj = values[j]\n    aj = 180 + 180 * clamp(vj / vmax)\n    px = cx + r * 0.85 * math.cos(math.radians(aj))\n    py = cy + r * 0.85 * math.sin(math.radians(aj))\n    d.ellipse([px - 7, py - 7, px + 7, py + 7], fill=rgba(TEXT, 150))\nang = 180 + 180 * clamp(v / vmax)\nnx = cx + r * 0.82 * math.cos(math.radians(ang))\nny = cy + r * 0.82 * math.sin(math.radians(ang))\nd.line([cx, cy, nx, ny], fill=rgba(HIGHLIGHT, 255), width=12)\nd.ellipse([cx - 20, cy - 20, cx + 20, cy + 20], fill=rgba(TEXT, 255))\nimg = subject_image('mosquito')\nif img is not None:\n    w = 130\n    h = w * img.height / img.width\n    paste(img, nx - w / 2, ny - h / 2, w, h)\ntext(labels[i1], cx, cy + 70, size=42, color=TEXT, center=True)\ntext(str(round(v, 1)) + ' per 1,000', cx, cy + 128, size=54, color=HIGHLIGHT, center=True)\n"
           }
         },
         {
@@ -16792,7 +16772,7 @@
             "elements": [
               {
                 "type": "fill_object",
-                "region": "ground-row",
+                "region": "left",
                 "subject": "small wooden outhouse",
                 "data": {
                   "value_from": "item:0"
@@ -16800,11 +16780,16 @@
               },
               {
                 "type": "fill_object",
-                "region": "ground-row",
+                "region": "right",
                 "subject": "small wooden outhouse",
                 "data": {
                   "value_from": "item:5"
                 }
+              },
+              {
+                "type": "caption",
+                "region": "bottom",
+                "text": "Open defecation: 22% -> 4.35%"
               }
             ]
           }
@@ -16836,9 +16821,9 @@
           "topic": "Permanent cropland",
           "say": "World farmland crept from zero point seven five percent of all land in 1972 to one point four eight percent by 2023 \u2014 permanent cropland nearly doubled in fifty years.",
           "scene": {
-            "mechanic": "cropland-tiles",
-            "concept": "A grid of land tiles fills in with real farmland photos as reveal progresses, so the SHARE of tiles filled IS the % of world land that is permanent cropland.",
-            "code": "gx0, gy0 = RX0, 260\ncols, rows = 10, 8\ntotal = cols * rows\ngw = RX1 - RX0\ntile_w = gw / cols\ntile_h = 620 / rows\nstart_v = values[0]\nend_v = values[-1]\ncur = lerp(start_v, end_v, reveal)\nfilled = max(1, int(round((cur / vmax) * total)))\ncrop_img = subject_image('golden wheat field')\nidx = 0\nfor row in range(rows):\n    for col in range(cols):\n        x = gx0 + col * tile_w\n        y = gy0 + row * tile_h\n        if idx < filled and crop_img is not None:\n            paste(crop_img, x + 3, y + 3, tile_w - 6, tile_h - 6)\n        elif idx < filled:\n            d.rounded_rectangle([x + 3, y + 3, x + tile_w - 3, y + tile_h - 3],\n                                radius=8, fill=rgba(HIGHLIGHT, 200))\n        else:\n            d.rounded_rectangle([x + 3, y + 3, x + tile_w - 3, y + tile_h - 3],\n                                radius=8, fill=rgba((50, 70, 55), 140))\n        idx += 1\ntext(str(round(cur, 2)) + '% of all land is farmland', RX0,\n     gy0 + rows * tile_h + 40, size=44, color=HIGHLIGHT)\n"
+            "mechanic": "farmland-sprawl",
+            "concept": "A dark satellite grid of land parcels turns green with farmland tiles one by one as cropland share climbs from 1972 to 2023.",
+            "code": "cols, rows = 6, 5\ntotal = cols * rows\ncell_w = (RX1 - RX0) / cols\ncell_h = 380.0 / rows\ngy0 = RTOP + 140\nimg = subject_image('farmland aerial patch')\nv0, v1 = values[0], values[-1]\nshown_v = lerp(v0, v1, reveal)\nn_fill = clamp(int(round(shown_v * 20)), 0, total)\nfor row in range(rows):\n    for col in range(cols):\n        idx = row * cols + col\n        x = RX0 + col * cell_w\n        y = gy0 + row * cell_h\n        d.rounded_rectangle([x + 4, y + 4, x + cell_w - 4, y + cell_h - 4], radius=6, fill=rgba((32, 40, 34), 220))\n        if idx < n_fill:\n            if img is not None:\n                paste(img, x + 6, y + 6, cell_w - 12, cell_h - 12)\n            else:\n                d.rounded_rectangle([x + 6, y + 6, x + cell_w - 6, y + cell_h - 6], radius=6, fill=rgba(HIGHLIGHT, 220))\ntext(labels[0] + ' -> ' + labels[-1], (RX0 + RX1) // 2, gy0 - 60, size=44, color=TEXT, center=True)\ntext(str(shown_v) + '% of all land', (RX0 + RX1) // 2, gy0 + rows * cell_h + 60, size=52, color=HIGHLIGHT, center=True)\n"
           }
         },
         {
@@ -16907,17 +16892,37 @@
             "title": false,
             "elements": [
               {
+                "type": "timeline_axis",
+                "region": "full"
+              },
+              {
                 "type": "fill_object",
-                "region": "center",
+                "region": "ground-row",
                 "subject": "globe",
                 "data": {
-                  "value_from": "star"
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:5"
                 }
               },
               {
                 "type": "caption",
                 "region": "center",
-                "text": "Protected area: 11.1% -> 17.0%"
+                "text": "Protected area: 11.1% \u2192 17.0%"
               }
             ]
           }
@@ -16927,8 +16932,8 @@
     {
       "slug": "alternative-and-nuclear-energy-leapt-to-16-5-by-2024",
       "title": "Alternative And Nuclear Energy Leapt To 16.5% By 2024",
-      "hook": "One slice of the world's energy pie sat frozen for thirty years -- then it exploded. Guess what changed.",
-      "closing": "Three slow-moving numbers, one sudden turn -- energy is changing faster than the headlines admit.",
+      "hook": "Alternative and nuclear energy barely moved for decades, then it jumped to 16.5 percent of world energy use.",
+      "closing": "Alternative and nuclear energy waited fifty years for its moment \u2014 2024 is when it finally arrived.",
       "hashtags": [
         "energydata",
         "renewableenergy",
@@ -16962,49 +16967,9 @@
           "topic": "Alternative and nuclear energy",
           "say": "Alternative and nuclear energy stayed near eight point eight two to nine point six six percent for decades, then surged to sixteen point five percent by twenty twenty four.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "cooling tower",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "cooling tower",
-                "data": {
-                  "value_from": "item:1"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "cooling tower",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "cooling tower",
-                "data": {
-                  "value_from": "item:3"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "cooling tower",
-                "data": {
-                  "value_from": "item:4"
-                }
-              }
-            ]
+            "mechanic": "power-spike",
+            "concept": "A monitor-style flat line tracks alternative-and-nuclear share for decades, then spikes sharply upward at the final reading where a glowing cooling tower stands.",
+            "code": "cx0, cx1 = RX0 + 20, RX1 - 20\nbaseline_y = RTOP + 620\nd.rounded_rectangle([RX0, RTOP + 100, RX1, baseline_y + 220], radius=24, fill=rgba((12, 16, 24), 220))\npts = []\nfor i in range(n):\n    x = cx0 + (cx1 - cx0) * i / max(1, n - 1)\n    frac = clamp(values[i] / vmax, 0, 1)\n    y = baseline_y - frac * 300\n    pts.append((x, y))\nbuild = clamp(reveal * (n - 1), 0, n - 1)\nlast_i = int(build)\nshown = pts[:last_i + 1]\nif last_i < n - 1:\n    t = build - last_i\n    shown.append((lerp(pts[last_i][0], pts[last_i + 1][0], t), lerp(pts[last_i][1], pts[last_i + 1][1], t)))\nfor k in range(1, len(shown)):\n    d.line([shown[k - 1], shown[k]], fill=rgba(HIGHLIGHT, 255), width=9)\nhx, hy = shown[-1]\nd.ellipse([hx - 15, hy - 15, hx + 15, hy + 15], fill=rgba(WARN, 255))\nimg = subject_image('nuclear cooling tower')\nimg_h = 0\nif img is not None:\n    w = 160\n    img_h = w * img.height / img.width\n    paste(img, hx - w / 2, hy - img_h - 16, w, img_h)\ntext(labels[last_i], hx, baseline_y + 40, size=38, color=TEXT, center=True)\ntext(str(values[last_i]) + '%', hx, hy - img_h - 46, size=54, color=HIGHLIGHT, center=True)\n"
           }
         },
         {
@@ -17018,45 +16983,65 @@
           "topic": "Access to electricity",
           "say": "Access to electricity rose from seventy three point two percent in nineteen ninety eight to ninety one point nine percent by twenty twenty four.",
           "scene": {
-            "mechanic": "bulb-chain",
-            "concept": "A grid of 20 lightbulbs lights up one by one as electricity access climbs, so the COUNT of lit bulbs IS the % electrified.",
-            "code": "start_v = values[0]\nend_v = values[-1]\ncur = lerp(start_v, end_v, reveal)\ntotal_bulbs = 20\nlit = max(1, int(round(cur / 100.0 * total_bulbs)))\nbulb_on = subject_image('glowing lightbulb')\nbulb_off = subject_image('unlit lightbulb')\ncols, rows = 5, 4\nbw = (RX1 - RX0) / cols\nbh = 200\ngx0, gy0 = RX0, 300\nidx = 0\nfor row in range(rows):\n    for col in range(cols):\n        x = gx0 + col * bw\n        y = gy0 + row * bh\n        img = bulb_on if idx < lit else bulb_off\n        if img is not None:\n            paste(img, x + 10, y + 10, bw - 20, bh - 30)\n        else:\n            col_c = HIGHLIGHT if idx < lit else (60, 65, 80)\n            d.ellipse([x + bw * 0.3, y + 20, x + bw * 0.7, y + bh * 0.6],\n                      fill=rgba(col_c, 220))\n        idx += 1\ntext(str(round(cur, 1)) + '% electrified', RX0, gy0 + rows * bh + 20,\n     size=50, color=HIGHLIGHT)\n"
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "star"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "bottom",
+                "text": "Electricity access: 73.2% -> 91.9%"
+              }
+            ]
           }
         }
       ]
     },
     {
-      "slug": "city-growth-fell-to-1-36-half-what-it-was-in-1983",
-      "title": "City Growth Fell to 1.36% \u2014 Half What It Was in 1983",
-      "hook": "Everyone assumes cities are exploding faster than ever \u2014 but urban growth just hit its slowest pace in over fifty years.",
-      "closing": "The world isn't growing the way you think \u2014 it's aging fast and spreading out slower than ever.",
+      "slug": "cereal-farmland-fell-to-415-702-088-hectares-in-2024-below-i",
+      "title": "Cereal Farmland Fell to 415,702,088 Hectares in 2024 \u2014 Below Its 1972 Level",
+      "hook": "Fifty years of farming progress just went in reverse \u2014 global cropland shrank to 415,702,088 hectares.",
+      "closing": "Yield kept climbing even as farmland collapsed \u2014 proof this isn't fewer crops, it's fewer fields doing more.",
       "hashtags": [
-        "urbanization",
-        "worldpopulation",
-        "dataviz",
-        "didyouknow",
-        "population",
-        "globaltrends"
+        "datastory",
+        "agriculture",
+        "farming",
+        "globaltrends",
+        "shorts"
       ],
-      "question": "Do you think city growth keeps slowing, or bounces back?",
+      "question": "Does shrinking farmland or ever-rising yield worry you more?",
       "segments": [
         {
           "source": "offline",
-          "key": "sp_urb_grow_trend",
+          "key": "ag_lnd_crel_ha_trend",
           "params": {
-            "file": "sp_urb_grow_trend.json"
+            "file": "ag_lnd_crel_ha_trend.json"
           },
           "insight_type": "trend",
-          "role": "1 \u00b7 URBAN POPULATION G",
-          "topic": "Urban population growth",
-          "say": "Urban growth peaked at two point eight two percent in 1983, dropped to two point three two by 2004, then fell to one point three six in 2025.",
+          "role": "1 \u00b7 LAND UNDER CEREAL ",
+          "topic": "Land under cereal production",
+          "say": "In 1972 farmers used 554,738,591 hectares for cereal; by 2014 that grew to 724,692,671, then crashed to just 415,702,088 hectares in 2024.",
           "scene": {
             "title": true,
             "elements": [
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "skyscraper",
+                "subject": "wheat field patch",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wheat field patch",
                 "data": {
                   "value_from": "item:1"
                 }
@@ -17064,84 +17049,108 @@
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "skyscraper",
+                "subject": "wheat field patch",
                 "data": {
-                  "value_from": "item:3"
+                  "value_from": "item:2"
                 }
               },
               {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "skyscraper",
-                "data": {
-                  "value_from": "item:5"
-                }
+                "type": "caption",
+                "region": "center",
+                "text": "1972 \u2192 2014 \u2192 2024"
               }
             ]
           }
         },
         {
           "source": "offline",
-          "key": "sp_pop_65up_to_zs_trend",
+          "key": "ag_prd_crel_mt_trend",
           "params": {
-            "file": "sp_pop_65up_to_zs_trend.json"
+            "file": "ag_prd_crel_mt_trend.json"
           },
           "insight_type": "trend",
-          "role": "2 \u00b7 POPULATION AGES 65",
-          "topic": "Population ages 65 and above",
-          "say": "In 1972 just five point three seven percent of the world was over 65 \u2014 by 2025 that share nearly doubled to ten point four percent.",
+          "role": "2 \u00b7 CEREAL PRODUCTION",
+          "topic": "Cereal production",
+          "say": "Global cereal output rose from 1,083,668,408 tons in 1972 to 2,822,286,611 tons by 2014, then fell back to 1,644,081,590 tons in 2024.",
           "scene": {
-            "title": true,
+            "title": false,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "grain sack",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 300000000.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "grain sack",
+                "data": {
+                  "value_from": "item:1",
+                  "per_value": 300000000.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "grain sack",
+                "data": {
+                  "value_from": "item:2",
+                  "per_value": 300000000.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "1972 \u00b7 2014 \u00b7 2024"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "ag_yld_crel_kg_trend",
+          "params": {
+            "file": "ag_yld_crel_kg_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 CEREAL YIELD",
+          "topic": "Cereal yield",
+          "say": "Yet yield never stopped climbing: 1,953 kilograms per hectare in 1972 climbed to 3,894 by 2014 and still reached 3,955 in 2024.",
+          "scene": {
+            "title": false,
             "elements": [
               {
                 "type": "fill_object",
-                "region": "ground-row",
-                "subject": "person",
+                "region": "center",
+                "subject": "grain silo",
                 "data": {
                   "value_from": "item:0"
                 }
               },
               {
                 "type": "fill_object",
-                "region": "ground-row",
-                "subject": "person",
+                "region": "center",
+                "subject": "grain silo",
                 "data": {
-                  "value_from": "item:5"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "sp_rur_totl_zg_trend",
-          "params": {
-            "file": "sp_rur_totl_zg_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 RURAL POPULATION G",
-          "topic": "Rural population growth",
-          "say": "Rural population growth was one point six four percent back in 1972, but by 2025 it had crashed to just zero point three percent.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "ground-row",
-                "subject": "house",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 0.2
+                  "value_from": "item:1"
                 }
               },
               {
-                "type": "stack",
-                "region": "ground-row",
-                "subject": "house",
+                "type": "fill_object",
+                "region": "center",
+                "subject": "grain silo",
                 "data": {
-                  "value_from": "item:5",
-                  "per_value": 0.2
+                  "value_from": "item:2"
                 }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "kg per hectare: 1972 \u2192 2014 \u2192 2024"
               }
             ]
           }
@@ -17149,18 +17158,18 @@
       ]
     },
     {
-      "slug": "landlines-fell-to-9-9-per-100-people-in-2025-below-1993-leve",
-      "title": "Landlines Fell To 9.9 Per 100 People In 2025 \u2014 Below 1993 Levels",
-      "hook": "Landlines just fell to a number we haven't seen since before some of you were born.",
-      "closing": "The wire in the wall lost. The wire in your router won.",
+      "slug": "landlines-peaked-at-18-7-per-100-people-then-collapsed",
+      "title": "Landlines Peaked At 18.7 Per 100 People \u2014 Then Collapsed",
+      "hook": "You'd think phone lines only ever went up \u2014 they peaked, then fell off a cliff.",
+      "closing": "From a shrinking phone line to billions of pockets buzzing worldwide, the story of connection just keeps rewriting itself.",
       "hashtags": [
-        "landlines",
-        "broadband",
-        "mobiledata",
         "datafacts",
-        "techhistory"
+        "telecom",
+        "shorts",
+        "techhistory",
+        "statistics"
       ],
-      "question": "Do you even remember dialing on a landline?",
+      "question": "Do you still have a landline at home?",
       "segments": [
         {
           "source": "offline",
@@ -17171,92 +17180,38 @@
           "insight_type": "trend",
           "role": "1 \u00b7 FIXED TELEPHONE SU",
           "topic": "Fixed telephone subscriptions",
-          "say": "In 1972 fixed telephone subscriptions stood at six point zero three per hundred people, peaked at eighteen point seven in 2004, then dropped to nine point nine by 2025.",
+          "say": "Fixed phone lines per 100 people: 6.03 in 1972, climbing to 10.8 by 1993, peaking at 18.7 in 2004, then crashing to 9.9 by 2025.",
           "scene": {
             "title": true,
             "elements": [
               {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "landline_phone",
-                "data": {
-                  "value_from": "item:0"
-                }
+                "type": "timeline_axis",
+                "region": "full"
               },
               {
                 "type": "caption",
                 "region": "center",
-                "text": "1972"
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "landline_phone",
-                "data": {
-                  "value_from": "item:1"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "2004"
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "landline_phone",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "2025"
+                "text": "Peak: 18.7 in 2004"
               }
             ]
           }
         },
         {
           "source": "offline",
-          "key": "it_net_bbnd_trend",
+          "key": "it_net_bbnd_rank",
           "params": {
-            "file": "it_net_bbnd_trend.json"
+            "file": "it_net_bbnd_rank.json"
           },
-          "insight_type": "trend",
+          "insight_type": "rank",
           "role": "2 \u00b7 FIXED BROADBAND SU",
           "topic": "Fixed broadband subscriptions",
-          "say": "Fixed broadband grew from two hundred nineteen million six hundred thousand subscriptions in 2005 to one billion six hundred fifty four million by 2025.",
+          "say": "China leads fixed broadband with 669,825,900 subscriptions, dwarfing the United States' 134,223,000, Brazil's 51,047,559, Japan's 48,046,037, and India's 45,711,188.",
           "scene": {
             "title": true,
             "elements": [
               {
-                "type": "stack",
-                "region": "full",
-                "subject": "wifi_router",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 200000000.0
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "2005"
-              },
-              {
-                "type": "stack",
-                "region": "full",
-                "subject": "wifi_router",
-                "data": {
-                  "value_from": "item:5",
-                  "per_value": 200000000.0
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "2025"
+                "type": "orbit_group",
+                "region": "full"
               }
             ]
           }
@@ -17270,42 +17225,14 @@
           "insight_type": "rank",
           "role": "3 \u00b7 MOBILE CELLULAR SU",
           "topic": "Mobile cellular subscriptions",
-          "say": "China tops the list with one billion, eight hundred seventy million, eleven thousand, five hundred ninety two mobile subscriptions, while India follows with one billion, one hundred fifty one million, three hundred fifty six thousand, six hundred twelve.",
-          "viz": "pictorial_race"
-        }
-      ]
-    },
-    {
-      "slug": "russia-grows-8-153-120-square-km-of-forest-more-than-any-oth",
-      "title": "Russia Grows 8,153,120 Square Km of Forest \u2014 More Than Any Other Country",
-      "hook": "You'd guess Brazil's rainforest is the world's biggest \u2014 it's not.",
-      "closing": "The map you learned in school undersold Russia's trees.",
-      "hashtags": [
-        "datafacts",
-        "forest",
-        "fertilizer",
-        "education",
-        "shorts"
-      ],
-      "question": "Which country do you think should be planting the most new forest?",
-      "segments": [
-        {
-          "source": "offline",
-          "key": "ag_lnd_frst_k2_rank",
-          "params": {
-            "file": "ag_lnd_frst_k2_rank.json"
-          },
-          "insight_type": "rank",
-          "role": "1 \u00b7 FOREST AREA",
-          "topic": "Forest area",
-          "say": "Russia's forest covers eight million one hundred fifty three thousand one hundred twenty square kilometers, beating Brazil's four million nine hundred twenty nine thousand seven hundred eighty eight.",
+          "say": "Mobile subscriptions top out with China at 1,870,011,592, India at 1,151,356,612, the United States at 390,990,000, Indonesia at 347,315,087, and Russia at 269,516,292.",
           "scene": {
             "title": true,
             "elements": [
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "tree",
+                "subject": "smartphone",
                 "data": {
                   "value_from": "item:0"
                 }
@@ -17313,7 +17240,7 @@
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "tree",
+                "subject": "smartphone",
                 "data": {
                   "value_from": "item:1"
                 }
@@ -17321,7 +17248,7 @@
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "tree",
+                "subject": "smartphone",
                 "data": {
                   "value_from": "item:2"
                 }
@@ -17329,7 +17256,7 @@
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "tree",
+                "subject": "smartphone",
                 "data": {
                   "value_from": "item:3"
                 }
@@ -17337,85 +17264,10 @@
               {
                 "type": "object",
                 "region": "ground-row",
-                "subject": "tree",
+                "subject": "smartphone",
                 "data": {
                   "value_from": "item:4"
                 }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "Top 5 forest countries, sq km"
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "ag_con_fert_zs_trend",
-          "params": {
-            "file": "ag_con_fert_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "2 \u00b7 FERTILIZER CONSUMP",
-          "topic": "Fertilizer consumption",
-          "say": "In 1972 farmers used just sixty one point eight kilograms of fertilizer per hectare \u2014 by 2023 that number climbed to one hundred thirty seven point six.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "timeline_axis",
-                "region": "full"
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "Fertilizer use, kg per hectare"
-              }
-            ]
-          }
-        },
-        {
-          "source": "offline",
-          "key": "se_sec_prog_zs_trend",
-          "params": {
-            "file": "se_sec_prog_zs_trend.json"
-          },
-          "insight_type": "trend",
-          "role": "3 \u00b7 PROGRESSION TO SEC",
-          "topic": "Progression to secondary school (%)",
-          "say": "Secondary school progression hit ninety one point seven percent in 2011, then actually slipped to ninety one point three percent by 2017.",
-          "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "ground-row",
-                "subject": "graduation-cap",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "ground-row",
-                "subject": "graduation-cap",
-                "data": {
-                  "value_from": "item:1"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "ground-row",
-                "subject": "graduation-cap",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "Secondary school progression, % of students"
               }
             ]
           }

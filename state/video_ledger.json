@@ -106,7 +106,7 @@
       "slug": "carbon-climb",
       "directed_at": "2026-07-29",
       "video_id": null,
-      "topic_category": "climate",
+      "topic_category": "science",
       "hook_type": "stake",
       "hook_text": "The air itself is changing, and we have the receipt.",
       "words_first_10s": 10,
@@ -115,34 +115,24 @@
         "viz:trend",
         "viz:pictograph"
       ],
-      "ending_type": "escalation",
-      "franchise": "Climate Data",
-      "notes": "Kept the existing trend/pictograph split (already good variety); rewrote the closing from a flat summary into an escalation using the decadal-acceleration numbers (1960s +8.77ppm vs 2010s +24.11ppm, ~3x) so the last beat implies the 2020s will beat it, not just restate the topic.",
+      "ending_type": "consequence",
+      "franchise": "The Line That Only Goes Up",
+      "notes": "Two named charts (trend, pictograph) already gave clean variety; rewrote the closing from a flat summary to a forward-looking consequence (450ppm within a decade at current pace).",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "CO2 line trend build-in over the receipt hook"
+          "detail": "the air itself is changing, over the CO2 trend line build-in"
         },
         {
-          "t": 8,
+          "t": 12,
           "event": "visual_swap",
-          "detail": "trend: 1960->2025 ppm line climbs"
+          "detail": "pictograph: decade-by-decade CO2 added, 1960s vs 2010s"
         },
         {
-          "t": 18,
-          "event": "visual_swap",
-          "detail": "pictograph: decade-by-decade rise accelerates"
-        },
-        {
-          "t": 27,
+          "t": 22,
           "event": "payoff",
-          "detail": "2010s tripled the 1960s pace, 2020s already on track to beat it"
-        },
-        {
-          "t": 31,
-          "event": "cta",
-          "detail": "did-you-realize-it-was-accelerating question"
+          "detail": "closing: 450ppm within a decade if the pace holds"
         }
       ]
     },
@@ -150,7 +140,7 @@
       "slug": "population-giants",
       "directed_at": "2026-07-29",
       "video_id": null,
-      "topic_category": "demographics",
+      "topic_category": "geography",
       "hook_type": "shock_stat",
       "hook_text": "Two countries hold more than a third of all humanity.",
       "words_first_10s": 10,
@@ -159,34 +149,24 @@
         "viz:pictorial_race",
         "viz:waffle_grid"
       ],
-      "ending_type": "consequence",
+      "ending_type": "escalation",
       "franchise": "Half The Planet",
-      "notes": "Existing pictorial_race + waffle_grid split already varies well; swapped the closing from a flat 'wild, right?' summary into a concrete personal-consequence line (1 in 3 people you meet) using the 35.3% combined China+India share already on screen.",
+      "notes": "Already varied (pictorial race then waffle share) -- no scene changes needed, left as-is.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "two-countries-a-third-of-humanity stat over ranking build"
+          "detail": "two countries, a third of humanity, over pictorial race build-in"
         },
         {
-          "t": 8,
+          "t": 12,
           "event": "visual_swap",
-          "detail": "pictorial_race: China/India/US country ranking"
+          "detail": "waffle_grid: China + India as share of every square in the grid"
         },
         {
-          "t": 18,
-          "event": "visual_swap",
-          "detail": "waffle_grid: China+India = 35.3% of world share"
-        },
-        {
-          "t": 27,
+          "t": 22,
           "event": "payoff",
-          "detail": "every 3rd person you meet is Chinese or Indian"
-        },
-        {
-          "t": 31,
-          "event": "cta",
-          "detail": "which-surprised-you-most question"
+          "detail": "closing: eight countries, over half the planet"
         }
       ]
     },
@@ -195,42 +175,32 @@
       "directed_at": "2026-07-29",
       "video_id": null,
       "topic_category": "energy",
-      "hook_type": "question",
-      "hook_text": "Guess which single fuel still out-generates solar and wind combined, worldwide.",
-      "words_first_10s": 12,
+      "hook_type": "shock_stat",
+      "hook_text": "Here's how the entire planet made its electricity last year.",
+      "words_first_10s": 10,
       "scene_changes_before_5s": 2,
       "depictions": [
         "viz:waffle_grid",
         "viz:pictorial_race"
       ],
-      "ending_type": "inversion",
-      "franchise": "Keeping The Lights On",
-      "notes": "Rewrote the hook from a flat statement ('here's how the planet made its electricity') into a guess-the-answer curiosity gap using coal's 34.4% vs wind+solar's combined 15% -- info-first hooks under-hold per doctrine, question hooks should test better on this format.",
+      "ending_type": "consequence",
+      "franchise": "How The World Keeps Its Lights On",
+      "notes": "Already varied (waffle share then pictorial race) -- no scene changes needed.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "guess-the-fuel question over waffle build-in"
+          "detail": "how the planet made its electricity, over waffle_grid build-in"
         },
         {
-          "t": 8,
+          "t": 12,
           "event": "visual_swap",
-          "detail": "waffle_grid: coal 34.4%, gas 22%, rest split"
+          "detail": "pictorial_race: fossil vs clean power falling under 60%"
         },
         {
-          "t": 18,
-          "event": "visual_swap",
-          "detail": "pictorial_race: fossil 59.1% vs clean 40.9%"
-        },
-        {
-          "t": 27,
+          "t": 22,
           "event": "payoff",
-          "detail": "fossil fuels dropped under 60% for the first time since the 1940s"
-        },
-        {
-          "t": 31,
-          "event": "cta",
-          "detail": "is-your-country-ahead question"
+          "detail": "closing: the mix is tipping, slowly then all at once"
         }
       ]
     },
@@ -238,49 +208,39 @@
       "slug": "malaria-fell-for-18-years-then-jumped-back-to-64-0-per-1-000",
       "directed_at": "2026-07-29",
       "video_id": null,
-      "topic_category": "global health",
-      "hook_type": "stake",
+      "topic_category": "health",
+      "hook_type": "inversion",
       "hook_text": "Malaria dropped for two decades straight -- then last year it shot right back up to sixty four per thousand people at risk.",
-      "words_first_10s": 21,
+      "words_first_10s": 23,
       "scene_changes_before_5s": 2,
       "depictions": [
-        "scene:object-rows",
-        "mechanic:mosquito-swarm-tide",
-        "scene:fill_object-rows"
+        "viz:trend",
+        "mechanic:risk-gauge",
+        "scene:fill_object-before-after"
       ],
       "ending_type": "consequence",
-      "franchise": "",
-      "notes": "All 3 segments were identical object-ground-row photo layouts -- a hard VARIETY violation (at most one photo+number layout per video). Kept the internet-growth segment as the one photo row, invented a new mosquito-swarm-tide mechanic for the headline malaria stat (swarm SIZE falls then regrows with the data, matching the title's twist), and switched the open-defecation segment to fill_object so no two segments share a layout.",
+      "franchise": "Malaria Fell For 18 Years",
+      "notes": "3 segments previously all used the same photo-row layout (violates the at-most-one-row rule) -- rebuilt to internet-adoption trend chart, a new risk-gauge mechanic (mosquito needle sweeps down 2000-2018 then back up to 2024, the story's actual headline reversal), and a before/after outhouse fill pair for sanitation.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "malaria-fell-then-jumped-back stake over swarm build-in"
+          "detail": "malaria dropped for two decades then jumped back, over trend build-in"
         },
         {
-          "t": 8,
+          "t": 9,
           "event": "visual_swap",
-          "detail": "object rows: internet users 15.6% -> 73.6%"
+          "detail": "risk-gauge: mosquito needle sweeps 79.9 -> 58.5 -> 64.0 per 1,000"
         },
         {
-          "t": 16,
+          "t": 20,
           "event": "visual_swap",
-          "detail": "mosquito-swarm-tide: swarm shrinks 2000-2018 then regrows to 2024"
+          "detail": "before/after outhouse fill: open defecation 22% -> 4.35%"
         },
         {
-          "t": 25,
-          "event": "visual_swap",
-          "detail": "fill_object: open defecation outhouse fill 22% -> 4.35%"
-        },
-        {
-          "t": 31,
+          "t": 28,
           "event": "payoff",
-          "detail": "world got more connected and sanitary, but old diseases came back"
-        },
-        {
-          "t": 35,
-          "event": "cta",
-          "detail": "which-stat-surprised-you-more question"
+          "detail": "closing: old diseases don't always stay beaten"
         }
       ]
     },
@@ -288,49 +248,39 @@
       "slug": "fish-catch-hit-235-million-tons-even-as-we-protected-the-pla",
       "directed_at": "2026-07-29",
       "video_id": null,
-      "topic_category": "environment",
-      "hook_type": "stake",
+      "topic_category": "nature",
+      "hook_type": "inversion",
       "hook_text": "We fenced off more ocean and land than ever before -- and still hauled out more fish than any year in history.",
-      "words_first_10s": 19,
-      "scene_changes_before_5s": 2,
+      "words_first_10s": 22,
+      "scene_changes_before_5s": 3,
       "depictions": [
-        "mechanic:cropland-tiles",
-        "scene:timeline-stack-race",
-        "scene:fill_object-globe"
+        "mechanic:farmland-sprawl",
+        "scene:timeline_axis-stack-fish",
+        "scene:timeline_axis-fill_object-globe"
       ],
-      "ending_type": "escalation",
-      "franchise": "",
-      "notes": "Segment 1 had NO scene at all (hard validation failure) -- invented a new cropland-tiles mechanic (a land grid fills with real farmland photos as % of land climbs) to fix it and give the story its own signature mechanic. Simplified the protected-area segment to a single centered fill_object so it no longer duplicates the timeline_axis+stack structure of the fish-catch segment.",
+      "ending_type": "consequence",
+      "franchise": "Protected The Planet",
+      "notes": "Segment 1 (permanent cropland) had no scene/viz at all -- authored a new farmland-sprawl mechanic (a satellite tile grid greening as cropland share climbs) so all 3 segments now have distinct mechanics instead of one silent failure.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "fenced-off-more-yet-caught-more stake over tile build-in"
+          "detail": "fenced off more ocean and land, hauled out more fish than ever, over farmland-sprawl build-in"
         },
         {
-          "t": 8,
+          "t": 10,
           "event": "visual_swap",
-          "detail": "cropland-tiles: farmland share of land 0.75% -> 1.48%"
+          "detail": "timeline + fish stack: catch climbs 56M -> 236M tons"
         },
         {
-          "t": 16,
+          "t": 20,
           "event": "visual_swap",
-          "detail": "timeline+stack: fish catch 56M -> 236M tons"
+          "detail": "timeline + globe fill: protected area 11.1% -> 17.0%"
         },
         {
-          "t": 25,
-          "event": "visual_swap",
-          "detail": "fill_object globe: protected area up to 17.0%"
-        },
-        {
-          "t": 31,
+          "t": 28,
           "event": "payoff",
-          "detail": "farms, catches, and protected zones all grew at once"
-        },
-        {
-          "t": 35,
-          "event": "cta",
-          "detail": "which-number-shocked-you-more question"
+          "detail": "closing: humanity isn't slowing down anywhere"
         }
       ]
     },
@@ -339,198 +289,118 @@
       "directed_at": "2026-07-29",
       "video_id": null,
       "topic_category": "energy",
-      "hook_type": "question",
-      "hook_text": "One slice of the world's energy pie sat frozen for thirty years -- then it exploded. Guess what changed.",
-      "words_first_10s": 17,
+      "hook_type": "inversion",
+      "hook_text": "Alternative and nuclear energy barely moved for decades, then it jumped to 16.5 percent of world energy use.",
+      "words_first_10s": 18,
       "scene_changes_before_5s": 2,
       "depictions": [
         "viz:trend",
-        "scene:object-rows",
-        "mechanic:bulb-chain"
+        "mechanic:power-spike",
+        "scene:fill_object-lightbulb"
+      ],
+      "ending_type": "escalation",
+      "franchise": "Alternative And Nuclear Energy",
+      "notes": "3 segments previously all used the same 5-object photo-row layout -- rebuilt to renewable trend chart, a new power-spike mechanic (flat monitor line for decades then a sharp spike into a glowing cooling tower, matching the story's headline surge to 16.5%), and a lightbulb fill for electricity access. Rewrote the closing from a vague 'decide for yourself' to landing on the headline surge.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "alternative and nuclear barely moved, then jumped, over trend build-in"
+        },
+        {
+          "t": 9,
+          "event": "visual_swap",
+          "detail": "power-spike: flat 8.8-9.7% line for decades, sharp spike to 16.5% in 2024"
+        },
+        {
+          "t": 20,
+          "event": "visual_swap",
+          "detail": "lightbulb fill: electricity access 73.2% -> 91.9%"
+        },
+        {
+          "t": 28,
+          "event": "payoff",
+          "detail": "closing: 2024 is when its moment finally arrived"
+        }
+      ]
+    },
+    {
+      "slug": "cereal-farmland-fell-to-415-702-088-hectares-in-2024-below-i",
+      "directed_at": "2026-07-29",
+      "video_id": null,
+      "topic_category": "nature",
+      "hook_type": "inversion",
+      "hook_text": "Fifty years of farming progress just went in reverse -- global cropland shrank to 415,702,088 hectares.",
+      "words_first_10s": 16,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "scene:object-ground-row-wheat",
+        "scene:stack-grain-sack",
+        "scene:fill_object-grain-silo"
       ],
       "ending_type": "consequence",
-      "franchise": "",
-      "notes": "All 3 segments were identical 5-photo-object ground rows (worst VARIETY violation in the batch: same structure, only the subject photo changed). Moved the renewable-energy segment to the named 'trend' chart, kept the headline alternative+nuclear segment as the photo row, and invented a new bulb-chain mechanic for electricity access (lit-bulb COUNT out of 20 IS the % electrified). Also rewrote the hook from a flat stat-reveal into a guess-what-changed curiosity gap.",
+      "franchise": "Cereal Farmland",
+      "notes": "Already varied across object/stack/fill_object mechanics -- no scene changes needed, closing already lands a consequence (fewer fields doing more).",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "frozen-then-exploded question over trend build-in"
+          "detail": "fifty years of farming progress reversed, over wheat field row build-in"
         },
         {
-          "t": 8,
+          "t": 10,
           "event": "visual_swap",
-          "detail": "trend: renewable energy 16.7% -> 19.7%"
+          "detail": "grain sack stack: production 1.08B -> 2.82B -> 1.64B tons"
         },
         {
-          "t": 16,
+          "t": 20,
           "event": "visual_swap",
-          "detail": "object rows: alternative+nuclear 8.82% -> 16.5%"
+          "detail": "grain silo fill: yield keeps climbing, 1,953 -> 3,955 kg/ha"
         },
         {
-          "t": 25,
-          "event": "visual_swap",
-          "detail": "bulb-chain: electricity access bulbs light up to 91.9%"
-        },
-        {
-          "t": 31,
+          "t": 28,
           "event": "payoff",
-          "detail": "energy is changing faster than the headlines admit"
-        },
-        {
-          "t": 35,
-          "event": "cta",
-          "detail": "which-number-surprised-you-most question"
+          "detail": "closing: fewer fields doing more"
         }
       ]
     },
     {
-      "slug": "city-growth-fell-to-1-36-half-what-it-was-in-1983",
+      "slug": "landlines-peaked-at-18-7-per-100-people-then-collapsed",
       "directed_at": "2026-07-29",
       "video_id": null,
-      "topic_category": "demographics",
+      "topic_category": "tech",
       "hook_type": "inversion",
-      "hook_text": "Everyone assumes cities are exploding faster than ever -- but urban growth just hit its slowest pace in over fifty years.",
-      "words_first_10s": 19,
+      "hook_text": "You'd think phone lines only ever went up -- they peaked, then fell off a cliff.",
+      "words_first_10s": 16,
       "scene_changes_before_5s": 2,
       "depictions": [
-        "scene:object-rows",
-        "scene:fill_object-rows",
-        "scene:stack-rows"
+        "scene:timeline_axis-peak",
+        "scene:orbit_group-broadband",
+        "scene:object-ground-row-smartphone"
       ],
-      "ending_type": "consequence",
-      "franchise": "",
-      "notes": "Segments 1 and 3 both used the object-ground-row layout (2 of 3 photo+number layouts violates the at-most-one rule). Switched the rural-growth segment to 'stack' (house-icon COUNT crashing from ~8 to ~2 depicts the 1.64%->0.3% collapse better than two static houses anyway), leaving object/fill_object/stack as three distinct types across the video.",
+      "ending_type": "escalation",
+      "franchise": "Landlines Peaked",
+      "notes": "Segments 2 and 3 both used the same 5-object photo-row layout -- swapped broadband ranking to orbit_group (countries orbiting by subscriber count) so only the mobile ranking keeps the photo-row treatment.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "everyone-assumes-wrong inversion over skyscraper build-in"
+          "detail": "phone lines peaked then fell off a cliff, over timeline_axis build-in"
         },
         {
-          "t": 8,
+          "t": 9,
           "event": "visual_swap",
-          "detail": "object rows: urban growth 2.82% -> 1.36%"
+          "detail": "orbit_group: China/US/Brazil/Japan/India orbiting by broadband subscribers"
         },
         {
-          "t": 16,
+          "t": 20,
           "event": "visual_swap",
-          "detail": "fill_object: population 65+ share 5.37% -> 10.4%"
+          "detail": "smartphone row: mobile subscriptions led by China, India, US"
         },
         {
-          "t": 25,
-          "event": "visual_swap",
-          "detail": "stack: rural growth houses crash 1.64% -> 0.3%"
-        },
-        {
-          "t": 31,
+          "t": 28,
           "event": "payoff",
-          "detail": "the world is aging fast and spreading out slower than ever"
-        },
-        {
-          "t": 35,
-          "event": "cta",
-          "detail": "keeps-slowing-or-bounces-back question"
-        }
-      ]
-    },
-    {
-      "slug": "landlines-fell-to-9-9-per-100-people-in-2025-below-1993-leve",
-      "directed_at": "2026-07-29",
-      "video_id": null,
-      "topic_category": "technology",
-      "hook_type": "shock_stat",
-      "hook_text": "Landlines just fell to a number we haven't seen since before some of you were born.",
-      "words_first_10s": 17,
-      "scene_changes_before_5s": 2,
-      "depictions": [
-        "scene:object-rows-captioned",
-        "scene:stack-rows-captioned",
-        "viz:pictorial_race"
-      ],
-      "ending_type": "inversion",
-      "franchise": "",
-      "notes": "Segments 1 and 3 both used the object layout (landline photos vs cell-phone ranking photos) -- switched the mobile-subscriptions ranking to the named 'pictorial_race' chart (a natural fit for a country ranking) so the video carries object/stack/classic-chart instead of two photo rows. Sharpened the hook with a generational-memory angle; kept the strong wire-in-the-wall closing.",
-      "timeline": [
-        {
-          "t": 0,
-          "event": "hook",
-          "detail": "haven't-seen-since-before-you-were-born stat over phone build-in"
-        },
-        {
-          "t": 8,
-          "event": "visual_swap",
-          "detail": "object rows: landlines 1972/2004/2025 rise then fall"
-        },
-        {
-          "t": 16,
-          "event": "visual_swap",
-          "detail": "stack: broadband subscriptions 220M -> 1.65B"
-        },
-        {
-          "t": 25,
-          "event": "visual_swap",
-          "detail": "pictorial_race: China/India/US mobile subscriptions ranking"
-        },
-        {
-          "t": 31,
-          "event": "payoff",
-          "detail": "the wire in the wall lost, the wire in your router won"
-        },
-        {
-          "t": 35,
-          "event": "cta",
-          "detail": "do-you-remember-dialing question"
-        }
-      ]
-    },
-    {
-      "slug": "russia-grows-8-153-120-square-km-of-forest-more-than-any-oth",
-      "directed_at": "2026-07-29",
-      "video_id": null,
-      "topic_category": "environment",
-      "hook_type": "inversion",
-      "hook_text": "You'd guess Brazil's rainforest is the world's biggest -- it's not.",
-      "words_first_10s": 11,
-      "scene_changes_before_5s": 2,
-      "depictions": [
-        "scene:object-rows",
-        "viz:timeline-climb",
-        "scene:fill_object-rows"
-      ],
-      "ending_type": "inversion",
-      "franchise": "",
-      "notes": "Already had good variety (tree-photo ranking, timeline climb chart, fill_object graduation caps) -- left the scenes untouched and did not touch hook/closing, both of which already land a real inversion.",
-      "timeline": [
-        {
-          "t": 0,
-          "event": "hook",
-          "detail": "brazil-isn't-biggest inversion over tree-ranking build-in"
-        },
-        {
-          "t": 8,
-          "event": "visual_swap",
-          "detail": "object rows: Russia 8.15M sq km beats Brazil 4.93M"
-        },
-        {
-          "t": 16,
-          "event": "visual_swap",
-          "detail": "timeline climb: fertilizer use 61.8 -> 137.6 kg/ha"
-        },
-        {
-          "t": 25,
-          "event": "visual_swap",
-          "detail": "fill_object: secondary-school progression 91.7% -> 91.3%"
-        },
-        {
-          "t": 31,
-          "event": "payoff",
-          "detail": "the map you learned in school undersold Russia's trees"
-        },
-        {
-          "t": 35,
-          "event": "cta",
-          "detail": "which-country-should-plant-most question"
+          "detail": "closing: the story of connection keeps rewriting itself"
         }
       ]
     }
