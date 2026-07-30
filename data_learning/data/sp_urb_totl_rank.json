@@ -1,14 +1,14 @@
 {
-  "key": "it_cel_sets_rank",
-  "title": "Mobile cellular subscriptions",
+  "key": "sp_urb_totl_rank",
+  "title": "Urban population",
   "unit": "",
   "geography": "Top 5 countries",
-  "time_coverage": "2024",
+  "time_coverage": "2025",
   "insight_type": "rank",
   "source": {
-    "name": "Mobile cellular subscriptions",
+    "name": "Urban population",
     "publisher": "World Bank",
-    "url": "https://data.worldbank.org/indicator/IT.CEL.SETS",
+    "url": "https://data.worldbank.org/indicator/SP.URB.TOTL",
     "officiality": "official",
     "access_date": "2026-07-30"
   },
@@ -16,23 +16,23 @@
   "points": [
     {
       "label": "China",
-      "value": 1870011592
+      "value": 933170560
     },
     {
       "label": "India",
-      "value": 1151356612
+      "value": 522441248
     },
     {
       "label": "United States",
-      "value": 390990000
+      "value": 274084705
+    },
+    {
+      "label": "Brazil",
+      "value": 187652232
     },
     {
       "label": "Indonesia",
-      "value": 347315087
-    },
-    {
-      "label": "Russian Federation",
-      "value": 269516292
+      "value": 169698146
     }
   ]
 }

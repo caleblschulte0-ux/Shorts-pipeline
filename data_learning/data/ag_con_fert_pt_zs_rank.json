@@ -1,0 +1,38 @@
+{
+  "key": "ag_con_fert_pt_zs_rank",
+  "title": "Fertilizer consumption",
+  "unit": "% of fertilizer production",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Fertilizer consumption",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.CON.FERT.PT.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Slovenia",
+      "value": 101756
+    },
+    {
+      "label": "Malawi",
+      "value": 59978
+    },
+    {
+      "label": "Costa Rica",
+      "value": 23435
+    },
+    {
+      "label": "Iceland",
+      "value": 20897
+    },
+    {
+      "label": "Estonia",
+      "value": 20163
+    }
+  ]
+}
