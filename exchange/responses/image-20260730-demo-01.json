@@ -28,7 +28,7 @@
   },
   "verified": {
     "read_back": true,
-    "note": "Read the uploaded Drive file back, confirmed file ID 1Va8Rfd5RtpXForQK_Bnr_qgXy7ui-A1u and its Drive link, downloaded the actual uploaded bytes, and recomputed SHA-256 ce ca843cc2d35f3c98ad15b49fb4f7359649d589b29cf618e102fde06c25c7fb after removing the display space; the exact normalized hash is stored in image.sha256. Drive size 1393674 bytes matched the downloaded file."
+    "note": "Read the uploaded Drive file back, confirmed file ID 1Va8Rfd5RtpXForQK_Bnr_qgXy7ui-A1u and its Drive link, downloaded the actual uploaded bytes, and recomputed SHA-256 ceca843cc2d35f3c98ad15b49fb4f7359649d589b29cf618e102fde06c25c7fb. Drive size 1393674 bytes matched the downloaded file."
   },
   "generated_at": "2026-07-30T00:00:16Z"
 }
