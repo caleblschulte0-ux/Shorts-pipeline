@@ -1163,10 +1163,11 @@
     "read_first": "exchange/README.md",
     "two_jobs": [
       "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
-      "2. PUNCH-UP \u2014 REWRITE every entry in `packages` so it hits harder. This is a job, not an option: returning a script unchanged is a failed run, not a safe one. See `punchup_mission` for what good looks like."
+      "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
     ],
     "punchup_mission": {
-      "the_ask": "These scripts are RESEARCHED and TRUE but they are often written flat \u2014 a chronological who-did-what recap with no point of view and a limp ending. That flatness, not the imagery, is the single biggest reason a finished video falls flat. Your job is to keep every fact and change how it LANDS.",
+      "the_ask": "These scripts are RESEARCHED and TRUE but they are often written flat \u2014 a chronological who-did-what recap with no point of view and a limp ending. That flatness, not the imagery, is the single biggest reason a finished video falls flat. Your job is to keep every fact and change how it LANDS. If a script already lands \u2014 hook under 5 words ending ?/!, real voice, kicker naming the story \u2014 say so and keep it. Do not change for the sake of changing.",
+      "per_package_verdict": "Every entry in your response's `packages` array carries either the rewritten fields, or `\"kept\": true` plus a one-line `editor_note` saying why it already works (e.g. 'hook already 4 words + ?, voice present, kicker names Gary'). An entry with neither is a skipped job.",
       "house_voice": "A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today. Dry wit, real reactions, second person, contractions. It is allowed to be amused, skeptical or appalled. Accuracy is non-negotiable; attitude is MANDATORY.",
       "do_this": [
         "HOOK: first sentence must be <=5 words and end with ? or ! \u2014 'A kangaroo did WHAT?', 'Why fire 30,000?'. This earns the 3-second hold; it is the highest-leverage line in the video.",
