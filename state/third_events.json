@@ -170,16 +170,16 @@
       "published_versions": [],
       "last_updated": "2026-07-29"
     },
-    "jynxzi-argentina-england-2026w30": {
-      "event_id": "jynxzi-argentina-england-2026w30",
+    "jynxzi-argentina-crowd-2026w30": {
+      "event_id": "jynxzi-argentina-crowd-2026w30",
       "people": [
         "jynxzi"
       ],
       "actions": [
         "argentina",
+        "crowd",
         "england",
-        "jynxzi",
-        "match"
+        "jynxzi"
       ],
       "event_type": "storyline",
       "first_seen": "2026-07-30",
@@ -191,16 +191,16 @@
       "published_versions": [],
       "last_updated": "2026-07-30"
     },
-    "jynxzi-argentina-audio-2026w30": {
-      "event_id": "jynxzi-argentina-audio-2026w30",
+    "jynxzi-argentina-during-2026w30": {
+      "event_id": "jynxzi-argentina-during-2026w30",
       "people": [
         "jynxzi"
       ],
       "actions": [
         "argentina",
-        "audio",
+        "during",
         "england",
-        "jynxzi"
+        "face"
       ],
       "event_type": "storyline",
       "first_seen": "2026-07-30",
