@@ -1,0 +1,126 @@
+{
+  "version": 8,
+  "slug": "man-of-steal-superman-burglary",
+  "title": "Superman Got Arrested in Florida",
+  "hashtags": [
+    "manofsteal",
+    "superman",
+    "hillsboroughcounty",
+    "ruskin",
+    "boatburglary",
+    "bodycamera",
+    "florida",
+    "crimenews",
+    "viralarrest",
+    "truecrime",
+    "weirdnews",
+    "costumecrime",
+    "floridacrime",
+    "oddnews"
+  ],
+  "script": "Superman just got arrested? Deputies in Hillsborough County, Florida got a call about a boat burglary in Ruskin — someone broke into the cabin, walked off with a bag of power tools. Body camera rolls up. And there he is: cape, full costume, the whole look. His name's James Tidwell, 57, a convicted felon who apparently thought the disguise would help. It did not. Tidwell confessed on camera before deputies even finished reading him his rights. He's now charged with burglary of an unoccupied conveyance and petit theft — dressed like the Man of Steel, booked like everybody else. Even superheroes get read their rights in Ruskin. So did the cape make it better, or just easier to spot?",
+  "shots": [
+    {
+      "phrase": "Superman just got arrested?",
+      "query": "police lights night",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "a boat burglary in Ruskin",
+      "query": "boat dock marina"
+    },
+    {
+      "phrase": "broke into the cabin",
+      "query": "boat cabin interior"
+    },
+    {
+      "phrase": "a bag of power tools",
+      "query": "power tools bag"
+    },
+    {
+      "phrase": "Body camera rolls up",
+      "query": "police body camera"
+    },
+    {
+      "phrase": "cape, full costume",
+      "query": "superhero cape costume",
+      "mascot_pose": "point",
+      "evidence_urls": [
+        "https://www.mysuncoast.com/2026/07/29/caught-camera-hillsborough-county-man-arrested-after-ruskin-boat-burglary/"
+      ]
+    },
+    {
+      "phrase": "His name's James Tidwell, 57",
+      "query": "police booking photo"
+    },
+    {
+      "phrase": "a convicted felon",
+      "query": "courthouse handcuffs"
+    },
+    {
+      "phrase": "the disguise would help",
+      "query": "man in costume",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "confessed on camera",
+      "query": "police interview room"
+    },
+    {
+      "phrase": "reading him his rights",
+      "query": "police officer talking"
+    },
+    {
+      "phrase": "burglary of an unoccupied conveyance",
+      "query": "boat anchored water"
+    },
+    {
+      "phrase": "the Man of Steel",
+      "query": "superman comic cape"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Superman just got arrested",
+      "text": "SUPERMAN ARRESTED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "power tools",
+      "text": "TOOLS STOLEN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "cape, full costume",
+      "text": "FULL COSTUME",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "James Tidwell, 57",
+      "text": "AGE 57",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "a convicted felon",
+      "text": "CONVICTED FELON",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "It did not",
+      "text": "DIDN'T WORK",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "confessed on camera",
+      "text": "CONFESSED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Man of Steel",
+      "text": "MAN OF STEEL",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

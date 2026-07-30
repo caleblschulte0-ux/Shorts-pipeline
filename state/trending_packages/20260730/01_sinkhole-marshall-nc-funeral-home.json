@@ -1,0 +1,122 @@
+{
+  "version": 8,
+  "slug": "sinkhole-marshall-nc-funeral-home",
+  "title": "A Sinkhole Opened Right at a Funeral Home",
+  "hashtags": [
+    "marshallnc",
+    "northcarolina",
+    "sinkhole",
+    "funeralhome",
+    "tornadowarning",
+    "madisoncounty",
+    "severeweather",
+    "weirdnews",
+    "naturaldisaster",
+    "stormdamage",
+    "wnc",
+    "freakevent",
+    "breakingnews",
+    "extremeweather"
+  ],
+  "script": "A sinkhole opened where? Tuesday night, severe storms tore through Madison County, North Carolina — a funnel cloud spotted right near Marshall's Foster Creek community, tornado warnings up across the whole western half of the state. Then the ground gave out. A sinkhole swallowed the pavement directly in front of Madison Funeral Home. Not a field. Not a backyard. A funeral home. County manager Rod Honeycutt confirmed nobody was hurt and the building itself is fine — the real damage was downed trees, flooded roads, and knocked-out power across Marshall. Still, out of every spot in Madison County, the earth picked the one already handling the dead. So of all places in Marshall, why the funeral home?",
+  "shots": [
+    {
+      "phrase": "A sinkhole opened where?",
+      "query": "sinkhole road pavement",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "severe storms tore through Madison County, North Carolina",
+      "query": "storm dark clouds"
+    },
+    {
+      "phrase": "a funnel cloud spotted right near Marshall's Foster Creek community",
+      "query": "funnel cloud sky"
+    },
+    {
+      "phrase": "tornado warnings up across the whole western half of the state",
+      "query": "tornado warning radar"
+    },
+    {
+      "phrase": "Then the ground gave out",
+      "query": "collapsed pavement hole",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "A sinkhole swallowed the pavement directly in front of Madison Funeral Home",
+      "query": "funeral home building",
+      "evidence_urls": [
+        "https://wlos.com/news/local/storm-leaves-sinkhole-at-madison-funeral-home-as-funnel-cloud-spotted-near-laurel-road-closures-power-outages-flooding-downed-trees-911-calls"
+      ]
+    },
+    {
+      "phrase": "Not a field",
+      "query": "empty rural field"
+    },
+    {
+      "phrase": "Not a backyard",
+      "query": "suburban backyard"
+    },
+    {
+      "phrase": "County manager Rod Honeycutt confirmed nobody was hurt",
+      "query": "county official briefing"
+    },
+    {
+      "phrase": "downed trees, flooded roads, and knocked-out power across Marshall",
+      "query": "flooded street storm damage"
+    },
+    {
+      "phrase": "the earth picked the one already handling the dead",
+      "query": "sinkhole hole ground"
+    },
+    {
+      "phrase": "why the funeral home",
+      "query": "funeral home exterior",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "A sinkhole opened where",
+      "text": "SINKHOLE OPENS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a funnel cloud spotted",
+      "text": "FUNNEL CLOUD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Then the ground gave out",
+      "text": "GROUND GAVE OUT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Madison Funeral Home",
+      "text": "AT A FUNERAL HOME",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "nobody was hurt",
+      "text": "NO INJURIES",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "downed trees",
+      "text": "TREES DOWN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "knocked-out power",
+      "text": "POWER OUT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "handling the dead",
+      "text": "ALREADY HANDLING THE DEAD",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
