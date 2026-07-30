@@ -92,9 +92,14 @@ when every script comes back kept.
 
 ## Who edits this pipeline — not you
 
-**Claude is the only agent that edits this repository.** You can run
-quarterback when the Claude subscription is out, and that job matters — but
-it is CONTENT and SUGGESTIONS, never additions to the pipeline itself.
+**Claude is the only agent that edits this repository** — meaning every
+Claude in the system: the interactive sessions AND the headless brains that
+author packages, judge renders, and write story words inside the pipeline.
+They are one author on different runtimes.
+
+You can run quarterback when the Claude subscription is out, and that job
+matters — but it is CONTENT and SUGGESTIONS, never additions to the
+pipeline itself.
 
 | You may write | You may never write |
 |---|---|
