@@ -144,5 +144,11 @@ jobs:
         run: |
           D="${{ steps.which.outputs.date }}"
           echo "::notice::Packages for $D now carry final scripts + media."
-          echo "::notice::Render is NOT auto-triggered yet — dispatch the"
-          echo "::notice::channel's own workflow once this run is reviewed."
+          echo "::notice::daily.yml renders automatically on this workflow"
+          echo "::notice::completing (workflow_run) — nothing to dispatch."
+          # The ingest step above already logs ::notice/::warning per package;
+          # this just surfaces the takeover in the job summary.
+          if [ -f "exchange/bundles/$D/authored_report.json" ]; then
+            echo "::notice::AUTHORING TAKEOVER ran for $D — see"
+            echo "::notice::exchange/bundles/$D/authored_report.json"
+          fi

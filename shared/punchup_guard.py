@@ -56,8 +56,22 @@ Researchers Scientists Experts Analysts Engineers Doctors Nurses
 Employees Workers Customers Passengers Drivers Students Teachers
 Reports Sources Records Documents Video Footage Photos Images
 Company Officials State Federal Local County City Town Department
+""".split()) | frozenset(w.lower() for w in """
+Back Ahead Away Together Alone Around Along Through Beyond Behind
+Across Between Within Without Against Toward Towards Beside Besides
+Despite Although Though Unless Whether Whenever Wherever Whatever
+Nearly Almost Barely Hardly Roughly Exactly Simply Clearly Obviously
+Suddenly Eventually Finally Initially Originally Previously Recently
+Worse Better Bigger Smaller Faster Slower Higher Lower Fewer Half
+Everywhere Anywhere Nowhere Somewhere Elsewhere Otherwise Likewise
 """.split())
-# ^ Generic ROLE nouns. They are common nouns that happen to be capitalized
+# ^ Two groups. Generic ROLE nouns, then ordinary SENTENCE OPENERS —
+# adverbs, prepositions and comparatives that are only ever capitalized
+# because a sentence starts with them. A rewrite that opens a sentence
+# "Back in 2010 that figure was 12 percent" was being rejected for an
+# INVENTED entity called "Back", killing an otherwise perfect rewrite.
+# Neither group is ever the named entity a claim depends on.
+# Generic ROLE nouns: They are common nouns that happen to be capitalized
 # at the start of a sentence, and cutting them ("Officials confirmed…",
 # "Authorities stated…") is EXACTLY the corporate hedging the channel's
 # writing doctrine tells punch-ups to remove. Treating them as named

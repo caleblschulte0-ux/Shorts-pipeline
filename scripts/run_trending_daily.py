@@ -415,10 +415,38 @@ def most_recent_package_dir() -> Path | None:
     return max(candidates, key=lambda p: p.name)
 
 
+def posted_titles() -> set[str]:
+    """Every title this channel has already uploaded.
+
+    The only upload guard used to be a 6-hour rolling window, which stops a
+    double-fire on the SAME day and nothing else. That was survivable while
+    `most_recent_package_dir()` was a rare last resort — but a Claude weekly
+    limit produces a 1-3 day gap several times a month, and on day two of a
+    gap that fallback serves day one's slate 24h later, straight past the
+    6-hour window, and re-uploads every video. This is the title-level guard
+    that makes the stale-slate path safe."""
+    try:
+        log = load_log()
+    except Exception:                                # noqa: BLE001
+        return set()
+    out = set()
+    for e in log.get("posted", []) or []:
+        for key in ("title", "topic"):
+            v = (e.get(key) or "").strip()
+            if v:
+                out.add(v.casefold())
+    return out
+
+
 def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
     """Return (source_dir, packages). Prefers today's dir; falls back
     to the most-recent YYYYMMDD/ on disk so a missing routine run
-    doesn't force the expensive Groq fallback path."""
+    doesn't force the expensive Groq fallback path.
+
+    Anything already in the posted log is dropped, whichever dir it came
+    from. If that empties a stale dir we return nothing and let the caller
+    fall through to Groq — a weaker NEW script beats a duplicate upload,
+    and a duplicate is the one failure the posted logs exist to prevent."""
     candidates = [todays_package_dir(), most_recent_package_dir()]
     seen: set[Path] = set()
     for d in candidates:
@@ -431,13 +459,29 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
                 continue  # _schedule.json etc. are config, not packages
             try:
                 pkg = json.loads(p.read_text())
-                pkg.setdefault("_path", str(p.relative_to(REPO)))
+                try:
+                    pkg.setdefault("_path", str(p.relative_to(REPO)))
+                except ValueError:       # package dir redirected (tests)
+                    pkg.setdefault("_path", str(p))
                 pkgs.append(pkg)
             except json.JSONDecodeError as e:
                 print(f"[run_trending_daily] skipping malformed {p.name}: {e}",
                       file=sys.stderr)
-        if pkgs:
-            return d, pkgs
+        already = posted_titles()
+        fresh = [p for p in pkgs
+                 if (p.get("title") or "").strip().casefold() not in already]
+        dropped = len(pkgs) - len(fresh)
+        if dropped:
+            print(f"[run_trending_daily] {d.name}: dropped {dropped} "
+                  f"package(s) already in the posted log — refusing to "
+                  f"re-upload", flush=True)
+        if fresh:
+            if d != todays_package_dir():
+                print(f"[run_trending_daily] WARNING using STALE packages "
+                      f"from {d.name} — today's dir is empty. The reserve "
+                      f"bank and the ChatGPT takeover both came up short.",
+                      flush=True)
+            return d, fresh
     return None, []
 
 
@@ -455,6 +499,12 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         "error": None,
         "elapsed_seconds": 0.0,
         "package_path": pkg.get("_path"),
+        # WHO wrote this package. A Claude weekly limit puts the channel on
+        # a fallback brain for a day or three at a time, several times a
+        # month — often enough that it must be visible in the daily report
+        # and the phone push, not buried in an Actions log nobody opens.
+        "source": ("chatgpt" if pkg.get("_authored_by") == "chatgpt-takeover"
+                   else "reserve" if pkg.get("_reserve") else "brain"),
     }
     t_start = time.time()
     # text_card packages carry no shots — the payload is the text block, not
@@ -635,9 +685,28 @@ def format_report(date_str: str, results: list[dict]) -> str:
     success = [r for r in results if r["ok"]]
     quarantined = [r for r in results if r.get("quarantined")]
     failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
+    # Fallback-brain banner. Goes ABOVE the counts because ntfy only sends
+    # the first ~20 lines of this file to the phone.
+    by_source: dict[str, int] = {}
+    for r in results:
+        by_source[r.get("source") or "brain"] = (
+            by_source.get(r.get("source") or "brain", 0) + 1)
+    banner = []
+    if by_source.get("chatgpt"):
+        banner.append(f"> **ChatGPT wrote {by_source['chatgpt']} of today's "
+                      f"{len(results)} packages** — the Claude Routine did "
+                      f"not run (weekly limit?).")
+    if by_source.get("reserve"):
+        banner.append(f"> **{by_source['reserve']} package(s) came from the "
+                      f"reserve bank** — top it up when Claude is back: "
+                      f"`python scripts/package_reserve.py status`.")
+    if banner:
+        banner.append("")
+
     lines = [
         f"# Daily Trending Shorts — {date_str}",
         "",
+        *banner,
         f"- queued: **{len(results)}**",
         f"- succeeded: **{len(success)}**",
         f"- quarantined (off-topic imagery): **{len(quarantined)}**",

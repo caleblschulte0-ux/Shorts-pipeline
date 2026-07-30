@@ -163,6 +163,39 @@ the amount is proportionate, and the use is documented. Never bypass
 DRM/paywalls/rate limits. The funnel pulls from 18 providers; new source
 adapters are tickets M1–M9 in the doctrine doc.
 
+## Fallbacks + the reserve bank (docs/FALLBACKS.md)
+
+Every fallback path is traced top-to-bottom in `docs/FALLBACKS.md`. The two
+things worth knowing without opening it:
+
+- **Authoring is the only Claude-dependent stage.** Media, render, and
+  upload have no Claude dependency; `_call_llm` has always preferred
+  Groq → Gemini → Anthropic. The showrunner is the exception and it fails
+  CLOSED — no Claude *and* no `GEMINI_API_KEY` means the explainer channel
+  publishes nothing (`post_stories.py` refuses `SHOWRUNNER=off` on a
+  publish run).
+- **Two lines cover a dead brain, in order.** The **reserve bank** first,
+  then the **ChatGPT authoring takeover** (`shared/authoring_brief.py` +
+  `scripts/ingest_authored.py`): Phase A puts an `authoring_request` in the
+  bundle, ChatGPT writes the day's packages, Phase B validates and promotes
+  them. Nothing ChatGPT writes is trusted — promotion runs the same
+  structural gate the bank and the renderers use, and a failure is
+  quarantined into `authored_report.json`, never rendered. It runs the SAME
+  DAY (Phase A 4:45am Central → ChatGPT 6:00am → render → the normal
+  publish slots), so a Claude-out morning costs zero posts.
+  The takeover covers TRENDING because that was the only channel whose
+  floor was "nothing" or "a duplicate upload". Explainer, curiosity and
+  third all self-heal to Groq/deterministic authoring — they keep posting,
+  just worse. Extending the takeover to them is a quality project needing
+  a Phase A/B split per channel; see `docs/FALLBACKS.md` §6.
+- **The reserve bank** (`shared/package_buffer.py`) covers a dead brain:
+  banked EVERGREEN packages drawn automatically when a day comes up short.
+  `fill` is a no-op on a normal day, so it runs unconditionally in both
+  `exchange_phase_a.yml` and `daily.yml`. Deposit refuses date-anchored
+  language; a package is drawn exactly once (`state/package_buffer/used.json`)
+  so it can never duplicate an upload. The Routine tops it up — step 5b of
+  `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
+
 ## Storage rules (from the audit — docs/STORAGE_AUDIT.md)
 
 - Never commit media (mp4/png renders) or files >256KB to git; `state/` is
