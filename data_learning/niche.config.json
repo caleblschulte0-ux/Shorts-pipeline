@@ -16912,7 +16912,7 @@
       "slug": "alternative-and-nuclear-energy-leapt-to-16-5-by-2024",
       "title": "Alternative And Nuclear Energy Leapt To 16.5% By 2024",
       "hook": "Alternative and nuclear energy barely moved for decades, then it jumped to 16.5 percent of world energy use.",
-      "closing": "Three energy stats, one pattern: decades of almost nothing, then everything moves at once.",
+      "closing": "Whatever caused three separate energy numbers to break their decades-long flatline in the same stretch of years isn't slowing down \u2014 it's still accelerating.",
       "hashtags": [
         "energydata",
         "renewableenergy",
@@ -17480,7 +17480,7 @@
       "slug": "tuvalu-beats-everyone-on-domestic-general-government-health-",
       "title": "Tuvalu Beats Everyone On Domestic general government health expenditure \u2014 By 2.0x",
       "hook": "You'd guess a big country leads on government health spending. It's tiny Tuvalu \u2014 beating Germany more than 2 to 1.",
-      "closing": "A Pacific island of 11,000 people out-spends Germany on public health, nuclear power hasn't grown in decades, and yet the world now burns 70 percent more electricity per person than it did in 1990 \u2014 three numbers, three totally different directions.",
+      "closing": "A Pacific island of 11,000 people out-spends Germany on public health and nuclear power hasn't grown in decades \u2014 yet the one number nobody capped, electricity use per person, hasn't stopped climbing in over 35 years.",
       "hashtags": [
         "data",
         "facts",
@@ -17698,7 +17698,7 @@
       "slug": "india-s-153-868-700-hectares-beat-america-s-farmland",
       "title": "India's 153,868,700 Hectares Beat America's Farmland",
       "hook": "A country three times smaller than the US just out-farmed it.",
-      "closing": "The numbers don't round themselves \u2014 this is what the data actually says.",
+      "closing": "India out-farms America on less land, a Pacific nation pulls in more than double its neighbors' health aid per person, and Kosovo runs almost entirely on fuel that three other countries report using at exactly zero percent.",
       "hashtags": [
         "shorts",
         "datafacts",
@@ -17706,7 +17706,7 @@
         "geography",
         "didyouknow"
       ],
-      "question": "Which of these numbers surprised you the most?",
+      "question": "Which of these three rankings would you have gotten completely backwards?",
       "segments": [
         {
           "source": "offline",
@@ -17775,54 +17775,9 @@
           "topic": "External health expenditure per capita",
           "say": "Tuvalu receives 467.7 dollars per person in external health aid, more than Micronesia's 362.9, Palau's 311.9, Naoero's 307.8, and the Marshall Islands' 205.1.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "pill_bottle",
-                "data": {
-                  "value_from": "item:0",
-                  "per_value": 50.0
-                }
-              },
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "pill_bottle",
-                "data": {
-                  "value_from": "item:1",
-                  "per_value": 50.0
-                }
-              },
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "pill_bottle",
-                "data": {
-                  "value_from": "item:2",
-                  "per_value": 50.0
-                }
-              },
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "pill_bottle",
-                "data": {
-                  "value_from": "item:3",
-                  "per_value": 50.0
-                }
-              },
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "pill_bottle",
-                "data": {
-                  "value_from": "item:4",
-                  "per_value": 50.0
-                }
-              }
-            ]
+            "mechanic": "aid-crate-airdrop",
+            "concept": "parachutes drop medical aid crates onto five Pacific nations, each crate's fall height scaled to health aid dollars per person",
+            "code": "crate = subject_image('cardboard medical aid crate box')\nchute = subject_image('parachute canopy')\ncols = n\ncolw = (RX1 - RX0) / cols\nbase_y = RBOT - 90\nmax_h = 760\nfor i in range(n):\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0:\n        continue\n    x = RX0 + colw * (i + 0.5)\n    h = max_h * clamp(values[i] / vmax) * stage\n    drop_y = lerp(RTOP + 40, base_y - h, stage)\n    psize = 100\n    if chute is not None:\n        paste(chute, x - psize / 2, drop_y - psize, psize, psize)\n    csize = 90\n    if crate is not None:\n        paste(crate, x - csize / 2, drop_y, csize, csize)\n    if stage > 0.8:\n        text(f\"${values[i]:.0f}\", x, base_y - h - 26, size=24, color=HIGHLIGHT, center=True)\n        text(labels[i], x, base_y + 16, size=18, color=TEXT, center=True)\ntext('HEALTH AID $ PER PERSON', (RX0 + RX1) // 2, RTOP + 50, size=30, color=TEXT, center=True)\n"
           }
         },
         {
@@ -17836,33 +17791,9 @@
           "topic": "Fossil fuel energy consumption",
           "say": "Kosovo runs on fossil fuels for 86.1 percent of its energy, while Albania, Algeria, and Angola each sit at exactly 0.0 percent.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "gas_pump",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "gas_pump",
-                "data": {
-                  "value_from": "item:1"
-                }
-              },
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "gas_pump",
-                "data": {
-                  "value_from": "item:2"
-                }
-              }
-            ]
+            "mechanic": "fossil-smog-split",
+            "concept": "a smog-choked power plant (Kosovo, 86.1%) faces a clear solar field labelled with three countries tied at 0.0%, splitting the frame instead of repeating identical near-zero rows",
+            "code": "cx = (RX0 + RX1) // 2\nfactory = subject_image('smog-covered coal power plant photo')\nclean = subject_image('solar panel farm clear sky photo')\nlx = RX0 + 260\nrx = RX1 - 260\ncy = 560\nsize = 420\nkfrac = clamp(values[0] / 100.0) * clamp(reveal)\nif factory is not None:\n    paste(factory, lx - size / 2, cy - size / 2, size, size)\nhaze_r = 40 + 260 * kfrac\nfor k in range(5):\n    rr = haze_r * (1 - k * 0.15)\n    a = int(90 * (1 - k * 0.15) * kfrac)\n    d.ellipse([lx - rr, cy - size * 0.35 - rr * 0.5, lx + rr, cy - size * 0.35 + rr * 0.5], fill=rgba(WARN, a))\ntext(f\"{values[0]:.1f}%\", lx, cy + size / 2 + 40, size=46, color=WARN, center=True)\ntext(labels[0], lx, cy + size / 2 + 90, size=28, color=TEXT, center=True)\nif clean is not None:\n    paste(clean, rx - size / 2, cy - size / 2, size, size)\ntext('0.0%', rx, cy + size / 2 + 40, size=46, color=HIGHLIGHT, center=True)\nzero_reveal = clamp((reveal - 0.4) / 0.6)\nzero_labels = labels[1:4]\nfor k, lab in enumerate(zero_labels):\n    stage = clamp(zero_reveal * len(zero_labels) - k, 0.0, 1.0)\n    if stage <= 0:\n        continue\n    text(lab, rx, cy + size / 2 + 84 + (k + 1) * 30, size=20, color=TEXT, center=True)\ntext('FOSSIL FUEL SHARE OF ENERGY', cx, RTOP + 50, size=30, color=TEXT, center=True)\n"
           }
         }
       ],
@@ -17872,7 +17803,7 @@
       "slug": "after-30-years-renewables-still-power-only-27-8-of-the-world",
       "title": "After 30 Years, Renewables Still Power Only 27.8% Of The World",
       "hook": "You'd think clean energy already took over the grid \u2014 the world still runs mostly on the old stuff.",
-      "closing": "Real progress, but the planet still runs mostly on the old grid.",
+      "closing": "Clean power nearly doubled its share of the grid in thirty years, but the world now burns more energy per person than it did back then \u2014 the finish line is moving as fast as we run toward it.",
       "hashtags": [
         "renewableenergy",
         "dataviz",
@@ -17880,7 +17811,7 @@
         "climatedata",
         "shorts"
       ],
-      "question": "Do you think the world hits 50% renewable before 2040?",
+      "question": "At this rate, does the world ever actually catch up to how much energy it uses?",
       "segments": [
         {
           "source": "offline",
@@ -17893,22 +17824,9 @@
           "topic": "Renewable electricity output",
           "say": "World renewable electricity was 19.3% in 1990, fell to 18.3% by 2002, then climbed to 23% in 2015 and 27.8% by 2021.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "fill_object",
-                "region": "center",
-                "subject": "lightbulb",
-                "data": {
-                  "value_from": "star"
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "Started at just 19.3% in 1990"
-              }
-            ]
+            "mechanic": "tide-turbine-climb",
+            "concept": "a wind turbine rides the tip of a line tracing renewable electricity's share, which dips before climbing to its 27.8% record",
+            "code": "turbine = subject_image('white wind turbine photo cutout')\ncx = (RX0 + RX1) // 2\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\npts = []\nfor i in range(n):\n    t = i / max(1, n - 1)\n    x = lerp(RX0 + 40, RX1 - 40, t)\n    y = lerp(RBOT - 120, RTOP + 260, clamp(values[i] / vmax))\n    pts.append((x, y))\nseg_lit = clamp(reveal) * (n - 1)\nfull = int(seg_lit)\nfor i in range(1, full + 1):\n    col = HIGHLIGHT if i == n - 1 else ACCENT\n    d.line([pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1]], fill=rgba(col, 220), width=9)\nif full < n - 1:\n    frac2 = seg_lit - full\n    x0, y0 = pts[full]\n    x1, y1 = pts[full + 1]\n    d.line([x0, y0, lerp(x0, x1, frac2), lerp(y0, y1, frac2)], fill=rgba(ACCENT, 220), width=9)\ntip_x, tip_y = pts[min(full, n - 1)]\nsize = int(160 + 140 * clamp(reveal))\nif turbine is not None:\n    paste(turbine, tip_x - size / 2, tip_y - size - 10, size, size)\ntext(f\"{cur:.1f}%\", tip_x, tip_y - size - 60, size=48, color=HIGHLIGHT, center=True)\ntext(labels[idx], tip_x, RBOT - 40, size=28, color=TEXT, center=True)\ntext('WORLD RENEWABLE ELECTRICITY', cx, RTOP + 50, size=30, color=TEXT, center=True)\nif idx >= 2:\n    text('DIPPED, THEN CLIMBED', cx, RTOP + 90, size=24, color=WARN, center=True)\n"
           }
         },
         {
@@ -17922,23 +17840,9 @@
           "topic": "Energy use",
           "say": "Global energy use per person was 1,626 kilograms of oil equivalent in 1990, dipped to 1,585 in 1997, then rose to 1,866 by 2023.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "stack",
-                "region": "center",
-                "subject": "oil_barrel",
-                "data": {
-                  "value_from": "star",
-                  "per_value": 400.0
-                }
-              },
-              {
-                "type": "caption",
-                "region": "center",
-                "text": "1,866 kg of oil equivalent per person"
-              }
-            ]
+            "mechanic": "oil-drum-fill-trend",
+            "concept": "an oil barrel fills taller year by year tracking energy use per person, dipping once before climbing to its 2023 high",
+            "code": "barrel = subject_image('oil barrel drum photo')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 90\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nvmin = min(values)\nspan = max(vmax - vmin, 1.0)\nsize = 260\nh = size * (0.55 + 0.45 * clamp((cur - vmin) / span))\nif barrel is not None:\n    paste(barrel, cx - size / 2, base_y - h, size, h)\nfor i in range(n):\n    x = lerp(RX0 + 60, RX1 - 60, i / max(n - 1, 1))\n    bh = 10 + 90 * clamp((values[i] - vmin) / span)\n    col = ACCENT if i < idx else (WARN if i == idx else TEXT)\n    a = 255 if i <= idx else 90\n    d.rectangle([x - 12, RBOT - 30 - bh, x + 12, RBOT - 30], fill=rgba(col, a))\ntext(f\"{cur:.0f} kg oil-eq/person\", cx, RTOP + 60, size=40, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, base_y + 30, size=28, color=TEXT, center=True)\ntext('ENERGY USE PER PERSON', cx, RTOP + 24, size=24, color=TEXT, center=True)\n"
           }
         },
         {
