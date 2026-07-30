@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
+import os
 import sys
 from pathlib import Path
 
@@ -35,24 +35,91 @@ from shared.fsutil import atomic_write_json        # noqa: E402
 MEDIA_CACHE = ROOT / "cache" / "exchange"
 
 
-def fetch_media(request_id: str) -> Path | None:
-    """Hand off to the verified consumer (hash + pixel checks live there)."""
-    try:
-        run = subprocess.run(
-            [sys.executable, str(ROOT / "scripts" / "fetch_exchange_media.py"),
-             "--id", request_id, "--json"],
-            capture_output=True, text=True, timeout=180, cwd=str(ROOT))
-        payload = json.loads(run.stdout or "{}")
-        for r in payload.get("results") or []:
-            if r.get("ok") and r.get("local_path"):
-                return Path(r["local_path"])
-    except Exception:                                # noqa: BLE001
-        pass
-    # Already-downloaded fallback: trust nothing that isn't on disk.
+def fetch_media(request_id: str, entry: dict | None = None) -> Path | None:
+    """Resolve one request's media to a verified local file.
+
+    Takes the entry straight from the BUNDLE's response.json. An earlier
+    version shelled out to fetch_exchange_media.py, which reads the older
+    per-request `exchange/responses/<id>.json` layout — so on the bundle flow
+    it found nothing, returned None, and Phase B silently self-filled over 23
+    perfectly good ChatGPT images (2026-07-30: fulfilled=0, self_filled=24).
+    The whole exchange delivered nothing while every workflow stayed green.
+
+    Verification is not optional: SHA-256 against the producer's claim, a full
+    pixel decode, and a placeholder check. A mismatch returns None so the
+    caller self-fills rather than pinning a corrupt or substituted image.
+    """
+    import hashlib
+    import io
+    import urllib.request
+
+    # Already on disk from a previous run?
     for ext in ("png", "jpg", "jpeg", "webp", "mp4"):
         p = MEDIA_CACHE / f"{request_id}.{ext}"
         if p.exists() and p.stat().st_size:
             return p
+
+    if not isinstance(entry, dict) or entry.get("status") not in ("fulfilled",
+                                                                  "partial"):
+        return None
+    drive = entry.get("drive") or {}
+    img = entry.get("image") or {}
+    fid = (drive.get("file_id") or "").strip()
+    claim = (img.get("sha256") or "").strip().lower()
+
+    urls = [u for u in (
+        drive.get("download_url"),
+        f"https://drive.google.com/uc?export=download&id={fid}" if fid else None,
+        f"https://drive.usercontent.google.com/download?id={fid}"
+        f"&export=download&confirm=t" if fid else None,
+    ) if u]
+
+    for url in urls:
+        try:
+            req = urllib.request.Request(
+                url, headers={"User-Agent": "shorts-pipeline/exchange"})
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                blob = resp.read(32 * 1024 * 1024)
+                ctype = resp.headers.get("Content-Type", "")
+            # Drive serves an HTML permission page when a file is not
+            # link-visible — never save that as an image.
+            if b"<html" in blob[:2000].lower() or "text/html" in ctype:
+                print(f"[phase-b] {request_id}: not link-visible (HTML page)")
+                continue
+            if not blob:
+                continue
+
+            got = hashlib.sha256(blob).hexdigest()
+            if claim and got != claim:
+                print(f"[phase-b] {request_id}: SHA MISMATCH "
+                      f"(claimed {claim[:12]}…, got {got[:12]}…) — refusing")
+                return None
+
+            try:
+                from PIL import Image
+                im = Image.open(io.BytesIO(blob))
+                im.load()
+                colors = im.convert("RGB").getcolors(maxcolors=65536)
+                if colors is not None and len(colors) <= 8:
+                    print(f"[phase-b] {request_id}: {len(colors)}-colour "
+                          f"placeholder — refusing")
+                    return None
+                ext = (im.format or "png").lower().replace("jpeg", "jpg")
+            except Exception as exc:                     # noqa: BLE001
+                print(f"[phase-b] {request_id}: not a decodable image ({exc})")
+                return None
+
+            MEDIA_CACHE.mkdir(parents=True, exist_ok=True)
+            out = MEDIA_CACHE / f"{request_id}.{ext}"
+            tmp = out.with_suffix(out.suffix + ".part")
+            tmp.write_bytes(blob)
+            os.replace(tmp, out)
+            print(f"[phase-b] {request_id}: pinned {len(blob):,}B "
+                  f"{ext} from ChatGPT (sha verified)")
+            return out
+        except Exception as exc:                         # noqa: BLE001
+            print(f"[phase-b] {request_id}: {type(exc).__name__}: "
+                  f"{str(exc)[:70]}")
     return None
 
 
@@ -172,7 +239,7 @@ def main() -> int:
         if sidx >= len(shots):
             continue
 
-        local = fetch_media(rid) if rid in idx["media"] or response else None
+        local = fetch_media(rid, idx["media"].get(rid))
         if local:
             shots[sidx]["image_url"] = str(local)
             shots[sidx]["media_origin"] = "chatgpt"

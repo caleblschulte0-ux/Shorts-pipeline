@@ -5,6 +5,14 @@ curiosity, third "Proof Mode"). Channels are defined by orchestrator +
 config + posted-log + token env, not by folders — see
 `docs/STORAGE_AUDIT.md` §2 for the full map.
 
+**Trending is THREE formats, 2 each, 6/day**: `reddit_story` (gameplay +
+post card + TTS), `text_card` (typographic card over b-roll), `graph_race`
+(animated chart). It is NOT the old single stacked/gameplay format — that is
+a fallback shape only. Full spec + required fields per format:
+`CLAUDE_ROUTINE_INSTRUCTIONS.md` (top section). It regressed to 6-of-one on
+2026-07-30 because the spec lived only in the Routine's prompt; if you ever
+see a slate of six identical formats, that is the bug.
+
 ## Repo layout: the funnel (reorg 2026-07-30 — docs/PIPELINE_LAYOUT.md)
 
 Top-of-funnel media in **`funnel/`** (media_funnel, topic/entity image

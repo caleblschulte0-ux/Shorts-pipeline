@@ -1,8 +1,17 @@
 # Shorts-pipeline
 
-Turn any video (Reddit, TikTok, X, Instagram, YouTube, Twitch, local file) into
-a 9:16 YouTube Short stacked over a random gameplay loop, with optional
-edge-tts voiceover and burned-in TikTok-style auto-captions.
+Multi-channel automated YouTube Shorts pipeline.
+
+The trending channel posts **six videos a day across three formats** (two of
+each): **Reddit story** (full-screen gameplay + post card + TTS),
+**text card** (typographic card over topical b-roll), and **graph race**
+(animated multi-series chart). Other channels: explainer, curiosity, and third
+("Proof Mode"). Formats and the daily slate: `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
+
+The original single-format tool — turn any video into a 9:16 Short stacked over
+a gameplay loop with edge-tts voiceover and burned-in captions — still exists as
+`make_short.py` and the stacked renderer, but it is a fallback shape, not the
+channel's daily output.
 
 ## How the automated daily run works (changed 2026-07-30)
 
