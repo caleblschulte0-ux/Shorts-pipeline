@@ -1,0 +1,38 @@
+{
+  "key": "ag_lnd_agri_k2_rank",
+  "title": "Agricultural land",
+  "unit": "sq. km",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Agricultural land",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.LND.AGRI.K2",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "China",
+      "value": 5204130
+    },
+    {
+      "label": "United States",
+      "value": 4215404
+    },
+    {
+      "label": "Australia",
+      "value": 3632437
+    },
+    {
+      "label": "Brazil",
+      "value": 2367588
+    },
+    {
+      "label": "Russian Federation",
+      "value": 2157010
+    }
+  ]
+}
