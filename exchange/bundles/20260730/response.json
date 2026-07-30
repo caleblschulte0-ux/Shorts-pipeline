@@ -1,0 +1,1054 @@
+{
+  "schema": "chatgpt-exchange-bundle-response/v1",
+  "date": "20260730",
+  "status": "partial",
+  "summary": {
+    "images_requested": 24,
+    "images_generated": 23,
+    "images_uploaded": 23,
+    "packages_received": 6,
+    "packages_punched_up": 0
+  },
+  "media": [
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s0-28a1cc597ea1",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1dFPHgX_SO9m66lLhYuackIN2W-gf4PHT",
+        "name": "sinkhole-marshall-nc-funeral-home-s0-28a1cc597ea1.png",
+        "link": "https://drive.google.com/file/d/1dFPHgX_SO9m66lLhYuackIN2W-gf4PHT/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1dFPHgX_SO9m66lLhYuackIN2W-gf4PHT",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: sinkhole road pavement. It accompanies the narration: \"A sinkhole opened where?\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "95a44f92379f243dd767bf3153d353f4041a576db2845f653563ff4f08b24a55",
+        "bytes": 3191167,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s3-495854cc74ef",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1rYtGQNRY9wHwTnkFuKAKISQVfebdc79D",
+        "name": "sinkhole-marshall-nc-funeral-home-s3-495854cc74ef.png",
+        "link": "https://drive.google.com/file/d/1rYtGQNRY9wHwTnkFuKAKISQVfebdc79D/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1rYtGQNRY9wHwTnkFuKAKISQVfebdc79D",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: tornado warning radar. It accompanies the narration: \"tornado warnings up across the whole western half of the state\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "76139d98042328322531f9d624181515697153489efa327b928375b90588c312",
+        "bytes": 2510291,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s4-6a5e620f37c3",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1uutNNh83uQ-CKtMccU9DmEGlgDH-l2Jb",
+        "name": "sinkhole-marshall-nc-funeral-home-s4-6a5e620f37c3.png",
+        "link": "https://drive.google.com/file/d/1uutNNh83uQ-CKtMccU9DmEGlgDH-l2Jb/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1uutNNh83uQ-CKtMccU9DmEGlgDH-l2Jb",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: collapsed pavement hole. It accompanies the narration: \"Then the ground gave out\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "86f21ccf2ce13dddfa9ea66f918c5b169aaf85068cfa5fabc1776eeeb3082033",
+        "bytes": 3358440,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s6-e983f7a7e00a",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1U4W5wxR3i1oqUBDyfpQXg7X58f0k_TKJ",
+        "name": "sinkhole-marshall-nc-funeral-home-s6-e983f7a7e00a.png",
+        "link": "https://drive.google.com/file/d/1U4W5wxR3i1oqUBDyfpQXg7X58f0k_TKJ/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1U4W5wxR3i1oqUBDyfpQXg7X58f0k_TKJ",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: empty rural field. It accompanies the narration: \"Not a field\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "d27742f26adbce4e74af5342eb9d369c75459b14d4ca0e51c0c50bda38ea05aa",
+        "bytes": 2332791,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s7-4386e5ef8fd5",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "175ShFNh9PlZeNPsdsGLwjh7s3XbwaBk1",
+        "name": "sinkhole-marshall-nc-funeral-home-s7-4386e5ef8fd5.png",
+        "link": "https://drive.google.com/file/d/175ShFNh9PlZeNPsdsGLwjh7s3XbwaBk1/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=175ShFNh9PlZeNPsdsGLwjh7s3XbwaBk1",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: suburban backyard. It accompanies the narration: \"Not a backyard\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "ea5bc204e051bc2701a61fc12aa89f9ac46a0813b05534f7dd922fa13311c95c",
+        "bytes": 2571617,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s9-d5ca6e9f2d42",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1XeAr-kDoZZ10rsdqIHuqie45gJI1aBLq",
+        "name": "sinkhole-marshall-nc-funeral-home-s9-d5ca6e9f2d42.png",
+        "link": "https://drive.google.com/file/d/1XeAr-kDoZZ10rsdqIHuqie45gJI1aBLq/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1XeAr-kDoZZ10rsdqIHuqie45gJI1aBLq",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: flooded street storm damage. It accompanies the narration: \"downed trees, flooded roads, and knocked-out power across Marshall\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "a8139bbdb928a52814d11be496d3363f28639a3a757cb82fbe1543cc7a55d4f1",
+        "bytes": 2870872,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s10-e12100d7a2a2",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1gtrZM-MHLW27L7wvETISdYsWnhXscsS_",
+        "name": "sinkhole-marshall-nc-funeral-home-s10-e12100d7a2a2.png",
+        "link": "https://drive.google.com/file/d/1gtrZM-MHLW27L7wvETISdYsWnhXscsS_/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gtrZM-MHLW27L7wvETISdYsWnhXscsS_",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: sinkhole hole ground. It accompanies the narration: \"the earth picked the one already handling the dead\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "7c3e6dbb38181fa872feef89786788ba3fb20edf25482fa4c79e765e4fccc468",
+        "bytes": 2800067,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "sinkhole-marshall-nc-funeral-home-s11-212e5c68482e",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "16fdtgKQDsPmVwFUF-9oL_zRmeFKPGn5n",
+        "name": "sinkhole-marshall-nc-funeral-home-s11-212e5c68482e.png",
+        "link": "https://drive.google.com/file/d/16fdtgKQDsPmVwFUF-9oL_zRmeFKPGn5n/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=16fdtgKQDsPmVwFUF-9oL_zRmeFKPGn5n",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: funeral home exterior. It accompanies the narration: \"why the funeral home\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "8397e0c518f50e1b68def0802a01e70452b4b6a9819dcecc5cf3e8cb6a25ab8b",
+        "bytes": 2171524,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s0-38814efa5f9f",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1YjI8BO26jvtzSz73aPIBCISvGZXve0RW",
+        "name": "gary-the-goat-louisiana-s0-38814efa5f9f.png",
+        "link": "https://drive.google.com/file/d/1YjI8BO26jvtzSz73aPIBCISvGZXve0RW/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1YjI8BO26jvtzSz73aPIBCISvGZXve0RW",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: goat pen fence. It accompanies the narration: \"One goat, zero enclosures?\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "b463ce6482fde584d350cbc0d7c6a3eba5d8f40d69aadddf34006ff5d2b6f10c",
+        "bytes": 2200957,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s2-91f1f4d386f2",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1gCSF4QhzhP2sznNyylX5K_mG-T0eiADv",
+        "name": "gary-the-goat-louisiana-s2-91f1f4d386f2.png",
+        "link": "https://drive.google.com/file/d/1gCSF4QhzhP2sznNyylX5K_mG-T0eiADv/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gCSF4QhzhP2sznNyylX5K_mG-T0eiADv",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: kids rodeo roping. It accompanies the narration: \"kids could practice goat roping\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "09c374889d25fc6bd271a280e219c1c6c26a3c1db03d11d05ba80632e96b4bf7",
+        "bytes": 2514285,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s4-51ccd1cc7618",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1yq_4nsT_0GkQRIQ_I3j07fhlQ4xTX0MV",
+        "name": "gary-the-goat-louisiana-s4-51ccd1cc7618.png",
+        "link": "https://drive.google.com/file/d/1yq_4nsT_0GkQRIQ_I3j07fhlQ4xTX0MV/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1yq_4nsT_0GkQRIQ_I3j07fhlQ4xTX0MV",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: horse pen fence. It accompanies the narration: \"broke out of the horse pen\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "df340d4c0d0c0213e2104ddb7bd0d5a9170894392b8770da57780d6d7d0a30a0",
+        "bytes": 2432028,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s5-d7fab7bd1c52",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1dbz4bztlLN4eSSUkCwfqfnk-MOfO-ppn",
+        "name": "gary-the-goat-louisiana-s5-d7fab7bd1c52.png",
+        "link": "https://drive.google.com/file/d/1dbz4bztlLN4eSSUkCwfqfnk-MOfO-ppn/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1dbz4bztlLN4eSSUkCwfqfnk-MOfO-ppn",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: barn stall interior. It accompanies the narration: \"Then a stall\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "d607ad0d0cfe298c6cc77e20c9d4383a0f41e01fcb862a4d104deb867449e7d5",
+        "bytes": 2641660,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s6-5d88c428d9b4",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "11aCu8lUD3RwVPpNWrLBrlZF7IB7V1YBS",
+        "name": "gary-the-goat-louisiana-s6-5d88c428d9b4.png",
+        "link": "https://drive.google.com/file/d/11aCu8lUD3RwVPpNWrLBrlZF7IB7V1YBS/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=11aCu8lUD3RwVPpNWrLBrlZF7IB7V1YBS",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: dog kennel enclosure. It accompanies the narration: \"Then a kennel\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "bb1de47974fffc25377674de2c712abe72a1630197254b401ffb27ebae1b0c82",
+        "bytes": 2688095,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s7-c447cb9714d2",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1WfwfZO6BkNLBBX_g2HE4x4E-6iwYtqQK",
+        "name": "gary-the-goat-louisiana-s7-c447cb9714d2.png",
+        "link": "https://drive.google.com/file/d/1WfwfZO6BkNLBBX_g2HE4x4E-6iwYtqQK/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1WfwfZO6BkNLBBX_g2HE4x4E-6iwYtqQK",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: metal latch lock. It accompanies the narration: \"reinforced, extra latches\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "b0257665223ba6cf5b0c1e716425de930fcb43d60d228c268f28c9993154598f",
+        "bytes": 2810711,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s8-d89848034080",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1pWG4l09qCUH_yZ8wHuofjjAbYEH0NosE",
+        "name": "gary-the-goat-louisiana-s8-d89848034080.png",
+        "link": "https://drive.google.com/file/d/1pWG4l09qCUH_yZ8wHuofjjAbYEH0NosE/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1pWG4l09qCUH_yZ8wHuofjjAbYEH0NosE",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: goat escaping fence. It accompanies the narration: \"Gary found the gap\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "ae25ba89b43b4a4986bb0dde6c0d01e279eab87bb47266ceb5e7c5b75e05f019",
+        "bytes": 2481842,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s10-bc6d08e72117",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1BisNfKuVQhaAbHaS0RFDTqRljPuU9h4F",
+        "name": "gary-the-goat-louisiana-s10-bc6d08e72117.png",
+        "link": "https://drive.google.com/file/d/1BisNfKuVQhaAbHaS0RFDTqRljPuU9h4F/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1BisNfKuVQhaAbHaS0RFDTqRljPuU9h4F",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: car dashboard highway view. It accompanies the narration: \"Drivers started spotting him daily\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "3ced0b404bbd42b1b089844548ce17679344f2a186d24737b98c78b3284a6645",
+        "bytes": 1665890,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s12-32c5e2058fca",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1g2tUsyHHKRE-TJ4slnxw2LuVIXwGJ-Kk",
+        "name": "gary-the-goat-louisiana-s12-32c5e2058fca.png",
+        "link": "https://drive.google.com/file/d/1g2tUsyHHKRE-TJ4slnxw2LuVIXwGJ-Kk/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1g2tUsyHHKRE-TJ4slnxw2LuVIXwGJ-Kk",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: domestic goat close up. It accompanies the narration: \"nobody can catch him\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "58506507f482fef931ac61a06ea5335e7d3d450258acb72bd524b578f05094e2",
+        "bytes": 2355956,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "gary-the-goat-louisiana-s13-d180a51deb2a",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1wva7y4jcWRdhfuSpCVjMGxWftRf1xguZ",
+        "name": "gary-the-goat-louisiana-s13-d180a51deb2a.png",
+        "link": "https://drive.google.com/file/d/1wva7y4jcWRdhfuSpCVjMGxWftRf1xguZ/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1wva7y4jcWRdhfuSpCVjMGxWftRf1xguZ",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: goat face close up. It accompanies the narration: \"the humans, or the goat\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "1cf18f5a51f25c2a9950147c92466d7f604436a34f02b26a1017eb8794534ddc",
+        "bytes": 2476656,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s2-299b6b3308f7",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1hsHSmVU3CEiYE62_e8lu8S8Zh7TTAepQ",
+        "name": "man-of-steal-superman-burglary-s2-299b6b3308f7.png",
+        "link": "https://drive.google.com/file/d/1hsHSmVU3CEiYE62_e8lu8S8Zh7TTAepQ/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1hsHSmVU3CEiYE62_e8lu8S8Zh7TTAepQ",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: boat cabin interior. It accompanies the narration: \"broke into the cabin\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "19a47f852b5a2ff355ea9dc823d2a89d96154c80813bf43632b5a4927c34a66f",
+        "bytes": 1667975,
+        "format": "png",
+        "width": 1122,
+        "height": 1402
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s3-9cc0c9e84076",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1NUG1QKS-craBM20t6qnBD3NaDY9C5lkE",
+        "name": "man-of-steal-superman-burglary-s3-9cc0c9e84076.png",
+        "link": "https://drive.google.com/file/d/1NUG1QKS-craBM20t6qnBD3NaDY9C5lkE/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1NUG1QKS-craBM20t6qnBD3NaDY9C5lkE",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: power tools bag. It accompanies the narration: \"a bag of power tools\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "0a27527dec68db2adfbcf7d4461aa586477e7487d1feb5364e3b827fd4c0f579",
+        "bytes": 2561390,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s5-51eb05f755da",
+      "status": "failed",
+      "prompt_used": "An editorial illustration for a short-form video: superhero cape costume. It accompanies the narration: \"cape, full costume\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "blocking_step": "image generation",
+      "error": "Image generation was rejected by the safety system twice; no substitute prompt or fabricated Drive pointer was used."
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s7-4a8070d4ddd4",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1DunutLcVtbkpL6oYmZVHNOUbyGohzwwT",
+        "name": "man-of-steal-superman-burglary-s7-4a8070d4ddd4.png",
+        "link": "https://drive.google.com/file/d/1DunutLcVtbkpL6oYmZVHNOUbyGohzwwT/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1DunutLcVtbkpL6oYmZVHNOUbyGohzwwT",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: courthouse handcuffs. It accompanies the narration: \"a convicted felon\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "58498e304a764147f1720e9e3397c8368e67ebe57261ddef5126949938ee59f3",
+        "bytes": 2316591,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s8-8381ae493041",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1Pu6OyjuJKwN5-TPGb_xbhVSoM6U28WlX",
+        "name": "man-of-steal-superman-burglary-s8-8381ae493041.png",
+        "link": "https://drive.google.com/file/d/1Pu6OyjuJKwN5-TPGb_xbhVSoM6U28WlX/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Pu6OyjuJKwN5-TPGb_xbhVSoM6U28WlX",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: man in costume. It accompanies the narration: \"the disguise would help\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "c5c94e9ce4d6d20d431db0d985343400926221e8a54c6cf5b593b35c3c2e5674",
+        "bytes": 1789716,
+        "format": "png",
+        "width": 1024,
+        "height": 1535
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s9-8a123a89e6fd",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1hupkhathIDBjN7ROPemfSiMvFReK6ZE9",
+        "name": "man-of-steal-superman-burglary-s9-8a123a89e6fd.png",
+        "link": "https://drive.google.com/file/d/1hupkhathIDBjN7ROPemfSiMvFReK6ZE9/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1hupkhathIDBjN7ROPemfSiMvFReK6ZE9",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: police interview room. It accompanies the narration: \"confessed on camera\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "08e1f6c3686a69bf395f100ffc3278a2b513112437a5100e6a3264181e615e0f",
+        "bytes": 1902556,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "note": "Drive metadata readback confirmed the uploaded file ID, name, MIME type, and byte count. SHA-256 is of the exact local bytes passed to the Drive upload."
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "status": "unchanged",
+      "title": "A Sinkhole Opened Right at a Funeral Home",
+      "script": "A sinkhole opened where? Tuesday night, severe storms tore through Madison County, North Carolina — a funnel cloud spotted right near Marshall's Foster Creek community, tornado warnings up across the whole western half of the state. Then the ground gave out. A sinkhole swallowed the pavement directly in front of Madison Funeral Home. Not a field. Not a backyard. A funeral home. County manager Rod Honeycutt confirmed nobody was hurt and the building itself is fine — the real damage was downed trees, flooded roads, and knocked-out power across Marshall. Still, out of every spot in Madison County, the earth picked the one already handling the dead. So of all places in Marshall, why the funeral home?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "A sinkhole opened where?",
+          "query": "sinkhole road pavement"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "severe storms tore through Madison County, North Carolina",
+          "query": "storm dark clouds"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "a funnel cloud spotted right near Marshall's Foster Creek community",
+          "query": "funnel cloud sky"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "tornado warnings up across the whole western half of the state",
+          "query": "tornado warning radar"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Then the ground gave out",
+          "query": "collapsed pavement hole"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "A sinkhole swallowed the pavement directly in front of Madison Funeral Home",
+          "query": "funeral home building"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Not a field",
+          "query": "empty rural field"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Not a backyard",
+          "query": "suburban backyard"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "County manager Rod Honeycutt confirmed nobody was hurt",
+          "query": "county official briefing"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "downed trees, flooded roads, and knocked-out power across Marshall",
+          "query": "flooded street storm damage"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "the earth picked the one already handling the dead",
+          "query": "sinkhole hole ground"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "why the funeral home",
+          "query": "funeral home exterior"
+        }
+      ],
+      "note": "Original retained; no punch-up applied, preserving every figure, named entity, shot count, and query exactly."
+    },
+    {
+      "slug": "gary-the-goat-louisiana",
+      "status": "unchanged",
+      "title": "This Goat Cannot Be Contained",
+      "script": "One goat, zero enclosures? This is Gary. A nonprofit in Rosepine, Louisiana bought him so kids could practice goat roping. Gary had other plans. First he broke out of the horse pen. Then a stall. Then a kennel — reinforced, extra latches, didn't matter. Every fix, Gary found the gap. So he did the only logical thing: he moved to the shoulder of U.S. Highway 171 and just... stayed. Drivers started spotting him daily. Now he's basically DeRidder's unofficial mascot, a goat nobody owns anymore because nobody can catch him. The foundation still checks on him. He still won't come home. So who's actually in charge here — the humans, or the goat?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "One goat, zero enclosures?",
+          "query": "goat pen fence"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "A nonprofit in Rosepine, Louisiana bought him",
+          "query": "rural louisiana ranch"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "kids could practice goat roping",
+          "query": "kids rodeo roping"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "Gary had other plans",
+          "query": "goat standing alone"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "broke out of the horse pen",
+          "query": "horse pen fence"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Then a stall",
+          "query": "barn stall interior"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Then a kennel",
+          "query": "dog kennel enclosure"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "reinforced, extra latches",
+          "query": "metal latch lock"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "Gary found the gap",
+          "query": "goat escaping fence"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "the shoulder of U.S. Highway 171",
+          "query": "highway road shoulder"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "Drivers started spotting him daily",
+          "query": "car dashboard highway view"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "DeRidder's unofficial mascot",
+          "query": "small town main street"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "nobody can catch him",
+          "query": "domestic goat close up"
+        },
+        {
+          "shot_index": 13,
+          "phrase": "the humans, or the goat",
+          "query": "goat face close up"
+        }
+      ],
+      "note": "Original retained; no punch-up applied, preserving every figure, named entity, shot count, and query exactly."
+    },
+    {
+      "slug": "man-of-steal-superman-burglary",
+      "status": "unchanged",
+      "title": "Superman Got Arrested in Florida",
+      "script": "Superman just got arrested? Deputies in Hillsborough County, Florida got a call about a boat burglary in Ruskin — someone broke into the cabin, walked off with a bag of power tools. Body camera rolls up. And there he is: cape, full costume, the whole look. His name's James Tidwell, 57, a convicted felon who apparently thought the disguise would help. It did not. Tidwell confessed on camera before deputies even finished reading him his rights. He's now charged with burglary of an unoccupied conveyance and petit theft — dressed like the Man of Steel, booked like everybody else. Even superheroes get read their rights in Ruskin. So did the cape make it better, or just easier to spot?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "Superman just got arrested?",
+          "query": "police lights night"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "a boat burglary in Ruskin",
+          "query": "boat dock marina"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "broke into the cabin",
+          "query": "boat cabin interior"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "a bag of power tools",
+          "query": "power tools bag"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Body camera rolls up",
+          "query": "police body camera"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "cape, full costume",
+          "query": "superhero cape costume"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "His name's James Tidwell, 57",
+          "query": "police booking photo"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "a convicted felon",
+          "query": "courthouse handcuffs"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "the disguise would help",
+          "query": "man in costume"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "confessed on camera",
+          "query": "police interview room"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "reading him his rights",
+          "query": "police officer talking"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "burglary of an unoccupied conveyance",
+          "query": "boat anchored water"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "the Man of Steel",
+          "query": "superman comic cape"
+        }
+      ],
+      "note": "Original retained; no punch-up applied, preserving every figure, named entity, shot count, and query exactly."
+    },
+    {
+      "slug": "bench-fire-warm-springs-oregon",
+      "status": "unchanged",
+      "title": "An Entire Reservation Just Got Evacuated",
+      "script": "An entire reservation, evacuated? The Bench Fire ripped through the Warm Springs Reservation in Central Oregon, and in less than a week it swallowed over 60,000 acres. Six homes are already gone. Five other buildings too. Officials issued Level 3 'Go Now' orders for the entire community — no packing, no deciding, just leaving. Nearly 600 firefighters are on it right now, and containment sits at just 3 percent. This isn't an isolated blaze either — Oregon has more than a million acres burning statewide, with thousands more under the same evacuation order. For a tribal community that's called Warm Springs home for generations, the fire didn't ask permission. So how do you rebuild a whole reservation from 3 percent contained?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "An entire reservation, evacuated?",
+          "query": "wildfire smoke evacuation"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "The Bench Fire ripped through",
+          "query": "wildfire flames forest"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "the Warm Springs Reservation in Central Oregon",
+          "query": "oregon forest landscape"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "swallowed over 60,000 acres",
+          "query": "burned forest aerial"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Six homes are already gone",
+          "query": "burned house rubble"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Five other buildings too",
+          "query": "destroyed building fire"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Level 3 'Go Now' orders",
+          "query": "evacuation road cars"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Nearly 600 firefighters",
+          "query": "firefighters battling wildfire"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "containment sits at just 3 percent",
+          "query": "wildfire smoke sky"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "more than a million acres burning statewide",
+          "query": "wildfire smoke horizon"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "thousands more under the same evacuation order",
+          "query": "evacuation shelter cots"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "called Warm Springs home for generations",
+          "query": "native american community"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "the fire didn't ask permission",
+          "query": "wildfire flames night"
+        }
+      ],
+      "note": "Original retained; no punch-up applied, preserving every figure, named entity, shot count, and query exactly."
+    },
+    {
+      "slug": "iran-missile-attack-jordan",
+      "status": "unchanged",
+      "title": "Iran Just Attacked a US Base in Jordan",
+      "script": "Iran just attacked Jordan? Iran's Revolutionary Guard launched ballistic missiles at Muwaffaq Salti Air Base, a U.S.-linked site inside Jordan, along with a CENTCOM command center. Jordan's air defenses intercepted every one of them before they hit. Nobody died. But the timing is the story — this happened hours after President Trump sat down with Israeli Prime Minister Netanyahu at the White House to talk specifically about Iran. Trump's response was blunt: 'We'll be hitting them hard.' CENTCOM says American forces are now at a high state of readiness across the region. Iran calls it retaliation. The U.S. calls it an attempted surprise attack that failed. Either way, a missile just crossed into an ally's airspace and everyone's waiting on Washington's answer. So what does Trump actually do next?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "Iran just attacked Jordan?",
+          "query": "missile launch night sky"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "Revolutionary Guard launched ballistic missiles",
+          "query": "ballistic missile launch"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "Muwaffaq Salti Air Base",
+          "query": "military air base"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "a CENTCOM command center",
+          "query": "military command center"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Jordan's air defenses intercepted",
+          "query": "air defense missile intercept"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Nobody died",
+          "query": "military base exterior"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "President Trump sat down with",
+          "query": "donald trump white house"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Israeli Prime Minister Netanyahu",
+          "query": "benjamin netanyahu portrait"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "at the White House",
+          "query": "white house exterior"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "We'll be hitting them hard",
+          "query": "press conference podium"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "high state of readiness",
+          "query": "soldiers military base"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "attempted surprise attack that failed",
+          "query": "military radar screen"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "Washington's answer",
+          "query": "capitol building washington"
+        }
+      ],
+      "note": "Original retained; no punch-up applied, preserving every figure, named entity, shot count, and query exactly."
+    },
+    {
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "status": "unchanged",
+      "title": "The FCC Just Banned Humanoid Robots",
+      "script": "The FCC banned robots? Not the ones already in your house — new imports. The FCC just added foreign-made humanoid robots, robot dogs, and power inverters to its official 'covered list,' which means they're now banned from entering the U.S. at all. The reasoning: these devices could be remotely controlled, used for surveillance, or hijacked in a cyberattack — by a foreign government. China makes about 85 percent of the world's humanoid robots, so this is aimed almost entirely at one country. And the timing isn't subtle — this drops weeks before Chinese leader Xi Jinping is set to visit Washington in September to meet with President Trump. Your Roomba's fine. It's the humanoid ones nobody was using anyway that just became a diplomatic flashpoint. So is this about security — or about Xi's visit?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "The FCC banned robots?",
+          "query": "robot humanoid standing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "new imports",
+          "query": "shipping cargo containers"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "foreign-made humanoid robots, robot dogs",
+          "query": "quadruped robot dog"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "covered list",
+          "query": "government document stamp"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "banned from entering the U.S.",
+          "query": "customs border checkpoint"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "remotely controlled",
+          "query": "remote control device"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "used for surveillance",
+          "query": "security camera surveillance"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "hijacked in a cyberattack",
+          "query": "computer code cyberattack"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "China makes about 85 percent",
+          "query": "factory robotics assembly line"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "Chinese leader Xi Jinping",
+          "query": "xi jinping portrait"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "visit Washington in September",
+          "query": "washington dc capitol"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "Your Roomba's fine",
+          "query": "robot vacuum cleaner home"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "a diplomatic flashpoint",
+          "query": "diplomats handshake meeting"
+        }
+      ],
+      "note": "Original retained; no punch-up applied, preserving every figure, named entity, shot count, and query exactly."
+    }
+  ],
+  "blockers": [
+    {
+      "step": "files.list -> connector-native file_id transport",
+      "detail": "files.list was not exposed in this session. Uploads used the runtime-hosted local file_uri handoff accepted by Google Drive instead; this deviation is reported explicitly."
+    },
+    {
+      "step": "image generation",
+      "request_id": "man-of-steal-superman-burglary-s5-51eb05f755da",
+      "detail": "The exact prompt_verbatim was rejected by the image safety system twice."
+    }
+  ],
+  "generated_at": "2026-07-30T11:45:03.634Z"
+}
