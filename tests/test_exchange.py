@@ -302,3 +302,56 @@ class TestSelfFillContracts(unittest.TestCase):
         self.assertIsNone(self_fill({"shots": []}, 0))
         self.assertIsNone(self_fill({"shots": [{"query": ""}]}, 0))
         self.assertIsNone(self_fill({}, 5))
+
+
+class TestPunchupBriefIsActionable(unittest.TestCase):
+    """The bundle must tell ChatGPT what TO DO, not only what not to do.
+
+    Regression: the first live run returned every script byte-identical.
+    ChatGPT's own report said it played safe because the brief was five
+    prohibitions and zero craft direction. A rewrite-nothing run is a failed
+    run, so the positive brief is now part of the contract.
+    """
+
+    def _instructions(self):
+        rep = media_judge.judge_package(PKG, None)
+        return xb.build_bundle("20260730", [PKG], [rep])["instructions"]
+
+    def test_mission_present_and_positive(self):
+        m = self._instructions().get("punchup_mission")
+        self.assertIsNotNone(m, "bundle lost its punch-up mission")
+        for key in ("the_ask", "house_voice", "do_this",
+                    "the_numbers_are_yours_to_use", "worked_example"):
+            self.assertIn(key, m)
+        self.assertGreaterEqual(len(m["do_this"]), 5)
+
+    def test_rewrite_is_framed_as_mandatory(self):
+        blob = json.dumps(self._instructions()).lower()
+        self.assertIn("unchanged is a failed run", blob)
+        self.assertIn("attitude is mandatory", blob)
+
+    def test_worked_example_survives_its_own_guard(self):
+        """If the example we teach would be REJECTED, we are teaching a
+        failure. This caught a real guard bug: dropping 'Officials' read as
+        removing a named entity, while the writing doctrine explicitly tells
+        punch-ups to cut 'officials confirmed' hedging."""
+        ex = self._instructions()["punchup_mission"]["worked_example"]
+        shots = [{"phrase": "a", "query": "q"}]
+        ok, problems = punchup_guard.check(
+            {"slug": "x", "script": ex["before"], "shots": shots},
+            {"slug": "x", "script": ex["after"], "shots": shots})
+        self.assertTrue(ok, f"our own worked example is rejected: {problems}")
+
+    def test_generic_role_nouns_are_not_entities(self):
+        for word in ("officials", "authorities", "police", "residents",
+                     "investigators", "witnesses", "tuesday"):
+            self.assertNotIn(word, punchup_guard.proper_nouns(
+                f"{word.capitalize()} said the thing happened."),
+                f"{word!r} treated as a named entity")
+
+    def test_real_entities_still_detected(self):
+        found = punchup_guard.proper_nouns(
+            "Officials in Marshall said NASA and SpaceX responded.")
+        for real in ("marshall", "nasa", "spacex"):
+            self.assertIn(real, found)
+        self.assertNotIn("officials", found)
