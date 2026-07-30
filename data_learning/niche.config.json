@@ -17415,8 +17415,8 @@
     {
       "slug": "population-growth-fell-54-since-1972",
       "title": "Population growth Fell 54% Since 1972",
-      "hook": "In 1972 it was 2. Now it's 0.91, and almost nobody noticed.",
-      "closing": "The numbers were public the whole time.",
+      "hook": "The planet's growth engine has been quietly stalling for fifty years \u2014 by 2025 it was running at less than half its 1972 speed.",
+      "closing": "Cities kept swelling and the land itself kept expanding, but the one number that decides our future \u2014 how many new people arrive each year \u2014 is the one quietly running out of road.",
       "hashtags": [
         "data",
         "facts",
@@ -17424,7 +17424,7 @@
         "shorts",
         "worldbank"
       ],
-      "question": "Which number surprised you most?",
+      "question": "At this rate, what year do you think world population growth hits zero?",
       "segments": [
         {
           "source": "offline",
@@ -17435,7 +17435,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 POPULATION GROWTH",
           "topic": "Population growth",
-          "say": "In 1972, population growth was 2 annual %. By 2025: 0.91 annual % \u2014 down to 46 percent of that."
+          "say": "Population growth was 2 percent a year in 1972. By 2025 it dropped to just 0.91 percent \u2014 less than half its old pace.",
+          "scene": {
+            "mechanic": "decelerating-growth-pulse",
+            "concept": "a crowd of people pulses larger with each era's growth rate, the pulse and a surrounding dial arc both shrinking until the pulse nearly stops by 2025",
+            "code": "img = subject_image('crowd of people from above aerial photo')\ncx = (RX0 + RX1) // 2\ncy = 640\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\npulse = 1.0 + 0.18 * clamp(cur / vmax) * (0.5 + 0.5 * math.sin(reveal * 40))\nsize = int(560 * pulse)\nif img is not None:\n    paste(img, cx - size / 2, cy - size / 2, size, size)\nr = 420\nang = 360 * clamp(cur / vmax)\ncol = WARN if idx == n - 1 else ACCENT\nd.arc([cx - r, cy - r, cx + r, cy + r], -90, -90 + ang, fill=rgba(col, 230), width=16)\ntext(f\"{cur:.2f}%/yr\", cx, RTOP + 70, size=60, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RBOT - 40, size=32, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -17446,7 +17451,12 @@
           "insight_type": "trend",
           "role": "2 \u00b7 URBAN POPULATION",
           "topic": "Urban population",
-          "say": "In 1972, urban population was 36.9 % of total population. By 2025: 57.8 % of total population \u2014 1.6 times higher."
+          "say": "Meanwhile cities kept swallowing more of the world: 36.9 percent urban in 1972, 57.8 percent by 2025.",
+          "scene": {
+            "mechanic": "skyline-fill-columns",
+            "concept": "a row of city-skyline columns fills in left to right, taller and more crowded with buildings as the urban share of the population climbs",
+            "code": "building = subject_image('city skyscraper skyline photo cutout')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 60\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\ncols = 8\ncolw = (RX1 - RX0) / cols\nfilled = clamp(cur / 100.0) * cols\nfor c in range(cols):\n    cstage = clamp(filled - c)\n    if cstage <= 0:\n        continue\n    h = (140 + 620 * cstage) * (0.55 + 0.45 * ((c * 37) % 5) / 4)\n    x = RX0 + c * colw\n    if building is not None:\n        paste(building, x + 4, base_y - h, colw - 8, h)\n    else:\n        d.rectangle([x + 4, base_y - h, x + colw - 4, base_y], fill=rgba(ACCENT, 200))\ntext(f\"{cur:.0f}% urban\", cx, RTOP + 70, size=56, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RBOT - 20, size=32, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -17457,15 +17467,20 @@
           "insight_type": "trend",
           "role": "3 \u00b7 LAND AREA",
           "topic": "Land area",
-          "say": "In 1972, land area was 104.2 million sq. km. By 2023: 129.8 million sq. km \u2014 1.2 times higher."
+          "say": "And the land itself grew too \u2014 from 104.2 million square kilometers in 1972 to 129.8 million by 2023, even as the number of new people arriving slows to a crawl.",
+          "scene": {
+            "mechanic": "landmass-tile-fill",
+            "concept": "a grid of aerial farmland tiles fills in one by one as measured land area grows, an expanding patchwork quilt of the planet's surface",
+            "code": "tile = subject_image('aerial satellite photo of green farmland patchwork')\ncols, rows = 8, 5\ntotal = cols * rows\ncellw = (RX1 - RX0) / cols\ncellh = 640 / rows\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nvmin = min(values)\nspan = max(vmax - vmin, 1.0)\nfilled = max(1, int(round(total * clamp((cur - vmin) / span))))\nfor i in range(total):\n    r, c = divmod(i, cols)\n    x = RX0 + c * cellw\n    y = RTOP + 100 + r * cellh\n    if i < filled and tile is not None:\n        paste(tile, x + 3, y + 3, cellw - 6, cellh - 6)\n    else:\n        d.rounded_rectangle([x + 3, y + 3, x + cellw - 3, y + cellh - 3], radius=8, fill=rgba(ACCENT, 40))\ncx = (RX0 + RX1) // 2\ntext(f\"{cur / 1e6:.1f}M km\u00b2\", cx, RTOP + 40, size=52, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RTOP + 100 + rows * cellh + 40, size=32, color=TEXT, center=True)\n"
+          }
         }
       ]
     },
     {
       "slug": "tuvalu-beats-everyone-on-domestic-general-government-health-",
       "title": "Tuvalu Beats Everyone On Domestic general government health expenditure \u2014 By 2.0x",
-      "hook": "You'd guess Marshall Islands leads on domestic general government health expenditure. It's Tuvalu \u2014 19.7 to 10.1.",
-      "closing": "The numbers were public the whole time.",
+      "hook": "You'd guess a big country leads on government health spending. It's tiny Tuvalu \u2014 beating Germany more than 2 to 1.",
+      "closing": "A Pacific island of 11,000 people out-spends Germany on public health, nuclear power hasn't grown in decades, and yet the world now burns 70 percent more electricity per person than it did in 1990 \u2014 three numbers, three totally different directions.",
       "hashtags": [
         "data",
         "facts",
@@ -17473,7 +17488,7 @@
         "shorts",
         "worldbank"
       ],
-      "question": "Which number surprised you most?",
+      "question": "Which of these three numbers didn't match your gut guess?",
       "segments": [
         {
           "source": "offline",
@@ -17484,7 +17499,57 @@
           "insight_type": "rank",
           "role": "1 \u00b7 DOMESTIC GENERAL G",
           "topic": "Domestic general government health expen",
-          "say": "Tuvalu leads at 19.7 % of GDP. Naoero is 15.2 % of GDP. Germany \u2014 9.29 % of GDP."
+          "say": "Tuvalu spends 19.7 percent of GDP on public health, Naoero 15.2, the Marshall Islands 10.1, Sweden 9.6, and Germany just 9.29.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "hospital building",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "hospital building",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "hospital building",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "hospital building",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "hospital building",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Government health spending, % of GDP"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -17495,7 +17560,12 @@
           "insight_type": "trend",
           "role": "2 \u00b7 ELECTRICITY PRODUC",
           "topic": "Electricity production from nuclear sour",
-          "say": "In 1990, electricity production from nuclear sources was 17 % of total. By 2024: 15.5 % of total \u2014 barely moved."
+          "say": "Nuclear power barely moved in fifty years: 17 percent of world electricity in 1990, dipping as low as 10.2 percent in 2017, then recovering to just 15.5 percent by 2024.",
+          "scene": {
+            "mechanic": "nuclear-glow-flatline",
+            "concept": "a cooling tower's glow pulses with each decade's nuclear share while a near-flat ticker line beneath it traces the barely-moving trajectory, dipping then recovering",
+            "code": "tower = subject_image('nuclear power plant cooling tower steam photo')\ncx = (RX0 + RX1) // 2\ncy = 560\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nsize = 420\nif tower is not None:\n    paste(tower, cx - size / 2, cy - size / 2, size, size)\nglow_r = 200 + clamp(cur / vmax) * 140\nfor k in range(4):\n    rr = glow_r * (1 - k * 0.18)\n    a = int(70 * (1 - k * 0.2))\n    col = HIGHLIGHT if idx == n - 1 else ACCENT\n    d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=rgba(col, a))\npts = []\nfor i in range(n):\n    t = i / max(1, n - 1)\n    x = lerp(RX0 + 50, RX1 - 50, t)\n    y = lerp(RBOT - 70, RBOT - 260, clamp(values[i] / vmax))\n    pts.append((x, y))\nseg_lit = clamp(reveal) * (n - 1)\nfull = int(seg_lit)\nfor i in range(1, full + 1):\n    d.line([pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1]], fill=rgba(WARN, 220), width=8)\ntext(f\"{cur:.1f}%\", cx, RTOP + 60, size=56, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RBOT - 30, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -17506,15 +17576,20 @@
           "insight_type": "trend",
           "role": "3 \u00b7 ELECTRIC POWER CON",
           "topic": "Electric power consumption",
-          "say": "In 1990, electric power consumption was 2,093 kWh per capita. By 2023: 3,558 kWh per capita \u2014 1.7 times higher."
+          "say": "And global electricity use per person kept climbing regardless \u2014 2,093 kilowatt-hours in 1990 to 3,558 by 2023, seventy percent more power per person.",
+          "scene": {
+            "mechanic": "appliance-grid-lighting",
+            "concept": "a grid of household appliance photos lights up cell by cell as per-capita electricity use climbs, dim and dark at the start, mostly glowing by the end",
+            "code": "appliance = subject_image('home electrical appliances lamp television refrigerator photo')\ncols, rows = 5, 3\ntotal = cols * rows\ncellw = (RX1 - RX0) / cols\ncellh = 460 / rows\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nglow_count = int(round(total * clamp(cur / vmax)))\nfor i in range(total):\n    r, c = divmod(i, cols)\n    x = RX0 + c * cellw\n    y = RTOP + 140 + r * cellh\n    if appliance is not None:\n        paste(appliance, x + 4, y + 4, cellw - 8, cellh - 8)\n    if i < glow_count:\n        d.rounded_rectangle([x + 4, y + 4, x + cellw - 4, y + cellh - 4], radius=10, outline=rgba(HIGHLIGHT, 230), width=5)\n    else:\n        d.rounded_rectangle([x + 4, y + 4, x + cellw - 4, y + cellh - 4], radius=10, fill=rgba((5, 8, 15), 130))\ncx = (RX0 + RX1) // 2\ntext(f\"{cur:.0f} kWh/person\", cx, RTOP + 70, size=48, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RTOP + 140 + rows * cellh + 30, size=30, color=TEXT, center=True)\n"
+          }
         }
       ]
     },
     {
       "slug": "f-gases-emissions-from-industrial-processes-is-8-9x-higher-t",
       "title": "F-gases emissions from Industrial Processes Is 8.9x Higher Than In 1972",
-      "hook": "In 1972 it was 169.8. Now it's 1,510, and almost nobody noticed.",
-      "closing": "The numbers were public the whole time.",
+      "hook": "There's a greenhouse gas quietly climbing faster than almost anything else on the planet \u2014 up 8.9 times since 1972 \u2014 and it isn't CO2.",
+      "closing": "Livestock multiplied sevenfold and the rail network barely grew since the last century, but the gas nobody talks about \u2014 F-gases \u2014 quietly outpaced them both, rising 8.9 times since 1972.",
       "hashtags": [
         "data",
         "facts",
@@ -17522,7 +17597,7 @@
         "shorts",
         "worldbank"
       ],
-      "question": "Which number surprised you most?",
+      "question": "If F-gases are rising this fast and nobody's watching, what does 2050 look like?",
       "segments": [
         {
           "source": "offline",
@@ -17533,7 +17608,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 LIVESTOCK PRODUCTI",
           "topic": "Livestock production index",
-          "say": "In 1972, livestock production index was 14.3 2014-2016 = 100. By 2020: 100 2014-2016 = 100 \u2014 7.0 times higher."
+          "say": "The world's livestock production index sat at just 14.3 in 1972. By 2020 it hit 100 \u2014 seven times higher, using 2014 to 2016 as the baseline of 100.",
+          "scene": {
+            "mechanic": "herd-multiplying-paddock",
+            "concept": "cattle photos multiply row by row across a paddock as the livestock production index climbs, a near-empty field filling into a packed herd",
+            "code": "cow = subject_image('cattle cow standing photo cutout')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 100\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\ncount = max(1, int(round(clamp(cur / vmax) * 24)) + 1)\ncols = 8\ncw = (RX1 - RX0) / cols\nch = 90\nfor k in range(count):\n    r, c = divmod(k, cols)\n    x = RX0 + c * cw\n    y = base_y - (r + 1) * ch\n    if cow is not None:\n        paste(cow, x + 4, y, cw - 8, ch - 6)\ntext(f\"INDEX {cur:.0f}\", cx, RTOP + 60, size=52, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, base_y + 30, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -17544,7 +17624,12 @@
           "insight_type": "trend",
           "role": "2 \u00b7 F-GASES EMISSIONS ",
           "topic": "F-gases emissions from Industrial Proces",
-          "say": "In 1972, f-gases emissions from industrial processes was 169.8 Mt CO2e. By 2024: 1,510 Mt CO2e \u2014 8.9 times higher."
+          "say": "F-gas emissions from industrial processes were just 169.8 million tons of CO2 equivalent in 1972. By 2024: 1,510 million tons \u2014 8.9 times higher.",
+          "scene": {
+            "mechanic": "smokestack-haze-thickening",
+            "concept": "a factory smokestack sits still while a haze cloud above it swells wider and denser year by year, tracking F-gas emissions climbing 8.9x",
+            "code": "factory = subject_image('industrial factory smokestack photo')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 120\nlit = clamp(reveal) * n\nidx = clamp(int(lit), 0, n - 1)\nfrac = clamp(lit - idx)\ncur = lerp(values[idx], values[min(idx + 1, n - 1)], frac)\nsize = 320\nif factory is not None:\n    paste(factory, cx - size / 2, base_y - size, size, size)\nhaze_r = 140 + 420 * clamp(cur / vmax)\nhaze_cy = base_y - size * 0.75\nfor k in range(6):\n    rr = haze_r * (1 - k * 0.12)\n    a = int(30 * (1 - k * 0.1))\n    col = WARN if idx == n - 1 else ACCENT\n    d.ellipse([cx - rr, haze_cy - rr * 0.5, cx + rr, haze_cy + rr * 0.5], fill=rgba(col, a))\ntext(f\"{cur:.0f} Mt CO2e\", cx, RTOP + 60, size=52, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RBOT - 30, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -17555,7 +17640,57 @@
           "insight_type": "rank",
           "role": "3 \u00b7 RAIL LINES",
           "topic": "Rail lines",
-          "say": "United States leads at 148,553 total route-km. China is 109,767 total route-km. Canada \u2014 48,150 total route-km."
+          "say": "The US leads with 148,553 route-kilometers of rail, China follows at 109,767, then Russia at 85,544, India at 68,103, and Canada at 48,150.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "train",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "train",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "train",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "train",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "train",
+                "data": {
+                  "value_from": "item:4"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Total rail route-kilometers"
+              }
+            ]
+          }
         }
       ]
     },
@@ -17725,6 +17860,138 @@
                 "subject": "gas_pump",
                 "data": {
                   "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "words_by": "brain"
+    },
+    {
+      "slug": "after-30-years-renewables-still-power-only-27-8-of-the-world",
+      "title": "After 30 Years, Renewables Still Power Only 27.8% Of The World",
+      "hook": "You'd think clean energy already took over the grid \u2014 the world still runs mostly on the old stuff.",
+      "closing": "Real progress, but the planet still runs mostly on the old grid.",
+      "hashtags": [
+        "renewableenergy",
+        "dataviz",
+        "worldbank",
+        "climatedata",
+        "shorts"
+      ],
+      "question": "Do you think the world hits 50% renewable before 2040?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "eg_elc_rnew_zs_trend",
+          "params": {
+            "file": "eg_elc_rnew_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 RENEWABLE ELECTRIC",
+          "topic": "Renewable electricity output",
+          "say": "World renewable electricity was 19.3% in 1990, fell to 18.3% by 2002, then climbed to 23% in 2015 and 27.8% by 2021.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "lightbulb",
+                "data": {
+                  "value_from": "star"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Started at just 19.3% in 1990"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "eg_use_pcap_kg_oe_trend",
+          "params": {
+            "file": "eg_use_pcap_kg_oe_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ENERGY USE",
+          "topic": "Energy use",
+          "say": "Global energy use per person was 1,626 kilograms of oil equivalent in 1990, dipped to 1,585 in 1997, then rose to 1,866 by 2023.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "oil_barrel",
+                "data": {
+                  "value_from": "star",
+                  "per_value": 400.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "1,866 kg of oil equivalent per person"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "ag_lnd_agri_k2_rank",
+          "params": {
+            "file": "ag_lnd_agri_k2_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 AGRICULTURAL LAND",
+          "topic": "Agricultural land",
+          "say": "China leads with 5,204,130 square kilometers of farmland, then the United States at 4,215,404, Australia at 3,632,437, Brazil at 2,367,588, and Russia at 2,157,010.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "farm_field",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "farm_field",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "farm_field",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "farm_field",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "farm_field",
+                "data": {
+                  "value_from": "item:4"
                 }
               }
             ]
