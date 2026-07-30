@@ -1,9 +1,21 @@
 # Fallbacks — what happens when a dependency goes dark
 
-Written 2026-07-30 in answer to a direct question: *"what happens top to
-bottom if my Claude subscription runs out?"* This traces every stage of the
-daily chain, names what it degrades to, and marks the places where the
-answer used to be "nothing ships."
+Written 2026-07-30. This traces every stage of the daily chain, names what
+it degrades to, and marks the places where the answer used to be "nothing
+ships."
+
+**The case these fallbacks are built for is the ordinary one:** the Claude
+weekly usage limit is hit, so the authoring Routine does not run for a day
+or three, several times a month. Not a lapsed subscription, not a
+catastrophe — a recurring, expected gap that must cost zero videos. Every
+gate below triggers on **"today's slate is short"**, never on "the
+subscription is gone", because the pipeline cannot tell those apart and
+should not try.
+
+That frequency is what makes the design choices below non-negotiable:
+because a fallback brain is a normal Tuesday rather than an incident, it has
+to be visible in the daily report (§7) and it must never re-serve work that
+already went out (§1).
 
 The headline: **media, render, and upload have no Claude dependency at all.**
 Everything at risk is upstream — authoring and judging.
@@ -23,17 +35,43 @@ order by the time the render runs:
 | 4 | `daily.yml` "Brain" step | `CLAUDE_CODE_OAUTH_TOKEN` | at render time, if the dir is still empty |
 | 5 | Groq via `shared/script_generator._call_llm` | `GROQ_API_KEY` | last resort; 6K TPM free tier, struggles with six scripts |
 
-Paths 2 and 3 are new. Before they existed, a dead subscription meant paths
-1 and 4 both produced nothing and the day fell straight to Groq — or to
-`run_trending_daily.most_recent_package_dir()`, which re-serves **yesterday's
-already-posted slate**. Both are bad outcomes that looked green in the
-Actions tab.
+Paths 2 and 3 are new. Before they existed, a missed Routine meant paths 1
+and 4 both produced nothing and the day fell straight to Groq — or to
+`run_trending_daily.most_recent_package_dir()`, which re-serves yesterday's
+slate. Both looked green in the Actions tab.
 
 `_call_llm` itself has never preferred Claude. Its order is
 **Groq → Gemini → Anthropic**, picked by whichever key is present
 (`shared/script_generator.py:276`). An expired Claude subscription does not
 touch it; a missing `ANTHROPIC_API_KEY` does not either, as long as
 `GROQ_API_KEY` or `GEMINI_API_KEY` is set.
+
+### The duplicate-upload trap (fixed)
+
+The stale-slate fallback was actively dangerous once gaps became routine.
+`most_recent_package_dir()` serves the previous day's directory when today's
+is empty, and the **only** upload guard was a 6-hour rolling window — built
+to stop a same-day double-fire, nothing more. On **day two of a gap** that
+fallback would serve day one's slate 24 hours later, sail straight past the
+6-hour window, and re-upload every video. A three-day gap compounded it.
+
+`load_prewritten_packages()` now drops any package whose title is already in
+`state/posted_log.json`, whichever directory it came from. If that empties a
+stale directory it returns nothing and the run falls through to Groq —
+**a weaker NEW script beats a duplicate upload**, and a duplicate is the one
+failure the posted logs exist to prevent. Using a stale directory at all now
+logs a loud warning naming what else came up short.
+
+### How much cover the bank really provides
+
+Be honest about the arithmetic: the Routine banks roughly one evergreen
+package a day while it is healthy, and a full slate costs six. So the
+reserve is **about a one-day buffer**, not a week's. Banking harder would be
+self-defeating — writing extra packages spends the very Claude budget that
+is running out.
+
+That is the point of the ordering: the bank absorbs a one-day miss cleanly,
+and **the ChatGPT takeover is what actually carries a multi-day gap.**
 
 ## 2. The exchange (Phase A → ChatGPT → Phase B)
 
@@ -156,11 +194,11 @@ The one rule the takeover inherits and does not relax: **the slate is
 2 + 2 + 2**. The brief asks for the mix, and the ingest warns loudly if what
 comes back is six of one format — the exact regression of 2026-07-30.
 
-### Does it survive with EVERYTHING Claude dead?
+### Does it survive with nothing on the Claude side running?
 
-The scenario worth being precise about: subscription lapsed, so no Routine
-fires in the morning, no in-CI brain, no `claude` CLI anywhere, reserve bank
-drained. Every link that has to fire, and what it actually runs on:
+The weekly limit takes out the morning Routine AND the in-CI brain at once —
+they are the same subscription — and by day two the reserve bank is drained
+too. Every link that still has to fire, and what it actually runs on:
 
 | Link | Fires because | Needs Claude? |
 |---|---|---|
@@ -193,10 +231,10 @@ merely intended:
    `state/trending_packages/<today>/` is a takeover day, and it writes the
    slate and creates the response file itself (`exchange/README.md`).
 
-The one genuine external dependency left is **GitHub's 60-day inactivity
-rule**: scheduled workflows are disabled in a repo with no commit activity
-for 60 days. The pipeline commits state daily from several channels, so this
-only bites if the whole repo goes silent for two months.
+(A far-edge case, noted only so it is not a surprise: GitHub disables
+scheduled workflows in a repo with **no commit activity for 60 days**. The
+pipeline commits state daily from several channels, so a normal weekly-limit
+gap never approaches it.)
 
 What the takeover deliberately does NOT cover:
 
@@ -207,7 +245,24 @@ What the takeover deliberately does NOT cover:
   (`proof_plan`, `capture`), not prose to write. There is nothing for a
   text model to take over.
 
-## 7. Summary — what actually breaks
+## 7. Telling a fallback day from a normal one
+
+A fallback brain is a recurring Tuesday, not an incident, so it cannot live
+only in an Actions log. Every rendered package carries who wrote it —
+`_authored_by: chatgpt-takeover` or `_reserve` — and `format_report()` turns
+that into a banner at the TOP of `daily_report.md`:
+
+> **ChatGPT wrote 6 of today's 6 packages** — the Claude Routine did not run
+> (weekly limit?).
+
+Top matters: the ntfy push sends only the first ~20 lines to your phone, so
+a banner below the per-post list would never reach you. The same file is
+posted to the tracking issue. A reserve draw adds its own line with the
+top-up command, since the bank needs refilling once Claude is back.
+
+A normal day prints no banner at all.
+
+## 8. Summary — what actually breaks
 
 | Secret / subscription gone | Consequence |
 |---|---|
