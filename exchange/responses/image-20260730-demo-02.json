@@ -1,0 +1,25 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "request_id": "image-20260730-demo-02",
+  "status": "fulfilled",
+  "drive": {
+    "file_id": "1kjaRhMY-wK8Wgxu1cOcs36J8EYdWfqn9",
+    "name": "image-20260730-demo-02.png",
+    "link": "https://drive.google.com/file/d/1kjaRhMY-wK8Wgxu1cOcs36J8EYdWfqn9/view?usp=drivesdk",
+    "download_url": "https://drive.google.com/uc?export=download&id=1kjaRhMY-wK8Wgxu1cOcs36J8EYdWfqn9",
+    "public": true
+  },
+  "image": {
+    "sha256": "d66337366c641b49e2a93672c8b620860b1f7a598b0afedc9537724e57b4f8e9",
+    "bytes": 604670,
+    "format": "png",
+    "width": 1254,
+    "height": 1254,
+    "prompt_used": "A single glowing orange funnel, centered, on a pure black background. Minimal line-art style with thick clean strokes. Nothing else in the frame.\n\nExclusions: no screenshots, no user interfaces, no browser windows, no code, no terminals, no text of any kind, no letters, no numbers, no watermarks, no logos, no GitHub imagery, no photographs of screens"
+  },
+  "verified": {
+    "read_back": true,
+    "note": "Read the raw file back from Drive and confirmed file ID, 604670-byte size, SHA-256, and inherited anyone-with-link reader permission."
+  },
+  "generated_at": "2026-07-30T00:22:12Z"
+}
