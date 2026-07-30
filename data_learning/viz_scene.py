@@ -881,6 +881,19 @@ def _fit(img, w: int, h: int):
     return hit
 
 
+def _push(canvas, r: float):
+    """A slow camera push-in over the build (1.00 -> 1.04), cropped back to
+    frame. Cheap, subtle, and it means a fully-revealed scene still moves."""
+    z = 1.0 + 0.04 * max(0.0, min(1.0, r))
+    if z <= 1.0005:
+        return canvas
+    w, h = canvas.size
+    zw, zh = int(w * z), int(h * z)
+    big = canvas.resize((zw, zh))
+    x, y = (zw - w) // 2, (zh - h) // 2
+    return big.crop((x, y, x + w, y + h))
+
+
 def _load_cutout(subject, slug, tag):
     """A transparent graphic for `subject`: the AI cutout when it answers, else
     a deterministic Twemoji icon.
@@ -1037,6 +1050,14 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                                      photo=photos.get(i))
                 if f == frames and an:
                     anchors.append(an)
+        # CAMERA PUSH. Element reveals finish partway through a beat and every
+        # frame after that was identical — per-element "breathing" only covered
+        # ranking rows, so a scene built from fill_object/stack/timeline still
+        # froze (segment_0 measured 0.5 fps while the other two hit 24.0). A
+        # slow 4% push across the build is what a real edit does anyway, and it
+        # guarantees no two frames of the beat are the same whatever the scene
+        # is made of.
+        canvas = _push(canvas, r)
         # compress_level=1: these are intermediate build frames that ffmpeg
         # reads once and throws away, so the default level-6 deflate is pure
         # cost. This is most of what made a full-length scene beat
@@ -1267,6 +1288,14 @@ def render_procedural(insight, out_dir: Path, slug: str, frames: int = 16):
             from PIL import ImageDraw
             draw_caption(ImageDraw.Draw(canvas), (RX0, 40, RX1, 40),
                          insight.topic, 1.0, size=50)
+        # CAMERA PUSH. Element reveals finish partway through a beat and every
+        # frame after that was identical — per-element "breathing" only covered
+        # ranking rows, so a scene built from fill_object/stack/timeline still
+        # froze (segment_0 measured 0.5 fps while the other two hit 24.0). A
+        # slow 4% push across the build is what a real edit does anyway, and it
+        # guarantees no two frames of the beat are the same whatever the scene
+        # is made of.
+        canvas = _push(canvas, r)
         # compress_level=1: these are intermediate build frames that ffmpeg
         # reads once and throws away, so the default level-6 deflate is pure
         # cost. This is most of what made a full-length scene beat
