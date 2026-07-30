@@ -58,6 +58,27 @@ _BANGER_CACHE: dict = {}
 _JUDGES: dict = {}
 
 
+def _any_judgment() -> bool:
+    """Did ANY content judge actually evaluate this slot's clip?
+
+    Reads the verdicts recorded for the current slot. True when at least
+    one of the three content judges produced a real opinion:
+      - the banger ranker scored it (not the blind can't-score default)
+      - the content gate returned a transcript-aware score
+      - the vision critic looked at the frames
+    Mechanical checks (preflight, render_qa) deliberately do NOT count:
+    they prove the file isn't broken, never that the clip is worth posting.
+    """
+    j = _JUDGES
+    if not j.get("banger", {}).get("blind", True):
+        return True
+    if j.get("content", {}).get("verdict") in ("pass", "reject"):
+        return True
+    if j.get("vision", {}).get("verdict") in ("pass", "reject"):
+        return True
+    return False
+
+
 def _story_verdict(label: str, outcome: str, why: str) -> None:
     """One cluster's fate at the story director's hands. Appends (a slot
     considers several clusters), so the record shows the whole deliberation
@@ -1017,6 +1038,11 @@ def process(pkg: dict, pkg_path: Path | None, *,
             from third_capture import clip_edit
             spec = pkg["capture"]
             if spec.get("clip_url"):
+                # An explicitly-authored package: a human (or the Routine)
+                # picked this exact clip, so it never meets the ranker. That
+                # IS a judgment — record it, or the unjudged gate below
+                # would skip a deliberately-chosen clip.
+                _judge("banger", source="operator-specified", blind=False)
                 info = clip_edit.download(spec["clip_url"], work)
                 platform = spec.get("platform", "twitch")
                 streamer = spec["credit"]
@@ -1445,6 +1471,29 @@ def process(pkg: dict, pkg_path: Path | None, *,
             composer.compose(pkg_path, ledger_path, out_mp4)
         result["video_path"] = str(out_mp4.relative_to(REPO))
         result["ledger"] = str(ledger_path.relative_to(REPO))
+        # UNJUDGED GATE (2026-07-30): every CONTENT quality gate in this
+        # pipeline fails OPEN when its judge is unreachable, and on that
+        # date all three were down at once, so three clips shipped that
+        # nothing had judged:
+        #   1. selection floor — the can't-score default is 0.5 and
+        #      min_banger is 0.5, so `banger >= min_banger` is True by
+        #      exactly zero margin: a blind run always clears the floor.
+        #   2. content gate — `if cb is not None and cb < floor` skips
+        #      entirely when the brain returns nothing.
+        #   3. vision critic — `bool(vision and not vision["publish"])` is
+        #      False when vision is None.
+        # Each fail-open is defensible alone (never lose a good clip to a
+        # flaky brain). Together they mean a clip can reach the channel
+        # with ZERO content judgment behind it. This is the backstop: if
+        # not one judge could evaluate it, don't publish it. A single
+        # working judge is enough to ship — this only fires when the slate
+        # would otherwise be chosen on raw view count alone.
+        # Skip (not error): retrying would just fetch another unjudged clip.
+        if led.get("kind") == "twitch_clip" and not _any_judgment():
+            raise _SkipSlot(
+                "unjudged: no content judge could evaluate this clip "
+                "(ranker blind, content gate and vision both unavailable) "
+                "— refusing to publish on view count alone")
         # Final safety choke: no matter which path produced it (authored,
         # raw fallback, sim/cli template), the public title is scrubbed one
         # last time before it can reach an uploader.
