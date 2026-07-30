@@ -75,6 +75,23 @@ download and rejects a mismatch — that is how substitution and truncation get
 caught (an earlier attempt delivered a corrupt 2-colour placeholder whose
 claimed hash did not match its bytes).
 
+## Run log (what has actually been proven)
+
+| Run | Transport (files.list -> file_uri -> Drive) | Image content | Sharing |
+|---|---|---|---|
+| `image-20260730-demo-01` | **WORKED** — Drive id `1Va8Rfd5…`, real 1,393,674-byte PNG, readback confirmed | FAILED — drew GitHub screenshots instead of the prompt, 1536x1024 not 1024x1024 | FAILED — folder `shared:false`, unreachable (verified: Drive returns an HTML permission page, not bytes) |
+
+The transport is the hard part and it is solved. Treat prompt-following and
+folder permissions as the remaining work, not the bridge.
+
+**Prompt-following note for any task reading this:** you reach these
+instructions by reading a code repository, which biases the image tool toward
+screenshots, UIs, terminals, and code. Run 1 failed exactly that way. Use the
+request's `prompt_verbatim` word for word and its `negative` list as
+exclusions; the repo is where the instruction lives, never the subject. Report
+`image.prompt_used` so a prompt miss is distinguishable from a transport
+failure.
+
 ## Public sharing
 
 The Drive connector may not expose "Anyone with the link". Workaround:
