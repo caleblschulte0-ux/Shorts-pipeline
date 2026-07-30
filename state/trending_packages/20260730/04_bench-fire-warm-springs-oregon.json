@@ -1,0 +1,125 @@
+{
+  "version": 8,
+  "slug": "bench-fire-warm-springs-oregon",
+  "title": "An Entire Reservation Just Got Evacuated",
+  "hashtags": [
+    "benchfire",
+    "warmsprings",
+    "oregonwildfire",
+    "oregon",
+    "wildfire",
+    "evacuation",
+    "centraloregon",
+    "nativeamerican",
+    "wildfirenews",
+    "disasternews",
+    "level3evacuation",
+    "pacificnorthwest",
+    "breakingnews",
+    "climate"
+  ],
+  "script": "An entire reservation, evacuated? The Bench Fire ripped through the Warm Springs Reservation in Central Oregon, and in less than a week it swallowed over 60,000 acres. Six homes are already gone. Five other buildings too. Officials issued Level 3 'Go Now' orders for the entire community — no packing, no deciding, just leaving. Nearly 600 firefighters are on it right now, and containment sits at just 3 percent. This isn't an isolated blaze either — Oregon has more than a million acres burning statewide, with thousands more under the same evacuation order. For a tribal community that's called Warm Springs home for generations, the fire didn't ask permission. So how do you rebuild a whole reservation from 3 percent contained?",
+  "shots": [
+    {
+      "phrase": "An entire reservation, evacuated?",
+      "query": "wildfire smoke evacuation",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "The Bench Fire ripped through",
+      "query": "wildfire flames forest"
+    },
+    {
+      "phrase": "the Warm Springs Reservation in Central Oregon",
+      "query": "oregon forest landscape",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "swallowed over 60,000 acres",
+      "query": "burned forest aerial"
+    },
+    {
+      "phrase": "Six homes are already gone",
+      "query": "burned house rubble",
+      "evidence_urls": [
+        "https://www.kptv.com/2026/07/30/devastating-warm-springs-tribal-members-displaced-bench-fire-burns-6-homes/"
+      ]
+    },
+    {
+      "phrase": "Five other buildings too",
+      "query": "destroyed building fire"
+    },
+    {
+      "phrase": "Level 3 'Go Now' orders",
+      "query": "evacuation road cars"
+    },
+    {
+      "phrase": "Nearly 600 firefighters",
+      "query": "firefighters battling wildfire"
+    },
+    {
+      "phrase": "containment sits at just 3 percent",
+      "query": "wildfire smoke sky"
+    },
+    {
+      "phrase": "more than a million acres burning statewide",
+      "query": "wildfire smoke horizon"
+    },
+    {
+      "phrase": "thousands more under the same evacuation order",
+      "query": "evacuation shelter cots"
+    },
+    {
+      "phrase": "called Warm Springs home for generations",
+      "query": "native american community"
+    },
+    {
+      "phrase": "the fire didn't ask permission",
+      "query": "wildfire flames night"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "entire reservation, evacuated",
+      "text": "ENTIRE RESERVATION EVACUATED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "60,000 acres",
+      "text": "60,000+ ACRES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Six homes are already gone",
+      "text": "6 HOMES GONE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Level 3 'Go Now'",
+      "text": "GO NOW ORDER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Nearly 600 firefighters",
+      "text": "600 FIREFIGHTERS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "just 3 percent",
+      "text": "3% CONTAINED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a million acres burning statewide",
+      "text": "1M+ ACRES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "home for generations",
+      "text": "GENERATIONS OF HOME",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

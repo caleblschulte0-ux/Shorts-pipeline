@@ -1,0 +1,121 @@
+{
+  "version": 8,
+  "slug": "iran-missile-attack-jordan",
+  "title": "Iran Just Attacked a US Base in Jordan",
+  "hashtags": [
+    "iran",
+    "jordan",
+    "centcom",
+    "trump",
+    "netanyahu",
+    "middleeast",
+    "breakingnews",
+    "worldnews",
+    "military",
+    "missileattack",
+    "geopolitics",
+    "israel",
+    "irgc",
+    "worldaffairs"
+  ],
+  "script": "Iran just attacked Jordan? Iran's Revolutionary Guard launched ballistic missiles at Muwaffaq Salti Air Base, a U.S.-linked site inside Jordan, along with a CENTCOM command center. Jordan's air defenses intercepted every one of them before they hit. Nobody died. But the timing is the story — this happened hours after President Trump sat down with Israeli Prime Minister Netanyahu at the White House to talk specifically about Iran. Trump's response was blunt: 'We'll be hitting them hard.' CENTCOM says American forces are now at a high state of readiness across the region. Iran calls it retaliation. The U.S. calls it an attempted surprise attack that failed. Either way, a missile just crossed into an ally's airspace and everyone's waiting on Washington's answer. So what does Trump actually do next?",
+  "shots": [
+    {
+      "phrase": "Iran just attacked Jordan?",
+      "query": "missile launch night sky",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "Revolutionary Guard launched ballistic missiles",
+      "query": "ballistic missile launch"
+    },
+    {
+      "phrase": "Muwaffaq Salti Air Base",
+      "query": "military air base"
+    },
+    {
+      "phrase": "a CENTCOM command center",
+      "query": "military command center"
+    },
+    {
+      "phrase": "Jordan's air defenses intercepted",
+      "query": "air defense missile intercept"
+    },
+    {
+      "phrase": "Nobody died",
+      "query": "military base exterior"
+    },
+    {
+      "phrase": "President Trump sat down with",
+      "query": "donald trump white house",
+      "mascot_pose": "point",
+      "evidence_urls": [
+        "https://www.aljazeera.com/news/2026/7/29/iran-attacks-us-bases-in-middle-east-as-trump-meets-netanyahu"
+      ]
+    },
+    {
+      "phrase": "Israeli Prime Minister Netanyahu",
+      "query": "benjamin netanyahu portrait"
+    },
+    {
+      "phrase": "at the White House",
+      "query": "white house exterior"
+    },
+    {
+      "phrase": "We'll be hitting them hard",
+      "query": "press conference podium"
+    },
+    {
+      "phrase": "high state of readiness",
+      "query": "soldiers military base"
+    },
+    {
+      "phrase": "attempted surprise attack that failed",
+      "query": "military radar screen",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "Washington's answer",
+      "query": "capitol building washington"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Iran just attacked Jordan",
+      "text": "IRAN ATTACKS JORDAN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "ballistic missiles",
+      "text": "BALLISTIC MISSILES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "intercepted every one of them",
+      "text": "ALL INTERCEPTED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Nobody died",
+      "text": "NO CASUALTIES",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "high state of readiness",
+      "text": "HIGH READINESS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "attempted surprise attack",
+      "text": "SURPRISE ATTACK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Washington's answer",
+      "text": "WHAT'S NEXT?",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

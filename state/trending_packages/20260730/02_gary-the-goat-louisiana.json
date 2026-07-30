@@ -1,0 +1,125 @@
+{
+  "version": 8,
+  "slug": "gary-the-goat-louisiana",
+  "title": "This Goat Cannot Be Contained",
+  "hashtags": [
+    "garythegoat",
+    "louisiana",
+    "deridder",
+    "goatescape",
+    "escapeartist",
+    "rosepine",
+    "animalnews",
+    "funnyanimals",
+    "us171",
+    "goatlife",
+    "louisianalife",
+    "viralanimal",
+    "weirdnews",
+    "oddnews"
+  ],
+  "script": "One goat, zero enclosures? This is Gary. A nonprofit in Rosepine, Louisiana bought him so kids could practice goat roping. Gary had other plans. First he broke out of the horse pen. Then a stall. Then a kennel — reinforced, extra latches, didn't matter. Every fix, Gary found the gap. So he did the only logical thing: he moved to the shoulder of U.S. Highway 171 and just... stayed. Drivers started spotting him daily. Now he's basically DeRidder's unofficial mascot, a goat nobody owns anymore because nobody can catch him. The foundation still checks on him. He still won't come home. So who's actually in charge here — the humans, or the goat?",
+  "shots": [
+    {
+      "phrase": "One goat, zero enclosures?",
+      "query": "goat pen fence",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "A nonprofit in Rosepine, Louisiana bought him",
+      "query": "rural louisiana ranch"
+    },
+    {
+      "phrase": "kids could practice goat roping",
+      "query": "kids rodeo roping"
+    },
+    {
+      "phrase": "Gary had other plans",
+      "query": "goat standing alone"
+    },
+    {
+      "phrase": "broke out of the horse pen",
+      "query": "horse pen fence"
+    },
+    {
+      "phrase": "Then a stall",
+      "query": "barn stall interior"
+    },
+    {
+      "phrase": "Then a kennel",
+      "query": "dog kennel enclosure"
+    },
+    {
+      "phrase": "reinforced, extra latches",
+      "query": "metal latch lock"
+    },
+    {
+      "phrase": "Gary found the gap",
+      "query": "goat escaping fence",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "the shoulder of U.S. Highway 171",
+      "query": "highway road shoulder",
+      "evidence_urls": [
+        "https://www.kplctv.com/2026/07/28/wheres-gary-escape-artist-goat-who-united-southwest-louisiana/"
+      ]
+    },
+    {
+      "phrase": "Drivers started spotting him daily",
+      "query": "car dashboard highway view"
+    },
+    {
+      "phrase": "DeRidder's unofficial mascot",
+      "query": "small town main street"
+    },
+    {
+      "phrase": "nobody can catch him",
+      "query": "domestic goat close up"
+    },
+    {
+      "phrase": "the humans, or the goat",
+      "query": "goat face close up",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Gary had other plans",
+      "text": "OTHER PLANS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "broke out of the horse pen",
+      "text": "PEN #1: FAILED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Then a stall",
+      "text": "STALL #2: FAILED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Then a kennel",
+      "text": "KENNEL #3: FAILED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Gary found the gap",
+      "text": "GARY WINS",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "unofficial mascot",
+      "text": "TOWN MASCOT",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "nobody can catch him",
+      "text": "UNCATCHABLE",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,126 @@
+{
+  "version": 8,
+  "slug": "fcc-bans-chinese-humanoid-robots",
+  "title": "The FCC Just Banned Humanoid Robots",
+  "hashtags": [
+    "fcc",
+    "china",
+    "humanoidrobots",
+    "xijinping",
+    "trump",
+    "nationalsecurity",
+    "robotics",
+    "techpolicy",
+    "technews",
+    "geopolitics",
+    "robotdogs",
+    "cyberattack",
+    "chinausrelations",
+    "technology"
+  ],
+  "script": "The FCC banned robots? Not the ones already in your house — new imports. The FCC just added foreign-made humanoid robots, robot dogs, and power inverters to its official 'covered list,' which means they're now banned from entering the U.S. at all. The reasoning: these devices could be remotely controlled, used for surveillance, or hijacked in a cyberattack — by a foreign government. China makes about 85 percent of the world's humanoid robots, so this is aimed almost entirely at one country. And the timing isn't subtle — this drops weeks before Chinese leader Xi Jinping is set to visit Washington in September to meet with President Trump. Your Roomba's fine. It's the humanoid ones nobody was using anyway that just became a diplomatic flashpoint. So is this about security — or about Xi's visit?",
+  "shots": [
+    {
+      "phrase": "The FCC banned robots?",
+      "query": "robot humanoid standing",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "new imports",
+      "query": "shipping cargo containers"
+    },
+    {
+      "phrase": "foreign-made humanoid robots, robot dogs",
+      "query": "quadruped robot dog",
+      "evidence_urls": [
+        "https://techcrunch.com/2026/07/29/us-government-bans-new-foreign-made-humanoids-robot-dogs-and-solar-inverters-citing-risks-to-national-security/"
+      ]
+    },
+    {
+      "phrase": "covered list",
+      "query": "government document stamp"
+    },
+    {
+      "phrase": "banned from entering the U.S.",
+      "query": "customs border checkpoint"
+    },
+    {
+      "phrase": "remotely controlled",
+      "query": "remote control device"
+    },
+    {
+      "phrase": "used for surveillance",
+      "query": "security camera surveillance"
+    },
+    {
+      "phrase": "hijacked in a cyberattack",
+      "query": "computer code cyberattack"
+    },
+    {
+      "phrase": "China makes about 85 percent",
+      "query": "factory robotics assembly line"
+    },
+    {
+      "phrase": "Chinese leader Xi Jinping",
+      "query": "xi jinping portrait",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "visit Washington in September",
+      "query": "washington dc capitol"
+    },
+    {
+      "phrase": "Your Roomba's fine",
+      "query": "robot vacuum cleaner home",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "a diplomatic flashpoint",
+      "query": "diplomats handshake meeting"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "The FCC banned robots",
+      "text": "ROBOTS BANNED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "covered list",
+      "text": "COVERED LIST",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "remotely controlled",
+      "text": "REMOTE CONTROLLED?",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "used for surveillance",
+      "text": "SURVEILLANCE RISK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "85 percent",
+      "text": "85% MARKET SHARE",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "Xi Jinping",
+      "text": "XI JINPING",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "September",
+      "text": "SEPTEMBER VISIT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Your Roomba's fine",
+      "text": "ROOMBA: SAFE",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
