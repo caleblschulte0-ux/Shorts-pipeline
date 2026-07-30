@@ -720,6 +720,56 @@ def main() -> int:  # noqa: C901
     check("the attach path cannot raise either",
           "default=str" in _rt_src and "[judges] not recorded" in _rt_src)
 
+    # ---- UNJUDGED GATE -------------------------------------------------
+    # 2026-07-30: three clips shipped that NOTHING had judged. All three
+    # content gates fail open independently — and the selection floor
+    # fails open by exactly zero margin, because the can't-score default
+    # (0.5) equals min_banger (0.5), so `banger >= min_banger` is True on
+    # a fully blind run. The gate refuses to publish when not one content
+    # judge could evaluate the clip.
+    _aj, _J = _ns["_any_judgment"], _ns["_JUDGES"]
+    _jd = _ns["_judge"]
+
+    def _scen(*calls):
+        _J.clear()
+        for c in calls:
+            c()
+        return _aj()
+
+    check("blind ranker + content and vision down -> UNJUDGED (07-30 case)",
+          not _scen(lambda: _jd("banger", score=0.5, blind=True),
+                    lambda: _jd("content", verdict="unavailable"),
+                    lambda: _jd("vision", verdict="unavailable")))
+    check("a real banger score is enough to ship",
+          _scen(lambda: _jd("banger", score=0.62, why="r", blind=False)))
+    check("content gate alone is enough to ship",
+          _scen(lambda: _jd("banger", score=0.5, blind=True),
+                lambda: _jd("content", score=0.81, verdict="pass")))
+    check("vision alone is enough to ship",
+          _scen(lambda: _jd("banger", score=0.5, blind=True),
+                lambda: _jd("vision", verdict="pass", confidence=0.9)))
+    check("a content-gate REJECT still counts as a judgment",
+          _scen(lambda: _jd("content", score=0.2, verdict="reject")))
+    check("mechanical checks alone do NOT count as judgment",
+          not _scen(lambda: _jd("render_qa", verdict="pass")))
+    check("no verdicts at all -> unjudged", not _scen())
+    check("operator-specified clips are never treated as unjudged",
+          _scen(lambda: _jd("banger", source="operator-specified",
+                            blind=False))
+          and "operator-specified" in _rt_src)
+    check("the gate is wired into the publish path",
+          "_any_judgment()" in _rt_src and "unjudged: no content judge"
+          in _rt_src)
+    # the CALL SITE (not the def) must raise _SkipSlot: a deliberate skip
+    # doesn't retry, and retrying would just fetch another unjudged clip
+    _call = _rt_src.index("not _any_judgment()")
+    check("unjudged is a SKIP, not an error (retry gets another blind clip)",
+          "_SkipSlot" in _rt_src[_call:_call + 200]
+          and "RuntimeError" not in _rt_src[_call:_call + 200])
+    check("stories are exempt (the director is their judge)",
+          'led.get("kind") == "twitch_clip" and not _any_judgment()'
+          in _rt_src)
+
     # ---- engines/render_qa: shared mechanical render-QA ----------------
     # First ANALYSIS engine in the shared layer. Logic tier only here (no
     # ffmpeg): parsers, registry wiring, verdict semantics, consumers.
