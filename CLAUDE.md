@@ -180,10 +180,14 @@ things worth knowing without opening it:
   bundle, ChatGPT writes the day's packages, Phase B validates and promotes
   them. Nothing ChatGPT writes is trusted — promotion runs the same
   structural gate the bank and the renderers use, and a failure is
-  quarantined into `authored_report.json`, never rendered. The takeover
-  covers TRENDING only; explainer publishing is blocked by the showrunner
-  (needs `GEMINI_API_KEY`), and third-channel packages describe clips to
-  capture, not prose to write.
+  quarantined into `authored_report.json`, never rendered. It runs the SAME
+  DAY (Phase A 4:45am Central → ChatGPT 6:00am → render → the normal
+  publish slots), so a Claude-out morning costs zero posts.
+  The takeover covers TRENDING because that was the only channel whose
+  floor was "nothing" or "a duplicate upload". Explainer, curiosity and
+  third all self-heal to Groq/deterministic authoring — they keep posting,
+  just worse. Extending the takeover to them is a quality project needing
+  a Phase A/B split per channel; see `docs/FALLBACKS.md` §6.
 - **The reserve bank** (`shared/package_buffer.py`) covers a dead brain:
   banked EVERGREEN packages drawn automatically when a day comes up short.
   `fill` is a no-op on a normal day, so it runs unconditionally in both

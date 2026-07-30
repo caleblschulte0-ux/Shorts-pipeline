@@ -236,14 +236,37 @@ scheduled workflows in a repo with **no commit activity for 60 days**. The
 pipeline commits state daily from several channels, so a normal weekly-limit
 gap never approaches it.)
 
-What the takeover deliberately does NOT cover:
+### Why only trending needs it
 
-- **Explainer / curiosity.** ChatGPT could write the words, but publishing
-  is gated by the showrunner (§4), which needs Claude or Gemini. Authoring
-  is not the blocker there — the judge is. Set `GEMINI_API_KEY`.
-- **Third channel.** Its packages describe Twitch clips to capture
-  (`proof_plan`, `capture`), not prose to write. There is nothing for a
-  text model to take over.
+Checked channel by channel, 2026-07-30. **Trending was the only channel
+with a hard same-day hole** — the others already self-heal, they just get
+worse:
+
+| Channel | Authoring on a Claude-out day | Still posts? |
+|---|---|---|
+| **Trending** | Routine dead, `daily.yml` brain dead → **was** Groq or a stale slate | only because of the reserve + takeover |
+| **Explainer** | `story_forge._claude_words()` returns None → `_call_llm` (Groq→Gemini) → deterministic words | yes, if `GEMINI_API_KEY` is set for the showrunner |
+| **Curiosity** | same `data_learning` stack | yes |
+| **Third** | `author._call_claude()` → Groq → `fallback_title()` (safe raw clip title) | yes |
+
+So the takeover covers trending because trending is where the floor was
+"nothing" or "a duplicate". Everywhere else the floor is "a worse video".
+
+That floor is genuinely worse, and the code says so in its own comments:
+the third channel's Groq fallback once produced the title *"Silky Calls Him
+Gay"* (`third_capture/author.py:133`), and story_forge's deterministic path
+once shipped *"Congo, Dem. Rep. Beats Everyone On Male primary school age
+children out-of-school"* (`scripts/story_forge.py:378`). Both have guards
+now. Extending the ChatGPT takeover to those channels is therefore a
+QUALITY project, not an availability one — and it is not a small one:
+their workflows author inline (third authors titles for clips it captures
+during the same run), so there is no bundle for ChatGPT to answer ahead of
+time. Covering them means splitting each into a Phase A / Phase B exchange
+the way trending is split. Not done; recorded here as the next honest step.
+
+**Explainer's one-line fix is not the takeover — it is `GEMINI_API_KEY`.**
+Its authoring already degrades on its own; only the showrunner (§4) can
+stop it publishing.
 
 ## 7. Telling a fallback day from a normal one
 
