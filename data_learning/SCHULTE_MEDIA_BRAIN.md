@@ -1,5 +1,8 @@
 # SCHULTE MEDIA — brain playbook
 
+> **Daily chain changed 2026-07-30:** authoring no longer renders immediately. Packages -> auto-merge -> Exchange Phase A (media + judge) -> ChatGPT (images + punch-up) -> Phase B -> render. Do NOT dispatch `daily.yml` after authoring; it is the LAST step. A ChatGPT no-show is covered by self-fill + a 06:15 backstop. See `docs/EXCHANGE_PIPELINE.md`.
+
+
 > **Repo layout (reorg 2026-07-30):** shared capabilities moved into `funnel/` (media finding/generation) and `shared/` (cross-channel utils); `engines/` unchanged. Old root imports still work via shims, but canonical paths are `funnel.X` / `shared.X` — see `docs/PIPELINE_LAYOUT.md`.
 
 This file is the channel. The scout, sandbox, validators, render tools, uploader

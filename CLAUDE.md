@@ -71,8 +71,14 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
   backstop cron). A weaker shot beats no video.
 - `shared/punchup_guard.py` is not advisory: a rewrite that changes any
   number/date/entity or the beat structure is rejected and the original ships.
-- Rollout: Phase A is dispatch-only (no cron), Phase B does not auto-render.
-  Proving on `trending` first.
+- **The chain is LIVE and automatic** (2026-07-30): Routine authors packages ->
+  auto-merge -> **Phase A** -> ChatGPT -> DONE -> **Phase B** -> daily.yml
+  renders. `daily.yml` NO LONGER fires on auto-merge or on a
+  `state/trending_packages/**` push — those would render with pre-ChatGPT media
+  and defeat the exchange. Phase A took that slot; daily.yml now fires only on
+  Phase B completing (or a manual `.github/triggers/daily` touch).
+- Never dispatch `daily.yml` as the step after authoring — it is the LAST step.
+- Third/explainer chain off "Daily Shorts", so they now run ~1.5h later too.
 
 ## Third channel: story arc system (docs/STORY_ARC_SYSTEM.md)
 

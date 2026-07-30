@@ -23,9 +23,17 @@ on:
         required: false
         type: boolean
         default: false
-  # 04:30 UTC — ahead of ChatGPT's 05:00 task. Phase A only FINDS and JUDGES
-  # media and writes the ask; it never renders, so a bad morning here costs
-  # nothing but a missing bundle (Phase B's backstop still ships the day).
+  # PRIMARY TRIGGER: the Claude Routine authors the day's packages and opens a
+  # PR; auto-merge lands it; this runs the moment that completes. It took this
+  # slot over FROM daily.yml, which used to render here — rendering at package
+  # -landing time would use pre-ChatGPT media and defeat the whole exchange.
+  workflow_run:
+    workflows: ["Auto-merge claude PRs"]
+    types: [completed]
+    branches: [main]
+  # BACKSTOP: 04:30 UTC, ahead of ChatGPT's 05:00, in case the Routine authored
+  # outside the PR path. Phase A never renders, so a duplicate run only
+  # rewrites the same bundle — harmless.
   schedule:
     - cron: '30 4 * * *'
 

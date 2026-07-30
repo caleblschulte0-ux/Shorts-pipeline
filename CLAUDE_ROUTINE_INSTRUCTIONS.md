@@ -2,7 +2,40 @@
 
 You're running the daily script-writing routine for the Shorts-pipeline channel
 (faceless YouTube Shorts, 45-second doomscroll explainers). Your job: write the
-day's 6 script packages and push them. The daily GitHub Action renders + uploads.
+day's 6 script packages and push them. **Your job ends there** — an automatic
+chain takes over and renders later.
+
+> ## ⚠️ WHAT CHANGED 2026-07-30 — read this before you finish
+>
+> Pushing your packages **no longer renders them immediately.** It now starts
+> the ChatGPT exchange, and the render happens ~1.5–2 hours later with better
+> media and possibly punched-up scripts:
+>
+> ```
+> you author + push  ->  auto-merge  ->  EXCHANGE PHASE A (04:30-ish)
+>                                        finds media, judges every shot,
+>                                        writes the ask for ChatGPT
+>                        ChatGPT (05:00) generates the missing images,
+>                                        punches up the scripts, writes DONE
+>                        EXCHANGE PHASE B pulls that media in, self-fills
+>                                        anything ChatGPT missed
+>                        daily.yml       renders + uploads
+> ```
+>
+> **What this means for you, concretely:**
+> - **Nothing about how you author changes.** Same 6 packages, same rules.
+> - **Don't panic if no video exists an hour after you push.** That is now
+>   normal and correct. The backstop cron at 06:15 UTC guarantees the day
+>   ships even if ChatGPT never answers.
+> - **A `query` you write may get AI-generated art instead of stock.** The
+>   judge flags a shot as weak when the media is a generic stand-in for a
+>   named subject, so keep writing SPECIFIC queries — they still win, and a
+>   specific query that finds real media beats a generated image.
+> - **Your script may get reworded** by ChatGPT. It cannot change any number,
+>   date, or named entity, and it cannot change your shot count or any shot's
+>   `query` — `shared/punchup_guard.py` rejects the rewrite mechanically and
+>   ships YOUR original if it tries. So write facts you're happy to keep.
+> - Full detail: `docs/EXCHANGE_PIPELINE.md`.
 
 ## Steps
 
@@ -431,8 +464,14 @@ because the renderer fills the rest with distinct stock automatically.
 
 ## Don't
 
-- Don't render or upload — daily.yml handles both.
+- Don't render or upload — the exchange chain + daily.yml handle both.
 - Don't run `run_trending_daily.py`. You only write packages.
+- **Don't dispatch daily.yml yourself.** It is no longer the next step; it now
+  runs at the END of the chain (after Exchange Phase B). Dispatching it early
+  renders with pre-ChatGPT media and wastes the day's better assets.
+- Don't touch `.github/triggers/daily` unless you deliberately want to bypass
+  the exchange and render immediately.
+- Don't write anything into `exchange/` — Phase A and ChatGPT own that.
 
 ---
 

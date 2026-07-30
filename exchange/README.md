@@ -81,8 +81,19 @@ claimed hash did not match its bytes).
 |---|---|---|---|
 | `image-20260730-demo-01` | **WORKED** — Drive id `1Va8Rfd5…`, real 1,393,674-byte PNG, readback confirmed | FAILED — drew GitHub screenshots instead of the prompt, 1536x1024 not 1024x1024 | FAILED — folder `shared:false`, unreachable (verified: Drive returns an HTML permission page, not bytes) |
 
-The transport is the hard part and it is solved. Treat prompt-following and
-folder permissions as the remaining work, not the bridge.
+| `image-20260730-demo-02` | **WORKED** — Drive id `1kjaRhMY…`, 604,670-byte PNG | **PASSED** — the requested orange funnel, 1254x1254 | **PASSED** — downloaded with NO credentials, SHA-256 `d6633736…` matched the claim exactly |
+
+**Run 2 closed the loop: the full chain is proven.** ChatGPT read the repo,
+generated the right image, uploaded it to Drive, wrote the pointer to git, and
+our consumer pulled it down and verified the bytes independently. The remaining
+real-world caveat is that ChatGPT's image tool is present in some task runs and
+absent in others — which is exactly why Phase B self-fills and a backstop cron
+exists (`docs/EXCHANGE_PIPELINE.md`).
+
+This per-request `exchange/requests/` flow is now superseded for the daily run
+by the **one-pass bundle** at `exchange/bundles/<date>/bundle.json`, which
+carries the day's scripts, media health, and gaps together. This directory
+remains valid for one-off manual requests.
 
 **Prompt-following note for any task reading this:** you reach these
 instructions by reading a code repository, which biases the image tool toward
