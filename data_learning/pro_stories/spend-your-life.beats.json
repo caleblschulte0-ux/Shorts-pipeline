@@ -295,12 +295,13 @@
   },
   {
    "job": "DEVELOP",
-   "mode": "footage",
+   "mode": "designed_2d",
    "narration": "Nine years is not a tragedy. It is a budget. And almost nobody knows they are holding one.",
-   "understand": "a real person outdoors in late light, unhurried",
-   "image": {
-    "query": "person walking outdoors sunset",
-    "perspective": "cinematic"
+   "understand": "a figure holding what's left \u2014 nine years as a budget",
+   "flat": {
+    "kind": "scene_savings",
+    "number": "9",
+    "label": "YEARS TO SPEND"
    }
   },
   {
