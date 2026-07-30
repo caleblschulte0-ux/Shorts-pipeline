@@ -29,19 +29,19 @@
       "phrase": "severe storms tore through Madison County, North Carolina",
       "query": "storm dark clouds",
       "pin_query": "Madison County",
-      "pin_context": "North Carolina county government",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
       "news_query": "Madison County",
-      "news_angle": "Madison County experiencing severe storms and a sinkhole at a funeral home",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Map_of_Madison_County_North_Carolina_With_Municipal_and_Township_Labels.PNG"
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+      "image_url": "https://live.staticflickr.com/3133/2911357073_445ac364ec_b.jpg"
     },
     {
       "phrase": "a funnel cloud spotted right near Marshall's Foster Creek community",
       "query": "funnel cloud sky",
       "pin_query": "Marshall",
-      "pin_context": "North Carolina town community",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
       "news_query": "Marshall",
-      "news_angle": "Marshall dealing with downed trees, flooded roads, and knocked-out power after severe storms",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/1940_Census_Enumeration_District_Descriptions_-_North_Carolina_-_Madison_County_-_ED_58-10%2C_ED_58-11%2C_ED_58-12%2C_ED_58-13A%2C_ED_58-13B%2C_ED_58-21%2C_ED_58-22A%2C_ED_58-22B_-_NARA_-_5873356.jpg/1280px-thumbnail.jpg"
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+      "image_url": "https://live.staticflickr.com/5521/13910166598_ccf22a65af_b.jpg"
     },
     {
       "phrase": "tornado warnings up across the whole western half of the state",
@@ -59,14 +59,18 @@
         "https://wlos.com/news/local/storm-leaves-sinkhole-at-madison-funeral-home-as-funnel-cloud-spotted-near-laurel-road-closures-power-outages-flooding-downed-trees-911-calls"
       ],
       "pin_query": "Madison Funeral Home",
-      "pin_context": "North Carolina funeral services",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
       "news_query": "Madison Funeral Home",
-      "news_angle": "Madison Funeral Home having a sinkhole open in front of it during severe storms",
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
       "image_url": "https://live.staticflickr.com/4137/4864473542_40593f9539_b.jpg"
     },
     {
       "phrase": "Not a field",
-      "query": "empty rural field"
+      "query": "empty rural field",
+      "pin_query": "Not",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+      "news_query": "Not",
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home"
     },
     {
       "phrase": "Not a backyard",
@@ -76,9 +80,9 @@
       "phrase": "County manager Rod Honeycutt confirmed nobody was hurt",
       "query": "county official briefing",
       "pin_query": "Rod Honeycutt",
-      "pin_context": "Madison County manager government",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
       "news_query": "Rod Honeycutt",
-      "news_angle": "Rod Honeycutt confirming nobody was hurt after a sinkhole opened at Madison Funeral Home",
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Interview_with_Col._%28Ret%29_Rod_Honeycutt.jpg"
     },
     {

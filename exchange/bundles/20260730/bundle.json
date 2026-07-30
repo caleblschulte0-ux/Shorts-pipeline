@@ -197,8 +197,8 @@
           "shot_index": 10,
           "phrase": "Drivers started spotting him daily",
           "query": "car dashboard highway view",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 11,
@@ -223,12 +223,12 @@
         }
       ],
       "media_health": {
-        "strong": 4,
+        "strong": 5,
         "weak": 0,
-        "missing": 10,
+        "missing": 9,
         "unknown": 0
       },
-      "strong_fraction": 0.286,
+      "strong_fraction": 0.357,
       "requested": [
         "gary-the-goat-louisiana-s0-38814efa5f9f",
         "gary-the-goat-louisiana-s2-91f1f4d386f2",
@@ -237,7 +237,6 @@
         "gary-the-goat-louisiana-s6-5d88c428d9b4",
         "gary-the-goat-louisiana-s7-c447cb9714d2",
         "gary-the-goat-louisiana-s8-d89848034080",
-        "gary-the-goat-louisiana-s10-bc6d08e72117",
         "gary-the-goat-louisiana-s12-32c5e2058fca",
         "gary-the-goat-louisiana-s13-d180a51deb2a"
       ]
@@ -352,7 +351,8 @@
         "man-of-steal-superman-burglary-s5-51eb05f755da",
         "man-of-steal-superman-burglary-s7-4a8070d4ddd4",
         "man-of-steal-superman-burglary-s8-8381ae493041",
-        "man-of-steal-superman-burglary-s9-8a123a89e6fd"
+        "man-of-steal-superman-burglary-s9-8a123a89e6fd",
+        "man-of-steal-superman-burglary-s10-77db353c1307"
       ]
     },
     {
@@ -1006,28 +1006,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "gary-the-goat-louisiana-s10-bc6d08e72117",
-      "slug": "gary-the-goat-louisiana",
-      "shot_index": 10,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: car dashboard highway view. It accompanies the narration: \"Drivers started spotting him daily\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "gary-the-goat-louisiana-s12-32c5e2058fca",
       "slug": "gary-the-goat-louisiana",
       "shot_index": 12,
@@ -1187,6 +1165,28 @@
       "shot_index": 9,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: police interview room. It accompanies the narration: \"confessed on camera\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "man-of-steal-superman-burglary-s10-77db353c1307",
+      "slug": "man-of-steal-superman-burglary",
+      "shot_index": 10,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: police officer talking. It accompanies the narration: \"reading him his rights\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

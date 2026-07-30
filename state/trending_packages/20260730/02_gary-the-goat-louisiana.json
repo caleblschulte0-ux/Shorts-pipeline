@@ -28,10 +28,10 @@
     {
       "phrase": "A nonprofit in Rosepine, Louisiana bought him",
       "query": "rural louisiana ranch",
-      "pin_query": "Rosepine, Louisiana",
-      "pin_context": "US city location nonprofit",
-      "news_query": "Rosepine, Louisiana",
-      "news_angle": "A nonprofit in Rosepine, Louisiana buys Gary the goat for kids to practice goat roping.",
+      "pin_query": "Rosepine",
+      "pin_context": "This Goat Cannot Be Contained",
+      "news_query": "Rosepine",
+      "news_angle": "This Goat Cannot Be Contained",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vernon_Parish_Louisiana_Incorporated_and_Unincorporated_areas_Rosepine_Highlighted.svg"
     },
     {
@@ -42,9 +42,9 @@
       "phrase": "Gary had other plans",
       "query": "goat standing alone",
       "pin_query": "Gary",
-      "pin_context": "goat animal escapee",
+      "pin_context": "This Goat Cannot Be Contained",
       "news_query": "Gary",
-      "news_angle": "Gary, a goat, breaks out of his enclosures and becomes DeRidder's unofficial mascot.",
+      "news_angle": "This Goat Cannot Be Contained",
       "image_url": "https://live.staticflickr.com/8005/6981257390_ceb31698ef_b.jpg"
     },
     {
@@ -74,23 +74,28 @@
       "evidence_urls": [
         "https://www.kplctv.com/2026/07/28/wheres-gary-escape-artist-goat-who-united-southwest-louisiana/"
       ],
-      "pin_query": "U.S. Highway 171",
-      "pin_context": "road location traffic",
-      "news_query": "U.S. Highway 171",
-      "news_angle": "Gary moves to the shoulder of U.S. Highway 171 and becomes a daily spotting for drivers.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/US_171.svg"
+      "pin_query": "Highway",
+      "pin_context": "This Goat Cannot Be Contained",
+      "news_query": "Highway",
+      "news_angle": "This Goat Cannot Be Contained",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Street%2C_Oguz_%28P1090484%29.jpg"
     },
     {
       "phrase": "Drivers started spotting him daily",
-      "query": "car dashboard highway view"
+      "query": "car dashboard highway view",
+      "pin_query": "Drivers",
+      "pin_context": "This Goat Cannot Be Contained",
+      "news_query": "Drivers",
+      "news_angle": "This Goat Cannot Be Contained",
+      "image_url": "https://live.staticflickr.com/3950/15722506505_d7325a95c8_b.jpg"
     },
     {
       "phrase": "DeRidder's unofficial mascot",
       "query": "small town main street",
       "pin_query": "DeRidder",
-      "pin_context": "US city location mascot",
+      "pin_context": "This Goat Cannot Be Contained",
       "news_query": "DeRidder",
-      "news_angle": "Gary becomes DeRidder's unofficial mascot after escaping his enclosures and roaming freely.",
+      "news_angle": "This Goat Cannot Be Contained",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/BeauregardCourthouse.jpg"
     },
     {
