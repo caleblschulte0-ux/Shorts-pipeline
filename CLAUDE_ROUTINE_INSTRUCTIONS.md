@@ -48,6 +48,46 @@ chain takes over and renders later.
 >   ships YOUR original if it tries. So write facts you're happy to keep.
 > - Full detail: `docs/EXCHANGE_PIPELINE.md`.
 
+## ⚠️ THE SLATE IS THREE FORMATS — 2 + 2 + 2, NOT 6 OF ONE
+
+**Read this before you write a single package.** This channel is no longer the
+old "photo on top, gameplay on bottom" single format. It runs an A/B/C format
+test and posts **six videos a day: two of each format.**
+
+On 2026-07-29 the slate was correct — 2 `reddit_story`, 2 `text_card`,
+2 `graph_race`. On 2026-07-30 it regressed to **six stacked/explainer packages**
+because this instruction lived only in the Routine's own prompt and never in
+this file, so a session reading this doc fresh authored six of the format the
+doc describes in detail. That is what this section exists to prevent.
+
+| Format | `format` field | Shape | Renderer |
+|---|---|---|---|
+| Reddit story | *(omit `format`, set `subreddit`)* | full-screen gameplay + post card + TTS | `make_reddit_story.py` |
+| Text card | `"text_card"` | big typographic card over topical b-roll | `make_text_card.py` |
+| Graph race | `"graph_race"` | animated multi-series chart race | `make_graph_race.py` |
+
+**Two of each, every day.** Name them so the slate is obvious at a glance:
+`01_reddit-…`, `02_reddit-…`, `03_textcard-…`, `04_textcard-…`,
+`05_graph-…`, `06_graph-…`.
+
+### Required fields per format
+
+**`text_card`** — `format`, `slug`, `title`, `duration`, `broll_query`,
+`text` (the on-screen copy; `\n\n` separates cards), `highlights` (words to
+emphasize), `hashtags`, `music_vibe`. No `shots`, no `script`.
+
+**`graph_race`** — `format`, `slug`, `title`, `y_label`, `duration`, `source`
+(cite it — real numbers only), `years`, `series` (each `{name, color, values}`),
+`hashtags`, `music_vibe`. No `shots`, no `script`. Numbers must be REAL and
+sourced; this format is a data claim on screen.
+
+**Reddit story** — the `shots` + `script` shape documented below, plus
+`subreddit`.
+
+The stacked/explainer format documented in the rest of Part 1 is the FALLBACK
+shape, not the default slate. Do not ship six of it.
+
+
 ## Steps
 
 0. **Read yesterday's analytics** (if present):
