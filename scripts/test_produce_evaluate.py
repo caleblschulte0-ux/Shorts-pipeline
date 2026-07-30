@@ -23,6 +23,7 @@ import judge_verdict as jv  # noqa: E402
 import produce              # noqa: E402
 
 GOOD_VERDICT = {"pass": True, "reject_labels": [], "personality": 4.0,
+                "overall_10": 9.3,
                 "card_fraction_estimate": 0.2, "one_line": "t"}
 
 
@@ -70,12 +71,14 @@ def main():
 
     with tempfile.TemporaryDirectory() as td:
         out = build_pkg(Path(td), verdict={**GOOD_VERDICT, "pass": False,
-                                           "personality": 1.0,
+                                           "personality": 1.0, "overall_10": 2.0,
                                            "reject_labels": ["SAMENESS"]})
         res = produce.evaluate(out, 0)
         assert res["status"] == "quarantine"
-        assert any("REJECT" in r for r in res["reasons"]), res
-        print("ok  4. taste REJECT quarantines")
+        assert any("hard objection" in r for r in res["reasons"]), res
+        assert any("below the development floor" in r
+                   for r in res["reasons"]), res
+        print("ok  4. taste REJECT quarantines (hard objection + score floor)")
 
     with tempfile.TemporaryDirectory() as td:
         out = build_pkg(Path(td), fallbacks={

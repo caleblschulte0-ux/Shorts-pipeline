@@ -143,17 +143,130 @@ def evaluate(out: Path, director_rc: int, story: dict | None = None) -> dict:
         if not any("verdict" in r for r in reasons):
             reasons.append("no vision taste verdict (pkg/verdict.json) — FAILS "
                            "CLOSED; judge the blind package before publishing")
-    elif not verdict.get("pass"):
-        reasons.append(f"vision taste REJECT: labels={verdict.get('reject_labels')} "
-                       f"personality={verdict.get('personality')}")
+    # THE BINDING QUALITY LAW (data_learning/judge_policy.py). A film no longer
+    # advances because it dodged the reject vocabulary and scraped personality
+    # 3 — the professional-quality score (overall_10) is REQUIRED and BINDING,
+    # a hard objection from any judge is never averaged away, and unresolved
+    # judge disagreement blocks on its own.
+    policy_decision = None
+    if verdict is not None:
+        from data_learning import judge_policy, judges as judge_adapters
+        pol = judge_policy.load(REPO / "data_learning" / "curiosity.config.json")
+        taste_norm = judge_adapters.taste(out) or {}
+        combined = {
+            "overall_10": taste_norm.get("overall_10"),
+            "personality": taste_norm.get("personality"),
+            "findings": taste_norm.get("findings", []),
+            # produce.evaluate is the single-shot gate: the taste judge is the
+            # verdict on record here, and the technical/factual conditions it
+            # would otherwise duplicate are already enforced above as reasons.
+            "verdicts": {"taste": {**taste_norm, "status": "ok"},
+                         "technical": {"status": "ok", "pass": True},
+                         "factual": {"status": "ok", "pass": True}},
+        }
+        policy_decision = judge_policy.decide(combined, pol)
+        if not policy_decision["advance"]:
+            reasons.extend(policy_decision["blockers"])
 
     status = "pass" if not reasons else "quarantine"
     result = {"out": str(out), "status": status, "reasons": reasons,
               "director_rc": director_rc, "pkg": str(pkg),
               "fallback_verdict": fb.get("verdict", "unknown")}
+    if policy_decision is not None:
+        result["judge_policy"] = policy_decision
     if pkg.exists():
         (pkg / "produce_report.json").write_text(json.dumps(result, indent=2))
     return result
+
+
+def record_judging(slug: str, out: Path, story: dict | None = None,
+                   director_rc: int | None = None, deep: bool = False) -> dict:
+    """Run the full judge set over a finished render and PERSIST every response
+    under ``<out>_pkg/judging/attempt_NN/`` — raw and normalized, including
+    failures and abstentions — then write the combined verdict, the ranked
+    repair plan, the comparison against the previous attempt, and the human
+    report. Returns the attempt's headline numbers.
+
+    This is what makes a green workflow inspectable: the owner can read every
+    judge's complete output, the repair it asked for, and the movement, without
+    any access to the runner."""
+    from data_learning import judge_loop, judge_policy, judges as judge_adapters
+    from data_learning import repair_planner
+    from data_learning.judging_store import JudgingStore
+
+    pol = judge_policy.load(REPO / "data_learning" / "curiosity.config.json")
+    store = JudgingStore(out)
+    prev_n = store.existing_attempts()
+    prev = store.read(prev_n[-1], "combined_verdict") if prev_n else None
+    prev_hash = ((store.read(prev_n[-1], "manifest") or {}).get("mp4_sha256")
+                 if prev_n else None)
+    prev_plan = store.read(prev_n[-1], "repair_plan") if prev_n else None
+
+    attempt = store.open_attempt(policy=pol,
+                                 escalation=repair_planner.repair_class(
+                                     len(prev_n) + 1))
+    ctx = {"story": story or {}, "out": str(out), "pkg": str(out.with_name(out.stem + "_pkg"))}
+    verdicts = judge_loop.run_judges(out, judge_adapters.default_specs(deep=deep),
+                                     store, attempt, ctx=ctx)
+    combined = judge_loop.combine(verdicts)
+    combined["decision"] = judge_policy.decide(combined, pol)
+    combined["attempt"] = attempt
+    combined["director_rc"] = director_rc
+    store.write(attempt, "combined_verdict", combined)
+
+    cur_hash = (store.read(attempt, "manifest") or {}).get("mp4_sha256")
+    targeted = [t["defect_code"] for t in (prev_plan or {}).get("tasks", [])]
+    cmp_doc = judge_loop.compare(prev, combined, prev_hash=prev_hash,
+                                 cur_hash=cur_hash, targeted=targeted)
+    store.write(attempt, "comparison", cmp_doc)
+
+    plan = repair_planner.plan(combined["findings"], attempt=attempt)
+    plan["signature"] = repair_planner.signature(plan)
+    plan["repeats_previous_plan"] = bool(
+        prev_plan and prev_plan.get("signature") == plan["signature"])
+    store.write(attempt, "repair_plan", plan)
+
+    escalation = judge_loop.next_escalation(
+        repair_planner.repair_class(attempt), cmp_doc,
+        plan["repeats_previous_plan"])
+    decision = combined["decision"]
+    status = ("pass" if decision["advance"]
+              else ("abandoned" if attempt >= pol["max_attempts"] else "quarantine"))
+    store.write_final_summary({
+        "slug": slug, "out": str(out), "status": status,
+        "attempts": attempt, "max_attempts": pol["max_attempts"],
+        "final_overall_10": combined["overall_10"],
+        "final_personality": combined["personality"],
+        "final_band": decision["band"],
+        "unresolved_blockers": decision["blockers"],
+        "score_progression": [
+            (store.read(n, "combined_verdict") or {}).get("overall_10")
+            for n in store.existing_attempts()],
+        "escalation_progression": [
+            (store.read(n, "manifest") or {}).get("escalation")
+            for n in store.existing_attempts()],
+        "next_escalation": escalation,
+        "eligible_for_owner_review": decision["eligible_for_owner_review"],
+        "autonomous_publish_allowed": decision["autonomous_publish_allowed"],
+        "policy": decision["policy"],
+        "reason": ("policy satisfied" if status == "pass" else
+                   "attempt bound reached below the quality bar"
+                   if status == "abandoned" else
+                   "below the quality bar — repair plan written"),
+    })
+    try:
+        import judge_report
+        judge_report.write_all(out, step_summary=True)
+    except Exception as e:  # noqa: BLE001 — reporting never blocks a render
+        print(f"[produce] judge report skipped ({str(e)[:100]})", file=sys.stderr)
+    return {"attempt": attempt, "overall_10": combined["overall_10"],
+            "personality": combined["personality"],
+            "band": decision["band"], "advance": decision["advance"],
+            "n_findings": combined["n_findings"],
+            "n_repair_tasks": plan["n_tasks"],
+            "next_escalation": escalation,
+            "blockers": decision["blockers"],
+            "judging_dir": str(store.root)}
 
 
 def _try_resume(slug: str, out: Path, story_path: Path) -> int | None:
@@ -250,6 +363,17 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False) -> dict:
         print(f"[produce] {slug}: advisor skipped ({str(e)[:80]})")
     result = evaluate(out, director_rc, story=story)
     result["slug"] = slug
+    # DURABLE JUDGING EVIDENCE. Every judge runs and every response — raw,
+    # normalized, failed, abstained — is persisted under the package so it
+    # survives the runner. A judge response that cannot be read after the
+    # runner disappears is treated as missing evidence, so nothing important
+    # is allowed to live only in the console log.
+    try:
+        result["judging"] = record_judging(slug, out, story,
+                                           director_rc=director_rc)
+    except Exception as e:  # noqa: BLE001 — evidence capture never kills a render
+        print(f"[produce] {slug}: judging evidence capture failed ({str(e)[:120]})",
+              file=sys.stderr)
     run_ledger.append("evaluated", slug,
                       {"status": result["status"],
                        "n_reasons": len(result["reasons"])})

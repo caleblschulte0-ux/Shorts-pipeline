@@ -117,6 +117,15 @@ jobs:
           python scripts/test_exchange_media.py
           python scripts/test_lookmatch.py
 
+      - name: "Layer 2f — closed judging loop: binding policy / durable evidence / ranked repairs / escalation"
+        run: |
+          python scripts/test_judge_policy.py
+          python scripts/test_judging_store.py
+          python scripts/test_repair_planner.py
+          python scripts/test_judge_loop.py
+          python scripts/test_judge_report.py
+          python scripts/test_judge_production_wiring.py
+
       - name: "Layer 2e — decision-machinery drill: deterministic 50-story fault campaign"
         run: python scripts/simulate_pipeline.py
 

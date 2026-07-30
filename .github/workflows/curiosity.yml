@@ -372,6 +372,31 @@ jobs:
         continue-on-error: true
         run: python3 scripts/pipeline_health.py
 
+      # THE JUDGE EVIDENCE SURFACE. A judge response that cannot be viewed
+      # after the runner disappears is treated as MISSING judge evidence — so
+      # the concise scoreboard goes to the run summary and the COMPLETE
+      # per-attempt evidence (raw + normalized, every judge, every repair plan)
+      # is uploaded as its own artifact.
+      - name: Judge report + step summary
+        if: always() && inputs.mode != 'verify'
+        continue-on-error: true
+        run: |
+          shopt -s nullglob
+          for mp4 in output/curiosity_*.mp4; do
+            case "$mp4" in *_720p.mp4) continue;; esac
+            python3 scripts/judge_report.py "$mp4" || true
+          done
+
+      - name: Upload judging evidence (every judge, every attempt)
+        if: always() && inputs.mode != 'verify'
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-judging
+          path: |
+            output/curiosity_*_pkg/judging/**
+          retention-days: 90
+          if-no-files-found: warn
+
       - name: Upload batch video + package
         if: always() && inputs.mode == 'batch'
         uses: actions/upload-artifact@v4

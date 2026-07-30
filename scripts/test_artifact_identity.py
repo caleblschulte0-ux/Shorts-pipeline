@@ -21,7 +21,7 @@ import artifact_identity as ai  # noqa: E402
 import judge_verdict as jv      # noqa: E402
 import produce                  # noqa: E402
 
-GOOD = {"personality": 4.0, "reject_labels": [],
+GOOD = {"personality": 4.0, "reject_labels": [], "overall_10": 9.3,
         "card_fraction_estimate": 0.2, "one_line": "t"}
 
 

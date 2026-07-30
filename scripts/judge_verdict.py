@@ -102,16 +102,23 @@ def validate(v: dict) -> dict:
         "judge": "taste",            # provenance of which rubric produced this
         "source": "vision_subagent",
     }
-    # The owner-facing SHOW BAR (TASTE_JUDGE.md): 0-10 vs professional work;
-    # the orchestrator shows the owner nothing under 9.5.
-    if v.get("overall_10") is not None:
-        try:
-            o = float(v["overall_10"])
-        except (TypeError, ValueError):
-            raise InvalidVerdict(f"overall_10 must be numeric, got {v['overall_10']!r}")
-        if not 0 <= o <= 10:
-            raise InvalidVerdict(f"overall_10 {o} out of range 0-10")
-        clean["overall_10"] = o
+    # The PROFESSIONAL-QUALITY SCORE (TASTE_JUDGE.md): 0-10 against professional
+    # work. This is REQUIRED, because data_learning/judge_policy.py binds on it —
+    # a verdict without one can never advance, so accepting it here would only
+    # produce a film that fails later for a reason the judge could have given
+    # now. Missing score = missing evidence, refused at the door.
+    if v.get("overall_10") is None:
+        raise InvalidVerdict(
+            "verdict missing required 'overall_10' (0-10): the professional-"
+            "quality score is what the quality policy binds on — personality "
+            "and the absence of reject labels are no longer sufficient")
+    try:
+        o = float(v["overall_10"])
+    except (TypeError, ValueError):
+        raise InvalidVerdict(f"overall_10 must be numeric, got {v['overall_10']!r}")
+    if not 0 <= o <= 10:
+        raise InvalidVerdict(f"overall_10 {o} out of range 0-10")
+    clean["overall_10"] = o
     return clean
 
 
