@@ -226,10 +226,98 @@ def repo_state(since_days: int = 1) -> dict:
     }
 
 
+
+def continuity(date: str) -> dict:
+    """Yesterday's verdicts, the running experiments, and what is OWED today.
+
+    Without this the loop has no memory: declined ideas come back in new
+    clothes, adopted changes are never read out, and every day starts from
+    zero. This section is what makes the reviewer's job "continue the work"
+    rather than "have an opinion about today"."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    out: dict = {}
+    try:
+        from retro_reply import read_agenda, read_ledger
+        ledger = read_ledger()
+        out["my_verdicts_on_your_last_proposals"] = [
+            {"date": r.get("date"), "title": r.get("title"),
+             "verdict": r.get("verdict"), "because": r.get("because"),
+             "shipped": r.get("shipped"),
+             "experiment_id": r.get("experiment_id")}
+            for r in ledger[-12:]]
+        out["decision_history"] = {
+            "total": len(ledger),
+            "adopted": sum(1 for r in ledger if r.get("verdict") == "adopt"),
+            "declined": sum(1 for r in ledger if r.get("verdict") == "decline"),
+        }
+        out["open_agenda"] = read_agenda().get("open") or []
+    except Exception as exc:                         # noqa: BLE001
+        out["ledger_error"] = str(exc)[:100]
+
+    try:
+        from shared import experiments as ex
+        due = ex.refresh_due()
+        out["experiments"] = ex.summary()
+        out["readouts_due"] = [
+            {"id": e["id"], "hypothesis": e["hypothesis"],
+             "metric": e["metric"], "direction": e["direction"],
+             "baseline": e["baseline"], "guardrail": e.get("guardrail"),
+             "started": e["started_at"], "days": ex.days_elapsed(e),
+             "what_to_do": ("Read this out. Compare `metric` now against "
+                            "`baseline`, check the guardrail did not slip, "
+                            "and propose adopt / revert / extend with the "
+                            "numbers.")}
+            for e in due or [e for e in ex.running()
+                             if e.get("status") == "readout_due"]]
+    except Exception as exc:                         # noqa: BLE001
+        out["experiments_error"] = str(exc)[:100]
+    return out
+
+
+def obligations(cont: dict, channels: dict) -> dict:
+    """What the reviewer OWES today. An empty retro is only legitimate when
+    this comes back empty — see retro/README.md.
+
+    The channel is meant to improve without supervision, which means the
+    default is work, not agreement. `nothing to change` on a day with a
+    readout due or an open agenda item is the loop quietly dying."""
+    items = []
+    for r in cont.get("readouts_due") or []:
+        items.append({"kind": "readout", "ref": r["id"], "must": True,
+                      "what": f"Experiment '{r['hypothesis']}' has closed its "
+                              f"window — read it out with numbers."})
+    for a in cont.get("open_agenda") or []:
+        items.append({"kind": "agenda", "ref": a.get("proposal_file")
+                      or a.get("title"), "must": True,
+                      "what": f"I asked for: {a.get('what_i_need') or a.get('title')}"})
+    live = (cont.get("experiments") or {}).get("running") or []
+    if not live:
+        items.append({"kind": "no_live_experiment", "ref": None, "must": True,
+                      "what": "Nothing is being tested right now. Propose an "
+                              "experiment: a specific change, the metric it "
+                              "should move, and the window to judge it over."})
+    thin = [n for n, c in channels.items()
+            if c.get("available") and c.get("thin_bands")]
+    if thin:
+        items.append({"kind": "coverage", "ref": ",".join(thin), "must": False,
+                      "what": "Some age bands are too thin to judge. Worth a "
+                              "`watch` note on what would give us signal."})
+    return {
+        "count": len(items),
+        "must_do": sum(1 for i in items if i["must"]),
+        "items": items,
+        "an_empty_retro_is_only_ok_if": (
+            "must_do is 0. Otherwise 'nothing needs changing' means the loop "
+            "stopped working, not that the channel is finished."),
+    }
+
+
 def build(date: str) -> dict:
     channels = {n: channel_report(n, p, date) for n, p in CHANNELS.items()}
     posted_today = sum(len(c.get("today") or []) for c in channels.values()
                        if c.get("available"))
+    cont = continuity(date)
+    owed = obligations(cont, channels)
     return {
         "schema": "shorts-retro-brief/v1",
         "date": date,
@@ -251,6 +339,15 @@ def build(date: str) -> dict:
                               "something."),
         },
         "posted_today": posted_today,
+        "continuity": cont,
+        "what_you_owe_today": owed,
+        "standing_directive": (
+            "You are not a helper that comments on a dashboard — you are the "
+            "channel's editor-in-residence, and the job is that it gets "
+            "better every week without anyone asking. Continue yesterday's "
+            "work: read out what is due, answer what I asked for, and always "
+            "have something running. A day with nothing to change is a real "
+            "outcome ONLY when `what_you_owe_today.must_do` is 0."),
         "channels": channels,
         "pipeline_health": pipeline_health(date),
         "repo": repo_state(),
@@ -287,6 +384,32 @@ def to_markdown(brief: dict) -> str:
             L.append(f"- thin data (<{MIN_SAMPLES}): "
                      f"{', '.join(c['thin_bands'])}")
         L.append("")
+    owed = brief.get("what_you_owe_today") or {}
+    if owed.get("items"):
+        L += ["## What you owe today", ""]
+        for i in owed["items"]:
+            L.append(f"- {'**MUST**' if i['must'] else 'optional'} "
+                     f"[{i['kind']}] {i['what']}")
+        L.append("")
+    cont = brief.get("continuity") or {}
+    verdicts = cont.get("my_verdicts_on_your_last_proposals") or []
+    if verdicts:
+        L += ["## My verdicts on your last proposals", ""]
+        for v in verdicts[-6:]:
+            L.append(f"- **{v.get('verdict', '?').upper()}** — "
+                     f"{v.get('title')}")
+            if v.get("because"):
+                L.append(f"    - {v['because']}")
+        L.append("")
+    live = (cont.get("experiments") or {}).get("running") or []
+    if live:
+        L += ["## Running experiments", ""]
+        for e in live:
+            L.append(f"- `{e['id']}` — {e['hypothesis']}")
+            L.append(f"    - {e['days']}d, {e['samples']} samples, "
+                     f"needs {e['needs']} · {e['blocked_by']}")
+        L.append("")
+
     h = brief["pipeline_health"]
     L += ["## Pipeline health", "",
           f"- consecutive failures: {h.get('consecutive_failures')}",

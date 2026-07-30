@@ -274,3 +274,160 @@ class TestContractAndCodeAgree(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TestExperimentsRefuseEarlyConclusions(unittest.TestCase):
+    """The whole reason experiments exist: six videos a day into
+    single-digit views means ANY one-day read is noise. If the register can
+    be talked into concluding early, the loop walks the channel in a random
+    direction with confidence."""
+
+    def setUp(self):
+        from shared import experiments as ex
+        self.ex = ex
+        self.tmp = Path(tempfile.mkdtemp(prefix="exp-"))
+        self._saved = (ex.RETRO_STATE, ex.REGISTER)
+        ex.RETRO_STATE = self.tmp
+        ex.REGISTER = self.tmp / "experiments.json"
+
+    def tearDown(self):
+        self.ex.RETRO_STATE, self.ex.REGISTER = self._saved
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _reg(self, days_ago=0, **over):
+        from datetime import datetime, timedelta, timezone
+        when = (datetime.now(timezone.utc)
+                - timedelta(days=days_ago)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        kw = dict(change="c", metric="graph_race.avg_view_pct",
+                  direction="up", baseline=80.0, guardrail="showrunner.score",
+                  guardrail_baseline=74.0, min_days=7, min_samples=10,
+                  now=when)
+        kw.update(over)
+        return self.ex.register("shorter hooks hold better", **kw)
+
+    def test_plenty_of_samples_but_too_few_days_is_refused(self):
+        e = self._reg(days_ago=3)
+        ok, why = self.ex.readout_ready(e, samples=500)
+        self.assertFalse(ok)
+        self.assertIn("days elapsed", why)
+
+    def test_plenty_of_days_but_too_few_samples_is_refused(self):
+        e = self._reg(days_ago=30)
+        ok, why = self.ex.readout_ready(e, samples=2)
+        self.assertFalse(ok)
+        self.assertIn("samples", why)
+
+    def test_both_floors_passed_is_ready(self):
+        e = self._reg(days_ago=8)
+        self.assertTrue(self.ex.readout_ready(e, samples=12)[0])
+
+    def test_a_real_improvement_is_adopted(self):
+        e = self._reg(days_ago=8)
+        r = self.ex.conclude(e, observed=100.0, guardrail_observed=75.0)
+        self.assertEqual(r["status"], "adopted")
+
+    def test_a_regression_is_reverted(self):
+        e = self._reg(days_ago=8)
+        r = self.ex.conclude(e, observed=50.0, guardrail_observed=74.0)
+        self.assertEqual(r["status"], "reverted")
+
+    def test_a_small_move_is_weather_not_a_result(self):
+        e = self._reg(days_ago=8)
+        r = self.ex.conclude(e, observed=83.0, guardrail_observed=74.0)
+        self.assertEqual(r["status"], "inconclusive")
+        self.assertIn("weather", r["readout"]["verdict"])
+
+    def test_a_guardrail_regression_outranks_a_metric_win(self):
+        """More views bought with worse videos is a LOSS. This ordering is
+        the loop's value alignment and must not be reachable by proposal."""
+        e = self._reg(days_ago=8)
+        r = self.ex.conclude(e, observed=160.0, guardrail_observed=50.0)
+        self.assertEqual(r["status"], "reverted")
+        self.assertIn("guardrail", r["readout"]["verdict"])
+
+    def test_direction_down_is_honoured(self):
+        e = self._reg(days_ago=8, direction="down", baseline=10.0)
+        self.assertEqual(
+            self.ex.conclude(e, observed=4.0,
+                             guardrail_observed=74.0)["status"], "adopted")
+
+    def test_refresh_due_flips_only_closed_windows(self):
+        self._reg(days_ago=8)
+        self._reg(days_ago=1)
+        for e in self.ex.all_experiments():
+            self.ex.bump_samples(e["id"], 20)
+        due = self.ex.refresh_due()
+        self.assertEqual(len(due), 1)
+
+    def test_a_concluded_experiment_cannot_be_read_out_again(self):
+        e = self._reg(days_ago=8)
+        self.ex.conclude(e, observed=100.0, guardrail_observed=75.0)
+        self.assertFalse(self.ex.readout_ready(
+            self.ex.all_experiments()[0], samples=99)[0])
+
+    def test_zero_baseline_does_not_explode(self):
+        e = self._reg(days_ago=8, baseline=0.0)
+        self.assertIn(self.ex.conclude(e, observed=5.0)["status"],
+                      ("adopted", "reverted", "inconclusive"))
+
+
+class TestTheLoopHasMemory(unittest.TestCase):
+    """A one-way loop degrades: declined ideas return in new clothes and
+    adopted changes are never read out. The ledger and the obligations are
+    what stop that."""
+
+    def setUp(self):
+        import retro_reply as rr
+        self.rr = rr
+        self.tmp = Path(tempfile.mkdtemp(prefix="ledger-"))
+        self._saved = (rr.RETRO_ROOT, rr.STATE, rr.LEDGER, rr.AGENDA)
+        rr.RETRO_ROOT = self.tmp
+        rr.STATE = self.tmp / "state"
+        rr.LEDGER = rr.STATE / "ledger.jsonl"
+        rr.AGENDA = rr.STATE / "agenda.json"
+
+    def tearDown(self):
+        (self.rr.RETRO_ROOT, self.rr.STATE, self.rr.LEDGER,
+         self.rr.AGENDA) = self._saved
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_a_verdict_persists_with_its_reasoning(self):
+        self.rr.append_ledger({"date": "20260801", "proposal_file": "01.json",
+                               "title": "T", "verdict": "adopt",
+                               "because": "shipped at 0.9s not 0.8"})
+        rows = self.rr.read_ledger()
+        self.assertEqual(rows[-1]["verdict"], "adopt")
+        self.assertIn("0.9s", rows[-1]["because"])
+
+    def test_an_open_verdict_stays_on_the_agenda(self):
+        self.rr.write_agenda({"open": [
+            {"proposal_file": "02.json", "title": "Needs numbers",
+             "verdict": "needs_evidence", "what_i_need": "a percentile"}]})
+        self.assertEqual(len(self.rr.read_agenda()["open"]), 1)
+
+    def test_an_empty_retro_is_refused_while_work_is_owed(self):
+        owed = br.obligations(
+            {"readouts_due": [{"id": "x", "hypothesis": "h"}],
+             "open_agenda": [], "experiments": {"running": [{"id": "y"}]}},
+            {})
+        self.assertGreaterEqual(owed["must_do"], 1)
+        self.assertIn("readout", [i["kind"] for i in owed["items"]])
+
+    def test_no_live_experiment_is_itself_an_obligation(self):
+        """A quiet day means START something, not agree things are fine."""
+        owed = br.obligations(
+            {"readouts_due": [], "open_agenda": [],
+             "experiments": {"running": []}}, {})
+        self.assertIn("no_live_experiment", [i["kind"] for i in owed["items"]])
+        self.assertGreaterEqual(owed["must_do"], 1)
+
+    def test_a_fully_settled_day_allows_an_empty_retro(self):
+        owed = br.obligations(
+            {"readouts_due": [], "open_agenda": [],
+             "experiments": {"running": [{"id": "live"}]}}, {})
+        self.assertEqual(owed["must_do"], 0)
+
+    def test_the_brief_states_the_standing_directive(self):
+        b = br.build("20260730")
+        self.assertIn("better every week", b["standing_directive"])
+        self.assertIn("what_you_owe_today", b)

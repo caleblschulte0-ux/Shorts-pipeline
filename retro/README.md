@@ -1,23 +1,95 @@
 # retro/ — the daily review loop
 
 Once a day, after the last slot has posted, the pipeline writes an evidence
-pack and a reviewer reasons over it: how did today's videos do, how is the
-week and the month trending, is the machine healthy, is the code drifting.
-The reviewer writes **proposals**. Proposals are not changes.
+pack and a reviewer reasons over it. The reviewer writes **proposals**;
+Claude decides, implements what it agrees with, and **writes back its
+reasoning**. Tomorrow's brief opens with those verdicts, so the next day
+continues the work instead of restarting it.
 
 ```
-23:15 UTC   scripts/build_retro.py  ->  retro/<date>/brief.json + brief.md
-  ~7pm CT   ChatGPT reads the brief ->  retro/<date>/proposals/NN-slug.json
-            scripts/review_proposals.py triages them
-            Claude reads the triage and decides what (if anything) ships
+23:15 UTC   build_retro.py     -> retro/<date>/brief.json
+  ~7pm CT   reviewer reads it  -> retro/<date>/proposals/NN-slug.json
+            review_proposals.py triages
+            Claude: retro_reply.py --verdict ... --because "..."
+                    ships what it agrees with, registers an EXPERIMENT
+  next day  the brief opens with those verdicts + what is owed
 ```
+
+This is a collaboration between two agents with different jobs. The
+reviewer sees the numbers and has time to think; Claude has commit access
+and judgement about the code. Neither half works alone: proposals without
+a decision pile up, and changes without a readout are guesses.
+
+**The goal is that the channel gets measurably better every week with
+nobody asking it to.** That is the bar this loop is judged against.
 
 **Nothing in this folder is ever applied automatically.** No workflow reads
-a proposal and edits code. The loop's output is a ranked queue for a
-reviewer with commit access; that is the entire safety model, and it is not
-negotiable.
+a proposal and edits code — a proposal reaches production only by Claude
+reading it, agreeing, and shipping it deliberately. That separation is the
+entire safety model of a loop that runs unsupervised, and it is not
+negotiable no matter how good an idea looks.
 
 ---
+
+## "Nothing needs changing" is almost always wrong
+
+The brief carries `what_you_owe_today`. It is computed, not rhetorical:
+
+| Obligation | When it fires |
+|---|---|
+| `readout` | an experiment's window has closed — read it out with numbers |
+| `agenda` | Claude asked you for something and you have not delivered it |
+| `no_live_experiment` | **nothing is being tested right now** |
+| `coverage` | age bands too thin to judge (advisory) |
+
+**An empty retro is legitimate only when `must_do` is 0.** Any other day,
+"nothing to change" means the loop stopped working, not that the channel
+is finished. In particular, `no_live_experiment` fires whenever nothing is
+running — so on a quiet day the job is to *start* something, not to agree
+that things are fine.
+
+Ambition is the point. A channel at single-digit views has enormous room;
+the constraint is not ideas, it is evidence. Which is what experiments are
+for.
+
+## Experiments — how a small channel learns anything
+
+One day of data on six videos is noise. So a change that claims an effect
+is registered as a timed test (`shared/experiments.py`) and **cannot be
+concluded early**:
+
+```
+hypothesis   what we think is true
+change       what shipped
+metric       the number that must move, and which way
+baseline     that number when the change went live
+min_days     no readout before this many days     (default 7)
+min_samples  no readout before this many videos   (default 10)
+guardrail    a number that must NOT regress       (usually quality)
+```
+
+`readout_ready()` refuses until **both** floors pass — twelve samples on
+day three still reads "3.0/7 days elapsed". At readout, a move under 15%
+is `inconclusive` ("this is weather, not a result"), and **a guardrail
+regression outranks a win**: more views bought with worse videos is
+recorded as a loss and reverted. That ordering is deliberate and is not
+open to proposal.
+
+When you propose a change, say what would make it a success and over what
+window. A proposal with no measurable readout is an opinion.
+
+## Working with Claude
+
+- Read `continuity.my_verdicts_on_your_last_proposals` first. If something
+  was declined, do not re-file it in new words — either bring the evidence
+  Claude asked for, or drop it.
+- `continuity.open_agenda` is what Claude explicitly asked you for. Those
+  are `must_do` items.
+- Claude will often adopt a proposal *modified* — shipping 0.9s where you
+  proposed 0.8s, for instance — and the `because` field says why. That
+  reasoning is the most useful thing in the brief; it is the channel's
+  real constraints, learned.
+- Disagreeing is fine and useful. Re-propose with better evidence.
 
 ## What the brief gives you
 
@@ -74,8 +146,11 @@ Required: `title`, `category`, `confidence`, `observation`, `proposal`,
   whose observation cannot be checked against the brief is rejected.
 - **`how_we_would_know` must be measurable.** "It'll feel better" is not.
 - Prefer **few, specific, reversible** proposals. Three good ones beat
-  fifteen. A day with nothing worth changing should produce a `watch`
-  proposal saying so — that is a valid, useful outcome.
+  fifteen — but zero is a failure unless `what_you_owe_today.must_do` is 0.
+- Every proposal that claims an effect should name the metric and the
+  window, so Claude can register it as an experiment on adoption.
+- `watch` is for genuine "not enough signal yet, here is what would give us
+  signal" — not for hedging.
 
 ## What you may NEVER propose
 
