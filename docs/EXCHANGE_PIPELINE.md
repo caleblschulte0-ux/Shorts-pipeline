@@ -5,11 +5,11 @@ Rendering first would be wasted work: ChatGPT changes both the scripts and the
 visuals, and we are not re-rendering.
 
 ```
-01:30  Phase A   author'd packages -> resolve media -> JUDGE every shot
+04:30  Phase A   author'd packages -> resolve media -> JUDGE every shot
                  writes ONE bundle: scripts + media health + gap requests
                  commits, then STOPS.  Nothing renders.
          │
-02:00  ChatGPT   reads exchange/bundles/<date>/bundle.json
+05:00  ChatGPT   reads exchange/bundles/<date>/bundle.json
                  · generates the requested images/animations -> Google Drive
                  · punches up the scripts
                  · commits response.json, then DONE   ← written LAST
@@ -57,7 +57,7 @@ a **self-fill** pass: the funnel again with the gloves off (wider providers,
 lower floor, accept the weak-but-real candidates the judge rejected). Worst
 case a shot ships weaker than we wanted; we never ship nothing.
 
-The **backstop cron** (`exchange_phase_b.yml`, 03:15 UTC) exists for the same
+The **backstop cron** (`exchange_phase_b.yml`, 06:15 UTC) exists for the same
 reason: if ChatGPT never writes DONE, the push trigger never fires, and without
 the backstop the day would never render at all. It no-ops when Phase B already
 ran for that date.
@@ -99,9 +99,9 @@ allowed — entity comparison runs against the other text's full word set.
 
 | Step | Fires on |
 |---|---|
-| **Phase A** | `workflow_run` on **Auto-merge claude PRs** (the Routine's packages landing) + `30 1 * * *` backstop + dispatch |
-| **ChatGPT** | its own 02:00 scheduled task, reading `exchange/bundles/<date>/bundle.json` |
-| **Phase B** | `push` on `exchange/bundles/*/DONE` + `15 3 * * *` backstop + dispatch |
+| **Phase A** | `workflow_run` on **Auto-merge claude PRs** (the Routine's packages landing) + `30 4 * * *` backstop + dispatch |
+| **ChatGPT** | its own 05:00 scheduled task, reading `exchange/bundles/<date>/bundle.json` |
+| **Phase B** | `push` on `exchange/bundles/*/DONE` + `15 6 * * *` backstop + dispatch |
 | **Render** (`daily.yml`) | `workflow_run` on **Exchange Phase B** + manual `.github/triggers/daily` |
 
 ### The trigger that had to MOVE — read before changing any of this
@@ -109,7 +109,7 @@ allowed — entity comparison runs against the other text's full word set.
 `daily.yml` used to fire on `workflow_run: Auto-merge claude PRs` **and** on a
 `state/trending_packages/**` push. Both meant "render the instant the Routine's
 packages land". With the exchange in place that **races and always wins**: the
-render would finish long before ChatGPT's 02:00 task, using pre-ChatGPT media
+render would finish long before ChatGPT's 05:00 task, using pre-ChatGPT media
 and the un-punched scripts, every single day — while everything still looked
 green. Nothing would have alerted us.
 
@@ -125,18 +125,18 @@ Shorts", so they now run roughly 1.5–2h later in the morning as well.
 
 | Step | UTC |
 |---|---|
-| Claude Routine authors | ~00:45 |
-| Phase A (auto on auto-merge; cron backstop) | 01:30 |
-| ChatGPT task | 02:00 |
-| Phase B (auto on DONE; cron backstop) | 03:15 |
-| Render | ~03:30 |
-| **Uploads** | **13, 15, 17, 19, 21, 23 — FIXED, unaffected** |
+| Claude Routine authors | ~03:45 |
+| Phase A (auto on auto-merge; cron backstop) | 04:30 |
+| ChatGPT task | 05:00 |
+| Phase B (auto on DONE; cron backstop) | 06:15 |
+| Render | ~06:30 |
+| **Uploads** | **8:00, 9:30, 11:00, 12:30, 2:00, 3:30 CENTRAL — fixed wall-clock, unaffected** |
 
-Moving the chain earlier costs nothing operationally: publish slots are
-hardcoded UTC hours (`DEFAULT_PUBLISH_HOURS_UTC` in
-`scripts/run_trending_daily.py`) and `schedule_times()` simply takes the next
+The chain's timing is decoupled from posting: publish slots are
+fixed CENTRAL wall-clock times (`DEFAULT_PUBLISH_SLOTS_CENTRAL` in
+`scripts/run_trending_daily.py`, DST-correct via zoneinfo) and `schedule_times()` simply takes the next
 free ones. An earlier render does not move a single upload — it only widens the
-margin before the 13:00 first slot. The one real trade is **topic freshness**:
+margin before the 08:00 Central first slot. The one real trade is **topic freshness**:
 authoring earlier means less overnight news has accumulated for the Routine's
 "happened today / just announced" rule.
 
