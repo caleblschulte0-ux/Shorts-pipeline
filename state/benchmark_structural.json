@@ -13,11 +13,11 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.047"
+     "detail": "diff f1->f3 = 0.046"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg0.mascot.state_changes": {
      "ok": true,
@@ -48,7 +48,7 @@
     },
     "seg1.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg1.mascot.state_changes": {
      "ok": true,
@@ -105,11 +105,11 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.050"
+     "detail": "diff f1->f3 = 0.048"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg0.mascot.state_changes": {
      "ok": true,
@@ -140,7 +140,7 @@
     },
     "seg1.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg1.mascot.state_changes": {
      "ok": true,
@@ -197,11 +197,11 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.083"
+     "detail": "diff f1->f3 = 0.081"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg0.mascot.state_changes": {
      "ok": true,
@@ -232,7 +232,7 @@
     },
     "seg1.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg1.mascot.state_changes": {
      "ok": true,
@@ -289,11 +289,11 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.084"
+     "detail": "diff f1->f3 = 0.083"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg0.mascot.state_changes": {
      "ok": true,
@@ -324,7 +324,7 @@
     },
     "seg1.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg1.mascot.state_changes": {
      "ok": true,
@@ -355,7 +355,7 @@
     },
     "seg2.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg2.mascot.state_changes": {
      "ok": true,
@@ -417,7 +417,7 @@
     },
     "seg0.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg0.mascot.state_changes": {
      "ok": true,
@@ -448,7 +448,7 @@
     },
     "seg1.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg1.mascot.state_changes": {
      "ok": true,
@@ -479,7 +479,7 @@
     },
     "seg2.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg2.mascot.state_changes": {
      "ok": true,
@@ -541,7 +541,7 @@
     },
     "seg0.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg0.mascot.state_changes": {
      "ok": true,
@@ -572,7 +572,7 @@
     },
     "seg1.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg1.mascot.state_changes": {
      "ok": true,
@@ -603,7 +603,7 @@
     },
     "seg2.mascot.contact_required": {
      "ok": true,
-     "detail": "10/10 frames gripped"
+     "detail": "8/8 frames gripped"
     },
     "seg2.mascot.state_changes": {
      "ok": true,
