@@ -29,7 +29,14 @@ on:
   # steps that — daily.yml runs when auto-merge.yml completes
   # successfully, regardless of who attributed the resulting push.
   workflow_run:
-    workflows: ["Auto-merge claude PRs"]
+    workflows:
+      - "Auto-merge claude PRs"
+      # The exchange chain's render hand-off: Phase B finalizes scripts +
+      # media, then this renders them. Same GITHUB_TOKEN anti-recursion
+      # reason as above — Phase B's commit cannot fire the push trigger,
+      # so it has to be workflow_run. run_trending_daily's 6-hour dedupe
+      # guard makes a double-fire a safe no-op.
+      - "Exchange Phase B (consume ChatGPT, self-fill, ready to render)"
     types: [completed]
     branches: [main]
   # Belt-and-suspenders. If someone pushes packages directly to main

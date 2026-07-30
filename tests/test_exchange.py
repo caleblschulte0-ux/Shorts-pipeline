@@ -259,3 +259,46 @@ class TestPunchupEmphasis(unittest.TestCase):
         ok, problems = punchup_guard.check(orig, new)
         self.assertFalse(ok)
         self.assertTrue(any("INVENTED named entity" in p for p in problems))
+
+
+class TestSelfFillContracts(unittest.TestCase):
+    """The self-fill lanes call real funnel APIs. An earlier version GUESSED
+    the signatures (find_images(query, limit=)) and silently filled nothing —
+    the fallback looked like it ran and left every gap empty. Pin the real
+    contracts so that cannot regress."""
+
+    def test_media_funnel_search_signature(self):
+        import inspect
+        from funnel import media_funnel
+        sig = inspect.signature(media_funnel.search)
+        params = list(sig.parameters)
+        self.assertEqual(params[0], "story_angle")
+        self.assertEqual(params[1], "entities")
+        self.assertIn("story_slug", sig.parameters)
+        self.assertIn("verbose", sig.parameters)
+
+    def test_topic_media_search_signature(self):
+        import inspect
+        from funnel import topic_media
+        params = list(inspect.signature(topic_media.search).parameters)
+        self.assertEqual(params[:2], ["topic", "context"])
+
+    def test_entity_media_resolver_signature(self):
+        import inspect
+        from funnel import entity_media
+        sig = inspect.signature(entity_media.resolve_entity_media)
+        self.assertEqual(list(sig.parameters)[0], "entity")
+        self.assertIn("context", sig.parameters)
+
+    def test_candidate_exposes_url_and_score(self):
+        from funnel.media_funnel import Candidate
+        fields = getattr(Candidate, "__dataclass_fields__", {})
+        self.assertIn("url", fields)
+        self.assertIn("score", fields)
+
+    def test_self_fill_never_raises_on_junk(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+        from exchange_phase_b import self_fill
+        self.assertIsNone(self_fill({"shots": []}, 0))
+        self.assertIsNone(self_fill({"shots": [{"query": ""}]}, 0))
+        self.assertIsNone(self_fill({}, 5))

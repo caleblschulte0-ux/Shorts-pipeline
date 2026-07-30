@@ -56,44 +56,68 @@ def fetch_media(request_id: str) -> Path | None:
     return None
 
 
-def self_fill(pkg: dict, shot_index: int) -> str | None:
-    """Gloves-off second funnel pass for a gap ChatGPT did not fill.
+# Renderers keep funnel candidates at score >= 0.4. Self-fill is the
+# gloves-off pass: accept weaker-but-real media rather than ship nothing.
+SELF_FILL_FLOOR = 0.15
 
-    Widens the search and accepts weaker-but-real candidates. Never raises;
-    None means the shot renders with whatever it already had."""
-    try:
-        from funnel import media_funnel
-    except Exception:                                # noqa: BLE001
-        return None
+
+def self_fill(pkg: dict, shot_index: int) -> str | None:
+    """Gloves-off pass for a gap ChatGPT did not fill (Policy A).
+
+    Three lanes, widest-net first: the 22-provider funnel at a lowered score
+    floor, then the entity resolver, then the topic-image finder. Never
+    raises; None means the shot renders with whatever it already had.
+    """
     shots = pkg.get("shots") or []
     if shot_index >= len(shots):
         return None
     shot = shots[shot_index]
-    query = (shot.get("query") or shot.get("phrase") or "").strip()
-    if not query:
+    entity = (shot.get("query") or shot.get("phrase") or "").strip()
+    if not entity:
         return None
-    for fn_name, kwargs in (
-        ("find_images", {"limit": 12}),
-        ("search", {"limit": 12}),
-        ("gather", {"limit": 12}),
-    ):
-        fn = getattr(media_funnel, fn_name, None)
-        if fn is None:
-            continue
-        try:
-            got = fn(query, **kwargs)                # type: ignore[misc]
-        except TypeError:
-            try:
-                got = fn(query)                      # type: ignore[misc]
-            except Exception:                        # noqa: BLE001
-                continue
-        except Exception:                            # noqa: BLE001
-            continue
-        for cand in (got or []):
-            url = (cand.get("url") if isinstance(cand, dict) else None) or \
-                  (cand if isinstance(cand, str) else None)
-            if url:
+    angle = (pkg.get("title") or "").strip() or entity
+    slug = str(pkg.get("slug") or "")
+
+    # Lane 1 — the full funnel. Signature is search(story_angle, entities, ...)
+    # and it returns Candidate dataclasses (.url/.score), not dicts.
+    try:
+        from funnel import media_funnel
+        cands = media_funnel.search(angle, [entity], story_slug=slug,
+                                    verbose=False) or []
+        ranked = sorted(cands, key=lambda c: getattr(c, "score", 0.0),
+                        reverse=True)
+        for c in ranked:
+            url = getattr(c, "url", None)
+            if url and getattr(c, "score", 0.0) >= SELF_FILL_FLOOR:
+                print(f"[phase-b] self-fill lane=funnel shot={shot_index} "
+                      f"score={getattr(c, 'score', 0):.2f}")
                 return url
+    except Exception as exc:                         # noqa: BLE001
+        print(f"[phase-b] self-fill funnel lane failed: "
+              f"{type(exc).__name__}: {str(exc)[:70]}")
+
+    # Lane 2 — entity resolver (Wikipedia/Commons; keyless).
+    try:
+        from funnel import entity_media
+        url = entity_media.resolve_entity_media(entity, context=angle)
+        if url:
+            print(f"[phase-b] self-fill lane=entity shot={shot_index}")
+            return url
+    except Exception:                                # noqa: BLE001
+        pass
+
+    # Lane 3 — topic image finder: search(topic, context) -> list[str]
+    # (Wikipedia article images, Commons, Openverse; keyless).
+    try:
+        from funnel import topic_media
+        urls = topic_media.search(entity, angle) or []
+        for url in urls:
+            if url:
+                print(f"[phase-b] self-fill lane=topic shot={shot_index}")
+                return url
+    except Exception:                                # noqa: BLE001
+        pass
+
     return None
 
 
