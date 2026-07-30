@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -295,16 +296,47 @@ def _try_resume(slug: str, out: Path, story_path: Path) -> int | None:
     return rc
 
 
-def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False) -> dict:
-    """Render + gate + repair the story, then evaluate it. Returns the evaluate()
-    result with the slug attached. `fresh=True` forces a re-render even when
-    the on-disk package proves identical (resume path)."""
+def _repair_attempts() -> int:
+    """How many render->judge->repair rounds one produce() call may spend.
+
+    Bounded because each round is a FULL re-render: a feature-length story can
+    run over an hour, and a CI job that exceeds its wall clock delivers nothing
+    at all — an unbounded loop would turn a quarantine (which still ships an
+    inspectable package) into a timeout (which ships nothing)."""
+    try:
+        return max(1, int(os.environ.get("CURIOSITY_REPAIR_ATTEMPTS", "2")))
+    except ValueError:
+        return 2
+
+
+def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False,
+            attempts: int | None = None) -> dict:
+    """Render -> judge -> REPAIR -> re-render until the policy is satisfied or the
+    attempt budget is spent. Returns the final evaluate() result with the slug
+    attached. `fresh=True` forces a re-render even when the on-disk package
+    proves identical (resume path).
+
+    THE CLOSED LOOP. Every attempt already produced a ranked repair plan from the
+    judges' real findings; until now nothing applied it, so a second render
+    re-rendered the identical story and the plan was a document rather than a
+    fix. Here the plan is applied to the beats (auto_repair), the revised story is
+    written into the package as evidence, and THAT is what re-renders.
+
+    The escalation class widens per attempt (local -> scene -> structural), so
+    each round is broader than the last rather than the same move retried. A
+    round that applies NOTHING stops the loop immediately: re-rendering unchanged
+    input to get an unchanged verdict is the one thing this loop must never do.
+    """
     import no_dull_beats
     import run_ledger
+    from data_learning import auto_repair, repair_planner
+    from data_learning.judging_store import JudgingStore
     story_path = resolve_story(slug)
     story = json.loads(story_path.read_text())
+    budget = _repair_attempts() if attempts is None else max(1, int(attempts))
     run_ledger.append("run_started", slug,
-                      {"out": str(out), "rounds": rounds, "fresh": fresh})
+                      {"out": str(out), "rounds": rounds, "fresh": fresh,
+                       "repair_attempts": budget})
     if not fresh:
         rc = _try_resume(slug, out, story_path)
         if rc is not None:
@@ -319,6 +351,113 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False) -> dict:
                   + ("" if result["status"] == "pass"
                      else " — " + "; ".join(result["reasons"])))
             return result
+
+    pkg = out.with_name(out.stem + "_pkg")
+    repair_log: list[dict] = []
+    result: dict = {}
+    for attempt_i in range(1, budget + 1):
+        if attempt_i > 1:
+            print(f"[produce] {slug}: === repair attempt {attempt_i}/{budget} "
+                  f"— re-rendering the REVISED story ({story_path.name}) ===")
+        result = _render_and_judge(slug, out, story_path, story, rounds)
+        if result.get("status") == "pass" or attempt_i == budget:
+            break
+
+        # ---- apply the judges' ranked plan to the beats, then re-render THAT.
+        # The FINDINGS are the source of truth, not the stored plan: a plan is
+        # only ever built for one repair class, and the class decides which
+        # findings become tasks at all (the rest are held in `deferred`).
+        findings: list[dict] = []
+        try:
+            store = JudgingStore(out)
+            seen = store.existing_attempts()
+            if seen:
+                findings = ((store.read(seen[-1], "combined_verdict") or {})
+                            .get("findings") or [])
+        except Exception as e:  # noqa: BLE001 — no findings means no repair, not a crash
+            print(f"[produce] {slug}: could not read the judges' findings ({e})",
+                  file=sys.stderr)
+
+        # THE LADDER MUST NOT BECOME A DEAD END. The class starts narrow so the
+        # cheap repairs are tried first, but attempt 1 opens at `local` while the
+        # commonest creative defect (CARDS_OVER_BUDGET) is not even planned as a
+        # task until `scene`. Stopping there would mean the defect the judges
+        # raise most often is the one repair that never runs. The ladder exists
+        # to ORDER repairs, not to refuse one the judges demonstrably need — so
+        # when a class yields nothing and findings are still held back, re-plan
+        # one step wider. This costs no render: only the final revision renders.
+        ladder = ["local", "scene", "structural"]
+        first = repair_planner.repair_class(attempt_i)
+        start = ladder.index(first) if first in ladder else 0
+        escalation, plan, revised, journal, applied = first, {}, story, [], []
+        for step in range(start, len(ladder)):
+            escalation = ladder[step]
+            plan = repair_planner.plan(findings, attempt=attempt_i,
+                                       escalation=escalation)
+            revised, journal = auto_repair.apply(plan, story,
+                                                 escalation=escalation)
+            applied = [j for j in journal if j.get("applied")]
+            if applied:
+                break
+            held = len(plan.get("deferred", [])) + len(
+                [j for j in journal if "repair class" in str(j.get("why", ""))])
+            if not held or step + 1 >= len(ladder):
+                break          # nothing left to widen INTO — the findings are spent
+            print(f"[produce] {slug}: the {escalation} class repaired nothing "
+                  f"and {held} finding(s) are held for a wider class — "
+                  f"re-planning at {ladder[step + 1]}")
+        repair_log.append({"attempt": attempt_i, "escalation": escalation,
+                           "n_findings": len(findings),
+                           "n_tasks": len(plan.get("tasks", [])),
+                           "n_applied": len(applied), "journal": journal})
+        if not applied:
+            print(f"[produce] {slug}: repair applied NOTHING at the "
+                  f"{escalation} class — stopping rather than re-rendering an "
+                  "identical film for an identical verdict")
+            result.setdefault("reasons", []).append(
+                f"repair loop stopped after attempt {attempt_i}: no automated "
+                f"repair applied at the {escalation} class")
+            break
+        print(f"[produce] {slug}: {auto_repair.summarize(journal)}")
+        # the revised beats ARE the next render's input, and they ship in the
+        # package so a reviewer can read exactly what the loop changed and why
+        rev_dir = pkg / "revised"
+        rev_dir.mkdir(parents=True, exist_ok=True)
+        story_path = rev_dir / f"attempt_{attempt_i + 1:02d}.beats.json"
+        story_path.write_text(json.dumps(revised, indent=2) + "\n")
+        story = revised
+        run_ledger.append("repair_applied", slug,
+                          {"attempt": attempt_i, "escalation": escalation,
+                           "n_applied": len(applied),
+                           "story": str(story_path)})
+
+    if repair_log:
+        result["repairs"] = repair_log
+        try:
+            pkg.mkdir(parents=True, exist_ok=True)
+            (pkg / "repair_log.json").write_text(
+                json.dumps(repair_log, indent=2) + "\n")
+        except Exception as e:  # noqa: BLE001 — evidence only, never fatal
+            print(f"[produce] {slug}: repair log not written ({e})",
+                  file=sys.stderr)
+    run_ledger.append("evaluated", slug,
+                      {"status": result.get("status"),
+                       "n_reasons": len(result.get("reasons", [])),
+                       "repair_rounds": len(repair_log)})
+    if result.get("status") == "pass":
+        print(f"[produce] {slug}: PASS — publishing package ready")
+    else:
+        print(f"[produce] {slug}: QUARANTINE — "
+              + "; ".join(result.get("reasons", [])))
+    return result
+
+
+def _render_and_judge(slug: str, out: Path, story_path: Path, story: dict,
+                      rounds: int) -> dict:
+    """ONE round: render the given story, evaluate it, and persist the judging
+    evidence (which also writes the ranked repair plan the caller applies)."""
+    import no_dull_beats
+    import run_ledger
     print(f"[produce] {slug}: render + director loop ({story_path.name})")
     try:
         director_rc = no_dull_beats.run(story_path, out, rounds=rounds)
@@ -374,13 +513,10 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False) -> dict:
     except Exception as e:  # noqa: BLE001 — evidence capture never kills a render
         print(f"[produce] {slug}: judging evidence capture failed ({str(e)[:120]})",
               file=sys.stderr)
-    run_ledger.append("evaluated", slug,
-                      {"status": result["status"],
-                       "n_reasons": len(result["reasons"])})
-    if result["status"] == "pass":
-        print(f"[produce] {slug}: PASS — publishing package ready")
-    else:
-        print(f"[produce] {slug}: QUARANTINE — " + "; ".join(result["reasons"]))
+    # the round's own verdict; produce() prints the FINAL one after the loop
+    print(f"[produce] {slug}: round verdict — {result['status'].upper()}"
+          + ("" if result["status"] == "pass"
+             else " — " + "; ".join(result["reasons"][:3])))
     return result
 
 

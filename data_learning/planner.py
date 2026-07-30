@@ -35,6 +35,16 @@ LEAD, TAIL, MIN_SHOT = 0.45, 0.9, 2.8
 MAX_UNCHANGED = 4.5        # default: a visual may not hold longer than this
 DEV_PHASE = 2.6           # silent development tail when a beat splits
 
+# The card-to-character repair (`_prefer_scene`, from a judge finding of
+# CARDS_OVER_BUDGET / NO_CHARACTER / INFOGRAPHIC_REEL) needs somewhere to put the
+# beat. These are the TOPIC-AGNOSTIC scenes — a figure doing an ordinary human
+# thing, carrying no subject presupposition. The money-world scenes (paycheck,
+# tax, rent, grocery, subs, savings) are deliberately excluded: they are correct
+# only for a film about money, and an automated repair must not import a topic
+# the story never had.
+NEUTRAL_SCENES = ("scene_free", "scene_hold", "scene_walkout", "scene_queue",
+                  "scene_work", "scene_screen", "scene_sleep")
+
 
 def _beat_seconds(dur: float) -> float:
     return max(MIN_SHOT, LEAD + dur + TAIL) if dur else 4.0
@@ -75,6 +85,24 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                                      b.get("perspective", "")}
             emit(_depict(b, img, secs, subj, text=txt, text_role=role,
                          line=line))
+            continue
+
+        # CARD -> CHARACTER. The judges measured the stat-plate look dominating
+        # the film; the repair converts an offending card into a scene of a
+        # person, which is the only treatment that adds a human to the frame.
+        # Applies ONLY where nothing filmable would be destroyed: a card beat, or
+        # a beat with no image/footage of its own. A footage beat keeps its
+        # footage — swapping real material for a drawing is never the fix.
+        if b.get("_prefer_scene") and (b.get("flat") or
+                                       not (b.get("image") or b.get("footage"))):
+            # rotate by beat index so converting several cards does not just
+            # trade a repeated card for a repeated scene
+            kind = NEUTRAL_SCENES[bi % len(NEUTRAL_SCENES)]
+            num = b.get("number") or {}
+            emit({"kind": kind, "seconds": secs, "line": line,
+                  "number": num.get("text", ""),
+                  "label": num.get("label", "") or b.get("text", ""),
+                  "mood": (b.get("flat") or {}).get("mood")})
             continue
 
         # ---- pure designed-2D beat (orbit, galaxy, comparison, title) —
@@ -301,6 +329,11 @@ def _depict(beat: dict, image: dict, secs: float, subject: str,
                 "motion_query": subject, "seconds": secs, **_img(image)}
     if image.get("perspective"):
         sh["perspective"] = image["perspective"]
+    # A media repair on this beat travels to the selection gate as a reseed, so
+    # the re-render steps past the clip the judges rejected instead of re-picking
+    # it (the candidate order is otherwise deterministic).
+    if beat.get("_media_reseed"):
+        sh["reseed"] = int(beat["_media_reseed"])
     if text:
         sh["text"], sh["text_role"] = text, text_role or "thesis"
     if line:

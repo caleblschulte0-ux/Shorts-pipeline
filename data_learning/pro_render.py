@@ -344,6 +344,7 @@ def _depict_source(shot: dict, seconds: float, work: Path, idx: int):
             hit = media.motion_first(
                 q, seconds, work,
                 perspective=str(shot.get("perspective", "")),
+                reseed=int(shot.get("reseed", 0) or 0),
                 log=lambda m: print(m, file=sys.stderr))
         if hit:
             # hand the resolved clip to the normal footage path: a local file

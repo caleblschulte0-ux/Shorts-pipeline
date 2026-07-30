@@ -26,6 +26,11 @@ on:
         description: 'batch mode: how many stories to render (default 2)'
         required: false
         default: '1'
+      repair_attempts:
+        description: 'render->judge->REPAIR rounds per story (each is a full
+          re-render; 2 fits the 335-min cap at ~2h a cut, 1 disables repair)'
+        required: false
+        default: '2'
       canary_slug:
         description: 'slug to post in canary mode'
         required: false
@@ -263,6 +268,13 @@ jobs:
           # 1440x810/32 quality.
           CURIO_HERO_RES: ${{ inputs.hero_res || '960x540' }}
           CURIO_HERO_SAMPLES: ${{ inputs.hero_samples || '24' }}
+          # THE CLOSED REPAIR LOOP (scripts/produce.py). How many
+          # render -> judge -> repair -> re-render rounds one story may spend.
+          # Each round is a FULL re-render, so this is bounded by the job's
+          # 335-minute cap rather than by the policy's attempt budget: at ~2h a
+          # cut, 2 rounds fit with margin and 3 would risk timing out, which
+          # would deliver nothing at all instead of a judged quarantine.
+          CURIOSITY_REPAIR_ATTEMPTS: ${{ inputs.repair_attempts || '2' }}
           # PHASE-3 ROUTING (docs/CURIOSITY_RECOVERY_MANIFEST.md):
           # - the canonical producer is the ONLY default renderer; legacy needs
           #   an operator to export CURIOSITY_RENDERER=legacy by hand.

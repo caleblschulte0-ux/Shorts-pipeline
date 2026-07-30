@@ -343,7 +343,7 @@ def _best_dynamic_window(clip: Path, seconds: float, max_probe: int = 6):
 def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
                  *, min_motion: float = MOTION_FLOOR,
                  min_rel: float = MOTION_REL_FLOOR, max_probe: int = 3,
-                 log=print) -> dict | None:
+                 reseed: int = 0, log=print) -> dict | None:
     """The decision gate. Given a subject a beat wants to DEPICT and how long the
     beat runs, return a MOVING clip of that subject when one clears the bar —
     because motion is more view-worthy than a still of the same thing. Probes the
@@ -355,7 +355,15 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
     Returns None when NO clip clears the bar — the honest signal for the caller to
     fall back to a still (and to log WHY: nothing moving was available, not that a
     still was preferred). Never ships a frozen or off-topic clip just to avoid a
-    photo."""
+    photo.
+
+    ``reseed`` is how a REPAIR gets a different clip for a beat the judges
+    rejected. The candidate order here is deterministic (relevance-ranked), so
+    re-rendering an unrepaired beat returns the same asset by design — that is
+    what makes a render reproducible. A judge finding of MEDIA_UNSUITABLE /
+    WEAK_DEPICTION raises this beat's reseed count, which SKIPS that many
+    already-tried leaders and hands back the next-best clip instead. Without it
+    a media repair would re-download its own rejected footage."""
     from data_learning import footage_hybrid as fh
     from data_learning import media_context as mctx
     cands = find(query, kind="video", perspective=perspective)
@@ -380,11 +388,22 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
         cands = ground
     cands.sort(key=lambda c: _relevance(c.get("title", ""), query), reverse=True)
     probed = 0
+    skipped = 0
     for c in cands:
         if probed >= max_probe:
             break
         rel = _relevance(c.get("title", ""), query)
         if rel < min_rel:            # an off-topic clip is not "the same subject"
+            continue
+        # REPAIR RESEED: step past the leaders this beat has already shipped and
+        # had rejected. Skipping is counted over ELIGIBLE candidates only (an
+        # off-topic clip was never in the running, so passing it is not a retry)
+        # and does not spend probe budget — a reseeded beat gets a full look at
+        # the alternatives rather than a shorter one.
+        if skipped < reseed:
+            skipped += 1
+            log(f"[motion-first] reseed {skipped}/{reseed}: skipping "
+                f"{str(c.get('title',''))[:38]!r} (already tried for this beat)")
             continue
         probed += 1
         tag = c.get("nasa_id") or c.get("url", "")
@@ -413,7 +432,8 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
         except Exception as e:  # noqa: BLE001 — a bad candidate must not abort
             log(f"[motion-first] probe failed ({str(e)[:56]}) — next candidate")
     log(f"[motion-first] no moving clip cleared the bar for {query!r} "
-        f"(probed {probed}) — a still is the honest fallback")
+        f"(probed {probed}, reseed-skipped {skipped}) — a still is the honest "
+        "fallback")
     return None
 
 

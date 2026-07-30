@@ -54,6 +54,38 @@ long — shorten it or give it a second thing to reveal.
 3. **Order of importance is fixed.** Retention is front-loaded: the opening
    decides whether the rest is ever seen. Gates run top-down; a lower gate never
    masks a failure in a higher one.
+4. **A repair must change the RENDER, not the story JSON.** A repair lever is
+   only real if some consumer downstream reads it. `auto_repair` once wrote
+   `_prefer_scene`, `_media_reseed` and `_restyle_type` onto beats, its unit
+   tests asserted the flags were written and passed, and the planner read none
+   of them — so the loop re-rendered a byte-identical film while reporting that
+   it had repaired it. That is worse than no repair, because it launders a
+   failure as progress. Every lever needs a test that runs the repaired story
+   through `planner.plan_story` and shows the SHOT that changed
+   (`scripts/test_repair_effect.py`).
+5. **Never re-render unchanged input.** The candidate order in media selection
+   is deterministic, so an unrepaired beat resolves to the same asset by design
+   — that is what makes a render reproducible, and it is exactly why a repair
+   that applies nothing must STOP the loop instead of spending another hour to
+   obtain the same verdict. `produce()` breaks with that reason recorded.
+
+## The closed loop (`scripts/produce.py`)
+
+    render -> judge -> rank repairs -> APPLY -> re-render -> judge ...
+
+Bounded by `CURIOSITY_REPAIR_ATTEMPTS` (default 2) because each round is a full
+re-render and a job that exceeds its wall clock delivers nothing at all, whereas
+a quarantine still ships an inspectable package. The escalation class widens per
+round — `local` (swap media, trim holds) → `scene` (convert cards to character
+scenes) → `structural` (re-open the film) — so each attempt is broader than the
+last rather than the same move retried. Every round's revised beats are written
+to `<out>_pkg/revised/attempt_NN.beats.json` and the journal to
+`<out>_pkg/repair_log.json`, so what the loop changed is readable without the
+runner.
+
+A repair may never import a subject the story never had: card-to-scene
+conversion draws only from `planner.NEUTRAL_SCENES`, never the money-world
+scenes, or a physics film acquires a character paying rent.
 
 ## The order of importance (the scorecard)
 
