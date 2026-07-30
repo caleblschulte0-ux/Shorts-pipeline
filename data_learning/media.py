@@ -223,6 +223,18 @@ def find(query: str, kind: str = "image", perspective: str = "",
             out += stock_hits + nasa
         else:
             out += nasa + stock_hits
+    # SUITABILITY — a HARD filter, applied to every kind, before anything is
+    # ranked or downloaded. Licence was always checked; whether the asset
+    # BELONGS was not, which is how a police bodycam with a visible burn-in and
+    # a broadcaster's news memorial ended up illustrating a calm film about
+    # sleep. A branded clip removed here can never win a beat later.
+    try:
+        from data_learning import media_suitability as suit
+        out, unsuitable = suit.filter_candidates(out)
+        for title, why in unsuitable[:6]:
+            print(f"[media] unsuitable {title!r}: {why}")
+    except Exception as e:  # noqa: BLE001 — a gate that cannot run must not
+        print(f"[media] suitability skipped ({str(e)[:60]})")   # empty the pool
     return out
 
 

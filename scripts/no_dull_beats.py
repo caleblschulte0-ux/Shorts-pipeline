@@ -229,6 +229,14 @@ def novelty_check(render: Path, max_stale: float = NOVELTY_MAX_STALE):
 # do not count. Purpose-built animated scenes (orbit/zoom/engine) are not cards.
 CARD_KINDS = {"flat_number", "flat_compare", "flat_statement", "flat_title",
               "flat_life_grid", "flat_hook"}
+# A CARD is a LOOK, not a class name. These scene builders render the same
+# stat-plate composition the flat_* cards do — a big number and a letterspaced
+# caption on a flat field — so a viewer counts them as cards even though the
+# code calls them scenes. Leaving them out made the gate report 18.4% while two
+# independent blind judges measured 46% on the same film and both raised
+# CARDS_OVER_BUDGET. A renamed money bar is still a money bar (audit #9).
+CARD_LIKE_SCENES = {"scene_money", "scene_savings", "scene_subs",
+                    "scene_grocery", "chapter", "flat_chapter"}
 CARD_BUDGET = 0.42        # data-cards may occupy at most this fraction of runtime
 
 
@@ -255,7 +263,8 @@ def composition_budget(beats: list, beatmap: Path):
             continue
         dur = max(0.0, z - a)
         total += dur
-        if i < len(beats) and _beat_kind(beats[i]) in CARD_KINDS:
+        if i < len(beats) and _beat_kind(beats[i]) in (CARD_KINDS
+                                                      | CARD_LIKE_SCENES):
             card += dur
     frac = (card / total) if total else 0.0
     return (round(frac, 3), frac > CARD_BUDGET)

@@ -1,0 +1,152 @@
+{
+  "slug": "shared-air",
+  "title": "The Air In Your Lungs Has Been Everywhere",
+  "require_provenance": false,
+  "media_context": {
+    "geography": "global",
+    "language": "en"
+  },
+  "beats": [
+    {
+      "job": "HOOK",
+      "mode": "footage",
+      "narration": "Breathe in. Hold it. What you are holding is not new. Every molecule in your chest has been somewhere before, and almost none of it has been anywhere near you.",
+      "understand": "a real close breath — mist in cold air, unmistakably human",
+      "image": {"query": "breath cold air winter", "perspective": "close"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "Air does not stay put. It has no home. It moves, constantly, and it does not care whose lungs it was in last.",
+      "understand": "wind moving through something — the invisible made visible",
+      "image": {"query": "wind blowing grass field", "perspective": "ground"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "designed_2d",
+      "narration": "A single breath is about half a litre of air. That sounds small. It is not.",
+      "understand": "a figure taking one deliberate breath",
+      "flat": {"kind": "scene_free"}
+    },
+    {
+      "job": "DATA",
+      "mode": "footage",
+      "narration": "Packed inside it are more molecules than there are stars in every galaxy we can see. Not a comparison. A count.",
+      "understand": "a real night sky, dense with stars",
+      "image": {"query": "night sky stars milky way", "perspective": "cinematic"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "And the atmosphere, enormous as it is, is finite. Which means the same air keeps coming back around.",
+      "understand": "clouds moving over the horizon — the whole system, breathing",
+      "image": {"query": "time lapse clouds sky", "perspective": "aerial"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "Give it a couple of years and a breath you let go this morning is thoroughly mixed through the entire planet.",
+      "understand": "ocean or wind at scale — planetary circulation",
+      "image": {"query": "ocean waves aerial", "perspective": "aerial"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "designed_2d",
+      "narration": "So the air arriving in your lungs right now did not come from your room. It came from everywhere.",
+      "understand": "a figure standing still while the world moves around them",
+      "flag": true,
+      "flat": {"kind": "scene_walkout"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "It has been over the ocean. Through a storm. Sat above a forest for a season, doing nothing at all.",
+      "understand": "real forest canopy, alive and moving",
+      "image": {"query": "forest canopy trees wind", "perspective": "ground"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "It has been through the leaves of trees that were standing before anyone you have ever met was born.",
+      "understand": "one enormous old tree — time made physical",
+      "image": {"query": "old tree forest sunlight", "perspective": "ground"}
+    },
+    {
+      "job": "REVEAL",
+      "mode": "footage",
+      "narration": "And it has been inside other people. A lot of other people.",
+      "understand": "a real crowd — many strangers, all breathing",
+      "image": {"query": "crowd people walking street", "perspective": "human-scale"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "designed_2d",
+      "narration": "Everyone in this city. Everyone in the next one. Everyone who was alive a hundred years ago, and everyone who was alive a thousand years before that.",
+      "understand": "one figure, then the crowd behind them",
+      "flat": {"kind": "scene_queue"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "Strangers you will never meet. People who died before your country had a name.",
+      "understand": "an old street, or old stone — the past as a real place",
+      "image": {"query": "old stone city street", "perspective": "ground"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "Every argument anyone has ever had ended with them exhaling. That air did not go anywhere. It went into the pile.",
+      "understand": "a real person mid-conversation, ordinary and specific",
+      "image": {"query": "two people talking outdoors", "perspective": "human-scale"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "designed_2d",
+      "narration": "There is no fresh supply. There is no separate air for you. There is one pile, and everyone is using it.",
+      "understand": "a figure among many, sharing the same space",
+      "flat": {"kind": "scene_hold"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "It is in the sea, dissolving. It is in the rain. It is locked inside ice that has not melted for a very long time.",
+      "understand": "real ice or meltwater — air held in storage",
+      "image": {"query": "glacier ice melting water", "perspective": "close"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "footage",
+      "narration": "Plants pull it apart and hand it back changed. That is the only reason any of this works.",
+      "understand": "real leaves, close, alive",
+      "image": {"query": "green leaves sunlight close up", "perspective": "close"}
+    },
+    {
+      "job": "REVEAL",
+      "mode": "footage",
+      "narration": "So the boundary you imagine — you in here, the world out there — is not really a boundary. It is a doorway, and it is open, and it never closes.",
+      "understand": "a real open window or doorway with air moving through it",
+      "image": {"query": "open window curtain wind", "perspective": "close"}
+    },
+    {
+      "job": "DEVELOP",
+      "mode": "designed_2d",
+      "narration": "You are not sealed. You never were. You are a place air passes through on its way somewhere else.",
+      "understand": "a figure, calm, breathing",
+      "flat": {"kind": "scene_sleep"}
+    },
+    {
+      "job": "PAYOFF",
+      "mode": "footage",
+      "narration": "Which means the next person to breathe what you are breathing now has not been born yet. And they will get it back, eventually.",
+      "understand": "a child, or new life — the handover, made real",
+      "image": {"query": "child running outdoors sunlight", "perspective": "human-scale"}
+    },
+    {
+      "job": "CLOSE",
+      "mode": "footage",
+      "narration": "Breathe out. You just gave it back.",
+      "understand": "return to the opening image — breath, released",
+      "image": {"query": "breath cold air person exhale", "perspective": "close"}
+    }
+  ]
+}
