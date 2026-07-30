@@ -95,13 +95,37 @@ allowed — entity comparison runs against the other text's full word set.
 | `--no-punchup` | off | Ignore script rewrites entirely. |
 | `--require-done` | off | Phase B defers instead of proceeding without ChatGPT. |
 
-## Rollout state
+## Wiring (LIVE as of 2026-07-30)
 
-Both workflows are **dispatch-only for Phase A** (no cron yet) so they cannot
-disturb the live daily chain. Phase B has the DONE trigger and the backstop
-active, and **does not auto-trigger a render** — the channel's own workflow is
-still dispatched by hand. Prove it on `trending` for a week, then add Phase A's
-cron and wire the render hand-off.
+| Step | Fires on |
+|---|---|
+| **Phase A** | `workflow_run` on **Auto-merge claude PRs** (the Routine's packages landing) + `30 4 * * *` backstop + dispatch |
+| **ChatGPT** | its own 05:00 scheduled task, reading `exchange/bundles/<date>/bundle.json` |
+| **Phase B** | `push` on `exchange/bundles/*/DONE` + `15 6 * * *` backstop + dispatch |
+| **Render** (`daily.yml`) | `workflow_run` on **Exchange Phase B** + manual `.github/triggers/daily` |
+
+### The trigger that had to MOVE — read before changing any of this
+
+`daily.yml` used to fire on `workflow_run: Auto-merge claude PRs` **and** on a
+`state/trending_packages/**` push. Both meant "render the instant the Routine's
+packages land". With the exchange in place that **races and always wins**: the
+render would finish long before ChatGPT's 05:00 task, using pre-ChatGPT media
+and the un-punched scripts, every single day — while everything still looked
+green. Nothing would have alerted us.
+
+So Phase A **took over** the auto-merge slot, the package-push path was
+**removed**, and `daily.yml` now renders only when Phase B completes. If you
+ever see `daily.yml` triggering on package landing again, the exchange is dead
+and you are shipping the old media.
+
+Consequence worth knowing: `third.yml` and the explainer chain off "Daily
+Shorts", so they now run roughly 1.5–2h later in the morning as well.
+
+### What the operator's Claude Routine must do
+
+**Author packages, push, stop.** It must NOT dispatch `daily.yml` — that is now
+the last step of the chain, not the next one. Full note at the top of
+`CLAUDE_ROUTINE_INSTRUCTIONS.md`.
 
 ## Testing
 

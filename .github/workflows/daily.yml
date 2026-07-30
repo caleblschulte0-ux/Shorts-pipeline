@@ -28,14 +28,16 @@ on:
   # fired after auto-merge. workflow_run on the merge workflow side-
   # steps that — daily.yml runs when auto-merge.yml completes
   # successfully, regardless of who attributed the resulting push.
+  # RENDER HAND-OFF (exchange chain, 2026-07-30). This used to fire on
+  # "Auto-merge claude PRs" — i.e. the moment the Routine's packages landed —
+  # which now RACES the exchange: it would render with pre-ChatGPT media every
+  # single day and silently defeat the whole point. Auto-merge now kicks
+  # EXCHANGE PHASE A instead; this renders only once Phase B has finalized the
+  # scripts and media. workflow_run (not push) because Phase B commits with
+  # GITHUB_TOKEN and GitHub blocks those pushes from firing other workflows.
+  # run_trending_daily's 6-hour dedupe guard makes a double-fire a safe no-op.
   workflow_run:
     workflows:
-      - "Auto-merge claude PRs"
-      # The exchange chain's render hand-off: Phase B finalizes scripts +
-      # media, then this renders them. Same GITHUB_TOKEN anti-recursion
-      # reason as above — Phase B's commit cannot fire the push trigger,
-      # so it has to be workflow_run. run_trending_daily's 6-hour dedupe
-      # guard makes a double-fire a safe no-op.
       - "Exchange Phase B (consume ChatGPT, self-fill, ready to render)"
     types: [completed]
     branches: [main]
@@ -45,7 +47,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'state/trending_packages/**'
+      # 'state/trending_packages/**' REMOVED 2026-07-30: a package push must
+      # start EXCHANGE PHASE A (find media, ask ChatGPT), not a render.
       - '.github/triggers/daily'
 
 permissions:
