@@ -31,16 +31,11 @@ on:
     workflows: ["Auto-merge claude PRs"]
     types: [completed]
     branches: [main]
-  # BACKSTOP: 01:30 UTC, ahead of ChatGPT's 02:00 task, in case the Routine
+  # BACKSTOP: 04:30 UTC, ahead of ChatGPT's 05:00 task, in case the Routine
   # authored outside the PR path. Phase A never renders, so a duplicate run
   # only rewrites the same bundle — harmless.
-  # Moved 04:30 -> 01:30 on operator request 2026-07-30: the whole chain runs
-  # 3h earlier. Safe because publish slots are FIXED UTC hours
-  # (DEFAULT_PUBLISH_HOURS_UTC = [13,15,17,19,21,23]) chosen by
-  # schedule_times(), so an earlier render does not move a single upload — it
-  # only widens the margin before the 13:00 first slot.
   schedule:
-    - cron: '30 1 * * *'
+    - cron: '30 4 * * *'
 
 permissions:
   contents: write   # commit the bundle + resolved media pins

@@ -33,11 +33,10 @@ on:
         type: boolean
         default: false
   # BACKSTOP: if ChatGPT never writes DONE, the push trigger never fires and
-  # the day would never render at all. Runs ~1h45m after a 01:30 Phase A.
-  # Moved 06:15 -> 03:15 with Phase A (operator request 2026-07-30). Still
-  # ~9h before the first fixed publish slot at 13:00 UTC.
+  # the day would never render at all. Runs ~1h45m after a 04:30 Phase A,
+  # comfortably before the first publish slot (08:00 Central).
   schedule:
-    - cron: '15 3 * * *'
+    - cron: '15 6 * * *'
 
 permissions:
   contents: write
