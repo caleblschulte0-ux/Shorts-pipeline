@@ -99,14 +99,42 @@ def maybe_fetch(asset_id: str, kind: str = "image"):
         return None
 
 
+def gateway_was_operational(kind: str = "image") -> bool:
+    """True when at least one provider that can serve `kind` was actually
+    usable (key present, circuit closed).
+
+    This distinguishes the two very different reasons a search comes up dry:
+      - CONTENT gap: providers ran and nobody has that picture -> a generated
+        asset is the right answer, file the ask.
+      - ENVIRONMENT gap: no provider could even be called (missing API keys,
+        every circuit open) -> the miss says nothing about the content, and
+        filing an ask would send the other agent to draw something the real
+        runner fills with real photography. Stay quiet.
+    Without this, every keyless local/diagnostic render spams false media
+    debts (observed 2026-07-30: a local render filed an ask for "person
+    walking outdoors sunset", which the CC pools serve easily).
+    """
+    try:
+        from data_learning.provider_routing import records
+        return any(r.healthy and kind in r.capabilities for r in records())
+    except Exception:  # noqa: BLE001 — unknown health: assume operational so a
+        return True    # real content gap is never silently swallowed
+
+
 def maybe_request(brief: str, purpose: str = "", kind: str = "image",
                   aspect: str = "16:9",
                   style: str = "photographic, documentary, no text in frame, "
                                "no watermarks, no recognisable faces") -> str | None:
     """File an auto-ask for the other agent (id derived from the brief).
     Returns the id, whether the request was just written or already existed;
-    None only when even writing the file failed. Never raises."""
+    None when the file could not be written OR when the gateway was not
+    actually operational (see gateway_was_operational). Never raises."""
     try:
+        if not gateway_was_operational(kind):
+            print(f"[exchange] NOT filing an ask for {str(brief)[:50]!r}: no "
+                  f"{kind} provider was reachable, so this miss is about "
+                  "credentials, not content")
+            return None
         rid = auto_id(brief, kind)
         p = REQ / f"{rid}.json"
         if not p.exists():

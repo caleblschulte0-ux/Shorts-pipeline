@@ -39,6 +39,19 @@ def main():
         assert (xm.REQ / f"{rid}.json").read_text() == before
         print("ok  2. auto-ask filed once; re-render dedupes, never clobbers")
 
+        # 2b. a miss caused by the ENVIRONMENT (no reachable provider) must
+        # NOT file an ask — otherwise every keyless local render spams false
+        # media debts for pictures the real runner finds easily.
+        real_health = xm.gateway_was_operational
+        xm.gateway_was_operational = lambda kind="image": False
+        try:
+            before = set(xm.REQ.glob("*.json"))
+            assert xm.maybe_request("person walking outdoors sunset") is None
+            assert set(xm.REQ.glob("*.json")) == before, "filed a false debt"
+        finally:
+            xm.gateway_was_operational = real_health
+        print("ok  2b. dead gateway files nothing (credentials != content gap)")
+
         # 3. open_requests lists it as a debt; answering clears it
         debts = xm.open_requests()
         assert [x["id"] for x in debts] == [rid], debts
@@ -98,7 +111,7 @@ def main():
         "CI does not persist auto-filed asks — they die with the runner"
     print("ok  6. renderer, planner, and CI persistence are wired")
 
-    print("exchange media: 6/6 tests pass")
+    print("exchange media: 7/7 tests pass")
 
 
 if __name__ == "__main__":
