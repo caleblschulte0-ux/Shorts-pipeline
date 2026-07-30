@@ -75,6 +75,147 @@ download and rejects a mismatch — that is how substitution and truncation get
 caught (an earlier attempt delivered a corrupt 2-colour placeholder whose
 claimed hash did not match its bytes).
 
+## Mode `author` — the takeover (you are the brain today)
+
+`bundle.json` carries a top-level `mode`. Normally it is `"punch_up"` and
+your job is media + script editing. When it is **`"author"`**, the channel's
+own writing brain (a Claude Routine) did not run and the reserve bank could
+not cover the day. **There is no slate. Without you the channel posts
+nothing.**
+
+### On a takeover day you own the WHOLE day — words AND pictures
+
+This is the part that is easy to get wrong. On a normal day the pipeline
+finds the media first and asks you only to fill the gaps it judged. **On a
+takeover day the packages did not exist when that search ran**, so there is
+nothing to search for and no `requests` entries for the work you are about
+to invent. The next thing that runs after you is the renderer.
+
+So: **every shot of every `reddit_story` you author needs an image you
+generated, attached to the shot itself.** Same Drive + sha256 pointer you
+already produce, just inline on the shot instead of in the `media` array:
+
+```json
+"shots": [
+  {"phrase": "the office fridge", "query": "office kitchen",
+   "media": {
+     "status": "fulfilled",
+     "drive": {"file_id": "1AbC…", "public": true,
+               "download_url": "https://drive.google.com/uc?export=download&id=1AbC…"},
+     "image": {"sha256": "…64 hex of the exact bytes…", "bytes": 1554380,
+               "format": "png", "width": 1080, "height": 1080}
+   }}
+]
+```
+
+`text_card` and `graph_race` have no `shots` and need no media from you —
+the renderer sources their b-roll from `broll_query` and draws the chart.
+
+Every pointer is verified on arrival exactly like a normal-day one: SHA-256
+recomputed from the downloaded bytes, a full pixel decode, a placeholder
+check (≤8 distinct colours is refused), and an HTML permission page from a
+non-public Drive file is detected and refused. **A pointer that fails is
+dropped and that shot falls back to stock self-fill** — which is the weaker
+outcome the takeover exists to avoid.
+
+If you genuinely cannot generate an image for a shot, leave `media` off it
+and say so. Honest omission costs one shot. A fabricated pointer or a wrong
+hash is worse, because we trust it until it fails.
+
+### `authoring_requests` — one entry per channel that needs a brain
+
+**This is the whole signal.** If Claude did its job, `authoring_requests` is
+absent or empty. If a channel appears in it, Claude left that channel
+nothing today and you are its brain. Each channel asks for a different
+thing, and each has its own array in your `response.json`:
+
+| Channel in `authoring_requests` | `job` | You write | Return in |
+|---|---|---|---|
+| `trending` | author | 6 packages, 2+2+2 | `authored` |
+| `explainer` | `rewrite_words` | title / hook / says / closing per story | `authored_explainer` |
+| `curiosity` | `stock_queue` | whole long-form stories | `authored_curiosity` |
+
+`third` never appears — its package is a capture recipe for a Twitch clip
+that does not exist until the run happens, so there is nothing to write
+ahead of time.
+
+**`explainer` is a REWRITE, not an authoring job.** Those stories already
+carry real World Bank numbers; only the words are bad, because they came
+from a deterministic template when no brain was reachable. So:
+
+- Change the wording freely. Do **not** change, drop, or invent any number,
+  percent, year, country, or named entity. A guard compares every line
+  before and after and **rejects the entire story** if one moved — it then
+  ships with its original bad words, which helps nobody.
+- Return exactly one `says` entry per segment, in the same order.
+- The title should name the surprise. The failure this exists to fix is
+  *"Congo, Dem. Rep. Beats Everyone On Male primary school age children
+  out-of-school"* — a real title this channel shipped.
+
+### If there is no bundle at all, author anyway
+
+The takeover exists for the day everything on the Claude side is dead. On
+that day the thing that writes `bundle.json` may itself have failed to run,
+so **absence of a bundle is not permission to do nothing.** Decide from the
+repo, not from the bundle:
+
+1. Look at `state/trending_packages/<today UTC, YYYYMMDD>/`.
+2. **Fewer than 6 package files (or the folder does not exist)?** That is a
+   takeover day. Write the shortfall as a 2 + 2 + 2 slate per the format
+   specs below, and put them in `authored` in
+   `exchange/bundles/<date>/response.json` — creating that folder and file
+   yourself if they do not exist. Write `DONE` next to it when finished.
+3. **6 files already there?** Nothing to author. Do your normal jobs.
+
+Phase B reads `authored` whether or not a bundle exists, so a slate you
+write with no bundle present still renders and still uploads. Its 12:45 UTC
+backstop cron runs regardless of what did or did not fire earlier, so you do
+not need anything upstream of you to have worked.
+
+Everything you need is in `bundle.json` → `authoring_request`:
+
+| Field | What it is |
+|---|---|
+| `write` | how many packages to write |
+| `mix` | how many of each format — the slate is **2 + 2 + 2**, never 6 of one |
+| `formats` | the complete spec per format: required fields, shape, rules |
+| `hard_rules` | the mechanical checks we run on your output |
+| `do_not_repeat` | titles the channel posted recently |
+| `quality_bar` | the voice to write in |
+
+**Where to put them** — add an `authored` array to the same `response.json`
+you already write, one complete package object per entry:
+
+```json
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "authored": [ { "...one full package..." }, { "..." } ],
+  "media": [ ... ],
+  "packages": [ ... ]
+}
+```
+
+One file write, no new plumbing. If that fails, the fallback is one file per
+package at `exchange/bundles/<date>/authored/NN_slug.json` — both are read.
+
+**Do not write into `state/trending_packages/` yourself.** Everything you
+author is validated before promotion. A package that fails is quarantined
+with its reasons into `authored_report.json` and simply does not ship — it
+does not break the rest of the slate, and it does not silently render either.
+
+What gets a package rejected, mechanically:
+
+- a shot/punch `phrase` that is not an exact substring of its `script`
+- a `highlight` that is not an exact substring of its `text`
+- a `series.values` whose length differs from `years`
+- a `graph_race` whose leader peaks under 1,000 or grows less than 3×
+  (the renderer refuses it — see `authoring_request.formats.graph_race`)
+- a title that repeats something the channel posted in the last 6 days
+- a missing required field for that format
+
+Write fewer good packages rather than more weak ones. Four that land beat six
+that don't, and an honest short slate is a valid outcome.
+
 ## Run log (what has actually been proven)
 
 | Run | Transport (files.list -> file_uri -> Drive) | Image content | Sharing |

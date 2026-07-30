@@ -643,6 +643,133 @@ def main() -> int:  # noqa: C901
     check("gated slots are skipped, not errored (no retry churn)",
           "brain down — blind-slate gate" in _rt_src)
 
+    # ---- judge verdicts are SEEABLE ------------------------------------
+    # Every brain judges each slot, but the reasoning lived only in the CI
+    # log — expiring, and ~1200 lines to read. These lock the capture path
+    # (verdicts recorded on BOTH the posted and rejected branches) and the
+    # renderer that makes them legible without log archaeology.
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location("_judges", REPO / "scripts"
+                                         / "judges.py")
+    _j = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_j)
+
+    _rt = _ilu.spec_from_file_location("_rt", REPO / "scripts"
+                                       / "run_third.py")
+    # don't execute run_third (it has side effects) — assert on source
+    check("run_third records banger verdicts", '_judge("banger"' in _rt_src)
+    check("run_third records content-gate verdicts",
+          '_judge("content"' in _rt_src)
+    check("run_third records vision verdicts", '_judge("vision"' in _rt_src)
+    check("run_third records render_qa verdicts",
+          '_judge("render_qa"' in _rt_src)
+    check("run_third records title provenance", '_judge("title"' in _rt_src)
+    check("run_third records story-director cluster verdicts",
+          "_story_verdict(" in _rt_src)
+    check("verdicts attach on the ERROR path too (rejects matter most)",
+          _rt_src.index('result["judges"]')
+          > _rt_src.index('result["error"] = f"{type(e).__name__}'))
+    check("verdicts persist into the run stats",
+          '"judges")' in _rt_src and '"brain": author.brain_health()'
+          in _rt_src)
+    check("blocklisted clips record WHY, not just that they were blocked",
+          '"rejected_by"' in _rt_src and '"rejected_why"' in _rt_src)
+    # the renderer must distinguish the two failure shapes that look
+    # identical in the posted log but mean opposite things
+    check("viewer flags a BLIND pick (can't-score default)",
+          "BLIND" in "".join(_j._fmt_judge(
+              "banger", {"score": 0.5, "blind": True})))
+    check("viewer does not flag a real score as blind",
+          "BLIND" not in "".join(_j._fmt_judge(
+              "banger", {"score": 0.6, "why": "real reason"})))
+    _sd = "".join(_j._fmt_judge("story_director", {"clusters": [
+        {"cluster": "a", "outcome": "starved", "why": "no analyzable"},
+        {"cluster": "b", "outcome": "not_a_story", "why": "no arc"}]}))
+    check("viewer separates a STARVED story from a genuine no-arc",
+          "STARVED" in _sd and "no arc" in _sd)
+    check("viewer marks an unavailable judge as DOWN, not as a pass",
+          "DOWN" in "".join(_j._fmt_judge(
+              "vision", {"verdict": "unavailable"})))
+    check("viewer names the title floor when authoring produced nothing",
+          "FLOOR" in "".join(_j._fmt_judge(
+              "title", {"source": "floor", "kept_raw": False})))
+    # _judge must coerce to JSON-SAFE primitives AT THE DOOR. Storing a raw
+    # object survives _judge but detonates at the json.dumps on attach —
+    # which runs OUTSIDE the render's try block, so it would kill the slot.
+    # Found by probing before ship; this locks it.
+    import json as _js
+    _ns = {"__name__": "_probe", "json": _js,
+           "__file__": str(REPO / "scripts" / "run_third.py")}
+    exec(compile("\n".join(_rt_src.splitlines()[:130]), "run_third", "exec"),
+         _ns)
+
+    class _Boom:
+        def __repr__(self): raise ValueError("unserialisable")
+        def __str__(self): return "<obj>"
+    _ns["_judge"]("probe", bad=_Boom(), s="x" * 400, f=1.23456789,
+                  lst=["y" * 400] * 20, b=True, n=3, empty=None)
+    _pj = _ns["_JUDGES"]["probe"]
+    check("_judge survives an unserialisable value", "bad" in _pj)
+    check("_judge output is JSON-serialisable (the real failure mode)",
+          _js.loads(_js.dumps(_ns["_JUDGES"]))["probe"]["bad"] == "<obj>")
+    check("_judge truncates long strings", len(_pj["s"]) == 160)
+    check("_judge caps and truncates lists",
+          len(_pj["lst"]) == 5 and len(_pj["lst"][0]) == 160)
+    check("_judge keeps bools/ints intact, drops empties",
+          _pj["b"] is True and _pj["n"] == 3 and "empty" not in _pj)
+    check("the attach path cannot raise either",
+          "default=str" in _rt_src and "[judges] not recorded" in _rt_src)
+
+    # ---- UNJUDGED GATE -------------------------------------------------
+    # 2026-07-30: three clips shipped that NOTHING had judged. All three
+    # content gates fail open independently — and the selection floor
+    # fails open by exactly zero margin, because the can't-score default
+    # (0.5) equals min_banger (0.5), so `banger >= min_banger` is True on
+    # a fully blind run. The gate refuses to publish when not one content
+    # judge could evaluate the clip.
+    _aj, _J = _ns["_any_judgment"], _ns["_JUDGES"]
+    _jd = _ns["_judge"]
+
+    def _scen(*calls):
+        _J.clear()
+        for c in calls:
+            c()
+        return _aj()
+
+    check("blind ranker + content and vision down -> UNJUDGED (07-30 case)",
+          not _scen(lambda: _jd("banger", score=0.5, blind=True),
+                    lambda: _jd("content", verdict="unavailable"),
+                    lambda: _jd("vision", verdict="unavailable")))
+    check("a real banger score is enough to ship",
+          _scen(lambda: _jd("banger", score=0.62, why="r", blind=False)))
+    check("content gate alone is enough to ship",
+          _scen(lambda: _jd("banger", score=0.5, blind=True),
+                lambda: _jd("content", score=0.81, verdict="pass")))
+    check("vision alone is enough to ship",
+          _scen(lambda: _jd("banger", score=0.5, blind=True),
+                lambda: _jd("vision", verdict="pass", confidence=0.9)))
+    check("a content-gate REJECT still counts as a judgment",
+          _scen(lambda: _jd("content", score=0.2, verdict="reject")))
+    check("mechanical checks alone do NOT count as judgment",
+          not _scen(lambda: _jd("render_qa", verdict="pass")))
+    check("no verdicts at all -> unjudged", not _scen())
+    check("operator-specified clips are never treated as unjudged",
+          _scen(lambda: _jd("banger", source="operator-specified",
+                            blind=False))
+          and "operator-specified" in _rt_src)
+    check("the gate is wired into the publish path",
+          "_any_judgment()" in _rt_src and "unjudged: no content judge"
+          in _rt_src)
+    # the CALL SITE (not the def) must raise _SkipSlot: a deliberate skip
+    # doesn't retry, and retrying would just fetch another unjudged clip
+    _call = _rt_src.index("not _any_judgment()")
+    check("unjudged is a SKIP, not an error (retry gets another blind clip)",
+          "_SkipSlot" in _rt_src[_call:_call + 200]
+          and "RuntimeError" not in _rt_src[_call:_call + 200])
+    check("stories are exempt (the director is their judge)",
+          'led.get("kind") == "twitch_clip" and not _any_judgment()'
+          in _rt_src)
+
     # ---- engines/render_qa: shared mechanical render-QA ----------------
     # First ANALYSIS engine in the shared layer. Logic tier only here (no
     # ffmpeg): parsers, registry wiring, verdict semantics, consumers.

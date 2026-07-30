@@ -99,6 +99,31 @@ jobs:
           restore-keys: |
             funnel-cache-v1-
 
+      # RESERVE BANK — cover for "the brain went dark" (no Routine run, a
+      # revoked CLAUDE_CODE_OAUTH_TOKEN, a lapsed subscription). Two halves,
+      # both cheap and both offline:
+      #
+      #   deposit  banks whatever evergreen packages the Routine dropped in
+      #            state/package_buffer/inbox/ while it was healthy.
+      #   fill     tops today's slate up from the bank IF it is short. A day
+      #            the brain authored normally is already at target, so this
+      #            is a no-op and NEVER displaces real work.
+      #
+      # Without this, a dead brain means Phase A finds no packages, exits 0,
+      # and the whole exchange chain silently does nothing for the day.
+      - name: Reserve bank — deposit inbox, fill any shortfall
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          if ls state/package_buffer/inbox/*.json >/dev/null 2>&1; then
+            python scripts/package_reserve.py deposit \
+              --dir state/package_buffer/inbox --source routine --delete
+          fi
+          python scripts/package_reserve.py status
+          python scripts/package_reserve.py fill --date "$DATE" \
+            --reason "phase A found a short slate"
+
       - name: Find media, judge, write bundle
         env:
           # Media funnel providers (all optional — absent keys just narrow
@@ -131,7 +156,7 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "exchange: phase A bundle for $DATE [skip ci]" \
             "exchange/bundles/$DATE" \
-            state/trending_packages state/third_packages
+            state/trending_packages state/third_packages state/package_buffer
 
       - name: What happens next
         if: ${{ inputs.dry_run != true }}

@@ -193,11 +193,47 @@ shape, not the default slate. Do not ship six of it.
    one**, so a single un-illustratable package no longer poisons a day,
    but it does mean you lose that slot. Fix it here instead.
 
+5b. **Top up the reserve bank — the day you can't run is the day it pays.**
+
+   Everything above depends on a live Claude subscription. If the token is
+   revoked or the subscription lapses, this Routine never fires, the in-CI
+   brain in `daily.yml` also fails, and the day falls to Groq or to
+   re-serving an already-posted slate. The reserve bank is the cover:
+   banked **evergreen** packages that any dead day draws from automatically.
+
+   ```bash
+   python3 scripts/package_reserve.py status
+   ```
+
+   If it prints `LOW` for a format, write **one extra package of that
+   format** — same quality bar, same schema — into
+   `state/package_buffer/inbox/` instead of today's dated folder. One extra
+   per day is enough; it is banked and drawn automatically.
+
+   **Reserve packages must be EVERGREEN.** They may sit for weeks, so they
+   are refused at deposit time if they contain date-anchored language:
+   weekday names, "yesterday", "today", "this morning", "breaking",
+   "just announced", "3 hours ago", or a "March 14"-style date. Write the
+   timeless version of the story — a Reddit revenge story, a "how this
+   actually works" text card, a long-arc chart. Verify before you push:
+
+   ```bash
+   python3 scripts/package_reserve.py deposit \
+     --dir state/package_buffer/inbox --dry-run
+   ```
+
+   Every file must print `OK`. Fix anything it refuses before you push —
+   a refused file sits in the inbox forever and banks nothing.
+
+   Do NOT bank a package you also put in today's slate — the bank refuses
+   any slug that has already been authored for a day, and a package is
+   drawn from the bank exactly once so it can never duplicate an upload.
+
 6. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
    branch nothing renders from; the PR is what auto-merge.yml watches:
 
    ```bash
-   git add state/trending_packages/$(date -u +%Y%m%d)/
+   git add state/trending_packages/$(date -u +%Y%m%d)/ state/package_buffer/
    git commit -m "daily packages $(date -u +%Y-%m-%d)"
    git push -u origin HEAD
    gh pr create --base main \

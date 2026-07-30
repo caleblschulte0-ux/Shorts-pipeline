@@ -1,0 +1,48 @@
+{
+  "key": "sp_rur_totl_zs_trend",
+  "title": "Rural population",
+  "unit": "% of total population",
+  "geography": "World",
+  "time_coverage": "1972-2025",
+  "insight_type": "trend",
+  "source": {
+    "name": "Rural population",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SP.RUR.TOTL.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 63.1,
+      "period": "1972"
+    },
+    {
+      "label": "1983",
+      "value": 59.4,
+      "period": "1983"
+    },
+    {
+      "label": "1993",
+      "value": 56.3,
+      "period": "1993"
+    },
+    {
+      "label": "2004",
+      "value": 51.1,
+      "period": "2004"
+    },
+    {
+      "label": "2014",
+      "value": 46.1,
+      "period": "2014"
+    },
+    {
+      "label": "2025",
+      "value": 42.2,
+      "period": "2025"
+    }
+  ]
+}
