@@ -156,6 +156,48 @@ The one rule the takeover inherits and does not relax: **the slate is
 2 + 2 + 2**. The brief asks for the mix, and the ingest warns loudly if what
 comes back is six of one format — the exact regression of 2026-07-30.
 
+### Does it survive with EVERYTHING Claude dead?
+
+The scenario worth being precise about: subscription lapsed, so no Routine
+fires in the morning, no in-CI brain, no `claude` CLI anywhere, reserve bank
+drained. Every link that has to fire, and what it actually runs on:
+
+| Link | Fires because | Needs Claude? |
+|---|---|---|
+| Phase A | `schedule: 45 9 * * *` — a GitHub cron | no |
+| reserve fill inside Phase A | plain Python | no |
+| the bundle / brief | `shared/authoring_brief.py`, pure data | no |
+| ChatGPT authors | ChatGPT's own scheduled task, a **separate subscription** | no |
+| ChatGPT's push fires Phase B | a user token, not `GITHUB_TOKEN`, so it CAN trigger workflows | no |
+| Phase B (if no DONE) | `schedule: 45 12 * * *` backstop | no |
+| ingest + validate | `package_buffer.structural_problems` | no |
+| media for the new packages | entity resolver + funnel (Groq/Gemini/keyless lanes) | no |
+| `daily.yml` renders | `workflow_run` on Phase B completing | no |
+| `daily.yml`'s Brain step | — | yes, but it is `continue-on-error` and `exit 0`s on a missing token or a failed npm install, and skips entirely when the day already has packages |
+| render + TTS + upload | ffmpeg / Kokoro / YouTube OAuth | no |
+| **trending's publish gate** | there is none — **the showrunner veto is explainer-only** | no |
+
+So the trending channel ships end to end on a fully dead Claude
+subscription. Two things had to be fixed for that to be true rather than
+merely intended:
+
+1. **Phase B refused a day with no bundle.** It exited 2 on
+   `read_bundle() is None` — but "Phase A never ran" is exactly the dead-day
+   case, and ChatGPT may have authored the slate anyway. It now checks for
+   authored packages first and proceeds in **ingest-only rescue mode**, with
+   the same validation. Only no-bundle *and* nothing-authored is still a
+   refusal.
+2. **ChatGPT was purely reactive.** Its instruction was "read
+   `bundle.json`" — no bundle meant it did nothing. It now decides from the
+   repo instead: fewer than 6 files in
+   `state/trending_packages/<today>/` is a takeover day, and it writes the
+   slate and creates the response file itself (`exchange/README.md`).
+
+The one genuine external dependency left is **GitHub's 60-day inactivity
+rule**: scheduled workflows are disabled in a repo with no commit activity
+for 60 days. The pipeline commits state daily from several channels, so this
+only bites if the whole repo goes silent for two months.
+
 What the takeover deliberately does NOT cover:
 
 - **Explainer / curiosity.** ChatGPT could write the words, but publishing

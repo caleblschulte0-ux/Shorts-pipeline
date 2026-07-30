@@ -240,8 +240,27 @@ def main() -> int:
 
     bundle = xb.read_bundle(args.date)
     if not bundle:
-        print(f"[phase-b] no bundle for {args.date} — nothing to apply")
-        return 2
+        # RESCUE PATH. No bundle means Phase A never ran or died before
+        # writing — which is precisely the day the takeover exists for, so
+        # bailing here would be the wrong answer. If ChatGPT authored the
+        # slate anyway (its instructions say to, bundle or no bundle), we
+        # still have a day to ship: proceed in ingest-only mode with an
+        # empty bundle. Only a day with NO bundle AND NO authored packages
+        # is genuinely nothing to apply.
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from ingest_authored import collect          # noqa: E402
+        if collect(args.date):
+            print(f"[phase-b] NO BUNDLE for {args.date}, but ChatGPT "
+                  f"authored packages — Phase A must have failed to run. "
+                  f"Proceeding in ingest-only mode.")
+            print("::warning::Phase A produced no bundle; Phase B is "
+                  "rescuing the day from ChatGPT-authored packages alone.")
+            bundle = {"schema": "rescue", "date": str(args.date),
+                      "mode": "author", "packages": [], "requests": []}
+        else:
+            print(f"[phase-b] no bundle for {args.date} and nothing "
+                  f"authored — nothing to apply")
+            return 2
 
     done = xb.is_done(args.date)
     print(f"[phase-b] {args.date}: DONE marker "

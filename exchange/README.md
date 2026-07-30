@@ -83,6 +83,26 @@ own writing brain (a Claude Routine) did not run and the reserve bank could
 not cover the day. **There is no slate. Without you the channel posts
 nothing.**
 
+### If there is no bundle at all, author anyway
+
+The takeover exists for the day everything on the Claude side is dead. On
+that day the thing that writes `bundle.json` may itself have failed to run,
+so **absence of a bundle is not permission to do nothing.** Decide from the
+repo, not from the bundle:
+
+1. Look at `state/trending_packages/<today UTC, YYYYMMDD>/`.
+2. **Fewer than 6 package files (or the folder does not exist)?** That is a
+   takeover day. Write the shortfall as a 2 + 2 + 2 slate per the format
+   specs below, and put them in `authored` in
+   `exchange/bundles/<date>/response.json` — creating that folder and file
+   yourself if they do not exist. Write `DONE` next to it when finished.
+3. **6 files already there?** Nothing to author. Do your normal jobs.
+
+Phase B reads `authored` whether or not a bundle exists, so a slate you
+write with no bundle present still renders and still uploads. Its 12:45 UTC
+backstop cron runs regardless of what did or did not fire earlier, so you do
+not need anything upstream of you to have worked.
+
 Everything you need is in `bundle.json` → `authoring_request`:
 
 | Field | What it is |

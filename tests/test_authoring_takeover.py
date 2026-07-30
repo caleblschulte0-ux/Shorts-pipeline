@@ -257,3 +257,72 @@ class TestGateIsTheSameEverywhere(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TestSubscriptionIsFullyDead(unittest.TestCase):
+    """The scenario the takeover actually exists for: no Claude Routine, no
+    in-CI brain, an empty reserve bank — and, in the worst case, no Phase A
+    either, so no bundle. ChatGPT is the only thing still running.
+
+    Runs the REAL scripts as subprocesses against a scratch date, because
+    what matters here is the process exit path, not a mocked function."""
+
+    DATE = "29991228"
+
+    def setUp(self):
+        self.bundle = ROOT / "exchange" / "bundles" / self.DATE
+        self.day = ROOT / "state" / "trending_packages" / self.DATE
+        self._clean()
+        self.bundle.mkdir(parents=True)
+
+    def tearDown(self):
+        self._clean()
+
+    def _clean(self):
+        shutil.rmtree(self.bundle, ignore_errors=True)
+        shutil.rmtree(self.day, ignore_errors=True)
+
+    def _phase_b(self):
+        import subprocess
+        return subprocess.run(
+            [sys.executable, "scripts/exchange_phase_b.py", "--date",
+             self.DATE, "--no-self-fill", "--no-punchup"],
+            cwd=ROOT, capture_output=True, text=True)
+
+    def test_no_bundle_and_nothing_authored_is_a_clean_refusal(self):
+        """The rescue must not turn 'genuinely nothing happened' into a
+        pretend success."""
+        out = self._phase_b()
+        self.assertEqual(out.returncode, 2, out.stdout)
+        self.assertIn("nothing to apply", out.stdout)
+        self.assertFalse(self.day.exists())
+
+    def test_no_bundle_but_chatgpt_authored_still_ships_the_day(self):
+        """Phase A never ran, so there is no bundle. ChatGPT authored the
+        slate anyway (its instructions say to). Phase B used to exit 2 here
+        and throw the whole day away."""
+        (self.bundle / "response.json").write_text(json.dumps(
+            {"authored": [reddit_pkg(slug="rescued-lunch-thief"),
+                          text_card_pkg(slug="rescued-shrinkflation"),
+                          graph_pkg(slug="rescued-streaming")]}))
+        out = self._phase_b()
+        self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+        self.assertIn("NO BUNDLE", out.stdout)
+        self.assertIn("ingest-only mode", out.stdout)
+        promoted = sorted(p.name for p in self.day.glob("*.json"))
+        self.assertEqual(len(promoted), 3, promoted)
+
+    def test_the_rescue_still_validates(self):
+        """Skipping Phase A must not also skip the gate."""
+        bad = graph_pkg(slug="rescued-broken")
+        bad["series"][0]["values"] = bad["series"][0]["values"][:2]
+        (self.bundle / "response.json").write_text(json.dumps(
+            {"authored": [reddit_pkg(slug="rescued-good"), bad]}))
+        out = self._phase_b()
+        self.assertEqual(out.returncode, 0, out.stdout)
+        self.assertEqual(len(list(self.day.glob("*.json"))), 1,
+                         "an invalid package survived the rescue path")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
