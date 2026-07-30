@@ -78,6 +78,15 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
   and defeat the exchange. Phase A took that slot; daily.yml now fires only on
   Phase B completing (or a manual `.github/triggers/daily` touch).
 - Never dispatch `daily.yml` as the step after authoring — it is the LAST step.
+- Clock: Routine ~09:19 UTC -> Phase A (auto, 09:45 cron backstop) -> ChatGPT
+  6:00 AM Central -> Phase B (auto on DONE, 12:45 UTC backstop) -> render.
+  Posts land 8:00/9:30/11:00/12:30/2:00/3:30 Central. Phase B's backstop is
+  DELIBERATELY late (12:45 UTC): ChatGPT's task is local-time and shifts an
+  hour at DST while these crons do not, so an earlier backstop would render
+  pre-ChatGPT media for half the year with everything green.
+- A Phase A that finds no packages exits 0 — so this bug class is INVISIBLE in
+  the Actions tab. To confirm the exchange ran, check for
+  `exchange/bundles/<date>/bundle.json`, not a green checkmark.
 - Third/explainer chain off "Daily Shorts", so they now run ~1.5h later too.
 
 ## Third channel: story arc system (docs/STORY_ARC_SYSTEM.md)

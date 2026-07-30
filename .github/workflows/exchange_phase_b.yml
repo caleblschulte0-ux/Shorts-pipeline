@@ -33,11 +33,23 @@ on:
         type: boolean
         default: false
   # BACKSTOP: if ChatGPT never writes DONE, the push trigger never fires and
-  # the day would never render at all. 11:30 UTC — ~1h45m after Phase A's
-  # 09:45, and ~1h30m before the first publish slot (13:00 UTC / 08:00
-  # Central), leaving room for the render itself (~60-70 min observed).
+  # the day would never render at all.
+  #
+  # 12:45 UTC is chosen to be SAFE IN BOTH DST HALVES. The operator's ChatGPT
+  # task runs 6:00 AM Central, and ChatGPT Tasks are LOCAL time while these
+  # crons are UTC — so ChatGPT fires 11:00 UTC in summer (CDT) and 12:00 UTC
+  # in winter (CST). A backstop before that would render pre-ChatGPT media
+  # every day for half the year, silently, with everything green. 12:45 gives
+  # ChatGPT 105 min of room in summer and 45 min in winter.
+  #
+  # Normal path is unaffected: Phase B fires on the DONE push the moment
+  # ChatGPT finishes (~11:20 summer), render 11:25-12:35, first publish slot
+  # 13:00 UTC / 08:00 Central — comfortable. The backstop only runs on a
+  # genuine no-show, and on those days the 08:00 slot may be missed;
+  # schedule_times() simply takes the next free slot (09:30 Central). Shipping
+  # one slot later beats shipping pre-ChatGPT media.
   schedule:
-    - cron: '30 11 * * *'
+    - cron: '45 12 * * *'
 
 permissions:
   contents: write

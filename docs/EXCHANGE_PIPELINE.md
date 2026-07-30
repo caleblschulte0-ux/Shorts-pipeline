@@ -9,7 +9,7 @@ visuals, and we are not re-rendering.
                  writes ONE bundle: scripts + media health + gap requests
                  commits, then STOPS.  Nothing renders.
          │
-10:00  ChatGPT   reads exchange/bundles/<date>/bundle.json
+11:00  ChatGPT   reads exchange/bundles/<date>/bundle.json
                  · generates the requested images/animations -> Google Drive
                  · punches up the scripts
                  · commits response.json, then DONE   ← written LAST
@@ -57,7 +57,7 @@ a **self-fill** pass: the funnel again with the gloves off (wider providers,
 lower floor, accept the weak-but-real candidates the judge rejected). Worst
 case a shot ships weaker than we wanted; we never ship nothing.
 
-The **backstop cron** (`exchange_phase_b.yml`, 11:30 UTC) exists for the same
+The **backstop cron** (`exchange_phase_b.yml`, 12:45 UTC) exists for the same
 reason: if ChatGPT never writes DONE, the push trigger never fires, and without
 the backstop the day would never render at all. It no-ops when Phase B already
 ran for that date.
@@ -100,8 +100,8 @@ allowed — entity comparison runs against the other text's full word set.
 | Step | Fires on |
 |---|---|
 | **Phase A** | `workflow_run` on **Auto-merge claude PRs** (the Routine's packages landing) + `45 9 * * *` backstop, `push` on packages + dispatch |
-| **ChatGPT** | its own 10:00 scheduled task, reading `exchange/bundles/<date>/bundle.json` |
-| **Phase B** | `push` on `exchange/bundles/*/DONE` + `30 11 * * *` backstop + dispatch |
+| **ChatGPT** | its own 6:00 AM Central task (11:00 UTC summer / 12:00 UTC winter), reading `exchange/bundles/<date>/bundle.json` |
+| **Phase B** | `push` on `exchange/bundles/*/DONE` + `45 12 * * *` backstop + dispatch |
 | **Render** (`daily.yml`) | `workflow_run` on **Exchange Phase B** + manual `.github/triggers/daily` |
 
 ### The trigger that had to MOVE — read before changing any of this
@@ -127,9 +127,9 @@ Shorts", so they now run roughly 1.5–2h later in the morning as well.
 |---|---|
 | Claude Routine authors | ~09:19 (observed) |
 | Phase A (auto on auto-merge; 09:45 cron backstop) | ~09:20 |
-| ChatGPT task | 10:00 |
-| Phase B (auto on DONE; 11:30 cron backstop) | ~10:30 |
-| Render (~60-70 min) | ~10:45 |
+| ChatGPT task | **6:00 AM Central** = 11:00 UTC (CDT) / 12:00 UTC (CST) |
+| Phase B (auto on DONE; 12:45 UTC cron backstop) | ~11:20 |
+| Render (~60-70 min) | ~11:25-12:35 |
 | **Uploads** | **8:00, 9:30, 11:00, 12:30, 2:00, 3:30 CENTRAL — fixed wall-clock, unaffected** |
 
 The chain's timing is decoupled from posting: publish slots are
@@ -140,10 +140,14 @@ margin before the 08:00 Central first slot. The one real trade is **topic freshn
 authoring earlier means less overnight news has accumulated for the Routine's
 "happened today / just announced" rule.
 
-**Keep the ChatGPT task and these crons on the same clock.** The crons are UTC;
-ChatGPT Tasks are set in local time. If ChatGPT runs *after* the Phase B
-backstop, the backstop renders pre-ChatGPT media every day and everything still
-looks green.
+**The DST trap, and how it is handled.** These crons are UTC; ChatGPT Tasks
+are LOCAL time. The operator's task runs 6:00 AM Central, which is 11:00 UTC in
+summer (CDT) but 12:00 UTC in winter (CST) — it moves an hour twice a year and
+the crons do not. That is why Phase B's backstop sits at **12:45 UTC**: late
+enough to be after ChatGPT in BOTH halves of the year. A backstop earlier than
+ChatGPT would render pre-ChatGPT media every day for half the year, silently,
+with every workflow green. If the operator ever moves the ChatGPT task, the
+Phase B backstop must move with it — later, never earlier.
 
 ### Post-mortem 2026-07-30 — the first live day, and why it silently did nothing
 
