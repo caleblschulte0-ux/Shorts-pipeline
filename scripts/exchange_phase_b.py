@@ -225,7 +225,7 @@ def main() -> int:
     report = {"date": str(args.date), "channel": args.channel,
               "done_marker": done, "had_response": response is not None,
               "media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0},
-              "punchup": {"applied": 0, "rejected": 0, "absent": 0},
+              "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 0},
               "details": []}
 
     # ---- media -----------------------------------------------------------
@@ -268,6 +268,14 @@ def main() -> int:
             if not rewrite:
                 report["punchup"]["absent"] += 1
                 continue
+            if rewrite.get("kept"):
+                # An explicit editorial keep — the script already lands.
+                # Honest report category; nothing to merge or guard.
+                report["punchup"]["kept"] += 1
+                note = str(rewrite.get("editor_note") or "")[:120]
+                print(f"[phase-b] punch-up KEPT for {slug}"
+                      + (f" — {note}" if note else ""))
+                continue
             merged = punchup_guard.apply(pkg, rewrite)
             if merged is None:
                 ok, problems = punchup_guard.check(pkg, rewrite)
@@ -286,6 +294,7 @@ def main() -> int:
     print(f"[phase-b] media: {m['fulfilled']} from ChatGPT, "
           f"{m['self_filled']} self-filled, {m['unfilled']} unfilled")
     print(f"[phase-b] punch-up: {p['applied']} applied, "
+          f"{p.get('kept', 0)} kept (editor's call), "
           f"{p['rejected']} rejected, {p['absent']} not offered")
 
     if args.dry_run:
