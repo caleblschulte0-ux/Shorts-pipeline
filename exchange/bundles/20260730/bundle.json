@@ -1,0 +1,1204 @@
+{
+  "schema": "chatgpt-exchange-bundle/v1",
+  "date": "20260730",
+  "status": "open",
+  "response_path": "exchange/bundles/20260730/response.json",
+  "done_marker": "exchange/bundles/20260730/DONE",
+  "counts": {
+    "packages": 6,
+    "requests": 22,
+    "animations": 0
+  },
+  "packages": [
+    {
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "title": "A Sinkhole Opened Right at a Funeral Home",
+      "script": "A sinkhole opened where? Tuesday night, severe storms tore through Madison County, North Carolina \u2014 a funnel cloud spotted right near Marshall's Foster Creek community, tornado warnings up across the whole western half of the state. Then the ground gave out. A sinkhole swallowed the pavement directly in front of Madison Funeral Home. Not a field. Not a backyard. A funeral home. County manager Rod Honeycutt confirmed nobody was hurt and the building itself is fine \u2014 the real damage was downed trees, flooded roads, and knocked-out power across Marshall. Still, out of every spot in Madison County, the earth picked the one already handling the dead. So of all places in Marshall, why the funeral home?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "A sinkhole opened where?",
+          "query": "sinkhole road pavement",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "severe storms tore through Madison County, North Carolina",
+          "query": "storm dark clouds",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "a funnel cloud spotted right near Marshall's Foster Creek community",
+          "query": "funnel cloud sky",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "tornado warnings up across the whole western half of the state",
+          "query": "tornado warning radar",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Then the ground gave out",
+          "query": "collapsed pavement hole",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "A sinkhole swallowed the pavement directly in front of Madison Funeral Home",
+          "query": "funeral home building",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Not a field",
+          "query": "empty rural field",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Not a backyard",
+          "query": "suburban backyard",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "County manager Rod Honeycutt confirmed nobody was hurt",
+          "query": "county official briefing",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "downed trees, flooded roads, and knocked-out power across Marshall",
+          "query": "flooded street storm damage",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "the earth picked the one already handling the dead",
+          "query": "sinkhole hole ground",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "why the funeral home",
+          "query": "funeral home exterior",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 12,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 1.0,
+      "requested": []
+    },
+    {
+      "slug": "gary-the-goat-louisiana",
+      "title": "This Goat Cannot Be Contained",
+      "script": "One goat, zero enclosures? This is Gary. A nonprofit in Rosepine, Louisiana bought him so kids could practice goat roping. Gary had other plans. First he broke out of the horse pen. Then a stall. Then a kennel \u2014 reinforced, extra latches, didn't matter. Every fix, Gary found the gap. So he did the only logical thing: he moved to the shoulder of U.S. Highway 171 and just... stayed. Drivers started spotting him daily. Now he's basically DeRidder's unofficial mascot, a goat nobody owns anymore because nobody can catch him. The foundation still checks on him. He still won't come home. So who's actually in charge here \u2014 the humans, or the goat?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "One goat, zero enclosures?",
+          "query": "goat pen fence",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "A nonprofit in Rosepine, Louisiana bought him",
+          "query": "rural louisiana ranch",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "kids could practice goat roping",
+          "query": "kids rodeo roping",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "Gary had other plans",
+          "query": "goat standing alone",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "broke out of the horse pen",
+          "query": "horse pen fence",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Then a stall",
+          "query": "barn stall interior",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Then a kennel",
+          "query": "dog kennel enclosure",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "reinforced, extra latches",
+          "query": "metal latch lock",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "Gary found the gap",
+          "query": "goat escaping fence",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "the shoulder of U.S. Highway 171",
+          "query": "highway road shoulder",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "Drivers started spotting him daily",
+          "query": "car dashboard highway view",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "DeRidder's unofficial mascot",
+          "query": "small town main street",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "nobody can catch him",
+          "query": "domestic goat close up",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 13,
+          "phrase": "the humans, or the goat",
+          "query": "goat face close up",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 14,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 1.0,
+      "requested": []
+    },
+    {
+      "slug": "man-of-steal-superman-burglary",
+      "title": "Superman Got Arrested in Florida",
+      "script": "Superman just got arrested? Deputies in Hillsborough County, Florida got a call about a boat burglary in Ruskin \u2014 someone broke into the cabin, walked off with a bag of power tools. Body camera rolls up. And there he is: cape, full costume, the whole look. His name's James Tidwell, 57, a convicted felon who apparently thought the disguise would help. It did not. Tidwell confessed on camera before deputies even finished reading him his rights. He's now charged with burglary of an unoccupied conveyance and petit theft \u2014 dressed like the Man of Steel, booked like everybody else. Even superheroes get read their rights in Ruskin. So did the cape make it better, or just easier to spot?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "Superman just got arrested?",
+          "query": "police lights night",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "a boat burglary in Ruskin",
+          "query": "boat dock marina",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "broke into the cabin",
+          "query": "boat cabin interior",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "a bag of power tools",
+          "query": "power tools bag",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Body camera rolls up",
+          "query": "police body camera",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "cape, full costume",
+          "query": "superhero cape costume",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "His name's James Tidwell, 57",
+          "query": "police booking photo",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "a convicted felon",
+          "query": "courthouse handcuffs",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "the disguise would help",
+          "query": "man in costume",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "confessed on camera",
+          "query": "police interview room",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "reading him his rights",
+          "query": "police officer talking",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "burglary of an unoccupied conveyance",
+          "query": "boat anchored water",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "the Man of Steel",
+          "query": "superman comic cape",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 12,
+        "weak": 0,
+        "missing": 1,
+        "unknown": 0
+      },
+      "strong_fraction": 0.923,
+      "requested": [
+        "man-of-steal-superman-burglary-s11-dc8c34909c0b"
+      ]
+    },
+    {
+      "slug": "bench-fire-warm-springs-oregon",
+      "title": "An Entire Reservation Just Got Evacuated",
+      "script": "An entire reservation, evacuated? The Bench Fire ripped through the Warm Springs Reservation in Central Oregon, and in less than a week it swallowed over 60,000 acres. Six homes are already gone. Five other buildings too. Officials issued Level 3 'Go Now' orders for the entire community \u2014 no packing, no deciding, just leaving. Nearly 600 firefighters are on it right now, and containment sits at just 3 percent. This isn't an isolated blaze either \u2014 Oregon has more than a million acres burning statewide, with thousands more under the same evacuation order. For a tribal community that's called Warm Springs home for generations, the fire didn't ask permission. So how do you rebuild a whole reservation from 3 percent contained?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "An entire reservation, evacuated?",
+          "query": "wildfire smoke evacuation",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "The Bench Fire ripped through",
+          "query": "wildfire flames forest",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "the Warm Springs Reservation in Central Oregon",
+          "query": "oregon forest landscape",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "swallowed over 60,000 acres",
+          "query": "burned forest aerial",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Six homes are already gone",
+          "query": "burned house rubble",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Five other buildings too",
+          "query": "destroyed building fire",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Level 3 'Go Now' orders",
+          "query": "evacuation road cars",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Nearly 600 firefighters",
+          "query": "firefighters battling wildfire",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "containment sits at just 3 percent",
+          "query": "wildfire smoke sky",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "more than a million acres burning statewide",
+          "query": "wildfire smoke horizon",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "thousands more under the same evacuation order",
+          "query": "evacuation shelter cots",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "called Warm Springs home for generations",
+          "query": "native american community",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "the fire didn't ask permission",
+          "query": "wildfire flames night",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 4,
+        "weak": 0,
+        "missing": 9,
+        "unknown": 0
+      },
+      "strong_fraction": 0.308,
+      "requested": [
+        "bench-fire-warm-springs-oregon-s0-2683d8eb6262",
+        "bench-fire-warm-springs-oregon-s3-05b4041abd7a",
+        "bench-fire-warm-springs-oregon-s4-ceff1069b515",
+        "bench-fire-warm-springs-oregon-s5-676c525bcb1b",
+        "bench-fire-warm-springs-oregon-s8-06c49d78c78a",
+        "bench-fire-warm-springs-oregon-s9-c3ff674b0fbf",
+        "bench-fire-warm-springs-oregon-s10-8a7811614707",
+        "bench-fire-warm-springs-oregon-s11-d96db9ec918f",
+        "bench-fire-warm-springs-oregon-s12-9dbf5ced6c93"
+      ]
+    },
+    {
+      "slug": "iran-missile-attack-jordan",
+      "title": "Iran Just Attacked a US Base in Jordan",
+      "script": "Iran just attacked Jordan? Iran's Revolutionary Guard launched ballistic missiles at Muwaffaq Salti Air Base, a U.S.-linked site inside Jordan, along with a CENTCOM command center. Jordan's air defenses intercepted every one of them before they hit. Nobody died. But the timing is the story \u2014 this happened hours after President Trump sat down with Israeli Prime Minister Netanyahu at the White House to talk specifically about Iran. Trump's response was blunt: 'We'll be hitting them hard.' CENTCOM says American forces are now at a high state of readiness across the region. Iran calls it retaliation. The U.S. calls it an attempted surprise attack that failed. Either way, a missile just crossed into an ally's airspace and everyone's waiting on Washington's answer. So what does Trump actually do next?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "Iran just attacked Jordan?",
+          "query": "missile launch night sky",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "Revolutionary Guard launched ballistic missiles",
+          "query": "ballistic missile launch",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "Muwaffaq Salti Air Base",
+          "query": "military air base",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "a CENTCOM command center",
+          "query": "military command center",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Jordan's air defenses intercepted",
+          "query": "air defense missile intercept",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Nobody died",
+          "query": "military base exterior",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "President Trump sat down with",
+          "query": "donald trump white house",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "Israeli Prime Minister Netanyahu",
+          "query": "benjamin netanyahu portrait",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "at the White House",
+          "query": "white house exterior",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "We'll be hitting them hard",
+          "query": "press conference podium",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "high state of readiness",
+          "query": "soldiers military base",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "attempted surprise attack that failed",
+          "query": "military radar screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "Washington's answer",
+          "query": "capitol building washington",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 9,
+        "weak": 0,
+        "missing": 4,
+        "unknown": 0
+      },
+      "strong_fraction": 0.692,
+      "requested": [
+        "iran-missile-attack-jordan-s1-bd701e474efc",
+        "iran-missile-attack-jordan-s4-0b34df95921e",
+        "iran-missile-attack-jordan-s10-5cb424f9bb26",
+        "iran-missile-attack-jordan-s11-148eab9a06ed"
+      ]
+    },
+    {
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "title": "The FCC Just Banned Humanoid Robots",
+      "script": "The FCC banned robots? Not the ones already in your house \u2014 new imports. The FCC just added foreign-made humanoid robots, robot dogs, and power inverters to its official 'covered list,' which means they're now banned from entering the U.S. at all. The reasoning: these devices could be remotely controlled, used for surveillance, or hijacked in a cyberattack \u2014 by a foreign government. China makes about 85 percent of the world's humanoid robots, so this is aimed almost entirely at one country. And the timing isn't subtle \u2014 this drops weeks before Chinese leader Xi Jinping is set to visit Washington in September to meet with President Trump. Your Roomba's fine. It's the humanoid ones nobody was using anyway that just became a diplomatic flashpoint. So is this about security \u2014 or about Xi's visit?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "The FCC banned robots?",
+          "query": "robot humanoid standing",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "new imports",
+          "query": "shipping cargo containers",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "foreign-made humanoid robots, robot dogs",
+          "query": "quadruped robot dog",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "covered list",
+          "query": "government document stamp",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "banned from entering the U.S.",
+          "query": "customs border checkpoint",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "remotely controlled",
+          "query": "remote control device",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "used for surveillance",
+          "query": "security camera surveillance",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "hijacked in a cyberattack",
+          "query": "computer code cyberattack",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "China makes about 85 percent",
+          "query": "factory robotics assembly line",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "Chinese leader Xi Jinping",
+          "query": "xi jinping portrait",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "visit Washington in September",
+          "query": "washington dc capitol",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "Your Roomba's fine",
+          "query": "robot vacuum cleaner home",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "a diplomatic flashpoint",
+          "query": "diplomats handshake meeting",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 5,
+        "weak": 0,
+        "missing": 8,
+        "unknown": 0
+      },
+      "strong_fraction": 0.385,
+      "requested": [
+        "fcc-bans-chinese-humanoid-robots-s1-0bc5fa947b80",
+        "fcc-bans-chinese-humanoid-robots-s2-05003b92d07c",
+        "fcc-bans-chinese-humanoid-robots-s3-dad030063894",
+        "fcc-bans-chinese-humanoid-robots-s4-6e93f3b7ed51",
+        "fcc-bans-chinese-humanoid-robots-s5-c3e9375dc91d",
+        "fcc-bans-chinese-humanoid-robots-s6-a5faaf02b94f",
+        "fcc-bans-chinese-humanoid-robots-s7-ebade2f76c7a",
+        "fcc-bans-chinese-humanoid-robots-s12-da645bfe934d"
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "man-of-steal-superman-burglary-s11-dc8c34909c0b",
+      "slug": "man-of-steal-superman-burglary",
+      "shot_index": 11,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: boat anchored water. It accompanies the narration: \"burglary of an unoccupied conveyance\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s0-2683d8eb6262",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: wildfire smoke evacuation. It accompanies the narration: \"An entire reservation, evacuated?\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s3-05b4041abd7a",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: burned forest aerial. It accompanies the narration: \"swallowed over 60,000 acres\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s4-ceff1069b515",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: burned house rubble. It accompanies the narration: \"Six homes are already gone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s5-676c525bcb1b",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: destroyed building fire. It accompanies the narration: \"Five other buildings too\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s8-06c49d78c78a",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 8,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: wildfire smoke sky. It accompanies the narration: \"containment sits at just 3 percent\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s9-c3ff674b0fbf",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 9,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: wildfire smoke horizon. It accompanies the narration: \"more than a million acres burning statewide\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s10-8a7811614707",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 10,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: evacuation shelter cots. It accompanies the narration: \"thousands more under the same evacuation order\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s11-d96db9ec918f",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 11,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: native american community. It accompanies the narration: \"called Warm Springs home for generations\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s12-9dbf5ced6c93",
+      "slug": "bench-fire-warm-springs-oregon",
+      "shot_index": 12,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: wildfire flames night. It accompanies the narration: \"the fire didn't ask permission\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "iran-missile-attack-jordan-s1-bd701e474efc",
+      "slug": "iran-missile-attack-jordan",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: ballistic missile launch. It accompanies the narration: \"Revolutionary Guard launched ballistic missiles\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "iran-missile-attack-jordan-s4-0b34df95921e",
+      "slug": "iran-missile-attack-jordan",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: air defense missile intercept. It accompanies the narration: \"Jordan's air defenses intercepted\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "iran-missile-attack-jordan-s10-5cb424f9bb26",
+      "slug": "iran-missile-attack-jordan",
+      "shot_index": 10,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: soldiers military base. It accompanies the narration: \"high state of readiness\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "iran-missile-attack-jordan-s11-148eab9a06ed",
+      "slug": "iran-missile-attack-jordan",
+      "shot_index": 11,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: military radar screen. It accompanies the narration: \"attempted surprise attack that failed\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s1-0bc5fa947b80",
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: shipping cargo containers. It accompanies the narration: \"new imports\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s2-05003b92d07c",
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: quadruped robot dog. It accompanies the narration: \"foreign-made humanoid robots, robot dogs\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s3-dad030063894",
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: government document stamp. It accompanies the narration: \"covered list\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s4-6e93f3b7ed51",
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: customs border checkpoint. It accompanies the narration: \"banned from entering the U.S.\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s5-c3e9375dc91d",
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: remote control device. It accompanies the narration: \"remotely controlled\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s6-a5faaf02b94f",
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: security camera surveillance. It accompanies the narration: \"used for surveillance\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s7-ebade2f76c7a",
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: computer code cyberattack. It accompanies the narration: \"hijacked in a cyberattack\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s12-da645bfe934d",
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "shot_index": 12,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: diplomats handshake meeting. It accompanies the narration: \"a diplomatic flashpoint\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    }
+  ],
+  "instructions": {
+    "read_first": "exchange/README.md",
+    "two_jobs": [
+      "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
+      "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
+    ],
+    "punchup_mission": {
+      "the_ask": "These scripts are RESEARCHED and TRUE but they are often written flat \u2014 a chronological who-did-what recap with no point of view and a limp ending. That flatness, not the imagery, is the single biggest reason a finished video falls flat. Your job is to keep every fact and change how it LANDS. If a script already lands \u2014 hook under 5 words ending ?/!, real voice, kicker naming the story \u2014 say so and keep it. Do not change for the sake of changing.",
+      "per_package_verdict": "Every entry in your response's `packages` array carries either the rewritten fields, or `\"kept\": true` plus a one-line `editor_note` saying why it already works (e.g. 'hook already 4 words + ?, voice present, kicker names Gary'). An entry with neither is a skipped job.",
+      "house_voice": "A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today. Dry wit, real reactions, second person, contractions. It is allowed to be amused, skeptical or appalled. Accuracy is non-negotiable; attitude is MANDATORY.",
+      "do_this": [
+        "HOOK: first sentence must be <=5 words and end with ? or ! \u2014 'A kangaroo did WHAT?', 'Why fire 30,000?'. This earns the 3-second hold; it is the highest-leverage line in the video.",
+        "KICKER: last sentence must end with ? and name something specific from the story \u2014 never a generic 'what do you think?'.",
+        "REACT to the absurd instead of reporting it ('Cool, weird, whatever \u2014 until a SECOND call comes in.').",
+        "Short punchy sentences, varied rhythm. Fragments are fine. Em-dashes and hard stops make the TTS breathe instead of drone.",
+        "Cut corporate hedging ('officials confirmed', 'authorities stated') and filler procedure. Use the strongest concrete verb available.",
+        "Front-load the most surprising fact. If the best number is in sentence four, move it up \u2014 reordering facts is encouraged, changing them is not.",
+        "Keep 110-140 spoken words."
+      ],
+      "the_numbers_are_yours_to_use": "Every number, date and name in the script was verified by the writer \u2014 treat them as AMMUNITION, not as landmines. Land them harder, put them earlier, give them a beat before the payoff. The only rule is that the value itself must survive unchanged.",
+      "why_the_rules_below_exist": "The constraints in `punchup_rules` exist ONLY to stop invented facts, because an earlier audit found 519 of 546 datasets on a sibling channel were LLM-fabricated. They are not a hint that you should play it safe with the WRITING. Rewrite boldly; just do not manufacture.",
+      "worked_example": {
+        "before": "A sinkhole opened in Marshall, North Carolina on Tuesday. Officials confirmed severe storms caused the collapse.",
+        "after": "A sinkhole opened WHERE? Tuesday's storms tore through Marshall, North Carolina \u2014 and the road outside a funeral home just gave up.",
+        "note": "Same place, same day, same cause. Nothing was invented. Only the delivery changed."
+      }
+    },
+    "punchup_rules": [
+      "These are GUARDRAILS on the facts, not a reason to leave the writing alone. Read `punchup_mission` first \u2014 the rewrite is expected.",
+      "NEVER change or invent a number, percentage, money amount, date or year. Every figure in the original must appear unchanged in your rewrite.",
+      "NEVER add or remove a named entity (person, company, place).",
+      "NEVER change the shot count or any shot's `query` \u2014 the media is already chosen against those.",
+      "Stay within roughly 0.5x-1.8x the original word count.",
+      "A rewrite that breaks any of these is rejected mechanically and the original ships, so the work is wasted."
+    ],
+    "prompt_rules": [
+      "You are reading a code repository. Do NOT let that leak into the imagery \u2014 never draw screenshots, terminals, editors, UI or code. The repo is where the instruction lives, never the subject.",
+      "Use `prompt_verbatim` exactly; treat `negative` as exclusions."
+    ],
+    "finish_with": "Write exchange/bundles/<date>/response.json, then create exchange/bundles/<date>/DONE containing {\"date\": \"<date>\"}. The DONE marker is what triggers our render \u2014 write it LAST, and only after response.json is committed.",
+    "honesty": "If you cannot do something, say so in the response with the blocking step named. A fabricated pointer or an unverified hash is worse than an honest failure: our consumer recomputes every hash and rejects mismatches."
+  }
+}

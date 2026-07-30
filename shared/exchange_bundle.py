@@ -1,0 +1,347 @@
+"""The one-pass exchange bundle — everything ChatGPT needs, in one artifact.
+
+Phase A (4:30) writes ONE bundle per day containing the day's scripts, the
+media we actually found, the judge's verdict on every shot, and the resulting
+gap requests. ChatGPT answers all of it in a single pass: punched-up scripts
+plus generated images/animations. Then Phase B renders once, with everything
+final.
+
+Why one bundle instead of separate script and media requests: the punch-up is
+better when the writer can see what will be on screen, and media/line pairings
+cannot drift if the script and the visuals are decided in the same breath.
+
+    from shared import exchange_bundle as xb
+    xb.write_bundle(date, packages, judge_reports)   # Phase A
+    resp = xb.read_response(date)                     # Phase B
+    xb.mark_ready(date)                               # Phase A signal
+    xb.is_done(date)                                  # Phase B trigger check
+
+Layout (all small JSON — image BYTES go to Drive, never to git):
+
+    exchange/bundles/<date>/bundle.json      we write  (the ask)
+    exchange/bundles/<date>/READY            we write  (Phase A finished)
+    exchange/bundles/<date>/response.json    ChatGPT writes (scripts + pointers)
+    exchange/bundles/<date>/DONE             ChatGPT writes (fires Phase B)
+
+Never raises; every reader returns None/{} on trouble so a malformed bundle
+degrades to "no ChatGPT help today" rather than breaking a run.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+from pathlib import Path
+
+from shared.fsutil import atomic_write_json
+
+ROOT = Path(__file__).resolve().parent.parent
+BUNDLE_ROOT = ROOT / "exchange" / "bundles"
+SCHEMA = "chatgpt-exchange-bundle/v1"
+
+# How many of the day's gaps may be requested as ANIMATION rather than a
+# still. 0 = stills only (default until animation is proven on a channel).
+ANIM_BUDGET_ENV = "CHATGPT_ANIM_BUDGET"
+# Hard cap on requests per day, so one bad authoring night cannot ask for 200
+# images and blow the task's budget.
+MAX_REQUESTS_ENV = "CHATGPT_MAX_REQUESTS"
+DEFAULT_MAX_REQUESTS = 24
+
+
+def bundle_dir(date: str) -> Path:
+    return BUNDLE_ROOT / str(date)
+
+
+def request_key(slug: str, shot_index: int, prompt: str) -> str:
+    """Stable, content-addressed id: the same subject asked twice reuses one
+    generated image instead of burning a second generation."""
+    h = hashlib.sha1(f"{slug}|{shot_index}|{prompt}".encode()).hexdigest()[:12]
+    return f"{slug}-s{shot_index}-{h}"
+
+
+def _anim_budget() -> int:
+    try:
+        return max(0, int(os.environ.get(ANIM_BUDGET_ENV, "0")))
+    except Exception:
+        return 0
+
+
+def _max_requests() -> int:
+    try:
+        return max(1, int(os.environ.get(MAX_REQUESTS_ENV,
+                                        str(DEFAULT_MAX_REQUESTS))))
+    except Exception:
+        return DEFAULT_MAX_REQUESTS
+
+
+def build_bundle(date: str, packages: list[dict],
+                 judge_reports: list[dict]) -> dict:
+    """Assemble the day's ask. Pure function — easy to test, no IO."""
+    by_slug = {r.get("slug"): r for r in (judge_reports or [])}
+    anim_left = _anim_budget()
+    cap = _max_requests()
+
+    items, requests = [], []
+    for pkg in packages or []:
+        slug = pkg.get("slug")
+        report = by_slug.get(slug) or {}
+        shots = pkg.get("shots") or []
+
+        # Worst-first, so the cap spends itself on the weakest shots.
+        gaps = sorted(report.get("gaps") or [],
+                      key=lambda g: (g.get("score", 0.0),
+                                     0 if g.get("verdict") == "missing" else 1))
+        pkg_requests = []
+        for gap in gaps:
+            if len(requests) >= cap:
+                break
+            idx = gap.get("shot_index", 0)
+            prompt = gap.get("ai_prompt") or ""
+            if not prompt:
+                continue
+            kind = "image"
+            if anim_left > 0:
+                kind, anim_left = "animation", anim_left - 1
+            rid = request_key(slug, idx, prompt)
+            req = {
+                "request_id": rid,
+                "slug": slug,
+                "shot_index": idx,
+                "kind": kind,
+                "prompt_verbatim": prompt,
+                "negative": ["text", "watermarks", "logos", "user interfaces",
+                             "screenshots", "code", "charts"],
+                "width": 1080,
+                "height": 1920 if kind == "animation" else 1080,
+                "why": gap.get("reasons") or [],
+                "verdict": gap.get("verdict"),
+            }
+            if kind == "animation":
+                req["animation"] = {
+                    "duration_seconds": 2,
+                    "preferred": "frames_png",
+                    "frames": {"count": 24, "fps": 12,
+                               "naming": "frame_0001.png … frame_0024.png"},
+                    "note": ("Numbered PNG frames are preferred — we compose "
+                             "them with ffmpeg. Animated SVG or a real video "
+                             "file are both acceptable alternatives."),
+                }
+            pkg_requests.append(rid)
+            requests.append(req)
+
+        items.append({
+            "slug": slug,
+            "title": pkg.get("title"),
+            "script": pkg.get("script"),
+            "shots": [{"shot_index": i,
+                       "phrase": s.get("phrase"),
+                       "query": s.get("query"),
+                       "has_media": bool(s.get("image_url")),
+                       "verdict": next((v.get("verdict") for v in
+                                        report.get("verdicts") or []
+                                        if v.get("shot_index") == i), "unknown"),
+                       } for i, s in enumerate(shots)],
+            "media_health": report.get("counts") or {},
+            "strong_fraction": report.get("strong_fraction"),
+            "requested": pkg_requests,
+        })
+
+    return {
+        "schema": SCHEMA,
+        "date": str(date),
+        "status": "open",
+        "response_path": f"exchange/bundles/{date}/response.json",
+        "done_marker": f"exchange/bundles/{date}/DONE",
+        "counts": {"packages": len(items), "requests": len(requests),
+                   "animations": sum(1 for r in requests
+                                     if r["kind"] == "animation")},
+        "packages": items,
+        "requests": requests,
+        "instructions": {
+            "read_first": "exchange/README.md",
+            "two_jobs": [
+                "1. MEDIA — for every entry in `requests`, generate the asset "
+                "from `prompt_verbatim` word for word, upload it to the shared "
+                "Drive folder, and report a verified pointer (drive.file_id, "
+                "download_url, image.sha256, image.bytes).",
+                "2. PUNCH-UP — act as the script EDITOR for every entry in "
+                "`packages`. For each one make an editorial decision: punch "
+                "it up, or keep it as-is because it already lands. Keeping is "
+                "a legitimate call — but it is a DECISION you state, never a "
+                "default. Returning scripts unchanged with no stated reason "
+                "is a failed run. See `punchup_mission`.",
+            ],
+            "punchup_mission": {
+                "the_ask": (
+                    "These scripts are RESEARCHED and TRUE but they are often "
+                    "written flat — a chronological who-did-what recap with no "
+                    "point of view and a limp ending. That flatness, not the "
+                    "imagery, is the single biggest reason a finished video "
+                    "falls flat. Your job is to keep every fact and change how "
+                    "it LANDS. If a script already lands — hook under 5 words "
+                    "ending ?/!, real voice, kicker naming the story — say so "
+                    "and keep it. Do not change for the sake of changing."),
+                "per_package_verdict": (
+                    "Every entry in your response's `packages` array carries "
+                    "either the rewritten fields, or `\"kept\": true` plus a "
+                    "one-line `editor_note` saying why it already works "
+                    "(e.g. 'hook already 4 words + ?, voice present, kicker "
+                    "names Gary'). An entry with neither is a skipped job."),
+                "house_voice": (
+                    "A deadpan, slightly incredulous friend telling you the "
+                    "most ridiculous thing they read today. Dry wit, real "
+                    "reactions, second person, contractions. It is allowed to "
+                    "be amused, skeptical or appalled. Accuracy is "
+                    "non-negotiable; attitude is MANDATORY."),
+                "do_this": [
+                    "HOOK: first sentence must be <=5 words and end with ? or "
+                    "! — 'A kangaroo did WHAT?', 'Why fire 30,000?'. This "
+                    "earns the 3-second hold; it is the highest-leverage line "
+                    "in the video.",
+                    "KICKER: last sentence must end with ? and name something "
+                    "specific from the story — never a generic 'what do you "
+                    "think?'.",
+                    "REACT to the absurd instead of reporting it ('Cool, "
+                    "weird, whatever — until a SECOND call comes in.').",
+                    "Short punchy sentences, varied rhythm. Fragments are "
+                    "fine. Em-dashes and hard stops make the TTS breathe "
+                    "instead of drone.",
+                    "Cut corporate hedging ('officials confirmed', "
+                    "'authorities stated') and filler procedure. Use the "
+                    "strongest concrete verb available.",
+                    "Front-load the most surprising fact. If the best number "
+                    "is in sentence four, move it up — reordering facts is "
+                    "encouraged, changing them is not.",
+                    "Keep 110-140 spoken words.",
+                ],
+                "the_numbers_are_yours_to_use": (
+                    "Every number, date and name in the script was verified by "
+                    "the writer — treat them as AMMUNITION, not as landmines. "
+                    "Land them harder, put them earlier, give them a beat "
+                    "before the payoff. The only rule is that the value itself "
+                    "must survive unchanged."),
+                "why_the_rules_below_exist": (
+                    "The constraints in `punchup_rules` exist ONLY to stop "
+                    "invented facts, because an earlier audit found 519 of 546 "
+                    "datasets on a sibling channel were LLM-fabricated. They "
+                    "are not a hint that you should play it safe with the "
+                    "WRITING. Rewrite boldly; just do not manufacture."),
+                "worked_example": {
+                    "before": ("A sinkhole opened in Marshall, North Carolina "
+                               "on Tuesday. Officials confirmed severe storms "
+                               "caused the collapse."),
+                    "after": ("A sinkhole opened WHERE? Tuesday's storms tore "
+                              "through Marshall, North Carolina — and the road "
+                              "outside a funeral home just gave up."),
+                    "note": ("Same place, same day, same cause. Nothing was "
+                             "invented. Only the delivery changed."),
+                },
+            },
+            "punchup_rules": [
+                "These are GUARDRAILS on the facts, not a reason to leave the "
+                "writing alone. Read `punchup_mission` first — the rewrite is "
+                "expected.",
+                "NEVER change or invent a number, percentage, money amount, "
+                "date or year. Every figure in the original must appear "
+                "unchanged in your rewrite.",
+                "NEVER add or remove a named entity (person, company, place).",
+                "NEVER change the shot count or any shot's `query` — the "
+                "media is already chosen against those.",
+                "Stay within roughly 0.5x-1.8x the original word count.",
+                "A rewrite that breaks any of these is rejected mechanically "
+                "and the original ships, so the work is wasted.",
+            ],
+            "prompt_rules": [
+                "You are reading a code repository. Do NOT let that leak into "
+                "the imagery — never draw screenshots, terminals, editors, UI "
+                "or code. The repo is where the instruction lives, never the "
+                "subject.",
+                "Use `prompt_verbatim` exactly; treat `negative` as exclusions.",
+            ],
+            "finish_with": (
+                "Write exchange/bundles/<date>/response.json, then create "
+                "exchange/bundles/<date>/DONE containing {\"date\": \"<date>\"}. "
+                "The DONE marker is what triggers our render — write it LAST, "
+                "and only after response.json is committed."),
+            "honesty": (
+                "If you cannot do something, say so in the response with the "
+                "blocking step named. A fabricated pointer or an unverified "
+                "hash is worse than an honest failure: our consumer "
+                "recomputes every hash and rejects mismatches."),
+        },
+    }
+
+
+def write_bundle(date: str, packages: list[dict],
+                 judge_reports: list[dict]) -> Path | None:
+    """Phase A: persist the day's bundle. Returns its path, or None."""
+    try:
+        bundle = build_bundle(date, packages, judge_reports)
+        d = bundle_dir(date)
+        d.mkdir(parents=True, exist_ok=True)
+        path = d / "bundle.json"
+        atomic_write_json(path, bundle)
+        return path
+    except Exception:                                    # noqa: BLE001
+        return None
+
+
+def read_bundle(date: str) -> dict | None:
+    try:
+        return json.loads((bundle_dir(date) / "bundle.json").read_text())
+    except Exception:                                    # noqa: BLE001
+        return None
+
+
+def mark_ready(date: str) -> Path | None:
+    """Phase A signal: the ask is complete and committed."""
+    try:
+        d = bundle_dir(date)
+        d.mkdir(parents=True, exist_ok=True)
+        p = d / "READY"
+        atomic_write_json(p, {"date": str(date), "phase": "a_complete"})
+        return p
+    except Exception:                                    # noqa: BLE001
+        return None
+
+
+def is_done(date: str) -> bool:
+    """True once ChatGPT has written the DONE marker for THIS date. A marker
+    for another day never fires this day's render."""
+    try:
+        p = bundle_dir(date) / "DONE"
+        if not p.exists():
+            return False
+        try:
+            payload = json.loads(p.read_text())
+        except Exception:                                # noqa: BLE001
+            return True          # marker present but unparseable — honor it
+        stamped = str(payload.get("date") or "").strip()
+        return (not stamped) or stamped == str(date)
+    except Exception:                                    # noqa: BLE001
+        return False
+
+
+def read_response(date: str) -> dict | None:
+    """Phase B: ChatGPT's answer, or None if absent/malformed."""
+    try:
+        return json.loads((bundle_dir(date) / "response.json").read_text())
+    except Exception:                                    # noqa: BLE001
+        return None
+
+
+def response_index(response: dict | None) -> dict:
+    """Normalize a response into {request_id: entry} and {slug: rewrite}."""
+    media: dict[str, dict] = {}
+    scripts: dict[str, dict] = {}
+    if not isinstance(response, dict):
+        return {"media": media, "scripts": scripts}
+    for entry in response.get("media") or response.get("results") or []:
+        rid = entry.get("request_id")
+        if rid:
+            media[str(rid)] = entry
+    for entry in response.get("packages") or response.get("scripts") or []:
+        slug = entry.get("slug")
+        if slug:
+            scripts[str(slug)] = entry
+    return {"media": media, "scripts": scripts}

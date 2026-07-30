@@ -429,6 +429,34 @@ def _postprocess(out: dict, streamer: str, context: str,
             "edit": edit}
 
 
+# ------------------------------------------------------- brain health
+# 2026-07-29: every rank/author/scene call failed for ~90 minutes (Claude
+# CLI rc=1, Groq 429) and the run STILL published — four clips picked by
+# raw view count (every banger pinned at the 0.5 default, empty reasons),
+# no scene analysis, fallback titles. The per-call fallbacks each degraded
+# "gracefully", so nothing stopped the slate. This tracker gives the run a
+# way to notice the pattern: record each brain-task outcome, and let the
+# caller refuse to keep publishing once the brain is provably down.
+_BRAIN = {"ok": 0, "fail": 0}
+
+
+def _brain_note(ok: bool) -> None:
+    _BRAIN["ok" if ok else "fail"] += 1
+
+
+def brain_down(min_calls: int = 3) -> bool:
+    """True once we have real evidence the brain is DOWN, not flaky: at
+    least `min_calls` brain tasks attempted and every single one failed.
+    One success anywhere resets nothing but proves the path works, so the
+    all-failed condition can never trip after it."""
+    total = _BRAIN["ok"] + _BRAIN["fail"]
+    return total >= min_calls and _BRAIN["ok"] == 0
+
+
+def brain_health() -> dict:
+    return dict(_BRAIN)
+
+
 def _call_claude(user: str, system: str = SYSTEM,
                  read_files: bool = False) -> dict | None:
     """Headless Claude via the claude-code CLI (CLAUDE_CODE_OAUTH_TOKEN —
@@ -555,6 +583,7 @@ def rank_clips(clips: list[dict]) -> dict:
             out = _call_groq(user, system=_RANK_SYSTEM)
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[rank] groq failed ({e})", flush=True)
+    _brain_note(bool(out))
     if not out:
         return {}
     result = {}
@@ -689,6 +718,7 @@ def author_package(streamer: str, clip_title: str, transcript: str,
             if meta:
                 print(f"[author] Claude authored: {meta['title']!r}",
                       flush=True)
+                _brain_note(True)
                 return meta
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[author] Claude failed ({e}) — falling to Groq",
@@ -700,6 +730,7 @@ def author_package(streamer: str, clip_title: str, transcript: str,
             if meta:
                 print(f"::warning::[author] GROQ FALLBACK authored: "
                       f"{meta['title']!r}", flush=True)
+                _brain_note(True)
                 return meta
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[author] groq authoring failed: {e}", flush=True)
@@ -708,4 +739,5 @@ def author_package(streamer: str, clip_title: str, transcript: str,
     # because the public title is now a fallback, not an authored one.
     print("::warning::[author] AUTHORING FAILED (claude + groq) — the clip "
           "ships on a fallback title, not an authored one", flush=True)
+    _brain_note(False)
     return None

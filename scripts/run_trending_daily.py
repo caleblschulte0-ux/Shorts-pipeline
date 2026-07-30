@@ -85,7 +85,34 @@ REPORT_JSON = REPO / "daily_report.json"
 # 6 publish slots in UTC. Maps to 9am, 11am, 1pm, 3pm, 5pm, 7pm EDT
 # (UTC-4). The action fires at 12 UTC = 8am EDT so the first slot is
 # +1hr and the rest spread through the workday.
-DEFAULT_PUBLISH_HOURS_UTC = [13, 15, 17, 19, 21, 23]
+# Publish slots as CENTRAL wall-clock times (operator ruling 2026-07-30:
+# 8:00am, 9:30am, 11:00am, ... — 90-minute spacing across the morning/early
+# afternoon). Defined in local Central and converted to UTC at runtime so the
+# real posting time does NOT drift an hour every DST changeover, which a
+# hardcoded UTC list would. Override per-run with PUBLISH_SLOTS_CENTRAL
+# ("8:00,9:30,11:00" style) without a code change.
+PUBLISH_TZ = "America/Chicago"
+DEFAULT_PUBLISH_SLOTS_CENTRAL = [
+    (8, 0), (9, 30), (11, 0), (12, 30), (14, 0), (15, 30),
+]
+
+
+def _publish_slots() -> list[tuple[int, int]]:
+    """Slots as (hour, minute) in Central. Env override, else the default."""
+    raw = os.environ.get("PUBLISH_SLOTS_CENTRAL", "").strip()
+    if not raw:
+        return list(DEFAULT_PUBLISH_SLOTS_CENTRAL)
+    out: list[tuple[int, int]] = []
+    for part in raw.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        try:
+            h, _, m = part.partition(":")
+            out.append((int(h), int(m or 0)))
+        except ValueError:
+            print(f"[schedule] bad PUBLISH_SLOTS_CENTRAL entry {part!r} ignored")
+    return out or list(DEFAULT_PUBLISH_SLOTS_CENTRAL)
 
 
 def load_log() -> dict:
@@ -102,22 +129,47 @@ def save_log(log: dict) -> None:
     atomic_write_json(LOG_PATH, log, sort_keys=True)
 
 
-def schedule_times(now: datetime, n: int, hours: list[int]) -> list[str]:
-    """Pick the next n hour-slots ≥5 min in the future, walking into
-    tomorrow if needed. Returns ISO-8601 strings in UTC."""
-    base = now.replace(hour=0, minute=0, second=0, microsecond=0)
+def schedule_times(now: datetime, n: int,
+                   slots: "list[tuple[int, int]] | None" = None) -> list[str]:
+    """Pick the next n publish slots ≥5 min out, walking into tomorrow if
+    needed. Slots are (hour, minute) in Central wall-clock; the return value is
+    ISO-8601 UTC, which is what the YouTube API wants.
+
+    Central-local rather than fixed UTC so 8:00am stays 8:00am across DST.
+    Falls back to a fixed UTC offset if the tz database is unavailable.
+    """
+    slots = list(slots or _publish_slots())
     cutoff = now + timedelta(minutes=5)
+
+    tz = None
+    try:
+        from zoneinfo import ZoneInfo
+        tz = ZoneInfo(PUBLISH_TZ)
+    except Exception as exc:  # noqa: BLE001 - no tzdata: degrade, don't crash
+        print(f"[schedule] {PUBLISH_TZ} unavailable ({type(exc).__name__}); "
+              f"falling back to a fixed UTC-5 offset", flush=True)
+
     picks: list[datetime] = []
     for day_offset in range(3):
-        for hour in hours:
-            t = base + timedelta(days=day_offset, hours=hour)
+        local_day = (now.astimezone(tz) if tz else now - timedelta(hours=5))
+        local_day = (local_day + timedelta(days=day_offset)).replace(
+            hour=0, minute=0, second=0, microsecond=0)
+        for hour, minute in slots:
+            if tz is not None:
+                t = local_day.replace(hour=hour, minute=minute,
+                                      tzinfo=tz).astimezone(timezone.utc)
+            else:
+                t = (local_day.replace(hour=hour, minute=minute,
+                                       tzinfo=timezone.utc)
+                     + timedelta(hours=5))
             if t > cutoff:
                 picks.append(t)
             if len(picks) >= n:
                 break
         if len(picks) >= n:
             break
-    return [t.strftime("%Y-%m-%dT%H:%M:%SZ") for t in picks[:n]]
+    return [t.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            for t in picks[:n]]
 
 
 def _slug(s: str, n: int = 40) -> str:
@@ -395,6 +447,8 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     result: dict = {
         "topic": pkg.get("topic", pkg.get("title", "untitled")),
         "title": pkg.get("title"),
+        "format": pkg.get("format") or (
+            "reddit" if pkg.get("subreddit") else "explainer"),
         "publish_at": publish_at,
         "ok": False,
         "video_url": None,
@@ -414,6 +468,19 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     # Pre-render illustration gate. Quarantine (don't render) a package
     # that would ship off-topic stock; the batch continues without it.
     reason = None if _is_text_card else _illustration_quarantine(pkg)
+    # DATA DRAMA gate (graph_race only): bigger is better. Small, slow,
+    # flat numbers make a chart nobody watches, so a weak dataset never
+    # gets rendered — the batch continues without it and the report says
+    # exactly why, so the next authoring pass can pick better data.
+    if reason is None and pkg.get("format") == "graph_race":
+        try:
+            from engines import chart_race
+            verdict = chart_race.assess(pkg)
+            if not verdict["ok"]:
+                reason = "weak data: " + "; ".join(verdict["reasons"])
+        except Exception as e:  # noqa: BLE001 — never fail a run on the gate
+            print(f"  [drama gate skipped] {type(e).__name__}: {e}",
+                  flush=True)
     if reason is not None:
         result["error"] = f"quarantined: {reason}"
         result["quarantined"] = True
@@ -730,7 +797,7 @@ def main() -> int:
         print(f"[preflight] today's packages: {pkg_files}", flush=True)
 
     now = datetime.now(timezone.utc)
-    sched = schedule_times(now, args.count, DEFAULT_PUBLISH_HOURS_UTC)
+    sched = schedule_times(now, args.count)
 
     # Path A: pre-written packages dropped by a scheduled Claude Code
     # session. Render + upload directly, no LLM script generation. If
@@ -768,8 +835,7 @@ def main() -> int:
                 print(f"[schedule] bad _schedule.json ignored: {e}", flush=True)
         import math
         eff = min(args.count, len(prewritten))
-        sched = schedule_times(
-            now, max(1, math.ceil(eff / per_slot)), DEFAULT_PUBLISH_HOURS_UTC)
+        sched = schedule_times(now, max(1, math.ceil(eff / per_slot)))
         results: list[dict] = []
         sched_idx = 0
         for pkg in prewritten[:args.count]:
@@ -844,6 +910,7 @@ def main() -> int:
             log["posted"].append({
                 "topic": r["topic"],
                 "title": r.get("title"),
+                "format": r.get("format"),
                 "video_url": r["video_url"],
                 "publish_at": r.get("publish_at"),
                 "posted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

@@ -1,0 +1,38 @@
+{
+  "key": "it_net_bbnd_rank",
+  "title": "Fixed broadband subscriptions",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Fixed broadband subscriptions",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.BBND",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "China",
+      "value": 669825900
+    },
+    {
+      "label": "United States",
+      "value": 134223000
+    },
+    {
+      "label": "Brazil",
+      "value": 51047559
+    },
+    {
+      "label": "Japan",
+      "value": 48046037
+    },
+    {
+      "label": "India",
+      "value": 45711188
+    }
+  ]
+}

@@ -54,8 +54,31 @@ result or `None`, never raising into a caller; engines never write outside
 | **matplotlib** | chart engine | explainer | |
 | **themed_bottom** | procedural game engine (own physics/easing) | trending bottom-half | in-repo engine, self-contained |
 | **Higgsfield** | AI still→motion (paid API) | dormant (`HIGGSFIELD_ENABLE=1`) | the architectural template for `maybe_*` |
+| **chart_race** | animated multi-series chart race (eased timeline, y-camera zoom, spread tip labels, per-series icons, leaderboard, hook overlay) — silent mp4, caller muxes audio; `assess()` enforces the big-numbers data bar | trending `graph_race` format (`make_graph_race.py`) | registered module engine (`engines/chart_race.py`), `maybe_chart_race` contract, matplotlib+ffmpeg only |
+| **series_icons** (funnel) | resolve a country flag / brand mark for a named data series (keyless: flagcdn + Wikipedia/Commons via `entity_media`), disk-cached | `engines.chart_race` | media capability, so it lives in `funnel/`, not in the engine |
 
-### New in this change
+### svg_motion (added 2026-07-30 — capability sprint)
+
+Animated vector renders: the caller supplies `frame_fn(t) -> svg` (t∈[0,1]),
+the engine rasterizes every frame via cairosvg and assembles with ffmpeg.
+Born from the ChatGPT-integration experiments: animated SVG proved to be a
+strong vertical format and something every LLM brain here authors well —
+this owns the capability in-repo, no external service. **SMIL/CSS animation
+is NOT evaluated** — motion comes only from per-frame interpolation
+(`ease`/`interp`/`seg` helpers; built-ins `title_card`, `stat_pop`).
+
+| Field | `svg_motion` |
+|---|---|
+| status | active |
+| deps | cairosvg (pip), ffmpeg |
+| cpu_ok / est. runtime | yes / ~5–15 s per 3 s 1080×1920@30fps card |
+| license | cairosvg LGPL-3 (unmodified dynamic import — commercial OK) |
+| health check | `python -m engines doctor svg_motion` |
+| fallback | `None` → caller keeps its static card / skips the beat |
+| sample | `python -m engines demo svg-motion --out /tmp/card.mp4` |
+| tests | `python -m unittest tests.test_capabilities` (render + escape + helper coverage) |
+
+### New in the original engines change
 
 | Field | `still_motion` | `parallax` |
 |---|---|---|
@@ -87,6 +110,24 @@ result or `None`, never raising into a caller; engines never write outside
 - **OpenCV** enters the repo here as a shared dependency (`opencv-python-headless`),
   initially consumed only by parallax; stabilization/motion-QA uses are E-ticket
   material. It is *not* added to any workflow requirements.
+
+### render_qa (added 2026-07-29 — first ANALYSIS engine)
+
+| Field | `render_qa` |
+|---|---|
+| status | **active** |
+| problem | Mechanical render-defect detection: black tail/open, freezes ≥2s, A/V duration drift, double-letterboxing. Catches broken output offline and for $0, before a channel burns a vision call or ships the defect. |
+| origin | Third channel, 2026-07-29, run 30459022509: a clip with a **solid-black final frame** went through the full render and reached the *paid* vision critic — which is the safety net working, but a plain ffmpeg pass detects that class of defect in seconds for free. |
+| headless / CLI / reusable | yes / yes / yes |
+| license / commercial | stdlib+ffmpeg / ✅ |
+| cpu_ok / runtime | ✅ / ~3-8 s per clip (one full decode + 3 sampled cropdetect windows) |
+| model | — (pure ffmpeg/ffprobe) |
+| health check | `python -m engines doctor render_qa` |
+| returns | `{ok, problems, metrics}` dict. **Contract note (analysis engines):** `None` from `maybe_check()` = the ANALYZER failed → fail-open, proceed as if the engine were absent. `ok=False` = a real verdict on a defective render. Never conflate the two. |
+| fallback | none needed — callers proceed unchecked on `None` |
+| consumers | `third_capture.clip_qa` (pre-vision mechanical gate) |
+| known failure modes | blurred/stylistic padding is invisible to cropdetect (near-black bars only) — aesthetic judgment stays with the vision critic; freeze detection can flag deliberate long holds ≥2s (threshold tunable per call) |
+| sample | `python -m engines demo render_qa --video output/third/clip.mp4` |
 
 ---
 
@@ -197,6 +238,18 @@ result or `None`, never raising into a caller; engines never write outside
   "top 10 X by Y" chart stories), Wikidata SPARQL (superlatives/rankings on
   demand), Natural Earth (feeds E5), NASA open APIs. Cache under `cache/`,
   same provisioning pattern as models.
+
+- **E15 — Consolidate the two mechanical QA implementations.** Two sessions
+  shipped sibling capabilities on the same day (2026-07-29/30):
+  `shared/video_qa.py` (#185 — black/freeze/silence/loudness with a policy
+  layer) and `engines/render_qa.py` (#186 — black tail/open, freeze, A/V
+  drift, cropdetect letterbox; consumed by `third_capture.clip_qa` and the
+  story renderer). The check sets are complementary but the blackdetect/
+  freezedetect core is duplicated. One module should own the ffmpeg passes
+  — likely `engines/render_qa` absorbs the silence/loudness checks and
+  `shared/video_qa` becomes a thin policy wrapper over it (or is retired).
+  Do it as a deliberate change with both consumers' tests green, not a
+  drive-by.
 
 *Round-two rejects (asked and answered — recorded so they don't come back):*
 local diffusion image-gen (CPU-hopeless on runners; Gemini/Pollinations

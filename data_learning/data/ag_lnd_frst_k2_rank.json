@@ -1,0 +1,38 @@
+{
+  "key": "ag_lnd_frst_k2_rank",
+  "title": "Forest area",
+  "unit": "sq. km",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Forest area",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.LND.FRST.K2",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Russian Federation",
+      "value": 8153120
+    },
+    {
+      "label": "Brazil",
+      "value": 4929788
+    },
+    {
+      "label": "Canada",
+      "value": 3468171
+    },
+    {
+      "label": "United States",
+      "value": 3097950
+    },
+    {
+      "label": "China",
+      "value": 2256169
+    }
+  ]
+}

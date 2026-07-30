@@ -1549,6 +1549,23 @@ def main() -> int:
     # gate + preflight reject bad sources in ~2s), so retries are cheap.
     MAX_SLOT_ATTEMPTS = 3
     for pkg, path in packages:
+        # BRAIN-HEALTH GATE: on 2026-07-29 every rank/author/scene call
+        # failed for ~90 min and the run still shipped 4 clips — picked by
+        # raw view count (banger pinned at 0.5), no scene analysis, fallback
+        # titles. Each per-call fallback degraded "gracefully"; nothing saw
+        # the pattern. Once the brain is provably down (3+ tasks, zero
+        # successes), stop filling slots: the remaining slugs stay unposted
+        # and the next run (cron/chain) retries them when the brain is back.
+        # Slots already shipped this run stay shipped and get committed.
+        if author.brain_down() and not os.environ.get("THIRD_ALLOW_BLIND"):
+            h = author.brain_health()
+            print(f"::error::[brain] DOWN ({h['fail']} failed brain tasks, "
+                  f"0 ok) — refusing to publish a blind slate. Remaining "
+                  f"slots left for the next run. Set THIRD_ALLOW_BLIND=1 "
+                  f"to override.", flush=True)
+            results.append({"slug": pkg["slug"], "ok": False,
+                            "skipped": "brain down — blind-slate gate"})
+            continue
         publish_at = None
         if publish_base and pkg["slug"] not in log["posted"]:
             publish_at = (publish_base + slot_gap * slot) \

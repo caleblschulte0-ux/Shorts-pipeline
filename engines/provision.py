@@ -20,6 +20,7 @@ _PIP_DEPS = {
     "parallax": ["opencv-python-headless>=4.8", "onnxruntime>=1.16",
                  "numpy>=1.24"],
     "still_motion": [],
+    "render_qa": [],
 }
 
 
