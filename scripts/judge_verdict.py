@@ -56,7 +56,16 @@ def validate(v: dict) -> dict:
     labels = v.get("reject_labels", [])
     if not isinstance(labels, list):
         raise InvalidVerdict("reject_labels must be a list")
-    labels = [str(x).strip().upper() for x in labels if str(x).strip()]
+    # A judge legitimately reports two labels for one defect and writes them
+    # joined ("CHEAP_TYPOGRAPHY / UI_WIDGET"). Splitting that is faithful
+    # normalization, not a change of verdict — and refusing it would throw away
+    # a real REJECT over punctuation, which is the wrong way to fail.
+    split: list[str] = []
+    for x in labels:
+        for part in str(x).replace(",", "/").split("/"):
+            if part.strip():
+                split.append(part)
+    labels = [p.strip().upper() for p in split]
     unknown = [x for x in labels if x not in REJECT_LABELS]
     if unknown:
         raise InvalidVerdict(
