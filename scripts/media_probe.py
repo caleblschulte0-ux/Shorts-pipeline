@@ -73,7 +73,7 @@ def probe_provider(name: str, fn, query: str) -> dict:
 
 
 def main(argv) -> int:
-    queries = argv or DEFAULT_QUERIES
+    queries = [a for a in argv if not a.startswith("-")] or DEFAULT_QUERIES
     from data_learning import stock
 
     report = {
@@ -113,6 +113,48 @@ def main(argv) -> int:
             verdict = f"WORKING — {total} candidates across {len(rows)} queries"
         summary[name] = verdict
     report["summary"] = summary
+
+    # THE SECOND QUESTION. Knowing a provider ANSWERS is not knowing its clips
+    # get USED: Pixabay returned 32 candidates across 4 queries while three
+    # renders credited zero. So replay the renderer's real decision — the same
+    # media.find() ranking, relevance floor, context and perspective gates —
+    # and record, per candidate, the reason it was or was not chosen. This is
+    # the difference between "the pool is empty" and "we are rejecting it".
+    if "--decide" in sys.argv or os.environ.get("MEDIA_PROBE_DECIDE"):
+        from data_learning import media
+        decisions = []
+        for q in queries[:2]:
+            cands = media.find(q, kind="video", perspective="ground")
+            ranked = sorted(cands,
+                            key=lambda c: media._relevance(c.get("title", ""), q),
+                            reverse=True)
+            rows = []
+            for c in ranked[:12]:
+                rel = media._relevance(c.get("title", ""), q)
+                rows.append({
+                    "source": c.get("source"),
+                    "title": str(c.get("title", ""))[:70],
+                    "relevance": round(rel, 3),
+                    "under_relevance_floor": rel < media.MOTION_REL_FLOOR,
+                    "would_be_probed": rel >= media.MOTION_REL_FLOOR,
+                })
+            by_source = {}
+            for r in rows:
+                by_source.setdefault(r["source"], {"n": 0, "probeable": 0})
+                by_source[r["source"]]["n"] += 1
+                by_source[r["source"]]["probeable"] += int(r["would_be_probed"])
+            decisions.append({"query": q, "n_candidates": len(cands),
+                              "relevance_floor": media.MOTION_REL_FLOOR,
+                              "by_source": by_source, "top": rows})
+        report["decisions"] = decisions
+        print("\n=== DECISION REPLAY (why a candidate is or isn't probed) ===")
+        for d in decisions:
+            print(f"{d['query']!r}: {d['n_candidates']} candidates, "
+                  f"floor={d['relevance_floor']}")
+            for src, s in sorted(d["by_source"].items()):
+                print(f"    {src:9} {s['probeable']}/{s['n']} clear the floor")
+            for r in d["top"][:6]:
+                print(f"      {r['relevance']:.2f} {r['source']:9} {r['title']}")
 
     out = REPO / "output"
     out.mkdir(exist_ok=True)

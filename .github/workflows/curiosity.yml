@@ -225,7 +225,7 @@ jobs:
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-        run: python3 scripts/media_probe.py
+        run: python3 scripts/media_probe.py --decide
 
       # Its own artifact, on EVERY mode — verify skips the status upload, and
       # the job-log API truncates, so without this the probe's answer is only

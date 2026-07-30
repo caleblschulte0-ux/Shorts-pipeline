@@ -24,6 +24,46 @@ from urllib.parse import quote
 from data_learning.footage_hybrid import _get
 
 
+def describe(v: dict, source: str) -> str:
+    """A candidate's HUMAN-READABLE subject.
+
+    This exists because both stock providers used to put a URL in `title`, and
+    `title` is exactly what media._relevance() scores a candidate on and what
+    the credits print. A URL carries almost none of the subject's words, so
+    every Pexels/Pixabay clip scored near zero against the beat's query, sorted
+    below the Creative-Commons pools, and was then dropped by the relevance
+    floor before it was ever probed. The measurable symptom: renders credited
+    zero Pexels and zero Pixabay while Pixabay was returning 32 candidates per
+    query, and long prose-titled archive clips (police bodycam, 1938 newsreel)
+    won the beats instead purely on token overlap.
+
+    Pixabay gives real keywords in `tags`. Pexels gives no title, but its page
+    URL carries a descriptive slug (`/video/woman-walking-on-the-beach-123/`),
+    so humanize that. Falls back to the source name rather than a URL — an
+    unhelpful title is survivable, a URL masquerading as one is not.
+    """
+    if source == "pixabay":
+        tags = str(v.get("tags") or "").strip()
+        if tags:
+            return ", ".join(t.strip() for t in tags.split(",") if t.strip())
+    alt = str(v.get("alt") or "").strip()
+    if alt:
+        return alt
+    return slug_words(v.get("url") or v.get("pageURL") or "") or source
+
+
+def slug_words(page_url: str) -> str:
+    """'https://www.pexels.com/video/woman-walking-on-a-beach-1234567/'
+    -> 'woman walking on a beach'. Trailing numeric ids and the site's own path
+    segments are not subject words, so they are dropped."""
+    parts = [p for p in str(page_url).strip("/").split("/") if p]
+    if not parts:
+        return ""
+    words = [w for w in parts[-1].replace("_", "-").split("-")
+             if w and not w.isdigit()]
+    return " ".join(words)
+
+
 def search_pexels(query: str, limit: int = 8) -> list[dict]:
     key = os.environ.get("PEXELS_API_KEY")
     if not key:
@@ -41,7 +81,8 @@ def search_pexels(query: str, limit: int = 8) -> list[dict]:
         hd = next((f for f in files if (f.get("height") or 0) >= 720), None) \
             or (files[0] if files else None)
         if hd:
-            out.append({"source": "pexels", "title": v.get("url", ""),
+            out.append({"source": "pexels", "title": describe(v, "pexels"),
+                        "page": v.get("url", ""),
                         "url": hd["link"], "license": "Pexels (CC0-like)",
                         "dur": v.get("duration")})
     return out
@@ -59,7 +100,8 @@ def search_pixabay(query: str, limit: int = 8) -> list[dict]:
         vids = v.get("videos", {})
         f = vids.get("large") or vids.get("medium") or {}
         if f.get("url"):
-            out.append({"source": "pixabay", "title": v.get("pageURL", ""),
+            out.append({"source": "pixabay", "title": describe(v, "pixabay"),
+                        "page": v.get("pageURL", ""),
                         "url": f["url"], "license": "Pixabay (CC0-like)",
                         "dur": v.get("duration")})
     return out
